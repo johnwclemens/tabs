@@ -11,7 +11,7 @@ class Tabs(pygwin.Window):
         self.nPages          = 3
         self.linesPerPage    = 4
         self.rowsPerLine     = 6
-        self.colsPerRow      = 100
+        self.colsPerRow      = 10
         self.ww              = 1000
         self.wh              = 600
         self.fullScreen      = False
@@ -46,8 +46,13 @@ class Tabs(pygwin.Window):
     def _initTabs(self):
         print('_initTabs(BGN) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
         w, h, wh = self.ww/self.colsPerRow, self.wh/(self.rowsPerLine * self.linesPerPage), self.wh
-        lpp = self.linesPerPage
-        self.pages, self.lines, self.rows, self.cols = [], [], [], []
+        np, lpp, rpl, cpr = self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow
+#        self.lines, self.rows, self.cols = [], [], []
+        self.pages = [[[[pyglet.shapes.Rectangle(c*w, wh-h-m*wh/lpp-r*h, w, h, color=COLORS[(c+r) % 2], batch=self.batch) for c in range(cpr)] for r in range(rpl)] for m in range(lpp)] for p in range(np)]
+        self.lines = [self.pages[p][m] for m in range(lpp) for p in range(np)]
+        self.rows = [self.pages[p][m][r] for r in range(rpl) for m in range(lpp) for p in range(np)]
+        self.cols = [self.pages[p][m][r][c] for c in range(cpr) for r in range(rpl) for m in range(lpp) for p in range(np)]
+        '''
         pages = []
         for p in range(self.nPages):
             lines = []
@@ -66,11 +71,13 @@ class Tabs(pygwin.Window):
             self.lines.append(lines)
             pages.append(lines)
         self.pages.append(pages)
+        '''
         self._verify()
         print('_initTabs(END) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
 
     def on_resize(self, width, height):
         super().on_resize(width, height)
+#        return
         self.ww, self.wh  = width, height
         print('on_resize(BGN) ww={} wh={}'.format(self.ww, self.wh), file=DBG_FILE)
         w, h, wh = self.ww/self.colsPerRow, self.wh/(self.rowsPerLine*self.linesPerPage), self.wh
@@ -79,29 +86,76 @@ class Tabs(pygwin.Window):
             for m in range(self.linesPerPage):
                 for r in range(self.rowsPerLine):
                     for c in range(self.colsPerRow):
-                        self.pages[0][p][m][r][c].position = (c*w, wh-h-m*wh/lpp-r*h)
-                        self.pages[0][p][m][r][c].width,     self.pages[0][p][m][r][c].height = w, h
-                        self.pages[0][p][m][r][c].color    = COLORS[(c+r) % 2 + 2]
+                        self.pages[p][m][r][c].position = (c*w, wh-h-m*wh/lpp-r*h)
+                        self.pages[p][m][r][c].width,     self.pages[p][m][r][c].height = w, h
+                        self.pages[p][m][r][c].color    = COLORS[(c+r) % 2 + 2]
                     print('p={} m={} r={} wh={} h={:5.1f} m*wh/lpp={:6.1f} wh-h-m*wh/lpp-r*h={:6.1f}'.format(p, m, r, wh, h, m*wh/lpp, wh-h-m*wh/lpp-r*h), file=DBG_FILE)
-                self.pages[0][p][m][0][0].color = (127, 121, 16)
+                self.pages[p][m][0][0].color = (127, 121, 16)
         self._verify()
         print('on_resize(END) ww={} wh={}\n'.format(self.ww, self.wh), file=DBG_FILE)
 
-    def _verify(self):
-        tmp = [len(e) for e in (self.pages, self.pages[0],  self.lines, self.lines[0], self.rows, self.rows[0], self.cols, self.cols[0])]
-        d = dict(zip(['pages', 'pages[0]', 'lines', 'lines[0]', 'rows', 'rows[0]', 'cols', 'cols[0]'], tmp))
-        print('_verify(BGN) {}'.format(d), file=DBG_FILE)
-        print("_verify() d[pages[0]]={}=nPages={} d[lines[0]]={}=linesPerPage={} d[rows[0]]={}=rowsPerLine={} d[cols[0]]={}=colsPerRow={}".
-              format(d['pages[0]'], self.nPages, d['lines[0]'], self.linesPerPage, d['rows[0]'], self.rowsPerLine, d['cols[0]'], self.colsPerRow), file=DBG_FILE)
-        assert(d['pages[0]']   == self.nPages);      assert(d['lines[0]'] == self.linesPerPage)
-        assert(d['rows[0]'] == self.rowsPerLine); assert(d['cols[0]']  == self.colsPerRow)
-        for p in range(self.nPages):
-            for m in range(self.linesPerPage):
-                for r in range(self.rowsPerLine):
-                    q = self.pages[0][p][m][r][0]
-                    print('p={} m={} r={} position=({:5.1f}, {:5.1f}) w={:5.1f} h={:5.1f}'.format(p, m, r, q.x, q.y, q.width, q.height), file=DBG_FILE)
-        print('_verify(BGN) {}'.format(d), file=DBG_FILE)
-#        if self.cols[0][0] == self.rows[0][0][0]:
+    def _printStructInfo(self, reason=''):
+        print('{} np={} lpp={} rpl={} cpr={} len(pages)={} len(lines)={} len(rows)={} len(cols)={}'
+              .format(reason, self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow, len(self.pages), len(self.lines), len(self.rows), len(self.cols)), file=DBG_FILE)
+
+    def _printStruct(self, np, lpp, rpl, cpr):
+        self._printStructInfo('_printStruct(BGN)')
+        print('_printStruct() np={} lpp={} rpl={} cpr={}'.format(np, lpp, rpl, cpr), file=DBG_FILE)
+        for p in range(np):
+            for m in range(lpp):
+                for r in range(rpl):
+                    for c in range(cpr):
+                        q = self.pages[p][m][r][c]
+                        print('pages: p={} m={} r={} c={} position=({:5.1f}, {:5.1f}) w={:5.1f} h={:5.1f}'.format(p, m, r, c, q.x, q.y, q.width, q.height), file=DBG_FILE)
+        print('_printStruct() len(pages)={} lpp={} rpl={} cpr={}'.format(len(self.pages), lpp, rpl, cpr), file=DBG_FILE)
+        for p in range(len(self.pages)):
+            for m in range(lpp):
+                for r in range(rpl):
+                    for c in range(cpr):
+                        q = self.pages[p][m][r][c]
+                        print('pages: p={} m={} r={} c={} position=({:5.1f}, {:5.1f}) w={:5.1f} h={:5.1f}'.format(p, m, r, c, q.x, q.y, q.width, q.height), file=DBG_FILE)
+        print('_printStruct() len(lines)={} rpl={} cpr={}'.format(len(self.lines), rpl, cpr), file=DBG_FILE)
+        for m in range(len(self.lines)):
+            for r in range(rpl):
+                for c in range(cpr):
+                    q = self.lines[m][r][c]
+                    print('lines: m={} r={} c={} position=({:5.1f}, {:5.1f}) w={:5.1f} h={:5.1f}'.format(m, r, c, q.x, q.y, q.width, q.height), file=DBG_FILE)
+        print('_printStruct() len(rows)={} cpr={}'.format(len(self.rows), cpr), file=DBG_FILE)
+        for r in range(len(self.rows)):
+            for c in range(cpr):
+                q = self.rows[r][c]
+                print('rows: r={} c={} position=({:5.1f}, {:5.1f}) w={:5.1f} h={:5.1f}'.format(r, c, q.x, q.y, q.width, q.height), file=DBG_FILE)
+        print('_printStruct() len(cols)={}'.format(len(self.cols)), file=DBG_FILE)
+        for c in range(len(self.cols)):
+            q = self.cols[c]
+            print('cols: c={} position=({:5.1f}, {:5.1f}) w={:5.1f} h={:5.1f}'.format(c, q.x, q.y, q.width, q.height), file=DBG_FILE)
+        self._printStructInfo('_printStruct(END)')
+
+    def _verify(self):  # if self.cols[0][0] == self.rows[0][0][0]:
+        self._printStruct(1, 1, 1, 1)
+        self._printStruct(self.nPages, 1, 1, 1)
+        self._printStruct(self.nPages, self.linesPerPage, 1, 1)
+        self._printStruct(self.nPages, self.linesPerPage, self.rowsPerLine, 1)
+        self._printStruct(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow)
+        foo = (self.pages, self.lines, self.rows, self.cols)
+#        self._printStruct(len(foo[0]), len(foo[1]), len(foo[2]), len(foo[3]))
+        ln = [len(e) for e in foo]
+        sz = [self.size(e) for e in foo]
+        d1 = dict(zip(['pages', 'lines', 'rows', 'cols'], ln))
+        d2 = dict(zip(['pages', 'lines', 'rows', 'cols'], sz))
+        print('_verify(BGN) d1={} d2={}'.format(d1, d2), file=DBG_FILE)
+        assert(d1['pages'] == self.nPages)
+        assert(d1['lines'] == self.nPages * self.linesPerPage)
+        assert(d1['rows']  == self.nPages * self.linesPerPage * self.rowsPerLine)
+        assert(d1['cols']  == self.nPages * self.linesPerPage * self.rowsPerLine * self.colsPerRow)
+        assert(d2['pages'] == self.nPages * self.linesPerPage * self.rowsPerLine * self.colsPerRow)
+        assert(d2['lines'] == self.nPages * self.linesPerPage * self.rowsPerLine * self.colsPerRow)
+        assert(d2['rows']  == self.nPages * self.linesPerPage * self.rowsPerLine * self.colsPerRow)
+        assert(d2['cols']  == self.nPages * self.linesPerPage * self.rowsPerLine * self.colsPerRow)
+
+    def size(self, item):
+        if isinstance(item, list): return sum([self.size(i) for i in item])
+        return 1
 
     def on_draw(self):  #        super().clear()
         self.clear()
@@ -112,3 +166,5 @@ if __name__ == '__main__':
     COLORS = [(0, 0, 0), (66, 60, 144), (97, 31, 93), (41, 90, 111)]
     tabs = Tabs()
     pyglet.app.run()
+
+# https://youtu.be/PlI0pTvxYvw
