@@ -31,41 +31,36 @@ class Tabs(pygwin.Window):
         print('[w]             ww={}'.format(self.ww),           file=DBG_FILE)
         print('[h]             wh={}'.format(self.wh),           file=DBG_FILE)
         print('[F]     fullScreen={}'.format(self.fullScreen),   file=DBG_FILE)
-        self._initWindow()
+        self._initWindowA()
+        super().__init__(screen=self.screens[1], fullscreen=self.fullScreen, resizable=True, visible=False)
+        self._initWindowB()
         self._initTabs()
 
-    def _initWindow(self):
+    def _initWindowA(self):
         display      = pyglet.canvas.get_display()
         self.screens = display.get_screens()
-        super().__init__(screen=self.screens[1], fullscreen=self.fullScreen, resizable=True, visible=False)
+
+    def _initWindowB(self):
         self.batch   = pyglet.graphics.Batch()
         self.set_size(self.ww, self.wh)
         self.set_visible()
-#        asteroid = pyglet.image.load('asteroid.png')
-#        sprite = pyglet.sprite.Sprite(img=asteroid, batch=self.batch)
-#        self.label = pyglet.text.Label(text='A', font_name='Times New Roman', font_size=14, color=(63, 200, 233), x=100, y=50)  # , batch=self.batch)
-#        self.label = pyglet.text.Label('ABC', font_name='Lucida Console', font_size=16, x=100, y=50, width=10, height=10, anchor_x='center', anchor_y='center', batch=self.batch)
         print('_initWindow() ww={} wh={}'.format(self.ww, self.wh), file=DBG_FILE)
 
     def on_draw(self):
         self.clear()
-#        self.label.draw()
         self.batch.draw()
 
     def _initTabs(self):
         print('_initTabs(BGN) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
         w, h, wh = self.ww/self.colsPerRow, self.wh/(self.rowsPerLine * self.linesPerPage), self.wh
         np, lpp, rpl, cpr = self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow
-        self.pages = [[[pyglet.shapes.Rectangle(0, wh-h-m*wh/lpp-r*h, w, h, color=COLORS[r % 2], batch=self.batch) for r in range(rpl)] for m in range(lpp)] for p in range(np)]
-        self.pages = [[[[pyglet.shapes.Rectangle(c*w, wh-h-m*wh/lpp-r*h, w, h, color=COLORS[(c+r) % 2], batch=self.batch) for c in range(cpr)] for r in range(rpl)] for m in range(lpp)] for p in range(np)]
-        self.lines = [self.pages[p][m] for m in range(lpp) for p in range(np)]
-        self.rows  = [self.pages[p][m][r] for r in range(rpl) for m in range(lpp) for p in range(np)]
-        self.cols  = [self.pages[p][m][r][c] for c in range(cpr) for r in range(rpl) for m in range(lpp) for p in range(np)]
-#        self.labels = [[[[pyglet.text.Label('Ab', font_name='Lucida Console', font_size=16, x=c*w, y=wh-h-m*wh/lpp-r*h, width=w, height=h, align='right', batch=self.batch)
-#                          for c in range(cpr)] for r in range(rpl)] for m in range(lpp)] for p in range(np)]
-        '''
+#        self.pages = [[[[pyglet.shapes.Rectangle(c*w, wh-h-m*wh/lpp-r*h, w, h, color=COLORS[(c+r) % 2], batch=self.batch) for c in range(cpr)] for r in range(rpl)] for m in range(lpp)] for p in range(np)]
+#        self.lines = [self.pages[p][m] for m in range(lpp) for p in range(np)]
+#        self.rows  = [self.pages[p][m][r] for r in range(rpl) for m in range(lpp) for p in range(np)]
+#        self.cols  = [self.pages[p][m][r][c] for c in range(cpr) for r in range(rpl) for m in range(lpp) for p in range(np)]
+#        '''
         self.lines, self.rows, self.cols = [], [], []
-        pages = []
+        self.pages = []
         for p in range(self.nPages):
             lines = []
             for m in range(self.linesPerPage):
@@ -77,13 +72,13 @@ class Tabs(pygwin.Window):
                     print('p={} m={} r={} wh={} h={:5.1f} m*wh/lpp={:6.1f} wh-h-m*wh/lpp-r*h={:6.1f}'.format(p, m, r, wh, h, m*wh/lpp, wh-h-m*wh/lpp-r*h), file=DBG_FILE)
                     self.cols.append(cols)
                     rows.append(cols)
-                self.cols[0][0].color = (127, 121, 16)
                 self.rows.append(rows)
                 lines.append(rows)
             self.lines.append(lines)
-            pages.append(lines)
-        self.pages.append(pages)
-        '''
+            self.pages.append(lines)
+#            pages.append(lines)
+#        self.pages.append(pages)
+#        '''
 #        self._verify()
         print('_initTabs(END) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
 
@@ -96,20 +91,13 @@ class Tabs(pygwin.Window):
         for p in range(self.nPages):
             for m in range(self.linesPerPage):
                 for r in range(self.rowsPerLine):
-#                    self.pages[p][m][r].position = (0, wh-h-m*wh/lpp-r*h)
-#                    self.pages[p][m][r].width, self.pages[p][m][r].height = w, h
-#                    self.pages[p][m][r].color    = COLORS[(r) % 2 + 2]
-#                    self.pages[p][m][r].opacity  = 127
                     for c in range(self.colsPerRow):
                         self.pages[p][m][r][c].position = (c*w, wh-h-m*wh/lpp-r*h)
                         self.pages[p][m][r][c].width, self.pages[p][m][r][c].height = w, h
-                        self.pages[p][m][r][c].color    = COLORS[(c+r) % 2 + 2]
-#                        self.labels[p][m][r][c].x,     self.labels[p][m][r][c].y      = c*w, wh-h-m*wh/lpp-r*h
-#                        self.labels[p][m][r][c].width, self.labels[p][m][r][c].height = w,   h
-#                        print('{},{},{},{},{:6.1f},{:6.1f},{:6.1f},{:6.1f}'.format(p, m, r, c, self.labels[p][m][r][c].x, self.labels[p][m][r][c].y, self.labels[p][m][r][c].width, self.labels[p][m][r][c].height), file=DBG_FILE, end=' ')
+                        self.pages[p][m][r][c].color    = COLORS[(c+r)%2+2]
                     print(file=DBG_FILE)
 #                    print('p={} m={} r={} wh={} h={:5.1f} m*wh/lpp={:6.1f} wh-h-m*wh/lpp-r*h={:6.1f}'.format(p, m, r, wh, h, m*wh/lpp, wh-h-m*wh/lpp-r*h), file=DBG_FILE)
-#                self.pages[p][m][0][0].color = (159+m*32, 100, 16)
+                self.pages[p][m][0][0].color = (159+m*32, 100, 16)
 #        self._verify()
         print('on_resize(END) ww={} wh={}\n'.format(self.ww, self.wh), file=DBG_FILE)
 
@@ -137,16 +125,16 @@ class Tabs(pygwin.Window):
         for m in range(len(self.lines)):
             for r in range(rpl):
                 for c in range(cpr):
-                    q = self.lines[m][r][c]
+                    q = self.lines[m][r][c][0]
                     print('lines: m={} r={} c={} position=({:5.1f}, {:5.1f}) w={:5.1f} h={:5.1f}'.format(m, r, c, q.x, q.y, q.width, q.height), file=DBG_FILE)
         print('printStruct() len(rows)={} cpr={}'.format(len(self.rows), cpr), file=DBG_FILE)
         for r in range(len(self.rows)):
             for c in range(cpr):
-                q = self.rows[r][c]
+                q = self.rows[r][c][0]
                 print('rows: r={} c={} position=({:5.1f}, {:5.1f}) w={:5.1f} h={:5.1f}'.format(r, c, q.x, q.y, q.width, q.height), file=DBG_FILE)
         print('printStruct() len(cols)={}'.format(len(self.cols)), file=DBG_FILE)
         for c in range(len(self.cols)):
-            q = self.cols[c]
+            q = self.cols[c][0]
             print('cols: c={} position=({:5.1f}, {:5.1f}) w={:5.1f} h={:5.1f}'.format(c, q.x, q.y, q.width, q.height), file=DBG_FILE)
         self.printStructInfo('printStruct(END)')
 

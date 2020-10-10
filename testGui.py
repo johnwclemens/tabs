@@ -1,8 +1,10 @@
-import sys
+import sys, math
 import pyglet
 #import pyglet.shapes# as pygshp
 #import pyglet.text  # as pygtxt
 #import pyglet.window# as pygwin
+
+def fri(f): return int(math.floor(f+0.5))
 
 class TestGui(pyglet.window.Window):
     def __init__(self):
@@ -10,28 +12,29 @@ class TestGui(pyglet.window.Window):
         super(TestGui, self).__init__(width=self.ww, height=self.wh, resizable=True, visible=False)
         self.batch = pyglet.graphics.Batch()
         self.nc, self.nr = 24, 12
-        w, h = self.ww/self.nc, self.wh/self.nr
-        self.useCells, self.useLabels, self.useSprites = False, False, True
-        if self.useCells:  self._initCells()
-        if self.useLabels: self._initLabels()
+        self.w, self.h = self.ww/self.nc, self.wh/self.nr
+        self.COLORS=[(127, 127, 127, 195), (66, 60, 144, 195)]
+        self.useCells, self.useLabels, self.useSprites, self.useCBS = False, False, True, True
+        if self.useCells:   self._initCells()
+        if self.useLabels:  self._initLabels()
         if self.useSprites: self._initSprites()
-        self._initCBS()
+        if self.useCBS:     self._initCBS()
 #        if self.useCells:  self.cells = [[pyglet.shapes.Rectangle(c*w, self.wh-h-r*h, w, h, color=COLORS[(c+r)%2], batch=self.batch) for c in range(self.nc)] for r in range(self.nr)]
 #        if self.useLabels: self.labels = [[pyglet.text.Label('Ab', font_name='Lucida Console', font_size=16, x=c*w, y=self.wh-h-r*h, width=w, height=h, anchor_x='left', anchor_y='center', align='left', batch=self.batch) for c in range(self.nc)] for r in range(self.nr)]
         self.set_visible(True)
 
     def _initCells(self):
-        w, h = self.ww/self.nc, self.wh/self.nr
+        w, h = self.w, self.h
         self.cells = []
         for r in range(self.nr):
             tmp = []
             for c in range(self.nc):
                 x, y = (self.ww+c*w)/2, self.wh-h-r*h
-                tmp.append(pyglet.shapes.Rectangle(x, y, w/2, h, color=COLORS[(c+r)%2], batch=self.batch))
+                tmp.append(pyglet.shapes.Rectangle(x, y, w/2, h, color=self.COLORS[(c+r)%2], batch=self.batch))
             self.cells.append(tmp)
 
     def _initLabels(self):
-        w, h = self.ww/self.nc, self.wh/self.nr
+        w, h = self.w, self.h
         self.labels, f, s, n, b = [], 'Lucida Console', 10, 12, self.batch
         for r in range(self.nr):
             tmp = []
@@ -49,57 +52,85 @@ class TestGui(pyglet.window.Window):
                 elif c%n==9:  tmp.append(pyglet.text.Label('Ab', font_name=f, font_size=s, x=x, y=y, width=w/2, height=h, anchor_x='left',   anchor_y='baseline', align='center', color=C, batch=b))
                 elif c%n==10: tmp.append(pyglet.text.Label('Ab', font_name=f, font_size=s, x=x, y=y, width=w/2, height=h, anchor_x='center', anchor_y='baseline', align='center', color=C, batch=b))
                 elif c%n==11: tmp.append(pyglet.text.Label('Ab', font_name=f, font_size=s, x=x, y=y, width=w/2, height=h, anchor_x='right',  anchor_y='baseline', align='center', color=C, batch=b))
-                else:         print('ERROR: c={} n={} c%%n={}'.format(c, n, c%n)); exit(1)
-                print('[{}][{}]{:6.1f},{:6.1f} '.format(r, c, tmp[c].x, tmp[c].y), end='')
-            print()
+                else:         print('ERROR: c={} n={} c%%n={}'.format(c, n, c%n), file=DBG_FILE); exit(1)
+                print('[{}][{}]{:6.1f},{:6.1f} '.format(r, c, tmp[c].x, tmp[c].y), file=DBG_FILE, end='')
+            print(file=DBG_FILE)
             self.labels.append(tmp)
 
-    def _initSprites(self):
-        self.sprites = []
-        decoder = pyglet.image.codecs.png.PNGImageDecoder()
-        for i, f in enumerate(['C:/Python36/my/tabs/pyglet.png', 'C:/Python36/my/tabs/apple_raw.png']):
-            img = pyglet.image.load(f, decoder=decoder)
-            sprite = pyglet.sprite.Sprite(img, x=(i+1)*200, y=50, batch=self.batch)
-            w, h = sprite.width, sprite.height
-            print('w={} h={}'.format(w, h))
-            sprite.scale_x, sprite.scale_y = 100/w, 100/h
-            self.sprites.append(sprite)
-
     def _initCBS(self):
-        self.CBS = []
-        cbp = pyglet.image.CheckerImagePattern((255, 127, 63, 255), (63, 127, 255, 255))
-        cbi = cbp.create_image(width=200, height=200)
-        cbs = pyglet.sprite.Sprite(img=cbi, x=200, y=150, batch=self.batch)
-        self.CBS.append(cbs)
-        print('_initCBS() cbs={}'.format(cbs))
+        w, h = self.w, self.h
+        ww, wh = self.ww, self.wh
+        self._ww, self._wh = ww, wh
+        self._w, self._h = w, h
+        self.CBS, cbs = [], None
+        for r in range(self.nr):
+            tmp=[]
+            for c in range(self.nc):
+                x, y = c*w, self.wh-h-r*h
+                cbp = pyglet.image.SolidColorImagePattern(self.COLORS[(c+r)%2])
+                cbi = cbp.create_image(width=fri(w), height=fri(h))
+                cbs = pyglet.sprite.Sprite(img=cbi, x=x, y=y, batch=self.batch, subpixel=False)
+                sw, sh = cbs.width, cbs.height
+                p, q = cbs.scale_x, cbs.scale_y
+                print('  _initCBS()   [{:2}][{:2}] x={:6.1f} y={:6.1f} sw={} sh={} p={:5.3f} q={:5.3f} w={:5.1f} h={:5.1f} ww={} wh={}'.format(r, c, x, y, sw, sh, p, q, w, h, ww, wh), file=DBG_FILE)
+                tmp.append(cbs)
+            self.CBS.append(tmp)
+
+    def _initSprites(self):
+        w, h = self.w, self.h
+        self.sprites, imgs = [], []
+        decoder = pyglet.image.codecs.png.PNGImageDecoder()
+        print('_initSprites(BGN) ww={} wh={} nc={} nr={} w={:5.1f} h={:5.1f}'.format(self.ww, self.wh, self.nc, self.nr, w, h), file=DBG_FILE)
+        for i, imgFileName in enumerate(['C:/Python36/my/tabs/pyglet.png', 'C:/Python36/my/tabs/apple_raw.png']):
+            tmp = pyglet.image.load(imgFileName, decoder=decoder)
+            imgs.append(tmp)
+            print('_initSprites() [{}] w={:5.1f} h={:5.1f} f={}'.format(i, w, h, imgFileName), file=DBG_FILE)
+        for r in range(self.nr):
+            tmp = []
+            for c in range(self.nc):
+                x, y = c*w, self.wh-h-r*h
+                sprite = pyglet.sprite.Sprite(imgs[(c+r)%2], x=x, y=y, batch=self.batch)
+                sw, sh = sprite.width, sprite.height
+                sprite.scale_x, sprite.scale_y = w/sw, h/sh
+                p, q = sprite.scale_x, sprite.scale_y
+                tmp.append(sprite)
+                print('_initSprites() [{:2}][{:2}] x={:6.1f} y={:6.1f} sw={} sh={} p={:5.3f} q={:5.3f} w=sw*p={:5.1f} h=sh*q={:5.1f}'.format(r, c, x, y, sw, sh, p, q, sw*p, sh*q), file=DBG_FILE)
+            self.sprites.append(tmp)
 
     def on_resize(self, width, height):
-        ww, wh = self.ww, self.wh
+        _w, _h, _ww, _wh = self._w, self._h, self._ww, self._wh
         super().on_resize(width, height)
         self.ww, self.wh = width, height
-        w, h = self.ww/self.nc, self.wh/self.nr
+        self.w, self.h = self.ww/self.nc, self.wh/self.nr
+        ww, wh = self.ww, self.wh
+        w, h = self.w, self.h
+        print('on_resize(BGN) _w={:5.1f} _h={:5.1f} _ww={} _wh={} nc={} nr={} ww={} wh={} w={:5.1f} h={:5.1f}'.format(_w, _h, _ww, _wh, self.nc, self.nr, ww, wh, w, h), file=DBG_FILE)
         for r in range(self.nr):
             for c in range(self.nc):
-                if self.useLabels:
-                    self.labels[r][c].x,     self.labels[r][c].y      = c*w/2,           self.wh-h-r*h
-                    self.labels[r][c].width, self.labels[r][c].height = w/2,             h
-                if self.useCells:
-                    self.cells[r][c].x,      self.cells[r][c].y       = (self.ww+c*w)/2, self.wh-h-r*h
-                    self.cells[r][c].width,  self.cells[r][c].height  = w/2,             h
-        for i in self.CBS:
-            i.update(x=200*width/ww, y=200*height/wh, scale_x=width/ww, scale_y=height/wh)
-#            i.anchor_x, i.anchor_y = 200, 200
-#            i.scale_x, i.scale_y = width/ww, height/wh
-#        if self.useImages:
-#            for i in range(len(self.images)):
-#                    self.images[i].update(scale_x=100/width, scale_y=h)
+                x, y = c*w, self.wh-h-r*h
+                if self.useCBS:
+                    self.CBS[r][c].update(x=x, y=y, scale_x=width/_ww, scale_y=height/_wh)
+                    sw, sh = self.CBS[r][c].width, self.CBS[r][c].height
+                    p, q = self.CBS[r][c].scale_x, self.CBS[r][c].scale_y
+                    print('on_resize(CBS) [{:2}][{:2}] x={:6.1f} y={:6.1f} sw={} sh={} p={:5.3f} q={:5.3f} w={:5.1f} h={:5.1f} ww={} wh={}'.format(r, c, x, y, sw, sh, p, q, w, h, ww, wh), file=DBG_FILE)
+                if self.useSprites:
+#                    self.sprites[r][c].update(x=x, y=y, scale_x=width/ww, scale_y=height/wh)
+                    sw, sh = self.sprites[r][c].width, self.sprites[r][c].height
+                    p, q = self.sprites[r][c].scale_x, self.sprites[r][c].scale_y
+                    self.sprites[r][c].update(x=x, y=y, scale_x=w/sw, scale_y=h/sh)
+                    print('on_resize(sprites) [{:2}][{:2}] x={:6.1f} y={:6.1f} sw={} sh={} p={:5.3f} q={:5.3f} w=sw*p={:5.1f} h=sh*q={:5.1f}'.format(r, c, x, y, sw, sh, p, q, sw*p, sh*q), file=DBG_FILE)
+#                if self.useLabels:
+#                    self.labels[r][c].x,     self.labels[r][c].y      = c*w/2,           self.wh-h-r*h
+#                    self.labels[r][c].width, self.labels[r][c].height = w/2,             h
+#                if self.useCells:
+#                    self.cells[r][c].x,      self.cells[r][c].y       = (self.ww+c*w)/2, self.wh-h-r*h
+#                    self.cells[r][c].width,  self.cells[r][c].height  = w/2,             h
 
     def on_draw(self):
         self.clear()
         self.batch.draw()
 
 if __name__ == '__main__':
-    DBG_FILE = open(sys.argv[0] + ".log", 'w')
-    COLORS = [(127, 127, 127), (66, 60, 144)]
+    DBG_FILE = open(sys.argv[0] + ".log.txt", 'w')
     test = TestGui()
     pyglet.app.run()
