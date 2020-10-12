@@ -37,7 +37,6 @@ class TestGui(pyglet.window.Window):
             imgSprts = []
             if opq: opacity = 255
             else:   opacity = fri(255*r/(self.nr-1))
-#            else:   opacity = fri(128*r/self.nr)+127
             for c in range(self.nc):
                 x, y = c*w, self.wh-h-r*h
                 imgSprt = pyglet.sprite.Sprite(imgs[(c+r)%(i+1)], x=x, y=y, batch=self.batch, subpixel=False)
@@ -58,12 +57,6 @@ class TestGui(pyglet.window.Window):
             sciSprts=[]
             for c in range(self.nc):
                 x, y = c*w, self.wh-h-r*h
-#                color = list(self.COLORS[(c+r)%2])
-#                if opq: opacity = 255
-#                else:   opacity = fri(255*c/self.nc)
-#                else:   color[3] = fri(128*c/self.nc)+127
-#                color[3] = opacity
-#                scip = pyglet.image.SolidColorImagePattern(tuple(color))
                 scip = pyglet.image.SolidColorImagePattern(self.COLORS[(c+r)%2])
                 sci = scip.create_image(width=fri(w), height=fri(h))
                 sciSprt = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, subpixel=False)
