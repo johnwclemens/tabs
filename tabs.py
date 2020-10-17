@@ -97,7 +97,7 @@ class Tabs(pyglet.window.Window):
             xp, yq = line.scale_x, line.scale_y
 #            rows = self._initRows(p, m, opq)
 #            lines.append(rows)
-            print('_initLines() [{:2}] [{:2}]         x={:6.1f} y={:6.1f} sw={:4} sh={:3} xp={:5.3f} yq={:5.3f} ww={} wh={} opacity={} color={}'.format(p, m, x, y, sw, sh, xp, yq, ww, wh, opacity, self.LINE_C[m]), file=DBG_FILE)
+            print('_initLines() [{:2}] [{:2}]         x={:6.1f} y={:6.1f} sw={:4} sh={:3} xp={:5.3f} yq={:5.3f} ww={} wh={} opacity={} color={}'.format(p, m, x, y, sw, sh, xp, yq, ww, wh, opacity, self.lineColors[m]), file=DBG_FILE)
         self.lines.append(lines)
         return lines
 
@@ -143,31 +143,6 @@ class Tabs(pyglet.window.Window):
         self.cols.append(cols)
         return cols
 #        rows.append(cols)
-
-    def on_resize_OLD(self, width, height):
-        super().on_resize(width, height)
-        return
-        self.ww, self.wh  = width, height
-        print('on_resize(BGN) ww={} wh={}'.format(self.ww, self.wh), file=DBG_FILE)
-        w, h, ww, wh = self.ww/self.colsPerRow, self.wh/(self.rowsPerLine*self.linesPerPage), self.ww, self.wh
-        lpp = self.linesPerPage
-        for p in range(self.nPages):
-            for m in range(self.linesPerPage):
-                for r in range(self.rowsPerLine):
-                    x, y = 0, wh-h-m*wh/lpp-r*h
-                    if type(self.pages[p][m][r]) == pyglet.sprite.Sprite:
-                        self.pages[p][m][r].update(x=x, y=y, scale_x=width/self._ww, scale_y=height/self._wh)
-                    else:
-                        for c in range(self.colsPerRow):
-                            x, y = c*w, wh-h-m*wh/lpp-r*h
-                            self.pages[p][m][r][c].update(x=x, y=y, scale_x=width/self._ww, scale_y=height/self._wh)
-                            sw, sh = self.pages[p][m][r][c].width,   self.pages[p][m][r][c].height
-                            xp, yq = self.pages[p][m][r][c].scale_x, self.pages[p][m][r][c].scale_y
-                            opacity = self.pages[p][m][r][c].opacity
-                            if r==0: print('on_resize() [{:2}] [{:2}] [{:2}] [{:3}] x={:6.1f} y={:6.1f} sw={:4} sh={:3} xp={:5.3f} yq={:5.3f} ww={} wh={} opacity={}'.format(p, m, r, c, x, y, sw, sh, xp, yq, ww, wh, opacity), file=DBG_FILE)
-#                self.pages[p][m][0][0].color = (159+m*32, 100, 16)
-#        self._verify()
-        print('on_resize(END) ww={} wh={}\n'.format(self.ww, self.wh), file=DBG_FILE)
 
     def printStructInfo(self, reason=''):
         print('{} np={} lpp={} rpl={} cpr={} len(pages)={} len(lines)={} len(rows)={} len(cols)={}'
@@ -245,18 +220,47 @@ class Tabs(pyglet.window.Window):
         elif motion == pygwink.MOTION_PREVIOUS_PAGE: self.setCurrPage(motion)
         else:                                        print('on_text_motion() motion={} ???'.format(motion), file=DBG_FILE)
 
+    def on_resize_OLD(self, width, height):
+        super().on_resize(width, height)
+#        return
+        self.ww, self.wh = width, height
+        print('on_resize(BGN) ww={} wh={}'.format(self.ww, self.wh), file=DBG_FILE)
+        w, h, ww, wh = self.ww/self.colsPerRow, self.wh/(self.rowsPerLine*self.linesPerPage), self.ww, self.wh
+        lpp = self.linesPerPage
+        for p in range(self.nPages):
+            for m in range(self.linesPerPage):
+                for r in range(self.rowsPerLine):
+                    x, y = 0, wh-h-m*wh/lpp-r*h
+                    if type(self.pages[p][m][r])==pyglet.sprite.Sprite:
+                        self.pages[p][m][r].update(x=x, y=y, scale_x=width/self._ww, scale_y=height/self._wh)
+                    else:
+                        for c in range(self.colsPerRow):
+                            x, y = c*w, wh-h-m*wh/lpp-r*h
+                            self.pages[p][m][r][c].update(x=x, y=y, scale_x=width/self._ww, scale_y=height/self._wh)
+                            sw, sh = self.pages[p][m][r][c].width, self.pages[p][m][r][c].height
+                            xp, yq = self.pages[p][m][r][c].scale_x, self.pages[p][m][r][c].scale_y
+                            opacity = self.pages[p][m][r][c].opacity
+                            if r==0: print('on_resize() [{:2}] [{:2}] [{:2}] [{:3}] x={:6.1f} y={:6.1f} sw={:4} sh={:3} xp={:5.3f} yq={:5.3f} ww={} wh={} opacity={}'.format(p, m, r, c, x, y, sw, sh, xp, yq, ww, wh, opacity), file=DBG_FILE)
+#                self.pages[p][m][0][0].color = (159+m*32, 100, 16)
+#        self._verify()
+        print('on_resize(END) ww={} wh={}\n'.format(self.ww, self.wh), file=DBG_FILE)
+
     def on_resize(self, width, height):
         super().on_resize(width, height)
         self.ww, self.wh  = width, height
+        self.resizeColorLists()
+
+    def resizeColorLists(self):
         cls = self.colorListSprites
         ncls = len(cls)
-        print('on_resize(BGN) ww={} wh={}'.format(self.ww, self.wh), file=DBG_FILE)
+        ww, wh = self.ww, self.wh
+        print('resizeColorLists(BGN) ww={} wh={}'.format(ww, wh), file=DBG_FILE)
         for i in range(ncls):
             for j in range(len(cls[i])):
                 nj = len(cls[i])
-                w, h, ww, wh = self.ww/ncls, self.wh/nj, self.ww, self.wh
+                w, h = ww/ncls, wh/nj
                 x, y = i*w, wh-h-j*wh/nj
-                cls[i][j].update(x=x, y=y, scale_x=width/self._ww, scale_y=height/self._wh)
+                cls[i][j].update(x=x, y=y, scale_x=ww/self._ww, scale_y=wh/self._wh)
 
     def _initColorLists(self):
         self.colorListSprites = []
