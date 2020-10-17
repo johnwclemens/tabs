@@ -56,13 +56,13 @@ class Tabs(pyglet.window.Window):
 
     def _initTabs(self, opq=True):
         print('_initTabs(BGN) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
-        self.pages, self.lines, self.rows, self.cols = [], [], [], [], []
+        self.pages, self.lines, self.rows, self.cols = [], [], [], []
         self._initPages(opq)
         print('_initTabs(END) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
 
     def _initPages(self, opq=True):
 #        self.PAGE_C = [(248, 20, 225, 255), (248, 40, 35, 255), (48, 60, 255, 255)]
-        self.PAGE_C = [C_PRP[i] for i in range(len(C_PRP))]
+        self.PAGE_C = [C_BLU[i] for i in range(len(C_BLU))]
         ww, wh = self.ww, self.wh
         for p in range(self.nPages):
             x, y = 0, 0
@@ -257,13 +257,13 @@ class Tabs(pyglet.window.Window):
             sprites = []
             for j in range(len(cl[i])):
                 nj = len(cl[i])
-                h, ww, wh = self.wh/nj, self.ww, self.wh
-                x, y = 0, wh-h-j*wh/nj
+                w, h, ww, wh = self.ww/ncl, self.wh/nj, self.ww, self.wh
+                x, y = i*w, wh-h-j*wh/nj
                 scip = pyglet.image.SolidColorImagePattern(cl[i][j])
-                sci = scip.create_image(width=fri(ww), height=fri(h))
+                sci = scip.create_image(width=fri(w), height=fri(h))
                 spr = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch)
-                if i == 0: spr.visible = True
-                else:      spr.visible = False
+#                if i == 0: spr.visible = True
+#                else:      spr.visible = False
                 sprites.append(spr)
                 sw, sh = spr.width,   spr.height
                 xp, yq = spr.scale_x, spr.scale_y
