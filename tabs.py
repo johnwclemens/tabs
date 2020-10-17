@@ -38,8 +38,6 @@ class Tabs(pyglet.window.Window):
         self._initWindowB()
         self.cpn = 0
         self.tci = 0
-        self.colorListSprites = []
-        self.colorLists = (C_REDS, C_GRNS, C_BLUS, C_YLWS, C_CYNS, C_MAGS, C_ORGS)
         self._initColorLists()
 #        self._initTabs(opq=True)
 
@@ -61,12 +59,12 @@ class Tabs(pyglet.window.Window):
         print('_initTabs(END) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
 
     def _initPages(self, opq=True):
-#        self.PAGE_C = [(248, 20, 225, 255), (248, 40, 35, 255), (48, 60, 255, 255)]
-        self.PAGE_C = [C_BLU[i] for i in range(len(C_BLU))]
+#        self.pageColors = [(248, 20, 225, 255), (248, 40, 35, 255), (48, 60, 255, 255)]
+        self.pageColors = [BLUES[i] for i in range(len(BLUES))]
         ww, wh = self.ww, self.wh
         for p in range(self.nPages):
             x, y = 0, 0
-            scip = pyglet.image.SolidColorImagePattern(self.PAGE_C[p])
+            scip = pyglet.image.SolidColorImagePattern(self.pageColors[p])
             sci = scip.create_image(width=fri(ww), height=fri(wh))
             page = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, subpixel=False)
             self.pages.append(page)
@@ -81,14 +79,14 @@ class Tabs(pyglet.window.Window):
 #        self.pages.append(lines)
 
     def _initLines(self, p, opq=True):
-#        self.LINE_C = [(248, 20, 25, 255), (248, 240, 35, 255), (48, 240, 35, 255), (48, 60, 255, 255)]
-        self.LINE_C = [C_RED[i] for i in range(len(C_RED)) if i%2]
+#        self.lineColors = [(248, 20, 25, 255), (248, 240, 35, 255), (48, 240, 35, 255), (48, 60, 255, 255)]
+        self.lineColors = [GREENS[i] for i in range(len(GREENS)) if i%2]
         w, h, ww, wh = self.ww/self.colsPerRow, self.wh/self.linesPerPage, self.ww, self.wh
         np, lpp, rpl, cpr = self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow
         lines = []
         for m in range(self.linesPerPage):
             x, y = 0, wh-h-m*wh/lpp
-            scip = pyglet.image.SolidColorImagePattern(self.LINE_C[m])
+            scip = pyglet.image.SolidColorImagePattern(self.lineColors[m])
             sci = scip.create_image(width=fri(ww), height=fri(h))
             line = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, subpixel=False)
             self.lines.append(line)
@@ -104,13 +102,13 @@ class Tabs(pyglet.window.Window):
         return lines
 
     def _initRows(self, p, m, o=-1):
-        self.ROW_C = []
+        self.rowColors = [REDS[i] for i in range(len(REDS)) if i%2]
         w, h, ww, wh = self.ww/self.colsPerRow, self.wh/(self.rowsPerLine*self.linesPerPage), self.ww, self.wh
         np, lpp, rpl, cpr = self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow
         rows = []
         for r in range(self.rowsPerLine):
             x, y = 0, wh-h-m*wh/lpp-r*h
-            scip = pyglet.image.SolidColorImagePattern(self.ROW_C[r%rpl])
+            scip = pyglet.image.SolidColorImagePattern(self.rowColors[r%rpl])
             sci = scip.create_image(width=fri(ww), height=fri(h))
             row = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, group=self.group[0], subpixel=False)
             rows.append(row)
@@ -132,7 +130,7 @@ class Tabs(pyglet.window.Window):
         cols = []
         for c in range(self.colsPerRow):
             x, y = c*w, wh-h-m*wh/lpp-r*h
-            scip = pyglet.image.SolidColorImagePattern(self.COL_C[(c+r)%2])
+            scip = pyglet.image.SolidColorImagePattern(self.colColors[(c+r)%2])
             sci  = scip.create_image(width=fri(w), height=fri(h))
             col  = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, group=self.group[1], subpixel=False)
             if opq: opacity = 128
@@ -146,7 +144,7 @@ class Tabs(pyglet.window.Window):
         return cols
 #        rows.append(cols)
 
-    def on_resize(self, width, height):
+    def on_resize_OLD(self, width, height):
         super().on_resize(width, height)
         return
         self.ww, self.wh  = width, height
@@ -170,9 +168,6 @@ class Tabs(pyglet.window.Window):
 #                self.pages[p][m][0][0].color = (159+m*32, 100, 16)
 #        self._verify()
         print('on_resize(END) ww={} wh={}\n'.format(self.ww, self.wh), file=DBG_FILE)
-
-    def on_resize_OLD(self, width, height):
-        super().on_resize(width, height)
 
     def printStructInfo(self, reason=''):
         print('{} np={} lpp={} rpl={} cpr={} len(pages)={} len(lines)={} len(rows)={} len(cols)={}'
@@ -250,8 +245,22 @@ class Tabs(pyglet.window.Window):
         elif motion == pygwink.MOTION_PREVIOUS_PAGE: self.setCurrPage(motion)
         else:                                        print('on_text_motion() motion={} ???'.format(motion), file=DBG_FILE)
 
+    def on_resize(self, width, height):
+        super().on_resize(width, height)
+        self.ww, self.wh  = width, height
+        cls = self.colorListSprites
+        ncls = len(cls)
+        print('on_resize(BGN) ww={} wh={}'.format(self.ww, self.wh), file=DBG_FILE)
+        for i in range(ncls):
+            for j in range(len(cls[i])):
+                nj = len(cls[i])
+                w, h, ww, wh = self.ww/ncls, self.wh/nj, self.ww, self.wh
+                x, y = i*w, wh-h-j*wh/nj
+                cls[i][j].update(x=x, y=y, scale_x=width/self._ww, scale_y=height/self._wh)
+
     def _initColorLists(self):
-        cl = self.colorLists
+        self.colorListSprites = []
+        cl = colorLists
         ncl = len(cl)
         for i in range(ncl):
             sprites = []
@@ -274,14 +283,14 @@ class Tabs(pyglet.window.Window):
         cls = self.colorListSprites
         if   motion==pygwink.MOTION_LEFT:
             for j in range(len(cls[self.tci])): cls[self.tci][j].visible = False
-            self.tci += 1
-            self.tci = self.tci % len(self.colorLists)
+            self.tci -= 1
+            self.tci = self.tci % len(colorLists)
             for j in range(len(cls[self.tci])): cls[self.tci][j].visible = True
             print('toggleColorLists() MOTION_LEFT={} tci={} len(cls)={}'.format(motion, self.tci, len(cls)), file=DBG_FILE)
         elif motion==pygwink.MOTION_RIGHT:
             for j in range(len(cls[self.tci])): cls[self.tci][j].visible = False
-            self.tci -= 1
-            self.tci = self.tci % len(self.colorLists)
+            self.tci += 1
+            self.tci = self.tci % len(colorLists)
             for j in range(len(cls[self.tci])): cls[self.tci][j].visible = True
             print('toggleColorLists() MOTION_RIGHT={} tci={} len(cls)={}'.format(motion, self.tci, len(cls)), file=DBG_FILE)
 
@@ -298,33 +307,38 @@ class Tabs(pyglet.window.Window):
             self.pages[self.cpn].visible = True
         print('setCurrPage() motion={} MOTION_NEXT_PAGE cpn={}'.format(motion, self.cpn), file=DBG_FILE)
 
-def C_GEN(c1, c2, ns=8):
-    colors = []
-    diffs = [c2[i] - c1[i] for i in range(len(c1))]
-    steps = [diffs[i]/ns   for i in range(len(c1))]
-    print('C_GEN(), c1={} c2={} ns={} diffs={} steps={}'.format(c1, c2, ns, diffs, steps))
+def genColors(colors, ns=8):
+    _colors, _len = [], len(colors[0])
+    diffs = [colors[1][i] - colors[0][i] for i in range(_len)]
+    steps = [diffs[i]/ns   for i in range(_len)]
+    print('genColors(), c1={} c2={} ns={} diffs={} steps={}'.format(colors[0], colors[1], ns, diffs, steps))
     for j in range(ns):
-        c = tuple([fri(c1[i]+j*steps[i]) for i in range(len(c1))])
-        print('C_GEN() c[{}]={}'.format(j, c))
-        colors.append(c)
-    print('C_GEN() colors={}'.format(colors))
-    return colors
+        c = tuple([fri(colors[0][i]+j*steps[i]) for i in range(len(colors[0]))])
+        print('genColors() c[{}]={}'.format(j, c))
+        _colors.append(c)
+    print('genColors() colors={}'.format(colors))
+    return _colors
 
 if __name__ == '__main__':
     DBG_FILE = open(sys.argv[0] + ".log.txt", 'w')
-    C_RED = [(255, 32, 64, 255), (240, 0, 0, 255), (224, 0, 0, 255), (208, 0, 0, 255), (192, 0, 0, 255), (176, 0, 0, 255), (160, 64, 32, 255), (144, 64, 32, 255)]
-    C_GRN = [(64, 255, 32, 255), (0, 240, 0, 255), (0, 224, 0, 255), (0, 208, 0, 255), (0, 192, 0, 255), (0, 176, 0, 255), (0, 160, 0, 255), (32, 144, 64, 255)]
-    C_BLU = [(32, 64, 255, 255), (0, 0, 240, 255), (0, 0, 224, 255), (0, 0, 208, 255), (0, 0, 192, 255), (0, 0, 176, 255), (0, 0, 160, 255), (64, 32, 144, 255)]
-    C_YLW = [(255, 255, 64, 255), (240, 240, 0, 255), (224, 224, 0, 255), (208, 208, 0, 255), (192, 192, 0, 255), (176, 176, 0, 255), (160, 160, 0, 255), (144, 144, 32, 255)]
-    C_CYN = [(32, 255, 255, 255), (0, 240, 240, 255), (0, 224, 224, 255), (0, 208, 208, 255), (0, 192, 192, 255), (0, 176, 176, 255), (0, 160, 160, 255), (64, 144, 144, 255)]
-    C_MAG = [(255, 64, 255, 255), (240, 0, 240, 255), (224, 0, 224, 255), (208, 0, 208, 255), (192, 0, 192, 255), (176, 0, 176, 255), (160, 0, 160, 255), (144, 32, 144, 255)]
-    C_ORG = [(228, 96, 128, 255), (240, 0, 240, 255), (224, 0, 224, 255), (208, 0, 208, 255), (192, 0, 192, 255), (176, 0, 176, 255), (160, 0, 160, 255), (144, 64, 0, 255)]
-    C_REDS = C_GEN(C_RED[0], C_RED[7])
-    C_GRNS = C_GEN(C_GRN[0], C_GRN[7])
-    C_BLUS = C_GEN(C_BLU[0], C_BLU[5])
-    C_YLWS = C_GEN(C_YLW[0], C_YLW[5])
-    C_CYNS = C_GEN(C_CYN[0], C_CYN[5])
-    C_MAGS = C_GEN(C_MAG[0], C_MAG[5])
-    C_ORGS = C_GEN(C_ORG[0], C_ORG[5])
+    VIOLET   = [(240, 64, 192, 255), (64, 32, 32, 255)]
+    RED      = [(255, 32, 32, 255), (64, 16, 16, 255)]
+    ORANGE   = [(255, 128, 32, 255), (64, 16, 16, 255)]
+    YELLOW   = [(255, 255, 64, 255), (64, 64, 16, 255)]
+    GREEN    = [(64, 255, 32, 255), (16, 64, 16, 255)]
+    CYAN     = [(32, 255, 255, 255), (16, 64, 64, 255)]
+    BLUE     = [(32, 64, 255, 255), (16, 16, 64, 255)]
+    PURPLE   = [(192, 96, 240, 255), (64, 16, 64, 255)]
+    FOO      = [(255, 32, 64, 255), (64, 64, 32, 255)]
+    REDS     = genColors(RED)
+    GREENS   = genColors(GREEN)
+    BLUES    = genColors(BLUE)
+    YELLOWS  = genColors(YELLOW)
+    CYANS    = genColors(CYAN)
+    VIOLETS  = genColors(VIOLET)
+    ORANGES  = genColors(ORANGE)
+    PURPLES  = genColors(PURPLE)
+    FOOS     = genColors(FOO)
+    colorLists = (VIOLETS, REDS, ORANGES, YELLOWS, GREENS, CYANS, BLUES, PURPLES)
     tabs = Tabs()
     pyglet.app.run()
