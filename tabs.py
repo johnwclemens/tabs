@@ -38,10 +38,9 @@ class Tabs(pyglet.window.Window):
         self._initWindowB()
         self.cpn = 0
         self.tci = 0
-        self.testBoxes = []
-        colors = C_REDS, C_GRNS, C_ORGS
-        print('testing C_REDS={} C_GRNS={} C_ORGS={}'.format(colors[0], colors[1], colors[2]), file=DBG_FILE)
-        [(self._testColors(c), print('_initTabs() c={}'.format(c))) for c in colors]
+        self.colorListSprites = []
+        self.colorLists = (C_REDS, C_GRNS, C_BLUS, C_YLWS, C_CYNS, C_MAGS, C_ORGS)
+        self._initColorLists()
 #        self._initTabs(opq=True)
 
     def _initWindowA(self):
@@ -57,7 +56,7 @@ class Tabs(pyglet.window.Window):
 
     def _initTabs(self, opq=True):
         print('_initTabs(BGN) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
-        self.pages, self.lines, self.rows, self.cols, self.boxes = [], [], [], [], []
+        self.pages, self.lines, self.rows, self.cols = [], [], [], [], []
         self._initPages(opq)
         print('_initTabs(END) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
 
@@ -245,55 +244,57 @@ class Tabs(pyglet.window.Window):
         print('on_text() text={}'.format(text), file=DBG_FILE)
 
     def on_text_motion(self, motion):
-        if   motion == pygwink.MOTION_RIGHT:         self.testColors(motion)
-        elif motion == pygwink.MOTION_LEFT:          self.testColors(motion)
+        if   motion == pygwink.MOTION_RIGHT:         self.toggleColorLists(motion)
+        elif motion == pygwink.MOTION_LEFT:          self.toggleColorLists(motion)
         elif motion == pygwink.MOTION_NEXT_PAGE:     self.setCurrPage(motion)
         elif motion == pygwink.MOTION_PREVIOUS_PAGE: self.setCurrPage(motion)
         else:                                        print('on_text_motion() motion={} ???'.format(motion), file=DBG_FILE)
 
-    def testColors(self, motion):
-        colors = C_REDS, C_GRNS, C_ORGS
-        print('testColors() tci={} len[boxes]={}'.format(self.tci, len(self.testBoxes)), file=DBG_FILE)
-        if   motion==pygwink.MOTION_LEFT:
-            self.testBoxes[self.tci][i].visible = False
-            self.tci += 1
-            self.tci = self.tci % len(colors)
-            self._testColors(colors[self.tci])
-            self.testBoxes[self.tci].visible = True
-            print('testColors() motion={} MOTION_LEFT'.format(motion), file=DBG_FILE)
-        elif motion==pygwink.MOTION_RIGHT:
-            self.tci -= 1
-            print('testColors() motion={} MOTION_RIGHT'.format(motion), file=DBG_FILE)
-#        print('testing C_REDS={} C_GRNS={} C_ORGS={}'.format(colors[0], colors[1], colors[2]), file=DBG_FILE)
-#        [(self._testColors(c), print('_initTabs() c={}'.format(c))) for c in colors]
+    def _initColorLists(self):
+        cl = self.colorLists
+        ncl = len(cl)
+        for i in range(ncl):
+            sprites = []
+            for j in range(len(cl[i])):
+                nj = len(cl[i])
+                h, ww, wh = self.wh/nj, self.ww, self.wh
+                x, y = 0, wh-h-j*wh/nj
+                scip = pyglet.image.SolidColorImagePattern(cl[i][j])
+                sci = scip.create_image(width=fri(ww), height=fri(h))
+                spr = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch)
+                if i == 0: spr.visible = True
+                else:      spr.visible = False
+                sprites.append(spr)
+                sw, sh = spr.width,   spr.height
+                xp, yq = spr.scale_x, spr.scale_y
+                print('_initColorLists [{:2}] [{:2}] x={:6.1f} y={:6.1f} sw={:4} sh={:3} xp={:5.3f} yq={:5.3f} ww={} wh={} visible={} cl={}'.format(i, j, x, y, sw, sh, xp, yq, ww, wh, spr.visible, cl[i][j]), file=DBG_FILE)
+            self.colorListSprites.append(sprites)
 
-    def _testColors(self, colors, o=-1):
-        boxes = []
-        nc = len(colors)
-        h, ww, wh = self.wh/nc, self.ww, self.wh
-        for i in range(nc):
-            x, y = 0, wh-h-i*wh/nc
-            scip = pyglet.image.SolidColorImagePattern(colors[i])
-            sci = scip.create_image(width=fri(ww), height=fri(h))
-            box = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch)
-            if o<0: opacity = 255
-            else:   opacity = fri(255*(nc-1-i)/(nc-1))
-            boxes.append(box)
-            sw, sh = box.width,   box.height
-            xp, yq = box.scale_x, box.scale_y
-            print('testColors [{:2}] x={:6.1f} y={:6.1f} sw={:4} sh={:3} xp={:5.3f} yq={:5.3f} ww={} wh={} opacity={} colors={}'.format(i, x, y, sw, sh, xp, yq, ww, wh, opacity, colors[i]), file=DBG_FILE)
-        self.testBoxes.append(boxes)
+    def toggleColorLists(self, motion):
+        cls = self.colorListSprites
+        if   motion==pygwink.MOTION_LEFT:
+            for j in range(len(cls[self.tci])): cls[self.tci][j].visible = False
+            self.tci += 1
+            self.tci = self.tci % len(self.colorLists)
+            for j in range(len(cls[self.tci])): cls[self.tci][j].visible = True
+            print('toggleColorLists() MOTION_LEFT={} tci={} len(cls)={}'.format(motion, self.tci, len(cls)), file=DBG_FILE)
+        elif motion==pygwink.MOTION_RIGHT:
+            for j in range(len(cls[self.tci])): cls[self.tci][j].visible = False
+            self.tci -= 1
+            self.tci = self.tci % len(self.colorLists)
+            for j in range(len(cls[self.tci])): cls[self.tci][j].visible = True
+            print('toggleColorLists() MOTION_RIGHT={} tci={} len(cls)={}'.format(motion, self.tci, len(cls)), file=DBG_FILE)
 
     def setCurrPage(self, motion):
         if motion==pygwink.MOTION_NEXT_PAGE:
             self.pages[self.cpn].visible = False
             self.cpn += 1
-            self.cpn = self.cpn%self.nPages
+            self.cpn = self.cpn % self.nPages
             self.pages[self.cpn].visible = True
         elif motion==pygwink.MOTION_PREVIOUS_PAGE:
             self.pages[self.cpn].visible = False
             self.cpn -= 1
-            self.cpn = self.cpn%self.nPages
+            self.cpn = self.cpn % self.nPages
             self.pages[self.cpn].visible = True
         print('setCurrPage() motion={} MOTION_NEXT_PAGE cpn={}'.format(motion, self.cpn), file=DBG_FILE)
 
@@ -312,16 +313,18 @@ def C_GEN(c1, c2, ns=8):
 if __name__ == '__main__':
     DBG_FILE = open(sys.argv[0] + ".log.txt", 'w')
     C_RED = [(255, 32, 64, 255), (240, 0, 0, 255), (224, 0, 0, 255), (208, 0, 0, 255), (192, 0, 0, 255), (176, 0, 0, 255), (160, 64, 32, 255), (144, 64, 32, 255)]
-    C_GRN = [(32, 255, 0, 255), (0, 240, 0, 255), (0, 224, 0, 255), (0, 208, 0, 255), (0, 192, 0, 255), (0, 176, 0, 255), (0, 160, 0, 255), (0, 144, 64, 255)]
-    C_BLU = [(0, 0, 255, 255), (0, 0, 240, 255), (0, 0, 224, 255), (0, 0, 208, 255), (0, 0, 192, 255), (0, 0, 176, 255)]
-    C_YLW = [(255, 255, 0, 255), (240, 240, 0, 255), (224, 224, 0, 255), (208, 208, 0, 255), (192, 192, 0, 255), (176, 176, 0, 255)]
-    C_CYN = [(0, 255, 255, 255), (0, 240, 240, 255), (0, 224, 224, 255), (0, 208, 208, 255), (0, 192, 192, 255), (0, 176, 176, 255)]
-    C_ORG = [(255, 0, 255, 255), (240, 0, 240, 255), (224, 0, 224, 255), (208, 0, 208, 255), (192, 0, 192, 255), (176, 0, 176, 255)]
-    C_PRP = [(255, 0, 255, 255), (240, 0, 240, 255), (224, 0, 224, 255), (208, 0, 208, 255), (192, 0, 192, 255), (176, 0, 176, 255)]
+    C_GRN = [(64, 255, 32, 255), (0, 240, 0, 255), (0, 224, 0, 255), (0, 208, 0, 255), (0, 192, 0, 255), (0, 176, 0, 255), (0, 160, 0, 255), (32, 144, 64, 255)]
+    C_BLU = [(32, 64, 255, 255), (0, 0, 240, 255), (0, 0, 224, 255), (0, 0, 208, 255), (0, 0, 192, 255), (0, 0, 176, 255), (0, 0, 160, 255), (64, 32, 144, 255)]
+    C_YLW = [(255, 255, 64, 255), (240, 240, 0, 255), (224, 224, 0, 255), (208, 208, 0, 255), (192, 192, 0, 255), (176, 176, 0, 255), (160, 160, 0, 255), (144, 144, 32, 255)]
+    C_CYN = [(32, 255, 255, 255), (0, 240, 240, 255), (0, 224, 224, 255), (0, 208, 208, 255), (0, 192, 192, 255), (0, 176, 176, 255), (0, 160, 160, 255), (64, 144, 144, 255)]
+    C_MAG = [(255, 64, 255, 255), (240, 0, 240, 255), (224, 0, 224, 255), (208, 0, 208, 255), (192, 0, 192, 255), (176, 0, 176, 255), (160, 0, 160, 255), (144, 32, 144, 255)]
+    C_ORG = [(228, 96, 128, 255), (240, 0, 240, 255), (224, 0, 224, 255), (208, 0, 208, 255), (192, 0, 192, 255), (176, 0, 176, 255), (160, 0, 160, 255), (144, 64, 0, 255)]
     C_REDS = C_GEN(C_RED[0], C_RED[7])
     C_GRNS = C_GEN(C_GRN[0], C_GRN[7])
+    C_BLUS = C_GEN(C_BLU[0], C_BLU[5])
     C_YLWS = C_GEN(C_YLW[0], C_YLW[5])
     C_CYNS = C_GEN(C_CYN[0], C_CYN[5])
+    C_MAGS = C_GEN(C_MAG[0], C_MAG[5])
     C_ORGS = C_GEN(C_ORG[0], C_ORG[5])
     tabs = Tabs()
     pyglet.app.run()
