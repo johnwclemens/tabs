@@ -12,11 +12,14 @@ class Tabs(pyglet.window.Window):
     def __init__(self):
         self._ww, self._wh = 1000, 600
         self.ww, self.wh = self._ww, self._wh
-        self.nPages          = 3
+        self.nPages          = 1
         self.linesPerPage    = 4
-        self.rowsPerLine     = 6
-        self.colsPerRow      = 20
+        self.rowsPerLine     = 1
+        self.colsPerRow      = 1
+        self.m               = 12
+        self.n               = 12
         self.fullScreen      = False
+        self.subpixel        = False
         self.argMap          = cmdArgs.parseCmdLine(dbg=1)
         print('Tabs.init() argMap={}'.format(self.argMap), file=DBG_FILE)
         if 'p' in self.argMap and len(self.argMap['p'])  > 0: self.nPages       = int(self.argMap['p'][0])
@@ -25,19 +28,23 @@ class Tabs(pyglet.window.Window):
         if 'c' in self.argMap and len(self.argMap['c'])  > 0: self.colsPerRow   = int(self.argMap['c'][0])
         if 'w' in self.argMap and len(self.argMap['w'])  > 0: self.ww           = int(self.argMap['w'][0])
         if 'h' in self.argMap and len(self.argMap['h'])  > 0: self.wh           = int(self.argMap['h'][0])
+        if 'm' in self.argMap and len(self.argMap['m'])  > 0: self.m            = int(self.argMap['m'][0])
+        if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = int(self.argMap['n'][0])
         if 'F' in self.argMap and len(self.argMap['F']) == 0: self.fullScreen   = True
+        if 'f' in self.argMap and len(self.argMap['f']) == 0: self.subpixel     = True
         print('[p]         nPages={}'.format(self.nPages),       file=DBG_FILE)
         print('[l]   linesPerPage={}'.format(self.linesPerPage), file=DBG_FILE)
         print('[r]    rowsPerLine={}'.format(self.rowsPerLine),  file=DBG_FILE)
         print('[c]     colsPerRow={}'.format(self.colsPerRow),   file=DBG_FILE)
         print('[w]             ww={}'.format(self.ww),           file=DBG_FILE)
         print('[h]             wh={}'.format(self.wh),           file=DBG_FILE)
+        print('[m]              m={}'.format(self.m),            file=DBG_FILE)
+        print('[n]              n={}'.format(self.n),            file=DBG_FILE)
         print('[F]     fullScreen={}'.format(self.fullScreen),   file=DBG_FILE)
+        print('[f]       subpixel={}'.format(self.subpixel),     file=DBG_FILE)
         self._initWindowA()
         super().__init__(screen=self.screens[1], fullscreen=self.fullScreen, resizable=True, visible=False)
         self._initWindowB()
-        self.cpn = 0
-        self.tci = 0
         self.testColorLists = False
         if self.testColorLists: self._initColorLists()
         self._initTabs()
@@ -47,8 +54,8 @@ class Tabs(pyglet.window.Window):
         self.screens = display.get_screens()
 
     def _initWindowB(self):
-        self.batch  = pyglet.graphics.Batch()
-        self.group = [pyglet.graphics.OrderedGroup(g) for g in range(4)]
+        self.batch = pyglet.graphics.Batch()
+        self.group = [pyglet.graphics.Group(g) for g in range(4)]
         self.set_size(self.ww, self.wh)
         self.set_visible()
         print('_initWindow() ww={} wh={}'.format(self.ww, self.wh), file=DBG_FILE)
@@ -56,81 +63,104 @@ class Tabs(pyglet.window.Window):
     def _initTabs(self):
         print('_initTabs(BGN) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
         self.pages, self.lines, self.rows, self.cols = [], [], [], []
+        self.cpn = 0
+        self.tci = 0
+#        self.tabsGroup = pyglet.graphics.Group()
         self._initPages()
         print('_initTabs(END) nPages={} linesPerPage={} rowsPerLine={} colsPerRow={}'.format(self.nPages, self.linesPerPage, self.rowsPerLine, self.colsPerRow), file=DBG_FILE)
 
     def _initPages(self):
-        self.pageColors = [BLUES[0], PURPLES[0], VIOLETS[0]]
+#        self.pageGroup  = pyglet.graphics.Group(self.tabsGroup)
+        self.pageGroup  = pyglet.graphics.OrderedGroup(0)
+        self.pageColors = [BLUES[0], PURPLES[0], CYANS[0], VIOLETS[0]]
         ww, wh = self.ww, self.wh
+        w, h = ww, wh
         for p in range(self.nPages):
             x, y = 0, 0
             scip = pyglet.image.SolidColorImagePattern(self.pageColors[p])
-            sci = scip.create_image(width=fri(ww), height=fri(wh))
-            page = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, group=self.group[0], subpixel=False)
+            sci = scip.create_image(width=fri(w), height=fri(h))
+            page = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, group=self.pageGroup, subpixel=self.subpixel)
             self.pages.append(page)
             if p != self.cpn:      page.visible = False
             sw, sh = page.width,   page.height
             xp, yq = page.scale_x, page.scale_y
-            print('_initPages() [{:2}]              x={:6.1f} y={:6.1f} sw={:4} sh={:3} xp={:5.3f} yq={:5.3f} ww={} wh={} cpn={}'.format(p, x, y, sw, sh, xp, yq, ww, wh, self.cpn), file=DBG_FILE)
+            print('_initPages() [{:2}]                x={:6.1f} y={:6.1f} sw={:4} sh={:4} xp={:5.3f} yq={:5.3f} ww={:4} wh={:4} v={} c={}'.format(p, x, y, sw, sh, xp, yq, ww, wh, page.visible, self.pageColors[p]), file=DBG_FILE)
             lines = self._initLines(p)
         self.pages.append(lines)
 
     def _initLines(self, p):
-        self.lineColors = [GREENS[i] for i in range(len(GREENS)) if i%2]
-        ww, wh = self.ww, self.wh
+#        self.lineGroup = pyglet.graphics.Group(self.pageGroup)
+        self.lineGroup = pyglet.graphics.OrderedGroup(1)
+        self.lineColors = [GREENS[i] for i in range(len(GREENS))] # if i%2]
         lpp = self.linesPerPage
-        h = wh/lpp
+        ww, wh = self.ww, self.wh
+        w, h = ww-2*self.m, (wh-(lpp+1)*self.n)/lpp
         lines = []
-        for m in range(lpp):
-            x, y = 0, wh-h-m*wh/lpp
-            scip = pyglet.image.SolidColorImagePattern(self.lineColors[m])
-            sci = scip.create_image(width=fri(ww), height=fri(h))
-            line = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, group=self.group[1], subpixel=False)
+        for l in range(lpp):
+#            x, y = self.m, self.n*(l+1)+h*l
+#            x, y = self.m, l*(h+self.n)+self.n
+#            x, y = self.m, (l+1)*self.n+l*h
+            x, y = self.m, (l+1)*(self.n+h)-h
+            scip = pyglet.image.SolidColorImagePattern(self.lineColors[l])
+            sci = scip.create_image(width=fri(w), height=fri(h))
+            line = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, group=self.lineGroup, subpixel=self.subpixel)
             self.lines.append(line)
+            if p != self.cpn:      line.visible = False
             sw, sh = line.width,   line.height
             xp, yq = line.scale_x, line.scale_y
-            print('_initLines() [{:2}] [{:2}]         x={:6.1f} y={:6.1f} sw={:4} sh={:3} xp={:5.3f} yq={:5.3f} ww={} wh={} color={}'.format(p, m, x, y, sw, sh, xp, yq, ww, wh, self.lineColors[m]), file=DBG_FILE)
-            rows = self._initRows(p, m)
+            print('_initLines() [{:2}] [{:2}]           x={:6.1f} y={:6.1f} sw={:4} sh={:4} xp={:5.3f} yq={:5.3f} ww={:4} wh={:4} v={} c={}'.format(p, l, x, y, sw, sh, xp, yq, ww, wh, line.visible, self.lineColors[l]), file=DBG_FILE)
+            rows = self._initRows(p, l)
             lines.append(rows)
         self.lines.append(lines)
         return lines
 
-    def _initRows(self, p, m):
+    def _initRows(self, p, l):
+        return []
+#        self.rowGroup = pyglet.graphics.Group(self.lineGroup)
+        self.rowGroup = pyglet.graphics.OrderedGroup(2)
         self.rowColors = [REDS[i] for i in range(len(REDS))]
-        ww, wh = self.ww, self.wh
+        ww, wh = self.ww - 4*self.m, self.wh - 4*self.n
         lpp, rpl = self.linesPerPage, self.rowsPerLine
-        h = wh/(rpl*lpp)
+        h = (wh/lpp - 2*self.n)/rpl
+#        h = wh/(lpp*rpl)-self.n/rpl
+#        h = wh/rpl*lpp
         rows = []
         for r in range(rpl):
-            x, y = 0, wh-h-m*wh/lpp-r*h
+            x, y = 2*self.m, 2*self.n+wh-h-l*wh/lpp-r*h
             scip = pyglet.image.SolidColorImagePattern(self.rowColors[r%rpl])
             sci = scip.create_image(width=fri(ww), height=fri(h))
-            row = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, group=self.group[2], subpixel=False)
+            row = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, group=self.rowGroup, subpixel=self.subpixel)
             self.rows.append(row)
+            if p != self.cpn:   row.visible = False
             sw, sh = row.width, row.height
             xp, yq = row.scale_x, row.scale_y
-            if r==0: print('_initRows()  [{:2}] [{:2}] [{:2}]    x={:6.1f} y={:6.1f} sw={:4} sh={:3} xp={:5.3f} yq={:5.3f} ww={} wh={} color={}'.format(p, m, r, x, y, sw, sh, xp, yq, ww, wh, row.color), file=DBG_FILE)
-#            cols = self._initCols(p, m, r)
-#            rows.append(cols)
+            if r==0: print('_initRows()  [{:2}] [{:2}] [{:2}]      x={:6.1f} y={:6.1f} sw={:4} sh={:4} xp={:5.3f} yq={:5.3f} ww={:4} wh={:4} v={} c={}'.format(p, l, r, x, y, sw, sh, xp, yq, ww, wh, row.visible, row.color), file=DBG_FILE)
+            cols = self._initCols(p, l, r)
+            rows.append(cols)
         self.rows.append(rows)
         return rows
 #        lines.append(rows)
 
-    def _initCols(self, p, m, r):
+    def _initCols(self, p, l, r):
+        return []
+#        self.colGroup = pyglet.graphics.Group(self.rowGroup)
+        self.colGroup = pyglet.graphics.OrderedGroup(3)
         self.colColors = [ORANGES[i] for i in range(len(ORANGES))]
-        ww, wh = self.ww, self.wh
+        ww, wh = self.ww - 8*self.m, self.wh - 8*self.n
         lpp, rpl, cpr = self.linesPerPage, self.rowsPerLine, self.colsPerRow
-        w, h = ww/cpr, wh/(rpl*lpp)
+        w, h = (ww-self.m)/cpr, (wh/lpp - self.n)/rpl
+#        w, h = ww/cpr, wh/(rpl*lpp)
         cols = []
         for c in range(self.colsPerRow):
-            x, y = c*w, wh-h-m*wh/lpp-r*h
-            scip = pyglet.image.SolidColorImagePattern(self.colColors[(c+r)%2])
+            x, y = 3*self.m+c*w, 3*self.n+wh-h-l*wh/lpp-r*h
+            scip = pyglet.image.SolidColorImagePattern(self.colColors[c%8])
             sci  = scip.create_image(width=fri(w), height=fri(h))
-            col  = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, group=self.group[3], subpixel=False)
+            col  = pyglet.sprite.Sprite(img=sci, x=x, y=y, batch=self.batch, group=self.colGroup, subpixel=self.subpixel)
+            if p != self.cpn:     col.visible = False
             sw, sh = col.width,   col.height
             xp, yq = col.scale_x, col.scale_y
             cols.append(col)
-            if r==0: print('_initTabs() [{:2}] [{:2}] [{:2}] [{:3}] x={:6.1f} y={:6.1f} sw={:4} sh={:3} xp={:5.3f} yq={:5.3f} ww={} wh={} color={}'.format(p, m, r, c, x, y, sw, sh, xp, yq, ww, wh, col.color), file=DBG_FILE)
+            if r==0: print('_initCols() [{:2}] [{:2}] [{:2}] [{:3}] x={:6.1f} y={:6.1f} sw={:4} sh={:4} xp={:5.3f} yq={:5.3f} ww={:4} wh={:4} v={} c={}'.format(p, l, r, c, x, y, sw, sh, xp, yq, ww, wh, col.visible, col.color), file=DBG_FILE)
         self.cols.append(cols)
         return cols
 #        rows.append(cols)
@@ -223,7 +253,6 @@ class Tabs(pyglet.window.Window):
         for p in range(self.nPages):
             for m in range(self.linesPerPage):
                 for r in range(self.rowsPerLine):
-                    x, y = 0, wh-h-m*wh/lpp-r*h
                     if type(self.pages[p][m][r]) == pyglet.sprite.Sprite:
                         self.pages[p][m][r].update(x=x, y=y, scale_x=ww/self._ww, scale_y=wh/self._wh)
                     else:
@@ -268,6 +297,9 @@ class Tabs(pyglet.window.Window):
             self.colorListSprites.append(sprites)
 
     def toggleColorLists(self, motion):
+        if not self.testColorLists:
+            print('toggleColorLists() motion={} testColorLists={}'.format(motion, self.testColorLists), file=DBG_FILE)
+            return
         cls = self.colorListSprites
         if   motion==pygwink.MOTION_LEFT:
             for j in range(len(cls[self.tci])): cls[self.tci][j].visible = False
@@ -288,12 +320,13 @@ class Tabs(pyglet.window.Window):
             self.cpn += 1
             self.cpn = self.cpn % self.nPages
             self.pages[self.cpn].visible = True
+            print('setCurrPage() motion={} MOTION_NEXT_PAGE cpn={}'.format(motion, self.cpn), file=DBG_FILE)
         elif motion==pygwink.MOTION_PREVIOUS_PAGE:
             self.pages[self.cpn].visible = False
             self.cpn -= 1
             self.cpn = self.cpn % self.nPages
             self.pages[self.cpn].visible = True
-        print('setCurrPage() motion={} MOTION_NEXT_PAGE cpn={}'.format(motion, self.cpn), file=DBG_FILE)
+            print('setCurrPage() motion={} MOTION_PREVIOUS_PAGE cpn={}'.format(motion, self.cpn), file=DBG_FILE)
 
 def genColors(colors, ns=8):
     _colors, _len = [], len(colors[0])
