@@ -22,8 +22,8 @@ class TestGui(pyglet.window.Window):
         self.set_visible(True)
 
     def dumpGeom(self, reason):
-        print('{:32} _ww={} nc={} w={:6.1f} ww-w={:6.1f} ww={}  :  _wh={} nr={} h={:6.1f} wh-h={:6.1f} wh={}'
-              .format(reason, self._ww, self.nc, self.w, self.ww-self.w, self.ww, self._wh, self.nr, self.h, self.wh-self.h, self.wh), file=DBG_FILE)
+        print('{:32} _ww={} nc={} w={:7.2f} ww-w={:7.2f} ww-w/2={:7.2f} ww={}  :  _wh={} nr={} h={:7.2f} wh-h={:7.2f} wh-h/2={:7.2f} wh={}'
+              .format(reason, self._ww, self.nc, self.w, self.ww-self.w, self.ww-self.w/2, self.ww, self._wh, self.nr, self.h, self.wh-self.h, self.wh-self.h/2, self.wh), file=DBG_FILE)
 
     def getGeom(self):
         return self._ww, self._wh, self.ww, self.wh, self.w, self.h, self.nc, self.nr
@@ -117,16 +117,14 @@ class TestGui(pyglet.window.Window):
             img.width, img.height = w, h
             iss.append([w/img.width, h/img.height])
             img.anchor_x, img.anchor_y = fri(img.width/2), fri(img.height/2)
-            print('_initImgSprts() i=[{:2}] iax={:4} iay={:4} w={:4} h={:4} imx={:5.3f} imy={:5.3f} {:6.1f} {:6.1f} f={}'.format(i, img.anchor_x, img.anchor_y, img.width, img.height, iss[i][0], iss[i][1], img.width*iss[i][0], img.height*iss[i][1], imageFileName), file=DBG_FILE)
+            print('_initImgSprts() i=[{:2}] iax={:4} iay={:4} w={:8.2f} h={:8.2f} imx={:5.3f} imy={:5.3f} {:6.1f} {:6.1f} f={}'.format(i, img.anchor_x, img.anchor_y, img.width, img.height, iss[i][0], iss[i][1], img.width*iss[i][0], img.height*iss[i][1], imageFileName), file=DBG_FILE)
+#            print('_initImgSprts() i=[{:2}] iax={:4} iay={:4} w={:4} h={:4} imx={:5.3f} imy={:5.3f} {:6.1f} {:6.1f} f={}'.format(i, img.anchor_x, img.anchor_y, img.width, img.height, iss[i][0], iss[i][1], img.width*iss[i][0], img.height*iss[i][1], imageFileName), file=DBG_FILE)
         self.dumpSprite(None)
         for r in range(nr):
             imgSprts = []
             for c in range(nc):
                 img = imgs[(c+r)%(i+1)]
                 imgSprt = self.createSprite('_initImgSprts()', img, self.imgGroup, c, r, w, h, r, 0)#nr)
-#                img.anchor_x, img.anchor_y = fri(img.width/2), fri(img.height/2)
-#                imgSprt = pyglet.sprite.Sprite(img, x=x, y=y, batch=self.batch, group=self.imgGroup, subpixel=False)
-#                imgSprt.scale_x, imgSprt.scale_y = w/sw, h/sh
                 imgSprts.append(imgSprt)
             self.imgSprts.append(imgSprts)
         self.iss = iss
@@ -143,18 +141,16 @@ class TestGui(pyglet.window.Window):
                 scip = pyglet.image.SolidColorImagePattern(self.COLORS[(c+r)%2])
                 sci = scip.create_image(width=fri(w), height=fri(h))
                 sciSprt = self.createSprite('_initSciSprts()', sci, self.sciGroup, c, r, w, h, c, 0)#nc)
-#                sci.anchor_x, sci.anchor_y = fri(w/2), fri(h/2)
-#                sciSprt = pyglet.sprite.Sprite(img=sci, x=x+sci.anchor_x, y=y+sci.anchor_y, batch=self.batch, group=self.sciGroup, subpixel=False)
                 sciSprts.append(sciSprt)
             self.sciSprts.append(sciSprts)
 
     def createSprite(self, reason, img, grp, c, r, w, h, i, ni):
         img.anchor_x, img.anchor_y = fri(w/2), fri(h/2)
         x, y = c*w+w/2, self.wh-h-r*h+h/2
-        s = pyglet.sprite.Sprite(img=img, x=x, y=y, batch=self.batch, group=grp, subpixel=True)
-        s.opacity = self.getOpacity(203, i, ni)
+        s = pyglet.sprite.Sprite(img=img, x=x, y=y, batch=self.batch, group=grp, subpixel=SUBPIX)
+        s.opacity = self.getOpacity(OPC, i, ni)
         if c==0 or r==0 or c==self.nc-1 or r==self.nr-1:
-            self.dumpSprite('{:24} [{:3}] [{:3}] {:8.2f} {:8.2f} {:4} {:4}'.format(reason, r, c, x, y, img.anchor_x, img.anchor_y), s)
+            self.dumpSprite('{:20} [{:3}] [{:3}] {:8.2f} {:8.2f} {:4} {:4}'.format(reason, r, c, x, y, img.anchor_x, img.anchor_y), s)
         return s
 
     @staticmethod
@@ -164,10 +160,10 @@ class TestGui(pyglet.window.Window):
 
     @staticmethod
     def dumpSprite(reason, s=None):
-        if s is None: print('     x        y        w        h    iax  iay    m      mx     my      rot   opacity    color      visible      reason                r     c        x        y    iax  iay', file=DBG_FILE); return
+        if s is None: print('     x        y        w        h    iax  iay    m      mx     my      rot   opacity    color      visible      reason          r     c        x        y    iax  iay', file=DBG_FILE); return
         f = '{:8.2f} {:8.2f} {:8.2f} {:8.2f} {:4} {:4} {:6.3f} {:6.3f} {:6.3f} {:8.2f}  {:4}  {}  {}'
         fs = f.format(s.x, s.y, s.width, s.height, s.image.anchor_x, s.image.anchor_y, s.scale, s.scale_x, s.scale_y, s.rotation, s.opacity, s.color, s.visible)
-        print('{} : {}'.format(fs, reason), file=DBG_FILE)
+        print('{} {}'.format(fs, reason), file=DBG_FILE)
         assert(type(s) == pyglet.sprite.Sprite)
 
     def on_resize(self, width, height, dbg=1):
@@ -177,13 +173,11 @@ class TestGui(pyglet.window.Window):
         _ww, _wh, ww, wh, w, h, nc, nr = self.getGeom()
         self.dumpGeom('\non_resize(BGN)')
         for c in range(nc+1):
-            x1, y1 = c*w, 0
-            x2, y2 = c*w, nr*h
+            x1, x2, y1, y2 = c*w, c*w, 0, nr*h
             self.clines[c].position = (x1, y1, x2, y2)
             if dbg: print('c=[{:3}] x1={:6.1f} y1={:6.1f} x2={:6.1f} y2={:6.1f}'.format(c, x1, y1, x2, y2), file=DBG_FILE)
         for r in range(nr+1):
-            x1, y1 = 0,    r*h
-            x2, y2 = nc*w, r*h
+            x1, x2, y1, y2 = 0, nc*w, r*h, r*h
             self.rlines[r].position = (x1, y1, x2, y2)
             if dbg: print('r=[{:3}] x1={:6.1f} y1={:6.1f} x2={:6.1f} y2={:6.1f}'.format(r, x1, y1, x2, y2), file=DBG_FILE)
         if self.useSciSprts:
@@ -195,8 +189,7 @@ class TestGui(pyglet.window.Window):
                     s.update(x=x, y=y, scale_x=ww/_ww, scale_y=wh/_wh)
                     s.rotation = 22.5 * c
                     if c == 0 or r == 0 or c == nc-1 or r == nr-1:
-                        self.dumpSprite('{:24} [{:3}] [{:3}] {:8.2f} {:8.2f} {:4} {:4}'.format('on_resize(sciSprts)', r, c, x, y, s.image.anchor_x, s.image.anchor_y), s)
-#                        self.dumpSprite('on_resize(sciSprts) [{:3}] [{:3}] c*w={:6.1f} w/2={:6.1f} wh-h-r*h={:6.1f} h/2={:6.1f}'.format(r, c, c*w, w/2, wh-h-r*h, h/2), s)
+                        self.dumpSprite('{:20} [{:3}] [{:3}] {:8.2f} {:8.2f} {:4} {:4}'.format('on_resize(sciSprts)', r, c, x, y, s.image.anchor_x, s.image.anchor_y), s)
         if self.useImgSprts:
             self.dumpSprite(None)
             for r in range(nr):
@@ -206,14 +199,15 @@ class TestGui(pyglet.window.Window):
                     s.update(x=x, y=y, scale_x=self.iss[(r+c)%len(self.iss)][0]*ww/_ww, scale_y=self.iss[(r+c)%len(self.iss)][0]*wh/_wh)
                     s.rotation = 22.5 * c
                     if c == 0 or r == 0 or c == nc-1 or r == nr-1:
-                        self.dumpSprite('{:24} [{:3}] [{:3}] {:8.2f} {:8.2f} {:4} {:4}'.format('on_resize(imgSprts)', r, c, x, y, s.image.anchor_x, s.image.anchor_y), s)
-#                        self.dumpSprite('on_resize(imgSprts) [{:3}] [{:3}] c*w={:6.1f} w/2={:6.1f} wh-h-r*h={:6.1f} h/2={:6.1f}'.format(r, c, c*w, w/2, wh-h-r*h, h/2), self.imgSprts[r][c])
+                        self.dumpSprite('{:20} [{:3}] [{:3}] {:8.2f} {:8.2f} {:4} {:4}'.format('on_resize(imgSprts)', r, c, x, y, s.image.anchor_x, s.image.anchor_y), s)
 
     def on_draw(self):
         self.clear()
         self.batch.draw()
 
 if __name__ == '__main__':
-    DBG_FILE, OPC = open(sys.argv[0] + ".log.txt", 'w'), 255
+    OPC, SUBPIX = 255, True
+    SFX = '.log.SPX.txt' if SUBPIX else '.log.txt'
+    DBG_FILE = open(sys.argv[0] + SFX, 'w')
     test = TestGui()
     pyglet.app.run()
