@@ -21,11 +21,7 @@ class TestGui(pyglet.window.Window):
         if self.useGridLines: self._initGrid()
         self.set_visible(True)
 
-    def dumpGeom(self, reason):
-        print('{:32} _ww={} nc={} w={:7.2f} ww-w={:7.2f} ww-w/2={:7.2f} ww={}  :  _wh={} nr={} h={:7.2f} wh-h={:7.2f} wh-h/2={:7.2f} wh={}'
-              .format(reason, self._ww, self.nc, self.w, self.ww-self.w, self.ww-self.w/2, self.ww, self._wh, self.nr, self.h, self.wh-self.h, self.wh-self.h/2, self.wh), file=DBG_FILE)
-
-    def getGeom(self):
+    def _initGeom(self):
         return self._ww, self._wh, self.ww, self.wh, self.w, self.h, self.nc, self.nr
 
     def _initGroup(self, order=0, parent=None):
@@ -35,7 +31,7 @@ class TestGui(pyglet.window.Window):
     def _initGrid(self, dbg=1):
         self.lineGroup = self._initGroup(2)
         mesh, color    = [1, 5, 10], self.COLORS[0]
-        _ww, _wh, ww, wh, w, h, nc, nr = self.getGeom()
+        _ww, _wh, ww, wh, w, h, nc, nr = self._initGeom()
         self.dumpGeom('_initGrid(BGN)')
         self.clines, self.rlines = [], []
         if nc % 2 == 0:
@@ -87,7 +83,7 @@ class TestGui(pyglet.window.Window):
 
     def _initImgSprts(self):
         self.imgGroup = self._initGroup(1)
-        _ww, _wh, ww, wh, w, h, nc, nr = self.getGeom()
+        _ww, _wh, ww, wh, w, h, nc, nr = self._initGeom()
         iss, self.imgSprts, imgs, i = [], [], [], 0
         s = ['apple_raw.png', 'oriel.jpg']#, 'pyglet.png', 'jwc.jpg', 'asteroid.png']
         self.dumpGeom('_initImgSprts(BGN)')
@@ -110,7 +106,7 @@ class TestGui(pyglet.window.Window):
 
     def _initSciSprts(self):
         self.sciGroup = self._initGroup(0)
-        _ww, _wh, ww, wh, w, h, nc, nr = self.getGeom()
+        _ww, _wh, ww, wh, w, h, nc, nr = self._initGeom()
         self.sciSprts = []
         self.dumpGeom('_initSciSprts(BGN)')
         self.dumpSprite(None)
@@ -133,6 +129,14 @@ class TestGui(pyglet.window.Window):
         return s
 
     @staticmethod
+    def dumpSprite(reason, s=None):
+        if s is None: print('     x        y        w        h    iax  iay    m      mx     my      rot   opacity    color      visible      reason          r     c        x        y    iax  iay', file=DBG_FILE); return
+        f = '{:8.2f} {:8.2f} {:8.2f} {:8.2f} {:4} {:4} {:6.3f} {:6.3f} {:6.3f} {:8.2f}  {:4}  {}  {}'
+        fs = f.format(s.x, s.y, s.width, s.height, s.image.anchor_x, s.image.anchor_y, s.scale, s.scale_x, s.scale_y, s.rotation, s.opacity, s.color, s.visible)
+        print('{} {}'.format(fs, reason), file=DBG_FILE)
+        assert(type(s) == pyglet.sprite.Sprite)
+
+    @staticmethod
     def getMeshColor(i, j, mesh):
         MIN, NOM, MAX = 0, 1, 2
         MESH          = [(255, 0, 0), (0, 255, 0), (255, 255, 255)]
@@ -145,19 +149,15 @@ class TestGui(pyglet.window.Window):
         if ni <= 0: return opacity
         else:       return fri(opacity*((i+1) % (ni+1))/ni)
 
-    @staticmethod
-    def dumpSprite(reason, s=None):
-        if s is None: print('     x        y        w        h    iax  iay    m      mx     my      rot   opacity    color      visible      reason          r     c        x        y    iax  iay', file=DBG_FILE); return
-        f = '{:8.2f} {:8.2f} {:8.2f} {:8.2f} {:4} {:4} {:6.3f} {:6.3f} {:6.3f} {:8.2f}  {:4}  {}  {}'
-        fs = f.format(s.x, s.y, s.width, s.height, s.image.anchor_x, s.image.anchor_y, s.scale, s.scale_x, s.scale_y, s.rotation, s.opacity, s.color, s.visible)
-        print('{} {}'.format(fs, reason), file=DBG_FILE)
-        assert(type(s) == pyglet.sprite.Sprite)
+    def dumpGeom(self, reason):
+        print('{:32} _ww={} nc={} w={:7.2f} ww-w={:7.2f} ww-w/2={:7.2f} ww={}    _wh={} nr={} h={:7.2f} wh-h={:7.2f} wh-h/2={:7.2f} wh={}'
+              .format(reason, self._ww, self.nc, self.w, self.ww-self.w, self.ww-self.w/2, self.ww, self._wh, self.nr, self.h, self.wh-self.h, self.wh-self.h/2, self.wh), file=DBG_FILE)
 
     def on_resize(self, width, height, dbg=1):
         super().on_resize(width, height)
         self.ww, self.wh = width, height
         self.w,  self.h  = self.ww/self.nc, self.wh/self.nr
-        _ww, _wh, ww, wh, w, h, nc, nr = self.getGeom()
+        _ww, _wh, ww, wh, w, h, nc, nr = self._initGeom()
         self.dumpGeom('\non_resize(BGN)')
         for c in range(nc+1):
             x1, x2, y1, y2 = c*w, c*w, 0, nr*h
