@@ -35,7 +35,7 @@ class TestGui(pyglet.window.Window):
         self.dumpGeom('_initGrid(BGN)')
         self.clines, self.rlines = [], []
         if nc % 2 == 0:
-            p = fri(nc/2) % mesh[len(mesh)]
+            p = fri(nc/2) % mesh[len(mesh)-1]
             if dbg: print('_initGrid() nc={}=Even p={}'.format(nc, p), file=DBG_FILE)
             for c in range(nc+1):
                 x1, x2, y1, y2 = c*w, c*w, 0, nr*h
@@ -58,7 +58,7 @@ class TestGui(pyglet.window.Window):
                 self.clines.append(pyglet.shapes.Line(x1, y1, x2, y2, width=1, color=color, batch=self.batch, group=self.lineGroup))
                 if dbg: print('c=[{:3}] x1={:7.2f} y1={:7.2f} x2={:7.2f} y2={:7.2f}'.format(c, x1, y1, x2, y2), file=DBG_FILE)
         if nr % 2 == 0:
-            q = fri(nr/2) % mesh[len(mesh)]
+            q = fri(nr/2) % mesh[len(mesh)-1]
             if dbg: print('_initGrid() nr={}=Even q={}'.format(nr, q), file=DBG_FILE)
             for r in range(nr+1):
                 x1, x2, y1, y2 = 0, nc*w, r*h, r*h
