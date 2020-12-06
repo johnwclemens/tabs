@@ -5,10 +5,10 @@ def fri(f): return int(math.floor(f+0.5))
 
 class TestGui(pyglet.window.Window):
     def __init__(self):
-        self._ww, self._wh = 1000, 600
-        self.ww, self.wh = self._ww, self._wh
-        self.nc, self.nr = 21, 13# 17, 11
-        self.w,  self.h  = self.ww/self.nc, self.wh/self.nr
+        self._ww, self._wh   = 1000, 600
+        self.ww,  self.wh    = self._ww, self._wh
+        self.nc,  self.nr    = 21, 13# 17, 11
+        self.w,   self.h     = self.ww/self.nc, self.wh/self.nr
         super(TestGui, self).__init__(width=self.ww, height=self.wh, resizable=True, visible=False)
         pyglet.resource.path = ['res', 'res/images']
         pyglet.resource.reindex()
@@ -21,7 +21,7 @@ class TestGui(pyglet.window.Window):
         if self.useGridLines: self._initGrid()
         self.set_visible(True)
 
-    def _initGeom(self):
+    def geom(self):
         return self._ww, self._wh, self.ww, self.wh, self.w, self.h, self.nc, self.nr
 
     def _initGroup(self, order=0, parent=None):
@@ -31,7 +31,7 @@ class TestGui(pyglet.window.Window):
     def _initGrid(self, dbg=1):
         self.lineGroup = self._initGroup(2)
         mesh, color    = [1, 5, 10], self.COLORS[0]
-        _ww, _wh, ww, wh, w, h, nc, nr = self._initGeom()
+        _ww, _wh, ww, wh, w, h, nc, nr = self.geom()
         self.dumpGeom('_initGrid(BGN)')
         self.clines, self.rlines = [], []
         if nc % 2 == 0:
@@ -83,7 +83,7 @@ class TestGui(pyglet.window.Window):
 
     def _initImgSprts(self):
         self.imgGroup = self._initGroup(1)
-        _ww, _wh, ww, wh, w, h, nc, nr = self._initGeom()
+        _ww, _wh, ww, wh, w, h, nc, nr = self.geom()
         iss, self.imgSprts, imgs, i = [], [], [], 0
         s = ['apple_raw.png', 'oriel.jpg']#, 'pyglet.png', 'jwc.jpg', 'asteroid.png']
         self.dumpGeom('_initImgSprts(BGN)')
@@ -106,7 +106,7 @@ class TestGui(pyglet.window.Window):
 
     def _initSciSprts(self):
         self.sciGroup = self._initGroup(0)
-        _ww, _wh, ww, wh, w, h, nc, nr = self._initGeom()
+        _ww, _wh, ww, wh, w, h, nc, nr = self.geom()
         self.sciSprts = []
         self.dumpGeom('_initSciSprts(BGN)')
         self.dumpSprite(None)
@@ -157,7 +157,7 @@ class TestGui(pyglet.window.Window):
         super().on_resize(width, height)
         self.ww, self.wh = width, height
         self.w,  self.h  = self.ww/self.nc, self.wh/self.nr
-        _ww, _wh, ww, wh, w, h, nc, nr = self._initGeom()
+        _ww, _wh, ww, wh, w, h, nc, nr = self.geom()
         self.dumpGeom('\non_resize(BGN)')
         for c in range(nc+1):
             x1, x2, y1, y2 = c*w, c*w, 0, nr*h
