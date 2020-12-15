@@ -9,10 +9,11 @@ RUN_TEST = False;  ORDER_GROUP = True;  SUBPIX = False;  FULL_SCREEN = False;  D
 
 class Tabs(pyglet.window.Window):
     def __init__(self):
+        self.fontIndex = 1
         global FULL_SCREEN, SUBPIX, ORDER_GROUP, RUN_TEST
-        self.ww, self.hh  = 1000, 600
+        self.ww, self.hh  = 1000, 100 #1000, 600
         if RUN_TEST: self.n, self.x, self.y, self.w, self.h, self.o, self.g, self.i = [12, 12, 0, 0], [4, 0, 0, 0], [0, 3, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 0, 0], [], [0, 0, 0, 0]
-        else:        self.n, self.x, self.y, self.w, self.h, self.o, self.g, self.i = [6, 2, 3, 10],  [0, 4, 4, 0], [0, 4, 4, 0], [0, 0, 0, 0], [0, 0, 0, 0], [2, 0, 0, 3], [], [0, 0, 0, 1]
+        else:        self.n, self.x, self.y, self.w, self.h, self.o, self.g, self.i = [1, 1, 3, 28],  [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [2, 0, 0, 3], [], [0, 0, 0, 0]
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
         print('_init(BGN) argMap={}'.format(self.argMap), file=DBG_FILE)
         if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
@@ -58,7 +59,7 @@ class Tabs(pyglet.window.Window):
 #        print('_initWindowB(END) {}x{}'.format(self.ww, self.hh), file=DBG_FILE)
 
     def _initGroups(self):
-        for i in range(len(self.n)+1):
+        for i in range(len(self.n)+2):
             pg = None if ORDER_GROUP or i==0 else self.g[i-1]
             self.g.append(self._initGroup(i, pg))
             print('_initGroups({}) g={} pg={}'.format(i, self.g[i], self.g[i].parent), file=DBG_FILE)
@@ -121,23 +122,52 @@ class Tabs(pyglet.window.Window):
         img = scip.create_image(width=fri(w), height=fri(h))
         spr = pyglet.sprite.Sprite(img, x, y, batch=self.batch, group=grp, subpixel=SUBPIX)
         spr.visible = v if v is not None else True if i==P else False
-        spr.opacity = self.getOpacity(o, j, no)
-        if DBG: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:4} {} {}'.format(reason, i, j, x, y, w, h, img.anchor_x, img.anchor_y, spr.group, spr.group.parent), spr)
+        spr.color = cc[:3]
+        spr.opacity = cc[-1]
+#        spr.opacity = self.getOpacity(o, j, no)
+        self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:4} {} {}'.format(reason, i, j, x, y, w, h, img.anchor_x, img.anchor_y, spr.group, spr.group.parent), spr)
         return spr
 
+    @staticmethod
+    def dumpSprite(reason, s=None):
+        if s is None: print('    x       y       w       h    iax  iay    m      mx     my     rot   opacity    color    visible     reason         i   j      x       y       w       h    iax  iay', file=DBG_FILE); return
+        f = '{:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:4} {:6.3f} {:6.3f} {:6.3f} {:7.2f}  {:4}  ({:3}, {:3}, {:3})  {:1}'
+        c = s.color
+        fs = f.format(s.x, s.y, s.width, s.height, s.image.anchor_x, s.image.anchor_y, s.scale, s.scale_x, s.scale_y, s.rotation, s.opacity, c[0], c[1], c[2], s.visible)
+        print('{} {}'.format(fs, reason), file=DBG_FILE)
+        assert(type(s) == pyglet.sprite.Sprite)
+
     def _initTabs(self):
-        self.pages, self.lines, self.rows, self.cols = [], [], [], []
+        self.pages, self.lines, self.rows, self.cols, self.texts = [], [], [], [], []
         self.dumpSprite('')
+        c, n = self.i[C], self.n[C]
         self._initPages()
-        j = self.i[C]
-        self.cursor = self.createSprite('cursor', self.g[C+1], CC, self.cols[j].x, self.cols[j].y, self.cols[j].width, self.cols[j].height, 0, 0, v=True)
+        self._initCursor(self.cols, c, self.g[C+1])
+        self._initText(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],  (255, 0, 0, 255), self.cols, 0, self.g[C+2], self.batch)
+        self._initText(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'], (255, 0, 0, 255), self.cols, n, self.g[C+2], self.batch)
+        self._initText(['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '[', ']', '<', '>', '/', '?', ',', '.', '=', '_', '+', ' ', '|', '{', '}', '-', '\\'], (255, 0, 0, 255), self.cols, n, self.g[C+2], self.batch)
         self.printStructInfo('_initTabs(END)')
+
+    def _initCursor(self, cols, c, g):
+        x, y, w, h = cols[c].x, cols[c].y, cols[c].width, cols[c].height
+        self.cursor = self.createSprite('cursor', g, CC, x, y, w, h, 0, 0, v=True)
+        print('_initCursor() c={:4} x={:6.1f} y={:6.1f} w={:4} h={:4}'.format(c, x, y, w, h), file=DBG_FILE)
+
+    def _initText(self, text, color, cols, c, g, b):
+        t = []
+        w, h = cols[c].width, cols[c].height
+        print('_initText( {} ) c={:4}'.format(text, c), file=DBG_FILE)
+        for i in range(len(text)):
+            x, y = cols[c+i].x, cols[c+i].y
+            t.append(pyglet.text.Label(text[i], font_name=FONTS[0], font_size=FS, color=color, x=x+w/2, y=y+h/2, anchor_x='center', anchor_y='center', align='center', dpi=DPI, batch=b, group=g))
+            print('_initText( {} ) c={:4} x={:6.1f} y={:6.1f} w={:4} h={:4}'.format(text[i], c, x, y, w, h), file=DBG_FILE)
+        self.texts.append(t)
 
     def _initPages(self):
         cc = [REDS[0], REDS[2], REDS[4], REDS[6], REDS[8], REDS[10]]
         n, x, y, w, h, o, g = self.geom(P, self.x[P], self.y[P], self.ww, self.hh, reason='', init=True, dump=0)
         for p in range(n):
-            page   = self.createSprite('_initPages', g, cc[p%len(cc)], x, y, w, h, p, 0)
+            page = self.createSprite('_initPages', g, cc[p%len(cc)], x, y, w, h, p, 0)
             self.pages.append(page)
             if self.n[P+1] > 0: lines = self._initLines(page)
         return self.pages
@@ -163,8 +193,8 @@ class Tabs(pyglet.window.Window):
         return self.rows
 
     def _initCols(self, spr):
-        a, b = 4, 7
-        cc = [GREENS[a], GREENS[b]] if len(self.rows)%2 else [GREENS[b], GREENS[a]]
+#        a, b = 6, 3; cc = [GREENS[a], GREENS[b]] if len(self.rows)%2 else [GREENS[b], GREENS[a]]
+        a, b = 11, 9; cc = [GRAYS[a], GRAYS[b]] if len(self.rows)%2 else [GRAYS[b], GRAYS[a]]
         (n, x, y, w, h, o, g), s = self.geom(C, spr.x, spr.y, spr.width, spr.height, reason='', init=True, dump=0), len(cc)
         for c in range(n):
             xx, yy = spr.x+x+(w+x)*c, spr.y+spr.height-(h+y)
@@ -178,15 +208,31 @@ class Tabs(pyglet.window.Window):
         if RUN_TEST: self.resizeColorLists(); return
 #        if DBG: self.dumpSprite('')
         for i in range(len(self.n)): self.dumpGeom(i, 'on_resize({}x{})'.format(self.ww, self.hh))
+        c = self.i[C]
         self.resizePages()
-        j = self.i[C]
-        self.cursor.update(x=self.cols[j].x, y=self.cols[j].y, scale_x=self.cols[j].scale_x, scale_y=self.cols[j].scale_y)
+        self.resizeCursor(self.cols, c)
+        for j in range(len(self.texts)):
+            self.resizeText(self.texts[j], self.cols, c)
+            c += self.n[C]
+
+    def resizeCursor(self, cols, c):
+        x, y, w, h = cols[c].x, cols[c].y, cols[c].width, cols[c].height
+        self.cursor.update(x=x, y=y, scale_x=cols[c].scale_x, scale_y=cols[c].scale_y)
+        print('resizeCursor() c={:4} x={:6.1f} y={:6.1f} w={:4} h={:4}'.format(c, x, y, w, h), file=DBG_FILE)
+
+    @staticmethod
+    def resizeText(text, cols, c):
+        w, h = cols[c].width, cols[c].height
+        for i in range(len(text)):
+            x, y = cols[c+i].x, cols[c+i].y
+            text[i].x, text[i].y = x+w/2, y+h/2
+            print('resizeText( {} ) c={:4} x={:6.1f} y={:6.1f} w={:4} h={:4}'.format(text[i].text, c, x, y, w, h), file=DBG_FILE)
 
     def resizePages(self):
         n, x, y, w, h, o, g, mx, my = self.geom(P, self.x[P], self.y[P], self.ww, self.hh, reason='', init=False, dump=0)
         for p in range(n):
             self.pages[p].update(x=x, y=y, scale_x=mx, scale_y=my)
-            if DBG: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f}'.format('on_resize() Pages', p, 0, x, y, w, h), self.pages[p])
+            if DBG: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f}'.format('on_resize Pages', p, 0, x, y, w, h), self.pages[p])
             if self.n[P+1] > 0: self.resizeLines(self.pages[p], p)
 
     def resizeLines(self, spr, pn):
@@ -194,7 +240,7 @@ class Tabs(pyglet.window.Window):
         for l in range(n):
             yy = spr.y+spr.height-(h+y)*(l+1)
             self.lines[l+pn*n].update(x=x, y=yy, scale_x=mx, scale_y=my)
-            if DBG: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f}'.format('on_resize() Lines', l, 0, x, yy, w, h), self.lines[l+pn*n])
+            if DBG: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f}'.format('on_resize Lines', l, 0, x, yy, w, h), self.lines[l+pn*n])
             if self.n[L+1] > 0: self.resizeRows(self.lines[l+pn*n], l+pn*n)
 
     def resizeRows(self, spr, ln):
@@ -202,7 +248,7 @@ class Tabs(pyglet.window.Window):
         for r in range(n):
             yy = spr.y+spr.height-(h+y)*(r+1)
             self.rows[r+ln*n].update(x=x, y=yy, scale_x=mx, scale_y=my)
-            if DBG: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f}'.format('on_resize() Rows', r, 0, x, yy, w, h), self.rows[r+ln*n])
+            if DBG: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f}'.format('on_resize Rows', r, 0, x, yy, w, h), self.rows[r+ln*n])
             if self.n[R+1] > 0: self.resizeCols(self.rows[r+ln*n], r+ln*n)
 
     def resizeCols(self, spr, rn):
@@ -210,15 +256,7 @@ class Tabs(pyglet.window.Window):
         for c in range(n):
             xx, yy = spr.x+x+(w+x)*c, spr.y+spr.height-(h+y)
             self.cols[c+rn*n].update(x=xx, y=yy, scale_x=mx, scale_y=my)
-            if 1: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f}'.format('on_resize() Cols', c, 0, xx, yy, w, h), self.cols[c+rn*n])
-
-    @staticmethod
-    def dumpSprite(reason, s=None):
-        if s is None: print('    x       y       w       h    iax  iay    m      mx     my     rot   opacity    color    visible     reason         i   j      x       y       w       h    iax  iay', file=DBG_FILE); return
-        f = '{:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:4} {:6.3f} {:6.3f} {:6.3f} {:7.2f}  {:4}  {}  {:1}'
-        fs = f.format(s.x, s.y, s.width, s.height, s.image.anchor_x, s.image.anchor_y, s.scale, s.scale_x, s.scale_y, s.rotation, s.opacity, s.color, s.visible)
-        print('{} {}'.format(fs, reason), file=DBG_FILE)
-        assert(type(s) == pyglet.sprite.Sprite)
+            if 1: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f}'.format('on_resize Cols', c, 0, xx, yy, w, h), self.cols[c+rn*n])
 
     @staticmethod
     def getOpacity(opacity=255, i=0, ni=0):
@@ -234,21 +272,37 @@ class Tabs(pyglet.window.Window):
 
     def on_text(self, text):
         print('on_text() text={}'.format(text), file=DBG_FILE)
+        if text == 'A': pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
 
     def on_text_motion(self, motion):
-        if   motion == pygwink.MOTION_LEFT:          self.toggleColorLists(motion)
-        elif motion == pygwink.MOTION_RIGHT:         self.toggleColorLists(motion)
+        if   motion == pygwink.MOTION_LEFT:          self.toggleFonts(motion)
+        elif motion == pygwink.MOTION_RIGHT:         self.toggleFonts(motion)
         elif motion == pygwink.MOTION_UP:            self.toggleColorLists(motion)
         elif motion == pygwink.MOTION_DOWN:          self.toggleColorLists(motion)
         elif motion == pygwink.MOTION_NEXT_PAGE:     self.setPage(motion)
         elif motion == pygwink.MOTION_PREVIOUS_PAGE: self.setPage(motion)
         else:                                        print('on_text_motion() motion={} ???'.format(motion), file=DBG_FILE)
 
+    def toggleFonts(self, motion):
+        i = self.fontIndex
+        print('toggleFonts() i={}'.format(i), file=DBG_FILE)
+        if   motion==pygwink.MOTION_LEFT:
+            i -= 1
+            i = i % len(FONTS)
+            print('toggleFonts() MOTION_LEFT={} FONTS[{}]={}'.format(motion, i, FONTS[i]), file=DBG_FILE)
+        elif motion==pygwink.MOTION_RIGHT:
+            i += 1
+            i = i % len(FONTS)
+            print('toggleFonts() MOTION_RIGHT={} FONTS[{}]={}'.format(motion, i, FONTS[i]), file=DBG_FILE)
+        for j in range(len(self.texts)):
+            for k in range(len(self.texts[j])):
+                self.texts[j][k].font_name = FONTS[i]
+        self.fontIndex = i
+
     def toggleColorLists(self, motion):
         if not RUN_TEST: print('toggleColorLists(WARNING) Nothing To Toggle RUN_TEST={} motion={}'.format(RUN_TEST, motion), file=DBG_FILE); return
         cls = self.colorLists
         i = self.i[P]
-        print('toggleColorLists() i={}'.format(i))
         print('toggleColorLists() i={}'.format(i), file=DBG_FILE)
         if   motion==pygwink.MOTION_LEFT:
             for j in range(len(cls[i])): cls[i][j].visible = False
@@ -289,13 +343,16 @@ class Tabs(pyglet.window.Window):
         j = self.i[C]
         self.cursor.update(self.cols[j].x, self.cols[j].y)
         print('on_mouse_release({}x{}) x={:4} y={:4} w={} h={} c={:4} r={:4} j={}'.format(self.ww, self.hh, x, y, w, h, c, r, j), file=DBG_FILE)
-        print('on_mouse_release({}x{}) x={:4} y={:4} w={} h={} c={:4} r={:4} j={}'.format(self.ww, self.hh, x, y, w, h, c, r, j))
+#        print('on_mouse_release({}x{}) x={:4} y={:4} w={} h={} c={:4} r={:4} j={}'.format(self.ww, self.hh, x, y, w, h, c, r, j))
 
 if __name__ == '__main__':
     SFX          = 'TEST' if RUN_TEST else ''
     DBG_FILE     = open(sys.argv[0] + SFX + ".log.txt", 'w')
+    FONTS        = ['Times New Roman', 'Lucida Console', 'Courier']
+    FS, DPI      = 20, 100
     P, L, R, C   = 0, 1, 2, 3
     OPACITY      = [255, 240, 225, 210, 190, 165, 140, 110, 80]
+    GRAY         = [(255, 255, 255, OPACITY[0]), ( 0,  0,  0, OPACITY[0])]
     PINK         = [(255,  64, 192, OPACITY[1]), (57, 16, 16, OPACITY[1])]
     INFRA_RED    = [(255,  29,  24, OPACITY[5]), (68, 20, 19, OPACITY[5])]
     RED          = [(255,  24,  21, OPACITY[2]), (72, 15, 12, OPACITY[2])]
@@ -308,7 +365,7 @@ if __name__ == '__main__':
     BLUE         = [( 35,  26, 255, OPACITY[7]), (19, 11, 64, OPACITY[7])]
     ULTRA_VIOLET = [(176,  81, 255, OPACITY[7]), (44, 14, 58, OPACITY[5])]
     VIOLET       = [(194,  96, 255, OPACITY[5]), (50, 19, 61, OPACITY[4])]
-    HUES         = 12
+    HUES         = 13
     def genColors(cp, nsteps=HUES):
         colors, clen = [], len(cp[0])
         diffs = [cp[1][i] - cp[0][i] for i in range(clen)]
@@ -320,6 +377,7 @@ if __name__ == '__main__':
             colors.append(c)
         if DBG: print('genColors() colors={}'.format(cp), file=DBG_FILE)
         return colors
+    GRAYS       = genColors(GRAY)
     PINKS       = genColors(PINK)
     INFRA_REDS  = genColors(INFRA_RED)
     REDS        = genColors(RED)
@@ -332,11 +390,10 @@ if __name__ == '__main__':
     BLUES       = genColors(BLUE)
     ULTRA_VIOLETS = genColors(ULTRA_VIOLET)
     VIOLETS     = genColors(VIOLET)
-    COLORS      = (PINKS, INFRA_REDS, REDS, ORANGES, YELLOWS, GREENS, GREEN_BLUES, CYANS, BLUE_GREENS, BLUES, VIOLETS, ULTRA_VIOLETS)
-    CC          = (192, 98, 39, 200)
+    COLORS      = (PINKS, INFRA_REDS, REDS, ORANGES, YELLOWS, GRAYS, GREENS, GREEN_BLUES, CYANS, BLUE_GREENS, BLUES, VIOLETS, ULTRA_VIOLETS)
+    CC          = (255, 190, 12, 108)
     tabs        = Tabs()
     pyglet.app.run()
 #    pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
-#        label = pyglet.text.Label('Hello, world', font_name='Times New Roman', font_size=36, x=self.width//2, y=self.height//2, anchor_x='center', anchor_y='center', batch=self.batch)
 #        self.cols[0].image = pyglet.image.SolidColorImagePattern((199, 198, 197, 255)).create_image(width=fri(self.cols[0].width), height=fri(self.cols[0].height))
 #        cc = GREENS[-1::-1]+GREENS
