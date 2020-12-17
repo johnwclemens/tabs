@@ -124,7 +124,6 @@ class Tabs(pyglet.window.Window):
         spr.visible = v if v is not None else True if i==P else False
         spr.color = cc[:3]
         spr.opacity = cc[-1]
-#        spr.opacity = self.getOpacity(o, j, no)
         if DBG: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:4} {} {}'.format(reason, i, j, x, y, w, h, img.anchor_x, img.anchor_y, spr.group, spr.group.parent), spr)
         return spr
 
@@ -260,11 +259,6 @@ class Tabs(pyglet.window.Window):
             self.cols[c+rn*n].update(x=xx, y=yy, scale_x=mx, scale_y=my)
             if DBG: self.dumpSprite('{:20} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f}'.format('on_resize Cols', c, 0, xx, yy, w, h), self.cols[c+rn*n])
 
-    @staticmethod
-    def getOpacity(opacity=255, i=0, ni=0):
-        if ni <= 0: return opacity
-        else:       return fri(opacity*((i+1) % (ni+1))/ni)
-
     def printStructInfo(self, reason=''):
         print('{} len(pages)={} len(lines)={} len(rows)={} len(cols)={}'.format(reason, len(self.pages), len(self.lines), len(self.rows), len(self.cols)), file=DBG_FILE)
 
@@ -326,55 +320,6 @@ class Tabs(pyglet.window.Window):
         self.pages[i].visible = True
         print('{} i[{}]={}'.format(reason, P, i), file=DBG_FILE)
         self.i[P] = i
-
-#    def toggleFontName(self, motion):
-#        i = self.fontNameIndex
-#        print('toggleFontName() i={}'.format(i), file=DBG_FILE)
-#        if   motion==pygwink.MOTION_LEFT:
-#            i -= 1
-#            i = i % len(FONT_NAMES)
-#            print('toggleFontName() MOTION_LEFT={} FONT_NAMES[{}]={}'.format(motion, i, FONT_NAMES[i]), file=DBG_FILE)
-#        elif motion==pygwink.MOTION_RIGHT:
-#            i += 1
-#            i = i % len(FONT_NAMES)
-#            print('toggleFontName() MOTION_RIGHT={} FONT_NAMES[{}]={}'.format(motion, i, FONT_NAMES[i]), file=DBG_FILE)
-#        for j in range(len(self.texts)):
-#            for k in range(len(self.texts[j])):
-#                self.texts[j][k].font_name = FONT_NAMES[i]
-#        self.fontNameIndex = i
-
-#    def toggleFontSize(self, motion):
-#        i = self.fontSizeIndex
-#        print('toggleFontName() i={}'.format(i), file=DBG_FILE)
-#        if   motion==pygwink.MOTION_DOWN:
-#            i -= 1
-#            i = i % len(FONT_SIZES)
-#            print('toggleFontName() MOTION_LEFT={} FONT_SIZES[{}]={}'.format(motion, i, FONT_SIZES[i]), file=DBG_FILE)
-#        elif motion==pygwink.MOTION_UP:
-#            i += 1
-#            i = i % len(FONT_SIZES)
-#            print('toggleFontName() MOTION_RIGHT={} FONT_SIZES[{}]={}'.format(motion, i, FONT_SIZES[i]), file=DBG_FILE)
-#        for j in range(len(self.texts)):
-#            for k in range(len(self.texts[j])):
-#                self.texts[j][k].font_size = FONT_SIZES[i]
-#        self.fontSizeIndex = i
-
-#    def setPage(self, motion):
-#        i = self.i[P]
-#        if   motion==pygwink.MOTION_NEXT_PAGE:
-#            self.pages[i].visible = False
-#            i += 1
-#            i = i % self.n[P]
-#            self.pages[i].visible = True
-#            print('setPage() motion={} MOTION_NEXT_PAGE i[P]={}'.format(motion, i), file=DBG_FILE)
-#        elif motion==pygwink.MOTION_PREVIOUS_PAGE:
-#            self.pages[i].visible = False
-#            i -= 1
-#            i = i % self.n[P]
-#            self.pages[i].visible = True
-#            print('setPage() motion={} MOTION_PREVIOUS_PAGE i[P]={}'.format(motion, i), file=DBG_FILE)
-#        self.i[P] = i
-#        self.dumpSprite('')
 
     def on_mouse_release(self, x, y, button, modifiers):  # pyglet.window.mouse.MIDDLE #pyglet.window.mouse.LEFT #pyglet.window.mouse.RIGHT
         w, h = self.ww/self.n[C], self.hh/(self.n[R]*self.n[L])
