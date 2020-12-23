@@ -1,15 +1,15 @@
 import math, sys, os
+import unicodedata
 import pyglet
 import pyglet.window.key as pygwink
+import pyglet.window.event as pygwine
+
 sys.path.insert(0, os.path.abspath('../lib'))
 import cmdArgs
 
-def fri(f): return int(math.floor(f+0.5))
-RUN_TEST = False;  ORDER_GROUP = True;  SUBPIX = False;  FULL_SCREEN = False;  DBG = False
-
 class Tabs(pyglet.window.Window):
     def __init__(self):
-        self.fontNameIndex, self.fontSizeIndex, self.fontDpiIndex = 0, 0, 0
+        self.fontNameIndex, self.fontColorIndex, self.fontSizeIndex, self.fontDpiIndex = 7, 0, len(FONT_SIZES)//2, len(FONT_DPIS)//2
         global FULL_SCREEN, SUBPIX, ORDER_GROUP, RUN_TEST
         self.ww, self.hh  = 1000, 600
         if RUN_TEST: self.n, self.x, self.y, self.w, self.h, self.o, self.g, self.i = [12, 12, 0, 0], [4, 0, 0, 0], [0, 3, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 0, 0], [], [0, 0, 0, 0]
@@ -56,10 +56,12 @@ class Tabs(pyglet.window.Window):
         self.set_visible()
         self.set_size(self.ww, self.hh)
         self.ww, self.hh = self.get_size()
+        self.eventLogger = pygwine.WindowEventLogger()
+        self.push_handlers(self.eventLogger)
 #        print('_initWindowB(END) {}x{}'.format(self.ww, self.hh), file=DBG_FILE)
 
     def _initGroups(self):
-        for i in range(len(self.n)+2):
+        for i in range(len(self.n)+3):
             pg = None if ORDER_GROUP or i==0 else self.g[i-1]
             self.g.append(self._initGroup(i, pg))
             print('_initGroups({}) g={} pg={}'.format(i, self.g[i], self.g[i].parent), file=DBG_FILE)
@@ -141,26 +143,55 @@ class Tabs(pyglet.window.Window):
         self.dumpSprite('')
         c, n = self.i[C], self.n[C]
         self._initPages()
+#        self._initTextTest(n)
         self._initCursor(self.cols, c, self.g[C+1])
-        self._initText(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],  (255, 0, 0, 255), self.cols, 0, self.g[C+2], self.batch)
-        self._initText(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'], (255, 0, 0, 255), self.cols, n, self.g[C+2], self.batch)
-        self._initText(['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '[', ']', '<', '>', '/', '?', ',', '.', '=', '_', '+', ' ', '|', '{', '}', '-', '\\'], (255, 0, 0, 255), self.cols, 2*n, self.g[C+2], self.batch)
-#        self._initText([' ', ' ', ' ', ' ', 'Copywrite{#x266D}'], (255, 0, 0, 255), self.cols, 3*n, self.g[C+2], self.batch) # Unicode seems to require a Document?
-#        self._initText([' ', ' ', ' ', ' ', 'Copywrite{#x266F}'], (255, 0, 0, 255), self.cols, 4*n, self.g[C+2], self.batch)
+#        self._initCaret()
         self.printStructInfo('_initTabs(END)')
 
+    def _initTextTest(self, n):
+        self._initText(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'], self.cols, 0, self.g[C+2], self.batch)
+        self._initText(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'], self.cols, n, self.g[C+2], self.batch)
+        self._initText(['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '[', ']', '<', '>', '/', '?', ',', '.', '=', '_', '+', ' ', '|', '{', '}', '-', '\\'], self.cols, 2*n, self.g[C+2], self.batch)
+        ucnFlat, ucnNatural, ucnSharp = unicodedata.name('\u066D'), unicodedata.name('\u166E'), unicodedata.name('\u366F')
+        ucnAsterisk = 'ASTERISK'
+        ucAsterisk = unicodedata.lookup(ucnAsterisk)
+#        ucFlat,  ucNatural,  ucSharp  = unicodedata.lookup(ucnFlat), unicodedata.lookup(ucnNatural), unicodedata.lookup(ucnSharp)
+#        ucFlat,  ucNatural,  ucSharp  = unicodedata.lookup('MUSIC FLAT SIGN'), unicodedata.lookup('MUSIC NATURAL SIGN'), unicodedata.lookup('MUSIC SHARP SIGN')
+        print('ucnAsterisk={}'.format(ucnAsterisk), file=DBG_FILE)
+        print('    ucnFlat={}'.format(ucnFlat), file=DBG_FILE)
+        print(' ucnNatural={}'.format(ucnNatural), file=DBG_FILE)
+        print('   ucnSharp={}'.format(ucnSharp), file=DBG_FILE)
+        print(' ucAsterisk={}'.format(ucAsterisk), file=DBG_FILE)
+#        print('     ucFlat={}'.format(ucFlat),      file=DBG_FILE)
+#        print('  ucNatural={}'.format(ucNatural),   file=DBG_FILE)
+#        print('    ucSharp={}'.format(ucSharp),     file=DBG_FILE)
+        self._initText([ucAsterisk], self.cols, 3*n, self.g[C+2], self.batch)
+#        self._initText([ucFlat],     self.cols, 4*n, self.g[C+2], self.batch)
+#        self._initText([ucNatural],  self.cols, 5*n, self.g[C+2], self.batch)
+#        self._initText([ucSharp],    self.cols, 6*n, self.g[C+2], self.batch)
+#        self._initText([' ', ' ', ' ', ' ', 'Copywrite{#x266D}'], (255, 0, 0, 255), self.cols, 3*n, self.g[C+2], self.batch) # Unicode seems to require a Document?
+#        self._initText([' ', ' ', ' ', ' ', 'Copywrite{#x266F}'], (255, 0, 0, 255), self.cols, 4*n, self.g[C+2], self.batch)
+
+    def _initCaret(self):
+        doc = pyglet.text.document.UnformattedDocument()
+        w, h, b, g = self.cols[0].width, self.cols[0].height, self.batch, self.g[C+3]
+        layout = pyglet.text.layout.IncrementalTextLayout(document=doc, width=w, height=h, batch=b, group=g)
+        self.caret = pyglet.text.caret.Caret(layout, batch=self.batch, color=(200, 255, 200))
+
     def _initCursor(self, cols, c, g):
+        self.i[C] = c
         x, y, w, h = cols[c].x, cols[c].y, cols[c].width, cols[c].height
         self.cursor = self.createSprite('cursor', g, CC, x, y, w, h, 0, 0, v=True)
         print('_initCursor() c={:4} x={:6.1f} y={:6.1f} w={:4} h={:4}'.format(c, x, y, w, h), file=DBG_FILE)
 
-    def _initText(self, text, color, cols, c, g, b):
-        t = []
-        w, h, fn, fs, dpi = cols[c].width, cols[c].height, FONT_NAMES[self.fontNameIndex], FONT_SIZES[self.fontSizeIndex], FONT_DPIS[self.fontDpiIndex]
+    def _initText(self, text, cols, c, g, b):
+        w,  h,  t   = cols[c].width, cols[c].height, []
+        fc, dpi, fs, fn = self.fontInfo()
         print('_initText( {} ) c={:4}'.format(text, c), file=DBG_FILE)
         for i in range(len(text)):
+#            dpi = FONT_DPIS[i%len(FONT_DPIS)]
             x, y = cols[c+i].x, cols[c+i].y
-            t.append(pyglet.text.Label(text[i], font_name=fn, font_size=fs, color=color, x=x+w/2, y=y+h/2, anchor_x='center', anchor_y='center', align='center', dpi=dpi, batch=b, group=g))
+            t.append(pyglet.text.Label(text[i], font_name=fn, font_size=fs, color=fc, x=x+w/2, y=y+h/2, anchor_x='center', anchor_y='center', align='center', dpi=dpi, batch=b, group=g))
             print('_initText( {} ) c={:4} x={:6.1f} y={:6.1f} w={:4} h={:4}'.format(text[i], c, x, y, w, h), file=DBG_FILE)
         self.texts.append(t)
 
@@ -211,10 +242,11 @@ class Tabs(pyglet.window.Window):
         for i in range(len(self.n)): self.dumpGeom(i, 'on_resize({}x{})'.format(self.ww, self.hh))
         c = self.i[C]
         self.resizePages()
-        self.resizeCursor(self.cols, c)
         for j in range(len(self.texts)):
             self.resizeText(self.texts[j], self.cols, c)
             c += self.n[C]
+        self.resizeCursor(self.cols, c)
+        self.updateCaption()
 
     def resizeCursor(self, cols, c):
         x, y, w, h = cols[c].x, cols[c].y, cols[c].width, cols[c].height
@@ -225,6 +257,7 @@ class Tabs(pyglet.window.Window):
     def resizeText(text, cols, c):
         w, h = cols[c].width, cols[c].height
         for i in range(len(text)):
+#            text[i].layout #dpi = FONT_DPIS[i%len(FONT_DPIS)]
             x, y = cols[c+i].x, cols[c+i].y
             text[i].x, text[i].y = x+w/2, y+h/2
             print('resizeText( {} ) c={:4} x={:6.1f} y={:6.1f} w={:4} h={:4}'.format(text[i].text, c, x, y, w, h), file=DBG_FILE)
@@ -266,38 +299,87 @@ class Tabs(pyglet.window.Window):
         self.clear()
         self.batch.draw()
 
+    def on_key_press(self, symbol, modifiers):
+        self.symbol, self.modifiers = symbol, modifiers
+        symStr, modStr = pygwink.symbol_string(symbol), pygwink.modifiers_string(modifiers)
+        print('on_key_press() {:5} {:12} {} {:12}'.format(symbol, symStr, modifiers, modStr), file=DBG_FILE)
+#        print('on_key_press() symbol={} modifiers={}'.format(symbol, modifiers), file=DBG_FILE)
+
     def on_text(self, text):
+        mods = self.modifiers
         print('on_text() text={}'.format(text), file=DBG_FILE)
-        if text == 'A': pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
+        if   'A' <= text <= 'G' and mods & pygwink.MOD_SHIFT: self._initText([text], self.cols, self.i[C], self.g[C+2], self.batch)
+        elif text == '$': pyglet.image.get_buffer_manager().get_color_buffer().save('screenshot.png')
+        elif text == 'c' and mods & pygwink.MOD_CTRL: self.nextFontColor(self.fontColorIndex, text)
+        elif text == 'C' and mods & pygwink.MOD_CTRL: self.prevFontColor(self.fontColorIndex, text)
+        elif text == 'd': self.nextFontDpi(self.fontDpiIndex, text)
+        elif text == 'D': self.prevFontDpi(self.fontDpiIndex, text)
+        else:             print('on_text() text={} ???'.format(text), file=DBG_FILE)
+        self.updateCaption()
+
+    def nextFontColor(self, i, text):
+        self.updateFontColor(i+1, 'nextFontColor() {}=c'.format(text))
+
+    def prevFontColor(self, i, text):
+        self.updateFontColor(i-1, 'prevFontColor() {}=c'.format(text))
+
+    def updateFontColor(self, i, reason):
+        i = i % len(FONT_COLORS)
+        print('{} FONT_COLORS[{}]={}'.format(reason, i, FONT_COLORS[i]), file=DBG_FILE)
+        for j in range(len(self.texts)):
+            for k in range(len(self.texts[j])):
+                self.texts[j][k].color = FONT_COLORS[i]
+        self.fontColorIndex = i
+
+    def nextFontDpi(self, i, text):
+        self.updateFontDpi(i+1, 'nextFontDpi() {}=d   '.format(text))
+
+    def prevFontDpi(self, i, text):
+        self.updateFontDpi(i-1, 'prevFontDpi() {}=D   '.format(text))
+
+    def updateFontDpi(self, i, reason):
+        i = i % len(FONT_DPIS)
+        print('{} FONT_DPIS[{}]={}'.format(reason, i, FONT_DPIS[i]), file=DBG_FILE)
+        for j in range(len(self.texts)):
+            for k in range(len(self.texts[j])):
+                self.texts[j][k].dpi = FONT_DPIS[i]
+        self.fontDpiIndex = i
 
     def on_text_motion(self, motion):
-        if   motion == pygwink.MOTION_LEFT:          self.prevFontName(self.fontNameIndex, motion)
-        elif motion == pygwink.MOTION_RIGHT:         self.nextFontName(self.fontNameIndex, motion)
-        elif motion == pygwink.MOTION_DOWN:          self.prevFontSize(self.fontSizeIndex, motion)
-        elif motion == pygwink.MOTION_UP:            self.nextFontSize(self.fontSizeIndex, motion)
-        elif motion == pygwink.MOTION_PREVIOUS_PAGE: self.prevPage(    self.i[P],          motion)
-        elif motion == pygwink.MOTION_NEXT_PAGE:     self.nextPage(    self.i[P],          motion)
-        else:                                        print('on_text_motion() motion={} ???'.format(motion), file=DBG_FILE)
+        print('on_text_motion(BGN) motion={}'.format(motion), file=DBG_FILE)
+        if self.modifiers == 0:
+            if motion==pygwink.MOTION_RIGHT:             self.moveRight()
+#            if   motion == pygwink.MOTION_LEFT:          self.prevFontName(self.fontNameIndex, motion)
+#            elif motion == pygwink.MOTION_RIGHT:         self.nextFontName(self.fontNameIndex, motion)
+#            elif motion == pygwink.MOTION_DOWN:          self.prevFontSize(self.fontSizeIndex, motion)
+#            elif motion == pygwink.MOTION_UP:            self.nextFontSize(self.fontSizeIndex, motion)
+#            elif motion == pygwink.MOTION_PREVIOUS_PAGE: self.prevPage(    self.i[P],          motion)
+#            elif motion == pygwink.MOTION_NEXT_PAGE:     self.nextPage(    self.i[P],          motion)
+            else:                                        print('on_text_motion() motion={} ???'.format(motion), file=DBG_FILE)
+            self.updateCaption()
 
-    def prevFontName(self, i, motion):
-        self.updateFontName(i-1, 'prevFontName() {}=MOTION_LEFT '.format(motion))
+    def moveRight(self):
+        cols, c = self.cols, self.i[C]+1
+        x, y, w, h = cols[c].x, cols[c].y, cols[c].width, cols[c].height
+        self.cursor.update(x=x, y=y, scale_x=cols[c].scale_x, scale_y=cols[c].scale_y)
+        self.i[C] = c
+
+    def fontInfo(self):
+        return FONT_COLORS[self.fontColorIndex], FONT_DPIS[self.fontDpiIndex], FONT_SIZES[self.fontSizeIndex], FONT_NAMES[self.fontNameIndex]
+
+    def updateCaption(self):
+#        for fi in self.fontInfo():
+#            text += 'updateCaption() fi={}'.format(fi)
+#        self.set_caption('{} {}dpi {}pt {}'.format(fc, fd, fs, fn))
+        print('{}'.format(i) for i in range(len(self.fontInfo())))
+#        fc, fd, fs, fn = self.fontInfo()
+#        self.set_caption('{} {}dpi {}pt {}'.format(fc, fd, fs, fn))
 
     def nextFontName(self, i, motion):
         self.updateFontName(i+1, 'nextFontName() {}=MOTION_RIGHT'.format(motion))
 
-    def prevFontSize(self, i, motion):
-        self.updateFontSize(i-1, 'prevFontSize() {}=MOTION_DOWN'.format(motion))
-
-    def nextFontSize(self, i, motion):
-        self.updateFontSize(i+1, 'nextFontSize() {}=MOTION_UP  '.format(motion))
-
-    def prevPage(self, i, motion):
-        self.pages[i].visible = False
-        self.updatePage(i-1, 'prevPage() {}=MOTION_PREVIOUS_PAGE'.format(motion))
-
-    def nextPage(self, i, motion):
-        self.pages[i].visible = False
-        self.updatePage(i+1, 'nextPage() {}=MOTION_NEXT_PAGE   '.format(motion))
+    def prevFontName(self, i, motion):
+        self.updateFontName(i-1, 'prevFontName() {}=MOTION_LEFT '.format(motion))
 
     def updateFontName(self, i, reason):
         i = i % len(FONT_NAMES)
@@ -307,6 +389,12 @@ class Tabs(pyglet.window.Window):
                 self.texts[j][k].font_name = FONT_NAMES[i]
         self.fontNameIndex = i
 
+    def nextFontSize(self, i, motion):
+        self.updateFontSize(i+1, 'nextFontSize() {}=MOTION_UP   '.format(motion))
+
+    def prevFontSize(self, i, motion):
+        self.updateFontSize(i-1, 'prevFontSize() {}=MOTION_DOWN '.format(motion))
+
     def updateFontSize(self, i, reason):
         i = i % len(FONT_SIZES)
         print('{} FONT_SIZES[{}]={}'.format(reason, i, FONT_SIZES[i]), file=DBG_FILE)
@@ -314,6 +402,14 @@ class Tabs(pyglet.window.Window):
             for k in range(len(self.texts[j])):
                 self.texts[j][k].font_size = FONT_SIZES[i]
         self.fontSizeIndex = i
+
+    def nextPage(self, i, motion):
+        self.pages[i].visible = False
+        self.updatePage(i+1, 'nextPage() {}=MOTION_NEXT_PAGE   '.format(motion))
+
+    def prevPage(self, i, motion):
+        self.pages[i].visible = False
+        self.updatePage(i-1, 'prevPage() {}=MOTION_PREVIOUS_PAGE'.format(motion))
 
     def updatePage(self, i, reason):
         i = i % self.n[P]
@@ -349,7 +445,9 @@ class Tabs(pyglet.window.Window):
             print('toggleColorLists() MOTION_RIGHT={} i[P]={} len(cls)={}'.format(motion, i, len(cls)), file=DBG_FILE)
         self.i[P] = i
 
-if __name__ == '__main__':
+if __name__=='__main__':
+    def fri(f): return int(math.floor(f+0.5))
+    RUN_TEST = False;  ORDER_GROUP = True;  SUBPIX = False;  FULL_SCREEN = False;  DBG = False
     SFX          = 'TEST' if RUN_TEST else ''
     DBG_FILE     = open(sys.argv[0] + SFX + ".log.txt", 'w')
     P, L, R, C   = 0, 1, 2, 3
@@ -393,8 +491,8 @@ if __name__ == '__main__':
     ULTRA_VIOLETS = genColors(ULTRA_VIOLET)
     VIOLETS     = genColors(VIOLET)
     COLORS      = (PINKS, INFRA_REDS, REDS, ORANGES, YELLOWS, GRAYS, GREENS, GREEN_BLUES, CYANS, BLUE_GREENS, BLUES, VIOLETS, ULTRA_VIOLETS)
-    CC          = (255, 190, 12, 108)
-    FONT_NAMES  = ['Times New Roman', 'Lucida Console', 'Courier', 'Helvetica', 'Arial']
+    CC          = (255, 190, 12, 176)
+    FONT_NAMES  = ['Times New Roman', 'Lucida Console', 'Courier New', 'Helvetica', 'Arial', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
     FONT_SIZES  = [6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36]
     FONT_COLORS = [REDS[0], GREENS[0], BLUES[0], YELLOWS[0], ORANGES[0], GREEN_BLUES[0], CYANS[0], BLUE_GREENS[0], PINKS[0], INFRA_REDS[0], VIOLETS[0], ULTRA_VIOLETS[0], GRAYS[0]]
     FONT_DPIS    = [75, 80, 90, 96, 100, 108, 116]
