@@ -334,6 +334,12 @@ class Tabs(pyglet.window.Window):
         lid, text = 0, ['R', 'M', '-']
         [text.append('{}'.format(_)) for _ in range(1, self.n[C] + 1)]
         self.dumpTextList(text, 'createLabels(BGN)) text')
+        print('createLabels() n={} len(labels)={}'.format(self.n, len(self.labels)), file=DBG_FILE)
+        i = 0
+        while i < len(self.labels):
+            t = self.labels[i]
+            t.delete()
+            del self.labels[i]
         for q in range(len(self.qrows)):
             if dbg: self.dumpLabel()
             for c in range(len(text)):
@@ -345,18 +351,23 @@ class Tabs(pyglet.window.Window):
         self.dumpTextList(text, 'createLabels(END)) text')
 
     def createLabel(self, l, text, c, g):
-        w, h, a, b = self.cols[c].width, self.cols[c].height, 'center', self.batch
+        w, h, ac, ab, b = self.cols[c].width, self.cols[c].height, 'center', 'center', self.batch
         k, d, s, n, o, j = self.fontInfo()
         k = FONT_COLORS[-1]
         x, y, = self.cols[c].x + w/2, self.cols[c].y + h/2
-        label = pyglet.text.Label(text, font_name=n, font_size=s, bold=o, italic=j, color=k, x=x, y=y, width=w, height=h, anchor_x=a, anchor_y=a, align=a, dpi=d, batch=b, group=g)
+        label = pyglet.text.Label(text, font_name=n, font_size=s, bold=o, italic=j, color=k, x=x, y=y, width=w, height=h, anchor_x=ac, anchor_y=ab, align=ac, dpi=d, batch=b, group=g)
         l.append(label)
         return label
 
     def createTabs(self, g, dbg=1):
-        n = self.n
-        if dbg: print('createTabs(BGN) n={}'.format(n), file=DBG_FILE)
+        n = self.n  ;  nt = len(self.tabs)
+        if dbg: print('createTabs(BGN) n={} nt={}'.format(n, nt), file=DBG_FILE)
         self.dumpData(why='createTabs')
+        i = 0
+        while i < len(self.tabs):
+            t = self.tabs[i]
+            t.delete()
+            del self.tabs[i]
         if dbg: self.dumpTab()
         for l in range(n[L]):
             for c in range(n[K]):
@@ -368,13 +379,13 @@ class Tabs(pyglet.window.Window):
                     t = self.createTab(self.tabs, self.data[cc][r], rc, g)
                     if dbg: self.dumpTab(t, tc, r, rc, 'createTabs')
         self.dumpTabs(why='createTabs')
-        if dbg: print('createTabs(END) n={}'.format(n), file=DBG_FILE)
+        if dbg: print('createTabs(END) n={} nt={}'.format(n, nt), file=DBG_FILE)
 
     def createTab(self, t, text, c, g):
-        w, h, a, b = self.cols[c].width, self.cols[c].height, 'center', self.batch
+        w, h, ac, ab, b = self.cols[c].width, self.cols[c].height, 'center', 'center', self.batch
         k, d, s, n, o, j = self.fontInfo()
         x, y, = self.cols[c].x + w/2, self.cols[c].y + h/2
-        tab = pyglet.text.Label(text, font_name=n, font_size=s, bold=o, italic=j, color=k, x=x, y=y, width=w, height=h, anchor_x=a, anchor_y=a, align=a, dpi=d, batch=b, group=g)
+        tab = pyglet.text.Label(text, font_name=n, font_size=s, bold=o, italic=j, color=k, x=x, y=y, width=w, height=h, anchor_x=ac, anchor_y=ab, align=ac, dpi=d, batch=b, group=g)
         t.append(tab)
         return tab
 ########################################################################################################################################################################################################
@@ -382,9 +393,9 @@ class Tabs(pyglet.window.Window):
         cpp, cpl, cpq, cpr = self.cps()
         l = list(self.nl())
         print('resizeLabels(BGN) l={} cpp={} cpl={} cpr={}'.format(l, cpp, cpl, cpq, cpr), file=DBG_FILE)
-        for q in range(self.n[Q]):
+        for l in range(self.n[L]):
             for c in range(cpr):
-                self.resizeLabel(self.labels[c + q*cpr], c + q*cpl)
+                self.resizeLabel(self.labels[c + l*cpr], c + l*cpl)
         self.dumpLabels('resizeLabels')
         print('resizeLabels(END) l={} cpp={} cpl={} cpr={}'.format(l, cpp, cpl, cpq, cpr), file=DBG_FILE)
 
@@ -478,9 +489,9 @@ class Tabs(pyglet.window.Window):
         super().on_resize(width, height)
         self.ww, self.hh = width, height
         if TEST: self.resizeTestColors() ; return
-        print('on_resize(BGN) {:4} x {:4}'.format(self.ww, self.hh), file=DBG_FILE) ; return
+        print('on_resize(BGN) {:4} x {:4}'.format(self.ww, self.hh), file=DBG_FILE)
         self.resizeSprites()
-        self.resizeLabels()
+        if self.n[Q]: self.resizeLabels()
         self.resizeTabs()
         self.resizeCursor()
         self.dumpStruct('on_resize()')
@@ -627,20 +638,9 @@ class Tabs(pyglet.window.Window):
 
     def updateFontIndex(self, ii, index, prop, name):
         i = (index + ii) % len(prop)
-        errMsg = '*ERROR* Dpi Read-Only'
-        if name=='FONT_DPIS': i = self.fontDpiIndex ; print('{} {} {}[{}]={} {}'.format(errMsg, self.kpEvntTxt(), name, i, prop[i], errMsg), file=DBG_FILE)  ;  return self.fontDpiIndex
         print('updateFontIndex({:2})   {} {}[{}]={}'.format(ii, self.kpEvntTxt(), name, i, prop[i]), file=DBG_FILE)
-        for j in range(len(self.tabs)):
-            if   name == 'FONT_COLORS': self.tabs[j].color     = prop[i]
-            elif name == 'FONT_NAMES':  self.tabs[j].font_name = prop[i]
-            elif name == 'FONT_SIZES':  self.tabs[j].font_size = prop[i]
-            elif name == 'FONT_DPIS':   self.tabs[j].dpi       = prop[i]
-        if self.n[Q]:
-            for j in range(len(self.labels)):
-                if   name == 'FONT_COLORS': self.labels[j].color     = prop[i]
-                elif name == 'FONT_NAMES':  self.labels[j].font_name = prop[i]
-                elif name == 'FONT_SIZES':  self.labels[j].font_size = prop[i]
-                elif name == 'FONT_DPIS':   self.labels[j].dpi       = prop[i]
+        self.createTabs(self.g[C+1])
+        if self.n[Q]: self.createLabels(self.g[C+2])
         return i
 
     def toggleFontBold(self):
@@ -661,17 +661,6 @@ class Tabs(pyglet.window.Window):
             for j in range(len(self.labels)):
                 self.labels[j].italic = self.fontItalic
 ########################################################################################################################################################################################################
-    def on_mouse_release_OLD(self, x, y, button, modifiers):  # pyglet.window.mouse.MIDDLE #pyglet.window.mouse.LEFT #pyglet.window.mouse.RIGHT
-        nc, nr = self.n[K], self.n[R] * self.n[L]
-        w, h = self.ww/nc, self.hh/nr
-        y = self.hh - y
-        c, r, i = int(x/w), int(y/h), self.i[C]
-        print('on_mouse_release({},{}) BGN nc={} nr={} x={:4} y={:4} w={:6.2f} h={:6.2f} c={:4} r={:4} i={}'.format(button, modifiers, nc, nr, x, y, w, h, c, r, i), file=DBG_FILE)
-        self.i[C] = r * nc + c
-        j = self.i[C]
-        self.cursor.update(self.cols[j].x, self.cols[j].y)
-        print('on_mouse_release({},{}) END nc={} nr={} x={:4} y={:4} w={:6.2f} h={:6.2f} c={:4} r={:4} i={}'.format(button, modifiers, nc, nr, x, y, w, h, c, r, j), file=DBG_FILE)
-
     def toggleColorLists(self, motion):
         if not TEST: print('toggleColorLists(WARNING) Nothing To Toggle TEST={} motion={}'.format(TEST, motion), file=DBG_FILE) ; return
         cls = self.colorLists
