@@ -16,7 +16,7 @@ class Tabs(pyglet.window.Window):
             self.log('{}  {}'.format(os.path.basename(_F), _F), ind=0)
             pathlib.Path(_F).unlink()
         self.ww, self.hh  = 640, 480
-        self.n, self.i, self.x, self.y, self.w, self.h, self.o, self.g = [1, 4, 1, 6, 40], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [2, 0, 0, 0, 3], []
+        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 4, 1, 6, 40], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
         if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
         if 'i' in self.argMap and len(self.argMap['i'])  > 0: self.i            = [int(self.argMap['i'][i]) for i in range(len(self.argMap['i']))]
@@ -24,7 +24,6 @@ class Tabs(pyglet.window.Window):
         if 'y' in self.argMap and len(self.argMap['y'])  > 0: self.y            = [int(self.argMap['y'][i]) for i in range(len(self.argMap['y']))]
         if 'w' in self.argMap and len(self.argMap['w'])  > 0: self.ww           =  int(self.argMap['w'][0])
         if 'h' in self.argMap and len(self.argMap['h'])  > 0: self.hh           =  int(self.argMap['h'][0])
-        if 'o' in self.argMap and len(self.argMap['o'])  > 0: self.o            = [int(self.argMap['o'][i]) for i in range(len(self.argMap['o']))]
         if 'f' in self.argMap and len(self.argMap['f']) == 0: FULL_SCREEN       = 1
         if 'g' in self.argMap and len(self.argMap['g']) == 0: ORDER_GROUP       = 1
         if 's' in self.argMap and len(self.argMap['s']) == 0: SUBPIX            = 1
@@ -34,7 +33,6 @@ class Tabs(pyglet.window.Window):
         self.log('[y]            y={}'.format(self.y))
         self.log('[w]           ww={}'.format(self.ww))
         self.log('[h]           hh={}'.format(self.hh))
-        self.log('[o]            o={}'.format(self.o))
         self.log('[f]  FULL_SCREEN={}'.format(FULL_SCREEN))
         self.log('[g]  ORDER_GROUP={}'.format(ORDER_GROUP))
         self.log('[s]       SUBPIX={}'.format(SUBPIX))
@@ -200,79 +198,53 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log('(END) {} {}'.format(why, self.dumpDataDim(t)))
         return t
 ########################################################################################################################################################################################################
-    def geom(self, j, px, py, pw, ph, why='', init=False, dump=3, dbg=0):
-        nq = self.n[Q]
-        n, i, x, y, w, h, o , g = self.n[j], self.i[j], self.x[j], self.y[j], self.w[j], self.h[j], self.o[j], self.g[j]
+    def geom(self, p=None, j=0, init=0, dbg=0):
+        nq = self.n[Q]  ;   mx, my = None, None
+        n, i, x, y, w, h, g = self.n[j], self.i[j], self.x[j], self.y[j], self.w[j], self.h[j], self.g[j]
         if   nq and j == Q: n = self.n[R] + 1
         elif nq and j == R: n += 1
-        elif j == C: n += CCC
-        if   o == 0: w, h =  pw - x*2,          (ph - y*(n + 1))/n
-        elif o == 1: w, h = (pw - x*(n + 1))/n, (ph - y*(n + 1))/n
-        elif o == 2: w, h =  pw - x*2,           ph - y*2
-        elif o == 3: w, h = (pw - x*(n + 1))/n,  ph - y*2
-        if init: self.w[j], self.h[j] = w, h
-        if o != 3: x += px #; y = py+ph-y
-        if dump == 2 or dump == 3: self.dumpSprite()
-        if dump == 1 or dump == 3: self.dumpGeom(j, why)
-        if dbg: self.log('geom({}) px={:7.2f} py={:7.2f} pw={:7.2f} ph={:7.2f}  =>  n={:3} x={:4} y={:4} w={:7.2f} h={:7.2f} o={}'.format(j, px, py, pw, ph, n, x, y, w, h, o))
-        if nq and j == Q: n = nq
-        if init: return n, i, x, y, w, h, o, g
-        else:    return n, i, x, y, w, h, o, g, w/self.w[j], h/self.h[j]
-
-    def geom_NEW(self, p=None, j=0, init=0):
-        nq = self.n[Q]  ;  mx, my = None, None
-        n, i, x, y, w, h, o , g = self.n[j], self.i[j], self.x[j], self.y[j], self.w[j], self.h[j], self.o[j], self.g[j]
-        if   nq and j == Q: n = self.n[R] + 1
-        elif nq and j == R: n += 1
-        elif j == C: n += CCC
+        elif j == C:        n += CCC
         if p:
-            if j == C: w, h = (p.width - x*(n + 1))/n,  p.height - y*2
-            else:      w, h =  p.width - x*2,          (p.height - y*(n + 1))/n
-        else: w, h = self.ww - x*2, self.hh - y*2
-        if j != C: x += p.x if p else self.x[P]
-        if init: self.w[j], self.h[j] = w, h
-        else:    mx, my = w/self.w[j], h/self.h[j]
-        if   nq and j == Q: n = nq
-        self.dumpGeom(j)
-        self.log('w={} h={}'.format(w, h))
-        return n, i, x, y, w, h, o, g, mx, my
+            if j == C:      w, h = (p.width - x*(n + 1))/n,  p.height - y*2
+            else:           w, h =  p.width - x*2,          (p.height - y*(n + 1))/n
+        else:               w, h =  self.ww - x*2, self.hh - y*2
+        if j != C:          x += p.x if p else self.x[P]
+        if init:            self.w[j], self.h[j] = w, h
+        else:               mx, my = w/self.w[j], h/self.h[j]
+        if nq and j == Q:   n = nq
+        if dbg:             self.dumpGeom(j)
+        return n, i, x, y, w, h, g, mx, my
 
-    def dumpGeom(self, j, why=''):
-        self.log('{:25} j={} n={:3} i={:4} x={:3} y={:3} w={:7.2f} h={:7.2f} o={} g={}'.format(why, j, self.n[j], self.i[j], self.x[j], self.y[j], self.w[j], self.h[j], self.o[j], self.g[j]))
+    def dumpGeom(self, j):
+        self.log('j={} n={:3} i={:4} x={:3} y={:3} w={:7.2f} h={:7.2f} g={}'.format(j, self.n[j], self.i[j], self.x[j], self.y[j], self.w[j], self.h[j], self.g[j]))
 ########################################################################################################################################################################################################
     def createSprites(self, dbg=0):
         self.log('(BGN) n={}'.format(self.n))
         if dbg: self.dumpSprite()
         cp, cl, cq, cr, cc, kk = self.kp, self.kl, self.kq, self.kr, self.kc, self.kk
-        np, ip, xp, yp, wp, hp, op, gp, mx, my = self.geom_NEW(None, P, init=1)
-#        np, ip, xp, yp, wp, hp, op, gp = self.geom(P, self.x[P], self.y[P], self.ww, self.hh, why='', init=True, dump=0)
+        np, ip, xp, yp, wp, hp, gp, mx, my = self.geom(None, P, init=1)
         for p in range(np):
             page = self.createSprite('createPages', self.pages, gp, cp[p % len(cp)], xp, yp, wp, hp, p, 0, dbg=dbg)
             v = True if len(self.pages) == 1 else False
-            nl, il, xl, yl, wl, hl, ol, gl, mx, my = self.geom_NEW(page, L, init=1)
-#            nl, il, xl, yl, wl, hl, ol, gl = self.geom(L, page.x, page.y, page.width, page.height, why='', init=True, dump=0)
+            nl, il, xl, yl, wl, hl, gl, mx, my = self.geom(page, L, init=1)
             for l in range(nl):
                 yyl = page.y + page.height - (hl+yl)*(l+1)
                 line = self.createSprite('createLines', self.lines, gl, cl[l % len(cl)], xl, yyl, wl, hl, l, 0, v=v, dbg=dbg)
                 if self.n[Q]:
-                    nq, iq, xq, yq, wq, hq, oq, gq, mx, my = self.geom_NEW(line, Q, init=1)
-#                    nq, iq, xq, yq, wq, hq, oq, gq = self.geom(Q, line.x, line.y, line.width, line.height, why='', init=True, dump=0, dbg=0)
+                    nq, iq, xq, yq, wq, hq, gq, mx, my = self.geom(line, Q, init=1)
                     for q in range(nq):
                         yyq = line.y + line.height - (hq+yq)*(q+1)
                         qrow = self.createSprite('createQRow', self.qrows, gq, cq[0], xq, yyq, wq, hq, 0, 0, v=v, dbg=dbg)
-                        nc, ic, xc, yc, wc, hc, oc, gc, mx, my = self.geom_NEW(qrow, C, init=1)
-#                        nc, ic, xc, yc, wc, hc, oc, gc, mx, my = self.geom(C, qrow.x, qrow.y, qrow.width, qrow.height, why='', init=True, dump=0)
+                        nc, ic, xc, yc, wc, hc, gc, mx, my = self.geom(qrow, C, init=1)
                         for c in range(nc):
                             xxc, yyc = qrow.x+xc+(wc+xc)*c, qrow.y+qrow.height-(hc+yc)
                             self.createSprite('createCols', self.cols, gc, kk[0], xxc, yyc, wc, hc, c, 0, v=v, dbg=dbg)
-                nr, ir, xr, yr, wr, hr, o, gr, mx, my = self.geom_NEW(line, R, init=1)
-#                nr, ir, xr, yr, wr, hr, o, gr = self.geom(R, line.x, line.y, line.width, line.height, why='', init=True, dump=0, dbg=0)
+                nr, ir, xr, yr, wr, hr, gr, mx, my = self.geom(line, R, init=1)
                 rr = 1 if self.n[Q] else 0
                 for r in range(rr, nr):
                     yyr = line.y + line.height - (hr+yr)*(r+1)
                     row = self.createSprite('createRows', self.rows, gr, cr[r % len(cr)], xr, yyr, wr, hr, r, 0, v=v, dbg=dbg)
-                    nc, ic, xc, yc, wc, hc, oc, gc, mx, my = self.geom_NEW(row, C, init=1)
-#                    nc, ic, xc, yc, wc, hc, oc, gc = self.geom(C, row.x, row.y, row.width, row.height, why='', init=True, dump=0)
+                    nc, ic, xc, yc, wc, hc, gc, mx, my = self.geom(row, C, init=1)
                     for c in range(nc):
                         xxc, yyc = row.x + xc + (wc+xc)*c, row.y + row.height - (hc+yc)
                         self.createSprite('createCols', self.cols, gc, cc[self.cci(c, cc)], xxc, yyc, wc, hc, c, 0, v=v, dbg=dbg)
@@ -296,39 +268,33 @@ class Tabs(pyglet.window.Window):
         self.log('(BGN) n={}'.format(n))
         if dbg: self.dumpSprite()
         i, sp, sl, sq, sr, sc = 0, 0, 0, 0, 0, 0
-        np, ip, xp, yp, wp, hp, op, gp, mxp, myp = self.geom_NEW(None, P)
-#        np, ip, xp, yp, wp, hp, op, gp, mxp, myp = self.geom(P, self.x[P], self.y[P], self.ww, self.hh, why='', init=False, dump=0)
+        np, ip, xp, yp, wp, hp, gp, mxp, myp = self.geom(None, P)
         for p in range(np):
             page = self.pages[sp]  ;  page.update(x=xp, y=yp, scale_x=mxp, scale_y=myp)  ;  sp += 1
             if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizePages')) ; i += 1
-            nl, il, xl, yl, wl, hl, ol, gl, mxl, myl = self.geom_NEW(page, L)
-#            nl, il, xl, yl, wl, hl, ol, gl, mxl, myl = self.geom(L, page.x, page.y, page.width, page.height, why='', init=False, dump=0)
+            nl, il, xl, yl, wl, hl, gl, mxl, myl = self.geom(page, L)
             for l in range (nl):
                 yyl = page.y + page.height - (hl + yl)*(l + 1)
                 line = self.lines[sl]  ;  line.update(x=xl, y=yyl, scale_x=mxl, scale_y=myl)  ;  sl += 1
                 if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizeLines')) ; i += 1
                 if n[Q]:
-                    nq, iq, xq, yq, wq, hq, oq, gq, mxq, myq = self.geom_NEW(line, Q)
-#                    nq, iq, xq, yq, wq, hq, oq, gq, mxq, myq = self.geom(Q, line.x, line.y, line.width, line.height, why='', init=False, dump=0)
+                    nq, iq, xq, yq, wq, hq, gq, mxq, myq = self.geom(line, Q)
                     for q in range(nq):
                         yyq = line.y + line.height - (hq + yq)*(q + 1)
                         qrow = self.qrows[sq]  ;  qrow.update(x=xq, y=yyq, scale_x=mxq, scale_y=myq)  ;  sq += 1
                         if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizeQRows')) ; i += 1
-                        nc, ic, xc, yc, wc, hc, oc, gc, mxc, myc = self.geom_NEW(qrow, C)
-#                        nc, ic, xc, yc, wc, hc, oc, gc, mxc, myc = self.geom(C, qrow.x, qrow.y, qrow.width, qrow.height, why='', init=False, dump=0)
+                        nc, ic, xc, yc, wc, hc, gc, mxc, myc = self.geom(qrow, C)
                         for c in range(nc):
                             xxc, yyc = qrow.x + xc + (wc + xc)*c, qrow.y + qrow.height - (hc + yc)
                             self.cols[sc].update(x=xxc, y=yyc, scale_x=mxc, scale_y=myc)  ;  sc += 1
                             if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizeCols')) ; i += 1
-                nr, ir, xr, yr, wr, hr, o, gr, mxr, myr = self.geom_NEW(line, R)
-#                nr, ir, xr, yr, wr, hr, o, gr, mxr, myr = self.geom(R, line.x, line.y, line.width, line.height, why='', init=False, dump=0)
+                nr, ir, xr, yr, wr, hr, gr, mxr, myr = self.geom(line, R)
                 rr = 1 if n[Q] else 0
                 for r in range(rr, nr):
                     yyr = line.y + line.height - (hr + yr)*(r + 1)
                     row = self.rows[sr]  ;  row.update(x=xr, y=yyr, scale_x=mxr, scale_y=myr)  ;  sr += 1
                     if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizeRows')) ; i += 1
-                    nc, ic, xc, yc, wc, hc, oc, gc, mxc, myc = self.geom_NEW(row, C)
-#                    nc, ic, xc, yc, wc, hc, oc, gc, mxc, myc = self.geom(C, row.x, row.y, row.width, row.height, why='', init=False, dump=0)
+                    nc, ic, xc, yc, wc, hc, gc, mxc, myc = self.geom(row, C)
                     for c in range(nc):
                         xxc, yyc = row.x + xc + (wc + xc)*c, row.y + row.height - (hc + yc)
                         self.cols[sc].update(x=xxc, y=yyc, scale_x=mxc, scale_y=myc)  ;  sc += 1
