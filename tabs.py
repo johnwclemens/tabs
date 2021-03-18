@@ -1,7 +1,7 @@
 import inspect, math, sys, os, glob, pathlib#, shutil#, unicodedata
 import pyglet
 import pyglet.window.key as pygwink
-import pyglet.window.event as pygwine
+#import pyglet.window.event as pygwine
 sys.path.insert(0, os.path.abspath('../lib'))
 import cmdArgs
 
@@ -27,16 +27,16 @@ class Tabs(pyglet.window.Window):
         if 'f' in self.argMap and len(self.argMap['f']) == 0: FULL_SCREEN       = 1
         if 'g' in self.argMap and len(self.argMap['g']) == 0: ORDER_GROUP       = 1
         if 's' in self.argMap and len(self.argMap['s']) == 0: SUBPIX            = 1
-        self.log('[n]            n={}'.format(self.n))
-        self.log('[i]            i={}'.format(self.i))
-        self.log('[x]            x={}'.format(self.x))
-        self.log('[y]            y={}'.format(self.y))
+        self.log('[n]            n={}'.format(fmtl(self.n)))
+        self.log('[i]            i={}'.format(fmtl(self.i)))
+        self.log('[x]            x={}'.format(fmtl(self.x)))
+        self.log('[y]            y={}'.format(fmtl(self.y)))
         self.log('[w]           ww={}'.format(self.ww))
         self.log('[h]           hh={}'.format(self.hh))
         self.log('[f]  FULL_SCREEN={}'.format(FULL_SCREEN))
         self.log('[g]  ORDER_GROUP={}'.format(ORDER_GROUP))
         self.log('[s]       SUBPIX={}'.format(SUBPIX))
-        if len(self.n) == K: self.n.append(self.n[C] + CCC)  ;  self.log('[n] +=n[C]+CCC n={}'.format(self.n))
+        if len(self.n) == K: self.n.append(self.n[C] + CCC)  ;  self.log('[n] +=n[C]+CCC n={}'.format(fmtl(self.n)))
         self.fontBold, self.fontItalic, self.fontColorIndex, self.fontDpiIndex, self.fontSize, self.fontNameIndex = 0, 0, 0, 4, 10, 0
         self.dumpFont()
         self._initWindowA()
@@ -64,8 +64,8 @@ class Tabs(pyglet.window.Window):
         self.set_visible()
         if not FULL_SCREEN: self.set_size(self.ww, self.hh)
         self.ww, self.hh = self.get_size()
-        self.eventLogger = pygwine.WindowEventLogger()
-        self.push_handlers(self.eventLogger)
+#        self.eventLogger = pygwine.WindowEventLogger()
+#        self.push_handlers(self.eventLogger)
         if dbg: self.log('(END) wxh={}x{}'.format(self.ww, self.hh))
     ####################################################################################################################################################################################################
     def _initGroups(self):
@@ -82,7 +82,7 @@ class Tabs(pyglet.window.Window):
 
     ####################################################################################################################################################################################################
     def _init(self, dbg=1):
-        self.log('(BGN) n={} i={}'.format(self.n, self.i))        ; self.kc = [GRAYS[11], GRAYS[7]] ; kb = [self.kc[1]]
+        self.log('(BGN) n={} i={}'.format(fmtl(self.n), fmtl(self.i)))        ; self.kc = [GRAYS[11], GRAYS[7]] ; kb = [self.kc[1]]
         self.kp = kb ; self.kl = kb ; self.kq = kb ; self.kr = kb ; self.kk = kb
         self.ssi  = 0
         self._initCps()  ;  self._initRps()
@@ -93,19 +93,19 @@ class Tabs(pyglet.window.Window):
         self.createTabs(  self.g[C+2])
         self.createCursor(self.g[C+3])
         if dbg: self.dumpStruct('_init')
-        self.log('(END) n={} i={}'.format(self.n, self.i))
+        self.log('(END) n={} i={}'.format(fmtl(self.n), fmtl(self.i)))
 
     def _initCps(self, dbg=1):
         self.cpr  =  self.n[K]
         self.cpl  = (self.n[R] + self.n[Q]) * self.cpr
         self.cpp  =  self.n[L] * self.cpl
-        if dbg: self.log('cps={}'.format(self.cps()))
+        if dbg: self.log('cps={}'.format(fmtl(self.cps())))
 
     def _initRps(self, dbg=1):
         self.rpc  =  self.n[R]
         self.rpl  = (self.n[R] + self.n[Q]) * self.rpc
         self.rpp  =  self.n[L] * self.rpl
-        if dbg: self.log('rps={}'.format(self.rps()))
+        if dbg: self.log('rps={}'.format(fmtl(self.rps())))
 
     ####################################################################################################################################################################################################
     def readDataFile(self, dbg=1):
@@ -158,7 +158,7 @@ class Tabs(pyglet.window.Window):
                         else:
                             vdf = 1
                             if dbg: self.log('s1={} is a String Tuning'.format(s1))
-        if dbg: self.log('(END) type(d)={} type(d[0])={} type(d[0][0]) return VDF={}'.format(type(d), type(d[0]), type(d[0][0]), vdf))
+        if dbg: self.log('(END) type(d)={} type(d[0])={} type(d[0][0]) return vdf={}'.format(type(d), type(d[0]), type(d[0][0]), vdf))
         return vdf
 
     def dumpData(self, why='', lc=1, ll=1):
@@ -230,7 +230,7 @@ class Tabs(pyglet.window.Window):
         self.log('j={} n={:3} i={:4} x={:3} y={:3} w={:7.2f} h={:7.2f} g={}'.format(j, self.n[j], self.i[j], self.x[j], self.y[j], self.w[j], self.h[j], self.g[j]))
     ####################################################################################################################################################################################################
     def createSprites(self, dbg=0):
-        self.log('(BGN) n={}'.format(self.n))
+        self.log('(BGN) n={}'.format(fmtl(self.n)))
         if dbg: self.dumpSprite()
         cp, cl, cq, cr, cc, kk = self.kp, self.kl, self.kq, self.kr, self.kc, self.kk
         np, ip, xp, yp, wp, hp, gp, mx, my = self.geom(None, P, init=1)
@@ -260,7 +260,7 @@ class Tabs(pyglet.window.Window):
                         xxc, yyc = row.x + xc + (wc+xc)*c, row.y + row.height - (hc+yc)
                         self.createSprite('createCols', self.cols, gc, cc[self.cci(c, cc)], xxc, yyc, wc, hc, c, 0, v=v, dbg=dbg)
         if dbg: self.dumpSprite()
-        self.log('(END) n={}'.format(self.n))
+        self.log('(END) n={}'.format(fmtl(self.n)))
 
     def createSprite(self, why, ps, grp, cc, x, y, w, h, i, j=0, v=None, dbg=0):
         scip = pyglet.image.SolidColorImagePattern(cc)
@@ -276,7 +276,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def resizeSprites(self, dbg=0):
         n = self.n
-        self.log('(BGN) n={}'.format(n))
+        self.log('(BGN) n={}'.format(fmtl(n)))
         if dbg: self.dumpSprite()
         i, sp, sl, sq, sr, sc = 0, 0, 0, 0, 0, 0
         np, ip, xp, yp, wp, hp, gp, mxp, myp = self.geom(None, P)
@@ -311,11 +311,11 @@ class Tabs(pyglet.window.Window):
                         self.cols[sc].update(x=xxc, y=yyc, scale_x=mxc, scale_y=myc)  ;  sc += 1
                         if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizeCols')) ; i += 1
         if dbg: self.dumpSprite()
-        self.log('(END) n={}'.format(n))
+        self.log('(END) n={}'.format(fmtl(n)))
     ####################################################################################################################################################################################################
     def dumpSprites(self, why=''):
         n = self.n
-        self.log('(BGN) n={} {}'.format(n, why))
+        self.log('(BGN) n={} {}'.format(fmtl(n), why))
         self.dumpSprite()
         i, sp, sl, sq, sr, sc = 0, 0, 0, 0, 0, 0
         for p in range(n[P]):
@@ -331,7 +331,7 @@ class Tabs(pyglet.window.Window):
                     for c in range(n[K]):
                         sc += 1 ; self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:4}  {:16}'.format(sp, sl, sq, sr, sc, why)) ; i += 1
         self.dumpSprite()
-        self.log('(END) n={} {}'.format(n, why))
+        self.log('(END) n={} {}'.format(fmtl(n), why))
 
     def dumpSprite(self, s=None, c=-1, why=''):
         if s is None: self.log(' sid   p  l  q   r  col     why               x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red green blue opc vsb    group       parent', ind=0); return
@@ -353,18 +353,18 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def ordSfx(n):
         m = n % 10
-        if m == 1 and n != 11: return 'st'
+        if   m == 1 and n != 11: return 'st'
         elif m == 2 and n != 12: return 'nd'
         elif m == 3 and n != 13: return 'rd'
         else:                    return 'th'
     ####################################################################################################################################################################################################
     def createCursor(self, g):
-        cc, cr = self.cursorCol(), self.cursorRow()
+        cc, cr = self.cursorCol(1), self.cursorRow(1)
         self.log('(BGN) cc={} cr={}'.format(cc, cr))
         xc, yc, wc, hc = self.cols[cc].x, self.cols[cc].y, self.cols[cc].width, self.cols[cc].height
         xr, yr, wr, hr = self.cols[cr].x, self.cols[cr].y, self.cols[cr].width, self.cols[cr].height
-        self.log('cc={:4} x={:6.1f} y={:6.1f} w={:4} h={:4} i={}'.format(cc, xc, yc, wc, hc, self.i))
-        self.log('cr={:4} x={:6.1f} y={:6.1f} w={:4} h={:4} i={}'.format(cr, xr, yr, wr, hr, self.i))
+        self.log('cc={:4} x={:6.1f} y={:6.1f} w={:4} h={:4} i={}'.format(cc, xc, yc, wc, hc, fmtl(self.i)))
+        self.log('cr={:4} x={:6.1f} y={:6.1f} w={:4} h={:4} i={}'.format(cr, xr, yr, wr, hr, fmtl(self.i)))
         self.dumpSprite()
         self.cursor = self.createSprite('cursor', None, g, CC, xc, yc, wc, hc, 0, 0, v=True)
         self.dumpSprite(self.cursor, why='{:2} {:2} {:2} {:3} {:4}  {:16}'.format(-1, -1, -1, -1, -1, 'createCursor'))
@@ -375,28 +375,30 @@ class Tabs(pyglet.window.Window):
         self.log('(BGN) cc={} cr={}'.format(cc, cr))
         xc, yc, wc, hc = self.cols[cc].x, self.cols[cc].y, self.cols[cc].width, self.cols[cc].height
         xr, yr, wr, hr = self.cols[cr].x, self.cols[cr].y, self.cols[cr].width, self.cols[cr].height
-        self.log('cc={:4} x={:6.1f} y={:6.1f} w={:4} h={:4} i={}'.format(cc, xc, yc, wc, hc, self.i))
-        self.log('cr={:4} x={:6.1f} y={:6.1f} w={:4} h={:4} i={}'.format(cr, xr, yr, wr, hr, self.i))
+        self.log('cc={:4} x={:6.1f} y={:6.1f} w={:4} h={:4} i={}'.format(cc, xc, yc, wc, hc, fmtl(self.i)))
+        self.log('cr={:4} x={:6.1f} y={:6.1f} w={:4} h={:4} i={}'.format(cr, xr, yr, wr, hr, fmtl(self.i)))
         self.cursor.update(x=xc, y=yc, scale_x=self.cols[cc].scale_x, scale_y=self.cols[cc].scale_y)
         self.log('(END) cc={} cr={}'.format(cc, cr))
 
     def cursorCol(self, dbg=0):
-        p, l, _, r, c = self.i
+        p, l, q, r, c = self.i
         cpp, cpl, cpr = self.cps()
-        cc = p*cpp + l*cpl + r*cpr + c
-        if dbg: self.log('cc = ({}*{:3} + {}*{:3} + {:2}*{:3} + {:3}) = ({:4} + {:4} + {:4} + {:3}) = {:4}'.format(p, cpp, l, cpl, r, cpr, c, p*cpp, l*cpl, r*cpr, c, cc))
+        cc = p*cpp + l*cpl + q*cpr + r*cpr + c
+        if dbg: self.log('cc={:4}=({}*{:3} + {}*{:3} + {}*{:3} + {:2}*{:3} + {:3}) = ({:4} + {:4} + {:3} + {:4} + {:3})'.format(cc, p, cpp, l, cpl, q, cpr, r, cpr, c, p*cpp, l*cpl, q*cpr, r*cpr, c))
         return cc
 
     def cursorRow(self, dbg=0):
-        p, l, _, r, c = self.i
+        p, l, q, r, c = self.i
         rpp, rpl, rpc = self.rps()
-        cr = p*rpp + l*rpl + c*rpc + r
-        if dbg: self.log('cr = ({}*{:3} + {}*{:3} + {:2}*{:3} + {:3}) = ({:4} + {:4} + {:4} + {:3}) = {:4}'.format(p, rpp, l, rpl, c, rpc, r, p*rpp, l*rpl, c*rpc, r, cr))
+        cr = p*rpp + l*rpl + q*c + c*rpc + r
+        if dbg: self.log('cr={:4}=({}*{:3} + {}*{:3} + {}*{:3} + {:2}*{:3} + {:3}) = ({:4} + {:4} + {:3} + {:4} + {:3})'.format(cr, p, rpp, l, rpl, q, c, c, rpc, r, p*rpp, l*rpl, q*c, c*rpc, r))
+#        cr = p*rpp + l*rpl + q*rpc + c*rpc + r
+#        if dbg: self.log('cr={:4}=({}*{:3} + {}*{:3} + {}*{:3} + {:2}*{:3} + {:3}) = ({:4} + {:4} + {:3} + {:4} + {:3})'.format(cr, p, rpp, l, rpl, q, rpc, c, rpc, r, p*rpp, l*rpl, q*rpc, c*rpc, r))
         return cr
     ####################################################################################################################################################################################################
     def minSize(self):
         cc = self.cursorCol()  ;  cr = self.cursorRow()  ;  w = self.cols[cc].width  ;  h = self.cols[cc].height  ;  m = min(w, h)
-        self.log('cc={:3} cr={:3} w={:5.1f} h={:5.1f} m={:5.1f}'.format(cc, cr, w, h, m))
+        self.log('cc={:4} cr={:4} w={:5.1f} h={:5.1f} m={:5.1f}'.format(cc, cr, w, h, m))
         return m
 
     def resizeFonts(self):
@@ -432,7 +434,7 @@ class Tabs(pyglet.window.Window):
         while j < len(l): t = l[j];  t.delete();  del l[j]
     ####################################################################################################################################################################################################
     def createLabels(self, g, dbg=1):
-        if dbg: self.log('(BGN) n={} len(labels)={}'.format(self.n, len(self.labels)))
+        if dbg: self.log('(BGN) n={} len(labels)={}'.format(fmtl(self.n), len(self.labels)))
         self.labelTextA.extend('{}'.format(j) for j in range(1, self.n[C] + 1))
         self.labelTextB.extend('{}'.format(j % 10 if j % 10 else j // 10 % 10) for j in range(1, self.n[C] + 1))
         texts = list(zip(self.labelTextA, self.labelTextB))
@@ -447,7 +449,7 @@ class Tabs(pyglet.window.Window):
                 l = self.createLabel(self.labels, self.labelTextB[c], qc, k, g)
                 if dbg: self.dumpLabel(l, tc, q, qc, 'createLabels')
         if dbg: self.dumpLabel()
-        if dbg: self.log('(END) n={} len(labels)={}'.format(self.n, len(self.labels)))
+        if dbg: self.log('(END) n={} len(labels)={}'.format(fmtl(self.n), len(self.labels)))
 
     def createLabel(self, l, text, c, kk, g, m=False):
         w, h, ac, ab, b = self.cols[c].width, self.cols[c].height, 'center', 'center', self.batch
@@ -464,7 +466,7 @@ class Tabs(pyglet.window.Window):
 
     def createTabs(self, g, dbg=0):
         n = self.n  ;  nt = len(self.tabs)
-        self.log('(BGN) n={} nt={}'.format(n, nt))
+        self.log('(BGN) n={} nt={}'.format(fmtl(n), nt))
 #        self.deleteList(self.tabs)
         for l in range(n[L]):
             for c in range(n[K]):
@@ -478,7 +480,7 @@ class Tabs(pyglet.window.Window):
                     if dbg: self.dumpTab(t, tc, r, rc, 'createTabs')
         if dbg: self.dumpTab()
         if dbg: self.dumpTabs(why='createTabs')
-        self.log('(END) n={} nt={}'.format(n, nt))
+        self.log('(END) n={} nt={}'.format(fmtl(n), nt))
 
     def createTab(self, t, text, c, kk, g):
         w, h, ac, ab, b = self.cols[c].width, self.cols[c].height, 'center', 'center', self.batch
@@ -508,7 +510,7 @@ class Tabs(pyglet.window.Window):
 
     def resizeTabs(self, dbg=0):
         n = self.n  ;  i = 0
-        self.log('(BGN) n={} cps={}'.format(n, self.cps()))
+        self.log('(BGN) n={} cps={}'.format(fmtl(n), self.cps()))
         for l in range(n[L]):
             for c in range(n[K]):
                 for r in range(n[R]):
@@ -516,7 +518,7 @@ class Tabs(pyglet.window.Window):
                     self.resizeTab(self.tabs[i], t)
                     i += 1
         if dbg: self.dumpTabs('resizeTabs')
-        self.log('(END) n={} cps={}'.format(n, self.cps()))
+        self.log('(END) n={} cps={}'.format(fmtl(n), self.cps()))
 
     def resizeTab(self, t, c):
         w, h = self.cols[c].width, self.cols[c].height
@@ -560,12 +562,13 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpStruct(self, why=''):
         self.log('(BGN) {}'.format(why))
-        self.dumpSprites(why)
-        self.dumpLabels(why)
-        self.dumpData(why)
-        self.dumpTabs(why)
+#        self.dumpData(why)
+#        self.dumpSprites(why)
+#        if self.n[Q]: self.dumpLabels(why)
+#        self.dumpTabs(why)
         self.dumpFont(why)
-        self.cursorCol(dbg=1)
+        self.cursorCol(1)
+        self.cursorRow(1)
         self.log('(END) {}'.format(why))
     ####################################################################################################################################################################################################
     def on_resize(self, width, height):
@@ -578,7 +581,7 @@ class Tabs(pyglet.window.Window):
         self.resizeTabs()
         self.resizeCursor()
         self.snapshot()
-#        self.dumpStruct('on_resize()')
+        self.dumpStruct('on_resize()')
 #        self.updateCaption()
         self.log('(END) {:4} x {:4}'.format(self.ww, self.hh))
     ####################################################################################################################################################################################################
@@ -587,7 +590,7 @@ class Tabs(pyglet.window.Window):
         self.batch.draw()
 
     def kpEvntTxt(self):
-        return 'kbk={:8} symb={:8} symbStr={:14} mods={:2} modsStr={:28}'.format(self.kbk, self.symb, self.symbStr, self.mods, self.modsStr)
+        return '{:8} {:8}     {:14} {:2} {:28}'.format(self.kbk, self.symb, self.symbStr, self.mods, self.modsStr)
 
     def on_key_press(self, symb, mods):
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
@@ -639,15 +642,15 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def move(self, c, dbg=1):
         n, i, cc, cr = self.n, self.i, self.cursorCol(), self.cursorRow()  ;  k = cc + c
-        if dbg: self.log('(BGN) c={} n={} i={} cc={} k={} cr={}'.format(c, n, i, cc, k, cr), file=sys.stdout)
+        if dbg: self.log('(BGN) {:4}    {:4}    {:4}    {:4}             i={}'.format(c, k, cc, cr, fmtl(i)), file=sys.stdout)
         self.updateI(c)
         kk = k % self.cpp# + k // self.cpp
         self.cursor.update(x=self.cols[kk].x, y=self.cols[kk].y)
-        if dbg: self.log('(END) c={} n={} i={} kk={} cc={} cr={}'.format(c, n, i, kk, self.cursorCol(), self.cursorRow()), file=sys.stdout)
+        if dbg: self.log('(END) {:4}    {:4}    {:4}    {:4}             i={}'.format(c, kk, self.cursorCol(), self.cursorRow(), fmtl(i)), file=sys.stdout)
 
     def updateI(self, c, dbg=1):
         n, i = self.n, self.i  ;  cpp, cpl, cpr = self.cps()
-        if dbg: self.log('(BGN) c={} n={} i={} cps={}'.format(c, n, i, self.cps()), file=sys.stdout)
+        if dbg: self.log('(BGN) {:4} cps{} rps{} i={}'.format(c, fmtl(self.cps()), fmtl(self.rps()), fmtl(i)), file=sys.stdout)
         sc        = i[C] + c
         self.i[C] = sc %  n[K]
         sr        = sc // cpr + i[R]
@@ -657,7 +660,7 @@ class Tabs(pyglet.window.Window):
         sp        = sl // n[L] + i[P]
         self.i[P] = sp %  n[P]
 #        self.i[C] = sp // n[P] + self.i[C]
-        if dbg: self.log('(END) c={} n={} i={} sc={} sr={} sl={} sp={}'.format(c, n, i, sc, sr, sl, sp), file=sys.stdout)
+        if dbg: self.log('(END) {:4} sc={:4} sr={:4}   sl={:4} sp={:4}   i={}'.format(c, sc, sr, sl, sp, fmtl(i)), file=sys.stdout)
     '''
     def nextPage(self, i, motion):
         self.pages[i].visible = False
@@ -675,11 +678,11 @@ class Tabs(pyglet.window.Window):
     '''
     ####################################################################################################################################################################################################
     def addTab(self, kbk, why=''):
-        self.log('(BGN) {} : i={} {}'.format(self.kpEvntTxt(), self.i, why), file=sys.stdout)
+        self.log('(BGN) {} : i={} {}'.format(self.kpEvntTxt(), fmtl(self.i), why), file=sys.stdout)
         self.updateData(kbk)
         self.updateTab( kbk)
         self.snapshot()
-        self.log('(END) {} : i={} {}'.format(self.kpEvntTxt(), self.i, why), file=sys.stdout)
+        self.log('(END) {} : i={} {}'.format(self.kpEvntTxt(), fmtl(self.i), why), file=sys.stdout)
 
     def on_mouse_release(self, x, y, button, modifiers):  # pyglet.window.mouse.MIDDLE #pyglet.window.mouse.LEFT #pyglet.window.mouse.RIGHT
         n, i = self.n, self.i  ;  np, nl, nq, nr, nc, nk = n
@@ -687,29 +690,29 @@ class Tabs(pyglet.window.Window):
         w = self.ww/nk  ;  h = self.hh/((nr + nq)*nl)   ;  y0 = y  ;  y = self.hh - y
         c = int(x/w)    ;  r = int(y/h)
         k = self.i[P]*cpp + self.i[L]*cpl + self.i[R]*cpr + self.i[C]
-        self.log('(BGN) k={:4} cc={} cr={} i={}'.format(k, cc, cr, i))
+        self.log('(BGN) k={:4} cc={} cr={} i={}'.format(k, cc, cr, fmtl(i)))
         self.log('b={} m={} x={:4} y0={:4} y={:4} w={:6.2f} h={:6.2f} c={:4} r={:4}'.format(button, modifiers, x, y0, y, w, h, c, r))
         self.log('cps={} rps={}'.format(self.cps(), self.rps()))
         self.i[C] = c   ;   self.i[L] = r//(nq + nr)  ;  self.i[R] = r % (nq + nr)
         k = self.i[P]*cpp + self.i[L]*cpl + self.i[R]*cpr + self.i[C]
         self.cursor.update(self.cols[k].x, self.cols[k].y)
         cc, cr = self.cursorCol(), self.cursorRow()
-        self.log('(END) k={:4} cc={} cr={} i={}'.format(k, cc, cr, i))
+        self.log('(END) k={:4} cc={} cr={} i={}'.format(k, cc, cr, fmtl(i)))
 
     def updateData(self, text, dbg=1):
-        cc = self.cursorCol()
+        cc = self.cursorCol(1)
         p, l, q, r, c = self.i
         t = self.data[l][c]
-        self.log('(BGN) text={} cc={} i={} self.data[l][c]={}'.format(text, cc, self.i, self.data[l][c]), file=sys.stdout)
+        self.log('(BGN) text={} cc={} i={} self.data[l][c]={}'.format(text, cc, fmtl(self.i), self.data[l][c]), file=sys.stdout)
         self.data[l][c] = t[0:r] + text + t[r+1:]
         if dbg: self.dumpData(why='updateData text={} cc={} i={} data[l][c]={}'.format(text, cc, self.i, self.data[l][c]))
-        self.log('(END) text={} cc={} i={} self.data[l][c]={}'.format(text, cc, self.i, self.data[l][c]), file=sys.stdout)
+        self.log('(END) text={} cc={} i={} self.data[l][c]={}'.format(text, cc, fmtl(self.i), self.data[l][c]), file=sys.stdout)
 
     def updateTab(self, text, dbg=1):
-        cr = self.cursorRow()
+        cr = self.cursorRow(1)
         self.log('(BGN) text={} cr={} tabs[cr].text={}'.format(text, cr, self.tabs[cr].text), file=sys.stdout)
         self.tabs[cr].text = text
-        if dbg: self.tabs[cr].color = FONT_COLORS[self.fontColorIndex + 1]
+        if dbg: self.tabs[cr].color = FONT_COLORS[self.fontColorIndex + 4]
         self.log('(END) text={} cr={} tabs[cr].text={}'.format(text, cr, self.tabs[cr].text), file=sys.stdout)
 
     def updateCaption(self):
@@ -801,7 +804,7 @@ class Tabs(pyglet.window.Window):
         exit()
 ########################################################################################################################################################################################################
 if __name__ == '__main__':
-    CARET = 0  ;  ORDER_GROUP = 1;  FULL_SCREEN = 0  ;  VRSN = 0  ;  SUBPIX = 0
+    CARET = 0  ;  ORDER_GROUP = 1;  FULL_SCREEN = 0  ;  VRSN = 1 ;  SUBPIX = 0
     SFX           = '.' + chr(65 + VRSN)     ;  VRSNX =     'n[Q]=VRSN i[Q]=VRSN VRSN={}'.format(VRSN)
     PATH          = pathlib.Path(sys.argv[0])
     BASE_PATH     = PATH.parent
@@ -828,6 +831,10 @@ if __name__ == '__main__':
     ULTRA_VIOLET  = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
     HUES          = 13  ;  MAX_STACK_DEPTH = 0  ;  MAX_STACK_FRAME = inspect.stack()
     ####################################################################################################################################################################################################
+    def fmtl(a, w=3, d1='[', d2=']'):
+        c = ''
+        for i in range(len(a)): c += '{:{w}} '.format(int(a[i]), w=w)
+        return d1 + c + d2
     def fri(f): return int(math.floor(f+0.5))
     def genColors(cp, nsteps=HUES, dbg=0):
         colors, clen = [], len(cp[0])
