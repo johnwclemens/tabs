@@ -5,7 +5,7 @@ import pyglet.window.event as pygwine
 sys.path.insert(0, os.path.abspath('../lib'))
 import cmdArgs
 
-EVENT_LOG = 0  ;  CARET = 0  ;  ORDER_GROUP = 1;  FULL_SCREEN = 0  ;  VRSN = 0  ;  SUBPIX = 1
+EVENT_LOG = 0  ;  CARET = 0  ;  ORDER_GROUP = 1;  FULL_SCREEN = 0  ;  VRSN = 1  ;  SUBPIX = 1
 SFX           = '.' + chr(65 + VRSN)     ;  VRSNX =     'n[Q]=VRSN i[Q]=VRSN VRSN={}'.format(VRSN)
 PATH          = pathlib.Path(sys.argv[0])
 BASE_PATH     = PATH.parent
@@ -14,7 +14,8 @@ LOG_DIR       = 'logs'  ;         LOG_SFX       = '.log'
 LOG_NAME      = BASE_NAME + SFX + LOG_SFX
 LOG_PATH      = BASE_PATH / LOG_DIR / LOG_NAME
 SNAP_DIR      = 'snaps' ;         SNAP_SFX      = '.png'
-P, L, Q, R, C, K = 0, 1, 2, 3, 4, 5  ;  S = ' '
+P, L, Q, R, C, K = 0, 1, 2, 3, 4, 5
+S, LCOL, LLINE = ' ', 'Col', 'Line '
 OPACITY       = [255, 240, 225, 210, 190, 165, 140, 110, 80]
 GRAY          = [(255, 255, 255, OPACITY[0]), ( 0,  0,  0, OPACITY[0])]
 PINK          = [(255,  64, 192, OPACITY[0]), (57, 16, 16, OPACITY[0])]
@@ -216,10 +217,10 @@ class Tabs(pyglet.window.Window):
         nl = len(self.data)  ;  ns = len(self.data[0])  ;  nc = len(self.data[0][0])  ;  nt = nl*nc*ns
         vdf = self.isVertDataFrmt(self.data)  ;  self.blankCol = '-' * ns
         self.log('read     {:2} lines with {:6,} cols on {:4,} strings {:8,} tabs, vdf={} blankCol({})={}'.format(nl, nl*nc, nl*ns, nt, vdf, len(self.blankCol), self.blankCol))
-        if dbg: self.dumpDataH(self.data, i=VRSN)
+        if dbg: self.dumpDataH(self.data, c=1, i=VRSN)
         self.data = self.transpose(self.data)
         vdf       = self.isVertDataFrmt(self.data)
-        if dbg: self.dumpDataV(self.data, i=VRSN)
+        if dbg: self.dumpDataV(self.data, c=1, i=VRSN)
         self.log('(assert) size == nt + 2*(nl*ns+nl-1): {:8,} == {:8,} + {}'.format(size, nt, 2*(nl*ns+nl-1)))  ;  assert size == nt + 2 * (nl * ns + nl - 1)  ;  assert vdf
         self.log('(END) name={} size={:8,} bytes={:4,.0f} KB'.format(DATA_FILE.name, size, size/1024))
 
@@ -273,21 +274,18 @@ class Tabs(pyglet.window.Window):
     def dumpDataV(self, data, c=1, l=1, i=0):
         self.log('(BGN) c={} l={} i={} {}'.format(c, l, i, self.fmtDataDim(data)))
         if l:
-            if c:
-                t0 = 'col'
-                t1 = t0 + S if i else S + t0
-                if i: self.log(t1, ind=0, end='')
-            t2 = 'Line '
-            w = max(len(data[0][0]), len(t2) + 1)
+            t0 = S * i + LCOL + S if i else LCOL
+            self.log(t0, ind=0, end='') if c and i else self.log(S * i, ind=0, end='')
+            w = max(len(data[0][0]), len(LLINE) + 1)
             for ll in range(len(data)):
-                t = '{}{}'.format(t2, ll + 1)
+                t = '{}{}'.format(LLINE, ll + 1)
                 self.log('{:{}}'.format(t, w), ind=0, end=S)
-        self.log(t1, ind=0) if not i else self.log(ind=0)
+            self.log(t0, ind=0)         if c and not i else self.log(ind=0)
         for cc in range(len(data[0])):
-            self.log('{:3} '.format(cc + 1),    ind=0, end='') if     i and c else self.log('{}'.format(S * i), ind=0, end='')
+            self.log('{}{:3} '.format(S * i, cc + 1), ind=0, end='') if     i and c else self.log('{}'.format(S * i), ind=0, end='')
             for ll in range(len(data)):
                 self.log('{}'.format(data[ll][cc]), ind=0, end=S)
-            self.log(' {:3} '.format(cc + 1),       ind=0)         if not i and c else self.log(ind=0)
+            self.log('{:3} '.format(cc + 1),        ind=0)           if not i and c else self.log(ind=0)
         self.log('(END) c={} l={} i={} {}'.format(c, l, i, self.fmtDataDim(data)))
 
     def dumpDataLabels(self, data, i=0, sep='^'):
