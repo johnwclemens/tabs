@@ -1,9 +1,76 @@
 import inspect, math, sys, os, glob, pathlib#, shutil#, unicodedata
 import pyglet
 import pyglet.window.key as pygwink
-#import pyglet.window.event as pygwine
+import pyglet.window.event as pygwine
 sys.path.insert(0, os.path.abspath('../lib'))
 import cmdArgs
+
+EVENT_LOG = 0  ;  CARET = 0  ;  ORDER_GROUP = 1;  FULL_SCREEN = 0  ;  VRSN = 0  ;  SUBPIX = 1
+SFX           = '.' + chr(65 + VRSN)     ;  VRSNX =     'n[Q]=VRSN i[Q]=VRSN VRSN={}'.format(VRSN)
+PATH          = pathlib.Path(sys.argv[0])
+BASE_PATH     = PATH.parent
+BASE_NAME     = BASE_PATH.stem
+LOG_DIR       = 'logs'  ;         LOG_SFX       = '.log'
+LOG_NAME      = BASE_NAME + SFX + LOG_SFX
+LOG_PATH      = BASE_PATH / LOG_DIR / LOG_NAME
+SNAP_DIR      = 'snaps' ;         SNAP_SFX      = '.png'
+P, L, Q, R, C, K = 0, 1, 2, 3, 4, 5  ;  S = ' '
+OPACITY       = [255, 240, 225, 210, 190, 165, 140, 110, 80]
+GRAY          = [(255, 255, 255, OPACITY[0]), ( 0,  0,  0, OPACITY[0])]
+PINK          = [(255,  64, 192, OPACITY[0]), (57, 16, 16, OPACITY[0])]
+INFRA_RED     = [(255,  29,  24, OPACITY[0]), (68, 20, 19, OPACITY[0])]
+RED           = [(255,  24,  21, OPACITY[0]), (88, 15, 12, OPACITY[0])]
+ORANGE        = [(255, 200,  16, OPACITY[0]), (76, 30, 25, OPACITY[0])]
+YELLOW        = [(255, 255,  15, OPACITY[0]), (45, 41, 10, OPACITY[0])]
+GREEN         = [( 44, 255,   0, OPACITY[0]), (21, 54, 10, OPACITY[0])]
+GREEN_BLUE    = [( 24, 255,  61, OPACITY[0]), (10, 49, 25, OPACITY[0])]
+CYAN          = [( 32, 255, 255, OPACITY[0]), (16, 64, 64, OPACITY[0])]
+BLUE_GREEN    = [( 25, 181, 255, OPACITY[0]), (12, 37, 51, OPACITY[0])]
+BLUE          = [( 35,  26, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
+INDIGO        = [( 35,  26, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
+VIOLET        = [(176,  81, 255, OPACITY[0]), (44, 14, 58, OPACITY[0])]
+ULTRA_VIOLET  = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
+HUES          = 13  ;  MAX_STACK_DEPTH = 0  ;  MAX_STACK_FRAME = inspect.stack()
+####################################################################################################################################################################################################
+def fmtl(a, w=3, d1='[', d2=']'):
+    c = ''
+    for i in range(len(a)): c += '{:{w}} '.format(int(a[i]), w=w)
+    return d1 + c + d2
+def fri(f): return int(math.floor(f+0.5))
+def genColors(cp, nsteps=HUES, dbg=0):
+    colors, clen = [], len(cp[0])
+    diffs = [cp[1][i] - cp[0][i] for i in range(clen)]
+    steps = [diffs[i]/nsteps     for i in range(clen)]
+    if dbg: print('c1={} c2={} nsteps={} diffs={} steps='.format(cp[0], cp[1], nsteps, diffs), end='')  ;  print('[{:6.1f} {:6.1f} {:6.1f} {:6.1f}]'.format(steps[0], steps[1], steps[2], steps[3]))
+    for j in range(nsteps):
+        c = tuple([fri(cp[0][i] + j * steps[i]) for i in range(len(cp[0]))])
+        if dbg: print('c[{}]={}'.format(j, c))
+        colors.append(c)
+    if dbg: print('colors={}'.format(cp))
+    return colors
+####################################################################################################################################################################################################
+GRAYS         = genColors(GRAY)
+PINKS         = genColors(PINK)
+INFRA_REDS    = genColors(INFRA_RED)
+REDS          = genColors(RED)
+ORANGES       = genColors(ORANGE)
+YELLOWS       = genColors(YELLOW)
+GREENS        = genColors(GREEN)
+GREEN_BLUES   = genColors(GREEN_BLUE)
+CYANS         = genColors(CYAN)
+BLUE_GREENS   = genColors(BLUE_GREEN)
+BLUES         = genColors(BLUE)
+INDIGOS       = genColors(INDIGO)
+VIOLETS       = genColors(VIOLET)
+ULTRA_VIOLETS = genColors(ULTRA_VIOLET)
+COLORS        = (INFRA_REDS, REDS, ORANGES, YELLOWS, GRAYS, GREENS, GREEN_BLUES, CYANS, BLUE_GREENS, BLUES, INDIGOS, VIOLETS, ULTRA_VIOLETS)
+CC            = (255, 190, 12, 176)
+CCC           = 3
+FONT_SCALE    = 123.42857
+FONT_NAMES    = ['Times New Roman', 'Lucida Console', 'Courier New', 'Helvetica', 'Arial', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
+FONT_COLORS   = [REDS[0], GREENS[0], GREEN_BLUES[5], BLUES[0], CYANS[0], ORANGES[0], REDS[0], INDIGOS[0], VIOLETS[0], PINKS[0], INFRA_REDS[0], YELLOWS[0], ULTRA_VIOLETS[0], BLUE_GREENS[0], GRAYS[0]]
+FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
+####################################################################################################################################################################################################
 
 class Tabs(pyglet.window.Window):
     def __init__(self):
@@ -16,7 +83,7 @@ class Tabs(pyglet.window.Window):
             self.log('{}  {}'.format(os.path.basename(_F), _F), ind=0)
             pathlib.Path(_F).unlink()
         self.ww, self.hh  = 640, 480
-        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, VRSN, 6, 20], [0, 0, VRSN, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
+        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, 1, 6, 20], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
         if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
         if 'i' in self.argMap and len(self.argMap['i'])  > 0: self.i            = [int(self.argMap['i'][i]) for i in range(len(self.argMap['i']))]
@@ -66,8 +133,9 @@ class Tabs(pyglet.window.Window):
         self.set_visible()
         if not FULL_SCREEN: self.set_size(self.ww, self.hh)
         self.ww, self.hh = self.get_size()
-#        self.eventLogger = pygwine.WindowEventLogger()
-#        self.push_handlers(self.eventLogger)
+        if EVENT_LOG:
+            self.eventLogger = pygwine.WindowEventLogger()
+            self.push_handlers(self.eventLogger)
         if dbg: self.log('(END) {}'.format(self.fmtWH()))
 
     def fmtWH(self, w=None, h=None):
@@ -121,7 +189,7 @@ class Tabs(pyglet.window.Window):
         self.log('(BGN) {} {}'.format(self.fmtWH(), self.fmtDataDim(self.data)))
         self.resizeSprites()
         self.resizeFonts()
-        if self.n[Q]: self.resizeLabels()
+#        if self.n[Q]: self.resizeLabels()
 #        self.resizeTabs()
         self.resizeCursor()
         self.snapshot()
@@ -148,11 +216,11 @@ class Tabs(pyglet.window.Window):
         nl = len(self.data)  ;  ns = len(self.data[0])  ;  nc = len(self.data[0][0])  ;  nt = nl*nc*ns
         vdf = self.isVertDataFrmt(self.data)  ;  self.blankCol = '-' * ns
         self.log('read     {:2} lines with {:6,} cols on {:4,} strings {:8,} tabs, vdf={} blankCol({})={}'.format(nl, nl*nc, nl*ns, nt, vdf, len(self.blankCol), self.blankCol))
-        if dbg: self.dumpDataA(self.data)
+        if dbg: self.dumpDataH(self.data, i=VRSN)
         self.data = self.transpose(self.data)
-        vdf = self.isVertDataFrmt(self.data)
-        if dbg: self.dumpDataA(self.data)
-        self.log('(assert) size == nt + 2*(nl*ns+nl-1): {:8,} == {:8,} + {}'.format(size, nt, 2*(nl*ns+nl-1)))  ;  assert size == nt + 2*(nl*ns+nl-1)  ;  assert vdf
+        vdf       = self.isVertDataFrmt(self.data)
+        if dbg: self.dumpDataV(self.data, i=VRSN)
+        self.log('(assert) size == nt + 2*(nl*ns+nl-1): {:8,} == {:8,} + {}'.format(size, nt, 2*(nl*ns+nl-1)))  ;  assert size == nt + 2 * (nl * ns + nl - 1)  ;  assert vdf
         self.log('(END) name={} size={:8,} bytes={:4,.0f} KB'.format(DATA_FILE.name, size, size/1024))
 
     def isVertDataFrmt(self, d, dbg=0):
@@ -182,27 +250,45 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log('(END) type(d)={} type(d[0])={} type(d[0][0]) return vdf={}'.format(type(d), type(d[0]), type(d[0][0]), vdf))
         return vdf
 
-    def dumpData(self, why='', lc=1, ll=1):
+    def dumpData(self, why='', c=1, l=1, i=VRSN):
         self.log('(BGN) {}'.format(why))
-        self.dumpDataA(self.data, lc, ll)
+        self.dumpDataV(self.data, c, l, i) if self.isVertDataFrmt(self.data) else self.dumpDataH(self.data, c, l, i)
         transpose = self.transpose(self.data, why='Internal')
-        self.dumpDataA(transpose, lc, ll)
+        self.dumpDataV(transpose, c, l, i) if self.isVertDataFrmt(transpose) else self.dumpDataH(transpose, c, l, i)
         self.log('(END) {}'.format(why))
 
-    def dumpDataA(self, data, lc=1, ll=1, il=0):
-        s=' '
-        vdf = self.isVertDataFrmt(data)
-        self.log('(BGN) vdf={} lc={} ll={} il={} {}'.format(vdf, lc, ll, il, self.fmtDataDim(data)))
-        for i in range(len(data)):
-            if ll:             llt = 'Line {}'.format(i + 1)  ;  llab = '{:{}}'.format(llt, il + 1)  ;  self.log('{}'.format(llab), ind=0)
-            if not vdf and lc: self.dumpDataLabels(data[i], i=il, sep=s)
-            for j in range(len(data[i])):
-                self.log('{:<{}}'.format(j + 1, il), ind=0, end='') if il and vdf else self.log('{}'.format(' ' * il), ind=0, end='')
-                for k in range(len(data[i][j])):
-                    self.log('{}'.format(data[i][j][k]), ind=0, end='')
-                self.log(' {}'.format(j + 1), ind=0) if not il and vdf and lc else self.log(ind=0)
+    def dumpDataH(self, data, c=1, l=1, i=0):
+        self.log('(BGN) c={} l={} i={} {}'.format(c, l, i, self.fmtDataDim(data)))
+        for ll in range(len(data)):
+            if l:  llt = 'Line {}'.format(ll + 1)  ;  llab = '{:{}}'.format(llt, i + 1)  ;  self.log('{}{}'.format(S * i, llab), ind=0)
+            if c:  self.dumpDataLabels(data[ll], i=i, sep=S)
+            for rr in range(len(data[ll])):
+                self.log('{}'.format(S * i), ind=0, end='')
+                for cc in range(len(data[ll][rr])):
+                    self.log('{}'.format(data[ll][rr][cc]), ind=0, end='')
+                self.log(ind=0)
             self.log(ind=0)
-        self.log('(END) vdf={} lc={} ll={} il={} {}'.format(vdf, lc, ll, il, self.fmtDataDim(data)))
+        self.log('(END) c={} l={} i={} {}'.format(c, l, i, self.fmtDataDim(data)))
+
+    def dumpDataV(self, data, c=1, l=1, i=0):
+        self.log('(BGN) c={} l={} i={} {}'.format(c, l, i, self.fmtDataDim(data)))
+        if l:
+            if c:
+                t0 = 'col'
+                t1 = t0 + S if i else S + t0
+                if i: self.log(t1, ind=0, end='')
+            t2 = 'Line '
+            w = max(len(data[0][0]), len(t2) + 1)
+            for ll in range(len(data)):
+                t = '{}{}'.format(t2, ll + 1)
+                self.log('{:{}}'.format(t, w), ind=0, end=S)
+        self.log(t1, ind=0) if not i else self.log(ind=0)
+        for cc in range(len(data[0])):
+            self.log('{:3} '.format(cc + 1),    ind=0, end='') if     i and c else self.log('{}'.format(S * i), ind=0, end='')
+            for ll in range(len(data)):
+                self.log('{}'.format(data[ll][cc]), ind=0, end=S)
+            self.log(' {:3} '.format(cc + 1),       ind=0)         if not i and c else self.log(ind=0)
+        self.log('(END) c={} l={} i={} {}'.format(c, l, i, self.fmtDataDim(data)))
 
     def dumpDataLabels(self, data, i=0, sep='^'):
         n = len(data[0])-CCC    ;  a = ' ' * i if i else ''   ;  b = sep * n  ;  p = '   '  ;  q = '  @'  ;  r = sep * 3
@@ -230,9 +316,10 @@ class Tabs(pyglet.window.Window):
     def geom(self, p=None, j=0, init=0, dbg=0):
         nq = self.n[Q]  ;   mx, my = None, None
         n, i, x, y, w, h, g = self.n[j], self.i[j], self.x[j], self.y[j], self.w[j], self.h[j], self.g[j]
-        if   nq and j == Q: n = self.n[R] + 1
-        elif nq and j == R: n += 1
-        elif j == C:        n += CCC
+#        if   nq and j == Q: n = self.n[R] + 1
+#        elif nq and j == R: n += 1
+#        elif j == C:        n += CCC
+        if j == C:          n += CCC
         if p:
             if j == C:      w, h = (p.width - x*(n + 1))/n,  p.height - y*2
             else:           w, h =  p.width - x*2,          (p.height - y*(n + 1))/n
@@ -270,7 +357,7 @@ class Tabs(pyglet.window.Window):
                         yyq = line.y + line.height - (hq+yq)*(q+1)
                         qrow = self.createSprite('createQRow', self.qrows, gq, cq[0], xq, yyq, wq, hq, 0, 0, v=v, dbg=dbg)
                         nc, ic, xc, yc, wc, hc, gc, mx, my = self.geom(qrow, C, init=1)
-                        if dbg: self.dumpTab()
+                        if dbg: self.dumpLabel()
                         for c in range(nc):
                             xxc, yyc = qrow.x+xc+(wc+xc)*c, qrow.y+qrow.height-(hc+yc)
                             label = self.createLabel(self.labelTextB[c], xxc, yyc, wc, hc, self.cci(c, cc), gc)
@@ -327,7 +414,7 @@ class Tabs(pyglet.window.Window):
         self.tabs.append(t)
         return t
     ####################################################################################################################################################################################################
-    def resizeSprites(self, dbg=0):
+    def resizeSprites(self, dbg=1):
         n = self.n
         self.log('(BGN) n={}'.format(fmtl(n)))
         if dbg: self.dumpSprite()
@@ -347,22 +434,26 @@ class Tabs(pyglet.window.Window):
                         yyq = line.y + line.height - (hq + yq)*(q + 1)
                         qrow = self.qrows[sq]  ;  qrow.update(x=xq, y=yyq, scale_x=mxq, scale_y=myq)  ;  sq += 1
                         if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizeQRows')) ; i += 1
-                        nc, ic, xc, yc, wc, hc, gc, mxc, myc = self.geom(qrow, C)
+                        nc, ic, xc, yc, wc, hc, gc, mxc, myc = self.geom(qrow, C)#  ;  sc = 0
                         for c in range(nc):
                             xxc, yyc = qrow.x + xc + (wc + xc)*c, qrow.y + qrow.height - (hc + yc)
-                            self.cols[sc].update(x=xxc, y=yyc, scale_x=mxc, scale_y=myc)  ;  sc += 1
-                            if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizeCols')) ; i += 1
+                            self.labels[c].w = wc          ;  self.labels[c].h = hc
+                            self.labels[c].x = xxc + wc/2  ;  self.labels[c].y = yyc + hc/2
+                            sc += 1
+#                            self.cols[sc].update(x=xxc, y=yyc, scale_x=mxc, scale_y=myc)  ;  sc += 1
+#                            if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizeCols')) ; i += 1
                 nr, ir, xr, yr, wr, hr, gr, mxr, myr = self.geom(line, R)
-                rr = 1 if n[Q] else 0
-                for r in range(rr, nr):
+#                rr = 1 if n[Q] else 0
+#                for r in range(rr, nr):
+                for r in range(nr):
                     yyr = line.y + line.height - (hr + yr)*(r + 1)
                     row = self.rows[sr]  ;  row.update(x=xr, y=yyr, scale_x=mxr, scale_y=myr)  ;  sr += 1
                     if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizeRows')) ; i += 1
-                    nc, ic, xc, yc, wc, hc, gc, mxc, myc = self.geom(row, C)
+                    nc, ic, xc, yc, wc, hc, gc, mxc, myc = self.geom(row, C)#  ;  sc= 0
                     for c in range(nc):
                         xxc, yyc = row.x + xc + (wc + xc)*c, row.y + row.height - (hc + yc)
-                        self.tabs[sc].w = wc          ;  self.tabs[sc].h = hc
-                        self.tabs[sc].x = xxc + wc/2  ;  self.tabs[sc].y = yyc + hc/2
+                        self.tabs[c].w = wc          ;  self.tabs[c].h = hc
+                        self.tabs[c].x = xxc + wc/2  ;  self.tabs[c].y = yyc + hc/2
                         sc += 1
 #                        self.cols[sc].update(x=xxc, y=yyc, scale_x=mxc, scale_y=myc)  ;  sc += 1
 #                        if dbg: self.dumpSprite(self.sprites[i], i+1, '{:2} {:2} {:2} {:3} {:5} {:16}'.format(sp, sl, sq, sr, sc, 'resizeCols')) ; i += 1
@@ -424,7 +515,7 @@ class Tabs(pyglet.window.Window):
         self.log('cr={:4} x={:6.1f} y={:6.1f} w={:6.1f} h={:6.1f} i={}'.format(cr, xr, yr, wr, hr, fmtl(self.i)))
         self.dumpSprite()
         self.cursor = self.createSprite('cursor', None, g, CC, xc, yc, wc, hc, 0, 0, v=True)
-        self.dumpSprite(self.cursor, why='{:2} {:2} {:2} {:3} {:4}  {:16}'.format(-1, -1, -1, -1, -1, 'createCursor'))
+        self.dumpSprite(self.cursor, why='{:2} {:2} {:2} {:3}'.format(-1, -1, -1, -1))
         self.log('(END) cc={} cr={}'.format(cc, cr))
 
     def resizeCursor(self):
@@ -465,7 +556,7 @@ class Tabs(pyglet.window.Window):
         self.log('{} {} ms={:4.1f} slope={} off={} fs={:4.1f}={:2}'.format(self.fmtWH(), formula, ms, slope, off, fs, fri(fs)))
         self.setFontParam('font_size', fs, 'fontSize')
 
-    def dumpLabelText(self, t, why='', dbg=1):
+    def dumpLabelText(self, t, d='%', why='', dbg=1):
         self.log('{} len(t)={} len(t[0])={}'.format(why, len(t), len(t[0])))
         for j in range(len(t)):
             self.log('{:^3}'.format(t[j][0]), ind=0, end=' ')
@@ -473,7 +564,7 @@ class Tabs(pyglet.window.Window):
         for i in range(3): self.log('{:3} '.format(' '), ind=0, end='')
         for k in range(len(t)//10):
             for i in range(9): self.log('{:^3} '.format(' '), ind=0, end='')
-            self.log(' {} '.format('^'), ind=0, end=' ')
+            self.log(' {} '.format(d), ind=0, end=' ')
         self.log(ind=0)
         for j in range(len(t)):
             self.log('{:^3}'.format(t[j][1]), ind=0, end=' ')
@@ -482,8 +573,8 @@ class Tabs(pyglet.window.Window):
             for i in range(len(t)):
                 self.log('{:5}'.format(i - 2), ind=0, end=' ')
                 self.log(' {:>5}'.format(t[i][0]), ind=0, end=' ')
-                d = ' ' if (i - 2) % 10 else '>'
-                self.log('{}{:>5}'.format(d, t[i][1]), ind=0, end=' ')
+                d2 = ' ' if i == 2 or (i - 2) % 10 else d
+                self.log('{}{:>5}'.format(d2, t[i][1]), ind=0, end=' ')
                 self.log(ind=0)
 
     @staticmethod
@@ -504,7 +595,7 @@ class Tabs(pyglet.window.Window):
                 qc = c + q*self.cpl
                 tc = c + q*self.cpr
                 k  = 2 if c == 2 or (c - 2) % 10 else 3
-                l = self.createLabel(self.labels, self.labelTextB[c], qc, k, g)
+                l = self.createLabel_OLD(self.labels, self.labelTextB[c], qc, k, g)
                 if dbg: self.dumpLabel(l, tc, q, qc, 'createLabels')
         if dbg: self.dumpLabel()
         if dbg: self.log('(END) n={} len(labels)={}'.format(fmtl(self.n), len(self.labels)))
@@ -853,72 +944,6 @@ class Tabs(pyglet.window.Window):
         exit()
 ########################################################################################################################################################################################################
 if __name__ == '__main__':
-    CARET = 0  ;  ORDER_GROUP = 1;  FULL_SCREEN = 0  ;  VRSN = 1  ;  SUBPIX = 1
-    SFX           = '.' + chr(65 + VRSN)     ;  VRSNX =     'n[Q]=VRSN i[Q]=VRSN VRSN={}'.format(VRSN)
-    PATH          = pathlib.Path(sys.argv[0])
-    BASE_PATH     = PATH.parent
-    BASE_NAME     = BASE_PATH.stem
-    LOG_DIR       = 'logs'  ;         LOG_SFX       = '.log'
-    LOG_NAME      = BASE_NAME + SFX + LOG_SFX
-    LOG_PATH      = BASE_PATH / LOG_DIR / LOG_NAME
-    SNAP_DIR      = 'snaps' ;         SNAP_SFX      = '.png'
-    P, L, Q, R, C, K = 0, 1, 2, 3, 4, 5
-    OPACITY       = [255, 240, 225, 210, 190, 165, 140, 110, 80]
-    GRAY          = [(255, 255, 255, OPACITY[0]), ( 0,  0,  0, OPACITY[0])]
-    PINK          = [(255,  64, 192, OPACITY[0]), (57, 16, 16, OPACITY[0])]
-    INFRA_RED     = [(255,  29,  24, OPACITY[0]), (68, 20, 19, OPACITY[0])]
-    RED           = [(255,  24,  21, OPACITY[0]), (88, 15, 12, OPACITY[0])]
-    ORANGE        = [(255, 200,  16, OPACITY[0]), (76, 30, 25, OPACITY[0])]
-    YELLOW        = [(255, 255,  15, OPACITY[0]), (45, 41, 10, OPACITY[0])]
-    GREEN         = [( 44, 255,   0, OPACITY[0]), (21, 54, 10, OPACITY[0])]
-    GREEN_BLUE    = [( 24, 255,  61, OPACITY[0]), (10, 49, 25, OPACITY[0])]
-    CYAN          = [( 32, 255, 255, OPACITY[0]), (16, 64, 64, OPACITY[0])]
-    BLUE_GREEN    = [( 25, 181, 255, OPACITY[0]), (12, 37, 51, OPACITY[0])]
-    BLUE          = [( 35,  26, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
-    INDIGO        = [( 35,  26, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
-    VIOLET        = [(176,  81, 255, OPACITY[0]), (44, 14, 58, OPACITY[0])]
-    ULTRA_VIOLET  = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
-    HUES          = 13  ;  MAX_STACK_DEPTH = 0  ;  MAX_STACK_FRAME = inspect.stack()
-    ####################################################################################################################################################################################################
-    def fmtl(a, w=3, d1='[', d2=']'):
-        c = ''
-        for i in range(len(a)): c += '{:{w}} '.format(int(a[i]), w=w)
-        return d1 + c + d2
-    def fri(f): return int(math.floor(f+0.5))
-    def genColors(cp, nsteps=HUES, dbg=0):
-        colors, clen = [], len(cp[0])
-        diffs = [cp[1][i] - cp[0][i] for i in range(clen)]
-        steps = [diffs[i]/nsteps     for i in range(clen)]
-        if dbg: print('c1={} c2={} nsteps={} diffs={} steps='.format(cp[0], cp[1], nsteps, diffs), end='')  ;  print('[{:6.1f} {:6.1f} {:6.1f} {:6.1f}]'.format(steps[0], steps[1], steps[2], steps[3]))
-        for j in range(nsteps):
-            c = tuple([fri(cp[0][i] + j * steps[i]) for i in range(len(cp[0]))])
-            if dbg: print('c[{}]={}'.format(j, c))
-            colors.append(c)
-        if dbg: print('colors={}'.format(cp))
-        return colors
-    ####################################################################################################################################################################################################
-    GRAYS         = genColors(GRAY)
-    PINKS         = genColors(PINK)
-    INFRA_REDS    = genColors(INFRA_RED)
-    REDS          = genColors(RED)
-    ORANGES       = genColors(ORANGE)
-    YELLOWS       = genColors(YELLOW)
-    GREENS        = genColors(GREEN)
-    GREEN_BLUES   = genColors(GREEN_BLUE)
-    CYANS         = genColors(CYAN)
-    BLUE_GREENS   = genColors(BLUE_GREEN)
-    BLUES         = genColors(BLUE)
-    INDIGOS       = genColors(INDIGO)
-    VIOLETS       = genColors(VIOLET)
-    ULTRA_VIOLETS = genColors(ULTRA_VIOLET)
-    COLORS        = (INFRA_REDS, REDS, ORANGES, YELLOWS, GRAYS, GREENS, GREEN_BLUES, CYANS, BLUE_GREENS, BLUES, INDIGOS, VIOLETS, ULTRA_VIOLETS)
-    CC            = (255, 190, 12, 176)
-    CCC           = 3
-    FONT_SCALE    = 123.42857
-    FONT_NAMES    = ['Times New Roman', 'Lucida Console', 'Courier New', 'Helvetica', 'Arial', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
-    FONT_COLORS   = [REDS[0], GREENS[0], GREEN_BLUES[5], BLUES[0], CYANS[0], ORANGES[0], REDS[0], INDIGOS[0], VIOLETS[0], PINKS[0], INFRA_REDS[0], YELLOWS[0], ULTRA_VIOLETS[0], BLUE_GREENS[0], GRAYS[0]]
-    FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
-    ####################################################################################################################################################################################################
     with open(str(LOG_PATH), 'w') as LOG_FILE:
         tabs          = Tabs()
         pyglet.app.run()
