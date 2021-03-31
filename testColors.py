@@ -118,7 +118,7 @@ class Tabs(pyglet.window.Window):
             sprites = []
             for j in range(n2):
                 xx, yy = x1+(w1+x1)*i, self.hh-(h2+y2)*(j+1)
-                self.createSprite('_initTestColors()', sprites, g1, c[i][j], xx, yy, w1, h2, i, j, v=True, dbg=1)
+                self.createSprite(sprites, g1, c[i][j], xx, yy, w1, h2, i, j, v=True)
             self.colorLists.append(sprites)
 
     def resizeTestColors(self):
