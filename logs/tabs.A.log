@@ -1,0 +1,1243 @@
+1                       85 tabs.py              __init__ (BGN) <class '__main__.Tabs'> QQ=0 VRSN=0
+1                       86 tabs.py              __init__ QQ=0 SPRITES=1
+1                       87 tabs.py              __init__ CARET=0 EVENT_LOG=1 FULL_SCREEN=0 ORDER_GROUP=1 RESIZE=1 SUBPIX=1
+1                       88 tabs.py              __init__ C:\Python36\my\tabs\snaps\tabs.A.*.png
+1                       90 tabs.py              __init__ C:\Python36\my\tabs\snaps\tabs.A.0.png
+1                       90 tabs.py              __init__ C:\Python36\my\tabs\snaps\tabs.A.1.png
+1                      104 tabs.py              __init__ [n]            n=[  1   3   6  20   0  20 ]
+1                      105 tabs.py              __init__ [i]            i=[  0   0   0   0   0   0 ]
+1                      106 tabs.py              __init__ [x]            x=[  0   0   0   0   0   0 ]
+1                      107 tabs.py              __init__ [y]            y=[  0   0   0   0   0   0 ]
+1                      108 tabs.py              __init__ [w]           ww=640
+1                      109 tabs.py              __init__ [h]           hh=480
+1                      110 tabs.py              __init__ [f]  FULL_SCREEN=0
+1                      111 tabs.py              __init__ [g]  ORDER_GROUP=1
+1                      112 tabs.py              __init__ [s]       SUBPIX=1
+ 2                     704 tabs.py              dumpFont () 0 4DPI 14pt 0 (123.429*14pt/4DPI)=432.000pixels
+ 2                     131 tabs.py          _initWindowA (BGN) (640 x 480)
+ 2                     131 tabs.py          _initWindowA display=<pyglet.canvas.win32.Win32Display object at 0x00000210FE955288>
+ 2                     134 tabs.py          _initWindowA screens[0] x=0 y=    0 (1097 x 617)
+ 2                     134 tabs.py          _initWindowA screens[1] x=0 y=-1200 (1920 x 1200)
+ 2                     135 tabs.py          _initWindowA (END) (640 x 480)
+  3                    157 tabs.py           _initGroups (0) g=OrderedGroup(0) pg=None
+  3                    157 tabs.py           _initGroups (1) g=OrderedGroup(1) pg=None
+  3                    157 tabs.py           _initGroups (2) g=OrderedGroup(2) pg=None
+  3                    157 tabs.py           _initGroups (3) g=OrderedGroup(3) pg=None
+  3                    157 tabs.py           _initGroups (4) g=OrderedGroup(4) pg=None
+  3                    157 tabs.py           _initGroups (5) g=OrderedGroup(5) pg=None
+  3                    157 tabs.py           _initGroups (6) g=OrderedGroup(6) pg=None
+  3                    157 tabs.py           _initGroups (7) g=OrderedGroup(7) pg=None
+  3                    157 tabs.py           _initGroups (8) g=OrderedGroup(8) pg=None
+ 2                     140 tabs.py          _initWindowB (BGN) (640 x 480)
+ 2                     147 tabs.py          _initWindowB (END) (640 x 480)
+ 2                     205 tabs.py                 _init (BGN) n=[  1   3   6  20   0  20 ] i=[  0   0   0   0   0   0 ]
+  3                    170 tabs.py              _initCps cps=[414 138  23  23 ]
+  3                    177 tabs.py              _initRps rps=[414 138   6   0 ]
+  3                    250 tabs.py          readDataFile (BGN) C:\Python36\my\tabs\data\tabs.A.20.dat        454 bytes =    0 KB
+  3                    252 tabs.py          readDataFile reading  1st line
+1E01--------11--------1
+2B02--------22--------2
+3G03--------33--------3
+4D04--------44--------4
+5A05--------55--------5
+6E06--------66--------6
+  3                    256 tabs.py          readDataFile read     1st line with     23 cols on    6 strings      138 tabs
+1E07--------77--------7
+2B08--------88--------8
+3G09--------99--------9
+4D0a--------aa--------a
+5A0b--------bb--------b
+6E0c--------cc--------c
+  3                    256 tabs.py          readDataFile read     2nd line with     23 cols on    6 strings      138 tabs
+1E0d--------dd--------d
+2B0e--------ee--------e
+3G0f--------ff--------f
+4D0g--------gg--------g
+5A0h--------hh--------h
+6E0i--------ii--------i
+  3                    256 tabs.py          readDataFile read     3rd line with     23 cols on    6 strings      138 tabs
+  3                    262 tabs.py          readDataFile read      3 lines with     69 cols on   18 strings      414 tabs, vdf=0 blankCol(6)=------
+   4                   305 tabs.py             dumpDataH (BGN) c=1 l=1 i=0 (3 x 6 x 23)=     414 tabs
+Line 1
+            11111111112
+  @12345678901234567890
+                       
+1E01--------11--------1
+2B02--------22--------2
+3G03--------33--------3
+4D04--------44--------4
+5A05--------55--------5
+6E06--------66--------6
+
+Line 2
+            11111111112
+  @12345678901234567890
+                       
+1E07--------77--------7
+2B08--------88--------8
+3G09--------99--------9
+4D0a--------aa--------a
+5A0b--------bb--------b
+6E0c--------cc--------c
+
+Line 3
+            11111111112
+  @12345678901234567890
+                       
+1E0d--------dd--------d
+2B0e--------ee--------e
+3G0f--------ff--------f
+4D0g--------gg--------g
+5A0h--------hh--------h
+6E0i--------ii--------i
+
+   4                   315 tabs.py             dumpDataH (END) c=1 l=1 i=0 (3 x 6 x 23)=     414 tabs
+   4                   342 tabs.py             transpose (BGN)  External   (3 x 6 x 23)=     414 tabs
+   4                   354 tabs.py             transpose (END)  External   (3 x 23 x 6)=     414 tabs
+   4                   318 tabs.py             dumpDataV (BGN) c=1 l=1 i=0 (3 x 23 x 6)=     414 tabs
+Col Line 1 Line 2 Line 3 
+  1 123456 123456 123456 
+  2 EBGDAE EBGDAE EBGDAE 
+  3 000000 000000 000000 
+  4 123456 789abc defghi 
+  5 ------ ------ ------ 
+  6 ------ ------ ------ 
+  7 ------ ------ ------ 
+  8 ------ ------ ------ 
+  9 ------ ------ ------ 
+ 10 ------ ------ ------ 
+ 11 ------ ------ ------ 
+ 12 ------ ------ ------ 
+ 13 123456 789abc defghi 
+ 14 123456 789abc defghi 
+ 15 ------ ------ ------ 
+ 16 ------ ------ ------ 
+ 17 ------ ------ ------ 
+ 18 ------ ------ ------ 
+ 19 ------ ------ ------ 
+ 20 ------ ------ ------ 
+ 21 ------ ------ ------ 
+ 22 ------ ------ ------ 
+ 23 123456 789abc defghi 
+   4                   332 tabs.py             dumpDataV (END) c=1 l=1 i=0 (3 x 23 x 6)=     414 tabs
+  3                    267 tabs.py          readDataFile assert: size=nt+2*(nl*ns+nl-1)      414 + 40 =      454 bytes
+  3                    268 tabs.py          readDataFile (END) C:\Python36\my\tabs\data\tabs.A.20.dat        454 bytes =    0 KB
+  3                    377 tabs.py         createSprites (BGN) n=[  1   3   6  20   0  20 ]
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   1 1  0  0   0  0   0    0.00  320.00     0.00  240.00   640.00  480.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 0 create Page      OrderedGroup(0) None
+   2 1  1  0   0  0   0    0.00  320.00   320.00  400.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Line      OrderedGroup(1) None
+   3 1  1  1   0  0   0    0.00  320.00   453.33  466.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+   1 1  1  1   1  0   0 1        13.91  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+   2 1  1  1   2  0   0 E        41.74  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+   3 1  1  1   3  0   0 0        69.57  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+   4 1  1  1   4  0   0 1        97.39  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+   5 1  1  1   5  0   0 -       125.22  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+   6 1  1  1   6  0   0 -       153.04  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+   7 1  1  1   7  0   0 -       180.87  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+   8 1  1  1   8  0   0 -       208.70  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+   9 1  1  1   9  0   0 -       236.52  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  10 1  1  1  10  0   0 -       264.35  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  11 1  1  1  11  0   0 -       292.17  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  12 1  1  1  12  0   0 -       320.00  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  13 1  1  1  13  0   0 1       347.83  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  14 1  1  1  14  0   0 1       375.65  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  15 1  1  1  15  0   0 -       403.48  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  16 1  1  1  16  0   0 -       431.30  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  17 1  1  1  17  0   0 -       459.13  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  18 1  1  1  18  0   0 -       486.96  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  19 1  1  1  19  0   0 -       514.78  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  20 1  1  1  20  0   0 -       542.61  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  21 1  1  1  21  0   0 -       570.43  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  22 1  1  1  22  0   0 -       598.26  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  23 1  1  1  23  0   0 1       626.09  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   4 1  1  2  23  0   0    0.00  320.00   426.67  440.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+  24 1  1  2  24  0   0 2        13.91  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  25 1  1  2  25  0   0 B        41.74  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  26 1  1  2  26  0   0 0        69.57  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  27 1  1  2  27  0   0 2        97.39  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  28 1  1  2  28  0   0 -       125.22  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  29 1  1  2  29  0   0 -       153.04  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  30 1  1  2  30  0   0 -       180.87  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  31 1  1  2  31  0   0 -       208.70  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  32 1  1  2  32  0   0 -       236.52  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  33 1  1  2  33  0   0 -       264.35  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  34 1  1  2  34  0   0 -       292.17  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  35 1  1  2  35  0   0 -       320.00  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  36 1  1  2  36  0   0 2       347.83  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  37 1  1  2  37  0   0 2       375.65  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  38 1  1  2  38  0   0 -       403.48  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  39 1  1  2  39  0   0 -       431.30  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  40 1  1  2  40  0   0 -       459.13  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  41 1  1  2  41  0   0 -       486.96  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  42 1  1  2  42  0   0 -       514.78  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  43 1  1  2  43  0   0 -       542.61  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  44 1  1  2  44  0   0 -       570.43  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  45 1  1  2  45  0   0 -       598.26  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  46 1  1  2  46  0   0 2       626.09  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   5 1  1  3  46  0   0    0.00  320.00   400.00  413.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+  47 1  1  3  47  0   0 3        13.91  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  48 1  1  3  48  0   0 G        41.74  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  49 1  1  3  49  0   0 0        69.57  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  50 1  1  3  50  0   0 3        97.39  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  51 1  1  3  51  0   0 -       125.22  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  52 1  1  3  52  0   0 -       153.04  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  53 1  1  3  53  0   0 -       180.87  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  54 1  1  3  54  0   0 -       208.70  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  55 1  1  3  55  0   0 -       236.52  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  56 1  1  3  56  0   0 -       264.35  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  57 1  1  3  57  0   0 -       292.17  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  58 1  1  3  58  0   0 -       320.00  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  59 1  1  3  59  0   0 3       347.83  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  60 1  1  3  60  0   0 3       375.65  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  61 1  1  3  61  0   0 -       403.48  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  62 1  1  3  62  0   0 -       431.30  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  63 1  1  3  63  0   0 -       459.13  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  64 1  1  3  64  0   0 -       486.96  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  65 1  1  3  65  0   0 -       514.78  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  66 1  1  3  66  0   0 -       542.61  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  67 1  1  3  67  0   0 -       570.43  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  68 1  1  3  68  0   0 -       598.26  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  69 1  1  3  69  0   0 3       626.09  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   6 1  1  4  69  0   0    0.00  320.00   373.33  386.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+  70 1  1  4  70  0   0 4        13.91  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  71 1  1  4  71  0   0 D        41.74  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  72 1  1  4  72  0   0 0        69.57  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  73 1  1  4  73  0   0 4        97.39  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  74 1  1  4  74  0   0 -       125.22  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  75 1  1  4  75  0   0 -       153.04  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  76 1  1  4  76  0   0 -       180.87  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  77 1  1  4  77  0   0 -       208.70  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  78 1  1  4  78  0   0 -       236.52  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  79 1  1  4  79  0   0 -       264.35  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  80 1  1  4  80  0   0 -       292.17  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  81 1  1  4  81  0   0 -       320.00  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  82 1  1  4  82  0   0 4       347.83  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  83 1  1  4  83  0   0 4       375.65  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  84 1  1  4  84  0   0 -       403.48  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  85 1  1  4  85  0   0 -       431.30  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  86 1  1  4  86  0   0 -       459.13  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  87 1  1  4  87  0   0 -       486.96  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  88 1  1  4  88  0   0 -       514.78  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  89 1  1  4  89  0   0 -       542.61  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  90 1  1  4  90  0   0 -       570.43  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  91 1  1  4  91  0   0 -       598.26  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  92 1  1  4  92  0   0 4       626.09  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   7 1  1  5  92  0   0    0.00  320.00   346.67  360.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+  93 1  1  5  93  0   0 5        13.91  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  94 1  1  5  94  0   0 A        41.74  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  95 1  1  5  95  0   0 0        69.57  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  96 1  1  5  96  0   0 5        97.39  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  97 1  1  5  97  0   0 -       125.22  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+  98 1  1  5  98  0   0 -       153.04  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+  99 1  1  5  99  0   0 -       180.87  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 100 1  1  5 100  0   0 -       208.70  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 101 1  1  5 101  0   0 -       236.52  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 102 1  1  5 102  0   0 -       264.35  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 103 1  1  5 103  0   0 -       292.17  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 104 1  1  5 104  0   0 -       320.00  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 105 1  1  5 105  0   0 5       347.83  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 106 1  1  5 106  0   0 5       375.65  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 107 1  1  5 107  0   0 -       403.48  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 108 1  1  5 108  0   0 -       431.30  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 109 1  1  5 109  0   0 -       459.13  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 110 1  1  5 110  0   0 -       486.96  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 111 1  1  5 111  0   0 -       514.78  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 112 1  1  5 112  0   0 -       542.61  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 113 1  1  5 113  0   0 -       570.43  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 114 1  1  5 114  0   0 -       598.26  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 115 1  1  5 115  0   0 5       626.09  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   8 1  1  6 115  0   0    0.00  320.00   320.00  333.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 116 1  1  6 116  0   0 6        13.91  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 117 1  1  6 117  0   0 E        41.74  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 118 1  1  6 118  0   0 0        69.57  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 119 1  1  6 119  0   0 6        97.39  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 120 1  1  6 120  0   0 -       125.22  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 121 1  1  6 121  0   0 -       153.04  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 122 1  1  6 122  0   0 -       180.87  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 123 1  1  6 123  0   0 -       208.70  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 124 1  1  6 124  0   0 -       236.52  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 125 1  1  6 125  0   0 -       264.35  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 126 1  1  6 126  0   0 -       292.17  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 127 1  1  6 127  0   0 -       320.00  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 128 1  1  6 128  0   0 6       347.83  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 129 1  1  6 129  0   0 6       375.65  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 130 1  1  6 130  0   0 -       403.48  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 131 1  1  6 131  0   0 -       431.30  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 132 1  1  6 132  0   0 -       459.13  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 133 1  1  6 133  0   0 -       486.96  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 134 1  1  6 134  0   0 -       514.78  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 135 1  1  6 135  0   0 -       542.61  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 136 1  1  6 136  0   0 -       570.43  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 137 1  1  6 137  0   0 -       598.26  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 138 1  1  6 138  0   0 6       626.09  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   9 1  2  6 138  0   0    0.00  320.00   160.00  240.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Line      OrderedGroup(1) None
+  10 1  2  7 138  0   0    0.00  320.00   293.33  306.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 139 1  2  7 139  0   0 1        13.91  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 140 1  2  7 140  0   0 E        41.74  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 141 1  2  7 141  0   0 0        69.57  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 142 1  2  7 142  0   0 7        97.39  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 143 1  2  7 143  0   0 -       125.22  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 144 1  2  7 144  0   0 -       153.04  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 145 1  2  7 145  0   0 -       180.87  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 146 1  2  7 146  0   0 -       208.70  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 147 1  2  7 147  0   0 -       236.52  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 148 1  2  7 148  0   0 -       264.35  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 149 1  2  7 149  0   0 -       292.17  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 150 1  2  7 150  0   0 -       320.00  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 151 1  2  7 151  0   0 7       347.83  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 152 1  2  7 152  0   0 7       375.65  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 153 1  2  7 153  0   0 -       403.48  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 154 1  2  7 154  0   0 -       431.30  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 155 1  2  7 155  0   0 -       459.13  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 156 1  2  7 156  0   0 -       486.96  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 157 1  2  7 157  0   0 -       514.78  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 158 1  2  7 158  0   0 -       542.61  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 159 1  2  7 159  0   0 -       570.43  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 160 1  2  7 160  0   0 -       598.26  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 161 1  2  7 161  0   0 7       626.09  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  11 1  2  8 161  0   0    0.00  320.00   266.67  280.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 162 1  2  8 162  0   0 2        13.91  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 163 1  2  8 163  0   0 B        41.74  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 164 1  2  8 164  0   0 0        69.57  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 165 1  2  8 165  0   0 8        97.39  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 166 1  2  8 166  0   0 -       125.22  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 167 1  2  8 167  0   0 -       153.04  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 168 1  2  8 168  0   0 -       180.87  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 169 1  2  8 169  0   0 -       208.70  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 170 1  2  8 170  0   0 -       236.52  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 171 1  2  8 171  0   0 -       264.35  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 172 1  2  8 172  0   0 -       292.17  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 173 1  2  8 173  0   0 -       320.00  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 174 1  2  8 174  0   0 8       347.83  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 175 1  2  8 175  0   0 8       375.65  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 176 1  2  8 176  0   0 -       403.48  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 177 1  2  8 177  0   0 -       431.30  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 178 1  2  8 178  0   0 -       459.13  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 179 1  2  8 179  0   0 -       486.96  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 180 1  2  8 180  0   0 -       514.78  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 181 1  2  8 181  0   0 -       542.61  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 182 1  2  8 182  0   0 -       570.43  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 183 1  2  8 183  0   0 -       598.26  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 184 1  2  8 184  0   0 8       626.09  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  12 1  2  9 184  0   0    0.00  320.00   240.00  253.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 185 1  2  9 185  0   0 3        13.91  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 186 1  2  9 186  0   0 G        41.74  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 187 1  2  9 187  0   0 0        69.57  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 188 1  2  9 188  0   0 9        97.39  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 189 1  2  9 189  0   0 -       125.22  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 190 1  2  9 190  0   0 -       153.04  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 191 1  2  9 191  0   0 -       180.87  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 192 1  2  9 192  0   0 -       208.70  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 193 1  2  9 193  0   0 -       236.52  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 194 1  2  9 194  0   0 -       264.35  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 195 1  2  9 195  0   0 -       292.17  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 196 1  2  9 196  0   0 -       320.00  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 197 1  2  9 197  0   0 9       347.83  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 198 1  2  9 198  0   0 9       375.65  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 199 1  2  9 199  0   0 -       403.48  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 200 1  2  9 200  0   0 -       431.30  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 201 1  2  9 201  0   0 -       459.13  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 202 1  2  9 202  0   0 -       486.96  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 203 1  2  9 203  0   0 -       514.78  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 204 1  2  9 204  0   0 -       542.61  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 205 1  2  9 205  0   0 -       570.43  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 206 1  2  9 206  0   0 -       598.26  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 207 1  2  9 207  0   0 9       626.09  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  13 1  2 10 207  0   0    0.00  320.00   213.33  226.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 208 1  2 10 208  0   0 4        13.91  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 209 1  2 10 209  0   0 D        41.74  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 210 1  2 10 210  0   0 0        69.57  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 211 1  2 10 211  0   0 a        97.39  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 212 1  2 10 212  0   0 -       125.22  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 213 1  2 10 213  0   0 -       153.04  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 214 1  2 10 214  0   0 -       180.87  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 215 1  2 10 215  0   0 -       208.70  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 216 1  2 10 216  0   0 -       236.52  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 217 1  2 10 217  0   0 -       264.35  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 218 1  2 10 218  0   0 -       292.17  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 219 1  2 10 219  0   0 -       320.00  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 220 1  2 10 220  0   0 a       347.83  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 221 1  2 10 221  0   0 a       375.65  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 222 1  2 10 222  0   0 -       403.48  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 223 1  2 10 223  0   0 -       431.30  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 224 1  2 10 224  0   0 -       459.13  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 225 1  2 10 225  0   0 -       486.96  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 226 1  2 10 226  0   0 -       514.78  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 227 1  2 10 227  0   0 -       542.61  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 228 1  2 10 228  0   0 -       570.43  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 229 1  2 10 229  0   0 -       598.26  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 230 1  2 10 230  0   0 a       626.09  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  14 1  2 11 230  0   0    0.00  320.00   186.67  200.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 231 1  2 11 231  0   0 5        13.91  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 232 1  2 11 232  0   0 A        41.74  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 233 1  2 11 233  0   0 0        69.57  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 234 1  2 11 234  0   0 b        97.39  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 235 1  2 11 235  0   0 -       125.22  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 236 1  2 11 236  0   0 -       153.04  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 237 1  2 11 237  0   0 -       180.87  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 238 1  2 11 238  0   0 -       208.70  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 239 1  2 11 239  0   0 -       236.52  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 240 1  2 11 240  0   0 -       264.35  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 241 1  2 11 241  0   0 -       292.17  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 242 1  2 11 242  0   0 -       320.00  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 243 1  2 11 243  0   0 b       347.83  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 244 1  2 11 244  0   0 b       375.65  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 245 1  2 11 245  0   0 -       403.48  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 246 1  2 11 246  0   0 -       431.30  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 247 1  2 11 247  0   0 -       459.13  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 248 1  2 11 248  0   0 -       486.96  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 249 1  2 11 249  0   0 -       514.78  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 250 1  2 11 250  0   0 -       542.61  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 251 1  2 11 251  0   0 -       570.43  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 252 1  2 11 252  0   0 -       598.26  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 253 1  2 11 253  0   0 b       626.09  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  15 1  2 12 253  0   0    0.00  320.00   160.00  173.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 254 1  2 12 254  0   0 6        13.91  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 255 1  2 12 255  0   0 E        41.74  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 256 1  2 12 256  0   0 0        69.57  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 257 1  2 12 257  0   0 c        97.39  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 258 1  2 12 258  0   0 -       125.22  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 259 1  2 12 259  0   0 -       153.04  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 260 1  2 12 260  0   0 -       180.87  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 261 1  2 12 261  0   0 -       208.70  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 262 1  2 12 262  0   0 -       236.52  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 263 1  2 12 263  0   0 -       264.35  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 264 1  2 12 264  0   0 -       292.17  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 265 1  2 12 265  0   0 -       320.00  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 266 1  2 12 266  0   0 c       347.83  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 267 1  2 12 267  0   0 c       375.65  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 268 1  2 12 268  0   0 -       403.48  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 269 1  2 12 269  0   0 -       431.30  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 270 1  2 12 270  0   0 -       459.13  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 271 1  2 12 271  0   0 -       486.96  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 272 1  2 12 272  0   0 -       514.78  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 273 1  2 12 273  0   0 -       542.61  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 274 1  2 12 274  0   0 -       570.43  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 275 1  2 12 275  0   0 -       598.26  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 276 1  2 12 276  0   0 c       626.09  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  16 1  3 12 276  0   0    0.00  320.00     0.00   80.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Line      OrderedGroup(1) None
+  17 1  3 13 276  0   0    0.00  320.00   133.33  146.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 277 1  3 13 277  0   0 1        13.91  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 278 1  3 13 278  0   0 E        41.74  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 279 1  3 13 279  0   0 0        69.57  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 280 1  3 13 280  0   0 d        97.39  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 281 1  3 13 281  0   0 -       125.22  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 282 1  3 13 282  0   0 -       153.04  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 283 1  3 13 283  0   0 -       180.87  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 284 1  3 13 284  0   0 -       208.70  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 285 1  3 13 285  0   0 -       236.52  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 286 1  3 13 286  0   0 -       264.35  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 287 1  3 13 287  0   0 -       292.17  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 288 1  3 13 288  0   0 -       320.00  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 289 1  3 13 289  0   0 d       347.83  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 290 1  3 13 290  0   0 d       375.65  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 291 1  3 13 291  0   0 -       403.48  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 292 1  3 13 292  0   0 -       431.30  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 293 1  3 13 293  0   0 -       459.13  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 294 1  3 13 294  0   0 -       486.96  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 295 1  3 13 295  0   0 -       514.78  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 296 1  3 13 296  0   0 -       542.61  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 297 1  3 13 297  0   0 -       570.43  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 298 1  3 13 298  0   0 -       598.26  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 299 1  3 13 299  0   0 d       626.09  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  18 1  3 14 299  0   0    0.00  320.00   106.67  120.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 300 1  3 14 300  0   0 2        13.91  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 301 1  3 14 301  0   0 B        41.74  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 302 1  3 14 302  0   0 0        69.57  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 303 1  3 14 303  0   0 e        97.39  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 304 1  3 14 304  0   0 -       125.22  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 305 1  3 14 305  0   0 -       153.04  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 306 1  3 14 306  0   0 -       180.87  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 307 1  3 14 307  0   0 -       208.70  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 308 1  3 14 308  0   0 -       236.52  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 309 1  3 14 309  0   0 -       264.35  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 310 1  3 14 310  0   0 -       292.17  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 311 1  3 14 311  0   0 -       320.00  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 312 1  3 14 312  0   0 e       347.83  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 313 1  3 14 313  0   0 e       375.65  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 314 1  3 14 314  0   0 -       403.48  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 315 1  3 14 315  0   0 -       431.30  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 316 1  3 14 316  0   0 -       459.13  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 317 1  3 14 317  0   0 -       486.96  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 318 1  3 14 318  0   0 -       514.78  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 319 1  3 14 319  0   0 -       542.61  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 320 1  3 14 320  0   0 -       570.43  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 321 1  3 14 321  0   0 -       598.26  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 322 1  3 14 322  0   0 e       626.09  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  19 1  3 15 322  0   0    0.00  320.00    80.00   93.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 323 1  3 15 323  0   0 3        13.91   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 324 1  3 15 324  0   0 G        41.74   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 325 1  3 15 325  0   0 0        69.57   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 326 1  3 15 326  0   0 f        97.39   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 327 1  3 15 327  0   0 -       125.22   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 328 1  3 15 328  0   0 -       153.04   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 329 1  3 15 329  0   0 -       180.87   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 330 1  3 15 330  0   0 -       208.70   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 331 1  3 15 331  0   0 -       236.52   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 332 1  3 15 332  0   0 -       264.35   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 333 1  3 15 333  0   0 -       292.17   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 334 1  3 15 334  0   0 -       320.00   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 335 1  3 15 335  0   0 f       347.83   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 336 1  3 15 336  0   0 f       375.65   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 337 1  3 15 337  0   0 -       403.48   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 338 1  3 15 338  0   0 -       431.30   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 339 1  3 15 339  0   0 -       459.13   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 340 1  3 15 340  0   0 -       486.96   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 341 1  3 15 341  0   0 -       514.78   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 342 1  3 15 342  0   0 -       542.61   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 343 1  3 15 343  0   0 -       570.43   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 344 1  3 15 344  0   0 -       598.26   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 345 1  3 15 345  0   0 f       626.09   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  20 1  3 16 345  0   0    0.00  320.00    53.33   66.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 346 1  3 16 346  0   0 4        13.91   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 347 1  3 16 347  0   0 D        41.74   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 348 1  3 16 348  0   0 0        69.57   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 349 1  3 16 349  0   0 g        97.39   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 350 1  3 16 350  0   0 -       125.22   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 351 1  3 16 351  0   0 -       153.04   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 352 1  3 16 352  0   0 -       180.87   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 353 1  3 16 353  0   0 -       208.70   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 354 1  3 16 354  0   0 -       236.52   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 355 1  3 16 355  0   0 -       264.35   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 356 1  3 16 356  0   0 -       292.17   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 357 1  3 16 357  0   0 -       320.00   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 358 1  3 16 358  0   0 g       347.83   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 359 1  3 16 359  0   0 g       375.65   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 360 1  3 16 360  0   0 -       403.48   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 361 1  3 16 361  0   0 -       431.30   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 362 1  3 16 362  0   0 -       459.13   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 363 1  3 16 363  0   0 -       486.96   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 364 1  3 16 364  0   0 -       514.78   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 365 1  3 16 365  0   0 -       542.61   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 366 1  3 16 366  0   0 -       570.43   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 367 1  3 16 367  0   0 -       598.26   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 368 1  3 16 368  0   0 g       626.09   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  21 1  3 17 368  0   0    0.00  320.00    26.67   40.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 369 1  3 17 369  0   0 5        13.91   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 370 1  3 17 370  0   0 A        41.74   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 371 1  3 17 371  0   0 0        69.57   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 372 1  3 17 372  0   0 h        97.39   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 373 1  3 17 373  0   0 -       125.22   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 374 1  3 17 374  0   0 -       153.04   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 375 1  3 17 375  0   0 -       180.87   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 376 1  3 17 376  0   0 -       208.70   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 377 1  3 17 377  0   0 -       236.52   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 378 1  3 17 378  0   0 -       264.35   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 379 1  3 17 379  0   0 -       292.17   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 380 1  3 17 380  0   0 -       320.00   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 381 1  3 17 381  0   0 h       347.83   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 382 1  3 17 382  0   0 h       375.65   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 383 1  3 17 383  0   0 -       403.48   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 384 1  3 17 384  0   0 -       431.30   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 385 1  3 17 385  0   0 -       459.13   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 386 1  3 17 386  0   0 -       486.96   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 387 1  3 17 387  0   0 -       514.78   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 388 1  3 17 388  0   0 -       542.61   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 389 1  3 17 389  0   0 -       570.43   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 390 1  3 17 390  0   0 -       598.26   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 391 1  3 17 391  0   0 h       626.09   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  22 1  3 18 391  0   0    0.00  320.00     0.00   13.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 create Row       OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+ 392 1  3 18 392  0   0 6        13.91   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 393 1  3 18 393  0   0 E        41.74   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 394 1  3 18 394  0   0 0        69.57   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 395 1  3 18 395  0   0 i        97.39   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 396 1  3 18 396  0   0 -       125.22   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 397 1  3 18 397  0   0 -       153.04   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 398 1  3 18 398  0   0 -       180.87   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 399 1  3 18 399  0   0 -       208.70   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 400 1  3 18 400  0   0 -       236.52   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 401 1  3 18 401  0   0 -       264.35   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 402 1  3 18 402  0   0 -       292.17   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 403 1  3 18 403  0   0 -       320.00   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 404 1  3 18 404  0   0 i       347.83   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 405 1  3 18 405  0   0 i       375.65   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 406 1  3 18 406  0   0 -       403.48   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 407 1  3 18 407  0   0 -       431.30   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 408 1  3 18 408  0   0 -       459.13   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 409 1  3 18 409  0   0 -       486.96   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 410 1  3 18 410  0   0 -       514.78   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 411 1  3 18 411  0   0 -       542.61   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 412 1  3 18 412  0   0 -       570.43   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+ 413 1  3 18 413  0   0 -       598.26   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  create Col
+ 414 1  3 18 414  0   0 i       626.09   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  create Col
+lid  p  l  r   c  q   u text       x       y       w       h      font name     siz dpi bld itl red grn blu opc  why
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  3                    417 tabs.py         createSprites (END) n=[  1   3   6  20   0  20 ]
+   4                   191 tabs.py             cursorCol cc=   0=(0*414 + 0*138 + 0* 23 +  0* 23 +   0)
+   4                   192 tabs.py             cursorCol cc=   0=(   0 +    0 +   0 +    0 +   0)
+   4                   200 tabs.py             cursorRow cr=   0=(0*414 + 0*138 + 0*  6 +  0*  0 +   0)
+   4                   201 tabs.py             cursorRow cr=   0=(   0 +    0 +   0 +    0 +   0)
+  3                    665 tabs.py          createCursor (BGN) cc=0 cr=0
+  3                    670 tabs.py          createCursor cc=   0 x=   0.0 y= 480.3 w=  27.8 h=  27.0 i=[  0   0   0   0   0   0 ]
+  3                    671 tabs.py          createCursor cr=   0 x=  13.9 y= 466.8 w=  27.8 h=  27.0 i=[  0   0   0   0   0   0 ]
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+  -1 -1 -1 -1  -1 -1  -1    0.00   14.00   480.33  493.83    28.00   27.00    0    0  1.000  1.000  1.000    0.00  255 190  12 176 1 -1 -1 -1  -1     OrderedGroup(6) None
+  3                    675 tabs.py          createCursor (END) cc=0 cr=0
+  3                    236 tabs.py            dumpStruct (BGN) _init
+   4                   609 tabs.py           dumpSprites (BGN) n=[  1   3   6  20   0  20 ] 
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   1 1  0  0   0  0   0    0.00  320.00     0.00  240.00   640.00  480.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 0 Page             OrderedGroup(0) None
+   2 1  1  0   0  0   0    0.00  320.00   320.00  400.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Line             OrderedGroup(1) None
+   3 1  1  1   0  0   0    0.00  320.00   453.33  466.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   4 1  1  2   0  0   0    0.00  320.00   426.67  440.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   5 1  1  3   0  0   0    0.00  320.00   400.00  413.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   6 1  1  4   0  0   0    0.00  320.00   373.33  386.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   7 1  1  5   0  0   0    0.00  320.00   346.67  360.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   8 1  1  6   0  0   0    0.00  320.00   320.00  333.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   9 1  2  6   0  0   0    0.00  320.00   160.00  240.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Line             OrderedGroup(1) None
+  10 1  2  7   0  0   0    0.00  320.00   293.33  306.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  11 1  2  8   0  0   0    0.00  320.00   266.67  280.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  12 1  2  9   0  0   0    0.00  320.00   240.00  253.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  13 1  2 10   0  0   0    0.00  320.00   213.33  226.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  14 1  2 11   0  0   0    0.00  320.00   186.67  200.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  15 1  2 12   0  0   0    0.00  320.00   160.00  173.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  16 1  3 12   0  0   0    0.00  320.00     0.00   80.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Line             OrderedGroup(1) None
+  17 1  3 13   0  0   0    0.00  320.00   133.33  146.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  18 1  3 14   0  0   0    0.00  320.00   106.67  120.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  19 1  3 15   0  0   0    0.00  320.00    80.00   93.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  20 1  3 16   0  0   0    0.00  320.00    53.33   66.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  21 1  3 17   0  0   0    0.00  320.00    26.67   40.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  22 1  3 18   0  0   0    0.00  320.00     0.00   13.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   4                   625 tabs.py           dumpSprites (END) n=[  1   3   6  20   0  20 ] 
+   4                   704 tabs.py              dumpFont (_init) 0 4DPI 14pt 0 (123.429*14pt/4DPI)=432.000pixels
+   4                   191 tabs.py             cursorCol cc=   0=(0*414 + 0*138 + 0* 23 +  0* 23 +   0)
+   4                   192 tabs.py             cursorCol cc=   0=(   0 +    0 +   0 +    0 +   0)
+   4                   200 tabs.py             cursorRow cr=   0=(0*414 + 0*138 + 0*  6 +  0*  0 +   0)
+   4                   201 tabs.py             cursorRow cr=   0=(   0 +    0 +   0 +    0 +   0)
+  3                    242 tabs.py            dumpStruct (END) _init
+ 2                     220 tabs.py                 _init (END) n=[  1   3   6  20   0  20 ] i=[  0   0   0   0   0   0 ]
+1                      125 tabs.py              __init__ (END) <class '__main__.Tabs'> QQ=0 VRSN=0
+
+###   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ######   __init__   ###
+
+     6                 226 tabs.py             on_resize (BGN) (640 x 480) (3 x 23 x 6)=     414 tabs
+      7                511 tabs.py         resizeSprites (BGN) n=[  1   3   6  20   0  20 ]
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   1 1  0  0   0  0   0    0.00  320.00     0.00  240.00   640.00  480.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 0 resize Page      OrderedGroup(0) None
+   2 1  1  0   0  0   0    0.00  320.00   320.00  400.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Line      OrderedGroup(1) None
+   3 1  1  1   0  0   0    0.00  320.00   453.33  466.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+   0 1  1  1   0  0   0 1        13.91  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+   1 1  1  1   1  0   0 E        41.74  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+   2 1  1  1   2  0   0 0        69.57  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+   3 1  1  1   3  0   0 1        97.39  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+   4 1  1  1   4  0   0 -       125.22  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+   5 1  1  1   5  0   0 -       153.04  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+   6 1  1  1   6  0   0 -       180.87  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+   7 1  1  1   7  0   0 -       208.70  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+   8 1  1  1   8  0   0 -       236.52  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+   9 1  1  1   9  0   0 -       264.35  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  10 1  1  1  10  0   0 -       292.17  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  11 1  1  1  11  0   0 -       320.00  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  12 1  1  1  12  0   0 1       347.83  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  13 1  1  1  13  0   0 1       375.65  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  14 1  1  1  14  0   0 -       403.48  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  15 1  1  1  15  0   0 -       431.30  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  16 1  1  1  16  0   0 -       459.13  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  17 1  1  1  17  0   0 -       486.96  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  18 1  1  1  18  0   0 -       514.78  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  19 1  1  1  19  0   0 -       542.61  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  20 1  1  1  20  0   0 -       570.43  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  21 1  1  1  21  0   0 -       598.26  466.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  22 1  1  1  22  0   0 1       626.09  466.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+   4 1  1  2  23  0   0    0.00  320.00   426.67  440.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+  23 1  1  2  23  0   0 2        13.91  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  24 1  1  2  24  0   0 B        41.74  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  25 1  1  2  25  0   0 0        69.57  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  26 1  1  2  26  0   0 2        97.39  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  27 1  1  2  27  0   0 -       125.22  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  28 1  1  2  28  0   0 -       153.04  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  29 1  1  2  29  0   0 -       180.87  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  30 1  1  2  30  0   0 -       208.70  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  31 1  1  2  31  0   0 -       236.52  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  32 1  1  2  32  0   0 -       264.35  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  33 1  1  2  33  0   0 -       292.17  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  34 1  1  2  34  0   0 -       320.00  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  35 1  1  2  35  0   0 2       347.83  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  36 1  1  2  36  0   0 2       375.65  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  37 1  1  2  37  0   0 -       403.48  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  38 1  1  2  38  0   0 -       431.30  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  39 1  1  2  39  0   0 -       459.13  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  40 1  1  2  40  0   0 -       486.96  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  41 1  1  2  41  0   0 -       514.78  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  42 1  1  2  42  0   0 -       542.61  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  43 1  1  2  43  0   0 -       570.43  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  44 1  1  2  44  0   0 -       598.26  440.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  45 1  1  2  45  0   0 2       626.09  440.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+   5 1  1  3  46  0   0    0.00  320.00   400.00  413.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+  46 1  1  3  46  0   0 3        13.91  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  47 1  1  3  47  0   0 G        41.74  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  48 1  1  3  48  0   0 0        69.57  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  49 1  1  3  49  0   0 3        97.39  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  50 1  1  3  50  0   0 -       125.22  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  51 1  1  3  51  0   0 -       153.04  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  52 1  1  3  52  0   0 -       180.87  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  53 1  1  3  53  0   0 -       208.70  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  54 1  1  3  54  0   0 -       236.52  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  55 1  1  3  55  0   0 -       264.35  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  56 1  1  3  56  0   0 -       292.17  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  57 1  1  3  57  0   0 -       320.00  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  58 1  1  3  58  0   0 3       347.83  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  59 1  1  3  59  0   0 3       375.65  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  60 1  1  3  60  0   0 -       403.48  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  61 1  1  3  61  0   0 -       431.30  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  62 1  1  3  62  0   0 -       459.13  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  63 1  1  3  63  0   0 -       486.96  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  64 1  1  3  64  0   0 -       514.78  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  65 1  1  3  65  0   0 -       542.61  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  66 1  1  3  66  0   0 -       570.43  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  67 1  1  3  67  0   0 -       598.26  413.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  68 1  1  3  68  0   0 3       626.09  413.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+   6 1  1  4  69  0   0    0.00  320.00   373.33  386.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+  69 1  1  4  69  0   0 4        13.91  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  70 1  1  4  70  0   0 D        41.74  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  71 1  1  4  71  0   0 0        69.57  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  72 1  1  4  72  0   0 4        97.39  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  73 1  1  4  73  0   0 -       125.22  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  74 1  1  4  74  0   0 -       153.04  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  75 1  1  4  75  0   0 -       180.87  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  76 1  1  4  76  0   0 -       208.70  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  77 1  1  4  77  0   0 -       236.52  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  78 1  1  4  78  0   0 -       264.35  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  79 1  1  4  79  0   0 -       292.17  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  80 1  1  4  80  0   0 -       320.00  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  81 1  1  4  81  0   0 4       347.83  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  82 1  1  4  82  0   0 4       375.65  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  83 1  1  4  83  0   0 -       403.48  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  84 1  1  4  84  0   0 -       431.30  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  85 1  1  4  85  0   0 -       459.13  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  86 1  1  4  86  0   0 -       486.96  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  87 1  1  4  87  0   0 -       514.78  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  88 1  1  4  88  0   0 -       542.61  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  89 1  1  4  89  0   0 -       570.43  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  90 1  1  4  90  0   0 -       598.26  386.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  91 1  1  4  91  0   0 4       626.09  386.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+   7 1  1  5  92  0   0    0.00  320.00   346.67  360.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+  92 1  1  5  92  0   0 5        13.91  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  93 1  1  5  93  0   0 A        41.74  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  94 1  1  5  94  0   0 0        69.57  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  95 1  1  5  95  0   0 5        97.39  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  96 1  1  5  96  0   0 -       125.22  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  97 1  1  5  97  0   0 -       153.04  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  98 1  1  5  98  0   0 -       180.87  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  99 1  1  5  99  0   0 -       208.70  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 100 1  1  5 100  0   0 -       236.52  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 101 1  1  5 101  0   0 -       264.35  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 102 1  1  5 102  0   0 -       292.17  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 103 1  1  5 103  0   0 -       320.00  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 104 1  1  5 104  0   0 5       347.83  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 105 1  1  5 105  0   0 5       375.65  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 106 1  1  5 106  0   0 -       403.48  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 107 1  1  5 107  0   0 -       431.30  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 108 1  1  5 108  0   0 -       459.13  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 109 1  1  5 109  0   0 -       486.96  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 110 1  1  5 110  0   0 -       514.78  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 111 1  1  5 111  0   0 -       542.61  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 112 1  1  5 112  0   0 -       570.43  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 113 1  1  5 113  0   0 -       598.26  360.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 114 1  1  5 114  0   0 5       626.09  360.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+   8 1  1  6 115  0   0    0.00  320.00   320.00  333.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 115 1  1  6 115  0   0 6        13.91  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 116 1  1  6 116  0   0 E        41.74  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 117 1  1  6 117  0   0 0        69.57  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 118 1  1  6 118  0   0 6        97.39  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 119 1  1  6 119  0   0 -       125.22  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 120 1  1  6 120  0   0 -       153.04  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 121 1  1  6 121  0   0 -       180.87  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 122 1  1  6 122  0   0 -       208.70  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 123 1  1  6 123  0   0 -       236.52  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 124 1  1  6 124  0   0 -       264.35  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 125 1  1  6 125  0   0 -       292.17  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 126 1  1  6 126  0   0 -       320.00  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 127 1  1  6 127  0   0 6       347.83  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 128 1  1  6 128  0   0 6       375.65  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 129 1  1  6 129  0   0 -       403.48  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 130 1  1  6 130  0   0 -       431.30  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 131 1  1  6 131  0   0 -       459.13  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 132 1  1  6 132  0   0 -       486.96  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 133 1  1  6 133  0   0 -       514.78  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 134 1  1  6 134  0   0 -       542.61  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 135 1  1  6 135  0   0 -       570.43  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 136 1  1  6 136  0   0 -       598.26  333.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 137 1  1  6 137  0   0 6       626.09  333.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+   9 1  2  6 138  0   0    0.00  320.00   160.00  240.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Line      OrderedGroup(1) None
+  10 1  2  7 138  0   0    0.00  320.00   293.33  306.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 138 1  2  7 138  0   0 1        13.91  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 139 1  2  7 139  0   0 E        41.74  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 140 1  2  7 140  0   0 0        69.57  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 141 1  2  7 141  0   0 7        97.39  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 142 1  2  7 142  0   0 -       125.22  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 143 1  2  7 143  0   0 -       153.04  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 144 1  2  7 144  0   0 -       180.87  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 145 1  2  7 145  0   0 -       208.70  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 146 1  2  7 146  0   0 -       236.52  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 147 1  2  7 147  0   0 -       264.35  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 148 1  2  7 148  0   0 -       292.17  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 149 1  2  7 149  0   0 -       320.00  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 150 1  2  7 150  0   0 7       347.83  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 151 1  2  7 151  0   0 7       375.65  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 152 1  2  7 152  0   0 -       403.48  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 153 1  2  7 153  0   0 -       431.30  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 154 1  2  7 154  0   0 -       459.13  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 155 1  2  7 155  0   0 -       486.96  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 156 1  2  7 156  0   0 -       514.78  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 157 1  2  7 157  0   0 -       542.61  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 158 1  2  7 158  0   0 -       570.43  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 159 1  2  7 159  0   0 -       598.26  306.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 160 1  2  7 160  0   0 7       626.09  306.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  11 1  2  8 161  0   0    0.00  320.00   266.67  280.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 161 1  2  8 161  0   0 2        13.91  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 162 1  2  8 162  0   0 B        41.74  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 163 1  2  8 163  0   0 0        69.57  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 164 1  2  8 164  0   0 8        97.39  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 165 1  2  8 165  0   0 -       125.22  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 166 1  2  8 166  0   0 -       153.04  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 167 1  2  8 167  0   0 -       180.87  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 168 1  2  8 168  0   0 -       208.70  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 169 1  2  8 169  0   0 -       236.52  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 170 1  2  8 170  0   0 -       264.35  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 171 1  2  8 171  0   0 -       292.17  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 172 1  2  8 172  0   0 -       320.00  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 173 1  2  8 173  0   0 8       347.83  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 174 1  2  8 174  0   0 8       375.65  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 175 1  2  8 175  0   0 -       403.48  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 176 1  2  8 176  0   0 -       431.30  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 177 1  2  8 177  0   0 -       459.13  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 178 1  2  8 178  0   0 -       486.96  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 179 1  2  8 179  0   0 -       514.78  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 180 1  2  8 180  0   0 -       542.61  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 181 1  2  8 181  0   0 -       570.43  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 182 1  2  8 182  0   0 -       598.26  280.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 183 1  2  8 183  0   0 8       626.09  280.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  12 1  2  9 184  0   0    0.00  320.00   240.00  253.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 184 1  2  9 184  0   0 3        13.91  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 185 1  2  9 185  0   0 G        41.74  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 186 1  2  9 186  0   0 0        69.57  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 187 1  2  9 187  0   0 9        97.39  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 188 1  2  9 188  0   0 -       125.22  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 189 1  2  9 189  0   0 -       153.04  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 190 1  2  9 190  0   0 -       180.87  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 191 1  2  9 191  0   0 -       208.70  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 192 1  2  9 192  0   0 -       236.52  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 193 1  2  9 193  0   0 -       264.35  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 194 1  2  9 194  0   0 -       292.17  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 195 1  2  9 195  0   0 -       320.00  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 196 1  2  9 196  0   0 9       347.83  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 197 1  2  9 197  0   0 9       375.65  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 198 1  2  9 198  0   0 -       403.48  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 199 1  2  9 199  0   0 -       431.30  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 200 1  2  9 200  0   0 -       459.13  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 201 1  2  9 201  0   0 -       486.96  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 202 1  2  9 202  0   0 -       514.78  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 203 1  2  9 203  0   0 -       542.61  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 204 1  2  9 204  0   0 -       570.43  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 205 1  2  9 205  0   0 -       598.26  253.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 206 1  2  9 206  0   0 9       626.09  253.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  13 1  2 10 207  0   0    0.00  320.00   213.33  226.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 207 1  2 10 207  0   0 4        13.91  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 208 1  2 10 208  0   0 D        41.74  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 209 1  2 10 209  0   0 0        69.57  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 210 1  2 10 210  0   0 a        97.39  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 211 1  2 10 211  0   0 -       125.22  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 212 1  2 10 212  0   0 -       153.04  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 213 1  2 10 213  0   0 -       180.87  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 214 1  2 10 214  0   0 -       208.70  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 215 1  2 10 215  0   0 -       236.52  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 216 1  2 10 216  0   0 -       264.35  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 217 1  2 10 217  0   0 -       292.17  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 218 1  2 10 218  0   0 -       320.00  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 219 1  2 10 219  0   0 a       347.83  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 220 1  2 10 220  0   0 a       375.65  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 221 1  2 10 221  0   0 -       403.48  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 222 1  2 10 222  0   0 -       431.30  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 223 1  2 10 223  0   0 -       459.13  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 224 1  2 10 224  0   0 -       486.96  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 225 1  2 10 225  0   0 -       514.78  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 226 1  2 10 226  0   0 -       542.61  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 227 1  2 10 227  0   0 -       570.43  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 228 1  2 10 228  0   0 -       598.26  226.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 229 1  2 10 229  0   0 a       626.09  226.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  14 1  2 11 230  0   0    0.00  320.00   186.67  200.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 230 1  2 11 230  0   0 5        13.91  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 231 1  2 11 231  0   0 A        41.74  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 232 1  2 11 232  0   0 0        69.57  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 233 1  2 11 233  0   0 b        97.39  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 234 1  2 11 234  0   0 -       125.22  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 235 1  2 11 235  0   0 -       153.04  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 236 1  2 11 236  0   0 -       180.87  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 237 1  2 11 237  0   0 -       208.70  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 238 1  2 11 238  0   0 -       236.52  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 239 1  2 11 239  0   0 -       264.35  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 240 1  2 11 240  0   0 -       292.17  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 241 1  2 11 241  0   0 -       320.00  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 242 1  2 11 242  0   0 b       347.83  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 243 1  2 11 243  0   0 b       375.65  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 244 1  2 11 244  0   0 -       403.48  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 245 1  2 11 245  0   0 -       431.30  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 246 1  2 11 246  0   0 -       459.13  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 247 1  2 11 247  0   0 -       486.96  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 248 1  2 11 248  0   0 -       514.78  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 249 1  2 11 249  0   0 -       542.61  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 250 1  2 11 250  0   0 -       570.43  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 251 1  2 11 251  0   0 -       598.26  200.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 252 1  2 11 252  0   0 b       626.09  200.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  15 1  2 12 253  0   0    0.00  320.00   160.00  173.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 253 1  2 12 253  0   0 6        13.91  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 254 1  2 12 254  0   0 E        41.74  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 255 1  2 12 255  0   0 0        69.57  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 256 1  2 12 256  0   0 c        97.39  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 257 1  2 12 257  0   0 -       125.22  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 258 1  2 12 258  0   0 -       153.04  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 259 1  2 12 259  0   0 -       180.87  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 260 1  2 12 260  0   0 -       208.70  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 261 1  2 12 261  0   0 -       236.52  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 262 1  2 12 262  0   0 -       264.35  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 263 1  2 12 263  0   0 -       292.17  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 264 1  2 12 264  0   0 -       320.00  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 265 1  2 12 265  0   0 c       347.83  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 266 1  2 12 266  0   0 c       375.65  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 267 1  2 12 267  0   0 -       403.48  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 268 1  2 12 268  0   0 -       431.30  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 269 1  2 12 269  0   0 -       459.13  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 270 1  2 12 270  0   0 -       486.96  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 271 1  2 12 271  0   0 -       514.78  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 272 1  2 12 272  0   0 -       542.61  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 273 1  2 12 273  0   0 -       570.43  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 274 1  2 12 274  0   0 -       598.26  173.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 275 1  2 12 275  0   0 c       626.09  173.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  16 1  3 12 276  0   0    0.00  320.00     0.00   80.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Line      OrderedGroup(1) None
+  17 1  3 13 276  0   0    0.00  320.00   133.33  146.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 276 1  3 13 276  0   0 1        13.91  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 277 1  3 13 277  0   0 E        41.74  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 278 1  3 13 278  0   0 0        69.57  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 279 1  3 13 279  0   0 d        97.39  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 280 1  3 13 280  0   0 -       125.22  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 281 1  3 13 281  0   0 -       153.04  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 282 1  3 13 282  0   0 -       180.87  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 283 1  3 13 283  0   0 -       208.70  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 284 1  3 13 284  0   0 -       236.52  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 285 1  3 13 285  0   0 -       264.35  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 286 1  3 13 286  0   0 -       292.17  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 287 1  3 13 287  0   0 -       320.00  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 288 1  3 13 288  0   0 d       347.83  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 289 1  3 13 289  0   0 d       375.65  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 290 1  3 13 290  0   0 -       403.48  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 291 1  3 13 291  0   0 -       431.30  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 292 1  3 13 292  0   0 -       459.13  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 293 1  3 13 293  0   0 -       486.96  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 294 1  3 13 294  0   0 -       514.78  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 295 1  3 13 295  0   0 -       542.61  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 296 1  3 13 296  0   0 -       570.43  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 297 1  3 13 297  0   0 -       598.26  146.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 298 1  3 13 298  0   0 d       626.09  146.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  18 1  3 14 299  0   0    0.00  320.00   106.67  120.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 299 1  3 14 299  0   0 2        13.91  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 300 1  3 14 300  0   0 B        41.74  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 301 1  3 14 301  0   0 0        69.57  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 302 1  3 14 302  0   0 e        97.39  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 303 1  3 14 303  0   0 -       125.22  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 304 1  3 14 304  0   0 -       153.04  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 305 1  3 14 305  0   0 -       180.87  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 306 1  3 14 306  0   0 -       208.70  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 307 1  3 14 307  0   0 -       236.52  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 308 1  3 14 308  0   0 -       264.35  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 309 1  3 14 309  0   0 -       292.17  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 310 1  3 14 310  0   0 -       320.00  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 311 1  3 14 311  0   0 e       347.83  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 312 1  3 14 312  0   0 e       375.65  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 313 1  3 14 313  0   0 -       403.48  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 314 1  3 14 314  0   0 -       431.30  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 315 1  3 14 315  0   0 -       459.13  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 316 1  3 14 316  0   0 -       486.96  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 317 1  3 14 317  0   0 -       514.78  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 318 1  3 14 318  0   0 -       542.61  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 319 1  3 14 319  0   0 -       570.43  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 320 1  3 14 320  0   0 -       598.26  120.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 321 1  3 14 321  0   0 e       626.09  120.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  19 1  3 15 322  0   0    0.00  320.00    80.00   93.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 322 1  3 15 322  0   0 3        13.91   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 323 1  3 15 323  0   0 G        41.74   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 324 1  3 15 324  0   0 0        69.57   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 325 1  3 15 325  0   0 f        97.39   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 326 1  3 15 326  0   0 -       125.22   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 327 1  3 15 327  0   0 -       153.04   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 328 1  3 15 328  0   0 -       180.87   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 329 1  3 15 329  0   0 -       208.70   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 330 1  3 15 330  0   0 -       236.52   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 331 1  3 15 331  0   0 -       264.35   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 332 1  3 15 332  0   0 -       292.17   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 333 1  3 15 333  0   0 -       320.00   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 334 1  3 15 334  0   0 f       347.83   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 335 1  3 15 335  0   0 f       375.65   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 336 1  3 15 336  0   0 -       403.48   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 337 1  3 15 337  0   0 -       431.30   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 338 1  3 15 338  0   0 -       459.13   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 339 1  3 15 339  0   0 -       486.96   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 340 1  3 15 340  0   0 -       514.78   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 341 1  3 15 341  0   0 -       542.61   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 342 1  3 15 342  0   0 -       570.43   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 343 1  3 15 343  0   0 -       598.26   93.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 344 1  3 15 344  0   0 f       626.09   93.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  20 1  3 16 345  0   0    0.00  320.00    53.33   66.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 345 1  3 16 345  0   0 4        13.91   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 346 1  3 16 346  0   0 D        41.74   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 347 1  3 16 347  0   0 0        69.57   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 348 1  3 16 348  0   0 g        97.39   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 349 1  3 16 349  0   0 -       125.22   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 350 1  3 16 350  0   0 -       153.04   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 351 1  3 16 351  0   0 -       180.87   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 352 1  3 16 352  0   0 -       208.70   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 353 1  3 16 353  0   0 -       236.52   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 354 1  3 16 354  0   0 -       264.35   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 355 1  3 16 355  0   0 -       292.17   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 356 1  3 16 356  0   0 -       320.00   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 357 1  3 16 357  0   0 g       347.83   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 358 1  3 16 358  0   0 g       375.65   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 359 1  3 16 359  0   0 -       403.48   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 360 1  3 16 360  0   0 -       431.30   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 361 1  3 16 361  0   0 -       459.13   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 362 1  3 16 362  0   0 -       486.96   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 363 1  3 16 363  0   0 -       514.78   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 364 1  3 16 364  0   0 -       542.61   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 365 1  3 16 365  0   0 -       570.43   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 366 1  3 16 366  0   0 -       598.26   66.83   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 367 1  3 16 367  0   0 g       626.09   66.83   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+  21 1  3 17 368  0   0    0.00  320.00    26.67   40.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 368 1  3 17 368  0   0 5        13.91   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 369 1  3 17 369  0   0 A        41.74   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 370 1  3 17 370  0   0 0        69.57   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 371 1  3 17 371  0   0 h        97.39   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 372 1  3 17 372  0   0 -       125.22   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 373 1  3 17 373  0   0 -       153.04   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 374 1  3 17 374  0   0 -       180.87   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 375 1  3 17 375  0   0 -       208.70   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 376 1  3 17 376  0   0 -       236.52   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 377 1  3 17 377  0   0 -       264.35   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 378 1  3 17 378  0   0 -       292.17   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 379 1  3 17 379  0   0 -       320.00   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 380 1  3 17 380  0   0 h       347.83   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 381 1  3 17 381  0   0 h       375.65   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 382 1  3 17 382  0   0 -       403.48   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 383 1  3 17 383  0   0 -       431.30   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 384 1  3 17 384  0   0 -       459.13   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 385 1  3 17 385  0   0 -       486.96   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 386 1  3 17 386  0   0 -       514.78   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 387 1  3 17 387  0   0 -       542.61   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 388 1  3 17 388  0   0 -       570.43   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 389 1  3 17 389  0   0 -       598.26   40.17   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 390 1  3 17 390  0   0 h       626.09   40.17   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+  22 1  3 18 391  0   0    0.00  320.00     0.00   13.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 resize Row       OrderedGroup(2) None
+ 391 1  3 18 391  0   0 6        13.91   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 392 1  3 18 392  0   0 E        41.74   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 393 1  3 18 393  0   0 0        69.57   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 394 1  3 18 394  0   0 i        97.39   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 395 1  3 18 395  0   0 -       125.22   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 396 1  3 18 396  0   0 -       153.04   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 397 1  3 18 397  0   0 -       180.87   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 398 1  3 18 398  0   0 -       208.70   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 399 1  3 18 399  0   0 -       236.52   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 400 1  3 18 400  0   0 -       264.35   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 401 1  3 18 401  0   0 -       292.17   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 402 1  3 18 402  0   0 -       320.00   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 403 1  3 18 403  0   0 i       347.83   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 404 1  3 18 404  0   0 i       375.65   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 405 1  3 18 405  0   0 -       403.48   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 406 1  3 18 406  0   0 -       431.30   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 407 1  3 18 407  0   0 -       459.13   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 408 1  3 18 408  0   0 -       486.96   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 409 1  3 18 409  0   0 -       514.78   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 410 1  3 18 410  0   0 -       542.61   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 411 1  3 18 411  0   0 -       570.43   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+ 412 1  3 18 412  0   0 -       598.26   13.50   27.83   27.00  Times New Roman  14  96  0   0   44 255   0 255  resize Col
+ 413 1  3 18 413  0   0 i       626.09   13.50   27.83   27.00  Times New Roman  14  96  0   0  255  24  21 255  resize Col
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+      7                550 tabs.py         resizeSprites (END) n=[  1   3   6  20   0  20 ]
+       8               696 tabs.py               minSize cc=   0 cr=   0 w= 27.8 h= 27.0 m= 27.0
+      7                691 tabs.py           resizeFonts (640 x 480) (fs = ms*slope+off) ms=27.0 slope=0.6 off=-1 fs=15.0=15
+       8               708 tabs.py          setFontParam n=font_size v=15.0 m=fontSize
+      7                679 tabs.py          resizeCursor (BGN) cc=0 cr=0
+      7                683 tabs.py          resizeCursor cc=   0 x=  13.9 y= 466.8 w=  27.8 h=  27.0 i=[  0   0   0   0   0   0 ]
+      7                684 tabs.py          resizeCursor cr=   0 x=  13.9 y= 466.8 w=  27.8 h=  27.0 i=[  0   0   0   0   0   0 ]
+      7                686 tabs.py          resizeCursor (END) cc=0 cr=0
+      7                882 tabs.py              snapshot SFX=.A SNAP_DIR=snaps SNAP_SFX=.png BASE_NAME=tabs BASE_PATH=C:\Python36\my\tabs
+      7                887 tabs.py              snapshot SNAP_ID=.0 SNAP_NAME=tabs.A.0.png SNAP_PATH=C:\Python36\my\tabs\snaps\tabs.A.0.png
+      7                236 tabs.py            dumpStruct (BGN) on_resize()
+       8               609 tabs.py           dumpSprites (BGN) n=[  1   3   6  20   0  20 ] 
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   1 1  0  0   0  0   0    0.00  320.00     0.00  240.00   640.00  480.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 0 Page             OrderedGroup(0) None
+   2 1  1  0   0  0   0    0.00  320.00   320.00  400.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Line             OrderedGroup(1) None
+   3 1  1  1   0  0   0    0.00  320.00   453.33  466.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   4 1  1  2   0  0   0    0.00  320.00   426.67  440.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   5 1  1  3   0  0   0    0.00  320.00   400.00  413.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   6 1  1  4   0  0   0    0.00  320.00   373.33  386.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   7 1  1  5   0  0   0    0.00  320.00   346.67  360.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   8 1  1  6   0  0   0    0.00  320.00   320.00  333.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   9 1  2  6   0  0   0    0.00  320.00   160.00  240.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Line             OrderedGroup(1) None
+  10 1  2  7   0  0   0    0.00  320.00   293.33  306.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  11 1  2  8   0  0   0    0.00  320.00   266.67  280.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  12 1  2  9   0  0   0    0.00  320.00   240.00  253.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  13 1  2 10   0  0   0    0.00  320.00   213.33  226.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  14 1  2 11   0  0   0    0.00  320.00   186.67  200.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  15 1  2 12   0  0   0    0.00  320.00   160.00  173.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  16 1  3 12   0  0   0    0.00  320.00     0.00   80.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Line             OrderedGroup(1) None
+  17 1  3 13   0  0   0    0.00  320.00   133.33  146.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  18 1  3 14   0  0   0    0.00  320.00   106.67  120.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  19 1  3 15   0  0   0    0.00  320.00    80.00   93.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  20 1  3 16   0  0   0    0.00  320.00    53.33   66.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  21 1  3 17   0  0   0    0.00  320.00    26.67   40.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  22 1  3 18   0  0   0    0.00  320.00     0.00   13.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+       8               625 tabs.py           dumpSprites (END) n=[  1   3   6  20   0  20 ] 
+       8               704 tabs.py              dumpFont (on_resize()) 0 4DPI 15pt 0 (123.429*15pt/4DPI)=462.857pixels
+       8               191 tabs.py             cursorCol cc=   0=(0*414 + 0*138 + 0* 23 +  0* 23 +   0)
+       8               192 tabs.py             cursorCol cc=   0=(   0 +    0 +   0 +    0 +   0)
+       8               200 tabs.py             cursorRow cr=   0=(0*414 + 0*138 + 0*  6 +  0*  0 +   0)
+       8               201 tabs.py             cursorRow cr=   0=(   0 +    0 +   0 +    0 +   0)
+      7                242 tabs.py            dumpStruct (END) on_resize()
+     6                 233 tabs.py             on_resize (END) (640 x 480) (3 x 23 x 6)=     414 tabs
+       8               729 tabs.py          on_key_press (BGN) LCTRL       65507     LCTRL           2 MOD_CTRL                    
+       8               748 tabs.py          on_key_press (END) LCTRL       65507     LCTRL           2 MOD_CTRL                    
+       8               729 tabs.py          on_key_press (BGN) Q             113     Q               2 MOD_CTRL                    
+        9              917 tabs.py                  quit (BGN)
+        9              919 tabs.py                  quit 
+###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
+
+        10             236 tabs.py            dumpStruct (BGN) quit keyPress(Q)
+         11            609 tabs.py           dumpSprites (BGN) n=[  1   3   6  20   0  20 ] 
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+   1 1  0  0   0  0   0    0.00  320.00     0.00  240.00   640.00  480.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 0 Page             OrderedGroup(0) None
+   2 1  1  0   0  0   0    0.00  320.00   320.00  400.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Line             OrderedGroup(1) None
+   3 1  1  1   0  0   0    0.00  320.00   453.33  466.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   4 1  1  2   0  0   0    0.00  320.00   426.67  440.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   5 1  1  3   0  0   0    0.00  320.00   400.00  413.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   6 1  1  4   0  0   0    0.00  320.00   373.33  386.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   7 1  1  5   0  0   0    0.00  320.00   346.67  360.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   8 1  1  6   0  0   0    0.00  320.00   320.00  333.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+   9 1  2  6   0  0   0    0.00  320.00   160.00  240.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Line             OrderedGroup(1) None
+  10 1  2  7   0  0   0    0.00  320.00   293.33  306.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  11 1  2  8   0  0   0    0.00  320.00   266.67  280.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  12 1  2  9   0  0   0    0.00  320.00   240.00  253.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  13 1  2 10   0  0   0    0.00  320.00   213.33  226.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  14 1  2 11   0  0   0    0.00  320.00   186.67  200.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  15 1  2 12   0  0   0    0.00  320.00   160.00  173.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  16 1  3 12   0  0   0    0.00  320.00     0.00   80.00   640.00  160.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Line             OrderedGroup(1) None
+  17 1  3 13   0  0   0    0.00  320.00   133.33  146.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  18 1  3 14   0  0   0    0.00  320.00   106.67  120.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  19 1  3 15   0  0   0    0.00  320.00    80.00   93.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  20 1  3 16   0  0   0    0.00  320.00    53.33   66.83   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  21 1  3 17   0  0   0    0.00  320.00    26.67   40.17   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+  22 1  3 18   0  0   0    0.00  320.00     0.00   13.50   640.00   27.00    0    0  1.000  1.000  1.000    0.00  118 118 118 255 1 Row              OrderedGroup(2) None
+sid  p  l  r   c  q   u     x      xc        y      yc        w       h    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent
+         11            625 tabs.py           dumpSprites (END) n=[  1   3   6  20   0  20 ] 
+         11            704 tabs.py              dumpFont (quit keyPress(Q)) 0 4DPI 15pt 0 (123.429*15pt/4DPI)=462.857pixels
+         11            191 tabs.py             cursorCol cc=   0=(0*414 + 0*138 + 0* 23 +  0* 23 +   0)
+         11            192 tabs.py             cursorCol cc=   0=(   0 +    0 +   0 +    0 +   0)
+         11            200 tabs.py             cursorRow cr=   0=(0*414 + 0*138 + 0*  6 +  0*  0 +   0)
+         11            201 tabs.py             cursorRow cr=   0=(   0 +    0 +   0 +    0 +   0)
+        10             242 tabs.py            dumpStruct (END) quit keyPress(Q)
+        10             882 tabs.py              snapshot SFX=.A SNAP_DIR=snaps SNAP_SFX=.png BASE_NAME=tabs BASE_PATH=C:\Python36\my\tabs
+        10             887 tabs.py              snapshot SNAP_ID=.1 SNAP_NAME=tabs.A.1.png SNAP_PATH=C:\Python36\my\tabs\snaps\tabs.A.1.png
+        9              922 tabs.py                  quit 
+###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
+
+        10             893 tabs.py             dumpStack  9 tabs        923 quit                 self.dumpStack(inspect.stack())
+        10             893 tabs.py             dumpStack  8 tabs        732 on_key_press         elif kbk == 'Q' and self.isCtrl(mods):                        self.quit(        'keyPress({})'.format(kbk))
+        10             893 tabs.py             dumpStack  7 event       415 dispatch_event       if getattr(self, event_type)(*args):
+        10             893 tabs.py             dumpStack  6 __init__   1333 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
+        10             893 tabs.py             dumpStack  5 __init__    783 _event_key           self.dispatch_event(ev, symbol, modifiers)
+        10             893 tabs.py             dumpStack  4 __init__    712 f                    result = event_handler(msg, wParam, lParam)
+        10             893 tabs.py             dumpStack  3 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
+        10             893 tabs.py             dumpStack  2 base        168 run                  platform_event_loop.step(timeout)
+        10             893 tabs.py             dumpStack  1 __init__    107 run                  event_loop.run()
+        10             893 tabs.py             dumpStack  0 tabs        938 <module>             pyglet.app.run()
+        10             894 tabs.py             dumpStack MAX_STACK_DEPTH=14
+        9              924 tabs.py                  quit 
+###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
+
+        10             893 tabs.py             dumpStack 14 tabs        901 stackDepth           si = inspect.stack()
+        10             893 tabs.py             dumpStack 13 tabs        896 indent               def indent(self): d = self.stackDepth() - 4;  return '{:{w}}'.format(d, w=d)
+        10             893 tabs.py             dumpStack 12 tabs        912 log                  if ind: print('{:20} {:5} {:7} {} {:>20} '.format(self.indent(), l, n, t, f), file=file, end='')
+        10             893 tabs.py             dumpStack 11 tabs        609 dumpSprites          self.log('(BGN) n={} {}'.format(fmtl(n), why))
+        10             893 tabs.py             dumpStack 10 tabs        238 dumpStruct           self.dumpSprites() if SPRITES else self.dumpLabels(why)
+        10             893 tabs.py             dumpStack  9 tabs        920 quit                 self.dumpStruct('quit ' + why)
+        10             893 tabs.py             dumpStack  8 tabs        732 on_key_press         elif kbk == 'Q' and self.isCtrl(mods):                        self.quit(        'keyPress({})'.format(kbk))
+        10             893 tabs.py             dumpStack  7 event       415 dispatch_event       if getattr(self, event_type)(*args):
+        10             893 tabs.py             dumpStack  6 __init__   1333 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
+        10             893 tabs.py             dumpStack  5 __init__    783 _event_key           self.dispatch_event(ev, symbol, modifiers)
+        10             893 tabs.py             dumpStack  4 __init__    712 f                    result = event_handler(msg, wParam, lParam)
+        10             893 tabs.py             dumpStack  3 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
+        10             893 tabs.py             dumpStack  2 base        168 run                  platform_event_loop.step(timeout)
+        10             893 tabs.py             dumpStack  1 __init__    107 run                  event_loop.run()
+        10             893 tabs.py             dumpStack  0 tabs        938 <module>             pyglet.app.run()
+        10             894 tabs.py             dumpStack MAX_STACK_DEPTH=14
+        9              926 tabs.py                  quit (END) closing LOG_FILE=C:\Python36\my\tabs\logs\tabs.A.log
