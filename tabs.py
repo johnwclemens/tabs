@@ -5,37 +5,41 @@ import pyglet.window.event as pygwine
 sys.path.insert(0, os.path.abspath('../lib'))
 import cmdArgs
 ####################################################################################################################################################################################################
-CARET   = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 0  ;  SUBPIX = 1
-QQ      = 1 # QQ SPRITES
-VRSN    = 1
-#QQ      = VRSN  ;  VRSNX = 'QQ={} VRSN={}'.format(QQ, VRSN)
-SPRITES       = VRSN  ;  VRSNX = 'SPRITES={} VRSN={}'.format(SPRITES, VRSN)
-SFX           = '.' + chr(65 + VRSN)
-PATH          = pathlib.Path(sys.argv[0])
-BASE_PATH     = PATH.parent
-BASE_NAME     = BASE_PATH.stem
-LOG_DIR       = 'logs'  ;         LOG_SFX       = '.log'
-LOG_NAME      = BASE_NAME + SFX + LOG_SFX
-LOG_PATH      = BASE_PATH / LOG_DIR / LOG_NAME
-SNAP_DIR      = 'snaps' ;         SNAP_SFX      = '.png'
+EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SUBPIX = 1
+VRSN1          = 1
+VRSN2          = 1
+QQ             = VRSN1  ;  VRSNX1 = 'QQ={} VRSN1={}'.format(QQ, VRSN1)
+SPRITES        = VRSN2  ;  VRSNX2 = 'SPRITES={} VRSN2={}'.format(SPRITES, VRSN2)
+SFX            = '.' + chr(65 + VRSN1) + '.' + chr(49 + VRSN2)
+PATH           = pathlib.Path(sys.argv[0])
+BASE_PATH      = PATH.parent
+BASE_NAME      = BASE_PATH.stem
+LOG_DIR        = 'logs'  ;         LOG_SFX       = '.log'
+LOG_NAME       = BASE_NAME + SFX + LOG_SFX
+LOG_PATH       = BASE_PATH / LOG_DIR / LOG_NAME
+SNAP_DIR       = 'snaps' ;         SNAP_SFX      = '.png'
+CCC            = 3
+FMTN           = [1, 1, 2, 3, 1, 3]
 P, L, R, C, Q, U = 0, 1, 2, 3, 4, 5
 S, LCOL, LLINE = ' ', 'Col', 'Line '
-OPACITY       = [255, 240, 225, 210, 190, 165, 140, 110, 80]
-GRAY          = [(255, 255, 255, OPACITY[0]), ( 0,  0,  0, OPACITY[0])]
-PINK          = [(255,  64, 192, OPACITY[0]), (57, 16, 16, OPACITY[0])]
-INFRA_RED     = [(255,  29,  24, OPACITY[0]), (68, 20, 19, OPACITY[0])]
-RED           = [(255,  24,  21, OPACITY[0]), (88, 15, 12, OPACITY[0])]
-ORANGE        = [(255, 200,  16, OPACITY[0]), (76, 30, 25, OPACITY[0])]
-YELLOW        = [(255, 255,  15, OPACITY[0]), (45, 41, 10, OPACITY[0])]
-GREEN         = [( 44, 255,   0, OPACITY[0]), (21, 54, 10, OPACITY[0])]
-GREEN_BLUE    = [( 24, 255,  61, OPACITY[0]), (10, 49, 25, OPACITY[0])]
-CYAN          = [( 32, 255, 255, OPACITY[0]), (16, 64, 64, OPACITY[0])]
-BLUE_GREEN    = [( 25, 181, 255, OPACITY[0]), (12, 37, 51, OPACITY[0])]
-BLUE          = [( 35,  26, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
-INDIGO        = [( 35,  26, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
-VIOLET        = [(176,  81, 255, OPACITY[0]), (44, 14, 58, OPACITY[0])]
-ULTRA_VIOLET  = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
-HUES          = 13  ;  MAX_STACK_DEPTH = 0  ;  MAX_STACK_FRAME = inspect.stack()
+INIT           = '###   Init   ###' * 13
+QUIT           = '###   Quit   ###' * 13
+OPACITY        = [255, 240, 225, 210, 190, 165, 140, 110, 80]
+GRAY           = [(255, 255, 255, OPACITY[0]), ( 0,  0,  0, OPACITY[0])]
+PINK           = [(255,  64, 192, OPACITY[0]), (57, 16, 16, OPACITY[0])]
+INFRA_RED      = [(255,  29,  24, OPACITY[0]), (68, 20, 19, OPACITY[0])]
+RED            = [(255,  24,  21, OPACITY[0]), (88, 15, 12, OPACITY[0])]
+ORANGE         = [(255, 200,  16, OPACITY[0]), (76, 30, 25, OPACITY[0])]
+YELLOW         = [(255, 255,  15, OPACITY[0]), (45, 41, 10, OPACITY[0])]
+GREEN          = [( 44, 255,   0, OPACITY[0]), (21, 54, 10, OPACITY[0])]
+GREEN_BLUE     = [( 24, 255,  61, OPACITY[0]), (10, 49, 25, OPACITY[0])]
+CYAN           = [( 32, 255, 255, OPACITY[0]), (16, 64, 64, OPACITY[0])]
+BLUE_GREEN     = [( 25, 181, 255, OPACITY[0]), (12, 37, 51, OPACITY[0])]
+BLUE           = [( 35,  26, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
+INDIGO         = [( 35,  26, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
+VIOLET         = [(176,  81, 255, OPACITY[0]), (44, 14, 58, OPACITY[0])]
+ULTRA_VIOLET   = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
+HUES           = 13  ;  MAX_STACK_DEPTH = 0  ;  MAX_STACK_FRAME = inspect.stack()
 ####################################################################################################################################################################################################
 def fmtl(a, w=None, v=3, d1='[', d2=']'):
     c = ''
@@ -73,8 +77,6 @@ VIOLETS       = genColors(VIOLET)     ;  COLORS.append(VIOLETS)
 ULTRA_VIOLETS = genColors(ULTRA_VIOLET)  ;  COLORS.append(ULTRA_VIOLETS)
 COLORS        = (INFRA_REDS, REDS, ORANGES, YELLOWS, GRAYS, GREENS, GREEN_BLUES, CYANS, BLUE_GREENS, BLUES, INDIGOS, VIOLETS, ULTRA_VIOLETS)
 CC            = (255, 190, 12, 176)
-CCC           = 3
-FMTN          = [1, 1, 2, 3, 1, 3]
 FONT_SCALE    = 123.42857
 FONT_NAMES    = ['Times New Roman', 'Lucida Console', 'Courier New', 'Helvetica', 'Arial', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
 FONT_COLORS   = [REDS[0], GREENS[0], GREEN_BLUES[5], BLUES[0], CYANS[0], ORANGES[0], REDS[0], INDIGOS[0], VIOLETS[0], PINKS[0], INFRA_REDS[0], YELLOWS[0], ULTRA_VIOLETS[0], BLUE_GREENS[0], GRAYS[0]]
@@ -86,9 +88,9 @@ class Tabs(pyglet.window.Window):
         SNAP_GLOB_ARG = str(BASE_PATH / SNAP_DIR / BASE_NAME) + SFX + '.*' + SNAP_SFX
         FILE_GLOB     = glob.glob(SNAP_GLOB_ARG)
         self.log('(BGN) {}'.format(__class__))
-        self.log('{}'.format(VRSNX))
+        self.log('{} {}'.format(VRSNX1, VRSNX2))
         self.log('QQ={} SPRITES={}'.format(QQ, SPRITES))
-        self.log('CARET={} EVENT_LOG={} FULL_SCREEN={} ORDER_GROUP={} RESIZE={} SUBPIX={}'.format(CARET, EVENT_LOG, FULL_SCREEN, ORDER_GROUP, RESIZE, SUBPIX))
+        self.log('EVENT_LOG={} FULL_SCREEN={} ORDER_GROUP={} RESIZE={} SUBPIX={}'.format(EVENT_LOG, FULL_SCREEN, ORDER_GROUP, RESIZE, SUBPIX))
         self.log('{}'.format(SNAP_GLOB_ARG))
         for _F in FILE_GLOB:
             self.log('{}'.format(_F))
@@ -120,15 +122,13 @@ class Tabs(pyglet.window.Window):
         super().__init__(screen=self.screens[1], fullscreen=FULL_SCREEN, resizable=True, visible=False)
         self._initWindowB()
         self.symb, self.symbStr, self.mods, self.modsStr, self.kbk = 0, '', 0, '', 0
-        self.ci = 0
-        self.cc  = 0
+        self.cc, self.ci = 0, 0
         self.blankCol = ''
         self.cursor, self.caret = None, None
         self.data = []
         self._init()
-        self.log('(END) {} {}'.format(__class__, VRSNX))
-        text = '\n' + '###   __init__   ###' * 18 + '\n'
-        self.log(text, ind=0)
+        self.log('(END) {} {} {}'.format(__class__, VRSNX1, VRSNX2))
+        self.log('{}'.format(INIT), ind=0)
 
     def _initWindowA(self, dbg=1):
         display      = pyglet.canvas.get_display()
@@ -190,9 +190,9 @@ class Tabs(pyglet.window.Window):
 
     @staticmethod
     def fmtDataDim(d): return '({} x {} x {})={:8,} tabs'.format(len(d), len(d[0]), len(d[0][0]), len(d)*len(d[0])*len(d[0][0]))
-    def fmtGeom(self): return '{} {} {} {}'.format(fmtl(self.n, FMTN), self.snl(), fmtl(self.lnl()), fmtl(self.i, FMTN))
+    def fmtGeom(self): return '{} {} {} {} {}'.format(fmtl(self.n, FMTN), fmtl(self.lnl()), self.snl(), self.cc, fmtl(self.i, FMTN))
     ####################################################################################################################################################################################################
-    def _init(self, dbg=0):
+    def _init(self, dbg=1):
         self.pages, self.lines, self.rows, self.cols = [], [], [], []
         self.qrows, self.ucols = [], []
         self.data, self.labels, self.sprites = [], [], []
@@ -201,6 +201,7 @@ class Tabs(pyglet.window.Window):
         self.kp  = kb  ;  self.kl = kb  ;  self.kq = kb  ;  self.kr = kb  ;  self.ku = kb
         self.ssi = 0
         self._initCps()  ;  self._initRps()
+        self.cursorCol(1)  ;  self.cursorRow(1)
         self.readDataFile()
         if QQ: self.labelTextA, self.labelTextB = ['R', 'M', '@'], ['R', 'M', '@']
         self.createSprites() if SPRITES else  self.createLabels()
@@ -349,8 +350,8 @@ class Tabs(pyglet.window.Window):
     def geom(self, p=None, j=0, init=0, dbg=0):
         nq = QQ  ;   mx, my = None, None
         n, i, x, y, w, h, g = self.n[j], self.i[j], self.x[j], self.y[j], self.w[j], self.h[j], self.g[j]
-        if    nq and j == Q:      n = self.n[R] + 1
-        elif  nq and j == R:      n += 1
+        if    nq and j == Q:     n = self.n[R] + 1
+        elif  nq and j == R:     n += 1
         if j == C or j == U:     n += CCC
         if p:
             if j == C or j == U: w, h = (p.width - x*(n + 1))/n,  p.height - y*2
@@ -623,7 +624,7 @@ class Tabs(pyglet.window.Window):
                 for q in range(nq):
                     sq += 1
                     for u in range(nu + CCC):
-                        su += 1  ;  self.dumpLabel(self.ucols[u], i+1, sp, sl, sr, sc, sq, u+1, why=why)  ;  i += 1
+                        su += 1  ;  self.dumpLabel(self.ucols[i], i+1, sp, sl, sr, sc, sq, u+1, why=why)  ;  i += 1
         self.dumpLabel(idt='uid')
         if dbg: self.log('(END) {} {})'.format(self.fmtGeom(), why))
 
@@ -639,7 +640,7 @@ class Tabs(pyglet.window.Window):
                 for r in range(nr):
                     sr += 1
                     for c in range(nc + CCC):
-                        sc += 1  ;  self.dumpLabel(self.cols[c],  i+1, sp, sl, sr, c+1, sq, su, why=why)  ;  i += 1
+                        sc += 1  ;  self.dumpLabel(self.cols[i],  i+1, sp, sl, sr, c+1, sq, su, why=why)  ;  i += 1
         self.dumpLabel(idt='cid')
         if dbg: self.log('(END) {} {})'.format(self.fmtGeom(), why))
 
@@ -804,7 +805,6 @@ class Tabs(pyglet.window.Window):
 
     def createCursor(self, g):
         c = self.cols[self.i[C] - 1]
-#        w, h = c.width, c.height  ;  x, y = c.x, c.y
         w, h = c.width, c.height  ;  x, y = c.x - w/2, c.y - h/2
         self.log('col[{}]: x={:6.1f} y={:6.1f} w={:6.1f} h={:6.1f} i={}'.format(self.i[C]-1, x, y, w, h, fmtl(self.i, FMTN)))
         self.dumpSprite()
@@ -812,55 +812,72 @@ class Tabs(pyglet.window.Window):
 
     def resizeCursor(self):
         c = self.cols[self.i[C] - 1]
-        w, h = c.width, c.height  ;  x, y = c.x, c.y
-#        w, h = c.width, c.height  ;  x, y = c.x - w/2, c.y - h/2
+        w, h = c.width, c.height  ;  x, y = c.x - w/2, c.y - h/2
         self.log('col[{}]: x={:6.1f} y={:6.1f} w={:6.1f} h={:6.1f} i={}'.format(self.i[C]-1, x, y, w, h, fmtl(self.i, FMTN)))
         self.cursor.update(x=x, y=y, scale_x=w/self.w[C], scale_y=h/self.h[C])
     ####################################################################################################################################################################################################
-    def on_mouse_release(self, x, y, button, modifiers):  # pyglet.window.mouse.MIDDLE #pyglet.window.mouse.LEFT #pyglet.window.mouse.RIGHT
+    def on_mouse_release(self, x, y, button, modifiers):
         np, nl, nr, nc, nq, nu = self.n    ;  nc += CCC
-        w = self.ww/nc  ;  h = self.hh/((nr+nq)*nl)   ;  y0 = y  ;  y = self.hh - y
-        c = int(x/w)    ;  r = int(y/h)
-        self.log('(BGN) b={} m={} {}'.format(button, modifiers, fmtl(self.i, FMTN)))
-        self.log('x={} y0={:4} y={:4} w={:6.2f} h={:6.2f} c={:4} r={:4}'.format(x, y0, y, w, h, c, r))
-        kk = c + r*nc
+        w = self.ww/nc      ;  h = self.hh/((nr+nq)*nl)   ;  y0 = y  ;  y = self.hh - y
+        c = int(x/w)        ;  r = int(y/h)
+        if QQ: pass
+        kk = c + r * nc
         k  = kk - self.cc
-        self.log('k={}, kk={}, cc={}'.format(k, kk, self.cc))
+        self.log('(BGN) {:3} {:4} {:3} {} b={} m={}'.format(self.cc, k, kk, fmtl(self.i, FMTN), button, modifiers), file=sys.stdout)
+        self.log('x={} y0={:4} y={:4} w={:6.2f} h={:6.2f} c={:4} r={:4}'.format(x, y0, y, w, h, c, r), file=sys.stdout)
         self.move(k)
-        self.cc = kk
-#        jp, jl, jr, jc, jq, ju = self.j()
-#        k = jc + jr*nc + jl*nr*nc + jp*nl*nr*nc
-#        self.log('k={}'.format(k))
-#        self.cursor.update(self.cols[k].x, self.cols[k].y)
-#        self.i = [ jj+1 for jj in self.j() ]
-#        self.log('(END) b={} m={} {} k={} cols[k].x={} cols[k].y={}'.format(button, modifiers, fmtl(self.i, FMTN), k, self.cols[k].x, self.cols[k].y))
-        self.log('(END) b={} m={} {} cc={}'.format(button, modifiers, fmtl(self.i, FMTN), self.cc))
+#        self.cc = kk
+        self.log('(END) {:3} {:4} {:3} {} b={} m={}'.format(self.cc, k, kk, fmtl(self.i, FMTN), button, modifiers), file=sys.stdout)
 
-    def move(self, c, dbg=1):
+    def move(self, k, dbg=1):
         np, nl, nr, nc, nq, nu = self.n    ;  nc += CCC
-        if dbg: self.log('(BGN) c={} {}'.format(c, fmtl(self.i, FMTN)), file=sys.stdout)
-        self._move(c)
+        if dbg: self.log('(BGN) {:3} {:4}     {}'.format(self.cc, k, fmtl(self.i, FMTN)), file=sys.stdout)
+        self._move(k)
         jp, jl, jr, jc, jq, ju = self.j()
-        k = jc + jr*nc + jl*nr*nc + jp*nl*nr*nc
-#        t = self.cols[k]  ;  x, y = t.x, t.y
-        t = self.cols[k]  ;  x, y = t.x - t.width/2, t.y - t.height/2
+        kk = jc + jr*nc + jl*nr*nc + jp*nl*nr*nc
+        t = self.labels[kk]  ;  x = t.x - t.width/2  ;  y = t.y - t.height/2
+        self.cc = kk
         self.cursor.update(x=x, y=y)
-        if dbg: self.log('(END) c={} k={} {}'.format(c, k, fmtl(self.i, FMTN)), file=sys.stdout)
+        if dbg: self.log('(END) {:3} {:4} {:3} {}'.format(self.cc, k, kk, fmtl(self.i, FMTN)), file=sys.stdout)
+        self.snapshot()
 
-    def _move(self, c, dbg=1):
-        np, nl, nr, nc, nq, nu = self.n    ;  nc += CCC     ;  nu = nu + CCC if QQ else nu
-        jp, jl, jr, jc, jq, ju = self.j()  ;  jcc = jc + c  ;  juu = ju + c  if QQ else ju
-        if dbg: self.log('(BGN) {} c={}'.format(self.fmtGeom(), c), file=sys.stdout)
-#        self.i[Q] = (jq + juu // nu) % nq + 1
-        self.i[C] = jcc % nc + 1
-        self.i[R] = (jr + jcc // nc) % nr + 1  ;  jrr = jr + jcc // nc
-        self.i[L] = (jl + jrr // nr) % nl + 1  ;  jll = jl + jrr // nr
-        self.i[P] = (jp + jll // nl) % nr + 1
-        self.i[P] = self.i[P] % np
+    def _move(self, k, dbg=1):
+        np, nl, nr, nc, nq, nu = self.n
+        p, l, r, c, q, u = self.j()
+        nc += CCC      ;     nu = nu + CCC if QQ else nu   ;   nrq = nr + nq
+        ic = c + k     ;     iu =  u + k   if QQ else u
+        if dbg: self.log('(BGN) {:3} {:4}     {} nc={} nu={} nrq={}'.format(self.cc, k, fmtl(self.i, FMTN), nc, nu, nrq), file=sys.stdout)
+        self.i[C] = ic %  nc + 1
+        ir   =  r + ic // nc
+        self.i[R] = ir %  nrq + 1
+        il   =  l + ir // nrq
+        self.i[L] = il %  nl + 1
+        ip   =  p + il // nl
+        ip0  = self.i[P]
+        self.i[P] = ip %  np + 1
         if QQ:
-            self.i[U] = juu % nu + 1
+            self.i[U] = iu % nu
             self.i[Q] = self.i[L]
-        if dbg: self.log('(END) {}'.format(self.fmtGeom()), file=sys.stdout)
+        if dbg: self.log('(END) {:3} {:4}     {} ip0={} ip={} il={} ir={} ic={} iu={}'.format(self.cc, k, fmtl(self.i, FMTN), ip0, ip, il, ir, ic, iu), file=sys.stdout)
+
+    def _move_OLD(self, k, dbg=1):
+        np, nl, nr, nc, nq, nu = self.n
+        p, l, r, c, q, u = self.i
+        nc += CCC      ;     nu = nu + CCC if QQ else nu   ;   nrq = nr + nq
+        ic = c + k     ;     iu =  u + k   if QQ else u
+        if dbg: self.log('(BGN) {:3} {:4}     {} nc={} nu={} nrq={}'.format(self.cc, k, fmtl(self.i, FMTN), nc, nu, nrq), file=sys.stdout)
+        self.i[C] = ic %  nc + 1
+        ir   =  r + ic // nc
+        self.i[R] = ir %  nrq + 1
+        il   =  l + ir // nrq
+        self.i[L] = il %  nl + 1
+        ip   =  p + il // nl
+        ip0  = self.i[P]
+        self.i[P] = ip %  np + 1
+        if QQ:
+            self.i[U] = iu % nu
+            self.i[Q] = self.i[L]
+        if dbg: self.log('(END) {:3} {:4}     {} ip0={} ip={} il={} ir={} ic={} iu={}'.format(self.cc, k, fmtl(self.i, FMTN), ip0, ip, il, ir, ic, iu), file=sys.stdout)
     '''
     def nextPage(self, i, motion):
         self.pages[i].visible = False
@@ -885,13 +902,13 @@ class Tabs(pyglet.window.Window):
         self.log('(END) {} i={} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
 
     def updateData(self, text, dbg=0):
-        cc = self.cursorCol(1)
+#        cc = self.cursorCol(1)
         p, l, q, r, c = self.j()
         t = self.data[l][c]
-        self.log('(BGN) text={} cc={} i={} self.data[l][c]={}'.format(text, cc, fmtl(self.i, FMTN), self.data[l][c]), file=sys.stdout)
+        self.log('(BGN) text={} i={} self.data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.data[l][c]), file=sys.stdout)
         self.data[l][c] = t[0:r] + text + t[r+1:]
-        if dbg: self.dumpData(why='updateData text={} cc={} i={} data[l][c]={}'.format(text, cc, self.i, self.data[l][c]))
-        self.log('(END) text={} cc={} i={} self.data[l][c]={}'.format(text, cc, fmtl(self.i, FMTN), self.data[l][c]), file=sys.stdout)
+        if dbg: self.dumpData(why='updateData text={} i={} data[l][c]={}'.format(text, self.i, self.data[l][c]))
+        self.log('(END) text={} i={} self.data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.data[l][c]), file=sys.stdout)
 
     def updateTab(self, text, dbg=1):
         cr = self.cursorRow(1)
@@ -928,13 +945,13 @@ class Tabs(pyglet.window.Window):
         elif m == 3 and n != 13: return 'rd'
         else:                    return 'th'
     ####################################################################################################################################################################################################
-    def snapshot(self):
-        self.log('SFX={} SNAP_DIR={} SNAP_SFX={} BASE_NAME={} BASE_PATH={}'.format(SFX, SNAP_DIR, SNAP_SFX, BASE_NAME, BASE_PATH))
+    def snapshot(self, dbg=0):
+        if dbg: self.log('SFX={} SNAP_DIR={} SNAP_SFX={} BASE_NAME={} BASE_PATH={}'.format(SFX, SNAP_DIR, SNAP_SFX, BASE_NAME, BASE_PATH))
         SNAP_ID   = '.{}'.format(self.ssi)
         SNAP_NAME = BASE_NAME + SFX + SNAP_ID + SNAP_SFX
         SNAP_PATH = BASE_PATH / SNAP_DIR / SNAP_NAME
         pyglet.image.get_buffer_manager().get_color_buffer().save('{}'.format(SNAP_PATH))
-        self.log('SNAP_ID={} SNAP_NAME={} SNAP_PATH={}'.format(SNAP_ID, SNAP_NAME, SNAP_PATH))
+        if dbg: self.log('SNAP_ID={} SNAP_NAME={} SNAP_PATH={}'.format(SNAP_ID, SNAP_NAME, SNAP_PATH))
         self.ssi += 1
 
     def dumpStack(self, si):
@@ -965,16 +982,15 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def quit(self, why=''):
         self.log('(BGN)')
-        text = '\n' + '###   Quit   ###' * 13 + '\n'
-        self.log(text)
+        self.log(QUIT, ind=0)
         self.dumpStruct('quit ' + why)
         self.snapshot()
-        self.log(text)
+        self.log(QUIT, ind=0)
         self.dumpStack(inspect.stack())
-        self.log(text)
+        self.log(QUIT, ind=0)
         self.dumpStack(MAX_STACK_FRAME)
         self.log('(END) closing LOG_FILE={}'.format(LOG_FILE.name))
-        if not LOG_FILE.closed: LOG_FILE.close()
+        LOG_FILE.close()
         exit()
     ####################################################################################################################################################################################################
     @staticmethod
