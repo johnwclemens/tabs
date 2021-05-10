@@ -5,17 +5,16 @@ import pyglet.window.event as pygwine
 sys.path.insert(0, os.path.abspath('../lib'))
 import cmdArgs
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 0  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
-VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
+VRSN3            = 1  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
 #SFX              = '.' + SFX1 + '.' + SFX2 + '.' + SFX3
 #SFX              = '.{}.{}.{}'.format(SFX1, SFX2, SFX3)
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
 PATH             = pathlib.Path(sys.argv[0])
 BASE_PATH        = PATH.parent
 BASE_NAME        = BASE_PATH.stem
-LOG_DIR          = 'logs'  ;         LOG_SFX       = '.log'
 SNAP_DIR         = 'snaps' ;         SNAP_SFX      = '.png'
 CCC              = 3
 FMTN             = (1, 1, 2, 3, 1, 3)
@@ -40,11 +39,6 @@ VIOLET           = [(176,  81, 255, OPACITY[0]), (44, 14, 58, OPACITY[0])]
 ULTRA_VIOLET     = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
 HUES             = 13  ;  MAX_STACK_DEPTH = 0  ;  MAX_STACK_FRAME = inspect.stack()
 ####################################################################################################################################################################################################
-def delGlob(g, why=''):
-    print('deleting {} file globs why={}'.format(len(g), why))
-    for f in g:
-        print('{}'.format(f))
-        os.system('del {}'.format(f))
 def fmtl(a, w=None, d1='[', d2=']'):
     c = ''
     for i in range(len(a)):
@@ -95,10 +89,10 @@ class Tabs(pyglet.window.Window):
         self.log('{}'.format(VRSNX1))
         self.log('{}'.format(VRSNX2))
         self.log('{}'.format(VRSNX3))
-        self.log('CHECKER_BOARD={} EVENT_LOG={} FULL_SCREEN={} ORDER_GROUP={} RESIZE={} SUBPIX={}'.format(CHECKER_BOARD, EVENT_LOG, FULL_SCREEN, ORDER_GROUP, RESIZE, SUBPIX))
+        self.log('CHECKER_BOARD={} EVENT_LOG={} FULL_SCREEN={} ORDER_GROUP={} RESIZE={} SEQ_LOG_FILES={} SUBPIX={}'.format(CHECKER_BOARD, EVENT_LOG, FULL_SCREEN, ORDER_GROUP, RESIZE, SEQ_LOG_FILES, SUBPIX))
         self.log('SNAP_GLOB_ARG={}'.format(SNAP_GLOB_ARG))
         self.log('    SNAP_GLOB={}'.format(SNAP_GLOB))
-        delGlob(SNAP_GLOB, 'SNAP_GLOB')
+        self.delGlob(SNAP_GLOB, 'SNAP_GLOB')
         self.ww, self.hh  = 640, 480
         self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, 6, 20, QQ, 20*QQ], [1, 1, 1, 1, QQ, 1*QQ], [0, 0, 7, 5, 3, 2], [0, 0, 7, 5, 3, 2], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
@@ -892,7 +886,7 @@ class Tabs(pyglet.window.Window):
 
     def updateData(self, text, dbg=0):
 #        cc = self.cursorCol(1)
-        p, l, q, r, c = self.j()
+        p, l, r, c, q, u = self.j()
         t = self.data[l][c]
         self.log('(BGN) text={} i={} self.data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.data[l][c]), file=sys.stdout)
         self.data[l][c] = t[0:r] + text + t[r+1:]
@@ -950,7 +944,8 @@ class Tabs(pyglet.window.Window):
             self.log('{:2} {:9} {:5} {:20} {}'.format(j, n, l, f, c))
         self.log('MAX_STACK_DEPTH={:2}'.format(MAX_STACK_DEPTH))
 
-    def indent(self): d = self.stackDepth() - 4;  return '{:{w}}'.format(d, w=d)
+    @staticmethod
+    def indent(): d = Tabs.stackDepth() - 4;  return '{:{w}}'.format(d, w=d)
 
     @staticmethod
     def stackDepth():
@@ -961,14 +956,53 @@ class Tabs(pyglet.window.Window):
             if j > MAX_STACK_DEPTH: MAX_STACK_DEPTH = j;  MAX_STACK_FRAME = si
         return len(si)
 
-    def log(self, msg='', ind=1, file=None, flush=False, sep=',', end='\n'):
+    @staticmethod
+    def delGlob(g, why=''):
+        print('deleting {} file globs why={}'.format(len(g), why))
+        for f in g:
+            Tabs.log('{}'.format(f))
+            os.system('del {}'.format(f))
+    @staticmethod
+    def getLogPath(seq=0, logdir='logs', logsfx='.log'):
+        if seq:
+            subDir     = '/' + SFX.lstrip('.')
+            logdir     = logdir + subDir
+            Tabs.log('logdir      = {}'.format(logdir))
+            pathlib.Path(logdir).mkdir(parents=True, exist_ok=True)
+            logGlobArg = str(BASE_PATH / logdir / BASE_NAME) + SFX + '.*' + logsfx
+            logGlob    = glob.glob(logGlobArg)
+            seq        = 1 + Tabs.getLogId(logGlob, logsfx)
+            logsfx     = '.{}{}'.format(seq, logsfx)
+            Tabs.log('logGlobArg  = {}'.format(logGlobArg))
+            Tabs.log('logGlob:')
+            Tabs.log('{}'.format(fmtl(logGlob)), ind=0)
+            Tabs.log('seq num     = {}'.format(seq))
+        logName        = BASE_NAME + SFX + logsfx
+        logPath        = BASE_PATH / logdir / logName
+        Tabs.log('logPath     = {}'.format(logPath)) if seq else print('logPath     = {}'.format(logPath))
+        return logPath
+
+    @staticmethod
+    def getLogId(s, sfx):
+        i = 0
+        if len(s):
+            s =s[-1]
+            if s.endswith(sfx):
+                s = s[:-len(sfx)]
+                j = s.rfind('.')
+                s = s[j+1:]
+                i = int(s)
+        return i
+
+    @staticmethod
+    def log(msg='', ind=1, file=None, flush=False, sep=',', end='\n'):
         if not file: file = LOG_FILE
         si = inspect.stack(0)[1]
         p = pathlib.Path(si.filename)  ;        n = p.name  ;        l = si.lineno  ;        f = si.function  ;        t = ''
         if f == 'log': si = inspect.stack(0)[2];  p = pathlib.Path(si.filename);  n = p.name;  l = si.lineno;  f = si.function;  t = ''
-        if ind: print('{:20} {:5} {:7} {} {:>20} '.format(self.indent(), l, n, t, f), file=file, end='')
+        if ind: print('{:20} {:5} {:7} {} {:>20} '.format(Tabs.indent(), l, n, t, f), file=file, end='')
         print('{}'.format(msg), file=file, flush=flush, sep=sep, end=end) if ind else print('{}'.format(msg), file=file, flush=flush, sep=sep, end=end)
-        if file != LOG_FILE: self.log(msg, ind)
+        if file != LOG_FILE: Tabs.log(msg, ind)
     ####################################################################################################################################################################################################
     def quit(self, why=''):
         self.log('(BGN)')
@@ -979,8 +1013,16 @@ class Tabs(pyglet.window.Window):
         self.dumpStack(inspect.stack())
         self.log(QUIT, ind=0)
         self.dumpStack(MAX_STACK_FRAME)
+        self.log('SEQ_LOG_FILES = {}'.format(SEQ_LOG_FILES))
+        logPath = None
+        if SEQ_LOG_FILES:
+            logPath = self.getLogPath(SEQ_LOG_FILES)
+            self.log('LOG_PATH    = {}'.format(LOG_PATH))
+            self.log('logPath     = {}'.format(logPath))
+            self.log('copy {} {}'.format(LOG_PATH, logPath))
         self.log('(END) closing LOG_FILE={}'.format(LOG_FILE.name))
         LOG_FILE.close()
+        if SEQ_LOG_FILES and logPath: os.system('copy {} {}'.format(LOG_PATH, logPath))
         exit()
     ####################################################################################################################################################################################################
     @staticmethod
@@ -988,31 +1030,14 @@ class Tabs(pyglet.window.Window):
         j = 0
         while j < len(l): t = l[j];  t.delete();  del l[j]
 ########################################################################################################################################################################################################
-def getLogId(s, sfx):
-    i = 0
-    if len(s):
-        s =s[-1]
-        if s.endswith(sfx):
-            s = s[:-len(sfx)]
-            j = s.rfind('.')
-            assert j > 0
-            assert len(s) > j
-            s = s[j + 1:]
-            i = int(s)
-    return i
-
 if __name__ == '__main__':
-    print('SEQ_LOG_FILES = {}'.format(SEQ_LOG_FILES))
-    LOG_GLOB_ARG = str(BASE_PATH / LOG_DIR / BASE_NAME) + SFX + '.*' + LOG_SFX
-    LOG_GLOB     = glob.glob(LOG_GLOB_ARG)
-    print('LOG_GLOB_ARG  = {}'.format(LOG_GLOB_ARG))
-    print('    LOG_GLOB  = {}'.format(fmtl(LOG_GLOB)))
-    LOG_ID       = getLogId(LOG_GLOB, LOG_SFX) + 1
-    if SEQ_LOG_FILES: LOG_SFX = f".{LOG_ID}{LOG_SFX}"
-    else:             delGlob(LOG_GLOB, 'LOG_GLOB')
-    LOG_NAME     = BASE_NAME + SFX + LOG_SFX
-    LOG_PATH     = BASE_PATH / LOG_DIR / LOG_NAME
-    print('    LOG_PATH = {}'.format(LOG_PATH))
+    LOG_PATH = Tabs.getLogPath()
     with open(str(LOG_PATH), 'w') as LOG_FILE:
+        Tabs.log('BGN Logging LOG_PATH={}'.format(LOG_PATH))
+        Tabs.log('creating Tabs instance'.format())
         tabs     = Tabs()
-        pyglet.app.run()
+        tabs.log('tabs={}'.format(tabs))
+        tabs.log('invoking pyglet.app.run()'.format())
+        ret = pyglet.app.run()
+        tabs.log('pyglet.app.run() return={}'.format(ret))
+        tabs.log('END Logging LOG_PATH={}'.format(LOG_PATH))
