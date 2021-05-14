@@ -6,9 +6,9 @@ sys.path.insert(0, os.path.abspath('../lib'))
 import cmdArgs
 ####################################################################################################################################################################################################
 CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
-VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
+VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
-VRSN3            = 1  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
+VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
 #SFX              = '.' + SFX1 + '.' + SFX2 + '.' + SFX3
 #SFX              = '.{}.{}.{}'.format(SFX1, SFX2, SFX3)
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
@@ -885,7 +885,6 @@ class Tabs(pyglet.window.Window):
         self.log('(END) {} i={} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
 
     def updateData(self, text, dbg=0):
-#        cc = self.cursorCol(1)
         p, l, r, c, q, u = self.j()
         t = self.data[l][c]
         self.log('(BGN) text={} i={} self.data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.data[l][c]), file=sys.stdout)
@@ -895,10 +894,12 @@ class Tabs(pyglet.window.Window):
 
     def updateTab(self, text, dbg=1):
         cr = self.cursorRow(1)
-        self.log('(BGN) text={} cr={} tabs[cr].text={}'.format(text, cr, self.cols[cr].text), file=sys.stdout)
-        self.cols[cr].text = text
-        if dbg: self.cols[cr].color = FONT_COLORS[self.fontColorIndex + 4]
-        self.log('(END) text={} cr={} tabs[cr].text={}'.format(text, cr, self.cols[cr].text), file=sys.stdout)
+        cc = self.cursorCol(1)
+#        p, l, r, c, q, u = self.j()
+        self.log('(BGN) text={} cc={} cr={} tabs[cr].text={}'.format(text, cc, cr, self.cols[cc].text), file=sys.stdout)
+        self.cols[cc].text = text
+        if dbg: self.cols[cc].color = FONT_COLORS[self.fontColorIndex + 4]
+        self.log('(END) text={} cc={} cr={} tabs[cr].text={}'.format(text, cc, cr, self.cols[cc].text), file=sys.stdout)
 
     def updateCaption(self, txt):
         self.set_caption(txt)
