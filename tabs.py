@@ -200,7 +200,6 @@ class Tabs(pyglet.window.Window):
         kb = [self.kc[0]]  ;  self.kp  = kb  ;  self.kl = kb  ;  self.kq = kb  ;  self.kr = kb  ;  self.ku = kb
         self.ssi = 0
         self._initCps()    ;  self._initRps()
-        self.cursorCol(1)  ;  self.cursorRow(1)
         self.readDataFile()
         if QQ:
             self.labelTextA, self.labelTextB = ['R', 'M', '@'], ['R', 'M', '@']
@@ -235,8 +234,6 @@ class Tabs(pyglet.window.Window):
         self.dumpCols(why)
         self.dumpACols(why)
         self.dumpFont(why)
-        self.cursorCol(1)
-        self.cursorRow(1)
         self.log('(END) {}'.format(why))
     ####################################################################################################################################################################################################
     def readDataFile(self, dbg=1):
@@ -736,7 +733,7 @@ class Tabs(pyglet.window.Window):
         if len(self.armSnap): self.snapshot(self.armSnap)  ;  self.armSnap = ''
 
     def kpEvntTxt(self):
-        return '{:8} {:8}     {:14} {:2} {:28}'.format(self.kbk, self.symb, self.symbStr, self.mods, self.modsStr)
+        return '{:8} {:8}     {:14} {:2} {:16}'.format(self.kbk, self.symb, self.symbStr, self.mods, self.modsStr)
 
     def on_key_press(self, symb, mods):
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
@@ -786,36 +783,25 @@ class Tabs(pyglet.window.Window):
 #            self.updateCaption()
         if dbg: self.log('(END) {}'.format(self.kpEvntTxt()))
     ####################################################################################################################################################################################################
-    def cursorCol(self, dbg=0):
-        p, l, r, c, q, u = self.j()
-        cpp, cpl, cpr, cpq = self.cps()
-        cc = p*cpp + l*cpl + r*cpr + q*cpq + c
-        if dbg:
-            self.log('cc={:4}=({}*{:3} + {}*{:3} + {}*{:3} + {:2}*{:3} + {:3})'.format(cc, p, cpp, l, cpl, r, cpr, q, cpq, c))
-            self.log('cc={:4}=( {:4} +  {:4} +   {:3} +   {:4} + {:3})'.        format(cc, p*cpp, l*cpl, r*cpr, q*cpq, c))
-        return cc
-
-    def cursorRow(self, dbg=0):
-        p, l, r, c, q, u = self.j()
-        rpp, rpl, rpc, rpu = self.rps()
-        cr = p*rpp + l*rpl + r*rpc + q*rpu + r
-        if dbg:
-            self.log('cr={:4}=({}*{:3} + {}*{:3} + {}*{:3} + {:2}*{:3} + {:3})'.format(cr, p, rpp, l, rpl, r, rpc, q, rpu, r))
-            self.log('cr={:4}=( {:4} +  {:4} +   {:3} +   {:4} + {:3})'.        format(cr, p*rpp, l*rpl, r*rpc, q*rpu, r))
-        return cr
-
     def createCursor(self, g):
-        c = self.cols[self.i[C] - 1]
+        cc = self.cursorCol()
+        c = self.cols[cc]
         w, h = c.width, c.height  ;  x, y = c.x - w/2, c.y - h/2
         self.log('col[{}]: x={:6.1f} y={:6.1f} w={:6.1f} h={:6.1f} i={}'.format(self.i[C]-1, x, y, w, h, fmtl(self.i, FMTN)))
         self.dumpSprite()
         self.cursor = self.createSprite(None, x, y, w, h, CC, g, why='cursor', v=1, dbg=1)
 
     def resizeCursor(self):
-        c = self.cols[self.i[C] - 1]
+        cc = self.cursorCol()
+        c = self.cols[cc]
         w, h = c.width, c.height  ;  x, y = c.x - w/2, c.y - h/2
         self.log('col[{}]: x={:6.1f} y={:6.1f} w={:6.1f} h={:6.1f} i={}'.format(self.i[C]-1, x, y, w, h, fmtl(self.i, FMTN)))
         self.cursor.update(x=x, y=y, scale_x=w/self.w[C], scale_y=h/self.h[C])
+
+    def cursorCol(self):
+        p, l, r, c, q, u = self.j()
+        cpp, cpl, cpr, cpq = self.cps()
+        return p*cpp + l*cpl + r*cpr + q*cpq + c
     ####################################################################################################################################################################################################
     def on_mouse_release(self, x, y, button, modifiers):
         np, nl, nr, nc, nq, nu = self.n    ;  nc += CCC
@@ -832,16 +818,16 @@ class Tabs(pyglet.window.Window):
 
     def move(self, k, dbg=1):
         np, nl, nr, nc, nq, nu = self.n    ;  nc += CCC
-        if dbg: self.log('(BGN) {:3} {:4}     {} {}'.format(self.cc, k, fmtl(self.i, FMTN), self.acols[self.cc].text), file=sys.stdout)
-        if not self.SNAP0: t = self.acols[self.cc]  ;  self.snapshot('pre-move() k={:4} kk={:3} {} txt={} {:6.2f} {:6.2f}'.format(k, self.cc, fmtl(self.i, FMTN), t.text, t.x, t.y))  ;  self.SNAP0 = 1
+        if dbg: self.log('(BGN) {:3} {:4}     {} {}'.format(self.cc, k, fmtl(self.i, FMTN), self.cols[self.cc].text), file=sys.stdout)
+        if not self.SNAP0: t = self.cols[self.cc]  ;  self.snapshot('pre-move() k={:4} kk={:3} {} txt={} {:6.2f} {:6.2f}'.format(k, self.cc, fmtl(self.i, FMTN), t.text, t.x, t.y))  ;  self.SNAP0 = 1
         self._move(k)
         jp, jl, jr, jc, jq, ju = self.j()
         kk = jc + jr*nc + jl*nr*nc + jp*nl*nr*nc
-        t = self.acols[kk]  ;  x = t.x - t.width/2  ;  y = t.y - t.height/2
+        t = self.cols[kk]  ;  x = t.x - t.width/2  ;  y = t.y - t.height/2
         self.cc = kk
         self.cursor.update(x=x, y=y)
-        if dbg: self.log('(END) {:3} {:4} {:3} {} {} {:6.2f} {:6.2f}'.format(self.cc, k, kk, fmtl(self.i, FMTN), self.acols[self.cc].text, x, y), file=sys.stdout)
-        self.armSnap = 'move() k={:4} kk={:3} {} txt={} {:6.2f} {:6.2f}'.format(k, kk, fmtl(self.i, FMTN), self.acols[self.cc].text, x, y)
+        if dbg: self.log('(END) {:3} {:4} {:3} {} {} {:6.2f} {:6.2f}'.format(self.cc, k, kk, fmtl(self.i, FMTN), self.cols[self.cc].text, x, y), file=sys.stdout)
+        self.armSnap = 'move() k={:4} kk={:3} {} txt={} {:6.2f} {:6.2f}'.format(k, kk, fmtl(self.i, FMTN), self.cols[self.cc].text, x, y)
 
     def _move(self, k, dbg=1):
         np, nl, nr, nc, nq, nu = self.n
@@ -878,28 +864,26 @@ class Tabs(pyglet.window.Window):
     '''
     ####################################################################################################################################################################################################
     def addTab(self, kbk, why=''):
-        self.log('(BGN) {} i={} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
+        self.log('(BGN) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
         self.updateData(kbk)
         self.updateTab( kbk)
-        self.snapshot()
-        self.log('(END) {} i={} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
+#        self.snapshot()
+        self.log('(END) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
 
     def updateData(self, text, dbg=0):
         p, l, r, c, q, u = self.j()
         t = self.data[l][c]
-        self.log('(BGN) text={} i={} self.data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.data[l][c]), file=sys.stdout)
+        self.log('(BGN) text={} {} data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.data[l][c]), file=sys.stdout)
         self.data[l][c] = t[0:r] + text + t[r+1:]
         if dbg: self.dumpData(why='updateData text={} i={} data[l][c]={}'.format(text, self.i, self.data[l][c]))
-        self.log('(END) text={} i={} self.data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.data[l][c]), file=sys.stdout)
+        self.log('(END) text={} {} data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.data[l][c]), file=sys.stdout)
 
     def updateTab(self, text, dbg=1):
-        cr = self.cursorRow(1)
-        cc = self.cursorCol(1)
-#        p, l, r, c, q, u = self.j()
-        self.log('(BGN) text={} cc={} cr={} tabs[cr].text={}'.format(text, cc, cr, self.cols[cc].text), file=sys.stdout)
+        cc = self.cursorCol()
+        self.log('(BGN) text={} cols[{}].text={}'.format(text, cc, self.cols[cc].text), file=sys.stdout)
         self.cols[cc].text = text
         if dbg: self.cols[cc].color = FONT_COLORS[self.fontColorIndex + 4]
-        self.log('(END) text={} cc={} cr={} tabs[cr].text={}'.format(text, cc, cr, self.cols[cc].text), file=sys.stdout)
+        self.log('(END) text={} cols[{}].text={}'.format(text, cc,  self.cols[cc].text), file=sys.stdout)
 
     def updateCaption(self, txt):
         self.set_caption(txt)
