@@ -5,7 +5,7 @@ import pyglet.window.event as pygwine
 sys.path.insert(0, os.path.abspath('../lib'))
 import cmdArgs
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
@@ -83,16 +83,16 @@ FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
 class Tabs(pyglet.window.Window):
     def __init__(self):
         global FULL_SCREEN, SUBPIX, ORDER_GROUP
-        SNAP_GLOB_ARG = str(BASE_PATH / SNAP_DIR / BASE_NAME) + SFX + '.*' + SNAP_SFX
-        SNAP_GLOB     = glob.glob(SNAP_GLOB_ARG)
+        snapGlobArg = str(BASE_PATH / SNAP_DIR / BASE_NAME) + SFX + '.*' + SNAP_SFX
+        snapGlob      = glob.glob(snapGlobArg)
         self.log('(BGN) {}'.format(__class__))
         self.log('{}'.format(VRSNX1))
         self.log('{}'.format(VRSNX2))
         self.log('{}'.format(VRSNX3))
         self.log('CHECKER_BOARD={} EVENT_LOG={} FULL_SCREEN={} ORDER_GROUP={} RESIZE={} SEQ_LOG_FILES={} SUBPIX={}'.format(CHECKER_BOARD, EVENT_LOG, FULL_SCREEN, ORDER_GROUP, RESIZE, SEQ_LOG_FILES, SUBPIX))
-        self.log('SNAP_GLOB_ARG={}'.format(SNAP_GLOB_ARG))
-        self.log('    SNAP_GLOB={}'.format(SNAP_GLOB))
-        self.delGlob(SNAP_GLOB, 'SNAP_GLOB')
+        self.log('snapGlobArg={}'.format(snapGlobArg))
+        self.log('   snapGlob={}'.format(snapGlob))
+        self.delGlob(snapGlob, 'SNAP_GLOB')
         self.ww, self.hh  = 640, 480
         self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, 6, 20], [1, 3, 2, 1], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
@@ -182,6 +182,9 @@ class Tabs(pyglet.window.Window):
     def fmtGeom(self): return '{} {} {} {} {}'.format(fmtl(self.n, FMTN), fmtl(self.lnl()), self.snl(), self.cc, fmtl(self.i, FMTN))
     ####################################################################################################################################################################################################
     def _init(self, dbg=1):
+        dataDir  = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = '.{}'.format(self.n[C])
+        dataName = BASE_NAME + SFX + dataPfx + dataSfx
+        self.dataPath = BASE_PATH / dataDir / dataName
         self.pages, self.lines, self.rows, self.cols  = [], [], [], []
         self.qrows, self.ucols, self.acols            = [], [], []
         self.data, self.labels, self.sprites          = [], [], []
@@ -226,13 +229,33 @@ class Tabs(pyglet.window.Window):
         self.dumpFont(why)
         self.log('(END) {}'.format(why))
     ####################################################################################################################################################################################################
+    def writeDataFile(self):
+        with open(str(self.dataPath), 'w') as DATA_FILE:
+            np, nl, nr, nc = self.n  ;  nc += CCC
+            i, sp, sl, sr, sc = 0, 0, 0, 0, 0
+            for p in range(np):
+                sp += 1
+                self.log('writing {}{} page'.format(sp, self.ordSfx(sp)))
+                for l in range(nl):
+                    sl += 1
+                    self.log('writing {}{} line'.format(sl, self.ordSfx(sl)))
+                    for r in range(nr):
+                        sr += 1
+                        self.log('writing {}{} row'.format(sr, self.ordSfx(sr)))
+                        data = ''
+                        for c in range(nc):
+                            sc += 1
+                            self.log('writing {} columns'.format(sc))
+                            data += self.cols[i].text
+                            i += 1
+                        data += '\n'
+                        DATA_FILE.write(data)
+                    if sl < nl: DATA_FILE.write('\n')
+    ####################################################################################################################################################################################################
     def readDataFile(self, dbg=1):
         nl, nr, nc = self.n[L], self.n[R], self.n[C]
-        DATA_DIR  = 'data'    ;                  DATA_SFX = '.dat'  ;  DATA_PFX = '.{}'.format(nc)  ;  nc += CCC
-        DATA_NAME = BASE_NAME + SFX + DATA_PFX + DATA_SFX
-        DATA_PATH = BASE_PATH / DATA_DIR / DATA_NAME
         if dbg: self.log('nl={} nr={} nc={}'.format(nl, nr, nc))
-        with open(str(DATA_PATH), 'r') as DATA_FILE:
+        with open(str(self.dataPath), 'r') as DATA_FILE:
             DATA_FILE.seek(0, 2)  ;  size = DATA_FILE.tell()            ;  DATA_FILE.seek(0, 0)
             self.log('(BGN) {:40} {:8,} bytes = {:4,.0f} KB'.format(DATA_FILE.name, size, size/1024))
             strings = []
@@ -261,7 +284,8 @@ class Tabs(pyglet.window.Window):
         self.data = self.transpose(self.data)
         vdf       = self.isVertDataFrmt(self.data)
         if dbg: self.dumpDataV(self.data)
-        self.log('assert: size=nt+2*(l*r+l-1) {:8,} + {} = {:8,} bytes'.format(nt, 2 * (l * r + l - 1), size))  ;  assert size == nt + 2 * (l * r + l - 1)  ;  assert vdf
+        self.log('assert: size=nt+2*(l*r+l-1) {:8,} + {} = {:8,} bytes'.format(nt, 2 * (l * r + l - 1), size))  ;  assert size == nt + 2 * (l * r + l - 1)
+        assert vdf
         self.log('(END) {:40} {:8,} bytes = {:4,.0f} KB'.format(DATA_FILE.name, size, size/1024))
 
     def isVertDataFrmt(self, d, dbg=0):
@@ -710,22 +734,25 @@ class Tabs(pyglet.window.Window):
         self.kbk = self.symbStr  ;  kbk = self.kbk
         self.log('(BGN) {}'.format(self.kpEvntTxt()))
         if                  self.isTab(kbk):                          self.addTab(kbk,  'on_key_press')
-        elif kbk == 'Q' and self.isCtrl(mods) and self.isShift(mods): self.quit(        'keyPress({})'.format(kbk))
-        elif kbk == 'Q' and self.isCtrl(mods):                        self.quit(        'keyPress({})'.format(kbk))
-        elif kbk == 'B' and self.isCtrl(mods) and self.isShift(mods): self.setFontParam('bold',   not self.fontBold,   'fontBold')
-        elif kbk == 'B' and self.isCtrl(mods):                        self.setFontParam('bold',   not self.fontBold,   'fontBold')
-        elif kbk == 'I' and self.isCtrl(mods) and self.isShift(mods): self.setFontParam('italic', not self.fontItalic, 'fontItalic')
-        elif kbk == 'I' and self.isCtrl(mods):                        self.setFontParam('italic', not self.fontItalic, 'fontItalic')
-        elif kbk == 'S' and self.isCtrl(mods) and self.isShift(mods): self.setFontParam('font_size', (self.fontSize + 1)       % 52,               'fontSize')
-        elif kbk == 'S' and self.isCtrl(mods):                        self.setFontParam('font_size', (self.fontSize - 1)       % 52,               'fontSize')
-        elif kbk == 'D' and self.isCtrl(mods) and self.isShift(mods): self.setFontParam('dpi',       (self.fontDpiIndex + 1)   % len(FONT_DPIS),   'fontDpiIndex')
-        elif kbk == 'D' and self.isCtrl(mods):                        self.setFontParam('dpi',       (self.fontDpiIndex - 1)   % len(FONT_DPIS),   'fontDpiIndex')
-        elif kbk == 'N' and self.isCtrl(mods) and self.isShift(mods): self.setFontParam('font_name', (self.fontNameIndex + 1)  % len(FONT_NAMES),  'fontNameIndex')
-        elif kbk == 'N' and self.isCtrl(mods):                        self.setFontParam('font_name', (self.fontNameIndex - 1)  % len(FONT_NAMES),  'fontNameIndex')
-        elif kbk == 'C' and self.isCtrl(mods) and self.isShift(mods): self.setFontParam('color',     (self.fontColorIndex + 1) % len(FONT_COLORS), 'fontColorIndex')
-        elif kbk == 'C' and self.isCtrl(mods):                        self.setFontParam('color',     (self.fontColorIndex + 1) % len(FONT_COLORS), 'fontColorIndex')
         elif kbk == 'F' and self.isCtrl(mods) and self.isShift(mods): self.toggleFullScreen()
         elif kbk == 'F' and self.isCtrl(mods):                        self.toggleFullScreen()
+        elif kbk == 'Q' and self.isCtrl(mods) and self.isShift(mods): self.quit(        'keyPress({})'.format(kbk))
+        elif kbk == 'Q' and self.isCtrl(mods):                        self.quit(        'keyPress({})'.format(kbk))
+        elif kbk == 'S' and self.isCtrl(mods) and self.isShift(mods): self.writeDataFile()
+        elif kbk == 'S' and self.isCtrl(mods):                        self.writeDataFile()
+    ####################################################################################################################################################################################################
+        elif kbk == 'B' and self.isAlt(mods) and self.isShift(mods): self.setFontParam('bold',   not self.fontBold,   'fontBold')
+        elif kbk == 'B' and self.isAlt(mods):                        self.setFontParam('bold',   not self.fontBold,   'fontBold')
+        elif kbk == 'I' and self.isAlt(mods) and self.isShift(mods): self.setFontParam('italic', not self.fontItalic, 'fontItalic')
+        elif kbk == 'I' and self.isAlt(mods):                        self.setFontParam('italic', not self.fontItalic, 'fontItalic')
+        elif kbk == 'S' and self.isAlt(mods) and self.isShift(mods): self.setFontParam('font_size', (self.fontSize + 1)       % 52,               'fontSize')
+        elif kbk == 'S' and self.isAlt(mods):                        self.setFontParam('font_size', (self.fontSize - 1)       % 52,               'fontSize')
+        elif kbk == 'D' and self.isAlt(mods) and self.isShift(mods): self.setFontParam('dpi',       (self.fontDpiIndex + 1)   % len(FONT_DPIS),   'fontDpiIndex')
+        elif kbk == 'D' and self.isAlt(mods):                        self.setFontParam('dpi',       (self.fontDpiIndex - 1)   % len(FONT_DPIS),   'fontDpiIndex')
+        elif kbk == 'N' and self.isAlt(mods) and self.isShift(mods): self.setFontParam('font_name', (self.fontNameIndex + 1)  % len(FONT_NAMES),  'fontNameIndex')
+        elif kbk == 'N' and self.isAlt(mods):                        self.setFontParam('font_name', (self.fontNameIndex - 1)  % len(FONT_NAMES),  'fontNameIndex')
+        elif kbk == 'C' and self.isAlt(mods) and self.isShift(mods): self.setFontParam('color',     (self.fontColorIndex + 1) % len(FONT_COLORS), 'fontColorIndex')
+        elif kbk == 'C' and self.isAlt(mods):                        self.setFontParam('color',     (self.fontColorIndex + 1) % len(FONT_COLORS), 'fontColorIndex')
 #        self.updateCaption()
         self.log('(END) {}'.format(self.kpEvntTxt()))
 
@@ -882,7 +909,7 @@ class Tabs(pyglet.window.Window):
         else:                    return 'th'
     ####################################################################################################################################################################################################
     def snapshot(self, why='', dbg=0):
-        if dbg: self.log('SFX={} SNAP_DIR={} SNAP_SFX={} BASE_NAME={} BASE_PATH={}'.format(SFX, SNAP_DIR, SNAP_SFX, BASE_NAME, BASE_PATH))
+        if dbg: self.log('SFX={} SNAP_DIR={} SNAP_SFX={} baseName={} basePath={}'.format(SFX, SNAP_DIR, SNAP_SFX, BASE_NAME, BASE_PATH))
         SNAP_ID   = '.{}'.format(self.ssi)
         SNAP_NAME = BASE_NAME + SFX + SNAP_ID + SNAP_SFX
         SNAP_PATH = BASE_PATH / SNAP_DIR / SNAP_NAME
