@@ -20,6 +20,7 @@ CCC              = 3
 FMTN             = (1, 1, 2, 3, 1, 3)
 P, L, R, C       = 0, 1, 2, 3
 S, LCOL, LLINE   = ' ', 'Col', 'Line '
+EMPTY            = '-'
 INIT             = '###   Init   ###' * 13
 QUIT             = '###   Quit   ###' * 13
 OPACITY          = [255, 240, 225, 210, 190, 165, 140, 110, 80]
@@ -123,7 +124,9 @@ class Tabs(pyglet.window.Window):
         self.cc, self.ci, self.SNAP0, self.armSnap = 0, 0, 0, ''
         self.blankCol = ''
         self.cursor, self.caret = None, None
-        self.data = []
+        self.data    = []
+        self.capo    = [0 for _ in range(self.n[R])]
+        self.strings = ['E', 'B', 'G', 'D', 'A', 'E']
         self._init()
         self.log('(END) {} {} {}'.format(__class__, VRSNX1, VRSNX2))
         self.log('{}'.format(INIT), ind=0)
@@ -288,9 +291,9 @@ class Tabs(pyglet.window.Window):
         assert vdf
         self.log('(END) {:40} {:8,} bytes = {:4,.0f} KB'.format(DATA_FILE.name, size, size/1024))
 
-    def isVertDataFrmt(self, d, dbg=0):
+    def isVertDataFrmt(self, d, dbg=1):
         vdf = 0
-        if dbg: self.log('(BGN) type(d)={} type(d[0])={} type(d[0][0])'.format(type(d), type(d[0]), type(d[0][0])))
+        if dbg: self.log('(BGN) type(d)={} type(d[0])={} type(d[0][0])={}'.format(type(d), type(d[0]), type(d[0][0])))
         assert type(d) is list and type(d[0]) is list and type(d[0][0]) is str
         if type(d) is list and type(d[0]) is list and type(d[0][0]) is str:
             s0 = d[0][0]  ;  ev = ''
@@ -312,7 +315,7 @@ class Tabs(pyglet.window.Window):
                         else:
                             vdf = 1
                             if dbg: self.log('s1={} is a String Tuning'.format(s1))
-        if dbg: self.log('(END) type(d)={} type(d[0])={} type(d[0][0]) return vdf={}'.format(type(d), type(d[0]), type(d[0][0]), vdf))
+        if dbg: self.log('(END) type(d)={} type(d[0])={} type(d[0][0])={} return vdf={}'.format(type(d), type(d[0]), type(d[0][0]), vdf))
         return vdf
     ####################################################################################################################################################################################################
     def dumpData(self, why='', c=1, l=1, i=0):
@@ -454,6 +457,33 @@ class Tabs(pyglet.window.Window):
                         self.createLabel(self.data[l][c][r-QQ], self.cols, xc2, yc2, wc, hc, self.cci(c, cc), gc, why='create Col', dbg=dbg)
                     if dbg: self.dumpLabel()  ;  self.dumpSprite()
         self.log('(END) {}'.format(self.fmtGeom()))
+
+    def setStringNums(self):
+        np, nl, nr, nc = self.n  ;  nc += CCC  ;  i = 0
+        for p in range(np):
+            for l in range(nl):
+                for r in range(nr):
+                    self.cols[i].text = str(r + 1)
+                    self.log('i={} p={} l={} r={} text={}'.format(i, p, l, r, self.cols[i].text))
+                    i += nc
+
+    def setStringNames(self):
+        np, nl, nr, nc = self.n  ;  nc += CCC  ;  i = 1
+        for p in range(np):
+            for l in range(nl):
+                for r in range(nr):
+                    self.cols[i].text = str(self.strings[r])
+                    self.log('i={} p={} l={} r={} text={}'.format(i, p, l, r, self.cols[i].text))
+                    i += nc
+
+    def setCapo(self):
+        np, nl, nr, nc = self.n  ;  nc += CCC  ;  i = 2
+        for p in range(np):
+            for l in range(nl):
+                for r in range(nr):
+                    self.cols[i].text = str(self.capo[r])
+                    self.log('i={} p={} l={} r={} text={}'.format(i, p, l, r, self.cols[i].text))
+                    i += nc
 
     def createLabels(self, dbg=1):
         self.log('(BGN) {}'.format(self.fmtGeom()))
@@ -734,6 +764,8 @@ class Tabs(pyglet.window.Window):
         self.kbk = self.symbStr  ;  kbk = self.kbk
         self.log('(BGN) {}'.format(self.kpEvntTxt()))
         if                  self.isTab(kbk):                          self.addTab(kbk,  'on_key_press')
+        elif kbk == 'E' and self.isCtrl(mods) and self.isShift(mods): self.erase()
+        elif kbk == 'E' and self.isCtrl(mods):                        self.erase()
         elif kbk == 'F' and self.isCtrl(mods) and self.isShift(mods): self.toggleFullScreen()
         elif kbk == 'F' and self.isCtrl(mods):                        self.toggleFullScreen()
         elif kbk == 'Q' and self.isCtrl(mods) and self.isShift(mods): self.quit(        'keyPress({})'.format(kbk))
@@ -883,6 +915,13 @@ class Tabs(pyglet.window.Window):
     def updateCaption(self, txt):
         self.set_caption(txt)
     ####################################################################################################################################################################################################
+    def erase(self):
+        for i in range(len(self.cols)):
+            self.cols[i].text = EMPTY
+        self.setStringNums()
+        self.setStringNames()
+        self.setCapo()
+
     def toggleFullScreen(self):
         global FULL_SCREEN
         FULL_SCREEN =  not  FULL_SCREEN
@@ -1022,6 +1061,11 @@ if __name__ == '__main__':
         tabs     = Tabs()
         tabs.log('tabs={}'.format(tabs))
         tabs.log('invoking pyglet.app.run()'.format())
-        ret = pyglet.app.run()
+        try:
+            ret = pyglet.app.run()
+#        except LookupError as e:
+        except(IndexError, KeyError) as EX:
+            Tabs.log('Exception LookupError e={}'.format(EX))
+            exit()
         tabs.log('pyglet.app.run() return={}'.format(ret))
         tabs.log('END Logging LOG_PATH={}'.format(LOG_PATH))
