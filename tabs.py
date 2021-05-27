@@ -5,12 +5,10 @@ import pyglet.window.event as pygwine
 sys.path.insert(0, os.path.abspath('../lib'))
 import cmdArgs
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
-#SFX              = '.' + SFX1 + '.' + SFX2 + '.' + SFX3
-#SFX              = '.{}.{}.{}'.format(SFX1, SFX2, SFX3)
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
 PATH             = pathlib.Path(sys.argv[0])
 BASE_PATH        = PATH.parent
@@ -22,7 +20,7 @@ FMTN             = (1, 1, 2, 3, 1, 3)
 P, L, R, C       = 0, 1, 2, 3
 S, COL_L, LINE_L = ' ', 'Col', 'Line '
 SNO_C, SNA_C, CFN_C = 0, 1, 2
-EMPTY            = '-'
+BLANKS           = ['-', ' ']  ;  BLANK = BLANKS[1]
 INIT             = '###   Init   ###' * 13
 QUIT             = '###   Quit   ###' * 13
 OPACITY          = [255, 240, 225, 210, 190, 165, 140, 110, 80]
@@ -85,9 +83,9 @@ FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
 
 class Tabs(pyglet.window.Window):
     def __init__(self):
-        global FULL_SCREEN, SUBPIX, ORDER_GROUP
+        global BLANK, FULL_SCREEN, SUBPIX, ORDER_GROUP
         snapGlobArg = str(BASE_PATH / SNAP_DIR / BASE_NAME) + SFX + '.*' + SNAP_SFX
-        snapGlob      = glob.glob(snapGlobArg)
+        snapGlob    = glob.glob(snapGlobArg)
         self.log('(BGN) {}'.format(__class__))
         self.log('{}'.format(VRSNX1))
         self.log('{}'.format(VRSNX2))
@@ -122,9 +120,8 @@ class Tabs(pyglet.window.Window):
         self._initWindowA()
         super().__init__(screen=self.screens[1], fullscreen=FULL_SCREEN, resizable=True, visible=False)
         self._initWindowB()
-        self.symb, self.symbStr, self.mods, self.modsStr, self.kbk = 0, '', 0, '', 0
-        self.cc, self.ci, self.SNAP0, self.armSnap = 0, 0, 0, ''
-        self.blankCol = ''
+        self.kbk, self.symb, self.mods, self.symbStr, self.modsStr = 0, 0, 0, '', ''
+        self.cc, self.ci, self.SNAP0, self.armSnap, self.blankCol  = 0, 0, 0, '', ''
         self.cursor, self.caret = None, None
         self.data    = []
         self.capo    = [0 for _ in range(self.n[R])]
@@ -183,7 +180,7 @@ class Tabs(pyglet.window.Window):
 #    def m(self):   return [ n for n in self.n ]
 
     @staticmethod
-    def fmtDataDim(d): return '({} x {} x {})={:8,} tabs'.format(len(d), len(d[0]), len(d[0][0]), len(d)*len(d[0])*len(d[0][0]))
+    def fmtDataDim(d): return '({} x {} x {} x {})'.format(len(d), len(d[0]), len(d[0][0]), len(d[0][0][0]))
     def fmtGeom(self): return '{} {} {} {} {}'.format(fmtl(self.n, FMTN), fmtl(self.lnl()), self.snl(), self.cc, fmtl(self.i, FMTN))
     ####################################################################################################################################################################################################
     def _init(self, dbg=1):
@@ -235,55 +232,31 @@ class Tabs(pyglet.window.Window):
         self.log('(END) {}'.format(why))
     ####################################################################################################################################################################################################
     def writeDataFile(self):
+        self.log('(BGN) {}'.format(self.fmtDataDim(self.data)))
         data = self.transpose(self.data)
         with open(str(self.dataPath), 'w') as DATA_FILE:
             np, nl, nr, nc = self.n  ;  nc += CCC
             for p in range(np):
-                self.log('writing {}{} page'.format(p, self.ordSfx(p)))
+                self.log('writing {}{} page'.format(p+1, self.ordSfx(p+1)))
                 for l in range(nl):
-                    self.log('writing {}{} line'.format(l, self.ordSfx(l)))
+                    self.log('writing {}{} line'.format(l+1, self.ordSfx(l+1)))
                     for r in range(nr):
-                        self.log('writing {}{} row'.format(r, self.ordSfx(r)))
                         string = ''
                         for c in range(nc):
-                            self.log('writing {} columns'.format(c))
                             string += data[p][l][r][c]
+                        self.log('writing {}{} string {}'.format(r+1, self.ordSfx(r+1), string))
                         string += '\n'
                         DATA_FILE.write(string)
                     if l+1 < nl: DATA_FILE.write('\n')
-
-    def writeDataFile2(self):
-        with open(str(self.dataPath), 'w') as DATA_FILE:
-            np, nl, nr, nc = self.n  ;  nc += CCC
-            i, sp, sl, sr, sc = 0, 0, 0, 0, 0
-            for p in range(np):
-                sp += 1
-                self.log('writing {}{} page'.format(sp, self.ordSfx(sp)))
-                for l in range(nl):
-                    sl += 1
-                    self.log('writing {}{} line'.format(sl, self.ordSfx(sl)))
-                    for r in range(nr):
-                        sr += 1
-                        self.log('writing {}{} row'.format(sr, self.ordSfx(sr)))
-                        data = ''
-                        for c in range(nc):
-                            sc += 1
-                            self.log('writing {} columns'.format(sc))
-                            data += self.cols[i].text
-                            i += 1
-                        data += '\n'
-                        DATA_FILE.write(data)
-                    if sl < nl: DATA_FILE.write('\n')
+        self.log('(END) {}'.format(self.fmtDataDim(self.data)))
     ####################################################################################################################################################################################################
     def readDataFile(self, dbg=1):
         nl, nr, nc = self.n[L], self.n[R], self.n[C]
         if dbg: self.log('nl={} nr={} nc={}'.format(nl, nr, nc))
         with open(str(self.dataPath), 'r') as DATA_FILE:
-            DATA_FILE.seek(0, 2)  ;  size = DATA_FILE.tell()            ;  DATA_FILE.seek(0, 0)
+            DATA_FILE.seek(0, 2)  ;  size = DATA_FILE.tell()  ;  DATA_FILE.seek(0, 0)
             self.log('(BGN) {:40} {:8,} bytes = {:4,.0f} KB'.format(DATA_FILE.name, size, size/1024))
             strings = []  ;  lines = []
-#            for l in range(1, nl+1):
-#                for r in range(1, nr+1):
             l, r, c = 1, 0, 0
             while l <= nl:
                 s = DATA_FILE.readline().strip()
@@ -295,13 +268,11 @@ class Tabs(pyglet.window.Window):
                     if l == nl: break
                     r = 0
                     l += 1
-#                    if r == 1: self.log('reading {:2}{} line'.format(l, self.ordSfx(l)))
-#                    self.log('reading            {:2}{} string'.format(r, self.ordSfx(r)))
                 if c:  self.log('l={} r={} c={}: {}'.format(l, r, c, s))
             self.data.append(lines)
 #        nl = len(self.data)  ;  nr = len(self.data[0])  ;  nc = len(self.data[0][0])o
         nt = l*c*r
-        vdf = self.isVertDataFrmt(self.data)  ;  self.blankCol = EMPTY * r
+        vdf = self.isVertDataFrmt(self.data)  ;  self.blankCol = BLANK * r
         self.log('read     {:2} lines with {:6,} cols on {:4,} strings {:8,} tabs, vdf={} blankCol({})={}'.format(l, l*c, l*r, nt, vdf, len(self.blankCol), self.blankCol))
         if dbg: self.dumpDataH(self.data)
         self.data = self.transpose(self.data)
@@ -323,32 +294,6 @@ class Tabs(pyglet.window.Window):
                     assert len(d[p][l][c]) == len(d[p][l][0])
                 if len(d[p][l]) < len(d[p][l][0]): vdf = 0  ;  break
         if dbg: self.log('(END)  len(d [0] [0][0] [0][0][0])={} {} {} {} return vdf={}'.format(len(d), len(d[0]), len(d[0][0]), len(d[0][0][0]), vdf))
-        return vdf
-
-    def isVertDataFrmt2(self, d, dbg=1):
-        vdf = 0
-        if dbg: self.log('(BGN) type(d)={} type(d[0])={} type(d[0][0])={} type(d[0][0][0])={}'.format(type(d), type(d[0]), type(d[0][0]), type(d[0][0][0])))
-        assert type(d) is list and type(d[0]) is list and type(d[0][0]) is list and type(d[0][0][0]) is str
-        s0 = d[0][0][0]  ;  ev = ''
-        if dbg: self.log('s0=d[0]: len(s0)={} s0={}'.format(len(s0), s0))
-        if not s0.isdecimal():
-            if dbg: self.log('s0={} is not a decimal'.format(s0))
-        else:
-            for i in range(len(s0)): ev = ev + str(i + 1)
-            if dbg: self.log('ev={}'.format(ev))
-            if s0 == ev:
-                if dbg: self.log('s0={} == ev={}'.format(s0, ev))
-                s1 = d[0][0][1]
-                if dbg: self.log('s1=d[1]: len(s1)={} s1={}'.format(len(s1), s1))
-                if s1.isalpha():
-                    for i in range(len(s1)):
-                        if s1[i] not in ('A', 'B', 'C', 'D', 'E', 'F', 'G'):
-                            if dbg: self.log('s1[i]={} is not a Note Name'.format(i, s1[i]))
-                            break
-                    else:
-                        vdf = 1
-                        if dbg: self.log('s1={} is a String Tuning'.format(s1))
-        if dbg: self.log('(END) type(d)={} type(d[0])={} type(d[0][0])={} type(d[0][0][0])={} return vdf={}'.format(type(d), type(d[0]), type(d[0][0]), type(d[0][0][0]), vdf))
         return vdf
     ####################################################################################################################################################################################################
     def dumpData(self, why='', c=1, l=1, i=0):
@@ -873,10 +818,10 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log('(END) {}'.format(self.kpEvntTxt()))
     ####################################################################################################################################################################################################
     def createCursor(self, g):
-        cc = self.cursorCol()
-        c = self.acols[cc]
+        self.cc = self.cursorCol()
+        c = self.acols[self.cc]
         w, h = c.width, c.height  ;  x, y = c.x - w/2, c.y - h/2
-        self.log('col[{}]: x={:6.1f} y={:6.1f} w={:6.1f} h={:6.1f} i={}'.format(self.i[C]-1, x, y, w, h, fmtl(self.i, FMTN)))
+        self.log('cc={} x={:6.1f} y={:6.1f} w={:6.1f} h={:6.1f} i={}'.format(self.cc, x, y, w, h, fmtl(self.i, FMTN)))
         self.dumpSprite()
         self.cursor = self.createSprite(None, x, y, w, h, CC, g, why='cursor', v=1, dbg=1)
 
@@ -884,13 +829,17 @@ class Tabs(pyglet.window.Window):
         cc = self.cursorCol()
         c = self.acols[cc]
         w, h = c.width, c.height  ;  x, y = c.x - w/2, c.y - h/2
-        self.log('col[{}]: x={:6.1f} y={:6.1f} w={:6.1f} h={:6.1f} i={}'.format(self.i[C]-1, x, y, w, h, fmtl(self.i, FMTN)))
+        self.log('c={} x={:6.1f} y={:6.1f} w={:6.1f} h={:6.1f} i={}'.format(cc, x, y, w, h, fmtl(self.i, FMTN)))
         self.cursor.update(x=x, y=y, scale_x=w/self.w[C], scale_y=h/self.h[C])
 
-    def cursorCol(self): #calc
+    def cursorCol(self, dbg=1): #calc
         p, l, r, c = self.j()
         cpp, cpl, cpr = self.cps()
-        return p*cpp + l*cpl + r*cpr + c
+        cc = p*cpp + l*cpl + r*cpr + c
+        if dbg: self.log('p={} l={} r={} c={}'.format(p, l, r, c))
+        if dbg: self.log('cpp={} cpl={} cpr={}'.format(cpp, cpl, cpr))
+        if dbg: self.log('cc={} p={} * cpp={} l={} * cpl={} r={} * cpr={} + c'.format(cc, p, cpp, l, cpl, r, cpr, c))
+        return cc
     ####################################################################################################################################################################################################
     def on_mouse_release(self, x, y, button, modifiers):
         np, nl, nr, nc = self.n  ;  nc += CCC     ;  nr += QQ
@@ -971,17 +920,21 @@ class Tabs(pyglet.window.Window):
     def updateCaption(self, txt):
         self.set_caption(txt)
     ####################################################################################################################################################################################################
-    def erase(self):
+    def erase(self, reset=1):
         np, nl, nr, nc = self.n  ;  nc += CCC
+        self.log('(BGN) np={} nl={} nr={} nc={}'.format(np, nl, nr, nc))
         for i in range(len(self.cols)):
-            self.cols[i].text = EMPTY
+            self.cols[i].text = BLANK
         for p in range(np):
             for l in range(nl):
                 for c in range(nc):
                     self.data[p][l][c] = self.blankCol
-        self.setStringNums()
-        self.setStringNames()
-        self.setCapo()
+        if reset:
+            self.log('reset={}'.format(reset))
+            self.setStringNums()
+            self.setStringNames()
+            self.setCapo()
+        self.log('(END) np={} nl={} nr={} nc={}'.format(np, nl, nr, nc))
 
     def toggleFullScreen(self):
         global FULL_SCREEN
