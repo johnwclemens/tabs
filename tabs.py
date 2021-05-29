@@ -20,7 +20,6 @@ FMTN             = (1, 1, 2, 3, 1, 3)
 P, L, R, C       = 0, 1, 2, 3
 S, COL_L, LINE_L = ' ', 'Col', 'Line '
 SNO_C, SNA_C, CFN_C = 0, 1, 2
-BLANKS           = ['-', ' ']  ;  BLANK = BLANKS[1]
 INIT             = '###   Init   ###' * 13
 QUIT             = '###   Quit   ###' * 13
 OPACITY          = [255, 240, 225, 210, 190, 165, 140, 110, 80]
@@ -83,7 +82,7 @@ FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
 
 class Tabs(pyglet.window.Window):
     def __init__(self):
-        global BLANK, FULL_SCREEN, SUBPIX, ORDER_GROUP
+        global FULL_SCREEN, SUBPIX, ORDER_GROUP
         snapGlobArg = str(BASE_PATH / SNAP_DIR / BASE_NAME) + SFX + '.*' + SNAP_SFX
         snapGlob    = glob.glob(snapGlobArg)
         self.log('(BGN) {}'.format(__class__))
@@ -95,7 +94,7 @@ class Tabs(pyglet.window.Window):
         self.log('   snapGlob={}'.format(snapGlob))
         self.delGlob(snapGlob, 'SNAP_GLOB')
         self.ww, self.hh  = 640, 480
-        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, 6, 20], [1, 3, 2, 1], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], []
+        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, 6, 20], [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
         if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
         if 'i' in self.argMap and len(self.argMap['i'])  > 0: self.i            = [int(self.argMap['i'][i]) for i in range(len(self.argMap['i']))]
@@ -126,6 +125,9 @@ class Tabs(pyglet.window.Window):
         self.data    = []
         self.capo    = [0 for _ in range(self.n[R])]
         self.strings = ['E', 'B', 'G', 'D', 'A', 'E']
+        self.blanks = ['-', ' ']
+        self.blanki = 0
+        self.blank  = self.blanks[self.blanki]
         self._init()
         self.log('(END) {} {} {}'.format(__class__, VRSNX1, VRSNX2))
         self.log('{}'.format(INIT), ind=0)
@@ -259,7 +261,7 @@ class Tabs(pyglet.window.Window):
             strings = []  ;  lines = []
             l, r, c = 1, 0, 0
             while l <= nl:
-                s = DATA_FILE.readline().strip()
+                s = DATA_FILE.readline().strip('\n')
                 if len(s): strings.append(s)  ;  r += 1  ;  c = len(s)
                 else:
                     lines.append(strings)
@@ -271,8 +273,8 @@ class Tabs(pyglet.window.Window):
                 if c:  self.log('l={} r={} c={}: {}'.format(l, r, c, s))
             self.data.append(lines)
 #        nl = len(self.data)  ;  nr = len(self.data[0])  ;  nc = len(self.data[0][0])o
-        nt = l*c*r
-        vdf = self.isVertDataFrmt(self.data)  ;  self.blankCol = BLANK * r
+        nt = l * c * r
+        vdf = self.isVertDataFrmt(self.data)  ;  self.blankCol = self.blank * r
         self.log('read     {:2} lines with {:6,} cols on {:4,} strings {:8,} tabs, vdf={} blankCol({})={}'.format(l, l*c, l*r, nt, vdf, len(self.blankCol), self.blankCol))
         if dbg: self.dumpDataH(self.data)
         self.data = self.transpose(self.data)
@@ -769,6 +771,8 @@ class Tabs(pyglet.window.Window):
         self.kbk = self.symbStr  ;  kbk = self.kbk
         self.log('(BGN) {}'.format(self.kpEvntTxt()))
         if                  self.isTab(kbk):                          self.addTab(kbk,  'on_key_press')
+        elif kbk == 'B' and self.isCtrl(mods) and self.isShift(mods): self.toggleBlank()
+        elif kbk == 'B' and self.isCtrl(mods):                        self.toggleBlank()
         elif kbk == 'E' and self.isCtrl(mods) and self.isShift(mods): self.erase()
         elif kbk == 'E' and self.isCtrl(mods):                        self.erase()
         elif kbk == 'F' and self.isCtrl(mods) and self.isShift(mods): self.toggleFullScreen()
@@ -833,18 +837,18 @@ class Tabs(pyglet.window.Window):
         self.cursor.update(x=x, y=y, scale_x=w/self.w[C], scale_y=h/self.h[C])
 
     def cursorCol(self, dbg=1): #calc
-        p, l, r, c = self.j()
+        p, l, r, c = self.j()  ;  r += QQ
         cpp, cpl, cpr = self.cps()
         cc = p*cpp + l*cpl + r*cpr + c
         if dbg: self.log('p={} l={} r={} c={}'.format(p, l, r, c))
         if dbg: self.log('cpp={} cpl={} cpr={}'.format(cpp, cpl, cpr))
-        if dbg: self.log('cc={} p={} * cpp={} l={} * cpl={} r={} * cpr={} + c'.format(cc, p, cpp, l, cpl, r, cpr, c))
+        if dbg: self.log('cc={} p={} * cpp={} l={} * cpl={} r={} * cpr={} + c={}'.format(cc, p, cpp, l, cpl, r, cpr, c))
         return cc
     ####################################################################################################################################################################################################
     def on_mouse_release(self, x, y, button, modifiers):
         np, nl, nr, nc = self.n  ;  nc += CCC     ;  nr += QQ
-        w = self.ww/nc  ;  h = self.hh/(nl * nr)  ;  y0 = y  ;  y = self.hh - y
-        c = int(x/w)    ;  r = int(y/h)           ;             kk = c + r * nc
+        w = self.ww/nc  ;  h = self.hh/(nl * nr)  ;  y0 = y   ;   y = self.hh - y
+        c = int(x/w)    ;  r = int(y/h)           ;  kk = c + r * nc
         self.log('(BGN) x={} y0={:4} y={:4} w={:6.2f} h={:6.2f} c={:4} r={:4} txt={}'.format(x, y0, y, w, h, c, r, self.acols[kk].text), file=sys.stdout)
         kk = c + r * nc
         k  = kk - self.cc
@@ -854,16 +858,16 @@ class Tabs(pyglet.window.Window):
 
     def move(self, k, dbg=1): #calc
         np, nl, nr, nc = self.n  ;  nc += CCC  ;  nr += QQ
-        if dbg: self.log('(BGN) {:4}      {:4} {} {}'.format(k, self.cc, fmtl(self.i, FMTN), self.acols[self.cc].text), file=sys.stdout)
-        if not self.SNAP0: t = self.acols[self.cc]  ;  self.snapshot('pre-move() k={:4} kk={:3} {} txt={} {:6.2f} {:6.2f}'.format(k, self.cc, fmtl(self.i, FMTN), t.text, t.x, t.y))  ;  self.SNAP0 = 1
+        if dbg: self.log('(BGN) {:4}      {:4} {} text={}'.format(k, self.cc, fmtl(self.i, FMTN), self.acols[self.cc].text), file=sys.stdout)
+        if not self.SNAP0: t = self.acols[self.cc]  ;  self.snapshot('pre-move() k={:4} kk={:3} {} text={} {:6.2f} {:6.2f}'.format(k, self.cc, fmtl(self.i, FMTN), t.text, t.x, t.y))  ;  self.SNAP0 = 1
         self._move(k)
-        jp, jl, jr, jc = self.j()
+        jp, jl, jr, jc = self.j()  ;  jr += QQ
         kk = jc + jr * nc + jl * nr * nc + jp * nl * nr * nc
         t = self.acols[kk]  ;  x = t.x - t.width/2  ;  y = t.y - t.height/2
         self.cc = kk
         self.cursor.update(x=x, y=y)
-        if dbg: self.log('(END) {:4} {:4} {:4} {} {} {:6.2f} {:6.2f}'.format(k, kk, self.cc, fmtl(self.i, FMTN), self.acols[self.cc].text, x, y), file=sys.stdout)
-        self.armSnap = 'move() k={:4} kk={:4} {} txt={} {:6.2f} {:6.2f}'.format(k, kk, fmtl(self.i, FMTN), self.acols[self.cc].text, x, y)
+        if dbg: self.log('(END) {:4} {:4} {:4} {} text={} {:6.2f} {:6.2f}'.format(k, kk, self.cc, fmtl(self.i, FMTN), self.acols[self.cc].text, x, y), file=sys.stdout)
+        self.armSnap = 'move() k={:4} kk={:4} {} text={} {:6.2f} {:6.2f}'.format(k, kk, fmtl(self.i, FMTN), self.acols[self.cc].text, x, y)
 
     def _move(self, k, dbg=1):
         np, nl, nr, nc = self.n  ;  nc += CCC  ;  nr += QQ
@@ -903,7 +907,7 @@ class Tabs(pyglet.window.Window):
         self.log('(END) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
 
     def updateData(self, text, dbg=0):
-        p, l, r, c = self.j()
+        p, l, r, c = self.j() # ;  r += QQ
         t = self.data[p][l][c]
         self.log('(BGN) text={} {} data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.data[p][l][c]), file=sys.stdout)
         self.data[p][l][c] = t[0:r] + text + t[r+1:]
@@ -920,11 +924,11 @@ class Tabs(pyglet.window.Window):
     def updateCaption(self, txt):
         self.set_caption(txt)
     ####################################################################################################################################################################################################
-    def erase(self, reset=1):
+    def erase(self, reset=0):
         np, nl, nr, nc = self.n  ;  nc += CCC
         self.log('(BGN) np={} nl={} nr={} nc={}'.format(np, nl, nr, nc))
         for i in range(len(self.cols)):
-            self.cols[i].text = BLANK
+            self.cols[i].text = self.blank
         for p in range(np):
             for l in range(nl):
                 for c in range(nc):
@@ -932,8 +936,8 @@ class Tabs(pyglet.window.Window):
         if reset:
             self.log('reset={}'.format(reset))
             self.setStringNums()
-            self.setStringNames()
-            self.setCapo()
+#            self.setStringNames()
+#            self.setCapo()
         self.log('(END) np={} nl={} nr={} nc={}'.format(np, nl, nr, nc))
 
     def toggleFullScreen(self):
@@ -941,6 +945,32 @@ class Tabs(pyglet.window.Window):
         FULL_SCREEN =  not  FULL_SCREEN
         self.set_fullscreen(FULL_SCREEN)
         self.log('FULL_SCREEN={}'.format(FULL_SCREEN))
+
+    def toggleBlank(self):
+        prevBlank   = self.blank
+        self.log('(BGN)'.format())
+        self.blanki = (self.blanki + 1) % len(self.blanks)
+        self.blank  = self.blanks[self.blanki]
+        self.replaceTab(prevBlank, self.blank)
+        self.log('(END)'.format())
+
+    def replaceTab(self, src, trg):
+        self.log('(BGN) replace({},{})'.format(src, trg))
+        self.data = self.transpose(self.data)
+        np, nl, nr, nc = self.n  ;  nc += CCC  ;  i = 0
+        for p in range(np):
+            for l in range(nl):
+                for r in range(nr):
+                    t = self.data[p][l][r]
+                    self.log('before t={}'.format(t))
+                    t = t.replace(src, trg)
+                    self.data[p][l][r] = t
+                    self.log('after  t={}'.format(t))
+                    for c in range(nc):
+                        self.cols[i].text = t[c]
+                        i += 1
+        self.data = self.transpose(self.data)
+        self.log('(END) replace({},{})'.format(src, trg))
     ####################################################################################################################################################################################################
     @staticmethod
     def isCtrl(mods):        return mods&pygwink.MOD_CTRL
