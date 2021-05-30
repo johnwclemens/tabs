@@ -94,7 +94,7 @@ class Tabs(pyglet.window.Window):
         self.log('   snapGlob={}'.format(snapGlob))
         self.delGlob(snapGlob, 'SNAP_GLOB')
         self.ww, self.hh  = 640, 480
-        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, 6, 20], [1, 1, 1, 1], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], []
+        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, 6, 20], [1, 3, 6, 23], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
         if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
         if 'i' in self.argMap and len(self.argMap['i'])  > 0: self.i            = [int(self.argMap['i'][i]) for i in range(len(self.argMap['i']))]
@@ -119,15 +119,13 @@ class Tabs(pyglet.window.Window):
         self._initWindowA()
         super().__init__(screen=self.screens[1], fullscreen=FULL_SCREEN, resizable=True, visible=False)
         self._initWindowB()
-        self.kbk, self.symb, self.mods, self.symbStr, self.modsStr = 0, 0, 0, '', ''
-        self.cc, self.ci, self.SNAP0, self.armSnap, self.blankCol  = 0, 0, 0, '', ''
-        self.cursor, self.caret = None, None
         self.tabs    = []
         self.capo    = [0 for _ in range(self.n[R])]
         self.strings = ['E', 'B', 'G', 'D', 'A', 'E']
-        self.blanks  = ['-', ' ']
-        self.blanki  = 0
-        self.blank   = self.blanks[self.blanki]
+        self.kbk, self.symb, self.mods, self.symbStr, self.modsStr = 0, 0, 0, '', ''
+        self.cc, self.ci, self.SNAP0, self.armSnap, self.blankCol  = 0, 0, 0, '', ''
+        self.blanki, self.blanks  = 0, ['-', ' ']   ;   self.blank = self.blanks[self.blanki]
+        self.cursor, self.caret   = None, None
         self._init()
         self.log('(END) {} {} {}'.format(__class__, VRSNX1, VRSNX2))
         self.log('{}'.format(INIT), ind=0)
@@ -197,7 +195,7 @@ class Tabs(pyglet.window.Window):
         kb = [self.kc[0]]  ;  self.kp  = kb  ;  self.kl = kb  ;  self.kq = kb  ;  self.kr = kb  ;  self.ku = kb
         self.ssi = 0
         self._initCps()
-        self.readDataFile()
+        self.readTabs()
         if QQ:
             self.labelTextA, self.labelTextB = ['R', 'M', '@'], ['R', 'M', '@']
             self.labelTextA.extend('{}'.format(j) for j in range(1, self.n[C] + 1))
@@ -231,9 +229,10 @@ class Tabs(pyglet.window.Window):
         self.dumpCols(why)
         self.dumpACols(why)
         self.dumpFont(why)
+        self.log('fmtGeom()={}'.format(self.fmtGeom()))
         self.log('(END) {}'.format(why))
     ####################################################################################################################################################################################################
-    def writeDataFile(self):
+    def writeTabs(self):
         self.log('(BGN) {}'.format(self.fmtDataDim(self.tabs)))
         data = self.transpose(self.tabs)
         with open(str(self.dataPath), 'w') as DATA_FILE:
@@ -252,7 +251,7 @@ class Tabs(pyglet.window.Window):
                     if l+1 < nl: DATA_FILE.write('\n')
         self.log('(END) {}'.format(self.fmtDataDim(self.tabs)))
     ####################################################################################################################################################################################################
-    def readDataFile(self, dbg=1):
+    def readTabs(self, dbg=1):
         nl, nr, nc = self.n[L], self.n[R], self.n[C]
         if dbg: self.log('nl={} nr={} nc={}'.format(nl, nr, nc))
         with open(str(self.dataPath), 'r') as DATA_FILE:
@@ -273,44 +272,47 @@ class Tabs(pyglet.window.Window):
                 if c:  self.log('l={} r={} c={}: {}'.format(l, r, c, s))
             self.tabs.append(lines)
 #        nl = len(self.tabs)  ;  nr = len(self.tabs[0])  ;  nc = len(self.tabs[0][0])o
-        nt = l * c * r
-        vdf = self.isVertDataFrmt(self.tabs)  ;  self.blankCol = self.blank * r
-        self.log('read     {:2} lines with {:6,} cols on {:4,} strings {:8,} tabs, vdf={} blankCol({})={}'.format(l, l*c, l*r, nt, vdf, len(self.blankCol), self.blankCol))
-        if dbg: self.dumpDataH(self.tabs)
-        self.tabs = self.transpose(self.tabs)
-        vdf       = self.isVertDataFrmt(self.tabs)
-        if dbg: self.dumpDataV(self.tabs)
+        nt   = l * c * r
+        vert = self.isVert()  ;  self.blankCol = self.blank * r
+        self.log('read     {:2} lines with {:6,} cols on {:4,} strings {:8,} tabs, vdf={} blankCol({})={}'.format(l, l*c, l*r, nt, vert, len(self.blankCol), self.blankCol))
+        if dbg: self.dumpTabsHorz()
+        self.tabs = self.transpose()
+        vert      = self.isVert()
+        if dbg: self.dumpTabsVert()
         self.log('assert: size=nt+2*(l*r+l-1) {:8,} + {} = {:8,} bytes'.format(nt, 2 * (l * r + l - 1), size))  ;  assert size == nt + 2 * (l * r + l - 1)
-        assert vdf
+        assert vert
         self.log('(END) {:40} {:8,} bytes = {:4,.0f} KB'.format(DATA_FILE.name, size, size/1024))
 
-    def isVertDataFrmt(self, d, dbg=1):
-        vdf = 1
-        if dbg: self.log('(BGN) type(d [0] [0][0] [0][0][0])={} {} {} {}'.format(type(d), type(d[0]), type(d[0][0]), type(d[0][0][0])))
-        assert type(d) is list and type(d[0]) is list and type(d[0][0]) is list and type(d[0][0][0]) is str
-        for p in range(len(d)):
-            assert len(d[p]) == len(d[0])
-            for l in range(len(d[p])):
-                assert len(d[p][l]) == len(d[p][0])
-                for c in range(len(d[p][l])):
-                    assert len(d[p][l][c]) == len(d[p][l][0])
-                if len(d[p][l]) < len(d[p][l][0]): vdf = 0  ;  break
-        if dbg: self.log('(END)  len(d [0] [0][0] [0][0][0])={} {} {} {} return vdf={}'.format(len(d), len(d[0]), len(d[0][0]), len(d[0][0][0]), vdf))
-        return vdf
+    def isVert(self, data=None, dbg=1):
+        if data is None: data = self.tabs
+        vert = 1
+        if dbg: self.log('(BGN) type(data [0] [0][0] [0][0][0])={} {} {} {}'.format(type(data), type(data[0]), type(data[0][0]), type(data[0][0][0])))
+        assert type(data) is list and type(data[0]) is list and type(data[0][0]) is list and type(data[0][0][0]) is str
+        for p in range(len(data)):
+            assert len(data[p]) == len(data[0])
+            for l in range(len(data[p])):
+                assert len(data[p][l]) == len(data[p][0])
+                for c in range(len(data[p][l])):
+                    assert len(data[p][l][c]) == len(data[p][l][0])
+                if len(data[p][l]) < len(data[p][l][0]): vert = 0  ;  break
+        if dbg: self.log('(END)  len(data [0] [0][0] [0][0][0])={} {} {} {} return vdf={}'.format(len(data), len(data[0]), len(data[0][0]), len(data[0][0][0]), vert))
+        return vert
     ####################################################################################################################################################################################################
-    def dumpData(self, why='', c=1, l=1, i=0):
+    def dumpTabs(self, data=None, why='', lc=1, ll=1, i=0):
+        if data is None: data = self.tabs
         self.log('(BGN) {}'.format(why))
-        self.dumpDataV(self.tabs, c, l, i) if self.isVertDataFrmt(self.tabs) else self.dumpDataH(self.tabs, c, l, i)
-        transpose = self.transpose(self.tabs, why='Internal')
-        self.dumpDataV(transpose, c, l, i) if self.isVertDataFrmt(transpose) else self.dumpDataH(transpose, c, l, i)
+        self.dumpTabsVert(data, lc, ll, i) if self.isVert(data) else self.dumpTabsHorz(data, lc, ll, i)
+        transpose = self.transpose(data, why='Internal')
+        self.dumpTabsVert(transpose, lc, ll, i) if self.isVer(transpose) else self.dumpTabsHorz(transpose, lc, ll, i)
         self.log('(END) {}'.format(why))
 
-    def dumpDataH(self, data, lc=1, ll=1, i=0):
+    def dumpTabsHorz(self, data=None, lc=1, ll=1, i=0):
+        if data is None: data = self.tabs
         self.log('(BGN) lc={} ll={} i={} {}'.format(lc, ll, i, self.fmtDataDim(data)))
         for p in range(len(data)):
             for l in range(len(data[p])):
                 if ll:  llt = 'Line {}'.format(l + 1)  ;  llab = '{:{}}'.format(llt, i + 1)  ;  self.log('{}{}'.format(S * i, llab), ind=0)
-                if lc:  self.dumpDataLabels(data[p][l], i=i, sep=S)
+                if lc:  self.dumpTabLabels(data[p][l], i=i, sep=S)
                 for r in range(len(data[p][l])):
                     self.log('{}'.format(S * i), ind=0, end='')
                     for c in range(len(data[p][l][r])):
@@ -319,7 +321,8 @@ class Tabs(pyglet.window.Window):
                 self.log(ind=0)
         self.log('(END) lc={} ll={} i={} {}'.format(lc, ll, i, self.fmtDataDim(data)))
 
-    def dumpDataV(self, data, lc=1, ll=1, i=0):
+    def dumpTabsVert(self, data=None, lc=1, ll=1, i=0):
+        if data is None: data = self.tabs
         self.log('(BGN) lc={} ll={} i={} {}'.format(lc, ll, i, self.fmtDataDim(data)))
         if ll:
             t0 = S * i + COL_L + S       if        i >= 0 else COL_L
@@ -338,14 +341,16 @@ class Tabs(pyglet.window.Window):
                 self.log(ind=0)##            self.log('{:3} '.format(cc + 1),        ind=0)           if i <  0 and c else self.log(ind=0)
         self.log('(END) lc={} ll={} i={} {}'.format(lc, ll, i, self.fmtDataDim(data)))
     ####################################################################################################################################################################################################
-    def dumpDataLabels(self, data, i=0, sep='%'):
+    def dumpTabLabels(self, data=None, i=0, sep='%'):
+        if data is None: data = self.tabs
         n = len(data[0])-CCC    ;  a = ' ' * i if i else ''   ;  b = sep * n  ;  p = '   '  ;  q = '  @'  ;  r = sep * 3
         if n >= 100:      self.log('{}{}'.format(a, p), ind=0, end='')  ;  [  self.log('{}'.format(c//100   if c>=100 else ' '), ind=0, end='') for c in range(1, n+1) ]  ;  self.log(ind=0)
         if n >= 10:       self.log('{}{}'.format(a, p), ind=0, end='')  ;  [  self.log('{}'.format(c//10%10 if c>=10  else ' '), ind=0, end='') for c in range(1, n+1) ]  ;  self.log(ind=0)
         self.log(                  '{}{}'.format(a, q), ind=0, end='')  ;  [  self.log('{}'.format(c%10),                        ind=0, end='') for c in range(1, n+1) ]  ;  self.log(ind=0)
         if sep != '':   self.log('{}{}{}'.format(a, r, b), ind=0)
 
-    def transpose(self, data, why=' External  ', dbg=1):
+    def transpose(self, data=None, why=' External  ', dbg=1):
+        if data is None: data = self.tabs
         if dbg: self.log('(BGN) {} {}'.format(why, self.fmtDataDim(data)))
         transposed = []
         for p in range(len(data)):
@@ -779,8 +784,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'F' and self.isCtrl(mods):                        self.toggleFullScreen()
         elif kbk == 'Q' and self.isCtrl(mods) and self.isShift(mods): self.quit(        'keyPress({})'.format(kbk))
         elif kbk == 'Q' and self.isCtrl(mods):                        self.quit(        'keyPress({})'.format(kbk))
-        elif kbk == 'S' and self.isCtrl(mods) and self.isShift(mods): self.writeDataFile()
-        elif kbk == 'S' and self.isCtrl(mods):                        self.writeDataFile()
+        elif kbk == 'S' and self.isCtrl(mods) and self.isShift(mods): self.writeTabs()
+        elif kbk == 'S' and self.isCtrl(mods):                        self.writeTabs()
     ####################################################################################################################################################################################################
         elif kbk == 'B' and self.isAlt(mods) and self.isShift(mods):  self.setFontParam('bold',   not self.fontBold,   'fontBold')
         elif kbk == 'B' and self.isAlt(mods):                         self.setFontParam('bold',   not self.fontBold,   'fontBold')
@@ -863,6 +868,7 @@ class Tabs(pyglet.window.Window):
         self._move(k)
         jp, jl, jr, jc = self.j()  ;  jr += QQ
         kk = jc + jr * nc + jl * nr * nc + jp * nl * nr * nc
+        kk = kk % len(self.acols)
         t = self.acols[kk]  ;  x = t.x - t.width/2  ;  y = t.y - t.height/2
         self.cc = kk
         self.cursor.update(x=x, y=y)
@@ -901,20 +907,21 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def addTab(self, kbk, why=''):
         self.log('(BGN) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
-        self.updateData(kbk)
-        self.updateTab( kbk)
+        self.updateTabs(kbk)
+        self.updateCol( kbk)
 #        self.snapshot()
         self.log('(END) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
 
-    def updateData(self, text, dbg=0):
-        p, l, r, c = self.j() # ;  r += QQ
-        t = self.tabs[p][l][c]
-        self.log('(BGN) text={} {} data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.tabs[p][l][c]), file=sys.stdout)
+    def updateTabs(self, text, data=None, dbg=0):
+        if data is None: data = self.tabs
+        p, l, r, c = self.j()
+        t = data[p][l][c]
+        self.log('(BGN) text={} {} data[p][l][c]={}'.format(text, fmtl(self.i, FMTN), data[p][l][c]), file=sys.stdout)
         self.tabs[p][l][c] = t[0:r] + text + t[r+1:]
-        if dbg: self.dumpData(why='updateData text={} i={} data[p][l][c]={}'.format(text, self.i, self.tabs[p][l][c]))
-        self.log('(END) text={} {} data[l][c]={}'.format(text, fmtl(self.i, FMTN), self.tabs[p][l][c]), file=sys.stdout)
+        if dbg: self.dumpTabs(why='updateData text={} i={} data[p][l][c]={}'.format(text, self.i, data[p][l][c]))
+        self.log('(END) text={} {} data[p][l][c]={}'.format(text, fmtl(self.i, FMTN), data[p][l][c]), file=sys.stdout)
 
-    def updateTab(self, text, dbg=1):
+    def updateCol(self, text, dbg=1):
         cc = self.cursorCol()
         self.log('(BGN) text={} cols[{}].text={}'.format(text, cc, self.acols[cc].text), file=sys.stdout)
         self.acols[cc].text = text
@@ -954,22 +961,23 @@ class Tabs(pyglet.window.Window):
         self.replaceTab(prevBlank, self.blank)
         self.log('(END)'.format())
 
-    def replaceTab(self, src, trg):
+    def replaceTab(self, src, trg, data=None):
+        if data is None: data = self.tabs
         self.log('(BGN) replace({},{})'.format(src, trg))
-        self.tabs = self.transpose(self.tabs)
+        self.tabs = self.transpose()
         np, nl, nr, nc = self.n  ;  nc += CCC  ;  i = 0
         for p in range(np):
             for l in range(nl):
                 for r in range(nr):
-                    t = self.tabs[p][l][r]
+                    t = data[p][l][r]
                     self.log('before t={}'.format(t))
                     t = t.replace(src, trg)
-                    self.tabs[p][l][r] = t
+                    data[p][l][r] = t
                     self.log('after  t={}'.format(t))
                     for c in range(nc):
                         self.cols[i].text = t[c]
                         i += 1
-        self.tabs = self.transpose(self.tabs)
+        self.tabs = self.transpose()
         self.log('(END) replace({},{})'.format(src, trg))
     ####################################################################################################################################################################################################
     @staticmethod
