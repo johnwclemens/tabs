@@ -23,9 +23,9 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
-VRSN2            = 1  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
+VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
 PATH             = pathlib.Path(sys.argv[0])
@@ -189,18 +189,17 @@ class Tabs(pyglet.window.Window):
 #        else:           return pyglet.graphics.Group(parent)
 
     def _initCps(self, dbg=1):
-        self.cpr =  self.n[C] + CCC
-        self.cps =  self.ss * self.cpr
-        self.cpl = (self.n[R] + QQ) * self.cps
-        self.cpp =  self.n[L] * self.cpl
+        np, nl, ns, nr, nc = self.n  ;  nr += QQ
+        self.cpr =  nc + CCC
+        self.cps =  nr * self.cpr
+        self.cpl =       self.cps
+        self.cpp =  nl * self.cpl
         if dbg: self.log('cpz={}'.format(fmtl(self.cpz())))
 
     def cpz(self): return self.cpp, self.cpl, self.cps, self.cpr
-    def lnl(self): return list(map(len, [self.pages, self.lines, self.rows, self.cols, self.qrows, self.ucols]))
+    def lnl(self): return list(map(len, [self.pages, self.lines, self.sects, self.rows, self.cols]))
     def snl(self): return sum(self.lnl())
-#    def szs(self): return self.lnl().append(len(self.acols))
     def j(self):   return [ i-1 if i else 0 for i in self.i ]
-#    def m(self):   return [ n for n in self.n ]
 
     @staticmethod
     def fmtDataDim(d): return '({} x {} x {} x {})'.format(len(d), len(d[0]), len(d[0][0]), len(d[0][0][0]))
@@ -258,7 +257,7 @@ class Tabs(pyglet.window.Window):
         self.log('(BGN) {}'.format(self.fmtDataDim(self.tabs)))
         data = self.transpose(self.tabs)
         with open(str(self.dataPath), 'w') as DATA_FILE:
-            np, nl, nr, nc = self.n  ;  nc += CCC
+            np, nl, ns, nr, nc = self.n  ;  nc += CCC
             for p in range(np):
                 self.log('writing {}{} page'.format(p+1, self.ordSfx(p+1)))
                 for l in range(nl):
@@ -445,7 +444,7 @@ class Tabs(pyglet.window.Window):
             for l in range(nl):
                 yl2 = page.y + page.height - (yl + hl)*(l + 1)
                 line = self.createSprite(self.lines, xl, yl2, wl, hl, cl[l % len(cl)], gl, why='create Line', v=v, dbg=dbg)
-                ns, iz, xs, ys, ws, hs, gs, mx, my = self.geom(line, R, init=1)
+                ns, iz, xs, ys, ws, hs, gs, mx, my = self.geom(line, S, init=1)
                 for s in range(ns):
                     ys2 = line.y + line.height - (ys + hs)*(s + 1)
                     sect = self.createSprite(self.sects, xs, ys2, ws, hs, cs[s % len(cs)], gs, why='create Sect', v=v, dbg=dbg)
@@ -516,7 +515,7 @@ class Tabs(pyglet.window.Window):
 
     def createLabels(self, dbg=0):
         self.log('(BGN) {}'.format(self.fmtGeom()))
-        np, ip, xp, yp, wp, hp, gp, mx, my = self.geom(None, P, init=1)  ;  ss = self.ss
+        np, ip, xp, yp, wp, hp, gp, mx, my = self.geom(None, P, init=1)  #;  ss = self.ss
         if dbg: self.dumpLabel()
         for p in range(np):
             xp2 = xp + wp/2      ;      yp2 = yp + hp/2
@@ -535,10 +534,10 @@ class Tabs(pyglet.window.Window):
                         row = self.createLabel('Row', self.rows, xr, yr2, wr, hr, R, gr, why='create Row', dbg=dbg)
                         nc, ic, xc, yc, wc, hc, gc, mx, my = self.geom(row, C, init=1)
                         for c in range(nc):
-                            xc2 = row.x - row.width/2 + (xc + wc)*c + wc/2             ;  yc2 = row.y + row.height - (yc + hc)
+                            xc2 = row.x - row.width/2 + (xc + wc)*c + wc/2         ;  yc2 = row.y + row.height - (yc + hc)
                             if s == 0:
-                                if QQ and r == 0: text = self.labelTextB[c]            ;  cols = self.ucols
-                                else:             text = self.tabs[p][l//ss][c][r-QQ]  ;  cols = self.cols
+                                if QQ and r == 0: text = self.labelTextB[c]        ;  cols = self.ucols
+                                else:             text = self.tabs[p][l][c][r-QQ]  ;  cols = self.cols
                                 self.createLabel(text, cols, xc2, yc2, wc, hc, self.cci(c, self.kc), gc, why='create Col', dbg=dbg)
         if dbg: self.dumpLabel()
         self.log('(END) {}'.format(self.fmtGeom()))
@@ -551,7 +550,7 @@ class Tabs(pyglet.window.Window):
         s.color, s.opacity = cc[:3], cc[3]
         self.sprites.append(s)
         if p is not None:      p.append(s)
-        if dbg: self.dumpSprite(s, len(self.sprites), *self.lnl(), why=why)
+        if dbg: self.dumpSprite(s, len(self.sprites), *self.lnl(), why)
         return s
 
     def createLabel(self, text, p, x, y, w, h, kk, g, why, m=0, dbg=0):
@@ -717,9 +716,10 @@ class Tabs(pyglet.window.Window):
                         for r in range(nr):
                             sr += 1
                             for c in range(nc):
-                                if QQ and r == 0: su += 1
-                                else:             sc += 1
-                                self.dumpLabel(self.labels[i], i+1, sp, sl, ss, sr, sc, '{} Col'.format(why))   ;  i += 1
+                                if s == 0:
+                                    if QQ and r == 0: su += 1
+                                    else:             sc += 1
+                                    self.dumpLabel(self.labels[i], i+1, sp, sl, ss, sr, sc, '{} Col'.format(why))   ;  i += 1
         else:
             for p in range(np):
                 sp += 1                  ;  self.dumpLabel(self.labels[i], i+1, sp, sl, ss, sr, sc, '{} Page'.format(why))  ;  i += 1
@@ -737,19 +737,16 @@ class Tabs(pyglet.window.Window):
         self.dumpLabel()
         if dbg: self.log('(END) {} {})'.format(self.fmtGeom(), why))
     ####################################################################################################################################################################################################
-    def dumpSprite(self, a=None, sid=-1, p=-1, l=-1, s=-1, r=-1, c=-1, why=''):
-        if a is None: self.log('sid  p  l  r   c    xc      yc       w       h       x       y    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent', ind=0); return
-        f = '{:4} {} {:2} {:2} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:4} {:6.3f} {:6.3f} {:6.3f} {:7.2f}  {:3} {:3} {:3} {:3} {:1} {:16} {} {}'
-        k, o, v, g, pg = a.color, a.opacity, a.visible, a.group, a.group.parent
-        xc, yc = a.x + a.width/2, a.y + a.height/2
-        fs = f.format(sid, p, l, r, c, xc, yc, a.width, a.height, a.x, a.y, a.image.anchor_x, a.image.anchor_y, a.scale, a.scale_x, a.scale_y, a.rotation, k[0], k[1], k[2], o, v, why, g, pg)
+    def dumpSprite(self, z=None, sid=-1, p=-1, l=-1, s=-1, r=-1, c=-1, why=''):
+        if z is None: self.log('sid  p  l  s  r   c    xc      yc       w       h       x       y    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent', ind=0); return
+        f = '{:4} {} {:2} {:2} {:2} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:4} {:6.3f} {:6.3f} {:6.3f} {:7.2f}  {:3} {:3} {:3} {:3} {:1} {:16} {} {}'
+        k, o, v, g, pg = z.color, z.opacity, z.visible, z.group, z.group.parent
+        xc, yc = z.x + z.width/2, z.y + z.height/2
+        fs = f.format(sid, p, l, s, r, c, xc, yc, z.width, z.height, z.x, z.y, z.image.anchor_x, z.image.anchor_y, z.scale, z.scale_x, z.scale_y, z.rotation, k[0], k[1], k[2], o, v, why, g, pg)
         self.log(fs, ind=0)
-        assert(type(s) == pyglet.sprite.Sprite)
+        assert(type(z) == pyglet.sprite.Sprite)
 
     def dumpLabel(self, a=None, lid=-1, p=-1, l=-1, s=-1, r=-1, c=-1, why='', idt='lid'):
-#        if a is None: self.log('{:4} p  l  r   c  q   u     x       y       w       h   text   font name     siz dpi bld itl red grn blu opc  why'.format(idt), ind=0) ; return
-#        x, y, w, h, n, d, s, k, b, i, t = a.x, a.y, a.width, a.height, a.font_name, a.dpi, a.font_size, a.color, a.bold, a.italic, a.text
-#        f = '{:4} {} {:2} {:2} {:3} {:2} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:16} {:2} {:3}  {:1}   {:1}  {:3} {:3} {:3} {:3}  {}'
         if a is None: self.log('{:4} p  l  s  r   c     x       y       w       h   text   font name     siz dpi bld itl red grn blu opc  why'.format(idt), ind=0) ; return
         x, y, w, h, n, d, z, k, b, i, t = a.x, a.y, a.width, a.height, a.font_name, a.dpi, a.font_size, a.color, a.bold, a.italic, a.text
         f = '{:4} {} {:2} {:2} {:2} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:16} {:2} {:3}  {:1}   {:1}  {:3} {:3} {:3} {:3}  {}'
@@ -876,30 +873,32 @@ class Tabs(pyglet.window.Window):
         p, l, s, r, c = self.j()  ;  r += QQ
         cpp, cpl, cps, cpr = self.cpz()
         cc = p*cpp + l*cpl + s*cps + r*cpr + c
+        cc = cc % len(self.acols)
         if dbg: self.log('p={} l={} s={} r={} c={}'.format(p, l, s, r, c))
         if dbg: self.log('cpp={} cpl={} cps={} cpr={}'.format(cpp, cpl, cps, cpr))
         if dbg: self.log('cc={}=({} * {} + {} * {} + {} * {} + {} * {} + {})'.format(cc, p, cpp, l, cpl, s, cps, r, cpr, c))
         return cc
     ####################################################################################################################################################################################################
     def on_mouse_release(self, x, y, button, modifiers):
-        np, nl, nr, nc = self.n  ;  nc += CCC     ;  nr += QQ
-        w = self.ww/nc  ;  h = self.hh/(nl * nr)  ;  y0 = y   ;   y = self.hh - y
-        c = int(x/w)    ;  r = int(y/h)           ;  kk = c + r * nc
-        self.log('(BGN) x={} y0={:4} y={:4} w={:6.2f} h={:6.2f} c={:4} r={:4} txt={}'.format(x, y0, y, w, h, c, r, self.acols[kk].text), file=sys.stdout)
-        kk = c + r * nc
+        np, nl, ns, nr, nc = self.n  ;  nc += CCC       ;  nr += QQ
+        w  = self.ww/nc     ;  h  = self.hh/(nl*ns*nr)  ;  y0 = y          ;  y = self.hh - y
+        c  = int(x/w)       ;  r0 = int(y/h)            ;  d0 = int(ns*nr)
+        l = int(r0/d0)      ;   r = int(r0 % d0)        ;   s = int(r/d0)  ;  p = 0
+        kk = int(c + r*self.cpr + s*self.cps + l*self.cpl + p*self.cpp)
+        self.log('(BGN) x={} y0={:4} y={:4} w={:6.2f} h={:6.2f} c={:4} r0={:4} d0={}'.format(x, y0, y, w, h, c, r0, d0), file=sys.stdout)
+        self.log('p={} l={} s={} r={} c={} kk={}'.format(np, l, s, r, c, kk))
+        self.log('acols[kk].txt={}'.format(self.acols[kk].text), file=sys.stdout)
         k  = kk - self.cc
         self.log('      {:4} {:4} {:4} {} b={} m={} txt={}'.format(k, kk, self.cc, fmtl(self.i, FMTN), button, modifiers, self.acols[self.cc].text), file=sys.stdout)
         self.move(k)
         self.log('(END) {:4} {:4} {:4} {} b={} m={} txt={}'.format(k, kk, self.cc, fmtl(self.i, FMTN), button, modifiers, self.acols[self.cc].text), file=sys.stdout)
 
     def move(self, k, dbg=1): #calc
-        np, nl, ns, nr, nc = self.n  ;  nc += CCC  ;  nr += QQ
+        np, nl, ns, nr, nc = self.n  ;  nc += CCC   ;  nr += QQ
         if dbg: self.log('(BGN) {:4}      {:4} {} text={}'.format(k, self.cc, fmtl(self.i, FMTN), self.acols[self.cc].text), file=sys.stdout)
         if not self.SNAP0: t = self.acols[self.cc]  ;  self.snapshot('pre-move() k={:4} kk={:3} {} text={} {:6.2f} {:6.2f}'.format(k, self.cc, fmtl(self.i, FMTN), t.text, t.x, t.y))  ;  self.SNAP0 = 1
         self._move(k)
-        jp, jl, js, jr, jc = self.j()  ;  jr += QQ
-        kk = jc + jr * nc + jl * nr * nc + jp * nl * nr * nc
-        kk = kk % len(self.acols)
+        kk = self.cursorCol()
         t = self.acols[kk]  ;  x = t.x - t.width/2  ;  y = t.y - t.height/2
         self.cc = kk
         self.cursor.update(x=x, y=y)
@@ -963,8 +962,8 @@ class Tabs(pyglet.window.Window):
         self.set_caption(txt)
     ####################################################################################################################################################################################################
     def erase(self, reset=0):
-        np, nl, nr, nc = self.n  ;  nc += CCC
-        self.log('(BGN) np={} nl={} nr={} nc={}'.format(np, nl, nr, nc))
+        np, nl, ns, nr, nc = self.n  ;  nc += CCC
+        self.log('(BGN) np={} nl={} ns={} nr={} nc={}'.format(np, nl, ns, nr, nc))
         for i in range(len(self.cols)):
             self.cols[i].text = self.blank
         for p in range(np):
@@ -1148,7 +1147,7 @@ if __name__ == '__main__':
         try:
             ret = pyglet.app.run()
 #        except LookupError as e:
-        except(IndexError, KeyError) as EX:
+        except(ValueError, IndexError, KeyError) as EX:
             Tabs.log('Exception LookupError e={}'.format(EX))
             exit()
         tabs.log('pyglet.app.run() return={}'.format(ret))
