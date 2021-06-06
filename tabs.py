@@ -228,7 +228,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log('cpz={}'.format(fmtl(self.cpz())))
 
     def cpz(self): return self.cpp, self.cpl, self.cps, self.cpr
-    def lnl(self): return list(map(len, [self.pages, self.lines, self.sects, self.rows, self.cols, self.notes]))
+    def lnl(self): return list(map(len, [self.pages, self.lines, self.sects, self.rows, self.tabs, self.notes]))
     def snl(self): return sum(self.lnl())
     def j(self):   return [ i-1 if i else 0 for i in self.i ]
 
@@ -241,7 +241,7 @@ class Tabs(pyglet.window.Window):
         dataDir  = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = '.{}'.format(self.n[T])
         dataName = BASE_NAME + SFX + dataPfx + dataSfx
         self.dataPath = BASE_PATH / dataDir / dataName
-        self.pages,  self.lines,   self.sects, self.rows,  self.cols  = [], [], [], [], []
+        self.pages,  self.lines,   self.sects, self.rows,  self.tabs  = [], [], [], [], []
         self.labels, self.sprites, self.ucols, self.acols, self.notes = [], [], [], [], []
         self.log('(BGN) {}'.format(self.fmtGeom()))
         self.kc  = [GRAYS[7], GRAYS[11]] if CHECKER_BOARD else [GRAYS[7]]  ;  self.kn = [GREENS[1], GREENS[4]] if CHECKER_BOARD else [GREENS[1]]
@@ -482,8 +482,8 @@ class Tabs(pyglet.window.Window):
                 for r in range(nr):
                     strNum = str(r + 1)
                     strNums += strNum
-                    self.cols[i].text  = strNum
-                    self.log('({} {} {}) '.format(r, i, self.cols[i].text), ind=0, end='')
+                    self.tabs[i].text  = strNum
+                    self.log('({} {} {}) '.format(r, i, self.tabs[i].text), ind=0, end='')
                     i += nc
                 self.log(ind=0)
                 self.data[p][l][SNO_C] = strNums
@@ -498,8 +498,8 @@ class Tabs(pyglet.window.Window):
                 for r in range(nr):
                     stringName = str(self.strings[r])
                     stringNames += stringName
-                    self.cols[i].text = stringName
-                    self.log('({} {} {}) '.format(r, i, self.cols[i].text), ind=0, end='')
+                    self.tabs[i].text = stringName
+                    self.log('({} {} {}) '.format(r, i, self.tabs[i].text), ind=0, end='')
                     i += nc
                 self.log(ind=0)
                 self.data[p][l][SNA_C] = stringNames
@@ -514,8 +514,8 @@ class Tabs(pyglet.window.Window):
                 for r in range(nr):
                     capoFretNum = str(self.capo[r])
                     capoFretNums += capoFretNum
-                    self.cols[i].text = capoFretNum
-                    self.log('({} {} {}) '.format(r, i, self.cols[i].text), ind=0, end='')
+                    self.tabs[i].text = capoFretNum
+                    self.log('({} {} {}) '.format(r, i, self.tabs[i].text), ind=0, end='')
                     i += nc
                 self.log(ind=0)
                 self.data[p][l][CFN_C] = capoFretNums
@@ -549,7 +549,7 @@ class Tabs(pyglet.window.Window):
                             if s == 0:
                                 tab = self.data[p][l][c][r-QQ]
                                 if QQ and r == 0: tab = self.labelTextB[c]  ;  cols = self.ucols  ;  cc = T
-                                else:                                          cols = self.cols   ;  cc = T + 1
+                                else:                                          cols = self.tabs   ;  cc = T + 1
                                 self.createLabel(tab, cols, xc2, yc2, wc, hc, T if c==0 else cc, gc, why='create Col', dbg=dbg)
                             elif s == 1:
                                 tab = self.data[p][l][c][r]
@@ -583,7 +583,7 @@ class Tabs(pyglet.window.Window):
                             if   s == 0:
                                 tab = self.data[p][l][c][r-QQ]
                                 if QQ and r == 0: tab = self.labelTextB[c]  ;  cols = self.ucols  ;  cc = T
-                                else:                                          cols = self.cols   ;  cc = T + 1
+                                else:                                          cols = self.tabs   ;  cc = T + 1
                                 self.createLabel(tab, cols, xc2, yc2, wc, hc, T if c==0 else cc, gc, why='create Col', dbg=dbg)
                             elif s == 1:
                                 tab = self.data[p][l][c][r]
@@ -617,7 +617,7 @@ class Tabs(pyglet.window.Window):
         ll = pyglet.text.Label(text, font_name=n, font_size=s, bold=o, italic=j, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=m)
         self.labels.append(ll)
         p.append(ll)
-        if p == self.cols or p == self.ucols: self.acols.append(ll)
+        if p == self.tabs or p == self.ucols: self.acols.append(ll)
         if dbg: self.dumpLabel(ll, len(self.labels), *self.lnl(), why=why)
         return ll
     ####################################################################################################################################################################################################
@@ -648,7 +648,7 @@ class Tabs(pyglet.window.Window):
                         for c in range(nc):
                             if s == 0:
                                 if QQ and r == 0: cols = self.ucols[su]  ;  su += 1
-                                else:             cols = self.cols[sc]   ;  sc += 1
+                                else:             cols = self.tabs[sc]   ;  sc += 1
                                 col = cols  ;  col.width = wc  ;  col.height = hc  ;  col.x = row.x + (xc + wc)*c + xc + wc/2  ;  col.y = row.y + row.height - (yc + hc)  ;  j += 1
                                 if dbg: self.dumpLabel(col, j, sp, sl, ss, sr, sc, sn, 'resize Col')
                             elif s == 1:
@@ -681,7 +681,7 @@ class Tabs(pyglet.window.Window):
                         for c in range(nc):
                             if s == 0:
                                 if QQ and r == 0: cols = self.ucols[su]  ;  su += 1
-                                else:             cols = self.cols[sc]   ;  sc += 1
+                                else:             cols = self.tabs[sc]   ;  sc += 1
                                 col = cols;        col.width = wc  ;   col.height = hc  ;   col.x = row.x - row.width/2 + (xc + wc)*c + wc/2  ;  col.y = row.y + row.height - (yc + hc)  ;  i += 1
                                 if dbg: self.dumpLabel(col, i, sp, sl, ss, sr, sc, sn, 'resize Col')
                             elif s == 1:
@@ -741,7 +741,7 @@ class Tabs(pyglet.window.Window):
                         sr += 1
                         for c in range(nc):
                             if s == 0:
-                                sc += 1  ;  self.dumpLabel(self.cols[i],  i+1, sp, sl, ss, sr, c+1, why=why)  ;  i += 1
+                                sc += 1  ;  self.dumpLabel(self.tabs[i],  i+1, sp, sl, ss, sr, c+1, why=why)  ;  i += 1
         self.dumpLabel(idt='cid')
         if dbg: self.log('(END) {} {})'.format(self.fmtGeom(), why))
 
@@ -825,7 +825,7 @@ class Tabs(pyglet.window.Window):
         self.setFontParam('font_size', fs, 'fontSize')
 
     def minSize(self):
-        w = self.cols[0].width  ;  h = self.cols[0].height  ;  m = min(w, h)
+        w = self.tabs[0].width  ;  h = self.tabs[0].height  ;  m = min(w, h)
         self.log('ww={:5.1f} h={:5.1f} m={:5.1f}'.format(w, h, m))
         return m
 
@@ -845,7 +845,7 @@ class Tabs(pyglet.window.Window):
         setattr(self, m, v)
         self.log('n={} v={:.1f} m={}'.format(n, v, m))
         if SPRITES:
-            self._setFontParam(self.cols, n, v, m)
+            self._setFontParam(self.tabs, n, v, m)
             if QQ: self._setFontParam(self.ucols, n, v, m)
         else: self._setFontParam(self.labels, n, v, m)
 
@@ -1024,8 +1024,8 @@ class Tabs(pyglet.window.Window):
     def erase(self, reset=1):
         np, nl, ns, nr, nc = self.n  ;  nc += CCC
         self.log('(BGN) np={} nl={} ns={} nr={} nc={}'.format(np, nl, ns, nr, nc))
-        for i in range(len(self.cols)):
-            self.cols[i].text  = self.blank
+        for i in range(len(self.tabs)):
+            self.tabs[i].text  = self.blank
             self.notes[i].name = self.blank
         for p in range(np):
             for l in range(nl):
@@ -1067,7 +1067,7 @@ class Tabs(pyglet.window.Window):
                     data[p][l][r] = t
                     self.log('after  t={}'.format(t))
                     for c in range(nc):
-                        self.cols[i].text = t[c]
+                        self.tabs[i].text = t[c]
                         i += 1
         self.data = self.transpose()
         self.log('(END) replace({},{})'.format(src, trg))
