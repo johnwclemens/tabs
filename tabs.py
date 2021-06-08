@@ -953,48 +953,51 @@ class Tabs(pyglet.window.Window):
     '''
     ####################################################################################################################################################################################################
     def addTab(self, text, why=''):
-        self.log('(BGN) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
-#        self.updateData(text)
-#        self.updateTab(text)
-#        self.updateNote(text)
+        self.log('(BGN) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
+        self.updateData(text)
+        self.updateTab(text)
+        self.updateNote(text)
+        '''
         p, l, s, r, c = self.j()
         t = self.data[p][l][c]
-        self.log('before data[{}][{}][{}]={}'.format(p, l, c, self.data[p][l][c]), file=sys.stdout)
+        self.log('before data[{}][{}][{}]={}'.format(p, l, c, self.data[p][l][c]))
         self.data[p][l][c] = t[0:r] + text + t[r+1:]
-        self.log('after  data[{}][{}][{}]={}'.format(p, l, c, self.data[p][l][c]), file=sys.stdout)
+        self.log('after  data[{}][{}][{}]={}'.format(p, l, c, self.data[p][l][c]))
         cc = self.cursorCol()
-        self.log('before acols[{}].text={}'.format(cc, self.acols[cc].text), file=sys.stdout)
+        self.log('before acols[{}].text={}'.format(cc, self.acols[cc].text))
         self.acols[cc].text = text
-        self.log('after  acols[{}].text={}'.format(cc, self.acols[cc].text), file=sys.stdout)
-        cc -=  QQ * self.cpr  ;  r -= QQ
-        self.log('before notes[{}].text={}'.format(cc, self.notes[cc].text), file=sys.stdout)
+        self.log('after  acols[{}].text={}'.format(cc, self.acols[cc].text))
+        cc -=  QQ * (l + 1) * self.cpr   ;  self.log('cc={} r={}'.format(cc, r))
+        self.log('before notes[{}].text={}'.format(cc, self.notes[cc].text))
         self.notes[cc].text = self.getNote(r, text).name if self.isFret(text) else self.nblank
-        self.log('after  notes[{}].text={}'.format(cc, self.notes[cc].text), file=sys.stdout)
+        self.log('after  notes[{}].text={}'.format(cc, self.notes[cc].text))
 #        self.snapshot()
-        self.log('(END) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why), file=sys.stdout)
+        self.log('(END) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
+        '''
 
     def updateData(self, text, data=None, dbg=0):
         if data is None: data = self.data
         p, l, s, r, c = self.j()
         t = data[p][l][c]
-        self.log('(BGN) text={} {} data[p][l][c]={}'.format(text, fmtl(self.i, FMTN), data[p][l][c]), file=sys.stdout)
+        self.log('(BGN) data[{}][{}][{}]={}'.format(p, l, c, self.data[p][l][c]))
         self.data[p][l][c] = t[0:r] + text + t[r+1:]
         if dbg: self.dumpTabs(why='updateData text={} i={} data[p][l][c]={}'.format(text, self.i, data[p][l][c]))
-        self.log('(END) text={} {} data[p][l][c]={}'.format(text, fmtl(self.i, FMTN), data[p][l][c]), file=sys.stdout)
+        self.log('(END) data[{}][{}][{}]={}'.format(p, l, c, self.data[p][l][c]))
 
     def updateTab(self, text, dbg=1):
         cc = self.cursorCol()
-        self.log('(BGN) text={} acols[{}].text={}'.format(text, cc, self.acols[cc].text), file=sys.stdout)
+        self.log('(BGN) acols[{}].text={}'.format(cc, self.acols[cc].text))
         self.acols[cc].text = text
         if dbg: self.acols[cc].color = FONT_COLORS[self.fontColorIndex + 4]
-        self.log('(END) text={} acols[{}].text={}'.format(text, cc,  self.acols[cc].text), file=sys.stdout)
+        self.log('(BGN) acols[{}].text={}'.format(cc, self.acols[cc].text))
 
     def updateNote(self, text, dbg=1):
-        cc = self.cursorCol() - QQ * self.cpr  ;  r = self.i[R] - 1 - QQ
-        self.log('(BGN) text={} notes[{}].text={}'.format(text, cc, self.notes[cc].text), file=sys.stdout)
+        p, l, s, r, c = self.j()
+        cc = self.cursorCol() - QQ * (l + 1) * self.cpr
+        self.log('(BGN) notes[{}].text={}'.format(cc, self.notes[cc].text))
         self.notes[cc].text = self.getNote(r, text).name if self.isFret(text) else self.nblank
         if dbg: self.notes[cc].color = FONT_COLORS[self.fontColorIndex + 4]
-        self.log('(END) text={} notes[{}].text={}'.format(text, cc,  self.notes[cc].text), file=sys.stdout)
+        self.log('(END) notes[{}].text={}'.format(cc, self.notes[cc].text))
 
     def updateCaption(self, txt):
         self.set_caption(txt)
