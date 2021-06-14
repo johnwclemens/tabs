@@ -23,7 +23,7 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 0  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 0  ;  RESIZE = 0  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
@@ -33,7 +33,7 @@ BASE_PATH        = PATH.parent
 BASE_NAME        = BASE_PATH.stem
 SNAP_DIR         = 'snaps'
 SNAP_SFX         = '.png'
-CCC              = 2
+CCC              = 1
 FMTN             = (1, 1, 1, 1, 3, 3, 3) # remove?
 P, L, S, R, T, N, I, C = 0, 1, 2, 3, 4, 5, 6, 7
 Z, COL_L, LINE_L       = ' ', 'Col', 'Line '
@@ -527,17 +527,17 @@ class Tabs(pyglet.window.Window):
         np, ip, xp, yp, wp, hp, gp, mx, my = self.geom(None, P, init=1, dbg=dbg2)
         if dbg: self.dumpLabel()
         for p in range(np):
-            sp += 1              ;  page = self.createLabel('Page', self.pages, xp, yp,        wp, hp, P, gp, why='create Page {}'.format(sp), dbg=dbg)
+            sp += 1              ;  page = self.createLabel('Page', self.pages, xp, yp,        wp, hp, P, gp, why=f'create Page {sp}', dbg=dbg)
             nl, il, xl, yl, wl, hl, gl, mx, my             = self.geom(page, L, init=1, dbg=dbg2)
             for l in range(nl):
-                sl += 1          ;  line = self.createLabel('Line', self.lines, xl, yl - l*hl, wl, hl, L, gl, why='create Line {}'.format(sl), dbg=dbg)
+                sl += 1          ;  line = self.createLabel('Line', self.lines, xl, yl - l*hl, wl, hl, L, gl, why=f'create Line {sl}', dbg=dbg)
                 if QQ:              line = self.createQRow(line, sl-1)
                 ns, iz, xs, ys, ws, hs, gs, mx, my         = self.geom(line, S, init=1, dbg=dbg2)
                 for s in range(ns):
-                    ss += 1      ;  sect = self.createLabel('Sect', self.sects, xs, ys - s*hs, ws, hs, S, gs, why='create Sect {}'.format(ss), dbg=dbg)
+                    ss += 1      ;  sect = self.createLabel('Sect', self.sects, xs, ys - s*hs, ws, hs, S, gs, why=f'create Sect {ss}', dbg=dbg)
                     nr, ir, xr, yr, wr, hr, gr, mx, my     = self.geom(sect, R, init=1, dbg=dbg2)
                     for r in range(nr):
-                        sr += 1  ;   row = self.createLabel(' Row', self.rows,  xr, yr - r*hr, wr, hr, R, gr, why= 'create  Row {}'.format(sr), dbg=dbg)
+                        sr += 1  ;   row = self.createLabel(' Row', self.rows,  xr, yr - r*hr, wr, hr, R, gr, why= f'create  Row {sr}', dbg=dbg)
                         nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(row, T, init=1, dbg=dbg2)
                         for t in range(nt):
                             xt2 = xt + t*wt
@@ -741,7 +741,7 @@ class Tabs(pyglet.window.Window):
     def dumpTabs(self, why='', dbg=1):
         if dbg: self.log('(BGN) {} {})'.format(self.fmtGeom(), why))
         np, nl, ns, nr, nc = self.n  #;  nc += CCC
-        i, sp, sl, ss, sr, sc, su = 0, 0, 0, 0, 0, 0, 0
+        i, sp, sl, ss, sr, st = 0, 0, 0, 0, 0, 0
         self.dumpLabel(idt=' cid')
         for p in range(np):
             sp += 1
@@ -753,7 +753,7 @@ class Tabs(pyglet.window.Window):
                         sr += 1
                         for c in range(nc):
                             if s == 0:
-                                sc += 1  ;  self.dumpLabel(self.tabs[i],  i+1, sp, sl, ss, sr, c+1, why=why)  ;  i += 1
+                                st += 1  ;  self.dumpLabel(self.tabs[i], i+1, sp, sl, ss, sr, c+1, 0, 0, why=why)  ;  i += 1
         self.dumpLabel(idt=' cid')
         if dbg: self.log('(END) {} {})'.format(self.fmtGeom(), why))
 
@@ -804,7 +804,7 @@ class Tabs(pyglet.window.Window):
         if a is None: self.log(f'{idt} p  l  s  r   t   n   c     x       y       w       h     text   font name     siz dpi bld itl red grn blu opc  why', ind=0) ; return
         x, y, w, h, fn, d, z, k, b, i, tx  =  a.x, a.y, a.width, a.height, a.font_name, a.dpi, a.font_size, a.color, a.bold, a.italic, a.text
         f = '{:4} {} {:2} {:2} {:2} {:3} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:6} {:16} {:2} {:3}  {:1}   {:1}  {:3} {:3} {:3} {:3}  {}'
-        fs = f.format(lid, p, l, s, r, t, n, c, x, y, w, h, t, fn, z, d, b, i, k[0], k[1], k[2], k[3], why)
+        fs = f.format(lid, p, l, s, r, t, n, c, x, y, w, h, tx, fn, z, d, b, i, k[0], k[1], k[2], k[3], why)
         self.log(fs, ind=0)
     ####################################################################################################################################################################################################
     def resizeFonts(self):
@@ -1059,7 +1059,7 @@ class Tabs(pyglet.window.Window):
                     self.log('after  data[{}][{}][{}]={}'.format(p, l, c, data[p][l][c]))
         self.log('(END) replace({},{})'.format(src, trg))
     ####################################################################################################################################################################################################
-    def erase(self, reset=1):
+    def erase(self): # , reset=1):
         np, nl, ns, nr, nc = self.n  ;  nc += CCC
         self.log('(BGN) np={} nl={} ns={} nr={} nc={}'.format(np, nl, ns, nr, nc))
         for i in range(len(self.tabs)):
@@ -1069,10 +1069,10 @@ class Tabs(pyglet.window.Window):
             for l in range(nl):
                 for c in range(nc):
                     self.data[p][l][c] = self.tblankCol
-        if reset:
-            self.log('reset={} CCC={}'.format(reset, CCC))
-            if CCC:     self.setStringNumbs()  ;  self.setStringNames()
-            if CCC > 1: self.setCapo()
+#        if reset:
+#            self.log('reset={} CCC={}'.format(reset, CCC))
+#            if CCC:     self.setStringNumbs()  ;  self.setStringNames()
+#            if CCC > 1: self.setCapo()
         self.log('(END) np={} nl={} nr={} nc={}'.format(np, nl, nr, nc))
 
     def setStringNumbs(self):
