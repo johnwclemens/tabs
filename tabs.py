@@ -23,9 +23,9 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 0  ;  RESIZE = 0  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 0  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
-VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
+VRSN2            = 1  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
 PATH             = pathlib.Path(sys.argv[0])
@@ -140,7 +140,7 @@ class Tabs(pyglet.window.Window):
         self.T, self.N, self.I, self.K = 1, 1, 0, 1
         self.ww, self.hh  = 640, 480
         self.s = [self.T, self.N, self.I, self.K]  ;  self.ss = sum(self.s)  ;  self.log('s={} ss={}'.format(self.s, self.ss))
-        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 2, self.ss, 64, 6], [1, 1, 1, 1, 1], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
+        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 2, self.ss, 32, 6], [1, 1, 1, 1, 1], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
         if 'N' in self.argMap and len(self.argMap['N']) == 0: self.N            = 1
         if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
@@ -478,13 +478,13 @@ class Tabs(pyglet.window.Window):
         else:                   w =  p.width - x*2           ;  h = (p.height - y*(n + 1))/n
         if SPRITES:
             if not p:                                           y = h
-            elif j == T:        x += p.x + w/2                     ;  y = p.y
+            elif j == T:        x += p.x + w/2               ;  y = p.y - h/2
             else:                                               y = p.y
         else:
-            if not p:           x += w/2                     ;  y += h/2
-            elif j == C:        x += w/2                     ;  y += p.y
-            elif j == T:        x += p.x                     ;  y += p.y - h/2 + p.height/2
-            else:               x += w/2                     ;  y += p.y - h/2 + p.height/2
+            if not p:           x += w/2                     ;  y = h/2
+            elif j == C:        x += w/2                     ;  y = p.y
+            elif j == T:        x += p.x                     ;  y = p.y + p.height/2 - h/2
+            else:               x += w/2                     ;  y = p.y + p.height/2 - h/2
         if init:                self.w[j] = w                ;  self.h[j] = h
         else:                   mx = w/self.w[j]             ;  my = h/self.h[j]
         if dbg:                 self.dumpGeom(j, n, i, x, y, w, h, mx, my, init)
@@ -646,6 +646,49 @@ class Tabs(pyglet.window.Window):
                                 if dbg: self.dumpLabel(chord, i, sp, sl, ss, sc, st, sn, sk, why=why)
         if dbg: self.dumpLabel()
         self.log('(END) {}'.format(self.fmtGeom()))
+
+    def resizeSprites(self, dbg=1):
+        self.log('(BGN) {}'.format(self.fmtGeom()))
+        if dbg: self.dumpSprite()
+        i, j, sp, sl, ss, sc, st, sn, sk, ssno, ssna, scap, sbln = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        np, ip, xp, yp, wp, hp, gp, mxp, myp                 = self.geom(None, P, dbg=dbg)
+        for p in range(np):
+            page = self.pages[sp]                                               ;  page.update(x=xp, y=yp, scale_x=mxp, scale_y=myp)  ;  sp += 1  ;  i += 1
+            if dbg:                                            self.dumpSprite(self.sprites[i-1], i, sp, ss, sl, sc, st, sn, sk, why = f'resize Page {sp}')
+            nl, il, xl, yl, wl, hl, gl, mxl, myl             = self.geom(page, L, dbg=dbg)
+            for l in range (nl):
+                line = self.lines[sl]                    ;  yl2 = yl - l * hl   ;  line.update(x=xl, y=yl2, scale_x=mxl, scale_y=myl)  ;  sl += 1  ;  i += 1
+                if dbg:                                        self.dumpSprite(self.sprites[i-1], i, sp, sl, ss, sc, st, sn, sk, why = f'resize Line {sl}')
+                ns, iz, xs, ys, ws, hs, gs, mxs, mys         = self.geom(line, S, dbg=dbg)
+                for s in range(ns):
+                    sect = self.sects[ss]                ;  ys2 = ys - s * hs   ;  sect.update(x=xs, y=ys2, scale_x=mxs, scale_y=mys)  ;  ss += 1  ;  i += 1
+                    if dbg:                                    self.dumpSprite(self.sprites[i-1], i, sp, sl, ss, sc, st, sn, sk, why = f'resize Sect {ss}')
+                    nc, ic, xc, yc, wc, hc, gc, mxc, myc     = self.geom(sect, C, dbg=dbg)
+                    for c in range(nc):
+                        col = self.cols[sc]              ;  xc2 = xc + c * wc   ;   col.update(x=xc2, y=yc, scale_x=mxc, scale_y=myc)  ;  sc += 1  ;  i += 1
+                        if dbg:                                self.dumpSprite(self.sprites[i-1], i, sp, sl, ss, sc, st, sn, sk, why = f'resize  Col {sc}')
+                        nt, it, xt, yt, wt, ht, gt, mxt, myt = self.geom(col, T, dbg=dbg)
+                        for t in range(nt):
+                            if s == 0:
+                                if   CCC     and c == SNO_C:   tab = self.snos[ssno]   ;  ssno += 1  ;    why = f'resize  SNo {ssno}'
+                                elif CCC > 1 and c == CFN_C:   tab = self.capos[scap]  ;  scap += 1  ;    why = f'resize Capo {scap}'
+                                else:                          tab = self.tabs[st]     ;    st += 1  ;    why = f'resize  Tab {st}'
+                                tab.width = wt    ;    tab.height = ht  ;   tab.x = xt    ;    tab.y = yt - t*ht  ;  j += 1
+                                if dbg: self.dumpLabel(  tab, j, sp, sl, ss, sc, st, sn, sk, why=why)
+                            elif s == 1:
+                                if   CCC     and c == SNA_C:  note = self.snas[ssna]   ;  ssna += 1  ;    why = f'resize SNam {ssna}'
+                                elif CCC > 1 and c == CFN_C:  note = self.capos[scap]  ;  scap += 1  ;    why = f'resize Capo {scap}'
+                                else:                         note = self.notes[sn]    ;    sn += 1  ;    why = f'resize Note {sn}'
+                                note.width = wt   ;   note.height = ht  ;   note.x = xt  ;    note.y = yt - t*ht  ;  j += 1
+                                if dbg: self.dumpLabel( note, j, sp, sl, ss, sc, st, sn, sk, why=why)
+                            elif s == 2:
+                                if   CCC     and c == SNO_C: chord = self.blncs[sbln]    ;  sbln += 1  ;  why = f'resize Blncs {sbln}'
+                                elif CCC > 1 and c == CFN_C: chord = self.blncs[sbln]    ;  sbln += 1  ;  why = f'resize Blncs {sbln}'
+                                else:                        chord = self.chords[sk]     ;    sk += 1  ;  why = f'resize Chord {sk}'
+                                chord.width = wt  ;  chord.height = ht  ;  chord.x = xt  ;  chord.y = yt - t*ht  ;  j += 1
+                                if dbg: self.dumpLabel(chord, j, sp, sl, ss, sc, st, sn, sk, why=why)
+        if dbg: self.dumpSprite()
+        self.log('(END) {}'.format(self.fmtGeom()))
     ####################################################################################################################################################################################################
     def createSprite(self, p, x, y, w, h, kk, g, why, v=0, dbg=0):
         o, k, d, j, n, s = self.fontParams()
@@ -675,42 +718,6 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpLabel(ll, len(self.labels), *self.lnlA(), why=why)
         return ll
     ####################################################################################################################################################################################################
-    '''
-    def resizeSprites(self, dbg=1):
-        self.log('(BGN) {}'.format(self.fmtGeom()))
-        if dbg: self.dumpSprite()
-        i, j, sp, sl, ss, sr, st, sn, sc = 0, 0, 0, 0, 0, 0, 0, 0, 0
-        np, ip, xp, yp, wp, hp, gp, mxp, myp = self.geom(None, P, dbg=dbg)
-        for p in range(np):
-            page = self.pages[sp]                                                   ;  page.update(x=xp, y=yp, scale_x=mxp, scale_y=myp)  ;  sp += 1  ;  i += 1
-            if dbg: self.dumpSprite(self.sprites[i-1], i, sp, ss, sl, sr, st, sn, sc, 'resize Page')
-            nl, il, xl, yl, wl, hl, gl, mxl, myl = self.geom(page, L, dbg=dbg)
-            for l in range (nl):
-                line = self.lines[sl]                    ;  yl2 = yl - hl*(l + 1)   ;  line.update(x=xl, y=yl2, scale_x=mxl, scale_y=myl)  ;  sl += 1  ;  i += 1
-                if dbg: self.dumpSprite(self.sprites[i-1], i, sp, sl, ss, sr, st, sn, sc, 'resize Line')
-                ns, iz, xs, ys, ws, hs, gs, mxs, mys = self.geom(line, S, dbg=dbg)
-                for s in range(ns):
-                    sect = self.sects[ss]                ;  ys2 = ys - hs*(s + 1)   ;  sect.update(x=xs, y=ys2, scale_x=mxs, scale_y=mys)  ;  ss += 1  ;  i += 1
-                    if dbg: self.dumpSprite(self.sprites[i-1], i, sp, sl, ss, sr, st, sn, sc, 'resize Sect')
-                    nr, ir, xr, yr, wr, hr, gr, mxr, myr = self.geom(sect, R, dbg=dbg)
-                    for r in range(nr):
-                        row = self.rows[sr]              ;  yr2 = yr - hr*(r + 1)  ;  row.update(x=xr, y=yr2, scale_x=mxr, scale_y=myr)
-                        sr += 1  ;  i += 1
-                        if dbg: self.dumpSprite(self.sprites[i-1], i, sp, sl, ss, sr, st, sn, sc, 'resize Row')
-                        nt, it, xt, yt, wt, ht, gt, mxt, myt = self.geom(row, T, dbg=dbg)
-                        for t in range(nt):
-                            if s == 0: #                                if QQ and r == 0: cols = self.qcols[su]  ;  su += 1
-                                tab = self.tabs[sc]      ;    tab.width = wt  ;  tab.height = ht  ;      tab.x = xt + t*wt  ;    tab.y = yt  ;  sc += 1  ;  j += 1
-                                if dbg: self.dumpLabel(tab, j, sp, sl, ss, sr, st, sn, sc, 'resize Tab')
-                            elif s == 1:
-                                note = self.notes[sn]    ;   note.width = wt  ;  note.height = ht  ;    note.x = xt + t*wt  ;   note.y = yt  ;  sn += 1  ;  j += 1
-                                if dbg: self.dumpLabel(note, j, sp, sl, ss, sr, st, sn, sc, 'resize Note')
-                            elif s == 2:
-                                chord = self.chords[sc]  ;  chord.width = wt  ;  chord.height = ht  ;  chord.x = xt + t*wt  ;  chord.y = yt  ;  sc += 1  ;  i += 1
-                                if dbg: self.dumpLabel(chord, j, sp, sl, ss, sr, st, sn, sc, 'resize Chord')
-        if dbg: self.dumpSprite()
-        self.log('(END) {}'.format(self.fmtGeom()))
-        '''
     ####################################################################################################################################################################################################
     def dumpSprites(self, why=''):
         self.log('(BGN) {} {}'.format(self.fmtGeom(), why))
@@ -783,16 +790,15 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log('(END) {} {})'.format(self.fmtGeom(), why))
     ####################################################################################################################################################################################################
     def dumpSprite(self, z=None, sid=-1, p=-1, l=-1, s=-1, c=-1, t=-1, n=-1, k=-1, why='', idt=' sid'):
-        if z is None: self.log(f'{idt}  p  l  s  c   t   n   k    xc      yc       w       h       x       y    iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent', ind=0); return
-        f = '{:4} {} {:2} {:2} {:3} {:3} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:4} {:6.3f} {:6.3f} {:6.3f} {:7.2f}  {:3} {:3} {:3} {:3} {:1} {:16} {} {}'
+        if z is None: self.log(f'{idt} p  l  s   c   t   n   k    x       y       w       h     iax  iay    m      mx     my     rot   red grn blu opc v       why            group       parent', ind=0); return
+        f = '{:4} {} {:2} {:2} {:3} {:3} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:4} {:6.3f} {:6.3f} {:6.3f} {:7.2f}  {:3} {:3} {:3} {:3} {:1} {:16} {} {}'
         kk, o, v, g, pg = z.color, z.opacity, z.visible, z.group, z.group.parent
-        xc, yc = z.x + z.width/2, z.y + z.height/2
-        fs = f.format(sid, p, l, s, c, t, n, k, xc, yc, z.width, z.height, z.x, z.y, z.image.anchor_x, z.image.anchor_y, z.scale, z.scale_x, z.scale_y, z.rotation, kk[0], kk[1], kk[2], o, v, why, g, pg)
+        fs = f.format(sid, p, l, s, c, t, n, k, z.x, z.y, z.width, z.height, z.image.anchor_x, z.image.anchor_y, z.scale, z.scale_x, z.scale_y, z.rotation, kk[0], kk[1], kk[2], o, v, why, g, pg)
         self.log(fs, ind=0)
         assert(type(z) == pyglet.sprite.Sprite)
 
     def dumpLabel(self, a=None, lid=-1, p=-1, l=-1, s=-1, c=-1, t=-1, n=-1, k=-1, why='', idt=' lid'):
-        if a is None: self.log(f'{idt} p  l  s   c   t   n   k     x       y       w       h     text   font name     siz dpi bld itl red grn blu opc  why', ind=0) ; return
+        if a is None: self.log(f'{idt} p  l  s   c   t   n   k    x       y       w       h     text   font name      siz dpi bld itl red grn blu opc  why', ind=0) ; return
         x, y, w, h, fn, d, z, kk, b, i, tx  =  a.x, a.y, a.width, a.height, a.font_name, a.dpi, a.font_size, a.color, a.bold, a.italic, a.text
         f = '{:4} {} {:2} {:2} {:3} {:3} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:6} {:16} {:2} {:3}  {:1}   {:1}  {:3} {:3} {:3} {:3}  {}'
         fs = f.format(lid, p, l, s, c, t, n, k, x, y, w, h, tx, fn, z, d, b, i, kk[0], kk[1], kk[2], kk[3], why)
