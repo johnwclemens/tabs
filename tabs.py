@@ -23,7 +23,7 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 0  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 0  ;  RESIZE = 0  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
@@ -33,7 +33,7 @@ BASE_PATH        = PATH.parent
 BASE_NAME        = BASE_PATH.stem
 SNAP_DIR         = 'snaps'
 SNAP_SFX         = '.png'
-CCC              = 2
+CCC              = 0
 FMTN             = (1, 1, 1, 2, 1, 2, 2) # remove?
 P, L, S, C, T, N, I, K = 0, 1, 2, 3, 4, 5, 6, 7
 Z, COL_L, LINE_L       = ' ', 'Col', 'Line '
@@ -140,7 +140,7 @@ class Tabs(pyglet.window.Window):
         self.T, self.N, self.I, self.K = 1, 1, 0, 1
         self.ww, self.hh  = 640, 480
         self.s = [self.T, self.N, self.I, self.K]  ;  self.ss = sum(self.s)  ;  self.log('s={} ss={}'.format(self.s, self.ss))
-        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 2, self.ss, 50, 6], [1, 1, 1, 1, 1], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
+        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 2, self.ss, 64, 6], [1, 1, 1, 1, 1], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
         if 'N' in self.argMap and len(self.argMap['N']) == 0: self.N            = 1
         if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
@@ -477,8 +477,9 @@ class Tabs(pyglet.window.Window):
         elif j == C:            w = (p.width - x*(n + 1))/n  ;  h =  p.height - y*2
         else:                   w =  p.width - x*2           ;  h = (p.height - y*(n + 1))/n
         if SPRITES:
-            if j == C:          x += w/2                     ;  y += p.y + p.height/2
-            elif p:                                             y += p.y + p.height
+            if not p:                                           y = h
+            elif j == T:        x += p.x + w/2                     ;  y = p.y
+            else:                                               y = p.y
         else:
             if not p:           x += w/2                     ;  y += h/2
             elif j == C:        x += w/2                     ;  y += p.y
@@ -491,7 +492,8 @@ class Tabs(pyglet.window.Window):
 
     def dumpGeom(self, j, n, i, x, y, w, h, mx, my, init):
         iz = ' '.join([fmtl(self.lnlA(), FMTN), fmtl(self.lnlB())]) if init else fmtl(self.i, FMTN)
-        self.log(FMTR.format('    geom      {}  {:3}  {:4}   {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:5.3f} {:5.3f} {}', j, n, i, x, y, w, h, mx, my, iz), ind=0)
+        self.log(FMTR.format('    geom                     {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:5.3f} {:5.3f} {}', x, y, w, h, mx, my, iz), ind=0)
+#        self.log(FMTR.format('    geom      {}  {:3}  {:4}   {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:5.3f} {:5.3f} {}', j, n, i, x, y, w, h, mx, my, iz), ind=0)
     ####################################################################################################################################################################################################
     def createQRow(self, p, pi, dbg=1, dbg2=1):
         nn = self.ss * self.n[T] + 1
@@ -564,6 +566,43 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpLabel()
         self.log('(END) {}'.format(self.fmtGeom()))
 
+    def createSprites(self, dbg=1, dbg2=1):
+        self.log('(BGN) {}'.format(self.fmtGeom()))
+        sp, sl, ss, sc, st, sn, sk, ssno, ssna, scap, sbln = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        np, ip, xp, yp, wp, hp, gp, mx, my = self.geom(None, P, init=1, dbg=dbg2)
+        if dbg: self.dumpSprite()
+        for p in range(np):
+            v = not p  ;  sp += 1        ;  page = self.createSprite(self.pages, xp, yp,        wp, hp, P, gp, why=f'create Page {sp}', v=v, dbg=dbg)
+            nl, il, xl, yl, wl, hl, gl, mx, my = self.geom(page, L, init=1, dbg=dbg2)
+            for l in range(nl):
+                sl += 1                  ;  line = self.createSprite(self.lines, xl, yl - l*hl, wl, hl, L, gl, why=f'create Line {sl}', v=v, dbg=dbg)
+                ns, iz, xs, ys, ws, hs, gs, mx, my = self.geom(line, S, init=1, dbg=dbg2)
+                for s in range(ns):
+                    ss += 1              ;  sect = self.createSprite(self.sects, xs, ys - s*hs, ws, hs, S, gs, why=f'create Sect {ss}', v=v, dbg=dbg)
+                    nc, ic, xc, yc, wc, hc, gc, mx, my = self.geom(sect, C, init=1, dbg=dbg2)
+                    for c in range(nc):
+                        sc += 1          ;   col = self.createSprite(self.cols,  xc + c*wc, yc, wc, hc, C, gc, why=f'create  Col {sc}',  v=v, dbg=dbg)
+                        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(col, T, init=1, dbg=dbg2)
+                        if dbg: self.dumpSprite()      ;  self.dumpLabel()
+                        for t in range(nt):
+                            if   s == 0:
+                                if   CCC     and c == SNO_C:   tab = self.stringNumbs[t]    ;  plist = self.snos   ;  cc = -T  ;  ssno += 1  ;  why = f'create  SNo {ssno}'
+                                elif CCC > 1 and c == CFN_C:   tab = self.stringCapo[t]     ;  plist = self.capos  ;  cc = -T  ;  scap += 1  ;  why = f'create Capo {scap}'
+                                else:                          tab = self.data[p][l][c][t]  ;  plist = self.tabs   ;  cc =  T  ;    st += 1  ;  why = f'create  Tab {st}'
+                                self.createLabel(tab, plist,  xt, yt - t*ht, wt, ht, cc, gt, why=why, dbg=dbg)
+                            elif s == 1:
+                                if   CCC     and c == SNA_C:  note = self.stringNames[t]    ;  plist = self.snas   ;  cc = -N  ;  ssna += 1  ;  why = f'create SNam {ssna}'
+                                elif CCC > 1 and c == CFN_C:  note = self.stringCapo[t]     ;  plist = self.capos  ;  cc = -N  ;  scap += 1  ;  why = f'create Capo {scap}'
+                                else:                          tab = self.data[p][l][c][t]  ;  plist = self.notes  ;  cc =  N  ;    sn += 1  ;  why = f'create Note {sn}'  ;  note = self.getNote(t, tab).name if self.isFret(tab) else self.nblank
+                                self.createLabel(note, plist,  xt, yt - t*ht, wt, ht, cc, gt, why=why, dbg=dbg)
+                            elif s == 2:
+                                if   CCC     and c == SNO_C: chord = ' '                    ;  plist = self.blncs  ;  cc = -K  ;  sbln += 1  ;  why = f'create Blncs {sbln}'
+                                elif CCC > 1 and c == CFN_C: chord = ' '                    ;  plist = self.blncs  ;  cc = -K  ;  sbln += 1  ;  why = f'create Blncs {sbln}'
+                                else:                      chordName = self.getChordName()  ;  plist = self.chords ;  cc =  K  ;    sk += 1  ;  why = f'create Chord {sk}'  ;  chord = chordName[t] if len(chordName) > t else ' '
+                                self.createLabel(chord, plist,  xt, yt - t*ht, wt, ht, cc, gt, why=why, dbg=dbg)
+                        if dbg: self.dumpLabel()  ;  self.dumpSprite()
+        self.log('(END) {}'.format(self.fmtGeom()))
+
     def resizeLabels(self, dbg=1):
         self.log('(BGN) {}'.format(self.fmtGeom()))
         i, sp, sl, ss, sc, st, sn, sk, ssno, ssna, scap, sbln = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -607,46 +646,6 @@ class Tabs(pyglet.window.Window):
                                 if dbg: self.dumpLabel(chord, i, sp, sl, ss, sc, st, sn, sk, why=why)
         if dbg: self.dumpLabel()
         self.log('(END) {}'.format(self.fmtGeom()))
-
-    '''
-    def createSprites(self, dbg=1, dbg2=1):
-        self.log('(BGN) {}'.format(self.fmtGeom()))
-        np, ip, xp, yp, wp, hp, gp, mx, my = self.geom(None, P, init=1, dbg=dbg2)
-        if dbg: self.dumpSprite()
-        for p in range(np):
-            v = not p
-            page = self.createSprite(self.pages, xp, yp, wp, hp, P, gp, why='create Page', v=v, dbg=dbg)
-            nl, il, xl, yl, wl, hl, gl, mx, my = self.geom(page, L, init=1, dbg=dbg2)
-            for l in range(nl):
-                yl2 = yl - hl*(l + 1)                  ;  line = self.createSprite(self.lines, xl, yl2, wl, hl, L, gl, why='create Line', v=v, dbg=dbg)
-                ns, iz, xs, ys, ws, hs, gs, mx, my = self.geom(line, S, init=1, dbg=dbg2)
-                for s in range(ns):
-                    ys2 = ys - hs*(s + 1)              ;  sect = self.createSprite(self.sects, xs, ys2, ws, hs, S, gs, why='create Sect', v=v, dbg=dbg)
-                    nr, ir, xr, yr, wr, hr, gr, mx, my = self.geom(sect, R, init=1, dbg=dbg2)
-                    for r in range(nr):
-                        yr2 = yr - hr*(r + 1)          ;  row = self.createSprite(self.rows, xr, yr2, wr, hr, R, gr, why='create Row',  v=v, dbg=dbg)
-                        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(row, T, init=1, dbg=dbg2)
-                        if dbg: self.dumpSprite()      ;  self.dumpLabel()
-                        for t in range(nt):
-                            xt2 = xt + wt*t
-                            if   s == 0:     #  if QQ and r == 0: cc = -T  ;  tab = self.labelTextB[c]        ;  tabs = self.qcols
-                                if   CCC     and t == SNO_C:  cc = -T  ;  tab = self.stringNumbs[r]    ;  tabs = self.tabs
-                                elif CCC > 1 and t == CFN_C:  cc = -T  ;  tab = self.stringCapo[r]     ;  tabs = self.tabs
-                                else:                         cc =  T  ;  tab = self.data[p][l][t][r]  ;  tabs = self.tabs
-                                self.createLabel(tab, tabs, xt2, yt, wt, ht, cc, gt, why='create Tab', dbg=dbg)
-                            elif s == 1:
-                                if   CCC     and t == SNA_C: cc = -N  ;  note = self.stringNames[r]
-                                elif CCC > 1 and t == CFN_C: cc = -N  ;  note = self.stringCapo[r]
-                                else:                        cc =  N  ;  tab = self.data[p][l][t][r]  ;  note = self.getNote(r, tab).name if self.isFret(tab) else self.nblank
-                                self.createLabel(note, self.notes, xt2, yt, wt, ht, cc, gt, why='create Note', dbg=dbg)
-                            elif s == 2:
-                                if   CCC     and t == SNO_C:  cc = -C  ;  chord = ' '
-                                elif CCC > 1 and t == CFN_C:  cc = -C  ;  chord = ' '
-                                else:                         cc =  C  ;  chordName = self.getChordName()  ;  chord = chordName[r] if len(chordName) > r else ' '
-                                self.createLabel(chord, self.chords, xt2, yt, wt, ht, cc, gt, why='create Chord', dbg=dbg)
-                        if dbg: self.dumpLabel()  ;  self.dumpSprite()
-        self.log('(END) {}'.format(self.fmtGeom()))
-        '''
     ####################################################################################################################################################################################################
     def createSprite(self, p, x, y, w, h, kk, g, why, v=0, dbg=0):
         o, k, d, j, n, s = self.fontParams()
