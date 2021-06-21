@@ -23,7 +23,7 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 1  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 0  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 1  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 1  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  ZZ      = VRSN3  ;  VRSNX3 = 'VRSN3={}       ZZ={}  SFX3={}'.format(VRSN3, ZZ,      SFX3)
@@ -736,9 +736,9 @@ class Tabs(pyglet.window.Window):
             if dbg3: self.log(f'j={j} m={m} n={n:3} sm={sm} x2={x2:7.2f} y2={y2:7.2f}  w={w:7.2f}  h={h:7.2f}')
             sm += 1
             if   j == P:    v=1 if sm == self.i[P] else 0
-            label = self.createSprite(ll, x2, y2, w, h, self.cci(m, self.k[j]), g, why=f'create{why}{sm}', kl=self.k[j], v=v, dbg=dbg)
-            if dbg3: self.log(f'label: text={label.text:7}  x={label.x:7.2f}  y={label.y:7.2f}  w={label.width:7.2f}  h={label.height:7.2f}')
-            yield label, sm, v
+            sprite = self.createSprite(ll, x2, y2, w, h, self.cci(m, self.k[j]), g, why=f'create{why}{sm}', kl=self.k[j], v=v, dbg=dbg)
+            if dbg3: self.log(f'label: text={sprite.text:7}  x={sprite.x:7.2f}  y={sprite.y:7.2f}  w={sprite.width:7.2f}  h={sprite.height:7.2f}')
+            yield sprite, sm, v
 
 #    def g_createSprites2(self, p, l, s, c, col, st, sn, sk, ssno, ssna, scap, sbln, dbg=1, dbg2=1, dbg3=0):
 #        n, ii, x, y, w, h, g, mx, my = self.geom( col, T, init=1, dbg=dbg2)  ;
@@ -752,6 +752,28 @@ class Tabs(pyglet.window.Window):
 #                yield tab,   st, sn, sk, ssno, ssna, scap, sbln
 
     def resizeSprites(self, dbg=1):
+        self.log('(BGN) {}'.format(self.fmtGeom()))
+        if dbg: self.dumpSprite()
+        sp, sl, ss, sc, st, sn, sk, = 0, 0, 0, 0, 0, 0, 0  ;  ssno, ssna, scap, sbln = 0, 0, 0, 0  ;  i, j = 0, 0
+        for p, (page, sp) in            enumerate(self.g_resizeSprites(None, P, self.pages, sp, i, sp, sl, ss, sc, st, sn, sk, why=f' Page ')):
+            for l, (line, sl) in        enumerate(self.g_resizeSprites(page, L, self.lines, sl, i, sp, sl, ss, sc, st, sn, sk, why=f' Line ')):
+                for s, (sect, ss) in    enumerate(self.g_resizeSprites(line, S, self.sects, ss, i, sp, sl, ss, sc, st, sn, sk, why=f' Sect ')):
+                    for c, (col, sc) in enumerate(self.g_resizeSprites(sect, C, self.cols,  sc, i, sp, sl, ss, sc, st, sn, sk, why=f' CL ')):
+                        for t, (lab, j, st, sn, sk, ssno, ssna, scap, sbln) in enumerate(self.g_resizeLabels2(s, c, col, j, sp, sl, ss, sc, st, sn, sk, ssno, ssna, scap, sbln)):
+                            if dbg > 1: self.log(f'sp={sp} sl={sl} ss={ss} sc={sc} st={st} sn={sn} sk={sk} ssno={ssno}, ssna={ssna}, scap={scap}, sbln={sbln}')
+        if dbg: self.dumpLabel()  ;  self.dumpSprite()
+        self.log('(END) {}'.format(self.fmtGeom()))
+
+    def g_resizeSprites(self,  p, j, ll, sm, i, sp, sl, ss, sc, st, sn, sk, why, dbg=1):
+        n, ii, x, y, w, h, g, mx, my = self.geom(p, j, init=1, dbg=dbg)  ;  x2 = x  ;  y2 = y
+        for m in range(n):
+            if   j == C: x2 = x + m * w
+            elif p:      y2 = y - m * h
+            spr = ll[sm]  ;  spr.update(x=x2, y=y2, scale_x=mx, scale_y=my)  ;  sm += 1  ;  i += 1
+            if dbg: self.dumpSprite(self.sprites[i-1], i, sp, ss, sl, sc, st, sn, sk, why = f'resize{why}{sm}')
+            yield spr, sm
+
+    def OLD_resizeSprites(self, dbg=1):
         self.log('(BGN) {}'.format(self.fmtGeom()))
         if dbg: self.dumpSprite()
         i, j, sp, sl, ss, sc, st, sn, sk, ssno, ssna, scap, sbln = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
