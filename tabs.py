@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.abspath('../lib'))
 import cmdArgs
 
 class MyFormatter(string.Formatter):
-    def __init__(self, missing='???', badfmt='!!!'):
+    def __init__(self, missing='?????', badfmt='!!!!!'):
         self.missing, self.badfmt = missing, badfmt
     def get_field(self, field_name, args, kwargs): # Handle a key not found
         try:
@@ -24,7 +24,7 @@ class MyFormatter(string.Formatter):
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
 CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
-VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
+VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 1  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = 'VRSN3={}      CCC={}  SFX3={}'.format(VRSN3, CCC,     SFX3)
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
@@ -506,8 +506,8 @@ class Tabs(pyglet.window.Window):
                 self.log('{}{:>5}'.format(d2, t[i][1]), ind=0, end=' ')
                 self.log(ind=0)
     ####################################################################################################################################################################################################
-    def geom(self, p=None, j=0, init=0, nn=0, dbg=0):
-        mx, my = None, None
+    def geom(self, p=None, j=0, init=0, nn=0, dbg=1):
+        mx, my = None, None  ;  iw, ih = self.w[j], self.h[j]
         n, i, x, y, w, h, g = self.n[j], self.i[j], self.x[j], self.y[j], self.w[j], self.h[j], self.g[j]
         if nn:                  n = nn
         if   j == C:            n += CCC
@@ -523,27 +523,25 @@ class Tabs(pyglet.window.Window):
             elif j == C:        x += w/2                     ;  y = p.y
             elif j == T:        x += p.x                     ;  y = p.y + p.height/2 - h/2
             else:               x += w/2                     ;  y = p.y + p.height/2 - h/2
-        if init:                self.w[j] = w                ;  self.h[j] = h
-        else:                   mx = w/self.w[j]             ;  my = h/self.h[j]
-        if dbg:                 self.dumpGeom(j, n, i, x, y, w, h, mx, my)
+        if not nn and init:     self.w[j] = w                ;  self.h[j] = h
+        elif iw and ih:         mx = w/iw                    ;  my = h/ih
+        if dbg:                 self.dumpGeom(j, n, i, x, y, w, h, mx, my, iw, ih, nn)
         return n, i, x, y, w, h, g, mx, my
 
-    def dumpGeom(self, j, n, i, x, y, w, h, mx, my):
-        self.log(FMTR.format('    geom      {}  {:3}  {:4}            {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:5.3f} {:5.3f}', j, n, i, x, y, w, h, mx, my), ind=0)
+    def dumpGeom(self, j, n, i, x, y, w, h, mx, my, iw, ih, nn):
+        self.log(FMTR.format('    geom      {}  {:3}  {:4}            {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:5.3f} {:5.3f}  {:7.2f} {:7.2f} {}', j, n, i, x, y, w, h, mx, my, iw, ih, nn), ind=0)
     ####################################################################################################################################################################################################
     def createLabelRow(self, p, pi, dbg=1, dbg2=1):
-        nn = self.ss * self.n[T] + 1  ;  kr = self.klr  ;  kc = self.klc  ;  kkr = self.cci(pi, kr)
-        nr, ir, xr, yr, wr, hr, gr, mx, my = self.geom(p, S, init=1, nn=nn, dbg=dbg2)
+        nn = self.n[T] + self.ss + 1  ;  klr = self.klr  ;  klc = self.klc  ;  kkr = self.cci(pi, klr)
+        nr, ir, xr, yr, wr, hr, gr, mx, my = self.geom(p=p, j=S, nn=nn, dbg=dbg2)
         if SPRITES: xr += wr/2  ;  yr += hr/2
-        if len(self.labRows) > pi: row = self.labRows[pi]  ;  row.x = xr  ;  row.y = yr  ;  row.width = wr  ;  row.height = hr
-        else:                      row = self.createLabel(f'LabRow {pi+1}', self.labRows, xr, yr, wr, hr, kkr, gr, why=f'create LabRow {pi+1}', kl=kr, dbg=dbg)
-        nc, ic, xc, yc, wc, hc, gc, mx, my = self.geom(row, C, init=1, dbg=dbg2)   ;  sc = nc * pi
+        row = self.createLabel(f'LR {pi+1}', self.labRows, xr, yr, wr, hr, kkr, gr, why=f'create LR {pi+1}', kl=klr, dbg=dbg)
+        nc, ic, xc, yc, wc, hc, gc, mx, my = self.geom(p=row, j=C, nn=self.n[C], dbg=dbg2)   ;  sc = nc * pi
         self.log(f'nc={nc} pi={pi} sc={sc} len(labCols)={len(self.labCols)}')
         if SPRITES: xc += wc/2
         for c in range(nc):
-            sc +=  1  ;  kci = self.cci(pi, kc)  ;  ii = c + pi * nc
-            if len(self.labCols) > ii: col = self.labCols[c]  ;  col.x = xc + c * wc  ;  col.y = yc  ;  col.width = wc  ;  col.height = hc
-            else:                      self.createLabel(self.labelTextB[c] if c else f'{Z*(c+1)}{sc}', self.labCols, xc + c*wc, yc, wc, hc, kci, gc, why=f'create LabCol {sc}', kl=kc, dbg=dbg)
+            sc +=  1  ;  kkc = self.cci(pi, klc)
+            self.createLabel(self.labelTextB[c] if c else f'{Z*(c+1)}{sc}', self.labCols, xc + c*wc, yc, wc, hc, kkc, gc, why=f'create LC {sc}', kl=klc, dbg=dbg)
         if dbg2: self.log('pn={:3} px={:7.2f} py={:7.2f} pw={:7.2f} ph={:7.2f}'.format(pi, p.x, p.y, p.width, p.height), ind=0)
         if dbg2: self.log('nr={:3} xr={:7.2f} yr={:7.2f} wr={:7.2f} hr={:7.2f}'.format(nr, xr, yr, wr, hr), ind=0)
         if dbg2: self.log('nc={:3} xc={:7.2f} yc={:7.2f} wc={:7.2f} hc={:7.2f}'.format(nc, xc, yc, wc, hc), ind=0)
@@ -552,18 +550,17 @@ class Tabs(pyglet.window.Window):
         return p
 
     def resizeLabelRow(self, p, pi, dbg=1, dbg2=1):
-        nn = self.ss * self.n[T] + 1
-        i, sp, sl, ss, sc, st, sn, si, sk = 0, 0, 0, 0, 0, 0, 0, 0, 0
-        nr, ir, xr, yr, wr, hr, gr, mx, my = self.geom(p, S, nn=nn, dbg=dbg2)
+        nn = self.ss * self.n[T] + 1  ;  i = 0
+        nr, ir, xr, yr, wr, hr, gr, mxr, myr = self.geom(p=p, j=S, nn=nn, dbg=dbg2)
         if SPRITES: xr += wr/2  ;  yr += hr/2
-        row = self.labRows[pi];       i += 1  ;   row.width = wr  ;   row.height = hr  ;   row.x = xr  ;   row.y = yr
-        if dbg: self.dumpLabel(row, *self.ids(), *self.cnts(), why=f'resize LabRow {pi+1}')
-        nc, ic, xc, yc, wc, hc, gc, mxc, myc = self.geom(row, C, dbg=dbg)   ;  sc = nc * pi
+        row = self.labRows[pi]  ;       i += 1  ;   row.width = wr  ;   row.height = hr  ;   row.x = xr  ;   row.y = yr
+        if dbg: self.dumpLabel(row, *self.ids(), *self.cnts(), why=f'resize LR {pi+1}')
+        nc, ic, xc, yc, wc, hc, gc, mxc, myc = self.geom(p=row, j=C, dbg=dbg)   ;  sc = nc * pi
         self.log(f'nc={nc} pi={pi} sc={sc} len(labCols)={len(self.labCols)}')
         if SPRITES: xc += wc/2
         for c in range(nc):
             text = self.labCols[sc]   ;     text.width = wc   ;   text.height = hc  ;   text.x = xc + c * wc  ;  text.y = yc  ;  sc += 1  ;  i += 1
-            if dbg: self.dumpLabel(text, *self.ids(), *self.cnts(), why=f'resize LabCol {sc}')
+            if dbg: self.dumpLabel(text, *self.ids(), *self.cnts(), why=f'resize LC {sc}')
         if dbg2: self.log(f'row.y={row.y:7.2f} yr={yr:7.2f} pi={pi} hr={hr:7.2f}', ind=0)
         if dbg2: self.log('pn={:3} px={:7.2f} py={:7.2f} pw={:7.2f} ph={:7.2f}'.format(pi, p.x, p.y, p.width, p.height), ind=0)
         if dbg2: self.log('nr={:3} xr={:7.2f} yr={:7.2f} wr={:7.2f} hr={:7.2f}'.format(nr, xr, yr, wr, hr), ind=0)
@@ -585,21 +582,8 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpLabel()
         self.log('(END) {}'.format(self.fmtGeom()))
 
-    def createSprites(self, dbg=1, dbg2=0):
-        self.log('(BGN) {}'.format(self.fmtGeom()))  ;  v = 0
-        if dbg: self.dumpLabel()  ;  self.dumpSprite()
-        for p, (page, v) in               enumerate(self.g_createSprites(None, P, self.pages, v, why=' Page ', dbg=dbg, dbg2=dbg2)):
-            for l, (line, _) in           enumerate(self.g_createSprites(page, L, self.lines, v, why=' Line ', dbg=dbg, dbg2=dbg2)):
-                for s, (sect, _) in       enumerate(self.g_createSprites(line, S, self.sects, v, why=' Sect ', dbg=dbg, dbg2=dbg2)):
-                    for c, (col, _) in    enumerate(self.g_createSprites(sect, C, self.cols,  v, why=' C ',    dbg=dbg, dbg2=dbg2)):
-                        for t, lbl in enumerate(self.g_createLabels2(col)):
-                            if dbg > 1: self.log(f'lbl.y={lbl.y}')
-        self.log(f'lenS={self.lenS()}')
-        if dbg: self.dumpSprite()  ;  self.dumpLabel()
-        self.log('(END) {}'.format(self.fmtGeom()))
-    ####################################################################################################################################################################################################
     def g_createLabels(self, p, j, lablist, why, dbg=1, dbg2=0):
-        n, ii, x, y, w, h, g, mx, my = self.geom(p, j, init=1, dbg=dbg2)  ;  x2 = x  ;  y2 = y
+        n, ii, x, y, w, h, g, mx, my = self.geom(p=p, j=j, init=1, dbg=dbg2)  ;  x2 = x  ;  y2 = y
         for m in range(n):
             if   j == C: x2 = x + m * w
             elif p:      y2 = y - m * h
@@ -609,21 +593,9 @@ class Tabs(pyglet.window.Window):
             lbl = self.createLabel(text=text, p=lablist, x=x2, y=y2, w=w, h=h, kk=j, g=g, why=why2, kl=None, dbg=dbg)
             if QQ and j == L: self.createLabelRow(lbl, m)
             yield lbl
-
-    def g_createSprites(self, p, j, sprlist, v, why, dbg=1, dbg2=0):
-        n, ii, x, y, w, h, g, mx, my = self.geom(p, j, init=1, dbg=dbg2)  ;  x2 = x  ;  y2 = y  ;  kl=self.k[j]
-        for m in range(n):
-            if   j == C:     x2 = x + m * w
-            elif p:          y2 = y - m * h
-            self.J1[j] = m
-            self.J2[j] += 1
-            if   j == P:    v=1 if self.J2[j] == self.i[P] else 0
-            spr = self.createSprite(sprlist, x2, y2, w, h, self.cci(j, kl), g, why=f'create{why}{self.J2[j]}', kl=kl, v=v, dbg=dbg)
-            if QQ and j == L: self.createLabelRow(spr, m)
-            yield spr, v
     ####################################################################################################################################################################################################
     def g_createLabels2(self, col, dbg=1, dbg2=0):
-        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(col, T, init=1, dbg=dbg2)  ;  kt, kn, kk = self.kt, self.kn, self.kk  ;  lbl = None
+        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)  ;  kt, kn, kk = self.kt, self.kn, self.kk  ;  lbl = None
         p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
         for t in range(nt):
             if   s == 0:
@@ -643,6 +615,31 @@ class Tabs(pyglet.window.Window):
                 self.createLabel(chord,  plist,  xt, yt - t*ht, wt, ht, cc, gt, why=why, kl=kl, dbg=dbg)
             yield lbl
     ####################################################################################################################################################################################################
+    def createSprites(self, dbg=1, dbg2=0):
+        self.log('(BGN) {}'.format(self.fmtGeom()))  ;  v = 0
+        if dbg: self.dumpLabel()  ;  self.dumpSprite()
+        for p, (page, v) in               enumerate(self.g_createSprites(None, P, self.pages, v, why=' Page ', dbg=dbg, dbg2=dbg2)):
+            for l, (line, _) in           enumerate(self.g_createSprites(page, L, self.lines, v, why=' Line ', dbg=dbg, dbg2=dbg2)):
+                for s, (sect, _) in       enumerate(self.g_createSprites(line, S, self.sects, v, why=' Sect ', dbg=dbg, dbg2=dbg2)):
+                    for c, (col, _) in    enumerate(self.g_createSprites(sect, C, self.cols,  v, why=' C ',    dbg=dbg, dbg2=dbg2)):
+                        for t, lbl in enumerate(self.g_createLabels2(col)):
+                            if dbg > 1: self.log(f'lbl.y={lbl.y}')
+        self.log(f'lenS={self.lenS()}')
+        if dbg: self.dumpSprite()  ;  self.dumpLabel()
+        self.log('(END) {}'.format(self.fmtGeom()))
+
+    def g_createSprites(self, p, j, sprlist, v, why, dbg=1, dbg2=1):
+        n, ii, x, y, w, h, g, mx, my = self.geom(p=p, j=j, init=1, dbg=dbg2)  ;  x2 = x  ;  y2 = y  ;  kl=self.k[j]
+        for m in range(n):
+            if   j == C:     x2 = x + m * w
+            elif p:          y2 = y - m * h
+            self.J1[j] = m
+            self.J2[j] += 1
+            if   j == P:    v=1 if self.J2[j] == self.i[P] else 0
+            spr = self.createSprite(sprlist, x2, y2, w, h, self.cci(j, kl), g, why=f'create{why}{self.J2[j]}', kl=kl, v=v, dbg=dbg)
+            if QQ and j == L: self.createLabelRow(spr, m)
+            yield spr, v
+    ####################################################################################################################################################################################################
     def resizeLabels(self, dbg=1):
         self.log('(BGN) {}'.format(self.fmtGeom()))
         if dbg: self.dumpLabel()
@@ -655,21 +652,8 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpLabel()
         self.log('(END) {}'.format(self.fmtGeom()))
 
-    def resizeSprites(self, dbg=1):
-        self.log('(BGN) {}'.format(self.fmtGeom()))
-        if dbg: self.dumpSprite()
-        self.log(f'lenS={self.lenS()}')
-        for p, page in                enumerate(self.g_resizeSprites(None, P, self.pages, why=f' Page ')):
-            for l, line in            enumerate(self.g_resizeSprites(page, L, self.lines, why=f' Line ')):
-                for s, sect in        enumerate(self.g_resizeSprites(line, S, self.sects, why=f' Sect ')):
-                    for c, col in     enumerate(self.g_resizeSprites(sect, C, self.cols,  why=f' C ')):
-                        for t, lbl in enumerate(self.g_resizeLabels2(col)):
-                            if dbg > 1: self.log(f'lbl.y={lbl.y}')
-        if dbg: self.dumpLabel()  ;  self.dumpSprite()
-        self.log('(END) {}'.format(self.fmtGeom()))
-    ####################################################################################################################################################################################################
     def g_resizeLabels(self, p, j, lablist, why, dbg=1, dbg2=0):
-        n, ii, x, y, w, h, g, mx, my = self.geom(p, j, dbg=dbg2)  ;  x2 = x  ;  y2 = y
+        n, ii, x, y, w, h, g, mx, my = self.geom(p=p, j=j, dbg=dbg2)  ;  x2 = x  ;  y2 = y
         for m in range(n):
             if   j == C: x2 = x + m * w
             elif p:      y2 = y - m * h
@@ -679,22 +663,9 @@ class Tabs(pyglet.window.Window):
             if dbg: self.dumpLabel(lbl, *self.ids(), *self.cnts(), why=f'resize{why}{self.J2[j]}')
             if QQ and j == L: self.resizeLabelRow(lbl, m)
             yield lbl
-
-    def g_resizeSprites(self, p, j, sprlist, why, dbg=1, dbg2=0):
-        n, ii, x, y, w, h, g, mx, my = self.geom(p, j, dbg=dbg2)  ;  x2 = x  ;  y2 = y
-        for m in range(n):
-            if   j == C: x2 = x + m * w
-            elif p:      y2 = y - m * h
-            spr = sprlist[self.J2[j]]
-            spr.update(x=x2, y=y2, scale_x=mx, scale_y=my)
-            self.J1[j] = m
-            self.J2[j] += 1
-            if dbg: self.dumpSprite(spr, *self.ids(), *self.cnts(), why = f'resize{why}{self.J2[j]}')
-            if QQ and j == L: self.resizeLabelRow(spr, m)
-            yield spr
     ####################################################################################################################################################################################################
     def g_resizeLabels2(self, col, dbg=1, dbg2=0): # s, c
-        n, ii, x, y, w, h, g, mx, my = self.geom(col, T, dbg=dbg2)  ;  lbl = None
+        n, ii, x, y, w, h, g, mx, my = self.geom(p=col, j=T, dbg=dbg2)  ;  lbl = None
         p,       l,    s,    c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
         st,     sn,   si,   sk = self.J2[T], self.J2[N], self.J2[I], self.J2[K]
         ssno, ssna, scap, sbln = self.J2[O], self.J2[A], self.J2[D], self.J2[B]
@@ -721,6 +692,33 @@ class Tabs(pyglet.window.Window):
                 self.J1[K] = t   ;  self.J2[K] = sk  ;  self.J2[B] = sbln
                 if dbg:   self.dumpLabel(lbl, *self.ids(), *self.cnts(), why=why)
             yield lbl
+    ####################################################################################################################################################################################################
+    def resizeSprites(self, dbg=1):
+        self.log('(BGN) {}'.format(self.fmtGeom()))
+        if dbg: self.dumpSprite()
+        self.log(f'lenS={self.lenS()}')
+        for p, page in                enumerate(self.g_resizeSprites(None, P, self.pages, why=f' Page ')):
+            for l, line in            enumerate(self.g_resizeSprites(page, L, self.lines, why=f' Line ')):
+                for s, sect in        enumerate(self.g_resizeSprites(line, S, self.sects, why=f' Sect ')):
+                    for c, col in     enumerate(self.g_resizeSprites(sect, C, self.cols,  why=f' C ')):
+                        for t, lbl in enumerate(self.g_resizeLabels2(col)):
+                            if dbg > 1: self.log(f'lbl.y={lbl.y}')
+        if dbg: self.dumpLabel()  ;  self.dumpSprite()
+        self.log('(END) {}'.format(self.fmtGeom()))
+
+    def g_resizeSprites(self, p, j, sprlist, why, dbg=1, dbg2=1):
+        nn = self.n[j] if QQ else 0
+        n, ii, x, y, w, h, g, mx, my = self.geom(p=p, j=j, nn=nn, dbg=dbg2)  ;  x2 = x  ;  y2 = y
+        for m in range(n):
+            if   j == C: x2 = x + m * w
+            elif p:      y2 = y - m * h
+            spr = sprlist[self.J2[j]]
+            spr.update(x=x2, y=y2, scale_x=mx, scale_y=my)
+            self.J1[j] = m
+            self.J2[j] += 1
+            if dbg: self.dumpSprite(spr, *self.ids(), *self.cnts(), why = f'resize{why}{self.J2[j]}')
+            if QQ and j == L: self.resizeLabelRow(spr, m)
+            yield spr
     ####################################################################################################################################################################################################
     def createSprite(self, p, x, y, w, h, kk, g, why, kl=None, v=0, dbg=0):
         o, k, d, j, n, s = self.fontParams()
@@ -832,7 +830,7 @@ class Tabs(pyglet.window.Window):
     def dumpLabel(self, a=None, sid=-1, lid=-1, p=-1, l=-1, s=-1, c=-1, t=-1, n=-1, i=-1, k=-1, why=''):
         if a is None: self.log(f' sid  lid p  l  s   c   t   n   i   k    x       y       w       h    text      font name     siz dpi b i red grn blu opc   why', ind=0) ; return
         x, y, w, h, fn, d, z, kk, b, ii, tx    =    a.x, a.y, a.width, a.height, a.font_name, a.dpi, a.font_size, a.color, a.bold, a.italic, a.text
-        f = '{:4} {:4} {} {:2} {:2} {:3} {:3} {:3} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:6} {:17} {:2} {:3} {:1} {:1} {:3} {:3} {:3} {:3} {}'
+        f = '{:4} {:4} {} {:2} {:2} {:3} {:3} {:3} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:6} {:17} {:2} {:3} {:1} {:1} {:3} {:3} {:3} {:3} {} '
         fs = f.format(sid, lid, p, l, s, c, t, n, i, k, x, y, w, h, tx, fn, z, d, b, ii, kk[0], kk[1], kk[2], kk[3], why)
         self.log(fs, ind=0)
     ####################################################################################################################################################################################################
@@ -1068,14 +1066,12 @@ class Tabs(pyglet.window.Window):
         old = QQ
         QQ = not QQ
         self.log(f'old QQ={old} new QQ={QQ}')
-        if not QQ: self.hideLabelRows()
-        else:      self.showLabelRows()
+        if QQ: self.showLabelRows()
+        else:  self.hideLabelRows()
 
     def showLabelRows(self):
-        nl = len(self.lines)
-        for l in range(nl):
-            line = self.lines[l]
-            self.createLabelRow(line, l)
+        for l in range(len(self.lines)):
+            self.createLabelRow(self.lines[l], l)
         self.on_resize(self.ww, self.hh)
 
     def hideLabelRows(self):
