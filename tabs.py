@@ -23,7 +23,7 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = 'VRSN3={}      CCC={}  SFX3={}'.format(VRSN3, CCC,     SFX3)
@@ -141,7 +141,7 @@ class Tabs(pyglet.window.Window):
         self.log('   snapGlob={}'.format(snapGlob))
         self.delGlob(snapGlob, 'SNAP_GLOB')
         self.n = None
-        self.TNIK = [1, 1, 0, 1]
+        self.TNIK = [1, 0, 0, 1]
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.nc = 6 if QQ else 6
         self.ww, self.hh  = 640, 480
@@ -252,7 +252,9 @@ class Tabs(pyglet.window.Window):
         self.tpp =  nl * self.tpl
         if dbg: self.log('tps={}'.format(fmtl(self.tpz())))
 
-    def ss(self):    s = sum(self.TNIK)  ;  self.log(FMTR.format('TNIK={} sum={} n={}', fmtl(self.TNIK), s, self.n))  ;  return s
+    def dumpObj( self, obj, name, why=''): self.log(f'{why} Obj {name} {hex(id(obj))}')
+    def dumpObjs(self, obj, name, why=''): self.log(f'{why} Obj {name} ')   ;    [self.log(f'{hex(id(o))} type={type(o)}', ind=0) for o in obj]   ;    self.log(ind=0)
+    def ss(self):    s = sum(self.TNIK)  ;  self.log(FMTR.format(f'sum={s} TNIK={fmtl(self.TNIK)} n={self.n}'))  ;  return s
     def tpz(self):   return self.tpp, self.tpl, self.tps, self.tpc
     def lens(self):  return self.lenA(), self.lenB(), self.lenC(), self.lenD()
     def lenS(self):  return f'{fmtl(self.lenA())} {fmtl(self.lenB())} {fmtl(self.lenC())} {fmtl(self.lenD())}'
@@ -611,14 +613,23 @@ class Tabs(pyglet.window.Window):
                 self.log(f'     cc={cc:3} nc={nc:3} before {cx:7.2f} {cy:7.2f} {cw:7.2f} {ch:7.2f}    after {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f}', ind=0)
     ####################################################################################################################################################################################################
     def toggleNotes(self):
-        self.log(f'*BGN) n={fmtl(self.n)} TNIK={fmtl(self.TNIK)}')
+        self.log(f'(BGN) TNIK={fmtl(self.TNIK)} n={fmtl(self.n)}')
         self.TNIK[NN] = not self.TNIK[NN]
         self.n[S] = self.ss()
         if self.TNIK[NN] and not self.notes: self.showNotes()
         else:                                self.hideNotes()
-        self.log(f'(END) n={fmtl(self.n)} TNIK={fmtl(self.TNIK)}')
+        self.log(f'(END) TNIK={fmtl(self.TNIK)} n={fmtl(self.n)}')
         self.on_resize(self.ww, self.hh)
 
+    def toggleChords(self):
+        self.log(f'(BGN) TNIK={fmtl(self.TNIK)} n={fmtl(self.n)}')
+        self.TNIK[KK] = not self.TNIK[KK]
+        self.n[S] = self.ss()
+        if self.TNIK[KK] and not self.chords: self.showChords()
+        else:                                self.hideChords()
+        self.log(f'(END) TNIK={fmtl(self.TNIK)} n={fmtl(self.n)}')
+        self.on_resize(self.ww, self.hh)
+    ####################################################################################################################################################################################################
     def hideNotes(self, dbg=1):
         nl = len(self.lines)  ;  ns = len(self.sects)  ;  nc = len(self.cols)  ;  nt = len(self.tabs)
         self.log(f'(BGN) nl={nl} ns={ns} nc={nc} nt={nt}')
@@ -639,21 +650,45 @@ class Tabs(pyglet.window.Window):
             if dbg: self.log(f'{text} [{x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}] {n.text:6} [{n.x:7.2f} {n.y:7.2f} {n.width:7.2f} {n.height:7.2f}]')
         self.dumpJ('(END) hideNotes()')
         self.log(f'(END) nl={nl} ns={ns} nc={nc} nt={nt}')
-    def showNotes(self, dbg=1):
-        nl = len(self.lines)  ;  ns = len(self.sects)  ;  nc = len(self.cols)  ;  nt = len(self.tabs)  ;  ks = self.ks  ;  kc = self.kc  ;   kn = self.kn  ;  v = 1
-        sects = []
+
+    def hideChords(self, dbg=1):
+        nl = len(self.lines)  ;  ns = len(self.sects)  ;  nc = len(self.cols)  ;  nt = len(self.tabs)
         self.log(f'(BGN) nl={nl} ns={ns} nc={nc} nt={nt}')
+        self.dumpJ('(BGN) hideChords()')
+        for i in range(ns):
+            s = self.sects[i]
+            if SPRITES: s.update(x=0, y=0, scale_x=0, scale_y=0)
+            else:       s.x, s.y, s.w, s.h = 0, 0, 0, 0  # ;  s.text = ''
+            self.log(f'sects i={i}')
+        for i in range(nc):
+            c = self.cols[i]
+            if SPRITES: c.update(x=0, y=0, scale_x=0, scale_y=0)
+            else:       c.x, c.y, c.w, c.h = 0, 0, 0, 0  # ;  c.text = ''
+            self.log(f'cols i={i}')
+        for i in range(nt):
+            k = self.chords[i]  ;  x, y, w, h = k.x, k.y, k.width, k.height
+            k.x, k.y, k.width, k.height = 0, 0, 0, 0  ;  text = self.tabs[i].text  # ;  n.text = ''
+            if dbg: self.log(f'{text} [{x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}] {k.text:6} [{k.x:7.2f} {k.y:7.2f} {k.width:7.2f} {k.height:7.2f}]')
+        self.dumpJ('(END) hideChords()')
+        self.log(f'(END) nl={nl} ns={ns} nc={nc} nt={nt}')
+    ####################################################################################################################################################################################################
+    def showNotes(self, dbg=1):
+        nl = len(self.lines)  ;  ns = len(self.sects)  ;  nc = len(self.cols)  ;  nt = len(self.tabs)  ;  ks = self.ks  ;  kc = self.kc  ;   kn = self.kn  ;  v = 1  ;  tmp = []
+        self.log(f'(BGN) TNIK={self.TNIK} nl={nl} ns={ns} nc={nc} nt={nt}')
         self.dumpJ('(BGN) showNotes()')
         for s in range(nl):
             self.J1[S] = s + ns
             self.J2[S] += 1
             why  = f'create Sect {self.J2[S]}'
             text = f'Sect {self.J2[S]}' if self.DF[S] else ''
-            if SPRITES: self.createSprite(p=sects, x=0, y=0, w=self.w[S], h=self.h[S], kk=self.cci(s, ks), g=self.g[S], why=why, kl=ks, v=v, dbg=dbg)
-            else:       self.createLabel(text, p=sects, x=0, y=0, w=0, h=0, kk=self.cci(s, ks), g=self.g[S], why=why, kl=ks, dbg=dbg)
-        self.log(f'merging sects len sects={len(self.sects)}')
-        self.sects = list(itertools.chain(*list(zip(self.sects, sects))))
-        self.log(f'merging sects len sects={len(self.sects)}')
+            if SPRITES: self.createSprite(p=tmp, x=0, y=0, w=self.w[S], h=self.h[S], kk=self.cci(s, ks), g=self.g[S], why=why, kl=ks, v=v, dbg=dbg)
+            else:       self.createLabel(text, p=tmp, x=0, y=0, w=0, h=0, kk=self.cci(s, ks), g=self.g[S], why=why, kl=ks, dbg=dbg)
+        temp = self.sects
+        self.dumpObjs(self.sects, 'self.sects', f'merging len={len(self.sects)}')
+        self.dumpObjs(     tmp, '     tmp', f'merging len={len(tmp)}')
+        if ns//nl == 1: self.sects = list(itertools.chain(list(*zip(temp, tmp))))  ;  self.log(f'ns//nl={ns//nl} len temp={len(temp)}')
+        self.dumpObjs(self.sects, 'self.sects', f'merging len={len(self.sects)}')
+        self.dumpObjs(     tmp, '     tmp', f'merging len={len(tmp)}')
         for c in range(nc):
             self.J1[C] = c
             self.J2[C] += 1
@@ -668,41 +703,36 @@ class Tabs(pyglet.window.Window):
             why = f'create Note {self.J2[N]}'
             self.createLabel(note, p=self.notes, x=0, y=0, w=0, h=0, kk=self.cci(t, kn), g=self.g[T], why=why, kl=kn, dbg=dbg)
         self.dumpJ('(END) showNotes()')
-        self.log(f'(END) nl={nl} ns={ns} nc={nc} nt={nt}')
-    ####################################################################################################################################################################################################
-    def toggleChords(self):
-#        old = self.K  ;  self.K = not self.K  ;  self.log(f'old K={old} new K={self.K}')
-        self.n[S] = self.ss()
-        self.log(f'n={fmtl(self.n)}')
-        if self.K and not self.chords: self.showChords()
-        else:                          self.hideChords()
-        self.on_resize(self.ww, self.hh)
-
-    def hideChords(self):
-        nk = len(self.notes)
-        for i in range(nk):
-            k = self.chords[i]  ;  x, y, w, h = k.x, k.y, k.width, k.height
-            k.x, k.y, k.width, k.height = 0, 0, 0, 0
-            self.log(f'before x={x:7.2f} y={y:7.2f} w={w:7.2f} h={h:7.2f} after k.x={k.x:7.2f} k.y={k.y:7.2f} k.w={k.width:7.2f} k.h={k.height:7.2f}')
-
+        self.log(f'(END) TNIK={self.TNIK} nl={nl} ns={ns} nc={nc} nt={nt}')
     def showChords(self, dbg=1):
-        ns = len(self.sects)  ;  nc = len(self.cols)  ;  nt = len(self.tabs)  ;  ks = self.ks  ;  kk = self.kk  ;  v = 1  #   ;  kc = self.kc
-        self.log(f'(BGN) ns={ns} nc={nc} nt={nt}')
+        nl = len(self.lines)  ;  ns = len(self.sects)  ;  nc = len(self.cols)  ;  nt = len(self.tabs)  ;  ks = self.ks  ;  kc = self.kc  ;  kk = self.kk  ;  v = 1  ;  sects = []
+        self.log(f'(BGN) TNIK={self.TNIK} nl={nl} ns={ns} nc={nc} nt={nt}')
         self.dumpJ('(BGN) showChords()')
-        for s in range(ns):
-            self.J1[S] = s
+        for s in range(nl):
+            self.J1[S] = s + ns
             self.J2[S] += 1
-            why = f'create Sect {self.J2[S]}'
-            if SPRITES: self.createSprite(p=self.sects, x=0, y=0, w=self.w[S], h=self.h[S], kk=self.cci(s, ks), g=self.g[S], why=why, kl=ks, v=v, dbg=dbg)
-            else:       self.createLabel(f'Sect {self.J2[S]}' if self.DF[S] else '', p=self.sects, x=0, y=0, w=0, h=0, kk=self.cci(s, ks), g=self.g[S], why=why, kl=ks, dbg=dbg)
-        for t in range(len(self.tabs)):
-            self.J1[K] = t
+            why  = f'create Sect {self.J2[S]}'
+            text = f'Sect {self.J2[S]}' if self.DF[S] else ''
+            if SPRITES: self.createSprite(p=sects, x=0, y=0, w=self.w[S], h=self.h[S], kk=self.cci(s, ks), g=self.g[S], why=why, kl=ks, v=v, dbg=dbg)
+            else:       self.createLabel(text, p=sects, x=0, y=0, w=0, h=0, kk=self.cci(s, ks), g=self.g[S], why=why, kl=ks, dbg=dbg)
+        self.log(f'merging sects len sects={len(self.sects)}')
+        self.sects = list(itertools.chain(list(*zip(self.sects, sects))))
+        self.log(f'merging sects len sects={len(self.sects)}')
+        for c in range(nc):
+            self.J1[C] = c
+            self.J2[C] += 1
+            why = f'create C {self.J2[C]}'
+            if SPRITES: self.createSprite(p=self.cols, x=0, y=0, w=self.w[C], h=self.h[C], kk=self.cci(c, kc), g=self.g[C], why=why, kl=kc, v=v, dbg=dbg)
+            else:       self.createLabel(f'C {self.J2[C]}' if self.DF[C] else '', p=self.cols, x=0, y=0, w=0, h=0, kk=self.cci(c, kc), g=self.g[C], why=why, kl=kc, dbg=dbg)
+        for t in range(nt):
+            self.J1[K] = t % self.n[T]
             self.J2[K] += 1
             why = f'create Chord {self.J2[K]}'
             chordName = self.getChordName()
             chord = chordName[t] if len(chordName) > t else ' '
             self.createLabel(chord, p=self.chords, x=0, y=0, w=0, h=0, kk=self.cci(t, kk), g=self.g[T], why=why, kl=kk, dbg=dbg)
         self.dumpJ('(END) showChords()')
+        self.log(f'(END) TNIK={self.TNIK} nl={nl} ns={ns} nc={nc} nt={nt}')
     ####################################################################################################################################################################################################
     def createLabels(self, dbg=1, dbg2=0):
         self.log('(BGN) {}'.format(self.fmtGeom()))
@@ -953,6 +983,15 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log('(END) {} {})'.format(self.fmtGeom(), why))
     ####################################################################################################################################################################################################
     def dumpSprite(self, z=None, sid=-1, lid=-1, p=-1, l=-1, s=-1, c=-1, t=-1, n=-1, i=-1, k=-1, why=''):
+        if z is None: self.log(f' sid  lid p  l  s   c   t   n   i   k    x       y       w       h         id         mx    my   red grn blu opc   why         v   group       parent', ind=0); return
+        f = '{:4} {:4} {} {:2} {:2} {:3} {:3} {:3} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {} {:5.3f} {:5.3f} {:3} {:3} {:3} {:3} {:12} {:1} {} {}'
+        kk, o, v, g, pg    =    z.color, z.opacity, z.visible, z.group, z.group.parent   ;   ID = hex(id(z))
+        x, y, w, h, iax, iay, m, mx, my, rot    =    z.x, z.y, z.width, z.height, z.image.anchor_x, z.image.anchor_y, z.scale, z.scale_x, z.scale_y, z.rotation
+        fs = f.format(sid, lid, p, l, s, c, t, n, i, k, x, y, w, h, ID, mx, my, kk[0], kk[1], kk[2], o, why, v, g, pg)
+        self.log(fs, ind=0)
+        assert(type(z) == pyglet.sprite.Sprite)
+
+    def dumpSprite_OLD(self, z=None, sid=-1, lid=-1, p=-1, l=-1, s=-1, c=-1, t=-1, n=-1, i=-1, k=-1, why=''):  #  ;  ID = hex(id(z))
         if z is None: self.log(f' sid  lid p  l  s   c   t   n   i   k    x       y       w       h     iax  iay   m     mx    my     rot  red grn blu opc   why         v   group       parent', ind=0); return
         f = '{:4} {:4} {} {:2} {:2} {:3} {:3} {:3} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:4} {:4} {:5.3f} {:5.3f} {:5.3f} {:7.2f} {:3} {:3} {:3} {:3} {:12} {:1} {} {}'
         kk, o, v, g, pg    =    z.color, z.opacity, z.visible, z.group, z.group.parent
@@ -963,9 +1002,9 @@ class Tabs(pyglet.window.Window):
 
     def dumpLabel(self, a=None, sid=-1, lid=-1, p=-1, l=-1, s=-1, c=-1, t=-1, n=-1, i=-1, k=-1, why=''):
         if a is None: self.log(f' sid  lid p  l  s   c   t   n   i   k    x       y       w       h    text      font name     siz dpi b i red grn blu opc   why', ind=0) ; return
-        x, y, w, h, fn, d, z, kk, b, ii, tx    =    a.x, a.y, a.width, a.height, a.font_name, a.dpi, a.font_size, a.color, a.bold, a.italic, a.text
+        x, y, w, h, fn, d, z, kk, b, ii, tx    =    a.x, a.y, a.width, a.height, a.font_name, a.dpi, a.font_size, a.color, a.bold, a.italic, a.text  ;  ID = hex(id(a))
         f = '{:4} {:4} {} {:2} {:2} {:3} {:3} {:3} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:6} {:17} {:2} {:3} {:1} {:1} {:3} {:3} {:3} {:3} {} '
-        fs = f.format(sid, lid, p, l, s, c, t, n, i, k, x, y, w, h, tx, fn, z, d, b, ii, kk[0], kk[1], kk[2], kk[3], why)
+        fs = f.format(sid, lid, p, l, s, c, t, n, i, k, x, y, w, h, tx, ID, z, d, b, ii, kk[0], kk[1], kk[2], kk[3], why)
         self.log(fs, ind=0)
     ####################################################################################################################################################################################################
     def resizeFonts(self):
@@ -1439,6 +1478,30 @@ def testZip():
     Tabs.log(f'c={c}', ind=0)
     d = list(itertools.chain(*c))
     Tabs.log(f'd=flatten(c)={d}', ind=0)
+    e = list(zip(*zip(a, b)))
+    Tabs.log(f'e={e}', ind=0)
+    f = list(zip(*c))
+    Tabs.log(f'f={f}', ind=0)
+    aa = [1, 2, 3, 4, 5, 6]
+    Tabs.log(f'aa={aa}', ind=0)
+    bb = [ [ aa[a+b*len(aa)//2] for a in range(len(aa)//2) ] for b in range(len(aa)//3) ]
+    Tabs.log(f'bb={bb}', ind=0)
+    cc = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    Tabs.log(f'cc={cc}', ind=0)
+    dd = [ [ cc[a+b*len(cc)//3] for a in range(len(cc)//3) ] for b in range(len(cc)//3) ]
+    Tabs.log(f'dd={dd}', ind=0)
+    ee = list(itertools.chain(list(zip(bb[0], ['a', 'b', 'c'], bb[1]))))
+    Tabs.log(f'ee={ee}', ind=0)
+
+#self.sects = list(itertools.chain(list(*zip(self.sects, sects))))
+#def ufl(z, a, b):pass
+def dist(a, b=0, s=1, e=None):
+    c = []
+    if not e: e = len(a)
+    for j in range(b, e, s):
+        c.append(j)
+    return c
+
 def testPrecedence():
     Tabs.log('? a == 2 or b == 3 and c == 4 ?')
     a = 2  ;  b = 3  ;  c = 4  ;  Tabs.log(f'a={a} b={b} c={c}')
@@ -1467,7 +1530,7 @@ if __name__ == '__main__':
     LOG_PATH = Tabs.getLogPath()
     with open(str(LOG_PATH), 'w') as LOG_FILE:
         Tabs.log('BGN Logging Open LOG_PATH={}'.format(LOG_PATH))
-#        testPrecedence()  ;  exit()
+#        testZip()  ;  exit()
         Tabs.log('creating Tabs instance'.format())
         tabsObj     = Tabs()
         Tabs.log('tabs={}'.format(tabsObj))
