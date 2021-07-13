@@ -40,7 +40,7 @@ O, A, D, B       =  8,  9, 10, 11
 LLR, LLC         = 12, 13
 TT, NN, II, KK   =  0,  1,  2,  3
 Z, COL_L, LINE_L       = ' ', 'Col', 'Line '
-SNO_C, SNA_C, CFN_C    = 0, 0, 1
+SNO_C, SNA_C, CFN_C    = 0, 0, 1    ;    RLC = 2
 INIT             = '###   Init   ###' * 13
 QUIT             = '###   Quit   ###' * 13
 OPACITY          = [255, 240, 225, 210, 190, 165, 140, 110, 80]
@@ -144,7 +144,7 @@ class Tabs(pyglet.window.Window):
         self.n = []
         self.TNIK = [1, 1, 0, 1]
         self.log(f'TNIK={(fmtl(self.TNIK))}')
-        self.nc = 5 if QQ else 5
+        self.nc = 6 if QQ else 6
         self.ww, self.hh  = 640, 480
         self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, self.ssc(), 10, self.nc], [1, 1, 1, 1, 1], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
@@ -255,7 +255,6 @@ class Tabs(pyglet.window.Window):
 
     def dumpObj( self, obj, name, why=''): self.log(f'{why} Obj {name} {hex(id(obj))}')
     def dumpObjs(self, obj, name, why=''): self.log(f'{why} Obj {name} ')   ;    [self.log(f'{hex(id(o))} type={type(o)}', ind=0) for o in obj]   ;    self.log(ind=0)
-#    def ss(self):    s0 = sum(self.TNIK)  ;  s = s0 if s0 else 1  ;  txt = 'Forcing to non zero value' if not s0 else ''  ;  self.log(FMTR.format(f's0={s0} sum={s} TNIK={fmtl(self.TNIK)} n={self.n} {txt}'))  ;  return s
     def ss(self):    s = sum(self.TNIK)  ;                      self.log(FMTR.format(f's={s}      TNIK={   fmtl(self.TNIK)} n={fmtl(self.n)}'))  ;  return s
     def ssc(self):   s = self.ss()  ;  sc = s if s else 1   ;   self.log(FMTR.format(f's={s} sc={sc} TNIK={fmtl(self.TNIK)} n={fmtl(self.n)}'))  ;  return sc
     def tpz(self):   return self.tpp, self.tpl, self.tps, self.tpc
@@ -562,8 +561,8 @@ class Tabs(pyglet.window.Window):
         self.on_resize(self.ww, self.hh)
         self.log(f'(END) tnik={tnik} TNIK={fmtl(self.TNIK)} n={fmtl(self.n)} lenA={self.lenA()} lenB={self.lenB()}')
 
-    def hideTabs(self, tnik):
-        tabs = self.B[tnik]  ;  sects = self.sects  ;  cols = self.cols
+    def hideTabs(self, tnik, dbg=1):
+        tabs = self.B[tnik]   ;   cols = self.cols   ;  sects = self.sects
         ttype = 'Tab' if tnik == TT  else 'Note' if tnik == NN else 'Chord' if tnik == KK else '???'  ;  _t, _c, _s = 0, 0, 0
         np, nl, ns, nc, nt = self.n
         ns2 = nl * ns
@@ -571,18 +570,21 @@ class Tabs(pyglet.window.Window):
         _tnik = tnik if tnik < 2 else 2
         self.log(f'(BGN) np={np} nl={nl} ns={ns} nc={nc} nt={nt} ns2={ns2} nc2={nc2} len({ttype})={len(tabs)}')
         for _s in range(ns2-1, ns2-nl-1, -1):
-            s = sects[_s]
-            x, y, w, h = s.x, s.y, s.width, s.height
-            if SPRITES:  s.update(x=0, y=0, scale_x=0, scale_y=0)
-            else:        s.x, s.y, s.width, s.height = 0, 0, 0, 0
-            self.log(f'Sect  {_s+1:3}        {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}        {s.x:7.2f} {s.y:7.2f} {s.width:7.2f} {s.height:7.2f} {hex(id(s))}', ind=0)
+            self.hideLabel(sects, _s, 'Sect', dbg=dbg)
+#            s = sects[_s]
+#            x, y, w, h = s.x, s.y, s.width, s.height
+#            if SPRITES:  s.update(x=0, y=0, scale_x=0, scale_y=0)
+#            else:        s.x, s.y, s.width, s.height = 0, 0, 0, 0
+#            self.log(f'Sect  {_s+1:3}        {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}        {s.x:7.2f} {s.y:7.2f} {s.width:7.2f} {s.height:7.2f} {hex(id(s))}', ind=0)
         for _c in range(nc2-1, nc2-(len(cols)//nl)-1, -1):
-            c = cols[_c]
-            x, y, w, h = c.x, c.y, c.width, c.height
-            if SPRITES: c.update(x=0, y=0, scale_x=0, scale_y=0)
-            else:       c.x, c.y, c.width, c.height = 0, 0, 0, 0
-            self.log(f'Col   {_c+1:3}        {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}        {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f} {hex(id(c))}', ind=0)
+            self.hideLabel(cols, _c, 'Col', dbg=dbg)
+#            c = cols[_c]
+#            x, y, w, h = c.x, c.y, c.width, c.height
+#            if SPRITES: c.update(x=0, y=0, scale_x=0, scale_y=0)
+#            else:       c.x, c.y, c.width, c.height = 0, 0, 0, 0
+#            self.log(f'Col   {_c+1:3}        {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}        {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f} {hex(id(c))}', ind=0)
         for _t, t in enumerate(tabs):
+            self.hideLabel(tabs, _t, 'tab', dbg=dbg)
             x, y, w, h = t.x, t.y, t.width, t.height
             t.x, t.y, t.width, t.height = 0, 0, 0, 0
             if hasattr(t, 'text'):  text = t.text  ;  self.log(f'{ttype:5} {_t+1:3} {text:6} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {t.text:6} {t.x:7.2f} {t.y:7.2f} {t.width:7.2f} {t.height:7.2f} {hex(id(t))}', ind=0)
@@ -590,7 +592,7 @@ class Tabs(pyglet.window.Window):
         self.armSnap = f'hideTabs() _t={_t+1} _c={_c+1} _s={_s+1} len({ttype})={len(tabs)}'
         self.log(f'(END) _t={_t+1} _c={_c+1} _s={_s+1} len({ttype})={len(tabs)}')
 
-    def showTabs(self, tnik, dbg=1): # calc adding one sect
+    def showTabs(self, tnik, dbg=1):
         np, nl, ns, nc, nt = self.n           ;  tabs = self.B[tnik]
         _nt = nl * nc * nt  ;  _nc = nl * nc  ;  _ns = nl
         ks  = self.ks       ;   kc = self.kc  ;  k = [self.kt, self.kn, self.ki, self.kk]  ;  v = 1   ;  _tnik = tnik + len(self.B)
@@ -697,6 +699,85 @@ class Tabs(pyglet.window.Window):
                 c.x, c.y, c.width, c.height = 0, 0, 0, 0
                 if hasattr(c, 'text'):  text = c.text  ;  self.log(f'LLC {cc+1:3} {text:6} {cx:7.2f} {cy:7.2f} {cw:7.2f} {ch:7.2f} {c.text:6} {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f} {hex(id(c))}', ind=0)
                 else:                                     self.log(f'LLC {cc+1:3}        {cx:7.2f} {cy:7.2f} {cw:7.2f} {ch:7.2f}        {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f} {hex(id(c))}', ind=0)
+    ####################################################################################################################################################################################################
+    def toggleRLCols(self):
+        global CCC  ;  old = CCC  ;  CCC = (CCC + 1) % 3
+        self.log(f'(BGN) old CCC={old} New CCC={CCC} lenC={self.lenC()}')
+        show = 1 if (CCC == 1 and (not self.lenC()[0] or not self.lenC()[1])) or (CCC == 2 and (not self.lenC()[2])) else 0
+        if show: self.showRLCols()
+        else:    self.hideRLCols()
+        self.log(f'      lenE={self.lenE()}')
+        self.on_resize(self.ww, self.hh)
+        self.log(f'(END) lenE={self.lenE()}')
+
+    def showRLCols(self, dbg=1):
+        np, nl, ns, nc, nt = self.n  ;  kc, kt, kn, kk = self.kc, self.kt, self.kn, self.kk  ;  v = 1  ;  gt = self.g[T]
+        self.log(f'(BGN) nl={nl} ns={ns} nc={nc} nt={nt}')
+        for l in range(nl):
+            for s in range(ns):
+                c = CCC - 1     ;   self.log(f'CCC={CCC} l={l} s={s} c={c}')
+                self.J1[C] = c  ;   self.J2[C] += 1   ;   why = f'New Col {self.J2[C]}'
+                if SPRITES: self.createSprite(p=self.cols, x=0, y=0, w=self.w[C], h=self.h[C], kk=self.cci(c, kc), g=self.g[C], why=why, kl=kc, v=v, dbg=dbg)
+                else:       self.createLabel(f'C {self.J2[C]}' if self.DF[C] else '',j=C, p=self.cols, x=0, y=0, w=0, h=0, kk=C, g=self.g[C], why=why, kl=None, dbg=dbg)
+                for t in range(nt):
+                    text = '???'  ;  plist = []  ;  kk = T  ;  kl = None
+                    if   s == 0:
+                        if   c == SNO_C:  text = self.stringNumbs[t]    ;  plist = self.snos   ;  kk = T  ;  kl = None  ;  self.J2[O] += 1  ;  why = f'New SNo  {self.J2[O]}'
+                        elif c == CFN_C:  text = self.stringCapo[t]     ;  plist = self.capos  ;  kk = T  ;  kl = None  ;  self.J2[D] += 1  ;  why = f'New Capo {self.J2[D]}'
+                        else: self.log('Error unexpected else')
+                        self.createLabel(text, j=T, p=plist, x=0, y=0, w=0, h=0, kk=kk, g=gt, why=why, kl=kl, dbg=dbg)
+                    elif s == 1:
+                        if   c == SNA_C:  text = self.stringNames[t]    ;  plist = self.snas   ;  kk = N  ;  kl = None  ;  self.J2[O] += 1  ;  why = f'New SNa  {self.J2[O]}'
+                        elif c == CFN_C:  text = self.stringCapo[t]     ;  plist = self.capos  ;  kk = N  ;  kl = None  ;  self.J2[D] += 1  ;  why = f'New Capo {self.J2[D]}'
+                        else: self.log('Error unexpected else')
+                        self.createLabel(text, j=N, p=plist, x=0, y=0, w=0, h=0, kk=kk, g=gt, why=why, kl=kl, dbg=dbg)
+                    elif s == 2:
+                        if   c == SNO_C: text = ' '                     ;  plist = self.blncs  ;  kk = K  ;  kl = None   ;  self.J2[B] += 1  ;  why = f'New Blncs {self.J2[B]}'
+                        elif c == CFN_C: text = ' '                     ;  plist = self.blncs  ;  kk = K  ;  kl = None   ;  self.J2[B] += 1  ;  why = f'New Blncs {self.J2[B]}'
+                        else: self.log('Error unexpected else')
+                        self.createLabel(text, j=K, p=plist, x=0, y=0, w=0, h=0, kk=kk, g=gt, why=why, kl=kl, dbg=dbg)
+        self.log('(END)')
+
+    def hideRLCols(self, dbg=1):
+        np, nl, ns, nc, nt = self.n  ;  l, s, c, t = 0, 0, 0, 0   # ;  t2 = 0
+        self.log(f'(BGN) nl={nl} ns={ns} nc={nc} nt={nt}')  ;  cols = self.cols
+        snos, snas, capos, blncs = self.snos, self.snas, self.capos, self.blncs
+        for sno in range(len(snos)):
+            self.hideLabel(snos, sno, t='SNOS')
+        for sna in range(len(snas)):
+            self.hideLabel(snas, sna, t='SNAS')
+        for cap in range(len(capos)):
+            self.hideLabel(capos, cap, t='CAPOS')
+        for bln in range(len(blncs)):
+            self.hideLabel(blncs, bln, t='BLNCS')
+        for c in range(0, nl * ns * nc, nc):
+            l = c // (nc * ns)
+            s = (c // nc) % ns
+#            t2 = l * nt
+            self.log(f'{l} {s:2} {c:3}', ind=0, end=' ')                   ;  self.hideLabel(cols,  c,      t='Col', dbg=dbg)
+#            for t in range(nt):
+#                if   s == 0: self.log(f'{l} {s:2} {c:3}', ind=0, end=' ')  ;  self.hideLabel(snos,  t + t2, t='SNOS')
+#                elif s == 1: self.log(f'{l} {s:2} {c:3}', ind=0, end=' ')  ;  self.hideLabel(capos, t + t2, t='SNAS')
+#                elif s == 2: self.log(f'{l} {s:2} {c:3}', ind=0, end=' ')  ;  self.hideLabel(blncs, t + t2, t='BLNCS')
+            self.log(f'{l} {s:2} {c:3}', ind=0, end=' ')                   ;  self.hideLabel(cols,  c + 1,  t= 'Col', dbg=dbg)
+#            for t in range(nt):
+#                if   s == 0: self.log(f'{l} {s:2} {c:3}', ind=0, end=' ')  ;  self.hideLabel(snas,  t + t2, t='CAPOS')
+#                elif s == 1: self.log(f'{l} {s:2} {c:3}', ind=0, end=' ')  ;  self.hideLabel(capos, t + t2, t='CAPOS')
+#                elif s == 2: self.log(f'{l} {s:2} {c:3}', ind=0, end=' ')  ;  self.hideLabel(blncs, t + t2, t='BLNCS')
+        self.log(f'(END) l={l} s={s} c={c} t={t}')
+
+    def hideLabel(self, p, j, t='???', dbg=1):
+#        c = self.E[j][n]
+        c = p[j]
+        ha = hasattr(c, 'text')
+        x, y, w, h = c.x, c.y, c.width, c.height
+        text = c.text if ha else '??'
+        if SPRITES:                   c.update(x=0, y=0, scale_x=0, scale_y=0)
+        else:                         c.x, c.y, c.width, c.height = 0, 0, 0, 0
+        if dbg:
+            if ha: self.log(f'{t:5} {j+1:3} {hex(id(c))} {text:6} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {c.text:6} {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f}', ind=0)
+            else:  self.log(f'{t:5} {j+1:3} {hex(id(c))}        {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}        {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f}', ind=0)
+
     ####################################################################################################################################################################################################
     def createLabels(self, dbg=1, dbg2=0):
         self.log(f'(BGN) {self.fmtGeom()}')
@@ -878,7 +959,7 @@ class Tabs(pyglet.window.Window):
         if m:
             for i in range(len(text), 0, -1): text = text[:i] + '\n' + text[i:]
         if len(p) > self.J2[j]:
-            lbl = p[j1]  ;  lbl.text = text  ;  lbl.x = x  ;  lbl.y = y  ;  lbl.width = w  ;  lbl.height = h  ;  self.log(f'Update Exist j={j} j1={j1} len(p)={len(p)}')  ;  exit()
+            lbl = p[j1]  ;  lbl.text = text  ;  lbl.x = x  ;  lbl.y = y  ;  lbl.width = w  ;  lbl.height = h  ;  self.log(f'Update Exist j={j} j1={j1} len(p)={len(p)}')  # ;  exit()
         else:
             lbl = pyglet.text.Label(text, font_name=n, font_size=s, bold=o, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=m)
             self.labels.append(lbl)    ;    p.append(lbl)   # ;   self.log(f'Creating New j={j} j1={j1} len(p)={len(p)}')
@@ -1059,6 +1140,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'K' and self.isCtrl(mods):                        self.toggleTabs(KK)
         elif kbk == 'L' and self.isCtrl(mods) and self.isShift(mods): self.toggleLLRows()
         elif kbk == 'L' and self.isCtrl(mods):                        self.toggleLLRows()
+        elif kbk == 'M' and self.isCtrl(mods) and self.isShift(mods): self.toggleRLCols()
+        elif kbk == 'M' and self.isCtrl(mods):                        self.toggleRLCols()
         elif kbk == 'N' and self.isCtrl(mods) and self.isShift(mods): self.toggleTabs(NN)
         elif kbk == 'N' and self.isCtrl(mods):                        self.toggleTabs(NN)
         elif kbk == 'Q' and self.isCtrl(mods) and self.isShift(mods): self.quit(        'keyPress({})'.format(kbk))
