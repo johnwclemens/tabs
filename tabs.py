@@ -127,6 +127,12 @@ class Note(object):
         self.index = i
         self.ks    = ks
         self.name  = self.FLAT_TONES[i % len(self.FLAT_TONES)]
+
+class Chord(object):
+    INTERVALS =     { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'a5', 9:'6', 10:'b7', 11:'7' }
+    INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, 'a5':8, '6':9, 'b7':10, '7':11, }
+    def __init__(self): pass
+
 ####################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
     def __init__(self):
@@ -142,7 +148,7 @@ class Tabs(pyglet.window.Window):
         self.log('   snapGlob={}'.format(snapGlob))
         self.delGlob(snapGlob, 'SNAP_GLOB')
         self.n = []
-        self.TNIK = [1, 0, 0, 0]
+        self.TNIK = [1, 1, 0, 1]
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.nc = 6 if QQ else 6
         self.ww, self.hh  = 640, 480
@@ -862,24 +868,27 @@ class Tabs(pyglet.window.Window):
         ssno, ssna, scap, strl, cpol = self.J2[O], self.J2[A], self.J2[D], self.J2[E], self.J2[F]
         tt, nn, kk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]
         for t in range(n):##            self.log(f 'tt={tt} nn={nn} kk={kk} TNIK={fmtl(self.TNIK)}  p={p} l={l} s={s} c={c}  st={st} sn={sn} si={si} sk={sk}', ind=0)
+#            ttab = self.data[p][l][c][t]
             if   tt and s == 0:
-                if   CCC     and c == C1:   tab = self.snos[ssno]     ;  ssno += 1  ;    why = f'Mod SNo {ssno}'
-                elif CCC > 1 and c == C2:   tab = self.capos[scap]    ;  scap += 1  ;    why = f'Mod Capo {scap}'
-                else:                          tab = self.tabs[st]    ;    st += 1  ;    why = f'Mod Tab {st}'
+                if   CCC     and c == C1:   tab = self.snos[ssno]   ;  ssno += 1  ;  why = f'Mod SNo {ssno}'
+                elif CCC > 1 and c == C2:   tab = self.capos[scap]  ;  scap += 1  ;  why = f'Mod Capo {scap}'
+                else:                       tab = self.tabs[st]     ;    st += 1  ;  why = f'Mod Tab {st}'
                 tab.width = w    ;   tab.height = h   ;   tab.x = x   ;  tab.y = y - t * h  ;  lbl = tab
                 self.J1[T] = t   ;  self.J2[T] = st   ;  self.J2[O] = ssno  ;  self.J2[D] = scap
                 if dbg:   self.dumpLabel(  lbl, *self.ids(), *self.cnts(), why=why)
             elif nn and (s == 1 and tt or (s == 0 and not tt)):
-                if   CCC     and c == C1:  note = self.snas[ssna]     ;  ssna += 1  ;    why = f'Mod SNam {ssna}'
-                elif CCC > 1 and c == C2:  note = self.capos[scap]    ;  scap += 1  ;    why = f'Mod Capo {scap}'
-                else:                         note = self.notes[sn]   ;    sn += 1  ;    why = f'Mod Note {sn}'
+                if   CCC     and c == C1:  note = self.snas[ssna]   ;  ssna += 1  ;  why = f'Mod SNam {ssna}'
+                elif CCC > 1 and c == C2:  note = self.capos[scap]  ;  scap += 1  ;  why = f'Mod Capo {scap}'
+                else:                      note = self.notes[sn]    ;    sn += 1  ;  why = f'Mod Note {sn}'  # ;   note.text = self.getNote(t, ttab).name if self.isFret(ttab) else self.nblank
                 note.width = w   ;  note.height = h   ;   note.x = x  ;    note.y = y - t * h  ;  lbl = note
                 self.J1[N] = t   ;  self.J2[N] = sn   ;  self.J2[A] = ssna  ;  self.J2[D] = scap
                 if dbg:   self.dumpLabel( lbl, *self.ids(), *self.cnts(), why=why)
             elif kk and ((s == 2 and  tt and nn) or (s == 1 and tt or nn) or (s == 0 and not tt and not nn)):
-                if   CCC     and c == C1: chord = self.strls[strl]    ;  strl += 1  ;  why = f'Mod Strls {strl}'
-                elif CCC > 1 and c == C2: chord = self.cpols[cpol]    ;  cpol += 1  ;  why = f'Mod Cpols {cpol}'
-                else:                        chord = self.chords[sk]  ;    sk += 1  ;  why = f'Mod Chord {sk}'
+                if   CCC     and c == C1: chord = self.strls[strl]  ;  strl += 1  ;  why = f'Mod Strls {strl}'
+                elif CCC > 1 and c == C2: chord = self.cpols[cpol]  ;  cpol += 1  ;  why = f'Mod Cpols {cpol}'
+                else:                     chord = self.chords[sk]   ;    sk += 1  ;  why = f'Mod Chord {sk}'
+                chordName = self.getChordName2(p, l, c)
+                chord.text = chordName[t] if len(chordName) > t else ' '
                 chord.width = w  ;  chord.height = h  ;  chord.x = x  ;  chord.y = y - t * h  ;  lbl = chord
                 self.J1[K] = t   ;  self.J2[K] = sk   ;  self.J2[E] = strl  ;  self.J2[F] = cpol
                 if dbg:   self.dumpLabel(lbl, *self.ids(), *self.cnts(), why=why)
@@ -1271,9 +1280,11 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def addTab(self, text, why='', dbg=1):
         self.log('(BGN) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
+        cc = self.cursorCol()
         self.updateData(text)
-        self.updateTab(text)
-        self.updateNote(text)
+        self.updateTab(text, cc)
+        self.updateNote(text, cc)
+        self.updateChord(text, cc)
         if dbg: self.snapshot()
         self.log('(END) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
 
@@ -1286,20 +1297,27 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpTabs(why='updateData text={} i={} data[p][l][c]={}'.format(text, self.i, data[p][l][c]))
         self.log('(END) data[{}][{}][{}]={}'.format(p, l, c, self.data[p][l][c]))
 
-    def updateTab(self, text, dbg=0):
-        cc = self.cursorCol()
+    def updateTab(self, text, cc, dbg=0):
         self.log('(BGN) tabs[{}].text={}'.format(cc, self.tabs[cc].text))
         self.tabs[cc].text = text
         if dbg: self.tabs[cc].color = FONT_COLORS[self.fontColorIndex + 4]
-        self.log('(BGN) tabs[{}].text={}'.format(cc, self.tabs[cc].text))
+        self.log('(END) tabs[{}].text={}'.format(cc, self.tabs[cc].text))
 
-    def updateNote(self, text, dbg=0):
+    def updateNote(self, text, cc, dbg=0):
         p, l, s, c, r = self.j()
-        cc = self.cursorCol()
         self.log('(BGN) notes[{}].text={}'.format(cc, self.notes[cc].text))
         self.notes[cc].text = self.getNote(r, text).name if self.isFret(text) else self.nblank
         if dbg: self.notes[cc].color = FONT_COLORS[self.fontColorIndex + 4]
         self.log('(END) notes[{}].text={}'.format(cc, self.notes[cc].text))
+
+    def updateChord(self, text, cc, dbg=0):
+        p, l, s, c, r = self.j()  ;  nt = self.n[T]
+        if dbg: self.log(f'text={text}')
+        self.log('(BGN) chords[{}].text={}'.format(cc, self.chords[cc].text))
+        chordName = self.getChordName2(p, l, c)
+        for k in range(nt):
+            self.chords[cc].text = chordName[k]
+        self.log('(END) chords[{}].text={}'.format(cc, self.chords[cc].text))
 
     def updateCaption(self, txt):
         self.set_caption(txt)
@@ -1417,11 +1435,68 @@ class Tabs(pyglet.window.Window):
         note = Note(self.getNoteIndex(row, fretNum))
         if dbg: self.log('row={} tab={} fretNum={} note.name={} note.index={}'.format(row, tab, fretNum, note.name, note.index))
         return note
+    ####################################################################################################################################################################################################
+    @staticmethod
+    def getChordKey(keys):  return ' '.join(keys)
 
-    def getChordName(self, dbg=0):
-        name = 'A#mb13'
-        if dbg: self.log('chord={}'.format(name))
+    @staticmethod
+    def getChordName():  return 'A#mb13'
+
+    def getChordName2(self, p, l, c, dbg=1):
+        name = '?' # 'A#mb13'
+        notes, indices = self.getNotesIndices(p, l, c)
+        for i in range(len(indices)-1, -1, -1):
+            intervals = self.getIntervals(indices, i)
+            imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals, notes)
+            if dbg: self.log(f'intervals={intervals} notes={notes}')
+            if dbg: self.log(f'imap={imap} imapKeys={imapKeys}, imapNotes={imapNotes}, chordKe={chordKey}')
         return name
+    ####################################################################################################################################################################################################
+    def getNotesIndices(self, p, l, c, dbg=1):
+        tabs = self.data[p][l][c]
+        notes = []  ;  nt = len(tabs)
+        for t in range(nt):
+            note = self.getNote(t, tabs[t]).name if self.isFret(tabs[t]) else ''
+            if note: notes.append(note)
+        if dbg: self.log(f'notes={fmtl(notes)}')
+        indices = []
+        for t in range(nt):
+            index = int(self.getNote(t, tabs[t]).index) if self.isFret(tabs[t]) else 0
+            if index: indices.append(index)
+        if dbg: self.log(f'indices={fmtl(indices)}')
+        return notes, indices
+
+    def getIntervals(self, indices, j, dbg=1):
+        deltas = []
+        for i in indices:
+            if i - indices[j] >= 0:
+                deltas.append((i - indices[j]) % Note.NUM_SEMI_TONES)
+            else:
+                d = (indices[j] - i) % Note.NUM_SEMI_TONES
+                delta = Note.NUM_SEMI_TONES - d
+                if delta == Note.NUM_SEMI_TONES: delta = 0
+                deltas.append(delta)
+        if dbg: self.log(f'deltas={fmtl(deltas)}')
+        intervals = []
+        for d in deltas:
+            intervals.append(Chord.INTERVALS[d])
+        if dbg: self.log(f'intervals={fmtl(intervals)}')
+        return intervals
+
+    def getImapKeys(self, intervals, notes, dbg=1):
+        imap = collections.OrderedDict(sorted(dict(zip(intervals, notes)).items(), key=lambda t: Chord.INTERVAL_RANK[t[0]]))
+        imapKeys = imap.keys()
+        imapNotes = imap.values()
+        chordKey = self.getChordKey(imapNotes)
+        if dbg: self.log(f'imap={imap} imapKeys={imapKeys} imapNotes={imapNotes} chordKey={chordKey}', ind=0)
+        sdeltas, rdeltas, relimapKeys = [], [], ['R']
+        for k in imapKeys:
+            sdeltas.append(Chord.INTERVAL_RANK[k])
+        rdeltas.append(sdeltas[0])
+        for (i, sd) in enumerate(sdeltas, 1):
+            rdeltas.append(sd - sdeltas[i-1])
+            relimapKeys.append(Chord.INTERVALS[rdeltas[i]])
+        return imap, imapKeys, imapNotes, chordKey
     ####################################################################################################################################################################################################
     def cci(self, c, cc, dbg=0):
         if c == 0: self.ci = (self.ci + 1) % len(cc)
