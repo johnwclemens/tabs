@@ -23,7 +23,7 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = 'VRSN3={}      CCC={}  SFX3={}'.format(VRSN3, CCC,     SFX3)
@@ -68,11 +68,10 @@ def fmtl(a, w=None, d1='[', d2=']'):
         elif type(w) is int:  t += '{:>{w}} '.format(a[i], w=w)
         elif type(w) is list: t += '{:>{w}} '.format(int(a[i]), w=w[i])
     return d1 + t.rstrip() + d2
-def fmtd(a, d0=':', d1='[', d2=']'):
-    t = ''  ;  i = 0
+def fmtd(a, w=2, d0=':', d1='[', d2=']'):
+    t = ''
     for k, v in a.items():
-        t += '{}{}{} '.        format(k, d0, v)
-        i += 1
+        t += '{:>{}}{}{:<{}} '.format(k, w, d0, v, w)
     return d1 + t.rstrip() + d2
 def genColors(cp, nsteps=HUES, dbg=0):
     colors, clen = [], len(cp[0])
@@ -138,84 +137,132 @@ class Chord(object):
     @staticmethod
     def getChordKey(keys):  return ' '.join(keys)
 
-    @staticmethod
-    def getChordName():  return 'A#mb13'
-
-    def getChordName2(self, p, l, c, dbg=1):
-        chordName = '?' # 'A#mb13'
-        notes, indices = self.getNotesIndices(p, l, c)
-        for i in range(len(indices)-1, -1, -1):
-            intervals = self.getIntervals(indices, i)
-            imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals, notes)
-#            if dbg: Tabs.log(f'chordName={chordName}')
-#            if dbg: Tabs.log(f'intervals={intervals} notes={notes}', ind=0)
-#            if dbg: Tabs.log(f'imap={imap} imapKeys={imapKeys}, imapNotes={imapNotes}, chordKey={chordKey}', ind=0)
-            chordName = self._getChordName(imap)
-            if dbg: Tabs.log(f'chordName={chordName}')
+    def getChordName(self, p, l, c, dbg=1):
+        chordName = ''  ;  imapKeys, imapNotes = None, None  # ;  space = ' ' * 20
+        mask, notes, indices = self.getNotesIndices(p, l, c)
+        for i in range(len(indices)):
+            intervals = self.getIntervals(indices, i, mask)
+            imap, _imapKeys, _imapNotes, chordKey = self.getImapKeys(intervals, notes, mask)
+#            if dbg: Tabs.log(f 'chordName={chordName}')
+#            if dbg: Tabs.log(f 'intervals={intervals} notes={notes}', ind=0)
+#            if dbg: Tabs.log(f 'imap={imap} imapKeys={imapKeys}, imapNotes={imapNotes}, chordKey={chordKey}', ind=0)
+            _chordName = self._getChordName(imap)
+            if _chordName: chordName = _chordName  ;  imapKeys = _imapKeys  ;  imapNotes = _imapNotes
+            if dbg and _chordName: Tabs.log(f'Inner Chord [ {_chordName} {fmtl(list(imapKeys), w=2, d1=" < ", d2=" > ")} {fmtl(list(imapNotes), w=2, d1=" < ", d2=" > ")} ]')
+        if dbg and chordName: Tabs.log(f'Outer Chord [ {chordName} {fmtl(list(imapKeys), d1=" < ", d2=" > ")} {fmtl(list(imapNotes), w=2, d1=" < ", d2=" > ")} ]')
         return chordName
     ####################################################################################################################################################################################################
     def getNotesIndices(self, p, l, c, dbg=1):
+        mask = [1] * self.tobj.n[T]  # ;  Tabs.log(f'mask={mask}')
         strNumbs = self.tobj.stringNumbs
         strKeys  = self.tobj.stringKeys
         strNames = self.tobj.stringNames
         tabs     = self.tobj.data[p][l][c]
         strIndices = [Note.INDICES[k] for k in strKeys]
-        if dbg: Tabs.log(f'strNumbs    {fmtl(strNumbs[::-1], w=4)}')
-        if dbg: Tabs.log(f'strKeys     {fmtl(strKeys,        w=4)}')
-        if dbg: Tabs.log(f'strIndices  {fmtl(strIndices,     w=4)}')
-        if dbg: Tabs.log(f'strNames    {fmtl(strNames[::-1], w=4)}')
-        if dbg: Tabs.log(f'Tabs        {fmtl(tabs[    ::-1], w=4)}')
-        notes = []  ;  nt = len(tabs)
+        notes = []  ;  nt = len(tabs)  ;   mask2 = []
         for t in range(nt):
-            note = self.tobj.getNote(t, tabs[t]).name if Tabs.isFret(tabs[t]) else ''
-            if note: notes.insert(0, note)
-        if dbg: Tabs.log(f'Notes       {fmtl(notes,   w=4)}')
+            if Tabs.isFret(tabs[t]): mask2.insert(0, 1)  ;  note = self.tobj.getNote(t, tabs[t]).name  ;  notes.insert(0, note)
+            else:                    mask2.insert(0, 0)
         indices = []
         for t in range(nt):
             index = int(self.tobj.getNote(t, tabs[t]).index) if Tabs.isFret(tabs[t]) else 0
             if index: indices.insert(0, index)
-        if dbg: Tabs.log(f'Indices     {fmtl(indices, w=4)}')
-        return notes, indices
+        if notes:
+            if dbg: print(f'strNumbs    {fmtl(strNumbs[::-1], w=4)}', file=sys.stdout)
+            if dbg: print(f'strKeys     {fmtl(strKeys,        w=4)}', file=sys.stdout)
+            if dbg: print(f'strIndices  {fmtl(strIndices,     w=4)}', file=sys.stdout)
+            if dbg: print(f'strNames    {fmtl(strNames[::-1], w=4)}', file=sys.stdout)
+            if dbg: print(f'Tabs        {fmtl(tabs[    ::-1], w=4)}', file=sys.stdout)
+            if dbg: print(f'Notes       {fmtl(notes,          w=4)}', file=sys.stdout)
+            if dbg: print(f'Indices     {fmtl(indices,        w=4)}', file=sys.stdout)
+            if dbg: self.dumpData(strNumbs,    mask, 'strNumbs', r=1)
+            if dbg: self.dumpData(strKeys,     mask, 'strKeys')
+            if dbg: self.dumpData(strIndices,  mask, 'strIndices')
+            if dbg: self.dumpData(strNames,    mask, 'strNames', r=1)
+            if dbg: self.dumpData(tabs,        mask, 'Tabs',     r=1)
+            if dbg: self.dumpData(notes,      mask2, 'Notes')
+            if dbg: self.dumpData(indices,    mask2, 'Indices')
+        return mask2, notes, indices
 
-    def getIntervals(self, indices, j, dbg=1):
-        deltas = []
+    def getIntervals(self, indices, j, mask, order=1, dbg=1):
+        deltas = []  ;  nst = Note.NUM_SEMI_TONES
         for i in indices:
             if i - indices[j] >= 0:
-                deltas.insert(0, (i - indices[j]) % Note.NUM_SEMI_TONES)
+                if order: deltas.append((i - indices[j]) % nst)
+                else:     deltas.insert(0, (i - indices[j]) % nst)
             else:
-                d = (indices[j] - i) % Note.NUM_SEMI_TONES
-                delta = Note.NUM_SEMI_TONES - d
-                if delta == Note.NUM_SEMI_TONES: delta = 0
-                deltas.insert(0, delta)
-        if dbg: Tabs.log(f'Deltas      {fmtl(deltas,    w=4)}')
+                d = (indices[j] - i) % nst
+                delta = nst - d
+                if delta == nst: delta = 0
+                if order: deltas.append(delta)
+                else:     deltas.insert(0, delta)
         intervals = []
         for d in deltas:
             intervals.append(self.INTERVALS[d])
-        if dbg: Tabs.log(f'Intervals   {fmtl(intervals, w=4)}')
+        if dbg: print(f'Deltas      {fmtl(deltas,    w=4)}', file=sys.stdout)
+        if dbg: print(f'Intervals   {fmtl(intervals, w=4)}', file=sys.stdout)
+        if dbg: self.dumpData(deltas, mask, 'Deltas')
+        if dbg: self.dumpData(intervals, mask, 'Intervals')
         return intervals
 
-    def getImapKeys(self, intervals, notes, dbg=1):
+    def getImapKeys(self, intervals, notes, mask, dbg=1):
         imap = collections.OrderedDict(sorted(dict(zip(intervals, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
         imapKeys = imap.keys()
         imapNotes = imap.values()
         chordKey = self.getChordKey(imapNotes)
-        if dbg: Tabs.log(f'imap        {fmtl(list(imap), w=4)}')
-        if dbg: Tabs.log(f'imapKeys    {fmtl(list(imapKeys), w=4)}')
-        if dbg: Tabs.log(f'imapNotes   {fmtl(list(imapNotes), w=4)}')
-        if dbg: Tabs.log(f'chordKey    {chordKey}')
+        _imap = zip(imap.keys(), imap.values())
+        if dbg: print(f'imap        {fmtd(imap)}', file=sys.stdout)
+#        if dbg: Tabs.log(f'imap        {fmtd(imap)}')
+#        if dbg: print(f'_imap       {fmtd(_imap)}', file=sys.stdout)
+        if dbg: print(f'imapKeys    {fmtl(list(imapKeys), w=4)}', file=sys.stdout)
+        if dbg: print(f'imapNotes   {fmtl(list(imapNotes), w=4)}', file=sys.stdout)
+        if dbg: print(f'chordKey    {chordKey}', file=sys.stdout)
+        if dbg: self.dumpData(imap, mask, 'imap')
+        if dbg: self.dumpData(list(imapKeys), mask, 'imapKeys')
+        if dbg: self.dumpData(list(imapNotes), mask, 'mapNotes')
+#        if dbg: self.dumpData(list(chordKey), mask, 'chordKey')
         sdeltas, rdeltas, relimapKeys = [], [], ['R']
         for k in imapKeys:
-            sdeltas.insert(0, self.INTERVAL_RANK[k])
-        rdeltas.append(sdeltas[0])
-        for (i, sd) in enumerate(sdeltas, 1):
-            rdeltas.insert(0, sd - sdeltas[i-1])
-            relimapKeys.insert(0, self.INTERVALS[rdeltas[i]])
+            sdeltas.append(self.INTERVAL_RANK[k])
+            rdeltas.insert(0, self.INTERVAL_RANK[k])
+        if dbg: self.dumpData(sdeltas, mask, 'SDeltas')
+        if dbg: self.dumpData(rdeltas, mask, 'RDeltas')
+        for (i, sd) in enumerate(sdeltas):
+            relimapKeys.append(self.INTERVALS[rdeltas[i]])
+        if dbg: self.dumpData(relimapKeys, mask, 'RelImapKeys')
         return imap, imapKeys, imapNotes, chordKey
 
-    def _getChordName(self, imap):
-        r = imap['R']
+    @staticmethod
+    def dumpData(data, mask, why, w=5, r=0):
+        if r:     data = data[::-1]  ;  mask = mask[::-1]
+        j = 0  ;  Tabs.log(f'{why:11} [', end=' ')  ;  dt = type(data)
+        if dt is list or dt is str:
+            for i in range(len(mask)):
+                if mask[i]: Tabs.log('{:>{w}} '.format(data[j], w=w), ind=0, end='')  ;  j += 1
+                else:       Tabs.log('{} '.format(' ' * w), ind=0, end='')
+        elif dt is collections.OrderedDict:
+            w2 = 2  ;   i = 0
+            for k,v in data.items():
+                while not mask[i]: Tabs.log('{} '.format(' ' * w), ind=0, end='')   ;  i += 1
+                Tabs.log('{:>{}}{}{:<{}} '.format(k, w2, ':', v, w2), ind=0, end='')  ;  i += 1
+            while i < len(mask): Tabs.log('{} '.format(' ' * w), ind=0, end='')   ;  i += 1
+        else: Tabs.log(f'type={dt} ', ind=0, end='')
+        Tabs.log(']', ind=0)
+
+    @staticmethod
+    def _getChordName(imap):
+        r = imap['R']  ;  n = len(imap)
         if   '5' in imap:
-            if 'M3' in imap: return f'{r} '
+            if   n == 3:
+                if 'm3' in imap: return f'{r}m'
+                if 'M3' in imap: return f'{r}'
+            elif n == 4:
+                if 'm3' in imap:
+                    if   'b7' in imap: return f'{r}m7'
+                    elif  '7' in imap: return f'{r}mM7'
+                if 'M3' in imap:
+                    if   'b7' in imap: return f'{r}7'
+                    elif  '7' in imap: return f'{r}M7'
         return ''
 ####################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
@@ -704,7 +751,7 @@ class Tabs(pyglet.window.Window):
             self.log(f'{p} {l} {cc} {tt}', ind=0, end=' ')
             tab = self.data[p][l][cc][tt]
             note = self.getNote(tt, tab).name if self.isFret(tab) else self.nblank
-            chordName = self.cobj.getChordName()
+            chordName = self.cobj.getChordName(p, l, cc)
             chord = chordName[tt] if len(chordName) > tt else ' '
             text = tab if tnik == TT else note if tnik == NN else chord if tnik == KK else '???'
 #            self.createLabel(text, j=_tnik, p=tabs, x=0, y=0, w=0, h=0, kk=self.cci(_t, k[tnik]), g=self.g[T], why=why, kl=k[tnik], dbg=dbg)
@@ -893,7 +940,7 @@ class Tabs(pyglet.window.Window):
             elif kkk and (s == 2 or (s == 1 and (not tt or not nn)) or (s == 0 and (not tt and not nn))):
                 if   CCC     and c == C1: chord = self.strLabel[t]       ;  plist = self.strls   ;  kl = kk2   ;  k = self.cci(t, kl)  ;  self.J2[E] += 1  ;  why = f'New StrL {self.J2[E]}'
                 elif CCC > 1 and c == C2: chord = self.cpoLabel[t]       ;  plist = self.cpols   ;  kl = kk2   ;  k = self.cci(t, kl)  ;  self.J2[F] += 1  ;  why = f'New CpoL {self.J2[F]}'
-                else:                 chordName = self.cobj.getChordName()    ;  plist = self.chords  ;  kl = kk    ;  k = self.cci(t, kl)  ;  self.J2[K] += 1  ;  why = f'New Chord {self.J2[K]}'  ;  chord = chordName[t] if len(chordName) > t else ' '
+                else:                 chordName = self.cobj.getChordName(p, l, c)    ;  plist = self.chords  ;  kl = kk    ;  k = self.cci(t, kl)  ;  self.J2[K] += 1  ;  why = f'New Chord {self.J2[K]}'  ;  chord = chordName[t] if len(chordName) > t else ' '
                 self.createLabel(chord, K, plist,  xt, yt - t*ht, wt, ht, k, gt, why=why, kl=kl, dbg=dbg)  ;  yield chord
             else: self.log(f'ERROR Not Handled s={s} tt={tt} nn={nn} kk={kkk}')  ;  yield None
     ####################################################################################################################################################################################################
@@ -974,8 +1021,8 @@ class Tabs(pyglet.window.Window):
                 elif CCC > 1 and c == C2: chord = self.cpols[cpol]  ;  cpol += 1  ;  why = f'Mod Cpols {cpol}'
                 else:
                     chord = self.chords[sk]   ;    sk += 1  ;  why = f'Mod Chord {sk}'
-                    if not t:   chordName = self.cobj.getChordName2(p, l, c)
-                    self.log(f'chordName={chordName}')
+                    if not t:   chordName = self.cobj.getChordName(p, l, c)
+#                    self.log(f'chordName={chordName}')
                     chord.text = chordName[t] if len(chordName) > t else ' '
                 chord.width = w  ;  chord.height = h  ;  chord.x = x  ;  chord.y = y - t * h  ;  lbl = chord
                 self.J1[K] = t   ;  self.J2[K] = sk   ;  self.J2[E] = strl  ;  self.J2[F] = cpol
@@ -1402,7 +1449,7 @@ class Tabs(pyglet.window.Window):
         p, l, s, c, r = self.j()  ;  nt = self.n[T]
         if dbg: self.log(f'text={text}')
         self.log('(BGN) chords[{}].text={}'.format(cc, self.chords[cc].text))
-        chordName = self.cobj.getChordName2(p, l, c)
+        chordName = self.cobj.getChordName(p, l, c)
         for k in range(nt):
             self.chords[cc].text = chordName[k]
         self.log('(END) chords[{}].text={}'.format(cc, self.chords[cc].text))
