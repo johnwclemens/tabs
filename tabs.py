@@ -2,7 +2,9 @@ import inspect, math, sys, os, glob, pathlib, string, collections #, itertools #
 import pyglet
 import pyglet.window.key   as pygwink
 import pyglet.window.event as pygwine
+sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('../lib'))
+import misc
 import cmdArgs
 
 class MyFormatter(string.Formatter):
@@ -110,166 +112,13 @@ FONT_COLORS_S = [PINKS[0], CYANS[0], REDS[0], BLUES[0], YELLOWS[0], GREENS[0], O
 FONT_COLORS_L = [PINKS[0], GRAYS[0], BLUES[0], GREENS[0], YELLOWS[0], REDS[0], GRAYS[1], PINKS[8], REDS[10], YELLOWS[15], GRAYS[8], GRAYS[8], INDIGOS[8], GRAYS[9], GRAYS[8], CC]
 FONT_COLORS   =  FONT_COLORS_S if SPRITES else FONT_COLORS_L
 ####################################################################################################################################################################################################
-class Note(object):
-    NUM_SEMI_TONES = 12
-    SHARP_TONES    = { 0:'C', 1:'C#', 2:'D', 3:'D#', 4:'E', 5:'F', 6:'F#', 7:'G', 8:'G#', 9:'A', 10:'A#', 11:'B' }
-    FLAT_TONES     = { 0:'C', 1:'Db', 2:'D', 3:'Eb', 4:'E', 5:'F', 6:'Gb', 7:'G', 8:'Ab', 9:'A', 10:'Bb', 11:'B' }
-    INDICES = { 'C0': 0, 'C#0': 1, 'Db0': 1, 'D0': 2, 'D#0': 3, 'Eb0': 3, 'E0': 4, 'F0': 5, 'F#0': 6, 'Gb0': 6, 'G0': 7, 'G#0': 8, 'Ab0': 8, 'A0': 9, 'A#0':10, 'Bb0':10, 'B0':11,
-                'C1':12, 'C#1':13, 'Db1':13, 'D1':14, 'D#1':15, 'Eb1':15, 'E1':16, 'F1':17, 'F#1':18, 'Gb1':18, 'G1':19, 'G#1':20, 'Ab1':20, 'A1':21, 'A#1':22, 'Bb1':22, 'B1':23,
-                'C2':24, 'C#2':25, 'Db2':25, 'D2':26, 'D#2':27, 'Eb2':27, 'E2':28, 'F2':29, 'F#2':30, 'Gb2':30, 'G2':31, 'G#2':32, 'Ab2':32, 'A2':33, 'A#2':34, 'Bb2':34, 'B2':35,
-                'C3':36, 'C#3':37, 'Db3':37, 'D3':38, 'D#3':39, 'Eb3':39, 'E3':40, 'F3':41, 'F#3':42, 'Gb3':42, 'G3':43, 'G#3':44, 'Ab3':44, 'A3':45, 'A#3':46, 'Bb3':46, 'B3':47,
-                'C4':48, 'C#4':49, 'Db4':49, 'D4':50, 'D#4':51, 'Eb4':51, 'E4':52, 'F4':53, 'F#4':54, 'Gb4':54, 'G4':55, 'G#4':56, 'Ab4':56, 'A4':57, 'A#4':58, 'Bb4':58, 'B4':59,
-                'C5':60, 'C#5':61, 'Db5':61, 'D5':62, 'D#5':63, 'Eb5':63, 'E5':64, 'F5':65, 'F#5':66, 'Gb5':66, 'G5':67, 'G#5':68, 'Ab5':68, 'A5':69, 'A#5':70, 'Bb5':70, 'B5':71,
-                'C6':72, 'C#6':73, 'Db6':73, 'D6':74, 'D#6':75, 'Eb6':75, 'E6':76, 'F6':77, 'F#6':78, 'Gb6':78, 'G6':79, 'G#6':80, 'Ab6':80, 'A6':81, 'A#6':82, 'Bb6':82, 'B6':83,
-                'C7':84, 'C#7':85, 'Db7':85, 'D7':86, 'D#7':87, 'Eb7':87, 'E7':88, 'F7':89, 'F#7':90, 'Gb7':90, 'G7':91, 'G#7':92, 'Ab7':92, 'A7':93, 'A#7':94, 'Bb7':94, 'B7':95,
-                'C8':96 } # For simplicity omit double flats and double sharps and other redundant enharmonic note names e.g. Abb, C##, Cb, B#, Fb, E# etc...
-    def __init__(self, i, ks=None):
-        self.index = i
-        self.ks    = ks
-        self.name  = self.FLAT_TONES[i % len(self.FLAT_TONES)]
-####################################################################################################################################################################################################
-class Chord(object):
-    INTERVALS =     { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'a5', 9:'6', 10:'b7', 11:'7' }
-    INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, 'a5':8, '6':9, 'b7':10, '7':11, }
-    def __init__(self, t):
-        self.tobj = t
-
-    @staticmethod
-    def getChordKey(keys):  return ' '.join(keys)
-
-    def getChordName(self, p, l, c, dbg=1):
-        chordName = ''  ;  imapKeys, imapNotes = None, None  # ;  space = ' ' * 20
-        mask, notes, indices = self.getNotesIndices(p, l, c)
-        for i in range(len(indices)):
-            intervals = self.getIntervals(indices, i, mask)
-            imap, _imapKeys, _imapNotes, chordKey = self.getImapKeys(intervals, notes, mask)
-#            if dbg: Tabs.log(f 'chordName={chordName}')
-#            if dbg: Tabs.log(f 'intervals={intervals} notes={notes}', ind=0)
-#            if dbg: Tabs.log(f 'imap={imap} imapKeys={imapKeys}, imapNotes={imapNotes}, chordKey={chordKey}', ind=0)
-            _chordName = self._getChordName(imap)
-            if _chordName: chordName = _chordName  ;  imapKeys = _imapKeys  ;  imapNotes = _imapNotes
-            if dbg and _chordName: Tabs.log(f'Inner Chord [ {_chordName} {fmtl(list(imapKeys), w=2, d1=" < ", d2=" > ")} {fmtl(list(imapNotes), w=2, d1=" < ", d2=" > ")} ]')
-        if dbg and chordName: Tabs.log(f'Outer Chord [ {chordName} {fmtl(list(imapKeys), d1=" < ", d2=" > ")} {fmtl(list(imapNotes), w=2, d1=" < ", d2=" > ")} ]')
-        return chordName
-    ####################################################################################################################################################################################################
-    def getNotesIndices(self, p, l, c, dbg=1):
-        mask = [1] * self.tobj.n[T]  # ;  Tabs.log(f'mask={mask}')
-        strNumbs = self.tobj.stringNumbs
-        strKeys  = self.tobj.stringKeys
-        strNames = self.tobj.stringNames
-        tabs     = self.tobj.data[p][l][c]
-        strIndices = [Note.INDICES[k] for k in strKeys]
-        notes = []  ;  nt = len(tabs)  ;   mask2 = []
-        for t in range(nt):
-            if Tabs.isFret(tabs[t]): mask2.insert(0, 1)  ;  note = self.tobj.getNote(t, tabs[t]).name  ;  notes.insert(0, note)
-            else:                    mask2.insert(0, 0)
-        indices = []
-        for t in range(nt):
-            index = int(self.tobj.getNote(t, tabs[t]).index) if Tabs.isFret(tabs[t]) else 0
-            if index: indices.insert(0, index)
-        if notes:
-            if dbg: print(f'strNumbs    {fmtl(strNumbs[::-1], w=4)}', file=sys.stdout)
-            if dbg: print(f'strKeys     {fmtl(strKeys,        w=4)}', file=sys.stdout)
-            if dbg: print(f'strIndices  {fmtl(strIndices,     w=4)}', file=sys.stdout)
-            if dbg: print(f'strNames    {fmtl(strNames[::-1], w=4)}', file=sys.stdout)
-            if dbg: print(f'Tabs        {fmtl(tabs[    ::-1], w=4)}', file=sys.stdout)
-            if dbg: print(f'Notes       {fmtl(notes,          w=4)}', file=sys.stdout)
-            if dbg: print(f'Indices     {fmtl(indices,        w=4)}', file=sys.stdout)
-            if dbg: self.dumpData(strNumbs,    mask, 'strNumbs', r=1)
-            if dbg: self.dumpData(strKeys,     mask, 'strKeys')
-            if dbg: self.dumpData(strIndices,  mask, 'strIndices')
-            if dbg: self.dumpData(strNames,    mask, 'strNames', r=1)
-            if dbg: self.dumpData(tabs,        mask, 'Tabs',     r=1)
-            if dbg: self.dumpData(notes,      mask2, 'Notes')
-            if dbg: self.dumpData(indices,    mask2, 'Indices')
-        return mask2, notes, indices
-
-    def getIntervals(self, indices, j, mask, order=1, dbg=1):
-        deltas = []  ;  nst = Note.NUM_SEMI_TONES
-        for i in indices:
-            if i - indices[j] >= 0:
-                if order: deltas.append((i - indices[j]) % nst)
-                else:     deltas.insert(0, (i - indices[j]) % nst)
-            else:
-                d = (indices[j] - i) % nst
-                delta = nst - d
-                if delta == nst: delta = 0
-                if order: deltas.append(delta)
-                else:     deltas.insert(0, delta)
-        intervals = []
-        for d in deltas:
-            intervals.append(self.INTERVALS[d])
-        if dbg: print(f'Deltas      {fmtl(deltas,    w=4)}', file=sys.stdout)
-        if dbg: print(f'Intervals   {fmtl(intervals, w=4)}', file=sys.stdout)
-        if dbg: self.dumpData(deltas, mask, 'Deltas')
-        if dbg: self.dumpData(intervals, mask, 'Intervals')
-        return intervals
-
-    def getImapKeys(self, intervals, notes, mask, dbg=1):
-        imap = collections.OrderedDict(sorted(dict(zip(intervals, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
-        imapKeys = imap.keys()
-        imapNotes = imap.values()
-        chordKey = self.getChordKey(imapNotes)
-        _imap = zip(imap.keys(), imap.values())
-        if dbg: print(f'imap        {fmtd(imap)}', file=sys.stdout)
-#        if dbg: Tabs.log(f'imap        {fmtd(imap)}')
-#        if dbg: print(f'_imap       {fmtd(_imap)}', file=sys.stdout)
-        if dbg: print(f'imapKeys    {fmtl(list(imapKeys), w=4)}', file=sys.stdout)
-        if dbg: print(f'imapNotes   {fmtl(list(imapNotes), w=4)}', file=sys.stdout)
-        if dbg: print(f'chordKey    {chordKey}', file=sys.stdout)
-        if dbg: self.dumpData(imap, mask, 'imap')
-        if dbg: self.dumpData(list(imapKeys), mask, 'imapKeys')
-        if dbg: self.dumpData(list(imapNotes), mask, 'mapNotes')
-#        if dbg: self.dumpData(list(chordKey), mask, 'chordKey')
-        sdeltas, rdeltas, relimapKeys = [], [], ['R']
-        for k in imapKeys:
-            sdeltas.append(self.INTERVAL_RANK[k])
-            rdeltas.insert(0, self.INTERVAL_RANK[k])
-        if dbg: self.dumpData(sdeltas, mask, 'SDeltas')
-        if dbg: self.dumpData(rdeltas, mask, 'RDeltas')
-        for (i, sd) in enumerate(sdeltas):
-            relimapKeys.append(self.INTERVALS[rdeltas[i]])
-        if dbg: self.dumpData(relimapKeys, mask, 'RelImapKeys')
-        return imap, imapKeys, imapNotes, chordKey
-
-    @staticmethod
-    def dumpData(data, mask, why, w=5, r=0):
-        if r:     data = data[::-1]  ;  mask = mask[::-1]
-        j = 0  ;  Tabs.log(f'{why:11} [', end=' ')  ;  dt = type(data)
-        if dt is list or dt is str:
-            for i in range(len(mask)):
-                if mask[i]: Tabs.log('{:>{w}} '.format(data[j], w=w), ind=0, end='')  ;  j += 1
-                else:       Tabs.log('{} '.format(' ' * w), ind=0, end='')
-        elif dt is collections.OrderedDict:
-            w2 = 2  ;   i = 0
-            for k,v in data.items():
-                while not mask[i]: Tabs.log('{} '.format(' ' * w), ind=0, end='')   ;  i += 1
-                Tabs.log('{:>{}}{}{:<{}} '.format(k, w2, ':', v, w2), ind=0, end='')  ;  i += 1
-            while i < len(mask): Tabs.log('{} '.format(' ' * w), ind=0, end='')   ;  i += 1
-        else: Tabs.log(f'type={dt} ', ind=0, end='')
-        Tabs.log(']', ind=0)
-
-    @staticmethod
-    def _getChordName(imap):
-        r = imap['R']  ;  n = len(imap)
-        if   '5' in imap:
-            if   n == 3:
-                if 'm3' in imap: return f'{r}m'
-                if 'M3' in imap: return f'{r}'
-            elif n == 4:
-                if 'm3' in imap:
-                    if   'b7' in imap: return f'{r}m7'
-                    elif  '7' in imap: return f'{r}mM7'
-                if 'M3' in imap:
-                    if   'b7' in imap: return f'{r}7'
-                    elif  '7' in imap: return f'{r}M7'
-        return ''
 ####################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
     def __init__(self):
         global FULL_SCREEN, SUBPIX, ORDER_GROUP
         snapGlobArg = str(BASE_PATH / SNAP_DIR / BASE_NAME) + SFX + '.*' + SNAP_SFX
         snapGlob    = glob.glob(snapGlobArg)
+        self.logFile = LOG_FILE
         self.log('(BGN) {}'.format(__class__))
         self.log('{}'.format(VRSNX1))
         self.log('{}'.format(VRSNX2))
@@ -278,7 +127,7 @@ class Tabs(pyglet.window.Window):
         self.log('snapGlobArg={}'.format(snapGlobArg))
         self.log('   snapGlob={}'.format(snapGlob))
         self.delGlob(snapGlob, 'SNAP_GLOB')
-        self.cobj = Chord(self)
+        self.cobj = misc.Chord(self)
         self.n = []
         self.TNIK = [1, 1, 0, 1]
         self.log(f'TNIK={(fmtl(self.TNIK))}')
@@ -1567,7 +1416,7 @@ class Tabs(pyglet.window.Window):
 
     def getNote(self, row, tab, dbg=0):
         fretNum = self.getFretNum(tab)
-        note = Note(self.getNoteIndex(row, fretNum))
+        note = misc.Note(self.getNoteIndex(row, fretNum))
         if dbg: self.log('row={} tab={} fretNum={} note.name={} note.index={}'.format(row, tab, fretNum, note.name, note.index))
         return note
     ####################################################################################################################################################################################################
@@ -1662,7 +1511,7 @@ class Tabs(pyglet.window.Window):
         if f == 'log': si = inspect.stack(0)[2];  p = pathlib.Path(si.filename);  n = p.name;  l = si.lineno;  f = si.function;  t = ''
         if ind: print('{:20} {:5} {:7} {} {:>20} '.format(Tabs.indent(), l, n, t, f), file=file, end='')
         print('{}'.format(msg), file=file, flush=flush, sep=sep, end=end) if ind else print('{}'.format(msg), file=file, flush=flush, sep=sep, end=end)
-        if file != LOG_FILE: Tabs.log(msg, ind)
+#        if LOG_FILE and file != LOG_FILE: Tabs.log(msg, ind)
     ####################################################################################################################################################################################################
     def quit(self, why='', dbg=0):
         self.log('(BGN)')
