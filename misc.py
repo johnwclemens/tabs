@@ -23,9 +23,9 @@ class Note(object):
 class Chord(object):
     INTERVALS =     { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'a5', 9:'6', 10:'b7', 11:'7' }
     INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, 'a5':8, '6':9, 'b7':10, '7':11, }
-    def __init__(self, t):
-        self.tobj = t
-        self.FILE = open('misc.log', 'w')
+    def __init__(self, tobj, logfile):
+        self.tobj = tobj
+        self.logFile = logfile
 
     @staticmethod
     def getChordKey(keys):  return ' '.join(keys)
@@ -36,17 +36,14 @@ class Chord(object):
         for i in range(len(indices)):
             intervals = self.getIntervals(indices, i, mask)
             imap, _imapKeys, _imapNotes, chordKey = self.getImapKeys(intervals, notes, mask)
-#            if dbg: Tabs.log(f 'chordName={chordName}')
-#            if dbg: Tabs.log(f 'intervals={intervals} notes={notes}', ind=0)
-#            if dbg: Tabs.log(f 'imap={imap} imapKeys={imapKeys}, imapNotes={imapNotes}, chordKey={chordKey}', ind=0)
             _chordName = self._getChordName(imap)
             if _chordName: chordName = _chordName  ;  imapKeys = _imapKeys  ;  imapNotes = _imapNotes
-            if dbg and _chordName: tabs.Tabs.log(f'Inner Chord [ {_chordName} {tabs.fmtl(list(imapKeys), w=2, d1=" < ", d2=" > ")} {tabs.fmtl(list(imapNotes), w=2, d1=" < ", d2=" > ")} ]', file=self.FILE)
-        if dbg and chordName: tabs.Tabs.log(f'Outer Chord [ {chordName} {tabs.fmtl(list(imapKeys), d1=" < ", d2=" > ")} {tabs.fmtl(list(imapNotes), w=2, d1=" < ", d2=" > ")} ]', file=self.FILE)
+            if dbg and _chordName: tabs.Tabs.log(f'Inner Chord [ {_chordName} {tabs.fmtl(list(imapKeys), w=2, d1=" < ", d2=" > ")} {tabs.fmtl(list(imapNotes), w=2, d1=" < ", d2=" > ")} ]', file=self.logFile)
+        if dbg and chordName: tabs.Tabs.log(f'Outer Chord [ {chordName} {tabs.fmtl(list(imapKeys), d1=" < ", d2=" > ")} {tabs.fmtl(list(imapNotes), w=2, d1=" < ", d2=" > ")} ]', file=self.logFile)
         return chordName
     ####################################################################################################################################################################################################
-    def getNotesIndices(self, p, l, c, dbg=1):
-        mask = [1] * self.tobj.n[4]  # ;  Tabs.log(f'mask={mask}')
+    def getNotesIndices(self, p, l, c, dbg=1, dbg2=0):
+        mask = [1] * self.tobj.n[4]
         strNumbs = self.tobj.stringNumbs
         strKeys  = self.tobj.stringKeys
         strNames = self.tobj.stringNames
@@ -61,20 +58,13 @@ class Chord(object):
             index = int(self.tobj.getNote(t, _tabs[t]).index) if tabs.Tabs.isFret(_tabs[t]) else 0
             if index: indices.insert(0, index)
         if notes:
-            if dbg: print(f'strNumbs    {tabs.fmtl(strNumbs[::-1], w=4)}', file=sys.stdout)
-            if dbg: print(f'strKeys     {tabs.fmtl(strKeys,        w=4)}', file=sys.stdout)
-            if dbg: print(f'strIndices  {tabs.fmtl(strIndices,     w=4)}', file=sys.stdout)
-            if dbg: print(f'strNames    {tabs.fmtl(strNames[::-1], w=4)}', file=sys.stdout)
-            if dbg: print(f'Tabs        {tabs.fmtl(_tabs[   ::-1], w=4)}', file=sys.stdout)
-            if dbg: print(f'Notes       {tabs.fmtl(notes,          w=4)}', file=sys.stdout)
-            if dbg: print(f'Indices     {tabs.fmtl(indices,        w=4)}', file=sys.stdout)
-            if dbg: self.dumpData(strNumbs,    mask, 'strNumbs', r=1)
-            if dbg: self.dumpData(strKeys,     mask, 'strKeys')
-            if dbg: self.dumpData(strIndices,  mask, 'strIndices')
-            if dbg: self.dumpData(strNames,    mask, 'strNames', r=1)
-            if dbg: self.dumpData(_tabs,       mask, 'Tabs',     r=1)
-            if dbg: self.dumpData(notes,      mask2, 'Notes')
-            if dbg: self.dumpData(indices,    mask2, 'Indices')
+            if dbg2: self.dumpData(strNumbs,    mask, 'strNumbs', r=1)
+            if dbg:  self.dumpData(strKeys,     mask, 'strKeys')
+            if dbg:  self.dumpData(strIndices,  mask, 'strIndices')
+            if dbg2: self.dumpData(strNames,    mask, 'strNames', r=1)
+            if dbg:  self.dumpData(_tabs,       mask, 'Tabs',     r=1)
+            if dbg:  self.dumpData(notes,      mask2, 'Notes')
+            if dbg:  self.dumpData(indices,    mask2, 'Indices')
         return mask2, notes, indices
 
     def getIntervals(self, indices, j, mask, order=1, dbg=1):
@@ -92,28 +82,21 @@ class Chord(object):
         intervals = []
         for d in deltas:
             intervals.append(self.INTERVALS[d])
-        if dbg: print(f'Deltas      {tabs.fmtl(deltas,    w=4)}', file=sys.stdout)
-        if dbg: print(f'Intervals   {tabs.fmtl(intervals, w=4)}', file=sys.stdout)
-        if dbg: self.dumpData(deltas, mask, 'Deltas')
+        if dbg: self.dumpData(deltas,    mask, 'Deltas')
         if dbg: self.dumpData(intervals, mask, 'Intervals')
         return intervals
 
-    def getImapKeys(self, intervals, notes, mask, dbg=1):
+    def getImapKeys(self, intervals, notes, mask, dbg=1, dbg2=0):
         imap = collections.OrderedDict(sorted(dict(zip(intervals, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
         imapKeys = imap.keys()
         imapNotes = imap.values()
         chordKey = self.getChordKey(imapNotes)
-        _imap = zip(imap.keys(), imap.values())
-        if dbg: print(f'imap        {tabs.fmtd(imap)}', file=sys.stdout)
-#        if dbg: Tabs.log(f'imap        {fmtd(imap)}')
-#        if dbg: print(f'_imap       {fmtd(_imap)}', file=sys.stdout)
-        if dbg: print(f'imapKeys    {tabs.fmtl(list(imapKeys), w=4)}', file=sys.stdout)
-        if dbg: print(f'imapNotes   {tabs.fmtl(list(imapNotes), w=4)}', file=sys.stdout)
-        if dbg: print(f'chordKey    {chordKey}', file=sys.stdout)
-        if dbg: self.dumpData(imap, mask, 'imap')
-        if dbg: self.dumpData(list(imapKeys), mask, 'imapKeys')
-        if dbg: self.dumpData(list(imapNotes), mask, 'mapNotes')
+#        _imap = zip(imap.keys(), imap.values())
+        if dbg:  self.dumpData(imap,            mask, 'imap')
+        if dbg2: self.dumpData(list(imapKeys),  mask, 'imapKeys')
+        if dbg2: self.dumpData(list(imapNotes), mask, 'mapNotes')
 #        if dbg: self.dumpData(list(chordKey), mask, 'chordKey')
+        '''
         sdeltas, rdeltas, relimapKeys = [], [], ['R']
         for k in imapKeys:
             sdeltas.append(self.INTERVAL_RANK[k])
@@ -123,36 +106,65 @@ class Chord(object):
         for (i, sd) in enumerate(sdeltas):
             relimapKeys.append(self.INTERVALS[rdeltas[i]])
         if dbg: self.dumpData(relimapKeys, mask, 'RelImapKeys')
+        '''
         return imap, imapKeys, imapNotes, chordKey
 
     def dumpData(self, data, mask, why, w=5, r=0):
+        lf = self.logFile
         if r:     data = data[::-1]  ;  mask = mask[::-1]
-        j = 0  ;  tabs.Tabs.log(f'{why:11} [ ', end='', file=self.FILE)  ;  dt = type(data)
+        j = 0   ;   dt = type(data)  ;  tabs.Tabs.log(f'{why:11} [ ', end='', file=lf)
         if dt is list or dt is str:
             for i in range(len(mask)):
-                if mask[i]: tabs.Tabs.log('{:>{w}} '.format(data[j], w=w), ind=0, end='', file=self.FILE)  ;  j += 1
-                else:       tabs.Tabs.log('{} '.format(' ' * w), ind=0, end='', file=self.FILE)
+                if mask[i]: tabs.Tabs.log('{:>{w}} '.format(data[j], w=w), ind=0, end='', file=lf)  ;  j += 1
+                else:       tabs.Tabs.log('{} '.     format(' ' * w),      ind=0, end='', file=lf)
         elif dt is collections.OrderedDict:
             w2 = 2  ;   i = 0
             for k,v in data.items():
-                while not mask[i]: tabs.Tabs.log('{} '.format(' ' * w), ind=0, end='', file=self.FILE)   ;  i += 1
-                tabs.Tabs.log('{:>{}}{}{:<{}} '.format(k, w2, ':', v, w2), ind=0, end='', file=self.FILE)  ;  i += 1
-            while i < len(mask): tabs.Tabs.log('{} '.format(' ' * w), ind=0, end='', file=self.FILE)   ;  i += 1
-        else: tabs.Tabs.log(f'type={dt} ', ind=0, end='', file=self.FILE)
-        tabs.Tabs.log(']', ind=0, file=self.FILE)
+                while not mask[i]: tabs.Tabs.log('{} '.format(' ' * w),           ind=0, end='', file=lf)  ;  i += 1
+                tabs.Tabs.log('{:>{}}{}{:<{}} '.       format(k, w2, ':', v, w2), ind=0, end='', file=lf)  ;  i += 1
+            while i < len(mask): tabs.Tabs.log('{} '.   format(' ' * w),          ind=0, end='', file=lf)  ;  i += 1
+        else: tabs.Tabs.log(f'type={dt} ', ind=0, end='', file=lf)
+        tabs.Tabs.log(']',                 ind=0,           file=lf)
+
+    def _getChordName(self, imap):
+        r = imap['R']  ;  n = len(imap)
+        if   '5' in imap:   return self.parse_5(imap, r, n)
+        elif 'b5' in imap:  return self.parse_b5(imap, r, n)
+        elif 'a5' in imap:  return self.parse_a5(imap, r, n)
+        else:
+            if   n == 3:
+                if 'm3' in imap:
+                    if   'b7' in imap: return f'{r}m7n'
+                    elif  '7' in imap: return f'{r}mM7n'
+                if 'M3' in imap:
+                    if   'b7' in imap: return f'{r}7n'
+                    elif  '7' in imap: return f'{r}M7n'
+        return ''
 
     @staticmethod
-    def _getChordName(imap):
-        r = imap['R']  ;  n = len(imap)
-        if   '5' in imap:
-            if   n == 3:
-                if 'm3' in imap: return f'{r}m'
-                if 'M3' in imap: return f'{r}'
-            elif n == 4:
-                if 'm3' in imap:
-                    if   'b7' in imap: return f'{r}m7'
-                    elif  '7' in imap: return f'{r}mM7'
-                if 'M3' in imap:
-                    if   'b7' in imap: return f'{r}7'
-                    elif  '7' in imap: return f'{r}M7'
-        return ''
+    def parse_5(imap, r, n):
+        if   n == 3:
+            if 'm3' in imap: return f'{r}m'
+            if 'M3' in imap: return f'{r}'
+        elif n == 4:
+            if 'm3' in imap:
+                if   'b7' in imap: return f'{r}m7'
+                elif  '7' in imap: return f'{r}mM7'
+            if 'M3' in imap:
+                if   'b7' in imap: return f'{r}7'
+                elif  '7' in imap: return f'{r}M7'
+                elif  '6' in imap: return f'{r}6'
+
+    @staticmethod
+    def parse_b5(imap, r, n):
+        if   n == 3:
+            if 'm3' in imap: return f'{r}o'
+        elif n == 4:
+            if 'm3' in imap:
+                if   'b7' in imap: return f'{r}07'
+                elif  '6' in imap: return f'{r}o7'
+
+    @staticmethod
+    def parse_a5(imap, r, n):
+        if   n == 3:
+            if 'M3' in imap: return f'{r}+'

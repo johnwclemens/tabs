@@ -25,7 +25,7 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = 'VRSN3={}      CCC={}  SFX3={}'.format(VRSN3, CCC,     SFX3)
@@ -112,13 +112,11 @@ FONT_COLORS_S = [PINKS[0], CYANS[0], REDS[0], BLUES[0], YELLOWS[0], GREENS[0], O
 FONT_COLORS_L = [PINKS[0], GRAYS[0], BLUES[0], GREENS[0], YELLOWS[0], REDS[0], GRAYS[1], PINKS[8], REDS[10], YELLOWS[15], GRAYS[8], GRAYS[8], INDIGOS[8], GRAYS[9], GRAYS[8], CC]
 FONT_COLORS   =  FONT_COLORS_S if SPRITES else FONT_COLORS_L
 ####################################################################################################################################################################################################
-####################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
     def __init__(self):
         global FULL_SCREEN, SUBPIX, ORDER_GROUP
         snapGlobArg = str(BASE_PATH / SNAP_DIR / BASE_NAME) + SFX + '.*' + SNAP_SFX
         snapGlob    = glob.glob(snapGlobArg)
-        self.logFile = LOG_FILE
         self.log('(BGN) {}'.format(__class__))
         self.log('{}'.format(VRSNX1))
         self.log('{}'.format(VRSNX2))
@@ -127,9 +125,9 @@ class Tabs(pyglet.window.Window):
         self.log('snapGlobArg={}'.format(snapGlobArg))
         self.log('   snapGlob={}'.format(snapGlob))
         self.delGlob(snapGlob, 'SNAP_GLOB')
-        self.cobj = misc.Chord(self)
+        self.cobj = misc.Chord(self, LOG_FILE)
         self.n = []
-        self.TNIK = [1, 1, 0, 1]
+        self.TNIK = [1, 1, 0, 0]
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.nc = 6 if QQ else 6
         self.ww, self.hh  = 640, 480
@@ -773,8 +771,8 @@ class Tabs(pyglet.window.Window):
             yield lbl
     ####################################################################################################################################################################################################
     def g_createLabels2(self, col, dbg=1, dbg2=0):
-        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;  tt, nn, kkk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]
-        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)  ;  kt, kn, kk = self.kt, self.kn, self.kk    ;    kt2, kn2, kk2 = self.kt2, self.kn2, self.kk2
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;  tt, nn, kkk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]   ;   chordName = ''
+        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)   ;   kt, kn, kk = self.kt, self.kn, self.kk    ;    kt2, kn2, kk2 = self.kt2, self.kn2, self.kk2
         for t in range(nt): #            self.log(f't={t} nt={nt} TNIK={self.TNIK} st={self.J2[T]}') #            self.log(f's={s} tt={tt} nn={nn} kk={kkk}')#        self.log(f'p={p} l={l} s={s} c={c} nt={nt}')
             if   tt and s == 0:
                 if   CCC     and c == C1:   tab = self.stringNumbs[t]    ;  plist = self.snos   ;  kl = kt2   ;  k = self.cci(t, kl)  ;  self.J2[O] += 1  ;  why = f'New SNo {self.J2[O]}'
@@ -789,7 +787,10 @@ class Tabs(pyglet.window.Window):
             elif kkk and (s == 2 or (s == 1 and (not tt or not nn)) or (s == 0 and (not tt and not nn))):
                 if   CCC     and c == C1: chord = self.strLabel[t]       ;  plist = self.strls   ;  kl = kk2   ;  k = self.cci(t, kl)  ;  self.J2[E] += 1  ;  why = f'New StrL {self.J2[E]}'
                 elif CCC > 1 and c == C2: chord = self.cpoLabel[t]       ;  plist = self.cpols   ;  kl = kk2   ;  k = self.cci(t, kl)  ;  self.J2[F] += 1  ;  why = f'New CpoL {self.J2[F]}'
-                else:                 chordName = self.cobj.getChordName(p, l, c)    ;  plist = self.chords  ;  kl = kk    ;  k = self.cci(t, kl)  ;  self.J2[K] += 1  ;  why = f'New Chord {self.J2[K]}'  ;  chord = chordName[t] if len(chordName) > t else ' '
+                else:
+                    if not t: chordName = self.cobj.getChordName(p, l, c)
+                    chord = chordName[t] if len(chordName) > t else ' '
+                    plist = self.chords  ;  kl = kk    ;  k = self.cci(t, kl)  ;  self.J2[K] += 1  ;  why = f'New Chord {self.J2[K]}'
                 self.createLabel(chord, K, plist,  xt, yt - t*ht, wt, ht, k, gt, why=why, kl=kl, dbg=dbg)  ;  yield chord
             else: self.log(f'ERROR Not Handled s={s} tt={tt} nn={nn} kk={kkk}')  ;  yield None
     ####################################################################################################################################################################################################
@@ -847,10 +848,8 @@ class Tabs(pyglet.window.Window):
         p,       l,    s,    c       = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
         st,     sn,   si,   sk       = self.J2[T], self.J2[N], self.J2[I], self.J2[K]
         ssno, ssna, scap, strl, cpol = self.J2[O], self.J2[A], self.J2[D], self.J2[E], self.J2[F]
-        tt, nn, kk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]
-        chordName = ''
+        tt, nn, kk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]   ;   chordName = ''
         for t in range(n):##            self.log(f 'tt={tt} nn={nn} kk={kk} TNIK={fmtl(self.TNIK)}  p={p} l={l} s={s} c={c}  st={st} sn={sn} si={si} sk={sk}', ind=0)
-#            ttab = self.data[p][l][c][t]
             if   tt and s == 0:
                 if   CCC     and c == C1:   tab = self.snos[ssno]   ;  ssno += 1  ;  why = f'Mod SNo {ssno}'
                 elif CCC > 1 and c == C2:   tab = self.capos[scap]  ;  scap += 1  ;  why = f'Mod Capo {scap}'
@@ -871,7 +870,6 @@ class Tabs(pyglet.window.Window):
                 else:
                     chord = self.chords[sk]   ;    sk += 1  ;  why = f'Mod Chord {sk}'
                     if not t:   chordName = self.cobj.getChordName(p, l, c)
-#                    self.log(f'chordName={chordName}')
                     chord.text = chordName[t] if len(chordName) > t else ' '
                 chord.width = w  ;  chord.height = h  ;  chord.x = x  ;  chord.y = y - t * h  ;  lbl = chord
                 self.J1[K] = t   ;  self.J2[K] = sk   ;  self.J2[E] = strl  ;  self.J2[F] = cpol
@@ -1511,7 +1509,7 @@ class Tabs(pyglet.window.Window):
         if f == 'log': si = inspect.stack(0)[2];  p = pathlib.Path(si.filename);  n = p.name;  l = si.lineno;  f = si.function;  t = ''
         if ind: print('{:20} {:5} {:7} {} {:>20} '.format(Tabs.indent(), l, n, t, f), file=file, end='')
         print('{}'.format(msg), file=file, flush=flush, sep=sep, end=end) if ind else print('{}'.format(msg), file=file, flush=flush, sep=sep, end=end)
-#        if LOG_FILE and file != LOG_FILE: Tabs.log(msg, ind)
+#        if file != LOG_FILE: Tabs.log(msg, ind)
     ####################################################################################################################################################################################################
     def quit(self, why='', dbg=0):
         self.log('(BGN)')
@@ -1546,12 +1544,6 @@ class Tabs(pyglet.window.Window):
 if __name__ == '__main__':
     LOG_PATH = Tabs.getLogPath()
     with open(str(LOG_PATH), 'w') as LOG_FILE:
-        Tabs.log('BGN Logging Open LOG_PATH={}'.format(LOG_PATH))
-        Tabs.log('creating Tabs instance'.format())
-        tabsObj     = Tabs()
-        Tabs.log('tabs={}'.format(tabsObj))
-        Tabs.log('invoking pyglet.app.run()'.format())
-        ret = pyglet.app.run()
-        Tabs.log('pyglet.app.run() return={}'.format(ret))
-#        except(AssertionError, ValueError) as EX:
-        Tabs.log('END Logging Close LOG_PATH={}'.format(LOG_PATH))
+        Tabs()
+        ret     = pyglet.app.run()
+        Tabs.log(f'pyglet.app.run() returned {ret}, Exiting main')
