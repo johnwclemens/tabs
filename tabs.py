@@ -63,13 +63,15 @@ ULTRA_VIOLET     = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
 HUES             = 16
 MAX_STACK_DEPTH  = 0  ;  MAX_STACK_FRAME = inspect.stack()
 ####################################################################################################################################################################################################
-def fmtl(a, w=None, d1='[', d2=']'):
+def fmtl(a, w=None, u='<', d1='[', d2=']'):
     t = ''
     for i in range(len(a)):
         if w is None:         t += '{} '.format(a[i])
-        elif type(w) is int:  t += '{:>{w}} '.format(a[i], w=w)
-        elif type(w) is list: t += '{:>{w}} '.format(int(a[i]), w=w[i])
-    return d1 + t.rstrip() + d2
+        elif type(w) is int:  t += '{:{}{}} '.format(a[i], u, w)
+        elif type(w) is list: t += '{:{}{}} '.format(int(a[i]), u, w[i])
+#        elif type(w) is int:  t += '{:{u}{w}} '.format(a[i], u=u, w=w)
+#        elif type(w) is list: t += '{:{u}{w}} '.format(int(a[i]), u=u, w=w[i])
+    return d1 + t[:-1] + d2
 def fmtd(a, w=2, d0=':', d1='[', d2=']'):
     t = ''
     for k, v in a.items():
@@ -127,7 +129,7 @@ class Tabs(pyglet.window.Window):
         self.delGlob(snapGlob, 'SNAP_GLOB')
         self.cobj = misc.Chord(self, LOG_FILE)
         self.n = []
-        self.TNIK = [1, 1, 0, 0]
+        self.TNIK = [1, 1, 0, 1]
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.nc = 6 if QQ else 6
         self.ww, self.hh  = 640, 480
@@ -584,7 +586,7 @@ class Tabs(pyglet.window.Window):
     def showTabs(self, tnik):
         np, nl, ns, nc, nt = self.n           ;  tabs = self.B[tnik]
         _nt = nl * nc * nt  ;  _nc = nl * nc  ;  _ns = nl    ;   _tnik = tnik + len(self.B)
-        ks  = self.ks       ;   kc = self.kc
+        ks  = self.ks       ;   kc = self.kc  ;  chordName = ''
         k = [self.kt, self.kn, self.ki, self.kk]
         ttype = 'Tab' if tnik == TT  else 'Note' if tnik == NN else 'Chord' if tnik == KK else '???'  ;  t, c, s = 0, 0, 0
         self.log(f'(BGN) _nt={_nt} _nc={_nc} _ns={_ns} len({ttype})={len(tabs)}')
@@ -595,12 +597,12 @@ class Tabs(pyglet.window.Window):
         for t in range(_nt):
             tt = t % nt
             p, l, cc = t // _nt, t // (nc * nt), (t // nt) % nc
-            self.log(f'{p} {l} {cc} {tt}', ind=0, end=' ')
+#            self.log(f'{p} {l} {cc} {tt}', ind=0, end=' ')
             tab = self.data[p][l][cc][tt]
             note = self.getNote(tt, tab).name if self.isFret(tab) else self.nblank
-            chordName = self.cobj.getChordName(p, l, cc)
+            if not t:   chordName = self.cobj.getChordName(p, l, cc)
             chord = chordName[tt] if len(chordName) > tt else ' '
-            text = tab if tnik == TT else note if tnik == NN else chord if tnik == KK else '???'
+            text  = tab if tnik == TT else note if tnik == NN else chord if tnik == KK else '???'
 #            self.createLabel(text, j=_tnik, p=tabs, x=0, y=0, w=0, h=0, kk=self.cci(_t, k[tnik]), g=self.g[T], why=why, kl=k[tnik], dbg=dbg)
             self.showLabel(tt, p=tabs, j=_tnik, t=f'{text}', g=self.g[T], k=k[tnik])
         self.snapshot(f'showTabs() t={t+1} c={c+1} s={s+1} len({ttype})={len(tabs)}')
@@ -1264,9 +1266,9 @@ class Tabs(pyglet.window.Window):
         self.log('(BGN) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
         cc = self.cursorCol()
         self.updateData(text)
-        self.updateTab(text, cc)
-        self.updateNote(text, cc)
-        self.updateChord(text, cc)
+        if self.TNIK[TT]: self.updateTab(text, cc)
+        if self.TNIK[NN]: self.updateNote(text, cc)
+        if self.TNIK[KK]: self.updateChord(text, cc)
         if dbg: self.snapshot()
         self.log('(END) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
 
@@ -1292,14 +1294,15 @@ class Tabs(pyglet.window.Window):
         if dbg: self.notes[cc].color = FONT_COLORS[self.fontColorIndex + 4]
         self.log('(END) notes[{}].text={}'.format(cc, self.notes[cc].text))
 
-    def updateChord(self, text, cc, dbg=0):
-        p, l, s, c, r = self.j()  ;  nt = self.n[T]
-        if dbg: self.log(f'text={text}')
-        self.log('(BGN) chords[{}].text={}'.format(cc, self.chords[cc].text))
+    def updateChord(self, text, cc, dbg=1):
+        p, l, s, c, r = self.j()  ;  nt = self.n[T]  ;  tc = cc - r
+        self.log('(BGN) chords[{}].text=<{}>'.format(cc, self.chords[cc].text))
         chordName = self.cobj.getChordName(p, l, c)
+        if dbg: self.log(f'text=<{text}> cc={cc} tc={tc} p={p} l={l} c={c} r={r} chordName=<{chordName:<6}>')
         for k in range(nt):
-            self.chords[cc].text = chordName[k]
-        self.log('(END) chords[{}].text={}'.format(cc, self.chords[cc].text))
+            self.chords[tc + k].text = chordName[k] if len(chordName) > k else ' '
+            if dbg:self.log(f'chords[{tc+k}].text={self.chords[tc+k].text}')
+        self.log('(END) chords[{}].text=<{}>'.format(cc, self.chords[cc].text))
 
     def updateCaption(self, txt):
         self.set_caption(txt)

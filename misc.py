@@ -24,30 +24,58 @@ class Chord(object):
     INTERVALS =     { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'a5', 9:'6', 10:'b7', 11:'7' }
     INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, 'a5':8, '6':9, 'b7':10, '7':11, }
     def __init__(self, tobj, logfile):
-        self.tobj = tobj
+        self.tobj    = tobj
         self.logFile = logfile
+        self.limap, self.limap1, self.limap2 = [], [], []
 
     @staticmethod
     def getChordKey(keys):  return ' '.join(keys)
 
+    def updateImap_OLD(self, imap, name, dbg=1):
+        intervals = list(imap.keys())   ;   notes = list(imap.values())
+        imap2 = intervals, notes, name  ;   d1, d2 = '<', '>'  ;  why ='limap'
+        if name:  self.limap.insert(0, imap2)
+        else:     self.limap.append(imap2)
+        if dbg:
+            for i, m in enumerate(self.limap):
+                tabs.Tabs.log(tabs.FMTR.format(f'{why:8}0 {i+1} {m[2]:6} [ {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
+
+    def updateImap(self, imap, name, dbg=1):
+        intervals = list(imap.keys())   ;   notes = list(imap.values())
+        imap = intervals, notes, name   ;   d1, d2 = '<', '>'  ;  why ='limap'
+        if name and name != ' ':  self.limap1.append(imap)
+        else:                     self.limap2.append(imap)
+        if dbg:
+            for i, m in enumerate(self.limap1):
+                tabs.Tabs.log(tabs.FMTR.format(f'{why:8}1 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
+            for i, m in enumerate(self.limap2):
+                tabs.Tabs.log(tabs.FMTR.format(f'{why:8}2 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
+        if   self.limap1 and self.limap1[0]: return self.limap1[0][2]
+        elif self.limap2 and self.limap2[0]: return self.limap2[0][2]
+
     def getChordName(self, p, l, c, dbg=1):
-        chordName = ''  ;  imapKeys, imapNotes = None, None  # ;  space = ' ' * 20
-        mask, notes, indices = self.getNotesIndices(p, l, c)
+        chordName = ''
+        imapKeys, imapNotes = None, None   ;   d1, d2 = '<', '>'
+        mask, notes, indices = self.getNotesIndices(p, l, c)  ;   self.limap = []
         for i in range(len(indices)):
-            intervals = self.getIntervals(indices, i, mask)
-            imap, _imapKeys, _imapNotes, chordKey = self.getImapKeys(intervals, notes, mask)
-            _chordName = self._getChordName(imap)
-            if _chordName: chordName = _chordName  ;  imapKeys = _imapKeys  ;  imapNotes = _imapNotes
-            if dbg and _chordName: tabs.Tabs.log(f'Inner Chord [ {_chordName} {tabs.fmtl(list(imapKeys), w=2, d1=" < ", d2=" > ")} {tabs.fmtl(list(imapNotes), w=2, d1=" < ", d2=" > ")} ]', file=self.logFile)
-        if dbg and chordName: tabs.Tabs.log(f'Outer Chord [ {chordName} {tabs.fmtl(list(imapKeys), d1=" < ", d2=" > ")} {tabs.fmtl(list(imapNotes), w=2, d1=" < ", d2=" > ")} ]', file=self.logFile)
+            intervals                           = self.getIntervals(indices, i, mask)
+            imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals, notes, mask)
+            tmp = self._getChordName(imap)  ;  chordName = tmp if tmp else ''
+            if dbg and chordName: tabs.Tabs.log(f'Inner Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
+            chordName                           = self.updateImap(imap, chordName)
+        if dbg and chordName:     tabs.Tabs.log(f'Outer Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
+        self.limap.extend(self.limap1)  ;  self.limap1 = []
+        self.limap.extend(self.limap2)  ;  self.limap2 = []
+        for i, m in enumerate(self.limap):
+            tabs.Tabs.log(tabs.FMTR.format(f'limap   0 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
         return chordName
-    ####################################################################################################################################################################################################
+   ####################################################################################################################################################################################################
     def getNotesIndices(self, p, l, c, dbg=1, dbg2=0):
         mask = [1] * self.tobj.n[4]
-        strNumbs = self.tobj.stringNumbs
-        strKeys  = self.tobj.stringKeys
-        strNames = self.tobj.stringNames
-        _tabs    = self.tobj.data[p][l][c]
+        strNumbs   = self.tobj.stringNumbs
+        strKeys    = self.tobj.stringKeys
+        strNames   = self.tobj.stringNames
+        _tabs      = self.tobj.data[p][l][c]
         strIndices = [Note.INDICES[k] for k in strKeys]
         notes = []  ;  nt = len(_tabs)  ;   mask2 = []
         for t in range(nt):
@@ -88,13 +116,12 @@ class Chord(object):
 
     def getImapKeys(self, intervals, notes, mask, dbg=1, dbg2=0):
         imap = collections.OrderedDict(sorted(dict(zip(intervals, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
-        imapKeys = imap.keys()
-        imapNotes = imap.values()
-        chordKey = self.getChordKey(imapNotes)
-#        _imap = zip(imap.keys(), imap.values())
-        if dbg:  self.dumpData(imap,            mask, 'imap')
-        if dbg2: self.dumpData(list(imapKeys),  mask, 'imapKeys')
-        if dbg2: self.dumpData(list(imapNotes), mask, 'mapNotes')
+        imapKeys  = list(imap.keys())
+        imapNotes = list(imap.values())
+        chordKey  = self.getChordKey(imapNotes)
+        if dbg:  self.dumpData(imap,      mask, 'imap')
+        if dbg2: self.dumpData(imapKeys,  mask, 'imapKeys')
+        if dbg2: self.dumpData(imapNotes, mask, 'mapNotes')
 #        if dbg: self.dumpData(list(chordKey), mask, 'chordKey')
         '''
         sdeltas, rdeltas, relimapKeys = [], [], ['R']
@@ -108,24 +135,24 @@ class Chord(object):
         if dbg: self.dumpData(relimapKeys, mask, 'RelImapKeys')
         '''
         return imap, imapKeys, imapNotes, chordKey
-
-    def dumpData(self, data, mask, why, w=5, r=0):
+    ####################################################################################################################################################################################################
+    def dumpData(self, data, mask, why, w=5, u='<', r=0):
         lf = self.logFile
         if r:     data = data[::-1]  ;  mask = mask[::-1]
-        j = 0   ;   dt = type(data)  ;  tabs.Tabs.log(f'{why:11} [ ', end='', file=lf)
+        j = 0   ;   dt = type(data)  ;  tabs.Tabs.log(f'{why:21} [ ', end='', file=lf)
         if dt is list or dt is str:
             for i in range(len(mask)):
-                if mask[i]: tabs.Tabs.log('{:>{w}} '.format(data[j], w=w), ind=0, end='', file=lf)  ;  j += 1
-                else:       tabs.Tabs.log('{} '.     format(' ' * w),      ind=0, end='', file=lf)
+                if mask[i]: tabs.Tabs.log('{:{}{}} '.format(data[j], u, w), ind=0, end='', file=lf)  ;  j += 1
+                else:       tabs.Tabs.log('{:{}{}} '.format('-',     u, w), ind=0, end='', file=lf)
         elif dt is collections.OrderedDict:
             w2 = 2  ;   i = 0
             for k,v in data.items():
-                while not mask[i]: tabs.Tabs.log('{} '.format(' ' * w),           ind=0, end='', file=lf)  ;  i += 1
+                while not mask[i]: tabs.Tabs.log('{:{}{}} '.format('-', u, w),    ind=0, end='', file=lf)  ;  i += 1
                 tabs.Tabs.log('{:>{}}{}{:<{}} '.       format(k, w2, ':', v, w2), ind=0, end='', file=lf)  ;  i += 1
-            while i < len(mask): tabs.Tabs.log('{} '.   format(' ' * w),          ind=0, end='', file=lf)  ;  i += 1
+            while i < len(mask): tabs.Tabs.log('{:{}{}} '.  format('-', u, w),    ind=0, end='', file=lf)  ;  i += 1
         else: tabs.Tabs.log(f'type={dt} ', ind=0, end='', file=lf)
-        tabs.Tabs.log(']',                 ind=0,           file=lf)
-
+        tabs.Tabs.log(']',                 ind=0,         file=lf)
+    ####################################################################################################################################################################################################
     def _getChordName(self, imap):
         r = imap['R']  ;  n = len(imap)
         if   '5' in imap:   return self.parse_5(imap, r, n)
