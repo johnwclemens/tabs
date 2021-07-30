@@ -23,22 +23,15 @@ class Note(object):
 class Chord(object):
     INTERVALS =     { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'a5', 9:'6', 10:'b7', 11:'7' }
     INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, 'a5':8, '6':9, 'b7':10, '7':11, }
+
     def __init__(self, tobj, logfile):
         self.tobj    = tobj
         self.logFile = logfile
         self.limap, self.limap1, self.limap2 = [], [], []
+        self.chordNames = self.initChordNames()
 
     @staticmethod
     def getChordKey(keys):  return ' '.join(keys)
-
-    def updateImap_OLD(self, imap, name, dbg=1):
-        intervals = list(imap.keys())   ;   notes = list(imap.values())
-        imap2 = intervals, notes, name  ;   d1, d2 = '<', '>'  ;  why ='limap'
-        if name:  self.limap.insert(0, imap2)
-        else:     self.limap.append(imap2)
-        if dbg:
-            for i, m in enumerate(self.limap):
-                tabs.Tabs.log(tabs.FMTR.format(f'{why:8}0 {i+1} {m[2]:6} [ {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
 
     def updateImap(self, imap, name, dbg=1):
         intervals = list(imap.keys())   ;   notes = list(imap.values())
@@ -54,13 +47,13 @@ class Chord(object):
         elif self.limap2 and self.limap2[0]: return self.limap2[0][2]
 
     def getChordName(self, p, l, c, dbg=1):
-        chordName = ''
-        imapKeys, imapNotes = None, None   ;   d1, d2 = '<', '>'
-        mask, notes, indices = self.getNotesIndices(p, l, c)  ;   self.limap = []
+        self.limap= []  ;  chordName = ''
+        imapKeys, imapNotes   = None, None   ;   d1, d2 = '<', '>'
+        mask, notes, indices  = self.getNotesIndices(p, l, c)
         for i in range(len(indices)):
             intervals                           = self.getIntervals(indices, i, mask)
             imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals, notes, mask)
-            tmp = self._getChordName(imap)  ;  chordName = tmp if tmp else ''
+            tmp = self._getChordName_B(imap)  ;  chordName = tmp if tmp else ''
             if dbg and chordName: tabs.Tabs.log(f'Inner Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
             chordName                           = self.updateImap(imap, chordName)
         if dbg and chordName:     tabs.Tabs.log(f'Outer Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
@@ -153,7 +146,19 @@ class Chord(object):
         else: tabs.Tabs.log(f'type={dt} ', ind=0, end='', file=lf)
         tabs.Tabs.log(']',                 ind=0,         file=lf)
     ####################################################################################################################################################################################################
-    def _getChordName(self, imap):
+    @staticmethod
+    def initChordNames():
+         return {'R M3 5'   : '',
+                 'R M3 5 6' : '6',
+                 'R m3 5'   : 'm',
+                 'R m3 5 b7': 'm7'}
+    ####################################################################################################################################################################################################
+    def _getChordName_B(self, imap):
+        r = imap['R']  #;  n = len(imap)
+        key = self.getChordKey(imap.keys())
+        return f'{r}{self.chordNames[key]}' if key in self.chordNames else ''
+    ####################################################################################################################################################################################################
+    def _getChordName_A(self, imap):
         r = imap['R']  ;  n = len(imap)
         if   '5' in imap:   return self.parse_5(imap, r, n)
         elif 'b5' in imap:  return self.parse_b5(imap, r, n)

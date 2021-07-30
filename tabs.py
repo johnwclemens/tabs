@@ -69,8 +69,6 @@ def fmtl(a, w=None, u='<', d1='[', d2=']'):
         if w is None:         t += '{} '.format(a[i])
         elif type(w) is int:  t += '{:{}{}} '.format(a[i], u, w)
         elif type(w) is list: t += '{:{}{}} '.format(int(a[i]), u, w[i])
-#        elif type(w) is int:  t += '{:{u}{w}} '.format(a[i], u=u, w=w)
-#        elif type(w) is list: t += '{:{u}{w}} '.format(int(a[i]), u=u, w=w[i])
     return d1 + t[:-1] + d2
 def fmtd(a, w=2, d0=':', d1='[', d2=']'):
     t = ''
@@ -129,7 +127,7 @@ class Tabs(pyglet.window.Window):
         self.delGlob(snapGlob, 'SNAP_GLOB')
         self.cobj = misc.Chord(self, LOG_FILE)
         self.n = []
-        self.TNIK = [1, 1, 0, 1]
+        self.TNIK = [1, 0, 0, 1]
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.nc = 6 if QQ else 6
         self.ww, self.hh  = 640, 480
@@ -850,7 +848,7 @@ class Tabs(pyglet.window.Window):
         p,       l,    s,    c       = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
         st,     sn,   si,   sk       = self.J2[T], self.J2[N], self.J2[I], self.J2[K]
         ssno, ssna, scap, strl, cpol = self.J2[O], self.J2[A], self.J2[D], self.J2[E], self.J2[F]
-        tt, nn, kk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]   ;   chordName = ''
+        tt, nn, kk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]    ;   chordName = ''
         for t in range(n):##            self.log(f 'tt={tt} nn={nn} kk={kk} TNIK={fmtl(self.TNIK)}  p={p} l={l} s={s} c={c}  st={st} sn={sn} si={si} sk={sk}', ind=0)
             if   tt and s == 0:
                 if   CCC     and c == C1:   tab = self.snos[ssno]   ;  ssno += 1  ;  why = f'Mod SNo {ssno}'
@@ -1294,7 +1292,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.notes[cc].color = FONT_COLORS[self.fontColorIndex + 4]
         self.log('(END) notes[{}].text={}'.format(cc, self.notes[cc].text))
 
-    def updateChord(self, text, cc, dbg=1):
+    def updateChord(self, text, cc, dbg=0):
         p, l, s, c, r = self.j()  ;  nt = self.n[T]  ;  tc = cc - r
         self.log('(BGN) chords[{}].text=<{}>'.format(cc, self.chords[cc].text))
         chordName = self.cobj.getChordName(p, l, c)
@@ -1391,11 +1389,11 @@ class Tabs(pyglet.window.Window):
     '''
     ####################################################################################################################################################################################################
     @staticmethod
-    def isCtrl(mods):        return mods&pygwink.MOD_CTRL
+    def isCtrl(mods):        return mods & pygwink.MOD_CTRL
     @staticmethod
-    def isShift(mods):       return mods&pygwink.MOD_SHIFT
+    def isShift(mods):       return mods & pygwink.MOD_SHIFT
     @staticmethod
-    def isAlt(mods):         return mods&pygwink.MOD_ALT
+    def isAlt(mods):         return mods & pygwink.MOD_ALT
     @staticmethod
     def isFret(text):        return True if '0'<=text<='9'      or 'a'<=text<='o'    else False
     def isTab(self, text):   return True if text == self.tblank or Tabs.isFret(text) else False
@@ -1451,7 +1449,7 @@ class Tabs(pyglet.window.Window):
         self.log('MAX_STACK_DEPTH={:2}'.format(MAX_STACK_DEPTH))
 
     @staticmethod
-    def indent(): d = Tabs.stackDepth() - 4;  return '{:{w}}'.format(d, w=d)
+    def indent(): d = Tabs.stackDepth() - 4;  return '{:{}}'.format(d, d)
 
     @staticmethod
     def stackDepth():
