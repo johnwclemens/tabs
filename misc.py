@@ -68,17 +68,16 @@ class Chord(object):
             tabs.Tabs.log(tabs.FMTR.format(f'limap   0 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
         return chordName
 
-    def toggleChordName(self):
+    def toggleChordName(self, rev=0):
         p, l, s, c, t = self.tobj.j()
         cc = c + l * self.tobj.n[tabs.C]
         if cc in self.mlimap.keys():
             limap = self.mlimap[cc]
-            self.dumpLimap(limap, why=f'before len={len(limap)} p={p} l={l} c={c} cc={cc}')
-            limap0 = limap[0]
-            limap1 = limap[1:]
-#            self.dumpImap(limap0, why=f'during len={len(limap0)} p={p} l={l} c={c} cc={cc}')
-            limap  = limap1  ;  limap.append(limap0)
-            self.dumpLimap(limap, why=f'after  len={len(limap)} p={p} l={l} c={c} cc={cc}')
+            self.dumpLimap(limap, why=f'before len={len(limap)} p={p} l={l} c={c} cc={cc} rev={rev}')
+            if rev: tmp0 = limap[-1]  ;   tmp1 = limap[:-1]  ;   limap  = tmp1   ;   limap.insert(0, tmp0)
+            else:   tmp0 = limap[0]   ;   tmp1 = limap[1:]   ;   limap  = tmp1   ;   limap.append(tmp0)
+            self.mlimap[cc] = limap
+            self.dumpLimap(limap, why=f'after  len={len(limap)} p={p} l={l} c={c} cc={cc} rev={rev}')
             return limap[0][2]
    ####################################################################################################################################################################################################
     def getNotesIndices(self, p, l, c, dbg=1, dbg2=0):
@@ -152,12 +151,10 @@ class Chord(object):
             tabs.Tabs.log(f'c={c} k={k} v={v}', file=self.logFile)
 
     def dumpLimap(self, limap, why):
-#        mask = [1] * self.tobj.n[tabs.T]
         for imap in limap:
             self.dumpImap(imap, why)
 
     def dumpImap(self, imap, why):
-#        intervals = imap.keys()  ;  values = imap.values()  ;   imapNotes = values[0]   ;   chordName = values[1]   ;   d1, d2 = '<', '>'
         intervals = imap[0]  ;  imapNotes = imap[1]   ;   chordName = imap[2]   ;   d1, d2 = '<', '>'
         tabs.Tabs.log(f'{why}  [ <{chordName:<6}> {tabs.fmtl(intervals, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
 
@@ -180,18 +177,20 @@ class Chord(object):
     ####################################################################################################################################################################################################
     @staticmethod
     def initChordNames():
-         return {'R M3 5'   : '',
-                 'R M3 5 7' : 'M7',
-                 'R M3 5 b7': '7',
-                 'R M3 5 6' : '6',
-                 'R m3 5'   : 'm',
-                 'R m3 5 7' : 'mM7',
-                 'R m3 5 b7': 'm7',
-                 'R m3 b5'  : 'o',
+         return {'R M3 5'    : '',
+                 'R M3 5 7'  : 'M7',
+                 'R M3 5 b7' : '7',
+                 'R M3 5 6'  : '6',
+                 'R m3 5'    : 'm',
+                 'R m3 5 7'  : 'mM7',
+                 'R m3 5 b7' : 'm7',
+                 'R m3 b5'   : 'o',
                  'R m3 b5 b7': '07',
-                 'R m3 b5, 6': 'o7',
+                 'R m3 b5 6' : 'o7',
                  'R M3 a5'   : '+',
-                 }
+                 'R m3 4 a5' : 'm4+',
+                 'R 2 4 6'   : '6/9s4'
+                 } # how to order/arrange?
     ####################################################################################################################################################################################################
     def _getChordName_B(self, imap):
         r = imap['R']

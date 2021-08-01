@@ -1132,8 +1132,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'N' and self.isCtrl(mods):                        self.toggleTabs(NN)
         elif kbk == 'Q' and self.isCtrl(mods) and self.isShift(mods): self.quit(        'keyPress({})'.format(kbk))
         elif kbk == 'Q' and self.isCtrl(mods):                        self.quit(        'keyPress({})'.format(kbk))
-        elif kbk == 'R' and self.isCtrl(mods) and self.isShift(mods): self.toggleChordName()
-        elif kbk == 'R' and self.isCtrl(mods):                        self.toggleChordName()
+        elif kbk == 'R' and self.isCtrl(mods) and self.isShift(mods): self.toggleChordName(rev=1)
+        elif kbk == 'R' and self.isCtrl(mods):                        self.toggleChordName(rev=0)
         elif kbk == 'S' and self.isCtrl(mods) and self.isShift(mods): self.writeDataFile()
         elif kbk == 'S' and self.isCtrl(mods):                        self.writeDataFile()
         elif kbk == 'T' and self.isCtrl(mods) and self.isShift(mods): self.toggleTabs(TT)
@@ -1262,6 +1262,9 @@ class Tabs(pyglet.window.Window):
         self.i[P] = i
     '''
     ####################################################################################################################################################################################################
+    def updateCaption(self, txt):
+        self.set_caption(txt)
+
     def addTab(self, text, why='', dbg=1):
         self.log('(BGN) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
         cc = self.cursorCol()
@@ -1295,28 +1298,27 @@ class Tabs(pyglet.window.Window):
         self.log('(END) notes[{}].text={}'.format(cc, self.notes[cc].text))
 
     def updateChord(self, cc, dbg=0):
-        p, l, s, c, r = self.j()  ;  nt = self.n[T]  ;  tc = cc - r
+        p, l, s, c, r = self.j()
         self.log('(BGN) chords[{}].text=<{}>'.format(cc, self.chords[cc].text))
         chordName = self.cobj.getChordName(p, l, c)
-        if dbg: self.log(f'cc={cc} tc={tc} p={p} l={l} c={c} r={r} chordName=<{chordName:<6}>')
-        for k in range(nt):
-            self.chords[tc + k].text = chordName[k] if len(chordName) > k else ' '
-            if dbg:self.log(f'chords[{tc+k}].text={self.chords[tc+k].text}')
+        if dbg: self.log(f'cc={cc} p={p} l={l} c={c} r={r} chordName=<{chordName:<6}>')
+        self.updateChordName(cc, chordName)
         self.log('(END) chords[{}].text=<{}>'.format(cc, self.chords[cc].text))
 
-    def updateCaption(self, txt):
-        self.set_caption(txt)
+    def updateChordName(self, cc, name, dbg=1):
+        tc = cc - self.j()[T]
+        for k in range(self.n[T]):
+            self.chords[tc + k].text = name[k] if len(name) > k else ' '
+            if dbg:self.log(f'chords[{tc+k}].text={self.chords[tc+k].text}')
     ####################################################################################################################################################################################################
-    def toggleChordName(self):
-        p, l, s, c, r = self.j()  ;  nt = self.n[T]
+    def toggleChordName(self, rev=0):
+        p, l, s, c, r = self.j()
         cc = c + l * self.n[C]
-        self.log(f'(BGN) len={len(self.cobj.mlimap[cc])} p={p} l={l} c={c} r={r} cc={cc} {self.cobj.mlimap[cc]}')
-        chordName = self.cobj.toggleChordName()
-        cc2 = self.cursorCol()    ;  tc = cc2 - r
-        for k in range(nt):
-            self.chords[tc + k].text = chordName[k] if len(chordName) > k else ' '
-#        self.updateChord(cc)
-        self.log(f'(END) len={len(self.cobj.mlimap[cc])} p={p} l={l} c={c} r={r} cc2={cc2} tc={tc} k={k} {self.cobj.mlimap[cc]}')
+        self.log(f'(BGN) len={len(self.cobj.mlimap[cc])} p={p} l={l} c={c} r={r} cc={cc} rev={rev} {self.cobj.mlimap[cc]}')
+        chordName = self.cobj.toggleChordName(rev)
+        cc2 = self.cursorCol()
+        self.updateChordName(cc2, chordName)
+        self.log(f'(END) len={len(self.cobj.mlimap[cc])} p={p} l={l} c={c} r={r} cc={cc} cc2={cc2} rev={rev} {self.cobj.mlimap[cc]}')
 
     def toggleFullScreen(self):
         global FULL_SCREEN
