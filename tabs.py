@@ -848,7 +848,7 @@ class Tabs(pyglet.window.Window):
         p,       l,    s,    c       = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
         st,     sn,   si,   sk       = self.J2[T], self.J2[N], self.J2[I], self.J2[K]
         ssno, ssna, scap, strl, cpol = self.J2[O], self.J2[A], self.J2[D], self.J2[E], self.J2[F]
-        tt, nn, kk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]    ;   chordName = ''
+        tt, nn, kk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]    # ;   chordName = ''
         for t in range(n):##            self.log(f 'tt={tt} nn={nn} kk={kk} TNIK={fmtl(self.TNIK)}  p={p} l={l} s={s} c={c}  st={st} sn={sn} si={si} sk={sk}', ind=0)
             if   tt and s == 0:
                 if   CCC     and c == C1:   tab = self.snos[ssno]   ;  ssno += 1  ;  why = f'Mod SNo {ssno}'
@@ -869,8 +869,8 @@ class Tabs(pyglet.window.Window):
                 elif CCC > 1 and c == C2: chord = self.cpols[cpol]  ;  cpol += 1  ;  why = f'Mod Cpols {cpol}'
                 else:
                     chord = self.chords[sk]   ;    sk += 1  ;  why = f'Mod Chord {sk}'
-                    if not t:   chordName = self.cobj.getChordName(p, l, c)
-                    chord.text = chordName[t] if len(chordName) > t else ' '
+#                    if not t:   chordName = self.cobj.getChordName(p, l, c)
+#                    chord.text = chordName[t] if len(chordName) > t else ' '
                 chord.width = w  ;  chord.height = h  ;  chord.x = x  ;  chord.y = y - t * h  ;  lbl = chord
                 self.J1[K] = t   ;  self.J2[K] = sk   ;  self.J2[E] = strl  ;  self.J2[F] = cpol
                 if dbg:   self.dumpLabel(lbl, *self.ids(), *self.cnts(), why=why)
@@ -1132,6 +1132,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'N' and self.isCtrl(mods):                        self.toggleTabs(NN)
         elif kbk == 'Q' and self.isCtrl(mods) and self.isShift(mods): self.quit(        'keyPress({})'.format(kbk))
         elif kbk == 'Q' and self.isCtrl(mods):                        self.quit(        'keyPress({})'.format(kbk))
+        elif kbk == 'R' and self.isCtrl(mods) and self.isShift(mods): self.toggleChordName()
+        elif kbk == 'R' and self.isCtrl(mods):                        self.toggleChordName()
         elif kbk == 'S' and self.isCtrl(mods) and self.isShift(mods): self.writeDataFile()
         elif kbk == 'S' and self.isCtrl(mods):                        self.writeDataFile()
         elif kbk == 'T' and self.isCtrl(mods) and self.isShift(mods): self.toggleTabs(TT)
@@ -1196,11 +1198,11 @@ class Tabs(pyglet.window.Window):
         p, l, s, c, t = self.j()
         tpp, tpl, tps, tpc = self.tpz()
         cc = p * tpp + l * tpl + s * tps + c * tpc + t
-        if dbg: self.log('  p={}   l={}   s={}   c={}   t={}'.format(p, l, s, c, t))
-        if dbg: self.log('tpp={} tpl={} tps={} tpc={}'.format(tpp, tpl, tps, tpc))
-        if dbg: self.log(' cc={} = ( {} + {} + {} + {} + {} )'.format(cc, p * tpp, l * tpl, s * tps, c * tpc, t))
+        if dbg: self.log(f' p={p} l={l} s={s} c={c} t={t}', ind=0, end='')
+        if dbg: self.log(f' tpp={tpp} tpl={tpl} tps={tps} tpc={tpc}', ind=0, end='')
+        if dbg: self.log(f' cc={cc} = ( {p*tpp} + {l*tpl} + {s*tps} + {c*tpc} + {t} )', ind=0, end='')
         lenT = len(self.tabs)   ;   ccm = cc % lenT
-        if dbg : self.log('cc = cc % len(tabs) = {} % {} = {}'.format(cc, lenT, ccm))
+        if dbg : self.log(f' cc = cc % len(tabs) = {cc} % {lenT} = {ccm}', ind=0)
         return ccm
     ####################################################################################################################################################################################################
     def on_mouse_release(self, x, y, button, modifiers):
@@ -1264,9 +1266,9 @@ class Tabs(pyglet.window.Window):
         self.log('(BGN) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
         cc = self.cursorCol()
         self.updateData(text)
-        if self.TNIK[TT]: self.updateTab(text, cc)
-        if self.TNIK[NN]: self.updateNote(text, cc)
-        if self.TNIK[KK]: self.updateChord(text, cc)
+        if self.TNIK[TT]: self.updateTab(cc, text)
+        if self.TNIK[NN]: self.updateNote(cc, text)
+        if self.TNIK[KK]: self.updateChord(cc)
         if dbg: self.snapshot()
         self.log('(END) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
 
@@ -1279,24 +1281,24 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpTabs(why='updateData text={} i={} data[p][l][c]={}'.format(text, self.i, data[p][l][c]))
         self.log('(END) data[{}][{}][{}]={}'.format(p, l, c, self.data[p][l][c]))
 
-    def updateTab(self, text, cc, dbg=0):
+    def updateTab(self, cc, txt, dbg=0):
         self.log('(BGN) tabs[{}].text={}'.format(cc, self.tabs[cc].text))
-        self.tabs[cc].text = text
+        self.tabs[cc].text = txt
         if dbg: self.tabs[cc].color = FONT_COLORS[self.fontColorIndex + 4]
         self.log('(END) tabs[{}].text={}'.format(cc, self.tabs[cc].text))
 
-    def updateNote(self, text, cc, dbg=0):
+    def updateNote(self, cc, txt, dbg=0):
         p, l, s, c, r = self.j()
         self.log('(BGN) notes[{}].text={}'.format(cc, self.notes[cc].text))
-        self.notes[cc].text = self.getNote(r, text).name if self.isFret(text) else self.nblank
+        self.notes[cc].text = self.getNote(r, txt).name if self.isFret(txt) else self.nblank
         if dbg: self.notes[cc].color = FONT_COLORS[self.fontColorIndex + 4]
         self.log('(END) notes[{}].text={}'.format(cc, self.notes[cc].text))
 
-    def updateChord(self, text, cc, dbg=0):
+    def updateChord(self, cc, dbg=0):
         p, l, s, c, r = self.j()  ;  nt = self.n[T]  ;  tc = cc - r
         self.log('(BGN) chords[{}].text=<{}>'.format(cc, self.chords[cc].text))
         chordName = self.cobj.getChordName(p, l, c)
-        if dbg: self.log(f'text=<{text}> cc={cc} tc={tc} p={p} l={l} c={c} r={r} chordName=<{chordName:<6}>')
+        if dbg: self.log(f'cc={cc} tc={tc} p={p} l={l} c={c} r={r} chordName=<{chordName:<6}>')
         for k in range(nt):
             self.chords[tc + k].text = chordName[k] if len(chordName) > k else ' '
             if dbg:self.log(f'chords[{tc+k}].text={self.chords[tc+k].text}')
@@ -1305,6 +1307,17 @@ class Tabs(pyglet.window.Window):
     def updateCaption(self, txt):
         self.set_caption(txt)
     ####################################################################################################################################################################################################
+    def toggleChordName(self):
+        p, l, s, c, r = self.j()  ;  nt = self.n[T]
+        cc = c + l * self.n[C]
+        self.log(f'(BGN) len={len(self.cobj.mlimap[cc])} p={p} l={l} c={c} r={r} cc={cc} {self.cobj.mlimap[cc]}')
+        chordName = self.cobj.toggleChordName()
+        cc2 = self.cursorCol()    ;  tc = cc2 - r
+        for k in range(nt):
+            self.chords[tc + k].text = chordName[k] if len(chordName) > k else ' '
+#        self.updateChord(cc)
+        self.log(f'(END) len={len(self.cobj.mlimap[cc])} p={p} l={l} c={c} r={r} cc2={cc2} tc={tc} k={k} {self.cobj.mlimap[cc]}')
+
     def toggleFullScreen(self):
         global FULL_SCREEN
         FULL_SCREEN =  not  FULL_SCREEN
@@ -1513,6 +1526,7 @@ class Tabs(pyglet.window.Window):
 #        if file != LOG_FILE: Tabs.log(msg, ind)
     ####################################################################################################################################################################################################
     def quit(self, why='', dbg=0):
+        self.cobj.dumpMLimap()
         self.log('(BGN)')
         self.dumpJ('quit()')
         self.log(QUIT, ind=0)
