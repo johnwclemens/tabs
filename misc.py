@@ -34,7 +34,7 @@ class Chord(object):
     @staticmethod
     def getChordKey(keys):  return ' '.join(keys)
 
-    def updateImap(self, imap, name, dbg=1):
+    def updateImap(self, imap, name, dbg=0):
         intervals = list(imap.keys())   ;   notes = list(imap.values())
         imap = [intervals, notes, name]   ;   d1, d2 = '<', '>'  ;  why ='limap'
         if name and name != ' ':  self.limap1.append(imap)
@@ -47,7 +47,7 @@ class Chord(object):
         if   self.limap1 and self.limap1[0]: return self.limap1[0][2]
         elif self.limap2 and self.limap2[0]: return self.limap2[0][2]
 
-    def getChordName(self, p, l, c, dbg=1):
+    def getChordName(self, p, l, c, dbg=0):
         cc = c + l * self.tobj.n[tabs.C]
 #        if cc in self.mlimap: tabs.Tabs.log(f'ERROR: Unexpected key cc={cc} exists')   ;   return ''
         self.limap= []  ;  chordName = ''
@@ -64,8 +64,9 @@ class Chord(object):
             self.mlimap[cc] = self.limap   ;   tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}', file=self.logFile)
         self.limap.extend(self.limap1)  ;  self.limap1 = []
         self.limap.extend(self.limap2)  ;  self.limap2 = []
-        for i, m in enumerate(self.limap):
-            tabs.Tabs.log(tabs.FMTR.format(f'limap   0 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
+        if dbg:
+            for i, m in enumerate(self.limap):
+                tabs.Tabs.log(tabs.FMTR.format(f'limap   0 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
         return chordName
 
     def toggleChordName(self, rev=0):
@@ -159,6 +160,7 @@ class Chord(object):
         tabs.Tabs.log(f'{why}  [ <{chordName:<6}> {tabs.fmtl(intervals, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
 
     def dumpData(self, data, mask, why, w=5, u='<', r=0):
+        return
         lf = self.logFile
         if r:     data = data[::-1]  ;  mask = mask[::-1]
         j = 0   ;   dt = type(data)  ;  tabs.Tabs.log(f'{why:21} [ ', end='', file=lf)
@@ -190,7 +192,7 @@ class Chord(object):
                  'R M3 a5'   : '+',
                  'R m3 4 a5' : 'm4+',
                  'R 2 4 6'   : '6/9s4'
-                 } # how to order/arrange?
+                 } # how to order/arrange/group?
     ####################################################################################################################################################################################################
     def _getChordName_B(self, imap):
         r = imap['R']
