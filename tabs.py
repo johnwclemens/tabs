@@ -26,8 +26,8 @@ class MyFormatter(string.Formatter):
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
 CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 0  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
-VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
-VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
+VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = 'VRSN1={}       QQ={}  SFX1={}'.format(VRSN1, QQ,      SFX1)
+VRSN2            = 1  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = 'VRSN2={}  SPRITES={}  SFX2={}'.format(VRSN2, SPRITES, SFX2)
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = 'VRSN3={}      CCC={}  SFX3={}'.format(VRSN3, CCC,     SFX3)
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
 PATH             = pathlib.Path(sys.argv[0])
@@ -35,6 +35,7 @@ BASE_PATH        = PATH.parent
 BASE_NAME        = BASE_PATH.stem
 SNAP_DIR         = 'snaps'
 SNAP_SFX         = '.png'
+LOG_FILE         = None
 FMTN             = (1, 1, 1, 2, 1, 2, 2) # remove?
 P, L, S, C       =  0,  1,  2,  3
 T, N, I, K       =  4,  5,  6,  7
@@ -136,7 +137,7 @@ class Tabs(pyglet.window.Window):
         nt     = 6 if QQ else 6
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.ww, self.hh  = 640, 480
-        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, self.ssc(), 10, nt], [1, 1, 1, 1, 3], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
+        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, self.ssc(), 10, nt], [1, 1, 1, 1, nt], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
 #        if 'N' in self.argMap and len(self.argMap['N']) == 0: self.N            = 1
         if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
@@ -177,9 +178,10 @@ class Tabs(pyglet.window.Window):
         self.log('strLabel = {} = {}'.format(fmtl(self.strLabel), self.strLabel))
         self.log('cpoLabel   = {} = {}'.format(fmtl(self.cpoLabel),   self.cpoLabel))
         self.cursorModes = {'MELODY': 0, 'CHORD': 1, 'ARPEGGIO': 2}
-        self.cursorMode  = self.cursorModes['MELODY']
-#        self.directions = {'UP': 1, 'DOWN': -1}
-        self.direction   = DIRECTIONS['DOWN']
+        self.cursorMode  = self.cursorModes['CHORD']
+        self.directions = {'UP': -1, 'DOWN': 1}
+        self.direction   = self.directions['UP']
+#        self.moveUpFlag, self.moveDownFlag, self.moveLeftFlag, self.moveRightFlag = 0, 0, 0, 0
         self._initWindowA()
         super().__init__(screen=self.screens[1], fullscreen=FULL_SCREEN, resizable=True, visible=False)
         self._initWindowB()
@@ -287,7 +289,7 @@ class Tabs(pyglet.window.Window):
         self.kp  = [VIOLETS[0], VIOLETS[12]] if CHECKER_BOARD else [VIOLETS[10]]
         self.kl  = [  BLUES[12],  BLUES[15]] if CHECKER_BOARD else [BLUES[12]]
         self.ks  = [   CYANS[12],   CYANS[15]] if CHECKER_BOARD else [CYANS[12]]
-        self.kc  = [GRAYS[0],    GRAYS[8]] if CHECKER_BOARD else [GRAYS[0]]
+        self.kc  = [GRAYS[9],    GRAYS[13]] if CHECKER_BOARD else [GRAYS[13]]
         self.kt  = [ORANGES[0], ORANGES[8]]  if CHECKER_BOARD else [ORANGES[0]]
         self.kn  = [GREENS[0], GREENS[12]]  if CHECKER_BOARD else [GREENS[0]]
         self.ki  = [  CYANS[0],   CYANS[8]]  if CHECKER_BOARD else [CYANS[0]]
@@ -951,8 +953,8 @@ class Tabs(pyglet.window.Window):
         self.J1[j] = i  ;  self.J2[j] += 1
         why = f'New {t} {self.J2[j]}'
         text = f'{t} {self.J2[j]}' if self.DF[j] else t if j>C else ''
-        if SPRITES: self.createSprite(p=p, x=0, y=0, w=self.w[j], h=self.h[j], kk=self.cci(i, k), g=g, why=why, kl=k, v=v, dbg=dbg)
-        else:       self.createLabel(text, j=j, p=p, x=0, y=0, w=0, h=0, kk=self.cci(i, k), g=g, why=why, kl=k, dbg=dbg)
+        if SPRITES and j < T: self.createSprite(p=p, x=0, y=0, w=self.w[j], h=self.h[j], kk=self.cci(i, k), g=g, why=why, kl=k, v=v, dbg=dbg)
+        else:                 self.createLabel(text, j=j, p=p, x=0, y=0, w=0, h=0, kk=self.cci(i, k), g=g, why=why, kl=k, dbg=dbg)
 
     def hideLabel(self, p, j, t='???', dbg=1): #        c = self.E[j][n]
         c = p[j]    ;    ha = hasattr(c, 'text')
@@ -960,7 +962,8 @@ class Tabs(pyglet.window.Window):
         text = c.text if ha else '??'
         if SPRITES: c.update(x=0, y=0, scale_x=0, scale_y=0)
         else:       c.x, c.y, c.width, c.height = 0, 0, 0, 0
-        if dbg:     self.log(f'{t:5} {j+1:3} {hex(id(c))} {text:6} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {c.text:6} {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f}', ind=0)
+        if dbg and SPRITES:     self.log(f'{t:5} {j+1:3} {hex(id(c))} {text:6} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {c.text:6} {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f}', ind=0)
+        if dbg and not SPRITES: self.log(f'{t:5} {j+1:3} {hex(id(c))} {text:6} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {c.text:6} {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f}', ind=0)
     ####################################################################################################################################################################################################
     def dumpSprites(self, why=''):
         self.log(f'(BGN) {self.fmtGeom()} {why}', ind=0)
@@ -1122,7 +1125,7 @@ class Tabs(pyglet.window.Window):
     def kpEvntTxt(self):
         return '{:8} {:8}     {:14} {:2} {:16}'.format(self.kbk, self.symb, self.symbStr, self.mods, self.modsStr)
 
-    def on_key_press(self, symb, mods, dbg=0):
+    def on_key_press(self, symb, mods, dbg=1):
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
         self.kbk = self.symbStr  ;  kbk = self.kbk
         if dbg: self.log('(BGN) {}'.format(self.kpEvntTxt()))
@@ -1153,6 +1156,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'S' and self.isCtrl(mods):                        self.writeDataFile()
         elif kbk == 'T' and self.isCtrl(mods) and self.isShift(mods): self.toggleTabs(TT)
         elif kbk == 'T' and self.isCtrl(mods):                        self.toggleTabs(TT)
+        elif kbk == 'SPACE':                                          self.autoMove()
     ####################################################################################################################################################################################################
         elif kbk == 'B' and self.isAlt(mods) and self.isShift(mods):  self.setFontParam('bold',   not self.fontBold,   'fontBold')
         elif kbk == 'B' and self.isAlt(mods):                         self.setFontParam('bold',   not self.fontBold,   'fontBold')
@@ -1169,7 +1173,7 @@ class Tabs(pyglet.window.Window):
 #        self.updateCaption()
         if dbg: self.log('(END) {}'.format(self.kpEvntTxt()))
 
-    def on_text(self, text, dbg=0):
+    def on_text(self, text, dbg=1):
         self.kbk = text
         if dbg: self.log('(BGN) {}'.format( self.kpEvntTxt()))
         if self.isTab(self.kbk):                         self.addTab(self.kbk, 'on_text')
@@ -1178,23 +1182,41 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log('(END) {}'.format( self.kpEvntTxt()))
 
     def on_text_motion(self, motion, dbg=1):
-        self.kbk = motion
+        self.kbk = motion   ;   p, l, s, c, t = self.j()  ;  np, nl, ns, nc, nt = self.n   ;   tpc = self.tpc
         if dbg: self.log('(BGN) {}'.format(self.kpEvntTxt()))
         if self.mods == 0:
-            if   motion == pygwink.MOTION_LEFT:              self.move(-self.tpc)
-            elif motion == pygwink.MOTION_RIGHT:             self.move( self.tpc)
+            if   motion == pygwink.MOTION_LEFT:              self.move(-tpc)
+            elif motion == pygwink.MOTION_RIGHT:             self.move( tpc)
             elif motion == pygwink.MOTION_UP:                self.move(-1)
             elif motion == pygwink.MOTION_DOWN:              self.move( 1)
-            elif motion == pygwink.MOTION_BEGINNING_OF_LINE: self.move(-self.tpc *  self.j()[C])
-            elif motion == pygwink.MOTION_END_OF_LINE:       self.move( self.tpc * (self.n[C] - self.i[C]))
-            elif motion == pygwink.MOTION_PREVIOUS_PAGE:     self.move(-self.tpc *  self.n[C]) # Line?
-            elif motion == pygwink.MOTION_NEXT_PAGE:         self.move( self.tpc *  self.n[C]) # Line?
-#            elif motion==pygwink.MOTION_PREVIOUS_PAGE: self.move() # prevPage(self.i[P], motion)
-#            elif motion==pygwink.MOTION_NEXT_PAGE:     self.move() # nextPage(self.i[P], motion)
-            else:                                      self.log('on_text_motion() motion={} ???'.format(motion))
-#            self.updateCaption()
+            elif motion == pygwink.MOTION_BEGINNING_OF_LINE: self.move(-tpc *  c)
+            elif motion == pygwink.MOTION_END_OF_LINE:       self.move( tpc * (nc - self.i[C]))
+            elif motion == pygwink.MOTION_PREVIOUS_PAGE:     self.move(-tpc *  nc)  # move up   one line to same tab
+            elif motion == pygwink.MOTION_NEXT_PAGE:         self.move( tpc *  nc)  # move down one line to same tab
+            else:                                            self.log('on_text_motion() motion={} ???'.format(motion))
+        elif self.isAlt(self.mods):
+#            if   motion == pygwink.MOTION_LEFT:              self.moveLeft()
+#            elif motion == pygwink.MOTION_RIGHT:             self.moveRight()
+            if   motion == pygwink.MOTION_UP:                self.moveUp()
+            elif motion == pygwink.MOTION_DOWN:              self.moveDown()
+            elif motion == pygwink.MOTION_PREVIOUS_PAGE:     self.move(self.cc2(p, 0,    c, 0))     # move up   to top    tab on top    line
+            elif motion == pygwink.MOTION_NEXT_PAGE:         self.move(self.cc2(p, nl-1, c, nt-1))  # move down to bottom tab on bottom line
+#        self.updateCaption()
         if dbg: self.log('(END) {}'.format(self.kpEvntTxt()))
     ####################################################################################################################################################################################################
+    def moveUp(self):
+        p, l, s, c, t = self.j()  ;  np, nl, ns, nc, nt = self.n
+        if t == 0:   self.move(self.cc2(p, l-1,  c, nt-1))  # move up   one line to bottom tab
+        else:        self.move(self.cc2(p, l,    c, 0))     # move up   to top    tab on same line
+    def moveDown(self):
+        p, l, s, c, t = self.j()  ;  np, nl, ns, nc, nt = self.n
+        if t == nt-1: self.move(self.cc2(p, l+1,  c, 0))     # move down one line to top tab
+        else:         self.move(self.cc2(p, l,    c, nt-1))  # move down to bottom tab on same line
+#    def moveLeft(self):
+#        p, l, s, c, t = self.j()   ;    np, nl, ns, nc, nt = self.n
+#        if c: self.move(-nt)
+#        else: self.move( nt)
+
     def createCursor(self, g):
         self.cc = self.cursorCol()
         c = self.tabs[self.cc]
@@ -1211,16 +1233,26 @@ class Tabs(pyglet.window.Window):
         self.log('c={} x={:6.1f} y={:6.1f} w={:6.1f} h={:6.1f} i={}'.format(cc, x, y, w, h, fmtl(self.i, FMTN)))
         self.cursor.update(x=x, y=y, scale_x=w/self.w[T], scale_y=h/self.h[T])
 
-    def cursorCol(self, dbg=1): #calc
+    def cursorCol(self, dbg=1):
         p, l, s, c, t = self.j()
         tpp, tpl, tps, tpc = self.tpz()
         cc = p * tpp + l * tpl + s * tps + c * tpc + t
-        if dbg: self.log(f' p={p} l={l} s={s} c={c} t={t}', ind=0, end='')
+        if dbg: self.log(f' cc: p={p} l={l} s={s} c={c} t={t}', ind=0, end='')
         if dbg: self.log(f' tpp={tpp} tpl={tpl} tps={tps} tpc={tpc}', ind=0, end='')
         if dbg: self.log(f' cc={cc} = ( {p*tpp} + {l*tpl} + {s*tps} + {c*tpc} + {t} )', ind=0, end='')
         lenT = len(self.tabs)   ;   ccm = cc % lenT
         if dbg : self.log(f' cc = cc % len(tabs) = {cc} % {lenT} = {ccm} = cc', ind=0)
         return ccm
+
+    def cc2(self, p, l, c, t, dbg=1):
+        tpp, tpl, tpc = self.tpp, self.tpl, self.tpc
+        cc = p * tpp + l * tpl + c * tpc + t
+        if dbg: self.log(f' cc2: p={p} l={l} c={c} t={t}', ind=0, end='')
+        if dbg: self.log(f' tpp={tpp} tpl={tpl} tpc={tpc}', ind=0, end='')
+        if dbg: self.log(f' cc2={cc} = ( {p*tpp} + {l*tpl} + {c*tpc} + {t} )', ind=0, end='')
+        lenT = len(self.tabs)   ;   ccm = cc % lenT
+        if dbg : self.log(f' cc2 = cc2 % len(tabs) = {cc} % {lenT} = {ccm} = cc2', ind=0)
+        return ccm - self.cursorCol()
     ####################################################################################################################################################################################################
     def on_mouse_release(self, x, y, button, modifiers):
         np, nl, ns, nc, nt = self.n   ;  nc += CCC   ;  nt += QQ        ;  y0 = y
@@ -1278,25 +1310,30 @@ class Tabs(pyglet.window.Window):
         self.log('{} i[{}]={}'.format(why, P, i))
         self.i[P] = i
     '''
-    ####################################################################################################################################################################################################
     def updateCaption(self, txt):
         self.set_caption(txt)
-
+    ####################################################################################################################################################################################################
     def addTab(self, text, why='', dbg=1):
         self.log('(BGN) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
         cc = self.cursorCol()
-        melodyModeDist   = self.n[T]
-        chordModeDist    = self.direction
-        arpeggioModeDist = melodyModeDist + self.direction
         self.updateData(text)
-        if self.TNIK[TT]: self.updateTab(cc, text)
-        if self.TNIK[NN]: self.updateNote(cc, text)
+        if self.TNIK[TT]: self.updateTab(  cc, text)
+        if self.TNIK[NN]: self.updateNote( cc, text)
         if self.TNIK[KK]: self.updateChord(cc)
-        if   self.cursorMode == self.cursorModes['MELODY']:    self.move(melodyModeDist)
-        elif self.cursorMode == self.cursorModes['CHORD']:     self.move(chordModeDist)
-        elif self.cursorMode == self.cursorModes['ARPEGGIO']:  self.move(arpeggioModeDist)
+        self.autoMove()
         if dbg: self.snapshot()
         self.log('(END) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
+
+    def autoMove(self, dbg=1):
+        melodyModeDist   = self.n[T]
+        chordModeDist    = self.direction
+        arpeggioModeDist = melodyModeDist + chordModeDist
+        if dbg: self.log(f'distances: M={melodyModeDist} C={chordModeDist} A={arpeggioModeDist} nt={self.n[T]} direction={self.direction}')
+        if      self.cursorMode == self.cursorModes['MELODY']:                self.move(melodyModeDist)
+        elif    self.cursorMode == self.cursorModes['CHORD']:
+            if  self.direction  == self.directions['UP'] and self.i[T] == 1:  self.move(self.n[T]*2-1)
+            else:                                                             self.move(chordModeDist)
+        elif    self.cursorMode == self.cursorModes['ARPEGGIO']:              self.move(arpeggioModeDist)
 
     def updateData(self, text, data=None, dbg=0, dbg2=0):
         if data is None: data = self.data

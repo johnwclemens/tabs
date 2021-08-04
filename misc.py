@@ -61,7 +61,8 @@ class Chord(object):
             chordName                           = self.updateImap(imap, chordName)
         if chordName:
             if dbg: tabs.Tabs.log(f'Outer Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
-            self.mlimap[cc] = self.limap   ;   tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}', file=self.logFile)
+            self.mlimap[cc] = self.limap
+            if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}', file=self.logFile)
         self.limap.extend(self.limap1)  ;  self.limap1 = []
         self.limap.extend(self.limap2)  ;  self.limap2 = []
         if dbg:
@@ -160,7 +161,6 @@ class Chord(object):
         tabs.Tabs.log(f'{why}  [ <{chordName:<6}> {tabs.fmtl(intervals, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
 
     def dumpData(self, data, mask, why, w=5, u='<', r=0):
-        return
         lf = self.logFile
         if r:     data = data[::-1]  ;  mask = mask[::-1]
         j = 0   ;   dt = type(data)  ;  tabs.Tabs.log(f'{why:21} [ ', end='', file=lf)
