@@ -46,8 +46,15 @@ Z, COLL, LINL    = ' ', 'Col', 'Line '
 C1,  C2,  RLC    = 0, 1, 2
 INIT             = '###   Init   ###' * 13
 QUIT             = '###   Quit   ###' * 13
-#CURSOR_MODES     = ['MELODY', 'CHORD', 'ARPEGGIO']
-DIRECTIONS       = {'UP':-1, 'DOWN':1}
+MELODY, CHORD, ARPG = 0, 1, 2
+CSR_MODES         = ['MELODY', 'CHORD', 'ARPEGGIO']
+LEFT, RIGHT, UP, DOWN = 0, 1, 0, 1
+HARROWS           = ['LEFT', 'RIGHT']
+VARROWS           = ['UP',    'DOWN']
+#LEFT, RIGHT      = -1, 1
+#UP, DOWN         = -1, 1
+#H_MAP            = {'LEFT': -1, 'RIGHT': 1}
+#V_MAP            = {'UP':  -1,   'DOWN': 1}
 OPACITY          = [255, 240, 225, 210, 190, 165, 140, 110, 80]
 GRAY             = [(255, 255, 255, OPACITY[0]), ( 0,  0,  0, OPACITY[0])]
 PINK             = [(255,  64, 192, OPACITY[0]), (57, 16, 16, OPACITY[0])]
@@ -177,11 +184,10 @@ class Tabs(pyglet.window.Window):
         self.cpoLabel   = ' CAPO '
         self.log('strLabel = {} = {}'.format(fmtl(self.strLabel), self.strLabel))
         self.log('cpoLabel   = {} = {}'.format(fmtl(self.cpoLabel),   self.cpoLabel))
-        self.cursorModes = {'MELODY': 0, 'CHORD': 1, 'ARPEGGIO': 2}
-        self.cursorMode  = self.cursorModes['CHORD']
-        self.directions = {'UP': -1, 'DOWN': 1}
-        self.direction   = self.directions['UP']
-#        self.moveUpFlag, self.moveDownFlag, self.moveLeftFlag, self.moveRightFlag = 0, 0, 0, 0
+        self.csrMode  = CHORD
+        self.vArrow   = UP
+        self.hArrow   = RIGHT
+        self.dumpCursorArrows('init()')
         self._initWindowA()
         super().__init__(screen=self.screens[1], fullscreen=FULL_SCREEN, resizable=True, visible=False)
         self._initWindowB()
@@ -1132,8 +1138,8 @@ class Tabs(pyglet.window.Window):
         if                  self.isTab(kbk):                          self.addTab(kbk,  'on_key_press')
         elif kbk == 'B' and self.isCtrl(mods) and self.isShift(mods): self.toggleBlank()
         elif kbk == 'B' and self.isCtrl(mods):                        self.toggleBlank()
-        elif kbk == 'D' and self.isCtrl(mods) and self.isShift(mods): self.toggleDir()
-        elif kbk == 'D' and self.isCtrl(mods):                        self.toggleDir()
+        elif kbk == 'D' and self.isCtrl(mods) and self.isShift(mods): self.toggleVArrow()
+        elif kbk == 'D' and self.isCtrl(mods):                        self.toggleHArrow()
         elif kbk == 'E' and self.isCtrl(mods) and self.isShift(mods): self.erase()
         elif kbk == 'E' and self.isCtrl(mods):                        self.erase()
         elif kbk == 'F' and self.isCtrl(mods) and self.isShift(mods): self.toggleFullScreen()
@@ -1325,15 +1331,19 @@ class Tabs(pyglet.window.Window):
         self.log('(END) {} {} {}'.format(self.kpEvntTxt(), fmtl(self.i, FMTN), why))
 
     def autoMove(self, dbg=1):
-        melodyModeDist   = self.n[T]
-        chordModeDist    = self.direction
-        arpeggioModeDist = melodyModeDist + chordModeDist
-        if dbg: self.log(f'distances: M={melodyModeDist} C={chordModeDist} A={arpeggioModeDist} nt={self.n[T]} direction={self.direction}')
-        if      self.cursorMode == self.cursorModes['MELODY']:                self.move(melodyModeDist)
-        elif    self.cursorMode == self.cursorModes['CHORD']:
-            if  self.direction  == self.directions['UP'] and self.i[T] == 1:  self.move(self.n[T]*2-1)
-            else:                                                             self.move(chordModeDist)
-        elif    self.cursorMode == self.cursorModes['ARPEGGIO']:              self.move(arpeggioModeDist)
+        ha = 1 if self.hArrow else -1   ;   ha2 = HARROWS[self.hArrow]
+        va = 1 if self.vArrow else -1   ;   va2 = VARROWS[self.vArrow]
+        nt, it = self.n[T], self.i[T]
+        mmDist = ha * nt
+        cmDist = va
+        amDist = mmDist + cmDist
+        cm = CSR_MODES[self.csrMode]
+        if dbg: self.log(f'M={mmDist} C={cmDist} A={amDist} nt={nt} ha={ha}={ha2} va={va}={va2} cm={cm}')  ;  self.dumpCursorArrows('autoMove()')
+        if      self.csrMode == MELODY:        self.move(mmDist)
+        elif    self.csrMode == CHORD:
+            if  self.vArrow  == UP and it == 1: self.move(nt*2-1)
+            else:                               self.move(cmDist)
+        elif    self.csrMode == ARPG:           self.move(amDist)
 
     def updateData(self, text, data=None, dbg=0, dbg2=0):
         if data is None: data = self.data
@@ -1380,15 +1390,22 @@ class Tabs(pyglet.window.Window):
         self.updateChordName(cc2, chordName)
         self.log(f'(END) len={len(self.cobj.mlimap[cc])} p={p} l={l} c={c} r={r} cc={cc} cc2={cc2} rev={rev} {self.cobj.mlimap[cc]}')
 
-    def toggleCursorMode(self):
-        self.log(f'(BGN) cursorMode={self.cursorMode}')
-        self.cursorMode  = (self.cursorMode + 1) % len(self.cursorModes)
-        self.log(f'(END) cursorMode={self.cursorMode}')
+    def dumpCursorArrows(self, why=''): cm, ha, va = self.csrMode, self.hArrow, self.hArrow  ;   self.log(f'{why} csrMode={cm}={CSR_MODES[cm]} hArrow={ha}={HARROWS[ha]} vArrow={va}={VARROWS[va]}')
 
-    def toggleDir(self):
-        self.log(f'(BGN) direction={self.direction}')
-        self.direction *= -1
-        self.log(f'(END) direction={self.direction}')
+    def toggleCursorMode(self):
+        self.log(f'(BGN) csrMode={self.csrMode}={CSR_MODES[self.csrMode]}')
+        self.csrMode  = (self.csrMode + 1) % len(CSR_MODES)
+        self.log(f'(END) csrMode={self.csrMode}={CSR_MODES[self.csrMode]}')
+
+    def toggleHArrow(self):
+        self.log(f'(BGN) hArrow={self.hArrow}={HARROWS[self.hArrow]}')
+        self.hArrow  = (self.hArrow + 1) % len(HARROWS)
+        self.log(f'(END) hArrow={self.hArrow}={HARROWS[self.hArrow]}')
+
+    def toggleVArrow(self):
+        self.log(f'(BGN) vArrow={self.vArrow}={VARROWS[self.vArrow]}')
+        self.vArrow  = (self.vArrow + 1) % len(VARROWS)
+        self.log(f'(END) vArrow={self.vArrow}={VARROWS[self.vArrow]}')
 
     def toggleFullScreen(self):
         global FULL_SCREEN
