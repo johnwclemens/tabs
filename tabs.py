@@ -25,7 +25,7 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 0  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 1  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -65,6 +65,7 @@ BLUE             = [( 13,  11, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
 INDIGO           = [(255,  22, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
 VIOLET           = [(176,  81, 255, OPACITY[0]), (44, 14, 58, OPACITY[0])]
 ULTRA_VIOLET     = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
+CC               = [(255, 190,  12, OPACITY[0]), (33, 26, 20, OPACITY[1])]
 HUES             = 16
 MAX_STACK_DEPTH  = 0  ;  MAX_STACK_FRAME = inspect.stack()
 ####################################################################################################################################################################################################
@@ -108,8 +109,8 @@ BLUES         = genColors(BLUE)       ;  COLORS.append(BLUES)
 INDIGOS       = genColors(INDIGO)     ;  COLORS.append(INDIGOS)
 VIOLETS       = genColors(VIOLET)     ;  COLORS.append(VIOLETS)
 ULTRA_VIOLETS = genColors(ULTRA_VIOLET)  ;  COLORS.append(ULTRA_VIOLETS)
+CCS           = genColors(CC)         ;  COLORS.append(CCS)
 COLORS        = (INFRA_REDS, REDS, ORANGES, YELLOWS, GRAYS, GREENS, GREEN_BLUES, CYANS, BLUE_GREENS, BLUES, INDIGOS, VIOLETS, ULTRA_VIOLETS)
-CC            = (255, 190, 12, 176)
 FONT_SCALE    = 123.42857
 FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
 FONT_NAMES    = ['Times New Roman', 'Lucida Console', 'Courier New', 'Helvetica', 'Arial', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
@@ -317,6 +318,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'textD={self.labelTextD}')
         self.dumpJ('(BGN) createSprites() / createLabels()')
         self.ssc()
+        self.selectCols = []
         self.createSprites() if SPRITES else  self.createLabels()
         self.dumpJ('(END) createSprites() / createLabels()')
         self.createCursor(self.g[T + 3]) # fix
@@ -1055,7 +1057,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'(END) {self.fmtGeom()} {why}', ind=0)
     ####################################################################################################################################################################################################
     def dumpSprite(self, z=None, sid=-1, lid=-1, p=-1, l=-1, s=-1, c=-1, t=-1, n=-1, i=-1, k=-1, why=''):
-        if z is None: self.log(f' sid  lid p  l  s   c   t   n   i   k    x       y       w       h         id         mx    my   red grn blu opc   why         v   group       parent', ind=0); return
+        if z is None: self.log(f' sid  lid p  l  s   c   t   n   i   k    x       y       w       h         id         mx    my   red grn blu opc   why       v     group       parent', ind=0); return
         f = '{:4} {:4} {} {:2} {:2} {:3} {:3} {:3} {:3} {:3} {:7.2f} {:7.2f} {:7.2f} {:7.2f} {} {:5.3f} {:5.3f} {:3} {:3} {:3} {:3} {:12} {:1} {} {}'
         kk, o, v, g, pg    =    z.color, z.opacity, z.visible, z.group, z.group.parent   ;   ID = hex(id(z))
         x, y, w, h, iax, iay, m, mx, my, rot    =    z.x, z.y, z.width, z.height, z.image.anchor_x, z.image.anchor_y, z.scale, z.scale_x, z.scale_y, z.rotation
@@ -1126,10 +1128,12 @@ class Tabs(pyglet.window.Window):
     def kpEvntTxt(self):
         return f'{self.kbk:8} {self.symb:8} {self.symbStr:14} {self.mods:2} {self.mods:16}'
 
-    def on_key_release(self, symbol, modifiers):
-        self.log(f'symbol={symbol} modifiers={modifiers}')
+    def on_key_release(self, symb, mods):
+        self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
+        self.kbk = self.symbStr  # ;  kbk = self.kbk   ;   why='on_key_release'
+        self.log(f'{self.kpEvntTxt()}')
 
-    def on_key_press(self, symb, mods, dbg=1): # avoid these
+    def on_key_press(self, symb, mods, dbg=0): # avoid these
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
         self.kbk = self.symbStr  ;  kbk = self.kbk   ;   why='on_key_press'
         if dbg: self.log(f'(BGN) {self.kpEvntTxt()}')
@@ -1184,7 +1188,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'N' and self.isAlt(mods):                         self.setFontParam('font_name', (self.fontNameIndex - 1)  % len(FONT_NAMES),  'fontNameIndex')
         elif kbk == 'C' and self.isAlt(mods) and self.isShift(mods):  self.setFontParam('color',     (self.fontColorIndex + 1) % len(FONT_COLORS), 'fontColorIndex')
         elif kbk == 'C' and self.isAlt(mods):                         self.setFontParam('color',     (self.fontColorIndex - 1) % len(FONT_COLORS), 'fontColorIndex')
-        else:  self.log(f'Unhandled kbk={kbk}')
+        else:  self.log(f'Unexpected {self.kpEvntTxt()}')
 #        self.updateCaption()
         if dbg: self.log(f'(END) {self.kpEvntTxt()}')
 
@@ -1204,14 +1208,14 @@ class Tabs(pyglet.window.Window):
             elif motion == pygwink.MOTION_DOWN:              self.move( 1)
             elif motion == pygwink.MOTION_LEFT:              self.move(-nt)
             elif motion == pygwink.MOTION_RIGHT:             self.move( nt)
-#            elif motion == pygwink.MOTION_PREVIOUS_WORD:     self.quit(f'MOTION_PREVIOUS_WORD={pygwink.MOTION_PREVIOUS_WORD}')
-#            elif motion == pygwink.MOTION_NEXT_WORD:         self.quit(f'MOTION_NEXT_WORD={pygwink.MOTION_NEXT_WORD}')
+#            elif motion == pygwink.MOTION_PREVIOUS_WORD:     self.quit(f 'MOTION_PREVIOUS_WORD={pygwink.MOTION_PREVIOUS_WORD}')
+#            elif motion == pygwink.MOTION_NEXT_WORD:         self.quit(f 'MOTION_NEXT_WORD={pygwink.MOTION_NEXT_WORD}')
             elif motion == pygwink.MOTION_BEGINNING_OF_LINE: self.move(-nt *  c)
             elif motion == pygwink.MOTION_END_OF_LINE:       self.move( nt * (nc - self.i[C]))
             elif motion == pygwink.MOTION_PREVIOUS_PAGE:     self.move(-nt *  nc)  # move up   one line to same tab
             elif motion == pygwink.MOTION_NEXT_PAGE:         self.move( nt *  nc)  # move down one line to same tab
-#            elif motion == pygwink.MOTION_BEGINNING_OF_FILE: self.quit(f'MOTION_BEGINNING_OF_FILE={pygwink.MOTION_BEGINNING_OF_FILE}')
-#            elif motion == pygwink.MOTION_END_OF_FILE:       self.quit(f'MOTION_END_OF_FILE={pygwink.MOTION_END_OF_FILE}')
+#            elif motion == pygwink.MOTION_BEGINNING_OF_FILE: self.quit(f 'MOTION_BEGINNING_OF_FILE={pygwink.MOTION_BEGINNING_OF_FILE}')
+#            elif motion == pygwink.MOTION_END_OF_FILE:       self.quit(f 'MOTION_END_OF_FILE={pygwink.MOTION_END_OF_FILE}')
             elif motion == pygwink.MOTION_BACKSPACE:         self.updateTab(self.tblank, 'BACKSPACE', backspace=1)
             elif motion == pygwink.MOTION_DELETE:            self.updateTab(self.tblank, 'DELETE')
             else:                                            self.log(f'motion={motion} ???')
@@ -1226,8 +1230,8 @@ class Tabs(pyglet.window.Window):
             elif motion == pygwink.MOTION_NEXT_PAGE:         self.move(self.cc2(p, nl-1, c, nt-1))  # move down to bottom tab on bottom line
             else:                                            self.log(f'motion={motion} ??? ALT')
         elif self.isCtrl(self.mods):
-            if   motion == pygwink.MOTION_PREVIOUS_WORD:     self.log(f'CTRL + MOTION_PREVIOUS_WORD={pygwink.MOTION_PREVIOUS_WORD}=CTRL + LEFT')
-            elif motion == pygwink.MOTION_NEXT_WORD:         self.log(f'CTRL + MOTION_NEXT_WORD={pygwink.MOTION_NEXT_WORD}=CTRL + RIGHT')
+            if   motion == pygwink.MOTION_PREVIOUS_WORD:     self.selectCol(-nt) # self.log(f 'CTRL + MOTION_PREVIOUS_WORD={pygwink.MOTION_PREVIOUS_WORD}=CTRL + LEFT')
+            elif motion == pygwink.MOTION_NEXT_WORD:         self.selectCol( nt) # self.log(f 'CTRL + MOTION_NEXT_WORD={pygwink.MOTION_NEXT_WORD}=CTRL + RIGHT')
 #            elif motion == pygwink.MOTION_BEGINNING_OF_LINE: self.quit('CTRL + MOTION_BEGINNING_OF_LINE')
 #            elif motion == pygwink.MOTION_END_OF_LINE:       self.quit('CTRL + MOTION_END_OF_LINE')
             elif motion == pygwink.MOTION_BEGINNING_OF_FILE: self.log(f'CTRL + MOTION_BEGINNING_OF_FILE={pygwink.MOTION_BEGINNING_OF_FILE}=CTRL HOME')
@@ -1242,7 +1246,7 @@ class Tabs(pyglet.window.Window):
         x, y = c.x - w/2, c.y - h/2
         self.log(f'c={self.cc} x={x:6.1f} y={y:6.1f} w={w:6.1f} h={h:6.1f} i={fmtl(self.i, FMTN)}')
         self.dumpSprite()
-        self.cursor = self.createSprite(None, x, y, w, h, -1, g, why='cursor', v=1, dbg=1)
+        self.cursor = self.createSprite(None, x, y, w, h, 0, g, why='cursor', kl=CCS, v=1, dbg=1)
 
     def resizeCursor(self):
         cc = self.cursorCol()
@@ -1347,6 +1351,16 @@ class Tabs(pyglet.window.Window):
     '''
     def updateCaption(self, txt): self.set_caption(txt)
     ####################################################################################################################################################################################################
+    def selectCol(self, m):
+        cc = self.cursorCol()  ;  nt = self.n[T]
+        sc = (cc // nt) * nt
+        self.log(f'(BGN) cc={cc} sc={sc} selectCols<{len(self.selectCols)}>={fmtl(self.selectCols)}')
+        self.selectCols.append(sc)
+        for t in range(nt):
+            self.tabs[sc + t].color = CCS[1]
+        self.move(m)
+        self.log(f'(END) cc={cc} sc={sc} selectCols<{len(self.selectCols)}>={fmtl(self.selectCols)}')
+
     def dumpCursorArrows(self, why=''): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;   self.log(f'csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4} {why}')
 
     def reverseArrow(self, dbg=1):
