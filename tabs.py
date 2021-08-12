@@ -26,7 +26,7 @@ class MyFormatter(string.Formatter):
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
 CHECKER_BOARD = 0  ;  EVENT_LOG = 1  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
-VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
+VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
@@ -134,7 +134,7 @@ class Tabs(pyglet.window.Window):
         self.delGlob(snapGlob, 'SNAP_GLOB')
         self.cobj = misc.Chord(self, LOG_FILE)
         self.n    = []
-        self.TNIK = [1, 0, 0, 1]
+        self.TNIK = [1, 1, 0, 1]
         nt        = 6 if QQ else 6
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.ww, self.hh = 640, 480
@@ -1260,24 +1260,31 @@ class Tabs(pyglet.window.Window):
 
     def cursorCol(self, dbg=1):
         p, l, s, c, t = self.j()
+        return self.plct2cc(p, l, c, t, dbg)
+
+    def plct2cc(self, p, l, c, t, dbg=1):
         tpp, tpl, tps, tpc = self.tpz()
-        cc = p * tpp + l * tpl + s * tps + c * tpc + t
-        if dbg: self.log(f' cc: p={p} l={l} s={s} c={c} t={t}', ind=0, end='')
-        if dbg: self.log(f' tpp={tpp} tpl={tpl} tps={tps} tpc={tpc}', ind=0, end='')
-        if dbg: self.log(f' cc={cc} = ( {p*tpp} + {l*tpl} + {s*tps} + {c*tpc} + {t} )', ind=0, end='')
+        cc = p * tpp + l * tpl + c * tpc + t
         lenT = len(self.tabs)   ;   ccm = cc % lenT
+        if dbg: self.log(f' cc: p={p} l={l} c={c} t={t}', ind=0, end='')
+        if dbg: self.log(f' tpp={tpp} tpl={tpl} tpc={tpc}', ind=0, end='')
+        if dbg: self.log(f' cc={cc} = ( {p*tpp} + {l*tpl} + {c*tpc} + {t} )', ind=0, end='')
         if dbg : self.log(f' cc = cc % len(tabs) = {cc} % {lenT} = {ccm} = cc', ind=0)
         return ccm
 
+    def cc2plct(self, cc, dbg=1):
+        tpp, tpl, tps, tpc = self.tpz()
+        p =  cc // tpp
+        l = (cc - p * tpp) // tpl
+        c = (cc - p * tpp - l * tpl) // tpc
+        t =  cc - p * tpp - l * tpl - c * tpc
+        p = p % self.n[P]
+        if dbg: self.log(f'cc={cc} p={p} l={l} c={c} t={t}')
+        return p, l, c, t
+
     def cc2(self, p, l, c, t, dbg=1):
-        tpp, tpl, tpc = self.tpp, self.tpl, self.tpc
-        cc = p * tpp + l * tpl + c * tpc + t
-        if dbg: self.log(f' cc2: p={p} l={l} c={c} t={t}', ind=0, end='')
-        if dbg: self.log(f' tpp={tpp} tpl={tpl} tpc={tpc}', ind=0, end='')
-        if dbg: self.log(f' cc2={cc} = ( {p*tpp} + {l*tpl} + {c*tpc} + {t} )', ind=0, end='')
-        lenT = len(self.tabs)   ;   ccm = cc % lenT
-        if dbg : self.log(f' cc2 = cc2 % len(tabs) = {cc} % {lenT} = {ccm} = cc2', ind=0)
-        return ccm - self.cursorCol()
+        cc = self.plct2cc(p, l, c, t, dbg)
+        return cc - self.cursorCol()
     ####################################################################################################################################################################################################
     def on_mouse_release(self, x, y, button, modifiers):
         np, nl, ns, nc, nt = self.n   ;  nc += CCC   ;  nt += QQ        ;  y0 = y
@@ -1337,6 +1344,22 @@ class Tabs(pyglet.window.Window):
         self.i[P] = jp %  np + 1
         if dbg: self.log(f'(END) {k:4}      {self.cc:4} {fmtl(self.i, FMTN)} ip0={ip0} jp={jp} jl={jl} jc={jc} jt={jt}', file=sys.stdout)
 
+    def autoMove(self, dbg=1):
+        self.log('(BGN)')
+        ha = 1 if self.hArrow else -1
+        va = 1 if self.vArrow else -1
+        nt, it = self.n[T], self.i[T]
+        mmDist = ha * nt
+        cmDist = va
+        amDist = mmDist + cmDist
+        if dbg: self.dumpCursorArrows(f'M={mmDist} C={cmDist} A={amDist}')
+        if      self.csrMode == MELODY:            self.move(mmDist)
+        elif    self.csrMode == CHORD:
+            if  it == 1 and self.vArrow  == UP and self.hArrow == RIGHT: self.move(nt*2-1)
+            else:                                  self.move(cmDist)
+        elif    self.csrMode == ARPG:              self.move(amDist)
+        self.log('(END)')
+
     '''
     def nextPage(self, i, motion):
         self.pages[i].visible = False
@@ -1369,120 +1392,143 @@ class Tabs(pyglet.window.Window):
         self.move(m)
         self.log(f'(END) {why} m={m} cc={cc} sc={sc} smap<{len(self.smap)}>={fmtd(self.smap)}')
 
-    def copyTabCols(self, dbg=0):
+    def copyTabCols(self, dbg=0, dbg2=0):
         self.log(f'(BGN) skeys<{len(self.skeys)}>={self.skeys}')   ;   nt = self.n[T]  ;   text = ''
         for k in range(len(self.skeys)):
             for t in range(nt):
                 tab = self.tabs[self.skeys[k] + t]
-                if dbg and not t: self.log(f'before tab.color={tab.color}')
+                if dbg2 and not t: self.log(f'before tab.color={tab.color}')
                 tab.color = self.k[T][0]
-                if dbg and not t: self.log(f'after tab.color={tab.color}')
+                if dbg2 and not t: self.log(f'after tab.color={tab.color}')
                 if dbg: text += tab.text
-            text += ' '
-        self.log(f'(END) skeys<{len(self.skeys)}>={self.skeys} text={text}')
+            if dbg: text += ' '
+        self.log(f'(END) skeys<{len(self.skeys)}>={self.skeys}', end=' ' if dbg else '\n')
+        if dbg: self.log(f'text={text}', ind=0)
 
     def pasteTabCols(self, dbg=1):
         cc = self.cursorCol()  ;  nt = self.n[T]
-        sc = (cc // nt) * nt
-        sm = self.smap
-        self.log(f'(BGN) cc={cc} sc={sc}')
-        for k, v in sm.items():
+        nc = (cc // nt) * nt   ;  sc, scm = 0, 0
+        sm, sk = self.smap, self.skeys
+        p, l, s, c, r = self.j()
+        self.log(f'(BGN) p={p} l={l} c={c} r={r} cc={cc} nc={nc} sk={sk} sm={sm}')
+        for i, (k, v) in enumerate(sm.items()):
             text = sm[k]
-            if dbg: self.log(f'sm[{k}]={text}')
-            for t in range(len(text)):
-                tab = self.tabs[sc + k + t]
-                tab.text = text[t]
-        self.log(f'(END) cc={cc} sc={sc}')
+            dk = 0 if not i else sk[i] - sk[0]
+            if dbg: self.log(f'i={i} k={k} v={v} text={text} scm={scm} dk={dk}')
+            for t in range(nt):
+                sc = nc + dk + t    ;    scm = sc % self.tpp
+                p, l, c, r = self.cc2plct(scm)
+                if dbg: self.log(f'p={p} l={l} c={c} r={r} t={t} sc={sc} scm={scm}')
+                self.updateData(text[t], p, l, c, t)
+                if  self.TNIK[TT]: self.updateTab2(text[t], scm)
+                if  self.TNIK[NN]: self.updateNote(text[t], scm, t)
+            if      self.TNIK[KK]: self.updateChord(p, l, c, 0)
+            if dbg: self.log(f'sm[{k}]={text} scm={scm}')
+        self.log(f'(END) cc={cc} nc={nc}')
+    ####################################################################################################################################################################################################
+    def updateTab(self, text, why='', rev=0, dbg=1):
+        self.log(f'(BGN) {self.kpEvntTxt()} {fmtl(self.i, FMTN)} rev={rev} {why}')
+        if rev: self.reverseArrow()    ;    self.autoMove()
+        cc = self.cursorCol()          ;    p, l, s, c, t = self.j()
+        self.updateData(text, p, l, c, t)
+        if self.TNIK[TT]: self.updateTab2( text, cc)
+        if self.TNIK[NN]: self.updateNote( text, cc, t)
+        if self.TNIK[KK]: self.updateChord(p, l, c, t)
+        if rev: self.reverseArrow()
+        else:   self.autoMove()
+        if dbg: self.snapshot()
+        self.log(f'(END) {self.kpEvntTxt()} {fmtl(self.i, FMTN)} rev={rev} {why}')
 
+    def updateData(self, text, p, l, c, r, data=None, dbg=1):
+        if data is None: data = self.data # fix all these
+        t = data[p][l][c]
+        self.data[p][l][c] = t[0:r] + text + t[r+1:]
+#        if dbg2: self.dumpTabs(why=f' updateData text={text} i={self.i} data[p][l][c]={data[p][l][c]}')
+        if dbg: self.log(f'                 {t} <data[{p}][{l}][{c}]> {self.data[p][l][c]}')
+
+    def updateTab2(self, txt, cc, dbg=1):
+        oldTxt = self.tabs[cc].text
+        self.tabs[cc].text = txt
+        if dbg: self.log(f'                 {oldTxt} <tabs[{cc}].text> {self.tabs[cc].text}')
+
+    def updateNote(self, txt, cc, r, dbg=1):
+        oldNote = self.notes[cc].text
+        self.notes[cc].text = self.getNote(r, txt).name if self.isFret(txt) else self.nblank
+        if dbg: self.log(f'txt={txt} cc={cc} r={r} {oldNote} <notes[{cc}].text> {self.notes[cc].text}')
+
+    def updateChord(self, p, l, c, t, dbg=1, dbg2=1):
+        cc = self.plct2cc(p, l, c, t)    ;    nt = self.n[T]    ;    name = ''
+        if dbg: self.log(f'(BGN) p={p} l={l} c={c} t={t} cc={cc}')
+        chordName = self.cobj.getChordName(p, l, c, dbg=1)
+        if dbg2: self.log(f' chordName=<{chordName:<6}>')
+        self.updateChordName(chordName, cc)
+        if dbg:
+            for i in range(nt):
+                name += self.chords[cc + i].text
+            self.log(f'(END) chords[{cc}-{cc+nt}].text={name}')
+#            [self.log(f'(END) chords[{cc}].text={self.chords[cc + i].text}') for i in range(nt)]
+#        if dbg: self.log(f'(END) chords[{cc}].text=<{self.chords[cc].text}>')
+
+    def updateChordName(self, name, cc, dbg=1):
+        if dbg: self.log(f'(BGN) name={name} cc={cc}')
+        for r in range(self.n[T]):
+            self.chords[cc + r].text = name[r] if len(name) > r else ' '
+            if dbg: self.log(f'chords[{cc + r}].text={self.chords[cc + r].text}')
+        self.log(f'(END) name={name} cc={cc}')
+    '''
+    def OLD_updateData(self, text, data=None, dbg=1, dbg2=0):
+        if data is None: data = self.data
+        p, l, s, c, r = self.j()
+        t = data[p][l][c]
+        if dbg: self.log(f'(BGN) data[{p}][{l}][{c}]={self.data[p][l][c]}')
+        self.data[p][l][c] = t[0:r] + text + t[r+1:]
+        if dbg2: self.dumpTabs(why=f 'updateData text={text} i={self.i} data[p][l][c]={data[p][l][c]}')
+        if dbg: self.log(f'(END) data[{p}][{l}][{c}]={self.data[p][l][c]}')
+    def OLD_updateTab2(self, cc, txt, dbg=1):
+        if dbg: self.log(f'(BGN) tabs[{cc}].text={self.tabs[cc].text}')
+        self.tabs[cc].text = txt
+        if dbg: self.log(f'(END) tabs[{cc}].text={self.tabs[cc].text}')
+    def OLD_updateNote(self, cc, txt, dbg=1):
+        p, l, s, c, r = self.j()
+        if dbg: self.log(f'(BGN) notes[{cc}].text={self.notes[cc].text}')
+        self.notes[cc].text = self.getNote(r, txt).name if self.isFret(txt) else self.nblank
+        if dbg: self.log(f'(END) notes[{cc}].text={self.notes[cc].text}')
+    def OLD_updateChord(self, cc, dbg=1, dbg2=0):
+        p, l, s, c, r = self.j()
+        if dbg: self.log(f'(BGN) chords[{cc}].text=<{self.chords[cc].text}>')
+        chordName = self.cobj.getChordName(p, l, c)
+        if dbg2: self.log(f 'cc={cc} p={p} l={l} c={c} r={r} chordName=<{chordName:<6}>')
+        self.OLD_updateChordName(cc, chordName)
+        if dbg: self.log(f'(END) chords[{cc}].text=<{self.chords[cc].text}>')
+    def OLD_updateChordName(self, cc, name, dbg=1):
+        tc = cc - self.j()[T]
+        for k in range(self.n[T]):
+            self.chords[tc + k].text = name[k] if len(name) > k else ' '
+            if dbg:self.log(f 'chords[{tc+k}].text={self.chords[tc+k].text}')
+    '''
+    ####################################################################################################################################################################################################
     def dumpCursorArrows(self, why=''): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;   self.log(f'csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4} {why}')
     def reverseArrow(self, dbg=1):
         if dbg: self.dumpCursorArrows('reverseArrow()')
         if self.csrMode == MELODY or self.csrMode == ARPG: self.toggleHArrow('reverseArrow() MELODY or ARPG')
         if self.csrMode == CHORD  or self.csrMode == ARPG: self.toggleVArrow('reverseArrow() CHORD or ARPG')
         if dbg: self.dumpCursorArrows('reverseArrow()')
-
-    def updateTab(self, text, why='', rev=0, dbg=1):
-        self.log(f'(BGN) {self.kpEvntTxt()} {fmtl(self.i, FMTN)} rev={rev} {why}')
-        if rev: self.reverseArrow()    ;    self.autoMove()
-        cc = self.cursorCol()
-        self.updateData(text)
-        if self.TNIK[TT]: self.updateTab2( cc, text)
-        if self.TNIK[NN]: self.updateNote( cc, text)
-        if self.TNIK[KK]: self.updateChord(cc)
-        if rev: self.reverseArrow()
-        else:   self.autoMove()
-        if dbg: self.snapshot()
-        self.log(f'(END) {self.kpEvntTxt()} {fmtl(self.i, FMTN)} rev={rev} {why}')
-
-    def autoMove(self, dbg=1):
-        self.log('(BGN)')
-        ha = 1 if self.hArrow else -1
-        va = 1 if self.vArrow else -1
-        nt, it = self.n[T], self.i[T]
-        mmDist = ha * nt
-        cmDist = va
-        amDist = mmDist + cmDist
-        if dbg: self.dumpCursorArrows(f'M={mmDist} C={cmDist} A={amDist}')
-        if      self.csrMode == MELODY:          self.move(mmDist)
-        elif    self.csrMode == CHORD:
-            if  it == 1 and self.vArrow  == UP and self.hArrow == RIGHT: self.move(nt*2-1)
-            else:                                 self.move(cmDist)
-        elif    self.csrMode == ARPG:             self.move(amDist)
-        self.log('(END)')
-
-    def updateData(self, text, data=None, dbg=1, dbg2=0):
-        if data is None: data = self.data
-        p, l, s, c, r = self.j()
-        t = data[p][l][c]
-        if dbg: self.log(f'(BGN) data[{p}][{l}][{c}]={self.data[p][l][c]}')
-        self.data[p][l][c] = t[0:r] + text + t[r+1:]
-        if dbg2: self.dumpTabs(why=f'updateData text={text} i={self.i} data[p][l][c]={data[p][l][c]}')
-        if dbg: self.log(f'(END) data[{p}][{l}][{c}]={self.data[p][l][c]}')
-
-    def updateTab2(self, cc, txt, dbg=1, dbg2=0):
-        if dbg: self.log(f'(BGN) tabs[{cc}].text={self.tabs[cc].text}')
-        self.tabs[cc].text = txt
-        if dbg2: self.tabs[cc].color = FONT_COLORS[self.fontColorIndex + 4]
-        if dbg: self.log(f'(END) tabs[{cc}].text={self.tabs[cc].text}')
-
-    def updateNote(self, cc, txt, dbg=1, dbg2=0):
-        p, l, s, c, r = self.j()
-        if dbg: self.log(f'(BGN) notes[{cc}].text={self.notes[cc].text}')
-        self.notes[cc].text = self.getNote(r, txt).name if self.isFret(txt) else self.nblank
-        if dbg2: self.notes[cc].color = FONT_COLORS[self.fontColorIndex + 4]
-        if dbg: self.log(f'(END) notes[{cc}].text={self.notes[cc].text}')
-
-    def updateChord(self, cc, dbg=1, dbg2=0):
-        p, l, s, c, r = self.j()
-        if dbg: self.log(f'(BGN) chords[{cc}].text=<{self.chords[cc].text}>')
-        chordName = self.cobj.getChordName(p, l, c)
-        if dbg2: self.log(f'cc={cc} p={p} l={l} c={c} r={r} chordName=<{chordName:<6}>')
-        self.updateChordName(cc, chordName)
-        if dbg: self.log(f'(END) chords[{cc}].text=<{self.chords[cc].text}>')
-
-    def updateChordName(self, cc, name, dbg=1):
-        tc = cc - self.j()[T]
-        for k in range(self.n[T]):
-            self.chords[tc + k].text = name[k] if len(name) > k else ' '
-            if dbg:self.log(f'chords[{tc+k}].text={self.chords[tc+k].text}')
     ####################################################################################################################################################################################################
     def toggleChordName(self, rev=0):
         p, l, s, c, r = self.j()
-        cc = c + l * self.n[C]
+        cc = c + l * self.n[C] # fix
         self.log(f'(BGN) len={len(self.cobj.mlimap[cc])} p={p} l={l} c={c} r={r} cc={cc} rev={rev} {self.cobj.mlimap[cc]}')
         chordName = self.cobj.toggleChordName(rev)
         cc2 = self.cursorCol()
-        self.updateChordName(cc2, chordName)
+        self.updateChordName(chordName, cc2)
         self.log(f'(END) len={len(self.cobj.mlimap[cc])} p={p} l={l} c={c} r={r} cc={cc} cc2={cc2} rev={rev} {self.cobj.mlimap[cc]}')
 
     def setCHVMode(self, c=None, h=None, v=None, why=''):
-#        self.log(f'(BGN) csrMode={self.csrMode}={CSR_MODES[self.csrMode]} {why}')
         self.dumpCursorArrows(f'setCHVMode() c={c} h={h} v={v} why={why}')
         if c is not None: self.csrMode = c
         if h is not None: self.hArrow = h
         if v is not None: self.vArrow = v
         self.dumpCursorArrows(f'setCHVMode() c={c} h={h} v={v} why={why}')
-#        self.log(f'(END) csrMode={self.csrMode}={CSR_MODES[self.csrMode]} {why}')
 
     def toggleCursorMode(self, why=''):
         self.log(f'(BGN) csrMode={self.csrMode}={CSR_MODES[self.csrMode]} {why}')
