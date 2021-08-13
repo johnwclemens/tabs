@@ -1139,12 +1139,14 @@ class Tabs(pyglet.window.Window):
         self.kbk = self.symbStr  ;  kbk = self.kbk   ;   why='on_key_press'
         if dbg: self.log(f'(BGN) {self.kpEvntTxt()}')
         if                  self.isTab(kbk):                          self.updateTab(kbk, why)
+        elif kbk == 'A' and self.isCtrl(mods) and self.isShift(mods): self.toggleVArrow()
+        elif kbk == 'A' and self.isCtrl(mods):                        self.toggleHArrow()
         elif kbk == 'B' and self.isCtrl(mods) and self.isShift(mods): self.toggleBlank()
         elif kbk == 'B' and self.isCtrl(mods):                        self.toggleBlank()
         elif kbk == 'C' and self.isCtrl(mods) and self.isShift(mods): self.copyTabCols()
         elif kbk == 'C' and self.isCtrl(mods):                        self.copyTabCols()
-        elif kbk == 'D' and self.isCtrl(mods) and self.isShift(mods): self.toggleVArrow()
-        elif kbk == 'D' and self.isCtrl(mods):                        self.toggleHArrow()
+        elif kbk == 'D' and self.isCtrl(mods) and self.isShift(mods): self.deleteTabCols()
+        elif kbk == 'D' and self.isCtrl(mods):                        self.deleteTabCols()
         elif kbk == 'E' and self.isCtrl(mods) and self.isShift(mods): self.erase()
         elif kbk == 'E' and self.isCtrl(mods):                        self.erase()
         elif kbk == 'F' and self.isCtrl(mods) and self.isShift(mods): self.toggleFullScreen()
@@ -1392,6 +1394,21 @@ class Tabs(pyglet.window.Window):
         self.move(m)
         self.log(f'(END) {why} m={m} cc={cc} sc={sc} smap<{len(self.smap)}>={fmtd(self.smap)}')
 
+    def deleteTabCols(self):
+        p, l, c, r = 0, 0, 0, 0   ;    nt = self.n[T]
+        for k,v in self.smap.items():
+            self.log(f'k={k} v={v}')
+            for t in range(nt):
+#                oldText = self.tabs[k + t].text
+#                self.tabs[k + t].text  = self.tblank
+#                self.tabs[k + t].color = CCS[0]
+#                self.log(f'             {oldText} <> {self.tabs[k + t].text}')
+                p, l, c, r = self.cc2plct(k + t)
+                self.updateData(self.tblank, p, l, c, t)
+                if  self.TNIK[TT]: self.updateTab2(self.tblank, k + t)
+                if  self.TNIK[NN]:self.updateNote (self.nblank, k + t, t)
+            if      self.TNIK[KK]: self.updateChord(p, l, c, 0)
+
     def copyTabCols(self, dbg=0, dbg2=0):
         self.log(f'(BGN) skeys<{len(self.skeys)}>={self.skeys}')   ;   nt = self.n[T]  ;   text = ''
         for k in range(len(self.skeys)):
@@ -1416,7 +1433,7 @@ class Tabs(pyglet.window.Window):
             dk = 0 if not i else sk[i] - sk[0]
             if dbg: self.log(f'i={i} k={k} v={v} text={text} scm={scm} dk={dk}')
             for t in range(nt):
-                sc = nc + dk + t    ;    scm = sc % self.tpp
+                sc = nc + dk + t    ;    scm = sc % nt
                 p, l, c, r = self.cc2plct(scm)
                 if dbg: self.log(f'p={p} l={l} c={c} r={r} t={t} sc={sc} scm={scm}')
                 self.updateData(text[t], p, l, c, t)
@@ -1444,17 +1461,17 @@ class Tabs(pyglet.window.Window):
         t = data[p][l][c]
         self.data[p][l][c] = t[0:r] + text + t[r+1:]
 #        if dbg2: self.dumpTabs(why=f' updateData text={text} i={self.i} data[p][l][c]={data[p][l][c]}')
-        if dbg: self.log(f'                 {t} <data[{p}][{l}][{c}]> {self.data[p][l][c]}')
+        if dbg: self.log(f'text={text} p={p} l={l} c={c} r={r} {t} <data[{p}][{l}][{c}]> {self.data[p][l][c]}')
 
     def updateTab2(self, txt, cc, dbg=1):
         oldTxt = self.tabs[cc].text
         self.tabs[cc].text = txt
-        if dbg: self.log(f'                 {oldTxt} <tabs[{cc}].text> {self.tabs[cc].text}')
+        if dbg: self.log(f'txt={txt}               {oldTxt} <tabs[{cc}].text> {self.tabs[cc].text}')
 
     def updateNote(self, txt, cc, r, dbg=1):
         oldNote = self.notes[cc].text
         self.notes[cc].text = self.getNote(r, txt).name if self.isFret(txt) else self.nblank
-        if dbg: self.log(f'txt={txt} cc={cc} r={r} {oldNote} <notes[{cc}].text> {self.notes[cc].text}')
+        if dbg: self.log(f'txt={txt} cc={cc} r={r}      {oldNote} <notes[{cc}].text> {self.notes[cc].text}')
 
     def updateChord(self, p, l, c, t, dbg=1, dbg2=1):
         cc = self.plct2cc(p, l, c, t)    ;    nt = self.n[T]    ;    name = ''
@@ -1467,7 +1484,6 @@ class Tabs(pyglet.window.Window):
                 name += self.chords[cc + i].text
             self.log(f'(END) chords[{cc}-{cc+nt}].text={name}')
 #            [self.log(f'(END) chords[{cc}].text={self.chords[cc + i].text}') for i in range(nt)]
-#        if dbg: self.log(f'(END) chords[{cc}].text=<{self.chords[cc].text}>')
 
     def updateChordName(self, name, cc, dbg=1):
         if dbg: self.log(f'(BGN) name={name} cc={cc}')
