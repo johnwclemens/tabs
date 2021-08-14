@@ -1390,7 +1390,7 @@ class Tabs(pyglet.window.Window):
         for t in range(nt):
             tab = self.tabs[sc + t]    ;    oldColor = tab.color
             tab.color = CCS[1]
-            if dbg and not t: self.dumpWBWAW(f'cc={cc} sc={sc} t={t}', oldColor, f'<tabs[{sc+t}].color>', tab.color)
+            if dbg and not t: self.dumpWBWAW(f'cc={cc} sc={sc} t={t}', fmtl(oldColor), f'<tabs[{sc+t}].color>', fmtl(tab.color))
             text += tab.text
         self.smap[sc] = text
         self.move(m)
@@ -1403,104 +1403,61 @@ class Tabs(pyglet.window.Window):
                 kv  = self.skeys[k]    ;          kt = kv + t
                 tab = self.tabs[kt]    ;    oldColor = tab.color
                 tab.color = self.k[T][0]
-                if dbg2 and not t: self.dumpWBWAW(f'k={k} t={t} kv={kv} kt={kt}', oldColor, f'<tabs[{kt}].color>', tab.color)
+                if dbg2 and not t: self.dumpWBWAW(f'k={k} t={t} kv={kv} kt={kt}', fmtl(oldColor), f'<tabs[{kt}].color>', fmtl(tab.color))
                 if dbg: text += tab.text
             if dbg: text += ' '
         self.log(f'(END) skeys<{len(self.skeys)}>={self.skeys}', end=' ' if dbg else '\n')
         if dbg: self.log(f'text={text}', ind=0)
-
-    def cutTabCols(self): self.log('(BGN) Cut = Copy + Delete?')  ;  self.copyTabCols()  ;  self.log('Cut = Copy + Delete?')  ;  self.deleteTabCols()  ;  self.log('(END) Cut = Copy + Delete?')
-
-    def OLD_deleteTabCols(self):
-        p, l, c, r = 0, 0, 0, 0   ;    nt = self.n[T]
-        for k,v in self.smap.items():
-            self.log(f'k={k} v={v}')
-            for t in range(nt):
-                p, l, c, r = self.cc2plct(k + t, dbg=0)
-                self.tabs[k].color = self.k[T][0]
-                self.updateData(self.tblank, p, l, c, t)
-                if  self.TNIK[TT]: self.updateTab2(self.tblank, k + t)
-                if  self.TNIK[NN]: self.updateNote(self.nblank, k + t, t)
-            if      self.TNIK[KK]: self.updateChord(p, l, c, 0)
-    def OLD_pasteTabCols(self, dbg=1):
-        cc = self.cursorCol()  ;  nt = self.n[T]
-        nc = (cc // nt) * nt   ;  sc = 0
-        sm, sk = self.smap, self.skeys
-        p, l, s, c, r = self.j()
-        self.log(f'(BGN) p={p} l={l} c={c} r={r} cc={cc} nc={nc} sk={sk} sm={sm}')
-        for i, (k, v) in enumerate(sm.items()):
-            text = sm[k]
-            dk = 0 if not i else sk[i] - sk[0]
-            if dbg: self.log(f'i={i} k={k} v={v} text={text} dk={dk}')
-            for t in range(nt):
-                sc = (nc + dk + t) % self.tpp
-                p, l, c, r = self.cc2plct(sc, dbg=0)
-                if dbg: self.log(f'p={p} l={l} c={c} r={r} t={t} sc={sc}')
-                self.updateData(text[t], p, l, c, t)
-                if  self.TNIK[TT]: self.updateTab2(text[t], sc)
-                if  self.TNIK[NN]: self.updateNote(text[t], sc, t)
-            if      self.TNIK[KK]: self.updateChord(p, l, c, 0)
-            if dbg: self.log(f'sm[{k}]={text} sc={sc}')
-        self.log(f'(END) cc={cc} nc={nc}')
-    def OLD_updateTab(self, text, why='', rev=0, dbg=1):
-        self.log(f'(BGN) {self.kpEvntTxt()} {fmtl(self.i, FMTN)} rev={rev} {why}')
-        if rev: self.reverseArrow()    ;    self.autoMove()
-        cc = self.cursorCol()          ;    p, l, s, c, t = self.j()
-        self.updateData(text, p, l, c, t)
-        if self.TNIK[TT]: self.updateTab2( text, cc)
-        if self.TNIK[NN]: self.updateNote( text, cc, t)
-        if self.TNIK[KK]: self.updateChord(p, l, c, t)
-        if rev: self.reverseArrow()
-        else:   self.autoMove()
-        if dbg: self.snapshot()
-        self.log(f'(END) {self.kpEvntTxt()} {fmtl(self.i, FMTN)} rev={rev} {why}')
     ####################################################################################################################################################################################################
-    def deleteTabCols(self):
-        oldSmap = self.smap   ;  nt = self.n[T]
-        for k,v in self.smap.items():
-            self.log(f'k={k} v={v}')
+    def cutTabCols(self): self.log('(BGN) Cut = Copy + Delete?')  ;  self.copyTabCols()  ;  self.log('Cut = Copy + Delete?')  ;  self.deleteTabCols(cut=1)  ;  self.log('(END) Cut = Copy + Delete?')
+    ####################################################################################################################################################################################################
+    def deleteTabCols(self, cut=0):
+        self.log(f'(BGN) cut={cut} skeys<{len(self.skeys)}>={fmtl(self.skeys)} smap<{len(self.smap)}>={fmtd(self.smap)}')
+        nt = self.n[T]
+        for i, (k,v) in enumerate(self.smap.items()):
+            self.log(f'i={i} k={k} v={v}')
             for t in range(nt):
                 p, l, c, r = self.cc2plct(k + t, dbg=0)
                 self.tabs[k].color = self.k[T][0]
-                self.updateDTNK(self.tblank, k + t, p, l, c, t)
-        self.smap.clear()  ;  self.skeys.clear()
-        self.dumpWBWAW(f'', oldSmap, '', self.smap)
+                self.updateDTNK(self.tblank, k + t, p, l, c, t, uk=1 if t == nt-1 else 0)
+        if not cut: self.smap.clear()  ;  self.skeys.clear()
+        self.log(f'(END) cut={cut} skeys<{len(self.skeys)}>={fmtl(self.skeys)} smap<{len(self.smap)}>={fmtd(self.smap)}')
 
     def pasteTabCols(self, dbg=1):
         cc = self.cursorCol()  ;  nt = self.n[T]
         nc = (cc // nt) * nt   ;  sc = 0
-        sm, sk = self.smap, self.skeys
+        smap, skeys = self.smap, self.skeys
         p, l, s, c, r = self.j()
-        self.log(f'(BGN) p={p} l={l} c={c} r={r} cc={cc} nc={nc} sk={sk} sm={sm}')
-        for i, (k, v) in enumerate(sm.items()):
-            text = sm[k]
-            dk = 0 if not i else sk[i] - sk[0]
+        self.log(f'(BGN) p={p} l={l} c={c} r={r} cc={cc} nc={nc} skeys<{len(skeys)}>={fmtl(skeys)} smap<{len(smap)}>={fmtd(smap)}')
+        for i, (k, v) in enumerate(smap.items()):
+            text = smap[k]
+            dk = 0 if not i else skeys[i] - skeys[0]
             if dbg: self.log(f'i={i} k={k} v={v} text={text} dk={dk}')
             for t in range(nt):
                 sc = (nc + dk + t) % self.tpp
                 p, l, c, r = self.cc2plct(sc, dbg=0)
-                if dbg: self.log(f'p={p} l={l} c={c} r={r} t={t} sc={sc}')
-                self.updateDTNK(text[t], sc, p, l, c, t)
+                self.updateDTNK(text[t], sc, p, l, c, t, uk=1 if t == nt-1 else 0)
             if dbg: self.log(f'sm[{k}]={text} sc={sc}')
-        self.log(f'(END) cc={cc} nc={nc}')
+        self.smap.clear()  ;  self.skeys.clear()
+        self.log(f'(END) cc={cc} nc={nc} skeys<{len(skeys)}>={fmtl(skeys)} smap<{len(smap)}>={fmtd(smap)}')
 
     def updateTab(self, text, why='', rev=0, dbg=1):
         self.log(f'(BGN) text={text} rev={rev} {why} {fmtl(self.i, FMTN)}')
         if rev: self.reverseArrow()    ;    self.autoMove()
         cc = self.cursorCol()          ;    p, l, s, c, t = self.j()
-        self.updateDTNK(text, cc, p, l, c, t)
+        self.updateDTNK(text, cc, p, l, c, t, uk=1)
         if rev: self.reverseArrow()
         else:   self.autoMove()
         if dbg: self.snapshot()
         self.log(f'(END) text={text} rev={rev} {why} {fmtl(self.i, FMTN)}')
     ####################################################################################################################################################################################################
-    def updateDTNK(self, text, cc, p, l, c, t, dbg=1):
-        if dbg: self.log(f'(BGN) text={text} cc={cc} p={p} l={l} c={c} t={t}')
+    def updateDTNK(self, text, cc, p, l, c, t, uk=0, dbg=1):
+        if dbg: self.log(f'(BGN) text={text} cc={cc} p={p} l={l} c={c} t={t} uk={uk}')
         self.updateData(text, p, l, c, t)
         if self.TNIK[TT]: self.updateTab2( text, cc)
         if self.TNIK[NN]: self.updateNote( text, cc, t)
-        if self.TNIK[KK]: self.updateChord(p, l, c, t)
-        if dbg: self.log(f'(END) text={text} cc={cc} p={p} l={l} c={c} t={t}')
+        if self.TNIK[KK] and uk: self.updateChord(p, l, c, t)
+        if dbg: self.log(f'(END) text={text} cc={cc} p={p} l={l} c={c} t={t} uk={uk}')
     ####################################################################################################################################################################################################
     def updateData(self, text, p, l, c, r, data=None, dbg=1):
         if data is None: data = self.data # fix all these
@@ -1537,7 +1494,7 @@ class Tabs(pyglet.window.Window):
             if dbg: self.log(f'chords[{cc + r}].text={self.chords[cc + r].text}')
         self.log(f'(END) name={name} cc={cc}')
 
-    def dumpWBWAW(self, why, before, what, after, why2=''): self.log(f'{why:24} {before} {what:16} {after} {why2}')
+    def dumpWBWAW(self, why, before, what, after, why2=''): self.log(f'{why:<24} {before:>16} {what:^20} {after:<16} {why2}')
     ####################################################################################################################################################################################################
     def dumpCursorArrows(self, why=''): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;   self.log(f'csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4} {why}')
     def reverseArrow(self, dbg=1):
@@ -1558,8 +1515,8 @@ class Tabs(pyglet.window.Window):
     def setCHVMode(self, c=None, h=None, v=None, why=''):
         self.dumpCursorArrows(f'setCHVMode() c={c} h={h} v={v} why={why}')
         if c is not None: self.csrMode = c
-        if h is not None: self.hArrow = h
-        if v is not None: self.vArrow = v
+        if h is not None: self.hArrow  = h
+        if v is not None: self.vArrow  = v
         self.dumpCursorArrows(f'setCHVMode() c={c} h={h} v={v} why={why}')
 
     def toggleCursorMode(self, why=''):

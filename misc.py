@@ -47,8 +47,9 @@ class Chord(object):
         if   self.limap1 and self.limap1[0]: return self.limap1[0][2]
         elif self.limap2 and self.limap2[0]: return self.limap2[0][2]
 
-    def getChordName(self, p, l, c, dbg=0):
-        cc = c + l * self.tobj.n[tabs.C]
+    def getChordName(self, p, l, c, dbg=1):
+        cc = self.tobj.plct2cc(p, l, c, 0)
+        tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}')
 #        if cc in self.mlimap: tabs.Tabs.log(f'ERROR: Unexpected key cc={cc} exists')   ;   return ''
         self.limap= []  ;  chordName = ''
         imapKeys, imapNotes   = None, None   ;   d1, d2 = '<', '>'
@@ -62,7 +63,7 @@ class Chord(object):
         if chordName:
             if dbg: tabs.Tabs.log(f'Outer Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
             self.mlimap[cc] = self.limap
-            if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}', file=self.logFile)
+        if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}', file=self.logFile)
         self.limap.extend(self.limap1)  ;  self.limap1 = []
         self.limap.extend(self.limap2)  ;  self.limap2 = []
         if dbg:
@@ -90,6 +91,7 @@ class Chord(object):
         _tabs      = self.tobj.data[p][l][c]
         strIndices = [Note.INDICES[k] for k in strKeys]
         notes = []  ;  nt = len(_tabs)  ;   mask2 = []
+        if dbg2: tabs.Tabs.log(f'p={p} l={l} c={c} text={_tabs}', file=self.logFile)
         for t in range(nt):
             if tabs.Tabs.isFret(_tabs[t]): mask2.insert(0, 1)  ;  note = self.tobj.getNote(t, _tabs[t]).name  ;  notes.insert(0, note)
             else:                          mask2.insert(0, 0)
