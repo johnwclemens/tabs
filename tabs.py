@@ -25,12 +25,11 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1
+CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 1
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
-VERBOSE          = 0
 PATH             = pathlib.Path(sys.argv[0])
 BASE_PATH        = PATH.parent
 BASE_NAME        = BASE_PATH.stem
@@ -619,7 +618,7 @@ class Tabs(pyglet.window.Window):
             tab = self.data[p][l][cc][tt]
             note = self.getNote(tt, tab).name if self.isFret(tab) else self.nblank
             if not t:   chordName = self.cobj.getChordName(p, l, cc)
-            chord = chordName[tt] if len(chordName) > tt else ' '
+            chord = chordName[tt] if len(chordName) > tt else self.nblank
             text  = tab if tnik == TT else note if tnik == NN else chord if tnik == KK else '???'
 #            self.createLabel(text, j=_tnik, p=tabs, x=0, y=0, w=0, h=0, kk=self.cci(_t, k[tnik]), g=self.g[T], why=why, kl=k[tnik], dbg=dbg)
             self.showLabel(tt, p=tabs, j=_tnik, t=f'{text}', g=self.g[T], k=k[tnik])
@@ -809,7 +808,7 @@ class Tabs(pyglet.window.Window):
                 elif CCC > 1 and c == C2: chord = self.cpoLabel[t]       ;  plist = self.cpols   ;  kl = kk2   ;  k = self.cci(t, kl)  ;  self.J2[F] += 1  ;  why = f'New CpoL {self.J2[F]}'
                 else:
                     if not t: chordName = self.cobj.getChordName(p, l, c)
-                    chord = chordName[t] if len(chordName) > t else ' '
+                    chord = chordName[t] if len(chordName) > t else self.nblank
                     plist = self.chords  ;  kl = kk    ;  k = self.cci(t, kl)  ;  self.J2[K] += 1  ;  why = f'New Chord {self.J2[K]}'
                 self.createLabel(chord, K, plist,  xt, yt - t*ht, wt, ht, k, gt, why=why, kl=kl, dbg=dbg)  ;  yield chord
             else: self.log(f'ERROR Not Handled s={s} tt={tt} nn={nn} kk={kkk}')  ;  yield None
@@ -890,7 +889,7 @@ class Tabs(pyglet.window.Window):
                 else:
                     chord = self.chords[sk]   ;    sk += 1  ;  why = f'Mod Chord {sk}'
 #                    if not t:   chordName = self.cobj.getChordName(p, l, c)
-#                    chord.text = chordName[t] if len(chordName) > t else ' '
+#                    chord.text = chordName[t] if len(chordName) > t else self.nblank
                 chord.width = w  ;  chord.height = h  ;  chord.x = x  ;  chord.y = y - t * h  ;  lbl = chord
                 self.J1[K] = t   ;  self.J2[K] = sk   ;  self.J2[E] = strl  ;  self.J2[F] = cpol
                 if dbg:   self.dumpLabel(lbl, *self.ids(), *self.cnts(), why=why)
@@ -1177,8 +1176,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'X' and self.isCtrl(mods) and self.isShift(mods): self.cutTabCols()
         elif kbk == 'X' and self.isCtrl(mods):                        self.cutTabCols()
         elif kbk == 'SPACE':                                          self.autoMove()
-#        elif kbk == 'DELETE':                                         self.updateTab(self.tblank, 'DELETE')
-#        elif kbk == 'BACKSPACE':                                      self.updateTab(self.tblank, 'BACKSPACE', backspace=1)
+        elif kbk == 'ESCAPE':                                         self.deleteTabCols(why='ESCAPE')
         elif kbk == 'TAB':                                            self.setCHVMode(MELODY, RIGHT, why='')
         elif kbk == 'TAB'       and self.isCtrl(mods):                self.setCHVMode(MELODY, LEFT,  why='TAB')
         elif kbk == 'ENTER':                                          self.setCHVMode(CHORD,  UP,    why='ENTER')
@@ -1384,6 +1382,10 @@ class Tabs(pyglet.window.Window):
     '''
     def updateCaption(self, txt): self.set_caption(txt)
     ####################################################################################################################################################################################################
+    def clearSelect(self, why):
+        self.log(f'{why}')
+        self.smap.clear()  ;  self.skeys.clear()
+
     def selectTabCol(self, m, why='', dbg=1):
         cc = self.cursorCol()  ;  nt = self.n[T]  ;  text = ''
         sc = (cc // nt) * nt
@@ -1415,8 +1417,8 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def cutTabCols(self): self.log('(BGN) Cut = Copy + Delete?')  ;  self.copyTabCols()  ;  self.log('Cut = Copy + Delete?')  ;  self.deleteTabCols(cut=1)  ;  self.log('(END) Cut = Copy + Delete?')
     ####################################################################################################################################################################################################
-    def deleteTabCols(self, cut=0):
-        self.log(f'(BGN) cut={cut} skeys<{len(self.skeys)}>={fmtl(self.skeys)} smap<{len(self.smap)}>={fmtd(self.smap)}')
+    def deleteTabCols(self, cut=0, why=''):
+        self.log(f'(BGN) {why} cut={cut} skeys<{len(self.skeys)}>={fmtl(self.skeys)} smap<{len(self.smap)}>={fmtd(self.smap)}')
         nt = self.n[T]
         for i, (k,v) in enumerate(self.smap.items()):
             self.log(f'i={i} k={k} v={v}')
@@ -1495,7 +1497,7 @@ class Tabs(pyglet.window.Window):
     def updateChordName(self, name, cc, dbg=1):
         if dbg: self.log(f'(BGN) name={name} cc={cc}')
         for r in range(self.n[T]):
-            self.chords[cc + r].text = name[r] if len(name) > r else ' '
+            self.chords[cc + r].text = name[r] if len(name) > r else self.nblank
             if dbg: self.log(f'chords[{cc + r}].text={self.chords[cc + r].text}')
         self.log(f'(END) name={name} cc={cc}')
 
@@ -1569,8 +1571,8 @@ class Tabs(pyglet.window.Window):
         self.log(f'(END) replace({src},{trg})')
     ####################################################################################################################################################################################################
     def erase(self, reset=0):
-        np, nl, ns, nr, nc = self.n  ;  nc += CCC
-        self.log(f'(BGN) np={np} nl={nl} ns={ns} nr={nr} nc={nc}')
+        np, nl, ns, nc, nt = self.n  ;  nc += CCC
+        self.log(f'(BGN) np={np} nl={nl} ns={ns} nc={nc} nt={nt}')
         for i in range(len(self.tabs)):
             self.tabs  [i].text = self.tblank
             self.notes [i].text = self.nblank
@@ -1583,7 +1585,8 @@ class Tabs(pyglet.window.Window):
             self.log(f'reset={reset} CCC={CCC}')
             if CCC:     self.setStringNumbs()  ;  self.setStringNames()
             if CCC > 1: self.setCapo()
-        self.log(f'(END) np={np} nl={nl} nr={nr} nc={nc}')
+        self.log(f'(END) np={np} nl={nl} ns={ns} nc={nc} nt={nt}')
+
     '''
     def setStringNumbs(self):
         np, nl, ns, nr, nc = self.n  ;  nc += CCC  ;  i = C1
