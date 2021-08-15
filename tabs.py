@@ -161,7 +161,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[f]  FULL_SCREEN={FULL_SCREEN}')
         self.log(f'[g]  ORDER_GROUP={ORDER_GROUP}')
         self.log(f'[s]       SUBPIX={SUBPIX}')
-        self.fontBold, self.fontItalic, self.fontColorIndex, self.fontDpiIndex, self.fontNameIndex, self.fontSize = 0, 0, 0, 4, 0, 24 if FULL_SCREEN else 14
+        self.fontBold, self.fontItalic, self.fontColorIndex, self.fontDpiIndex, self.fontNameIndex, self.fontSize = 0, 0, 0, 4, 0, 48 if FULL_SCREEN else 14
         self.dumpFont()
         if    self.n[T] == 6: self.stringMap = collections.OrderedDict([('E2', 28), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52)])
         elif  self.n[T] == 7: self.stringMap = collections.OrderedDict([('E2', 28), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52), ('A4', 57)])
@@ -226,8 +226,8 @@ class Tabs(pyglet.window.Window):
         if EVENT_LOG:
             self.eventLogger = pygwine.WindowEventLogger()
             self.push_handlers(self.eventLogger)
-            self.keyboard = pygwine.key.KeyStateHandler()
-            self.push_handlers(self.keyboard)
+#            self.keyboard = pygwine.key.KeyStateHandler()
+#            self.push_handlers(self.keyboard)
         if dbg: self.log(f'(END) {self.fmtWH()}')
 
     def fmtWH(self, w=None, h=None, d1='(', d2=')'):
@@ -1084,7 +1084,7 @@ class Tabs(pyglet.window.Window):
         self.log(fs, ind=0)
     ####################################################################################################################################################################################################
     def resizeFonts(self):
-        ms = self.minSize()  ;  slope, off = 0.6, -1
+        ms = self.minSize()  ;  slope, off = 0.6, 3
         fs = fri(ms * slope + off)  ;  formula = '(fs = ms*slope+off)'
         self.log(f'{self.fmtWH()} {formula} ms={ms:4.1f} slope={slope} off={off} fs={fs:4.1f}={fri(fs):2}')
         self.setFontParam('font_size', fs, 'fontSize')
@@ -1388,9 +1388,10 @@ class Tabs(pyglet.window.Window):
         self.skeys.append(sc)
         self.log(f'(BGN) {why} m={m} cc={cc} sc={sc} skeys<{len(self.skeys)}>={fmtl(self.skeys)}')
         for t in range(nt):
-            tab = self.tabs[sc + t]    ;    oldColor = tab.color
-            tab.color = CCS[1]
-            if dbg and not t: self.dumpWBWAW(f'cc={cc} sc={sc} t={t}', fmtl(oldColor), f'<tabs[{sc+t}].color>', fmtl(tab.color))
+            tab   = self.tabs[sc + t]    ;  old = tab.color  ;  tab.color = CCS[1]
+            note  = self.notes[sc + t]   ;                     note.color = CCS[1]
+            chord = self.chords[sc + t]  ;                    chord.color = CCS[1]
+            if dbg and not t: self.dumpWBWAW(f'cc={cc} sc={sc} t={t}', fmtl(old), f'<tabs[{sc+t}].color>', fmtl(tab.color))
             text += tab.text
         self.smap[sc] = text
         self.move(m)
@@ -1400,10 +1401,11 @@ class Tabs(pyglet.window.Window):
         self.log(f'(BGN) skeys<{len(self.skeys)}>={self.skeys}')   ;   nt = self.n[T]  ;   text = ''
         for k in range(len(self.skeys)):
             for t in range(nt):
-                kv  = self.skeys[k]    ;          kt = kv + t
-                tab = self.tabs[kt]    ;    oldColor = tab.color
-                tab.color = self.k[T][0]
-                if dbg2 and not t: self.dumpWBWAW(f'k={k} t={t} kv={kv} kt={kt}', fmtl(oldColor), f'<tabs[{kt}].color>', fmtl(tab.color))
+                kv     = self.skeys [k]   ;   kt = kv + t
+                tab    = self.tabs  [kt]  ;  old = tab.color  ;  tab.color = self.k[T][0]
+                note   = self.notes [kt]  ;                     note.color = self.k[N][0]
+                chord  = self.chords[kt]  ;                    chord.color = self.k[K][0]
+                if dbg2 and not t: self.dumpWBWAW(f'k={k} t={t} kv={kv} kt={kt}', fmtl(old), f'<tabs[{kt}].color>', fmtl(tab.color))
                 if dbg: text += tab.text
             if dbg: text += ' '
         self.log(f'(END) skeys<{len(self.skeys)}>={self.skeys}', end=' ' if dbg else '\n')
@@ -1417,9 +1419,11 @@ class Tabs(pyglet.window.Window):
         for i, (k,v) in enumerate(self.smap.items()):
             self.log(f'i={i} k={k} v={v}')
             for t in range(nt):
-                p, l, c, r = self.cc2plct(k + t, dbg=0)
-                self.tabs[k].color = self.k[T][0]
-                self.updateDTNK(self.tblank, k + t, p, l, c, t, uk=1 if t == nt-1 else 0)
+                p, l, c, r = self.cc2plct(k + t, dbg=0)   ;   kt = k + t
+                self.tabs  [kt].color = self.k[T][0]
+                self.notes [kt].color = self.k[N][0]
+                self.chords[kt].color = self.k[K][0]
+                self.updateDTNK(self.tblank, k, p, l, c, t, uk=1 if t == nt-1 else 0)
         if not cut: self.smap.clear()  ;  self.skeys.clear()
         self.log(f'(END) cut={cut} skeys<{len(self.skeys)}>={fmtl(self.skeys)} smap<{len(self.smap)}>={fmtd(self.smap)}')
 
@@ -1454,16 +1458,14 @@ class Tabs(pyglet.window.Window):
     def updateDTNK(self, text, cc, p, l, c, t, uk=0, dbg=1):
         if dbg: self.log(f'(BGN) text={text} cc={cc} p={p} l={l} c={c} t={t} uk={uk}')
         self.updateData(text, p, l, c, t)
-        if self.TNIK[TT]: self.updateTab2( text, cc)
-        if self.TNIK[NN]: self.updateNote( text, cc, t)
+        if self.TNIK[TT]:        self.updateTab2( text, cc)
+        if self.TNIK[NN]:        self.updateNote( text, cc, t)
         if self.TNIK[KK] and uk: self.updateChord(p, l, c, t)
         if dbg: self.log(f'(END) text={text} cc={cc} p={p} l={l} c={c} t={t} uk={uk}')
     ####################################################################################################################################################################################################
-    def updateData(self, text, p, l, c, r, data=None, dbg=1):
-        if data is None: data = self.data # fix all these
-        t = data[p][l][c]
+    def updateData(self, text, p, l, c, r, dbg=1):
+        t = self.data[p][l][c]
         self.data[p][l][c] = t[0:r] + text + t[r+1:]
-#        if dbg2: self.dumpTabs(why=f' updateData text={text} i={self.i} data[p][l][c]={data[p][l][c]}')
         if dbg: self.dumpWBWAW(f'({text} {p} {l} {c} {r})', t, f'<data[{p}][{l}][{c}]>', self.data[p][l][c])
 
     def updateTab2(self, txt, cc, dbg=1):
@@ -1486,6 +1488,7 @@ class Tabs(pyglet.window.Window):
             for i in range(nt):
                 name += self.chords[cc + i].text
             self.log(f'(END) chords[{cc}-{cc+i}].text={name}')
+        else: self.log(f'(END) chordName={chordName}')
 
     def updateChordName(self, name, cc, dbg=1):
         if dbg: self.log(f'(BGN) name={name} cc={cc}')
