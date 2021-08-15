@@ -2,6 +2,8 @@ import sys, os, collections
 sys.path.insert(0, os.path.abspath('.'))
 import tabs
 
+VERBOSE = tabs.VERBOSE
+
 class Note(object):
     NUM_SEMI_TONES = 12
     SHARP_TONES    = { 0:'C', 1:'C#', 2:'D', 3:'D#', 4:'E', 5:'F', 6:'F#', 7:'G', 8:'G#', 9:'A', 10:'A#', 11:'B' }
@@ -47,9 +49,9 @@ class Chord(object):
         if   self.limap1 and self.limap1[0]: return self.limap1[0][2]
         elif self.limap2 and self.limap2[0]: return self.limap2[0][2]
 
-    def getChordName(self, p, l, c, dbg=1):
+    def getChordName(self, p, l, c, dbg=VERBOSE):
         cc = self.tobj.plct2cc(p, l, c, 0)
-        tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}')
+        if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}')
 #        if cc in self.mlimap: tabs.Tabs.log(f'ERROR: Unexpected key cc={cc} exists')   ;   return ''
         self.limap= []  ;  chordName = ''
         imapKeys, imapNotes   = None, None   ;   d1, d2 = '<', '>'
@@ -83,7 +85,7 @@ class Chord(object):
             self.dumpLimap(limap, why=f'after  len={len(limap)} p={p} l={l} c={c} cc={cc} rev={rev}')
             return limap[0][2]
    ####################################################################################################################################################################################################
-    def getNotesIndices(self, p, l, c, dbg=1, dbg2=0):
+    def getNotesIndices(self, p, l, c, dbg=VERBOSE, dbg2=0):
         mask = [1] * self.tobj.n[tabs.T]
         strNumbs   = self.tobj.stringNumbs
         strKeys    = self.tobj.stringKeys
@@ -109,7 +111,7 @@ class Chord(object):
             if dbg:  self.dumpData(indices,    mask2, 'Indices')
         return mask2, notes, indices
 
-    def getIntervals(self, indices, j, mask, order=1, dbg=1):
+    def getIntervals(self, indices, j, mask, order=1, dbg=VERBOSE):
         deltas = []  ;  nst = Note.NUM_SEMI_TONES
         for i in indices:
             if i - indices[j] >= 0:
@@ -128,7 +130,7 @@ class Chord(object):
         if dbg: self.dumpData(intervals, mask, 'Intervals')
         return intervals
 
-    def getImapKeys(self, intervals, notes, mask, dbg=1, dbg2=0):
+    def getImapKeys(self, intervals, notes, mask, dbg=VERBOSE, dbg2=0):
         imap = collections.OrderedDict(sorted(dict(zip(intervals, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
         imapKeys  = list(imap.keys())
         imapNotes = list(imap.values())
