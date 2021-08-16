@@ -25,14 +25,41 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 1
+def fmtl(l, w=None, u='<', d1='[', d2=']'):
+    t = ''
+    for i in range(len(l)):
+        if w is None:                  t += f'{l[i]} '
+        elif type(w) is int  or type(w) is str:           t += f'{l[i]:{u}{w}} '
+        elif type(w) is list or type(w) is tuple: t += f'{int(l[i]):{u}{w[i]}} '
+    return d1 + t[:-1] + d2
+def fmtd(m, w=2, d0=':', d1='[', d2=']'):
+    t = ''
+    for k, v in m.items():
+        if   type(v) is int or type(v) is str:  t += f'{k:>{w}}{d0}{v:<{w}} '
+        elif type(v) is list: t += fmtl(v, w)
+    return d1 + t.rstrip() + d2
+####################################################################################################################################################################################################
+CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
-PATH             = pathlib.Path(sys.argv[0])
+print(f'argv[0]={fmtl(sys.argv)}')
+#PATH             = pathlib.Path(sys.argv[0])
+PATH             = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH        = PATH.parent
 BASE_NAME        = BASE_PATH.stem
+print(f'PATH      = {PATH}')
+print(f'BASE_PATH = {BASE_PATH}')
+print(f'BASE_NAME = {BASE_NAME}')
+
+#PATH2             = pathlib.Path.cwd()
+#BASE_PATH2        = PATH2.parent
+#BASE_NAME2        = BASE_PATH2.stem
+#print(f'PATH2      = {PATH2}')
+#print(f'BASE_PATH2 = {BASE_PATH2}')
+#print(f'BASE_NAME2 = {BASE_NAME2}')
+
 SNAP_DIR         = 'snaps'
 SNAP_SFX         = '.png'
 LOG_FILE         = None
@@ -69,19 +96,6 @@ CC               = [(235, 230,  12, OPACITY[4]), (33, 26, 20, OPACITY[1])]
 HUES             = 16
 MAX_STACK_DEPTH  = 0  ;  MAX_STACK_FRAME = inspect.stack()
 ####################################################################################################################################################################################################
-def fmtl(l, w=None, u='<', d1='[', d2=']'):
-    t = ''
-    for i in range(len(l)):
-        if w is None:                  t += f'{l[i]} '
-        elif type(w) is int  or type(w) is str:           t += f'{l[i]:{u}{w}} '
-        elif type(w) is list or type(w) is tuple: t += f'{int(l[i]):{u}{w[i]}} '
-    return d1 + t[:-1] + d2
-def fmtd(m, w=2, d0=':', d1='[', d2=']'):
-    t = ''
-    for k, v in m.items():
-        if   type(v) is int or type(v) is str:  t += f'{k:>{w}}{d0}{v:<{w}} '
-        elif type(v) is list: t += fmtl(v, w)
-    return d1 + t.rstrip() + d2
 def genColors(cp, nsteps=HUES, dbg=0):
     colors, clen = [], len(cp[0])
     diffs = [cp[1][i] - cp[0][i] for i in range(clen)]
@@ -134,6 +148,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'   snapGlob={snapGlob}')
         self.delGlob(snapGlob, 'SNAP_GLOB')
         self.cobj = misc.Chord(self, LOG_FILE)
+        self.dfn = ''
         self.n    = []
         self.TNIK = [1, 1, 0, 1]
         nt        = 6 if QQ else 6
@@ -141,24 +156,27 @@ class Tabs(pyglet.window.Window):
         self.ww, self.hh = 640, 480
         self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, self.ssc(), 50, nt], [1, 1, 1, 1, nt], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
         self.argMap = cmdArgs.parseCmdLine(dbg=1)
+        self.log(f'argMap={self.argMap}')
 #        if 'N' in self.argMap and len(self.argMap['N']) == 0: self.N            = 1
+        if 'f' in self.argMap and len(self.argMap['f'])  > 0: self.dfn          =     self.argMap['f'][0]
         if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
         if 'i' in self.argMap and len(self.argMap['i'])  > 0: self.i            = [int(self.argMap['i'][i]) for i in range(len(self.argMap['i']))]
         if 'x' in self.argMap and len(self.argMap['x'])  > 0: self.x            = [int(self.argMap['x'][i]) for i in range(len(self.argMap['x']))]
         if 'y' in self.argMap and len(self.argMap['y'])  > 0: self.y            = [int(self.argMap['y'][i]) for i in range(len(self.argMap['y']))]
         if 'w' in self.argMap and len(self.argMap['w'])  > 0: self.ww           =  int(self.argMap['w'][0])
         if 'h' in self.argMap and len(self.argMap['h'])  > 0: self.hh           =  int(self.argMap['h'][0])
-        if 'f' in self.argMap and len(self.argMap['f']) == 0: FULL_SCREEN       = 1
+        if 'F' in self.argMap and len(self.argMap['F']) == 0: FULL_SCREEN       = 1
         if 'g' in self.argMap and len(self.argMap['g']) == 0: ORDER_GROUP       = 1
         if 's' in self.argMap and len(self.argMap['s']) == 0: SUBPIX            = 1
 #        self.log(f'[N]            N={self.N}')
+        self.log(f'[f]            f={self.dfn}')
         self.log(f'[n]            n={fmtl(self.n, FMTN)}')
         self.log(f'[i]            i={fmtl(self.i, FMTN)}')
         self.log(f'[x]            x={fmtl(self.x, FMTN)}')
         self.log(f'[y]            y={fmtl(self.y, FMTN)}')
         self.log(f'[w]           ww={self.ww}')
         self.log(f'[h]           hh={self.hh}')
-        self.log(f'[f]  FULL_SCREEN={FULL_SCREEN}')
+        self.log(f'[F]  FULL_SCREEN={FULL_SCREEN}')
         self.log(f'[g]  ORDER_GROUP={ORDER_GROUP}')
         self.log(f'[s]       SUBPIX={SUBPIX}')
         self.fontBold, self.fontItalic, self.fontColorIndex, self.fontDpiIndex, self.fontNameIndex, self.fontSize = 0, 0, 0, 4, 0, 48 if FULL_SCREEN else 14
@@ -286,9 +304,11 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def _init(self, dbg=1):
         dataDir  = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
-        dataName = BASE_NAME + SFX + dataPfx + dataSfx
+        dataName = self.dfn if self.dfn else BASE_NAME + SFX + dataPfx + dataSfx
         self.dataPath = BASE_PATH / dataDir / dataName
         self.log(f'(BGN) {self.fmtGeom()}', ind=0)
+        print(f'dataName = {dataName}')
+        print(f'dataPath = {self.dataPath}')
         self.kp  = [VIOLETS[0], VIOLETS[12]] if CHECKER_BOARD else [VIOLETS[10]]
         self.kl  = [  BLUES[12],  BLUES[15]] if CHECKER_BOARD else [BLUES[12]]
         self.ks  = [   CYANS[12],   CYANS[15]] if CHECKER_BOARD else [CYANS[12]]
@@ -309,6 +329,7 @@ class Tabs(pyglet.window.Window):
         self.ssi = 0
         self._initTpz()
         self.readDataFile() if READ_DATA_FILE else self.createBlankData()
+#        self.quit('test data file path')
         self.labelTextA, self.labelTextB = [], []
         self.createLabelText()
         self.labelTextC = []  ;  self.labelTextC.append('M')         ;  self.labelTextC.extend(self.labelTextB)
