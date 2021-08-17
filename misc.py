@@ -28,7 +28,7 @@ class Chord(object):
 
     def __init__(self, tobj, logfile):
         self.tobj    = tobj
-        self.logFile = logfile
+        self.logFile = None # logfile
         self.limap, self.limap1, self.limap2 = [], [], []
         self.mlimap  = {}
         self.chordNames = self.initChordNames()

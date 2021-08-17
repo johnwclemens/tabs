@@ -38,28 +38,27 @@ def fmtd(m, w=2, d0=':', d1='[', d2=']'):
         if   type(v) is int or type(v) is str:  t += f'{k:>{w}}{d0}{v:<{w}} '
         elif type(v) is list: t += fmtl(v, w)
     return d1 + t.rstrip() + d2
+def getLogPath(logdir='logs', logsfx='.log'):
+    sfx = SFX if not ARGS['f'] else ''
+    print(f'BASE_NAME={BASE_NAME} SFX={SFX}')
+    logName        = BASE_NAME + sfx + logsfx
+    logPath        = BASE_PATH / logdir / logName
+    print(f'logName={logName} logPath={logPath}')
+    return logPath
 ####################################################################################################################################################################################################
+ARGS          = cmdArgs.parseCmdLine(dbg=1)
 CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
-SFX              = f'.{SFX1}.{SFX2}.{SFX3}'
-print(f'argv[0]={fmtl(sys.argv)}')
-#PATH             = pathlib.Path(sys.argv[0])
+SFX              = f'.{SFX1}.{SFX2}.{SFX3}' if not ARGS['f'] else ''
 PATH             = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH        = PATH.parent
 BASE_NAME        = BASE_PATH.stem
+print(f'argv      = {fmtl(sys.argv)}')
 print(f'PATH      = {PATH}')
 print(f'BASE_PATH = {BASE_PATH}')
 print(f'BASE_NAME = {BASE_NAME}')
-
-#PATH2             = pathlib.Path.cwd()
-#BASE_PATH2        = PATH2.parent
-#BASE_NAME2        = BASE_PATH2.stem
-#print(f'PATH2      = {PATH2}')
-#print(f'BASE_PATH2 = {BASE_PATH2}')
-#print(f'BASE_NAME2 = {BASE_NAME2}')
-
 SNAP_DIR         = 'snaps'
 SNAP_SFX         = '.png'
 LOG_FILE         = None
@@ -155,19 +154,18 @@ class Tabs(pyglet.window.Window):
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.ww, self.hh = 640, 480
         self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, self.ssc(), 50, nt], [1, 1, 1, 1, nt], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
-        self.argMap = cmdArgs.parseCmdLine(dbg=1)
-        self.log(f'argMap={self.argMap}')
+        self.log(f'argMap={ARGS}')
 #        if 'N' in self.argMap and len(self.argMap['N']) == 0: self.N            = 1
-        if 'f' in self.argMap and len(self.argMap['f'])  > 0: self.dfn          =     self.argMap['f'][0]
-        if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
-        if 'i' in self.argMap and len(self.argMap['i'])  > 0: self.i            = [int(self.argMap['i'][i]) for i in range(len(self.argMap['i']))]
-        if 'x' in self.argMap and len(self.argMap['x'])  > 0: self.x            = [int(self.argMap['x'][i]) for i in range(len(self.argMap['x']))]
-        if 'y' in self.argMap and len(self.argMap['y'])  > 0: self.y            = [int(self.argMap['y'][i]) for i in range(len(self.argMap['y']))]
-        if 'w' in self.argMap and len(self.argMap['w'])  > 0: self.ww           =  int(self.argMap['w'][0])
-        if 'h' in self.argMap and len(self.argMap['h'])  > 0: self.hh           =  int(self.argMap['h'][0])
-        if 'F' in self.argMap and len(self.argMap['F']) == 0: FULL_SCREEN       = 1
-        if 'g' in self.argMap and len(self.argMap['g']) == 0: ORDER_GROUP       = 1
-        if 's' in self.argMap and len(self.argMap['s']) == 0: SUBPIX            = 1
+        if 'f' in ARGS and len(ARGS['f'])  > 0: self.dfn          =      ARGS['f'][0]
+        if 'n' in ARGS and len(ARGS['n'])  > 0: self.n            = [int(ARGS['n'][i]) for i in range(len(ARGS['n']))]
+        if 'i' in ARGS and len(ARGS['i'])  > 0: self.i            = [int(ARGS['i'][i]) for i in range(len(ARGS['i']))]
+        if 'x' in ARGS and len(ARGS['x'])  > 0: self.x            = [int(ARGS['x'][i]) for i in range(len(ARGS['x']))]
+        if 'y' in ARGS and len(ARGS['y'])  > 0: self.y            = [int(ARGS['y'][i]) for i in range(len(ARGS['y']))]
+        if 'w' in ARGS and len(ARGS['w'])  > 0: self.ww           =  int(ARGS['w'][0])
+        if 'h' in ARGS and len(ARGS['h'])  > 0: self.hh           =  int(ARGS['h'][0])
+        if 'F' in ARGS and len(ARGS['F']) == 0: FULL_SCREEN       = 1
+        if 'g' in ARGS and len(ARGS['g']) == 0: ORDER_GROUP       = 1
+        if 's' in ARGS and len(ARGS['s']) == 0: SUBPIX            = 1
 #        self.log(f'[N]            N={self.N}')
         self.log(f'[f]            f={self.dfn}')
         self.log(f'[n]            n={fmtl(self.n, FMTN)}')
@@ -307,8 +305,8 @@ class Tabs(pyglet.window.Window):
         dataName = self.dfn if self.dfn else BASE_NAME + SFX + dataPfx + dataSfx
         self.dataPath = BASE_PATH / dataDir / dataName
         self.log(f'(BGN) {self.fmtGeom()}', ind=0)
-        print(f'dataName = {dataName}')
-        print(f'dataPath = {self.dataPath}')
+        self.log(f'dataName = {dataName}')
+        self.log(f'dataPath = {self.dataPath}')
         self.kp  = [VIOLETS[0], VIOLETS[12]] if CHECKER_BOARD else [VIOLETS[10]]
         self.kl  = [  BLUES[12],  BLUES[15]] if CHECKER_BOARD else [BLUES[12]]
         self.ks  = [   CYANS[12],   CYANS[15]] if CHECKER_BOARD else [CYANS[12]]
@@ -1730,23 +1728,23 @@ class Tabs(pyglet.window.Window):
         if seq:
             subDir     = '/' + SFX.lstrip('.')
             logdir     = logdir + subDir
+            Tabs.log(f'SFX         = {SFX}')
+            Tabs.log(f'subdir      = {subDir}')
             Tabs.log(f'logdir      = {logdir}')
+            Tabs.log(f'logsfx      = {logsfx}')
             pathlib.Path(logdir).mkdir(parents=True, exist_ok=True)
             logGlobArg = str(BASE_PATH / logdir / BASE_NAME) + SFX + '.*' + logsfx
             logGlob    = glob.glob(logGlobArg)
-            seq        = 1 + Tabs.getLogId(logGlob, logsfx)
-            logsfx     = f'.{seq}{logsfx}'
             Tabs.log(f'logGlobArg  = {logGlobArg}')
             Tabs.log('logGlob:')
+            seq        = 1 + Tabs.getLogId(logGlob, logsfx)
+            logsfx     = f'.{seq}{logsfx}'
             Tabs.log(f'{fmtl(logGlob)}', ind=0)
-            Tabs.log(f'seq num     = {seq}')
-        logName        = BASE_NAME + SFX + logsfx
-        logPath        = BASE_PATH / logdir / logName
-        Tabs.log(f'logPath     = {logPath}') if seq else Tabs.log(f'logPath     = {logPath}')
-        return logPath
+            Tabs.log(f'seq num     = {seq} logsfx={logsfx}')
+        return getLogPath(logsfx=logsfx)
 
     @staticmethod
-    def getLogId(s, sfx, dbg=0):
+    def getLogId(s, sfx, dbg=1):
         i = -1
         if len(s):
             ids = []
@@ -1803,8 +1801,9 @@ class Tabs(pyglet.window.Window):
         while j < len(l): t = l[j];  t.delete();  del l[j]
 ########################################################################################################################################################################################################
 if __name__ == '__main__':
-    LOG_PATH = Tabs.getLogPath()
+    LOG_PATH = getLogPath()
     with open(str(LOG_PATH), 'w') as LOG_FILE:
+        Tabs.log(f'LOG_PATH={LOG_PATH} LOG_FILE={LOG_FILE}')
         Tabs()
         ret     = pyglet.app.run()
         Tabs.log(f'pyglet.app.run() returned {ret}, Exiting main')
