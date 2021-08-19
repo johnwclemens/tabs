@@ -5,6 +5,7 @@ import tabs
 VERBOSE = tabs.VERBOSE
 
 class Note(object):
+    count          = 0
     NUM_SEMI_TONES = 12
     SHARP_TONES    = { 0:'C', 1:'C#', 2:'D', 3:'D#', 4:'E', 5:'F', 6:'F#', 7:'G', 8:'G#', 9:'A', 10:'A#', 11:'B' }
     FLAT_TONES     = { 0:'C', 1:'Db', 2:'D', 3:'Eb', 4:'E', 5:'F', 6:'Gb', 7:'G', 8:'Ab', 9:'A', 10:'Bb', 11:'B' }
@@ -17,21 +18,27 @@ class Note(object):
                 'C6':72, 'C#6':73, 'Db6':73, 'D6':74, 'D#6':75, 'Eb6':75, 'E6':76, 'F6':77, 'F#6':78, 'Gb6':78, 'G6':79, 'G#6':80, 'Ab6':80, 'A6':81, 'A#6':82, 'Bb6':82, 'B6':83,
                 'C7':84, 'C#7':85, 'Db7':85, 'D7':86, 'D#7':87, 'Eb7':87, 'E7':88, 'F7':89, 'F#7':90, 'Gb7':90, 'G7':91, 'G#7':92, 'Ab7':92, 'A7':93, 'A#7':94, 'Bb7':94, 'B7':95,
                 'C8':96 } # For simplicity omit double flats and double sharps and other redundant enharmonic note names e.g. Abb, C##, Cb, B#, Fb, E# etc...
-    def __init__(self, i, ks=None):
+    def __init__(self, i):
         self.index = i
-        self.ks    = ks
         self.name  = self.FLAT_TONES[i % len(self.FLAT_TONES)]
+        Note.count += 1
+        tabs.Tabs.dumpObj(obj=self, name=f'{self.name} Note', why=f'count={Note.count}')
+        assert Note.count > 2
+    @staticmethod
+    def getName(index): return Note.FLAT_TONES[index % len(Note.FLAT_TONES)]
 ####################################################################################################################################################################################################
 class Chord(object):
-    INTERVALS =     { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'a5', 9:'6', 10:'b7', 11:'7' }
+    INTERVALS     = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'a5', 9:'6', 10:'b7', 11:'7' }
     INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, 'a5':8, '6':9, 'b7':10, '7':11, }
-
+    count         = 0
     def __init__(self, tobj, logfile):
         self.tobj    = tobj
-        self.logFile = None # logfile
+        self.logFile = logfile
         self.limap, self.limap1, self.limap2 = [], [], []
         self.mlimap  = {}
-        self.chordNames = self.initChordNames()
+        self.chordNameMap = self.initChordNameMap()
+        Chord.count += 1
+        tabs.Tabs.dumpObj(obj=self, name=f'ChordNameMap<{len(self.chordNameMap)}>', why=f'count={Chord.count} {logfile}')
 
     @staticmethod
     def getChordKey(keys):  return ' '.join(keys)
@@ -43,23 +50,25 @@ class Chord(object):
         else:                     self.limap2.append(imap)
         if dbg:
             for i, m in enumerate(self.limap1):
-                tabs.Tabs.log(tabs.FMTR.format(f'{why:8}1 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
+                tabs.Tabs.log(tabs.FMTR.format(f'{why:8}1 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'))
             for i, m in enumerate(self.limap2):
-                tabs.Tabs.log(tabs.FMTR.format(f'{why:8}2 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
+                tabs.Tabs.log(tabs.FMTR.format(f'{why:8}2 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'))
         if   self.limap1 and self.limap1[0]: return self.limap1[0][2]
         elif self.limap2 and self.limap2[0]: return self.limap2[0][2]
 
     def getChordName(self, p, l, c, dbg=VERBOSE):
+        self.mlimap.clear()
         cc = self.tobj.plct2cc(p, l, c, 0)
-        if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}')
-#        if cc in self.mlimap: tabs.Tabs.log(f'ERROR: Unexpected key cc={cc} exists')   ;   return ''
+        if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc} mlimap<{len(self.mlimap)}>:', file=self.logFile)
+        self.dumpMLimap()
+        if cc in self.mlimap: tabs.Tabs.log(f'ERROR: Unexpected key cc={cc} exists', file=self.logFile)
         self.limap= []  ;  chordName = ''
         imapKeys, imapNotes   = None, None   ;   d1, d2 = '<', '>'
         mask, notes, indices  = self.getNotesIndices(p, l, c)
         for i in range(len(indices)):
             intervals                           = self.getIntervals(indices, i, mask)
             imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals, notes, mask)
-            chordName = self._getChordName_B(imap)
+            chordName = self._getChordName(imap)
             if dbg and chordName: tabs.Tabs.log(f'Inner Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
             chordName                           = self.updateImap(imap, chordName)
         if chordName:
@@ -95,11 +104,12 @@ class Chord(object):
         notes = []  ;  nt = len(_tabs)  ;   mask2 = []
         if dbg2: tabs.Tabs.log(f'p={p} l={l} c={c} text={_tabs}', file=self.logFile)
         for t in range(nt):
-            if tabs.Tabs.isFret(_tabs[t]): mask2.insert(0, 1)  ;  note = self.tobj.getNote(t, _tabs[t]).name  ;  notes.insert(0, note)
+            if tabs.Tabs.isFret(_tabs[t]): mask2.insert(0, 1)  ;  note = self.tobj.getNoteName(t, _tabs[t])  ;  notes.insert(0, note)
             else:                          mask2.insert(0, 0)
         indices = []
         for t in range(nt):
-            index = int(self.tobj.getNote(t, _tabs[t]).index) if tabs.Tabs.isFret(_tabs[t]) else 0
+            index = self.tobj.getNoteIndex(t, self.tobj.getFretNum(_tabs[t])) if tabs.Tabs.isFret(_tabs[t]) else 0
+#            index = int(self.tobj.getNote(t, _tabs[t]).index) if tabs.Tabs.isFret(_tabs[t]) else 0
             if index: indices.insert(0, index)
         if notes:
             if dbg2: self.dumpData(strNumbs,    mask, 'strNumbs', r=1)
@@ -162,7 +172,7 @@ class Chord(object):
 
     def dumpImap(self, imap, why):
         intervals = imap[0]  ;  imapNotes = imap[1]   ;   chordName = imap[2]   ;   d1, d2 = '<', '>'
-        tabs.Tabs.log(f'{why}  [ <{chordName:<6}> {tabs.fmtl(intervals, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
+        tabs.Tabs.log(f'{why}  [ <{chordName:<6}> {tabs.fmtl(intervals, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]')
 
     def dumpData(self, data, mask, why, w=5, u='<', r=0):
         lf = self.logFile
@@ -182,7 +192,7 @@ class Chord(object):
         tabs.Tabs.log(']',                 ind=0,         file=lf)
     ####################################################################################################################################################################################################
     @staticmethod
-    def initChordNames():
+    def initChordNameMap():
          return {'R M3 5'    : '',
                  'R M3 5 7'  : 'M7',
                  'R M3 5 b7' : '7',
@@ -198,12 +208,12 @@ class Chord(object):
                  'R 2 4 6'   : '6/9s4'
                  } # how to order/arrange/group?
     ####################################################################################################################################################################################################
-    def _getChordName_B(self, imap):
+    def _getChordName(self, imap):
         r = imap['R']
         key = self.getChordKey(imap.keys())
-        return f'{r}{self.chordNames[key]}' if key in self.chordNames else ''
+        return f'{r}{self.chordNameMap[key]}' if key in self.chordNameMap else ''
     ####################################################################################################################################################################################################
-    def _getChordName_A(self, imap):
+    def _getChordName_OLD(self, imap):
         r = imap['R']  ;  n = len(imap)
         if   '5' in imap:   return self.parse_5(imap, r, n)
         elif 'b5' in imap:  return self.parse_b5(imap, r, n)
