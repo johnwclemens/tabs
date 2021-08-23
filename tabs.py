@@ -73,6 +73,7 @@ LLR, LLC         = 13, 14
 TT, NN, II, KK   =  0,  1,  2,  3
 Z, COLL, LINL    = ' ', 'Col', 'Line '
 C1,  C2,  RLC    = 0, 1, 2
+NORMAL_STYLE, CURRENT_STYLE, SELECT_STYLE, COPY_STYLE = 0, 1, 2, 3
 INIT             = '###   Init   ###' * 13
 QUIT             = '###   Quit   ###' * 13
 MELODY, CHORD, ARPG   = 0, 1, 2
@@ -94,20 +95,20 @@ BLUE             = [( 13,  11, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
 INDIGO           = [(255,  22, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
 VIOLET           = [(176,  81, 255, OPACITY[0]), (44, 14, 58, OPACITY[0])]
 ULTRA_VIOLET     = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
-CC               = [(235, 230,  12, OPACITY[4]), (33, 26, 20, OPACITY[1])]
+CC               = [(235, 230,  12, OPACITY[0]), (13, 30, 40, OPACITY[8])]
 HUES             = 16
 MAX_STACK_DEPTH  = 0  ;  MAX_STACK_FRAME = inspect.stack()
 ####################################################################################################################################################################################################
-def genColors(cp, nsteps=HUES, dbg=0):
-    colors, clen = [], len(cp[0])
-    diffs = [cp[1][i] - cp[0][i] for i in range(clen)]
+def genColors(k, nsteps=HUES, dbg=1):
+    colors, clen = [], len(k[0])
+    diffs = [k[1][i] - k[0][i] for i in range(clen)]
     steps = [diffs[i]/nsteps     for i in range(clen)]
-    if dbg: Tabs.log(f'c1={cp[0]} c2={cp[1]} nsteps={nsteps} diffs={diffs} steps=', end='')  ;  Tabs.log(f'[{steps[0]:6.1f} {steps[1]:6.1f} {steps[2]:6.1f} {steps[3]:6.1f}]')
+    if dbg: print(f'c1={k[0]} c2={k[1]} nsteps={nsteps} diffs={diffs} steps=', end='')  ;  print(f'[{steps[0]:6.1f} {steps[1]:6.1f} {steps[2]:6.1f} {steps[3]:6.1f}]')
     for j in range(nsteps):
-        c = tuple([fri(cp[0][i] + j * steps[i]) for i in range(len(cp[0]))])
-        if dbg: Tabs.log(f'c[{j}]={c}')
+        c = tuple([fri(k[0][i] + j * steps[i]) for i in range(len(k[0]))])
+        if dbg: print(f'c[{j}]={c}')
         colors.append(c)
-    if dbg: Tabs.log(f'colors={cp}')
+    if dbg: print(f'colors={k}')
     return colors
 def fri(f): return int(math.floor(f + 0.5))
 ####################################################################################################################################################################################################
@@ -127,7 +128,7 @@ INDIGOS       = genColors(INDIGO)     ;  COLORS.append(INDIGOS)
 VIOLETS       = genColors(VIOLET)     ;  COLORS.append(VIOLETS)
 ULTRA_VIOLETS = genColors(ULTRA_VIOLET)  ;  COLORS.append(ULTRA_VIOLETS)
 CCS           = genColors(CC)         ;  COLORS.append(CCS)
-COLORS        = (INFRA_REDS, REDS, ORANGES, YELLOWS, GRAYS, GREENS, GREEN_BLUES, CYANS, BLUE_GREENS, BLUES, INDIGOS, VIOLETS, ULTRA_VIOLETS)
+#COLORS        = (INFRA_REDS, REDS, ORANGES, YELLOWS, GRAYS, GREENS, GREEN_BLUES, CYANS, BLUE_GREENS, BLUES, INDIGOS, VIOLETS, ULTRA_VIOLETS)
 FONT_SCALE    = 123.42857
 FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
 FONT_NAMES    = ['Times New Roman', 'Lucida Console', 'Courier New', 'Helvetica', 'Arial', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
@@ -149,7 +150,7 @@ class Tabs(pyglet.window.Window):
         self.dumpGlobalFlags()
         self.log(f'snapGlobArg={snapGlobArg}')
         self.log(f'   snapGlob={snapGlob}')
-        self.delGlob(snapGlob, 'SNAP_GLOB')
+        self.deleteGlob(snapGlob, 'SNAP_GLOB')
         self.cobj = misc.Chord(self, LOG_FILE)
         self.dfn = ''
         self.n    = []
@@ -157,7 +158,7 @@ class Tabs(pyglet.window.Window):
         nt        = 6 if QQ else 6
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.ww, self.hh = 640, 480
-        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, self.ssc(), 100, nt], [1, 1, 1, 1, nt], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
+        self.n, self.i, self.x, self.y, self.w, self.h, self.g = [1, 3, self.ssc(), 50, nt], [1, 1, 1, 1, nt], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
         self.log(f'argMap={ARGS}')
 #        if 'N' in self.argMap and len(self.argMap['N']) == 0: self.N            = 1
         if 'f' in ARGS and len(ARGS['f'])  > 0: self.dfn          =      ARGS['f'][0]
@@ -1154,7 +1155,7 @@ class Tabs(pyglet.window.Window):
             setattr(p[j], n, FONT_NAMES[v] if m == 'fontNameIndex' else FONT_COLORS[v] if m == 'fontColorIndex' else FONT_DPIS[v] if m == 'fontDpiIndex' else v)
     ####################################################################################################################################################################################################
     def kpEvntTxt(self):
-        return f'{self.kbk:8} {self.symb:8} {self.symbStr:14} {self.mods:2} {self.mods:16}'
+        return f'{self.kbk:8} {self.symb:8} {self.symbStr:14} {self.mods:2} {self.modsStr:16}'
 
     def on_key_release(self, symb, mods):
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
@@ -1178,6 +1179,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'E' and self.isCtrl(mods):                        self.erase()
         elif kbk == 'F' and self.isCtrl(mods) and self.isShift(mods): self.toggleFullScreen()
         elif kbk == 'F' and self.isCtrl(mods):                        self.toggleFullScreen()
+        elif kbk == 'G' and self.isCtrl(mods) and self.isShift(mods): self.goToLastTabCol2()
+        elif kbk == 'G' and self.isCtrl(mods):                        self.goToLastTabCol()
         elif kbk == 'I' and self.isCtrl(mods) and self.isShift(mods): self.toggleCursorMode(why)
         elif kbk == 'I' and self.isCtrl(mods):                        self.toggleCursorMode(why)
         elif kbk == 'K' and self.isCtrl(mods) and self.isShift(mods): self.toggleTabs(KK)
@@ -1201,7 +1204,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'X' and self.isCtrl(mods) and self.isShift(mods): self.cutTabCols()
         elif kbk == 'X' and self.isCtrl(mods):                        self.cutTabCols()
         elif kbk == 'SPACE':                                          self.autoMove()
-        elif kbk == 'ESCAPE':                                         self.deleteTabCols(why='ESCAPE')
+        elif kbk == 'ESCAPE':                                         self.unselectAllTabCols(why='ESCAPE')
         elif kbk == 'TAB':                                            self.setCHVMode(MELODY, RIGHT, why='')
         elif kbk == 'TAB'       and self.isCtrl(mods):                self.setCHVMode(MELODY, LEFT,  why='TAB')
         elif kbk == 'ENTER':                                          self.setCHVMode(CHORD,  UP,    why='ENTER')
@@ -1236,22 +1239,14 @@ class Tabs(pyglet.window.Window):
     def on_text_motion(self, motion, dbg=1): # use for motion not strings
         self.kbk = motion   ;   p, l, s, c, t = self.j()  ;  np, nl, ns, nc, nt = self.n
         if dbg: self.log(f'(BGN) {self.kpEvntTxt()}')
-        if self.mods == 0:
-            if   motion == pygwink.MOTION_UP:                self.move(-1)
-            elif motion == pygwink.MOTION_DOWN:              self.move( 1)
-            elif motion == pygwink.MOTION_LEFT:              self.move(-nt)
-            elif motion == pygwink.MOTION_RIGHT:             self.move( nt)
-#            elif motion == pygwink.MOTION_PREVIOUS_WORD:     self.quit(f 'MOTION_PREVIOUS_WORD={pygwink.MOTION_PREVIOUS_WORD}')
-#            elif motion == pygwink.MOTION_NEXT_WORD:         self.quit(f 'MOTION_NEXT_WORD={pygwink.MOTION_NEXT_WORD}')
-            elif motion == pygwink.MOTION_BEGINNING_OF_LINE: self.move(-nt *  c)
-            elif motion == pygwink.MOTION_END_OF_LINE:       self.move( nt * (nc - self.i[C]))
-            elif motion == pygwink.MOTION_PREVIOUS_PAGE:     self.move(-nt *  nc)  # move up   one line to same tab
-            elif motion == pygwink.MOTION_NEXT_PAGE:         self.move( nt *  nc)  # move down one line to same tab
-#            elif motion == pygwink.MOTION_BEGINNING_OF_FILE: self.quit(f 'MOTION_BEGINNING_OF_FILE={pygwink.MOTION_BEGINNING_OF_FILE}')
-#            elif motion == pygwink.MOTION_END_OF_FILE:       self.quit(f 'MOTION_END_OF_FILE={pygwink.MOTION_END_OF_FILE}')
-            elif motion == pygwink.MOTION_BACKSPACE:         self.updateTab(self.tblank, 'BACKSPACE', rev=1)
-            elif motion == pygwink.MOTION_DELETE:            self.updateTab(self.tblank, 'DELETE')
-            else:                                            self.log(f'motion={motion} ???')
+        if   self.isAlt(self.mods)  and self.isCtrl(self.mods) and self.isShift(self.mods):  self.log(f'ALT + CTRL + SHIFT')
+        elif self.isAlt(self.mods)  and self.isCtrl(self.mods):
+            if   motion == pygwink.LEFT:                      self.log(f'ALT + CTRL + LEFT')
+            elif motion == pygwink.MOTION_LEFT:               self.log(f'ALT + CTRL + MOTION_LEFT')
+            else: self.log(f'ALT + CTRL + {motion}')
+        elif self.isAlt(self.mods)  and self.isShift(self.mods): self.log(f'ALT + SHIFT')
+        elif self.isCtrl(self.mods) and self.isShift(self.mods): self.log(f'CTRL + SHIFT')
+        elif self.isShift(self.mods):                            self.log(f'SHIFT')
         elif self.isAlt(self.mods):
             if   motion == pygwink.MOTION_UP:                self.moveUp()
             elif motion == pygwink.MOTION_DOWN:              self.moveDown()
@@ -1270,6 +1265,22 @@ class Tabs(pyglet.window.Window):
             elif motion == pygwink.MOTION_BEGINNING_OF_FILE: self.log(f'CTRL + MOTION_BEGINNING_OF_FILE={pygwink.MOTION_BEGINNING_OF_FILE}=CTRL HOME')
             elif motion == pygwink.MOTION_END_OF_FILE:       self.log(f'CTRL + MOTION_END_OF_FILE={pygwink.MOTION_END_OF_FILE}=CTRL END')
             else:                                            self.log(f'motion={motion} ??? CTRL')
+        if self.mods == 0:
+            if   motion == pygwink.MOTION_UP:                self.move(-1)
+            elif motion == pygwink.MOTION_DOWN:              self.move( 1)
+            elif motion == pygwink.MOTION_LEFT:              self.move(-nt)
+            elif motion == pygwink.MOTION_RIGHT:             self.move( nt)
+#            elif motion == pygwink.MOTION_PREVIOUS_WORD:     self.quit(f 'MOTION_PREVIOUS_WORD={pygwink.MOTION_PREVIOUS_WORD}')
+#            elif motion == pygwink.MOTION_NEXT_WORD:         self.quit(f 'MOTION_NEXT_WORD={pygwink.MOTION_NEXT_WORD}')
+            elif motion == pygwink.MOTION_BEGINNING_OF_LINE: self.move(-nt *  c)
+            elif motion == pygwink.MOTION_END_OF_LINE:       self.move( nt * (nc - self.i[C]))
+            elif motion == pygwink.MOTION_PREVIOUS_PAGE:     self.move(-nt *  nc)  # move up   one line to same tab
+            elif motion == pygwink.MOTION_NEXT_PAGE:         self.move( nt *  nc)  # move down one line to same tab
+#            elif motion == pygwink.MOTION_BEGINNING_OF_FILE: self.quit(f 'MOTION_BEGINNING_OF_FILE={pygwink.MOTION_BEGINNING_OF_FILE}')
+#            elif motion == pygwink.MOTION_END_OF_FILE:       self.quit(f 'MOTION_END_OF_FILE={pygwink.MOTION_END_OF_FILE}')
+            elif motion == pygwink.MOTION_BACKSPACE:         self.updateTab(self.tblank, 'BACKSPACE', rev=1)
+            elif motion == pygwink.MOTION_DELETE:            self.updateTab(self.tblank, 'DELETE')
+            else:                                            self.log(f'motion={motion} ???')
         if dbg: self.log(f'(END) {self.kpEvntTxt()}')
     ####################################################################################################################################################################################################
     def createCursor(self, g):
@@ -1280,6 +1291,19 @@ class Tabs(pyglet.window.Window):
         self.log(f'c={self.cc} x={x:6.1f} y={y:6.1f} w={w:6.1f} h={h:6.1f} i={fmtl(self.i, FMTN)}')
         self.dumpSprite()
         self.cursor = self.createSprite(None, x, y, w, h, 0, g, why='cursor', kl=CCS, v=1, dbg=1)
+        if QQ: self.setLLColStyle(self.cc, CURRENT_STYLE)
+
+    def setLLColStyle(self, cc, style, dbg=0):
+        p, l, c, t = self.cc2plct(cc)  ;  nc = self.n[C]
+        bold, italic, color = 0, 0, self.klc[0]
+        if   style == NORMAL_STYLE: color = self.klc[0]  ;  bold = 0  ;  italic = 0
+        elif style == CURRENT_STYLE: color = CCS[0]      ;  bold = 0  ;  italic = 0
+        elif style == SELECT_STYLE: color = CCS[10]       ;  bold = 1  ;  italic = 1
+        elif style == COPY_STYLE:   color = REDS[1]       ;  bold = 1  ;  italic = 1
+        self.llCols[c + l * nc].color  = color
+        self.llCols[c + l * nc].bold   = bold
+        self.llCols[c + l * nc].italic = italic
+        if dbg: self.log(f'cc={cc} p={p} l={l} c={c} t={t} style={style} bold={bold} italic={italic} color={color}')
 
     def resizeCursor(self):
         cc = self.cursorCol()
@@ -1292,17 +1316,14 @@ class Tabs(pyglet.window.Window):
         p, l, s, c, t = self.j()
         return self.plct2cc(p, l, c, t, dbg)
 
-    def plct2cc(self, p, l, c, t, dbg=VERBOSE):
+    def plct2cc(self, p, l, c, t, dbg=0):
         tpp, tpl, tps, tpc = self.tpz()
         cc = p * tpp + l * tpl + c * tpc + t
         lenT = len(self.tabs)   ;   ccm = cc % lenT
-        if dbg: self.log(f' cc: p={p} l={l} c={c} t={t}', ind=0, end='')
-        if dbg: self.log(f' tpp={tpp} tpl={tpl} tpc={tpc}', ind=0, end='')
-        if dbg: self.log(f' cc={cc} = ( {p*tpp} + {l*tpl} + {c*tpc} + {t} )', ind=0, end='')
-        if dbg : self.log(f' cc = cc % len(tabs) = {cc} % {lenT} = {ccm} = cc', ind=0)
+        if dbg: self.log(f'{ccm:4}=({p*tpp} +{l*tpl} +{c*tpc} +{t}) % {lenT}, tpp={tpp} tpl={tpl} tpc={tpc} p={p} l={l} c={c} t={t}')
         return ccm
 
-    def cc2plct(self, cc, dbg=VERBOSE):
+    def cc2plct(self, cc, dbg=0):
         tpp, tpl, tps, tpc = self.tpz()
         p =  cc // tpp
         l = (cc - p * tpp) // tpl
@@ -1348,15 +1369,17 @@ class Tabs(pyglet.window.Window):
         if c < nc: self.move(self.cc2(p, l,  nc, t))
         else:      self.move(self.cc2(p, l+1, 0, t))
 
-    def move(self, k, dbg=1):
-        if dbg: self.log(f'(BGN) {k:4}      {self.cc:4} {fmtl(self.i, FMTN)} text={self.tabs[self.cc].text}') # , file=sys.stdout)
+    def move(self, k, ss=0, dbg=1):
+        if dbg: self.log(f'(BGN) {k:4}      {self.cc:4} {fmtl(self.i, FMTN)} ss={ss} text={self.tabs[self.cc].text}') # , file=sys.stdout)
         if not self.SNAP0: t = self.tabs[self.cc]  ;  self.snapshot(f'pre-move() k={k:4} kk={self.cc:3} {fmtl(self.i, FMTN)} text={t.text} {t.x:6.2f} {t.y:6.2f}')  ;  self.SNAP0 = 1
+        self.setLLColStyle(self.cc, SELECT_STYLE if ss else NORMAL_STYLE)
         self._move(k)
         kk = self.cursorCol()
         t = self.tabs[kk]  ;  x = t.x - t.width/2  ;  y = t.y - t.height/2
         self.cc = kk
         self.cursor.update(x=x, y=y)
-        if dbg: self.log(f'(END) {k:4} {kk:4} {self.cc:4} {fmtl(self.i, FMTN)} text={self.tabs[self.cc].text} {x:6.2f} {y:6.2f}') # , file=sys.stdout)
+        self.setLLColStyle(self.cc, CURRENT_STYLE)
+        if dbg: self.log(f'(END) {k:4} {kk:4} {self.cc:4} {fmtl(self.i, FMTN)} ss={ss} text={self.tabs[self.cc].text} {x:6.2f} {y:6.2f}') # , file=sys.stdout)
         self.armSnap = f'move() k={k:4} kk={kk:4} {fmtl(self.i, FMTN)} text={self.tabs[self.cc].text} {x:6.2f} {y:6.2f}'
 
     def _move(self, k, dbg=1):
@@ -1406,35 +1429,64 @@ class Tabs(pyglet.window.Window):
         self.i[P] = i
     '''
     def updateCaption(self, txt): self.set_caption(txt)
-    ####################################################################################################################################################################################################
-    def clearSelect(self, why):
-        self.log(f'{why}')
-        self.smap.clear()  ;  self.skeys.clear()
 
-    def selectTabCol(self, m, why='', dbg=1):
+    def goToLastTabCol(self):
+        l = self.i[L]  ;  i = l * self.tpl - 1
+        while not self.isFret(self.tabs[i].text): i -= 1
+        p, l, c, t = self.cc2plct(i)
+        self.move(self.cc2(p, l, c, t, dbg=1))
+        self.log(f'p={p} l={l} c={c} t={t}')
+    def goToLastTabCol2(self):
+        n = len(self.tabs)  ;  i = n - 1
+        while not self.isFret(self.tabs[i].text): i -= 1
+        p, l, c, t = self.cc2plct(i)
+        self.move(self.cc2(p, l, c, t, dbg=1))
+        self.log(f'p={p} l={l} c={c} t={t}')
+    ####################################################################################################################################################################################################
+    def dumpSelectTabCols(self, why): self.log(f'{why} skeys<{len(self.skeys)}>={fmtl(self.skeys)} smap<{len(self.smap)}>={fmtd(self.smap)}', ind=0)
+    def unselectAllTabCols(self, why, dbg=1):
+        why += ' unselectAllTabCols()'
+        for i in range(len(self.skeys)-1, -1, -1):
+            k = self.skeys[i]
+            if dbg: self.log(f'i={i} k={k}')
+            self.unselectTabCol(k, why)
+
+    def unselectTabCol(self, cc, why, dbg=1):
+        self.dumpSelectTabCols(why)
+        self.setLLColStyle(cc, NORMAL_STYLE)
+        nt = self.n[T]
+        k = (cc // nt) * nt
+        if dbg: self.log(f'cc={cc} k={k}')
+        for t in range(nt):
+            tab   = self.tabs[k + t]    ;    tab.color = self.kt[0]
+            note  = self.notes[k + t]   ;   note.color = self.kn[0]
+            chord = self.chords[k + t]  ;  chord.color = self.kk[0]
+        self.skeys.remove(k)
+        self.smap.pop(k)
+        self.dumpSelectTabCols(why)
+
+    def selectTabCol(self, m, why=''):
         cc = self.cursorCol()  ;  nt = self.n[T]  ;  text = ''
         sc = (cc // nt) * nt
-        self.skeys.append(sc)
         self.log(f'(BGN) {why} m={m} cc={cc} sc={sc} skeys<{len(self.skeys)}>={fmtl(self.skeys)}')
+        self.skeys.append(sc)
         for t in range(nt):
-            tab   = self.tabs[sc + t]    ;  old = tab.color  ;  tab.color = CCS[1]
-            note  = self.notes[sc + t]   ;                     note.color = CCS[1]
-            chord = self.chords[sc + t]  ;                    chord.color = CCS[1]
-            if dbg and not t: self.dumpWBWAW(f'cc={cc} sc={sc} t={t}', fmtl(old), f'<tabs[{sc+t}].color>', fmtl(tab.color))
+            tab   = self.tabs[sc + t]    ;    tab.color = CCS[10]
+            note  = self.notes[sc + t]   ;   note.color = CCS[10]
+            chord = self.chords[sc + t]  ;  chord.color = CCS[10]
             text += tab.text
         self.smap[sc] = text
-        self.move(m)
+        self.move(m, ss=1)
         self.log(f'(END) {why} m={m} cc={cc} sc={sc} smap<{len(self.smap)}>={fmtd(self.smap)}')
 
-    def copyTabCols(self, dbg=0, dbg2=1):
+    def copyTabCols(self, dbg=1):
         self.log(f'(BGN) skeys<{len(self.skeys)}>={self.skeys}')   ;   nt = self.n[T]  ;   text = ''
-        for k in range(len(self.skeys)):
+        for k in self.skeys:
+            self.setLLColStyle(k, NORMAL_STYLE)
             for t in range(nt):
-                kv     = self.skeys [k]   ;   kt = kv + t
-                tab    = self.tabs  [kt]  ;  old = tab.color  ;  tab.color = self.k[T][0]
-                note   = self.notes [kt]  ;                     note.color = self.k[N][0]
-                chord  = self.chords[kt]  ;                    chord.color = self.k[K][0]
-                if dbg2 and not t: self.dumpWBWAW(f'k={k} t={t} kv={kv} kt={kt}', fmtl(old), f'<tabs[{kt}].color>', fmtl(tab.color))
+                tab    = self.tabs  [k + t]  ;    tab.color = self.k[T][0]
+                note   = self.notes [k + t]  ;   note.color = self.k[N][0]
+                chord  = self.chords[k + t]  ;  chord.color = self.k[K][0]
                 if dbg: text += tab.text
             if dbg: text += ' '
         self.log(f'(END) skeys<{len(self.skeys)}>={self.skeys}', end=' ' if dbg else '\n')
@@ -1443,7 +1495,7 @@ class Tabs(pyglet.window.Window):
     def cutTabCols(self): self.log('(BGN) Cut = Copy + Delete')  ;  self.copyTabCols()  ;  self.log('Cut = Copy + Delete')  ;  self.deleteTabCols(cut=1)  ;  self.log('(END) Cut = Copy + Delete')
     ####################################################################################################################################################################################################
     def deleteTabCols(self, cut=0, why=''):
-        self.log(f'(BGN) {why} cut={cut} skeys<{len(self.skeys)}>={fmtl(self.skeys)} smap<{len(self.smap)}>={fmtd(self.smap)}')
+        self.dumpSelectTabCols(f'(BGN) deleteTabCols() {why} cut={cut}')
         nt = self.n[T]
         for i, (k,v) in enumerate(self.smap.items()):
             self.log(f'i={i} k={k} v={v}')
@@ -1453,15 +1505,15 @@ class Tabs(pyglet.window.Window):
                 self.notes [kt].color = self.k[N][0]
                 self.chords[kt].color = self.k[K][0]
                 self.updateDTNK(self.tblank, kt, p, l, c, t, uk=1 if t == nt-1 else 0)
-        if not cut: self.smap.clear()  ;  self.skeys.clear()
-        self.log(f'(END) cut={cut} skeys<{len(self.skeys)}>={fmtl(self.skeys)} smap<{len(self.smap)}>={fmtd(self.smap)}')
+        if not cut: self.unselectAllTabCols('deleteTabCols()')
+        self.dumpSelectTabCols(f'(END) deleteTabCols() {why} cut={cut}')
 
     def pasteTabCols(self, hc=0, dbg=1):
         cc = self.cursorCol()  ;  nt = self.n[T]
         nc = (cc // nt) * nt   ;  sc = 0
         smap, skeys = self.smap, self.skeys
         p, l, s, c, r = self.j()
-        self.log(f'(BGN) hc={hc} p={p} l={l} c={c} r={r} cc={cc} nc={nc} skeys<{len(skeys)}>={fmtl(skeys)} smap<{len(smap)}>={fmtd(smap)}')
+        self.dumpSelectTabCols(f'(BGN) pasteTabCols() hc={hc} p={p} l={l} c={c} r={r} cc={cc} nc={nc}')
         for i, (k, v) in enumerate(smap.items()):
             text = smap[k]
             dk = 0 if not i else skeys[i] - skeys[0]
@@ -1470,10 +1522,10 @@ class Tabs(pyglet.window.Window):
                 sc = (nc + dk + t) % self.tpp
                 p, l, c, r = self.cc2plct(sc, dbg=0)
                 self.updateDTNK(text[t], sc, p, l, c, t, uk=1 if t == nt-1 else 0)
-            if dbg: self.log(f'sm[{k}]={text} sc={sc}')
-        if not hc: self.smap.clear()  ;  self.skeys.clear()  ;  self.log(f'clearing smap and skeys')
+            if dbg: self.log(f'smap[{k}]={text} sc={sc}')
+        if not hc: self.unselectAllTabCols('pasteTabCols()')
         else:      self.log(f'holding a copy of smap and skeys')
-        self.log(f'(END) hc={hc} cc={cc} nc={nc} skeys<{len(skeys)}>={fmtl(skeys)} smap<{len(smap)}>={fmtd(smap)}')
+        self.dumpSelectTabCols(f'(END) pasteTabCols() hc={hc} cc={cc} nc={nc}')
 
     def updateTab(self, text, why='', rev=0, dbg=1):
         self.log(f'(BGN) text={text} rev={rev} {why} {fmtl(self.i, FMTN)}')
@@ -1486,12 +1538,11 @@ class Tabs(pyglet.window.Window):
         self.log(f'(END) text={text} rev={rev} {why} {fmtl(self.i, FMTN)}')
     ####################################################################################################################################################################################################
     def updateDTNK(self, text, cc, p, l, c, t, uk=0, dbg=1):
-        if dbg: self.log(f'(BGN) text={text} cc={cc} p={p} l={l} c={c} t={t} uk={uk}')
+        if dbg: self.log(f'text={text} cc={cc} p={p} l={l} c={c} t={t} uk={uk}')
         self.updateData(text, p, l, c, t)
         if self.TNIK[TT]:        self.updateTab2( text, cc)
         if self.TNIK[NN]:        self.updateNote( text, cc, t)
         if self.TNIK[KK] and uk: self.updateChord(p, l, c, t)
-        if dbg: self.log(f'(END) text={text} cc={cc} p={p} l={l} c={c} t={t} uk={uk}')
     ####################################################################################################################################################################################################
     def updateData(self, text, p, l, c, r, dbg=1):
         t = self.data[p][l][c]
@@ -1508,24 +1559,23 @@ class Tabs(pyglet.window.Window):
         self.notes[cc].text = self.getNoteName(r, txt) if self.isFret(txt) else self.nblank
         if dbg: self.dumpWBWAW(f'({txt} cc={cc} r={r})', oldNote, f'<notes[{cc}].text>', self.notes[cc].text)
 
-    def updateChord(self, p, l, c, t, dbg=1, dbg2=1):
+    def updateChord(self, p, l, c, t, dbg=1):
         cc = self.plct2cc(p, l, c, 0)    ;    nt = self.n[T]    ;    name = ''    ;    i = 0
-        if dbg: self.log(f'(BGN) p={p} l={l} c={c} t={t} cc={cc}')
-        chordName = self.cobj.getChordName(p, l, c, dbg=1)
-        if dbg2: self.log(f' chordName=<{chordName:<6}>')
+        chordName = self.cobj.getChordName(p, l, c)
+        self.log(f'(BGN) p={p} l={l} c={c} t={t} cc={cc} chordName=<{chordName:<}>')
         self.updateChordName(chordName, cc)
         if dbg:
             for i in range(nt):
                 name += self.chords[cc + i].text
-            self.log(f'(END) chords[{cc}-{cc+i}].text={name}')
+            self.log(f'(END) chords[{cc}-{cc+i}].text={name} chordName={chordName}')
         else: self.log(f'(END) chordName={chordName}')
 
-    def updateChordName(self, name, cc, dbg=1):
-        if dbg: self.log(f'(BGN) name={name} cc={cc}')
+    def updateChordName(self, name, cc):
+        txt = f'chords[{cc}-{cc + self.n[T]}].text='
         for r in range(self.n[T]):
             self.chords[cc + r].text = name[r] if len(name) > r else self.nblank
-            if dbg: self.log(f'chords[{cc + r}].text={self.chords[cc + r].text}')
-        self.log(f'(END) name={name} cc={cc}')
+            txt += f'{self.chords[cc + r].text}'
+        self.log(f'name={name} cc={cc} {txt}')
 
     @staticmethod
     def getFretNum(tab, dbg=0):
@@ -1535,27 +1585,25 @@ class Tabs(pyglet.window.Window):
         if dbg: Tabs.log(f'tab={tab} fretNum={fretNum}')
         return fretNum
 
-    def getNoteIndex(self, r, fn, dbg=1):
+    def getNoteIndex(self, r, fn, dbg=0):
         row = self.n[T] - r - 1    # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
-        if dbg: self.log(f'r={r} fretNum={fn} row={row} stringMap={fmtd(self.stringMap)}')
         k = self.stringKeys[row]
         i = self.stringMap[k] + fn
-        if dbg: self.log(f'r={r} fretNum={fn} row={row} k={k} i={i}')
+        if dbg: self.log(f'r={r} fretNum={fn} row={row} k={k} i={i} stringMap={fmtd(self.stringMap)}')
         return i
 
-    def getNoteName(self, row, tab, dbg=1):
+    def getNoteName(self, row, tab, dbg=0):
         fretNum = self.getFretNum(tab)
         index   = self.getNoteIndex(row, fretNum)
-        if dbg: self.log(f'(BGN) row={row} tab={tab} fretNum={fretNum} index={index}')
         name    = misc.Note.getName(index)
-        if dbg: self.log(f'(END) row={row} tab={tab} fretNum={fretNum} index={index} name={name}')
+        if dbg: self.log(f'row={row} tab={tab} fretNum={fretNum} index={index} name={name}')
         return name # if self.isFret(tab) else self.nblank
 
     def getNoteObj(self, row, tab, dbg=1):
         fretNum = self.getFretNum(tab)
         note = misc.Note(self.getNoteIndex(row, fretNum))
         if dbg: self.log(f'row={row} tab={tab} fretNum={fretNum} note.name={note.name} note.index={note.index}')
-        quit(f'TEST Note obj creation?')
+        msg = f'assert Note obj creation?'  ;  assert msg is None
         return note
     ####################################################################################################################################################################################################
     def dumpCursorArrows(self, why=''): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;   self.log(f'csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4} {why}')
@@ -1734,7 +1782,7 @@ class Tabs(pyglet.window.Window):
         return len(si)
 
     @staticmethod
-    def delGlob(g, why=''):
+    def deleteGlob(g, why=''):
         Tabs.log(f'deleting {len(g)} file globs why={why}')
         for f in g:
             Tabs.log(f'{f}')

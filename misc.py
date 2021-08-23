@@ -56,12 +56,12 @@ class Chord(object):
         if   self.limap1 and self.limap1[0]: return self.limap1[0][2]
         elif self.limap2 and self.limap2[0]: return self.limap2[0][2]
 
-    def getChordName(self, p, l, c, dbg=VERBOSE):
+    def getChordName(self, p, l, c, dbg=0, dbg2=1):
         self.mlimap.clear()
         cc = self.tobj.plct2cc(p, l, c, 0)
         if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc} mlimap<{len(self.mlimap)}>:', file=self.logFile)
         self.dumpMLimap()
-        if cc in self.mlimap: tabs.Tabs.log(f'ERROR: Unexpected key cc={cc} exists', file=self.logFile)
+        if cc in self.mlimap: tabs.Tabs.log(f'ERROR: Unexpected key cc={cc} exists', file=self.logFile)  ;  assert 0
         self.limap= []  ;  chordName = ''
         imapKeys, imapNotes   = None, None   ;   d1, d2 = '<', '>'
         mask, notes, indices  = self.getNotesIndices(p, l, c)
@@ -77,7 +77,7 @@ class Chord(object):
         if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}', file=self.logFile)
         self.limap.extend(self.limap1)  ;  self.limap1 = []
         self.limap.extend(self.limap2)  ;  self.limap2 = []
-        if dbg:
+        if dbg2:
             for i, m in enumerate(self.limap):
                 tabs.Tabs.log(tabs.FMTR.format(f'limap   0 {i+1}  [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'), file=self.logFile)
         return chordName
