@@ -5,10 +5,16 @@ import tabs
 VERBOSE = tabs.VERBOSE
 
 class Note(object):
-    count          = 0
-    NUM_SEMI_TONES = 12
-    SHARP_TONES    = { 0:'C', 1:'C#', 2:'D', 3:'D#', 4:'E', 5:'F', 6:'F#', 7:'G', 8:'G#', 9:'A', 10:'A#', 11:'B' }
-    FLAT_TONES     = { 0:'C', 1:'Db', 2:'D', 3:'Eb', 4:'E', 5:'F', 6:'Gb', 7:'G', 8:'Ab', 9:'A', 10:'Bb', 11:'B' }
+    count       = 0
+    FLAT, SHARP = 0, 1
+    TYPE        = FLAT
+    TYPES       = ['FLAT', 'SHARP']
+    NTONES      = 12
+    F2S         = {'Db':'C#', 'Eb':'D#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#'}
+    S2F         = {'C#':'Db', 'D#':'Eb', 'F#':'Gb', 'G#':'Ab', 'A#':'Bb'}
+    FLATS       = { 0:'C', 1:'Db', 2:'D', 3:'Eb', 4:'E', 5:'F', 6:'Gb', 7:'G', 8:'Ab', 9:'A', 10:'Bb', 11:'B' }
+    SHARPS      = { 0:'C', 1:'C#', 2:'D', 3:'D#', 4:'E', 5:'F', 6:'F#', 7:'G', 8:'G#', 9:'A', 10:'A#', 11:'B' }
+    TONES       = [FLATS, SHARPS]
     INDICES = { 'C0': 0, 'C#0': 1, 'Db0': 1, 'D0': 2, 'D#0': 3, 'Eb0': 3, 'E0': 4, 'F0': 5, 'F#0': 6, 'Gb0': 6, 'G0': 7, 'G#0': 8, 'Ab0': 8, 'A0': 9, 'A#0':10, 'Bb0':10, 'B0':11,
                 'C1':12, 'C#1':13, 'Db1':13, 'D1':14, 'D#1':15, 'Eb1':15, 'E1':16, 'F1':17, 'F#1':18, 'Gb1':18, 'G1':19, 'G#1':20, 'Ab1':20, 'A1':21, 'A#1':22, 'Bb1':22, 'B1':23,
                 'C2':24, 'C#2':25, 'Db2':25, 'D2':26, 'D#2':27, 'Eb2':27, 'E2':28, 'F2':29, 'F#2':30, 'Gb2':30, 'G2':31, 'G#2':32, 'Ab2':32, 'A2':33, 'A#2':34, 'Bb2':34, 'B2':35,
@@ -19,13 +25,18 @@ class Note(object):
                 'C7':84, 'C#7':85, 'Db7':85, 'D7':86, 'D#7':87, 'Eb7':87, 'E7':88, 'F7':89, 'F#7':90, 'Gb7':90, 'G7':91, 'G#7':92, 'Ab7':92, 'A7':93, 'A#7':94, 'Bb7':94, 'B7':95,
                 'C8':96 } # For simplicity omit double flats and double sharps and other redundant enharmonic note names e.g. Abb, C##, Cb, B#, Fb, E# etc...
     def __init__(self, i):
+        assert i < 0
         self.index = i
-        self.name  = self.FLAT_TONES[i % len(self.FLAT_TONES)]
+        self.name  = self.TONES[Note.TYPE][i % self.NTONES]
         Note.count += 1
         tabs.Tabs.dumpObj(obj=self, name=f'{self.name} Note', why=f'count={Note.count}')
-        assert Note.count > 2
     @staticmethod
-    def getName(index): return Note.FLAT_TONES[index % len(Note.FLAT_TONES)]
+    def setType(tt): Note.TYPE = tt  ;  tabs.Tabs.log(f'Type={Note.TYPE}')
+    @staticmethod
+    def getName(i):
+        name = Note.TONES[Note.TYPE][i % Note.NTONES]
+        tabs.Tabs.log(f'i={i} TYPE={Note.TYPE} NTONES={Note.NTONES} name={name}')
+        return name
 ####################################################################################################################################################################################################
 class Chord(object):
     INTERVALS     = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'a5', 9:'6', 10:'b7', 11:'7' }
@@ -122,7 +133,7 @@ class Chord(object):
         return mask2, notes, indices
 
     def getIntervals(self, indices, j, mask, order=1, dbg=VERBOSE):
-        deltas = []  ;  nst = Note.NUM_SEMI_TONES
+        deltas = []  ;  nst = Note.NTONES
         for i in indices:
             if i - indices[j] >= 0:
                 if order: deltas.append((i - indices[j]) % nst)
@@ -166,11 +177,13 @@ class Chord(object):
         for c, (k,v) in enumerate(self.mlimap.items()):
             tabs.Tabs.log(f'c={c} k={k} v={v}', file=self.logFile)
 
-    def dumpLimap(self, limap, why):
+    @staticmethod
+    def dumpLimap(limap, why):
         for imap in limap:
-            self.dumpImap(imap, why)
+            Chord.dumpImap(imap, why)
 
-    def dumpImap(self, imap, why):
+    @staticmethod
+    def dumpImap(imap, why):
         intervals = imap[0]  ;  imapNotes = imap[1]   ;   chordName = imap[2]   ;   d1, d2 = '<', '>'
         tabs.Tabs.log(f'{why}  [ <{chordName:<6}> {tabs.fmtl(intervals, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]')
 

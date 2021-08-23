@@ -152,6 +152,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'   snapGlob={snapGlob}')
         self.deleteGlob(snapGlob, 'SNAP_GLOB')
         self.cobj = misc.Chord(self, LOG_FILE)
+        misc.Note.setType(misc.Note.SHARP)  ;  self.log(f' Note.TYPE={misc.Note.TYPE}')
         self.dfn = ''
         self.n    = []
         self.TNIK = [1, 1, 0, 1]
@@ -276,7 +277,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'tps={fmtl(self.tpz())}')
 
     @staticmethod
-    def  dumpObj( obj, name, why=''): Tabs.log(f'{why} {name} ObjId {hex(id(obj))} {type(obj)}')
+    def dumpObj( obj,  name, why=''): Tabs.log(f'{why} {name} ObjId {hex(id(obj))} {type(obj)}')
     @staticmethod
     def dumpObjs(objs, name, why=''): [Tabs.dumpObj(o, name, why) for o in objs]  # ;   [Tabs.log(f'{hex(id(o))} type={type(o)}', ind=0) for o in obj]   ;    Tabs.log(ind=0)
     def dumpWBWAW(self, why, before, what, after, why2=''): self.log(f'{why:<24} {before:>16} {what:^20} {after:<16} {why2}')
@@ -1178,7 +1179,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'E' and self.isCtrl(mods) and self.isShift(mods): self.erase()
         elif kbk == 'E' and self.isCtrl(mods):                        self.erase()
         elif kbk == 'F' and self.isCtrl(mods) and self.isShift(mods): self.toggleFullScreen()
-        elif kbk == 'F' and self.isCtrl(mods):                        self.toggleFullScreen()
+        elif kbk == 'F' and self.isCtrl(mods):                        self.toggleFlatSharp()
         elif kbk == 'G' and self.isCtrl(mods) and self.isShift(mods): self.goToLastTabCol2()
         elif kbk == 'G' and self.isCtrl(mods):                        self.goToLastTabCol()
         elif kbk == 'I' and self.isCtrl(mods) and self.isShift(mods): self.toggleCursorMode(why)
@@ -1544,6 +1545,16 @@ class Tabs(pyglet.window.Window):
         if self.TNIK[NN]:        self.updateNote( text, cc, t)
         if self.TNIK[KK] and uk: self.updateChord(p, l, c, t)
     ####################################################################################################################################################################################################
+    def toggleFlatSharp(self, dbg=0):
+        tt1 =  misc.Note.TYPE    ;    tt2 = (misc.Note.TYPE + 1) % 2    ;    misc.Note.setType(tt2)
+        self.log(f'type={tt1}={misc.Note.TYPES[tt1]} => type={tt2}={misc.Note.TYPES[tt2]}')
+        for i, n in enumerate(self.notes):
+            if len(n.text) > 1:
+                old = n.text
+                if   n.text in misc.Note.F2S: n.text = misc.Note.F2S[n.text]
+                elif n.text in misc.Note.S2F: n.text = misc.Note.S2F[n.text]
+                if dbg: self.log(f'notes[{i:3}] {old} => {n.text}')
+
     def updateData(self, text, p, l, c, r, dbg=1):
         t = self.data[p][l][c]
         self.data[p][l][c] = t[0:r] + text + t[r+1:]
