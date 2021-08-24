@@ -54,7 +54,7 @@ def dumpGlobals():
     Tabs.log(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
 ARGS          = cmdArgs.parseCmdLine()
-CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
+CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  READ_DATA_FILE = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 1
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -95,7 +95,7 @@ BLUE             = [( 13,  11, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
 INDIGO           = [(255,  22, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
 VIOLET           = [(176,  81, 255, OPACITY[0]), (44, 14, 58, OPACITY[0])]
 ULTRA_VIOLET     = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
-CC               = [(235, 230,  12, OPACITY[0]), (13, 30, 40, OPACITY[8])]
+CC               = [(235, 230,  12, OPACITY[0]), (13, 30, 40, OPACITY[2])]
 HUES             = 16
 MAX_STACK_DEPTH  = 0  ;  MAX_STACK_FRAME = inspect.stack()
 ####################################################################################################################################################################################################
@@ -1545,16 +1545,6 @@ class Tabs(pyglet.window.Window):
         if self.TNIK[NN]:        self.updateNote( text, cc, t)
         if self.TNIK[KK] and uk: self.updateChord(p, l, c, t)
     ####################################################################################################################################################################################################
-    def toggleFlatSharp(self, dbg=0):
-        tt1 =  misc.Note.TYPE    ;    tt2 = (misc.Note.TYPE + 1) % 2    ;    misc.Note.setType(tt2)
-        self.log(f'type={tt1}={misc.Note.TYPES[tt1]} => type={tt2}={misc.Note.TYPES[tt2]}')
-        for i, n in enumerate(self.notes):
-            if len(n.text) > 1:
-                old = n.text
-                if   n.text in misc.Note.F2S: n.text = misc.Note.F2S[n.text]
-                elif n.text in misc.Note.S2F: n.text = misc.Note.S2F[n.text]
-                if dbg: self.log(f'notes[{i:3}] {old} => {n.text}')
-
     def updateData(self, text, p, l, c, r, dbg=1):
         t = self.data[p][l][c]
         self.data[p][l][c] = t[0:r] + text + t[r+1:]
@@ -1624,6 +1614,36 @@ class Tabs(pyglet.window.Window):
         if self.csrMode == CHORD  or self.csrMode == ARPG: self.toggleVArrow('reverseArrow() CHORD or ARPG')
         if dbg: self.dumpCursorArrows('reverseArrow()')
     ####################################################################################################################################################################################################
+    def toggleFlatSharp(self, dbg=1):
+        tt1 =  misc.Note.TYPE    ;    tt2 = (misc.Note.TYPE + 1) % 2    ;    misc.Note.setType(tt2)
+        self.log(f'type={tt1}={misc.Note.TYPES[tt1]} => type={tt2}={misc.Note.TYPES[tt2]}')
+        np, nl, ns, nc, nt = self.n  ;  i = 0  ;  p, l, c, t = 0, 0, 0, 0
+        for p in range(np):
+            for l in range(nl):
+                for c in range(nc):
+                    j = 0
+                    for t in range(nt):
+                        n = self.notes[i]
+                        if len(n.text) > 1:
+                            if   n.text in misc.Note.F2S: n.text = misc.Note.F2S[n.text]
+                            elif n.text in misc.Note.S2F: n.text = misc.Note.S2F[n.text]
+                            if not j: self.updateChord(p, l, c, t)  ;  j += 1
+                            if dbg: self.log(f'notes[{i:3}] {n.text} p={p} l={l} c={c} t={t}')
+                        i += 1
+        if dbg: self.log(f'i={i} p={p} l={l} c={c} t={t} np={np} nl={nl} nc={nc} nt={nt}')
+
+    def OLD_toggleFlatSharp(self, dbg=1):
+        tt1 =  misc.Note.TYPE    ;    tt2 = (misc.Note.TYPE + 1) % 2    ;    misc.Note.setType(tt2)
+        self.log(f'type={tt1}={misc.Note.TYPES[tt1]} => type={tt2}={misc.Note.TYPES[tt2]}')
+        for i, n in enumerate(self.notes):
+            if len(n.text) > 1:
+                old = n.text
+                if   n.text in misc.Note.F2S: n.text = misc.Note.F2S[n.text]
+                elif n.text in misc.Note.S2F: n.text = misc.Note.S2F[n.text]
+                p, l, c, t = self.cc2plct(i)
+                self.updateChord(p, l, c, t)
+                if dbg: self.log(f'notes[{i:3}] {old} => {n.text} p={p} l={l} c={c} t={t}')
+
     def toggleChordName(self, rev=0):
         p, l, s, c, r = self.j()
         cc = c + l * self.n[C] # fix
