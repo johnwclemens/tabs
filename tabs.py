@@ -95,7 +95,7 @@ BLUE             = [( 13,  11, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
 INDIGO           = [(255,  22, 255, OPACITY[0]), (19, 11, 64, OPACITY[0])]
 VIOLET           = [(176,  81, 255, OPACITY[0]), (44, 14, 58, OPACITY[0])]
 ULTRA_VIOLET     = [(194,  96, 255, OPACITY[3]), (50, 19, 61, OPACITY[1])]
-CC               = [(235, 230,  12, OPACITY[0]), (13, 30, 40, OPACITY[2])]
+CC               = [(255, 200,  12, OPACITY[0]), (13, 30, 40, OPACITY[0])]
 HUES             = 16
 MAX_STACK_DEPTH  = 0  ;  MAX_STACK_FRAME = inspect.stack()
 ####################################################################################################################################################################################################
@@ -332,11 +332,15 @@ class Tabs(pyglet.window.Window):
         self.klc = [ PINKS[0],  PINKS[8]]  if CHECKER_BOARD else [PINKS[0]]
         self.kll = [ REDS[0],  REDS[8]]  if CHECKER_BOARD else [REDS[0]]
         self.k   = [self.kp, self.kl, self.ks, self.kc, self.kt, self.kn, self.ki, self.kk, self.klc, self.klr, self.kll]
-        [self.log(f'{fmtl(*e)}') for e in self.k]
+        [self.log(f'[{i}] {fmtl(*e)}') for i,e in enumerate(self.k)]
         self.ssi = 0
         self._initTpz()
+        testNames = ['A', 'Bb', 'C#', 'CM7', 'Dm7', 'Cb', 'C#M7', 'Eb7', 'F#m7', 'Gbm#11', 'C#11', 'C11#13', 'Ebm7b9']
+        for testName in testNames:
+            testName2 = self.name2List(testName)
+            self.log(f'    {testName} => {testName2}')
+#        self.quit('cn2cnl()')
         self.readDataFile() if READ_DATA_FILE else self.createBlankData()
-#        self.quit('test data file path')
         self.labelTextA, self.labelTextB = [], []
         self.createLabelText()
         self.labelTextC = []  ;  self.labelTextC.append('M')         ;  self.labelTextC.extend(self.labelTextB)
@@ -817,7 +821,7 @@ class Tabs(pyglet.window.Window):
             yield lbl
     ####################################################################################################################################################################################################
     def g_createLabels2(self, col, dbg=VERBOSE, dbg2=0):
-        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;  tt, nn, kkk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]   ;   chordName = ''
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;  tt, nn, kkk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]   ;   chordName = ''   ;   nList = []
         nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)   ;   kt, kn, kk = self.kt, self.kn, self.kk    ;    kt2, kn2, kk2 = self.kt2, self.kn2, self.kk2
         for t in range(nt): #            self.log(f't={t} nt={nt} TNIK={self.TNIK} st={self.J2[T]}') #            self.log(f's={s} tt={tt} nn={nn} kk={kkk}')#        self.log(f'p={p} l={l} s={s} c={c} nt={nt}')
             if   tt and s == 0:
@@ -836,12 +840,42 @@ class Tabs(pyglet.window.Window):
                 elif CCC > 1 and c == C2: chord = self.cpoLabel[t]       ;  plist = self.cpols   ;  kl = kk2   ;  k = self.cci(t, kl)  ;  self.J2[F] += 1  ;  why = f'New CpoL {self.J2[F]}'
                 else:
 #                    if not t: _chord = misc.Chord(self, LOG_FILE)  ;  _chord.chordName = _chord.getChordName(p, l, c)
-                    if not t: chordName = self.cobj.getChordName(p, l, c)
-                    chord = chordName[t] if len(chordName) > t else self.nblank
+#                    if not t: chordName = self.cobj.getChordName(p, l, c)
+#                    name1 = self.g_chordName1(chordName)  ;  self.log(f't={t} {chordName} name1={name1}')
+#                    name2 = self.g_chordName2(chordName)  ;  self.log(f't={t} {chordName} name2={name2}')
+                    if not t: chordName = self.cobj.getChordName(p, l, c)   ;   nList = self.name2List(chordName)
+                    self.log(f'{t} {chordName} {nList}')
+                    chord = nList[t] if len(nList) > t else self.nblank
+#                    chord = chordName[t] if len(chordName) > t else self.nblank
                     plist = self.chords  ;  kl = kk    ;  k = self.cci(t, kl)  ;  self.J2[K] += 1  ;  why = f'New Chord {self.J2[K]}'
                 self.createLabel(chord, K, plist,  xt, yt - t*ht, wt, ht, k, gt, why=why, kl=kl, dbg=dbg)  ;  yield chord
             else: self.log(f'ERROR Not Handled s={s} tt={tt} nn={nn} kk={kkk}')  ;  yield None
     ####################################################################################################################################################################################################
+#    @staticmethod
+    def g_chordName1(self, n):
+        i = 0  ;  ln = len(n)
+        while i < ln:
+            if i == 0 and ln > 1:
+                if n[1] == '#' or n[1] == 'b':  i += 2  ;  self.log(f'i={i} n={n}')  ;  yield n[:2]
+        i += 1  ;  self.log(f'i={i} n={n}')  ;  yield n[i-1]
+
+    def g_chordName2(self, n):
+        i = 0
+        if len(n) > 1:
+            if n[1] == '#' or n[1] == 'b':  i += 2  ;  self.log(f'i={i} n={n}')  ;  yield n[:2]
+        i += 1  ;  self.log(f'i={i} n={n}')  ;  yield n[i-1]
+
+    @staticmethod
+    def name2List(n):
+        nlist = []  ;  ln = len(n)  ;  i = 0
+        while i < ln:
+            if i == 0 and ln > 1:
+                if n[1] == '#' or n[1] == 'b':  i += 1  ;  nlist.append(n[:2])
+                else: nlist.append(n[i])
+            else: nlist.append(n[i])
+            i += 1
+        return nlist
+
     def createSprites(self, dbg=VERBOSE, dbg2=0):
         self.log(f'(BGN) {self.fmtGeom()}', ind=0)  ;  v = 0
         if dbg: self.dumpLabel()  ;  self.dumpSprite()
@@ -1291,16 +1325,16 @@ class Tabs(pyglet.window.Window):
         x, y = c.x - w/2, c.y - h/2
         self.log(f'c={self.cc} x={x:6.1f} y={y:6.1f} w={w:6.1f} h={h:6.1f} i={fmtl(self.i, FMTN)}')
         self.dumpSprite()
-        self.cursor = self.createSprite(None, x, y, w, h, 0, g, why='cursor', kl=CCS, v=1, dbg=1)
+        self.cursor = self.createSprite(None, x, y, w, h, 8, g, why='cursor', kl=CCS, v=1, dbg=1)
         if QQ: self.setLLColStyle(self.cc, CURRENT_STYLE)
 
     def setLLColStyle(self, cc, style, dbg=0):
         p, l, c, t = self.cc2plct(cc)  ;  nc = self.n[C]
         bold, italic, color = 0, 0, self.klc[0]
         if   style == NORMAL_STYLE: color = self.klc[0]  ;  bold = 0  ;  italic = 0
-        elif style == CURRENT_STYLE: color = CCS[0]      ;  bold = 0  ;  italic = 0
-        elif style == SELECT_STYLE: color = CCS[10]       ;  bold = 1  ;  italic = 1
-        elif style == COPY_STYLE:   color = REDS[1]       ;  bold = 1  ;  italic = 1
+        elif style == CURRENT_STYLE: color = CCS[8]      ;  bold = 0  ;  italic = 0
+        elif style == SELECT_STYLE:  color = CCS[0]      ;  bold = 1  ;  italic = 1
+        elif style == COPY_STYLE:    color = REDS[1]     ;  bold = 1  ;  italic = 1
         self.llCols[c + l * nc].color  = color
         self.llCols[c + l * nc].bold   = bold
         self.llCols[c + l * nc].italic = italic
@@ -1317,14 +1351,14 @@ class Tabs(pyglet.window.Window):
         p, l, s, c, t = self.j()
         return self.plct2cc(p, l, c, t, dbg)
 
-    def plct2cc(self, p, l, c, t, dbg=0):
+    def plct2cc(self, p, l, c, t, dbg=1):
         tpp, tpl, tps, tpc = self.tpz()
         cc = p * tpp + l * tpl + c * tpc + t
         lenT = len(self.tabs)   ;   ccm = cc % lenT
         if dbg: self.log(f'{ccm:4}=({p*tpp} +{l*tpl} +{c*tpc} +{t}) % {lenT}, tpp={tpp} tpl={tpl} tpc={tpc} p={p} l={l} c={c} t={t}')
         return ccm
 
-    def cc2plct(self, cc, dbg=0):
+    def cc2plct(self, cc, dbg=1):
         tpp, tpl, tps, tpc = self.tpz()
         p =  cc // tpp
         l = (cc - p * tpp) // tpl
@@ -1472,9 +1506,9 @@ class Tabs(pyglet.window.Window):
         self.log(f'(BGN) {why} m={m} cc={cc} sc={sc} skeys<{len(self.skeys)}>={fmtl(self.skeys)}')
         self.skeys.append(sc)
         for t in range(nt):
-            tab   = self.tabs[sc + t]    ;    tab.color = CCS[10]
-            note  = self.notes[sc + t]   ;   note.color = CCS[10]
-            chord = self.chords[sc + t]  ;  chord.color = CCS[10]
+            tab   = self.tabs[sc + t]    ;    tab.color = CCS[0]
+            note  = self.notes[sc + t]   ;   note.color = CCS[0]
+            chord = self.chords[sc + t]  ;  chord.color = CCS[0]
             text += tab.text
         self.smap[sc] = text
         self.move(m, ss=1)
@@ -1568,14 +1602,22 @@ class Tabs(pyglet.window.Window):
         if dbg:
             for i in range(nt):
                 name += self.chords[cc + i].text
-            self.log(f'(END) chords[{cc}-{cc+i}].text={name} chordName={chordName}')
+            self.log(f'(END) chords[{cc}-{cc+i}].text={name} chordName=<{chordName:<}>')
         else: self.log(f'(END) chordName={chordName}')
 
-    def updateChordName(self, name, cc):
+    def updateChordName(self, n, cc):
         txt = f'chords[{cc}-{cc + self.n[T]}].text='
-        for r in range(self.n[T]):
-            self.chords[cc + r].text = name[r] if len(name) > r else self.nblank
-            txt += f'{self.chords[cc + r].text}'
+        name = self.name2List(n)
+        for i in range(self.n[T]):
+            self.chords[cc + i].text = name[i] if len(name) > i else self.nblank
+            txt += f'{self.chords[cc + i].text}'
+        self.log(f'name={name} cc={cc} {txt}')
+
+    def OLD_updateChordName(self, name, cc):
+        txt = f'chords[{cc}-{cc + self.n[T]}].text='
+        for i in range(self.n[T]):
+            self.chords[cc + i].text = name[i] if len(name) > i else self.nblank
+            txt += f'{self.chords[cc + i].text}'
         self.log(f'name={name} cc={cc} {txt}')
 
     @staticmethod
