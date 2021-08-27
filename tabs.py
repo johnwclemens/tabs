@@ -137,7 +137,7 @@ FONT_COLORS_L = [PINKS[0], GRAYS[0], BLUES[0], GREENS[0], YELLOWS[0], REDS[0], G
 FONT_COLORS   =  FONT_COLORS_S if SPRITES else FONT_COLORS_L
 ####################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
-    hideST = ['log', 'dumpWBWAW']
+    hideST = ['log', 'dumpMLimap', 'dumpData', 'cursorCol', 'cc2plct', 'plct2cc', 'dumpWBWAW']
     def __init__(self):
         dumpGlobals()
         global FULL_SCREEN, SUBPIX, ORDER_GROUP
@@ -649,7 +649,7 @@ class Tabs(pyglet.window.Window):
             if dbg: self.log(f'{p} {l} {cc} {tt}', ind=0, end=' ')
             tab = self.data[p][l][cc][tt]
             note = self.getNoteName(tt, tab) if self.isFret(tab) else self.nblank
-            if not t:   chordName = self.cobj.getChordName(p, l, cc)
+            if not t:   chordName = self.cobj.getChordName(p, l, cc)  # call only once per column or tpc
             chord = chordName[tt] if len(chordName) > tt else self.nblank
             text  = tab if tnik == TT else note if tnik == NN else chord if tnik == KK else '???'
             self.showLabel(tt, p=tabs, j=_tnik, t=f'{text}', g=self.g[T], k=k[tnik])
@@ -839,32 +839,13 @@ class Tabs(pyglet.window.Window):
                 if   CCC     and c == C1: chord = self.strLabel[t]       ;  plist = self.strls   ;  kl = kk2   ;  k = self.cci(t, kl)  ;  self.J2[E] += 1  ;  why = f'New StrL {self.J2[E]}'
                 elif CCC > 1 and c == C2: chord = self.cpoLabel[t]       ;  plist = self.cpols   ;  kl = kk2   ;  k = self.cci(t, kl)  ;  self.J2[F] += 1  ;  why = f'New CpoL {self.J2[F]}'
                 else:
-#                    if not t: _chord = misc.Chord(self, LOG_FILE)  ;  _chord.chordName = _chord.getChordName(p, l, c)
-#                    if not t: chordName = self.cobj.getChordName(p, l, c)
-#                    name1 = self.g_chordName1(chordName)  ;  self.log(f't={t} {chordName} name1={name1}')
-#                    name2 = self.g_chordName2(chordName)  ;  self.log(f't={t} {chordName} name2={name2}')
-                    if not t: chordName = self.cobj.getChordName(p, l, c)   ;   nList = self.name2List(chordName)
-                    self.log(f'{t} {chordName} {nList}')
+                    if not t: chordName = self.cobj.getChordName(p, l, c)   ;   nList = self.name2List(chordName)  # call only once per column or tpc
+                    if dbg2: self.log(f'{t} {chordName} {nList}')
                     chord = nList[t] if len(nList) > t else self.nblank
-#                    chord = chordName[t] if len(chordName) > t else self.nblank
                     plist = self.chords  ;  kl = kk    ;  k = self.cci(t, kl)  ;  self.J2[K] += 1  ;  why = f'New Chord {self.J2[K]}'
                 self.createLabel(chord, K, plist,  xt, yt - t*ht, wt, ht, k, gt, why=why, kl=kl, dbg=dbg)  ;  yield chord
             else: self.log(f'ERROR Not Handled s={s} tt={tt} nn={nn} kk={kkk}')  ;  yield None
     ####################################################################################################################################################################################################
-#    @staticmethod
-    def g_chordName1(self, n):
-        i = 0  ;  ln = len(n)
-        while i < ln:
-            if i == 0 and ln > 1:
-                if n[1] == '#' or n[1] == 'b':  i += 2  ;  self.log(f'i={i} n={n}')  ;  yield n[:2]
-        i += 1  ;  self.log(f'i={i} n={n}')  ;  yield n[i-1]
-
-    def g_chordName2(self, n):
-        i = 0
-        if len(n) > 1:
-            if n[1] == '#' or n[1] == 'b':  i += 2  ;  self.log(f'i={i} n={n}')  ;  yield n[:2]
-        i += 1  ;  self.log(f'i={i} n={n}')  ;  yield n[i-1]
-
     @staticmethod
     def name2List(n):
         nlist = []  ;  ln = len(n)  ;  i = 0
@@ -1355,7 +1336,7 @@ class Tabs(pyglet.window.Window):
         tpp, tpl, tps, tpc = self.tpz()
         cc = p * tpp + l * tpl + c * tpc + t
         lenT = len(self.tabs)   ;   ccm = cc % lenT
-        if dbg: self.log(f'{ccm:4}=({p*tpp} +{l*tpl} +{c*tpc} +{t}) % {lenT}, tpp={tpp} tpl={tpl} tpc={tpc} p={p} l={l} c={c} t={t}')
+        if dbg: self.log(f'plct2cc({p} {l} {c} {t}) {tpp} {tpl} {tpc} ({p*tpp} +{l*tpl} +{c*tpc} +{t}) % {lenT} return {ccm}')
         return ccm
 
     def cc2plct(self, cc, dbg=1):
@@ -1365,8 +1346,11 @@ class Tabs(pyglet.window.Window):
         c = (cc - p * tpp - l * tpl) // tpc
         t =  cc - p * tpp - l * tpl - c * tpc
         p = p % self.n[P]
-        if dbg: self.log(f'cc={cc} p={p} l={l} c={c} t={t}')
+        if dbg: self.log(f'cc2plct({cc}) return {p} {l} {c} {t}')
         return p, l, c, t
+
+    def cc2cn(self, cc):       cn = cc // self.tpc                   ;  self.log(f'({cc}) cc // self.tpc return {cn}')  ;  return cn
+    def plc2cn(self, p, l, c): cn = p * self.tpp + l * self.tpl + c  ;  self.log(f'({p} {l} {c}) p * self.tpp + l * self.tpl + c return {cn}')  ;  return cn
 
     def cc2(self, p, l, c, t, dbg=1):
         cc = self.plct2cc(p, l, c, t, dbg)
@@ -1535,11 +1519,11 @@ class Tabs(pyglet.window.Window):
         for i, (k,v) in enumerate(self.smap.items()):
             self.log(f'i={i} k={k} v={v}')
             for t in range(nt):
-                p, l, c, r = self.cc2plct(k + t, dbg=0)   ;   kt = k + t
+                kt = k + t   ;   p, l, c, r = self.cc2plct(kt, dbg=0)
                 self.tabs  [kt].color = self.k[T][0]
                 self.notes [kt].color = self.k[N][0]
                 self.chords[kt].color = self.k[K][0]
-                self.updateDTNK(self.tblank, kt, p, l, c, t, uk=1 if t == nt-1 else 0)
+                self.updateDTNK(self.tblank, kt, p, l, c, t, uk=1 if t == nt-1 else 0)  # call with uk=1 only once per column or tpc
         if not cut: self.unselectAllTabCols('deleteTabCols()')
         self.dumpSelectTabCols(f'(END) deleteTabCols() {why} cut={cut}')
 
@@ -1556,7 +1540,7 @@ class Tabs(pyglet.window.Window):
             for t in range(nt):
                 sc = (nc + dk + t) % self.tpp
                 p, l, c, r = self.cc2plct(sc, dbg=0)
-                self.updateDTNK(text[t], sc, p, l, c, t, uk=1 if t == nt-1 else 0)
+                self.updateDTNK(text[t], sc, p, l, c, t, uk=1 if t == nt-1 else 0)  # call with uk=1 only once per column or tpc
             if dbg: self.log(f'smap[{k}]={text} sc={sc}')
         if not hc: self.unselectAllTabCols('pasteTabCols()')
         else:      self.log(f'holding a copy of smap and skeys')
@@ -1573,11 +1557,12 @@ class Tabs(pyglet.window.Window):
         self.log(f'(END) text={text} rev={rev} {why} {fmtl(self.i, FMTN)}')
     ####################################################################################################################################################################################################
     def updateDTNK(self, text, cc, p, l, c, t, uk=0, dbg=1):
-        if dbg: self.log(f'text={text} cc={cc} p={p} l={l} c={c} t={t} uk={uk}')
+        if dbg: self.log(f'(BGN) text={text} cc={cc} p={p} l={l} c={c} t={t} uk={uk}')
         self.updateData(text, p, l, c, t)
         if self.TNIK[TT]:        self.updateTab2( text, cc)
         if self.TNIK[NN]:        self.updateNote( text, cc, t)
         if self.TNIK[KK] and uk: self.updateChord(p, l, c, t)
+        if dbg: self.log(f'(END) text={text} cc={cc} p={p} l={l} c={c} t={t} uk={uk}')
     ####################################################################################################################################################################################################
     def updateData(self, text, p, l, c, r, dbg=1):
         t = self.data[p][l][c]
@@ -1596,8 +1581,9 @@ class Tabs(pyglet.window.Window):
 
     def updateChord(self, p, l, c, t, dbg=1):
         cc = self.plct2cc(p, l, c, 0)    ;    nt = self.n[T]    ;    name = ''    ;    i = 0
+        self.log(f'(BGN) p={p} l={l} c={c} t={t} cc={cc}')
         chordName = self.cobj.getChordName(p, l, c)
-        self.log(f'(BGN) p={p} l={l} c={c} t={t} cc={cc} chordName=<{chordName:<}>')
+        self.log(f'      p={p} l={l} c={c} t={t} cc={cc} chordName=<{chordName:<}>')
         self.updateChordName(chordName, cc)
         if dbg:
             for i in range(nt):
@@ -1606,19 +1592,12 @@ class Tabs(pyglet.window.Window):
         else: self.log(f'(END) chordName={chordName}')
 
     def updateChordName(self, n, cc):
-        txt = f'chords[{cc}-{cc + self.n[T]}].text='
+        txt = f'chords[{cc}-{cc - self.n[T]}].text='
         name = self.name2List(n)
         for i in range(self.n[T]):
             self.chords[cc + i].text = name[i] if len(name) > i else self.nblank
             txt += f'{self.chords[cc + i].text}'
-        self.log(f'name={name} cc={cc} {txt}')
-
-    def OLD_updateChordName(self, name, cc):
-        txt = f'chords[{cc}-{cc + self.n[T]}].text='
-        for i in range(self.n[T]):
-            self.chords[cc + i].text = name[i] if len(name) > i else self.nblank
-            txt += f'{self.chords[cc + i].text}'
-        self.log(f'name={name} cc={cc} {txt}')
+        self.log(f'cc={cc} name={name} chords[{cc}-{cc - self.n[T]}].text={txt}')
 
     @staticmethod
     def getFretNum(tab, dbg=0):
@@ -1657,45 +1636,29 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpCursorArrows('reverseArrow()')
     ####################################################################################################################################################################################################
     def toggleFlatSharp(self, dbg=1):
-        tt1 =  misc.Note.TYPE    ;    tt2 = (misc.Note.TYPE + 1) % 2    ;    misc.Note.setType(tt2)
-        self.log(f'type={tt1}={misc.Note.TYPES[tt1]} => type={tt2}={misc.Note.TYPES[tt2]}')
-        np, nl, ns, nc, nt = self.n  ;  i = 0  ;  p, l, c, t = 0, 0, 0, 0
-        for p in range(np):
-            for l in range(nl):
-                for c in range(nc):
-                    j = 0
-                    for t in range(nt):
-                        n = self.notes[i]
-                        if len(n.text) > 1:
-                            if   n.text in misc.Note.F2S: n.text = misc.Note.F2S[n.text]
-                            elif n.text in misc.Note.S2F: n.text = misc.Note.S2F[n.text]
-                            if not j: self.updateChord(p, l, c, t)  ;  j += 1
-                            if dbg: self.log(f'notes[{i:3}] {n.text} p={p} l={l} c={c} t={t}')
-                        i += 1
-        if dbg: self.log(f'i={i} p={p} l={l} c={c} t={t} np={np} nl={nl} nc={nc} nt={nt}')
-
-    def OLD_toggleFlatSharp(self, dbg=1):
-        tt1 =  misc.Note.TYPE    ;    tt2 = (misc.Note.TYPE + 1) % 2    ;    misc.Note.setType(tt2)
+        tt1 =  misc.Note.TYPE    ;    tt2 = (misc.Note.TYPE + 1) % 2    ;    misc.Note.setType(tt2)    ;   i1 = -1
         self.log(f'type={tt1}={misc.Note.TYPES[tt1]} => type={tt2}={misc.Note.TYPES[tt2]}')
         for i, n in enumerate(self.notes):
             if len(n.text) > 1:
-                old = n.text
+                p, l, c, t = self.cc2plct(i)   ;   old = n.text    ;    i2 = self.plc2cn(p, l, c)
                 if   n.text in misc.Note.F2S: n.text = misc.Note.F2S[n.text]
                 elif n.text in misc.Note.S2F: n.text = misc.Note.S2F[n.text]
-                p, l, c, t = self.cc2plct(i)
-                self.updateChord(p, l, c, t)
-                if dbg: self.log(f'notes[{i:3}] {old} => {n.text} p={p} l={l} c={c} t={t}')
+                if i1 != i2:       self.updateChord(p, l, c, t)    ;    i1 = i2
+                if dbg: self.log(f'notes[{i:3}] {old} => {n.text} p={p} l={l} c={c} t={t} i1={i1} i2={i2}')
 
     def toggleChordName(self, rev=0):
-        p, l, s, c, r = self.j()
-        cc = c + l * self.n[C] # fix
+        p, l, s, c, r = self.j()  ;  nt = self.n[T]
+        cc = self.plct2cc(p, l, c, r)
+        cc2 = (cc // nt) * nt
+#        cc2 = cc // nt
         chord = self.cobj
-        self.log(f'(BGN) len={len(chord.mlimap[cc])} p={p} l={l} c={c} r={r} cc={cc} rev={rev} {chord.mlimap[cc]}')
+        if cc2 in chord.mlimap:       self.log(f'(BGN) p={p} l={l} c={c} r={r} cc={cc} cc2={cc2} rev={rev} <{len(chord.mlimap[cc2])}>{chord.mlimap[cc2]}')
+        else:                         self.log(f'(BGN) cc={cc} cc2={cc2} key not in mlimap keys={fmtl(list(chord.mlimap.keys()))}')  ;  assert 0
         chordName = chord.toggleChordName(rev)
-        cc2 = self.cursorCol()
-        self.updateChordName(chordName, cc2)
-        self.log(f'(END) len={len(chord.mlimap[cc])} p={p} l={l} c={c} r={r} cc={cc} cc2={cc2} rev={rev} {chord.mlimap[cc]}')
-
+        cc = self.cursorCol()
+        self.updateChordName(chordName, cc)
+        self.log(f'(END) len={len(chord.mlimap[cc2])} p={p} l={l} c={c} r={r} cc={cc} cc2={cc2} rev={rev} {chord.mlimap[cc2]}')
+    ####################################################################################################################################################################################################
     def setCHVMode(self, c=None, h=None, v=None, why=''):
         self.dumpCursorArrows(f'setCHVMode() c={c} h={h} v={v} why={why}')
         if c is not None: self.csrMode = c

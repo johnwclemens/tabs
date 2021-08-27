@@ -67,12 +67,12 @@ class Chord(object):
         if   self.limap1 and self.limap1[0]: return self.limap1[0][2]
         elif self.limap2 and self.limap2[0]: return self.limap2[0][2]
 
-    def getChordName(self, p, l, c, dbg=0, dbg2=1):
-        self.mlimap.clear()
-        cc = self.tobj.plct2cc(p, l, c, 0)
+    def getChordName(self, p, l, c, dbg=1, dbg2=1):
+        cc = self.tobj.plc2cn(p, l,c)
+#        cc = self.tobj.plct2cc(p, l, c, 0)
         if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc} mlimap<{len(self.mlimap)}>:', file=self.logFile)
         self.dumpMLimap()
-        if cc in self.mlimap: tabs.Tabs.log(f'ERROR: Unexpected key cc={cc} exists', file=self.logFile)  ;  assert 0
+#        if cc in self.mlimap: tabs.Tabs.log(f'ERROR: Unexpected key cc={cc} exists', file=self.logFile)  ;  assert 0
         self.limap= []  ;  chordName = ''
         imapKeys, imapNotes   = None, None   ;   d1, d2 = '<', '>'
         mask, notes, indices  = self.getNotesIndices(p, l, c)
@@ -104,6 +104,7 @@ class Chord(object):
             self.mlimap[cc] = limap
             self.dumpLimap(limap, why=f'after  len={len(limap)} p={p} l={l} c={c} cc={cc} rev={rev}')
             return limap[0][2]
+        else: tabs.Tabs.log(f'ERROR: cc={cc} not map key {tabs.fmtl(list(self.mlimap.keys()))}')
    ####################################################################################################################################################################################################
     def getNotesIndices(self, p, l, c, dbg=VERBOSE, dbg2=0):
         mask = [1] * self.tobj.n[tabs.T]
@@ -173,9 +174,10 @@ class Chord(object):
         '''
         return imap, imapKeys, imapNotes, chordKey
     ####################################################################################################################################################################################################
-    def dumpMLimap(self):
-        for c, (k,v) in enumerate(self.mlimap.items()):
-            tabs.Tabs.log(f'c={c} k={k} v={v}', file=self.logFile)
+    def dumpMLimap(self, dbg=0):
+        for i, (k,v) in enumerate(self.mlimap.items()):
+            if dbg: tabs.Tabs.log(f'dumpMLimap() i={i} k={k} v={v}', file=self.logFile)
+            else:   tabs.Tabs.log(f'dumpMLimap() i={i} k={k} len={len(self.mlimap)}', file=self.logFile)
 
     @staticmethod
     def dumpLimap(limap, why):
@@ -211,19 +213,42 @@ class Chord(object):
     ####################################################################################################################################################################################################
     @staticmethod
     def initChordNameMap():
-         return {'R M3 5'    : '',
-                 'R M3 5 7'  : 'M7',
-                 'R M3 5 b7' : '7',
-                 'R M3 5 6'  : '6',
-                 'R m3 5'    : 'm',
-                 'R m3 5 7'  : 'mM7',
-                 'R m3 5 b7' : 'm7',
-                 'R m3 b5'   : 'o',
-                 'R m3 b5 b7': '07',
-                 'R m3 b5 6' : 'o7',
-                 'R M3 a5'   : '+',
-                 'R m3 4 a5' : 'm4+',
-                 'R 2 4 6'   : '6/9s4'
+         return {
+                 'R 2 5'       : 's2',
+                 'R 4 5'       : 's4',
+                 'R M3 5'      : '',
+                 'R b2 M3 5'   : 'b2',
+                 'R 2 M3 5'    : '2',
+                 'R M3 4 5'    : '4',
+                 'R M3 5 6'    : '6',
+                 'R M3 5 b7'   : '7',
+                 'R M3 5 7'    : 'M7',
+                 'R 2 M3 6'    : '6/9', # no5
+                 'R 2 5 6'     : '6/9', # no3
+                 'R 2 M3 5 6'  : '6/9',
+                 'R 2 M3 5 7'  : 'M9',
+                 'R M3 4 5 7'  : 'M11',
+                 'R M3 5 6 7'  : 'M13',
+                 'R 2 M3 5 b7' : '9',
+                 'R M3 4 5 b7' : '11',
+                 'R M3 5 6 b7' : '13',
+                 'R M3 5 b6 b7': 'b13',
+                 'R 4 5 b7'    : '7s4',
+                 'R m3 4 b7'   : 'm11',
+                 'R 2 4 5'     : 's24',
+                 'R m3 5'      : 'm',
+                 'R 2 m3 5'    : 'm2',
+                 'R m3 4 5'    : 'm4',
+                 'R m3 5 6 '   : 'm6',
+                 'R m3 5 b7'   : 'm7',
+                 'R m3 5 7'    : 'mM7',
+                 'R m3 b5'     : 'o',
+                 'R m3 b5 b7'  : '07',
+                 'R m3 b5 6'   : 'o7',
+                 'R M3 a5'     : '+',
+                 'R m3 4 a5'   : 'm4+',   # Maj inversion
+                 'R 2 4 6'     : '6/9s4', # Maj inversion
+                 'R b2 4 a5'   : '6/9s4'  # Maj inversion
                  } # how to order/arrange/group?
     ####################################################################################################################################################################################################
     def _getChordName_OLD(self, imap):
