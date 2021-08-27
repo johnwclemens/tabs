@@ -1349,8 +1349,8 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'cc2plct({cc}) return {p} {l} {c} {t}')
         return p, l, c, t
 
-    def cc2cn(self, cc):       cn = cc // self.tpc                   ;  self.log(f'({cc}) cc // self.tpc return {cn}')  ;  return cn
-    def plc2cn(self, p, l, c): cn = p * self.tpp + l * self.tpl + c  ;  self.log(f'({p} {l} {c}) p * self.tpp + l * self.tpl + c return {cn}')  ;  return cn
+    def cc2cn(self, cc):       cn = cc // self.tpc                   ;  self.log(f'({cc}) cc // tpc return {cn}')  ;  return cn
+    def plc2cn(self, p, l, c): cn = (p * self.tpp) + (l * self.tpl) + c  ;  self.log(f'({p} {l} {c}) return {cn}')  ;  return cn
 
     def cc2(self, p, l, c, t, dbg=1):
         cc = self.plct2cc(p, l, c, t, dbg)
@@ -1592,7 +1592,8 @@ class Tabs(pyglet.window.Window):
         else: self.log(f'(END) chordName={chordName}')
 
     def updateChordName(self, n, cc):
-        txt = f'chords[{cc}-{cc - self.n[T]}].text='
+        txt = f'n={n} chords[{cc}-{cc - self.n[T]}].text='
+        self.log(f'{txt}')
         name = self.name2List(n)
         for i in range(self.n[T]):
             self.chords[cc + i].text = name[i] if len(name) > i else self.nblank
@@ -1617,7 +1618,7 @@ class Tabs(pyglet.window.Window):
     def getNoteName(self, row, tab, dbg=0):
         fretNum = self.getFretNum(tab)
         index   = self.getNoteIndex(row, fretNum)
-        name    = misc.Note.getName(index)
+        name    = misc.Note.getName(index, LOG_FILE)
         if dbg: self.log(f'row={row} tab={tab} fretNum={fretNum} index={index} name={name}')
         return name # if self.isFret(tab) else self.nblank
 
@@ -1647,15 +1648,14 @@ class Tabs(pyglet.window.Window):
                 if dbg: self.log(f'notes[{i:3}] {old} => {n.text} p={p} l={l} c={c} t={t} i1={i1} i2={i2}')
 
     def toggleChordName(self, rev=0):
-        p, l, s, c, r = self.j()  ;  nt = self.n[T]
+        p, l, s, c, r = self.j()
         cc = self.plct2cc(p, l, c, r)
-        cc2 = (cc // nt) * nt
-#        cc2 = cc // nt
+        cc2 = c + l * self.n[C]
         chord = self.cobj
-        if cc2 in chord.mlimap:       self.log(f'(BGN) p={p} l={l} c={c} r={r} cc={cc} cc2={cc2} rev={rev} <{len(chord.mlimap[cc2])}>{chord.mlimap[cc2]}')
+        if cc2 in chord.mlimap:       self.log(f'(BGN) p={p} l={l} c={c} r={r} cc={cc} cc2={cc2} rev={rev} <{len(chord.mlimap[cc2])}>{fmtl(list(chord.mlimap[cc2]))}')
         else:                         self.log(f'(BGN) cc={cc} cc2={cc2} key not in mlimap keys={fmtl(list(chord.mlimap.keys()))}')  ;  assert 0
         chordName = chord.toggleChordName(rev)
-        cc = self.cursorCol()
+        cc = (cc // self.n[T]) * self.n[T]
         self.updateChordName(chordName, cc)
         self.log(f'(END) len={len(chord.mlimap[cc2])} p={p} l={l} c={c} r={r} cc={cc} cc2={cc2} rev={rev} {chord.mlimap[cc2]}')
     ####################################################################################################################################################################################################

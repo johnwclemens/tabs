@@ -32,10 +32,11 @@ class Note(object):
         tabs.Tabs.dumpObj(obj=self, name=f'{self.name} Note', why=f'count={Note.count}')
     @staticmethod
     def setType(tt): Note.TYPE = tt  ;  tabs.Tabs.log(f'Type={Note.TYPE}')
+
     @staticmethod
-    def getName(i):
+    def getName(i, file):
         name = Note.TONES[Note.TYPE][i % Note.NTONES]
-        tabs.Tabs.log(f'i={i} TYPE={Note.TYPE} NTONES={Note.NTONES} name={name}')
+        tabs.Tabs.log(f'i={i} TYPE={Note.TYPE} NTONES={Note.NTONES} name={name}', file=file)
         return name
 ####################################################################################################################################################################################################
 class Chord(object):
@@ -68,11 +69,9 @@ class Chord(object):
         elif self.limap2 and self.limap2[0]: return self.limap2[0][2]
 
     def getChordName(self, p, l, c, dbg=1, dbg2=1):
-        cc = self.tobj.plc2cn(p, l,c)
-#        cc = self.tobj.plct2cc(p, l, c, 0)
-        if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc} mlimap<{len(self.mlimap)}>:', file=self.logFile)
+        cc = c + l * self.tobj.n[tabs.C]
+        if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc} mlimap<{len(self.mlimap)}>{tabs.fmtl(list(self.mlimap.keys()))}:', file=self.logFile)
         self.dumpMLimap()
-#        if cc in self.mlimap: tabs.Tabs.log(f'ERROR: Unexpected key cc={cc} exists', file=self.logFile)  ;  assert 0
         self.limap= []  ;  chordName = ''
         imapKeys, imapNotes   = None, None   ;   d1, d2 = '<', '>'
         mask, notes, indices  = self.getNotesIndices(p, l, c)
@@ -96,6 +95,7 @@ class Chord(object):
     def toggleChordName(self, rev=0):
         p, l, s, c, t = self.tobj.j()
         cc = c + l * self.tobj.n[tabs.C]
+        tabs.Tabs.log(f'p l c t = {p} {l} {c} {t} cc={cc}', file=self.logFile)
         if cc in self.mlimap.keys():
             limap = self.mlimap[cc]
             self.dumpLimap(limap, why=f'before len={len(limap)} p={p} l={l} c={c} cc={cc} rev={rev}')
@@ -179,15 +179,13 @@ class Chord(object):
             if dbg: tabs.Tabs.log(f'dumpMLimap() i={i} k={k} v={v}', file=self.logFile)
             else:   tabs.Tabs.log(f'dumpMLimap() i={i} k={k} len={len(self.mlimap)}', file=self.logFile)
 
-    @staticmethod
-    def dumpLimap(limap, why):
+    def dumpLimap(self, limap, why):
         for imap in limap:
-            Chord.dumpImap(imap, why)
+            self.dumpImap(imap, why)
 
-    @staticmethod
-    def dumpImap(imap, why):
+    def dumpImap(self, imap, why):
         intervals = imap[0]  ;  imapNotes = imap[1]   ;   chordName = imap[2]   ;   d1, d2 = '<', '>'
-        tabs.Tabs.log(f'{why}  [ <{chordName:<6}> {tabs.fmtl(intervals, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]')
+        tabs.Tabs.log(f'{why}  [ <{chordName:<6}> {tabs.fmtl(intervals, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
 
     def dumpData(self, data, mask, why, w=5, u='<', r=0):
         lf = self.logFile
