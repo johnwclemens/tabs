@@ -2,7 +2,7 @@ import sys, os, collections
 sys.path.insert(0, os.path.abspath('.'))
 import tabs
 
-VERBOSE = tabs.VERBOSE
+VERBOSE = 0 # tabs.VERBOSE
 
 class Note(object):
     count       = 0
@@ -36,7 +36,7 @@ class Note(object):
     @staticmethod
     def getName(i, file):
         name = Note.TONES[Note.TYPE][i % Note.NTONES]
-        tabs.Tabs.log(f'i={i} TYPE={Note.TYPE} NTONES={Note.NTONES} name={name}', file=file)
+#        tabs.Tabs.log(f'i={i} TYPE={Note.TYPE} NTONES={Note.NTONES} name={name}', file=file)
         return name
 ####################################################################################################################################################################################################
 class Chord(object):
@@ -68,7 +68,7 @@ class Chord(object):
         if   self.limap1 and self.limap1[0]: return self.limap1[0][2]
         elif self.limap2 and self.limap2[0]: return self.limap2[0][2]
 
-    def getChordName(self, p, l, c, dbg=1, dbg2=1):
+    def getChordName(self, p, l, c, dbg=0, dbg2=1):
         cc = c + l * self.tobj.n[tabs.C]
         if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc} mlimap<{len(self.mlimap)}>{tabs.fmtl(list(self.mlimap.keys()))}:', file=self.logFile)
         self.dumpMLimap()
@@ -176,8 +176,8 @@ class Chord(object):
     ####################################################################################################################################################################################################
     def dumpMLimap(self, dbg=0):
         for i, (k,v) in enumerate(self.mlimap.items()):
-            if dbg: tabs.Tabs.log(f'dumpMLimap() i={i} k={k} v={v}', file=self.logFile)
-            else:   tabs.Tabs.log(f'dumpMLimap() i={i} k={k} len={len(self.mlimap)}', file=self.logFile)
+            if dbg: tabs.Tabs.log(f'dumpMLimap() i={i} k={k} len={len(self.mlimap)}', file=self.logFile)
+#            else:   tabs.Tabs.log(f'dumpMLimap() i={i} k={k} v={v}', file=self.logFile)
 
     def dumpLimap(self, limap, why):
         for imap in limap:
