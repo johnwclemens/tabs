@@ -1629,7 +1629,7 @@ class Tabs(pyglet.window.Window):
     def getNoteName(self, row, tab, dbg=0):
         fretNum = self.getFretNum(tab)
         index   = self.getNoteIndex(row, fretNum)
-        name    = misc.Note.getName(index, LOG_FILE)
+        name    = misc.Note.getName(index)
         if dbg: self.log(f'row={row} tab={tab} fretNum={fretNum} index={index} name={name}')
         return name # if self.isFret(tab) else self.nblank
 
