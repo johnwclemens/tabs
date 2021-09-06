@@ -25,12 +25,13 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-def fmtl(l, w=None, u='<', d1='[', d2=']'):
+def fmtl(l, w=None, u='<', d1='[', d2=']', sep=' '):
     t = ''
     for i in range(len(l)):
-        if w is None:                  t += f'{l[i]} '
-        elif type(w) is int  or type(w) is str:           t += f'{l[i]:{u}{w}} '
-        elif type(w) is list or type(w) is tuple: t += f'{int(l[i]):{u}{w[i]}} '
+        if w is None:                                t += f'{l[i]}{sep}'
+        elif type(w) is int  or type(w) is str:      t += f'{l[i]:{u}{w}}{sep}'
+        elif type(w) is list or type(w) is tuple and type(l[i]) is int: t += f'{int(l[i]):{u}{w[i]}}{sep}'
+        elif type(w) is list or type(w) is tuple:                       t += f'{   (l[i]):{u}{w[i]}}{sep}'
     return d1 + t[:-1] + d2
 def fmtd(m, w=2, d0=':', d1='[', d2=']'):
     t = ''
@@ -66,6 +67,7 @@ SNAP_DIR         = 'snaps'
 SNAP_SFX         = '.png'
 LOG_FILE         = None
 FMTN             = (1, 1, 1, 2, 1, 2, 2) # remove?
+FMTN2            = (1, 2, 2, 2, 2, 2)
 P, L, S, C       =  0,  1,  2,  3
 T, N, I, K       =  4,  5,  6,  7
 O, A, D, E, F    =  8,  9, 10, 11, 12
@@ -99,7 +101,7 @@ CC               = [(155, 155,  10, OPACITY[4]), (200, 200, 10, OPACITY[4])]
 HUES             = 16
 MAX_STACK_DEPTH  = 0  ;  MAX_STACK_FRAME = inspect.stack()
 ####################################################################################################################################################################################################
-def genColors(k, nsteps=HUES, dbg=1):
+def genColors(k, nsteps=HUES, dbg=0):
     colors, clen = [], len(k[0])
     diffs = [k[1][i] - k[0][i]  for i in range(clen)]
     steps = [diffs[i]/nsteps    for i in range(clen)]
@@ -407,6 +409,7 @@ class Tabs(pyglet.window.Window):
         self.dumpGlobalFlags()
         self.log(f'{self.fmtGeom()}', ind=0)
         self.log(f'{self.fmtDataDim(self.data)} {self.fmtDataDim(self.data)}')
+        self.cobj.dumpMLimap(self.cobj.mlimap, {why})
         self.log(f'END {why}')
     ####################################################################################################################################################################################################
     def writeDataFile(self, how):
@@ -828,7 +831,7 @@ class Tabs(pyglet.window.Window):
             yield lbl
     ####################################################################################################################################################################################################
     def g_createLabels2(self, col, dbg=VERBOSE, dbg2=0):
-        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;  tt, nn, kkk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]   ;   chordName = ''   ;   nList = []
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;  tt, nn, kkk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]    ;   chunks = []   # ;    chordName = ''
         nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)   ;   kt, kn, kk = self.kt, self.kn, self.kk    ;    kt2, kn2, kk2 = self.kt2, self.kn2, self.kk2
         for t in range(nt): #            self.log(f't={t} nt={nt} TNIK={self.TNIK} st={self.J2[T]}') #            self.log(f's={s} tt={tt} nn={nn} kk={kkk}')#        self.log(f'p={p} l={l} s={s} c={c} nt={nt}')
             if   tt and s == 0:
@@ -846,15 +849,18 @@ class Tabs(pyglet.window.Window):
                 if   CCC     and c == C1: chord = self.strLabel[t]       ;  plist = self.strls   ;  kl = kk2   ;  k = self.cci(t, kl)  ;  self.J2[E] += 1  ;  why = f'New StrL {self.J2[E]}'
                 elif CCC > 1 and c == C2: chord = self.cpoLabel[t]       ;  plist = self.cpols   ;  kl = kk2   ;  k = self.cci(t, kl)  ;  self.J2[F] += 1  ;  why = f'New CpoL {self.J2[F]}'
                 else:
-                    if not t: chordName = self.cobj.getChordName(p, l, c)   ;   nList = self.name2List(chordName)  # call only once per column or tpc
-                    if dbg2: self.log(f'{t} {chordName} {nList}')
-                    chord = nList[t] if len(nList) > t else self.nblank
+#                    if not t: chordName = self.cobj.getChordName(p, l, c)   ;   nList = self.chunkChord(chordName)  # call only once per column or tpc
+#                    if dbg2: self.log(f'{t} {chordName} {nList}')
+#                    chord = nList[t] if len(nList) > t else self.nblank
+                    if not t: chordName, chunks = self.cobj.getChordName(p, l, c)  ;  self.log(f'{chordName} => {t} {fmtl(chunks)}')
+                    chord = chunks[t] if len(chunks) > t else self.nblank
                     plist = self.chords  ;  kl = kk    ;  k = self.cci(t, kl)  ;  self.J2[K] += 1  ;  why = f'New Chord {self.J2[K]}'
                 self.createLabel(chord, K, plist,  xt, yt - t*ht, wt, ht, k, gt, why=why, kl=kl, dbg=dbg)  ;  yield chord
             else: self.log(f'ERROR Not Handled s={s} tt={tt} nn={nn} kk={kkk}')  ;  yield None
     ####################################################################################################################################################################################################
+#    '''
     @staticmethod
-    def name2List(n):
+    def chunkChord(n):
         nlist = []  ;  ln = len(n)  ;  i = 0
         while i < ln:
             if i == 0 and ln > 1:
@@ -863,7 +869,7 @@ class Tabs(pyglet.window.Window):
             else: nlist.append(n[i])
             i += 1
         return nlist
-
+#    '''
     def createSprites(self, dbg=VERBOSE, dbg2=0):
         self.log(f'BGN {self.fmtGeom()}', ind=0)  ;  v = 0
         if dbg: self.dumpLabel()  ;  self.dumpSprite()
@@ -1234,8 +1240,7 @@ class Tabs(pyglet.window.Window):
         self.move(f'MOUSE RELEASE ({p} {l} {c} {t})', k)
         if dbg: self.log(f'      {k:4} {kk:4} {self.cc:4} {fmtl(self.i, FMTN)} b={button} m={modifiers} txt={self.tabs[self.cc].text}', file=sys.stdout)
     ####################################################################################################################################################################################################
-    def kbkEvntTxt(self):
-        return f'{self.kbk:8} {self.symb:8} {self.symbStr:14} {self.mods:2} {self.modsStr:16}'
+    def kbkEvntTxt(self): return f'{self.kbk:8} {self.symb:8} {self.symbStr:14} {self.mods:2} {self.modsStr:16}'
     ####################################################################################################################################################################################################
     def on_key_press(self, symb, mods, dbg=0): # avoid these
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
@@ -1606,7 +1611,7 @@ class Tabs(pyglet.window.Window):
     def setChord(self, p, l, c, t, dbg=1):
         cc = self.plct2cc(p, l, c, 0)    ;    nt = self.n[T]    ;    name = ''    ;    i = 0
         self.log(f'BGN p={p} l={l} c={c} t={t} cc={cc}')
-        chordName = self.cobj.getChordName(p, l, c)
+        chordName, chunks = self.cobj.getChordName(p, l, c)
         self.log(f'    p={p} l={l} c={c} t={t} cc={cc} chordName=<{chordName:<}>')
         self.setChordName(chordName, cc)
         if dbg:
@@ -1616,7 +1621,7 @@ class Tabs(pyglet.window.Window):
         else: self.log(f'END chordName={chordName}')
 
     def setChordName(self, n, cc):
-        name = self.name2List(n)    ;    txt = ''
+        name = self.chunkChord(n)    ;    txt = ''
         self.log(f'BGN name={name} chords[{cc}-{cc + self.n[T] - 1}]')
         for i in range(self.n[T]):
             self.chords[cc + i].text = name[i] if len(name) > i else self.nblank
@@ -1648,8 +1653,8 @@ class Tabs(pyglet.window.Window):
     def dumpCursorArrows(self, how): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;   self.log(f'{how} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
     def reverseArrow(self, dbg=1):
         if dbg: self.dumpCursorArrows('reverseArrow()')
-        if self.csrMode == MELODY or self.csrMode == ARPG: self.toggleHArrow('reverseArrow() MELODY or ARPG')
-        if self.csrMode == CHORD  or self.csrMode == ARPG: self.toggleVArrow('reverseArrow() CHORD or ARPG')
+        if self.csrMode == MELODY or self.csrMode == ARPG: self.toggleArrow('reverseArrow() MELODY or ARPG', v=0)
+        if self.csrMode == CHORD  or self.csrMode == ARPG: self.toggleArrow('reverseArrow() CHORD or ARPG',  v=1)
         if dbg: self.dumpCursorArrows('reverseArrow()')
     ####################################################################################################################################################################################################
     def toggleFlatSharp(self, how, dbg=1):
