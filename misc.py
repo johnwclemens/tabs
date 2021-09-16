@@ -3,6 +3,8 @@ sys.path.insert(0, os.path.abspath('.'))
 import tabs
 
 VERBOSE = tabs.VERBOSE
+NO5 = 'x'
+AUG5 = '+'
 
 class Note(object):
     count       = 0
@@ -38,25 +40,25 @@ class Note(object):
         name = Note.TONES[Note.TYPE][i % Note.NTONES]
         return name
 ####################################################################################################################################################################################################
+class DSymb(object):
+    SYMBS = {'X': 'mute', '/': 'slide', '\\': 'bend', '+': 'hammer', '~': 'vibrato', '^': 'tie', '.': 'staccato', '_': 'legato', '%': 'repeat', '|': 'bar', '[': 'groupL', ']': 'groupR'}
+####################################################################################################################################################################################################
 class Chord(object):
     INTERVALS     = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
-    INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11, }
-    GLUE          = {'b', '#', 's', '1'}
+    INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
     count         = 0
     def __init__(self, tobj, logfile):
         self.tobj    = tobj
         self.logFile = logfile
         self.limap, self.limap1, self.limap2 = [], [], []
         self.mlimap  = {}
+        self.cats1   = set()   ;   self.cats2 = set()   ;   self.cats3 = set()   ;   self.catmap = {}
         self.chordNameMap = self.initChordNameMap()
         Chord.count += 1
         tabs.Tabs.dumpObj(obj=self, name=f'ChordNameMap<{len(self.chordNameMap)}>', why=f'count={Chord.count} file={logfile}')
 
-    @staticmethod
-    def getChordKey(keys):  return ' '.join(keys)
-
-    def updateImap(self, imap, name, chunks, dbg=0):
-        intervals = list(imap.keys())    ;   notes = list(imap.values())
+    def updateImap(self, im, name, chunks, dbg=0):
+        intervals = list(im.keys())    ;   notes = list(im.values())
         imap = [intervals, notes, name, chunks]  ;   d1, d2 = '<', '>'   ;   chordName = ''
         assert name != ' '
         if name and name != ' ': self.limap1.append(imap)  # ;  tabs.Tabs.log(f'add {imap} to limap1', file=self.logFile)
@@ -70,33 +72,51 @@ class Chord(object):
         elif self.limap2 and self.limap2[0]: chordName = self.limap2[0][2]  ;  chunks = self.limap2[0][3]
         return chordName, chunks
 
-    def getChordName(self, p, l, c, dbg=0, dbg2=VERBOSE):
+    def getChordName(self, p, l, c, dbg=0, dbg2=0):
         cc = c + l * self.tobj.n[tabs.C]
-        if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc} mlimap<{len(self.mlimap)}>{tabs.fmtl(list(self.mlimap.keys()))}:', file=self.logFile)
-        if dbg: self.dumpMLimap(self.mlimap, 'Get Chord Name')
-        self.limap= []   ;  chordName = ''   ;   ims = set()
-        imapKeys, imapNotes                     = None, None   ;   d1, d2 = '<', '>'  ;  chunks = []
+        if dbg: tabs.Tabs.log(f'p l c cc = {p} {l} {c} {cc} mlimap.keys={tabs.fmtl(list(self.mlimap.keys()))}:', file=self.logFile)
+#        if dbg: self.dumpMLimap('Get Chord Name')
+        self.limap, chunks, ims = [], [], set()   ;   chordName = ''
+        imapKeys, imapNotes                     = None, None   ;   d1, d2 = '<', '>'
         mask, notes, indices                    = self.getNotesIndices(p, l, c)
         for i in range(len(indices)):
             intervals                           = self.getIntervals(indices,  i,     mask)
             imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals, notes)
             imk = tuple(imapKeys)
-#            tabs.Tabs.log(f'imk={imk} ims={ims}', file=self.logFile)
+            if dbg: tabs.Tabs.log(f'imk={tabs.fmtl(imk)} ims={tabs.fmtl(ims)}', file=self.logFile)
             if imk not in ims:
                 ims.add(imk)
                 chordName, chunks               = self._getChordName(imap)
-                if dbg and chordName: tabs.Tabs.log(f'Inner Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
+                if dbg and chordName: tabs.Tabs.log(f'Inner Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ] {tabs.fmtl(chunks)}', file=self.logFile)
                 chordName, chunks               = self.updateImap(imap, chordName, chunks)
-        if chordName:
-            if dbg: tabs.Tabs.log(f'Outer Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ]', file=self.logFile)
-            self.mlimap[cc]                     = self.limap
-        if dbg: tabs.Tabs.log(f'p={p} l={l} c={c} cc={cc}', file=self.logFile)
         self.limap.extend(self.limap1)    ;    self.limap1 = []
         self.limap.extend(self.limap2)    ;    self.limap2 = []
+        if chordName:
+            if dbg: tabs.Tabs.log(f'Outer Chord  [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ] {tabs.fmtl(chunks)}', file=self.logFile)
+            self.mlimap[cc]                     = self.limap
+            self.add2cat(self.limap)
+#        elif self.limap2:         self.junk[cc] = self.limap2   ;   tabs.Tabs.log(f'Chord Not Found junk[{cc}]={tabs.fmtl(self.junk[cc])}', file=self.logFile)
         if dbg2:
             for i, m in enumerate(self.limap):
                 tabs.Tabs.log(tabs.FMTR.format(f'limap0 {i+1} [ <{m[2]:<9}>  {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ] {tabs.fmtl(m[3])}'), file=self.logFile)
         return chordName, chunks
+
+    def add2cat(self, limap):
+        outer = []
+        for i in limap:
+            inner = []
+            for j in i[0]:
+                inner.append(self.INTERVAL_RANK[j])
+            tmp = tuple(inner)
+            outer.append(tmp)
+            self.cats2.add(tmp)
+            self.cats3.add(tmp)
+            l = len(inner)
+            if l not in self.catmap: self.catmap[l] = set()   ;   self.catmap[l].add(tmp)
+            else:                    self.catmap[l].add(tmp)
+        outer = sorted(outer, key=lambda a: [z for z in a])
+        self.cats1.add(tuple(outer))
+        tabs.Tabs.log(f'={tabs.fmtl(outer, ll=0)}', file=self.logFile)
 
     def toggleChordName(self, rev=0, dbg=0):
         p, l, s, c, t = self.tobj.j()
@@ -112,14 +132,14 @@ class Chord(object):
             return limap[0][2], limap[0][3]
         else: tabs.Tabs.log(f'ERROR: cc={cc} not map key {tabs.fmtl(list(self.mlimap.keys()))}')
    ####################################################################################################################################################################################################
-    def getNotesIndices(self, p, l, c, dbg=VERBOSE, dbg2=0):
+    def getNotesIndices(self, p, l, c, dbg=VERBOSE, dbg2=VERBOSE):
         strNumbs   = self.tobj.stringNumbs
         strKeys    = self.tobj.stringKeys
         strNames   = self.tobj.stringNames
         _tabs      = self.tobj.data[p][l][c]
         strIndices = [Note.INDICES[k] for k in strKeys]
         notes = []  ;  nt = len(_tabs)  ;   mask = []
-        if dbg2: tabs.Tabs.log(f'p={p} l={l} c={c} text={_tabs}', file=self.logFile)
+        if dbg2: tabs.Tabs.log(f'p l c = {p} {l} {c} text={_tabs}', file=self.logFile)
         for t in range(nt):
             if tabs.Tabs.isFret(_tabs[t]): mask.insert(0, 1)  ;  note = self.tobj.getNoteName(t, _tabs[t])  ;  notes.insert(0, note)
             else:                          mask.insert(0, 0)
@@ -139,7 +159,7 @@ class Chord(object):
             if dbg2:  self.dumpData(indices,    mask,  'Indices')
         return mask, notes, indices
 
-    def getIntervals(self, indices, j, mask, order=1, dbg=0):
+    def getIntervals(self, indices, j, mask, order=1, dbg=VERBOSE):
         deltas = []   ;   nst = Note.NTONES
         for i in indices:
             if i - indices[j] >= 0:
@@ -163,7 +183,7 @@ class Chord(object):
         imap      = collections.OrderedDict(sorted(dict(zip(intervals, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
         imapKeys  = list(imap.keys())
         imapNotes = list(imap.values())
-        chordKey  = self.getChordKey(imapNotes)
+        chordKey  = ' '.join(imapNotes)
         mask      = [1] * len(imapKeys)
         if dbg:  self.dumpData(imap,      mask, 'imap')
         if dbg2: self.dumpData(imapKeys,  mask, 'imapKeys')
@@ -182,13 +202,47 @@ class Chord(object):
         '''
         return imap, imapKeys, imapNotes, chordKey
     ####################################################################################################################################################################################################
-    def dumpMLimap(self, mlimap, why):
+    def dumpCats(self, why=''):
+        cats1 = self.cats1
+        cats2 = sorted(self.cats2)
+        cats3 = sorted(self.cats3, key=len)
+        tabs.Tabs.log(f'{why} cats1 <{len(cats1)}>', file=self.logFile)
+        n = 0
+        for c in cats1:
+            n += len(c)
+            tabs.Tabs.log(f'{n:3} {tabs.fmtl(c, z="x")}', ind=0, file=self.logFile)
+        tabs.Tabs.log(f'{why} cats2 <{len(cats2)}>', file=self.logFile)
+        for i, c in enumerate(cats2):
+            tabs.Tabs.log(f'{i+1:3} {tabs.fmtl(c, z="x")}', ind=0, file=self.logFile)
+        tabs.Tabs.log(f'{why} cats3 <{len(cats3)}>', file=self.logFile)
+        for i, c in enumerate(cats3):
+            tabs.Tabs.log(f'{i+1:3} {tabs.fmtl(c, z="x")}', ind=0, file=self.logFile)
+        tabs.Tabs.log(f'{why} catsmapA <{len(self.catmap)}>', file=self.logFile)
+        n = 0
+        for k in self.catmap.keys():
+            n += len(self.catmap[k])
+            tabs.Tabs.log(f'{n:3} {tabs.fmtl(self.catmap[k], z="x")}', ind=0, file=self.logFile)
+        tabs.Tabs.log(f'{why} catsmapB <{len(self.catmap)}>', file=self.logFile)
+        n = 0
+        for k in self.catmap.keys():
+            self.catmap[k] = sorted(tuple(self.catmap[k]))
+            for c in self.catmap[k]:
+                n += 1
+                tabs.Tabs.log(f'{n:3} {tabs.fmtl(c, z="x")}', ind=0, file=self.logFile)
+        tabs.Tabs.log(f'{why} catsmapC <{len(self.catmap)}>', file=self.logFile)
+        n = 0
+        for k in self.catmap.keys():
+            for c in self.catmap[k]:
+                n += 1
+                tabs.Tabs.log(f'{n:3} {tabs.fmtl(c, z="x")}', ind=0, file=self.logFile)
+
+    def dumpMLimap(self, why=''):
         tabs.Tabs.log(f'{why}', file=self.logFile)
-        for i, (kk,v) in enumerate(mlimap.items()):
-            tabs.Tabs.log(f'{i:2}', ind=0, end='', file=self.logFile)
+        for i, (k,v) in enumerate(self.mlimap.items()):
+            tabs.Tabs.log(f'{i:2} {k:3}', ind=0, end='', file=self.logFile)
             for j in range(len(v)):
                 tmp = f'{tabs.fmtl(v[j][0], w=tabs.FMTN2, d1="", d2="")}'
-                tabs.Tabs.log(f'<{v[j][2]:6}|{tmp:16}>', ind=0, end='', file=self.logFile)
+                tabs.Tabs.log(f'<{v[j][2]:7}|{tmp:16}>', ind=0, end='', file=self.logFile)
             tabs.Tabs.log(ind=0, file=self.logFile)
 
     def dumpLimap(self, limap, why):
@@ -216,135 +270,100 @@ class Chord(object):
         else: tabs.Tabs.log(f'type={dt} ', ind=0, end='', file=lf)
         tabs.Tabs.log(']',                 ind=0,         file=lf)
     ####################################################################################################################################################################################################
-    def OLD_getChordName(self, imap):
-        r = imap['R']
-        key = self.getChordKey(imap.keys())
-        return f'{r}{self.chordNameMap[key]}' if key in self.chordNameMap else ''
-
     def _getChordName(self, imap, dbg=0):
-        r = imap['R']    ;     chunks = []
-        key = self.getChordKey(imap.keys())
-        root, name = '', ''
+        key = ' '.join(imap.keys())
+        root, name, chunks = '', [], []
         if key in self.chordNameMap:
-            name = self.chordNameMap[key]  ;  root = f'{r}'  ;   tabs.Tabs.log(f'root={root} name={tabs.fmtl(name)}', file=self.logFile) if dbg else None
+            name = self.chordNameMap[key]  ;  root = imap['R']
+            if dbg: tabs.Tabs.log(f'    Found key=<{key}> root={root} name={tabs.fmtl(name)}', file=self.logFile)
+        elif dbg:   tabs.Tabs.log(f'Not Found key=<{key}> root={root} name={tabs.fmtl(name)}', file=self.logFile)
         if root: chunks.append(root)
         [chunks.append(n) for n in name]
         chordName = ''.join(chunks[:])
+        if dbg: tabs.Tabs.log(f'chordName=<{chordName}> chunks={tabs.fmtl(chunks)}', file=self.logFile)
         return chordName, chunks
     ####################################################################################################################################################################################################
     @staticmethod
     def initChordNameMap():
          return {
-                 'R 2 5'       : ['s2'],       #       sus2
-                 'R 4 5'       : ['s4'],       #       sus4
-                 'R 2 4 5'     : ['s2', '4'],  #       sus  sus24
-                 'R 2 5 6'     : ['6', '/9'],  #       6 sus2
-                 'R 2 5 b7'    : ['7', 's2'],  #       7 sus2
-                 'R 4 5 b7'    : ['7', 's4'],  #       7 sus4
-                 'R 2 5 7'     : ['M7', 's2'], #       Maj7 sus2
-                 'R 4 5 7'     : ['M7', 's4'], #       Maj7 sus4
-                 'R 4 6 b7'    : ['7', 's4', '6'],   #  no5  13 sus4
-                 'R M3 5'      : [''],               #       Major
-                 'R b2 M3 5'   : ['b2'],             #       b2
-                 'R 2 M3 5'    : ['2'],              #       2
-                 'R M3 4 5'    : ['4'],              #       4
-                 'R M3 6'      : ['6', 'n5'],        #  no5  6
-                 'R M3 5 6'    : ['6'],              #       6
-                 'R M3 b7'     : ['7', 'n5'],        #  no5  7
-                 'R M3 5 b7'   : ['7'],              #       7
-                 'R M3 7'      : ['M7', 'n5'],       #  no5  Maj 7
-                 'R M3 5 7'    : ['M7'],             #       Maj 7
-                 'R 2 M3 6'    : ['6', '/9', 'n5'],  #  no5  add 6/9
-                 'R 2 M3 5 6'  : ['6', '/9'],        #       add 6/9
-                 'R 2 M3 7'    : ['M9', 'n5'],       #  no5  Maj 9
-                 'R 2 M3 5 7'  : ['M9'],             #       Maj 9
-                 'R M3 4 7'    : ['M', '11', 'n5'],  #  no5  Maj 11
-                 'R M3 4 5 7'  : ['M', '11'],        #       Maj 11
-                 'R M3 6 7'    : ['M', '13', 'n5'],  #  no5  Maj 13
-                 'R M3 5 6 7'  : ['M', '13'],        #       Maj 13
-                 'R b2 M3 b7'  : ['b9', 'n5'],       #  no5  b9
-                 'R b2 M3 5 b7': ['b9'],             #       b9
-                 'R 2 M3 b7'   : ['9', 'n5'],        #  no5  9
-                 'R 2 M3 5 b7' : ['9'],              #       9
-                 'R m3 M3 b7'  : ['#9', 'n5'],       #  no5  #9
-                 'R m3 M3 5 b7': ['#9'],             #       #9
-                 'R M3 4 b7'   : ['11', 'n5'],       #  no5  11
-                 'R M3 4 5 b7' : ['11'],             #       11
-                 'R M3 b5 b7'  : ['#', '11', 'n5'],  #  no5  #11
-                 'R M3 b5 5 b7': ['#', '11]'],       #       #11
-                 'R M3 6 b7'   : ['13', 'n5'],       #  no5  13
-                 'R M3 5 6 b7' : ['13'],             #       13
-                 'R M3 #5 b7'  : ['b', '13', 'n5'],  #  no5  b13
-                 'R M3 5 #5 b7': ['b', '13'],        #       b13
-                 'R m3 5'      : ['m'],              #       Minor
-                 'R 2 m3 5'    : ['m2'],             #       Min 2
-                 'R m3 4 5'    : ['m4'],             #       Min 4
-                 'R m3 6 '     : ['m6'],             #  no5  Min 6
-                 'R m3 5 6 '   : ['m6'],             #       Min 6
-                 'R m3 b7'     : ['m7'],             #  no5  Min 7
-                 'R m3 5 b7'   : ['m7'],             #       Min 7
-                 'R m3 7'      : ['m', 'M7', 'n5'],  #  no5  Min Maj7
-                 'R m3 5 7'    : ['m', 'M7'],        #       Min Maj7
-                 'R b2 m3 b7'  : ['m', 'b9', 'n5'],  #  no5  Min b9
-                 'R b2 m3 5 b7': ['m', 'b9'],        #       Min b9
-                 'R 2 m3 b7'   : ['m9', 'n5'],       #  no5  Min 9
-                 'R 2 m3 5 b7' : ['m9'],             #       Min 9
-                 'R m3 4 b7'   : ['m', '11', 'n5'],  #  no5  Min 11
-                 'R m3 4 5 b7' : ['m', '11'],        #       Min 11
-                 'R m3 6 b7'   : ['m', '13', 'n5'],  #  no5  Min 13
-                 'R m3 5 6 b7' : ['m', '13'],        #       Min 13
-                 'R m3 b5'     : ['o'],              #       dim
-                 'R m3 b5 b7'  : ['07'],             #       Min 7 b5
-                 'R m3 b5 6'   : ['o7'],             #       dim 7
-                 'R M3 #5'     : ['+'],              #       Aug  #5
-                 'R m3 4 #5'   : ['m4', '+'],        # Maj inversion
-                 'R b2 4 #5'   : ['b2', 's4', '+'],  # Maj inversion
-                 'R 2 4 6'     : ['6', '/9', 's4'],  # Maj inversion
+                 'R 2 5'       : ['s2'],                 #   sus2
+                 'R 4 5'       : ['s4'],                 #   sus4
+                 'R 2 4'       : ['s2', '4', f'{NO5}'],  #   sus2 sus4
+                 'R 2 4 5'     : ['s2', '4'],            #       sus2 sus4
+                 'R 2 6'       : ['6', 's2', f'{NO5}'],  #       6 sus2
+                 'R 2 5 6'     : ['6', 's2'],            #       6 sus2
+                 'R 4 6'       : ['6', 's4', f'{NO5}'],  #       6 sus4
+                 'R 4 5 6'     : ['6', 's4'],            #       6 sus4
+                 'R 2 b7'      : ['7', 's2', f'{NO5}'],  #       7 sus2
+                 'R 2 5 b7'    : ['7', 's2'],            #       7 sus2
+                 'R 4 b7'      : ['7', 's4', f'{NO5}'],  #       7 sus4
+                 'R 4 5 b7'    : ['7', 's4'],            #       7 sus4
+                 'R 2 7'       : ['M7', 's2', f'{NO5}'], #       Maj 7 sus2
+                 'R 2 5 7'     : ['M7', 's2'],           #       Maj 7 sus2
+                 'R 4 7'       : ['M7', 's4', f'{NO5}'], #       Maj 7 sus4
+                 'R 4 5 7'     : ['M7', 's4'],           #       Maj 7 sus4
+                 'R 4 6 b7'    : ['13', 's4'],           #       13 sus4
+                 'R M3 5'      : [],                     #       Major
+                 'R b2 M3 5'   : ['b2'],                 #       b2
+                 'R 2 M3 5'    : ['2'],                  #       2
+                 'R M3 4 5'    : ['4'],                  #       4
+                 'R M3 6'      : ['6', f'{NO5}'],        #       6
+                 'R M3 5 6'    : ['6'],                  #       6
+                 'R M3 b7'     : ['7', f'{NO5}'],        #       7
+                 'R M3 5 b7'   : ['7'],                  #       7
+                 'R M3 7'      : ['M7', f'{NO5}'],       #       Maj 7
+                 'R M3 5 7'    : ['M7'],                 #       Maj 7
+                 'R 2 M3 6'    : ['6', '/9', f'{NO5}'],  #       add 6/9
+                 'R 2 M3 5 6'  : ['6', '/9'],            #       add 6/9
+                 'R 2 M3 7'    : ['M9', f'{NO5}'],       #       Maj 9
+                 'R 2 M3 5 7'  : ['M9'],                 #       Maj 9
+                 'R M3 4 7'    : ['M', '11', f'{NO5}'],  #       Maj 11
+                 'R M3 4 5 7'  : ['M', '11'],            #       Maj 11
+                 'R M3 6 7'    : ['M', '13', f'{NO5}'],  #       Maj 13
+                 'R M3 5 6 7'  : ['M', '13'],            #       Maj 13
+                 'R b2 M3 b7'  : ['b9', f'{NO5}'],       #       b9
+                 'R b2 M3 5 b7': ['b9'],                 #       b9
+                 'R 2 M3 b7'   : ['9', f'{NO5}'],        #       9
+                 'R 2 M3 5 b7' : ['9'],                  #       9
+                 'R m3 M3 b7'  : ['#9', f'{NO5}'],       #       #9
+                 'R m3 M3 5 b7': ['#9'],                 #       #9
+                 'R M3 4 b7'   : ['11', f'{NO5}'],       #       11
+                 'R M3 4 5 b7' : ['11'],                 #       11
+                 'R M3 b5 b7'  : ['#', '11', f'{NO5}'],  #       #11
+                 'R M3 b5 5 b7': ['#', '11]'],           #       #11
+                 'R M3 6 b7'   : ['13', f'{NO5}'],       #       13
+                 'R M3 5 6 b7' : ['13'],                 #       13
+                 'R M3 #5 b7'  : ['b', '13', f'{NO5}'],  #       b13
+                 'R M3 5 #5 b7': ['b', '13'],            #       b13
+                 'R m3 5'      : ['m'],                  #       Minor
+                 'R 2 m3 5'    : ['m2'],                 #       Min 2
+                 'R m3 4 5'    : ['m4'],                 #       Min 4
+                 'R m3 #5'     : ['m', '#5'],            #       Min #5
+                 'R m3 5 #5'   : ['m', 'b6'],            #       Min b6
+                 'R m3 6 '     : ['m6'],                 #       Min 6
+                 'R m3 5 6 '   : ['m6'],                 #       Min 6
+                 'R m3 b7'     : ['m7'],                 #       Min 7
+                 'R m3 5 b7'   : ['m7'],                 #       Min 7
+                 'R m3 7'      : ['m', 'M7', f'{NO5}'],  #       Min Maj 7
+                 'R m3 5 7'    : ['m', 'M7'],            #       Min Maj 7
+                 'R b2 m3 b7'  : ['m', 'b9', f'{NO5}'],  #       Min b9
+                 'R b2 m3 5 b7': ['m', 'b9'],            #       Min b9
+                 'R 2 m3 b7'   : ['m9', f'{NO5}'],       #       Min 9
+                 'R 2 m3 5 b7' : ['m9'],                 #       Min 9
+                 'R m3 4 b7'   : ['m', '11', f'{NO5}'],  #       Min 11
+                 'R m3 4 5 b7' : ['m', '11'],            #       Min 11
+                 'R m3 6 b7'   : ['m', '13', f'{NO5}'],  #       Min 13
+                 'R m3 5 6 b7' : ['m', '13'],            #       Min 13
+                 'R m3 b5'     : ['o'],                  #       dim
+                 'R m3 b5 b7'  : ['07'],                 #       Min 7 b5
+                 'R m3 b5 6'   : ['o7'],                 #       dim 7
+                 'R M3 #5'     : [f'{AUG5}'],            #       Aug  #5
+                 'R m3 4 #5'   : ['m4', f'{AUG5}'],            # Maj inversion
+                 'R b2 4 #5'   : ['b2', 's4', f'{AUG5}'],      # Maj inversion
+                 'R 2 4 6'     : ['6', '/9', 's4', f'{NO5}'],  # Maj inversion
                  } # how to order/arrange/group?
     ####################################################################################################################################################################################################
 #    0  1  2  3  4  5  6  7  8  9  10 11 0
 #    R  b2 2  m3 M3 4  b5 5  #5 6  b7  7 R
 #       b9 9  #9   11 #11   b13 13
     ####################################################################################################################################################################################################
-    def _getChordName_OLD(self, imap):
-        r = imap['R']  ;  n = len(imap)
-        if   '5' in imap:   return self.parse_5(imap, r, n)
-        elif 'b5' in imap:  return self.parse_b5(imap, r, n)
-        elif '#5' in imap:  return self.parse_a5(imap, r, n)
-        else:
-            if   n == 3:
-                if 'm3' in imap:
-                    if   'b7' in imap: return f'{r}m7n'
-                    elif  '7' in imap: return f'{r}mM7n'
-                if 'M3' in imap:
-                    if   'b7' in imap: return f'{r}7n'
-                    elif  '7' in imap: return f'{r}M7n'
-        return ''
-
-    @staticmethod
-    def parse_5(imap, r, n):
-        if   n == 3:
-            if 'm3' in imap: return f'{r}m'
-            if 'M3' in imap: return f'{r}'
-        elif n == 4:
-            if 'm3' in imap:
-                if   'b7' in imap: return f'{r}m7'
-                elif  '7' in imap: return f'{r}mM7'
-            if 'M3' in imap:
-                if   'b7' in imap: return f'{r}7'
-                elif  '7' in imap: return f'{r}M7'
-                elif  '6' in imap: return f'{r}6'
-
-    @staticmethod
-    def parse_b5(imap, r, n):
-        if   n == 3:
-            if 'm3' in imap: return f'{r}o'
-        elif n == 4:
-            if 'm3' in imap:
-                if   'b7' in imap: return f'{r}07'
-                elif  '6' in imap: return f'{r}o7'
-
-    @staticmethod
-    def parse_a5(imap, r, n):
-        if   n == 3:
-            if 'M3' in imap: return f'{r}+'
