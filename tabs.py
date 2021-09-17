@@ -42,8 +42,8 @@ def fmtl(lst, w=None, u='<', d1='[', d2=']', sep=' ', ll=0, z=''):
 def fmtd(m, w=1, d0=':', d1='[', d2=']'):
     t = ''
     for k, v in m.items():
-        if   type(v) is int or type(v) is str:  t += f'{k:>{w}}{d0}{v:<{w}} '
-        elif type(v) is list: t += fmtl(v, w)
+        if   type(v) in (list, tuple, set):     t += fmtl(v, w)
+        elif type(v) in (int, str):             t += f'{k:>{w}}{d0}{v:<{w}} '
     return d1 + t.rstrip() + d2
 def getLogPath(logdir='logs', logsfx='.log'):
     sfx = SFX if not ARGS['f'] else ''
@@ -1913,7 +1913,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def quit(self, why='', dbg=0):
         self.cobj.dumpMLimap(why)
-        self.cobj.dumpCats()
+        self.cobj.dumpCat()
         self.log('BGN')
         self.dumpJ('quit()')
         self.log(QUIT, ind=0)

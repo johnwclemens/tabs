@@ -4,7 +4,7 @@ import tabs
 
 VERBOSE = tabs.VERBOSE
 NO5 = 'x'
-AUG5 = '+'
+AUG = '+'
 
 class Note(object):
     count       = 0
@@ -51,8 +51,8 @@ class Chord(object):
         self.tobj    = tobj
         self.logFile = logfile
         self.limap, self.limap1, self.limap2 = [], [], []
-        self.mlimap  = {}
-        self.cats1   = set()   ;   self.cats2 = set()   ;   self.cats3 = set()   ;   self.catmap = {}
+        self.mlimap, self.catmap, self.catmap2  = {}, {}, {}
+        self.cat1, self.cat2, self.cat3 = set(), set(), dict()
         self.chordNameMap = self.initChordNameMap()
         Chord.count += 1
         tabs.Tabs.dumpObj(obj=self, name=f'ChordNameMap<{len(self.chordNameMap)}>', why=f'count={Chord.count} file={logfile}')
@@ -102,20 +102,23 @@ class Chord(object):
         return chordName, chunks
 
     def add2cat(self, limap):
-        outer = []
+        outer = []   ;   keys, ivals, notes = [], [], []
         for i in limap:
             inner = []
             for j in i[0]:
                 inner.append(self.INTERVAL_RANK[j])
             tmp = tuple(inner)
             outer.append(tmp)
-            self.cats2.add(tmp)
-            self.cats3.add(tmp)
-            l = len(inner)
-            if l not in self.catmap: self.catmap[l] = set()   ;   self.catmap[l].add(tmp)
-            else:                    self.catmap[l].add(tmp)
+            self.cat2.add(tmp)
+            k = len(inner)
+            if k not in self.cat3:     self.cat3[k] = set()   ;   self.cat3[k].add(tmp)
+            else:                      self.cat3[k].add(tmp)
+            if tmp not in self.catmap: self.catmap[tmp] = [i[0], i[1]]
+            keys.append(tmp)   ;   ivals.append(i[0])   ;   notes.append(i[1])
+        for k in keys:
+            self.catmap2[k] = [keys, ivals, notes]
         outer = sorted(outer, key=lambda a: [z for z in a])
-        self.cats1.add(tuple(outer))
+        self.cat1.add(tuple(outer))
         tabs.Tabs.log(f'={tabs.fmtl(outer, ll=0)}', file=self.logFile)
 
     def toggleChordName(self, rev=0, dbg=0):
@@ -202,39 +205,38 @@ class Chord(object):
         '''
         return imap, imapKeys, imapNotes, chordKey
     ####################################################################################################################################################################################################
-    def dumpCats(self, why=''):
-        cats1 = self.cats1
-        cats2 = sorted(self.cats2)
-        cats3 = sorted(self.cats3, key=len)
-        tabs.Tabs.log(f'{why} cats1 <{len(cats1)}>', file=self.logFile)
+    def dumpCat(self, why=''):
+        cat1 = sorted(self.cat1)
+        cat2 = sorted(self.cat2)
+        cat3 = self.cat3
+        catmap = self.catmap
+        catmap2 = self.catmap2
+        tabs.Tabs.log(f'{why} cat1 <{len(cat1)}>', file=self.logFile)
         n = 0
-        for c in cats1:
+        for c in cat1:
             n += len(c)
             tabs.Tabs.log(f'{n:3} {tabs.fmtl(c, z="x")}', ind=0, file=self.logFile)
-        tabs.Tabs.log(f'{why} cats2 <{len(cats2)}>', file=self.logFile)
-        for i, c in enumerate(cats2):
+        tabs.Tabs.log(f'{why} cat2 <{len(cat2)}>', file=self.logFile)
+        tabs.Tabs.log(f'{tabs.fmtl(cat2, z="x")}', ind=0, file=self.logFile)
+        for i, c in enumerate(cat2):
             tabs.Tabs.log(f'{i+1:3} {tabs.fmtl(c, z="x")}', ind=0, file=self.logFile)
-        tabs.Tabs.log(f'{why} cats3 <{len(cats3)}>', file=self.logFile)
-        for i, c in enumerate(cats3):
-            tabs.Tabs.log(f'{i+1:3} {tabs.fmtl(c, z="x")}', ind=0, file=self.logFile)
-        tabs.Tabs.log(f'{why} catsmapA <{len(self.catmap)}>', file=self.logFile)
-        n = 0
-        for k in self.catmap.keys():
-            n += len(self.catmap[k])
-            tabs.Tabs.log(f'{n:3} {tabs.fmtl(self.catmap[k], z="x")}', ind=0, file=self.logFile)
-        tabs.Tabs.log(f'{why} catsmapB <{len(self.catmap)}>', file=self.logFile)
-        n = 0
-        for k in self.catmap.keys():
-            self.catmap[k] = sorted(tuple(self.catmap[k]))
-            for c in self.catmap[k]:
-                n += 1
-                tabs.Tabs.log(f'{n:3} {tabs.fmtl(c, z="x")}', ind=0, file=self.logFile)
-        tabs.Tabs.log(f'{why} catsmapC <{len(self.catmap)}>', file=self.logFile)
-        n = 0
-        for k in self.catmap.keys():
-            for c in self.catmap[k]:
-                n += 1
-                tabs.Tabs.log(f'{n:3} {tabs.fmtl(c, z="x")}', ind=0, file=self.logFile)
+        tabs.Tabs.log(f'{why} cat3 <{len(cat3)}>', file=self.logFile)
+        tabs.Tabs.log(f'{tabs.fmtd(cat3)}', ind=0,  file=self.logFile)
+        for k in cat3.keys():
+            cat3[k] = sorted(tuple(cat3[k]))
+            for j, v in enumerate(cat3[k]):
+                tabs.Tabs.log(f'{j+1:3} {tabs.fmtl(v, z="x")}', ind=0, file=self.logFile)
+        tabs.Tabs.log(f'{why} catmap <{len(catmap)}>', file=self.logFile)
+        tabs.Tabs.log(f'{tabs.fmtd(catmap)}', ind=0,  file=self.logFile)
+        for i, (k,v) in enumerate(catmap.items()):
+            tabs.Tabs.log(f'<{i+1:3}> {tabs.fmtl(k, z="x")} {tabs.fmtl(v)}', file=self.logFile)
+        tabs.Tabs.log(f'{why} catmap2 <{len(catmap2)}>', file=self.logFile)
+        tabs.Tabs.log(f'{tabs.fmtd(catmap2)}', ind=0,  file=self.logFile)
+        for k in cat3.keys():
+            for i, v in enumerate(cat3[k]):
+                tabs.Tabs.log(f'<{i+1:3}> {tabs.fmtl(v, z="x")} {tabs.fmtl(catmap2[v])}', ind=0, file=self.logFile)
+#        for i, (k,v) in enumerate(catmap2.items()):
+#            tabs.Tabs.log(f'<{i+1:3}> {tabs.fmtl(k, z="x")} {tabs.fmtl(v)}', ind=0, file=self.logFile)
 
     def dumpMLimap(self, why=''):
         tabs.Tabs.log(f'{why}', file=self.logFile)
@@ -287,13 +289,16 @@ class Chord(object):
     def initChordNameMap():
          return {
                  'R 2 5'       : ['s2'],                 #   sus2
+                 'R 2 #5'      : ['s2', '+'],            #   sus2 Aug
                  'R 4 5'       : ['s4'],                 #   sus4
+                 'R 4 #5'      : ['s4', '+'],            #   sus4 Aug
                  'R 2 4'       : ['s2', '4', f'{NO5}'],  #   sus2 sus4
                  'R 2 4 5'     : ['s2', '4'],            #       sus2 sus4
                  'R 2 6'       : ['6', 's2', f'{NO5}'],  #       6 sus2
                  'R 2 5 6'     : ['6', 's2'],            #       6 sus2
                  'R 4 6'       : ['6', 's4', f'{NO5}'],  #       6 sus4
                  'R 4 5 6'     : ['6', 's4'],            #       6 sus4
+                 'R 2 4 6'     : ['6', '/9', 's4', f'{NO5}'], #  6 sus24
                  'R 2 b7'      : ['7', 's2', f'{NO5}'],  #       7 sus2
                  'R 2 5 b7'    : ['7', 's2'],            #       7 sus2
                  'R 4 b7'      : ['7', 's4', f'{NO5}'],  #       7 sus4
@@ -338,11 +343,11 @@ class Chord(object):
                  'R m3 5'      : ['m'],                  #       Minor
                  'R 2 m3 5'    : ['m2'],                 #       Min 2
                  'R m3 4 5'    : ['m4'],                 #       Min 4
-                 'R m3 #5'     : ['m', '#5'],            #       Min #5
+                 'R m3 #5'     : ['m', f'{AUG}'],        #       Min Aug
                  'R m3 5 #5'   : ['m', 'b6'],            #       Min b6
-                 'R m3 6 '     : ['m6'],                 #       Min 6
-                 'R m3 5 6 '   : ['m6'],                 #       Min 6
-                 'R m3 b7'     : ['m7'],                 #       Min 7
+                 'R m3 6'      : ['m6', f'{NO5}'],       #       Min 6
+                 'R m3 5 6'    : ['m6'],                 #       Min 6
+                 'R m3 b7'     : ['m7', f'{NO5}'],       #       Min 7
                  'R m3 5 b7'   : ['m7'],                 #       Min 7
                  'R m3 7'      : ['m', 'M7', f'{NO5}'],  #       Min Maj 7
                  'R m3 5 7'    : ['m', 'M7'],            #       Min Maj 7
@@ -357,10 +362,9 @@ class Chord(object):
                  'R m3 b5'     : ['o'],                  #       dim
                  'R m3 b5 b7'  : ['07'],                 #       Min 7 b5
                  'R m3 b5 6'   : ['o7'],                 #       dim 7
-                 'R M3 #5'     : [f'{AUG5}'],            #       Aug  #5
-                 'R m3 4 #5'   : ['m4', f'{AUG5}'],            # Maj inversion
-                 'R b2 4 #5'   : ['b2', 's4', f'{AUG5}'],      # Maj inversion
-                 'R 2 4 6'     : ['6', '/9', 's4', f'{NO5}'],  # Maj inversion
+                 'R M3 #5'     : [f'{AUG}'],             #       Aug
+                 'R m3 4 #5'   : ['m4', f'{AUG}'],            # Maj inversion
+                 'R b2 4 #5'   : ['b2', 's4', f'{AUG}'],      # Maj inversion
                  } # how to order/arrange/group?
     ####################################################################################################################################################################################################
 #    0  1  2  3  4  5  6  7  8  9  10 11 0
