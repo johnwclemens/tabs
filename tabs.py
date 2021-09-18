@@ -26,7 +26,7 @@ class MyFormatter(string.Formatter):
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
 def fmtl(lst, w=None, u='<', d1='[', d2=']', sep=' ', ll=0, z=''):
-    assert type(lst) in (list, tuple, set)
+    assert type(lst) in (list, tuple, set, frozenset)  #  Tabs.log(f'{type(lst)}')   ;
     if w is None: w = 0
     t = ''   ;   s = f'<{len(lst)}' if ll else ''
     for i, l in enumerate(lst):
@@ -1966,11 +1966,30 @@ def test2():
     t = fmtd(a)
     Tabs.log(f't={t}')
 
+def testset():
+    a = {6, 4, 1, 3, 7, 9}
+    b = {3, 4, 6}
+    c = a.difference(b)
+    Tabs.log(f'a={a}  b={b}  c=(a-b)={c}')
+    a = frozenset((1, 2, 3))
+    b = frozenset((7, 8, 9))
+    c = frozenset((4, 5, 6))
+    d = {a, b, c}
+    Tabs.log(f'a={a}  b={b}  c={c}')
+    Tabs.log(f'd={d}')
+    e = d - c
+    Tabs.log(f'e=(d-c)={e}')
+#    for z in d:
+#        for y in z:
+    f = [z for z in d if z in c]
+    Tabs.log(f'f={f}')
+
 if __name__ == '__main__':
     LOG_PATH = getLogPath()
     with open(str(LOG_PATH), 'w') as LOG_FILE:
         Tabs.log(f'LOG_PATH={LOG_PATH} LOG_FILE={LOG_FILE}')
         test()   # ;  exit()
+        testset()  #;  exit()
         Tabs()
         ret     = pyglet.app.run()
         Tabs.log(f'pyglet.app.run() returned {ret}, Exiting main')
