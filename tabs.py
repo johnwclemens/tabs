@@ -1913,7 +1913,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def quit(self, why='', dbg=0):
         self.cobj.dumpMLimap(why)
-        self.cobj.dumpCat()
+        self.cobj.dumpCat(why)
         self.log('BGN')
         self.dumpJ('quit()')
         self.log(QUIT, ind=0)
@@ -1979,8 +1979,6 @@ def testset():
     Tabs.log(f'd={d}')
     e = d - c
     Tabs.log(f'e=(d-c)={e}')
-#    for z in d:
-#        for y in z:
     f = [z for z in d if z in c]
     Tabs.log(f'f={f}')
 
