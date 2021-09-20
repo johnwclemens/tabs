@@ -32,11 +32,11 @@ def fmtl(lst, w=None, u='<', d1='[', d2=']', sep=' ', ll=0, z=''):
     for i, l in enumerate(lst):
         if type(l) in (list, tuple, set):
 #            d0 = sep + d1 if not i else d1    ;    d3 = d2 + sep
-            if type(w) is list or type(w) is tuple: t += fmtl(l, w[i], u, d1, d2, sep, ll, z)
+            if type(w) in (list, tuple):            t += fmtl(l, w[i], u, d1, d2, sep, ll, z)
             else:                                   t += fmtl(l, w,    u, d1, d2, sep, ll, z)
         else:
             ss = sep if i < len(lst)-1 else ''
-            if type(w) is list or type(w) is tuple: t += f'{l:{u}{w[i]}{z}}{ss}'
+            if type(w) in (list, tuple):            t += f'{l:{u}{w[i]}{z}}{ss}'
             else:                                   t += f'{l:{u}{w   }{z}}{ss}'
     return s + d1 + t + d2
 def fmtd(m, w=1, d0=':', d1='[', d2=']'):
@@ -298,8 +298,8 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def dumpObjs(objs, name, why=''): [Tabs.dumpObj(o, name, why) for o in objs]  # ;   [Tabs.log(f'{hex(id(o))} type={type(o)}', ind=0) for o in obj]   ;    Tabs.log(ind=0)
     def dumpWBWAW(self, why, before, what, after, why2=''): self.log(f'{why:<24} {before:>16} {what:^20} {after:<16} {why2}')
-    def ss(self):    s = sum(self.TNIK)  ;                      self.log(f's={s}      TNIK={   fmtl(self.TNIK)} n={fmtl(self.n)}')  ;  return s
-    def ssc(self):   s = self.ss()  ;  sc = s if s else 1   ;   self.log(f's={s} sc={sc} TNIK={fmtl(self.TNIK)} n={fmtl(self.n)}')  ;  return sc
+    def ss(self):    s = sum(self.TNIK)  ;                      self.log(f's={s}      TNIK={   fmtl(self.TNIK)} n={fmtl(self.n)}') if VERBOSE else None   ;  return s
+    def ssc(self):   s = self.ss()  ;  sc = s if s else 1   ;   self.log(f's={s} sc={sc} TNIK={fmtl(self.TNIK)} n={fmtl(self.n)}') if VERBOSE else None   ;  return sc
     def tpz(self):   return self.tpp, self.tpl, self.tps, self.tpc
     def lens(self):  return self.lenA(), self.lenB(), self.lenC(), self.lenD()
     def lenA(self):  return [len(e) for e in self.A]
@@ -1665,7 +1665,7 @@ class Tabs(pyglet.window.Window):
         cc = self.plct2cc(p, l, c, r)
         cc2 = c + l * self.n[C]
         mm = self.cobj.mlimap
-        if cc2 not in mm: self.log(f'BGN {how} cc={cc} cc2={cc2} key not in mlimap keys={fmtl(list(mm.keys()))}')  ;  assert 0
+        if cc2 not in mm: self.log(f'BGN {how} cc={cc} key=cc2={cc2} not found in mlimap keys={fmtl(list(mm.keys()))} returning')  ;  return
         lm = mm[cc2]
         self.log(f'BGN {how} p l c r = {p} {l} {c} {r} cc={cc} cc2={cc2} rev={rev} <{len(lm)}>')
         for j, m in enumerate(lm):
