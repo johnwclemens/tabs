@@ -58,7 +58,7 @@ class Chord(object):
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), dict()
         Chord._count += 1
-        tabs.Tabs.dumpObj(obj=self, name=f'ChordNameMap<{len(self.chordNameMap)}>', why=f'count={Chord._count} file={logfile}')
+#        tabs.Tabs.dumpObj(obj=self, name=f'ChordNameMap<{len(self.chordNameMap)}>', why=f'count={Chord._count}', file={logfile})
 
     def log(self, msg='', ind=1, file=None, flush=False, sep=',', end='\n'):
         if file is None: file=self.logFile
@@ -234,17 +234,17 @@ class Chord(object):
         for i, c in enumerate(cat2):
             self.log(f'{i+1:3} {tabs.fmtl(c, z="x")}', ind=0)
         self.log(f'{why} cat3 <{len(cat3)}>')
-        self.log(f'{tabs.fmtd(cat3)}', ind=0,  file=self.logFile)
+        self.log(f'{tabs.fmtm(cat3)}', ind=0,  file=self.logFile)
         for k in cat3.keys():
             cat3[k] = sorted(tuple(cat3[k]))
             for j, v in enumerate(cat3[k]):
                 self.log(f'{j+1:3} {tabs.fmtl(v, z="x")}', ind=0)
         self.log(f'{why} catmap <{len(catmap)}>')
-        self.log(f'{tabs.fmtd(catmap)}', ind=0,  file=self.logFile)
+        self.log(f'{tabs.fmtm(catmap)}', ind=0,  file=self.logFile)
         for i, (k,v) in enumerate(catmap.items()):
             self.log(f'{i+1:3} {tabs.fmtl(k, z="x")} {tabs.fmtl(v, w=2)}', ind=0)
         self.log(f'{why} catmap2 <{len(catmap2)}>')
-        self.log(f'{tabs.fmtd(catmap2)}', ind=0,  file=self.logFile)
+        self.log(f'{tabs.fmtm(catmap2)}', ind=0,  file=self.logFile)
         for k in cat3.keys():
             for i, v in enumerate(cat3[k]):
                 self.log(f'{i+1:3} {tabs.fmtl(v, z="x")}', ind=0, end='  ')
@@ -265,6 +265,8 @@ class Chord(object):
     def _dumpMLimap(self, mlimap, why=''):
         self.log(f'{why} len={len(mlimap)}')        ;   count1, count2 = 0, 0
         for i, (k, v) in enumerate(mlimap.items()):
+            self.dumpLimap(v, k)
+        for i, (k, v) in enumerate(mlimap.items()):
             self.log(f'{i+1:3} {k:3}', ind=0, end=' ')
             for j in range(len(v)):
                 tmp = f'{tabs.fmtl(v[j][0], w=tabs.FMTN2, d1="", d2="")}'   ;   count1 += 1
@@ -274,22 +276,26 @@ class Chord(object):
         if count1: self.log(f'{why} len={len(mlimap)} count=({count2} / {count1})={count2/count1:6.4} ')
 
     def dumpLimap(self, limap, cc, why=''):
-        im, a1, a2 = [], [], []   ;   c = ''   ;   i = 0
+        aa, bb = [], []  ;  sl = len(self.tobj.stringNumbs)  ;  lc = [0] * sl  ;  ln = [' ' for _ in range(sl)]  # ;  aa2 = []
+        ll = len(limap)  ;   lla = len(limap[0])   ;   llb = len(limap[0][0])   ;   pos = 53
+        for j in range(len(limap[0][1])):
+            ln[j]  = limap[0][1][j]
         for i, m in enumerate(limap):
-            c += '1' if m[2] else 'X'
-            a2.append(m[0])
-            a1.append([Chord.INTERVAL_RANK[j] for j in m[0]])
-        while i < len(self.tobj.stringNumbs) - 1:
-            c += '0'  ;  i += 1
-        self.log(f'{why}{cc+1:3} {c} {tabs.fmtl(limap[0][1], w=2, d1="", d2="")}', ind=0, end=' ')
-        for j in range(len(a1)):  #            self.log(f'{tabs.fmtl(a1, z="x")} {tabs.fmtl(a2)}', ind=0)
-            self.log(f'{tabs.fmtl(a1[j], z="x", d1="" if j else "|", d2="|")}', ind=0, end='' if j<len(a1)-1 else '  ')
-        for j in range(len(a2)):
-            self.log(f'{tabs.fmtl(a2[j], w=tabs.FMTN2, d1="" if j else "|", d2="|")}', ind=0, end='' if j<len(a2)-1 else "\n")
-
-#    def dumpLimap(self, limap, why):
-#        for imap in limap:
-#            self.dumpImap(imap, why)
+            lc[i] = 1 if m[2] else 'X'
+            bb.append(m[0])
+            aa.append([Chord.INTERVAL_RANK[j] for j in m[0]])
+#        self.log(f'len(ln)={len(ln)} len(lc)={len(lc)} ll={ll}, lla={lla}, llb={llb} aa = {tabs.fmtl(aa, z="x")}', ind=0, file=sys.stdout)
+#        for i in range(sl):
+#            if i < ll:  aa2.append( [ Chord.INTERVAL_RANK[j] for j in limap[i][0] ] )   # ;   aa2.append( [ ' ' for _ in range(sl - ll) ] )
+#            else:                     aa2.append( [ '-' for _ in range(sl - ll) ] )
+        self.log(f'{why}{cc+1:3} {tabs.fmtl(lc, d1="", d2="", sep="")} {tabs.fmtl(ln, w=2, d1="", d2="")}', ind=0, end=' ')
+        for j in range(len(aa)):
+            self.log(f'{tabs.fmtl(aa[j],  z="x",       d1="" if j else "|", d2="|")}', ind=0, end='' if j<len(aa)-1 else tabs.Z*(pos-(2*ll*llb)))
+#        for j in range(len(aa2)):
+#            if j < ll: self.log(f'{tabs.fmtl(aa2[j], z="x", d1="" if j else "|", d2="|")}', ind=0, end='')  #  if j<len(aa2) else '  ')
+#            else:      self.log(f'{tabs.fmtl(aa2[j],   d1="" if j else "|", d2="|")}', ind=0, end='') #   if j<len(aa2) else '  ')
+        for i in range(len(bb)):
+            self.log(f'{tabs.fmtl(bb[i], w=tabs.FMTN2, d1="" if i else "|", d2="|")}', ind=0, end='' if i<len(bb)-1 else "\n")
 
     def dumpImap(self, imap, why):
         intervals = imap[0]   ;   imapNotes = imap[1]   ;   chordName = imap[2]   ;   chunks = imap[3] ;   d1, d2 = '<', '>'
@@ -426,6 +432,8 @@ class Chord(object):
         'R m3 4 5 b7' : ['m', '11'],                 #  Min 11
         'R m3 6 b7'   : ['m', '13', f'{NO5}'],       #  Min 13  No5
         'R m3 5 6 b7' : ['m', '13'],                 #  Min 13
+        'R m3 #5 b7'  : ['m', 'b', '13', f'{NO5}'],  #  Min b13  No5
+        'R m3 5 #5 b7': ['m', 'b', '13'],            #  Min b13
         'R m3 b5'     : ['o'],                       #  Dim
         'R b2 m3 b5'  : ['o', 'b2'],                 #  Dim b2
         'R m3 b5 b7'  : ['07'],                      #  Min 7 b5
