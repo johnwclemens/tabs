@@ -25,12 +25,13 @@ class MyFormatter(string.Formatter):
             else: raise
 FMTR = MyFormatter()
 ####################################################################################################################################################################################################
-def fmtl(lst, w=None, u='<', d1='[', d2=']', sep=' ', ll=0, z=''):
+def fmtl(lst, w=None, u='<', d1='[', d2=']', sep=' ', ll=0, z='', a=0):
 #    Tabs.log(f'{type(lst)}')
     assert type(lst) in (list, tuple, set, frozenset)  #
     if w is None: w = 0
     t = ''   ;   s = f'<{len(lst)}' if ll else ''
     for i, l in enumerate(lst):
+        if type(l) is int:                          l += a
         if type(l) in (list, tuple, set):
 #            d0 = sep + d1 if not i else d1    ;    d3 = d2 + sep
             if type(w) in (list, tuple, set):       t += fmtl(l, w[i], u, d1, d2, sep, ll, z)
@@ -165,6 +166,8 @@ class Tabs(pyglet.window.Window):
         self.cobj = misc.Chord(self, LOG_FILE)
         misc.Note.setType(misc.Note.SHARP)  ;  self.log(f' Note.TYPE={misc.Note.TYPE}')
         self.shiftingTabs = 0
+        self.inserting = 0    ;   self.insertStr = ''  ;   self.tabCols = set()
+        self.jumping = 0      ;   self.jumpStr = ''    ;   self.jumpAbs=0
         self.dfn = ''
         self.n    = []
         self.TNIK = [1, 1, 0, 1]
@@ -843,6 +846,7 @@ class Tabs(pyglet.window.Window):
                 if   CCC     and c == C1:   tab = self.stringNumbs[t]    ;  plist = self.snos   ;  kl = kt2   ;  k = self.cci(t, kl)  ;  self.J2[O] += 1  ;  why = f'New SNo {self.J2[O]}'
                 elif CCC > 1 and c == C2:   tab = self.stringCapo[t]     ;  plist = self.capos  ;  kl = kt2   ;  k = self.cci(t, kl)  ;  self.J2[D] += 1  ;  why = f'New Capo {self.J2[D]}'
                 else:                       tab = self.data[p][l][c][t]  ;  plist = self.tabs   ;  kl = kt    ;  k = self.cci(t, kl)  ;  self.J2[T] += 1  ;  why = f'New Tab {self.J2[T]}'
+                if self.isNBTab(tab): self.tabCols.add(self.plc2cn(p, l, c))
                 self.createLabel(tab, T,   plist,  xt, yt - t*ht, wt, ht, k, gt, why=why, kl=kl, dbg=dbg)  ;  yield tab
             elif nn and (s == 1 or (s == 0 and not tt)):
                 if   CCC     and c == C1:  note = self.stringNames[t]    ;  plist = self.snas   ;  kl = kn2   ;  k = self.cci(t, kl)  ;  self.J2[A] += 1  ;  why = f'New SNam {self.J2[A]}'
@@ -1209,10 +1213,13 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'cc2plct({cc}) return {p} {l} {c} {t}')
         return p, l, c, t
 
-    def cc2cn(self, cc):       cn = cc // self.tpc                        ;  self.log(f'({cc}) cc // tpc return {cn}')  ;  return cn
-    def plc2cn(self, p, l, c): cn = (p *  self.tpp) + (l * self.tpl) + c  ;  self.log(f'({p} {l} {c}) return {cn}')     ;  return cn
+    def cn2cc(self, cn): return cn * self.tpc
+    def cn2plct(self, cn): pass
+    def cc2cn(self, cc):       cn = cc // self.tpc                        ;  return cn  # ;  self.log(f'({cc}) cc // tpc return {cn}')  ;  return cn
+#    def plc2cn(self, p, l, c): cn = (p *  self.tpp) + (l * self.tpl) + c  ;  return cn  # ;  self.log(f'({p} {l} {c}) return {cn}')     ;  return cn
+    def plc2cn(self, p, l, c): cn = (p *  self.tpp // self.tpc) + (l * self.tpl // self.tpc) + c  ;  return cn  # ;  self.log(f'({p} {l} {c}) return {cn}')     ;  return cn
 
-    def cc2(self, p, l, c, t, dbg=1):
+    def cc2(self, p, l, c, t, dbg=1): # refactor move impl to move() with rel/abs option
         cc = self.plct2cc(p, l, c, t, dbg)
         return cc - self.cursorCol()
     ####################################################################################################################################################################################################
@@ -1251,10 +1258,10 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'F' and self.isCtrl(     mods):    self.toggleFlatSharp( '@   F')
         elif kbk == 'G' and self.isCtrlShift(mods):    self.goToLastTabCol2( '@ ^ G')
         elif kbk == 'G' and self.isCtrl(     mods):    self.goToLastTabCol(  '@   G')
-        elif kbk == 'I' and self.isCtrlShift(mods):    self.toggleCursorMode('@ ^ I')
-        elif kbk == 'I' and self.isCtrl(     mods):    self.toggleCursorMode('@   I')
-#        elif kbk == 'J' and self.isCtrl(mods) and self.isShift(mods): self.goToCol( '@ ^ J')
-#        elif kbk == 'J' and self.isCtrl(mods):                        self.goToCol( '@   J')
+        elif kbk == 'I' and self.isCtrlShift(mods):    self.insertSpace(     '@ ^ I')
+        elif kbk == 'I' and self.isCtrl(     mods):    self.insertSpace(     '@   I')
+        elif kbk == 'J' and self.isCtrlShift(mods):    self.jump(            '@ ^ J', a=1)
+        elif kbk == 'J' and self.isCtrl(     mods):    self.jump(            '@   J', a=0)
         elif kbk == 'K' and self.isCtrlShift(mods):    self.toggleTabs(      '@ ^ K', KK)
         elif kbk == 'K' and self.isCtrl(     mods):    self.toggleTabs(      '@   K', KK)
         elif kbk == 'L' and self.isCtrlShift(mods):    self.toggleLLRows(    '@ ^ L')
@@ -1263,6 +1270,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'M' and self.isCtrl(     mods):    self.toggleRLCols(    '@   M')
         elif kbk == 'N' and self.isCtrlShift(mods):    self.toggleTabs(      '@ ^ N', NN)
         elif kbk == 'N' and self.isCtrl(     mods):    self.toggleTabs(      '@   N', NN)
+        elif kbk == 'O' and self.isCtrlShift(mods):    self.toggleCursorMode('@ ^ O')
+        elif kbk == 'O' and self.isCtrl(     mods):    self.toggleCursorMode('@   O')
         elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@ ^ Q')
         elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(            '@   Q')
         elif kbk == 'R' and self.isCtrlShift(mods):    self.toggleChordName( '@ ^ R', rev=1)
@@ -1280,7 +1289,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'W' and self.isCtrl(     mods):    self.swapTabs(        '@ & W')
         elif kbk == 'X' and self.isCtrlShift(mods):    self.cutTabs(         '@ ^ X')
         elif kbk == 'X' and self.isCtrl(     mods):    self.cutTabs(         '@   X')
-        elif kbk == 'SPACE':                           self.autoMove(        'SPACE')
+        elif kbk == 'SPACE' and not self.isParsing():  self.autoMove(        'SPACE')
         elif kbk == 'ESCAPE':                          self.unselectAll(     'ESCAPE')
         elif kbk == 'TAB'       and self.isCtrl(mods): self.setCHVMode(      '@ TAB',       MELODY, LEFT)
         elif kbk == 'TAB':                             self.setCHVMode(      '  TAB',       MELODY, RIGHT)
@@ -1318,8 +1327,10 @@ class Tabs(pyglet.window.Window):
     def on_text(self, text, dbg=1): # use for entering strings not for motion
         self.kbk = text
         if dbg: self.log(f'BGN {self.kbkEvntTxt()}')
-        if   self.shiftingTabs:                              self.shiftTabs('on_text', text)
-        elif self.isTab(self.kbk):                           self.setTab(   'on_text', self.kbk)
+        if   self.shiftingTabs:                              self.shiftTabs(  'on_text', text)
+        elif self.jumping:                                   self.jump(       'on_text', text, self.jumpAbs)
+        elif self.inserting:                                 self.insertSpace('on_text', text)
+        elif self.isTab(self.kbk):                           self.setTab(     'on_text', self.kbk)
         elif self.kbk == '$' and self.isShift(self.mods):    self.snapshot()
         if dbg: self.log(f'END {self.kbkEvntTxt()}')
     ####################################################################################################################################################################################################
@@ -1391,7 +1402,7 @@ class Tabs(pyglet.window.Window):
         if c:      self.move(how, self.cc2(p, l,   0,  t))      # move left  to bgn of line
         else:      self.move(how, self.cc2(p, l-1, nc, t))      # wrap right & up (down) to end of prev (bottom) line
 
-    def move(self, how, k, ss=0, dbg=1):
+    def move(self, how, k, ss=0, dbg=1): # remove cc2() & put impl here with option rel/abs
         if dbg: self.log(f'BGN {how} {k:4}      {self.cc:4} {fmtl(self.i, FMTN)} ss={ss} text={self.tabs[self.cc].text}') # , file=sys.stdout)
         if not self.SNAP0: t = self.tabs[self.cc]  ;  self.snapshot(f'pre-move() k={k:4} kk={self.cc:3} {fmtl(self.i, FMTN)} text={t.text} {t.x:6.2f} {t.y:6.2f}')  ;  self.SNAP0 = 1
         self.setLLStyle(self.cc, SELECT_STYLE if ss else NORMAL_STYLE)
@@ -1454,6 +1465,19 @@ class Tabs(pyglet.window.Window):
     def setCaption(self, msg, dbg=0):
         self.set_caption(msg)
         if dbg: self.log(f'{msg}')
+
+    def jump(self, how, txt='0', a=0):
+        cc = self.cursorCol()   ;   self.jumpAbs = a
+        self.log(f'{how} txt={txt} a={a} cc={cc} jt={self.jumpAbs} {fmtl(self.i)}')
+        if not self.jumping:                  self.jumping = 1
+        elif txt.isdecimal():                 self.jumpStr += txt
+        elif txt == '-' and not self.jumpStr: self.jumpStr += txt
+        elif txt == ' ':
+            self.log(f'{how} txt={txt} a={a} cc={cc} jt={self.jumpAbs} jumpStr={self.jumpStr} {fmtl(self.i)}')
+            jcc = self.n[T] * int(self.jumpStr)
+            self.jumping = 0   ;    self.jumpStr = ''
+            self.move(how, jcc - 1 - a * cc)
+            self.log(f'{how} txt={txt} a={a} cc={cc} jt={self.jumpAbs} jcc={jcc} moved={jcc - 1 - a * cc} {fmtl(self.i)}')
 
     def goToLastTabCol(self, how):
         i = self.i[L] * self.tpl - 1
@@ -1565,6 +1589,24 @@ class Tabs(pyglet.window.Window):
             self.smap[k1] = text2
             self.smap[k2] = text1
         self.pasteTabs(how)
+
+    def insertSpace(self, how, txt='0', dbg=0): # cut and paste from cc to cc + width
+        cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
+        if not self.inserting: self.inserting = 1
+        elif txt.isdecimal():  self.insertStr += txt
+        elif txt == ' ':
+            self.inserting = 0   ;   self.tabCols.add(self.n[C] * self.n[L] - 1)
+            width = int(self.insertStr)
+            tcs = sorted(self.tabCols)
+            if dbg: self.log(f'{how} Searching for space to insert {width} cols starting at col {c0+1}')
+            if dbg: self.log(f'{fmtl(tcs, ll=1, a=1)} insertSpace', ind=0)
+            found, c1, c2 = 0, 0, None   ;   self.insertStr = ''
+            for c2 in tcs:
+                if dbg: self.log(f'w c0 c1 c2 = {width} {c0+1} {c1+1} {c2+1}')
+                if c2 > c0 + width and c2 > c1 + width: found = 1  ;  break
+                c1 = c2
+            if found:            self.log(f'{how} starting at col {c0+1} Found a gap {width} cols wide between cols {c1+1} and {c2+1}')
+            else:                self.log(f'{how} starting at col {c0+1} No room to insert {width} cols before end of page at col {tcs[-1]+1}')
 
     def shiftTabs(self, how, nf=0):
         self.dumpSelectTabs(f'BGN {how} shiftingTabs={self.shiftingTabs} nf={nf}')
@@ -1826,8 +1868,11 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def isCtrlAltShift(mods): return mods & pygwink.MOD_CTRL and mods & pygwink.MOD_ALT and mods & pygwink.MOD_SHIFT
     @staticmethod
-    def isFret(text):         return True if '0'<=text<='9'      or 'a'<=text<='o'    else False
-    def isTab(self, text):    return True if text == self.tblank or Tabs.isFret(text) or text in misc.DSymb.SYMBS else False
+    def isFret(text):         return 1 if '0'<=text<='9'      or 'a'<=text<='o'    else 0
+    @staticmethod
+    def isNBTab(text):        return 1 if                        Tabs.isFret(text) or text in misc.DSymb.SYMBS else 0
+    def isTab(self, text):    return 1 if text == self.tblank or Tabs.isFret(text) or text in misc.DSymb.SYMBS else 0
+    def isParsing(self):      return 1 if self.inserting or self.jumping or self.shiftingTabs else 0
     ####################################################################################################################################################################################################
     def cci(self, c, cc, dbg=0):
         if c == 0: self.ci = (self.ci + 1) % len(cc)
