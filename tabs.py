@@ -1495,13 +1495,13 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpSelectTabs(self, why): self.log(f'{why} <{len(self.skeys)}> {fmtl(self.skeys)} {fmtl(list(self.smap.values()))}')
 
-    def unselectAll(self, how, dbg=1):
+    def unselectAll(self, how, dbg=VERBOSE):
         for i in range(len(self.skeys)-1, -1, -1):
             k = self.skeys[i]
             if dbg: self.log(f'{how} i={i} k={k}')
             self.unselectTabs(how, m=0, k=k)
 
-    def unselectTabs(self, how, m, k=None, dbg=1):
+    def unselectTabs(self, how, m, k=None, dbg=VERBOSE):
         cc = self.cursorCol()   ;   nt = self.n[T]
         if k is None: k = (cc // nt) * nt
         self.setLLStyle(cc, NORMAL_STYLE)
@@ -1511,7 +1511,7 @@ class Tabs(pyglet.window.Window):
             note  = self.notes [k + t]  ;   note.color = self.kn[0]
             chord = self.chords[k + t]  ;  chord.color = self.kk[0]
         if k in self.skeys: self.skeys.remove(k)    ;    self.smap.pop(k)
-        else:               self.log(f'key={k} not found in skeys={fmtl(self.skeys)}')
+        elif dbg:           self.log(f'key={k} not found in skeys={fmtl(self.skeys)}')
         if m:   self.move(how, m)
         if dbg: self.dumpSelectTabs(f'END {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
 
@@ -1529,7 +1529,7 @@ class Tabs(pyglet.window.Window):
         self.move(how, m, ss=1)
         self.dumpSelectTabs(f'END {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
 
-    def copyTabs(self, how, dbg=1):
+    def copyTabs(self, how, dbg=VERBOSE):
         self.dumpSelectTabs(f'BGN {how}')   ;   nt = self.n[T]  ;   text = ''
         for k in self.skeys:
             self.setLLStyle(k, NORMAL_STYLE)
@@ -1544,10 +1544,10 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def cutTabs(self, how): self.log('BGN Cut = Copy + Delete')  ;  self.copyTabs(how)  ;  self.log('Cut = Copy + Delete')  ;  self.deleteTabs(how, cut=1)  ;  self.log('END Cut = Copy + Delete')
     ####################################################################################################################################################################################################
-    def deleteTabs(self, how, cut=0):
+    def deleteTabs(self, how, cut=0, dbg=VERBOSE):
         self.dumpSelectTabs(f'BGN {how} cut={cut}')   ;   nt = self.n[T]
         for i, (k,v) in enumerate(self.smap.items()):
-            self.log(f'i={i} k={k} v={v}')
+            if dbg: self.log(f'i={i} k={k} v={v}')
             self.setLLStyle(k, NORMAL_STYLE)
             for t in range(nt):
                 p, l, c, r = self.cc2plct(k + t, dbg=0)
@@ -1558,7 +1558,7 @@ class Tabs(pyglet.window.Window):
         if not cut: self.unselectAll('deleteTabs()')
         self.dumpSelectTabs(f'END {how} cut={cut}')
 
-    def pasteTabs(self, how, hc=0, kk=0, dbg=1):
+    def pasteTabs(self, how, hc=0, kk=0, dbg=VERBOSE):
         cc = self.cursorCol()   ;  nt = self.n[T]
         ntc = (cc // nt) * nt   ;  kt = 0
         smap, skeys = self.smap, self.skeys
@@ -1576,7 +1576,7 @@ class Tabs(pyglet.window.Window):
                 self.setDTNK(text[t], kt, p, l, c, t, uk=1 if t == nt - 1 else 0)  # call with uk=1 only once per column or tpc
             if dbg: self.log(f'smap[{k}]={text} kt={kt} kk={kk} dk={dk}')
         if not hc: self.unselectAll('pasteTabs()')
-        else:      self.log(f'holding a copy of smap and skeys')
+        elif dbg:  self.log(f'holding a copy of smap and skeys')
         self.dumpSelectTabs(f'END {how} hc={hc} kk={kk} cc={cc} ntc={ntc} cn={self.cc2cn(cc) + 1}')
 
     def swapTabs(self, how):
@@ -1590,23 +1590,30 @@ class Tabs(pyglet.window.Window):
             self.smap[k2] = text1
         self.pasteTabs(how)
 
-    def insertSpace(self, how, txt='0', dbg=0): # cut and paste from cc to cc + width
+    def insertSpace(self, how, txt='0', dbg=1): # need to update tabCols?
         cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
         if not self.inserting: self.inserting = 1
         elif txt.isdecimal():  self.insertStr += txt
         elif txt == ' ':
-            self.inserting = 0   ;   self.tabCols.add(self.n[C] * self.n[L] - 1)
+            self.inserting = 0
             width = int(self.insertStr)
             tcs = sorted(self.tabCols)
-            if dbg: self.log(f'{how} Searching for space to insert {width} cols starting at col {c0+1}')
-            if dbg: self.log(f'{fmtl(tcs, ll=1, a=1)} insertSpace', ind=0)
+            tcs.append(self.n[C] * self.n[L] - 1)
+            tcs = [t + 1 for t in tcs]
+            if dbg: self.log(f'{how} Searching for space to insert {width} cols starting at col {c0}')
+            self.log(f'{fmtl(tcs, ll=1)} insertSpace', ind=0)
             found, c1, c2 = 0, 0, None   ;   self.insertStr = ''
             for c2 in tcs:
-                if dbg: self.log(f'w c0 c1 c2 = {width} {c0+1} {c1+1} {c2+1}')
+                if dbg: self.log(f'w c0 c1 c2 = {width} {c0} {c1} {c2}')
                 if c2 > c0 + width and c2 > c1 + width: found = 1  ;  break
                 c1 = c2
-            if found:            self.log(f'{how} starting at col {c0+1} Found a gap {width} cols wide between cols {c1+1} and {c2+1}')
-            else:                self.log(f'{how} starting at col {c0+1} No room to insert {width} cols before end of page at col {tcs[-1]+1}')
+            if not found: self.log(f'{how} starting at col {c0} No room to insert {width} cols before end of page at col {tcs[-1]+1}')  ;   return
+            self.log(f'{how} starting at col {c0} Found a gap {width} cols wide between cols {c1} and {c2}')
+            self.log(f'select cols {c0} ... {c1}, cut cols, move ({width} - {c1} + {c0})={width-c1+c0} cols, paste cols')
+            [self.selectTabs(how, self.tpc) for _ in range(c1 - c0)]
+            self.cutTabs(how)
+            self.move(how, (width - c1 + c0) * self.tpc)
+            self.pasteTabs(how)
 
     def shiftTabs(self, how, nf=0):
         self.dumpSelectTabs(f'BGN {how} shiftingTabs={self.shiftingTabs} nf={nf}')
@@ -1627,7 +1634,7 @@ class Tabs(pyglet.window.Window):
             self.unselectAll('shiftTabs()')
         self.dumpSelectTabs(f'END {how} shiftingTabs={self.shiftingTabs} nf={nf}')
 
-    def setTab(self, how, text, rev=0, dbg=1):
+    def setTab(self, how, text, rev=0, dbg=VERBOSE):
         self.log(f'BGN {how} text={text} rev={rev} {fmtl(self.i, FMTN)}')
         if rev: self.reverseArrow()    ;    self.autoMove(how)
         cc = self.cursorCol()          ;    p, l, s, c, t = self.j()
@@ -1638,7 +1645,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.snapshot()
         self.log(f'END {how} text={text} rev={rev} {fmtl(self.i, FMTN)}')
     ####################################################################################################################################################################################################
-    def setDTNK(self, text, cc, p, l, c, t, uk=0, dbg=1):  # what was previous data value
+    def setDTNK(self, text, cc, p, l, c, t, uk=0, dbg=VERBOSE):  # what was previous data value
         if dbg: self.log(f'BGN text={text} cc={cc} plct {p} {l} {c} {t} uk={uk}')
         self.setData(text, p, l, c, t)
         if self.TNIK[TT]:        self.setTab2( text, cc)
@@ -1646,41 +1653,41 @@ class Tabs(pyglet.window.Window):
         if self.TNIK[KK] and uk: self.setChord(p, l, c, t)
         if dbg: self.log(f'END text={text} cc={cc} plct {p} {l} {c} {t} uk={uk}')
     ####################################################################################################################################################################################################
-    def setData(self, text, p, l, c, r, dbg=1):
+    def setData(self, text, p, l, c, r, dbg=VERBOSE):
         prev = self.data[p][l][c]
         self.data[p][l][c] = prev[0:r] + text + prev[r+1:]
         if dbg: self.dumpWBWAW(f'({text} {p} {l} {c} {r})', prev, f'<data[{p}][{l}][{c}]>', self.data[p][l][c])
 
-    def setTab2(self, txt, cc, dbg=1):
+    def setTab2(self, txt, cc, dbg=VERBOSE):
         prev = self.tabs[cc].text
         self.tabs[cc].text = txt
         if dbg: self.dumpWBWAW(f'({txt} cc={cc})', prev, f'<tabs[{cc}].text>', self.tabs[cc].text)
 
-    def setNote(self, txt, cc, r, dbg=1):
+    def setNote(self, txt, cc, r, dbg=VERBOSE):
         prev = self.notes[cc].text
         self.notes[cc].text = self.getNoteName(r, txt) if self.isFret(txt) else self.nblank
         if dbg: self.dumpWBWAW(f'({txt} cc={cc} r={r})', prev, f'<notes[{cc}].text>', self.notes[cc].text)
 
-    def setChord(self, p, l, c, t, dbg=1):
+    def setChord(self, p, l, c, t, dbg=VERBOSE, dbg2=0):
         cc = self.plct2cc(p, l, c, 0)    ;    nt = self.n[T]    ;    name = ''    ;    i = 0
-        self.log(f'BGN plct {p} {l} {c} {t} cc={cc}')
+        if dbg: self.log(f'BGN plct {p} {l} {c} {t} cc={cc}')
         chordName, chunks = self.cobj.getChordName(p, l, c)
-        self.log(f'    plct {p} {l} {c} {t} cc={cc} chordName=<{chordName:<}> chunks={fmtl(chunks)}')
+        if dbg: self.log(f'    plct {p} {l} {c} {t} cc={cc} chordName=<{chordName:<}> chunks={fmtl(chunks)}')
         self.setChordName(chordName, chunks, cc)
-        if dbg:
+        if dbg2:
             for i in range(nt):
                 name += self.chords[cc + i].text
-            self.log(f'END chords[{cc}-{cc+i}].text={name} chordName=<{chordName:<}> chunks={fmtl(chunks)}')
-        else: self.log(f'END plct {p} {l} {c} {t} cc={cc} chordName={chordName}')
+            self.log(f'chords[{cc}-{cc+i}].text={name} chordName=<{chordName:<}> chunks={fmtl(chunks)}')
+        elif dbg: self.log(f'END plct {p} {l} {c} {t} cc={cc} chordName={chordName}')
 
-    def setChordName(self, name, chunks, cc):
+    def setChordName(self, name, chunks, cc, dbg=VERBOSE):
         txt = ''   ;   old = ''   ;   nt = self.n[T]
         for i in range(nt):
             old += self.chords[cc + i].text
             self.chords[cc + i].text = chunks[i] if len(chunks) > i else self.nblank
             txt += self.chords[cc + i].text
-        self.log(f'BGN name=<{name}> chunks={fmtl(chunks)} chords[{cc}-{cc + nt - 1}].text=<{old}>{len(old)}')
-        self.log(f'END name=<{name}> chunks={fmtl(chunks)} chords[{cc}-{cc + nt - 1}].text=<{txt}>{len(txt)}')
+        if dbg: self.log(f'BGN name=<{name}> chunks={fmtl(chunks)} chords[{cc}-{cc + nt - 1}].text=<{old}>{len(old)}')
+        if dbg: self.log(f'END name=<{name}> chunks={fmtl(chunks)} chords[{cc}-{cc + nt - 1}].text=<{txt}>{len(txt)}')
 
     @staticmethod
     def getFretNum(tab, dbg=0):
