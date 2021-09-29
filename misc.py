@@ -27,6 +27,8 @@ class Note(object):
                 'C6':72, 'C#6':73, 'Db6':73, 'D6':74, 'D#6':75, 'Eb6':75, 'E6':76, 'F6':77, 'F#6':78, 'Gb6':78, 'G6':79, 'G#6':80, 'Ab6':80, 'A6':81, 'A#6':82, 'Bb6':82, 'B6':83,
                 'C7':84, 'C#7':85, 'Db7':85, 'D7':86, 'D#7':87, 'Eb7':87, 'E7':88, 'F7':89, 'F#7':90, 'Gb7':90, 'G7':91, 'G#7':92, 'Ab7':92, 'A7':93, 'A#7':94, 'Bb7':94, 'B7':95,
                 'C8':96 } # For simplicity omit double flats and double sharps and other redundant enharmonic note names e.g. Abb, C##, Cb, B#, Fb, E# etc...
+    NAMES   = [ k for k in INDICES.keys() if k[1] is not 'b' ]
+
     def __init__(self, i):
         assert i < 0
         self.index = i
@@ -34,12 +36,15 @@ class Note(object):
         Note.count += 1
         tabs.Tabs.dumpObj(obj=self, name=f'{self.name} Note', why=f'count={Note.count}')
     @staticmethod
-    def setType(tt): Note.TYPE = tt
+    def setType(t): Note.TYPE = t
 
     @staticmethod
     def getName(i):
         name = Note.TONES[Note.TYPE][i % Note.NTONES]
         return name
+
+    @staticmethod
+    def getFreq(index): return 440 * pow(pow(2, 1/Note.NTONES), index - Note.INDICES)
 
 ####################################################################################################################################################################################################
 class DSymb(object):
@@ -49,7 +54,9 @@ class DSymb(object):
 class Chord(object):
     INTERVALS     = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
     INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
-    _count         = 0
+#    OMAP          = { (0, 3, 8):2, (0, 4, 7):1, (0, 5, 9):3,    (0, 3, 7):1, (0, 4, 9):2, (0, 5, 8):3 }
+    OMAP          = { (0, 3, 8):1, (0, 4, 7):0, (0, 5, 9):2,    (0, 3, 7):0, (0, 4, 9):1, (0, 5, 8):2 }  # zero based
+    _count        = 0
     def __init__(self, tobj, logfile):
         self.tobj    = tobj
         self.logFile = logfile
@@ -65,11 +72,19 @@ class Chord(object):
         tabs.Tabs.log(msg=msg, ind=ind, file=file, flush=flush, sep=sep, end=end)
 
     def updateImap(self, im, name, chunks, dbg=0):
-        intervals = list(im.keys())    ;   notes = list(im.values())
+        intervals = list(im.keys())    ;   notes = list(im.values())     ;   omapK = []     ;   order = 0
         imap = [intervals, notes, name, chunks]  ;   d1, d2 = '<', '>'   ;   chordName = ''
-        assert name != ' '
-        if name and name != ' ': self.limap1.append(imap)  # ;  self.log(f'add {imap} to limap1')
-        else:                    self.limap2.append(imap)  # ;  self.log(f'add {imap} to limap2')
+        if name:
+#            self.log(f'OMAP {type(Chord.OMAP)}  RANK {type(Chord.INTERVAL_RANK)}  omapK {type(omapK)} OMK {type(Chord.OMAP.keys())}')  #       self.log(f'value {type(Chord.OMAP[omapK])}')
+            for i in intervals:
+                omapK.append(Chord.INTERVAL_RANK[i])
+            omapK = tuple(omapK)
+            if omapK in Chord.OMAP:
+                order = Chord.OMAP[omapK]
+                self.log(f'omapk={omapK} intervals={intervals} order={order}')
+            self.limap1.insert(order, imap)
+#            else:          self.limap1.append(imap)
+        else:              self.limap2.append(imap)   ;  self.log(f'add {imap} to limap2')
         if dbg:
             for i, m in enumerate(self.limap1):
                 self.log(tabs.FMTR.format(f'  limap1 [{i+1}] [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'))
@@ -81,7 +96,7 @@ class Chord(object):
 
     def getChordName(self, p, l, c, dbg=0, dbg2=0):
         cc = c + l * self.tobj.n[tabs.C]
-        if dbg: self.log(f'p l c cc = {p} {l} {c} {cc} mlimap.keys={tabs.fmtl(list(self.mlimap.keys()))}:')
+#        if dbg: self.log(f'p l c cc = {p} {l} {c} {cc} mlimap.keys={tabs.fmtl(list(self.mlimap.keys()))}:')
 #        if dbg: self.dumpMLimap('Get Chord Name')
         self.limap, chunks, ims = [], [], set()   ;   chordName = ''
         imapKeys, imapNotes                     = None, None   ;   d1, d2 = '<', '>'
@@ -250,10 +265,8 @@ class Chord(object):
                 self.log(f'{i+1:3} {tabs.fmtl(v, z="x")}', ind=0, end='  ')
                 for j, u in enumerate(catmap2[v]):
                     for h, w in enumerate(u):
-#                        if   j:      self.log(f' {tabs.fmtl(w, w=2, z="" )}', ind=0, end='')
-#                        elif w != v: self.log(f'{tabs.fmtl(w,      z="x")}', ind=0, end=' ')
-                        if j:        self.log(f'{" " if h else "  "}{tabs.fmtl(w, w=2, z="" )}', ind=0, end='')
-                        elif w != v: self.log(f'{tabs.fmtl(w,      z="x")}', ind=0, end=' ')
+                        if j:        self.log(f'{"" if h else "  "}{tabs.fmtl(w, w=tabs.FMTN2)}', ind=0, end='')
+                        elif w != v: self.log(f'{                   tabs.fmtl(w,        z="x")}', ind=0, end='')
                 self.log(ind=0)
 
     def dumpMLimap(self, why=''):
@@ -277,7 +290,7 @@ class Chord(object):
 
     def dumpLimap(self, limap, cc, why=''):
         aa, bb = [], []  ;  sl = len(self.tobj.stringNumbs)  ;  lc = [0] * sl  ;  ln = [' ' for _ in range(sl)]  # ;  aa2 = []
-        ll = len(limap)  ;   lla = len(limap[0])   ;   llb = len(limap[0][0])   ;   pos = 53
+        ll = len(limap)   ;   llb = len(limap[0][0])   ;   pos = 53   # ;   lla = len(limap[0])
         for j in range(len(limap[0][1])):
             ln[j]  = limap[0][1][j]
         for i, m in enumerate(limap):
