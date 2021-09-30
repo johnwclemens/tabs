@@ -62,7 +62,7 @@ def dumpGlobals():
     Tabs.log(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
 ARGS             = cmdArgs.parseCmdLine()
-AUTO_SAVE = 1  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
+AUTO_SAVE = 1  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -448,7 +448,7 @@ class Tabs(pyglet.window.Window):
         self.data = self.transposeData()
         self.dumpDataVert() if self.isVert() else self.dumpDataHorz()
 
-    def readDataFile(self, dbg=1):
+    def readDataFile(self, dbg=1):  #  empty file bug
         np, nl, ns, nc, nr = self.n
         if not self.dataPath.exists(): self.log(f'nl nc nr = {nl} {nc} {nr} dataPath={self.dataPath} file does not exist calling createBlankData()')  ;  self.dataPath.touch()  ;  self.createBlankData()  ;  return
         if dbg: self.log(f'nl={nl} nr={nr} nc={nc} dataPath={self.dataPath}')
@@ -2067,11 +2067,30 @@ def test3():
     v2 = m[k2]
     Tabs.log(f'{fmtl(k2)}  {                fmtl(v2)}', ind=0)
 
+def test4():
+    a = [3, 5, 6]
+    print(f'a0     = {fmtl(a)}')
+    o = 1  ;  v = 4
+    a.insert(o, v)
+    print(f'a({o} {v}) = {fmtl(a)}')
+    o = 0  ;  v = 2
+    a.insert(o, v)
+    print(f'a({o} {v}) = {fmtl(a)}')
+    o = 0  ;  v = 1
+    a.insert(o, v)
+    print(f'a({o} {v}) = {fmtl(a)}')
+    o = len(a) + 1  ;  v = len(a) + 1
+    a.insert(o, v)
+    print(f'a({o} {v}) = {fmtl(a)}')
+    o = 100  ;  v = 100
+    a.insert(o, v)
+    print(f'a({o} {v}) = {fmtl(a)}')
+
 if __name__ == '__main__':
     LOG_PATH = getLogPath()
     with open(str(LOG_PATH), 'w') as LOG_FILE:
         Tabs.log(f'LOG_PATH={LOG_PATH} LOG_FILE={LOG_FILE}')
-        test3()   # ;  exit()
+        test4()   # ;  exit()
         Tabs()
         ret     = pyglet.app.run()
         Tabs.log(f'pyglet.app.run() returned {ret}, Exiting main')

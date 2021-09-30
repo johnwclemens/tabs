@@ -54,8 +54,6 @@ class DSymb(object):
 class Chord(object):
     INTERVALS     = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
     INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
-#    OMAP          = { (0, 3, 8):2, (0, 4, 7):1, (0, 5, 9):3,    (0, 3, 7):1, (0, 4, 9):2, (0, 5, 8):3 }
-    OMAP          = { (0, 3, 8):1, (0, 4, 7):0, (0, 5, 9):2,    (0, 3, 7):0, (0, 4, 9):1, (0, 5, 8):2 }  # zero based
     _count        = 0
     def __init__(self, tobj, logfile):
         self.tobj    = tobj
@@ -71,21 +69,27 @@ class Chord(object):
         if file is None: file=self.logFile
         tabs.Tabs.log(msg=msg, ind=ind, file=file, flush=flush, sep=sep, end=end)
 
-    def updateImap(self, im, name, chunks, dbg=0):
-        intervals = list(im.keys())    ;   notes = list(im.values())     ;   omapK = []     ;   order = 0
+    def updateImap(self, im, name, chunks, dbg=0, dbg2=0):
+        intervals = list(im.keys())    ;   notes = list(im.values())     ;   order = len(self.tobj.stringNumbs)  # ;   omapK = []
         imap = [intervals, notes, name, chunks]  ;   d1, d2 = '<', '>'   ;   chordName = ''
         if name:
-#            self.log(f'OMAP {type(Chord.OMAP)}  RANK {type(Chord.INTERVAL_RANK)}  omapK {type(omapK)} OMK {type(Chord.OMAP.keys())}')  #       self.log(f'value {type(Chord.OMAP[omapK])}')
-            for i in intervals:
-                omapK.append(Chord.INTERVAL_RANK[i])
-            omapK = tuple(omapK)
+            omapK = ' '.join(intervals)
             if omapK in Chord.OMAP:
                 order = Chord.OMAP[omapK]
-                self.log(f'omapk={omapK} intervals={intervals} order={order}')
-            self.limap1.insert(order, imap)
-#            else:          self.limap1.append(imap)
-        else:              self.limap2.append(imap)   ;  self.log(f'add {imap} to limap2')
-        if dbg:
+            if dbg: self.log(f'omapk={omapK} intervals={tabs.fmtl(intervals)} order={order}')
+            self.limap1.insert(order, imap)  ;   self.dumpImap(imap, f'insert(imap) {order}')
+#            self.log(f'OMAP {type(Chord.OMAP)}  RANK {type(Chord.INTERVAL_RANK)}  omapK {type(omapK)} OMK {type(Chord.OMAP.keys())}')  #       self.log(f'value {type(Chord.OMAP[omapK])}')
+#            for i in intervals:
+#                omapK.append(Chord.INTERVAL_RANK[i])
+#            omapK = tuple(omapK)
+#            if omapK in Chord.OMAP:
+#                order = Chord.OMAP[omapK]
+#                if dbg: self.log(f'omapk={omapK} intervals={tabs.fmtl(intervals)} order={order}')
+#            self.limap1.insert(order, imap)             ;  self.dumpImap(imap, f'insert(imap) {order}') #     self.log(f'limap1 insert {order} {tabs.fmtl(imap)}')
+#            if not order: self.limap1.insert(0, imap)   ;  self.dumpImap(imap, 'insert(imap)  ') #  self.log(f'limap1 insert {order} {tabs.fmtl(imap):2}')
+#            else:         self.limap1.append(imap)      ;  self.dumpImap(imap, 'append(imap)  ') #  self.log(f'limap1 add      {tabs.fmtl(imap):2}')
+        else:             self.limap2.append(imap)     # ;   self.log(f'limap2 add      {tabs.fmtl(imap)}')
+        if dbg2:
             for i, m in enumerate(self.limap1):
                 self.log(tabs.FMTR.format(f'  limap1 [{i+1}] [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'))
             for i, m in enumerate(self.limap2):
@@ -311,8 +315,8 @@ class Chord(object):
             self.log(f'{tabs.fmtl(bb[i], w=tabs.FMTN2, d1="" if i else "|", d2="|")}', ind=0, end='' if i<len(bb)-1 else "\n")
 
     def dumpImap(self, imap, why):
-        intervals = imap[0]   ;   imapNotes = imap[1]   ;   chordName = imap[2]   ;   chunks = imap[3] ;   d1, d2 = '<', '>'
-        self.log(f'{why}  [ <{chordName:<6}> {tabs.fmtl(intervals, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ] {tabs.fmtl(chunks)}')
+        intervals = imap[0]   ;   imapNotes = imap[1]   ;   chordName = imap[2]   ;   chunks = imap[3] ;   d1, d2 = '[', ']'
+        self.log(f'{why}  [ [{chordName:6}] {tabs.fmtl(intervals, w=2, d1=d1, d2=d2):17} {tabs.fmtl(imapNotes, w=2, d1=d1, d2=d2):17} ] {tabs.fmtl(chunks)}')
 
     def dumpData(self, data, mask, why, w=5, u='<', r=0):
         lf = self.logFile
@@ -458,3 +462,10 @@ class Chord(object):
         'R b2 4 #5'   : ['b2', 's4', f'{AUG}'],      #  Maj inversion
         } # how to order/arrange/group?
     ####################################################################################################################################################################################################
+    OMAP = {
+            'R m3 #5'    :1, 'R M3 5'     :0, 'R 4 6'       :2,                  #  [0 3 8]   [0 4 7]   [0 5 9]
+            'R m3 5'     :0, 'R M3 6'     :1, 'R 4 #5'      :2,                  #  [0 3 7]   [0 4 9]   [0 5 8]
+            'R b2 4 #5'  :3, 'R m3 5 #5'  :1, 'R M3 4 6'    :2, 'R M3 5 7'  :0,  #  [0 1 5 8] [0 3 7 8] [0 4 5 9] [0 4 7 b]
+            'R m3 4 6'   :1, 'R M3 5 b7'  :0, 'R m3 b5 #5'  :2, 'R 2 b5 6'  :3,  #  [0 2 6 9] [0 3 5 9] [0 3 6 8] [0 4 7 a]
+            'R 2 4 6'    :2, 'R m3 4 #5'  :3, 'R m3 5 b7'   :0, 'R M3 5 6'  :1,  #  [0 2 5 9] [0 3 5 8] [0 3 7 a] [0 4 7 9]
+            }  # zero based
