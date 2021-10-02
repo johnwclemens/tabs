@@ -46,6 +46,7 @@ def fmtm(m, w=1, d0=':', d1='[', d2=']'):
         if   type(v) in (list, tuple, set):         t += f'{k}{d0}'   ;   t += fmtl(v, w)
         elif type(v) in (int, str):                 t += f'{k:>{w}}{d0}{v:<{w}} '
     return d1 + t.rstrip() + d2
+
 def getLogPath(logdir='logs', logsfx='.log', dbg=0):
     sfx = SFX if not ARGS['f'] else ''
     if dbg: Tabs.log(f'BASE_NAME= {BASE_NAME} SFX={SFX}')
@@ -53,6 +54,7 @@ def getLogPath(logdir='logs', logsfx='.log', dbg=0):
     logPath        = BASE_PATH / logdir / logName
     if dbg: Tabs.log(f'logName  = {logName} logPath={logPath}')
     return logPath
+
 def dumpGlobals():
     Tabs.log(f'argv      = {fmtl(sys.argv, ll=1)}')
     Tabs.log(f'ARGS      = {fmtm(ARGS)}')
@@ -219,6 +221,7 @@ class Tabs(pyglet.window.Window):
         self._initWindowA()
         super().__init__(screen=self.screens[1], fullscreen=FULL_SCREEN, resizable=True, visible=False)
         self._initWindowB()
+        self.dataHasChanged = 0
         self.tblank, self.tblanki, self.tblankCol, self.cursor, self.data = None, None, None, None, None
         self.J1, self.J2, self.cc, self.ci, self.SNAP0, self.armSnap  = None, None, 0, 0, 0, ''
         self.kbk, self.symb, self.mods, self.symbStr, self.modsStr = 0, 0, 0, '', ''
@@ -236,7 +239,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'E={fmtl(self.E)}')
         self.DF = [0, 0, 0, 0,  0, 0, 0, 0,  0, 0, 0, 0, 0,  0, 0, 0, 0]
         self.J1, self.J2 = self.initJ()
-        self.data    = []
+        self.data    = []   ;   self.dataHasChanged = 0
         self.kbk, self.symb, self.mods, self.symbStr, self.modsStr = 0, 0, 0, '', ''
         self.cc, self.ci, self.SNAP0, self.armSnap  = 0, 0, 0, ''
         self.tblanki, self.tblanks  = 1, [' ', '-']   ;   self.tblank = self.tblanks[self.tblanki]
@@ -329,14 +332,19 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def _init(self, dbg=0):
         dataDir  = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
-        dataName  = self.dfn if self.dfn else BASE_NAME + SFX + dataPfx + dataSfx
-        dataName2 = dataName + '.back'
-        self.dataPath  = BASE_PATH / dataDir / dataName
+        baseName  = self.dfn if self.dfn else BASE_NAME + SFX + dataPfx + dataSfx
+        dataName0 = baseName + '.jnc'
+        dataName1 = baseName
+        dataName2 = baseName + '.bck'
+        self.dataPath0 = BASE_PATH / dataDir / dataName0
+        self.dataPath1 = BASE_PATH / dataDir / dataName1
         self.dataPath2 = BASE_PATH / dataDir / dataName2
         self.log(f'BGN {self.fmtGeom()}', ind=0)
-        self.log(f'dataName  = {dataName}')
+        self.log(f'dataName0 = {dataName0}')
+        self.log(f'dataName1 = {dataName1}')
         self.log(f'dataName2 = {dataName2}')
-        self.log(f'dataPath  = {self.dataPath}')
+        self.log(f'dataPath0 = {self.dataPath0}')
+        self.log(f'dataPath1 = {self.dataPath1}')
         self.log(f'dataPath2 = {self.dataPath2}')
         self.kp  = [VIOLETS[0], VIOLETS[12]] if CHECKER_BOARD else [VIOLETS[10]]
         self.kl  = [  BLUES[12],  BLUES[15]] if CHECKER_BOARD else [BLUES[12]]
@@ -358,6 +366,7 @@ class Tabs(pyglet.window.Window):
         self.ssi = 0
         self._initTpz()
         self.readDataFile()
+        if AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer', f=0)
         self.labelTextA, self.labelTextB = [], []
         self.createLabelText()
         self.labelTextC = []  ;  self.labelTextC.append('M')         ;  self.labelTextC.extend(self.labelTextB)
@@ -377,6 +386,10 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpStruct('_init()')
         self.log(f'END {self.fmtGeom()}', ind=0)
     ####################################################################################################################################################################################################
+    def autoSave(self, dt, how, f=0):
+        self.log(f'dt={dt:7.4f} {how} f={f} dataHasChanged={self.dataHasChanged}')
+        if AUTO_SAVE and self.dataHasChanged: self.saveDataFile(how=how, f=f)   ;   self.dataHasChanged = 0
+
     def on_draw(self, dbg=0):
         self.clear()
         self.batch.draw()
@@ -420,25 +433,29 @@ class Tabs(pyglet.window.Window):
         self.cobj.dumpMLimap(why)
         self.log(f'END {why}')
     ####################################################################################################################################################################################################
-    def saveDataFile(self, how, back=0, dbg=0):
-        dpath = str(self.dataPath) if not back else str(self.dataPath2)
-        self.log(f'BGN {how} {self.fmtDataDim(self.data)}')
+    def saveDataFile(self, how, f=0, dbg=1):
+        if dbg:   self.log(f'{how} f={f}')
+        if not f and AUTO_SAVE: dataPath = self.dataPath0
+        else:                   dataPath = self.dataPath1 if f == 1 else self.dataPath2
+        with open(dataPath, 'w') as DATA_FILE:
+            self._saveDataFile(how, DATA_FILE)
+
+    def _saveDataFile(self, how, file, dbg=0):
+        if dbg: self.log(f'{how}')
+        self.log(f'{file.name:40}', ind=0)
+        np, nl, nc, nr = self.dl()  ;  nc += CCC
         data = self.transposeData(self.data) if self.isVert() else self.data
-        with open(dpath, 'w') as DATA_FILE:
-            np, nl, nc, nr = self.dl()  ;  nc += CCC
-            self.log(f'{DATA_FILE.name:40}  back={back}', ind=0)
-            for p in range(np):
-                if dbg: self.log(f'writing {p+1}{self.ordSfx(p+1)} page', ind=0)
-                for l in range(nl):
-                    if dbg: self.log(f'writing {l+1}{self.ordSfx(l+1)} line', ind=0)  # if dbg  else  self.log(ind=0)  if  l  else  None
-                    for r in range(nr):
-                        text = ''
-                        for c in range(nc):
-                            text += data[p][l][r][c]
-                        if dbg: self.log(f'writing {r+1}{self.ordSfx(r+1)} string {text}', ind=0)  # if dbg  else  self.log(text, ind=0)
-                        DATA_FILE.write(f'{text}\n')
-                    if l+1 < nl: DATA_FILE.write('\n')
-        self.log(f'END {how} {self.fmtDataDim(self.data)}')
+        for p in range(np):
+            if dbg: self.log(f'writing {p+1}{self.ordSfx(p+1)} page', ind=0)
+            for l in range(nl):
+                if dbg: self.log(f'writing {l+1}{self.ordSfx(l+1)} line', ind=0)  # if dbg  else  self.log(ind=0)  if  l  else  None
+                for r in range(nr):
+                    text = ''
+                    for c in range(nc):
+                        text += data[p][l][r][c]
+                    if dbg: self.log(f'writing {r+1}{self.ordSfx(r+1)} string {text}', ind=0)  # if dbg  else  self.log(text, ind=0)
+                    file.write(f'{text}\n')
+                if l+1 < nl: file.write('\n')
     ####################################################################################################################################################################################################
     def createBlankData(self):
         self.log('Creating tab data using parameters {} {} {} {} {}'.format(*self.n))
@@ -450,9 +467,9 @@ class Tabs(pyglet.window.Window):
 
     def readDataFile(self, dbg=1):  #  empty file bug
         np, nl, ns, nc, nr = self.n
-        if not self.dataPath.exists(): self.log(f'nl nc nr = {nl} {nc} {nr} dataPath={self.dataPath} file does not exist calling createBlankData()')  ;  self.dataPath.touch()  ;  self.createBlankData()  ;  return
-        if dbg: self.log(f'nl={nl} nr={nr} nc={nc} dataPath={self.dataPath}')
-        with open(str(self.dataPath), 'r') as DATA_FILE:
+        if not self.dataPath1.exists(): self.log(f'nl nc nr = {nl} {nc} {nr} dataPath1={self.dataPath1} file does not exist calling createBlankData()')  ;  self.dataPath1.touch()  ;  self.createBlankData()  ;  return
+        if dbg: self.log(f'nl={nl} nr={nr} nc={nc} dataPath1={self.dataPath1}')
+        with open(str(self.dataPath1), 'r') as DATA_FILE:
             DATA_FILE.seek(0, 2)  ;  size = DATA_FILE.tell()  ;  DATA_FILE.seek(0, 0)
             self.log(f'BGN {DATA_FILE.name:40} {size:8,} bytes = {size/1024:4,.0f} KB')
             strings = []  ;  lines = []
@@ -477,6 +494,7 @@ class Tabs(pyglet.window.Window):
         self.data = self.transposeData()
         vert      = self.isVert()
         if dbg: self.dumpDataVert()
+        self.saveDataFile('readDataFile()', f=2)
         self.log(f'assert: size=nt+2*(l*r+l-1) {nt:8,} + {2*(l*r+l-1)} = {size:8,} bytes assert isVert={vert}')
 #        assert size == nt + 2 * (l * r + l - 1)  ;  assert vert
         self.log(f'END {DATA_FILE.name:40} {size:8,} bytes = {size/1024:4,.0f} KB')
@@ -1561,7 +1579,7 @@ class Tabs(pyglet.window.Window):
                 self.setDTNK(self.tblank, k + t, p, l, c, t, uk=1 if t == nt - 1 else 0)  # call with uk=1 only once per column or tpc
         if not cut: self.unselectAll('deleteTabs()')
         self.dumpSelectTabs(f'END {how} cut={cut}')
-        if AUTO_SAVE: self.saveDataFile('AUTO_SAVE deleteTabs()', back=1)
+        self.dataHasChanged = 1
 
     def pasteTabs(self, how, hc=0, kk=0, dbg=VERBOSE):
         cc = self.cursorCol()   ;  nt = self.n[T]
@@ -1583,7 +1601,7 @@ class Tabs(pyglet.window.Window):
         if not hc: self.unselectAll('pasteTabs()')
         elif dbg:  self.log(f'holding a copy of smap and skeys')
         self.dumpSelectTabs(f'END {how} hc={hc} kk={kk} cc={cc} ntc={ntc} cn={self.cc2cn(cc) + 1}')
-        if AUTO_SAVE: self.saveDataFile('AUTO_SAVE pasteTabs()', back=1)
+        self.dataHasChanged = 1
 
     def swapTabs(self, how):
         nk = len(self.skeys)   ;   nk2 = nk // 2
@@ -1639,7 +1657,7 @@ class Tabs(pyglet.window.Window):
                 self.setChord(p, l, c, 0) # do what uk=1 does, once
             self.unselectAll('shiftTabs()')
         self.dumpSelectTabs(f'END {how} shiftingTabs={self.shiftingTabs} nf={nf}')
-        if AUTO_SAVE: self.saveDataFile('AUTO_SAVE shiftTabs()', back=1)
+        self.dataHasChanged = 1
 
     def setTab(self, how, text, rev=0, dbg=VERBOSE):
         self.log(f'BGN {how} text={text} rev={rev} {fmtl(self.i, FMTN)}')
@@ -1651,7 +1669,7 @@ class Tabs(pyglet.window.Window):
         else:   self.autoMove(how)
         if dbg: self.snapshot()
         self.log(f'END {how} text={text} rev={rev} {fmtl(self.i, FMTN)}')
-        if AUTO_SAVE: self.saveDataFile('AUTO_SAVE setTab()', back=1)
+        self.dataHasChanged = 1
     ####################################################################################################################################################################################################
     def setDTNK(self, text, cc, p, l, c, t, uk=0, dbg=VERBOSE):  # what was previous data value
         if dbg: self.log(f'BGN text={text} cc={cc} plct {p} {l} {c} {t} uk={uk}')
@@ -1810,7 +1828,7 @@ class Tabs(pyglet.window.Window):
                     data[p][l][c] = data[p][l][c].replace(src, trg)
                     self.log(f'after  data[{p}][{l}][{c}]={data[p][l][c]}')
         self.log(f'END replace({src},{trg})')
-        if AUTO_SAVE: self.saveDataFile('AUTO_SAVE swapTab()', back=1)
+        self.dataHasChanged = 1
     ####################################################################################################################################################################################################
     def eraseTabs(self, how): # , reset=0):
         np, nl, ns, nc, nt = self.n  ;  nc += CCC
@@ -1824,7 +1842,7 @@ class Tabs(pyglet.window.Window):
                 for c in range(nc):
                     self.data[p][l][c] = self.tblankCol
         self.log(f'END {how} np={np} nl={nl} ns={ns} nc={nc} nt={nt}')
-        if AUTO_SAVE: self.saveDataFile('AUTO_SAVE eraseTabs()', back=1)
+        self.dataHasChanged = 1
 
     def reset(self, how):
         self.log(f'{self.fmtGeom()} BGN {how} before cleanup()')
@@ -1995,8 +2013,8 @@ class Tabs(pyglet.window.Window):
 #        if file != LOG_FILE: Tabs.log(msg, ind, flush=False, sep=',', end=end)
     ####################################################################################################################################################################################################
     def quit(self, why='', save=1, dbg=0):
-        if save:               self.saveDataFile(why)
-        if save and AUTO_SAVE: self.saveDataFile(why, back=1)
+        if save:               self.saveDataFile(why, f=1)
+        if save and AUTO_SAVE: self.saveDataFile(why, f=0)
         self.cobj.dumpMLimap(why)
         self.cobj.dumpCat(why)
         self.log('BGN')
@@ -2027,70 +2045,10 @@ class Tabs(pyglet.window.Window):
         j = 0
         while j < len(l): t = l[j];  t.delete();  del l[j]
 ########################################################################################################################################################################################################
-def test():
-    ll = 0
-    wa = 4              ;   a =  [999, '17', 'abc']
-    wb = 3              ;   b = [[999, '17', 'abc'], [999, '17', 'abc', 7]]
-    wc = [4, 3, 2, 1]   ;   c = [[[999, '17', 'abc'], [999, '17', 'abc', 7]], [[44, 'xyz'], ['no', 3, 10], ['w']], ['4']]
-    t0 = fmtl(a, ll=ll)
-    Tabs.log(f't0={t0}')
-    t1 = fmtl(a, wa, ll=ll)
-    Tabs.log(f't1={t1}')
-    t2 = fmtl(b, wb, ll=ll)
-    Tabs.log(f't2={t2}')
-    t3 = fmtl(c, wc, ll=ll)
-    Tabs.log(f't3={t3}')
-    t0 = fmtl(c, ll=ll)
-    Tabs.log(f't0={t0}')
-    t0 = fmtl(c, ll=ll)
-    Tabs.log(f't0={t0}')
-    test2()
-
-def test2():
-    a = {'a': 12, 'b': 123, 'c': 6}
-    Tabs.log(f'Map testA={fmtm(a)}')
-    b = {'k1': [1,2,3], 'k2': ['a','b','c']}
-    Tabs.log(f'Map testB={fmtm(b)}')
-    c = {'k1': [1,2, ['a', 'b']], 'k2': ['d', [4, 5], 'e'], 'k3': [[321]]}
-    Tabs.log(f'Map testC={fmtm(c)}')
-
-def test3():
-    m = {
-          ((0, 3, 8), (0, 4, 7), (0, 5, 9)): [[0, 4, 7], [0, 3, 8], [0, 5, 9]],    # R M3 7   R m3 #5   R 4 6
-          ((0, 3, 7), (0, 4, 9), (0, 5, 8)): [[0, 3, 7], [0, 4, 9], [0, 5, 8]],    # R m3 5   R M3 6    R 4 #5
-        }
-    [ Tabs.log(f'{fmtl(k)} {fmtl(v)}') for k, v in m.items() ]
-    k1 = ((0, 3, 8), (0, 4, 7), (0, 5, 9))
-    v1 = m[k1]
-    Tabs.log(f'{fmtl(k1)}  {                fmtl(v1)}', ind=0)
-    k2 = ((0, 3, 7), (0, 4, 9), (0, 5, 8))
-    v2 = m[k2]
-    Tabs.log(f'{fmtl(k2)}  {                fmtl(v2)}', ind=0)
-
-def test4():
-    a = [3, 5, 6]
-    print(f'a0     = {fmtl(a)}')
-    o = 1  ;  v = 4
-    a.insert(o, v)
-    print(f'a({o} {v}) = {fmtl(a)}')
-    o = 0  ;  v = 2
-    a.insert(o, v)
-    print(f'a({o} {v}) = {fmtl(a)}')
-    o = 0  ;  v = 1
-    a.insert(o, v)
-    print(f'a({o} {v}) = {fmtl(a)}')
-    o = len(a) + 1  ;  v = len(a) + 1
-    a.insert(o, v)
-    print(f'a({o} {v}) = {fmtl(a)}')
-    o = 100  ;  v = 100
-    a.insert(o, v)
-    print(f'a({o} {v}) = {fmtl(a)}')
-
 if __name__ == '__main__':
     LOG_PATH = getLogPath()
     with open(str(LOG_PATH), 'w') as LOG_FILE:
         Tabs.log(f'LOG_PATH={LOG_PATH} LOG_FILE={LOG_FILE}')
-        test4()   # ;  exit()
         Tabs()
         ret     = pyglet.app.run()
         Tabs.log(f'pyglet.app.run() returned {ret}, Exiting main')

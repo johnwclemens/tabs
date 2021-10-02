@@ -63,6 +63,7 @@ class Chord(object):
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), dict()
         Chord._count += 1
+        self.log(f'ChordNameMap len={len(self.chordNameMap)}')
 #        tabs.Tabs.dumpObj(obj=self, name=f'ChordNameMap<{len(self.chordNameMap)}>', why=f'count={Chord._count}', file={logfile})
 
     def log(self, msg='', ind=1, file=None, flush=False, sep=',', end='\n'):
@@ -70,14 +71,19 @@ class Chord(object):
         tabs.Tabs.log(msg=msg, ind=ind, file=file, flush=flush, sep=sep, end=end)
 
     def updateImap(self, im, name, chunks, dbg=0, dbg2=0):
-        intervals = list(im.keys())    ;   notes = list(im.values())     ;   order = len(self.tobj.stringNumbs)  # ;   omapK = []
+        intervals = list(im.keys())    ;   notes = list(im.values())     # ;   order = len(self.tobj.stringNumbs)  # ;   omapK = []
         imap = [intervals, notes, name, chunks]  ;   d1, d2 = '<', '>'   ;   chordName = ''
         if name:
             omapK = ' '.join(intervals)
             if omapK in Chord.OMAP:
-                order = Chord.OMAP[omapK]
-            if dbg: self.log(f'omapk={omapK} intervals={tabs.fmtl(intervals)} order={order}')
-            self.limap1.insert(order, imap)  ;   self.dumpImap(imap, f'insert(imap) {order}')
+                order = Chord.OMAP[omapK][0]
+                if dbg: self.log(f'omapk={omapK} intervals={tabs.fmtl(intervals)} order={order}')
+                self.limap1.insert(order, imap)  ;   self.dumpImap(imap, f'insert(imap) {order}')
+##            omapK = ' '.join(intervals)
+##            if omapK in Chord.OMAP:
+##                order = Chord.OMAP[omapK]
+##            if dbg: self.log(f'omapk={omapK} intervals={tabs.fmtl(intervals)} order={order}')
+##            self.limap1.insert(order, imap)  ;   self.dumpImap(imap, f'insert(imap) {order}')
 #            self.log(f'OMAP {type(Chord.OMAP)}  RANK {type(Chord.INTERVAL_RANK)}  omapK {type(omapK)} OMK {type(Chord.OMAP.keys())}')  #       self.log(f'value {type(Chord.OMAP[omapK])}')
 #            for i in intervals:
 #                omapK.append(Chord.INTERVAL_RANK[i])
@@ -353,6 +359,7 @@ class Chord(object):
     #       b9 9  #9    11 #11   b13 13
     ####################################################################################################################################################################################################
     chordNameMap = {
+        'R m3 b5 #5'    : ['o', f'{AUG}'],
         'R M3 4 6 7'    : ['M', '13', '11', f'{NO5}'],       #  Maj 13 11  No5
         'R m3 4 6 b7'   : ['m', '13', '11', f'{NO5}'],       #  Min 13 11  No5
         'R b2 4 #5 b7'  : ['b9', 's4', f'{AUG}'],            #  b9 sus4 Aug
@@ -367,6 +374,7 @@ class Chord(object):
         'R 2 4 5'       : ['s2', 's4'],                      #  sus2sus4
         'R 2 6'         : ['6', 's2', f'{NO5}'],             #  6 sus2  No5
         'R 2 5 6'       : ['6', 's2'],                       #  6 sus2
+        'R 2 b5 6'      : ['s2', 'o', '6'],                  #  sus2 6 b5
         'R 4 6'         : ['6', 's4', f'{NO5}'],             #  6 sus4  No5
         'R 4 5 6'       : ['6', 's4'],                       #  6 sus4
         'R 2 4 6'       : ['6', '/9', 's4', f'{NO5}'],       #  6/9 sus4  No5
@@ -462,10 +470,24 @@ class Chord(object):
         'R b2 4 #5'   : ['b2', 's4', f'{AUG}'],      #  Maj inversion
         } # how to order/arrange/group?
     ####################################################################################################################################################################################################
-    OMAP = {
-            'R m3 #5'    :1, 'R M3 5'     :0, 'R 4 6'       :2,                  #  [0 3 8]   [0 4 7]   [0 5 9]
-            'R m3 5'     :0, 'R M3 6'     :1, 'R 4 #5'      :2,                  #  [0 3 7]   [0 4 9]   [0 5 8]
-            'R b2 4 #5'  :3, 'R m3 5 #5'  :1, 'R M3 4 6'    :2, 'R M3 5 7'  :0,  #  [0 1 5 8] [0 3 7 8] [0 4 5 9] [0 4 7 b]
-            'R m3 4 6'   :1, 'R M3 5 b7'  :0, 'R m3 b5 #5'  :2, 'R 2 b5 6'  :3,  #  [0 2 6 9] [0 3 5 9] [0 3 6 8] [0 4 7 a]
-            'R 2 4 6'    :2, 'R m3 4 #5'  :3, 'R m3 5 b7'   :0, 'R M3 5 6'  :1,  #  [0 2 5 9] [0 3 5 8] [0 3 7 a] [0 4 7 9]
-            }  # zero based
+    OMAP2 = {
+        'R m3 #5'    :1, 'R M3 5'     :0, 'R 4 6'       :2,                  #  [0 3 8]   [0 4 7]   [0 5 9]
+        'R m3 5'     :0, 'R M3 6'     :1, 'R 4 #5'      :2,                  #  [0 3 7]   [0 4 9]   [0 5 8]
+        'R b2 4 #5'  :3, 'R m3 5 #5'  :1, 'R M3 4 6'    :2, 'R M3 5 7'  :0,  #  [0 1 5 8] [0 3 7 8] [0 4 5 9] [0 4 7 b]
+        'R m3 4 6'   :1, 'R M3 5 b7'  :0, 'R m3 b5 #5'  :2, 'R 2 b5 6'  :3,  #  [0 2 6 9] [0 3 5 9] [0 3 6 8] [0 4 7 a]
+        'R 2 4 6'    :2, 'R m3 4 #5'  :3, 'R m3 5 b7'   :0, 'R M3 5 6'  :1,  #  [0 2 5 9] [0 3 5 8] [0 3 7 a] [0 4 7 9]
+            }
+    OMAP1 = {
+        'R m3 #5'    : (1, ['m', f'{AUG}']),            'R M3 5'     : (0, []),                   'R 4 6'       : (2, ['6', 's4', f'{NO5}']),                                      #  [0 3 8]   [0 4 7]   [0 5 9]
+        'R m3 5'     : (0, ['m']),                      'R M3 6'     : (1, ['6', f'{NO5}']),      'R 4 #5'      : (2, ['s4', f'{AUG}']),                                           #  [0 3 7]   [0 4 9]   [0 5 8]
+        'R b2 4 #5'  : (3, ['b2', 's4', f'{AUG}']),     'R m3 5 #5'  : (1, ['m', 'b6']),          'R M3 4 6'    : (2, ['6', '/4', f'{NO5}']), 'R M3 5 7'  : (0, ['M7']),           #  [0 1 5 8] [0 3 7 8] [0 4 5 9] [0 4 7 b]
+        'R m3 4 6'   : (1, ['m6', '/4', f'{NO5}']),     'R M3 5 b7'  : (0, ['7']),                'R m3 b5 #5'  : (2, ['m', 'o', f'{AUG}']),  'R 2 b5 6'  : (3, ['s2', 'o', '6']), #  [0 2 6 9] [0 3 5 9] [0 3 6 8] [0 4 7 a]
+        'R 2 4 6'    : (2,['6', '/9', 's4', f'{NO5}']), 'R m3 4 #5'  : (3, ['m4', f'{AUG}']),     'R m3 5 b7'   : (0, ['m7']),                'R M3 5 6'  : (1, ['6']),            #  [0 2 5 9] [0 3 5 8] [0 3 7 a] [0 4 7 9]
+            }
+    OMAP  = {
+        'R M3 5'     : (0, []),                       'R m3 #5'    : (1, ['m', f'{AUG}']),        'R 4 6'       : (2, ['6', 's4', f'{NO5}']),                                                   #  [0 3 8]   [0 4 7]   [0 5 9]
+        'R m3 5'     : (0, ['m']),                    'R M3 6'     : (1, ['6', f'{NO5}']),        'R 4 #5'      : (2, ['s4', f'{AUG}']),                                                        #  [0 3 7]   [0 4 9]   [0 5 8]
+        'R M3 5 7'   : (0, ['M7']),                   'R m3 5 #5'  : (1, ['m', 'b6']),            'R M3 4 6'    : (2, ['6', '/4', f'{NO5}']),       'R b2 4 #5'  : (3, ['b2', 's4', f'{AUG}']), #  [0 1 5 8] [0 3 7 8] [0 4 5 9] [0 4 7 b]
+        'R M3 5 b7'  : (0, ['7']),                    'R m3 4 6'   : (1, ['m6', '/4', f'{NO5}']), 'R m3 b5 #5'  : (2, ['m', 'o', f'{AUG}']),        'R 2 b5 6'   : (3, ['s2', 'o', '6']),       #  [0 2 6 9] [0 3 5 9] [0 3 6 8] [0 4 7 a]
+        'R m3 5 b7'  : (0, ['m7']),                   'R M3 5 6'   : (1, ['6']),                  'R 2 4 6'     : (2, ['6', '/9', 's4', f'{NO5}']), 'R m3 4 #5'  : (3, ['m4', f'{AUG}']),       #  [0 2 5 9] [0 3 5 8] [0 3 7 a] [0 4 7 9]
+            }
