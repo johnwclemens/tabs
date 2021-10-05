@@ -165,10 +165,6 @@ class Tabs(pyglet.window.Window):
         self.log(f'   snapGlob={snapGlob}')
         self.deleteGlob(snapGlob, 'SNAP_GLOB')
         self.cobj = misc.Chord(self, LOG_FILE)
-        self.catPath = str(BASE_PATH / 'cats' / BASE_NAME)
-        self.catPath +=  '.cat'
-        with open(str(self.catPath), 'w') as CAT_FILE:
-            self.cobj.testMaps(CAT_FILE)    ;   exit()
         misc.Note.setType(misc.Note.SHARP)  ;  self.log(f' Note.TYPE={misc.Note.TYPE}')
         self.shiftingTabs = 0
         self.inserting = 0    ;   self.insertStr = ''  ;   self.tabCols = set()
@@ -221,6 +217,10 @@ class Tabs(pyglet.window.Window):
         self.cpoLabel = ' CAPO '
         self.log(f'strLabel    = {self.strLabel}')
         self.log(f'cpoLabel    = {self.cpoLabel}')
+        self.catPath = str(BASE_PATH / 'cats' / BASE_NAME)
+        self.catPath +=  '.cat'
+        self.cobj.testMaps(None)            #      ;   exit()
+#        self.cobj.testMaps(str(self.catPath))     ;   exit()
         self.csrMode, self.hArrow, self.vArrow  = CHORD, RIGHT, UP    ;    self.dumpCursorArrows('init()')
         self._initWindowA()
         super().__init__(screen=self.screens[1], fullscreen=FULL_SCREEN, resizable=True, visible=False)
@@ -2046,8 +2046,14 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     @staticmethod
     def deleteList(l):
-        j = 0
-        while j < len(l): t = l[j];  t.delete();  del l[j]
+#        j = 0
+#        while j < len(l): t = l[j];  t.delete();  del l[j]
+        for ll in l:
+            ll.delete()   ;   del ll
+    @staticmethod
+    def deleteMap(m):
+        for k, v in m.items():
+            v.delete()   ;   del v
 ########################################################################################################################################################################################################
 if __name__ == '__main__':
     LOG_PATH = getLogPath()
