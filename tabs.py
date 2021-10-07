@@ -164,6 +164,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'snapGlobArg={snapGlobArg}')
         self.log(f'   snapGlob={snapGlob}')
         self.deleteGlob(snapGlob, 'SNAP_GLOB')
+        self.catPath = str(BASE_PATH / 'cats' / BASE_NAME) + '.cat'
         self.cobj = misc.Chord(self, LOG_FILE)
         misc.Note.setType(misc.Note.SHARP)  ;  self.log(f' Note.TYPE={misc.Note.TYPE}')
         self.shiftingTabs = 0
@@ -217,10 +218,8 @@ class Tabs(pyglet.window.Window):
         self.cpoLabel = ' CAPO '
         self.log(f'strLabel    = {self.strLabel}')
         self.log(f'cpoLabel    = {self.cpoLabel}')
-        self.catPath = str(BASE_PATH / 'cats' / BASE_NAME)
-        self.catPath +=  '.cat'
-        self.cobj.testMaps(None)            #      ;   exit()
-#        self.cobj.testMaps(str(self.catPath))     ;   exit()
+#        self.cobj.dumpOMAP(str(self.catPath))     ;   exit()
+        self.cobj.dumpOMAP(None)                  ;   exit()
         self.csrMode, self.hArrow, self.vArrow  = CHORD, RIGHT, UP    ;    self.dumpCursorArrows('init()')
         self._initWindowA()
         super().__init__(screen=self.screens[1], fullscreen=FULL_SCREEN, resizable=True, visible=False)
@@ -229,11 +228,11 @@ class Tabs(pyglet.window.Window):
         self.tblank, self.tblanki, self.tblankCol, self.cursor, self.data = None, None, None, None, None
         self.J1, self.J2, self.cc, self.ci, self.SNAP0, self.armSnap  = None, None, 0, 0, 0, ''
         self.kbk, self.symb, self.mods, self.symbStr, self.modsStr = 0, 0, 0, '', ''
-        self._initA()
+        self._reinit()
         self.log(f'END {__class__} {VRSNX1} {VRSNX2} {VRSNX3}')
         self.log(f'{INIT}', ind=0)
 
-    def _initA(self):
+    def _reinit(self):
         self.log('BGN')
         self.pages,   self.lines,   self.sects,     self.cols          = [], [], [], []      ;  self.A = [self.pages,   self.lines,   self.sects,     self.cols]
         self.tabs,    self.notes,   self.intervals, self.chords        = [], [], [], []      ;  self.B = [self.tabs,    self.notes,   self.intervals, self.chords]
@@ -1851,9 +1850,9 @@ class Tabs(pyglet.window.Window):
     def reset(self, how):
         self.log(f'{self.fmtGeom()} BGN {how} before cleanup()')
         self.cleanup()
-        self.log(f'{self.fmtGeom()} after cleanup / before _initA()')
-        self._initA()
-        self.log(f'{self.fmtGeom()} END {how} after _initA()')
+        self.log(f'{self.fmtGeom()} after cleanup / before _reinit()')
+        self._reinit()
+        self.log(f'{self.fmtGeom()} END {how} after _reinit()')
 
     def cleanup(self):
         if QQ: self.deleteList(self.llRows)   ;   self.deleteList(self.llCols)
