@@ -101,7 +101,7 @@ class Chord(object):
             intervals                           = self.getIntervals(indices,  i,     mask)
             imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals, notes)
             imk = tuple(imapKeys)
-            if dbg: self.log(f'imk={tabs.fmtl(imk)} ims={tabs.fmtl(ims)}')
+            if dbg: self.log(f'imk={tabs.fmtl(imk)} ims={tabs.fmtl(ims)} cc={cc}')
             if imk not in ims:
                 ims.add(imk)
                 chordName, chunks               = self._getChordName(imap)
@@ -182,26 +182,26 @@ class Chord(object):
             if dbg2: self.dumpData(strIndices, mask0, 'strIndices')
             if dbg2: self.dumpData(strNames,   mask0, 'strNames', r=1)
             if dbg:  self.dumpData(_tabs,      mask0, 'Tabs',     r=1)
+            if dbg2: self.dumpData(indices,    mask,  'Note Indices')
             if dbg:  self.dumpData(notes,      mask,  'Notes')
-            if dbg2: self.dumpData(indices,    mask,  'Indices')
         return mask, notes, indices
 
     def getIntervals(self, indices, j, mask, order=1, dbg=VERBOSE):
-        deltas = []   ;   nst = Note.NTONES
+        ii = []   ;   nst = Note.NTONES
         for i in indices:
             if i - indices[j] >= 0:
-                if order: deltas.append((i - indices[j]) % nst)
-                else:     deltas.insert(0, (i - indices[j]) % nst)
+                if order: ii.append((i - indices[j]) % nst)
+                else:     ii.insert(0, (i - indices[j]) % nst)
             else:
                 d = (indices[j] - i) % nst
                 delta = nst - d
                 if delta == nst: delta = 0
-                if order: deltas.append(delta)
-                else:     deltas.insert(0, delta)
+                if order: ii.append(delta)
+                else:     ii.insert(0, delta)
         intervals = []
-        for d in deltas:
-            intervals.append(self.INTERVALS[d])
-        if dbg: self.dumpData(deltas,    mask, 'Deltas')
+        for i in ii:
+            intervals.append(self.INTERVALS[i])
+        if dbg: self.dumpData(ii,    mask, 'Interval Indices')
         if dbg: self.dumpData(intervals, mask, 'Intervals')
 #        if dbg: self.dumpData(list(ivset), [1]*len(ivset), 'IvSet')
         return intervals
@@ -332,10 +332,10 @@ class Chord(object):
         chordName, root, name, chunks = '', '', [], []
         if key in self.OMAP:  # chordNameMap
             name = self.OMAP[key][2]  ;  root = imap['R']  # chordNameMap
-            if dbg: self.log(f'    Found key=<{key}> root={root} name={tabs.fmtl(name)}')
-        elif dbg:   self.log(f'Not Found key=<{key}> root={root} name={tabs.fmtl(name)}')
+            if dbg: self.log(f'    Found key=<{key}> root={root} name={tabs.fmtl(name)} {type(name)}')
+        elif dbg:   self.log(f'Not Found key=<{key}> root={root} name={tabs.fmtl(name)} {type(name)}')
         if root:    chunks.append(root)
-        if name:   [chunks.append(n) for n in name]   ;   chordName = ''.join(chunks[:])
+        if name:   [chunks.append(n) for n in name if n]   ;   chordName = ''.join(chunks[:])
         if dbg:     self.log(f'chordName=<{chordName}> chunks={tabs.fmtl(chunks)}')
         return chordName, chunks
     def key2Indices(self, k):
@@ -353,13 +353,65 @@ class Chord(object):
             else :         r.append(Note.NTONES - a[i] + r[i-1])
         return r
     ####################################################################################################################################################################################################
-    def dumpOMAP(self, catpath=None):
-        if not catpath: self._dumpOMAP(None)
+    def dumpOMAP(self, catpath=None):  # save file sequence #s
+        if not catpath:
+            r = self._dumpOMAP(None)
+        else:
+            with open(str(catpath), 'w') as CAT_FILE:
+                r = self._dumpOMAP(CAT_FILE)
+        if r:
+            for (k,v) in r.items():
+                self.OMAP[k] = v
+            if not catpath: self._dumpOMAP(None)
+            else:
+                with open(str(catpath), 'w') as CAT_FILE:
+                    self._dumpOMAP(CAT_FILE)
+
+    def _dumpOMAP(self, catfile=None):
+        file = catfile if catfile else self.logFile  # ;   order = len(self.tobj.stringNumbs) + 1
+        omap = self.OMAP   ;   setMap = {}   ;   r = {}
+        self.log(f'BGN len(OMAP)={len(self.OMAP)}')
+        for k, v in omap.items():
+            kv = len(v[1])
+            if kv not in setMap: setMap[kv] = set()
+            setMap[kv].add(tuple(v[1]))
+        j, mstat, tstat = 0, [], []
+        for k, sml in setMap.items():
+            sml = sorted(sml)
+            tstat.append(0)
+            count, nord, none = 0, 0, 0
+            for ii in sml:
+                keys = [ self.INTERVALS[i] for i in ii ]
+                keyStr    = ' '.join(keys)
+                keyStrFmt = '\'' + keyStr + '\''
+                v = omap[keyStr]
+                count += 1
+                if not v[2]: none += 1
+                if v[0] >= len(self.tobj.stringNumbs): nord += 1
+                v2 = tabs.fmtl(v[2], sep='\',\'', d1='[\'', d2='\']),') if v[2] else '[]' if type(v[2]) is list else 'None),'
+                self.log(f'{keyStrFmt:19}: ({v[0]}, {tabs.fmtl(v[1], sep=",", d2="],"):15} {v2:26} # ', ind=0, file=file, end='')
+                for _ in range(len(ii)-1):
+                    ii = self.rotateIndices(ii)
+                    keys = [ self.INTERVALS[i] for i in ii ]
+                    keyStr = ' '.join(keys)
+                    if keyStr not in omap: self.log(f'Not in Map: ', ind=0, end='', file=file)   ;   r[keyStr] = (7, ii, None)
+                    self.log(f'{keyStr:16} {tabs.fmtl(ii, z="x"):13} ', ind=0, end='', file=file)
+                self.log(ind=0, file=file)
+            mstat.append([k, count, nord, none])
+        for j in range(len(mstat)):
+            self.log(f' {mstat[j][0]} note chords  {mstat[j][1]:3} total  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
+            tstat[0] += mstat[j][0]   ;   tstat[1] += mstat[j][1]   ;   tstat[2] += mstat[j][2]   ;   tstat[3] += mstat[j][3]
+        self.log(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed')
+        return r
+
+    '''
+    def dumpOMAP(self, catpath=None):  # save file sequence #s
+        if not catpath: self._dumpOMAPA(None)
         else:
             with open(str(catpath), 'w') as CAT_FILE:
                 self._dumpOMAP(CAT_FILE)
 
-    def _dumpOMAP(self, catfile=None):
+    def _OLD_dumpOMAP(self, catfile=None):
         file = catfile if catfile else self.logFile  # ;   order = len(self.tobj.stringNumbs) + 1
         omap = self.OMAP   ;   setMap = {}
         self.log(f'BGN len(OMAP)={len(self.OMAP)}')
@@ -386,6 +438,7 @@ class Chord(object):
                     ii = self.rotateIndices(ii)
                     keys = [ self.INTERVALS[i] for i in ii ]
                     keyStr = ' '.join(keys)
+                    if keyStr not in omap: self.log(f'Not in Map: ', ind=0, end='', file=file) 
                     self.log(f'{keyStr:16} {tabs.fmtl(ii, z="x"):13} ', ind=0, end='', file=file)
                 self.log(ind=0, file=file)
             mstat.append([k, count, nord, none])
@@ -393,8 +446,6 @@ class Chord(object):
             self.log(f' {mstat[j][0]} note chords  {mstat[j][1]:3} total  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
             tstat[0] += mstat[j][0]   ;   tstat[1] += mstat[j][1]   ;   tstat[2] += mstat[j][2]   ;   tstat[3] += mstat[j][3]
         self.log(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed')
-
-    '''
     ####################################################################################################################################################################################################
     def testMaps(self, catpath=None):
 #        self.testMapA()
@@ -684,8 +735,8 @@ class Chord(object):
             'R m3 b7'          : (0, [0,3,10],       ['m7','x']),               # R 5 6            [0 7 9]       R 2 4            [0 2 5]
             'R m3 7'           : (0, [0,3,11],       ['m','M7','x']),           # R #5 6           [0 8 9]       R b2 M3          [0 1 4]
             'R M3 b5'          : (2, [0,4,6],        ['b5']),                   # R 2 #5           [0 2 8]       R b5 b7          [0 6 a]
-            'R M3 5'           : (0, [0,4,7],        []),                       # R m3 #5          [0 3 8]       R 4 6            [0 5 9]
-            'R M3 #5'          : (0, [0,4,8],        ['+']),           #cyclic# # R M3 #5          [0 4 8]       R M3 #5          [0 4 8]
+            'R M3 5'           : (0, [0,4,7],        ['']),                     # R m3 #5          [0 3 8]       R 4 6            [0 5 9]  # [''] [] None?
+            'R M3 #5'          : (0, [0,4,8],        ['+']),                    # R M3 #5          [0 4 8]       R M3 #5          [0 4 8]  # cyclic 1
             'R M3 6'           : (1, [0,4,9],        ['6','x']),                # R 4 #5           [0 5 8]       R m3 5           [0 3 7]
             'R M3 b7'          : (0, [0,4,10],       ['7','x']),                # R b5 #5          [0 6 8]       R 2 b5           [0 2 6]
             'R M3 7'           : (0, [0,4,11],       ['M7','x']),               # R 5 #5           [0 7 8]       R b2 4           [0 1 5]
@@ -704,6 +755,7 @@ class Chord(object):
             'R #5 6'           : (2, [0,8,9],        ['+','6','y']),            # R b2 M3          [0 1 4]       R m3 7           [0 3 b]
             'R #5 b7'          : (1, [0,8,10],       ['7','+','y']),            # R 2 M3           [0 2 4]       R 2 b7           [0 2 a]
             'R 6 b7'           : (1, [0,9,10],       ['13','x','y']),           # R b2 m3          [0 1 3]       R 2 7            [0 2 b]
+            'R b2 2 b5'        : (3, [0,1,2,6],      ['s2','b2','o']),          # R b2 4 7         [0 1 5 b]     R M3 b7 7        [0 4 a b]     R b5 5 #5        [0 6 7 8]
             'R b2 m3 4'        : (3, [0,1,3,5],      ['m','b2','4']),           # R 2 M3 7         [0 2 4 b]     R 2 6 b7         [0 2 9 a]     R 5 #5 b7        [0 7 8 a]
             'R b2 m3 b5'       : (2, [0,1,3,6],      ['o','b2']),               # R 2 4 7          [0 2 5 b]     R m3 6 b7        [0 3 9 a]     R b5 5 6         [0 6 7 9]
             'R b2 m3 5'        : (3, [0,1,3,7],      ['m','b2']),               # R 2 b5 7         [0 2 6 b]     R M3 6 b7        [0 4 9 a]     R 4 b5 #5        [0 5 6 8]
@@ -715,6 +767,7 @@ class Chord(object):
             'R b2 4 b5'        : (2, [0,1,5,6],      ['s4','o','b2']),          # R M3 4 7         [0 4 5 b]     R b2 5 #5        [0 1 7 8]     R b5 5 7         [0 6 7 b]
             'R b2 4 #5'        : (2, [0,1,5,8],      ['b2','s4','+']),          # R M3 5 7         [0 4 7 b]     R m3 5 #5        [0 3 7 8]     R M3 4 6         [0 4 5 9]
             'R b2 4 b7'        : (1, [0,1,5,10],     ['11','b9','x']),          # R M3 6 7         [0 4 9 b]     R 4 5 #5         [0 5 7 8]     R 2 m3 5         [0 2 3 7]
+            'R b2 4 7'         : (0, [0,1,5,11],     ['M','b9','s4']),          # R M3 b7 7        [0 4 a b]     R b5 5 #5        [0 6 7 8]     R b2 2 b5        [0 1 2 6]
             'R b2 b5 #5'       : (3, [0,1,6,8],      ['b2','#4','+']),          # R 4 5 7          [0 5 7 b]     R 2 b5 5         [0 2 6 7]     R M3 4 b7        [0 4 5 a]
             'R b2 5 #5'        : (3, [0,1,7,8],      ['+','b2','y']),           # R b5 5 7         [0 6 7 b]     R b2 4 b5        [0 1 5 6]     R M3 4 7         [0 4 5 b]
             'R b2 5 6'         : (3, [0,1,7,9],      ['b2','6','y']),           # R b5 #5 7        [0 6 8 b]     R 2 4 b5         [0 2 5 6]     R m3 M3 b7       [0 3 4 a]
@@ -737,7 +790,7 @@ class Chord(object):
             'R 2 4 b7'         : (2, [0,2,5,10],     ['7','s2','s4','x']),      # R m3 #5 b7       [0 3 8 a]     R 4 5 6          [0 5 7 9]     R 2 M3 5         [0 2 4 7]
             'R 2 4 7'          : (1, [0,2,5,11],     ['M7','s2','s4','x']),     # R m3 6 b7        [0 3 9 a]     R b5 5 6         [0 6 7 9]     R b2 m3 b5       [0 1 3 6]
             'R 2 b5 5'         : (2, [0,2,6,7],      ['s2','#4']),              # R M3 4 b7        [0 4 5 a]     R b2 b5 #5       [0 1 6 8]     R 4 5 7          [0 5 7 b]
-            'R 2 b5 #5'        : (1, [0,2,6,8],      ['s2','o','+']), #cyclic#  # R M3 b5 b7       [0 4 6 a]     R 2 b5 #5        [0 2 6 8]     R M3 b5 b7       [0 4 6 a]
+            'R 2 b5 #5'        : (1, [0,2,6,8],      ['s2','o','+']),           # R M3 b5 b7       [0 4 6 a]     R 2 b5 #5        [0 2 6 8]     R M3 b5 b7       [0 4 6 a]  # cyclic 2
             'R 2 b5 6'         : (3, [0,2,6,9],      ['s2','o','6']),           # R M3 5 b7        [0 4 7 a]     R m3 b5 #5       [0 3 6 8]     R m3 4 6         [0 3 5 9]
             'R 2 b5 b7'        : (1, [0,2,6,10],     ['s2','07']),              # R M3 #5 b7       [0 4 8 a]     R M3 b5 #5       [0 4 6 8]     R 2 M3 #5        [0 2 4 8]
             'R 2 b5 7'         : (1, [0,2,6,11],     ['s2','07']),              # R M3 6 b7        [0 4 9 a]     R 4 b5 #5        [0 5 6 8]     R b2 m3 5        [0 1 3 7]
@@ -753,7 +806,7 @@ class Chord(object):
             'R m3 4 6'         : (1, [0,3,5,9],      ['m6','4','x']),           # R 2 b5 6         [0 2 6 9]     R M3 5 b7        [0 4 7 a]     R m3 b5 #5       [0 3 6 8]
             'R m3 4 b7'        : (0, [0,3,5,10],     ['m','11','x']),           # R 2 5 6          [0 2 7 9]     R 4 5 b7         [0 5 7 a]     R 2 4 5          [0 2 5 7]
             'R m3 b5 #5'       : (2, [0,3,6,8],      ['o','+']),                # R m3 4 6         [0 3 5 9]     R 2 b5 6         [0 2 6 9]     R M3 5 b7        [0 4 7 a]
-            'R m3 b5 6'        : (0, [0,3,6,9],      ['o7']),          #cyclic# # R m3 b5 6        [0 3 6 9]     R m3 b5 6        [0 3 6 9]     R m3 b5 6        [0 3 6 9]
+            'R m3 b5 6'        : (0, [0,3,6,9],      ['o7']),                   # R m3 b5 6        [0 3 6 9]     R m3 b5 6        [0 3 6 9]     R m3 b5 6        [0 3 6 9]  # cyclic 1
             'R m3 b5 b7'       : (0, [0,3,6,10],     ['07']),                   # R m3 5 6         [0 3 7 9]     R M3 b5 6        [0 4 6 9]     R 2 4 #5         [0 2 5 8]
             'R m3 b5 7'        : (0, [0,3,6,11],     ['o','M7']),               # R m3 #5 6        [0 3 8 9]     R 4 b5 6         [0 5 6 9]     R b2 M3 5        [0 1 4 7]
             'R m3 5 #5'        : (3, [0,3,7,8],      ['m','b6']),               # R M3 4 6         [0 4 5 9]     R b2 4 #5        [0 1 5 8]     R M3 5 7         [0 4 7 b]
@@ -771,7 +824,7 @@ class Chord(object):
             'R M3 4 7'         : (0 ,[0,4,5,11],     ['M','11','x']),           # R b2 5 #5        [0 1 7 8]     R b5 5 7         [0 6 7 b]     R b2 4 b5        [0 1 5 6]
             'R M3 b5 #5'       : (3, [0,4,6,8],      ['#4','+']),               # R 2 M3 #5        [0 2 4 8]     R 2 b5 b7        [0 2 6 a]     R M3 #5 b7       [0 4 8 a]
             'R M3 b5 6'        : (3, [0,4,6,9],      ['b5','6']),               # R 2 4 #5         [0 2 5 8]     R m3 b5 b7       [0 3 6 a]     R m3 5 6         [0 3 7 9]
-            'R M3 b5 b7'       : (0, [0,4,6,10],     ['#','11','x']), #cyclic#  # R 2 b5 #5        [0 2 6 8]     R M3 b5 b7       [0 4 6 a]     R 2 b5 #5        [0 2 6 8]
+            'R M3 b5 b7'       : (0, [0,4,6,10],     ['#','11','x']),           # R 2 b5 #5        [0 2 6 8]     R M3 b5 b7       [0 4 6 a]     R 2 b5 #5        [0 2 6 8]  # cyclic 1
             'R M3 5 6'         : (1, [0,4,7,9],      ['6']),                    # R m3 4 #5        [0 3 5 8]     R 2 4 6          [0 2 5 9]     R m3 5 b7        [0 3 7 a]
             'R M3 5 b7'        : (0, [0,4,7,10],     ['7']),                    # R m3 b5 #5       [0 3 6 8]     R m3 4 6         [0 3 5 9]     R 2 b5 6         [0 2 6 9]
             'R M3 5 7'         : (0, [0,4,7,11],     ['M7']),                   # R m3 5 #5        [0 3 7 8]     R M3 4 6         [0 4 5 9]     R b2 4 #5        [0 1 5 8]
@@ -779,6 +832,7 @@ class Chord(object):
             'R M3 #5 b7'       : (0, [0,4,8,10],     ['b','13','x']),           # R M3 b5 #5       [0 4 6 8]     R 2 M3 #5        [0 2 4 8]     R 2 b5 b7        [0 2 6 a]
             'R M3 6 b7'        : (0, [0,4,9,10],     ['13','x']),               # R 4 b5 #5        [0 5 6 8]     R b2 m3 5        [0 1 3 7]     R 2 b5 7         [0 2 6 b]
             'R M3 6 7'         : (1, [0,4,9,11],     ['M','13','x']),           # R 4 5 #5         [0 5 7 8]     R 2 m3 5         [0 2 3 7]     R b2 4 b7        [0 1 5 a]
+            'R M3 b7 7'        : (1, [0,4,10,11],    ['7','M','7','x']),        # R b5 5 #5        [0 6 7 8]     R b2 2 b5        [0 1 2 6]     R b2 4 7         [0 1 5 b]
             'R 4 b5 #5'        : (2, [0,5,6,8],      ['s4','o','+']),           # R b2 m3 5        [0 1 3 7]     R 2 b5 7         [0 2 6 b]     R M3 6 b7        [0 4 9 a]
             'R 4 b5 6'         : (2, [0,5,6,9],      ['s4','o','6']),           # R b2 M3 5        [0 1 4 7]     R m3 b5 7        [0 3 6 b]     R m3 #5 6        [0 3 8 9]
             'R 4 5 #5'         : (3, [0,5,7,8],      ['s4','b6']),              # R 2 m3 5         [0 2 3 7]     R b2 4 b7        [0 1 5 a]     R M3 6 7         [0 4 9 b]
@@ -787,6 +841,7 @@ class Chord(object):
             'R 4 5 7'          : (1, [0,5,7,11],     ['M7','s4']),              # R 2 b5 5         [0 2 6 7]     R M3 4 b7        [0 4 5 a]     R b2 b5 #5       [0 1 6 8]
             'R 4 #5 b7'        : (2, [0,5,8,10],     ['b','13','s4']),          # R m3 4 5         [0 3 5 7]     R 2 M3 6         [0 2 4 9]     R 2 5 b7         [0 2 7 a]
             'R 4 6 b7'         : (2, [0,5,9,10],     ['13','s4','x']),          # R M3 4 5         [0 4 5 7]     R b2 m3 #5       [0 1 3 8]     R 2 5 7          [0 2 7 b]
+            'R b5 5 #5'        : (2, [0,6,7,8],      ['#4','+','y']),           # R b2 2 b5        [0 1 2 6]     R b2 4 7         [0 1 5 b]     R M3 b7 7        [0 4 a b]
             'R b5 5 6'         : (3, [0,6,7,9],      ['#4','6','y']),           # R b2 m3 b5       [0 1 3 6]     R 2 4 7          [0 2 5 b]     R m3 6 b7        [0 3 9 a]
             'R b5 5 7'         : (1, [0,6,7,11],     ['M', '#', '11','y']),     # R b2 4 b5        [0 1 5 6]     R M3 4 7         [0 4 5 b]     R b2 5 #5        [0 1 7 8]
             'R b5 #5 6'        : (3, [0,6,8,9],      ['o','+','6','y']),        # R 2 m3 b5        [0 2 3 6]     R b2 M3 b7       [0 1 4 a]     R m3 6 7         [0 3 9 b]
