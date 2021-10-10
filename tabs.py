@@ -172,6 +172,7 @@ class Tabs(pyglet.window.Window):
         self.shiftingTabs = 0
         self.inserting = 0    ;   self.insertStr = ''  ;   self.tabCols = set()
         self.jumping = 0      ;   self.jumpStr = ''    ;   self.jumpAbs=0
+        self.swapping = 0     ;   self.swapSrc = ''    ;   self.swapTrg=''
         self.dfn = ''
         self.n    = []
         self.TNIK = [1, 1, 0, 1]
@@ -221,7 +222,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'strLabel    = {self.strLabel}')
         self.log(f'cpoLabel    = {self.cpoLabel}')
 #        self.cobj.dumpOMAP(str(self.catPath))     ;   exit()
-        self.cobj.dumpOMAP(None)                 # ;   exit()
+        self.cobj.dumpOMAP(None)               #   ;   exit()
         self.csrMode, self.hArrow, self.vArrow  = CHORD, RIGHT, UP    ;    self.dumpCursorArrows('init()')
         self._initWindowA()
         super().__init__(screen=self.screens[1], fullscreen=FULL_SCREEN, resizable=True, visible=False)
@@ -494,17 +495,25 @@ class Tabs(pyglet.window.Window):
         nt   = l * c * r
         self.tblankCol = self.tblank * r
         vert = self.isVert()
-        self.log(f'read     {l:2} Lines with {l*c:6,} Cols on {l*r:4,} Strings {nt:8,} Tabs, vdf={vert} blankCol({len(self.tblankCol)})={self.tblankCol}')
-        if dbg: self.dumpDataHorz()
+        self.log(f'read     {l:2} Lines with {l*c:6,} Cols on {l*r:4,} Strings {nt:8,} Tabs, vert={vert} blankCol({len(self.tblankCol)})={self.tblankCol}')
+        if dbg:     self.dumpDataVert() if vert else self.dumpDataHorz()
         self.data = self.transposeData()
         vert      = self.isVert()
-        if dbg: self.dumpDataVert()
+        if dbg:     self.dumpDataVert() if vert else self.dumpDataHorz()
         self.saveDataFile('readDataFile()', f=2)
         self.log(f'assert: size=nt+2*(l*r+l-1) {nt:8,} + {2*(l*r+l-1)} = {size:8,} bytes assert isVert={vert}')
 #        assert size == nt + 2 * (l * r + l - 1)  ;  assert vert
         self.log(f'END {DATA_FILE.name:40} {size:8,} bytes = {size/1024:4,.0f} KB')
 
     def isVert(self, data=None, dbg=1):
+        if data is None: data = self.data
+        if dbg: self.log(f'BGN type(data data[0] data[00] data[000])={type(data)} {type(data[0])} {type(data[0][0])} {type(data[0][0][0])}')
+        assert type(data) is list and type(data[0]) is list and type(data[0][0]) is list and type(data[0][0][0]) is str
+        vert = 1 if len(data[0][0]) > len(data[0][0][0]) else 0
+        if dbg: self.log(f'END len(data data[0] data[00] data[000])={len(data)} {len(data[0])} {len(data[0][0])} {len(data[0][0][0])} return vert={vert}')
+        return vert
+
+    def OLD_isVert(self, data=None, dbg=1):
         if data is None: data = self.data
         vert = 1
         if dbg: self.log(f'BGN type(data 0 00 000)={type(data)} {type(data[0])} {type(data[0][0])} {type(data[0][0][0])}')
@@ -516,7 +525,7 @@ class Tabs(pyglet.window.Window):
                 for c in range(len(data[p][l])):
                     assert len(data[p][l][c]) == len(data[p][l][0])
                 if len(data[p][l]) < len(data[p][l][0]): vert = 0  ;  break
-        if dbg: self.log(f'BGN len(data 0 00 000)={len(data)} {len(data[0])} {len(data[0][0])} {len(data[0][0][0])} return vdf={vert}')
+        if dbg: self.log(f'END len(data 0 00 000)={len(data)} {len(data[0])} {len(data[0][0])} {len(data[0][0][0])} return vdf={vert}')
         return vert
     ####################################################################################################################################################################################################
 #   def dumpTabData(self, data=None, why='', lc=1, ll=1, i=0):
@@ -1304,6 +1313,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'R' and self.isCtrl(     mods):    self.toggleChordName( '@   R', rev=0)
         elif kbk == 'S' and self.isCtrlShift(mods):    self.shiftTabs(       '@ ^ S')
 #        elif kbk == 'S' and self.isCtrl(     mods):    self.saveDataFile(    '@   S')
+        elif kbk == 'S' and self.isCtrl(     mods):    self.swapTab(         '@   S', txt='')
         elif kbk == 'T' and self.isCtrlShift(mods):    self.toggleTabs(      '@ ^ T', TT)
         elif kbk == 'T' and self.isCtrl(     mods):    self.toggleTabs(      '@   T', TT)
         elif kbk == 'U' and self.isCtrlShift(mods):    self.resetTabs(       '@ ^ U')
@@ -1352,13 +1362,14 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def on_text(self, text, dbg=1): # use for entering strings not for motion
         self.kbk = text
-        if dbg: self.log(f'BGN {self.kbkEvntTxt()}')
+        if dbg: self.log(f'BGN {self.kbkEvntTxt()} swapping={self.swapping}')
         if   self.shiftingTabs:                              self.shiftTabs(  'on_text', text)
         elif self.jumping:                                   self.jump(       'on_text', text, self.jumpAbs)
         elif self.inserting:                                 self.insertSpace('on_text', text)
+        elif self.swapping:                                  self.swapTab(    'on_text', text)
         elif self.isTab(self.kbk):                           self.setTab(     'on_text', self.kbk)
         elif self.kbk == '$' and self.isShift(self.mods):    self.snapshot()
-        if dbg: self.log(f'END {self.kbkEvntTxt()}')
+        if dbg: self.log(f'END {self.kbkEvntTxt()} swapping={self.swapping}')
     ####################################################################################################################################################################################################
     def on_text_motion(self, motion, dbg=1): # use for motion not strings
         self.kbk = motion   ;   p, l, s, c, t = self.j()  ;  np, nl, ns, nc, nt = self.n
@@ -1664,6 +1675,32 @@ class Tabs(pyglet.window.Window):
         self.dumpSelectTabs(f'END {how} shiftingTabs={self.shiftingTabs} nf={nf}')
         self.dataHasChanged = 1
 
+    def swapTab(self, how, txt='', data=None, dbg=0):  # c => 12 not same # chars asserts
+        self.log(f'BGN {how} txt={txt} swapping={self.swapping} swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
+        if data is None: data = self.data
+        if not self.swapping: self.swapping = 1
+        elif txt.isalnum():
+            if   self.swapping == 1:   self.swapSrc += txt  ;   self.log(f'{how} swapping={self.swapping} swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
+            elif self.swapping == 2:   self.swapTrg += txt  ;   self.log(f'{how} swapping={self.swapping} swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
+        elif txt == ' ':
+            self.log(f'{how} swapping={self.swapping} swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
+            if   self.swapping == 1 and not self.swapTrg: self.swapping = 2   ;   self.log(f'waiting swapSrc={self.swapSrc} swapTrg={self.swapTrg}')   ;   return
+            elif self.swapping == 2 and     self.swapTrg: self.swapping = 0   ;   self.log(f'ready   swapSrc={self.swapSrc} swapTrg={self.swapTrg}')  # ;   return
+            self.log('set go')
+            np, nl, ns, nc, nr = self.n  ;  nc += CCC
+            for i in range(len(self.tabs)):
+                self.tabs[i].text   = self.tabs[i].text.replace(self.swapSrc, self.swapTrg)
+                self.notes[i].text  = self.notes[i].text.replace(self.swapSrc, self.swapTrg)
+                self.chords[i].text = self.chords[i].text.replace(self.swapSrc, self.swapTrg)
+            for p in range(np):
+                for l in range(nl):
+                    for c in range(nc):
+                        if dbg: self.log(f'before data[{p}][{l}][{c}]={data[p][l][c]}')
+                        data[p][l][c] = data[p][l][c].replace(self.swapSrc, self.swapTrg)
+                        if dbg: self.log(f'after  data[{p}][{l}][{c}]={data[p][l][c]}')
+            self.dataHasChanged = 1
+        self.log(f'END {how} {txt} swapping={self.swapping} swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
+
     def setTab(self, how, text, rev=0, dbg=1):  # VERBOSE):
         self.log(f'BGN {how} text={text} rev={rev} {fmtl(self.i, FMTN)}')
         if rev: self.reverseArrow()    ;    self.autoMove(how)
@@ -1816,24 +1853,8 @@ class Tabs(pyglet.window.Window):
         self.log(f'BGN {how}')
         self.tblanki = (self.tblanki + 1) % len(self.tblanks)
         self.tblank  =  self.tblanks[self.tblanki]
-        self.swapTab(prevBlank,      self.tblank)
+        self.swapTab(how, prevBlank, self.tblank)
         self.log(f'END {how}')
-
-    def swapTab(self, src, trg, data=None):
-        if data is None: data = self.data
-        self.log(f'BGN replace({src},{trg})')
-        np, nl, ns, nr, nc = self.n  ;  nc += CCC
-        for i in range(len(self.tabs)):
-            self.tabs[i].text  = self.tabs[i].text.replace(src, trg)
-            self.notes[i].text = self.notes[i].text.replace(src, trg)
-        for p in range(np):
-            for l in range(nl):
-                for c in range(nc):
-                    self.log(f'before data[{p}][{l}][{c}]={data[p][l][c]}')
-                    data[p][l][c] = data[p][l][c].replace(src, trg)
-                    self.log(f'after  data[{p}][{l}][{c}]={data[p][l][c]}')
-        self.log(f'END replace({src},{trg})')
-        self.dataHasChanged = 1
     ####################################################################################################################################################################################################
     def eraseTabs(self, how): # , reset=0):
         np, nl, ns, nc, nt = self.n  ;  nc += CCC
@@ -1919,7 +1940,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def isNBTab(text):        return 1 if                        Tabs.isFret(text) or text in misc.DSymb.SYMBS else 0
     def isTab(self, text):    return 1 if text == self.tblank or Tabs.isFret(text) or text in misc.DSymb.SYMBS else 0
-    def isParsing(self):      return 1 if self.inserting or self.jumping or self.shiftingTabs else 0
+    def isParsing(self):      return 1 if self.inserting or self.jumping or self.shiftingTabs or self.swapping else 0
     ####################################################################################################################################################################################################
     def cci(self, c, cc, dbg=0):
         if c == 0: self.ci = (self.ci + 1) % len(cc)
