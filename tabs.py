@@ -64,7 +64,7 @@ def dumpGlobals():
     Tabs.log(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
 ARGS             = cmdArgs.parseCmdLine()
-AUTO_SAVE = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
+AUTO_SAVE = 1  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -372,7 +372,7 @@ class Tabs(pyglet.window.Window):
         self.ssi = 0
         self._initTpz()
         self.readDataFile()
-        if AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer', f=0)
+        if AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer')
         self.labelTextA, self.labelTextB = [], []
         self.createLabelText()
         self.labelTextC = []  ;  self.labelTextC.append('M')         ;  self.labelTextC.extend(self.labelTextB)
@@ -392,9 +392,9 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpStruct('_init()')
         self.log(f'END {self.fmtGeom()}', ind=0)
     ####################################################################################################################################################################################################
-    def autoSave(self, dt, how, f=0, dbg=0):
-        if dbg: self.log(f'dt={dt:7.4f} {how} f={f} dataHasChanged={self.dataHasChanged}')
-        if AUTO_SAVE and self.dataHasChanged: self.saveDataFile(how=how, f=f)   ;   self.dataHasChanged = 0
+    def autoSave(self, dt, how, dbg=0):
+        if dbg: self.log(f'dt={dt:7.4f} {how} dataHasChanged={self.dataHasChanged}')
+        if AUTO_SAVE and self.dataHasChanged: self.saveDataFile(how=how)   ;   self.dataHasChanged = 0
 
     def on_draw(self, dbg=0):
         self.clear()
@@ -1230,6 +1230,8 @@ class Tabs(pyglet.window.Window):
         p, l, s, c, t = self.j()
         return self.plct2cc(p, l, c, t, dbg)
 
+    def normalizeCC(self, cc): return (cc // self.tpc) * self.tpc
+
     def plct2cc(self, p, l, c, t, dbg=VERBOSE):
         tpp, tpl, tps, tpc = self.tpz()
         cc = p * tpp + l * tpl + c * tpc + t
@@ -1309,8 +1311,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'O' and self.isCtrl(     mods):    self.toggleCursorMode('@   O')
         elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@ ^ Q', save=0)
         elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(            '@   Q', save=1)
-        elif kbk == 'R' and self.isCtrlShift(mods):    self.toggleChordName( '@ ^ R', rev=1)
-        elif kbk == 'R' and self.isCtrl(     mods):    self.toggleChordName( '@   R', rev=0)
+        elif kbk == 'R' and self.isCtrlShift(mods):    self.toggleChordNames('@ ^ R', rev=1)
+        elif kbk == 'R' and self.isCtrl(     mods):    self.toggleChordNames('@   R', rev=0)
         elif kbk == 'S' and self.isCtrlShift(mods):    self.shiftTabs(       '@ ^ S')
 #        elif kbk == 'S' and self.isCtrl(     mods):    self.saveDataFile(    '@   S')
         elif kbk == 'S' and self.isCtrl(     mods):    self.swapTab(         '@   S', txt='')
@@ -1360,7 +1362,7 @@ class Tabs(pyglet.window.Window):
         self.kbk = self.symbStr  # ;  kbk = self.kbk   ;   why='on_key_release'
         self.log(f'{self.kbkEvntTxt()}')
     ####################################################################################################################################################################################################
-    def on_text(self, text, dbg=1): # use for entering strings not for motion
+    def on_text(self, text, dbg=0): # use for entering strings not for motion
         self.kbk = text
         if dbg: self.log(f'BGN {self.kbkEvntTxt()} swapping={self.swapping}')
         if   self.shiftingTabs:                              self.shiftTabs(  'on_text', text)
@@ -1685,7 +1687,7 @@ class Tabs(pyglet.window.Window):
         elif txt == ' ':
             self.log(f'{how} swapping={self.swapping} swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
             if   self.swapping == 1 and not self.swapTrg: self.swapping = 2   ;   self.log(f'waiting swapSrc={self.swapSrc} swapTrg={self.swapTrg}')   ;   return
-            elif self.swapping == 2 and     self.swapTrg: self.swapping = 0   ;   self.log(f'ready   swapSrc={self.swapSrc} swapTrg={self.swapTrg}')  # ;   return
+            elif self.swapping == 2 and     self.swapTrg: self.swapping = 0   ;   self.log(f'ready   swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
             self.log('set go')
             np, nl, ns, nc, nr = self.n  ;  nc += CCC
             for i in range(len(self.tabs)):
@@ -1700,7 +1702,7 @@ class Tabs(pyglet.window.Window):
                         if dbg: self.log(f'after  data[{p}][{l}][{c}]={data[p][l][c]}')
             self.dataHasChanged = 1
         self.log(f'END {how} {txt} swapping={self.swapping} swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
-
+    ####################################################################################################################################################################################################
     def setTab(self, how, text, rev=0, dbg=1):  # VERBOSE):
         self.log(f'BGN {how} text={text} rev={rev} {fmtl(self.i, FMTN)}')
         if rev: self.reverseArrow()    ;    self.autoMove(how)
@@ -1712,7 +1714,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.snapshot()
         self.log(f'END {how} text={text} rev={rev} {fmtl(self.i, FMTN)}')
         self.dataHasChanged = 1
-    ####################################################################################################################################################################################################
+
     def setDTNK(self, text, cc, p, l, c, t, uk=0, dbg=1):  # VERBOSE):  # what was previous data value
         if dbg: self.log(f'BGN text={text} cc={cc} plct {p} {l} {c} {t} uk={uk}')
         self.setData(text, p, l, c, t)
@@ -1754,8 +1756,8 @@ class Tabs(pyglet.window.Window):
             self.log(f'chords[{cc}-{cc+i}].text={name} chordName=<{chordName:<}> chunks={fmtl(chunks)}')
         elif dbg: self.log(f'END plct {p} {l} {c} {t} cc={cc} chordName={chordName}')
 
-    def setChordName(self, name, chunks, cc, dbg=VERBOSE):
-        txt = ''   ;   old = ''   ;   nt = self.n[T]
+    def OLD_setChordName(self, name, chunks, cc, dbg=1):  # VERBOSE):
+        txt = ''   ;   old = ''   ;   nt = self.n[T]  #  ;   cc0 = cc   ;   cc = self.cc2cn(cc)
         for i in range(nt):
             old += self.chords[cc + i].text
             self.chords[cc + i].text = chunks[i] if len(chunks) > i else self.nblank
@@ -1763,6 +1765,15 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'BGN name=<{name}> chunks={fmtl(chunks)} chords[{cc}-{cc + nt - 1}].text=<{old}>{len(old)}')
         if dbg: self.log(f'END name=<{name}> chunks={fmtl(chunks)} chords[{cc}-{cc + nt - 1}].text=<{txt}>{len(txt)}')
 
+    def setChordName(self, name, chunks, cc, dbg=1):  # VERBOSE):
+        txt = ''   ;   old = ''   ;   nt = self.n[T]   ;   cc = self.normalizeCC(cc)
+        for i in range(nt):
+            old += self.chords[cc + i].text
+            self.chords[cc + i].text = chunks[i] if chunks and len(chunks) > i else self.nblank
+            txt += self.chords[cc + i].text
+        if dbg: self.log(f'BGN name=<{name}> chunks={fmtl(chunks)} chords[{cc}-{cc + nt - 1}].text=<{old}>{len(old)}')
+        if dbg: self.log(f'END name=<{name}> chunks={fmtl(chunks)} chords[{cc}-{cc + nt - 1}].text=<{txt}>{len(txt)}')
+    ####################################################################################################################################################################################################
     @staticmethod
     def getFretNum(tab, dbg=0):
         fretNum = None
@@ -1797,7 +1808,7 @@ class Tabs(pyglet.window.Window):
                 if i1 != i2:       self.setChord(p, l, c, t)    ;    i1 = i2
         self.log(f'END {how} type={tt1}={misc.Note.TYPES[tt1]} => type={tt2}={misc.Note.TYPES[tt2]}')
 
-    def toggleChordName(self, how, rev=0):
+    def OLD_toggleChordName(self, how, rev=0):
         p, l, s, c, r = self.j()
         cc = self.plct2cc(p, l, c, r)
         cc2 = c + l * self.n[C]
@@ -1816,6 +1827,25 @@ class Tabs(pyglet.window.Window):
         self.setChordName(chordName, chunks, cc)
 #        self.cobj.dumpLimap(lm, 'toggleChordName()')
         self.log(f'END {how} plcr {p} {l} {c} {r} cc={cc} cc2={cc2} rev={rev} <{len(lm)}>')
+
+    def toggleChordNames(self, how, rev=0):
+        if self.skeys:
+            self.dumpSelectTabs(f'BGN {how} rev={rev} skeys={fmtl(self.skeys)}')
+            for k in self.skeys:
+                self.toggleChordName(how, self.cc2cn(k), rev)
+        else:
+            cc = self.cursorCol()   ;   cn = self.cc2cn(cc)
+            mk = list(self.cobj.mlimap.keys())
+            self.dumpSelectTabs(f'BGN {how} rev={rev} cc={cc} cn={cn} mk={mk}')
+            self.toggleChordName(how, cn, rev)
+        self.dumpSelectTabs(f'END {how} rev={rev}')
+
+    def toggleChordName(self, how, key, rev=0):
+        self.dumpSelectTabs(f'BGN {how} rev={rev} key={key}')
+        chordName, chunks = self.cobj.toggleChordName(key, rev)
+        cc = self.cn2cc(key)
+        self.setChordName(chordName, chunks, cc)
+        self.dumpSelectTabs(f'END {how} rev={rev} key={key} cc={cc}')
     ####################################################################################################################################################################################################
     def dumpCursorArrows(self, how): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;   self.log(f'{how} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
     def reverseArrow(self, dbg=1):
