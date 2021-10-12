@@ -145,20 +145,6 @@ class Chord(object):
 #            self.log(f'{tabs.fmtl(o, z="x", d2="] ")}', ind=0, end='',  file=self.logFile)
 #        self.log(ind=0)
 
-    def OLD_toggleChordName(self, rev=0, dbg=1):
-        p, l, s, c, t = self.tobj.j()
-        cc = c + l * self.tobj.n[tabs.C]
-        if dbg: self.log(f'p l c cc = {p} {l} {c} {cc} rev={rev}')
-        if cc in self.mlimap.keys():
-            limap = self.mlimap[cc]
-            if dbg: self.dumpLimap(limap, cc, why=f'before p l c cc = {p} {l} {c} {cc} rev={rev}')
-            if rev: tmp0 = limap[-1]  ;   tmp1 = limap[:-1]  ;   limap  = tmp1   ;   limap.insert(0, tmp0)
-            else:   tmp0 = limap[0]   ;   tmp1 = limap[1:]   ;   limap  = tmp1   ;   limap.append(tmp0)
-            self.mlimap[cc] = limap
-            if dbg: self.dumpLimap(limap, cc, why=f'after  p l c cc = {p} {l} {c} {cc} rev={rev}')
-            return limap[0][2], limap[0][3]
-        else: self.log(f'ERROR: cc={cc} not map key {tabs.fmtl(list(self.mlimap.keys()))}')
-
     def toggleChordName(self, key, rev=0):
         self.log(f'rev={rev} key={key}')
         if key not in self.mlimap.keys(): self.log(f'key={key} Not Found')   ;   return None, None
@@ -170,14 +156,13 @@ class Chord(object):
            self.mlimap[key] = limap
            self.dumpLimap(limap, key, why=f'after  key={key} rev={rev}')
            return limap[0][2], limap[0][3]
-
    ####################################################################################################################################################################################################
     def getNotesIndices(self, p, l, c, dbg=VERBOSE, dbg2=0):
         strNumbs   = self.tobj.stringNumbs
         strKeys    = self.tobj.stringKeys
         strNames   = self.tobj.stringNames
         _tabs      = self.tobj.data[p][l][c]
-        strIndices = [Note.INDICES[k] for k in strKeys]
+        strIndices = [ Note.INDICES[k] for k in strKeys ]
         notes = []  ;  nt = len(_tabs)  ;   mask = []
         if dbg2: self.log(f'p l c = {p} {l} {c} text={_tabs}')
         for t in range(nt):
