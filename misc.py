@@ -92,18 +92,18 @@ class Chord(object):
 
     def getChordName(self, p, l, c, dbg=1, dbg2=0):
         cc = c + l * self.tobj.n[tabs.C]
-#        if dbg: self.log(f'p l c cc = {p} {l} {c} {cc} mlimap.keys={tabs.fmtl(list(self.mlimap.keys()))}:')
+        if dbg: self.log(f'p l c cc = {p} {l} {c} {cc} mlimap.keys={tabs.fmtl(list(self.mlimap.keys()))}:')
 #        if dbg: self.dumpMLimap('Get Chord Name')
         self.limap, chunks, ims = [], [], set()   ;   chordName = ''
         imapKeys, imapNotes                     = None, None   ;   d1, d2 = '<', '>'
         mask, notes, indices                    = self.getNotesIndices(p, l, c)
         for i in range(len(indices)):
-            intervals                           = self.getIntervals(indices,  i,     mask)
-            imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals, notes)
-            imk = tuple(imapKeys)
-            if dbg: self.log(f'imk={tabs.fmtl(imk)} ims={tabs.fmtl(ims)} cc={cc}')
+            imk = indices[i] % len(self.INTERVALS)
             if imk not in ims:
                 ims.add(imk)
+                intervals                           = self.getIntervals(indices,  i,     mask)
+                imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals, notes)
+                if dbg: self.log(f'imk={imk} ims={tabs.fmtl(ims)} cc={cc}')
                 chordName, chunks               = self._getChordName(imap)
                 if dbg and chordName: self.log(f'Inner Chord     [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ] {tabs.fmtl(chunks)}')
                 chordName, chunks               = self.updateImap(imap, chordName, chunks)
@@ -921,7 +921,7 @@ class Chord(object):
             'R M3 5 #5 b7'     : (0, [0,4,7,8,10],   ['b','13']),               # R m3 M3 b5 #5    [0 3 4 6 8]   R b2 m3 4 6      [0 1 3 5 9]   R 2 M3 #5 7      [0 2 4 8 b]   R 2 b5 6 b7      [0 2 6 9 a]
             'R M3 5 6 b7'      : (0, [0,4,7,9,10],   ['13']),                   # R m3 4 b5 #5     [0 3 5 6 8]   R 2 m3 4 6       [0 2 3 5 9]   R b2 m3 5 b7     [0 1 3 7 a]   R 2 b5 6 7       [0 2 6 9 b]
             'R M3 5 6 7'       : (1, [0,4,7,9,11],   ['M','13']),               # R m3 4 5 #5      [0 3 5 7 8]   R 2 M3 4 6       [0 2 4 5 9]   R 2 m3 5 b7      [0 2 3 7 a]   R b2 4 #5 b7     [0 1 5 8 a]
-            'R 4 5 #5 b7'      : (3, [0,5,7,8,10],   ['b','13','s4','y']),      # R 2 m3 4 5       [0 2 3 5 7]   R b2 m3 4 b7     [0 1 3 5 a]   R 2 M3 6 7       [0 2 4 9 b]   R 2 5 6 b7       [0 2 7 9 a]
+            'R 4 5 #5 b7'      : (3, [0,5,7,8,10],   ['b','13','s4']),          # R 2 m3 4 5       [0 2 3 5 7]   R b2 m3 4 b7     [0 1 3 5 a]   R 2 M3 6 7       [0 2 4 9 b]   R 2 5 6 b7       [0 2 7 9 a]
             'R 4 5 6 b7'       : (1, [0,5,7,9,10],   ['13','s4']),              # R 2 M3 4 5       [0 2 4 5 7]   R 2 m3 4 b7      [0 2 3 5 a]   R b2 m3 #5 b7    [0 1 3 8 a]   R 2 5 6 7        [0 2 7 9 b]
             'R b2 m3 4 #5 b7'  : (1, [0,1,3,5,8,10], ['m','11','b9','+']),      # R 2 M3 5 6 7     [0 2 4 7 9 b] R 2 4 5 6 b7     [0 2 5 7 9 a] R m3 4 5 #5 b7   [0 3 5 7 8 a] R 2 M3 4 5 6     [0 2 4 5 7 9] R 2 m3 4 5 b7    [0 2 3 5 7 a]
             'R b2 m3 b5 #5 b7' : (3, [0,1,3,6,8,10], ['o','b','13','b9']),      # R 2 4 5 6 7      [0 2 5 7 9 b] R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a]
