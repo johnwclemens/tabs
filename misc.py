@@ -63,8 +63,6 @@ class Chord(object):
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), dict()
         Chord._count += 1
-#        self.log(f'ChordNameMap len={len(self.chordNameMap)}')
-#        tabs.Tabs.dumpObj(obj=self, name=f'ChordNameMap<{len(self.chordNameMap)}>', why=f'count={Chord._count}', file={logfile})
 
     def log(self, msg='', ind=1, file=None, flush=False, sep=',', end='\n'):
         if file is None: file=self.logFile
@@ -328,8 +326,8 @@ class Chord(object):
     def _getChordName(self, imap, dbg=0):
         key = ' '.join(imap.keys())
         chordName, root, name, chunks = '', '', [], []
-        if key in self.OMAP:  # chordNameMap
-            name = self.OMAP[key][2]  ;  root = imap['R']  # chordNameMap
+        if key in self.OMAP:
+            name = self.OMAP[key][2]  ;  root = imap['R']
             if dbg: self.log(f'    Found key=<{key}> root={root} name={tabs.fmtl(name)} {type(name)}')
         elif dbg:   self.log(f'Not Found key=<{key}> root={root} name={tabs.fmtl(name)} {type(name)}')
         if root:    chunks.append(root)
@@ -402,315 +400,10 @@ class Chord(object):
         self.log(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed')
         return r
 
-    '''
-    def dumpOMAP(self, catpath=None):  # save file sequence #s
-        if not catpath: self._dumpOMAPA(None)
-        else:
-            with open(str(catpath), 'w') as CAT_FILE:
-                self._dumpOMAP(CAT_FILE)
-
-    def _OLD_dumpOMAP(self, catfile=None):
-        file = catfile if catfile else self.logFile  # ;   order = len(self.tobj.stringNumbs) + 1
-        omap = self.OMAP   ;   setMap = {}
-        self.log(f'BGN len(OMAP)={len(self.OMAP)}')
-        for k, v in omap.items():
-            kv = len(v[1])
-            if kv not in setMap: setMap[kv] = set()
-            setMap[kv].add(tuple(v[1]))
-        j, mstat, tstat = 0, [], []
-        for k, sml in setMap.items():
-            sml = sorted(sml)
-            tstat.append(0)
-            count, nord, none = 0, 0, 0
-            for ii in sml:
-                keys = [ self.INTERVALS[i] for i in ii ]
-                keyStr    = ' '.join(keys)
-                keyStrFmt = '\'' + keyStr + '\''
-                v = omap[keyStr]
-                count += 1
-                if not v[2]: none += 1
-                if v[0] >= len(self.tobj.stringNumbs): nord += 1
-                v2 = tabs.fmtl(v[2], sep='\',\'', d1='[\'', d2='\']),') if v[2] else '[]' if type(v[2]) is list else 'None),'
-                self.log(f'{keyStrFmt:19}: ({v[0]}, {tabs.fmtl(v[1], sep=",", d2="],"):15} {v2:26} # ', ind=0, file=file, end='')
-                for _ in range(len(ii)-1):
-                    ii = self.rotateIndices(ii)
-                    keys = [ self.INTERVALS[i] for i in ii ]
-                    keyStr = ' '.join(keys)
-                    if keyStr not in omap: self.log(f'Not in Map: ', ind=0, end='', file=file) 
-                    self.log(f'{keyStr:16} {tabs.fmtl(ii, z="x"):13} ', ind=0, end='', file=file)
-                self.log(ind=0, file=file)
-            mstat.append([k, count, nord, none])
-        for j in range(len(mstat)):
-            self.log(f' {mstat[j][0]} note chords  {mstat[j][1]:3} total  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
-            tstat[0] += mstat[j][0]   ;   tstat[1] += mstat[j][1]   ;   tstat[2] += mstat[j][2]   ;   tstat[3] += mstat[j][3]
-        self.log(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed')
-    ####################################################################################################################################################################################################
-    def testMaps(self, catpath=None):
-#        self.testMapA()
-#        self.testMapB()
-#        if catpath is None: self.testMapC(None)   ;   self.testMapD(None)   ;   self.testMapE(None)   ;   self.testMapE(None, swapc=1)
-        if catpath is None: self.testMapE(None)
-        else:
-            with open(str(catpath), 'w') as CAT_FILE:
-                self.testMapE(CAT_FILE)
-    ####################################################################################################################################################################################################
-    def testMapA(self):
-        self.log(f'BGN len(chordNameMap)={len(self.chordNameMap)} len(OMAP)={len(self.OMAP)} len(OMAP2)={len(self.OMAP2)}')
-        for i, (k,v) in enumerate(self.chordNameMap.items()):
-            jj = self.key2Indices(k)
-            self.log(f'{k:13} {tabs.fmtl(jj, z="x"):11} ', ind=0, end='')
-            for _ in range(len(jj)-1):
-                jj = self.rotateIndices(jj)   ;   keys = []
-                for j in jj:
-                    keys.append(self.INTERVALS[j])
-                keyStr = ' '.join(keys)
-                self.log(f'{keyStr:13} {tabs.fmtl(jj, z="x"):11} ', ind=0, end='')
-            self.log(ind=0)
-        self.log(f'END len(chordNameMap)={len(self.chordNameMap)}')
-
-    def testMapB(self):
-        self.log(f'BGN len(chordNameMap)={len(self.chordNameMap)} len(OMAP)={len(self.OMAP)} len(OMAP2)={len(self.OMAP2)}')
-        for i, (k,v) in enumerate(self.chordNameMap.items()):
-            jj = self.key2Indices(k)   ;   order = len(self.tobj.stringNumbs) + 1
-            k = '\'' + k + '\''
-            w = '\', \''.join(v)
-            w = '[\'' + w + '\']),'
-            self.log(f'{k:19}: ({order}, {w:30}  #  {tabs.fmtl(jj, z="x"):12} ', ind=0, end='\n')
-            for _ in range(len(jj)-1):
-                jj = self.rotateIndices(jj)   ;   keys = []   ;   w = []
-                for j in jj:
-                    keys.append(self.INTERVALS[j])
-                keyStr = ' '.join(keys)
-                if keyStr in self.chordNameMap:
-                    w = self.chordNameMap[keyStr]
-                if w: w = '\', \''.join(w)
-                if w: w = '[\'' + w + '\']),'
-                else: w = 'None),'
-                keyStr = '\'' + keyStr + '\''
-                self.log(f'{keyStr:19}: ({order}, {w:30}  #  {tabs.fmtl(jj, z="x"):12} ', ind=0, end='\n')
-            self.log(ind=0)
-        self.log(f'END len(chordNameMap)={len(self.chordNameMap)} len(OMAP)={len(self.OMAP)} len(OMAP2)={len(self.OMAP2)}')
-
-    def testMapC(self, catfile=None):
-        jj = []   ;   file = catfile if catfile else self.logFile   ;   order = len(self.tobj.stringNumbs) + 1
-        self.log(f'BGN len(chordNameMap)={len(self.chordNameMap)} len(OMAP)={len(self.OMAP)} len(OMAP2)={len(self.OMAP2)}')
-        for i, (k,v) in enumerate(self.chordNameMap.items()):
-            if k not in self.OMAP2:
-                self.OMAP2[k] = v
-                jj = self.key2Indices(k)
-                k = '\'' + k + '\''
-                w = '\', \''.join(v)
-                w = '[\'' + w + '\']),'
-                self.log(f'{k:19}: ({order}, {w:30}  #  {tabs.fmtl(jj, z="x"):12} ', ind=0, end='\n', file=file)
-            for _ in range(len(jj)-1):
-                jj = self.rotateIndices(jj)   ;   _keys = []   ;   w = []
-                for j in jj:
-                    _keys.append(self.INTERVALS[j])
-                keyStr = ' '.join(_keys)
-                if keyStr not in self.OMAP2:
-                    if keyStr in self.chordNameMap: w = self.chordNameMap[keyStr]
-                    self.OMAP2[keyStr] = w
-                    if w: w = '\', \''.join(w)
-                    if w: w = '[\'' + w + '\']),'
-                    else: w = 'None),'
-                    keyStr = '\'' + keyStr + '\''
-                    self.log(f'{keyStr:19}: ({order}, {w:30}  #  {tabs.fmtl(jj, z="x"):12} ', ind=0, end='\n', file=file)
-        self.log(f'END len(chordNameMap)={len(self.chordNameMap)} len(OMAP)={len(self.OMAP)} len(OMAP2)={len(self.OMAP2)}')
-
-    def testMapD(self, catfile=None):
-        jj = []   ;   file = catfile if catfile else self.logFile   ;   order = len(self.tobj.stringNumbs) + 1
-        self.OMAP2 = {}
-        self.log(f'BGN len(chordNameMap)={len(self.chordNameMap)} len(OMAP)={len(self.OMAP)} len(OMAP2)={len(self.OMAP2)}')
-        keys = self.chordNameMap.keys()
-        for i, k in enumerate(keys):
-            if k not in self.OMAP2:
-                v = self.chordNameMap[k]
-                self.OMAP2[k] = v
-                jj = self.key2Indices(k)
-                k = '\'' + k + '\''
-                w = '\', \''.join(v)
-                w = '[\'' + w + '\']),'
-                self.log(f'{k:19}: ({order}, {tabs.fmtl(jj, z="", sep=",", d2="],"):16} {w:32}', ind=0, end='\n', file=file)
-            for _ in range(len(jj)-1):
-                jj = self.rotateIndices(jj)   ;   _keys = []   ;   w = []
-                for j in jj:
-                    _keys.append(self.INTERVALS[j])
-                keyStr = ' '.join(_keys)
-                if keyStr not in self.OMAP2:
-                    if keyStr in self.chordNameMap: w = self.chordNameMap[keyStr]
-                    self.OMAP2[keyStr] = w
-                    if w: w = '\', \''.join(w)
-                    if w: w = '[\'' + w + '\']),'
-                    else: w = 'None),'
-                    keyStr = '\'' + keyStr + '\''
-                    self.log(f'{keyStr:19}: ({order}, {tabs.fmtl(jj, z="", sep=",", d2="],"):16} {w:32}', ind=0, end='\n', file=file)
-        self.log(f'END len(chordNameMap)={len(self.chordNameMap)} len(OMAP)={len(self.OMAP)} len(OMAP2)={len(self.OMAP2)}')
-
-    def testMapE(self, catfile=None):
-        file = catfile if catfile else self.logFile  # ;   order = len(self.tobj.stringNumbs) + 1
-        omap = self.OMAP   ;   setMap = {}
-        self.log(f'BGN len(chordNameMap)={len(self.chordNameMap)} len(OMAP)={len(self.OMAP)} len(OMAP2)={len(self.OMAP2)}')
-        for k, v in omap.items():
-            kv = len(v[1])
-            if kv not in setMap: setMap[kv] = set()
-            setMap[kv].add(tuple(v[1]))
-        for k, sml in setMap.items():
-            sml = sorted(sml)
-            nords, nones, count = 0, 0, 0
-            for ii in sml:
-                keys = [ self.INTERVALS[i] for i in ii ]
-                keyStr    = ' '.join(keys)
-                keyStrFmt = '\'' + keyStr + '\''
-                v = omap[keyStr]
-                count += 1
-                if not v[2]: nones += 1
-                if v[0] >= len(self.tobj.stringNumbs): nords += 1
-                v2 = tabs.fmtl(v[2], sep='\',\'', d1='[\'', d2='\']),') if v[2] else 'None),'
-                self.log(f'{keyStrFmt:19}: ({v[0]}, {tabs.fmtl(v[1], sep=",", d2="],"):15} {v2:26} # ', ind=0, file=file, end='')
-                for _ in range(len(ii)-1):
-                    ii = self.rotateIndices(ii)
-                    keys = [ self.INTERVALS[i] for i in ii ]
-                    keyStr = ' '.join(keys)
-                    self.log(f'{keyStr:16} {tabs.fmtl(ii, z="x"):13} ', ind=0, end='', file=file)
-                self.log(ind=0, file=file)
-            self.log(f'k={k} count={count} nords={nords} nones={nones}')
-        self.log(f'END len(chordNameMap)={len(self.chordNameMap)} len(OMAP)={len(self.OMAP)} len(OMAP2)={len(self.OMAP2)}')
-    '''
     ####################################################################################################################################################################################################
     #    0  1  2  3  4  5  6  7  8   9  10 11 0
     #    R  b2 2  m3 M3 4  b5 5  #5  6  b7 7  R
     #       b9 9  #9    11 #11   b13 13
-    ####################################################################################################################################################################################################
-    chordNameMap = {
-        'R 2 M3'        : ['2', NO5],
-        'R M3 b5'       : ['b5'],
-        'R #5 b7'       : ['7', AUG, NO3],
-        'R b5 b7'       : ['07', NO3],
-        'R m3 b5 #5'    : ['o', f'{AUG}'],
-        'R M3 4 6 7'    : ['M', '13', '11', f'{NO5}'],       #  Maj 13 11  No5
-        'R m3 4 6 b7'   : ['m', '13', '11', f'{NO5}'],       #  Min 13 11  No5
-        'R b2 4 #5 b7'  : ['b9', 's4', f'{AUG}'],            #  b9 sus4 Aug
-        'R b2 m3 b5 b7' : ['07', 'b9'],                      #  Min 7 b5 b9
-        'R b2 4 b7'     : ['11', 'b9', f'{NO5}'],            #  11 b9  No5
-        'R M3 4 6 b7'   : ['13', '11', f'{NO5}'],            #  13 11  No5
-        'R 2 5'         : ['s2'],                            #  sus2
-        'R 2 #5'        : ['s2', f'{AUG}'],                  #  sus2  Aug
-        'R 4 5'         : ['s4'],                            #  sus4
-        'R 4 #5'        : ['s4', f'{AUG}'],                  #  sus4  Aug
-        'R 2 4'         : ['s2', 's4', f'{NO5}'],            #  sus2sus4  No5
-        'R 2 4 5'       : ['s2', 's4'],                      #  sus2sus4
-        'R 2 6'         : ['6', 's2', f'{NO5}'],             #  6 sus2  No5
-        'R 2 5 6'       : ['6', 's2'],                       #  6 sus2
-        'R 2 b5 6'      : ['s2', 'o', '6'],                  #  sus2 6 b5
-        'R 4 6'         : ['6', 's4', f'{NO5}'],             #  6 sus4  No5
-        'R 4 5 6'       : ['6', 's4'],                       #  6 sus4
-        'R 2 4 6'       : ['6', '9', 's4', f'{NO5}'],        #  6/9 sus4  No5
-        'R 2 4 5 6'     : ['6', '9', 's4'],                  #  6/9 sus4
-        'R 2 b7'        : ['7', 's2', f'{NO5}'],             #  7 sus2  No5
-        'R 2 #5 b7'     : ['7', 's2', f'{AUG}'],             #  7 sus2  Aug
-        'R 2 5 b7'      : ['7', 's2'],                       #  7 sus2
-        'R 4 b7'        : ['7', 's4', f'{NO5}'],             #  7 sus4  No5
-        'R 4 #5 b7'     : ['7', 's4', f'{AUG}'],             #  7 sus4  Aug
-        'R 4 5 b7'      : ['7', 's4'],                       #  7 sus4
-        'R 2 4 b7'      : ['7', 's2', 's4', f'{NO5}'],       #  7 sus2sus4  No5
-        'R 2 4 5 b7'    : ['7', 's2', 's4'],                 #  7 sus2sus4
-        'R 2 6 b7'      : ['13', 's2', f'{NO5}'],            #  13 sus2  No5  # Shadows # ?
-        'R 2 5 6 b7'    : ['13', 's2'],                      #  13 sus2       # Shadows # ?
-        'R 4 6 b7'      : ['13', 's4', f'{NO5}'],            #  13 sus4  No5
-        'R 4 5 6 b7'    : ['13', 's4'],                      #  13 sus4
-        'R 2 4 6 b7'    : ['13', 's2', 's4', f'{NO5}'],      #  13 sus2sus4  No5
-        'R 2 4 5 6 b7'  : ['13', 's2', 's4'],                #  13 sus2sus4
-        'R 2 7'         : ['M7', 's2', f'{NO5}'],            #  Maj 7 sus2  No5
-        'R 2 5 7'       : ['M7', 's2'],                      #  Maj 7 sus2
-        'R 4 7'         : ['M7', 's4', f'{NO5}'],            #  Maj 7 sus4  No5
-        'R 4 5 7'       : ['M7', 's4'],                      #  Maj 7 sus4
-        'R 2 4 7'       : ['M7', 's2', 's4', f'{NO5}'],      #  Maj 7 sus2sus4  No5
-        'R 2 4 5 7'     : ['M7', 's2', 's4'],                #  Maj 7 sus2sus4
-        'R 2 4 6 7'     : ['M', '13', 's2', 's4', f'{NO5}'], #  Maj 13 sus2sus4  No5
-        'R 2 4 5 6 7'   : ['M', '13', 's2', 's4'],           #  Maj 13 sus2sus4
-        'R M3 5'        : [],                          #  Major
-        'R b2 M3 5'     : ['b2'],                      #  b2
-        'R 2 M3 5'      : ['2'],                       #  2
-        'R M3 4 5'      : ['4'],                       #  4
-        'R M3 6'        : ['6', f'{NO5}'],             #  6  No5
-        'R M3 5 6'      : ['6'],                       #  6
-        'R M3 4 6'      : ['6', '4', f'{NO5}'],        #  6/4  No5
-        'R M3 b7'       : ['7', f'{NO5}'],             #  7  No5
-        'R M3 5 b7'     : ['7'],                       #  7
-        'R M3 7'        : ['M7', f'{NO5}'],            #  Maj 7  No5
-        'R M3 5 7'      : ['M7'],                      #  Maj 7
-        'R 2 M3 6'    : ['6', '9', f'{NO5}'],        #  add 6/9  No5
-        'R 2 M3 5 6'  : ['6', '9'],                  #  add 6/9
-        'R 2 M3 7'    : ['M9', f'{NO5}'],            #  Maj 9  No5
-        'R 2 M3 5 7'  : ['M9'],                      #  Maj 9
-        'R M3 4 7'    : ['M', '11', f'{NO5}'],       #  Maj 11  No5
-        'R M3 4 5 7'  : ['M', '11'],                 #  Maj 11
-        'R 5 6 7'     : ['M', '13', f'{NO3}'],       #  Maj 13  N03
-        'R M3 6 7'    : ['M', '13', f'{NO5}'],       #  Maj 13  No5
-        'R M3 5 6 7'  : ['M', '13'],                 #  Maj 13
-        'R b2 M3 b7'  : ['b9', f'{NO5}'],            #  b9  No5
-        'R b2 M3 5 b7': ['b9'],                      #  b9
-        'R 2 M3 b7'   : ['9', f'{NO5}'],             #  9  No5
-        'R 2 M3 5 b7' : ['9'],                       #  9
-        'R m3 M3 b7'  : ['#9', f'{NO5}'],            #  #9  No5
-        'R m3 M3 5 b7': ['#9'],                      #  #9
-        'R M3 4 b7'   : ['11', f'{NO5}'],            #  11  No5
-        'R M3 4 5 b7' : ['11'],                      #  11
-        'R M3 b5 b7'  : ['#', '11', f'{NO5}'],       #  #11  No5
-        'R M3 b5 5 b7': ['#', '11]'],                #  #11
-        'R 5 6 b7'    : ['13', f'{NO3}'],            #  13  N03
-        'R M3 6 b7'   : ['13', f'{NO5}'],            #  13  No5
-        'R M3 5 6 b7' : ['13'],                      #  13
-        'R M3 #5 b7'  : ['b', '13', f'{NO5}'],       #  b13  No5
-        'R M3 5 #5 b7': ['b', '13'],                 #  b13
-        'R m3 5'      : ['m'],                       #  Minor
-        'R b2 m3 #5'  : ['m', 'b2', f'{AUG}'],       #  Min b2  Aug
-        'R 2 m3 5'    : ['m2'],                      #  Min 2
-        'R m3 4 5'    : ['m4'],                      #  Min 4
-        'R m3 #5'     : ['m', f'{AUG}'],             #  Min  Aug
-        'R m3 5 #5'   : ['m', 'b6'],                 #  Min b6
-        'R m3 6'      : ['m6', f'{NO5}'],            #  Min 6  No5  # Shadows #  Dim7  No5
-        'R m3 5 6'    : ['m6'],                      #  Min 6
-        'R m3 4 6'    : ['m6', '4', f'{NO5}'],       #  Min 6/4  No5
-        'R m3 b7'     : ['m7', f'{NO5}'],            #  Min 7  No5
-        'R m3 5 b7'   : ['m7'],                      #  Min 7
-        'R m3 7'      : ['m', 'M7', f'{NO5}'],       #  Min Maj 7  No5
-        'R m3 5 7'    : ['m', 'M7'],                 #  Min Maj 7
-        'R b2 m3 b7'  : ['m', 'b9', f'{NO5}'],       #  Min b9  No5
-        'R b2 m3 5 b7': ['m', 'b9'],                 #  Min b9
-        'R 2 m3 b7'   : ['m9', f'{NO5}'],            #  Min 9  No5
-        'R 2 m3 5 b7' : ['m9'],                      #  Min 9
-        'R m3 4 b7'   : ['m', '11', f'{NO5}'],       #  Min 11  No5
-        'R m3 4 5 b7' : ['m', '11'],                 #  Min 11
-        'R m3 6 b7'   : ['m', '13', f'{NO5}'],       #  Min 13  No5
-        'R m3 5 6 b7' : ['m', '13'],                 #  Min 13
-        'R m3 #5 b7'  : ['m', 'b', '13', f'{NO5}'],  #  Min b13  No5
-        'R m3 5 #5 b7': ['m', 'b', '13'],            #  Min b13
-        'R m3 b5'     : ['o'],                       #  Dim
-        'R b2 m3 b5'  : ['o', 'b2'],                 #  Dim b2
-        'R m3 b5 b7'  : ['07'],                      #  Min 7 b5
-        'R b5 6'      : ['o7', f'{NO3}'],            #  Dim 7  No3
-#        'R m3 6'      : ['o7', f'{NO5}'],            #  Dim 7  No5  # Shadows #  Min 6  No5
-        'R m3 b5 6'   : ['o7'],                      #  Dim 7
-        'R M3 #5'     : [f'{AUG}'],                  #  Aug
-        'R m3 4 #5'   : ['m4', f'{AUG}'],            #  Maj inversion
-        'R b2 4 #5'   : ['b2', 's4', f'{AUG}'],      #  Maj inversion
-        } # how to order/arrange/group?
-    ####################################################################################################################################################################################################
-    OMAP1  = {
-        'R M3 #5'    : (0, [AUG]),                                                                                                                                           #  [0 4 8]
-        'R M3 5'     : (0, []),                  'R m3 #5'    : (1, ['m', AUG]),          'R 4 6'      : (2, ['6', 's4', NO5]),                                              #  [0 3 8]   [0 4 7]   [0 5 9]
-        'R m3 5'     : (0, ['m']),               'R M3 6'     : (1, ['6', NO5]),          'R 4 #5'     : (2, ['s4', AUG]),                                                   #  [0 3 7]   [0 4 9]   [0 5 8]
-        'R 4 5'      : (0, ['s4']),              'R 2 5'      : (1, ['s2']),              'R 4 b7'     : (2, ['7', 's4', NO5]),                                              #  [0 5 7]   [0 2 7]   [0 5 a]
-        'R m3 4 b7'  : (0, ['m', '11', NO5]),    'R 4 5 b7'   : (1, ['7', 's4']),         'R 2 5 6'    : (2, ['s2', '6']),            'R 2 4 5'    : (3, ['s2', 's4']),      #  [0 5 7 a] [0 2 5 7] [0 3 5 a] [0 2 7 9]
-        'R M3 b5'    : (0, ['b5']),              'R 2 #5'     : (1, ['s2', AUG]),         'R b5 b7'    : (2, ['07', NO3]),                                                   #  [0 6 a]   [0 2 8]   [0 4 6]
-        'R 2 b7'     : (0, ['7', 's2', NO5]),    'R #5 b7'    : (1, ['7', AUG, NO3]),     'R 2 M3'     : (2, ['2', NO5]),                                                    #  [0 2 a]   [0 8 a]   [0 2 4]
-        'R 2 M3 6'   : (0, ['6', '9', NO5]),     'R 2 5 b7'   : (1, ['7', 's2']),         'R 4 #5 b7'  : (2, ['7', 's4', AUG]),       'R m3 4 5'   : (3, ['m', '4']),        #  [0 2 4 9] [0 3 5 7] [0 2 7 a] [0 5 8 a]
-        'R m3 b5 6'  : (0, ['o7']),                                                                                                                                          #  [0 3 6 9]
-        'R M3 5 7'   : (0, ['M7']),              'R m3 5 #5'  : (1, ['m', 'b6']),         'R M3 4 6'   : (2, ['6', '4', NO5]),        'R b2 4 #5'  : (3, ['b2', 's4', AUG]), #  [0 1 5 8] [0 3 7 8] [0 4 5 9] [0 4 7 b]
-        'R M3 5 b7'  : (0, ['7']),               'R m3 4 6'   : (1, ['m6', '4', NO5]),    'R m3 b5 #5' : (2, ['m', 'o', AUG]),        'R 2 b5 6'   : (3, ['s2', 'o', '6']),  #  [0 2 6 9] [0 3 5 9] [0 3 6 8] [0 4 7 a]
-        'R m3 5 b7'  : (0, ['m7']),              'R M3 5 6'   : (1, ['6']),               'R 2 4 6'    : (2, ['6', '9', 's4', NO5]),  'R m3 4 #5'  : (3, ['m4', AUG]),       #  [0 2 5 9] [0 3 5 8] [0 3 7 a] [0 4 7 9]
-            }
     ####################################################################################################################################################################################################
     OMAP = {
             'R b2 m3'          : (2, [0,1,3],        ['m','b2']),               # R 2 7            [0 2 b]       R 6 b7           [0 9 a]
@@ -758,6 +451,7 @@ class Chord(object):
             'R b2 m3 b5'       : (2, [0,1,3,6],      ['o','b2']),               # R 2 4 7          [0 2 5 b]     R m3 6 b7        [0 3 9 a]     R b5 5 6         [0 6 7 9]
             'R b2 m3 5'        : (3, [0,1,3,7],      ['m','b2']),               # R 2 b5 7         [0 2 6 b]     R M3 6 b7        [0 4 9 a]     R 4 b5 #5        [0 5 6 8]
             'R b2 m3 #5'       : (3, [0,1,3,8],      ['m','b2','+']),           # R 2 5 7          [0 2 7 b]     R 4 6 b7         [0 5 9 a]     R M3 4 5         [0 4 5 7]
+            'R b2 m3 6'        : (0, [0,1,3,9],      ['m','6','x']),            # R 2 #5 7         [0 2 8 b]     R b5 6 b7        [0 6 9 a]     R m3 M3 b5       [0 3 4 6]
             'R b2 m3 b7'       : (1, [0,1,3,10],     ['m','b9','x']),           # R 2 6 7          [0 2 9 b]     R 5 6 b7         [0 7 9 a]     R 2 m3 4         [0 2 3 5]
             'R b2 M3 5'        : (1, [0,1,4,7],      ['b2']),                   # R m3 b5 7        [0 3 6 b]     R m3 #5 6        [0 3 8 9]     R 4 b5 6         [0 5 6 9]
             'R b2 M3 #5'       : (3, [0,1,4,8],      ['+',"b2"]),               # R m3 5 7         [0 3 7 b]     R M3 #5 6        [0 4 8 9]     R M3 4 #5        [0 4 5 8]
@@ -769,10 +463,12 @@ class Chord(object):
             'R b2 b5 #5'       : (3, [0,1,6,8],      ['b2','#4','+']),          # R 4 5 7          [0 5 7 b]     R 2 b5 5         [0 2 6 7]     R M3 4 b7        [0 4 5 a]
             'R b2 5 #5'        : (3, [0,1,7,8],      ['+','b2','y']),           # R b5 5 7         [0 6 7 b]     R b2 4 b5        [0 1 5 6]     R M3 4 7         [0 4 5 b]
             'R b2 5 6'         : (3, [0,1,7,9],      ['b2','6','y']),           # R b5 #5 7        [0 6 8 b]     R 2 4 b5         [0 2 5 6]     R m3 M3 b7       [0 3 4 a]
+            'R b2 5 b7'        : (0, [0,1,7,10],     ['b9','y']),               # R b5 6 7         [0 6 9 b]     R m3 4 b5        [0 3 5 6]     R 2 m3 6         [0 2 3 9]
             'R b2 #5 b7'       : (2, [0,1,8,10],     ['b','13', 'b9','y','x']), # R 5 6 7          [0 7 9 b]     R 2 M3 4         [0 2 4 5]     R 2 m3 b7        [0 2 3 a]
             'R 2 m3 4'         : (3, [0,2,3,5],      ['m','2','4','x']),        # R b2 m3 b7       [0 1 3 a]     R 2 6 7          [0 2 9 b]     R 5 6 b7         [0 7 9 a]
             'R 2 m3 b5'        : (2, [0,2,3,6],      ['o','2']),                # R b2 M3 b7       [0 1 4 a]     R m3 6 7         [0 3 9 b]     R b5 #5 6        [0 6 8 9]
             'R 2 m3 5'         : (2, [0,2,3,7],      ['m2']),                   # R b2 4 b7        [0 1 5 a]     R M3 6 7         [0 4 9 b]     R 4 5 #5         [0 5 7 8]
+            'R 2 m3 6'         : (2, [0,2,3,9],      ['m','2','6','x']),        # R 2 m3 6         [0 2 3 9]     R b2 5 b7        [0 1 7 a]     R b5 6 7         [0 6 9 b]
             'R 2 m3 b7'        : (0, [0,2,3,10],     ['m9','x']),               # R b2 #5 b7       [0 1 8 a]     R 5 6 7          [0 7 9 b]     R 2 M3 4         [0 2 4 5]
             'R 2 M3 4'         : (3, [0,2,4,5],      ['2','4','x']),            # R 2 m3 b7        [0 2 3 a]     R b2 #5 b7       [0 1 8 a]     R 5 6 7          [0 7 9 b]
             'R 2 M3 b5'        : (3, [0,2,4,6],      ['2','#4','x']),           # R 2 M3 b7        [0 2 4 a]     R 2 #5 b7        [0 2 8 a]     R b5 #5 b7       [0 6 8 a]
@@ -796,9 +492,12 @@ class Chord(object):
             'R 2 5 b7'         : (1, [0,2,7,10],     ['7','s2']),               # R 4 #5 b7        [0 5 8 a]     R m3 4 5         [0 3 5 7]     R 2 M3 6         [0 2 4 9]
             'R 2 5 7'          : (0, [0,2,7,11],     ['M7','s2']),              # R 4 6 b7         [0 5 9 a]     R M3 4 5         [0 4 5 7]     R b2 m3 #5       [0 1 3 8]
             'R 2 #5 b7'        : (2, [0,2,8,10],     ['7','s2','+']),           # R b5 #5 b7       [0 6 8 a]     R 2 M3 b5        [0 2 4 6]     R 2 M3 b7        [0 2 4 a]
+            'R 2 #5 7'         : (3, [0,2,8,11],     ['Mb','13','s2','x']),     # R b5 6 b7        [0 6 9 a]     R m3 M3 b5       [0 3 4 6]     R b2 m3 6        [0 1 3 9]
             'R 2 6 b7'         : (1, [0,2,9,10],     ['13','s2','x']),          # R 5 #5 b7        [0 7 8 a]     R b2 m3 4        [0 1 3 5]     R 2 M3 7         [0 2 4 b]
             'R 2 6 7'          : (2, [0,2,9,11],     ['M','13','s2']),          # R 5 6 b7         [0 7 9 a]     R 2 m3 4         [0 2 3 5]     R b2 m3 b7       [0 1 3 a]
+            'R m3 M3 b5'       : (1, [0,3,4,6],      ['#2']),                   # R b2 m3 6        [0 1 3 9]     R 2 #5 7         [0 2 8 b]     R b5 6 b7        [0 6 9 a]
             'R m3 M3 b7'       : (0, [0,3,4,10],     ['#9','x']),               # R b2 5 6         [0 1 7 9]     R b5 #5 7        [0 6 8 b]     R 2 4 b5         [0 2 5 6]
+            'R m3 4 b5'        : (3, [0,3,5,6],      ['o','4']),                # R 2 m3 6         [0 2 3 9]     R b2 5 b7        [0 1 7 a]     R b5 6 7         [0 6 9 b]
             'R m3 4 5'         : (3, [0,3,5,7],      ['m4']),                   # R 2 M3 6         [0 2 4 9]     R 2 5 b7         [0 2 7 a]     R 4 #5 b7        [0 5 8 a]
             'R m3 4 #5'        : (2, [0,3,5,8],      ['m4','+']),               # R 2 4 6          [0 2 5 9]     R m3 5 b7        [0 3 7 a]     R M3 5 6         [0 4 7 9]
             'R m3 4 6'         : (1, [0,3,5,9],      ['m6','4','x']),           # R 2 b5 6         [0 2 6 9]     R M3 5 b7        [0 4 7 a]     R m3 b5 #5       [0 3 6 8]
@@ -845,6 +544,8 @@ class Chord(object):
             'R b5 #5 6'        : (3, [0,6,8,9],      ['o','+','6','y']),        # R 2 m3 b5        [0 2 3 6]     R b2 M3 b7       [0 1 4 a]     R m3 6 7         [0 3 9 b]
             'R b5 #5 b7'       : (1, [0,6,8,10],     ['b','13','#','11','y']),  # R 2 M3 b5        [0 2 4 6]     R 2 M3 b7        [0 2 4 a]     R 2 #5 b7        [0 2 8 a]
             'R b5 #5 7'        : (1, [0,6,8,11],     ['b','13','#','11','y']),  # R 2 4 b5         [0 2 5 6]     R m3 M3 b7       [0 3 4 a]     R b2 5 6         [0 1 7 9]
+            'R b5 6 b7'        : (2, [0,6,9,10],     ['13','#','11','y']),      # R m3 M3 b5       [0 3 4 6]     R b2 m3 6        [0 1 3 9]     R 2 #5 7         [0 2 8 b]
+            'R b5 6 7'         : (1, [0,6,9,11],     ['M','13','#','11','y']),  # R m3 4 b5        [0 3 5 6]     R 2 m3 6         [0 2 3 9]     R b2 5 b7        [0 1 7 a]
             'R 5 #5 b7'        : (2, [0,7,8,10],     ['b','13','y']),           # R b2 m3 4        [0 1 3 5]     R 2 M3 7         [0 2 4 b]     R 2 6 b7         [0 2 9 a]
             'R 5 6 b7'         : (0, [0,7,9,10],     ['13','y']),               # R 2 m3 4         [0 2 3 5]     R b2 m3 b7       [0 1 3 a]     R 2 6 7          [0 2 9 b]
             'R 5 6 7'          : (1, [0,7,9,11],     ['M','13','y']),           # R 2 M3 4         [0 2 4 5]     R 2 m3 b7        [0 2 3 a]     R b2 #5 b7       [0 1 8 a]
@@ -936,227 +637,4 @@ class Chord(object):
             'R m3 4 5 #5 b7'   : (2, [0,3,5,7,8,10], ['mb','13','11']),         # R 2 M3 4 5 6     [0 2 4 5 7 9] R 2 m3 4 5 b7    [0 2 3 5 7 a] R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b] R 2 4 5 6 b7     [0 2 5 7 9 a]
             'R m3 4 5 6 b7'    : (2, [0,3,5,7,9,10], ['m','13','11']),          # R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a] R b2 m3 b5 #5 b7 [0 1 3 6 8 a] R 2 4 5 6 7      [0 2 5 7 9 b]
             }
-    OMAP2 = {
-            }
     ####################################################################################################################################################################################################
-    OMAP3 = {
-            'R 2 M3'           : (6, ['2', 'x']),                    #  [0 2 4]
-            'R 2 b7'           : (6, ['7', 's2', 'x']),              #  [0 2 a]
-            'R #5 b7'          : (6, ['7', '+', 'y']),               #  [0 8 a]
-            'R M3 b5'          : (6, ['b5']),                        #  [0 4 6]
-            'R 2 #5'           : (6, ['s2', '+']),                   #  [0 2 8]
-            'R b5 b7'          : (6, ['07', 'y']),                   #  [0 6 a]
-            'R m3 b5 #5'       : (6, ['o', '+']),                    #  [0 3 6 8]
-            'R m3 4 6'         : (6, ['m6', '4', 'x']),              #  [0 3 5 9]
-            'R 2 b5 6'         : (6, ['s2', 'o', '6']),              #  [0 2 6 9]
-            'R M3 5 b7'        : (6, ['7']),                         #  [0 4 7 a]
-            'R M3 4 6 7'       : (6, ['M', '13', '11', 'x']),        #  [0 4 5 9 b]
-            'R b2 4 5 #5'      : (6, None),                          #  [0 1 5 7 8]
-            'R M3 b5 5 7'      : (6, None),                          #  [0 4 6 7 b]
-            'R 2 m3 5 #5'      : (6, None),                          #  [0 2 3 7 8]
-            'R b2 4 b5 b7'     : (6, None),                          #  [0 1 5 6 a]
-            'R m3 4 6 b7'      : (6, ['m', '13', '11', 'x']),        #  [0 3 5 9 a]
-            'R 2 b5 5 6'       : (6, None),                          #  [0 2 6 7 9]
-            'R M3 4 5 b7'      : (6, ['11']),                        #  [0 4 5 7 a]
-            'R b2 m3 b5 #5'    : (6, None),                          #  [0 1 3 6 8]
-            'R 2 4 5 7'        : (6, ['M7', 's2', 's4']),            #  [0 2 5 7 b]
-            'R b2 4 #5 b7'     : (6, ['b9', 's4', '+']),             #  [0 1 5 8 a]
-            'R M3 5 6 7'       : (6, ['M', '13']),                   #  [0 4 7 9 b]
-            'R m3 4 5 #5'      : (6, None),                          #  [0 3 5 7 8]
-            'R 2 M3 4 6'       : (6, None),                          #  [0 2 4 5 9]
-            'R 2 m3 5 b7'      : (6, ['m9']),                        #  [0 2 3 7 a]
-            'R b2 m3 b5 b7'    : (6, ['07', 'b9']),                  #  [0 1 3 6 a]
-            'R 2 4 6 7'        : (6, ['M', '13', 's2', 's4', 'x']),  #  [0 2 5 9 b]
-            'R m3 5 6 b7'      : (6, ['m', '13']),                   #  [0 3 7 9 a]
-            'R M3 b5 5 6'      : (6, None),                          #  [0 4 6 7 9]
-            'R 2 m3 4 #5'      : (6, None),                          #  [0 2 3 5 8]
-            'R b2 4 b7'        : (6, ['11', 'b9', 'x']),             #  [0 1 5 a]
-            'R M3 6 7'         : (6, ['M', '13', 'x']),              #  [0 4 9 b]
-            'R 4 5 #5'         : (6, None),                          #  [0 5 7 8]
-            'R 2 m3 5'         : (6, ['m2']),                        #  [0 2 3 7]
-            'R M3 4 6 b7'      : (6, ['13', '11', 'x']),             #  [0 4 5 9 a]
-            'R b2 4 b5 #5'     : (6, None),                          #  [0 1 5 6 8]
-            'R M3 4 5 7'       : (6, ['M', '11']),                   #  [0 4 5 7 b]
-            'R b2 m3 5 #5'     : (6, None),                          #  [0 1 3 7 8]
-            'R 2 b5 5 7'       : (6, None),                          #  [0 2 6 7 b]
-            'R 2 5'            : (6, ['s2']),                        #  [0 2 7]
-            'R 4 b7'           : (6, ['7', 's4', 'x']),              #  [0 5 a]
-            'R 4 5'            : (6, ['s4']),                        #  [0 5 7]
-            'R 4 #5'           : (6, ['s4', '+']),                   #  [0 5 8]
-            'R m3 5'           : (6, ['m']),                         #  [0 3 7]
-            'R M3 6'           : (6, ['6', 'x']),                    #  [0 4 9]
-            'R 2 4'            : (6, ['s2', 's4', 'x']),             #  [0 2 5]
-            'R m3 b7'          : (6, ['m7', 'x']),                   #  [0 3 a]
-            'R 5 6'            : (6, None),                          #  [0 7 9]
-            'R 2 4 5'          : (6, ['s2', 's4']),                  #  [0 2 5 7]
-            'R m3 4 b7'        : (6, ['m', '11', 'x']),              #  [0 3 5 a]
-            'R 2 5 6'          : (6, ['6', 's2']),                   #  [0 2 7 9]
-            'R 4 5 b7'         : (6, ['7', 's4']),                   #  [0 5 7 a]
-            'R 2 6'            : (6, ['6', 's2', 'x']),              #  [0 2 9]
-            'R 5 b7'           : (6, None),                          #  [0 7 a]
-            'R m3 4'           : (6, None),                          #  [0 3 5]
-            'R 4 6'            : (6, ['6', 's4', 'x']),              #  [0 5 9]
-            'R M3 5'           : (6, None),                          #  [0 4 7]
-            'R m3 #5'          : (6, ['m', '+']),                    #  [0 3 8]
-            'R 4 5 6'          : (6, ['6', 's4']),                   #  [0 5 7 9]
-            'R 2 M3 5'         : (6, ['2']),                         #  [0 2 4 7]
-            'R 2 4 b7'         : (6, ['7', 's2', 's4', 'x']),        #  [0 2 5 a]
-            'R m3 #5 b7'       : (6, ['m', 'b', '13', 'x']),         #  [0 3 8 a]
-            'R 2 4 6'          : (6, ['6', '9', 's4', 'x']),         #  [0 2 5 9]
-            'R m3 5 b7'        : (6, ['m7']),                        #  [0 3 7 a]
-            'R M3 5 6'         : (6, ['6']),                         #  [0 4 7 9]
-            'R m3 4 #5'        : (6, ['m4', '+']),                   #  [0 3 5 8]
-            'R 2 4 5 6'        : (6, ['6', '9', 's4']),              #  [0 2 5 7 9]
-            'R m3 4 5 b7'      : (6, ['m', '11']),                   #  [0 3 5 7 a]
-            'R 2 M3 5 6'       : (6, ['6', '9']),                    #  [0 2 4 7 9]
-            'R 2 4 5 b7'       : (6, ['7', 's2', 's4']),             #  [0 2 5 7 a]
-            'R m3 4 #5 b7'     : (6, None),                          #  [0 3 5 8 a]
-            'R 2 #5 b7'        : (6, ['7', 's2', '+']),              #  [0 2 8 a]
-            'R b5 #5 b7'       : (6, None),                          #  [0 6 8 a]
-            'R 2 M3 b5'        : (6, None),                          #  [0 2 4 6]
-            'R 2 M3 b7'        : (6, ['9', 'x']),                    #  [0 2 4 a]
-            'R 2 5 b7'         : (6, ['7', 's2']),                   #  [0 2 7 a]
-            'R 4 #5 b7'        : (6, ['7', 's4', '+']),              #  [0 5 8 a]
-            'R m3 4 5'         : (6, ['m4']),                        #  [0 3 5 7]
-            'R 2 M3 6'         : (6, ['6', '/9', 'x']),              #  [0 2 4 9]
-            'R 2 6 b7'         : (6, ['13', 's2', 'x']),             #  [0 2 9 a]
-            'R 5 #5 b7'        : (6, None),                          #  [0 7 8 a]
-            'R b2 m3 4'        : (6, None),                          #  [0 1 3 5]
-            'R 2 M3 7'         : (6, ['M9', 'x']),                   #  [0 2 4 b]
-            'R 2 5 6 b7'       : (6, ['13', 's2']),                  #  [0 2 7 9 a]
-            'R 4 5 #5 b7'      : (6, None),                          #  [0 5 7 8 a]
-            'R 2 m3 4 5'       : (6, None),                          #  [0 2 3 5 7]
-            'R b2 m3 4 b7'     : (6, None),                          #  [0 1 3 5 a]
-            'R 2 M3 6 7'       : (6, None),                          #  [0 2 4 9 b]
-            'R 4 6 b7'         : (6, ['13', 's4', 'x']),             #  [0 5 9 a]
-            'R M3 4 5'         : (6, ['4']),                         #  [0 4 5 7]
-            'R b2 m3 #5'       : (6, ['m', 'b2', '+']),              #  [0 1 3 8]
-            'R 2 5 7'          : (6, ['M7', 's2']),                  #  [0 2 7 b]
-            'R 4 5 6 b7'       : (6, ['13', 's4']),                  #  [0 5 7 9 a]
-            'R 2 M3 4 5'       : (6, None),                          #  [0 2 4 5 7]
-            'R 2 m3 4 b7'      : (6, None),                          #  [0 2 3 5 a]
-            'R b2 m3 #5 b7'    : (6, None),                          #  [0 1 3 8 a]
-            'R 2 5 6 7'        : (6, None),                          #  [0 2 7 9 b]
-            'R 2 4 6 b7'       : (6, ['13', 's2', 's4', 'x']),       #  [0 2 5 9 a]
-            'R m3 5 #5 b7'     : (6, ['m', 'b', '13']),              #  [0 3 7 8 a]
-            'R M3 4 5 6'       : (6, None),                          #  [0 4 5 7 9]
-            'R b2 m3 4 #5'     : (6, None),                          #  [0 1 3 5 8]
-            'R 2 M3 5 7'       : (6, ['M9']),                        #  [0 2 4 7 b]
-            'R 2 4 5 6 b7'     : (6, ['13', 's2', 's4']),            #  [0 2 5 7 9 a]
-            'R m3 4 5 #5 b7'   : (6, None),                          #  [0 3 5 7 8 a]
-            'R 2 M3 4 5 6'     : (6, None),                          #  [0 2 4 5 7 9]
-            'R 2 m3 4 5 b7'    : (6, None),                          #  [0 2 3 5 7 a]
-            'R b2 m3 4 #5 b7'  : (6, None),                          #  [0 1 3 5 8 a]
-            'R 2 M3 5 6 7'     : (6, None),                          #  [0 2 4 7 9 b]
-            'R 2 7'            : (6, ['M7', 's2', 'x']),             #  [0 2 b]
-            'R 6 b7'           : (6, None),                          #  [0 9 a]
-            'R b2 m3'          : (6, None),                          #  [0 1 3]
-            'R 4 7'            : (6, ['M7', 's4', 'x']),             #  [0 5 b]
-            'R b5 5'           : (6, None),                          #  [0 6 7]
-            'R b2 b5'          : (6, None),                          #  [0 1 6]
-            'R 4 5 7'          : (6, ['M7', 's4']),                  #  [0 5 7 b]
-            'R 2 b5 5'         : (6, None),                          #  [0 2 6 7]
-            'R M3 4 b7'        : (6, ['11', 'x']),                   #  [0 4 5 a]
-            'R b2 b5 #5'       : (6, None),                          #  [0 1 6 8]
-            'R 2 4 7'          : (6, ['M7', 's2', 's4', 'x']),       #  [0 2 5 b]
-            'R m3 6 b7'        : (6, ['m', '13', 'x']),              #  [0 3 9 a]
-            'R b5 5 6'         : (6, None),                          #  [0 6 7 9]
-            'R b2 m3 b5'       : (6, ['o', 'b2']),                   #  [0 1 3 6]
-            'R 2 4 5 6 7'      : (6, ['M', '13', 's2', 's4']),       #  [0 2 5 7 9 b]
-            'R m3 4 5 6 b7'    : (6, None),                          #  [0 3 5 7 9 a]
-            'R 2 M3 b5 5 6'    : (6, None),                          #  [0 2 4 6 7 9]
-            'R 2 M3 4 5 b7'    : (6, None),                          #  [0 2 4 5 7 a]
-            'R 2 m3 4 #5 b7'   : (6, None),                          #  [0 2 3 5 8 a]
-            'R b2 m3 b5 #5 b7' : (6, None),                          #  [0 1 3 6 8 a]
-            'R b2 M3 5'        : (6, ['b2']),                        #  [0 1 4 7]
-            'R m3 b5 7'        : (6, None),                          #  [0 3 6 b]
-            'R m3 #5 6'        : (6, None),                          #  [0 3 8 9]
-            'R 4 b5 6'         : (6, None),                          #  [0 5 6 9]
-            'R M3 4 6'         : (6, ['6', '4', 'x']),               #  [0 4 5 9]
-            'R b2 4 #5'        : (6, ['b2', 's4', '+']),             #  [0 1 5 8]
-            'R M3 5 7'         : (6, ['M7']),                        #  [0 4 7 b]
-            'R m3 5 #5'        : (6, ['m', 'b6']),                   #  [0 3 7 8]
-            'R M3 b7'          : (6, ['7', 'x']),                    #  [0 4 a]
-            'R b5 #5'          : (6, None),                          #  [0 6 8]
-            'R 2 b5'           : (6, None),                          #  [0 2 6]
-            'R M3 7'           : (6, ['M7', 'x']),                   #  [0 4 b]
-            'R 5 #5'           : (6, None),                          #  [0 7 8]
-            'R b2 4'           : (6, None),                          #  [0 1 5]
-            'R M3 4 7'         : (6, ['M', '11', 'x']),              #  [0 4 5 b]
-            'R b2 5 #5'        : (6, None),                          #  [0 1 7 8]
-            'R b5 5 7'         : (6, None),                          #  [0 6 7 b]
-            'R b2 4 b5'        : (6, None),                          #  [0 1 5 6]
-            'R 5 6 7'          : (6, ['M', '13', 'y']),              #  [0 7 9 b]
-            'R 2 M3 4'         : (6, None),                          #  [0 2 4 5]
-            'R 2 m3 b7'        : (6, ['m9', 'x']),                   #  [0 2 3 a]
-            'R b2 #5 b7'       : (6, None),                          #  [0 1 8 a]
-            'R b2 M3 b7'       : (6, ['b9', 'x']),                   #  [0 1 4 a]
-            'R m3 6 7'         : (6, None),                          #  [0 3 9 b]
-            'R b5 #5 6'        : (6, None),                          #  [0 6 8 9]
-            'R 2 m3 b5'        : (6, None),                          #  [0 2 3 6]
-            'R b2 M3 5 b7'     : (6, ['b9']),                        #  [0 1 4 7 a]
-            'R m3 b5 6 7'      : (6, None),                          #  [0 3 6 9 b]
-            'R m3 b5 #5 6'     : (6, None),                          #  [0 3 6 8 9]
-            'R m3 4 b5 6'      : (6, None),                          #  [0 3 5 6 9]
-            'R 2 m3 b5 6'      : (6, None),                          #  [0 2 3 6 9]
-            'R 2 M3 5 b7'      : (6, ['9']),                         #  [0 2 4 7 a]
-            'R 2 4 #5 b7'      : (6, None),                          #  [0 2 5 8 a]
-            'R m3 b5 #5 b7'    : (6, None),                          #  [0 3 6 8 a]
-            'R m3 4 5 6'       : (6, None),                          #  [0 3 5 7 9]
-            'R 2 M3 b5 6'      : (6, None),                          #  [0 2 4 6 9]
-            'R m3 M3 b7'       : (6, ['#9', 'x']),                   #  [0 3 4 a]
-            'R b2 5 6'         : (6, None),                          #  [0 1 7 9]
-            'R b5 #5 7'        : (6, None),                          #  [0 6 8 b]
-            'R 2 4 b5'         : (6, None),                          #  [0 2 5 6]
-            'R m3 M3 5 b7'     : (6, ['#9']),                        #  [0 3 4 7 a]
-            'R b2 M3 5 6'      : (6, None),                          #  [0 1 4 7 9]
-            'R m3 b5 #5 7'     : (6, None),                          #  [0 3 6 8 b]
-            'R m3 4 #5 6'      : (6, None),                          #  [0 3 5 8 9]
-            'R 2 4 b5 6'       : (6, None),                          #  [0 2 5 6 9]
-            'R M3 b5 b7'       : (6, ['#', '11', 'x']),              #  [0 4 6 a]
-            'R 2 b5 #5'        : (6, None),                          #  [0 2 6 8]
-            'R M3 b5 5 b7'     : (6, ['#', '11]']),                  #  [0 4 6 7 a]
-            'R 2 m3 b5 #5'     : (6, None),                          #  [0 2 3 6 8]
-            'R b2 M3 b5 b7'    : (6, None),                          #  [0 1 4 6 a]
-            'R m3 4 6 7'       : (6, None),                          #  [0 3 5 9 b]
-            'R 2 b5 #5 6'      : (6, None),                          #  [0 2 6 8 9]
-            'R 5 6 b7'         : (6, ['13', 'y']),                   #  [0 7 9 a]
-            'R 2 m3 4'         : (6, None),                          #  [0 2 3 5]
-            'R b2 m3 b7'       : (6, ['m', 'b9', 'x']),              #  [0 1 3 a]
-            'R 2 6 7'          : (6, None),                          #  [0 2 9 b]
-            'R M3 6 b7'        : (6, ['13', 'x']),                   #  [0 4 9 a]
-            'R 4 b5 #5'        : (6, None),                          #  [0 5 6 8]
-            'R b2 m3 5'        : (6, None),                          #  [0 1 3 7]
-            'R 2 b5 7'         : (6, None),                          #  [0 2 6 b]
-            'R M3 5 6 b7'      : (6, ['13']),                        #  [0 4 7 9 a]
-            'R m3 4 b5 #5'     : (6, None),                          #  [0 3 5 6 8]
-            'R 2 m3 4 6'       : (6, None),                          #  [0 2 3 5 9]
-            'R b2 m3 5 b7'     : (6, ['m', 'b9']),                   #  [0 1 3 7 a]
-            'R 2 b5 6 7'       : (6, None),                          #  [0 2 6 9 b]
-            'R M3 #5 b7'       : (6, ['b', '13', 'x']),              #  [0 4 8 a]
-            'R M3 b5 #5'       : (6, None),                          #  [0 4 6 8]
-            'R 2 M3 #5'        : (6, None),                          #  [0 2 4 8]
-            'R 2 b5 b7'        : (6, None),                          #  [0 2 6 a]
-            'R M3 5 #5 b7'     : (6, ['b', '13']),                   #  [0 4 7 8 a]
-            'R m3 M3 b5 #5'    : (6, None),                          #  [0 3 4 6 8]
-            'R b2 m3 4 6'      : (6, None),                          #  [0 1 3 5 9]
-            'R 2 M3 #5 7'      : (6, None),                          #  [0 2 4 8 b]
-            'R 2 b5 6 b7'      : (6, None),                          #  [0 2 6 9 a]
-            'R m3 6'           : (6, ['m6', 'x']),                   #  [0 3 9]
-            'R b5 6'           : (6, ['o7', 'y']),                   #  [0 6 9]
-            'R m3 b5'          : (6, ['o']),                         #  [0 3 6]
-            'R m3 5 6'         : (6, ['m6']),                        #  [0 3 7 9]
-            'R M3 b5 6'        : (6, None),                          #  [0 4 6 9]
-            'R 2 4 #5'         : (6, None),                          #  [0 2 5 8]
-            'R m3 b5 b7'       : (6, ['07']),                        #  [0 3 6 a]
-            'R m3 7'           : (6, ['m', 'M7', 'x']),              #  [0 3 b]
-            'R #5 6'           : (6, None),                          #  [0 8 9]
-            'R b2 M3'          : (6, None),                          #  [0 1 4]
-            'R m3 5 7'         : (6, ['m', 'M7']),                   #  [0 3 7 b]
-            'R M3 #5 6'        : (6, None),                          #  [0 4 8 9]
-            'R M3 4 #5'        : (6, None),                          #  [0 4 5 8]
-            'R b2 M3 #5'       : (6, None),                          #  [0 1 4 8]
-            'R m3 b5 6'        : (6, ['o7']),                        #  [0 3 6 9]
-            'R M3 #5'          : (6, ['+']),                         #  [0 4 8]
-            }
-   ####################################################################################################################################################################################################
