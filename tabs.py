@@ -64,7 +64,7 @@ def dumpGlobals():
     Tabs.log(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
 ARGS             = cmdArgs.parseCmdLine()
-AUTO_SAVE = 1  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  CAT = 1
+AUTO_SAVE = 1  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  CAT = 1
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -2054,7 +2054,7 @@ class Tabs(pyglet.window.Window):
 #        print(f'{msg}', file=file, flush=flush, sep=sep, end=end) if ind else print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        if file != LOG_FILE: Tabs.log(msg, ind, flush=False, sep=',', end=end)
     ####################################################################################################################################################################################################
-    def quit(self, why='', save=1, dbg=0, dbg2=1):
+    def quit(self, why='', save=1, dbg=0):
         if save:               self.saveDataFile(why, f=1)
         if save and AUTO_SAVE: self.saveDataFile(why, f=0)
         self.cobj.dumpMLimap(why)
@@ -2063,10 +2063,9 @@ class Tabs(pyglet.window.Window):
         self.dumpJ('quit()')
         if CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
         else:   self.cobj.dumpOMAP(None, merge=1)
-        if dbg2:
-            cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
-            self.log(f'{self.catPath} {cfp}')
-            os.system(f'copy {self.catPath} {cfp}')
+        cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
+        self.log(f'{self.catPath} {cfp}')
+        os.system(f'copy {self.catPath} {cfp}')
         self.log(QUIT, ind=0)
         if dbg: self.dumpStruct('quit ' + why)
         self.snapshot()
