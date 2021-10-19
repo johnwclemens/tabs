@@ -850,7 +850,7 @@ class Tabs(pyglet.window.Window):
         if dbg2: self.log(f'p.y -= hr/2, p.height -= hr: p.y = {p.y:7.2f} p.h = {p.height:7.2f}', ind=0)
         return p
     ####################################################################################################################################################################################################
-    def createLabels(self, dbg=VERBOSE, dbg2=1):
+    def createLabels(self, dbg=VERBOSE, dbg2=0):
         self.log(f'BGN {self.fmtGeom()}', ind=0)
         if dbg: self.dumpLabel()
         for p, page in                  enumerate(self.g_createLabels(None, P, self.pages, why='Page ', dbg=dbg, dbg2=dbg2)):
@@ -873,7 +873,7 @@ class Tabs(pyglet.window.Window):
             if QQ and j == L: self.createLLRow(lbl, m)
             yield lbl
     ####################################################################################################################################################################################################
-    def g_createLabels2(self, col, dbg=1, dbg2=0):
+    def g_createLabels2(self, col, dbg=0, dbg2=0):
         p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;  tt, nn, kkk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]    ;   chunks = []   # ;    chordName = ''
         nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)   ;   kt, kn, kk = self.kt, self.kn, self.kk    ;    kt2, kn2, kk2 = self.kt2, self.kn2, self.kk2
         for t in range(nt): #            self.log(f't={t} nt={nt} TNIK={self.TNIK} st={self.J2[T]}') #            self.log(f's={s} tt={tt} nn={nn} kk={kkk}')#        self.log(f'p={p} l={l} s={s} c={c} nt={nt}')
@@ -1829,7 +1829,8 @@ class Tabs(pyglet.window.Window):
         self.dumpSelectTabs(f'BGN {how} rev={rev} key={key}')
         chordName, chunks = self.cobj.toggleChordName(key, rev)
         cc = self.cn2cc(key)
-        self.setChordName(chordName, chunks, cc)
+        if chordName and chunks: self.setChordName(chordName, chunks, cc)
+        else: self.log(f'selected key={key} at cc={cc} is not a chord')
         self.dumpSelectTabs(f'END {how} rev={rev} key={key} cc={cc}')
     ####################################################################################################################################################################################################
     def dumpCursorArrows(self, how): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;   self.log(f'{how} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
@@ -2009,20 +2010,20 @@ class Tabs(pyglet.window.Window):
     def getFilePath(seq=0, filedir='files', filesfx='.txt'):
         if seq:
             subDir     = '/' + SFX.lstrip('.')
-            filedir     = filedir + subDir
-            Tabs.log(f'SFX         = {SFX}')
-            Tabs.log(f'subdir      = {subDir}')
-            Tabs.log(f'filedir     = {filedir}')
-            Tabs.log(f'filesfx     = {filesfx}')
+            filedir    = filedir + subDir
+            Tabs.log(f'SFX          = {SFX}')
+            Tabs.log(f'subdir       = {subDir}')
+            Tabs.log(f'filedir      = {filedir}')
+            Tabs.log(f'filesfx      = {filesfx}')
             pathlib.Path(filedir).mkdir(parents=True, exist_ok=True)
             fileGlobArg = str(BASE_PATH / filedir / BASE_NAME) + SFX + '.*' + filesfx
             fileGlob    = glob.glob(fileGlobArg)
             Tabs.log(f'fileGlobArg  = {fileGlobArg}')
             Tabs.log('fileGlob:')
             seq        = 1 + Tabs.getFileSeqNum(fileGlob, filesfx)
-            filesfx     = f'.{seq}{filesfx}'
+            filesfx    = f'.{seq}{filesfx}'
             Tabs.log(f'{fmtl(fileGlob)}', ind=0)
-            Tabs.log(f'seq num     = {seq} filesfx={filesfx}')
+            Tabs.log(f'seq num      = {seq} filesfx={filesfx}')
         return getFilePath(filedir=filedir, filesfx=filesfx)
 
     @staticmethod
@@ -2055,17 +2056,13 @@ class Tabs(pyglet.window.Window):
 #        if file != LOG_FILE: Tabs.log(msg, ind, flush=False, sep=',', end=end)
     ####################################################################################################################################################################################################
     def quit(self, why='', save=1, dbg=0):
+        self.log('BGN')
         if save:               self.saveDataFile(why, f=1)
         if save and AUTO_SAVE: self.saveDataFile(why, f=0)
         self.cobj.dumpMLimap(why)
-        self.cobj.dumpCat(why)
-        self.log('BGN')
+#        self.cobj.dumpCat(why)
         self.dumpJ('quit()')
-        if CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
-        else:   self.cobj.dumpOMAP(None, merge=1)
-        cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
-        self.log(f'{self.catPath} {cfp}')
-        os.system(f'copy {self.catPath} {cfp}')
+        self.cleanupCat()
         self.log(QUIT, ind=0)
         if dbg: self.dumpStruct('quit ' + why)
         self.snapshot()
@@ -2075,17 +2072,29 @@ class Tabs(pyglet.window.Window):
             self.log(QUIT, ind=0)
             self.dumpStack(MAX_STACK_FRAME)
         self.dumpGlobalFlags()
-        self.log(f'SEQ_LOG_FILES = {SEQ_LOG_FILES}')
+        self.cleanupLog()
+        exit()
+
+    def cleanupCat(self):
+        self.log('BGN')
+        if CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
+        else:   self.cobj.dumpOMAP(None, merge=1)
+        cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
+        self.log(f' ***  copy {self.catPath} {cfp}  ***')
+        os.system(f'copy {self.catPath} {cfp}')
+        self.log('END')
+
+    def cleanupLog(self):
+        self.log(f'SEQ_LOG_FILES={SEQ_LOG_FILES}')
         logPath = None
         if SEQ_LOG_FILES:
             logPath = self.getFilePath(seq=SEQ_LOG_FILES, filedir='logs', filesfx='.log')
-            self.log(f'LOG_PATH    = {LOG_PATH}')
-            self.log(f'logPath     = {logPath}')
-            self.log(f'copy {LOG_PATH} {logPath}')
-        self.log(f'END closing LOG_FILE={LOG_FILE.name}')
+            self.log(f'LOG_PATH     = {LOG_PATH}')
+            self.log(f'logPath      = {logPath}')
+            self.log(f' *** copy {LOG_PATH} {logPath} ***')
+        self.log(f'closing {LOG_FILE.name}')
         LOG_FILE.close()
         if SEQ_LOG_FILES and logPath: os.system(f'copy {LOG_PATH} {logPath}')
-        exit()
     ####################################################################################################################################################################################################
     @staticmethod
     def deleteList(l):
