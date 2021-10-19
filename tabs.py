@@ -1322,9 +1322,9 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'T' and self.isCtrl(     mods):    self.toggleTabs(      '@   T', TT)
         elif kbk == 'U' and self.isCtrlShift(mods):    self.resetTabs(       '@ ^ U')
         elif kbk == 'U' and self.isCtrl(     mods):    self.resetTabs(       '@   U')
-        elif kbk == 'V' and self.isCtrlAlt(  mods):    self.pasteTabs(       '@ & V', hc=0, kk=1)
-        elif kbk == 'V' and self.isCtrlShift(mods):    self.pasteTabs(       '@ ^ V', hc=1)
-        elif kbk == 'V' and self.isCtrl(     mods):    self.pasteTabs(       '@   V', hc=0)
+#        elif kbk == 'V' and self.isCtrlAlt(  mods):    self.pasteTabs(       '@ & V', hc=0, kk=1)
+        elif kbk == 'V' and self.isCtrlShift(mods):    self.pasteTabs(       '@ ^ V', kk=1)
+        elif kbk == 'V' and self.isCtrl(     mods):    self.pasteTabs(       '@   V', kk=0)
         elif kbk == 'W' and self.isCtrlShift(mods):    self.swapTabs(        '@ & W')
         elif kbk == 'W' and self.isCtrl(     mods):    self.swapTabs(        '@ & W')
         elif kbk == 'X' and self.isCtrlShift(mods):    self.cutTabs(         '@ ^ X')
@@ -1611,12 +1611,12 @@ class Tabs(pyglet.window.Window):
         self.dumpSelectTabs(f'END {how} cut={cut}')
         self.dataHasChanged = 1
 
-    def pasteTabs(self, how, hc=0, kk=0, dbg=VERBOSE):
+    def pasteTabs(self, how, kk=0, dbg=VERBOSE):
         cc = self.cursorCol()   ;  nt = self.n[T]
         ntc = self.normalizeCC(cc)   ;  kt = 0
         smap, skeys = self.smap, self.skeys
         p, l, s, c, r = self.j()
-        self.dumpSelectTabs(f'BGN {how} {hc} {kk} plcr {p} {l} {c} {r} cc={cc} ntc={ntc} cn={self.cc2cn(cc) + 1}')
+        self.dumpSelectTabs(f'BGN {how} kk={kk} cc={cc} ntc={ntc} cn={self.cc2cn(cc) + 1} plcr {p} {l} {c} {r}')
         for i, (k, v) in enumerate(smap.items()):
             text = v
             if not i: dk = 0
@@ -1628,9 +1628,10 @@ class Tabs(pyglet.window.Window):
                 p, l, c, r = self.cc2plct(kt, dbg=0)
                 self.setDTNK(text[t], kt, p, l, c, t, uk=1 if t == nt - 1 else 0)  # call with uk=1 only once per column or tpc
             if dbg: self.log(f'smap[{k}]={text} kt={kt} kk={kk} dk={dk}')
-        if not hc: self.unselectAll('pasteTabs()')
-        elif dbg:  self.log(f'holding a copy of smap and skeys')
-        self.dumpSelectTabs(f'END {how} hc={hc} kk={kk} cc={cc} ntc={ntc} cn={self.cc2cn(cc) + 1}')
+#        if not hc: self.unselectAll('pasteTabs()')
+#        elif dbg:  self.log(f'holding a copy of smap and skeys')
+#        self.dumpSelectTabs(f'END {how} hc={hc} kk={kk} cc={cc} ntc={ntc} cn={self.cc2cn(cc) + 1}')
+        self.dumpSelectTabs(f'END {how} kk={kk} cc={cc} ntc={ntc} cn={self.cc2cn(cc) + 1} plcr {p} {l} {c} {r}')
         self.dataHasChanged = 1
 
     def swapTabs(self, how):
