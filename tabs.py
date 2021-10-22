@@ -64,7 +64,7 @@ def dumpGlobals():
     Tabs.log(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
 ARGS             = cmdArgs.parseCmdLine()
-AUTO_SAVE = 1  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  CAT = 1
+AUTO_SAVE = 1  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  CAT = 0
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -1313,7 +1313,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'O' and self.isCtrl(     mods):    self.toggleCursorMode('@   O')
         elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@ ^ Q', save=0)
         elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(            '@   Q', save=1)
-        elif kbk == 'R' and self.isCtrlShift(mods):    self.toggleChordNames('@ ^ R', rev=1)
+        elif kbk == 'R' and self.isCtrlShift(mods):    self.toggleChordNames('@ ^ R', every=1)
         elif kbk == 'R' and self.isCtrl(     mods):    self.toggleChordNames('@   R', rev=0)
         elif kbk == 'S' and self.isCtrlShift(mods):    self.shiftTabs(       '@ ^ S')
 #        elif kbk == 'S' and self.isCtrl(     mods):    self.saveDataFile(    '@   S')
@@ -1562,7 +1562,7 @@ class Tabs(pyglet.window.Window):
             tab   = self.tabs  [k + t]  ;    tab.color = self.kt[0]
             note  = self.notes [k + t]  ;   note.color = self.kn[0]
             chord = self.chords[k + t]  ;  chord.color = self.kk[0]
-        if k in self.skeys: self.skeys.remove(k)    ;    self.smap.pop(k)
+        if k in self.skeys: self.skeys.remove(k)    ;    self.smap.pop(k)  #  crashes
         elif dbg:           self.log(f'key={k} not found in skeys={fmtl(self.skeys)}')
         if m:   self.move(how, m)
         if dbg: self.dumpSelectTabs(f'END {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
@@ -1816,15 +1816,119 @@ class Tabs(pyglet.window.Window):
     def keySignature(self): pass
     def scales(self):       pass
 
-    def toggleChordNames(self, how, rev=0):
+    def OLD_toggleChordNames(self, how, rev=0):
         if self.skeys:
             self.dumpSelectTabs(f'BGN {how} rev={rev} skeys={fmtl(self.skeys)}')
             [ self.toggleChordName(how, self.cc2cn(k), rev) for k in self.skeys ]
         else:
             cc = self.cursorCol()    ;    cn = self.cc2cn(cc)    ;    mk = list(self.cobj.mlimap.keys())
-            self.dumpSelectTabs(f'BGN {how} rev={rev} cc={cc} cn={cn} mk={mk}')
+            self.dumpSelectTabs(f'BGN {how} rev={rev} cc={cc} cn={cn} mk={fmtl(mk)}')
             self.toggleChordName(how, cn, rev)
         self.dumpSelectTabs(f'END {how} rev={rev}')
+
+    def A_toggleChordNames(self, how, every=0, rev=0):
+        if self.skeys:
+            self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} skeys={fmtl(self.skeys)}')
+            [ self.toggleChordName(how, self.cc2cn(k), rev) for k in self.skeys ]
+        else:
+            cc = self.cursorCol()    ;    cn = self.cc2cn(cc)    ;    mk = list(self.cobj.mlimap.keys())  ;  iks = []  #   ;   ik, jk = '', ''
+            self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} cc={cc} cn={cn} mk={mk}')
+            if every:
+                mi = self.cobj.mlimap   ;   others = []
+                for j, u in enumerate(mi[cn]):
+                    ik = ''.join(u[0])   ;   iks.append(ik)
+                    self.log(f'cn={cn:3} j={j:3} {ik:11} {fmtl(u[1]):18} {u[2]:12} {fmtl(u[3]):18} {u[4]}')
+                for k, v in mi.items():
+                    for j, u in enumerate(v):
+                        jk = ''.join(u[0])   ;   ik = ''
+                        self.log(f'k={k} j={j} {jk:11} {fmtl(u[1]):18} {u[2]:12} {fmtl(u[3]):18} {u[4]}')
+                        for i, ik in enumerate(iks):
+                            if jk == ik: others.append(k)  ;  break # self.log(f'i={i} matched  ik={ik} jk={jk}')   ;
+                            else:        break                      # self.log(f'i={i} skipping ik={ik} jk={jk}')   ;
+                        if ik == jk:     break
+                if others:
+                    self.log(f'matched others={fmtl(others)} in milap: mk={fmtl(mk)}')
+                    for o in others:
+                        if o in mk:
+                            v = mi[o]
+                            for u in v:
+                                ik = ''.join(u[0])
+                                self.log(f'o={o} {ik:11} {fmtl(u[1]):18} {u[2]:12} {fmtl(u[3]):18} {u[4]}')
+                            self.toggleChordName(how, o, rev)
+            else:           self.toggleChordName(how, cn, rev)
+        self.dumpSelectTabs(f'END {how} every={every} rev={rev}')
+
+    def toggleChordNames(self, how, every=0, rev=0):
+        if self.skeys:
+            self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} skeys={fmtl(self.skeys)}')
+            [ self.toggleChordName(how, self.cc2cn(k), rev) for k in self.skeys ]
+        else:
+            cc = self.cursorCol()    ;    cn = self.cc2cn(cc)    ;    mk = list(self.cobj.mlimap.keys())
+            self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} cc={cc} cn={cn} mk={fmtl(mk)}')
+            if not every: self.toggleChordName(how, cn, rev)
+            else:
+                self.myfoo(how, cn, rev)
+                '''
+                mi = self.cobj.mlimap   ;   iks, others = [], []
+                [ iks.append(''.join(u[0])) for u in mi[cn] ]
+                matches = self.matchingImaps(iks)
+                if matches:
+                    for i in matches:
+                        if i in mk:
+                            v = mi[i]
+                            for u in v:
+                                ik = ''.join(u[0])
+                                self.log(f'i={i} {ik:11} {fmtl(u[1]):18} {u[2]:12} {fmtl(u[3]):18} {u[4]}')
+                            self.toggleChordName(how, i, rev)
+                '''
+        self.dumpSelectTabs(f'END {how} every={every} rev={rev}')
+
+    def myfoo(self, how, cn='', rev=0, dbg=1):
+        mi = self.cobj.mlimap   ;   iks, others = [], []  ;   mk = list(self.cobj.mlimap.keys())
+        [ iks.append(' '.join(u[0])) for u in mi[cn] ]
+        if dbg: self.log(f'BGN mk={fmtl(mk)} iks={fmtl(iks)}')
+        matches = self.imapKeys2matches(iks)
+        if matches:
+            for i in matches:
+                if i in mk:
+                    v = mi[i]
+#                    v.sort(key=lambda a: a[4])
+                    for u in v:
+                        ik = ' '.join(u[0])
+                        self.log(f'i={i} {ik:16} {fmtl(u[1]):18} {u[2]:12} {fmtl(u[3]):18} {u[4]}')
+                    self.toggleChordName(how, i, rev)
+        if dbg: self.log(f'END mk={fmtl(mk)} iks={fmtl(iks)}')
+
+    def imapKeys2matches(self, iks, dbg=1):
+        if dbg: self.log(f'BGN iks={fmtl(iks)}')
+        mi = self.cobj.mlimap   ;   matches = set()
+        for k, v in mi.items():
+            if dbg: self.log(f'{k} ranks: ', end='')
+            for u in v:
+                jk = ' '.join(u[0])
+                if dbg:                 self.log(f'{u[4]} ', ind=0, end='')
+                for ik in iks:
+                    if jk == ik:        matches.add(k)   ;   break
+            if dbg: self.log(ind=0)
+        if dbg: self.log(f'END matches={fmtl(matches)}')
+        return list(matches)
+
+    def A_imapKeys2matches(self, iks, dbg=1, dbg2=0):
+        if dbg: self.log(f'BGN iks={fmtl(iks)}')
+        mi = self.cobj.mlimap   ;   matches = set()   ;   msg = ''
+        for k, v in mi.items():
+            self.log(f'{k} ranks: ', end='')
+            for j, u in enumerate(v):
+                jk = ' '.join(u[0])   ;  ik = ''
+                if dbg2:                               msg = f'j={j} k={k} {jk:11} {fmtl(u[1]):18} {u[2]:12} {fmtl(u[3]):18} {u[4]}'
+                if dbg:                                self.log(f'{u[4]} ', ind=0, end='')
+                for i, ik in enumerate(iks):
+                    if jk == ik: matches.add(k)  ;  self.log(f'i={i} matched  {msg}', ind=0) if dbg2 else None   ;   break
+                    else:                              self.log(f'i={i} skipping {msg}', ind=0) if dbg2 else None   ;   break
+                if ik == jk:                           break
+            self.log(ind=0)
+        if dbg: self.log(f'END matches={fmtl(matches)}')
+        return list(matches)
 
     def toggleChordName(self, how, key, rev=0):
         self.dumpSelectTabs(f'BGN {how} rev={rev} key={key}')
@@ -2080,9 +2184,10 @@ class Tabs(pyglet.window.Window):
         self.log('BGN')
         if CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
         else:   self.cobj.dumpOMAP(None, merge=1)
-        cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
-        self.log(f' ***  copy {self.catPath} {cfp}  ***')
-        os.system(f'copy {self.catPath} {cfp}')
+        if CAT:
+            cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
+            self.log(f' ***  copy {self.catPath} {cfp}  ***')
+            os.system(f'copy {self.catPath} {cfp}')
         self.log('END')
 
     def cleanupLog(self):

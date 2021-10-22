@@ -62,14 +62,14 @@ class Chord(object):
         tabs.Tabs.log(msg=msg, ind=ind, file=file, flush=flush, sep=sep, end=end)
 
     def updateImap(self, im, name, chunks, dbg=0, dbg2=0):
-        intervals = list(im.keys())    ;   notes = list(im.values())     # ;   order = len(self.tobj.stringNumbs)  # ;   omapK = []
-        imap = [intervals, notes, name, chunks]  ;   d1, d2 = '<', '>'   ;   chordName = ''
+        intervals = list(im.keys())    ;   notes = list(im.values())     ;   rank = len(self.tobj.stringNumbs) + 1
+        imap = [intervals, notes, name, chunks, rank]  ;   d1, d2 = '<', '>'   ;   chordName = ''
         if name:
             omapK = ' '.join(intervals)
             if omapK in Chord.OMAP:
-                order = Chord.OMAP[omapK][0]
-                if dbg: self.log(f'omapk={omapK} intervals={tabs.fmtl(intervals)} order={order}')
-                self.limap1.insert(order, imap)  ;   self.dumpImap(imap, f'insert(imap) {order}')
+                rank = Chord.OMAP[omapK][0]    ;   imap[4] = rank
+                if dbg: self.log(f'omapk={omapK} intervals={tabs.fmtl(intervals)} rank={rank}')
+                self.limap1.insert(rank, imap)  ;   self.dumpImap(imap, f'insert imap rank={rank}')
             else: self.limap1.append(imap)
         else:   self.limap2.append(imap)      # ;   self.log(f'limap2 add      {tabs.fmtl(imap)}')
         if dbg2:
@@ -99,6 +99,7 @@ class Chord(object):
                 if dbg and chordName: self.log(f'Inner Chord     [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ] {tabs.fmtl(chunks)}')
                 chordName, chunks               = self.updateImap(imap, chordName, chunks)
         self.limap.extend(self.limap1)      ;     self.limap.extend(self.limap2)
+        self.limap.sort(key=lambda a: a[4])
         if chordName:
             if dbg: self.log(f'Outer Chord     [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ] {tabs.fmtl(chunks)}')
             self.mlimap[cc]                     = self.limap
@@ -287,8 +288,8 @@ class Chord(object):
             self.log(f'{tabs.fmtl(bb[i], w=tabs.FMTN2, d1="" if i else "|", d2="|")}', ind=0, end='' if i<len(bb)-1 else "\n")
 
     def dumpImap(self, imap, why):
-        intervals = imap[0]   ;   imapNotes = imap[1]   ;   chordName = imap[2]   ;   chunks = imap[3] ;   d1, d2 = '[', ']'
-        self.log(f'{why}  [ [{chordName:6}] {tabs.fmtl(intervals, w=2, d1=d1, d2=d2):17} {tabs.fmtl(imapNotes, w=2, d1=d1, d2=d2):17} ] {tabs.fmtl(chunks)}')
+        intervals = imap[0]   ;   imapNotes = imap[1]   ;   chordName = imap[2]   ;   chunks = imap[3]   ;   rank = imap[4]   ;   d1, d2 = '[', ']'
+        self.log(f'{why}  [ [{chordName:6}] {tabs.fmtl(intervals, w=2, d1=d1, d2=d2):17} {tabs.fmtl(imapNotes, w=2, d1=d1, d2=d2):17} ] {tabs.fmtl(chunks)} {rank}')
 
     def dumpData(self, data, mask, why, w=5, u='<', r=0):
         lf = self.logFile
@@ -352,7 +353,7 @@ class Chord(object):
             self.log(f'END umap len={len(self.umap)}')
 
     def dumpOMAP(self, catpath=None, merge=0):
-        self.log(f'BGN len(umap)={len(self.umap)} len(OMAP)={len(self.OMAP)}')
+        self.log(f'BGN len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
         if merge and self.umap: self.mergeMaps(self.umap, self.OMAP)
         r = self._dumpOMAP()
         if catpath:
@@ -366,7 +367,7 @@ class Chord(object):
                 with open(str(catpath), 'w') as CAT_FILE:
                     self._dumpOMAP(CAT_FILE)
         if self.umap: self.dumpUmap()
-        self.log(f'END len(umap)={len(self.umap)}  len(OMAP)={len(self.OMAP)}')
+        self.log(f'END   len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
 
     def _dumpOMAP(self, catfile=None):
         file = catfile      if catfile else self.logFile
