@@ -1883,11 +1883,11 @@ class Tabs(pyglet.window.Window):
                 '''
         self.dumpSelectTabs(f'END {how} every={every} rev={rev}')
 
-    def myfoo(self, how, cn='', rev=0, dbg=1):
+    def A_myfoo(self, how, cn='', rev=0, dbg=1):
         mi = self.cobj.mlimap   ;   iks, others = [], []  ;   mk = list(self.cobj.mlimap.keys())
         [ iks.append(' '.join(u[0])) for u in mi[cn] ]
         if dbg: self.log(f'BGN mk={fmtl(mk)} iks={fmtl(iks)}')
-        matches = self.imapKeys2matches(iks)
+        matches = self.imapKeys2matches(iks, [])
         if matches:
             for i in matches:
                 if i in mk:
@@ -1899,14 +1899,53 @@ class Tabs(pyglet.window.Window):
                     self.toggleChordName(how, i, rev)
         if dbg: self.log(f'END mk={fmtl(mk)} iks={fmtl(iks)}')
 
-    def imapKeys2matches(self, iks, dbg=1):
+    def myfoo(self, how, cn='', rev=0, dbg=1):
+        mi = self.cobj.mlimap   ;   iks, others = [], []  ;   mk = list(self.cobj.mlimap.keys())
+        rank = [ u[4] for u in mi[cn] ]
+        [ iks.append(''.join(u[0])) for u in mi[cn] ]
+        if dbg: self.log(f'BGN cn={cn} rank={rank} mk={fmtl(mk)} iks={fmtl(iks)}')
+        matches, ranks = self.imapKeys2matches(iks, rank)
+        if matches:
+            for i in matches:
+                if i in mk:
+                    v = mi[i]
+                    for u in v:
+                        ik = ''.join(u[0])
+                        self.log(f'i={i} {ik:16} {fmtl(u[1]):18} {u[2]:12} {fmtl(u[3]):18} {u[4]}')
+                    self.toggleChordName(how, i, rev)
+        if dbg: self.log(f'END cn={cn} rank={rank} mk={fmtl(mk)} iks={fmtl(iks)}')
+
+    def imapKeys2matches(self, iks, rank, dbg=1): #, dbg2=1):
+        if dbg: self.log(f'BGN rank={rank} iks={fmtl(iks)}')
+        mi = self.cobj.mlimap   ;   matches = set()   ;   ranks = []
+        for k, v in mi.items():
+            _rank = []           ;   match = 0        # ;   self.log(f'k={k} _rank: ', end='')   if dbg2 else None
+            for u in v:
+                jk = ''.join(u[0])
+                for ik in iks:
+                    if jk == ik:         matches.add(k)   ;   _rank.append(u[4])   ;   match = 1   ;    break
+#                if match:               self.log(f'{u[4]} ', ind=0, end='') if dbg2 else None
+#            if dbg2: self.log(ind=0)
+            if match:
+                if _rank and _rank == rank: ranks.append(_rank)
+                else:  #  loop until rotated imap matches
+                    self.log(f'_rank={_rank} != rank={rank}')   ;  r = 0 # ;  count = 0
+                    for r in range(len(rank)):
+                        mi[k] = self.cobj.rotateList(mi[k])    # ;  count += 1
+                        _rank = [ a[4] for a in mi[k] ]
+                        if _rank == rank: break
+                    self.log(f'_rank={_rank} r={r}')
+                    ranks.append(_rank)
+        if dbg: self.log(f'END rank={rank} matches={fmtl(matches)} ranks={fmtl(ranks)}')
+        return list(matches), ranks
+
+    def B_imapKeys2matches(self, iks, dbg=1):
         if dbg: self.log(f'BGN iks={fmtl(iks)}')
         mi = self.cobj.mlimap   ;   matches = set()
         for k, v in mi.items():
             if dbg: self.log(f'{k} ranks: ', end='')
             for u in v:
-                jk = ' '.join(u[0])
-                if dbg:                 self.log(f'{u[4]} ', ind=0, end='')
+                jk = ' '.join(u[0])   ;   self.log(f'{u[4]} ', ind=0, end='') if dbg else None
                 for ik in iks:
                     if jk == ik:        matches.add(k)   ;   break
             if dbg: self.log(ind=0)

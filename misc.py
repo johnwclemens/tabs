@@ -134,14 +134,20 @@ class Chord(object):
 #            self.log(f'{tabs.fmtl(o, z="x", d2="] ")}', ind=0, end='',  file=self.logFile)
 #        self.log(ind=0)
 
+    def rotateList(self, a, rev=0):
+        if rev: tmp0 = a[-1 ]   ;   tmp1 = a[:-1]   ;   a = tmp1   ;   a.insert(0, tmp0)
+        else:   tmp0 = a[0]     ;   tmp1 = a[1:]    ;   a = tmp1   ;   a.append(tmp0)
+        return a
+
     def toggleChordName(self, key, rev=0):
         self.log(f'rev={rev} key={key}')
         if key not in self.mlimap.keys(): self.log(f'key={key} Not Found')   ;   return None, None
         else:
            limap = self.mlimap[key]
            self.dumpLimap(limap, key, why=f'before key={key} rev={rev}')
-           if rev: tmp0 = limap[-1]  ;   tmp1 = limap[:-1]  ;   limap  = tmp1   ;   limap.insert(0, tmp0)
-           else:   tmp0 = limap[0]   ;   tmp1 = limap[1:]   ;   limap  = tmp1   ;   limap.append(tmp0)
+           limap = self.rotateList(limap, rev)
+#           if rev: tmp0 = limap[-1]  ;   tmp1 = limap[:-1]  ;   limap  = tmp1   ;   limap.insert(0, tmp0)
+#           else:   tmp0 = limap[0]   ;   tmp1 = limap[1:]   ;   limap  = tmp1   ;   limap.append(tmp0)
            self.mlimap[key] = limap
            self.dumpLimap(limap, key, why=f'after  key={key} rev={rev}')
            return limap[0][2], limap[0][3]
