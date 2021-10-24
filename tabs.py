@@ -1482,9 +1482,10 @@ class Tabs(pyglet.window.Window):
 
     def move(self, how, k, ss=0, dbg=1):   #  text={self.tabs[self.cc].text} {x:6.2f} {y:6.2f}') # , file=sys.stdout)
         if dbg:    self.log(f'BGN {how} plct {fmtl(self.j2(), d1="", d2="")} cc={self.cursorCol()} k={k}')
-        p,  l,  c,  t = self.j2()
-        self._moveTo(p, l, c, t, n=k)
-        self.moveCursor(ss)
+        if k:
+            p,  l,  c,  t = self.j2()
+            self._moveTo(p, l, c, t, n=k)
+            self.moveCursor(ss)
         if dbg:    self.log(f'END {how} plct {fmtl(self.j2(), d1="", d2="")} cc={self.cursorCol()} k={k}')
 
     def _moveTo(self, p, l, c, t, n=0, dbg=1):
@@ -1567,11 +1568,13 @@ class Tabs(pyglet.window.Window):
         if m:   self.move(how, m)
         if dbg: self.dumpSelectTabs(f'END {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
 
-    def selectTabs(self, how, m):
-        cc = self.cursorCol()  ;  nt = self.n[T]  ;  text = ''
+    def selectTabs(self, how, m=0, cc=None):
+        if cc is None: cc = self.cursorCol()
+        nt = self.n[T]  ;  text = ''
         k = self.normalizeCC(cc)
+        if k in self.smap: self.log(f'k={k} already in smap returning')   ;   return
         self.dumpSelectTabs(f'BGN {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
-        self.skeys.append(k)  #  ordering?
+        self.skeys.append(k)   # ;   self.sset.add(k)
         for t in range(nt):
             tab   = self.tabs  [k + t]  ;    tab.color = CCS[0]
             note  = self.notes [k + t]  ;   note.color = CCS[0]
@@ -1665,7 +1668,7 @@ class Tabs(pyglet.window.Window):
             if not found: self.log(f'{how} starting at col {c0} No room to insert {width} cols before end of page at col {tcs[-1]+1}')  ;   return
             self.log(f'{how} starting at col {c0} Found a gap {width} cols wide between cols {c1} and {c2}')
             self.log(f'select cols {c0} ... {c1}, cut cols, move ({width} - {c1} + {c0})={width-c1+c0} cols, paste cols')
-            [self.selectTabs(how, self.tpc) for _ in range(c1 - c0)]
+            [ self.selectTabs(how, self.tpc) for _ in range(c1 - c0) ]
             self.cutTabs(how)
             self.move(how, (width - c1 + c0) * self.tpc)
             self.pasteTabs(how)
@@ -1815,9 +1818,9 @@ class Tabs(pyglet.window.Window):
 
     def keySignature(self): pass
     def scales(self):       pass
-
-    def toggleChordNames(self, how, every=0, rev=0, dbg=0):
-        if self.skeys:
+    ####################################################################################################################################################################################################
+    def toggleChordNames(self, how, every=0, rev=0, dbg=1):
+        if self.skeys and not every:
             if dbg: self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} skeys={fmtl(self.skeys)}')
             [ self.toggleChordName(how, self.cc2cn(k), rev) for k in self.skeys ]
         else:
@@ -1825,7 +1828,7 @@ class Tabs(pyglet.window.Window):
             if dbg: self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} cc={cc} cn={cn} mk={fmtl(mk)}')
             if not every: self.toggleChordName(how, cn, rev)
             else:         self.toggleMatchingChordNames(how, cn, rev)
-        if dbg: self.dumpSelectTabs(f'END {how} every={every} rev={rev}')
+        if dbg: self.dumpSelectTabs(f'END {how} every={every} rev={rev}     ')
 
     def toggleMatchingChordNames(self, how, cn='', rev=0, dbg=0, dbg2=0):
         mli = self.cobj.mlimap   ;   iks, others = [], []   ;   mk = list(self.cobj.mlimap.keys())
@@ -1837,7 +1840,8 @@ class Tabs(pyglet.window.Window):
         if matches:
             for i in matches:
                 if i in mk:
-                    v = mli[i]
+                    v = mli[i]   ;   self.log(f'selectig tabs i={i}')
+                    self.selectTabs(how, 0, i * len(self.stringNumbs))
                     if dbg2: [ self.log(f'i={i} {"".join(u[0]):16} {fmtl(u[1]):18} {u[2]:12} {fmtl(u[3]):18} {u[4]}') for u in v ]
                     self.toggleChordName(how, i, rev)
         if dbg: self.log(f'END cn={cn} rank={rank} mk={fmtl(mk)} iks={fmtl(iks)}')
@@ -1846,11 +1850,11 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'BGN rank={rank} iks={fmtl(iks)}')
         mli = self.cobj.mlimap   ;   matches = set()   ;   ranks = []   ;   msg = ''
         for k, v in mli.items():
-            _rank = []           ;   match = 0   ;   r = 0
+            _rank = []           ;   match = 0         ;   r = 0
             for u in v:
                 jk = ''.join(u[0])
                 for ik in iks:
-                    if jk == ik:    matches.add(k)   ;   _rank.append(u[4])   ;   match = 1   ;    break
+                    if jk == ik:     matches.add(k)    ;   _rank.append(u[4])   ;   match = 1   ;    break
             if match:
                 if _rank and _rank == rank: ranks.append(_rank)
                 else:
@@ -1864,28 +1868,14 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'END rank={rank} matches={fmtl(matches)} ranks={fmtl(ranks)}')
         return list(matches), ranks
 
-    def toggleChordName(self, how, key, rev=0, dbg=0):
-        if dbg: self.dumpSelectTabs(f'BGN {how} rev={rev} key={key}')
+    def toggleChordName(self, how, key, rev=0, dbg=1):
+        if dbg: self.dumpSelectTabs(f'BGN {how} rev={rev} key={key}       ')
         chordName, chunks = self.cobj.toggleChordName(key, rev)
         cc = self.cn2cc(key)
         if chordName and chunks: self.setChordName(chordName, chunks, cc)
         elif dbg: self.log(f'selected key={key} at cc={cc} is not a chord')
-        if dbg: self.dumpSelectTabs(f'END {how} rev={rev} key={key} cc={cc}')
+        if dbg: self.dumpSelectTabs(f'END {how} rev={rev} key={key} cc={cc:3}')
     ####################################################################################################################################################################################################
-    def dumpCursorArrows(self, how): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;   self.log(f'{how} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
-    def reverseArrow(self, dbg=1):
-        if dbg: self.dumpCursorArrows('reverseArrow()')
-        if self.csrMode == MELODY or self.csrMode == ARPG: self.toggleArrow('reverseArrow() MELODY or ARPG', v=0)
-        if self.csrMode == CHORD  or self.csrMode == ARPG: self.toggleArrow('reverseArrow() CHORD or ARPG',  v=1)
-        if dbg: self.dumpCursorArrows('reverseArrow()')
-    ####################################################################################################################################################################################################
-    def setCHVMode(self, how, c=None, h=None, v=None):
-        self.dumpCursorArrows(f'BGN {how} c={c} h={h} v={v}')
-        if c is not None: self.csrMode = c
-        if h is not None: self.hArrow  = h
-        if v is not None: self.vArrow  = v
-        self.dumpCursorArrows(f'END {how} c={c} h={h} v={v}')
-
     def toggleCursorMode(self, how):
         self.log(f'BGN {how} csrMode={self.csrMode}={CSR_MODES[self.csrMode]}')
         self.csrMode  = (self.csrMode + 1) % len(CSR_MODES)
@@ -1910,6 +1900,20 @@ class Tabs(pyglet.window.Window):
         self.tblank  =  self.tblanks[self.tblanki]
         self.swapTab(how, prevBlank, self.tblank)
         self.log(f'END {how}')
+    ####################################################################################################################################################################################################
+    def dumpCursorArrows(self, how): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;   self.log(f'{how} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
+    def reverseArrow(self, dbg=1):
+        if dbg: self.dumpCursorArrows('reverseArrow()')
+        if self.csrMode == MELODY or self.csrMode == ARPG: self.toggleArrow('reverseArrow() MELODY or ARPG', v=0)
+        if self.csrMode == CHORD  or self.csrMode == ARPG: self.toggleArrow('reverseArrow() CHORD or ARPG',  v=1)
+        if dbg: self.dumpCursorArrows('reverseArrow()')
+
+    def setCHVMode(self, how, c=None, h=None, v=None):
+        self.dumpCursorArrows(f'BGN {how} c={c} h={h} v={v}')
+        if c is not None: self.csrMode = c
+        if h is not None: self.hArrow  = h
+        if v is not None: self.vArrow  = v
+        self.dumpCursorArrows(f'END {how} c={c} h={h} v={v}')
     ####################################################################################################################################################################################################
     def eraseTabs(self, how): # , reset=0):
         np, nl, ns, nc, nt = self.n  ;  nc += CCC
