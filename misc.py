@@ -51,7 +51,7 @@ class Chord(object):
     def __init__(self, tobj, logfile):
         self.tobj    = tobj
         self.logFile = logfile
-        self.limap, self.mlimap, self.umap = [], {}, {}
+        self.limap, self.mlimap, self.umap, self.cycles = [], {}, {}, {}
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), dict()
 
@@ -67,7 +67,8 @@ class Chord(object):
             if omapK in Chord.OMAP:
                 rank = Chord.OMAP[omapK][0]    ;   imap[4] = rank
                 if dbg: self.log(f'omapk={omapK} intervals={tabs.fmtl(intervals)} rank={rank}')
-        self.limap.insert(rank, imap)  ;   self.dumpImap(imap, f'insert imap rank={rank}')
+        self.limap.append(imap)        ;   self.dumpImap(imap, f'append  imap rank={rank}')
+#        self.limap.insert(rank, imap)  ;   self.dumpImap(imap, f'insert imap rank={rank}')
         if dbg2:
             for i, m in enumerate(self.limap):
                 self.log(tabs.FMTR.format(f'  limap [{i+1}] [ <{m[2]:<6}> {tabs.fmtl(m[0], 2, "<", d1, d2):17} {tabs.fmtl(m[1], 2, "<", d1, d2):17} ]'))
@@ -91,6 +92,14 @@ class Chord(object):
                     if dbg: self.log(f'Inner Chord     [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ] {tabs.fmtl(chunks)}')
                     chordName, chunks               = self.updateImap(imap, chordName, chunks)
         self.limap.sort(key=lambda a: a[4])
+        if self.limap:
+            self.log(f'rank sorted limap:')
+#            [ self.log(f'{a[4]} {tabs.fmtl(self.INTERVAL_RANK[a[0]], z="x")} {tabs.fmtl(a[0])}', ind=0) for a in self.limap ]
+            for i in self.limap:
+                ii = []
+                for j in i[0]:
+                    ii.append(self.INTERVAL_RANK[j])
+                self.log(f'imap cycle rank {i[4]} {tabs.fmtl(ii, z="x"):13} {tabs.fmtl(i[0]):18} {tabs.fmtl(i[3]):18} {i[2]:12}', ind=0)
         if chordName:
             if dbg: self.log(f'Outer Chord     [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ] {tabs.fmtl(chunks)}')
             self.mlimap[cc]                         = self.limap
@@ -392,22 +401,30 @@ class Chord(object):
                     if v[0] >= len(self.tobj.stringNumbs): nord += 1
                 v2 = tabs.fmtl(v[2], sep='\',\'', d1='[\'', d2='\']),') if v[2] else '[]' if type(v[2]) is list else 'None),'
                 self.log(f'{keyStrFmt:19}: ({v[0]}, {tabs.fmtl(v[1], sep=",", d2="],"):15} {v2:26} # ', ind=0, file=file, end='')
+                cset =  set()   ;   cset.add(tuple(ii))
                 for _ in range(len(ii)-1):
                     ii = self.rotateIndices(ii)
                     keys = [ self.INTERVALS[i] for i in ii ]
-                    keyStr = ' '.join(keys)
-                    if keyStr not in omap: self.log(f'Not in Map: ', ind=0, end='', file=file)   ;   r[keyStr] = (rank, ii, None)
-                    self.log(f'{keyStr:16} {tabs.fmtl(ii, z="x"):13} ', ind=0, end='', file=file)
+                    keyStr = ' '.join(keys)   ;   ck = len(ii)   ;   jj = tuple(ii)    ;   cycle = 0
+                    if jj in cset:
+                        if ck not in self.cycles: self.cycles[ck] = set()
+                        self.cycles[ck].add(jj)   ;    cycle = 1
+                    cset.add(jj)    ;      d1 = '@' if cycle else '['    ;     d2 = '@' if cycle else ']'
+                    if keyStr not in omap:        self.log(f'Not in Map: ', ind=0, end='', file=file)     ;    r[keyStr] = (rank, ii, None)
+                    self.log(f'{keyStr:16} {tabs.fmtl(ii, z="x", d1=d1, d2=d2):13} ', ind=0, end='', file=file)
                 self.log(ind=0, file=file)
             if not catfile: mstat.append([k, count, nord, none])
+        for kk, w in self.cycles.items():
+            for c in tuple(sorted(w)):
+                keys = [ self.INTERVALS[j] for j in c ]   ;   key = ' '.join(keys)   ;   v = omap[key]
+                self.log(f'{kk:2} note cycle {v[0]:2} {tabs.fmtl(c, z="x"):13} {key:16} {"".join(v[2]):12} {v[2]}')
         if not catfile:
             for j in range(len(mstat)):
-                self.log(f' {mstat[j][0]} note chords  {mstat[j][1]:3} total  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
+                self.log(f'{mstat[j][0]:2} note chords  {mstat[j][1]:3} total  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
                 tstat[0] += mstat[j][0]   ;   tstat[1] += mstat[j][1]   ;   tstat[2] += mstat[j][2]   ;   tstat[3] += mstat[j][3]
         if catfile: self.log('END len(OMAP)={} catfile.name={} len(r)={}'.format(len(omap), name, len(r)))
         else: self.log(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}')
         return r
-
     ####################################################################################################################################################################################################
     #    0  1  2  3  4  5  6  7  8   9  10 11 0
     #    R  b2 2  m3 M3 4  b5 5  #5  6  b7 7  R
@@ -786,4 +803,16 @@ class Chord(object):
             'R M3 b5 5 6 7'    : (1, [0,4,6,7,9,11], ['M','13','#','11']),      # R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a]
             }
     ####################################################################################################################################################################################################
-#seperate M#
+    #################################
+    # index 3note 4note 5note 6note #
+    #   1     1     1     1     1   #
+    #   2     3     4     5     6   #
+    #   3     6    10    15    21   #
+    #   4    10    20    35    56   #
+    #   5    15    35    70   126   #
+    #   6    21    56   126   252   #
+    #   7    28    84   210   462   #
+    #   8    36   120   330         #
+    #   9    45   165               #
+    #  10    55                     #
+    #################################
