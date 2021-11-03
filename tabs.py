@@ -221,6 +221,7 @@ class Tabs(pyglet.window.Window):
         self.cpoLabel = ' CAPO '
         self.log(f'strLabel    = {self.strLabel}')
         self.log(f'cpoLabel    = {self.cpoLabel}')
+        self._initDataPath()
         if CAT: self.cobj.dumpOMAP(str(self.catPath))
         else:   self.cobj.dumpOMAP(None)
         self.csrMode, self.hArrow, self.vArrow  = CHORD, RIGHT, UP    ;    self.dumpCursorArrows('init()')
@@ -337,7 +338,7 @@ class Tabs(pyglet.window.Window):
         else:       return 0,                sum(self.J2[:4]) + sum(self.J2[4:8])
     def cnts(self): return self.J2[:8]  # self.log(f'J2({len(self.J2)}))={self.J2}')
     ####################################################################################################################################################################################################
-    def _init(self, dbg=0):
+    def _initDataPath(self):
         dataDir  = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
         baseName  = self.dfn if self.dfn else BASE_NAME + SFX + dataPfx + dataSfx
         dataName0 = baseName + '.jnc'
@@ -346,13 +347,18 @@ class Tabs(pyglet.window.Window):
         self.dataPath0 = BASE_PATH / dataDir / dataName0
         self.dataPath1 = BASE_PATH / dataDir / dataName1
         self.dataPath2 = BASE_PATH / dataDir / dataName2
-        self.log(f'BGN {self.fmtGeom()}', ind=0)
+#        self.log(f'BGN {self.fmtGeom()}', ind=0)
         self.log(f'dataName0 = {dataName0}')
         self.log(f'dataName1 = {dataName1}')
         self.log(f'dataName2 = {dataName2}')
         self.log(f'dataPath0 = {self.dataPath0}')
         self.log(f'dataPath1 = {self.dataPath1}')
         self.log(f'dataPath2 = {self.dataPath2}')
+
+    def _init(self, dbg=0):
+        self.ssi = 0
+        self._initTpz()
+        self._initDataPath()
         self.kp  = [VIOLETS[0], VIOLETS[12]] if CHECKER_BOARD else [VIOLETS[10]]
         self.kl  = [  BLUES[12],  BLUES[15]] if CHECKER_BOARD else [BLUES[12]]
         self.ks  = [   CYANS[12],   CYANS[15]] if CHECKER_BOARD else [CYANS[12]]
@@ -370,8 +376,6 @@ class Tabs(pyglet.window.Window):
         self.kll = [ REDS[0],  REDS[8]]  if CHECKER_BOARD else [REDS[0]]
         self.k   = [self.kp, self.kl, self.ks, self.kc, self.kt, self.kn, self.ki, self.kk, self.klc, self.klr, self.kll]
         [self.log(f'[{i}] {fmtl(*e)}') for i, e in enumerate(self.k)]
-        self.ssi = 0
-        self._initTpz()
         self.readDataFile()
         if AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer')
         self.labelTextA, self.labelTextB = [], []
@@ -1311,8 +1315,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'N' and self.isCtrl(     mods):    self.toggleTabs(      '@   N', NN)
         elif kbk == 'O' and self.isCtrlShift(mods):    self.toggleCursorMode('@ ^ O')
         elif kbk == 'O' and self.isCtrl(     mods):    self.toggleCursorMode('@   O')
-        elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@ ^ Q', save=0)
-        elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(            '@   Q', save=1)
+        elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@ ^ Q', code=1)
+        elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(            '@   Q', code=0)
         elif kbk == 'R' and self.isCtrlShift(mods):    self.toggleChordNames('@ ^ R', every=1)
         elif kbk == 'R' and self.isCtrl(     mods):    self.toggleChordNames('@   R', rev=0)
         elif kbk == 'S' and self.isCtrlShift(mods):    self.shiftTabs(       '@ ^ S')
@@ -2098,17 +2102,18 @@ class Tabs(pyglet.window.Window):
 #        print(f'{msg}', file=file, flush=flush, sep=sep, end=end) if ind else print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        if file != LOG_FILE: Tabs.log(msg, ind, flush=False, sep=',', end=end)
     ####################################################################################################################################################################################################
-    def quit(self, why='', save=1, dbg=0):
-        self.log('BGN')
-        if save:               self.saveDataFile(why, f=1)
-        if save and AUTO_SAVE: self.saveDataFile(why, f=0)
+    def quit(self, why='', code=1, dbg=0):
+        self.log(f'BGN {why} code={code}')
+        if not code and AUTO_SAVE: self.saveDataFile(why, f=0)
+        elif code == 1:               self.saveDataFile(why, f=1)
+#        elif AUTO_SAVE: self.saveDataFile(why, f=0)
         self.cobj.dumpMLimap(why)
 #        self.cobj.dumpCat(why)
         self.dumpJ('quit()')
-        self.cleanupCat()
+        if code != 2: self.cleanupCat()
         self.log(QUIT, ind=0)
         if dbg: self.dumpStruct('quit ' + why)
-        self.snapshot()
+        if code != 2: self.snapshot()
         self.log(QUIT, ind=0)
         if dbg:
             self.dumpStack(inspect.stack())
@@ -2118,10 +2123,10 @@ class Tabs(pyglet.window.Window):
         self.cleanupLog()
         exit()
 
-    def cleanupCat(self):
-        self.log('BGN')
-        if CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
-        else:   self.cobj.dumpOMAP(None, merge=1)
+    def cleanupCat(self, dump=1):
+        self.log(f'BGN dump={dump}')
+        if dump and CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
+        elif dump:   self.cobj.dumpOMAP(None, merge=1)
         if CAT:
             cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
             self.log(f' ***  copy {self.catPath} {cfp}  ***')
