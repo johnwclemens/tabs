@@ -451,7 +451,7 @@ class Tabs(pyglet.window.Window):
         with open(dataPath, 'w') as DATA_FILE:
             self._saveDataFile(how, DATA_FILE)
 
-    def _saveDataFile(self, how, file, dbg=0):
+    def _saveDataFile(self, how, file, dbg=1):
         if dbg: self.log(f'{how}')
         self.log(f'{file.name:40}', ind=0)
         np, nl, nc, nr = self.dl()  ;  nc += CCC
@@ -2104,13 +2104,12 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def quit(self, why='', code=1, dbg=0):
         self.log(f'BGN {why} code={code}')
-        if not code and AUTO_SAVE: self.saveDataFile(why, f=0)
-        elif code == 1:               self.saveDataFile(why, f=1)
-#        elif AUTO_SAVE: self.saveDataFile(why, f=0)
+        if       code and AUTO_SAVE: self.saveDataFile(why, f=0)
+        elif not code:               self.saveDataFile(why, f=1)
         self.cobj.dumpMLimap(why)
-#        self.cobj.dumpCat(why)
+        self.cobj.dumpInstanceCat(why)
         self.dumpJ('quit()')
-        if code != 2: self.cleanupCat()
+        self.cleanupCat(1 if code != 2 else 0)
         self.log(QUIT, ind=0)
         if dbg: self.dumpStruct('quit ' + why)
         if code != 2: self.snapshot()
@@ -2125,13 +2124,13 @@ class Tabs(pyglet.window.Window):
 
     def cleanupCat(self, dump=1):
         self.log(f'BGN dump={dump}')
-        if dump and CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
-        elif dump:   self.cobj.dumpOMAP(None, merge=1)
+        if   dump and CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
+        elif dump:         self.cobj.dumpOMAP(None, merge=1)
         if CAT:
             cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
             self.log(f' ***  copy {self.catPath} {cfp}  ***')
             os.system(f'copy {self.catPath} {cfp}')
-        self.log('END')
+        self.log(f'END dump={dump}')
 
     def cleanupLog(self):
         self.log(f'SEQ_LOG_FILES={SEQ_LOG_FILES}')
