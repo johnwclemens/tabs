@@ -102,8 +102,9 @@ class Chord(object):
                     if dbg: self.log(f'Inner Chord     [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ] {tabs.fmtl(chunks)}')
                     self.setLimap(imap, chordName, chunks)  #                    chordName, chunks               = self.updateImap(imap, chordName, chunks)
         if self.limap:
-            self.limap.sort(key=lambda a: a[4])
+            self.limap.sort(key=lambda a: a[4], reverse=1)
             self.log(f'rank sorted limap:')  #            [ self.log(f'{a[4]} {tabs.fmtl(self.INTERVAL_RANK[a[0]], z="x")} {tabs.fmtl(a[0])}', ind=0) for a in self.limap ]
+            self.mlimap[cc] = self.limap
             for i in self.limap:
                 ii = []
                 for j in i[0]:
