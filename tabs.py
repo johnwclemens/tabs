@@ -63,11 +63,12 @@ def dumpGlobals():
     Tabs.log(f'BASE_NAME = {BASE_NAME}')
     Tabs.log(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
-ARGS             = cmdArgs.parseCmdLine()  ;  DBG1 = 1  ;  DBG2 = 1  ;  DBG3 = 1
-AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
+ARGS             = cmdArgs.parseCmdLine()        ;  DBGA = 1  ;  DBGB = 1  ;  DBGC = 1
+AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_LOG_FILES = 1  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  IND = 0
 VRSN1            = 1  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
+####################################################################################################################################################################################################
 SFX              = f'.{SFX1}.{SFX2}.{SFX3}' if not ARGS['f'] else ''
 PATH             = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH        = PATH.parent
@@ -93,8 +94,9 @@ MELODY, CHORD, ARPG   = 0, 1, 2
 LEFT, RIGHT, UP, DOWN = 0, 1, 0, 1
 CSR_MODES        = ['MELODY', 'CHORD', 'ARPG']
 HARROWS, VARROWS = ['LEFT', 'RIGHT'], ['UP', 'DOWN']
-OPACITY          = [255, 240, 225, 210, 190, 165, 140, 110, 80]
+def TNIK(tnik): return tnik[TT], tnik[NN], tnik[KK]
 ####################################################################################################################################################################################################
+OPACITY          = [255, 240, 225, 210, 190, 165, 140, 110, 80]
 GRAY             = [(255, 255, 255, OPACITY[0]), ( 0,  0,  0, OPACITY[0])]
 PINK             = [(255,  64, 192, OPACITY[0]), (57, 16, 16, OPACITY[0])]
 INFRA_RED        = [(200, 100,  24, OPACITY[0]), (68, 20, 19, OPACITY[0])]
@@ -152,7 +154,7 @@ FONT_COLORS   =  FONT_COLORS_S if SPRITES else FONT_COLORS_L
 ####################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
     hideST2 = ['plct2cc']  #  <listcomp>?
-    hideST = ['log', 'dumpData', 'dumpSelectTabs', 'cc2plct', 'cursorCol', 'dumpCursorArrows', 'setCaption', 'dumpWBWAW', 'fmtGeom', 'dumpJ']
+    hideST = ['log', 'dumpData', 'dumpSelectTabs', 'cc2plct', 'cursorCol', 'dumpCursorArrows', 'setCaption', 'dumpWBWAW', 'dumpGeom', 'dumpJ', 'dumpGeom']
     def __init__(self):
         dumpGlobals()
         global FULL_SCREEN, ORDER_GROUP, SUBPIX
@@ -178,8 +180,7 @@ class Tabs(pyglet.window.Window):
         self.swapping = 0      ;   self.swapSrc = ''    ;   self.swapTrg=''
         self.dfn = ''
         self.n    = []
-#        self.TNIK = [0, 0, 0, 0]
-        self.TNIK = [1, 0, 0, 0]
+        self.TNIK = [1, 1, 0, 1]
         nt        = 6 if QQ else 6
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.ww, self.hh = 640, 480
@@ -207,7 +208,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[F]  FULL_SCREEN={FULL_SCREEN}')
         self.log(f'[g]  ORDER_GROUP={ORDER_GROUP}')
         self.log(f'[s]       SUBPIX={SUBPIX}')
-        self.n[S] = self.ss()  # self.ssc()
+        self.n[S] = self.ss()
         self.fontBold, self.fontItalic, self.fontColorIndex, self.fontDpiIndex, self.fontNameIndex, self.fontSize = 0, 0, 0, 4, 0, 48 if FULL_SCREEN else 14
         self.dumpFont()
         if    self.n[T] == 6: self.stringMap = collections.OrderedDict([('E2', 28), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52)])
@@ -227,8 +228,9 @@ class Tabs(pyglet.window.Window):
         self.log(f'strLabel    = {self.strLabel}')
         self.log(f'cpoLabel    = {self.cpoLabel}')
         self._initDataPath()
+#        self.cobj.dumpOMAP(str(self.catPath))
         if CAT: self.cobj.dumpOMAP(str(self.catPath))
-        else:   self.cobj.dumpOMAP(None)
+#        else:   self.cobj.dumpOMAP(None)
         self.csrMode, self.hArrow, self.vArrow  = CHORD, RIGHT, UP    ;    self.dumpCursorArrows('init()')
         self._initWindowA()
         super().__init__(screen=self.screens[1], fullscreen=FULL_SCREEN, resizable=True, visible=False)
@@ -264,7 +266,7 @@ class Tabs(pyglet.window.Window):
     def dumpGlobalFlags(self):
         txt1 = f'AUTO_SAVE={AUTO_SAVE} CAT={CAT} CHECKER_BOARD={CHECKER_BOARD} EVENT_LOG={EVENT_LOG} FULL_SCREEN={FULL_SCREEN} '
         txt2 = f'ORDER_GROUP={ORDER_GROUP} RESIZE={RESIZE} SEQ_LOG_FILES={SEQ_LOG_FILES} SUBPIX={SUBPIX} VERBOSE={VERBOSE}'
-        self.log(f'{txt1} {txt2} CCC={CCC}')
+        self.log(f'{txt1} {txt2} CCC={CCC}', ind=0)
 
     def _initWindowA(self, dbg=1):
         display      = pyglet.canvas.get_display()
@@ -315,27 +317,26 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def dumpObjs(objs, name, why=''): [Tabs.dumpObj(o, name, why) for o in objs]  # ;   [Tabs.log(f'{hex(id(o))} type={type(o)}', ind=0) for o in obj]   ;    Tabs.log(ind=0)
     def dumpWBWAW(self, why, before, what, after, why2=''): self.log(f'{why:<24} {before:>16} {what:^20} {after:<16} {why2}')
-    def ss(self,  dbg=0):   s = sum(self.TNIK)  ;                      self.log(f's={s}      TNIK={   fmtl(self.TNIK)} n={fmtl(self.n)}') if dbg else None   ;  return s
-#    def ssc(self, dbg=0):   s = self.ss()  ;  sc = s if s else 1   ;   self.log(f's={s} sc={sc} TNIK={fmtl(self.TNIK)} n={fmtl(self.n)}') if dbg else None   ;  return sc
+    def dumpWH(self): self.log(f'w={fmtl(self.w, w="7.2f", u=">")} h={fmtl(self.h, w="7.2f", u=">")}')
+    def ss(self, dbg=0):   s = sum(self.TNIK)  ;    self.log(f'{s} {fmtl(self.TNIK)} {fmtl(self.n)}') if dbg else None   ;   return s
     def tpz(self):   return self.tpp, self.tpl, self.tps, self.tpc
-    def lens(self):  return self.lenA(), self.lenB(), self.lenC(), self.lenD()
     def lenA(self):  return [len(e) for e in self.A]
     def lenB(self):  return [len(e) for e in self.B]
     def lenC(self):  return [len(e) for e in self.C]
     def lenD(self):  return [len(e) for e in self.D]
     def lenE(self):  return [len(e) for e in self.E]
     def initJ(self, why='init'): self.J1 = [0 for _ in self.E]     ;     self.J2 = [0 for _ in self.E]     ;   self.dumpJ(why)   ;   return self.J1, self.J2
-    def dumpJ(self, why):        self.log(f'J1 {fmtl(self.J1, w=JFMT, ll=1)} {sum(self.J1[:]):4}> {why}')  ;  self.log(f'J2 {fmtl(self.J2, w=JFMT, ll=1)} {sum(self.J2[:]):4}> {why}')
+#    def dumpJ(self, why):        self.log(f'J1 {fmtl(self.J1, w=JFMT)} {why}')                      ;  self.log(f'J2 {fmtl(self.J2, w=JFMT)} {why}')
+    def dumpJ(self, why):        self.log(f'J1 {fmtl(self.J1, w=JFMT)} {sum(self.J1[:]):4} {why}')  ;  self.log(f'J2 {fmtl(self.J2, w=JFMT)} {sum(self.J2[:]):4} {why}')
     def updateJs(self, i, v): self.J1[i] = v    ;    self.J2[i] += 1 # not used?
     def j(self):     return [ i-1 if i else 0 for i in self.i ]
     def j2(self):    return [ i-1 if i else 0 for k, i in enumerate(self.i)  if k != S ]
     def dl(self, data=None):
         if data is None: data = self.data
         return len(data), len(data[0]), len(data[0][0]), len(data[0][0][0])
+    def dumpGeom(self, why1='', why2=''):   e = self.lenE()[:-2]   ;   self.log(f'{why1} {QQ} {CCC} {fmtl(self.TNIK)} {self.ss()} {fmtl(self.n)} {fmtl(e)} {sum(e)} {why2}')
 
     def fmtDataDim(self, data=None): return '({} x {} x {} x {})'.format(*self.dl(data))
-    def fmtGeom(self): return f'{self.cc} {fmtl(self.i, FMTN)} {fmtl(self.n, FMTN)} {fmtl(self.lenA())} {sum(self.lenA())} {fmtl(self.lenB())} {sum(self.lenB())} {fmtl(self.lenC())} {sum(self.lenC())} {fmtl(self.lenD())} {sum(self.lenD())}'
-#    def fmtGeom(self): return '{} {} {} {} {} {} {} {} {} {} {}'.format(self.cc, fmtl(self.i, FMTN), fmtl(self.n, FMTN), fmtl(self.lenA()), sum(self.lenA()), fmtl(self.lenB()), sum(self.lenB()), fmtl(self.lenC()), sum(self.lenC()), fmtl(self.lenD()), sum(self.lenD()))
     def ordDict(self, od): self.log(f'{od.items()}')
 
     def ids(self):
@@ -352,7 +353,6 @@ class Tabs(pyglet.window.Window):
         self.dataPath0 = BASE_PATH / dataDir / dataName0
         self.dataPath1 = BASE_PATH / dataDir / dataName1
         self.dataPath2 = BASE_PATH / dataDir / dataName2
-#        self.log(f'BGN {self.fmtGeom()}', ind=0)
         self.log(f'dataName0 = {dataName0}')
         self.log(f'dataName1 = {dataName1}')
         self.log(f'dataName2 = {dataName2}')
@@ -361,6 +361,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'dataPath2 = {self.dataPath2}')
 
     def _init(self, dbg=0):
+        self.dumpGeom('BGN')
         self.ssi = 0
         self._initTpz()
         self._initDataPath()
@@ -379,7 +380,7 @@ class Tabs(pyglet.window.Window):
         self.klr = [    ORANGES[0],     ORANGES[8]] if CHECKER_BOARD else [    ORANGES[0]]
         self.klc = [      PINKS[0],       PINKS[8]] if CHECKER_BOARD else [      PINKS[0]]
         self.kll = [       REDS[0],        REDS[8]] if CHECKER_BOARD else [       REDS[0]]
-        self.k   = [self.kp, self.kl, self.ks, self.kc, self.kt, self.kn, self.ki, self.kk, self.klc, self.klr, self.kll]
+        self.k   = [ self.kp, self.kl, self.ks, self.kc, self.kt, self.kn, self.ki, self.kk, self.klc, self.klr, self.kll ]
         [ self.log(f'[{i:2}] {fmtl(*e):3}') for i, e in enumerate(self.k) ]
         self.readDataFile()
         if AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer')
@@ -393,15 +394,15 @@ class Tabs(pyglet.window.Window):
         self.llText.append(self.labelTextD)
         txt = ['    ', '  ', '']  ;  [ self.log(f'llText[{i}]={txt[i]}{fmtl(t)}', ind=0) for i, t in enumerate(self.llText) ]
         self.dumpJ('before create Sprites()' if SPRITES else 'before create Labels()')
-        self.log(f'self.w={fmtl(self.w)} self.h={fmtl(self.h)}')
-        self.smap = {}  ;  self.skeys = []   ;  self.ss() # self.ssc()
+        self.dumpWH()
+        self.smap = {}  ;  self.skeys = []   ;  self.ss()
         self.createSprites()                if SPRITES else self.createLabels()
-        self.log(f'self.w={fmtl(self.w)} self.h={fmtl(self.h)}')
+        self.dumpWH()
         self.dumpJ('after create Sprites()' if SPRITES else 'after create Labels()')
-        self.dumpLabels('new2')
+        if dbg: self.dumpLabels('new2')
         if self.TNIK[0]: self.createCursor(self.g[T + 3]) # fix g index
         if dbg: self.dumpStruct('_init()')
-        self.log(f'END {self.fmtGeom()}', ind=0)
+        self.dumpGeom('END')
     ####################################################################################################################################################################################################
     def autoSave(self, dt, how, dbg=0):
         if dbg: self.log(f'dt={dt:7.4f} {how} dataHasChanged={self.dataHasChanged}')
@@ -414,41 +415,41 @@ class Tabs(pyglet.window.Window):
             if dbg: self.log(f'armSnap={self.armSnap}')
             self.snapshot(self.armSnap)  ;  self.armSnap = ''
 
-    def on_resize(self, width, height):
+    def on_resize(self, width, height, dbg=0):
         super().on_resize(width, height)
         self.ww, self.hh = width, height
 #        if not RESIZE: return
-        self.log(f'BGN {self.fmtWH()} {fmtl(self.n)} {(fmtl(self.TNIK))} {self.fmtDataDim(self.data)}')   ;   why = 'resize'
-        self.log(f'self.w={fmtl(self.w)} self.h={fmtl(self.h)}')
+        self.log(f'BGN {self.fmtWH()} {fmtl(self.n)} {(fmtl(self.TNIK))} {self.fmtDataDim(self.data)} {fmtl(self.lenE()[:-2])} {sum(self.lenE()[:-2])}')   ;   why = 'resize'
+        self.dumpWH()
         self.initJ(f'BGN {why}')
         if RESIZE: self.resizeSprites() if SPRITES else self.resizeLabels()
         self.dumpJ(f'END {why}')
         if VERBOSE: self.dumpStruct2(why)
         self.resizeFonts()
-        if not self.cursor and self.tabs and self.TNIK[0]: self.createCursor(self.g[T + 3]) # fix g index
-        if self.cursor: self.log(f'{self.fmtTnik("RESIZ", -1, "CURS")}')   ;   self.resizeCursor()
+        if not self.cursor and self.tabs and self.TNIK[0]:  self.createCursor(self.g[T + 3]) # fix g index
+        elif self.cursor:                                   self.resizeCursor()
 #        self.snapshot()
-        self.dumpStruct(why)
+        if dbg: self.dumpStruct(why)
         self.setCaption(self.fmtf())
-        self.log(f'END {self.fmtWH()} {fmtl(self.n)} {(fmtl(self.TNIK))} {self.fmtDataDim(self.data)}')
+        self.log(f'END {self.fmtWH()} {fmtl(self.n)} {(fmtl(self.TNIK))} {self.fmtDataDim(self.data)} {fmtl(self.lenE()[:-2])} {sum(self.lenE()[:-2])}')
     ####################################################################################################################################################################################################
     def dumpStruct(self, why=''):
         self.log(f'BGN {why}')
 #        self.dumpData(why)
-        if SPRITES: self.dumpSprites()
+        if SPRITES: self.dumpSprites(why)
         self.dumpLabels(why)
 #        self.dumpTabs(why)
 #        self.dumpCols(why)
         self.log(f'END {why}')
 
     def dumpStruct2(self, why=''):
-        self.log(f'BGN {why}')
+        self.dumpGeom('BGN')
         self.dumpFont(why)
         self.dumpGlobalFlags()
-        self.log(f'{self.fmtGeom()}', ind=0)
+        self.dumpGeom('   ')
         self.log(f'{self.fmtDataDim(self.data)} {self.fmtDataDim(self.data)}')
         self.cobj.dumpMLimap(why)
-        self.log(f'END {why}')
+        self.dumpGeom('END')
     ####################################################################################################################################################################################################
     def saveDataFile(self, how, f=0, dbg=1):
         if dbg:   self.log(f'{how} f={f}')
@@ -642,30 +643,43 @@ class Tabs(pyglet.window.Window):
         self.log(f'texts={fmtl(texts)}', ind=0)
         self.dumpLabelText(texts)
     ####################################################################################################################################################################################################
-    def hideLabels(self, p, t, r1, r2=0, r3=1):
+    def hideLabels(self, p, t, r1, r2=0, r3=1, dbg=0):
         for j in range(r1, r2, r3):
-            if len(p) > j: self.log(f'{j+1:3} {r2:3} {r3:3} hide {p[j].text} ', ind=0, end='')   ;   self.hideLabel(p, j, t)
+            text = p[j].text if not SPRITES else ''
+            if len(p) > j: self.log(f'{j+1:3} {r2:3} {r3:3} hide {text} ', ind=0, end='') if dbg else None   ;   self.hideLabel(p, j, t)
             else:          self.quit(f'ERROR index j={j+1} >= len(p)={len(p)} t={t} r1,2,3={r1} {r2} {r3}')
-    def fmtTnik(self, pfx='', tnik=-1, msg=''): return f'QQ={QQ} CCC={CCC} {pfx:5} {tnik} {fmtl(self.TNIK)} {sum(self.TNIK)} {msg:4} {fmtl(self.n)} {fmtl(self.lenE())}'
     ####################################################################################################################################################################################################
     def toggleTabs(self, how, tnik):
-        self.log(f'BGN {self.fmtTnik(how, tnik)}')
-        if   not self.TNIK[tnik] and not self.B[tnik]: msg = 'SHOW'   ;   self.showTabs(how, tnik)
-        elif     self.TNIK[tnik]:                      msg = 'HIDE'   ;   self.hideTabs(how, tnik)
-        else:                                          msg = 'SKIP'   ;   self.log(f'SKP {self.fmtTnik(how, tnik, msg)}') # ;   return
-        self.log(f'BFR {self.fmtTnik(how, tnik, msg)}')
+        """
+        msg = f'tnik={tnik}'
+        self.dumpGeom('BGN', how)
+        self.dumpGeom('BFR', msg)
         self.TNIK[tnik] = not self.TNIK[tnik]    ;    self.n[S] = self.ss()
-        self.log(f'AFT {self.fmtTnik(how, tnik, msg)}')
-        self.on_resize(self.ww, self.hh)
-        self.log(f'END {self.fmtTnik(how, tnik, msg)}')
+        self.dumpGeom('AFT', msg)
+        if       self.TNIK[tnik] and not self.B[tnik]: msg = 'SHOW '   ;   self.showTabs(tnik)
+        elif     self.n[S]:                            msg = 'HIDE '   ;   self.hideTabs(tnik)
+        else:                                          msg = 'SKIP '   ;   self.dumpGeom('   ', msg)
+        """
+#        how += f' tnik={tnik}'
+        self.dumpGeom('BGN', how)
+        if   not self.TNIK[tnik] and not self.B[tnik]: msg = 'SHOW '   ;   self.showTabs(tnik)
+        elif     self.TNIK[tnik]:                      msg = 'HIDE '   ;   self.hideTabs(tnik)
+        else:                                          msg = 'SKIP '   ;   self.dumpGeom('   ', msg)
+        msg += f'tnik={tnik}'
+        self.dumpGeom('BFR', msg)
+        self.TNIK[tnik] = not self.TNIK[tnik]    ;    self.n[S] = self.ss()
+        self.dumpGeom('AFT', msg)
+#        """
+        self.on_resize(self.ww, self.hh, dbg=1)
+        self.dumpGeom('END', msg)
 
-    def hideTabs(self, how, tnik):
-        tabs = self.B[tnik]  ;  stnik = sum(self.TNIK)   ;   msg = "HIDE"
+    def hideTabs(self, tnik):
+        tabs = self.B[tnik]  ;  stnik = self.ss()   ;   msg = f'HIDE tnik={tnik}'
         ttype = 'Tab' if tnik == TT  else 'Note' if tnik == NN else 'Chord' if tnik == KK else '???'
         np, nl, ns, nc, nt = self.n
         ns2 = nl * stnik     ;    ns3 = ns2 - nl
         nc2 = nc * ns2       ;    nc3 = nc2 - nc2 // nl
-        self.log(f'BGN {self.fmtTnik(how, tnik, msg)}')
+        self.dumpGeom('BGN', msg)
 #        for s in range(ns2-1, ns2-nl-1, -1):
 #            self.hideLabel(self.sects, s, 'Sect', dbg=dbg)
 #        for c in range(nc2-1, nc2-(len(self.cols)//nl)-1, -1):
@@ -714,32 +728,34 @@ class Tabs(pyglet.window.Window):
                     for z in range(nt-1, -1, -1):
                         self.hideLabel(self.lstrs, z + l * nt, 'LStr')
         """
-        self.snapshot(f'hideTabs() {self.fmtTnik(how, tnik, msg)}')
-        self.log(f'END {self.fmtTnik(how, tnik, msg)}')
+        self.snapshot(f'hideTabs() {fmtl(self.TNIK)} {msg}')
+        self.dumpGeom('END', msg)
 
-    def NEW_showTabs(self, tnik):
-        tabs = self.B[tnik]   ;   stnik = sum(self.TNIK)   ;   tnikB = S # tnik + len(self.B)
-        ttype = 'Tab' if tnik == TT  else 'Note' if tnik == NN else 'Chord' if tnik == KK else '???'
-        self.log(f'BGN QQ={QQ} CCC={CCC} tnik={tnik} stnik={stnik} {fmtl(self.TNIK)} len({ttype})={len(tabs)} len(lines)={len(self.lines)} len(sects)={len(self.sects)} tnikB={tnikB}')
-#        for i in range(len(self.lines)):
-#            self.g_createLabels(self.lines[i], tnikB, self.sects, dbg=1, dbg2=1)
-        for i in range(len(self.cols)):
-            self.g_createLabels2(self.cols[i], dbg=1, dbg2=1)
-            self.log(f'{i} len(cols)={len(self.cols)}')
-        self.log(f'END QQ={QQ} CCC={CCC} tnik={tnik} stnik={stnik} {fmtl(self.TNIK)} len({ttype})={len(tabs)} len(lines)={len(self.lines)} len(sects)={len(self.sects)} tnikB={tnikB}')
-
-    def showTabs(self, how, tnik, dbg=0):
-        np, nl, ns, nc, nt = self.n           ;  tabs = self.B[tnik]  # ;   stnik = sum(self.TNIK)
+    def OLD2_showTabs(self, tnik, dbg=1):
+        tabs = self.B[tnik]   ;   tnikB = tnik + len(self.B)  # ;   stnik = self.ss()
+#        ttype = 'Tab' if tnik == TT  else 'Note' if tnik == NN else 'Chord' if tnik == KK else '???'
+        ks  = self.ks       ;   kc = self.kc  ;   msg = f'SHOW tnik={tnik}'
+        k = [self.kt, self.kn, self.ki, self.kk]
+        self.dumpGeom('BGN', msg)
+        for i in range(self.n[L]):
+            self.showLabel(i, self.sects, j=S, g=self.g[S], k=ks, dbg=dbg)
+            for j in range(self.n[C]):
+                self.showLabel(j, self.cols, j=C, g=self.g[C], k=kc, dbg=dbg)
+                for kk in range(self.n[T]):
+                    self.showLabel(kk, tabs, j=tnikB, g=self.g[T], k=k[tnik], dbg=dbg)
+        self.dumpGeom('END', msg)
+    def OLD_showTabs(self, tnik, dbg=1, dbg2=0):
+        np, nl, ns, nc, nt = self.n           ;  tabs = self.B[tnik]
         nt2 = nl * nc * nt  ;  nc2 = nl * nc  ;  ns2 = nl    ;   tnikB = tnik + len(self.B)   ;   chunks = []
-        ks  = self.ks       ;   kc = self.kc  ;   msg = 'SHOW' #  ;  chordName = ''
+        ks  = self.ks       ;   kc = self.kc  ;   msg = f'SHOW tnik={tnik}'
         k = [self.kt, self.kn, self.ki, self.kk]
         ttype = 'Tab' if tnik == TT  else 'Note' if tnik == NN else 'Chord' if tnik == KK else '???'  # ;  t, c, s = 0, 0, 0
-        self.log(f'BGN {self.fmtTnik(how, tnik, msg)}')
-        self.log(f'ns2={ns2} nt2={nt2} nc2={nc2} len({ttype})={len(tabs)}')
+        self.dumpGeom('BGN', msg)
+        if dbg2: self.log(f'ns2={ns2} nt2={nt2} nc2={nc2} len({ttype})={len(tabs)}')
         for s in range(ns2):
-            self.showLabel(s, p=self.sects, j=S, g=self.g[S], k=ks)
+            self.showLabel(s, p=self.sects, j=S, g=self.g[S], k=ks, dbg=dbg)
         for c in range(nc2):
-            self.showLabel(c, p=self.cols,  j=C,  g=self.g[C], k=kc)
+            self.showLabel(c, p=self.cols,  j=C,  g=self.g[C], k=kc, dbg=dbg)
         for t in range(nt2):
             tt, p, l, cc = t % nt, t // nt2, t // (nc * nt), (t // nt) % nc
             tab = self.data[p][l][cc][tt]
@@ -748,29 +764,29 @@ class Tabs(pyglet.window.Window):
             chord = chunks[tt] if len(chunks) > tt else self.nblank
 #            chord = chordName[tt] if len(chordName) > tt else self.nblank
             text  = tab if tnik == TT else note if tnik == NN else chord if tnik == KK else '???'
-            if dbg: self.log(f'({t} {tt} {p} {l} {cc} {text:2} {tab} {note:2} {chord:2}) ', ind=0, end='')
-            self.showLabel(tt, p=tabs, j=tnikB, g=self.g[T], t=text, k=k[tnik])
-        self.snapshot(f'showTabs() {self.fmtTnik(how, tnik, msg)}')
-        self.log(f'END {self.fmtTnik(how, tnik, msg)}')
+            if dbg2: self.log(f'({t} {tt} {p} {l} {cc} {text:2} {tab} {note:2} {chord:2}) ', ind=0, end='')
+            self.showLabel(tt, p=tabs, j=tnikB, g=self.g[T], t=text, k=k[tnik], dbg=dbg)
+        self.snapshot(f'showTabs() {fmtl(self.TNIK)} {msg}')
+        self.dumpGeom('END', msg)
     ####################################################################################################################################################################################################
     def toggleRLCols(self, how):
-        self.log(f'BGN {self.fmtTnik(how, -1)}')
-        self.log(f'BFR {self.fmtTnik(how, -1)}')
+        self.dumpGeom('BGN', how)
+        self.dumpGeom('BFR')
         global CCC  ;  CCC = (CCC + 1) % 3
-        self.log(f'AFT {self.fmtTnik(how, -1)}')
+        self.dumpGeom('AFT')
         show = 1 if (CCC == 1 and (not self.lenC()[0] or not self.lenC()[1])) or (CCC == 2 and (not self.lenC()[2])) else 0
-        if show: msg = 'SHOW'   ;   self.showRLCols(how)
-        else:    msg = 'HIDE'   ;   self.hideRLCols(how)
-        self.log(f'{self.fmtTnik(how, -1, msg)}')
-        self.on_resize(self.ww, self.hh)
-        self.log(f'END {self.fmtTnik(how, -1, msg)}')
+        if show: msg = 'SHOW '   ;   self.showRLCols()
+        else:    msg = 'HIDE '   ;   self.hideRLCols()
+        self.dumpGeom('RSZ', msg)
+        self.on_resize(self.ww, self.hh, dbg=1)
+        self.dumpGeom('END', msg)
 
-    def showRLCols(self, how, dbg=1):
+    def showRLCols(self, dbg=1):
         why, text, plist = 'show ', '???', []
-        np, nl, ns, nc, nt = self.n   ;   v = 1   ;   msg = 'SHOW'  # ;   l, s, c, t = 0, 0, 0, 0
-        tt, nn, kkk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]
+        np, nl, ns, nc, nt = self.n   ;   v = 1   ;   msg = 'SHOW '  # ;   l, s, c, t = 0, 0, 0, 0
+        tt, nn, kkk = TNIK(self.TNIK)
         kt2, kn2, kk2 = self.kt2, self.kn2, self.kk2   ;   kc = self.kc   ;   kk, kl = kc, kt2
-        self.log(f'BGN {self.fmtTnik(how, -1, msg)}')
+        self.dumpGeom('BGN', msg)
         for l in range(nl):
             for s in range(ns):
                 c = CCC - 1   ;   self.J1[C] = c  ;   j = C
@@ -790,15 +806,15 @@ class Tabs(pyglet.window.Window):
                         if   c == C1: text = self.strLabel[t]       ;  plist = self.lstrs  ;  kl = kk2  ;  kk = self.cci(t, kl)  ;  j = F
                         elif c == C2: text = self.cpoLabel[t]       ;  plist = self.lcaps  ;  kl = kk2  ;  kk = self.cci(t, kl)  ;  j = G
                         self.createLabel(p=plist, j=j, x=0, y=0, w=0, h=0, kk=kk, g=self.g[T], why=why, t=text, kl=kl, dbg=dbg)
-        self.snapshot(f'showRLCols() {self.fmtTnik(how, -1, msg)}')
-        self.log(f'END {self.fmtTnik(how, -1, msg)}')
+        if DBGA: self.snapshot(f'showRLCols() {fmtl(self.TNIK)} {msg}')
+        self.dumpGeom('END', msg)
 
-    def hideRLCols(self, how, dbg=1):
+    def hideRLCols(self, dbg=1):
 #        np, nl, ns, nc, nt = self.n   ;   cols = self.cols   ;   nc = len(cols)   ;   l, s, c = 0, 0, 0   ;  sno, sna, capA, capB, lstr, lcap = 0, 0, 0, 0, 0, 0
 #        cc = 2 # if CCC else 1
         snos, snas, capsA, capsB, lstrs, lcaps = self.snos, self.snas, self.capsA, self.capsB, self.lstrs, self.lcaps   ;   cols = self.cols
-        cc = 2 if CCC else 1   ;   np, nl, ns, nc, nt = self.n   ;   nc = len(cols)   ;   nc2 = nc - (cc * ns * nl)   ;   msg = 'HIDE'
-        self.log(f'BGN {self.fmtTnik(how, -1, msg)}')
+        cc = 2 if CCC else 1   ;   np, nl, ns, nc, nt = self.n   ;   nc = len(cols)   ;   nc2 = nc - (cc * ns * nl)   ;   msg = 'HIDE '
+        self.dumpGeom('BGN', msg)
         """
         for c in range(nc-1, nc - (cc * ns * nl) - 1, -1):
             self.hideLabel(cols, c,   t='Col', dbg=dbg)
@@ -823,36 +839,37 @@ class Tabs(pyglet.window.Window):
         self.hideLabels(lstrs, 'LStr', len(lstrs)-1,    -1, -1)
         self.hideLabels(lcaps, 'LCap', len(lcaps)-1,    -1, -1)
         if dbg: self.snapshot(f'hideRLCols() QQ={QQ} CCC={CCC}') # l={l} s={s} c={c}  sno={sno} sna={sna} capA={capA} capB={capB} lstr={lstr} lcap={lcap}')
-        self.log(f'END {self.fmtTnik(how, -1, msg)}')
+        self.dumpGeom('END', msg)
     ####################################################################################################################################################################################################
     def toggleLLRows(self, how):
         global QQ  ;  old = QQ  ;  QQ = not QQ
-        self.log(f'BGN {how} old QQ={old} new QQ={QQ} CCC={CCC}')  ;  self.log(f'llText={fmtl(self.llText[CCC])}')
-        if QQ and not self.lrows: self.showLLRows(how)
-        else:                     self.hideLLRows(how)
-        self.log(f'    {how} old QQ={old} new QQ={QQ} CCC={CCC}')  ;  self.log(f'llText={fmtl(self.llText[CCC])}')
-        self.on_resize(self.ww, self.hh)
-        self.log(f'END {how} old QQ={old} new QQ={QQ} CCC={CCC}')  ;  self.log(f'llText={fmtl(self.llText[CCC])}')
+        self.dumpGeom('BGN', how)
+        self.log(f'BGN old QQ={old} new QQ={QQ} CCC={CCC}')  ;  self.log(f'llText={fmtl(self.llText[CCC])}')
+        if QQ and not self.lrows: self.showLLRows()
+        else:                     self.hideLLRows()
+        self.log(f'    old QQ={old} new QQ={QQ} CCC={CCC}')  ;  self.log(f'llText={fmtl(self.llText[CCC])}')
+        self.on_resize(self.ww, self.hh, dbg=1)
+        self.log(f'END old QQ={old} new QQ={QQ} CCC={CCC}')  ;  self.log(f'llText={fmtl(self.llText[CCC])}')
+        self.dumpGeom('END', how)
 
-    def showLLRows(self, how, dbg=0):
-        l = 0   ;   msg = 'SHOW'
-        self.log(f'BGN {self.fmtTnik(how, -1, msg)}')
-        self.log(f'BGN QQ={QQ} CCC={CCC}')
+    def showLLRows(self, dbg=0):
+        l = 0   ;   msg = 'SHOW '
+        self.dumpGeom('BGN', msg)
         for l in range(len(self.lines)):
             self.createLLRow(self.lines[l], l)
-        if dbg: self.snapshot(f'showLLRows() l={l} {self.fmtTnik(how, -1, msg)}')
-        self.log(f'END {self.fmtTnik(how, -1, msg)}')
+        if dbg: self.snapshot(f'showLLRows() l={l} {fmtl(self.TNIK)} {msg}')
+        self.dumpGeom('END', msg)
 
-    def hideLLRows(self, how, dbg=0):
-        nr = len(self.lrows)    ;  nc = len(self.lcols)   ;   msg = 'HIDE'   ;   assert not nc % nr
+    def hideLLRows(self, dbg=0):
+        nr = len(self.lrows)    ;  nc = len(self.lcols)   ;   msg = 'HIDE '   ;   assert not nc % nr
         nc = nc // nr  #  normalize
-        self.log(f'BGN {self.fmtTnik(how, -1, msg)}')
+        self.dumpGeom('BGN', msg)
         for rr in range(nr):
             self.hideLabel(self.lrows, rr, 'LLR')
             for cc in range(nc):
                 self.hideLabel(self.lcols, cc + rr * nc, 'LLC')
-        if dbg: self.snapshot(f'hideLLRows() {self.fmtTnik(how, -1, msg)}')
-        self.log(f'END {self.fmtTnik(how, -1, msg)}')
+        if dbg: self.snapshot(f'hideLLRows() {fmtl(self.TNIK)} {msg}')
+        self.dumpGeom('END', msg)
     ####################################################################################################################################################################################################
 #        nt = self.n[T]   ;   ntl = nt * j1l  #        nl, il, xl, yl, wl, hl, gl, mx, my = self.geom(p=p, j=L)
 #        if   type(p) is pyglet.text.Label:    p.y -= hl/2   ;   p.height *= ntl / (ntl + 1) / j1l   ;   self.log(f'ntl={ntl:2} jil={j1l} p.y = {p.y:7.2f} p.h = {p.height:7.2f}', ind=0)
@@ -862,14 +879,14 @@ class Tabs(pyglet.window.Window):
 #            if not CCC and c == 0:  self.hideLabel(self.lcols, sc-1, f'Hide LLC {sc}')  #            if CCC == 1 and c == 1: self.hideLabel(self.lcols, sc-1, f'Hide LLC {sc}')
 #        if   type(p) is pyglet.text.Label:    p.y -= hr/2   ;   p.height *= ntl / (ntl + 1) / j1l   ;   self.log(f'ntl={ntl:2} p.y = {p.y:7.2f} p.h = {p.height:7.2f}', ind=0)
 #        elif type(p) is pyglet.sprite.Sprite: my = (p.height - hr)/self.h[L]   ;   p.scale_y = my   ;   self.log(f'ntl={ntl:2} h[L]={self.h[L]} my={my:7.5f} p.y={p.y:7.2f} p.h={p.height:7.2f}', ind=0)
-    def createLLRow(self, p, pi, dbg=1, dbg2=1):
+    def createLLRow(self, p, pi, dbg=1, dbg2=0):
         klr = self.klr  ;  klc = self.klc  ;  kkr = self.cci(pi, klr) #        kll = self.kl   ;   klk = self.cci(pi, kll)
-        nn1 = 1 + self.n[T] * self.i[L]
-        nr, ir, xr, yr, wr, hr, gr, mx, my = self.geom(p=p, j=S, nn=nn1, dbg=1)
+        nn1 = 1 + self.n[T] * self.ss() * self.i[L]
+        nr, ir, xr, yr, wr, hr, gr, mx, my = self.geom(p=p, j=S, nn=nn1, dbg=dbg2)
         if SPRITES: xr += wr/2  ;  yr += hr/2
         self.J1[LLR] = pi   ;   nn2 = self.n[C]
         row = self.createLabel(self.lrows, LLR, xr, yr, wr, hr, kkr, gr, why='new ', kl=klr, dbg=dbg)
-        nc, ic, xc, yc, wc, hc, gc, mx, my = self.geom(p=row, j=C, nn=nn2, dbg=1)   ;  sc = nc * pi
+        nc, ic, xc, yc, wc, hc, gc, mx, my = self.geom(p=row, j=C, nn=nn2, dbg=dbg2)   ;  sc = nc * pi
         if SPRITES: xc += wc/2
         for c in range(nc):
             kkc = self.cci(pi, klc)
@@ -877,22 +894,21 @@ class Tabs(pyglet.window.Window):
             text = self.llText[CCC] # index?
             txt = text[c] if text and len(text) >= c else ''
             self.createLabel(self.lcols, LLC, xc + c*wc, yc, wc, hc, kkc, gc, why='new ', t=txt, kl=klc, dbg=dbg)
-        if dbg2: self.log(f'pi={pi:3} px={p.x:7.2f} py={p.y:7.2f} pw={p.width:7.2f} ph={p.height:7.2f} nn1={nn1} nn2={nn2}', ind=0)
-        if dbg2: self.log(f'nr={nr:3} xr={xr:7.2f} yr={yr:7.2f} wr={wr:7.2f} hr={hr:7.2f} row.y={row.y:7.2f} row.h={row.height:7.2f}', ind=0)
-        if dbg2: self.log(f'nc={nc:3} xc={xc:7.2f} yc={yc:7.2f} wc={wc:7.2f} hc={hc:7.2f} sc={sc}', ind=0)
-        if   type(p) is pyglet.text.Label:    p.y, p.height = self.squeeze(p.y, p.height, 1+self.n[T]*self.i[L])   ;   self.log(f'ntl={nn1:2} p.y = {p.y:7.2f} p.h = {p.height:7.2f}', ind=0)
-        elif type(p) is pyglet.sprite.Sprite:   my = (p.height - hr)/self.h[L]    ;   p.scale_y = my   ;   self.log(f'ntl={nn1:2} h[L]={self.h[L]} my={my:7.5f} p.y={p.y:7.2f} p.h={p.height:7.2f}', ind=0)
+        if dbg: self.log(f'pi={pi:3} px={p.x:7.2f} py={p.y:7.2f} pw={p.width:7.2f} ph={p.height:7.2f} nn1={nn1} nn2={nn2}', ind=0)
+        if dbg: self.log(f'nr={nr:3} xr={xr:7.2f} yr={yr:7.2f} wr={wr:7.2f} hr={hr:7.2f} row.y={row.y:7.2f} row.h={row.height:7.2f}', ind=0)
+        if dbg: self.log(f'nc={nc:3} xc={xc:7.2f} yc={yc:7.2f} wc={wc:7.2f} hc={hc:7.2f} sc={sc}', ind=0)
+        if   type(p) is pyglet.text.Label:    p.y, p.height = self.squeeze(p.y, p.height, 1 + self.n[T]*self.ss()*self.i[L])   ;   self.log(f'nn1={nn1:2} nn2={nn2:2} p.y = {p.y:7.2f} p.h = {p.height:7.2f}', ind=0) if dbg else None
+        elif type(p) is pyglet.sprite.Sprite: my = (p.height - hr)/self.h[L]   ;   p.scale_y = my    ;   self.log(f'nn1={nn1:2} nn2={nn2:2} h[L]={self.h[L]} my={my:7.5f} p.y={p.y:7.2f} p.h={p.height:7.2f}', ind=0) if dbg else None
         return p
 
-    def resizeLLRow(self, p, pi, dbg=1, dbg2=1):
-        nn1 = self.n[T] * self.ss()
-        nt = self.n[T]   ;   j1l = self.J1[L] + 1   ;   ntl = nt * j1l
-        nr, ir, xr, yr, wr, hr, gr, mxr, myr = self.geom(p=p, j=S, nn=nn1, dbg=1)
+    def resizeLLRow(self, p, pi, dbg=0, dbg2=0):
+        nn1 = 1 + self.n[T] * self.ss() * self.i[L]
+        nr, ir, xr, yr, wr, hr, gr, mxr, myr = self.geom(p=p, j=S, nn=nn1, dbg=dbg2)
         if SPRITES: xr += wr/2  ;  yr += hr/2
         self.J1[LLR] = 0   ;   self.J2[LLR] += 1   ;   nn2 = self.n[C]
         row = self.lrows[pi]    ;    row.width = wr  ;   row.height = hr  ;   row.x = xr  ;   row.y = yr
         if dbg: self.dumpLabel(row, *self.ids(), *self.cnts(), why=f'mod LLR {pi+1}')
-        nc, ic, xc, yc, wc, hc, gc, mxc, myc = self.geom(p=row, j=C, nn=nn2, dbg=0)   ;   sc = nc * pi
+        nc, ic, xc, yc, wc, hc, gc, mxc, myc = self.geom(p=row, j=C, nn=nn2, dbg=dbg2)   ;   sc = nc * pi
         if SPRITES: xc += wc/2
         for c in range(nc):
             self.J1[LLC] = c   ;   self.J2[LLC] += 1
@@ -901,10 +917,11 @@ class Tabs(pyglet.window.Window):
             col.text = self.llText[CCC][c]        ;   sc += 1
             col.width = wc   ;   col.height = hc  ;   col.x = xc + c * wc  ;  col.y = yc
             if dbg: self.dumpLabel(col, *self.ids(), *self.cnts(), why=f'mod LLC {sc}')
-        if dbg2: self.log(f'pi={pi:3} px={p.x:7.2f} py={p.y:7.2f} pw={p.width:7.2f} ph={p.height:7.2f} nn1={nn1} nn2={nn2}', ind=0)
-        if dbg2: self.log(f'nr={nr:3} xr={xr:7.2f} yr={yr:7.2f} wr={wr:7.2f} hr={hr:7.2f} row.y={row.y:7.2f} row.h={row.height:7.2f}', ind=0)
-        if dbg2: self.log(f'nc={nc:3} xc={xc:7.2f} yc={yc:7.2f} wc={wc:7.2f} hc={hc:7.2f} sc={sc} nt={nt} j1l={j1l} ntl={ntl}', ind=0)
-        if   type(p) is pyglet.text.Label:    p.y, p.height = self.squeeze(p.y, p.height, 1+self.n[T]*self.i[L])   ;   self.log(f'ntl={nn1:2} p.y = {p.y:7.2f} p.h = {p.height:7.2f}', ind=0)
+        if dbg: self.log(f'pi={pi:3} px={p.x:7.2f} py={p.y:7.2f} pw={p.width:7.2f} ph={p.height:7.2f} nn1={nn1} nn2={nn2}', ind=0)
+        if dbg: self.log(f'nr={nr:3} xr={xr:7.2f} yr={yr:7.2f} wr={wr:7.2f} hr={hr:7.2f} row.y={row.y:7.2f} row.h={row.height:7.2f}', ind=0)
+        if dbg: self.log(f'nc={nc:3} xc={xc:7.2f} yc={yc:7.2f} wc={wc:7.2f} hc={hc:7.2f} sc={sc}', ind=0)
+        if   type(p) is pyglet.text.Label:    p.y, p.height = self.squeeze(p.y, p.height, 1 + self.n[T]*self.ss()*self.i[L])   ;   self.log(f'nn1={nn1:2} nn2={nn2:2} p.y = {p.y:7.2f} p.h = {p.height:7.2f}', ind=0) if dbg else None
+        elif type(p) is pyglet.sprite.Sprite: my = (p.height - hr)/self.h[L]   ;   p.scale_y = my   ;      self.log(f'nn1={nn1:2} nn2={nn2} h[L]={self.h[L]} my={my:7.5f} p.y={p.y:7.2f} p.h={p.height:7.2f}', ind=0) if dbg else None
         return p
 #        if   type(p) is pyglet.text.Label:    p.y -= hr/2   ;   p.height *= ntl / (ntl + 1) / j1l   ;   self.log(f'ntl={ntl:2} p.y = {p.y:7.2f} p.h = {p.height:7.2f}', ind=0)
 #        elif type(p) is pyglet.sprite.Sprite: my = (p.height - hr)/self.h[L]   ;   p.scale_y = my   ;   self.log(f'ntl={ntl:2} h[L]={self.h[L]} my={my:7.5f} p.y={p.y:7.2f} p.h={p.height:7.2f}', ind=0)
@@ -913,7 +930,7 @@ class Tabs(pyglet.window.Window):
     def geom(self, p=None, j=0, init=0, nn=0, dbg=0):
         mx, my = -1, -1   ;  dbz = 0  ;   msg = ''  ;  iw, ih =  self.w[j], self.h[j]
         n, i, x, y, w, h, g = self.n[j], self.i[j], self.x[j], self.y[j], self.w[j], self.h[j], self.g[j]
-        if   n == 0:            n = 1        ;     dbz = 1   ;  msg  = 'WARN set n=0 -> n=1 -> n=0'
+        if   n == 0:            n = 1        ;     dbz = 1   ;  msg  = f'WARN j={j} setting n=0 -> n=1 -> n=0'
         if   nn:                n = nn
 #        if   j >= T:            n += QQ
         if   j == C:            n += CCC
@@ -931,84 +948,101 @@ class Tabs(pyglet.window.Window):
             else:               x += w/2                     ;  y = p.y + p.height/2 - h/2
         if init:                self.w[j] = w                ;  self.h[j] = h  # if not nn and init:
         elif iw and ih:         mx = w/iw                    ;  my = h/ih
-        if   dbz:               n = 0                        ;  self.log(msg, ind=0,  end='')
-        if   dbz or dbg: self.dumpGeom(j, n, i, x, y, w, h, mx, my, iw, ih, nn, p)
+        if   dbz:               n = 0                        ;  self.log(msg, ind=0)
+        if   dbz or dbg: self._dumpGeom(j, n, i, x, y, w, h, mx, my, iw, ih, nn, p)
         return n, i, x, y, w, h, g, mx, my
     ####################################################################################################################################################################################################
-    def dumpGeom(self, j, n, i, x, y, w, h, mx, my, iw, ih, nn, p):
+    def _dumpGeom(self, j, n, i, x, y, w, h, mx, my, iw, ih, nn, p):
         px, py, pw, ph = None, None, None, None
         if p: px, py, pw, ph = p.x, p.y, p.width, p.height
 #        else: px, py, pw, ph = None, None, None, None
 #        self.log(f'  {j}  {n:3} {i:4}   {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {mx:6.3f} {my:6.3f}  {iw:7.2f} {ih:7.2f} {nn} geom', ind=0, file=sys.stdout)
 #        self.log(FMTR.format('    geom      {}  {:3}  {:4}            {:7.2f} {:7.2f} {:7.2f} {:7.2f} {:5.3f} {:5.3f}  {:7.2f} {:7.2f} {}', j, n, i, x, y, w, h, mx, my, iw, ih, nn), ind=0)
 #        self.log(FMTR.format(f'    geom      {j}  {n:3}  {i:4}            {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {mx:5.3f} {my:5.3f}  {iw:7.2f} {ih:7.2f} {nn}'), ind=0)
-        if p: self.log(FMTR.format(f'  {j}  {n:3} {i:4}   {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {mx:6.3f} {my:6.3f}  {iw:7.2f} {ih:7.2f} {nn:3} {JTEXTS[j]:6} {px:7.2f} {py:7.2f} {pw:7.2f} {ph:7.2f}'), ind=0) # , file=sys.stdout)
-        else: self.log(FMTR.format(f'  {j}  {n:3} {i:4}   {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {mx:6.3f} {my:6.3f}  {iw:7.2f} {ih:7.2f} {nn:3} {JTEXTS[j]:6}'), ind=0) # , file=sys.stdout)
+        if p: self.log(FMTR.format(f'  {j}  {n:3} {i:4}   {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {mx:6.3f} {my:6.3f}  {iw:7.2f} {ih:7.2f} {nn:3} {JTEXTS[j]:6} {px:7.2f} {py:7.2f} {pw:7.2f} {ph:7.2f}'), ind=0, file=sys.stdout)
+        else: self.log(FMTR.format(f'  {j}  {n:3} {i:4}   {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {mx:6.3f} {my:6.3f}  {iw:7.2f} {ih:7.2f} {nn:3} {JTEXTS[j]:6}'), ind=0, file=sys.stdout)
 #        self.log(f'  {j}  {n:3} {i:4}   {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {mx:6.3f} {my:6.3f}  {iw:7.2f} {ih:7.2f} {nn:3} {JTEXTS[j]} {px:7.2f} {py:7.2f} {pw:7.2f} {ph:7.2f}', ind=0, file=sys.stdout)
     ####################################################################################################################################################################################################
     def squeeze(self, y, h, a):  self.log(f'y={y:6.2f} h={h:6.2f} a={a}', end=' ')  ;  b = h/a  ;  h -= b  ;  y -= b/2  ;  self.log(f' b={b:6.2f} y={y:6.2f} h={h:6.2f}', ind=0)  ;  return y, h
+    def tti(self, dbg=0):
+        tt, nn, kk = TNIK(self.TNIK)   ;   s = self.J1[S]  ;  self.log(f'{s} {self.J1[S]} {self.ss()} {fmtl(self.TNIK)} {tt} {nn} {kk}') if dbg else None
+#        return TT if tt and s == 1 else NN if nn and ((s == 2 and tt) or (s == 1 and not tt)) else KK if kk and ((s == 3 and  tt and nn) or (s == 2 and tt or nn) or (s == 2 and not tt and not nn)) else -1
+        return TT if tt and s == 0 else NN if nn and ((s == 1 and tt) or (s == 0 and not tt)) else KK if kk and ((s == 2 and  tt and nn) or (s == 1 and tt or nn) or (s == 0 and not tt and not nn)) else -1
+#    def dumpS(self): self.log(f'{self.ss()} {fmtl(self.TNIK)} {fmtl(self.n)} {self.J1[S]} {self.J2[S]}')
+    def showTabs(self, tnik):
+        lines = self.lines   ;   n = self.n[C]   ;   msg = f'SHOW tnik={tnik}'
+        self.dumpGeom('BGN', msg)
+        for i, line in enumerate(lines):
+            self.J1[S] = tnik
+            for sect in      self.g_createLabels(lines[i], S, self.sects, nn=1):
+                for col in   self.g_createLabels(sect,     C, self.cols,  nn=n):
+                    for _ in self.g_createLabels2(col):
+                        pass
+        self.dumpGeom('END', msg)
     ####################################################################################################################################################################################################
-    def createLabels(self, dbg=1, dbg2=0):
-        self.log(f'BGN {self.fmtGeom()}', ind=0)
-        if dbg: self.dumpLabel()
-        for p, page in                  enumerate(self.g_createLabels(None, P, self.pages, dbg=dbg, dbg2=dbg2)):
-            for l, line in              enumerate(self.g_createLabels(page, L, self.lines, dbg=dbg, dbg2=1)):
-                for s, sect in          enumerate(self.g_createLabels(line, S, self.sects, dbg=dbg, dbg2=1)):
-                    for c, col in       enumerate(self.g_createLabels(sect, C, self.cols,  dbg=dbg, dbg2=1)):
-                        for t, lbl in   enumerate(self.g_createLabels2(col)):
-                            if dbg > 1: self.log(f'lbl.y={lbl.y}')
-        if dbg: self.dumpLabel()
-        self.log(f'END {self.fmtGeom()}', ind=0)
+    def createLabels(self):
+        self.dumpGeom('BGN')
+        self.dumpLabel()
+        for page in              self.g_createLabels(None, P, self.pages):
+            for line in          self.g_createLabels(page, L, self.lines):
+                for sect in      self.g_createLabels(line, S, self.sects):
+                    for col in   self.g_createLabels(sect, C, self.cols):
+                        for _ in self.g_createLabels2(col):
+                            pass
+        self.dumpLabel()
+        self.dumpGeom('END')
 
-    def g_createLabels(self, p, j, lablist, dbg=1, dbg2=1):
-        n, i, x, y, w, h, g, mx, my = self.geom(p=p, j=j, init=1, dbg=1)   ;   kl = self.k[j]   ;  x2 = x  ;  y2 = y
-#        if QQ and j == L:      a = self.n[T] * self.i[L] + 1  ;  y, h = self.squeeze(y, h, a)   ;   self.log(f'nt={self.n[T]} i[L]={self.i[L]} a={a} y={y:6.2f} h={h:6.2f}') if dbg2 else None
-        for m in range(n):  #        if QQ and j == L and sum(self.TNIK):  h *= ntl / (ntl + 1) / j1l   ;   y -= h/2
+    def g_createLabels(self, p, j, lablist, nn=0, dbg=1, dbg2=0): # if QQ and j == L:  a = self.n[T] * self.i[L] + 1  ;  y, h = self.squeeze(y, h, a)  ;  self.log(f'nt={self.n[T]} i[L]={self.i[L]} a={a} y={y:6.2f} h={h:6.2f}') if dbg2 else None
+        n, i, x, y, w, h, g, mx, my = self.geom(p=p, j=j, init=1, nn=nn, dbg=dbg2)   ;   kl = self.k[j]   ;  x2 = x  ;  y2 = y
+        for m in range(n):
             if   j == C: x2 = x + m * w
             elif p:      y2 = y - m * h
             self.J1[j] = m
+            if nn:         self.J2[j] = len(self.E[j])
             lbl = self.createLabel(p=lablist, j=j, x=x2, y=y2, w=w, h=h, kk=self.cci(j, kl), g=g, why='new ', kl=kl, dbg=dbg)
             if QQ and j == L: self.createLLRow(lbl, m)
             yield lbl
     ####################################################################################################################################################################################################
     def g_createLabels2(self, col, dbg=1, dbg2=0):
-        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;  tt, nn, kkk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]   ;   chunks = []
-        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)   ;   kt, kn, kk = self.kt, self.kn, self.kk    ;   kt2, kn2, kk2 = self.kt2, self.kn2, self.kk2
+        tt, nn, kkk = TNIK(self.TNIK)
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;   chunks = []
+        kt, kn, kk = self.kt, self.kn, self.kk                        ;   kt2, kn2, kk2 = self.kt2, self.kn2, self.kk2
+        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)
         for t in range(nt):
-            why = 'new '   ;   stnik = sum(self.TNIK)
+            why = 'new '   ;   stnik = self.ss()
             if   self.tti() == TT: # tt and s == 0:
-                if   CCC     and c == C1:  tab = self.stringNumbs[t] ;  plist = self.snos   ;  kl = kt2  ;  k = self.cci(t, kl)  ;  j = O
-                elif CCC > 1 and c == C2:  tab = self.stringCapo[t]  ;  plist = self.capsA  ;  kl = kt2  ;  k = self.cci(t, kl)  ;  j = D
-                else:               tab = self.data[p][l][c-CCC][t]  ;  plist = self.tabs   ;  kl = kt   ;  k = self.cci(t, kl)  ;  j = T
+                if   CCC     and c == C1:  tab = self.stringNumbs[t]  ;  plist = self.snos   ;  kl = kt2  ;  k = self.cci(t, kl)  ;  j = O
+                elif CCC > 1 and c == C2:  tab = self.stringCapo[t]   ;  plist = self.capsA  ;  kl = kt2  ;  k = self.cci(t, kl)  ;  j = D
+                else:               tab = self.data[p][l][c-CCC][t]   ;  plist = self.tabs   ;  kl = kt   ;  k = self.cci(t, kl)  ;  j = T
                 if self.isNBTab(tab):     self.tabCols.add(self.plc2cn(p, l, c))
                 self.createLabel(plist,  j, xt, yt - t*ht, wt, ht, k, gt, why=why, t=tab, kl=kl, dbg=dbg)  ;  yield tab
             elif self.tti() == NN: # nn and (s == 1 or (s == 0 and not tt)):
-                if   CCC     and c == C1: note = self.stringNames[t] ;  plist = self.snas   ;  kl = kn2  ;  k = self.cci(t, kl)  ;  j = A
-                elif CCC > 1 and c == C2: note = self.stringCapo[t]  ;  plist = self.capsB  ;  kl = kn2  ;  k = self.cci(t, kl)  ;  j = E
-                else:               tab = self.data[p][l][c-CCC][t]  ;  plist = self.notes  ;  kl = kn   ;  k = self.cci(t, kl)  ;  j = N  ;  note = self.getNoteName(t, tab) if self.isFret(tab) else self.nblank
+                if   CCC     and c == C1: note = self.stringNames[t]  ;  plist = self.snas   ;  kl = kn2  ;  k = self.cci(t, kl)  ;  j = A
+                elif CCC > 1 and c == C2: note = self.stringCapo[t]   ;  plist = self.capsB  ;  kl = kn2  ;  k = self.cci(t, kl)  ;  j = E
+                else:               tab = self.data[p][l][c-CCC][t]   ;  plist = self.notes  ;  kl = kn   ;  k = self.cci(t, kl)  ;  j = N  ;  note = self.getNoteName(t, tab) if self.isFret(tab) else self.nblank
                 self.createLabel(plist,  j, xt, yt - t*ht, wt, ht, k, gt, why=why, t=note, kl=kl, dbg=dbg) ;  yield note
             elif self.tti() == KK: # kkk and (s == 2 or (s == 1 and (not tt or not nn)) or (s == 0 and (not tt and not nn))):
-                if   CCC     and c == C1: chord = self.strLabel[t]   ;  plist = self.lstrs  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = F
-                elif CCC > 1 and c == C2: chord = self.cpoLabel[t]   ;  plist = self.lcaps  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = G
+                if   CCC     and c == C1: chord = self.strLabel[t]    ;  plist = self.lstrs  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = F
+                elif CCC > 1 and c == C2: chord = self.cpoLabel[t]    ;  plist = self.lcaps  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = G
                 else:
                     if not t: chordName, chunks = self.cobj.getChordName(p, l, c-CCC)
                     chord = chunks[t] if len(chunks) > t else self.nblank   ;   j = K
                     plist = self.chords  ;  kl = kk   ;   k = self.cci(t, kl)
                 self.createLabel(plist,  j, xt, yt - t*ht, wt, ht, k, gt, why=why, t=chord, kl=kl, dbg=dbg)  ;  yield chord
             elif not stnik and not s: self.log(f'WARN skip s={s} {fmtl(self.TNIK)} stnik={stnik}') if dbg2 else None
-            else: msg = f'ERROR tti={self.tti()} s={s} n={fmtl(self.n)} {fmtl(self.TNIK)} {sum(self.TNIK)} tt nn kk={int(tt)} {int(nn)} {int(kkk)} {fmtl(self.lenE())}'   ;   self.log(msg)  ;  self.quit(msg) #  yield None
+            else: msg = f'ERROR tti={self.tti()} s={s} n={fmtl(self.n)} {fmtl(self.TNIK)} {self.ss()} tt nn kk={int(tt)} {int(nn)} {int(kkk)} {fmtl(self.lenE())}'  ;  self.log(msg)  ;  self.quit(msg) #  yield None
     ####################################################################################################################################################################################################
-    def createSprites(self, dbg=1, dbg2=0):
-        self.log(f'BGN {self.fmtGeom()}', ind=0)  ;  v = 0
+    def createSprites(self, dbg=1):
+        self.dumpGeom('BGN')  ;  v = 0
         if dbg: self.dumpLabel()  ;  self.dumpSprite()
-        for p, (page, v) in             enumerate(self.g_createSprites(None, P, self.pages, v, dbg=dbg, dbg2=dbg2)):
-            for l, (line, _) in         enumerate(self.g_createSprites(page, L, self.lines, v, dbg=dbg, dbg2=dbg2)):
-                for s, (sect, _) in     enumerate(self.g_createSprites(line, S, self.sects, v, dbg=dbg, dbg2=dbg2)):
-                    for c, (col, _) in  enumerate(self.g_createSprites(sect, C, self.cols,  v, dbg=dbg, dbg2=dbg2)):
-                        for t, lbl in   enumerate(self.g_createLabels2(col)):
-                            if dbg > 1: self.log(f'lbl.y={lbl.y}')
+        for page, v in             self.g_createSprites(None, P, self.pages, v):
+            for line, _ in         self.g_createSprites(page, L, self.lines, v):
+                for sect, _ in     self.g_createSprites(line, S, self.sects, v):
+                    for col, _ in  self.g_createSprites(sect, C, self.cols,  v):
+                        for _ in   self.g_createLabels2(col):
+                            pass
         if dbg: self.dumpSprite()  ;  self.dumpLabel()
-        self.log(f'END {self.fmtGeom()}', ind=0)
+        self.dumpGeom('END')
 
     def g_createSprites(self, p, j, sprlist, v, dbg=1, dbg2=0):
         n, i, x, y, w, h, g, mx, my = self.geom(p=p, j=j, init=1, dbg=dbg2)  ;  x2 = x  ;  y2 = y  ;  kl=self.k[j]
@@ -1021,24 +1055,20 @@ class Tabs(pyglet.window.Window):
             if QQ and j == L: self.createLLRow(spr, m)
             yield spr, v
     ####################################################################################################################################################################################################
-    def resizeLabels(self, dbg=1):
-        self.log(f'BGN {self.fmtGeom()}', ind=0)
+    def resizeLabels(self, dbg=0):
+        self.dumpGeom('BGN')
         if dbg: self.dumpLabel()
-        for p, page in                  enumerate(self.g_resizeLabels(None, P, self.pages, why=JTEXTS[P])):
-            for l, line in              enumerate(self.g_resizeLabels(page, L, self.lines, why=JTEXTS[L])):
-                for s, sect in          enumerate(self.g_resizeLabels(line, S, self.sects, why=JTEXTS[S])):
-                    for c, col in       enumerate(self.g_resizeLabels(sect, C, self.cols,  why=JTEXTS[C])):
-                        for t, lbl in   enumerate(self.g_resizeLabels2(col)):
-                            if dbg > 1: self.log(f'lbl.y={lbl.y}')
+        for page in              self.g_resizeLabels(None, P, self.pages, why=JTEXTS[P]):
+            for line in          self.g_resizeLabels(page, L, self.lines, why=JTEXTS[L]):
+                for sect in      self.g_resizeLabels(line, S, self.sects, why=JTEXTS[S]):
+                    for col in   self.g_resizeLabels(sect, C, self.cols,  why=JTEXTS[C]):
+                        for _ in self.g_resizeLabels2(col):
+                            pass
         if dbg: self.dumpLabel()
-        self.log(f'END {self.fmtGeom()}', ind=0)
+        self.dumpGeom('END')
 
-    def g_resizeLabels(self, p, j, lablist, why, dbg=1, dbg2=0):
+    def g_resizeLabels(self, p, j, lablist, why, dbg=0, dbg2=0):#        if j >= T: n += QQ   ;   self.log(f'j={j} n={n} ')
         n, i, x, y, w, h, g, mx, my = self.geom(p=p, j=j, dbg=dbg2)  ;  x2 = x  ;  y2 = y
-        nt = self.n[T]   ;   j1l = self.J1[L] + 1   ;   ntl = nt * j1l
-#        if j >= T: n += QQ   ;   self.log(f'j={j} n={n} ')
-#        if QQ and j == L and sum(self.TNIK):  h *= ntl / (ntl + 1) / j1l   ;   y -= h/2
-        self.log(f'nt={nt} j1l={j1l} ntl={ntl} y={y} h={h}') if dbg2 else None
         for m in range(n):
             if   j == C: x2 = x + m * w
             elif p:      y2 = y - m * h
@@ -1048,34 +1078,31 @@ class Tabs(pyglet.window.Window):
             if dbg: self.dumpLabel(lbl, *self.ids(), *self.cnts(), why=f'mod {why} {self.J2[j]}')
             if QQ and j == L: self.resizeLLRow(lbl, m)
             yield lbl
-    def tti(self):
-        tt, nn, kk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]    ;   s = self.J1[S]  # sum(self.TNIK)   # ;   s = self.n[S]   # ;   s = self.J1[S]  # ;   self.log(f'{sum(self.TNIK)} {fmtl(self.TNIK)} {tt} {nn} {kk}') if dbg else None
-        return TT if tt and not s else NN if nn and ((s == 1 and tt) or (s == 0 and not tt)) else KK if kk and ((s == 2 and  tt and nn) or (s == 1 and tt or nn) or (s == 0 and not tt and not nn)) else -1
     ####################################################################################################################################################################################################
-    def g_resizeLabels2(self, col, dbg=1, dbg2=0):
-        stnik = sum(self.TNIK)
+    def g_resizeLabels2(self, col, dbg=0, dbg2=0):
+        stnik = self.ss()
         n, i, x, y, w, h, g, mx, my = self.geom(p=col, j=T, dbg=dbg2)  ;  lbl = None
-        tt,     nn,      kk         = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]
+        tt,     nn,      kk         = TNIK(self.TNIK)
         p,       l,    s,    c      = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
         st,     sn,   si,   sk      = self.J2[T], self.J2[N], self.J2[I], self.J2[K]
         ssno, ssna, scapA, scapB, slstr, slcap = self.J2[O], self.J2[A], self.J2[D], self.J2[E], self.J2[F], self.J2[G]
         for t in range(n):
             why = 'mod '
-            if   tt and s == 0: # self.tti() == TT:
+            if   self.tti() == TT:  # tt and s == 0::
                 if   CCC     and c == C1:   tab = self.snos[ssno]     ;   ssno += 1  ;  why += f'SNo {ssno}'
                 elif CCC > 1 and c == C2:   tab = self.capsA[scapA]   ;  scapA += 1  ;  why += f'CapA {scapA}'
                 else:                       tab = self.tabs[st]       ;     st += 1  ;  why += f'Tab {st}'
                 tab.width = w    ;   tab.height = h   ;   tab.x = x   ;  tab.y = y - t * h  ;  lbl = tab
                 self.J1[T] = t   ;  self.J2[T] = st   ;  self.J2[O] = ssno  ;  self.J2[D] = scapA
                 if dbg:   self.dumpLabel(  lbl, *self.ids(), *self.cnts(), why=why)
-            elif nn and ((s == 1 and tt) or (s == 0 and not tt)): # self.tti() == NN:
+            elif self.tti() == NN:  # nn and ((s == 1 and tt) or (s == 0 and not tt)):
                 if   CCC     and c == C1:  note = self.snas[ssna]     ;  ssna += 1  ;  why += f'SNam {ssna}'
                 elif CCC > 1 and c == C2:  note = self.capsB[scapB]   ; scapB += 1  ;  why += f'CapB {scapB}'
                 else:                      note = self.notes[sn]      ;    sn += 1  ;  why += f'Note {sn}'
                 note.width = w   ;  note.height = h   ;   note.x = x  ;    note.y = y - t * h  ;  lbl = note
                 self.J1[N] = t   ;  self.J2[N] = sn   ;  self.J2[A] = ssna  ;  self.J2[E] = scapB
                 if dbg:   self.dumpLabel( lbl, *self.ids(), *self.cnts(), why=why)
-            elif kk and ((s == 2 and  tt and nn) or (s == 1 and tt or nn) or (s == 0 and not tt and not nn)): # self.tti() == KK:
+            elif self.tti() == KK:  # kk and ((s == 2 and  tt and nn) or (s == 1 and tt or nn) or (s == 0 and not tt and not nn)):
                 if   CCC     and c == C1: chord = self.lstrs[slstr]   ;  slstr += 1  ;  why += f'LStr {slstr}'
                 elif CCC > 1 and c == C2: chord = self.lcaps[slcap]   ;  slcap += 1  ;  why += f'LCap {slcap}'
                 else:                     chord = self.chords[sk]     ;     sk += 1  ;  why += f'Chord {sk}'
@@ -1087,16 +1114,16 @@ class Tabs(pyglet.window.Window):
             yield lbl
     ####################################################################################################################################################################################################
     def resizeSprites(self, dbg=VERBOSE):
-        self.log(f'BGN {self.fmtGeom()}', ind=0)
+        self.dumpGeom('BGN')
         if dbg: self.dumpSprite()
-        for p, page in                enumerate(self.g_resizeSprites(None, P, self.pages, why=JTEXTS[P])):
-            for l, line in            enumerate(self.g_resizeSprites(page, L, self.lines, why=JTEXTS[L])):
-                for s, sect in        enumerate(self.g_resizeSprites(line, S, self.sects, why=JTEXTS[S])):
-                    for c, col in     enumerate(self.g_resizeSprites(sect, C, self.cols,  why=JTEXTS[C])):
-                        for t, lbl in enumerate(self.g_resizeLabels2(col)):
-                            if dbg > 1: self.log(f'lbl.y={lbl.y}')
+        for page in              self.g_resizeSprites(None, P, self.pages, why=JTEXTS[P]):
+            for line in          self.g_resizeSprites(page, L, self.lines, why=JTEXTS[L]):
+                for sect in      self.g_resizeSprites(line, S, self.sects, why=JTEXTS[S]):
+                    for col in   self.g_resizeSprites(sect, C, self.cols,  why=JTEXTS[C]):
+                        for _ in self.g_resizeLabels2(col):
+                            pass
         if dbg: self.dumpLabel()  ;  self.dumpSprite()
-        self.log(f'END {self.fmtGeom()}', ind=0)
+        self.dumpGeom('END')
 
     def g_resizeSprites(self, p, j, sprlist, why, dbg=VERBOSE, dbg2=0):
         nn = self.n[j] if QQ else 0
@@ -1143,12 +1170,12 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpLabel(lbl, *self.ids(), *self.cnts(), why)
         return lbl
     ####################################################################################################################################################################################################
-    def showLabel(self, i, p, j, g, t='', k=None, v=1, dbg=1):
+    def showLabel(self, i, p, j, g, t='', k=None, v=1, dbg=0):
         why = 'show '   ;   self.J1[j] = i  # ;  self.J2[j] += 1
         if   SPRITES and j < T: self.createSprite(p=p, j=j, x=0, y=0, w=self.w[j], h=self.h[j], kk=self.cci(i, k), g=g, why=why, kl=k, v=v, dbg=dbg)
         else:                   self.createLabel( p=p, j=j, x=0, y=0, w=0,         h=0,         kk=self.cci(i, k), g=g, why=why, t=t, kl=k, dbg=dbg)
 
-    def hideLabel(self, p, j, t='', dbg=1): #        c = self.E[j][n]
+    def hideLabel(self, p, j, t='', dbg=0): #        c = self.E[j][n]
         c = p[j]    ;    ha = hasattr(c, 'text')
         x, y, w, h = c.x, c.y, c.width, c.height
         text = c.text if ha else ''
@@ -1158,7 +1185,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpSprites(self, why=''):
         self.initJ(why)
-        self.log(f'BGN {self.fmtGeom()} {why}', ind=0)
+        self.dumpGeom('BGN', why)
         np, nl, ns, nc, nt = self.n    ;    i, sp, sl, ss, sc = 0, 0, 0, 0, 0
         self.log(f'BGN plsct {np} {nl} {ns} {nc} {nt}')
         self.dumpSprite()
@@ -1172,12 +1199,11 @@ class Tabs(pyglet.window.Window):
                         sc += 1       ;   self.J1[C] = sc  ;  self.J2[C] += 1  ;  self.dumpSprite(self.sprites[i], *self.ids(), *self.cnts(), why=f'{why} Col {sc}' ) ; i += 1
         self.dumpSprite()             ;   self.dumpJ(why)
         self.log(f'END plsct {np} {nl} {ns} {nc} {nt}')
-        self.log(f'END {self.fmtGeom()} {why}',ind=0)
+        self.dumpGeom('END', why)
 
     def dumpTabs(self, why='', dbg=VERBOSE):
         self.initJ(why)
-        self.log('BGN')
-        if dbg: self.log(f'BGN {self.fmtGeom()} {why}', ind=0)
+        if dbg: self.dumpGeom('BGN', why)
         st, sn, sk = 0, 0, 0   ;   np, nl, ns, nc, nt = self.n   # ;   nc += CCC
         self.dumpLabel()
         for p in range(np):
@@ -1189,27 +1215,23 @@ class Tabs(pyglet.window.Window):
                             elif s == 1:  self.dumpLabel(self.notes[sn],  *self.ids(), *self.cnts(), why=f'{why} Note {sn}')   ;  sn += 1
                             elif s == 2:  self.dumpLabel(self.chords[sk], *self.ids(), *self.cnts(), why=f'{why} Chord {sk}')  ;  sk += 1
         self.dumpLabel()   ;   self.dumpJ(why)
-        if dbg: self.log(f'END {self.fmtGeom()} {why}', ind=0)
-        self.log('END')
+        if dbg: self.dumpGeom('END', why)
 
     def dumpCols(self, why='', dbg=VERBOSE):
         self.initJ(why)
-        self.log('BGN')
-        if dbg: self.log(f'BGN {self.fmtGeom()} {why}', ind=0)
+        if dbg: self.dumpGeom('BGN', why)
         self.dumpLabel()
         for i in range(len(self.cols)):
             if SPRITES: self.dumpSprite(self.cols[i], *self.ids(), *self.cnts(), why=f'{why} Col {i+1}')
             else:       self.dumpLabel( self.cols[i], *self.ids(), *self.cnts(), why=f'{why} Col {i+1}')
         self.dumpLabel()   ;   self.dumpJ(why)
-        if dbg: self.log(f'END {self.fmtGeom()} {why}', ind=0)
-        self.log('END')
+        if dbg: self.dumpGeom('END', why)
 
-    def dumpLabels(self, why='', dbg=VERBOSE):
+    def dumpLabels(self, why='', dbg=0):
         self.initJ(why)
-        np, nl, ns, nc, nt = self.n  ;  nc += CCC   # ;   tt, nn, kk = self.TNIK[TT], self.TNIK[NN], self.TNIK[KK]
+        np, nl, ns, nc, nt = self.n  ;  nc += CCC  #  ;   tt, nn, kk = TNIK(self.TNIK)
         i, sp, sl, ss, sc, st, sn, si, sk = 0, 0, 0, 0, 0, 0, 0, 0, 0   ;   sqr, sqc = 0, 0
-        self.log(f'BGN n={fmtl(self.n)} TNIK={fmtl(self.TNIK)} {fmtl(self.lenE())}')
-        if dbg: self.log(f'BGN {self.fmtGeom()} {why}', ind=0)
+        self.dumpGeom('BGN', f'{why} n={fmtl(self.n)} TNIK={fmtl(self.TNIK)}')
         self.dumpLabel()
         if SPRITES:
             for p in range(np):
@@ -1236,14 +1258,14 @@ class Tabs(pyglet.window.Window):
                     for s in range(ns):
                         ss += 1                        ;   self.J1[S] = ss  ;  self.J2[S] += 1  ;  self.dumpLabel(self.labels[i], *self.ids(), *self.cnts(), why=f'{why} Sect {ss}')   ;  i += 1
                         for c in range(nc):
-                            sc += 1                    ;   self.J1[C] = sc  ;  self.J2[C] += 1  ;  self.dumpLabel(self.labels[i], *self.ids(), *self.cnts(), why=f'{why} Col {sc}')    ;  i += 1
+                            sc += 1                    ;   self.dumpGeom(f'i={i} sc={sc} s={s}') if dbg else None  ;  self.J1[C] = sc  ;  self.J2[C] += 1  ;  self.dumpLabel(self.labels[i], *self.ids(), *self.cnts(), why=f'{why} Col {sc}')   ;  i += 1
                             for t in range(nt):
                                 if   s == 0:  st += 1  ;   self.J1[T] = st  ;  self.J2[T] += 1  ;  self.dumpLabel(self.labels[i], *self.ids(), *self.cnts(), why=f'{why} Tab {st}')    ;  i += 1
                                 elif s == 1:  sn += 1  ;   self.J1[N] = sn  ;  self.J2[N] += 1  ;  self.dumpLabel(self.labels[i], *self.ids(), *self.cnts(), why=f'{why} Note {sn}')   ;  i += 1
                                 elif s == 2:  sk += 1  ;   self.J1[K] = sk  ;  self.J2[K] += 1  ;  self.dumpLabel(self.labels[i], *self.ids(), *self.cnts(), why=f'{why} Chord {sk}')  ;  i += 1
                                 else: self.log(f'ERROR {i} tti={self.tti()} n={fmtl(self.n)} {fmtl(self.TNIK)} {p}/{np} {l}/{nl} {s}/{ns} {c}/{nc} {t}/{nt} {fmtl(self.lenE())}')
         self.dumpLabel()   ;   self.dumpJ(why)
-        if dbg: self.log(f'END {self.fmtGeom()} {why}', ind=0)
+        if dbg: self.dumpGeom('END', why)
         self.log(f'END plsct {np} {nl} {ns} {nc} {nt}')
     ####################################################################################################################################################################################################
     def dumpSprite(self, b=None, sid=-1, lid=-1, p=-1, l=-1, s=-1, c=-1, t=-1, n=-1, i=-1, k=-1, o=-1, a=-1, d=-1, e=-1, f=-1, g=-1, r=-1, z=-1, why=''):
@@ -1269,8 +1291,8 @@ class Tabs(pyglet.window.Window):
         w, h = c.width, c.height
         x, y = c.x - w/2, c.y - h/2
         self.log(f'c={self.cc} x={x:6.1f} y={y:6.1f} w={w:6.1f} h={h:6.1f} i={fmtl(self.i, FMTN)}')
-        self.log(f'self.w={fmtl(self.w)} self.h={fmtl(self.h)}')
-        self.log(f'{self.fmtTnik("RESIZ", -1, "CURS")}')
+        self.dumpWH()
+        self.dumpGeom('NEW', 'CURS')
         self.J2[-2] += 1
         self.dumpSprite()
         self.cursor = self.createSprite(None, -1, x, y, w, h, 8, g, why='cursor', kl=CCS, v=1, dbg=1)
@@ -1295,9 +1317,10 @@ class Tabs(pyglet.window.Window):
         w, h = c.width, c.height
         x, y = c.x - w/2, c.y - h/2
         self.log(f'c={cc} x={x:6.1f} y={y:6.1f} w={w:6.1f} h={h:6.1f} i={fmtl(self.i, FMTN)}')
-        self.log(f'self.w={fmtl(self.w)} self.h={fmtl(self.h)}')
-        self.log(f'{self.fmtTnik("RESIZ", -1, "CURS")}')
-        self.cursor.update(x=x, y=y, scale_x=w/self.w[T], scale_y=h/self.h[T])
+        self.dumpWH()
+        self.dumpGeom('RSZ', 'CURS')
+        if self.w[T] and self.h[T]: self.cursor.update(x=x, y=y, scale_x=w/self.w[T], scale_y=h/self.h[T])
+        else: msg = f'ERROR zero width or height in denom x={x:6.2f} y={y:6.2f} wT={self.w[T]:6.2f} hT={self.h[T]:6.2f}'  ;  self.log(msg)  # ;  self.quit(msg)
     ####################################################################################################################################################################################################
     def resizeFonts(self):
         ms = self.minSize()  ;  slope, off = 0.6, 3
@@ -2047,11 +2070,11 @@ class Tabs(pyglet.window.Window):
         self.dataHasChanged = 1
 
     def reset(self, how):
-        self.log(f'{self.fmtGeom()} BGN {how} before cleanup()')
+        self.dumpGeom('BGN', f'{how} before cleanup()')
         self.cleanup()
-        self.log(f'{self.fmtGeom()} after cleanup / before _reinit()')
+        self.dumpGeom('   ', f'{how} after cleanup() / before _reinit()')
         self._reinit()
-        self.log(f'{self.fmtGeom()} END {how} after _reinit()')
+        self.dumpGeom('END', f'{how} after _reinit()')
 
     def cleanup(self):
         if QQ: self.deleteList(self.lrows)   ;   self.deleteList(self.lcols)
@@ -2207,24 +2230,26 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def log(msg='', ind=1, file=None, flush=False, sep=',', end='\n'):
         if file is None: file = LOG_FILE
-        ss = inspect.stack(0)   ;   si = ss[1]
-        if   si.function in Tabs.hideST2: si = ss[3]
-        elif si.function in Tabs.hideST:  si = ss[2]
-        p = pathlib.Path(si.filename)  ;  n = p.name  ;  l = si.lineno  ;  f = si.function  ;  t = ''
-        if   ind == 1: print(f'{Tabs.stackDepth()-4:2} {l:5} {n:7} {t} {f:>20} ', file=file, end='')
-        elif ind == 2: print(f'{Tabs.indent():20} {l:5} {n:7} {t} {f:>20} ', file=file, end='')
+        if ind:
+            ss = inspect.stack(0)          ;  si = ss[1]
+            if   si.function in Tabs.hideST2: si = ss[3]
+            elif si.function in Tabs.hideST:  si = ss[2]
+            p = pathlib.Path(si.filename)  ;  n = p.name  ;  l = si.lineno  ;  f = si.function
+            if IND: print(     f'{Tabs.indent():20} {l:5} {n:7} {f:>20} ', file=file, end='')
+            else:   print(f'{Tabs.stackDepth()-4:2} {l:5} {n:7} {f:>20} ', file=file, end='')
         print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        print(f'{msg}', file=file, flush=flush, sep=sep, end=end) if ind else print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        if file != LOG_FILE: Tabs.log(msg, ind, flush=False, sep=',', end=end)
     ####################################################################################################################################################################################################
     def quit(self, why='', code=1, dbg=0):
         self.log(f'BGN {why} code={code}')
+        self.dumpGeom('   ', why)
+        self.dumpJ('quit')
         if       code and AUTO_SAVE: self.saveDataFile(why, f=0)
         elif not code:               self.saveDataFile(why, f=1)
         self.cobj.dumpMLimap(why)
         self.cobj.dumpInstanceCat(why)
-        self.dumpJ('quit()')
-        self.cleanupCat(1 if code != 2 else 0)
+#        self.cleanupCat(1 if code != 2 else 0)
         self.log(QUIT, ind=0)
         if dbg: self.dumpStruct('quit ' + why)
         if code != 2: self.snapshot()

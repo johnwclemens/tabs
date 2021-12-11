@@ -2,7 +2,7 @@ import sys, os, collections
 sys.path.insert(0, os.path.abspath('.'))
 import tabs
 
-VERBOSE = 1 # tabs.VERBOSE
+VERBOSE = 0 # tabs.VERBOSE
 NO5 = 'x'
 AUG = '+'
 NO3 = 'y'
@@ -86,7 +86,7 @@ class Chord(object):
         self.limap.append(imap)
         if dbg: self.dumpImap(imap, f'append  imap rank={rank}')
 
-    def getChordName(self, p, l, c, dbg=1):
+    def getChordName(self, p, l, c, dbg=0):
         cc = c + l * self.tobj.n[tabs.C]          ;   chordName = ''
         self.limap, chunks, ims = [], [], set()   ;   d1, d2 = '<', '>'
         mask, notes, indices                        = self.getNotesIndices(p, l, c)
@@ -103,14 +103,14 @@ class Chord(object):
                     self.setLimap(imap, chordName, chunks)  #                    chordName, chunks               = self.updateImap(imap, chordName, chunks)
         if self.limap:
             self.limap.sort(key=lambda a: a[4], reverse=1)
-            self.log(f'rank sorted limap:')  #            [ self.log(f'{a[4]} {tabs.fmtl(self.INTERVAL_RANK[a[0]], z="x")} {tabs.fmtl(a[0])}', ind=0) for a in self.limap ]
+            if dbg: self.log(f'rank sorted limap:')  #            [ self.log(f'{a[4]} {tabs.fmtl(self.INTERVAL_RANK[a[0]], z="x")} {tabs.fmtl(a[0])}', ind=0) for a in self.limap ]
             self.mlimap[cc] = self.limap
             for i in self.limap:
                 ii = []
                 for j in i[0]:
                     ii.append(self.INTERVAL_RANK[j])
                 keys, notes, name, chunks, rank = i[0], i[1], i[2], i[3], i[4]
-                self.log(f'imap cycle rank {rank} {tabs.fmtl(ii, z="x"):13} {tabs.fmtl(keys):18} {tabs.fmtl(chunks):18} {name:12}', ind=0)
+                if dbg: self.log(f'imap cycle rank {rank} {tabs.fmtl(ii, z="x"):13} {tabs.fmtl(keys):18} {tabs.fmtl(chunks):18} {name:12}', ind=0)
         return chordName, chunks
 
     def OLD_getChordName_OLD(self, p, l, c, dbg=1, dbg2=0):
@@ -131,13 +131,13 @@ class Chord(object):
                     self.setLimap(imap, chordName, chunks)  #                    chordName, chunks               = self.updateImap(imap, chordName, chunks)
         if self.limap:
             self.limap.sort(key=lambda a: a[4])
-            self.log(f'rank sorted limap:')
+            if dbg: self.log(f'rank sorted limap:')
 #            [ self.log(f'{a[4]} {tabs.fmtl(self.INTERVAL_RANK[a[0]], z="x")} {tabs.fmtl(a[0])}', ind=0) for a in self.limap ]
             for i in self.limap:
                 ii = []
                 for j in i[0]:
                     ii.append(self.INTERVAL_RANK[j])
-                self.log(f'imap cycle rank {i[4]} {tabs.fmtl(ii, z="x"):13} {tabs.fmtl(i[0]):18} {tabs.fmtl(i[3]):18} {i[2]:12}', ind=0)
+                if dbg: self.log(f'imap cycle rank {i[4]} {tabs.fmtl(ii, z="x"):13} {tabs.fmtl(i[0]):18} {tabs.fmtl(i[3]):18} {i[2]:12}', ind=0)
         if chordName:
             if dbg: self.log(f'Outer Chord     [ <{chordName:<6}> {tabs.fmtl(imapKeys, 2, "<", d1, d2):17} {tabs.fmtl(imapNotes, 2, "<", d1, d2):17} ] {tabs.fmtl(chunks)}')
             self.mlimap[cc]                         = self.limap
@@ -189,6 +189,7 @@ class Chord(object):
            return limap[0][2], limap[0][3]
    ####################################################################################################################################################################################################
     def getNotesIndices(self, p, l, c, dbg=VERBOSE, dbg2=0):
+        if p >= len(self.tobj.data) or l >= len(self.tobj.data[p]) or c >= len(self.tobj.data[p][l]): self.log(f'ERROR index plc {p} {l} {c}')
         strNumbs   = self.tobj.stringNumbs
         strKeys    = self.tobj.stringKeys
         strNames   = self.tobj.stringNames
@@ -360,7 +361,7 @@ class Chord(object):
             if dbg: self.log(f'Not Found key=<{key}> root={root} name={tabs.fmtl(name)} {type(name)}')
             if len(imap) >= Chord.MIN_CHORD_LEN:
                 ii = self.key2Indices(key)
-                self.log(f'adding key {key} with indices {tabs.fmtl(ii)} to OMAP')
+                if dbg: self.log(f'adding key {key} with indices {tabs.fmtl(ii)} to OMAP')
                 self.umap[key] = (rank, ii, [])
         if root:    chunks.append(root)
         if name:   [chunks.append(n) for n in name if n]   ;   chordName = ''.join(chunks[:])
@@ -413,7 +414,7 @@ class Chord(object):
         if self.umap: self.dumpUmap()
         self.log(f'END   len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
 
-    def _dumpOMAP(self, catfile=None):
+    def _dumpOMAP(self, catfile=None, dbg=0):
         file = catfile      if catfile else self.logFile
         name = catfile.name if catfile else None
         omap = self.OMAP
@@ -436,7 +437,7 @@ class Chord(object):
                 rankSet = set()  ;  rankSet.add(v[0])
                 if not catfile: count += 1  ;  none += 1 if not v[2] else 0  ;  nord += 1 if v[0] == rank else 0
                 v2 = tabs.fmtl(v[2], sep='\',\'', d1='[\'', d2='\']),') if v[2] else '[]),' if type(v[2]) is list else 'None),'
-                self.log(f'{keyStrFmt:19}: ({v[0]}, {tabs.fmtl(v[1], sep=",", d2="],"):15} {v2:28} # ', ind=0, file=file, end='')
+                if dbg: self.log(f'{keyStrFmt:19}: ({v[0]}, {tabs.fmtl(v[1], sep=",", d2="],"):15} {v2:28} # ', ind=0, file=file, end='')
                 cycSet =  set()   ;   cycSet.add(tuple(ii))
                 for _ in range(len(ii)-1):
                     ii = self.rotateIndices(ii)
@@ -448,10 +449,11 @@ class Chord(object):
                         self.cycles[ck].add(jj)                                        ;   cycle = 1
                     cycSet.add(jj)    ;     d1 = '@' if cycle else '['    ;    d2 = '@' if cycle else ']'
                     if keyStr not in omap:        self.log(f'Not in map: ', ind=0, end='', file=file)     ;    r[keyStr] = (rank, ii, None)
-                    self.log(f'{keyStr:16} {tabs.fmtl(ii, z="x", d1=d1, d2=d2):13} ', ind=0, end='', file=file)
+                    if dbg: self.log(f'{keyStr:16} {tabs.fmtl(ii, z="x", d1=d1, d2=d2):13} ', ind=0, end='', file=file)
                 refSet = { _ for _ in range(len(ii)) }
-                if    rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet: self.log(ind=0, file=file)
-                else: self.log(f'\n{msg} {tabs.fmtl(refSet, d1="<", d2=">")} {tabs.fmtl(rankSet, d1="<", d2=">")} {tabs.fmtl(sorted(cycSet))}', ind=0, file=file)  # ;  q = 1
+                if dbg:
+                    if    rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet: self.log(ind=0, file=file)
+                    else: self.log(f'\n{msg} {tabs.fmtl(refSet, d1="<", d2=">")} {tabs.fmtl(rankSet, d1="<", d2=">")} {tabs.fmtl(sorted(cycSet))}', ind=0, file=file)  # ;  q = 1
             if not catfile: mstat.append([k, count, nord, none])
         if not catfile:
             for kk, w in self.cycles.items():
