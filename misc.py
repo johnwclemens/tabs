@@ -86,8 +86,8 @@ class Chord(object):
         self.limap.append(imap)
         if dbg: self.dumpImap(imap, f'append  imap rank={rank}')
 
-    def getChordName(self, p, l, c, dbg=0):
-        cc = c + l * self.tobj.n[tabs.C]          ;   chordName = ''
+    def getChordName(self, p, l, c, dbg=1):
+        cc = c + l * self.tobj.n[tabs.C]          ;   chordName = ''   ;   ii, keys = [], []
         self.limap, chunks, ims = [], [], set()   ;   d1, d2 = '<', '>'
         mask, notes, indices                        = self.getNotesIndices(p, l, c)
         for i in range(len(indices)):
@@ -111,7 +111,7 @@ class Chord(object):
                     ii.append(self.INTERVAL_RANK[j])
                 keys, notes, name, chunks, rank = i[0], i[1], i[2], i[3], i[4]
                 if dbg: self.log(f'imap cycle rank {rank} {tabs.fmtl(ii, z="x"):13} {tabs.fmtl(keys):18} {tabs.fmtl(chunks):18} {name:12}', ind=0)
-        return chordName, chunks
+        return chordName, chunks, ii, keys
 
     def OLD_getChordName_OLD(self, p, l, c, dbg=1, dbg2=0):
         cc = c + l * self.tobj.n[tabs.C]
@@ -122,8 +122,8 @@ class Chord(object):
             imk = indices[i] % len(self.INTERVALS)
             if imk not in ims:
                 ims.add(imk)
-                intervals                           = self.getIntervals(indices,  i,     mask)
-                imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals, notes)
+                intervals                           = self.getIntervals(indices,  i,  mask)
+                imap, imapKeys, imapNotes, chordKey = self.getImapKeys(intervals,    notes)
                 if dbg: self.log(f'imk={imk} ims={tabs.fmtl(ims)} cc={cc}')
                 chordName, chunks                   = self._getChordName(imap)
                 if chordName:
@@ -188,7 +188,7 @@ class Chord(object):
            if dbg: self.dumpLimap(limap, key, why=f'after  key={key} rev={rev}')
            return limap[0][2], limap[0][3]
    ####################################################################################################################################################################################################
-    def getNotesIndices(self, p, l, c, dbg=VERBOSE, dbg2=0):
+    def getNotesIndices(self, p, l, c, dbg=VERBOSE, dbg2=1):
         if p >= len(self.tobj.data) or l >= len(self.tobj.data[p]) or c >= len(self.tobj.data[p][l]): self.log(f'ERROR index plc {p} {l} {c}')
         strNumbs   = self.tobj.stringNumbs
         strKeys    = self.tobj.stringKeys
@@ -196,7 +196,7 @@ class Chord(object):
         _tabs      = self.tobj.data[p][l][c]
         strIndices = [ Note.INDICES[k] for k in strKeys ]
         notes = []  ;  nt = len(_tabs)  ;   mask = []
-        if dbg2: self.log(f'p l c = {p} {l} {c} text={_tabs}')
+#        if dbg2: self.log(f'p l c = {p} {l} {c} text={_tabs}')
         for t in range(nt):
             if tabs.Tabs.isFret(_tabs[t]): mask.insert(0, 1)  ;  note = self.tobj.getNoteName(t, _tabs[t])  ;  notes.insert(0, note)
             else:                          mask.insert(0, 0)
