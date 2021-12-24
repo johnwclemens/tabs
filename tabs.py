@@ -76,7 +76,7 @@ BASE_NAME        = BASE_PATH.stem
 SNAP_DIR         = 'snaps'
 SNAP_SFX         = '.png'
 LOG_FILE         = None
-FMTN             = (1, 1, 1, 2, 1, 2, 2) # remove?
+FMTN             = (1, 1, 1, 3, 1) # p, l, s, c, t remove?
 FMTN2            = (1, 2, 2, 2, 2, 2) # generalize for any # of strings
 P, L, S, C       =  0,  1,  2,  3
 T, N, I, K       =  4,  5,  6,  7
@@ -153,14 +153,15 @@ FONT_COLORS_L = [PINKS[0], GRAYS[0], BLUES[0], GREENS[0], YELLOWS[0], REDS[0], G
 FONT_COLORS   =  FONT_COLORS_S if SPRITES else FONT_COLORS_L
 ####################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
-    hideST2 = ['plct2cc']  #  <listcomp>?
-    hideST = ['log', 'dumpGeom', 'dumpJ', 'dumpData', 'dumpSelectTabs', 'cc2plct', 'cursorCol', 'dumpCursorArrows', 'setCaption', 'dumpWBWAW']
+#    hideST3 = ['log']
+    hideST2 = ['log', 'plct2cc', '<listcomp>', 'dumpImap']
+    hideST  = ['log', 'dumpGeom', 'dumpJ', 'dumpData', 'dumpSelectTabs', 'cc2plct', 'cursorCol', 'dumpCursorArrows', 'setCaption', 'dumpWBWAW']  #  , '<listcomp>', 'dumpImap']
     def __init__(self):
         dumpGlobals()
         global FULL_SCREEN, ORDER_GROUP, SUBPIX
         snapGlobArg = str(BASE_PATH / SNAP_DIR / BASE_NAME) + SFX + '.*' + SNAP_SFX
         snapGlob    = glob.glob(snapGlobArg)
-        self.log(f'hideST:\n{fmtl(Tabs.hideST)}')
+        self.log(f'hideST:\n{fmtl(Tabs.hideST)}')   ;   self.log(f'hideST2:\n{fmtl(Tabs.hideST2)}')
         self.log(f'BGN {__class__}')
         self.log(f'{VRSNX1}')
         self.log(f'{VRSNX2}')
@@ -1971,13 +1972,13 @@ class Tabs(pyglet.window.Window):
     def setIkey(self, p, l, c, t, dbg=1):
         cc = self.plct2cc(p, l, c, 0)   # ;    nt = self.n[T]    ;    name = ''    ;    i = 0
         if dbg: self.log(f'BGN plct {p} {l} {c} {t} cc={cc}')
-        ikeys, notes, chordName, chunks, rank = self.cobj.getChordName(p, l, c)
-        if dbg: self.log(f'    plct {p} {l} {c} {t} cc={cc} chordName=<{chordName:<}> chunks={fmtl(chunks)} ii={ii} ikeys={ikeys}')
+        ikeys, ivals, notes, chordName, chunks, rank = self.cobj.getChordName(p, l, c)
+        if dbg: self.log(f'    plct {p} {l} {c} {t} cc={cc} chordName=<{chordName:<}> chunks={fmtl(chunks)} ikeys={ikeys} ivals={ivals}')
 
     def setChord(self, p, l, c, t, dbg=1, dbg2=0): # issues?
         cc = self.plct2cc(p, l, c, 0)    ;    nt = self.n[T]    ;    name = ''    ;    i = 0
         if dbg: self.log(f'BGN plct {p} {l} {c} {t} cc={cc}')
-        chordName, chunks, ii, ikeys = self.cobj.getChordName(p, l, c)
+        ikeys, ivals, notes, chordName, chunks, rank = self.cobj.getChordName(p, l, c)
         if dbg: self.log(f'    plct {p} {l} {c} {t} cc={cc} chordName=<{chordName:<}> chunks={fmtl(chunks)}')
         self.setChordName(chordName, chunks, cc)
         if dbg2:
@@ -2035,14 +2036,14 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def toggleChordNames(self, how, every=0, rev=1, dbg=1):
         if self.skeys and not every:
-            if dbg: self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} skeys={fmtl(self.skeys)}')
+            if dbg:       self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} skeys={fmtl(self.skeys)}')
             [ self.toggleChordName(how, self.cc2cn(k), rev) for k in self.skeys ]
         else:
             cc = self.cursorCol()    ;    cn = self.cc2cn(cc)    ;    mk = list(self.cobj.mlimap.keys())
-            if dbg: self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} cc={cc} cn={cn} mk={fmtl(mk)}')
+            if dbg:       self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} cc={cc} cn={cn} mk={fmtl(mk)}')
             if not every: self.toggleChordName(how, cn, rev)
             else:         self.toggleMatchingChordNames(how, cn, rev)
-        if dbg: self.dumpSelectTabs(f'END {how} every={every} rev={rev}     ')
+        if dbg:           self.dumpSelectTabs(f'END {how} every={every} rev={rev}     ')
 
     def toggleMatchingChordNames(self, how, cn='', rev=1, dbg=0, dbg2=0):
         mli = self.cobj.mlimap   ;   iks, others = [], []   ;   mk = list(self.cobj.mlimap.keys())
@@ -2084,9 +2085,11 @@ class Tabs(pyglet.window.Window):
 
     def toggleChordName(self, how, key, rev=1, dbg=1):
         if dbg: self.dumpSelectTabs(f'BGN {how} rev={rev} key={key}       ')
-        ivals, notes, chordName, chunks, rank = self.cobj.toggleChordName(key, rev)
         cc = self.cn2cc(key)
-        if dbg: self.log(f'ivals={fmtl(ivals)} notes={fmtl(notes)} name={chordName} chunks={fmtl(chunks)} rank={rank}')
+        imap = self.cobj.toggleChordName(key, rev)
+        ikeys, ivals, notes, chordName, chunks, rank = imap
+#        if dbg: self.log(f'ikeys={fmtl(ikeys)} ivals={fmtl(ivals)} notes={fmtl(notes)} name={chordName} chunks={fmtl(chunks)} rank={rank}')
+#        if dbg: self.cobj.dumpImap(imap)
         if chordName and chunks: self.setChordName(chordName, chunks, cc)
         elif dbg: self.log(f'selected key={key} at cc={cc} is not a chord')
         if dbg: self.dumpSelectTabs(f'END {how} rev={rev} key={key} cc={cc:3}')
@@ -2309,6 +2312,7 @@ class Tabs(pyglet.window.Window):
         if file is None: file = LOG_FILE
         if ind:
             ss = inspect.stack(0)          ;  si = ss[1]
+#            if   si.function in Tabs.hideST3: si = ss[4]
             if   si.function in Tabs.hideST2: si = ss[3]
             elif si.function in Tabs.hideST:  si = ss[2]
             p = pathlib.Path(si.filename)  ;  n = p.name  ;  l = si.lineno  ;  f = si.function
