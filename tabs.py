@@ -154,14 +154,14 @@ FONT_COLORS   =  FONT_COLORS_S if SPRITES else FONT_COLORS_L
 ####################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
 #    hideST3 = ['log']
-    hideST2 = ['log', 'plct2cc', '<listcomp>', 'dumpImap']
-    hideST  = ['log', 'dumpGeom', 'dumpJ', 'dumpData', 'dumpSelectTabs', 'cc2plct', 'cursorCol', 'dumpCursorArrows', 'setCaption', 'dumpWBWAW']  #  , '<listcomp>', 'dumpImap']
+#    hideST2 = ['log', 'plct2cc']  # , '<listcomp>', 'dumpImap']
+    hideST  = ['log', 'dumpGeom', 'dumpJ', 'dumpData', 'dumpSelectTabs', 'cc2plct', 'cursorCol', 'dumpCursorArrows', 'setCaption', 'dumpWBWAW', '<listcomp>', 'dumpImap']
     def __init__(self):
         dumpGlobals()
         global FULL_SCREEN, ORDER_GROUP, SUBPIX
         snapGlobArg = str(BASE_PATH / SNAP_DIR / BASE_NAME) + SFX + '.*' + SNAP_SFX
         snapGlob    = glob.glob(snapGlobArg)
-        self.log(f'hideST:\n{fmtl(Tabs.hideST)}')   ;   self.log(f'hideST2:\n{fmtl(Tabs.hideST2)}')
+        self.log(f'hideST:\n{fmtl(Tabs.hideST)}')  # ;   self.log(f'hideST2:\n{fmtl(Tabs.hideST2)}')
         self.log(f'BGN {__class__}')
         self.log(f'{VRSNX1}')
         self.log(f'{VRSNX2}')
@@ -1030,10 +1030,10 @@ class Tabs(pyglet.window.Window):
             yield lbl
     ####################################################################################################################################################################################################
     def g_createLabels2(self, col, dbg=1, dbg2=0):
-        chunks, ikeys, ivals = [], [], []   #   tt, nn, ii, kk = self.TNIK
-        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
-        kt, kn, ki, kkk = self.kt, self.kn, self.ki, self.kk            ;   kt2, kn2, ki2, kk2 = self.kt2, self.kn2, self.ki2, self.kk2
-        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)
+        chunks, ikeys, ivals = [], [], []   ;   imap, imap0 = [], [] #   tt, nn, ii, kk = self.TNIK
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]    ;   ikey = ''    ;    t2 = 0
+        kt, kn, ki, kkk = self.kt, self.kn, self.ki, self.kk           ;   kt2, kn2, ki2, kk2 = self.kt2, self.kn2, self.ki2, self.kk2
+        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)   # ;   imap0 = [ self.nblank for i in range(nt) ]
         for t in range(nt):
             why = 'new '   ;   stnik = self.ss()
 #            if   tt and s == 0:
@@ -1054,10 +1054,12 @@ class Tabs(pyglet.window.Window):
                 if   CCC     and c == C1:  ikey = self.strLabel[t]     ;  plist = self.lstrs  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = F
                 elif CCC > 1 and c == C2:  ikey = self.cpoLabel[t]     ;  plist = self.lcaps  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = G
                 else:
-                    if not t: imap = self.cobj.getChordName(p, l, c-CCC)   ;   ikeys = imap[0] if imap else []
-                    ikey = ikeys[t] if len(ikeys) > t else self.nblank  ;  j = I
+                    if not t: imap = self.cobj.getChordName(p, l, c-CCC)   ;   imap0 = imap[0][::-1]
+                    dd = self.data[p][l][c]   ;   fdd = self.isFret(dd[t])   ;   cc = self.plct2cc(p, l, c, 0)
+                    if imap0 and len(imap0) > t2: ikey = imap0[t2] if fdd else self.nblank  ;  self.log(f'cc={cc} t={t} t2={t2} imap0={imap0} dd={dd} ikey={ikey}')  ;  t2 += 1 if fdd else 0
+                    self.dumpDataSlice(p, l, c, cc)   ;   j = I
                     plist = self.ikeys  ;  kl = ki  ;  k = self.cci(t, kl)
-                self.createLabel(plist, j, xt, yt -t*ht, wt, ht, k, gt, why=why, t=ikey, kl=ki, dbg=dbg)   ;  yield ikey
+                self.createLabel(plist, j, xt, yt - (nt-1-t)*ht, wt, ht, k, gt, why=why, t=ikey, kl=ki, dbg=dbg)   ;  yield ikey
             elif self.tt0(s) == KK:
 #            elif kk and (s == 3 or (s < 3 and (not tt and not nn and not ii))):
                 if   CCC     and c == C1: chord = self.strLabel[t]     ;  plist = self.lstrs  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = F
@@ -1969,11 +1971,40 @@ class Tabs(pyglet.window.Window):
         self.notes[cc].text = self.getNoteName(r, txt) if self.isFret(txt) else self.nblank
         if dbg: self.dumpWBWAW(f'({txt} cc={cc} r={r})', prev, f'<notes[{cc}].text>', self.notes[cc].text)
 
-    def setIkey(self, p, l, c, t, dbg=1):
-        cc = self.plct2cc(p, l, c, 0)   # ;    nt = self.n[T]    ;    name = ''    ;    i = 0
+    def setIkey(self, p, l, c, t, dbg=1):  # self.log(f'    plct {p} {l} {c} {t} cc={cc} ikeys={fmtl(imap[0])} ivals={fmtl(imap[1])} notes={fmtl(imap[2])} name=<{imap[3]:<}> chunks={fmtl(imap[4])} rank={imap[5]}')
+        cc = self.plct2cc(p, l, c, 0)
         if dbg: self.log(f'BGN plct {p} {l} {c} {t} cc={cc}')
-        ikeys, ivals, notes, chordName, chunks, rank = self.cobj.getChordName(p, l, c)
-        if dbg: self.log(f'    plct {p} {l} {c} {t} cc={cc} chordName=<{chordName:<}> chunks={fmtl(chunks)} ikeys={ikeys} ivals={ivals}')
+        imap = self.cobj.getChordName(p, l, c)
+        self.setIkeyText(p, l, c, cc, imap[0])
+        if dbg: self.log(f'END plct {p} {l} {c} {t} cc={cc}')
+
+    def setIkeyText(self, p, l, c, cc, text):
+        txt, old = '', ''   ;   nt = self.n[T]   ;   ikeys = self.ikeys   ;   cc = self.normalizeCC(cc)   ;   j = 0   ;   dd = self.data[p][l][c]
+        self.log(f'ikeys[{cc}].text={ikeys[cc].text} text={fmtl(text)} dd={dd}')
+        for i in range(nt):
+            old += self.ikeys[cc + i].text
+            if text and len(text) > j: ikeys[cc + nt-1 - i].text = text[j] if self.isFret(dd[nt - 1 - i]) else self.nblank   ;   j += 1
+            else:                      ikeys[cc + nt-1 - i].text = self.nblank
+            txt += self.ikeys[cc + i].text
+        self.log(f'old={old} cc={cc} txt={txt}')
+        self.dumpDataSlice(p, l, c, cc)
+
+    def _OLD_setIkeyText(self, p, l, c, cc, text):
+        txt, old = '', ''   ;   nt = self.n[T]   ;   ikeys = self.ikeys   ;   cc = self.normalizeCC(cc)   ;   j = 0
+        self.log(f'ikeys[{cc}].text={ikeys[cc].text} text={fmtl(text)}')
+        for i in range(nt):
+            old += self.ikeys[cc + i].text
+            if text and len(text) > j: ikeys[cc + i].text = text[j]
+            else:                      ikeys[cc + i].text = self.nblank
+            txt += self.ikeys[cc + i].text   ;   j += 1
+        self.log(f'old={old} cc={cc} txt={txt}')
+        self.dumpDataSlice(p, l, c, cc)
+
+    def dumpDataSlice(self, p, l, c, cc):
+        for t in range(self.n[T]):
+            ikeys  = self.ikeys[ cc+t].text if self.ikeys  and len(self.ikeys)  > cc+t else ''
+            chords = self.chords[cc+t].text if self.chords and len(self.chords) > cc+t else ''
+            self.log(f'{self.data[p][l][c]} [{cc+t}] {self.tabs[cc+t].text:2} {self.notes[cc+t].text:2} {ikeys:2} {chords:2}')
 
     def setChord(self, p, l, c, t, dbg=1, dbg2=0): # issues?
         cc = self.plct2cc(p, l, c, 0)    ;    nt = self.n[T]    ;    name = ''    ;    i = 0
@@ -1987,8 +2018,8 @@ class Tabs(pyglet.window.Window):
             self.log(f'chords[{cc}-{cc+i}].text={name} chordName=<{chordName:<}> chunks={fmtl(chunks)}')
         elif dbg: self.log(f'END plct {p} {l} {c} {t} cc={cc} chordName={chordName}')
 
-    def setChordName(self, name, chunks, cc, dbg=0):  # VERBOSE):
-        txt = ''   ;   old = ''   ;   nt = self.n[T]   ;   cc = self.normalizeCC(cc)
+    def setChordName(self, name, chunks, cc, dbg=1):
+        txt, old = '', ''   ;   nt = self.n[T]   ;   cc = self.normalizeCC(cc)
         for i in range(nt):
             old += self.chords[cc + i].text
             if chunks and len(chunks) > i: self.chords[cc + i].text = chunks[i]
@@ -2313,8 +2344,8 @@ class Tabs(pyglet.window.Window):
         if ind:
             ss = inspect.stack(0)          ;  si = ss[1]
 #            if   si.function in Tabs.hideST3: si = ss[4]
-            if   si.function in Tabs.hideST2: si = ss[3]
-            elif si.function in Tabs.hideST:  si = ss[2]
+#            if   si.function in Tabs.hideST2: si = ss[3]
+            if si.function in Tabs.hideST:  si = ss[2]
             p = pathlib.Path(si.filename)  ;  n = p.name  ;  l = si.lineno  ;  f = si.function
             if IND: print(     f'{Tabs.indent():20} {l:5} {n:7} {f:>20} ', file=file, end='')
             else:   print(f'{Tabs.stackDepth()-4:2} {l:5} {n:7} {f:>20} ', file=file, end='')
