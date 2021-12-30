@@ -56,7 +56,7 @@ class Chord(object):
         if file is None: file=self.logFile
         tabs.Tabs.log(msg=msg, ind=ind, file=file, flush=flush, sep=sep, end=end)
 
-    def getChordName(self, p, l, c, dbg=1):
+    def getChordName(self, p, l, c, dbg=0):
         cc = c + l * self.tobj.n[tabs.C]
         self.limap, ims = [], set()   ;   ikeys, ivals, chunks, name, rank = [], [], [], '', -1
         mask, notes, indices = self.getIndices(p, l, c)
@@ -75,7 +75,7 @@ class Chord(object):
             return self.limap[-1]
         return [ ikeys, ivals, notes, name, chunks, rank ]
 
-    def getImap(self, ikeys, notes, dbg=1, dbg2=0):
+    def getImap(self, ikeys, notes, dbg=0, dbg2=0):
         imap     = collections.OrderedDict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
         if dbg:
             mask = [1] * len(ikeys)
@@ -85,7 +85,7 @@ class Chord(object):
         key = ' '.join(imap.keys())   ;   ivals = self.key2Indices(key)   ;   name, root, rank, _chunks, chunks = '', '', -1, [], []
         if key in self.OMAP:  chunks.append(imap['R'])  ;  [ chunks.append(n) for n in self.OMAP[key][2] if n ]  ;  name = ''.join(chunks)  ;  rank, ivals = self.OMAP[key][0], self.OMAP[key][1]
         elif len(imap) >= Chord.MIN_CHORD_LEN:
-            if dbg: self.log(f'adding key {key} with indices {tabs.fmtl(ivals)} to OMAP')
+            self.log(f'adding key {key} with indices {tabs.fmtl(ivals)} to OMAP')
             self.umap[key] = (rank, ivals, [])
         imap = [ ikeys, ivals, notes, name, chunks, rank ]
         if dbg2: self.dumpImap(imap)

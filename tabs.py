@@ -1031,7 +1031,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def g_createLabels2(self, col, dbg=1, dbg2=0):
         chunks, ikeys, ivals = [], [], []   ;   imap, imap0 = [], [] #   tt, nn, ii, kk = self.TNIK
-        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]    ;   ikey = ''    ;    t2 = 0
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]    ;    t2 = 0
         kt, kn, ki, kkk = self.kt, self.kn, self.ki, self.kk           ;   kt2, kn2, ki2, kk2 = self.kt2, self.kn2, self.ki2, self.kk2
         nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)   # ;   imap0 = [ self.nblank for i in range(nt) ]
         for t in range(nt):
@@ -1054,10 +1054,11 @@ class Tabs(pyglet.window.Window):
                 if   CCC     and c == C1:  ikey = self.strLabel[t]     ;  plist = self.lstrs  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = F
                 elif CCC > 1 and c == C2:  ikey = self.cpoLabel[t]     ;  plist = self.lcaps  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = G
                 else:
-                    if not t: imap = self.cobj.getChordName(p, l, c-CCC)   ;   imap0 = imap[0][::-1]
-                    dd = self.data[p][l][c]   ;   fdd = self.isFret(dd[t])   ;   cc = self.plct2cc(p, l, c, 0)
-                    if imap0 and len(imap0) > t2: ikey = imap0[t2] if fdd else self.nblank  ;  self.log(f'cc={cc} t={t} t2={t2} imap0={imap0} dd={dd} ikey={ikey}')  ;  t2 += 1 if fdd else 0
-                    self.dumpDataSlice(p, l, c, cc)   ;   j = I
+                    if not t: imap = self.cobj.getChordName(p, l, c-CCC)     ;   imap0 = imap[0][::-1]
+                    dd = self.data[p][l][c]   ;   fdd = self.isFret(dd[t])   ;   j = I
+                    if imap0 and len(imap0) > t2: ikey = imap0[t2] if fdd else self.nblank  ;  t2 += 1 if fdd else 0
+                    else:                         ikey = self.nblank
+                    if dbg2: cc = self.plct2cc(p, l, c, 0)   ;   self.dumpDataSlice(p, l, c, cc)  ;  self.log(f'cc={cc} t={t} t2={t2} imap0={imap0} fdd={fdd} dd={dd} ikey={ikey}')
                     plist = self.ikeys  ;  kl = ki  ;  k = self.cci(t, kl)
                 self.createLabel(plist, j, xt, yt - (nt-1-t)*ht, wt, ht, k, gt, why=why, t=ikey, kl=ki, dbg=dbg)   ;  yield ikey
             elif self.tt0(s) == KK:
@@ -1316,7 +1317,7 @@ class Tabs(pyglet.window.Window):
                         for t in range(nt):
                             if   self.tt0(s) == TT:  st += 1  ;  self.J1[T] = st  ;  self.J2[T] += 1  ;  self.dumpLabel(self.tabs[st-1],   *self.ids(), *self.cnts(), why=f'{why} Tab {st}')    ;  i += 1
                             elif self.tt0(s) == NN:  sn += 1  ;  self.J1[N] = sn  ;  self.J2[N] += 1  ;  self.dumpLabel(self.notes[sn-1],  *self.ids(), *self.cnts(), why=f'{why} Note {sn}')   ;  i += 1
-                            elif self.tt0(s) == II:  si += 1  ;  self.J1[I] = si  ;  self.J2[I] += 1  ;  self.dumpLabel(self.chords[si-1], *self.ids(), *self.cnts(), why=f'{why} IKey {si}')   ;  i += 1
+                            elif self.tt0(s) == II:  si += 1  ;  self.J1[I] = si  ;  self.J2[I] += 1  ;  self.dumpLabel(self.ikeys[si-1], *self.ids(), *self.cnts(), why=f'{why} IKey {si}')   ;  i += 1
                             elif self.tt0(s) == KK:  sk += 1  ;  self.J1[K] = sk  ;  self.J2[K] += 1  ;  self.dumpLabel(self.chords[sk-1], *self.ids(), *self.cnts(), why=f'{why} Chord {sk}')  ;  i += 1
         self.dumpLabel()   ;   self.dumpJ(why)
         if dbg: self.dumpGeom('END', why)
@@ -1767,8 +1768,9 @@ class Tabs(pyglet.window.Window):
         self.setLLStyle(cc, NORMAL_STYLE)
         if dbg: self.dumpSelectTabs(f'BGN {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
         for t in range(nt):
-            if self.tabs:   tab   = self.tabs  [k + t]  ;    tab.color = self.kt[0]
-            if self.notes:  note  = self.notes [k + t]  ;   note.color = self.kn[0]
+            if self.tabs:     tab = self.tabs  [k + t]  ;    tab.color = self.kt[0]
+            if self.notes:   note = self.notes [k + t]  ;   note.color = self.kn[0]
+            if self.ikeys:   ikey = self.ikeys [k + t]  ;   ikey.color = self.ki[0]
             if self.chords: chord = self.chords[k + t]  ;  chord.color = self.kk[0]
         if k in self.skeys: self.skeys.remove(k)    ;    self.smap.pop(k)  #  crashes
         elif dbg:           self.log(f'key={k} not found in skeys={fmtl(self.skeys)}')
@@ -1783,8 +1785,9 @@ class Tabs(pyglet.window.Window):
         self.dumpSelectTabs(f'BGN {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
         self.skeys.append(k)   # ;   self.sset.add(k)
         for t in range(nt):
-            if self.tabs:   tab   = self.tabs  [k + t]  ;    tab.color = CCS[0]
-            if self.notes:  note  = self.notes [k + t]  ;   note.color = CCS[0]
+            if self.tabs:     tab = self.tabs  [k + t]  ;    tab.color = CCS[0]
+            if self.notes:   note = self.notes [k + t]  ;   note.color = CCS[0]
+            if self.ikeys:   ikey = self.ikeys [k + t]  ;   ikey.color = CCS[0]
             if self.chords: chord = self.chords[k + t]  ;  chord.color = CCS[0]
             text += tab.text
         self.smap[k] = text
@@ -1792,12 +1795,13 @@ class Tabs(pyglet.window.Window):
         self.dumpSelectTabs(f'END {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
 
     def copyTabs(self, how, dbg=VERBOSE):
-        self.dumpSelectTabs(f'BGN {how}')   ;   nt = self.n[T]  ;   text = ''   ;   tab, note, chord = None, None, None
+        self.dumpSelectTabs(f'BGN {how}')   ;   nt = self.n[T]  ;   text = ''   ;   tab, note, ikey, chord = None, None, None, None
         for k in self.skeys:
             self.setLLStyle(k, NORMAL_STYLE)
             for t in range(nt):
-                if self.tabs:   tab    = self.tabs  [k + t]  ;    tab.color = self.k[T][0]
-                if self.notes:  note   = self.notes [k + t]  ;   note.color = self.k[N][0]
+                if self.tabs:     tab  = self.tabs  [k + t]  ;    tab.color = self.k[T][0]
+                if self.notes:   note  = self.notes [k + t]  ;   note.color = self.k[N][0]
+                if self.ikeys:   ikey  = self.ikeys [k + t]  ;   ikey.color = self.k[I][0]
                 if self.chords: chord  = self.chords[k + t]  ;  chord.color = self.k[K][0]
                 if dbg: text += tab.text
             if dbg: text += ' '
@@ -1815,6 +1819,7 @@ class Tabs(pyglet.window.Window):
                 p, l, c, r = self.cc2plct(k + t, dbg=0)
                 if self.tabs:   self.tabs  [k + t].color = self.k[T][0]
                 if self.notes:  self.notes [k + t].color = self.k[N][0]
+                if self.ikeys:  self.ikeys [k + t].color = self.k[I][0]
                 if self.chords: self.chords[k + t].color = self.k[K][0]
                 self.setDTNIK(self.tblank, k + t, p, l, c, t, uk=1 if t == nt - 1 else 0)  # call with uk=1 only once per column or tpc
         if not cut: self.unselectAll('deleteTabs()')
@@ -1919,6 +1924,7 @@ class Tabs(pyglet.window.Window):
             for i in range(len(self.tabs)):
                 self.tabs[i].text   = self.tabs[i].text.replace(self.swapSrc, self.swapTrg)
                 self.notes[i].text  = self.notes[i].text.replace(self.swapSrc, self.swapTrg)
+                self.ikeys[i].text  = self.ikeys[i].text.replace(self.swapSrc, self.swapTrg)
                 self.chords[i].text = self.chords[i].text.replace(self.swapSrc, self.swapTrg)
             for p in range(np):
                 for l in range(nl):
@@ -1971,34 +1977,29 @@ class Tabs(pyglet.window.Window):
         self.notes[cc].text = self.getNoteName(r, txt) if self.isFret(txt) else self.nblank
         if dbg: self.dumpWBWAW(f'({txt} cc={cc} r={r})', prev, f'<notes[{cc}].text>', self.notes[cc].text)
 
-    def setIkey(self, p, l, c, t, dbg=1):  # self.log(f'    plct {p} {l} {c} {t} cc={cc} ikeys={fmtl(imap[0])} ivals={fmtl(imap[1])} notes={fmtl(imap[2])} name=<{imap[3]:<}> chunks={fmtl(imap[4])} rank={imap[5]}')
+    def setIkey(self, p, l, c, t, dbg=0):  # self.log(f'    plct {p} {l} {c} {t} cc={cc} ikeys={fmtl(imap[0])} ivals={fmtl(imap[1])} notes={fmtl(imap[2])} name=<{imap[3]:<}> chunks={fmtl(imap[4])} rank={imap[5]}')
         cc = self.plct2cc(p, l, c, 0)
         if dbg: self.log(f'BGN plct {p} {l} {c} {t} cc={cc}')
         imap = self.cobj.getChordName(p, l, c)
         self.setIkeyText(p, l, c, cc, imap[0])
         if dbg: self.log(f'END plct {p} {l} {c} {t} cc={cc}')
 
-    def setIkeyText(self, p, l, c, cc, text):
-        txt, old = '', ''   ;   nt = self.n[T]   ;   ikeys = self.ikeys   ;   cc = self.normalizeCC(cc)   ;   j = 0   ;   dd = self.data[p][l][c]
-        self.log(f'ikeys[{cc}].text={ikeys[cc].text} text={fmtl(text)} dd={dd}')
+    def setIkeyText(self, p, l, c, cc, text, dbg=0):
+        txt, nt, ikeys = '', self.n[T], self.ikeys   ;   cc = self.normalizeCC(cc)   ;   data = self.data[p][l][c]   ;   j = 0   ;   old = self.getObjText(ikeys, cc, nt)   ;   text = text[::-1]
+        if dbg: self.log(f'BGN old={fmtl(old)} text={fmtl(text)} cc={cc} data={data} ikeys.text={fmtl(self.getObjText(ikeys, cc, nt))}')
         for i in range(nt):
-            old += self.ikeys[cc + i].text
-            if text and len(text) > j: ikeys[cc + nt-1 - i].text = text[j] if self.isFret(dd[nt - 1 - i]) else self.nblank   ;   j += 1
-            else:                      ikeys[cc + nt-1 - i].text = self.nblank
-            txt += self.ikeys[cc + i].text
-        self.log(f'old={old} cc={cc} txt={txt}')
-        self.dumpDataSlice(p, l, c, cc)
-
-    def _OLD_setIkeyText(self, p, l, c, cc, text):
-        txt, old = '', ''   ;   nt = self.n[T]   ;   ikeys = self.ikeys   ;   cc = self.normalizeCC(cc)   ;   j = 0
-        self.log(f'ikeys[{cc}].text={ikeys[cc].text} text={fmtl(text)}')
-        for i in range(nt):
-            old += self.ikeys[cc + i].text
-            if text and len(text) > j: ikeys[cc + i].text = text[j]
+            if text and len(text) > j: ikeys[cc + i].text = text[j] if self.isFret(data[i]) else self.nblank   ;   j += 1 if self.isFret(data[i]) else 0
             else:                      ikeys[cc + i].text = self.nblank
-            txt += self.ikeys[cc + i].text   ;   j += 1
-        self.log(f'old={old} cc={cc} txt={txt}')
-        self.dumpDataSlice(p, l, c, cc)
+            txt += ikeys[cc + i].text
+            if dbg: self.log(f'    old={fmtl(old)} text={fmtl(text)} cc={cc} data={data} ikeys.text={fmtl(self.getObjText(ikeys, cc, nt))} txt={txt}')
+        if dbg: self.log(    f'END old={fmtl(old)} text={fmtl(text)} cc={cc} data={data} ikeys.text={fmtl(self.getObjText(ikeys, cc, nt))} txt={txt}')
+        if dbg: self.dumpDataSlice(p, l, c, cc)
+
+    @staticmethod
+    def getObjText(o, cc, nt, dbg=0):
+        text = [ o[cc + t].text for t in range(nt) ]
+        if dbg: Tabs.log(f'text={fmtl(text)}')
+        return text
 
     def dumpDataSlice(self, p, l, c, cc):
         for t in range(self.n[T]):
@@ -2119,8 +2120,9 @@ class Tabs(pyglet.window.Window):
         cc = self.cn2cc(key)
         imap = self.cobj.toggleChordName(key, rev)
         ikeys, ivals, notes, chordName, chunks, rank = imap
-#        if dbg: self.log(f'ikeys={fmtl(ikeys)} ivals={fmtl(ivals)} notes={fmtl(notes)} name={chordName} chunks={fmtl(chunks)} rank={rank}')
-#        if dbg: self.cobj.dumpImap(imap)
+        if dbg: self.log(f'ikeys={fmtl(ikeys)} ivals={fmtl(ivals)} notes={fmtl(notes)} name={chordName} chunks={fmtl(chunks)} rank={rank}')
+        if dbg: self.cobj.dumpImap(imap)
+        if ikeys: p, l, c, t = self.cc2plct(cc)   ;   self.setIkeyText(p, l, c, cc, ikeys)
         if chordName and chunks: self.setChordName(chordName, chunks, cc)
         elif dbg: self.log(f'selected key={key} at cc={cc} is not a chord')
         if dbg: self.dumpSelectTabs(f'END {how} rev={rev} key={key} cc={cc:3}')
@@ -2171,6 +2173,8 @@ class Tabs(pyglet.window.Window):
             self.tabs  [i].text = self.tblank
         for i in range(len(self.notes)):
             self.notes [i].text = self.nblank
+        for i in range(len(self.ikeys)):
+            self.ikeys [i].text = self.nblank
         for i in range(len(self.chords)):
             self.chords[i].text = self.nblank
         for p in range(np):
