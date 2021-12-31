@@ -389,8 +389,9 @@ class Tabs(pyglet.window.Window):
         self.llText.append(self.labelTextD)
         txt = ['    ', '  ', '']  ;  [ self.log(f'llText[{i}]={txt[i]}{fmtl(t)}', ind=0) for i, t in enumerate(self.llText) ]
         self.dumpJ('before create Sprites()' if SPRITES else 'before create Labels()')
-        self.dumpWH()
-        self.smap = {}  ;  self.skeys = []   ;  self.ss()
+        self.dumpWH()   ;  self.ss()
+        self.smap = {}
+#        self.skeys = []
         self.createSprites()                if SPRITES else self.createLabels()
         self.dumpWH()
         self.dumpJ('after create Sprites()' if SPRITES else 'after create Labels()')
@@ -1754,11 +1755,12 @@ class Tabs(pyglet.window.Window):
             self.move(how, jcc - 1 - a * cc)
             self.log(f'{how} txt={txt} a={a} cc={cc} jt={self.jumpAbs} jcc={jcc} moved={jcc - 1 - a * cc} {fmtl(self.i)}')
     ####################################################################################################################################################################################################
-    def dumpSelectTabs(self, why): self.log(f'{why} {fmtl(self.skeys, ll=1)} {fmtl(list(self.smap.values()))}')
+    def dumpSelectTabs(self, why): self.log(f'{why} {fmtl(list(self.smap.values()), ll=1)}')
+#    def dumpSelectTabs(self, why): self.log(f'{why} {fmtl(self.skeys, ll=1)} {fmtl(list(self.smap.values()))}')
 
     def unselectAll(self, how, dbg=VERBOSE):
-        for i in range(len(self.skeys)-1, -1, -1):
-            k = self.skeys[i]
+        for i in range(len(self.smap)-1, -1, -1):
+            k = list(self.smap.keys())[i]
             if dbg: self.log(f'{how} i={i} k={k}')
             self.unselectTabs(how, m=0, k=k)
 
@@ -1768,42 +1770,44 @@ class Tabs(pyglet.window.Window):
         self.setLLStyle(cc, NORMAL_STYLE)
         if dbg: self.dumpSelectTabs(f'BGN {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
         for t in range(nt):
-            if self.tabs:     tab = self.tabs  [k + t]  ;    tab.color = self.kt[0]
-            if self.notes:   note = self.notes [k + t]  ;   note.color = self.kn[0]
-            if self.ikeys:   ikey = self.ikeys [k + t]  ;   ikey.color = self.ki[0]
-            if self.chords: chord = self.chords[k + t]  ;  chord.color = self.kk[0]
-        if k in self.skeys: self.skeys.remove(k)    ;    self.smap.pop(k)  #  crashes
-        elif dbg:           self.log(f'key={k} not found in skeys={fmtl(self.skeys)}')
+            if self.tabs:   self.tabs  [k + t].color = self.kt[0]
+            if self.notes:  self.notes [k + t].color = self.kn[0]
+            if self.ikeys:  self.ikeys [k + t].color = self.ki[0]
+            if self.chords: self.chords[k + t].color = self.kk[0]
+#        if k in self.skeys: self.skeys.remove(k)
+        if k in self.smap: self.smap.pop(k)  #  crashes
+        elif dbg:           self.log(f'key={k} not found in smap={fmtm(self.smap)}')
+#        elif dbg:           self.log(f'key={k} not found in skeys={fmtl(self.skeys)}')
         if m:   self.move(how, m)
         if dbg: self.dumpSelectTabs(f'END {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
 
     def selectTabs(self, how, m=0, cc=None):
         if cc is None: cc = self.cursorCol()
-        nt = self.n[T]  ;  text = ''   ;   tab, note, chord = None, None, None
+        nt = self.n[T]  ;  text = ''
         k = self.normalizeCC(cc)
         if k in self.smap: self.log(f'k={k} already in smap returning')   ;   return
         self.dumpSelectTabs(f'BGN {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
-        self.skeys.append(k)   # ;   self.sset.add(k)
+#        self.skeys.append(k)   # ;   self.sset.add(k)
         for t in range(nt):
-            if self.tabs:     tab = self.tabs  [k + t]  ;    tab.color = CCS[0]
-            if self.notes:   note = self.notes [k + t]  ;   note.color = CCS[0]
-            if self.ikeys:   ikey = self.ikeys [k + t]  ;   ikey.color = CCS[0]
-            if self.chords: chord = self.chords[k + t]  ;  chord.color = CCS[0]
-            text += tab.text
+            if self.tabs:   self.tabs  [k + t].color = CCS[0]
+            if self.notes:  self.notes [k + t].color = CCS[0]
+            if self.ikeys:  self.ikeys [k + t].color = CCS[0]
+            if self.chords: self.chords[k + t].color = CCS[0]
+            text += self.tabs[k + t].text
         self.smap[k] = text
         self.move(how, m, ss=1)
         self.dumpSelectTabs(f'END {how} m={m} cc={cc} k={k} cn={self.cc2cn(cc) + 1}')
 
     def copyTabs(self, how, dbg=VERBOSE):
-        self.dumpSelectTabs(f'BGN {how}')   ;   nt = self.n[T]  ;   text = ''   ;   tab, note, ikey, chord = None, None, None, None
-        for k in self.skeys:
+        self.dumpSelectTabs(f'BGN {how}')   ;   nt = self.n[T]  ;   text = ''
+        for k in list(self.smap.keys()):  # self.skeys:
             self.setLLStyle(k, NORMAL_STYLE)
             for t in range(nt):
-                if self.tabs:     tab  = self.tabs  [k + t]  ;    tab.color = self.k[T][0]
-                if self.notes:   note  = self.notes [k + t]  ;   note.color = self.k[N][0]
-                if self.ikeys:   ikey  = self.ikeys [k + t]  ;   ikey.color = self.k[I][0]
-                if self.chords: chord  = self.chords[k + t]  ;  chord.color = self.k[K][0]
-                if dbg: text += tab.text
+                if self.tabs:   self.tabs  [k + t].color = self.k[T][0]
+                if self.notes:  self.notes [k + t].color = self.k[N][0]
+                if self.ikeys:  self.ikeys [k + t].color = self.k[I][0]
+                if self.chords: self.chords[k + t].color = self.k[K][0]
+                if dbg: text += self.tabs[k + t].text
             if dbg: text += ' '
         if dbg: self.log(f'text={text}')
         self.dumpSelectTabs(f'END {how}')
@@ -1827,16 +1831,16 @@ class Tabs(pyglet.window.Window):
         self.dataHasChanged = 1
 
     def pasteTabs(self, how, kk=0, dbg=VERBOSE):
-        cc = self.cursorCol()   ;  nt = self.n[T]
+        cc = self.cursorCol()        ;  nt = self.n[T]
         ntc = self.normalizeCC(cc)   ;  kt = 0
-        smap, skeys = self.smap, self.skeys
         p, l, s, c, r = self.j()
         self.dumpSelectTabs(f'BGN {how} kk={kk} cc={cc} ntc={ntc} cn={self.cc2cn(cc) + 1} plcr {p} {l} {c} {r}')
-        for i, (k, v) in enumerate(smap.items()):
+        for i, (k, v) in enumerate(self.smap.items()):
             text = v
             if not i: dk = 0
             elif kk:  dk = i * nt
-            else:     dk = skeys[i] - skeys[0]
+            else:     dk = list(self.smap.keys())[i] - list(self.smap.keys())[0]
+#            else:     dk = self.skeys[i] - self.skeys[0]
             if dbg: self.log(f'i={i} k={k} v={v} text={text} kk={kk} dk={dk}')
             for t in range(nt):
                 kt = (ntc + dk + t) % self.tpp
@@ -1850,10 +1854,13 @@ class Tabs(pyglet.window.Window):
         self.dataHasChanged = 1
 
     def swapTabs(self, how):
-        nk = len(self.skeys)   ;   nk2 = nk // 2
+#        nk = len(self.skeys)   ;   nk2 = nk // 2
+        nk = len(self.smap)   ;   nk2 = nk // 2
         for i in range(nk2):
-            k1 = self.skeys[i]
-            k2 = self.skeys[nk - 1 - i]
+            k1 = list(self.smap.keys())[i]
+            k2 = list(self.smap.keys())[nk - 1 - i]
+#            k1 = self.skeys[i]
+#            k2 = self.skeys[nk - 1 - i]
             text1 = self.smap[k1]
             text2 = self.smap[k2]
             self.smap[k1] = text2
@@ -1947,7 +1954,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {how} text={text} rev={rev} {fmtl(self.i, FMTN)}')
         self.dataHasChanged = 1
 
-    def setDTNIK(self, text, cc, p, l, c, t, uk=0, dbg=1):  # VERBOSE):  # what was previous data value
+    def setDTNIK(self, text, cc, p, l, c, t, uk=0, dbg=0):  # VERBOSE):  # what was previous data value
         if dbg: self.log(f'BGN text={text} cc={cc} plct {p} {l} {c} {t} uk={uk}')
         self.setData(text, p, l, c, t)
         if self.TNIK[TT]:        self.setTab2( text, cc)
@@ -2067,9 +2074,12 @@ class Tabs(pyglet.window.Window):
     def scales(self):       pass
     ####################################################################################################################################################################################################
     def toggleChordNames(self, how, every=0, rev=1, dbg=1):
-        if self.skeys and not every:
-            if dbg:       self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} skeys={fmtl(self.skeys)}')
-            [ self.toggleChordName(how, self.cc2cn(k), rev) for k in self.skeys ]
+        if len(self.smap) and not every:
+            if dbg:       self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} smap.keys={fmtl(list(self.smap.keys()))}')
+            [ self.toggleChordName(how, self.cc2cn(k), rev) for k in list(self.smap.keys()) ]
+#        if self.skeys and not every:
+#            if dbg:       self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} skeys={fmtl(self.skeys)}')
+#            [ self.toggleChordName(how, self.cc2cn(k), rev) for k in self.skeys ]
         else:
             cc = self.cursorCol()    ;    cn = self.cc2cn(cc)    ;    mk = list(self.cobj.mlimap.keys())
             if dbg:       self.dumpSelectTabs(f'BGN {how} every={every} rev={rev} cc={cc} cn={cn} mk={fmtl(mk)}')
