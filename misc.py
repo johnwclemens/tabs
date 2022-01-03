@@ -56,7 +56,7 @@ class Chord(object):
         if file is None: file=self.logFile
         tabs.Tabs.log(msg=msg, ind=ind, file=file, flush=flush, sep=sep, end=end)
 
-    def getChordName(self, p, l, c, dbg=0):
+    def getChordName(self, p, l, c, dbg=0, dbg2=1):
         cc = c + l * self.tobj.n[tabs.C]
         self.limap, ims = [], set()   ;   ikeys, ivals, chunks, name, rank = [], [], [], '', -1
         mask, notes, indices = self.getIndices(p, l, c)
@@ -64,9 +64,9 @@ class Chord(object):
             imk = indices[i] % len(self.INTERVALS)
             if imk not in ims:
                 ims.add(imk)
-#                if dbg: self.log(f'imk={imk} ims={tabs.fmtl(ims)} cc={cc}')
+                if dbg2: self.log(f'plct {p} {l} {c} cc={cc} imk={imk} ims={tabs.fmtl(ims)}')
                 ikeys = self.getIkeys(indices, i, mask)
-                self.limap.append(self.getImap(ikeys, notes)) # insert
+                self.limap.append(self.getImap(ikeys, notes)) # append/insert ordering?
         if self.limap:
             self.limap.sort(key=lambda m: m[-1], reverse=True)
             if dbg: self.log(f'limap ordered by imap cycle rank:')
@@ -75,7 +75,7 @@ class Chord(object):
             return self.limap[-1]
         return [ ikeys, ivals, notes, name, chunks, rank ]
 
-    def getImap(self, ikeys, notes, dbg=0, dbg2=0):
+    def getImap(self, ikeys, notes, dbg=0, dbg2=1):
         imap     = collections.OrderedDict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
         if dbg:
             mask = [1] * len(ikeys)
@@ -977,101 +977,3 @@ class Chord(object):
                         if j:        self.log(f'{"" if h else "  "}{tabs.fmtl(w, w=tabs.FMTN2)}', ind=0, end='')
                         elif w != v: self.log(f'{                   tabs.fmtl(w,        z="x")}', ind=0, end='')
                 self.log(ind=0)
-
-    def OLD_getChordName_(self, imap, dbg=1):
-        key = ' '.join(imap.keys())   ;   rank = -1
-        chordName, root, _chunks, chunks, ivals = '', '', [], [], []
-        if key in self.OMAP:    root, _chunks, rank, ivals = imap['R'], self.OMAP[key][2], self.OMAP[key][0], self.OMAP[key][1]
-        else:
-            if len(imap) >= Chord.MIN_CHORD_LEN:
-                ii = self.key2Indices(key)
-                if dbg: self.log(f'adding key {key} with indices {tabs.fmtl(ii)} to OMAP')
-                self.umap[key] = (rank, ii, [])
-        if root:       chunks.append(root)
-        if _chunks:  [ chunks.append(n) for n in _chunks if n ]  ;  chordName = ''.join(chunks[:])  ;
-        if dbg:         self.log(f'[{key:17}] {tabs.fmtl(ivals)} [{chordName:12}] {tabs.fmtl(chunks, w=2):14} {rank}')
-        return chordName, chunks, rank
-
-    def OLD_add2Limap(self, imp, name, chunks, rank, dbg=1):
-        ikeys = list(imp.keys())    ;   notes = list(imp.values())    # ;   rank = -1
-        ivals = [ self.INTERVAL_RANK[v] for v in ikeys ]
-        imap =  [ ikeys, ivals, notes, name, chunks, rank ]
-#        if name:
-#            omapK = ' '.join(ikeys)
-#            if omapK in Chord.OMAP:
-#                rank = Chord.OMAP[omapK][0]    ;   imap[5] = rank
-#                if dbg: self.log(f'omapk={omapK} {tabs.fmtl(ikeys)} {tabs.fmtl(ivals)} {tabs.fmtl(notes)} {name} {tabs.fmtl(chunks)} rank={rank}')
-        self.limap.append(imap)      # self.limap.insert(rank, imap)
-        if dbg: self.dumpImap(imap)  # ,'append'  'insert'
-
-
-    def OLD_getImapKeys(self, intervals, notes, dbg=1, dbg2=1):
-        imap      = collections.OrderedDict(sorted(dict(zip(intervals, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
-        imapKeys  = list(imap.keys())
-        imapNotes = list(imap.values())
-        chordKey  = ' '.join(imapNotes)
-        mask      = [1] * len(imapKeys)
-        if dbg:  self.dumpData(imap,      mask, 'imap')
-        if dbg2: self.dumpData(imapKeys,  mask, 'imapKeys')
-        if dbg2: self.dumpData(imapNotes, mask, 'imapNotes')
-#        if dbg2: self.dumpData(list(chordKey), [1]*len(chordKey), 'chordKey')
-        '''
-        sdeltas, rdeltas, relimapKeys = [], [], ['R']
-        for k in imapKeys:
-            sdeltas.append(self.INTERVAL_RANK[k])
-            rdeltas.insert(0, self.INTERVAL_RANK[k])
-        if dbg: self.dumpData(sdeltas, mask, 'SDeltas')
-        if dbg: self.dumpData(rdeltas, mask, 'RDeltas')
-        for (i, sd) in enumerate(sdeltas):
-            relimapKeys.append(self.INTERVALS[rdeltas[i]])
-        if dbg: self.dumpData(relimapKeys, mask, 'RelImapKeys')
-        '''
-        return imap, imapKeys, imapNotes, chordKey
-
-
-    def OLD_OLD_getImap(self, intervals, notes, dbg=1):
-        imap      = collections.OrderedDict(sorted(dict(zip(intervals, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
-        imapNotes = list(imap.values())  #        chordKey  = ' '.join(imapNotes)
-        if dbg:
-            imapKeys = list(imap.keys())
-            mask     = [1] * len(imapKeys)
-            self.dumpData(imap,      mask, 'imap')
-            self.dumpData(imapKeys,  mask, 'imapKeys')
-            self.dumpData(imapNotes, mask, 'imapNotes')
-        return imap # , chordKey
-
-    def OLD_getImap_OLD(self, imap, dbg=1):
-        key = ' '.join(imap.keys())   ;   rank = -1
-        ikeys = list(imap.keys())    ;   notes = list(imap.values())
-        name, root, _chunks, chunks, ivals = '', '', [], [], []
-        if key in self.OMAP:    root, _chunks, rank, ivals = imap['R'], self.OMAP[key][2], self.OMAP[key][0], self.OMAP[key][1]
-        else:
-            if len(imap) >= Chord.MIN_CHORD_LEN:
-                ii = self.key2Indices(key)
-                if dbg: self.log(f'adding key {key} with indices {tabs.fmtl(ii)} to OMAP')
-                self.umap[key] = (rank, ii, [])
-        if root:       chunks.append(root)
-        if _chunks:  [ chunks.append(n) for n in _chunks if n ]  ;  name = ''.join(chunks[:])  ;
-        return [ ikeys, ivals, notes, name, chunks, rank ]
-
-    def OLD_getImap(self, intervals, notes, dbg=1):
-        imap      = collections.OrderedDict(sorted(dict(zip(intervals, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
-        imapNotes = list(imap.values())  #        chordKey  = ' '.join(imapNotes)
-        if dbg:
-            imapKeys = list(imap.keys())
-            mask     = [1] * len(imapKeys)
-            self.dumpData(imap,      mask, 'imap')
-            self.dumpData(imapKeys,  mask, 'imapKeys')
-            self.dumpData(imapNotes, mask, 'imapNotes')
-        key = ' '.join(imap.keys())   ;    rank = -1
-        ikeys = list(imap.keys())     ;   notes = list(imap.values())
-        name, root, _chunks, chunks, ivals = '', '', [], [], []
-        if key in self.OMAP:    root, _chunks, rank, ivals = imap['R'], self.OMAP[key][2], self.OMAP[key][0], self.OMAP[key][1]
-        elif len(imap) >= Chord.MIN_CHORD_LEN:
-                ii = self.key2Indices(key)
-                if dbg: self.log(f'adding key {key} with indices {tabs.fmtl(ii)} to OMAP')
-                self.umap[key] = (rank, ii, [])
-        if root:       chunks.append(root)
-        if _chunks:  [ chunks.append(n) for n in _chunks if n ]  ;  name = ''.join(chunks[:])  ;
-        return [ ikeys, ivals, notes, name, chunks, rank ]
-
