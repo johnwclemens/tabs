@@ -54,7 +54,7 @@ class Chord(object):
 
     def log(self, msg='', ind=1, file=None, flush=False, sep=',', end='\n'):
         if file is None: file=self.logFile
-        tabs.Tabs.log(msg=msg, ind=ind, file=file, flush=flush, sep=sep, end=end)
+        tabs.Tabs.slog(msg=msg, ind=ind, file=file, flush=flush, sep=sep, end=end)
 
     def getChordName(self, p, l, c, dbg=0, dbg2=1):
         cc = self.tobj.plct2cc(p, l, c, 0)   ;   cn = self.tobj.plc2cn(p, l, c)
@@ -65,13 +65,13 @@ class Chord(object):
             imk = indices[i] % len(self.INTERVALS)
             if imk not in ims:
                 ims.add(imk)
-                if dbg2: self.log(f'{self.tobj.fPos()} imk={imk} ims={tabs.fmtl(ims)}')
+                if dbg2: self.log(f'imk={imk} ims={tabs.fmtl(ims)}')
                 ikeys = self.getIkeys(indices, i, mask)
                 self.limap.append(self.getImap(ikeys, notes)) # append/insert ordering?
         if self.limap:
             self.limap.sort(key=lambda m: m[-1], reverse=True)
             if dbg: self.log(f'limap ordered by imap cycle rank:')
-            if dbg: [ self.dumpImap(m, why=f'{self.tobj.fPos()}') for m in sorted(self.limap, key=lambda m: m[-1]) ]
+            if dbg: [ self.dumpImap(m) for m in sorted(self.limap, key=lambda m: m[-1]) ]
             self.mlimap[cn] = self.limap
             return self.limap[-1]
         return [ ikeys, ivals, notes, name, chunks, rank ]
@@ -89,7 +89,7 @@ class Chord(object):
             self.log(f'adding key {key} with indices {tabs.fmtl(ivals)} to OMAP')
             self.umap[key] = (rank, ivals, [])
         imap = [ ikeys, ivals, notes, name, chunks, rank ]
-        if dbg2: self.dumpImap(imap, why=f'{self.tobj.fPos()}')
+        if dbg2: self.dumpImap(imap) # , why=f'{self.tobj.fPos()}')
         return imap
     ####################################################################################################################################################################################################
     def toggleChordName(self, key, rev=1, dbg=1): # update self.limap?
@@ -101,7 +101,7 @@ class Chord(object):
            limap = self.rotateList(limap, rev)
            self.mlimap[key] = limap  # ;  im = limap[0]  # index=?
            if dbg: self.dumpLimap(limap, key, why=f'after  key={key} rev={rev}')
-           if dbg: self.dumpImap(limap[-1], why=f'{self.tobj.fPos()}')
+           if dbg: self.dumpImap(limap[-1]) # , why=f'{self.tobj.fPos()}')
 #           if dbg: self.log(f'ikeys={tabs.fmtl(im[0])} ivals={tabs.fmtl(im[1])} notes={tabs.fmtl(im[2])} name={im[3]} chunks={tabs.fmtl(im[4])} rank={im[5]}')
            return limap[-1]
     ####################################################################################################################################################################################################
