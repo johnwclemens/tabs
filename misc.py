@@ -65,14 +65,14 @@ class Chord(object):
             imk = indices[i] % len(self.INTERVALS)
             if imk not in ims:
                 ims.add(imk)
-                if dbg2: self.log(f'    plct={tabs.fmtl(self.tobj.j2())} cc={cc} cn={cn} imk={imk} ims={tabs.fmtl(ims)}')
+                if dbg2: self.log(f'{self.tobj.fPos()} imk={imk} ims={tabs.fmtl(ims)}')
                 ikeys = self.getIkeys(indices, i, mask)
                 self.limap.append(self.getImap(ikeys, notes)) # append/insert ordering?
         if self.limap:
             self.limap.sort(key=lambda m: m[-1], reverse=True)
             if dbg: self.log(f'limap ordered by imap cycle rank:')
-            if dbg: [ self.dumpImap(m, why=f'    plct={tabs.fmtl(self.tobj.j2())}') for m in sorted(self.limap, key=lambda m: m[-1]) ]
-            self.mlimap[cc] = self.limap
+            if dbg: [ self.dumpImap(m, why=f'{self.tobj.fPos()}') for m in sorted(self.limap, key=lambda m: m[-1]) ]
+            self.mlimap[cn] = self.limap
             return self.limap[-1]
         return [ ikeys, ivals, notes, name, chunks, rank ]
 
@@ -89,19 +89,19 @@ class Chord(object):
             self.log(f'adding key {key} with indices {tabs.fmtl(ivals)} to OMAP')
             self.umap[key] = (rank, ivals, [])
         imap = [ ikeys, ivals, notes, name, chunks, rank ]
-        if dbg2: self.dumpImap(imap, why=f'    plct={tabs.fmtl(self.tobj.j2())}')
+        if dbg2: self.dumpImap(imap, why=f'{self.tobj.fPos()}')
         return imap
     ####################################################################################################################################################################################################
     def toggleChordName(self, key, rev=1, dbg=1): # update self.limap?
         if dbg: self.log(f'rev={rev} key={key}')
-        if key not in self.mlimap.keys(): self.log(f'key={key} Not Found')   ;   return []
+        if key not in self.mlimap.keys(): self.log(f'key={key} Not Found')   ;   return None #[]
         else:
            limap = self.mlimap[key]
            if dbg: self.dumpLimap(limap, key, why=f'before key={key} rev={rev}')
            limap = self.rotateList(limap, rev)
            self.mlimap[key] = limap  # ;  im = limap[0]  # index=?
            if dbg: self.dumpLimap(limap, key, why=f'after  key={key} rev={rev}')
-           if dbg: self.dumpImap(limap[-1], why=f'    plct={tabs.fmtl(self.tobj.j2())}')
+           if dbg: self.dumpImap(limap[-1], why=f'{self.tobj.fPos()}')
 #           if dbg: self.log(f'ikeys={tabs.fmtl(im[0])} ivals={tabs.fmtl(im[1])} notes={tabs.fmtl(im[2])} name={im[3]} chunks={tabs.fmtl(im[4])} rank={im[5]}')
            return limap[-1]
     ####################################################################################################################################################################################################
@@ -175,7 +175,7 @@ class Chord(object):
         for i, (k, v) in enumerate(self.mlimap.items()):
             self.dumpLimap(v, k)
         for i, (k, v) in enumerate(self.mlimap.items()):
-            self.log(f'{i+1:3} {k:3}', ind=0, end=' ')
+            self.log(f'{i:3} {k:3}', ind=0, end=' ')
             for j in range(len(v)):
                 tmp = f'{tabs.fmtl(v[j][0], w=tabs.FMTN2, d1="", d2="")}'   ;   count1 += 1
                 if v[j][3]: count2 += 1
@@ -206,7 +206,8 @@ class Chord(object):
             self.log(f'{tabs.fmtl(bb[i], w=tabs.FMTN2, d1="" if i else "|", d2="|")}', ind=0, end='' if i<len(bb)-1 else "\n")
 
     def dumpImap(self, imap, why=''):
-        ikeys, ivals, inotes, name, chunks, rank = imap[0],imap[1], imap[2], imap[3], imap[4], imap[5]
+        ikeys, ivals, inotes, name, chunks, rank = [], [], [], '', [], -1
+        if imap and len(imap) == 6: ikeys, ivals, inotes, name, chunks, rank = imap[0],imap[1], imap[2], imap[3], imap[4], imap[5]
         self.log(f'{why} {rank} {tabs.fmtl(ikeys, w=tabs.FMTN2):18} {tabs.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19} {name:12} {tabs.fmtl(chunks):19}')
     ####################################################################################################################################################################################################
     @staticmethod
