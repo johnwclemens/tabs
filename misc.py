@@ -52,13 +52,13 @@ class Chord(object):
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), dict()
 
-    def log(self, msg='', ind=1, file=None, flush=False, sep=',', end='\n'):
+    def log(self, msg='', ind=1, pos=0, file=None, flush=False, sep=',', end='\n'):
         if file is None: file=self.logFile
-        tabs.Tabs.slog(msg=msg, ind=ind, file=file, flush=flush, sep=sep, end=end)
+        self.tobj.log(msg=msg, ind=ind, pos=pos, file=file, flush=flush, sep=sep, end=end)
 
-    def getChordName(self, p, l, c, dbg=0, dbg2=1):
-        cc = self.tobj.plct2cc(p, l, c, 0)   ;   cn = self.tobj.plc2cn(p, l, c)
-#        cc = c + l * self.tobj.n[tabs.C]
+    def getChordName(self, p, l, c, dbg=0, dbg2=0):
+        cn = self.tobj.plc2cn(p, l, c)
+#        cc = c + l * self.tobj.n[tabs.C]   #  cc = self.tobj.plct2cc(p, l, c, 0)
         self.limap, ims = [], set()   ;   ikeys, ivals, chunks, name, rank = [], [], [], '', -1
         mask, notes, indices = self.getIndices(p, l, c)
         for i in range(len(indices)):
@@ -76,7 +76,7 @@ class Chord(object):
             return self.limap[-1]
         return [ ikeys, ivals, notes, name, chunks, rank ]
 
-    def getImap(self, ikeys, notes, dbg=0, dbg2=1):
+    def getImap(self, ikeys, notes, dbg=0, dbg2=0):
         imap     = collections.OrderedDict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
         if dbg:
             mask = [1] * len(ikeys)
@@ -89,19 +89,19 @@ class Chord(object):
             self.log(f'adding key {key} with indices {tabs.fmtl(ivals)} to OMAP')
             self.umap[key] = (rank, ivals, [])
         imap = [ ikeys, ivals, notes, name, chunks, rank ]
-        if dbg2: self.dumpImap(imap) # , why=f'{self.tobj.fPos()}')
+        if dbg2: self.dumpImap(imap, why=f'{self.tobj.fPos()}')
         return imap
     ####################################################################################################################################################################################################
-    def toggleChordName(self, key, rev=1, dbg=1): # update self.limap?
-        if dbg: self.log(f'rev={rev} key={key}')
-        if key not in self.mlimap.keys(): self.log(f'key={key} Not Found')   ;   return None #[]
+    def toggleChordName(self, key, rev=1, dbg=1, dbg2=1): # update self.limap?
+        if dbg: self.log(f'rev={rev} key={key}', pos=1)
+        if key not in self.mlimap.keys(): self.log(f'key={key} Not Found milap.keys={tabs.fmtl(list(self.mlimap.keys()))}') if dbg2 else None   ;   return None
         else:
            limap = self.mlimap[key]
            if dbg: self.dumpLimap(limap, key, why=f'before key={key} rev={rev}')
            limap = self.rotateList(limap, rev)
            self.mlimap[key] = limap  # ;  im = limap[0]  # index=?
            if dbg: self.dumpLimap(limap, key, why=f'after  key={key} rev={rev}')
-           if dbg: self.dumpImap(limap[-1]) # , why=f'{self.tobj.fPos()}')
+           if dbg: self.dumpImap(limap[-1],   why=f'{self.tobj.fPos()}')
 #           if dbg: self.log(f'ikeys={tabs.fmtl(im[0])} ivals={tabs.fmtl(im[1])} notes={tabs.fmtl(im[2])} name={im[3]} chunks={tabs.fmtl(im[4])} rank={im[5]}')
            return limap[-1]
     ####################################################################################################################################################################################################
@@ -196,7 +196,7 @@ class Chord(object):
 #        for i in range(sl):
 #            if i < ll:  aa2.append( [ Chord.INTERVAL_RANK[j] for j in limap[i][0] ] )   # ;   aa2.append( [ ' ' for _ in range(sl - ll) ] )
 #            else:                     aa2.append( [ '-' for _ in range(sl - ll) ] )
-        self.log(f'{why}{cc+1:3} {tabs.fmtl(lc, d1="", d2="", sep="")} {tabs.fmtl(ln, w=2, d1="", d2="")}', ind=0, end=' ')
+        self.log(f'{why}{cc:3} {tabs.fmtl(lc, d1="", d2="", sep="")} {tabs.fmtl(ln, w=2, d1="", d2="")}', ind=0, end=' ')
         for j in range(len(aa)):
             self.log(f'{tabs.fmtl(aa[j],  z="x",       d1="" if j else "|", d2="|")}', ind=0, end='' if j<len(aa)-1 else tabs.Z*(pos-(2*ll*llb)))
 #        for j in range(len(aa2)):
