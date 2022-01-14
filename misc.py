@@ -56,7 +56,7 @@ class Chord(object):
         if file is None: file=self.logFile
         self.tobj.log(msg=msg, ind=ind, pos=pos, file=file, flush=flush, sep=sep, end=end)
 
-    def getChordName(self, p, l, c, dbg=0, dbg2=0):
+    def getChordName(self, p, l, c, dbg=0):
         cn = self.tobj.plc2cn(p, l, c)
 #        cc = c + l * self.tobj.n[tabs.C]   #  cc = self.tobj.plct2cc(p, l, c, 0)
         self.limap, ims = [], set()   ;   ikeys, ivals, chunks, name, rank = [], [], [], '', -1
@@ -65,15 +65,15 @@ class Chord(object):
             imk = indices[i] % len(self.INTERVALS)
             if imk not in ims:
                 ims.add(imk)
-                if dbg2: self.log(f'imk={imk} ims={tabs.fmtl(ims)}')
+                if dbg: self.log(f'imk={imk} ims={tabs.fmtl(ims)}')
                 ikeys = self.getIkeys(indices, i, mask)
                 self.limap.append(self.getImap(ikeys, notes)) # append/insert ordering?
         if self.limap:
-            self.limap.sort(key=lambda m: m[-1], reverse=True)
+            self.limap.sort(key=lambda m: m[-1])
             if dbg: self.log(f'limap ordered by imap cycle rank:')
-            if dbg: [ self.dumpImap(m) for m in sorted(self.limap, key=lambda m: m[-1]) ]
+            self.dumpLimap2(self.limap, cn)
             self.mlimap[cn] = self.limap
-            return self.limap[-1]
+            return self.limap[0]
         return [ ikeys, ivals, notes, name, chunks, rank ]
 
     def getImap(self, ikeys, notes, dbg=0, dbg2=0):
@@ -93,17 +93,16 @@ class Chord(object):
         return imap
     ####################################################################################################################################################################################################
     def toggleChordName(self, key, rev=1, dbg=1, dbg2=1): # update self.limap?
-        if dbg: self.log(f'rev={rev} key={key}', pos=1)
+        if dbg: self.log(f'rev={rev} key={key}')
         if key not in self.mlimap.keys(): self.log(f'key={key} Not Found milap.keys={tabs.fmtl(list(self.mlimap.keys()))}') if dbg2 else None   ;   return None
         else:
-           limap = self.mlimap[key]
-           if dbg: self.dumpLimap(limap, key, why=f'before key={key} rev={rev}')
-           limap = self.rotateList(limap, rev)
-           self.mlimap[key] = limap  # ;  im = limap[0]  # index=?
-           if dbg: self.dumpLimap(limap, key, why=f'after  key={key} rev={rev}')
-           if dbg: self.dumpImap(limap[-1],   why=f'{self.tobj.fPos()}')
-#           if dbg: self.log(f'ikeys={tabs.fmtl(im[0])} ivals={tabs.fmtl(im[1])} notes={tabs.fmtl(im[2])} name={im[3]} chunks={tabs.fmtl(im[4])} rank={im[5]}')
-           return limap[-1]
+            limap = self.mlimap[key]
+            if dbg: self.dumpLimap3(limap, key, why=f'spin rev={rev}')
+            limap = self.rotateList(limap, rev)
+            self.mlimap[key] = limap  # ;  im = limap[0]  # index=?
+            if dbg: self.dumpLimap3(limap, key, why=f'spun rev={rev}')
+#            if dbg: self.log(f'ikeys={tabs.fmtl(im[0])} ivals={tabs.fmtl(im[1])} notes={tabs.fmtl(im[2])} name={im[3]} chunks={tabs.fmtl(im[4])} rank={im[5]}')
+            return limap[0]
     ####################################################################################################################################################################################################
     def getIndices(self, p, l, c, dbg=0, dbg2=0):
         if p >= len(self.tobj.data) or l >= len(self.tobj.data[p]) or c >= len(self.tobj.data[p][l]): self.log(f'ERROR index plc {p} {l} {c}')
@@ -171,17 +170,17 @@ class Chord(object):
         self.log(']',                 ind=0)
 
     def dumpMLimap(self, why=''):
-        self.log(f'{why} len(mlimap)={len(self.mlimap)}')        ;   count1, count2 = 0, 0
+        self.log(f'{why} len(mlimap)={len(self.mlimap)}')
+        for i, (k, v) in enumerate(self.mlimap.items()):
+            self.dumpLimap2(v, k)
         for i, (k, v) in enumerate(self.mlimap.items()):
             self.dumpLimap(v, k)
         for i, (k, v) in enumerate(self.mlimap.items()):
             self.log(f'{i:3} {k:3}', ind=0, end=' ')
             for j in range(len(v)):
-                tmp = f'{tabs.fmtl(v[j][0], w=tabs.FMTN2, d1="", d2="")}'   ;   count1 += 1
-                if v[j][3]: count2 += 1
+                tmp = f'{tabs.fmtl(v[j][0], w=tabs.FMTN2, d1="", d2="")}'
                 self.log(f'{v[j][3]:7}|{tmp:16}', ind=0, end='')
             self.log(ind=0)
-        if count1: self.log(f'{why} len(mlimap)={len(self.mlimap)} count=({count2} / {count1})={count2/count1:6.4} ')
 
     def dumpLimap(self, limap, cc, why=''):
         aa, bb = [], []  ;  sl = len(self.tobj.stringNumbs)  ;  lc = [0] * sl  ;  ln = [' ' for _ in range(sl)]  # ;  aa2 = []
@@ -204,6 +203,24 @@ class Chord(object):
 #            else:      self.log(f'{tabs.fmtl(aa2[j],   d1="" if j else "|", d2="|")}', ind=0, end='') #   if j<len(aa2) else '  ')
         for i in range(len(bb)):
             self.log(f'{tabs.fmtl(bb[i], w=tabs.FMTN2, d1="" if i else "|", d2="|")}', ind=0, end='' if i<len(bb)-1 else "\n")
+
+    def dumpLimap2(self, limap, key, why=''):
+        [ self.dumpImap(m, why=f'key={key} '+why) for m in limap ]
+#        [ self.dumpImap(m, f'key={key}') for m in sorted(limap, key=lambda m: m[-1]) ]
+    '''
+    def dumpLimap3(self, limap, key, why=''):
+        bb = []   ;   sl = len(self.tobj.stringNumbs)   ;   lc = [0] * sl  # ;  ll = len(limap)   ;   llb = len(limap[0][0])
+        for i, m in enumerate(limap):
+            lc[i] = 1 if m[2] else 'X'
+            bb.append(m[0])
+        self.log(f'{why} key={key}', ind=0, end='')
+        for i in range(len(bb)):
+            self.log(f'{tabs.fmtl(bb[i], w=tabs.FMTN2, d1="" if i else "|", d2="|")}', ind=0, end='' if i<len(bb)-1 else "\n")
+    '''
+    def dumpLimap3(self, limap, key, why=''):
+        self.log(f'{why} [{key}] ', ind=0, end='')
+        [ self.log(f'{m[-1]} {m[3]:12}', ind=0, end='') for m in limap ]
+        self.log(ind=0)
 
     def dumpImap(self, imap, why=''):
         ikeys, ivals, inotes, name, chunks, rank = [], [], [], '', [], -1
