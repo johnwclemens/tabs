@@ -92,15 +92,15 @@ class Chord(object):
         if dbg2: self.dumpImap(imap, why=f'{self.tobj.fPos()}')
         return imap
     ####################################################################################################################################################################################################
-    def toggleChordName(self, key, rev=1, dbg=1, dbg2=1): # update self.limap?
-        if dbg: self.log(f'rev={rev} key={key}')
+    def toggleChordName(self, key, dbg=1, dbg2=1): # update self.limap?
+        if dbg: self.log(f'key={key}')
         if key not in self.mlimap.keys(): self.log(f'key={key} Not Found milap.keys={tabs.fmtl(list(self.mlimap.keys()))}') if dbg2 else None   ;   return None
         else:
             limap = self.mlimap[key]
-            if dbg: self.dumpLimap3(limap, key, why=f'spin rev={rev}')
-            limap = self.rotateList(limap, rev)
+            if dbg: self.dumpLimap3(limap, key, why=f'spin')
+            limap = self.rotateList(limap)
             self.mlimap[key] = limap  # ;  im = limap[0]  # index=?
-            if dbg: self.dumpLimap3(limap, key, why=f'spun rev={rev}')
+            if dbg: self.dumpLimap3(limap, key, why=f'spun')
 #            if dbg: self.log(f'ikeys={tabs.fmtl(im[0])} ivals={tabs.fmtl(im[1])} notes={tabs.fmtl(im[2])} name={im[3]} chunks={tabs.fmtl(im[4])} rank={im[5]}')
             return limap[0]
     ####################################################################################################################################################################################################
@@ -206,17 +206,7 @@ class Chord(object):
 
     def dumpLimap2(self, limap, key, why=''):
         [ self.dumpImap(m, why=f'key={key} '+why) for m in limap ]
-#        [ self.dumpImap(m, f'key={key}') for m in sorted(limap, key=lambda m: m[-1]) ]
-    '''
-    def dumpLimap3(self, limap, key, why=''):
-        bb = []   ;   sl = len(self.tobj.stringNumbs)   ;   lc = [0] * sl  # ;  ll = len(limap)   ;   llb = len(limap[0][0])
-        for i, m in enumerate(limap):
-            lc[i] = 1 if m[2] else 'X'
-            bb.append(m[0])
-        self.log(f'{why} key={key}', ind=0, end='')
-        for i in range(len(bb)):
-            self.log(f'{tabs.fmtl(bb[i], w=tabs.FMTN2, d1="" if i else "|", d2="|")}', ind=0, end='' if i<len(bb)-1 else "\n")
-    '''
+
     def dumpLimap3(self, limap, key, why=''):
         self.log(f'{why} [{key}] ', ind=0, end='')
         [ self.log(f'{m[-1]} {m[3]:12}', ind=0, end='') for m in limap ]

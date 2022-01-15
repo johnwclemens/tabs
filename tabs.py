@@ -327,7 +327,7 @@ class Tabs(pyglet.window.Window):
     def lenC(self):  return [ len(_) for _ in self.C ]
     def lenD(self):  return [ len(_) for _ in self.D ]
     def lenE(self):  return [ len(_) for _ in self.E ]
-    def initJ(self, why='init'): self.J1 = [ 0 for _ in self.E ]     ;     self.J2 = [ 0 for _ in self.E ]     ;   self.dumpJ(why)   ;   return self.J1, self.J2
+    def initJ(self, why='init'): self.J1 = [ 0 for _ in self.E ]   ;   self.J2 = [ 0 for _ in self.E ]   ;   self.dumpJ(why)   ;   return self.J1, self.J2
 #    def updateJs(self, i, v): self.J1[i] = v    ;    self.J2[i] += 1 # not used?
     def j(self):     return [ i-1 if i else 0 for i in self.i ]
     def j2(self):    return [ i-1 if i else 0 for j, i in enumerate(self.i)  if j != S ]
@@ -1520,7 +1520,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@ ^ Q', code=1)
         elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(            '@   Q', code=0)
         elif kbk == 'R' and self.isCtrlShift(mods):    self.toggleChordNames('@ ^ R', hit=1)
-        elif kbk == 'R' and self.isCtrl(     mods):    self.toggleChordNames('@   R', rev=0)
+        elif kbk == 'R' and self.isCtrl(     mods):    self.toggleChordNames('@   R', hit=0)
         elif kbk == 'S' and self.isCtrlShift(mods):    self.shiftTabs(       '@ ^ S')
 #        elif kbk == 'S' and self.isCtrl(     mods):    self.saveDataFile(    '@   S')
         elif kbk == 'S' and self.isCtrl(     mods):    self.swapTab(         '@   S', txt='')
@@ -1536,12 +1536,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'X' and self.isCtrlShift(mods):    self.cutTabs(         '@ ^ X')
         elif kbk == 'X' and self.isCtrl(     mods):    self.cutTabs(         '@   X')
     ####################################################################################################################################################################################################
-        elif not self.isParsing():
-            if   kbk == 'ENTER' and self.isCtrl(mods): self.setCHVMode(      '@ ENTER',     CHORD,       v=DOWN)
-            elif kbk == 'ENTER':                       self.setCHVMode(      '  ENTER',     CHORD,       v=UP)
-            elif kbk == 'SPACE':                       self.autoMove(        'SPACE')
         elif kbk == 'ESCAPE':                          self.unselectAll(     'ESCAPE')
-        elif kbk == 'TAB'   and self.isCtrl(mods):     self.setCHVMode(      '@ TAB',       MELODY, LEFT)
+        elif kbk == 'TAB'       and self.isCtrl(mods): self.setCHVMode(      '@ TAB',       MELODY, LEFT)
         elif kbk == 'TAB':                             self.setCHVMode(      '  TAB',       MELODY, RIGHT)
 #        elif kbk == 'SLASH'     and self.isCtrl(mods): self.setTab(          '@ SLASH', '/')
 #        elif kbk == 'SLASH':                           self.setTab(          '  SLASH', '/')
@@ -1564,6 +1560,10 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'N' and self.isAlt(     mods):     self.setFontParam('font_name', (self.fontNameIndex - 1)  % len(FONT_NAMES),  'fontNameIndex')
         elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam('font_size', (self.fontSize      + 1)  % 52,               'fontSize')
         elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam('font_size', (self.fontSize      - 1)  % 52,               'fontSize')
+        if not self.isParsing():
+            if   kbk == 'ENTER' and self.isCtrl(mods): self.setCHVMode(      '@ ENTER',     CHORD,       v=DOWN)
+            elif kbk == 'ENTER':                       self.setCHVMode(      '  ENTER',     CHORD,       v=UP)
+            elif kbk == 'SPACE':                       self.autoMove(        'SPACE')
         elif dbg:   self.log(f'Unexpected {self.kbkEvntTxt()}')
         if dbg: self.log(f'END {self.kbkEvntTxt()}')
     ####################################################################################################################################################################################################
@@ -2063,35 +2063,35 @@ class Tabs(pyglet.window.Window):
     def keySignature(self): pass
     def scales(self):       pass
     ####################################################################################################################################################################################################
-    def toggleChordNames(self, how, hit=0, rev=1, dbg=1):
+    def toggleChordNames(self, how, hit=0, dbg=1):
         cc = self.cursorCol()    ;    cn = self.cc2cn(cc)
         if len(self.smap) and not hit:
-            if dbg:       self.dumpSelectTabs(f'BGN {how} rev={rev} hit={hit} smap.keys={fmtl(list(self.smap.keys()))}')
-            [ self.toggleChordName(how, self.cc2cn(k), rev) for k in list(self.smap.keys()) ]
+            if dbg:       self.dumpSelectTabs(f'BGN {how} hit={hit} smap.keys={fmtl(list(self.smap.keys()))}')
+            [ self.toggleChordName(how, self.cc2cn(k)) for k in list(self.smap.keys()) ]
         else:
             mk = list(self.cobj.mlimap.keys())
-            if dbg: self.dumpSelectTabs(f'BGN {how} rev={rev} hit={hit} mk={fmtl(mk)}')
-            if hit: self.toggleChordNameHits(how, cn, rev)
-            else:   self.toggleChordName(    how, cn, rev)
-        if dbg:     self.dumpSelectTabs(f'END {how} rev={rev} hit={hit}     ')
+            if dbg: self.dumpSelectTabs(f'BGN {how} hit={hit} mk={fmtl(mk)}')
+            if hit: self.toggleChordNameHits(how, cn)
+            else:   self.toggleChordName(    how, cn)
+        if dbg:     self.dumpSelectTabs(f'END {how} hit={hit}     ')
 
-    def toggleChordNameHits(self, how, cn='', rev=1, dbg=1, dbg2=0):
+    def toggleChordNameHits(self, how, cn='', dbg=1, dbg2=0):
         mli = self.cobj.mlimap   ;   ikeys, others = [], []   ;   mk = list(mli.keys())
         if cn not in mli: self.log(f'no mli key for cn={cn}') if dbg else None   ;   return
         rank = [ u[-1] for u in mli[cn] ]
         [ ikeys.append(''.join(u[0])) for u in mli[cn] ]
         if dbg: self.log(f'BGN cn={cn} rank={fmtl(rank)} mk={fmtl(mk)} ikeys={fmtl(ikeys)}')
-        hits, ranks = self.iKeys2hits(ikeys, rank)
+        hits, ranks = self.iKeyhits(ikeys, rank)
         if hits:
             for i in hits:
                 if i in mk:
                     v = mli[i]   ;   self.log(f'selecting tabs i={i}', pos=1) if dbg2 else None
                     self.selectTabs(how, 0, i * len(self.stringNumbs))
                     if dbg2: [ self.log(f'i={i} {fmtl(u[0], w=FMTN2):18} {fmtl(u[1], z="x"):13} {fmtl(u[2], w=2):19} {u[3]:12} {fmtl(u[4]):19} {u[5]}') for u in v ]
-                    self.toggleChordName(how, i, rev)
+                    self.toggleChordName(how, i)
         if dbg: self.log(f'END cn={cn} rank={rank} mk={fmtl(mk)} ikeys={fmtl(ikeys)}')
 
-    def iKeys2hits(self, ikeys, rank, dbg=1, dbg2=0):
+    def iKeyhits(self, ikeys, rank, dbg=1, dbg2=0):
         if dbg: self.log(f'BGN rank={fmtl(rank)} ikeys={fmtl(ikeys)}')
         mli = self.cobj.mlimap   ;   hits = set()   ;   ranks = []
         for k, v in mli.items():
@@ -2113,10 +2113,10 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'END rank={fmtl(rank)} hits={fmtl(hits)} ranks={fmtl(ranks)}')
         return list(hits), ranks
 
-    def toggleChordName(self, how, key, rev=1, dbg=1, dbg2=0):
+    def toggleChordName(self, how, key, dbg=1, dbg2=0):
         cc = self.cn2cc(key)
-        if dbg: self.log(f'BGN {how} rev={rev} key={key} cc={cc}')
-        imap = self.cobj.toggleChordName(key, rev)
+        if dbg: self.log(f'BGN {how} key={key} cc={cc}')
+        imap = self.cobj.toggleChordName(key)
         if not imap: self.log(f'no imap to toggle key={key} cc={cc}')   ;   return
         ikeys, ivals, notes, chordName, chunks, rank = imap
         if dbg2: self.log(f'ikeys={fmtl(ikeys)} ivals={fmtl(ivals)} notes={fmtl(notes)} name={chordName} chunks={fmtl(chunks)} rank={rank}')
@@ -2124,7 +2124,7 @@ class Tabs(pyglet.window.Window):
         if ikeys: p, l, c, t = self.cc2plct(cc)   ;   self.setIkeyText(ikeys, cc, p, l, c)
         if chordName and chunks: self.setChordName(cc, chordName, chunks)
         elif dbg: self.log(f'selected key={key} at cc={cc} is not a chord')
-        if dbg: self.log(f'END {how} rev={rev} key={key} cc={cc}')
+        if dbg: self.log(f'END {how} key={key} cc={cc}')
     ####################################################################################################################################################################################################
     def toggleCursorMode(self, how):
         self.log(f'BGN {how} csrMode={self.csrMode}={CSR_MODES[self.csrMode]}')
