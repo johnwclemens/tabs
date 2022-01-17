@@ -27,7 +27,8 @@ FMTR = MyFormatter()
 ####################################################################################################################################################################################################
 def fmtl(lst, w=None, u='<', d1='[', d2=']', sep=' ', ll=0, z=''):
 #    Tabs.log(f'{type(lst)}')
-    assert type(lst) in (list, tuple, set, frozenset)  #
+    assert type(lst) in (list, tuple, set, frozenset)
+    if d1 is None: d1, d2 = '', ''
     if w is None: w = 0
     t = ''   ;   s = f'<{len(lst)}' if ll else ''
     for i, l in enumerate(lst):
@@ -64,7 +65,7 @@ def dumpGlobals():
     Tabs.slog(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
 ARGS             = cmdArgs.parseCmdLine()        ;  DBG0, DBG1, DBG2, DBG3, DBG4, DBG5, DBG6, DBG7, DBG8, DBG9 = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9   ;  DBG = 0
-AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
+AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 0  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -153,7 +154,7 @@ FONT_COLORS_L = [PINKS[0], GRAYS[0], BLUES[0], GREENS[0], YELLOWS[0], REDS[0], G
 FONT_COLORS   =  FONT_COLORS_S if SPRITES else FONT_COLORS_L
 ####################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
-    hideST  = ['log', 'getImap', 'dumpGeom', 'dumpWH', 'dumpJ', 'dumpImap', 'dumpSelectTabs', 'dumpCursorArrows', 'listcomp', 'dumpLimap2']
+    hideST  = ['log', 'getImap', 'dumpGeom', 'dumpWH', 'dumpJ', 'dumpImap', 'dumpSelectTabs', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2']
     def __init__(self):
         dumpGlobals()
         global FULL_SCREEN, ORDER_GROUP, SUBPIX
@@ -398,7 +399,7 @@ class Tabs(pyglet.window.Window):
         self.dumpWH()   ;  self.ss()
         self.smap = {}
         self.createSprites()                if SPRITES else self.createLabels()
-        self.cobj.dumpMLimap('init')
+        self.cobj.dumpMlimap('init')
         self.dumpWH()
         self.dumpJ('after create Sprites()' if SPRITES else 'after create Labels()')
         if dbg: self.dumpLabels('new2')
@@ -450,7 +451,7 @@ class Tabs(pyglet.window.Window):
         self.dumpGlobalFlags()
         self.dumpGeom('   ')
         self.log(f'{self.fmtWH()} {self.fmtDD(self.data)}')
-        self.cobj.dumpMLimap(why)
+        self.cobj.dumpMlimap(why)
         self.dumpGeom('END')
     ####################################################################################################################################################################################################
     def saveDataFile(self, how, f=0, dbg=0):
@@ -1046,7 +1047,7 @@ class Tabs(pyglet.window.Window):
         p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]    ;   tt0 = self.tt0(s);    t2 = 0
         kt, kn, ki, kkk = self.kt, self.kn, self.ki, self.kk           ;   kt2, kn2, ki2, kk2 = self.kt2, self.kn2, self.ki2, self.kk2
         nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)
-        imap = self.getImap(p, l, c, tt0) if tt0 == II or tt0 == KK else []
+        imap = self.getImap(p, l, c, tt0) # if tt0 == II or tt0 == KK else []
         for t in range(nt):
             why = 'new '   ;   stnik = self.ss()
             if   tt0 == TT:
@@ -1976,11 +1977,12 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'END     t={t} text={text} notes[{cc}]={self.notes[cc].text}', pos=pos)
 
     def getImap(self, p, l, c, tt0=KK, dbg=0):
-        cn = self.plc2cn(p, l, c)   ;   key = cn if tt0 == KK else -cn   ;   mli = self.cobj.mlimap
+        if tt0 != II and tt0 != KK: return []
+        cn = self.plc2cn(p, l, c)   ;   key = cn if tt0 == KK else -cn   ;   mli = self.cobj.mlimap   ;   why = 'Chord' if tt0 == KK else 'Ival'
 #        if key in mli: self.log(f'{    FOUND key={key} keys={fmtl(list(mli.keys()))}', pos=1) if dbg else None   ;   imap = mli[key]
 #        else:          self.log(f'{NOT FOUND key={key} keys={fmtl(list(mli.keys()))}', pos=1) if dbg else None   ;   imap = self.cobj.getChordName(p, l, c)  # ;   mli[key] = imap
         self.log(f'key={key} keys={fmtl(list(mli.keys()))}') if dbg else None
-        imap = self.cobj.getChordName(p, l, c)  # ;   mli[key] = imap
+        imap = self.cobj.getChordName(p, l, c, why=why)  # ;   mli[key] = imap
         if dbg and imap: self.cobj.dumpImap(imap) # , f'{self.fPos()}')
         return imap
 
@@ -2367,7 +2369,7 @@ class Tabs(pyglet.window.Window):
         self.dumpJ('quit')
         if       code and AUTO_SAVE: self.saveDataFile(why, f=0)
         elif not code:               self.saveDataFile(why, f=1)
-        self.cobj.dumpMLimap(why)
+        self.cobj.dumpMlimap(why)
 #        self.cobj.dumpInstanceCat(why)
 #        self.cleanupCat(1 if code != 2 else 0)
         if dbg: self.dumpStruct('quit ' + why)
