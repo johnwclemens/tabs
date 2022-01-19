@@ -65,7 +65,7 @@ def dumpGlobals():
     Tabs.slog(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
 ARGS             = cmdArgs.parseCmdLine()        ;  DBG0, DBG1, DBG2, DBG3, DBG4, DBG5, DBG6, DBG7, DBG8, DBG9 = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9   ;  DBG = 0
-AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 0  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
+AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -154,7 +154,7 @@ FONT_COLORS_L = [PINKS[0], GRAYS[0], BLUES[0], GREENS[0], YELLOWS[0], REDS[0], G
 FONT_COLORS   =  FONT_COLORS_S if SPRITES else FONT_COLORS_L
 ####################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
-    hideST  = ['log', 'getImap', 'dumpGeom', 'dumpWH', 'dumpJ', 'dumpImap', 'dumpSelectTabs', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2']
+    hideST  = ['log', 'getImap', 'dumpGeom', 'dumpWH', 'dumpJ', 'dumpImap', 'dumpSelectTabs', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpData']
     def __init__(self):
         dumpGlobals()
         global FULL_SCREEN, ORDER_GROUP, SUBPIX
@@ -786,7 +786,7 @@ class Tabs(pyglet.window.Window):
         for t in range(nt2):
             tt, p, l, cc = t % nt, t // nt2, t // (nc * nt), (t // nt) % nc
             tab = self.data[p][l][cc][tt]
-            note = self.getNoteName(tt, tab) if self.isFret(tab) else self.tblank
+            note = self.tab2noteName(tab, tt) if self.isFret(tab) else self.tblank
             if t % nt == 0:   chordName, chunks = self.cobj.getChordName(p, l, cc)  # call only once per column or tpc
             chord = chunks[tt] if len(chunks) > tt else self.tblank
             text  = tab if tnik == TT else note if tnik == NN else chord if tnik == KK else '???'
@@ -1058,7 +1058,7 @@ class Tabs(pyglet.window.Window):
             elif tt0 == NN:
                 if   CCC     and c == C1:  note = self.stringNames[t]  ;  plist = self.snas   ;  kl = kn2  ;  k = self.cci(t, kl)  ;  j = A
                 elif CCC > 1 and c == C2:  note = self.stringCapo[t]   ;  plist = self.capsB  ;  kl = kn2  ;  k = self.cci(t, kl)  ;  j = E
-                else:               tab = self.data[p][l][c-CCC][t]    ;  plist = self.notes  ;  kl = kn   ;  k = self.cci(t, kl)  ;  j = N  ;  note = self.getNoteName(t, tab) if self.isFret(tab) else self.tblank
+                else:               tab = self.data[p][l][c-CCC][t]    ;  plist = self.notes  ;  kl = kn   ;  k = self.cci(t, kl)  ;  j = N  ;  note = self.tab2noteName(tab, t) if self.isFret(tab) else self.tblank
                 self.createLabel(plist, j, xt, yt - t*ht, wt, ht, k, gt, why=why, t=note, kl=kl, dbg=dbg)  ;  yield note
             elif tt0 == II:
                 if   CCC     and c == C1:  ikey = self.strLabel[t]     ;  plist = self.lstrs  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = F
@@ -1075,7 +1075,7 @@ class Tabs(pyglet.window.Window):
                 if   CCC     and c == C1: chord = self.strLabel[t]     ;  plist = self.lstrs  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = F
                 elif CCC > 1 and c == C2: chord = self.cpoLabel[t]     ;  plist = self.lcaps  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = G
                 else:
-                    chunks = imap[3] if (imap and len(imap) > 3) else []
+                    chunks = imap[4] if (imap and len(imap) > 4) else []
                     chord = chunks[t] if len(chunks) > t else self.tblank   ;   j = K
                     plist = self.chords ;  kl = kkk ;  k = self.cci(t, kl)
                 self.createLabel(plist, j, xt, yt - t*ht, wt, ht, k, gt, why=why, t=chord, kl=kl, dbg=dbg) ;  yield chord
@@ -1897,9 +1897,9 @@ class Tabs(pyglet.window.Window):
                 p, l, c, r = self.cc2plct(k, dbg=0)
                 self.log(f'i={i} k={k} v={v} text={self.smap[k]}')
                 for t in range(nt):
-                    text = self.smap[k][t]    ;    kt = k + t    ;    fn = 0   ;   ntones = misc.Note.NTONES * 2
+                    text = self.smap[k][t]    ;    kt = k + t    ;    fn = 0   ;   ntones = misc.NTONES * 2
                     if self.isFret(text):
-                        fn = self.afn(str((self.getFretNum(text) + self.shiftSign * self.getFretNum(nf)) % ntones))  ;  self.log(f'i={i} t={t} text={text} nf={nf} fn={fn}')
+                        fn = self.afn(str((self.tab2fretNum(text) + self.shiftSign * self.tab2fretNum(nf)) % ntones))  ;  self.log(f'i={i} t={t} text={text} nf={nf} fn={fn}')
                     if fn and self.isFret(fn):  self.setDTNIK(fn, kt, p, l, c, t) # uk=0 for each nt tabs
                 imap = self.getImap(p, l, c)
                 self.setChord(imap, p, l, c, 0) # do what uk=1 does, once
@@ -1973,7 +1973,7 @@ class Tabs(pyglet.window.Window):
     def setNote(self, text, cc, t, pos=0, dbg=0):
 #        p, l, c, t = self.j2()   ;   cc = self.plct2cc(p, l, c, t)
         if dbg: self.log(f'BGN     t={t} text={text} notes[{cc}]={self.notes[cc].text}', pos=pos)
-        self.notes[cc].text = self.getNoteName(t, text) if self.isFret(text) else self.tblank
+        self.notes[cc].text = self.tab2noteName(text, t) if self.isFret(text) else self.tblank
         if dbg: self.log(f'END     t={t} text={text} notes[{cc}]={self.notes[cc].text}', pos=pos)
 
     def getImap(self, p, l, c, tt0=KK, dbg=0):
@@ -1982,8 +1982,8 @@ class Tabs(pyglet.window.Window):
 #        if key in mli: self.log(f'{    FOUND key={key} keys={fmtl(list(mli.keys()))}', pos=1) if dbg else None   ;   imap = mli[key]
 #        else:          self.log(f'{NOT FOUND key={key} keys={fmtl(list(mli.keys()))}', pos=1) if dbg else None   ;   imap = self.cobj.getChordName(p, l, c)  # ;   mli[key] = imap
         self.log(f'key={key} keys={fmtl(list(mli.keys()))}') if dbg else None
-        imap = self.cobj.getChordName(p, l, c, why=why)  # ;   mli[key] = imap
-        if dbg and imap: self.cobj.dumpImap(imap) # , f'{self.fPos()}')
+        imap = self.cobj.getChordName(p, l, c, why=why, tt=1 if tt0==KK else 0)
+        if dbg and imap: self.cobj.dumpImap(imap)
         return imap
 
     def setIkey(self, imap, p, l, c, pos=0, dbg=0):
@@ -2029,26 +2029,19 @@ class Tabs(pyglet.window.Window):
         return text
     ####################################################################################################################################################################################################
     @staticmethod
-    def getFretNum(tab, dbg=0):
-        fretNum = None
-        if   '0' <= tab <= '9': fretNum = int(tab)
-        elif 'a' <= tab <= 'o': fretNum = int(ord(tab) - 87)
-        if dbg: Tabs.slog(f'tab={tab} fretNum={fretNum}')
-        return fretNum
-
-    def getNoteIndex(self, r, fn, dbg=0):
-        row = self.n[T] - r - 1    # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
-        k = self.stringKeys[row]
-        i = self.stringMap[k] + fn
-        if dbg: self.log(f'r={r} fretNum={fn} row={row} k={k} i={i} stringMap={fmtm(self.stringMap)}')
-        return i
-
-    def getNoteName(self, row, tab, dbg=0):
-        fretNum = self.getFretNum(tab)
-        index   = self.getNoteIndex(row, fretNum)
-        name    = misc.Note.getName(index)
-        if dbg: self.log(f'row={row} tab={tab} fretNum={fretNum} index={index} name={name}')
+    def tab2fretNum(tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None   ;   Tabs.slog(f'tab={tab} fretNum={fn}') if dbg else None   ;   return fn
+    def tab2noteName(self, tab, s, dbg=0):
+        fn   = self.tab2fretNum(tab)
+        i    = self.fretNum2NoteIndex(fn, s)
+        name = misc.Note.getName(i)
+        if dbg: self.log(f'tab={tab} s={s} fn={fn} i={i} name={name}')
         return name
+    def fretNum2NoteIndex(self, fn, s, dbg=0):
+        strNum = self.n[T] - s - 1    # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
+        k = self.stringKeys[strNum]
+        i = self.stringMap[k] + fn
+        if dbg: self.log(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
+        return i
     ####################################################################################################################################################################################################
     def toggleFlatSharp(self, how, dbg=1):  #  page line col tab or select
         tt1 =  misc.Note.TYPE    ;    tt2 = (misc.Note.TYPE + 1) % 2    ;    misc.Note.setType(tt2)    ;   i1 = -1

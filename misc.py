@@ -3,12 +3,14 @@ sys.path.insert(0, os.path.abspath('.'))
 import tabs
 
 VERBOSE = 0 # tabs.VERBOSE
+INTERVALS     = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
+INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
+NTONES        = len(INTERVALS)
 
 class Note(object):
     FLAT, SHARP = 0, 1
     TYPE        = FLAT
     TYPES       = ['FLAT', 'SHARP']
-    NTONES      = 12
     F2S         = {'Db':'C#', 'Eb':'D#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#'}
     S2F         = {'C#':'Db', 'D#':'Eb', 'F#':'Gb', 'G#':'Ab', 'A#':'Bb'}
     FLATS       = { 0:'C', 1:'Db', 2:'D', 3:'Eb', 4:'E', 5:'F', 6:'Gb', 7:'G', 8:'Ab', 9:'A', 10:'Bb', 11:'B' }
@@ -30,11 +32,11 @@ class Note(object):
 
     @staticmethod
     def getName(i):
-        name = Note.TONES[Note.TYPE][i % Note.NTONES]
+        name = Note.TONES[Note.TYPE][i % NTONES]
         return name
 
     @staticmethod
-    def getFreq(index): return 440 * pow(pow(2, 1/Note.NTONES), index - Note.INDICES)
+    def getFreq(index): return 440 * pow(pow(2, 1/NTONES), index - Note.INDICES)
 
 ####################################################################################################################################################################################################
 class DSymb(object):
@@ -42,8 +44,6 @@ class DSymb(object):
 ####################################################################################################################################################################################################
 
 class Chord(object):
-    INTERVALS     = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
-    INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
     MIN_CHORD_LEN = 3
     def __init__(self, tobj, logfile):
         self.tobj    = tobj
@@ -55,45 +55,6 @@ class Chord(object):
     def log(self, msg='', ind=1, pos=0, file=None, flush=False, sep=',', end='\n'):
         if file is None: file=self.logFile
         self.tobj.log(msg=msg, ind=ind, pos=pos, file=file, flush=flush, sep=sep, end=end)
-
-    def getChordName(self, p, l, c, why='', dbg=0):
-        cn = self.tobj.plc2cn(p, l, c)
-#        cc = c + l * self.tobj.n[tabs.C]   #  cc = self.tobj.plct2cc(p, l, c, 0)
-        self.limap, ims = [], set()   ;   ikeys, ivals, chunks, name, rank = [], [], [], '', -1
-        mask, notes, x = self.getIndices(p, l, c)
-        for k in range(len(x)):
-            for j in range(len(x)):
-                if x[j] >= x[k]: imk =                       (x[j] - x[k]) % len(self.INTERVALS)
-                else:            imk = len(self.INTERVALS) - (x[k] - x[j]) % len(self.INTERVALS)
-                if imk not in ims:
-                    ims.add(imk)
-            ikeys = self.getIkeys(x, k, mask)
-            self.limap.append(self.getImap(ikeys, notes))
-            if dbg: self.log(f'{why} {tabs.fmtl(ims, z="x")}')
-            ims = set()
-        if self.limap:
-            self.limap.sort(key=lambda m: m[-1])
-#            if dbg: self.log(f'{why} rank ordered limap:')
-            self.dumpLimap2(self.limap, cn)
-            self.mlimap[cn] = self.limap
-            return self.limap[0]
-        return [ ikeys, ivals, notes, name, chunks, rank ]
-
-    def getImap(self, ikeys, notes, dbg=0, dbg2=0):
-        imap     = collections.OrderedDict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: self.INTERVAL_RANK[t[0]]))
-        if dbg:
-            mask = [1] * len(ikeys)
-            if dbg:  self.dumpData(imap,  mask, 'imap')
-            if dbg2: self.dumpData(ikeys, mask, 'imapKeys')
-            if dbg2: self.dumpData(notes, mask, 'imapNotes')
-        key = ' '.join(imap.keys())   ;   ivals = self.key2Indices(key)   ;   name, root, rank, _chunks, chunks = '', '', -1, [], []
-        if key in self.OMAP:  chunks.append(imap['R'])  ;  [ chunks.append(n) for n in self.OMAP[key][2] if n ]  ;  name = ''.join(chunks)  ;  rank, ivals = self.OMAP[key][0], self.OMAP[key][1]
-        elif len(imap) >= Chord.MIN_CHORD_LEN:
-            self.log(f'adding key {key} with indices {tabs.fmtl(ivals)} to OMAP')
-            self.umap[key] = (rank, ivals, [])
-        imap = [ ikeys, ivals, notes, name, chunks, rank ]
-        if dbg2: self.dumpImap(imap, why=f'{self.tobj.fPos()}')
-        return imap
     ####################################################################################################################################################################################################
     def toggleChordName(self, key, dbg=1, dbg2=1):
         if dbg: self.log(f'key={key}')
@@ -102,28 +63,69 @@ class Chord(object):
             limap = self.mlimap[key]
             if dbg: self.dumpLimap3(limap, key)
             limap = self.rotateList(limap)
-            self.mlimap[key] = limap  # ;  im = limap[0]  # index=?
+            self.mlimap[key] = limap
             if dbg: self.dumpLimap3(limap, key)
 #            if dbg: self.log(f'ikeys={tabs.fmtl(im[0])} ivals={tabs.fmtl(im[1])} notes={tabs.fmtl(im[2])} name={im[3]} chunks={tabs.fmtl(im[4])} rank={im[5]}')
             return limap[0]
     ####################################################################################################################################################################################################
-    def getIndices(self, p, l, c, dbg=0, dbg2=0):
-        if p >= len(self.tobj.data) or l >= len(self.tobj.data[p]) or c >= len(self.tobj.data[p][l]): self.log(f'ERROR index plc {p} {l} {c}')
+    def getChordName(self, p, l, c, why='', tt=1, dbg=1):
+        cn = self.tobj.plc2cn(p, l, c)
+#        cc = c + l * self.tobj.n[tabs.C]   #  cc = self.tobj.plct2cc(p, l, c, 0)
+        self.limap, ims, ims2 = [], set(), {}   ;   ikeys, ivals, chunks, name, rank = [], [], [], '', -1
+        mask, notes, ixs = self.getIndices(p, l, c)
+        for k in range(len(ixs)):
+            for j in range(len(ixs)):
+                if ixs[j] >= ixs[k]: imk =            (ixs[j] - ixs[k]) % NTONES
+                else:                imk = (NTONES - (ixs[k] - ixs[j])) % NTONES
+                if imk not in ims:
+                    ims.add(imk)
+            ikeys = self.getIkeys(ixs, k, mask)
+            imap  = self.getImap(ikeys, notes)
+            key = ''.join(imap[0])
+            if key not in ims2: ims2[key] = None   ;   self.limap.append(imap)   ;   self.log(f'{why} ims={tabs.fmtl(ims)} ims2={ims2}') if dbg > 1 else None
+            ims = set()
+        if self.limap:
+            self.limap.sort(key=lambda m: m[-1])
+            if dbg: self.dumpLimap2(self.limap, cn) if tt else self.dumpLimap3(self.limap, cn)
+            self.mlimap[cn] = self.limap
+            return self.limap[0]
+        return [ ikeys, ivals, notes, name, chunks, rank ]
+
+    def getImap(self, ikeys, notes, dbg=1, dbg2=1):
+        imap     = collections.OrderedDict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: INTERVAL_RANK[t[0]]))
+#        ikeys, notes = list(imap.keys()), list(imap.values())
+        if dbg:
+            mask = [1] * len(ikeys)
+            if dbg2: self.dumpData(ikeys, mask, 'imapKeys')
+            if dbg2: self.dumpData(notes, mask, 'imapNotes')
+            if dbg:  self.dumpData(imap,  mask, 'imap')
+        key = ' '.join(imap.keys())   ;   ivals = self.key2Indices(key)   ;   name, root, rank, _chunks, chunks = '', '', -1, [], []
+        if key in self.OMAP:  chunks.append(imap['R'])  ;  [ chunks.append(n) for n in self.OMAP[key][2] if n ]  ;  name = ''.join(chunks)  ;  rank, ivals = self.OMAP[key][0], self.OMAP[key][1]
+        elif len(imap) >= Chord.MIN_CHORD_LEN:
+            self.log(f'adding key {key} with indices {tabs.fmtl(ivals)} to OMAP')
+            self.umap[key] = (rank, ivals, [])
+        imap = [ ikeys, ivals, notes, name, chunks, rank ]
+        if dbg2: self.dumpImap(imap)
+        return imap
+    ####################################################################################################################################################################################################
+    def getIndices(self, p, l, c, dbg=1, dbg2=1):
         strNumbs   = self.tobj.stringNumbs
         strKeys    = self.tobj.stringKeys
         strNames   = self.tobj.stringNames
         _tabs      = self.tobj.data[p][l][c]
         strIndices = [ Note.INDICES[k] for k in strKeys ]
-        notes = []  ;  nt = len(_tabs)  ;   mask = []
-#        if dbg2: self.log(f'p l c = {p} {l} {c} text={_tabs}')
+        mask, indices, notes = [], [], []  ;  nt = len(_tabs)
         for t in range(nt):
-            if tabs.Tabs.isFret(_tabs[t]): mask.insert(0, 1)  ;  note = self.tobj.getNoteName(t, _tabs[t])  ;  notes.insert(0, note)
-            else:                          mask.insert(0, 0)
-        indices = []
-        for t in range(nt):
-            index = self.tobj.getNoteIndex(t, self.tobj.getFretNum(_tabs[t])) if tabs.Tabs.isFret(_tabs[t]) else 0
-#            index = int(self.tobj.getNote(t, _tabs[t]).index) if tabs.Tabs.isFret(_tabs[t]) else 0
-            if index: indices.insert(0, index)
+            if tabs.Tabs.isFret(_tabs[t]):
+                fn = self.tobj.tab2fretNum(_tabs[t])
+                index = self.tobj.fretNum2NoteIndex(fn, t)
+                note = self.tobj.tab2noteName(_tabs[t], t)
+                if index: indices.insert(0, index)
+                if note :   notes.insert(0, note)   ;   mask.insert(0, 1)
+#                if index and index not in indices: indices.insert(0, index)
+#                if note  and note  not in   notes:   notes.insert(0, note)   ;   mask.insert(0, 1)
+                else: mask.insert(0, 0)
+            else: mask.insert(0, 0)
         if notes:
             mask0 = [1] * self.tobj.n[tabs.T]
             if dbg2: self.dumpData(strNumbs,   mask0, 'strNumbs', r=1)
@@ -135,28 +137,21 @@ class Chord(object):
             if dbg:  self.dumpData(notes,      mask,  'Notes')
         return mask, notes, indices
 
-    def getIkeys(self, indices, j, mask, order=1, dbg=0):
-        ivals = []   ;   nst = Note.NTONES
-        for i in indices:
-            if i - indices[j] >= 0:
-                if order: ivals.append((i - indices[j]) % nst)
-                else:     ivals.insert(0, (i - indices[j]) % nst)
+    def getIkeys(self, ixs, j, mask, dbg=1):
+        ivals = []
+        for i in ixs:
+            if i - ixs[j] >= 0: ivals.append((i - ixs[j]) % NTONES)
             else:
-                d = (indices[j] - i) % nst
-                delta = nst - d
-                if delta == nst: delta = 0
-                if order: ivals.append(delta)
-                else:     ivals.insert(0, delta)
-        ikeys = []
-        for i in ivals:
-            ikeys.append(self.INTERVALS[i])
+                d = (ixs[j] - i) % NTONES
+                delta = NTONES - d
+                if delta == NTONES: delta = 0
+                ivals.append(delta)
+        ikeys = [ INTERVALS[i] for i in ivals ]
         if dbg: self.dumpData(ivals, mask, 'Ivals')
         if dbg: self.dumpData(ikeys, mask, 'Ikeys')
-#        if dbg: self.dumpData(list(ivset), [1]*len(ivset), 'IvSet')
         return ikeys
     ####################################################################################################################################################################################################
     def dumpData(self, data, mask, why, w=5, u='<', r=0):
-#        lf = self.logFile
         if r:     data = data[::-1]  ;  mask = mask[::-1]
         j = 0   ;   dt = type(data)  ;  self.log(f'{why:21} [ ', end='')
         if dt is list or dt is str:
@@ -174,27 +169,38 @@ class Chord(object):
 
     def dumpMlimap(self, why=''):
         self.log(f'{why} len(mlimap)={len(self.mlimap)}')
-        for i, (k, v) in enumerate(self.mlimap.items()):
+        for k, v in self.mlimap.items():
+            self.dumpLimap(v, k, why)
+        for k, v in self.mlimap.items():
+            self.dumpLimap1(v, k)
+        for k, v in self.mlimap.items():
             self.dumpLimap2(v, k)
-        for i, (k, v) in enumerate(self.mlimap.items()):
-            self.dumpLimap(v, k)
-        for i, (k, v) in enumerate(self.mlimap.items()):
-            self.log(f'{i:3} {k:3}', ind=0, end=' ')
-            for j in range(len(v)):
-                tmp = f'{tabs.fmtl(v[j][0], w=tabs.FMTN2, d1="", d2="")}'
-                self.log(f'{v[j][3]:7}|{tmp:16}', ind=0, end='')
-            self.log(ind=0)
+        for k, v in self.mlimap.items():
+            self.dumpLimap3(v, k)
 
     def dumpLimap(self, limap, key, why=''):
-        [ self.dumpImap(m, why=f'key={key:2} ' + why)   for m in limap ]
+        [ self.dumpImap(im, why=f'{why} key={key:2}') for im in limap ]
+
+    def dumpLimap1(self, limap, key):
+        self.log(f'{key:2}', ind=0, end=' ')
+        for j in range(len(limap)):
+            tmp = f'{tabs.fmtl(limap[j][0], w=tabs.FMTN2, d1="", d2="")}'
+            self.log(f'{limap[j][3]:7}|{tmp:16}', ind=0, end='')
+        self.log(ind=0)
 
     def dumpLimap2(self, limap, key):
+        self.log(f'{key:2}', ind=0, end=' ')
+        [ self.log(f'{m[-1]} {m[3]:12} {tabs.fmtl(m[1], d1=None, z="x"):11} ', ind=0, end='|') for m in limap ]
+        self.log(ind=0)
+
+    def dumpLimap3(self, limap, key):
         self.log(f'{key:2}', ind=0, end=' ')   ;   msg1, msg2 = '', ''
         for m in limap:
             msg1 += f'|{tabs.fmtl(m[1], d1=None, z="x"):11}'
         msg1 += '|'
         for m in limap:
-            msg2 += f'|{tabs.fmtl(sorted(m[0], key=lambda t: self.INTERVAL_RANK[t]), d1=None, w=tabs.FMTN2):16}'
+            msg2 += f'|{tabs.fmtl(m[0], d1=None, w=tabs.FMTN2):16}'
+#            msg2 += f'|{tabs.fmtl(sorted(m[0], key=lambda t: INTERVAL_RANK[t]), d1=None, w=tabs.FMTN2):16}'
         self.log(f'{msg1:73}{msg2}|', ind=0)
 #        msg1 = [ f'{tabs.fmtl(m[1], d1="", d2="", z="x"):13}' for m in limap ]
 #        msg2 = [ f'{tabs.fmtl(m[0], d1="", d2="", w=2):19}'   for m in limap ]
@@ -203,15 +209,12 @@ class Chord(object):
 #        msg2 = [ m[0] for m in limap ]
 #        self.log(f'{msg1} {msg2}', ind=0)
 
-    def dumpLimap3(self, limap, key):
-        self.log(f'{key:2}', ind=0, end=' ')
-        [ self.log(f'{m[-1]} {m[3]:12} {tabs.fmtl(m[1], d1=None, z="x"):11} ', ind=0, end='|') for m in limap ]
-        self.log(ind=0)
+#    def dumpImap2(self, imap, why=''):
 
     def dumpImap(self, imap, why=''):
         ikeys, ivals, inotes, name, chunks, rank = [], [], [], '', [], -1
         if imap and len(imap) == 6: ikeys, ivals, inotes, name, chunks, rank = imap[0],imap[1], imap[2], imap[3], imap[4], imap[5]
-        self.log(f'{why} {rank} {name:12} {tabs.fmtl(chunks, w=2):19} {tabs.fmtl(sorted(ikeys, key=lambda t: self.INTERVAL_RANK[t]), w=tabs.FMTN2):18} {tabs.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}')
+        self.log(f'{why} {rank} {name:12} {tabs.fmtl(chunks, w=2):19} {tabs.fmtl(sorted(ikeys, key=lambda t: INTERVAL_RANK[t]), w=tabs.FMTN2):18} {tabs.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}')
     ####################################################################################################################################################################################################
     @staticmethod
     def rotateList(a, rev=0):
@@ -223,15 +226,16 @@ class Chord(object):
        ll = len(a)   ;   r = [0]
        for i in range(1, ll):
            if i + 1 < ll: r.append(a[i+1] - a[i] + r[i-1])
-           else :         r.append(Note.NTONES - a[i] + r[i-1])
+           else :         r.append(NTONES - a[i] + r[i-1])
        return r
     ####################################################################################################################################################################################################
-    def key2Indices(self, k):
+    @staticmethod
+    def key2Indices(k):
         r = []  ;  t = ''
         for j in k:
             if j != ' ': t += j
-            else:        r.append(self.INTERVAL_RANK[t])  ;  t = ''
-        r.append(self.INTERVAL_RANK[t])
+            else:        r.append(INTERVAL_RANK[t])  ;  t = ''
+        r.append(INTERVAL_RANK[t])
         return r
 
     def mergeMaps(self, src, trg):
@@ -283,7 +287,7 @@ class Chord(object):
             tstat.append(0)
             count, nord, none = 0, 0, 0
             for ii in sml:
-                keys = [ self.INTERVALS[i] for i in ii ]
+                keys = [ INTERVALS[i] for i in ii ]
                 keyStr    = ' '.join(keys)
                 keyStrFmt = '\'' + keyStr + '\''
                 v = omap[keyStr]
@@ -294,7 +298,7 @@ class Chord(object):
                 cycSet =  set()   ;   cycSet.add(tuple(ii))
                 for _ in range(len(ii) - 1):
                     ii = self.rotateIndices(ii)
-                    keys = [ self.INTERVALS[i] for i in ii ]
+                    keys = [ INTERVALS[i] for i in ii ]
                     keyStr = ' '.join(keys)   ;   ck = len(ii)   ;   jj = tuple(ii)    ;   cycle = 0
                     if keyStr in omap: rankSet.add(omap[keyStr][0])
                     if jj in cycSet:
@@ -311,7 +315,7 @@ class Chord(object):
         if not catfile:
             for kk, w in self.cycles.items():
                 for c in tuple(sorted(w)):
-                    keys = [ self.INTERVALS[j] for j in c ]   ;   key = ' '.join(keys)   ;   v = omap[key]
+                    keys = [ INTERVALS[j] for j in c ]   ;   key = ' '.join(keys)   ;   v = omap[key]
                     self.log(f'{kk:2} note cycle {v[0]:2} {tabs.fmtl(c, z="x"):13} {key:16} {"".join(v[2]):12} {v[2]}')
             for j in range(len(mstat)):
                 self.log(f'{mstat[j][0]:2} note chords  {mstat[j][1]:3} valid  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
@@ -929,7 +933,7 @@ class Chord(object):
         for i in limap:
             inner = []
             for j in i[0]:
-                inner.append(self.INTERVAL_RANK[j])
+                inner.append(INTERVAL_RANK[j])
             tmp = tuple(inner)
             outer.append(tmp)
             self.cat2.add(tmp)
@@ -939,7 +943,7 @@ class Chord(object):
             if tmp not in self.catmap: self.catmap[tmp] = [i[0], i[1]]
             keys.append(tmp)   ;   ivals.append(i[0])
         for k in keys:
-            self.catmap2[k] = [sorted(keys), sorted(ivals, key=lambda b: [self.INTERVAL_RANK[c] for c in b])]
+            self.catmap2[k] = [sorted(keys), sorted(ivals, key=lambda b: [INTERVAL_RANK[c] for c in b])]
         outer = sorted(outer, key=lambda a: [z for z in a])
         self.cat1.add(tuple(outer))
 #        self.log(f'{why}', end='')
