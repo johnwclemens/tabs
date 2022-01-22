@@ -56,9 +56,9 @@ class Chord(object):
         if file is None: file=self.logFile
         self.tobj.log(msg=msg, ind=ind, pos=pos, file=file, flush=flush, sep=sep, end=end)
     ####################################################################################################################################################################################################
-    def toggleChordName(self, key, dbg=1, dbg2=1):
-        if dbg: self.log(f'key={key}')
-        if key not in self.mlimap.keys(): self.log(f'key={key} Not Found milap.keys={tabs.fmtl(list(self.mlimap.keys()))}') if dbg2 else None   ;   return None
+    def toggleChordName(self, key, dbg=0, dbg2=1):
+#        if dbg: self.log(f'key={key}')
+        if key not in self.mlimap.keys(): self.log(f'RETURN: key={key} Not Found milap.keys={tabs.fmtl(list(self.mlimap.keys()))}') if dbg2 else None   ;   return None
         else:
             limap = self.mlimap[key]
             if dbg: self.dumpLimap3(limap, key)
@@ -75,14 +75,14 @@ class Chord(object):
         mask, notes, ixs = self.getIndices(p, l, c)
         for k in range(len(ixs)):
             for j in range(len(ixs)):
-                if ixs[j] >= ixs[k]: imk =            (ixs[j] - ixs[k]) % NTONES
+                if ixs[j] >= ixs[k]: imk =           (ixs[j] - ixs[k])  % NTONES
                 else:                imk = (NTONES - (ixs[k] - ixs[j])) % NTONES
                 if imk not in ims:
                     ims.add(imk)
             ikeys = self.getIkeys(ixs, k, mask)
             imap  = self.getImap(ikeys, notes)
             key = ''.join(imap[0])
-            if key not in ims2: ims2[key] = None   ;   self.limap.append(imap)   ;   self.log(f'{why} ims={tabs.fmtl(ims)} ims2={ims2}') if dbg > 1 else None
+            if key not in ims2: ims2[key] = None   ;   self.limap.append(imap)   ;   self.log(f'{why} ims={tabs.fmtl(ims)} ims2={tabs.fmtl(list(ims2.keys()))}') if dbg > 1 else None
             ims = set()
         if self.limap:
             self.limap.sort(key=lambda m: m[-1])
@@ -91,7 +91,7 @@ class Chord(object):
             return self.limap[0]
         return [ ikeys, ivals, notes, name, chunks, rank ]
 
-    def getImap(self, ikeys, notes, dbg=1, dbg2=1):
+    def getImap(self, ikeys, notes, dbg=0, dbg2=0):
         imap     = collections.OrderedDict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: INTERVAL_RANK[t[0]]))
 #        ikeys, notes = list(imap.keys()), list(imap.values())
         if dbg:
@@ -108,7 +108,7 @@ class Chord(object):
         if dbg2: self.dumpImap(imap)
         return imap
     ####################################################################################################################################################################################################
-    def getIndices(self, p, l, c, dbg=1, dbg2=1):
+    def getIndices(self, p, l, c, dbg=0, dbg2=0):
         strNumbs   = self.tobj.stringNumbs
         strKeys    = self.tobj.stringKeys
         strNames   = self.tobj.stringNames
@@ -117,9 +117,9 @@ class Chord(object):
         mask, indices, notes = [], [], []  ;  nt = len(_tabs)
         for t in range(nt):
             if tabs.Tabs.isFret(_tabs[t]):
-                fn = self.tobj.tab2fretNum(_tabs[t])
-                index = self.tobj.fretNum2NoteIndex(fn, t)
-                note = self.tobj.tab2noteName(_tabs[t], t)
+                fn = self.tobj.tab2fn(_tabs[t])
+                index = self.tobj.fn2ni(fn, t)
+                note = self.tobj.tab2nn(_tabs[t], t)
                 if index: indices.insert(0, index)
                 if note :   notes.insert(0, note)   ;   mask.insert(0, 1)
 #                if index and index not in indices: indices.insert(0, index)
@@ -137,7 +137,7 @@ class Chord(object):
             if dbg:  self.dumpData(notes,      mask,  'Notes')
         return mask, notes, indices
 
-    def getIkeys(self, ixs, j, mask, dbg=1):
+    def getIkeys(self, ixs, j, mask, dbg=0):
         ivals = []
         for i in ixs:
             if i - ixs[j] >= 0: ivals.append((i - ixs[j]) % NTONES)
@@ -168,9 +168,9 @@ class Chord(object):
         self.log(']',                 ind=0)
 
     def dumpMlimap(self, why=''):
-        self.log(f'{why} len(mlimap)={len(self.mlimap)}')
+        self.log(f'{why}')
         for k, v in self.mlimap.items():
-            self.dumpLimap(v, k, why)
+            self.dumpLimap(v, k)
         for k, v in self.mlimap.items():
             self.dumpLimap1(v, k)
         for k, v in self.mlimap.items():
@@ -178,8 +178,9 @@ class Chord(object):
         for k, v in self.mlimap.items():
             self.dumpLimap3(v, k)
 
-    def dumpLimap(self, limap, key, why=''):
-        [ self.dumpImap(im, why=f'{why} key={key:2}') for im in limap ]
+    def dumpLimap(self, limap, key):
+        [ self.dumpImap(im, f'{key:2}') for im in limap ]
+#        [ self.dumpImap(im, why=f'{why} key={key:2}') for im in limap ]
 
     def dumpLimap1(self, limap, key):
         self.log(f'{key:2}', ind=0, end=' ')
@@ -209,12 +210,10 @@ class Chord(object):
 #        msg2 = [ m[0] for m in limap ]
 #        self.log(f'{msg1} {msg2}', ind=0)
 
-#    def dumpImap2(self, imap, why=''):
-
     def dumpImap(self, imap, why=''):
         ikeys, ivals, inotes, name, chunks, rank = [], [], [], '', [], -1
         if imap and len(imap) == 6: ikeys, ivals, inotes, name, chunks, rank = imap[0],imap[1], imap[2], imap[3], imap[4], imap[5]
-        self.log(f'{why} {rank} {name:12} {tabs.fmtl(chunks, w=2):19} {tabs.fmtl(sorted(ikeys, key=lambda t: INTERVAL_RANK[t]), w=tabs.FMTN2):18} {tabs.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}')
+        self.log(f'{why} {rank} {name:12} {tabs.fmtl(chunks, w=2):19} {tabs.fmtl(sorted(ikeys, key=lambda t: INTERVAL_RANK[t]), w=tabs.FMTN2):18} {tabs.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', ind=0)
     ####################################################################################################################################################################################################
     @staticmethod
     def rotateList(a, rev=0):
@@ -927,8 +926,8 @@ class Chord(object):
     #  10    55                     #
     #################################
 
-    def add2cat(self, limap, cc, why=''):
-        self.dumpLimap(limap, cc, why)
+    def add2cat(self, limap, cc):
+        self.dumpLimap(limap, cc)
         outer = []   ;   keys, ivals = [], []
         for i in limap:
             inner = []
