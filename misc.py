@@ -8,6 +8,7 @@ INTERVALS     = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:
 INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
 NTONES        = len(INTERVALS)
 
+####################################################################################################################################################################################################
 class Note(object):
     FLAT, SHARP = 0, 1
     TYPE        = FLAT
@@ -57,7 +58,7 @@ class Chord(object):
         if file is None: file=self.logFile
         self.tobj.log(msg=msg, ind=ind, pos=pos, file=file, flush=flush, sep=sep, end=end)
     ####################################################################################################################################################################################################
-    def getChordName(self, p, l, c, why='', tt=1, dbg=10):
+    def getChordName(self, p, l, c, why='', tt=1, dbg=1):
         cn = self.tobj.plc2cn(p, l, c)   ;   self.limap = []   ;   imks =[]
         ikeys, ivals, chunks, name, rank = [], [], [], '', -1
         mask, notes, ixs = self.getIndices(p, l, c)
@@ -72,15 +73,15 @@ class Chord(object):
                 ikeys = self.getIkeys(ixs, k, mask)
                 imap  = self.getImap(ikeys, notes)
                 imks.append(key)   ;   self.limap.append(imap)
-                if dbg: self.log(f'{why} tt={tt} iis={tabs.fmtl(iis)} key={key} imks={tabs.fmtl(imks)}')
+                if dbg: self.log(f'{why} tt={tt} iis={tabs.fmtl(iis, z="x")} key={key} imks={tabs.fmtl(imks)}')
         if self.limap:
             self.limap.sort(key=lambda m: m[-1])
-            if dbg: self.dumpLimap(self.limap, cn) # if tt else self.dumpLimap3(self.limap, cn)
+            if dbg > 1: self.dumpLimap(self.limap, cn) # if tt else self.dumpLimap3(self.limap, cn)
             self.mlimap[cn] = self.limap
             return self.limap[0]
         return [ ikeys, ivals, notes, name, chunks, rank ]
 
-    def getImap(self, ikeys, notes, dbg=1, dbg2=0):
+    def getImap(self, ikeys, notes, dbg=1, dbg2=1):
         imap     = collections.OrderedDict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: INTERVAL_RANK[t[0]]))
 #        ikeys, notes = list(imap.keys()), list(imap.values())
         if dbg:
@@ -197,11 +198,21 @@ class Chord(object):
 #        self.log(f'{msg1} {msg2}', ind=0)
 
     def dumpImap(self, imap, why=''):
-        ikeys, ivals, inotes, name, chunks, rank = [], [], [], '', [], -1
+        ikeys, ivals, inotes, name, chunks, rank = [], [], [], '', [], -1   ;   ivals2 = ''
         if imap and len(imap) == 6: ikeys, ivals, inotes, name, chunks, rank = imap[0],imap[1], imap[2], imap[3], imap[4], imap[5]
-        self.log(f'{why}{rank:2} {name:12} {tabs.fmtl(chunks, w=2):19} {tabs.fmtl(ikeys, w=2):19} {tabs.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', ind=0)
+        if ivals:
+            for i in ivals:
+                ivals2 += f'{i:x}'
+        self.log(f'{why}{rank:2} {name:12} {tabs.fmtl(chunks, w=2):19} {tabs.fmtl(ikeys, w=2):19} {ivals2:6} {tabs.fmtl(inotes, w=2):19}', ind=0)
+#        self.log(f'{why}{rank:2} {name:12} {tabs.fmtl(chunks, w=2):19} {tabs.fmtl(ikeys, w=2):19} {tabs.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', ind=0)
 #        self.log(f'{why}{rank:2} {name:12} {tabs.fmtl(chunks, w=2):19} {tabs.fmtl(sorted(ikeys, key=lambda t: INTERVAL_RANK[t]), w=tabs.FMTN2):18} {tabs.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', ind=0)
     ####################################################################################################################################################################################################
+    def rotateMLimap(self, cn):
+        a = self.mlimap[cn]
+        a = (a[-1:] + a[:-1])
+        self.mlimap[cn] = a
+        return a
+#        self.mlimap[cn] = (self.mlimap[cn][-1:] + self.mlimap[cn][:-1])
     @staticmethod
     def rotateList(a, rev=0):
         if rev: tmp0 = a[-1 ]   ;   tmp1 = a[:-1]   ;   a = tmp1   ;   a.insert(0, tmp0)
