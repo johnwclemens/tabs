@@ -48,7 +48,7 @@ def fmtm(m, w=1, d0=':', d1='[', d2=']'):
         elif type(v) in (int, str):                 t += f'{k:>{w}}{d0}{v:<{w}} '
     return d1 + t.rstrip() + d2
 
-def getFilePath(filedir='files', filesfx='.txt', dbg=0):
+def getFilePath(filedir='files', filesfx='.txt', dbg=1):
     sfx = SFX if not ARGS['f'] else ''
     if dbg: Tabs.slog(f'BASE_NAME= {BASE_NAME} SFX={SFX}')
     fileName        = BASE_NAME + sfx + filesfx
@@ -65,7 +65,7 @@ def dumpGlobals():
     Tabs.slog(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
 ARGS             = cmdArgs.parseCmdLine()        ;  DBG0, DBG1, DBG2, DBG3, DBG4, DBG5, DBG6, DBG7, DBG8, DBG9 = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9   ;  DBG = DBG0
-AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 0  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 1  ;  SUBPIX = 1  ;  VERBOSE = 0
+AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 0  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 1  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  EXIT = 0
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -309,6 +309,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpLabels('new2')
         if self.TNIK[TT] and self.tabs: self.createCursor(self.g[T + 3]) # fix g index
         if dbg: self.dumpStruct('_init()')
+        if EXIT: self.quit('EXIT TEST')
         self.dumpGeom('END')
     ####################################################################################################################################################################################################
     def _initWindowA(self, dbg=1):
@@ -1922,7 +1923,7 @@ class Tabs(pyglet.window.Window):
                     if self.isFret(text):
                         fn = self.afn(str((self.tab2fn(text) + self.shiftSign * self.tab2fn(nf)) % ntones))  ;  self.log(f'cc={cc} cn={cn} t={t} text={text} nf={nf} fn={fn} ss={self.shiftSign}')
                     if fn and self.isFret(fn):  self.setDTNIK(fn, kt, p, l, c, t) # uk=0 for each nt tabs
-                imap = self.getImap(p, l, c)
+                imap = self.getImap(p, l, c, tt=1)
                 self.setChord(imap, p, l, c, 0) # do what uk=1 does, once
             self.shiftSign = 1
             self.dataHasChanged = 1
@@ -1971,11 +1972,12 @@ class Tabs(pyglet.window.Window):
     def setDTNIK(self, text, cc, p, l, c, t, kk=0, pos=0, dbg=0):
         if dbg: self.log(f'BGN kk={kk}    text={text}', pos=pos)
         self.setData(text, p, l, c, t)
-        imap = self.getImap(p, l, c) if kk and (self.TNIK[II] or self.TNIK[KK]) else []
+        imap1 = self.getImap(p, l, c, tt=II if kk and self.TNIK[II] else TT)
+        imap2 = self.getImap(p, l, c, tt=KK if kk and self.TNIK[KK] else TT)
         if self.TNIK[TT]:        self.setTab2( text, cc)
         if self.TNIK[NN]:        self.setNote( text, cc, t)
-        if self.TNIK[II] and kk: self.setIkey( imap, p, l, c)
-        if self.TNIK[KK] and kk: self.setChord(imap, p, l, c)
+        if self.TNIK[II] and kk: self.setIkey( imap1, p, l, c)
+        if self.TNIK[KK] and kk: self.setChord(imap2, p, l, c)
         if dbg: self.log(f'END kk={kk}    text={text}', pos=pos)
     ####################################################################################################################################################################################################
     def setData(self, text, p, l, c, t, pos=0, dbg=0):
@@ -1997,11 +1999,11 @@ class Tabs(pyglet.window.Window):
         self.notes[cc].text = self.tab2nn(text, t) if self.isFret(text) else self.tblank
         if dbg: self.log(f'END     t={t} text={text} notes[{cc}]={self.notes[cc].text}', pos=pos)
 
-    def getImap(self, p, l, c, tt0=KK, dbg=0):
-        if tt0 != II and tt0 != KK: return []
-        cn = self.plc2cn(p, l, c)   ;   key = cn if tt0 == KK else -cn   ;   why = 'Chord' if tt0 == KK else 'Ival'   ;   mli = self.cobj.mlimap
-        imap = self.cobj.getChordName(p, l, c, why=why, tt=1 if tt0==KK else 0)
-        if dbg: self.log(f'{why} tt0={tt0} cn={cn} key={key} keys={fmtl(list(mli.keys()))}')
+    def getImap(self, p, l, c, tt, dbg=0):
+        if tt != II and tt != KK: return []
+        cn = self.plc2cn(p, l, c)   ;   key = cn if tt == KK else -cn   ;   why = ' Chord' if tt == KK else ' Ival '   ;   mli = self.cobj.mlimap
+        imap = self.cobj.getChordName(p, l, c, kk=1 if tt==KK else 0, why=why)
+        if dbg: self.log(f'{why} tt={tt} cn={cn} key={key} keys={fmtl(list(mli.keys()))}')
         if dbg and imap: self.cobj.dumpImap(imap)
         return imap
 
@@ -2071,7 +2073,7 @@ class Tabs(pyglet.window.Window):
                 if   n.text in misc.Note.F2S: n.text = misc.Note.F2S[n.text]
                 elif n.text in misc.Note.S2F: n.text = misc.Note.S2F[n.text]
                 if dbg: self.log(f'notes[{i:3}] {old} => {n.text} i1={i1} i2={i2}', pos=1)
-                if i1 != i2:   imap = self.getImap(p, l, c)   ;   self.setChord(imap, p, l, c, t)    ;    i1 = i2
+                if i1 != i2:   imap = self.getImap(p, l, c, tt=II)   ;   self.setChord(imap, p, l, c, t)    ;    i1 = i2
         self.log(f'END {how} type={tt1}={misc.Note.TYPES[tt1]} => type={tt2}={misc.Note.TYPES[tt2]}')
 
     def keySignature(self): pass
@@ -2394,9 +2396,8 @@ class Tabs(pyglet.window.Window):
         logPath = None
         if SEQ_FNAMES:
             logPath = self.getFilePath(seq=SEQ_FNAMES, filedir='logs', filesfx='.log')
-            self.log(f'LOG_PATH     = {LOG_PATH}')
             self.log(f'logPath      = {logPath}')
-            self.log(f' *** copy {LOG_PATH} {logPath} ***')
+            self.log(f' ### copy {LOG_PATH} {logPath} ###')
         self.log(f'closing {LOG_FILE.name}')
         LOG_FILE.close()
         if SEQ_FNAMES and logPath: os.system(f'copy {LOG_PATH} {logPath}')
@@ -2413,7 +2414,10 @@ class Tabs(pyglet.window.Window):
             v.delete()   ;   del v
 ########################################################################################################################################################################################################
 if __name__ == '__main__':
+    backPath = getFilePath(filedir='logs', filesfx='.blog')
+    print(f'backPath={backPath}')
     LOG_PATH = getFilePath(filedir='logs', filesfx='.log')
+    if backPath:               os.system(f'copy {LOG_PATH} {backPath}')
     with open(str(LOG_PATH), 'w') as LOG_FILE:
         Tabs.slog(f'LOG_PATH={LOG_PATH} LOG_FILE={LOG_FILE}')
         Tabs()
