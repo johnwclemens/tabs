@@ -65,7 +65,7 @@ def dumpGlobals():
     Tabs.slog(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
 ARGS             = cmdArgs.parseCmdLine()        ;  DBG0, DBG1, DBG2, DBG3, DBG4, DBG5, DBG6, DBG7, DBG8, DBG9 = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9   ;  DBG = DBG0
-AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 0  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 1  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  EXIT = 0
+AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 1  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  EXIT = 0
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -2117,8 +2117,6 @@ class Tabs(pyglet.window.Window):
         cc = self.cn2cc(cn)   ;   mli = self.cobj.mlimap
         if cn not in mli: self.log(f'RETURN: cn={cn} Not Found milap.keys={fmtl(list(mli.keys()))}')   ;   return
         limap = self.cobj.rotateMLimap(cn)
-#        mli[cn] = misc.Chord.rotateList(mli[cn])
-#        limap = mli[cn]
         ikeys, ivals, notes, chordName, chunks, rank = limap[0]
         if ikeys:                p, l, c, t = self.cc2plct(cc)   ;   self.setIkeyText(ikeys, cc, p, l, c)
         if chordName and chunks: self.setChordName(cc, chordName, chunks)
