@@ -102,9 +102,47 @@ class Chord(object):
     def getChordName(self, p, l, c, kk=1, why='', dbg=10):
         cn = self.tobj.plc2cn(p, l, c)   ;   self.limap = []
         ikeys, ivals, notes, name, chunks, rank = [], [], [], '', [], -1
+        mask, _notes, ixs = self._getIndices(p, l, c)   ;   _imap, vkeys = None, []
+        for k in range(len(ixs)):
+            _ivals = []   ;   chunks = []
+            for j in range(len(ixs)):
+                if ixs[j] >= ixs[k]: i =           (ixs[j] - ixs[k])  % NTONES
+                else:                i = (NTONES - (ixs[k] - ixs[j])) % NTONES
+                _ivals.append(i)
+            vkey = ''.join([ f'{v:x}' for v in _ivals ])
+            if vkey not in vkeys:
+                _ikeys = [ INTERVALS[i] for i in _ivals ]
+                if dbg: self._dumpData(rank, _ikeys, _ivals, _notes, mask, 0)
+                _imap = collections.OrderedDict(sorted(dict(zip(_ikeys, _notes)).items(), key=lambda t: INTERVAL_RANK[t[0]]))
+                ikeys = list(_imap.keys())   ;   notes = list(_imap.values())   ;   ivals = [ INTERVAL_RANK[k] for k in ikeys ]
+                ikey = ' '.join([ k for k in ikeys ])
+                if ikey in self.OMAP:
+                    chunks.append(_imap['R'])
+                    [ chunks.append(n) for n in self.OMAP[ikey][2] if n ]
+                    name = ''.join(chunks)      ;     rank = self.OMAP[ikey][0]
+                    assert ivals == self.OMAP[ikey][1]
+                elif kk and len(_imap) >= Chord.MIN_CHORD_LEN:
+                    self.log(f'{why} ADDING ikey={ikey} ivals={tabs.fmtl(ivals)} to OMAP')
+                    self.umap[ikey] = (rank, ivals, [])    ;   assert 0
+                if not kk:  ikeys = _ikeys   ;   notes = _notes   ;   ivals = _ivals
+                if dbg: self._dumpData(rank, ikeys, ivals, notes, mask, 1)
+                imap  = [ ikeys, ivals, notes, name, chunks, rank ]
+                vkeys.append(vkey)   ;   self.limap.append(imap)
+#                self.dumpData(  name, mask, f'{rank:2} Name  {name}') #                self.dumpData(chunks, mask, f'{rank:2} Chnks {" ".join(chunks)}')
+                if dbg: self.log(f'{rank:2} <{ikey}> {tabs.fmtl(ikeys)} <{vkey}> {tabs.fmtl(vkeys)} {" ".join(notes):12} {tabs.fmtl(ivals, z="x")} {name:12} {"".join(chunks)}')
+        if self.limap:
+            self.limap.sort(key=lambda m: m[-1])
+            if dbg > 1: self.dumpLimap(self.limap, cn)
+            self.mlimap[cn] = self.limap
+            return self.limap[0]
+        return [ ikeys, ivals, notes, name, chunks, rank ]
+
+    def OLD_2_getChordName(self, p, l, c, kk=1, why='', dbg=10):
+        cn = self.tobj.plc2cn(p, l, c)   ;   self.limap = []
+        ikeys, ivals, notes, name, chunks, rank = [], [], [], '', [], -1
         mask, notes, ixs = self._getIndices(p, l, c)   ;   _imap, vkeys = None, []
         for k in range(len(ixs)):
-            ivals = []   ;   chunks.clear()
+            ivals = []   ;   chunks = []
             for j in range(len(ixs)):
                 if ixs[j] >= ixs[k]: i =           (ixs[j] - ixs[k])  % NTONES
                 else:                i = (NTONES - (ixs[k] - ixs[j])) % NTONES
@@ -112,12 +150,12 @@ class Chord(object):
             vkey = ''.join([ f'{v:x}' for v in ivals ])
             if kk == 0 or vkey not in vkeys:
                 ikeys = [ INTERVALS[i] for i in ivals ]
-                if dbg: self._dumpData(ikeys, ivals, notes, mask, 0)
+                if dbg: self._dumpData(rank, ikeys, ivals, notes, mask, 0)
                 if kk:
                     _imap = collections.OrderedDict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: INTERVAL_RANK[t[0]]))
                     ikeys = list(_imap.keys())   ;   notes = list(_imap.values())   ;   ivals = [ INTERVAL_RANK[k] for k in ikeys ]
                 ikey = ' '.join([ k for k in ikeys ])
-                if dbg: self._dumpData(ikeys, ivals, notes, mask, 1)
+                if dbg: self._dumpData(rank, ikeys, ivals, notes, mask, 1)
                 if kk and (ikey in self.OMAP):
                     chunks.append(_imap['R'])
                     [ chunks.append(n) for n in self.OMAP[ikey][2] if n ]
@@ -125,12 +163,11 @@ class Chord(object):
                     assert ivals == self.OMAP[ikey][1]
                 elif kk and len(_imap) >= Chord.MIN_CHORD_LEN:
                     self.log(f'{why} ADDING ikey={ikey} ivals={tabs.fmtl(ivals)} to OMAP')
-                    self.umap[ikey] = (rank, ivals, [])   ;   assert 0
+                    self.umap[ikey] = (rank, ivals, [])    ;   assert 0
                 imap  = [ ikeys, ivals, notes, name, chunks, rank ]
                 vkeys.append(vkey)   ;   self.limap.append(imap)
-                if dbg: self.log(f'{rank} <{ikey}> {tabs.fmtl(ikeys)} <{vkey}> {tabs.fmtl(vkeys)} {" ".join(notes):12} {name:12} {"".join(chunks)}')
-#                if dbg: self.log(f'{vkey} {tabs.fmtl(ivals, z="x")} {tabs.fmtl(ikeys)} {tabs.fmtl(notes):12} [{name:12}] {tabs.fmtl(chunks):12} {rank}')
-#                if dbg: self.log(f'{vkey} [{tabs.fmtl(ivals, z="x")}] [{" ".join(ikeys)}] [{" ".join(notes):12}] [{name:12}] [{" ".join(chunks):12}] {rank}')
+#                self.dumpData(  name, mask, f'{rank:2} Name  {name}') #                self.dumpData(chunks, mask, f'{rank:2} Chnks {" ".join(chunks)}')
+                if dbg: self.log(f'{rank:2} <{ikey}> {tabs.fmtl(ikeys)} <{vkey}> {tabs.fmtl(vkeys)} {" ".join(notes):12} {tabs.fmtl(ivals, z="x")} {name:12} {"".join(chunks)}')
         if self.limap:
             self.limap.sort(key=lambda m: m[-1])
             if dbg > 1: self.dumpLimap(self.limap, cn)
@@ -138,64 +175,19 @@ class Chord(object):
             return self.limap[0]
         return [ ikeys, ivals, notes, name, chunks, rank ]
 
-    def getChordName__A(self, p, l, c, kk=1, why='', dbg=10):
-        cn = self.tobj.plc2cn(p, l, c)   ;   self.limap = []   ;   imks =[]   ;   _imap = []
-        ikeys, ivals, notes, chunks, name, rank = [], [], [], [], '', -1
-        mask, _notes, ixs = self._getIndices(p, l, c)
-        for k in range(len(ixs)):
-            _ikeys = []   ;   _ivals = []   ;   chunks = []
-            for j in range(len(ixs)):
-                if ixs[j] >= ixs[k]: i =           (ixs[j] - ixs[k])  % NTONES
-                else:                i = (NTONES - (ixs[k] - ixs[j])) % NTONES
-                _ivals.append(i)
-            _key = ''.join([ f'{v:x}' for v in _ivals ])
-            if not kk or (_key not in imks):
-                _ikeys = [ INTERVALS[i] for i in _ivals ]
-#                if dbg: self._dumpData(_notes, mask, '_notes')
-#                if dbg: self._dumpData(_ivals, mask, '_ivals')
-#                if dbg: self._dumpData(_ikeys, mask, '_ikeys')
-                if kk:
-                    _imap = collections.OrderedDict(sorted(dict(zip(_ikeys, _notes)).items(), key=lambda t: INTERVAL_RANK[t[0]]))
-                    ikeys = list(_imap.keys())   ;   notes = list(_imap.values())   ;   ivals = [ INTERVAL_RANK[k] for k in ikeys ]
-                key = ' '.join([ k for k in ikeys ])
-                if dbg: self.log(f'{_key}  ivals={tabs.fmtl(ivals, z="x")}  ikeys={tabs.fmtl(ikeys)}  notes={tabs.fmtl(notes)} key={key} kk={kk}')
-#                if dbg: self._dumpData( ikeys, mask, ' ikeys')
-#                if dbg: self._dumpData( ivals, mask, ' ivals')
-#                if dbg: self._dumpData( notes, mask, ' notes')
-                if key in self.OMAP:
-                    chunks.append(_imap['R'])
-                    [ chunks.append(n) for n in self.OMAP[key][2] if n ]
-                    name = ''.join(chunks)
-                    rank = self.OMAP[key][0]
-                    assert ivals == self.OMAP[key][1]
-                elif len(_imap) >= Chord.MIN_CHORD_LEN:
-                    self.log(f'{why} adding key {key} with indices {tabs.fmtl(ivals)} to OMAP')
-                    self.umap[key] = (rank, ivals, [])
-                imap  = [ ikeys, ivals, notes, name, chunks, rank ]
-                imks.append(_key)   ;   self.limap.append(imap)
-                if dbg: self.log(f'{_key} {tabs.fmtl(ivals, z="x")} {tabs.fmtl(ikeys)} {tabs.fmtl(notes):12} {name:12} {tabs.fmtl(chunks):12} {rank}')
-                if dbg: self.log(f'{_key} {tabs.fmtl(ivals, z="x")} [{" ".join(ikeys)}] [{" ".join(notes):12}] {name:12} {" ".join(chunks):12} {rank}')
-#                if dbg: self.log(f'{why} {rank} {_key} {key:12} {tabs.fmtl(notes, w=2)} {name:12} {tabs.fmtl(chunks, w=2):13}')
-#                if dbg: self.log(f'{why} _key={_key} key={key:12} ikeys={tabs.fmtl(ikeys, w=2)} ivals={tabs.fmtl(ivals, z="x"):13} imks={tabs.fmtl(imks)}')
-        if self.limap:
-            self.limap.sort(key=lambda m: m[-1])
-            if dbg > 1: self.dumpLimap(self.limap, cn)
-            self.mlimap[cn] = self.limap
-            return self.limap[0]
-        return [ ikeys, ivals, notes, name, chunks, rank ]
-
-    def _dumpData(self, ikeys, ivals, notes, mask, a):
-        if a: self.dumpData(ikeys, mask, 'ikeys')   ;   self.dumpData(ivals, mask, 'ivals')   ;   self.dumpData(notes, mask, 'notes')
-        else: self.dumpData(notes, mask, 'notes')   ;   self.dumpData(ivals, mask, 'ivals')   ;   self.dumpData(ikeys, mask, 'ikeys')
+    def _dumpData(self, rank, ikeys, ivals, notes, mask, a):
+        ikey = ' '.join(ikeys)   ;   ival = ''.join([ f'{v:x}' for v in ivals ])   ;   note = ' '.join(notes)  # ;   r = f'{rank:2}'
+        if a: self.dumpData(ikeys, mask, f'{rank:2} ikeys {ikey}')   ;   self.dumpData(ivals, mask, f'{rank:2} ivals {ival}')   ;   self.dumpData(notes, mask, f'{rank:2} Notes {note}')
+        else: self.dumpData(notes, mask, f'{rank:2} Notes {note}')   ;   self.dumpData(ivals, mask, f'{rank:2} ivals {ival}')   ;   self.dumpData(ikeys, mask, f'{rank:2} ikeys {ikey}')
 
     def dumpData(self, data, mask, why, w=5, u='<', r=0):
         if r:     data = data[::-1]  ;  mask = mask[::-1]
-        j = 0   ;   dt = type(data)  ;  self.log(f'{why:21} [ ', end='')
+        j = 0   ;   dt = type(data)  ;  self.log(f'{why:26} [ ', end='')
         if dt is list or dt is str:
             for i in range(len(mask)):
                 if   mask[i] and j < len(data): self.log('{:{}{}} '.format(data[j], u, w), ind=0, end='')  ;  j += 1
-                elif mask[i]:                       self.log('{:{}{}} '.format('x',     u, w), ind=0, end='')
-                else:                               self.log('{:{}{}} '.format('-',     u, w), ind=0, end='')
+                elif mask[i]:                   self.log('{:{}{}} '.format(' ',     u, w), ind=0, end='')
+                else:                           self.log('{:{}{}} '.format('~',     u, w), ind=0, end='')
         elif dt is collections.OrderedDict:
             w2 = 2  ;   i = 0
             for k,v in data.items():
@@ -238,7 +230,7 @@ class Chord(object):
         if dbg2: self.dumpImap(imap)
         return imap
     ####################################################################################################################################################################################################
-    def OLD__getChordName(self, p, l, c, why='', tt=1, dbg=1):
+    def OLD_1_getChordName(self, p, l, c, why='', tt=1, dbg=1):
         cn = self.tobj.plc2cn(p, l, c)   ;   self.limap = []   ;   imks =[]
         ikeys, ivals, chunks, name, rank = [], [], [], '', -1
         mask, notes, ixs = self.getIndices(p, l, c)

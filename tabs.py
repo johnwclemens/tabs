@@ -48,7 +48,7 @@ def fmtm(m, w=1, d0=':', d1='[', d2=']'):
         elif type(v) in (int, str):                 t += f'{k:>{w}}{d0}{v:<{w}} '
     return d1 + t.rstrip() + d2
 
-def getFilePath(filedir='files', filesfx='.txt', dbg=1):
+def getFilePath(filedir='files', filesfx='.txt', dbg=0):
     sfx = SFX if not ARGS['f'] else ''
     if dbg: Tabs.slog(f'BASE_NAME= {BASE_NAME} SFX={SFX}')
     fileName        = BASE_NAME + sfx + filesfx
@@ -2415,7 +2415,7 @@ class Tabs(pyglet.window.Window):
 ########################################################################################################################################################################################################
 if __name__ == '__main__':
     backPath = getFilePath(filedir='logs', filesfx='.blog')
-    print(f'backPath={backPath}')
+#    print(f'backPath={backPath}')
     LOG_PATH = getFilePath(filedir='logs', filesfx='.log')
     if backPath:               os.system(f'copy {LOG_PATH} {backPath}')
     with open(str(LOG_PATH), 'w') as LOG_FILE:
