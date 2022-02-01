@@ -369,7 +369,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'tps={fmtl(self.tpz())}')
     def tpz(self):   return self.tpp, self.tpl, self.tps, self.tpc
     ####################################################################################################################################################################################################
-    def ss(self, dbg=0):   s = sum(self.TNIK)  ;    self.log(f'{s} {fmtl(self.TNIK)} {fmtl(self.n)}') if dbg else None   ;   return s
+    def ss(self, dbg=0):   s = sum(self.TNIK)  ;    self.log(f'{s} {fmtl(self.TNIK)} {fmtl(self.n)}') if dbg else None   ;   return s   # return 0-4
     def dl(self, data=None): data = self.data if data is None else data  ;  return len(data), len(data[0]), len(data[0][0]), len(data[0][0][0])
     def lenA(self):  return [ len(_) for _ in self.A ]
     def lenB(self):  return [ len(_) for _ in self.B ]
@@ -1044,33 +1044,33 @@ class Tabs(pyglet.window.Window):
             yield lbl
     ####################################################################################################################################################################################################
     def g_createLabels2(self, col, dbg=1, dbg2=0):
-        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]    ;   tt0 = self.tt0(s);    t2 = 0
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]    ;   tt0 = self.tt0(s)   ;   t2 = 0   ;   stnik = self.ss()
         kt, kn, ki, kkk = self.kt, self.kn, self.ki, self.kk           ;   kt2, kn2, ki2, kk2 = self.kt2, self.kn2, self.ki2, self.kk2
-        nt, it, xt, yt, wt, ht, gt, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)
+        n, i, x, y, w, h, g, mx, my = self.geom(p=col, j=T, init=1, dbg=dbg2)
         imap = self.getImap(p, l, c, tt0) # if tt0 == II or tt0 == KK else []
-        for t in range(nt):
-            why = 'new '   ;   stnik = self.ss()
+        for t in range(n):
+            why = 'new '
             if   tt0 == TT:
                 if   CCC     and c == C1:   tab = self.stringNumbs[t]  ;  plist = self.snos   ;  kl = kt2  ;  k = self.cci(t, kl)  ;  j = O
                 elif CCC > 1 and c == C2:   tab = self.stringCapo[t]   ;  plist = self.capsA  ;  kl = kt2  ;  k = self.cci(t, kl)  ;  j = D
                 else:               tab = self.data[p][l][c-CCC][t]    ;  plist = self.tabs   ;  kl = kt   ;  k = self.cci(t, kl)  ;  j = T
-                self.createLabel(plist, j, xt, yt - t*ht, wt, ht, k, gt, why=why, t=tab,  kl=kl, dbg=dbg)  ;  yield tab
+                self.createLabel(plist, j, x, y - t*h, w, h, k, g, why=why, t=tab,  kl=kl, dbg=dbg)  ;  yield tab
             elif tt0 == NN:
                 if   CCC     and c == C1:  note = self.stringNames[t]  ;  plist = self.snas   ;  kl = kn2  ;  k = self.cci(t, kl)  ;  j = A
                 elif CCC > 1 and c == C2:  note = self.stringCapo[t]   ;  plist = self.capsB  ;  kl = kn2  ;  k = self.cci(t, kl)  ;  j = E
                 else:               tab = self.data[p][l][c-CCC][t]    ;  plist = self.notes  ;  kl = kn   ;  k = self.cci(t, kl)  ;  j = N  ;  note = self.tab2nn(tab, t) if self.isFret(tab) else self.tblank
-                self.createLabel(plist, j, xt, yt - t*ht, wt, ht, k, gt, why=why, t=note, kl=kl, dbg=dbg)  ;  yield note
+                self.createLabel(plist, j, x, y - t*h, w, h, k, g, why=why, t=note, kl=kl, dbg=dbg)  ;  yield note
             elif tt0 == II:
                 if   CCC     and c == C1:  ikey = self.strLabel[t]     ;  plist = self.lstrs  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = F
                 elif CCC > 1 and c == C2:  ikey = self.cpoLabel[t]     ;  plist = self.lcaps  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = G
                 else:
                     imap0 = imap[0][::-1] if imap and len(imap) else []
                     dd = self.data[p][l][c]   ;   fdd = self.isFret(dd[t])   ;   j = I
-                    if imap0 and len(imap0) > t2: ikey = imap0[t2] if fdd else self.tblank  ;  t2 += 1 if fdd else 0
+                    if imap0 and len(imap0) > t2: ikey = imap0[t2] if fdd else self.tblank    ;   t2 += 1 if fdd else 0
                     else:                         ikey = self.tblank
                     if dbg2: cc = self.plct2cc(p, l, c, 0)   ;   self.dumpDataSlice(p, l, c, cc)  ;  self.log(f'cc={cc} t={t} t2={t2} imap0={imap0} fdd={fdd} dd={dd} ikey={ikey}')
                     plist = self.ikeys  ;  kl = ki  ;  k = self.cci(t, kl)
-                self.createLabel(plist, j, xt, yt - (nt-1-t)*ht, wt, ht, k, gt, why=why, t=ikey, kl=ki, dbg=dbg)   ;  yield ikey
+                self.createLabel(plist, j, x, y - (n-1-t)*h, w, h, k, g, why=why, t=ikey, kl=ki, dbg=dbg)   ;  yield ikey
             elif tt0 == KK:
                 if   CCC     and c == C1: chord = self.strLabel[t]     ;  plist = self.lstrs  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = F
                 elif CCC > 1 and c == C2: chord = self.cpoLabel[t]     ;  plist = self.lcaps  ;  kl = kk2  ;  k = self.cci(t, kl)  ;  j = G
@@ -1078,7 +1078,7 @@ class Tabs(pyglet.window.Window):
                     chunks = imap[4] if (imap and len(imap) > 4) else []
                     chord = chunks[t] if len(chunks) > t else self.tblank   ;   j = K
                     plist = self.chords ;  kl = kkk ;  k = self.cci(t, kl)
-                self.createLabel(plist, j, xt, yt - t*ht, wt, ht, k, gt, why=why, t=chord, kl=kl, dbg=dbg) ;  yield chord
+                self.createLabel(plist, j, x, y - t*h, w, h, k, g, why=why, t=chord, kl=kl, dbg=dbg) ;  yield chord
             elif not stnik and not s: self.log(f'WARN skip s={s} {fmtl(self.TNIK)} stnik={stnik}') if dbg2 else None
 #            else: msg = f'ERROR tti={self.tti()} s={s} n={fmtl(self.n)} {fmtl(self.TNIK)} {self.ss()} tt nn kk={int(tt)} {int(nn)} {int(kk)} {fmtl(self.lenE())}'  ;  self.log(msg)  ;  self.quit(msg) #  yield None
     ####################################################################################################################################################################################################
@@ -1130,36 +1130,35 @@ class Tabs(pyglet.window.Window):
             yield lbl
     ####################################################################################################################################################################################################
     def g_resizeLabels2(self, col, dbg=0, dbg2=0):
-        stnik = self.ss()
-        n, i, x, y, w, h, g, mx, my = self.geom(p=col, j=T, dbg=dbg2)  ;  lbl = None
-        tt,     nn,   ii,   kk      = self.TNIK
+        tt,     nn,   ii,   kk      = self.TNIK               ;   stnik = self.ss()
         p,       l,    s,    c      = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
         st,     sn,   si,   sk      = self.J2[T], self.J2[N], self.J2[I], self.J2[K]
-        ssno, ssna, scapA, scapB, slstr, slcap = self.J2[O], self.J2[A], self.J2[D], self.J2[E], self.J2[F], self.J2[G]
+        ssno, ssna, scapA, scapB, slstr, slcap =  self.J2[O], self.J2[A], self.J2[D], self.J2[E], self.J2[F], self.J2[G]
+        n, i, x, y, w, h, g, mx, my = self.geom(p=col, j=T, dbg=dbg2)   ;   lbl = None   ;   tt0 = self.tt0(s)
         for t in range(n):
             why = 'mod '
-            if   self.tt0(s) == TT:
+            if   tt0 == TT:
                 if   CCC     and c == C1:   tab = self.snos[ssno]     ;   ssno += 1   ;  why += f'SNo {ssno}'
                 elif CCC > 1 and c == C2:   tab = self.capsA[scapA]   ;  scapA += 1   ;  why += f'CapA {scapA}'
                 else:                       tab = self.tabs[st]       ;     st += 1   ;  why += f'Tab {st}'
                 tab.width = w    ;   tab.height = h    ;  tab.x = x   ;   tab.y = y - t * h  ;  lbl = tab
                 self.J1[T] = t   ;   self.J2[T] = st   ;  self.J2[O] = ssno   ;  self.J2[D] = scapA
                 if dbg:   self.dumpLabel(lbl, *self.ids(), *self.cnts(), why=why)
-            elif self.tt0(s) == NN:
+            elif tt0 == NN:
                 if   CCC     and c == C1:  note = self.snas[ssna]     ;   ssna += 1   ;  why += f'SNam {ssna}'
                 elif CCC > 1 and c == C2:  note = self.capsB[scapB]   ;  scapB += 1   ;  why += f'CapB {scapB}'
                 else:                      note = self.notes[sn]      ;     sn += 1   ;  why += f'Note {sn}'
                 note.width = w   ;  note.height = h    ; note.x = x   ;  note.y = y - t * h  ;  lbl = note
                 self.J1[N] = t   ;   self.J2[N] = sn   ;  self.J2[A] = ssna   ;  self.J2[E] = scapB
                 if dbg:   self.dumpLabel(lbl, *self.ids(), *self.cnts(), why=why)
-            elif self.tt0(s) == II:
+            elif tt0 == II:
                 if   CCC     and c == C1:  ikey = self.lstrs[slstr]   ;  slstr += 1   ;  why += f'LStr {slstr}'
                 elif CCC > 1 and c == C2:  ikey = self.lcaps[slcap]   ;  slcap += 1   ;  why += f'LCap {slcap}'
                 else:                      ikey = self.ikeys[si]      ;     si += 1   ;  why += f'IKey {si}'
                 ikey.width = w   ;  ikey.height = h    ;  ikey.x = x  ;  ikey.y = y - t * h  ;  lbl = ikey
                 self.J1[I] = t   ;   self.J2[I] = si   ;  self.J2[F] = slstr  ;  self.J2[G] = slcap
                 if dbg:   self.dumpLabel(lbl, *self.ids(), *self.cnts(), why=why)
-            elif self.tt0(s) == KK:
+            elif tt0 == KK:
                 if   CCC     and c == C1: chord = self.lstrs[slstr]   ;  slstr += 1   ;  why += f'LStr {slstr}'
                 elif CCC > 1 and c == C2: chord = self.lcaps[slcap]   ;  slcap += 1   ;  why += f'LCap {slcap}'
                 else:                     chord = self.chords[sk]     ;     sk += 1   ;  why += f'Chord {sk}'
@@ -1167,7 +1166,7 @@ class Tabs(pyglet.window.Window):
                 self.J1[K] = t   ;   self.J2[K] = sk   ;  self.J2[F] = slstr  ;  self.J2[G] = slcap
                 if dbg:   self.dumpLabel(lbl, *self.ids(), *self.cnts(), why=why)
             elif not stnik and not s: self.log(f'WARN skip s={s} {fmtl(self.TNIK)} {stnik}') if dbg2 else None
-            else:         self.log(f'ERROR s={s} {fmtl(self.TNIK)} {stnik} [{tt} {nn} {ii} {kk}] {fmtl(self.lenE())}') #  ;  self.log(msg)  # ;  self.quit(msg)
+            else:         msg = f'ERROR s={s} {fmtl(self.TNIK)} {stnik} [{tt} {nn} {ii} {kk}] {fmtl(self.lenE())}'   ;  self.log(msg)   ;  self.quit(msg)
             yield lbl
     ####################################################################################################################################################################################################
     def resizeSprites(self, dbg=VERBOSE):
