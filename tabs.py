@@ -65,7 +65,7 @@ def dumpGlobals():
     Tabs.slog(f'SFX       = {SFX}')
 ####################################################################################################################################################################################################
 ARGS             = cmdArgs.parseCmdLine()        ;  DBG0, DBG1, DBG2, DBG3, DBG4, DBG5, DBG6, DBG7, DBG8, DBG9 = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9   ;  DBG = DBG0
-AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 1  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 1  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  EXIT = 0
+AUTO_SAVE = 1  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 0  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 1  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  EXIT = 0
 VRSN1            = 0  ;  SFX1 = chr(65 + VRSN1)  ;  QQ      = VRSN1  ;  VRSNX1 = f'VRSN1={VRSN1}       QQ={QQ     }  SFX1={SFX1}'
 VRSN2            = 0  ;  SFX2 = chr(49 + VRSN2)  ;  SPRITES = VRSN2  ;  VRSNX2 = f'VRSN2={VRSN2}  SPRITES={SPRITES}  SFX2={SFX2}'
 VRSN3            = 0  ;  SFX3 = chr(97 + VRSN3)  ;  CCC     = VRSN3  ;  VRSNX3 = f'VRSN3={VRSN3}      CCC={CCC    }  SFX3={SFX3}'
@@ -309,6 +309,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpLabels('new2')
         if self.TNIK[TT] and self.tabs: self.createCursor(self.g[T + 3]) # fix g index
         if dbg: self.dumpStruct('_init()')
+#        self.testslice()
         if EXIT: self.quit('EXIT TEST')
         self.dumpGeom('END')
     ####################################################################################################################################################################################################
@@ -2093,34 +2094,38 @@ class Tabs(pyglet.window.Window):
     def toggleChordNameHits(self, how, cn, dbg=1):
         mli = self.cobj.mlimap   ;   mks = list(mli.keys())
         if cn not in mli: self.log(f'RETURN: no mli key for cn={cn}') if dbg else None   ;   return
-        ranks = [ u[-1] for u in mli[cn] ]
-        ivals =  [ u[1] for u in mli[cn] ]
+        ivals =  [ u[1] for u in mli[cn][0] ]
         msg   =  [ fmtl(v, z="x") for v in ivals ]
-        if dbg: self.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ranks={fmtl(ranks)} ivals={fmtl(msg, d1="", d2="")}')
-        hits = self.ivalhits(ivals, ranks, how)
-        for k in hits:
-            if k not in self.smap: self.selectTabs(how, m=0, cn=k)
-            self.toggleChordName(how, k)
-        if dbg: self.log(f'END {how} mks={fmtl(mks)} cn={cn:2} ranks={fmtl(ranks)} ivals={fmtl(msg, d1="", d2="")}')
+        if dbg: self.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d1="", d2="")}')
+        hits = self.ivalhits(ivals, how)
+        for cn in hits:
+            if cn not in self.smap: self.selectTabs(how, m=0, cn=cn)
+            self.toggleChordName(how, cn)
+        if dbg: self.log(f'END {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d1="", d2="")}')
 
-    def ivalhits(self, ivals, ranks, how, dbg=1):
-        mli = self.cobj.mlimap   ;   mks = list(mli.keys())   ;   hits = set()   ;   k = -1
-        for k, v in mli.items():
-            for u in v:
+    def ivalhits(self, ivals, how, dbg=1):
+        mli = self.cobj.mlimap   ;   mks = list(mli.keys())   ;   hits = set()
+        for cn, lim in mli.items():
+            for im in lim[0]:
+                if cn in hits: break
                 for iv in ivals:
-                    if iv == u[1]:     hits.add(k)  ;   break
-        if dbg: self.log(f'    {how} mks={fmtl(mks)} cn={k:2} ranks={fmtl(ranks)} hits={fmtl(hits)}')
+                    iv1 = self.cobj.fsort(iv)   ;   iv2 = self.cobj.fsort(im[1])
+                    if iv1 == iv2:     hits.add(cn)  ;   break
+        if dbg: self.log(f'    {how} mks={fmtl(mks)} hits={fmtl(hits)}')
         return list(hits)
 
     def toggleChordName(self, how, cn, dbg=1, dbg2=1):
         cc = self.cn2cc(cn)   ;   mli = self.cobj.mlimap
         if cn not in mli: self.log(f'RETURN: cn={cn} Not Found milap.keys={fmtl(list(mli.keys()))}')   ;   return
-        limap = self.cobj.rotateMLimap(cn)
-        ikeys, ivals, notes, chordName, chunks, rank = limap[0]
+        limap = mli[cn][0]   ;   imi = mli[cn][1]
+        imi = (imi + 1) % len(limap)
+        mli[cn][1] = imi
+        ikeys, ivals, notes, chordName, chunks, rank = limap[imi]
         if ikeys:                p, l, c, t = self.cc2plct(cc)   ;   self.setIkeyText(ikeys, cc, p, l, c)
         if chordName and chunks: self.setChordName(cc, chordName, chunks)
         elif dbg: self.log(f'    {how} cn={cn} cc={cc} is NOT a chord')
-        if dbg2:  self.cobj.dumpLimap1(limap, cn)
+        if dbg2:  self.cobj.dumpImap(limap[imi], why=f'{cn:2}')
+        assert imi == limap[imi][-1]
     ####################################################################################################################################################################################################
     def toggleCursorMode(self, how):
         self.log(f'BGN {how} csrMode={self.csrMode}={CSR_MODES[self.csrMode]}')
@@ -2409,6 +2414,69 @@ class Tabs(pyglet.window.Window):
     def deleteMap(m):
         for k, v in m.items():
             v.delete()   ;   del v
+
+    def testslice(self):
+        a = ['A', 'B', 'C', 'D', 'E']
+        self.log(f'a = {fmtl(a, w=2, u=">"):21}')
+        b = [ i for i in range(len(a)) ]
+        self.log(f'b = {fmtl(b, w=2, u=">"):21}', end=' ')
+        self.log(': i for i in range(len(a))', ind=0)
+        c = [ i for i in range(-len(a), 0)]
+        self.log(f'c = {fmtl(c, w=2, u=">"):21}', end=' ')
+        self.log(': i for i in range(-len(a), 0)', ind=0)
+        self.testslice1(a)
+        self.log(ind=0)
+        self.testslice4(a)
+
+    def testslice1(self, a):
+        if a is None: a = ['A', 'B', 'C', 'D', 'E']
+        self.log(f'a = {fmtl(a, w=2, u=">"):21}')
+        b = a[-1:]
+        c = a[:-1]
+        a = a[-1:] + a[:-1]
+        self.log(f'b = {fmtl(b, w=2, u=">"):21} : a[-1:]')
+        self.log(f'c = {fmtl(c, w=2, u=">"):21} : a[:-1]')
+        self.log(f'a = {fmtl(a, w=2, u=">"):21} : a = b + c = a[-1:] + a[:-1]')
+
+    def testslice2(self, a):
+        for k in range(len(a)+1):
+            b = a[-1:k:-1]
+            self.log(f'b = {fmtl(b, w=2, u=">"):21} : a[-1:{k}:-1]')
+        for k in range(len(a)+3):
+            b = a[-1:-k:-1]
+            self.log(f'b = {fmtl(b, w=2, u=">"):21} : a[-1:{-k}:-1]')
+        for k in range(len(a)+1):
+            c = a[k:-1]
+            self.log(f'c = {fmtl(c, w=2, u=">"):21} : a[{k}:-1]')
+        for k in range(len(a)+2):
+            c = a[-k:-1]
+            self.log(f'c = {fmtl(c, w=2, u=">"):21} : a[-{k}:-1]')
+
+    def testslice3(self, a):
+        for k in range(len(a)+1):
+            c = a[k:-2]
+            self.log(f'c = {fmtl(c, w=2, u=">"):21} : a[{k}:-2]')
+        for k in range(len(a)+1):
+            c = a[k:-1]
+            self.log(f'c = {fmtl(c, w=2, u=">"):21} : a[{k}:-1]')
+        for k in range(len(a)+1):
+            c = a[k:0]
+            self.log(f'c = {fmtl(c, w=2, u=">"):21} : a[{k}:0]')
+        for k in range(len(a)+1):
+            c = a[k:1]
+            self.log(f'c = {fmtl(c, w=2, u=">"):21} : a[{k}:1]')
+        for k in range(len(a)+1):
+            c = a[k:2]
+            self.log(f'c = {fmtl(c, w=2, u=">"):21} : a[{k}:2]')
+
+    def testslice4(self, a):
+        for k in         [-2, -1, 1, 2]:
+            for j in     range(-len(a)-2, len(a)+1):
+                for i in range(-len(a)-2, len(a)+1):
+                    c = a[i:j:k]
+                    self.log(f'a[ {i:2} {j:2} {k:2} ] = {fmtl(c, w=2, u=">")}')
+                self.log(f'a =  {fmtl(a)}   j = {j:2}   k = {k:2}', ind=0)
+
 ########################################################################################################################################################################################################
 if __name__ == '__main__':
     backPath = getFilePath(filedir='logs', filesfx='.blog')

@@ -90,10 +90,10 @@ class Chord(object):
                 if dbg: self.log(f'{rank:2} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {name:12} {"".join(chunks):12} {"".join(_ikeys):12} {"".join(f"{i:x}" for i in _ivals):6} {"".join(_notes):12}')
 #                if dbg: self.log(f'{rank:2} {tabs.fmtl(ikeys):19} {tabs.fmtl(ivals, z="x")} {" ".join(notes):12} {name:12} {"".join(chunks)} {tabs.fmtl(_ikeys)} {tabs.fmtl(_ivals, z="x")} {" ".join(_notes):12}', ind=0)
         if self.limap:
-            self.limap.sort(key=lambda m: m[-1])
+            self.limap.sort(key=lambda m: m[-1])   ;   imi = 0
             if dbg > 1: self.dumpLimap(self.limap, cn)
-            self.mlimap[cn] = self.limap
-            return self.limap[0]
+            self.mlimap[cn] = [ self.limap, imi ]
+            return self.limap[imi]
         return [ ikeys, ivals, notes, name, chunks, rank ]
 
     def _getIndices(self, p, l, c, dbg=1, dbg2=0):
@@ -147,14 +147,15 @@ class Chord(object):
     ####################################################################################################################################################################################################
     def dumpMlimap(self, why=''):
         self.log(f'{why}')
-        for k, v in self.mlimap.items():
-            self.dumpLimap(v, k)
-        for k, v in self.mlimap.items():
-            self.dumpLimap1(v, k)
-        for k, v in self.mlimap.items():
-            self.dumpLimap2(v, k)
-        for k, v in self.mlimap.items():
-            self.dumpLimap3(v, k)
+        mli = self.mlimap
+        for k, v in mli.items():
+            self.dumpLimap(v[0], k)
+        for k, v in mli.items():
+            self.dumpLimap1(v[0], k)
+        for k, v in mli.items():
+            self.dumpLimap2(v[0], k)
+        for k, v in mli.items():
+            self.dumpLimap3(v[0], k)
 
     def dumpLimap(self, limap, key):
         [ self.dumpImap(im, f'{key:2}') for im in limap ]
@@ -188,7 +189,7 @@ class Chord(object):
     ####################################################################################################################################################################################################
     def rotateMLimap(self, cn):
         a = self.mlimap[cn]
-        a = (a[-1:] + a[:-1])
+        a = a[-1:] + a[:-1]
         self.mlimap[cn] = a
         return a
 #        self.mlimap[cn] = (self.mlimap[cn][-1:] + self.mlimap[cn][:-1])
@@ -204,6 +205,8 @@ class Chord(object):
            if i + 1 < ll: r.append(a[i+1] - a[i] + r[i-1])
            else :         r.append(NTONES - a[i] + r[i-1])
        return r
+    @staticmethod
+    def fsort(ivals): s = set([ i for i in ivals ])   ;   return sorted(list(s))
     ####################################################################################################################################################################################################
     @staticmethod
     def key2Indices(k):
