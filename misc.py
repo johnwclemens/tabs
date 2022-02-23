@@ -60,7 +60,7 @@ class Chord(object):
         self.tobj.log(msg=msg, pfx=pfx, pos=pos, file=file, flush=flush, sep=sep, end=end)
     ####################################################################################################################################################################################################
     def getChordName(self, p, l, c, kk=1, why='', dbg=0):
-        cn = self.tobj.plc2cn(p, l, c)   ;   self.limap = []
+        cn = self.tobj.plc2cn(p, l, c)   ;   self.limap = []   ;   imap = []
         ikeys, ivals, notes, name, chunks, rank = [], [], [], '', [], -1
         mask, notes, ixs = self._getIndices(p, l, c)   ;   _imap, vkeys = None, []
         for k in range(len(ixs)):
@@ -94,7 +94,7 @@ class Chord(object):
             if dbg > 1: self.dumpLimap(self.limap, cn, imi)
             self.mlimap[cn] = [ self.limap, imi ]
             return self.limap[imi]
-        return [ ikeys, ivals, notes, name, chunks, rank ]
+        return imap # [ ikeys, ivals, notes, name, chunks, rank ]
 
     def _getIndices(self, p, l, c, dbg=0, dbg2=0):
         strNumbs   = self.tobj.stringNumbs
