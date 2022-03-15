@@ -59,7 +59,7 @@ class Chord(object):
         if file is None: file=self.logFile
         self.tobj.log(msg=msg, pfx=pfx, pos=pos, file=file, flush=flush, sep=sep, end=end)
     ####################################################################################################################################################################################################
-    def getChordName(self, p, l, c, kk=1, dbg=0):
+    def getChordName(self, p, l, c, kk=1, dbg=1):
         cn = self.tobj.plc2cn(p, l, c)   ;   self.limap = []   ;   imap = []
         ikeys, ivals, notes, name, chunks, rank = [], [], [], '', [], -1
         mask, notes, ixs = self._getIndices(p, l, c)   ;   _imap, vkeys = None, []
