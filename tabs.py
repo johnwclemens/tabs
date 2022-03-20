@@ -275,16 +275,6 @@ class Tabs(pyglet.window.Window):
         if EXIT: self.quit('EXIT TEST')
         self.dumpGeom('END')
 
-    def _initTniks(self, dbg=1):
-        self.dumpJ('init')
-        self.dumpXYWH()   ;   self.ss()
-        self.smap = {}
-        self.createTniks()
-        self.cobj.dumpMlimap('init')
-        self.dumpXYWH()
-        self.dumpJ('init')
-        if dbg: self.dumpTniks('new2')
-
     def _initColors(self):
         self.kp  = [    VIOLETS[0],    VIOLETS[12]] if CHECKER_BOARD else [   VIOLETS[10]]
         self.kl  = [     BLUES[12],      BLUES[15]] if CHECKER_BOARD else [     BLUES[12]]
@@ -306,17 +296,42 @@ class Tabs(pyglet.window.Window):
 
     def _initData(self, dbg=1):
         self._initDataPath()
-        if not self.dataPath1.exists(): self.log(f'dataPath1={self.dataPath1} file does not exist calling createBlankData()')  ;  self.dataPath1.touch()  ;  self.createBlankData()
+        if not self.dataPath1.exists(): self.log(f'dataPath1={self.dataPath1} file does not exist creating blank data')  ;  self.dataPath1.touch()  ;  self.initBlankFile()
         else:                           self.readDataFile()
-        old = f'{fmtl(self.n)}'
-        self.n[P], self.n[L], self.n[C], self.n[T] = self.data2plrc()   ;   self.log(f'reseting from n={old} to n={fmtl(self.n)}')
+        old = f'{fmtl(self.n)}'    ;    self.n[P], self.n[L], self.n[C], self.n[T] = self.data2plrc()   ;   self.log(f'reseting from n={old} to n={fmtl(self.n)}')
         self._initTpz()
-        self.initBlank()
+        self._initBlanks()
         if dbg:     self.dumpDataHorz()
         self.data = self.transposeData()
         if dbg:     self.dumpDataVert()
         self.saveDataFile('_initData()', f=2)
 #        self.log(f'    assert: size=nt+2*(l*r+l-1) {nt:8,} + {2*(l*r+l-1)} = {size:8,} bytes assert isVert={self.isVert()}')
+
+    def _initDataPath(self):
+        dataDir  = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
+        baseName  = self.dfn if self.dfn else BASE_NAME + SFX + dataPfx + dataSfx
+        dataName0 = baseName + '.jnc'
+        dataName1 = baseName
+        dataName2 = baseName + '.bck'
+        self.dataPath0 = BASE_PATH / dataDir / dataName0
+        self.dataPath1 = BASE_PATH / dataDir / dataName1
+        self.dataPath2 = BASE_PATH / dataDir / dataName2
+        self.log(f'dataName0 = {dataName0}')
+        self.log(f'dataName1 = {dataName1}')
+        self.log(f'dataName2 = {dataName2}')
+        self.log(f'dataPath0 = {self.dataPath0}')
+        self.log(f'dataPath1 = {self.dataPath1}')
+        self.log(f'dataPath2 = {self.dataPath2}')
+
+    def _initTniks(self, dbg=1):
+        self.dumpJ('init')
+        self.dumpXYWH()   ;   self.ss()
+        self.smap = {}
+        self.createTniks()
+        self.cobj.dumpMlimap('init')
+        self.dumpXYWH()
+        self.dumpJ('init')
+        if dbg: self.dumpTniks('new2')
     ####################################################################################################################################################################################################
     def _initWindowA(self, dbg=1):
         display      = pyglet.canvas.get_display()
@@ -345,22 +360,6 @@ class Tabs(pyglet.window.Window):
 #            self.push_handlers(self.keyboard)
         if dbg: self.log(f'END {self.fmtWH()}')
     ####################################################################################################################################################################################################
-    def _initDataPath(self):
-        dataDir  = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
-        baseName  = self.dfn if self.dfn else BASE_NAME + SFX + dataPfx + dataSfx
-        dataName0 = baseName + '.jnc'
-        dataName1 = baseName
-        dataName2 = baseName + '.bck'
-        self.dataPath0 = BASE_PATH / dataDir / dataName0
-        self.dataPath1 = BASE_PATH / dataDir / dataName1
-        self.dataPath2 = BASE_PATH / dataDir / dataName2
-        self.log(f'dataName0 = {dataName0}')
-        self.log(f'dataName1 = {dataName1}')
-        self.log(f'dataName2 = {dataName2}')
-        self.log(f'dataPath0 = {self.dataPath0}')
-        self.log(f'dataPath1 = {self.dataPath1}')
-        self.log(f'dataPath2 = {self.dataPath2}')
-
     def _initGroups(self):
         for i in range(len(self.n)+3):
             p = None if ORDER_GROUP or i==0 else self.g[i-1]
@@ -501,38 +500,33 @@ class Tabs(pyglet.window.Window):
                         DATA_FILE.write(f'{text}\n')
                     if l < nl: DATA_FILE.write('\n')
     ####################################################################################################################################################################################################
-    def createBlankData(self):
+    def dumpDataRead(self, p, l, s, t, sp, sl, ss, st, lp, ll, ls, lt, msg, msg2): self.log(f' {p}  {l} {s:2} {t:3}   {sp} {sl:2} {ss:3} {st:4}  {msg:12} {msg2}  {lp} {ll:2} {ls:3} {lt:4}', pfx=0)
+    def readDataFile(self, dbg=1):
+        np, nl, ns, nt = self.n[P], self.n[L], self.n[T], self.n[C]
+        self.log(f'BGN {fmtl(self.n)} dataPath1={self.dataPath1}')
+        with open(str(self.dataPath1), 'r') as DATA_FILE:
+            DATA_FILE.seek(0, 2)    ;   size = DATA_FILE.tell()   ;   DATA_FILE.seek(0, 0)
+            self.log(f'    {DATA_FILE.name:40} {size:8,} bytes = {size/1024:6,.1f} KB')
+            pages, lines, strs, tabs = [], [], [], []   ;   sp, sl, ss, st = 0, 0, 0, 0   ;   txt = 'tabs'
+            if dbg: self.log(f' p  l  s   t  sp sl  ss   st  <{txt:10}>                      lp ll  ls   lt', pfx=0)
+            for tabs in DATA_FILE:
+                tabs = tabs.strip()  ;   msg = f'<{tabs}>'   ;  lt = len(tabs)
+                p = sp % np  ;  l = sl % nl  ;  s = ss % ns  ;   t = st % nt
+                if tabs:                strs.append(tabs)    ;  ss += 1  ;   st += lt   ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(pages), len(lines), len(strs), len(tabs), msg, '  strs.add(tabs) ')
+                else:
+                    if not (ss % ns):  lines.append(strs)    ;  sl += 1  ;   strs = []  ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(pages), len(lines), len(strs), len(tabs), msg, ' lines.add(strs) ')
+                    if not (sl % nl):  pages.append(lines)   ;  sp += 1  ;  lines = []  ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(pages), len(lines), len(strs), len(tabs), msg, ' pages.add(lines)')
+            if dbg: self.log(f' p  l  s   t  sp sl  ss   st  <{txt:10}>                      lp ll  ls   lt', pfx=0)
+            self.data = pages
+        self.log(f'    read {sp} pages {sl} lines @ {nl} lines/page {ss} strs @ {ns} strs/line {st} tabs @ {nt} tabs/str {sp+sl+ss+st} objs')
+        self.log(f'END {DATA_FILE.name:40} {size:8,} bytes = {size/1024:6,.1f} KB')
+
+    def initBlankFile(self):
         self.log('Creating tab data using parameters {} {} {} {} {}'.format(*self.n))
         np, nl, ns, nc, nr = self.n  ;  nc += self.zz()
         self.data = [ [ [ self.tblankRow for _ in range(nr) ] for _ in range(nl) ] for _ in range(np) ]
 
-    def data2plrc(self, data=None, dbg=1):
-        data = self.data if data is None else data   ;   dl = self.dl(data)
-        plrc = dl if self.isVert() else dl[0], dl[1], dl[3], dl[2]
-        self.log(f'dl={fmtl(dl)} plrc={fmtl(plrc)}') if dbg else None   ;   return plrc
-
-    def readDataFile(self, dbg=1):
-        np, nl, ns, nc, nr = self.n
-        self.log(f'BGN {fmtl(self.n)} dataPath1={self.dataPath1}')
-        with open(str(self.dataPath1), 'r') as DATA_FILE:
-            DATA_FILE.seek(0, 2)    ;   size = DATA_FILE.tell()   ;   DATA_FILE.seek(0, 0)   ;   self.log(f'    {DATA_FILE.name:40} {size:8,} bytes = {size/1024:6,.1f} KB')
-            pages, lines, rows, cols = [], [], [], []   ;   sp, sl, sr, sc = 0, 0, 0, 0   ;   txt = 'cols'
-            if dbg: self.log(f' p  l  r   c  sp sl  sr   sc  <{txt:10}>                      lp ll  lr   lc', pfx=0)
-            for cols in DATA_FILE:
-                cols = cols.strip()  ;   msg = f'<{cols}>'   ;   lc = len(cols)
-                p = sp % np  ;  l = sl % nl  ;  r = sr % nr  ;    c = sc % nc
-                if cols:                rows.append(cols)    ;   sr += 1   ;    sc += lc    ;   msg2 = '  rows.append(cols) '
-                else:
-                    if not (sr % nr):  lines.append(rows)    ;   sl += 1   ;    rows = []   ;   msg2 = ' lines.append(rows) '
-                    if not (sl % nl):  pages.append(lines)   ;   sp += 1   ;   lines = []   ;   msg2 = ' pages.append(lines)'
-                if dbg: self.log(f' {p}  {l} {r:2} {c:3}   {sp} {sl:2} {sr:3} {sc:4}  {msg:12} {msg2}  {len(pages)} {len(lines):2} {len(rows):3} {len(cols):4}', pfx=0)
-            self.data = pages
-        nt   = sp * sl * sc * sr
-        self.log(f'    read {sp:1} Pages {sl:2} Lines {sl*sc:6,} Cols {sl*sr:4,} Strings {nt:8,} Tabs, isVert={self.isVert()}')
-#        self.log(f'    assert: size=nt+2*(l*r+l-1) {nt:8,} + {2*(l*r+l-1)} = {size:8,} bytes assert isVert={self.isVert()}')
-        self.log(f'END {DATA_FILE.name:40} {size:8,} bytes = {size/1024:6,.1f} KB')
-
-    def initBlank(self):
+    def _initBlanks(self):
         self.tblankCol = self.tblank * self.tpc   ;   data = self.data    ;   dl = self.dl(data)
         for p in range(dl[0]):
             for l in range(dl[1]):
@@ -559,14 +553,6 @@ class Tabs(pyglet.window.Window):
                 for c in range(len(data[p][l])):
                     assert len(data[p][l][c]) == dl[3]
     ####################################################################################################################################################################################################
-#   def dumpTabData(self, data=None, why='', lc=1, ll=1, i=0):
-#        if data is None: data = self.data
-#        self.log(f'BGN {why}')
-#        self.dumpDataVert(data, lc, ll, i) if self.isVert(data) else self.dumpDataHorz(data, lc, ll, i)
-#        transposeData = self.transposeData(data, why='Internal')
-#        self.dumpDataVert(transposeData, lc, ll, i) if self.isVer(transposeData) else self.dumpDataHorz(transposeData, lc, ll, i)
-#        self.log(f'END {why}')
-
     def dumpDataHorz(self, data=None, lc=1, ll=1, i=0):
         if data is None: data = self.data
         self.log(f'BGN {self.fmtDD(data)} lc={lc} ll={ll} i={i}')
@@ -1132,7 +1118,7 @@ class Tabs(pyglet.window.Window):
         if dbg:            self.dumpTnik(tnik, *self.cnts(), why=why)
         return tnik
     ####################################################################################################################################################################################################
-    def _dumpTniks(self, why=''):
+    def dumpTniks(self, why=''):
         self.initJ(why)
         np, nl, ns, nc, nt = self.n  ;  nc += self.zz()
         i, sp, sl, ss, sc, st, sn, si, sk = 0, 0, 0, 0, 0, 0, 0, 0, 0   ;   qr, qc = 0, 0
@@ -1317,6 +1303,7 @@ class Tabs(pyglet.window.Window):
 #    def cn2plct(self, cn):
     def cc2cn(self, cc):       return cc // self.tpc                                                ;  # ;  self.log(f'({cc}) cc // tpc return {cn}')  ;  return cn
     def plc2cn(self, p, l, c): return (p *  self.tpp // self.tpc) + (l * self.tpl // self.tpc) + c  ;  # ;  self.log(f'({p} {l} {c}) return {cn}')     ;  return cn
+    def data2plrc(self, data=None, dbg=1): dl = self.dl(data)  ;  plrc = dl if self.isVert() else dl[0], dl[1], dl[3], dl[2]  ;  self.log(f'dl={fmtl(dl)} plrc={fmtl(plrc)}') if dbg else None  ;  return plrc
 
     def cn2txt(self, cn):  #  usefull? re-name cn2tabtxt()
         cc = self.cn2cc(cn)
