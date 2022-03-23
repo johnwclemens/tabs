@@ -1,4 +1,4 @@
-import inspect, math, sys, os, glob, pathlib, string, collections  #, itertools #, shutil#, unicodedata, readline, csv
+import inspect, math, sys, os, glob, pathlib, string, collections, itertools #, shutil#, unicodedata, readline, csv
 import pyglet
 import pyglet.window.key   as pygwink
 import pyglet.window.event as pygwine
@@ -38,9 +38,13 @@ def fmtl(lst, w=None, u='<', d1='[', d2=']', sep=' ', ll=0, z=''):
             else:                                   t += fmtl(l, w,    u, d1, d2, sep, ll, z)
         else:
             ss = sep if i < len(lst)-1 else ''
-            if type(l) is type:                     l = str(l)
-            if type(w) in (list, tuple, set):       t += f'{l:{u}{w[i]}{z}}{ss}'
-            else:                                   t += f'{l:{u}{w   }{z}}{ss}'
+            if   type(l) is type:                   l = str(l)
+            elif l is None:                         l = 'None'
+            if   type(w) in (list, tuple, set):     t += f'{l:{u}{w[i]}{z}}{ss}'
+            elif type(l) is int:                    t += f'{l:{u}{w   }{z}}{ss}'
+            elif type(l) is float:                  t += f'{l:{u}{w   }{z}}{ss}'
+            elif type(l) is str:                    t += f'{l:{u}{w   }{z}}{ss}'
+            else:                                   msg = f'ERROR l={l} is type {type(l)}'   ;   Tabs.slog(msg)   ;   exit(1)
     return s + d1 + t + d2
 def fmtm(m, w=1, d0=':', d1='[', d2=']'):
     t = ''
@@ -235,7 +239,7 @@ class Tabs(pyglet.window.Window):
         self.allSelected    = 0
         self.dataHasChanged = 0
         self.hArrow, self.vArrow,  self.csrMode                                 = RIGHT, UP, CHORD    ;    self.dumpCursorArrows('init()')
-        self.tblank, self.tblanki, self.tblankCol,   self.cursor,  self.data    = None, None, None, None, None
+        self.tblank, self.tblanki, self.tblankCol,   self.cursor,  self.data    = None, None, None, None, []
         self.J1,     self.J2,      self.cc, self.ci, self.SNAP0,   self.armSnap = None, None, 0, 0, 0, ''
         self.kbk,    self.symb,    self.mods,        self.symbStr, self.modsStr =             0, 0, 0, '', ''
         self._reinit()
@@ -253,7 +257,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'E={fmtl(self.E)}')
 #        self.DF = [0, 0, 0, 0,  0, 0, 0, 0,  0, 0, 0, 0, 0, 0,  0, 0, 0, 0]
         self.initJ('reinit')
-        self.data    = None   ;    self.dataHasChanged = 0
+        self.data = []   ;    self.dataHasChanged = 0
         self.cursor,  self.caret   = None, None
         self.kbk,     self.symb, self.mods,  self.symbStr, self.modsStr = 0, 0, 0, '', ''
         self.cc,      self.ci,   self.SNAP0, self.armSnap               = 0, 0, 0, ''
@@ -272,7 +276,6 @@ class Tabs(pyglet.window.Window):
         self._initTniks()
         if self.TNIK[TT] and self.tabs: self.createCursor(self.g[T + 3]) # fix g index
         if dbg: self.dumpStruct('_init()')
-        if EXIT: self.quit('EXIT TEST')
         self.dumpGeom('END')
 
     def _initColors(self):
@@ -294,6 +297,25 @@ class Tabs(pyglet.window.Window):
         self.k   = [ self.kp, self.kl, self.ks, self.kc, self.kt, self.kn, self.ki, self.kk, self.kt2, self.kn2, self.ki2, self.kk2, self.klr, self.klc, self.kll ]
         [ self.log(f'[{i:2}] {fmtl(*e):3}') for i, e in enumerate(self.k) ]
 
+    def test(self, t, d, fv=None):
+        if not t: func  = 'zipA'   ;   fill = ''
+        else:     func  = 'zipB'   ;   fill = f'<{fv}>'
+        if not d: dtype = 'data1'   ;   data = [ 'ABCD', 'EFGH', 'IJKL' ]
+        else:     dtype = 'data2'   ;   data = [ 'ABCD', 'EFoGH', 'IJKL' ]
+        self.log(f'BGN {func}({dtype}, {fill:6}) {data}')
+        for r in data:
+            self.log(f'{r}', pfx=0)
+        self.log(f'BFR {func}({dtype}, {fill:6}) {fmtl(data)}')
+        if not t: Xdata = list(map(''.join, zip(*data)))
+        else:     Xdata = list(map(''.join, itertools.zip_longest(*data, fillvalue=fv)))
+#        else:     Xdata = list(itertools.zip_longest(*data, fillvalue=fv))
+#        else:     Xdata = list(''.join(map(str, itertools.zip_longest(*data, fillvalue=fv))))
+#        else:     Xdata = list(map(''.join, map(str, itertools.zip_longest(*data, fillvalue=fv))))
+        self.log(f'AFT {func}({dtype}, {fill:6}) {fmtl(Xdata)}')
+        for r in Xdata:
+            self.log(f'{r}', pfx=0)
+        self.log(f'END {func}({dtype}, {fill:6}) {Xdata}')
+
     def _initData(self, dbg=1):
         self._initDataPath()
         if not self.dataPath1.exists(): self.log(f'dataPath1={self.dataPath1} file does not exist calling initBlankFileData()')  ;  self.dataPath1.touch()  ;  self.initBlankFileData()
@@ -301,9 +323,23 @@ class Tabs(pyglet.window.Window):
         old = f'{fmtl(self.n)}'    ;    self.n[P], self.n[L], self.n[C], self.n[T] = self.data2plrc()   ;   self.log(f'reseting from n={old} to n={fmtl(self.n)}')
         self._initTpz()
         self.syncBlanks()
+#        self.log('########################################################################################', pfx=0)
+#        self.test(0,0)
+#        self.log('########################################################################################', pfx=0)
+#        self.test(1,0)
+#        self.log('########################################################################################', pfx=0)
+#        self.test(0, 1)
+#        self.test(0, 1, '')
+#        self.test(0, 1, 'x')
+#        self.log('########################################################################################', pfx=0)
+##        self.test(1, 1)
+#        self.test(1, 1, '')
+#        self.test(1, 1, 'x')
+#        self.log('########################################################################################', pfx=0)
         if dbg:     self.dumpDataHorz()
         self.data = self.transposeData()
         if dbg:     self.dumpDataVert()
+        if EXIT: self.quit('EXIT TEST')
         self.saveDataFile('_initData()', f=2)
 #        self.log(f'    assert: size=nt+2*(l*r+l-1) {nt:8,} + {2*(l*r+l-1)} = {size:8,} bytes assert isVert={self.isVert()}')
 
@@ -392,9 +428,10 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def ss(self, dbg=0):   s = sum(self.TNIK)  ;    self.log(f'{s} {fmtl(self.TNIK)} {fmtl(self.n)}') if dbg else None   ;   return s   # return 0-4
     def zz(self, dbg=0):   z = sum(self.ZZ)    ;    self.log(f'{z} {fmtl(self.ZZ)} {  fmtl(self.n)}') if dbg else None   ;   return z   # return 0-2
-    def dd(self, data=None): data = self.data if data is None else data   ;   return data, data[0], data[0][0], data[0][0][0]
-    def dl(self, data=None): return list(map(len,  self.dd(data)))
-    def dt(self, data=None): return list(map(type, self.dd(data)))
+#    def dd(  self, data=None):                data = self.data if data is None else data   ;   return data, data[0], data[0][0], data[0][0][0]
+    def dplc(self, data=None, p=0, l=0, c=0): data = self.data if data is None else data   ;   return data, data[p], data[p][l], data[p][l][c]
+    def dl(self, data=None): return list(map(len,  self.dplc(data)))
+    def dt(self, data=None): return list(map(type, self.dplc(data)))
     def cnts(self):  return self.J2[:]
     def lenA(self):  return [ len(_) for _ in self.A ]
     def lenB(self):  return [ len(_) for _ in self.B ]
@@ -408,8 +445,8 @@ class Tabs(pyglet.window.Window):
     def setJs(self, j, v):              self.J1[j] = v   ;   self.J2[j] += 1   ;   self.J1[-1] += 1   ;   self.J2[-1] += 1
     ####################################################################################################################################################################################################
     def fmtDxD(self, data=None, d='x'): l=list(map(str, self.dl(data)))  ;  return f'({d.join(l)})'
-    def fmtdl( self, data=None): return f'{FDL}={self.dl(data)}'
-    def fmtdt( self, data=None): return f'{FDT}={self.dt(data)}'
+    def fmtdl( self, data=None): return f'{FDL}={fmtl(self.dl(data))}'
+    def fmtdt( self, data=None): return f'{FDT}={fmtl(self.dt(data))}'
     def fmtWxH(self, w=None, h=None, d='x'): (w, h) = (self.ww, self.hh) if not w and not h else (w, h)  ;  return f'({w}{d}{h})'
     def fPos(self):  plct = self.j2()   ;   cc = self.plct2cc(*plct)   ;   cn = self.cc2cn(cc)   ;   return f'{fmtl(plct)} {cc:3} {cn:2}]'
     ####################################################################################################################################################################################################
@@ -427,7 +464,7 @@ class Tabs(pyglet.window.Window):
     def dumpObj( obj,  name, why='', file=None): Tabs.slog(f'{why} {name} ObjId {hex(id(obj))} {type(obj)}', file=file)
     @staticmethod
     def dumpObjs(objs, name, why=''): [ Tabs.dumpObj(o, name, why) for o in objs ]  # ;   [Tabs.slog(f'{hex(id(o))} type={type(o)}', pfx=0) for o in obj]   ;    Tabs.slog(pfx=0)
-    def dumpGeom(self, why1='', why2=''):   e = self.lenE()   ;   self.log(f'{why1} {QQ} {self.zz()} {fmtl(self.ZZ)} {fmtl(self.TNIK)} {self.ss()} {fmtl(self.n)} {fmtl(self.i)} {fmtl(e)} {sum(e[:-1])} {why2}')
+    def dumpGeom(self, why1='', why2=''):   e = self.lenE()   ;   self.log(f'{why1} {QQ} {self.zz()} {fmtl(self.ZZ)} {fmtl(self.TNIK)} {self.ss()} {fmtl(self.n)} {fmtl(self.i)} {fmtl(e)} {why2}')  ;   assert sum(e[:-1]) == e[-1]
     def dumpJ(   self, why):        self.log(f' J1 {fmtl(self.J1, w=JFMT)} {sum(self.J1[:-1]):4} {why}')  ;  self.log(f' J2 {fmtl(self.J2, w=JFMT)} {sum(self.J2[:-1]):4} {why}')
     def dumpNI(  self): self.log(f'    {self.fmtDxD()} {self.fmtWxH():^11} {fmtl(self.n, w=FMTN, u=">")  } {fmtl(self.i, w=FMTN, u=">")}')
     def dumpXY(  self): self.log(f'    {self.fmtDxD()} {self.fmtWxH():^11} {fmtl(self.x, w="7.2f", u=">")} {fmtl(self.y, w="7.2f", u=">")}')
@@ -487,7 +524,7 @@ class Tabs(pyglet.window.Window):
         with open(dataPath, 'w') as DATA_FILE:
             self.log(f'{DATA_FILE.name:40}', pfx=0)
             np, nl, nc, nr = self.dl()
-            data = self.transposeData() if self.isVert() else self.data
+            data = self.transposeData() # if self.isVert() else self.data
             for p in range(np):
                 if dbg: self.log(f'writing {p+1}{self.ordSfx(p+1)} page', pfx=0)
                 for l in range(nl):
@@ -501,7 +538,7 @@ class Tabs(pyglet.window.Window):
                     if l < nl: DATA_FILE.write('\n')
     ####################################################################################################################################################################################################
     def dumpDataRead(self, p, l, s, t, sp, sl, ss, st, lp, ll, ls, lt, msg, msg2): self.log(f' {p}  {l} {s:2} {t:3}   {sp} {sl:2} {ss:3} {st:4}  {msg:12} {msg2}  {lp} {ll:2} {ls:3} {lt:4}', pfx=0)
-    def readDataFile(self, dbg=1):
+    def OLD__readDataFile(self, dbg=1):
         np, nl, ns, nt = self.n[P], self.n[L], self.n[T], self.n[C]
         self.log(f'BGN {fmtl(self.n)} dataPath1={self.dataPath1}')
         with open(str(self.dataPath1), 'r') as DATA_FILE:
@@ -587,7 +624,7 @@ class Tabs(pyglet.window.Window):
         self.log(                  f'{a}{q}', pfx=0, end='')  ;  [  self.log(f'{c%10}',                        pfx=0, end='') for c in range(1, n+1) ]  ;  self.log(pfx=0)
         if sep != '':  self.log(f'{a}{r}{b}', pfx=0)
 
-    def transposeData(self, data=None, why='External', dbg=1):
+    def OLD__transposeData(self, data=None, why='External', dbg=1):
         if data is None: data = self.data
         if dbg: self.log(f'BGN {self.fmtDxD(data)} {why}')
         transposed = []
@@ -606,6 +643,55 @@ class Tabs(pyglet.window.Window):
             transposed.append(lines)
         if dbg: self.log(f'END {self.fmtDxD(transposed)} {why}')
         return transposed
+
+    def NEW_1_transposeData(self, data=None, why='External', dbg=1):
+        if data is None: data = self.data
+        if dbg: self.log(f'BGN {self.fmtDxD( data)} {why}')
+        if dbg: self.log(f'dl={fmtl(self.dl(data))} dt={fmtl(self.dt(data))}')
+        xdata, xpage, xline = [], [], []
+        for page in data:
+            for line in page:
+                xline = list(map(''.join, itertools.zip_longest(*line, fillvalue=' ')))
+                xpage.append(xline)
+            xdata.append(xpage)
+        if dbg: self.log(f'END {self.fmtDxD(xdata)} {why}')
+        return xdata
+
+    def transposeData(self, data=None, why='External', dbg=1):
+        if data is None: data = self.data
+        Xdata = []
+        if dbg: self.log(f'BGN {self.fmtDxD(data)} {why}')
+        if dbg: self.log(f'dl={fmtl(self.dl(data))} dt={fmtl(self.dt(data))}')
+        for p, page in enumerate(data):
+            Xpage = []
+            for l, line in enumerate(page):
+                if dbg: self.log(f'{p} {l}  line={fmtl( line)}')
+                Xline = list(map(''.join, itertools.zip_longest(*line, fillvalue=' ')))
+                if dbg: self.log(f'{p} {l} Xline={fmtl(Xline)}')
+                Xpage.append(Xline)
+            Xdata.append(Xpage)
+        if dbg: self.log(f'END {self.fmtDxD(Xdata)} {why}')
+        return Xdata
+
+    def readDataFile(self, dbg=1):
+        np, nl, ns, nt = self.n[P], self.n[L], self.n[T], self.n[C]
+        self.log(f'BGN {fmtl(self.n)} dataPath1={self.dataPath1}')
+        with open(str(self.dataPath1), 'r') as DATA_FILE:
+            DATA_FILE.seek(0, 2)    ;   size = DATA_FILE.tell()   ;   DATA_FILE.seek(0, 0)
+            self.log(f'    {DATA_FILE.name:40} {size:8,} bytes = {size/1024:6,.1f} KB')
+            if not size: self.log(f'WARN ZERO File Size size={size} call initBlankFileData()')   ;   return self.initBlankFileData()
+            lines, strs = [], []   ;   sp, sl, ss, st = 0, 0, 0, 0   ;   txt = 'tabs'
+            if dbg: self.log(f' p  l  s   t  sp sl  ss   st  <{txt:10}>                      lp ll  ls   lt', pfx=0)
+            for tabs in DATA_FILE:
+                tabs = tabs.strip()    ;    msg = f'<{tabs}>'    ;  lt = len(tabs)
+                p = sp % np  ;   l = sl % nl   ;   s = ss % ns   ;   t = st % nt
+                if tabs:                strs.append(tabs)        ;  ss += 1  ;   st += lt   ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(self.data), len(lines), len(strs), len(tabs), msg, '  strs.add(tabs) ')
+                else:
+                    if not (ss % ns):  lines.append(strs)        ;  sl += 1  ;   strs = []  ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(self.data), len(lines), len(strs), len(tabs), msg, ' lines.add(strs) ')
+                    if not (sl % nl):  self.data.append(lines)   ;  sp += 1  ;  lines = []  ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(self.data), len(lines), len(strs), len(tabs), msg, ' pages.add(lines)')
+            if dbg: self.log(f' p  l  s   t  sp sl  ss   st  <{txt:10}>                      lp ll  ls   lt', pfx=0)
+        self.log(f'    read {sp} pages {sl} lines @ {nl} lines/page {ss} strs @ {ns} strs/line {st} tabs @ {nt} tabs/str {sp+sl+ss+st} objs')
+        self.log(f'END {DATA_FILE.name:40} {size:8,} bytes = {size/1024:6,.1f} KB')
 
     def dumpLabelText(self, t, d='%', why='', dbg=0):
         self.log(f'{why} len(t)={len(t)} len(t[0])={len(t[0])}')
@@ -934,9 +1020,9 @@ class Tabs(pyglet.window.Window):
         data = [ [ self.tblankRow for _ in range(nr)] for _ in range(nl) ]
         self.data = self.transposeData()
         self.data.append(data)
-        self.dumpDataVert() if self.isVert() else self.dumpDataHorz()
+        self.dumpDataHorz()
         self.data = self.transposeData()
-        self.dumpDataVert() if self.isVert() else self.dumpDataHorz()
+        self.dumpDataVert()
         n, ii, x, y, w, h, g, mx, my = self.geom(None, P, init=0, nn=1)   ;   kl = self.k[P]
         self.dumpTnik()
         page = self.createTnik(self.pages, len(self.pages), P, x, y, w, h, g, self.cci(0, kl), kl=kl, dbg=1)
@@ -2234,11 +2320,11 @@ class Tabs(pyglet.window.Window):
     def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
         if file is None: file = LOG_FILE
         if pfx:
-            ss = inspect.stack(0)   ;   i = 1
-            while ss[i].function in Tabs.hideST:
+            sfs = inspect.stack()   ;   i = 1
+            while sfs[i].function in Tabs.hideST:
                 i += 1
-            si = ss[i]   ;   sd = Tabs.stackDepth(ss)
-            p = pathlib.Path(si.filename)  ;  n = p.name  ;  l = si.lineno  ;  f = si.function
+            sf = sfs[i]   ;   sd = Tabs.stackDepth(sfs)
+            p = pathlib.Path(sf.filename)  ;  n = p.name  ;  l = sf.lineno  ;  f = sf.function
             if IND: print(f'{Tabs.fmtSD(sd):20} {l:5} {n:7} {f:>20} ', file=file, end='')
             else:   print(             f'{sd:2} {l:5} {n:7} {f:>20} ', file=file, end='')
         print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
@@ -2246,29 +2332,30 @@ class Tabs(pyglet.window.Window):
 #        if file != LOG_FILE: Tabs.slog(msg, pfx, flush=False, sep=',', end=end)
     ####################################################################################################################################################################################################
     @staticmethod
-    def stackDepth(si):
+    def stackDepth(sfs):
         global MAX_STACK_DEPTH, MAX_STACK_FRAME
-        for i, e in enumerate(si):
-            j = len(si) - (i + 1)
-            if j > MAX_STACK_DEPTH: MAX_STACK_DEPTH = j;  MAX_STACK_FRAME = si
-        return len(si)
+        for i, sf in enumerate(sfs):
+            j = len(sfs) - (i + 1)
+            if j > MAX_STACK_DEPTH: MAX_STACK_DEPTH = j;  MAX_STACK_FRAME = sfs
+        return len(sfs)
     @staticmethod
     def fmtSD(sd): return f'{sd:{sd}}'
-    def dumpStack(self, si):
-        for i, e in enumerate(si):
-            fp = pathlib.Path(e.filename)  ;   n = fp.stem  ;  l = e.lineno  ;  f = e.function  ;  c = e.code_context[0].strip()  ;  j = len(si) - (i + 1)
+    def dumpStack(self, sfs):
+        for i, sf in enumerate(sfs):
+            fp = pathlib.Path(sf.filename)  ;   n = fp.stem  ;  l = sf.lineno  ;  f = sf.function  ;  c = sf.code_context[0].strip() if sf.code_context else ''  ;  j = len(sfs) - (i + 1)
             self.log(f'{j:2} {n:9} {l:5} {f:20} {c}')
         self.log(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
     ####################################################################################################################################################################################################
-    def quit(self, why='', code=0, dbg=0):
+    def quit(self, why='', code=0, dbg=1, dbg2=1):
         self.log(QUIT, pfx=0)
         self.log(f'BGN {why} code={code}')
-#        self.dumpDataVert()
-#        self.dumpDataHorz()
-        self.dumpGeom('    ')
-        self.dumpJ('quit')
         if       code and AUTO_SAVE: self.saveDataFile(why, f=0)
         elif not code:               self.saveDataFile(why, f=1)
+        if dbg2: self.dumpDataVert()
+        if dbg2: self.data = self.transposeData()
+        if dbg2: self.dumpDataHorz()
+        self.dumpGeom('    ')
+        self.dumpJ('quit')
         self.dumpXYWH()
         self.cobj.dumpMlimap(why)
 #        self.cobj.dumpInstanceCat(why)
