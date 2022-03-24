@@ -187,7 +187,7 @@ class Tabs(pyglet.window.Window):
         self.dfn = ''
         nt = 6
         self.ZZ   = [0, 0]
-        self.TNIK = [1, 0, 0, 0]   ;   self.ss0 = self.ss()
+        self.TNIK = [1, 1, 1, 1]   ;   self.ss0 = self.ss()
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.ww, self.hh = 640, 480
         self.n, self.i, self.x, self.y, self.w, self.h, self.g = [3, 3, self.ss0, 50, nt], [1, 1, 1, 1, nt], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], []
@@ -538,24 +538,24 @@ class Tabs(pyglet.window.Window):
                     if l < nl: DATA_FILE.write('\n')
     ####################################################################################################################################################################################################
     def dumpDataRead(self, p, l, s, t, sp, sl, ss, st, lp, ll, ls, lt, msg, msg2): self.log(f' {p}  {l} {s:2} {t:3}   {sp} {sl:2} {ss:3} {st:4}  {msg:12} {msg2}  {lp} {ll:2} {ls:3} {lt:4}', pfx=0)
-    def OLD__readDataFile(self, dbg=1):
+
+    def readDataFile(self, dbg=1):
         np, nl, ns, nt = self.n[P], self.n[L], self.n[T], self.n[C]
         self.log(f'BGN {fmtl(self.n)} dataPath1={self.dataPath1}')
         with open(str(self.dataPath1), 'r') as DATA_FILE:
             DATA_FILE.seek(0, 2)    ;   size = DATA_FILE.tell()   ;   DATA_FILE.seek(0, 0)
             self.log(f'    {DATA_FILE.name:40} {size:8,} bytes = {size/1024:6,.1f} KB')
             if not size: self.log(f'WARN ZERO File Size size={size} call initBlankFileData()')   ;   return self.initBlankFileData()
-            pages, lines, strs, tabs = [], [], [], []   ;   sp, sl, ss, st = 0, 0, 0, 0   ;   txt = 'tabs'
+            lines, strs = [], []   ;   sp, sl, ss, st = 0, 0, 0, 0   ;   txt = 'tabs'
             if dbg: self.log(f' p  l  s   t  sp sl  ss   st  <{txt:10}>                      lp ll  ls   lt', pfx=0)
             for tabs in DATA_FILE:
-                tabs = tabs.strip()  ;   msg = f'<{tabs}>'   ;  lt = len(tabs)
-                p = sp % np  ;  l = sl % nl  ;  s = ss % ns  ;   t = st % nt
-                if tabs:                strs.append(tabs)    ;  ss += 1  ;   st += lt   ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(pages), len(lines), len(strs), len(tabs), msg, '  strs.add(tabs) ')
+                tabs = tabs.strip()    ;    msg = f'<{tabs}>'    ;  lt = len(tabs)
+                p = sp % np  ;   l = sl % nl   ;   s = ss % ns   ;   t = st % nt
+                if tabs:                strs.append(tabs)        ;  ss += 1  ;   st += lt   ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(self.data), len(lines), len(strs), len(tabs), msg, '  strs.add(tabs) ')
                 else:
-                    if not (ss % ns):  lines.append(strs)    ;  sl += 1  ;   strs = []  ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(pages), len(lines), len(strs), len(tabs), msg, ' lines.add(strs) ')
-                    if not (sl % nl):  pages.append(lines)   ;  sp += 1  ;  lines = []  ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(pages), len(lines), len(strs), len(tabs), msg, ' pages.add(lines)')
+                    if not (ss % ns):  lines.append(strs)        ;  sl += 1  ;   strs = []  ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(self.data), len(lines), len(strs), len(tabs), msg, ' lines.add(strs) ')
+                    if not (sl % nl):  self.data.append(lines)   ;  sp += 1  ;  lines = []  ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(self.data), len(lines), len(strs), len(tabs), msg, ' pages.add(lines)')
             if dbg: self.log(f' p  l  s   t  sp sl  ss   st  <{txt:10}>                      lp ll  ls   lt', pfx=0)
-            self.data = pages
         self.log(f'    read {sp} pages {sl} lines @ {nl} lines/page {ss} strs @ {ns} strs/line {st} tabs @ {nt} tabs/str {sp+sl+ss+st} objs')
         self.log(f'END {DATA_FILE.name:40} {size:8,} bytes = {size/1024:6,.1f} KB')
 
@@ -624,39 +624,6 @@ class Tabs(pyglet.window.Window):
         self.log(                  f'{a}{q}', pfx=0, end='')  ;  [  self.log(f'{c%10}',                        pfx=0, end='') for c in range(1, n+1) ]  ;  self.log(pfx=0)
         if sep != '':  self.log(f'{a}{r}{b}', pfx=0)
 
-    def OLD__transposeData(self, data=None, why='External', dbg=1):
-        if data is None: data = self.data
-        if dbg: self.log(f'BGN {self.fmtDxD(data)} {why}')
-        transposed = []
-        for p in range(len(data)):
-            lines = []
-            for l in range(len(data[p])):
-                swapped = []
-                for c in range(len(data[p][l][0])):
-                    a = []  ;  s = ''  ;  tt = None
-                    for r in range(len(data[p][l])):
-                        tt = type(data[p][l][r])
-                        if   tt is str:  s += data[p][l][r][c]
-                        elif tt is list: a.append(data[p][l][r][c])
-                    swapped.append(s) if tt is str else transposed.append(a)
-                lines.append(swapped)
-            transposed.append(lines)
-        if dbg: self.log(f'END {self.fmtDxD(transposed)} {why}')
-        return transposed
-
-    def NEW_1_transposeData(self, data=None, why='External', dbg=1):
-        if data is None: data = self.data
-        if dbg: self.log(f'BGN {self.fmtDxD( data)} {why}')
-        if dbg: self.log(f'dl={fmtl(self.dl(data))} dt={fmtl(self.dt(data))}')
-        xdata, xpage, xline = [], [], []
-        for page in data:
-            for line in page:
-                xline = list(map(''.join, itertools.zip_longest(*line, fillvalue=' ')))
-                xpage.append(xline)
-            xdata.append(xpage)
-        if dbg: self.log(f'END {self.fmtDxD(xdata)} {why}')
-        return xdata
-
     def transposeData(self, data=None, why='External', dbg=1):
         if data is None: data = self.data
         Xdata = []
@@ -672,26 +639,6 @@ class Tabs(pyglet.window.Window):
             Xdata.append(Xpage)
         if dbg: self.log(f'END {self.fmtDxD(Xdata)} {why}')
         return Xdata
-
-    def readDataFile(self, dbg=1):
-        np, nl, ns, nt = self.n[P], self.n[L], self.n[T], self.n[C]
-        self.log(f'BGN {fmtl(self.n)} dataPath1={self.dataPath1}')
-        with open(str(self.dataPath1), 'r') as DATA_FILE:
-            DATA_FILE.seek(0, 2)    ;   size = DATA_FILE.tell()   ;   DATA_FILE.seek(0, 0)
-            self.log(f'    {DATA_FILE.name:40} {size:8,} bytes = {size/1024:6,.1f} KB')
-            if not size: self.log(f'WARN ZERO File Size size={size} call initBlankFileData()')   ;   return self.initBlankFileData()
-            lines, strs = [], []   ;   sp, sl, ss, st = 0, 0, 0, 0   ;   txt = 'tabs'
-            if dbg: self.log(f' p  l  s   t  sp sl  ss   st  <{txt:10}>                      lp ll  ls   lt', pfx=0)
-            for tabs in DATA_FILE:
-                tabs = tabs.strip()    ;    msg = f'<{tabs}>'    ;  lt = len(tabs)
-                p = sp % np  ;   l = sl % nl   ;   s = ss % ns   ;   t = st % nt
-                if tabs:                strs.append(tabs)        ;  ss += 1  ;   st += lt   ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(self.data), len(lines), len(strs), len(tabs), msg, '  strs.add(tabs) ')
-                else:
-                    if not (ss % ns):  lines.append(strs)        ;  sl += 1  ;   strs = []  ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(self.data), len(lines), len(strs), len(tabs), msg, ' lines.add(strs) ')
-                    if not (sl % nl):  self.data.append(lines)   ;  sp += 1  ;  lines = []  ;  self.dumpDataRead(p, l, s, t, sp, sl, ss, st, len(self.data), len(lines), len(strs), len(tabs), msg, ' pages.add(lines)')
-            if dbg: self.log(f' p  l  s   t  sp sl  ss   st  <{txt:10}>                      lp ll  ls   lt', pfx=0)
-        self.log(f'    read {sp} pages {sl} lines @ {nl} lines/page {ss} strs @ {ns} strs/line {st} tabs @ {nt} tabs/str {sp+sl+ss+st} objs')
-        self.log(f'END {DATA_FILE.name:40} {size:8,} bytes = {size/1024:6,.1f} KB')
 
     def dumpLabelText(self, t, d='%', why='', dbg=0):
         self.log(f'{why} len(t)={len(t)} len(t[0])={len(t[0])}')
@@ -1081,7 +1028,7 @@ class Tabs(pyglet.window.Window):
             elif dbg3:           self.log(f'i={i} z={z} already  k={k} n={fmtl(n)} l={l} tpc={tpc} s={s} m={m}')
             k += 1
     ####################################################################################################################################################################################################
-    def g_createTniksC(self, col, init=1, dbg=1, dbg2=0):
+    def OLD__g_createTniksC(self, col, init=1, dbg=1, dbg2=0):
         p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]    ;   i2 = 0
         kt, kn, ki, kkk = self.kt, self.kn, self.ki, self.kk           ;   kt2, kn2, ki2, kk2 = self.kt2, self.kn2, self.ki2, self.kk2
         n, ii, x, y, w, h, g, mx, my = self.geom(p=col, j=T, init=init, dbg=dbg2)   ;   zz = self.zz()
@@ -1092,6 +1039,60 @@ class Tabs(pyglet.window.Window):
                 elif self.z2():   tab = self.stringCapo[i]   ;  plist = self.capos  ;  kl = kt2  ;  k = self.cci(i, kl)  ;  j = D
                 else:       tab = self.data[p][l][c-zz][i]   ;  plist = self.tabs   ;  kl = kt   ;  k = self.cci(i, kl)  ;  j = T
                 yield self.createTnik(plist, i, j, x, y-i*h, w, h, g, k, kl=kl, t=tab, dbg=dbg)
+            elif s == NN:
+                if    self.z1(): note = self.stringNames[i]  ;  plist = self.snas   ;  kl = kn2  ;  k = self.cci(i, kl)  ;  j = A
+                elif  self.z2(): note = self.stringCapo[i]   ;  plist = self.capos  ;  kl = kn2  ;  k = self.cci(i, kl)  ;  j = D
+                else:       tab = self.data[p][l][c-zz][i]   ;  plist = self.notes  ;  kl = kn   ;  k = self.cci(i, kl)  ;  j = N  ;  note = self.tab2nn(tab, i) if self.isFret(tab) else self.tblank
+                yield self.createTnik(plist, i, j, x, y-i*h, w, h, g, k, kl=kl, t=note, dbg=dbg)
+            elif s == II:
+                if   self.z1():  ikey = self.stringNumbs[i]  ;  plist = self.snos   ;  kl = ki2  ;  k = self.cci(i, kl)  ;  j = O
+                elif self.z2():  ikey = self.stringCapo[i]   ;  plist = self.capos  ;  kl = ki2  ;  k = self.cci(i, kl)  ;  j = D
+                else:
+                    imap0 = imap[0][::-1] if imap and len(imap) else []
+                    dd = self.data[p][l][c-zz]   ;     fdd = self.isFret(dd[i])   ;   j = I
+                    if imap0 and len(imap0) > i2:     ikey = imap0[i2] if fdd else self.tblank    ;   i2 += 1 if fdd else 0
+                    else:                             ikey = self.tblank
+                    if dbg2: cc = self.plct2cc(p, l, c, 0)   ;   self.dumpDataSlice(p, l, c, cc)  ;  self.log(f'cc={cc} i={i} i2={i2} imap0={imap0} fdd={fdd} dd={dd} ikey={ikey}')
+                    plist = self.ikeys  ;  kl = ki  ;  k = self.cci(i, kl)
+                yield self.createTnik(plist, i, j, x, y-i*h, w, h, g, k, kl=kl, t=ikey, dbg=dbg)
+            elif s == KK:
+                if   self.z1(): chord = self.stringNames[i]  ;  plist = self.snas   ;  kl = kk2  ;  k = self.cci(i, kl)  ;  j = A
+                elif self.z2(): chord = self.stringCapo[i]   ;  plist = self.capos  ;  kl = kk2  ;  k = self.cci(i, kl)  ;  j = D
+                else:
+                    chunks = imap[4]   if (imap and len(imap) > 4) else []
+                    chord  = chunks[i] if len(chunks) > i else self.tblank   ;   j = K
+                    plist  = self.chords  ;  kl = kkk  ;  k = self.cci(i, kl)
+                yield self.createTnik(plist, i, j, x, y-i*h, w, h, g, k, kl=kl, t=chord, dbg=dbg)
+            else: msg = f'ERROR: s={s} {fmtl(self.TNIK)}'   ;   self.log(msg)   ;   self.quit(msg)
+
+    def g_createTniksC(self, col, init=1, dbg=1, dbg2=0):
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]    ;   i2 = 0   ;   text = ''
+        n, ii, x, y, w, h, g, mx, my = self.geom(p=col, j=T, init=init, dbg=dbg2)   ;   zz = self.zz()
+        imap = self.getImap(p, l, c-zz) if not self.z1() and not self.z2() else []
+        for i in range(n):
+            j, kl, plist, tobj = self.createTnikInfo(s, i)   ;   k = self.cci(i, kl)
+            if   s == TT: text = tobj
+            elif s == NN: text = self.tab2nn(tobj, i) if self.isFret(tobj) else self.tblank
+            elif s == II:
+                imap0 = imap[0][::-1] if imap and len(imap) else []   ;   ff = self.isFret(tobj)
+                if imap0 and len(imap0) > i2:     text = imap0[i2] if ff else self.tblank    ;   i2 += 1 if ff else 0
+                else:                             text = self.tblank
+            elif s == KK:
+                chunks = imap[4]  if (imap and len(imap) > 4) else []
+                text  = chunks[i] if len(chunks) > i else self.tblank   ;   j = K
+            yield self.createTnik(plist, i, j, x, y-i*h, w, h, g, k, kl=kl, t=text, dbg=dbg)
+
+    def OLD_1_g_createTniksC(self, col, init=1, dbg=1, dbg2=0):
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]    ;   i2 = 0
+        kt, kn, ki, kkk = self.kt, self.kn, self.ki, self.kk           ;   kt2, kn2, ki2, kk2 = self.kt2, self.kn2, self.ki2, self.kk2
+        n, ii, x, y, w, h, g, mx, my = self.geom(p=col, j=T, init=init, dbg=dbg2)   ;   zz = self.zz()
+        imap = self.getImap(p, l, c-zz) if not self.z1() and not self.z2() else []
+        for i in range(n):
+            if   s == TT: (j, kl, plist, tab) = (O, kt2, self.snos, self.stringNumbs[i]) if self.z1() else (D, kt2, self.capos, self.stringCapo[i]) if self.z2() else (T, kt, self.tabs, self.data[p][l][c-zz][i])  ;  k = self.cci(i, kl)  ;  yield self.createTnik(plist, i, j, x, y-i*h, w, h, g, k, kl=kl, t=tab, dbg=dbg)
+#                if   self.z1():   tab = self.stringNumbs[i]  ;  plist = self.snos   ;  kl = kt2  ;  k = self.cci(i, kl)  ;  j = O
+#                elif self.z2():   tab = self.stringCapo[i]   ;  plist = self.capos  ;  kl = kt2  ;  k = self.cci(i, kl)  ;  j = D
+#                else:       tab = self.data[p][l][c-zz][i]   ;  plist = self.tabs   ;  kl = kt   ;  k = self.cci(i, kl)  ;  j = T
+#                yield self.createTnik(plist, i, j, x, y-i*h, w, h, g, k, kl=kl, t=tab, dbg=dbg)
             elif s == NN:
                 if    self.z1(): note = self.stringNames[i]  ;  plist = self.snas   ;  kl = kn2  ;  k = self.cci(i, kl)  ;  j = A
                 elif  self.z2(): note = self.stringCapo[i]   ;  plist = self.capos  ;  kl = kn2  ;  k = self.cci(i, kl)  ;  j = D
@@ -1141,6 +1142,22 @@ class Tabs(pyglet.window.Window):
         if dbg:                           self.dumpTnik(tnik, *self.cnts(), why=why)
         return tnik
     ####################################################################################################################################################################################################
+    def createTnikInfo(self, t, i):
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;   zz = self.zz()   ;   tab = self.data[p][l][c-zz][i]
+        kt, kn, ki, kkk = self.kt, self.kn, self.ki, self.kk   ;   kt2, kn2, ki2, kk2 = self.kt2, self.kn2, self.ki2, self.kk2
+        if   t == TT: return (O, kt2, self.snos, self.stringNumbs[i]) if self.z1() else (D, kt2, self.capos, self.stringCapo[i]) if self.z2() else (T, kt,  self.tabs,   tab)
+        elif t == NN: return (A, kn2, self.snas, self.stringNames[i]) if self.z1() else (D, kn2, self.capos, self.stringCapo[i]) if self.z2() else (N, kn,  self.notes,  tab)
+        elif t == II: return (O, ki2, self.snos, self.stringNumbs[i]) if self.z1() else (D, ki2, self.capos, self.stringCapo[i]) if self.z2() else (I, ki,  self.ikeys,  tab)
+        elif t == KK: return (O, kk2, self.snas, self.stringNames[i]) if self.z1() else (D, kk2, self.capos, self.stringCapo[i]) if self.z2() else (K, kkk, self.chords, tab)
+        else:         msg = f'ERROR plist skipped t={t} i={i} z1={self.z1()} z2={self.z2()}'   ;   self.log(msg)   ;   self.dumpJ(msg)   ;   self.dumpGeom()    ;   self.quit(msg)
+
+    def resizeTnikInfo(self, t):
+        if   t == TT:  return (O, self.snos) if self.z1() else (D, self.capos) if self.z2() else T, self.tabs
+        elif t == NN:  return (A, self.snas) if self.z1() else (D, self.capos) if self.z2() else N, self.notes
+        elif t == II:  return (O, self.snos) if self.z1() else (D, self.capos) if self.z2() else I, self.ikeys
+        elif t == KK:  return (A, self.snas) if self.z1() else (D, self.capos) if self.z2() else K, self.chords
+        else:          msg = f'ERROR plist skipped t={t} z1={self.z1()} z2={self.z2()}'   ;   self.log(msg)   ;   self.dumpJ(msg)   ;   self.dumpGeom()    ;   self.quit(msg)
+    ####################################################################################################################################################################################################
     def resizeTniks(self):
         self.dumpGeom('BGN')
         self.dumpTnik()
@@ -1172,16 +1189,12 @@ class Tabs(pyglet.window.Window):
                 yield self.resizeTnik(plist, i, j, x, y2, w, h, mx, my, dbg=dbg)
     ####################################################################################################################################################################################################
     def g_resizeTniksC(self, col, dbg=1, dbg2=0):
-        p,     l,     s,     c       = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;   plist = None   ;   j = -1
+        p,     l,     s,     c       = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
         n, ii, x, y, w, h, g, mx, my = self.geom(col, T, dbg=dbg2)
         for i in range(n):
-            if   s == TT:  (j, plist) = (O, self.snos) if self.z1() else (D, self.capos) if self.z2() else T, self.tabs
-            elif s == NN:  (j, plist) = (A, self.snas) if self.z1() else (D, self.capos) if self.z2() else N, self.notes
-            elif s == II:  (j, plist) = (O, self.snos) if self.z1() else (D, self.capos) if self.z2() else I, self.ikeys
-            elif s == KK:  (j, plist) = (A, self.snas) if self.z1() else (D, self.capos) if self.z2() else K, self.chords
-            else:             msg = f'ERROR plist skipped n={n} i={i} j={j} plsc {p} {l} {s} {c} z1={self.z1()} z2={self.z2()}'   ;   self.dumpGeom()    ;   self.quit(msg)
-            if plist is None: msg = f'ERROR plist is None n={n} i={i} j={j} plsc {p} {l} {s} {c} z1={self.z1()} z2={self.z2()}'   ;   self.dumpGeom()    ;   self.quit(msg)
-            if not plist:     msg = f'ERROR not plist     n={n} i={i} j={j} plsc {p} {l} {s} {c} z1={self.z1()} z2={self.z2()}'   ;   self.dumpGeom()    ;   self.quit(msg)
+            j, plist = self.resizeTnikInfo(s)
+            if plist is None: msg = f'ERROR plist is None n={n} i={i} j={j} plsc {p} {l} {s} {c} z1={self.z1()} z2={self.z2()}'  ;  self.log(msg)  ;  self.dumpJ(msg)  ;  self.dumpGeom()  ; self.quit(msg)
+            if not plist:     msg = f'ERROR not plist     n={n} i={i} j={j} plsc {p} {l} {s} {c} z1={self.z1()} z2={self.z2()}'  ;  self.log(msg)  ;  self.dumpJ(msg)  ;  self.dumpGeom()  ; self.quit(msg)
             yield self.resizeTnik(plist, i, j, x, y-i*h, w, h, mx, my, dbg=dbg)
     ####################################################################################################################################################################################################
     def resizeTnik(self, plist, i, j, x, y, w, h, mx, my, why='', dbg=0):
@@ -1795,7 +1808,7 @@ class Tabs(pyglet.window.Window):
         cc = self.plct2cc(p, l, c, 0)
         name = imap[3] if imap and len(imap) > 3 else ''  ;   chunks = imap[4] if imap and len(imap) > 4 else []
         if dbg: self.log(f'BGN name={name} chunks={fmtl(chunks)} len(imap)={len(imap)}', pos=pos)
-        self.setChordName(cc, name, chunks) if name and chunks else None   ;    self.log(f'WARN Not A Chord cc={cc} name={name} chunks={chunks}', pos=pos)
+        self.setChordName(cc, name, chunks) if name and chunks else self.log(f'WARN Not A Chord cc={cc} name={name} chunks={chunks}', pos=pos)
         if dbg: self.log(f'END name={name} chunks={fmtl(chunks)} len(imap)={len(imap)}', pos=pos)
 
     def setChordName(self, cc, name, chunks, pos=0, dbg=0):
