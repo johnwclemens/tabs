@@ -918,8 +918,7 @@ class Chord(object):
             else:                      self.cat3[k].add(tmp)
             if tmp not in self.catmap: self.catmap[tmp] = [i[0], i[1]]
             keys.append(tmp)   ;   ivals.append(i[0])
-        for k in keys:
-            self.catmap2[k] = [sorted(keys), sorted(ivals, key=lambda b: [INTERVAL_RANK[c] for c in b])]
+        for k in keys:                 self.catmap2[k] = [ sorted(keys), sorted(ivals, key=lambda b: [INTERVAL_RANK[c] for c in b]) ]
         outer = sorted(outer, key=lambda a: [z for z in a])
         self.cat1.add(tuple(outer))
 #        self.log(f'{why}', end='')
