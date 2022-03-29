@@ -862,7 +862,7 @@ class Tabs(pyglet.window.Window):
         self.dumpTnik()
         self.log(f'END {how}', pos=1)
     ####################################################################################################################################################################################################
-    def createTniks(self):
+    def OLD_createTniks(self):
         self.dumpGeom('BGN')
         self.dumpTnik()
         for page in              self.g_createTniksA(None, P, self.pages):
@@ -873,7 +873,41 @@ class Tabs(pyglet.window.Window):
                             pass
         self.dumpTnik()
         self.dumpGeom('END')
+    def createTniks(self):
+        self.dumpGeom('BGN')
+        self.dumpTnik()
+        for page in              self.g_createTniks(self.pages, P, None):
+            for line in          self.g_createTniks(self.lines, L, page):
+                for sect in      self.g_createTniks(self.sects, S, line):
+                    for col in   self.g_createTniks(self.cols,  C, sect):
+                        for _ in self.g_createTniks(self.tabs,  T, col):
+                            pass
+        self.dumpTnik()
+        self.dumpGeom('END')
     ####################################################################################################################################################################################################
+    def g_createTniks(self, tlist, j, pt, init=1, nn=0, dbg=1, dbg2=0):
+        p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;   zz = self.zz()  ;  text = ''
+        imap = self.getImap(p, l, c-zz) if j == T and not self.z1() and not self.z2() else []
+        n, ii, x, y, w, h, g, mx, my = self.geom(pt, j, init=init, nn=nn, dbg=dbg2)  ;  n2 = len(self.TNIK) if j==S else n  ;  kl = self.k[j]  ; x2, y2 = x, y  ;  i2, i3 = 0, 0
+        for i in range(n2):
+            k = self.cci(i, kl)
+            if   j == S and not self.TNIK[i]: continue
+            elif j == S:                      y2 = y - i2 * h   ;   k = self.cci(j, kl)   ;   i2 += 1
+            elif j == C:                      x2 = x + i  * w
+            elif j >= T:
+                tlist, j, kl, tobj = self.tnikInfo(self.J1[S], i)   ;   y2 = y - i  * h   ;   text = ''
+                if   s == TT: text = tobj
+                elif s == NN: text = self.tab2nn(tobj, i) if self.isFret(tobj) else self.tblank
+                elif s == II:
+                    imap0 = imap[0][::-1] if imap and len(imap) else []   ;   ff = self.isFret(tobj)
+                    if imap0 and len(imap0) > i3:     text = imap0[i3] if ff else self.tblank    ;   i3 += 1 if ff else 0
+                    else:                             text = self.tblank
+                elif s == KK:
+                    chunks = imap[4]  if (imap and len(imap) > 4) else []
+                    text  = chunks[i] if len(chunks) > i else self.tblank   ;   j = K
+            elif p:                           y2 = y - i  * h
+            yield self.createTnik(tlist, i, j, x2, y2, w, h, g, k, kl=kl, t=text, dbg=dbg)
+
     def g_createTniksA(self, p, j, tlist, init=1, nn=0, dbg=1, dbg2=0):
         n, ii, x, y, w, h, g, mx, my = self.geom(p, j, init=init, nn=nn, dbg=dbg2)   ;   kl = self.k[j]   ;  x2 = x   ;   y2 = y
         for i in range(n):
@@ -981,18 +1015,25 @@ class Tabs(pyglet.window.Window):
         self.dumpTnik()
         self.dumpGeom('END')
     ####################################################################################################################################################################################################
-    def g_resizeTniks(self, tlist, j, p, dbg=1, dbg2=0, dbg3=1):
+    def OLD__g_resizeTniks(self, tlist, j, p, dbg=1, dbg2=0):
         n, ii, x, y, w, h, g, mx, my = self.geom(p, j, dbg=dbg2)   ;   tlist2, x2, y2, i2, j2 = [], x, y, 0, -1   ;   n2 = 4 if j==S else n
         for i in range(n2):
-            msg = ''
             if   j == S and not self.TNIK[i]: continue
             elif j == S:                      y2 = y - i2 * h
             elif j == C:                      x2 = x + i  * w
-            elif j == T:                      y2 = y - i  * h   ;   tlist2, j2 = self.tnikInfo(self.J1[S])   ;   msg = f'j2={j2} {JTEXTS[j2]} J1={fmtl(self.J1)}' if dbg3 else ''
-            elif p:                           y2 = y - i  * h  # ;   msg = f' p.y={p.y:6.1f} {p.height:6.1f}'
-            if dbg3 and j==S: self.log(f'j={j} {JTEXTS[j]} n={n:2} n2={n2:2} i={i} i2={i2} y={y:6.1f} y2={y2: 6.1f} h={h:6.1f}{msg}')
+            elif j == T:                      y2 = y - i  * h   ;   tlist2, j2 = self.tnikInfo(self.J1[S])
+            elif p:                           y2 = y - i  * h
             yield self.resizeTnik(tlist2 if j>=T else tlist, i, j2 if j >=T else j, x2, y2, w, h, mx, my, dbg=dbg)
             if   j == S and self.TNIK[i]: i2 += 1
+    def g_resizeTniks(self, tlist, j, p, dbg=1, dbg2=0):
+        n, ii, x, y, w, h, g, mx, my = self.geom(p, j, dbg=dbg2)  ;  n2 = len(self.TNIK) if j==S else n  ;  x2 = x  ;  y2 = y  ;  i2 = 0
+        for i in range(n2):
+            if   j == S and not self.TNIK[i]: continue
+            elif j == S:                      y2 = y - i2 * h   ;   i2 += 1
+            elif j == C:                      x2 = x + i  * w
+            elif j == T:                      y2 = y - i  * h   ;   tlist, j = self.tnikInfo(self.J1[S])
+            elif p:                           y2 = y - i  * h
+            yield self.resizeTnik(tlist, i, j, x2, y2, w, h, mx, my, dbg=dbg)
     ####################################################################################################################################################################################################
     def resizeTnik(self, tlist, i, j, x, y, w, h, mx, my, why='', dbg=0):
         if not tlist and j > P:            msg = f'ERROR not tlist i={i} j={j} {JTEXTS[j]} {why}'   ;   self.log(msg)   ;   self.quit(msg)
