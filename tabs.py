@@ -666,9 +666,6 @@ class Tabs(pyglet.window.Window):
         else: self.log(FMTR.format(f'  {j}  {n:3} {i:4}   {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {mx:6.3f} {my:6.3f}  {iw:7.2f} {ih:7.2f} {nn:3} {JTEXTS[j]:6}'), pfx=0, file=file)
 #        self.log(f'  {j}  {n:3} {i:4}   {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} {mx:6.3f} {my:6.3f}  {iw:7.2f} {ih:7.2f} {nn:3} {JTEXTS[j]} {px:7.2f} {py:7.2f} {pw:7.2f} {ph:7.2f}', pfx=0, file=sys.stdout)
     ####################################################################################################################################################################################################
-    def z1(self): return self.ZZ[0] and   self.J1[C] == C1
-    def z2(self): return self.ZZ[1] and ((self.J1[C] == C1 and not self.ZZ[0]) or (self.J1[C] == C2 and self.ZZ[0]))
-    ####################################################################################################################################################################################################
     def hideLabel(self, p, j, t='', dbg=1):
         c = p[j]    ;    ha = hasattr(c, 'text')
         x, y, w, h = c.x, c.y, c.width, c.height
@@ -692,28 +689,6 @@ class Tabs(pyglet.window.Window):
         self.ZZ[zz] = int(not self.ZZ[zz])
         self.dumpGeom('AFT', why)
     def squeeze(self, y, h, a):  self.log(f'y={y:6.2f} h={h:6.2f} a={a}', end=' ')  ;  b = h/a  ;  h -= b  ;  y -= b/2  ;  self.log(f' b={b:6.2f} y={y:6.2f} h={h:6.2f}', pfx=0)  ;  return y, h
-    ####################################################################################################################################################################################################
-    def toggleLCols(self, how, zz):
-        ii = 0 if not zz else 2
-        msg2 = f'{how} zz={zz}'
-        self.dumpGeom('BGN', f'     {msg2}')
-        if   not self.ZZ[zz] and not self.C[ii]: msg = 'SHOW'   ;   self.showLCols(how, zz)
-        elif     self.ZZ[zz]:                    msg = 'HIDE'   ;   self.hideLCols(how, zz)
-        else:                                    msg = 'SKIP'   ;   self.dumpGeom('   ', f'{msg} {msg2}')   ;   self.toggleZZ(zz)
-        self.on_resize(self.ww, self.hh, dbg=1)
-        self.dumpGeom('END', f'{msg} {msg2}')
-
-    def hideLCols(self, how, zz, dbg=1):
-        msg = f'HIDE {how} zz={zz}'
-        self.dumpGeom('BGN', msg)
-        np, nl, ns, nc, nt = self.n
-        for l in range(nl):
-            for s, sect in   enumerate(self.TNIK):
-                if sect:
-                    for c, col in enumerate(self.ZZ):
-                        if c == zz: self.hideLabel(self.cols, nc * s + c, 'Col', dbg=dbg)
-        for t in range(nt):
-            self.hideLabel(self.C[zz], nt, JTEXTS[zz + K - 1], dbg=dbg)
     ####################################################################################################################################################################################################
     def toggleLRows(self, how, dbg=0):
         self.toggleQQ()
@@ -773,6 +748,78 @@ class Tabs(pyglet.window.Window):
                 self.hideLabel(self.lcols, cc + rr * nc, JTEXTS[LLC])
         self.dumpGeom('END', msg)
     ####################################################################################################################################################################################################
+    def OLD__toggleLCols(self, how, zz):
+        ii = 0 if not zz else 2
+        msg2 = f'{how} zz={zz}'
+        self.dumpGeom('BGN', f'     {msg2}')
+        if   not self.ZZ[zz] and not self.C[ii]: msg = 'SHOW'   ;   self.showLCols(how, zz)
+        elif     self.ZZ[zz]:                    msg = 'HIDE'   ;   self.hideLCols(how, zz)
+        else:                                    msg = 'SKIP'   ;   self.dumpGeom('   ', f'{msg} {msg2}')   ;   self.toggleZZ(zz)
+        self.on_resize(self.ww, self.hh, dbg=1)
+        self.dumpGeom('END', f'{msg} {msg2}')
+
+    def OLD__showLCols(self, how, zz):
+        self.J1[L], self.J2[L] = 0, 0
+        msg = f'SHOW {how} zz={zz}'
+        self.dumpGeom('BGN', msg)
+        if 0 not in self.ZZ: msg = f'ERROR ZZ={fmtl(self.ZZ)} is already full'   ;   self.log(msg)   ;   self.quit(msg)
+        self.log(f'zz={zz} {fmtl(self.ZZ)}')
+        self.toggleZZ(zz)
+        self.initJ(msg)
+        for l, line in       enumerate(self.lines):
+            self.J1[L] = l
+            self.dumpTnik(self.lines[l], *self.cnts(), why=f'ref {JTEXTS[L]} {1 + self.J1[L]}')
+            for s, sect in   enumerate(self.lenB()):
+                if sect:
+                    self.J1[S] = s
+                    self.dumpTnik(self.sects[s], *self.cnts(), why=f'ref {JTEXTS[S]} {1 + self.J1[S]}')
+                    for col in   self.g_createTniksB2(self.sects[s], C, self.cols, init=1, nn=0):
+                        for _ in self.g_createTniks(self.tabs, T, col):
+                            pass
+        self.dumpJ(msg)
+        self.dumpGeom('END', msg)
+
+    def hideLCols(self, how, zz, dbg=1):
+        msg = f'HIDE {how} zz={zz}'
+        self.dumpGeom('BGN', msg)
+        np, nl, ns, nc, nt = self.n
+        for l in range(nl):
+            for s, sect in   enumerate(self.TNIK):
+                if sect:
+                    for c, col in enumerate(self.ZZ):
+                        if c == zz: self.hideLabel(self.cols, nc * s + c, 'Col', dbg=dbg)
+        for t in range(nt):
+            self.hideLabel(self.C[zz], nt, JTEXTS[zz + K - 1], dbg=dbg)
+    ####################################################################################################################################################################################################
+    def showLCols(self, how, zz):
+        msg = f'SHOW {how} zz={zz}'   ;   nl = self.n[L]   ;   init = 0
+        self.dumpGeom('BGN', msg)
+        if 0 not in self.ZZ: msg = f'ERROR ZZ={fmtl(self.ZZ)} is already full'   ;   self.log(msg)   ;   self.quit(msg)
+        self.log(f'zz={zz} {fmtl(self.ZZ)}')
+        self.toggleZZ(zz)
+        self.initJ(msg)
+        for p, page in            enumerate(self.pages):
+            self.setJs(P, p)            ;   self.dumpTnik(self.pages[p], *self.cnts(), why=f' ref Page {1 + self.J1[P]:3}')
+            for l, line in        enumerate(self.lines[p*nl:p*nl+nl]):
+                self.setJs(L, l)        ;   self.dumpTnik(self.lines[p*nl+l], *self.cnts(), why=f' ref Line {1 + self.J1[L]:3}')
+                for sect in                 self.g_createTniks(self.sects, S, line, init=init):
+                    for col in              self.g_createTniks(self.cols,  C, sect, init=init, ii=zz):
+                        for _ in            self.g_createTniks(self.tabs,  T, col,  init=init):
+                            pass
+        self.dumpJ(msg)
+        self.dumpGeom('END', msg)
+
+    def toggleLCols(self, how, zz):
+        ii = 0 if not zz else 2
+        msg2 = f'{how} zz={zz}'
+        self.dumpGeom('BGN', f'     {msg2}')
+        if   not self.ZZ[zz] and not self.C[ii]: msg = 'SHOW'   ;   self.showLCols(how, zz)
+        elif     self.ZZ[zz]:                    msg = 'HIDE'   ;   self.hideLCols(how, zz)
+        else:                                    msg = 'SKIP'   ;   self.dumpGeom('   ', f'{msg} {msg2}')   ;   self.toggleZZ(zz)
+        self.on_resize(self.ww, self.hh, dbg=1)
+        self.dumpGeom('END', f'{msg} {msg2}')
+
+    ####################################################################################################################################################################################################
     def toggleTabs(self, how, tnik):
         msg2 = f'{how} tnik={tnik}'
         self.dumpGeom(f'BGN', f'     {msg2}')
@@ -797,45 +844,6 @@ class Tabs(pyglet.window.Window):
                 for sect in                 self.g_createTniks(self.sects, S, line, init=init, ii=tnik):
                     for col in              self.g_createTniks(self.cols,  C, sect, init=init):
                         for _ in            self.g_createTniks(self.tabs,  T, col,  init=init):
-                            pass
-        self.dumpJ(msg)
-        self.dumpGeom('END', msg)
-
-    def showLCols(self, how, zz):
-        msg = f'SHOW {how} zz={zz}'   ;   nl = self.n[L]   ;   init = 0
-        self.dumpGeom('BGN', msg)
-        if 0 not in self.ZZ: msg = f'ERROR ZZ={fmtl(self.ZZ)} is already full'   ;   self.log(msg)   ;   self.quit(msg)
-        self.log(f'zz={zz} {fmtl(self.ZZ)}')
-        self.toggleZZ(zz)
-        self.initJ(msg)
-        for p, page in            enumerate(self.pages):
-            self.setJs(P, p)            ;   self.dumpTnik(self.pages[p], *self.cnts(), why=f' ref Page {1 + self.J1[P]:3}')
-            for l, line in        enumerate(self.lines[p*nl:p*nl+nl]):
-                self.setJs(L, l)        ;   self.dumpTnik(self.lines[p*nl+l], *self.cnts(), why=f' ref Line {1 + self.J1[L]:3}')
-                for sect in                 self.g_createTniks(self.sects, S, line, init=init):
-                    for col in              self.g_createTniks(self.cols,  C, sect, init=init, ii=self.zz()):
-                        for _ in            self.g_createTniks(self.tabs,  T, col,  init=init):
-                            pass
-        self.dumpJ(msg)
-        self.dumpGeom('END', msg)
-
-    def OLD__showLCols(self, how, zz):
-        self.J1[L], self.J2[L] = 0, 0
-        msg = f'SHOW {how} zz={zz}'
-        self.dumpGeom('BGN', msg)
-        if 0 not in self.ZZ: msg = f'ERROR ZZ={fmtl(self.ZZ)} is already full'   ;   self.log(msg)   ;   self.quit(msg)
-        self.log(f'zz={zz} {fmtl(self.ZZ)}')
-        self.toggleZZ(zz)
-        self.initJ(msg)
-        for l, line in       enumerate(self.lines):
-            self.J1[L] = l
-            self.dumpTnik(self.lines[l], *self.cnts(), why=f'ref {JTEXTS[L]} {1 + self.J1[L]}')
-            for s, sect in   enumerate(self.lenB()):
-                if sect:
-                    self.J1[S] = s
-                    self.dumpTnik(self.sects[s], *self.cnts(), why=f'ref {JTEXTS[S]} {1 + self.J1[S]}')
-                    for col in   self.g_createTniksB2(self.sects[s], C, self.cols, init=1, nn=0):
-                        for _ in self.g_createTniks(self.tabs, T, col):
                             pass
         self.dumpJ(msg)
         self.dumpGeom('END', msg)
@@ -943,26 +951,27 @@ class Tabs(pyglet.window.Window):
     def g_createTniks(self, tlist, j, pt, init=1, ii=-1, dbg=1, dbg2=0):
         p, l, s, c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]   ;   zz = self.zz()  ;  text = ''
         imap = self.getImap(p, l, c-zz) if j == T and not self.z1() and not self.z2() else []
-        n, _, x, y, w, h, g, mx, my = self.geom(pt, j, init=init, dbg=dbg2)  ;  kl = self.k[j]  ; x2, y2 = x, y  ;  i2, i3 = 0, 0
+        n, _, x, y, w, h, g, mx, my = self.geom(pt, j, init=init, dbg=dbg2)  ;  kl = self.k[j]  ; x2, y2 = x, y  ;  i2, i3 = 0, 0  ;  j2 = None  ;  tlist2 = None
         n2 = len(self.TNIK) if j==S else zz if j == C and ii >= 0 else n
         for i in range(n2):
             k = self.cci(i, kl)
             if   j == S and ((0 <= ii != i) or not self.TNIK[i]): continue
             elif j == S:                                          y2 = y - i2 * h  ;  k = self.cci(j, kl)  ;  i2 += 1
+            elif j == C and (0 <= ii != i):   continue
             elif j == C:                                          x2 = x + i  * w
-            elif j >= T:
-                tlist, j, kl, tobj = self.tnikInfo(self.J1[S], i)   ;   y2 = y - i  * h   ;   text = ''
+            elif j == T:
+                tlist2, j2, kl, tobj = self.tnikInfo(self.J1[S], i)  ;  y2 = y - i  * h  ;  text = ''
                 if   s == TT: text = tobj
-                elif s == NN: text = self.tab2nn(tobj, i) if self.isFret(tobj) else self.tblank
+                elif s == NN: text = tobj if j2 > K else self.tab2nn(tobj, i) if self.isFret(tobj) else self.tblank
                 elif s == II:
                     imap0 = imap[0][::-1] if imap and len(imap) else []   ;   ff = self.isFret(tobj)
-                    if imap0 and len(imap0) > i3:     text = imap0[i3] if ff else self.tblank    ;   i3 += 1 if ff else 0
-                    else:                             text = self.tblank
+                    if imap0 and len(imap0) > i3:     text = tobj if j2 > K else imap0[i3] if ff else self.tblank    ;   i3 += 1 if ff else 0
+                    else:                             text = tobj if j2 > K else self.tblank
                 elif s == KK:
                     chunks = imap[4]  if (imap and len(imap) > 4) else []
-                    text  = chunks[i] if len(chunks) > i else self.tblank
+                    text  = tobj if j2 > K else chunks[i] if len(chunks) > i else self.tblank
             elif p:                           y2 = y - i  * h
-            yield self.createTnik(tlist, i, j, x2, y2, w, h, g, k, kl=kl, t=text, dbg=dbg)
+            yield self.createTnik(tlist2 if j==T else tlist, i, j2 if j==T else j, x2, y2, w, h, g, k, kl=kl, t=text, dbg=dbg)
     ####################################################################################################################################################################################################
     def createTnik(self, tlist, i, j, x, y, w, h, g, kk, kl=None, why='', v=None, t='', ml=0, dbg=0):
         o, k, d, i2, n, s = self.fontParams()   ;   b = self.batch   ;   k2 = 0
@@ -986,6 +995,9 @@ class Tabs(pyglet.window.Window):
         self.tniks.append(tnik) if j >= 0 else None       ;   tlist.append(tnik) if tlist is not None else None
         if dbg:                           self.dumpTnik(tnik, *self.cnts(), why=why)
         return tnik
+    ####################################################################################################################################################################################################
+    def z1(self): return self.ZZ[0] and   self.J1[C] == C1
+    def z2(self): return self.ZZ[1] and ((self.J1[C] == C1 and not self.ZZ[0]) or (self.J1[C] == C2 and self.ZZ[0]))
     ####################################################################################################################################################################################################
     def tnikInfo(self, t, i=None, dbg=0):
         tlist, j, k, txt = None, None, None, None
@@ -1024,13 +1036,15 @@ class Tabs(pyglet.window.Window):
         for i in range(n2):
             if   j == S and not self.TNIK[i]: continue
             elif j == S:                      y2 = y - i2 * h   ;   i2 += 1
+#            elif j == C and not self.ZZ[i]:   continue
             elif j == C:                      x2 = x + i  * w
-            elif j == T:                      y2 = y - i  * h   ;   tlist, j = self.tnikInfo(self.J1[S])
+            elif j >= T:                      y2 = y - i  * h   ;   tlist, j = self.tnikInfo(self.J1[S])
             elif p:                           y2 = y - i  * h
             yield self.resizeTnik(tlist, i, j, x2, y2, w, h, mx, my, dbg=dbg)
     ####################################################################################################################################################################################################
     def resizeTnik(self, tlist, i, j, x, y, w, h, mx, my, why='', dbg=0):
-        if not tlist and j > P:            msg = f'ERROR not tlist i={i} j={j} {JTEXTS[j]} {why}'   ;   self.log(msg)   ;   self.quit(msg)
+        if not tlist and j > 0:               msg = f'ERROR empty tlist i={i} j={j} {JTEXTS[j]} {why}'       ;  self.log(msg)  ;  self.quit(msg)
+        elif self.J2[j] > len(tlist): msg = f'J2[{j}] > len(tlist)={len(tlist)} J2={self.fmtJ2(why)}'  ;  self.log(msg)  ;  self.quit(msg)
         tnik = tlist[self.J2[j]] if j  >= 0 else self.cursor
         v = 1 if j >= T and self.J2[P] == self.i[P] else 0
         if j >= T: tnik.font_size = v * self.fs0 * h / self.h[T] if self.h[T] else tnik.font_size
