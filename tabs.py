@@ -175,7 +175,7 @@ class Tabs(pyglet.window.Window):
         self.dfn = ''
         nt = 6
         self.ZZ   = [0, 0]
-        self.TNIK = [1, 0, 0, 0]   ;   self.ss0 = self.ss()
+        self.TNIK = [1, 0, 1, 0]   ;   self.ss0 = self.ss()
         self.SS = set()
         self.log(f'TNIK={(fmtl(self.TNIK))}')
         self.n, self.i = [3, 3, self.ss0, 50, nt], [1, 1, 1, 1, nt]
@@ -857,52 +857,6 @@ class Tabs(pyglet.window.Window):
             return tlist, j, k, txt
         msg = f'ERROR tlist skipped t={t} i={i} z1={self.z1()} z2={self.z2()} j={j} k={k} txt={txt}'   ;   self.log(msg)    ;   self.quit(msg)
     ####################################################################################################################################################################################################
-    def OLD_geom(self, p=None, j=0, nn=0, x=0, y=0, dbg=0):
-        n, i = self.n[j], self.i[j]  ;  txt =''
-        if   n == 0:            n  =  1    ;    txt = f'WARN j={j} setting n=0 -> n=1 -> n=0'
-        if   nn:                n  =  nn
-        if   j == C:            n +=  self.zz()
-        if   p is None:         w  =  self.width - 2*x        ;  h  =  self.height  - 2*y
-        elif j == C:            w  = (p.width - x*(n + 1))/n  ;  h  =  p.height - 2*y
-        else:                   w  =  p.width - 2*x           ;  h  = (p.height - y*(n + 1))/n
-        if SPRITES:
-            if   p is None:     x  =  0                       ;  y  =  0
-            elif j == C and nn: x  =  p.x + w/2               ;  y  =  p.y + p.height - h    # p,y + p.height - p.height        = p.y
-            elif j == S and nn: x  =  p.x                     ;  y  =  p.y + p.height - h/2  # p.y + p.height = p.height/(2*n)  = p.y + p.height * (2*n-1)/(2*n)
-            elif j == T:        x  =  p.x + w/2               ;  y  =  p.y + p.height - h/2  # p.y + p.height - p.height/(2*n)  = p.y + p.height * (2*n-1)/(2*n)
-            else:               x  =  p.x                     ;  y  =  p.y + p.height - h    # p.y + p.height - p.height/n      = p.y + p.height * (n-1)/n
-        else:
-            if   p is None:     x  =  w/2                     ;  y  =  h/2
-            elif j == C:        x  =  w/2                     ;  y  =  p.y
-            elif j == T:        x  =  p.x                     ;  y  =  p.y + p.height/2 - h/2 # p.y + p.height - p.height/(2*n)  = p.y + p.height * (2*n-1)/(2*n)
-            else:               x  =  w/2                     ;  y  =  p.y + p.height/2 - h/2
-        if txt:                 n  =  0                       ;  self.log(txt, pfx=0)
-        if dbg and j <= C: msg = f'{JTEXTS[j]:4} j={j} n={n:2} i={i:2} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} nn={nn:2}'  ;  msg += f'{p.x:7.2f} {p.y:7.2f} {p.width:7.2f} {p.height:7.2f}' if p else ''  ;  self.log(msg, pfx=0)
-        return n, i, x, y, w, h
-
-    def geom_A(self, p=None, j=0, nn=0, dbg=0):
-        n, i = self.n[j], self.i[j]  ;  txt =''
-        if   n == 0:            n  =  1   ;      txt = f'WARN j={j} setting n=0 -> n=1 -> n=0'
-        if   nn:                n  =  nn
-        if   j == C:            n +=  self.zz()
-        if   p is None:         w  =  self.width             ;  h  =  self.height
-        elif j == C:            w  =  p.width/n              ;  h  =  p.height
-        else:                   w  =  p.width                ;  h  =  p.height/n
-        if SPRITES:
-            if   p is None:     x  =  0                       ;  y  =  0
-            elif j == S and nn: x  =  p.x                     ;  y  =  p.y + p.height/2                # p.y + p.height - p.height/(2*n)  = p.y + p.height * (2*n-1)/(2*n)
-            elif j == C and nn: x  =  p.x + w/2               ;  y  =  p.y                             #  + p.height - h    # p,y + p.height = p.height        = p.y
-            elif j == T:        x  =  p.x + w/2               ;  y  =  p.y + p.height * (2*n-1)/(2*n)  # p.y + p.height - p.height/(2*n)  = p.y + p.height * (2*n-1)/(2*n)
-            else:               x  =  p.x                     ;  y  =  p.y + p.height * (n-1)/n        # p.y + p.height - p.height/n      = p.y + p.height * (n-1)/n
-        else:
-            if   p is None:     x  =  w/2                     ;  y  =  h/2
-            elif j == C:        x  =  w/2                     ;  y  =  p.y
-            elif j == T:        x  =  p.x                     ;  y  =  p.y + p.height * (2*n-1)/(2*n) # p.y + p.height - p.height/(2*n)  = p.y + p.height * (2*n-1)/(2*n)
-            else:               x  =  w/2                     ;  y  =  p.y + p.height * (2*n-1)/(2*n)
-        if txt:                 n  =  0                       ;  self.log(txt, pfx=0)
-        if dbg and j <= C: msg = f'{JTEXTS[j]:4} j={j} n={n:2} i={i:2} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} nn={nn:2}'  ;  msg += f'{p.x:7.2f} {p.y:7.2f} {p.width:7.2f} {p.height:7.2f}' if p else ''  ;  self.log(msg, pfx=0)
-        return n, i, x, y, w, h
-
     def geom(self, p=None, j=0, nn=0, dbg=0):
         n, i = self.n[j], self.i[j]  ;  txt =''
         if   n == 0:            n  =  1    ;    txt = f'WARN j={j} setting n=0 -> n=1 -> n=0'
@@ -917,8 +871,8 @@ class Tabs(pyglet.window.Window):
             else:               x  =  p.x                     ;  y  =  p.y
         else:
             if   p is None:     x  =  w/2                     ;  y  =  h/2
-#            elif j == T:        x  =  p.x + w                 ;  y  =  p.y + h/2
-            else:               x  =  p.x + w/2               ;  y  =  p.y + h/2
+            elif j == T:        x  =  p.x                     ;  y  =  p.y + p.height/2 - h/2
+            else:               x  =  w/2                     ;  y  =  p.y + p.height/2 - h/2
         if txt:                 n  =  0                       ;  self.log(txt, pfx=0)
         if dbg and j <= C: msg = f'{JTEXTS[j]:4} j={j} n={n:2} i={i:2} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f} nn={nn:2}'  ;  msg += f'{p.x:7.2f} {p.y:7.2f} {p.width:7.2f} {p.height:7.2f}' if p else ''  ;  self.log(msg, pfx=0)
         return n, i, x, y, w, h
