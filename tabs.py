@@ -154,7 +154,7 @@ class Tabs(pyglet.window.Window):
         global FULL_SCREEN, ORDER_GROUP, SUBPIX
         snapGlobArg = str(BASE_PATH / SNAP_DIR / BASE_NAME) + SFX + '.*' + SNAP_SFX
         snapGlob    = glob.glob(snapGlobArg)
-        self.log(f'STFILT:\n{fmtl(STFILT)}')  # ;   self.log(f'hideST2:\n{fmtl(Tabs.hideST2)}')
+        self.log(f'STFILT:\n{fmtl(STFILT)}')
         self.log(f'BGN {__class__}')
         self.log(f'{VRSNX1}')
         self.log(f'{VRSNX2}')
@@ -175,32 +175,20 @@ class Tabs(pyglet.window.Window):
         self.dfn = ''
         nt = 6
         self.ZZ   = [0, 0]
-        self.TNIK = [1, 1, 0, 0]   ;   self.ss0 = self.ss()
+        self.TNIK = [1, 0, 0, 0]   ;   self.ss0 = self.ss()
         self.SS = set()
         self.log(f'TNIK={(fmtl(self.TNIK))}')
-        self.ww, self.hh = 640, 480
         self.n, self.i = [3, 3, self.ss0, 50, nt], [1, 1, 1, 1, nt]
-#        self.n, self.i, self.x, self.y, self.w, self.h = [3, 3, self.ss0, 50, nt], [1, 1, 1, 1, nt], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]
         self.log(f'argMap={fmtm(ARGS)}')
         if 'f' in ARGS and len(ARGS['f'])  > 0:    self.dfn =       ARGS['f'][0]
         if 'n' in ARGS and len(ARGS['n'])  > 0:    self.n   = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'i' in ARGS and len(ARGS['i'])  > 0:    self.i   = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
-#        if 'x' in ARGS and len(ARGS['x'])  > 0:    self.x   = [ int(ARGS['x'][i]) for i in range(len(ARGS['x'])) ]
-#        if 'y' in ARGS and len(ARGS['y'])  > 0:    self.y   = [ int(ARGS['y'][i]) for i in range(len(ARGS['y'])) ]
-#        if 'w' in ARGS and len(ARGS['w'])  > 0:    self.ww  =   int(ARGS['w'][0])
-#        if 'h' in ARGS and len(ARGS['h'])  > 0:    self.hh  =   int(ARGS['h'][0])
         if 'F' in ARGS and len(ARGS['F']) == 0: FULL_SCREEN =  1
         if 'g' in ARGS and len(ARGS['g']) == 0: ORDER_GROUP =  1
         if 's' in ARGS and len(ARGS['s']) == 0: SUBPIX      =  1
         self.log(f'[f]            f={     self.dfn}')
         self.log(f'[n]            n={fmtl(self.n, FMTN)}')
         self.log(f'[i]            i={fmtl(self.i, FMTN)}')
-#        self.log(f'[x]            x={fmtl(self.x, FMTN)}')
-#        self.log(f'[y]            y={fmtl(self.y, FMTN)}')
-#        self.log(f'[w]            w={fmtl(self.w, FMTN)}')
-#        self.log(f'[h]            h={fmtl(self.h, FMTN)}')
-#        self.log(f'[W]           ww={     self.ww}')
-#        self.log(f'[H]           hh={     self.hh}')
         self.log(f'[F]  FULL_SCREEN={FULL_SCREEN}')
         self.log(f'[g]  ORDER_GROUP={ORDER_GROUP}')
         self.log(f'[s]       SUBPIX={SUBPIX}')
@@ -264,6 +252,7 @@ class Tabs(pyglet.window.Window):
         self._initColors()
         self._initData()
         if AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer')
+        self._initFonts()
         self._initTextLabels()
         self._initTniks()
         if dbg: self.dumpStruct('_init()')
@@ -335,20 +324,23 @@ class Tabs(pyglet.window.Window):
             for i in range(len(s)): self.log(f'screens[{i}] x={s[i].x} y={s[i].y:5} {self.fmtWxH(s[i].width, s[i].height)}')
             self.log(f'END {self.fmtWxH()}')
 
-    def wh2fs(self, w, h): pass
+    def _initFonts(self):
+        np, nl, ns, nc, nt = self.n
+        pix = self.height / (nl * ns * nt) if ns else self.height / (nl * nt)
+        fs = self.pix2fontsize(pix)
+        self.fontBold, self.fontItalic, self.fontColorIndex, self.fontDpiIndex, self.fontNameIndex, self.fontSize = 0, 0, 0, 4, 0, fs
+        self.log(f'pix=(height/nl*ns*nt)={self.height}/{nl}*{ns}*{nt}={fs}pt')
+        self.dumpFont()
+
+    @staticmethod
+    def pix2fontsize(pix): return pix * FONT_SCALE
+
     def _initWindowB(self, dbg=1):
         if dbg: self.log(f'BGN {self.fmtWxH()}')
         self.batch = pyglet.graphics.Batch()
         self._initGroups()
         self.set_visible()
         self.log(f'get_size={self.get_size()}')
-        if not FULL_SCREEN: self.log(f'set_size ww={self.ww} hh={self.hh}')   ;   self.set_size(self.ww, self.hh)
-        self.log(f'get_size={self.get_size()}')
-        np, nl, ns, nc, nt = self.n
-        self.fs0 = FONT_SCALE * self.height / (nl * ns * nt) if ns else FONT_SCALE * self.height / (nl * nt)
-        self.log(f'fs0=FONT_SCALE*(height/nl*ns*nt)={FONT_SCALE}*{self.height}/{nl}*{ns}*{nt}={self.fs0}pt')
-        self.fontBold, self.fontItalic, self.fontColorIndex, self.fontDpiIndex, self.fontNameIndex, self.fontSize = 0, 0, 0, 4, 0, self.fs0
-        self.dumpFont()
         if EVENT_LOG and VERBOSE:
             self.eventLogger = pygwine.WindowEventLogger()
             self.push_handlers(self.eventLogger)
@@ -427,9 +419,6 @@ class Tabs(pyglet.window.Window):
     def fmtJ2( self, w=None, d=0): w = w or JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return f'{fmtl(self.J2,     w=w, d1=d1, d2=d2)}'
     def fmtLE( self, w=None, d=0): w = w or JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return f'{fmtl(self.lenE(), w=w, d1=d1, d2=d2)}'
     def fmtJs(self):   return f'{self.fmtJ1()}{self.fmtJ2()}{self.fmtLE()}'
-#    def fmtXY(self):   return f'{fmtl(self.x, w="6.1f")} {fmtl(self.y, w="6.1f")}'
-#    def fmtWH(self):   return f'{fmtl(self.w, w="6.1f")} {fmtl(self.h, w="6.1f")}'
-#    def fmtXYWH(self): return f'{fmtl(self.x, w="6.1f")} {fmtl(self.y, w="6.1f")} {fmtl(self.w, w="6.1f")} {fmtl(self.h, w="6.1f")}'
     def fPos(  self):  plct = self.j2()   ;   cc = self.plct2cc(*plct)   ;   cn = self.cc2cn(cc)   ;   return f'{fmtl(plct)} {cc:3} {cn:2}]'
     ####################################################################################################################################################################################################
     def dumpDataSlice(self, p, l, c, cc):
@@ -445,9 +434,6 @@ class Tabs(pyglet.window.Window):
     def dumpJs(  self, why): self.log(f'  J1 {self.fmtJ1()} {why}')  ;  self.log(f'  J2 {self.fmtJ2()} {why}')  ;  self.log(f'lenE {self.fmtLE()} {why}')
 #    def dumpLE(  self, why): self.log(f'lenE {self.fmtLE(JFMT, why)}')
     def dumpNI(  self): self.log(f'    {self.fmtDxD()} {self.fmtWxH():^9} {fmtl(self.n, w=FMTN)  } {fmtl(self.i, w=FMTN)}')
-#    def dumpXY(  self): self.log(f'    {self.fmtDxD()} {self.fmtWxH():^9} {fmtl(self.x, w="6.1f")} {fmtl(self.y, w="6.1f")}')
-    def dumpWH(  self): self.log(f'    {self.fmtDxD()} {self.fmtWxH():^9} {fmtl(self.w, w="6.1f")} {fmtl(self.h, w="6.1f")}')
-#    def dumpNIXYWH(self): self.dumpNI()  ;  self.dumpXY()  ;  self.dumpWH()
     ####################################################################################################################################################################################################
     def autoSave(self, dt, how, dbg=0):
         if dbg: self.log(f'dt={dt:7.4f} {how} dataHasChanged={self.dataHasChanged}')
@@ -1061,8 +1047,8 @@ class Tabs(pyglet.window.Window):
         elif i > len(tlist): msg = f'ERROR i={i} > len(tlist)={len(tlist)} j={j} {JTEXTS[j]} {why}'  ;  self.log(msg)  ;  self.quit(msg)
         tnik = tlist[i]
         v = self.j2v(j)
-        if   type(tnik) is pyglet.text.Label:     tnik.font_size = v * self.fs0 * h / tnik.height if tnik.height else tnik.font_size  ;  tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
-        elif type(tnik) is pyglet.sprite.Sprite:  mx = w/tnik.image.width  ;  my = h/tnik.image.height                                ;  tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
+        if   type(tnik) is pyglet.text.Label:     s = v*self.pix2fontsize(h)   ;   tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, s
+        elif type(tnik) is pyglet.sprite.Sprite:  mx, my = w/tnik.image.width, h/tnik.image.height   ;   tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
         if QQ and j == L:      tnik = self.resizeLRow(tnik, i)
         self.setJ(j, i)   ;   self.dumpTnik(tnik, j, why) if dbg else None
         return tnik
