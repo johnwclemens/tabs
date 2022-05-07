@@ -282,7 +282,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpStruct('_init()')
 
     def _initColors(self):
-        KT1, KT2, KT3 = REDS, BLUES, INDIGOS
+        KT1, KT2, KT3 = PINKS, BLUES, INDIGOS
         self.kP  = [    VIOLETS[0],    VIOLETS[12]] if CHECKER_BOARD else [   VIOLETS[10]]
         self.kL  = [     BLUES[12],      BLUES[15]] if CHECKER_BOARD else [     BLUES[12]]
         self.kS  = [     CYANS[12],      CYANS[15]] if CHECKER_BOARD else [     CYANS[12]]
@@ -294,9 +294,9 @@ class Tabs(pyglet.window.Window):
         self.kO  = [       KT1[0],          KT1[8]] if CHECKER_BOARD else [        KT1[0]]
         self.kA  = [       KT2[0],          KT2[8]] if CHECKER_BOARD else [        KT2[4]]
         self.kD  = [       KT1[0],          KT1[8]] if CHECKER_BOARD else [        KT1[0]]
-        self.kLR = [       KT2[0],          KT2[8]] if CHECKER_BOARD else [        KT2[0]]
-        self.kLC = [    ORANGES[0],     ORANGES[8]] if CHECKER_BOARD else [    ORANGES[0]]
-        self.kH  = [       REDS[0],        REDS[8]] if CHECKER_BOARD else [       REDS[0]]
+        self.kLR = [       REDS[0],          REDS[8]] if CHECKER_BOARD else [        REDS[0]]
+        self.kLC = [    PINKS[0],     PINKS[8]] if CHECKER_BOARD else [    PINKS[0]]
+        self.kH  = [       YELLOWS[0],        YELLOWS[8]] if CHECKER_BOARD else [       YELLOWS[0]]
         self.k   = [ self.kP, self.kL, self.kS, self.kC,  self.kT, self.kN, self.kI, self.kK,  self.kO, self.kA, self.kD,  self.kLR, self.kLC, self.kH ]
         [ self.log(f'[{i:2}] {fmtl(*e):3}') for i, e in enumerate(self.k) ]
 
@@ -829,7 +829,7 @@ class Tabs(pyglet.window.Window):
         self.dumpGeom('END', msg)
     ####################################################################################################################################################################################################
     def createLRow(self, p, pi, dbg=1, dbg2=1):
-        klr = self.klr  ;  klc = self.klc  ;  kkr = self.cci(pi, klr)
+        klr = self.kLR  ;  klc = self.kLC  ;  kkr = self.cci(pi, klr)
         a = 1 + self.n[T] * self.ssl() * self.i[L]
         nr, ir, xr, yr, wr, hr = self.geom(S, p, n=a, dbg=dbg2)
         if   type(p) is pygsprt.Sprite: xr, yr = self.sprite2LabelPos(xr, yr, wr, hr)
@@ -853,7 +853,7 @@ class Tabs(pyglet.window.Window):
         nc, ic, xc, yc, wc, hc = self.geom(C, lrow,   dbg=dbg)   ;   sc = nc * pi
         if   type(p) is pygsprt.Sprite: xc, _  = self.sprite2LabelPos(xc-xr, yc, wc, hc)
         for c in range(nc):
-            klc = self.klc  ;  kk = self.cci(sc, klc)
+            klc = self.kH  ;  kk = self.cci(sc, klc)
             zz = self.zzl()  ;  lcs = self.lcols   ;   lc = len(lcs)
             if sc >= lc: self.createTnik(lcs, sc, LC, 0, 0, 0, 0, kk, klc, dbg=1)  ;  msg = f'ERROR Missing zz={zz} lrow={pi+1} c={c} sc={sc} lc={lc}'  ;  self.log(msg) # ;  self.quit(msg)
             self.resizeTnik(lcs, self.J2[LC], LC, xc+c*wc, yc, wc, hc)
@@ -920,7 +920,7 @@ class Tabs(pyglet.window.Window):
             s   *= v
             d, n = FONT_DPIS[d], FONT_NAMES[n]   ;   a, ax, ay = 'center', 'center', 'center' # left center right  # bottom baseline center top
             zz   = self.zzl()                    ;          mp = len(tlist) % (self.n[C] + zz) + 1 - zz if j == LC else 0
-            if j == LC and not mp % 10:  k = self.kll[0]
+            if j == LC and not mp % 10:  k = PINKS[0]
             if ml:                       t = [ t[:m] + '\n' + t[m:] for m in range(len(t), 0, -1) ]
             tnik = pygtxt.Label(t, font_name=n, font_size=s, bold=o, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
         self.tniks.append(tnik)
@@ -1527,8 +1527,8 @@ class Tabs(pyglet.window.Window):
 
     def setLLStyle(self, cc, style, dbg=0):
         p, l, c, t = self.cc2plct(cc)  ;  nc = self.n[C]
-        bold, italic, color = 0, 0, self.klc[0]
-        if   style == NORMAL_STYLE:  color = self.klc[0]  ;  bold = 0  ;  italic = 0
+        bold, italic, color = 0, 0, self.kH[0]
+        if   style == NORMAL_STYLE:  color = self.kH[0]  ;  bold = 0  ;  italic = 0
         elif style == CURRENT_STYLE: color = CCS[8]       ;  bold = 0  ;  italic = 0
         elif style == SELECT_STYLE:  color = CCS[0]       ;  bold = 1  ;  italic = 1
         elif style == COPY_STYLE:    color = REDS[1]      ;  bold = 1  ;  italic = 1
@@ -1992,6 +1992,7 @@ class Tabs(pyglet.window.Window):
     def getFileSeqNum(fgs, sfx, dbg=1):
         i = -1
         if len(fgs):
+            if dbg: Tabs.slog(f'sfx={sfx} fgs={fmtl(fgs)}')
             ids = []
             for s in fgs:
                 if s.endswith(sfx):
