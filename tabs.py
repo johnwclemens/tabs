@@ -147,7 +147,7 @@ class Tabs(pyglet.window.Window):
         self.J1,     self.J2,      self.cc, self.ki, self.SNAP0,   self.armSnap = None, None, 0, 0, 0, ''
         self.kbk,    self.symb,    self.mods,        self.symbStr, self.modsStr =             0, 0, 0, '', ''
         nt = 6
-        self.SS   = set() if 0 else {0}
+        self.SS   = set() if 0 else {0, 1, 2, 3}
         self.ZZ   = set() if 1 else {0}
         self.n, self.i = [3, 2, self.ssl(), 50, nt], [1, 1, 1, 1, nt]
         self.dumpNIS()
@@ -671,29 +671,80 @@ class Tabs(pyglet.window.Window):
         if SNAP: self.snapshot(f'hideTabs() {msg}')
         self.dumpGeom('END', msg)
 
-    def hideTabs(self, how, tnik):
-        msg = f'HIDE {how} tnik={tnik}'
-        np, nl, _, nc, nt = self.n   ;   nc += self.zzl()
+    def New_1_hideTabs(self, how, i):
+        msg = f'HIDE {how} i={i}'
+        np, nl, ns, nc, nt = self.n   ;   nc += self.zzl()
         self.dumpGeom('BGN', msg)
         self.resetJ(msg)
         for p in range(np):
-            j = self.setJ(P, p)                    ;  self.dumpTnik(self.pages[p], j, why='Ref')
+            j = self.setJ(P, p)                      ;  self.dumpTnik(self.pages[p], j, why='Ref')
             for l in range(nl):
-                j = self.setJ(L, l)                ;  self.dumpTnik(self.lines[l], j, why='Ref')
-                for s, sect in enumerate(self.ss2sl()):
-                    if sect == tnik:
-                        self.hideTnik(self.sects, sect, S, dbg=1)
+                j = self.setJ(L, l)                  ;  self.dumpTnik(self.lines[l+l*nl], j, why='Ref')
+                for s in self.ss2sl():
+                    if s != i:
+                        j = self.setJ(S, s)          ;  self.dumpTnik(self.sects[s+s*ns], j, why='Ref')
                         for c in range(nc):
-                            if not c:                     self.hideTnik(self.cols, c, C, dbg=1)
-                            else: j = self.setJ(C, c)  ;  self.dumpTnik(self.cols[c], j, why='Ref')
+                            j = self.setJ(C, c)      ;  self.dumpTnik(self.cols[c+s*nc],  j, why='Ref')
                             for t in range(nt):
-                                tlist, j = self.tnikInfo(sect)
-                                self.hideTnik(tlist, t, j, dbg=1)
+                                z, j = self.tnikInfo(s)
+                                self.setJ(j, t)  ;  self.dumpTnik(z[t], j, why='Ref')
                     else:
-                        j = self.setJ(S, sect)   ;  self.dumpTnik(self.sects[sect], j, why='Ref')
+                        self.hideTnik(self.sects, s+s*ns, S, dbg=1)
+                        for c in range(nc):
+                            self.hideTnik(self.cols,  c+c*nc, C, dbg=1)
+                            for t in range(nt):
+                                z, j = self.tnikInfo(s)
+                                self.hideTnik(z, t+t*nt, j, dbg=1)
+        if i == TT: self.hideTnik(self.cursr, 0, H, dbg=1)
+        self.toggleTnik(i)
+        if SNAP: self.snapshot(f'hideTabs() {msg}')
+        self.dumpGeom('END', msg)
 
-        if tnik == TT: self.hideTnik(self.cursr, 0, H, dbg=1)
-        self.toggleTnik(tnik)
+    def New_2_hideTabs(self, how, i):
+        msg = f'HIDE {how} i={i}'
+        np, nl, ns, nc, nt = self.n   ;   nc += self.zzl()
+        self.dumpGeom('BGN', msg)
+        self.resetJ(msg)
+        for p in range(np):
+            j = self.setJ(P, p)                         ;  self.dumpTnik(self.pages[p], j, why='Ref')
+            for l in range(nl):
+                j = self.setJ(L, l)                     ;  self.dumpTnik(self.lines[l+l*(np*nl-1)], j, why='Ref')
+                for s in self.ss2sl():
+                    if s != i: j = self.setJ(S, s)      ;  self.dumpTnik(self.sects[ s+ns*(np*nl-1)], j, why='Ref')
+                    else:                                  self.hideTnik(self.sects, s+ns*(np*nl-1),  S, dbg=1)
+                    for c in range(nc):
+                        if s != i: j = self.setJ(C, c)  ;  self.dumpTnik(self.cols[ c+nc*(np*nl*ns-1)], j, why='Ref')
+                        else:                              self.hideTnik(self.cols, c+nc*(np*nl*ns-1),  C, dbg=1)
+                        for t in range(nt):
+                            z, j = self.tnikInfo(s)
+                            if s != i: self.setJ(j, t)  ;  self.dumpTnik(z[ t+nt*(np*nl*ns*nc-1)], j, why='Ref')
+                            else:                          self.hideTnik(z, t+nt*(np*nl*ns*nc-1),  j, dbg=1)
+        if i == TT: self.hideTnik(self.cursr, 0, H, dbg=1)
+        self.toggleTnik(i)
+        if SNAP: self.snapshot(f'hideTabs() {msg}')
+        self.dumpGeom('END', msg)
+
+    def hideTabs(self, how, i):
+        msg = f'HIDE {how} i={i}'
+        np, nl, ns, nc, nt = self.n   ;   nc += self.zzl()
+        self.dumpGeom('BGN', msg)
+        self.resetJ(msg)
+        for p in range(np):
+            j = self.setJ(P, p)                         ;  self.dumpTnik(self.pages[ self.J2[P]-1], j, why='Ref')
+            for l in range(nl):
+                j = self.setJ(L, l)                     ;  self.dumpTnik(self.lines[ self.J2[L]-1], j, why='Ref')
+                for s in self.ss2sl():
+                    if s != i: j = self.setJ(S, s)      ;  self.dumpTnik(self.sects[ self.J2[S]-1], j, why='Ref')
+                    else:                                  self.hideTnik(self.sects, self.J2[S]-1,  S, dbg=1)
+                    for c in range(nc):
+                        if s != i: j = self.setJ(C, c)  ;  self.dumpTnik(self.cols[  self.J2[C]-1], j, why='Ref')
+                        else:                              self.hideTnik(self.cols,  self.J2[C]-1,  C, dbg=1)
+                        for t in range(nt):
+                            z, j = self.tnikInfo(s)
+                            if s != i: self.setJ(j, t)  ;  self.dumpTnik(        z[  self.J2[j]-1], j, why='Ref')
+                            else:                          self.hideTnik(        z,  self.J2[j]-1,  j, dbg=1)
+        if i == TT: self.hideTnik(self.cursr, 0, H, dbg=1)
+        self.toggleTnik(i)
         if SNAP: self.snapshot(f'hideTabs() {msg}')
         self.dumpGeom('END', msg)
 
