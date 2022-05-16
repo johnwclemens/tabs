@@ -53,7 +53,7 @@ def dumpGlobals():
     Tabs.slog(f'BASE_NAME = {BASE_NAME}')
     Tabs.slog(f'SFX       = {SFX}')
 
-STFILT  = ['log', 'getImap', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx'] #, 'dumpNISZ']
+STFILT  = ['log', 'getImap', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
 ####################################################################################################################################################################################################
 ARGS             = cmdArgs.parseCmdLine()        ;  DBG0, DBG1, DBG2, DBG3, DBG4, DBG5, DBG6, DBG7, DBG8, DBG9 = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9   ;  DBG = DBG0
 AUTO_SAVE = 0  ;  CAT = 0  ;  CHECKER_BOARD = 0  ;  EVENT_LOG = 0  ;  FULL_SCREEN = 0  ;  IND = 0  ;  ORDER_GROUP = 1  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 0  ;  SUBPIX = 1  ;  VERBOSE = 0  ;  EXIT = 0
@@ -150,7 +150,6 @@ class Tabs(pyglet.window.Window):
         self.SS   = set() if 0 else {0}
         self.ZZ   = set() if 1 else {0}
         self.n, self.i = [3, 2, self.ssl(), 50, nt], [1, 1, 1, 1, nt]
-#        self.dumpNISZ()
         self.log(f'argMap={fmtm(ARGS)}')
         if 'f' in ARGS and len(ARGS['f'])  > 0:    self.dfn =       ARGS['f'][0]
         if 'n' in ARGS and len(ARGS['n'])  > 0:    self.n   = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
@@ -391,7 +390,6 @@ class Tabs(pyglet.window.Window):
     def dumpObj( obj,  name, why='', file=None): Tabs.slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}', file=file)
     def dumpJs(  self, why): self.log(f'  J1 {self.fmtJ1(0)} {why}')  ;  self.log(f'  J2 {self.fmtJ2(0)} {why}')  ;  self.log(f'  LE {self.fmtLE(0)} {why}')
     def dumpGeom(self, why1='', why2=''): self.log(f'{why1} {self.fmtDxD()} {self.fmtIxI()} {fmtl(self.ss2sl())} {LL} {fmtl(self.zz2sl())} J2={self.fmtJ2(0, 1)} {why2}')
-#    def dumpNISZ( self, why=''): self.log(f'n={fmtl(self.n, w=FMTN)} i={fmtl(self.i, w=FMTN)} s={fmtl(self.ss2sl())} sl={self.ssl()} z={fmtl(self.zz2sl())} zl={self.zzl()} {why}')
     ####################################################################################################################################################################################################
     def autoSave(self, dt, how, dbg=0):
         if dbg: self.log(f'dt={dt:7.4f} {how} dataHasChanged={self.dataHasChanged}')
@@ -405,10 +403,8 @@ class Tabs(pyglet.window.Window):
             self.snapshot(self.armSnap)  ;  self.armSnap = ''
 
     def on_resize(self, width, height, why='', dbg=0):
-#        self.log(f'BGN {self.fWxH_DxD()} {fmtl(self.n)} {self.fmtLE(0, 1)}')
         super().on_resize(width, height)   ;   why2 = 'Upd'
         if RESIZE: self.resizeTniks(f'{why2}{why}')
-#        self.log(f'END {self.fWxH_DxD()} {fmtl(self.n)} {self.fmtLE(0, 1)}')
     ####################################################################################################################################################################################################
     def dumpStruct(self, why='', dbg=0, dbg2=1):
         self.dumpGeom(f'BGN {why} {self.fmtWxH()}')
@@ -717,15 +713,24 @@ class Tabs(pyglet.window.Window):
     def addTabs(self, how, tnik):
         msg = f'ADD {how} tnik={tnik}'
         self.toggleTnik(tnik)
+        np, nl, ns, nc, nt = self.n   ;   nc += self.zzl()
         self.dumpTniksPfx(msg)
-        for p in     range(self.n[P]):
-            j = self.setJ(P, p)      ;  self.dumpTnik(self.pages[p],   j, why='Ref')
-            for l in range(self.n[L]):
-                j = self.setJ(L, l)  ;  self.dumpTnik(self.lines[l],   j, why='Ref')  ;  line = self.lines[l]
-                for sect in             self.g_createTniks(self.sects, S, line, ii=tnik):
-                    for col in          self.g_createTniks(self.cols,  C, sect):
-                        for _ in        self.g_createTniks(self.tabs,  T, col,  ii=tnik):
-                            pass
+        for p in range(np):
+            j                        = self.setJ(P, p)  ;  self.dumpTnik(self.pages[ self.J2[j]-1], j, why='Ref')
+            for l in range(nl):
+                j                    = self.setJ(L, l)  ;  self.dumpTnik(self.lines[ self.J2[j]-1], j, why='Ref')
+                for s in self.ss2sl():
+                    if s != tnik:
+                        j            = self.setJ(S,  s)  ;  self.dumpTnik(self.sects[ self.J2[j]-1], j, why='Ref')  ;  z, j2 = self.tnikInfo(s)
+                        for c in range(nc):
+                            j        = self.setJ(C,  c)  ;  self.dumpTnik(self.cols[  self.J2[j]-1], j, why='Ref')
+                            for t in range(nt):
+                                j    = self.setJ(j2, t)  ;  self.dumpTnik(        z[  self.J2[j]-1], j, why='Ref')
+                    else:
+                        for _, sect in      enumerate(self.g_createTniks(self.sects, S, self.lines[l], ii=tnik)):
+                            for _, col in   enumerate(self.g_createTniks(self.cols,  C, sect)):
+                                for _, _ in enumerate(self.g_createTniks(self.tabs,  T, col, ii=tnik)):
+                                    pass
         self.dumpTniksSfx(msg)
         if self.tabs and not self.cursor: self.createCursor()
 
@@ -1006,7 +1011,7 @@ class Tabs(pyglet.window.Window):
         self.resizeCursor(dbg=dbg)
         self.setLLStyle(self.cc, CURRENT_STYLE)
     ####################################################################################################################################################################################################
-    def dumpCursr(self, why, x, y, w, h, c): self.dumpCxywh(x, y, w, h, c)  ;  self.dumpGeom(why, JTEXTS[H]) # ;  self.dumpNISZ()
+    def dumpCursr(self, why, x, y, w, h, c): self.dumpCxywh(x, y, w, h, c)  ;  self.dumpGeom(why, JTEXTS[H])
     def dumpCxywh(self, x, y, w, h, c): self.log(f'x={x:6.2f} y={y:6.2f} w={w:6.2f} h={h:6.2f} cc={c}')
     def cc2xywh(self, dbg=1): cc = self.cursorCol()  ;  c = self.tabs[cc]  ;  w, h = c.width, c.height  ;  x, y = c.x-w/2, c.y-h/2  ;  self.dumpCxywh(x, y, w, h, cc) if dbg else None  ;  return x, y, w, h, cc
 
