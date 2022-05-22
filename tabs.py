@@ -148,7 +148,7 @@ class Tabs(pyglet.window.Window):
         self.J1,     self.J2,      self.cc, self.ki, self.SNAP0,   self.armSnap = None, None, 0, 0, 0, ''
         self.kbk,    self.symb,    self.mods,        self.symbStr, self.modsStr =             0, 0, 0, '', ''
         nt = 6
-        self.SS   = set() if 0 else {0, 1}
+        self.SS   = set() if 0 else {0, 3}
         self.ZZ   = set() if 1 else {0, 1}
         self.n, self.i = [2, 2, self.ssl(), 50, nt], [1, 1, 1, 1, nt]
         self.log(f'argMap={fmtm(ARGS)}')
@@ -699,22 +699,26 @@ class Tabs(pyglet.window.Window):
         if SNAP: self.snapshot(f'hideTTs() {why}')
 
     def hideZZs(self, how, i, dbg=1):
-        why = f'HIDE {how} i={i}'  ;  why2 = 'Ref'
-        np, nl, ns, nc, nt = self.n  ;  nc += self.zzl()
+        why = f'HIDE {how} i={i}'  ;  why2 = 'Ref' # ;  c2, t2 = 0, 0
+        np, nl, ns, nc, nt = self.n  ;  nc += self.zzl()  ;  ns = self.ssl()
         self.dumpTniksPfx(why)
-        self.setJdump(P, 0, why2)
-        for l in range(nl):
-            self.setJdump(L, l, why2)
-            for s, s2 in enumerate(self.ss2sl()):
-                z, j               = self.tnikInfo(s2)
-                self.setJdump(S, s2, why2)
-                for c, c2 in enumerate(self.zz2sl()):
-                    if c2 != i:     self.setJdump(C, c,why2)
-                    else:           self.hideTnik(self.cols, nc * s + c, C, dbg=dbg)
-                    for t in range(nt):
-                        if c2 != i: self.setJdump(j, t, why2)
-                        else:       self.hideTnik(self.C[i], nt, K + i - 1, dbg=dbg)
+        for p in range(np):
+            self.setJdump(P, p, why2)
+            for l in range(nl):
+                self.setJdump(L, l, why2)
+                for s, s2 in enumerate(self.ss2sl()):
+                    self.setJdump(S, s2, why2)
+                    for c in range(nc):
+                        if c != i:     self.setJdump(C, c, why2)
+                        else:          c2 = ((p*nl + l)*ns + s)*nc + c   ;   self.hideTnik(self.cols, c2, C, dbg=dbg)
+                        for t in range(nt):
+                            z, j           = self.tnikInfo(s2)
+#                            if c != i: self.setJdump(j, t, why2)
+                            if not (c % nc):
+#                                self.log(f'p={p} l={l} s={s} c={c} t={t}  s2={s2} c2={c2} t2={t2}  _={c2//(ns*nc)} lz={len(z)} j={j} {JTEXTS[j]} {self.J1[j]} {self.J2[j]}')
+                                self.hideTnik(z, self.J2[j], j, dbg=dbg)
         self.dumpTniksSfx(why)
+        self.toggleZZ(i)
 
     def hideLLs(self, how):
         msg = f'HIDE {how}'
@@ -773,8 +777,8 @@ class Tabs(pyglet.window.Window):
 
     def addZZs(self, how, i):
         why = f'ADD {how} i={i}'  ;  why2 = 'Ref'
-        np, nl = self.n[P], self.n[L]   ;   nc = self.n[C] + self.zzl()
         self.toggleZZ(i)
+        np, nl, ns, nc, nt = self.n   ;   nc += self.zzl()
         self.dumpTniksPfx(why)
         for p in range(np):
             self.setJdump(P, p, why2)
@@ -848,6 +852,8 @@ class Tabs(pyglet.window.Window):
     def squeezeB(self, y, h, a, g): self.log(f'y={y:6.2f} h={h:6.2f} a={a} g={g:6.4f}', end=' ')  ;  c = h/a  ;  h -= c  ;  y -= c  ;  g = h/g  ;  self.log(f'y={y:6.2f} h={h:6.2f} a={a} c={c:6.2f} g={g:6.4f}', pfx=0)  ;  return y, h, c, g
     def z1(self): nc = self.n[C] + self.zzl()  ;  return 1 if C1 in self.ZZ and (self.J1[C] % nc) == C1 else 0
     def z2(self): nc = self.n[C] + self.zzl()  ;  return 1 if C2 in self.ZZ and (self.J1[C] % nc) == C2 else 0
+#    def z1(self): nc = self.n[C] + self.zzl()  ;  return 1 if (C1 in self.ZZ and (self.J1[C] % nc) == C1)   or    (C2 in self.ZZ and (self.J1[C] % nc) == C2) else 0
+#    def z2(self): nc = self.n[C] + self.zzl()  ;  return 1 if (C2 in self.ZZ and (self.J1[C] % nc) == C2) and not (C1 in self.ZZ and (self.J1[C] % nc) == C1) else 0
     ####################################################################################################################################################################################################
     def createTniks(self):
         self.dumpTniksPfx()
@@ -1119,7 +1125,7 @@ class Tabs(pyglet.window.Window):
     def _setFontParam(p, n, v, m, dbg=0):
         for i in range(len(p)):
             k = len(p[i].color)
-            if m == 'fontSize': m = m % FS_MAX
+            if m == 'fontSize': v = v % FS_MAX
             if dbg: Tabs.slog(f'n={n} v={v} m={m} {fmtl(FONT_COLORS[v])} lk={len(p[i].color)} type(p[{i}])={type(p[i])} type(k)={type(p[i].color)}')
             setattr(p[i], n, FONT_NAMES[v] if m == 'fontNameIndex' else FONT_COLORS[v][:k] if m == 'fontColorIndex' else FONT_DPIS[v] if m == 'fontDpiIndex' else v)
     ####################################################################################################################################################################################################
