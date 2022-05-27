@@ -1,0 +1,1348 @@
+ 2  2083 tabs.py             <module> LOG_PATH=C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log LOG_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log' mode='w' encoding='cp1252'>
+ 4    29 tabs.py          dumpGlobals argv      = <9[C:/Users/Owner/Documents/GitHub/tabs/tabs.py -f test.0.dat -n 2 2 4 10 6]
+ 4    31 tabs.py          dumpGlobals PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+ 4    32 tabs.py          dumpGlobals BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+ 4    33 tabs.py          dumpGlobals BASE_NAME = tabs
+ 4   104 tabs.py             __init__ STFILT:
+[log getImap dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx]
+ 4   105 tabs.py             __init__ os.path.abspath(".")     =C:\Users\Owner\Documents\GitHub
+ 4   106 tabs.py             __init__ os.path.abspath("./")    =C:\Users\Owner\Documents\GitHub
+ 4   107 tabs.py             __init__ os.path.abspath("../")   =C:\Users\Owner\Documents
+ 4   108 tabs.py             __init__ os.path.abspath("./Lib") =C:\Users\Owner\Documents\GitHub\Lib
+ 4   109 tabs.py             __init__ os.path.abspath("../Lib")=C:\Users\Owner\Documents\Lib
+ 4   110 tabs.py             __init__ sys.path:
+C:\Users\Owner\Documents\GitHub\tabs
+C:\Users\Owner\Documents\GitHub\tabs
+C:\Users\Owner\AppData\Local\Programs\Python\Python310\python310.zip
+C:\Users\Owner\AppData\Local\Programs\Python\Python310\DLLs
+C:\Users\Owner\AppData\Local\Programs\Python\Python310\lib
+C:\Users\Owner\AppData\Local\Programs\Python\Python310
+C:\Users\Owner\Documents\GitHub\tabs\venv
+C:\Users\Owner\Documents\GitHub\tabs\venv\lib\site-packages
+ 4   113 tabs.py             __init__ BGN <class '__main__.Tabs'>
+ 4   114 tabs.py             __init__ VRSN1=0       LL=0  SFX1=A
+ 4   115 tabs.py             __init__ VRSN2=0  SPRITES=0  SFX2=1
+AUTO_SAVE=0 CAT=0 CHECKER_BOARD=0 EVENT_LOG=0 FULL_SCREEN=0 IND=0  ORDER_GROUP=1 RESIZE=1 SEQ_FNAMES=1 SNAP+0 SUBPIX=1 VERBOSE=0
+ 4   117 tabs.py             __init__ snapGlobArg =  C:\Users\Owner\Documents\GitHub\tabs\snaps\tabs.*.png
+ 4   118 tabs.py             __init__    snapGlob = []
+ 4  1904 tabs.py           deleteGlob deleting 0 file globs why=SNAP_GLOB
+ 4  1916 tabs.py          getFilePath subdir       = /
+ 4  1917 tabs.py          getFilePath filedir      = cats/
+ 4  1918 tabs.py          getFilePath filesfx      = .cat
+ 4  1923 tabs.py          getFilePath fileGlobArg  = C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.*.cat
+ 4  1924 tabs.py          getFilePath fileGlob:
+[]
+ 4  1928 tabs.py          getFilePath seq num      = 0 filesfx=.0.cat
+ 4   122 tabs.py             __init__ catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.0.cat
+ 4   124 tabs.py             __init__  Note.TYPE=1
+ 5   132 tabs.py             __init__ init() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=0=UP  
+ 4   161 util.py         parseCmdLine argv=['C:/Users/Owner/Documents/GitHub/tabs/tabs.py', '-f', 'test.0.dat', '-n', '2', '2', '4', '10', '6']
+[1] short [-f] [f] [[]]: 
+[2] arg [test.0.dat] [f] [['test.0.dat']]: 
+[3] short [-n] [n] [[]]: 
+[4] arg [2] [n] [['2']]: 
+[5] arg [2] [n] [['2', '2']]: 
+[6] arg [4] [n] [['2', '2', '4']]: 
+[7] arg [10] [n] [['2', '2', '4', '10']]: 
+[8] arg [6] [n] [['2', '2', '4', '10', '6']]: 
+return options={'f': ['test.0.dat'], 'n': ['2', '2', '4', '10', '6']}  4   141 tabs.py             __init__ argMap=[f:[test.0.dat]n:[2 2 4 10 6]]
+ 4   148 tabs.py             __init__ [f]            f=test.0.dat
+ 4   149 tabs.py             __init__ [n]            n=[ 2  2  4  10 6]
+ 4   150 tabs.py             __init__ [i]            i=[ 1  1  1   1 6]
+ 4   151 tabs.py             __init__ [F]  FULL_SCREEN=0
+ 4   152 tabs.py             __init__ [g]  ORDER_GROUP=1
+ 4   153 tabs.py             __init__ [s]       SUBPIX=1
+ 4   164 tabs.py             __init__ stringMap   = [E2:28 A2:33 D3:38 G3:43 B3:47 E4:52]
+ 4   165 tabs.py             __init__ stringKeys  = [E2 A2 D3 G3 B3 E4]
+ 4   166 tabs.py             __init__ stringNames =      EBGDAE
+ 4   167 tabs.py             __init__ stringNumbs =      123456
+ 4   168 tabs.py             __init__ stringCapo  =      000000
+ 4   169 tabs.py             __init__ strLabel    =      STRING
+ 4   170 tabs.py             __init__ cpoLabel    =       CAPO 
+ 5   253 tabs.py        _initDataPath dataName0 = test.0.dat.asv
+ 5   254 tabs.py        _initDataPath dataName1 = test.0.dat
+ 5   255 tabs.py        _initDataPath dataName2 = test.0.dat.bck
+ 5   256 tabs.py        _initDataPath dataPath0 = C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat.asv
+ 5   257 tabs.py        _initDataPath dataPath1 = C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat
+ 5   258 tabs.py        _initDataPath dataPath2 = C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat.bck
+ 5   269 tabs.py         _initWindowA BGN (NonexNone)
+ 5   269 tabs.py         _initWindowA display=<pyglet.canvas.win32.Win32Display object at 0x000002E2997D7970>
+ 5   272 tabs.py         _initWindowA screens[0] x=0 y=    0 (1097x617)
+ 5   272 tabs.py         _initWindowA screens[1] x=0 y= -686 (1097x686)
+ 5   273 tabs.py         _initWindowA END (NonexNone)
+ 4   174 tabs.py             __init__ WxH=(NonexNone)
+ 4   176 tabs.py             __init__ WxH=(640x480)
+ 5   285 tabs.py         _initWindowB BGN (640x480)
+ 6   302 tabs.py          _initGroups (0) g=OrderedGroup(0) pg=None
+ 6   302 tabs.py          _initGroups (1) g=OrderedGroup(1) pg=None
+ 6   302 tabs.py          _initGroups (2) g=OrderedGroup(2) pg=None
+ 6   302 tabs.py          _initGroups (3) g=OrderedGroup(3) pg=None
+ 6   302 tabs.py          _initGroups (4) g=OrderedGroup(4) pg=None
+ 6   302 tabs.py          _initGroups (5) g=OrderedGroup(5) pg=None
+ 6   302 tabs.py          _initGroups (6) g=OrderedGroup(6) pg=None
+ 6   302 tabs.py          _initGroups (7) g=OrderedGroup(7) pg=None
+ 5   289 tabs.py         _initWindowB get_size=(640, 480)
+ 5   295 tabs.py         _initWindowB END (640x480)
+ 4   178 tabs.py             __init__ WxH=(640x480)
+ 5   184 tabs.py              _reinit BGN
+ 5   190 tabs.py              _reinit E=[[][][][][][][][][][][][][][]]
+ 7   191 tabs.py              _reinit   J1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _reinit
+ 7   191 tabs.py              _reinit   J2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _reinit
+ 7   191 tabs.py              _reinit   LE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 _reinit
+ 7   230 tabs.py          _initColors [ 0] [[ 94  39 132 255]]
+ 7   230 tabs.py          _initColors [ 1] [[ 18  11 112 255]]
+ 7   230 tabs.py          _initColors [ 2] [[ 15 112 112 255]]
+ 7   230 tabs.py          _initColors [ 3] [[ 48  48  48 255]]
+ 7   230 tabs.py          _initColors [ 4] [[255 128   0 255]]
+ 7   230 tabs.py          _initColors [ 5] [[ 12 255  11 255]]
+ 7   230 tabs.py          _initColors [ 6] [[255 255  10 255]]
+ 7   230 tabs.py          _initColors [ 7] [[ 13 255 255 255]]
+ 7   230 tabs.py          _initColors [ 8] [[255  64 192 255]]
+ 7   230 tabs.py          _initColors [ 9] [[ 15  11 207 255]]
+ 7   230 tabs.py          _initColors [10] [[255  64 192 255]]
+ 7   230 tabs.py          _initColors [11] [[ 13  11 255 255]]
+ 7   230 tabs.py          _initColors [12] [[255  64 192 255]]
+ 7   230 tabs.py          _initColors [13] [[255  64 192 255][255 255  10 168][ 12 255  11 255][255  12  11 255]]
+ 8   253 tabs.py        _initDataPath dataName0 = test.0.dat.asv
+ 8   254 tabs.py        _initDataPath dataName1 = test.0.dat
+ 8   255 tabs.py        _initDataPath dataName2 = test.0.dat.bck
+ 8   256 tabs.py        _initDataPath dataPath0 = C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat.asv
+ 8   257 tabs.py        _initDataPath dataPath1 = C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat
+ 8   258 tabs.py        _initDataPath dataPath2 = C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat.bck
+ 8   433 tabs.py         readDataFile BGN [2 2 1 10 6] dataPath1=C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat
+ 8   436 tabs.py         readDataFile     C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat      296 bytes =    0.3 KB
+ p  l  s   t  sp sl  ss   st  <tabs      >                      lp ll  ls   lt
+ 0  0  0   0   0  0   1   10  <---------->   strs.add(tabs)   0  0   1   10
+ 0  0  1   0   0  0   2   20  <---------->   strs.add(tabs)   0  0   2   10
+ 0  0  2   0   0  0   3   30  <---------->   strs.add(tabs)   0  0   3   10
+ 0  0  3   0   0  0   4   40  <0--------->   strs.add(tabs)   0  0   4   10
+ 0  0  4   0   0  0   5   50  <2--------->   strs.add(tabs)   0  0   5   10
+ 0  0  5   0   0  0   6   60  <3--------->   strs.add(tabs)   0  0   6   10
+ 0  0  0   0   0  1   6   60  <>            lines.add(strs)   0  1   0    0
+ 0  1  0   0   0  1   7   70  <---------->   strs.add(tabs)   0  1   1   10
+ 0  1  1   0   0  1   8   80  <---------->   strs.add(tabs)   0  1   2   10
+ 0  1  2   0   0  1   9   90  <---------->   strs.add(tabs)   0  1   3   10
+ 0  1  3   0   0  1  10  100  <---------->   strs.add(tabs)   0  1   4   10
+ 0  1  4   0   0  1  11  110  <---------->   strs.add(tabs)   0  1   5   10
+ 0  1  5   0   0  1  12  120  <---------->   strs.add(tabs)   0  1   6   10
+ 0  1  0   0   0  2  12  120  <>            lines.add(strs)   0  2   0    0
+ 0  1  0   0   1  2  12  120  <>            pages.add(lines)  1  0   0    0
+ 1  0  0   0   1  2  13  130  <---------->   strs.add(tabs)   1  0   1   10
+ 1  0  1   0   1  2  14  140  <---------->   strs.add(tabs)   1  0   2   10
+ 1  0  2   0   1  2  15  150  <---------->   strs.add(tabs)   1  0   3   10
+ 1  0  3   0   1  2  16  160  <---------->   strs.add(tabs)   1  0   4   10
+ 1  0  4   0   1  2  17  170  <---------->   strs.add(tabs)   1  0   5   10
+ 1  0  5   0   1  2  18  180  <---------->   strs.add(tabs)   1  0   6   10
+ 1  0  0   0   1  3  18  180  <>            lines.add(strs)   1  1   0    0
+ 1  1  0   0   1  3  19  190  <---------->   strs.add(tabs)   1  1   1   10
+ 1  1  1   0   1  3  20  200  <---------->   strs.add(tabs)   1  1   2   10
+ 1  1  2   0   1  3  21  210  <---------->   strs.add(tabs)   1  1   3   10
+ 1  1  3   0   1  3  22  220  <---------->   strs.add(tabs)   1  1   4   10
+ 1  1  4   0   1  3  23  230  <---------->   strs.add(tabs)   1  1   5   10
+ 1  1  5   0   1  3  24  240  <---------->   strs.add(tabs)   1  1   6   10
+ 1  1  0   0   1  4  24  240  <>            lines.add(strs)   1  2   0    0
+ 1  1  0   0   2  4  24  240  <>            pages.add(lines)  2  0   0    0
+ p  l  s   t  sp sl  ss   st  <tabs      >                      lp ll  ls   lt
+ 8   448 tabs.py         readDataFile     read 2 pages 4 lines @ 2 lines/page 24 strs @ 6 strs/line 240 tabs @ 10 tabs/str 270 objs
+ 8   449 tabs.py         readDataFile END C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat      296 bytes =    0.3 KB
+ 9   458 tabs.py               isVert BGN  len(data 0 00 000)=[2 2 6 10]
+ 9   459 tabs.py               isVert     type(data 0 00 000)=[<class 'list'> <class 'list'> <class 'list'> <class 'str'>]
+ 9   463 tabs.py               isVert END  len(data 0 00 000)=[2 2 6 10] vert=0
+ 8  1074 tabs.py            data2plrc dl=[2 2 6 10] plrc=[2 2 10 6]
+ 7   236 tabs.py            _initData reseting from n=[2 2 1 10 6] to n=[2 2 1 10 6]
+ 8   323 tabs.py             _initTpz tpz=[120 60 60 6]
+ 8  1695 tabs.py           syncBlanks tblank=- blankCol=------
+ 9   500 tabs.py         dumpDataHorz BGN (2x2x6x10) lc=1 ll=1 i=0
+Page 1 Line 1
+         1
+1234567890
+             
+----------
+----------
+----------
+0---------
+2---------
+3---------
+
+Page 1 Line 2
+         1
+1234567890
+             
+----------
+----------
+----------
+----------
+----------
+----------
+
+Page 2 Line 1
+         1
+1234567890
+             
+----------
+----------
+----------
+----------
+----------
+----------
+
+Page 2 Line 2
+         1
+1234567890
+             
+----------
+----------
+----------
+----------
+----------
+----------
+
+ 9   513 tabs.py         dumpDataHorz END (2x2x6x10) lc=1 ll=1 i=0
+ 9   483 tabs.py        transposeData BGN (2x2x6x10) External
+ 9   484 tabs.py        transposeData dl=[2 2 6 10] dt=[<class 'list'> <class 'list'> <class 'list'> <class 'str'>]
+---------- ---------- ---------- 0--------- 2--------- 3---------
+---------- ---------- ---------- ---------- ---------- ----------
+---------- ---------- ---------- ---------- ---------- ----------
+---------- ---------- ---------- ---------- ---------- ----------
+
+---023 ------ ------ ------ ------ ------ ------ ------ ------ ------
+------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+ 9   495 tabs.py        transposeData END (2x2x10x6) External
+ 9   518 tabs.py         dumpDataVert BGN (2x2x10x6) lc=1 ll=1 i=0 w=6 txt=Col 
+Page 1
+Col Line 1 Line 2
+  1 ---023 ------ 
+  2 ------ ------ 
+  3 ------ ------ 
+  4 ------ ------ 
+  5 ------ ------ 
+  6 ------ ------ 
+  7 ------ ------ 
+  8 ------ ------ 
+  9 ------ ------ 
+ 10 ------ ------ 
+Page 2
+Col Line 1 Line 2
+  1 ------ ------ 
+  2 ------ ------ 
+  3 ------ ------ 
+  4 ------ ------ 
+  5 ------ ------ 
+  6 ------ ------ 
+  7 ------ ------ 
+  8 ------ ------ 
+  9 ------ ------ 
+ 10 ------ ------ 
+ 9   526 tabs.py         dumpDataVert END (2x2x10x6) lc=1 ll=1 i=0
+ 8   410 tabs.py         saveDataFile _initData() f=2
+C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat.bck
+ 9   483 tabs.py        transposeData BGN (2x2x10x6) External
+ 9   484 tabs.py        transposeData dl=[2 2 10 6] dt=[<class 'list'> <class 'list'> <class 'list'> <class 'str'>]
+---023 ------ ------ ------ ------ ------ ------ ------ ------ ------
+------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+
+---------- ---------- ---------- 0--------- 2--------- 3---------
+---------- ---------- ---------- ---------- ---------- ----------
+---------- ---------- ---------- ---------- ---------- ----------
+---------- ---------- ---------- ---------- ---------- ----------
+ 9   495 tabs.py        transposeData END (2x2x6x10) External
+writing 1st page
+writing 1st line
+writing 1st string ----------
+writing 2nd string ----------
+writing 3rd string ----------
+writing 4th string 0---------
+writing 5th string 2---------
+writing 6th string 3---------
+writing 2nd line
+writing 1st string ----------
+writing 2nd string ----------
+writing 3rd string ----------
+writing 4th string ----------
+writing 5th string ----------
+writing 6th string ----------
+writing 2nd page
+writing 1st line
+writing 1st string ----------
+writing 2nd string ----------
+writing 3rd string ----------
+writing 4th string ----------
+writing 5th string ----------
+writing 6th string ----------
+writing 2nd line
+writing 1st string ----------
+writing 2nd string ----------
+writing 3rd string ----------
+writing 4th string ----------
+writing 5th string ----------
+writing 6th string ----------
+ 7   281 tabs.py           _initFonts pix=height/n=480/12=40.0 nl=2 ns=1 nt=6 FONT_SCALE=0.8 fs=pix*FONT_SCALE=32.00pt
+ 8  1100 tabs.py             dumpFont 4:96dpi 32.00pt 0:Lucida Console 0:(255, 64, 192, 255) 32.00pt = 0.800(pt/pix) * 40.00pixels 
+labelTextA=[1 2 3 4 5 6 7 8 9 10]
+labelTextB=[1 2 3 4 5 6 7 8 9 1]
+texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
+ 9   549 tabs.py        dumpLabelText  len(t)=10 len(t[0])=2
+ 1   2   3   4   5   6   7   8   9  10  
+                                     %  
+ 1   2   3   4   5   6   7   8   9   1  
+llText[0]=    [1 2 3 4 5 6 7 8 9 1]
+llText[1]=  [M 1 2 3 4 5 6 7 8 9 1]
+llText[2]=[R M 1 2 3 4 5 6 7 8 9 1]
+10   847 tabs.py          createTniks BGN (2x2x10x6) (1x1x1x6) [0]       0 []    J2=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] 
+11   847 tabs.py          createTniks   J1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+11   847 tabs.py          createTniks   J2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+11   847 tabs.py          createTniks   LE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+P  L  S   C    T    N    I    K No Nm Cp LR  LC Z  Tid     X       Y       W       H   G why  Name  Cnt Sz  Identity   Txt Red Grn Blu Opc Dpi B I  Font Name
+1  0  0   0    0    0    0    0  0  0  0  0   0 0    1  320.00  240.00  640.00  480.00 0 New  Page    1  0 2e29f94c040      94  39 132 255  96 0 0 Lucida Console
+1  1  0   0    0    0    0    0  0  0  0  0   0 0    2  320.00  360.00  640.00  240.00 1 New  Line    1 32 2e29f94c6a0      18  11 112 255  96 0 0 Lucida Console
+1  1  1   0    0    0    0    0  0  0  0  0   0 0    3  320.00  360.00  640.00  240.00 2 New  Sect    1 32 2e29f94cd90      15 112 112 255  96 0 0 Lucida Console
+1  1  1   1    0    0    0    0  0  0  0  0   0 0    4   32.00  360.00   64.00  240.00 3 New  Col     1 32 2e29f94df60      48  48  48 255  96 0 0 Lucida Console
+1  1  1   1    1    0    0    0  0  0  0  0   0 0    5   32.00  460.00   64.00   40.00 4 New  Tab     1 32 2e29f94e7d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    2    0    0    0  0  0  0  0   0 0    6   32.00  420.00   64.00   40.00 4 New  Tab     2 32 2e29f94f8b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    3    0    0    0  0  0  0  0   0 0    7   32.00  380.00   64.00   40.00 4 New  Tab     3 32 2e29f94ffa0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    4    0    0    0  0  0  0  0   0 0    8   32.00  340.00   64.00   40.00 4 New  Tab     4 32 2e29f994bb0 0   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    5    0    0    0  0  0  0  0   0 0    9   32.00  300.00   64.00   40.00 4 New  Tab     5 32 2e29f995270 2   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    6    0    0    0  0  0  0  0   0 0   10   32.00  260.00   64.00   40.00 4 New  Tab     6 32 2e29f995ab0 3   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2    6    0    0    0  0  0  0  0   0 0   11   96.00  360.00   64.00  240.00 3 New  Col     2 32 2e29f9962c0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   2    7    0    0    0  0  0  0  0   0 0   12   96.00  460.00   64.00   40.00 4 New  Tab     7 32 2e29f996650 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2    8    0    0    0  0  0  0  0   0 0   13   96.00  420.00   64.00   40.00 4 New  Tab     8 32 2e29f997160 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2    9    0    0    0  0  0  0  0   0 0   14   96.00  380.00   64.00   40.00 4 New  Tab     9 32 2e29f9978e0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2   10    0    0    0  0  0  0  0   0 0   15   96.00  340.00   64.00   40.00 4 New  Tab    10 32 2e29f997e50 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2   11    0    0    0  0  0  0  0   0 0   16   96.00  300.00   64.00   40.00 4 New  Tab    11 32 2e29f9a8880 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2   12    0    0    0  0  0  0  0   0 0   17   96.00  260.00   64.00   40.00 4 New  Tab    12 32 2e29f9a9000 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   12    0    0    0  0  0  0  0   0 0   18  160.00  360.00   64.00  240.00 3 New  Col     3 32 2e29f9a9780      48  48  48 255  96 0 0 Lucida Console
+1  1  1   3   13    0    0    0  0  0  0  0   0 0   19  160.00  460.00   64.00   40.00 4 New  Tab    13 32 2e29f9a9990 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   14    0    0    0  0  0  0  0   0 0   20  160.00  420.00   64.00   40.00 4 New  Tab    14 32 2e29f9aa4a0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   15    0    0    0  0  0  0  0   0 0   21  160.00  380.00   64.00   40.00 4 New  Tab    15 32 2e29f9aac20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   16    0    0    0  0  0  0  0   0 0   22  160.00  340.00   64.00   40.00 4 New  Tab    16 32 2e29f9ab3a0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   17    0    0    0  0  0  0  0   0 0   23  160.00  300.00   64.00   40.00 4 New  Tab    17 32 2e29f9abb20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   18    0    0    0  0  0  0  0   0 0   24  160.00  260.00   64.00   40.00 4 New  Tab    18 32 2e29f9abfd0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   18    0    0    0  0  0  0  0   0 0   25  224.00  360.00   64.00  240.00 3 New  Col     4 32 2e29f9bcac0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   4   19    0    0    0  0  0  0  0   0 0   26  224.00  460.00   64.00   40.00 4 New  Tab    19 32 2e29f9bcd60 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   20    0    0    0  0  0  0  0   0 0   27  224.00  420.00   64.00   40.00 4 New  Tab    20 32 2e29f9bd870 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   21    0    0    0  0  0  0  0   0 0   28  224.00  380.00   64.00   40.00 4 New  Tab    21 32 2e29f9bdff0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   22    0    0    0  0  0  0  0   0 0   29  224.00  340.00   64.00   40.00 4 New  Tab    22 32 2e29f9be770 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   23    0    0    0  0  0  0  0   0 0   30  224.00  300.00   64.00   40.00 4 New  Tab    23 32 2e29f9beef0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   24    0    0    0  0  0  0  0   0 0   31  224.00  260.00   64.00   40.00 4 New  Tab    24 32 2e29f9bf670 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   24    0    0    0  0  0  0  0   0 0   32  288.00  360.00   64.00  240.00 3 New  Col     5 32 2e29f9bfdf0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   5   25    0    0    0  0  0  0  0   0 0   33  288.00  460.00   64.00   40.00 4 New  Tab    25 32 2e29f9cc0d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   26    0    0    0  0  0  0  0   0 0   34  288.00  420.00   64.00   40.00 4 New  Tab    26 32 2e29f9ccbe0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   27    0    0    0  0  0  0  0   0 0   35  288.00  380.00   64.00   40.00 4 New  Tab    27 32 2e29f9cd360 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   28    0    0    0  0  0  0  0   0 0   36  288.00  340.00   64.00   40.00 4 New  Tab    28 32 2e29f9cdae0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   29    0    0    0  0  0  0  0   0 0   37  288.00  300.00   64.00   40.00 4 New  Tab    29 32 2e29f9ce260 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   30    0    0    0  0  0  0  0   0 0   38  288.00  260.00   64.00   40.00 4 New  Tab    30 32 2e29f9ce9e0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   30    0    0    0  0  0  0  0   0 0   39  352.00  360.00   64.00  240.00 3 New  Col     6 32 2e29f9cf160      48  48  48 255  96 0 0 Lucida Console
+1  1  1   6   31    0    0    0  0  0  0  0   0 0   40  352.00  460.00   64.00   40.00 4 New  Tab    31 32 2e29f9cf400 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   32    0    0    0  0  0  0  0   0 0   41  352.00  420.00   64.00   40.00 4 New  Tab    32 32 2e29f9cff10 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   33    0    0    0  0  0  0  0   0 0   42  352.00  380.00   64.00   40.00 4 New  Tab    33 32 2e2a2b846d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   34    0    0    0  0  0  0  0   0 0   43  352.00  340.00   64.00   40.00 4 New  Tab    34 32 2e2a2b84e50 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   35    0    0    0  0  0  0  0   0 0   44  352.00  300.00   64.00   40.00 4 New  Tab    35 32 2e2a2b85630 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   36    0    0    0  0  0  0  0   0 0   45  352.00  260.00   64.00   40.00 4 New  Tab    36 32 2e2a2b85db0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   36    0    0    0  0  0  0  0   0 0   46  416.00  360.00   64.00  240.00 3 New  Col     7 32 2e2a2b86530      48  48  48 255  96 0 0 Lucida Console
+1  1  1   7   37    0    0    0  0  0  0  0   0 0   47  416.00  460.00   64.00   40.00 4 New  Tab    37 32 2e2a2b867d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   38    0    0    0  0  0  0  0   0 0   48  416.00  420.00   64.00   40.00 4 New  Tab    38 32 2e2a2b872e0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   39    0    0    0  0  0  0  0   0 0   49  416.00  380.00   64.00   40.00 4 New  Tab    39 32 2e2a2b87a60 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   40    0    0    0  0  0  0  0   0 0   50  416.00  340.00   64.00   40.00 4 New  Tab    40 32 2e2a2b87fd0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   41    0    0    0  0  0  0  0   0 0   51  416.00  300.00   64.00   40.00 4 New  Tab    41 32 2e29f83ab30 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   42    0    0    0  0  0  0  0   0 0   52  416.00  260.00   64.00   40.00 4 New  Tab    42 32 2e29f9bcd00 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   42    0    0    0  0  0  0  0   0 0   53  480.00  360.00   64.00  240.00 3 New  Col     8 32 2e2a2ba0f10      48  48  48 255  96 0 0 Lucida Console
+1  1  1   8   43    0    0    0  0  0  0  0   0 0   54  480.00  460.00   64.00   40.00 4 New  Tab    43 32 2e2a2ba11b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   44    0    0    0  0  0  0  0   0 0   55  480.00  420.00   64.00   40.00 4 New  Tab    44 32 2e2a2ba1cc0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   45    0    0    0  0  0  0  0   0 0   56  480.00  380.00   64.00   40.00 4 New  Tab    45 32 2e2a2ba2440 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   46    0    0    0  0  0  0  0   0 0   57  480.00  340.00   64.00   40.00 4 New  Tab    46 32 2e2a2ba2bc0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   47    0    0    0  0  0  0  0   0 0   58  480.00  300.00   64.00   40.00 4 New  Tab    47 32 2e2a2ba3340 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   48    0    0    0  0  0  0  0   0 0   59  480.00  260.00   64.00   40.00 4 New  Tab    48 32 2e2a2ba3ac0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   48    0    0    0  0  0  0  0   0 0   60  544.00  360.00   64.00  240.00 3 New  Col     9 32 2e2a2ba3fa0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   9   49    0    0    0  0  0  0  0   0 0   61  544.00  460.00   64.00   40.00 4 New  Tab    49 32 2e2a2bb4520 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   50    0    0    0  0  0  0  0   0 0   62  544.00  420.00   64.00   40.00 4 New  Tab    50 32 2e2a2bb5030 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   51    0    0    0  0  0  0  0   0 0   63  544.00  380.00   64.00   40.00 4 New  Tab    51 32 2e2a2bb57b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   52    0    0    0  0  0  0  0   0 0   64  544.00  340.00   64.00   40.00 4 New  Tab    52 32 2e2a2bb5f30 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   53    0    0    0  0  0  0  0   0 0   65  544.00  300.00   64.00   40.00 4 New  Tab    53 32 2e2a2bb66b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   54    0    0    0  0  0  0  0   0 0   66  544.00  260.00   64.00   40.00 4 New  Tab    54 32 2e2a2bb6e30 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   54    0    0    0  0  0  0  0   0 0   67  608.00  360.00   64.00  240.00 3 New  Col    10 32 2e2a2bb75b0      48  48  48 255  96 0 0 Lucida Console
+1  1  1  10   55    0    0    0  0  0  0  0   0 0   68  608.00  460.00   64.00   40.00 4 New  Tab    55 32 2e2a2bb7850 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   56    0    0    0  0  0  0  0   0 0   69  608.00  420.00   64.00   40.00 4 New  Tab    56 32 2e2a2bb7e80 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   57    0    0    0  0  0  0  0   0 0   70  608.00  380.00   64.00   40.00 4 New  Tab    57 32 2e2a2bd0b20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   58    0    0    0  0  0  0  0   0 0   71  608.00  340.00   64.00   40.00 4 New  Tab    58 32 2e2a2bd12a0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   59    0    0    0  0  0  0  0   0 0   72  608.00  300.00   64.00   40.00 4 New  Tab    59 32 2e2a2bd1a20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   60    0    0    0  0  0  0  0   0 0   73  608.00  260.00   64.00   40.00 4 New  Tab    60 32 2e2a2bd21a0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  1  10   60    0    0    0  0  0  0  0   0 0   74  320.00  120.00  640.00  240.00 1 New  Line    2 32 2e2a2bd2920      18  11 112 255  96 0 0 Lucida Console
+1  2  2  10   60    0    0    0  0  0  0  0   0 0   75  320.00  120.00  640.00  240.00 2 New  Sect    2 32 2e2a2bd2bc0      15 112 112 255  96 0 0 Lucida Console
+1  2  2  11   60    0    0    0  0  0  0  0   0 0   76   32.00  120.00   64.00  240.00 3 New  Col    11 32 2e2a2bd31f0      48  48  48 255  96 0 0 Lucida Console
+1  2  2  11   61    0    0    0  0  0  0  0   0 0   77   32.00  220.00   64.00   40.00 4 New  Tab    61 32 2e2a2bd3820 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   62    0    0    0  0  0  0  0   0 0   78   32.00  180.00   64.00   40.00 4 New  Tab    62 32 2e2a2bd3e50 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   63    0    0    0  0  0  0  0   0 0   79   32.00  140.00   64.00   40.00 4 New  Tab    63 32 2e2a2bdcaf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   64    0    0    0  0  0  0  0   0 0   80   32.00  100.00   64.00   40.00 4 New  Tab    64 32 2e2a2bdd270 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   65    0    0    0  0  0  0  0   0 0   81   32.00   60.00   64.00   40.00 4 New  Tab    65 32 2e2a2bdd9f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   66    0    0    0  0  0  0  0   0 0   82   32.00   20.00   64.00   40.00 4 New  Tab    66 32 2e2a2bde170 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   66    0    0    0  0  0  0  0   0 0   83   96.00  120.00   64.00  240.00 3 New  Col    12 32 2e2a2bde950      48  48  48 255  96 0 0 Lucida Console
+1  2  2  12   67    0    0    0  0  0  0  0   0 0   84   96.00  220.00   64.00   40.00 4 New  Tab    67 32 2e2a2bdebf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   68    0    0    0  0  0  0  0   0 0   85   96.00  180.00   64.00   40.00 4 New  Tab    68 32 2e2a2bdf580 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   69    0    0    0  0  0  0  0   0 0   86   96.00  140.00   64.00   40.00 4 New  Tab    69 32 2e2a2bdfcd0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   70    0    0    0  0  0  0  0   0 0   87   96.00  100.00   64.00   40.00 4 New  Tab    70 32 2e2a2bdff70 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   71    0    0    0  0  0  0  0   0 0   88   96.00   60.00   64.00   40.00 4 New  Tab    71 32 2e2a2bf8c10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   72    0    0    0  0  0  0  0   0 0   89   96.00   20.00   64.00   40.00 4 New  Tab    72 32 2e2a2bf9390 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   72    0    0    0  0  0  0  0   0 0   90  160.00  120.00   64.00  240.00 3 New  Col    13 32 2e2a2bf9b10      48  48  48 255  96 0 0 Lucida Console
+1  2  2  13   73    0    0    0  0  0  0  0   0 0   91  160.00  220.00   64.00   40.00 4 New  Tab    73 32 2e2a2bf9db0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   74    0    0    0  0  0  0  0   0 0   92  160.00  180.00   64.00   40.00 4 New  Tab    74 32 2e2a2bfa8c0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   75    0    0    0  0  0  0  0   0 0   93  160.00  140.00   64.00   40.00 4 New  Tab    75 32 2e2a2bfb040 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   76    0    0    0  0  0  0  0   0 0   94  160.00  100.00   64.00   40.00 4 New  Tab    76 32 2e2a2bfb7c0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   77    0    0    0  0  0  0  0   0 0   95  160.00   60.00   64.00   40.00 4 New  Tab    77 32 2e2a2bfbf40 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   78    0    0    0  0  0  0  0   0 0   96  160.00   20.00   64.00   40.00 4 New  Tab    78 32 2e2a2c0c700 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   78    0    0    0  0  0  0  0   0 0   97  224.00  120.00   64.00  240.00 3 New  Col    14 32 2e2a2c0ce80      48  48  48 255  96 0 0 Lucida Console
+1  2  2  14   79    0    0    0  0  0  0  0   0 0   98  224.00  220.00   64.00   40.00 4 New  Tab    79 32 2e2a2c0d120 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   80    0    0    0  0  0  0  0   0 0   99  224.00  180.00   64.00   40.00 4 New  Tab    80 32 2e2a2c0dc30 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   81    0    0    0  0  0  0  0   0 0  100  224.00  140.00   64.00   40.00 4 New  Tab    81 32 2e2a2c0e3b0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   82    0    0    0  0  0  0  0   0 0  101  224.00  100.00   64.00   40.00 4 New  Tab    82 32 2e29f9abfa0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   83    0    0    0  0  0  0  0   0 0  102  224.00   60.00   64.00   40.00 4 New  Tab    83 32 2e2a2bfbd60 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   84    0    0    0  0  0  0  0   0 0  103  224.00   20.00   64.00   40.00 4 New  Tab    84 32 2e2a2c0f0d0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   84    0    0    0  0  0  0  0   0 0  104  288.00  120.00   64.00  240.00 3 New  Col    15 32 2e2a2c0f850      48  48  48 255  96 0 0 Lucida Console
+1  2  2  15   85    0    0    0  0  0  0  0   0 0  105  288.00  220.00   64.00   40.00 4 New  Tab    85 32 2e2a2c0faf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   86    0    0    0  0  0  0  0   0 0  106  288.00  180.00   64.00   40.00 4 New  Tab    86 32 2e2a2c20640 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   87    0    0    0  0  0  0  0   0 0  107  288.00  140.00   64.00   40.00 4 New  Tab    87 32 2e2a2c20dc0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   88    0    0    0  0  0  0  0   0 0  108  288.00  100.00   64.00   40.00 4 New  Tab    88 32 2e2a2c21570 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   89    0    0    0  0  0  0  0   0 0  109  288.00   60.00   64.00   40.00 4 New  Tab    89 32 2e2a2c21cf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   90    0    0    0  0  0  0  0   0 0  110  288.00   20.00   64.00   40.00 4 New  Tab    90 32 2e2a2c22470 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   90    0    0    0  0  0  0  0   0 0  111  352.00  120.00   64.00  240.00 3 New  Col    16 32 2e2a2c22bf0      48  48  48 255  96 0 0 Lucida Console
+1  2  2  16   91    0    0    0  0  0  0  0   0 0  112  352.00  220.00   64.00   40.00 4 New  Tab    91 32 2e2a2c22e90 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   92    0    0    0  0  0  0  0   0 0  113  352.00  180.00   64.00   40.00 4 New  Tab    92 32 2e2a2c239a0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   93    0    0    0  0  0  0  0   0 0  114  352.00  140.00   64.00   40.00 4 New  Tab    93 32 2e2a2c23f40 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   94    0    0    0  0  0  0  0   0 0  115  352.00  100.00   64.00   40.00 4 New  Tab    94 32 2e2a2c348e0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   95    0    0    0  0  0  0  0   0 0  116  352.00   60.00   64.00   40.00 4 New  Tab    95 32 2e2a2c35060 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   96    0    0    0  0  0  0  0   0 0  117  352.00   20.00   64.00   40.00 4 New  Tab    96 32 2e2a2c357e0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17   96    0    0    0  0  0  0  0   0 0  118  416.00  120.00   64.00  240.00 3 New  Col    17 32 2e2a2c35f60      48  48  48 255  96 0 0 Lucida Console
+1  2  2  17   97    0    0    0  0  0  0  0   0 0  119  416.00  220.00   64.00   40.00 4 New  Tab    97 32 2e2a2c36200 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17   98    0    0    0  0  0  0  0   0 0  120  416.00  180.00   64.00   40.00 4 New  Tab    98 32 2e2a2c36d10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17   99    0    0    0  0  0  0  0   0 0  121  416.00  140.00   64.00   40.00 4 New  Tab    99 32 2e2a2c37490 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17  100    0    0    0  0  0  0  0   0 0  122  416.00  100.00   64.00   40.00 4 New  Tab   100 32 2e2a2c37c10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17  101    0    0    0  0  0  0  0   0 0  123  416.00   60.00   64.00   40.00 4 New  Tab   101 32 2e2a2c37eb0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17  102    0    0    0  0  0  0  0   0 0  124  416.00   20.00   64.00   40.00 4 New  Tab   102 32 2e2a2c40b50 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  102    0    0    0  0  0  0  0   0 0  125  480.00  120.00   64.00  240.00 3 New  Col    18 32 2e2a2c412d0      48  48  48 255  96 0 0 Lucida Console
+1  2  2  18  103    0    0    0  0  0  0  0   0 0  126  480.00  220.00   64.00   40.00 4 New  Tab   103 32 2e2a2c41570 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  104    0    0    0  0  0  0  0   0 0  127  480.00  180.00   64.00   40.00 4 New  Tab   104 32 2e2a2c42080 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  105    0    0    0  0  0  0  0   0 0  128  480.00  140.00   64.00   40.00 4 New  Tab   105 32 2e2a2c42800 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  106    0    0    0  0  0  0  0   0 0  129  480.00  100.00   64.00   40.00 4 New  Tab   106 32 2e2a2c42f80 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  107    0    0    0  0  0  0  0   0 0  130  480.00   60.00   64.00   40.00 4 New  Tab   107 32 2e2a2c43700 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  108    0    0    0  0  0  0  0   0 0  131  480.00   20.00   64.00   40.00 4 New  Tab   108 32 2e2a2c43e80 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  108    0    0    0  0  0  0  0   0 0  132  544.00  120.00   64.00  240.00 3 New  Col    19 32 2e2a2c5c640      48  48  48 255  96 0 0 Lucida Console
+1  2  2  19  109    0    0    0  0  0  0  0   0 0  133  544.00  220.00   64.00   40.00 4 New  Tab   109 32 2e2a2c5c8e0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  110    0    0    0  0  0  0  0   0 0  134  544.00  180.00   64.00   40.00 4 New  Tab   110 32 2e2a2c5d3f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  111    0    0    0  0  0  0  0   0 0  135  544.00  140.00   64.00   40.00 4 New  Tab   111 32 2e2a2c5db70 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  112    0    0    0  0  0  0  0   0 0  136  544.00  100.00   64.00   40.00 4 New  Tab   112 32 2e2a2c5e2f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  113    0    0    0  0  0  0  0   0 0  137  544.00   60.00   64.00   40.00 4 New  Tab   113 32 2e2a2c5ea70 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  114    0    0    0  0  0  0  0   0 0  138  544.00   20.00   64.00   40.00 4 New  Tab   114 32 2e2a2c5f1f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  114    0    0    0  0  0  0  0   0 0  139  608.00  120.00   64.00  240.00 3 New  Col    20 32 2e2a2c5f970      48  48  48 255  96 0 0 Lucida Console
+1  2  2  20  115    0    0    0  0  0  0  0   0 0  140  608.00  220.00   64.00   40.00 4 New  Tab   115 32 2e2a2c5fc10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  116    0    0    0  0  0  0  0   0 0  141  608.00  180.00   64.00   40.00 4 New  Tab   116 32 2e2a2c7c760 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  117    0    0    0  0  0  0  0   0 0  142  608.00  140.00   64.00   40.00 4 New  Tab   117 32 2e2a2c7cee0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  118    0    0    0  0  0  0  0   0 0  143  608.00  100.00   64.00   40.00 4 New  Tab   118 32 2e2a2c7d660 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  119    0    0    0  0  0  0  0   0 0  144  608.00   60.00   64.00   40.00 4 New  Tab   119 32 2e2a2c7dde0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  120    0    0    0  0  0  0  0   0 0  145  608.00   20.00   64.00   40.00 4 New  Tab   120 32 2e2a2c7e560 -   255 128   0 255  96 0 0 Lucida Console
+2  2  2  20  120    0    0    0  0  0  0  0   0 0  146  320.00  240.00  640.00  480.00 0 New  Page    2 32 2e2a2c7ece0      94  39 132 255  96 0 0 Lucida Console
+2  3  2  20  120    0    0    0  0  0  0  0   0 0  147  320.00  360.00  640.00  240.00 1 New  Line    3  0 2e2a2c7ef80      18  11 112 255  96 0 0 Lucida Console
+2  3  3  20  120    0    0    0  0  0  0  0   0 0  148  320.00  360.00  640.00  240.00 2 New  Sect    3  0 2e2a2c7f5b0      15 112 112 255  96 0 0 Lucida Console
+2  3  3  21  120    0    0    0  0  0  0  0   0 0  149   32.00  360.00   64.00  240.00 3 New  Col    21  0 2e2a2c7fbe0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  21  121    0    0    0  0  0  0  0   0 0  150   32.00  460.00   64.00   40.00 4 New  Tab   121  0 2e2a2c8c250 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  122    0    0    0  0  0  0  0   0 0  151   32.00  420.00   64.00   40.00 4 New  Tab   122  0 2e2a2bf9930 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  123    0    0    0  0  0  0  0   0 0  152   32.00  380.00   64.00   40.00 4 New  Tab   123  0 2e2a2c5e890 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  124    0    0    0  0  0  0  0   0 0  153   32.00  340.00   64.00   40.00 4 New  Tab   124  0 2e2a2c8d6f0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  125    0    0    0  0  0  0  0   0 0  154   32.00  300.00   64.00   40.00 4 New  Tab   125  0 2e2a2c8de70 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  126    0    0    0  0  0  0  0   0 0  155   32.00  260.00   64.00   40.00 4 New  Tab   126  0 2e2a2c8e5f0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  126    0    0    0  0  0  0  0   0 0  156   96.00  360.00   64.00  240.00 3 New  Col    22  0 2e2a2c8edd0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  22  127    0    0    0  0  0  0  0   0 0  157   96.00  460.00   64.00   40.00 4 New  Tab   127  0 2e2a2c8f070 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  128    0    0    0  0  0  0  0   0 0  158   96.00  420.00   64.00   40.00 4 New  Tab   128  0 2e2a2c8fac0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  129    0    0    0  0  0  0  0   0 0  159   96.00  380.00   64.00   40.00 4 New  Tab   129  0 2e2a2c8fd30 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  130    0    0    0  0  0  0  0   0 0  160   96.00  340.00   64.00   40.00 4 New  Tab   130  0 2e2a2ca0a30 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  131    0    0    0  0  0  0  0   0 0  161   96.00  300.00   64.00   40.00 4 New  Tab   131  0 2e2a2ca1210 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  132    0    0    0  0  0  0  0   0 0  162   96.00  260.00   64.00   40.00 4 New  Tab   132  0 2e2a2ca1990 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  132    0    0    0  0  0  0  0   0 0  163  160.00  360.00   64.00  240.00 3 New  Col    23  0 2e2a2ca2110      48  48  48 255  96 0 0 Lucida Console
+2  3  3  23  133    0    0    0  0  0  0  0   0 0  164  160.00  460.00   64.00   40.00 4 New  Tab   133  0 2e2a2ca23b0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  134    0    0    0  0  0  0  0   0 0  165  160.00  420.00   64.00   40.00 4 New  Tab   134  0 2e2a2ca2ec0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  135    0    0    0  0  0  0  0   0 0  166  160.00  380.00   64.00   40.00 4 New  Tab   135  0 2e2a2ca3640 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  136    0    0    0  0  0  0  0   0 0  167  160.00  340.00   64.00   40.00 4 New  Tab   136  0 2e2a2ca3dc0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  137    0    0    0  0  0  0  0   0 0  168  160.00  300.00   64.00   40.00 4 New  Tab   137  0 2e2a2cb0580 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  138    0    0    0  0  0  0  0   0 0  169  160.00  260.00   64.00   40.00 4 New  Tab   138  0 2e2a2cb0d00 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  138    0    0    0  0  0  0  0   0 0  170  224.00  360.00   64.00  240.00 3 New  Col    24  0 2e2a2cb14e0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  24  139    0    0    0  0  0  0  0   0 0  171  224.00  460.00   64.00   40.00 4 New  Tab   139  0 2e2a2cb1780 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  140    0    0    0  0  0  0  0   0 0  172  224.00  420.00   64.00   40.00 4 New  Tab   140  0 2e2a2cb2200 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  141    0    0    0  0  0  0  0   0 0  173  224.00  380.00   64.00   40.00 4 New  Tab   141  0 2e2a2cb2980 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  142    0    0    0  0  0  0  0   0 0  174  224.00  340.00   64.00   40.00 4 New  Tab   142  0 2e2a2cb3100 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  143    0    0    0  0  0  0  0   0 0  175  224.00  300.00   64.00   40.00 4 New  Tab   143  0 2e2a2cb3880 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  144    0    0    0  0  0  0  0   0 0  176  224.00  260.00   64.00   40.00 4 New  Tab   144  0 2e2a2cb3ee0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  144    0    0    0  0  0  0  0   0 0  177  288.00  360.00   64.00  240.00 3 New  Col    25  0 2e2a2cc87c0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  25  145    0    0    0  0  0  0  0   0 0  178  288.00  460.00   64.00   40.00 4 New  Tab   145  0 2e2a2cc8a60 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  146    0    0    0  0  0  0  0   0 0  179  288.00  420.00   64.00   40.00 4 New  Tab   146  0 2e2a2cc9570 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  147    0    0    0  0  0  0  0   0 0  180  288.00  380.00   64.00   40.00 4 New  Tab   147  0 2e2a2cc9cf0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  148    0    0    0  0  0  0  0   0 0  181  288.00  340.00   64.00   40.00 4 New  Tab   148  0 2e2a2cca470 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  149    0    0    0  0  0  0  0   0 0  182  288.00  300.00   64.00   40.00 4 New  Tab   149  0 2e2a2ccabf0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  150    0    0    0  0  0  0  0   0 0  183  288.00  260.00   64.00   40.00 4 New  Tab   150  0 2e2a2ccb370 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  150    0    0    0  0  0  0  0   0 0  184  352.00  360.00   64.00  240.00 3 New  Col    26  0 2e2a2ccbaf0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  26  151    0    0    0  0  0  0  0   0 0  185  352.00  460.00   64.00   40.00 4 New  Tab   151  0 2e2a2ccbd90 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  152    0    0    0  0  0  0  0   0 0  186  352.00  420.00   64.00   40.00 4 New  Tab   152  0 2e2a2cec8e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  153    0    0    0  0  0  0  0   0 0  187  352.00  380.00   64.00   40.00 4 New  Tab   153  0 2e2a2ced060 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  154    0    0    0  0  0  0  0   0 0  188  352.00  340.00   64.00   40.00 4 New  Tab   154  0 2e2a2ced7e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  155    0    0    0  0  0  0  0   0 0  189  352.00  300.00   64.00   40.00 4 New  Tab   155  0 2e2a2cedf90 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  156    0    0    0  0  0  0  0   0 0  190  352.00  260.00   64.00   40.00 4 New  Tab   156  0 2e2a2cee710 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  156    0    0    0  0  0  0  0   0 0  191  416.00  360.00   64.00  240.00 3 New  Col    27  0 2e2a2ceee90      48  48  48 255  96 0 0 Lucida Console
+2  3  3  27  157    0    0    0  0  0  0  0   0 0  192  416.00  460.00   64.00   40.00 4 New  Tab   157  0 2e2a2cef130 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  158    0    0    0  0  0  0  0   0 0  193  416.00  420.00   64.00   40.00 4 New  Tab   158  0 2e2a2cefc40 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  159    0    0    0  0  0  0  0   0 0  194  416.00  380.00   64.00   40.00 4 New  Tab   159  0 2e2a2cefee0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  160    0    0    0  0  0  0  0   0 0  195  416.00  340.00   64.00   40.00 4 New  Tab   160  0 2e2a2cfcb80 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  161    0    0    0  0  0  0  0   0 0  196  416.00  300.00   64.00   40.00 4 New  Tab   161  0 2e2a2cfd300 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  162    0    0    0  0  0  0  0   0 0  197  416.00  260.00   64.00   40.00 4 New  Tab   162  0 2e2a2cfda80 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  162    0    0    0  0  0  0  0   0 0  198  480.00  360.00   64.00  240.00 3 New  Col    28  0 2e2a2cfe200      48  48  48 255  96 0 0 Lucida Console
+2  3  3  28  163    0    0    0  0  0  0  0   0 0  199  480.00  460.00   64.00   40.00 4 New  Tab   163  0 2e2a2cfe4a0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  164    0    0    0  0  0  0  0   0 0  200  480.00  420.00   64.00   40.00 4 New  Tab   164  0 2e2a2cfefb0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  165    0    0    0  0  0  0  0   0 0  201  480.00  380.00   64.00   40.00 4 New  Tab   165  0 2e2a2c5f790 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  166    0    0    0  0  0  0  0   0 0  202  480.00  340.00   64.00   40.00 4 New  Tab   166  0 2e2a2cb36a0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  167    0    0    0  0  0  0  0   0 0  203  480.00  300.00   64.00   40.00 4 New  Tab   167  0 2e2a2cffcd0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  168    0    0    0  0  0  0  0   0 0  204  480.00  260.00   64.00   40.00 4 New  Tab   168  0 2e2a2cfff70 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  168    0    0    0  0  0  0  0   0 0  205  544.00  360.00   64.00  240.00 3 New  Col    29  0 2e2a2d10c10      48  48  48 255  96 0 0 Lucida Console
+2  3  3  29  169    0    0    0  0  0  0  0   0 0  206  544.00  460.00   64.00   40.00 4 New  Tab   169  0 2e2a2d10eb0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  170    0    0    0  0  0  0  0   0 0  207  544.00  420.00   64.00   40.00 4 New  Tab   170  0 2e2a2d119c0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  171    0    0    0  0  0  0  0   0 0  208  544.00  380.00   64.00   40.00 4 New  Tab   171  0 2e2a2d12140 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  172    0    0    0  0  0  0  0   0 0  209  544.00  340.00   64.00   40.00 4 New  Tab   172  0 2e2a2d128c0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  173    0    0    0  0  0  0  0   0 0  210  544.00  300.00   64.00   40.00 4 New  Tab   173  0 2e2a2d13070 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  174    0    0    0  0  0  0  0   0 0  211  544.00  260.00   64.00   40.00 4 New  Tab   174  0 2e2a2d137f0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  174    0    0    0  0  0  0  0   0 0  212  608.00  360.00   64.00  240.00 3 New  Col    30  0 2e2a2d13f10      48  48  48 255  96 0 0 Lucida Console
+2  3  3  30  175    0    0    0  0  0  0  0   0 0  213  608.00  460.00   64.00   40.00 4 New  Tab   175  0 2e2a2d20250 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  176    0    0    0  0  0  0  0   0 0  214  608.00  420.00   64.00   40.00 4 New  Tab   176  0 2e2a2d20d60 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  177    0    0    0  0  0  0  0   0 0  215  608.00  380.00   64.00   40.00 4 New  Tab   177  0 2e2a2d214e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  178    0    0    0  0  0  0  0   0 0  216  608.00  340.00   64.00   40.00 4 New  Tab   178  0 2e2a2d21c60 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  179    0    0    0  0  0  0  0   0 0  217  608.00  300.00   64.00   40.00 4 New  Tab   179  0 2e2a2d223e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  180    0    0    0  0  0  0  0   0 0  218  608.00  260.00   64.00   40.00 4 New  Tab   180  0 2e2a2d22b60 -   255 128   0 255  96 0 0 Lucida Console
+2  4  3  30  180    0    0    0  0  0  0  0   0 0  219  320.00  120.00  640.00  240.00 1 New  Line    4  0 2e2a2d232e0      18  11 112 255  96 0 0 Lucida Console
+2  4  4  30  180    0    0    0  0  0  0  0   0 0  220  320.00  120.00  640.00  240.00 2 New  Sect    4  0 2e2a2d23580      15 112 112 255  96 0 0 Lucida Console
+2  4  4  31  180    0    0    0  0  0  0  0   0 0  221   32.00  120.00   64.00  240.00 3 New  Col    31  0 2e2a2d23bb0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  31  181    0    0    0  0  0  0  0   0 0  222   32.00  220.00   64.00   40.00 4 New  Tab   181  0 2e2a2d38220 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  182    0    0    0  0  0  0  0   0 0  223   32.00  180.00   64.00   40.00 4 New  Tab   182  0 2e2a2d38d30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  183    0    0    0  0  0  0  0   0 0  224   32.00  140.00   64.00   40.00 4 New  Tab   183  0 2e2a2d394b0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  184    0    0    0  0  0  0  0   0 0  225   32.00  100.00   64.00   40.00 4 New  Tab   184  0 2e2a2d39c30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  185    0    0    0  0  0  0  0   0 0  226   32.00   60.00   64.00   40.00 4 New  Tab   185  0 2e2a2d3a3b0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  186    0    0    0  0  0  0  0   0 0  227   32.00   20.00   64.00   40.00 4 New  Tab   186  0 2e2a2d3ab30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  186    0    0    0  0  0  0  0   0 0  228   96.00  120.00   64.00  240.00 3 New  Col    32  0 2e2a2d3b2b0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  32  187    0    0    0  0  0  0  0   0 0  229   96.00  220.00   64.00   40.00 4 New  Tab   187  0 2e2a2d3b550 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  188    0    0    0  0  0  0  0   0 0  230   96.00  180.00   64.00   40.00 4 New  Tab   188  0 2e2a2d3be50 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  189    0    0    0  0  0  0  0   0 0  231   96.00  140.00   64.00   40.00 4 New  Tab   189  0 2e2a2d58820 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  190    0    0    0  0  0  0  0   0 0  232   96.00  100.00   64.00   40.00 4 New  Tab   190  0 2e2a2d58fa0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  191    0    0    0  0  0  0  0   0 0  233   96.00   60.00   64.00   40.00 4 New  Tab   191  0 2e2a2d59720 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  192    0    0    0  0  0  0  0   0 0  234   96.00   20.00   64.00   40.00 4 New  Tab   192  0 2e2a2d59ea0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  192    0    0    0  0  0  0  0   0 0  235  160.00  120.00   64.00  240.00 3 New  Col    33  0 2e2a2d5a620      48  48  48 255  96 0 0 Lucida Console
+2  4  4  33  193    0    0    0  0  0  0  0   0 0  236  160.00  220.00   64.00   40.00 4 New  Tab   193  0 2e2a2d5a8c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  194    0    0    0  0  0  0  0   0 0  237  160.00  180.00   64.00   40.00 4 New  Tab   194  0 2e2a2d5b3d0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  195    0    0    0  0  0  0  0   0 0  238  160.00  140.00   64.00   40.00 4 New  Tab   195  0 2e2a2d5bb50 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  196    0    0    0  0  0  0  0   0 0  239  160.00  100.00   64.00   40.00 4 New  Tab   196  0 2e2a2d5bfd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  197    0    0    0  0  0  0  0   0 0  240  160.00   60.00   64.00   40.00 4 New  Tab   197  0 2e2a2d68a90 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  198    0    0    0  0  0  0  0   0 0  241  160.00   20.00   64.00   40.00 4 New  Tab   198  0 2e2a2d69210 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  198    0    0    0  0  0  0  0   0 0  242  224.00  120.00   64.00  240.00 3 New  Col    34  0 2e2a2d69990      48  48  48 255  96 0 0 Lucida Console
+2  4  4  34  199    0    0    0  0  0  0  0   0 0  243  224.00  220.00   64.00   40.00 4 New  Tab   199  0 2e2a2d69c30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  200    0    0    0  0  0  0  0   0 0  244  224.00  180.00   64.00   40.00 4 New  Tab   200  0 2e2a2d6a740 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  201    0    0    0  0  0  0  0   0 0  245  224.00  140.00   64.00   40.00 4 New  Tab   201  0 2e2a2d6aec0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  202    0    0    0  0  0  0  0   0 0  246  224.00  100.00   64.00   40.00 4 New  Tab   202  0 2e2a2d6b640 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  203    0    0    0  0  0  0  0   0 0  247  224.00   60.00   64.00   40.00 4 New  Tab   203  0 2e2a2d6bdc0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  204    0    0    0  0  0  0  0   0 0  248  224.00   20.00   64.00   40.00 4 New  Tab   204  0 2e2a2d7c580 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  204    0    0    0  0  0  0  0   0 0  249  288.00  120.00   64.00  240.00 3 New  Col    35  0 2e2a2d7cd00      48  48  48 255  96 0 0 Lucida Console
+2  4  4  35  205    0    0    0  0  0  0  0   0 0  250  288.00  220.00   64.00   40.00 4 New  Tab   205  0 2e2a2d7cfa0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  206    0    0    0  0  0  0  0   0 0  251  288.00  180.00   64.00   40.00 4 New  Tab   206  0 2e2a2cc85e0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  207    0    0    0  0  0  0  0   0 0  252  288.00  140.00   64.00   40.00 4 New  Tab   207  0 2e2a2d5bdf0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  208    0    0    0  0  0  0  0   0 0  253  288.00  100.00   64.00   40.00 4 New  Tab   208  0 2e2a2d7e050 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  209    0    0    0  0  0  0  0   0 0  254  288.00   60.00   64.00   40.00 4 New  Tab   209  0 2e2a2d7e7d0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  210    0    0    0  0  0  0  0   0 0  255  288.00   20.00   64.00   40.00 4 New  Tab   210  0 2e2a2d7ef50 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  210    0    0    0  0  0  0  0   0 0  256  352.00  120.00   64.00  240.00 3 New  Col    36  0 2e2a2d7f6d0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  36  211    0    0    0  0  0  0  0   0 0  257  352.00  220.00   64.00   40.00 4 New  Tab   211  0 2e2a2d7f970 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  212    0    0    0  0  0  0  0   0 0  258  352.00  180.00   64.00   40.00 4 New  Tab   212  0 2e2a2d7ffa0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  213    0    0    0  0  0  0  0   0 0  259  352.00  140.00   64.00   40.00 4 New  Tab   213  0 2e2a2d90c10 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  214    0    0    0  0  0  0  0   0 0  260  352.00  100.00   64.00   40.00 4 New  Tab   214  0 2e2a2d913c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  215    0    0    0  0  0  0  0   0 0  261  352.00   60.00   64.00   40.00 4 New  Tab   215  0 2e2a2d91b40 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  216    0    0    0  0  0  0  0   0 0  262  352.00   20.00   64.00   40.00 4 New  Tab   216  0 2e2a2d922c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  216    0    0    0  0  0  0  0   0 0  263  416.00  120.00   64.00  240.00 3 New  Col    37  0 2e2a2d92a40      48  48  48 255  96 0 0 Lucida Console
+2  4  4  37  217    0    0    0  0  0  0  0   0 0  264  416.00  220.00   64.00   40.00 4 New  Tab   217  0 2e2a2d90c40 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  218    0    0    0  0  0  0  0   0 0  265  416.00  180.00   64.00   40.00 4 New  Tab   218  0 2e2a2d937f0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  219    0    0    0  0  0  0  0   0 0  266  416.00  140.00   64.00   40.00 4 New  Tab   219  0 2e2a2d93f10 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  220    0    0    0  0  0  0  0   0 0  267  416.00  100.00   64.00   40.00 4 New  Tab   220  0 2e2a2da4730 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  221    0    0    0  0  0  0  0   0 0  268  416.00   60.00   64.00   40.00 4 New  Tab   221  0 2e2a2da4eb0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  222    0    0    0  0  0  0  0   0 0  269  416.00   20.00   64.00   40.00 4 New  Tab   222  0 2e2a2da5630 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  222    0    0    0  0  0  0  0   0 0  270  480.00  120.00   64.00  240.00 3 New  Col    38  0 2e2a2da5db0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  38  223    0    0    0  0  0  0  0   0 0  271  480.00  220.00   64.00   40.00 4 New  Tab   223  0 2e2a2da6050 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  224    0    0    0  0  0  0  0   0 0  272  480.00  180.00   64.00   40.00 4 New  Tab   224  0 2e2a2da6b60 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  225    0    0    0  0  0  0  0   0 0  273  480.00  140.00   64.00   40.00 4 New  Tab   225  0 2e2a2da72e0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  226    0    0    0  0  0  0  0   0 0  274  480.00  100.00   64.00   40.00 4 New  Tab   226  0 2e2a2da7a60 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  227    0    0    0  0  0  0  0   0 0  275  480.00   60.00   64.00   40.00 4 New  Tab   227  0 2e2a2da7fd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  228    0    0    0  0  0  0  0   0 0  276  480.00   20.00   64.00   40.00 4 New  Tab   228  0 2e2a2dbc9a0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  228    0    0    0  0  0  0  0   0 0  277  544.00  120.00   64.00  240.00 3 New  Col    39  0 2e2a2dbd120      48  48  48 255  96 0 0 Lucida Console
+2  4  4  39  229    0    0    0  0  0  0  0   0 0  278  544.00  220.00   64.00   40.00 4 New  Tab   229  0 2e2a2dbd3c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  230    0    0    0  0  0  0  0   0 0  279  544.00  180.00   64.00   40.00 4 New  Tab   230  0 2e2a2dbded0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  231    0    0    0  0  0  0  0   0 0  280  544.00  140.00   64.00   40.00 4 New  Tab   231  0 2e2a2dbe650 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  232    0    0    0  0  0  0  0   0 0  281  544.00  100.00   64.00   40.00 4 New  Tab   232  0 2e2a2dbedd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  233    0    0    0  0  0  0  0   0 0  282  544.00   60.00   64.00   40.00 4 New  Tab   233  0 2e2a2dbf550 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  234    0    0    0  0  0  0  0   0 0  283  544.00   20.00   64.00   40.00 4 New  Tab   234  0 2e2a2dbfcd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  234    0    0    0  0  0  0  0   0 0  284  608.00  120.00   64.00  240.00 3 New  Col    40  0 2e2a2dbff70      48  48  48 255  96 0 0 Lucida Console
+2  4  4  40  235    0    0    0  0  0  0  0   0 0  285  608.00  220.00   64.00   40.00 4 New  Tab   235  0 2e2a2dd8730 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  236    0    0    0  0  0  0  0   0 0  286  608.00  180.00   64.00   40.00 4 New  Tab   236  0 2e2a2dd9240 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  237    0    0    0  0  0  0  0   0 0  287  608.00  140.00   64.00   40.00 4 New  Tab   237  0 2e2a2dd99c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  238    0    0    0  0  0  0  0   0 0  288  608.00  100.00   64.00   40.00 4 New  Tab   238  0 2e2a2dda140 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  239    0    0    0  0  0  0  0   0 0  289  608.00   60.00   64.00   40.00 4 New  Tab   239  0 2e2a2dda8c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  240    0    0    0  0  0  0  0   0 0  290  608.00   20.00   64.00   40.00 4 New  Tab   240  0 2e2a2ddb040 -   255 128   0 255  96 0 0 Lucida Console
+P  L  S   C    T    N    I    K No Nm Cp LR  LC Z  Tid     X       Y       W       H   G why  Name  Cnt Sz  Identity   Txt Red Grn Blu Opc Dpi B I  Font Name
+10   854 tabs.py          createTniks   J1 1 1 0 9 5 0 0 0 0 0 0 0 0 0 290 
+10   854 tabs.py          createTniks   J2 2 4 4 40 240 0 0 0 0 0 0 0 0 0 290 
+10   854 tabs.py          createTniks   LE 2 4 4 40 240 0 0 0 0 0 0 0 0 0 290 
+10   854 tabs.py          createTniks END (2x2x10x6) (1x1x1x6) [0]       0 []    J2=[2 4 4 40 240 0 0 0 0 0 0 0 0 0 290] 
+11  1049 tabs.py            dumpCxywh x=  0.00 y=240.00 w= 64.00 h= 40.00 cc=5
+2  4  4  40  240    0    0    0  0  0  0  0   0 1  291    0.00  240.00   64.00   40.00 5 New  Curs    1 Vz 2e2a2ddb7f0     255 255  10 168 1.000 1.000
+11  1049 tabs.py            dumpCxywh x=  0.00 y=240.00 w= 64.00 h= 40.00 cc=5
+11  1048 tabs.py            dumpCursr NEW (2x2x10x6) (1x1x1x6) [0]       0 []    J2=[2 4 4 40 240 0 0 0 0 0 0 0 0 1 291] Curs
+ 5   199 tabs.py              _reinit END
+ 4   180 tabs.py             __init__ END <class '__main__.Tabs'> VRSN1=0       LL=0  SFX1=A VRSN2=0  SPRITES=0  SFX2=1
+###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
+12   912 tabs.py          resizeTniks BGN (2x2x10x6) (1x1x1x6) [0]       0 []    J2=[2 4 4 40 240 0 0 0 0 0 0 0 0 1 291] Upd
+13   912 tabs.py          resizeTniks   J1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 Upd
+13   912 tabs.py          resizeTniks   J2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 Upd
+13   912 tabs.py          resizeTniks   LE 2 4 4 40 240 0 0 0 0 0 0 0 0 1 291 Upd
+P  L  S   C    T    N    I    K No Nm Cp LR  LC Z  Tid     X       Y       W       H   G why  Name  Cnt Sz  Identity   Txt Red Grn Blu Opc Dpi B I  Font Name
+1  0  0   0    0    0    0    0  0  0  0  0   0 0    1  320.00  240.00  640.00  480.00 0 Upd  Page    1  0 2e29f94c040      94  39 132 255  96 0 0 Lucida Console
+1  1  0   0    0    0    0    0  0  0  0  0   0 0    2  320.00  360.00  640.00  240.00 1 Upd  Line    1 42 2e29f94c6a0      18  11 112 255  96 0 0 Lucida Console
+1  1  1   0    0    0    0    0  0  0  0  0   0 0    3  320.00  360.00  640.00  240.00 2 Upd  Sect    1 42 2e29f94cd90      15 112 112 255  96 0 0 Lucida Console
+1  1  1   1    0    0    0    0  0  0  0  0   0 0    4   32.00  360.00   64.00  240.00 3 Upd  Col     1 42 2e29f94df60      48  48  48 255  96 0 0 Lucida Console
+1  1  1   1    1    0    0    0  0  0  0  0   0 0    5   32.00  460.00   64.00   40.00 4 Upd  Tab     1 32 2e29f94e7d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    2    0    0    0  0  0  0  0   0 0    6   32.00  420.00   64.00   40.00 4 Upd  Tab     2 32 2e29f94f8b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    3    0    0    0  0  0  0  0   0 0    7   32.00  380.00   64.00   40.00 4 Upd  Tab     3 32 2e29f94ffa0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    4    0    0    0  0  0  0  0   0 0    8   32.00  340.00   64.00   40.00 4 Upd  Tab     4 32 2e29f994bb0 0   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    5    0    0    0  0  0  0  0   0 0    9   32.00  300.00   64.00   40.00 4 Upd  Tab     5 32 2e29f995270 2   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    6    0    0    0  0  0  0  0   0 0   10   32.00  260.00   64.00   40.00 4 Upd  Tab     6 32 2e29f995ab0 3   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2    6    0    0    0  0  0  0  0   0 0   11   96.00  360.00   64.00  240.00 3 Upd  Col     2 42 2e29f9962c0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   2    7    0    0    0  0  0  0  0   0 0   12   96.00  460.00   64.00   40.00 4 Upd  Tab     7 32 2e29f996650 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2    8    0    0    0  0  0  0  0   0 0   13   96.00  420.00   64.00   40.00 4 Upd  Tab     8 32 2e29f997160 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2    9    0    0    0  0  0  0  0   0 0   14   96.00  380.00   64.00   40.00 4 Upd  Tab     9 32 2e29f9978e0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2   10    0    0    0  0  0  0  0   0 0   15   96.00  340.00   64.00   40.00 4 Upd  Tab    10 32 2e29f997e50 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2   11    0    0    0  0  0  0  0   0 0   16   96.00  300.00   64.00   40.00 4 Upd  Tab    11 32 2e29f9a8880 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2   12    0    0    0  0  0  0  0   0 0   17   96.00  260.00   64.00   40.00 4 Upd  Tab    12 32 2e29f9a9000 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   12    0    0    0  0  0  0  0   0 0   18  160.00  360.00   64.00  240.00 3 Upd  Col     3 42 2e29f9a9780      48  48  48 255  96 0 0 Lucida Console
+1  1  1   3   13    0    0    0  0  0  0  0   0 0   19  160.00  460.00   64.00   40.00 4 Upd  Tab    13 32 2e29f9a9990 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   14    0    0    0  0  0  0  0   0 0   20  160.00  420.00   64.00   40.00 4 Upd  Tab    14 32 2e29f9aa4a0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   15    0    0    0  0  0  0  0   0 0   21  160.00  380.00   64.00   40.00 4 Upd  Tab    15 32 2e29f9aac20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   16    0    0    0  0  0  0  0   0 0   22  160.00  340.00   64.00   40.00 4 Upd  Tab    16 32 2e29f9ab3a0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   17    0    0    0  0  0  0  0   0 0   23  160.00  300.00   64.00   40.00 4 Upd  Tab    17 32 2e29f9abb20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   18    0    0    0  0  0  0  0   0 0   24  160.00  260.00   64.00   40.00 4 Upd  Tab    18 32 2e29f9abfd0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   18    0    0    0  0  0  0  0   0 0   25  224.00  360.00   64.00  240.00 3 Upd  Col     4 42 2e29f9bcac0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   4   19    0    0    0  0  0  0  0   0 0   26  224.00  460.00   64.00   40.00 4 Upd  Tab    19 32 2e29f9bcd60 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   20    0    0    0  0  0  0  0   0 0   27  224.00  420.00   64.00   40.00 4 Upd  Tab    20 32 2e29f9bd870 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   21    0    0    0  0  0  0  0   0 0   28  224.00  380.00   64.00   40.00 4 Upd  Tab    21 32 2e29f9bdff0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   22    0    0    0  0  0  0  0   0 0   29  224.00  340.00   64.00   40.00 4 Upd  Tab    22 32 2e29f9be770 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   23    0    0    0  0  0  0  0   0 0   30  224.00  300.00   64.00   40.00 4 Upd  Tab    23 32 2e29f9beef0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   24    0    0    0  0  0  0  0   0 0   31  224.00  260.00   64.00   40.00 4 Upd  Tab    24 32 2e29f9bf670 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   24    0    0    0  0  0  0  0   0 0   32  288.00  360.00   64.00  240.00 3 Upd  Col     5 42 2e29f9bfdf0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   5   25    0    0    0  0  0  0  0   0 0   33  288.00  460.00   64.00   40.00 4 Upd  Tab    25 32 2e29f9cc0d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   26    0    0    0  0  0  0  0   0 0   34  288.00  420.00   64.00   40.00 4 Upd  Tab    26 32 2e29f9ccbe0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   27    0    0    0  0  0  0  0   0 0   35  288.00  380.00   64.00   40.00 4 Upd  Tab    27 32 2e29f9cd360 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   28    0    0    0  0  0  0  0   0 0   36  288.00  340.00   64.00   40.00 4 Upd  Tab    28 32 2e29f9cdae0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   29    0    0    0  0  0  0  0   0 0   37  288.00  300.00   64.00   40.00 4 Upd  Tab    29 32 2e29f9ce260 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   30    0    0    0  0  0  0  0   0 0   38  288.00  260.00   64.00   40.00 4 Upd  Tab    30 32 2e29f9ce9e0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   30    0    0    0  0  0  0  0   0 0   39  352.00  360.00   64.00  240.00 3 Upd  Col     6 42 2e29f9cf160      48  48  48 255  96 0 0 Lucida Console
+1  1  1   6   31    0    0    0  0  0  0  0   0 0   40  352.00  460.00   64.00   40.00 4 Upd  Tab    31 32 2e29f9cf400 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   32    0    0    0  0  0  0  0   0 0   41  352.00  420.00   64.00   40.00 4 Upd  Tab    32 32 2e29f9cff10 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   33    0    0    0  0  0  0  0   0 0   42  352.00  380.00   64.00   40.00 4 Upd  Tab    33 32 2e2a2b846d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   34    0    0    0  0  0  0  0   0 0   43  352.00  340.00   64.00   40.00 4 Upd  Tab    34 32 2e2a2b84e50 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   35    0    0    0  0  0  0  0   0 0   44  352.00  300.00   64.00   40.00 4 Upd  Tab    35 32 2e2a2b85630 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   36    0    0    0  0  0  0  0   0 0   45  352.00  260.00   64.00   40.00 4 Upd  Tab    36 32 2e2a2b85db0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   36    0    0    0  0  0  0  0   0 0   46  416.00  360.00   64.00  240.00 3 Upd  Col     7 42 2e2a2b86530      48  48  48 255  96 0 0 Lucida Console
+1  1  1   7   37    0    0    0  0  0  0  0   0 0   47  416.00  460.00   64.00   40.00 4 Upd  Tab    37 32 2e2a2b867d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   38    0    0    0  0  0  0  0   0 0   48  416.00  420.00   64.00   40.00 4 Upd  Tab    38 32 2e2a2b872e0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   39    0    0    0  0  0  0  0   0 0   49  416.00  380.00   64.00   40.00 4 Upd  Tab    39 32 2e2a2b87a60 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   40    0    0    0  0  0  0  0   0 0   50  416.00  340.00   64.00   40.00 4 Upd  Tab    40 32 2e2a2b87fd0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   41    0    0    0  0  0  0  0   0 0   51  416.00  300.00   64.00   40.00 4 Upd  Tab    41 32 2e29f83ab30 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   42    0    0    0  0  0  0  0   0 0   52  416.00  260.00   64.00   40.00 4 Upd  Tab    42 32 2e29f9bcd00 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   42    0    0    0  0  0  0  0   0 0   53  480.00  360.00   64.00  240.00 3 Upd  Col     8 42 2e2a2ba0f10      48  48  48 255  96 0 0 Lucida Console
+1  1  1   8   43    0    0    0  0  0  0  0   0 0   54  480.00  460.00   64.00   40.00 4 Upd  Tab    43 32 2e2a2ba11b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   44    0    0    0  0  0  0  0   0 0   55  480.00  420.00   64.00   40.00 4 Upd  Tab    44 32 2e2a2ba1cc0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   45    0    0    0  0  0  0  0   0 0   56  480.00  380.00   64.00   40.00 4 Upd  Tab    45 32 2e2a2ba2440 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   46    0    0    0  0  0  0  0   0 0   57  480.00  340.00   64.00   40.00 4 Upd  Tab    46 32 2e2a2ba2bc0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   47    0    0    0  0  0  0  0   0 0   58  480.00  300.00   64.00   40.00 4 Upd  Tab    47 32 2e2a2ba3340 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   48    0    0    0  0  0  0  0   0 0   59  480.00  260.00   64.00   40.00 4 Upd  Tab    48 32 2e2a2ba3ac0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   48    0    0    0  0  0  0  0   0 0   60  544.00  360.00   64.00  240.00 3 Upd  Col     9 42 2e2a2ba3fa0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   9   49    0    0    0  0  0  0  0   0 0   61  544.00  460.00   64.00   40.00 4 Upd  Tab    49 32 2e2a2bb4520 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   50    0    0    0  0  0  0  0   0 0   62  544.00  420.00   64.00   40.00 4 Upd  Tab    50 32 2e2a2bb5030 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   51    0    0    0  0  0  0  0   0 0   63  544.00  380.00   64.00   40.00 4 Upd  Tab    51 32 2e2a2bb57b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   52    0    0    0  0  0  0  0   0 0   64  544.00  340.00   64.00   40.00 4 Upd  Tab    52 32 2e2a2bb5f30 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   53    0    0    0  0  0  0  0   0 0   65  544.00  300.00   64.00   40.00 4 Upd  Tab    53 32 2e2a2bb66b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   54    0    0    0  0  0  0  0   0 0   66  544.00  260.00   64.00   40.00 4 Upd  Tab    54 32 2e2a2bb6e30 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   54    0    0    0  0  0  0  0   0 0   67  608.00  360.00   64.00  240.00 3 Upd  Col    10 42 2e2a2bb75b0      48  48  48 255  96 0 0 Lucida Console
+1  1  1  10   55    0    0    0  0  0  0  0   0 0   68  608.00  460.00   64.00   40.00 4 Upd  Tab    55 32 2e2a2bb7850 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   56    0    0    0  0  0  0  0   0 0   69  608.00  420.00   64.00   40.00 4 Upd  Tab    56 32 2e2a2bb7e80 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   57    0    0    0  0  0  0  0   0 0   70  608.00  380.00   64.00   40.00 4 Upd  Tab    57 32 2e2a2bd0b20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   58    0    0    0  0  0  0  0   0 0   71  608.00  340.00   64.00   40.00 4 Upd  Tab    58 32 2e2a2bd12a0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   59    0    0    0  0  0  0  0   0 0   72  608.00  300.00   64.00   40.00 4 Upd  Tab    59 32 2e2a2bd1a20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   60    0    0    0  0  0  0  0   0 0   73  608.00  260.00   64.00   40.00 4 Upd  Tab    60 32 2e2a2bd21a0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  1  10   60    0    0    0  0  0  0  0   0 0   74  320.00  120.00  640.00  240.00 1 Upd  Line    2 42 2e2a2bd2920      18  11 112 255  96 0 0 Lucida Console
+1  2  2  10   60    0    0    0  0  0  0  0   0 0   75  320.00  120.00  640.00  240.00 2 Upd  Sect    2 42 2e2a2bd2bc0      15 112 112 255  96 0 0 Lucida Console
+1  2  2  11   60    0    0    0  0  0  0  0   0 0   76   32.00  120.00   64.00  240.00 3 Upd  Col    11 42 2e2a2bd31f0      48  48  48 255  96 0 0 Lucida Console
+1  2  2  11   61    0    0    0  0  0  0  0   0 0   77   32.00  220.00   64.00   40.00 4 Upd  Tab    61 32 2e2a2bd3820 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   62    0    0    0  0  0  0  0   0 0   78   32.00  180.00   64.00   40.00 4 Upd  Tab    62 32 2e2a2bd3e50 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   63    0    0    0  0  0  0  0   0 0   79   32.00  140.00   64.00   40.00 4 Upd  Tab    63 32 2e2a2bdcaf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   64    0    0    0  0  0  0  0   0 0   80   32.00  100.00   64.00   40.00 4 Upd  Tab    64 32 2e2a2bdd270 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   65    0    0    0  0  0  0  0   0 0   81   32.00   60.00   64.00   40.00 4 Upd  Tab    65 32 2e2a2bdd9f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   66    0    0    0  0  0  0  0   0 0   82   32.00   20.00   64.00   40.00 4 Upd  Tab    66 32 2e2a2bde170 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   66    0    0    0  0  0  0  0   0 0   83   96.00  120.00   64.00  240.00 3 Upd  Col    12 42 2e2a2bde950      48  48  48 255  96 0 0 Lucida Console
+1  2  2  12   67    0    0    0  0  0  0  0   0 0   84   96.00  220.00   64.00   40.00 4 Upd  Tab    67 32 2e2a2bdebf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   68    0    0    0  0  0  0  0   0 0   85   96.00  180.00   64.00   40.00 4 Upd  Tab    68 32 2e2a2bdf580 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   69    0    0    0  0  0  0  0   0 0   86   96.00  140.00   64.00   40.00 4 Upd  Tab    69 32 2e2a2bdfcd0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   70    0    0    0  0  0  0  0   0 0   87   96.00  100.00   64.00   40.00 4 Upd  Tab    70 32 2e2a2bdff70 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   71    0    0    0  0  0  0  0   0 0   88   96.00   60.00   64.00   40.00 4 Upd  Tab    71 32 2e2a2bf8c10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   72    0    0    0  0  0  0  0   0 0   89   96.00   20.00   64.00   40.00 4 Upd  Tab    72 32 2e2a2bf9390 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   72    0    0    0  0  0  0  0   0 0   90  160.00  120.00   64.00  240.00 3 Upd  Col    13 42 2e2a2bf9b10      48  48  48 255  96 0 0 Lucida Console
+1  2  2  13   73    0    0    0  0  0  0  0   0 0   91  160.00  220.00   64.00   40.00 4 Upd  Tab    73 32 2e2a2bf9db0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   74    0    0    0  0  0  0  0   0 0   92  160.00  180.00   64.00   40.00 4 Upd  Tab    74 32 2e2a2bfa8c0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   75    0    0    0  0  0  0  0   0 0   93  160.00  140.00   64.00   40.00 4 Upd  Tab    75 32 2e2a2bfb040 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   76    0    0    0  0  0  0  0   0 0   94  160.00  100.00   64.00   40.00 4 Upd  Tab    76 32 2e2a2bfb7c0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   77    0    0    0  0  0  0  0   0 0   95  160.00   60.00   64.00   40.00 4 Upd  Tab    77 32 2e2a2bfbf40 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   78    0    0    0  0  0  0  0   0 0   96  160.00   20.00   64.00   40.00 4 Upd  Tab    78 32 2e2a2c0c700 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   78    0    0    0  0  0  0  0   0 0   97  224.00  120.00   64.00  240.00 3 Upd  Col    14 42 2e2a2c0ce80      48  48  48 255  96 0 0 Lucida Console
+1  2  2  14   79    0    0    0  0  0  0  0   0 0   98  224.00  220.00   64.00   40.00 4 Upd  Tab    79 32 2e2a2c0d120 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   80    0    0    0  0  0  0  0   0 0   99  224.00  180.00   64.00   40.00 4 Upd  Tab    80 32 2e2a2c0dc30 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   81    0    0    0  0  0  0  0   0 0  100  224.00  140.00   64.00   40.00 4 Upd  Tab    81 32 2e2a2c0e3b0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   82    0    0    0  0  0  0  0   0 0  101  224.00  100.00   64.00   40.00 4 Upd  Tab    82 32 2e29f9abfa0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   83    0    0    0  0  0  0  0   0 0  102  224.00   60.00   64.00   40.00 4 Upd  Tab    83 32 2e2a2bfbd60 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   84    0    0    0  0  0  0  0   0 0  103  224.00   20.00   64.00   40.00 4 Upd  Tab    84 32 2e2a2c0f0d0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   84    0    0    0  0  0  0  0   0 0  104  288.00  120.00   64.00  240.00 3 Upd  Col    15 42 2e2a2c0f850      48  48  48 255  96 0 0 Lucida Console
+1  2  2  15   85    0    0    0  0  0  0  0   0 0  105  288.00  220.00   64.00   40.00 4 Upd  Tab    85 32 2e2a2c0faf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   86    0    0    0  0  0  0  0   0 0  106  288.00  180.00   64.00   40.00 4 Upd  Tab    86 32 2e2a2c20640 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   87    0    0    0  0  0  0  0   0 0  107  288.00  140.00   64.00   40.00 4 Upd  Tab    87 32 2e2a2c20dc0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   88    0    0    0  0  0  0  0   0 0  108  288.00  100.00   64.00   40.00 4 Upd  Tab    88 32 2e2a2c21570 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   89    0    0    0  0  0  0  0   0 0  109  288.00   60.00   64.00   40.00 4 Upd  Tab    89 32 2e2a2c21cf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   90    0    0    0  0  0  0  0   0 0  110  288.00   20.00   64.00   40.00 4 Upd  Tab    90 32 2e2a2c22470 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   90    0    0    0  0  0  0  0   0 0  111  352.00  120.00   64.00  240.00 3 Upd  Col    16 42 2e2a2c22bf0      48  48  48 255  96 0 0 Lucida Console
+1  2  2  16   91    0    0    0  0  0  0  0   0 0  112  352.00  220.00   64.00   40.00 4 Upd  Tab    91 32 2e2a2c22e90 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   92    0    0    0  0  0  0  0   0 0  113  352.00  180.00   64.00   40.00 4 Upd  Tab    92 32 2e2a2c239a0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   93    0    0    0  0  0  0  0   0 0  114  352.00  140.00   64.00   40.00 4 Upd  Tab    93 32 2e2a2c23f40 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   94    0    0    0  0  0  0  0   0 0  115  352.00  100.00   64.00   40.00 4 Upd  Tab    94 32 2e2a2c348e0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   95    0    0    0  0  0  0  0   0 0  116  352.00   60.00   64.00   40.00 4 Upd  Tab    95 32 2e2a2c35060 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   96    0    0    0  0  0  0  0   0 0  117  352.00   20.00   64.00   40.00 4 Upd  Tab    96 32 2e2a2c357e0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17   96    0    0    0  0  0  0  0   0 0  118  416.00  120.00   64.00  240.00 3 Upd  Col    17 42 2e2a2c35f60      48  48  48 255  96 0 0 Lucida Console
+1  2  2  17   97    0    0    0  0  0  0  0   0 0  119  416.00  220.00   64.00   40.00 4 Upd  Tab    97 32 2e2a2c36200 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17   98    0    0    0  0  0  0  0   0 0  120  416.00  180.00   64.00   40.00 4 Upd  Tab    98 32 2e2a2c36d10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17   99    0    0    0  0  0  0  0   0 0  121  416.00  140.00   64.00   40.00 4 Upd  Tab    99 32 2e2a2c37490 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17  100    0    0    0  0  0  0  0   0 0  122  416.00  100.00   64.00   40.00 4 Upd  Tab   100 32 2e2a2c37c10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17  101    0    0    0  0  0  0  0   0 0  123  416.00   60.00   64.00   40.00 4 Upd  Tab   101 32 2e2a2c37eb0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17  102    0    0    0  0  0  0  0   0 0  124  416.00   20.00   64.00   40.00 4 Upd  Tab   102 32 2e2a2c40b50 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  102    0    0    0  0  0  0  0   0 0  125  480.00  120.00   64.00  240.00 3 Upd  Col    18 42 2e2a2c412d0      48  48  48 255  96 0 0 Lucida Console
+1  2  2  18  103    0    0    0  0  0  0  0   0 0  126  480.00  220.00   64.00   40.00 4 Upd  Tab   103 32 2e2a2c41570 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  104    0    0    0  0  0  0  0   0 0  127  480.00  180.00   64.00   40.00 4 Upd  Tab   104 32 2e2a2c42080 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  105    0    0    0  0  0  0  0   0 0  128  480.00  140.00   64.00   40.00 4 Upd  Tab   105 32 2e2a2c42800 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  106    0    0    0  0  0  0  0   0 0  129  480.00  100.00   64.00   40.00 4 Upd  Tab   106 32 2e2a2c42f80 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  107    0    0    0  0  0  0  0   0 0  130  480.00   60.00   64.00   40.00 4 Upd  Tab   107 32 2e2a2c43700 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  108    0    0    0  0  0  0  0   0 0  131  480.00   20.00   64.00   40.00 4 Upd  Tab   108 32 2e2a2c43e80 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  108    0    0    0  0  0  0  0   0 0  132  544.00  120.00   64.00  240.00 3 Upd  Col    19 42 2e2a2c5c640      48  48  48 255  96 0 0 Lucida Console
+1  2  2  19  109    0    0    0  0  0  0  0   0 0  133  544.00  220.00   64.00   40.00 4 Upd  Tab   109 32 2e2a2c5c8e0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  110    0    0    0  0  0  0  0   0 0  134  544.00  180.00   64.00   40.00 4 Upd  Tab   110 32 2e2a2c5d3f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  111    0    0    0  0  0  0  0   0 0  135  544.00  140.00   64.00   40.00 4 Upd  Tab   111 32 2e2a2c5db70 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  112    0    0    0  0  0  0  0   0 0  136  544.00  100.00   64.00   40.00 4 Upd  Tab   112 32 2e2a2c5e2f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  113    0    0    0  0  0  0  0   0 0  137  544.00   60.00   64.00   40.00 4 Upd  Tab   113 32 2e2a2c5ea70 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  114    0    0    0  0  0  0  0   0 0  138  544.00   20.00   64.00   40.00 4 Upd  Tab   114 32 2e2a2c5f1f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  114    0    0    0  0  0  0  0   0 0  139  608.00  120.00   64.00  240.00 3 Upd  Col    20 42 2e2a2c5f970      48  48  48 255  96 0 0 Lucida Console
+1  2  2  20  115    0    0    0  0  0  0  0   0 0  140  608.00  220.00   64.00   40.00 4 Upd  Tab   115 32 2e2a2c5fc10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  116    0    0    0  0  0  0  0   0 0  141  608.00  180.00   64.00   40.00 4 Upd  Tab   116 32 2e2a2c7c760 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  117    0    0    0  0  0  0  0   0 0  142  608.00  140.00   64.00   40.00 4 Upd  Tab   117 32 2e2a2c7cee0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  118    0    0    0  0  0  0  0   0 0  143  608.00  100.00   64.00   40.00 4 Upd  Tab   118 32 2e2a2c7d660 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  119    0    0    0  0  0  0  0   0 0  144  608.00   60.00   64.00   40.00 4 Upd  Tab   119 32 2e2a2c7dde0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  120    0    0    0  0  0  0  0   0 0  145  608.00   20.00   64.00   40.00 4 Upd  Tab   120 32 2e2a2c7e560 -   255 128   0 255  96 0 0 Lucida Console
+2  2  2  20  120    0    0    0  0  0  0  0   0 0  146  320.00  240.00  640.00  480.00 0 Upd  Page    2 34 2e2a2c7ece0      94  39 132 255  96 0 0 Lucida Console
+2  3  2  20  120    0    0    0  0  0  0  0   0 0  147  320.00  360.00  640.00  240.00 1 Upd  Line    3  0 2e2a2c7ef80      18  11 112 255  96 0 0 Lucida Console
+2  3  3  20  120    0    0    0  0  0  0  0   0 0  148  320.00  360.00  640.00  240.00 2 Upd  Sect    3  0 2e2a2c7f5b0      15 112 112 255  96 0 0 Lucida Console
+2  3  3  21  120    0    0    0  0  0  0  0   0 0  149   32.00  360.00   64.00  240.00 3 Upd  Col    21  0 2e2a2c7fbe0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  21  121    0    0    0  0  0  0  0   0 0  150   32.00  460.00   64.00   40.00 4 Upd  Tab   121  0 2e2a2c8c250 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  122    0    0    0  0  0  0  0   0 0  151   32.00  420.00   64.00   40.00 4 Upd  Tab   122  0 2e2a2bf9930 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  123    0    0    0  0  0  0  0   0 0  152   32.00  380.00   64.00   40.00 4 Upd  Tab   123  0 2e2a2c5e890 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  124    0    0    0  0  0  0  0   0 0  153   32.00  340.00   64.00   40.00 4 Upd  Tab   124  0 2e2a2c8d6f0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  125    0    0    0  0  0  0  0   0 0  154   32.00  300.00   64.00   40.00 4 Upd  Tab   125  0 2e2a2c8de70 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  126    0    0    0  0  0  0  0   0 0  155   32.00  260.00   64.00   40.00 4 Upd  Tab   126  0 2e2a2c8e5f0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  126    0    0    0  0  0  0  0   0 0  156   96.00  360.00   64.00  240.00 3 Upd  Col    22  0 2e2a2c8edd0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  22  127    0    0    0  0  0  0  0   0 0  157   96.00  460.00   64.00   40.00 4 Upd  Tab   127  0 2e2a2c8f070 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  128    0    0    0  0  0  0  0   0 0  158   96.00  420.00   64.00   40.00 4 Upd  Tab   128  0 2e2a2c8fac0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  129    0    0    0  0  0  0  0   0 0  159   96.00  380.00   64.00   40.00 4 Upd  Tab   129  0 2e2a2c8fd30 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  130    0    0    0  0  0  0  0   0 0  160   96.00  340.00   64.00   40.00 4 Upd  Tab   130  0 2e2a2ca0a30 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  131    0    0    0  0  0  0  0   0 0  161   96.00  300.00   64.00   40.00 4 Upd  Tab   131  0 2e2a2ca1210 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  132    0    0    0  0  0  0  0   0 0  162   96.00  260.00   64.00   40.00 4 Upd  Tab   132  0 2e2a2ca1990 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  132    0    0    0  0  0  0  0   0 0  163  160.00  360.00   64.00  240.00 3 Upd  Col    23  0 2e2a2ca2110      48  48  48 255  96 0 0 Lucida Console
+2  3  3  23  133    0    0    0  0  0  0  0   0 0  164  160.00  460.00   64.00   40.00 4 Upd  Tab   133  0 2e2a2ca23b0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  134    0    0    0  0  0  0  0   0 0  165  160.00  420.00   64.00   40.00 4 Upd  Tab   134  0 2e2a2ca2ec0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  135    0    0    0  0  0  0  0   0 0  166  160.00  380.00   64.00   40.00 4 Upd  Tab   135  0 2e2a2ca3640 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  136    0    0    0  0  0  0  0   0 0  167  160.00  340.00   64.00   40.00 4 Upd  Tab   136  0 2e2a2ca3dc0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  137    0    0    0  0  0  0  0   0 0  168  160.00  300.00   64.00   40.00 4 Upd  Tab   137  0 2e2a2cb0580 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  138    0    0    0  0  0  0  0   0 0  169  160.00  260.00   64.00   40.00 4 Upd  Tab   138  0 2e2a2cb0d00 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  138    0    0    0  0  0  0  0   0 0  170  224.00  360.00   64.00  240.00 3 Upd  Col    24  0 2e2a2cb14e0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  24  139    0    0    0  0  0  0  0   0 0  171  224.00  460.00   64.00   40.00 4 Upd  Tab   139  0 2e2a2cb1780 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  140    0    0    0  0  0  0  0   0 0  172  224.00  420.00   64.00   40.00 4 Upd  Tab   140  0 2e2a2cb2200 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  141    0    0    0  0  0  0  0   0 0  173  224.00  380.00   64.00   40.00 4 Upd  Tab   141  0 2e2a2cb2980 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  142    0    0    0  0  0  0  0   0 0  174  224.00  340.00   64.00   40.00 4 Upd  Tab   142  0 2e2a2cb3100 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  143    0    0    0  0  0  0  0   0 0  175  224.00  300.00   64.00   40.00 4 Upd  Tab   143  0 2e2a2cb3880 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  144    0    0    0  0  0  0  0   0 0  176  224.00  260.00   64.00   40.00 4 Upd  Tab   144  0 2e2a2cb3ee0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  144    0    0    0  0  0  0  0   0 0  177  288.00  360.00   64.00  240.00 3 Upd  Col    25  0 2e2a2cc87c0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  25  145    0    0    0  0  0  0  0   0 0  178  288.00  460.00   64.00   40.00 4 Upd  Tab   145  0 2e2a2cc8a60 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  146    0    0    0  0  0  0  0   0 0  179  288.00  420.00   64.00   40.00 4 Upd  Tab   146  0 2e2a2cc9570 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  147    0    0    0  0  0  0  0   0 0  180  288.00  380.00   64.00   40.00 4 Upd  Tab   147  0 2e2a2cc9cf0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  148    0    0    0  0  0  0  0   0 0  181  288.00  340.00   64.00   40.00 4 Upd  Tab   148  0 2e2a2cca470 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  149    0    0    0  0  0  0  0   0 0  182  288.00  300.00   64.00   40.00 4 Upd  Tab   149  0 2e2a2ccabf0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  150    0    0    0  0  0  0  0   0 0  183  288.00  260.00   64.00   40.00 4 Upd  Tab   150  0 2e2a2ccb370 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  150    0    0    0  0  0  0  0   0 0  184  352.00  360.00   64.00  240.00 3 Upd  Col    26  0 2e2a2ccbaf0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  26  151    0    0    0  0  0  0  0   0 0  185  352.00  460.00   64.00   40.00 4 Upd  Tab   151  0 2e2a2ccbd90 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  152    0    0    0  0  0  0  0   0 0  186  352.00  420.00   64.00   40.00 4 Upd  Tab   152  0 2e2a2cec8e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  153    0    0    0  0  0  0  0   0 0  187  352.00  380.00   64.00   40.00 4 Upd  Tab   153  0 2e2a2ced060 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  154    0    0    0  0  0  0  0   0 0  188  352.00  340.00   64.00   40.00 4 Upd  Tab   154  0 2e2a2ced7e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  155    0    0    0  0  0  0  0   0 0  189  352.00  300.00   64.00   40.00 4 Upd  Tab   155  0 2e2a2cedf90 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  156    0    0    0  0  0  0  0   0 0  190  352.00  260.00   64.00   40.00 4 Upd  Tab   156  0 2e2a2cee710 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  156    0    0    0  0  0  0  0   0 0  191  416.00  360.00   64.00  240.00 3 Upd  Col    27  0 2e2a2ceee90      48  48  48 255  96 0 0 Lucida Console
+2  3  3  27  157    0    0    0  0  0  0  0   0 0  192  416.00  460.00   64.00   40.00 4 Upd  Tab   157  0 2e2a2cef130 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  158    0    0    0  0  0  0  0   0 0  193  416.00  420.00   64.00   40.00 4 Upd  Tab   158  0 2e2a2cefc40 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  159    0    0    0  0  0  0  0   0 0  194  416.00  380.00   64.00   40.00 4 Upd  Tab   159  0 2e2a2cefee0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  160    0    0    0  0  0  0  0   0 0  195  416.00  340.00   64.00   40.00 4 Upd  Tab   160  0 2e2a2cfcb80 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  161    0    0    0  0  0  0  0   0 0  196  416.00  300.00   64.00   40.00 4 Upd  Tab   161  0 2e2a2cfd300 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  162    0    0    0  0  0  0  0   0 0  197  416.00  260.00   64.00   40.00 4 Upd  Tab   162  0 2e2a2cfda80 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  162    0    0    0  0  0  0  0   0 0  198  480.00  360.00   64.00  240.00 3 Upd  Col    28  0 2e2a2cfe200      48  48  48 255  96 0 0 Lucida Console
+2  3  3  28  163    0    0    0  0  0  0  0   0 0  199  480.00  460.00   64.00   40.00 4 Upd  Tab   163  0 2e2a2cfe4a0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  164    0    0    0  0  0  0  0   0 0  200  480.00  420.00   64.00   40.00 4 Upd  Tab   164  0 2e2a2cfefb0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  165    0    0    0  0  0  0  0   0 0  201  480.00  380.00   64.00   40.00 4 Upd  Tab   165  0 2e2a2c5f790 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  166    0    0    0  0  0  0  0   0 0  202  480.00  340.00   64.00   40.00 4 Upd  Tab   166  0 2e2a2cb36a0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  167    0    0    0  0  0  0  0   0 0  203  480.00  300.00   64.00   40.00 4 Upd  Tab   167  0 2e2a2cffcd0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  168    0    0    0  0  0  0  0   0 0  204  480.00  260.00   64.00   40.00 4 Upd  Tab   168  0 2e2a2cfff70 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  168    0    0    0  0  0  0  0   0 0  205  544.00  360.00   64.00  240.00 3 Upd  Col    29  0 2e2a2d10c10      48  48  48 255  96 0 0 Lucida Console
+2  3  3  29  169    0    0    0  0  0  0  0   0 0  206  544.00  460.00   64.00   40.00 4 Upd  Tab   169  0 2e2a2d10eb0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  170    0    0    0  0  0  0  0   0 0  207  544.00  420.00   64.00   40.00 4 Upd  Tab   170  0 2e2a2d119c0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  171    0    0    0  0  0  0  0   0 0  208  544.00  380.00   64.00   40.00 4 Upd  Tab   171  0 2e2a2d12140 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  172    0    0    0  0  0  0  0   0 0  209  544.00  340.00   64.00   40.00 4 Upd  Tab   172  0 2e2a2d128c0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  173    0    0    0  0  0  0  0   0 0  210  544.00  300.00   64.00   40.00 4 Upd  Tab   173  0 2e2a2d13070 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  174    0    0    0  0  0  0  0   0 0  211  544.00  260.00   64.00   40.00 4 Upd  Tab   174  0 2e2a2d137f0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  174    0    0    0  0  0  0  0   0 0  212  608.00  360.00   64.00  240.00 3 Upd  Col    30  0 2e2a2d13f10      48  48  48 255  96 0 0 Lucida Console
+2  3  3  30  175    0    0    0  0  0  0  0   0 0  213  608.00  460.00   64.00   40.00 4 Upd  Tab   175  0 2e2a2d20250 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  176    0    0    0  0  0  0  0   0 0  214  608.00  420.00   64.00   40.00 4 Upd  Tab   176  0 2e2a2d20d60 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  177    0    0    0  0  0  0  0   0 0  215  608.00  380.00   64.00   40.00 4 Upd  Tab   177  0 2e2a2d214e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  178    0    0    0  0  0  0  0   0 0  216  608.00  340.00   64.00   40.00 4 Upd  Tab   178  0 2e2a2d21c60 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  179    0    0    0  0  0  0  0   0 0  217  608.00  300.00   64.00   40.00 4 Upd  Tab   179  0 2e2a2d223e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  180    0    0    0  0  0  0  0   0 0  218  608.00  260.00   64.00   40.00 4 Upd  Tab   180  0 2e2a2d22b60 -   255 128   0 255  96 0 0 Lucida Console
+2  4  3  30  180    0    0    0  0  0  0  0   0 0  219  320.00  120.00  640.00  240.00 1 Upd  Line    4  0 2e2a2d232e0      18  11 112 255  96 0 0 Lucida Console
+2  4  4  30  180    0    0    0  0  0  0  0   0 0  220  320.00  120.00  640.00  240.00 2 Upd  Sect    4  0 2e2a2d23580      15 112 112 255  96 0 0 Lucida Console
+2  4  4  31  180    0    0    0  0  0  0  0   0 0  221   32.00  120.00   64.00  240.00 3 Upd  Col    31  0 2e2a2d23bb0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  31  181    0    0    0  0  0  0  0   0 0  222   32.00  220.00   64.00   40.00 4 Upd  Tab   181  0 2e2a2d38220 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  182    0    0    0  0  0  0  0   0 0  223   32.00  180.00   64.00   40.00 4 Upd  Tab   182  0 2e2a2d38d30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  183    0    0    0  0  0  0  0   0 0  224   32.00  140.00   64.00   40.00 4 Upd  Tab   183  0 2e2a2d394b0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  184    0    0    0  0  0  0  0   0 0  225   32.00  100.00   64.00   40.00 4 Upd  Tab   184  0 2e2a2d39c30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  185    0    0    0  0  0  0  0   0 0  226   32.00   60.00   64.00   40.00 4 Upd  Tab   185  0 2e2a2d3a3b0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  186    0    0    0  0  0  0  0   0 0  227   32.00   20.00   64.00   40.00 4 Upd  Tab   186  0 2e2a2d3ab30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  186    0    0    0  0  0  0  0   0 0  228   96.00  120.00   64.00  240.00 3 Upd  Col    32  0 2e2a2d3b2b0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  32  187    0    0    0  0  0  0  0   0 0  229   96.00  220.00   64.00   40.00 4 Upd  Tab   187  0 2e2a2d3b550 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  188    0    0    0  0  0  0  0   0 0  230   96.00  180.00   64.00   40.00 4 Upd  Tab   188  0 2e2a2d3be50 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  189    0    0    0  0  0  0  0   0 0  231   96.00  140.00   64.00   40.00 4 Upd  Tab   189  0 2e2a2d58820 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  190    0    0    0  0  0  0  0   0 0  232   96.00  100.00   64.00   40.00 4 Upd  Tab   190  0 2e2a2d58fa0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  191    0    0    0  0  0  0  0   0 0  233   96.00   60.00   64.00   40.00 4 Upd  Tab   191  0 2e2a2d59720 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  192    0    0    0  0  0  0  0   0 0  234   96.00   20.00   64.00   40.00 4 Upd  Tab   192  0 2e2a2d59ea0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  192    0    0    0  0  0  0  0   0 0  235  160.00  120.00   64.00  240.00 3 Upd  Col    33  0 2e2a2d5a620      48  48  48 255  96 0 0 Lucida Console
+2  4  4  33  193    0    0    0  0  0  0  0   0 0  236  160.00  220.00   64.00   40.00 4 Upd  Tab   193  0 2e2a2d5a8c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  194    0    0    0  0  0  0  0   0 0  237  160.00  180.00   64.00   40.00 4 Upd  Tab   194  0 2e2a2d5b3d0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  195    0    0    0  0  0  0  0   0 0  238  160.00  140.00   64.00   40.00 4 Upd  Tab   195  0 2e2a2d5bb50 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  196    0    0    0  0  0  0  0   0 0  239  160.00  100.00   64.00   40.00 4 Upd  Tab   196  0 2e2a2d5bfd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  197    0    0    0  0  0  0  0   0 0  240  160.00   60.00   64.00   40.00 4 Upd  Tab   197  0 2e2a2d68a90 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  198    0    0    0  0  0  0  0   0 0  241  160.00   20.00   64.00   40.00 4 Upd  Tab   198  0 2e2a2d69210 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  198    0    0    0  0  0  0  0   0 0  242  224.00  120.00   64.00  240.00 3 Upd  Col    34  0 2e2a2d69990      48  48  48 255  96 0 0 Lucida Console
+2  4  4  34  199    0    0    0  0  0  0  0   0 0  243  224.00  220.00   64.00   40.00 4 Upd  Tab   199  0 2e2a2d69c30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  200    0    0    0  0  0  0  0   0 0  244  224.00  180.00   64.00   40.00 4 Upd  Tab   200  0 2e2a2d6a740 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  201    0    0    0  0  0  0  0   0 0  245  224.00  140.00   64.00   40.00 4 Upd  Tab   201  0 2e2a2d6aec0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  202    0    0    0  0  0  0  0   0 0  246  224.00  100.00   64.00   40.00 4 Upd  Tab   202  0 2e2a2d6b640 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  203    0    0    0  0  0  0  0   0 0  247  224.00   60.00   64.00   40.00 4 Upd  Tab   203  0 2e2a2d6bdc0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  204    0    0    0  0  0  0  0   0 0  248  224.00   20.00   64.00   40.00 4 Upd  Tab   204  0 2e2a2d7c580 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  204    0    0    0  0  0  0  0   0 0  249  288.00  120.00   64.00  240.00 3 Upd  Col    35  0 2e2a2d7cd00      48  48  48 255  96 0 0 Lucida Console
+2  4  4  35  205    0    0    0  0  0  0  0   0 0  250  288.00  220.00   64.00   40.00 4 Upd  Tab   205  0 2e2a2d7cfa0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  206    0    0    0  0  0  0  0   0 0  251  288.00  180.00   64.00   40.00 4 Upd  Tab   206  0 2e2a2cc85e0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  207    0    0    0  0  0  0  0   0 0  252  288.00  140.00   64.00   40.00 4 Upd  Tab   207  0 2e2a2d5bdf0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  208    0    0    0  0  0  0  0   0 0  253  288.00  100.00   64.00   40.00 4 Upd  Tab   208  0 2e2a2d7e050 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  209    0    0    0  0  0  0  0   0 0  254  288.00   60.00   64.00   40.00 4 Upd  Tab   209  0 2e2a2d7e7d0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  210    0    0    0  0  0  0  0   0 0  255  288.00   20.00   64.00   40.00 4 Upd  Tab   210  0 2e2a2d7ef50 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  210    0    0    0  0  0  0  0   0 0  256  352.00  120.00   64.00  240.00 3 Upd  Col    36  0 2e2a2d7f6d0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  36  211    0    0    0  0  0  0  0   0 0  257  352.00  220.00   64.00   40.00 4 Upd  Tab   211  0 2e2a2d7f970 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  212    0    0    0  0  0  0  0   0 0  258  352.00  180.00   64.00   40.00 4 Upd  Tab   212  0 2e2a2d7ffa0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  213    0    0    0  0  0  0  0   0 0  259  352.00  140.00   64.00   40.00 4 Upd  Tab   213  0 2e2a2d90c10 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  214    0    0    0  0  0  0  0   0 0  260  352.00  100.00   64.00   40.00 4 Upd  Tab   214  0 2e2a2d913c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  215    0    0    0  0  0  0  0   0 0  261  352.00   60.00   64.00   40.00 4 Upd  Tab   215  0 2e2a2d91b40 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  216    0    0    0  0  0  0  0   0 0  262  352.00   20.00   64.00   40.00 4 Upd  Tab   216  0 2e2a2d922c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  216    0    0    0  0  0  0  0   0 0  263  416.00  120.00   64.00  240.00 3 Upd  Col    37  0 2e2a2d92a40      48  48  48 255  96 0 0 Lucida Console
+2  4  4  37  217    0    0    0  0  0  0  0   0 0  264  416.00  220.00   64.00   40.00 4 Upd  Tab   217  0 2e2a2d90c40 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  218    0    0    0  0  0  0  0   0 0  265  416.00  180.00   64.00   40.00 4 Upd  Tab   218  0 2e2a2d937f0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  219    0    0    0  0  0  0  0   0 0  266  416.00  140.00   64.00   40.00 4 Upd  Tab   219  0 2e2a2d93f10 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  220    0    0    0  0  0  0  0   0 0  267  416.00  100.00   64.00   40.00 4 Upd  Tab   220  0 2e2a2da4730 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  221    0    0    0  0  0  0  0   0 0  268  416.00   60.00   64.00   40.00 4 Upd  Tab   221  0 2e2a2da4eb0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  222    0    0    0  0  0  0  0   0 0  269  416.00   20.00   64.00   40.00 4 Upd  Tab   222  0 2e2a2da5630 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  222    0    0    0  0  0  0  0   0 0  270  480.00  120.00   64.00  240.00 3 Upd  Col    38  0 2e2a2da5db0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  38  223    0    0    0  0  0  0  0   0 0  271  480.00  220.00   64.00   40.00 4 Upd  Tab   223  0 2e2a2da6050 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  224    0    0    0  0  0  0  0   0 0  272  480.00  180.00   64.00   40.00 4 Upd  Tab   224  0 2e2a2da6b60 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  225    0    0    0  0  0  0  0   0 0  273  480.00  140.00   64.00   40.00 4 Upd  Tab   225  0 2e2a2da72e0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  226    0    0    0  0  0  0  0   0 0  274  480.00  100.00   64.00   40.00 4 Upd  Tab   226  0 2e2a2da7a60 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  227    0    0    0  0  0  0  0   0 0  275  480.00   60.00   64.00   40.00 4 Upd  Tab   227  0 2e2a2da7fd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  228    0    0    0  0  0  0  0   0 0  276  480.00   20.00   64.00   40.00 4 Upd  Tab   228  0 2e2a2dbc9a0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  228    0    0    0  0  0  0  0   0 0  277  544.00  120.00   64.00  240.00 3 Upd  Col    39  0 2e2a2dbd120      48  48  48 255  96 0 0 Lucida Console
+2  4  4  39  229    0    0    0  0  0  0  0   0 0  278  544.00  220.00   64.00   40.00 4 Upd  Tab   229  0 2e2a2dbd3c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  230    0    0    0  0  0  0  0   0 0  279  544.00  180.00   64.00   40.00 4 Upd  Tab   230  0 2e2a2dbded0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  231    0    0    0  0  0  0  0   0 0  280  544.00  140.00   64.00   40.00 4 Upd  Tab   231  0 2e2a2dbe650 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  232    0    0    0  0  0  0  0   0 0  281  544.00  100.00   64.00   40.00 4 Upd  Tab   232  0 2e2a2dbedd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  233    0    0    0  0  0  0  0   0 0  282  544.00   60.00   64.00   40.00 4 Upd  Tab   233  0 2e2a2dbf550 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  234    0    0    0  0  0  0  0   0 0  283  544.00   20.00   64.00   40.00 4 Upd  Tab   234  0 2e2a2dbfcd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  234    0    0    0  0  0  0  0   0 0  284  608.00  120.00   64.00  240.00 3 Upd  Col    40  0 2e2a2dbff70      48  48  48 255  96 0 0 Lucida Console
+2  4  4  40  235    0    0    0  0  0  0  0   0 0  285  608.00  220.00   64.00   40.00 4 Upd  Tab   235  0 2e2a2dd8730 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  236    0    0    0  0  0  0  0   0 0  286  608.00  180.00   64.00   40.00 4 Upd  Tab   236  0 2e2a2dd9240 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  237    0    0    0  0  0  0  0   0 0  287  608.00  140.00   64.00   40.00 4 Upd  Tab   237  0 2e2a2dd99c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  238    0    0    0  0  0  0  0   0 0  288  608.00  100.00   64.00   40.00 4 Upd  Tab   238  0 2e2a2dda140 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  239    0    0    0  0  0  0  0   0 0  289  608.00   60.00   64.00   40.00 4 Upd  Tab   239  0 2e2a2dda8c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  240    0    0    0  0  0  0  0   0 0  290  608.00   20.00   64.00   40.00 4 Upd  Tab   240  0 2e2a2ddb040 -   255 128   0 255  96 0 0 Lucida Console
+P  L  S   C    T    N    I    K No Nm Cp LR  LC Z  Tid     X       Y       W       H   G why  Name  Cnt Sz  Identity   Txt Red Grn Blu Opc Dpi B I  Font Name
+12   919 tabs.py          resizeTniks   J1 1 3 3 39 239 0 0 0 0 0 0 0 0 0 290 Upd
+12   919 tabs.py          resizeTniks   J2 2 4 4 40 240 0 0 0 0 0 0 0 0 0 290 Upd
+12   919 tabs.py          resizeTniks   LE 2 4 4 40 240 0 0 0 0 0 0 0 0 1 291 Upd
+12   919 tabs.py          resizeTniks END (2x2x10x6) (1x1x1x6) [0]       0 []    J2=[2 4 4 40 240 0 0 0 0 0 0 0 0 0 290] Upd
+13  1049 tabs.py            dumpCxywh x=  0.00 y=240.00 w= 64.00 h= 40.00 cc=5
+2  4  4  40  240    0    0    0  0  0  0  0   0 1  291    0.00  240.00   64.00   40.00 5 Upd  Curs    1 Vz 2e2a2ddb7f0     255 255  10 168 1.000 1.000
+13  1049 tabs.py            dumpCxywh x=  0.00 y=240.00 w= 64.00 h= 40.00 cc=5
+13  1048 tabs.py            dumpCursr UPD (2x2x10x6) (1x1x1x6) [0]       0 []    J2=[2 4 4 40 240 0 0 0 0 0 0 0 0 1 291] Curs
+12  1986 tabs.py                 quit BGN @ ^ Q code=1
+###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
+12   138 util.py            dumpStack  9 tabs       1987 quit                 if dbg: util.dumpStack(inspect.stack(), file=LOG_FILE)   ;   self.log(QUIT, pfx=0)   ;   util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
+12   138 util.py            dumpStack  8 tabs       1170 on_key_press         elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@ ^ Q', code=1)
+12   138 util.py            dumpStack  7 event       415 dispatch_event       if getattr(self, event_type)(*args):
+12   138 util.py            dumpStack  6 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
+12   138 util.py            dumpStack  5 __init__    819 _event_key           self.dispatch_event(ev, symbol, modifiers)
+12   138 util.py            dumpStack  4 __init__    747 f                    result = event_handler(msg, wParam, lParam)
+12   138 util.py            dumpStack  3 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
+12   138 util.py            dumpStack  2 base        170 run                  platform_event_loop.step(timeout)
+12   138 util.py            dumpStack  1 __init__    107 run                  event_loop.run()
+12   138 util.py            dumpStack  0 tabs       2086 <module>             ret     = pyglet.app.run()
+12   139 util.py            dumpStack MAX_STACK_DEPTH=12
+###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
+12   138 util.py            dumpStack 12 util        144 slog                 sfs = inspect.stack()          ;  i = 1
+12   138 util.py            dumpStack 11 tabs       1952 log                  util.slog(msg, pfx, file, flush, sep, end)
+12   138 util.py            dumpStack 10 tabs        380 dumpJs               def dumpJs(  self, why): self.log(f'  J1 {self.fmtJ1(0)} {why}')  ;  self.log(f'  J2 {self.fmtJ2(0)} {why}')  ;  self.log(f'  LE {self.fmtLE(0)} {why}')
+12   138 util.py            dumpStack  9 tabs        340 resetJ               def resetJ(self, why='', dbg=1): self.J1    = [ 0 for _ in range(len(self.E) + 1) ]     ;   self.J2     = [ 0 for _ in range(len(self.E) + 1) ]   ;   self.dumpJs(why) if dbg else None
+12   138 util.py            dumpStack  8 tabs        586 dumpTniksPfx         self.resetJ(why)
+12   138 util.py            dumpStack  7 tabs        912 resizeTniks          self.dumpTniksPfx(why)
+12   138 util.py            dumpStack  6 tabs        396 on_resize            if RESIZE: self.resizeTniks(f'{why2}{why}')
+12   138 util.py            dumpStack  5 event       415 dispatch_event       if getattr(self, event_type)(*args):
+12   138 util.py            dumpStack  4 __init__    736 dispatch_pending_events EventDispatcher.dispatch_event(self, *event)
+12   138 util.py            dumpStack  3 base        184 _legacy_setup        window.dispatch_pending_events()
+12   138 util.py            dumpStack  2 base        161 run                  self._legacy_setup()
+12   138 util.py            dumpStack  1 __init__    107 run                  event_loop.run()
+12   138 util.py            dumpStack  0 tabs       2086 <module>             ret     = pyglet.app.run()
+12   139 util.py            dumpStack MAX_STACK_DEPTH=12
+14   399 tabs.py           dumpStruct BGN quit (640x480) (2x2x10x6) (1x1x1x6) [0]       0 []    J2=[2 4 4 40 240 0 0 0 0 0 0 0 0 1 291] 
+14  1100 tabs.py             dumpFont 4:96dpi 32.00pt 0:Lucida Console 0:(255, 64, 192, 255) 32.00pt = 0.800(pt/pix) * 40.00pixels quit
+13   401 tabs.py           dumpStruct tpz=[120 60 60 6]
+AUTO_SAVE=0 CAT=0 CHECKER_BOARD=0 EVENT_LOG=0 FULL_SCREEN=0 IND=0  ORDER_GROUP=1 RESIZE=1 SEQ_FNAMES=1 SNAP+0 SUBPIX=1 VERBOSE=0
+16   952 tabs.py            dumpTniks BGN (2x2x10x6) (1x1x1x6) [0]       0 []    J2=[2 4 4 40 240 0 0 0 0 0 0 0 0 1 291] quit
+17   952 tabs.py            dumpTniks   J1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 quit
+17   952 tabs.py            dumpTniks   J2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 quit
+17   952 tabs.py            dumpTniks   LE 2 4 4 40 240 0 0 0 0 0 0 0 0 1 291 quit
+P  L  S   C    T    N    I    K No Nm Cp LR  LC Z  Tid     X       Y       W       H   G why  Name  Cnt Sz  Identity   Txt Red Grn Blu Opc Dpi B I  Font Name
+1  0  0   0    0    0    0    0  0  0  0  0   0 0    1  320.00  240.00  640.00  480.00 0 quit Page    1  0 2e29f94c040      94  39 132 255  96 0 0 Lucida Console
+1  1  0   0    0    0    0    0  0  0  0  0   0 0    2  320.00  360.00  640.00  240.00 1 quit Line    1 42 2e29f94c6a0      18  11 112 255  96 0 0 Lucida Console
+1  1  1   0    0    0    0    0  0  0  0  0   0 0    3  320.00  360.00  640.00  240.00 2 quit Sect    1 42 2e29f94cd90      15 112 112 255  96 0 0 Lucida Console
+1  1  1   1    0    0    0    0  0  0  0  0   0 0    4   32.00  360.00   64.00  240.00 3 quit Col     1 42 2e29f94df60      48  48  48 255  96 0 0 Lucida Console
+1  1  1   1    1    0    0    0  0  0  0  0   0 0    5   32.00  460.00   64.00   40.00 4 quit Tab     1 32 2e29f94e7d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    2    0    0    0  0  0  0  0   0 0    6   32.00  420.00   64.00   40.00 4 quit Tab     2 32 2e29f94f8b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    3    0    0    0  0  0  0  0   0 0    7   32.00  380.00   64.00   40.00 4 quit Tab     3 32 2e29f94ffa0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    4    0    0    0  0  0  0  0   0 0    8   32.00  340.00   64.00   40.00 4 quit Tab     4 32 2e29f994bb0 0   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    5    0    0    0  0  0  0  0   0 0    9   32.00  300.00   64.00   40.00 4 quit Tab     5 32 2e29f995270 2   255 128   0 255  96 0 0 Lucida Console
+1  1  1   1    6    0    0    0  0  0  0  0   0 0   10   32.00  260.00   64.00   40.00 4 quit Tab     6 32 2e29f995ab0 3   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2    6    0    0    0  0  0  0  0   0 0   11   96.00  360.00   64.00  240.00 3 quit Col     2 42 2e29f9962c0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   2    7    0    0    0  0  0  0  0   0 0   12   96.00  460.00   64.00   40.00 4 quit Tab     7 32 2e29f996650 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2    8    0    0    0  0  0  0  0   0 0   13   96.00  420.00   64.00   40.00 4 quit Tab     8 32 2e29f997160 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2    9    0    0    0  0  0  0  0   0 0   14   96.00  380.00   64.00   40.00 4 quit Tab     9 32 2e29f9978e0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2   10    0    0    0  0  0  0  0   0 0   15   96.00  340.00   64.00   40.00 4 quit Tab    10 32 2e29f997e50 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2   11    0    0    0  0  0  0  0   0 0   16   96.00  300.00   64.00   40.00 4 quit Tab    11 32 2e29f9a8880 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   2   12    0    0    0  0  0  0  0   0 0   17   96.00  260.00   64.00   40.00 4 quit Tab    12 32 2e29f9a9000 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   12    0    0    0  0  0  0  0   0 0   18  160.00  360.00   64.00  240.00 3 quit Col     3 42 2e29f9a9780      48  48  48 255  96 0 0 Lucida Console
+1  1  1   3   13    0    0    0  0  0  0  0   0 0   19  160.00  460.00   64.00   40.00 4 quit Tab    13 32 2e29f9a9990 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   14    0    0    0  0  0  0  0   0 0   20  160.00  420.00   64.00   40.00 4 quit Tab    14 32 2e29f9aa4a0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   15    0    0    0  0  0  0  0   0 0   21  160.00  380.00   64.00   40.00 4 quit Tab    15 32 2e29f9aac20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   16    0    0    0  0  0  0  0   0 0   22  160.00  340.00   64.00   40.00 4 quit Tab    16 32 2e29f9ab3a0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   17    0    0    0  0  0  0  0   0 0   23  160.00  300.00   64.00   40.00 4 quit Tab    17 32 2e29f9abb20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   3   18    0    0    0  0  0  0  0   0 0   24  160.00  260.00   64.00   40.00 4 quit Tab    18 32 2e29f9abfd0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   18    0    0    0  0  0  0  0   0 0   25  224.00  360.00   64.00  240.00 3 quit Col     4 42 2e29f9bcac0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   4   19    0    0    0  0  0  0  0   0 0   26  224.00  460.00   64.00   40.00 4 quit Tab    19 32 2e29f9bcd60 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   20    0    0    0  0  0  0  0   0 0   27  224.00  420.00   64.00   40.00 4 quit Tab    20 32 2e29f9bd870 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   21    0    0    0  0  0  0  0   0 0   28  224.00  380.00   64.00   40.00 4 quit Tab    21 32 2e29f9bdff0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   22    0    0    0  0  0  0  0   0 0   29  224.00  340.00   64.00   40.00 4 quit Tab    22 32 2e29f9be770 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   23    0    0    0  0  0  0  0   0 0   30  224.00  300.00   64.00   40.00 4 quit Tab    23 32 2e29f9beef0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   4   24    0    0    0  0  0  0  0   0 0   31  224.00  260.00   64.00   40.00 4 quit Tab    24 32 2e29f9bf670 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   24    0    0    0  0  0  0  0   0 0   32  288.00  360.00   64.00  240.00 3 quit Col     5 42 2e29f9bfdf0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   5   25    0    0    0  0  0  0  0   0 0   33  288.00  460.00   64.00   40.00 4 quit Tab    25 32 2e29f9cc0d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   26    0    0    0  0  0  0  0   0 0   34  288.00  420.00   64.00   40.00 4 quit Tab    26 32 2e29f9ccbe0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   27    0    0    0  0  0  0  0   0 0   35  288.00  380.00   64.00   40.00 4 quit Tab    27 32 2e29f9cd360 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   28    0    0    0  0  0  0  0   0 0   36  288.00  340.00   64.00   40.00 4 quit Tab    28 32 2e29f9cdae0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   29    0    0    0  0  0  0  0   0 0   37  288.00  300.00   64.00   40.00 4 quit Tab    29 32 2e29f9ce260 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   5   30    0    0    0  0  0  0  0   0 0   38  288.00  260.00   64.00   40.00 4 quit Tab    30 32 2e29f9ce9e0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   30    0    0    0  0  0  0  0   0 0   39  352.00  360.00   64.00  240.00 3 quit Col     6 42 2e29f9cf160      48  48  48 255  96 0 0 Lucida Console
+1  1  1   6   31    0    0    0  0  0  0  0   0 0   40  352.00  460.00   64.00   40.00 4 quit Tab    31 32 2e29f9cf400 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   32    0    0    0  0  0  0  0   0 0   41  352.00  420.00   64.00   40.00 4 quit Tab    32 32 2e29f9cff10 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   33    0    0    0  0  0  0  0   0 0   42  352.00  380.00   64.00   40.00 4 quit Tab    33 32 2e2a2b846d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   34    0    0    0  0  0  0  0   0 0   43  352.00  340.00   64.00   40.00 4 quit Tab    34 32 2e2a2b84e50 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   35    0    0    0  0  0  0  0   0 0   44  352.00  300.00   64.00   40.00 4 quit Tab    35 32 2e2a2b85630 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   6   36    0    0    0  0  0  0  0   0 0   45  352.00  260.00   64.00   40.00 4 quit Tab    36 32 2e2a2b85db0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   36    0    0    0  0  0  0  0   0 0   46  416.00  360.00   64.00  240.00 3 quit Col     7 42 2e2a2b86530      48  48  48 255  96 0 0 Lucida Console
+1  1  1   7   37    0    0    0  0  0  0  0   0 0   47  416.00  460.00   64.00   40.00 4 quit Tab    37 32 2e2a2b867d0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   38    0    0    0  0  0  0  0   0 0   48  416.00  420.00   64.00   40.00 4 quit Tab    38 32 2e2a2b872e0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   39    0    0    0  0  0  0  0   0 0   49  416.00  380.00   64.00   40.00 4 quit Tab    39 32 2e2a2b87a60 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   40    0    0    0  0  0  0  0   0 0   50  416.00  340.00   64.00   40.00 4 quit Tab    40 32 2e2a2b87fd0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   41    0    0    0  0  0  0  0   0 0   51  416.00  300.00   64.00   40.00 4 quit Tab    41 32 2e29f83ab30 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   7   42    0    0    0  0  0  0  0   0 0   52  416.00  260.00   64.00   40.00 4 quit Tab    42 32 2e29f9bcd00 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   42    0    0    0  0  0  0  0   0 0   53  480.00  360.00   64.00  240.00 3 quit Col     8 42 2e2a2ba0f10      48  48  48 255  96 0 0 Lucida Console
+1  1  1   8   43    0    0    0  0  0  0  0   0 0   54  480.00  460.00   64.00   40.00 4 quit Tab    43 32 2e2a2ba11b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   44    0    0    0  0  0  0  0   0 0   55  480.00  420.00   64.00   40.00 4 quit Tab    44 32 2e2a2ba1cc0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   45    0    0    0  0  0  0  0   0 0   56  480.00  380.00   64.00   40.00 4 quit Tab    45 32 2e2a2ba2440 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   46    0    0    0  0  0  0  0   0 0   57  480.00  340.00   64.00   40.00 4 quit Tab    46 32 2e2a2ba2bc0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   47    0    0    0  0  0  0  0   0 0   58  480.00  300.00   64.00   40.00 4 quit Tab    47 32 2e2a2ba3340 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   8   48    0    0    0  0  0  0  0   0 0   59  480.00  260.00   64.00   40.00 4 quit Tab    48 32 2e2a2ba3ac0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   48    0    0    0  0  0  0  0   0 0   60  544.00  360.00   64.00  240.00 3 quit Col     9 42 2e2a2ba3fa0      48  48  48 255  96 0 0 Lucida Console
+1  1  1   9   49    0    0    0  0  0  0  0   0 0   61  544.00  460.00   64.00   40.00 4 quit Tab    49 32 2e2a2bb4520 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   50    0    0    0  0  0  0  0   0 0   62  544.00  420.00   64.00   40.00 4 quit Tab    50 32 2e2a2bb5030 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   51    0    0    0  0  0  0  0   0 0   63  544.00  380.00   64.00   40.00 4 quit Tab    51 32 2e2a2bb57b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   52    0    0    0  0  0  0  0   0 0   64  544.00  340.00   64.00   40.00 4 quit Tab    52 32 2e2a2bb5f30 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   53    0    0    0  0  0  0  0   0 0   65  544.00  300.00   64.00   40.00 4 quit Tab    53 32 2e2a2bb66b0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1   9   54    0    0    0  0  0  0  0   0 0   66  544.00  260.00   64.00   40.00 4 quit Tab    54 32 2e2a2bb6e30 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   54    0    0    0  0  0  0  0   0 0   67  608.00  360.00   64.00  240.00 3 quit Col    10 42 2e2a2bb75b0      48  48  48 255  96 0 0 Lucida Console
+1  1  1  10   55    0    0    0  0  0  0  0   0 0   68  608.00  460.00   64.00   40.00 4 quit Tab    55 32 2e2a2bb7850 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   56    0    0    0  0  0  0  0   0 0   69  608.00  420.00   64.00   40.00 4 quit Tab    56 32 2e2a2bb7e80 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   57    0    0    0  0  0  0  0   0 0   70  608.00  380.00   64.00   40.00 4 quit Tab    57 32 2e2a2bd0b20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   58    0    0    0  0  0  0  0   0 0   71  608.00  340.00   64.00   40.00 4 quit Tab    58 32 2e2a2bd12a0 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   59    0    0    0  0  0  0  0   0 0   72  608.00  300.00   64.00   40.00 4 quit Tab    59 32 2e2a2bd1a20 -   255 128   0 255  96 0 0 Lucida Console
+1  1  1  10   60    0    0    0  0  0  0  0   0 0   73  608.00  260.00   64.00   40.00 4 quit Tab    60 32 2e2a2bd21a0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  1  10   60    0    0    0  0  0  0  0   0 0   74  320.00  120.00  640.00  240.00 1 quit Line    2 42 2e2a2bd2920      18  11 112 255  96 0 0 Lucida Console
+1  2  2  10   60    0    0    0  0  0  0  0   0 0   75  320.00  120.00  640.00  240.00 2 quit Sect    2 42 2e2a2bd2bc0      15 112 112 255  96 0 0 Lucida Console
+1  2  2  11   60    0    0    0  0  0  0  0   0 0   76   32.00  120.00   64.00  240.00 3 quit Col    11 42 2e2a2bd31f0      48  48  48 255  96 0 0 Lucida Console
+1  2  2  11   61    0    0    0  0  0  0  0   0 0   77   32.00  220.00   64.00   40.00 4 quit Tab    61 32 2e2a2bd3820 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   62    0    0    0  0  0  0  0   0 0   78   32.00  180.00   64.00   40.00 4 quit Tab    62 32 2e2a2bd3e50 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   63    0    0    0  0  0  0  0   0 0   79   32.00  140.00   64.00   40.00 4 quit Tab    63 32 2e2a2bdcaf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   64    0    0    0  0  0  0  0   0 0   80   32.00  100.00   64.00   40.00 4 quit Tab    64 32 2e2a2bdd270 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   65    0    0    0  0  0  0  0   0 0   81   32.00   60.00   64.00   40.00 4 quit Tab    65 32 2e2a2bdd9f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  11   66    0    0    0  0  0  0  0   0 0   82   32.00   20.00   64.00   40.00 4 quit Tab    66 32 2e2a2bde170 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   66    0    0    0  0  0  0  0   0 0   83   96.00  120.00   64.00  240.00 3 quit Col    12 42 2e2a2bde950      48  48  48 255  96 0 0 Lucida Console
+1  2  2  12   67    0    0    0  0  0  0  0   0 0   84   96.00  220.00   64.00   40.00 4 quit Tab    67 32 2e2a2bdebf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   68    0    0    0  0  0  0  0   0 0   85   96.00  180.00   64.00   40.00 4 quit Tab    68 32 2e2a2bdf580 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   69    0    0    0  0  0  0  0   0 0   86   96.00  140.00   64.00   40.00 4 quit Tab    69 32 2e2a2bdfcd0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   70    0    0    0  0  0  0  0   0 0   87   96.00  100.00   64.00   40.00 4 quit Tab    70 32 2e2a2bdff70 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   71    0    0    0  0  0  0  0   0 0   88   96.00   60.00   64.00   40.00 4 quit Tab    71 32 2e2a2bf8c10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  12   72    0    0    0  0  0  0  0   0 0   89   96.00   20.00   64.00   40.00 4 quit Tab    72 32 2e2a2bf9390 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   72    0    0    0  0  0  0  0   0 0   90  160.00  120.00   64.00  240.00 3 quit Col    13 42 2e2a2bf9b10      48  48  48 255  96 0 0 Lucida Console
+1  2  2  13   73    0    0    0  0  0  0  0   0 0   91  160.00  220.00   64.00   40.00 4 quit Tab    73 32 2e2a2bf9db0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   74    0    0    0  0  0  0  0   0 0   92  160.00  180.00   64.00   40.00 4 quit Tab    74 32 2e2a2bfa8c0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   75    0    0    0  0  0  0  0   0 0   93  160.00  140.00   64.00   40.00 4 quit Tab    75 32 2e2a2bfb040 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   76    0    0    0  0  0  0  0   0 0   94  160.00  100.00   64.00   40.00 4 quit Tab    76 32 2e2a2bfb7c0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   77    0    0    0  0  0  0  0   0 0   95  160.00   60.00   64.00   40.00 4 quit Tab    77 32 2e2a2bfbf40 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  13   78    0    0    0  0  0  0  0   0 0   96  160.00   20.00   64.00   40.00 4 quit Tab    78 32 2e2a2c0c700 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   78    0    0    0  0  0  0  0   0 0   97  224.00  120.00   64.00  240.00 3 quit Col    14 42 2e2a2c0ce80      48  48  48 255  96 0 0 Lucida Console
+1  2  2  14   79    0    0    0  0  0  0  0   0 0   98  224.00  220.00   64.00   40.00 4 quit Tab    79 32 2e2a2c0d120 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   80    0    0    0  0  0  0  0   0 0   99  224.00  180.00   64.00   40.00 4 quit Tab    80 32 2e2a2c0dc30 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   81    0    0    0  0  0  0  0   0 0  100  224.00  140.00   64.00   40.00 4 quit Tab    81 32 2e2a2c0e3b0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   82    0    0    0  0  0  0  0   0 0  101  224.00  100.00   64.00   40.00 4 quit Tab    82 32 2e29f9abfa0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   83    0    0    0  0  0  0  0   0 0  102  224.00   60.00   64.00   40.00 4 quit Tab    83 32 2e2a2bfbd60 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  14   84    0    0    0  0  0  0  0   0 0  103  224.00   20.00   64.00   40.00 4 quit Tab    84 32 2e2a2c0f0d0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   84    0    0    0  0  0  0  0   0 0  104  288.00  120.00   64.00  240.00 3 quit Col    15 42 2e2a2c0f850      48  48  48 255  96 0 0 Lucida Console
+1  2  2  15   85    0    0    0  0  0  0  0   0 0  105  288.00  220.00   64.00   40.00 4 quit Tab    85 32 2e2a2c0faf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   86    0    0    0  0  0  0  0   0 0  106  288.00  180.00   64.00   40.00 4 quit Tab    86 32 2e2a2c20640 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   87    0    0    0  0  0  0  0   0 0  107  288.00  140.00   64.00   40.00 4 quit Tab    87 32 2e2a2c20dc0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   88    0    0    0  0  0  0  0   0 0  108  288.00  100.00   64.00   40.00 4 quit Tab    88 32 2e2a2c21570 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   89    0    0    0  0  0  0  0   0 0  109  288.00   60.00   64.00   40.00 4 quit Tab    89 32 2e2a2c21cf0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  15   90    0    0    0  0  0  0  0   0 0  110  288.00   20.00   64.00   40.00 4 quit Tab    90 32 2e2a2c22470 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   90    0    0    0  0  0  0  0   0 0  111  352.00  120.00   64.00  240.00 3 quit Col    16 42 2e2a2c22bf0      48  48  48 255  96 0 0 Lucida Console
+1  2  2  16   91    0    0    0  0  0  0  0   0 0  112  352.00  220.00   64.00   40.00 4 quit Tab    91 32 2e2a2c22e90 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   92    0    0    0  0  0  0  0   0 0  113  352.00  180.00   64.00   40.00 4 quit Tab    92 32 2e2a2c239a0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   93    0    0    0  0  0  0  0   0 0  114  352.00  140.00   64.00   40.00 4 quit Tab    93 32 2e2a2c23f40 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   94    0    0    0  0  0  0  0   0 0  115  352.00  100.00   64.00   40.00 4 quit Tab    94 32 2e2a2c348e0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   95    0    0    0  0  0  0  0   0 0  116  352.00   60.00   64.00   40.00 4 quit Tab    95 32 2e2a2c35060 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  16   96    0    0    0  0  0  0  0   0 0  117  352.00   20.00   64.00   40.00 4 quit Tab    96 32 2e2a2c357e0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17   96    0    0    0  0  0  0  0   0 0  118  416.00  120.00   64.00  240.00 3 quit Col    17 42 2e2a2c35f60      48  48  48 255  96 0 0 Lucida Console
+1  2  2  17   97    0    0    0  0  0  0  0   0 0  119  416.00  220.00   64.00   40.00 4 quit Tab    97 32 2e2a2c36200 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17   98    0    0    0  0  0  0  0   0 0  120  416.00  180.00   64.00   40.00 4 quit Tab    98 32 2e2a2c36d10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17   99    0    0    0  0  0  0  0   0 0  121  416.00  140.00   64.00   40.00 4 quit Tab    99 32 2e2a2c37490 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17  100    0    0    0  0  0  0  0   0 0  122  416.00  100.00   64.00   40.00 4 quit Tab   100 32 2e2a2c37c10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17  101    0    0    0  0  0  0  0   0 0  123  416.00   60.00   64.00   40.00 4 quit Tab   101 32 2e2a2c37eb0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  17  102    0    0    0  0  0  0  0   0 0  124  416.00   20.00   64.00   40.00 4 quit Tab   102 32 2e2a2c40b50 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  102    0    0    0  0  0  0  0   0 0  125  480.00  120.00   64.00  240.00 3 quit Col    18 42 2e2a2c412d0      48  48  48 255  96 0 0 Lucida Console
+1  2  2  18  103    0    0    0  0  0  0  0   0 0  126  480.00  220.00   64.00   40.00 4 quit Tab   103 32 2e2a2c41570 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  104    0    0    0  0  0  0  0   0 0  127  480.00  180.00   64.00   40.00 4 quit Tab   104 32 2e2a2c42080 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  105    0    0    0  0  0  0  0   0 0  128  480.00  140.00   64.00   40.00 4 quit Tab   105 32 2e2a2c42800 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  106    0    0    0  0  0  0  0   0 0  129  480.00  100.00   64.00   40.00 4 quit Tab   106 32 2e2a2c42f80 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  107    0    0    0  0  0  0  0   0 0  130  480.00   60.00   64.00   40.00 4 quit Tab   107 32 2e2a2c43700 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  18  108    0    0    0  0  0  0  0   0 0  131  480.00   20.00   64.00   40.00 4 quit Tab   108 32 2e2a2c43e80 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  108    0    0    0  0  0  0  0   0 0  132  544.00  120.00   64.00  240.00 3 quit Col    19 42 2e2a2c5c640      48  48  48 255  96 0 0 Lucida Console
+1  2  2  19  109    0    0    0  0  0  0  0   0 0  133  544.00  220.00   64.00   40.00 4 quit Tab   109 32 2e2a2c5c8e0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  110    0    0    0  0  0  0  0   0 0  134  544.00  180.00   64.00   40.00 4 quit Tab   110 32 2e2a2c5d3f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  111    0    0    0  0  0  0  0   0 0  135  544.00  140.00   64.00   40.00 4 quit Tab   111 32 2e2a2c5db70 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  112    0    0    0  0  0  0  0   0 0  136  544.00  100.00   64.00   40.00 4 quit Tab   112 32 2e2a2c5e2f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  113    0    0    0  0  0  0  0   0 0  137  544.00   60.00   64.00   40.00 4 quit Tab   113 32 2e2a2c5ea70 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  19  114    0    0    0  0  0  0  0   0 0  138  544.00   20.00   64.00   40.00 4 quit Tab   114 32 2e2a2c5f1f0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  114    0    0    0  0  0  0  0   0 0  139  608.00  120.00   64.00  240.00 3 quit Col    20 42 2e2a2c5f970      48  48  48 255  96 0 0 Lucida Console
+1  2  2  20  115    0    0    0  0  0  0  0   0 0  140  608.00  220.00   64.00   40.00 4 quit Tab   115 32 2e2a2c5fc10 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  116    0    0    0  0  0  0  0   0 0  141  608.00  180.00   64.00   40.00 4 quit Tab   116 32 2e2a2c7c760 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  117    0    0    0  0  0  0  0   0 0  142  608.00  140.00   64.00   40.00 4 quit Tab   117 32 2e2a2c7cee0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  118    0    0    0  0  0  0  0   0 0  143  608.00  100.00   64.00   40.00 4 quit Tab   118 32 2e2a2c7d660 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  119    0    0    0  0  0  0  0   0 0  144  608.00   60.00   64.00   40.00 4 quit Tab   119 32 2e2a2c7dde0 -   255 128   0 255  96 0 0 Lucida Console
+1  2  2  20  120    0    0    0  0  0  0  0   0 0  145  608.00   20.00   64.00   40.00 4 quit Tab   120 32 2e2a2c7e560 -   255 128   0 255  96 0 0 Lucida Console
+2  2  2  20  120    0    0    0  0  0  0  0   0 0  146  320.00  240.00  640.00  480.00 0 quit Page    2 34 2e2a2c7ece0      94  39 132 255  96 0 0 Lucida Console
+2  3  2  20  120    0    0    0  0  0  0  0   0 0  147  320.00  360.00  640.00  240.00 1 quit Line    3  0 2e2a2c7ef80      18  11 112 255  96 0 0 Lucida Console
+2  3  3  20  120    0    0    0  0  0  0  0   0 0  148  320.00  360.00  640.00  240.00 2 quit Sect    3  0 2e2a2c7f5b0      15 112 112 255  96 0 0 Lucida Console
+2  3  3  21  120    0    0    0  0  0  0  0   0 0  149   32.00  360.00   64.00  240.00 3 quit Col    21  0 2e2a2c7fbe0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  21  121    0    0    0  0  0  0  0   0 0  150   32.00  460.00   64.00   40.00 4 quit Tab   121  0 2e2a2c8c250 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  122    0    0    0  0  0  0  0   0 0  151   32.00  420.00   64.00   40.00 4 quit Tab   122  0 2e2a2bf9930 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  123    0    0    0  0  0  0  0   0 0  152   32.00  380.00   64.00   40.00 4 quit Tab   123  0 2e2a2c5e890 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  124    0    0    0  0  0  0  0   0 0  153   32.00  340.00   64.00   40.00 4 quit Tab   124  0 2e2a2c8d6f0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  125    0    0    0  0  0  0  0   0 0  154   32.00  300.00   64.00   40.00 4 quit Tab   125  0 2e2a2c8de70 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  21  126    0    0    0  0  0  0  0   0 0  155   32.00  260.00   64.00   40.00 4 quit Tab   126  0 2e2a2c8e5f0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  126    0    0    0  0  0  0  0   0 0  156   96.00  360.00   64.00  240.00 3 quit Col    22  0 2e2a2c8edd0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  22  127    0    0    0  0  0  0  0   0 0  157   96.00  460.00   64.00   40.00 4 quit Tab   127  0 2e2a2c8f070 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  128    0    0    0  0  0  0  0   0 0  158   96.00  420.00   64.00   40.00 4 quit Tab   128  0 2e2a2c8fac0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  129    0    0    0  0  0  0  0   0 0  159   96.00  380.00   64.00   40.00 4 quit Tab   129  0 2e2a2c8fd30 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  130    0    0    0  0  0  0  0   0 0  160   96.00  340.00   64.00   40.00 4 quit Tab   130  0 2e2a2ca0a30 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  131    0    0    0  0  0  0  0   0 0  161   96.00  300.00   64.00   40.00 4 quit Tab   131  0 2e2a2ca1210 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  22  132    0    0    0  0  0  0  0   0 0  162   96.00  260.00   64.00   40.00 4 quit Tab   132  0 2e2a2ca1990 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  132    0    0    0  0  0  0  0   0 0  163  160.00  360.00   64.00  240.00 3 quit Col    23  0 2e2a2ca2110      48  48  48 255  96 0 0 Lucida Console
+2  3  3  23  133    0    0    0  0  0  0  0   0 0  164  160.00  460.00   64.00   40.00 4 quit Tab   133  0 2e2a2ca23b0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  134    0    0    0  0  0  0  0   0 0  165  160.00  420.00   64.00   40.00 4 quit Tab   134  0 2e2a2ca2ec0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  135    0    0    0  0  0  0  0   0 0  166  160.00  380.00   64.00   40.00 4 quit Tab   135  0 2e2a2ca3640 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  136    0    0    0  0  0  0  0   0 0  167  160.00  340.00   64.00   40.00 4 quit Tab   136  0 2e2a2ca3dc0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  137    0    0    0  0  0  0  0   0 0  168  160.00  300.00   64.00   40.00 4 quit Tab   137  0 2e2a2cb0580 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  23  138    0    0    0  0  0  0  0   0 0  169  160.00  260.00   64.00   40.00 4 quit Tab   138  0 2e2a2cb0d00 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  138    0    0    0  0  0  0  0   0 0  170  224.00  360.00   64.00  240.00 3 quit Col    24  0 2e2a2cb14e0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  24  139    0    0    0  0  0  0  0   0 0  171  224.00  460.00   64.00   40.00 4 quit Tab   139  0 2e2a2cb1780 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  140    0    0    0  0  0  0  0   0 0  172  224.00  420.00   64.00   40.00 4 quit Tab   140  0 2e2a2cb2200 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  141    0    0    0  0  0  0  0   0 0  173  224.00  380.00   64.00   40.00 4 quit Tab   141  0 2e2a2cb2980 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  142    0    0    0  0  0  0  0   0 0  174  224.00  340.00   64.00   40.00 4 quit Tab   142  0 2e2a2cb3100 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  143    0    0    0  0  0  0  0   0 0  175  224.00  300.00   64.00   40.00 4 quit Tab   143  0 2e2a2cb3880 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  24  144    0    0    0  0  0  0  0   0 0  176  224.00  260.00   64.00   40.00 4 quit Tab   144  0 2e2a2cb3ee0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  144    0    0    0  0  0  0  0   0 0  177  288.00  360.00   64.00  240.00 3 quit Col    25  0 2e2a2cc87c0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  25  145    0    0    0  0  0  0  0   0 0  178  288.00  460.00   64.00   40.00 4 quit Tab   145  0 2e2a2cc8a60 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  146    0    0    0  0  0  0  0   0 0  179  288.00  420.00   64.00   40.00 4 quit Tab   146  0 2e2a2cc9570 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  147    0    0    0  0  0  0  0   0 0  180  288.00  380.00   64.00   40.00 4 quit Tab   147  0 2e2a2cc9cf0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  148    0    0    0  0  0  0  0   0 0  181  288.00  340.00   64.00   40.00 4 quit Tab   148  0 2e2a2cca470 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  149    0    0    0  0  0  0  0   0 0  182  288.00  300.00   64.00   40.00 4 quit Tab   149  0 2e2a2ccabf0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  25  150    0    0    0  0  0  0  0   0 0  183  288.00  260.00   64.00   40.00 4 quit Tab   150  0 2e2a2ccb370 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  150    0    0    0  0  0  0  0   0 0  184  352.00  360.00   64.00  240.00 3 quit Col    26  0 2e2a2ccbaf0      48  48  48 255  96 0 0 Lucida Console
+2  3  3  26  151    0    0    0  0  0  0  0   0 0  185  352.00  460.00   64.00   40.00 4 quit Tab   151  0 2e2a2ccbd90 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  152    0    0    0  0  0  0  0   0 0  186  352.00  420.00   64.00   40.00 4 quit Tab   152  0 2e2a2cec8e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  153    0    0    0  0  0  0  0   0 0  187  352.00  380.00   64.00   40.00 4 quit Tab   153  0 2e2a2ced060 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  154    0    0    0  0  0  0  0   0 0  188  352.00  340.00   64.00   40.00 4 quit Tab   154  0 2e2a2ced7e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  155    0    0    0  0  0  0  0   0 0  189  352.00  300.00   64.00   40.00 4 quit Tab   155  0 2e2a2cedf90 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  26  156    0    0    0  0  0  0  0   0 0  190  352.00  260.00   64.00   40.00 4 quit Tab   156  0 2e2a2cee710 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  156    0    0    0  0  0  0  0   0 0  191  416.00  360.00   64.00  240.00 3 quit Col    27  0 2e2a2ceee90      48  48  48 255  96 0 0 Lucida Console
+2  3  3  27  157    0    0    0  0  0  0  0   0 0  192  416.00  460.00   64.00   40.00 4 quit Tab   157  0 2e2a2cef130 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  158    0    0    0  0  0  0  0   0 0  193  416.00  420.00   64.00   40.00 4 quit Tab   158  0 2e2a2cefc40 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  159    0    0    0  0  0  0  0   0 0  194  416.00  380.00   64.00   40.00 4 quit Tab   159  0 2e2a2cefee0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  160    0    0    0  0  0  0  0   0 0  195  416.00  340.00   64.00   40.00 4 quit Tab   160  0 2e2a2cfcb80 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  161    0    0    0  0  0  0  0   0 0  196  416.00  300.00   64.00   40.00 4 quit Tab   161  0 2e2a2cfd300 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  27  162    0    0    0  0  0  0  0   0 0  197  416.00  260.00   64.00   40.00 4 quit Tab   162  0 2e2a2cfda80 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  162    0    0    0  0  0  0  0   0 0  198  480.00  360.00   64.00  240.00 3 quit Col    28  0 2e2a2cfe200      48  48  48 255  96 0 0 Lucida Console
+2  3  3  28  163    0    0    0  0  0  0  0   0 0  199  480.00  460.00   64.00   40.00 4 quit Tab   163  0 2e2a2cfe4a0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  164    0    0    0  0  0  0  0   0 0  200  480.00  420.00   64.00   40.00 4 quit Tab   164  0 2e2a2cfefb0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  165    0    0    0  0  0  0  0   0 0  201  480.00  380.00   64.00   40.00 4 quit Tab   165  0 2e2a2c5f790 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  166    0    0    0  0  0  0  0   0 0  202  480.00  340.00   64.00   40.00 4 quit Tab   166  0 2e2a2cb36a0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  167    0    0    0  0  0  0  0   0 0  203  480.00  300.00   64.00   40.00 4 quit Tab   167  0 2e2a2cffcd0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  28  168    0    0    0  0  0  0  0   0 0  204  480.00  260.00   64.00   40.00 4 quit Tab   168  0 2e2a2cfff70 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  168    0    0    0  0  0  0  0   0 0  205  544.00  360.00   64.00  240.00 3 quit Col    29  0 2e2a2d10c10      48  48  48 255  96 0 0 Lucida Console
+2  3  3  29  169    0    0    0  0  0  0  0   0 0  206  544.00  460.00   64.00   40.00 4 quit Tab   169  0 2e2a2d10eb0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  170    0    0    0  0  0  0  0   0 0  207  544.00  420.00   64.00   40.00 4 quit Tab   170  0 2e2a2d119c0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  171    0    0    0  0  0  0  0   0 0  208  544.00  380.00   64.00   40.00 4 quit Tab   171  0 2e2a2d12140 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  172    0    0    0  0  0  0  0   0 0  209  544.00  340.00   64.00   40.00 4 quit Tab   172  0 2e2a2d128c0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  173    0    0    0  0  0  0  0   0 0  210  544.00  300.00   64.00   40.00 4 quit Tab   173  0 2e2a2d13070 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  29  174    0    0    0  0  0  0  0   0 0  211  544.00  260.00   64.00   40.00 4 quit Tab   174  0 2e2a2d137f0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  174    0    0    0  0  0  0  0   0 0  212  608.00  360.00   64.00  240.00 3 quit Col    30  0 2e2a2d13f10      48  48  48 255  96 0 0 Lucida Console
+2  3  3  30  175    0    0    0  0  0  0  0   0 0  213  608.00  460.00   64.00   40.00 4 quit Tab   175  0 2e2a2d20250 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  176    0    0    0  0  0  0  0   0 0  214  608.00  420.00   64.00   40.00 4 quit Tab   176  0 2e2a2d20d60 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  177    0    0    0  0  0  0  0   0 0  215  608.00  380.00   64.00   40.00 4 quit Tab   177  0 2e2a2d214e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  178    0    0    0  0  0  0  0   0 0  216  608.00  340.00   64.00   40.00 4 quit Tab   178  0 2e2a2d21c60 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  179    0    0    0  0  0  0  0   0 0  217  608.00  300.00   64.00   40.00 4 quit Tab   179  0 2e2a2d223e0 -   255 128   0 255  96 0 0 Lucida Console
+2  3  3  30  180    0    0    0  0  0  0  0   0 0  218  608.00  260.00   64.00   40.00 4 quit Tab   180  0 2e2a2d22b60 -   255 128   0 255  96 0 0 Lucida Console
+2  4  3  30  180    0    0    0  0  0  0  0   0 0  219  320.00  120.00  640.00  240.00 1 quit Line    4  0 2e2a2d232e0      18  11 112 255  96 0 0 Lucida Console
+2  4  4  30  180    0    0    0  0  0  0  0   0 0  220  320.00  120.00  640.00  240.00 2 quit Sect    4  0 2e2a2d23580      15 112 112 255  96 0 0 Lucida Console
+2  4  4  31  180    0    0    0  0  0  0  0   0 0  221   32.00  120.00   64.00  240.00 3 quit Col    31  0 2e2a2d23bb0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  31  181    0    0    0  0  0  0  0   0 0  222   32.00  220.00   64.00   40.00 4 quit Tab   181  0 2e2a2d38220 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  182    0    0    0  0  0  0  0   0 0  223   32.00  180.00   64.00   40.00 4 quit Tab   182  0 2e2a2d38d30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  183    0    0    0  0  0  0  0   0 0  224   32.00  140.00   64.00   40.00 4 quit Tab   183  0 2e2a2d394b0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  184    0    0    0  0  0  0  0   0 0  225   32.00  100.00   64.00   40.00 4 quit Tab   184  0 2e2a2d39c30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  185    0    0    0  0  0  0  0   0 0  226   32.00   60.00   64.00   40.00 4 quit Tab   185  0 2e2a2d3a3b0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  31  186    0    0    0  0  0  0  0   0 0  227   32.00   20.00   64.00   40.00 4 quit Tab   186  0 2e2a2d3ab30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  186    0    0    0  0  0  0  0   0 0  228   96.00  120.00   64.00  240.00 3 quit Col    32  0 2e2a2d3b2b0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  32  187    0    0    0  0  0  0  0   0 0  229   96.00  220.00   64.00   40.00 4 quit Tab   187  0 2e2a2d3b550 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  188    0    0    0  0  0  0  0   0 0  230   96.00  180.00   64.00   40.00 4 quit Tab   188  0 2e2a2d3be50 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  189    0    0    0  0  0  0  0   0 0  231   96.00  140.00   64.00   40.00 4 quit Tab   189  0 2e2a2d58820 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  190    0    0    0  0  0  0  0   0 0  232   96.00  100.00   64.00   40.00 4 quit Tab   190  0 2e2a2d58fa0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  191    0    0    0  0  0  0  0   0 0  233   96.00   60.00   64.00   40.00 4 quit Tab   191  0 2e2a2d59720 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  32  192    0    0    0  0  0  0  0   0 0  234   96.00   20.00   64.00   40.00 4 quit Tab   192  0 2e2a2d59ea0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  192    0    0    0  0  0  0  0   0 0  235  160.00  120.00   64.00  240.00 3 quit Col    33  0 2e2a2d5a620      48  48  48 255  96 0 0 Lucida Console
+2  4  4  33  193    0    0    0  0  0  0  0   0 0  236  160.00  220.00   64.00   40.00 4 quit Tab   193  0 2e2a2d5a8c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  194    0    0    0  0  0  0  0   0 0  237  160.00  180.00   64.00   40.00 4 quit Tab   194  0 2e2a2d5b3d0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  195    0    0    0  0  0  0  0   0 0  238  160.00  140.00   64.00   40.00 4 quit Tab   195  0 2e2a2d5bb50 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  196    0    0    0  0  0  0  0   0 0  239  160.00  100.00   64.00   40.00 4 quit Tab   196  0 2e2a2d5bfd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  197    0    0    0  0  0  0  0   0 0  240  160.00   60.00   64.00   40.00 4 quit Tab   197  0 2e2a2d68a90 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  33  198    0    0    0  0  0  0  0   0 0  241  160.00   20.00   64.00   40.00 4 quit Tab   198  0 2e2a2d69210 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  198    0    0    0  0  0  0  0   0 0  242  224.00  120.00   64.00  240.00 3 quit Col    34  0 2e2a2d69990      48  48  48 255  96 0 0 Lucida Console
+2  4  4  34  199    0    0    0  0  0  0  0   0 0  243  224.00  220.00   64.00   40.00 4 quit Tab   199  0 2e2a2d69c30 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  200    0    0    0  0  0  0  0   0 0  244  224.00  180.00   64.00   40.00 4 quit Tab   200  0 2e2a2d6a740 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  201    0    0    0  0  0  0  0   0 0  245  224.00  140.00   64.00   40.00 4 quit Tab   201  0 2e2a2d6aec0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  202    0    0    0  0  0  0  0   0 0  246  224.00  100.00   64.00   40.00 4 quit Tab   202  0 2e2a2d6b640 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  203    0    0    0  0  0  0  0   0 0  247  224.00   60.00   64.00   40.00 4 quit Tab   203  0 2e2a2d6bdc0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  34  204    0    0    0  0  0  0  0   0 0  248  224.00   20.00   64.00   40.00 4 quit Tab   204  0 2e2a2d7c580 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  204    0    0    0  0  0  0  0   0 0  249  288.00  120.00   64.00  240.00 3 quit Col    35  0 2e2a2d7cd00      48  48  48 255  96 0 0 Lucida Console
+2  4  4  35  205    0    0    0  0  0  0  0   0 0  250  288.00  220.00   64.00   40.00 4 quit Tab   205  0 2e2a2d7cfa0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  206    0    0    0  0  0  0  0   0 0  251  288.00  180.00   64.00   40.00 4 quit Tab   206  0 2e2a2cc85e0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  207    0    0    0  0  0  0  0   0 0  252  288.00  140.00   64.00   40.00 4 quit Tab   207  0 2e2a2d5bdf0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  208    0    0    0  0  0  0  0   0 0  253  288.00  100.00   64.00   40.00 4 quit Tab   208  0 2e2a2d7e050 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  209    0    0    0  0  0  0  0   0 0  254  288.00   60.00   64.00   40.00 4 quit Tab   209  0 2e2a2d7e7d0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  35  210    0    0    0  0  0  0  0   0 0  255  288.00   20.00   64.00   40.00 4 quit Tab   210  0 2e2a2d7ef50 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  210    0    0    0  0  0  0  0   0 0  256  352.00  120.00   64.00  240.00 3 quit Col    36  0 2e2a2d7f6d0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  36  211    0    0    0  0  0  0  0   0 0  257  352.00  220.00   64.00   40.00 4 quit Tab   211  0 2e2a2d7f970 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  212    0    0    0  0  0  0  0   0 0  258  352.00  180.00   64.00   40.00 4 quit Tab   212  0 2e2a2d7ffa0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  213    0    0    0  0  0  0  0   0 0  259  352.00  140.00   64.00   40.00 4 quit Tab   213  0 2e2a2d90c10 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  214    0    0    0  0  0  0  0   0 0  260  352.00  100.00   64.00   40.00 4 quit Tab   214  0 2e2a2d913c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  215    0    0    0  0  0  0  0   0 0  261  352.00   60.00   64.00   40.00 4 quit Tab   215  0 2e2a2d91b40 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  36  216    0    0    0  0  0  0  0   0 0  262  352.00   20.00   64.00   40.00 4 quit Tab   216  0 2e2a2d922c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  216    0    0    0  0  0  0  0   0 0  263  416.00  120.00   64.00  240.00 3 quit Col    37  0 2e2a2d92a40      48  48  48 255  96 0 0 Lucida Console
+2  4  4  37  217    0    0    0  0  0  0  0   0 0  264  416.00  220.00   64.00   40.00 4 quit Tab   217  0 2e2a2d90c40 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  218    0    0    0  0  0  0  0   0 0  265  416.00  180.00   64.00   40.00 4 quit Tab   218  0 2e2a2d937f0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  219    0    0    0  0  0  0  0   0 0  266  416.00  140.00   64.00   40.00 4 quit Tab   219  0 2e2a2d93f10 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  220    0    0    0  0  0  0  0   0 0  267  416.00  100.00   64.00   40.00 4 quit Tab   220  0 2e2a2da4730 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  221    0    0    0  0  0  0  0   0 0  268  416.00   60.00   64.00   40.00 4 quit Tab   221  0 2e2a2da4eb0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  37  222    0    0    0  0  0  0  0   0 0  269  416.00   20.00   64.00   40.00 4 quit Tab   222  0 2e2a2da5630 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  222    0    0    0  0  0  0  0   0 0  270  480.00  120.00   64.00  240.00 3 quit Col    38  0 2e2a2da5db0      48  48  48 255  96 0 0 Lucida Console
+2  4  4  38  223    0    0    0  0  0  0  0   0 0  271  480.00  220.00   64.00   40.00 4 quit Tab   223  0 2e2a2da6050 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  224    0    0    0  0  0  0  0   0 0  272  480.00  180.00   64.00   40.00 4 quit Tab   224  0 2e2a2da6b60 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  225    0    0    0  0  0  0  0   0 0  273  480.00  140.00   64.00   40.00 4 quit Tab   225  0 2e2a2da72e0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  226    0    0    0  0  0  0  0   0 0  274  480.00  100.00   64.00   40.00 4 quit Tab   226  0 2e2a2da7a60 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  227    0    0    0  0  0  0  0   0 0  275  480.00   60.00   64.00   40.00 4 quit Tab   227  0 2e2a2da7fd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  38  228    0    0    0  0  0  0  0   0 0  276  480.00   20.00   64.00   40.00 4 quit Tab   228  0 2e2a2dbc9a0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  228    0    0    0  0  0  0  0   0 0  277  544.00  120.00   64.00  240.00 3 quit Col    39  0 2e2a2dbd120      48  48  48 255  96 0 0 Lucida Console
+2  4  4  39  229    0    0    0  0  0  0  0   0 0  278  544.00  220.00   64.00   40.00 4 quit Tab   229  0 2e2a2dbd3c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  230    0    0    0  0  0  0  0   0 0  279  544.00  180.00   64.00   40.00 4 quit Tab   230  0 2e2a2dbded0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  231    0    0    0  0  0  0  0   0 0  280  544.00  140.00   64.00   40.00 4 quit Tab   231  0 2e2a2dbe650 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  232    0    0    0  0  0  0  0   0 0  281  544.00  100.00   64.00   40.00 4 quit Tab   232  0 2e2a2dbedd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  233    0    0    0  0  0  0  0   0 0  282  544.00   60.00   64.00   40.00 4 quit Tab   233  0 2e2a2dbf550 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  39  234    0    0    0  0  0  0  0   0 0  283  544.00   20.00   64.00   40.00 4 quit Tab   234  0 2e2a2dbfcd0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  234    0    0    0  0  0  0  0   0 0  284  608.00  120.00   64.00  240.00 3 quit Col    40  0 2e2a2dbff70      48  48  48 255  96 0 0 Lucida Console
+2  4  4  40  235    0    0    0  0  0  0  0   0 0  285  608.00  220.00   64.00   40.00 4 quit Tab   235  0 2e2a2dd8730 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  236    0    0    0  0  0  0  0   0 0  286  608.00  180.00   64.00   40.00 4 quit Tab   236  0 2e2a2dd9240 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  237    0    0    0  0  0  0  0   0 0  287  608.00  140.00   64.00   40.00 4 quit Tab   237  0 2e2a2dd99c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  238    0    0    0  0  0  0  0   0 0  288  608.00  100.00   64.00   40.00 4 quit Tab   238  0 2e2a2dda140 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  239    0    0    0  0  0  0  0   0 0  289  608.00   60.00   64.00   40.00 4 quit Tab   239  0 2e2a2dda8c0 -   255 128   0 255  96 0 0 Lucida Console
+2  4  4  40  240    0    0    0  0  0  0  0   0 0  290  608.00   20.00   64.00   40.00 4 quit Tab   240  0 2e2a2ddb040 -   255 128   0 255  96 0 0 Lucida Console
+P  L  S   C    T    N    I    K No Nm Cp LR  LC Z  Tid     X       Y       W       H   G why  Name  Cnt Sz  Identity   Txt Red Grn Blu Opc Dpi B I  Font Name
+16   974 tabs.py            dumpTniks   J1 1 3 3 39 239 0 0 0 0 0 0 0 0 0 290 quit
+16   974 tabs.py            dumpTniks   J2 2 4 4 40 240 0 0 0 0 0 0 0 0 0 290 quit
+16   974 tabs.py            dumpTniks   LE 2 4 4 40 240 0 0 0 0 0 0 0 0 1 291 quit
+16   974 tabs.py            dumpTniks END (2x2x10x6) (1x1x1x6) [0]       0 []    J2=[2 4 4 40 240 0 0 0 0 0 0 0 0 0 290] quit
+14   500 tabs.py         dumpDataHorz BGN (2x2x10x6) lc=1 ll=1 i=0
+Page 1 Line 1
+123456
+         
+---023
+------
+------
+------
+------
+------
+------
+------
+------
+------
+
+Page 1 Line 2
+123456
+         
+------
+------
+------
+------
+------
+------
+------
+------
+------
+------
+
+Page 2 Line 1
+123456
+         
+------
+------
+------
+------
+------
+------
+------
+------
+------
+------
+
+Page 2 Line 2
+123456
+         
+------
+------
+------
+------
+------
+------
+------
+------
+------
+------
+
+14   513 tabs.py         dumpDataHorz END (2x2x10x6) lc=1 ll=1 i=0
+14   483 tabs.py        transposeData BGN (2x2x10x6) External
+14   484 tabs.py        transposeData dl=[2 2 10 6] dt=[<class 'list'> <class 'list'> <class 'list'> <class 'str'>]
+---023 ------ ------ ------ ------ ------ ------ ------ ------ ------
+------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+
+---------- ---------- ---------- 0--------- 2--------- 3---------
+---------- ---------- ---------- ---------- ---------- ----------
+---------- ---------- ---------- ---------- ---------- ----------
+---------- ---------- ---------- ---------- ---------- ----------
+14   495 tabs.py        transposeData END (2x2x6x10) External
+14   518 tabs.py         dumpDataVert BGN (2x2x6x10) lc=1 ll=1 i=0 w=10 txt=Col 
+Page 1
+Col     Line 1     Line 2
+  1 ---------- ---------- 
+  2 ---------- ---------- 
+  3 ---------- ---------- 
+  4 0--------- ---------- 
+  5 2--------- ---------- 
+  6 3--------- ---------- 
+Page 2
+Col     Line 1     Line 2
+  1 ---------- ---------- 
+  2 ---------- ---------- 
+  3 ---------- ---------- 
+  4 ---------- ---------- 
+  5 ---------- ---------- 
+  6 ---------- ---------- 
+14   526 tabs.py         dumpDataVert END (2x2x6x10) lc=1 ll=1 i=0
+13   151 misc.py           dumpMlimap @ ^ Q <dumpLimap > 1 [0]
+  0 0 0 G            G            RM35         047    GBD          RM35         047    GBD         
+  0 0 1 Bm+          Bm+          #5Rm3        803    GBD          Rm3#5        038    BDG         
+  0 0 2 D6s4x        D6s4x        46R          590    GBD          R46          059    DGB         
+13   152 misc.py           dumpMlimap @ ^ Q <dumpLimap1> 1 [0]
+  0 0 G            RM35         Bm+          #5Rm3        D6s4x        46R          
+13   153 misc.py           dumpMlimap @ ^ Q <dumpLimap2> 1 [0]
+  0 0G            047   Bm+          803   D6s4x        590   
+13   154 misc.py           dumpMlimap @ ^ Q <dumpLimap3> 1 [0]
+  0 0 047    803    590                           RM35         #5Rm3        46R          
+12  1996 tabs.py                 quit END @ ^ Q code=1
+###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
+13  2011 tabs.py           cleanupLog SEQ_FNAMES=1
+13  1916 tabs.py          getFilePath subdir       = /
+13  1917 tabs.py          getFilePath filedir      = logs/
+13  1918 tabs.py          getFilePath filesfx      = .log
+13  1923 tabs.py          getFilePath fileGlobArg  = C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.*.log
+13  1924 tabs.py          getFilePath fileGlob:
+[]
+13  1928 tabs.py          getFilePath seq num      = 0 filesfx=.0.log
+13  2015 tabs.py           cleanupLog logPath      = C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log
+13  2016 tabs.py           cleanupLog  ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log ###
+13  2017 tabs.py           cleanupLog closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
