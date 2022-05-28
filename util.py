@@ -118,7 +118,7 @@ def parseCmdLine(file=None):
             options[key] = vals
             if dbg: slog(f'[{j}] arg [{argv}] [{key}] [{vals}]:', pfx=0, end=' ', file=file)
         if dbg: slog(pfx=0, file=file)
-    if dbg: slog(f'return options={options}', pfx=0, end=' ', file=file)
+    if dbg: slog(f'options={options}', file=file)
     return options
 ########################################################################################################################################################################################################
 class DSymb(object):
