@@ -1,26 +1,25 @@
 """util.py module.  class list: []."""
-import sys, inspect, pathlib, collections
+import sys, inspect, pathlib
+from collections import OrderedDict as cOd
 
 IND = 0
 MAX_STACK_DEPTH = 0
 MAX_STACK_FRAME = inspect.stack()
-STFILT  = ['log', 'getImap', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
-FMTN             = (2, 2, 2, 3, 1) # p, l, s, c, t remove?
-FMTN2            = (1, 2, 2, 2, 2, 2) # generalize for any # of strings
-M12           = { 10:'a', 11:'b' }
-INTERVALS     = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
-INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
-NTONES        = len(INTERVALS)
-
+FMTN            = (2, 2, 2, 3, 1)    # p, l, s, c, t remove?
+FMTN2           = (1, 2, 2, 2, 2, 2) # generalize for any # of strings
+M12             = { 10:'a', 11:'b' }
+INTERVALS       = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
+INTERVAL_RANK   = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
+NTONES          = len(INTERVALS)
+STFILT = ['log', 'getImap', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
+########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, filedir='files', filesfx='.txt', dbg=0):
-#    sfx = SFX if not ARGS['f'] else ''
-#    if dbg: util.slog(f'BASE_NAME= {BASE_NAME} SFX={SFX}')
-#    fileName        = BASE_NAME + sfx + filesfx
+    if dbg: slog(f'baseName= {baseName} basePath={basePath}')
     fileName        = baseName + filesfx
     filePath        = basePath / filedir / fileName
     if dbg: slog(f'fileName  = {fileName} filePath={filePath}')
     return filePath
-
+########################################################################################################################################################################################################
 def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=0, z=''):
     assert type(lst) in (list, tuple, set, frozenset)
     if d1 == '': d2 = ''
@@ -48,36 +47,7 @@ def fmtm(m, w=1, d0=':', d1='[', d2=']'):
         if   type(v) in (list, tuple, set):         t += f'{k}{d0}'   ;   t += fmtl(v, w)
         elif type(v) in (int, str):                 t += f'{k:>{w}}{d0}{v:<{w}} '
     return d1 + t.rstrip() + d2
-
-nStrings = 6
-if   nStrings == 6:
-    stringMap = collections.OrderedDict([('E2', 28), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52)])
-elif nStrings == 7:
-    stringMap = collections.OrderedDict([('E2', 28), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52), ('A4', 57)])
-else:
-    stringMap = collections.OrderedDict([('E2', 28), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52)])
-stringKeys = list(stringMap.keys())
-stringNames = ''.join(reversed([str(k[0]) for k in stringKeys]))
-stringNumbs = ''.join([str(r + 1) for r in range(len(stringKeys))])
-stringCapo = ''.join(['0' for _ in range(len(stringKeys))])
-strLabel = 'STRING'
-cpoLabel = ' CAPO '
-
-def isFret(text):         return 1 if '0'<=text<='9'      or 'a'<=text<='o'    else 0
-def tab2fn(tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None   ;   slog(f'tab={tab} fretNum={fn}') if dbg else None   ;   return fn
-def tab2nn(tab, s, dbg=0):
-    fn   = tab2fn(tab)
-    i    = fn2ni(fn, s)
-    name = Note.getName(i)
-    if dbg: slog(f'tab={tab} s={s} fn={fn} i={i} name={name}')
-    return name
-def fn2ni(fn, s, dbg=0):
-    strNum = nStrings - s - 1    # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
-    k = stringKeys[strNum]
-    i = stringMap[k] + fn
-    if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(stringMap)}')
-    return i
-
+########################################################################################################################################################################################################
 def stackDepth(sfs):
     global MAX_STACK_DEPTH, MAX_STACK_FRAME
     for i, sf in enumerate(sfs):
@@ -87,57 +57,12 @@ def stackDepth(sfs):
 
 def fmtSD(sd): return f'{sd:{sd}}'
 
-'''
-def deleteGlob(g, why=''):
-    slog(f'deleting {len(g)} file globs why={why}')
-    for f in g:
-        slog(f'{f}')
-        os.system(f'del {f}')
-
-def getFilePath(seq=0, filedir='files', filesfx='.txt'):
-    if seq:
-        subDir     = '/'
-#            subDir     = '/' + SFX.lstrip('.')
-        filedir    = filedir + subDir
-#            util.slog(f'SFX          = {SFX}')
-        slog(f'subdir       = {subDir}')
-        slog(f'filedir      = {filedir}')
-        slog(f'filesfx      = {filesfx}')
-        pathlib.Path(filedir).mkdir(parents=True, exist_ok=True)
-        fileGlobArg = str(BASE_PATH / filedir / BASE_NAME) + '.*' + filesfx
-#            fileGlobArg = str(BASE_PATH / filedir / BASE_NAME) + SFX + '.*' + filesfx
-        fileGlob    = glob.glob(fileGlobArg)
-        slog(f'fileGlobArg  = {fileGlobArg}')
-        slog('fileGlob:')
-        seq        = 1 + getFileSeqNum(fileGlob, filesfx)
-        filesfx    = f'.{seq}{filesfx}'
-        slog(f'{fmtl(fileGlob)}', pfx=0)
-        slog(f'seq num      = {seq} filesfx={filesfx}')
-    return getFilePath(filedir=filedir, filesfx=filesfx)
-
-def getFileSeqNum(fgs, sfx, dbg=1):
-    i = -1
-    if len(fgs):
-        if dbg: slog(f'sfx={sfx} fgs={fmtl(fgs)}')
-        ids = []
-        for s in fgs:
-            if s.endswith(sfx):
-                s = s[:-len(sfx)]
-                j = s.rfind('.')
-                s = s[j+1:]
-                i = int(s)
-                ids.append(i)
-        if dbg: slog(f'ids={ids}')
-        i = max(ids)
-    return i
-'''
-
 def dumpStack(sfs, file=None):
     for i, sf in enumerate(sfs):
         fp = pathlib.Path(sf.filename)  ;   n = fp.stem  ;  l = sf.lineno  ;  f = sf.function  ;  c = sf.code_context[0].strip() if sf.code_context else ''  ;  j = len(sfs) - (i + 1)
         slog(f'{j:2} {n:9} {l:5} {f:20} {c}', file=file)
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}', file=file)
-
+########################################################################################################################################################################################################
 def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
 #    if file is None: file = LOG_FILE
     if pfx:
@@ -150,8 +75,7 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
     print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        print(f'{msg}', file=file, flush=flush, sep=sep, end=end) if pfx else print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        if file != LOG_FILE: Tabs.slog(msg, pfx, flush=False, sep=',', end=end)
-    ####################################################################################################################################################################################################
-
+########################################################################################################################################################################################################
 def parseCmdLine(file=None):
     dbg = 1
     options = dict()
@@ -196,7 +120,10 @@ def parseCmdLine(file=None):
         if dbg: slog(pfx=0, file=file)
     if dbg: slog(f'return options={options}', pfx=0, end=' ', file=file)
     return options
-
+########################################################################################################################################################################################################
+class DSymb(object):
+    SYMBS = {'X': 'mute', '/': 'slide', '\\': 'bend', '+': 'hammer', '~': 'vibrato', '^': 'tie', '.': 'staccato', '_': 'legato', '%': 'repeat', '|': 'bar', '[': 'groupL', ']': 'groupR'}
+########################################################################################################################################################################################################
 class Note(object):
     FLAT, SHARP = 0, 1
     TYPE        = FLAT
@@ -227,4 +154,46 @@ class Note(object):
 
     @staticmethod
     def getFreq(index): return 440 * pow(pow(2, 1/NTONES), index - Note.INDICES)
+########################################################################################################################################################################################################
+class Strings(object):
+    aliases = {'GUITAR_6_STD':    cOd([('E2', 28), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52)]),
+               'GUITAR_6_DROP_D': cOd([('D2', 26), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52)]),
+               'GUITAR_7_STD':    cOd([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
+              }
+    def __init__(self, file=None, alias=None):
+        if alias is None: alias = 'GUITAR_6_STD'
+        self.stringMap = self.aliases[alias]
+        self.stringKeys = list(self.stringMap.keys())
+        self.stringNames = ''.join(reversed([ str(k[0])  for k in            self.stringKeys ]))
+        self.stringNumbs = ''.join(         [ str(r + 1) for r in range(len(self.stringKeys)) ])
+        self.stringCapo = ''.join(          [ '0'        for _ in range(len(self.stringKeys)) ])
+        self.strLabel = 'STRING'
+        self.cpoLabel = ' CAPO '
+        slog(f'stringMap   = {fmtm(self.stringMap)}',  file=file)
+        slog(f'stringKeys  = {fmtl(self.stringKeys)}', file=file)
+        slog(f'stringNames =      {self.stringNames}', file=file)
+        slog(f'stringNumbs =      {self.stringNumbs}', file=file)
+        slog(f'stringCapo  =      {self.stringCapo}',  file=file)
+        slog(f'strLabel    =      {self.strLabel}',    file=file)
+        slog(f'cpoLabel    =      {self.cpoLabel}',    file=file)
 
+    def nStrings(self): return len(self.stringNames)
+
+    def fn2ni(self, fn, s, dbg=0):
+        strNum = self.nStrings() - s - 1    # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
+        k      = self.stringKeys[strNum]
+        i      = self.stringMap[k] + fn
+        if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
+        return i
+
+    def tab2nn(self, tab, s, dbg=0):
+        fn   = self.tab2fn(tab)
+        i    = self.fn2ni(fn, s)
+        name = Note.getName(i)
+        if dbg: slog(f'tab={tab} s={s} fn={fn} i={i} name={name}')
+        return name
+
+    @staticmethod
+    def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
+    @staticmethod
+    def tab2fn(tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  slog(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn

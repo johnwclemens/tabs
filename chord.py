@@ -1,62 +1,20 @@
-#import sys, os
 from collections import OrderedDict as cOd
-#sys.path.insert(0, os.path.abspath('.'))
 import util
+#from util import Strings as us
 
 VERBOSE = 0 # tabs.VERBOSE
-#M12           = { 10:'a', 11:'b' }
-#INTERVALS     = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
-#INTERVAL_RANK = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
-#NTONES        = len(INTERVALS)
-
-####################################################################################################################################################################################################
-'''
-class Note(object):
-    FLAT, SHARP = 0, 1
-    TYPE        = FLAT
-    TYPES       = ['FLAT', 'SHARP']
-    F2S         = {'Db':'C#', 'Eb':'D#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#'}
-    S2F         = {'C#':'Db', 'D#':'Eb', 'F#':'Gb', 'G#':'Ab', 'A#':'Bb'}
-    FLATS       = { 0:'C', 1:'Db', 2:'D', 3:'Eb', 4:'E', 5:'F', 6:'Gb', 7:'G', 8:'Ab', 9:'A', 10:'Bb', 11:'B' }
-    SHARPS      = { 0:'C', 1:'C#', 2:'D', 3:'D#', 4:'E', 5:'F', 6:'F#', 7:'G', 8:'G#', 9:'A', 10:'A#', 11:'B' }
-    TONES       = [FLATS, SHARPS]
-    INDICES = { 'C0': 0, 'C#0': 1, 'Db0': 1, 'D0': 2, 'D#0': 3, 'Eb0': 3, 'E0': 4, 'F0': 5, 'F#0': 6, 'Gb0': 6, 'G0': 7, 'G#0': 8, 'Ab0': 8, 'A0': 9, 'A#0':10, 'Bb0':10, 'B0':11,
-                'C1':12, 'C#1':13, 'Db1':13, 'D1':14, 'D#1':15, 'Eb1':15, 'E1':16, 'F1':17, 'F#1':18, 'Gb1':18, 'G1':19, 'G#1':20, 'Ab1':20, 'A1':21, 'A#1':22, 'Bb1':22, 'B1':23,
-                'C2':24, 'C#2':25, 'Db2':25, 'D2':26, 'D#2':27, 'Eb2':27, 'E2':28, 'F2':29, 'F#2':30, 'Gb2':30, 'G2':31, 'G#2':32, 'Ab2':32, 'A2':33, 'A#2':34, 'Bb2':34, 'B2':35,
-                'C3':36, 'C#3':37, 'Db3':37, 'D3':38, 'D#3':39, 'Eb3':39, 'E3':40, 'F3':41, 'F#3':42, 'Gb3':42, 'G3':43, 'G#3':44, 'Ab3':44, 'A3':45, 'A#3':46, 'Bb3':46, 'B3':47,
-                'C4':48, 'C#4':49, 'Db4':49, 'D4':50, 'D#4':51, 'Eb4':51, 'E4':52, 'F4':53, 'F#4':54, 'Gb4':54, 'G4':55, 'G#4':56, 'Ab4':56, 'A4':57, 'A#4':58, 'Bb4':58, 'B4':59,
-                'C5':60, 'C#5':61, 'Db5':61, 'D5':62, 'D#5':63, 'Eb5':63, 'E5':64, 'F5':65, 'F#5':66, 'Gb5':66, 'G5':67, 'G#5':68, 'Ab5':68, 'A5':69, 'A#5':70, 'Bb5':70, 'B5':71,
-                'C6':72, 'C#6':73, 'Db6':73, 'D6':74, 'D#6':75, 'Eb6':75, 'E6':76, 'F6':77, 'F#6':78, 'Gb6':78, 'G6':79, 'G#6':80, 'Ab6':80, 'A6':81, 'A#6':82, 'Bb6':82, 'B6':83,
-                'C7':84, 'C#7':85, 'Db7':85, 'D7':86, 'D#7':87, 'Eb7':87, 'E7':88, 'F7':89, 'F#7':90, 'Gb7':90, 'G7':91, 'G#7':92, 'Ab7':92, 'A7':93, 'A#7':94, 'Bb7':94, 'B7':95,
-                'C8':96 } # For simplicity omit double flats and double sharps and other redundant enharmonic note names e.g. Abb, C##, Cb, B#, Fb, E# etc...
-    NAMES   = [ k for k in INDICES.keys() if k[1] != 'b' ]
-
-    @staticmethod
-    def setType(t): Note.TYPE = t
-
-    @staticmethod
-    def getName(i):
-        name = Note.TONES[Note.TYPE][i % NTONES]
-        return name
-
-    @staticmethod
-    def getFreq(index): return 440 * pow(pow(2, 1/NTONES), index - Note.INDICES)
-'''
-####################################################################################################################################################################################################
-class DSymb(object):
-    SYMBS = {'X': 'mute', '/': 'slide', '\\': 'bend', '+': 'hammer', '~': 'vibrato', '^': 'tie', '.': 'staccato', '_': 'legato', '%': 'repeat', '|': 'bar', '[': 'groupL', ']': 'groupR'}
-####################################################################################################################################################################################################
 
 class Chord(object):
     MIN_CHORD_LEN = 3
-    def __init__(self, logfile):
-        self.logFile = logfile
+    def __init__(self, file, sobj):
+        self.file = file
+        self.sobj = sobj
         self.limap, self.mlimap, self.umap, self.cycles = [], {}, {}, {}
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), dict()
-
+    ####################################################################################################################################################################################################
     def log(self, msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
-        if file is None: file=self.logFile
+        if file is None: file=self.file
         util.slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
     ####################################################################################################################################################################################################
     def getChordName(self, data, cn, p, l, c, kk=1, dbg=0):
@@ -96,25 +54,25 @@ class Chord(object):
             self.mlimap[cn] = [ self.limap, imi ]
             return self.limap[imi]
         return imap # [ ikeys, ivals, notes, name, chunks, rank ]
-
+    ####################################################################################################################################################################################################
     def _getIndices(self, data, p, l, c, dbg=0, dbg2=0):
-        strNumbs   = util.stringNumbs
-        strKeys    = util.stringKeys
-        strNames   = util.stringNames
+        strNumbs   = self.sobj.stringNumbs
+        strKeys    = self.sobj.stringKeys
+        strNames   = self.sobj.stringNames
         _tabs      = data[p][l][c]
         strIndices = [ util.Note.INDICES[k] for k in strKeys ]
         mask, indices, notes = [], [], []  ;  nt = len(_tabs)
         for t in range(nt-1, -1, -1):
-            if util.isFret(_tabs[t]):
-                fn    = util.tab2fn(_tabs[t])
-                index = util.fn2ni(fn, t)
-                note  = util.tab2nn(_tabs[t], t)
+            if self.sobj.isFret(_tabs[t]):
+                fn    = self.sobj.tab2fn(_tabs[t])
+                index = self.sobj.fn2ni(fn, t)
+                note  = self.sobj.tab2nn(_tabs[t], t)
                 if index: indices.append(index)
                 if note :   notes.append(note)   ;   mask.append(1)
                 else: mask.append(0)
             else: mask.append(0)
         if notes:
-            mask0 = [1] * util.nStrings #n[T]
+            mask0 = [1] * self.sobj.nStrings()
             if dbg2: self.dumpData(strNumbs,   mask0, 'strNumbs', r=1)
             if dbg2: self.dumpData(strKeys,    mask0, 'strKeys')
             if dbg2: self.dumpData(strIndices, mask0, 'strIndices')
@@ -248,7 +206,7 @@ class Chord(object):
         self.log(f'END   len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
 
     def _dumpOMAP(self, catfile=None, dbg=0):
-        file = catfile      if catfile else self.logFile
+        file = catfile      if catfile else self.file
         name = catfile.name if catfile else None
         omap = self.OMAP
         mapSet = {}   ;   r = {}   ;   rank = -1
@@ -942,17 +900,17 @@ class Chord(object):
         for i, c in enumerate(cat2):
             self.log(f'{i+1:3} {util.fmtl(c, z="x")}', pfx=0)
         self.log(f'{why} cat3 <{len(cat3)}>')
-        self.log(f'{util.fmtm(cat3)}', pfx=0,  file=self.logFile)
+        self.log(f'{util.fmtm(cat3)}', pfx=0,  file=self.file)
         for k in cat3.keys():
             cat3[k] = sorted(tuple(cat3[k]))
             for j, v in enumerate(cat3[k]):
                 self.log(f'{j+1:3} {util.fmtl(v, z="x")}', pfx=0)
         self.log(f'{why} catmap <{len(catmap)}>')
-        self.log(f'{util.fmtm(catmap)}', pfx=0,  file=self.logFile)
+        self.log(f'{util.fmtm(catmap)}', pfx=0,  file=self.file)
         for i, (k,v) in enumerate(catmap.items()):
             self.log(f'{i+1:3} {util.fmtl(k, z="x")} {util.fmtl(v, w=2)}', pfx=0)
         self.log(f'{why} catmap2 <{len(catmap2)}>')
-        self.log(f'{util.fmtm(catmap2)}', pfx=0,  file=self.logFile)
+        self.log(f'{util.fmtm(catmap2)}', pfx=0,  file=self.file)
         for k in cat3.keys():
             for i, v in enumerate(cat3[k]):
                 self.log(f'{i+1:3} {util.fmtl(v, z="x")}', pfx=0, end='  ')
