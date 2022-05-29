@@ -14,8 +14,6 @@ def dumpGlobals():
     util.slog(f'BASE_PATH = {BASE_PATH}', file=LOG_FILE)
     util.slog(f'BASE_NAME = {BASE_NAME}', file=LOG_FILE)
 ########################################################################################################################################################################################################
-AUTO_SAVE = 0  ;  CAT = 0  ;  EVENT_LOG = 0  ;  IND = 0  ;  RESIZE = 1  ;  SEQ_FNAMES = 1  ;  SNAP = 0  ;  VERBOSE = 0  ;  EXIT = 0
-########################################################################################################################################################################################################
 PATH             = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH        = PATH.parent
 BASE_NAME        = BASE_PATH.stem
@@ -29,7 +27,7 @@ T, N, I, K       =  4,  5,  6,  7
 O, A, D          =  8,  9, 10
 LR, LC, H        = 11, 12, 13
 TT, NN, II, KK   =  0,  1,  2,  3
-C1,  C2,  RLC    =  0,  1,  2
+C1,  C2          =  0,  1
 JTEXTS           = ['Page',  'Line',  'Sect',  'Col',  'Tab',  'Note',  'IKey',  'Kord',  '_SNo',  '_SNm',  '_Cpo',  '_LLR',  '_LLC', 'Curs', '_TNIK']
 jTEXTS           = ['pages', 'lines', 'sects', 'cols', 'tabs', 'notes', 'ikeys', 'Kords', 'snos', 'snas', 'capos', 'lrows', 'lcols', 'curs', 'tniks']
 JFMT             = [1, 2, 2, 3,  4, 4, 4, 4,  2, 2, 2,  2, 3, 1, 4]
@@ -76,18 +74,12 @@ class Tabs(pyglet.window.Window):
         for p in sys.path:
             self.log(f'{p}', pfx=0)
 
-    def dumpGlobalFlags(self):
-        txt1 = f'AUTO_SAVE={AUTO_SAVE} CAT={CAT} EVENT_LOG={EVENT_LOG} IND={IND} '
-        txt2 = f'RESIZE={RESIZE} SEQ_FNAMES={SEQ_FNAMES} SNAP+{SNAP} VERBOSE={VERBOSE}'
-        self.log(f'{txt1} {txt2}', pfx=0)
-
     def __init__(self):
         dumpGlobals()
         snapGlobArg = str(BASE_PATH / SNAP_DIR / BASE_NAME) + '.*' + SNAP_SFX
         snapGlob    = glob.glob(snapGlobArg)
         self.log(f'STFILT:\n{util.fmtl(util.STFILT)}')
         self.log(f'BGN {__class__}')
-        self.dumpGlobalFlags()
         self.log(f'snapGlobArg =  {snapGlobArg}')
         self.log(f'   snapGlob = { util.fmtl(snapGlob)}')
         self.deleteGlob(snapGlob, 'SNAP_GLOB')
@@ -105,33 +97,45 @@ class Tabs(pyglet.window.Window):
         self.tblank, self.tblanki, self.tblankCol,   self.cursor,  self.data    = None, None, None, None, []
         self.J1,     self.J2,      self.cc, self.ki, self.SNAP0,   self.armSnap = None, None, 0, 0, 0, ''
         self.kbk,    self.symb,    self.mods,        self.symbStr, self.modsStr =             0, 0, 0, '', ''
-        self.CHECKER_BOARD, self.FULL_SCREEN, self.ORDER_GROUP, self.SPRITES, self.SUBPIX  = 0, 0, 0, 0, 0
+        self.AUTO_SAVE = 0  ;  self.CAT = 0  ;  self.CHECKER_BOARD = 0  ;  self.EVENT_LOG = 0  ;  self.FULL_SCREEN = 0  ;  self.ORDER_GROUP = 0
+        self.RESIZE = 1  ;  self.SNAP = 0  ;  self.SEQ_FNAMES = 1  ;  self.SPRITES = 0  ;  self.SUBPIX  =  0  ;  self.TEST = 0  ;  self.VERBOSE = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0}
         self.ZZ           = set() if 1 else {0, 1}
         nt                = 6
-        self.n            = [2, 2, self.ssl(), 50, nt]
-        self.i            = [1, 1,     1,       1, nt]
+        self.n            = [2, 2, 50, nt]
+        self.i            = [1, 1,  1, nt]
         ARGS = util.parseCmdLine(file=LOG_FILE)
         self.log(f'argMap={util.fmtm(ARGS)}')
-        if 'f' in ARGS and len(ARGS['f'])  > 0:    self.dfn =       ARGS['f'][0]
-        if 'n' in ARGS and len(ARGS['n'])  > 0:    self.n   = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
-        if 'i' in ARGS and len(ARGS['i'])  > 0:    self.i   = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
-        if 'F' in ARGS and len(ARGS['F']) == 0: self.FULL_SCREEN =  1
-        if 'g' in ARGS and len(ARGS['g']) == 0: self.ORDER_GROUP =  1
-        if 'x' in ARGS and len(ARGS['x']) == 0:      self.SUBPIX =  1
-        if 'S' in ARGS and len(ARGS['S']) == 0:     self.SPRITES =  1
-        if 'l' in ARGS and len(ARGS['l']) == 0:          self.LL =  1
-        if 's' in ARGS and len(ARGS['s']) >= 0:          self.SS = { int(ARGS['s'][i]) for i in range(len(ARGS['s'])) }
-        if 'z' in ARGS and len(ARGS['z']) >= 0:          self.ZZ = { int(ARGS['z'][i]) for i in range(len(ARGS['z'])) }
+        if 'f' in ARGS and len(ARGS['f'])  > 0: self.dfn =       ARGS['f'][0]
+        if 'n' in ARGS and len(ARGS['n'])  > 0: self.n   = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
+        if 'i' in ARGS and len(ARGS['i'])  > 0: self.i   = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
+        if 'a' in ARGS and len(ARGS['a']) == 0: self.AUTO_SAVE     =  1
+        if 'c' in ARGS and len(ARGS['c']) == 0: self.CAT           =  1
+        if 'C' in ARGS and len(ARGS['C']) == 0: self.CHECKER_BOARD =  1
+        if 'e' in ARGS and len(ARGS['e']) == 0: self.EVENT_LOG     =  1
+        if 'F' in ARGS and len(ARGS['F']) == 0: self.FULL_SCREEN   =  1
+        if 'g' in ARGS and len(ARGS['g']) == 0: self.ORDER_GROUP   =  1
+        if 'r' in ARGS and len(ARGS['r']) == 0: self.RESIZE        =  1
+        if 'p' in ARGS and len(ARGS['p']) == 0: self.SNAP          =  1
+        if 'q' in ARGS and len(ARGS['q']) == 0: self.SEQ_FNAMES    =  1
+        if 'x' in ARGS and len(ARGS['x']) == 0: self.SUBPIX        =  1
+        if 'S' in ARGS and len(ARGS['S']) == 0: self.SPRITES       =  1
+        if 't' in ARGS and len(ARGS['t']) == 0: self.TEST          =  1
+        if 'v' in ARGS and len(ARGS['v']) == 0: self.VERBOSE       =  1
+        if 'l' in ARGS and len(ARGS['l']) == 0: self.LL =  1
+        if 's' in ARGS and len(ARGS['s']) >= 0: self.SS = { int(ARGS['s'][i]) for i in range(len(ARGS['s'])) }
+        if 'z' in ARGS and len(ARGS['z']) >= 0: self.ZZ = { int(ARGS['z'][i]) for i in range(len(ARGS['z'])) }
+        self.n.insert(S, self.ssl())  ;  self.i.insert(S, self.ssl())
         self.dumpArgs()
+        if self.TEST: self.test()  ;  self.quit('EXIT TEST')
         self.sAlias = 'GUITAR_6_STD'
         self.sobj = util.Strings(LOG_FILE, self.sAlias)
         self.cobj = chord.Chord(LOG_FILE, self.sobj)
         util.Note.setType(util.Note.SHARP)  ;  self.log(f' Note.TYPE={util.Note.TYPE}')
         self.n[S] = self.ssl()
         self._initDataPath()
-        if CAT: self.cobj.dumpOMAP(str(self.catPath))
+        if self.CAT: self.cobj.dumpOMAP(str(self.catPath))
         self._initWindowA()
         self.log(f'WxH={self.fmtWxH()}')
         super().__init__(screen=self.screens[1], fullscreen=self.FULL_SCREEN, resizable=True, visible=False)
@@ -146,10 +150,19 @@ class Tabs(pyglet.window.Window):
         self.log(f'[f]            f={          self.dfn}')
         self.log(f'[n]            n={util.fmtl(self.n, util.FMTN)}')
         self.log(f'[i]            i={util.fmtl(self.i, util.FMTN)}')
+        self.log(f'[a]    AUTO_SAVE={          self.AUTO_SAVE}')
+        self.log(f'[c]          CAT={          self.CAT}')
+        self.log(f'[c] CHECKER_BOARD={          self.CHECKER_BOARD}')
+        self.log(f'[e]    EVENT_LOG={          self.EVENT_LOG}')
         self.log(f'[F]  FULL_SCREEN={          self.FULL_SCREEN}')
         self.log(f'[g]  ORDER_GROUP={          self.ORDER_GROUP}')
+        self.log(f'[p]         SNAP={          self.SNAP}')
+        self.log(f'[r]       RESIZE={          self.RESIZE}')
+        self.log(f'[q]   SEQ_FNAMES={          self.SEQ_FNAMES}')
         self.log(f'[x]       SUBPIX={          self.SUBPIX}')
         self.log(f'[S]      SPRITES={          self.SPRITES}')
+        self.log(f'[t]         TEST={          self.TEST}')
+        self.log(f'[v]      VERBOSE={          self.VERBOSE}')
         self.log(f'[l]           LL={          self.LL}')
         self.log(f'[s]           SS={util.fmtl(self.SS)}')
         self.log(f'[z]           ZZ={util.fmtl(self.ZZ)}')
@@ -176,7 +189,7 @@ class Tabs(pyglet.window.Window):
         self.ssi = 0
         self._initColors()
         self._initData()
-        if AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer')
+        if self.AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer')
         self._initFonts()
         self._initTextLabels()
         self._initTniks()
@@ -211,7 +224,6 @@ class Tabs(pyglet.window.Window):
         self._initTpz()
         self.syncBlanks()
         if dbg: self.transposeDataDump()
-        if EXIT: self.quit('EXIT TEST')
         self.saveDataFile('_initData()', f=2)
 
     def _initDataPath(self):
@@ -260,7 +272,7 @@ class Tabs(pyglet.window.Window):
         self._initGroups()
         self.set_visible()
         self.log(f'get_size={self.get_size()}')
-        if EVENT_LOG and VERBOSE:
+        if self.EVENT_LOG and self.VERBOSE:
             self.eventLogger = pygwine.WindowEventLogger()
             self.push_handlers(self.eventLogger)
 #            self.keyboard = pygwine.key.KeyStateHandler()
@@ -359,7 +371,7 @@ class Tabs(pyglet.window.Window):
         self.dumpGeom(f'BGN {why} {self.fmtWxH()}')
         self.dumpFont(why)
         self.log(f'tpz={util.fmtl(self.tpz())}')
-        self.dumpGlobalFlags()
+#        self.dumpGlobalFlags()
         if not dbg2:     self.dumpJs(why)
         if dbg2:         self.dumpTniks(why)
         if dbg2 and dbg: self.dumpGeom(f'END {why} {self.fmtWxH()}')
@@ -368,22 +380,22 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def autoSave(self, dt, how, dbg=0):
         if dbg: self.log(f'dt={dt:7.4f} {how} dataHasChanged={self.dataHasChanged}')
-        if AUTO_SAVE and self.dataHasChanged: self.saveDataFile(how=how)   ;   self.dataHasChanged = 0
+        if self.AUTO_SAVE and self.dataHasChanged: self.saveDataFile(how=how)   ;   self.dataHasChanged = 0
 
     def on_draw(self, dbg=0):
         self.clear()
         self.batch.draw()
-        if SNAP and self.armSnap:
+        if self.SNAP and self.armSnap:
             if dbg: self.log(f'armSnap={self.armSnap}')
             self.snapshot(self.armSnap)  ;  self.armSnap = ''
 
     def on_resize(self, width, height, why='', dbg=0):
         super().on_resize(width, height)   ;   why2 = 'Upd'
-        if RESIZE: self.resizeTniks(f'{why2}{why}')
+        if self.RESIZE: self.resizeTniks(f'{why2}{why}')
     ####################################################################################################################################################################################################
     def saveDataFile(self, how, f=0, dbg=1):
         if dbg:   self.log(f'{how} f={f}')
-        if not f and AUTO_SAVE: dataPath = self.dataPath0
+        if not f and self.AUTO_SAVE: dataPath = self.dataPath0
         else:                   dataPath = self.dataPath1 if f == 1 else self.dataPath2
         with open(dataPath, 'w') as DATA_FILE:
             self.log(f'{DATA_FILE.name:40}', pfx=0)
@@ -617,7 +629,7 @@ class Tabs(pyglet.window.Window):
         if i == TT:                     self.hideTnik(self.cursr,                          0, H, dbg=dbg)
         self.dumpTniksSfx(why)
         self.toggleTT(i)
-        if SNAP: self.snapshot(f'hideTTs() {why}')
+        if self.SNAP: self.snapshot(f'hideTTs() {why}')
 
     def hideZZs(self, how, i, dbg=1):
         why = f'HIDE {how} i={i}'  ;  why2 = 'Ref' # ;  c2, t2 = 0, 0
@@ -1347,7 +1359,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {how} text={text} data={data} rev={rev}', pos=1)
         if rev: self.reverseArrow()
         else:   self.autoMove(how)
-        if SNAP and dbg: self.snapshot()
+        if self.SNAP and dbg: self.snapshot()
         self.dataHasChanged = 1
 
     def setDTNIK(self, text, cc, p, l, c, t, kk=0, pos=0, dbg=1):
@@ -1866,10 +1878,10 @@ class Tabs(pyglet.window.Window):
         if dbg: util.dumpStack(inspect.stack(), file=LOG_FILE)   ;   self.log(QUIT, pfx=0)   ;   util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
         self.dumpArgs()
         if dbg: self.dumpStruct('quit')
-#        if SNAP and code != 2: self.snapshot()
+#        if self.SNAP and code != 2: self.snapshot()
 #        self.cobj.dumpInstanceCat(why)
 #        self.cleanupCat(1 if code != 2 else 0)
-        if       code and AUTO_SAVE: self.saveDataFile(why, f=0)
+        if       code and self.AUTO_SAVE: self.saveDataFile(why, f=0)
         elif not code:               self.saveDataFile(why, f=1)
         if dbg2: self.transposeDataDump()
         if dbg:  self.cobj.dumpMlimap(why)
@@ -1879,24 +1891,24 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def cleanupCat(self, dump=1):
         self.log(f'BGN dump={dump}')
-        if   dump and CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
+        if   dump and self.CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
         elif dump:         self.cobj.dumpOMAP(None, merge=1)
-        if CAT:
+        if self.CAT:
             cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
             self.log(f' ***  copy {self.catPath} {cfp}  ***')
             os.system(f'copy {self.catPath} {cfp}')
         self.log(f'END dump={dump}')
 
     def cleanupLog(self):
-        self.log(f'SEQ_FNAMES={SEQ_FNAMES}')
+        self.log(f'SEQ_FNAMES={self.SEQ_FNAMES}')
         logPath = None
-        if SEQ_FNAMES:
-            logPath = self.getFilePath(seq=SEQ_FNAMES, filedir='logs', filesfx='.log')
+        if self.SEQ_FNAMES:
+            logPath = self.getFilePath(seq=self.SEQ_FNAMES, filedir='logs', filesfx='.log')
             self.log(f'logPath      = {logPath}')
             self.log(f' ### copy {LOG_PATH} {logPath} ###')
         self.log(f'closing {LOG_FILE.name}')
         LOG_FILE.close()
-        if SEQ_FNAMES and logPath: os.system(f'copy {LOG_PATH} {logPath}')
+        if self.SEQ_FNAMES and logPath: os.system(f'copy {LOG_PATH} {logPath}')
 
 ########################################################################################################################################################################################################
 OPACITY          = [ 255, 240, 225, 210, 190, 165, 140, 110, 80 ]
