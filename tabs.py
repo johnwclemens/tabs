@@ -124,8 +124,8 @@ class Tabs(pyglet.window.Window):
         if 't' in ARGS and len(ARGS['t']) == 0: self.TEST          =  1
         if 'v' in ARGS and len(ARGS['v']) == 0: self.VERBOSE       =  1
         if 'L' in ARGS and len(ARGS['L']) == 0: self.LL =  1
-        if 'S' in ARGS and len(ARGS['S']) >= 0: self.SS = { int(ARGS['s'][i]) for i in range(len(ARGS['s'])) }
-        if 'Z' in ARGS and len(ARGS['Z']) >= 0: self.ZZ = { int(ARGS['z'][i]) for i in range(len(ARGS['z'])) }
+        if 'S' in ARGS and len(ARGS['S']) >= 0: self.SS = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
+        if 'Z' in ARGS and len(ARGS['Z']) >= 0: self.ZZ = { int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) }
         self.n.insert(S, self.ssl())  ;  self.i.insert(S, self.ssl())
         self.dumpArgs()
         if self.TEST: self.test()  ;  self.quit('EXIT TEST')
@@ -642,7 +642,32 @@ class Tabs(pyglet.window.Window):
                 for s, s2 in enumerate(self.ss2sl()):
                     self.setJdump(S, s2, why2)
                     for c, c2 in enumerate(self.zz2sl()):
-                        if c != ii:     self.setJdump(C, c, why2)
+                        if c2 == ii:
+                            c2 = ((p * nl + l) * ns + s) * nc + c   ;   self.hideTnik(self.cols, c2, C, dbg=dbg)
+                            for t in range(nt):
+                                z, j = self.tnikInfo(s2)
+                                self.hideTnik(z, self.J2[j], j, dbg=dbg)
+                        else:
+                            self.setJdump(C, c2, why2)
+                            tlist, j2 = self.tnikInfo(c2)
+                            for t in range(nt):
+                                self.setJ(j2, t)
+                                self.dumpTnik(tlist[t], j2, why2)
+        self.dumpTniksSfx(why)
+        self.toggleZZ(ii)
+
+    def OLD_2_hideZZs(self, how, ii, dbg=1):
+        why = f'HIDE {how} ii={ii}'   ;   why2 = 'Ref'  # ;  c2, t2 = 0, 0
+        np, nl, ns, nc, nt = self.n   ;   nc += self.zzl()   ;   ns = self.ssl()
+        self.dumpTniksPfx(why)
+        for p in range(np):
+            self.setJdump(P, p, why2)
+            for l in range(nl):
+                self.setJdump(L, l, why2)
+                for s, s2 in enumerate(self.ss2sl()):
+                    self.setJdump(S, s2, why2)
+                    for c, c2 in enumerate(self.zz2sl()):
+                        if c != ii:     self.setJdump(C, c2, why2)
                         else:          c2 = ((p * nl + l) * ns + s) * nc + c;   self.hideTnik(self.cols, c2, C, dbg=dbg)
                         for t in range(nt):
                             z, j = self.tnikInfo(s2)
@@ -762,20 +787,23 @@ class Tabs(pyglet.window.Window):
                                     lrCol = self.addLL(None, c, n, x, y, w, h)
                                     jj = l * nc + ii
                                     self.lcols.insert(jj, lrCol)
-                                self.log(f'ii={ii} c={c} c2={c2} z1={z1} z2={z2} J1={util.fmtl(self.J1)} J2={util.fmtl(self.J2)}')
-                                for _ in self.g_createTniks(self.tabs, T, col, ii=ii):
+                                self.log(f'if   ii={ii} s={s} s2={s2} c={c} c2={c2} z1={z1} z2={z2} J1={util.fmtl(self.J1)} J2={util.fmtl(self.J2)}')
+                                for _ in self.g_createTniks(self.tabs, T, col, ii=s2):
                                     pass
-                        else: # self.log(f'ii={ii} c={c} c2={c2} z1={z1} z2={z2} J1={util.fmtl(self.J1)} J2={util.fmtl(self.J2)}')
-                            self.setJdump(C, c2)
-                            tlist, j2 = self.tnikInfo(c2)
+                        else:
+                            self.log(f'else ii={ii} s={s} s2={s2} c={c} c2={c2} z1={z1} z2={z2} J1={util.fmtl(self.J1)} J2={util.fmtl(self.J2)}')
+                            self.setJdump(C, c2, why2)
+                            tlist, j2 = self.tnikInfo(s2)
                             for t in range(nt):
                                 self.setJ(j2, t)
                                 self.dumpTnik(tlist[t], j2, why2)
-#                                self.setJdump(T, t, why2)
                     for c in range(nz, nc):
-                            self.setJdump(C, c-nz, why2)
+                            self.log(f'for  ii={ii} s={s} s2={s2} c={c}                         J1={util.fmtl(self.J1)} J2={util.fmtl(self.J2)}')
+                            self.setJdump(C, c, why2)
+                            tlist, j2 = self.tnikInfo(s2)
                             for t in range(nt):
-                                self.setJdump(T, t, why2)
+                                self.setJ(j2, t)
+                                self.dumpTnik(tlist[t], j2, why2)
         self.dumpTniksSfx(why)
 
     def addLLs(self, how):
@@ -1450,7 +1478,7 @@ class Tabs(pyglet.window.Window):
     def setDTNIK(self, text, cc, p, l, c, t, kk=0, pos=0, dbg=1):
         if dbg: self.log(f'BGN kk={kk}    text={text}', pos=pos)
         self.setData(text, p, l, c, t)
-        imap = self.getImap()
+        imap = self.getImap(p, l, c)
         if TT in self.SS: self.setTab2( text, cc)
         if NN in self.SS: self.setNote( text, cc, t)
         if II in self.SS: self.setIkey( imap, p, l, c)
@@ -1474,9 +1502,9 @@ class Tabs(pyglet.window.Window):
         self.notes[cc].text = self.sobj.tab2nn(text, t) if self.sobj.isFret(text) else self.tblank
         if dbg: self.log(f'END     t={t} text={text} notes[{cc}]={self.notes[cc].text}', pos=pos)
     ####################################################################################################################################################################################################
-    def getImap(self, dbg=1, dbg2=0):
+    def getImap(self, p=None, l=None, c=None, dbg=1, dbg2=0):
         dl = self.dl()
-        p, l, s, c = self.j1plsc()
+        if p is None or l is None or c is None: p, l, s, c = self.j1plsc()
         cn = self.plc2cn(p, l, c)      ;    key = cn   ;   mli = self.cobj.mlimap
         msg1  = f'plc=[{p} {l} {c}]'   ;   msg2 = f'dl={util.fmtl(dl)} cn={cn} key={key} keys={util.fmtl(list(mli.keys()))}'
 #        if p >= dl[0] or l >= dl[1] or c >= dl[2]:  msg = f'ERROR Indexing {msg1} >= {msg2}'   ;   self.log(msg)   ;   self.quit(msg)
