@@ -82,7 +82,7 @@ def parseCmdLine(file=None):
     key = ''
     vals = []
     largs = len(sys.argv)
-    if dbg: slog(f'argv={sys.argv}', file=file)
+    if dbg: slog(f'argv={fmtl(sys.argv)}', file=file)
     for j in range(1, largs):
         argv = sys.argv[j]
         if len(argv) > 2 and argv[0] == '-' and argv[1] == '-':
@@ -90,33 +90,33 @@ def parseCmdLine(file=None):
                 vals = []
                 key = argv[2:]
                 options[key] = vals
-                if dbg: slog(f'{j}] long [{argv}] [{key}] [{vals}]:', pfx=0, end=' ', file=file)
+                if dbg: slog(f'{j:2} long    {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
             else:
-                slog(f'[{j}] ERROR long [{argv}] [{key}] [{vals}]:', pfx=0, end=' ', file=file)
+                slog(f'{j:2} ERROR long    {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
         elif len(argv) > 1 and argv[0] == '-':
             if argv[1].isalpha() or argv[1] == '?':
                 vals = []
                 if len(argv) == 2:
                     key = argv[1:]
-                    if dbg: slog(f'[{j}] short [{argv}] [{key}] [{vals}]:', pfx=0, end=' ', file=file)
+                    if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
                     options[key] = vals
                 elif len(argv) > 2:
                     for i in range(1, len(argv)):
                         key = argv[i]
-                        if dbg: slog(f'[{j}] short [{argv}] [{key}] [{vals}]:', pfx=0, end=' ', file=file)
+                        if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
                         options[key] = vals
             elif argv[1].isdigit():
                 vals.append(argv)
                 options[key] = vals
-                if dbg: slog(f'[{j}] neg arg [{argv}] [{key}] [{vals}]:', pfx=0, end=' ', file=file)
+                if dbg: slog(f'{j:2} neg arg {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
             else:
                 vals.append(argv)
                 options[key] = vals
-                if dbg: slog(f'{j}] ??? arg [{argv}] [{key}] [{vals}]:', pfx=0, end=' ', file=file)
+                if dbg: slog(f'{j:2} ??? arg {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
         else:
             vals.append(argv)
             options[key] = vals
-            if dbg: slog(f'[{j}] arg [{argv}] [{key}] [{vals}]:', pfx=0, end=' ', file=file)
+            if dbg: slog(f'{j:2} arg     {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
         if dbg: slog(pfx=0, file=file)
     if dbg: slog(f'options={fmtm(options)}', file=file)
     return options
