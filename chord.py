@@ -43,6 +43,8 @@ class Chord(object):
                     msg = f'ADDING ikey={ikey} ivals={util.fmtl(ivals)} to OMAP'   ;   self.log(f'{msg} kk={kk}')
                     if kk: self.umap[ikey] = (rank, ivals, [])
                     else:  raise SystemExit(msg)
+                elif len(_imap) >= util.MIN_IVAL_LEN:
+                    pass
                 if dbg:    self._dumpData(rank, _ikeys, _ivals, _notes, mask, 1)
                 imap  = [ ikeys, ivals, notes, name, chunks, rank ]
                 vkeys.append(vkey)   ;   self.limap.append(imap)

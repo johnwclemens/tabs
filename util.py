@@ -3,6 +3,7 @@ import sys, inspect, pathlib
 from collections import OrderedDict as cOd
 
 IND = 0
+MIN_IVAL_LEN    = 1
 MAX_STACK_DEPTH = 0
 MAX_STACK_FRAME = inspect.stack()
 FMTN            = (2, 2, 2, 3, 1)    # p, l, s, c, t remove?
