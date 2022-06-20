@@ -66,6 +66,7 @@ def dumpStack(sfs, file=None):
 ########################################################################################################################################################################################################
 def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
 #    if file is None: file = LOG_FILE
+    strip = 1
     if pfx:
         sfs = inspect.stack()          ;  i = 1
         while sfs[i].function in STFILT:  i += 1
@@ -73,6 +74,10 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
         p = pathlib.Path(sf.filename)  ;  n = p.name  ;  l = sf.lineno  ;  f = sf.function
         if IND: print(f'{fmtSD(sd):20} {l:5} {n:7} {f:>20} ',      file=file, end='')
         else:   print(             f'{sd:2} {l:5} {n:7} {f:>20} ', file=file, end='')
+    if strip:
+        msg = msg.replace('self.', '.')
+        msg = msg.replace('"', '')
+        msg = msg.replace("'", '')
     print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        print(f'{msg}', file=file, flush=flush, sep=sep, end=end) if pfx else print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        if file != LOG_FILE: Tabs.slog(msg, pfx, flush=False, sep=',', end=end)
