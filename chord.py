@@ -40,7 +40,7 @@ class Chord(object):
                     name = ''.join(chunks)      ;     rank = self.OMAP[ikey][0]
                     assert _ivals == self.OMAP[ikey][1]
                 elif len(_imap) >= Chord.MIN_CHORD_LEN:
-                    msg = f'ADDING ikey={ikey} ivals={util.fmtl(ivals)} to OMAP'   ;   self.log(f'{msg} kk={kk}')
+                    msg = f'ADDING {ikey=} {util.fmtl(ivals)=} to OMAP'   ;   self.log(f'{msg} {kk=}')
                     if kk: self.umap[ikey] = (rank, ivals, [])
                     else:  raise SystemExit(msg)
                 elif len(_imap) >= util.MIN_IVAL_LEN:

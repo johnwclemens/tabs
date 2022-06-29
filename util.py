@@ -76,6 +76,7 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
         else:   print(             f'{sd:2} {l:5} {n:7} {f:>20} ', file=file, end='')
     if strip:
         msg = msg.replace('self.', '.')
+        msg = msg.replace('util.', '.')
         msg = msg.replace('"', '')
         msg = msg.replace("'", '')
     print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
