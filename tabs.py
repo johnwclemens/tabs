@@ -104,6 +104,7 @@ class Tabs(pyglet.window.Window):
         self.ZZ           = set() if 1 else {0, 1}
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         nt                = 6
+#        self.nlines       = 0
         self.n            = [2, 2, 50, nt]
         self.i            = [1, 1,  1, nt]
         ARGS = util.parseCmdLine(file=LOG_FILE)
@@ -221,8 +222,7 @@ class Tabs(pyglet.window.Window):
 
     def _initData(self, dbg=1):
         self._initDataPath()
-        if not self.dataPath1.exists(): self.log(f'WARN No Data File @ {self.dataPath1=}')  ;  self.dataPath1.touch()  ;  self.genDataFile()
-        else:                           self.readDataFile()
+        self.readDataFile()
         self.transposeDataDump() if dbg else self.transposeData()
         self.n[P] = len(self.data)  # self.dl()[0]
         self.log(f'updating n[P] {util.fmtl(self.n)}')
@@ -406,30 +406,38 @@ class Tabs(pyglet.window.Window):
         else:                   dataPath = self.dataPath1 if f == 1 else self.dataPath2
         with open(dataPath, 'w') as DATA_FILE:
             self.log(f'{DATA_FILE.name:40}', pfx=0)
-            np, nl, nc, nr = self.dl()
+            np, nl, nc, nr = self.dl()  ;  sl = 0
             data = self.transposeData() # if self.isVert() else self.data
             for p in range(np):
                 if dbg: self.log(f'writing {p+1}{self.ordSfx(p+1)} page', pfx=0)
                 for l in range(nl):
                     if dbg: self.log(f'writing {l+1}{self.ordSfx(l+1)} line', pfx=0)  # if dbg  else  self.log(pfx=0)  if  l  else  None
-                    for r in range(nr):
-                        text = ''
-                        for c in range(nc):
-                            text += data[p][l][r][c]
-                        if dbg: self.log(f'writing {r+1}{self.ordSfx(r+1)} string {text}', pfx=0)  # if dbg  else  self.log(text, pfx=0)
-                        DATA_FILE.write(f'{text}\n')
+                    if sl <= len(self.lines):
+                        sl += 1
+                        for r in range(nr):
+                            text = ''
+                            for c in range(nc):
+                                text += data[p][l][r][c]
+                            if dbg: self.log(f'writing {r+1}{self.ordSfx(r+1)} string {text}', pfx=0)  # if dbg  else  self.log(text, pfx=0)
+                            DATA_FILE.write(f'{text}\n')
+                    else: msg = f'WARN MAX Line {sl=} > {len(self.lines)=}'  ;  self.log(msg)  ;  return
                     if l < nl: DATA_FILE.write('\n')
+    ####################################################################################################################################################################################################
+    def genDataFile(self):
+        self.log(f'Generating Tab Data using {util.fmtl(self.n)=}')
+        np, nl, ns, nc, nr = self.n  ;  nc += self.zzl()
+        self.data = [ [ [ self.tblankRow for _ in range(nr) ] for _ in range(nl) ] for _ in range(np) ]
     ####################################################################################################################################################################################################
     def readDataFile(self, dbg=1):
         nl = self.n[L]   ;   nr = self.n[T]
         sp, sl, st, sr = 0, 0, 0, 0
         if dbg: self.log(f'BGN {util.fmtl(self.n)}')
         path1 = str(self.dataPath1)   ;   self.log(f'{path1=}')
+        if not self.dataPath1.exists(): self.log(f'WARN No Data File @ {self.dataPath1=}')  ;  self.dataPath1.touch()  ;  return self.genDataFile()
         with open(path1, 'r') as DATA_FILE:
             DATA_FILE.seek(0, 2)      ;   size = DATA_FILE.tell()    ;   DATA_FILE.seek(0, 0)
-            self.log(f'{DATA_FILE.name:40} {size:4,} bytes = {size/1024:4,.1f} KB')
-            self.log(f'{DATA_FILE.name:40} {size:4,} bytes = {size/1024:4,.1f} KB')
-            if not size: self.log(f'WARN Empty data File {size=} call genDataFile()')   ;   return self.genDataFile()
+            self.log(f'{DATA_FILE.name:40} {size:3,} bytes = {size/1024:3,.1f} KB')
+            if not size: self.log(f'WARN Empty Data File {size=} -> Generate Data')   ;   return self.genDataFile()
             self.log('Raw Data File BGN:')
             data = self.data          ;   lines, rows = [], []       ;   ntabs = 0
             for tabs in DATA_FILE:
@@ -437,14 +445,14 @@ class Tabs(pyglet.window.Window):
                 if tabs:
                     if not ntabs: ntabs = len(tabs)
                     if len(tabs) != ntabs:  msg = f'ERROR BAD tabs len {len(tabs)=} != {ntabs=}'   ;   self.log(msg)   ;   self.quit(msg)
-                    rows.append(tabs)  ;   st += len(tabs)           ;     sr += 1
+                    rows.append(tabs)   ;   st += len(tabs)          ;     sr += 1
                 else:
                     if rows  and not (sr % nr): lines.append(rows)   ;    rows = []   ;   sl += 1
                     if lines and not (sl % nl): data.append(lines)   ;   lines = []   ;   sp += 1
                 self.log(f'{tabs}', pfx=0)
             if lines: data.append(lines)   ;  sp += 1
             self.log('Raw Data File END:')
-            self.checkDataFileSize(sl, size)
+            self.assertDataFileSize(sl, size)
             self.log(f'{util.fmtl(self.dl())} {util.fmtl(self.dt())}')
             npages, nlines, nrows, ntabs = self.dl()
             self.log(f'{sp    } ({sl/nlines:6.3f}) pages = {sl} lines =          {sr} rows =          {st} tabs')
@@ -452,12 +460,13 @@ class Tabs(pyglet.window.Window):
             self.dumpDataFile(data)
 #            self.log(f'    {nlines} lines, {nrows=} rows per line, {ntabs} tabs per row')
 
-    def checkDataFileSize(self, nlines, ref):
+    def assertDataFileSize(self, nlines, ref):
         nt  = self.n[C]  ;  nr = self.n[T]  ;  crlf = 2
-        dsize = nlines * nr * nt            ;  self.log(f'{dsize=} = {nlines=} * {nr=} * {nt=}')
-        crlfs = nlines * (nr + 1) * crlf    ;  self.log(f'{crlfs=} = {nlines=} * {(nr+1)=} * {crlf=}')
-        size  =  dsize + crlfs              ;  self.log(f'{size=}  =  {dsize=} + {crlfs=}')
-        msg = f'assert {size=} ?=? {ref=}'  ;  self.log(msg)   ;   assert size == ref
+        dsize = nlines * nr * nt            ;  self.log(f'{dsize=:3,} = {nlines=:3,} *     {nr=:2} *   {nt=}')
+        crlfs = nlines * (nr + 1) * crlf    ;  self.log(f'{crlfs=:3,} = {nlines=:3,} * {(nr+1)=:2} * {crlf=}')
+        size  =  dsize + crlfs              ;  self.log(f' {size=:3,} =  {dsize=:3,} +  {crlfs=:3,}')
+        msg = f'assert {size=:4,} ?=? {ref=:4,}'  ;  self.log(msg)   ;   assert size == ref
+#        self.nlines = nlines
 
     def dumpDataFile(self, data=None):
         data = data if data is not None else self.data
@@ -468,12 +477,6 @@ class Tabs(pyglet.window.Window):
                 self.log(f'{util.fmtl(data[n0][n1], d1="")}', pfx=0)
             self.log(pfx=0)
         self.log(f'END {d0} pages, {d1} lines per page, {d2} rows per line, {d3} tabs per line')
-
-    def genDataFile(self):
-        self.log(f'Generating tab data using {util.fmtl(self.n)=}')
-#        self.log('Generating tab data using parameters {} {} {} {} {}'.format(*self.n))
-        np, nl, ns, nc, nr = self.n  ;  nc += self.zzl()
-        self.data = [ [ [ self.tblankRow for _ in range(nr) ] for _ in range(nl) ] for _ in range(np) ]
     ####################################################################################################################################################################################################
     def isVert(self, data=None, dbg=1):
         dl, dt = self.dl(data), self.dt(data)
@@ -851,16 +854,16 @@ class Tabs(pyglet.window.Window):
             if dbg:   self.log(f'{p.x=:.2f} {p.scale_x=:.4f} {n=} {self.p0x=:.2f} {self.p0w=:.2f} {self.p0sx=:.4f}')
 
     def splitHL(self, x, w, n):
-        x0 = x                    ;   w0 = w
-        w2 = w/n                  ;   w -= w2
-        x = w2 + w2/2 + w/2        ;  x2 = w2
+        x0 = x                     ;   w0 = w
+        w2 = w/n                   ;   w -= w2
+        x = w2 + w2/2 + w/2        ;   x2 = w2
         self.log(f'{x0=:6.2f} {w0=:6.2f} {n=} {x=:6.2f} {w=:6.2f} {x2=:6.2f} {w2=:6.2f}')
         return x, w, x2, w2
 
     def splitHS(self, x, w, n, s):
         x0 = x      ;   w0 = w     ;   s0 = s
         w2 = w/n    ;   w -= w2    ;   s  = w/s0
-        x = w2 + w2/2 + w/2    ;   x2 = w2
+        x = w2 + w2/2 + w/2        ;   x2 = w2
         self.log(f'{x0=:6.2f} {w0=:6.2f} {s0=:6.4f} {n=} {x=:6.2f} {w=:6.2f} {s=:6.4f} {x2=:6.2f} {w2=:6.2f}')
         return x, s, x2, w2
     ####################################################################################################################################################################################################
@@ -930,7 +933,6 @@ class Tabs(pyglet.window.Window):
 
     def geom(self, j, p=None, n=None, i=None, dbg=1):
         if j is None or 0 > j >= len(JTEXTS): msg = f'ERROR j is BAD {j=} {len(JTEXTS)=} {n=} {i=} {type(p)=}'  ;  self.log(msg)  ;  self.quit(msg)
-        jtxt = f'{JTEXTS[j]:4}'
         n = n if n is not None else self.n[j] # if j != P else 1
         i = i if i is not None else self.i[j]
         if   p is None:     w  =  self.width - self.p0w  ;  h  =  self.height
@@ -945,8 +947,8 @@ class Tabs(pyglet.window.Window):
             elif j == T:    x  =  p.x                    ;  y  =  p.y + p.height/2 - h/2
             else:           x  =  self.p0x               ;  y  =  p.y + p.height/2 - h/2
         if dbg:
-            msg  = f'{j=} {jtxt} {n=} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}'
-            msg += f' : {p.x:7.2f} {p.y:7.2f} {p.width:7.2f} {p.height:7.2f}' if p else ''
+            msg  = f'{j=}  {n=:2} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}'
+            msg += f' : {p.x:7.2f} {p.y:7.2f} {p.width:7.2f} {p.height:7.2f}' if p else ""
             self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', pfx=0, file=sys.stdout)
         return n, i, x, y, w, h
     ####################################################################################################################################################################################################
@@ -965,10 +967,9 @@ class Tabs(pyglet.window.Window):
         return chordName
     ####################################################################################################################################################################################################
     def createTniks(self):
-        self.dumpTniksPfx()   ;  view = None
-        n, i, x, y, w, h =       self.geom(V, n=1, i=1, dbg=1)  #  0, self.height, self.width, self.height
-        if self.VIEWS:
-            view = self.createTnik(self.views, 0, V, x, y, w, h, why="New", v=1, dbg=1)
+        n, i, x, y, w, h =       self.geom(     V, n=1, i=1, dbg=1)  #  0, self.height, self.width, self.height
+        self.dumpTniksPfx()
+        view = self.createTnik(  self.views, 0, V, x, y, w, h, why="New", v=1, dbg=1) if self.VIEWS else None
         for page in              self.g_createTniks(self.pages, P, view):
             for line in          self.g_createTniks(self.lines, L, page):
                 for sect in      self.g_createTniks(self.sects, S, line):
@@ -988,6 +989,9 @@ class Tabs(pyglet.window.Window):
             if   j2 == C:                              x2 = x + i * w
             else:
                 if   j2 != P:                          y2 = y - i * h
+#                if   j >= L:
+                if self.J2[L] > len(self.data[p]):
+                    msg = f'WARN MAX Line {self.J2[L]=} > {len(self.data[p])=}'  ;  self.log(msg)  ;  return
                 if   j2 == S:                           _ = self.ss2sl()[i] if ii < 0 else ii  ;  self.SS.add(_)  ;  k = self.cci(j, kl)
                 elif j2 >= T:
                     s2 = self.ss2sl()[self.J1[S]] if ii  <  0 else ii
@@ -1035,11 +1039,10 @@ class Tabs(pyglet.window.Window):
         if dbg > 1:    text = c.text if ha else ''  ;  self.log(f'{self.fmtJText(j, i+1)} {id(c):x} {text:6} {c.x:7.2f} {c.y:7.2f} {c.width:7.2f} {c.height:7.2f}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', pfx=0)
     ####################################################################################################################################################################################################
     def resizeTniks(self, why=''):
-        self.dumpTniksPfx(why)   ;   view = None
-        _, _, x, y, w, h         = self.geom(V, n=1, i=1, dbg=1)  #  0, self.height, self.width, self.height
-        if self.VIEWS:
-            if not self.views:     msg = f'ERROR Empty views {self.n=} {self.zzl()}';   self.log(msg);   self.quit(msg)
-            view = self.resizeTnik(self.views, 0, V, x, y, w, h, why="Upd", v=1, dbg=1)
+        _, _, x, y, w, h         = self.geom( V, n=1, i=1, dbg=1)  #  0, self.height, self.width, self.height
+        self.dumpTniksPfx(why)
+        if self.VIEWS and not  self.views:    msg = f'ERROR Empty views {self.n=} {self.zzl()}';   self.log(msg);   self.quit(msg)
+        view = self.resizeTnik(self.views, 0, V, x, y, w, h, why="Upd", v=1, dbg=1) if self.VIEWS else None
         for page in                self.g_resizeTniks(self.pages, P, view):
             for line in            self.g_resizeTniks(self.lines, L, page):
                 for sect in        self.g_resizeTniks(self.sects, S, line):
@@ -1057,18 +1060,20 @@ class Tabs(pyglet.window.Window):
         for i in range(n):
             if   j2 == C:                x2 = x + i * w
             else:
+#                if   j >= L:
+                if self.J2[L] > len(self.data[p]):
+                    msg = f'WARN MAX Line {self.J2[L]=} > {len(self.data[p])=}'  ;  self.log(msg)  ;  return
                 if   j  != P:            y2 = y - i * h
                 elif j2 >= T:
                     y2 = y - i * h
                     s2 = self.ss2sl()[self.J1[S] % self.ssl()]
                     tlist2, j2 = self.tnikInfo(p, l, s2, c, why=why)
             tnik = self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, dbg=dbg)
-#            self.log(f'{self.fmtJText(j, i, why)} {j2=} plct=[{p} {l} {c} {t}] J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', file=sys.stdout)
             yield tnik
     ####################################################################################################################################################################################################
     def resizeTnik(self, tlist, i, j, x, y, w, h, why='Upd', v=None, dbg=1):
-        if not tlist:         msg = f'ERROR tlist is Empty {      self.fmtJText(j, i, why)}'  ;  self.log(msg)  ;  return # self.quit(msg)
-        elif i >= len(tlist): msg = f'ERROR {i=} >={len(tlist)=} {self.fmtJText(j, i, why)}'  ;  self.log(msg)  ;  return # self.quit(msg)
+        if not tlist:         msg = f'ERROR tlist is Empty {      self.fmtJText(j, i, why)}'  ;  self.log(msg)  ;  self.quit(msg)
+        elif i >= len(tlist): msg = f'ERROR {i=} >={len(tlist)=} {self.fmtJText(j, i, why)}'  ;  self.log(msg)  ;  self.quit(msg)
         if j is not None: self.setJ(j, i)
         tnik = tlist[i]
         v = v      if v is not None else self.isV(j)
@@ -1106,6 +1111,7 @@ class Tabs(pyglet.window.Window):
                     for q in range(nq):
                         j = Q             ;  z = sq  ;  self.setJ(j, z)  ;  self.dumpTnik(self.lcols[z], j, why)  ;  i += 1  ;  sq += 1
             for l in range(nl):
+                if sl >= self.dl()[1]:   msg = f'WARN MAX Line {sl=} >= {self.dl()[1]=}'  ;  self.log(msg)  ;  return
                 j = L                     ;  z = sl  ;  self.setJ(j, z)  ;  self.dumpTnik(self.lines[z], j, why)  ;  i += 1  ;  sl += 1
                 for s in (self.ss2sl()):
                     j = S                 ;  z = ss  ;  self.setJ(j, z)  ;  self.dumpTnik(self.sects[z], j, why)  ;  i += 1  ;  ss += 1
@@ -1128,12 +1134,12 @@ class Tabs(pyglet.window.Window):
 
     def dumpSprite(self, t=None, j=None, why=''):
         if t is None: self.log(f'P  L  S   C    T    N    I    K No Nm Cp  R   Q Z  Tid     X       Y       W       H   G why  Name  Cnt V   Identity       Red Grn Blu Opc  Mx    My', pfx=0); return
-        J2 = self.fmtJ2()[1:]   ;   xywh = self.fmtTxywh(t)   ;   ID = id(t)   ;   g = self.gn[j]   ;   color = self.fmtTcolor(t)   ;   v = self.fmtTvisible(t)   ;   sprt = self.fmtTsprite(t)
+        J2 = self.fmtJ2()   ;   xywh = self.fmtTxywh(t)   ;   ID = id(t)   ;   g = self.gn[j]   ;   color = self.fmtTcolor(t)   ;   v = self.fmtTvisible(t)   ;   sprt = self.fmtTsprite(t)
         self.log(f'{J2} {xywh} {g} {why:4} {JTEXTS[j]:4} {self.J2[j]:4} {v} {ID:x}     {color} {sprt}', pfx=0)
 
     def dumpLabel( self, t=None, j=None, why=''):  #  if j is not None else "View"
         if t is None: self.log(f'P  L  S   C    T    N    I    K No Nm Cp  R   Q Z  Tid     X       Y       W       H   G why  Name  Cnt Sz  Identity   Txt Red Grn Blu Opc Dpi B I  Font Name', pfx=0)  ;  return
-        J2 = self.fmtJ2()[1:]   ;   xywh = self.fmtTxywh(t)   ;   ID = id(t)   ;   g = self.gn[j]   ;   color = self.fmtTcolor(t)   ;   font = self.fmtTfont(t)   ;  fs = self.fmtTfontSize(t)
+        J2 = self.fmtJ2()   ;   xywh = self.fmtTxywh(t)   ;   ID = id(t)   ;   g = self.gn[j]   ;   color = self.fmtTcolor(t)   ;   font = self.fmtTfont(t)   ;  fs = self.fmtTfontSize(t)
         self.log(f'{J2} {xywh} {g} {why:4} {JTEXTS[j]:4} {self.J2[j]:4} {fs} {ID:x} {t.text:3} {color} {font}', pfx=0)
     ####################################################################################################################################################################################################
     def createCursor(self, dbg=1):
