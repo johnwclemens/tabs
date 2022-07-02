@@ -64,17 +64,30 @@ def dumpStack(sfs, file=None):
         slog(f'{j:2} {n:9} {l:5} {f:20} {c}', file=file)
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}', file=file)
 ########################################################################################################################################################################################################
+def NEW__slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+    if pfx:
+        sf  = inspect.currentframe().f_back
+        sfi = inspect.getframeinfo(sf)
+        if sfi.function == 'log':
+            sf = sf.f_back
+            sfi = inspect.getframeinfo(sf)
+        filename  = pathlib.Path(sfi.filename).name
+        msg = msg.replace('self.', '.')
+        msg = msg.replace('util.', '.')
+        msg = msg.replace('"', '')
+        msg = msg.replace("'", '')
+        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
+    print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
+
 def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
-#    if file is None: file = LOG_FILE
-    strip = 1
     if pfx:
         sfs = inspect.stack()          ;  i = 1
         while sfs[i].function in STFILT:  i += 1
-        sf = sfs[i]   ;   sd = stackDepth(sfs)
+        sf = sfs[i]  # ;   sd = stackDepth(sfs)
         p = pathlib.Path(sf.filename)  ;  n = p.name  ;  l = sf.lineno  ;  f = sf.function
-        if IND: print(f'{fmtSD(sd):20} {l:5} {n:7} {f:>20} ',      file=file, end='')
-        else:   print(             f'{sd:2} {l:5} {n:7} {f:>20} ', file=file, end='')
-    if strip:
+#        if IND: print(f'{fmtSD(sd):20} {l:5} {n:7} {f:>20} ',      file=file, end='')
+#        else:   print(             f'{sd:2} {l:5} {n:7} {f:>20} ', file=file, end='')
+        print(             f'{l:5} {n:7} {f:>20} ', file=file, end='')
         msg = msg.replace('self.', '.')
         msg = msg.replace('util.', '.')
         msg = msg.replace('"', '')

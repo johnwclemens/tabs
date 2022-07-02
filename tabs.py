@@ -86,6 +86,7 @@ class Tabs(pyglet.window.Window):
         self.catPath      = str(BASE_PATH / 'cats' / BASE_NAME) + '.cat'
         self.catPath      = self.getFilePath(seq=1, filedir='cats', filesfx='.cat')
         self.log(f'catPath={self.catPath}')
+        self.settingN     = 0   ;   self.setNvals  = []   ;   self.setNtxt = ''
         self.shiftingTabs = 0   ;   self.shiftSign = 1
         self.inserting    = 0   ;   self.insertStr = ''
         self.jumping      = 0   ;   self.jumpStr   = ''   ;   self.jumpAbs = 0
@@ -104,7 +105,6 @@ class Tabs(pyglet.window.Window):
         self.ZZ           = set() if 1 else {0, 1}
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         nt                = 6
-#        self.nlines       = 0
         self.n            = [2, 2, 50, nt]
         self.i            = [1, 1,  1, nt]
         ARGS = util.parseCmdLine(file=LOG_FILE)
@@ -224,10 +224,11 @@ class Tabs(pyglet.window.Window):
         self._initDataPath()
         self.readDataFile()
         self.transposeDataDump() if dbg else self.transposeData()
-        self.n[P] = len(self.data)  # self.dl()[0]
-        self.log(f'updating n[P] {util.fmtl(self.n)}')
+        old = self.n   ;   self.n[P] = self.dl()[P]
+        self.log(f'{self.fmtdl(fdl=1)}')
+        self.log(f'Updating n[P] old={util.fmtl(old)} new={util.fmtl(self.n)}')
         self._initTpz()
-#        self.syncBlanks()
+        self.syncBlanks()
 #        self.saveDataFile('_initData()', f=2)
 
     def _initDataPath(self):
@@ -312,7 +313,7 @@ class Tabs(pyglet.window.Window):
     def dt(  self, data=None, p=0, l=0, c=0):    return list(map(type, self.dplc(data, p, l, c)))
     def dplc(self, data=None, p=0, l=0, c=0):
         data = data if data is not None else self.data
-        if    c >= len(data[P][L]):   msg = f'ERROR BAD c index {p=} {l=} {c=} {len(data[P][L])=}'  ;  self.log(msg)  ;  self.quit(msg)
+        if    c >= len(data[p][l]):   msg = f'ERROR BAD c index {p=} {l=} {c=} {len(data[p][l])=}'  ;  self.log(msg)  ;  self.quit(msg)
         else:                         return data, data[p], data[p][l], data[p][l][c]
     def lenA(self):                   return [ len(_) for _ in self.A ]
     def lenB(self):                   return [ len(_) for _ in self.B ]
@@ -349,8 +350,8 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def fmtTxywh(t):      return f'{t.x:7.2f} {t.y:7.2f} {t.width:7.2f} {t.height:7.2f}'
     ####################################################################################################################################################################################################
-    def fmtdl( self, data=None):              return f'{FDL}={util.fmtl(self.dl(data))}'
-    def fmtdt( self, data=None):              return f'{FDT}={util.fmtl(self.dt(data))}'
+    def fmtdl( self, data=None, fdl=0):       txt = FDL if fdl else ''  ;  return f'{txt}{util.fmtl(self.dl(data))}'
+    def fmtdt( self, data=None, fdt=0):       txt = FDT if fdt else ''  ;  return f'{txt}{util.fmtl(self.dt(data))}'
     def fmtJ1( self, w=None, d=0):            w = w if w is not None else JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return f'{util.fmtl(self.J1,     w=w, d1=d1, d2=d2)}'
     def fmtJ2( self, w=None, d=0):            w = w if w is not None else JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return f'{util.fmtl(self.J2,     w=w, d1=d1, d2=d2)}'
     def fmtLE( self, w=None):                 w = w if w is not None else JFMT  ;  d1 = ""                    ;  d2 =""                    ;  return f'[{util.fmtl(self.lenE(), w=w, d1=d1, d2=d2)} {sum(self.lenE())}]'
@@ -466,7 +467,6 @@ class Tabs(pyglet.window.Window):
         crlfs = nlines * (nr + 1) * crlf    ;  self.log(f'{crlfs=:3,} = {nlines=:3,} * {(nr+1)=:2} * {crlf=}')
         size  =  dsize + crlfs              ;  self.log(f' {size=:3,} =  {dsize=:3,} +  {crlfs=:3,}')
         msg = f'assert {size=:4,} ?=? {ref=:4,}'  ;  self.log(msg)   ;   assert size == ref
-#        self.nlines = nlines
 
     def dumpDataFile(self, data=None):
         data = data if data is not None else self.data
@@ -989,9 +989,7 @@ class Tabs(pyglet.window.Window):
             if   j2 == C:                              x2 = x + i * w
             else:
                 if   j2 != P:                          y2 = y - i * h
-#                if   j >= L:
-                if self.J2[L] > len(self.data[p]):
-                    msg = f'WARN MAX Line {self.J2[L]=} > {len(self.data[p])=}'  ;  self.log(msg)  ;  return
+                if   j2 == L and self.J2[L] > self.dl()[1]: msg = f'WARN MAX Line {self.J2[L]=} > {self.fmtdl()=}'  ;  self.log(msg)  ;  yield None
                 if   j2 == S:                           _ = self.ss2sl()[i] if ii < 0 else ii  ;  self.SS.add(_)  ;  k = self.cci(j, kl)
                 elif j2 >= T:
                     s2 = self.ss2sl()[self.J1[S]] if ii  <  0 else ii
@@ -1060,9 +1058,8 @@ class Tabs(pyglet.window.Window):
         for i in range(n):
             if   j2 == C:                x2 = x + i * w
             else:
-#                if   j >= L:
-                if self.J2[L] > len(self.data[p]):
-                    msg = f'WARN MAX Line {self.J2[L]=} > {len(self.data[p])=}'  ;  self.log(msg)  ;  return
+                if   j2 == L and self.J2[L] > self.dl()[1]: msg = f'WARN MAX Line {self.J2[L]=} > {self.fmtdl()=}'       ;  self.log(msg)  ;  yield None
+#                if self.J2[L] > len(self.data[p]):          msg = f'WARN MAX Line {self.J2[L]=} > {len(self.data[p])=}'  ;  self.log(msg)  ;  return
                 if   j  != P:            y2 = y - i * h
                 elif j2 >= T:
                     y2 = y - i * h
@@ -1111,7 +1108,7 @@ class Tabs(pyglet.window.Window):
                     for q in range(nq):
                         j = Q             ;  z = sq  ;  self.setJ(j, z)  ;  self.dumpTnik(self.lcols[z], j, why)  ;  i += 1  ;  sq += 1
             for l in range(nl):
-                if sl >= self.dl()[1]:   msg = f'WARN MAX Line {sl=} >= {self.dl()[1]=}'  ;  self.log(msg)  ;  return
+                if sl >= self.dl()[1]:   msg = f'WARN MAX Line {sl=} >= {self.fmtdl()=}'  ;  self.log(msg)  ;  return
                 j = L                     ;  z = sl  ;  self.setJ(j, z)  ;  self.dumpTnik(self.lines[z], j, why)  ;  i += 1  ;  sl += 1
                 for s in (self.ss2sl()):
                     j = S                 ;  z = ss  ;  self.setJ(j, z)  ;  self.dumpTnik(self.sects[z], j, why)  ;  i += 1  ;  ss += 1
@@ -1133,12 +1130,14 @@ class Tabs(pyglet.window.Window):
         elif type(t) is pygsprt.Sprite:  self.dumpSprite(t, j, why)
 
     def dumpSprite(self, t=None, j=None, why=''):
-        if t is None: self.log(f'P  L  S   C    T    N    I    K No Nm Cp  R   Q Z  Tid     X       Y       W       H   G why  Name  Cnt V   Identity       Red Grn Blu Opc  Mx    My', pfx=0); return
+        if t is None: self.log(f'P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   G why  Name  Cnt V   Identity       Red Grn Blu Opc  Mx    My', pfx=0); return
+#        if t is None: self.log(f'P  L  S   C    T    N    I    K No Nm Cp  R   Q Z  Tid     X       Y       W       H   G why  Name  Cnt V   Identity       Red Grn Blu Opc  Mx    My', pfx=0); return
         J2 = self.fmtJ2()   ;   xywh = self.fmtTxywh(t)   ;   ID = id(t)   ;   g = self.gn[j]   ;   color = self.fmtTcolor(t)   ;   v = self.fmtTvisible(t)   ;   sprt = self.fmtTsprite(t)
         self.log(f'{J2} {xywh} {g} {why:4} {JTEXTS[j]:4} {self.J2[j]:4} {v} {ID:x}     {color} {sprt}', pfx=0)
 
     def dumpLabel( self, t=None, j=None, why=''):  #  if j is not None else "View"
-        if t is None: self.log(f'P  L  S   C    T    N    I    K No Nm Cp  R   Q Z  Tid     X       Y       W       H   G why  Name  Cnt Sz  Identity   Txt Red Grn Blu Opc Dpi B I  Font Name', pfx=0)  ;  return
+        if t is None: self.log(f'P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   G why  Name  Cnt Sz  Identity   Txt Red Grn Blu Opc Dpi B I  Font Name', pfx=0)  ;  return
+#        if t is None: self.log(f'P  L  S   C    T    N    I    K No Nm Cp  R   Q Z  Tid     X       Y       W       H   G why  Name  Cnt Sz  Identity   Txt Red Grn Blu Opc Dpi B I  Font Name', pfx=0)  ;  return
         J2 = self.fmtJ2()   ;   xywh = self.fmtTxywh(t)   ;   ID = id(t)   ;   g = self.gn[j]   ;   color = self.fmtTcolor(t)   ;   font = self.fmtTfont(t)   ;  fs = self.fmtTfontSize(t)
         self.log(f'{J2} {xywh} {g} {why:4} {JTEXTS[j]:4} {self.J2[j]:4} {fs} {ID:x} {t.text:3} {color} {font}', pfx=0)
     ####################################################################################################################################################################################################
@@ -1192,13 +1191,20 @@ class Tabs(pyglet.window.Window):
 #    def cn2plct(self, cn):
     def cc2cn(self, cc):       return cc // self.tpc                                                ;  # ;  self.log(f'({cc}) cc // tpc return {cn}')  ;  return cn
     def plc2cn(self, p, l, c): return (p *  self.tpp // self.tpc) + (l * self.tpl // self.tpc) + c  ;  # ;  self.log(f'({p} {l} {c}) return {cn}')     ;  return cn
+
+#    def data2plct(self, data=None, dbg=1):
+#        if not data: data = self.data
+#        dl = self.dl(data)
+#        if self.isVert():   p, l, c, t = dl[0], dl[1], dl[3], dl[2]
+#        else:               p, l, c, t = dl
+#        if dbg: self.log(f'dl={util.fmtl(dl)} {self.isVert()} plct=[{p} {l} {c} {t}]')
+#        return p, l, c ,t
+
     def data2plct(self, data=None, dbg=1):
-        if not data: data = self.data
-        dl = self.dl(data)
-        if self.isVert():   p, l, c, t = dl[0], dl[1], dl[3], dl[2]
-        else:               p, l, c, t = dl
-        if dbg: self.log(f'dl={util.fmtl(dl)} {self.isVert()} plct=[{p} {l} {c} {t}]')
-        return p, l, c ,t
+        d = data if data is not None else self.data
+        if dbg: self.log(f'{self.fmtdl(fdl=1)}')
+        if self.isVert(): d[C], d[T] = d[T], d[C]   ;  self.log(f'transposing data {self.dl()[C]=} & {self.dl()[T]=}') if dbg else None
+        return d
 
     def cn2txt(self, cn):  #  usefull? re-name cn2tabtxt()
         cc = self.cn2cc(cn)
@@ -1325,6 +1331,8 @@ class Tabs(pyglet.window.Window):
 #        elif kbk == 'BACKSLASH' and self.isCtrl(mods): self.setCHVMode(      '@ BACKSLASH', ARPG,   LEFT,  UP)
 #        elif kbk == 'BACKSLASH':                       self.setCHVMode(      '  BACKSLASH', ARPG,   RIGHT, DOWN)
     ####################################################################################################################################################################################################
+        elif kbk == 'A' and self.isAltShift(mods):     self.setn_cmd('& ^ A', txt='')
+        elif kbk == 'A' and self.isAlt(     mods):     self.setn_cmd('&   A', txt='')
         elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam('bold',   not self.fontBold,                               'fontBold')
         elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam('bold',   not self.fontBold,                               'fontBold')
         elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam('color',     (self.fontColorIndex + 1) % len(FONT_COLORS), 'fontColorIndex')
@@ -1342,8 +1350,8 @@ class Tabs(pyglet.window.Window):
             if   kbk == 'ENTER' and self.isCtrl(mods): self.setCHVMode(      '@ ENTER',     CHORD,       v=DOWN)
             elif kbk == 'ENTER':                       self.setCHVMode(      '  ENTER',     CHORD,       v=UP)
             elif kbk == 'SPACE':                       self.autoMove(        'SPACE')
-        elif dbg:   self.log(f'Unexpected {self.kbkEvntTxt()}')
-        if dbg: self.log(f'END {self.kbkEvntTxt()}')
+        elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()}')
+        if   dbg: self.log(       f'END {self.kbkEvntTxt()}')
     ####################################################################################################################################################################################################
     def on_key_release(self, symb, mods, dbg=0):
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
@@ -1356,6 +1364,7 @@ class Tabs(pyglet.window.Window):
         if   self.shiftingTabs:                              self.shiftTabs(  'onTxt', text)
         elif self.jumping:                                   self.jump(       'onTxt', text, self.jumpAbs)
         elif self.inserting:                                 self.insertSpace('onTxt', text)
+        elif self.settingN:                                  self.setn_cmd(   'onTxt', text)
         elif self.swapping:                                  self.swapTab(    'onTxt', text)
         elif self.isTab(self.kbk):                           self.setTab(     'onTxt', self.kbk)
         elif self.kbk == '$' and self.isShift(self.mods):    self.snapshot()
@@ -1427,7 +1436,7 @@ class Tabs(pyglet.window.Window):
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
 #    def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in util.DSymb.SYMBS else 0
     def isTab(self, text):    return 1 if text == self.tblank or self.sobj.isFret(text) or text in util.DSymb.SYMBS else 0
-    def isParsing(self):      return 1 if self.inserting or self.jumping or self.shiftingTabs or self.swapping else 0
+    def isParsing(self):      return 1 if self.inserting or self.jumping or self.settingN or self.shiftingTabs or self.swapping else 0
     @staticmethod
     def afn(fn): return fn if len(fn) == 1 and '0' <= fn <= '9' else chr(ord(fn[1]) - ord('0') + ord('a')) if len(fn) == 2 and fn[0] == '1' else None
     ####################################################################################################################################################################################################
@@ -1534,61 +1543,61 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def jump(self, how, txt='0', a=0):
         cc = self.cursorCol()   ;   self.jumpAbs = a
-        self.log(f'{how} txt={txt} a={a} cc={cc} jt={self.jumpAbs} {util.fmtl(self.i)}')
+        self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {util.fmtl(self.i)}')
         if not self.jumping:                  self.jumping = 1
         elif txt.isdecimal():                 self.jumpStr += txt
         elif txt == '-' and not self.jumpStr: self.jumpStr += txt
         elif txt == ' ':
-            self.log(f'{how} txt={txt} a={a} cc={cc} jt={self.jumpAbs} jumpStr={self.jumpStr} {util.fmtl(self.i)}')
+            self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {self.jumpStr=} {util.fmtl(self.i)}')
             jcc = self.n[T] * int(self.jumpStr)
             self.jumping = 0   ;    self.jumpStr = ''
             self.move(how, jcc - 1 - a * cc)
-            self.log(f'{how} txt={txt} a={a} cc={cc} jt={self.jumpAbs} jcc={jcc} moved={jcc - 1 - a * cc} {util.fmtl(self.i)}')
+            self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {jcc=} moved={jcc - 1 - a * cc} {util.fmtl(self.i)}')
     ####################################################################################################################################################################################################
     def setTab(self, how, text, rev=0, dbg=1):
         if rev: self.reverseArrow()   ;    self.autoMove(how)
         p, l, c, t = self.j2()   ;   data = self.data[p][l][c][t]   ;   cc = self.plct2cc(p, l, c, t)  # ;   isDataFret = util.isFret(data)   ;   isTextFret = util.isFret(text)
-        self.log(f'BGN {how} text={text} data={data} rev={rev}', pos=1)
+        self.log(f'BGN {how} {text=} {data=} {rev=}', pos=1)
         self.setDTNIK(text, cc, p, l, c, t, kk=1) # if isDataFret or isTextFret else 0)
         p, l, c, t = self.j2()   ;   data = self.data[p][l][c][t]
-        self.log(f'END {how} text={text} data={data} rev={rev}', pos=1)
+        self.log(f'END {how}={text=} {data=} {rev=}', pos=1)
         if rev: self.reverseArrow()
         else:   self.autoMove(how)
         if self.SNAP and dbg: self.snapshot()
         self.resyncData = 1
 
     def setDTNIK(self, text, cc, p, l, c, t, kk=0, pos=0, dbg=1):
-        if dbg: self.log(f'BGN kk={kk}    text={text}', pos=pos)
+        if dbg: self.log(f'BGN {kk=}    {text=}', pos=pos)
         self.setData(text, p, l, c, t)
         imap = self.getImap(p, l, c)
         if TT in self.SS: self.setTab2( text, cc)
         if NN in self.SS: self.setNote( text, cc, t)
         if II in self.SS: self.setIkey( imap, p, l, c)
         if KK in self.SS: self.setChord(imap, p, l, c)
-        if dbg: self.log(f'END kk={kk}    text={text} len(imap)={len(imap)}', pos=pos)
+        if dbg: self.log(f'END {kk=}    {text=}{len(imap)=}', pos=pos)
     ####################################################################################################################################################################################################
     def setData(self, text, p, l, c, t, pos=0, dbg=1):
         data = self.data[p][l][c]
-        if dbg: self.log(f'BGN t={t} text={text} data={data}', pos=pos)
+        if dbg: self.log(f'BGN {t=} {text=} {data=}', pos=pos)
         self.data[p][l][c] = data[0:t] + text + data[t+1:]
         data = self.data[p][l][c]
-        if dbg: self.log(f'END t={t} text={text} data={data}', pos=pos)
+        if dbg: self.log(f'END {t=} {text=} {data=}', pos=pos)
 
     def setTab2(self, text, cc, pos=0, dbg=1):
-        if dbg: self.log(f'BGN         text={text} tabs[{cc}]={self.tabs[cc].text}', pos=pos)
+        if dbg: self.log(f'BGN         {text=} tabs[{cc}]={self.tabs[cc].text}', pos=pos)
         self.tabs[cc].text = text
-        if dbg: self.log(f'END         text={text} tabs[{cc}]={self.tabs[cc].text}', pos=pos)
+        if dbg: self.log(f'END         {text=} tabs[{cc}]={self.tabs[cc].text}', pos=pos)
 
     def setNote(self, text, cc, t, pos=0, dbg=1):
-        if dbg: self.log(f'BGN     t={t} text={text} notes[{cc}]={self.notes[cc].text}', pos=pos)
+        if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
         self.notes[cc].text = self.sobj.tab2nn(text, t) if self.sobj.isFret(text) else self.tblank
-        if dbg: self.log(f'END     t={t} text={text} notes[{cc}]={self.notes[cc].text}', pos=pos)
+        if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
     ####################################################################################################################################################################################################
     def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=0):
         dl = self.dl()
         p2, l2, c2, t2 = self.j2plct(p, l, c)  ##
         cn = self.plc2cn(p, l, c)      ;    key = cn   ;   mli = self.cobj.mlimap
-        msg1  = f'plc=[{p} {l} {c}] plsct=[{p2} {l2} {c2} {t2}]'   ;   msg2 = f'dl={util.fmtl(dl)} cn={cn} key={key} keys={util.fmtl(list(mli.keys()))}'
+        msg1  = f'plc=[{p} {l} {c}] plsct=[{p2} {l2} {c2} {t2}]'   ;   msg2 = f'dl={util.fmtl(dl)} {cn=} {key=} keys={util.fmtl(list(mli.keys()))}'
         if dbg:           self.log(f'{msg1} {msg2}')
         if p >= dl[0] or l >= dl[1] or c >= dl[2]:  msg = f'ERROR Indexing {msg1} >= {msg2}'   ;   self.log(msg)   ;   self.quit(msg)
         imap  = self.cobj.getChordName(self.data, cn, p, l, c)
@@ -1598,37 +1607,37 @@ class Tabs(pyglet.window.Window):
     def setIkey(self, imap, p, l, c, pos=0, dbg=0):
         cc = self.plct2cc(p, l, c, 0)
         ikeys = imap[0] if imap else []
-        if dbg: self.log(f'BGN ikeys={util.fmtl(ikeys)} len(imap)={len(imap)}', pos=pos)
+        if dbg: self.log(f'BGN ikeys={util.fmtl(ikeys)} {len(imap)=}', pos=pos)
         self.setIkeyText(ikeys, cc, p, l, c)
-        if dbg: self.log(f'END ikeys={util.fmtl(ikeys)} len(imap)={len(imap)}', pos=pos)
+        if dbg: self.log(f'END ikeys={util.fmtl(ikeys)} {len(imap)=}', pos=pos)
 
     def setIkeyText(self, text, cc, p, l, c, pos=0, dbg=0):
         nt = self.n[T]   ;  cc = self.normalizeCC(cc)   ;   data = self.data[p][l][c]   ;   j = 0   ;   text = text[::-1]
         txt = self.objs2Text(self.ikeys, cc, nt, I)
-        if dbg: self.log(f'BGN [{cc:2}-{cc+nt-1:2}] text={util.fmtl(text)} data={data} ikeys=<{txt}>{len(txt)}', pos=pos)
+        if dbg: self.log(f'BGN [{cc:2}-{cc+nt-1:2}] text={util.fmtl(text)} {data=} ikeys=<{txt}>{len(txt)}', pos=pos)
         for i in range(nt):
             if text and len(text) > j: self.ikeys[cc + i].text = text[j] if self.sobj.isFret(data[i]) else self.tblank     ;   j += 1 if self.sobj.isFret(data[i]) else 0
             else:                      self.ikeys[cc + i].text = self.tblank
         txt = self.objs2Text(self.ikeys, cc, nt, I)
-        if dbg: self.log(f'END [{cc:2}-{cc+nt-1:2}] text={util.fmtl(text)} data={data} ikeys=<{txt}>{len(txt)}', pos=pos)
+        if dbg: self.log(f'END [{cc:2}-{cc+nt-1:2}] text={util.fmtl(text)} {data=} ikeys=<{txt}>{len(txt)}', pos=pos)
         if dbg: self.dumpDataSlice(p, l, c, cc)
 
     def setChord(self, imap, p, l, c, pos=0, dbg=1):
         cc = self.plct2cc(p, l, c, 0)
         name = imap[3] if imap and len(imap) > 3 else ''  ;   chunks = imap[4] if imap and len(imap) > 4 else []
-        if dbg: self.log(f'BGN name={name} chunks={util.fmtl(chunks)} len(imap)={len(imap)}', pos=pos)
-        self.setChordName(cc, name, chunks) if name and chunks else self.log(f'WARN Not A Chord cc={cc} name={name} chunks={chunks}', pos=pos)
-        if dbg: self.log(f'END name={name} chunks={util.fmtl(chunks)} len(imap)={len(imap)}', pos=pos)
+        if dbg: self.log(f'BGN {name=} chunks={util.fmtl(chunks)} {len(imap)=}', pos=pos)
+        self.setChordName(cc, name, chunks) if name and chunks else self.log(f'WARN Not A Chord {cc=} {name=} {chunks=}', pos=pos)
+        if dbg: self.log(f'END {name=} chunks={util.fmtl(chunks)} {len(imap)=}', pos=pos)
 
     def setChordName(self, cc, name, chunks, pos=0, dbg=0):
         nt = self.n[T]   ;   cc = self.normalizeCC(cc)   ;   kords = self.kords
         txt = self.objs2Text(kords, cc, nt, K)
-        if dbg: self.log(f'BGN [{cc:2}-{cc+nt-1:2}] name={name} chunks={util.fmtl(chunks)} chords=<{txt}>{len(txt)}', pos=pos)
+        if dbg: self.log(f'BGN [{cc:2}-{cc+nt-1:2}] {name=} chunks={util.fmtl(chunks)} chords=<{txt}>{len(txt)}', pos=pos)
         for i in range(nt):
             if chunks and len(chunks) > i: self.kords[cc + i].text = chunks[i]
             else:                          self.kords[cc + i].text = self.tblank
         txt = self.objs2Text(kords, cc, nt, K)
-        if dbg: self.log(f'END [{cc:2}-{cc+nt-1:2}] name={name} chunks={util.fmtl(chunks)} chords=<{txt}>{len(txt)}', pos=pos)
+        if dbg: self.log(f'END [{cc:2}-{cc+nt-1:2}] {name=} chunks={util.fmtl(chunks)} chords=<{txt}>{len(txt)}', pos=pos)
     @staticmethod
     def objs2Text(obs, cc, nt, j, dbg=0):
         texts = [ obs[cc + t].text for t in range(nt) ]   ;   text = ''.join(texts)
@@ -1646,13 +1655,13 @@ class Tabs(pyglet.window.Window):
             self.lcols[i].color  = color
             self.lcols[i].bold   = bold
             self.lcols[i].italic = italic
-        if dbg: self.log(f'{self.fPos()}     i={i} = c={c} + l={l} * nc={nc} style={style} bold={bold} italic={italic} color={color}')
+        if dbg: self.log(f'{self.fPos()}     {i=} = {c=} + {l=} * {nc=} {style=} {bold=} {italic=} {color=}')
 
     def toggleSelectAll(self, how):
-        self.dumpSmap(f'BGN {how} allSelected={self.allSelected}')
+        self.dumpSmap(f'BGN {how} {self.allSelected=}')
         if   self.allSelected: self.unselectAll(how)   ;   self.allSelected = 0
         else:                  self.selectAll(how)     ;   self.allSelected = 1
-        self.dumpSmap(f'END {how} allSelected={self.allSelected}')
+        self.dumpSmap(f'END {how} {self.allSelected=}')
     ####################################################################################################################################################################################################
     def selectAll(self, how, dbg=0):
         mli = self.cobj.mlimap
@@ -1665,8 +1674,8 @@ class Tabs(pyglet.window.Window):
         if cn is None: cc = self.cc   ;   cn = self.cc2cn(cc)
         else:          cc = self.cn2cc(cn)
         nt = self.n[T]  ;  k = cn * nt   ;   text = ''
-        if cn in self.smap: self.log(f'RETURN: cn={cn} already in smap={util.fmtm(self.smap)}') if dbg2 else None   ;   return
-        if dbg: self.dumpSmap(f'BGN {how} m={m} cn={cn} cc={cc} k={k}')
+        if cn in self.smap: self.log(f'RETURN: {cn=} already in smap={util.fmtm(self.smap)}') if dbg2 else None   ;   return
+        if dbg: self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
         for t in range(nt):
             if self.tabs:  self.tabs [k + t].color = self.k[H][2]
             if self.notes: self.notes[k + t].color = self.k[H][2]
@@ -1675,12 +1684,12 @@ class Tabs(pyglet.window.Window):
             if self.tabs:  text += self.tabs  [k + t].text
         self.smap[cn] = text
         if m: self.move(how, m, ss=1)
-        if dbg: self.dumpSmap(f'END {how} m={m} cn={cn} cc={cc} k={k}')
+        if dbg: self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
     ####################################################################################################################################################################################################
     def unselectAll(self, how, dbg=0):
         for i in range(len(self.smap)-1, -1, -1):
             cn = list(self.smap.keys())[i]
-            if dbg: self.dumpSmap(f'{how} i={i} cn={cn}')
+            if dbg: self.dumpSmap(f'{how} {i=} {cn=}')
             self.unselectTabs(how, m=0, cn=cn)
 
     def unselectTabs(self, how, m, cn=None, dbg=0):
@@ -1688,16 +1697,16 @@ class Tabs(pyglet.window.Window):
         else:          cc = self.cn2cc(cn)
         nt = self.n[T]   ;   k = cn * nt
         self.setLLStyle(cc, NORMAL_STYLE)
-        if dbg: self.dumpSmap(f'BGN {how} m={m} cn={cn} cc={cc} k={k}')
+        if dbg: self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
         for t in range(nt):
             if self.tabs:  self.tabs [k + t].color = self.k[T][0]
             if self.notes: self.notes[k + t].color = self.k[N][0]
             if self.ikeys: self.ikeys[k + t].color = self.k[I][0]
             if self.kords: self.kords[k + t].color = self.k[K][0]
         if cn in self.smap: self.smap.pop(cn)
-        elif dbg:           self.log(f'cn={cn} not found in smap={util.fmtm(self.smap)}')
+        elif dbg:           self.log(f'{cn=} not found in smap={util.fmtm(self.smap)}')
         if m:   self.move(how, m)
-        if dbg: self.dumpSmap(f'END {how} m={m} cn={cn} cc={cc} k={k}')
+        if dbg: self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
     ####################################################################################################################################################################################################
     def copyTabs(self, how, dbg=1):
         self.dumpSmap(f'BGN {how}')   ;   nt = self.n[T]  ;   text = ''
@@ -1711,16 +1720,16 @@ class Tabs(pyglet.window.Window):
                 if self.kords: self.kords[k + t].color = self.k[K][0]
                 if dbg: text += self.tabs  [k + t].text
             if dbg: text += ' '
-        if dbg: self.log(f'text={text}')
+        if dbg: self.log(f'{text=}')
         self.dumpSmap(f'END {how}')
     ####################################################################################################################################################################################################
     def cutTabs(self, how): self.log('BGN Cut = Copy + Delete')  ;  self.copyTabs(how)  ;  self.log('Cut = Copy + Delete')  ;  self.deleteTabs(how, keep=1)  ;  self.log('END Cut = Copy + Delete')
     ####################################################################################################################################################################################################
     def deleteTabs(self, how, keep=0, dbg=1):
-        self.dumpSmap(f'BGN {how} keep={keep}')   ;   nt = self.n[T]
+        self.dumpSmap(f'BGN {how} {keep=}')   ;   nt = self.n[T]
         for k, v in self.smap.items():
             cn = k   ;   k *= nt
-            if dbg: self.log(f'k={k} cn={cn} v={v}')
+            if dbg: self.log(f'{k=} {cn=} {v=}')
             self.setLLStyle(k, NORMAL_STYLE)
             for t in range(nt):
                 p, l, c, r  =  self.cc2plct(k + t)
@@ -1729,35 +1738,35 @@ class Tabs(pyglet.window.Window):
                 if self.ikeys: self.ikeys[k + t].color = self.k[I][0]
                 if self.kords: self.kords[k + t].color = self.k[K][0]
                 self.setDTNIK( self.tblank, k + t, p, l, c, t, kk=1 if t==nt-1 else 0)
-        if not keep: self.unselectAll(f'deleteTabs(keep={keep})')
-        self.dumpSmap(f'END {how} keep={keep}')
+        if not keep: self.unselectAll(f'deleteTabs({keep=})')
+        self.dumpSmap(f'END {how} {keep=}')
         self.resyncData = 1
 
     def pasteTabs(self, how, kk=0, dbg=1):
         cc = self.cursorCol()        ;  nt = self.n[T]
         ntc = self.normalizeCC(cc)   ;  kt = 0
         p, l, s, c, r = self.j()
-        self.dumpSmap(f'BGN {how} kk={kk} cc={cc} ntc={ntc} cn={self.cc2cn(cc)} plcr {p} {l} {c} {r}')
+        self.dumpSmap(f'BGN {how} {kk=} {cc=} {ntc=} cn={self.cc2cn(cc)} plcr=[{p} {l} {c} {r}]')
         for i, (k, v) in enumerate(self.smap.items()):
             text = v
             if not i: dk = 0
             elif kk:  dk = i * nt
             else:     dk = (list(self.smap.keys())[i] - list(self.smap.keys())[0]) * nt
-            if dbg: self.log(f'i={i} k={k} v={v} text={text} kk={kk} dk={dk}')
+            if dbg: self.log(f'{i=} {k=} {v=} {text=} {kk=} {dk=}')
             for t in range(nt):
                 kt = (ntc + dk + t) % self.tpp
                 p, l, c, r = self.cc2plct(kt)
                 self.setDTNIK(text[t], kt, p, l, c, t, kk=1 if t==nt-1 else 0)
-            if dbg: self.log(f'smap[{k}]={text} kt={kt} kk={kk} dk={dk}')
+            if dbg: self.log(f'smap[{k}]={text=} {kt=} {kk=} {dk=}')
 #        if not hc: self.unselectAll('pasteTabs()')
 #        elif dbg:  self.log(f'holding a copy of smap')
-#        self.dumpSmap(f'END {how} hc={hc} kk={kk} cc={cc} ntc={ntc} cn={self.cc2cn(cc) + 1}')
-        self.dumpSmap(f'END {how} kk={kk} cc={cc} ntc={ntc} cn={self.cc2cn(cc)} plcr {p} {l} {c} {r}')
+#        self.dumpSmap(f'END {how} {hc=} {kk=} {cc=} {ntc=} cn={self.cc2cn(cc) + 1}')
+        self.dumpSmap(f'END {how} {kk=} {cc=} {ntc=} cn={self.cc2cn(cc)} plcr=[{p} {l} {c} {r}]')
         self.resyncData = 1
 
     def swapCols(self, how):
         nk = len(self.smap)   ;   nk2 = nk // 2
-        self.dumpSmap(f'BGN nk={nk} nk2={nk2}')
+        self.dumpSmap(f'BGN {nk=} {nk2=}')
         for i in range(nk2):
             k1 = list(self.smap.keys())[i]
             k2 = list(self.smap.keys())[nk - 1 - i]
@@ -1765,9 +1774,9 @@ class Tabs(pyglet.window.Window):
             text2 = self.smap[k2]
             self.smap[k1] = text2
             self.smap[k2] = text1
-        self.dumpSmap(f'    nk={nk} nk2={nk2}')
+        self.dumpSmap(f'    {nk=} {nk2=}')
         self.pasteTabs(how)
-        self.dumpSmap(f'END nk={nk} nk2={nk2}')
+        self.dumpSmap(f'END {nk=} {nk2=}')
 
     def insertSpace(self, how, txt='0', dbg=1):
         cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
@@ -1796,7 +1805,7 @@ class Tabs(pyglet.window.Window):
             self.unselectAll(how)
 
     def shiftTabs(self, how, nf=0):
-        self.dumpSmap(f'BGN {how} shiftingTabs={self.shiftingTabs} nf={nf}')
+        self.dumpSmap(f'BGN {how} {self.shiftingTabs=} {nf=}')
         if not self.shiftingTabs:
             self.shiftingTabs = 1
             for k, v in self.smap.items():
@@ -1807,16 +1816,16 @@ class Tabs(pyglet.window.Window):
             self.shiftingTabs = 0   ;   nt = self.n[T]
             for cn, v in self.smap.items():
                 cc = self.cn2cc(cn)   ;   p, l, c, r = self.cc2plct(cc, dbg=0)
-                self.log(f'cc={cc} cn={cn} v={v} text={self.smap[cn]}')
+                self.log(f'{cc=} {cn=} {v=} text={self.smap[cn]}')
                 for t in range(nt):
                     text = self.smap[cn][t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = util.NTONES * 2
                     if self.sobj.isFret(text):
-                        fn = self.afn(str((self.tab2fn(text) + self.shiftSign * self.tab2fn(nf)) % ntones))  ;  self.log(f'cc={cc} cn={cn} t={t} text={text} nf={nf} fn={fn} ss={self.shiftSign}')
+                        fn = self.afn(str((self.tab2fn(text) + self.shiftSign * self.tab2fn(nf)) % ntones))  ;  self.log(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {self.shiftSign=}')
                     if fn and self.sobj.isFret(fn):  self.setDTNIK(fn, kt, p, l, c, t, kk=1 if t==nt-1 else 0)
             self.shiftSign = 1
             self.resyncData = 1
             self.unselectAll('shiftTabs()')
-        self.dumpSmap(f'END {how} shiftingTabs={self.shiftingTabs} nf={nf} ss={self.shiftSign}')
+        self.dumpSmap(f'END {how} {self.shiftingTabs=} {nf=} {self.shiftSign=}')
 
     def syncBlanks(self, data=None):
         data = data if data is not None else self.data
@@ -1837,12 +1846,12 @@ class Tabs(pyglet.window.Window):
         data = data or self.data
         if not self.swapping: self.swapping = 1
         elif txt.isalnum():
-            if   self.swapping == 1:   self.swapSrc += txt  # ;   self.log(f'    {how} txt={txt} swapping={self.swapping} swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
-            elif self.swapping == 2:   self.swapTrg += txt  # ;   self.log(f'    {how} txt={txt} swapping={self.swapping} swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
+            if   self.swapping == 1:   self.swapSrc += txt  # ;   self.log(f'    {how} {txt=} {self.swapping=} {self.swapSrc=} {self.swapTrg=}')
+            elif self.swapping == 2:   self.swapTrg += txt  # ;   self.log(f'    {how} {txt=} {self.swapping=} {self.swapSrc=} {self.swapTrg=}')
         elif txt == '\r':
-            self.log(f'    {how} swapping={self.swapping} swapSrc={self.swapSrc} swapTrg={self.swapTrg}')
-            if   self.swapping == 1 and not self.swapTrg: self.swapping = 2   ;   self.log(f'{how} waiting swapSrc={self.swapSrc} swapTrg={self.swapTrg}') if dbg else None   ;   return
-            elif self.swapping == 2 and     self.swapTrg: self.swapping = 0   ;   self.log(f'{how} BGN     swapSrc={self.swapSrc} swapTrg={self.swapTrg}') if dbg else None
+            self.log(f'    {how} {self.swapping=} {self.swapSrc=} {self.swapTrg=}')
+            if   self.swapping == 1 and not self.swapTrg: self.swapping = 2   ;   self.log(f'{how} waiting {self.swapSrc=} {self.swapTrg=}') if dbg else None   ;   return
+            elif self.swapping == 2 and     self.swapTrg: self.swapping = 0   ;   self.log(f'{how} BGN     {self.swapSrc=} {self.swapTrg=}') if dbg else None
             np, nl, ns, nc, nr = self.n  ;  nc += self.zzl()
             for p in range(np):
                 for l in range(nl):
@@ -1851,13 +1860,26 @@ class Tabs(pyglet.window.Window):
                             d = data[p][l][c]
                             t = d.find(src)
                             self.cc = self.plct2cc(p, l, c, t)
-                            if dbg2: self.log(f'cc={self.cc} before data[{p}][{l}][{c}]={d}')
+                            if dbg2: self.log(f'{self.cc=} before data[{p}][{l}][{c}]={d}')
                             d = d[:t] + trg + d[t+1:]
                             self.setDTNIK(trg, self.cc, p, l, c, t, kk=1)
-                            if dbg2: self.log(f'cc={self.cc} after  data[{p}][{l}][{c}]={d}')
-            self.log(f'{how} END     swapSrc={self.swapSrc} swapTrg={self.swapTrg}') if dbg else None
+                            if dbg2: self.log(f'{self.cc=} after  data[{p}][{l}][{c}]={d}')
+            self.log(f'{how} END     {self.swapSrc=} {self.swapTrg=}') if dbg else None
             if dbg2: self.dumpTniks('SWAP')
             self.resyncData = 1
+
+    def setn_cmd(self, how, txt='', dbg=1):
+        if not self.settingN: self.settingN = 1   ;  self.setNtxt = '' ;  self.log(f'BGN {how} {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
+        elif txt.isdecimal(): self.setNtxt += txt                      ;  self.log(f'Concat {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
+        elif txt == ' ':      self.setNvals.append(int(self.setNtxt))  ;  self.log(f'Append {txt=} {self.settingN=} {self.setNvals=}') if dbg else None   ;  self.setNtxt = ''
+        elif txt == 'Q':      self.settingN = 0  ;  self.log(f'Cancel {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
+        elif txt == '\r':
+            self.settingN = 0   ;   old = self.n
+            self.setNvals.append(int(self.setNtxt))
+            if len(self.setNvals) == 4:
+                self.n[:2] = self.setNvals[:2]   ;  self.n[3:] = self.setNvals[2:]
+            self.log(f'Setting {old=} {self.n=}')
+            self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
     ####################################################################################################################################################################################################
     def toggleFlatSharp(self, how, dbg=1):  #  page line col tab or select
         tt1 =  util.Note.TYPE    ;    tt2 = (util.Note.TYPE + 1) % 2    ;    util.Note.setType(tt2)    ;   i1 = -1
