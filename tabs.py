@@ -223,6 +223,7 @@ class Tabs(pyglet.window.Window):
     def _initData(self, dbg=1):
         self._initDataPath()
         self.readDataFile()
+        self.copyFile(self.dataPath1, self.dataPath2)
         self.transposeDataDump() if dbg else self.transposeData()
         old = self.n   ;   self.n[P] = self.dl()[P]
         self.log(f'{self.fmtdl(fdl=1)}')
@@ -386,9 +387,9 @@ class Tabs(pyglet.window.Window):
         if dbg:          self.cobj.dumpMlimap(why)
         if dbg:          self.dumpGeom(f'END {why} {self.fmtWxH()}')
     ####################################################################################################################################################################################################
-    def autoSave(self, dt, how, dbg=0):
-        if dbg: self.log(f'{dt:=7.4f} {how} {self.resyncData=}')
-        if self.AUTO_SAVE and self.resyncData: self.saveDataFile(how=how)   ;   self.resyncData = 0
+    def autoSave(self, dt, how, dbg=1):
+        if dbg: self.log(f'Every {dt:=7.4f} seconds, {how} {self.resyncData=}')
+        if self.resyncData: self.saveDataFile(how=how)   ;  self.resyncData = 0
 
     def on_draw(self, dbg=0):
         self.clear()
@@ -403,12 +404,12 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def saveDataFile(self, how, f=0, dbg=1):
         if dbg:   self.log(f'{how} {f=}')
-        if not f and self.AUTO_SAVE: dataPath = self.dataPath0
-        else:                   dataPath = self.dataPath1 if f == 1 else self.dataPath2
+        if   f == 0 and self.AUTO_SAVE: dataPath = self.dataPath0
+        else:                           dataPath = self.dataPath1
         with open(dataPath, 'w') as DATA_FILE:
             self.log(f'{DATA_FILE.name:40}', pfx=0)
             np, nl, nc, nr = self.dl()  ;  sl = 0
-            data = self.transposeData() # if self.isVert() else self.data
+            data = self.transposeData() if self.isVert() else self.data
             for p in range(np):
                 if dbg: self.log(f'writing {p+1}{self.ordSfx(p+1)} page', pfx=0)
                 for l in range(nl):
@@ -428,33 +429,35 @@ class Tabs(pyglet.window.Window):
         self.log(f'Generating Tab Data using {util.fmtl(self.n)=}')
         np, nl, ns, nc, nr = self.n  ;  nc += self.zzl()
         self.data = [ [ [ self.tblankRow for _ in range(nr) ] for _ in range(nl) ] for _ in range(np) ]
+        self.saveDataFile('genDataFile()', f=1)
     ####################################################################################################################################################################################################
     def readDataFile(self, dbg=1):
-        nl = self.n[L]   ;   nr = self.n[T]
+        nl = self.n[L]                ;     nr = self.n[C]
         sp, sl, st, sr = 0, 0, 0, 0
-        if dbg: self.log(f'BGN {util.fmtl(self.n)}')
-        path1 = str(self.dataPath1)   ;   self.log(f'{path1=}')
-        if not self.dataPath1.exists(): self.log(f'WARN No Data File @ {self.dataPath1=}')  ;  self.dataPath1.touch()  ;  return self.genDataFile()
+        if dbg:                             self.log(f'BGN {util.fmtl(self.n)}')
+        path1 = str(self.dataPath1)   ;     self.log(f'{path1=}')
+        if not self.dataPath1.exists():     self.log(f'WARN No Data File @ {self.dataPath1=}')  ;  self.dataPath1.touch()
         with open(path1, 'r') as DATA_FILE:
-            DATA_FILE.seek(0, 2)      ;   size = DATA_FILE.tell()    ;   DATA_FILE.seek(0, 0)
+            DATA_FILE.seek(0, 2)      ;     size = DATA_FILE.tell()   ;   DATA_FILE.seek(0, 0)
             self.log(f'{DATA_FILE.name:40} {size:3,} bytes = {size/1024:3,.1f} KB')
-            if not size: self.log(f'WARN Empty Data File {size=} -> Generate Data')   ;   return self.genDataFile()
+            if not size:                    self.log(f'WARN Empty Data File {size=} -> Generate Data')   ;   self.genDataFile()  ;  self.quit()
             self.log('Raw Data File BGN:')
-            data = self.data          ;   lines, rows = [], []       ;   ntabs = 0
+            data = self.data          ;     lines, rows = [], []      ;   ntabs = 0
             for tabs in DATA_FILE:
                 tabs = tabs.strip()
                 if tabs:
                     if not ntabs: ntabs = len(tabs)
-                    if len(tabs) != ntabs:  msg = f'ERROR BAD tabs len {len(tabs)=} != {ntabs=}'   ;   self.log(msg)   ;   self.quit(msg)
-                    rows.append(tabs)   ;   st += len(tabs)          ;     sr += 1
+                    if len(tabs) != ntabs:      msg = f'ERROR BAD tabs len {len(tabs)=} != {ntabs=}'   ;   self.log(msg)   ;   self.quit(msg)
+                    rows.append(tabs)       ;   st += len(tabs)       ;     sr += 1
                 else:
-                    if rows  and not (sr % nr): lines.append(rows)   ;    rows = []   ;   sl += 1
-                    if lines and not (sl % nl): data.append(lines)   ;   lines = []   ;   sp += 1
+                    if rows  and not (sr % nr): lines.append(rows)    ;    rows = []   ;   sl += 1
+                    if lines and not (sl % nl): data.append(lines)    ;   lines = []   ;   sp += 1
                 self.log(f'{tabs}', pfx=0)
-            if lines: data.append(lines)   ;  sp += 1
+            if rows:  lines.append(rows)    ;   sl += 1
+            if lines: data.append(lines)    ;   sp += 1
             self.log('Raw Data File END:')
+            self.log(f'{self.fmtdl()=} {self.fmtdt()=}')
             self.assertDataFileSize(sl, size)
-            self.log(f'{util.fmtl(self.dl())} {util.fmtl(self.dt())}')
             npages, nlines, nrows, ntabs = self.dl()
             self.log(f'{sp    } ({sl/nlines:6.3f}) pages = {sl} lines =          {sr} rows =          {st} tabs')
             self.log(f'{npages} ({sl/nlines:6.3f}) pages @  {nlines} lines per page, @ {nrows} rows per line, @ {ntabs} tabs per row')
@@ -480,12 +483,12 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def isVert(self, data=None, dbg=1):
         dl, dt = self.dl(data), self.dt(data)
-        if dbg: self.log(f'BGN {self.fmtdl()}')
-        if dbg: self.log(f'    {self.fmtdt()}')
+        if dbg: self.log(f'BGN {self.fmtdl()=} {self.fmtdt()=}')
         assert dt[0] is list and dt[1] is list and dt[2] is list and dt[3] is str
         self.checkData(data)
+        self.log(f'{util.fmtl(self.dplc())}', pfx=0)
         vert = 1 if dl[2] > dl[3] else 0
-        if dbg: self.log(f'END {self.fmtdl()} {vert=}')
+        if dbg: self.log(f'END {self.fmtdl()=} {self.fmtdt()=} {vert=}')
         return vert
 
     def checkData(self, data=None):
@@ -506,6 +509,7 @@ class Tabs(pyglet.window.Window):
         data = data or self.data
         Xdata, msg1, msg2 = [], [], []
         self.log(f'BGN {self.fmtDxD(data)} {why}')
+        self.log(f'{self.fmtdl()} {self.fmtdt()}')
         self.log(f'dl={util.fmtl(self.dl(data))} dt={util.fmtl(self.dt(data))}') if dbg else None
         for p, page in enumerate(data):
             Xpage = []
@@ -1051,18 +1055,17 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def g_resizeTniks(self, tlist, j, pt=None, why='Upd', dbg=1, dbg2=1):
-        if not self.n[j]:     msg = f'WARN {self.fmtJText(j, why=why)} SKIP {self.n[j]=}'   ;   self.log(msg)   ;   return
+        if not self.n[j]:     msg = f'ERROR {self.fmtJText(j, why=why)} SKIP {self.n[j]=}'   ;   self.log(msg)   ;   self.quit(msg)
         n, _, x, y, w, h = self.geom(j, pt, dbg=dbg2)
         x2 = x  ;  y2 = y  ;  j2 = j  ;  tlist2 = tlist
         p, l, c, t = self.j2plct()
         for i in range(n):
             if   j2 == C:                x2 = x + i * w
             else:
+                if   j2 != P:            y2 = y - i * h
                 if   j2 == L and self.J2[L] > self.dl()[1]: msg = f'WARN MAX Line {self.J2[L]=} > {self.fmtdl()=}'       ;  self.log(msg)  ;  yield None
 #                if self.J2[L] > len(self.data[p]):          msg = f'WARN MAX Line {self.J2[L]=} > {len(self.data[p])=}'  ;  self.log(msg)  ;  return
-                if   j  != P:            y2 = y - i * h
                 elif j2 >= T:
-                    y2 = y - i * h
                     s2 = self.ss2sl()[self.J1[S] % self.ssl()]
                     tlist2, j2 = self.tnikInfo(p, l, s2, c, why=why)
             tnik = self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, dbg=dbg)
@@ -2085,7 +2088,7 @@ class Tabs(pyglet.window.Window):
 #        self.cobj.dumpInstanceCat(why)
 #        self.cleanupCat(1 if code != 2 else 0)
         if       code and self.AUTO_SAVE: self.saveDataFile(why, f=0)
-        elif not code:               self.saveDataFile(why, f=1)
+        elif not code:                    self.saveDataFile(why, f=1)
         if dbg2: self.transposeDataDump()
         if dbg:  self.cobj.dumpMlimap(why)
         self.log(f'END {why} code={code}')        ;   self.log(QUIT_END, pfx=0)
@@ -2098,8 +2101,9 @@ class Tabs(pyglet.window.Window):
         elif dump:         self.cobj.dumpOMAP(None, merge=1)
         if self.CAT:
             cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
-            self.log(f' ***  copy {self.catPath} {cfp}  ***')
-            os.system(f'copy {self.catPath} {cfp}')
+            self.copyFile(self.catPath, cfp)
+#            self.log(f' ***  copy {self.catPath} {cfp}  ***')
+#            os.system(f'copy {self.catPath} {cfp}')
         self.log(f'END dump={dump}')
 
     def cleanupLog(self):
@@ -2107,11 +2111,18 @@ class Tabs(pyglet.window.Window):
         logPath = None
         if self.SEQ_FNAMES:
             logPath = self.getFilePath(seq=self.SEQ_FNAMES, filedir='logs', filesfx='.log')
-            self.log(f'logPath      = {logPath}')
-            self.log(f' ### copy {LOG_PATH} {logPath} ###')
+#            self.log(f'logPath      = {logPath}')
+#            self.log(f' ### copy {LOG_PATH} {logPath} ###')
+        if self.SEQ_FNAMES: self.copyFile(LOG_PATH, logPath)
         self.log(f'closing {LOG_FILE.name}')
         LOG_FILE.close()
-        if self.SEQ_FNAMES and logPath: os.system(f'copy {LOG_PATH} {logPath}')
+#        if self.SEQ_FNAMES and logPath: os.system(f'copy {LOG_PATH} {logPath}')
+
+    def copyFile(self, src, trg):
+        if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   self.log(msg)   ;   self.quit(msg)
+        cmd = f'copy {src} {trg}'
+        self.log(f'### {cmd} ###')
+        os.system(f'{cmd}')
 
 ########################################################################################################################################################################################################
 OPACITY          = [ 255, 240, 225, 210, 190, 165, 140, 110, 80 ]
