@@ -1,5 +1,5 @@
 """util.py module.  class list: []."""
-import sys, inspect, pathlib
+import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
 IND = 0
@@ -95,6 +95,13 @@ def OLD__slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
     print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        print(f'{msg}', file=file, flush=flush, sep=sep, end=end) if pfx else print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        if file != LOG_FILE: Tabs.slog(msg, pfx, flush=False, sep=',', end=end)
+########################################################################################################################################################################################################
+def copyFile(src, trg):
+    if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;   return  #  raise SystemExit(msg)
+    slog(f'{src=}', file=sys.stdout)   ;   slog(f'{trg=}', file=sys.stdout)
+    cmd = f'copy {src} {trg}'
+    slog(f'### {cmd} ###', file=sys.stdout)
+    os.system(f'{cmd}')
 ########################################################################################################################################################################################################
 def parseCmdLine(file=None):
     dbg = 1
