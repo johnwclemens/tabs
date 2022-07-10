@@ -100,7 +100,7 @@ class Tabs(pyglet.window.Window):
         self.kbk,    self.symb,    self.mods,        self.symbStr, self.modsStr =             0, 0, 0, '', ''
         self.AUTO_SAVE = 0  ;  self.CAT        = 0  ;  self.CHECKER_BOARD = 0  ;  self.EVENT_LOG = 0  ;  self.FULL_SCREEN = 0  ;  self.ORDER_GROUP = 1  ;  self.RESIZE = 1
         self.SNAP      = 0  ;  self.SEQ_FNAMES = 1  ;  self.SPRITES       = 0  ;  self.SUBPIX    = 0  ;  self.VERBOSE     = 0  ;  self.VIEWS       = 0  ;  self.TEST   = 0
-        self.FRET_BOARD = 1
+        self.FRET_BOARD = 1  ;  self.USE_NEW   = 1
         self.LL           = 0
         self.SS           = set() if 0 else {0}
         self.ZZ           = set() if 1 else {0, 1}
@@ -225,8 +225,10 @@ class Tabs(pyglet.window.Window):
     def _initData(self, dbg=1):
         self._initDataPath()
         self.readDataFile(self.dataPath1)
-        util.copyFile(self.dataPath1, self.dataPath2)
-        self.transposeDataDump() if dbg else self.transposeData()
+        util.copyFile    (self.dataPath1, self.dataPath2)
+#        self.data = self.NEW_transposeData(dump=dbg) if self.USE_NEW else self.transposeDataDump() if dbg else self.OLD_transposeData()
+        if self.USE_NEW:    self.data = self.NEW_transposeData(dump=dbg)
+        else:               self.transposeDataDump() if dbg else self.OLD_transposeData()
         old = self.fmtn('')
         self.n[P] = self.dl()[0]
         self.log(f'{self.fmtdl(fdl=1)}')
@@ -390,9 +392,9 @@ class Tabs(pyglet.window.Window):
         if dbg:          self.cobj.dumpMlimap(why)
         if dbg:          self.dumpGeom(f'END {why} {self.fmtWxH()}')
     ####################################################################################################################################################################################################
-    def autoSave(self, dt, how, dbg=1):
-        if dbg: self.log(f'Every {dt:=7.4f} seconds, {how} {self.resyncData=}')
-        if self.resyncData: self.saveDataFile(how=how)   ;  self.resyncData = 0
+    def autoSave(self, dt, why, dbg=1):
+        if dbg: self.log(f'Every {dt:=7.4f} seconds, {why} {self.resyncData=}')
+        if self.resyncData: self.saveDataFile(why, self.dataPath0)   ;  self.resyncData = 0
 
     def on_draw(self, dbg=0):
         self.clear()
@@ -405,38 +407,34 @@ class Tabs(pyglet.window.Window):
         super().on_resize(width, height)   ;   why2 = 'Upd'
         if self.RESIZE: self.resizeTniks(f'{why2}{why}')
     ####################################################################################################################################################################################################
-    def saveDataFile(self, how, f=0, dbg=1):
-        if dbg:   self.log(f'{how} {f=}')
-#        if   f == 0 and self.AUTO_SAVE: dataPath = self.dataPath0
-        dataPath = self.dataPath1  ;  sl = 0
-        with open(dataPath, 'w') as DATA_FILE:
+    def saveDataFile(self, why, path, dbg=1):
+        if dbg:   self.log(f'{why} {path}')
+        with open(path, 'w') as DATA_FILE:
             self.log(f'{DATA_FILE.name:40}', pfx=0)
-            if    self.isVert(): data = self.transposeData()
+            if    self.isVert(): data = self.NEW_transposeData() if self.USE_NEW else self.OLD_transposeData()
             else:                data = self.data
             self.log(f'{self.fmtn()} {self.fmtdl(data)}')
             for p in range(len(data)):
                 if dbg: self.log(f'writing {p+1}{self.ordSfx(p+1)} page', pfx=0)
                 for l in range(len(data[p])):
                     if dbg: self.log(f'writing {l+1}{self.ordSfx(l+1)} line', pfx=0)  # if dbg  else  self.log(pfx=0)  if  l  else  None
-                    sl += 1
                     for r in range(len(data[p][l])):
                         text = ''
                         for c in range(len(data[p][l][r])):
                             text += data[p][l][r][c]
                         if dbg: self.log(f'writing {r+1}{self.ordSfx(r+1)} string {text}', pfx=0)  # if dbg  else  self.log(text, pfx=0)
                         DATA_FILE.write(f'{text}\n')
-#                    else:                        msg = f'WARN MAX Line {sl=} > {len(self.lines)=}'  ;  self.log(msg)  ;  continue
                     DATA_FILE.write('\n')  #   if l < nl:
-        size = dataPath.stat().st_size   ;   self.log(f'{self.fmtn()} {self.fmtdl()} {size=}')
+        size = path.stat().st_size   ;   self.log(f'{self.fmtn()} {self.fmtdl()} {size=}')
         return size
     ####################################################################################################################################################################################################
-    def genDataFile(self):
-        self.log(f'Generating Tab Data using {self.fmtn()}')
+    def genDataFile(self, path):
+        self.log(f'{path} {self.fmtn()}')
         np, nl, ns, nc, nr = self.n  ;  nc += self.zzl()
         self.dumpBlank()
         self.data = [ [ [ self.tblankRow for _ in range(nr) ] for _ in range(nl) ] for _ in range(np) ]
-        size = self.saveDataFile('genDataFile()', f=1)
-        self.log(f'{size=} reset data {len(self.data)=}')
+        size = self.saveDataFile('Generated Data', path)
+        self.log(f'{path} {size=} {len(self.data)=}')
         self.data = []
         return size
     ####################################################################################################################################################################################################
@@ -444,10 +442,10 @@ class Tabs(pyglet.window.Window):
         nl = self.n[L]   ;   nr = self.n[T]   ;   sp, sl, st, sr = 0, 0, 0, 0
         if dbg:                             self.log(f'BGN {self.fmtn()}')
         if not path.exists():
-            self.log(f'WARN No Data File Exists @ {path=} -> Touch Data File')   ;   path.touch()
+            self.log(f'WARN No Data File Exists @ {path} -> Touch Data File')   ;   path.touch()
         stat = path.stat()  ;     size = stat.st_size
         if size == 0:
-            self.log(f'WARN Zero Len Data File @ {size=} -> Generate Data File')   ;   size = self.genDataFile()
+            self.log(f'WARN Zero Len Data File @ {path} -> Generate Data File')   ;   size = self.genDataFile(path)
         if size == 0:
             msg = f'ERROR Zero Len Data File {size=}'   ;   self.log(msg)   ;   self.quit(msg)
         with open(path, 'r') as DATA_FILE:
@@ -512,12 +510,12 @@ class Tabs(pyglet.window.Window):
                 for c in range(len(data[p][l])):
                     assert len(data[p][l][c]) == dl[3], f'{len(data[p][l])=} {dl=} {vert=}'
     ####################################################################################################################################################################################################
-    def transposeDataDump(self, data=None, why='External', pfx=0, dbg=1):
+    def transposeDataDump(self, data=None, why='External', dbg=1):
         self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
-        self.data = self.transposeData(data, why, pfx, dbg)
+        self.data = self.OLD_transposeData(data, why, dbg)
         self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
 
-    def transposeData(self, data=None, why='External', pfx=0, dbg=1):
+    def OLD_transposeData(self, data=None, why='External', dbg=1):
         data = self.dproxy(data)
         Xdata, msg1, msg2 = [], [], []
         self.log(f'BGN {self.fmtDxD(data)} {why}')
@@ -526,14 +524,34 @@ class Tabs(pyglet.window.Window):
         for p, page in enumerate(data):
             Xpage = []
             for l, line in enumerate(page):
-                if dbg: _ = f'BFR {p} {l}' if pfx else ''   ;   msg1.append(f'{_}{util.fmtl( line, d1="")}')
+                if dbg: msg1.append(f'{util.fmtl( line, d1="")}')
                 Xline = list(map(''.join, itertools.zip_longest(*line, fillvalue=' ')))
-                if dbg: _ = f'BFR {p} {l}' if pfx else ''   ;   msg2.append(f'{_}{util.fmtl(Xline, d1="")}')
+                if dbg: msg2.append(f'{util.fmtl(Xline, d1="")}')
                 Xpage.append(Xline)
             Xdata.append(Xpage)
         if dbg: [ self.log(m, pfx=0) for m in msg1 ]   ;   self.log(pfx=0)
         if dbg: [ self.log(m, pfx=0) for m in msg2 ]
         self.log(f'END {self.fmtDxD(Xdata)} {why}')
+        return Xdata
+    def NEW_transposeData(self, data=None, dump=0, dbg=1):
+        data = self.dproxy(data)
+        self.log(f'BGN {self.fmtDxD(data)} {dump=}')
+        if dump:        self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
+        Xdata, msg1, msg2 = [], [], []
+        self.log(f'{self.fmtdl()} {self.fmtdt()}')
+        self.log(f'dl={self.fmtdl(data)} dt={self.fmtdt(data)}') if dbg else None
+        for p, page in enumerate(data):
+            Xpage = []
+            for l, line in enumerate(page):
+                if dbg: msg1.append(f'{util.fmtl( line, d1="")}')
+                Xline = list(map(''.join, itertools.zip_longest(*line, fillvalue=' ')))
+                if dbg: msg2.append(f'{util.fmtl(Xline, d1="")}')
+                Xpage.append(Xline)
+            Xdata.append(Xpage)
+        if dbg: [ self.log(m, pfx=0) for m in msg1 ]   ;   self.log(pfx=0)
+        if dbg: [ self.log(m, pfx=0) for m in msg2 ]
+        self.dumpDataVert(Xdata) if self.isVert(Xdata) else self.dumpDataHorz(Xdata)
+        self.log(f'END {self.fmtDxD(Xdata)} {dump=}')
         return Xdata
     ####################################################################################################################################################################################################
     def dumpDataHorz(self, data=None, lc=1, ll=1, i=0):
@@ -810,15 +828,15 @@ class Tabs(pyglet.window.Window):
         txt  = text[c]
         return self.createTnik(tlist, c, Q, x + c * w, y, w, h, kk, kl=kl, t=txt, dbg=dbg)
 
-    def addPage(self, how):
+    def addPage(self, how, dbg=1):
         self.log(f'BGN {how}')
         np, nl, ns, nr, nc = self.n   ;   nc += self.zzl()
         self.n[P] += 1   ;   kl = self.k[P]
         self.log(f'{self.fmtn()}')   ;   self.dumpBlank()
         data = [ [ self.tblankRow for _ in range(nc) ] for _ in range(nl) ]
-        self.data = self.transposeData()
+        self.data = self.NEW_transposeData(dump=dbg) if self.USE_NEW else self.OLD_transposeData()
         self.data.append(data)
-        self.transposeDataDump()
+        self.NEW_transposeData(dump=dbg)             if self.USE_NEW else self.OLD_transposeData()
         self.dumpTniksPfx(how)
         if self.VIEWS:
             if      not   self.views:    msg = f'ERROR Empty views {self.n=} {self.zzl()}'   ;   self.log(msg)   ;   self.quit(msg)
@@ -836,11 +854,11 @@ class Tabs(pyglet.window.Window):
     def createLL(self, p, pi, dbg=1, dbg2=1):
         klr = self.k[R]  ;  kkr = self.cci(pi, klr)
         n = 1 + self.n[T] * self.ssl() * self.i[L]
-        nr, ir, xr, yr, wr, hr = self.geom(S, p, n=n, dbg=dbg2) #  ;   xr0 = xr
-#        if   type(p) is pygsprt.Sprite:    xr, yr = self.sprite2LabelPos(xr,    yr, wr, hr)   ;   self.log(f'{xr0=} {xr=} {wr=}', file=sys.stdout)
+        nr, ir, xr, yr, wr, hr = self.geom(S, p, n=n, dbg=dbg2)   ;   xr0 = xr
+        if   type(p) is pygsprt.Sprite:    xr, yr = self.sprite2LabelPos(xr,    yr, wr, hr)   ;   self.log(f'{xr0=} {xr=} {wr=}', file=sys.stdout)
         lrow = self.createTnik(self.lrows, pi, R, xr, yr, wr, hr, kkr, kl=klr, dbg=dbg)
-        nc, ic, xc, yc, wc, hc = self.geom(C, lrow,   dbg=dbg2) #  ;   xc0 = xc
-#        if   type(p) is pygsprt.Sprite:    xc, _  = self.sprite2LabelPos(self.p0x, yc, 0, hc)   ;   self.log(f'{xc0=} {xc=} {wc=}', file=sys.stdout)
+        nc, ic, xc, yc, wc, hc = self.geom(C, lrow,   dbg=dbg2)   ;   xc0 = xc
+        if   type(p) is pygsprt.Sprite:    xc, _  = self.sprite2LabelPos(self.p0x, yc, 0, hc)   ;   self.log(f'{xc0=} {xc=} {wc=}', file=sys.stdout)
         for c in range(nc):
             self.addLL(self.lcols, c, xc, yc, wc, hc)
         self.splitV(p, n, dbg=dbg)
@@ -850,10 +868,10 @@ class Tabs(pyglet.window.Window):
     def resizeLL(self, p, pi, dbg=1, dbg2=1):
         n = 1 + self.n[T] * self.ssl() * self.i[L]
         nr, ir, xr, yr, wr, hr = self.geom(S, p, n=n, dbg=dbg2)  # ;    xr0 = xr
-#        if   type(p) is pygsprt.Sprite:    xr, yr = self.sprite2LabelPos(xr,    yr, wr, hr)
+        if   type(p) is pygsprt.Sprite:    xr, yr = self.sprite2LabelPos(xr,    yr, wr, hr)
         lrow = self.resizeTnik(self.lrows, self.J2[R], R, xr, yr, wr, hr, dbg=dbg)
         nc, ic, xc, yc, wc, hc = self.geom(C, lrow,   dbg=dbg2)   ;   sc = nc * pi  # ;   xc0 = xc
-#        if   type(p) is pygsprt.Sprite:    xc, _  = self.sprite2LabelPos(self.p0x, yc, 0, hc)
+        if   type(p) is pygsprt.Sprite:    xc, _  = self.sprite2LabelPos(self.p0x, yc, 0, hc)
         for c in range(nc):
             klc = self.k[Q]   ;   kk = self.cci(sc, klc)
             nz = self.zzl()   ;  lcs = self.lcols   ;   lc = len(lcs)
@@ -966,8 +984,9 @@ class Tabs(pyglet.window.Window):
             elif j == T:    x  =  p.x                    ;  y  =  p.y + p.height/2 - h/2
             else:           x  =  self.p0x + w/2         ;  y  =  p.y + p.height/2 - h/2
         if dbg:
-            msg  = f'{j=}  {n=:2} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}'
-            msg += f' : {p.x:7.2f} {p.y:7.2f} {p.width:7.2f} {p.height:7.2f}' if p else ""
+            msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}'
+            (px, py, pw, ph) = (p.x, p.y, p.width, p.height) if p else (0.0, 0.0, 0.0, 0.0)
+            msg2 = f' : {px:7.2f} {py:7.2f} {pw:7.2f} {ph:7.2f}'  ;  msg += msg2 if p else " " * len(msg2)
             self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', pfx=0, file=sys.stdout)
         return n, i, x, y, w, h
     ####################################################################################################################################################################################################
@@ -1039,12 +1058,10 @@ class Tabs(pyglet.window.Window):
             nz    = self.zzl()   ;   nc = self.n[C] + nz
             mp    = len(tlist) % nc + 1 - nz if j == Q and tlist else 0
             if j == Q and not mp % 10 and i:   k = self.k[R][0]
-#            if ml:                             t = [ t[:m] + '\n' + t[m:] for m in range(len(t), 0, -1) ]
-            t = f'{t}'
+#            if ml:                             t = [ t[:m] + '\n' + t[m:] for m in range(len(t), 0, -1) ] #            t = f'{t}'
             tnik  = pygtxt.Label(t, font_name=n, font_size=s, bold=o, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
         if    tlist is not None: tlist.append(tnik)
         else: msg = f'WARN tlist is None cant add tnik: {self.fmtJText(j, i, why)}'  ;  self.log(msg)
-#        self.setJ(j, i)
         if dbg:                                self.dumpTnik(tnik, j, why)
         if self.LL and j == L and v:    tnik = self.createLL(tnik, i)
         return tnik
@@ -1093,7 +1110,6 @@ class Tabs(pyglet.window.Window):
         if j is not None: self.setJ(j, i)
         tnik = tlist[i]
         v = v      if v is not None else self.isV(j)
-#        if   type(tnik) is pygtxt.Label:    fs = v * self.pix2fontsize(h)   ;   tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, fs # * 4 if j == C else fs
         if   type(tnik) is pygtxt.Label:        fs = v * self.calcFontSize(tnik.text, w, h, j)            ;   tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, fs
         elif type(tnik) is pygsprt.Sprite:  mx, my = w/tnik.image.width, h/tnik.image.height   ;   tnik.update(x=x, y=y, scale_x=mx, scale_y=my)   ;   tnik.visible = v
         if self.LL and j == L and v:        tnik = self.resizeLL(tnik, i)
@@ -1237,7 +1253,7 @@ class Tabs(pyglet.window.Window):
         w = self.width / nc  ;  h = self.height / n
         fs = self.calcFontSize(' ', w, h, j=T)
         self.fontBold, self.fontItalic, self.fontColorIndex, self.fontDpiIndex, self.fontNameIndex, self.fontSize = 0, 0, 0, 4, 0, fs
-        self.log(f'{w=:6.3f}={self.width=}/{nc=}                     {FONT_SCALE=:5.3f} fs=w*FONT_SCALE={fs:6.3f}pt')
+        self.log(f'{w=:6.3f}={self.width =}/({nc})                   {FONT_SCALE=:5.3f} fs=w*FONT_SCALE={fs:6.3f}pt')
         self.log(f'{h=:6.3f}={self.height=}/({nl=} * {ns=} * {nt=})  {FONT_SCALE=:5.3f} fs=h*FONT_SCALE={fs:6.3f}pt')
         self.dumpFont()
 
@@ -1327,12 +1343,12 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'O' and self.isCtrl(     mods):    self.toggleCursorMode('@ O')
 #        elif kbk == 'P' and self.isCtrlShift(mods):    self.cobj.togglePage( '@^P')
         elif kbk == 'P' and self.isCtrl(     mods):    self.addPage(         '@ P')
-        elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@^Q', code=1)
-        elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(            '@ Q', code=0)
+        elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@^Q', error=0, save=0)
+        elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(            '@ Q', error=0, save=1)
         elif kbk == 'R' and self.isCtrlShift(mods):    self.toggleChordNames('@^R', hit=1)
         elif kbk == 'R' and self.isCtrl(     mods):    self.toggleChordNames('@ R', hit=0)
         elif kbk == 'S' and self.isCtrlShift(mods):    self.shiftTabs(       '@^S')
-#        elif kbk == 'S' and self.isCtrl(     mods):    self.saveDataFile(    '@ S')
+#        elif kbk == 'S' and self.isCtrl(     mods):    self.saveDataFile(    '@ S', self.dataPath1)
         elif kbk == 'S' and self.isCtrl(     mods):    self.swapTab(         '@ S', txt='')
         elif kbk == 'T' and self.isCtrlShift(mods):    self.toggleTTs(       '@^T', TT)
         elif kbk == 'T' and self.isCtrl(     mods):    self.toggleTTs(       '@ T', TT)
@@ -2090,16 +2106,16 @@ class Tabs(pyglet.window.Window):
         if pos: msg = f'{self.fmtPos()}' + f' {msg}' # if msg else
         util.slog(msg, pfx, file, flush, sep, end)
     ####################################################################################################################################################################################################
-    def quit(self, why='', code=1, dbg=1): #, dbg2=1):
-        self.log(f'BGN {why} {code=}')        ;   self.log(QUIT_BGN, pfx=0)
-        if dbg: util.dumpStack(inspect.stack(), file=LOG_FILE)   ;   self.log(QUIT, pfx=0)   ;   util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
+    def quit(self, why='', error=1, save=1, dbg=1): #, dbg2=1):
+        self.log(f'BGN {why} {error=} {save=}')           ;   self.log(QUIT_BGN, pfx=0)
+        util.dumpStack(inspect.stack(), file=LOG_FILE)    ;   self.log(QUIT,     pfx=0)   ;   util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
         self.dumpArgs()
-#        if not code:
-        self.saveDataFile(why, f=1)
-#            self.dumpStruct('quit')
-#            if dbg2: self.transposeDataDump()
-#            if dbg:  self.cobj.dumpMlimap(why)
-        self.log(f'END {why} {code=}')        ;   self.log(QUIT_END, pfx=0)
+        if      save:   self.saveDataFile(why, self.dataPath1)
+        if not error:
+            if dbg:     self.dumpStruct('quit')
+            if dbg:     self.NEW_transposeData(dump=dbg) if self.USE_NEW else self.OLD_transposeData()
+            if dbg:     self.cobj.dumpMlimap(why)
+        self.log(f'END {why} {error=} {save=}')           ;   self.log(QUIT_END, pfx=0)
         self.cleanupLog()
         pyglet.app.exit()
     ####################################################################################################################################################################################################
@@ -2155,22 +2171,22 @@ def genColors(k, nsteps=HUES, dbg=0):
 def fri(f): return int(math.floor(f + 0.5))
 ########################################################################################################################################################################################################
 COLORS        = []
-GRAYS         = genColors(GRAY)       ;  COLORS.append(GRAYS)
-PINKS         = genColors(PINK)       ;  COLORS.append(PINKS)
-INFRA_REDS    = genColors(INFRA_RED)  ;  COLORS.append(INFRA_REDS)
-REDS          = genColors(RED)        ;  COLORS.append(REDS)
-ORANGES       = genColors(ORANGE)     ;  COLORS.append(ORANGES)
-YELLOWS       = genColors(YELLOW)     ;  COLORS.append(YELLOWS)
-GREENS        = genColors(GREEN)      ;  COLORS.append(GREENS)
-GREEN_BLUES   = genColors(GREEN_BLUE) ;  COLORS.append(GREEN_BLUES)
-CYANS         = genColors(CYAN)       ;  COLORS.append(CYANS)
-BLUE_GREENS   = genColors(BLUE_GREEN) ;  COLORS.append(BLUE_GREENS)
-BLUES         = genColors(BLUE)       ;  COLORS.append(BLUES)
-INDIGOS       = genColors(INDIGO)     ;  COLORS.append(INDIGOS)
-VIOLETS       = genColors(VIOLET)     ;  COLORS.append(VIOLETS)
+GRAYS         = genColors(GRAY)          ;  COLORS.append(GRAYS)
+PINKS         = genColors(PINK)          ;  COLORS.append(PINKS)
+INFRA_REDS    = genColors(INFRA_RED)     ;  COLORS.append(INFRA_REDS)
+REDS          = genColors(RED)           ;  COLORS.append(REDS)
+ORANGES       = genColors(ORANGE)        ;  COLORS.append(ORANGES)
+YELLOWS       = genColors(YELLOW)        ;  COLORS.append(YELLOWS)
+GREENS        = genColors(GREEN)         ;  COLORS.append(GREENS)
+GREEN_BLUES   = genColors(GREEN_BLUE)    ;  COLORS.append(GREEN_BLUES)
+CYANS         = genColors(CYAN)          ;  COLORS.append(CYANS)
+BLUE_GREENS   = genColors(BLUE_GREEN)    ;  COLORS.append(BLUE_GREENS)
+BLUES         = genColors(BLUE)          ;  COLORS.append(BLUES)
+INDIGOS       = genColors(INDIGO)        ;  COLORS.append(INDIGOS)
+VIOLETS       = genColors(VIOLET)        ;  COLORS.append(VIOLETS)
 ULTRA_VIOLETS = genColors(ULTRA_VIOLET)  ;  COLORS.append(ULTRA_VIOLETS)
-CCS           = genColors(CC)         ;  COLORS.append(CCS)
-FONT_SCALE    = 14/18 # 8pts/10pix pts/pux
+CCS           = genColors(CC)            ;  COLORS.append(CCS)
+FONT_SCALE    =  14/18  # 14pts/18pix
 FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
 FONT_NAMES    = ['Lucida Console', 'Helvetica', 'Arial', 'Times New Roman', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
 FONT_COLORS_S = [PINKS[0], CYANS[0], REDS[0], BLUES[0], YELLOWS[0], GREENS[0], ORANGES[0], VIOLETS[0], REDS[13], YELLOWS[15], GREEN_BLUES[8], ORANGES[12], INDIGOS[8], ULTRA_VIOLETS[9], BLUE_GREENS[8], GRAYS[8]]
