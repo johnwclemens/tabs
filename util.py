@@ -64,7 +64,7 @@ def dumpStack(sfs, file=None):
         slog(f'{j:2} {n:9} {l:5} {f:20} {c}', file=file)
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}', file=file)
 ########################################################################################################################################################################################################
-def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+def NEW_slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
     if pfx:
         sf  = inspect.currentframe().f_back
         sfi = inspect.getframeinfo(sf)
@@ -79,7 +79,7 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
         msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
     print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 
-def OLD__slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
     if pfx:
         sfs = inspect.stack()          ;  i = 1
         while sfs[i].function in STFILT:  i += 1
