@@ -177,8 +177,8 @@ class Tabs(pyglet.window.Window):
         self.log('BGN')
         self.pages, self.lines, self.sects, self.cols  = [], [], [], []  ;  self.A = [self.pages, self.lines, self.sects, self.cols]
         self.tabs,  self.notes, self.ikeys, self.kords = [], [], [], []  ;  self.B = [self.tabs,  self.notes, self.ikeys, self.kords]
-        self.lrows, self.lcols, self.cursr, self.views = [], [], [], []  ;  self.D = [self.lrows, self.lcols, self.cursr, self.views]
-        self.snos,  self.snas,  self.capos             = [], [], []      ;  self.C = [self.snos,  self.snas,  self.capos]
+        self.lrows, self.lcols, self.cursr, self.views = [], [], [], []  ;  self.C = [self.lrows, self.lcols, self.cursr, self.views]
+        self.snos,  self.snas,  self.capos             = [], [], []      ;  self.D = [self.snos,  self.snas,  self.capos]
         self.E = [*self.A, *self.B, *self.C, *self.D]
         self.log(f'E={util.fmtl(self.E)}')
         self.resetJ('_reinit')
@@ -826,7 +826,7 @@ class Tabs(pyglet.window.Window):
         zz = 2 if self.FRET_BOARD else 1
         text = self.llText[zz-self.zzl():]
         txt  = text[c]
-        return self.createTnik(tlist, c, Q, x + c * w, y, w, h, kk, kl=kl, t=txt, dbg=dbg)
+        return self.createTnik(tlist, c, Q, x + c * w, y, w, h, kk, kl=kl, t=txt, v=1, dbg=dbg)
 
     def addPage(self, how, dbg=1):
         self.log(f'BGN {how}')
@@ -836,7 +836,7 @@ class Tabs(pyglet.window.Window):
         data = [ [ self.tblankRow for _ in range(nc) ] for _ in range(nl) ]
         self.data = self.NEW_transposeData(dump=dbg) if self.USE_NEW else self.OLD_transposeData()
         self.data.append(data)
-        self.NEW_transposeData(dump=dbg)             if self.USE_NEW else self.OLD_transposeData()
+        self.data = self.NEW_transposeData(dump=dbg) if self.USE_NEW else self.OLD_transposeData()
         self.dumpTniksPfx(how)
         if self.VIEWS:
             if      not   self.views:    msg = f'ERROR Empty views {self.n=} {self.zzl()}'   ;   self.log(msg)   ;   self.quit(msg)
@@ -865,18 +865,15 @@ class Tabs(pyglet.window.Window):
         self.dumpTnik(p, L, why='Upd')
         return p
 
-    def resizeLL(self, p, pi, dbg=1, dbg2=1):
+    def resizeLL(self, p, dbg=1, dbg2=1):
         n = 1 + self.n[T] * self.ssl() * self.i[L]
         nr, ir, xr, yr, wr, hr = self.geom(S, p, n=n, dbg=dbg2)  # ;    xr0 = xr
         if   type(p) is pygsprt.Sprite:    xr, yr = self.sprite2LabelPos(xr,    yr, wr, hr)
         lrow = self.resizeTnik(self.lrows, self.J2[R], R, xr, yr, wr, hr, dbg=dbg)
-        nc, ic, xc, yc, wc, hc = self.geom(C, lrow,   dbg=dbg2)   ;   sc = nc * pi  # ;   xc0 = xc
+        nc, ic, xc, yc, wc, hc = self.geom(C, lrow,   dbg=dbg2)  # ;    xc0 = xc
         if   type(p) is pygsprt.Sprite:    xc, _  = self.sprite2LabelPos(self.p0x, yc, 0, hc)
         for c in range(nc):
-            klc = self.k[Q]   ;   kk = self.cci(sc, klc)
-            nz = self.zzl()   ;  lcs = self.lcols   ;   lc = len(lcs)
-            if sc > lc: self.createTnik(lcs, sc, Q, 0, 0, 0, 0, kk, klc, dbg=1)  ;  msg = f'ERROR Missing Label {sc=} > {lc=} {nz=} lrow={pi+1} {c=}'  ;  self.log(msg)  ;  self.quit(msg)
-            self.resizeTnik(lcs, self.J2[Q], Q, xc + c * wc, yc, wc, hc, dbg=1)
+            self.resizeTnik(self.lcols, self.J2[Q], Q, xc + c * wc, yc, wc, hc, v=1, dbg=1)
         self.splitV(p, n, dbg=dbg)
         return p
     ####################################################################################################################################################################################################
@@ -1110,9 +1107,9 @@ class Tabs(pyglet.window.Window):
         if j is not None: self.setJ(j, i)
         tnik = tlist[i]
         v = v      if v is not None else self.isV(j)
-        if   type(tnik) is pygtxt.Label:        fs = v * self.calcFontSize(tnik.text, w, h, j)            ;   tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, fs
-        elif type(tnik) is pygsprt.Sprite:  mx, my = w/tnik.image.width, h/tnik.image.height   ;   tnik.update(x=x, y=y, scale_x=mx, scale_y=my)   ;   tnik.visible = v
-        if self.LL and j == L and v:        tnik = self.resizeLL(tnik, i)
+        if   type(tnik) is pygtxt.Label:        fs = v * self.calcFontSize(tnik.text, w, h, j)  ;   tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, fs
+        elif type(tnik) is pygsprt.Sprite:  mx, my = w/tnik.image.width, h/tnik.image.height    ;   tnik.update(x=x, y=y, scale_x=mx, scale_y=my)   ;   tnik.visible = v
+        if self.LL and j == L and v:        tnik = self.resizeLL(tnik) # , i)
         self.dumpTnik(tnik, j, why) if dbg else None
         return tnik
     ####################################################################################################################################################################################################
@@ -2109,6 +2106,7 @@ class Tabs(pyglet.window.Window):
     def quit(self, why='', error=1, save=1, dbg=1): #, dbg2=1):
         self.log(f'BGN {why} {error=} {save=}')           ;   self.log(QUIT_BGN, pfx=0)
         util.dumpStack(inspect.stack(), file=LOG_FILE)    ;   self.log(QUIT,     pfx=0)   ;   util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
+        self.dumpJs('quit')
         self.dumpArgs()
         if      save:   self.saveDataFile(why, self.dataPath1)
         if not error:
