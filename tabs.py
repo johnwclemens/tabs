@@ -1000,6 +1000,12 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'{chordName=}')
         return chordName
     ####################################################################################################################################################################################################
+    def idmapkey(self, j):    return f'{JTEXTS[j]:4} {self.J2[j]:4}'
+    def dumpIdMap(self):
+        self.log(' Key  Cnt Value', pfx=0)
+        for k, v in self.idmap.items():
+            self.log(f'{k:9} {v:16} {v:16}', pfx=0)
+    ####################################################################################################################################################################################################
     def createTniks(self):
         self.dumpTniksPfx()   ;   view = None
         if self.VIEWS:
@@ -1062,12 +1068,6 @@ class Tabs(pyglet.window.Window):
         if dbg: key = self.idmapkey(j)  ;  self.idmap[key] = id(tnik)  ;  self.dumpTnik(tnik, j, why)
         if self.LL and j == L and v: tnik = self.createLL(tnik, i)
         return tnik
-
-    def idmapkey(self, j):    return f'{JTEXTS[j]:4} {self.J2[j]:4}'
-    def dumpIdMap(self):
-        self.log('Key cnt Value', pfx=0)
-        for k, v in self.idmap.items():
-            self.log(f'{k} {v:x} {v}', pfx=0)
     ####################################################################################################################################################################################################
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]    ;    ha = hasattr(c, 'text')
@@ -1111,12 +1111,13 @@ class Tabs(pyglet.window.Window):
     def resizeTnik(self, tlist, i, j, x, y, w, h, why='Upd', v=None, dbg=1):
         if not tlist:         msg = f'ERROR tlist is Empty {      self.fmtJText(j, i, why)}'  ;  self.log(msg)  ;  self.quit(msg)
         elif i >= len(tlist): msg = f'ERROR {i=} >={len(tlist)=} {self.fmtJText(j, i, why)}'  ;  self.log(msg)  ;  self.quit(msg)
-        if j is not None: self.setJ(j, i)
+        if j is not None:     self.setJ(j, i)
         tnik = tlist[i]
         v = v      if v is not None else self.isV(j)
+#        if   type(tnik) is pygtxt.Label:      tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
         if   type(tnik) is pygtxt.Label:        fs = v * self.calcFontSize(tnik.text, w, h, j)  ;   tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, fs
         elif type(tnik) is pygsprt.Sprite:  mx, my = w/tnik.image.width, h/tnik.image.height    ;   tnik.update(x=x, y=y, scale_x=mx, scale_y=my)   ;   tnik.visible = v
-        if self.LL and j == L and v:        tnik = self.resizeLL(tnik) # , i)
+        if self.LL and j == L and v:          tnik = self.resizeLL(tnik) # , i)
         self.dumpTnik(tnik, j, why) if dbg else None
         return tnik
     ####################################################################################################################################################################################################
@@ -1248,14 +1249,14 @@ class Tabs(pyglet.window.Window):
         else:      scale = 1.25
         pix = min(scale * w, h)
         fs = self.pix2fontsize(pix)
-        if dbg: self.log(f'{j=} {JTEXTS[j]:4} {w=:6.2f} {h=:6.2f} {pix=:6.2f}=min({scale=:.1f}*w, h) {fs=:6.2f} {t}')
-        return fs
+        if dbg: self.log(f'{j=} {JTEXTS[j]:4} {t=} {w=:6.2f} {h=:6.2f} {pix=:6.2f}=min({scale=:.1f}*w, h) {fs=:6.2f}')
+        return int(fs)
 
     def _initFonts(self):
         np, nl, ns, nc, nt = self.n  ;  nc += self.zzl()
         n = nl * nt * ns if ns else nl * nt
         w = self.width / nc  ;  h = self.height / n
-        fs = self.calcFontSize(' ', w, h, j=T)
+        fs = self.calcFontSize(' ', w, h, j=T, dbg=1)
         self.fontBold, self.fontItalic, self.fontColorIndex, self.fontDpiIndex, self.fontNameIndex, self.fontSize = 0, 0, 0, 4, 0, fs
         self.log(f'{w=:6.3f}={self.width =}/({nc})                   {FONT_SCALE=:5.3f} fs=w*FONT_SCALE={fs:6.3f}pt')
         self.log(f'{h=:6.3f}={self.height=}/({nl=} * {ns=} * {nt=})  {FONT_SCALE=:5.3f} fs=h*FONT_SCALE={fs:6.3f}pt')
@@ -1281,18 +1282,18 @@ class Tabs(pyglet.window.Window):
 
     def setFontParam(self, n, v, m, dbg=1):
         setattr(self, m, v)
-        if dbg: self.log(f'{n=} {m=} {v=:.1f}')
+        if dbg: self.log(f'{n=:12}  {v=:4}  {m=}')
         for i in range(len(self.E)):
             self._setFontParam(self.E[i], n, v, m)
-        self.setCaption(self.fmtf1())
+#        self.on_resize(self.width, self.height, dbg=1)
+#        self.setCaption(self.fmtf1())
 
     @staticmethod
     def _setFontParam(p, n, v, m, dbg=1):
         for i in range(len(p)):
             k = len(p[i].color)
-#            if m == 'fontSize': v = v % FS_MAX
-            if dbg: util.slog(f'{n=} {v=} {m=} {util.fmtl(FONT_COLORS[v])} lk={len(p[i].color)} {type(p[{i}])=} type(k)={type(p[i].color)}')
-#            if dbg: util.slog(f'{n=} {v=} {m=} {util.fmtl(FONT_COLORS[v])} lk={len(p[i].color)} type(p[{i}])={type(p[i])} type(k)={type(p[i].color)}')
+            msg = f'{FONT_NAMES[v]=}' if m == "fontNameIndex" else f'{FONT_COLORS[v][:k]=}' if m == "fontColorIndex" else f'{FONT_DPIS[v]=}' if m == "fontDpiIndex" else f'{v=}'
+            if dbg and not i % 10: util.slog(f'{i:4}  {n:12}  {v:4}  {msg}')
             setattr(p[i], n, FONT_NAMES[v] if m == 'fontNameIndex' else FONT_COLORS[v][:k] if m == 'fontColorIndex' else FONT_DPIS[v] if m == 'fontDpiIndex' else v)
     @staticmethod
     def pix2fontsize(pix): return pix * FONT_SCALE # ( ) % FS_MAX
@@ -1380,6 +1381,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
         elif kbk == 'A' and self.isAltShift(mods):     self.setn_cmd(    '&^ A', txt='')
         elif kbk == 'A' and self.isAlt(     mods):     self.setn_cmd(    '& A', txt='')
+    ####################################################################################################################################################################################################
         elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam('bold',   not self.fontBold,                               'fontBold')
         elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam('bold',   not self.fontBold,                               'fontBold')
         elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam('color',     (self.fontColorIndex + 1) % len(FONT_COLORS), 'fontColorIndex')
