@@ -14,11 +14,11 @@ INTERVAL_RANK   = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, 
 NTONES          = len(INTERVALS)
 STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
 ########################################################################################################################################################################################################
-def getFilePath(baseName, basePath, filedir='files', filesfx='.txt', dbg=0):
-    if dbg: slog(f'baseName= {baseName} basePath={basePath}')
-    fileName        = baseName + filesfx
-    filePath        = basePath / filedir / fileName
-    if dbg: slog(f'fileName  = {fileName} filePath={filePath}')
+def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1):
+    if dbg: slog(f'{baseName = } {basePath = }')
+    fileName        = baseName + fsfx
+    filePath        = basePath / fdir / fileName
+    if dbg: slog(f'{fileName = } {filePath = }')
     return filePath
 ########################################################################################################################################################################################################
 def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=0, z=''):

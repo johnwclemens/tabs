@@ -85,7 +85,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'   snapGlob = { util.fmtl(snapGlob)}')
         self.deleteGlob(snapGlob, 'SNAP_GLOB')
         self.catPath      = str(BASE_PATH / 'cats' / BASE_NAME) + '.cat'
-        self.catPath      = self.getFilePath(seq=1, filedir='cats', filesfx='.cat')
+        self.catPath      = self.getFilePath(seq=1, fdir='cats', fsfx='.cat')
         self.log(f'catPath={self.catPath}')
         self.settingN     = 0   ;   self.setNvals  = []   ;   self.setNtxt = ''
         self.shiftingTabs = 0   ;   self.shiftSign = 1
@@ -238,7 +238,7 @@ class Tabs(pyglet.window.Window):
         self._initTpz()
 
     def _initDataPath(self):
-        dataDir  = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
+        dataDir   = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
         baseName  = self.dfn if self.dfn else BASE_NAME + dataPfx + dataSfx
         dataName0 = baseName + '.asv'
         dataName1 = baseName
@@ -257,6 +257,7 @@ class Tabs(pyglet.window.Window):
         self.ssl()
         self.smap = {}
         self.createTniks()
+        if self.SNAP: self.armSnap = 'New'    ;   self.log(f'{self.armSnap=}')
         if dbg: self.cobj.dumpMlimap('Init')
         if dbg2: self.dumpTniks('Init')
     ####################################################################################################################################################################################################
@@ -395,16 +396,18 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'Every {dt:=7.4f} seconds, {why} {self.resyncData=}')
         if self.resyncData: self.saveDataFile(why, self.dataPath0)   ;  self.resyncData = 0
 
-    def on_draw(self, dbg=0):
+    def on_draw(self, dbg=1):
         self.clear()
         self.batch.draw()
+#        if self.SNAP: self.snapshot()
         if self.SNAP and self.armSnap:
-            if dbg: self.log(f'armSnap={self.armSnap}')
-            self.snapshot(self.armSnap)  ;  self.armSnap = ''
+            if dbg: self.log(f'{self.armSnap=}')
+            self.snapshot(self.armSnap, 'on_draw')  ;  self.armSnap = ''
 
     def on_resize(self, width, height, why='', dbg=0):
         super().on_resize(width, height)   ;   why2 = 'Upd'
         if self.RESIZE: self.resizeTniks(f'{why2}{why}')
+        if self.SNAP: self.armSnap = 'Upd'  ;  self.log(f'{self.armSnap=}')
     ####################################################################################################################################################################################################
     def saveDataFile(self, why, path, dbg=1):
         if dbg:   self.log(f'{why} {path}')
@@ -1416,7 +1419,7 @@ class Tabs(pyglet.window.Window):
         elif self.settingN:                                  self.setn_cmd(   'onTxt', text)
         elif self.swapping:                                  self.swapTab(    'onTxt', text)
         elif self.isTab(self.kbk):                           self.setTab(     'onTxt', self.kbk)
-        elif self.kbk == '$' and self.isShift(self.mods):    self.snapshot()
+        elif self.kbk == '$' and self.isShift(self.mods):    self.snapshot(f'{text}', f'{self.kbkEvntTxt()}')
         if dbg: self.log(f'END {self.kbkEvntTxt()} swapping={self.swapping}')
     ####################################################################################################################################################################################################
     def on_text_motion(self, motion, dbg=1): # use for motion not strings
@@ -1586,9 +1589,6 @@ class Tabs(pyglet.window.Window):
             else:                                                           self.move(how, cmDist)
         elif    self.csrMode == ARPG:                                       self.move(how, amDist)
         self.log(f'END {how}', pos=1)
-
-#        if not self.SNAP0: t = self.tabs[self.cc]  ;  self.snapshot(f'pre-move() k={k:4} kk={self.cc:3} (self.fmti())} text={t.text} {t.x:6.2f} {t.y:6.2f}')  ;  self.SNAP0 = 1
-#        self.armSnap = f'move() k={k:4} kk={kk:4} {self.fmti()} text={self.tabs[self.cc].text} {x:6.2f} {y:6.2f}'
     ####################################################################################################################################################################################################
     def jump(self, how, txt='0', a=0):
         cc = self.cursorCol()   ;   self.jumpAbs = a
@@ -2057,55 +2057,47 @@ class Tabs(pyglet.window.Window):
         elif m == 3 and n != 13: return 'rd'
         else:                    return 'th'
     ####################################################################################################################################################################################################
-    def snapshot(self, why='', dbg=0, dbg2=0):
-        if dbg: self.log(f'{SNAP_DIR=} {SNAP_SFX=} {BASE_NAME=} {BASE_PATH=}')
+    def snapshot(self, why='', why2='', dbg=1, dbg2=1):
+        if dbg:  self.log(f'{why} {why2}')
+        if dbg:  self.log(f'{SNAP_DIR=} {BASE_NAME=} {SNAP_SFX=}')   ;   self.log(f'{BASE_PATH=}', pfx=0)
         SNAP_ID   = f'.{self.ssi}'
         SNAP_NAME = BASE_NAME + SNAP_ID + SNAP_SFX
         SNAP_PATH = BASE_PATH / SNAP_DIR / SNAP_NAME
         pyglet.image.get_buffer_manager().get_color_buffer().save(f'{SNAP_PATH}')
-        if dbg: self.log(f'{SNAP_ID=} {SNAP_NAME=} {SNAP_PATH=}')
-        if dbg2: self.log(f'{SNAP_NAME} {why}', file=sys.stdout)
+        if dbg:  self.log(f'{SNAP_ID=} {SNAP_NAME=}')   ;   self.log(f'{SNAP_PATH=}', pfx=0)
+        if dbg2: self.log(f'{why} {SNAP_NAME=} {why2}', file=sys.stdout)
         self.ssi += 1
-    @staticmethod
-    def deleteGlob(g, why=''):
-        util.slog(f'deleting {len(g)} file globs {why=}', file=LOG_FILE)
+
+    def deleteGlob(self, g, why=''):
+        self.log(f'deleting {len(g)} file globs {why=}')
         for f in g:
-            util.slog(f'{f}', file=LOG_FILE)
+            self.log(f'{f}')
             os.system(f'del {f}')
-    @staticmethod
-    def getFilePath(seq=0, filedir='files', filesfx='.txt'):
+
+    def getFilePath(self, seq=0, fdir='files', fsfx='.txt'):
         if seq:
-            subDir     = '/'
-            filedir    = filedir + subDir
-            util.slog(f'{subDir=}', file=LOG_FILE)
-            util.slog(f'{filedir=}', file=LOG_FILE)
-            util.slog(f'{filesfx=}', file=LOG_FILE)
-            pathlib.Path(filedir).mkdir(parents=True, exist_ok=True)
-            fileGlobArg = str(BASE_PATH / filedir / BASE_NAME) + '.*' + filesfx
-            fileGlob    = glob.glob(fileGlobArg)
-            util.slog(f'{fileGlobArg=}', file=LOG_FILE)
-            util.slog('fileGlob:', file=LOG_FILE)
-            seq        = 1 + Tabs.getFileSeqNum(fileGlob, filesfx)
-            filesfx    = f'.{seq}{filesfx}'
-            util.slog(f'{util.fmtl(fileGlob)}', pfx=0, file=LOG_FILE)
-            util.slog(f'{seq=} {filesfx=}', file=LOG_FILE)
-        return util.getFilePath(BASE_NAME, BASE_PATH, filedir=filedir, filesfx=filesfx)
-    @staticmethod
-    def getFileSeqNum(fgs, sfx, dbg=1):
+            subDir     = '/'   ;   fdir = fdir + subDir
+            self.log(f'{subDir=} {fdir=} {fsfx=}')
+            pathlib.Path(fdir).mkdir(parents=True, exist_ok=True)
+            fGlobArg   = str(BASE_PATH / fdir / BASE_NAME) + '.*' + fsfx
+            fGlob      = glob.glob(fGlobArg)
+            self.log(f'{fGlobArg=}')
+            seq        = 1 + self.getFileSeqNum(fGlob, fsfx)
+            fsfx       = f'.{seq}{fsfx}'
+            self.log(f'fGlob={util.fmtl(fGlob)}', pfx=0)
+            self.log(f'{fsfx=}')
+        return util.getFilePath(BASE_NAME, BASE_PATH, fdir=fdir, fsfx=fsfx)
+
+    def getFileSeqNum(self, fgs, sfx, dbg=1):
         i = -1
         if len(fgs):
-            if dbg: util.slog(f'{sfx=} fgs={util.fmtl(fgs)}', file=LOG_FILE)
-            ids = []
-            for s in fgs:
-                if s.endswith(sfx):
-                    s = s[:-len(sfx)]
-                    j = s.rfind('.')
-                    s = s[j+1:]
-                    i = int(s)
-                    ids.append(i)
-            if dbg: util.slog(f'ids={util.fmtl(ids)}', file=LOG_FILE)
+            if dbg: self.log(f'{sfx=} fgs={util.fmtl(fgs)}')
+            ids = [ self.sid(s, sfx) for s in fgs if s.endswith(sfx) ]
+            if dbg: self.log(f'ids={util.fmtl(ids)}')
             i = max(ids)
         return i
+    @staticmethod
+    def sid(s, sfx): s = s[:-len(sfx)]   ;   j = s.rfind('.')   ;   return int(s[j+1:])
     ####################################################################################################################################################################################################
     def log(self, msg='', pfx=1, pos=0, file=None, flush=False, sep=',', end='\n'):
         if file is None: file = LOG_FILE
@@ -2132,7 +2124,7 @@ class Tabs(pyglet.window.Window):
         if   dump and self.CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
         elif dump:         self.cobj.dumpOMAP(None, merge=1)
         if self.CAT:
-            cfp = self.getFilePath(seq=0, filedir='cats', filesfx='.cat')
+            cfp = self.getFilePath(seq=0, fdir='cats', fsfx='.cat')
             util.copyFile(self.catPath, cfp)
         self.log(f'END {dump=}')
 
@@ -2140,7 +2132,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'{self.SEQ_FNAMES=}')
         logPath = None
         if self.SEQ_FNAMES:
-            logPath = self.getFilePath(seq=self.SEQ_FNAMES, filedir='logs', filesfx='.log')
+            logPath = self.getFilePath(seq=self.SEQ_FNAMES, fdir='logs', fsfx='.log')
         self.log(f'closing {LOG_FILE.name}', flush=True)
         LOG_FILE.close()
         if self.SEQ_FNAMES: util.copyFile(LOG_PATH, logPath)
@@ -2203,8 +2195,8 @@ FONT_COLORS   =  FONT_COLORS_S # if self.SPRITES else FONT_COLORS_L
 ########################################################################################################################################################################################################
 
 if __name__ == '__main__':
-    prevPath = util.getFilePath(BASE_NAME, BASE_PATH, filedir='logs', filesfx='.blog')
-    LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, filedir='logs', filesfx='.log')
+    prevPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
+    LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
     if LOG_PATH.exists():                util.copyFile(LOG_PATH, prevPath)
     with open(str(LOG_PATH), 'w') as LOG_FILE:
         util.slog(f'LOG_PATH={LOG_PATH} LOG_FILE={LOG_FILE}', file=LOG_FILE)
