@@ -237,7 +237,7 @@ class Tabs(pyglet.window.Window):
         self.n[P] = self.dl()[0]
         self.log(f'{self.fmtdl(fdl=1)}')
         self.log(f'Updating n[P] {old=} {self.fmtn()}')
-        self._initTpz()
+        self._initntp()
 
     def _initDataPath(self):
         dataDir   = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
@@ -298,15 +298,6 @@ class Tabs(pyglet.window.Window):
         self.llText = ['M', '0']
         self.llText.extend(self.labelTextB)
         self.log(f'{util.fmtl(self.llText)}')
-
-    def _initTpz(self, dbg=1):
-        np, nl, ns, nc, nt = self.n
-        self.tpc =  nt
-        self.tps =  nc * self.tpc
-        self.tpl =       self.tps
-        self.tpp =  nl * self.tpl
-        if dbg: self.log(f'tpz={util.fmtl(self.tpz())}')
-    def tpz(self):   return self.tpp, self.tpl, self.tps, self.tpc
     ####################################################################################################################################################################################################
     def lenA(self):                   return [ len(_) for _ in self.A ]
     def lenB(self):                   return [ len(_) for _ in self.B ]
@@ -387,19 +378,24 @@ class Tabs(pyglet.window.Window):
     def dumpSmap(self, why, pos=0):              self.log(f'{why} smap={util.fmtm(self.smap)}', pos=pos)
     def dumpBlank(self): self.log(f'{self.fmtblnk()} {self.fmtBlnk()}')
     ####################################################################################################################################################################################################
+    def _initntp(self, dbg=1):
+        ntp = self.ntp()  ;  self.tpc, self.tpl, self.tpp, self.tpf = ntp
+        if dbg: self.log(f'{self.tpc=} {self.tpl=} {self.tpp=} {self.tpf=} ntp={util.fmtl(ntp)}')
+
+    def ntp(self, d2=1, r2=0, dbg=0):
+        d = 'dns' if d2 else '   '
+        n = list(self.n)     ;   self.log(f'          n={self.fmtn("", n)}') if dbg else None
+        if d2:   del n[2]    ;   self.log(f'        {d}={self.fmtn("", n)}') if dbg else None
+        n.reverse()          ;   self.log(f'     {d}Rev={self.fmtn("", n)}') if dbg else None
+        n = self.accProd(n)  ;   self.log(f' {d}RevProd={util.fmtl(n)}')     if dbg else None
+        if r2: n.reverse()   ;   self.log(f'{d}Rev2Prod={self.fmtn("", n)}') if dbg else None
+        return n
     @staticmethod
     def accProd(n):              return list(accumulate(n, operator.mul))
-    def ntp(self, d=1, dbg=1):
-        d = 'Del' if d else ''
-        n = list(self.n)     ;   self.log(f'      Original={self.fmtn("", n)}') if dbg else None
-        if d:    del n[2]    ;   self.log(f'           {d}={self.fmtn("", n)}') if dbg else None
-        n.reverse()          ;   self.log(f'        Rev{d}={self.fmtn("", n)}') if dbg else None
-        n = self.accProd(n)  ;   self.log(f'AccProdRev{d}={util.fmtl(n)}')     if dbg else None
-        return n  #        n.reverse()          ;   self.log(f'RevAccumProd={util.fmtl(n)}')
-
+    ####################################################################################################################################################################################################
     def dumpStruct(self, why='', dbg=1):
         self.dumpFont(why)
-        self.log(f'tpz={util.fmtl(self.tpz())} {self.fmtn()} ntp={util.fmtl(self.ntp())} ntp2={util.fmtl(self.ntp(0))}')
+        self.log(f'{self.fmtn()} ntp={util.fmtl(self.ntp())} ntp0={util.fmtl(self.ntp(0))}')
         if dbg:         self.dumpIdMap()
 #        if dbg:         self.dumpTniks(why)
 #        if dbg:         self.cobj.dumpMlimap(why)
@@ -1235,7 +1231,7 @@ class Tabs(pyglet.window.Window):
         return ccm
 
     def cc2plct(self, cc, dbg=0):
-        tpp, tpl, tps, tpc = self.tpz()
+        tpc, tpl, tpp, _ = self.ntp()
         p =  cc // tpp
         l = (cc - p * tpp) // tpl
         c = (cc - p * tpp - l * tpl) // tpc
