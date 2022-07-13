@@ -1,6 +1,8 @@
 #import logging#, shutil#, unicodedata, readline, csv, string
 import glob, inspect, itertools, math, os, pathlib, sys
+import operator
 from collections import OrderedDict as cOd
+from itertools import accumulate
 import pyglet
 import pyglet.sprite as pygsprt
 import pyglet.text as pygtxt
@@ -194,7 +196,7 @@ class Tabs(pyglet.window.Window):
         self._init()
         self.log('END')
 
-    def _init(self, dbg=0):
+    def _init(self, dbg=1):
         self.ssi = 0
         self._initColors()
         self._initData()
@@ -323,12 +325,12 @@ class Tabs(pyglet.window.Window):
     def ss2sl(self): return sorted(self.SS)
     def zz2sl(self): return sorted(self.ZZ)
     ####################################################################################################################################################################################################
-    def dl(  self, data=None, p=0, l=0, c=0):    return list(map(len,                       self.dplc(data, p, l, c)))
-    def dt(  self, data=None, p=0, l=0, c=0):    return list(map(type,                      self.dplc(data, p, l, c)))
-    def dtA( self, data=None, p=0, l=0, c=0):    return [ str(type(a)).strip('<>') for a in self.dplc(data, p, l, c) ]
+    def dl(  self, data=None, p=0, l=0, c=0):  return list(map(len,                       self.dplc(data, p, l, c)))
+    def dt(  self, data=None, p=0, l=0, c=0):  return list(map(type,                      self.dplc(data, p, l, c)))
+    def dtA( self, data=None, p=0, l=0, c=0):  return [ str(type(a)).strip('<>') for a in self.dplc(data, p, l, c) ]
     ####################################################################################################################################################################################################
-    def dproxy(self, data): return data if data is not None else self.data
-    def dplc(self, data=None, p=0, l=0, c=0):
+    def dproxy(self, data):                      return data if data is not None else self.data
+    def dplc(  self, data=None, p=0, l=0, c=0):
         data = self.dproxy(data)
         if p >= len(data):           msg = f'ERROR BAD p index {p=} {l=} {c=} {len(data)=}'        ;  self.log(msg)  ;  self.quit(msg)
         if l >= len(data[p]):        msg = f'ERROR BAD l index {p=} {l=} {c=} {len(data[p])=}'     ;  self.log(msg)  ;  self.quit(msg)
@@ -341,9 +343,9 @@ class Tabs(pyglet.window.Window):
     def fmtJ2( self, w=None, d=0):            w = w if w is not None else JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return f'{util.fmtl(self.J2,     w=w, d1=d1, d2=d2)}'
     def fmtLE( self, w=None):                 w = w if w is not None else JFMT  ;  d1 = ""                    ;  d2 =""                    ;  return f'[{util.fmtl(self.lenE(), w=w, d1=d1, d2=d2)} {sum(self.lenE())}]'
     ####################################################################################################################################################################################################
-    def fmtn(self, pfx='n='):                 return f'{pfx}{util.fmtl(self.n)}'
+    def fmtn(self, pfx='n=', n=None):         n = n if n is not None else self.n  ;   return f'{pfx}{util.fmtl(n)}'
     def fmti(self, pfx='i='):                 return f'{pfx}{util.fmtl(self.i)}'
-    def fmtPos(  self):                       plct = self.j2()        ;  cc = self.plct2cc(*plct)   ;  cn = self.cc2cn(cc)       ;  return f'{util.fmtl(plct)} {cc:3} {cn:2}]'
+    def fmtPos(self):                         plct = self.j2()        ;  cc = self.plct2cc(*plct)   ;  cn = self.cc2cn(cc)       ;  return f'{util.fmtl(plct)} {cc:3} {cn:2}]'
     def fmtDxD(self, data=None,      d='x'):  l = list(map(str, self.dl(data)))               ;   return f'({d.join(l)})'
     def fmtIxI(self,                 d='x'):  l = list(map(str, self.i))   ;   del l[S:S+1]   ;   return f'({d.join(l)})'
     def fmtWxH(self, w=None, h=None, d='x'):  w = w if w is not None else self.width  ;  h = h if h is not None else self.height  ;  return f'({w}{d}{h})'
@@ -381,15 +383,25 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def dumpObj( obj,  name, why='', file=None): util.slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}', file=file)
     def dumpJs(  self, why):                     self.log(f'  J1={self.fmtJ1(0, 1)} {why}')   ;   self.log(f'  J2={self.fmtJ2(0, 1)} {why}')   ;   self.log(f'  LE={self.fmtLE(0)} {why}')
-    def dumpGeom(self, why1='', why2=''):        self.log(f'{why1:4} {self.fmtDxD()} {self.fmtIxI()} {util.fmtl(self.ss2sl()):9} {self.LL} {util.fmtl(self.zz2sl()):5} n={util.fmtl([ self.n[i] for i in range(5) ])} {why2}')
+    def dumpGeom(self, why1='', why2=''):        self.log(f'{why1:4} {self.fmtDxD()} {self.fmtIxI()} {util.fmtl(self.ss2sl()):9} {self.LL} {util.fmtl(self.zz2sl()):5} {self.fmtn()} {why2}')
     def dumpSmap(self, why, pos=0):              self.log(f'{why} smap={util.fmtm(self.smap)}', pos=pos)
     def dumpBlank(self): self.log(f'{self.fmtblnk()} {self.fmtBlnk()}')
     ####################################################################################################################################################################################################
+    @staticmethod
+    def accProd(n):              return list(accumulate(n, operator.mul))
+    def ntp(self, d=1, dbg=1):
+        d = 'Del' if d else ''
+        n = list(self.n)     ;   self.log(f'      Original={self.fmtn("", n)}') if dbg else None
+        if d:    del n[2]    ;   self.log(f'           {d}={self.fmtn("", n)}') if dbg else None
+        n.reverse()          ;   self.log(f'        Rev{d}={self.fmtn("", n)}') if dbg else None
+        n = self.accProd(n)  ;   self.log(f'AccProdRev{d}={util.fmtl(n)}')     if dbg else None
+        return n  #        n.reverse()          ;   self.log(f'RevAccumProd={util.fmtl(n)}')
+
     def dumpStruct(self, why='', dbg=1):
         self.dumpFont(why)
-        self.log(f'tpz={util.fmtl(self.tpz())}')
-        self.dumpIdMap()
-        if dbg:         self.dumpTniks(why)
+        self.log(f'tpz={util.fmtl(self.tpz())} {self.fmtn()} ntp={util.fmtl(self.ntp())} ntp2={util.fmtl(self.ntp(0))}')
+        if dbg:         self.dumpIdMap()
+#        if dbg:         self.dumpTniks(why)
 #        if dbg:         self.cobj.dumpMlimap(why)
     ####################################################################################################################################################################################################
     def autoSave(self, dt, why, dbg=1):
@@ -1005,7 +1017,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def idmapkey(self, j):    return f'{JTEXTS[j]:4} {self.J2[j]:4}'
     def dumpIdMap(self):
-        self.log(' Key  Cnt Value', pfx=0)
+        self.log(' Key  Cnt      Hex Value        Dec value', pfx=0)
         for k, v in self.idmap.items():
             self.log(f'{k:9} {v:16} {v:16}', pfx=0)
     ####################################################################################################################################################################################################
