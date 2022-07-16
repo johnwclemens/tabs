@@ -1,4 +1,4 @@
-"""util.py module.  class list: []."""
+"""util.py module.  class list: [DSymb, Note, Strings]."""
 import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
