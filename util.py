@@ -64,22 +64,28 @@ def dumpStack(sfs, file=None):
         slog(f'{j:2} {n:9} {l:5} {f:20} {c}', file=file)
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}', file=file)
 ########################################################################################################################################################################################################
-def NEW_slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
     if pfx:
-        sf  = inspect.currentframe().f_back
-        sfi = inspect.getframeinfo(sf)
-        if sfi.function == 'log':
-            sf = sf.f_back
-            sfi = inspect.getframeinfo(sf)
-        filename  = pathlib.Path(sfi.filename).name
+        sf   = inspect.currentframe().f_back
+        while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
+#        else:                           print(f'sf:  {sf.f_lineno}, {sf.f_code.co_name}')
+#        sfi = inspect.getframeinfo(sf)
+#        if sfi.function == 'log':
+#            sf = sf.f_back
+#            sfi = inspect.getframeinfo(sf)
+#        filename  = pathlib.Path(sfi.filename).name
         msg = msg.replace('self.', '.')
         msg = msg.replace('util.', '.')
         msg = msg.replace('"', '')
         msg = msg.replace("'", '')
-        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
+#        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
+        fp = pathlib.Path(sf.f_code.co_filename)
+        msg = f'{sf.f_lineno:4} {fp.stem} {sf.f_code.co_name:18} ' + msg
     print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
+    if so: print(f'{msg}', file=os.fsync(sys.stdout), flush=flush, sep=sep, end=end)
+    if flush: os.fsync(file)  ;  os.fsync(sys.stdout) if so else None
 
-def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+def OLD__slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
     if pfx:
         sfs = inspect.stack()          ;  i = 1
         while sfs[i].function in STFILT:  i += 1
@@ -93,14 +99,17 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
         msg = msg.replace('"', '')
         msg = msg.replace("'", '')
     print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
+    if so: print(f'{msg}', file=None, flush=flush, sep=sep, end=end)
+    if flush: os.fsync(file)  ;  os.fsync(sys.stdout) if so else None
 #        print(f'{msg}', file=file, flush=flush, sep=sep, end=end) if pfx else print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
 #        if file != LOG_FILE: Tabs.slog(msg, pfx, flush=False, sep=',', end=end)
 ########################################################################################################################################################################################################
-def copyFile(src, trg):
-    if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;   return  #  raise SystemExit(msg)
-    slog(f'{src=}', file=sys.stdout)   ;   slog(f'{trg=}', file=sys.stdout)
+def copyFile(src, trg, file=None):
+    if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;  raise SystemExit(msg)
+    so = 0 if file is None else 1
+    slog(f'{src=}', file=file, so=so)   ;   slog(f'{trg=}', file=file, so=so)
     cmd = f'copy {src} {trg}'
-    slog(f'### {cmd} ###', file=sys.stdout)
+    slog(f'### {cmd} ###', file=file, so=so)
     os.system(f'{cmd}')
 ########################################################################################################################################################################################################
 def parseCmdLine(file=None):

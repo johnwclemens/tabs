@@ -224,7 +224,7 @@ class Tabs(pyglet.window.Window):
         kN  = [ GREENS[1],     GREENS[13]] if self.CHECKER_BOARD else [ GREENS[6]]
         kI  = [YELLOWS[2],    YELLOWS[15]] if self.CHECKER_BOARD else [YELLOWS[7]]
         kK  = [  CYANS[2],      CYANS[15]] if self.CHECKER_BOARD else [  CYANS[0]]
-        kLR = [  BLUES[1],      BLUES[13]] if self.CHECKER_BOARD else [  BLUES[0]]
+        kLR = [ GREENS[1],     GREENS[13]] if self.CHECKER_BOARD else [ GREENS[0]]
         kLC = [  PINKS[2],      PINKS[15]] if self.CHECKER_BOARD else [  PINKS[0]]
         kH  = [    CCS[3],         CCS[1],              CCS2[0],          CCS2[1]]
         kV  = [   REDS[0],       REDS[10]] if self.CHECKER_BOARD else [  REDS[10]]
@@ -2164,17 +2164,17 @@ class Tabs(pyglet.window.Window):
     def cleanupCat(self, dump=1):
         self.log(f'BGN {dump=}')
         if   dump and self.CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
-        elif dump:         self.cobj.dumpOMAP(None, merge=1)
+        elif dump:              self.cobj.dumpOMAP(None, merge=1)
         if self.CAT:
             cfp = self.getFilePath(seq=0, fdir='cats', fsfx='.cat')
-            util.copyFile(self.catPath, cfp)
+            util.copyFile(self.catPath, cfp, file=LOG_FILE)
         self.log(f'END {dump=}')
 
     def cleanupLog(self):
-        logPath = self.lfSeqPath
+        self.log(f'Copying {LOG_FILE.name} to {self.lfSeqPath}')
+        util.copyFile(LOG_PATH, self.lfSeqPath, LOG_FILE)
         self.log(f'closing {LOG_FILE.name}', flush=True)
         LOG_FILE.close()
-        util.copyFile(LOG_PATH, logPath)
 
 ########################################################################################################################################################################################################
 OPACITY          = [ 255, 240, 225, 210, 190, 165, 140, 110, 80 ]
@@ -2198,7 +2198,7 @@ CC               = [(255, 255,  10, OPACITY[4]), (255, 255,  10, OPACITY[8])]
 CC2              = [( 20, 255, 255, OPACITY[4]), ( 20, 255, 255, OPACITY[8])]
 HUES             = 16
 ########################################################################################################################################################################################################
-def genColors(k, nsteps=HUES, dbg=1):
+def genColors(k, nsteps=HUES, dbg=0):
     colors, clen = [], len(k[0])
     diffs = [ k[1][i] - k[0][i]  for i in range(clen) ]
     steps = [ diffs[i]/nsteps    for i in range(clen) ]
@@ -2239,9 +2239,10 @@ FONT_COLORS   =  FONT_COLORS_S # if self.SPRITES else FONT_COLORS_L
 if __name__ == '__main__':
     prevPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
     LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
-    if LOG_PATH.exists():                  util.copyFile(LOG_PATH, prevPath)
-    with open(   str(LOG_PATH), 'w')  as   LOG_FILE:
-        util.slog(f'{LOG_PATH=} {LOG_FILE.name=}', file=LOG_FILE)
+    if LOG_PATH.exists(): util.copyFile(LOG_PATH, prevPath, LOG_FILE)
+    with open(   str(LOG_PATH), 'w')   as   LOG_FILE:
+        util.slog(f'{LOG_PATH=}',      file=LOG_FILE)
+        util.slog(f'{LOG_FILE.name=}', file=LOG_FILE)
         Tabs()
         ret     = pyglet.app.run()
         util.slog(f'{ret=}', file=sys.stdout)
