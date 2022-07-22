@@ -1,676 +1,103 @@
-2244 tabs <module>           LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2245 tabs <module>           LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
-  15 tabs dumpGlobals        argv      = <13[C:/Users/Owner/Documents/GitHub/tabs/tabs.py -f test.6.dat -n 1 1 10 6 -S 0 -p -L -s]
-  16 tabs dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-  17 tabs dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
-  18 tabs dumpGlobals        BASE_NAME = tabs
-  83 tabs __init__           STFILT:
-[log dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx]
-  84 tabs __init__           BGN <class __main__.Tabs>
-2122 tabs getFilePath        fdir=logs/ fsfx=.log
-2126 tabs getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2136 tabs getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
-2138 tabs getFileSeqNum      ids=[0 1 10 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 5 6 7 8 9]
-fGlob=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
-2130 tabs getFilePath        fsfx=.41.log
-  94 tabs __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
- 103 tabs __init__           init() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=0=UP  
- 121 util parseCmdLine       argv=[C:/Users/Owner/Documents/GitHub/tabs/tabs.py -f test.6.dat -n 1 1 10 6 -S 0 -p -L -s]
- 137 util parseCmdLine        1 short   -f f [] 
- 155 util parseCmdLine        2 arg     test.6.dat f [test.6.dat] 
- 137 util parseCmdLine        3 short   -n n [] 
- 155 util parseCmdLine        4 arg     1  n [1] 
- 155 util parseCmdLine        5 arg     1  n [1 1] 
- 155 util parseCmdLine        6 arg     10 n [1 1 10] 
- 155 util parseCmdLine        7 arg     6  n [1 1 10 6] 
- 137 util parseCmdLine        8 short   -S S [] 
- 155 util parseCmdLine        9 arg     0  S [0] 
- 137 util parseCmdLine       10 short   -p p [] 
- 137 util parseCmdLine       11 short   -L L [] 
- 137 util parseCmdLine       12 short   -s s [] 
- 157 util parseCmdLine       options=[f:[test.6.dat]n:[1 1 10 6]S:[0]p:[]L:[]s:[]]
- 119 tabs __init__            argMap=[f:[test.6.dat]n:[1 1 10 6]S:[0]p:[]L:[]s:[]]
- 165 tabs dumpArgs           [f]              .dfn=test.6.dat
- 166 tabs dumpArgs           [n]              n=[1 1 1 10 6]
- 167 tabs dumpArgs           [i]              i=[1 1 1 1 6]
- 168 tabs dumpArgs           [a]     .AUTO_SAVE=0
- 169 tabs dumpArgs           [c]           .CAT=0
- 170 tabs dumpArgs           [C] .CHECKER_BOARD=0
- 171 tabs dumpArgs           [e]     .EVENT_LOG=0
- 172 tabs dumpArgs           [F]   .FULL_SCREEN=0
- 173 tabs dumpArgs           [g]   .ORDER_GROUP=1
- 174 tabs dumpArgs           [p]          .SNAP=1
- 175 tabs dumpArgs           [R]        .RESIZE=1
- 176 tabs dumpArgs           [x]        .SUBPIX=0
- 177 tabs dumpArgs           [s]       .SPRITES=1
- 178 tabs dumpArgs           [t]          .TEST=0
- 179 tabs dumpArgs           [v]       .VERBOSE=0
- 180 tabs dumpArgs           [V]         .VIEWS=0
- 181 tabs dumpArgs           [r]     .RD_STDOUT=0
- 182 tabs dumpArgs           [b]    .FRET_BOARD=1
- 183 tabs dumpArgs           [u]       .USE_NEW=1
- 184 tabs dumpArgs           [L]            .LL=1
- 185 tabs dumpArgs           [S]            .SS=[0]
- 186 tabs dumpArgs           [Z]            .ZZ=[]
- 208 util __init__           stringMap   = [E2:28 A2:33 D3:38 G3:43 B3:47 E4:52]
- 209 util __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
- 210 util __init__           stringNames =      EBGDAE
- 211 util __init__           stringNumbs =      123456
- 212 util __init__           stringCapo  =      000000
- 213 util __init__           strLabel    =      STRING
- 214 util __init__           cpoLabel    =       CAPO 
- 150 tabs __init__           .Note.TYPE=1
- 259 tabs _initDataPath      dataName0=test.6.dat.asv
- 260 tabs _initDataPath      dataName1=test.6.dat
- 261 tabs _initDataPath      dataName2=test.6.dat.bck
-self.dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.6.dat.asv')
-self.dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.6.dat')
-self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.6.dat.bck')
- 276 tabs _initWindowA       BGN (NonexNone)
- 276 tabs _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000020A07025570>
- 279 tabs _initWindowA       screens[0] x=0 y=    0 (1920x1080)
- 279 tabs _initWindowA       screens[1] x=0 y=-1200 (1920x1200)
- 280 tabs _initWindowA       END (NonexNone)
- 155 tabs __init__           WxH=(NonexNone)
- 157 tabs __init__           WxH=(640x480)
- 283 tabs _initWindowB       BGN (640x480)
- 300 tabs _initGroups        (0) g=OrderedGroup(0) pg=None
- 300 tabs _initGroups        (1) g=OrderedGroup(1) pg=None
- 300 tabs _initGroups        (2) g=OrderedGroup(2) pg=None
- 300 tabs _initGroups        (3) g=OrderedGroup(3) pg=None
- 300 tabs _initGroups        (4) g=OrderedGroup(4) pg=None
- 300 tabs _initGroups        (5) g=OrderedGroup(5) pg=None
- 300 tabs _initGroups        (6) g=OrderedGroup(6) pg=None
- 287 tabs _initWindowB       get_size=(640, 480)
- 293 tabs _initWindowB       END (640x480)
- 159 tabs __init__           WxH=(640x480)
- 189 tabs _reinit            BGN
- 195 tabs _reinit            E=[[][][][][][][][][][][][][][][]]
- 196 tabs _reinit              J1=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] _reinit
- 196 tabs _reinit              J2=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] _reinit
- 196 tabs _reinit              LE=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] _reinit
- 387 tabs dumpBlank          len(.tblankCol)=6 len(.tblankRow)=10 .tblankCol=------ .tblankRow=----------
- 235 tabs _initColors        [ 0] [[127  56 181 255]]
- 235 tabs _initColors        [ 1] [[192  13  11 255]]
- 235 tabs _initColors        [ 2] [[ 15 180  11 255]]
- 235 tabs _initColors        [ 3] [[ 14 183 183 255]]
- 235 tabs _initColors        [ 4] [[188  91   9 255]]
- 235 tabs _initColors        [ 5] [[ 15 180  11 255]]
- 235 tabs _initColors        [ 6] [[255 255  10 178]]
- 235 tabs _initColors        [ 7] [[ 13 255 255 255]]
- 235 tabs _initColors        [ 8] [[ 12 255  11 255]]
- 235 tabs _initColors        [ 9] [[255  64 192 255]]
- 235 tabs _initColors        [10] [[255 255  10 169][255 255  10 183][ 20 255 255 190][ 20 255 255 183]]
- 235 tabs _initColors        [11] [[151  14  12 255]]
- 235 tabs _initColors        [12] [[255  64 192 255]]
- 235 tabs _initColors        [13] [[ 15  11 207 255]]
- 235 tabs _initColors        [14] [[255  64 192 255]]
- 259 tabs _initDataPath      dataName0=test.6.dat.asv
- 260 tabs _initDataPath      dataName1=test.6.dat
- 261 tabs _initDataPath      dataName2=test.6.dat.bck
-self.dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.6.dat.asv')
-self.dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.6.dat')
-self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.6.dat.bck')
- 476 tabs readDataFile       BGN n=[1 1 1 10 6]
- 486 tabs readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.6.dat  74 bytes = 0.1 KB
- 487 tabs readDataFile       Raw Data File BGN:
-----------
-----------
-----------
-----------
-----------
-----------
+ 416 tabsB <module>           LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 417 tabsB <module>           LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+ 128 util parseCmdLine       argv=[C:/Users/Owner/Documents/GitHub/tabs/tabsB.py -f test.7.dat -n 1 1 50 6]
+ 144 util parseCmdLine        1 short   -f f [] 
+ 162 util parseCmdLine        2 arg     test.7.dat f [test.7.dat] 
+ 144 util parseCmdLine        3 short   -n n [] 
+ 162 util parseCmdLine        4 arg     1  n [1] 
+ 162 util parseCmdLine        5 arg     1  n [1 1] 
+ 162 util parseCmdLine        6 arg     50 n [1 1 50] 
+ 162 util parseCmdLine        7 arg     6  n [1 1 50 6] 
+ 164 util parseCmdLine       options=[f:[test.7.dat]n:[1 1 50 6]]
+  76 tabsB _initArgs           argMap=[f:[test.7.dat]n:[1 1 50 6]]
+  86 tabsB dumpArgs           [e]     .EVENT_LOG=0
+  87 tabsB dumpArgs           [f]     .dfn=test.7.dat
+  88 tabsB dumpArgs           [F]     .FULL_SCREEN=0
+  89 tabsB dumpArgs           [n]     n=[1 1 50 6]
+  90 tabsB dumpArgs           [S] .SS=[0]
+  91 tabsB dumpArgs           [v]     .VERBOSE=0
+  51 tabsB _initWindowA       BGN (NonexNone)
+  51 tabsB _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001F34B50FC40>
+  54 tabsB _initWindowA       screens[0] x=0 y=    0 (1920x1080)
+  54 tabsB _initWindowA       screens[1] x=0 y=-1200 (1920x1200)
+  55 tabsB _initWindowA       END (NonexNone)
+  29 tabsB __init__           WxH=(NonexNone)
+  31 tabsB __init__           WxH=(640x480)
+  58 tabsB _initWindowB       BGN (640x480)
+  62 tabsB _initWindowB       get_size=(640, 480)
+  68 tabsB _initWindowB       END (640x480)
+  33 tabsB __init__           WxH=(640x480)
+ 104 tabsB dumpBlank          len(.tblankCol)=6 len(.tblankRow)=50 .tblankCol=------ .tblankRow=--------------------------------------------------
+ 129 tabsB _initDataPath      dataName0=test.7.dat.asv
+ 130 tabsB _initDataPath      dataName1=test.7.dat
+ 131 tabsB _initDataPath      dataName2=test.7.dat.bck
+self.dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.7.dat.asv')
+self.dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.7.dat')
+self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.7.dat.bck')
+ 169 tabsB readDataFile       BGN n=[1 1 1 50 6]
+ 179 tabsB readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.7.dat 314 bytes = 0.3 KB
+ 180 tabsB readDataFile       Raw Data File BGN:
+12345678901234567890123456789012345678901234567890
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+-abcdefghijklmno-abcdefghijklmno-abcdefghijklmno--
 
- 501 tabs readDataFile       Raw Data File END:
- 502 tabs readDataFile       .fmtdl()=[1 1 6 10] .fmtdt()=[list list list str]
- 512 tabs assertDataFileSize dsize= 60 = nlines=  1 *     nr= 6 *   nt=10
- 513 tabs assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
- 514 tabs assertDataFileSize  size= 74 =  dsize= 60 +  crlfs= 14   ref=74
- 505 tabs readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 tabs
- 506 tabs readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 10 tabs per row
- 520 tabs dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
----------- ---------- ---------- ---------- ---------- ----------
+ 194 tabsB readDataFile       Raw Data File END:
+ 195 tabsB readDataFile       .fmtdl()=[1 1 6 50] .fmtdt()=[list list list str]
+ 204 tabsB assertDataFileSize dsize=300 = nlines=  1 *     nr= 6 *   nt=50
+ 205 tabsB assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
+ 206 tabsB assertDataFileSize  size=314 =  dsize=300 +  crlfs= 14   ref=314
+ 198 tabsB readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          300 tabs
+ 199 tabsB readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 50 tabs per row
+ 212 tabsB dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 50 tabs per line
+12345678901234567890123456789012345678901234567890 -------------------------------------------------- -------------------------------------------------- -------------------------------------------------- -------------------------------------------------- -abcdefghijklmno-abcdefghijklmno-abcdefghijklmno--
 
- 525 tabs dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
- 571 tabs NEW_transposeData  BGN (1x1x6x10) dump=1
- 529 tabs isVert             BGN .fmtdl()=[1 1 6 10] .fmtdt()=[list list list str]
-[[[---------- ---------- ---------- ---------- ---------- ----------]]]
- 534 tabs isVert             END .fmtdl()=[1 1 6 10] .fmtdt()=[list list list str] vert=0
- 592 tabs dumpDataHorz       BGN (1x1x6x10) lc=1 ll=1 i=0
-Page 1 Line 1
-         1
-1234567890
-             
-----------
-----------
-----------
-----------
-----------
-----------
-
- 605 tabs dumpDataHorz       END (1x1x6x10) lc=1 ll=1 i=0
- 574 tabs NEW_transposeData  [1 1 6 10] [list list list str]
- 575 tabs NEW_transposeData  dl=[1 1 6 10] dt=[list list list str]
----------- ---------- ---------- ---------- ---------- ----------
-
------- ------ ------ ------ ------ ------ ------ ------ ------ ------
- 529 tabs isVert             BGN .fmtdl()=[1 1 6 10] .fmtdt()=[list list list str]
-[[[---------- ---------- ---------- ---------- ---------- ----------]]]
- 534 tabs isVert             END .fmtdl()=[1 1 6 10] .fmtdt()=[list list list str] vert=1
- 610 tabs dumpDataVert       BGN (1x1x10x6) lc=1 ll=1 i=0 w=6 txt=Col 
-Page 1
-Col Line 1
-  1 ------ 
-  2 ------ 
-  3 ------ 
-  4 ------ 
-  5 ------ 
-  6 ------ 
-  7 ------ 
-  8 ------ 
-  9 ------ 
- 10 ------ 
- 618 tabs dumpDataVert       END (1x1x10x6) lc=1 ll=1 i=0
- 587 tabs NEW_transposeData  END (1x1x10x6) dump=1
- 246 tabs _initData           len(data 0 00 000)[1 1 10 6]
- 247 tabs _initData          Updating n[P] old=[1 1 1 10 6] n=[1 1 1 10 6]
- 391 tabs _initntp           .tpc=6 .tpl=60 .tpp=60 .tpf=60 ntp=[6 60 60 60]
-1296 tabs calcFontSize       j=4 Tab  t=  w= 64.00 h= 80.00 pix= 80.00=min(scale=1.2*w, h) fs= 62.22
-1305 tabs _initFonts         w=64.000=.width =640/(10)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=62.000pt
-1306 tabs _initFonts         h=80.000=.height=480/(nl=1 * ns=1 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=62.000pt
-1325 tabs dumpFont           4:96dpi 62.000pt 0:Lucida Console 0:(255, 64, 192, 255) 62.000pt = 0.778(pt/pix) * 79.714pixels 
-labelTextA=[1 2 3 4 5 6 7 8 9 10]
-labelTextB=[1 2 3 4 5 6 7 8 9 1]
-texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
- 641 tabs dumpLabelText       len(t)=10 len(t[0])=2
- 1   2   3   4   5   6   7   8   9  10  
-                                     %  
- 1   2   3   4   5   6   7   8   9   1  
- 308 tabs _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1]
- 374 tabs dumpWxHp0          (640x480) 0 0 0 0 0 0
-1048 tabs createTniks        BGN  (1x1x10x6) (1x1x1x6) [0]       1 []    n=[1 1 1 10 6] 
-1048 tabs createTniks          J1=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] 
-1048 tabs createTniks          J2=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] 
-1048 tabs createTniks          LE=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] 
-P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G Red Grn Blu Opc  Mx    My
-P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G Red Grn Blu Opc Dpi B I  Font Name
-1  0  0   0    0    0    0    0  0   0 0 0  0  0   0    1    0.00  480.00  640.00  480.00 New  Page    1 Visible 20a0d163190 1 127  56 181 255 1.000 1.000
-1  1  0   0    0    0    0    0  0   0 0 0  0  0   0    2    0.00  480.00  640.00  480.00 New  Line    1 Visible 20a0d1626e0 2 192  13  11 255 1.000 1.000
-1  1  0   0    0    0    0    0  1   0 0 0  0  0   0    3  320.00  445.71  640.00   68.57 New  _LLR    1 L1   53 20a0d1621a0 5  12 255  11 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   1 0 0  0  0   0    4    0.00  445.71   64.00   68.57 New  _LLC    1 0    53 20a0d161510 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   2 0 0  0  0   0    5   64.00  445.71   64.00   68.57 New  _LLC    2 0    53 20a0d9e0e20 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   3 0 0  0  0   0    6  128.00  445.71   64.00   68.57 New  _LLC    3 0    53 20a0d2537c0 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   4 0 0  0  0   0    7  192.00  445.71   64.00   68.57 New  _LLC    4 0    53 20a0d251cf0 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   5 0 0  0  0   0    8  256.00  445.71   64.00   68.57 New  _LLC    5 0    53 20a0d2514e0 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   6 0 0  0  0   0    9  320.00  445.71   64.00   68.57 New  _LLC    6 0    53 20a0d250ee0 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   7 0 0  0  0   0   10  384.00  445.71   64.00   68.57 New  _LLC    7 0    53 20a0d250790 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   8 0 0  0  0   0   11  448.00  445.71   64.00   68.57 New  _LLC    8 0    53 20a0d250130 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   9 0 0  0  0   0   12  512.00  445.71   64.00   68.57 New  _LLC    9 0    53 20a0d162dd0 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1  10 0 0  0  0   0   13  576.00  445.71   64.00   68.57 New  _LLC   10 0    53 20a0d1638b0 5  12 255  11 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1  10 0 0  0  0   0   13    0.00  411.43  640.00  411.00 Upd  Line    1 Visible 20a0d1626e0 2 192  13  11 255 1.000 0.857
-1  1  1   0    0    0    0    0  1  10 0 0  0  0   0   14    0.00  411.43  640.00  411.00 New  Sect    1 Visible 20a0d1633d0 3  15 180  11 255 1.000 1.000
-1  1  1   1    0    0    0    0  1  10 0 0  0  0   0   15    0.00  411.43   64.00  411.00 New  Col     1 Visible 20a0d9e17b0 4  14 183 183 255 1.000 1.000
-1  1  1   1    1    0    0    0  1  10 0 0  0  0   0   16   32.00  377.18   64.00   68.50 New  Tab     1 -    53 20a0d163640 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   1    2    0    0    0  1  10 0 0  0  0   0   17   32.00  308.68   64.00   68.50 New  Tab     2 -    53 20a0d9e25c0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   1    3    0    0    0  1  10 0 0  0  0   0   18   32.00  240.18   64.00   68.50 New  Tab     3 -    53 20a0d9e2ef0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   1    4    0    0    0  1  10 0 0  0  0   0   19   32.00  171.68   64.00   68.50 New  Tab     4 -    53 20a0d9e3640 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   1    5    0    0    0  1  10 0 0  0  0   0   20   32.00  103.18   64.00   68.50 New  Tab     5 -    53 20a0d9e3d90 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   1    6    0    0    0  1  10 0 0  0  0   0   21   32.00   34.68   64.00   68.50 New  Tab     6 -    53 20a0da14550 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2    6    0    0    0  1  10 0 0  0  0   0   22   64.00  411.43   64.00  411.00 New  Col     2 Visible 20a0da14d90 4  14 183 183 255 1.000 1.000
-1  1  1   2    7    0    0    0  1  10 0 0  0  0   0   23   96.00  377.18   64.00   68.50 New  Tab     7 -    53 20a0da14b50 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2    8    0    0    0  1  10 0 0  0  0   0   24   96.00  308.68   64.00   68.50 New  Tab     8 -    53 20a0da15810 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2    9    0    0    0  1  10 0 0  0  0   0   25   96.00  240.18   64.00   68.50 New  Tab     9 -    53 20a0da15f60 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2   10    0    0    0  1  10 0 0  0  0   0   26   96.00  171.68   64.00   68.50 New  Tab    10 -    53 20a0da166b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2   11    0    0    0  1  10 0 0  0  0   0   27   96.00  103.18   64.00   68.50 New  Tab    11 -    53 20a0da16e00 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2   12    0    0    0  1  10 0 0  0  0   0   28   96.00   34.68   64.00   68.50 New  Tab    12 -    53 20a0da17550 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   12    0    0    0  1  10 0 0  0  0   0   29  128.00  411.43   64.00  411.00 New  Col     3 Visible 20a0da17d60 4  14 183 183 255 1.000 1.000
-1  1  1   3   13    0    0    0  1  10 0 0  0  0   0   30  160.00  377.18   64.00   68.50 New  Tab    13 -    53 20a0da17b20 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   14    0    0    0  1  10 0 0  0  0   0   31  160.00  308.68   64.00   68.50 New  Tab    14 -    53 20a0da28940 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   15    0    0    0  1  10 0 0  0  0   0   32  160.00  240.18   64.00   68.50 New  Tab    15 -    53 20a0da29060 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   16    0    0    0  1  10 0 0  0  0   0   33  160.00  171.68   64.00   68.50 New  Tab    16 -    53 20a0da297b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   17    0    0    0  1  10 0 0  0  0   0   34  160.00  103.18   64.00   68.50 New  Tab    17 -    53 20a0da29f00 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   18    0    0    0  1  10 0 0  0  0   0   35  160.00   34.68   64.00   68.50 New  Tab    18 -    53 20a0da2a650 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   18    0    0    0  1  10 0 0  0  0   0   36  192.00  411.43   64.00  411.00 New  Col     4 Visible 20a0da2ae60 4  14 183 183 255 1.000 1.000
-1  1  1   4   19    0    0    0  1  10 0 0  0  0   0   37  224.00  377.18   64.00   68.50 New  Tab    19 -    53 20a0da2ac20 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   20    0    0    0  1  10 0 0  0  0   0   38  224.00  308.68   64.00   68.50 New  Tab    20 -    53 20a0da2ba00 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   21    0    0    0  1  10 0 0  0  0   0   39  224.00  240.18   64.00   68.50 New  Tab    21 -    53 20a0da2bf40 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   22    0    0    0  1  10 0 0  0  0   0   40  224.00  171.68   64.00   68.50 New  Tab    22 -    53 20a0da3c8b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   23    0    0    0  1  10 0 0  0  0   0   41  224.00  103.18   64.00   68.50 New  Tab    23 -    53 20a0da3d060 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   24    0    0    0  1  10 0 0  0  0   0   42  224.00   34.68   64.00   68.50 New  Tab    24 -    53 20a0da3d7b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   24    0    0    0  1  10 0 0  0  0   0   43  256.00  411.43   64.00  411.00 New  Col     5 Visible 20a0da3dfc0 4  14 183 183 255 1.000 1.000
-1  1  1   5   25    0    0    0  1  10 0 0  0  0   0   44  288.00  377.18   64.00   68.50 New  Tab    25 -    53 20a0da3dd80 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   26    0    0    0  1  10 0 0  0  0   0   45  288.00  308.68   64.00   68.50 New  Tab    26 -    53 20a0da3eb60 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   27    0    0    0  1  10 0 0  0  0   0   46  288.00  240.18   64.00   68.50 New  Tab    27 -    53 20a0da3f2b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   28    0    0    0  1  10 0 0  0  0   0   47  288.00  171.68   64.00   68.50 New  Tab    28 -    53 20a0da3f9d0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   29    0    0    0  1  10 0 0  0  0   0   48  288.00  103.18   64.00   68.50 New  Tab    29 -    53 20a0da3ff40 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   30    0    0    0  1  10 0 0  0  0   0   49  288.00   34.68   64.00   68.50 New  Tab    30 -    53 20a0da548b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   30    0    0    0  1  10 0 0  0  0   0   50  320.00  411.43   64.00  411.00 New  Col     6 Visible 20a0da550c0 4  14 183 183 255 1.000 1.000
-1  1  1   6   31    0    0    0  1  10 0 0  0  0   0   51  352.00  377.18   64.00   68.50 New  Tab    31 -    53 20a0da54e80 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   32    0    0    0  1  10 0 0  0  0   0   52  352.00  308.68   64.00   68.50 New  Tab    32 -    53 20a0da55c60 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   33    0    0    0  1  10 0 0  0  0   0   53  352.00  240.18   64.00   68.50 New  Tab    33 -    53 20a0da563b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   34    0    0    0  1  10 0 0  0  0   0   54  352.00  171.68   64.00   68.50 New  Tab    34 -    53 20a0d251e70 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   35    0    0    0  1  10 0 0  0  0   0   55  352.00  103.18   64.00   68.50 New  Tab    35 -    53 20a0da17ac0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   36    0    0    0  1  10 0 0  0  0   0   56  352.00   34.68   64.00   68.50 New  Tab    36 -    53 20a0da57040 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   36    0    0    0  1  10 0 0  0  0   0   57  384.00  411.43   64.00  411.00 New  Col     7 Visible 20a0da57850 4  14 183 183 255 1.000 1.000
-1  1  1   7   37    0    0    0  1  10 0 0  0  0   0   58  416.00  377.18   64.00   68.50 New  Tab    37 -    53 20a0da57610 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   38    0    0    0  1  10 0 0  0  0   0   59  416.00  308.68   64.00   68.50 New  Tab    38 -    53 20a0da57f10 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   39    0    0    0  1  10 0 0  0  0   0   60  416.00  240.18   64.00   68.50 New  Tab    39 -    53 20a0da68b80 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   40    0    0    0  1  10 0 0  0  0   0   61  416.00  171.68   64.00   68.50 New  Tab    40 -    53 20a0da692d0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   41    0    0    0  1  10 0 0  0  0   0   62  416.00  103.18   64.00   68.50 New  Tab    41 -    53 20a0da699f0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   42    0    0    0  1  10 0 0  0  0   0   63  416.00   34.68   64.00   68.50 New  Tab    42 -    53 20a0da6a140 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   42    0    0    0  1  10 0 0  0  0   0   64  448.00  411.43   64.00  411.00 New  Col     8 Visible 20a0da6a950 4  14 183 183 255 1.000 1.000
-1  1  1   8   43    0    0    0  1  10 0 0  0  0   0   65  480.00  377.18   64.00   68.50 New  Tab    43 -    53 20a0da6a710 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   44    0    0    0  1  10 0 0  0  0   0   66  480.00  308.68   64.00   68.50 New  Tab    44 -    53 20a0da6b4f0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   45    0    0    0  1  10 0 0  0  0   0   67  480.00  240.18   64.00   68.50 New  Tab    45 -    53 20a0da6bc40 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   46    0    0    0  1  10 0 0  0  0   0   68  480.00  171.68   64.00   68.50 New  Tab    46 -    53 20a0da6beb0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   47    0    0    0  1  10 0 0  0  0   0   69  480.00  103.18   64.00   68.50 New  Tab    47 -    53 20a0da80b20 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   48    0    0    0  1  10 0 0  0  0   0   70  480.00   34.68   64.00   68.50 New  Tab    48 -    53 20a0da81240 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   48    0    0    0  1  10 0 0  0  0   0   71  512.00  411.43   64.00  411.00 New  Col     9 Visible 20a0da81a50 4  14 183 183 255 1.000 1.000
-1  1  1   9   49    0    0    0  1  10 0 0  0  0   0   72  544.00  377.18   64.00   68.50 New  Tab    49 -    53 20a0da81810 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   50    0    0    0  1  10 0 0  0  0   0   73  544.00  308.68   64.00   68.50 New  Tab    50 -    53 20a0da825f0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   51    0    0    0  1  10 0 0  0  0   0   74  544.00  240.18   64.00   68.50 New  Tab    51 -    53 20a0da82d40 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   52    0    0    0  1  10 0 0  0  0   0   75  544.00  171.68   64.00   68.50 New  Tab    52 -    53 20a0da83490 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   53    0    0    0  1  10 0 0  0  0   0   76  544.00  103.18   64.00   68.50 New  Tab    53 -    53 20a0da83be0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   54    0    0    0  1  10 0 0  0  0   0   77  544.00   34.68   64.00   68.50 New  Tab    54 -    53 20a0da83e20 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   54    0    0    0  1  10 0 0  0  0   0   78  576.00  411.43   64.00  411.00 New  Col    10 Visible 20a0da98bb0 4  14 183 183 255 1.000 1.000
-1  1  1  10   55    0    0    0  1  10 0 0  0  0   0   79  608.00  377.18   64.00   68.50 New  Tab    55 -    53 20a0da98970 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   56    0    0    0  1  10 0 0  0  0   0   80  608.00  308.68   64.00   68.50 New  Tab    56 -    53 20a0da99750 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   57    0    0    0  1  10 0 0  0  0   0   81  608.00  240.18   64.00   68.50 New  Tab    57 -    53 20a0da99ea0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   58    0    0    0  1  10 0 0  0  0   0   82  608.00  171.68   64.00   68.50 New  Tab    58 -    53 20a0da9a5f0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   59    0    0    0  1  10 0 0  0  0   0   83  608.00  103.18   64.00   68.50 New  Tab    59 -    53 20a0da9ad40 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   60    0    0    0  1  10 0 0  0  0   0   84  608.00   34.68   64.00   68.50 New  Tab    60 -    53 20a0da9b460 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   60    0    0    0  1  10 1 0  0  0   0   85    0.00    0.43   64.00   69.00 New  Curs    1 Visible 20a0da9b9a0 6 255 255  10 183 1.000 1.000
-P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G Red Grn Blu Opc  Mx    My
-P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G Red Grn Blu Opc Dpi B I  Font Name
-1059 tabs createTniks          J1=[0 0 0 9 5 0 0 0 0 9 0 0 0 0 0 85] 
-1059 tabs createTniks          J2=[1 1 1 10 60 0 0 0 1 10 1 0 0 0 0 85] 
-1059 tabs createTniks          LE=[1 1 1 10 60 0 0 0 1 10 1 0 0 0 0 85] 
-1059 tabs createTniks        END  (1x1x10x6) (1x1x1x6) [0]       1 []    n=[1 1 1 10 6] 
- 374 tabs dumpWxHp0          (640x480) 0 0 0 0 0 0
- 270 tabs _initTniks         .armSnap=New
-1325 tabs dumpFont           4:96dpi 62.000pt 0:Lucida Console 0:(255, 64, 192, 255) 62.000pt = 0.778(pt/pix) * 79.714pixels Init
- 406 tabs dumpStruct         n=[1 1 1 10 6] ntp=[6 60 60 60] ntp0=[6 60 60 60 60]
- Key  Cnt       
-Page    1 20a0d163190    0.00  480.00  640.00  480.00 visible
-Line    1 20a0d1626e0    0.00  411.43  640.00  411.00 visible
-_LLR    1 20a0d1621a0  320.00  445.71  640.00   68.57  53 L1
-_LLC    1 20a0d161510    0.00  445.71   64.00   68.57  53 0
-_LLC    2 20a0d9e0e20   64.00  445.71   64.00   68.57  53 0
-_LLC    3 20a0d2537c0  128.00  445.71   64.00   68.57  53 0
-_LLC    4 20a0d251cf0  192.00  445.71   64.00   68.57  53 0
-_LLC    5 20a0d2514e0  256.00  445.71   64.00   68.57  53 0
-_LLC    6 20a0d250ee0  320.00  445.71   64.00   68.57  53 0
-_LLC    7 20a0d250790  384.00  445.71   64.00   68.57  53 0
-_LLC    8 20a0d250130  448.00  445.71   64.00   68.57  53 0
-_LLC    9 20a0d162dd0  512.00  445.71   64.00   68.57  53 0
-_LLC   10 20a0d1638b0  576.00  445.71   64.00   68.57  53 0
-Sect    1 20a0d1633d0    0.00  411.43  640.00  411.00 visible
-Col     1 20a0d9e17b0    0.00  411.43   64.00  411.00 visible
-Tab     1 20a0d163640   32.00  377.18   64.00   68.50  53 -
-Tab     2 20a0d9e25c0   32.00  308.68   64.00   68.50  53 -
-Tab     3 20a0d9e2ef0   32.00  240.18   64.00   68.50  53 -
-Tab     4 20a0d9e3640   32.00  171.68   64.00   68.50  53 -
-Tab     5 20a0d9e3d90   32.00  103.18   64.00   68.50  53 -
-Tab     6 20a0da14550   32.00   34.68   64.00   68.50  53 -
-Col     2 20a0da14d90   64.00  411.43   64.00  411.00 visible
-Tab     7 20a0da14b50   96.00  377.18   64.00   68.50  53 -
-Tab     8 20a0da15810   96.00  308.68   64.00   68.50  53 -
-Tab     9 20a0da15f60   96.00  240.18   64.00   68.50  53 -
-Tab    10 20a0da166b0   96.00  171.68   64.00   68.50  53 -
-Tab    11 20a0da16e00   96.00  103.18   64.00   68.50  53 -
-Tab    12 20a0da17550   96.00   34.68   64.00   68.50  53 -
-Col     3 20a0da17d60  128.00  411.43   64.00  411.00 visible
-Tab    13 20a0da17b20  160.00  377.18   64.00   68.50  53 -
-Tab    14 20a0da28940  160.00  308.68   64.00   68.50  53 -
-Tab    15 20a0da29060  160.00  240.18   64.00   68.50  53 -
-Tab    16 20a0da297b0  160.00  171.68   64.00   68.50  53 -
-Tab    17 20a0da29f00  160.00  103.18   64.00   68.50  53 -
-Tab    18 20a0da2a650  160.00   34.68   64.00   68.50  53 -
-Col     4 20a0da2ae60  192.00  411.43   64.00  411.00 visible
-Tab    19 20a0da2ac20  224.00  377.18   64.00   68.50  53 -
-Tab    20 20a0da2ba00  224.00  308.68   64.00   68.50  53 -
-Tab    21 20a0da2bf40  224.00  240.18   64.00   68.50  53 -
-Tab    22 20a0da3c8b0  224.00  171.68   64.00   68.50  53 -
-Tab    23 20a0da3d060  224.00  103.18   64.00   68.50  53 -
-Tab    24 20a0da3d7b0  224.00   34.68   64.00   68.50  53 -
-Col     5 20a0da3dfc0  256.00  411.43   64.00  411.00 visible
-Tab    25 20a0da3dd80  288.00  377.18   64.00   68.50  53 -
-Tab    26 20a0da3eb60  288.00  308.68   64.00   68.50  53 -
-Tab    27 20a0da3f2b0  288.00  240.18   64.00   68.50  53 -
-Tab    28 20a0da3f9d0  288.00  171.68   64.00   68.50  53 -
-Tab    29 20a0da3ff40  288.00  103.18   64.00   68.50  53 -
-Tab    30 20a0da548b0  288.00   34.68   64.00   68.50  53 -
-Col     6 20a0da550c0  320.00  411.43   64.00  411.00 visible
-Tab    31 20a0da54e80  352.00  377.18   64.00   68.50  53 -
-Tab    32 20a0da55c60  352.00  308.68   64.00   68.50  53 -
-Tab    33 20a0da563b0  352.00  240.18   64.00   68.50  53 -
-Tab    34 20a0d251e70  352.00  171.68   64.00   68.50  53 -
-Tab    35 20a0da17ac0  352.00  103.18   64.00   68.50  53 -
-Tab    36 20a0da57040  352.00   34.68   64.00   68.50  53 -
-Col     7 20a0da57850  384.00  411.43   64.00  411.00 visible
-Tab    37 20a0da57610  416.00  377.18   64.00   68.50  53 -
-Tab    38 20a0da57f10  416.00  308.68   64.00   68.50  53 -
-Tab    39 20a0da68b80  416.00  240.18   64.00   68.50  53 -
-Tab    40 20a0da692d0  416.00  171.68   64.00   68.50  53 -
-Tab    41 20a0da699f0  416.00  103.18   64.00   68.50  53 -
-Tab    42 20a0da6a140  416.00   34.68   64.00   68.50  53 -
-Col     8 20a0da6a950  448.00  411.43   64.00  411.00 visible
-Tab    43 20a0da6a710  480.00  377.18   64.00   68.50  53 -
-Tab    44 20a0da6b4f0  480.00  308.68   64.00   68.50  53 -
-Tab    45 20a0da6bc40  480.00  240.18   64.00   68.50  53 -
-Tab    46 20a0da6beb0  480.00  171.68   64.00   68.50  53 -
-Tab    47 20a0da80b20  480.00  103.18   64.00   68.50  53 -
-Tab    48 20a0da81240  480.00   34.68   64.00   68.50  53 -
-Col     9 20a0da81a50  512.00  411.43   64.00  411.00 visible
-Tab    49 20a0da81810  544.00  377.18   64.00   68.50  53 -
-Tab    50 20a0da825f0  544.00  308.68   64.00   68.50  53 -
-Tab    51 20a0da82d40  544.00  240.18   64.00   68.50  53 -
-Tab    52 20a0da83490  544.00  171.68   64.00   68.50  53 -
-Tab    53 20a0da83be0  544.00  103.18   64.00   68.50  53 -
-Tab    54 20a0da83e20  544.00   34.68   64.00   68.50  53 -
-Col    10 20a0da98bb0  576.00  411.43   64.00  411.00 visible
-Tab    55 20a0da98970  608.00  377.18   64.00   68.50  53 -
-Tab    56 20a0da99750  608.00  308.68   64.00   68.50  53 -
-Tab    57 20a0da99ea0  608.00  240.18   64.00   68.50  53 -
-Tab    58 20a0da9a5f0  608.00  171.68   64.00   68.50  53 -
-Tab    59 20a0da9ad40  608.00  103.18   64.00   68.50  53 -
-Tab    60 20a0da9b460  608.00   34.68   64.00   68.50  53 -
-Curs    1 20a0da9b9a0    0.00    0.43   64.00   69.00 visible
- 205 tabs _reinit            END
- 161 tabs __init__           END <class __main__.Tabs>
-###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
- 374 tabs dumpWxHp0          (640x480) 0 0 0 0 0 0
-1124 tabs resizeTniks        BGN  (1x1x10x6) (1x1x1x6) [0]       1 []    n=[1 1 1 10 6] Upd
-1124 tabs resizeTniks          J1=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Upd
-1124 tabs resizeTniks          J2=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Upd
-1124 tabs resizeTniks          LE=[1 1 1 10 60 0 0 0 1 10 1 0 0 0 0 85] Upd
-P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G Red Grn Blu Opc  Mx    My
-P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G Red Grn Blu Opc Dpi B I  Font Name
-1  0  0   0    0    0    0    0  0   0 0 0  0  0   0    1    0.00  480.00  640.00  480.00 Upd  Page    1 Visible 20a0d163190 1 127  56 181 255 1.000 1.000
-1  1  0   0    0    0    0    0  1   0 0 0  0  0   0    3  320.00  445.71  640.00   68.57 Upd  _LLR    1 L1   53 20a0d1621a0 5  12 255  11 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   1 0 0  0  0   0    4    0.00  445.71   64.00   68.57 Upd  _LLC    1 0    53 20a0d161510 5 255 255  10 183  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   2 0 0  0  0   0    5   64.00  445.71   64.00   68.57 Upd  _LLC    2 0    53 20a0d9e0e20 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   3 0 0  0  0   0    6  128.00  445.71   64.00   68.57 Upd  _LLC    3 0    53 20a0d2537c0 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   4 0 0  0  0   0    7  192.00  445.71   64.00   68.57 Upd  _LLC    4 0    53 20a0d251cf0 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   5 0 0  0  0   0    8  256.00  445.71   64.00   68.57 Upd  _LLC    5 0    53 20a0d2514e0 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   6 0 0  0  0   0    9  320.00  445.71   64.00   68.57 Upd  _LLC    6 0    53 20a0d250ee0 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   7 0 0  0  0   0   10  384.00  445.71   64.00   68.57 Upd  _LLC    7 0    53 20a0d250790 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   8 0 0  0  0   0   11  448.00  445.71   64.00   68.57 Upd  _LLC    8 0    53 20a0d250130 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1   9 0 0  0  0   0   12  512.00  445.71   64.00   68.57 Upd  _LLC    9 0    53 20a0d162dd0 5 255  64 192 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1  10 0 0  0  0   0   13  576.00  445.71   64.00   68.57 Upd  _LLC   10 0    53 20a0d1638b0 5  12 255  11 255  96 0 0 Lucida Console
-1  1  0   0    0    0    0    0  1  10 0 0  0  0   0   13    0.00  411.43  640.00  411.00 Upd  Line    1 Visible 20a0d1626e0 2 192  13  11 255 1.000 0.857
-1  1  1   0    0    0    0    0  1  10 0 0  0  0   0   14    0.00  411.43  640.00  411.00 Upd  Sect    1 Visible 20a0d1633d0 3  15 180  11 255 1.000 1.000
-1  1  1   1    0    0    0    0  1  10 0 0  0  0   0   15    0.00  411.43   64.00  411.00 Upd  Col     1 Visible 20a0d9e17b0 4  14 183 183 255 1.000 1.000
-1  1  1   1    1    0    0    0  1  10 0 0  0  0   0   16   32.00  377.18   64.00   68.50 Upd  Tab     1 -    53 20a0d163640 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   1    2    0    0    0  1  10 0 0  0  0   0   17   32.00  308.68   64.00   68.50 Upd  Tab     2 -    53 20a0d9e25c0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   1    3    0    0    0  1  10 0 0  0  0   0   18   32.00  240.18   64.00   68.50 Upd  Tab     3 -    53 20a0d9e2ef0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   1    4    0    0    0  1  10 0 0  0  0   0   19   32.00  171.68   64.00   68.50 Upd  Tab     4 -    53 20a0d9e3640 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   1    5    0    0    0  1  10 0 0  0  0   0   20   32.00  103.18   64.00   68.50 Upd  Tab     5 -    53 20a0d9e3d90 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   1    6    0    0    0  1  10 0 0  0  0   0   21   32.00   34.68   64.00   68.50 Upd  Tab     6 -    53 20a0da14550 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2    6    0    0    0  1  10 0 0  0  0   0   22   64.00  411.43   64.00  411.00 Upd  Col     2 Visible 20a0da14d90 4  14 183 183 255 1.000 1.000
-1  1  1   2    7    0    0    0  1  10 0 0  0  0   0   23   96.00  377.18   64.00   68.50 Upd  Tab     7 -    53 20a0da14b50 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2    8    0    0    0  1  10 0 0  0  0   0   24   96.00  308.68   64.00   68.50 Upd  Tab     8 -    53 20a0da15810 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2    9    0    0    0  1  10 0 0  0  0   0   25   96.00  240.18   64.00   68.50 Upd  Tab     9 -    53 20a0da15f60 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2   10    0    0    0  1  10 0 0  0  0   0   26   96.00  171.68   64.00   68.50 Upd  Tab    10 -    53 20a0da166b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2   11    0    0    0  1  10 0 0  0  0   0   27   96.00  103.18   64.00   68.50 Upd  Tab    11 -    53 20a0da16e00 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   2   12    0    0    0  1  10 0 0  0  0   0   28   96.00   34.68   64.00   68.50 Upd  Tab    12 -    53 20a0da17550 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   12    0    0    0  1  10 0 0  0  0   0   29  128.00  411.43   64.00  411.00 Upd  Col     3 Visible 20a0da17d60 4  14 183 183 255 1.000 1.000
-1  1  1   3   13    0    0    0  1  10 0 0  0  0   0   30  160.00  377.18   64.00   68.50 Upd  Tab    13 -    53 20a0da17b20 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   14    0    0    0  1  10 0 0  0  0   0   31  160.00  308.68   64.00   68.50 Upd  Tab    14 -    53 20a0da28940 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   15    0    0    0  1  10 0 0  0  0   0   32  160.00  240.18   64.00   68.50 Upd  Tab    15 -    53 20a0da29060 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   16    0    0    0  1  10 0 0  0  0   0   33  160.00  171.68   64.00   68.50 Upd  Tab    16 -    53 20a0da297b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   17    0    0    0  1  10 0 0  0  0   0   34  160.00  103.18   64.00   68.50 Upd  Tab    17 -    53 20a0da29f00 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   3   18    0    0    0  1  10 0 0  0  0   0   35  160.00   34.68   64.00   68.50 Upd  Tab    18 -    53 20a0da2a650 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   18    0    0    0  1  10 0 0  0  0   0   36  192.00  411.43   64.00  411.00 Upd  Col     4 Visible 20a0da2ae60 4  14 183 183 255 1.000 1.000
-1  1  1   4   19    0    0    0  1  10 0 0  0  0   0   37  224.00  377.18   64.00   68.50 Upd  Tab    19 -    53 20a0da2ac20 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   20    0    0    0  1  10 0 0  0  0   0   38  224.00  308.68   64.00   68.50 Upd  Tab    20 -    53 20a0da2ba00 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   21    0    0    0  1  10 0 0  0  0   0   39  224.00  240.18   64.00   68.50 Upd  Tab    21 -    53 20a0da2bf40 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   22    0    0    0  1  10 0 0  0  0   0   40  224.00  171.68   64.00   68.50 Upd  Tab    22 -    53 20a0da3c8b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   23    0    0    0  1  10 0 0  0  0   0   41  224.00  103.18   64.00   68.50 Upd  Tab    23 -    53 20a0da3d060 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   4   24    0    0    0  1  10 0 0  0  0   0   42  224.00   34.68   64.00   68.50 Upd  Tab    24 -    53 20a0da3d7b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   24    0    0    0  1  10 0 0  0  0   0   43  256.00  411.43   64.00  411.00 Upd  Col     5 Visible 20a0da3dfc0 4  14 183 183 255 1.000 1.000
-1  1  1   5   25    0    0    0  1  10 0 0  0  0   0   44  288.00  377.18   64.00   68.50 Upd  Tab    25 -    53 20a0da3dd80 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   26    0    0    0  1  10 0 0  0  0   0   45  288.00  308.68   64.00   68.50 Upd  Tab    26 -    53 20a0da3eb60 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   27    0    0    0  1  10 0 0  0  0   0   46  288.00  240.18   64.00   68.50 Upd  Tab    27 -    53 20a0da3f2b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   28    0    0    0  1  10 0 0  0  0   0   47  288.00  171.68   64.00   68.50 Upd  Tab    28 -    53 20a0da3f9d0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   29    0    0    0  1  10 0 0  0  0   0   48  288.00  103.18   64.00   68.50 Upd  Tab    29 -    53 20a0da3ff40 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   5   30    0    0    0  1  10 0 0  0  0   0   49  288.00   34.68   64.00   68.50 Upd  Tab    30 -    53 20a0da548b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   30    0    0    0  1  10 0 0  0  0   0   50  320.00  411.43   64.00  411.00 Upd  Col     6 Visible 20a0da550c0 4  14 183 183 255 1.000 1.000
-1  1  1   6   31    0    0    0  1  10 0 0  0  0   0   51  352.00  377.18   64.00   68.50 Upd  Tab    31 -    53 20a0da54e80 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   32    0    0    0  1  10 0 0  0  0   0   52  352.00  308.68   64.00   68.50 Upd  Tab    32 -    53 20a0da55c60 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   33    0    0    0  1  10 0 0  0  0   0   53  352.00  240.18   64.00   68.50 Upd  Tab    33 -    53 20a0da563b0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   34    0    0    0  1  10 0 0  0  0   0   54  352.00  171.68   64.00   68.50 Upd  Tab    34 -    53 20a0d251e70 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   35    0    0    0  1  10 0 0  0  0   0   55  352.00  103.18   64.00   68.50 Upd  Tab    35 -    53 20a0da17ac0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   6   36    0    0    0  1  10 0 0  0  0   0   56  352.00   34.68   64.00   68.50 Upd  Tab    36 -    53 20a0da57040 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   36    0    0    0  1  10 0 0  0  0   0   57  384.00  411.43   64.00  411.00 Upd  Col     7 Visible 20a0da57850 4  14 183 183 255 1.000 1.000
-1  1  1   7   37    0    0    0  1  10 0 0  0  0   0   58  416.00  377.18   64.00   68.50 Upd  Tab    37 -    53 20a0da57610 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   38    0    0    0  1  10 0 0  0  0   0   59  416.00  308.68   64.00   68.50 Upd  Tab    38 -    53 20a0da57f10 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   39    0    0    0  1  10 0 0  0  0   0   60  416.00  240.18   64.00   68.50 Upd  Tab    39 -    53 20a0da68b80 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   40    0    0    0  1  10 0 0  0  0   0   61  416.00  171.68   64.00   68.50 Upd  Tab    40 -    53 20a0da692d0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   41    0    0    0  1  10 0 0  0  0   0   62  416.00  103.18   64.00   68.50 Upd  Tab    41 -    53 20a0da699f0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   7   42    0    0    0  1  10 0 0  0  0   0   63  416.00   34.68   64.00   68.50 Upd  Tab    42 -    53 20a0da6a140 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   42    0    0    0  1  10 0 0  0  0   0   64  448.00  411.43   64.00  411.00 Upd  Col     8 Visible 20a0da6a950 4  14 183 183 255 1.000 1.000
-1  1  1   8   43    0    0    0  1  10 0 0  0  0   0   65  480.00  377.18   64.00   68.50 Upd  Tab    43 -    53 20a0da6a710 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   44    0    0    0  1  10 0 0  0  0   0   66  480.00  308.68   64.00   68.50 Upd  Tab    44 -    53 20a0da6b4f0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   45    0    0    0  1  10 0 0  0  0   0   67  480.00  240.18   64.00   68.50 Upd  Tab    45 -    53 20a0da6bc40 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   46    0    0    0  1  10 0 0  0  0   0   68  480.00  171.68   64.00   68.50 Upd  Tab    46 -    53 20a0da6beb0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   47    0    0    0  1  10 0 0  0  0   0   69  480.00  103.18   64.00   68.50 Upd  Tab    47 -    53 20a0da80b20 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   8   48    0    0    0  1  10 0 0  0  0   0   70  480.00   34.68   64.00   68.50 Upd  Tab    48 -    53 20a0da81240 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   48    0    0    0  1  10 0 0  0  0   0   71  512.00  411.43   64.00  411.00 Upd  Col     9 Visible 20a0da81a50 4  14 183 183 255 1.000 1.000
-1  1  1   9   49    0    0    0  1  10 0 0  0  0   0   72  544.00  377.18   64.00   68.50 Upd  Tab    49 -    53 20a0da81810 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   50    0    0    0  1  10 0 0  0  0   0   73  544.00  308.68   64.00   68.50 Upd  Tab    50 -    53 20a0da825f0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   51    0    0    0  1  10 0 0  0  0   0   74  544.00  240.18   64.00   68.50 Upd  Tab    51 -    53 20a0da82d40 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   52    0    0    0  1  10 0 0  0  0   0   75  544.00  171.68   64.00   68.50 Upd  Tab    52 -    53 20a0da83490 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   53    0    0    0  1  10 0 0  0  0   0   76  544.00  103.18   64.00   68.50 Upd  Tab    53 -    53 20a0da83be0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1   9   54    0    0    0  1  10 0 0  0  0   0   77  544.00   34.68   64.00   68.50 Upd  Tab    54 -    53 20a0da83e20 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   54    0    0    0  1  10 0 0  0  0   0   78  576.00  411.43   64.00  411.00 Upd  Col    10 Visible 20a0da98bb0 4  14 183 183 255 1.000 1.000
-1  1  1  10   55    0    0    0  1  10 0 0  0  0   0   79  608.00  377.18   64.00   68.50 Upd  Tab    55 -    53 20a0da98970 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   56    0    0    0  1  10 0 0  0  0   0   80  608.00  308.68   64.00   68.50 Upd  Tab    56 -    53 20a0da99750 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   57    0    0    0  1  10 0 0  0  0   0   81  608.00  240.18   64.00   68.50 Upd  Tab    57 -    53 20a0da99ea0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   58    0    0    0  1  10 0 0  0  0   0   82  608.00  171.68   64.00   68.50 Upd  Tab    58 -    53 20a0da9a5f0 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   59    0    0    0  1  10 0 0  0  0   0   83  608.00  103.18   64.00   68.50 Upd  Tab    59 -    53 20a0da9ad40 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   60    0    0    0  1  10 0 0  0  0   0   84  608.00   34.68   64.00   68.50 Upd  Tab    60 -    53 20a0da9b460 5 188  91   9 255  96 0 0 Lucida Console
-1  1  1  10   60    0    0    0  1  10 1 0  0  0   0   85    0.00    0.43   64.00   68.00 Upd  Curs    1 Visible 20a0da9b9a0 6 255 255  10 183 1.000 0.993
-P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G Red Grn Blu Opc  Mx    My
-P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G Red Grn Blu Opc Dpi B I  Font Name
-1136 tabs resizeTniks          J1=[0 0 0 9 59 0 0 0 0 9 0 0 0 0 0 85] Upd
-1136 tabs resizeTniks          J2=[1 1 1 10 60 0 0 0 1 10 1 0 0 0 0 85] Upd
-1136 tabs resizeTniks          LE=[1 1 1 10 60 0 0 0 1 10 1 0 0 0 0 85] Upd
-1136 tabs resizeTniks        END  (1x1x10x6) (1x1x1x6) [0]       1 []    n=[1 1 1 10 6] Upd
- 374 tabs dumpWxHp0          (640x480) 0 0 0 0 0 0
- 441 tabs on_resize          .armSnap=Upd
- 435 tabs on_draw            .armSnap=Upd
-2102 tabs snapshot           Upd on_draw
-2103 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_SFX=.png
-BASE_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs')
-SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.41.0.png')
-2108 tabs snapshot           SNAP_ID=.0   SNAP_NAME=tabs.41.0.png
-  64 util dumpStack           9 tabs       2150 quit                 .dumpStack(inspect.stack(), file=LOG_FILE)    ;   .log(QUIT_BGN,     pfx=0)
-  64 util dumpStack           8 tabs       1395 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
-  64 util dumpStack           7 event       415 dispatch_event       if getattr(self, event_type)(*args):
-  64 util dumpStack           6 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
-  64 util dumpStack           5 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
-  64 util dumpStack           4 __init__    747 f                    result = event_handler(msg, wParam, lParam)
-  64 util dumpStack           3 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
-  64 util dumpStack           2 base        170 run                  platform_event_loop.step(timeout)
-  64 util dumpStack           1 __init__    107 run                  event_loop.run()
-  64 util dumpStack           0 tabs       2247 <module>             ret     = pyglet.app.run()
-  65 util dumpStack          MAX_STACK_DEPTH= 0
-###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
-  64 util dumpStack          12 util          8 <module>             MAX_STACK_FRAME = inspect.stack()
-  64 util dumpStack          11 <frozen importlib   241 _call_with_frames_removed 
-  64 util dumpStack          10 <frozen importlib   883 exec_module          
-  64 util dumpStack           9 <frozen importlib   688 _load_unlocked       
-  64 util dumpStack           8 <frozen importlib  1006 _find_and_load_unlocked 
-  64 util dumpStack           7 <frozen importlib  1027 _find_and_load       
-  64 util dumpStack           6 chord         2 <module>             import util
-  64 util dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
-  64 util dumpStack           4 <frozen importlib   883 exec_module          
-  64 util dumpStack           3 <frozen importlib   688 _load_unlocked       
-  64 util dumpStack           2 <frozen importlib  1006 _find_and_load_unlocked 
-  64 util dumpStack           1 <frozen importlib  1027 _find_and_load       
-  64 util dumpStack           0 tabs         11 <module>             import chord, util
-  65 util dumpStack          MAX_STACK_DEPTH= 0
-2153 tabs quit               BGN @^Q error=0 save=0
-###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
- 165 tabs dumpArgs           [f]              .dfn=test.6.dat
- 166 tabs dumpArgs           [n]              n=[1 1 1 10 6]
- 167 tabs dumpArgs           [i]              i=[1 1 1 1 6]
- 168 tabs dumpArgs           [a]     .AUTO_SAVE=0
- 169 tabs dumpArgs           [c]           .CAT=0
- 170 tabs dumpArgs           [C] .CHECKER_BOARD=0
- 171 tabs dumpArgs           [e]     .EVENT_LOG=0
- 172 tabs dumpArgs           [F]   .FULL_SCREEN=0
- 173 tabs dumpArgs           [g]   .ORDER_GROUP=1
- 174 tabs dumpArgs           [p]          .SNAP=1
- 175 tabs dumpArgs           [R]        .RESIZE=1
- 176 tabs dumpArgs           [x]        .SUBPIX=0
- 177 tabs dumpArgs           [s]       .SPRITES=1
- 178 tabs dumpArgs           [t]          .TEST=0
- 179 tabs dumpArgs           [v]       .VERBOSE=0
- 180 tabs dumpArgs           [V]         .VIEWS=0
- 181 tabs dumpArgs           [r]     .RD_STDOUT=0
- 182 tabs dumpArgs           [b]    .FRET_BOARD=1
- 183 tabs dumpArgs           [u]       .USE_NEW=1
- 184 tabs dumpArgs           [L]            .LL=1
- 185 tabs dumpArgs           [S]            .SS=[0]
- 186 tabs dumpArgs           [Z]            .ZZ=[]
-1325 tabs dumpFont           4:96dpi 62.000pt 0:Lucida Console 0:(255, 64, 192, 255) 62.000pt = 0.778(pt/pix) * 79.714pixels @^Q
- 406 tabs dumpStruct         n=[1 1 1 10 6] ntp=[6 60 60 60] ntp0=[6 60 60 60 60]
- Key  Cnt       
-Page    1 20a0d163190    0.00  480.00  640.00  480.00 visible
-Line    1 20a0d1626e0    0.00  411.43  640.00  411.00 visible
-_LLR    1 20a0d1621a0  320.00  445.71  640.00   68.57  53 L1
-_LLC    1 20a0d161510    0.00  445.71   64.00   68.57  53 0
-_LLC    2 20a0d9e0e20   64.00  445.71   64.00   68.57  53 0
-_LLC    3 20a0d2537c0  128.00  445.71   64.00   68.57  53 0
-_LLC    4 20a0d251cf0  192.00  445.71   64.00   68.57  53 0
-_LLC    5 20a0d2514e0  256.00  445.71   64.00   68.57  53 0
-_LLC    6 20a0d250ee0  320.00  445.71   64.00   68.57  53 0
-_LLC    7 20a0d250790  384.00  445.71   64.00   68.57  53 0
-_LLC    8 20a0d250130  448.00  445.71   64.00   68.57  53 0
-_LLC    9 20a0d162dd0  512.00  445.71   64.00   68.57  53 0
-_LLC   10 20a0d1638b0  576.00  445.71   64.00   68.57  53 0
-Sect    1 20a0d1633d0    0.00  411.43  640.00  411.00 visible
-Col     1 20a0d9e17b0    0.00  411.43   64.00  411.00 visible
-Tab     1 20a0d163640   32.00  377.18   64.00   68.50  53 -
-Tab     2 20a0d9e25c0   32.00  308.68   64.00   68.50  53 -
-Tab     3 20a0d9e2ef0   32.00  240.18   64.00   68.50  53 -
-Tab     4 20a0d9e3640   32.00  171.68   64.00   68.50  53 -
-Tab     5 20a0d9e3d90   32.00  103.18   64.00   68.50  53 -
-Tab     6 20a0da14550   32.00   34.68   64.00   68.50  53 -
-Col     2 20a0da14d90   64.00  411.43   64.00  411.00 visible
-Tab     7 20a0da14b50   96.00  377.18   64.00   68.50  53 -
-Tab     8 20a0da15810   96.00  308.68   64.00   68.50  53 -
-Tab     9 20a0da15f60   96.00  240.18   64.00   68.50  53 -
-Tab    10 20a0da166b0   96.00  171.68   64.00   68.50  53 -
-Tab    11 20a0da16e00   96.00  103.18   64.00   68.50  53 -
-Tab    12 20a0da17550   96.00   34.68   64.00   68.50  53 -
-Col     3 20a0da17d60  128.00  411.43   64.00  411.00 visible
-Tab    13 20a0da17b20  160.00  377.18   64.00   68.50  53 -
-Tab    14 20a0da28940  160.00  308.68   64.00   68.50  53 -
-Tab    15 20a0da29060  160.00  240.18   64.00   68.50  53 -
-Tab    16 20a0da297b0  160.00  171.68   64.00   68.50  53 -
-Tab    17 20a0da29f00  160.00  103.18   64.00   68.50  53 -
-Tab    18 20a0da2a650  160.00   34.68   64.00   68.50  53 -
-Col     4 20a0da2ae60  192.00  411.43   64.00  411.00 visible
-Tab    19 20a0da2ac20  224.00  377.18   64.00   68.50  53 -
-Tab    20 20a0da2ba00  224.00  308.68   64.00   68.50  53 -
-Tab    21 20a0da2bf40  224.00  240.18   64.00   68.50  53 -
-Tab    22 20a0da3c8b0  224.00  171.68   64.00   68.50  53 -
-Tab    23 20a0da3d060  224.00  103.18   64.00   68.50  53 -
-Tab    24 20a0da3d7b0  224.00   34.68   64.00   68.50  53 -
-Col     5 20a0da3dfc0  256.00  411.43   64.00  411.00 visible
-Tab    25 20a0da3dd80  288.00  377.18   64.00   68.50  53 -
-Tab    26 20a0da3eb60  288.00  308.68   64.00   68.50  53 -
-Tab    27 20a0da3f2b0  288.00  240.18   64.00   68.50  53 -
-Tab    28 20a0da3f9d0  288.00  171.68   64.00   68.50  53 -
-Tab    29 20a0da3ff40  288.00  103.18   64.00   68.50  53 -
-Tab    30 20a0da548b0  288.00   34.68   64.00   68.50  53 -
-Col     6 20a0da550c0  320.00  411.43   64.00  411.00 visible
-Tab    31 20a0da54e80  352.00  377.18   64.00   68.50  53 -
-Tab    32 20a0da55c60  352.00  308.68   64.00   68.50  53 -
-Tab    33 20a0da563b0  352.00  240.18   64.00   68.50  53 -
-Tab    34 20a0d251e70  352.00  171.68   64.00   68.50  53 -
-Tab    35 20a0da17ac0  352.00  103.18   64.00   68.50  53 -
-Tab    36 20a0da57040  352.00   34.68   64.00   68.50  53 -
-Col     7 20a0da57850  384.00  411.43   64.00  411.00 visible
-Tab    37 20a0da57610  416.00  377.18   64.00   68.50  53 -
-Tab    38 20a0da57f10  416.00  308.68   64.00   68.50  53 -
-Tab    39 20a0da68b80  416.00  240.18   64.00   68.50  53 -
-Tab    40 20a0da692d0  416.00  171.68   64.00   68.50  53 -
-Tab    41 20a0da699f0  416.00  103.18   64.00   68.50  53 -
-Tab    42 20a0da6a140  416.00   34.68   64.00   68.50  53 -
-Col     8 20a0da6a950  448.00  411.43   64.00  411.00 visible
-Tab    43 20a0da6a710  480.00  377.18   64.00   68.50  53 -
-Tab    44 20a0da6b4f0  480.00  308.68   64.00   68.50  53 -
-Tab    45 20a0da6bc40  480.00  240.18   64.00   68.50  53 -
-Tab    46 20a0da6beb0  480.00  171.68   64.00   68.50  53 -
-Tab    47 20a0da80b20  480.00  103.18   64.00   68.50  53 -
-Tab    48 20a0da81240  480.00   34.68   64.00   68.50  53 -
-Col     9 20a0da81a50  512.00  411.43   64.00  411.00 visible
-Tab    49 20a0da81810  544.00  377.18   64.00   68.50  53 -
-Tab    50 20a0da825f0  544.00  308.68   64.00   68.50  53 -
-Tab    51 20a0da82d40  544.00  240.18   64.00   68.50  53 -
-Tab    52 20a0da83490  544.00  171.68   64.00   68.50  53 -
-Tab    53 20a0da83be0  544.00  103.18   64.00   68.50  53 -
-Tab    54 20a0da83e20  544.00   34.68   64.00   68.50  53 -
-Col    10 20a0da98bb0  576.00  411.43   64.00  411.00 visible
-Tab    55 20a0da98970  608.00  377.18   64.00   68.50  53 -
-Tab    56 20a0da99750  608.00  308.68   64.00   68.50  53 -
-Tab    57 20a0da99ea0  608.00  240.18   64.00   68.50  53 -
-Tab    58 20a0da9a5f0  608.00  171.68   64.00   68.50  53 -
-Tab    59 20a0da9ad40  608.00  103.18   64.00   68.50  53 -
-Tab    60 20a0da9b460  608.00   34.68   64.00   68.50  53 -
-Curs    1 20a0da9b9a0    0.00    0.43   64.00   68.00 visible
- 571 tabs NEW_transposeData  BGN (1x1x10x6) dump=1
- 529 tabs isVert             BGN .fmtdl()=[1 1 10 6] .fmtdt()=[list list list str]
-[[[------ ------ ------ ------ ------ ------ ------ ------ ------ ------]]]
- 534 tabs isVert             END .fmtdl()=[1 1 10 6] .fmtdt()=[list list list str] vert=1
- 610 tabs dumpDataVert       BGN (1x1x10x6) lc=1 ll=1 i=0 w=6 txt=Col 
-Page 1
-Col Line 1
-  1 ------ 
-  2 ------ 
-  3 ------ 
-  4 ------ 
-  5 ------ 
-  6 ------ 
-  7 ------ 
-  8 ------ 
-  9 ------ 
- 10 ------ 
- 618 tabs dumpDataVert       END (1x1x10x6) lc=1 ll=1 i=0
- 574 tabs NEW_transposeData  [1 1 10 6] [list list list str]
- 575 tabs NEW_transposeData  dl=[1 1 10 6] dt=[list list list str]
------- ------ ------ ------ ------ ------ ------ ------ ------ ------
-
----------- ---------- ---------- ---------- ---------- ----------
- 529 tabs isVert             BGN .fmtdl()=[1 1 10 6] .fmtdt()=[list list list str]
-[[[------ ------ ------ ------ ------ ------ ------ ------ ------ ------]]]
- 534 tabs isVert             END .fmtdl()=[1 1 10 6] .fmtdt()=[list list list str] vert=0
- 592 tabs dumpDataHorz       BGN (1x1x6x10) lc=1 ll=1 i=0
-Page 1 Line 1
-         1
-1234567890
-             
-----------
-----------
-----------
-----------
-----------
-----------
-
- 605 tabs dumpDataHorz       END (1x1x6x10) lc=1 ll=1 i=0
- 587 tabs NEW_transposeData  END (1x1x6x10) dump=1
- 111 chord dumpMlimap         @^Q <dumpLimap > 0 []
- 112 chord dumpMlimap         @^Q <dumpLimap1> 0 []
- 113 chord dumpMlimap         @^Q <dumpLimap2> 0 []
- 114 chord dumpMlimap         @^Q <dumpLimap3> 0 []
-2160 tabs quit               END @^Q error=0 save=0
-###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2174 tabs cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log
- 110 util copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 110 util copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.41.log)
- 112 util copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log ###
-2176 tabs cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
+ 217 tabsB dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 50 tabs per line
+text='{font_name "Bravura Text"}{font_size 36}12345678901234567890123456789012345678901234567890\n{font_name "Bravura Text"}{font_size 36}--------------------------------------------------\n{font_name "Bravura Text"}{font_size 36}--------------------------------------------------\n{font_name "Bravura Text"}{font_size 36}--------------------------------------------------\n{font_name "Bravura Text"}{font_size 36}--------------------------------------------------\n{font_name "Bravura Text"}{font_size 36}-abcdefghijklmno-abcdefghijklmno-abcdefghijklmno--\n'
+ 378 tabsB initView           lx=0 ly=0  lw=640 lh=480  rx=0 ry=0  rw=640 rh=480
+BGN self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=1.000 my=1.000
+ lx=0 ly=0  lw= 640 lh= 480  rx=0 ry=0  rw= 640 rh= 480
+ lx=0 ly=0  lw= 640 lh= 480  rx=0 ry=0  rw= 640 rh= 480
+END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=1.000 my=1.000
+BGN self.width=1920 self.height=1147 self.w= 640 self.h= 480 mx=3.000 my=2.390
+ lx=0 ly=0  lw= 640 lh= 480  rx=0 ry=0  rw= 640 rh= 480
+ lx=0 ly=0  lw=1920 lh=1147  rx=0 ry=0  rw=1920 rh=1147
+END self.width=1920 self.height=1147 self.w=1920 self.h=1147 mx=3.000 my=2.390
+BGN self.width= 640 self.height= 480 self.w=1920 self.h=1147 mx=0.333 my=0.418
+ lx=0 ly=0  lw=1920 lh=1147  rx=0 ry=0  rw=1920 rh=1147
+ lx=0 ly=0  lw= 640 lh= 479  rx=0 ry=0  rw= 640 rh= 479
+END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=0.333 my=0.418
+BGN self.width=1920 self.height=1147 self.w= 640 self.h= 480 mx=3.000 my=2.390
+ lx=0 ly=0  lw= 640 lh= 479  rx=0 ry=0  rw= 640 rh= 479
+ lx=0 ly=0  lw=1920 lh=1144  rx=0 ry=0  rw=1920 rh=1144
+END self.width=1920 self.height=1147 self.w=1920 self.h=1147 mx=3.000 my=2.390
+BGN self.width= 640 self.height= 480 self.w=1920 self.h=1147 mx=0.333 my=0.418
+ lx=0 ly=0  lw=1920 lh=1144  rx=0 ry=0  rw=1920 rh=1144
+ lx=0 ly=0  lw= 640 lh= 478  rx=0 ry=0  rw= 640 rh= 478
+END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=0.333 my=0.418
+BGN self.width=1920 self.height=1147 self.w= 640 self.h= 480 mx=3.000 my=2.390
+ lx=0 ly=0  lw= 640 lh= 478  rx=0 ry=0  rw= 640 rh= 478
+ lx=0 ly=0  lw=1920 lh=1142  rx=0 ry=0  rw=1920 rh=1142
+END self.width=1920 self.height=1147 self.w=1920 self.h=1147 mx=3.000 my=2.390
+BGN self.width= 640 self.height= 480 self.w=1920 self.h=1147 mx=0.333 my=0.418
+ lx=0 ly=0  lw=1920 lh=1142  rx=0 ry=0  rw=1920 rh=1142
+ lx=0 ly=0  lw= 640 lh= 477  rx=0 ry=0  rw= 640 rh= 477
+END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=0.333 my=0.418
+BGN self.width=1920 self.height=1027 self.w= 640 self.h= 480 mx=3.000 my=2.140
+ lx=0 ly=0  lw= 640 lh= 477  rx=0 ry=0  rw= 640 rh= 477
+ lx=0 ly=0  lw=1920 lh=1020  rx=0 ry=0  rw=1920 rh=1020
+END self.width=1920 self.height=1027 self.w=1920 self.h=1027 mx=3.000 my=2.140
+BGN self.width= 640 self.height= 480 self.w=1920 self.h=1027 mx=0.333 my=0.467
+ lx=0 ly=0  lw=1920 lh=1020  rx=0 ry=0  rw=1920 rh=1020
+ lx=0 ly=0  lw= 640 lh= 476  rx=0 ry=0  rw= 640 rh= 476
+END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=0.333 my=0.467
+BGN self.width=1920 self.height=1027 self.w= 640 self.h= 480 mx=3.000 my=2.140
+ lx=0 ly=0  lw= 640 lh= 476  rx=0 ry=0  rw= 640 rh= 476
+ lx=0 ly=0  lw=1920 lh=1018  rx=0 ry=0  rw=1920 rh=1018
+END self.width=1920 self.height=1027 self.w=1920 self.h=1027 mx=3.000 my=2.140
+BGN self.width= 640 self.height= 480 self.w=1920 self.h=1027 mx=0.333 my=0.467
+ lx=0 ly=0  lw=1920 lh=1018  rx=0 ry=0  rw=1920 rh=1018
+ lx=0 ly=0  lw= 640 lh= 475  rx=0 ry=0  rw= 640 rh= 475
+END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=0.333 my=0.467

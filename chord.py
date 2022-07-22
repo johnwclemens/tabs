@@ -1,4 +1,8 @@
 from collections import OrderedDict as cOd
+#sys.path.append(os.path.abspath("./lib"))
+#print(f'{len(sys.path)=}')
+#for _ in sys.path:
+#    print(f'{_}')
 import util
 #from util import Strings as us
 
