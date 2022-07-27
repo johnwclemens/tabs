@@ -1,103 +1,93 @@
- 416 tabsB <module>           LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 417 tabsB <module>           LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
- 128 util parseCmdLine       argv=[C:/Users/Owner/Documents/GitHub/tabs/tabsB.py -f test.7.dat -n 1 1 50 6]
- 144 util parseCmdLine        1 short   -f f [] 
- 162 util parseCmdLine        2 arg     test.7.dat f [test.7.dat] 
- 144 util parseCmdLine        3 short   -n n [] 
- 162 util parseCmdLine        4 arg     1  n [1] 
- 162 util parseCmdLine        5 arg     1  n [1 1] 
- 162 util parseCmdLine        6 arg     50 n [1 1 50] 
- 162 util parseCmdLine        7 arg     6  n [1 1 50 6] 
- 164 util parseCmdLine       options=[f:[test.7.dat]n:[1 1 50 6]]
-  76 tabsB _initArgs           argMap=[f:[test.7.dat]n:[1 1 50 6]]
-  86 tabsB dumpArgs           [e]     .EVENT_LOG=0
-  87 tabsB dumpArgs           [f]     .dfn=test.7.dat
-  88 tabsB dumpArgs           [F]     .FULL_SCREEN=0
-  89 tabsB dumpArgs           [n]     n=[1 1 50 6]
-  90 tabsB dumpArgs           [S] .SS=[0]
-  91 tabsB dumpArgs           [v]     .VERBOSE=0
-  51 tabsB _initWindowA       BGN (NonexNone)
-  51 tabsB _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001F34B50FC40>
-  54 tabsB _initWindowA       screens[0] x=0 y=    0 (1920x1080)
-  54 tabsB _initWindowA       screens[1] x=0 y=-1200 (1920x1200)
-  55 tabsB _initWindowA       END (NonexNone)
-  29 tabsB __init__           WxH=(NonexNone)
-  31 tabsB __init__           WxH=(640x480)
-  58 tabsB _initWindowB       BGN (640x480)
-  62 tabsB _initWindowB       get_size=(640, 480)
-  68 tabsB _initWindowB       END (640x480)
-  33 tabsB __init__           WxH=(640x480)
- 104 tabsB dumpBlank          len(.tblankCol)=6 len(.tblankRow)=50 .tblankCol=------ .tblankRow=--------------------------------------------------
- 129 tabsB _initDataPath      dataName0=test.7.dat.asv
- 130 tabsB _initDataPath      dataName1=test.7.dat
- 131 tabsB _initDataPath      dataName2=test.7.dat.bck
+ 552 tabsB <module>           LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 553 tabsB <module>           LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+ 129 util parseCmdLine       argv=[C:/Users/Owner/Documents/GitHub/tabs/tabsB.py -f test.7.dat -n 1 1 50 6 -e]
+ 145 util parseCmdLine        1 short   -f f [] 
+ 163 util parseCmdLine        2 arg     test.7.dat f [test.7.dat] 
+ 145 util parseCmdLine        3 short   -n n [] 
+ 163 util parseCmdLine        4 arg     1  n [1] 
+ 163 util parseCmdLine        5 arg     1  n [1 1] 
+ 163 util parseCmdLine        6 arg     50 n [1 1 50] 
+ 163 util parseCmdLine        7 arg     6  n [1 1 50 6] 
+ 145 util parseCmdLine        8 short   -e e [] 
+ 165 util parseCmdLine       options=[f:[test.7.dat]n:[1 1 50 6]e:[]]
+ 118 tabsB _initArgs          argMap=[f:[test.7.dat]n:[1 1 50 6]e:[]]
+ 129 tabsB dumpArgs           [e]   .EVENT_LOG=1
+ 130 tabsB dumpArgs           [f]         .dfn=test.7.dat
+ 131 tabsB dumpArgs           [F] .FULL_SCREEN=0
+ 132 tabsB dumpArgs           [g] .ORDER_GROUP=1
+ 133 tabsB dumpArgs           [n]            n=[1 1 50 6]
+ 134 tabsB dumpArgs           [S]          .SS=[0]
+ 135 tabsB dumpArgs           [v]     .VERBOSE=0
+  76 tabsB _initWindowA       BGN (NonexNone)
+  76 tabsB _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002C98A092140>
+screens[0] (   0,1200) (1920x1080) ri=0 rv=2,073,600
+screens[0] Win32ScreenMode(width=1920, height=1080, depth=32, rate=60, scaling=0)
+screens[1] (   0,   0) (1920x1200) ri=1 rv=2,304,000
+screens[1] Win32ScreenMode(width=1920, height=1200, depth=32, rate=59, scaling=0)
+  84 tabsB _initWindowA       .fsi=1 .fss=2,304,000 (1920x1200)
+  85 tabsB _initWindowA       END (NonexNone)
+  85 tabsB _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002C98A092140>
+  57 tabsB __init__           WxH=(NonexNone)
+  59 tabsB __init__           WxH=(640x480)
+  88 tabsB _initWindowB       BGN (640x480)
+  90 tabsB _initWindowB       windows[0] (   0,   0) (640x480)
+  95 tabsB _initWindowB       get_size=((640, 480)x480)
+ 101 tabsB _initWindowB       END (640x480)
+  61 tabsB __init__           WxH=(640x480)
+ 149 tabsB dumpBlank          len(.tblankCol)=6 len(.tblankRow)=50 .tblankCol=------ .tblankRow=--------------------------------------------------
+ 174 tabsB _initDataPath      dataName0=test.7.dat.asv
+ 175 tabsB _initDataPath      dataName1=test.7.dat
+ 176 tabsB _initDataPath      dataName2=test.7.dat.bck
 self.dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.7.dat.asv')
 self.dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.7.dat')
 self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.7.dat.bck')
- 169 tabsB readDataFile       BGN n=[1 1 1 50 6]
- 179 tabsB readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.7.dat 314 bytes = 0.3 KB
- 180 tabsB readDataFile       Raw Data File BGN:
+ 215 tabsB readDataFile       BGN n=[1 1 50 6]
+ 225 tabsB readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.7.dat 314 bytes = 0.3 KB
+ 226 tabsB readDataFile       Raw Data File BGN:
 12345678901234567890123456789012345678901234567890
---------------------------------------------------
---------------------------------------------------
---------------------------------------------------
---------------------------------------------------
--abcdefghijklmno-abcdefghijklmno-abcdefghijklmno--
+---------0---------0---------0---------0---------0
+---------0---------0---------0---------0---------0
+---------0---------0---------0---------0---------0
+---------0---------0---------0---------0---------0
+-abcdefghijklmno-abcdefghijklmno-abcdefghijklmno-0
 
- 194 tabsB readDataFile       Raw Data File END:
- 195 tabsB readDataFile       .fmtdl()=[1 1 6 50] .fmtdt()=[list list list str]
- 204 tabsB assertDataFileSize dsize=300 = nlines=  1 *     nr= 6 *   nt=50
- 205 tabsB assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
- 206 tabsB assertDataFileSize  size=314 =  dsize=300 +  crlfs= 14   ref=314
- 198 tabsB readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          300 tabs
- 199 tabsB readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 50 tabs per row
- 212 tabsB dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 50 tabs per line
-12345678901234567890123456789012345678901234567890 -------------------------------------------------- -------------------------------------------------- -------------------------------------------------- -------------------------------------------------- -abcdefghijklmno-abcdefghijklmno-abcdefghijklmno--
+ 240 tabsB readDataFile       Raw Data File END:
+ 241 tabsB readDataFile       .fmtdl()=[1 1 6 50] .fmtdt()=[list list list str]
+ 251 tabsB assertDataFileSize dsize=300 = nlines=  1 *     nr= 6 *   nt=50
+ 252 tabsB assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
+ 253 tabsB assertDataFileSize  size=314 =  dsize=300 +  crlfs= 14   ref=314
+ 244 tabsB readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          300 tabs
+ 245 tabsB readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 50 tabs per row
+ 259 tabsB dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 50 tabs per line
+12345678901234567890123456789012345678901234567890 ---------0---------0---------0---------0---------0 ---------0---------0---------0---------0---------0 ---------0---------0---------0---------0---------0 ---------0---------0---------0---------0---------0 -abcdefghijklmno-abcdefghijklmno-abcdefghijklmno-0
 
- 217 tabsB dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 50 tabs per line
-text='{font_name "Bravura Text"}{font_size 36}12345678901234567890123456789012345678901234567890\n{font_name "Bravura Text"}{font_size 36}--------------------------------------------------\n{font_name "Bravura Text"}{font_size 36}--------------------------------------------------\n{font_name "Bravura Text"}{font_size 36}--------------------------------------------------\n{font_name "Bravura Text"}{font_size 36}--------------------------------------------------\n{font_name "Bravura Text"}{font_size 36}-abcdefghijklmno-abcdefghijklmno-abcdefghijklmno--\n'
- 378 tabsB initView           lx=0 ly=0  lw=640 lh=480  rx=0 ry=0  rw=640 rh=480
-BGN self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=1.000 my=1.000
- lx=0 ly=0  lw= 640 lh= 480  rx=0 ry=0  rw= 640 rh= 480
- lx=0 ly=0  lw= 640 lh= 480  rx=0 ry=0  rw= 640 rh= 480
-END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=1.000 my=1.000
-BGN self.width=1920 self.height=1147 self.w= 640 self.h= 480 mx=3.000 my=2.390
- lx=0 ly=0  lw= 640 lh= 480  rx=0 ry=0  rw= 640 rh= 480
- lx=0 ly=0  lw=1920 lh=1147  rx=0 ry=0  rw=1920 rh=1147
-END self.width=1920 self.height=1147 self.w=1920 self.h=1147 mx=3.000 my=2.390
-BGN self.width= 640 self.height= 480 self.w=1920 self.h=1147 mx=0.333 my=0.418
- lx=0 ly=0  lw=1920 lh=1147  rx=0 ry=0  rw=1920 rh=1147
- lx=0 ly=0  lw= 640 lh= 479  rx=0 ry=0  rw= 640 rh= 479
-END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=0.333 my=0.418
-BGN self.width=1920 self.height=1147 self.w= 640 self.h= 480 mx=3.000 my=2.390
- lx=0 ly=0  lw= 640 lh= 479  rx=0 ry=0  rw= 640 rh= 479
- lx=0 ly=0  lw=1920 lh=1144  rx=0 ry=0  rw=1920 rh=1144
-END self.width=1920 self.height=1147 self.w=1920 self.h=1147 mx=3.000 my=2.390
-BGN self.width= 640 self.height= 480 self.w=1920 self.h=1147 mx=0.333 my=0.418
- lx=0 ly=0  lw=1920 lh=1144  rx=0 ry=0  rw=1920 rh=1144
- lx=0 ly=0  lw= 640 lh= 478  rx=0 ry=0  rw= 640 rh= 478
-END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=0.333 my=0.418
-BGN self.width=1920 self.height=1147 self.w= 640 self.h= 480 mx=3.000 my=2.390
- lx=0 ly=0  lw= 640 lh= 478  rx=0 ry=0  rw= 640 rh= 478
- lx=0 ly=0  lw=1920 lh=1142  rx=0 ry=0  rw=1920 rh=1142
-END self.width=1920 self.height=1147 self.w=1920 self.h=1147 mx=3.000 my=2.390
-BGN self.width= 640 self.height= 480 self.w=1920 self.h=1147 mx=0.333 my=0.418
- lx=0 ly=0  lw=1920 lh=1142  rx=0 ry=0  rw=1920 rh=1142
- lx=0 ly=0  lw= 640 lh= 477  rx=0 ry=0  rw= 640 rh= 477
-END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=0.333 my=0.418
-BGN self.width=1920 self.height=1027 self.w= 640 self.h= 480 mx=3.000 my=2.140
- lx=0 ly=0  lw= 640 lh= 477  rx=0 ry=0  rw= 640 rh= 477
- lx=0 ly=0  lw=1920 lh=1020  rx=0 ry=0  rw=1920 rh=1020
-END self.width=1920 self.height=1027 self.w=1920 self.h=1027 mx=3.000 my=2.140
-BGN self.width= 640 self.height= 480 self.w=1920 self.h=1027 mx=0.333 my=0.467
- lx=0 ly=0  lw=1920 lh=1020  rx=0 ry=0  rw=1920 rh=1020
- lx=0 ly=0  lw= 640 lh= 476  rx=0 ry=0  rw= 640 rh= 476
-END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=0.333 my=0.467
-BGN self.width=1920 self.height=1027 self.w= 640 self.h= 480 mx=3.000 my=2.140
- lx=0 ly=0  lw= 640 lh= 476  rx=0 ry=0  rw= 640 rh= 476
- lx=0 ly=0  lw=1920 lh=1018  rx=0 ry=0  rw=1920 rh=1018
-END self.width=1920 self.height=1027 self.w=1920 self.h=1027 mx=3.000 my=2.140
-BGN self.width= 640 self.height= 480 self.w=1920 self.h=1027 mx=0.333 my=0.467
- lx=0 ly=0  lw=1920 lh=1018  rx=0 ry=0  rw=1920 rh=1018
- lx=0 ly=0  lw= 640 lh= 475  rx=0 ry=0  rw= 640 rh= 475
-END self.width= 640 self.height= 480 self.w= 640 self.h= 480 mx=0.333 my=0.467
+ 264 tabsB dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 50 tabs per line
+  39 tabsB fsize              fs=14 w=640 h=480 c=50 l=6 fsx=17.92 fsy=80.0
+text='12345678901234567890123456789012345678901234567890\n---------0---------0---------0---------0---------0\n---------0---------0---------0---------0---------0\n---------0---------0---------0---------0---------0\n---------0---------0---------0---------0---------0\n-abcdefghijklmno-abcdefghijklmno-abcdefghijklmno-0\n'
+ 518 tabsB initViews          (0 0 640 480)
+ 477 tabsB dumpView            View[0] (0 0 640 480))
+ 479 tabsB dumpLbox            Lbox[0] (2 2 636 476) cw=550 ch=133 cva=top
+ 476 tabsB dumpRect            Rect[0] (2 2 636 476)
+ 308 tabsB dumpDataHorz       BGN (1x1x6x50) lc=1 ll=1 i=0
+Page 1 Line 1
+         11111111112222222222333333333344444444445
+12345678901234567890123456789012345678901234567890
+                                                     
+12345678901234567890123456789012345678901234567890
+---------0---------0---------0---------0---------0
+---------0---------0---------0---------0---------0
+---------0---------0---------0---------0---------0
+---------0---------0---------0---------0---------0
+-abcdefghijklmno-abcdefghijklmno-abcdefghijklmno-0
+
+ 321 tabsB dumpDataHorz       END (1x1x6x50) lc=1 ll=1 i=0
+ 497 tabsB on_resize          BGN (640x480) (1x1x6x50) [1 1 6 50] n=[1 1 6 50]
+ 498 tabsB on_resize           .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
+ 477 tabsB dumpView            View[0] (0 0 640 480))
+ 479 tabsB dumpLbox            Lbox[0] (2 2 636 476) cw=550 ch=133 cva=top
+ 476 tabsB dumpRect            Rect[0] (2 2 636 476)
+ 477 tabsB dumpView            View[0] (0 0 640 480))
+ 479 tabsB dumpLbox            Lbox[0] (2 2 636 476) cw=550 ch=133 cva=top
+ 476 tabsB dumpRect            Rect[0] (2 2 636.0 476.0)
+ 504 tabsB on_resize           .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
+ 505 tabsB on_resize          END (640x480) (1x1x6x50) [1 1 6 50] n=[1 1 6 50]
