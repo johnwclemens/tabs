@@ -1,50 +1,54 @@
- 568 tabsB <module>           LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 569 tabsB <module>           LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
- 128 util parseCmdLine       argv=[-f test.7.dat -n 1 1 50 6 -e]
+ 697 tabsB <module>           LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 698 tabsB <module>           LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+ 621 tabsB getFilePath        fdir=logs/ fsfx=.log
+ 625 tabsB getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
+ 635 tabsB getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log]
+ 637 tabsB getFileSeqNum      ids=[0 1]
+fGlob=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log]
+ 629 tabsB getFilePath        fsfx=.2.log
+  66 tabsB __init__           init() csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
+ 132 util parseCmdLine       argv=[-f test.7.dat -n 1 1 50 6 -e]
 C:/Users/Owner/Documents/GitHub/tabs/tabsB.py
- 144 util parseCmdLine        1 short   -f f [] 
- 162 util parseCmdLine        2 arg     test.7.dat f [test.7.dat] 
- 144 util parseCmdLine        3 short   -n n [] 
- 162 util parseCmdLine        4 arg     1  n [1] 
- 162 util parseCmdLine        5 arg     1  n [1 1] 
- 162 util parseCmdLine        6 arg     50 n [1 1 50] 
- 162 util parseCmdLine        7 arg     6  n [1 1 50 6] 
- 144 util parseCmdLine        8 short   -e e [] 
- 164 util parseCmdLine       options=[f:[test.7.dat]n:[1 1 50 6]e:[]]
- 117 tabsB _initArgs          argMap=[f:[test.7.dat]n:[1 1 50 6]e:[]]
- 128 tabsB dumpArgs           [e]   .EVENT_LOG=1
- 129 tabsB dumpArgs           [f]         .dfn=test.7.dat
- 130 tabsB dumpArgs           [F] .FULL_SCREEN=0
- 131 tabsB dumpArgs           [g] .ORDER_GROUP=1
- 132 tabsB dumpArgs           [n]            n=[1 1 50 6]
- 133 tabsB dumpArgs           [S]          .SS=[0]
- 134 tabsB dumpArgs           [v]     .VERBOSE=0
-  77 tabsB _initWindowA       BGN (NonexNone)
-  77 tabsB _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001D17B249630>
+ 148 util parseCmdLine        1 short   -f f [] 
+ 166 util parseCmdLine        2 arg     test.7.dat f [test.7.dat] 
+ 148 util parseCmdLine        3 short   -n n [] 
+ 166 util parseCmdLine        4 arg     1  n [1] 
+ 166 util parseCmdLine        5 arg     1  n [1 1] 
+ 166 util parseCmdLine        6 arg     50 n [1 1 50] 
+ 166 util parseCmdLine        7 arg     6  n [1 1 50 6] 
+ 148 util parseCmdLine        8 short   -e e [] 
+ 168 util parseCmdLine       options=[f:[test.7.dat]n:[1 1 50 6]e:[]]
+ 125 tabsB _initArgs          argMap=[f:[test.7.dat]n:[1 1 50 6]e:[]]
+ 136 tabsB dumpArgs           [e]   .EVENT_LOG=1
+ 137 tabsB dumpArgs           [f]         .dfn=test.7.dat
+ 138 tabsB dumpArgs           [F] .FULL_SCREEN=0
+ 139 tabsB dumpArgs           [g] .ORDER_GROUP=1
+ 140 tabsB dumpArgs           [n]            n=[1 1 50 6]
+ 141 tabsB dumpArgs           [S]          .SS=[0]
+ 142 tabsB dumpArgs           [v]     .VERBOSE=0
+  85 tabsB _initWindowA       BGN (NonexNone)
+  85 tabsB _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001330B5A85E0>
 screens[0] (   0,1200) (1920x1080) ri=0 rv=2,073,600
 screens[0] Win32ScreenMode(width=1920, height=1080, depth=32, rate=60, scaling=0)
 screens[1] (   0,   0) (1920x1200) ri=1 rv=2,304,000
 screens[1] Win32ScreenMode(width=1920, height=1200, depth=32, rate=59, scaling=0)
-  85 tabsB _initWindowA       .fsi=1 .fss=2,304,000 (1920x1200)
-  86 tabsB _initWindowA       END (NonexNone)
-  86 tabsB _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001D17B249630>
-  58 tabsB __init__           WxH=(NonexNone)
-  60 tabsB __init__           WxH=(640x480)
-  89 tabsB _initWindowB       BGN (640x480)
-  91 tabsB _initWindowB       windows[0] (   0,   0) (640x480)
-  94 tabsB _initWindowB       get_size=((640, 480)x480)
- 100 tabsB _initWindowB       END (640x480)
-  62 tabsB __init__           WxH=(640x480)
- 148 tabsB dumpBlank          len(.tblankCol)=6 len(.tblankRow)=50 .tblankCol=------ .tblankRow=--------------------------------------------------
- 173 tabsB _initDataPath      dataName0=test.7.dat.asv
- 174 tabsB _initDataPath      dataName1=test.7.dat
- 175 tabsB _initDataPath      dataName2=test.7.dat.bck
+  93 tabsB _initWindowA       .fsi=1 .fss=2,304,000 (1920x1200)
+  94 tabsB _initWindowA       END (NonexNone)
+  94 tabsB _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001330B5A85E0>
+  97 tabsB _initWindowB       BGN (640x480)
+  99 tabsB _initWindowB       windows[0] (   0,   0) (640x480)
+ 102 tabsB _initWindowB       get_size=((640, 480)x480)
+ 108 tabsB _initWindowB       END (640x480)
+ 156 tabsB dumpBlank          len(.tblankCol)=6 len(.tblankRow)=50 .tblankCol=       .tblankRow=                                                  
+ 181 tabsB _initDataPath      dataName0=test.7.dat.asv
+ 182 tabsB _initDataPath      dataName1=test.7.dat
+ 183 tabsB _initDataPath      dataName2=test.7.dat.bck
 self.dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.7.dat.asv')
 self.dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.7.dat')
 self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.7.dat.bck')
- 214 tabsB readDataFile       BGN n=[1 1 50 6]
- 224 tabsB readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.7.dat 314 bytes = 0.3 KB
- 225 tabsB readDataFile       Raw Data File BGN:
+ 222 tabsB readDataFile       BGN n=[1 1 50 6]
+ 232 tabsB readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.7.dat 314 bytes = 0.3 KB
+ 233 tabsB readDataFile       Raw Data File BGN:
 12345678901234567890123456789012345678901234567890
 ---------0---------0---------0---------0---------0
 ---------0---------0---------0---------0---------0
@@ -52,30 +56,30 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.7.dat
 ---------0---------0---------0---------0---------0
 -abcdefghijklmno-abcdefghijklmno-abcdefghijklmno-0
 
- 239 tabsB readDataFile       Raw Data File END:
- 240 tabsB readDataFile       .fmtdl()=[1 1 6 50] .fmtdt()=[list list list str]
- 250 tabsB assertDataFileSize dsize=300 = nlines=  1 *     nr= 6 *   nt=50
- 251 tabsB assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
- 252 tabsB assertDataFileSize  size=314 =  dsize=300 +  crlfs= 14   ref=314
- 243 tabsB readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          300 tabs
- 244 tabsB readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 50 tabs per row
- 258 tabsB dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 50 tabs per line
+ 247 tabsB readDataFile       Raw Data File END:
+ 248 tabsB readDataFile       .fmtdl()=[1 1 6 50] .fmtdt()=[list list list str]
+ 258 tabsB assertDataFileSize dsize=300 = nlines=  1 *     nr= 6 *   nt=50
+ 259 tabsB assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
+ 260 tabsB assertDataFileSize  size=314 =  dsize=300 +  crlfs= 14   ref=314
+ 251 tabsB readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          300 tabs
+ 252 tabsB readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 50 tabs per row
+ 266 tabsB dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 50 tabs per line
 12345678901234567890123456789012345678901234567890 ---------0---------0---------0---------0---------0 ---------0---------0---------0---------0---------0 ---------0---------0---------0---------0---------0 ---------0---------0---------0---------0---------0 -abcdefghijklmno-abcdefghijklmno-abcdefghijklmno-0
 
- 263 tabsB dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 50 tabs per line
-  40 tabsB fsize              c=50 s=6 w=640 h=480 fsx=17.02 fsy=80.00 fs=38.00
+ 271 tabsB dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 50 tabs per line
+  46 tabsB fsize              c=50 s=6 w=640 h=480 fsx=17.02 fsy=80.00 fs=38.00
 text='12345678901234567890123456789012345678901234567890\n---------0---------0---------0---------0---------0\n---------0---------0---------0---------0---------0\n---------0---------0---------0---------0---------0\n---------0---------0---------0---------0---------0\n-abcdefghijklmno-abcdefghijklmno-abcdefghijklmno-0\n'
- 549 tabsB __init__           c=50 s=6 foo=Fraction(4, 3)
- 556 tabsB setCursor          BGN .lbox.selection_start=0 .lbox.selection_end=0
- 558 tabsB setCursor          END .lbox.selection_start=0 .lbox.selection_end=1
- 524 tabsB initViews          (0 0 640 480)
- 479 tabsB dumpView           View[0] (0 0 640 480))
-View[0] v.caret.line=0 v.caret.position=0 v.caret.mark=1 v.lbox.selection_start=0 v.lbox.selection_end=1
- 484 tabsB dumpLbox           Lbox[0] (2 2 636 476) cw=1550 ch=357 cva=top
- 485 tabsB dumpLbox           Lbox[0] l.selection_start=0 l.selection_end=1
- 482 tabsB dumpRect           Rect[0] (2 2 636 476)
- 470 tabsB set_focus          .focus.caret.visible=True
- 307 tabsB dumpDataHorz       BGN (1x1x6x50) lc=1 ll=1 i=0
+ 681 tabsB __init__           c=50 s=6 foo=Fraction(4, 3)
+ 685 tabsB setCursor          BGN .lbox.selection_start=  0 .lbox.selection_end=  0
+ 687 tabsB setCursor          END .lbox.selection_start=  0 .lbox.selection_end=  1
+ 596 tabsB initViews          (0 0 640 480)
+ 544 tabsB dumpView           V[0] (0 0 640 480))
+V[0] v.caret.line=0 v.caret.position=0 v.caret.mark=1 v.lbox.selection_start=0 v.lbox.selection_end=1
+ 549 tabsB dumpLbox           L[0] (2 2 636 476) cw=1550 ch=357 cva=top
+ 550 tabsB dumpLbox           L[0] l.selection_start=0 l.selection_end=1
+ 553 tabsB dumpRect           R[0] (2 2 636 476)
+ 535 tabsB set_focus          .focus.caret.visible=True
+ 315 tabsB dumpDataHorz       BGN (1x1x6x50) lc=1 ll=1 i=0
 Page 1 Line 1
          11111111112222222222333333333344444444445
 12345678901234567890123456789012345678901234567890
@@ -87,130 +91,18 @@ Page 1 Line 1
 ---------0---------0---------0---------0---------0
 -abcdefghijklmno-abcdefghijklmno-abcdefghijklmno-0
 
- 320 tabsB dumpDataHorz       END (1x1x6x50) lc=1 ll=1 i=0
- 503 tabsB on_resize           BGN (640x480) (1x1x6x50) [1 1 6 50] n=[1 1 6 50]
- 504 tabsB on_resize           .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
- 479 tabsB dumpView           View[0] (0 0 640 480))
-View[0] v.caret.line=0 v.caret.position=0 v.caret.mark=1 v.lbox.selection_start=0 v.lbox.selection_end=1
- 484 tabsB dumpLbox           Lbox[0] (2 2 636 476) cw=1550 ch=357 cva=top
- 485 tabsB dumpLbox           Lbox[0] l.selection_start=0 l.selection_end=1
- 482 tabsB dumpRect           Rect[0] (2 2 636 476)
- 479 tabsB dumpView           View[0] (0 0 640 480))
-View[0] v.caret.line=0 v.caret.position=0 v.caret.mark=1 v.lbox.selection_start=0 v.lbox.selection_end=1
- 484 tabsB dumpLbox           Lbox[0] (2 2 636 476) cw=1550 ch=357 cva=top
- 485 tabsB dumpLbox           Lbox[0] l.selection_start=0 l.selection_end=1
- 482 tabsB dumpRect           Rect[0] (2 2 636.0 476.0)
- 510 tabsB on_resize           .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
- 511 tabsB on_resize           END (640x480) (1x1x6x50) [1 1 6 50] n=[1 1 6 50]
- 452 tabsB on_key_press       BGN <RIGHT   > <   65363> <RIGHT           > < 0> <                >
- 461 tabsB on_key_press       END <RIGHT   > <   65363> <RIGHT           > < 0> <                >
- 386 tabsB on_text_motion     BGN <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
- 387 tabsB on_text_motion     .focus.caret.mark=1 .focus.caret.position=0
- 388 tabsB on_text_motion      focus.caret.on_text_motion 65363
- 434 tabsB move                BGN  RIGHT (65363) 65363
- 436 tabsB move                Old v.caret.line=0 v.caret.position=1 v.caret.mark=None v.lbox.selection_start=0 v.lbox.selection_end=0
- 556 tabsB setCursor          BGN .lbox.selection_start=0 .lbox.selection_end=0
- 558 tabsB setCursor          END .lbox.selection_start=1 .lbox.selection_end=2
- 444 tabsB move                New v.caret.line=0 v.caret.position=1 v.caret.mark=2 v.lbox.selection_start=1 v.lbox.selection_end=2
- 445 tabsB move                END  RIGHT (65363) 65363
- 422 tabsB on_text_motion     END <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
- 452 tabsB on_key_press       BGN <RIGHT   > <   65363> <RIGHT           > < 0> <                >
- 461 tabsB on_key_press       END <RIGHT   > <   65363> <RIGHT           > < 0> <                >
- 386 tabsB on_text_motion     BGN <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
- 387 tabsB on_text_motion     .focus.caret.mark=2 .focus.caret.position=1
- 388 tabsB on_text_motion      focus.caret.on_text_motion 65363
- 434 tabsB move                BGN  RIGHT (65363) 65363
- 436 tabsB move                Old v.caret.line=0 v.caret.position=2 v.caret.mark=None v.lbox.selection_start=0 v.lbox.selection_end=0
- 556 tabsB setCursor          BGN .lbox.selection_start=0 .lbox.selection_end=0
- 558 tabsB setCursor          END .lbox.selection_start=2 .lbox.selection_end=3
- 444 tabsB move                New v.caret.line=0 v.caret.position=2 v.caret.mark=3 v.lbox.selection_start=2 v.lbox.selection_end=3
- 445 tabsB move                END  RIGHT (65363) 65363
- 422 tabsB on_text_motion     END <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
- 452 tabsB on_key_press       BGN <RIGHT   > <   65363> <RIGHT           > < 0> <                >
- 461 tabsB on_key_press       END <RIGHT   > <   65363> <RIGHT           > < 0> <                >
- 386 tabsB on_text_motion     BGN <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
- 387 tabsB on_text_motion     .focus.caret.mark=3 .focus.caret.position=2
- 388 tabsB on_text_motion      focus.caret.on_text_motion 65363
- 434 tabsB move                BGN  RIGHT (65363) 65363
- 436 tabsB move                Old v.caret.line=0 v.caret.position=3 v.caret.mark=None v.lbox.selection_start=0 v.lbox.selection_end=0
- 556 tabsB setCursor          BGN .lbox.selection_start=0 .lbox.selection_end=0
- 558 tabsB setCursor          END .lbox.selection_start=3 .lbox.selection_end=4
- 444 tabsB move                New v.caret.line=0 v.caret.position=3 v.caret.mark=4 v.lbox.selection_start=3 v.lbox.selection_end=4
- 445 tabsB move                END  RIGHT (65363) 65363
- 422 tabsB on_text_motion     END <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
- 452 tabsB on_key_press       BGN <DOWN    > <   65364> <DOWN            > < 0> <                >
- 461 tabsB on_key_press       END <DOWN    > <   65364> <DOWN            > < 0> <                >
- 386 tabsB on_text_motion     BGN <   65364> <   65364> <DOWN            > < 0> <                > motion=65364
- 387 tabsB on_text_motion     .focus.caret.mark=4 .focus.caret.position=3
- 388 tabsB on_text_motion      focus.caret.on_text_motion 65364
- 434 tabsB move                BGN  DOWN  (65364) 65364
- 436 tabsB move                Old v.caret.line=1 v.caret.position=54 v.caret.mark=None v.lbox.selection_start=0 v.lbox.selection_end=0
- 556 tabsB setCursor          BGN .lbox.selection_start=0 .lbox.selection_end=0
- 558 tabsB setCursor          END .lbox.selection_start=54 .lbox.selection_end=55
- 444 tabsB move                New v.caret.line=1 v.caret.position=54 v.caret.mark=55 v.lbox.selection_start=54 v.lbox.selection_end=55
- 445 tabsB move                END  DOWN  (65364) 65364
- 422 tabsB on_text_motion     END <   65364> <   65364> <DOWN            > < 0> <                > motion=65364
- 452 tabsB on_key_press       BGN <RIGHT   > <   65363> <RIGHT           > < 0> <                >
- 461 tabsB on_key_press       END <RIGHT   > <   65363> <RIGHT           > < 0> <                >
- 386 tabsB on_text_motion     BGN <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
- 387 tabsB on_text_motion     .focus.caret.mark=55 .focus.caret.position=54
- 388 tabsB on_text_motion      focus.caret.on_text_motion 65363
- 434 tabsB move                BGN  RIGHT (65363) 65363
- 436 tabsB move                Old v.caret.line=1 v.caret.position=55 v.caret.mark=None v.lbox.selection_start=0 v.lbox.selection_end=0
- 556 tabsB setCursor          BGN .lbox.selection_start=0 .lbox.selection_end=0
- 558 tabsB setCursor          END .lbox.selection_start=55 .lbox.selection_end=56
- 444 tabsB move                New v.caret.line=1 v.caret.position=55 v.caret.mark=56 v.lbox.selection_start=55 v.lbox.selection_end=56
- 445 tabsB move                END  RIGHT (65363) 65363
- 422 tabsB on_text_motion     END <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
- 452 tabsB on_key_press       BGN <DOWN    > <   65364> <DOWN            > < 0> <                >
- 461 tabsB on_key_press       END <DOWN    > <   65364> <DOWN            > < 0> <                >
- 386 tabsB on_text_motion     BGN <   65364> <   65364> <DOWN            > < 0> <                > motion=65364
- 387 tabsB on_text_motion     .focus.caret.mark=56 .focus.caret.position=55
- 388 tabsB on_text_motion      focus.caret.on_text_motion 65364
- 434 tabsB move                BGN  DOWN  (65364) 65364
- 436 tabsB move                Old v.caret.line=2 v.caret.position=106 v.caret.mark=None v.lbox.selection_start=0 v.lbox.selection_end=0
- 556 tabsB setCursor          BGN .lbox.selection_start=0 .lbox.selection_end=0
- 558 tabsB setCursor          END .lbox.selection_start=106 .lbox.selection_end=107
- 444 tabsB move                New v.caret.line=2 v.caret.position=106 v.caret.mark=107 v.lbox.selection_start=106 v.lbox.selection_end=107
- 445 tabsB move                END  DOWN  (65364) 65364
- 422 tabsB on_text_motion     END <   65364> <   65364> <DOWN            > < 0> <                > motion=65364
- 452 tabsB on_key_press       BGN <LEFT    > <   65361> <LEFT            > < 0> <                >
- 461 tabsB on_key_press       END <LEFT    > <   65361> <LEFT            > < 0> <                >
- 386 tabsB on_text_motion     BGN <   65361> <   65361> <LEFT            > < 0> <                > motion=65361
- 387 tabsB on_text_motion     .focus.caret.mark=107 .focus.caret.position=106
- 388 tabsB on_text_motion      focus.caret.on_text_motion 65361
- 434 tabsB move                BGN  LEFT  (65361) 65361
- 436 tabsB move                Old v.caret.line=2 v.caret.position=105 v.caret.mark=None v.lbox.selection_start=0 v.lbox.selection_end=0
- 556 tabsB setCursor          BGN .lbox.selection_start=0 .lbox.selection_end=0
- 558 tabsB setCursor          END .lbox.selection_start=105 .lbox.selection_end=106
- 444 tabsB move                New v.caret.line=2 v.caret.position=105 v.caret.mark=106 v.lbox.selection_start=105 v.lbox.selection_end=106
- 445 tabsB move                END  LEFT  (65361) 65361
- 422 tabsB on_text_motion     END <   65361> <   65361> <LEFT            > < 0> <                > motion=65361
- 452 tabsB on_key_press       BGN <A       > <      97> <A               > < 0> <                >
- 461 tabsB on_key_press       END <A       > <      97> <A               > < 0> <                >
- 380 tabsB on_text            BGN text=a .focus.caret.mark=106 .focus.caret.position=105
- 382 tabsB on_text            END text=a .focus.caret.mark=None .focus.caret.position=106
- 452 tabsB on_key_press       BGN <RIGHT   > <   65363> <RIGHT           > < 0> <                >
- 461 tabsB on_key_press       END <RIGHT   > <   65363> <RIGHT           > < 0> <                >
- 386 tabsB on_text_motion     BGN <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
- 387 tabsB on_text_motion     .focus.caret.mark=None .focus.caret.position=106
- 388 tabsB on_text_motion      focus.caret.on_text_motion 65363
- 434 tabsB move                BGN  RIGHT (65363) 65363
- 436 tabsB move                Old v.caret.line=2 v.caret.position=107 v.caret.mark=None v.lbox.selection_start=0 v.lbox.selection_end=0
- 556 tabsB setCursor          BGN .lbox.selection_start=0 .lbox.selection_end=0
- 558 tabsB setCursor          END .lbox.selection_start=107 .lbox.selection_end=108
- 444 tabsB move                New v.caret.line=2 v.caret.position=107 v.caret.mark=108 v.lbox.selection_start=107 v.lbox.selection_end=108
- 445 tabsB move                END  RIGHT (65363) 65363
- 422 tabsB on_text_motion     END <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
- 452 tabsB on_key_press       BGN <LEFT    > <   65361> <LEFT            > < 0> <                >
- 461 tabsB on_key_press       END <LEFT    > <   65361> <LEFT            > < 0> <                >
- 386 tabsB on_text_motion     BGN <   65361> <   65361> <LEFT            > < 0> <                > motion=65361
- 387 tabsB on_text_motion     .focus.caret.mark=108 .focus.caret.position=107
- 388 tabsB on_text_motion      focus.caret.on_text_motion 65361
- 434 tabsB move                BGN  LEFT  (65361) 65361
- 436 tabsB move                Old v.caret.line=2 v.caret.position=106 v.caret.mark=None v.lbox.selection_start=0 v.lbox.selection_end=0
- 556 tabsB setCursor          BGN .lbox.selection_start=0 .lbox.selection_end=0
- 558 tabsB setCursor          END .lbox.selection_start=106 .lbox.selection_end=107
- 444 tabsB move                New v.caret.line=2 v.caret.position=106 v.caret.mark=107 v.lbox.selection_start=106 v.lbox.selection_end=107
- 445 tabsB move                END  LEFT  (65361) 65361
- 422 tabsB on_text_motion     END <   65361> <   65361> <LEFT            > < 0> <                > motion=65361
+ 328 tabsB dumpDataHorz       END (1x1x6x50) lc=1 ll=1 i=0
+ 575 tabsB on_resize          BGN (640x480) (1x1x6x50) [1 1 6 50] n=[1 1 6 50]
+ 576 tabsB on_resize          .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
+ 544 tabsB dumpView           V[0] (0 0 640 480))
+V[0] v.caret.line=0 v.caret.position=0 v.caret.mark=1 v.lbox.selection_start=0 v.lbox.selection_end=1
+ 549 tabsB dumpLbox           L[0] (2 2 636 476) cw=1550 ch=357 cva=top
+ 550 tabsB dumpLbox           L[0] l.selection_start=0 l.selection_end=1
+ 553 tabsB dumpRect           R[0] (2 2 636 476)
+ 544 tabsB dumpView           V[0] (0 0 640 480))
+V[0] v.caret.line=0 v.caret.position=0 v.caret.mark=1 v.lbox.selection_start=0 v.lbox.selection_end=1
+ 549 tabsB dumpLbox           L[0] (2 2 636 476) cw=1550 ch=357 cva=top
+ 550 tabsB dumpLbox           L[0] l.selection_start=0 l.selection_end=1
+ 553 tabsB dumpRect           R[0] (2 2 636.0 476.0)
+ 582 tabsB on_resize          .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
+ 583 tabsB on_resize          END (640x480) (1x1x6x50) [1 1 6 50] n=[1 1 6 50]

@@ -40,10 +40,6 @@ JFMT             = [   1,       2,       2,       3,      4,      4,       4,   
 TT, NN, II, KK   =  0,  1,  2,  3
 C1,  C2          =  0,  1
 NORMAL_STYLE, CURRENT_STYLE, SELECT_STYLE, COPY_STYLE = 0, 1, 2, 3
-INIT             = '###   Init   ###' * 13
-QUIT_BGN         = '###   BGN Quit   ###' * 10
-QUIT             = '###   Quit   ###' * 13
-QUIT_END         = '###   END Quit   ###' * 10
 CSR_MODES        = ['MELODY', 'CHORD', 'ARPG']
 HARROWS, VARROWS = ['LEFT', 'RIGHT'], ['UP', 'DOWN']
 MELODY, CHORD, ARPG   = 0, 1, 2
@@ -167,7 +163,7 @@ class Tabs(pyglet.window.Window):
         self.ay = 'bottom' # bottom baseline center top
         self._reinit()
         self.log(f'END {__class__}')
-        self.log(f'{INIT}', pfx=0)
+        self.log(f'{util.INIT}', pfx=0)
 
     def dumpArgs(self):
         self.log(f'[f]              {self.dfn=}')
@@ -2155,17 +2151,17 @@ class Tabs(pyglet.window.Window):
         util.slog(msg, pfx, file, flush, sep, end)
     ####################################################################################################################################################################################################
     def quit(self, why='', error=1, save=1, dbg=1): #, dbg2=1):
-        util.dumpStack(inspect.stack(), file=LOG_FILE)    ;   self.log(QUIT_BGN,     pfx=0)
+        util.dumpStack(inspect.stack(), file=LOG_FILE)    ;   self.log(util.QUIT_BGN,     pfx=0)
         if error:      self.dumpTniksSfx(why)
         util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
-        self.log(f'BGN {why} {error=} {save=}')           ;   self.log(QUIT_BGN, pfx=0)
+        self.log(f'BGN {why} {error=} {save=}')           ;   self.log(util.QUIT_BGN, pfx=0)
         self.dumpArgs()
         if      save:  self.saveDataFile(why, self.dataPath1)
         if not error:
             if   dbg:  self.dumpStruct(why)
             if   dbg:  self.NEW_transposeData(dump=dbg) if self.USE_NEW else self.OLD_transposeData()
             if   dbg:  self.cobj.dumpMlimap(why)
-        self.log(f'END {why} {error=} {save=}')           ;   self.log(QUIT_END, pfx=0)
+        self.log(f'END {why} {error=} {save=}')           ;   self.log(util.QUIT_END, pfx=0)
         self.cleanupLog()
         pyglet.app.exit()
     ####################################################################################################################################################################################################
