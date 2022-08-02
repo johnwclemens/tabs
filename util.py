@@ -17,7 +17,7 @@ QUIT_BGN         = '###   BGN Quit   ###' * 10
 QUIT             = '###   Quit   ###'     * 13
 QUIT_END         = '###   END Quit   ###' * 10
 #STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
-STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo'] # , 'dumpView', 'dumpLbox', 'dumpRect']
+STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCursor'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1):
     if dbg: slog(f'{baseName = } {basePath = }')
@@ -28,23 +28,23 @@ def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1):
 ########################################################################################################################################################################################################
 def fmtl(ls, w=None, u='>', d1='[', d2=']', sep=' ', ll=0, z=''):
     lts = (list, tuple, set, frozenset)  ;  dts = (int, float, str)
-    assert type(ls) in (lts)
+    assert type(ls) in lts
     if d1 == '': d2 = ''
     w = w if w else ''
     t = ''   ;   s = f'<{len(ls)}' if ll else ''
     for i, l in enumerate(ls):
-        if type(l) in (lts):
+        if type(l) in lts:
 #            d0 = sep + d1 if not i else d1  ;  d3 = d2 + sep
-            if type(w) in (lts):               t += fmtl(l, w[i], u, d1, d2, sep, ll, z)
-            else:                              t += fmtl(l, w,    u, d1, d2, sep, ll, z)
+            if type(w) in lts:               t += fmtl(l, w[i], u, d1, d2, sep, ll, z)
+            else:                            t += fmtl(l, w,    u, d1, d2, sep, ll, z)
         else:
             ss = sep if i < len(ls)-1 else ''
-            if   type(l) is type:              l =  str(l)
-            elif l is None:                    l =  'None'
-            if   type(w) in (lts):             t += f'{l:{u}{w[i]}{z}}{ss}'
-            elif type(l) in (dts):             t += f'{l:{u}{w   }{z}}{ss}'
-            else:                              t += f'{l}{ss}'
-#            else:                                   msg = f'ERROR l={l} is type {type(l)}'   ;   slog(msg)   ;   raise SystemExit(msg)
+            if   type(l) is type:            l =  str(l)
+            elif l is None:                  l =  'None'
+            if   type(w) in lts:             t += f'{l:{u}{w[i]}{z}}{ss}'
+            elif type(l) in dts:             t += f'{l:{u}{w   }{z}}{ss}'
+            else:                            t += f'{l}{ss}'
+#            else:                             msg = f'ERROR l={l} is type {type(l)}'   ;   slog(msg)   ;   raise SystemExit(msg)
     return s + d1 + t + d2
 
 def fmtm(m, w=1, d0=':', d1='[', d2=']'):
