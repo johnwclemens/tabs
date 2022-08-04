@@ -93,8 +93,8 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
 #        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
         fp = pathlib.Path(sf.f_code.co_filename)
         msg = f'{sf.f_lineno:4} {fp.stem} {sf.f_code.co_name:18} ' + msg
-    print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
-    if so: print(f'{msg}', file=os.fsync(sys.stdout), flush=flush, sep=sep, end=end)
+    print(       f'{msg}', flush=flush, sep=sep, end=end, file=file)
+    if so: print(f'{msg}', flush=flush, sep=sep, end=end, file=sys.stdout)
     if flush: os.fsync(file)  ;  os.fsync(sys.stdout) if so else None
 
 def OLD__slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
@@ -110,11 +110,9 @@ def OLD__slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
         msg = msg.replace('util.', '.')
         msg = msg.replace('"', '')
         msg = msg.replace("'", '')
-    print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
-    if so: print(f'{msg}', file=None, flush=flush, sep=sep, end=end)
+    print(       f'{msg}', flush=flush, sep=sep, end=end, file=file)
+    if so: print(f'{msg}', flush=flush, sep=sep, end=end, file=sys.stdout)
     if flush: os.fsync(file)  ;  os.fsync(sys.stdout) if so else None
-#        print(f'{msg}', file=file, flush=flush, sep=sep, end=end) if pfx else print(f'{msg}', file=file, flush=flush, sep=sep, end=end)
-#        if file != LOG_FILE: Tabs.slog(msg, pfx, flush=False, sep=',', end=end)
 ########################################################################################################################################################################################################
 def copyFile(src, trg, file=None):
     if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;  raise SystemExit(msg)
