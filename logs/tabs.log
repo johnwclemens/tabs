@@ -1,12 +1,12 @@
- 784 tabs <module>           LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 785 tabs <module>           LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+ 814 tabs <module>           LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 815 tabs <module>           LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
   47 tabs __init__           init args=() kwargs={}
- 702 tabs getFilePath        fdir=logs/ fsfx=.log
- 706 tabs getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
- 716 tabs getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log]
- 718 tabs getFileSeqNum      ids=[0 1]
-fGlob=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log]
- 710 tabs getFilePath        fsfx=.2.log
+ 732 tabs getFilePath        fdir=logs/ fsfx=.log
+ 736 tabs getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
+ 746 tabs getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
+ 748 tabs getFileSeqNum      ids=[0 1 10 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 4 5 6 7 8 9]
+fGlob=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
+ 740 tabs getFilePath        fsfx=.38.log
   60 tabs __init__           init() csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
  130 util parseCmdLine       argv=[-f test.0.dat -n 1 1 20 6 -s -a]
 C:/Users/Owner/Documents/GitHub/tabs/tabs.py
@@ -39,14 +39,14 @@ C:/Users/Owner/Documents/GitHub/tabs/tabs.py
  223 util __init__           cpoLabel    =       CAPO 
   65 tabs __init__           .Note.TYPE=1
   84 tabs _initWindowA       BGN (NonexNone)
-  84 tabs _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000024B0B3E83D0>
+  84 tabs _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x00000242DDB20700>
 screens[0] (   0,1200) (1920x1080) ri=0 rv=2,073,600
 screens[0] Win32ScreenMode(width=1920, height=1080, depth=32, rate=60, scaling=0)
 screens[1] (   0,   0) (1920x1200) ri=1 rv=2,304,000
 screens[1] Win32ScreenMode(width=1920, height=1200, depth=32, rate=59, scaling=0)
   92 tabs _initWindowA       .fsi=1 .fss=2,304,000 (1920x1200)
   93 tabs _initWindowA       END (NonexNone)
-  93 tabs _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000024B0B3E83D0>
+  93 tabs _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x00000242DDB20700>
   96 tabs _initWindowB       BGN (640x480)
   98 tabs _initWindowB       windows[0] (   0,   0) (640x480)
  101 tabs _initWindowB       get_size=((640, 480)x480)
@@ -61,9 +61,9 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.0.dat
  225 tabs readDataFile       BGN n=[1 1 20 6]
  235 tabs readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat 134 bytes = 0.1 KB
  236 tabs readDataFile       Raw Data File BGN:
-1-3-5-7-------------
---------------------
---------------------
+%^_+----------------
+--31-5--------------
+----2---------------
 --------------------
 --------------------
 --------------------
@@ -76,142 +76,280 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.0.dat
  254 tabs readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          120 tabs
  255 tabs readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 20 tabs per row
  269 tabs dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 20 tabs per line
-1-3-5-7------------- -------------------- -------------------- -------------------- -------------------- --------------------
+%^_+---------------- --31-5-------------- ----2--------------- -------------------- -------------------- --------------------
 
  274 tabs dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 20 tabs per line
   40 tabs fsize              c=20 s=6 w=640 h=480 fsx=42.56 fsy=80.00 fs=123.00 fs2=36.90
-text='1-3-5-7-------------\n--------------------\n--------------------\n--------------------\n--------------------\n--------------------\n'
- 762 tabs __init__           c=20 s=6 foo=Fraction(4, 3)
- 770 tabs dumpCrs            BGN i=0 j=1     sel=0:0 crt=0 0:None 
- 770 tabs dumpCrs            END i=0 j=1     sel=0:1 crt=0 0:1 
- 676 tabs initViews          (0 0 640 480)
- 770 tabs dumpCrs            V[0] (0 0 640 480)) sel=0:1 crt=0 0:1 
- 629 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
- 630 tabs dumpLbox           L[0] sel=0:1
- 633 tabs dumpRect           R[0] (2 2 636 476)
+text='%^_+----------------\n--31-5--------------\n----2---------------\n--------------------\n--------------------\n--------------------\n'
+ 792 tabs __init__           c=20 s=6 foo=Fraction(4, 3)
+ 796 tabs setCrs             BGN i=0 j=1      sel=0:0 crt=0 0:None 
+ 798 tabs setCrs             END i=0 j=1      sel=0:1 crt=0 0:1 
+ 706 tabs initViews          (0 0 640 480)
+ 654 tabs dumpView           V[0] (0 0 640 480))  sel=0:1 crt=0 0:1 
+ 659 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
+ 660 tabs dumpLbox           L[0] sel=0:1
+ 663 tabs dumpRect           R[0] (2 2 636 476)
  318 tabs dumpDataHorz       BGN (1x1x6x20) lc=1 ll=1 i=0
 Page 1 Line 1
          11111111112
 12345678901234567890
                        
-1-3-5-7-------------
---------------------
---------------------
+%^_+----------------
+--31-5--------------
+----2---------------
 --------------------
 --------------------
 --------------------
 
  331 tabs dumpDataHorz       END (1x1x6x20) lc=1 ll=1 i=0
- 655 tabs on_resize          BGN (640x480) (1x1x6x20) [1 1 6 20] n=[1 1 6 20]
- 656 tabs on_resize          .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
- 770 tabs dumpCrs            V[0] (0 0 640 480)) sel=0:1 crt=0 0:1 
- 629 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
- 630 tabs dumpLbox           L[0] sel=0:1
- 633 tabs dumpRect           R[0] (2 2 636 476)
- 770 tabs dumpCrs            V[0] (0 0 640 480)) sel=0:1 crt=0 0:1 
- 629 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
- 630 tabs dumpLbox           L[0] sel=0:1
- 633 tabs dumpRect           R[0] (2 2 636.0 476.0)
- 662 tabs on_resize          .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
- 663 tabs on_resize          END (640x480) (1x1x6x20) [1 1 6 20] n=[1 1 6 20]
- 432 tabs on_key_press       sel=0:1 crt=0 0:1  [65363] : [RIGHT]
- 466 tabs on_text_motion     sel=0:1 crt=0 0:1  [65363] : [RIGHT]
- 467 tabs on_text_motion     BGN fc=( 0:1,   0:1) m=65363
- 468 tabs on_text_motion         fc=0sel=0:1 crt=0 0:1  m=65363
- 470 tabs on_text_motion     fc.on_text_motion(65363)  0sel=0:1 crt=0 0:1  fc.on_text_motion(65363)  0sel=0:0 crt=0 1:None 
- 538 tabs move               BGN RIGHT 65363 65363
- 770 tabs dumpCrs            v[0] bef mv m=65363 sel=0:0 crt=0 1:None 
- 541 tabs move               ( 1:None,   1:None)
- 770 tabs dumpCrs            BGN i=1 j=1     sel=0:0 crt=0 1:None 
- 770 tabs dumpCrs            END i=1 j=1     sel=1:2 crt=0 1:2 
- 770 tabs dumpCrs            v[0] aft mv m=65363 sel=1:2 crt=0 1:2 
- 544 tabs move               END RIGHT 65363 65363
- 684 tabs snapshot           LOG_ID=.2 .otm SNAP_ID=.0 RIGHT 65363
- 685 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.0 SNAP_SFX=.png
-SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.2.otm.0.png')
- 688 tabs snapshot           SNAP_ID=.0   SNAP_NAME=tabs.2.otm.0.png
- 690 tabs snapshot           SNAP_NAME=tabs.2.otm.0.png RIGHT 65363
- 512 tabs on_text_motion         fc=0sel=1:2 crt=0 1:2  m=65363
- 513 tabs on_text_motion     END fc=( 1:2,   1:2) m=65363
- 444 tabs on_key_release     sel=1:2 crt=0 1:2  [] : []
- 432 tabs on_key_press       sel=1:2 crt=0 1:2  [65363] : [RIGHT]
- 466 tabs on_text_motion     sel=1:2 crt=0 1:2  [65363] : [RIGHT]
- 467 tabs on_text_motion     BGN fc=( 1:2,   1:2) m=65363
- 468 tabs on_text_motion         fc=0sel=1:2 crt=0 1:2  m=65363
- 470 tabs on_text_motion     fc.on_text_motion(65363)  0sel=1:2 crt=0 1:2  fc.on_text_motion(65363)  0sel=0:0 crt=0 2:None 
- 538 tabs move               BGN RIGHT 65363 65363
- 770 tabs dumpCrs            v[0] bef mv m=65363 sel=0:0 crt=0 2:None 
- 541 tabs move               ( 2:None,   2:None)
- 770 tabs dumpCrs            BGN i=2 j=1     sel=0:0 crt=0 2:None 
- 770 tabs dumpCrs            END i=2 j=1     sel=2:3 crt=0 2:3 
- 770 tabs dumpCrs            v[0] aft mv m=65363 sel=2:3 crt=0 2:3 
- 544 tabs move               END RIGHT 65363 65363
- 684 tabs snapshot           LOG_ID=.2 .otm SNAP_ID=.1 RIGHT 65363
- 685 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.1 SNAP_SFX=.png
-SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.2.otm.1.png')
- 688 tabs snapshot           SNAP_ID=.1   SNAP_NAME=tabs.2.otm.1.png
- 690 tabs snapshot           SNAP_NAME=tabs.2.otm.1.png RIGHT 65363
- 512 tabs on_text_motion         fc=0sel=2:3 crt=0 2:3  m=65363
- 513 tabs on_text_motion     END fc=( 2:3,   2:3) m=65363
- 444 tabs on_key_release     sel=2:3 crt=0 2:3  [] : []
- 432 tabs on_key_press       sel=2:3 crt=0 2:3  [51] : [_3]
- 452 tabs on_text            sel=2:3 crt=0 2:3  [51] : [_3]
- 453 tabs on_text            BGN fc=( 2:3,   2:3) <3>
- 454 tabs on_text                fc=0sel=2:3 crt=0 2:3  <3>
- 570 tabs setTab             3 .CODE_A=1 <text=3>
- 573 tabs setTab             BGN 3 text=3 data=3 rev=0 cc=40 plct=0 0 0 2
- 590 tabs setDTNIK           BGN cc=40 kk=1    text=3
- 601 tabs setData            BGN t=2 text=3 data=1-3-5-7-------------
- 604 tabs setData            END t=2 text=3 data=1-3-5-7-------------
- 597 tabs setDTNIK           END cc=40 kk=1    text=3
- 576 tabs setTab             END 3 text=3 data=3 rev=0 cc=40 plct=0 0 0 2
- 579 tabs setTab             fc.on_text(3)  0sel=2:3 crt=0 2:3 
- 547 tabs autoMove           BGN fc.on_text(3) 
- 554 tabs autoMove           fc.on_text(3)  M=65363 C=1 A=65364 csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
- 538 tabs move               BGN fc.on_text(3)  65363
- 770 tabs dumpCrs            v[0] bef mv m=65363 sel=0:0 crt=0 3:None 
- 541 tabs move               ( 3:None,   3:None)
- 770 tabs dumpCrs            BGN i=3 j=1     sel=0:0 crt=0 3:None 
- 770 tabs dumpCrs            END i=3 j=1     sel=3:4 crt=0 3:4 
- 770 tabs dumpCrs            v[0] aft mv m=65363 sel=3:4 crt=0 3:4 
- 544 tabs move               END fc.on_text(3)  65363
- 561 tabs autoMove           END fc.on_text(3) 
- 582 tabs setTab             fc.on_text(3)  0sel=3:4 crt=0 3:4 
- 684 tabs snapshot           LOG_ID=.2 .txt SNAP_ID=.2 3 3
- 685 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.2 SNAP_SFX=.png
-SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.2.txt.2.png')
- 688 tabs snapshot           SNAP_ID=.2   SNAP_NAME=tabs.2.txt.2.png
- 690 tabs snapshot           SNAP_NAME=tabs.2.txt.2.png 3 3
- 462 tabs on_text                fc=0sel=3:4 crt=0 3:4  <3>
- 463 tabs on_text            END fc=( 3:4,   3:4) <3>
- 444 tabs on_key_release     sel=3:4 crt=0 3:4  [] : []
- 432 tabs on_key_press       sel=3:4 crt=0 3:4  [32] : [SPACE]
- 452 tabs on_text            sel=3:4 crt=0 3:4  [32] : [SPACE]
- 453 tabs on_text            BGN fc=( 3:4,   3:4) < >
- 454 tabs on_text                fc=0sel=3:4 crt=0 3:4  < >
- 547 tabs autoMove           BGN Z
- 554 tabs autoMove           Z M=65363 C=1 A=65364 csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
- 538 tabs move               BGN Z 65363
- 770 tabs dumpCrs            v[0] bef mv m=65363 sel=0:0 crt=0 4:None 
- 541 tabs move               ( 4:None,   4:None)
- 770 tabs dumpCrs            BGN i=4 j=1     sel=0:0 crt=0 4:None 
- 770 tabs dumpCrs            END i=4 j=1     sel=4:5 crt=0 4:5 
- 770 tabs dumpCrs            v[0] aft mv m=65363 sel=4:5 crt=0 4:5 
- 544 tabs move               END Z 65363
- 561 tabs autoMove           END Z
- 684 tabs snapshot           LOG_ID=.2 .spc SNAP_ID=.3 Z
- 685 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.3 SNAP_SFX=.png
-SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.2.spc.3.png')
- 688 tabs snapshot           SNAP_ID=.3   SNAP_NAME=tabs.2.spc.3.png
- 690 tabs snapshot           SNAP_NAME=tabs.2.spc.3.png Z
- 462 tabs on_text                fc=0sel=4:5 crt=0 4:5  < >
- 463 tabs on_text            END fc=( 4:5,   4:5) < >
- 444 tabs on_key_release     sel=4:5 crt=0 4:5  [] : []
- 432 tabs on_key_press       sel=4:5 crt=0 4:5  [65307] : [ESCAPE]
- 433 tabs on_key_press       symb=65307 symbStr=ESCAPE mods=0 modsStr=None Quit
- 735 tabs quit               Exit symb=65307 symbStr=ESCAPE mods=0 modsStr=None Quit
-  76 util dumpStack           9 tabs        736 quit                 .dumpStack(inspect.stack(), file=LOG_FILE)    ;   .log(.QUIT_BGN, pfx=0)
-  76 util dumpStack           8 tabs        433 on_key_press         if   symb == wink.ESCAPE:              msg +=  Quit     ;    .log(msg)  ;  .quit(msg)
+ 685 tabs on_resize          BGN (640x480) (1x1x6x20) [1 1 6 20] n=[1 1 6 20]
+ 686 tabs on_resize          .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
+ 654 tabs dumpView           V[0] (0 0 640 480))  sel=0:1 crt=0 0:1 
+ 659 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
+ 660 tabs dumpLbox           L[0] sel=0:1
+ 663 tabs dumpRect           R[0] (2 2 636 476)
+ 654 tabs dumpView           V[0] (0 0 640 480))  sel=0:1 crt=0 0:1 
+ 659 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
+ 660 tabs dumpLbox           L[0] sel=0:1
+ 663 tabs dumpRect           R[0] (2 2 636.0 476.0)
+ 692 tabs on_resize          .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
+ 693 tabs on_resize          END (640x480) (1x1x6x20) [1 1 6 20] n=[1 1 6 20]
+ 456 tabs on_key_press        sel=0:1 crt=0 0:1  [20] : [SPACE]
+ 471 tabs on_text             sel=0:1 crt=0 0:1  [20] : [SPACE]
+ 472 tabs on_text            BGN fc=(0:1, 0:1) <t= >
+ 473 tabs on_text                fc=0 sel=0:1 crt=0 0:1  <t= >
+ 477 tabs on_text             t= =fcTextMotn
+ 575 tabs autoMove           BGN  t= =fcTextMotn m=ff53 0 sel=0:0 crt=0 1:None 
+ 580 tabs autoMove            t= =fcTextMotn m=ff53 M=ff53 C=ff54 csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
+ 590 tabs move               BGN  t= =fcTextMotn m=ff53 ff53
+ 592 tabs move               v[0] bef mv m=ff53  sel=0:0 crt=0 1:None 
+ 593 tabs move               (1:None, 1:None)
+ 796 tabs setCrs             BGN i=1 j=1      sel=0:0 crt=0 1:None 
+ 798 tabs setCrs             END i=1 j=1      sel=1:2 crt=0 1:2 
+ 595 tabs move               v[0] aft mv m=ff53  sel=1:2 crt=0 1:2 
+ 596 tabs move               END  t= =fcTextMotn m=ff53 ff53
+ 587 tabs autoMove           END  t= =fcTextMotn m=ff53 0 sel=1:2 crt=0 1:2 
+ 714 tabs snapshot           LOG_ID=.38 TYPE=.spc SNAP_ID=.0  t= =fcTextMotn m=ff53
+ 715 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.0 SNAP_SFX=.png
+SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.38.spc.0.png')
+ 720 tabs snapshot           SNAP_NAME=tabs.38.spc.0.png  t= =fcTextMotn m=ff53
+ 483 tabs on_text                fc=0 sel=1:2 crt=0 1:2  < >
+ 484 tabs on_text            END fc=(1:2, 1:2) < >
+ 468 tabs on_key_release      sel=1:2 crt=0 1:2  [] : []
+ 456 tabs on_key_press        sel=1:2 crt=0 1:2  [20] : [SPACE]
+ 471 tabs on_text             sel=1:2 crt=0 1:2  [20] : [SPACE]
+ 472 tabs on_text            BGN fc=(1:2, 1:2) <t= >
+ 473 tabs on_text                fc=0 sel=1:2 crt=0 1:2  <t= >
+ 477 tabs on_text             t= =fcTextMotn
+ 575 tabs autoMove           BGN  t= =fcTextMotn m=ff53 0 sel=0:0 crt=0 2:None 
+ 580 tabs autoMove            t= =fcTextMotn m=ff53 M=ff53 C=ff54 csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
+ 590 tabs move               BGN  t= =fcTextMotn m=ff53 ff53
+ 592 tabs move               v[0] bef mv m=ff53  sel=0:0 crt=0 2:None 
+ 593 tabs move               (2:None, 2:None)
+ 796 tabs setCrs             BGN i=2 j=1      sel=0:0 crt=0 2:None 
+ 798 tabs setCrs             END i=2 j=1      sel=2:3 crt=0 2:3 
+ 595 tabs move               v[0] aft mv m=ff53  sel=2:3 crt=0 2:3 
+ 596 tabs move               END  t= =fcTextMotn m=ff53 ff53
+ 587 tabs autoMove           END  t= =fcTextMotn m=ff53 0 sel=2:3 crt=0 2:3 
+ 714 tabs snapshot           LOG_ID=.38 TYPE=.spc SNAP_ID=.1  t= =fcTextMotn m=ff53
+ 715 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.1 SNAP_SFX=.png
+SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.38.spc.1.png')
+ 720 tabs snapshot           SNAP_NAME=tabs.38.spc.1.png  t= =fcTextMotn m=ff53
+ 483 tabs on_text                fc=0 sel=2:3 crt=0 2:3  < >
+ 484 tabs on_text            END fc=(2:3, 2:3) < >
+ 468 tabs on_key_release      sel=2:3 crt=0 2:3  [] : []
+ 456 tabs on_key_press        sel=2:3 crt=0 2:3  [20] : [SPACE]
+ 471 tabs on_text             sel=2:3 crt=0 2:3  [20] : [SPACE]
+ 472 tabs on_text            BGN fc=(2:3, 2:3) <t= >
+ 473 tabs on_text                fc=0 sel=2:3 crt=0 2:3  <t= >
+ 477 tabs on_text             t= =fcTextMotn
+ 575 tabs autoMove           BGN  t= =fcTextMotn m=ff53 0 sel=0:0 crt=0 3:None 
+ 580 tabs autoMove            t= =fcTextMotn m=ff53 M=ff53 C=ff54 csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
+ 590 tabs move               BGN  t= =fcTextMotn m=ff53 ff53
+ 592 tabs move               v[0] bef mv m=ff53  sel=0:0 crt=0 3:None 
+ 593 tabs move               (3:None, 3:None)
+ 796 tabs setCrs             BGN i=3 j=1      sel=0:0 crt=0 3:None 
+ 798 tabs setCrs             END i=3 j=1      sel=3:4 crt=0 3:4 
+ 595 tabs move               v[0] aft mv m=ff53  sel=3:4 crt=0 3:4 
+ 596 tabs move               END  t= =fcTextMotn m=ff53 ff53
+ 587 tabs autoMove           END  t= =fcTextMotn m=ff53 0 sel=3:4 crt=0 3:4 
+ 714 tabs snapshot           LOG_ID=.38 TYPE=.spc SNAP_ID=.2  t= =fcTextMotn m=ff53
+ 715 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.2 SNAP_SFX=.png
+SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.38.spc.2.png')
+ 720 tabs snapshot           SNAP_NAME=tabs.38.spc.2.png  t= =fcTextMotn m=ff53
+ 483 tabs on_text                fc=0 sel=3:4 crt=0 3:4  < >
+ 484 tabs on_text            END fc=(3:4, 3:4) < >
+ 468 tabs on_key_release      sel=3:4 crt=0 3:4  [] : []
+ 456 tabs on_key_press        sel=3:4 crt=0 3:4  [20] : [SPACE]
+ 471 tabs on_text             sel=3:4 crt=0 3:4  [20] : [SPACE]
+ 472 tabs on_text            BGN fc=(3:4, 3:4) <t= >
+ 473 tabs on_text                fc=0 sel=3:4 crt=0 3:4  <t= >
+ 477 tabs on_text             t= =fcTextMotn
+ 575 tabs autoMove           BGN  t= =fcTextMotn m=ff53 0 sel=0:0 crt=0 4:None 
+ 580 tabs autoMove            t= =fcTextMotn m=ff53 M=ff53 C=ff54 csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
+ 590 tabs move               BGN  t= =fcTextMotn m=ff53 ff53
+ 592 tabs move               v[0] bef mv m=ff53  sel=0:0 crt=0 4:None 
+ 593 tabs move               (4:None, 4:None)
+ 796 tabs setCrs             BGN i=4 j=1      sel=0:0 crt=0 4:None 
+ 798 tabs setCrs             END i=4 j=1      sel=4:5 crt=0 4:5 
+ 595 tabs move               v[0] aft mv m=ff53  sel=4:5 crt=0 4:5 
+ 596 tabs move               END  t= =fcTextMotn m=ff53 ff53
+ 587 tabs autoMove           END  t= =fcTextMotn m=ff53 0 sel=4:5 crt=0 4:5 
+ 714 tabs snapshot           LOG_ID=.38 TYPE=.spc SNAP_ID=.3  t= =fcTextMotn m=ff53
+ 715 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.3 SNAP_SFX=.png
+SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.38.spc.3.png')
+ 720 tabs snapshot           SNAP_NAME=tabs.38.spc.3.png  t= =fcTextMotn m=ff53
+ 483 tabs on_text                fc=0 sel=4:5 crt=0 4:5  < >
+ 484 tabs on_text            END fc=(4:5, 4:5) < >
+ 468 tabs on_key_release      sel=4:5 crt=0 4:5  [] : []
+ 456 tabs on_key_press        sel=4:5 crt=0 4:5  [20] : [SPACE]
+ 471 tabs on_text             sel=4:5 crt=0 4:5  [20] : [SPACE]
+ 472 tabs on_text            BGN fc=(4:5, 4:5) <t= >
+ 473 tabs on_text                fc=0 sel=4:5 crt=0 4:5  <t= >
+ 477 tabs on_text             t= =fcTextMotn
+ 575 tabs autoMove           BGN  t= =fcTextMotn m=ff53 0 sel=0:0 crt=0 5:None 
+ 580 tabs autoMove            t= =fcTextMotn m=ff53 M=ff53 C=ff54 csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
+ 590 tabs move               BGN  t= =fcTextMotn m=ff53 ff53
+ 592 tabs move               v[0] bef mv m=ff53  sel=0:0 crt=0 5:None 
+ 593 tabs move               (5:None, 5:None)
+ 796 tabs setCrs             BGN i=5 j=1      sel=0:0 crt=0 5:None 
+ 798 tabs setCrs             END i=5 j=1      sel=5:6 crt=0 5:6 
+ 595 tabs move               v[0] aft mv m=ff53  sel=5:6 crt=0 5:6 
+ 596 tabs move               END  t= =fcTextMotn m=ff53 ff53
+ 587 tabs autoMove           END  t= =fcTextMotn m=ff53 0 sel=5:6 crt=0 5:6 
+ 714 tabs snapshot           LOG_ID=.38 TYPE=.spc SNAP_ID=.4  t= =fcTextMotn m=ff53
+ 715 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.4 SNAP_SFX=.png
+SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.38.spc.4.png')
+ 720 tabs snapshot           SNAP_NAME=tabs.38.spc.4.png  t= =fcTextMotn m=ff53
+ 483 tabs on_text                fc=0 sel=5:6 crt=0 5:6  < >
+ 484 tabs on_text            END fc=(5:6, 5:6) < >
+ 468 tabs on_key_release      sel=5:6 crt=0 5:6  [] : []
+ 456 tabs on_key_press        sel=5:6 crt=0 5:6  [20] : [SPACE]
+ 471 tabs on_text             sel=5:6 crt=0 5:6  [20] : [SPACE]
+ 472 tabs on_text            BGN fc=(5:6, 5:6) <t= >
+ 473 tabs on_text                fc=0 sel=5:6 crt=0 5:6  <t= >
+ 477 tabs on_text             t= =fcTextMotn
+ 575 tabs autoMove           BGN  t= =fcTextMotn m=ff53 0 sel=0:0 crt=0 6:None 
+ 580 tabs autoMove            t= =fcTextMotn m=ff53 M=ff53 C=ff54 csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
+ 590 tabs move               BGN  t= =fcTextMotn m=ff53 ff53
+ 592 tabs move               v[0] bef mv m=ff53  sel=0:0 crt=0 6:None 
+ 593 tabs move               (6:None, 6:None)
+ 796 tabs setCrs             BGN i=6 j=1      sel=0:0 crt=0 6:None 
+ 798 tabs setCrs             END i=6 j=1      sel=6:7 crt=0 6:7 
+ 595 tabs move               v[0] aft mv m=ff53  sel=6:7 crt=0 6:7 
+ 596 tabs move               END  t= =fcTextMotn m=ff53 ff53
+ 587 tabs autoMove           END  t= =fcTextMotn m=ff53 0 sel=6:7 crt=0 6:7 
+ 714 tabs snapshot           LOG_ID=.38 TYPE=.spc SNAP_ID=.5  t= =fcTextMotn m=ff53
+ 715 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.5 SNAP_SFX=.png
+SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.38.spc.5.png')
+ 720 tabs snapshot           SNAP_NAME=tabs.38.spc.5.png  t= =fcTextMotn m=ff53
+ 483 tabs on_text                fc=0 sel=6:7 crt=0 6:7  < >
+ 484 tabs on_text            END fc=(6:7, 6:7) < >
+ 468 tabs on_key_release      sel=6:7 crt=0 6:7  [] : []
+ 456 tabs on_key_press        sel=6:7 crt=0 6:7  [20] : [SPACE]
+ 471 tabs on_text             sel=6:7 crt=0 6:7  [20] : [SPACE]
+ 472 tabs on_text            BGN fc=(6:7, 6:7) <t= >
+ 473 tabs on_text                fc=0 sel=6:7 crt=0 6:7  <t= >
+ 477 tabs on_text             t= =fcTextMotn
+ 575 tabs autoMove           BGN  t= =fcTextMotn m=ff53 0 sel=0:0 crt=0 7:None 
+ 580 tabs autoMove            t= =fcTextMotn m=ff53 M=ff53 C=ff54 csrMode=0=MELODY hArrow=1=RIGHT vArrow=1=DOWN
+ 590 tabs move               BGN  t= =fcTextMotn m=ff53 ff53
+ 592 tabs move               v[0] bef mv m=ff53  sel=0:0 crt=0 7:None 
+ 593 tabs move               (7:None, 7:None)
+ 796 tabs setCrs             BGN i=7 j=1      sel=0:0 crt=0 7:None 
+ 798 tabs setCrs             END i=7 j=1      sel=7:8 crt=0 7:8 
+ 595 tabs move               v[0] aft mv m=ff53  sel=7:8 crt=0 7:8 
+ 596 tabs move               END  t= =fcTextMotn m=ff53 ff53
+ 587 tabs autoMove           END  t= =fcTextMotn m=ff53 0 sel=7:8 crt=0 7:8 
+ 714 tabs snapshot           LOG_ID=.38 TYPE=.spc SNAP_ID=.6  t= =fcTextMotn m=ff53
+ 715 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.6 SNAP_SFX=.png
+SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.38.spc.6.png')
+ 720 tabs snapshot           SNAP_NAME=tabs.38.spc.6.png  t= =fcTextMotn m=ff53
+ 483 tabs on_text                fc=0 sel=7:8 crt=0 7:8  < >
+ 484 tabs on_text            END fc=(7:8, 7:8) < >
+ 468 tabs on_key_release      sel=7:8 crt=0 7:8  [] : []
+ 456 tabs on_key_press        sel=7:8 crt=0 7:8  [ffe1] : [LSHIFT]
+ 456 tabs on_key_press        sel=7:8 crt=0 7:8  [ffe1 74] : [LSHIFT T]
+ 471 tabs on_text             sel=7:8 crt=0 7:8  [ffe1 74] : [LSHIFT T]
+ 472 tabs on_text            BGN fc=(7:8, 7:8) <t=T>
+ 473 tabs on_text                fc=0 sel=7:8 crt=0 7:8  <t=T>
+ 481 tabs on_text            ^T=t=T=toggleCsrMode
+ 365 tabs toggleCsrMode      BGN ^T=t=T=toggleCsrMode .csrMode=0 = CSR_MODES[.csrMode]=MELODY
+ 367 tabs toggleCsrMode      END ^T=t=T=toggleCsrMode .csrMode=1 = CSR_MODES[.csrMode]=CHORD
+ 483 tabs on_text                fc=0 sel=7:8 crt=0 7:8  <T>
+ 484 tabs on_text            END fc=(7:8, 7:8) <T>
+ 468 tabs on_key_release      sel=7:8 crt=0 7:8  [ffe1] : [LSHIFT]
+ 468 tabs on_key_release      sel=7:8 crt=0 7:8  [] : []
+ 456 tabs on_key_press        sel=7:8 crt=0 7:8  [20] : [SPACE]
+ 471 tabs on_text             sel=7:8 crt=0 7:8  [20] : [SPACE]
+ 472 tabs on_text            BGN fc=(7:8, 7:8) <t= >
+ 473 tabs on_text                fc=0 sel=7:8 crt=0 7:8  <t= >
+ 477 tabs on_text             t= =fcTextMotn
+ 575 tabs autoMove           BGN  t= =fcTextMotn m=ff54 0 sel=0:0 crt=1 28:None 
+ 580 tabs autoMove            t= =fcTextMotn m=ff54 M=ff53 C=ff54 csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=DOWN
+ 590 tabs move               BGN  t= =fcTextMotn m=ff54 ff54
+ 592 tabs move               v[0] bef mv m=ff54  sel=0:0 crt=1 28:None 
+ 593 tabs move               (28:None, 28:None)
+ 796 tabs setCrs             BGN i=28 j=1      sel=0:0 crt=1 28:None 
+ 798 tabs setCrs             END i=28 j=1      sel=28:29 crt=1 28:29 
+ 595 tabs move               v[0] aft mv m=ff54  sel=28:29 crt=1 28:29 
+ 596 tabs move               END  t= =fcTextMotn m=ff54 ff54
+ 587 tabs autoMove           END  t= =fcTextMotn m=ff54 0 sel=28:29 crt=1 28:29 
+ 714 tabs snapshot           LOG_ID=.38 TYPE=.spc SNAP_ID=.7  t= =fcTextMotn m=ff54
+ 715 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.7 SNAP_SFX=.png
+SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.38.spc.7.png')
+ 720 tabs snapshot           SNAP_NAME=tabs.38.spc.7.png  t= =fcTextMotn m=ff54
+ 483 tabs on_text                fc=0 sel=28:29 crt=1 28:29  < >
+ 484 tabs on_text            END fc=(28:29, 28:29) < >
+ 468 tabs on_key_release      sel=28:29 crt=1 28:29  [] : []
+ 456 tabs on_key_press        sel=28:29 crt=1 28:29  [33] : [_3]
+ 471 tabs on_text             sel=28:29 crt=1 28:29  [33] : [_3]
+ 472 tabs on_text            BGN fc=(28:29, 28:29) <t=3>
+ 473 tabs on_text                fc=0 sel=28:29 crt=1 28:29  <t=3>
+ 475 tabs on_text            t=3=setTab(3)
+ 601 tabs setTab             t=3=setTab(3) text=3 rev=0
+ 412 tabs plct               0 sel=28:29 crt=1 28:29  t=1 c=8
+ 604 tabs setTab             BGN text=3 data=- rev=0 cc=161 plct=0 0 1 8
+ 620 tabs setDTNIK           BGN cc=161 kk=1    text=3
+ 631 tabs setData            BGN t=8 text=3 data=--31-5--------------
+ 634 tabs setData            END t=8 text=3 data=--31-5--3-----------
+ 627 tabs setDTNIK           END cc=161 kk=1    text=3
+ 412 tabs plct               0 sel=28:29 crt=1 28:29  t=1 c=8
+ 607 tabs setTab             END text=3 data=3 rev=0 cc=161 plct=0 0 1 8
+ 610 tabs setTab             fc.on_text(3)  0 sel=28:29 crt=1 28:29 
+ 575 tabs autoMove           BGN fc.on_text(3)  0 sel=0:0 crt=1 29:None 
+ 580 tabs autoMove           fc.on_text(3)  M=ff53 C=ff54 csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=DOWN
+ 590 tabs move               BGN fc.on_text(3)  ff54
+ 592 tabs move               v[0] bef mv m=ff54  sel=0:0 crt=1 29:None 
+ 593 tabs move               (29:None, 29:None)
+ 796 tabs setCrs             BGN i=29 j=1      sel=0:0 crt=1 29:None 
+ 798 tabs setCrs             END i=29 j=1      sel=29:30 crt=1 29:30 
+ 595 tabs move               v[0] aft mv m=ff54  sel=29:30 crt=1 29:30 
+ 596 tabs move               END fc.on_text(3)  ff54
+ 587 tabs autoMove           END fc.on_text(3)  0 sel=29:30 crt=1 29:30 
+ 613 tabs setTab             fc.on_text(3)  0 sel=29:30 crt=1 29:30 
+ 575 tabs autoMove           BGN t=3=setTab(3) 0 sel=29:30 crt=1 29:30 
+ 580 tabs autoMove           t=3=setTab(3) M=ff53 C=ff54 csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=DOWN
+ 590 tabs move               BGN t=3=setTab(3) ff54
+ 592 tabs move               v[0] bef mv m=ff54  sel=29:30 crt=1 29:30 
+ 593 tabs move               (29:30, 29:30)
+ 796 tabs setCrs             BGN i=29 j=1      sel=29:30 crt=1 29:30 
+ 798 tabs setCrs             END i=29 j=1      sel=29:30 crt=1 29:30 
+ 595 tabs move               v[0] aft mv m=ff54  sel=29:30 crt=1 29:30 
+ 596 tabs move               END t=3=setTab(3) ff54
+ 587 tabs autoMove           END t=3=setTab(3) 0 sel=29:30 crt=1 29:30 
+ 714 tabs snapshot           LOG_ID=.38 TYPE=.txt SNAP_ID=.8 t=3=setTab(3) text=3 rev=0
+ 715 tabs snapshot           SNAP_DIR=snaps BASE_NAME=tabs SNAP_ID=.8 SNAP_SFX=.png
+SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.38.txt.8.png')
+ 720 tabs snapshot           SNAP_NAME=tabs.38.txt.8.png t=3=setTab(3) text=3 rev=0
+ 483 tabs on_text                fc=0 sel=29:30 crt=1 29:30  <3>
+ 484 tabs on_text            END fc=(29:30, 29:30) <3>
+ 468 tabs on_key_release      sel=29:30 crt=1 29:30  [] : []
+ 456 tabs on_key_press        sel=29:30 crt=1 29:30  [ff1b] : [ESCAPE]
+ 457 tabs on_key_press       symb=65307 symbStr=ESCAPE mods=0 modsStr=MOD_SHIFT Quit
+ 765 tabs quit               Exit symb=65307 symbStr=ESCAPE mods=0 modsStr=MOD_SHIFT Quit
+  76 util dumpStack           9 tabs        766 quit                 .dumpStack(inspect.stack(), file=LOG_FILE)    ;   .log(.QUIT_BGN, pfx=0)
+  76 util dumpStack           8 tabs        457 on_key_press         if   symb == wink.ESCAPE:              msg +=  Quit     ;    .log(msg)  ;  .quit(msg)
   76 util dumpStack           7 event       415 dispatch_event       if getattr(self, event_type)(*args):
   76 util dumpStack           6 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
   76 util dumpStack           5 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
@@ -219,7 +357,7 @@ SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.2.spc.3.p
   76 util dumpStack           3 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
   76 util dumpStack           2 base        170 run                  platform_event_loop.step(timeout)
   76 util dumpStack           1 __init__    107 run                  event_loop.run()
-  76 util dumpStack           0 tabs        787 <module>             pyglet.app.run()
+  76 util dumpStack           0 tabs        817 <module>             pyglet.app.run()
   77 util dumpStack          MAX_STACK_DEPTH= 0
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
   76 util dumpStack          12 util          8 <module>             MAX_STACK_FRAME = inspect.stack()
@@ -236,7 +374,7 @@ SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.2.spc.3.p
   76 util dumpStack           1 <frozen importlib  1027 _find_and_load       
   76 util dumpStack           0 tabs         13 <module>             import chord, util
   77 util dumpStack          MAX_STACK_DEPTH= 0
- 738 tabs quit               BGN symb=65307 symbStr=ESCAPE mods=0 modsStr=None Quit error=1 save=1
+ 768 tabs quit               BGN symb=65307 symbStr=ESCAPE mods=0 modsStr=MOD_SHIFT Quit error=1 save=1
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
  137 tabs dumpArgs           [a]      .CODE_A=1
  138 tabs dumpArgs           [e]   .EVENT_LOG=0
@@ -247,20 +385,20 @@ SNAP_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/snaps/tabs.2.spc.3.p
  143 tabs dumpArgs           [s]       .SNAPS=1
  144 tabs dumpArgs           [S]          .SS=[0]
  145 tabs dumpArgs           [v]     .VERBOSE=0
- 192 tabs saveDataFile       symb=65307 symbStr=ESCAPE mods=0 modsStr=None Quit C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat
+ 192 tabs saveDataFile       symb=65307 symbStr=ESCAPE mods=0 modsStr=MOD_SHIFT Quit C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat
 C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat
  198 tabs saveDataFile       n=[1 1 6 20] [1 1 6 20]
 writing 1st page
 writing 1st line
-writing 1st string 1-3-5-7-------------
-writing 2nd string --------------------
-writing 3rd string --------------------
+writing 1st string %^_+----------------
+writing 2nd string --31-5--3-----------
+writing 3rd string ----2---------------
 writing 4th string --------------------
 writing 5th string --------------------
 writing 6th string --------------------
  210 tabs saveDataFile       n=[1 1 6 20] [1 1 6 20] size=134
- 742 tabs quit               END symb=65307 symbStr=ESCAPE mods=0 modsStr=None Quit error=1 save=1
+ 772 tabs quit               END symb=65307 symbStr=ESCAPE mods=0 modsStr=MOD_SHIFT Quit error=1 save=1
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
- 729 tabs cleanupLog         C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
- 729 tabs cleanupLog         C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log
- 730 tabs cleanupLog         Closing and Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log
+ 759 tabs cleanupLog         C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
+ 759 tabs cleanupLog         C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log
+ 760 tabs cleanupLog         Closing and Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log
