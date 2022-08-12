@@ -93,7 +93,7 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
 #        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
         fp = pathlib.Path(sf.f_code.co_filename)
         msg = f'{sf.f_lineno:4} {fp.stem} {sf.f_code.co_name:18} ' + msg
-    print(       f'{msg}', flush=flush, sep=sep, end=end, file=file)
+    print(       f'{msg}', flush=flush, sep=sep, end=end, file=file) if file is not None and not file.closed else None
     if so: print(f'{msg}', flush=flush, sep=sep, end=end, file=sys.stdout)
     if flush: os.fsync(file)  ;  os.fsync(sys.stdout) if so else None
 
