@@ -1,14 +1,14 @@
- 860 tabs <module>           LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 861 tabs <module>           LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+ 883 tabs <module>           LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 884 tabs <module>           LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
   51 tabs __init__           init args=() kwargs={}
- 774 tabs getFilePath        fdir=logs/ fsfx=.log
- 778 tabs getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
- 788 tabs getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
- 790 tabs getFileSeqNum      ids=[0 1 10 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 6 7 8 9]
-fGlob=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
- 782 tabs getFilePath        fsfx=.52.log
-  64 tabs __init__           init()
- 130 util parseCmdLine       argv=[-f test.0.dat -n 1 1 6 20 -s -G]
+ 798 tabs getFilePath        fdir=logs/ fsfx=.log
+ 802 tabs getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
+ 812 tabs getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.100.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.101.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.102.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.103.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.104.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.105.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.106.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.107.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.108.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.109.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.110.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.111.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.112.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.113.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.114.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.115.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.116.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.117.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.118.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.119.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.120.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.121.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.122.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.123.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.124.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.125.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.126.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.127.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.128.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.129.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.130.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.131.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.132.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.133.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.134.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.135.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.136.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.137.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.138.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.139.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.140.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.141.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.142.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.143.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.144.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.145.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.146.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.147.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.148.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.149.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.150.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.151.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.53.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.54.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.55.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.56.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.57.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.58.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.59.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.60.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.61.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.62.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.63.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.64.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.65.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.66.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.67.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.68.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.69.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.70.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.71.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.72.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.73.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.74.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.75.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.76.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.77.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.78.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.80.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.81.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.82.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.83.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.84.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.85.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.86.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.88.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.89.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.90.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.91.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.92.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.93.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.94.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.95.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.96.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.97.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.98.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.99.log]
+ 814 tabs getFileSeqNum      ids=[0 1 10 100 101 102 103 104 105 106 107 108 109 11 110 111 112 113 114 115 116 117 118 119 12 120 121 122 123 124 125 126 127 128 129 13 130 131 132 133 134 135 136 137 138 139 14 140 141 142 143 144 145 146 147 148 149 15 150 151 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 52 53 54 55 56 57 58 59 6 60 61 62 63 64 65 66 67 68 69 7 70 71 72 73 74 75 76 77 78 79 8 80 81 82 83 84 85 86 87 88 89 9 90 91 92 93 94 95 96 97 98 99]
+fGlob=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.100.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.101.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.102.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.103.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.104.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.105.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.106.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.107.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.108.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.109.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.110.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.111.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.112.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.113.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.114.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.115.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.116.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.117.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.118.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.119.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.120.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.121.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.122.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.123.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.124.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.125.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.126.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.127.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.128.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.129.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.130.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.131.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.132.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.133.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.134.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.135.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.136.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.137.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.138.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.139.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.140.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.141.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.142.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.143.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.144.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.145.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.146.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.147.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.148.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.149.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.150.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.151.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.53.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.54.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.55.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.56.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.57.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.58.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.59.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.60.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.61.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.62.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.63.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.64.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.65.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.66.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.67.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.68.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.69.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.70.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.71.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.72.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.73.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.74.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.75.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.76.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.77.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.78.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.80.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.81.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.82.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.83.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.84.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.85.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.86.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.88.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.89.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.90.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.91.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.92.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.93.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.94.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.95.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.96.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.97.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.98.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.99.log]
+ 806 tabs getFilePath        fsfx=.152.log
+ 370 tabs dumpCrsArrows      init() MELODY RIGHT DOWN
+ 130 util parseCmdLine       argv=[-f test.0.dat -n 1 1 6 20 -e -s]
 C:/Users/Owner/Documents/GitHub/tabs/tabs.py
  146 util parseCmdLine        1 short   -f f [] 
  164 util parseCmdLine        2 arg     test.0.dat f [test.0.dat] 
@@ -17,20 +17,20 @@ C:/Users/Owner/Documents/GitHub/tabs/tabs.py
  164 util parseCmdLine        5 arg     1  n [1 1] 
  164 util parseCmdLine        6 arg     6  n [1 1 6] 
  164 util parseCmdLine        7 arg     20 n [1 1 6 20] 
- 146 util parseCmdLine        8 short   -s s [] 
- 146 util parseCmdLine        9 short   -G G [] 
- 166 util parseCmdLine       options=[f:[test.0.dat]n:[1 1 6 20]s:[]G:[]]
- 127 tabs _initArgs          argMap=[f:[test.0.dat]n:[1 1 6 20]s:[]G:[]]
- 141 tabs dumpArgs           [a]        IMPLA=0
- 142 tabs dumpArgs           [e]   .EVENT_LOG=0
- 143 tabs dumpArgs           [f]         .dfn=test.0.dat
- 144 tabs dumpArgs           [F] .FULL_SCREEN=0
- 145 tabs dumpArgs           [G]    .GEN_DATA=1
- 146 tabs dumpArgs           [g] .ORDER_GROUP=1
- 147 tabs dumpArgs           [n]            n=[1 1 6 20]
- 148 tabs dumpArgs           [s]       .SNAPS=1
- 149 tabs dumpArgs           [v]            v=[0]
- 150 tabs dumpArgs           [V]     .VERBOSE=0
+ 146 util parseCmdLine        8 short   -e e [] 
+ 146 util parseCmdLine        9 short   -s s [] 
+ 166 util parseCmdLine       options=[f:[test.0.dat]n:[1 1 6 20]e:[]s:[]]
+ 116 tabs _initArgs          argMap=[f:[test.0.dat]n:[1 1 6 20]e:[]s:[]]
+ 131 tabs dumpArgs           [a]        IMPLA=0
+ 132 tabs dumpArgs           [e]   .EVENT_LOG=1
+ 133 tabs dumpArgs           [f]         .dfn=test.0.dat
+ 134 tabs dumpArgs           [F] .FULL_SCREEN=0
+ 135 tabs dumpArgs           [G]    .GEN_DATA=0
+ 136 tabs dumpArgs           [g] .ORDER_GROUP=1
+ 137 tabs dumpArgs           [n]            n=[1 1 6 20]
+ 138 tabs dumpArgs           [s]       .SNAPS=1
+ 139 tabs dumpArgs           [v]            v=[0]
+ 140 tabs dumpArgs           [V]     .VERBOSE=0
  217 util __init__           stringMap   = [E2:28 A2:33 D3:38 G3:43 B3:47 E4:52]
  218 util __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
  219 util __init__           stringNames =      EBGDAE
@@ -38,45 +38,30 @@ C:/Users/Owner/Documents/GitHub/tabs/tabs.py
  221 util __init__           stringCapo  =      000000
  222 util __init__           strLabel    =      STRING
  223 util __init__           cpoLabel    =       CAPO 
-  69 tabs __init__           .Note.TYPE=1
-  87 tabs _initWindowA       BGN (NonexNone)
-  87 tabs _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002291E6C0790>
+  70 tabs __init__           .Note.TYPE=1
+  88 tabs _initWindowA       BGN (NonexNone)
+  88 tabs _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000019E9B6482B0>
 screens[0] (   0,1200) (1920x1080) ri=0 rv=2,073,600
 screens[0] Win32ScreenMode(width=1920, height=1080, depth=32, rate=60, scaling=0)
 screens[1] (   0,   0) (1920x1200) ri=1 rv=2,304,000
 screens[1] Win32ScreenMode(width=1920, height=1200, depth=32, rate=59, scaling=0)
-  95 tabs _initWindowA       .fsi=1 .fss=2,304,000 (1920x1200)
-  96 tabs _initWindowA       END (NonexNone)
-  96 tabs _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002291E6C0790>
-  99 tabs _initWindowB       BGN (640x480)
- 101 tabs _initWindowB       windows[0] (   0,   0) (640x480)
+  96 tabs _initWindowA       .fsi=1 .fss=2,304,000 (1920x1200)
+  97 tabs _initWindowA       END (NonexNone)
+  97 tabs _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000019E9B6482B0>
+ 100 tabs _initWindowB       BGN (640x480)
+ 102 tabs _initWindowB       windows[0] (   0,   0) (640x480)
  104 tabs _initWindowB       get_size=((640, 480)x480)
  110 tabs _initWindowB       END (640x480)
- 157 tabs dmpBlnk            len(.blankCol)=6 len(.blankRow)=20 .blankCol=------ .blankRow=--------------------
- 190 tabs _initDataPath      dataName0=test.0.dat.asv
- 191 tabs _initDataPath      dataName1=test.0.dat
- 192 tabs _initDataPath      dataName2=test.0.dat.bck
+ 147 tabs dmpBlnk            len(.blankCol)=6 len(.blankRow)=20 .blankCol=------ .blankRow=--------------------
+ 180 tabs _initDataPath      dataName0=test.0.dat.asv
+ 181 tabs _initDataPath      dataName1=test.0.dat
+ 182 tabs _initDataPath      dataName2=test.0.dat.bck
 self.dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.0.dat.asv')
 self.dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.0.dat')
 self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.0.dat.bck')
- 220 tabs genDataFile        C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat n=[1 1 6 20]
- 157 tabs dmpBlnk            len(.blankCol)=6 len(.blankRow)=20 .blankCol=------ .blankRow=--------------------
- 198 tabs saveDataFile       Generated Data C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat
-C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat
- 204 tabs saveDataFile       n=[1 1 6 20] [1 1 6 20]
-writing 1st page
-writing 1st line
-writing 1st string --------------------
-writing 2nd string --------------------
-writing 3rd string --------------------
-writing 4th string --------------------
-writing 5th string --------------------
-writing 6th string --------------------
- 216 tabs saveDataFile       n=[1 1 6 20] [1 1 6 20] size=134
- 225 tabs genDataFile        C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat size=134 len(.data)=1
- 231 tabs readDataFile       BGN n=[1 1 6 20]
- 238 tabs readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat 134 bytes = 0.1 KB
- 239 tabs readDataFile       Raw Data File BGN:
+ 221 tabs readDataFile       BGN n=[1 1 6 20]
+ 228 tabs readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat 134 bytes = 0.1 KB
+ 229 tabs readDataFile       Raw Data File BGN:
 --------------------
 --------------------
 --------------------
@@ -84,29 +69,29 @@ writing 6th string --------------------
 --------------------
 --------------------
 
- 253 tabs readDataFile       Raw Data File END:
- 254 tabs readDataFile       .fmtdl()=[1 1 6 20] .fmtdt()=[list list list str]
- 263 tabs checkDataFileSize  dsize=120 = nlines=  1 *     ns= 6 *   nt=20
- 264 tabs checkDataFileSize  crlfs= 14 = nlines=  1 * (ns+1)= 7 * crlf=2
- 265 tabs checkDataFileSize   size=134 =  dsize=120 +  crlfs= 14 = ref=134
- 257 tabs readDataFile       1 ( 1.000) pages = 1 lines =           6 strings =           120 tabs
- 258 tabs readDataFile       1 ( 1.000) pages @ 1 lines per page, @ 6 strings per line, @ 20 tabs per string
- 271 tabs dumpDataFile       BGN 1 pages, 1 lines per page, 6 strings per line, 20 tabs per string
+ 243 tabs readDataFile       Raw Data File END:
+ 244 tabs readDataFile       .fmtdl()=[1 1 6 20] .fmtdt()=[list list list str]
+ 253 tabs checkDataFileSize  dsize=120 = nlines=  1 *     ns= 6 *   nt=20
+ 254 tabs checkDataFileSize  crlfs= 14 = nlines=  1 * (ns+1)= 7 * crlf=2
+ 255 tabs checkDataFileSize   size=134 =  dsize=120 +  crlfs= 14 = ref=134
+ 247 tabs readDataFile       1 ( 1.000) pages = 1 lines =           6 strings =           120 tabs
+ 248 tabs readDataFile       1 ( 1.000) pages @ 1 lines per page, @ 6 strings per line, @ 20 tabs per string
+ 261 tabs dumpDataFile       BGN 1 pages, 1 lines per page, 6 strings per line, 20 tabs per string
 -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
 
- 276 tabs dumpDataFile       END 1 pages, 1 lines per page, 6 strings per line, 20 tabs per string
+ 266 tabs dumpDataFile       END 1 pages, 1 lines per page, 6 strings per line, 20 tabs per string
   44 tabs fsize              c=20 s=6 w=640 h=480 fsx=42.56 fsy=80.00 fs=123.00 fs2=36.90
 text='--------------------\n--------------------\n--------------------\n--------------------\n--------------------\n--------------------\n'
- 835 tabs __init__           c=20 s=6 foo=Fraction(4, 3)
- 840 tabs setCrs             BGN s=2 t=0 dm=1     sel=0:0 crt=0 0:None
- 844 tabs setCrs             END s=2 t=0 dm=1     sel=42:43 crt=2 42:43
- 741 tabs initViews          (0 0 640 480)
- 689 tabs dumpView           V[0] (0 0 640 480)) sel=42:43 crt=2 42:43
- 694 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
- 695 tabs dumpLbox           L[0] sel=42:43
- 698 tabs dumpRect           R[0] (2 2 636 476)
- 749 tabs regSnap            .snapWhy=init .snapType=INIT .snapReg=1 .snapId=0
- 323 tabs dumpDataHorz       BGN (1x1x6x20) lc=1 ll=1 i=0
+ 859 tabs __init__           c=20 s=6 foo=Fraction(4, 3)
+ 863 tabs setCrs             BGN s=0 t=0 dm=1     0:None 0
+ 867 tabs setCrs             END s=0 t=0 dm=1     0:1 0
+ 765 tabs initViews          (0 0 640 480)
+ 713 tabs dumpView           V[0] (0 0 640 480) 0:1 0
+ 718 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
+ 719 tabs dumpLbox           L[0] sel=0:1
+ 722 tabs dumpRect           R[0] (2 2 636 476)
+ 773 tabs regSnap            .snapWhy=init .snapType=INIT .snapReg=1 .snapId=0
+ 313 tabs dumpDataHorz       BGN (1x1x6x20) lc=1 ll=1 i=0
 Page 1 Line 1
          11111111112
 12345678901234567890
@@ -118,385 +103,53 @@ Page 1 Line 1
 --------------------
 --------------------
 
- 336 tabs dumpDataHorz       END (1x1x6x20) lc=1 ll=1 i=0
- 720 tabs on_resize          BGN (640x480) (1x1x6x20) [1 1 6 20] n=[1 1 6 20]
- 721 tabs on_resize          .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
- 689 tabs dumpView           V[0] (0 0 640 480)) sel=42:43 crt=2 42:43
- 694 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
- 695 tabs dumpLbox           L[0] sel=42:43
- 698 tabs dumpRect           R[0] (2 2 636 476)
- 689 tabs dumpView           V[0] (0 0 640 480)) sel=42:43 crt=2 42:43
- 694 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
- 695 tabs dumpLbox           L[0] sel=42:43
- 698 tabs dumpRect           R[0] (2 2 636.0 476.0)
- 727 tabs on_resize          .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
- 728 tabs on_resize          END (640x480) (1x1x6x20) [1 1 6 20] n=[1 1 6 20]
- 762 tabs snapshot           SNAP_NAME=tabs.52.INIT.0.png init
- 456 tabs on_draw            .snapWhy=init .snapType=INIT .snapId=1
- 439 tabs plst               s=2 t=0 42 20 (sel=42:43 crt=2 42:43, (42:43, 42:43))
- 474 tabs on_key_press       s=2 t=0
- 474 tabs on_key_press       sel=42:43 crt=2 42:43 [31] : [_1]
- 439 tabs plst               s=2 t=0 42 20 (sel=42:43 crt=2 42:43, (42:43, 42:43))
- 546 tabs on_text            s=2 t=0
- 546 tabs on_text            sel=42:43 crt=2 42:43 [31] : [_1]
- 547 tabs on_text            BGN <1> (sel=42:43 crt=2 42:43, (42:43, 42:43))
- 553 tabs on_text            <1> setTab
- 635 tabs setTab             BGN <1> setTab <1> (sel=42:43 crt=2 42:43, (42:43, 42:43))
- 439 tabs plst               s=2 t=0 42 20 (sel=42:43 crt=2 42:43, (42:43, 42:43))
- 638 tabs setTab             Before <1> setTab <1> <-> cc=12 plst=0 0 2 0
- 655 tabs setDTNIK           cc=12 kk=1    text=1
- 669 tabs setData            t=0 text=1 data=1-------------------
- 439 tabs plst               s=2 t=0 42 20 (sel=42:43 crt=2 42:43, (42:43, 42:43))
- 641 tabs setTab             After <1> setTab <1> <1> cc=12 plst=0 0 2 0
- 643 tabs setTab             Before on_text<1> (sel=42:43 crt=2 42:43, (42:43, 42:43))
- 645 tabs setTab             After  on_text<1> (sel=0:0 crt=2 43:None, (43:None, 43:None))
- 840 tabs setCrs             BGN s=2 t=1 dm=1     sel=0:0 crt=2 43:None
- 844 tabs setCrs             END s=2 t=1 dm=1     sel=43:44 crt=2 43:44
- 749 tabs regSnap            .snapWhy=<1> setTab <1> .snapType=TXT_1 .snapReg=1 .snapId=1
- 651 tabs setTab             END <1> setTab <1> (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 557 tabs on_text            END <1> (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 762 tabs snapshot           SNAP_NAME=tabs.52.TXT_1.1.png <1> setTab <1>
- 456 tabs on_draw            .snapWhy=<1> setTab <1> .snapType=TXT_1 .snapId=2
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 486 tabs on_key_release     s=2 t=1
- 486 tabs on_key_release     sel=43:44 crt=2 43:44 [] : []
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 474 tabs on_key_press       s=2 t=1
- 474 tabs on_key_press       sel=43:44 crt=2 43:44 [ffe1] : [LSHIFT]
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 474 tabs on_key_press       s=2 t=1
- 474 tabs on_key_press       sel=43:44 crt=2 43:44 [ffe1 74] : [LSHIFT T]
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 546 tabs on_text            s=2 t=1
- 546 tabs on_text            sel=43:44 crt=2 43:44 [ffe1 74] : [LSHIFT T]
- 547 tabs on_text            BGN <T> (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 551 tabs on_text            ^T<T> toggleCsrMode
- 370 tabs toggleCsrMode      BGN ^T<T> toggleCsrMode .csrMode=0 = CSR_MODES[.csrMode]=MELODY
- 372 tabs toggleCsrMode      END ^T<T> toggleCsrMode .csrMode=1 = CSR_MODES[.csrMode]=CHORD
- 557 tabs on_text            END <T> (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 486 tabs on_key_release     s=2 t=1
- 486 tabs on_key_release     sel=43:44 crt=2 43:44 [ffe1] : [LSHIFT]
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 486 tabs on_key_release     s=2 t=1
- 486 tabs on_key_release     sel=43:44 crt=2 43:44 [] : []
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 474 tabs on_key_press       s=2 t=1
- 474 tabs on_key_press       sel=43:44 crt=2 43:44 [32] : [_2]
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 546 tabs on_text            s=2 t=1
- 546 tabs on_text            sel=43:44 crt=2 43:44 [32] : [_2]
- 547 tabs on_text            BGN <2> (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 553 tabs on_text            <2> setTab
- 635 tabs setTab             BGN <2> setTab <2> (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 638 tabs setTab             Before <2> setTab <2> <-> cc=13 plst=0 0 2 1
- 655 tabs setDTNIK           cc=13 kk=1    text=2
- 669 tabs setData            t=1 text=2 data=12------------------
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 641 tabs setTab             After <2> setTab <2> <2> cc=13 plst=0 0 2 1
- 643 tabs setTab             Before on_text<2> (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 645 tabs setTab             After  on_text<2> (sel=0:0 crt=2 44:None, (44:None, 44:None))
- 840 tabs setCrs             BGN s=3 t=1 dm=1     sel=0:0 crt=2 44:None
- 844 tabs setCrs             END s=3 t=1 dm=1     sel=64:65 crt=3 64:65
- 749 tabs regSnap            .snapWhy=<2> setTab <2> .snapType=TXT_2 .snapReg=1 .snapId=2
- 651 tabs setTab             END <2> setTab <2> (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 557 tabs on_text            END <2> (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 762 tabs snapshot           SNAP_NAME=tabs.52.TXT_2.2.png <2> setTab <2>
- 456 tabs on_draw            .snapWhy=<2> setTab <2> .snapType=TXT_2 .snapId=3
- 439 tabs plst               s=3 t=1 64 20 (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 486 tabs on_key_release     s=3 t=1
- 486 tabs on_key_release     sel=64:65 crt=3 64:65 [] : []
- 439 tabs plst               s=3 t=1 64 20 (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 474 tabs on_key_press       s=3 t=1
- 474 tabs on_key_press       sel=64:65 crt=3 64:65 [33] : [_3]
- 439 tabs plst               s=3 t=1 64 20 (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 546 tabs on_text            s=3 t=1
- 546 tabs on_text            sel=64:65 crt=3 64:65 [33] : [_3]
- 547 tabs on_text            BGN <3> (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 553 tabs on_text            <3> setTab
- 635 tabs setTab             BGN <3> setTab <3> (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 439 tabs plst               s=3 t=1 64 20 (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 638 tabs setTab             Before <3> setTab <3> <-> cc=19 plst=0 0 3 1
- 655 tabs setDTNIK           cc=19 kk=1    text=3
- 669 tabs setData            t=1 text=3 data=-3------------------
- 439 tabs plst               s=3 t=1 64 20 (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 641 tabs setTab             After <3> setTab <3> <3> cc=19 plst=0 0 3 1
- 643 tabs setTab             Before on_text<3> (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 645 tabs setTab             After  on_text<3> (sel=0:0 crt=3 65:None, (65:None, 65:None))
- 840 tabs setCrs             BGN s=4 t=1 dm=1     sel=0:0 crt=3 65:None
- 844 tabs setCrs             END s=4 t=1 dm=1     sel=85:86 crt=4 85:86
- 749 tabs regSnap            .snapWhy=<3> setTab <3> .snapType=TXT_3 .snapReg=1 .snapId=3
- 651 tabs setTab             END <3> setTab <3> (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 557 tabs on_text            END <3> (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 762 tabs snapshot           SNAP_NAME=tabs.52.TXT_3.3.png <3> setTab <3>
- 456 tabs on_draw            .snapWhy=<3> setTab <3> .snapType=TXT_3 .snapId=4
- 439 tabs plst               s=4 t=1 85 20 (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 486 tabs on_key_release     s=4 t=1
- 486 tabs on_key_release     sel=85:86 crt=4 85:86 [] : []
- 439 tabs plst               s=4 t=1 85 20 (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 474 tabs on_key_press       s=4 t=1
- 474 tabs on_key_press       sel=85:86 crt=4 85:86 [ffe1] : [LSHIFT]
- 439 tabs plst               s=4 t=1 85 20 (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 474 tabs on_key_press       s=4 t=1
- 474 tabs on_key_press       sel=85:86 crt=4 85:86 [ffe1 76] : [LSHIFT V]
- 439 tabs plst               s=4 t=1 85 20 (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 546 tabs on_text            s=4 t=1
- 546 tabs on_text            sel=85:86 crt=4 85:86 [ffe1 76] : [LSHIFT V]
- 547 tabs on_text            BGN <V> (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 552 tabs on_text            ^V<V> toggleArrow(1)
- 375 tabs toggleArrow        BGN ^V<V> toggleArrow(1) v=1 .vArrow= 1 = VARROWS[.vArrow]=DOWN
- 379 tabs toggleArrow        BGN ^V<V> toggleArrow(1) v=1 .vArrow=-1 = VARROWS[.vArrow]=UP
- 557 tabs on_text            END <V> (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 439 tabs plst               s=4 t=1 85 20 (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 486 tabs on_key_release     s=4 t=1
- 486 tabs on_key_release     sel=85:86 crt=4 85:86 [ffe1] : [LSHIFT]
- 439 tabs plst               s=4 t=1 85 20 (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 486 tabs on_key_release     s=4 t=1
- 486 tabs on_key_release     sel=85:86 crt=4 85:86 [] : []
- 439 tabs plst               s=4 t=1 85 20 (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 474 tabs on_key_press       s=4 t=1
- 474 tabs on_key_press       sel=85:86 crt=4 85:86 [20] : [SPACE]
- 439 tabs plst               s=4 t=1 85 20 (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 546 tabs on_text            s=4 t=1
- 546 tabs on_text            sel=85:86 crt=4 85:86 [20] : [SPACE]
- 547 tabs on_text            BGN < > (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 553 tabs on_text            < > setTab
- 635 tabs setTab             BGN < > setTab < > (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 588 tabs getTextMotn        < > setTab < >.csrMode=1 .hArrow=1 .vArrow=-1 return m=ff52
- 572 tabs fcTextMotn         Before on_text_motion<ff52> (sel=85:86 crt=4 85:86, (85:86, 85:86))
- 574 tabs fcTextMotn         After on_text_motion<ff52> Before autoMove (sel=0:0 crt=3 64:None, (64:None, 64:None))
- 623 tabs move               BGN < > setTab < > ff52 (sel=0:0 crt=3 64:None, (64:None, 64:None))
- 627 tabs move               v[0] s=3 t=64 dm=1 before m=ff52 (sel=0:0 crt=3 64:None, (64:None, 64:None))
- 840 tabs setCrs             BGN s=3 t=64 dm=1     sel=0:0 crt=3 64:None
- 844 tabs setCrs             END s=3 t=64 dm=1     sel=64:65 crt=3 64:65
- 631 tabs move               v[0] s=3 t=64 dm=1 after  m=ff52 (sel=64:65 crt=3 64:65, (64:65, 64:65))sel=64:65 crt=3 64:65
- 632 tabs move               END < > setTab < > ff52 (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 577 tabs fcTextMotn         After  autoMove (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 749 tabs regSnap            .snapWhy=< > setTab < > .snapType=SPC .snapReg=1 .snapId=4
- 557 tabs on_text            END < > (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 762 tabs snapshot           SNAP_NAME=tabs.52.SPC.4.png < > setTab < >
- 456 tabs on_draw            .snapWhy=< > setTab < > .snapType=SPC .snapId=5
- 439 tabs plst               s=3 t=1 64 20 (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 486 tabs on_key_release     s=3 t=1
- 486 tabs on_key_release     sel=64:65 crt=3 64:65 [] : []
- 439 tabs plst               s=3 t=1 64 20 (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 474 tabs on_key_press       s=3 t=1
- 474 tabs on_key_press       sel=64:65 crt=3 64:65 [20] : [SPACE]
- 439 tabs plst               s=3 t=1 64 20 (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 546 tabs on_text            s=3 t=1
- 546 tabs on_text            sel=64:65 crt=3 64:65 [20] : [SPACE]
- 547 tabs on_text            BGN < > (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 553 tabs on_text            < > setTab
- 635 tabs setTab             BGN < > setTab < > (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 588 tabs getTextMotn        < > setTab < >.csrMode=1 .hArrow=1 .vArrow=-1 return m=ff52
- 572 tabs fcTextMotn         Before on_text_motion<ff52> (sel=64:65 crt=3 64:65, (64:65, 64:65))
- 574 tabs fcTextMotn         After on_text_motion<ff52> Before autoMove (sel=0:0 crt=2 43:None, (43:None, 43:None))
- 623 tabs move               BGN < > setTab < > ff52 (sel=0:0 crt=2 43:None, (43:None, 43:None))
- 627 tabs move               v[0] s=2 t=43 dm=1 before m=ff52 (sel=0:0 crt=2 43:None, (43:None, 43:None))
- 840 tabs setCrs             BGN s=2 t=43 dm=1     sel=0:0 crt=2 43:None
- 844 tabs setCrs             END s=2 t=43 dm=1     sel=43:44 crt=2 43:44
- 631 tabs move               v[0] s=2 t=43 dm=1 after  m=ff52 (sel=43:44 crt=2 43:44, (43:44, 43:44))sel=43:44 crt=2 43:44
- 632 tabs move               END < > setTab < > ff52 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 577 tabs fcTextMotn         After  autoMove (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 749 tabs regSnap            .snapWhy=< > setTab < > .snapType=SPC .snapReg=1 .snapId=5
- 557 tabs on_text            END < > (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 762 tabs snapshot           SNAP_NAME=tabs.52.SPC.5.png < > setTab < >
- 456 tabs on_draw            .snapWhy=< > setTab < > .snapType=SPC .snapId=6
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 486 tabs on_key_release     s=2 t=1
- 486 tabs on_key_release     sel=43:44 crt=2 43:44 [] : []
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 474 tabs on_key_press       s=2 t=1
- 474 tabs on_key_press       sel=43:44 crt=2 43:44 [20] : [SPACE]
- 439 tabs plst               s=2 t=1 43 20 (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 546 tabs on_text            s=2 t=1
- 546 tabs on_text            sel=43:44 crt=2 43:44 [20] : [SPACE]
- 547 tabs on_text            BGN < > (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 553 tabs on_text            < > setTab
- 635 tabs setTab             BGN < > setTab < > (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 588 tabs getTextMotn        < > setTab < >.csrMode=1 .hArrow=1 .vArrow=-1 return m=ff52
- 572 tabs fcTextMotn         Before on_text_motion<ff52> (sel=43:44 crt=2 43:44, (43:44, 43:44))
- 574 tabs fcTextMotn         After on_text_motion<ff52> Before autoMove (sel=0:0 crt=1 22:None, (22:None, 22:None))
- 623 tabs move               BGN < > setTab < > ff52 (sel=0:0 crt=1 22:None, (22:None, 22:None))
- 627 tabs move               v[0] s=1 t=22 dm=1 before m=ff52 (sel=0:0 crt=1 22:None, (22:None, 22:None))
- 840 tabs setCrs             BGN s=1 t=22 dm=1     sel=0:0 crt=1 22:None
- 844 tabs setCrs             END s=1 t=22 dm=1     sel=22:23 crt=1 22:23
- 631 tabs move               v[0] s=1 t=22 dm=1 after  m=ff52 (sel=22:23 crt=1 22:23, (22:23, 22:23))sel=22:23 crt=1 22:23
- 632 tabs move               END < > setTab < > ff52 (sel=22:23 crt=1 22:23, (22:23, 22:23))
- 577 tabs fcTextMotn         After  autoMove (sel=22:23 crt=1 22:23, (22:23, 22:23))
- 749 tabs regSnap            .snapWhy=< > setTab < > .snapType=SPC .snapReg=1 .snapId=6
- 557 tabs on_text            END < > (sel=22:23 crt=1 22:23, (22:23, 22:23))
- 762 tabs snapshot           SNAP_NAME=tabs.52.SPC.6.png < > setTab < >
- 456 tabs on_draw            .snapWhy=< > setTab < > .snapType=SPC .snapId=7
- 439 tabs plst               s=1 t=1 22 20 (sel=22:23 crt=1 22:23, (22:23, 22:23))
- 486 tabs on_key_release     s=1 t=1
- 486 tabs on_key_release     sel=22:23 crt=1 22:23 [] : []
- 439 tabs plst               s=1 t=1 22 20 (sel=22:23 crt=1 22:23, (22:23, 22:23))
- 474 tabs on_key_press       s=1 t=1
- 474 tabs on_key_press       sel=22:23 crt=1 22:23 [20] : [SPACE]
- 439 tabs plst               s=1 t=1 22 20 (sel=22:23 crt=1 22:23, (22:23, 22:23))
- 546 tabs on_text            s=1 t=1
- 546 tabs on_text            sel=22:23 crt=1 22:23 [20] : [SPACE]
- 547 tabs on_text            BGN < > (sel=22:23 crt=1 22:23, (22:23, 22:23))
- 553 tabs on_text            < > setTab
- 635 tabs setTab             BGN < > setTab < > (sel=22:23 crt=1 22:23, (22:23, 22:23))
- 588 tabs getTextMotn        < > setTab < >.csrMode=1 .hArrow=1 .vArrow=-1 return m=ff52
- 572 tabs fcTextMotn         Before on_text_motion<ff52> (sel=22:23 crt=1 22:23, (22:23, 22:23))
- 574 tabs fcTextMotn         After on_text_motion<ff52> Before autoMove (sel=0:0 crt=0 1:None, (1:None, 1:None))
- 623 tabs move               BGN < > setTab < > ff52 (sel=0:0 crt=0 1:None, (1:None, 1:None))
- 627 tabs move               v[0] s=0 t=1 dm=1 before m=ff52 (sel=0:0 crt=0 1:None, (1:None, 1:None))
- 840 tabs setCrs             BGN s=0 t=1 dm=1     sel=0:0 crt=0 1:None
- 844 tabs setCrs             END s=0 t=1 dm=1     sel=1:2 crt=0 1:2
- 631 tabs move               v[0] s=0 t=1 dm=1 after  m=ff52 (sel=1:2 crt=0 1:2, (1:2, 1:2))sel=1:2 crt=0 1:2
- 632 tabs move               END < > setTab < > ff52 (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 577 tabs fcTextMotn         After  autoMove (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 749 tabs regSnap            .snapWhy=< > setTab < > .snapType=SPC .snapReg=1 .snapId=7
- 557 tabs on_text            END < > (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 762 tabs snapshot           SNAP_NAME=tabs.52.SPC.7.png < > setTab < >
- 456 tabs on_draw            .snapWhy=< > setTab < > .snapType=SPC .snapId=8
- 439 tabs plst               s=0 t=1 1 20 (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 486 tabs on_key_release     s=0 t=1
- 486 tabs on_key_release     sel=1:2 crt=0 1:2 [] : []
- 439 tabs plst               s=0 t=1 1 20 (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 474 tabs on_key_press       s=0 t=1
- 474 tabs on_key_press       sel=1:2 crt=0 1:2 [20] : [SPACE]
- 439 tabs plst               s=0 t=1 1 20 (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 546 tabs on_text            s=0 t=1
- 546 tabs on_text            sel=1:2 crt=0 1:2 [20] : [SPACE]
- 547 tabs on_text            BGN < > (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 553 tabs on_text            < > setTab
- 635 tabs setTab             BGN < > setTab < > (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 588 tabs getTextMotn        < > setTab < >.csrMode=1 .hArrow=1 .vArrow=-1 return m=ff52
- 572 tabs fcTextMotn         Before on_text_motion<ff52> (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 574 tabs fcTextMotn         After on_text_motion<ff52> Before autoMove (sel=0:0 crt=0 1:None, (1:None, 1:None))
- 623 tabs move               BGN < > setTab < > ff52 (sel=0:0 crt=0 1:None, (1:None, 1:None))
- 627 tabs move               v[0] s=0 t=1 dm=1 before m=ff52 (sel=0:0 crt=0 1:None, (1:None, 1:None))
- 840 tabs setCrs             BGN s=0 t=1 dm=1     sel=0:0 crt=0 1:None
- 844 tabs setCrs             END s=0 t=1 dm=1     sel=1:2 crt=0 1:2
- 631 tabs move               v[0] s=0 t=1 dm=1 after  m=ff52 (sel=1:2 crt=0 1:2, (1:2, 1:2))sel=1:2 crt=0 1:2
- 632 tabs move               END < > setTab < > ff52 (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 577 tabs fcTextMotn         After  autoMove (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 749 tabs regSnap            .snapWhy=< > setTab < > .snapType=SPC .snapReg=1 .snapId=8
- 557 tabs on_text            END < > (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 762 tabs snapshot           SNAP_NAME=tabs.52.SPC.8.png < > setTab < >
- 456 tabs on_draw            .snapWhy=< > setTab < > .snapType=SPC .snapId=9
- 439 tabs plst               s=0 t=1 1 20 (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 486 tabs on_key_release     s=0 t=1
- 486 tabs on_key_release     sel=1:2 crt=0 1:2 [] : []
- 439 tabs plst               s=0 t=1 1 20 (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 474 tabs on_key_press       s=0 t=1
- 474 tabs on_key_press       sel=1:2 crt=0 1:2 [31] : [_1]
- 439 tabs plst               s=0 t=1 1 20 (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 546 tabs on_text            s=0 t=1
- 546 tabs on_text            sel=1:2 crt=0 1:2 [31] : [_1]
- 547 tabs on_text            BGN <1> (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 553 tabs on_text            <1> setTab
- 635 tabs setTab             BGN <1> setTab <1> (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 439 tabs plst               s=0 t=1 1 20 (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 638 tabs setTab             Before <1> setTab <1> <-> cc=1 plst=0 0 0 1
- 655 tabs setDTNIK           cc=1 kk=1    text=1
- 669 tabs setData            t=1 text=1 data=-1------------------
- 439 tabs plst               s=0 t=1 1 20 (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 641 tabs setTab             After <1> setTab <1> <1> cc=1 plst=0 0 0 1
- 643 tabs setTab             Before on_text<1> (sel=1:2 crt=0 1:2, (1:2, 1:2))
- 645 tabs setTab             After  on_text<1> (sel=0:0 crt=0 2:None, (2:None, 2:None))
- 840 tabs setCrs             BGN s=-1 t=1 dm=1     sel=0:0 crt=0 2:None
- 844 tabs setCrs             END s=-1 t=1 dm=1     sel=126:126 crt=-1 126:127
- 749 tabs regSnap            .snapWhy=<1> setTab <1> .snapType=TXT_1 .snapReg=1 .snapId=9
- 651 tabs setTab             END <1> setTab <1> (sel=126:126 crt=-1 126:127, (126:127, 126:127))
- 557 tabs on_text            END <1> (sel=126:126 crt=-1 126:127, (126:127, 126:127))
- 762 tabs snapshot           SNAP_NAME=tabs.52.TXT_1.9.png <1> setTab <1>
- 456 tabs on_draw            .snapWhy=<1> setTab <1> .snapType=TXT_1 .snapId=10
- 439 tabs plst               s=-1 t=0 126 20 (sel=126:126 crt=-1 126:127, (126:127, 126:127))
- 486 tabs on_key_release     s=-1 t=0
- 486 tabs on_key_release     sel=126:126 crt=-1 126:127 [] : []
- 439 tabs plst               s=-1 t=0 126 20 (sel=126:126 crt=-1 126:127, (126:127, 126:127))
- 474 tabs on_key_press       s=-1 t=0
- 474 tabs on_key_press       sel=126:126 crt=-1 126:127 [32] : [_2]
- 439 tabs plst               s=-1 t=0 126 20 (sel=126:126 crt=-1 126:127, (126:127, 126:127))
- 546 tabs on_text            s=-1 t=0
- 546 tabs on_text            sel=126:126 crt=-1 126:127 [32] : [_2]
- 547 tabs on_text            BGN <2> (sel=126:126 crt=-1 126:127, (126:127, 126:127))
- 553 tabs on_text            <2> setTab
- 635 tabs setTab             BGN <2> setTab <2> (sel=126:126 crt=-1 126:127, (126:127, 126:127))
- 439 tabs plst               s=-1 t=0 126 20 (sel=126:126 crt=-1 126:127, (126:127, 126:127))
- 638 tabs setTab             Before <2> setTab <2> <-> cc=-6 plst=0 0 -1 0
- 655 tabs setDTNIK           cc=-6 kk=1    text=2
- 669 tabs setData            t=0 text=2 data=2-------------------
- 439 tabs plst               s=-1 t=0 126 20 (sel=126:126 crt=-1 126:127, (126:127, 126:127))
- 641 tabs setTab             After <2> setTab <2> <2> cc=-6 plst=0 0 -1 0
- 643 tabs setTab             Before on_text<2> (sel=126:126 crt=-1 126:127, (126:127, 126:127))
- 645 tabs setTab             After  on_text<2> (sel=0:0 crt=6 127:None, (127:None, 127:None))
- 840 tabs setCrs             BGN s=-2 t=0 dm=1     sel=0:0 crt=6 127:None
- 844 tabs setCrs             END s=-2 t=0 dm=1     sel=105:106 crt=-2 105:106
- 749 tabs regSnap            .snapWhy=<2> setTab <2> .snapType=TXT_2 .snapReg=1 .snapId=10
- 651 tabs setTab             END <2> setTab <2> (sel=105:106 crt=-2 105:106, (105:106, 105:106))
- 557 tabs on_text            END <2> (sel=105:106 crt=-2 105:106, (105:106, 105:106))
- 762 tabs snapshot           SNAP_NAME=tabs.52.TXT_2.10.png <2> setTab <2>
- 456 tabs on_draw            .snapWhy=<2> setTab <2> .snapType=TXT_2 .snapId=11
- 439 tabs plst               s=-2 t=0 105 20 (sel=105:106 crt=-2 105:106, (105:106, 105:106))
- 486 tabs on_key_release     s=-2 t=0
- 486 tabs on_key_release     sel=105:106 crt=-2 105:106 [] : []
- 439 tabs plst               s=-2 t=0 105 20 (sel=105:106 crt=-2 105:106, (105:106, 105:106))
- 474 tabs on_key_press       s=-2 t=0
- 474 tabs on_key_press       sel=105:106 crt=-2 105:106 [ff1b] : [ESCAPE]
- 475 tabs on_key_press       symb=65307 symbStr=ESCAPE mods=0 modsStr=MOD_SHIFT Quit
- 807 tabs quit               Exit symb=65307 symbStr=ESCAPE mods=0 modsStr=MOD_SHIFT Quit error=0 save=1
-  76 util dumpStack           9 tabs        808 quit                 .dumpStack(inspect.stack(), file=LOG_FILE)    ;   .log(.QUIT_BGN, pfx=0)
-  76 util dumpStack           8 tabs        475 on_key_press         if   symb == wink.ESCAPE:              msg +=  Quit     ;    .log(msg)  ;  .quit(msg, 0)
-  76 util dumpStack           7 event       415 dispatch_event       if getattr(self, event_type)(*args):
-  76 util dumpStack           6 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
-  76 util dumpStack           5 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
-  76 util dumpStack           4 __init__    747 f                    result = event_handler(msg, wParam, lParam)
-  76 util dumpStack           3 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
-  76 util dumpStack           2 base        170 run                  platform_event_loop.step(timeout)
-  76 util dumpStack           1 __init__    107 run                  event_loop.run()
-  76 util dumpStack           0 tabs        863 <module>             pyglet.app.run()
-  77 util dumpStack          MAX_STACK_DEPTH= 0
-###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
-  76 util dumpStack          12 util          8 <module>             MAX_STACK_FRAME = inspect.stack()
-  76 util dumpStack          11 <frozen importlib   241 _call_with_frames_removed 
-  76 util dumpStack          10 <frozen importlib   883 exec_module          
-  76 util dumpStack           9 <frozen importlib   688 _load_unlocked       
-  76 util dumpStack           8 <frozen importlib  1006 _find_and_load_unlocked 
-  76 util dumpStack           7 <frozen importlib  1027 _find_and_load       
-  76 util dumpStack           6 chord         6 <module>             import util
-  76 util dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
-  76 util dumpStack           4 <frozen importlib   883 exec_module          
-  76 util dumpStack           3 <frozen importlib   688 _load_unlocked       
-  76 util dumpStack           2 <frozen importlib  1006 _find_and_load_unlocked 
-  76 util dumpStack           1 <frozen importlib  1027 _find_and_load       
-  76 util dumpStack           0 tabs         13 <module>             import chord, util
-  77 util dumpStack          MAX_STACK_DEPTH= 0
- 810 tabs quit               BGN symb=65307 symbStr=ESCAPE mods=0 modsStr=MOD_SHIFT Quit error=0 save=1
-###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
- 141 tabs dumpArgs           [a]        IMPLA=0
- 142 tabs dumpArgs           [e]   .EVENT_LOG=0
- 143 tabs dumpArgs           [f]         .dfn=test.0.dat
- 144 tabs dumpArgs           [F] .FULL_SCREEN=0
- 145 tabs dumpArgs           [G]    .GEN_DATA=1
- 146 tabs dumpArgs           [g] .ORDER_GROUP=1
- 147 tabs dumpArgs           [n]            n=[1 1 6 20]
- 148 tabs dumpArgs           [s]       .SNAPS=1
- 149 tabs dumpArgs           [v]            v=[0]
- 150 tabs dumpArgs           [V]     .VERBOSE=0
- 198 tabs saveDataFile       symb=65307 symbStr=ESCAPE mods=0 modsStr=MOD_SHIFT Quit C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat
-C:\Users\Owner\Documents\GitHub\tabs\data\test.0.dat
- 204 tabs saveDataFile       n=[1 1 6 20] [1 1 6 20]
-writing 1st page
-writing 1st line
-writing 1st string -1------------------
-writing 2nd string --------------------
-writing 3rd string 12------------------
-writing 4th string -3------------------
-writing 5th string --------------------
-writing 6th string 2-------------------
- 216 tabs saveDataFile       n=[1 1 6 20] [1 1 6 20] size=134
- 813 tabs quit               Clean Run
- 762 tabs snapshot           SNAP_NAME=tabs.52.QUIT.11.png quit error=0 save=1
- 815 tabs quit               END symb=65307 symbStr=ESCAPE mods=0 modsStr=MOD_SHIFT Quit error=0 save=1
-###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
- 801 tabs cleanupLog         C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
- 801 tabs cleanupLog         C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log
- 802 tabs cleanupLog         Closing and Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log
+ 326 tabs dumpDataHorz       END (1x1x6x20) lc=1 ll=1 i=0
+ 744 tabs on_resize          BGN (640x480) (1x1x6x20) [1 1 6 20] n=[1 1 6 20]
+ 745 tabs on_resize          .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
+ 713 tabs dumpView           V[0] (0 0 640 480) 0:1 0
+ 718 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
+ 719 tabs dumpLbox           L[0] sel=0:1
+ 722 tabs dumpRect           R[0] (2 2 636 476)
+ 713 tabs dumpView           V[0] (0 0 640 480) 0:1 0
+ 718 tabs dumpLbox           L[0] (2 2 636 476) cw=600 ch=350 cva=top
+ 719 tabs dumpLbox           L[0] sel=0:1
+ 722 tabs dumpRect           R[0] (2 2 636.0 476.0)
+ 751 tabs on_resize          .width= 640 .height= 480 .w= 640 .h= 480 .mx=1.000 .my=1.000
+ 752 tabs on_resize          END (640x480) (1x1x6x20) [1 1 6 20] n=[1 1 6 20]
+ 786 tabs snapshot           SNAP_NAME=tabs.152.INIT.0.png init
+ 430 tabs on_draw            .snapWhy=init .snapType=INIT .snapId=1
+ 475 tabs on_text_motion     0 0 0 0 0:1 0 M R D BGN otm<MOTION_DOWN:65364>
+ 477 tabs on_text_motion     0 0 1 0 21:None 1 M R D END otm<MOTION_DOWN:65364>
+ 413 tabs plst               0 0 1 0 21:None 1 M R D
+ 863 tabs setCrs             BGN s=1 t=0 dm=1     21:None 1
+ 867 tabs setCrs             END s=1 t=0 dm=1     21:22 1
+ 475 tabs on_text_motion     0 0 1 0 21:22 1 M R D BGN otm<MOTION_UP:65362>
+ 477 tabs on_text_motion     0 0 0 0 0:None 0 M R D END otm<MOTION_UP:65362>
+ 413 tabs plst               0 0 0 0 0:None 0 M R D
+ 863 tabs setCrs             BGN s=0 t=0 dm=1     0:None 0
+ 867 tabs setCrs             END s=0 t=0 dm=1     0:1 0
+ 475 tabs on_text_motion     0 0 0 0 0:1 0 M R D BGN otm<MOTION_RIGHT:65363>
+ 477 tabs on_text_motion     0 0 0 1 1:None 0 M R D END otm<MOTION_RIGHT:65363>
+ 413 tabs plst               0 0 0 1 1:None 0 M R D
+ 863 tabs setCrs             BGN s=0 t=1 dm=1     1:None 0
+ 867 tabs setCrs             END s=0 t=1 dm=1     1:2 0
+ 475 tabs on_text_motion     0 0 0 1 1:2 0 M R D BGN otm<MOTION_END_OF_LINE:4>
+ 477 tabs on_text_motion     0 0 0 20 20:None 0 M R D END otm<MOTION_END_OF_LINE:4>
+ 413 tabs plst               0 0 0 20 20:None 0 M R D
+ 863 tabs setCrs             BGN s=0 t=20 dm=1     20:None 0
+ 867 tabs setCrs             END s=0 t=20 dm=1     20:21 0
+ 475 tabs on_text_motion     0 0 0 20 20:21 0 M R D BGN otm<MOTION_LEFT:65361>
+ 477 tabs on_text_motion     0 0 0 19 19:None 0 M R D END otm<MOTION_LEFT:65361>
+ 413 tabs plst               0 0 0 19 19:None 0 M R D
+ 863 tabs setCrs             BGN s=0 t=19 dm=1     19:None 0
+ 867 tabs setCrs             END s=0 t=19 dm=1     19:20 0
+ 475 tabs on_text_motion     0 0 0 19 19:20 0 M R D BGN otm<MOTION_RIGHT:65363>
+ 477 tabs on_text_motion     0 0 0 20 20:None 0 M R D END otm<MOTION_RIGHT:65363>
+ 413 tabs plst               0 0 0 20 20:None 0 M R D
+ 863 tabs setCrs             BGN s=0 t=20 dm=1     20:None 0
+ 867 tabs setCrs             END s=0 t=20 dm=1     20:21 0
+ 475 tabs on_text_motion     0 0 0 20 20:21 0 M R D BGN otm<MOTION_RIGHT:65363>
+ 477 tabs on_text_motion     0 0 1 0 21:None 1 M R D END otm<MOTION_RIGHT:65363>
+ 413 tabs plst               0 0 1 0 21:None 1 M R D
+ 863 tabs setCrs             BGN s=1 t=0 dm=1     21:None 1
+ 867 tabs setCrs             END s=1 t=0 dm=1     21:22 1

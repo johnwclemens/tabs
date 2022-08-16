@@ -31,11 +31,11 @@ JFMT             = [   2,       3,       2,       4,      4,       4,       4,  
 TT, NN, II, KK   =  0,  1,  2,  3
 LEFT, RIGHT      = -1, 1
 UP,   DOWN       = -1, 1
-HARROWS          = {-1:'LEFT', 1:'RIGHT'}
-VARROWS          = {-1:'UP'  , 1:'DOWN' }
-CSR_MODES        = ['MELODY', 'CHORD', 'ARPG']
+H_ARWS           = {-1:'LEFT', 1:'RIGHT'}
+V_ARWS           = {-1:'UP'  , 1:'DOWN' }
+C_MODES          = ['MELODY', 'CHORD', 'ARPG']
 MELODY, CHORD, ARPG   = 0, 1, 2
-IMPLA           = 0
+IMPLA            = 0
 
 def fsize(c, s, w, h, file, xx=1.5, yy=1.):
     fsx = xx * w/c  ;  fsy = yy * h/s
@@ -54,6 +54,7 @@ class Tabs(pyglet.window.Window):
         self.batch       = pyglet.graphics.Batch()
         self.group       = pyglet.graphics.OrderedGroup(0)
         self.n           = [1, 1, 50, 6]
+        self.v           = set() if 0 else {0}
         self.snapWhy, self.snapType, self.snapReg, self.snapId = '?', '_', 0, 0
         self.LOG_ID      = 0
         self.lfSeqPath   = self.getFilePath(seq=1, fdir='logs', fsfx='.log')
@@ -61,7 +62,7 @@ class Tabs(pyglet.window.Window):
         self.x,  self.y,  self.w,  self.h     = 0, 0, 0, 0
         self.symb,    self.mods,    self.motn = 0, 0, 0
         self.symbStr, self.modsStr, self.motnStr, self.kbkTxt = None, None, None, None
-        self.hArrow, self.vArrow,  self.csrMode               = RIGHT, DOWN, MELODY    ;    self.dumpCursorArrows('init()')
+        self.hArrow, self.vArrow,  self.csrMode               = RIGHT, DOWN, MELODY    ;    self.dumpCrsArrows('init()')
         self._initArgs()
         self.sAlias = 'GUITAR_6_STD'
         self.sobj = util.Strings(LOG_FILE, self.sAlias)
@@ -99,7 +100,6 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'BGN {self.fmtWxH()}')
         w = self.display.get_windows()
         for j in range(len(w)): self.log(f'windows[{j}] {self.fmtXdY(w[j].x, w[j].y)} {self.fmtWxH(w[j].width, w[j].height)}')
-#        self._initGroups()
         self.set_visible()
         self.log(f'get_size={self.fmtWxH(self.get_size())}')
         self.kbks = wink.KeyStateHandler()
@@ -109,19 +109,8 @@ class Tabs(pyglet.window.Window):
             self.push_handlers(self.eventLogger)
         if dbg: self.log(f'END {self.fmtWxH()}')
     ####################################################################################################################################################################################################
-#    def _initGroups(self):    #     [P, L, C  T,  N, I, K, V   R, Q, H,  O, A, D]
-#        self.g = []   ;   self.go = [1, 2, 3, 5,  5, 5, 5, 4,  5, 5, 6,  5, 5, 5]
-#        self.log(f'gn={util.fmtl(self.go)}')
-#        for i in range(1+max(self.go)):
-#            p = None if self.ORDER_GROUP or i==0 else self.g[i-1]
-#            self.g.append(self._initGroup(i, p))
-#            self.log(f'({i}) g={self.g[i]} pg={self.g[i].parent}')
-#    def _initGroup(self, order=0, parent=None): return pyglet.graphics.OrderedGroup(order, parent) if self.ORDER_GROUP else pyglet.graphics.Group(parent)
-    ####################################################################################################################################################################################################
     def _initArgs(self):
         self.dfn         = 'test.0.dat'
-        self.n           = [1, 1, 6, 50]
-        self.v           = set() if 0 else {0}
         self.EVENT_LOG = 0  ;  self.FULL_SCREEN = 0  ;  self.GEN_DATA = 0  ;  self.ORDER_GROUP = 1  ;  self.SNAPS = 0  ;  self.VERBOSE = 0
         ARGS             = util.parseCmdLine(file=LOG_FILE)
         self.log(f'argMap={util.fmtm(ARGS)}')
@@ -131,6 +120,7 @@ class Tabs(pyglet.window.Window):
         if 'F' in ARGS and len(ARGS['F']) == 0: self.FULL_SCREEN     =  1
         if 'G' in ARGS and len(ARGS['G']) == 0: self.GEN_DATA        =  1
         if 'g' in ARGS and len(ARGS['g']) == 0: self.ORDER_GROUP     =  0
+        if 'm' in ARGS and len(ARGS['m']) == 0: self.csrMode         = ARGS['m'][0]
         if 'n' in ARGS and len(ARGS['n']) >  0: self.n               = [int(ARGS['n'][i]) for i in range(len(ARGS['n']))]
         if 's' in ARGS and len(ARGS['s']) == 0: self.SNAPS           =  1
         if 'v' in ARGS and len(ARGS['v']) >= 0: self.v               = {int(ARGS['v'][i]) for i in range(len(ARGS['v']))}
@@ -367,34 +357,30 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {why} {self.blank=}')
 
     def toggleCsrMode(self, why):
-        self.log(f'BGN {why} {self.csrMode=} = {CSR_MODES[self.csrMode]=}')
-        self.csrMode  = (self.csrMode + 1) % len(CSR_MODES)
-        self.log(f'END {why} {self.csrMode=} = {CSR_MODES[self.csrMode]=}')
+        self.dumpCrsArrows(why)
+        self.csrMode  = (self.csrMode + 1) % len(C_MODES)
+        self.dumpCrsArrows(why)
 
-    def toggleArrow(self, why, v, dbg=1):
-        if dbg and     v: self.log(f'BGN {why} {v=} {self.vArrow=:2} = {VARROWS[self.vArrow]=}')
-        if dbg and not v: self.log(f'BGN {why} {v=} {self.hArrow=:2} = {HARROWS[self.hArrow]=}')
+    def toggleArrow(self, why, v):
+        self.dumpCrsArrows(why)
         if v: self.vArrow *= -1
         else: self.hArrow *= -1
-        if dbg and     v: self.log(f'BGN {why} {v=} {self.vArrow=:2} = {VARROWS[self.vArrow]=}')
-        if dbg and not v: self.log(f'BGN {why} {v=} {self.hArrow=:2} = {HARROWS[self.hArrow]=}')
+        self.dumpCrsArrows(why)
     ####################################################################################################################################################################################################
-    def OLD_dumpCursorArrows(self, why):
-        cm, ha, va = self.csrMode, self.hArrow, self.vArrow
-        self.log(f'{why} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
-    def dumpCursorArrows(self, why): self.log(f'{why}')
+    def dumpCrsArrows(self, why): c, h, v = self.csrMode, self.hArrow, self.vArrow  ;  self.log(f'{why} {C_MODES[c]:6} {H_ARWS[h]:5} {V_ARWS[v]:4}')
+    def fchv(self): c, h, v = self.csrMode, self.hArrow, self.vArrow  ;  return f'{C_MODES[c][0]} {H_ARWS[h][0]} {V_ARWS[v][0]}'
     def reverseArrow(self, dbg=1):
-        if dbg: self.dumpCursorArrows('reverseArrow()')
+        if dbg: self.dumpCrsArrows('reverseArrow()')
         if self.csrMode == MELODY or self.csrMode == ARPG: self.toggleArrow('reverseArrow() MELODY or ARPG', v=0)
         if self.csrMode == CHORD  or self.csrMode == ARPG: self.toggleArrow('reverseArrow() CHORD or ARPG',  v=1)
-        if dbg: self.dumpCursorArrows('reverseArrow()')
+        if dbg: self.dumpCrsArrows('reverseArrow()')
 
     def setCHVMode(self, why, c=None, h=None, v=None):
-        self.dumpCursorArrows(f'BGN {why} {c=} {h=} {v=}')
+        self.dumpCrsArrows(f'BGN {why} {c=} {h=} {v=}')
         if c is not None: self.csrMode = c
         if h is not None: self.hArrow  = h
         if v is not None: self.vArrow  = v
-        self.dumpCursorArrows(f'END {why} {c=} {h=} {v=}')
+        self.dumpCrsArrows(f'END {why} {c=} {h=} {v=}')
     ####################################################################################################################################################################################################
     def fCrsCrt(self, dbg=0): return self.fmtCrs(dbg), self.fmtCrt(dbg)
     def fmtCrs( self, dbg=0): return self.getTabsView().fmtCrs(dbg=dbg)
@@ -412,42 +398,30 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
 #    def isBTab(self, text):   return 1 if text in self.blanks else 0  # text == self.blank
     def isTab(self, text): return 1 if self.sobj.isFret(text) or text in util.DSymb.SYMBS or text == Z else 0
-#        if IMPLA: return 1 if self.sobj.isFret(text) or text in util.DSymb.SYMBS else 0
-#        else:           return 1 if self.sobj.isFret(text) or text in util.DSymb.SYMBS or text == Z else 0
     ####################################################################################################################################################################################################
     def getTabsView(self): return self.views[0]
-    def normCrt(self, caret):
-        self.log(f'BGN line={caret.line} pos={caret.position}')
-        line = caret.line
-        pos  = caret.position
-        mark = caret.mark
-        while pos > self.n[T]:
-            pos  -= line * self.n[T]
-            mark -= line * self.n[T]
-            line += 1
-        caret.position = pos
-        caret.mark = mark
-        caret.line = line
-        self.log(f'END line={caret.line} pos={caret.position}')
 
-#        s = caret.line  ;  t = caret.position - s * self.dl()[T]  ;  return s, t
-    def plst2cc(self, p, l, s, t): np, nl, ns, nt = self.dl()  ;  return p*np + l*nl + s*ns + t
+    def fp(self):    return f'{self.fplst()} {self.fmtCrs()} {self.fchv()}' #  {self.vcp()} {self.docW()} {self.fplst()}
+    def fplst(self): p, l, s, t = self.plst(dbg=0)  ;  return f'{p} {l} {s} {t}'
+    def docW(self):  return self.dl()[T] + 1
+    def vcp(self):   return self.getTabsView().caret.position
+    def plst2cc(self, p, l, s, t): np, nl, ns, nt = self.dl()  ;  return p*np + l*nl + s*ns + t*nt
     def plst(self, dbg=1):
-        v = self.getTabsView()  ;  nt = self.dl()[T]
-        s = v.caret.line  ;  t = v.caret.position % (nt + 1)
-        msg = f'{s=} {t=} {v.caret.position} {nt}'
-        self.log(f'{msg} {self.fCrsCrt()}') if dbg else None
-        return 0, 0, s, t
+        v = self.getTabsView()  ;  n = self.docW()
+        p = 0    ;    l = 0     ;  s = v.caret.line   ;  t = v.caret.position % n
+#        if t >= self.dl()[T]: v.caret.line += 1  ;  l += v.caret.line // self.dl()[S]  ;  t = v.caret.position % n  ;  t -= 1 if t == n else 0
+        if dbg: self.log(f'{self.fp()}') # if dbg  > 1  else f'{self.fplst()}' ;   self.log(msg)
+        return p, l, s, t
     ####################################################################################################################################################################################################
     def kbkInfo(self, symb=None, mods=None, text=None, motn=None):
-        p, l, s, t = self.plst()  ;  self.log(f'{s=} {t=}')
-        msg = self.getTabsView().fmtCrs()  ;  kbks = self.kbks
-        self.log(f'{msg} {util.fmtl([ f"{k:x}" for k in kbks if kbks[k] ])} : {util.fmtl([ wink.symbol_string(k) for k in kbks if kbks[k] ])}')
-        if symb:  self.symb,   self.symbStr = symb, wink.symbol_string(symb)
-        if mods:  self.mods,   self.modsStr = mods, wink.modifiers_string(mods)
-        if motn:  self.motn,   self.motnStr = motn, wink.motion_string(motn)
-        if text:               self.kbkTxt  = text
-        return self.symbStr, self.modsStr #, self.motnStr
+        pass
+#        kbks = self.kbks
+#        self.log(f'{self.fp()} {util.fmtl([ f"{k:x}" for k in kbks if kbks[k] ])} : {util.fmtl([ wink.symbol_string(k) for k in kbks if kbks[k] ])}')
+#        if symb:  self.symb,   self.symbStr = symb, wink.symbol_string(symb)
+#        if mods:  self.mods,   self.modsStr = mods, wink.modifiers_string(mods)
+#        if motn:  self.motn,   self.motnStr = motn, wink.motion_string(motn)
+#        if text:               self.kbkTxt  = text
+#        return self.symbStr, self.modsStr #, self.motnStr
     ####################################################################################################################################################################################################
     def on_draw(self, dbg=1):
         pyglet.gl.glClearColor(1, 1, 1, 1)
@@ -470,28 +444,58 @@ class Tabs(pyglet.window.Window):
         if self.focus:
             self.focus.caret.on_mouse_drag(x, y, dx, dy, buttons, modifiers)
     ####################################################################################################################################################################################################
-    def on_key_press(self, symb, mods):
-        symbStr, modsStr = self.kbkInfo(symb, mods)  ;  msg = f'{symb=} {symbStr=} {mods=} {modsStr=}'
+    def on_key_press(self, symbol, modifiers):
+        if symbol == pyglet.window.key.TAB:
+            if modifiers & pyglet.window.key.MOD_SHIFT: direction = -1
+            else:                                       direction = 1
+            if self.focus in self.widgets:              i = self.widgets.index(self.focus)
+            else:                                       i = 0   ;   direction = 0
+            self.set_focus(self.widgets[(i + direction) % len(self.widgets)])
+        elif symbol == pyglet.window.key.ESCAPE:        pyglet.app.exit()
+    def OLD_on_key_press(self, symb, mods):
+#        symbStr, modsStr = self.kbkInfo(symb, mods)  ;  msg = f'{symb=} {symbStr=} {mods=} {modsStr=}'
+        symbStr, modsStr = wink.symbol_string(symb), wink.modifiers_string(mods)  ;  msg = f'{symb=} {symbStr=} {mods=} {modsStr=}'
         if   symb == wink.ESCAPE:              msg += ' Quit'     ;    self.log(msg)  ;  self.quit(msg, 0)
         elif symb == wink.S and self.isCtrl(): self.saveDataFile('@S', self.dataPath1)
         elif symb == wink.INSERT:              msg += 'INSERT'    ;    self.log(msg)
         elif symb == wink.TAB:
-            if   self.isShift():               direction = -1
-            else:                              direction = 1
+            if   self.isShift():               d = -1
+            else:                              d = 1
             if   self.focus in self.views:     i = self.views.index(self.focus)
-            else:                              direction = 0      ;    i = 0
-            self.setFocus(self.views[(i + direction) % len(self.views)])
+            else:                              d = 0  ;  i = 0
+            self.setFocus(self.views[(i + d) % len(self.views)])
 
-    def on_key_release(self, symb, mods, dbg=1):
+#    def on_key_release(self, symb, mods, dbg=1):
+    def OLD_on_key_release(self, symb, mods):
         self.kbkInfo(symb, mods)
     ####################################################################################################################################################################################################
-    def on_text_motion(self, m, dbg=1):
-        self.kbkInfo(motn=m)  ;  t = f'{m:x}'
-        self.log(f'BGN {t} {self.fCrsCrt()}')
+    def on_text_motion(self, m):
+        mt = f'otm<{wink.motion_string(m)}:{m}>'
         if self.focus:
-            self.log(f'otm<{t}> {self.fCrsCrt()}')
-            self.focus.caret.on_text_motion(m) # ;  self.autoMove(msg)
-            self.log(f'otm<{t}> {self.fCrsCrt()}')
+            self.log(f'{self.fp()} BGN {mt}')
+            self.focus.caret.on_text_motion(m)
+            self.log(f'{self.fp()} END {mt}')
+            p, l, s, t = self.plst()
+            v = self.getTabsView()
+            v.setCrs(s, t, 1)
+#            vcp = v.caret.position  ;  nt = self.n[T]
+#            v.caret.position = vcp % nt  ;  v.caret.mark = v.caret.position + 1
+#            if vcp % self.docW() == nt: v.caret.line = vcp//self.docW()  ;  v.caret.position = vcp  ;  v.caret.mark  = vcp + 1
+#            else:                       v.caret.line = vcp//self.docW()  ;  v.caret.position = 0  ;  v.caret.mark = 1
+#            v.lbox.set_selection(v.caret.position, v.caret.mark)
+#            self.log(f'{self.fp()} ADJ {mt}')
+#            return pyglet.event.EVENT_HANDLED
+#            self.move(f'otm<{m}>', m)
+
+    def OLD_on_text_motion(self, m):
+        self.kbkInfo(motn=m)  ;  t = f'{m:x}'
+        self.log(f'{self.fp()} BGN {t}')
+#        if self.focus and (m == wink.MOTION_RIGHT or m == wink.MOTION_LEFT or m == wink.MOTION_UP or m == wink.MOTION_DOWN):
+        if self.focus and (m != wink.MOTION_RIGHT and m != wink.MOTION_LEFT and m != wink.MOTION_UP and m != wink.MOTION_DOWN):
+            self.log(f'{self.fp()} otm<{t}>')
+            self.focus.caret.on_text_motion(m)
+            return pyglet.event.EVENT_HANDLED
+#            self.log(f'{self.fp()} otm<{t}>')
         if   self.isCtrlAltShift():            msg = f'@&^??? {t}'   ;   self.log(msg)
         elif self.isCtrlAlt():                 msg =  f'@&??? {t}'   ;   self.log(msg)
 #            if   m == 1:                                self.unselectTabs(f' @& LEFT ({            m})',  nc
@@ -524,37 +528,42 @@ class Tabs(pyglet.window.Window):
             elif m == wink.MOTION_RIGHT:             msg =    f'RIGHT {t}'  ;  self.move(msg, m)
             elif m == wink.MOTION_DELETE:            msg =    f'DELETE    {t}'  ;  self.setTab(msg, self.blank)
             elif m == wink.MOTION_BACKSPACE:         msg =    f'BACKSPACE {t}'  ;  self.setTab(msg, self.blank)
+#            elif m == wink.MOTION_BEGINNING_OF_LINE: msg =    f'BLINE {t}' ;  self.log(msg) # ;  self.move(msg, m) # self.fcTextMotn(msg)
+#            elif m == wink.MOTION_END_OF_LINE:       msg =    f'ELINE {t}' ;  self.log(msg) # ;  self.moveEOL(msg, m) # self.fcTextMotn(msg, m)
 #            if   m == wink.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD {t}'  ;   self.log(msg) #  ;   self.quit(msg)
 #            elif m == wink.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD {t}'      ;   self.log(msg) #  ;   self.quit(msg)
-            else:                                    msg =    f'??? {t}'   ;   self.log(msg) #  ;   self.quit(msg)
+#            else:                                    msg =    f'??? {t}'   ;   self.log(msg) #  ;   self.quit(msg)
         else:                                        msg =    f'??? {t}'   ;   self.log(msg) #  ;   self.quit(msg)
-        if self.SNAPS: self.regSnap(msg, 'OTM')
-        if self.focus: self.log(f'END {t} {self.fCrsCrt()}')
+#        if self.SNAPS: self.regSnap(msg, 'OTM')
+#        if self.focus: self.log(f'{self.fp()} END {t}')
+        return pyglet.event.EVENT_HANDLED
     ####################################################################################################################################################################################################
-    def on_text_motion_select(self, ms, dbg=1):
+    def on_text_motion_select(self, motion):
+        if self.focus: self.focus.caret.on_text_motion_select(motion)
+    def OLD_on_text_motion_select(self, ms):
         self.kbkInfo(motn=ms)
-        if self.focus: self.log(f'BGN fc={self.fCrsCrt()} {ms=:x}') # ;  self.focus.caret.on_text_motion_select(ms)
+        if self.focus: self.log(f'{self.fp()} BGN fc {ms=:x}') # ;  self.focus.caret.on_text_motion_select(ms)
         if   ms == wink.MOTION_UP:                msg = f'UP    {ms:x}'  ;  self.move(msg, ms)
         elif ms == wink.MOTION_DOWN:              msg = f'DOWN  {ms:x}'  ;  self.move(msg, ms)
         elif ms == wink.MOTION_LEFT:              msg = f'LEFT  {ms:x}'  ;  self.move(msg, ms)
         elif ms == wink.MOTION_RIGHT:             msg = f'RIGHT {ms:x}'  ;  self.move(msg, ms)
         else:                                     msg = f'???   {ms:x}'  ;  self.log( msg)
-        if self.focus: self.log(f'END fc={self.fCrsCrt()} {ms=:x}')  ;  self.focus.caret.on_text_motion_select(ms)
+        if self.focus: self.log(f'{self.fp()} END fc {ms=:x}')  ;  self.focus.caret.on_text_motion_select(ms)
         self.quit(f'ERROR UNHANDLED {msg}')
     ####################################################################################################################################################################################################
-    def on_text(self, s, dbg=1):
+    def on_text(self, text):
+        if self.focus: self.focus.caret.on_text(text)
+    def OLD_on_text(self, s):
         self.kbkInfo(text=s)  ;  t = f'<{s}>'
-        if   self.focus:    self.log(f'BGN {t} {self.fCrsCrt()}')
+        if   self.focus:    self.log(f'{self.fp()} BGN {t}')
         if self.isShift():
             if   s == '$':  msg = f'^${t} snapshot'            ;   self.log(msg, so=1)  ;  self.snapshot(     msg, 'SNP')
             elif s == 'S':  msg = f'^S{t} saveDataFile'        ;   self.log(msg, so=1)  ;  self.saveDataFile( msg, self.dataPath1)
             elif s == 'T':  msg = f'^T{t} toggleCsrMode'       ;   self.log(msg, so=1)  ;  self.toggleCsrMode(msg)
             elif s == 'V':  msg = f'^V{t} toggleArrow(1)'      ;   self.log(msg, so=1)  ;  self.toggleArrow(  msg, v=1)
         elif self.isTab(s): msg =   f'{t} setTab'              ;   self.log(msg, so=1)  ;  self.setTab(       msg, s)
-#        elif self.isTab(s):                                                                  self.setTab(f'<{t}>', t)
-#        elif IMPLA and t == Z: msg = f'<{t}> fcTextMotn'   ;   self.log(msg, so=1)  ;  self.fcTextMotn(   msg)
         elif s == 'v':      msg = f'v{t} toggleArrow(0)'       ;   self.log(msg, so=1)  ;  self.toggleArrow(  msg, v=0)
-        if   self.focus:    self.log(f'END {t} {self.fCrsCrt()}')
+        if   self.focus:    self.log(f'{self.fp()} END {t}')
     ####################################################################################################################################################################################################
     def setFocus(self, focus, dbg=0):
         if dbg: self.log(f'BGN {id(focus)=} {id(self.focus)=}')
@@ -568,91 +577,106 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'END {id(focus)=} {id(self.focus)=}')
     ####################################################################################################################################################################################################
     def fcTextMotn(self, msg, dbg=1):
-        m = self.getTextMotn(msg)  ;  msg2 = f'on_text_motion<{m:x}>'  ;  msg3 = 'autoMove'
-        self.log(f'Before {msg2} {self.fCrsCrt()}')
-        self.focus.caret.on_text_motion(m)
-        self.log(f'After {msg2} Before {msg3} {self.fCrsCrt()}')
+#        t = f'{m:x}' if m is not None else 'None'
+#        if m is not None:
+#            msg2 = f'on_text_motion<{t}>'
+#            self.log(f'{self.fp()} Before {msg2}')
+#            self.focus.caret.on_text_motion(m)
+#            self.log(f'{self.fp()} After {msg2}')
+#        if m is None:
+        m = self.getTextMotn(msg)  ;  msg3 = 'move'
+        self.log(f'{self.fp()} Before {msg3}')
         self.move(msg, m)
-#        self.autoMove(msg)
-        self.log(f'After  {msg3} {self.fCrsCrt()}')
+        self.log(f'{self.fp()} After  {msg3}')
         if dbg: self.regSnap(msg, 'SPC')
 
     def getTextMotn(self, msg):
-        m = None  ;  msg += f'{self.csrMode=} {self.hArrow=} {self.vArrow=}'
+        m = None  ;  msg += f' {self.csrMode=} {self.hArrow=} {self.vArrow=}'
         if   self.csrMode == MELODY and self.hArrow == RIGHT: m = wink.MOTION_RIGHT
         elif self.csrMode == MELODY and self.hArrow == LEFT:  m = wink.MOTION_LEFT
         elif self.csrMode == CHORD  and self.vArrow == DOWN:  m = wink.MOTION_DOWN
         elif self.csrMode == CHORD  and self.vArrow == UP:    m = wink.MOTION_UP
         elif self.csrMode == ARPG   and self.hArrow == RIGHT: m = wink.MOTION_RIGHT
-        else: msg = f'ERROR {msg} {m=:x}'  ;  self.log(msg)  ;  self.quit(msg)
+        elif self.csrMode == ARPG   and self.hArrow == LEFT:  m = wink.MOTION_LEFT
+        elif self.csrMode == ARPG   and self.vArrow == DOWN:  m = wink.MOTION_DOWN
+        elif self.csrMode == ARPG   and self.vArrow == UP:    m = wink.MOTION_UP
+#        if   self.hArrow == RIGHT: m = wink.MOTION_RIGHT
+#        elif self.hArrow == LEFT:  m = wink.MOTION_LEFT
+#        elif self.vArrow == DOWN:  m = wink.MOTION_DOWN
+#        elif self.vArrow == UP:    m = wink.MOTION_UP
+        else: msg = f'ERROR {msg} {m=}'  ;  self.log(msg)  ;  self.quit(msg)
         self.log(f'{msg} return {m=:x}')
         return m
     ####################################################################################################################################################################################################
-    def OLD__autoMove(self, why):  # FIX ME
-        self.log(f'BGN {why}')
-        #        va = 1 if self.vArrow else -1
-        #        ha = 1 if self.hArrow else -1
-        nt, it = self.n[T], 6  # self.i[T]
-        mmDist = wink.MOTION_RIGHT if self.hArrow else wink.MOTION_LEFT  # ha * nt
-        cmDist = wink.MOTION_UP if self.vArrow else wink.MOTION_DOWN  # va
-        amDist = mmDist + cmDist
-        self.dumpCursorArrows(f'{why} M={mmDist} C={cmDist} A={amDist}')
-        if self.csrMode == MELODY:                                     self.move(why, mmDist)
-        elif self.csrMode == CHORD:
-            if it == 1 and self.vArrow == UP and self.hArrow == RIGHT: self.move(why, nt * 2 - 1)
-            elif it == 6 and self.vArrow == DOWN and self.hArrow == RIGHT: self.move(why, -(nt * 2 - 1))
-            else:                                                           self.move(why, cmDist)
-        elif self.csrMode == ARPG:                                       self.move(why, amDist)
-        self.log(f'END {why}')
-    def autoMove_2(self, why):
-        self.log(f'BGN {why} {self.fCrsCrt()}')
-#        nt, it = self.n[T], 3 # self.i[T]
-        mmDir = wink.MOTION_RIGHT if self.hArrow else wink.MOTION_LEFT
-        cmDir = wink.MOTION_DOWN  if self.vArrow else wink.MOTION_UP
-#        amDir = mmDir + cmDir
-#        self.dumpCursorArrows(f'{why} M={mmDir:x} C={cmDir:x}') # A={amDist:x}')
-        if   self.csrMode == MELODY:  self.move(why, mmDir)
-        elif self.csrMode == CHORD:   self.move(why, cmDir)
-#            if   it == 1 and self.vArrow  == UP   and self.hArrow == RIGHT: self.move(why, mmDir)
-#            elif it == 6 and self.vArrow  == DOWN and self.hArrow == RIGHT: self.move(why, mmDir)
-#            else:                                                           self.move(why, cmDir)
-#        elif    self.csrMode == ARPG:                                       self.move(why, amDir)
-        self.log(f'END {why} {self.fCrsCrt()}')
-    ####################################################################################################################################################################################################
     def move(self, why, m, dbg=1):
-        if dbg: self.log(f'BGN {why} {m:x} {self.fCrsCrt()}')
+        mt = f'{m:x}' if m is not None else ''
+        if dbg: self.log(f'{self.fp()} BGN {why} {mt}')
+        for i, v in enumerate(self.views): # and (m == wink.MOTION_RIGHT or m == wink.MOTION_LEFT or m == wink.MOTION_UP or m == wink.MOTION_DOWN):
+            if self.focus:
+                d = 1 if m != wink.MOTION_END_OF_LINE else -1
+#                self.log(f'{self.fp()} otm<{t}>')
+#                self.focus.caret.on_text_motion(m)
+#                self.log(f'{self.fp()} otm<{t}>')
+#                t0 = v.caret.position  ;  n0 = v.caret.mark
+#                n1 = t0 + d            ;  v.caret.mark = n1
+                s  = v.caret.line      ;  t = v.caret.position  ;  n0 = v.caret.mark
+                v.caret.mark = t + d   ;  n = v.caret.mark
+                dn = v.caret.mark - v.caret.position if v.caret.mark is not None else d
+                if dbg: self.log( f'{self.fp()} v[{i}] {mt} {d} Before {s=} {t=} {n0=} {n=} {dn=} ')
+                v.setCrs(s, t, dn)
+                if dbg: v.dumpCrs(f'{self.fp()} v[{i}] {mt} {d} After  {s=} {t=} {n0=} {n=} {dn=} ')
+        if dbg: self.log(f'{self.fp()} END {why} {mt}')
+
+    def moveEOL(self, msg='', m=None, dbg=1):
+        if dbg: self.log(f'{self.fp()} BGN {msg} {m=}')
         for i, v in enumerate(self.views):
-            s, t = v.caret.line, v.caret.position
+            s, t = v.caret.line,  self.docW()-1
             dm   = v.caret.mark - v.caret.position if v.caret.mark is not None else 1
-            if dbg: self.log(f'v[{i}] {s=} {t=} {dm=} before {m=:x} {self.fCrsCrt()}')
-#            s += self.vArrow if self.csrMode == CHORD  else 0
-#            t += self.hArrow if self.csrMode == MELODY else 0
+            if dbg: self.log( f'{self.fp()} v[{i}] {s=} {t=} {dm=} before {t}')
             v.setCrs(s, t, dm)
-            if dbg: v.dumpCrs(f'v[{i}] {s=} {t=} {dm=} after  {m=:x} {self.fCrsCrt()}')
-        if dbg: self.log(f'END {why} {m:x} {self.fCrsCrt()}')
+            if dbg: v.dumpCrs(f'{self.fp()} v[{i}] {s=} {t=} {dm=} after  {t}')
+        if dbg: self.log(f'{self.fp()} END {msg} {m=}')
+
+    def plstN(self, p, l, s, t, n=0, dbg=1):
+        np, nl, ns, nt = self.n
+        if dbg: self.log(f'{self.fp()} BGN {n=} {p} {l} {s} {t}')
+        t2 = n + t
+        s2 = t2//nt + s
+        l2 = s2//ns + l
+        p2 = l2//nl + p
+        if dbg: self.log(f'{self.fp()}     {n=} {p2} {l2} {s2} {t2}')
+        t3 = t2 % nt
+        s3 = s2 % ns
+        l3 = l2 % nl
+        p3 = p2 % np
+        if dbg: self.log(f'{self.fp()} END {n=} {p3} {l3} {s3} {t3}')
+        return p3, l3, s3, t3
     ####################################################################################################################################################################################################
-    def setTab(self, why, text, dbg=1): # if isDataFret or isTextFret else 0)
-        msg = f'{why} <{text}>'  ;     self.log(f'BGN {msg} {self.fCrsCrt()}')
-        if text == Z: self.fcTextMotn(msg)  ;  return  # if not IMPLA and text == Z
-        p, l, s, t  = self.plst()        ;    data = self.data[p][l][s][t]   ;   cc = self.plst2cc(p, l, s, t)
-        if dbg: self.log(f'Before {msg} <{data}> {cc=} plst={p} {l} {s} {t}')
+    def setTab(self, why, text, dbg=1):
+        msg = f'{why} <{text}>'  ;     self.log(f'{self.fp()} BGN {msg}')
+        if text == Z: self.fcTextMotn(msg)  ;  return
+        p, l, s, t  = self.plst()
+        data = self.data[p][l][s][t]
+        cc = self.plst2cc(p, l, s, t)
+        if dbg: self.log(f'{self.fp()} Before {msg} <{data}> {cc=}')
         self.setDTNIK(text, cc, p, l, s, t, kk=1)
         p, l, s, t  = self.plst()        ;    data = self.data[p][l][s][t]
-        if dbg: self.log(f'After {msg} <{data}> {cc=} plst={p} {l} {s} {t}')
+        if dbg: self.log(f'{self.fp()} After  {msg} <{data}> {cc=}')
         if self.focus:
-            self.log(f'Before on_text<{text}> {self.fCrsCrt()}')
+            self.log(f'{self.fp()} Before on_text<{text}>')
             self.focus.caret.on_text(text)
-            self.log(f'After  on_text<{text}> {self.fCrsCrt()}')
+            self.log(f'{self.fp()} After  on_text<{text}>')
             if   self.csrMode == CHORD:  s += self.vArrow
-            elif self.csrMode == MELODY: t += 1
+            elif self.csrMode == MELODY: t += self.hArrow
+            elif self.csrMode == ARPG:   s += self.vArrow  ;  t += self.hArrow
             self.getTabsView().setCrs(s, t, 1)
         TYP = f'TXT_{text}' if self.sobj.isFret(text) else 'SMB' if text in util.DSymb.SYMBS  else 'UNK'
         if self.SNAPS: self.regSnap(f'{msg}', TYP)
-        self.log(f'END {msg} {self.fCrsCrt()}')
+        self.log(f'{self.fp()} END {msg}')
 #        self.resyncData = 1
     ####################################################################################################################################################################################################
     def setDTNIK(self, text, cc, p, l, s, t, kk=0, dbg=1):
-        if dbg: self.log(f'{cc=} {kk=}    {text=}')
+        if dbg: self.log(f'{self.fp()} {text=} {cc=} {kk=}')
         self.setData(text, p, l, s, t)
 #        imap = self.getImap(p, l, s)
 #        if TT in self.v: self.setTab2( text, cc)
@@ -666,7 +690,7 @@ class Tabs(pyglet.window.Window):
 #        if dbg: self.log(f'BGN {t=} {text=} {data=}')
         self.data[p][l][s] = data[0:t] + text + data[t+1:]
         data = self.data[p][l][s]
-        if dbg: self.log(f'{t=} {text=} {data=}')
+        if dbg: self.log(f'{self.fp()} {text=} {t=} {data=}')
 
     def setTab2(self, text, cc, dbg=1):
         if dbg: self.log(f'BGN         {text=} tabs[{cc}]={self.tabs[cc].text}')
@@ -686,7 +710,7 @@ class Tabs(pyglet.window.Window):
 
     def dumpView(self, v, pfx=''):
 #        self.log(f'V{pfx}{fmtXYWH(v.x, v.y, v.w, v.h)})')
-        v.dumpCrs(f'V{pfx}{fmtXYWH(v.x, v.y, v.w, v.h)}) ')
+        v.dumpCrs(f'V{pfx}{fmtXYWH(v.x, v.y, v.w, v.h)} ')
 #        self.log(f'V{pfx}{v.caret.line=} {v.caret.position=} {v.caret.mark=} {v.lbox.selection_start=} {v.lbox.selection_end=}', pfx=0)
         self.dumpLbox(v.lbox, pfx)  ;  self.dumpRect(v.rect, pfx)
 
@@ -712,7 +736,7 @@ class Tabs(pyglet.window.Window):
         fs = d.get_style('font_size', 0)    ;   fs *= self.my
         d.set_style(0, len(d.text), dict(font_size=fs))
 
-    def resizeRect(self, r):   r.width *= self.mx          ;  r.height *= self.my
+    def resizeRect(self, r):   r.width *= self.mx  ;  r.height *= self.my
     ####################################################################################################################################################################################################
     def on_resize(self, width, height):
         self.dumpDataHorz()
@@ -743,9 +767,9 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpViews()
     ####################################################################################################################################################################################################
     def regSnap(self, why, typ, dbg=1):
-        self.snapWhy = why
+        self.snapWhy  = why
         self.snapType = typ
-        self.snapReg = 1
+        self.snapReg  = 1
         if dbg: self.log(f'{self.snapWhy=} {self.snapType=} {self.snapReg=} {self.snapId=}')
 
     def snapshot(self, why='', typ='', dbg=0, dbg2=1):
@@ -833,8 +857,7 @@ class View(object): # self.document.set_paragraph_style(0, len(self.document.tex
         self.lbox.position = x2, y2
         self.caret      = pygcrt.Caret(self.lbox, color=rgb3)
         util.slog(f'{c=} {s=} {foo=}', file=file)
-#        self.setCrs(2, 0)
-        self.setCrs(2, 0, 1)
+        self.setCrs(0, 0, 1)
 
     def setCrs(self, s, t, dm=None):
         self.dumpCrs(f'BGN {s=} {t=} {dm=}     ')
@@ -845,9 +868,9 @@ class View(object): # self.document.set_paragraph_style(0, len(self.document.tex
 
     def dumpCrs(self, why, dbg=0): util.slog(f'{self.fmtCrs(why, dbg)}', file=self.file)
 
-    def fmtCrs(self, why='', dbg=0):
-        o = f'{id(self.lbox):x} ' if dbg else ''  ;  o2 = f' {id(self.caret):x}' if dbg else ''
-        return f'{why}{o}sel={self.lbox.selection_start}:{self.lbox.selection_end} crt={self.caret.line} {self.caret.position}:{self.caret.mark}{o2}'
+    def fmtCrs(self, why='', dbg=0): o = f'{id(self.lbox):x} ' if dbg else ''  ;  return f'{why}{o}{self.caret.position}:{self.caret.mark} {self.caret.line}'
+#        o = f'{id(self.lbox):x} ' if dbg else ''  ;  o2 = f' {id(self.caret):x}' if dbg else ''
+#        return f'{why}{o}{self.lbox.selection_start}:{self.lbox.selection_end} {self.caret.line} {self.caret.position}:{self.caret.mark}{o2}'
 
     def hitTest(self, x, y):  r = self.lbox  ;  return 0 < x - r.x < r.width and 0 < y - r.y < r.height
 ########################################################################################################################################################################################################
