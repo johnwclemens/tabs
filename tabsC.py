@@ -224,17 +224,17 @@ class Tabs(pyglet.window.Window):
         kL = [   REDS[15],    REDS[13]] if self.CHECKER_BOARD else [   REDS[15]]
         kS = [  BLUES[15],   BLUES[13]] if self.CHECKER_BOARD else [  BLUES[15]]
         kC = [  CYANS[15],   CYANS[15]] if self.CHECKER_BOARD else [  CYANS[15]]
-        kT = [ORANGES[2], ORANGES[14]] if self.CHECKER_BOARD else [ORANGES[6]]
-        kN = [ GREENS[1],  GREENS[13]] if self.CHECKER_BOARD else [ GREENS[6]]
-        kI = [YELLOWS[2], YELLOWS[15]] if self.CHECKER_BOARD else [YELLOWS[7]]
-        kK = [  PINKS[2],   PINKS[15]] if self.CHECKER_BOARD else [  PINKS[0]]
-        kR = [   REDS[1],    REDS[13]] if self.CHECKER_BOARD else [   REDS[0]]
-        kQ = [   CC1S[0],      CC2S[0],              CC3S[0],         CC4S[0]]
-        kH = [   CC2S[0],    CC2S[15]] if self.CHECKER_BOARD else [   CC2S[0]]
-        kV = [   REDS[0],    REDS[10]] if self.CHECKER_BOARD else [  REDS[10]]
-        kO = [    KT1[0],      KT1[8]] if self.CHECKER_BOARD else [    KT1[0]]
-        kA = [    KT2[0],      KT2[8]] if self.CHECKER_BOARD else [    KT2[4]]
-        kD = [    KT1[0],      KT1[8]] if self.CHECKER_BOARD else [    KT1[0]]
+        kT = [REDS[0],  REDS[14]] if self.CHECKER_BOARD else [REDS[0]]
+        kN = [ GREENS[0],   GREENS[13]] if self.CHECKER_BOARD else [ GREENS[0]]
+        kI = [VIOLETS[0],  VIOLETS[15]] if self.CHECKER_BOARD else [VIOLETS[0]]
+        kK = [  CYANS[0],    CYANS[15]] if self.CHECKER_BOARD else [  CYANS[4]]
+        kR = [   REDS[0],     REDS[13]] if self.CHECKER_BOARD else [   REDS[0]]
+        kQ = [   CC1S[0],     CC2S[0],              CC3S[0],           CC4S[0]]
+        kH = [   CC2S[0],     CC2S[15]] if self.CHECKER_BOARD else [   CC2S[0]]
+        kV = [   PINKS[0],     PINKS[10]] if self.CHECKER_BOARD else [  PINKS[0]]
+        kO = [    KT1[0],      KT1[8]]  if self.CHECKER_BOARD else [    KT1[0]]
+        kA = [    KT2[0],      KT2[8]]  if self.CHECKER_BOARD else [    KT2[0]]
+        kD = [    KT1[0],      KT1[8]]  if self.CHECKER_BOARD else [    KT1[0]]
         self.k   = [ kP, kL, kS, kC,  kT, kN, kI, kK,  kR, kQ, kH, kV,  kO, kA, kD ]
         [ self.log(f'[{i:2}] {util.fmtl(e, w=3)}') for i, e in enumerate(self.k) ]
 
@@ -336,10 +336,12 @@ class Tabs(pyglet.window.Window):
     def dproxy(self, data):                      return data if data is not None else self.data
     def dplc(  self, data=None, p=0, l=0, c=0):
         data = self.dproxy(data)
-        if p >= len(data):           msg = f'ERROR BAD p index {p=} {l=} {c=} {len(data)=}'        ;  self.log(msg)  ;  self.quit(msg)
-        if l >= len(data[p]):        msg = f'ERROR BAD l index {p=} {l=} {c=} {len(data[p])=}'     ;  self.log(msg)  ;  self.quit(msg)
-        if c >= len(data[p][l]):     msg = f'ERROR BAD c index {p=} {l=} {c=} {len(data[p][l])=}'  ;  self.log(msg)  ;  self.quit(msg)
-        return data, data[p], data[p][l], data[p][l][c]
+        if data:
+            if p >= len(data):           msg = f'ERROR BAD p index {p=} {l=} {c=} {len(data)=}'        ;  self.log(msg)  ;  self.quit(msg)
+            if l >= len(data[p]):        msg = f'ERROR BAD l index {p=} {l=} {c=} {len(data[p])=}'     ;  self.log(msg)  ;  self.quit(msg)
+            if c >= len(data[p][l]):     msg = f'ERROR BAD c index {p=} {l=} {c=} {len(data[p][l])=}'  ;  self.log(msg)  ;  self.quit(msg)
+            return data, data[p], data[p][l], data[p][l][c]
+        else: return []
     ####################################################################################################################################################################################################
     def fmtdl( self, data=None, fdl=0):       txt = FDL if fdl else ''  ;  return f'{txt}{util.fmtl(self.dl(data))}'
     def fmtdt( self, data=None, fdt=0):       txt = FDT if fdt else ''  ;  return txt + f"[{' '.join([ t.replace('class ', '') for t in self.dtA(data) ])}]"
@@ -849,7 +851,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def addLL(self, tlist, c, x, y, w, h, dbg=1): # #        txt = f'{JTEXTS[C][0]}{(self.j2mlt(C))}'
         kl   = self.k[Q]   ;   l = self.zzl()  # ;   kk  = self.cci(c, kl)
-        z = 2 if self.FRET_BOARD else 1
+        z = 2 if self.FRET_BOARD else 2
         text = self.llText[z-l:]
         txt = self.j2mlt(C) if TEST_TEXT else text[c]
         return self.createTnik(tlist, c, Q, x + c * w, y, w, h, kk=0, kl=kl, v=1, t=txt, dbg=dbg)
@@ -962,7 +964,7 @@ class Tabs(pyglet.window.Window):
             return  tlist, j
         elif 0 <= t < self.n[T]:
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD, kH = self.k[O], self.k[A], self.k[D], self.k[H]
-            if C1 != z1 != C2 and C2 != z2:    tab = self.data[p][l][c][t]
+            tab = self.data[p][l][c][t]  # if C1 != z1 != C2 and C2 != z2:
             if   s == TT:  tlist, j, k, txt = (self.snos, O, kO, self.sobj.stringNumbs[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.tabs,  T, kT, tab)
             elif s == NN:  tlist, j, k, txt = (self.snas, A, kA, self.sobj.stringNames[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.notes, N, kN, tab)
             elif s == II:  tlist, j, k, txt = (self.snos, O, kO, self.sobj.stringNumbs[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.ikeys, I, kI, tab)
@@ -1018,7 +1020,8 @@ class Tabs(pyglet.window.Window):
         n = 1 + self.n[T] * self.ssl() * self.i[L]
         nr, ir, xr, yr, wr, hr = self.geom(R, p, n, self.i[L], dbg=dbg2) #  ;   xr0 = xr
 #        if   type(p) is pygsprt.Sprite:    xr, yr = self.sprite2LabelPos(xr,    yr, wr, hr)   ;   self.log(f'{xr0=} {xr=} {wr=}', file=LF2)
-        lrow = self.createTnik(self.lrows, pi, R, xr, yr, wr, hr, kkr, kl=klr, t=f'{JTEXTS[L][0]}{(self.j2mlt(L))}', dbg=dbg)
+        lrow = self.createTnik(self.lrows, pi, R, xr, yr, wr, hr, kkr, kl=klr, dbg=dbg)
+#        lrow = self.createTnik(self.lrows, pi, R, xr, yr, wr, hr, kkr, kl=klr, t=f'{JTEXTS[L][0]}{(self.j2mlt(L))}', dbg=dbg)
         nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2) #  ;   xc0 = xc
 #        if   type(p) is pygsprt.Sprite:    xc, _  = self.sprite2LabelPos(self.p0x, yc, 0, hc)   ;   self.log(f'{xc0=} {xc=} {wc=}', file=LF2)
         for c in range(nc):
@@ -1740,7 +1743,7 @@ class Tabs(pyglet.window.Window):
         cc = self.plct2cc(p, l, c, 0)
         name = imap[3] if imap and len(imap) > 3 else ''  ;   chunks = imap[4] if imap and len(imap) > 4 else []
         if dbg: self.log(f'BGN {name=} chunks={util.fmtl(chunks)} {len(imap)=}', pos=pos)
-        self.setChordName(cc, name, chunks) if name and chunks else self.log(f'WARN Not A Chord {cc=} {name=} {chunks=}', pos=pos)
+        self.setChordName(cc, name, chunks) # if name and chunks else self.log(f'WARN Not A Chord {cc=} {name=} {chunks=}', pos=pos)
         if dbg: self.log(f'END {name=} chunks={util.fmtl(chunks)} {len(imap)=}', pos=pos)
 
     def setChordName(self, cc, name, chunks, pos=0, dbg=0):
@@ -2152,13 +2155,12 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def quit(self, why='', error=1, save=1, dbg=1): #, dbg2=1):
         util.dumpStack(inspect.stack(), file=LOG_FILE)    ;   self.log(util.QUIT_BGN,     pfx=0)
-        if error:      self.dumpTniksSfx(why)
-        util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
+        if not error:      self.dumpTniksSfx(why)  ;  util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
         self.log(f'BGN {why} {error=} {save=}')           ;   self.log(util.QUIT_BGN, pfx=0)
         self.dumpArgs()
         if      save:  self.saveDataFile(why, self.dataPath1)
         if not error:
-            if   dbg:  self.dumpStruct(why)
+#            if   dbg:  self.dumpStruct(why)
             if   dbg:  self.NEW_transposeData(dump=dbg) if self.USE_NEW else self.OLD_transposeData()
             if   dbg:  self.cobj.dumpMlimap(why)
         self.log(f'END {why} {error=} {save=}')           ;   self.log(util.QUIT_END, pfx=0)
@@ -2186,11 +2188,11 @@ GRAY             = [(255, 255, 255, OPACITY[0]), (  0,   0,   0, OPACITY[0])]
 PINK             = [(255,  64, 192, OPACITY[0]), ( 57,  16,  16, OPACITY[0])]
 PINK2            = [(255,  64, 192, OPACITY[7]), ( 57,  16,  16, OPACITY[0])]
 INFRA_RED        = [(200, 100,  24, OPACITY[0]), ( 68,  20,  19, OPACITY[0])]
-RED              = [(255,  12,  11, OPACITY[0]), ( 20,   0,   0, OPACITY[0])]
-ORANGE           = [(255, 128,   0, OPACITY[0]), ( 76,  30,  25, OPACITY[0])]
+RED              = [(255,  0,  0, OPACITY[0]), ( 50,   0,   0, OPACITY[0])]
+ORANGE           = [(255, 127,   0, OPACITY[0]), ( 50,  25,   0, OPACITY[0])]
 #YELLOW           = [(255, 255,  10, OPACITY[0]), (255, 255,  10, OPACITY[8])]
-YELLOW           = [(255, 255,  10, OPACITY[0]), ( 45,  41,  10, OPACITY[0])]
-GREEN            = [( 12, 255,  11, OPACITY[0]), ( 21,  54,  10, OPACITY[0])]
+YELLOW           = [(255, 255,   0, OPACITY[0]), ( 45,  41,   0, OPACITY[0])]
+GREEN            = [( 0, 255,  0, OPACITY[0]), ( 0,  54,  0, OPACITY[0])]
 GREEN_BLUE       = [( 24, 255,  98, OPACITY[0]), ( 10,  49,  25, OPACITY[0])]
 CYAN             = [( 13, 255, 255, OPACITY[0]), ( 16,  64,  64, OPACITY[0])]
 BLUE_GREEN       = [( 15, 122, 255, OPACITY[0]), ( 12,  37,  51, OPACITY[0])]
@@ -2198,13 +2200,13 @@ BLUE             = [( 13,  11, 255, OPACITY[0]), ( 19,  11,  64, OPACITY[0])]
 INDIGO           = [(255,  22, 255, OPACITY[0]), ( 19,  11,  64, OPACITY[0])]
 VIOLET           = [(176,  81, 255, OPACITY[0]), ( 44,  14,  58, OPACITY[0])]
 ULTRA_VIOLET     = [(194,  96, 255, OPACITY[3]), ( 50,  19,  61, OPACITY[1])]
-CC1              = [(250, 65,  190, OPACITY[4]), (155,  25,  90, OPACITY[8])]
-CC2              = [(255, 250,  22, OPACITY[4]), (150, 150,  22, OPACITY[8])]
-CC3              = [( 20, 255, 255, OPACITY[4]), ( 20, 155, 155, OPACITY[8])]
-CC4              = [( 20, 125, 255, OPACITY[4]), ( 20,  75, 155, OPACITY[8])]
+CC3              = [(250, 65,  190, OPACITY[4]), (155,  25,  90, OPACITY[8])]
+CC4              = [(255, 250,  22, OPACITY[4]), (150, 150,  22, OPACITY[8])]
+CC1              = [( 13, 255, 255, OPACITY[0]), ( 16,  64,  64, OPACITY[0])]
+CC2              = [( 255, 255, 10, OPACITY[6]), ( 40,  40,   2, OPACITY[8])]
 HUES             = 16
 ########################################################################################################################################################################################################
-def genColors(k, nsteps=HUES, dbg=0):
+def genColors(k, nsteps=HUES, dbg=1):
     colors, clen = [], len(k[0])
     diffs = [ k[1][i] - k[0][i]  for i in range(clen) ]
     steps = [ diffs[i]/nsteps    for i in range(clen) ]
@@ -2234,8 +2236,8 @@ VIOLETS       = genColors(VIOLET)        ;  COLORS.append(VIOLETS)
 ULTRA_VIOLETS = genColors(ULTRA_VIOLET)  ;  COLORS.append(ULTRA_VIOLETS)
 CC1S          = genColors(CC1)           ;  COLORS.append(CC1S)
 CC2S          = genColors(CC2)           ;  COLORS.append(CC2S)
-CC3S          = genColors(CC2)           ;  COLORS.append(CC2S)
-CC4S          = genColors(CC4)           ;  COLORS.append(CC2S)
+CC3S          = genColors(CC2)           ;  COLORS.append(CC3S)
+CC4S          = genColors(CC4)           ;  COLORS.append(CC4S)
 FONT_SCALE    =  14/18  # 14pts/18pix
 FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
 FONT_NAMES    = ['Lucida Console', 'Helvetica', 'Arial', 'Times New Roman', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
