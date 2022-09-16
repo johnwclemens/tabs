@@ -101,6 +101,7 @@ class Tabs(pyglet.window.Window):
         self.jumping      = 0     ;   self.jumpStr   = ''    ;   self.jumpAbs = 0
         self.swapping     = 0     ;   self.swapSrc   = ''    ;   self.swapTrg = ''
         self.dfn          = ''
+        self.idmap        = cOd()
         self.cc           = 0
         self.allSelected  = 0
         self.resyncData   = 0
@@ -109,11 +110,10 @@ class Tabs(pyglet.window.Window):
         self.J1,  self.J2 = [], []
         self.ki           = []
         self.kbk,    self.symb,    self.mods,        self.symbStr, self.modsStr =         0, 0, 0, '', ''
-        self.AUTO_SAVE = 0  ;  self.CAT        = 0  ;  self.CHECKER_BOARD = 0  ;  self.EVENT_LOG   = 0  ;  self.FULL_SCREEN  = 0  ;  self.FRET_BOARD= 0
-        self.GEN_DATA  = 0  ;   self.MULTI_LINE = 1  ;  self.ORDER_GROUP = 1  ;  self.RESIZE    = 1  ;  self.RD_STDOUT  = 0
-        self.SNAPS      = 0  ;  self.SPRITES    = 0  ;  self.SUBPIX      = 0  ;  self.TEST   = 0  ;  self.VERBOSE      = 0
-        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 0  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC    = 0
-        self.idmap        = cOd()
+        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKER_BOARD = 0  ;  self.EVENT_LOG = 0  ;  self.FULL_SCREEN = 0
+        self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP   = 1  ;  self.RESIZE    = 1  ;  self.RD_STDOUT   = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX        = 0  ;  self.TEST      = 0  ;  self.VERBOSE     = 0
+        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 0  ;  self.DBG_TAB_TEXT  = 0  ;  self.BGC       = 0  ;  self.FRET_BOARD  = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
@@ -206,10 +206,9 @@ class Tabs(pyglet.window.Window):
         self.log(f'E={util.fmtl(self.E)}')
         self.resetJ('_reinit')
         self.data = []
-        self.cursor,  self.caret   = None, None
-        self.kbk,     self.symb, self.mods,  self.symbStr, self.modsStr = 0, 0, 0, '', ''
-        self.cc = 0
-        self.ki = [ 0 for _ in range(len(self.E)) ]  ;  self.log(f'{util.fmtl(self.ki)}')
+        self.cursor,  self.caret, self.cc = None, None, 0
+        self.kbk,     self.symb,  self.mods,  self.symbStr, self.modsStr = 0, 0, 0, '', ''
+        self.ki = [ 0 for _ in range(len(self.E)) ]   ;   self.log(f'{util.fmtl(self.ki)}')
         self.tblanki, self.tblanks  = 1, [' ', '-']                ;     self.tblank = self.tblanks[self.tblanki]
         self.tblankCol              = self.tblank * self.n[T]      ;  self.tblankRow = self.tblank * (self.n[C] + self.zzl())
         self.dumpBlank()
@@ -223,26 +222,26 @@ class Tabs(pyglet.window.Window):
         self._initFonts()
         self._initTextLabels()
         self._initTniks()
-        self.regSnap('init', 'INIT')
+        if self.SNAPS: self.regSnap('init', 'INIT')
         if dbg: self.dumpStruct('Init')
 
     def _initColors(self):
         KT1, KT2, KT3 = PINKS, BLUES, INDIGOS
-        kP = [REDS[0], REDS[10]]  if self.CHECKER_BOARD else [REDS[0]]
-        kL = [  BLUES[0],   BLUES[10]] if self.CHECKER_BOARD else [  BLUES[0]]
-        kS = [   GRAY0S[0],    GRAY0S[0]] if self.CHECKER_BOARD else [   GRAY0S[0]]
-        kC = [  GREEN2S[0],   GREEN2S[10]] if self.CHECKER_BOARD else [  GREEN2S[0]]
-        kT = [REDS[0], REDS[7]] if self.CHECKER_BOARD else [REDS[0]]
-        kN = [ GREENS[0],  GREENS[7]] if self.CHECKER_BOARD else [ GREENS[0]]
-        kI = [VIOLET2S[0], VIOLETS[7]] if self.CHECKER_BOARD else [VIOLETS[0]]
-        kK = [  CYANS[0],   CYANS[7]] if self.CHECKER_BOARD else [  CYANS[0]]
-        kR = [YELLOW2S[0], YELLOW2S[13]] if self.CHECKER_BOARD else [YELLOW2S[0]]
-        kQ = [   CC1S[0],     CC2S[0],             CC3S[0],           CC4S[0]]
-        kH = [   CC2S[0],    CC2S[15]] if self.CHECKER_BOARD else [   CC2S[0]]
-        kV = [  PINKS[0],   PINKS[12]] if self.CHECKER_BOARD else [  PINKS[0]]
-        kO = [    KT1[0],     KT1[10]] if self.CHECKER_BOARD else [    KT1[0]]
-        kA = [    KT2[0],     KT2[10]] if self.CHECKER_BOARD else [    KT2[0]]
-        kD = [    KT1[0],     KT1[10]] if self.CHECKER_BOARD else [    KT1[0]]
+        kP = [     REDS[0],     REDS[10]]
+        kL = [    BLUES[0],    BLUES[10]]
+        kS = [   GRAY0S[0],   GRAY0S[0]]
+        kC = [  GREEN2S[0],  GREEN2S[10]]
+        kT = [ ORANGE2S[7], ORANGE2S[3], ORANGE2S[0], ORANGE2S[0] ]
+        kN = [   GREENS[7],   GREENS[3],   GREENS[0],   GREENS[0] ]
+        kI = [ VIOLET2S[7],  VIOLETS[3], VIOLET2S[0],  VIOLETS[0] ]
+        kK = [    CYANS[7],    CYANS[3],    CYANS[0],    CYANS[0] ]
+        kR = [     CC3S[3],     CC3S[3],     CC4S[3],     CC4S[3] ]
+        kQ = [     CC1S[0],     CC1S[0],     CC2S[0],     CC2S[0] ]
+        kH = [     CC3S[0],     CC3S[15]]
+        kV = [    PINKS[0],    PINKS[12]]
+        kO = [      KT1[0],      KT1[10]]
+        kA = [      KT2[0],      KT2[10]]
+        kD = [      KT1[0],      KT1[10]]
         self.k   = [ kP, kL, kS, kC,  kT, kN, kI, kK,  kR, kQ, kH, kV,  kO, kA, kD ]
         [ self.log(f'[{i:2}] {util.fmtl(e, w=3)}') for i, e in enumerate(self.k) ]
 
@@ -307,10 +306,11 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def _initGroups(self):    #     [P, L, S, C   T, N, I, K   R, Q, H, V,  O, A, D]
         self.g = []   ;   self.gn = [1, 2, 3, 4,  5, 5, 5, 5,  5, 5, 6, 0,  5, 5, 5]
+        self.log(f'{util.fmtl(self.gn)}')
         for i in range(1+max(self.gn)):
             p = None if self.ORDER_GROUP or i==0 else self.g[i-1]
             self.g.append(self._initGroup(i, p))
-            self.log(f'({i}) g={self.g[i]} pg={self.g[i].parent}')
+            self.log(f'g[{i}]={self.g[i]} p={self.g[i].parent}')
     def _initGroup(self, order=0, parent=None): return pyglet.graphics.OrderedGroup(order, parent) if self.ORDER_GROUP else pyglet.graphics.Group(parent)
     ####################################################################################################################################################################################################
     def _initTextLabels(self):
@@ -433,7 +433,7 @@ class Tabs(pyglet.window.Window):
         pyglet.gl.glClearColor(1, 1, 1, 1)
         self.clear()
         self.batch.draw()
-        if dbg and self.snapReg:
+        if self.SNAPS and self.snapReg:
             self.snapReg = 0  ;  self.snapshot()
             self.log(f'{self.snapWhy=} {self.snapType=} {self.snapId=}')
 
@@ -871,14 +871,14 @@ class Tabs(pyglet.window.Window):
             self.setJdump(P, p, why2)
             if self.isV(P):
                 for l in range(nl):
-                    ii = p * nl + l
+                    i = p * nl + l
                     self.setJdump(L, l, why2)
-                    self.createLL(self.lines[ii], ii)
+                    self.createLL(self.lines[i], i)
         self.dumpTniksPfx(why)
     ####################################################################################################################################################################################################
     def addLL(self, tlist, c, x, y, w, h, dbg=1):
         kl   = self.k[Q]   ;   l = self.zzl()
-        z = 2 if self.FRET_BOARD else 2
+        z = 1 if self.FRET_BOARD else 2
         text = self.llText[z-l:]
         txt = text[c]
         return self.createTnik(tlist, c, Q, x + c * w, y, w, h, kk=0, kl=kl, v=1, t=txt, dbg=dbg)
@@ -983,7 +983,7 @@ class Tabs(pyglet.window.Window):
             elif s == II:  tlist, j = (self.snos, O) if exp1 else (self.capos, D) if exp2 else (self.ikeys, I)
             elif s == KK:  tlist, j = (self.snas, A) if exp1 else (self.capos, D) if exp2 else (self.kords, K)
             else:   msg = f'{msg2} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # f'{self.fmtJText(j, why=why)}'
-            if dbg: msg =        f'{msg1}'   ;    self.log(msg, file=sys.stdout) # self.fmtJText(j, why=why)
+            if dbg: msg =        f'{msg1}'   ;    self.log(msg, so=1) # self.fmtJText(j, why=why)
             return  tlist, j
         elif 0 <= t < self.n[T]:
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[O], self.k[A], self.k[D]
@@ -1037,7 +1037,7 @@ class Tabs(pyglet.window.Window):
         return chordName
     ####################################################################################################################################################################################################
     def createLL(self, p, pi, dbg=1, dbg2=1):
-        klr = self.k[R]   ;   kkr = self.cci(R, pi, klr)
+        klr = self.k[R]   ;   kkr = self.cci(R, pi, klr) if self.CHECKER_BOARD else 0
         n = 1 + self.n[T] * self.ssl() * self.i[L]
         nr, ir, xr, yr, wr, hr = self.geom(R, p, n, self.i[L], dbg=dbg2) #  ;   xr0 = xr
         lrow = self.createTnik(self.lrows, pi, R, xr, yr, wr, hr, kkr, kl=klr, dbg=dbg)
@@ -1063,8 +1063,8 @@ class Tabs(pyglet.window.Window):
         if self.VIEWS:
             _, _, x, y, w, h = self.geom(V, n=1, i=1, dbg=0)  #  0, self.height, self.width, self.height
             view = self.createTnik(self.views, 0, V, x, y, w, h, why="New", v=1, dbg=1)
-        for page in              self.g_createTniks(self.pages, P, view):
-            for line in          self.g_createTniks(self.lines, L, page):
+        for page in              self.g_createTniks(self.pages, P, view): # pass
+            for line in          self.g_createTniks(self.lines, L, page): # pass
                 for sect in      self.g_createTniks(self.sects, S, line): # pass
                     for col in   self.g_createTniks(self.cols,  C, sect): # pass
                         for _ in self.g_createTniks(self.tabs,  T, col):   pass
@@ -1091,7 +1091,7 @@ class Tabs(pyglet.window.Window):
                     elif s == NN:                     text = tobj if j2 > K else self.sobj.tab2nn(tobj, i) if self.sobj.isFret(tobj) else self.tblank
                     elif s == II:                     text = self.imap2ikey( tobj, imap, i2, j2)   ;   i2 += 1 if text != self.tblank else 0
                     elif s == KK:                     text = self.imap2Chord(tobj, imap, i,  j2)
-            k = self.cci(j2, i, kl)
+            k = self.cci(j2, i, kl) if self.CHECKER_BOARD else 0
             tnik = self.createTnik(tlist2, i if ii < 0 else ii, j2, x2, y2, w, h, k, kl=kl, t=text, dbg=dbg)
             yield tnik
     ####################################################################################################################################################################################################
@@ -1107,22 +1107,28 @@ class Tabs(pyglet.window.Window):
             tnik  = pygsprt.Sprite(img, x, y, batch=b, group=g, subpixel=self.SUBPIX)
             tnik.color, tnik.opacity = k[:3], k[3]   ;   tnik.visible = v
         else:
-            s     = v * self.calcFontSize(t, w, h, j)
-            d, n  = FONT_DPIS[d], FONT_NAMES[n]
+            s         = v * self.calcFontSize(t, w, h, j)
+            d, n      = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTI_LINE
             a, ax, ay = self.a, self.ax, self.ay  # left center right  # bottom baseline center top
-            nz    = self.zzl()   ;   nc = self.n[C] + nz
-            mp    = len(tlist) % nc + 1 - nz if j == Q and tlist else 0
-            if j == Q and not mp % 10 and i:   k = self.k[R][0]
-            ml = True if self.MULTI_LINE else False
+            if j == Q:    k = self.llcolor(i, Q)[0]
             tnik  = pygtxt.Label(t, font_name=n, font_size=s, bold=o, stretch=0, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
-            if self.BGC: bgc = ( 39, 29, 59, 249)  ;  tnik.set_style('background_color', bgc)
-            else:        fgc = (199, 99, 19, 249)  ;  tnik.set_style('color', fgc)
+            if self.BGC:  bgc = ( 39, 29, 59, 249)  ;  tnik.set_style('background_color', bgc)
+#            else:        fgc = (199, 99, 19, 249)  ;  tnik.set_style('color', fgc)
+#            fgc = tnik.get_style('color')  ;  bgc = tnik.get_style('back_ground')  ;  self.log(f'{fgc=} {bgc=}')
         if    tlist is not None:     tlist.append(tnik)
         else:                        msg = f'WARN tlist is None cant add tnik: {self.fmtJText(j, i, why)}'  ;  self.log(msg)
         if dbg: key = self.idmapkey(j)  ;  self.idmap[key] = (id(tnik), tnik)  ;  self.dumpTnik(tnik, j, why)
         if self.LL and j == L and v: tnik = self.createLL(tnik, i)
         return tnik
     ####################################################################################################################################################################################################
+    def llcolor(self, i, j, dbg=0):
+        c = self.n[C]  ;   n = 1
+        mp = i % c + n # if tlist else 0
+        msg = f'{i=} {j=} {c=} {i%c=} {n=} {mp=}=i%c+n {mp%10=}' if dbg else ''
+        if j == Q and not mp % 10 and i:
+            self.log(  f'if   {msg} {self.k[R]=}') if dbg else None   ;   return self.k[R]
+        else: self.log(f'else {msg} {self.k[j]=}') if dbg else None   ;   return self.k[j]
+
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]    ;    ha = hasattr(c, 'text')
         if   type(c) is pygtxt.Label:   c.x, c.y, c.width, c.height = 0, 0, 1, 0  # Zero width not allowed
@@ -1169,7 +1175,7 @@ class Tabs(pyglet.window.Window):
         v = v      if v is not None else self.isV(j)
         if   type(tnik) is pygtxt.Label:        fs = v * self.calcFontSize(tnik.text, w, h, j)  ;   tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, fs
         elif type(tnik) is pygsprt.Sprite:  mx, my = w/tnik.image.width, h/tnik.image.height    ;   tnik.update(x=x, y=y, scale_x=mx, scale_y=my)   ;   tnik.visible = v
-        if self.LL and j == L and v:          tnik = self.resizeLL(tnik) # , i)
+        if self.LL and j == L and v:          tnik = self.resizeLL(tnik)
         self.dumpTnik(tnik, j, why) if dbg else None
         return tnik
     ####################################################################################################################################################################################################
@@ -1250,28 +1256,12 @@ class Tabs(pyglet.window.Window):
         key = self.idmapkey(j)   ;   assert key == f'{JTEXTS[j]:4} {self.J2[j]:4}', f'{key=} {JTEXTS[j]:4} {self.J2[j]:4}' #  ;   ID = self.idmap[key][0]
         self.log(f'{J2} {xywh} {why:4} {key} {t.text:3} {fs:3} {g} {color} {font}', pfx=0) # {ID:x}
     ####################################################################################################################################################################################################
-    def setLLStyle(self, cc, style, dbg=1):
-        p, l, c, t = self.cc2plct(cc)  ;  nc = self.n[C]
-        bold, italic, color = 0, 0, self.k[Q][0]   ;   i = c + l * nc if self.lcols else 0
-        if   style == NORMAL_STYLE:  color = self.k[Q][0]  ;  bold = 0  ;  italic = 0
-        elif style == CURRENT_STYLE: color = self.k[Q][1]  ;  bold = 0  ;  italic = 0
-        elif style == SELECT_STYLE:  color = self.k[Q][2]  ;  bold = 1  ;  italic = 1
-#        elif style == COPY_STYLE:    color = self.k[Q][3]  ;  bold = 1  ;  italic = 1
-        else: msg = f'ERROR Invalid style @ [{p} {l} {c} {t}] {i=} {style=}'  ;  self.log(msg)  ;  self.quit(msg)
-        if self.lcols:
-            fgc = self.lcols[i].color  ;  bgc = self.lcols[i].get_style('background_color')
-            self.log(f'{i=} {fgc=} {bgc=}')
-            self.lcols[i].color  = color
-            self.lcols[i].bold   = bold
-            self.lcols[i].italic = italic
-        if dbg: self.log(f'{self.fmtPos()}     {i=} = {c=} + {l=} * {nc=} {style=} {bold=} {italic=} {color=}')
-    ####################################################################################################################################################################################################
     def createCursor(self, dbg=1, dbg2=0):
         x, y, w, h, c = self.cc2xywh()
         if w == 0 or h == 0: msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   self.quit(msg)
         self.cursor = self.createTnik(self.cursr, 0, H, x, y, w, h, kk=0, kl=self.k[H], v=1, dbg=dbg)
         if dbg2: self.dumpCursr('NEW', x, y, w, h, c)
-        if self.LL:  self.setLLStyle(self.cc, CURRENT_STYLE)
+        self.setLLStyle(self.cc, CURRENT_STYLE)
 
     def resizeCursor(self, dbg=1, dbg2=0):
         x, y, w, h, c = self.cc2xywh()
@@ -1382,13 +1372,13 @@ class Tabs(pyglet.window.Window):
     def pix2fontsize(pix): return pix * FONT_SCALE # ( ) % FS_MAX
     ####################################################################################################################################################################################################
     def on_mouse_release(self, x, y, button, modifiers, dbg=1):
-        np, nl, ns, nc, nt = self.n   ;   nz = self.zzl()    ;  nc += nz   ;   file = None
-        y0 = y   ;   y = self.height - y   ;   n = nl * ns * nt + ns * self.LL   ;   m = int(ns * nt) + self.LL
-        w = self.width/nc       ;  h = self.height/n         ;   d = int(y/h) - self.LL
+        np, nl, ns, nc, nt = self.n   ;   nz = self.zzl()    ;  nc += nz   ;   ll = self.LL   ;   file = None
+        y0 = y   ;   y = self.height - y   ;   n = nl * ns * nt + ns * ll   ;   m = int(ns * nt) + ll
+        w = self.width/nc       ;  h = self.height/n         ;   d = int(y/h) - ll
         l = int(d/m)            ;  c = int(x/w) - nz         ;   t = d - (l * m)  ;  p = 0
         if dbg: self.log(f'BGN button={button} modifiers={modifiers} txt={self.tabs[self.cc].text}', file=file)
-        if dbg: self.log(f'x={x} y0={y0:4} w={w:6.2f} h={h:6.2f}')
-        if dbg: self.log(f'y={y:4} n={n} m={m} d={d}')
+        if dbg: self.log(f'{x=} {y0=:4} {w=:6.2f} {h=:6.2f}')
+        if dbg: self.log(f'{y=:4} {n=} {m=} {ll=} {d=}')
         if dbg: self.log(f'{self.fmtPos()}     before')
         self.moveTo(f'MOUSE RELEASE', p, l, c, t)
         if dbg: self.log(f'{self.fmtPos()}     after')
@@ -1500,7 +1490,6 @@ class Tabs(pyglet.window.Window):
         elif self.swapping:                                  self.swapTab(    'onTxt', text)
         elif self.isTab(self.kbk):                           self.setTab(     'onTxt', self.kbk)
         elif self.kbk == '$' and self.isShift(self.mods):    self.snapshot(f'{text}', 'SNAP')
-#        elif self.kbk == '$' and self.isShift(self.mods):    self.snapshot(f'{text}', f'{self.kbkEvntTxt()}')
         if dbg: self.log(f'END {self.kbkEvntTxt()} swapping={self.swapping}')
     ####################################################################################################################################################################################################
     def on_text_motion(self, motion, dbg=1): # use for motion not strings
@@ -1792,23 +1781,33 @@ class Tabs(pyglet.window.Window):
     def selectTabs(self, how, m=0, cn=None, dbg=1, dbg2=1):
         if cn is None: cc = self.cc   ;   cn = self.cc2cn(cc)
         else:          cc = self.cn2cc(cn)
-        nt = self.n[T]  ;  k = cn * nt   ;   text = ''
+        nt = self.n[T]  ;  k = cn * nt   ;   style = SELECT_STYLE   ;   text = ''
         if cn in self.smap: self.log(f'RETURN: {cn=} already in smap={util.fmtm(self.smap)}') if dbg2 else None   ;   return
         if dbg: self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
         for kt in range(k, k + nt):
-            if self.tabs:
-                text += self.tabs[kt].text
-                if self.BGC:
-                    old = self.tabs[kt].get_style('background_color')  ;  bgc = (50, 30, 40, 248)
-                    self.log(f'{k=} {kt=} old={old} bgc={bgc} {text=}')
-                    self.tabs[kt].set_style('background_color', bgc)
-                else:      self.tabs[ kt].color = self.k[Q][2]
-#            if self.notes: self.notes[kt].color = self.k[Q][2]
-#            if self.ikeys: self.ikeys[kt].color = self.k[Q][2]
-#            if self.kords: self.kords[kt].color = self.k[Q][2]
+            if not self.BGC:
+                if self.tabs:  self.tabs[kt].color  = self.k[T][style]
+                if self.notes: self.notes[kt].color = self.k[N][style]
+                if self.ikeys: self.ikeys[kt].color = self.k[I][style]
+                if self.kords: self.kords[kt].color = self.k[K][style]
+                if self.tabs:  text += self.tabs[kt].text
         self.smap[cn] = text
         if m: self.move(how, m, ss=1)
         if dbg: self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+    ####################################################################################################################################################################################################
+    def setLLStyle(self, cc, style, dbg=1):
+        if not self.LL or not self.lcols: self.log(f'SKIP {self.LL=} {len(self.lcols)=}') if dbg else None   ;   return
+        p, l, c, t = self.cc2plct(cc)             ;  nc = self.n[C]
+        bold, italic, color = 0, 0, self.k[Q][0]  ;   i = c + l * nc if self.lcols else 0
+        if   style == NORMAL_STYLE:    bold = 0;  italic = 0 # ;  color = self.k[Q][style]
+        elif style == CURRENT_STYLE:   bold = 0;  italic = 0 # ;  color = self.k[Q][style]
+        elif style == SELECT_STYLE:    bold = 1;  italic = 1 # ;  color = self.k[Q][style]
+#        elif style == COPY_STYLE:      bold = 1;  italic = 1  ;  color = self.k[Q][style]
+        else: msg = f'ERROR Invalid style @ [{p} {l} {c} {t}] {i=} {style=}';  self.log(msg);  self.quit(msg)
+        if not self.BGC:            self.lcols[i].color = self.llcolor(i, Q)[style]
+        self.lcols[i].bold   = bold
+        self.lcols[i].italic = italic
+        if dbg: self.log(f'{self.fmtPos()}     {i=} = {c=} + {l=} * {nc=} {style=} {bold=} {italic=} {color=} {cc=}')
     ####################################################################################################################################################################################################
     def unselectAll(self, how, dbg=0):
         for i in range(len(self.smap)-1, -1, -1):
@@ -1819,51 +1818,57 @@ class Tabs(pyglet.window.Window):
     def unselectTabs(self, how, m, cn=None, dbg=0):
         if cn is None: cc = self.cc   ;   cn = self.cc2cn(cc)
         else:          cc = self.cn2cc(cn)
-        nt = self.n[T]   ;   k = cn * nt
-        self.setLLStyle(cc, NORMAL_STYLE)
+        nt = self.n[T]   ;   k = cn * nt   ;   style = NORMAL_STYLE
+        self.setLLStyle(cc, style)
         if dbg: self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
-        for t in range(nt):
-            if self.tabs:  self.tabs [k + t].color = self.k[T][0]
-            if self.notes: self.notes[k + t].color = self.k[N][0]
-            if self.ikeys: self.ikeys[k + t].color = self.k[I][0]
-            if self.kords: self.kords[k + t].color = self.k[K][0]
+        for kt in range(k, k + nt):
+            if not self.BGC:
+                if self.tabs:  self.tabs [kt].color = self.k[T][style]
+                if self.notes: self.notes[kt].color = self.k[N][style]
+                if self.ikeys: self.ikeys[kt].color = self.k[I][style]
+                if self.kords: self.kords[kt].color = self.k[K][style]
         if cn in self.smap: self.smap.pop(cn)
         elif dbg:           self.log(f'{cn=} not found in smap={util.fmtm(self.smap)}')
         if m:   self.move(how, m)
         if dbg: self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
     ####################################################################################################################################################################################################
     def copyTabs(self, how, dbg=1):
-        self.dumpSmap(f'BGN {how}')   ;   nt = self.n[T]  ;   text = ''
+        self.dumpSmap(f'BGN {how}')   ;   nt = self.n[T]   ;   style = NORMAL_STYLE   ;   text = ''
         for k in list(self.smap.keys()):
             k *= nt
-            self.setLLStyle(k, NORMAL_STYLE)
-            for t in range(nt):
-                if self.tabs:  self.tabs [k + t].color = self.k[T][0]
-                if self.notes: self.notes[k + t].color = self.k[N][0]
-                if self.ikeys: self.ikeys[k + t].color = self.k[I][0]
-                if self.kords: self.kords[k + t].color = self.k[K][0]
-                if dbg: text += self.tabs  [k + t].text
+            self.setLLStyle(k, style)
+            for kt in range(k, k + nt):
+                if not self.BGC:
+                    if self.tabs:   self.tabs[kt].color = self.k[T][style]
+                    if self.notes: self.notes[kt].color = self.k[N][style]
+                    if self.ikeys: self.ikeys[kt].color = self.k[I][style]
+                    if self.kords: self.kords[kt].color = self.k[K][style]
+                    if dbg: text += self.tabs[kt].text
             if dbg: text += ' '
         if dbg: self.log(f'{text=}')
         self.dumpSmap(f'END {how}')
+        if self.SNAPS: self.regSnap(f'{how}', 'COPY')
     ####################################################################################################################################################################################################
     def cutTabs(self, how): self.log('BGN Cut = Copy + Delete')  ;  self.copyTabs(how)  ;  self.log('Cut = Copy + Delete')  ;  self.deleteTabs(how, keep=1)  ;  self.log('END Cut = Copy + Delete')
     ####################################################################################################################################################################################################
     def deleteTabs(self, how, keep=0, dbg=1):
-        self.dumpSmap(f'BGN {how} {keep=}')   ;   nt = self.n[T]
+        self.dumpSmap(f'BGN {how} {keep=}')   ;   style = NORMAL_STYLE   ;   nt = self.n[T]
         for k, v in self.smap.items():
             cn = k   ;   k *= nt
             if dbg: self.log(f'{k=} {cn=} {v=}')
-            self.setLLStyle(k, NORMAL_STYLE)
-            for t in range(nt):
-                p, l, c, r  =  self.cc2plct(k + t)
-                if self.tabs:  self.tabs [k + t].color = self.k[T][0]
-                if self.notes: self.notes[k + t].color = self.k[N][0]
-                if self.ikeys: self.ikeys[k + t].color = self.k[I][0]
-                if self.kords: self.kords[k + t].color = self.k[K][0]
-                self.setDTNIK( self.tblank, k + t, p, l, c, t, kk=1 if t==nt-1 else 0)
+            self.setLLStyle(k, style)
+            for kt in range(k, k + nt):
+                if not self.BGC:
+                    p, l, c, r  =  self.cc2plct(kt)
+                    if self.tabs:  self.tabs [kt].color = self.k[T][style]
+                    if self.notes: self.notes[kt].color = self.k[N][style]
+                    if self.ikeys: self.ikeys[kt].color = self.k[I][style]
+                    if self.kords: self.kords[kt].color = self.k[K][style]
+                    self.setDTNIK( self.tblank, kt, p, l, c, kt-k, kk=1 if kt==k+nt-1 else 0)
+#                    self.setDTNIK( self.tblank, kt, p, l, c, t, kk=1 if t == nt - 1 else 0)
         if not keep: self.unselectAll(f'deleteTabs({keep=})')
         self.dumpSmap(f'END {how} {keep=}')
+        if self.SNAPS: self.regSnap(f'{how}', 'DEL')
         self.resyncData = 1
 
     def pasteTabs(self, how, kk=0, dbg=1):
@@ -1886,8 +1891,9 @@ class Tabs(pyglet.window.Window):
 #        elif dbg:  self.log(f'holding a copy of smap')
 #        self.dumpSmap(f'END {how} {hc=} {kk=} {cc=} {ntc=} cn={self.cc2cn(cc) + 1}')
         self.dumpSmap(f'END {how} {kk=} {cc=} {ntc=} cn={self.cc2cn(cc)} plcr=[{p} {l} {c} {r}]')
+        if self.SNAPS: self.regSnap(f'{how}', 'PAST')
         self.resyncData = 1
-
+    ####################################################################################################################################################################################################
     def swapCols(self, how):
         nk = len(self.smap)   ;   nk2 = nk // 2
         self.dumpSmap(f'BGN {nk=} {nk2=}')
@@ -2189,10 +2195,10 @@ class Tabs(pyglet.window.Window):
         self.dumpArgs()
         if not error:
 #            if   dbg:  self.dumpStruct(why)
-            if save:  self.saveDataFile(why, self.dataPath1)
+            if save:   self.saveDataFile(why, self.dataPath1)
             if   dbg:  self.A_transposeData(dump=dbg) if self.TRANSPOSE_A else self.OLD_transposeData()
             if   dbg:  self.cobj.dumpMlimap(why)
-        self.snapshot(f'quit {error=} {save=}', 'QUIT')
+        if self.SNAPS: self.snapshot(f'quit {error=} {save=}', 'QUIT')
         self.log(f'END {why} {error=} {save=}')           ;   self.log(util.QUIT_END, pfx=0)
         self.cleanupLog()
         pyglet.app.exit()
@@ -2217,10 +2223,10 @@ class Tabs(pyglet.window.Window):
 OPACITY          = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
 ##                     0    1    2    3    4    5    6    7    8    9    10  11  12  13  14  15  16 17
 #OPACITY          = [ 255, 240, 225, 210, 195, 180, 165, 150, 135, 120, 105, 90, 75, 60, 45, 30, 15, 0 ]
-CC3              = [(250, 65,  190, OPACITY[10]), (155,  25,  90, OPACITY[10])]
-CC4              = [(255, 250,  22, OPACITY[10]), (150, 150,  22, OPACITY[10])]
-CC1              = [( 13, 255, 255, OPACITY[10]), ( 16,  64,  64, OPACITY[10])]
-CC2              = [(255, 255,   0, OPACITY[16]), ( 57,  58,   0, OPACITY[16])]
+CC3              = [(250, 65,  190, OPACITY[10]), (127,  30,  90, OPACITY[10])]
+CC4              = [(255, 127, 255, OPACITY[10]), (150,  75,  12, OPACITY[10])]
+CC1              = [( 13,  15, 255, OPACITY[10]), ( 10,   0, 127, OPACITY[10])]
+CC2              = [(255, 127,   0, OPACITY[9]), ( 127,  58,   0, OPACITY[9])]
 GRAY             = [(255, 255, 255, OPACITY[17]), (  0,   0,   0, OPACITY[17])]
 PINK             = [(255,  64, 192, OPACITY[17]), ( 57,  16,  16, OPACITY[17])]
 INFRA_RED        = [(200, 100,  24, OPACITY[17]), ( 68,  20,  19, OPACITY[17])]
@@ -2239,9 +2245,9 @@ GRAY0            = [(  0,   0,   0, OPACITY[0]),  (  0,   0,   0, OPACITY[0])]
 #GRAY0            = [(255, 255, 255, OPACITY[0]),  ( 255,  255, 255, OPACITY[0])]
 GRAY2            = [(255, 255, 255, OPACITY[10]), (  0,   0,   0, OPACITY[10])]
 PINK2            = [(255,  64, 192, OPACITY[7]), ( 57,  16,  28, OPACITY[7])]
-RED2             = [(255,   0,   0, OPACITY[13]), ( 50,   0,   0, OPACITY[13])]
+RED2             = [(255,   0,   0, OPACITY[3]), ( 50,   0,   0, OPACITY[3])]
 ORANGE2          = [(255, 127,   0, OPACITY[10]), ( 50,  25,   0, OPACITY[10])]
-YELLOW2          = [(255, 255,   0, OPACITY[13]), ( 45,  45,   0, OPACITY[13])]
+YELLOW2          = [(255, 255,   0, OPACITY[15]), ( 45,  45,   0, OPACITY[15])]
 GREEN2           = [(  0, 255,   0, OPACITY[10]), (  0,  54,   0, OPACITY[10])]
 CYAN2            = [(  0, 255, 255, OPACITY[10]), (  0,  44,  44, OPACITY[10])]
 BLUE2            = [(  0,   0, 255, OPACITY[10]), (  0,   0,  64, OPACITY[10])]
@@ -2278,7 +2284,7 @@ VIOLETS       = genColors(VIOLET)        ;  COLORS.append(VIOLETS)
 ULTRA_VIOLETS = genColors(ULTRA_VIOLET)  ;  COLORS.append(ULTRA_VIOLETS)
 CC1S          = genColors(CC1)           ;  COLORS.append(CC1S)
 CC2S          = genColors(CC2)           ;  COLORS.append(CC2S)
-CC3S          = genColors(CC2)           ;  COLORS.append(CC3S)
+CC3S          = genColors(CC3)           ;  COLORS.append(CC3S)
 CC4S          = genColors(CC4)           ;  COLORS.append(CC4S)
 GRAY0S        = genColors(GRAY0)         ;  COLORS.append(GRAY0S)
 GRAY2S        = genColors(GRAY2)         ;  COLORS.append(GRAY2S)

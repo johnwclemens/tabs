@@ -96,23 +96,6 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
     print(       f'{msg}', flush=flush, sep=sep, end=end, file=file) if file is not None and not file.closed else None
     if so: print(f'{msg}', flush=flush, sep=sep, end=end, file=sys.stdout)
     if flush: os.fsync(file)  ;  os.fsync(sys.stdout) if so else None
-
-def OLD__slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
-    if pfx:
-        sfs = inspect.stack()          ;  i = 1
-        while sfs[i].function in STFILT:  i += 1
-        sf = sfs[i]  # ;   sd = stackDepth(sfs)
-        p = pathlib.Path(sf.filename)  ;  n = p.name  ;  l = sf.lineno  ;  f = sf.function
-#        if IND: print(f'{fmtSD(sd):20} {l:5} {n:7} {f:>20} ',      file=file, end='')
-#        else:   print(             f'{sd:2} {l:5} {n:7} {f:>20} ', file=file, end='')
-        print(             f'{l:5} {n:7} {f:>20} ', file=file, end='')
-        msg = msg.replace('self.', '.')
-        msg = msg.replace('util.', '.')
-        msg = msg.replace('"', '')
-        msg = msg.replace("'", '')
-    print(       f'{msg}', flush=flush, sep=sep, end=end, file=file)
-    if so: print(f'{msg}', flush=flush, sep=sep, end=end, file=sys.stdout)
-    if flush: os.fsync(file)  ;  os.fsync(sys.stdout) if so else None
 ########################################################################################################################################################################################################
 def copyFile(src, trg, file=None):
     if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;  raise SystemExit(msg)
