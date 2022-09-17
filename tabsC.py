@@ -113,7 +113,7 @@ class Tabs(pyglet.window.Window):
         self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKER_BOARD = 0  ;  self.EVENT_LOG = 0  ;  self.FULL_SCREEN = 0
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP   = 1  ;  self.RESIZE    = 1  ;  self.RD_STDOUT   = 0
         self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX        = 0  ;  self.TEST      = 0  ;  self.VERBOSE     = 0
-        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 0  ;  self.DBG_TAB_TEXT  = 0  ;  self.BGC       = 0  ;  self.FRET_BOARD  = 0
+        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT  = 0  ;  self.BGC       = 0  ;  self.FRET_BOARD  = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
@@ -227,21 +227,21 @@ class Tabs(pyglet.window.Window):
 
     def _initColors(self):
         KT1, KT2, KT3 = PINKS, BLUES, INDIGOS
-        kP = [     REDS[0],     REDS[10]]
-        kL = [    BLUES[0],    BLUES[10]]
-        kS = [   GRAY0S[0],   GRAY0S[0]]
-        kC = [  GREEN2S[0],  GREEN2S[10]]
-        kT = [ ORANGE2S[7], ORANGE2S[3], ORANGE2S[0], ORANGE2S[0] ]
-        kN = [   GREENS[7],   GREENS[3],   GREENS[0],   GREENS[0] ]
-        kI = [ VIOLET2S[7],  VIOLETS[3], VIOLET2S[0],  VIOLETS[0] ]
-        kK = [    CYANS[7],    CYANS[3],    CYANS[0],    CYANS[0] ]
-        kR = [     CC3S[3],     CC3S[3],     CC4S[3],     CC4S[3] ]
-        kQ = [     CC1S[0],     CC1S[0],     CC2S[0],     CC2S[0] ]
-        kH = [     CC3S[0],     CC3S[15]]
-        kV = [    PINKS[0],    PINKS[12]]
-        kO = [      KT1[0],      KT1[10]]
-        kA = [      KT2[0],      KT2[10]]
-        kD = [      KT1[0],      KT1[10]]
+        kP = [     REDS[0],      REDS[10] ]
+        kL = [    BLUES[0],     BLUES[10] ]
+        kS = [   GRAY0S[0],    GRAY0S[0] ]
+        kC = [  GREEN2S[0],   GREEN2S[10] ]
+        kT = [ ORANGE2S[13], ORANGE2S[7], ORANGE2S[0], ORANGE2S[3] ]
+        kN = [   GREENS[13],   GREENS[7],   GREENS[0],   GREENS[3] ]
+        kI = [ VIOLET2S[13],  VIOLETS[7], VIOLET2S[0],  VIOLETS[3] ]
+        kK = [    CYANS[13],    CYANS[7],    CYANS[0],    CYANS[3] ]
+        kR = [     CC3S[13],      CC3S[0],     CC4S[3],     CC4S[3] ]
+        kQ = [     CC1S[13],      CC1S[0],     CC2S[0],     CC2S[10] ]
+        kH = [     CC3S[0],      CC3S[15] ]
+        kV = [    PINKS[0],     PINKS[12] ]
+        kO = [      KT1[0],       KT1[10] ]
+        kA = [      KT2[0],       KT2[10] ]
+        kD = [      KT1[0],       KT1[10] ]
         self.k   = [ kP, kL, kS, kC,  kT, kN, kI, kK,  kR, kQ, kH, kV,  kO, kA, kD ]
         [ self.log(f'[{i:2}] {util.fmtl(e, w=3)}') for i, e in enumerate(self.k) ]
 
@@ -526,12 +526,12 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def isVert(self, data=None, dbg=1):
         dl, dt = self.dl(data), self.dt(data)
-        if dbg: self.log(f'BGN {self.fmtdl()=} {self.fmtdt()=}')
+        if dbg: self.log(f'BGN dl={self.fmtdl()} dt={self.fmtdt()}')
         assert dt[0] is list and dt[1] is list and dt[2] is list and dt[3] is str, f'{dl=} {dt=}'
         vert = 1 if dl[2] > dl[3] else 0
         self.checkData(vert=vert, data=None)
         self.log(f'{util.fmtl(self.dplc()[0])}', pfx=0)
-        if dbg: self.log(f'END {self.fmtdl()=} {self.fmtdt()=} {vert=}')
+        if dbg: self.log(f'END dl={self.fmtdl()} dt={self.fmtdt()} {vert=}')
         return vert
 
     def checkData(self, vert, data=None):
@@ -572,7 +572,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'BGN {self.fmtDxD(data)} {dump=}')
         if dump:        self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
         Xdata, msg1, msg2 = [], [], []
-        self.log(f'{self.fmtdl()} {self.fmtdt()}')
+        self.log(f'dl={self.fmtdl()} dt={self.fmtdt()}')
         self.log(f'dl={self.fmtdl(data)} dt={self.fmtdt(data)}') if dbg else None
         for p, page in enumerate(data):
             Xpage = []
@@ -1695,7 +1695,7 @@ class Tabs(pyglet.window.Window):
         if NN in self.SS: self.setNote( text, cc, t)
         if II in self.SS: self.setIkey( imap, p, l, c)
         if KK in self.SS: self.setChord(imap, p, l, c)
-        if dbg: self.log(f'END {kk=}    {text=}{len(imap)=}', pos=pos)
+        if dbg: self.log(f'END {kk=}    {text=} {len(imap)=}', pos=pos)
     ####################################################################################################################################################################################################
     def setData(self, text, p, l, c, t, pos=0, dbg=1):
         data = self.data[p][l][c]
@@ -1770,7 +1770,7 @@ class Tabs(pyglet.window.Window):
         if   self.allSelected: self.unselectAll(how)   ;   self.allSelected = 0
         else:                  self.selectAll(how)     ;   self.allSelected = 1
         self.dumpSmap(f'END {how} {self.allSelected=}')
-    ####################################################################################################################################################################################################
+
     def selectAll(self, how, dbg=0):
         mli = self.cobj.mlimap
         if dbg: self.dumpSmap(f'BGN {how}')
@@ -1778,55 +1778,54 @@ class Tabs(pyglet.window.Window):
             if k not in self.smap: self.selectTabs(how, cn=k, dbg=1)
         if dbg: self.dumpSmap(f'END {how}')
 
-    def selectTabs(self, how, m=0, cn=None, dbg=1, dbg2=1):
-        if cn is None: cc = self.cc   ;   cn = self.cc2cn(cc)
-        else:          cc = self.cn2cc(cn)
-        nt = self.n[T]  ;  k = cn * nt   ;   style = SELECT_STYLE   ;   text = ''
-        if cn in self.smap: self.log(f'RETURN: {cn=} already in smap={util.fmtm(self.smap)}') if dbg2 else None   ;   return
-        if dbg: self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
-        for kt in range(k, k + nt):
-            if not self.BGC:
-                if self.tabs:  self.tabs[kt].color  = self.k[T][style]
-                if self.notes: self.notes[kt].color = self.k[N][style]
-                if self.ikeys: self.ikeys[kt].color = self.k[I][style]
-                if self.kords: self.kords[kt].color = self.k[K][style]
-                if self.tabs:  text += self.tabs[kt].text
-        self.smap[cn] = text
-        if m: self.move(how, m, ss=1)
-        if dbg: self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+    def unselectAll(self, how, dbg=0):
+        for i in range(len(self.smap)-1, -1, -1):
+            cn = list(self.smap.keys())[i]
+            if dbg: self.dumpSmap(f'{how} {i=} {cn=}')
+            self.unselectTabs(how, m=0, cn=cn)
     ####################################################################################################################################################################################################
     def setLLStyle(self, cc, style, dbg=1):
         if not self.LL or not self.lcols: self.log(f'SKIP {self.LL=} {len(self.lcols)=}') if dbg else None   ;   return
         p, l, c, t = self.cc2plct(cc)             ;  nc = self.n[C]
         bold, italic, color = 0, 0, self.k[Q][0]  ;   i = c + l * nc if self.lcols else 0
-        if   style == NORMAL_STYLE:    bold = 0;  italic = 0 # ;  color = self.k[Q][style]
-        elif style == CURRENT_STYLE:   bold = 0;  italic = 0 # ;  color = self.k[Q][style]
-        elif style == SELECT_STYLE:    bold = 1;  italic = 1 # ;  color = self.k[Q][style]
-#        elif style == COPY_STYLE:      bold = 1;  italic = 1  ;  color = self.k[Q][style]
+        if   style == NORMAL_STYLE:    bold = 0;  italic = 0
+        elif style == CURRENT_STYLE:   bold = 1;  italic = 0
+        elif style == SELECT_STYLE:    bold = 1;  italic = 1
+        # elif style == COPY_STYLE:      bold = 1;  italic = 1
         else: msg = f'ERROR Invalid style @ [{p} {l} {c} {t}] {i=} {style=}';  self.log(msg);  self.quit(msg)
         if not self.BGC:            self.lcols[i].color = self.llcolor(i, Q)[style]
         self.lcols[i].bold   = bold
         self.lcols[i].italic = italic
         if dbg: self.log(f'{self.fmtPos()}     {i=} = {c=} + {l=} * {nc=} {style=} {bold=} {italic=} {color=} {cc=}')
     ####################################################################################################################################################################################################
-    def unselectAll(self, how, dbg=0):
-        for i in range(len(self.smap)-1, -1, -1):
-            cn = list(self.smap.keys())[i]
-            if dbg: self.dumpSmap(f'{how} {i=} {cn=}')
-            self.unselectTabs(how, m=0, cn=cn)
+    def setTNIKStyle(self, k, nt, style, text='', blank=0):
+        if not self.BGC:
+            for kt in range(k, k + nt):
+                if self.tabs:  self.tabs[ kt].color = self.k[T][style]  ;  text += self.tabs[kt].text
+                if self.notes: self.notes[kt].color = self.k[N][style]
+                if self.ikeys: self.ikeys[kt].color = self.k[I][style]
+                if self.kords: self.kords[kt].color = self.k[K][style]
+                if blank: p, l, c, r = self.cc2plct(kt)  ;  self.setDTNIK(self.tblank, kt, p, l, c, kt - k, kk=1 if kt == k + nt - 1 else 0)
+        return text
 
+    def selectTabs(self, how, m=0, cn=None, dbg=1, dbg2=1):
+        if cn is None: cc = self.cc   ;   cn = self.cc2cn(cc)
+        else:          cc = self.cn2cc(cn)
+        nt = self.n[T]  ;  k = cn * nt   ;   style = SELECT_STYLE
+        if cn in self.smap: self.log(f'RETURN: {cn=} already in smap={util.fmtm(self.smap)}') if dbg2 else None   ;   return
+        if dbg: self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
+        text = self.setTNIKStyle(k, nt, style)
+        self.smap[cn] = text
+        if m: self.move(how, m, ss=1)
+        if dbg: self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+    ####################################################################################################################################################################################################
     def unselectTabs(self, how, m, cn=None, dbg=0):
         if cn is None: cc = self.cc   ;   cn = self.cc2cn(cc)
         else:          cc = self.cn2cc(cn)
         nt = self.n[T]   ;   k = cn * nt   ;   style = NORMAL_STYLE
         self.setLLStyle(cc, style)
         if dbg: self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
-        for kt in range(k, k + nt):
-            if not self.BGC:
-                if self.tabs:  self.tabs [kt].color = self.k[T][style]
-                if self.notes: self.notes[kt].color = self.k[N][style]
-                if self.ikeys: self.ikeys[kt].color = self.k[I][style]
-                if self.kords: self.kords[kt].color = self.k[K][style]
+        self.setTNIKStyle(k, nt, style)
         if cn in self.smap: self.smap.pop(cn)
         elif dbg:           self.log(f'{cn=} not found in smap={util.fmtm(self.smap)}')
         if m:   self.move(how, m)
@@ -1837,13 +1836,7 @@ class Tabs(pyglet.window.Window):
         for k in list(self.smap.keys()):
             k *= nt
             self.setLLStyle(k, style)
-            for kt in range(k, k + nt):
-                if not self.BGC:
-                    if self.tabs:   self.tabs[kt].color = self.k[T][style]
-                    if self.notes: self.notes[kt].color = self.k[N][style]
-                    if self.ikeys: self.ikeys[kt].color = self.k[I][style]
-                    if self.kords: self.kords[kt].color = self.k[K][style]
-                    if dbg: text += self.tabs[kt].text
+            text += self.setTNIKStyle(k, nt, style)
             if dbg: text += ' '
         if dbg: self.log(f'{text=}')
         self.dumpSmap(f'END {how}')
@@ -1857,15 +1850,7 @@ class Tabs(pyglet.window.Window):
             cn = k   ;   k *= nt
             if dbg: self.log(f'{k=} {cn=} {v=}')
             self.setLLStyle(k, style)
-            for kt in range(k, k + nt):
-                if not self.BGC:
-                    p, l, c, r  =  self.cc2plct(kt)
-                    if self.tabs:  self.tabs [kt].color = self.k[T][style]
-                    if self.notes: self.notes[kt].color = self.k[N][style]
-                    if self.ikeys: self.ikeys[kt].color = self.k[I][style]
-                    if self.kords: self.kords[kt].color = self.k[K][style]
-                    self.setDTNIK( self.tblank, kt, p, l, c, kt-k, kk=1 if kt==k+nt-1 else 0)
-#                    self.setDTNIK( self.tblank, kt, p, l, c, t, kk=1 if t == nt - 1 else 0)
+            self.setTNIKStyle(k, nt, style, blank=1)
         if not keep: self.unselectAll(f'deleteTabs({keep=})')
         self.dumpSmap(f'END {how} {keep=}')
         if self.SNAPS: self.regSnap(f'{how}', 'DEL')
@@ -2225,7 +2210,7 @@ OPACITY          = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 19
 #OPACITY          = [ 255, 240, 225, 210, 195, 180, 165, 150, 135, 120, 105, 90, 75, 60, 45, 30, 15, 0 ]
 CC3              = [(250, 65,  190, OPACITY[10]), (127,  30,  90, OPACITY[10])]
 CC4              = [(255, 127, 255, OPACITY[10]), (150,  75,  12, OPACITY[10])]
-CC1              = [( 13,  15, 255, OPACITY[10]), ( 10,   0, 127, OPACITY[10])]
+CC1              = [( 13,  15, 255, OPACITY[10]), (250,  220, 27, OPACITY[10])]
 CC2              = [(255, 127,   0, OPACITY[9]), ( 127,  58,   0, OPACITY[9])]
 GRAY             = [(255, 255, 255, OPACITY[17]), (  0,   0,   0, OPACITY[17])]
 PINK             = [(255,  64, 192, OPACITY[17]), ( 57,  16,  16, OPACITY[17])]
@@ -2252,9 +2237,8 @@ GREEN2           = [(  0, 255,   0, OPACITY[10]), (  0,  54,   0, OPACITY[10])]
 CYAN2            = [(  0, 255, 255, OPACITY[10]), (  0,  44,  44, OPACITY[10])]
 BLUE2            = [(  0,   0, 255, OPACITY[10]), (  0,   0,  64, OPACITY[10])]
 VIOLET2          = [(176,  81, 255, OPACITY[10]), ( 44,  14,  58, OPACITY[10])]
-HUES             = 16
 ########################################################################################################################################################################################################
-def genColors(k, nsteps=HUES, dbg=1):
+def genColors(k, nsteps=16, dbg=1):
     colors, clen = [], len(k[0])
     diffs = [ k[1][i] - k[0][i]  for i in range(clen) ]
     steps = [ diffs[i]/nsteps    for i in range(clen) ]
