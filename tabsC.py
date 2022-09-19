@@ -110,10 +110,10 @@ class Tabs(pyglet.window.Window):
         self.J1,  self.J2 = [], []
         self.ki           = []
         self.kbk,    self.symb,    self.mods,        self.symbStr, self.modsStr =         0, 0, 0, '', ''
-        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKER_BOARD = 1  ;  self.EVENT_LOG = 0  ;  self.FULL_SCREEN = 1
+        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKER_BOARD = 0  ;  self.EVENT_LOG = 0  ;  self.FULL_SCREEN = 1
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP   = 1  ;  self.RESIZE    = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS     = 1  ;  self.SPRITES     = 1  ;  self.SUBPIX        = 0  ;  self.TEST      = 0  ;  self.VERBOSE     = 0
-        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT  = 0  ;  self.BGC       = 1  ;  self.FRET_BOARD  = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX        = 0  ;  self.TEST      = 0  ;  self.VERBOSE     = 0
+        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT  = 0  ;  self.BGC       = 0  ;  self.FRET_BOARD  = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
@@ -225,13 +225,13 @@ class Tabs(pyglet.window.Window):
         if self.SNAPS: self.regSnap('init', 'INIT')
         if dbg: self.dumpStruct('Init')
 
-    def _initColors(self):
+    def OLD__initColors(self):
         KT1, KT2, KT3 = PINKS, BLUES, INDIGOS
         kP = [     REDS[0],      REDS[10] ]
         kL = [    BLUES[0],     BLUES[10] ]
-        kS = [   GRAY0S[0],    GRAY0S[0] ]
+        kS = [   GRAY0S[0],     GRAY0S[0] ]
         kC = [  GREEN0S[15],   GREEN0S[3] ]
-        kT = [ ORANGE2S[13], ORANGE2S[7], ORANGE2S[0] ] # , ORANGE2S[3] ]
+        kT = [ ORANGE2S[13], ORANGE2S[7], ORANGE2S[0], ORANGE2S[3] ]
         kN = [   GREENS[13],   GREENS[7],   GREENS[0],   GREENS[3] ]
         kI = [ VIOLET2S[13],  VIOLETS[7], VIOLET2S[0],  VIOLETS[3] ]
         kK = [    CYANS[13],    CYANS[7],    CYANS[0],    CYANS[3] ]
@@ -242,6 +242,30 @@ class Tabs(pyglet.window.Window):
         kO = [      KT1[0],       KT1[10] ]
         kA = [      KT2[0],       KT2[10] ]
         kD = [      KT1[0],       KT1[10] ]
+        self.k   = [ kP, kL, kS, kC,  kT, kN, kI, kK,  kR, kQ, kH, kV,  kO, kA, kD ]
+        [ self.log(f'[{i:2}] {util.fmtl(e, w=3)}') for i, e in enumerate(self.k) ]
+
+    def _initColors(self):
+        a = self.SPRITES and not self.BGC  ;  b = self.SPRITES and self.BGC  ;  c = not self.SPRITES and not self.BGC
+        P1, P2 = REDS,     REDS     ;  L1, L2 = BLUES,  BLUES   ;  S1, S2 = GRAY0S,   GRAY0S    ;  Z1, Z2 = GREEN0S, GREEN0S
+        T1, T2 = ORANGE2S, ORANGE2S ;  N1, N2 = GREENS, GREENS  ;  I1, I2 = VIOLET2S, VIOLET2S  ;  K1, K2 = CYANS,   CYANS
+        R1, R2 = CC3S,     CC3S     ;  Q1, Q2 = CC1S,   CC2S    ;  H1, H2 = CC3S,     CC4S      ;  V1, V2 = PINKS,   PINKS
+        O1, O2 = PINKS, PINKS ;  A1, A2 = BLUES, BLUES  ;  D1, D2 = INDIGOS, INDIGOS
+        kP = [P1[ 0], P2[10]] if a else [P1[ 0], P2[10]] if b else [P1[ 0], P2[10]] if c else [P1[ 0], P2[10]]
+        kL = [L1[ 0], L2[10]] if a else [L1[ 0], L2[10]] if b else [L1[ 0], L2[10]] if c else [L1[ 0], L2[10]]
+        kS = [S1[ 0], S2[ 0]] if a else [S1[ 0], S2[ 0]] if b else [S1[ 0], S2[ 0]] if c else [S1[ 0], S2[ 0]]
+        kC = [Z1[15], Z2[ 3]] if a else [Z1[15], Z2[ 3]] if b else [Z1[15], Z2[ 3]] if c else [Z1[15], Z2[ 3]]
+        kT = [T1[13], T2[ 7]] if a else [T1[13], T2[ 7]] if b else [T1[13], T2[ 7]] if c else [T1[13], T2[ 7]]
+        kN = [N1[13], N2[ 7]] if a else [N1[13], N2[ 7]] if b else [N1[13], N2[ 7]] if c else [N1[13], N2[ 7]]
+        kI = [I1[13], I2[ 7]] if a else [I1[13], I2[ 7]] if b else [I1[13], I2[ 7]] if c else [I1[13], I2[ 7]]
+        kK = [K1[13], K2[ 7]] if a else [K1[13], K2[ 7]] if b else [K1[13], K2[ 7]] if c else [K1[13], K2[ 7]]
+        kR = [R1[13], R2[ 0]] if a else [R1[13], R2[ 0]] if b else [R1[13], R2[ 0]] if c else [R1[13], R2[ 0]]
+        kQ = [Q1[13], Q2[ 0]] if a else [Q1[13], Q2[ 0]] if b else [Q1[13], Q2[ 0]] if c else [Q1[13], Q2[ 0]]
+        kH = [H1[ 0], H2[15]] if a else [H1[ 0], H2[15]] if b else [H1[ 0], H2[15]] if c else [H1[ 0], H2[15]]
+        kV = [V1[ 0], V2[12]] if a else [V1[ 0], V2[12]] if b else [V1[ 0], V2[12]] if c else [V1[ 0], V2[12]]
+        kO = [O1[ 0], O2[10]] if a else [O1[ 0], O2[10]] if b else [O1[ 0], O2[10]] if c else [O1[ 0], O2[10]]
+        kA = [A2[ 0], A2[10]] if a else [A2[ 0], A2[10]] if b else [A2[ 0], A2[10]] if c else [A2[ 0], A2[10]]
+        kD = [D1[ 0], D2[10]] if a else [D1[ 0], D2[10]] if b else [D1[ 0], D2[10]] if c else [D1[ 0], D2[10]]
         self.k   = [ kP, kL, kS, kC,  kT, kN, kI, kK,  kR, kQ, kH, kV,  kO, kA, kD ]
         [ self.log(f'[{i:2}] {util.fmtl(e, w=3)}') for i, e in enumerate(self.k) ]
 
@@ -1111,10 +1135,10 @@ class Tabs(pyglet.window.Window):
             d, n      = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTI_LINE
             a, ax, ay = self.a, self.ax, self.ay  # left center right  # bottom baseline center top
             if j == Q:    k = self.llcolor(i, Q)[NORMAL_STYLE]
-            tnik  = pygtxt.Label(t, font_name=n, font_size=s, bold=o, stretch=0, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
+            tnik = pygtxt.Label(t, font_name=n, font_size=s, bold=o, stretch=0, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
 #            sn = 'background_color' if self.BGC else 'color'  ;  sv = self.k[T][NORMAL_STYLE] if self.BGC else k  ;  tnik.set_style(sn, sv)
-            (sn, sv) = ('background_color', self.k[j][NORMAL_STYLE]) if self.BGC else ('color', k)  ;  tnik.set_style(sn, sv)
-#            if self.BGC:  tnik.set_style('background_color', self.k[T][NORMAL_STYLE])
+#            (sn, sv) = ('background_color', self.k[j][NORMAL_STYLE]) if self.BGC else ('color', k)  ;  tnik.set_style(sn, sv)
+            if self.BGC and T <= j <= K: tnik.set_style('background_color', self.k[j][NORMAL_STYLE])
 #            else:         tnik.set_style('color', k)
         if    tlist is not None:     tlist.append(tnik)
         else:                        msg = f'WARN tlist is None cant add tnik: {self.fmtJText(j, i, why)}'  ;  self.log(msg)
@@ -1124,7 +1148,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def llcolor(self, i, j, dbg=0):
         c = self.n[C]  ;   n = 1
-        mp = i % c + n # if tlist else 0
+        mp = i % c + n
         msg = f'{i=} {j=} {c=} {i%c=} {n=} {mp=}=i%c+n {mp%10=}' if dbg else ''
         if j == Q and not mp % 10 and i:
             self.log(  f'if   {msg} {self.k[R]=}') if dbg else None   ;   return self.k[R]
@@ -1801,10 +1825,12 @@ class Tabs(pyglet.window.Window):
         for kt in range(k, k + nt):
 #            if   self.tabs and self.BGC:  self.tabs[ kt].set_style('background_color', self.k[T][style])  ;  text += self.tabs[kt].text
 #            elif self.tabs:               self.tabs[ kt].color = self.k[T][style]  ;  text += self.tabs[kt].text
-            if self.tabs:  sn = 'background_color' if self.BGC else 'color'  ;   self.tabs[kt].set_style(sn, self.k[T][style])  ;  text += self.tabs[kt].text
-            if self.notes: self.notes[kt].color = self.k[N][style]
-            if self.ikeys: self.ikeys[kt].color = self.k[I][style]
-            if self.kords: self.kords[kt].color = self.k[K][style]
+#            if self.tabs:  sn = 'background_color' if self.BGC else 'color'  ;   self.tabs[kt].set_style(sn, self.k[T][style])  ;  text += self.tabs[kt].text
+            sn = 'background_color' if self.BGC else 'color'
+            if self.tabs:   self.tabs[kt].set_style(sn, self.k[T][style])  ;  text += self.tabs[kt].text
+            if self.notes: self.notes[kt].set_style(sn, self.k[N][style])
+            if self.ikeys: self.ikeys[kt].set_style(sn, self.k[I][style])
+            if self.kords: self.kords[kt].set_style(sn, self.k[K][style])
             if blank: p, l, c, r = self.cc2plct(kt)  ;  self.setDTNIK(self.tblank, kt, p, l, c, kt - k, kk=1 if kt == k + nt - 1 else 0)
         return text
     ####################################################################################################################################################################################################
@@ -1850,7 +1876,8 @@ class Tabs(pyglet.window.Window):
             cn = k   ;   k *= nt
             if dbg: self.log(f'{k=} {cn=} {text=}')
             self.setLLStyle(k, style)
-            self.setTNIKStyle(k, nt, style, blank=1)
+            self.\
+                setTNIKStyle(k, nt, style, blank=1)
         if not keep: self.unselectAll(f'deleteTabs({keep=})')
         self.dumpSmap(f'END {how} {keep=}')
         if self.SNAPS: self.regSnap(f'{how}', 'DEL')
@@ -1953,6 +1980,7 @@ class Tabs(pyglet.window.Window):
             if   self.swapping == 1 and not self.swapTrg: self.swapping = 2   ;   self.log(f'{how} waiting {self.swapSrc=} {self.swapTrg=}') if dbg else None   ;   return
             elif self.swapping == 2 and     self.swapTrg: self.swapping = 0   ;   self.log(f'{how} BGN     {self.swapSrc=} {self.swapTrg=}') if dbg else None
             np, nl, ns, nc, nr = self.n  ;  nc += self.zzl()
+            cc0 = self.cursorCol()  ;  p0, l0, c0, t0 = self.cc2plct(cc0)  ;  self.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
             for p in range(np):
                 for l in range(nl):
                     for c in range(nc):
@@ -1966,6 +1994,7 @@ class Tabs(pyglet.window.Window):
                             if dbg2: self.log(f'{self.cc=} after  data[{p}][{l}][{c}]={d}')
             self.log(f'{how} END     {self.swapSrc=} {self.swapTrg=}') if dbg else None
             if dbg2: self.dumpTniks('SWAP')
+            self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
             self.resyncData = 1
 
     def setn_cmd(self, how, txt='', dbg=1):
