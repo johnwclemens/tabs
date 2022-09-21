@@ -1,10 +1,13 @@
 import math, sys, os
-import unicodedata
+#import unicodedata, os
 import pyglet
 import pyglet.window.key as pygwink
 import pyglet.window.event as pygwine
-sys.path.insert(0, os.path.abspath('../lib'))
-import cmdArgs
+print(f'sys.path:')
+for _ in sys.path: print(f'{_}')
+print(f"{os.path.abspath('../lib')}=")
+#sys.path.insert(0, os.path.abspath('../lib'))
+import util
 
 class Tabs(pyglet.window.Window):
     def __init__(self):
@@ -12,7 +15,7 @@ class Tabs(pyglet.window.Window):
         self.ww, self.hh  = 640, 480
         if TEST: self.n, self.i, self.x, self.y, self.w, self.h, self.o, self.g = [12, 12, 0, 0], [0, 0, 0, 0], [4, 0, 0, 0], [0, 3, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 0, 0], []
         else:    self.n, self.i, self.x, self.y, self.w, self.h, self.o, self.g =  [1, 2, 6, 20], [0, 0, 0, 0], [0, 4, 0, 0], [0, 4, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [2, 0, 0, 3], []
-        self.argMap = cmdArgs.parseCmdLine(dbg=1)
+        self.argMap = util.parseCmdLine(dbg=1)
         print('__init__(BGN) argMap={}'.format(self.argMap), file=DBG_FILE)
         if 'n' in self.argMap and len(self.argMap['n'])  > 0: self.n            = [int(self.argMap['n'][i]) for i in range(len(self.argMap['n']))]
         if 'x' in self.argMap and len(self.argMap['x'])  > 0: self.x            = [int(self.argMap['x'][i]) for i in range(len(self.argMap['x']))]
@@ -194,7 +197,7 @@ class Tabs(pyglet.window.Window):
             self.dumpSprite()
             page = self.createSprite('_initPages', g, cc[p%len(cc)], x, y, w, h, p, 0, dbg=1)
             self.pages.append(page)
-            if self.n[P+1] > 0: lines = self._initLines(page)
+            if self.n[P+1] > 0: lines = self._initLines(page)  ;  print(f'{p=} {len(lines)}', file=DBG_FILE)
         return self.pages
 
     def _initLines(self, spr):
@@ -206,7 +209,7 @@ class Tabs(pyglet.window.Window):
             self.lines.append(line)
             if self.n[L+1] > 0:
                 self.labelRows.append(self._initLabelRow(line, self.g[C+1]))
-                rows = self._initRows(line)
+                rows = self._initRows(line)  ;   print(f'{l=} {len(rows)}', file=DBG_FILE)
         return self.lines
 
     def _initLabelRow(self, spr, g):
@@ -214,7 +217,7 @@ class Tabs(pyglet.window.Window):
         n, i, x, y, w, h, o, gg = self.geom(R, spr.x, spr.y, spr.width, spr.height, why='', init=True, dump=0, dbg=0)
         yy = spr.y+spr.height-(h+y)
         labelRow = self.createSprite('_initLabelRow', g, cc[0], x, yy, w, h, 0, 0, v=True if len(self.pages)==1 else False, dbg=1)
-        if self.n[R+1] > 0: labelCols = self._initCols(labelRow)
+        if self.n[R+1] > 0: labelCols = self._initCols(labelRow)  ;   print(f'{len(labelCols)}', file=DBG_FILE)
         return labelRow
 
     def _initRows(self, spr):
@@ -226,7 +229,7 @@ class Tabs(pyglet.window.Window):
             yy = spr.y+spr.height-(h+y)*(r+1)
             row   = self.createSprite('_initRows', g, cc[r%len(cc)], x, yy, w, h, r, 0, v=True if len(self.pages)==1 else False, dbg=1)
             self.rows.append(row)
-            if self.n[R+1] > 0: cols = self._initCols(row)
+            if self.n[R+1] > 0: cols = self._initCols(row)  ;   print(f'{r=} {len(cols)}', file=DBG_FILE)
         return self.rows
 
     def _initCols(self, spr):
@@ -345,8 +348,7 @@ class Tabs(pyglet.window.Window):
     def on_resize(self, width, height):
         super().on_resize(width, height)
         self.ww, self.hh = width, height
-        if TEST: self.resizeTestColors()
-        return
+        if TEST: self.resizeTestColors()  ;  return
 #        for i in range(len(self.n)): self.dumpGeom(i, 'on_resize({}x{})'.format(self.ww, self.hh))
         self.resizePages()
         self.resizeLabels()
@@ -491,7 +493,7 @@ class Tabs(pyglet.window.Window):
         cs, cc = c//(self.n[C]+CCC)-1, c%(self.n[C]+CCC)
         ccc = len(self.STRING_NUMS) * cc + cs
         self.dumpTexts('updateTexts(BGN) c={} text={} cc={} cs={} ccc={}'.format(c, text, cc, cs, ccc))
-        self.texts[ccc][0].text = text[0]
+#        self.texts[ccc][0].text = text[0]
         self.dumpTexts('updateTexts(END) c={} text={} cc={} cs={} ccc={}'.format(c, text, cc, cs, ccc))
 
     def updateFontColor(self, ii):
@@ -516,13 +518,13 @@ class Tabs(pyglet.window.Window):
                 if   name=='FONT_COLORS': self.texts[j][k][0].color     = prop[i]
                 elif name=='FONT_NAMES':  self.texts[j][k][0].font_name = prop[i]
                 elif name=='FONT_SIZES':  self.texts[j][k][0].font_size = prop[i]
-                elif name=='FONT_DPIS':   self.texts[j][k][0].dpi       = prop[i]
+#                elif name=='FONT_DPIS':   self.texts[j][k][0].dpi       = prop[i]
         for j in range(len(self.labelsText)):
             for k in range(len(self.labelsText[j])):
                 if   name=='FONT_COLORS': self.labelsText[j][k].color     = prop[i]
                 elif name=='FONT_NAMES':  self.labelsText[j][k].font_name = prop[i]
                 elif name=='FONT_SIZES':  self.labelsText[j][k].font_size = prop[i]
-                elif name=='FONT_DPIS':   self.labelsText[j][k].dpi       = prop[i]
+#                elif name=='FONT_DPIS':   self.labelsText[j][k].dpi       = prop[i]
         return i
 
     def toggleFontBold(self):

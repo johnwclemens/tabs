@@ -125,7 +125,7 @@ class Tabs(pyglet.window.Window):
         self.dfn         = 'test.7.dat'
         self.n           = [1, 1, 50, 6]
         self.SS          = set() if 0 else {0}
-        self.FULL_SCREEN = 0   ;   self.EVENT_LOG = 0   ;   self.ORDER_GROUP = 1   ;   self.VERBOSE = 0
+        self.FULL_SCREEN = 0   ;   self.EVENT_LOG = 1   ;   self.ORDER_GROUP = 1   ;   self.VERBOSE = 0
         ARGS             = util.parseCmdLine(file=LOG_FILE)
         self.log(f'argMap={util.fmtm(ARGS)}')
         if 'e' in ARGS and len(ARGS['e']) == 0: self.EVENT_LOG     =  1

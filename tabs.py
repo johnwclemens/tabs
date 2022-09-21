@@ -786,9 +786,10 @@ class Tabs(pyglet.window.Window):
         self.snapshot(f'quit {error=} {save=}', 'QUIT')
         self.log(f'END {why} {error=} {save=}')
         self.log(util.QUIT_END, pfx=0)    ;    self.cleanupLog()
-        print('Call pyglet.app.exit()')
         self.close()
+        print('Before pyglet.app.exit()')
         pyglet.app.exit()
+        print('After  pyglet.app.exit()')
 
 ########################################################################################################################################################################################################
 class View(object): # self.document.set_paragraph_style(0, len(self.document.text), dict(align='center', wrap=True))
@@ -891,4 +892,5 @@ if __name__ == '__main__':
         util.slog(f'{LOG_PATH=}',      file=LOG_FILE)
         util.slog(f'{LOG_FILE.name=}', file=LOG_FILE)
         Tabs()
-        pyglet.app.run()
+        ret = pyglet.app.run()
+        print(f'{ret=}')
