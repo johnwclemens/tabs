@@ -27,8 +27,9 @@ def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1):
     return filePath
 ########################################################################################################################################################################################################
 def fmtl(ls, w=None, u='>', d1='[', d2=']', sep=' ', ll=0, z=''):
+    if ls is None: return 'None'
     lts = (list, tuple, set, frozenset)  ;  dts = (int, float, str)
-    assert type(ls) in lts
+    assert type(ls) in lts, f'{type(ls)=} {lts=}'
     if d1 == '': d2 = ''
     w = w if w else ''
     t = ''   ;   s = f'<{len(ls)}' if ll else ''
