@@ -1,6 +1,6 @@
 #import logging#, shutil#, unicodedata, readline, csv, string
 import glob, inspect, itertools, math, os, pathlib, sys
-import operator
+import operator, unicodedata
 from collections import OrderedDict as cOd
 from itertools   import accumulate
 import pyglet
@@ -68,8 +68,20 @@ class Tabs(pyglet.window.Window):
         exit()
 
     def test1(self):
-#        self.log('\u266D \u2669 \u266E \u266A \u266F \u266B \u266C', so=1)
-        print('\u266D \u2669 \u266E \u266A \u266F \u266B \u266C')
+#        x = '\U0001F600 \U0001F603 \U0001F606 \U0001F609'  ;  y = ['\U0001F600', '\U0001F603', '\U0001F606', '\U0001F609'] #        print(f'{x=} y={util.fmtl(y)}')
+        self.test_1(0x1D100)
+        self.test_1(0x1D600)
+#        exit()
+
+    def test_1(self, x):
+        for i in range(0x100):
+            y = x+i  ;  u = chr(y)  ;  uc = unicodedata.category(u)
+            try:                       un = unicodedata.name(u)
+            except ValueError:         un = None
+            y = f'{i:3} {i:02X} {y:05X} chr({y:05X})'  ;  s = f'{u} ord({u})={ord(u):05X} {uc} {un}'
+            print(f'{y} {s}')
+#            print(f'{y} {s}', file=LOG_FILE)
+            self.log(f'{y} {s}', pfx=0)
 
     def test2(self):
         self.log(f'os.path.abspath(".")     ={os.path.abspath(".")}')
@@ -158,7 +170,7 @@ class Tabs(pyglet.window.Window):
         self.i.insert(S, self.ssl())
         self.dumpArgs()
         global LF2   ;   LF2 = LOG_FILE if self.RD_STDOUT else sys.stdout
-        if self.TEST: self.test1()  ;  self.quit('EXIT TEST')
+        if self.TEST: self.test1() # ;  self.quit('EXIT TEST', save=0)
         self.sAlias = 'GUITAR_6_STD'
         self.sobj = util.Strings(LOG_FILE, self.sAlias)
         self.cobj = chord.Chord( LOG_FILE, self.sobj)
@@ -1716,7 +1728,7 @@ class Tabs(pyglet.window.Window):
         if TT in self.SS: self.setTab2( text, cc)
         if NN in self.SS: self.setNote( text, cc, t)
         if II in self.SS: self.setIkey( imap, p, l, c)
-        if KK in self.SS: self.setChord(imap, p, l, c)
+        if KK in self.SS: self.setChord(imap, p, l, c) if kk else None
         if dbg: self.log(f'END {kk=}    {text=} {len(imap)=}', pos=pos)
     ####################################################################################################################################################################################################
     def setData(self, text, p, l, c, t, pos=0, dbg=1):
@@ -1726,12 +1738,12 @@ class Tabs(pyglet.window.Window):
         data = self.data[p][l][c]
         if dbg: self.log(f'END {t=} {text=} {data=}', pos=pos)
 
-    def setTab2(self, text, cc, pos=0, dbg=1):
+    def setTab2(self, text, cc, pos=0, dbg=0):
         if dbg: self.log(f'BGN         {text=} tabs[{cc}]={self.tabs[cc].text}', pos=pos)
         self.tabs[cc].text = text
         if dbg: self.log(f'END         {text=} tabs[{cc}]={self.tabs[cc].text}', pos=pos)
 
-    def setNote(self, text, cc, t, pos=0, dbg=1):
+    def setNote(self, text, cc, t, pos=0, dbg=0):
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
         self.notes[cc].text = self.sobj.tab2nn(text, t) if self.sobj.isFret(text) else self.tblank
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
@@ -1754,25 +1766,25 @@ class Tabs(pyglet.window.Window):
         self.setIkeyText(ikeys, cc, p, l, c)
         if dbg: self.log(f'END ikeys={util.fmtl(ikeys)} {len(imap)=}', pos=pos)
 
-    def setIkeyText(self, text, cc, p, l, c, pos=0, dbg=0):
-        nt = self.n[T]   ;  cc = self.normalizeCC(cc)   ;   data = self.data[p][l][c]   ;   j = 0   ;   text = text[::-1]
-        txt = self.objs2Text(self.ikeys, cc, nt, I)
-        if dbg: self.log(f'BGN [{cc:2}-{cc+nt-1:2}] text={util.fmtl(text)} {data=} ikeys=<{txt}>{len(txt)}', pos=pos)
+    def setIkeyText(self, text, cc, p, l, c, pos=0, dbg=1, dbg2=0):
+        nt  = self.n[T]  ;  cc = self.normalizeCC(cc)   ;   data = self.data[p][l][c]   ;   text = text[::-1]
+        txt = self.objs2Text(self.ikeys, cc, nt, I)     ;   sobj = self.sobj  ;  blank = self.tblank  ;  j = 0
+        if dbg:  self.log(f'BGN [{cc:2}-{cc+nt-1:2}] text={util.fmtl(text)} {data=} ikeys=<{txt}>{len(txt)}', pos=pos)
         for i in range(nt):
-            if text and len(text) > j: self.ikeys[cc + i].text = text[j] if self.sobj.isFret(data[i]) else self.tblank     ;   j += 1 if self.sobj.isFret(data[i]) else 0
-            else:                      self.ikeys[cc + i].text = self.tblank
+            if text and len(text) > j: ifd = sobj.isFret(data[i])  ;  self.ikeys[cc+i].text = text[j] if ifd else blank  ;  j += 1 if ifd else 0
+            else:                                                     self.ikeys[cc+i].text = blank
         txt = self.objs2Text(self.ikeys, cc, nt, I)
-        if dbg: self.log(f'END [{cc:2}-{cc+nt-1:2}] text={util.fmtl(text)} {data=} ikeys=<{txt}>{len(txt)}', pos=pos)
-        if dbg: self.dumpDataSlice(p, l, c, cc)
-
-    def setChord(self, imap, p, l, c, pos=0, dbg=1):
+        if dbg:  self.log(f'END [{cc:2}-{cc+nt-1:2}] text={util.fmtl(text)} {data=} ikeys=<{txt}>{len(txt)}', pos=pos)
+        if dbg2: self.dumpDataSlice(p, l, c, cc)
+    ####################################################################################################################################################################################################
+    def setChord(self, imap, p, l, c, pos=0, dbg=0):
         cc = self.plct2cc(p, l, c, 0)
         name = imap[3] if imap and len(imap) > 3 else ''  ;   chunks = imap[4] if imap and len(imap) > 4 else []
         if dbg: self.log(f'BGN {name=} chunks={util.fmtl(chunks)} {len(imap)=}', pos=pos)
         self.setChordName(cc, name, chunks) # if name and chunks else self.log(f'WARN Not A Chord {cc=} {name=} {chunks=}', pos=pos)
         if dbg: self.log(f'END {name=} chunks={util.fmtl(chunks)} {len(imap)=}', pos=pos)
 
-    def setChordName(self, cc, name, chunks, pos=0, dbg=0):
+    def setChordName(self, cc, name, chunks, pos=0, dbg=1):
         nt = self.n[T]   ;   cc = self.normalizeCC(cc)   ;   kords = self.kords
         txt = self.objs2Text(kords, cc, nt, K)
         if dbg: self.log(f'BGN [{cc:2}-{cc+nt-1:2}] {name=} chunks={util.fmtl(chunks)} chords=<{txt}>{len(txt)}', pos=pos)
@@ -1967,33 +1979,42 @@ class Tabs(pyglet.window.Window):
             self.unselectAll('shiftTabs()')
         self.dumpSmap(f'END {how} {self.shiftingTabs=} {nf=} {self.shiftSign=}')
 
-    def swapTab(self, how, txt='', data=None, dbg=0, dbg2=0):  # e.g. c => 12 not same # chars asserts
+    def swapTab(self, how, txt='', data=None, dbg=0, dbg2=1):  # e.g. c => 12 not same # chars asserts
         src, trg = self.swapSrc, self.swapTrg
         data = data or self.data
         if not self.swapping: self.swapping = 1
         elif txt.isalnum():
-            if   self.swapping == 1:   self.swapSrc += txt  # ;   self.log(f'    {how} {txt=} {self.swapping=} {self.swapSrc=} {self.swapTrg=}')
-            elif self.swapping == 2:   self.swapTrg += txt  # ;   self.log(f'    {how} {txt=} {self.swapping=} {self.swapSrc=} {self.swapTrg=}')
+            if   self.swapping == 1:   src += txt   ;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}')
+            elif self.swapping == 2:   trg += txt   ;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}')
+            self.swapSrc, self.swapTrg = src, trg
         elif txt == '\r':
-            self.log(f'    {how} {self.swapping=} {self.swapSrc=} {self.swapTrg=}')
-            if   self.swapping == 1 and not self.swapTrg: self.swapping = 2   ;   self.log(f'{how} waiting {self.swapSrc=} {self.swapTrg=}') if dbg else None   ;   return
-            elif self.swapping == 2 and     self.swapTrg: self.swapping = 0   ;   self.log(f'{how} BGN     {self.swapSrc=} {self.swapTrg=}') if dbg else None
-            np, nl, ns, nc, nr = self.n  ;  nc += self.zzl()
+            self.log(f'    {how} {self.swapping=} {src=} {trg=}')
+            if   self.swapping == 1 and not trg: self.swapping = 2   ;   self.log(f'{how} waiting {src=} {trg=}') if dbg else None   ;   return
+            elif self.swapping == 2 and     trg: self.swapping = 0   ;   self.log(f'{how} BGN     {src=} {trg=}') if dbg else None
+            np, nl, ns, nc, nt = self.n   ;   nc += self.zzl()
             cc0 = self.cursorCol()  ;  p0, l0, c0, t0 = self.cc2plct(cc0)  ;  self.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
-            for p in range(np):
-                for l in range(nl):
-                    for c in range(nc):
-                        while src in data[p][l][c]:
-                            d = data[p][l][c]
-                            t = d.find(src)
-                            self.cc = self.plct2cc(p, l, c, t)
-                            if dbg2: self.log(f'{self.cc=} before data[{p}][{l}][{c}]={d}')
-                            d = d[:t] + trg + d[t+1:]
-                            self.setDTNIK(trg, self.cc, p, l, c, t, kk=1)
-                            if dbg2: self.log(f'{self.cc=} after  data[{p}][{l}][{c}]={d}')
-            self.log(f'{how} END     {self.swapSrc=} {self.swapTrg=}') if dbg else None
+            blanks = self.tblanks  ;  blank = 1 if src in blanks and trg in blanks else 0
+            if blank:
+                for i in range(len(self.tabs)):
+                    if self.tabs  and  self.tabs[i].text == src:  self.tabs[i].text = trg
+                    if self.notes and self.notes[i].text == src: self.notes[i].text = trg
+                    if self.ikeys and self.ikeys[i].text == src: self.ikeys[i].text = trg
+                    if self.kords and self.kords[i].text == src: self.kords[i].text = trg
+            else:
+                for p in range(np):
+                    for l in range(nl):
+                        for c in range(nc):
+                            text = data[p][l][c]
+                            for t in range(nt):
+                                if text[t] == src:
+                                    if dbg2: self.log(f'Before data[{p} {l} {c}]={text}')
+                                    cc = self.plct2cc(p, l, c, t)  ;  self.setDTNIK(trg, cc, p, l, c, t, kk=1)
+                                    if dbg2: self.log(f'After  data[{p} {l} {c}]={text}')
+            self.swapSrc, self.swapTrg = '', ''
+            self.log(f'{how} END     {src=} {trg=}') if dbg else None
             if dbg2: self.dumpTniks('SWAP')
-            self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
+#            self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
+            if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
             self.resyncData = 1
 
     def setn_cmd(self, how, txt='', dbg=1):
@@ -2095,6 +2116,7 @@ class Tabs(pyglet.window.Window):
         self.tblank  =  self.tblanks[self.tblanki]
         self.swapSrc, self.swapTrg, self.swapping = prevBlank, self.tblank, 2
         self.swapTab(how, '\r')
+        self.swapSrc, self.swapTrg = '', ''
         self.log(f'END {how} {self.tblank=}')
     ####################################################################################################################################################################################################
     def dumpCursorArrows(self, how): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;   self.log(f'{how} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
@@ -2319,9 +2341,9 @@ if __name__ == '__main__':
     prevPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
     LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
     if LOG_PATH.exists(): util.copyFile(LOG_PATH, prevPath, LOG_FILE)
-    with open(   str(LOG_PATH), 'w')   as   LOG_FILE:
+    with open(   str(LOG_PATH), 'w', encoding='utf-8')  as  LOG_FILE:
         util.slog(f'{LOG_PATH=}',      file=LOG_FILE)
         util.slog(f'{LOG_FILE.name=}', file=LOG_FILE)
         _   = Tabs()
         ret = pyglet.app.run()
-        print(f'{ret=} "\u0391 \u0392 \u0393 \u0394"')
+        print(f'{ret=}')
