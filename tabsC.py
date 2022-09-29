@@ -128,8 +128,8 @@ class Tabs(pyglet.window.Window):
         self.Y_CENTER  = 1  ;  self.Y_TOP       = 0  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
         self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 1  ;  self.FULL_SCREEN = 0
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 0  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 1  ;  self.VERBOSE     = 0
-        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 1  ;  self.FRET_BOARD  = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 1  ;  self.VERBOSE     = 0
+        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
@@ -911,7 +911,7 @@ class Tabs(pyglet.window.Window):
         z = 1 if self.FRET_BOARD else 2
         text = self.llText[z-l:]
         txt = text[c]
-        return self.createTnik(tlist, c, Q, x + c * w, y, w, h, kk=kk, kl=kl, v=1, t=txt, dbg=dbg)
+        return self.createTnik(tlist, c, Q, x + c * w, y, w, h, kk, kl, t=txt, v=1, dbg=dbg)
 
     def addPage(self, how, dbg=1):
         self.log(f'BGN {how}')
@@ -926,8 +926,8 @@ class Tabs(pyglet.window.Window):
         if self.VIEWS:
             if      not   self.views:    msg = f'ERROR Empty views {self.n=} {self.zzl()}'   ;   self.log(msg)   ;   self.quit(msg)
             self.dumpTnik(self.views[0], V, 'RefP')
-        n, ii, x, y, w, h =    self.geom(V, n=1, i=1, dbg=1)
-        page = self.createTnik(self.pages,    len(self.pages), P, x, y, w, h, self.cci(P, 0, kl), kl=kl, dbg=1)
+        n, ii, x, y, w, h =    self.geom(V, n=1, i=1, dbg=1)   ;   kk = self.cci(P, 0, kl)
+        page = self.createTnik(self.pages,    len(self.pages), P, x, y, w, h, kk, kl, dbg=1)
         for line in            self.g_createTniks(self.lines,  L, page):
             for sect in        self.g_createTniks(self.sects,  S, line):
                 for col in     self.g_createTniks(self.cols,   C, sect):
@@ -1067,10 +1067,10 @@ class Tabs(pyglet.window.Window):
         return chordName
     ####################################################################################################################################################################################################
     def createLL(self, p, pi, dbg=1, dbg2=1):
-        klr = self.k[R]   ;   kkr = self.cci(R, pi, klr) if self.CHECKERED else 0
+        kl = self.k[R]   ;   kk = self.cci(R, pi, kl) if self.CHECKERED else 0
         n = 1 + self.n[T] * self.ssl() * self.i[L]
         nr, ir, xr, yr, wr, hr = self.geom(R, p, n, self.i[L], dbg=dbg2) #  ;   xr0 = xr
-        lrow = self.createTnik(self.lrows, pi, R, xr, yr, wr, hr, kkr, kl=klr, dbg=dbg)
+        lrow = self.createTnik(self.lrows, pi, R, xr, yr, wr, hr, kk, kl, dbg=dbg)
         nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2) #  ;   xc0 = xc
         for c in range(nc):
             self.addLL(self.lcols, c, xc, yc, wc, hc)
@@ -1090,9 +1090,9 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def createTniks(self):
         self.dumpTniksPfx()   ;   view = None
-        if self.VIEWS:
-            _, _, x, y, w, h = self.geom(V, n=1, i=1, dbg=0)  #  0, self.height, self.width, self.height
-            view = self.createTnik(self.views, 0, V, x, y, w, h, why="New", v=1, dbg=1)
+        if self.VIEWS:  #  0, self.height, self.width, self.height
+            _, _, x, y, w, h = self.geom(V, n=1, i=1, dbg=0)  ;  kk = 0  ;  kl = self.k[V]
+            view = self.createTnik(self.views, 0, V, x, y, w, h, kk, kl, why="New", v=1, dbg=1)
         for page in              self.g_createTniks(self.pages, P, view): # pass
             for line in          self.g_createTniks(self.lines, L, page): # pass
                 for sect in      self.g_createTniks(self.sects, S, line): # pass
@@ -1121,14 +1121,14 @@ class Tabs(pyglet.window.Window):
                     elif s == NN:                     text = tobj if j2 > K else self.sobj.tab2nn(tobj, i) if self.sobj.isFret(tobj) else self.tblank
                     elif s == II:                     text = self.imap2ikey( tobj, imap, i2, j2)   ;   i2 += 1 if text != self.tblank else 0
                     elif s == KK:                     text = self.imap2Chord(tobj, imap, i,  j2)
-            k = self.cci(j2, i, kl) if self.CHECKERED else 0
-            tnik = self.createTnik(tlist2, i if ii < 0 else ii, j2, x2, y2, w, h, k, kl=kl, t=text, dbg=dbg)
+            kk = self.cci(j2, i, kl) if self.CHECKERED else 0
+            tnik = self.createTnik(tlist2, i if ii < 0 else ii, j2, x2, y2, w, h, kk, kl, t=text, dbg=dbg)
             yield tnik
     ####################################################################################################################################################################################################
-    def createTnik(self, tlist, i, j, x, y, w, h, kk=0, kl=None, why='New', t='', v=None, g=None, dbg=0):
+    def createTnik(self, tlist, i, j, x, y, w, h, kk, kl, why='New', t='', v=None, g=None, dbg=0):
         if j is not None: self.setJ(j, i)
-        o, k2, d, ii, n, s = self.fontParams()   ;   b = self.batch   ;   k0 = 0
-        k = kl[kk]   if kl is not None else FONT_COLORS[(k2 + k0) % len(FONT_COLORS)]
+        o, k2, d, ii, n, s = self.fontParams()   ;   b = self.batch #  ;   k0 = 0
+        k = kl[kk] #  if kl is not None else FONT_COLORS[(k2 + k0) % len(FONT_COLORS)]
         v = v        if  v is not None else self.isV(j)
         g = g        if  g is not None else self.j2g(j)
         if j == H or (self.SPRITES and (j < T or j == R)):
@@ -1143,9 +1143,8 @@ class Tabs(pyglet.window.Window):
             tnik = pygtxt.Label(t, font_name=n, font_size=s, bold=o, stretch=1, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
             if T <= j <= K:
                 d = tnik.document  ;  d.set_style(0, len(d.text), {'color': self.k[j][1], 'background_color': self.k[j][0]})
-                for i, c in enumerate(d.text):
-                    if self.isEHC(c):
-                        d.set_style(i, i+1, {'baseline': h/3, 'font_size': 0.5*s, 'color': (255, 0, 0, 255)})
+#                for i, _ in enumerate(d.text):
+#                    if self.isEH(_):           d.set_style(i, i+1, {'baseline': h/3, 'font_size': 0.5*s, 'color': (255, 0, 0, 255)})
         if    tlist is not None:     tlist.append(tnik)
         else:                        msg = f'WARN tlist is None cant add tnik: {self.fmtJText(j, i, why)}'  ;  self.log(msg)
         if dbg: key = self.idmapkey(j)  ;  self.idmap[key] = (id(tnik), tnik)  ;  self.dumpTnik(tnik, j, why)
@@ -1153,7 +1152,7 @@ class Tabs(pyglet.window.Window):
         return tnik
     ####################################################################################################################################################################################################
     @staticmethod
-    def isEHC(c): return 1 if c == '#' or c == 'b' else 0
+    def isEH(t): return 1 if t == '#' or t == 'b' else 0
     def llcolor(self, i, j, dbg=0):
         c = self.n[C]  ;   n = 1
         mp = i % c + n
@@ -1292,9 +1291,9 @@ class Tabs(pyglet.window.Window):
         self.log(f'{J2} {xywh} {why:4} {key} {t.text:3} {fs:3} {g} {color} {font} {cw:2} {ch:2} {ca} {axy} {bgc}', pfx=0)
     ####################################################################################################################################################################################################
     def createCursor(self, dbg=1, dbg2=0):
-        x, y, w, h, c = self.cc2xywh()
+        x, y, w, h, c = self.cc2xywh()  ;  kk = 0  ;  kl = self.k[H]
         if w == 0 or h == 0: msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   self.quit(msg)
-        self.cursor = self.createTnik(self.cursr, 0, H, x, y, w, h, kk=0, kl=self.k[H], v=1, dbg=dbg)
+        self.cursor = self.createTnik(self.cursr, 0, H, x, y, w, h, kk, kl, v=1, dbg=dbg)
         if dbg2: self.dumpCursr('NEW', x, y, w, h, c)
         self.setLLStyle(self.cc, CURRENT_STYLE)
 
@@ -1834,15 +1833,15 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'{self.fmtPos()}     {i=} = {c=} + {l=} * {nc=} {style=} {bold=} {italic=} {color=} {cc=}')
     ####################################################################################################################################################################################################
     def setTNIKStyle(self, k, nt, style, text='', blank=0):
-        for t in range(k, k + nt):
-            bgc = 'background_color' ;  fgc = 'color'  ;  uls, ulv = 'underline', (255, 0, 0, 255)
+        for t in range(k, k + nt): # uls, ulv = 'underline', (255, 0, 0, 255)
+            bgc = 'background_color' ;  fgc = 'color'
             (bgs, fgs) = (0, 1) if style == NORMAL_STYLE else (1, 0)
             kt, kn, ki, kk = self.k[T], self.k[N], self.k[I], self.k[K]
             tabs, notes, ikeys, kords = self.tabs, self.notes, self.ikeys, self.kords
-            if tabs:  d =  tabs[t].document  ;  d.set_style(0, len(d.text), {fgc: kt[fgs], bgc: kt[bgs], uls: ulv})  ;  text += tabs[t].text
-            if notes: d = notes[t].document  ;  d.set_style(0, len(d.text), {fgc: kn[fgs], bgc: kn[bgs], uls: ulv})
-            if ikeys: d = ikeys[t].document  ;  d.set_style(0, len(d.text), {fgc: ki[fgs], bgc: ki[bgs], uls: ulv})
-            if kords: d = kords[t].document  ;  d.set_style(0, len(d.text), {fgc: kk[fgs], bgc: kk[bgs], uls: ulv})
+            if tabs:  d =  tabs[t].document  ;  d.set_style(0, len(d.text), {fgc: kt[fgs], bgc: kt[bgs]})  ;  text += tabs[t].text
+            if notes: d = notes[t].document  ;  d.set_style(0, len(d.text), {fgc: kn[fgs], bgc: kn[bgs]}) #, uls: ulv})
+            if ikeys: d = ikeys[t].document  ;  d.set_style(0, len(d.text), {fgc: ki[fgs], bgc: ki[bgs]}) #, uls: ulv})
+            if kords: d = kords[t].document  ;  d.set_style(0, len(d.text), {fgc: kk[fgs], bgc: kk[bgs]}) #, uls: ulv})
             if blank: p, l, c, r = self.cc2plct(t)  ;  self.setDTNIK(self.tblank, t, p, l, c, t - k, kk=1 if t == k + nt - 1 else 0)
         return text
     ####################################################################################################################################################################################################
@@ -2269,12 +2268,12 @@ YELLOW           = [(255, 255,   0, OPACITY[17]), ( 45,  45,   0, OPACITY[17])]
 GREEN            = [(  0, 255,   0, OPACITY[17]), (  0,  54,   0, OPACITY[17])]
 GREEN0           = [(180, 255, 180, OPACITY[17]), ( 64, 100,  64, OPACITY[17])]
 GREEN_BLUE       = [( 24, 255,  98, OPACITY[17]), ( 10,  49,  25, OPACITY[17])]
-CYAN             = [( 13, 255, 255, OPACITY[17]), ( 16,  64,  64, OPACITY[17])]
+CYAN             = [(  0, 255, 255, OPACITY[17]), (  0,  54,  54, OPACITY[17])]
 BLUE_GREEN       = [(  0,  64, 255, OPACITY[17]), (  0,  32, 127, OPACITY[17])]
-BLUE             = [(  0,   0, 255, OPACITY[17]), (  0,   0,  64, OPACITY[17])]
+BLUE             = [(  0,   0, 255, OPACITY[17]), (  0,   0,  54, OPACITY[17])]
 INDIGO           = [(255,  22, 255, OPACITY[17]), ( 19,  11,  64, OPACITY[17])]
-VIOLET           = [(176,   0, 255, OPACITY[17]), (100,   0, 127, OPACITY[17])]
-ULTRA_VIOLET     = [(194,  96, 255, OPACITY[17]), ( 50,  19,  61, OPACITY[17])]
+VIOLET           = [(  0, 127, 255, OPACITY[17]), (  0,  25,  50, OPACITY[17])]
+ULTRA_VIOLET     = [(127,   0, 255, OPACITY[17]), ( 25,   0,  50, OPACITY[17])]
 GRAY0            = [(  0,   0,   0, OPACITY[ 0]), (  0,   0,   0, OPACITY[ 0])]
 GRAY2            = [(255, 255, 255, OPACITY[10]), (  0,   0,   0, OPACITY[10])]
 PINK2            = [(255,  64, 192, OPACITY[ 3]), ( 57,  16,  28, OPACITY[ 3])]
@@ -2282,9 +2281,10 @@ RED2             = [(255,   0,   0, OPACITY[ 3]), ( 50,   0,   0, OPACITY[ 3])]
 ORANGE2          = [(255, 127,   0, OPACITY[10]), ( 50,  25,   0, OPACITY[10])]
 YELLOW2          = [(255, 255,   0, OPACITY[15]), ( 45,  45,   0, OPACITY[15])]
 GREEN2           = [(  0, 255,   0, OPACITY[10]), (  0,  54,   0, OPACITY[10])]
-CYAN2            = [(  0, 255, 255, OPACITY[10]), (  0,  44,  44, OPACITY[10])]
-BLUE2            = [(  0,   0, 255, OPACITY[10]), (  0,   0,  64, OPACITY[10])]
-VIOLET2          = [(176,  81, 255, OPACITY[10]), ( 44,  14,  58, OPACITY[10])]
+CYAN2            = [(  0, 255, 255, OPACITY[10]), (  0,  54,  54, OPACITY[10])]
+BLUE2            = [(  0,   0, 255, OPACITY[10]), (  0,   0,  54, OPACITY[10])]
+VIOLET2          = [(  0, 127, 255, OPACITY[10]), (  0,  25,  50, OPACITY[10])]
+ULTRA_VIOLET2    = [(127,   0, 255, OPACITY[10]), ( 25,   0,  50, OPACITY[10])]
 ########################################################################################################################################################################################################
 def genColors(k, nsteps=16, dbg=1):
     colors, clen = [], len(k[0])
@@ -2324,11 +2324,12 @@ PINK2S        = genColors(PINK2)         ;  COLORS.append(PINK2S)
 RED2S         = genColors(RED2)          ;  COLORS.append(RED2S)
 ORANGE2S      = genColors(ORANGE2)       ;  COLORS.append(ORANGE2S)
 YELLOW2S      = genColors(YELLOW2)       ;  COLORS.append(YELLOW2S)
+GREEN0S       = genColors(GREEN0)        ;  COLORS.append(GREEN0S)
 GREEN2S       = genColors(GREEN2)        ;  COLORS.append(GREEN2S)
 CYAN2S        = genColors(CYAN2)         ;  COLORS.append(CYAN2S)
 BLUE2S        = genColors(BLUE2)         ;  COLORS.append(BLUE2S)
 VIOLET2S      = genColors(VIOLET2)       ;  COLORS.append(VIOLET2S)
-GREEN0S       = genColors(GREEN0)        ;  COLORS.append(GREEN0S)
+ULTRA_VIOLET2S = genColors(ULTRA_VIOLET2)  ;  COLORS.append(ULTRA_VIOLET2S)
 FONT_SCALE    =  14/18  # 14pts/18pix
 FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
 FONT_NAMES    = ['Lucida Console', 'Helvetica', 'Arial', 'Times New Roman', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
