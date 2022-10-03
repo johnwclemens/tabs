@@ -126,10 +126,10 @@ class Tabs(pyglet.window.Window):
         self.A_CENTER  = 0  ;  self.A_LEFT      = 1  ;  self.A_RIGHT      = 0
         self.X_CENTER  = 1  ;  self.X_LEFT      = 0  ;  self.X_RIGHT      = 0
         self.Y_CENTER  = 1  ;  self.Y_TOP       = 0  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
-        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 1  ;  self.FULL_SCREEN = 0
+        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 1  ;  self.FULL_SCREEN = 1
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 0  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS     = 1  ;  self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 1  ;  self.VERBOSE     = 0
-        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 1  ;  self.VERBOSE     = 0
+        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 1  ;  self.FRET_BOARD  = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
@@ -147,7 +147,7 @@ class Tabs(pyglet.window.Window):
         if 'b' in ARGS and len(ARGS['b']) == 0: self.FRET_BOARD    =  1
         if 'B' in ARGS and len(ARGS['B']) == 0: self.BGC           =  1
         if 'c' in ARGS and len(ARGS['c']) == 0: self.CAT           =  1
-        if 'C' in ARGS and len(ARGS['C']) == 0: self.CHECKERED =  1
+        if 'C' in ARGS and len(ARGS['C']) == 0: self.CHECKERED     =  1
         if 'd' in ARGS and len(ARGS['d']) == 0: self.DBG_TAB_TEXT  =  1
         if 'e' in ARGS and len(ARGS['e']) == 0: self.EVENT_LOG     =  1
         if 'F' in ARGS and len(ARGS['F']) == 0: self.FULL_SCREEN   =  1
@@ -250,26 +250,46 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpStruct('Init')
 
     def _initColors(self):
-        a = self.SPRITES and not self.BGC  ;  b = self.SPRITES and self.BGC  ;  c = not self.SPRITES and not self.BGC
-        P1, P2 = REDS,    REDS     ;  L1, L2 = BLUES,  BLUES   ;  S1, S2 = GRAY0S,  GRAY0S   ;  Z1, Z2 = RED2S, RED2S
-        T1, T2 = ORANGES, ORANGE2S ;  N1, N2 = GREENS, GREEN2S ;  I1, I2 = VIOLETS, VIOLET2S ;  K1, K2 = CYANS, CYAN2S
+        a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c = self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
+        P1, P2 = GRAY0S,    GRAY0S     ;  L1, L2 = GRAY0S,  GRAY0S   ;  S1, S2 = GRAY0S,  GRAY0S   ;  Z1, Z2 = GRAY0S,  GRAY0S # RED2S, RED2S
+#        T1, T2 = VIOLETS, VIOLET2S ;  N1, N2 = BLUES, BLUE2S ;  I1, I2 = INDIGOS, INDIGO2S ;  K1, K2 = CYANS, CYAN2S
+#        T1, T2 = TURQOIS, TURQOI2S ;  N1, N2 = GREENS, GREEN2S ;  I1, I2 = LIMES, LIME2S ;  K1, K2 = YELLOWS, YELLOW2S
+#        T1, T2 = ORANGES, ORANGE2S ;  N1, N2 = RUSTS, RUST2S ;  I1, I2 = REDS, RED2S ;  K1, K2 = FUSHIAS, FUSHIA2S
+#        T1, T2 = BLUES, BLUE2S ;  N1, N2 = INDIGOS, INDIGO2S ;  I1, I2 = CYANS, CYAN2S ;  K1, K2 = TURQOIS, TURQOI2S
+#        T1, T2 = GREENS, GREEN2S ;  N1, N2 = LIMES, LIME2S ;  I1, I2 = YELLOWS, YELLOW2S ;  K1, K2 = ORANGES, ORANGE2S
+#        T1, T2 = RUSTS, RUST2S ;  N1, N2 = REDS, RED2S ;  I1, I2 = FUSHIAS, FUSHIA2S ;  K1, K2 = VIOLETS, VIOLET2S
+#        T1, T2 = INDIGOS, INDIGO2S  ;  N1, N2 = CYANS, CYAN2S  ;  I1, I2 = TURQOIS, TURQOI2S  ;  K1, K2 = GREENS, GREEN2S
+#        T1, T2 = LIMES, LIME2S ;  N1, N2 = YELLOWS, YELLOW2S ;  I1, I2 = ORANGES, ORANGE2S ;  K1, K2 = RUSTS, RUST2S
+#        T1, T2 = REDS, RED2S   ;  N1, N2 = FUSHIAS, FUSHIA2S  ;  I1, I2 = VIOLETS, VIOLET2S ;  K1, K2 = BLUES, BLUE2S
+#        T1, T2 = CYANS, CYAN2S ;  N1, N2 = TURQOIS, TURQOI2S ;  I1, I2 = GREENS, GREEN2S ;  K1, K2 = LIMES, LIME2S
+#        T1, T2 = YELLOWS, YELLOW2S ; N1, N2 = ORANGES, ORANGE2S  ;  I1, I2 = RUSTS, RUST2S  ;  K1, K2 = REDS, RED2S
+#        T1, T2 = FUSHIAS, FUSHIA2S ; N1, N2 = VIOLETS, VIOLET2S  ;  I1, I2 = BLUES, BLUE2S  ; K1, K2 = INDIGOS, INDIGO2S
+#        T1, T2 = ORANGES, ORANGE2S ; N1, N2 = GREENS, GREEN2S  ;  I1, I2 = VIOLETS, VIOLET2S  ; K1, K2 = LIMES, LIME2S
+#        T1, T2 = REDS, RED2S  ; N1, N2 = PINKS, PINK2S  ;  I1, I2 = FUSHIAS, FUSHIA2S  ; K1, K2 = VIOLETS, VIOLET2S
+#        T1, T2 = RUSTS, RUST2S  ; N1, N2 = REDS, RED2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = FUSHIAS, FUSHIA2S
+#        T1, T2 = PEACHS, PEACH2S  ; N1, N2 = REDS, RED2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = FUSHIAS, FUSHIA2S
+#        T1, T2 = ORANGES, ORANGE2S  ; N1, N2 = PEACHS, PEACH2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = FUSHIAS, FUSHIA2S
+#        T1, T2 = CYANS, CYAN2S ;  N1, N2 = TURQOIS, TURQOI2S ;  I1, I2 = GREENS, GREEN2S ;  K1, K2 = LIMES, LIME2S
+#        T1, T2 = GREENS, GREEN2S ;  N1, N2 = LIMES, LIME2S ;  I1, I2 = YELLOWS, YELLOW2S ;  K1, K2 = ORANGES, ORANGE2S
+#        T1, T2 = YELLOWS, YELLOW2S ; N1, N2 = ORANGES, ORANGE2S  ;  I1, I2 = PEACHS, PEACH2S  ;  K1, K2 = RUSTS, RUST2S
+        T1, T2 = ORANGES, ORANGE2S  ; N1, N2 = PEACHS, PEACH2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = RUSTS, RUST2S
         R1, R2 = CC3S,    CC3S     ;  Q1, Q2 = CC1S,   CC2S    ;  H1, H2 = CC3S,    CC4S     ;  V1, V2 = PINKS, PINKS
-        O1, O2 = PINKS,   PINKS    ;  A1, A2 = BLUES,  BLUES   ;  D1, D2 = INDIGOS, INDIGOS
-        kP = [P1[ 0], P2[10]] if a else [P1[ 0], P2[10]] if b else [P1[ 0], P2[10]] if c else [P1[10], P2[3]]
-        kL = [L1[ 0], L2[10]] if a else [L1[ 0], L2[10]] if b else [L1[ 0], L2[10]] if c else [L1[ 0], L2[10]]
-        kS = [S1[ 0], S2[ 0]] if a else [S1[ 0], S2[ 0]] if b else [S1[ 0], S2[ 0]] if c else [S1[ 0], S2[ 0]]
-        kC = [Z1[15], Z1[ 7]] if a else [Z1[15], Z1[ 7]] if b else [Z1[15], Z1[ 7]] if c else [Z1[15], Z1[ 7]]
-        kT = [T2[13], T2[ 3]] if a else [T1[13], T1[ 3]] if b else [T1[15], T1[ 0]] if c else [T1[15], T1[ 0]]
-        kN = [N1[13], N2[ 3]] if a else [N1[13], N2[ 3]] if b else [N1[15], N1[ 0]] if c else [N1[15], N1[ 0]]
-        kI = [I2[15], I2[ 0]] if a else [I1[15], I1[ 0]] if b else [I1[15], I1[ 0]] if c else [I1[15], I1[ 0]]
-        kK = [K1[13], K2[ 3]] if a else [K1[13], K2[ 3]] if b else [K1[15], K1[ 0]] if c else [K1[15], K1[ 0]]
-        kR = [R1[13], R2[ 0]] if a else [R1[13], R2[ 0]] if b else [R1[13], R2[ 0]] if c else [R1[13], R2[ 0]]
-        kQ = [Q1[13], Q2[ 0]] if a else [Q1[13], Q2[ 0]] if b else [Q1[13], Q2[ 0]] if c else [Q1[13], Q2[ 0]]
-        kH = [H1[ 0], H2[15]] if a else [H1[ 0], H2[15]] if b else [H1[ 0], H2[15]] if c else [H1[ 0], H2[15]]
-        kV = [V1[ 0], V2[12]] if a else [V1[ 0], V2[12]] if b else [V1[ 0], V2[12]] if c else [V1[ 0], V2[12]]
-        kO = [O1[ 0], O2[10]] if a else [O1[ 0], O2[10]] if b else [O1[ 0], O2[10]] if c else [O1[ 0], O2[10]]
-        kA = [A2[ 0], A2[10]] if a else [A2[ 0], A2[10]] if b else [A2[ 0], A2[10]] if c else [A2[ 0], A2[10]]
-        kD = [D1[ 0], D2[10]] if a else [D1[ 0], D2[10]] if b else [D1[ 0], D2[10]] if c else [D1[ 0], D2[10]]
+        O1, O2 = PINKS,   PINKS    ;  A1, A2 = BLUES,  BLUES   ;  D1, D2 = FUSHIAS, FUSHIAS
+        kP = [P1[ 0], P2[10]] if a else [P1[ 0], P2[10]] if b else [P2[0], P2[15]] if c else [P1[15], P1[ 0]] if d else None
+        kL = [L1[ 0], L2[10]] if a else [L1[ 0], L2[10]] if b else [L1[ 0], L2[10]] if c else [L1[ 0], L2[10]] if d else None
+        kS = [S1[ 0], S2[ 0]] if a else [S1[ 0], S2[ 0]] if b else [S1[ 0], S2[ 0]] if c else [S1[ 0], S2[ 0]] if d else None
+        kC = [Z1[15], Z1[ 7]] if a else [Z1[15], Z1[ 0]] if b else [Z1[15], Z1[ 0]] if c else [Z1[15], Z1[ 7]] if d else None
+        kT = [T1[15], T1[ 0]] if a else [T1[15], T1[ 0]] if b else [T2[15], T2[ 0]] if c else [T2[15], T2[ 0]] if d else None
+        kN = [N1[15], N1[ 0]] if a else [N1[15], N1[ 0]] if b else [N2[15], N2[ 0]] if c else [N2[15], N2[ 0]] if d else None
+        kI = [I1[15], I1[ 0]] if a else [I1[15], I1[ 0]] if b else [I2[15], I2[ 0]] if c else [I2[15], I2[ 0]] if d else None
+        kK = [K1[15], K1[ 0]] if a else [K1[15], K1[ 0]] if b else [K2[15], K2[ 0]] if c else [K2[15], K2[ 0]] if d else None
+        kR = [R1[13], R2[ 0]] if a else [R1[13], R2[ 0]] if b else [R1[13], R2[ 0]] if c else [R1[13], R2[ 0]] if d else None
+        kQ = [Q1[13], Q2[ 0]] if a else [Q1[13], Q2[ 0]] if b else [Q1[13], Q2[ 0]] if c else [Q1[13], Q2[ 0]] if d else None
+        kH = [H1[ 0], H2[15]] if a else [H1[ 0], H2[15]] if b else [H1[ 0], H2[15]] if c else [H1[ 0], H2[15]] if d else None
+        kV = [V1[ 0], V2[12]] if a else [V1[ 0], V2[12]] if b else [V1[ 0], V2[12]] if c else [V1[ 0], V2[12]] if d else None
+        kO = [O1[ 0], O2[10]] if a else [O1[ 0], O2[10]] if b else [O1[ 0], O2[10]] if c else [O1[ 0], O2[10]] if d else None
+        kA = [A2[ 0], A2[10]] if a else [A2[ 0], A2[10]] if b else [A2[ 0], A2[10]] if c else [A2[ 0], A2[10]] if d else None
+        kD = [D1[ 0], D2[10]] if a else [D1[ 0], D2[10]] if b else [D1[ 0], D2[10]] if c else [D1[ 0], D2[10]] if d else None
         self.k   = [ kP, kL, kS, kC,  kT, kN, kI, kK,  kR, kQ, kH, kV,  kO, kA, kD ]
         [ self.log(f'[{i:2}] {util.fmtl(e, w=3)}') for i, e in enumerate(self.k) ]
 
@@ -1143,8 +1163,6 @@ class Tabs(pyglet.window.Window):
             tnik = pygtxt.Label(t, font_name=n, font_size=s, bold=o, stretch=1, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
             if T <= j <= K:
                 d = tnik.document  ;  d.set_style(0, len(d.text), {'color': self.k[j][1], 'background_color': self.k[j][0]})
-#                for i, _ in enumerate(d.text):
-#                    if self.isEH(_):           d.set_style(i, i+1, {'baseline': h/3, 'font_size': 0.5*s, 'color': (255, 0, 0, 255)})
         if    tlist is not None:     tlist.append(tnik)
         else:                        msg = f'WARN tlist is None cant add tnik: {self.fmtJText(j, i, why)}'  ;  self.log(msg)
         if dbg: key = self.idmapkey(j)  ;  self.idmap[key] = (id(tnik), tnik)  ;  self.dumpTnik(tnik, j, why)
@@ -1833,15 +1851,15 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'{self.fmtPos()}     {i=} = {c=} + {l=} * {nc=} {style=} {bold=} {italic=} {color=} {cc=}')
     ####################################################################################################################################################################################################
     def setTNIKStyle(self, k, nt, style, text='', blank=0):
-        for t in range(k, k + nt): # uls, ulv = 'underline', (255, 0, 0, 255)
+        for t in range(k, k + nt): # uls, ulv = 'underline', (255, 0, 0, 255) #, uls: ulv})
             bgc = 'background_color' ;  fgc = 'color'
             (bgs, fgs) = (0, 1) if style == NORMAL_STYLE else (1, 0)
             kt, kn, ki, kk = self.k[T], self.k[N], self.k[I], self.k[K]
             tabs, notes, ikeys, kords = self.tabs, self.notes, self.ikeys, self.kords
             if tabs:  d =  tabs[t].document  ;  d.set_style(0, len(d.text), {fgc: kt[fgs], bgc: kt[bgs]})  ;  text += tabs[t].text
-            if notes: d = notes[t].document  ;  d.set_style(0, len(d.text), {fgc: kn[fgs], bgc: kn[bgs]}) #, uls: ulv})
-            if ikeys: d = ikeys[t].document  ;  d.set_style(0, len(d.text), {fgc: ki[fgs], bgc: ki[bgs]}) #, uls: ulv})
-            if kords: d = kords[t].document  ;  d.set_style(0, len(d.text), {fgc: kk[fgs], bgc: kk[bgs]}) #, uls: ulv})
+            if notes: d = notes[t].document  ;  d.set_style(0, len(d.text), {fgc: kn[fgs], bgc: kn[bgs]})
+            if ikeys: d = ikeys[t].document  ;  d.set_style(0, len(d.text), {fgc: ki[fgs], bgc: ki[bgs]})
+            if kords: d = kords[t].document  ;  d.set_style(0, len(d.text), {fgc: kk[fgs], bgc: kk[bgs]})
             if blank: p, l, c, r = self.cc2plct(t)  ;  self.setDTNIK(self.tblank, t, p, l, c, t - k, kk=1 if t == k + nt - 1 else 0)
         return text
     ####################################################################################################################################################################################################
@@ -2253,38 +2271,29 @@ class Tabs(pyglet.window.Window):
         LOG_FILE.close()
 
 ########################################################################################################################################################################################################
-#                    0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
-OPACITY          = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
-CC3              = [(250, 65,  190, OPACITY[10]), (127,  30,  90, OPACITY[10])]
-CC4              = [(255, 127, 255, OPACITY[10]), (150,  75,  12, OPACITY[10])]
-CC1              = [( 13,  15, 255, OPACITY[10]), (250,  220, 27, OPACITY[10])]
-CC2              = [(255, 127,   0, OPACITY[ 9]), ( 127,  58,  0, OPACITY[ 9])]
-GRAY             = [(255, 255, 255, OPACITY[17]), (  0,   0,   0, OPACITY[17])]
-PINK             = [(255,  64, 192, OPACITY[17]), ( 57,  16,  16, OPACITY[17])]
-INFRA_RED        = [(200, 100,  24, OPACITY[17]), ( 68,  20,  19, OPACITY[17])]
-RED              = [(255,   0,   0, OPACITY[17]), ( 50,   0,   0, OPACITY[17])]
-ORANGE           = [(255, 127,   0, OPACITY[17]), ( 50,  25,   0, OPACITY[17])]
-YELLOW           = [(255, 255,   0, OPACITY[17]), ( 45,  45,   0, OPACITY[17])]
-GREEN            = [(  0, 255,   0, OPACITY[17]), (  0,  54,   0, OPACITY[17])]
-GREEN0           = [(180, 255, 180, OPACITY[17]), ( 64, 100,  64, OPACITY[17])]
-GREEN_BLUE       = [( 24, 255,  98, OPACITY[17]), ( 10,  49,  25, OPACITY[17])]
-CYAN             = [(  0, 255, 255, OPACITY[17]), (  0,  54,  54, OPACITY[17])]
-BLUE_GREEN       = [(  0,  64, 255, OPACITY[17]), (  0,  32, 127, OPACITY[17])]
-BLUE             = [(  0,   0, 255, OPACITY[17]), (  0,   0,  54, OPACITY[17])]
-INDIGO           = [(255,  22, 255, OPACITY[17]), ( 19,  11,  64, OPACITY[17])]
-VIOLET           = [(  0, 127, 255, OPACITY[17]), (  0,  25,  50, OPACITY[17])]
-ULTRA_VIOLET     = [(127,   0, 255, OPACITY[17]), ( 25,   0,  50, OPACITY[17])]
-GRAY0            = [(  0,   0,   0, OPACITY[ 0]), (  0,   0,   0, OPACITY[ 0])]
-GRAY2            = [(255, 255, 255, OPACITY[10]), (  0,   0,   0, OPACITY[10])]
-PINK2            = [(255,  64, 192, OPACITY[ 3]), ( 57,  16,  28, OPACITY[ 3])]
-RED2             = [(255,   0,   0, OPACITY[ 3]), ( 50,   0,   0, OPACITY[ 3])]
-ORANGE2          = [(255, 127,   0, OPACITY[10]), ( 50,  25,   0, OPACITY[10])]
-YELLOW2          = [(255, 255,   0, OPACITY[15]), ( 45,  45,   0, OPACITY[15])]
-GREEN2           = [(  0, 255,   0, OPACITY[10]), (  0,  54,   0, OPACITY[10])]
-CYAN2            = [(  0, 255, 255, OPACITY[10]), (  0,  54,  54, OPACITY[10])]
-BLUE2            = [(  0,   0, 255, OPACITY[10]), (  0,   0,  54, OPACITY[10])]
-VIOLET2          = [(  0, 127, 255, OPACITY[10]), (  0,  25,  50, OPACITY[10])]
-ULTRA_VIOLET2    = [(127,   0, 255, OPACITY[10]), ( 25,   0,  50, OPACITY[10])]
+#          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
+OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
+GRAY   = [(255, 255, 255, OPC[17]), (  0,   0,   0, OPC[17])]  ;  GRAY2   = [(255, 255, 255, OPC[10]), (  0,   0,   0, OPC[10])]  ;  GRAY0  = [(  0,   0,   0, OPC[ 0]), (  0,   0,   0, OPC[ 0])]
+VIOLET = [(128,   0, 255, OPC[17]), ( 25,   0,  50, OPC[17])]  ;  VIOLET2 = [(128,   0, 255, OPC[10]), ( 25,   0,  50, OPC[10])]
+BLUE   = [(  0,   0, 255, OPC[17]), (  0,   0,  50, OPC[17])]  ;  BLUE2   = [(  0,   0, 255, OPC[10]), (  0,   0,  50, OPC[10])]
+INDIGO = [(  0, 180, 255, OPC[17]), (  0,  36,  50, OPC[17])]  ;  INDIGO2 = [(  0, 180, 255, OPC[10]), (  0,  36,  50, OPC[10])]
+CYAN   = [(  0, 255, 255, OPC[17]), (  0,  50,  50, OPC[17])]  ;  CYAN2   = [(  0, 255, 255, OPC[10]), (  0,  50,  50, OPC[10])]
+TURQOI = [(  0, 255, 192, OPC[17]), (  0,  50,  35, OPC[17])]  ;  TURQOI2 = [(  0, 255, 192, OPC[10]), (  0,  50,  35, OPC[10])]
+GREEN  = [(  0, 255,   0, OPC[17]), (  0,  50,   0, OPC[17])]  ;  GREEN2  = [(  0, 255,   0, OPC[10]), (  0,  50,   0, OPC[10])]
+LIME   = [(192, 255,   0, OPC[17]), ( 35,  50,   0, OPC[17])]  ;  LIME2   = [(192, 255,   0, OPC[10]), ( 35,  50,   0, OPC[10])]
+YELLOW = [(255, 255,   0, OPC[17]), ( 50,  50,   0, OPC[17])]  ;  YELLOW2 = [(255, 255,   0, OPC[15]), ( 50,  50,   0, OPC[15])]
+ORANGE = [(255, 176,   0, OPC[17]), ( 50,  30,   0, OPC[17])]  ;  ORANGE2 = [(255, 176,   0, OPC[10]), ( 50,  30,   0, OPC[10])]
+RUST   = [(255,  96,   0, OPC[17]), ( 50,  18,   0, OPC[17])]  ;  RUST2   = [(255,  96,   0, OPC[10]), ( 50,  18,   0, OPC[10])]
+RED    = [(255,   0,   0, OPC[17]), ( 50,   0,   0, OPC[17])]  ;  RED2    = [(255,   0,   0, OPC[10]), ( 50,   0,   0, OPC[10])]
+PEACH  = [(255, 128, 128, OPC[17]), ( 50,  25,  25, OPC[17])]  ;  PEACH2   = [(255, 128, 128, OPC[10]), ( 50,  25,  25, OPC[10])]
+PINK   = [(255, 128, 192, OPC[17]), ( 50,  25,  35, OPC[17])]  ;  PINK2   = [(255,  128, 192, OPC[10]), ( 50,  25,  35, OPC[10])]
+#PINK   = [(255,  64, 128, OPC[17]), ( 50,  13,  25, OPC[17])]  ;  PINK2   = [(255,  64, 128, OPC[10]), ( 50,  13,  25, OPC[10])]
+FUSHIA = [(255,   0, 255, OPC[17]), ( 50,   0,  50, OPC[17])]  ;  FUSHIA2 = [(255,   0, 255, OPC[10]), ( 50,   0,  50, OPC[10])]
+CC1    = [( 13,  15, 255, OPC[10]), (250, 220,  27, OPC[10])]
+CC2    = [(255, 128,   0, OPC[ 9]), (128,  58,   0, OPC[ 9])]
+CC3    = [(250, 65,  190, OPC[10]), (128,  30,  90, OPC[10])]
+CC4    = [(255, 128, 255, OPC[10]), (150,  75,  12, OPC[10])]
+IRED   = [(200, 100,  24, OPC[17]), ( 68,  20,  19, OPC[17])]
 ########################################################################################################################################################################################################
 def genColors(k, nsteps=16, dbg=1):
     colors, clen = [], len(k[0])
@@ -2299,42 +2308,31 @@ def genColors(k, nsteps=16, dbg=1):
     return colors
 def fri(f): return int(math.floor(f + 0.5))
 ########################################################################################################################################################################################################
-COLORS        = []
-GRAYS         = genColors(GRAY)          ;  COLORS.append(GRAYS)
-PINKS         = genColors(PINK)          ;  COLORS.append(PINKS)
-INFRA_REDS    = genColors(INFRA_RED)     ;  COLORS.append(INFRA_REDS)
-REDS          = genColors(RED)           ;  COLORS.append(REDS)
-ORANGES       = genColors(ORANGE)        ;  COLORS.append(ORANGES)
-YELLOWS       = genColors(YELLOW)        ;  COLORS.append(YELLOWS)
-GREENS        = genColors(GREEN)         ;  COLORS.append(GREENS)
-GREEN_BLUES   = genColors(GREEN_BLUE)    ;  COLORS.append(GREEN_BLUES)
-CYANS         = genColors(CYAN)          ;  COLORS.append(CYANS)
-BLUE_GREENS   = genColors(BLUE_GREEN)    ;  COLORS.append(BLUE_GREENS)
-BLUES         = genColors(BLUE)          ;  COLORS.append(BLUES)
-INDIGOS       = genColors(INDIGO)        ;  COLORS.append(INDIGOS)
-VIOLETS       = genColors(VIOLET)        ;  COLORS.append(VIOLETS)
-ULTRA_VIOLETS = genColors(ULTRA_VIOLET)  ;  COLORS.append(ULTRA_VIOLETS)
-CC1S          = genColors(CC1)           ;  COLORS.append(CC1S)
-CC2S          = genColors(CC2)           ;  COLORS.append(CC2S)
-CC3S          = genColors(CC3)           ;  COLORS.append(CC3S)
-CC4S          = genColors(CC4)           ;  COLORS.append(CC4S)
-GRAY0S        = genColors(GRAY0)         ;  COLORS.append(GRAY0S)
-GRAY2S        = genColors(GRAY2)         ;  COLORS.append(GRAY2S)
-PINK2S        = genColors(PINK2)         ;  COLORS.append(PINK2S)
-RED2S         = genColors(RED2)          ;  COLORS.append(RED2S)
-ORANGE2S      = genColors(ORANGE2)       ;  COLORS.append(ORANGE2S)
-YELLOW2S      = genColors(YELLOW2)       ;  COLORS.append(YELLOW2S)
-GREEN0S       = genColors(GREEN0)        ;  COLORS.append(GREEN0S)
-GREEN2S       = genColors(GREEN2)        ;  COLORS.append(GREEN2S)
-CYAN2S        = genColors(CYAN2)         ;  COLORS.append(CYAN2S)
-BLUE2S        = genColors(BLUE2)         ;  COLORS.append(BLUE2S)
-VIOLET2S      = genColors(VIOLET2)       ;  COLORS.append(VIOLET2S)
-ULTRA_VIOLET2S = genColors(ULTRA_VIOLET2)  ;  COLORS.append(ULTRA_VIOLET2S)
+COLORS   = []
+CC1S     = genColors(CC1)      ;  COLORS.append(CC1S)
+CC2S     = genColors(CC2)      ;  COLORS.append(CC2S)
+CC3S     = genColors(CC3)      ;  COLORS.append(CC3S)
+CC4S     = genColors(CC4)      ;  COLORS.append(CC4S)
+GRAYS    = genColors(GRAY)     ;  COLORS.append(GRAYS)     ;  GRAY2S   = genColors(GRAY2)    ;  COLORS.append(GRAY2S)  ;  GRAY0S   = genColors(GRAY0)    ;  COLORS.append(GRAY0S)
+VIOLETS  = genColors(VIOLET)   ;  COLORS.append(VIOLETS)   ;  VIOLET2S = genColors(VIOLET2)  ;  COLORS.append(VIOLET2S)
+BLUES    = genColors(BLUE)     ;  COLORS.append(BLUES)     ;  BLUE2S   = genColors(BLUE2)    ;  COLORS.append(BLUE2S)
+INDIGOS  = genColors(INDIGO)   ;  COLORS.append(INDIGOS)   ;  INDIGO2S = genColors(INDIGO2)  ;  COLORS.append(INDIGO2S)
+CYANS    = genColors(CYAN)     ;  COLORS.append(CYANS)     ;  CYAN2S   = genColors(CYAN2)    ;  COLORS.append(CYAN2S)
+TURQOIS  = genColors(TURQOI)   ;  COLORS.append(TURQOIS)   ;  TURQOI2S = genColors(TURQOI2)  ;  COLORS.append(TURQOI2S)
+GREENS   = genColors(GREEN)    ;  COLORS.append(GREENS)    ;  GREEN2S  = genColors(GREEN2)   ;  COLORS.append(GREEN2S)
+LIMES    = genColors(LIME)     ;  COLORS.append(LIMES)     ;  LIME2S   = genColors(LIME2)    ;  COLORS.append(LIME2S)
+YELLOWS  = genColors(YELLOW)   ;  COLORS.append(YELLOWS)   ;  YELLOW2S = genColors(YELLOW2)  ;  COLORS.append(YELLOW2S)
+ORANGES  = genColors(ORANGE)   ;  COLORS.append(ORANGES)   ;  ORANGE2S = genColors(ORANGE2)  ;  COLORS.append(ORANGE2S)
+PEACHS   = genColors(PEACH)    ;  COLORS.append(PEACHS)    ;  PEACH2S  = genColors(PEACH2)   ;  COLORS.append(PEACH2S)
+RUSTS    = genColors(RUST)     ;  COLORS.append(RUSTS)     ;  RUST2S  = genColors(RUST2)     ;  COLORS.append(RUST2S)
+REDS     = genColors(RED)      ;  COLORS.append(REDS)      ;  RED2S    = genColors(RED2)     ;  COLORS.append(RED2S)
+FUSHIAS  = genColors(FUSHIA)   ;  COLORS.append(FUSHIAS)   ;  FUSHIA2S = genColors(FUSHIA2)  ;  COLORS.append(FUSHIA2S)
+PINKS    = genColors(PINK)     ;  COLORS.append(PINKS)     ;  PINK2S   = genColors(PINK2)    ;  COLORS.append(PINK2S)
 FONT_SCALE    =  14/18  # 14pts/18pix
 FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
 FONT_NAMES    = ['Lucida Console', 'Helvetica', 'Arial', 'Times New Roman', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
-FONT_COLORS_S = [PINKS[0], CYANS[0], REDS[0], BLUES[0], YELLOWS[0], GREENS[0], ORANGES[0], VIOLETS[0], REDS[13], YELLOWS[15], GREEN_BLUES[8], ORANGES[12], INDIGOS[8], ULTRA_VIOLETS[9], BLUE_GREENS[8], GRAYS[8]]
-FONT_COLORS_L = [PINKS[0], GRAYS[0], BLUES[0], GREENS[0], YELLOWS[0], REDS[0], GRAYS[1], PINKS[8], REDS[10], YELLOWS[15], GRAYS[8], GRAYS[8], INDIGOS[8], GRAYS[9], GRAYS[8], GRAYS[8]]
+FONT_COLORS_S = [PINKS[0], CYANS[0], REDS[0], BLUES[0], YELLOWS[0], GREENS[0], ORANGES[0], VIOLETS[0], REDS[13], YELLOWS[15], LIMES[8], ORANGES[12], FUSHIAS[8], INDIGOS[9], TURQOIS[8], GRAYS[8]]
+FONT_COLORS_L = [PINKS[0], GRAYS[0], BLUES[0], GREENS[0], YELLOWS[0], REDS[0], GRAYS[1], PINKS[8], REDS[10], YELLOWS[15], GRAYS[8], GRAYS[8], FUSHIAS[8], GRAYS[9], GRAYS[8], GRAYS[8]]
 FONT_COLORS   =  FONT_COLORS_S # if self.SPRITES else FONT_COLORS_L
 ########################################################################################################################################################################################################
 
