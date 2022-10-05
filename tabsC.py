@@ -47,12 +47,6 @@ LEFT, RIGHT, UP, DOWN = 0, 1, 0, 1
 ########################################################################################################################################################################################################
 #          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
 OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
-#CLRS   = [ 'VIOL', 'BLUE', 'INDI', 'CYAN', 'TURQ', 'GREN', 'LIME', 'YELL', 'ORAN', 'PEAC', 'RUST', 'RRED', 'PINK', 'FUSH', 'GRAY',
-#           'VIOL2', 'BLUE2', 'INDI2', 'CYAN2', 'TURQ2', 'GREN2', 'LIME2', 'YELL2', 'ORAN2', 'PEAC2', 'RUST2', 'RRED2', 'PINK2', 'FUSH2', 'GRAY2',
-#           'CC1', 'CC2', 'CC3', 'CC4']
-#KKM = {0: 'VIOLET', 1: 'BLUE'}
-#KKM = cOd([ (i, e) for i, e in enumerate(CLRS) ])
-#def getKKN(key): return KKM[key]
 KKNS = 'VIOL', 'BLUE', 'INDI', 'CYAN', 'TURQ', 'GREN', 'LIME', 'YELL', 'ORAN', 'PEAC', 'RUST', 'RRED', 'PINK', 'FUSH', 'GRAY'
 VIOL, BLUE, INDI, CYAN, TURQ, GREN, LIME, YELL, ORAN, PEAC, RUST, RRED, PINK, FUSH, GRAY = KKNS
 KKNS2 = 'VIOL2', 'BLUE2', 'INDI2', 'CYAN2', 'TURQ2', 'GREN2', 'LIME2', 'YELL2', 'ORAN2', 'PEAC2', 'RUST2', 'RRED2', 'PINK2', 'FUSH2', 'GRAY2'
@@ -60,27 +54,16 @@ VIOL2, BLUE2, INDI2, CYAN2, TURQ2, GREN2, LIME2, YELL2, ORAN2, PEAC2, RUST2, RRE
 KKNS3 = 'GRAY0', 'CC1', 'CC2', 'CC3', 'CC4'
 GRAY0, CC1, CC2, CC3, CC4 = KKNS3
 ########################################################################################################################################################################################################
-def OLD__genColors(k, nsteps=16, dbg=1):
-    colors, clen = [], len(k[0])
-    diffs = [ k[1][i] - k[0][i]  for i in range(clen) ]
-    steps = [ diffs[i]/nsteps    for i in range(clen) ]
-    if dbg: util.slog(f'c1={k[0]} c2={k[1]} nsteps={nsteps} diffs={diffs} steps=', end='')  ;  util.slog(f'[{steps[0]:6.1f} {steps[1]:6.1f} {steps[2]:6.1f} {steps[3]:6.1f}]')
-    for j in range(nsteps):
-        c = tuple([ fri(k[0][i] + j * steps[i]) for i in range(len(k[0])) ])
-        if dbg: util.slog(f'c[{j}]={c}')
-        colors.append(c)
-    if dbg: util.slog(f'colors={k}')
-    return colors
-def _genColors(key, k, opc=17, dv=5, nsteps=18, dbg=1):
+def _genColors(key, k, opc=17, dv=5, n=18, dbg=1):
     colors, lk = [], len(k)
     diffs = [ k[i] - k[i]/dv  for i in range(lk) ]
-    steps = [ diffs[i]/nsteps for i in range(lk) ]
-    if dbg: util.slog(f'{key=} k={util.fmtl(k)} {dv=} {opc=} {nsteps=} diffs={util.fmtl(diffs, w="6.2f")} steps=', end='', file=LOG_FILE)  ;  util.slog(f'[{util.fmtl(steps, w="5.2f")}', pfx=0, file=LOG_FILE)
-    for j in range(1 + nsteps):
+    steps = [ diffs[i]/n      for i in range(lk) ]
+    if dbg: util.slog(f'{key=} k={util.fmtl(k)} {dv=} {opc=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE)  ;  util.slog(f'[{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
+    for j in range(1 + n):
         color = list([ fri(k[i] - j * steps[i]) for i in range(lk) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)
-        if dbg: util.slog(f'{key=} c[{j}]={util.fmtl(color)}', file=LOG_FILE)
+        if dbg: util.slog(f'{j} {key=} {color}', pfx=0, file=LOG_FILE)
         colors.append(color)
-    if dbg: util.slog(f'{key=} k={util.fmtl(k)} {dv=} {opc=} {nsteps=} colors={util.fmtl(colors)}', file=LOG_FILE)
+    if dbg: util.slog(f'{key=} k={util.fmtl(k)} {dv=} {opc=} {n=}', file=LOG_FILE)
     return colors
 def fri(f): return int(math.floor(f + 0.5))
 ########################################################################################################################################################################################################
@@ -343,30 +326,30 @@ class Tabs(pyglet.window.Window):
     def _initColors(self):
         a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c = self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
         P1, P2 = CLR[GRAY0],    CLR[GRAY0]     ;  L1, L2 = CLR[GRAY0],  CLR[GRAY0]   ;  S1, S2 = CLR[GRAY0],  CLR[GRAY0]   ;  Z1, Z2 = CLR[GRAY0],  CLR[GRAY0]
-#        T1, T2 = VIOLETS, VIOLET2S ;  N1, N2 = BLUES, BLUE2S ;  I1, I2 = INDIGOS, INDIGO2S ;  K1, K2 = CYANS, CYAN2S
-#        T1, T2 = TURQOIS, TURQOI2S ;  N1, N2 = GREENS, GREEN2S ;  I1, I2 = LIMES, LIME2S ;  K1, K2 = YELLOWS, YELLOW2S
-#        T1, T2 = ORANGES, ORANGE2S ;  N1, N2 = RUSTS, RUST2S ;  I1, I2 = REDS, RED2S ;  K1, K2 = FUSHIAS, FUSHIA2S
-#        T1, T2 = BLUES, BLUE2S ;  N1, N2 = INDIGOS, INDIGO2S ;  I1, I2 = CYANS, CYAN2S ;  K1, K2 = TURQOIS, TURQOI2S
-#        T1, T2 = GREENS, GREEN2S ;  N1, N2 = LIMES, LIME2S ;  I1, I2 = YELLOWS, YELLOW2S ;  K1, K2 = ORANGES, ORANGE2S
-#        T1, T2 = RUSTS, RUST2S ;  N1, N2 = REDS, RED2S ;  I1, I2 = FUSHIAS, FUSHIA2S ;  K1, K2 = VIOLETS, VIOLET2S
-#        T1, T2 = INDIGOS, INDIGO2S  ;  N1, N2 = CYANS, CYAN2S  ;  I1, I2 = TURQOIS, TURQOI2S  ;  K1, K2 = GREENS, GREEN2S
-#        T1, T2 = LIMES, LIME2S ;  N1, N2 = YELLOWS, YELLOW2S ;  I1, I2 = ORANGES, ORANGE2S ;  K1, K2 = RUSTS, RUST2S
-#        T1, T2 = REDS, RED2S   ;  N1, N2 = FUSHIAS, FUSHIA2S  ;  I1, I2 = VIOLETS, VIOLET2S ;  K1, K2 = BLUES, BLUE2S
-#        T1, T2 = CYANS, CYAN2S ;  N1, N2 = TURQOIS, TURQOI2S ;  I1, I2 = GREENS, GREEN2S ;  K1, K2 = LIMES, LIME2S
-#        T1, T2 = YELLOWS, YELLOW2S ; N1, N2 = ORANGES, ORANGE2S  ;  I1, I2 = RUSTS, RUST2S  ;  K1, K2 = REDS, RED2S
-#        T1, T2 = FUSHIAS, FUSHIA2S ; N1, N2 = VIOLETS, VIOLET2S  ;  I1, I2 = BLUES, BLUE2S  ; K1, K2 = INDIGOS, INDIGO2S
-        T1, T2 = CLR[ORAN], CLR[ORAN2] ; N1, N2 = CLR[GREN], CLR[GREN2]  ;  I1, I2 = CLR[INDI], CLR[INDI2]  ; K1, K2 = CLR[YELL], CLR[YELL2]
-#        T1, T2 = REDS, RED2S  ; N1, N2 = PINKS, PINK2S  ;  I1, I2 = FUSHIAS, FUSHIA2S  ; K1, K2 = VIOLETS, VIOLET2S
-#        T1, T2 = RUSTS, RUST2S  ; N1, N2 = REDS, RED2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = FUSHIAS, FUSHIA2S
-#        T1, T2 = PEACHS, PEACH2S  ; N1, N2 = REDS, RED2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = FUSHIAS, FUSHIA2S
-#        T1, T2 = ORANGES, ORANGE2S  ; N1, N2 = PEACHS, PEACH2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = FUSHIAS, FUSHIA2S
-#        T1, T2 = CYANS, CYAN2S ;  N1, N2 = TURQOIS, TURQOI2S ;  I1, I2 = GREENS, GREEN2S ;  K1, K2 = LIMES, LIME2S
-#        T1, T2 = GREENS, GREEN2S ;  N1, N2 = LIMES, LIME2S ;  I1, I2 = YELLOWS, YELLOW2S ;  K1, K2 = ORANGES, ORANGE2S
-#        T1, T2 = YELLOWS, YELLOW2S ; N1, N2 = ORANGES, ORANGE2S  ;  I1, I2 = PEACHS, PEACH2S  ;  K1, K2 = RUSTS, RUST2S
-#        T1, T2 = ORANGES, ORANGE2S  ; N1, N2 = PEACHS, PEACH2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = RUSTS, RUST2S
-        R1, R2 = CLR[CC3],    CLR[CC3]     ;  Q1, Q2 = CLR[CC1],   CLR[CC2]    ;  H1, H2 = CLR[CC3],    CLR[CC4]     ;  V1, V2 = CLR[PINK], CLR[PINK]
-        O1, O2 = CLR[PINK],   CLR[PINK]    ;  A1, A2 = CLR[BLUE],  CLR[BLUE]   ;  D1, D2 = CLR[FUSH], CLR[FUSH]
-        kP = [P1[ 0], P2[10]] if a else [P1[ 0], P2[10]] if b else [P2[0], P2[15]] if c else [P1[15], P1[ 0]] if d else None
+#        T1, T2 = VIOL, VIOL2  ;  N1, N2 = BLUE, BLUE2  ;  I1, I2 = INDI, INDI2  ;  K1, K2 = CYAN, CYAN2
+#        T1, T2 = TURQ, TURQ2  ;  N1, N2 = GREN, GREN2  ;  I1, I2 = LIME, LIME2  ;  K1, K2 = YELL, YELL2
+#        T1, T2 = ORAN, ORAN2  ;  N1, N2 = RUST, RUST2  ;  I1, I2 = RRED, RRED2  ;  K1, K2 = FUSH, FUSH2
+#        T1, T2 = BLUE, BLUE2  ;  N1, N2 = INDI, INDI2  ;  I1, I2 = CYAN, CYAN2  ;  K1, K2 = TURQ, TURQ2
+#        T1, T2 = GREN, GREN2  ;  N1, N2 = LIME, LIME2  ;  I1, I2 = YELL, YELL2  ;  K1, K2 = ORAN, ORAN2
+#        T1, T2 = RUST, RUST2  ;  N1, N2 = RRED, RRED2  ;  I1, I2 = FUSH, FUSH2  ;  K1, K2 = VIOL, VIOL2
+#        T1, T2 = INDI, INDI2  ;  N1, N2 = CYAN, CYAN2  ;  I1, I2 = TURQ, TURQ2  ;  K1, K2 = GREN, GREN2
+#        T1, T2 = LIME, LIME2  ;  N1, N2 = YELL, YELL2  ;  I1, I2 = ORAN, ORAN2  ;  K1, K2 = RUST, RUST2
+#        T1, T2 = RRED, RRED2  ;  N1, N2 = FUSH, FUSH2  ;  I1, I2 = VIOL, VIOL2  ;  K1, K2 = BLUE, BLUE2
+#        T1, T2 = CYAN, CYAN2  ;  N1, N2 = TURQ, TURQ2  ;  I1, I2 = GREN, GREN2  ;  K1, K2 = LIME, LIME2
+#        T1, T2 = YELL, YELL2  ;  N1, N2 = ORAN, ORAN2  ;  I1, I2 = RUST, RUST2  ;  K1, K2 = RRED, RRED2
+#        T1, T2 = FUSH, FUSH2  ;  N1, N2 = VIOL, VIOL2  ;  I1, I2 = BLUE, BLUE2  ;  K1, K2 = INDI, INDI2
+        T1, T2 = CLR[ORAN],  CLR[ORAN2]   ;  N1, N2 = CLR[GREN],  CLR[GREN2]  ;  I1, I2 = CLR[INDI],  CLR[INDI2]  ;  K1, K2 = CLR[YELL],  CLR[YELL2]
+#        T1, T2 = RRED, RRED2  ;  N1, N2 = PINK, PINK2  ;  I1, I2 = FUSH, FUSH2  ;  K1, K2 = VIOL, VIOL2
+#        T1, T2 = RUST, RUST2  ;  N1, N2 = RRED, RRED2  ;  I1, I2 = PINK, PINK2  ;  K1, K2 = FUSH, FUSH2
+#        T1, T2 = PEAC, PEAC2  ;  N1, N2 = RRED, RRED2  ;  I1, I2 = PINK, PINK2  ;  K1, K2 = FUSH, FUSH2
+#        T1, T2 = ORAN, ORAN2  ;  N1, N2 = PEAC, PEAC2  ;  I1, I2 = PINK, PINK2  ;  K1, K2 = FUSH, FUSH2
+#        T1, T2 = CYAN, CYAN2  ;  N1, N2 = TURQ, TURQ2  ;  I1, I2 = GREN, GREN2  ;  K1, K2 = LIME, LIME2
+#        T1, T2 = GREN, GREN2  ;  N1, N2 = LIME, LIME2  ;  I1, I2 = YELL, YELL2  ;  K1, K2 = ORAN, ORAN2
+#        T1, T2 = YELL, YELL2  ;  N1, N2 = ORAN, ORAN2  ;  I1, I2 = PEAC, PEAC2  ;  K1, K2 = RUST, RUST2
+#        T1, T2 = ORAN, ORAN2  ;  N1, N2 = PEAC, PEAC2  ;  I1, I2 = PINK, PINK2  ;  K1, K2 = RUST, RUST2
+        R1, R2 = CLR[CC3],   CLR[CC3]     ;  Q1, Q2 = CLR[CC1],   CLR[CC2]    ;  H1, H2 = CLR[CC3],   CLR[CC4]    ;  V1, V2 = CLR[PINK],  CLR[PINK]
+        O1, O2 = CLR[PINK],  CLR[PINK]    ;  A1, A2 = CLR[BLUE],  CLR[BLUE]   ;  D1, D2 = CLR[FUSH],  CLR[FUSH]
+        kP = [P1[ 0], P2[10]] if a else [P1[ 0], P2[10]] if b else [P2[ 0], P2[15]] if c else [P1[15], P1[ 0]] if d else None
         kL = [L1[ 0], L2[10]] if a else [L1[ 0], L2[10]] if b else [L1[ 0], L2[10]] if c else [L1[ 0], L2[10]] if d else None
         kS = [S1[15], S2[ 7]] if a else [S1[15], S2[ 7]] if b else [S1[15], S2[ 7]] if c else [S1[15], S2[ 7]] if d else None
         kC = [Z1[15], Z1[ 7]] if a else [Z1[15], Z1[ 0]] if b else [Z1[15], Z1[ 0]] if c else [Z1[15], Z1[ 7]] if d else None
