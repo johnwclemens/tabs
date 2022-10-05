@@ -22,6 +22,7 @@ def dumpGlobals():
     util.slog(f'BASE_NAME = {BASE_NAME}', file=LOG_FILE)
 ########################################################################################################################################################################################################
 Z = ' '   ;    TEST_TEXT = 0
+CLR = cOd()
 PATH             = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH        = PATH.parent
 BASE_NAME        = BASE_PATH.stem
@@ -43,7 +44,97 @@ CSR_MODES        = ['MELODY', 'CHORD', 'ARPG']
 HARROWS, VARROWS = ['LEFT', 'RIGHT'], ['UP', 'DOWN']
 MELODY, CHORD, ARPG   = 0, 1, 2
 LEFT, RIGHT, UP, DOWN = 0, 1, 0, 1
-# FS_MAX = 90
+########################################################################################################################################################################################################
+#          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
+OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
+BB = 15 if 0 else 7
+VIOLET = 0
+BLUE   = 1
+INDIGO = 2
+CYAN   = 3
+TURQOI = 4
+GREEN  = 5
+LIME   = 6
+YELLOW = 7
+ORANGE = 8
+PEACH  = 9
+RUST   = 10
+RED    = 11
+PINK   = 12
+FUSHIA = 13
+GRAY   = 14
+VIOLET2 = 15
+BLUE2   = 16
+INDIGO2 = 17
+CYAN2   = 18
+TURQOI2 = 19
+GREEN2  = 20
+LIME2   = 21
+YELLOW2 = 22
+ORANGE2 = 23
+PEACH2  = 24
+RUST2   = 25
+RED2    = 26
+PINK2   = 27
+FUSHIA2 = 28
+GRAY2   = 29
+GRAY0   = 30
+CC1     = 31
+CC2     = 32
+CC3     = 33
+CC4     = 34
+########################################################################################################################################################################################################
+def OLD__genColors(k, nsteps=16, dbg=1):
+    colors, clen = [], len(k[0])
+    diffs = [ k[1][i] - k[0][i]  for i in range(clen) ]
+    steps = [ diffs[i]/nsteps    for i in range(clen) ]
+    if dbg: util.slog(f'c1={k[0]} c2={k[1]} nsteps={nsteps} diffs={diffs} steps=', end='')  ;  util.slog(f'[{steps[0]:6.1f} {steps[1]:6.1f} {steps[2]:6.1f} {steps[3]:6.1f}]')
+    for j in range(nsteps):
+        c = tuple([ fri(k[0][i] + j * steps[i]) for i in range(len(k[0])) ])
+        if dbg: util.slog(f'c[{j}]={c}')
+        colors.append(c)
+    if dbg: util.slog(f'colors={k}')
+    return colors
+def _genColors(k, opc=17, dv=5, nsteps=18, dbg=1):
+    colors, lk = [], len(k)
+    diffs = [ k[i] - k[i]/dv  for i in range(lk) ]
+    steps = [ diffs[i]/nsteps for i in range(lk) ]
+    if dbg: util.slog(f'k={util.fmtl(k)} {dv=} {opc=} {nsteps=} diffs={util.fmtl(diffs, w="6.2f")} steps=', end='', file=LOG_FILE)  ;  util.slog(f'[{util.fmtl(steps, w="5.2f")}', file=LOG_FILE)
+    for j in range(1 + nsteps):
+        color = list([ fri(k[i] - j * steps[i]) for i in range(lk) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)
+        if dbg: util.slog(f'c[{j}]={util.fmtl(color)}', file=LOG_FILE)
+        colors.append(color)
+    if dbg: util.slog(f'k={util.fmtl(k)} {dv=} {opc=} {nsteps=} colors={util.fmtl(colors)}', file=LOG_FILE)
+    return colors
+def fri(f): return int(math.floor(f + 0.5))
+########################################################################################################################################################################################################
+def genColors():
+    _CLR   = cOd()
+    _CLR[CC1]     = _genColors(( 13,  15, 255))
+    _CLR[CC2]     = _genColors((255, 128,   0))
+    _CLR[CC3]     = _genColors((250, 65,  190))
+    _CLR[CC4]     = _genColors((255, 128, 255))
+    _CLR[GRAY]    = _genColors((255, 255, 255))   ;  _CLR[GRAY2]   = _genColors((255, 255, 255), 10)  ;  _CLR[GRAY0]   = _genColors((0, 0, 0), 0)
+    _CLR[VIOLET]  = _genColors((128,   0, 255))   ;  _CLR[VIOLET2] = _genColors((128,   0, 255), 10)
+    _CLR[BLUE]    = _genColors((  0,   0, 255))   ;  _CLR[BLUE2]   = _genColors((  0,   0, 255), 10)
+    _CLR[INDIGO]  = _genColors((  0, 180, 255))   ;  _CLR[INDIGO2] = _genColors((  0, 180, 255), 10)
+    _CLR[CYAN]    = _genColors((  0, 255, 255))   ;  _CLR[CYAN2]   = _genColors((  0, 255, 255), 10)
+    _CLR[TURQOI]  = _genColors((  0, 255, 192))   ;  _CLR[TURQOI2] = _genColors((  0, 255, 192), 10)
+    _CLR[GREEN]   = _genColors((  0, 255,   0))   ;  _CLR[GREEN2]  = _genColors((  0, 255,   0), 10)
+    _CLR[LIME]    = _genColors((160, 255,   0))   ;  _CLR[LIME2]   = _genColors((160, 255,   0), 10)
+    _CLR[YELLOW]  = _genColors((255, 255,   0))   ;  _CLR[YELLOW2] = _genColors((255, 255,   0), 10)
+    _CLR[ORANGE]  = _genColors((255, 176,   0))   ;  _CLR[ORANGE2] = _genColors((255, 176,   0), 10)
+    _CLR[PEACH]   = _genColors((255, 160, 128))   ;  _CLR[PEACH2]  = _genColors((255, 160, 128), 10)
+    _CLR[RUST]    = _genColors((255,  96,   0))   ;  _CLR[RUST2]   = _genColors((255,  96,   0), 10)
+    _CLR[RED]     = _genColors((255,   0,   0))   ;  _CLR[RED2]    = _genColors((255,   0,   0), 10)
+    _CLR[FUSHIA]  = _genColors((255,   0, 255))   ;  _CLR[FUSHIA2] = _genColors((255,   0, 255), 10)
+    _CLR[PINK]    = _genColors((255, 128, 192))   ;  _CLR[PINK2]   = _genColors((255, 128, 192), 10)
+    return _CLR
+
+FONT_COLORS   = []
+FONT_SCALE    =  14/18  # 14pts/18pix
+FONT_DPIS     = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
+FONT_NAMES    = [ 'Lucida Console', 'Helvetica', 'Arial', 'Times New Roman', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
 ########################################################################################################################################################################################################
 class Test:
     def __init__(self, a, file=None): self._a = a  ;  util.slog(f'<Test_init_:     _a={self._a}>', pfx=1, file=file)
@@ -126,10 +217,10 @@ class Tabs(pyglet.window.Window):
         self.A_CENTER  = 0  ;  self.A_LEFT      = 1  ;  self.A_RIGHT      = 0
         self.X_CENTER  = 1  ;  self.X_LEFT      = 0  ;  self.X_RIGHT      = 0
         self.Y_CENTER  = 1  ;  self.Y_TOP       = 0  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
-        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 1  ;  self.FULL_SCREEN = 1
+        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 1  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 0  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 1  ;  self.VERBOSE     = 0
-        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 1  ;  self.FRET_BOARD  = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
+        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
@@ -169,6 +260,8 @@ class Tabs(pyglet.window.Window):
         self.n.insert(S, self.ssl())
         self.i.insert(S, self.ssl())
         self.dumpArgs()
+        global CLR   ;   CLR = genColors()
+        global FONT_COLORS  ;  FONT_COLORS = [ CLR[VIOLET], CLR[BLUE], CLR[INDIGO], CLR[CYAN], CLR[TURQOI], CLR[GREEN], CLR[LIME], CLR[YELLOW], CLR[ORANGE], CLR[PEACH], CLR[RUST], CLR[RED], CLR[PINK], CLR[FUSHIA] ]
         global LF2   ;   LF2 = LOG_FILE if self.RD_STDOUT else sys.stdout
         if self.TEST: self.test1() # ;  self.quit('EXIT TEST', save=0)
         self.sAlias = 'GUITAR_6_STD'
@@ -251,7 +344,7 @@ class Tabs(pyglet.window.Window):
 
     def _initColors(self):
         a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c = self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
-        P1, P2 = GRAY0S,    GRAY0S     ;  L1, L2 = GRAY0S,  GRAY0S   ;  S1, S2 = GRAY0S,  GRAY0S   ;  Z1, Z2 = GRAY0S,  GRAY0S # RED2S, RED2S
+        P1, P2 = CLR[GRAY0],    CLR[GRAY0]     ;  L1, L2 = CLR[GRAY0],  CLR[GRAY0]   ;  S1, S2 = CLR[GRAY0],  CLR[GRAY0]   ;  Z1, Z2 = CLR[GRAY0],  CLR[GRAY0]
 #        T1, T2 = VIOLETS, VIOLET2S ;  N1, N2 = BLUES, BLUE2S ;  I1, I2 = INDIGOS, INDIGO2S ;  K1, K2 = CYANS, CYAN2S
 #        T1, T2 = TURQOIS, TURQOI2S ;  N1, N2 = GREENS, GREEN2S ;  I1, I2 = LIMES, LIME2S ;  K1, K2 = YELLOWS, YELLOW2S
 #        T1, T2 = ORANGES, ORANGE2S ;  N1, N2 = RUSTS, RUST2S ;  I1, I2 = REDS, RED2S ;  K1, K2 = FUSHIAS, FUSHIA2S
@@ -264,7 +357,7 @@ class Tabs(pyglet.window.Window):
 #        T1, T2 = CYANS, CYAN2S ;  N1, N2 = TURQOIS, TURQOI2S ;  I1, I2 = GREENS, GREEN2S ;  K1, K2 = LIMES, LIME2S
 #        T1, T2 = YELLOWS, YELLOW2S ; N1, N2 = ORANGES, ORANGE2S  ;  I1, I2 = RUSTS, RUST2S  ;  K1, K2 = REDS, RED2S
 #        T1, T2 = FUSHIAS, FUSHIA2S ; N1, N2 = VIOLETS, VIOLET2S  ;  I1, I2 = BLUES, BLUE2S  ; K1, K2 = INDIGOS, INDIGO2S
-#        T1, T2 = ORANGES, ORANGE2S ; N1, N2 = GREENS, GREEN2S  ;  I1, I2 = VIOLETS, VIOLET2S  ; K1, K2 = LIMES, LIME2S
+        T1, T2 = CLR[ORANGE], CLR[ORANGE2] ; N1, N2 = CLR[GREEN], CLR[GREEN2]  ;  I1, I2 = CLR[INDIGO], CLR[INDIGO2]  ; K1, K2 = CLR[YELLOW], CLR[YELLOW2]
 #        T1, T2 = REDS, RED2S  ; N1, N2 = PINKS, PINK2S  ;  I1, I2 = FUSHIAS, FUSHIA2S  ; K1, K2 = VIOLETS, VIOLET2S
 #        T1, T2 = RUSTS, RUST2S  ; N1, N2 = REDS, RED2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = FUSHIAS, FUSHIA2S
 #        T1, T2 = PEACHS, PEACH2S  ; N1, N2 = REDS, RED2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = FUSHIAS, FUSHIA2S
@@ -272,12 +365,12 @@ class Tabs(pyglet.window.Window):
 #        T1, T2 = CYANS, CYAN2S ;  N1, N2 = TURQOIS, TURQOI2S ;  I1, I2 = GREENS, GREEN2S ;  K1, K2 = LIMES, LIME2S
 #        T1, T2 = GREENS, GREEN2S ;  N1, N2 = LIMES, LIME2S ;  I1, I2 = YELLOWS, YELLOW2S ;  K1, K2 = ORANGES, ORANGE2S
 #        T1, T2 = YELLOWS, YELLOW2S ; N1, N2 = ORANGES, ORANGE2S  ;  I1, I2 = PEACHS, PEACH2S  ;  K1, K2 = RUSTS, RUST2S
-        T1, T2 = ORANGES, ORANGE2S  ; N1, N2 = PEACHS, PEACH2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = RUSTS, RUST2S
-        R1, R2 = CC3S,    CC3S     ;  Q1, Q2 = CC1S,   CC2S    ;  H1, H2 = CC3S,    CC4S     ;  V1, V2 = PINKS, PINKS
-        O1, O2 = PINKS,   PINKS    ;  A1, A2 = BLUES,  BLUES   ;  D1, D2 = FUSHIAS, FUSHIAS
+#        T1, T2 = ORANGES, ORANGE2S  ; N1, N2 = PEACHS, PEACH2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = RUSTS, RUST2S
+        R1, R2 = CLR[CC3],    CLR[CC3]     ;  Q1, Q2 = CLR[CC1],   CLR[CC2]    ;  H1, H2 = CLR[CC3],    CLR[CC4]     ;  V1, V2 = CLR[PINK], CLR[PINK]
+        O1, O2 = CLR[PINK],   CLR[PINK]    ;  A1, A2 = CLR[BLUE],  CLR[BLUE]   ;  D1, D2 = CLR[FUSHIA], CLR[FUSHIA]
         kP = [P1[ 0], P2[10]] if a else [P1[ 0], P2[10]] if b else [P2[0], P2[15]] if c else [P1[15], P1[ 0]] if d else None
         kL = [L1[ 0], L2[10]] if a else [L1[ 0], L2[10]] if b else [L1[ 0], L2[10]] if c else [L1[ 0], L2[10]] if d else None
-        kS = [S1[ 0], S2[ 0]] if a else [S1[ 0], S2[ 0]] if b else [S1[ 0], S2[ 0]] if c else [S1[ 0], S2[ 0]] if d else None
+        kS = [S1[15], S2[ 7]] if a else [S1[15], S2[ 7]] if b else [S1[15], S2[ 7]] if c else [S1[15], S2[ 7]] if d else None
         kC = [Z1[15], Z1[ 7]] if a else [Z1[15], Z1[ 0]] if b else [Z1[15], Z1[ 0]] if c else [Z1[15], Z1[ 7]] if d else None
         kT = [T1[15], T1[ 0]] if a else [T1[15], T1[ 0]] if b else [T2[15], T2[ 0]] if c else [T2[15], T2[ 0]] if d else None
         kN = [N1[15], N1[ 0]] if a else [N1[15], N1[ 0]] if b else [N2[15], N2[ 0]] if c else [N2[15], N2[ 0]] if d else None
@@ -1065,7 +1158,7 @@ class Tabs(pyglet.window.Window):
             elif j == C:    x  =  w/2                       ;  y  =  p.y
             elif j == T:    x  =  p.x                       ;  y  =  p.y + p.height/2 - h/2
             else:           x  =  w/2                       ;  y  =  p.y + p.height/2 - h/2
-        if dbg:
+        if self.VERBOSE and dbg:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}'
             (px, py, pw, ph) = (p.x, p.y, p.width, p.height) if p else (0.0, 0.0, 0.0, 0.0)
             msg2 = f' : {px:7.2f} {py:7.2f} {pw:7.2f} {ph:7.2f}'  ;  msg += msg2 if p else " " * len(msg2)
@@ -2270,70 +2363,6 @@ class Tabs(pyglet.window.Window):
         self.log(f'closing {LOG_FILE.name}', flush=True)
         LOG_FILE.close()
 
-########################################################################################################################################################################################################
-#          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
-OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
-GRAY   = [(255, 255, 255, OPC[17]), (  0,   0,   0, OPC[17])]  ;  GRAY2   = [(255, 255, 255, OPC[10]), (  0,   0,   0, OPC[10])]  ;  GRAY0  = [(  0,   0,   0, OPC[ 0]), (  0,   0,   0, OPC[ 0])]
-VIOLET = [(128,   0, 255, OPC[17]), ( 25,   0,  50, OPC[17])]  ;  VIOLET2 = [(128,   0, 255, OPC[10]), ( 25,   0,  50, OPC[10])]
-BLUE   = [(  0,   0, 255, OPC[17]), (  0,   0,  50, OPC[17])]  ;  BLUE2   = [(  0,   0, 255, OPC[10]), (  0,   0,  50, OPC[10])]
-INDIGO = [(  0, 180, 255, OPC[17]), (  0,  36,  50, OPC[17])]  ;  INDIGO2 = [(  0, 180, 255, OPC[10]), (  0,  36,  50, OPC[10])]
-CYAN   = [(  0, 255, 255, OPC[17]), (  0,  50,  50, OPC[17])]  ;  CYAN2   = [(  0, 255, 255, OPC[10]), (  0,  50,  50, OPC[10])]
-TURQOI = [(  0, 255, 192, OPC[17]), (  0,  50,  35, OPC[17])]  ;  TURQOI2 = [(  0, 255, 192, OPC[10]), (  0,  50,  35, OPC[10])]
-GREEN  = [(  0, 255,   0, OPC[17]), (  0,  50,   0, OPC[17])]  ;  GREEN2  = [(  0, 255,   0, OPC[10]), (  0,  50,   0, OPC[10])]
-LIME   = [(192, 255,   0, OPC[17]), ( 35,  50,   0, OPC[17])]  ;  LIME2   = [(192, 255,   0, OPC[10]), ( 35,  50,   0, OPC[10])]
-YELLOW = [(255, 255,   0, OPC[17]), ( 50,  50,   0, OPC[17])]  ;  YELLOW2 = [(255, 255,   0, OPC[15]), ( 50,  50,   0, OPC[15])]
-ORANGE = [(255, 176,   0, OPC[17]), ( 50,  30,   0, OPC[17])]  ;  ORANGE2 = [(255, 176,   0, OPC[10]), ( 50,  30,   0, OPC[10])]
-RUST   = [(255,  96,   0, OPC[17]), ( 50,  18,   0, OPC[17])]  ;  RUST2   = [(255,  96,   0, OPC[10]), ( 50,  18,   0, OPC[10])]
-RED    = [(255,   0,   0, OPC[17]), ( 50,   0,   0, OPC[17])]  ;  RED2    = [(255,   0,   0, OPC[10]), ( 50,   0,   0, OPC[10])]
-PEACH  = [(255, 128, 128, OPC[17]), ( 50,  25,  25, OPC[17])]  ;  PEACH2   = [(255, 128, 128, OPC[10]), ( 50,  25,  25, OPC[10])]
-PINK   = [(255, 128, 192, OPC[17]), ( 50,  25,  35, OPC[17])]  ;  PINK2   = [(255,  128, 192, OPC[10]), ( 50,  25,  35, OPC[10])]
-#PINK   = [(255,  64, 128, OPC[17]), ( 50,  13,  25, OPC[17])]  ;  PINK2   = [(255,  64, 128, OPC[10]), ( 50,  13,  25, OPC[10])]
-FUSHIA = [(255,   0, 255, OPC[17]), ( 50,   0,  50, OPC[17])]  ;  FUSHIA2 = [(255,   0, 255, OPC[10]), ( 50,   0,  50, OPC[10])]
-CC1    = [( 13,  15, 255, OPC[10]), (250, 220,  27, OPC[10])]
-CC2    = [(255, 128,   0, OPC[ 9]), (128,  58,   0, OPC[ 9])]
-CC3    = [(250, 65,  190, OPC[10]), (128,  30,  90, OPC[10])]
-CC4    = [(255, 128, 255, OPC[10]), (150,  75,  12, OPC[10])]
-IRED   = [(200, 100,  24, OPC[17]), ( 68,  20,  19, OPC[17])]
-########################################################################################################################################################################################################
-def genColors(k, nsteps=16, dbg=1):
-    colors, clen = [], len(k[0])
-    diffs = [ k[1][i] - k[0][i]  for i in range(clen) ]
-    steps = [ diffs[i]/nsteps    for i in range(clen) ]
-    if dbg: util.slog(f'c1={k[0]} c2={k[1]} nsteps={nsteps} diffs={diffs} steps=', end='')  ;  util.slog(f'[{steps[0]:6.1f} {steps[1]:6.1f} {steps[2]:6.1f} {steps[3]:6.1f}]')
-    for j in range(nsteps):
-        c = tuple([ fri(k[0][i] + j * steps[i]) for i in range(len(k[0])) ])
-        if dbg: util.slog(f'c[{j}]={c}')
-        colors.append(c)
-    if dbg: util.slog(f'colors={k}')
-    return colors
-def fri(f): return int(math.floor(f + 0.5))
-########################################################################################################################################################################################################
-COLORS   = []
-CC1S     = genColors(CC1)      ;  COLORS.append(CC1S)
-CC2S     = genColors(CC2)      ;  COLORS.append(CC2S)
-CC3S     = genColors(CC3)      ;  COLORS.append(CC3S)
-CC4S     = genColors(CC4)      ;  COLORS.append(CC4S)
-GRAYS    = genColors(GRAY)     ;  COLORS.append(GRAYS)     ;  GRAY2S   = genColors(GRAY2)    ;  COLORS.append(GRAY2S)  ;  GRAY0S   = genColors(GRAY0)    ;  COLORS.append(GRAY0S)
-VIOLETS  = genColors(VIOLET)   ;  COLORS.append(VIOLETS)   ;  VIOLET2S = genColors(VIOLET2)  ;  COLORS.append(VIOLET2S)
-BLUES    = genColors(BLUE)     ;  COLORS.append(BLUES)     ;  BLUE2S   = genColors(BLUE2)    ;  COLORS.append(BLUE2S)
-INDIGOS  = genColors(INDIGO)   ;  COLORS.append(INDIGOS)   ;  INDIGO2S = genColors(INDIGO2)  ;  COLORS.append(INDIGO2S)
-CYANS    = genColors(CYAN)     ;  COLORS.append(CYANS)     ;  CYAN2S   = genColors(CYAN2)    ;  COLORS.append(CYAN2S)
-TURQOIS  = genColors(TURQOI)   ;  COLORS.append(TURQOIS)   ;  TURQOI2S = genColors(TURQOI2)  ;  COLORS.append(TURQOI2S)
-GREENS   = genColors(GREEN)    ;  COLORS.append(GREENS)    ;  GREEN2S  = genColors(GREEN2)   ;  COLORS.append(GREEN2S)
-LIMES    = genColors(LIME)     ;  COLORS.append(LIMES)     ;  LIME2S   = genColors(LIME2)    ;  COLORS.append(LIME2S)
-YELLOWS  = genColors(YELLOW)   ;  COLORS.append(YELLOWS)   ;  YELLOW2S = genColors(YELLOW2)  ;  COLORS.append(YELLOW2S)
-ORANGES  = genColors(ORANGE)   ;  COLORS.append(ORANGES)   ;  ORANGE2S = genColors(ORANGE2)  ;  COLORS.append(ORANGE2S)
-PEACHS   = genColors(PEACH)    ;  COLORS.append(PEACHS)    ;  PEACH2S  = genColors(PEACH2)   ;  COLORS.append(PEACH2S)
-RUSTS    = genColors(RUST)     ;  COLORS.append(RUSTS)     ;  RUST2S  = genColors(RUST2)     ;  COLORS.append(RUST2S)
-REDS     = genColors(RED)      ;  COLORS.append(REDS)      ;  RED2S    = genColors(RED2)     ;  COLORS.append(RED2S)
-FUSHIAS  = genColors(FUSHIA)   ;  COLORS.append(FUSHIAS)   ;  FUSHIA2S = genColors(FUSHIA2)  ;  COLORS.append(FUSHIA2S)
-PINKS    = genColors(PINK)     ;  COLORS.append(PINKS)     ;  PINK2S   = genColors(PINK2)    ;  COLORS.append(PINK2S)
-FONT_SCALE    =  14/18  # 14pts/18pix
-FONT_DPIS     = [72, 78, 84, 90, 96, 102, 108, 114, 120]
-FONT_NAMES    = ['Lucida Console', 'Helvetica', 'Arial', 'Times New Roman', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive']
-FONT_COLORS_S = [PINKS[0], CYANS[0], REDS[0], BLUES[0], YELLOWS[0], GREENS[0], ORANGES[0], VIOLETS[0], REDS[13], YELLOWS[15], LIMES[8], ORANGES[12], FUSHIAS[8], INDIGOS[9], TURQOIS[8], GRAYS[8]]
-FONT_COLORS_L = [PINKS[0], GRAYS[0], BLUES[0], GREENS[0], YELLOWS[0], REDS[0], GRAYS[1], PINKS[8], REDS[10], YELLOWS[15], GRAYS[8], GRAYS[8], FUSHIAS[8], GRAYS[9], GRAYS[8], GRAYS[8]]
-FONT_COLORS   =  FONT_COLORS_S # if self.SPRITES else FONT_COLORS_L
 ########################################################################################################################################################################################################
 
 if __name__ == '__main__':
