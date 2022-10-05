@@ -47,42 +47,18 @@ LEFT, RIGHT, UP, DOWN = 0, 1, 0, 1
 ########################################################################################################################################################################################################
 #          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
 OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
-BB = 15 if 0 else 7
-VIOLET = 0
-BLUE   = 1
-INDIGO = 2
-CYAN   = 3
-TURQOI = 4
-GREEN  = 5
-LIME   = 6
-YELLOW = 7
-ORANGE = 8
-PEACH  = 9
-RUST   = 10
-RED    = 11
-PINK   = 12
-FUSHIA = 13
-GRAY   = 14
-VIOLET2 = 15
-BLUE2   = 16
-INDIGO2 = 17
-CYAN2   = 18
-TURQOI2 = 19
-GREEN2  = 20
-LIME2   = 21
-YELLOW2 = 22
-ORANGE2 = 23
-PEACH2  = 24
-RUST2   = 25
-RED2    = 26
-PINK2   = 27
-FUSHIA2 = 28
-GRAY2   = 29
-GRAY0   = 30
-CC1     = 31
-CC2     = 32
-CC3     = 33
-CC4     = 34
+#CLRS   = [ 'VIOL', 'BLUE', 'INDI', 'CYAN', 'TURQ', 'GREN', 'LIME', 'YELL', 'ORAN', 'PEAC', 'RUST', 'RRED', 'PINK', 'FUSH', 'GRAY',
+#           'VIOL2', 'BLUE2', 'INDI2', 'CYAN2', 'TURQ2', 'GREN2', 'LIME2', 'YELL2', 'ORAN2', 'PEAC2', 'RUST2', 'RRED2', 'PINK2', 'FUSH2', 'GRAY2',
+#           'CC1', 'CC2', 'CC3', 'CC4']
+#KKM = {0: 'VIOLET', 1: 'BLUE'}
+#KKM = cOd([ (i, e) for i, e in enumerate(CLRS) ])
+#def getKKN(key): return KKM[key]
+KKNS = 'VIOL', 'BLUE', 'INDI', 'CYAN', 'TURQ', 'GREN', 'LIME', 'YELL', 'ORAN', 'PEAC', 'RUST', 'RRED', 'PINK', 'FUSH', 'GRAY'
+VIOL, BLUE, INDI, CYAN, TURQ, GREN, LIME, YELL, ORAN, PEAC, RUST, RRED, PINK, FUSH, GRAY = KKNS
+KKNS2 = 'VIOL2', 'BLUE2', 'INDI2', 'CYAN2', 'TURQ2', 'GREN2', 'LIME2', 'YELL2', 'ORAN2', 'PEAC2', 'RUST2', 'RRED2', 'PINK2', 'FUSH2', 'GRAY2'
+VIOL2, BLUE2, INDI2, CYAN2, TURQ2, GREN2, LIME2, YELL2, ORAN2, PEAC2, RUST2, RRED2, PINK2, FUSH2, GRAY2 = KKNS2
+KKNS3 = 'GRAY0', 'CC1', 'CC2', 'CC3', 'CC4'
+GRAY0, CC1, CC2, CC3, CC4 = KKNS3
 ########################################################################################################################################################################################################
 def OLD__genColors(k, nsteps=16, dbg=1):
     colors, clen = [], len(k[0])
@@ -95,41 +71,63 @@ def OLD__genColors(k, nsteps=16, dbg=1):
         colors.append(c)
     if dbg: util.slog(f'colors={k}')
     return colors
-def _genColors(k, opc=17, dv=5, nsteps=18, dbg=1):
+def _genColors(key, k, opc=17, dv=5, nsteps=18, dbg=1):
     colors, lk = [], len(k)
     diffs = [ k[i] - k[i]/dv  for i in range(lk) ]
     steps = [ diffs[i]/nsteps for i in range(lk) ]
-    if dbg: util.slog(f'k={util.fmtl(k)} {dv=} {opc=} {nsteps=} diffs={util.fmtl(diffs, w="6.2f")} steps=', end='', file=LOG_FILE)  ;  util.slog(f'[{util.fmtl(steps, w="5.2f")}', file=LOG_FILE)
+    if dbg: util.slog(f'{key=} k={util.fmtl(k)} {dv=} {opc=} {nsteps=} diffs={util.fmtl(diffs, w="6.2f")} steps=', end='', file=LOG_FILE)  ;  util.slog(f'[{util.fmtl(steps, w="5.2f")}', pfx=0, file=LOG_FILE)
     for j in range(1 + nsteps):
         color = list([ fri(k[i] - j * steps[i]) for i in range(lk) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)
-        if dbg: util.slog(f'c[{j}]={util.fmtl(color)}', file=LOG_FILE)
+        if dbg: util.slog(f'{key=} c[{j}]={util.fmtl(color)}', file=LOG_FILE)
         colors.append(color)
-    if dbg: util.slog(f'k={util.fmtl(k)} {dv=} {opc=} {nsteps=} colors={util.fmtl(colors)}', file=LOG_FILE)
+    if dbg: util.slog(f'{key=} k={util.fmtl(k)} {dv=} {opc=} {nsteps=} colors={util.fmtl(colors)}', file=LOG_FILE)
     return colors
 def fri(f): return int(math.floor(f + 0.5))
 ########################################################################################################################################################################################################
-def genColors():
-    _CLR   = cOd()
-    _CLR[CC1]     = _genColors(( 13,  15, 255))
-    _CLR[CC2]     = _genColors((255, 128,   0))
-    _CLR[CC3]     = _genColors((250, 65,  190))
-    _CLR[CC4]     = _genColors((255, 128, 255))
-    _CLR[GRAY]    = _genColors((255, 255, 255))   ;  _CLR[GRAY2]   = _genColors((255, 255, 255), 10)  ;  _CLR[GRAY0]   = _genColors((0, 0, 0), 0)
-    _CLR[VIOLET]  = _genColors((128,   0, 255))   ;  _CLR[VIOLET2] = _genColors((128,   0, 255), 10)
-    _CLR[BLUE]    = _genColors((  0,   0, 255))   ;  _CLR[BLUE2]   = _genColors((  0,   0, 255), 10)
-    _CLR[INDIGO]  = _genColors((  0, 180, 255))   ;  _CLR[INDIGO2] = _genColors((  0, 180, 255), 10)
-    _CLR[CYAN]    = _genColors((  0, 255, 255))   ;  _CLR[CYAN2]   = _genColors((  0, 255, 255), 10)
-    _CLR[TURQOI]  = _genColors((  0, 255, 192))   ;  _CLR[TURQOI2] = _genColors((  0, 255, 192), 10)
-    _CLR[GREEN]   = _genColors((  0, 255,   0))   ;  _CLR[GREEN2]  = _genColors((  0, 255,   0), 10)
-    _CLR[LIME]    = _genColors((160, 255,   0))   ;  _CLR[LIME2]   = _genColors((160, 255,   0), 10)
-    _CLR[YELLOW]  = _genColors((255, 255,   0))   ;  _CLR[YELLOW2] = _genColors((255, 255,   0), 10)
-    _CLR[ORANGE]  = _genColors((255, 176,   0))   ;  _CLR[ORANGE2] = _genColors((255, 176,   0), 10)
-    _CLR[PEACH]   = _genColors((255, 160, 128))   ;  _CLR[PEACH2]  = _genColors((255, 160, 128), 10)
-    _CLR[RUST]    = _genColors((255,  96,   0))   ;  _CLR[RUST2]   = _genColors((255,  96,   0), 10)
-    _CLR[RED]     = _genColors((255,   0,   0))   ;  _CLR[RED2]    = _genColors((255,   0,   0), 10)
-    _CLR[FUSHIA]  = _genColors((255,   0, 255))   ;  _CLR[FUSHIA2] = _genColors((255,   0, 255), 10)
-    _CLR[PINK]    = _genColors((255, 128, 192))   ;  _CLR[PINK2]   = _genColors((255, 128, 192), 10)
+def genColors(opc, dbg=1):
+    _CLR          = cOd()
+    if dbg: util.slog(f'{opc}', file=LOG_FILE)
+    _CLR[CC1]  = _genColors(CC1, ( 13,  15, 255))
+    _CLR[CC2]  = _genColors(CC2, (255, 128,   0))
+    _CLR[CC3]  = _genColors(CC3, (250, 65,  190))
+    _CLR[CC4]  = _genColors(CC4, (255, 128, 255))
+    _CLR[GRAY] = _genColors(GRAY, (255, 255, 255))   ;  _CLR[GRAY2] = _genColors(GRAY2, (255, 255, 255), opc)  ;  _CLR[GRAY0]   = _genColors(GRAY0, (0, 0, 0), 0)
+    _CLR[VIOL] = _genColors(VIOL, (128,   0, 255))   ;  _CLR[VIOL2] = _genColors(VIOL2, (128,   0, 255), opc)
+    _CLR[BLUE] = _genColors(BLUE, (  0,   0, 255))   ;  _CLR[BLUE2] = _genColors(BLUE2, (  0,   0, 255), opc)
+    _CLR[INDI] = _genColors(INDI, (  0, 180, 255))   ;  _CLR[INDI2] = _genColors(INDI2, (  0, 180, 255), opc)
+    _CLR[CYAN] = _genColors(CYAN, (  0, 255, 255))   ;  _CLR[CYAN2] = _genColors(CYAN2, (  0, 255, 255), opc)
+    _CLR[TURQ] = _genColors(TURQ, (  0, 255, 192))   ;  _CLR[TURQ2] = _genColors(TURQ2, (  0, 255, 192), opc)
+    _CLR[GREN] = _genColors(GREN, (  0, 255,   0))   ;  _CLR[GREN2] = _genColors(GREN2, (  0, 255,   0), opc)
+    _CLR[LIME] = _genColors(LIME, (160, 255,   0))   ;  _CLR[LIME2] = _genColors(LIME2, (160, 255,   0), opc)
+    _CLR[YELL] = _genColors(YELL, (255, 255,   0))   ;  _CLR[YELL2] = _genColors(YELL2, (255, 255,   0), opc)
+    _CLR[ORAN] = _genColors(ORAN, (255, 176,   0))   ;  _CLR[ORAN2] = _genColors(ORAN2, (255, 176,   0), opc)
+    _CLR[PEAC] = _genColors(PEAC, (255, 160, 128))   ;  _CLR[PEAC2] = _genColors(PEAC2, (255, 160, 128), opc)
+    _CLR[RUST] = _genColors(RUST, (255,  96,   0))   ;  _CLR[RUST2] = _genColors(RUST2, (255,  96,   0), opc)
+    _CLR[RRED] = _genColors(RRED, (255,   0,   0))   ;  _CLR[RRED2] = _genColors(RRED2, (255,   0,   0), opc)
+    _CLR[PINK] = _genColors(PINK, (255, 128, 192))   ;  _CLR[PINK2] = _genColors(PINK2, (255, 128, 192), opc)
+    _CLR[FUSH] = _genColors(FUSH, (255,   0, 255))   ;  _CLR[FUSH2] = _genColors(FUSH2, (255,   0, 255), opc)
     return _CLR
+
+def setOpc(rgbs, i):
+    l = []
+    for e in rgbs:
+        t = []
+        for j in range(len(e) - 1):
+            t.append(e[j])
+        t.append(OPC[i])
+        l.append(tuple(t))
+    return l
+
+def foofoo(): pass # rgbs, i):
+#    return [ tuple([ e[j] for j in range(len([ e for e in rgbs ])-1) ]) ]
+
+def New_setOpc(rgbs, i):
+    l = []
+    e = [ e for e in rgbs ]
+    t = [ e[j] for j in range(len(e)-1) ]
+    t.append(OPC[i])
+    l.append(tuple(t))
+    return l
 
 FONT_COLORS   = []
 FONT_SCALE    =  14/18  # 14pts/18pix
@@ -219,7 +217,7 @@ class Tabs(pyglet.window.Window):
         self.Y_CENTER  = 1  ;  self.Y_TOP       = 0  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
         self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 1  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 0  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS     = 1  ;  self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
         self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
@@ -260,8 +258,8 @@ class Tabs(pyglet.window.Window):
         self.n.insert(S, self.ssl())
         self.i.insert(S, self.ssl())
         self.dumpArgs()
-        global CLR   ;   CLR = genColors()
-        global FONT_COLORS  ;  FONT_COLORS = [ CLR[VIOLET], CLR[BLUE], CLR[INDIGO], CLR[CYAN], CLR[TURQOI], CLR[GREEN], CLR[LIME], CLR[YELLOW], CLR[ORANGE], CLR[PEACH], CLR[RUST], CLR[RED], CLR[PINK], CLR[FUSHIA] ]
+        global CLR   ;   CLR = genColors(15 if self.SPRITES else 7)
+        global FONT_COLORS  ;  FONT_COLORS = [ CLR[VIOL], CLR[BLUE], CLR[INDI], CLR[CYAN], CLR[TURQ], CLR[GREN], CLR[LIME], CLR[YELL], CLR[ORAN], CLR[PEAC], CLR[RUST], CLR[RRED], CLR[PINK], CLR[FUSH] ]
         global LF2   ;   LF2 = LOG_FILE if self.RD_STDOUT else sys.stdout
         if self.TEST: self.test1() # ;  self.quit('EXIT TEST', save=0)
         self.sAlias = 'GUITAR_6_STD'
@@ -357,7 +355,7 @@ class Tabs(pyglet.window.Window):
 #        T1, T2 = CYANS, CYAN2S ;  N1, N2 = TURQOIS, TURQOI2S ;  I1, I2 = GREENS, GREEN2S ;  K1, K2 = LIMES, LIME2S
 #        T1, T2 = YELLOWS, YELLOW2S ; N1, N2 = ORANGES, ORANGE2S  ;  I1, I2 = RUSTS, RUST2S  ;  K1, K2 = REDS, RED2S
 #        T1, T2 = FUSHIAS, FUSHIA2S ; N1, N2 = VIOLETS, VIOLET2S  ;  I1, I2 = BLUES, BLUE2S  ; K1, K2 = INDIGOS, INDIGO2S
-        T1, T2 = CLR[ORANGE], CLR[ORANGE2] ; N1, N2 = CLR[GREEN], CLR[GREEN2]  ;  I1, I2 = CLR[INDIGO], CLR[INDIGO2]  ; K1, K2 = CLR[YELLOW], CLR[YELLOW2]
+        T1, T2 = CLR[ORAN], CLR[ORAN2] ; N1, N2 = CLR[GREN], CLR[GREN2]  ;  I1, I2 = CLR[INDI], CLR[INDI2]  ; K1, K2 = CLR[YELL], CLR[YELL2]
 #        T1, T2 = REDS, RED2S  ; N1, N2 = PINKS, PINK2S  ;  I1, I2 = FUSHIAS, FUSHIA2S  ; K1, K2 = VIOLETS, VIOLET2S
 #        T1, T2 = RUSTS, RUST2S  ; N1, N2 = REDS, RED2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = FUSHIAS, FUSHIA2S
 #        T1, T2 = PEACHS, PEACH2S  ; N1, N2 = REDS, RED2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = FUSHIAS, FUSHIA2S
@@ -367,7 +365,7 @@ class Tabs(pyglet.window.Window):
 #        T1, T2 = YELLOWS, YELLOW2S ; N1, N2 = ORANGES, ORANGE2S  ;  I1, I2 = PEACHS, PEACH2S  ;  K1, K2 = RUSTS, RUST2S
 #        T1, T2 = ORANGES, ORANGE2S  ; N1, N2 = PEACHS, PEACH2S  ;  I1, I2 = PINKS, PINK2S  ; K1, K2 = RUSTS, RUST2S
         R1, R2 = CLR[CC3],    CLR[CC3]     ;  Q1, Q2 = CLR[CC1],   CLR[CC2]    ;  H1, H2 = CLR[CC3],    CLR[CC4]     ;  V1, V2 = CLR[PINK], CLR[PINK]
-        O1, O2 = CLR[PINK],   CLR[PINK]    ;  A1, A2 = CLR[BLUE],  CLR[BLUE]   ;  D1, D2 = CLR[FUSHIA], CLR[FUSHIA]
+        O1, O2 = CLR[PINK],   CLR[PINK]    ;  A1, A2 = CLR[BLUE],  CLR[BLUE]   ;  D1, D2 = CLR[FUSH], CLR[FUSH]
         kP = [P1[ 0], P2[10]] if a else [P1[ 0], P2[10]] if b else [P2[0], P2[15]] if c else [P1[15], P1[ 0]] if d else None
         kL = [L1[ 0], L2[10]] if a else [L1[ 0], L2[10]] if b else [L1[ 0], L2[10]] if c else [L1[ 0], L2[10]] if d else None
         kS = [S1[15], S2[ 7]] if a else [S1[15], S2[ 7]] if b else [S1[15], S2[ 7]] if c else [S1[15], S2[ 7]] if d else None
@@ -1402,7 +1400,8 @@ class Tabs(pyglet.window.Window):
         self.log(f'{J2} {xywh} {why:4} {key} {t.text:3} {fs:3} {g} {color} {font} {cw:2} {ch:2} {ca} {axy} {bgc}', pfx=0)
     ####################################################################################################################################################################################################
     def createCursor(self, dbg=1, dbg2=0):
-        x, y, w, h, c = self.cc2xywh()  ;  kk = 0  ;  kl = self.k[H]
+        x, y, w, h, c = self.cc2xywh()
+        kk = 0  ;  kl = setOpc(self.k[H], 10)
         if w == 0 or h == 0: msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   self.quit(msg)
         self.cursor = self.createTnik(self.cursr, 0, H, x, y, w, h, kk, kl, v=1, dbg=dbg)
         if dbg2: self.dumpCursr('NEW', x, y, w, h, c)
