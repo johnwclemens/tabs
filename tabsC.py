@@ -22,7 +22,7 @@ def dumpGlobals():
     util.slog(f'BASE_NAME = {BASE_NAME}', file=LOG_FILE)
 ########################################################################################################################################################################################################
 Z = ' '   ;    TEST_TEXT = 0
-CLR = cOd()
+CLR              = cOd()
 PATH             = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH        = PATH.parent
 BASE_NAME        = BASE_PATH.stem
@@ -92,7 +92,6 @@ def _genColors(key, k, dv=5, n=None, dbg=1):
 def fri(f): return int(math.floor(f + 0.5))
 ########################################################################################################################################################################################################
 FONT_COLORS   = []
-FONT_STYLE    = NORMAL_STYLE
 FONT_SCALE    =  14/18  # 14pts/18pix
 FONT_DPIS     = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
 FONT_NAMES    = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
@@ -178,10 +177,10 @@ class Tabs(pyglet.window.Window):
         self.A_CENTER  = 0  ;  self.A_LEFT      = 1  ;  self.A_RIGHT      = 0
         self.X_CENTER  = 1  ;  self.X_LEFT      = 0  ;  self.X_RIGHT      = 0
         self.Y_CENTER  = 1  ;  self.Y_TOP       = 0  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
-        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 1  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 1
+        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 0  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 1
-        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 1  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
+        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
@@ -221,6 +220,7 @@ class Tabs(pyglet.window.Window):
         self.n.insert(S, self.ssl())
         self.i.insert(S, self.ssl())
         self.dumpArgs()
+        self.fontStyle = NORMAL_STYLE
         global CLR          ;  CLR = genColors()
         global FONT_COLORS  ;  FONT_COLORS = [ CLR[VIOL][17][10], CLR[BLUE][17][10], CLR[INDI][17][10], CLR[CYAN][17][10], CLR[TURQ][17][10], CLR[GREN][17][10], CLR[LIME][17][10], CLR[YELL][17][10], CLR[ORAN][17][10], CLR[PEAC][17][10], CLR[RUST][17][10], CLR[RRED][17][10], CLR[PINK][17][10], CLR[FUSH][17][10] ]
         global LF2          ;  LF2 = LOG_FILE if self.RD_STDOUT else sys.stdout
@@ -301,7 +301,7 @@ class Tabs(pyglet.window.Window):
         self._initTextLabels()
         self._initTniks()
         if self.SNAPS: self.regSnap('init', 'INIT')
-        if dbg: self.dumpStruct('Init')
+        if dbg: self.dumpStruct('init')
 
     def _initColors(self):
         a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c = self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
@@ -1181,8 +1181,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def createTnik(self, tlist, i, j, x, y, w, h, kk, kl, why='New', t='', v=None, g=None, dbg=0):
         if j is not None: self.setJ(j, i)
-        o, k2, d, ii, n, s = self.fontParams()   ;   b = self.batch #  ;   k0 = 0
-        k = kl[kk] #  if kl is not None else FONT_COLORS[(k2 + k0) % len(FONT_COLORS)]
+        o, k2, d, ii, n, s = self.fontParams()   ;   b = self.batch   ;   k = kl[kk]
         v = v        if  v is not None else self.isV(j)
         g = g        if  g is not None else self.j2g(j)
         if j == H or (self.SPRITES and (j < T or j == R)):
@@ -1196,8 +1195,7 @@ class Tabs(pyglet.window.Window):
             d, n      = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTI_LINE
             a, ax, ay = self.a, self.ax, self.ay  # left center right  # bottom baseline center top
             tnik = pygtxt.Label(t, font_name=n, font_size=s, bold=o, stretch=z, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
-            if T <= j <= K:
-                d = tnik.document  ;  d.set_style(0, len(d.text), {'color': self.k[j][1], 'background_color': self.k[j][0]})
+            if T <= j <= K:          self._setTNIKStyle(tnik, self.k[j], NORMAL_STYLE)
         if    tlist is not None:     tlist.append(tnik)
         else:                        msg = f'WARN tlist is None cant add tnik: {self.fmtJText(j, i, why)}'  ;  self.log(msg)
         if dbg: key = self.idmapkey(j)  ;  self.idmap[key] = (id(tnik), tnik)  ;  self.dumpTnik(tnik, j, why)
@@ -1423,14 +1421,9 @@ class Tabs(pyglet.window.Window):
 
     def fontParams(self):    return self.fontBold, self.fontColorIndex, self.fontDpiIndex, self.fontItalic, self.fontNameIndex, self.fontSize
 
-    def fmtf1(self, dbg=0):
+    def fmtFont(self, dbg=0):
         fb, fc, fd, fi, fn, fs = self.fontParams()
         text = f'{FONT_DPIS[fd]}dpi {fs:5.2f}pt {FONT_NAMES[fn]} {fc}:{FONT_COLORS[fc]}'
-        if dbg: self.log(f'{text}')
-        return text
-    def fmtf2(self, dbg=0):
-        fb, fc, fd, fi, fn, fs = self.fontParams()
-        text = f'{fs} {FONT_DPIS[fd]} {fb} {fi} '
         if dbg: self.log(f'{text}')
         return text
 
@@ -1441,23 +1434,21 @@ class Tabs(pyglet.window.Window):
 
     def setFontParam(self, n, v, m, dbg=1):
         setattr(self, m, v)
-        if m == "fontColorIndex": global FONT_STYLE  ;  FONT_STYLE = NORMAL_STYLE if FONT_STYLE == SELECT_STYLE else SELECT_STYLE
+        if m == "fontColorIndex": self.fontStyle = NORMAL_STYLE if self.fontStyle == SELECT_STYLE else SELECT_STYLE
         if dbg:                         self.log( f'      {n:12}  {v:4}  {m}  {len(self.E)=}')
         for i in range(len(self.E)):
             if dbg and self.VERBOSE:    self.log(f'{i:4}  {n:12}  {v:4}  {m}  {len(self.E)=}')
             self._setFontParam(self.E[i], n, v, m)
-#        self.on_resize(self.width, self.height, dbg=1)
-        self.setCaption(self.fmtf1())
+        self.setCaption(self.fmtFont())
 
     def _setFontParam(self, p, n, v, m, dbg=1):
         for i in range(len(p)):
             k = len(p[i].color)
-#            msg = f'{FONT_NAMES[v]=}' if m == "fontNameIndex" else f'{FONT_COLORS[v][:k]=}' if m == "fontColorIndex" else f'{v=}'
             msg = f'{FONT_COLORS[v][:k]=}' if m == "fontColorIndex" else f'{FONT_NAMES[v]=}' if m == "fontNameIndex" else f'{v=}'
             if dbg:
                 f = 1 if self.VERBOSE else 10
                 if not i % f:           self.log(f'{i:4}  {n:12}  {v:4}  {msg}')
-            if   m == 'fontColorIndex': self.setTNIKStyle(i, 1, FONT_STYLE)
+            if   m == 'fontColorIndex': self.setTNIKStyle(i, 1, self.fontStyle)
             else:                       setattr(p[i], n, FONT_NAMES[v] if m == 'fontNameIndex' else v)
     @staticmethod
     def pix2fontsize(pix): return pix * FONT_SCALE # ( ) % FS_MAX
@@ -1892,17 +1883,17 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'{self.fmtPos()}     {i=} = {c=} + {l=} * {nc=} {style=} {bold=} {italic=} {color=} {cc=}')
     ####################################################################################################################################################################################################
     def setTNIKStyle(self, k, nt, style, text='', blank=0):
-        for t in range(k, k + nt): # uls, ulv = 'underline', (255, 0, 0, 255) #, uls: ulv})
-            bgc = 'background_color' ;  fgc = 'color'
-            (bgs, fgs) = (0, 1) if style == NORMAL_STYLE else (1, 0)
-            kt, kn, ki, kk = self.k[T], self.k[N], self.k[I], self.k[K]
-            tabs, notes, ikeys, kords = self.tabs, self.notes, self.ikeys, self.kords
-            if tabs:  d =  tabs[t].document  ;  d.set_style(0, len(d.text), {fgc: kt[fgs], bgc: kt[bgs]})  ;  text += tabs[t].text
-            if notes: d = notes[t].document  ;  d.set_style(0, len(d.text), {fgc: kn[fgs], bgc: kn[bgs]})
-            if ikeys: d = ikeys[t].document  ;  d.set_style(0, len(d.text), {fgc: ki[fgs], bgc: ki[bgs]})
-            if kords: d = kords[t].document  ;  d.set_style(0, len(d.text), {fgc: kk[fgs], bgc: kk[bgs]})
+        for t in range(k, k + nt):
+            if self.tabs:  self._setTNIKStyle(self.tabs[t],  self.k[T], style)  ;  text += self.tabs[t].text
+            if self.notes: self._setTNIKStyle(self.notes[t], self.k[N], style)
+            if self.ikeys: self._setTNIKStyle(self.ikeys[t], self.k[I], style)
+            if self.kords: self._setTNIKStyle(self.kords[t], self.k[K], style)
             if blank: p, l, c, r = self.cc2plct(t)  ;  self.setDTNIK(self.tblank, t, p, l, c, t - k, kk=1 if t == k + nt - 1 else 0)
         return text
+    @staticmethod
+    def _setTNIKStyle(tnik, color, style=NORMAL_STYLE):
+        (bgs, fgs) = (0, 1)  if style == NORMAL_STYLE else (1, 0)
+        d =  tnik.document   ;   d.set_style(0, len(d.text), {'color': color[fgs], 'background_color': color[bgs]})
     ####################################################################################################################################################################################################
     def selectTabs(self, how, m=0, cn=None, dbg=1, dbg2=1):
         if cn is None: cc = self.cc   ;   cn = self.cc2cn(cc)
@@ -2310,9 +2301,7 @@ class Tabs(pyglet.window.Window):
         util.copyFile(LOG_PATH, self.lfSeqPath, LOG_FILE)
         self.log(f'closing {LOG_FILE.name}', flush=True)
         LOG_FILE.close()
-
 ########################################################################################################################################################################################################
-
 if __name__ == '__main__':
     prevPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
     LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
