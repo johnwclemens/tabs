@@ -53,11 +53,6 @@ VIOL, BLUE, INDI, CYAN, TURQ, GREN, LIME, YELL, ORAN, PEAC, RUST, RRED, PINK, FU
 ########################################################################################################################################################################################################
 def genColors():
     _CLR       = cOd()
-    _CLR[CC1]  = _genColors(CC1,  ( 13,  15, 255))
-    _CLR[CC2]  = _genColors(CC2,  (255, 128,   0))
-    _CLR[CC3]  = _genColors(CC3,  (250, 65,  190))
-    _CLR[CC4]  = _genColors(CC4,  (255, 128, 255))
-    _CLR[GRAY] = _genColors(GRAY, (255, 255, 255))
     _CLR[VIOL] = _genColors(VIOL, (128,   0, 255))
     _CLR[BLUE] = _genColors(BLUE, (  0,   0, 255))
     _CLR[INDI] = _genColors(INDI, (  0, 180, 255))
@@ -72,28 +67,35 @@ def genColors():
     _CLR[RRED] = _genColors(RRED, (255,   0,   0))
     _CLR[PINK] = _genColors(PINK, (255, 128, 192))
     _CLR[FUSH] = _genColors(FUSH, (255,   0, 255))
+    _CLR[GRAY] = _genColors(GRAY, (255, 255, 255))
+    _CLR[CC1]  = _genColors(CC1,  ( 13,  15, 255))
+    _CLR[CC2]  = _genColors(CC2,  (255, 128,   0))
+    _CLR[CC3]  = _genColors(CC3,  (250, 65,  190))
+    _CLR[CC4]  = _genColors(CC4,  (255, 128, 255))
     return _CLR
 
-def _genColors(key, k, dv=5, n=18, dbg=1):
-    colors = []  ;  lk = len(k)  ;  lo = len(OPC)
-    diffs = [ k[i] - k[i]/dv  for i in range(lk) ]
-    steps = [ diffs[i]/n      for i in range(lk) ]
-    for opc in range(lo):
+def _genColors(key, k, dv=5, n=None, dbg=1):
+    n = n + 1  if n is not None  else  len(OPC)
+    colors = []  ;  l = len(k)  ;  m = len(OPC)
+    diffs = [ k[i] - k[i]/dv  for i in range(l) ]
+    steps = [ diffs[i]/(n-1)  for i in range(l) ]
+    for opc in range(m):
         clrs = []
-        if dbg: util.slog(f'{key:5} {util.fmtl(k)} {opc=:2} {OPC[opc]} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
-        for j in range(n+1):
-            color = list([ fri(k[i] - j * steps[i]) for i in range(lk) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)
-            if dbg: util.slog(f'{j:2} {key:5} {util.fmtl(color, w="3")}', pfx=0, file=LOG_FILE)
+        if dbg: util.slog(f'{key:4} {util.fmtl(k, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
+        for j in range(n):
+            color = list([ fri(k[i] - j * steps[i]) for i in range(l) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)
+            if dbg: util.slog(f'{j:2} {key:4} {util.fmtl(color, w="3")}', pfx=0, file=LOG_FILE)
             clrs.append(color)
         colors.append(clrs)
-        if dbg: util.slog(f'{key:5} {util.fmtl(k)} {opc=:2} {OPC[opc]} {dv=} {n=}', file=LOG_FILE)
+        if dbg: util.slog(f'{key:4} {util.fmtl(k, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=}', file=LOG_FILE)
     return colors
 def fri(f): return int(math.floor(f + 0.5))
 ########################################################################################################################################################################################################
 FONT_COLORS   = []
+FONT_STYLE    = NORMAL_STYLE
 FONT_SCALE    =  14/18  # 14pts/18pix
 FONT_DPIS     = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
-FONT_NAMES    = [ 'Lucida Console', 'Helvetica', 'Arial', 'Times New Roman', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
+FONT_NAMES    = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
 ########################################################################################################################################################################################################
 class Test:
     def __init__(self, a, file=None): self._a = a  ;  util.slog(f'<Test_init_:     _a={self._a}>', pfx=1, file=file)
@@ -178,8 +180,8 @@ class Tabs(pyglet.window.Window):
         self.Y_CENTER  = 1  ;  self.Y_TOP       = 0  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
         self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 1  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 1
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 0  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
-        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 1  ;  self.FRET_BOARD  = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 1
+        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 1  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
@@ -219,9 +221,9 @@ class Tabs(pyglet.window.Window):
         self.n.insert(S, self.ssl())
         self.i.insert(S, self.ssl())
         self.dumpArgs()
-        global CLR   ;   CLR = genColors() # 15 if self.SPRITES else 7
-        global FONT_COLORS  ;  FONT_COLORS = [ CLR[VIOL], CLR[BLUE], CLR[INDI], CLR[CYAN], CLR[TURQ], CLR[GREN], CLR[LIME], CLR[YELL], CLR[ORAN], CLR[PEAC], CLR[RUST], CLR[RRED], CLR[PINK], CLR[FUSH] ]
-        global LF2   ;   LF2 = LOG_FILE if self.RD_STDOUT else sys.stdout
+        global CLR          ;  CLR = genColors()
+        global FONT_COLORS  ;  FONT_COLORS = [ CLR[VIOL][17][10], CLR[BLUE][17][10], CLR[INDI][17][10], CLR[CYAN][17][10], CLR[TURQ][17][10], CLR[GREN][17][10], CLR[LIME][17][10], CLR[YELL][17][10], CLR[ORAN][17][10], CLR[PEAC][17][10], CLR[RUST][17][10], CLR[RRED][17][10], CLR[PINK][17][10], CLR[FUSH][17][10] ]
+        global LF2          ;  LF2 = LOG_FILE if self.RD_STDOUT else sys.stdout
         if self.TEST: self.test1() # ;  self.quit('EXIT TEST', save=0)
         self.sAlias = 'GUITAR_6_STD'
         self.sobj = util.Strings(LOG_FILE, self.sAlias)
@@ -1190,9 +1192,10 @@ class Tabs(pyglet.window.Window):
             tnik.color, tnik.opacity = k[:3], k[3]   ;   tnik.visible = v
         else:
             s         = v * self.calcFontSize(t, w, h, j)
+            z         = 1 if self.STRETCH else 0
             d, n      = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTI_LINE
             a, ax, ay = self.a, self.ax, self.ay  # left center right  # bottom baseline center top
-            tnik = pygtxt.Label(t, font_name=n, font_size=s, bold=o, stretch=1, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
+            tnik = pygtxt.Label(t, font_name=n, font_size=s, bold=o, stretch=z, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
             if T <= j <= K:
                 d = tnik.document  ;  d.set_style(0, len(d.text), {'color': self.k[j][1], 'background_color': self.k[j][0]})
         if    tlist is not None:     tlist.append(tnik)
@@ -1438,19 +1441,24 @@ class Tabs(pyglet.window.Window):
 
     def setFontParam(self, n, v, m, dbg=1):
         setattr(self, m, v)
-        if dbg: self.log(f'{n=:12}  {v=:4}  {m=}')
+        if m == "fontColorIndex": global FONT_STYLE  ;  FONT_STYLE = NORMAL_STYLE if FONT_STYLE == SELECT_STYLE else SELECT_STYLE
+        if dbg:                         self.log( f'      {n:12}  {v:4}  {m}  {len(self.E)=}')
         for i in range(len(self.E)):
+            if dbg and self.VERBOSE:    self.log(f'{i:4}  {n:12}  {v:4}  {m}  {len(self.E)=}')
             self._setFontParam(self.E[i], n, v, m)
 #        self.on_resize(self.width, self.height, dbg=1)
-#        self.setCaption(self.fmtf1())
+        self.setCaption(self.fmtf1())
 
-    @staticmethod
-    def _setFontParam(p, n, v, m, dbg=1):
+    def _setFontParam(self, p, n, v, m, dbg=1):
         for i in range(len(p)):
             k = len(p[i].color)
-            msg = f'{FONT_NAMES[v]=}' if m == "fontNameIndex" else f'{FONT_COLORS[v][:k]=}' if m == "fontColorIndex" else f'{v=}' # f'{FONT_DPIS[v]=}' if m == "fontDpiIndex" else f'{v=}'
-            if dbg and not i % 10: util.slog(f'{i:4}  {n:12}  {v:4}  {msg}')
-            setattr(p[i], n, FONT_NAMES[v] if m == 'fontNameIndex' else FONT_COLORS[v][:k] if m == 'fontColorIndex' else v) # FONT_DPIS[v] if m == 'fontDpiIndex' else v)
+#            msg = f'{FONT_NAMES[v]=}' if m == "fontNameIndex" else f'{FONT_COLORS[v][:k]=}' if m == "fontColorIndex" else f'{v=}'
+            msg = f'{FONT_COLORS[v][:k]=}' if m == "fontColorIndex" else f'{FONT_NAMES[v]=}' if m == "fontNameIndex" else f'{v=}'
+            if dbg:
+                f = 1 if self.VERBOSE else 10
+                if not i % f:           self.log(f'{i:4}  {n:12}  {v:4}  {msg}')
+            if   m == 'fontColorIndex': self.setTNIKStyle(i, 1, FONT_STYLE)
+            else:                       setattr(p[i], n, FONT_NAMES[v] if m == 'fontNameIndex' else v)
     @staticmethod
     def pix2fontsize(pix): return pix * FONT_SCALE # ( ) % FS_MAX
     ####################################################################################################################################################################################################
