@@ -48,11 +48,12 @@ LEFT, RIGHT, UP, DOWN = 0, 1, 0, 1
 #OPC    = [ 255, 240, 225, 210, 195, 180, 165, 150, 135, 120, 105, 90, 75, 60, 45, 30, 15, 0 ]
 #          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
 OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
-KKNS = 'VIOL', 'BLUE', 'INDI', 'CYAN', 'TURQ', 'GREN', 'LIME', 'YELL', 'ORAN', 'PEAC', 'RUST', 'RRED', 'PINK', 'FUSH', 'GRAY', 'CC1', 'CC2', 'CC3', 'CC4'
-VIOL, BLUE, INDI, CYAN, TURQ, GREN, LIME, YELL, ORAN, PEAC, RUST, RRED, PINK, FUSH, GRAY, CC1, CC2, CC3, CC4 = KKNS
+KKNS = 'VIOL', 'BLUE', 'INDI', 'CYAN', 'TURQ', 'GREN', 'LIME', 'YELL', 'ORAN', 'PEAC', 'RUST', 'RRED', 'PINK', 'FUSH', 'GRAY', 'CLR1', 'CLR2', 'CLR3', 'CLR4'
+VIOL, BLUE, INDI, CYAN, TURQ, GREN, LIME, YELL, ORAN, PEAC, RUST, RRED, PINK, FUSH, GRAY, CLR1, CLR2, CLR3, CLR4 = KKNS
 ########################################################################################################################################################################################################
-def genColors():
+def genColors(dbg=1):
     _CLR       = cOd()
+    if dbg: s = f'{Z*6}'  ;  t = f'{s}RGB '  ;  opcs = [ f'{opc} ' for opc in range(len(OPC)) ]  ;  util.slog(f'Color{s}{util.fmtl(opcs, w="3",d1="")}{t}Diffs   {t}Steps', pfx=0, file=LOG_FILE)
     _CLR[VIOL] = _genColors(VIOL, (128,   0, 255))
     _CLR[BLUE] = _genColors(BLUE, (  0,   0, 255))
     _CLR[INDI] = _genColors(INDI, (  0, 180, 255))
@@ -68,26 +69,32 @@ def genColors():
     _CLR[PINK] = _genColors(PINK, (255, 128, 192))
     _CLR[FUSH] = _genColors(FUSH, (255,   0, 255))
     _CLR[GRAY] = _genColors(GRAY, (255, 255, 255))
-    _CLR[CC1]  = _genColors(CC1,  ( 13,  15, 255))
-    _CLR[CC2]  = _genColors(CC2,  (255, 128,   0))
-    _CLR[CC3]  = _genColors(CC3,  (250, 65,  190))
-    _CLR[CC4]  = _genColors(CC4,  (255, 128, 255))
+    _CLR[CLR1] = _genColors(CLR1, ( 13,  15, 255))
+    _CLR[CLR2] = _genColors(CLR2, (255, 128,   0))
+    _CLR[CLR3] = _genColors(CLR3, (250, 65,  190))
+    _CLR[CLR4] = _genColors(CLR4, (255, 128, 255))
     return _CLR
 
 def _genColors(key, k, dv=5, n=None, dbg=1):
-    n = n + 1  if n is not None  else  len(OPC)
-    colors = []  ;  l = len(k)  ;  m = len(OPC)
-    diffs = [ k[i] - k[i]/dv  for i in range(l) ]
-    steps = [ diffs[i]/(n-1)  for i in range(l) ]
+    colors = []  ;  l = len(k)  ;  m = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []
+    n      = n + 1  if n is not None  else m
+    diffs  = [ k[i] - k[i]/dv  for i in range(l) ]
+    steps  = [ diffs[i]/(n-1)  for i in range(l) ]
+    if dbg: msg = f'{key:4}:  O=['
     for opc in range(m):
         clrs = []
-        if dbg: util.slog(f'{key:4} {util.fmtl(k, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
+        if dbg: msg += f'{OPC[opc]:3} '
+#        if dbg: util.slog(f'{key:4} {util.fmtl(k, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
         for j in range(n):
-            color = list([ fri(k[i] - j * steps[i]) for i in range(l) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)
-            if dbg: util.slog(f'{j:2} {key:4} {util.fmtl(color, w="3")}', pfx=0, file=LOG_FILE)
+            color = list([ fri(k[i] - j * steps[i]) for i in range(l) ])
+            if dbg and opc == 0: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
+            color.append(OPC[opc])  ;  color = tuple(color)
+#            if   dbg > 1:       util.slog(f'{j:2} {key:4} {util.fmtl(color, w="3")}', pfx=0, file=LOG_FILE)
             clrs.append(color)
         colors.append(clrs)
-        if dbg: util.slog(f'{key:4} {util.fmtl(k, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=}', file=LOG_FILE)
+    if dbg: # {util.fmtl(k, w="3")}
+        util.slog( f'{msg[:-1]}] {util.fmtl(diffs, w="5.1f")} {util.fmtl(steps, w="4.1f")}', pfx=0, file=LOG_FILE)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
+        for i, m in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(m,   w="3"   )}', pfx=0, file=LOG_FILE)
     return colors
 def fri(f): return int(math.floor(f + 0.5))
 ########################################################################################################################################################################################################
@@ -307,7 +314,7 @@ class Tabs(pyglet.window.Window):
         a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c = self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
         P1, P2 = CLR[GRAY][ 0], CLR[GRAY][ 0]  ;  L1, L2 = CLR[GRAY][ 0], CLR[GRAY][ 0]  ;  S1, S2 = CLR[GRAY][ 0], CLR[GRAY][ 0]  ;  Z1, Z2 = CLR[GRAY][ 0], CLR[GRAY][ 0]
         T1, T2 = CLR[ORAN][15], CLR[ORAN][ 7]  ;  N1, N2 = CLR[GREN][15], CLR[GREN][ 7]  ;  I1, I2 = CLR[INDI][15], CLR[INDI][ 7]  ;  K1, K2 = CLR[YELL][15], CLR[YELL][ 7]
-        R1, R2 = CLR[CC3][10],  CLR[CC3][10]   ;  Q1, Q2 = CLR[CC1][10],  CLR[CC2][10]   ;  H1, H2 = CLR[CC3][ 7], CLR[CC4][ 7]  ;  V1, V2 = CLR[PINK][15], CLR[PINK][ 7]
+        R1, R2 = CLR[CLR3][10], CLR[CLR3][10]  ;  Q1, Q2 = CLR[CLR1][10], CLR[CLR2][10]  ;  H1, H2 = CLR[CLR3][ 7], CLR[CLR4][ 7]  ;  V1, V2 = CLR[PINK][15], CLR[PINK][ 7]
         O1, O2 = CLR[PINK][10], CLR[PINK][10]  ;  A1, A2 = CLR[BLUE][10], CLR[BLUE][10]  ;  D1, D2 = CLR[FUSH][10], CLR[FUSH][10]
         kP = [P1[ 0], P2[10]] if a else [P1[ 0], P2[10]] if b else [P2[ 0], P2[15]] if c else [P1[15], P1[ 0]] if d else None
         kL = [L1[ 0], L2[10]] if a else [L1[ 0], L2[10]] if b else [L1[ 0], L2[10]] if c else [L1[ 0], L2[10]] if d else None
