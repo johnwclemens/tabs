@@ -22,6 +22,7 @@ def dumpGlobals():
     util.slog(f'BASE_NAME = {BASE_NAME}', file=LOG_FILE)
 ########################################################################################################################################################################################################
 Z = ' '   ;    TEST_TEXT = 0
+F1, F2 = 0, 1
 CLR              = cOd()
 PATH             = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH        = PATH.parent
@@ -45,60 +46,54 @@ HARROWS, VARROWS = ['LEFT', 'RIGHT'], ['UP', 'DOWN']
 MELODY, CHORD, ARPG   = 0, 1, 2
 LEFT, RIGHT, UP, DOWN = 0, 1, 0, 1
 ########################################################################################################################################################################################################
-#OPC    = [ 255, 240, 225, 210, 195, 180, 165, 150, 135, 120, 105, 90, 75, 60, 45, 30, 15, 0 ]
-#          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
-OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
-KKNS = 'VIOL', 'BLUE', 'INDI', 'CYAN', 'TURQ', 'GREN', 'LIME', 'YELL', 'ORAN', 'PEAC', 'RUST', 'RRED', 'PINK', 'FUSH', 'GRAY', 'CLR1', 'CLR2', 'CLR3', 'CLR4'
-VIOL, BLUE, INDI, CYAN, TURQ, GREN, LIME, YELL, ORAN, PEAC, RUST, RRED, PINK, FUSH, GRAY, CLR1, CLR2, CLR3, CLR4 = KKNS
-########################################################################################################################################################################################################
-def genColors(dbg=1):
-    _CLR       = cOd()
-    if dbg: s = f'{Z*6}'  ;  t = f'{s}RGB '  ;  opcs = [ f'{opc} ' for opc in range(len(OPC)) ]  ;  util.slog(f'Color{s}{util.fmtl(opcs, w="3",d1="")}{t}Diffs   {t}Steps', pfx=0, file=LOG_FILE)
-    _CLR[VIOL] = _genColors(VIOL, (128,   0, 255))
-    _CLR[BLUE] = _genColors(BLUE, (  0,   0, 255))
-    _CLR[INDI] = _genColors(INDI, (  0, 180, 255))
-    _CLR[CYAN] = _genColors(CYAN, (  0, 255, 255))
-    _CLR[TURQ] = _genColors(TURQ, (  0, 255, 192))
-    _CLR[GREN] = _genColors(GREN, (  0, 255,   0))
-    _CLR[LIME] = _genColors(LIME, (160, 255,   0))
-    _CLR[YELL] = _genColors(YELL, (255, 255,   0))
-    _CLR[ORAN] = _genColors(ORAN, (255, 176,   0))
-    _CLR[PEAC] = _genColors(PEAC, (255, 160, 128))
-    _CLR[RUST] = _genColors(RUST, (255,  96,   0))
-    _CLR[RRED] = _genColors(RRED, (255,   0,   0))
-    _CLR[PINK] = _genColors(PINK, (255, 128, 192))
-    _CLR[FUSH] = _genColors(FUSH, (255,   0, 255))
-    _CLR[GRAY] = _genColors(GRAY, (255, 255, 255))
-    _CLR[CLR1] = _genColors(CLR1, ( 13,  15, 255))
-    _CLR[CLR2] = _genColors(CLR2, (255, 128,   0))
-    _CLR[CLR3] = _genColors(CLR3, (250, 65,  190))
-    _CLR[CLR4] = _genColors(CLR4, (255, 128, 255))
-    return _CLR
-
+def fri(f): return int(math.floor(f + 0.5))
 def _genColors(key, k, dv=5, n=None, dbg=1):
-    colors = []  ;  l = len(k)  ;  m = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []
-    n      = n + 1  if n is not None  else m
+    global CLR
+    colors = []  ;  l = len(k)  ;  m = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []  ;  n = n + 1  if n is not None  else m
     diffs  = [ k[i] - k[i]/dv  for i in range(l) ]
     steps  = [ diffs[i]/(n-1)  for i in range(l) ]
     if dbg: msg = f'{key:4}:  O=['
     for opc in range(m):
-        clrs = []
-        if dbg: msg += f'{OPC[opc]:3} '
+        clrs = []  ;  msg += f'{OPC[opc]:3} ' if dbg else ''
 #        if dbg: util.slog(f'{key:4} {util.fmtl(k, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
         for j in range(n):
-            color = list([ fri(k[i] - j * steps[i]) for i in range(l) ])
+            color = list([ fri(k[i] - j * steps[i]) for i in range(l) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)  ;  clrs.append(color)
             if dbg and opc == 0: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
-            color.append(OPC[opc])  ;  color = tuple(color)
 #            if   dbg > 1:       util.slog(f'{j:2} {key:4} {util.fmtl(color, w="3")}', pfx=0, file=LOG_FILE)
-            clrs.append(color)
         colors.append(clrs)
-    if dbg: # {util.fmtl(k, w="3")}
+    if dbg:
         util.slog( f'{msg[:-1]}] {util.fmtl(diffs, w="5.1f")} {util.fmtl(steps, w="4.1f")}', pfx=0, file=LOG_FILE)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
         for i, m in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(m,   w="3"   )}', pfx=0, file=LOG_FILE)
-    return colors
-def fri(f): return int(math.floor(f + 0.5))
+    CLR[key] = colors
+    return list(CLR.keys())
+
+def genColors(dbg=1):
+    global CLR
+    if dbg: s = f'{Z*7}'  ;  t = f'{s}RGB '  ;  o = [ f' {o}' for o in range(len(OPC)) ]  ;  util.slog(f'CLR{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=LOG_FILE)
+    _genColors('FSH', (255, 0, 255))
+    _genColors('PNK', (255, 128, 192))
+    _genColors('RED', (255,   0,   0))
+    _genColors('RST', (255,  96,   0))
+    _genColors('PCH', (255, 160, 128))
+    _genColors('ORN', (255, 176,   0))
+    _genColors('YLW', (255, 255,   0))
+    _genColors('LIM', (160, 255,   0))
+    _genColors('GRN', (  0, 255,   0))
+    _genColors('TRQ', (  0, 255, 192))
+    _genColors('CYA', (  0, 255, 255))
+    _genColors('IND', (  0, 180, 255))
+    _genColors('BLU', (  0,   0, 255))
+    _genColors('VLT', (128,   0, 255))
+    _genColors('GRY', (255, 255, 255))
+    _genColors('CL1', ( 13,  15, 255))
+    _genColors('CL2', (255, 128,   0))
+    _genColors('CL3', (250, 65,  190))
+    _genColors('CL4', (255, 128, 255))
+    return CLR.keys()
+#          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
+OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
+FSH, PNK, RED, RST, PCH, ORN, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = genColors()
 ########################################################################################################################################################################################################
-FONT_COLORS   = []
 FONT_SCALE    =  14/18  # 14pts/18pix
 FONT_DPIS     = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
 FONT_NAMES    = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
@@ -129,7 +124,6 @@ class Tabs(pyglet.window.Window):
 #        x = '\U0001F600 \U0001F603 \U0001F606 \U0001F609'  ;  y = ['\U0001F600', '\U0001F603', '\U0001F606', '\U0001F609'] #        print(f'{x=} y={util.fmtl(y)}')
         self.test_1(0x1D100)
         self.test_1(0x1D600)
-#        exit()
 
     def test_1(self, x):
         for i in range(0x100):
@@ -181,13 +175,13 @@ class Tabs(pyglet.window.Window):
         self.J1,  self.J2 = [], []
         self.ki           = []
         self.kbk,    self.symb,    self.mods,        self.symbStr, self.modsStr =         0, 0, 0, '', ''
-        self.A_CENTER  = 0  ;  self.A_LEFT      = 1  ;  self.A_RIGHT      = 0
+        self.A_CENTER  = 1  ;  self.A_LEFT      = 0  ;  self.A_RIGHT      = 0
         self.X_CENTER  = 1  ;  self.X_LEFT      = 0  ;  self.X_RIGHT      = 0
         self.Y_CENTER  = 1  ;  self.Y_TOP       = 0  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
-        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
-        self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 0  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS     = 1  ;  self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
-        self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
+        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 1  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
+        self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
+        self.VIEWS     = 1  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
@@ -228,8 +222,6 @@ class Tabs(pyglet.window.Window):
         self.i.insert(S, self.ssl())
         self.dumpArgs()
         self.fontStyle = NORMAL_STYLE
-        global CLR          ;  CLR = genColors()
-        global FONT_COLORS  ;  FONT_COLORS = [ CLR[VIOL][17][10], CLR[BLUE][17][10], CLR[INDI][17][10], CLR[CYAN][17][10], CLR[TURQ][17][10], CLR[GREN][17][10], CLR[LIME][17][10], CLR[YELL][17][10], CLR[ORAN][17][10], CLR[PEAC][17][10], CLR[RUST][17][10], CLR[RRED][17][10], CLR[PINK][17][10], CLR[FUSH][17][10] ]
         global LF2          ;  LF2 = LOG_FILE if self.RD_STDOUT else sys.stdout
         if self.TEST: self.test1() # ;  self.quit('EXIT TEST', save=0)
         self.sAlias = 'GUITAR_6_STD'
@@ -311,26 +303,26 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpStruct('init')
 
     def _initColors(self):
-        a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c = self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
-        P1, P2 = CLR[GRAY][ 0], CLR[GRAY][ 0]  ;  L1, L2 = CLR[GRAY][ 0], CLR[GRAY][ 0]  ;  S1, S2 = CLR[GRAY][ 0], CLR[GRAY][ 0]  ;  Z1, Z2 = CLR[GRAY][ 0], CLR[GRAY][ 0]
-        T1, T2 = CLR[ORAN][15], CLR[ORAN][ 7]  ;  N1, N2 = CLR[GREN][15], CLR[GREN][ 7]  ;  I1, I2 = CLR[INDI][15], CLR[INDI][ 7]  ;  K1, K2 = CLR[YELL][15], CLR[YELL][ 7]
-        R1, R2 = CLR[CLR3][10], CLR[CLR3][10]  ;  Q1, Q2 = CLR[CLR1][10], CLR[CLR2][10]  ;  H1, H2 = CLR[CLR3][ 7], CLR[CLR4][ 7]  ;  V1, V2 = CLR[PINK][15], CLR[PINK][ 7]
-        O1, O2 = CLR[PINK][10], CLR[PINK][10]  ;  A1, A2 = CLR[BLUE][10], CLR[BLUE][10]  ;  D1, D2 = CLR[FUSH][10], CLR[FUSH][10]
-        kP = [P1[ 0], P2[10]] if a else [P1[ 0], P2[10]] if b else [P2[ 0], P2[15]] if c else [P1[15], P1[ 0]] if d else None
-        kL = [L1[ 0], L2[10]] if a else [L1[ 0], L2[10]] if b else [L1[ 0], L2[10]] if c else [L1[ 0], L2[10]] if d else None
-        kS = [S1[15], S2[ 7]] if a else [S1[15], S2[ 7]] if b else [S1[15], S2[ 7]] if c else [S1[15], S2[ 7]] if d else None
-        kC = [Z1[15], Z1[ 7]] if a else [Z1[15], Z1[ 0]] if b else [Z1[15], Z1[ 0]] if c else [Z1[15], Z1[ 7]] if d else None
-        kT = [T1[15], T1[ 0]] if a else [T1[15], T1[ 0]] if b else [T2[15], T2[ 0]] if c else [T2[15], T2[ 0]] if d else None
-        kN = [N1[15], N1[ 0]] if a else [N1[15], N1[ 0]] if b else [N2[15], N2[ 0]] if c else [N2[15], N2[ 0]] if d else None
-        kI = [I1[15], I1[ 0]] if a else [I1[15], I1[ 0]] if b else [I2[15], I2[ 0]] if c else [I2[15], I2[ 0]] if d else None
-        kK = [K1[15], K1[ 0]] if a else [K1[15], K1[ 0]] if b else [K2[15], K2[ 0]] if c else [K2[15], K2[ 0]] if d else None
-        kR = [R1[13], R2[ 0]] if a else [R1[13], R2[ 0]] if b else [R1[13], R2[ 0]] if c else [R1[13], R2[ 0]] if d else None
-        kQ = [Q1[13], Q2[ 0]] if a else [Q1[13], Q2[ 0]] if b else [Q1[13], Q2[ 0]] if c else [Q1[13], Q2[ 0]] if d else None
-        kH = [H1[ 0], H2[15]] if a else [H1[ 0], H2[15]] if b else [H1[ 0], H2[15]] if c else [H1[ 0], H2[15]] if d else None
-        kV = [V1[ 0], V2[12]] if a else [V1[ 0], V2[12]] if b else [V1[ 0], V2[12]] if c else [V1[ 0], V2[12]] if d else None
-        kO = [O1[ 0], O2[10]] if a else [O1[ 0], O2[10]] if b else [O1[ 0], O2[10]] if c else [O1[ 0], O2[10]] if d else None
-        kA = [A2[ 0], A2[10]] if a else [A2[ 0], A2[10]] if b else [A2[ 0], A2[10]] if c else [A2[ 0], A2[10]] if d else None
-        kD = [D1[ 0], D2[10]] if a else [D1[ 0], D2[10]] if b else [D1[ 0], D2[10]] if c else [D1[ 0], D2[10]] if d else None
+        a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
+        P1, P2 = CLR[GRY][ 0], CLR[GRY][ 0]  ;  L1, L2 = CLR[GRY][ 0], CLR[GRY][ 0]  ;  S1, S2 = CLR[GRY][ 0], CLR[GRY][ 0]  ;  Z1, Z2 = CLR[GRY][ 0], CLR[GRY][ 0]
+        T1, T2 = CLR[ORN][15], CLR[ORN][ 7]  ;  N1, N2 = CLR[GRN][15], CLR[GRN][ 7]  ;  I1, I2 = CLR[IND][15], CLR[IND][ 7]  ;  K1, K2 = CLR[YLW][15], CLR[YLW][ 7]
+        R1, R2 = CLR[CL3][10], CLR[CL3][10]  ;  Q1, Q2 = CLR[CL1][10], CLR[CL2][10]  ;  H1, H2 = CLR[CL3][ 7], CLR[CL4][ 7]  ;  V1, V2 = CLR[PNK][15], CLR[PNK][ 7]
+        O1, O2 = CLR[PNK][10], CLR[PNK][10]  ;  A1, A2 = CLR[BLU][10], CLR[BLU][10]  ;  D1, D2 = CLR[FSH][10], CLR[FSH][10]
+        kP     = [P1[ 0], P2[10]] if a          else [P1[ 0], P2[10]] if b              else [P2[ 0], P2[15]] if c              else [P1[15], P1[ 0]] if d   else None
+        kL     = [L1[ 0], L2[10]] if a          else [L1[ 0], L2[10]] if b              else [L1[ 0], L2[10]] if c              else [L1[ 0], L2[10]] if d   else None
+        kS     = [S1[15], S2[ 7]] if a          else [S1[15], S2[ 7]] if b              else [S1[15], S2[ 7]] if c              else [S1[15], S2[ 7]] if d   else None
+        kC     = [Z1[15], Z1[ 7]] if a          else [Z1[15], Z1[ 0]] if b              else [Z1[15], Z1[ 0]] if c              else [Z1[15], Z1[ 7]] if d   else None
+        kT     = [T1[15], T1[ 0]] if a          else [T1[15], T1[ 0]] if b              else [T2[15], T2[ 0]] if c              else [T2[15], T2[ 0]] if d   else None
+        kN     = [N1[15], N1[ 0]] if a          else [N1[15], N1[ 0]] if b              else [N2[15], N2[ 0]] if c              else [N2[15], N2[ 0]] if d   else None
+        kI     = [I1[15], I1[ 0]] if a          else [I1[15], I1[ 0]] if b              else [I2[15], I2[ 0]] if c              else [I2[15], I2[ 0]] if d   else None
+        kK     = [K1[15], K1[ 0]] if a          else [K1[15], K1[ 0]] if b              else [K2[15], K2[ 0]] if c              else [K2[15], K2[ 0]] if d   else None
+        kR     = [R1[13], R2[ 0]] if a          else [R1[13], R2[ 0]] if b              else [R1[13], R2[ 0]] if c              else [R1[13], R2[ 0]] if d   else None
+        kQ     = [Q1[13], Q2[ 0]] if a          else [Q1[13], Q2[ 0]] if b              else [Q1[13], Q2[ 0]] if c              else [Q1[13], Q2[ 0]] if d   else None
+        kH     = [H1[ 0], H2[15]] if a          else [H1[ 0], H2[15]] if b              else [H1[ 0], H2[15]] if c              else [H1[ 0], H2[15]] if d   else None
+        kV     = [V1[ 0], V2[12]] if a          else [V1[ 0], V2[12]] if b              else [V1[ 0], V2[12]] if c              else [V1[ 0], V2[12]] if d   else None
+        kO     = [O1[ 0], O2[10]] if a          else [O1[ 0], O2[10]] if b              else [O1[ 0], O2[10]] if c              else [O1[ 0], O2[10]] if d   else None
+        kA     = [A2[ 0], A2[10]] if a          else [A2[ 0], A2[10]] if b              else [A2[ 0], A2[10]] if c              else [A2[ 0], A2[10]] if d   else None
+        kD     = [D1[ 0], D2[10]] if a          else [D1[ 0], D2[10]] if b              else [D1[ 0], D2[10]] if c              else [D1[ 0], D2[10]] if d   else None
         self.k   = [ kP, kL, kS, kC,  kT, kN, kI, kK,  kR, kQ, kH, kV,  kO, kA, kD ]
         [ self.log(f'[{i:2}] {util.fmtl(e, w=3)}') for i, e in enumerate(self.k) ]
 
@@ -1421,27 +1413,27 @@ class Tabs(pyglet.window.Window):
         n = nl * nt * ns if ns else nl * nt  ;  n += self.LL * nl
         w = self.width / nc  ;  h = self.height / n
         fs = self.calcFontSize(' ', w, h, j=T, dbg=1)
-        self.fontBold, self.fontItalic, self.fontColorIndex, self.fontDpiIndex, self.fontNameIndex, self.fontSize = 0, 0, 0, 4, 0, fs
+        self.fontBold, self.fontItalic, self.clrIdx, self.fontDpiIndex, self.fontNameIndex, self.fontSize = 0, 0, 0, 4, 0, fs
         self.log(f'{w=:6.3f}={self.width =}/({nc})                   {FONT_SCALE=:5.3f} fs=w*FONT_SCALE={fs:6.3f}pt')
         self.log(f'{h=:6.3f}={self.height=}/({nl=} * {ns=} * {nt=})  {FONT_SCALE=:5.3f} fs=h*FONT_SCALE={fs:6.3f}pt')
         self.dumpFont()
 
-    def fontParams(self):    return self.fontBold, self.fontColorIndex, self.fontDpiIndex, self.fontItalic, self.fontNameIndex, self.fontSize
+    def fontParams(self):    return self.fontBold, self.clrIdx, self.fontDpiIndex, self.fontItalic, self.fontNameIndex, self.fontSize
 
     def fmtFont(self, dbg=0):
         fb, fc, fd, fi, fn, fs = self.fontParams()
-        text = f'{FONT_DPIS[fd]}dpi {fs:5.2f}pt {FONT_NAMES[fn]} {fc}:{FONT_COLORS[fc]}'
+        text = f'{FONT_DPIS[fd]}dpi {fs:5.2f}pt {FONT_NAMES[fn]} {fc}'
         if dbg: self.log(f'{text}')
         return text
 
     def dumpFont(self, why=''):
         b, k, dpi, i, n, s = self.fontParams()
-        pix = s / FONT_SCALE
-        self.log(f'{dpi}:{FONT_DPIS[dpi]}dpi {s:6.3f}pt {n}:{FONT_NAMES[n]} {k}:{FONT_COLORS[k]} {s:6.3f}pt = {FONT_SCALE:5.3f}(pt/pix) * {pix:6.3f}pixels {why}')
+        pix = s / FONT_SCALE   ;   fcs = '' # f'{util.fmtl( [k])}'
+        self.log(f'{dpi}:{FONT_DPIS[dpi]}dpi {s:6.3f}pt {n}:{FONT_NAMES[n]} {k}:{fcs} {s:6.3f}pt = {FONT_SCALE:5.3f}(pt/pix) * {pix:6.3f}pixels {why}')
 
     def setFontParam(self, n, v, m, dbg=1):
         setattr(self, m, v)
-        if m == "fontColorIndex": self.fontStyle = NORMAL_STYLE if self.fontStyle == SELECT_STYLE else SELECT_STYLE
+        if m == "clrIdx": self.fontStyle = NORMAL_STYLE if self.fontStyle == SELECT_STYLE else SELECT_STYLE
         if dbg:                         self.log( f'      {n:12}  {v:4}  {m}  {len(self.E)=}')
         for i in range(len(self.E)):
             if dbg and self.VERBOSE:    self.log(f'{i:4}  {n:12}  {v:4}  {m}  {len(self.E)=}')
@@ -1450,12 +1442,12 @@ class Tabs(pyglet.window.Window):
 
     def _setFontParam(self, p, n, v, m, dbg=1):
         for i in range(len(p)):
-            k = len(p[i].color)
-            msg = f'{FONT_COLORS[v][:k]=}' if m == "fontColorIndex" else f'{FONT_NAMES[v]=}' if m == "fontNameIndex" else f'{v=}'
+            # k = len(p[i].color) # { [v][:k]=}' if m == "clrIdx" else
+            msg = f'{FONT_NAMES[v]=}' if m == "fontNameIndex" else f'{v=}'
             if dbg:
                 f = 1 if self.VERBOSE else 10
                 if not i % f:           self.log(f'{i:4}  {n:12}  {v:4}  {msg}')
-            if   m == 'fontColorIndex': self.setTNIKStyle(i, 1, self.fontStyle)
+            if   m == 'clrIdx': self.setTNIKStyle(i, 1, self.fontStyle)
             else:                       setattr(p[i], n, FONT_NAMES[v] if m == 'fontNameIndex' else v)
     @staticmethod
     def pix2fontsize(pix): return pix * FONT_SCALE # ( ) % FS_MAX
@@ -1544,18 +1536,16 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'A' and self.isAltShift(mods):     self.setn_cmd(    '&^ A', txt='')
         elif kbk == 'A' and self.isAlt(     mods):     self.setn_cmd(    '& A', txt='')
     ####################################################################################################################################################################################################
-        elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam('bold',   not self.fontBold,                               'fontBold')
-        elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam('bold',   not self.fontBold,                               'fontBold')
-        elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam('color',     (self.fontColorIndex + 1) % len(FONT_COLORS), 'fontColorIndex')
-        elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam('color',     (self.fontColorIndex - 1) % len(FONT_COLORS), 'fontColorIndex')
-#        elif kbk == 'D' and self.isAltShift(mods):     self.setFontParam('dpi',       (self.fontDpiIndex   + 1) % len(FONT_DPIS),   'fontDpiIndex')
-#        elif kbk == 'D' and self.isAlt(     mods):     self.setFontParam('dpi',       (self.fontDpiIndex   - 1) % len(FONT_DPIS),   'fontDpiIndex')
-        elif kbk == 'I' and self.isAltShift(mods):     self.setFontParam('italic', not self.fontItalic,                             'fontItalic')
-        elif kbk == 'I' and self.isAlt(     mods):     self.setFontParam('italic', not self.fontItalic,                             'fontItalic')
-        elif kbk == 'N' and self.isAltShift(mods):     self.setFontParam('font_name', (self.fontNameIndex + 1)  % len(FONT_NAMES),  'fontNameIndex')
-        elif kbk == 'N' and self.isAlt(     mods):     self.setFontParam('font_name', (self.fontNameIndex - 1)  % len(FONT_NAMES),  'fontNameIndex')
-        elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam('font_size',  self.fontSize      + 1,                      'fontSize') # )  % FS_MAX
-        elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam('font_size',  max(self.fontSize-1, 1),                     'fontSize') # )  % FS_MAX
+        elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam('bold',   not self.fontBold,                              'fontBold')
+        elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam('bold',   not self.fontBold,                              'fontBold')
+        elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam('color',     (self.clrIdx + 1) % len(CLR),        'clrIdx')
+        elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam('color',     (self.clrIdx - 1) % len(CLR),        'clrIdx')
+        elif kbk == 'I' and self.isAltShift(mods):     self.setFontParam('italic', not self.fontItalic,                            'fontItalic')
+        elif kbk == 'I' and self.isAlt(     mods):     self.setFontParam('italic', not self.fontItalic,                            'fontItalic')
+        elif kbk == 'N' and self.isAltShift(mods):     self.setFontParam('font_name', (self.fontNameIndex + 1)  % len(FONT_NAMES), 'fontNameIndex')
+        elif kbk == 'N' and self.isAlt(     mods):     self.setFontParam('font_name', (self.fontNameIndex - 1)  % len(FONT_NAMES), 'fontNameIndex')
+        elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam('font_size',  self.fontSize      + 1,                     'fontSize') # )  % FS_MAX
+        elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam('font_size',  max(self.fontSize-1, 1),                    'fontSize') # )  % FS_MAX
     ####################################################################################################################################################################################################
         if not self.isParsing():
             if   kbk == 'ENTER' and self.isCtrl(mods): self.setCHVMode(  '@  ENTER',     CHORD,       v=DOWN)
