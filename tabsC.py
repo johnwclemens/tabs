@@ -84,8 +84,6 @@ class Tabs(pyglet.window.Window):
         self.dumpArgs()
         self.fontStyle = NORMAL_STYLE
         self.k         = {}
-        global LF2          ;  LF2 = LOG_FILE if self.RD_STDOUT else sys.stdout
-        if self.TEST: self.test1() # ;  self.quit('EXIT TEST', save=0)
         self.sAlias = 'GUITAR_6_STD'
         self.sobj = util.Strings(LOG_FILE, self.sAlias)
         self.cobj = chord.Chord( LOG_FILE, self.sobj)
@@ -188,24 +186,24 @@ class Tabs(pyglet.window.Window):
         return self.k
     def _initColors(self):
         a = not self.SPRITES and not self.BGC # ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
-        self.k[P] = self.initk(GRY,  0,  0, GRY, 17,  0) if a else self.initk(GRY,  0,  0, GRY, 17,  0)
-        self.k[L] = self.initk(GRY,  0,  0, GRY, 17,  0) if a else self.initk(GRY,  0,  0, GRY, 17,  0)
-        self.k[S] = self.initk(GRY,  0,  0, GRY, 17,  0) if a else self.initk(GRY,  0,  0, GRY, 17,  0)
-        self.k[C] = self.initk(GRY,  0,  0, GRY, 17,  0) if a else self.initk(GRY,  0,  0, GRY, 17,  0)
-        self.k[T] = self.initk(ORN, 17,  0, ORN, 17, 17) if a else self.initk(ORN, 17,  0, ORN, 17, 17)
-        self.k[N] = self.initk(GRN, 17,  0, GRN, 17, 17) if a else self.initk(GRN, 17,  0, GRN, 17, 17)
-        self.k[I] = self.initk(IND, 17,  0, IND, 17, 17) if a else self.initk(IND, 17,  0, IND, 17, 17)
-        self.k[K] = self.initk(YLW, 17,  0, YLW, 17, 17) if a else self.initk(YLW, 17,  0, YLW, 17, 17)
-        self.k[R] = self.initk(CL3, 17,  0, CL3, 17, 17) if a else self.initk(CL3, 17,  0, CL3, 17, 17)
-        self.k[C] = self.initk(CL2, 17,  0, CL2, 17, 17) if a else self.initk(CL2, 17,  0, CL2, 17, 17)
-        self.k[H] = self.initk(CL4, 17,  0, CL4, 17, 17) if a else self.initk(CL4, 17,  0, CL4, 17, 17)
-        self.k[V] = self.initk(PNK, 17,  0, PNK, 17, 17) if a else self.initk(PNK, 17,  0, PNK, 17, 17)
-        self.k[O] = self.initk(PNK, 17,  0, PNK, 17, 17) if a else self.initk(PNK, 17,  0, PNK, 17, 17)
-        self.k[A] = self.initk(BLU, 17,  0, BLU, 17, 17) if a else self.initk(BLU, 17,  0, BLU, 17, 17)
-        self.k[D] = self.initk(FSH, 17,  0, FSH, 17, 17) if a else self.initk(FSH, 17,  0, FSH, 17, 17)
+        j = P  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0) if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = L  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0) if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = S  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0) if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = C  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0) if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = T  ;  self.k[j] = self.initk(j, ORN, 17,  0, ORN, 17, 17) if a else self.initk(j, ORN, 17,  0, ORN, 17, 17)
+        j = N  ;  self.k[j] = self.initk(j, GRN, 17,  0, GRN, 17, 17) if a else self.initk(j, GRN, 17,  0, GRN, 17, 17)
+        j = I  ;  self.k[j] = self.initk(j, IND, 17,  0, IND, 17, 17) if a else self.initk(j, IND, 17,  0, IND, 17, 17)
+        j = K  ;  self.k[j] = self.initk(j, YLW, 17,  0, YLW, 17, 17) if a else self.initk(j, YLW, 17,  0, YLW, 17, 17)
+        j = R  ;  self.k[j] = self.initk(j, CL3, 17,  0, CL3, 17, 17) if a else self.initk(j, CL3, 17,  0, CL3, 17, 17)
+        j = Q  ;  self.k[j] = self.initk(j, CL2, 17,  0, CL2, 17, 17) if a else self.initk(j, CL2, 17,  0, CL2, 17, 17)
+        j = H  ;  self.k[j] = self.initk(j, CL4, 17,  0, CL4, 17, 17) if a else self.initk(j, CL4, 17,  0, CL4, 17, 17)
+        j = V  ;  self.k[j] = self.initk(j, PNK, 17,  0, PNK, 17, 17) if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
+        j = O  ;  self.k[j] = self.initk(j, PNK, 17,  0, PNK, 17, 17) if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
+        j = A  ;  self.k[j] = self.initk(j, BLU, 17,  0, BLU, 17, 17) if a else self.initk(j, BLU, 17,  0, BLU, 17, 17)
+        j = D  ;  self.k[j] = self.initk(j, FSH, 17,  0, FSH, 17, 17) if a else self.initk(j, FSH, 17,  0, FSH, 17, 17)
 
-    @staticmethod
-    def initk(k0, o0, c0, k1, o1, c1):
+    def initk(self, j, k0, o0, c0, k1, o1, c1):
+        self.log(f'{j:2}  {JTEXTS[j]:4}  [{k0} {o0:2} {c0:2}] [ {k1} {o1:2} {c1:2}]')
         return [RGB[k0][o0][c0], RGB[k1][o1][c1]]
     ####################################################################################################################################################################################################
     def _initData(self, dbg=1):
@@ -894,18 +892,18 @@ class Tabs(pyglet.window.Window):
         return x, s, x2, w2
     ####################################################################################################################################################################################################
     def splitV(self, p, a, dbg=0):
-        if   type(p) is pygtxt.Label:   p.y, p.height, g     = self.splitV1(p.y, p.height, a)                  ;  self.log(f'{p.y=:6.2f} {p.height=:6.2f} {a=} {g=:6.2f}', file=LF2) if dbg else None
-        elif type(p) is pygsprt.Sprite: p.y, h, g, p.scale_y = self.splitV2(p.y, p.height, a, p.image.height)  ;  self.log(f'{p.y=:6.2f} {p.scale_y=:6.4f} {a=} {h=:6.2f}', file=LF2) if dbg else None
+        if   type(p) is pygtxt.Label:   p.y, p.height, g     = self.splitV1(p.y, p.height, a)                  ;  self.log(f'{p.y=:6.2f} {p.height=:6.2f} {a=} {g=:6.2f}', so=1)  if dbg else None
+        elif type(p) is pygsprt.Sprite: p.y, h, g, p.scale_y = self.splitV2(p.y, p.height, a, p.image.height)  ;  self.log(f'{p.y=:6.2f} {p.scale_y=:6.4f} {a=} {h=:6.2f}', so=1) if dbg else None
 
     def splitV1(self, y, h, a, dbg=1):
-        self.log(f'{y=:6.2f} {h=:6.2f} {a=}', end=' ', file=LF2) if dbg else None
-        c = h/a  ;  h -= c  ;  y -= c/2 ;  self.log(f'{y=:6.2f} {h=:6.2f} {a=} {c=:6.2f}', pfx=0, file=LF2) if dbg else None  ;  return y, h, c
+        self.log(f'{y=:6.2f} {h=:6.2f} {a=}', end=' ', so=0) if dbg else None
+        c = h/a  ;  h -= c  ;  y -= c/2 ;  self.log(f'{y=:6.2f} {h=:6.2f} {a=} {c=:6.2f}', pfx=0, so=1) if dbg else None  ;  return y, h, c
 
     def splitV2(self, y, h, a, g, dbg=1):
-        self.log(f'{y=:6.2f} {h=:6.2f} {a=} {g=:6.4f}', end=' ', file=LF2) if dbg else None
-        c = h/a  ;  h -= c  ;  g = h/g  ;  self.log(f'{y=:6.2f} {h=:6.2f} {a=} {c=:6.2f} {g=:6.4f}', pfx=0, file=LF2)  if dbg else None  ;  return y, h, c, g
+        self.log(f'{y=:6.2f} {h=:6.2f} {a=} {g=:6.4f}', end=' ', so=0) if dbg else None
+        c = h/a  ;  h -= c  ;  g = h/g  ;  self.log(f'{y=:6.2f} {h=:6.2f} {a=} {c=:6.2f} {g=:6.4f}', pfx=0, so=1)  if dbg else None  ;  return y, h, c, g
 
-#    def sprite2LabelPos(self, x, y, w, h, dbg=0): x0 = x  ;  y0 = y  ;  x += w/2  ;  y -= h/2  ;  self.log(f'{x0=:6.2f} {y0=:6.2f}, {w/2=:6.2f} {-h/2=:6.2f}, {x=:6.2f} {y=:6.2f} {self.p0x=:6.2f} {self.p0y=:6.2f}', file=LF2) if dbg else None  ;  return x, y
+#    def sprite2LabelPos(self, x, y, w, h, dbg=0): x0 = x  ;  y0 = y  ;  x += w/2  ;  y -= h/2  ;  self.log(f'{x0=:6.2f} {y0=:6.2f}, {w/2=:6.2f} {-h/2=:6.2f}, {x=:6.2f} {y=:6.2f} {self.p0x=:6.2f} {self.p0y=:6.2f}', so=1) if dbg else None  ;  return x, y
     ####################################################################################################################################################################################################
     def idmapkey(self, j):    return f'{JTEXTS[j]:4} {self.J2[j]:4}'
     def dumpIdMap(self):
@@ -919,7 +917,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def isV( self, j, dbg=0):
         v = 1 if self.J2[P] == self.i[P] else 0
-        if dbg: self.log(f'{self.fmtJText(j, why="isV()")} {self.J2[P]=} {self.i[P]=} {self.J2[j]=} i[]={self.fmtIxI()} v={v}', file=LF2)
+        if dbg: self.log(f'{self.fmtJText(j, why="isV()")} {self.J2[P]=} {self.i[P]=} {self.J2[j]=} i[]={self.fmtIxI()} v={v}', so=1)
         return v
     def j2plct(self, p=None, l=None, c=None, t=None):
         np, nl, ns, nc, nt = self.n   ;   n = 0
@@ -984,7 +982,7 @@ class Tabs(pyglet.window.Window):
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}'
             (px, py, pw, ph) = (p.x, p.y, p.width, p.height) if p else (0.0, 0.0, 0.0, 0.0)
             msg2 = f' : {px:7.2f} {py:7.2f} {pw:7.2f} {ph:7.2f}'  ;  msg += msg2 if p else " " * len(msg2)
-            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', pfx=0, file=LF2)
+            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', pfx=0, so=1)
         return n, i, x, y, w, h
     ####################################################################################################################################################################################################
     def imap2ikey(self, tobj, imap, i, j, dbg=0):
@@ -2254,7 +2252,6 @@ LOG_FILE = None
 ########################################################################################################################################################################################################
 Z = ' '  ;  TEST_TEXT = 0
 RGB                   = cOd()
-LF2                   = None
 P, L, S, C            =  0,  1,  2,  3
 T, N, I, K            =  4,  5,  6,  7
 R, Q, H, V            =  8,  9, 10, 11
