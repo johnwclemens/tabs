@@ -18,13 +18,6 @@ QUIT_END         = '###   END Quit   ###' * 10
 #STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
 STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
-def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1):
-    if dbg: slog(f'{baseName = } {basePath = }')
-    fileName        = baseName + fsfx
-    filePath        = basePath / fdir / fileName
-    if dbg: slog(f'{fileName = } {filePath = }')
-    return filePath
-########################################################################################################################################################################################################
 def fmtl(ls, w=None, u='>', d1='[', d2=']', sep=' ', ll=0, z=''):
     if ls is None: return 'None'
     lts = (list, tuple, set, frozenset)  ;  dts = (int, float, str)
@@ -95,9 +88,10 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
         msg = f'{sf.f_lineno:4} {fp.stem} {sf.f_code.co_name:18} ' + msg
 #    print(       f'{msg}', flush=flush, sep=sep, end=end, file=file) if file is not None and not file.closed else None
 #    if so: print(f'{msg}', flush=flush, sep=sep, end=end, file=sys.stdout)
-    if    so or file is None or file.closed: print(f'{msg}', flush=flush, sep=sep, end=end, file=None)
-    else:                                    print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
-    if flush: os.fsync(file) if file is not None and not file.closed else None  ;  os.fsync(sys.stdout) if so else None
+    if   so:                          print(f'{msg}', flush=flush, sep=sep, end=end, file=None)
+    if   file is None or file.closed: print(f'{msg}', flush=flush, sep=sep, end=end, file=None)
+    else:                             print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
+    if   flush: os.fsync(file) if file is not None and not file.closed else None  ;  os.fsync(sys.stdout) if so else None
 ########################################################################################################################################################################################################
 def copyFile(src, trg, file=None):
     if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;  raise SystemExit(msg)
