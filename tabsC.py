@@ -1,17 +1,12 @@
-#import logging#, shutil#, unicodedata, readline, csv, string
-import glob, inspect, itertools, math, os, pathlib, sys
-import operator
-from collections import OrderedDict as cOd
+import glob, math, os, pathlib, sys
+import operator, inspect, itertools
 from itertools   import accumulate
+from collections import OrderedDict as cOd
 import pyglet
 import pyglet.sprite as pygsprt
 import pyglet.text as pygtxt
 import pyglet.window.event as pygwine
 import pyglet.window.key as pygwink
-#sys.path.append(os.path.abspath("./lib"))
-#print(f'{len(sys.path)=}')
-#for _ in sys.path:
-#    print(f'{_}')
 import chord, util
 
 ########################################################################################################################################################################################################
@@ -2187,15 +2182,7 @@ class Tabs(pyglet.window.Window):
         LOG_FILE.close()
     ####################################################################################################################################################################################################
 
-########################################################################################################################################################################################################
-PATH = pathlib.Path.cwd() / sys.argv[0]
-BASE_PATH = PATH.parent
-BASE_NAME = BASE_PATH.stem
-SNAP_DIR = 'snaps'
-SNAP_SFX = '.png'
-LOG_FILE = None
-########################################################################################################################################################################################################
-
+# Global Functions BGN
 ########################################################################################################################################################################################################
 def fri(f): return int(math.floor(f + 0.5))
 def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1, file=None):
@@ -2254,41 +2241,51 @@ def initRGB(dbg=1):
     _initRGB('CL4', (255, 128, 255))  # 18
     return RGB.keys()
 ########################################################################################################################################################################################################
+# Global Functions END
 
+# Globals BGN
+########################################################################################################################################################################################################
+PATH = pathlib.Path.cwd() / sys.argv[0]
+BASE_PATH = PATH.parent
+BASE_NAME = BASE_PATH.stem
+SNAP_DIR = 'snaps'
+SNAP_SFX = '.png'
+LOG_FILE = None
+########################################################################################################################################################################################################
+Z = ' '  ;  TEST_TEXT = 0
+RGB                   = cOd()
+LF2                   = None
+P, L, S, C            =  0,  1,  2,  3
+T, N, I, K            =  4,  5,  6,  7
+R, Q, H, V            =  8,  9, 10, 11
+O, A, D               = 12, 13, 14
+TT, NN, II, KK        =  0,  1,  2,  3
+C1,  C2               =  0,  1
+CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
+HARROWS, VARROWS      = ['LEFT', 'RIGHT'], ['UP', 'DOWN']
+MELODY, CHORD, ARPG   =  0, 1, 2
+LEFT, RIGHT, UP, DOWN =  0, 1, 0, 1
+NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE, COPY_STYLE = 0, 1, 2, 3
+#           0        1        2        3       4       5        6        7         8        9      10      11        12       13       14      15
+JTEXTS = ['Page',  'Line',  'Sect',  'Col',  'Tab',  'Note',  'IKey',  'Kord',  '_LLR',  '_LLC', 'Curs', 'View',  '_SNo',  '_SNm',  '_Cpo', '_TNIK']
+jTEXTS = ['pages', 'lines', 'sects', 'cols', 'tabs', 'notes', 'ikeys', 'Kords', 'lrows', 'lcols', 'curs', 'views', 'snos', 'snas', 'capos', 'tniks']
+JFMT   = [   1,       2,       2,       3,      4,      4,       4,       4,       2,       3,       1,       1,      2,      2,      3,       4]
+#          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
+OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
+# 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
+FONT_SCALE    =  14/18  # 14pts/18pix
+FONT_DPIS     = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
+FONT_NAMES    = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
+########################################################################################################################################################################################################
+# Globals END
+
+# Log and Main BGN
 ########################################################################################################################################################################################################
 prevPath = getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
 LOG_PATH = getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
 if LOG_PATH.exists(): util.copyFile(LOG_PATH, prevPath, LOG_FILE)
 with open(   str(LOG_PATH), 'w', encoding='utf-8')  as  LOG_FILE:
-    Z = ' '  ;  TEST_TEXT = 0
-    RGB                   = cOd()
-    #LOG_PATH              = None
-    LF2                   = None
-    P, L, S, C            =  0,  1,  2,  3
-    T, N, I, K            =  4,  5,  6,  7
-    R, Q, H, V            =  8,  9, 10, 11
-    O, A, D               = 12, 13, 14
-    TT, NN, II, KK        =  0,  1,  2,  3
-    C1,  C2               =  0,  1
-    CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
-    HARROWS, VARROWS      = ['LEFT', 'RIGHT'], ['UP', 'DOWN']
-    MELODY, CHORD, ARPG   =  0, 1, 2
-    LEFT, RIGHT, UP, DOWN =  0, 1, 0, 1
-    NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE, COPY_STYLE = 0, 1, 2, 3
-    #           0        1        2        3       4       5        6        7         8        9      10      11        12       13       14      15
-    JTEXTS = ['Page',  'Line',  'Sect',  'Col',  'Tab',  'Note',  'IKey',  'Kord',  '_LLR',  '_LLC', 'Curs', 'View',  '_SNo',  '_SNm',  '_Cpo', '_TNIK']
-    jTEXTS = ['pages', 'lines', 'sects', 'cols', 'tabs', 'notes', 'ikeys', 'Kords', 'lrows', 'lcols', 'curs', 'views', 'snos', 'snas', 'capos', 'tniks']
-    JFMT   = [   1,       2,       2,       3,      4,      4,       4,       4,       2,       3,       1,       1,      2,      2,      3,       4]
-    #          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
-    OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
     FSH, PNK, RED, RST, PCH, ORN, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
-    # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
-    FONT_SCALE    =  14/18  # 14pts/18pix
-    FONT_DPIS     = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
-    FONT_NAMES    = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
-    ########################################################################################################################################################################################################
-
-    ########################################################################################################################################################################################################
     def main():
         util.slog(f'{LOG_PATH=}', file=LOG_FILE)
         util.slog(f'{LOG_FILE.name=}', file=LOG_FILE)
@@ -2298,4 +2295,5 @@ with open(   str(LOG_PATH), 'w', encoding='utf-8')  as  LOG_FILE:
     ########################################################################################################################################################################################################
     if __name__ == '__main__':
         main()
-    ########################################################################################################################################################################################################
+########################################################################################################################################################################################################
+# Log and Main END
