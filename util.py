@@ -1,4 +1,4 @@
-"""util.py module.  class list: [DSymb, Note, Strings]."""
+"""util.py module.  class list: [DSymb, Note, Strings, Test]."""
 import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
@@ -225,3 +225,15 @@ class Strings(object):
     @staticmethod
     def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
     def tab2fn(self, tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  self.log(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
+
+########################################################################################################################################################################################################
+class Test:
+    def __init__(self, a, file=None): self._a = a  ;  slog(f'<Test_init_:     _a={self._a}>', pfx=1, file=file)
+    @property
+    def a(self, file=None):                           slog(f'<Test_prop_a:     _a={self._a}>', pfx=1, file=file)
+    @a.setter
+    def a(self, a, file=None):        self._a = a  ;  slog(f'<Test_set_a:     _a={self._a}>', pfx=1, file=file)
+    @a.getter
+    def a(self, file=None):                           slog(f'<Test_get_a:     _a={self._a}>', pfx=1, file=file)  ;  return self._a
+    @a.deleter
+    def a(self, file=None):                           slog(f'<Test_del_a: del _a>', pfx=1, file=file)  ;  del self._a

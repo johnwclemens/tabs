@@ -75,3 +75,5 @@ CL4:  O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255
        R=[255 243 231 219 207 195 183 171 159 147 135 123 111  99  87  75  63  51]
        G=[128 122 116 110 104  98  92  86  80  74  68  62  56  50  44  38  32  26]
        B=[255 243 231 219 207 195 183 171 159 147 135 123 111  99  87  75  63  51]
+ 114 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 115 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
