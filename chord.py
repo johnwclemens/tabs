@@ -6,8 +6,6 @@ from collections import OrderedDict as cOd
 import util
 #from util import Strings as us
 
-VERBOSE = 0 # tabs.VERBOSE
-
 class Chord(object):
     MIN_CHORD_LEN = 3
     def __init__(self, file, sobj):

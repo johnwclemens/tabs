@@ -21,34 +21,33 @@ def dumpGlobals():
     util.slog(f'BASE_PATH = {BASE_PATH}', file=LOG_FILE)
     util.slog(f'BASE_NAME = {BASE_NAME}', file=LOG_FILE)
 ########################################################################################################################################################################################################
-Z = ' '   ;    TEST_TEXT = 0
-F1, F2 = 0, 1
-CLR              = cOd()
-PATH             = pathlib.Path.cwd() / sys.argv[0]
-BASE_PATH        = PATH.parent
-BASE_NAME        = BASE_PATH.stem
-SNAP_DIR         = 'snaps'
-SNAP_SFX         = '.png'
-LOG_FILE         = None   ;   LF2 = None
-P, L, S, C       =  0,  1,  2,  3
-T, N, I, K       =  4,  5,  6,  7
-R, Q, H, V       =  8,  9, 10, 11
-O, A, D          = 12, 13, 14
-#                     0         1       2        3       4        5       6        7         8        9      10      11       12       13       14      15
-JTEXTS           = ['Page',  'Line',  'Sect',  'Col',  'Tab',  'Note',  'IKey',  'Kord',  '_LLR',  '_LLC', 'Curs', 'View',  '_SNo',  '_SNm',  '_Cpo', '_TNIK']
-jTEXTS           = ['pages', 'lines', 'sects', 'cols', 'tabs', 'notes', 'ikeys', 'Kords', 'lrows', 'lcols', 'curs', 'views', 'snos', 'snas', 'capos', 'tniks']
-JFMT             = [   1,       2,       2,       3,      4,      4,       4,       4,       2,       3,       1,       1,      2,      2,      3,       4]
-TT, NN, II, KK   =  0,  1,  2,  3
-C1,  C2          =  0,  1
+Z = ' '  ;  TEST_TEXT = 0
+RGB                   = cOd()
+PATH                  = pathlib.Path.cwd() / sys.argv[0]
+BASE_PATH             = PATH.parent
+BASE_NAME             = BASE_PATH.stem
+SNAP_DIR              = 'snaps'
+SNAP_SFX              = '.png'
+LOG_FILE              = None   ;   LF2 = None
+P, L, S, C            =  0,  1,  2,  3
+T, N, I, K            =  4,  5,  6,  7
+R, Q, H, V            =  8,  9, 10, 11
+O, A, D               = 12, 13, 14
+TT, NN, II, KK        =  0,  1,  2,  3
+C1,  C2               =  0,  1
+CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
+HARROWS, VARROWS      = ['LEFT', 'RIGHT'], ['UP', 'DOWN']
+MELODY, CHORD, ARPG   =  0, 1, 2
+LEFT, RIGHT, UP, DOWN =  0, 1, 0, 1
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE, COPY_STYLE = 0, 1, 2, 3
-CSR_MODES        = ['MELODY', 'CHORD', 'ARPG']
-HARROWS, VARROWS = ['LEFT', 'RIGHT'], ['UP', 'DOWN']
-MELODY, CHORD, ARPG   = 0, 1, 2
-LEFT, RIGHT, UP, DOWN = 0, 1, 0, 1
+#           0        1        2        3       4       5        6        7         8        9      10      11        12       13       14      15
+JTEXTS = ['Page',  'Line',  'Sect',  'Col',  'Tab',  'Note',  'IKey',  'Kord',  '_LLR',  '_LLC', 'Curs', 'View',  '_SNo',  '_SNm',  '_Cpo', '_TNIK']
+jTEXTS = ['pages', 'lines', 'sects', 'cols', 'tabs', 'notes', 'ikeys', 'Kords', 'lrows', 'lcols', 'curs', 'views', 'snos', 'snas', 'capos', 'tniks']
+JFMT   = [   1,       2,       2,       3,      4,      4,       4,       4,       2,       3,       1,       1,      2,      2,      3,       4]
 ########################################################################################################################################################################################################
 def fri(f): return int(math.floor(f + 0.5))
-def _genColors(key, k, dv=5, n=None, dbg=1):
-    global CLR
+def _initRGB(key, k, dv=5, n=None, dbg=1):
+    global RGB
     colors = []  ;  l = len(k)  ;  m = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []  ;  n = n + 1  if n is not None  else m
     diffs  = [ k[i] - k[i]/dv  for i in range(l) ]
     steps  = [ diffs[i]/(n-1)  for i in range(l) ]
@@ -64,35 +63,35 @@ def _genColors(key, k, dv=5, n=None, dbg=1):
     if dbg:
         util.slog( f'{msg[:-1]}] {util.fmtl(diffs, w="5.1f")} {util.fmtl(steps, w="4.1f")}', pfx=0, file=LOG_FILE)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
         for i, m in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(m,   w="3"   )}', pfx=0, file=LOG_FILE)
-    CLR[key] = colors
-    return list(CLR.keys())
+    RGB[key] = colors
+    return list(RGB.keys())
 
-def genColors(dbg=1):
-    global CLR
-    if dbg: s = f'{Z*7}'  ;  t = f'{s}RGB '  ;  o = [ f' {o}' for o in range(len(OPC)) ]  ;  util.slog(f'CLR{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=LOG_FILE)
-    _genColors('FSH', (255, 0, 255))
-    _genColors('PNK', (255, 128, 192))
-    _genColors('RED', (255,   0,   0))
-    _genColors('RST', (255,  96,   0))
-    _genColors('PCH', (255, 160, 128))
-    _genColors('ORN', (255, 176,   0))
-    _genColors('YLW', (255, 255,   0))
-    _genColors('LIM', (160, 255,   0))
-    _genColors('GRN', (  0, 255,   0))
-    _genColors('TRQ', (  0, 255, 192))
-    _genColors('CYA', (  0, 255, 255))
-    _genColors('IND', (  0, 180, 255))
-    _genColors('BLU', (  0,   0, 255))
-    _genColors('VLT', (128,   0, 255))
-    _genColors('GRY', (255, 255, 255))
-    _genColors('CL1', ( 13,  15, 255))
-    _genColors('CL2', (255, 128,   0))
-    _genColors('CL3', (250, 65,  190))
-    _genColors('CL4', (255, 128, 255))
-    return CLR.keys()
+def initRGB(dbg=1):
+    if dbg: s = f'{Z*7}'  ;  t = f'{s}RGB '  ;  o = [ f' {o}' for o in range(len(OPC)) ]  ;  util.slog(f'RGB{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=LOG_FILE)
+    _initRGB('FSH', (255,   0, 255))  # 0
+    _initRGB('PNK', (255, 128, 192))  # 1
+    _initRGB('RED', (255,   0,   0))  # 2
+    _initRGB('RST', (255,  96,   0))  # 3
+    _initRGB('PCH', (255, 160, 128))  # 4
+    _initRGB('ORN', (255, 176,   0))  # 5
+    _initRGB('YLW', (255, 255,   0))  # 6
+    _initRGB('LIM', (160, 255,   0))  # 7
+    _initRGB('GRN', (  0, 255,   0))  # 8
+    _initRGB('TRQ', (  0, 255, 192))  # 9
+    _initRGB('CYA', (  0, 255, 255))  # 10
+    _initRGB('IND', (  0, 180, 255))  # 11
+    _initRGB('BLU', (  0,   0, 255))  # 12
+    _initRGB('VLT', (128,   0, 255))  # 13
+    _initRGB('GRY', (255, 255, 255))  # 14
+    _initRGB('CL1', ( 13,  15, 255))  # 15
+    _initRGB('CL2', (255, 128,   0))  # 16
+    _initRGB('CL3', (250, 65,  190))  # 17
+    _initRGB('CL4', (255, 128, 255))  # 18
+    return RGB.keys()
 #          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
 OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
-FSH, PNK, RED, RST, PCH, ORN, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = genColors()
+FSH, PNK, RED, RST, PCH, ORN, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
+# 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
 ########################################################################################################################################################################################################
 FONT_SCALE    =  14/18  # 14pts/18pix
 FONT_DPIS     = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
@@ -101,13 +100,13 @@ FONT_NAMES    = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Co
 class Test:
     def __init__(self, a, file=None): self._a = a  ;  util.slog(f'<Test_init_:     _a={self._a}>', pfx=1, file=file)
     @property
-    def a(self, file=None):           util.slog(f'<Test_prop_a:     _a={self._a}>', pfx=1, file=file)
+    def a(self, file=None):                           util.slog(f'<Test_prop_a:     _a={self._a}>', pfx=1, file=file)
     @a.setter
     def a(self, a, file=None):        self._a = a  ;  util.slog(f'<Test_set_a:     _a={self._a}>', pfx=1, file=file)
     @a.getter
-    def a(self, file=None):           util.slog(f'<Test_get_a:     _a={self._a}>', pfx=1, file=file)  ;  return self._a
+    def a(self, file=None):                           util.slog(f'<Test_get_a:     _a={self._a}>', pfx=1, file=file)  ;  return self._a
     @a.deleter
-    def a(self, file=None):           util.slog(f'<Test_del_a: del _a>', pfx=1, file=file)  ;  del self._a
+    def a(self, file=None):                           util.slog(f'<Test_del_a: del _a>', pfx=1, file=file)  ;  del self._a
 ########################################################################################################################################################################################################
 
 class Tabs(pyglet.window.Window):
@@ -145,7 +144,7 @@ class Tabs(pyglet.window.Window):
         sys.path.append(os.path.abspath("./Lib"))
 #        for p in sys.path:
 #            self.log(f'{p}', pfx=0)
-
+    ####################################################################################################################################################################################################
     def __init__(self):
         dumpGlobals()
         self.log(f'STFILT:\n{util.fmtl(util.STFILT)}')
@@ -244,7 +243,7 @@ class Tabs(pyglet.window.Window):
         self._reinit()
         self.log(f'END {__class__}')
         self.log(f'{util.INIT}', pfx=0)
-
+    ####################################################################################################################################################################################################
     def dumpArgs(self):
         self.log(f'[f]             {self.dfn=}')
         self.log(f'[n]             {self.fmtn()}')
@@ -272,7 +271,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[L]           {self.LL=}')
         self.log(f'[S]           .SS={util.fmtl(self.SS)}')
         self.log(f'[Z]           .ZZ={util.fmtl(self.ZZ)}')
-
+    ####################################################################################################################################################################################################
     def _reinit(self):
         self.log('BGN')
         self.pages, self.lines, self.sects, self.cols  = [], [], [], []  ;  self.A = [self.pages, self.lines, self.sects, self.cols]
@@ -301,13 +300,13 @@ class Tabs(pyglet.window.Window):
         self._initTniks()
         if self.SNAPS: self.regSnap('init', 'INIT')
         if dbg: self.dumpStruct('init')
-
+    ####################################################################################################################################################################################################
     def _initColors(self):
         a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
-        P1, P2 = CLR[GRY][ 0], CLR[GRY][ 0]  ;  L1, L2 = CLR[GRY][ 0], CLR[GRY][ 0]  ;  S1, S2 = CLR[GRY][ 0], CLR[GRY][ 0]  ;  Z1, Z2 = CLR[GRY][ 0], CLR[GRY][ 0]
-        T1, T2 = CLR[ORN][15], CLR[ORN][ 7]  ;  N1, N2 = CLR[GRN][15], CLR[GRN][ 7]  ;  I1, I2 = CLR[IND][15], CLR[IND][ 7]  ;  K1, K2 = CLR[YLW][15], CLR[YLW][ 7]
-        R1, R2 = CLR[CL3][10], CLR[CL3][10]  ;  Q1, Q2 = CLR[CL1][10], CLR[CL2][10]  ;  H1, H2 = CLR[CL3][ 7], CLR[CL4][ 7]  ;  V1, V2 = CLR[PNK][15], CLR[PNK][ 7]
-        O1, O2 = CLR[PNK][10], CLR[PNK][10]  ;  A1, A2 = CLR[BLU][10], CLR[BLU][10]  ;  D1, D2 = CLR[FSH][10], CLR[FSH][10]
+        P1, P2 = RGB[GRY][ 0], RGB[GRY][ 0]  ;  L1, L2 = RGB[GRY][ 0], RGB[GRY][ 0]  ;  S1, S2 = RGB[GRY][ 0], RGB[GRY][ 0]  ;  Z1, Z2 = RGB[GRY][ 0], RGB[GRY][ 0]
+        T1, T2 = RGB[ORN][15], RGB[ORN][ 7]  ;  N1, N2 = RGB[GRN][15], RGB[GRN][ 7]  ;  I1, I2 = RGB[IND][15], RGB[IND][ 7]  ;  K1, K2 = RGB[YLW][15], RGB[YLW][ 7]
+        R1, R2 = RGB[CL3][10], RGB[CL3][10]  ;  Q1, Q2 = RGB[CL1][10], RGB[CL2][10]  ;  H1, H2 = RGB[CL3][ 7], RGB[CL4][ 7]  ;  V1, V2 = RGB[PNK][15], RGB[PNK][ 7]
+        O1, O2 = RGB[PNK][10], RGB[PNK][10]  ;  A1, A2 = RGB[BLU][10], RGB[BLU][10]  ;  D1, D2 = RGB[FSH][10], RGB[FSH][10]
         kP     = [P1[ 0], P2[10]] if a          else [P1[ 0], P2[10]] if b              else [P2[ 0], P2[15]] if c              else [P1[15], P1[ 0]] if d   else None
         kL     = [L1[ 0], L2[10]] if a          else [L1[ 0], L2[10]] if b              else [L1[ 0], L2[10]] if c              else [L1[ 0], L2[10]] if d   else None
         kS     = [S1[15], S2[ 7]] if a          else [S1[15], S2[ 7]] if b              else [S1[15], S2[ 7]] if c              else [S1[15], S2[ 7]] if d   else None
@@ -325,7 +324,29 @@ class Tabs(pyglet.window.Window):
         kD     = [D1[ 0], D2[10]] if a          else [D1[ 0], D2[10]] if b              else [D1[ 0], D2[10]] if c              else [D1[ 0], D2[10]] if d   else None
         self.k   = [ kP, kL, kS, kC,  kT, kN, kI, kK,  kR, kQ, kH, kV,  kO, kA, kD ]
         [ self.log(f'[{i:2}] {util.fmtl(e, w=3)}') for i, e in enumerate(self.k) ]
-
+    def _NEW_initColors(self):
+#        self.k = []
+        a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
+        P1, P2 = RGB[GRY][ 0], RGB[GRY][ 0]  ;  L1, L2 = RGB[GRY][ 0], RGB[GRY][ 0]  ;  S1, S2 = RGB[GRY][ 0], RGB[GRY][ 0]  ;  Z1, Z2 = RGB[GRY][ 0], RGB[GRY][ 0]
+        T1, T2 = RGB[ORN][15], RGB[ORN][ 7]  ;  N1, N2 = RGB[GRN][15], RGB[GRN][ 7]  ;  I1, I2 = RGB[IND][15], RGB[IND][ 7]  ;  K1, K2 = RGB[YLW][15], RGB[YLW][ 7]
+        R1, R2 = RGB[CL3][10], RGB[CL3][10]  ;  Q1, Q2 = RGB[CL1][10], RGB[CL2][10]  ;  H1, H2 = RGB[CL3][ 7], RGB[CL4][ 7]  ;  V1, V2 = RGB[PNK][15], RGB[PNK][ 7]
+        O1, O2 = RGB[PNK][10], RGB[PNK][10]  ;  A1, A2 = RGB[BLU][10], RGB[BLU][10]  ;  D1, D2 = RGB[FSH][10], RGB[FSH][10]
+        self.k[P] = [P1[ 0], P2[10]] if a          else [P1[ 0], P2[10]] if b              else [P2[ 0], P2[15]] if c              else [P1[15], P1[ 0]] if d  else None
+        self.k[L] = [L1[ 0], L2[10]] if a          else [L1[ 0], L2[10]] if b              else [L1[ 0], L2[10]] if c              else [L1[ 0], L2[10]] if d  else None
+        self.k[S] = [S1[15], S2[ 7]] if a          else [S1[15], S2[ 7]] if b              else [S1[15], S2[ 7]] if c              else [S1[15], S2[ 7]] if d  else None
+        self.k[C] = [Z1[15], Z1[ 7]] if a          else [Z1[15], Z1[ 0]] if b              else [Z1[15], Z1[ 0]] if c              else [Z1[15], Z1[ 7]] if d  else None
+        self.k[T] = [T1[15], T1[ 0]] if a          else [T1[15], T1[ 0]] if b              else [T2[15], T2[ 0]] if c              else [T2[15], T2[ 0]] if d  else None
+        self.k[N] = [N1[15], N1[ 0]] if a          else [N1[15], N1[ 0]] if b              else [N2[15], N2[ 0]] if c              else [N2[15], N2[ 0]] if d  else None
+        self.k[I] = [I1[15], I1[ 0]] if a          else [I1[15], I1[ 0]] if b              else [I2[15], I2[ 0]] if c              else [I2[15], I2[ 0]] if d  else None
+        self.k[K] = [K1[15], K1[ 0]] if a          else [K1[15], K1 [0]] if b              else [K2[15], K2[ 0]] if c              else [K2[15], K2[ 0]] if d  else None
+        self.k[R] = [R1[13], R2[ 0]] if a          else [R1[13], R2[ 0]] if b              else [R1[13], R2[ 0]] if c              else [R1[13], R2[ 0]] if d  else None
+        self.k[Q] = [Q1[13], Q2[ 0]] if a          else [Q1[13], Q2[ 0]] if b              else [Q1[13], Q2[ 0]] if c              else [Q1[13], Q2[ 0]] if d  else None
+        self.k[H] = [H1[ 0], H2[15]] if a          else [H1[ 0], H2[15]] if b              else [H1[ 0], H2[15]] if c              else [H1[ 0], H2[15]] if d  else None
+        self.k[V] = [V1[ 0], V2[12]] if a          else [V1[ 0], V2[12]] if b              else [V1[ 0], V2[12]] if c              else [V1[ 0], V2[12]] if d  else None
+        self.k[O] = [O1[ 0], O2[10]] if a          else [O1[ 0], O2[10]] if b              else [O1[ 0], O2[10]] if c              else [O1[ 0], O2[10]] if d  else None
+        self.k[A] = [A2[ 0], A2[10]] if a          else [A2[ 0], A2[10]] if b              else [A2[ 0], A2[10]] if c              else [A2[ 0], A2[10]] if d  else None
+        self.k[D] = [D1[ 0], D2[10]] if a          else [D1[ 0], D2[10]] if b              else [D1[ 0], D2[10]] if c              else [D1[ 0], D2[10]] if d  else None
+    ####################################################################################################################################################################################################
     def _initData(self, dbg=1):
         self._initDataPath()
         if self.GEN_DATA: self.genDataFile(self.dataPath1)
@@ -1538,8 +1559,8 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
         elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam('bold',   not self.fontBold,                              'fontBold')
         elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam('bold',   not self.fontBold,                              'fontBold')
-        elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam('color',     (self.clrIdx + 1) % len(CLR),        'clrIdx')
-        elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam('color',     (self.clrIdx - 1) % len(CLR),        'clrIdx')
+        elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam('color',     (self.clrIdx + 1) % len(RGB),        'clrIdx')
+        elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam('color',     (self.clrIdx - 1) % len(RGB),        'clrIdx')
         elif kbk == 'I' and self.isAltShift(mods):     self.setFontParam('italic', not self.fontItalic,                            'fontItalic')
         elif kbk == 'I' and self.isAlt(     mods):     self.setFontParam('italic', not self.fontItalic,                            'fontItalic')
         elif kbk == 'N' and self.isAltShift(mods):     self.setFontParam('font_name', (self.fontNameIndex + 1)  % len(FONT_NAMES), 'fontNameIndex')
@@ -2268,7 +2289,7 @@ class Tabs(pyglet.window.Window):
         util.slog(msg, pfx, file, flush, sep, end, so)
     ####################################################################################################################################################################################################
     def quit(self, why='', error=1, save=1, dbg=1): #, dbg2=1):
-        util.dumpStack(inspect.stack(), file=LOG_FILE)    ;   self.log(util.QUIT_BGN,     pfx=0)
+        util.dumpStack(inspect.stack(), file=LOG_FILE)    ;   self.log(util.QUIT_BGN, pfx=0)
         self.dumpTniksSfx(why)
         if not error:      util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
         self.log(f'BGN {why} {error=} {save=}')           ;   self.log(util.QUIT_BGN, pfx=0)

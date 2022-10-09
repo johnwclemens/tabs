@@ -2,7 +2,6 @@
 import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
-IND = 0
 MIN_IVAL_LEN    = 1
 MAX_STACK_DEPTH = 0
 MAX_STACK_FRAME = inspect.stack()
@@ -12,7 +11,7 @@ M12             = { 10:'a', 11:'b' }
 INTERVALS       = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
 INTERVAL_RANK   = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
 NTONES          = len(INTERVALS)
-INIT             = '###   Init   ###' *     13
+INIT             = '###   Init   ###'     * 13
 QUIT_BGN         = '###   BGN Quit   ###' * 10
 QUIT             = '###   Quit   ###'     * 13
 QUIT_END         = '###   END Quit   ###' * 10
@@ -94,8 +93,10 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
 #        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
         fp = pathlib.Path(sf.f_code.co_filename)
         msg = f'{sf.f_lineno:4} {fp.stem} {sf.f_code.co_name:18} ' + msg
-    print(       f'{msg}', flush=flush, sep=sep, end=end, file=file) if file is not None and not file.closed else None
-    if so: print(f'{msg}', flush=flush, sep=sep, end=end, file=sys.stdout)
+#    print(       f'{msg}', flush=flush, sep=sep, end=end, file=file) if file is not None and not file.closed else None
+#    if so: print(f'{msg}', flush=flush, sep=sep, end=end, file=sys.stdout)
+    if    so or file is None or file.closed: print(f'{msg}', flush=flush, sep=sep, end=end, file=None)
+    else:                                    print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
     if flush: os.fsync(file) if file is not None and not file.closed else None  ;  os.fsync(sys.stdout) if so else None
 ########################################################################################################################################################################################################
 def copyFile(src, trg, file=None):
@@ -190,21 +191,26 @@ class Strings(object):
                'GUITAR_7_STD':    cOd([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
               }
     def __init__(self, file=None, alias=None):
+        self.file               = file
         if alias is None: alias = 'GUITAR_6_STD'
-        self.stringMap = self.aliases[alias]
-        self.stringKeys = list(self.stringMap.keys())
-        self.stringNames = ''.join(reversed([ str(k[0])  for k in            self.stringKeys ]))
-        self.stringNumbs = ''.join(         [ str(r + 1) for r in range(len(self.stringKeys)) ])
-        self.stringCapo = ''.join(          [ '0'        for _ in range(len(self.stringKeys)) ])
-        self.strLabel = 'STRING'
-        self.cpoLabel = ' CAPO '
-        slog(f'stringMap   = {fmtm(self.stringMap)}',  file=file)
-        slog(f'stringKeys  = {fmtl(self.stringKeys)}', file=file)
-        slog(f'stringNames =      {self.stringNames}', file=file)
-        slog(f'stringNumbs =      {self.stringNumbs}', file=file)
-        slog(f'stringCapo  =      {self.stringCapo}',  file=file)
-        slog(f'strLabel    =      {self.strLabel}',    file=file)
-        slog(f'cpoLabel    =      {self.cpoLabel}',    file=file)
+        self.stringMap          = self.aliases[alias]
+        self.stringKeys         = list(self.stringMap.keys())
+        self.stringNames        = ''.join(reversed([ str(k[0])  for k in            self.stringKeys ]))
+        self.stringNumbs        = ''.join(         [ str(r + 1) for r in range(len(self.stringKeys)) ])
+        self.stringCapo         = ''.join(         [ '0'        for _ in range(len(self.stringKeys)) ])
+        self.strLabel           = 'STRING'
+        self.cpoLabel           = ' CAPO '
+        self.log( f'stringMap   = {fmtm(self.stringMap)}')
+        self.log( f'stringKeys  = {fmtl(self.stringKeys)}')
+        self.log( f'stringNames =      {self.stringNames}')
+        self.log( f'stringNumbs =      {self.stringNumbs}')
+        self.log( f'stringCapo  =      {self.stringCapo}')
+        self.log( f'strLabel    =      {self.strLabel}')
+        self.log( f'cpoLabel    =      {self.cpoLabel}')
+
+    def log(self, msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+        if file is None: file=self.file
+        slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
 
     def nStrings(self): return len(self.stringNames)
 
@@ -212,17 +218,16 @@ class Strings(object):
         strNum = self.nStrings() - s - 1    # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
         k      = self.stringKeys[strNum]
         i      = self.stringMap[k] + fn
-        if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
+        if dbg: self.log(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
         return i
 
     def tab2nn(self, tab, s, dbg=0):
         fn   = self.tab2fn(tab)
         i    = self.fn2ni(fn, s)
         name = Note.getName(i)
-        if dbg: slog(f'tab={tab} s={s} fn={fn} i={i} name={name}')
+        if dbg: self.log(f'tab={tab} s={s} fn={fn} i={i} name={name}')
         return name
 
     @staticmethod
     def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
-    @staticmethod
-    def tab2fn(tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  slog(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
+    def tab2fn(self, tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  self.log(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
