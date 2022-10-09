@@ -21,6 +21,7 @@ SNAP_DIR = 'snaps'
 SNAP_SFX = '.png'
 LOG_FILE = None
 
+def fri(f): return int(math.floor(f + 0.5))
 def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1, file=None):
     if dbg: util.slog(f'{baseName = } {basePath = }', file=file)
     fileName        = baseName + fsfx
@@ -28,19 +29,59 @@ def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1, file=None)
     if dbg: util.slog(f'{fileName = } {filePath = }', file=file)
     return filePath
 ########################################################################################################################################################################################################
+def dumpGlobals():
+    util.slog(f'argv      = {util.fmtl(sys.argv, ll=1)}', file=LOG_FILE)
+    util.slog(f'PATH      = {PATH}', file=LOG_FILE)
+    util.slog(f'BASE_PATH = {BASE_PATH}', file=LOG_FILE)
+    util.slog(f'BASE_NAME = {BASE_NAME}', file=LOG_FILE)
+########################################################################################################################################################################################################
+def _initRGB(key, k, dv=5, n=None, dbg=1):
+    global RGB
+    colors = []  ;  l = len(k)  ;  m = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []  ;  n = n + 1  if n is not None  else m
+    diffs  = [ k[i] - k[i]/dv  for i in range(l) ]
+    steps  = [ diffs[i]/(n-1)  for i in range(l) ]
+    if dbg: msg = f'{key:3}:  O=['
+    for opc in range(m):
+        clrs = []  ;  msg += f'{OPC[opc]:3} ' if dbg else ''
+#        if dbg: util.slog(f'{key:4} {util.fmtl(k, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
+        for j in range(n):
+            color = list([ fri(k[i] - j * steps[i]) for i in range(l) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)  ;  clrs.append(color)
+            if dbg and opc == 0: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
+#            if   dbg > 1:       util.slog(f'{j:2} {key:4} {util.fmtl(color, w="3")}', pfx=0, file=LOG_FILE)
+        colors.append(clrs)
+    if dbg:
+        util.slog( f'{msg[:-1]}] {util.fmtl(diffs, w="5.1f")} {util.fmtl(steps, w="4.1f")}', pfx=0, file=LOG_FILE)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
+        for i, m in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(m,   w="3"   )}', pfx=0, file=LOG_FILE)
+    RGB[key] = colors
+    return list(RGB.keys())
 
+def initRGB(dbg=1):
+    if dbg: s = f'{Z*7}'  ;  t = f'{s}RGB '  ;  o = [ f' {o}' for o in range(len(OPC)) ]  ;  util.slog(f'RGB{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=LOG_FILE)
+    _initRGB('FSH', (255,   0, 255))  # 0
+    _initRGB('PNK', (255, 128, 192))  # 1
+    _initRGB('RED', (255,   0,   0))  # 2
+    _initRGB('RST', (255,  96,   0))  # 3
+    _initRGB('PCH', (255, 160, 128))  # 4
+    _initRGB('ORN', (255, 176,   0))  # 5
+    _initRGB('YLW', (255, 255,   0))  # 6
+    _initRGB('LIM', (160, 255,   0))  # 7
+    _initRGB('GRN', (  0, 255,   0))  # 8
+    _initRGB('TRQ', (  0, 255, 192))  # 9
+    _initRGB('CYA', (  0, 255, 255))  # 10
+    _initRGB('IND', (  0, 180, 255))  # 11
+    _initRGB('BLU', (  0,   0, 255))  # 12
+    _initRGB('VLT', (128,   0, 255))  # 13
+    _initRGB('GRY', (255, 255, 255))  # 14
+    _initRGB('CL1', ( 13,  15, 255))  # 15
+    _initRGB('CL2', (255, 128,   0))  # 16
+    _initRGB('CL3', (250, 65,  190))  # 17
+    _initRGB('CL4', (255, 128, 255))  # 18
+    return RGB.keys()
+########################################################################################################################################################################################################
 prevPath = getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
 LOG_PATH = getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
 if LOG_PATH.exists(): util.copyFile(LOG_PATH, prevPath, LOG_FILE)
 with open(   str(LOG_PATH), 'w', encoding='utf-8')  as  LOG_FILE:
-
-    ########################################################################################################################################################################################################
-    def dumpGlobals():
-        util.slog(f'argv      = {util.fmtl(sys.argv, ll=1)}', file=LOG_FILE)
-        util.slog(f'PATH      = {PATH}',      file=LOG_FILE)
-        util.slog(f'BASE_PATH = {BASE_PATH}', file=LOG_FILE)
-        util.slog(f'BASE_NAME = {BASE_NAME}', file=LOG_FILE)
-    ########################################################################################################################################################################################################
     Z = ' '  ;  TEST_TEXT = 0
     RGB                   = cOd()
     #LOG_PATH              = None
@@ -60,55 +101,10 @@ with open(   str(LOG_PATH), 'w', encoding='utf-8')  as  LOG_FILE:
     JTEXTS = ['Page',  'Line',  'Sect',  'Col',  'Tab',  'Note',  'IKey',  'Kord',  '_LLR',  '_LLC', 'Curs', 'View',  '_SNo',  '_SNm',  '_Cpo', '_TNIK']
     jTEXTS = ['pages', 'lines', 'sects', 'cols', 'tabs', 'notes', 'ikeys', 'Kords', 'lrows', 'lcols', 'curs', 'views', 'snos', 'snas', 'capos', 'tniks']
     JFMT   = [   1,       2,       2,       3,      4,      4,       4,       4,       2,       3,       1,       1,      2,      2,      3,       4]
-    ########################################################################################################################################################################################################
-    def fri(f): return int(math.floor(f + 0.5))
-    def _initRGB(key, k, dv=5, n=None, dbg=1):
-        global RGB
-        colors = []  ;  l = len(k)  ;  m = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []  ;  n = n + 1  if n is not None  else m
-        diffs  = [ k[i] - k[i]/dv  for i in range(l) ]
-        steps  = [ diffs[i]/(n-1)  for i in range(l) ]
-        if dbg: msg = f'{key:3}:  O=['
-        for opc in range(m):
-            clrs = []  ;  msg += f'{OPC[opc]:3} ' if dbg else ''
-    #        if dbg: util.slog(f'{key:4} {util.fmtl(k, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
-            for j in range(n):
-                color = list([ fri(k[i] - j * steps[i]) for i in range(l) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)  ;  clrs.append(color)
-                if dbg and opc == 0: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
-    #            if   dbg > 1:       util.slog(f'{j:2} {key:4} {util.fmtl(color, w="3")}', pfx=0, file=LOG_FILE)
-            colors.append(clrs)
-        if dbg:
-            util.slog( f'{msg[:-1]}] {util.fmtl(diffs, w="5.1f")} {util.fmtl(steps, w="4.1f")}', pfx=0, file=LOG_FILE)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
-            for i, m in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(m,   w="3"   )}', pfx=0, file=LOG_FILE)
-        RGB[key] = colors
-        return list(RGB.keys())
-
-    def initRGB(dbg=1):
-        if dbg: s = f'{Z*7}'  ;  t = f'{s}RGB '  ;  o = [ f' {o}' for o in range(len(OPC)) ]  ;  util.slog(f'RGB{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=LOG_FILE)
-        _initRGB('FSH', (255,   0, 255))  # 0
-        _initRGB('PNK', (255, 128, 192))  # 1
-        _initRGB('RED', (255,   0,   0))  # 2
-        _initRGB('RST', (255,  96,   0))  # 3
-        _initRGB('PCH', (255, 160, 128))  # 4
-        _initRGB('ORN', (255, 176,   0))  # 5
-        _initRGB('YLW', (255, 255,   0))  # 6
-        _initRGB('LIM', (160, 255,   0))  # 7
-        _initRGB('GRN', (  0, 255,   0))  # 8
-        _initRGB('TRQ', (  0, 255, 192))  # 9
-        _initRGB('CYA', (  0, 255, 255))  # 10
-        _initRGB('IND', (  0, 180, 255))  # 11
-        _initRGB('BLU', (  0,   0, 255))  # 12
-        _initRGB('VLT', (128,   0, 255))  # 13
-        _initRGB('GRY', (255, 255, 255))  # 14
-        _initRGB('CL1', ( 13,  15, 255))  # 15
-        _initRGB('CL2', (255, 128,   0))  # 16
-        _initRGB('CL3', (250, 65,  190))  # 17
-        _initRGB('CL4', (255, 128, 255))  # 18
-        return RGB.keys()
     #          0   1   2   3   4   5   6   7    8    9    10   11   12   13   14   15   16   17
     OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
     FSH, PNK, RED, RST, PCH, ORN, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
-    ########################################################################################################################################################################################################
     FONT_SCALE    =  14/18  # 14pts/18pix
     FONT_DPIS     = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
     FONT_NAMES    = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]

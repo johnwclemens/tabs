@@ -75,27 +75,27 @@ CL4:  O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255
        R=[255 243 231 219 207 195 183 171 159 147 135 123 111  99  87  75  63  51]
        G=[128 122 116 110 104  98  92  86  80  74  68  62  56  50  44  38  32  26]
        B=[255 243 231 219 207 195 183 171 159 147 135 123 111  99  87  75  63  51]
- 118 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 119 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
-  39 tabsC dumpGlobals        argv      = <13[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -f test.11.dat -n 1 1 10 6 -S 0 1 2 3]
-  40 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-  41 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
-  42 tabsC dumpGlobals        BASE_NAME = tabs
- 174 tabsC __init__           STFILT:
+ 115 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 116 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+  33 tabsC dumpGlobals        argv      = <13[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -f test.11.dat -n 1 1 10 6 -S 0 1 2 3]
+  34 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+  35 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+  36 tabsC dumpGlobals        BASE_NAME = tabs
+ 171 tabsC __init__           STFILT:
 [log dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
- 175 tabsC __init__           BGN <class __main__.Tabs>
-2310 tabsC getFilePath        fdir=logs/ fsfx=.log
-2314 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2324 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
-2326 tabsC getFileSeqNum      ids=[0 1 10 11 12 13 2 3 4 5 6 7 8 9]
-fGlob=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
-2318 tabsC getFilePath        fsfx=.14.log
-  25 tabsC getFilePath        baseName = tabs basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
-  28 tabsC getFilePath        fileName = tabs.14.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.14.log)
-  25 tabsC getFilePath        baseName = tabs basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
-  28 tabsC getFilePath        fileName = tabs.cat filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
- 186 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
- 196 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=0=UP  
+ 172 tabsC __init__           BGN <class __main__.Tabs>
+2307 tabsC getFilePath        fdir=logs/ fsfx=.log
+2311 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
+2321 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
+2323 tabsC getFileSeqNum      ids=[0 1 10 11 12 13 14 15 16 17 18 2 3 4 5 6 7 8 9]
+fGlob=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
+2315 tabsC getFilePath        fsfx=.19.log
+  26 tabsC getFilePath        baseName = tabs basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+  29 tabsC getFilePath        fileName = tabs.19.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.19.log)
+  26 tabsC getFilePath        baseName = tabs basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+  29 tabsC getFilePath        fileName = tabs.cat filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 183 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
+ 193 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=0=UP  
  109 util parseCmdLine       argv=[-f test.11.dat -n 1 1 10 6 -S 0 1 2 3]
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  125 util parseCmdLine        1 short   -f f [] 
@@ -111,33 +111,33 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  143 util parseCmdLine       11 arg     2  S [0 1 2] 
  143 util parseCmdLine       12 arg     3  S [0 1 2 3] 
  145 util parseCmdLine       options=[f:[test.11.dat]n:[1 1 10 6]S:[0 1 2 3]]
- 217 tabsC __init__            argMap=[f:[test.11.dat]n:[1 1 10 6]S:[0 1 2 3]]
- 273 tabsC dumpArgs           [f]             .dfn=test.11.dat
- 274 tabsC dumpArgs           [n]             n=[1 1 4 10 6]
- 275 tabsC dumpArgs           [i]             i=[1 1 4 1 1]
- 276 tabsC dumpArgs           [a]    .AUTO_SAVE=0
- 277 tabsC dumpArgs           [b]   .FRET_BOARD=0
- 278 tabsC dumpArgs           [B]          .BGC=0
- 279 tabsC dumpArgs           [c]          .CAT=0
- 280 tabsC dumpArgs           [d] .DBG_TAB_TEXT=0
- 281 tabsC dumpArgs           [C]    .CHECKERED=0
- 282 tabsC dumpArgs           [e]    .EVENT_LOG=0
- 283 tabsC dumpArgs           [F]  .FULL_SCREEN=0
- 284 tabsC dumpArgs           [G]     .GEN_DATA=0
- 285 tabsC dumpArgs           [M]   .MULTI_LINE=1
- 286 tabsC dumpArgs           [g]  .ORDER_GROUP=1
- 287 tabsC dumpArgs           [p]        .SNAPS=0
- 288 tabsC dumpArgs           [R]       .RESIZE=1
- 289 tabsC dumpArgs           [x]       .SUBPIX=0
- 290 tabsC dumpArgs           [s]      .SPRITES=0
- 291 tabsC dumpArgs           [t]         .TEST=0
- 292 tabsC dumpArgs           [v]      .VERBOSE=0
- 293 tabsC dumpArgs           [V]        .VIEWS=0
- 294 tabsC dumpArgs           [r]    .RD_STDOUT=0
- 295 tabsC dumpArgs           [u]  .TRANSPOSE_A=1
- 296 tabsC dumpArgs           [L]           .LL=0
- 297 tabsC dumpArgs           [S]           .SS=[0 1 2 3]
- 298 tabsC dumpArgs           [Z]           .ZZ=[]
+ 214 tabsC __init__            argMap=[f:[test.11.dat]n:[1 1 10 6]S:[0 1 2 3]]
+ 270 tabsC dumpArgs           [f]             .dfn=test.11.dat
+ 271 tabsC dumpArgs           [n]             n=[1 1 4 10 6]
+ 272 tabsC dumpArgs           [i]             i=[1 1 4 1 1]
+ 273 tabsC dumpArgs           [a]    .AUTO_SAVE=0
+ 274 tabsC dumpArgs           [b]   .FRET_BOARD=0
+ 275 tabsC dumpArgs           [B]          .BGC=0
+ 276 tabsC dumpArgs           [c]          .CAT=0
+ 277 tabsC dumpArgs           [d] .DBG_TAB_TEXT=0
+ 278 tabsC dumpArgs           [C]    .CHECKERED=0
+ 279 tabsC dumpArgs           [e]    .EVENT_LOG=0
+ 280 tabsC dumpArgs           [F]  .FULL_SCREEN=0
+ 281 tabsC dumpArgs           [G]     .GEN_DATA=0
+ 282 tabsC dumpArgs           [M]   .MULTI_LINE=1
+ 283 tabsC dumpArgs           [g]  .ORDER_GROUP=1
+ 284 tabsC dumpArgs           [p]        .SNAPS=0
+ 285 tabsC dumpArgs           [R]       .RESIZE=1
+ 286 tabsC dumpArgs           [x]       .SUBPIX=0
+ 287 tabsC dumpArgs           [s]      .SPRITES=0
+ 288 tabsC dumpArgs           [t]         .TEST=0
+ 289 tabsC dumpArgs           [v]      .VERBOSE=0
+ 290 tabsC dumpArgs           [V]        .VIEWS=0
+ 291 tabsC dumpArgs           [r]    .RD_STDOUT=0
+ 292 tabsC dumpArgs           [u]  .TRANSPOSE_A=1
+ 293 tabsC dumpArgs           [L]           .LL=0
+ 294 tabsC dumpArgs           [S]           .SS=[0 1 2 3]
+ 295 tabsC dumpArgs           [Z]           .ZZ=[]
  197 util __init__           stringMap   = [E2:28 A2:33 D3:38 G3:43 B3:47 E4:52]
  198 util __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
  199 util __init__           stringNames =      EBGDAE
@@ -145,50 +145,50 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  201 util __init__           stringCapo  =      000000
  202 util __init__           strLabel    =      STRING
  203 util __init__           cpoLabel    =       CAPO 
- 254 tabsC __init__           .Note.TYPE=1
- 419 tabsC _initDataPath      dataName0=test.11.dat.asv
- 420 tabsC _initDataPath      dataName1=test.11.dat
- 421 tabsC _initDataPath      dataName2=test.11.dat.bck
+ 251 tabsC __init__           .Note.TYPE=1
+ 416 tabsC _initDataPath      dataName0=test.11.dat.asv
+ 417 tabsC _initDataPath      dataName1=test.11.dat
+ 418 tabsC _initDataPath      dataName2=test.11.dat.bck
 self.dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.11.dat.asv')
 self.dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.11.dat')
 self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.11.dat.bck')
- 436 tabsC _initWindowA       BGN (NonexNone)
- 436 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x00000223B7221D80>
- 439 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
- 439 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
- 440 tabsC _initWindowA       END (NonexNone)
- 259 tabsC __init__           WxH=(NonexNone)
- 261 tabsC __init__           WxH=(640x480)
- 443 tabsC _initWindowB       BGN (640x480)
- 457 tabsC _initGroups        [1 2 3 4 5 5 5 5 5 5 6 0 5 5 5]
- 461 tabsC _initGroups        g[0]=OrderedGroup(0) p=None
- 461 tabsC _initGroups        g[1]=OrderedGroup(1) p=None
- 461 tabsC _initGroups        g[2]=OrderedGroup(2) p=None
- 461 tabsC _initGroups        g[3]=OrderedGroup(3) p=None
- 461 tabsC _initGroups        g[4]=OrderedGroup(4) p=None
- 461 tabsC _initGroups        g[5]=OrderedGroup(5) p=None
- 461 tabsC _initGroups        g[6]=OrderedGroup(6) p=None
- 447 tabsC _initWindowB       get_size=(640, 480)
- 453 tabsC _initWindowB       END (640x480)
- 263 tabsC __init__           WxH=(640x480)
- 540 tabsC dumpAxy            .a=center .ax=center .ay=center
+ 433 tabsC _initWindowA       BGN (NonexNone)
+ 433 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000024065721D80>
+ 436 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
+ 436 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
+ 437 tabsC _initWindowA       END (NonexNone)
+ 256 tabsC __init__           WxH=(NonexNone)
+ 258 tabsC __init__           WxH=(640x480)
+ 440 tabsC _initWindowB       BGN (640x480)
+ 454 tabsC _initGroups        [1 2 3 4 5 5 5 5 5 5 6 0 5 5 5]
+ 458 tabsC _initGroups        g[0]=OrderedGroup(0) p=None
+ 458 tabsC _initGroups        g[1]=OrderedGroup(1) p=None
+ 458 tabsC _initGroups        g[2]=OrderedGroup(2) p=None
+ 458 tabsC _initGroups        g[3]=OrderedGroup(3) p=None
+ 458 tabsC _initGroups        g[4]=OrderedGroup(4) p=None
+ 458 tabsC _initGroups        g[5]=OrderedGroup(5) p=None
+ 458 tabsC _initGroups        g[6]=OrderedGroup(6) p=None
+ 444 tabsC _initWindowB       get_size=(640, 480)
+ 450 tabsC _initWindowB       END (640x480)
+ 260 tabsC __init__           WxH=(640x480)
+ 537 tabsC dumpAxy            .a=center .ax=center .ay=center
 self.A_LEFT=0 self.A_CENTER=1 self.A_RIGHT=0 self.X_LEFT=0 self.X_CENTER=1 self.X_RIGHT=0 self.Y_TOP=0 self.Y_CENTER=1 self.Y_BOTTOM=0 self.Y_BASELINE=0
- 301 tabsC _reinit            BGN
- 307 tabsC _reinit            E=[[][][][][][][][][][][][][][][]]
- 308 tabsC _reinit              J1=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] _reinit
- 308 tabsC _reinit              J2=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] _reinit
- 308 tabsC _reinit              LE=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] _reinit
- 312 tabsC _reinit            [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- 554 tabsC dumpBlank          len(.tblankCol)=6 len(.tblankRow)=10 .tblankCol=------ .tblankRow=----------
- 419 tabsC _initDataPath      dataName0=test.11.dat.asv
- 420 tabsC _initDataPath      dataName1=test.11.dat
- 421 tabsC _initDataPath      dataName2=test.11.dat.bck
+ 298 tabsC _reinit            BGN
+ 304 tabsC _reinit            E=[[][][][][][][][][][][][][][][]]
+ 305 tabsC _reinit              J1=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] _reinit
+ 305 tabsC _reinit              J2=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] _reinit
+ 305 tabsC _reinit              LE=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] _reinit
+ 309 tabsC _reinit            [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+ 551 tabsC dumpBlank          len(.tblankCol)=6 len(.tblankRow)=10 .tblankCol=------ .tblankRow=----------
+ 416 tabsC _initDataPath      dataName0=test.11.dat.asv
+ 417 tabsC _initDataPath      dataName1=test.11.dat
+ 418 tabsC _initDataPath      dataName2=test.11.dat.bck
 self.dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.11.dat.asv')
 self.dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.11.dat')
 self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.11.dat.bck')
- 629 tabsC readDataFile       BGN n=[1 1 4 10 6]
- 636 tabsC readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.11.dat  74 bytes = 0.1 KB
- 637 tabsC readDataFile       Raw Data File BGN:
+ 626 tabsC readDataFile       BGN n=[1 1 4 10 6]
+ 633 tabsC readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\test.11.dat  74 bytes = 0.1 KB
+ 634 tabsC readDataFile       Raw Data File BGN:
 47--------
 -3--------
 -3--------
@@ -196,25 +196,25 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.11.da
 27--------
 47--------
 
- 651 tabsC readDataFile       Raw Data File END:
- 652 tabsC readDataFile       .fmtdl()=[1 1 6 10] .fmtdt()=[list list list str]
- 662 tabsC assertDataFileSize dsize= 60 = nlines=  1 *     nr= 6 *   nt=10
- 663 tabsC assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
- 664 tabsC assertDataFileSize  size= 74 =  dsize= 60 +  crlfs= 14   ref=74
- 655 tabsC readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 tabs
- 656 tabsC readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 10 tabs per row
- 670 tabsC dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
+ 648 tabsC readDataFile       Raw Data File END:
+ 649 tabsC readDataFile       .fmtdl()=[1 1 6 10] .fmtdt()=[list list list str]
+ 659 tabsC assertDataFileSize dsize= 60 = nlines=  1 *     nr= 6 *   nt=10
+ 660 tabsC assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
+ 661 tabsC assertDataFileSize  size= 74 =  dsize= 60 +  crlfs= 14   ref=74
+ 652 tabsC readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 tabs
+ 653 tabsC readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 10 tabs per row
+ 667 tabsC dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
 47-------- -3-------- -3-------- 33-------- 27-------- 47--------
 
- 675 tabsC dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
+ 672 tabsC dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
   99 util copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/test.11.dat)
   99 util copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/test.11.dat.bck)
  101 util copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\data\test.11.dat C:\Users\Owner\Documents\GitHub\tabs\data\test.11.dat.bck ###
- 722 tabsC A_transposeData    BGN (1x1x6x10) dump=1
- 679 tabsC isVert             BGN dl=[1 1 6 10] dt=[list list list str]
+ 719 tabsC A_transposeData    BGN (1x1x6x10) dump=1
+ 676 tabsC isVert             BGN dl=[1 1 6 10] dt=[list list list str]
 [[[47-------- -3-------- -3-------- 33-------- 27-------- 47--------]]]
- 684 tabsC isVert             END dl=[1 1 6 10] dt=[list list list str] vert=0
- 743 tabsC dumpDataHorz       BGN (1x1x6x10) lc=1 ll=1 i=0
+ 681 tabsC isVert             END dl=[1 1 6 10] dt=[list list list str] vert=0
+ 740 tabsC dumpDataHorz       BGN (1x1x6x10) lc=1 ll=1 i=0
 Page 1 Line 1
          1
 1234567890
@@ -226,16 +226,16 @@ Page 1 Line 1
 27--------
 47--------
 
- 756 tabsC dumpDataHorz       END (1x1x6x10) lc=1 ll=1 i=0
- 725 tabsC A_transposeData    dl=[1 1 6 10] dt=[list list list str]
- 726 tabsC A_transposeData    dl=[1 1 6 10] dt=[list list list str]
+ 753 tabsC dumpDataHorz       END (1x1x6x10) lc=1 ll=1 i=0
+ 722 tabsC A_transposeData    dl=[1 1 6 10] dt=[list list list str]
+ 723 tabsC A_transposeData    dl=[1 1 6 10] dt=[list list list str]
 47-------- -3-------- -3-------- 33-------- 27-------- 47--------
 
 4--324 733377 ------ ------ ------ ------ ------ ------ ------ ------
- 679 tabsC isVert             BGN dl=[1 1 6 10] dt=[list list list str]
+ 676 tabsC isVert             BGN dl=[1 1 6 10] dt=[list list list str]
 [[[47-------- -3-------- -3-------- 33-------- 27-------- 47--------]]]
- 684 tabsC isVert             END dl=[1 1 6 10] dt=[list list list str] vert=1
- 761 tabsC dumpDataVert       BGN (1x1x10x6) lc=1 ll=1 i=0 w=6 txt=Col 
+ 681 tabsC isVert             END dl=[1 1 6 10] dt=[list list list str] vert=1
+ 758 tabsC dumpDataVert       BGN (1x1x10x6) lc=1 ll=1 i=0 w=6 txt=Col 
 Page 1
 Col Line 1
   1 4--324 
@@ -248,30 +248,30 @@ Col Line 1
   8 ------ 
   9 ------ 
  10 ------ 
- 769 tabsC dumpDataVert       END (1x1x10x6) lc=1 ll=1 i=0
- 738 tabsC A_transposeData    END (1x1x10x6) dump=1
- 406 tabsC _initData          [1 1 10 6]
- 407 tabsC _initData          Updating n[P] old=[1 1 4 10 6] n=[1 1 4 10 6]
- 558 tabsC _initntp           .tpc=6 .tpl=60 .tpp=60 .tpf=60 ntp=[6 60 60 60]
-1475 tabsC calcFontSize       j=4 Tab  t=  w= 64.00 h= 20.00 pix= 20.00=min(scale=1.2*w, h) fs= 15.56
-1484 tabsC _initFonts         w=64.000=.width =640/(10)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
-1485 tabsC _initFonts         h=20.000=.height=480/(nl=1 * ns=4 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
-1499 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
+ 766 tabsC dumpDataVert       END (1x1x10x6) lc=1 ll=1 i=0
+ 735 tabsC A_transposeData    END (1x1x10x6) dump=1
+ 403 tabsC _initData          [1 1 10 6]
+ 404 tabsC _initData          Updating n[P] old=[1 1 4 10 6] n=[1 1 4 10 6]
+ 555 tabsC _initntp           .tpc=6 .tpl=60 .tpp=60 .tpf=60 ntp=[6 60 60 60]
+1472 tabsC calcFontSize       j=4 Tab  t=  w= 64.00 h= 20.00 pix= 20.00=min(scale=1.2*w, h) fs= 15.56
+1481 tabsC _initFonts         w=64.000=.width =640/(10)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
+1482 tabsC _initFonts         h=20.000=.height=480/(nl=1 * ns=4 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
+1496 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
 labelTextA=[1 2 3 4 5 6 7 8 9 10]
 labelTextB=[1 2 3 4 5 6 7 8 9 1]
 texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
- 792 tabsC dumpLabelText       len(t)=10 len(t[0])=2
+ 789 tabsC dumpLabelText       len(t)=10 len(t[0])=2
  1   2   3   4   5   6   7   8   9  10  
                                      %  
  1   2   3   4   5   6   7   8   9   1  
- 469 tabsC _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1]
- 540 tabsC dumpAxy            .a=center .ax=center .ay=center
+ 466 tabsC _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1]
+ 537 tabsC dumpAxy            .a=center .ax=center .ay=center
 self.A_LEFT=0 self.A_CENTER=1 self.A_RIGHT=0 self.X_LEFT=0 self.X_CENTER=1 self.X_RIGHT=0 self.Y_TOP=0 self.Y_CENTER=1 self.Y_BOTTOM=0 self.Y_BASELINE=0
- 541 tabsC dumpWxHp0          (640x480) 0 0 0 0 0 0
-1212 tabsC createTniks        BGN  (1x1x10x6) (1x1x1x1) [0 1 2 3] 0 []    n=[1 1 4 10 6] 
-1212 tabsC createTniks          J1=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] 
-1212 tabsC createTniks          J2=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] 
-1212 tabsC createTniks          LE=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] 
+ 538 tabsC dumpWxHp0          (640x480) 0 0 0 0 0 0
+1209 tabsC createTniks        BGN  (1x1x10x6) (1x1x1x1) [0 1 2 3] 0 []    n=[1 1 4 10 6] 
+1209 tabsC createTniks          J1=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] 
+1209 tabsC createTniks          J2=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] 
+1209 tabsC createTniks          LE=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] 
 P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G Red Grn Blu Opc  Mx    My
 P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G Red Grn Blu Opc Dpi B I  Font Name
 1  0  0   0    0    0    0    0  0   0 0 0  0  0   0    1  320.00  240.00  640.00  480.00 New  Page    1     373 1 255 255 255   0  96 0 0 Lucida Console  0  0 top center center center None
@@ -560,314 +560,314 @@ P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W 
 1  1  4  40   60   60   60   58  0   0 0 0  0  0   0  284  608.00   50.00   64.00   20.00 New  Kord   58 -    15 5  51  51   0 255  96 0 0 Lucida Console 13 20 top center center center [255 255 0 255]
 1  1  4  40   60   60   60   59  0   0 0 0  0  0   0  285  608.00   30.00   64.00   20.00 New  Kord   59 -    15 5  51  51   0 255  96 0 0 Lucida Console 13 20 top center center center [255 255 0 255]
 1  1  4  40   60   60   60   60  0   0 0 0  0  0   0  286  608.00   10.00   64.00   20.00 New  Kord   60 -    15 5  51  51   0 255  96 0 0 Lucida Console 13 20 top center center center [255 255 0 255]
-1432 tabsC cc2xywh            cc=0 t.x= 32.00 t.y=470.00 t.width= 64.00 t.height= 20.00 t.text=4 cw=13 ch=20 top
+1429 tabsC cc2xywh            cc=0 t.x= 32.00 t.y=470.00 t.width= 64.00 t.height= 20.00 t.text=4 cw=13 ch=20 top
 1  1  4  40   60   60   60   60  0   0 1 0  0  0   0  287    0.00  460.00   64.00   20.00 New  Curs    1 Visible 6 255 128 255 255 1.000 1.000
-1935 tabsC setLLStyle         SKIP .LL=0 len(.lcols)=0
+1932 tabsC setLLStyle         SKIP .LL=0 len(.lcols)=0
 P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G Red Grn Blu Opc  Mx    My
 P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G Red Grn Blu Opc Dpi B I  Font Name
-1222 tabsC createTniks          J1=[0 0 3 9 5 5 5 5 0 0 0 0 0 0 0 287] 
-1222 tabsC createTniks          J2=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] 
-1222 tabsC createTniks          LE=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] 
-1222 tabsC createTniks        END  (1x1x10x6) (1x1x1x1) [0 1 2 3] 0 []    n=[1 1 4 10 6] 
- 541 tabsC dumpWxHp0          (640x480) 0 0 0 0 0 0
-1499 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels init
- 573 tabsC dumpStruct         n=[1 1 4 10 6] ntp=[6 60 60 60] ntp0=[6 60 240 240 240]
+1219 tabsC createTniks          J1=[0 0 3 9 5 5 5 5 0 0 0 0 0 0 0 287] 
+1219 tabsC createTniks          J2=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] 
+1219 tabsC createTniks          LE=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] 
+1219 tabsC createTniks        END  (1x1x10x6) (1x1x1x1) [0 1 2 3] 0 []    n=[1 1 4 10 6] 
+ 538 tabsC dumpWxHp0          (640x480) 0 0 0 0 0 0
+1496 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels init
+ 570 tabsC dumpStruct         n=[1 1 4 10 6] ntp=[6 60 60 60] ntp0=[6 60 240 240 240]
  Key  Cnt       
-Page    1 223bc8cef80  320.00  240.00  640.00  480.00 373 
-Line    1 223bc8cf520  320.00  240.00  640.00  480.00 373 
-Sect    1 223bc8cfb20  320.00  420.00  640.00  120.00  93 
-Col     1 223bcb7c160   32.00  420.00   64.00  120.00  74 
-Tab     1 223bcb7c760   32.00  470.00   64.00   20.00  15 4
-Tab     2 223bcb7ded0   32.00  450.00   64.00   20.00  15 -
-Tab     3 223bcb7eda0   32.00  430.00   64.00   20.00  15 -
-Tab     4 223bcb7f580   32.00  410.00   64.00   20.00  15 3
-Tab     5 223bcb7fcd0   32.00  390.00   64.00   20.00  15 2
-Tab     6 223bcb7ff40   32.00  370.00   64.00   20.00  15 4
-Col     2 223bcba4d60   96.00  420.00   64.00  120.00  74 
-Tab     7 223bcba4700   96.00  470.00   64.00   20.00  15 7
-Tab     8 223bcba5b40   96.00  450.00   64.00   20.00  15 3
-Tab     9 223bcba6320   96.00  430.00   64.00   20.00  15 3
-Tab    10 223bcba69e0   96.00  410.00   64.00   20.00  15 3
-Tab    11 223bcba71f0   96.00  390.00   64.00   20.00  15 7
-Tab    12 223bcba79a0   96.00  370.00   64.00   20.00  15 7
-Col     3 223bcba7fa0  160.00  420.00   64.00  120.00  74 
-Tab    13 223bcba7f40  160.00  470.00   64.00   20.00  15 -
-Tab    14 223bcbb8f40  160.00  450.00   64.00   20.00  15 -
-Tab    15 223bcbb96f0  160.00  430.00   64.00   20.00  15 -
-Tab    16 223bcbb9e70  160.00  410.00   64.00   20.00  15 -
-Tab    17 223bcbba620  160.00  390.00   64.00   20.00  15 -
-Tab    18 223bcbbadd0  160.00  370.00   64.00   20.00  15 -
-Col     4 223bcbbb5e0  224.00  420.00   64.00  120.00  74 
-Tab    19 223bcbbaf80  224.00  470.00   64.00   20.00  15 -
-Tab    20 223bcbbbee0  224.00  450.00   64.00   20.00  15 -
-Tab    21 223bcbc4b80  224.00  430.00   64.00   20.00  15 -
-Tab    22 223bcbc5330  224.00  410.00   64.00   20.00  15 -
-Tab    23 223bcbc5ae0  224.00  390.00   64.00   20.00  15 -
-Tab    24 223bcbc6290  224.00  370.00   64.00   20.00  15 -
-Col     5 223bcbc6a40  288.00  420.00   64.00  120.00  74 
-Tab    25 223bcbc63e0  288.00  470.00   64.00   20.00  15 -
-Tab    26 223bcbc77f0  288.00  450.00   64.00   20.00  15 -
-Tab    27 223bcbc7fa0  288.00  430.00   64.00   20.00  15 -
-Tab    28 223bcbc78e0  288.00  410.00   64.00   20.00  15 -
-Tab    29 223bcbdcf40  288.00  390.00   64.00   20.00  15 -
-Tab    30 223bcbdd6f0  288.00  370.00   64.00   20.00  15 -
-Col     6 223bcbddea0  352.00  420.00   64.00  120.00  74 
-Tab    31 223bcbdd840  352.00  470.00   64.00   20.00  15 -
-Tab    32 223bcbdec50  352.00  450.00   64.00   20.00  15 -
-Tab    33 223bcbdf400  352.00  430.00   64.00   20.00  15 -
-Tab    34 223bcbdfbb0  352.00  410.00   64.00   20.00  15 -
-Tab    35 223bcbdfdc0  352.00  390.00   64.00   20.00  15 -
-Tab    36 223bfcccbb0  352.00  370.00   64.00   20.00  15 -
-Col     7 223bfccd360  416.00  420.00   64.00  120.00  74 
-Tab    37 223bfcccd00  416.00  470.00   64.00   20.00  15 -
-Tab    38 223bfcce110  416.00  450.00   64.00   20.00  15 -
-Tab    39 223bfcce8c0  416.00  430.00   64.00   20.00  15 -
-Tab    40 223bfccf070  416.00  410.00   64.00   20.00  15 -
-Tab    41 223bfccf820  416.00  390.00   64.00   20.00  15 -
-Tab    42 223bfccffd0  416.00  370.00   64.00   20.00  15 -
-Col     8 223bfccfe20  480.00  420.00   64.00  120.00  74 
-Tab    43 223bfce0610  480.00  470.00   64.00   20.00  15 -
-Tab    44 223bfce1570  480.00  450.00   64.00   20.00  15 -
-Tab    45 223bfce1d20  480.00  430.00   64.00   20.00  15 -
-Tab    46 223bfce24d0  480.00  410.00   64.00   20.00  15 -
-Tab    47 223bfce2c80  480.00  390.00   64.00   20.00  15 -
-Tab    48 223bfce3430  480.00  370.00   64.00   20.00  15 -
-Col     9 223bfce3be0  544.00  420.00   64.00  120.00  74 
-Tab    49 223bfce3580  544.00  470.00   64.00   20.00  15 -
-Tab    50 223bfce89d0  544.00  450.00   64.00   20.00  15 -
-Tab    51 223bfce9180  544.00  430.00   64.00   20.00  15 -
-Tab    52 223bfce9930  544.00  410.00   64.00   20.00  15 -
-Tab    53 223bfcea0e0  544.00  390.00   64.00   20.00  15 -
-Tab    54 223bfcea890  544.00  370.00   64.00   20.00  15 -
-Col    10 223bfceb040  608.00  420.00   64.00  120.00  74 
-Tab    55 223bfcea9e0  608.00  470.00   64.00   20.00  15 -
-Tab    56 223bfcebdf0  608.00  450.00   64.00   20.00  15 -
-Tab    57 223bfcebf10  608.00  430.00   64.00   20.00  15 -
-Tab    58 223bfd04d90  608.00  410.00   64.00   20.00  15 -
-Tab    59 223bfd05540  608.00  390.00   64.00   20.00  15 -
-Tab    60 223bfd05cf0  608.00  370.00   64.00   20.00  15 -
-Sect    2 223bfd064a0  320.00  300.00  640.00  120.00  93 
-Col    11 223bfd05e40   32.00  300.00   64.00  120.00  74 
-Note    1 223bfd06920   32.00  350.00   64.00   20.00  15 G#
-Note    2 223bfd07a00   32.00  330.00   64.00   20.00  15 -
-Note    3 223bfd07c10   32.00  310.00   64.00   20.00  15 -
-Note    4 223bfd20a60   32.00  290.00   64.00   20.00  15 F
-Note    5 223bfd21240   32.00  270.00   64.00   20.00  15 B
-Note    6 223bfd21ab0   32.00  250.00   64.00   20.00  15 G#
-Col    12 223bfd22290   96.00  300.00   64.00  120.00  74 
-Note    7 223bfd21c30   96.00  350.00   64.00   20.00  15 B
-Note    8 223bfd23010   96.00  330.00   64.00   20.00  15 D
-Note    9 223bfd237f0   96.00  310.00   64.00   20.00  15 A#
-Note   10 223bfd23b80   96.00  290.00   64.00   20.00  15 F
-Note   11 223bfd23df0   96.00  270.00   64.00   20.00  15 E
-Note   12 223bfd35030   96.00  250.00   64.00   20.00  15 B
-Col    13 223bfd35810  160.00  300.00   64.00  120.00  74 
-Note   13 223bfd351b0  160.00  350.00   64.00   20.00  15 -
-Note   14 223bfd36590  160.00  330.00   64.00   20.00  15 -
-Note   15 223bfd36d40  160.00  310.00   64.00   20.00  15 -
-Note   16 223bfd374f0  160.00  290.00   64.00   20.00  15 -
-Note   17 223bfd37ca0  160.00  270.00   64.00   20.00  15 -
-Note   18 223bfd37f10  160.00  250.00   64.00   20.00  15 -
-Col    14 223bfd4cc40  224.00  300.00   64.00  120.00  74 
-Note   19 223bfd4c5e0  224.00  350.00   64.00   20.00  15 -
-Note   20 223bfd4d9f0  224.00  330.00   64.00   20.00  15 -
-Note   21 223bfd4e1a0  224.00  310.00   64.00   20.00  15 -
-Note   22 223bfd4e950  224.00  290.00   64.00   20.00  15 -
-Note   23 223bfd4f100  224.00  270.00   64.00   20.00  15 -
-Note   24 223bfd4f8b0  224.00  250.00   64.00   20.00  15 -
-Col    15 223bfd4fcd0  288.00  300.00   64.00  120.00  74 
-Note   25 223bfd4fa00  288.00  350.00   64.00   20.00  15 -
-Note   26 223bfd6cd30  288.00  330.00   64.00   20.00  15 -
-Note   27 223bfd6d4e0  288.00  310.00   64.00   20.00  15 -
-Note   28 223bfd6dc90  288.00  290.00   64.00   20.00  15 -
-Note   29 223bfd6e440  288.00  270.00   64.00   20.00  15 -
-Note   30 223bfd6ebf0  288.00  250.00   64.00   20.00  15 -
-Col    16 223bfd6f3a0  352.00  300.00   64.00  120.00  74 
-Note   31 223bfd6ed40  352.00  350.00   64.00   20.00  15 -
-Note   32 223bfd6ffa0  352.00  330.00   64.00   20.00  15 -
-Note   33 223bfd6ff40  352.00  310.00   64.00   20.00  15 -
-Note   34 223bfd7d0f0  352.00  290.00   64.00   20.00  15 -
-Note   35 223bfd7d8a0  352.00  270.00   64.00   20.00  15 -
-Note   36 223bfd7e050  352.00  250.00   64.00   20.00  15 -
-Col    17 223bfd7e800  416.00  300.00   64.00  120.00  74 
-Note   37 223bfd7e1a0  416.00  350.00   64.00   20.00  15 -
-Note   38 223bfd7f5b0  416.00  330.00   64.00   20.00  15 -
-Note   39 223bfd7fd60  416.00  310.00   64.00   20.00  15 -
-Note   40 223bfd7ff70  416.00  290.00   64.00   20.00  15 -
-Note   41 223bfd94d00  416.00  270.00   64.00   20.00  15 -
-Note   42 223bfd954b0  416.00  250.00   64.00   20.00  15 -
-Col    18 223bfd95c60  480.00  300.00   64.00  120.00  74 
-Note   43 223bfd95600  480.00  350.00   64.00   20.00  15 -
-Note   44 223bfd96a10  480.00  330.00   64.00   20.00  15 -
-Note   45 223bfd971c0  480.00  310.00   64.00   20.00  15 -
-Note   46 223bfd97970  480.00  290.00   64.00   20.00  15 -
-Note   47 223bfd97730  480.00  270.00   64.00   20.00  15 -
-Note   48 223bfd97f70  480.00  250.00   64.00   20.00  15 -
-Col    19 223bfda90c0  544.00  300.00   64.00  120.00  74 
-Note   49 223bfda8a60  544.00  350.00   64.00   20.00  15 -
-Note   50 223bfda9e70  544.00  330.00   64.00   20.00  15 -
-Note   51 223bfdaa620  544.00  310.00   64.00   20.00  15 -
-Note   52 223bfdaadd0  544.00  290.00   64.00   20.00  15 -
-Note   53 223bfdab580  544.00  270.00   64.00   20.00  15 -
-Note   54 223bfdabd30  544.00  250.00   64.00   20.00  15 -
-Col    20 223bfdabe80  608.00  300.00   64.00  120.00  74 
-Note   55 223bfdc01f0  608.00  350.00   64.00   20.00  15 -
-Note   56 223bfdc1300  608.00  330.00   64.00   20.00  15 -
-Note   57 223bfdc1ab0  608.00  310.00   64.00   20.00  15 -
-Note   58 223bfdc2260  608.00  290.00   64.00   20.00  15 -
-Note   59 223bfdc2a10  608.00  270.00   64.00   20.00  15 -
-Note   60 223bfdc31c0  608.00  250.00   64.00   20.00  15 -
-Sect    3 223bfdc3970  320.00  180.00  640.00  120.00  93 
-Col    21 223bfdc3310   32.00  180.00   64.00  120.00  74 
-IKey    1 223bfdc3df0   32.00  230.00   64.00   20.00  15 m3
-IKey    2 223bfdc3e50   32.00  210.00   64.00   20.00  15 -
-IKey    3 223bfdd4af0   32.00  190.00   64.00   20.00  15 -
-IKey    4 223bfdd5570   32.00  170.00   64.00   20.00  15 R
-IKey    5 223bfdd5d20   32.00  150.00   64.00   20.00  15 b5
-IKey    6 223bfdd6320   32.00  130.00   64.00   20.00  15 m3
-Col    22 223bfdd7730   96.00  180.00   64.00  120.00  74 
-IKey    7 223bfdd7220   96.00  230.00   64.00   20.00  15 R
-IKey    8 223bfdd72b0   96.00  210.00   64.00   20.00  15 m3
-IKey    9 223bfdd7f40   96.00  190.00   64.00   20.00  15 7
-IKey   10 223bfde48e0   96.00  170.00   64.00   20.00  15 b5
-IKey   11 223bfde50f0   96.00  150.00   64.00   20.00  15 4
-IKey   12 223bfde58a0   96.00  130.00   64.00   20.00  15 R
-Col    23 223bfde6bf0  160.00  180.00   64.00  120.00  74 
-IKey   13 223bfde6590  160.00  230.00   64.00   20.00  15 -
-IKey   14 223bfde79a0  160.00  210.00   64.00   20.00  15 -
-IKey   15 223bfde7fa0  160.00  190.00   64.00   20.00  15 -
-IKey   16 223bfde7f40  160.00  170.00   64.00   20.00  15 -
-IKey   17 223bfe010f0  160.00  150.00   64.00   20.00  15 -
-IKey   18 223bfe018a0  160.00  130.00   64.00   20.00  15 -
-Col    24 223bfe02050  224.00  180.00   64.00  120.00  74 
-IKey   19 223bfe019f0  224.00  230.00   64.00   20.00  15 -
-IKey   20 223bfe02e00  224.00  210.00   64.00   20.00  15 -
-IKey   21 223bfe035b0  224.00  190.00   64.00   20.00  15 -
-IKey   22 223bfe03d60  224.00  170.00   64.00   20.00  15 -
-IKey   23 223bfe03f70  224.00  150.00   64.00   20.00  15 -
-IKey   24 223bfe14d00  224.00  130.00   64.00   20.00  15 -
-Col    25 223bfe154b0  288.00  180.00   64.00  120.00  74 
-IKey   25 223bfe14e50  288.00  230.00   64.00   20.00  15 -
-IKey   26 223bfe16260  288.00  210.00   64.00   20.00  15 -
-IKey   27 223bfe16a10  288.00  190.00   64.00   20.00  15 -
-IKey   28 223bfe171c0  288.00  170.00   64.00   20.00  15 -
-IKey   29 223bfe17970  288.00  150.00   64.00   20.00  15 -
-IKey   30 223bfe17730  288.00  130.00   64.00   20.00  15 -
-Col    26 223bfe17f70  352.00  180.00   64.00  120.00  74 
-IKey   31 223bfe30700  352.00  230.00   64.00   20.00  15 -
-IKey   32 223bfe316c0  352.00  210.00   64.00   20.00  15 -
-IKey   33 223bfe31e70  352.00  190.00   64.00   20.00  15 -
-IKey   34 223bfe32620  352.00  170.00   64.00   20.00  15 -
-IKey   35 223bfe32dd0  352.00  150.00   64.00   20.00  15 -
-IKey   36 223bfe33580  352.00  130.00   64.00   20.00  15 -
-Col    27 223bfe33d30  416.00  180.00   64.00  120.00  74 
-IKey   37 223bfe336d0  416.00  230.00   64.00   20.00  15 -
-IKey   38 223bfe44b20  416.00  210.00   64.00   20.00  15 -
-IKey   39 223bfe452d0  416.00  190.00   64.00   20.00  15 -
-IKey   40 223bfe45a80  416.00  170.00   64.00   20.00  15 -
-IKey   41 223bfe46230  416.00  150.00   64.00   20.00  15 -
-IKey   42 223bfe469e0  416.00  130.00   64.00   20.00  15 -
-Col    28 223bfe47190  480.00  180.00   64.00  120.00  74 
-IKey   43 223bfe46b30  480.00  230.00   64.00   20.00  15 -
-IKey   44 223bfe47f40  480.00  210.00   64.00   20.00  15 -
-IKey   45 223bfe478e0  480.00  190.00   64.00   20.00  15 -
-IKey   46 223bfe54ee0  480.00  170.00   64.00   20.00  15 -
-IKey   47 223bfe55690  480.00  150.00   64.00   20.00  15 -
-IKey   48 223bfe55e40  480.00  130.00   64.00   20.00  15 -
-Col    29 223bfe565f0  544.00  180.00   64.00  120.00  74 
-IKey   49 223bfe55f90  544.00  230.00   64.00   20.00  15 -
-IKey   50 223bfe573a0  544.00  210.00   64.00   20.00  15 -
-IKey   51 223bfe57b50  544.00  190.00   64.00   20.00  15 -
-IKey   52 223bfe57ee0  544.00  170.00   64.00   20.00  15 -
-IKey   53 223bfe68af0  544.00  150.00   64.00   20.00  15 -
-IKey   54 223bfe692a0  544.00  130.00   64.00   20.00  15 -
-Col    30 223bfe69a50  608.00  180.00   64.00  120.00  74 
-IKey   55 223bfe693f0  608.00  230.00   64.00   20.00  15 -
-IKey   56 223bfe6a800  608.00  210.00   64.00   20.00  15 -
-IKey   57 223bfe6afb0  608.00  190.00   64.00   20.00  15 -
-IKey   58 223bfe6b760  608.00  170.00   64.00   20.00  15 -
-IKey   59 223bfe6bf10  608.00  150.00   64.00   20.00  15 -
-IKey   60 223bfe6bcd0  608.00  130.00   64.00   20.00  15 -
-Sect    4 223bfe84eb0  320.00   60.00  640.00  120.00  93 
-Col    31 223bfe84850   32.00   60.00   64.00  120.00  74 
-Kord    1 223bfdd6b90   32.00  110.00   64.00   20.00  15 F
-Kord    2 223bfe855a0   32.00   90.00   64.00   20.00  15 o
-Kord    3 223bfe860e0   32.00   70.00   64.00   20.00  15 /G#
-Kord    4 223bfe86710   32.00   50.00   64.00   20.00  15 -
-Kord    5 223bfe87010   32.00   30.00   64.00   20.00  15 -
-Kord    6 223bfe87a60   32.00   10.00   64.00   20.00  15 -
-Col    32 223bfe98a90   96.00   60.00   64.00  120.00  74 
-Kord    7 223bfde6050   96.00  110.00   64.00   20.00  15 B
-Kord    8 223bfe98850   96.00   90.00   64.00   20.00  15 o
-Kord    9 223bfe99450   96.00   70.00   64.00   20.00  15 M
-Kord   10 223bfe99c00   96.00   50.00   64.00   20.00  15 11
-Kord   11 223bfe9a920   96.00   30.00   64.00   20.00  15 -
-Kord   12 223bfe9abc0   96.00   10.00   64.00   20.00  15 -
-Col    33 223bfe9bcd0  160.00   60.00   64.00  120.00  74 
-Kord   13 223bfe9ba00  160.00  110.00   64.00   20.00  15 -
-Kord   14 223bfeb0e50  160.00   90.00   64.00   20.00  15 -
-Kord   15 223bfeb1600  160.00   70.00   64.00   20.00  15 -
-Kord   16 223bfeb1db0  160.00   50.00   64.00   20.00  15 -
-Kord   17 223bfeb2500  160.00   30.00   64.00   20.00  15 -
-Kord   18 223bfeb2c20  160.00   10.00   64.00   20.00  15 -
-Col    34 223bfeb33d0  224.00   60.00   64.00  120.00  74 
-Kord   19 223bfeb2d70  224.00  110.00   64.00   20.00  15 -
-Kord   20 223bfeb3df0  224.00   90.00   64.00   20.00  15 -
-Kord   21 223bfec4970  224.00   70.00   64.00   20.00  15 -
-Kord   22 223bfec5120  224.00   50.00   64.00   20.00  15 -
-Kord   23 223bfec58d0  224.00   30.00   64.00   20.00  15 -
-Kord   24 223bfec6080  224.00   10.00   64.00   20.00  15 -
-Col    35 223bfec6830  288.00   60.00   64.00  120.00  74 
-Kord   25 223bfec61d0  288.00  110.00   64.00   20.00  15 -
-Kord   26 223bfec75e0  288.00   90.00   64.00   20.00  15 -
-Kord   27 223bfec7df0  288.00   70.00   64.00   20.00  15 -
-Kord   28 223bfec7f10  288.00   50.00   64.00   20.00  15 -
-Kord   29 223bfed4d90  288.00   30.00   64.00   20.00  15 -
-Kord   30 223bfed5540  288.00   10.00   64.00   20.00  15 -
-Col    36 223bfed5cf0  352.00   60.00   64.00  120.00  74 
-Kord   31 223bfed5690  352.00  110.00   64.00   20.00  15 -
-Kord   32 223bfed6aa0  352.00   90.00   64.00   20.00  15 -
-Kord   33 223bfed7250  352.00   70.00   64.00   20.00  15 -
-Kord   34 223bfed7a00  352.00   50.00   64.00   20.00  15 -
-Kord   35 223bfed7b20  352.00   30.00   64.00   20.00  15 -
-Kord   36 223bfeec9a0  352.00   10.00   64.00   20.00  15 -
-Col    37 223bfeed150  416.00   60.00   64.00  120.00  74 
-Kord   37 223bfeecaf0  416.00  110.00   64.00   20.00  15 -
-Kord   38 223bfeedf00  416.00   90.00   64.00   20.00  15 -
-Kord   39 223bfeee6b0  416.00   70.00   64.00   20.00  15 -
-Kord   40 223bfeeee60  416.00   50.00   64.00   20.00  15 -
-Kord   41 223bfeef610  416.00   30.00   64.00   20.00  15 -
-Kord   42 223bfeefdc0  416.00   10.00   64.00   20.00  15 -
-Col    38 223bfeeff40  480.00   60.00   64.00  120.00  74 
-Kord   43 223bff00280  480.00  110.00   64.00   20.00  15 -
-Kord   44 223bff01360  480.00   90.00   64.00   20.00  15 -
-Kord   45 223bff01b10  480.00   70.00   64.00   20.00  15 -
-Kord   46 223bff022c0  480.00   50.00   64.00   20.00  15 -
-Kord   47 223bff02a70  480.00   30.00   64.00   20.00  15 -
-Kord   48 223bff03220  480.00   10.00   64.00   20.00  15 -
-Col    39 223bff039d0  544.00   60.00   64.00  120.00  74 
-Kord   49 223bff03370  544.00  110.00   64.00   20.00  15 -
-Kord   50 223bff03e50  544.00   90.00   64.00   20.00  15 -
-Kord   51 223bff20f70  544.00   70.00   64.00   20.00  15 -
-Kord   52 223bff21720  544.00   50.00   64.00   20.00  15 -
-Kord   53 223bfd20c70  544.00   30.00   64.00   20.00  15 -
-Kord   54 223bff22590  544.00   10.00   64.00   20.00  15 -
-Col    40 223bff22d40  608.00   60.00   64.00  120.00  74 
-Kord   55 223bff226e0  608.00  110.00   64.00   20.00  15 -
-Kord   56 223bff23af0  608.00   90.00   64.00   20.00  15 -
-Kord   57 223bff23eb0  608.00   70.00   64.00   20.00  15 -
-Kord   58 223bff34a90  608.00   50.00   64.00   20.00  15 -
-Kord   59 223bff35240  608.00   30.00   64.00   20.00  15 -
-Kord   60 223bff359f0  608.00   10.00   64.00   20.00  15 -
-Curs    1 223bff36110    0.00  460.00   64.00   20.00 visible
- 317 tabsC _reinit            END
- 269 tabsC __init__           END <class __main__.Tabs>
+Page    1 2406ad8ef80  320.00  240.00  640.00  480.00 373 
+Line    1 2406ad8f520  320.00  240.00  640.00  480.00 373 
+Sect    1 2406ad8fb20  320.00  420.00  640.00  120.00  93 
+Col     1 2406af8c160   32.00  420.00   64.00  120.00  74 
+Tab     1 2406af8c760   32.00  470.00   64.00   20.00  15 4
+Tab     2 2406af8dea0   32.00  450.00   64.00   20.00  15 -
+Tab     3 2406af8ed40   32.00  430.00   64.00   20.00  15 -
+Tab     4 2406af8f520   32.00  410.00   64.00   20.00  15 3
+Tab     5 2406af8fc70   32.00  390.00   64.00   20.00  15 2
+Tab     6 2406af8fe50   32.00  370.00   64.00   20.00  15 4
+Col     2 2406afb4d00   96.00  420.00   64.00  120.00  74 
+Tab     7 2406afb46a0   96.00  470.00   64.00   20.00  15 7
+Tab     8 2406afb5ae0   96.00  450.00   64.00   20.00  15 3
+Tab     9 2406afb62c0   96.00  430.00   64.00   20.00  15 3
+Tab    10 2406afb6980   96.00  410.00   64.00   20.00  15 3
+Tab    11 2406afb7190   96.00  390.00   64.00   20.00  15 7
+Tab    12 2406afb7940   96.00  370.00   64.00   20.00  15 7
+Col     3 2406afb7c10  160.00  420.00   64.00  120.00  74 
+Tab    13 2406afb7dc0  160.00  470.00   64.00   20.00  15 -
+Tab    14 2406afc8ee0  160.00  450.00   64.00   20.00  15 -
+Tab    15 2406afc9690  160.00  430.00   64.00   20.00  15 -
+Tab    16 2406afc9e10  160.00  410.00   64.00   20.00  15 -
+Tab    17 2406afca5c0  160.00  390.00   64.00   20.00  15 -
+Tab    18 2406afcad70  160.00  370.00   64.00   20.00  15 -
+Col     4 2406afcb580  224.00  420.00   64.00  120.00  74 
+Tab    19 2406afcaf20  224.00  470.00   64.00   20.00  15 -
+Tab    20 2406afcbee0  224.00  450.00   64.00   20.00  15 -
+Tab    21 2406afd4b20  224.00  430.00   64.00   20.00  15 -
+Tab    22 2406afd52d0  224.00  410.00   64.00   20.00  15 -
+Tab    23 2406afd5a80  224.00  390.00   64.00   20.00  15 -
+Tab    24 2406afd6230  224.00  370.00   64.00   20.00  15 -
+Col     5 2406afd69e0  288.00  420.00   64.00  120.00  74 
+Tab    25 2406afd6380  288.00  470.00   64.00   20.00  15 -
+Tab    26 2406afd7790  288.00  450.00   64.00   20.00  15 -
+Tab    27 2406afd7f40  288.00  430.00   64.00   20.00  15 -
+Tab    28 2406afd78e0  288.00  410.00   64.00   20.00  15 -
+Tab    29 2406afecee0  288.00  390.00   64.00   20.00  15 -
+Tab    30 2406afed690  288.00  370.00   64.00   20.00  15 -
+Col     6 2406afede40  352.00  420.00   64.00  120.00  74 
+Tab    31 2406afed7e0  352.00  470.00   64.00   20.00  15 -
+Tab    32 2406afeebf0  352.00  450.00   64.00   20.00  15 -
+Tab    33 2406afef3a0  352.00  430.00   64.00   20.00  15 -
+Tab    34 2406afefb50  352.00  410.00   64.00   20.00  15 -
+Tab    35 2406afefe80  352.00  390.00   64.00   20.00  15 -
+Tab    36 2406e18cb50  352.00  370.00   64.00   20.00  15 -
+Col     7 2406e18d300  416.00  420.00   64.00  120.00  74 
+Tab    37 2406e18cca0  416.00  470.00   64.00   20.00  15 -
+Tab    38 2406e18e0b0  416.00  450.00   64.00   20.00  15 -
+Tab    39 2406e18e860  416.00  430.00   64.00   20.00  15 -
+Tab    40 2406e18f010  416.00  410.00   64.00   20.00  15 -
+Tab    41 2406e18f7c0  416.00  390.00   64.00   20.00  15 -
+Tab    42 2406e18ff70  416.00  370.00   64.00   20.00  15 -
+Col     8 2406e18f910  480.00  420.00   64.00  120.00  74 
+Tab    43 2406e1a05b0  480.00  470.00   64.00   20.00  15 -
+Tab    44 2406e1a1510  480.00  450.00   64.00   20.00  15 -
+Tab    45 2406e1a1cc0  480.00  430.00   64.00   20.00  15 -
+Tab    46 2406e1a2470  480.00  410.00   64.00   20.00  15 -
+Tab    47 2406e1a2c20  480.00  390.00   64.00   20.00  15 -
+Tab    48 2406e1a33d0  480.00  370.00   64.00   20.00  15 -
+Col     9 2406e1a3b80  544.00  420.00   64.00  120.00  74 
+Tab    49 2406e1a3520  544.00  470.00   64.00   20.00  15 -
+Tab    50 2406e1b8970  544.00  450.00   64.00   20.00  15 -
+Tab    51 2406e1b9120  544.00  430.00   64.00   20.00  15 -
+Tab    52 2406e1b98d0  544.00  410.00   64.00   20.00  15 -
+Tab    53 2406e1ba080  544.00  390.00   64.00   20.00  15 -
+Tab    54 2406e1ba830  544.00  370.00   64.00   20.00  15 -
+Col    10 2406e1bafe0  608.00  420.00   64.00  120.00  74 
+Tab    55 2406e1ba980  608.00  470.00   64.00   20.00  15 -
+Tab    56 2406e1bbd90  608.00  450.00   64.00   20.00  15 -
+Tab    57 2406e1bbe80  608.00  430.00   64.00   20.00  15 -
+Tab    58 2406e1c8d30  608.00  410.00   64.00   20.00  15 -
+Tab    59 2406e1c94e0  608.00  390.00   64.00   20.00  15 -
+Tab    60 2406e1c9c90  608.00  370.00   64.00   20.00  15 -
+Sect    2 2406e1ca440  320.00  300.00  640.00  120.00  93 
+Col    11 2406e1c9de0   32.00  300.00   64.00  120.00  74 
+Note    1 2406e1ca8c0   32.00  350.00   64.00   20.00  15 G#
+Note    2 2406e1cb9a0   32.00  330.00   64.00   20.00  15 -
+Note    3 2406e1cbe20   32.00  310.00   64.00   20.00  15 -
+Note    4 2406e1e4a00   32.00  290.00   64.00   20.00  15 F
+Note    5 2406e1e51e0   32.00  270.00   64.00   20.00  15 B
+Note    6 2406e1e5a50   32.00  250.00   64.00   20.00  15 G#
+Col    12 2406e1e6230   96.00  300.00   64.00  120.00  74 
+Note    7 2406e1e5bd0   96.00  350.00   64.00   20.00  15 B
+Note    8 2406e1e6fb0   96.00  330.00   64.00   20.00  15 D
+Note    9 2406e1e7790   96.00  310.00   64.00   20.00  15 A#
+Note   10 2406e1e7fd0   96.00  290.00   64.00   20.00  15 F
+Note   11 2406e1e7b50   96.00  270.00   64.00   20.00  15 E
+Note   12 2406e1f8fd0   96.00  250.00   64.00   20.00  15 B
+Col    13 2406e1f97b0  160.00  300.00   64.00  120.00  74 
+Note   13 2406e1f9150  160.00  350.00   64.00   20.00  15 -
+Note   14 2406e1fa530  160.00  330.00   64.00   20.00  15 -
+Note   15 2406e1face0  160.00  310.00   64.00   20.00  15 -
+Note   16 2406e1fb490  160.00  290.00   64.00   20.00  15 -
+Note   17 2406e1fbc40  160.00  270.00   64.00   20.00  15 -
+Note   18 2406e1fbdf0  160.00  250.00   64.00   20.00  15 -
+Col    14 2406e210be0  224.00  300.00   64.00  120.00  74 
+Note   19 2406e210580  224.00  350.00   64.00   20.00  15 -
+Note   20 2406e211990  224.00  330.00   64.00   20.00  15 -
+Note   21 2406e212140  224.00  310.00   64.00   20.00  15 -
+Note   22 2406e2128f0  224.00  290.00   64.00   20.00  15 -
+Note   23 2406e2130a0  224.00  270.00   64.00   20.00  15 -
+Note   24 2406e213850  224.00  250.00   64.00   20.00  15 -
+Col    15 2406e213c70  288.00  300.00   64.00  120.00  74 
+Note   25 2406e213a90  288.00  350.00   64.00   20.00  15 -
+Note   26 2406e22ccd0  288.00  330.00   64.00   20.00  15 -
+Note   27 2406e22d480  288.00  310.00   64.00   20.00  15 -
+Note   28 2406e22dc30  288.00  290.00   64.00   20.00  15 -
+Note   29 2406e22e3e0  288.00  270.00   64.00   20.00  15 -
+Note   30 2406e22eb90  288.00  250.00   64.00   20.00  15 -
+Col    16 2406e22f340  352.00  300.00   64.00  120.00  74 
+Note   31 2406e22ece0  352.00  350.00   64.00   20.00  15 -
+Note   32 2406e22fc10  352.00  330.00   64.00   20.00  15 -
+Note   33 2406e22fdc0  352.00  310.00   64.00   20.00  15 -
+Note   34 2406e23d090  352.00  290.00   64.00   20.00  15 -
+Note   35 2406e23d840  352.00  270.00   64.00   20.00  15 -
+Note   36 2406e23dff0  352.00  250.00   64.00   20.00  15 -
+Col    17 2406e23e7a0  416.00  300.00   64.00  120.00  74 
+Note   37 2406e23e140  416.00  350.00   64.00   20.00  15 -
+Note   38 2406e23f550  416.00  330.00   64.00   20.00  15 -
+Note   39 2406e23fd00  416.00  310.00   64.00   20.00  15 -
+Note   40 2406e23ff70  416.00  290.00   64.00   20.00  15 -
+Note   41 2406e254ca0  416.00  270.00   64.00   20.00  15 -
+Note   42 2406e255450  416.00  250.00   64.00   20.00  15 -
+Col    18 2406e255c00  480.00  300.00   64.00  120.00  74 
+Note   43 2406e2555a0  480.00  350.00   64.00   20.00  15 -
+Note   44 2406e2569b0  480.00  330.00   64.00   20.00  15 -
+Note   45 2406e257160  480.00  310.00   64.00   20.00  15 -
+Note   46 2406e257910  480.00  290.00   64.00   20.00  15 -
+Note   47 2406e257f70  480.00  270.00   64.00   20.00  15 -
+Note   48 2406e257e20  480.00  250.00   64.00   20.00  15 -
+Col    19 2406e269060  544.00  300.00   64.00  120.00  74 
+Note   49 2406e268a00  544.00  350.00   64.00   20.00  15 -
+Note   50 2406e269e10  544.00  330.00   64.00   20.00  15 -
+Note   51 2406e26a5c0  544.00  310.00   64.00   20.00  15 -
+Note   52 2406e26ad70  544.00  290.00   64.00   20.00  15 -
+Note   53 2406e26b520  544.00  270.00   64.00   20.00  15 -
+Note   54 2406e26bcd0  544.00  250.00   64.00   20.00  15 -
+Col    20 2406e26bee0  608.00  300.00   64.00  120.00  74 
+Note   55 2406e2803d0  608.00  350.00   64.00   20.00  15 -
+Note   56 2406e2812a0  608.00  330.00   64.00   20.00  15 -
+Note   57 2406e281a50  608.00  310.00   64.00   20.00  15 -
+Note   58 2406e282200  608.00  290.00   64.00   20.00  15 -
+Note   59 2406e2829b0  608.00  270.00   64.00   20.00  15 -
+Note   60 2406e283160  608.00  250.00   64.00   20.00  15 -
+Sect    3 2406e283910  320.00  180.00  640.00  120.00  93 
+Col    21 2406e2832b0   32.00  180.00   64.00  120.00  74 
+IKey    1 2406e283d90   32.00  230.00   64.00   20.00  15 m3
+IKey    2 2406e283df0   32.00  210.00   64.00   20.00  15 -
+IKey    3 2406e294a90   32.00  190.00   64.00   20.00  15 -
+IKey    4 2406e295510   32.00  170.00   64.00   20.00  15 R
+IKey    5 2406e295cc0   32.00  150.00   64.00   20.00  15 b5
+IKey    6 2406e2962c0   32.00  130.00   64.00   20.00  15 m3
+Col    22 2406e2976d0   96.00  180.00   64.00  120.00  74 
+IKey    7 2406e2971c0   96.00  230.00   64.00   20.00  15 R
+IKey    8 2406e297250   96.00  210.00   64.00   20.00  15 m3
+IKey    9 2406e297f10   96.00  190.00   64.00   20.00  15 7
+IKey   10 2406e2a4880   96.00  170.00   64.00   20.00  15 b5
+IKey   11 2406e2a5090   96.00  150.00   64.00   20.00  15 4
+IKey   12 2406e2a5840   96.00  130.00   64.00   20.00  15 R
+Col    23 2406e2a6b90  160.00  180.00   64.00  120.00  74 
+IKey   13 2406e2a6530  160.00  230.00   64.00   20.00  15 -
+IKey   14 2406e2a7940  160.00  210.00   64.00   20.00  15 -
+IKey   15 2406e2a7c10  160.00  190.00   64.00   20.00  15 -
+IKey   16 2406e2a7dc0  160.00  170.00   64.00   20.00  15 -
+IKey   17 2406e2c1090  160.00  150.00   64.00   20.00  15 -
+IKey   18 2406e2c1840  160.00  130.00   64.00   20.00  15 -
+Col    24 2406e2c1ff0  224.00  180.00   64.00  120.00  74 
+IKey   19 2406e2c1990  224.00  230.00   64.00   20.00  15 -
+IKey   20 2406e2c2da0  224.00  210.00   64.00   20.00  15 -
+IKey   21 2406e2c3550  224.00  190.00   64.00   20.00  15 -
+IKey   22 2406e2c3d00  224.00  170.00   64.00   20.00  15 -
+IKey   23 2406e2c3f70  224.00  150.00   64.00   20.00  15 -
+IKey   24 2406e2d4ca0  224.00  130.00   64.00   20.00  15 -
+Col    25 2406e2d5450  288.00  180.00   64.00  120.00  74 
+IKey   25 2406e2d4df0  288.00  230.00   64.00   20.00  15 -
+IKey   26 2406e2d6200  288.00  210.00   64.00   20.00  15 -
+IKey   27 2406e2d69b0  288.00  190.00   64.00   20.00  15 -
+IKey   28 2406e2d7160  288.00  170.00   64.00   20.00  15 -
+IKey   29 2406e2d7910  288.00  150.00   64.00   20.00  15 -
+IKey   30 2406e2d7f70  288.00  130.00   64.00   20.00  15 -
+Col    26 2406e2d7e20  352.00  180.00   64.00  120.00  74 
+IKey   31 2406e2ec700  352.00  230.00   64.00   20.00  15 -
+IKey   32 2406e2ed660  352.00  210.00   64.00   20.00  15 -
+IKey   33 2406e2ede10  352.00  190.00   64.00   20.00  15 -
+IKey   34 2406e2ee5c0  352.00  170.00   64.00   20.00  15 -
+IKey   35 2406e2eed70  352.00  150.00   64.00   20.00  15 -
+IKey   36 2406e2ef520  352.00  130.00   64.00   20.00  15 -
+Col    27 2406e2efcd0  416.00  180.00   64.00  120.00  74 
+IKey   37 2406e2ef670  416.00  230.00   64.00   20.00  15 -
+IKey   38 2406e304ac0  416.00  210.00   64.00   20.00  15 -
+IKey   39 2406e305270  416.00  190.00   64.00   20.00  15 -
+IKey   40 2406e305a20  416.00  170.00   64.00   20.00  15 -
+IKey   41 2406e3061d0  416.00  150.00   64.00   20.00  15 -
+IKey   42 2406e306980  416.00  130.00   64.00   20.00  15 -
+Col    28 2406e307130  480.00  180.00   64.00  120.00  74 
+IKey   43 2406e306ad0  480.00  230.00   64.00   20.00  15 -
+IKey   44 2406e307ee0  480.00  210.00   64.00   20.00  15 -
+IKey   45 2406e307fa0  480.00  190.00   64.00   20.00  15 -
+IKey   46 2406e314e80  480.00  170.00   64.00   20.00  15 -
+IKey   47 2406e315630  480.00  150.00   64.00   20.00  15 -
+IKey   48 2406e315de0  480.00  130.00   64.00   20.00  15 -
+Col    29 2406e316590  544.00  180.00   64.00  120.00  74 
+IKey   49 2406e315f30  544.00  230.00   64.00   20.00  15 -
+IKey   50 2406e317340  544.00  210.00   64.00   20.00  15 -
+IKey   51 2406e317af0  544.00  190.00   64.00   20.00  15 -
+IKey   52 2406e317eb0  544.00  170.00   64.00   20.00  15 -
+IKey   53 2406e328a90  544.00  150.00   64.00   20.00  15 -
+IKey   54 2406e329240  544.00  130.00   64.00   20.00  15 -
+Col    30 2406e3299f0  608.00  180.00   64.00  120.00  74 
+IKey   55 2406e329390  608.00  230.00   64.00   20.00  15 -
+IKey   56 2406e32a7a0  608.00  210.00   64.00   20.00  15 -
+IKey   57 2406e32af50  608.00  190.00   64.00   20.00  15 -
+IKey   58 2406e32b700  608.00  170.00   64.00   20.00  15 -
+IKey   59 2406e32beb0  608.00  150.00   64.00   20.00  15 -
+IKey   60 2406e32bfd0  608.00  130.00   64.00   20.00  15 -
+Sect    4 2406e344e50  320.00   60.00  640.00  120.00  93 
+Col    31 2406e3447f0   32.00   60.00   64.00  120.00  74 
+Kord    1 2406e296b30   32.00  110.00   64.00   20.00  15 F
+Kord    2 2406e345540   32.00   90.00   64.00   20.00  15 o
+Kord    3 2406e346080   32.00   70.00   64.00   20.00  15 /G#
+Kord    4 2406e3466b0   32.00   50.00   64.00   20.00  15 -
+Kord    5 2406e346fb0   32.00   30.00   64.00   20.00  15 -
+Kord    6 2406e347a00   32.00   10.00   64.00   20.00  15 -
+Col    32 2406e358a30   96.00   60.00   64.00  120.00  74 
+Kord    7 2406e2a5ff0   96.00  110.00   64.00   20.00  15 B
+Kord    8 2406e3587f0   96.00   90.00   64.00   20.00  15 o
+Kord    9 2406e3593f0   96.00   70.00   64.00   20.00  15 M
+Kord   10 2406e359ba0   96.00   50.00   64.00   20.00  15 11
+Kord   11 2406e35a8c0   96.00   30.00   64.00   20.00  15 -
+Kord   12 2406e35ab60   96.00   10.00   64.00   20.00  15 -
+Col    33 2406e35bc70  160.00   60.00   64.00  120.00  74 
+Kord   13 2406e35ba90  160.00  110.00   64.00   20.00  15 -
+Kord   14 2406e374df0  160.00   90.00   64.00   20.00  15 -
+Kord   15 2406e3755a0  160.00   70.00   64.00   20.00  15 -
+Kord   16 2406e375d50  160.00   50.00   64.00   20.00  15 -
+Kord   17 2406e3764a0  160.00   30.00   64.00   20.00  15 -
+Kord   18 2406e376bc0  160.00   10.00   64.00   20.00  15 -
+Col    34 2406e377370  224.00   60.00   64.00  120.00  74 
+Kord   19 2406e376d10  224.00  110.00   64.00   20.00  15 -
+Kord   20 2406e377850  224.00   90.00   64.00   20.00  15 -
+Kord   21 2406e377f70  224.00   70.00   64.00   20.00  15 -
+Kord   22 2406e3850c0  224.00   50.00   64.00   20.00  15 -
+Kord   23 2406e385870  224.00   30.00   64.00   20.00  15 -
+Kord   24 2406e386020  224.00   10.00   64.00   20.00  15 -
+Col    35 2406e3867d0  288.00   60.00   64.00  120.00  74 
+Kord   25 2406e386170  288.00  110.00   64.00   20.00  15 -
+Kord   26 2406e387580  288.00   90.00   64.00   20.00  15 -
+Kord   27 2406e387d90  288.00   70.00   64.00   20.00  15 -
+Kord   28 2406e387e80  288.00   50.00   64.00   20.00  15 -
+Kord   29 2406e398d30  288.00   30.00   64.00   20.00  15 -
+Kord   30 2406e3994e0  288.00   10.00   64.00   20.00  15 -
+Col    36 2406e399c90  352.00   60.00   64.00  120.00  74 
+Kord   31 2406e399630  352.00  110.00   64.00   20.00  15 -
+Kord   32 2406e39aa40  352.00   90.00   64.00   20.00  15 -
+Kord   33 2406e39b1f0  352.00   70.00   64.00   20.00  15 -
+Kord   34 2406e39b9a0  352.00   50.00   64.00   20.00  15 -
+Kord   35 2406e39bfa0  352.00   30.00   64.00   20.00  15 -
+Kord   36 2406e39bf40  352.00   10.00   64.00   20.00  15 -
+Col    37 2406e3ad0f0  416.00   60.00   64.00  120.00  74 
+Kord   37 2406e3aca90  416.00  110.00   64.00   20.00  15 -
+Kord   38 2406e3adea0  416.00   90.00   64.00   20.00  15 -
+Kord   39 2406e3ae650  416.00   70.00   64.00   20.00  15 -
+Kord   40 2406e3aee00  416.00   50.00   64.00   20.00  15 -
+Kord   41 2406e3af5b0  416.00   30.00   64.00   20.00  15 -
+Kord   42 2406e3afd60  416.00   10.00   64.00   20.00  15 -
+Col    38 2406e3aff70  480.00   60.00   64.00  120.00  74 
+Kord   43 2406e3bc520  480.00  110.00   64.00   20.00  15 -
+Kord   44 2406e3bd300  480.00   90.00   64.00   20.00  15 -
+Kord   45 2406e3bdab0  480.00   70.00   64.00   20.00  15 -
+Kord   46 2406e3be260  480.00   50.00   64.00   20.00  15 -
+Kord   47 2406e3bea10  480.00   30.00   64.00   20.00  15 -
+Kord   48 2406e3bf1c0  480.00   10.00   64.00   20.00  15 -
+Col    39 2406e3bf970  544.00   60.00   64.00  120.00  74 
+Kord   49 2406e3bf310  544.00  110.00   64.00   20.00  15 -
+Kord   50 2406e3bfdf0  544.00   90.00   64.00   20.00  15 -
+Kord   51 2406e3dcf10  544.00   70.00   64.00   20.00  15 -
+Kord   52 2406e3dd6c0  544.00   50.00   64.00   20.00  15 -
+Kord   53 2406e1e4c10  544.00   30.00   64.00   20.00  15 -
+Kord   54 2406e3de530  544.00   10.00   64.00   20.00  15 -
+Col    40 2406e3dece0  608.00   60.00   64.00  120.00  74 
+Kord   55 2406e3de680  608.00  110.00   64.00   20.00  15 -
+Kord   56 2406e3dfa90  608.00   90.00   64.00   20.00  15 -
+Kord   57 2406e3dfe50  608.00   70.00   64.00   20.00  15 -
+Kord   58 2406e3f0a30  608.00   50.00   64.00   20.00  15 -
+Kord   59 2406e3f11e0  608.00   30.00   64.00   20.00  15 -
+Kord   60 2406e3f1990  608.00   10.00   64.00   20.00  15 -
+Curs    1 2406e3f20b0    0.00  460.00   64.00   20.00 visible
+ 314 tabsC _reinit            END
+ 266 tabsC __init__           END <class __main__.Tabs>
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
- 541 tabsC dumpWxHp0          (640x480) 0 0 0 0 0 0
-1290 tabsC resizeTniks        BGN  (1x1x10x6) (1x1x1x1) [0 1 2 3] 0 []    n=[1 1 4 10 6] Upd
-1290 tabsC resizeTniks          J1=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Upd
-1290 tabsC resizeTniks          J2=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Upd
-1290 tabsC resizeTniks          LE=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] Upd
+ 538 tabsC dumpWxHp0          (640x480) 0 0 0 0 0 0
+1287 tabsC resizeTniks        BGN  (1x1x10x6) (1x1x1x1) [0 1 2 3] 0 []    n=[1 1 4 10 6] Upd
+1287 tabsC resizeTniks          J1=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Upd
+1287 tabsC resizeTniks          J2=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] Upd
+1287 tabsC resizeTniks          LE=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] Upd
 P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G Red Grn Blu Opc  Mx    My
 P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G Red Grn Blu Opc Dpi B I  Font Name
 1  0  0   0    0    0    0    0  0   0 0 0  0  0   0    1  320.00  240.00  640.00  480.00 Upd  Page    1     373 1 255 255 255   0  96 0 0 Lucida Console  0  0 top center center center None
@@ -1156,31 +1156,31 @@ P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W 
 1  1  4  40   60   60   60   58  0   0 0 0  0  0   0  284  608.00   50.00   64.00   20.00 Upd  Kord   58 -    15 5  51  51   0 255  96 0 0 Lucida Console 13 20 top center center center [255 255 0 255]
 1  1  4  40   60   60   60   59  0   0 0 0  0  0   0  285  608.00   30.00   64.00   20.00 Upd  Kord   59 -    15 5  51  51   0 255  96 0 0 Lucida Console 13 20 top center center center [255 255 0 255]
 1  1  4  40   60   60   60   60  0   0 0 0  0  0   0  286  608.00   10.00   64.00   20.00 Upd  Kord   60 -    15 5  51  51   0 255  96 0 0 Lucida Console 13 20 top center center center [255 255 0 255]
-1432 tabsC cc2xywh            cc=0 t.x= 32.00 t.y=470.00 t.width= 64.00 t.height= 20.00 t.text=4 cw=13 ch=20 top
+1429 tabsC cc2xywh            cc=0 t.x= 32.00 t.y=470.00 t.width= 64.00 t.height= 20.00 t.text=4 cw=13 ch=20 top
 1  1  4  40   60   60   60   60  0   0 1 0  0  0   0  287    0.00  460.00   64.00   20.00 Upd  Curs    1 Visible 6 255 128 255 255 1.000 1.000
 P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G Red Grn Blu Opc  Mx    My
 P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G Red Grn Blu Opc Dpi B I  Font Name
-1301 tabsC resizeTniks          J1=[0 0 3 39 59 59 59 59 0 0 0 0 0 0 0 287] Upd
-1301 tabsC resizeTniks          J2=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] Upd
-1301 tabsC resizeTniks          LE=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] Upd
-1301 tabsC resizeTniks        END  (1x1x10x6) (1x1x1x1) [0 1 2 3] 0 []    n=[1 1 4 10 6] Upd
- 541 tabsC dumpWxHp0          (640x480) 0 0 0 0 0 0
- 540 tabsC dumpAxy            .a=center .ax=center .ay=center
+1298 tabsC resizeTniks          J1=[0 0 3 39 59 59 59 59 0 0 0 0 0 0 0 287] Upd
+1298 tabsC resizeTniks          J2=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] Upd
+1298 tabsC resizeTniks          LE=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] Upd
+1298 tabsC resizeTniks        END  (1x1x10x6) (1x1x1x1) [0 1 2 3] 0 []    n=[1 1 4 10 6] Upd
+ 538 tabsC dumpWxHp0          (640x480) 0 0 0 0 0 0
+ 537 tabsC dumpAxy            .a=center .ax=center .ay=center
 self.A_LEFT=0 self.A_CENTER=1 self.A_RIGHT=0 self.X_LEFT=0 self.X_CENTER=1 self.X_RIGHT=0 self.Y_TOP=0 self.Y_CENTER=1 self.Y_BOTTOM=0 self.Y_BASELINE=0
-1643 tabsC on_text_motion     BGN <       1> <   65363> <RIGHT           > < 2> <MOD_CTRL        > motion=1
-1967 tabsC selectTabs         BGN @  RIGHT (1) m=6 cn=0 cc=0 k=0 smap=[]
-1773 tabsC move               [0 0 0 0]   0  0] BGN k=6 @  RIGHT (1)
-1781 tabsC _moveTo            [0 0 0 0]   0  0] BGN n=6
-1791 tabsC _moveTo            [0 0 1 0]   6  1] END n=6 plct2=[0 0 1 6]
-1935 tabsC setLLStyle         SKIP .LL=0 len(.lcols)=0
-1432 tabsC cc2xywh            cc=6 t.x= 96.00 t.y=470.00 t.width= 64.00 t.height= 20.00 t.text=7 cw=13 ch=20 top
+1640 tabsC on_text_motion     BGN <       1> <   65363> <RIGHT           > < 2> <MOD_CTRL        > motion=1
+1964 tabsC selectTabs         BGN @  RIGHT (1) m=6 cn=0 cc=0 k=0 smap=[]
+1770 tabsC move               [0 0 0 0]   0  0] BGN k=6 @  RIGHT (1)
+1778 tabsC _moveTo            [0 0 0 0]   0  0] BGN n=6
+1788 tabsC _moveTo            [0 0 1 0]   6  1] END n=6 plct2=[0 0 1 6]
+1932 tabsC setLLStyle         SKIP .LL=0 len(.lcols)=0
+1429 tabsC cc2xywh            cc=6 t.x= 96.00 t.y=470.00 t.width= 64.00 t.height= 20.00 t.text=7 cw=13 ch=20 top
 1  1  4  40   60   60   60   60  0   0 2 0  0  0   0  288   64.00  460.00   64.00   20.00 Upd  Curs    2 Visible 6 255 128 255 255 1.000 1.000
-1935 tabsC setLLStyle         SKIP .LL=0 len(.lcols)=0
-1778 tabsC move               [0 0 1 0]   6  1] END k=6 @  RIGHT (1)
-1971 tabsC selectTabs         END @  RIGHT (1) m=6 cn=0 cc=0 k=0 smap=[0:4--324]
-1686 tabsC on_text_motion     END <       1> <   65363> <RIGHT           > < 2> <MOD_CTRL        > motion=1
-  69 util dumpStack          10 tabsC      2338 quit                 .dumpStack(inspect.stack(), file=LOG_FILE)    ;   .log(.QUIT_BGN, pfx=0)
-  69 util dumpStack           9 tabsC      1572 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
+1932 tabsC setLLStyle         SKIP .LL=0 len(.lcols)=0
+1775 tabsC move               [0 0 1 0]   6  1] END k=6 @  RIGHT (1)
+1968 tabsC selectTabs         END @  RIGHT (1) m=6 cn=0 cc=0 k=0 smap=[0:4--324]
+1683 tabsC on_text_motion     END <       1> <   65363> <RIGHT           > < 2> <MOD_CTRL        > motion=1
+  69 util dumpStack          10 tabsC      2335 quit                 .dumpStack(inspect.stack(), file=LOG_FILE)    ;   .log(.QUIT_BGN, pfx=0)
+  69 util dumpStack           9 tabsC      1569 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
   69 util dumpStack           8 event       415 dispatch_event       if getattr(self, event_type)(*args):
   69 util dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
   69 util dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
@@ -1188,17 +1188,17 @@ self.A_LEFT=0 self.A_CENTER=1 self.A_RIGHT=0 self.X_LEFT=0 self.X_CENTER=1 self.
   69 util dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
   69 util dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
   69 util dumpStack           2 __init__    107 run                  event_loop.run()
-  69 util dumpStack           1 tabsC       121 main                 ret = pyglet.app.run()
-  69 util dumpStack           0 tabsC      2370 <module>             main()
+  69 util dumpStack           1 tabsC       118 main                 ret = pyglet.app.run()
+  69 util dumpStack           0 tabsC      2367 <module>             main()
   70 util dumpStack          MAX_STACK_DEPTH= 0
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
 P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G Red Grn Blu Opc  Mx    My
 P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G Red Grn Blu Opc Dpi B I  Font Name
-2339 tabsC quit                 J1=[0 0 3 39 59 59 59 59 0 0 0 0 0 0 0 288] @^Q
-2339 tabsC quit                 J2=[1 1 4 40 60 60 60 60 0 0 2 0 0 0 0 288] @^Q
-2339 tabsC quit                 LE=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] @^Q
-2339 tabsC quit               END  (1x1x10x6) (1x1x2x1) [0 1 2 3] 0 []    n=[1 1 4 10 6] @^Q
- 541 tabsC dumpWxHp0          (640x480) 0 0 0 0 0 0
+2336 tabsC quit                 J1=[0 0 3 39 59 59 59 59 0 0 0 0 0 0 0 288] @^Q
+2336 tabsC quit                 J2=[1 1 4 40 60 60 60 60 0 0 2 0 0 0 0 288] @^Q
+2336 tabsC quit                 LE=[1 1 4 40 60 60 60 60 0 0 1 0 0 0 0 287] @^Q
+2336 tabsC quit               END  (1x1x10x6) (1x1x2x1) [0 1 2 3] 0 []    n=[1 1 4 10 6] @^Q
+ 538 tabsC dumpWxHp0          (640x480) 0 0 0 0 0 0
   69 util dumpStack          12 util          7 <module>             MAX_STACK_FRAME = inspect.stack()
   69 util dumpStack          11 <frozen importlib   241 _call_with_frames_removed 
   69 util dumpStack          10 <frozen importlib   883 exec_module          
@@ -1213,39 +1213,39 @@ P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W 
   69 util dumpStack           1 <frozen importlib  1027 _find_and_load       
   69 util dumpStack           0 tabsC        15 <module>             import chord, util
   70 util dumpStack          MAX_STACK_DEPTH= 0
-2341 tabsC quit               BGN @^Q error=0 save=0
+2338 tabsC quit               BGN @^Q error=0 save=0
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
- 273 tabsC dumpArgs           [f]             .dfn=test.11.dat
- 274 tabsC dumpArgs           [n]             n=[1 1 4 10 6]
- 275 tabsC dumpArgs           [i]             i=[1 1 4 2 1]
- 276 tabsC dumpArgs           [a]    .AUTO_SAVE=0
- 277 tabsC dumpArgs           [b]   .FRET_BOARD=0
- 278 tabsC dumpArgs           [B]          .BGC=0
- 279 tabsC dumpArgs           [c]          .CAT=0
- 280 tabsC dumpArgs           [d] .DBG_TAB_TEXT=0
- 281 tabsC dumpArgs           [C]    .CHECKERED=0
- 282 tabsC dumpArgs           [e]    .EVENT_LOG=0
- 283 tabsC dumpArgs           [F]  .FULL_SCREEN=0
- 284 tabsC dumpArgs           [G]     .GEN_DATA=0
- 285 tabsC dumpArgs           [M]   .MULTI_LINE=1
- 286 tabsC dumpArgs           [g]  .ORDER_GROUP=1
- 287 tabsC dumpArgs           [p]        .SNAPS=0
- 288 tabsC dumpArgs           [R]       .RESIZE=1
- 289 tabsC dumpArgs           [x]       .SUBPIX=0
- 290 tabsC dumpArgs           [s]      .SPRITES=0
- 291 tabsC dumpArgs           [t]         .TEST=0
- 292 tabsC dumpArgs           [v]      .VERBOSE=0
- 293 tabsC dumpArgs           [V]        .VIEWS=0
- 294 tabsC dumpArgs           [r]    .RD_STDOUT=0
- 295 tabsC dumpArgs           [u]  .TRANSPOSE_A=1
- 296 tabsC dumpArgs           [L]           .LL=0
- 297 tabsC dumpArgs           [S]           .SS=[0 1 2 3]
- 298 tabsC dumpArgs           [Z]           .ZZ=[]
- 722 tabsC A_transposeData    BGN (1x1x10x6) dump=1
- 679 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
+ 270 tabsC dumpArgs           [f]             .dfn=test.11.dat
+ 271 tabsC dumpArgs           [n]             n=[1 1 4 10 6]
+ 272 tabsC dumpArgs           [i]             i=[1 1 4 2 1]
+ 273 tabsC dumpArgs           [a]    .AUTO_SAVE=0
+ 274 tabsC dumpArgs           [b]   .FRET_BOARD=0
+ 275 tabsC dumpArgs           [B]          .BGC=0
+ 276 tabsC dumpArgs           [c]          .CAT=0
+ 277 tabsC dumpArgs           [d] .DBG_TAB_TEXT=0
+ 278 tabsC dumpArgs           [C]    .CHECKERED=0
+ 279 tabsC dumpArgs           [e]    .EVENT_LOG=0
+ 280 tabsC dumpArgs           [F]  .FULL_SCREEN=0
+ 281 tabsC dumpArgs           [G]     .GEN_DATA=0
+ 282 tabsC dumpArgs           [M]   .MULTI_LINE=1
+ 283 tabsC dumpArgs           [g]  .ORDER_GROUP=1
+ 284 tabsC dumpArgs           [p]        .SNAPS=0
+ 285 tabsC dumpArgs           [R]       .RESIZE=1
+ 286 tabsC dumpArgs           [x]       .SUBPIX=0
+ 287 tabsC dumpArgs           [s]      .SPRITES=0
+ 288 tabsC dumpArgs           [t]         .TEST=0
+ 289 tabsC dumpArgs           [v]      .VERBOSE=0
+ 290 tabsC dumpArgs           [V]        .VIEWS=0
+ 291 tabsC dumpArgs           [r]    .RD_STDOUT=0
+ 292 tabsC dumpArgs           [u]  .TRANSPOSE_A=1
+ 293 tabsC dumpArgs           [L]           .LL=0
+ 294 tabsC dumpArgs           [S]           .SS=[0 1 2 3]
+ 295 tabsC dumpArgs           [Z]           .ZZ=[]
+ 719 tabsC A_transposeData    BGN (1x1x10x6) dump=1
+ 676 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
 [[[4--324 733377 ------ ------ ------ ------ ------ ------ ------ ------]]]
- 684 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=1
- 761 tabsC dumpDataVert       BGN (1x1x10x6) lc=1 ll=1 i=0 w=6 txt=Col 
+ 681 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=1
+ 758 tabsC dumpDataVert       BGN (1x1x10x6) lc=1 ll=1 i=0 w=6 txt=Col 
 Page 1
 Col Line 1
   1 4--324 
@@ -1258,16 +1258,16 @@ Col Line 1
   8 ------ 
   9 ------ 
  10 ------ 
- 769 tabsC dumpDataVert       END (1x1x10x6) lc=1 ll=1 i=0
- 725 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
- 726 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
+ 766 tabsC dumpDataVert       END (1x1x10x6) lc=1 ll=1 i=0
+ 722 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
+ 723 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
 4--324 733377 ------ ------ ------ ------ ------ ------ ------ ------
 
 47-------- -3-------- -3-------- 33-------- 27-------- 47--------
- 679 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
+ 676 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
 [[[4--324 733377 ------ ------ ------ ------ ------ ------ ------ ------]]]
- 684 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=0
- 743 tabsC dumpDataHorz       BGN (1x1x6x10) lc=1 ll=1 i=0
+ 681 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=0
+ 740 tabsC dumpDataHorz       BGN (1x1x6x10) lc=1 ll=1 i=0
 Page 1 Line 1
          1
 1234567890
@@ -1279,8 +1279,8 @@ Page 1 Line 1
 27--------
 47--------
 
- 756 tabsC dumpDataHorz       END (1x1x6x10) lc=1 ll=1 i=0
- 738 tabsC A_transposeData    END (1x1x6x10) dump=1
+ 753 tabsC dumpDataHorz       END (1x1x6x10) lc=1 ll=1 i=0
+ 735 tabsC A_transposeData    END (1x1x6x10) dump=1
  115 chord dumpMlimap         @^Q <dumpLimap > 2 [0 1]
   0 0 0 Fo/G#        Fo/G#        m3b5Rm3      3603   G#BFG#       Rm3b5        036    FG#B        
   0 0 1 G#m6x        G#m6x        Rm36R        0390   G#BFG#       Rm36         039    G#BF        
@@ -1299,10 +1299,10 @@ Page 1 Line 1
  118 chord dumpMlimap         @^Q <dumpLimap3> 2 [0 1]
   0 0 3603   0390   9069                          m3b5Rm3      Rm36R        6Rb56        
   1 0 056b30 6b0596 7016a7 167041 923809          R4b57m3R     b57R46b5     5Rb2b5b75    b2b55RM3b2   62m3#5R6     
-2349 tabsC quit               END @^Q error=0 save=0
+2346 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2364 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log
+2361 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log
   99 util copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-  99 util copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.14.log)
- 101 util copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log ###
-2366 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
+  99 util copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.19.log)
+ 101 util copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log ###
+2363 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
