@@ -39,9 +39,9 @@ class Tabs(pyglet.window.Window):
         self.A_CENTER  = 1  ;  self.A_LEFT      = 0  ;  self.A_RIGHT      = 0
         self.X_CENTER  = 1  ;  self.X_LEFT      = 0  ;  self.X_RIGHT      = 0
         self.Y_CENTER  = 1  ;  self.Y_TOP       = 0  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
-        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
+        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 1  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 1
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS     = 0  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
         self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
@@ -162,48 +162,64 @@ class Tabs(pyglet.window.Window):
         if self.SNAPS: self.regSnap('init', 'INIT')
         if dbg: self.dumpStruct('init')
     ####################################################################################################################################################################################################
-    def _NEW_initColors(self):
-        a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
-        P1, P2 = RGB[GRY][ 0], RGB[GRY][ 0]  ;  L1, L2 = RGB[GRY][ 0], RGB[GRY][ 0]  ;  S1, S2 = RGB[GRY][ 0], RGB[GRY][ 0]  ;  Z1, Z2 = RGB[GRY][ 0], RGB[GRY][ 0]
-        T1, T2 = RGB[ORN][15], RGB[ORN][ 7]  ;  N1, N2 = RGB[GRN][15], RGB[GRN][ 7]  ;  I1, I2 = RGB[IND][15], RGB[IND][ 7]  ;  K1, K2 = RGB[YLW][15], RGB[YLW][ 7]
-        R1, R2 = RGB[CL3][10], RGB[CL3][10]  ;  Q1, Q2 = RGB[CL1][10], RGB[CL2][10]  ;  H1, H2 = RGB[CL3][ 7], RGB[CL4][ 7]  ;  V1, V2 = RGB[PNK][15], RGB[PNK][ 7]
-        O1, O2 = RGB[PNK][10], RGB[PNK][10]  ;  A1, A2 = RGB[BLU][10], RGB[BLU][10]  ;  D1, D2 = RGB[FSH][10], RGB[FSH][10]
-        self.k[P] = [P1[ 0], P2[10]] if a          else [P1[ 0], P2[10]] if b              else [P2[ 0], P2[15]] if c              else [P1[15], P1[ 0]] if d  else None
-        self.k[L] = [L1[ 0], L2[10]] if a          else [L1[ 0], L2[10]] if b              else [L1[ 0], L2[10]] if c              else [L1[ 0], L2[10]] if d  else None
-        self.k[S] = [S1[15], S2[ 7]] if a          else [S1[15], S2[ 7]] if b              else [S1[15], S2[ 7]] if c              else [S1[15], S2[ 7]] if d  else None
-        self.k[C] = [Z1[15], Z1[ 7]] if a          else [Z1[15], Z1[ 0]] if b              else [Z1[15], Z1[ 0]] if c              else [Z1[15], Z1[ 7]] if d  else None
-        self.k[T] = [T1[15], T1[ 0]] if a          else [T1[15], T1[ 0]] if b              else [T2[15], T2[ 0]] if c              else [T2[15], T2[ 0]] if d  else None
-        self.k[N] = [N1[15], N1[ 0]] if a          else [N1[15], N1[ 0]] if b              else [N2[15], N2[ 0]] if c              else [N2[15], N2[ 0]] if d  else None
-        self.k[I] = [I1[15], I1[ 0]] if a          else [I1[15], I1[ 0]] if b              else [I2[15], I2[ 0]] if c              else [I2[15], I2[ 0]] if d  else None
-        self.k[K] = [K1[15], K1[ 0]] if a          else [K1[15], K1 [0]] if b              else [K2[15], K2[ 0]] if c              else [K2[15], K2[ 0]] if d  else None
-        self.k[R] = [R1[13], R2[ 0]] if a          else [R1[13], R2[ 0]] if b              else [R1[13], R2[ 0]] if c              else [R1[13], R2[ 0]] if d  else None
-        self.k[Q] = [Q1[13], Q2[ 0]] if a          else [Q1[13], Q2[ 0]] if b              else [Q1[13], Q2[ 0]] if c              else [Q1[13], Q2[ 0]] if d  else None
-        self.k[H] = [H1[ 0], H2[15]] if a          else [H1[ 0], H2[15]] if b              else [H1[ 0], H2[15]] if c              else [H1[ 0], H2[15]] if d  else None
-        self.k[V] = [V1[ 0], V2[12]] if a          else [V1[ 0], V2[12]] if b              else [V1[ 0], V2[12]] if c              else [V1[ 0], V2[12]] if d  else None
-        self.k[O] = [O1[ 0], O2[10]] if a          else [O1[ 0], O2[10]] if b              else [O1[ 0], O2[10]] if c              else [O1[ 0], O2[10]] if d  else None
-        self.k[A] = [A2[ 0], A2[10]] if a          else [A2[ 0], A2[10]] if b              else [A2[ 0], A2[10]] if c              else [A2[ 0], A2[10]] if d  else None
-        self.k[D] = [D1[ 0], D2[10]] if a          else [D1[ 0], D2[10]] if b              else [D1[ 0], D2[10]] if c              else [D1[ 0], D2[10]] if d  else None
-        return self.k
+    def _OLDinitColors(self):
+#        a = not self.SPRITES and not self.BGC # ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
+        j = P  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = L  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = S  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = C  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = T  ;  self.k[j] = self.initk(j, ORN, 17,  0, ORN, 17, 17)# if a else self.initk(j, ORN, 17,  0, ORN, 17, 17)
+        j = N  ;  self.k[j] = self.initk(j, GRN, 17,  0, GRN, 17, 17)# if a else self.initk(j, GRN, 17,  0, GRN, 17, 17)
+        j = I  ;  self.k[j] = self.initk(j, IND, 17,  0, IND, 17, 17)# if a else self.initk(j, IND, 17,  0, IND, 17, 17)
+        j = K  ;  self.k[j] = self.initk(j, YLW, 17,  0, YLW, 17, 17)# if a else self.initk(j, YLW, 17,  0, YLW, 17, 17)
+        j = R  ;  self.k[j] = self.initk(j, CL3, 17,  0, CL3, 17, 17)# if a else self.initk(j, CL3, 17,  0, CL3, 17, 17)
+        j = Q  ;  self.k[j] = self.initk(j, CL2, 17,  0, CL2, 17, 17)# if a else self.initk(j, CL2, 17,  0, CL2, 17, 17)
+        j = H  ;  self.k[j] = self.initk(j, CL4, 17,  0, CL4, 17, 17)# if a else self.initk(j, CL4, 17,  0, CL4, 17, 17)
+        j = V  ;  self.k[j] = self.initk(j, PNK, 17,  0, PNK, 17, 17)# if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
+        j = O  ;  self.k[j] = self.initk(j, PNK, 17,  0, PNK, 17, 17)# if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
+        j = A  ;  self.k[j] = self.initk(j, BLU, 17,  0, BLU, 17, 17)# if a else self.initk(j, BLU, 17,  0, BLU, 17, 17)
+        j = D  ;  self.k[j] = self.initk(j, FSH, 17,  0, FSH, 17, 17)# if a else self.initk(j, FSH, 17,  0, FSH, 17, 17)
+    def _NEWinitColors(self):
+#        a = not self.SPRITES and not self.BGC # ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
+        j = P  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY,  0, 17)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = L  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY,  0, 17)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = S  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY,  0, 17)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = C  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY,  0, 17)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = T  ;  self.k[j] = self.initk(j, ORN, 17,  0, ORN, 17, 17)# if a else self.initk(j, ORN, 17,  0, ORN, 17, 17)
+        j = N  ;  self.k[j] = self.initk(j, GRN, 17,  0, GRN, 17, 17)# if a else self.initk(j, GRN, 17,  0, GRN, 17, 17)
+        j = I  ;  self.k[j] = self.initk(j, IND, 17,  0, IND, 17, 17)# if a else self.initk(j, IND, 17,  0, IND, 17, 17)
+        j = K  ;  self.k[j] = self.initk(j, YLW, 17,  0, YLW, 17, 17)# if a else self.initk(j, YLW, 17,  0, YLW, 17, 17)
+        j = R  ;  self.k[j] = self.initk(j, CL3, 17,  0, CL3, 17, 17)# if a else self.initk(j, CL3, 17,  0, CL3, 17, 17)
+        j = Q  ;  self.k[j] = self.initk(j, CL2, 17,  0, CL2, 17, 17)# if a else self.initk(j, CL2, 17,  0, CL2, 17, 17)
+        j = H  ;  self.k[j] = self.initk(j, CL4, 17,  0, CL4, 17, 17)# if a else self.initk(j, CL4, 17,  0, CL4, 17, 17)
+        j = V  ;  self.k[j] = self.initk(j, PNK, 17,  0, PNK, 17, 17)# if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
+        j = O  ;  self.k[j] = self.initk(j, PNK, 17,  0, PNK, 17, 17)# if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
+        j = A  ;  self.k[j] = self.initk(j, BLU, 17,  0, BLU, 17, 17)# if a else self.initk(j, BLU, 17,  0, BLU, 17, 17)
+        j = D  ;  self.k[j] = self.initk(j, FSH, 17,  0, FSH, 17, 17)# if a else self.initk(j, FSH, 17,  0, FSH, 17, 17)
     def _initColors(self):
-        a = not self.SPRITES and not self.BGC # ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
-        j = P  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0) if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
-        j = L  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0) if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
-        j = S  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0) if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
-        j = C  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY, 17,  0) if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
-        j = T  ;  self.k[j] = self.initk(j, ORN, 17,  0, ORN, 17, 17) if a else self.initk(j, ORN, 17,  0, ORN, 17, 17)
-        j = N  ;  self.k[j] = self.initk(j, GRN, 17,  0, GRN, 17, 17) if a else self.initk(j, GRN, 17,  0, GRN, 17, 17)
-        j = I  ;  self.k[j] = self.initk(j, IND, 17,  0, IND, 17, 17) if a else self.initk(j, IND, 17,  0, IND, 17, 17)
-        j = K  ;  self.k[j] = self.initk(j, YLW, 17,  0, YLW, 17, 17) if a else self.initk(j, YLW, 17,  0, YLW, 17, 17)
-        j = R  ;  self.k[j] = self.initk(j, CL3, 17,  0, CL3, 17, 17) if a else self.initk(j, CL3, 17,  0, CL3, 17, 17)
-        j = Q  ;  self.k[j] = self.initk(j, CL2, 17,  0, CL2, 17, 17) if a else self.initk(j, CL2, 17,  0, CL2, 17, 17)
-        j = H  ;  self.k[j] = self.initk(j, CL4, 17,  0, CL4, 17, 17) if a else self.initk(j, CL4, 17,  0, CL4, 17, 17)
-        j = V  ;  self.k[j] = self.initk(j, PNK, 17,  0, PNK, 17, 17) if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
-        j = O  ;  self.k[j] = self.initk(j, PNK, 17,  0, PNK, 17, 17) if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
-        j = A  ;  self.k[j] = self.initk(j, BLU, 17,  0, BLU, 17, 17) if a else self.initk(j, BLU, 17,  0, BLU, 17, 17)
-        j = D  ;  self.k[j] = self.initk(j, FSH, 17,  0, FSH, 17, 17) if a else self.initk(j, FSH, 17,  0, FSH, 17, 17)
+#        a = not self.SPRITES and not self.BGC # ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
+        j = P  ;  self.k[j] = self.initk(j, GRY, 17,  0, GRY,  0,  0)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = L  ;  self.k[j] = self.initk(j, GRY, 17,  0, GRY,  0,  0)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = S  ;  self.k[j] = self.initk(j, GRY, 17,  0, GRY,  0,  0)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = C  ;  self.k[j] = self.initk(j, GRY, 17,  0, GRY,  0,  0)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
+        j = T  ;  self.k[j] = self.initk(j, ORN,  0, 17, ORN, 17, 17)# if a else self.initk(j, ORN, 17, 17, ORN, 17, 17)
+        j = N  ;  self.k[j] = self.initk(j, GRN,  0, 17, GRN, 17, 17)# if a else self.initk(j, GRN, 17, 17, GRN, 17, 17)
+        j = I  ;  self.k[j] = self.initk(j, IND,  0, 17, IND, 17, 17)# if a else self.initk(j, IND, 17, 17, IND, 17, 17)
+        j = K  ;  self.k[j] = self.initk(j, YLW,  0, 17, YLW, 17, 17)# if a else self.initk(j, YLW, 17, 17, YLW, 17, 17)
+        j = R  ;  self.k[j] = self.initk(j, CL3,  0, 17, CL3, 17, 17)# if a else self.initk(j, CL3, 17, 17, CL3, 17, 17)
+        j = Q  ;  self.k[j] = self.initk(j, CL2,  0,  0, CL2, 17, 17)# if a else self.initk(j, CL2, 17,  0, CL2, 17, 17)
+        j = H  ;  self.k[j] = self.initk(j, CL4,  0,  0, CL4, 17, 17)# if a else self.initk(j, CL4, 17,  0, CL4, 17, 17)
+        j = V  ;  self.k[j] = self.initk(j, PNK,  0,  0, PNK, 17, 17)# if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
+        j = O  ;  self.k[j] = self.initk(j, PNK,  0,  0, PNK, 17, 17)# if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
+        j = A  ;  self.k[j] = self.initk(j, BLU,  0,  0, BLU, 17, 17)# if a else self.initk(j, BLU, 17,  0, BLU, 17, 17)
+        j = D  ;  self.k[j] = self.initk(j, FSH,  0,  0, FSH, 17, 17)# if a else self.initk(j, FSH, 17,  0, FSH, 17, 17)
 
-    def initk(self, j, k0, o0, c0, k1, o1, c1):
-        self.log(f'{j:2}  {JTEXTS[j]:4}  [{k0} {o0:2} {c0:2}] [ {k1} {o1:2} {c1:2}]')
+    def initk(self, j, key0, rgb0, opc0, key1, rgb1, opc1):
+        self.log(f'{j:2}  {JTEXTS[j]:4}  [{key0} {rgb0:2} {opc0:2}] [ {key1} {rgb1:2} {opc1:2}] {util.fmtl(RGB[key0][rgb0][opc0], w="3")} {util.fmtl(RGB[key1][rgb1][opc1], w="3")}', pfx=0)
+        return [RGB[key0][opc0][rgb0], RGB[key1][opc1][rgb1]]
+#        return [RGB[key0][rgb0][opc0], RGB[key1][rgb1][opc1]]
+    def OLD_initk(self, j, k0, o0, c0, k1, o1, c1):
+        self.log(f'{j:2}  {JTEXTS[j]:4}  [{k0} {o0:2} {c0:2}] [ {k1} {o1:2} {c1:2}] {util.fmtl(RGB[k0][o0][c0], w="3")} {util.fmtl(RGB[k1][o1][c1], w="3")}', pfx=0)
         return [RGB[k0][o0][c0], RGB[k1][o1][c1]]
     ####################################################################################################################################################################################################
     def _initData(self, dbg=1):
@@ -2196,26 +2212,6 @@ def dumpGlobals():
     util.slog(f'BASE_PATH = {BASE_PATH}', file=LOG_FILE)
     util.slog(f'BASE_NAME = {BASE_NAME}', file=LOG_FILE)
 ########################################################################################################################################################################################################
-def _initRGB(key, k, dv=5, n=None, dbg=1):
-    global RGB
-    colors = []  ;  l = len(k)  ;  m = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []  ;  n = n + 1  if n is not None  else m
-    diffs  = [ k[i] - k[i]/dv  for i in range(l) ]
-    steps  = [ diffs[i]/(n-1)  for i in range(l) ]
-    if dbg: msg = f'{key:3}:  O=['
-    for opc in range(m):
-        clrs = []  ;  msg += f'{OPC[opc]:3} ' if dbg else ''
-#        if dbg: util.slog(f'{key:4} {util.fmtl(k, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
-        for j in range(n):
-            color = list([ fri(k[i] - j * steps[i]) for i in range(l) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)  ;  clrs.append(color)
-            if dbg and opc == 0: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
-#            if   dbg > 1:       util.slog(f'{j:2} {key:4} {util.fmtl(color, w="3")}', pfx=0, file=LOG_FILE)
-        colors.append(clrs)
-    if dbg:
-        util.slog( f'{msg[:-1]}] {util.fmtl(diffs, w="5.1f")} {util.fmtl(steps, w="4.1f")}', pfx=0, file=LOG_FILE)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
-        for i, m in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(m,   w="3"   )}', pfx=0, file=LOG_FILE)
-    RGB[key] = colors
-    return list(RGB.keys())
-########################################################################################################################################################################################################
 def initRGB(dbg=1):
     if dbg: s = f'{Z*7}'  ;  t = f'{s}RGB '  ;  o = [ f' {o}' for o in range(len(OPC)) ]  ;  util.slog(f'RGB{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=LOG_FILE)
     _initRGB('FSH', (255,   0, 255))  # 0
@@ -2238,6 +2234,47 @@ def initRGB(dbg=1):
     _initRGB('CL3', (250, 65,  190))  # 17
     _initRGB('CL4', (255, 128, 255))  # 18
     return RGB.keys()
+########################################################################################################################################################################################################
+def _OLDinitRGB(key, k, dv=5, n=None, dbg=2):
+    global RGB
+    colors = []  ;  l = len(k)  ;  m = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []  ;  n = n + 1  if n is not None  else m
+    diffs  = [ k[i] - k[i]/dv  for i in range(l) ]
+    steps  = [ diffs[i]/(n-1)  for i in range(l) ]
+    if dbg: msg = f'{key:3}:   O=['
+    for opc in range(m):
+        clrs = []  ;  msg += f'{OPC[opc]:3} ' if dbg else ''
+        if dbg > 2: util.slog(f'{key:4} {util.fmtl(k, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
+        for j in range(n):
+            color = list([ fri(k[i] - j * steps[i]) for i in range(l) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)  ;  clrs.append(color)
+            if dbg and opc == 0: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
+            if   dbg > 1:       util.slog(f'{j:2} {key:4} {util.fmtl(color, w="3")}', pfx=0, end=' ', file=LOG_FILE)
+        util.slog(pfx=0, file=LOG_FILE)
+        colors.append(clrs)
+    if dbg:
+        util.slog( f'{msg[:-1]}] {util.fmtl(diffs, w="5.1f")} {util.fmtl(steps, w="4.1f")}', pfx=0, file=LOG_FILE)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
+        for i, m in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(m,   w="3"   )}', pfx=0, file=LOG_FILE)
+    RGB[key] = colors
+    return list(RGB.keys())
+def _initRGB(key, rgb, dv=5, n=None, dbg=2):
+    global RGB
+    colors = []  ;  l = len(rgb)  ;  m = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []  ;  n = n + 1  if n is not None  else m
+    diffs  = [ rgb[i] - rgb[i]/dv  for i in range(l) ]
+    steps  = [ diffs[i]/(n-1)  for i in range(l) ]
+    if dbg: msg = f'{key:3}:   O=['
+    for opc in range(m):
+        clrs = []  ;  msg += f'{OPC[opc]:3} ' if dbg else ''
+        if dbg > 2: util.slog(f'{key:4} {util.fmtl(rgb, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
+        for j in range(n):
+            color = list([ fri(rgb[i]/dv + j * steps[i]) for i in range(l) ])  ;  color.append(OPC[opc])  ;  color = tuple(color)  ;  clrs.append(color)
+            if dbg and opc == 0: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
+            if   dbg > 1:       util.slog(f'{j:2} {key:4} {util.fmtl(color, w="3")}', pfx=0, end=' ', file=LOG_FILE)
+        util.slog(pfx=0, file=LOG_FILE)
+        colors.append(clrs)
+    if dbg:
+        util.slog( f'{msg[:-1]}] {util.fmtl(diffs, w="5.1f")} {util.fmtl(steps, w="4.1f")}', pfx=0, file=LOG_FILE)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
+        for i, m in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(m,   w="3"   )}', pfx=0, file=LOG_FILE)
+    RGB[key] = colors
+    return list(RGB.keys())
 ########################################################################################################################################################################################################
 # Global Functions END
 
