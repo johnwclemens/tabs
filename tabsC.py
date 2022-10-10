@@ -179,7 +179,7 @@ class Tabs(pyglet.window.Window):
         j = O  ;  self.k[j] = self.initk(j, PNK, 17,  0, PNK, 17, 17)# if a else self.initk(j, PNK, 17,  0, PNK, 17, 17)
         j = A  ;  self.k[j] = self.initk(j, BLU, 17,  0, BLU, 17, 17)# if a else self.initk(j, BLU, 17,  0, BLU, 17, 17)
         j = D  ;  self.k[j] = self.initk(j, FSH, 17,  0, FSH, 17, 17)# if a else self.initk(j, FSH, 17,  0, FSH, 17, 17)
-    def _NEWinitColors(self):
+    def _NEWinitColors(self): # checked in rgb index reversed
 #        a = not self.SPRITES and not self.BGC # ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC
         j = P  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY,  0, 17)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
         j = L  ;  self.k[j] = self.initk(j, GRY,  0,  0, GRY,  0, 17)# if a else self.initk(j, GRY,  0,  0, GRY, 17,  0)
@@ -216,8 +216,8 @@ class Tabs(pyglet.window.Window):
 
     def initk(self, j, key0, rgb0, opc0, key1, rgb1, opc1):
         self.log(f'{j:2}  {JTEXTS[j]:4}  [{key0} {rgb0:2} {opc0:2}] [ {key1} {rgb1:2} {opc1:2}] {util.fmtl(RGB[key0][rgb0][opc0], w="3")} {util.fmtl(RGB[key1][rgb1][opc1], w="3")}', pfx=0)
-        return [RGB[key0][opc0][rgb0], RGB[key1][opc1][rgb1]]
-#        return [RGB[key0][rgb0][opc0], RGB[key1][rgb1][opc1]]
+#       return [RGB[key0][opc0][rgb0], RGB[key1][opc1][rgb1]]
+        return [RGB[key0][rgb0][opc0], RGB[key1][rgb1][opc1]]
     def OLD_initk(self, j, k0, o0, c0, k1, o1, c1):
         self.log(f'{j:2}  {JTEXTS[j]:4}  [{k0} {o0:2} {c0:2}] [ {k1} {o1:2} {c1:2}] {util.fmtl(RGB[k0][o0][c0], w="3")} {util.fmtl(RGB[k1][o1][c1], w="3")}', pfx=0)
         return [RGB[k0][o0][c0], RGB[k1][o1][c1]]
@@ -2255,7 +2255,7 @@ def _OLDinitRGB(key, k, dv=5, n=None, dbg=2):
         for i, m in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(m,   w="3"   )}', pfx=0, file=LOG_FILE)
     RGB[key] = colors
     return list(RGB.keys())
-def _initRGB(key, rgb, dv=5, n=None, dbg=2):
+def _NEWinitRGB(key, rgb, dv=5, n=None, dbg=2): # checked in rgb index reversal
     global RGB
     colors = []  ;  l = len(rgb)  ;  m = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []  ;  n = n + 1  if n is not None  else m
     diffs  = [ rgb[i] - rgb[i]/dv  for i in range(l) ]
@@ -2274,6 +2274,26 @@ def _initRGB(key, rgb, dv=5, n=None, dbg=2):
         util.slog( f'{msg[:-1]}] {util.fmtl(diffs, w="5.1f")} {util.fmtl(steps, w="4.1f")}', pfx=0, file=LOG_FILE)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
         for i, m in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(m,   w="3"   )}', pfx=0, file=LOG_FILE)
     RGB[key] = colors
+    return list(RGB.keys())
+def _initRGB(key, rgb, dv=5, n=None, dbg=2):
+    colors = []  ;  lrgb = len(rgb)  ;  lopc = len(OPC)  ;  msg = ''  ;  msgR, msgG, msgB = [], [], []  ;  n = n + 1  if n is not None  else lopc  ;  opc = None
+    diffs  = [ rgb[i] - rgb[i]/dv for i in range(lrgb) ]
+    steps  = [ diffs[i]/(n-1)     for i in range(lrgb) ]
+    if dbg: msg = f'{key:3}:   O=['
+    for j in range(n):
+        clrs = []
+#        if dbg > 2: util.slog(f'{key:4} {util.fmtl(rgb, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {util.fmtl(diffs, w=".2f")} ', end='', file=LOG_FILE);  util.slog(f'{util.fmtl(steps, w=".2f")}', pfx=0, file=LOG_FILE)
+        for opc in range(lopc):
+            color = list([ fri(rgb[i]/dv + j*steps[i]) for i in range(lrgb) ])  ;  color.append(OPC[opc])  ;  clrs.append(tuple(color))
+            if dbg and opc == 0: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
+            if   dbg > 1:       util.slog(f'{j:2} {key:4} {util.fmtl(color, w="3")}', pfx=0, end=' ', file=LOG_FILE)
+        if dbg: msg += f'{OPC[opc]:3} '
+        util.slog(pfx=0, file=LOG_FILE)
+        colors.append(clrs)
+    if dbg:
+        util.slog( f'{msg[:-1]}] {util.fmtl(diffs, w="5.1f")} {util.fmtl(steps, w="4.1f")}', pfx=0, file=LOG_FILE)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
+        for i, msg in enumerate(msgs): util.slog(f'       {rgb[i]}={util.fmtl(msg, w="3")}', pfx=0, file=LOG_FILE)
+    global RGB  ;  RGB[key] = colors
     return list(RGB.keys())
 ########################################################################################################################################################################################################
 # Global Functions END
