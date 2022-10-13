@@ -96,6 +96,12 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
         print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
     if   flush: os.fsync(file) if file is not None and not file.closed else None  ;  os.fsync(sys.stdout) if so else None
 ########################################################################################################################################################################################################
+def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1, file=None):
+    if dbg: slog(f'{baseName = } {basePath = }', file=file)
+    fileName        = baseName + fsfx
+    filePath        = basePath / fdir / fileName
+    if dbg: slog(f'{fileName = } {filePath = }', file=file)
+    return filePath
 def copyFile(src, trg, file=None):
     if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;  raise SystemExit(msg)
     so = 0 if file is None else 1
