@@ -39,7 +39,7 @@ class Tabs(pyglet.window.Window):
         self.A_LEFT       = 0  ;   self.A_CENTER    = 1  ;  self.A_RIGHT      = 0
         self.X_LEFT       = 0  ;   self.X_CENTER    = 1  ;  self.X_RIGHT      = 0
         self.Y_TOP        = 0  ;   self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
-        self.AUTO_SAVE    = 0  ;   self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
+        self.AUTO_SAVE    = 0  ;   self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 1
         self.GEN_DATA     = 0  ;   self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
         self.SNAPS        = 1  ;   self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
         self.VIEWS        = 0  ;   self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
@@ -97,9 +97,9 @@ class Tabs(pyglet.window.Window):
         self.log(f'WxH={self.fmtWxH()}')
         self._initWindowB()
         self.log(f'WxH={self.fmtWxH()}')
-        self.a  = 'center' if self.A_CENTER else 'left' if self.A_LEFT else 'right'  if self.A_RIGHT  else '???'
-        self.ax = 'center' if self.X_CENTER else 'left' if self.X_LEFT else 'right'  if self.X_RIGHT  else '???'
-        self.ay = 'center' if self.Y_CENTER else 'top'  if self.Y_TOP  else 'bottom' if self.Y_BOTTOM else 'baseline' if self.Y_BASELINE else '???'
+        self.a  = 'left' if self.A_LEFT else 'center' if self.A_CENTER else 'right'  if self.A_RIGHT  else '???'
+        self.ax = 'left' if self.X_LEFT else 'center' if self.X_CENTER else 'right'  if self.X_RIGHT  else '???'
+        self.ay = 'top'  if self.Y_TOP  else 'center' if self.Y_CENTER else 'bottom' if self.Y_BOTTOM else 'baseline' if self.Y_BASELINE else '???'
         self.dumpAxy()    ;   self.dumpAXY()
         self._reinit()
         self.log(f'END {__class__}')
@@ -323,7 +323,7 @@ class Tabs(pyglet.window.Window):
         return f'{i=} {j=} {why} {jtxt} {len(self.E[j])=}'
     ####################################################################################################################################################################################################
     @staticmethod
-    def ftcolor(t, d=1): (d1, d2) = ("[", "]") if d else ("", "")  ;  k = ' '.join([ f'{k:3}' for k in t.color ])  ;  k += f' {t.opacity:3}' if type(t) is pygsprt.Sprite else ''  ;   return f'{d1}{k}{d2}'
+    def ftcolor(t, d=1): (d1, d2) = ("[", "]") if d else ("", "")  ;  k = ' '.join([ f'{k:3}' for k in t.color ])  ;  k += f' {t.opacity:3}' if type(t) is SPR else ''  ;   return f'{d1}{k}{d2}'
     @staticmethod
     def ftfnt(t):     return f'{t.dpi:3} {t.bold:1} {t.italic:1} {t.font_name}'
     @staticmethod
@@ -343,7 +343,14 @@ class Tabs(pyglet.window.Window):
         self.log(f'{self.A_LEFT=} {self.A_CENTER=} {self.A_RIGHT=}')
         self.log(f'{self.X_LEFT=} {self.X_CENTER=} {self.X_RIGHT=}')
         self.log(f'{self.Y_TOP=}  {self.Y_CENTER=} {self.Y_BOTTOM=} {self.Y_BASELINE=}')
-    def fmtAxy(self):   return f'{self.a} {self.ax} {self.ay}'
+    def fmtAxy(self): return f'{self.a} {self.ax} {self.ay}'
+    def fAxy(self):   return f'{self.ftAx(self.a)} {self.ftAx(self.ax)} {self.ftAy(self.ay)}'
+    @staticmethod
+    def fcva(t):   a = t.content_valign   ;    return 'T' if a == 'top' else 'C' if a == 'center' else 'B' if a == 'bottom' else '??'
+    @staticmethod
+    def ftAy(a):   return 'L' if a == 'baseline' else 'T' if a == 'top' else 'C' if a == 'center' else 'B' if a == 'bottom' else '??'
+    @staticmethod
+    def ftAx(a):   return 'L' if a == 'left' else 'C' if a == 'center' else 'R' if a == 'right' else '??'
     def dumpAxy(self):  self.log(f'{self.a=} {self.ax=} {self.ay=}')
     def dumpWxHp0(self): self.log(f'{self.fmtWxHP0()}')
     def dumpDataSlice(self, p, l, c, cc):
@@ -861,10 +868,10 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {how}')
     ####################################################################################################################################################################################################
     def splitH( self, p, n, dbg=1):
-        if   type(p) is pygtxt.Label:
+        if   type(p) is LBL:
             p.x,  p.width,  self.p0x, self.p0w = self.splitHL(p.x, p.width, n)
             if dbg:       self.log(f'{p.x=:.2f} {p.width=:.2f} {n=} {self.p0x=:.2f} {self.p0w=:.2f}')
-        elif type(p) is pygsprt.Sprite:
+        elif type(p) is SPR:
             p.x, p.scale_x, self.p0x, self.p0w = self.splitHS(p.x, p.width, n, p.image.width)
             if dbg:   self.log(f'{p.x=:.2f} {p.scale_x=:.4f} {n=} {self.p0x=:.2f} {self.p0w=:.2f} {self.p0sx=:.4f}')
 
@@ -883,8 +890,8 @@ class Tabs(pyglet.window.Window):
         return x, s, x2, w2
     ####################################################################################################################################################################################################
     def splitV(self, p, a, dbg=0):
-        if   type(p) is pygtxt.Label:   p.y, p.height, g     = self.splitV1(p.y, p.height, a)                  ;  self.log(f'{p.y=:6.2f} {p.height=:6.2f} {a=} {g=:6.2f}', so=1)  if dbg else None
-        elif type(p) is pygsprt.Sprite: p.y, h, g, p.scale_y = self.splitV2(p.y, p.height, a, p.image.height)  ;  self.log(f'{p.y=:6.2f} {p.scale_y=:6.4f} {a=} {h=:6.2f}', so=1) if dbg else None
+        if   type(p) is LBL: p.y, p.height, g     = self.splitV1(p.y, p.height, a)                  ;  self.log(f'{p.y=:6.2f} {p.height=:6.2f} {a=} {g=:6.2f}', so=1)  if dbg else None
+        elif type(p) is SPR: p.y, h, g, p.scale_y = self.splitV2(p.y, p.height, a, p.image.height)  ;  self.log(f'{p.y=:6.2f} {p.scale_y=:6.4f} {a=} {h=:6.2f}', so=1) if dbg else None
 
     def splitV1(self, y, h, a, dbg=1):
         self.log(f'{y=:6.2f} {h=:6.2f} {a=}', end=' ', so=0) if dbg else None
@@ -1058,14 +1065,14 @@ class Tabs(pyglet.window.Window):
         if j == H or (self.SPRITES and (j < T or j == R)):
             scip  = pyglet.image.SolidColorImagePattern(k)
             img   = scip.create_image(width=fri(w), height=fri(h))
-            tnik  = pygsprt.Sprite(img, x, y, batch=b, group=g, subpixel=self.SUBPIX)
+            tnik  = SPR(img, x, y, batch=b, group=g, subpixel=self.SUBPIX)
             tnik.color, tnik.opacity = k[:3], k[3]   ;   tnik.visible = v
         else:
             s         = v * self.calcFontSize(t, w, h, j)
             z         = 1 if self.STRETCH else 0
             d, n      = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTI_LINE
             a, ax, ay = self.a, self.ax, self.ay  # left center right  # bottom baseline center top
-            tnik = pygtxt.Label(t, font_name=n, font_size=s, bold=o, stretch=z, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
+            tnik = LBL(t, font_name=n, font_size=s, bold=o, stretch=z, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
             if T <= j <= K or j == Q:    self._setTNIKStyle(tnik, self.k[j], NORMAL_STYLE)
         if    tlist is not None:         tlist.append(tnik)
         else:                            msg = f'WARN tlist is None cant add tnik: {self.fmtJText(j, i, why)}'  ;  self.log(msg)
@@ -1075,8 +1082,8 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]    ;    ha = hasattr(c, 'text')
-        if   type(c) is pygtxt.Label:   c.x, c.y, c.width, c.height = 0, 0, 1, 0  # Zero width not allowed
-        elif type(c) is pygsprt.Sprite: c.update(x=0, y=0, scale_x=0, scale_y=0)
+        if   type(c) is LBL: c.x, c.y, c.width, c.height = 0, 0, 1, 0  # Zero width not allowed
+        elif type(c) is SPR: c.update(x=0, y=0, scale_x=0, scale_y=0)
         self.setJ(j, i)
         if dbg: self.dumpTnik(c, j, 'Hide')
         if dbg > 1:    text = c.text if ha else ''  ;  self.log(f'{self.fmtJText(j, i+1)} {id(c):x} {text:6} {self.ftxywh(c)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', pfx=0)
@@ -1117,8 +1124,8 @@ class Tabs(pyglet.window.Window):
         if j is not None:     self.setJ(j, i)
         tnik = tlist[i]
         v = v      if v is not None else self.isV(j)
-        if   type(tnik) is pygtxt.Label:        fs = v * self.calcFontSize(tnik.text, w, h, j)  ;   tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, fs
-        elif type(tnik) is pygsprt.Sprite:  mx, my = w/tnik.image.width, h/tnik.image.height    ;   tnik.update(x=x, y=y, scale_x=mx, scale_y=my)   ;   tnik.visible = v
+        if   type(tnik) is LBL:      fs = v * self.calcFontSize(tnik.text, w, h, j)  ;   tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, fs
+        elif type(tnik) is SPR:  mx, my = w/tnik.image.width, h/tnik.image.height    ;   tnik.update(x=x, y=y, scale_x=mx, scale_y=my)   ;   tnik.visible = v
         if self.LL and j == L:                tnik = self.resizeLLs(tnik)
         self.dumpTnik(tnik, j, why) if dbg else None
         return tnik
@@ -1141,33 +1148,22 @@ class Tabs(pyglet.window.Window):
         hdr = self.fTnikHdr()
         self.log(f'{hdr}', pfx=0)
         for i, (k, v) in enumerate(self.idmap.items()):
-            t, j = v[0], v[1]   ;   tid = id(t)      ;   name = k[:4]   ;   cnt = int(k[4:])
-            self.setJ(j, cnt)   ;   g = self.gn[j]   ;   xywh = self.ftxywh(t)     ;    fmtJ2  = self.fmtJ2()
-            if   type(t) is pygsprt.Sprite: msg = f'{self.ftvis(t)}'               ;   msg2 = f'{self.ftcolor(t)} {g} {self.ftMxy(t)}'
-            elif type(t) is pygtxt.Label:   msg = f'{t.text:>3} {t.font_size:3}'   ;   msg2 = f'{self.fTDColor(t, 0)} {g} {self.fTDColor(t, 1)}'
-            else:                           msg = f'ERROR not a TNIK {type(t)=}'   ;   msg2 = ''   ;   self.log(msg)   ;   self.quit(msg)
-            self.log(f'{i+1:4} {tid:11x} {why:4} {name} {cnt:4} {msg} {xywh} {msg2} {fmtJ2}', pfx=0)
+            t, j = v[0], v[1]  ;  name = k[:4]  ;  cnt = int(k[4:])  ;  tid = id(t)  ;  g = self.gn[j]
+            fc, bc = '', ''   ;  msg1, msg3 = '', ''  ;  xywh = self.ftxywh(t)  ;  fmtJ2  = self.fmtJ2()  ;  self.setJ(j, cnt)
+            if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)  ;  msg1 = self.fTxFs(t)  ;  msg3 = f'{self.ftfnt(t)} {self.fContent(t)} {self.fAxy()}'
+            elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)           ;  msg1 = self.ftvis(t)  ;  msg3 = f'{t.rotation:7.2f}'
+            else:                msg = f'ERROR not a TNIK {type(t)=}'   ;   self.log(msg)   ;   self.quit(msg)
+            msg  = f'{i+1:4} {tid:11x} {why:4} {name} {cnt:4}'
+            msg2 = f'{fc} {g} {bc}'
+            self.log(f'{msg} {msg1} {xywh} {msg2} {fmtJ2} {msg3}', pfx=0)
         self.log(f'{hdr}', pfx=0)
         self.dumpTniksSfx(why, h=0)
     def fTnikHdr(self):
-        hId   = ' TId  Identity   ' if 1 else ''   ;  hWnc = 'Why  Name  Cnt'     ;   hTsv = 'Txt fSz'  ;  hTyp = ' P  L  S   C    T    N    I    K  R   Q H V  O  A   D'
-        hXywh = '    X       Y       W       H  '  ;  hRgb = ' Red Grn Blu Opc '  ;  hRgbM = ' Red Grn Blu Opc ' if not self.SPRITES else ' M    Mx    My  '
-        return f'{hId}{hWnc} {hTsv} {hXywh} {hRgb} G {hRgbM} {hTyp}'
-    def OLD_dumpSprite(self, t=None, j=None, why=''):
-        if t is None: self.log(f'P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G  Red Grn Blu Opc    M     Mx    My', pfx=0); return
-        J2  = self.fmtJ2()   ;   xywh = self.ftxywh(t)   ;   g = self.gn[j]   ;   color = self.ftcolor(t)   ;   v = self.ftvis(t)   ;   sprt = self.ftMxy(t)
-        key = self.idmapkey(j)   ;   assert key == f'{JTEXTS[j]:4} {self.J2[j]:4}', f'{key=} {JTEXTS[j]:4} {self.J2[j]:4}' # ID = self.idmap[key][0] {ID:x}
-        self.log(f'{J2} {xywh} {why:4} {key} {v:7} {g} {color} {sprt}', pfx=0)
-
-    def OLD_dumpLabel( self, t=None, j=None, why=''):
-        if t is None: self.log(f'P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G  Red Grn Blu Opc  Dpi B I  Font Name', pfx=0)  ;  return
-        J2  = self.fmtJ2()  ;  xywh = self.ftxywh(t)  ;  g = self.gn[j]  ;  color = self.ftcolor(t)  ;  font = self.ftfnt(t)  ;  fs = self.ftfntsiz(t) # ID = self.idmap[key][0] {ID:x}
-        cw, ch, ca = t.content_width, t.content_height, t.content_valign   ;    axy = self.fmtAxy()
-        bgc = self.fTDColor(t)
-        key = self.idmapkey(j)   ;   assert key == f'{JTEXTS[j]:4} {self.J2[j]:4}', f'{key=} {JTEXTS[j]:4} {self.J2[j]:4}'
-        self.log(f'{J2} {xywh} {why:4} {key} {t.text:>3} {fs:3} {g} {color} {font} {cw:2} {ch:2} {ca} {axy} {bgc}', pfx=0)
+        tid  = ' TId  Identity   ' if 1 else ''   ;  wnc = 'Why  Name  Cnt'     ;   tsv = 'Txt fSz'  ;  typ = ' P  L  S   C    T    N    I    K  R   Q H V  O  A   D TId'
+        xywh = '    X       Y       W       H  '  ;  rgb = ' Red Grn Blu Opc '  ;  rgbM = ' Red Grn Blu Opc ' if not self.SPRITES else ' M    Mx    My  '
+        return f'{tid}{wnc} {tsv} {xywh} {rgb} G {rgbM} {typ}'
     ####################################################################################################################################################################################################
-    def dumpTniks(self, why=''):
+    def OLD__dumpTniks(self, why=''):
         np, nl, ns, nc, nt = self.n   ;   sp, sl, ss, sc = 0, 0, 0, 0   ;   sr, sq = 0, 0   ;   i = 0
         self.dumpTniksPfx(why)
         if  self.VIEWS:
@@ -1215,7 +1211,7 @@ class Tabs(pyglet.window.Window):
         ep, el, es, ec, et = self.lenE()[P:T+1]   ;   nl, ns, nq = self.n[L:C+1]   ;   sp, sl, ss, sc, st = 0, 0, 0, 0, 0   ;   sr, sq = 0, 0   ;   i = 0
         hdr  = ' Tid why    Key     Cnt     X       Y       W       H    Red Grn Blu Opc'
         hdr2 = ' P  L  S   C    T    N    I    K  R   Q H V  O  A   D'
-        self.dumpTniksPfx(why)
+        self.dumpTniksPfx(why, h=0)
         self.log(f' {hdr} {hdr2}', pfx=0)
         if self.LL:
             for r in range(nl):     j = R  ;  sr += 1  ;  i += 1  ;  self.setJ(j, sr)  ;  t = self.lrows[r]  ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {sr:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
@@ -1229,36 +1225,62 @@ class Tabs(pyglet.window.Window):
             for t in range(et):     j = T+s ; st += 1  ;  i += 1  ;  self.setJ(j, st)  ;  t  = self.tabs[t]       ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {st:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
         j = H  ;                               sh = 1  ;  i += 1  ;  self.setJ(j, sh)  ;  t = self.cursor         ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {sh:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
         self.log(f' {hdr} {hdr2}', pfx=0)
-        self.dumpTniksSfx(why)
+        self.dumpTniksSfx(why, h=0)
     ####################################################################################################################################################################################################
     def dumpTnik(self, t=None, j=None, why=''):
+        if   t is None: self.log(f'{self.fTnikHdr()}', pfx=0)   ;   return
+        elif j is None: msg = f'ERROR BAD j {j=}'   ;   self.log(msg)     ;   self.quit(msg)
+        k = self.idmapkey(j)   ;   name = k[:4]     ;   cnt = int(k[4:])  ;   tid = id(t)  ;  g = self.gn[j]
+        fc, bc = '', ''   ;  msg1, msg3 = '', ''  ;  xywh = self.ftxywh(t)  ;   j2  = self.J2    ;   i = j2[-1]
+        if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)  ;  msg1 = self.fTxFs(t)  ;  msg3 = f'{self.ftfnt(t)} {self.fContent(t)} {self.fAxy()}'
+        elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)           ;  msg1 = self.ftvis(t)  ;  msg3 = f'{t.rotation:7.2f}'
+        else: msg = f'ERROR BAD type(t) {why} {j=} {type(t)=}'   ;   self.log(msg)   ;   self.quit(msg)
+        msg  = f'{i:4} {tid:11x} {why:4} {name} {cnt:4}'
+        msg2 = f'{fc} {g} {bc}'
+        self.log(f'{msg} {msg1} {xywh} {msg2} {self.fmtJ2()} {msg3}', pfx=0)
+
+    def OLD_dumpTnik(self, t=None, j=None, why=''):
         if   t is None: self.dumpSprite()   ;   self.dumpLabel()  ;  return
         elif j is None: msg = f'ERROR BAD j {j=}'   ;   self.log(msg)   ;   self.quit(msg)
-        if   type(t) is pygtxt.Label:    self.dumpLabel( t, j, why)
-        elif type(t) is pygsprt.Sprite:  self.dumpSprite(t, j, why)
+        if   type(t) is LBL:  self.dumpLabel( t, j, why)
+        elif type(t) is SPR:  self.dumpSprite(t, j, why)
         else: msg = f'ERROR BAD type(t) {why} {j=} {type(t)=}'   ;   self.log(msg)   ;   self.quit(msg)
-
-    def dumpSprite(self, t=None, j=None, why=''):
+    def OLD_dumpSprite(self, t=None, j=None, why=''):
+        if t is None: self.log(f'P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Visible G  Red Grn Blu Opc    M     Mx    My', pfx=0); return
+        J2  = self.fmtJ2()   ;   xywh = self.ftxywh(t)   ;   g = self.gn[j]   ;   color = self.ftcolor(t)   ;   v = self.ftvis(t)   ;   sprt = self.ftMxy(t)
+        key = self.idmapkey(j)   ;   assert key == f'{JTEXTS[j]:4} {self.J2[j]:4}', f'{key=} {JTEXTS[j]:4} {self.J2[j]:4}' # ID = self.idmap[key][0] {ID:x}
+        self.log(f'{J2} {xywh} {why:4} {key} {v:7} {g} {color} {sprt}', pfx=0)
+    def OLD_dumpLabel( self, t=None, j=None, why=''):
+        if t is None: self.log(f'P  L  S   C    T    N    I    K  R   Q H V No Nm  Cp  Tid     X       Y       W       H   why  Name  Cnt Txt Siz G  Red Grn Blu Opc  Dpi B I  Font Name', pfx=0)  ;  return
+        J2  = self.fmtJ2()  ;  xywh = self.ftxywh(t)  ;  g = self.gn[j]  ;  color = self.ftcolor(t)  ;  font = self.ftfnt(t)  ;  fs = self.ftfntsiz(t) # ID = self.idmap[key][0] {ID:x}
+        cw, ch, ca = t.content_width, t.content_height, t.content_valign   ;    axy = self.fmtAxy()
+        bgc = self.getDocColor(t)
+        key = self.idmapkey(j)   ;   assert key == f'{JTEXTS[j]:4} {self.J2[j]:4}', f'{key=} {JTEXTS[j]:4} {self.J2[j]:4}'
+        self.log(f'{J2} {xywh} {why:4} {key} {t.text:>3} {fs:3} {g} {color} {font} {cw:2} {ch:2} {ca} {axy} {bgc}', pfx=0)
+    def NEW_dumpSprite(self, t=None, j=None, why=''):
         if t is None:   self.log(f'{self.fTnikHdr()}', pfx=0)   ;   return
         k = self.idmapkey(j)   ;   name = k[:4]   ;   cnt = int(k[4:])   ;   tid = id(t)
         g = self.gn[j]   ;   xywh = self.ftxywh(t)   ;   j2  = self.J2   ;   i = j2[-1]
         msg = f'{self.ftvis(t)}';   msg2 = f'{self.ftcolor(t)} {g} {self.ftMxy(t)}'
         self.log(f'{i:4} {tid:11x} {why:4} {name} {cnt:4} {msg} {xywh} {msg2} {j2}', pfx=0)
-
-    def dumpLabel( self, t=None, j=None, why=''):
+    def NEW_dumpLabel( self, t=None, j=None, why=''):
         if t is None:   self.log(f'{self.fTnikHdr()}', pfx=0)   ;   return
         k = self.idmapkey(j)   ;   name = k[:4]   ;   cnt = int(k[4:])   ;   tid = id(t)   ;   font = self.ftfnt(t)
         g = self.gn[j]   ;   xywh = self.ftxywh(t)   ;   j2  = self.J2   ;   i = j2[-1]
-        msg = f'{t.text:>3} {t.font_size:3}'   ;   msg2 = f'{self.fTDColor(t, 0)} {g} {self.fTDColor(t, 1)}'
-        cw, ch, ca = t.content_width, t.content_height, t.content_valign   ;    axy = self.fmtAxy()
-        self.log(f'{i:4} {tid:11x} {why:4} {name} {cnt:4} {msg} {xywh} {msg2} {j2} {font} {cw:2} {ch:2} {ca} {axy}', pfx=0)
+        msg = f'{t.text:>3} {t.font_size:3}'   ;   msg2 = f'{self.getDocColor(t, 0)} {g} {self.getDocColor(t, 1)}'
+        cont = self.fContent(t)   ;    axy = self.fAxy()
+        self.log(f'{i:4} {tid:11x} {why:4} {name} {cnt:4} {msg} {xywh} {msg2} {j2} {font} {cont} {axy}', pfx=0)
 
-    def fTDColor(self, t, c=1): return util.fColor(self.getTDColor(t, c))
     @staticmethod
-    def getTDColor(t, c=1): s = 'background_color' if c else 'color'  ;  return t.document.get_style(s)
+    def fTxFs(t): return f'{t.text:>3} {t.font_size:3}'
+    def fContent(self, t):      return f'{t.content_width:2} {t.content_height:2} {self.fcva(t)}'
+    def getDocColor(self, t, c=1): return util.fColor(self._getDocColor(t, c))
+    @staticmethod
+    def _getDocColor(t, c=1): s = 'background_color' if c else 'color'  ;  return t.document.get_style(s)
     ####################################################################################################################################################################################################
     def createCursor(self, dbg=1):
         x, y, w, h, c = self.cc2xywh()
+
         kk = 0  ;  kl = self.k[H]
         if w == 0 or h == 0: msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   self.quit(msg)
         self.cursor   = self.createTnik(self.curss, 0, H, x, y, w, h, kk, kl, v=1, dbg=dbg)
@@ -1987,7 +2009,7 @@ class Tabs(pyglet.window.Window):
                                     if dbg2: self.log(f'After  data[{p} {l} {c}]={text}')
             self.swapSrc, self.swapTrg = '', ''
             self.log(f'{how} END     {src=} {trg=}') if dbg else None
-            if dbg2: self.dumpTniks('SWAP')
+#            if dbg2: self.dumpTniks('SWAP')
 #            self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
             if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
             self.resyncData = 1
@@ -2295,6 +2317,8 @@ SNAP_SFX  = '.png'
 LOG_FILE  = None
 ########################################################################################################################################################################################################
 Z                     = ' '
+LBL                   = pygtxt.Label
+SPR                   = pygsprt.Sprite
 RGB                   = cOd()
 P, L, S, C            =  0,  1,  2,  3
 T, N, I, K            =  4,  5,  6,  7
