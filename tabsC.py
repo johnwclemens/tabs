@@ -1,7 +1,8 @@
 import glob, math, os, pathlib, sys
 import operator, inspect, itertools
 from itertools   import accumulate
-from collections import OrderedDict as cOd
+CODS    = 0
+if CODS: from collections import OrderedDict as cOd
 import pyglet
 import pyglet.sprite as pygsprt
 import pyglet.text as pygtxt
@@ -27,7 +28,6 @@ class Tabs(pyglet.window.Window):
         self.inserting    = 0     ;   self.insertStr = ''
         self.jumping      = 0     ;   self.jumpStr   = ''    ;   self.jumpAbs = 0
         self.swapping     = 0     ;   self.swapSrc   = ''    ;   self.swapTrg = ''
-        self.idmap        = cOd()
         self.cc           = 0
         self.allSelected  = 0
         self.resyncData   = 0
@@ -39,13 +39,14 @@ class Tabs(pyglet.window.Window):
         self.A_LEFT       = 0  ;   self.A_CENTER    = 1  ;  self.A_RIGHT      = 0
         self.X_LEFT       = 0  ;   self.X_CENTER    = 1  ;  self.X_RIGHT      = 0
         self.Y_TOP        = 0  ;   self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
-        self.AUTO_SAVE    = 0  ;   self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 1
+        self.AUTO_SAVE    = 0  ;   self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
         self.GEN_DATA     = 0  ;   self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS        = 1  ;   self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0
+        self.SNAPS        = 1  ;   self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0  ;  self.TIDS    = 0
         self.VIEWS        = 0  ;   self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
-        self.LL           = 1
+        self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
+        self.idmap        = cOd() if CODS else {}  ;  self.log(f'{CODS=} {type(self.idmap)=}')
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         nt                = 6
         self.n            = [2, 2, 50, nt]
@@ -388,10 +389,11 @@ class Tabs(pyglet.window.Window):
     def dumpStruct(self, why='', dbg=1, dbg2=1):
         self.dumpFont(why)
         self.log(f'{self.fmtn()} ntp={util.fmtl(self.ntp())} ntp0={util.fmtl(self.ntp(0))}')
-        if dbg:     self.dumpIdMap( f'{why}1')
+        if dbg:     self.dumpIdMap( f'Idmp')
+        if dbg:     self.dumpTniks1(f'{why}1')
         if dbg2:    self.dumpTniks2(f'{why}2')
         if dbg2:    self.dumpTniks3(f'{why}3')
-        if dbg:     self.cobj.dumpMlimap(f'{why}4')
+        if dbg:     self.cobj.dumpMlimap(f'MLim')
     ####################################################################################################################################################################################################
     def autoSave(self, dt, why, dbg=1):
         if dbg: self.log(f'Every {dt:=7.4f} seconds, {why} {self.resyncData=}')
@@ -996,7 +998,7 @@ class Tabs(pyglet.window.Window):
         for c in range(nc):
             self.createLL(self.lcols, pi, c, xc, yc, wc, hc)
         self.splitV(p, n, dbg=dbg2)
-        self.dumpTnik(p, L, why='Upd')
+        self.dumpTnik(p, L, why='Cll')
         return p
 
     def createLL(self, tlist, l, c, x, y, w, h, dbg=1):
@@ -1148,55 +1150,53 @@ class Tabs(pyglet.window.Window):
         hdr = self.fTnikHdr()
         self.log(f'{hdr}', pfx=0)
         for i, (k, v) in enumerate(self.idmap.items()):
-            t, j = v[0], v[1]  ;  name = k[:4]  ;  cnt = int(k[4:])  ;  tid = id(t)  ;  g = self.gn[j]
+            t, j = v[0], v[1]  ;  name = k[:4]  ;  cnt = int(k[4:])  ;  g = self.gn[j]
+            oid = id(t)  ;  tid = f'{i:4}' + f' {oid:11x}' if self.TIDS else f'{i:4}'
             fc, bc = '', ''   ;  msg1, msg3 = '', ''  ;  xywh = self.ftxywh(t)  ;  fmtJ2  = self.fmtJ2()  ;  self.setJ(j, cnt)
             if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)  ;  msg1 = self.fTxFs(t)  ;  msg3 = f'{self.ftfnt(t)} {self.fContent(t)} {self.fAxy()}'
             elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)           ;  msg1 = self.ftvis(t)  ;  msg3 = f'{t.rotation:7.2f}'
             else:                msg = f'ERROR not a TNIK {type(t)=}'   ;   self.log(msg)   ;   self.quit(msg)
-            msg  = f'{i+1:4} {tid:11x} {why:4} {name} {cnt:4}'
+            msg  = f'{tid} {why:4} {name} {cnt:4}'
             msg2 = f'{fc} {g} {bc}'
             self.log(f'{msg} {msg1} {xywh} {msg2} {fmtJ2} {msg3}', pfx=0)
         self.log(f'{hdr}', pfx=0)
         self.dumpTniksSfx(why, h=0)
+
     def fTnikHdr(self):
-        tid  = ' TId  Identity   ' if 1 else ''   ;  wnc = 'Why  Name  Cnt'     ;   tsv = 'Txt fSz'  ;  typ = ' P  L  S   C    T    N    I    K  R   Q H V  O  A   D TId'
-        xywh = '    X       Y       W       H  '  ;  rgb = ' Red Grn Blu Opc '  ;  rgbM = ' Red Grn Blu Opc ' if not self.SPRITES else ' M    Mx    My  '
-        return f'{tid}{wnc} {tsv} {xywh} {rgb} G {rgbM} {typ}'
+        tid  = ' TId  Identity  ' if self.TIDS else ' Tid'  ;  wnc = 'Why  Name  Cnt'     ;   tsv = 'Txt fSz'  ;  typ = ' P  L  S   C    T    N    I    K  R   Q H V  O  A   D  TId'
+        xywh = '    X       Y       W       H  '             ;  rgb = ' Red Grn Blu Opc '  ;  rgbM = ' Red Grn Blu Opc ' if not self.SPRITES else ' M    Mx    My  '
+        return f'{tid} {wnc} {tsv} {xywh} {rgb} G {rgbM} {typ}'
     ####################################################################################################################################################################################################
-    def OLD__dumpTniks(self, why=''):
+    def dumpTniks1(self, why=''):
         np, nl, ns, nc, nt = self.n   ;   sp, sl, ss, sc = 0, 0, 0, 0   ;   sr, sq = 0, 0   ;   i = 0
         self.dumpTniksPfx(why)
         if  self.VIEWS:
-            if       not         self.views:     msg = f'ERROR Empty views {self.n=} {self.zzl()}'   ;   self.log(msg)   ;   self.quit(msg)
-            for v in range(len(self.views)):                                self.dumpTnik( self.views[v], V, why)
+            for v in range(len(self.views)):                                     self.dumpTnik( self.views[v], V, why)
         for p in range(np):
-            j = P                         ;  z = sp  ;  self.setJ(j, z)  ;  self.dumpTnik(self.pages[z], j, why)  ;  i += 1  ;  sp += 1
+            j = P                              ;  z = sp  ;  self.setJ(j, z)  ;  self.dumpTnik(self.pages[z], j, why)  ;  i += 1  ;  sp += 1
             if self.LL:
                 for r in range(nl):
-                    j = R                 ;  z = sr  ;  self.setJ(j, z)  ;  self.dumpTnik(self.lrows[z], j, why)  ;  i += 1  ;  sr += 1
-                    for q in range(nc): j = Q ; z = sq ; self.setJ(j, z) ;  self.dumpTnik(self.lcols[z], j, why)  ;  i += 1  ;  sq += 1
+                    j = R                      ;  z = sr  ;  self.setJ(j, z)  ;  self.dumpTnik(self.lrows[z], j, why)  ;  i += 1  ;  sr += 1
+                    for q in range(nc): j = Q  ;  z = sq  ;  self.setJ(j, z)  ;  self.dumpTnik(self.lcols[z], j, why)  ;  i += 1  ;  sq += 1
             for l in range(nl):
-                lp, ll = self.dl()[0], self.dl()[1]
-                if sl >= lp * ll:   msg = f'WARN MAX Line {sl=} >= {lp=} * {ll=}'  ;  self.log(msg)  ;  return
-                j = L                     ;  z = sl  ;  self.setJ(j, z)  ;  self.dumpTnik(self.lines[z], j, why)  ;  i += 1  ;  sl += 1
+                j = L                          ;  z = sl  ;  self.setJ(j, z)  ;  self.dumpTnik(self.lines[z], j, why)  ;  i += 1  ;  sl += 1
                 for s in (self.ss2sl()):
-                    j = S                 ;  z = ss  ;  self.setJ(j, z)  ;  self.dumpTnik(self.sects[z], j, why)  ;  i += 1  ;  ss += 1
+                    j = S                      ;  z = ss  ;  self.setJ(j, z)  ;  self.dumpTnik(self.sects[z], j, why)  ;  i += 1  ;  ss += 1
                     for c in range(nc):
-                        j = C             ;  z = sc  ;  self.setJ(j, z)  ;  self.dumpTnik(self.cols[ z], j, why)  ;  i += 1  ;  sc += 1
-                        for t in range(nt):
-                            tlist, j, k, txt = self.tnikInfo(p, l, s, c, t, why)
-                            self.setJ(j, t)  ;  self.dumpTnik(tlist[t], j, why)  ;  i += 1
+                        j = C                  ;  z = sc  ;  self.setJ(j, z)  ;  self.dumpTnik(self.cols[ z], j, why)  ;  i += 1  ;  sc += 1
+                        for t in range(nt): _, j, k, txt = self.tnikInfo(p, l, s, c, t, why)  ;  self.setJ(j, t)  ;  self.dumpTnik(_[t], j, why)  ;  i += 1
         self.dumpTnik(self.cursor, H, why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTniks2(self, why=''):
         ep, el, es, ec, et = self.lenE()[P:T+1]   ;   nl, ns, nq = self.n[L:C+1]   ;   sp, sl, ss, sc = 0, 0, 0, 0   ;   sr, sq = 0, 0   ;   i = 0
         self.dumpTniksPfx(why)
+#        if  self.VIEWS:            for v in range(len(self.views)):                      self.dumpTnik( self.views[v], V, why)
+        for p in range(ep):        j = P  ;  self.setJ(j, sp)  ;  self.dumpTnik(self.pages[p], j, why)  ;  i += 1  ;  sp += 1
+        for l in range(el):        j = L  ;  self.setJ(j, sl)  ;  self.dumpTnik(self.lines[l], j, why)  ;  i += 1  ;  sl += 1
         if self.LL:
             for r in range(nl):    j = R  ;  self.setJ(j, sr)  ;  self.dumpTnik(self.lrows[r], j, why)  ;  i += 1  ;  sr += 1
             for q in range(nl*nq): j = Q  ;  self.setJ(j, sq)  ;  self.dumpTnik(self.lcols[q], j, why)  ;  i += 1  ;  sq += 1
-        for p in range(ep):        j = P  ;  self.setJ(j, sp)  ;  self.dumpTnik(self.pages[p], j, why)  ;  i += 1  ;  sp += 1
-        for l in range(el):        j = L  ;  self.setJ(j, sl)  ;  self.dumpTnik(self.lines[l], j, why)  ;  i += 1  ;  sl += 1
         for c in range(ec):        j = C  ;  self.setJ(j, sc)  ;  self.dumpTnik(self.cols[c],  j, why)  ;  i += 1  ;  sc += 1
         for s, s2 in enumerate(self.ss2sl()):
             for l in range(nl):    j = S  ;  self.setJ(j, ss)  ;  self.dumpTnik(self.sects[s+l*ns], j, why)  ;  i += 1  ;  ss += 1
@@ -1209,37 +1209,40 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpTniks3(self, why=''):
         ep, el, es, ec, et = self.lenE()[P:T+1]   ;   nl, ns, nq = self.n[L:C+1]   ;   sp, sl, ss, sc, st = 0, 0, 0, 0, 0   ;   sr, sq = 0, 0   ;   i = 0
-        hdr  = ' Tid why    Key     Cnt     X       Y       W       H    Red Grn Blu Opc'
-        hdr2 = ' P  L  S   C    T    N    I    K  R   Q H V  O  A   D'
+        hdr1 = ' TId  Identity  ' if self.TIDS else ' Tid'
+        hdr2 = f' why Name  Cnt     X       Y       W       H    Red Grn Blu Opc'
+        hdr3 = ' P  L  S   C    T    N    I    K  R   Q H V  O  A   D  Tid'
         self.dumpTniksPfx(why, h=0)
-        self.log(f' {hdr} {hdr2}', pfx=0)
+        self.log(f'{hdr1} {hdr2} {hdr3}', pfx=0)
+#        if  self.VIEWS:          for v in range(len(self.views)):                         self.dumpTnik( self.views[v], V, why)
+        for p in range(ep):         j = P  ;  sp += 1  ;  i += 1  ;  self.setJ(j, sp)  ;  t = self.pages[p]  ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {sp:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
+        for l in range(el):         j = L  ;  sl += 1  ;  i += 1  ;  self.setJ(j, sl)  ;  t = self.lines[l]  ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {sl:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
         if self.LL:
             for r in range(nl):     j = R  ;  sr += 1  ;  i += 1  ;  self.setJ(j, sr)  ;  t = self.lrows[r]  ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {sr:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
             for q in range(nl*nq):  j = Q  ;  sq += 1  ;  i += 1  ;  self.setJ(j, sq)  ;  t = self.lcols[q]  ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {sq:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
-        for p in range(ep):         j = P  ;  sp += 1  ;  i += 1  ;  self.setJ(j, sp)  ;  t = self.pages[p]  ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {sp:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
-        for l in range(el):         j = L  ;  sl += 1  ;  i += 1  ;  self.setJ(j, sl)  ;  t = self.lines[l]  ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {sl:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
         for c in range(ec):         j = C  ;  sc += 1  ;  i += 1  ;  self.setJ(j, sc)  ;  t  = self.cols[c]  ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {sc:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
         for s, s2 in enumerate(self.ss2sl()):
             st = 0
             for l in range(nl):     j = S  ;  ss += 1  ;  i += 1  ;  self.setJ(j, ss)  ;  t = self.sects[s+l*ns]  ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {ss:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
             for t in range(et):     j = T+s ; st += 1  ;  i += 1  ;  self.setJ(j, st)  ;  t  = self.tabs[t]       ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {st:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
         j = H  ;                               sh = 1  ;  i += 1  ;  self.setJ(j, sh)  ;  t = self.cursor         ;  self.log(f'{i:4} {why} {JTEXTS[j]:4} {sh:4} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0)
-        self.log(f' {hdr} {hdr2}', pfx=0)
+        self.log(f'{hdr1} {hdr2} {hdr3}', pfx=0)
         self.dumpTniksSfx(why, h=0)
     ####################################################################################################################################################################################################
     def dumpTnik(self, t=None, j=None, why=''):
         if   t is None: self.log(f'{self.fTnikHdr()}', pfx=0)   ;   return
         elif j is None: msg = f'ERROR BAD j {j=}'   ;   self.log(msg)     ;   self.quit(msg)
-        k = self.idmapkey(j)   ;   name = k[:4]     ;   cnt = int(k[4:])  ;   tid = id(t)  ;  g = self.gn[j]
-        fc, bc = '', ''   ;  msg1, msg3 = '', ''  ;  xywh = self.ftxywh(t)  ;   j2  = self.J2    ;   i = j2[-1]
-        if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)  ;  msg1 = self.fTxFs(t)  ;  msg3 = f'{self.ftfnt(t)} {self.fContent(t)} {self.fAxy()}'
-        elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)           ;  msg1 = self.ftvis(t)  ;  msg3 = f'{t.rotation:7.2f}'
+        k = self.idmapkey(j)   ;   name = k[:4]     ;   cnt = int(k[4:])  ;  g = self.gn[j]
+        fc, bc = '', ''   ;  msg2, msg4 = '', ''  ;  xywh = self.ftxywh(t)  ;   j2  = self.J2    ;   i = j2[-1]
+        oid = id(t)  ;  tid = f'{i:4}' + f' {oid:11x}' if self.TIDS else f'{i:4}'
+        if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)  ;  msg2 = self.fTxFs(t)  ;  msg4 = f'{self.ftfnt(t)} {self.fContent(t)} {self.fAxy()}'
+        elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)           ;  msg2 = self.ftvis(t)  ;  msg4 = f'{t.rotation:7.2f}'
         else: msg = f'ERROR BAD type(t) {why} {j=} {type(t)=}'   ;   self.log(msg)   ;   self.quit(msg)
-        msg  = f'{i:4} {tid:11x} {why:4} {name} {cnt:4}'
-        msg2 = f'{fc} {g} {bc}'
-        self.log(f'{msg} {msg1} {xywh} {msg2} {self.fmtJ2()} {msg3}', pfx=0)
+        msg1  = f'{tid} {why:4} {name} {cnt:4}'
+        msg3 = f'{fc} {g} {bc}'
+        self.log(f'{msg1} {msg2} {xywh} {msg3} {self.fmtJ2()} {msg4}', pfx=0)
 
-    def OLD_dumpTnik(self, t=None, j=None, why=''):
+    def OLD_dumpTnik(  self, t=None, j=None, why=''):
         if   t is None: self.dumpSprite()   ;   self.dumpLabel()  ;  return
         elif j is None: msg = f'ERROR BAD j {j=}'   ;   self.log(msg)   ;   self.quit(msg)
         if   type(t) is LBL:  self.dumpLabel( t, j, why)
@@ -2319,7 +2322,7 @@ LOG_FILE  = None
 Z                     = ' '
 LBL                   = pygtxt.Label
 SPR                   = pygsprt.Sprite
-RGB                   = cOd()
+RGB                   = cOd() if CODS else {}
 P, L, S, C            =  0,  1,  2,  3
 T, N, I, K            =  4,  5,  6,  7
 R, Q, H, V            =  8,  9, 10, 11
