@@ -39,7 +39,7 @@ class Tabs(pyglet.window.Window):
         self.A_LEFT       = 0  ;   self.A_CENTER    = 1  ;  self.A_RIGHT      = 0
         self.X_LEFT       = 0  ;   self.X_CENTER    = 1  ;  self.X_RIGHT      = 0
         self.Y_TOP        = 0  ;   self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
-        self.AUTO_SAVE    = 0  ;   self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
+        self.AUTO_SAVE    = 0  ;   self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 1
         self.GEN_DATA     = 0  ;   self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
         self.SNAPS        = 1  ;   self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0  ;  self.TIDS    = 1
         self.VIEWS        = 0  ;   self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
@@ -320,7 +320,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def fmtJText(self, j, i=None, why=''):
         jtxt = f'{JTEXTS[j] if 0 <= j < len(JTEXTS) else "???":4}'
-        if i is not None and (i != 0 and i >= len(self.E[j])):   msg = f'ERROR {i=} >= {len(self.E[j])=} {j=} {why} {jtxt}'  ;  self.log(msg) # ;  self.quit(msg)
+        if i is not None and i != 0 and i >= len(self.E[j]):   msg = f'ERROR {i=} >= {len(self.E[j])=} {j=} {why} {jtxt}'  ;  self.log(msg)  ;  self.quit(msg)
         return f'{i=} {j=} {why} {jtxt} {len(self.E[j])=}'
     ####################################################################################################################################################################################################
     @staticmethod
@@ -396,6 +396,7 @@ class Tabs(pyglet.window.Window):
     def dumpStruct(self, why='', dbg=1, dbg2=1):
         self.dumpFont(why)
         self.log(f'{self.fmtn()} ntp={util.fmtl(self.ntp())} ntp0={util.fmtl(self.ntp(0))}')
+        self.dumpVisible()
         if dbg:     self.dumpIdMap( f'Idmp')
         if dbg:     self.dumpTniks1(f'{why}1')
         if dbg2:    self.dumpTniks2(f'{why}2')
@@ -912,7 +913,7 @@ class Tabs(pyglet.window.Window):
 
 #    def sprite2LabelPos(self, x, y, w, h, dbg=0): x0 = x  ;  y0 = y  ;  x += w/2  ;  y -= h/2  ;  self.log(f'{x0=:6.2f} {y0=:6.2f}, {w/2=:6.2f} {-h/2=:6.2f}, {x=:6.2f} {y=:6.2f} {self.p0x=:6.2f} {self.p0y=:6.2f}', so=1) if dbg else None  ;  return x, y
     ####################################################################################################################################################################################################
-    def isV( self, j, dbg=1):
+    def isV( self, j, dbg=0):
         v = 1 if self.J2[P] == self.i[P] else 0
         if dbg: self.log(f'{self.fmtJText(j, why="isV()")} {self.J2[P]=} {self.i[P]=} {self.J2[j]=} i[]={self.fmtIxI()} v={v}', file=sys.stdout)
         return v
@@ -1155,9 +1156,9 @@ class Tabs(pyglet.window.Window):
     def idmapkey(self, j):    return f'{JTEXTS[j]:4} {self.J2[j]:4}'
     def dumpIdMap(self, why=''):
         self.dumpTniksPfx(why)
-        for i, (k, v) in enumerate(self.idmap.items()):
+        for i, (k, v) in enumerate(self.idmap.items(), 1):
             t, j   = v[0], v[1]  ;  name = k[:4]  ;  cnt = int(k[4:])  ;  g = self.gn[j]
-            oid    = id(t)  ;  tid = f'{i+1:4}' + f' {oid:11x}' if self.TIDS else f'{i+1:4}'
+            oid    = id(t)  ;  tid = f'{i:4}' + f' {oid:11x}' if self.TIDS else f'{i:4}'
             self.setJ(j, cnt)  ;  fc, bc = '', ''   ;  msg2, msg4 = '', ''  ;  xywh = self.ftxywh(t)  ;  fmtJ2  = self.fmtJ2()
             if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)  ;  msg2 = self.fTxFs(t)  ;  msg4 = f'{self.fCtnt(t)} {self.fAxy()} {self.ffont(t)}'
             elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)           ;  msg2 = self.frot(t)   ;  msg4 = f'{self.fspr(t)}'
@@ -1384,7 +1385,7 @@ class Tabs(pyglet.window.Window):
         else:   self.autoMove(how)
         if dbg and self.SNAPS:
             stype = f'TXT_{text}' if self.sobj.isFret(text) else 'SYMB' if text in util.DSymb.SYMBS else 'UNKN'
-            self.regSnap(f'{how}', stype)
+            self.regSnap(f'how', stype)
         self.resyncData = 1
 
     def setDTNIK(self, text, cc, p, l, c, t, kk=0, pos=0, dbg=1):
@@ -1513,8 +1514,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'N' and self.isCtrl(     mods):    self.toggleTTs(       '@ N', NN)
         elif kbk == 'O' and self.isCtrlShift(mods):    self.toggleCursorMode('@^O')
         elif kbk == 'O' and self.isCtrl(     mods):    self.toggleCursorMode('@ O')
-#        elif kbk == 'P' and self.isCtrlShift(mods):    self.cobj.togglePage( '@^P')
-        elif kbk == 'P' and self.isCtrl(     mods):    self.addPage(         '@ P')
+        elif kbk == 'P' and self.isCtrlShift(mods):    self.addPage(         '@ P')
+        elif kbk == 'P' and self.isCtrl(     mods):    self.addPage(         '@^P')
         elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@^Q', error=0, save=0)
         elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(            '@ Q', error=0, save=1)
         elif kbk == 'R' and self.isCtrlShift(mods):    self.toggleChordNames('@^R', hit=1)
@@ -1546,19 +1547,21 @@ class Tabs(pyglet.window.Window):
 #        elif kbk == 'BACKSLASH' and self.isCtrl(mods): self.setCHVMode(      '@ BACKSLASH', ARPG,   LEFT,  UP)
 #        elif kbk == 'BACKSLASH':                       self.setCHVMode(      '  BACKSLASH', ARPG,   RIGHT, DOWN)
     ####################################################################################################################################################################################################
-        elif kbk == 'A' and self.isAltShift(mods):     self.setn_cmd(    '&^ A', txt='')
-        elif kbk == 'A' and self.isAlt(     mods):     self.setn_cmd(    '& A', txt='')
-    ####################################################################################################################################################################################################
-        elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam('bold',   not self.fontBold,                              'fontBold')
-        elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam('bold',   not self.fontBold,                              'fontBold')
-        elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam('color',     (self.clrIdx + 1) % len(RGB),        'clrIdx')
-        elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam('color',     (self.clrIdx - 1) % len(RGB),        'clrIdx')
-        elif kbk == 'I' and self.isAltShift(mods):     self.setFontParam('italic', not self.fontItalic,                            'fontItalic')
-        elif kbk == 'I' and self.isAlt(     mods):     self.setFontParam('italic', not self.fontItalic,                            'fontItalic')
-        elif kbk == 'N' and self.isAltShift(mods):     self.setFontParam('font_name', (self.fontNameIndex + 1)  % len(FONT_NAMES), 'fontNameIndex')
-        elif kbk == 'N' and self.isAlt(     mods):     self.setFontParam('font_name', (self.fontNameIndex - 1)  % len(FONT_NAMES), 'fontNameIndex')
-        elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam('font_size',  self.fontSize      + 1,                     'fontSize') # )  % FS_MAX
-        elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam('font_size',  max(self.fontSize-1, 1),                    'fontSize') # )  % FS_MAX
+        elif kbk == 'N' and self.isAltShift(mods):     self.setn_cmd(  '&^N', txt='')
+        elif kbk == 'N' and self.isAlt(     mods):     self.setn_cmd(  '& N', txt='')
+        elif kbk == 'P' and self.isAltShift(mods):     self.togglePage('&^P', 1)
+        elif kbk == 'P' and self.isAlt(mods):          self.togglePage('& P', -1)
+####################################################################################################################################################################################################
+        elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam('bold',      not self.fontBold,                             'fontBold')
+        elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam('bold',      not self.fontBold,                             'fontBold')
+        elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam('color',        (self.clrIdx + 1) % len(RGB),               'clrIdx')
+        elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam('color',        (self.clrIdx - 1) % len(RGB),               'clrIdx')
+        elif kbk == 'I' and self.isAltShift(mods):     self.setFontParam('italic',    not self.fontItalic,                           'fontItalic')
+        elif kbk == 'I' and self.isAlt(     mods):     self.setFontParam('italic',    not self.fontItalic,                           'fontItalic')
+        elif kbk == 'N' and self.isAltShift(mods):     self.setFontParam('font_name',    (self.fontNameIndex + 1) % len(FONT_NAMES), 'fontNameIndex')
+        elif kbk == 'N' and self.isAlt(     mods):     self.setFontParam('font_name',    (self.fontNameIndex - 1) % len(FONT_NAMES), 'fontNameIndex')
+        elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam('font_size',     self.fontSize      + 1,                    'fontSize') # )  % FS_MAX
+        elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam('font_size', max(self.fontSize      - 1, 1),                'fontSize') # )  % FS_MAX
     ####################################################################################################################################################################################################
         if not self.isParsing():
             if   kbk == 'ENTER' and self.isCtrl(mods): self.setCHVMode(  '@  ENTER',     CHORD,       v=DOWN)
@@ -1912,6 +1915,44 @@ class Tabs(pyglet.window.Window):
         self.pasteTabs(how)
         self.dumpSmap(f'END {nk=} {nk2=}')
 
+    def swapTab(self, how, txt='', data=None, dbg=0, dbg2=1):  # e.g. c => 12 not same # chars asserts
+        src, trg = self.swapSrc, self.swapTrg
+        data = data or self.data
+        if not self.swapping: self.swapping = 1
+        elif txt.isalnum():
+            if   self.swapping == 1:   src += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}')
+            elif self.swapping == 2:   trg += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}')
+            self.swapSrc, self.swapTrg = src, trg
+        elif txt == '\r':
+            self.log(f'    {how} {self.swapping=} {src=} {trg=}')
+            if   self.swapping == 1 and not trg: self.swapping = 2;   self.log(f'{how} waiting {src=} {trg=}') if dbg else None   ;   return
+            elif self.swapping == 2 and trg:     self.swapping = 0;   self.log(f'{how} BGN     {src=} {trg=}') if dbg else None
+            np, nl, ns, nc, nt = self.n    ;     nc += self.zzl()
+            cc0 = self.cursorCol()         ;     p0, l0, c0, t0 = self.cc2plct(cc0)   ;   self.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
+            blanks = self.tblanks          ;     blank = 1 if src in blanks and trg in blanks else 0
+            if blank:
+                for i in range(len(self.tabs)):
+                    if self.tabs  and self.tabs[i].text  == src:  self.tabs[i].text = trg
+                    if self.notes and self.notes[i].text == src: self.notes[i].text = trg
+                    if self.ikeys and self.ikeys[i].text == src: self.ikeys[i].text = trg
+                    if self.kords and self.kords[i].text == src: self.kords[i].text = trg
+            else:
+                for p in range(np):
+                    for l in range(nl):
+                        for c in range(nc):
+                            text = data[p][l][c]
+                            for t in range(nt):
+                                if text[t] == src:
+                                    if dbg2: self.log(f'Before data[{p} {l} {c}]={text}')
+                                    cc = self.plct2cc(p, l, c, t)   ;   self.setDTNIK(trg, cc, p, l, c, t, kk=1)
+                                    if dbg2: self.log(f'After  data[{p} {l} {c}]={text}')
+            self.swapSrc, self.swapTrg = '', ''
+            self.log(f'{how} END     {src=} {trg=}') if dbg else None
+#                if dbg2: self.dumpTniks('SWAP')
+#                self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
+            if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
+            self.resyncData = 1
+
     def insertSpace(self, how, txt='0', dbg=1):
         cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
         if not self.inserting: self.inserting = 1   ;    self.setCaption('Enter nc: number of cols to indert int')
@@ -1960,44 +2001,6 @@ class Tabs(pyglet.window.Window):
             self.resyncData = 1
             self.unselectAll('shiftTabs()')
         self.dumpSmap(f'END {how} {self.shiftingTabs=} {nf=} {self.shiftSign=}')
-
-    def swapTab(self, how, txt='', data=None, dbg=0, dbg2=1):  # e.g. c => 12 not same # chars asserts
-        src, trg = self.swapSrc, self.swapTrg
-        data = data or self.data
-        if not self.swapping: self.swapping = 1
-        elif txt.isalnum():
-            if   self.swapping == 1:   src += txt   ;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}')
-            elif self.swapping == 2:   trg += txt   ;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}')
-            self.swapSrc, self.swapTrg = src, trg
-        elif txt == '\r':
-            self.log(f'    {how} {self.swapping=} {src=} {trg=}')
-            if   self.swapping == 1 and not trg: self.swapping = 2   ;   self.log(f'{how} waiting {src=} {trg=}') if dbg else None   ;   return
-            elif self.swapping == 2 and     trg: self.swapping = 0   ;   self.log(f'{how} BGN     {src=} {trg=}') if dbg else None
-            np, nl, ns, nc, nt = self.n   ;   nc += self.zzl()
-            cc0 = self.cursorCol()  ;  p0, l0, c0, t0 = self.cc2plct(cc0)  ;  self.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
-            blanks = self.tblanks  ;  blank = 1 if src in blanks and trg in blanks else 0
-            if blank:
-                for i in range(len(self.tabs)):
-                    if self.tabs  and  self.tabs[i].text == src:  self.tabs[i].text = trg
-                    if self.notes and self.notes[i].text == src: self.notes[i].text = trg
-                    if self.ikeys and self.ikeys[i].text == src: self.ikeys[i].text = trg
-                    if self.kords and self.kords[i].text == src: self.kords[i].text = trg
-            else:
-                for p in range(np):
-                    for l in range(nl):
-                        for c in range(nc):
-                            text = data[p][l][c]
-                            for t in range(nt):
-                                if text[t] == src:
-                                    if dbg2: self.log(f'Before data[{p} {l} {c}]={text}')
-                                    cc = self.plct2cc(p, l, c, t)  ;  self.setDTNIK(trg, cc, p, l, c, t, kk=1)
-                                    if dbg2: self.log(f'After  data[{p} {l} {c}]={text}')
-            self.swapSrc, self.swapTrg = '', ''
-            self.log(f'{how} END     {src=} {trg=}') if dbg else None
-#            if dbg2: self.dumpTniks('SWAP')
-#            self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
-            if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
-            self.resyncData = 1
 
     def setn_cmd(self, how, txt='', dbg=1):
         if not self.settingN: self.settingN = 1   ;  self.setNtxt = '' ;  self.log(f'BGN {how} {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
@@ -2074,6 +2077,42 @@ class Tabs(pyglet.window.Window):
         elif dbg: self.log(f'    {how} {cn=} {cc=} is NOT a chord')
         if dbg2:  self.cobj.dumpImap(limap[imi], why=f'{cn:2}')
         assert imi == limap[imi][-1], f'{imi=} {limap[imi][-1]=}'
+    ####################################################################################################################################################################################################
+    def togglePage(self, how, p):
+        self.dumpGeom('BGN', f'{how} {p=:2} {self.i[P]=}')
+        self.toggleVisible() # self.j()[P]
+        np = self.n[P]   ;   self.i[P] = (self.j()[P] + p) % np + 1
+        self.toggleVisible() # self.j()[P]
+        self.dumpVisible()
+        self.regSnap(how, f'Pag{self.i[P]}')
+        self.resizeTniks(how)
+        self.dumpGeom('END', f'{how} {p=:2} {self.i[P]=}')
+
+    def toggleVisible(self):
+        np, nl, ns, nc, nt = self.n   ;   p = self.j()[P]
+        self.pages[p].visible = not self.pages[p].visible
+        for l in range(nl):
+            l2 = l + p*nl
+            self.lines[l2].visible = not self.lines[l2].visible
+            for s in range(ns):
+                s2 = s + l2*ns
+                self.sects[s2].visible = not self.sects[s2].visible
+                for c in range(nc):
+                    c2 = c + s2*nc
+                    self.cols[c2].visible = not self.cols[c2].visible
+                    for t in range(nt):
+                        t2 = t + c*nt # + s*nc*nt + l*ns*nc*nt + p*nl*ns*nc*nt
+                        self.tabs[t2].visible = not self.tabs[t2].visible
+
+    def dumpVisible(self):
+        for j, e in enumerate(self.E):
+            if j <= K:
+                _ = []   ;   n = 0
+                for t in e:
+                    if t.visible: n += 1
+                    _.append(str(int(t.visible)))
+                v = ''.join(_)  ;  l = len(v)
+                self.log(f'{j:2} {JTEXTS[j]:4} [{n:4} / {l:4}] {v}', pfx=0)
     ####################################################################################################################################################################################################
     def toggleCursorMode(self, how):
         self.log(f'BGN {how} {self.csrMode=} = {CSR_MODES[self.csrMode]=}')
@@ -2204,10 +2243,10 @@ class Tabs(pyglet.window.Window):
         util.slog(msg, pfx, file, flush, sep, end, so)
     ####################################################################################################################################################################################################
     def quit(self, why='', error=1, save=1, dbg=1): #, dbg2=1):
-        util.dumpStack(inspect.stack(), file=LOG_FILE)    ;   self.log(util.QUIT_BGN, pfx=0)
+        self.log(util.QUIT_BGN, pfx=0)   ;   util.dumpStack(inspect.stack(), file=LOG_FILE)    ;   self.log(util.QUIT, pfx=0)
         self.dumpTniksSfx(why)
         if not error:      util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
-        self.log(f'BGN {why} {error=} {save=}')           ;   self.log(util.QUIT_BGN, pfx=0)
+        self.log(f'BGN {why} {error=} {save=}')           ;   self.log(util.QUIT, pfx=0)
         self.dumpArgs()
         if not error:
 #            if   dbg:  self.dumpStruct(why)
