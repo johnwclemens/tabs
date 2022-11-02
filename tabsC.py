@@ -401,7 +401,7 @@ class Tabs(pyglet.window.Window):
         if dbg:     self.dumpTniks1(f'{why}1')
         if dbg2:    self.dumpTniks2(f'{why}2')
         if dbg2:    self.dumpTniks3(f'{why}3')
-        if dbg:     self.cobj.dumpMlimap(f'MLim')
+        if dbg:     self.cobj.dumpMlimap(f'MLim') if self.VERBOSE else None
     ####################################################################################################################################################################################################
     def autoSave(self, dt, why, dbg=1):
         if dbg: self.log(f'Every {dt:=7.4f} seconds, {why} {self.resyncData=}')
@@ -1105,8 +1105,8 @@ class Tabs(pyglet.window.Window):
             _, _, x, y, w, h = self.geom(V, n=1, i=1, dbg=0)
             if not self.views:    msg = f'ERROR Empty views {self.n=} {self.zzl()}';   self.log(msg);   self.quit(msg)
             view = self.resizeTnik(self.views, 0, V, x, y, w, h, why="Upd", v=1, dbg=1)
-        for page in                self.g_resizeTniks(self.pages, P, view):
-            for line in            self.g_resizeTniks(self.lines, L, page):
+        for page in                self.g_resizeTniks(self.pages, P, view): # pass
+            for line in            self.g_resizeTniks(self.lines, L, page): # pass
                 for sect in        self.g_resizeTniks(self.sects, S, line): # pass
                     for col in     self.g_resizeTniks(self.cols,  C, sect): # pass
                         for _ in   self.g_resizeTniks(self.tabs,  T, col):  pass
@@ -2078,33 +2078,36 @@ class Tabs(pyglet.window.Window):
         if dbg2:  self.cobj.dumpImap(limap[imi], why=f'{cn:2}')
         assert imi == limap[imi][-1], f'{imi=} {limap[imi][-1]=}'
     ####################################################################################################################################################################################################
-    def togglePage(self, how, p):
-        self.dumpGeom('BGN', f'{how} {p=:2} {self.i[P]=}')
-        self.toggleVisible() # self.j()[P]
-        np = self.n[P]   ;   self.i[P] = (self.j()[P] + p) % np + 1
-        self.toggleVisible() # self.j()[P]
-        self.dumpVisible()
-        self.regSnap(how, f'Pag{self.i[P]}')
+    def togglePage(self, how, dp=1):
+        self.dumpGeom('BGN', f'{how} {dp=:2} {self.i[P]=}')
+        self.toggleVisible()
+        self.i[P] = (self.j()[P] + dp) % self.n[P] + 1
+        self.toggleVisible()
+        self.dumpVisible(h=1)   ;   self.dumpVisible()
+        self.regSnap(how, f'Pg{self.i[P]}')
         self.resizeTniks(how)
-        self.dumpGeom('END', f'{how} {p=:2} {self.i[P]=}')
+        self.dumpGeom('END', f'{how} {dp=:2} {self.i[P]=}')
 
-    def toggleVisible(self):
-        np, nl, ns, nc, nt = self.n   ;   p = self.j()[P]
+    def toggleVisible(self, p=None, dbg=1):
+        p = p is not None if p else self.j()[P]
+        np, nl, ns, nc, nt = self.n  ;  ssl = self.ss2sl()
         self.pages[p].visible = not self.pages[p].visible
         for l in range(nl):
             l2 = l + p*nl
             self.lines[l2].visible = not self.lines[l2].visible
-            for s in range(ns):
-                s2 = s + l2*ns
+            for s, ss in enumerate(ssl):
+                s2 = s + l*ns  # ;   ss2 = 4 + ss
                 self.sects[s2].visible = not self.sects[s2].visible
                 for c in range(nc):
-                    c2 = c + s2*nc
-                    self.cols[c2].visible = not self.cols[c2].visible
+                    c2 = c + s*nc
+                    self.cols[ c2].visible = not self.cols[ c2].visible
                     for t in range(nt):
-                        t2 = t + c*nt # + s*nc*nt + l*ns*nc*nt + p*nl*ns*nc*nt
-                        self.tabs[t2].visible = not self.tabs[t2].visible
+                        t2 = t + c*nt + l*self.tpl + p*self.tpp
+                        tnik = self.B[ss][t2]
+                        tnik.visible = not tnik.visible
+                        if dbg: self.log(f'{int(tnik.visible)} {p=}, {l=} {l2=}, {s=} {s2=} {ss=}, {c=} {c2=}, {t=} {t2=}')
 
-    def dumpVisible(self):
+    def dumpVisible(self, h=0):
         for j, e in enumerate(self.E):
             if j <= K:
                 _ = []   ;   n = 0
@@ -2112,7 +2115,8 @@ class Tabs(pyglet.window.Window):
                     if t.visible: n += 1
                     _.append(str(int(t.visible)))
                 v = ''.join(_)  ;  l = len(v)
-                self.log(f'{j:2} {JTEXTS[j]:4} [{n:4} / {l:4}] {v}', pfx=0)
+                msg = f'{j:2} {JTEXTS[j]:4} [{n:4} / {l:4}]' if h else f'{v}'
+                self.log(msg, pfx=0)
     ####################################################################################################################################################################################################
     def toggleCursorMode(self, how):
         self.log(f'BGN {how} {self.csrMode=} = {CSR_MODES[self.csrMode]=}')
@@ -2252,7 +2256,7 @@ class Tabs(pyglet.window.Window):
 #            if   dbg:  self.dumpStruct(why)
             if save:   self.saveDataFile(why, self.dataPath1)
             if   dbg:  self.A_transposeData(dump=dbg) if self.TRANSPOSE_A else self.OLD_transposeData()
-            if   dbg:  self.cobj.dumpMlimap(why)
+            if   dbg:  self.cobj.dumpMlimap(why) if self.VERBOSE else None
         if self.SNAPS: self.snapshot(f'quit {error=} {save=}', 'QUIT')
         self.log(f'END {why} {error=} {save=}')           ;   self.log(util.QUIT_END, pfx=0)
         self.cleanupLog()
