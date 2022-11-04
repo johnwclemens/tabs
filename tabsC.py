@@ -924,6 +924,7 @@ class Tabs(pyglet.window.Window):
         if j is None: j = P
         if   P <= j <= T and self.J2[j] == self.i[j]: v = 1
         elif j <= K      and self.J2[j] == self.i[T]: v = 1
+#        elif j <= Q:                                  v = 1
         elif j == H:                                  v = 1
         else:                                         v = 0
         if dbg:  why = f'{v=}'  ;  self.log(f'{self.fmtJText(j, why)} {self.J2[P]=} {self.i[P]=} {self.J2[j]=} {self.fmtIxI()} {v=}', file=sys.stdout)
@@ -1081,7 +1082,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def createTnik(self, tlist, i, j, x, y, w, h, kk, kl, why='New', t='', g=None, dbg=0):
         if j is not None: self.setJ(j, i)
-        o, k2, d, ii, n, s = self.fontParams()   ;   b = self.batch   ;   k = kl[kk]   ;   v = self.isV() # j
+        o, k2, d, ii, n, s = self.fontParams()   ;   b = self.batch   ;   k = kl[kk]   ;   jj = H if j == H else None ;   v = self.isV(jj) # j
         g = g        if  g is not None else self.j2g(j)
         if j == H or (self.SPRITES and (j < T or j == R)):
             scip  = pyglet.image.SolidColorImagePattern(k)
@@ -1208,7 +1209,7 @@ class Tabs(pyglet.window.Window):
         self.setJ(H, 1)  ;  self.dumpTnik(self.cursor, H, why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def dumpTniks2(self, why=''):
+    def OLD_dumpTniks2(self, why=''):
         ep, el, es, ec, et = self.lenE()[P:T+1]   ;   np, nl, ns, nc, nt = self.n   ;   sp, sl, ss, sc = 0, 0, 0, 0   ;   sr, sq = 0, 0  ;  st, sn, si, sk = 0, 0, 0, 0
         self.dumpTniksPfx(why)
         if self.LL:
@@ -1223,6 +1224,112 @@ class Tabs(pyglet.window.Window):
         for t in range(et):        j = I            ;  self.setJ(j, si)  ;  self.dumpTnik(self.ikeys[t], j, why)  ;  si += 1
         for t in range(et):        j = K            ;  self.setJ(j, sk)  ;  self.dumpTnik(self.kords[t], j, why)  ;  sk += 1
         self.setJ(H, 1)  ;  self.dumpTnik(self.cursor, H, why)
+        self.dumpTniksSfx(why)
+    def OLD_A_dumpTniks2(self, why=''):
+        ep, el, es, ec, et = self.lenE()[P:T+1]   ;   np, nl, ns, nc, nt = self.n   ;   sp, sl, ss, sc = 0, 0, 0, 0   ;   sr, sq = 0, 0  ;  st, sn, si, sk = 0, 0, 0, 0
+        self.dumpTniksPfx(why)
+        if self.LL:
+            for r in range(nl):    j = R            ;  self.setJ(j, sr)  ;  self.dumpTnik(self.lrows[r], j, why)  ;  sr += 1
+            for q in range(nl*nc): j = Q            ;  self.setJ(j, sq)  ;  self.dumpTnik(self.lcols[q], j, why)  ;  sq += 1
+        for p in range(ep):        j = P            ;  self.setJ(j, sp)  ;  self.dumpTnik(self.pages[p], j, why)  ;  sp += 1
+        for c in range(ec):        j = C            ;  self.setJ(j, sc)  ;  self.dumpTnik(self.cols[ c], j, why)  ;  sc += 1
+        for l in range(el):        j = L            ;  self.setJ(j, sl)  ;  self.dumpTnik(self.lines[l], j, why)  ;  sl += 1
+        for s in range(es):        j = S            ;  self.setJ(j, ss)  ;  self.dumpTnik(self.sects[s], j, why)  ;  ss += 1
+        for t in range(et):
+            j = T            ;  self.setJ(j, st)  ;  self.dumpTnik(self.tabs[ t], j, why)  ;  st += 1
+            j = N            ;  self.setJ(j, sn)  ;  self.dumpTnik(self.notes[t], j, why)  ;  sn += 1
+            j = I            ;  self.setJ(j, si)  ;  self.dumpTnik(self.ikeys[t], j, why)  ;  si += 1
+            j = K            ;  self.setJ(j, sk)  ;  self.dumpTnik(self.kords[t], j, why)  ;  sk += 1
+        self.setJ(H, 1)  ;  self.dumpTnik(self.cursor, H, why)
+        self.dumpTniksSfx(why)
+    def OLD__B_dumpTniks2(self, why=''):
+        ep, el, es, ec, et = self.lenE()[P:T+1]   ;   np, nl, ns, nc, nt = self.n   ;   sp, sl, ss, sc = 0, 0, 0, 0   ;   sr, sq = 0, 0 # ;  st, sn, si, sk = 0, 0, 0, 0
+        self.dumpTniksPfx(why)
+        if self.LL:
+            for r in range(nl):    j = R  ;  self.setJ(j, sr)  ;  self.dumpTnik(self.lrows[r], j, why)  ;  sr += 1
+            for q in range(nl*nc): j = Q  ;  self.setJ(j, sq)  ;  self.dumpTnik(self.lcols[q], j, why)  ;  sq += 1
+        for p in range(ep):        j = P  ;  self.setJ(j, sp)  ;  self.dumpTnik(self.pages[p], j, why)  ;  sp += 1
+        for c in range(ec):        j = C  ;  self.setJ(j, sc)  ;  self.dumpTnik(self.cols[ c], j, why)  ;  sc += 1
+        for l in range(el):        j = L  ;  self.setJ(j, sl)  ;  self.dumpTnik(self.lines[l], j, why)  ;  sl += 1
+        for s in range(es):        j = S  ;  self.setJ(j, ss)  ;  self.dumpTnik(self.sects[s], j, why)  ;  ss += 1
+        for t in range(et):
+            j = T            ;  self.setJ(j, t)  ;  self.dumpTnik(self.tabs[ t], j, why)
+            j = N            ;  self.setJ(j, t)  ;  self.dumpTnik(self.notes[t], j, why)
+            j = I            ;  self.setJ(j, t)  ;  self.dumpTnik(self.ikeys[t], j, why)
+            j = K            ;  self.setJ(j, t)  ;  self.dumpTnik(self.kords[t], j, why)
+        self.setJ(H, 1)  ;  self.dumpTnik(self.cursor, H, why)
+        self.dumpTniksSfx(why)
+    def OLD_C_dumpTniks2(self, why=''):
+        ep, el, es, ec, et = self.lenE()[P:T+1]   ;   np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(why)
+        if self.LL:
+            for r in range(nl):    j = R  ;  self.setJ(j, r)  ;  self.dumpTnik(self.lrows[r], j, why)
+            for q in range(nl*nc): j = Q  ;  self.setJ(j, q)  ;  self.dumpTnik(self.lcols[q], j, why)
+        for p in range(ep):        j = P  ;  self.setJ(j, p)  ;  self.dumpTnik(self.pages[p], j, why)
+        for c in range(ec):        j = C  ;  self.setJ(j, c)  ;  self.dumpTnik(self.cols[ c], j, why)
+        for l in range(el):        j = L  ;  self.setJ(j, l)  ;  self.dumpTnik(self.lines[l], j, why)
+        for s in range(es):        j = S  ;  self.setJ(j, s)  ;  self.dumpTnik(self.sects[s], j, why)
+        for t in range(et):
+            j = T            ;  self.setJ(j, t)  ;  self.dumpTnik(self.tabs[ t], j, why)
+            j = N            ;  self.setJ(j, t)  ;  self.dumpTnik(self.notes[t], j, why)
+            j = I            ;  self.setJ(j, t)  ;  self.dumpTnik(self.ikeys[t], j, why)
+            j = K            ;  self.setJ(j, t)  ;  self.dumpTnik(self.kords[t], j, why)
+        self.setJ(H, 1)  ;  self.dumpTnik(self.cursor, H, why)
+        self.dumpTniksSfx(why)
+    def OLD_D_dumpTniks2(self, why=''):
+        ep, el, es, ec, et = self.lenE()[P:T+1]   ;   np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(why)
+        if self.LL:
+            for r in range(nl):    j = R  ;  self.setJ(j, r)  ;  self.dumpTnik(self.lrows[r], j, why)
+            for q in range(nl*nc): j = Q  ;  self.setJ(j, q)  ;  self.dumpTnik(self.lcols[q], j, why)
+        for p in range(ep):        j = P  ;  self.setJ(j, p)  ;  self.dumpTnik(self.pages[p], j, why)
+        for c in range(ec):        j = C  ;  self.setJ(j, c)  ;  self.dumpTnik(self.cols[ c], j, why)
+        for l in range(el):        j = L  ;  self.setJ(j, l)  ;  self.dumpTnik(self.lines[l], j, why)
+        for s in range(es):        j = S  ;  self.setJ(j, s)  ;  self.dumpTnik(self.sects[s], j, why)
+        for t in range(et):
+            j = T            ;  self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t], j, why)
+            j = N            ;  self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t], j, why)
+            j = I            ;  self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t], j, why)
+            j = K            ;  self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t], j, why)
+        self.setJ(H, 1)  ;  self.dumpTnik(self.cursor, H, why)
+        self.dumpTniksSfx(why)
+    def OLD_E_dumpTniks2(self, why=''):
+        ep, el, es, ec, et = self.lenE()[P:T+1]   ;   np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(why)
+        if self.LL:
+            for r in range(nl):    j = R  ;  self.setJ(j, r)  ;  self.dumpTnik(self.lrows[r], j, why)
+            for q in range(nl*nc): j = Q  ;  self.setJ(j, q)  ;  self.dumpTnik(self.lcols[q], j, why)
+        for p in range(ep):        j = P  ;  self.setJ(j, p)  ;  self.dumpTnik(self.pages[p], j, why)
+        for c in range(ec):        j = C  ;  self.setJ(j, c)  ;  self.dumpTnik(self.cols[ c], j, why)
+        for l in range(el):        j = L  ;  self.setJ(j, l)  ;  self.dumpTnik(self.lines[l], j, why)
+        for s in range(es):        j = S  ;  self.setJ(j, s)  ;  self.dumpTnik(self.sects[s], j, why)
+        for t in range(et):
+            for j in range(T, K+1):          self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t],  j, why)
+        self.setJ(H, 1)  ;  self.dumpTnik(self.cursor, H, why)
+        self.dumpTniksSfx(why)
+    def OLD_F_dumpTniks2(self, why=''):
+        np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(why)
+        if self.LL:
+            for r in range(nl):    j = R  ;  self.setJ(j, r)  ;  self.dumpTnik(self.lrows[r], j, why)
+            for q in range(nl*nc): j = Q  ;  self.setJ(j, q)  ;  self.dumpTnik(self.lcols[q], j, why)
+        for j in range(K+1):
+            for t in range(self.lenE()[j]):  self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t],  j, why)
+        self.setJ(H, 1)  ;                                       self.dumpTnik(self.cursor,   H, why)
+        self.dumpTniksSfx(why)
+    def OLD_G_dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        z = Q if self.LL else K
+        for j in range(z+1):
+            for t in range(self.lenE()[j]):  self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t],  j, why)
+        self.setJ(H, 1)  ;                                       self.dumpTnik(self.cursor,   H, why)
+        self.dumpTniksSfx(why)
+    def dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        for j in range(H+1):
+            for t in range(self.lenE()[j]):
+                if not self.LL and (j == R or j == Q): continue
+                self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t],  j, why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTniks3(self, why=''):
