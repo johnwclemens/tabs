@@ -1,6 +1,7 @@
 import glob, math, os, pathlib, sys
 import operator, inspect, itertools
-from itertools   import accumulate
+from itertools      import accumulate
+from more_itertools import consume
 CODS    = 0
 if CODS: from collections import OrderedDict as cOd
 import pyglet
@@ -43,7 +44,7 @@ class Tabs(pyglet.window.Window):
         self.GEN_DATA     = 0  ;   self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
         self.SNAPS        = 1  ;   self.SPRITES     = 1  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0  ;  self.TIDS    = 1
         self.VIEWS        = 0  ;   self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
-        self.LL           = 1
+        self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
         self.idmap        = cOd() if CODS else {}  ;  self.log(f'{CODS=} {type(self.idmap)=}')
@@ -1321,16 +1322,61 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksPfx(why)
         z = Q if self.LL else K
         for j in range(z+1):
-            for t in range(self.lenE()[j]):  self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t],  j, why)
-        self.setJ(H, 1)  ;                                       self.dumpTnik(self.cursor,   H, why)
+            for t in range(self.lenE()[j]):  self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t], j, why)
+        self.setJ(H, 1)  ;                                       self.dumpTnik(self.cursor,  H, why)
+        self.dumpTniksSfx(why)
+    def OLD_H_dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        for j in range(H + 1):
+            for t in range(self.lenE()[j]):
+                if not self.LL and (j == R or j == Q): continue
+                self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t], j, why)
+        self.dumpTniksSfx(why)
+    def OLD_I_dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        for j in range(1 + Q if self.LL else 1 + K):
+            for t in range(self.lenE()[j]):  self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t], j, why)
+        self.setJ(H, 1)  ;                                       self.dumpTnik(self.cursor,  H, why)
+        self.dumpTniksSfx(why)
+    def OLD_J_dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        for j in range(1 + H):
+            for t in range(self.lenE()[j]):
+                if (j != Q and j != R) or (self.LL and (j == Q or j == R)): self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t], j, why)
+        self.dumpTniksSfx(why)
+    def OLD_K_dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        for j in range(1 + H):
+            for t in range(self.lenE()[j]):
+                if (j != Q and j != R) or self.LL: self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t], j, why)
+        self.dumpTniksSfx(why)
+    ####################################################################################################################################################################################################
+    def OLD_L_dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        [ [ self._dumpTniks2A(j, t, why) for t in range(self.lenE()[j]) ] for j in range(1 + H) if (j != Q and j != R) or self.LL ]
+        self.dumpTniksSfx(why)
+    def OLD_M_dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        consume(self._dumpTniks2B(self.E[j], j, why) for j in range(len(self.E)))
+        self.dumpTniksSfx(why)
+    def OLD_N_dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        consume((self._dumpTniks2C(self.E[j], j, why) for j in range(len(self.E))), n=None)
+        self.dumpTniksSfx(why)
+    def OLD_O_dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        self._dumpTniks2D(why)
         self.dumpTniksSfx(why)
     def dumpTniks2(self, why=''):
         self.dumpTniksPfx(why)
-        for j in range(H+1):
-            for t in range(self.lenE()[j]):
-                if not self.LL and (j == R or j == Q): continue
-                self.setJ(j, t)  ;  self.dumpTnik(self.E[j][t],  j, why)
+        self._dumpTniks2E(why)
         self.dumpTniksSfx(why)
+    def _dumpTniks2A(self, j, t, why=''):   self.setJ(j, t), self.dumpTnik(self.E[j][t], j, why)
+    def _dumpTniks2B(self, tniks, j, why=''):
+        for t in range(len(tniks)): self.setJ(j, t)   ;   self.dumpTnik(tniks[t], j, why)
+    def _dumpTniks2C(self, tniks, j, why=''):   consume(self.setJdump(j, t, why) for t in range(len(tniks)))
+    def _dumpTniks2D(self, why=''):             consume(self._dumpTniks2C(self.E[j], j, why) for j in range(len(self.E)))
+#    def _dumpTniks2E(self, why=''):             consume(self.setJdump(j, t, why) for t in range(len(self.E[j])) for j in range(len(self.E)))
     ####################################################################################################################################################################################################
     def dumpTniks3(self, why=''):
         ep, el, es, ec, et = self.lenE()[P:T+1]  ;  nl, ns, nq = self.n[L:C+1]  ;  sp, sl, ss, sc = 0, 0, 0, 0  ;  sr, sq = 0, 0  ;  i = 0  ;  st, sn, si, sk = 0, 0, 0, 0
