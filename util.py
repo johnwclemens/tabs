@@ -47,7 +47,7 @@ def fmtm(m, w=1, d0=':', d1='[', d2=']'):
         elif type(v) in (int, str):                 t += f'{k:>{w}}{d0}{v:<{w}} '
     return d1 + t.rstrip() + d2
 
-def fColor(c, d=1): (d1, d2) = ("[", "]") if d else ("", "")  ;  return f'{fmtl(c, w="3", d1=d1, d2=d2)}'
+def fColor(c, d=1): (d1, d2) = ("[", "]") if d else ("", "")  ;  return f'{fmtl(c, w="3", d1=d1, d2=d2):17}'
 
 def ordSfx(n):
     m = n % 10
