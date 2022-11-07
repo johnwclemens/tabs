@@ -403,13 +403,13 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def accProd(n):              return list(accumulate(n, operator.mul))
     ####################################################################################################################################################################################################
-    def dumpStruct(self, why='', dbg=1, dbg2=1):
+    def dumpStruct(self, why='', dbg=1, dbg2=0):
         self.dumpFont(why)
         self.log(f'{self.fmtn()} ntp={util.fmtl(self.ntp())} ntp0={util.fmtl(self.ntp(0))}')
         self.dumpVisible()
         if dbg:     self.dumpIdMap( f'Idmp')
         if dbg:     self.dumpTniks1(f'{why}1')
-        if dbg2:    self.dumpTniks2(f'{why}2')
+        if dbg:     self.dumpTniks2(f'{why}2')
         if dbg2:    self.dumpTniks3(f'{why}3')
         if dbg:     self.cobj.dumpMlimap(f'MLim') if self.VERBOSE else None
     ####################################################################################################################################################################################################
@@ -1197,34 +1197,28 @@ class Tabs(pyglet.window.Window):
             self.setJdump(v[1], v[2], why) #, v[2]
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def dumpTniks1(self, why=''): # if  self.VIEWS:   for v in range(len(self.views)):   self.dumpTnik( self.views[v], V, why)
-        self.dumpTniksPfx(why)
-        consume(consume(self.setJdump(j, _, why) for _ in range(len(self.E[j]))) for j in range(len(self.E))) #, t
-#        consume(consume(self.setJdump(j, t, why) for t in range(len(self.E[j]))) for j in range(len(self.E)))
-        self.dumpTniksSfx(why)
-    ####################################################################################################################################################################################################
-    def dumpTniks2(self, why=''):
-        np, nl, ns, nc, nt = self.n # ;  st, sn, si, sk = 0, 0, 0, 0 #  ;  sr, sq = 0, 0 #   ;  sp, sl, ss, sc = 0, 0, 0, 0
+    def dumpTniks1(self, why=''):
+        np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(why)
         if self.LL:
             for r in range(nl):
-                j = R                               ;  self.setJdump(j, r, why) # ;  self.dumpTnik(self.lrows[sr], j, why)  ;  sr += 1
-                for q in range(nc): j = Q           ;  self.setJdump(j, q, why) # ;  self.dumpTnik(self.lcols[sq], j, why)  ;  sq += 1
+                j = R                               ;  self.setJdump(j, r, why)
+                for q in range(nc): j = Q           ;  self.setJdump(j, q, why)
         for p in range(np):
-            j = P                                   ;  self.setJdump(j, p, why) # ;  self.dumpTnik(self.pages[sp], j, why)  ;  sp += 1
+            j = P                                   ;  self.setJdump(j, p, why)
             for l in range(nl):
-                j = L                               ;  self.setJdump(j, l, why) # ;  self.dumpTnik(self.lines[sl], j, why)  ;  sl += 1
+                j = L                               ;  self.setJdump(j, l, why)
                 for s, s2 in enumerate(self.ss2sl()):
-                    j = S                           ;  self.setJdump(j, s, why) # ;  self.dumpTnik(self.sects[ss], j, why)  ;  ss += 1 # s2 = s+l*ns
+                    j = S                           ;  self.setJdump(j, s, why)
                     for c in range(nc):
-                        j = C                       ;  self.setJdump(j, c, why) # ;  self.dumpTnik(self.cols[sc],  j, why)  ;  sc += 1
-                        for t in range(nt):
-                            _, j, k, txt = self.tnikInfo(p, l, s2, c, t, why)
-                            if   s2 == TT:             self.setJdump(j, t, why) # ;  self.dumpTnik(         _[st], j, why)  ;  st += 1
-                            elif s2 == NN:             self.setJdump(j, t, why) # ;  self.dumpTnik(         _[sn], j, why)  ;  sn += 1
-                            elif s2 == II:             self.setJdump(j, t, why) # ;  self.dumpTnik(         _[si], j, why)  ;  si += 1
-                            elif s2 == KK:             self.setJdump(j, t, why) # ;  self.dumpTnik(         _[sk], j, why)  ;  sk += 1
-        self.setJ(H, 1)  ;  self.dumpTnik(self.cursor, H, why) #, 1
+                        j = C                       ;  self.setJdump(j, c, why)
+                        for t in range(nt): _, j, k, txt = self.tnikInfo(p, l, s2, c, t, why)  ;  self.setJdump(j, t, why)
+        self.setJ(H, 0)  ;  self.dumpTnik(self.cursor, H, why)
+        self.dumpTniksSfx(why)
+    ####################################################################################################################################################################################################
+    def dumpTniks2(self, why=''): # if  self.VIEWS:   for v in range(len(self.views)):   self.dumpTnik( self.views[v], V, why)
+        self.dumpTniksPfx(why)
+        consume(consume(self.setJdump(j, _, why) for _ in range(len(self.E[j]))) for j in range(len(self.E)))
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTniks3(self, why=''):
