@@ -40,11 +40,11 @@ class Tabs(pyglet.window.Window):
         self.A_LEFT       = 0  ;   self.A_CENTER    = 1  ;  self.A_RIGHT      = 0
         self.X_LEFT       = 0  ;   self.X_CENTER    = 1  ;  self.X_RIGHT      = 0
         self.Y_TOP        = 0  ;   self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
-        self.AUTO_SAVE    = 0  ;   self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
+        self.AUTO_SAVE    = 0  ;   self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 1
         self.GEN_DATA     = 0  ;   self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
         self.SNAPS        = 1  ;   self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0  ;  self.TIDS    = 1
         self.VIEWS        = 0  ;   self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 1  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
-        self.LL           = 0
+        self.LL           = 1
         self.SS           = set() if 0 else {0, 1, 2, 3}
         self.ZZ           = set() if 1 else {0, 1}
         self.idmap        = cOd() if CODS else {}  ;  self.log(f'{CODS=} {type(self.idmap)=}')
@@ -278,12 +278,12 @@ class Tabs(pyglet.window.Window):
     def j(   self):                  return [ i-1 if i else 0 for    i in           self.i ]
     def j2(  self):                  return [ i-1 if i else 0 for j, i in enumerate(self.i)  if j != S ]
     def j2g(     self, j):           return self.g[ self.gn[j] ]
-    def j2n(self, j): n = self.n  ;  r = n[j] if P <= j <= T else n[T] if j <= K else L if j == R else C if j == Q else 1 if j == H else 0  ;  return r+1
+#    def j2n(self, j): n = self.n  ;  r = n[j] if P <= j <= T else n[T] if j <= K else L if j == R else C if j == Q else 0 if j == H else 0  ;  return r+1
 #    def j2n(self, j):       return self.n[j] if P <= j <= T else self.n[T] if j <= K else L if j == R else C if j == Q else 1 if j == H else 0
     def setJ(    self, j, n):         self.J1[j] = n    ;   self.J2[j] += 1          ;   self.J1[-1] += 1   ;  self.J2[-1] += 1         ;  return j
     def setJdump(self, j, n, why=''): self.setJ(j, n)   ;   self.dumpTnik(self.E[j][self.J2[j]-1], j, why)  ;  return j
-    def NEW__setJ(    self, j):  self.J2[j] += 1  ;  self.J1[j] = self.J2[j] % self.j2n(j)   ;  self.J1[-1] += 1  ;  self.J2[-1] += 1  ;  return j # n = 1 + self.n[j % len(self.n)]
-    def NEW__setJdump(self, j, why=''): self.NEW__setJ(j)   ;   self.dumpTnik(self.E[j][self.J2[j]-1], j, why)  ;  return j
+#    def NEW__setJ(    self, j):  self.J2[j] += 1  ;  self.J1[j] = self.J2[j] % self.j2n(j)   ;  self.J1[-1] += 1  ;  self.J2[-1] += 1  ;  return j # n = 1 + self.n[j % len(self.n)]
+#    def NEW__setJdump(self, j, why=''): self.NEW__setJ(j)   ;   self.dumpTnik(self.E[j][self.J2[j]-1], j, why)  ;  return j
     def resetJ(self, why='', dbg=1):  self.J1 = [ 0 for _ in range(len(self.E)+1) ]  ;   self.J2 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.dumpJs(why) if dbg else None
     ####################################################################################################################################################################################################
     def ssl(self, dbg=0):  l = len(self.SS)   ;   self.log(f'{self.fmtn()} SS={util.fmtl(self.ss2sl())} l={l}') if dbg else None   ;   return l   # return 0-4
@@ -305,7 +305,7 @@ class Tabs(pyglet.window.Window):
             return data, data[p], data[p][l], data[p][l][c]
         else: return []
     ####################################################################################################################################################################################################
-    def jsum(self, a=1): return [ _ + a if j <= D and self.J2[j] else _ if j == D+1 else 0 for j, _ in enumerate(self.J1) ]
+    def jsum(self, a=1): return [ _ + a if j <= H and self.J2[j] else _ if j == D+1 else 0 for j, _ in enumerate(self.J1) ]
 #    def jsum(self, a=1): return [ _ + a  if j <= K and self.J2[j] else 0 for j, _ in enumerate(self.J1) ]
     def fmtdl( self, data=None):    return f'{util.fmtl(self.dl(data))}'
     def fmtdt( self, data=None):    return f"[{' '.join([ t.replace('class ', '') for t in self.dtA(data) ])}]"
@@ -403,7 +403,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def accProd(n):              return list(accumulate(n, operator.mul))
     ####################################################################################################################################################################################################
-    def dumpStruct(self, why='', dbg=1, dbg2=0):
+    def dumpStruct(self, why='', dbg=1, dbg2=1):
         self.dumpFont(why)
         self.log(f'{self.fmtn()} ntp={util.fmtl(self.ntp())} ntp0={util.fmtl(self.ntp(0))}')
         self.dumpVisible()
@@ -1030,13 +1030,13 @@ class Tabs(pyglet.window.Window):
         return p
 
     def createLL(self, tlist, l, c, x, y, w, h, dbg=1):
-        cc = self.n[T] * (c + self.n[C] * l)
+        cc = c + self.n[C] * l
         kl = self.llcolor(cc, Q)
         zl = self.zzl()  ;  kk = NORMAL_STYLE
         z  = 1 if self.FRET_BOARD else 2
         text = self.llText[z-zl:]
         txt  = text[c]
-        ll   = self.createTnik(tlist, cc, Q, x + c * w, y, w, h, kk, kl, t=txt, dbg=dbg)
+        ll   = self.createTnik(tlist, cc, Q, x + c*w, y, w, h, kk, kl, t=txt, dbg=dbg)
         self.setLLStyle(cc, kk)
         return ll
 
@@ -1213,7 +1213,7 @@ class Tabs(pyglet.window.Window):
                     for c in range(nc):
                         j = C                       ;  self.setJdump(j, c, why)
                         for t in range(nt): _, j, k, txt = self.tnikInfo(p, l, s2, c, t, why)  ;  self.setJdump(j, t, why)
-        self.setJ(H, 0)  ;  self.dumpTnik(self.cursor, H, why)
+        self.setJdump(H, 0, why) # ;  self.dumpTnik(self.cursor, H, why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTniks2(self, why=''): # if  self.VIEWS:   for v in range(len(self.views)):   self.dumpTnik( self.views[v], V, why)
@@ -1222,28 +1222,24 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTniks3(self, why=''):
-        ep, el, es, ec, et = self.lenE()[P:T+1]  ;  nl, ns, nq = self.n[L:C+1]  ;  sp, sl, ss, sc = 0, 0, 0, 0  ;  sr, sq = 0, 0  ;  i = 0  ;  st, sn, si, sk = 0, 0, 0, 0
+        ep, el, es, ec, et, en, ei, ek = self.lenE()[:K+1]  ;  np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(why)
         if self.LL:
-            for r in range(nl):    j = R    ;  sr += 1  ;  i += 1  ;  self.setJ(j, r)  ;  self.log(f'{self.fTnik(self.lrows[r],      i, j, sr, why)}', pfx=0)
-            for q in range(nl*nq): j = Q    ;  sq += 1  ;  i += 1  ;  self.setJ(j, q)  ;  self.log(f'{self.fTnik(self.lcols[q],      i, j, sq, why)}', pfx=0)
-        for p in range(ep):        j = P    ;  sp += 1  ;  i += 1  ;  self.setJ(j, p)  ;  self.log(f'{self.fTnik(self.pages[p],      i, j, sp, why)}', pfx=0)
-        for l in range(el):        j = L    ;  sl += 1  ;  i += 1  ;  self.setJ(j, l)  ;  self.log(f'{self.fTnik(self.lines[l],      i, j, sl, why)}', pfx=0)
-        for c in range(ec):        j = C    ;  sc += 1  ;  i += 1  ;  self.setJ(j, c)  ;  self.log(f'{self.fTnik(self.cols[c],       i, j, sc, why)}', pfx=0)
-        for s, s2 in enumerate(self.ss2sl()):
-            for l in range(nl):    j = S;  ss += 1;  i += 1;  self.setJ(j, ss);  self.log(f'{self.fTnik(self.sects[s + l * ns], i, j, ss, why)}', pfx=0) #, ss
-#        for s in range(es):
-#            for l in range(nl):    j = S    ;  ss += 1  ;  i += 1  ;  self.setJ(j, ss)  ;  self.log(f'{self.fTnik(self.sects[s+l*ns], i, j, ss, why)}', pfx=0)
-            for t in range(et):
-                if   s2 == TT:     j = T+s2 ;  st += 1  ;  i += 1  ;  self.setJ(j, t)  ;  self.log(f'{self.fTnik(self.tabs[t],       i, j, st, why)}', pfx=0)
-                elif s2 == NN:     j = T+s2 ;  sn += 1  ;  i += 1  ;  self.setJ(j, t)  ;  self.log(f'{self.fTnik(self.notes[t],      i, j, sn, why)}', pfx=0)
-                elif s2 == II:     j = T+s2 ;  si += 1  ;  i += 1  ;  self.setJ(j, t)  ;  self.log(f'{self.fTnik(self.ikeys[t],      i, j, si, why)}', pfx=0)
-                elif s2 == KK:     j = T+s2 ;  sk += 1  ;  i += 1  ;  self.setJ(j, t)  ;  self.log(f'{self.fTnik(self.kords[t],      i, j, sk, why)}', pfx=0)
-        j = H   ;                              sh  = 1  ;  i += 1  ;  self.setJ(j, 0)  ;  self.log(f'{self.fTnik(self.cursor,        i, j, sh, why)}', pfx=0)
+            for r in range(nl):      j = R   ;   self.setJdump(j, r, why)
+            for q in range(nl*nc):   j = Q   ;   self.setJdump(j, q, why)
+        for p in range(ep):          j = P   ;   self.setJdump(j, p, why)
+        for l in range(el):          j = L   ;   self.setJdump(j, l, why)
+        for c in range(ec):          j = C   ;   self.setJdump(j, c, why)
+        for s in range(es):          j = S   ;   self.setJdump(j, s, why)
+        for t in range(et):          j = T   ;   self.setJdump(j, t, why)
+        for n in range(en):          j = N   ;   self.setJdump(j, n, why)
+        for i in range(ei):          j = I   ;   self.setJdump(j, i, why)
+        for k in range(ek):          j = K   ;   self.setJdump(j, k, why)
+        j = H                                ;   self.setJdump(j, 0, why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def fTnik(self, t, i, j, n, why): return f'{self.fid(t, i, j, n, why)} {self.ftfv(t)} {self.ftvis(t)} {self.ftxywh(t)} {self.fcgc(t, j)} {self.fmtJ2()} {self._ftnik(t)}'
-    def _ftnik(self, t):   return f'{self.fspr(t)}' if type(t) is SPR else f'{self.flbl(t)}' if type(t) is LBL else '???'
+#    def fTnik(self, t, i, j, n, why): return f'{self.fid(t, i, j, n, why)} {self.ftfv(t)} {self.ftvis(t)} {self.ftxywh(t)} {self.fcgc(t, j)} {self.fmtJ2()} {self._ftnik(t)}'
+#    def _ftnik(self, t):   return f'{self.fspr(t)}' if type(t) is SPR else f'{self.flbl(t)}' if type(t) is LBL else '???'
     def fspr(self, t):     return f'{self.fiax(t)} {self.fiay(t)} {self.fgrp(t)} {self.fgrpp(t)}'
     def flbl(self, t):     return f'{self.fCtnt(t)} {self.fAxy()} {self.ffont(t)}'
     def fcgc(self, t, j):  return f'{self.ffgc(t)} {self.gn[j]} {self.fbgc(t)}'
