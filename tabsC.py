@@ -1076,7 +1076,7 @@ class Tabs(pyglet.window.Window):
                 if   j == L and self.J2[L] >= np * nl: msg = f'WARN MAX Line {self.J2[L]=} >= {np=} * {nl=}'     ;  self.log(msg)  ;  self.quit(msg)  # yield None
                 if   j == S:                             _ = self.ss2sl()[i] if ii < 0 else ii  ;  self.SS.add(_)
                 elif j >= T:
-                    s = self.ss2sl()[self.J1[S] - 1] if ii  <  0 else ii
+                    s = self.ss2sl()[self.J1[S]]  if ii <  0 else ii
                     imap = self.getImap(p, l, c)  if s >= II else []
                     tlist2, j2, kl, tobj = self.tnikInfo(p, l, s, c, i, why)
                     if   s == TT:                     text = tobj
@@ -1193,11 +1193,11 @@ class Tabs(pyglet.window.Window):
     def idmapkey(self, j):    return f'{JTEXTS[j]:4} {self.J2[j]:4}'
     def dumpTniks1(self, why=''):
         self.dumpTniksPfx(why)
-        for k, v in self.idmap.items():
-            self.setJdump(v[1], v[2], why) #, v[2]
+        for v in self.idmap.values():
+            self.setJdump(v[1], v[2], why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def dumpTniks2(self, why=''):
+    def OLD__dumpTniks2(self, why=''):
         np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(why)
         if self.LL:
@@ -1215,13 +1215,36 @@ class Tabs(pyglet.window.Window):
                         for t in range(nt): _, j, k, txt = self.tnikInfo(p, l, s2, c, t, why)  ;  self.setJdump(j, t, why)
         self.setJdump(H, 0, why)
         self.dumpTniksSfx(why)
+    def OLD_2_dumpTniks2(self, why=''):
+        np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(why)
+        if self.LL:
+            for r in range(nl):
+                self.setJdump(R, r, why)
+                for q in range(nc):  self.setJdump(Q, q, why)
+        for p in range(np):
+            self.setJdump(P, p, why)
+            for l in range(nl):
+                self.setJdump(L, l, why)
+                for s, s2 in enumerate(self.ss2sl()):
+                    self.setJdump(S, s, why)
+                    for c in range(nc):
+                        self.setJdump(C, c, why)
+                        for t in range(nt): _, j, k, txt = self.tnikInfo(p, l, s2, c, t, why)  ;  self.setJdump(j, t, why)
+        self.setJdump(H, 0, why)
+        self.dumpTniksSfx(why)
+    def dumpTniks2(self, why=''):
+        self.dumpTniksPfx(why)
+        for k in self.idmap.keys():
+            self.setJdump(self.idmap[k][1], self.idmap[k][2], why)
+        self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTniks3(self, why=''): # if  self.VIEWS:   for v in range(len(self.views)):   self.dumpTnik( self.views[v], V, why)
         self.dumpTniksPfx(why)
-        consume(consume(self.setJdump(j, _, why) for _ in range(len(self.E[j]))) for j in range(len(self.E)))
+        consume(consume(self.setJdump(j, i, why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def dumpTniks4(self, why=''):
+    def OLD__dumpTniks4(self, why=''):
         ep, el, es, ec, et, en, ei, ek = self.lenE()[:K+1]  ;  np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(why)
         if self.LL:
@@ -1236,6 +1259,28 @@ class Tabs(pyglet.window.Window):
         for i in range(ei):          j = I   ;   self.setJdump(j, i, why)
         for k in range(ek):          j = K   ;   self.setJdump(j, k, why)
         j = H                                ;   self.setJdump(j, 0, why)
+        self.dumpTniksSfx(why)
+    def OLD_2_dumpTniks4(self, why=''):
+        ep, el, es, ec, et, en, ei, ek = self.lenE()[:K+1]  ;  np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(why)
+        if self.LL:
+            for r in range(nl):    self.setJdump(R, r, why)
+            for q in range(nl*nc): self.setJdump(Q, q, why)
+        for p in range(ep):        self.setJdump(P, p, why)
+        for l in range(el):        self.setJdump(L, l, why)
+        for c in range(ec):        self.setJdump(C, c, why)
+        for s in range(es):        self.setJdump(S, s, why)
+        for t in range(et):        self.setJdump(T, t, why)
+        for n in range(en):        self.setJdump(N, n, why)
+        for i in range(ei):        self.setJdump(I, i, why)
+        for k in range(ek):        self.setJdump(K, k, why)
+        self.setJdump(H, 0, why)
+        self.dumpTniksSfx(why)
+    def dumpTniks4(self, why=''):
+        self.dumpTniksPfx(why)
+        for j in range(len(self.E)):
+            for i in range(len(self.E[j])):
+                self.setJdump(j, i, why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
 #    def fTnik(self, t, i, j, n, why): return f'{self.fid(t, i, j, n, why)} {self.ftfv(t)} {self.ftvis(t)} {self.ftxywh(t)} {self.fcgc(t, j)} {self.fmtJ2()} {self._ftnik(t)}'
