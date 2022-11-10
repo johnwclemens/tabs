@@ -42,7 +42,7 @@ class Tabs(pyglet.window.Window):
         self.Y_TOP        = 0  ;   self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
         self.AUTO_SAVE    = 0  ;   self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 1
         self.GEN_DATA     = 0  ;   self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
-        self.SNAPS        = 1  ;   self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0  ;  self.TIDS    = 0
+        self.SNAPS        = 1  ;   self.SPRITES     = 0  ;  self.SUBPIX       = 0  ;  self.TEST       = 0  ;  self.VERBOSE     = 0  ;  self.TIDS    = 1
         self.VIEWS        = 0  ;   self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 1  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
         self.LL           = 1
         self.SS           = set() if 0 else {0, 1, 2, 3}
@@ -405,11 +405,8 @@ class Tabs(pyglet.window.Window):
         self.dumpVisible()
         if dbg:     self.dumpTniks1(f'{why}1')
         if dbg2:    self.dumpTniks2(f'{why}2')
-        if dbg2:    self.dumpTniks3(f'{why}3')
-        if dbg:     self.dumpTniks4(f'{why}4')
-        if dbg2:    self.dumpTniks5(f'{why}5')
-        if dbg2:    self.dumpTniks6(f'{why}6')
-        if dbg:     self.dumpTniks7(f'{why}7')
+        if dbg:     self.dumpTniks3(f'{why}3')
+        if dbg2:    self.dumpTniks4(f'{why}4')
         if dbg:     self.cobj.dumpMlimap(f'MLim') if self.VERBOSE else None
     ####################################################################################################################################################################################################
     def autoSave(self, dt, why, dbg=1):
@@ -1162,10 +1159,10 @@ class Tabs(pyglet.window.Window):
         self.dumpWxHp0()
         self.dumpGeom('BGN', why)
         self.resetJ(why) if r else self.dumpJs(why, w=None)  if self.J1 and self.J2 else self.quit(f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')
-        if h: hdr0 = self.fTnikHdr(0)   ;   hdr1 = self.fTnikHdr(1)   ;   self.log(f'{hdr0}', pfx=0)   ;   self.log(f'{hdr1}', pfx=0)
+        if h: hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)   ;   self.log(f'{hdr1}', pfx=0)   ;   self.log(f'{hdr0}', pfx=0)
 
     def dumpTniksSfx(self, why='', h=1):
-        if h: hdr0 = self.fTnikHdr(0)   ;   hdr1 = self.fTnikHdr(1)   ;   self.log(f'{hdr0}', pfx=0)   ;   self.log(f'{hdr1}', pfx=0)
+        if h: hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)   ;   self.log(f'{hdr1}', pfx=0)   ;   self.log(f'{hdr0}', pfx=0)
         self.dumpJs(why, w=None)                             if self.J1 and self.J2 else self.quit(f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')
         self.dumpGeom('END', why)
         self.dumpWxHp0()
@@ -1173,60 +1170,21 @@ class Tabs(pyglet.window.Window):
     def fTnikHdr(self, spr=0):
         tid  = ' TId  Identity  ' if self.TIDS else ' Tid'  ;  wnc = 'Why  Name  Cnt'     ;   tsv = 'Txt fSz V'  ;  typ = 'P  L  S   C    T    N    I    K  R   Q H V  O  A   D  TId'
         xywh = '    X       Y       W       H  '            ;  rgb = ' Red Grn Blu Opc '  ;  rgbM = ' M     Mx    My  ' if spr else rgb
-        sfx  = ' Iax  Iay      Grp        pGrp' if spr else 'cw ch v a x y dpi B I Font Name'
+        sfx  = ' Iax  Iay      Grp        pGrp' if spr else 'cw  ch v a x y dpi B I Font Name'
         return f'{tid} {wnc} {tsv} {xywh} {rgb} G {rgbM} {typ} {sfx}'
 
     def dumpTnik(self, t=None, j=None, why=''):
         if   t is None: self.log(f'{self.fTnikHdr()}', pfx=0)   ;   return
-        elif j is None: msg = f'ERROR BAD j {j=}'  ;  self.log(msg)  ;  self.quit(msg)
+        elif j is None:                                 msg = f'ERROR BAD j {j=}'          ;  self.log(msg)  ;  self.quit(msg)
         elif type(t) is not LBL and type(t) is not SPR: msg = f'ERROR Bad type {type(t)}'  ;  self.log(msg)  ;  self.quit(msg)
-#        self.dumpTnikA(t, j, why)
-        self.dumpTnikB(t, j, why)
-
-    def dumpTnikA(self, t, j, why):
-        g = self.gn[j]   ;   fc, bc = '', ''    ;   msg2, msg4 = '', ''
-        if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)  ;  msg2 = self.fTxFs(t)  ;  msg4 = self.fLbl(t)
-        elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)           ;  msg2 = self.frot(t)   ;  msg4 = self.fSpr(t)
+        xywh = self.ftxywh(t)   ;   g = self.gn[j]   ;   fc, bc = '', ''    ;   msg2, msg5 = '', ''
+        if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)  ;  msg2 = self.fTxFs(t)  ;  msg5 = self.fLbl(t)
+        elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)           ;  msg2 = self.frot(t)   ;  msg5 = self.fSpr(t)
         else: msg = f'ERROR BAD type(t) {why} {j=} {type(t)=}'   ;   self.log(msg)   ;   self.quit(msg)
-        msg1 = self.fid(t, j, why)   ;   msg3 = f'{fc} {g} {bc} {self.fmtJ2()}'   ;   xywh = self.ftxywh(t)
-        self.log(f'{msg1} {msg2} {self.ftvis(t)} {xywh} {msg3} {msg4}', pfx=0)
-
-    def dumpTnikB(self, t, j, why):
-        g = self.gn[j]   ;   dc1, dc2 = '', ''    ;   msg2, msg4 = '', ''
-        if   type(t) is LBL: msg2 = self.fTxFs(t)  ;  dc1 = self.getDocColor(t, 0)  ;   dc2 = self.getDocColor(t, 1)  ;  msg4 = self.fLbl(t)
-        elif type(t) is SPR: msg2 = self.frot(t)   ;  dc1 = self.ftcolor(t)         ;   dc2 = self.ftMxy(t)           ;  msg4 = self.fSpr(t)
-        else: msg = f'ERROR BAD type(t) {why} {j=} {type(t)=}'  ;   self.log(msg)   ;         self.quit(msg)
-        msg1 = self.fid(t, j, why)   ;   msg3 = f'{dc1} {g} {dc2} {self.fmtJ2()}'   ;  xywh = self.ftxywh(t)
-        self.log(f'{msg1} {msg2} {self.ftvis(t)} {xywh} {msg3} {msg4}', pfx=0)
-#        self.log(f'{self.fid(t, j, why)} {self.ftfsr(t)} {self.ftvis(t)} {self.ftxywh(t)} {self.fcgc(t, j)} {self.fmtJ2()} {self.ftnik(t)}', pfx=0)
-#        self.log(f'{self.fid(t, j, why)} {self.ftvis(t)} {self.ftxywh(t)} {self.ftcolor(t)} {self.fmtJ2()}', pfx=0) #  {self.ftfsr(t)}  {self.fcgc(t, j)}
-#    def ftfsr(self, t):
-#        if   type(t) is LBL: return self.fTxFs(t)
-#        elif type(t) is SPR: return self.frot(t)
-#        else:                return '???'
-#    def ffgc(self, t):
-#        if   type(t) is LBL: return self.getDocColor(t, 0)
-#        elif type(t) is SPR: return self.ftcolor(t)
-#        else:                return '???'
-#    def fbgc(self, t):
-#        if   type(t) is LBL: return self.getDocColor(t, 1)
-#        elif type(t) is SPR: return self.ftMxy(t)
-#        else:                return '???'
-#    def ftnik(self, t):
-#        if   type(t) is LBL: return self.fLbl(t)
-#        elif type(t) is SPR: return self.fSpr(t)
-#        else:                return '???'
-    def ftfsr(self, t):    return self.fTxFs(t)          if type(t) is LBL else self.frot(t)    if type(t) is SPR else '???'
-    def ffgc(self, t):     return self.getDocColor(t, 0) if type(t) is LBL else self.ftcolor(t) if type(t) is SPR else '???'
-    def fbgc(self, t):     return self.getDocColor(t, 1) if type(t) is LBL else self.ftMxy(t)   if type(t) is SPR else '???'
-    def ftnik(self, t):    return self.fLbl(t)           if type(t) is LBL else self.fSpr(t)    if type(t) is SPR else '???'
-    def fid(self, t, j, why): i, n = self.J2[-1], int(self.idmapkey(j)[4:])  ;  oid = id(t) if self.TIDS else 0  ;  return f'{i:4} {oid:11x} {why:4} {JTEXTS[j]:4} {n:4}'
+        msg1 = self.fid(t, j, why)   ;   msg3 = f'{self.ftvis(t)} {xywh}'   ;   msg4 = f'{fc} {g} {bc} {self.fmtJ2()}'
+        self.log(f'{msg1} {msg2} {msg3} {msg4} {msg5}', pfx=0)
     ####################################################################################################################################################################################################
-    def dumpTniks7(self, why=''):
-        self.dumpTniksPfx(why)
-        consume(consume(self.setJdump(j, i, why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
-        self.dumpTniksSfx(why)
-    ####################################################################################################################################################################################################
+    def idmapkey(self, j): return f'{JTEXTS[j]:4} {self.J2[j]:4}'
     def fSpr(self, t):     return f'{self.fiax(t)} {self.fiay(t)} {self.fgrp(t)} {self.fgrpp(t)}'
     def fLbl(self, t):     return f'{self.fCtnt(t)} {self.fAxy()} {self.ffont(t)}'
     @staticmethod
@@ -1237,8 +1195,7 @@ class Tabs(pyglet.window.Window):
     def getDocColor(self, t, c=1): return util.fColor(self._getDocColor(t, c))
     @staticmethod
     def _getDocColor(t, c=1): s = 'background_color' if c else 'color'  ;  return t.document.get_style(s)
-    def fcgc(self, t, j):  return f'{self.ffgc(t)} {self.gn[j]} {self.fbgc(t)}'
-    def idmapkey(self, j): return f'{JTEXTS[j]:4} {self.J2[j]:4}'
+    def fid(self, t, j, why): i, n = self.J2[-1], int(self.idmapkey(j)[4:])  ;  oid = f' {id(t):11x}' if self.TIDS else ''  ;  return f'{i:4}{oid} {why:4} {JTEXTS[j]:4} {n:4}'
     ####################################################################################################################################################################################################
     def dumpTniks1(self, why=''):
         self.dumpTniksPfx(why)
@@ -1246,11 +1203,6 @@ class Tabs(pyglet.window.Window):
             self.setJdump(v[1], v[2], why)
         self.dumpTniksSfx(why)
     def dumpTniks2(self, why=''):
-        self.dumpTniksPfx(why)
-        for k in self.idmap.keys():
-            self.setJdump(self.idmap[k][1], self.idmap[k][2], why)
-        self.dumpTniksSfx(why)
-    def dumpTniks3(self, why=''):
         np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(why)
         if self.LL:
@@ -1269,17 +1221,11 @@ class Tabs(pyglet.window.Window):
         self.setJdump(H, 0, why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def dumpTniks4(self, why=''):
+    def dumpTniks3(self, why=''):
         self.dumpTniksPfx(why)
         consume(consume(self.setJdump(j, i, why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
         self.dumpTniksSfx(why)
-    def dumpTniks5(self, why=''):
-        self.dumpTniksPfx(why)
-        for j in range(len(self.E)):
-            for i in range(len(self.E[j])):
-                self.setJdump(j, i, why)
-        self.dumpTniksSfx(why)
-    def dumpTniks6(self, why=''):
+    def dumpTniks4(self, why=''):
         ep, el, es, ec, et, en, ei, ek = self.lenE()[:K+1]  ;  np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(why)
         if self.LL:
