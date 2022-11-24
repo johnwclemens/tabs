@@ -876,8 +876,9 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(how)
     def addPage(self, how, ins=None, dbg=1):
         np, nl, ns, nc, nt = self.n   ;   how = f'{how} {ins=}'
-        self.dumpBlank()
-        if ins is not None: self.togglePage(how)
+        self.dumpBlank() # self.j()[P]
+#        if ins is not None: self.togglePage(how)
+        if ins is not None: self.toggleVisible()   ;   self.dumpVisible(h=1)   ;   self.dumpVisible()
         self.n[P] += 1   ;   kl = self.k[P]
         data = [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ]
         self.data = self.A_transposeData(dump=dbg) if self.TRANSPOSE_A else self.OLD_transposeData()
@@ -944,7 +945,8 @@ class Tabs(pyglet.window.Window):
         if dbg:  why = f'{v=}'  ;  self.log(f'{self.fmtJText(j, why)} {self.J2[j]=} {self.i[j]=} {self.fmtIxI()} {v=}', file=sys.stdout)
         return v
     def isV(self, j=0, dbg=0):
-        if   j <= K and self.J1[P] == self.i[P] - 1: v = 1
+#        if   j <= K and self.J1[P] == self.i[P] - 1: v = 1
+        if   j <= K and self.J1[P] == self.j()[P]:   v = 1
         elif j == H or j == R or j == Q:             v = 1
         else:                                        v = 0
         if dbg:  why = f'{v=}'  ;  self.log(f'{self.fmtJText(j, why)} {self.J2[j]=} {self.i[j]=} {self.fmtIxI()} {v=}', file=sys.stdout)
@@ -1031,7 +1033,7 @@ class Tabs(pyglet.window.Window):
         assert 0 <= j <= len(JTEXTS), f'{j=} {len(JTEXTS)=}'
 #        if j is None or 0 > j >= len(JTEXTS): msg = f'ERROR j is BAD {j=} {len(JTEXTS)=} {n=} {i=} {type(p)=}'  ;  self.log(msg)  ;  self.quit(msg)
 #        if j is None or j < 0 or j >= len(JTEXTS): msg = f'ERROR j is BAD {j=} {len(JTEXTS)=} {n=} {i=} {type(p)=}'  ;  self.log(msg)  ;  self.quit(msg)
-        n = n if n is not None else self.n[j]  #  ;  n += self.zzl() if j == C else 0
+        n = n if n is not None else self.n[j]    ;  n += self.zzl() if j == C else 0
         i = i if i is not None else self.i[j]
         if   p is None:        w  =  self.width - self.p0w  ;  h  =  self.height
         elif j == C or j == Q: w  =  p.width/n              ;  h  =  p.height
@@ -1240,7 +1242,7 @@ class Tabs(pyglet.window.Window):
             yield tnik
     ####################################################################################################################################################################################################
     def resizeTnik(self, tlist, i, j, x, y, w, h, why='', dbg=1):
-        if not tlist:         msg = f'ERROR tlist is Empty {      self.fmtJText(j, why)}'  ;  self.log(msg)  ;  self.quit(msg)
+        if not tlist:          msg = f'ERROR tlist is Empty {      self.fmtJText(j, why)}'  ;  self.log(msg)  ;  self.quit(msg)
         elif i >=  len(tlist): msg = f'ERROR {i=} >={len(tlist)=} {self.fmtJText(j, why)}'  ;  self.log(msg)  ;  self.quit(msg)
         self.setJ(j, i) # if j is not None else None
         tnik = tlist[i]   ;   v = tnik.visible
@@ -1590,8 +1592,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'N' and self.isCtrl(     mods):    self.toggleTTs(       '@ N', NN)
         elif kbk == 'O' and self.isCtrlShift(mods):    self.toggleCursorMode('@^O')
         elif kbk == 'O' and self.isCtrl(     mods):    self.toggleCursorMode('@ O')
-        elif kbk == 'P' and self.isCtrlShift(mods):    self.addPage(         '@ P', ins=0)
-        elif kbk == 'P' and self.isCtrl(     mods):    self.addPage(         '@^P', ins=None)
+        elif kbk == 'P' and self.isCtrlShift(mods):    self.addPage(         '@^P', ins=0)
+        elif kbk == 'P' and self.isCtrl(     mods):    self.addPage(         '@ P', ins=None)
         elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(            '@^Q', error=0, save=0)
         elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(            '@ Q', error=0, save=1)
         elif kbk == 'R' and self.isCtrlShift(mods):    self.toggleChordNames('@^R', hit=1)
@@ -1737,14 +1739,14 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def move2LastTab(self, how, page=0):
         if page: i = len(self.tabls) - 1
-        else: i = self.i[L] * self.tpl - 1
+        else:    i = self.i[L] * self.tpl - 1
         while not self.sobj.isFret(self.tabls[i].text): i -= 1
         p, l, c, t = self.cc2plct(i)
         self.moveTo(how, p, l, c, t)
         self.log(f'     {how}', pos=1)
     def move2FirstTab(self, how, page=0):
         if page: i = 0
-        else: i = self.j()[L] * self.tpl - 1
+        else:    i = self.j()[L] * self.tpl - 1
         while not self.sobj.isFret(self.tabls[i].text): i += 1
         p, l, c, t = self.cc2plct(i)
         self.moveTo(how, p, l, c, t)
@@ -2031,7 +2033,7 @@ class Tabs(pyglet.window.Window):
 
     def insertSpace(self, how, txt='0', dbg=1):
         cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
-        if not self.inserting: self.inserting = 1   ;    self.setCaption('Enter nc: number of cols to indert int')
+        if not self.inserting: self.inserting = 1   ;    self.setCaption('Enter nc: number of cols to indent int')
         elif txt.isdecimal():  self.insertStr += txt
         elif txt == ' ' or txt == '/r':
             self.inserting = 0
@@ -2182,22 +2184,26 @@ class Tabs(pyglet.window.Window):
             if dbg:                                 self.log(f'{"".join(vl)}', pfx=0)
 
     def dumpVisible(self, h=0):
-        for j in range(len(self.isvis)):
-            self.log(f'{j}>', pfx=0, end='')
-            for v in self.isvis[j]:
-                self.log(f'{v}', pfx=0, end='') #  ;   assert int(self.E[j][len(self.E[j])].visible) == v
-            self.log(pfx=0)
-#        self.log(pfx=0)
-        for j, e in enumerate(self.E):
+        for j in range(len(self.isvis)-1):
             vl = []   ;   n = 0
-            for t in e:
-                if type(t) is LBL or type(t) is SPR:
-                    n += 1
-                    vl.append(str(int(t.visible)))
+            for i in self.isvis[j]:
+                n += 1   ;   vl.append(str(i))
             v = ''.join(vl)  ;  l = len(v)
             msg = f'{j:2} {JTEXTS[j]}{n:4}/{l}' if h else f'{v}'
-#            msg = f'{j:2} {JTEXTS[j]:4} [{n:4} / {l:4}]' if h else f'{v}'
             self.log(msg, pfx=0)
+#            self.log(f'{j}>', pfx=0, end='')
+#            for v in self.isvis[j]:
+#                self.log(f'{v}', pfx=0, end='')
+#            self.log(pfx=0)
+#        for j, e in enumerate(self.E):
+#            vl = []   ;   n = 0
+#            for t in e:
+#                if type(t) is LBL or type(t) is SPR:
+#                    n += 1
+#                    vl.append(str(int(t.visible)))
+#            v = ''.join(vl)  ;  l = len(v)
+#            msg = f'{j:2} {JTEXTS[j]}{n:4}/{l}' if h else f'{v}'
+#            self.log(msg, pfx=0)
     ####################################################################################################################################################################################################
     def toggleCursorMode(self, how):
         self.log(f'BGN {how} {self.csrMode=} = {CSR_MODES[self.csrMode]=}')
