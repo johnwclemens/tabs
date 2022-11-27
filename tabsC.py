@@ -42,7 +42,7 @@ class Tabs(pyglet.window.Window):
         self.X_LEFT       = 0  ;  self.X_CENTER    = 1  ;  self.X_RIGHT      = 0
         self.Y_TOP        = 0  ;  self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
         self.AUTO_SAVE    = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
-        self.GEN_DATA     = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RESIZE     = 1  ;  self.RD_STDOUT   = 0
+        self.GEN_DATA     = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RD_STDOUT  = 0  ;  self.RESIZE      = 1
         self.SNAPS        = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 0  ;  self.VERBOSE     = 0  ;  self.TIDS    = 0
         self.VIEWS        = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
         self.LL           = 1
@@ -173,7 +173,7 @@ class Tabs(pyglet.window.Window):
         j = N  ;  k[j] = i(j, GRN,  0, 17, GRN, 17, 17) if a else i(j, GRN,  0, 17, GRN, 17, 17) if b else i(j, GRN,  0, 17, GRN, 17, 17) if c else i(j, GRN,  0, 17, GRN, 17, 17) if d else None
         j = I  ;  k[j] = i(j, YLW,  0, 17, YLW, 17, 17) if a else i(j, YLW,  0, 17, YLW, 17, 17) if b else i(j, YLW,  0, 17, YLW, 17, 17) if c else i(j, YLW,  0, 17, YLW, 17, 17) if d else None
         j = K  ;  k[j] = i(j, IND,  0, 17, IND, 17, 17) if a else i(j, IND,  0, 17, IND, 17, 17) if b else i(j, IND,  0, 17, IND, 17, 17) if c else i(j, IND,  0, 17, IND, 17, 17) if d else None
-        j = R  ;  k[j] = i(j, BLU,  0, 17, BLU, 17, 17) if a else i(j, BLU,  0, 17, BLU, 17, 17) if b else i(j, BLU,  0,  4, BLU, 17,  4) if c else i(j, BLU,  0, 17, BLU, 17, 17) if d else None
+        j = R  ;  k[j] = i(j, RED,  0, 17, RED, 17, 17) if a else i(j, BLU,  0, 17, BLU, 17, 17) if b else i(j, BLU,  0,  4, BLU, 17,  4) if c else i(j, BLU,  0, 17, BLU, 17, 17) if d else None
         j = Q  ;  k[j] = i(j, CYA,  0, 17, CYA, 17, 17) if a else i(j, CYA,  0,  0, CYA, 17, 17) if b else i(j, CYA,  0, 17, CYA, 17, 17) if c else i(j, CYA,  0,  0, CYA, 17, 17) if d else None
         j = H  ;  k[j] = i(j, PNK, 17, 17, PNK, 17, 17) if a else i(j, PNK, 17, 10, PNK, 17, 17) if b else i(j, PNK, 17, 17, PNK, 17, 17) if c else i(j, PNK, 17, 17, PNK, 17, 17) if d else None
         j = V  ;  k[j] = i(j, VLT,  0,  0, VLT, 17, 17) if a else i(j, VLT,  0,  0, VLT, 17, 17) if b else i(j, VLT,  0,  0, VLT, 17, 17) if c else i(j, VLT,  0,  0, VLT, 17, 17) if d else None
@@ -408,7 +408,7 @@ class Tabs(pyglet.window.Window):
         if self.resyncData: self.saveDataFile(why, self.dataPath0)   ;  self.resyncData = 0
     ####################################################################################################################################################################################################
     def on_draw(self):
-        pyglet.gl.glClearColor(0, 0, 0, 0) # (1, 1, 1, 1)
+        pyglet.gl.glClearColor(0, 0, 0, 0) # (1, 1, 1, 1) # (R, G, B, A)
         self.clear()
         self.batch.draw()
         if self.SNAPS and self.snapReg:
@@ -894,8 +894,7 @@ class Tabs(pyglet.window.Window):
         for line in            self.g_createTniks(self.lines,  L, page, why=why):
             for sect in        self.g_createTniks(self.sects,  S, line, why=why):
                 for colm in    self.g_createTniks(self.colms,  C, sect, why=why):
-                    for _ in   self.g_createTniks(self.tabls,  T, colm, why=why):
-                        pass
+                    for _ in   self.g_createTniks(self.tabls,  T, colm, why=why): pass
 #        self.LL = oldLL
         self.dumpTniksSfx(how)
         if self.SNAPS and dbg: self.regSnap(how, why2)
@@ -923,8 +922,8 @@ class Tabs(pyglet.window.Window):
         return x, s, x2, w2
     ####################################################################################################################################################################################################
     def splitV(self, p, a, dbg=0):
-        if   type(p) is LBL: p.y, p.height, g     = self.splitV1(p.y, p.height, a)                  ;  self.log(f'{p.y=:6.2f} {p.height=:6.2f} {a=} {g=:6.2f}', so=1)  if dbg else None
-        elif type(p) is SPR: p.y, h, g, p.scale_y = self.splitV2(p.y, p.height, a, p.image.height)  ;  self.log(f'{p.y=:6.2f} {p.scale_y=:6.4f} {a=} {h=:6.2f}', so=1) if dbg else None
+        if   type(p) is LBL: p.y, p.height, g     = self.splitV1(p.y, p.height, a)                  ;  self.log(f'{p.y=:6.2f} {p.height=:6.2f} {a=} {g=:6.2f}', so=1)  if dbg else None  ;   return p
+        elif type(p) is SPR: p.y, h, g, p.scale_y = self.splitV2(p.y, p.height, a, p.image.height)  ;  self.log(f'{p.y=:6.2f} {p.scale_y=:6.4f} {a=} {h=:6.2f}', so=1) if dbg else None  ;   return p
 
     def splitV1(self, y, h, a, dbg=1):
         self.log(f'{y=:6.2f} {h=:6.2f} {a=}', end=' ', so=0) if dbg else None
@@ -1069,16 +1068,18 @@ class Tabs(pyglet.window.Window):
         chordName  = tobj if j > K else chunks[i] if len(chunks) > i else self.tblank
         if dbg: self.log(f'{chordName=}')
         return chordName
+
+    def m(self): m = 1 + self.n[T] * self.ssl() * self.i[L]   ;   return m
     ####################################################################################################################################################################################################
     def createLLs(self, p, pi, why, dbg=1, dbg2=1):
         kl = self.k[R]   ;   kk = self.cci(R, pi, kl) if self.CHECKERED else 0
-        n = 1 + self.n[T] * self.ssl() * self.i[L]
+        n = self.m() # 1 + self.n[T] * self.ssl() * self.i[L]
         nr, ir, xr, yr, wr, hr = self.geom(R, p, n, self.i[L], dbg=dbg2) #  ;   xr0 = xr
         lrow = self.createTnik(self.rowLs, pi, R, xr, yr, wr, hr, kk, kl, why, v=1, dbg=dbg)
         nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2) #  ;   xc0 = xc
         for c in range(nc):
             self.createLL(self.qcols, pi, c, xc, yc, wc, hc, why)
-        self.splitV(p, n, dbg=dbg2)
+        p = self.splitV(p, n, dbg=dbg2)
         self.dumpTnik(p, L, why=why)
         return p
 
@@ -1094,13 +1095,13 @@ class Tabs(pyglet.window.Window):
         return ll
 
     def resizeLLs(self, p, why, dbg=1, dbg2=1):
-        n = 1 + self.n[T] * self.ssl() * self.i[L]
+        n = self.m() # 1 + self.n[T] * self.ssl() * self.i[L]
         nr, ir, xr, yr, wr, hr = self.geom(R, p, n, self.i[L], dbg=dbg2)  # ;    xr0 = xr
         lrow = self.resizeTnik(self.rowLs, self.J2[R], R, xr, yr, wr, hr, why, dbg=dbg)
         nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)  # ;    xc0 = xc
         for c in range(nc):
             self.resizeTnik(self.qcols, self.J2[Q], Q, xc + c*wc, yc, wc, hc, why, dbg=dbg)
-        self.splitV(p, n, dbg=dbg2)
+        p = self.splitV(p, n, dbg=dbg2)
         return p
     ####################################################################################################################################################################################################
     def OLD__createTniks(self, dbg=1):
@@ -1191,14 +1192,15 @@ class Tabs(pyglet.window.Window):
             d, n      = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTI_LINE
             a, ax, ay = self.a, self.ax, self.ay  # left center right  # bottom baseline center top
             tnik = LBL(t, font_name=n, font_size=s, bold=o, stretch=z, italic=ii, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, dpi=d, batch=b, group=g, multiline=ml)
-            if T <= j <= K or j == Q:    self._setTNIKStyle(tnik, self.k[j], NORMAL_STYLE)
+            if   T <= j <= K:  self._setTNIKStyle(tnik, self.k[j], NORMAL_STYLE)
+            elif j == Q:       k = self.k[j] if (i+1) % 10 else self.k[R]   ;   self._setTNIKStyle(tnik, k, NORMAL_STYLE)
         tnik.visible = v   ;   self.isvis[j].append(v)
         if    tlist is not None:         tlist.append(tnik)
         else:                            msg = f'ERROR tlist is None can\'t add tnik: {self.fmtJText(j, why)}'  ;  self.log(msg)  ;  self.quit(msg)
         key = self.idmapkey(j)    ;      self.idmap[key] = (tnik, j, i)   ;   self.dumpTnik(tnik, j, why) if dbg else None
-        if self.LL and v and j == L:
-            if not self.rowLs or len(self.rowLs) < self.n[L]:
-                tnik = self.createLLs(tnik, i, why)
+        if self.LL and j == L: # and v
+            if not self.rowLs or len(self.rowLs) < self.n[L]: tnik = self.createLLs(tnik, i, why)
+            else:                                             tnik = self.splitV(tnik, self.m(), dbg=dbg)
         return tnik
     ####################################################################################################################################################################################################
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
@@ -1248,7 +1250,9 @@ class Tabs(pyglet.window.Window):
         tnik = tlist[i]   ;   v = tnik.visible
         if   type(tnik) is LBL:      fs = v * self.calcFontSize(tnik.text, w, h, j)  ;   tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, fs
         elif type(tnik) is SPR:  mx, my = w/tnik.image.width, h/tnik.image.height    ;   tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
-        if self.LL and v and j == L: tnik = self.resizeLLs(tnik, why)
+        if self.LL and j == L: # and v
+            if v: tnik = self.resizeLLs(tnik, why)
+            else: tnik = self.splitV(tnik, self.m(), dbg=dbg)
 #            if not self.rowLs or len(self.rowLs) < self.n[L]:
         self.dumpTnik(tnik, j, why) if dbg else None
         return tnik
@@ -1842,8 +1846,8 @@ class Tabs(pyglet.window.Window):
         elif txt == '-' and not self.jumpStr: self.jumpStr += txt
         elif txt == ' ':
             self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {self.jumpStr=} {self.fmti()}')
-            jcc = self.n[T] * int(self.jumpStr)
-            self.jumping = 0   ;    self.jumpStr = ''
+            jcc  = self.n[T] * int(self.jumpStr)
+            self.jumping = 0   ;   self.jumpStr = ''
             self.move(how, jcc - 1 - a * cc)
             self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {jcc=} moved={jcc - 1 - a * cc} {self.fmti()}')
     ####################################################################################################################################################################################################
@@ -1888,7 +1892,7 @@ class Tabs(pyglet.window.Window):
         nc = self.n[C]  ;   n = 1
         mp = i % nc + n
         msg = f'{i=} {j=} {nc=} {i%nc=} {n=} {mp=}=i%nc+n {mp%10=}' if dbg else ''
-        if j == Q and not mp % 10 and i:
+        if j == Q and not mp % 10: # and i:
             self.log(  f'if   {msg} {self.k[R]=}') if dbg else None   ;   return self.k[R]
         else: self.log(f'else {msg} {self.k[j]=}') if dbg else None   ;   return self.k[j]
     ####################################################################################################################################################################################################
@@ -2393,7 +2397,7 @@ def initRGB(dbg=1):
     _initRGB('CL4', (255, 128, 255))  # 18
     return RGB.keys()
 ########################################################################################################################################################################################################
-def _initRGB(key, rgb, dv=5, n=None, dbg=2):
+def _initRGB(key, rgb, dv=32, n=None, dbg=2):
     colors = []  ;  lrgb, lopc = len(rgb), len(OPC)  ;  msg, msgR, msgG, msgB = '', [], [], []  ;  n = n + 1 if n is not None else lopc  ;  opc, color = None, None
     diffs  = [ rgb[i] - rgb[i]/dv for i in range(lrgb) ]
     steps  = [ diffs[i]/(n-1)     for i in range(lrgb) ]
