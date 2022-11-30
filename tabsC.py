@@ -173,9 +173,9 @@ class Tabs(pyglet.window.Window):
         j = N  ;  k[j] = i(j, GRN,  0, 17, GRN, 17, 17) if a else i(j, GRN,  0, 17, GRN, 17, 17) if b else i(j, GRN,  0, 17, GRN, 17, 17) if c else i(j, GRN,  0, 17, GRN, 17, 17) if d else None
         j = I  ;  k[j] = i(j, YLW,  0, 17, YLW, 17, 17) if a else i(j, YLW,  0, 17, YLW, 17, 17) if b else i(j, YLW,  0, 17, YLW, 17, 17) if c else i(j, YLW,  0, 17, YLW, 17, 17) if d else None
         j = K  ;  k[j] = i(j, IND,  0, 17, IND, 17, 17) if a else i(j, IND,  0, 17, IND, 17, 17) if b else i(j, IND,  0, 17, IND, 17, 17) if c else i(j, IND,  0, 17, IND, 17, 17) if d else None
-        j = R  ;  k[j] = i(j, RED,  0, 17, RED, 17, 17) if a else i(j, BLU,  0, 17, BLU, 17, 17) if b else i(j, BLU,  0,  4, BLU, 17,  4) if c else i(j, BLU,  0, 17, BLU, 17, 17) if d else None
+        j = R  ;  k[j] = i(j, BLU,  0, 17, BLU, 17, 17) if a else i(j, BLU,  0, 17, BLU, 17, 17) if b else i(j, BLU,  0,  4, BLU, 17,  4) if c else i(j, BLU,  0, 17, BLU, 17, 17) if d else None
         j = Q  ;  k[j] = i(j, CYA,  0, 17, CYA, 17, 17) if a else i(j, CYA,  0,  0, CYA, 17, 17) if b else i(j, CYA,  0, 17, CYA, 17, 17) if c else i(j, CYA,  0,  0, CYA, 17, 17) if d else None
-        j = H  ;  k[j] = i(j, PNK, 17, 17, PNK, 17, 17) if a else i(j, PNK, 17, 10, PNK, 17, 17) if b else i(j, PNK, 17, 17, PNK, 17, 17) if c else i(j, PNK, 17, 17, PNK, 17, 17) if d else None
+        j = H  ;  k[j] = i(j, YLW, 17, 11, YLW, 17, 10) if a else i(j, PNK, 17, 10, PNK, 17, 17) if b else i(j, PNK, 17, 17, PNK, 17, 17) if c else i(j, PNK, 17, 17, PNK, 17, 17) if d else None
         j = V  ;  k[j] = i(j, VLT,  0,  0, VLT, 17, 17) if a else i(j, VLT,  0,  0, VLT, 17, 17) if b else i(j, VLT,  0,  0, VLT, 17, 17) if c else i(j, VLT,  0,  0, VLT, 17, 17) if d else None
         j = O  ;  k[j] = i(j, PNK,  0,  0, PNK, 17, 17) if a else i(j, PNK,  0,  0, PNK, 17, 17) if b else i(j, PNK,  0,  0, PNK, 17, 17) if c else i(j, PNK,  0,  0, PNK, 17, 17) if d else None
         j = A  ;  k[j] = i(j, BLU,  0,  0, BLU, 17, 17) if a else i(j, BLU,  0,  0, BLU, 17, 17) if b else i(j, BLU,  0,  0, BLU, 17, 17) if c else i(j, BLU,  0,  0, BLU, 17, 17) if d else None
@@ -308,17 +308,20 @@ class Tabs(pyglet.window.Window):
     def fmtJ2( self, w=None, d=0):  w = w if w is not None else JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return     f'{util.fmtl(self.J2,     w=w, d1=d1, d2=d2)}'
     def fmtLE( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return f'{d1}{util.fmtl(self.lenE(), w=w, d1="", d2="")} {sum(self.lenE()[:-1]):4}{d2}'
     ####################################################################################################################################################################################################
-    def fmtn(self, pfx='n=', n=None):         n = n if n is not None else self.n  ;   return f'{pfx}{util.fmtl(n)}'
-    def fmti(self, pfx='i='):                 return f'{pfx}{util.fmtl(self.i)}'
 #    def fplct(self):                          return f'{util.fmtl(self.j2())}'
-    def fmtPos(self):                         plct = self.j2()        ;  cc = self.plct2cc(*plct)   ;  cn = self.cc2cn(cc)       ;  return f'{util.fmtl(plct)} {cc:3} {cn:2}]'
-    def fmtD(self, data=None,       d='x'):  l = list(map(str, self.dl(data)))               ;   return f'({d.join(l)})'
-    def fmtI(self,                  d='x'):  l = list(map(str, self.i))   ;   del l[S:S+1]   ;   return f'({d.join(l)})'
-    def fmtWH(self, w=None, h=None, d='x'):  w = w if w is not None else self.width  ;  h = h if h is not None else self.height  ;  return f'({w}{d}{h})'
-    def fmtP0(self):                          return f'{self.p0x} {self.p0w} {self.p0sx} {self.p0y} {self.p0h} {self.p0sy}'
-    def fmtWHP0(self):                        return f'{self.fmtWH()} {self.fmtP0()}'
     def fmtBlnk(self):                        return f'{self.tblankCol=} {self.tblankRow=}'
     def fmtblnk(self):                        return f'{len(self.tblankCol)=} {len(self.tblankRow)=}'
+    def fmtPos(self):                         plct = self.j2()        ;  cc = self.plct2cc(*plct)   ;  cn = self.cc2cn(cc)       ;  return f'{util.fmtl(plct)} {cc:3} {cn:2}]'
+    def fmtn(self, pfx='n=', n=None):         n = n if n is not None else self.n  ;   return f'{pfx}{util.fmtl(n)}'
+    def fmti(self, pfx='i='):                 return f'{pfx}{util.fmtl(self.i)}'
+    def fmtD(self, data=None,       d='x'):   l = list(map(str, self.dl(data)))               ;   return f'({d.join(l):^10})'
+    def fmtI(self,                  d='x'):   l = list(map(str, self.i))   ;   del l[S:S+1]   ;   return f'({d.join(l):^10})'
+    def fmtWH(self, w=None, h=None, d='x'):
+        if w is None: w = self.width  if self.width  is not None else -1
+        if h is None: h = self.height if self.height is not None else -1
+        return f'({w if w is None else w:4}{d}{h if h is None else h:<4})'
+    def fmtP0(self):                          return f'{self.p0x} {self.p0w} {self.p0sx} {self.p0y} {self.p0h} {self.p0sy}'
+    def fmtWHP0(self):                        return f'{self.fmtWH()} {self.fmtP0()}'
     ####################################################################################################################################################################################################
     @staticmethod
     def fmtJText(j, why=''):   jtxt = f'{JTEXTS[j]}' if 0 <= j < len(JTEXTS) else f'?{j:2}?'   ;   return f'{j=} {why} {jtxt}'
@@ -351,14 +354,18 @@ class Tabs(pyglet.window.Window):
         self.log(f'{self.A_LEFT=} {self.A_CENTER=} {self.A_RIGHT=}')
         self.log(f'{self.X_LEFT=} {self.X_CENTER=} {self.X_RIGHT=}')
         self.log(f'{self.Y_TOP=}  {self.Y_CENTER=} {self.Y_BOTTOM=} {self.Y_BASELINE=}')
-    def fmtAxy(self): return f'{self.a} {self.ax} {self.ay}'
-    def fAxy(self):   return f'{self.ftAx(self.a)} {self.ftAx(self.ax)} {self.ftAy(self.ay)}'
+    def fmtAxy(self):    return f'{self.a} {self.ax} {self.ay}'
+    def fAxy(self):      return f'{self.ftAx(self.a)} {self.ftAx(self.ax)} {self.ftAy(self.ay)}'
     @staticmethod
-    def fcva(t):   a = t.content_valign   ;    return 'T' if a == 'top'    else 'C' if a == 'center' else 'B' if a == 'bottom' else '???'
+    def fcva(t):         a = t.content_valign   ;    return 'T' if a == 'top'    else 'C' if a == 'center' else 'B' if a == 'bottom' else '???'
     @staticmethod
-    def ftAy(a):   return 'N' if a == 'baseline' else 'T' if a == 'top'    else 'C' if a == 'center' else 'B' if a == 'bottom' else '???'
+    def ftAy(a):         return 'N' if a == 'baseline' else 'T' if a == 'top'    else 'C' if a == 'center' else 'B' if a == 'bottom' else '???'
     @staticmethod
-    def ftAx(a):   return 'L' if a == 'left'     else 'C' if a == 'center' else 'R' if a == 'right'  else '???'
+    def ftAx(a):         return 'L' if a == 'left'     else 'C' if a == 'center' else 'R' if a == 'right'  else '???'
+    def fss2sl(self):    s2s = self.ss2sl()  ;  ss = ' '.join([str(s2s[i]) if i < len(s2s) else ' ' for i in range(4)])  ;  return f'({ss:7})'
+    def fzz2sl(self):    z2z = self.zz2sl()  ;  zz = ' '.join([str(z2z[i]) if i < len(z2z) else ' ' for i in range(2)])  ;  return f'({zz:3})'
+#    def fss2sl(self):    return f'{util.fmtl(self.ss2sl())}'
+#    def fzz2sl(self):    return f'{util.fmtl(self.zz2sl())}'
     def dumpAxy(self):   self.log(f'{self.a=} {self.ax=} {self.ay=}')
     def dumpWxHp0(self): self.log(f'{self.fmtWHP0()}')
     def dumpDataSlice(self, p, l, c, cc):
@@ -370,9 +377,9 @@ class Tabs(pyglet.window.Window):
 #    def dumpObjs(objs, name, why=''):            [ Tabs.dumpObj(o, name, why) for o in objs ]
 #    @staticmethod
 #    def dumpObj( obj,  name, why='', file=None): util.slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}', file=file)
-    def dumpJs(  self, why, w=None, d=1):        self.log(f'J1={self.fmtJ1(w, d)} {why}')   ;   self.log(f'J2={self.fmtJ2(w, d)} {why}')   ;   self.log(f'LE={self.fmtLE(w)} {why}')
-    def dumpGeom(self, why1='', why2=''):        self.log(f'{why1:4} {self.fmtD()} {self.fmti()} {util.fmtl(self.ss2sl()):9} {self.LL} {util.fmtl(self.zz2sl()):5} {self.fmtn()} {len(self.idmap)} {why2}')
-    def dumpSmap(self, why, pos=0):              self.log(f'{why} smap={util.fmtm(self.smap)}', pos=pos)
+    def dumpJs(  self, why, w=None, d=1): self.log(f'J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'LE{self.fmtLE(w)} {why}')
+    def dumpGeom(self, why='', why2=''):  self.log(f'{why:3}[{self.fmtWH()} {self.fmtD()} {self.fmtI()}  {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4}] {why2}')
+    def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={util.fmtm(self.smap)}', pos=pos)
     def dumpBlank(self): self.log(f'{self.fmtblnk()} {self.fmtBlnk()}')
     ####################################################################################################################################################################################################
     def _initntp(self, dbg=1):
@@ -855,26 +862,6 @@ class Tabs(pyglet.window.Window):
                     self.createLLs(self.lines[i], i, why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def OLD__addPage(self, how, ins=None, dbg=1):
-        np, nl, ns, nc, nt = self.n   ;   how = f'{how} {ins=}'
-        self.dumpBlank()
-        self.n[P] += 1   ;   kl = self.k[P]
-        data = [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ]
-        self.data = self.A_transposeData(dump=dbg) if self.TRANSPOSE_A else self.OLD_transposeData()
-        self.data.append(data) if ins is None else self.data.insert(ins, data)
-        self.data = self.A_transposeData(dump=dbg) if self.TRANSPOSE_A else self.OLD_transposeData()
-        self.dumpTniksPfx(how, r=0)   ;   pi = len(self.pages)
-        self.J1[P], self.J1[L], self.J1[S], self.J1[C], self.J1[T] = 0, 0, 0, 0, 0
-        n, ii, x, y, w, h =    self.geom(V, n=1, i=1, dbg=1)   ;   kk = self.cci(P, 0, kl)
-        self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2
-        page = self.createTnik(self.pages,   pi, P, x, y, w, h, kk, kl, why=why, dbg=1)
-        for line in            self.g_createTniks(self.lines,  L, page, why=why):
-            for sect in        self.g_createTniks(self.sects,  S, line, why=why):
-                for colm in    self.g_createTniks(self.colms,  C, sect, why=why):
-                    for _ in   self.g_createTniks(self.tabls,  T, colm, why=why):
-                        pass
-        if self.SNAPS and dbg: self.regSnap(how, why2)
-        self.dumpTniksSfx(how)
     def addPage(self, how, ins=None, dbg=1):
         np, nl, ns, nc, nt = self.n   ;   how = f'{how} {ins=}'
         self.dumpBlank() # self.j()[P]
@@ -958,21 +945,6 @@ class Tabs(pyglet.window.Window):
         rc = c2 % nc
         rt = t2 % nt
         return rp, rl, rc, rt
-    def OLD_2_j2plct(self, p=None, l=None, c=None, t=None):
-        np, nl, ns, nc, nt = self.n   ;   n = 0
-        if p is None: p = self.J1[P]
-        if l is None: l = self.J1[L]
-        if c is None: c = self.J1[C]
-        if t is None: t = self.J1[T]
-        t2 = n + t
-        c2 = t2 // nt + c
-        l2 = c2 // nc + l
-        p2 = l2 // nl + p
-#        rp = p2 % np
-        rl = l2 % nl
-        rc = c2 % nc
-        rt = t2 % nt
-        return p2, rl, rc, rt
     def NEW__j2plct(self, p=None, l=None, c=None, t=None):
         np, nl, ns, nc, nt = self.n   ;   n = 0   ;   b = 0
         if p is None: p = self.J1[P]
@@ -1211,24 +1183,20 @@ class Tabs(pyglet.window.Window):
         return tnik
     ####################################################################################################################################################################################################
     def dumpTniksPfx(self, why='', h=1, r=1):
-        self.dumpWxHp0()
         self.dumpGeom('BGN', why)
         self.resetJ(why) if r else self.dumpJs(why, w=None)  if self.J1 and self.J2 else self.quit(f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')
-        self.log(f'    {self.fjtxt()}')
         if h: hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)   ;   self.log(f'{hdr1}', pfx=0)   ;   self.log(f'{hdr0}', pfx=0)
 
     def dumpTniksSfx(self, why='', h=1):
         if h: hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)   ;   self.log(f'{hdr1}', pfx=0)   ;   self.log(f'{hdr0}', pfx=0)
-        self.log(f'    {self.fjtxt()}')
         self.dumpJs(why, w=None)                             if self.J1 and self.J2 else self.quit(f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')
         self.dumpGeom('END', why)
-        self.dumpWxHp0()
     ####################################################################################################################################################################################################
     def fTnikHdr(self, spr=0):
-        tid  = ' TId  Identity  ' if self.TIDS else ' Tid'  ;  wnc = ' Why  Name  Cnt'    ;   tsv = 'Txt fSz V'
-        xywh = '    X       Y       W       H  '            ;  rgb = ' Red Grn Blu Opc '  ;  rgbM = ' M     Mx    My  ' if spr else rgb
+        tid  = ' TId  Identity  ' if self.TIDS else ' Tid'  ;  wnc = ' Why  Name  Cnt'    ;  rtsgv = 'Rotated G V'       if spr else 'Txt fSz G V'
+        xywh = '    X       Y       W       H  '            ;  rgb = ' Red Grn Blu Opc '  ;   rgbM = ' M     Mx    My  ' if spr else rgb
         sfx  = ' Iax  Iay      Grp        pGrp' if spr else 'cw  ch v a x y dpi B I Font Name'
-        return f'{tid} {wnc} {tsv} {xywh} {rgb} G {rgbM} {self.fjtxt()} {sfx}'
+        return f'{tid} {wnc} {rtsgv} {self.fjtxt()} {xywh} {rgb} {rgbM} {sfx}'
     @staticmethod
     def fjtxt(): return ' '.join(f'{jtxt[0]:>{JFMT[i]}}' for i, jtxt in enumerate(JTEXTS)) + '  Tid'
 
@@ -1240,8 +1208,8 @@ class Tabs(pyglet.window.Window):
         if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)   ;  msg2 = self.fTxFs(t)  ;  msg5 = self.fLbl(t)
         elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  msg2 = self.frot(t)   ;  msg5 = self.fSpr(t)
         else: msg = f'ERROR BAD type(t) {why} {j=} {type(t)=}'   ;   self.log(msg)   ;   self.quit(msg)
-        msg1 = self.fid(t, j, why)   ;   msg3 = f'{self.ftvis(t)} {xywh}'   ;   msg4 = f'{fc} {g} {bc} {self.fmtJ2()}'
-        self.log(f'{msg1} {msg2} {msg3} {msg4} {msg5}', pfx=0)
+        msg1 = self.fid(t, j, why)   ;   msg3 = f'{self.ftvis(t)}'   ;   msg4 = f'{fc} {bc}'
+        self.log(f'{msg1} {msg2} {g} {msg3} {self.fmtJ2()} {xywh} {msg4} {msg5}', pfx=0)
     ####################################################################################################################################################################################################
     def idmapkey(self, j): return f'{JTEXTS[j]}{self.J2[j]}'
     def dumpIdmKeys(self): self.log(f'{util.fmtl(list(self.idmap.keys()), ll=1)}')
@@ -2143,14 +2111,6 @@ class Tabs(pyglet.window.Window):
                 if dbg:                             vl.append(' ')
             if dbg:                                 self.log(f'{"".join(vl)}', pfx=0)
 
-    def OLD__dumpVisible(self, h=0):
-        for j in range(len(self.visib)-1):
-            vl = []   ;   n = 0
-            for i in self.visib[j]:
-                n += 1   ;   vl.append(str(i))
-            v = ''.join(vl)  ;  l = len(v)
-            msg = f'{j:2} {JTEXTS[j]}{n:4}/{l}' if h else f'{v}'
-            self.log(msg, pfx=0)
     def dumpVisible(self):
         for j in range(len(self.visib)-1):
             vl = []   ;   n = 0
@@ -2158,7 +2118,6 @@ class Tabs(pyglet.window.Window):
                 n += 1   ;   vl.append(str(i))
             v = ''.join(vl)  ;  l = len(v)
             self.log(f'{JTEXTS[j][0]}{n:4}/{l:4} {v}', pfx=0)
-#            self.log(f'{j:2} {JTEXTS[j]}{n:4}/{l} {v}', pfx=0)
     ####################################################################################################################################################################################################
     def toggleCursorMode(self, how):
         self.log(f'BGN {how} {self.csrMode=} = {CSR_MODES[self.csrMode]=}')
@@ -2402,8 +2361,8 @@ MELODY, CHORD, ARPG   =  0, 1, 2
 LEFT, RIGHT, UP, DOWN =  0, 1, 0, 1
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE, COPY_STYLE = 0, 1, 2, 3
 #           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15      16
-JTEXTS = ['Page',  'Line',  'Sect',  'Colm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ONum',  'ANam',  'DCpo',  'WVis'  'TNIK']
-jTEXTS = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'onums', 'anams', 'Dcpos', 'wviss', 'tniks']
+JTEXTS = ['Page',  'Line',  'Sect',  'Colm',  'Tab ',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ONum',  'ANam',  'DCpo',  'WVis'  'TNIK']
+jTEXTS = ['pages', 'lines', 'sects', 'colms', 'tabs ', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'onums', 'anams', 'Dcpos', 'wviss', 'tniks']
 JFMT   = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       3,       4,       4]
 #          0   1   2   3   4   5   6   7    8    9   10   11   12   13   14   15   16   17
 OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
