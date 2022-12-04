@@ -280,7 +280,7 @@ class Tabs(pyglet.window.Window):
     def j2g(     self, j):           return self.g[ self.gn[j] ]
     def setJ(    self, j, n):         self.J1[j] = n    ;   self.J2[j] += 1  ;  self.J1[-1] += 1  ;  self.J2[-1] += 1  ;  self.vis += 1 if self.isV(j) else 0
 #    def setJ(    self, j, n):         self.J1[j] = n    ;   self.J2[j] += 1  ;  self.J1[-1] += 1  ;  self.J2[-1] += 1 # ;  self.J1[-2] += 1 if self.isV(j) else 0  ;  self.J2[-2] += 1 if self.isV(j) else 0
-    def setJdump(self, j, n, why=''): j2 = self.J2[j]   ;   self.setJ(j, n)          ;   self.dumpTnik(self.E[j][j2], j, why)           ;  return j
+    def setJdump(self, j, n, why=''):       i = self.J2[j]   ;   self.setJ(j, n)     ;   self.dumpTnik(self.E[j][i], j, why)            ;  return j
     def resetJ(self, why='', dbg=1):  self.J1 = [ 0 for _ in range(len(self.E)+1) ]  ;   self.J2 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.vis = 0  ;  self.dumpJs(why) if dbg else None
     ####################################################################################################################################################################################################
     def ssl(self, dbg=0):  l = len(self.SS)   ;   self.log(f'{self.fmtn()} SS={util.fmtl(self.ss2sl())} l={l}') if dbg else None   ;   return l   # return 0-4
@@ -307,7 +307,8 @@ class Tabs(pyglet.window.Window):
     def fplsct(self, p=None, l=None, s=None, c=None, t=None): j = self.J1  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  s = j[S] if s is None else s  ;  c = j[C] if c is None else c  ;  t = j[T] if t is None else t  ;  return f'[{p} {l} {s} {c:2} {t}]'
     ####################################################################################################################################################################################################
 #    def jsum(self, a=1): return [ _ + a if j <= H else _ for j, _ in enumerate(self.J1) ]
-    def jsum(self, a=1): return [ _ + a if j <= K and self.J2[j] else _ if j == len(self.J2) else 0 for j, _ in enumerate(self.J1) ]
+#    def jsum(self, a=1): return [ _ + a if j <= K and self.J2[j] else _ if j == len(self.J2) else 0 for j, _ in enumerate(self.J1) ]
+    def jsum(self, a=1): return [ _ + a if self.J2[j] and j < len(self.J1)-1 else _ if j == len(self.J1)-1 else 0 for j, _ in enumerate(self.J1) ]
     def fmtdl( self, data=None):    return f'{util.fmtl(self.dl(data))}'
     def fmtdt( self, data=None):    return f"[{' '.join([ t.replace('class ', '') for t in self.dtA(data) ])}]"
     def fmtJ1( self, w=None, d=0):  w = w if w is not None else JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return     f'{util.fmtl(self.jsum(), w=w, d1=d1, d2="")} {self.fvis()}{d2}'
@@ -385,7 +386,7 @@ class Tabs(pyglet.window.Window):
 #    @staticmethod
 #    def dumpObj( obj,  name, why='', file=None): util.slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}', file=file)
     def dumpJs(  self, why, w=None, d=1): self.log(f'J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'LE{self.fmtLE(w)} {why}')
-    def dumpGeom(self, why='', why2=''):  self.log(f'{why:3}[{self.fmtWH()} {self.fmtD()} {self.fmtI()}  {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4}] {why2}')
+    def dumpGeom(self, why='', why2=''):  self.log(f'{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()}{self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fvis()}] {why2}')
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={util.fmtm(self.smap)}', pos=pos)
     def dumpBlank(self): self.log(f'{self.fmtblnk()} {self.fmtBlnk()}')
     ####################################################################################################################################################################################################
@@ -1109,7 +1110,7 @@ class Tabs(pyglet.window.Window):
             if j == P: v = 1 if i+1 == self.i[P] else 0
             i2 = i if ii is None else ii
             if self.DBG_TAB_TEXT:                      dlm = '\n' if j == C else ''  ;  text = f'{JTEXTS[j][0]}{dlm}{self.lenE()[-1]}'
-            if   j == C:                                x2 = x + i2 * w #  ;   j2 = len(self.J2) if ii is not None else j
+            if   j == C or j == Z:                      x2 = x + i2 * w #  ;   j2 = len(self.J2) if ii is not None else j
             else:
                 if   j != P:                            y2 = y - i2 * h
                 if   j == L and self.J2[L] >= np * nl: msg = f'WARN MAX Line {self.J2[L]=} >= {np=} * {nl=}'  ;  self.log(msg)  ;  self.quit(msg) # yield None
@@ -1228,7 +1229,7 @@ class Tabs(pyglet.window.Window):
         if   t is None: self.log(f'{self.fTnikHdr()}', pfx=0)   ;   return
         if   j is None:                                 msg = f'ERROR BAD j {j=}'          ;  self.log(msg)  ;  self.quit(msg)
         elif type(t) is not LBL and type(t) is not SPR: msg = f'ERROR Bad type {type(t)}'  ;  self.log(msg)  ;  self.quit(msg)
-        xywh = self.ftxywh(t)   ;   g = self.gn[j]   ;   fc, bc = '', ''    ;   msg2, msg5 = '', '' # ;  vis = sum(self.visib)
+        xywh = self.ftxywh(t)   ;   g = self.gn[j]   ;   fc, bc = '', ''    ;   msg2, msg5 = '', ''
         if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)   ;  msg2 = self.fTxFs(t)  ;  msg5 = self.fLbl(t)
         elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  msg2 = self.frot(t)   ;  msg5 = self.fSpr(t)
         else: msg = f'ERROR BAD type(t) {why} {j=} {type(t)=}'   ;   self.log(msg)   ;   self.quit(msg)
@@ -2137,12 +2138,15 @@ class Tabs(pyglet.window.Window):
             if dbg:                                 self.log(f'{"".join(vl)}', pfx=0)
 
     def dumpVisible(self):
-        for j in range(len(self.visib)-1):
+        nsum = 0  ;  j = 0  ;  lsum = 0  ;  nmax = 0  ;  a = B*10  ;  b = B*8  ;  c = B*7  ;  d = B*6  ;  e = B*5
+        for j in range(len(self.visib) - 1):
             vl = []   ;   n = 0
             for i in self.visib[j]:
-                n += 1   ;   vl.append(str(i))
-            v = ''.join(vl)  ;  l = len(v)
-            self.log(f'{JTEXTS[j][0]}{n:4}/{l:4} {v}', pfx=0)
+                vl.append(str(i))   ;  lsum += 1   ;   n += 1 if i else 0
+            v = ''.join(vl)  ;  l = len(v)  ;  nsum += n   ;  nmax = nsum if nsum > nmax else nmax
+            if l:    self.log(f'{n:4}{jTEXTS[j][0]}{l:<4}{v}', pfx=0)
+        v = ''.join([ f'{a if not i else b if i//10 < 1 else c if i//10 < 10 else d if i//10 < 100 else e}{10+i*10}' for i in range(nmax//10) ])
+        j += 1   ;  n = nsum  ;  l = lsum  ;  self.log(f'{n:4}{jTEXTS[j][0]}{l:<4}{v}', pfx=0)
     ####################################################################################################################################################################################################
     def toggleCursorMode(self, how):
         self.log(f'BGN {how} {self.csrMode=} = {CSR_MODES[self.csrMode]=}')
@@ -2396,7 +2400,7 @@ LEFT, RIGHT, UP, DOWN =  0, 1, 0, 1
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE, COPY_STYLE = 0, 1, 2, 3
 #           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16       17
 JTEXTS = ['Page',  'Line',  'Sect',  'Colm',  'Tab ',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK'] #,  'WVis']
-jTEXTS = ['pages', 'lines', 'sects', 'colms', 'tabs ', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'Dcpos', 'tniks'] #, 'wviss']
+jTEXTS = ['pages', 'lines', 'sects', 'colms', 'tabs ', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks'] #, 'wviss']
 JFMT   = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       1,       2,       2,       2,       4] #,       4]
 #JFMT   = [  2,       3,       3,       6,       6,       6,       6,       6,       3,       5,       1,       1,       3,       3,       3,       4,       6,       7]
 #          0   1   2   3   4   5   6   7    8    9   10   11   12   13   14   15   16   17
