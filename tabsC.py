@@ -43,7 +43,7 @@ class Tabs(pyglet.window.Window):
         self.Y_TOP        = 0  ;  self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0
         self.AUTO_SAVE    = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN = 0
         self.GEN_DATA     = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RD_STDOUT  = 0  ;  self.RESIZE      = 1
-        self.SNAPS        = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 0  ;  self.VERBOSE     = 0  ;  self.TIDS    = 1
+        self.SNAPS        = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 1  ;  self.VERBOSE     = 0  ;  self.TIDS    = 1
         self.VIEWS        = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD  = 0  ;  self.STRETCH = 0
         self.LL           = 0
         self.SS           = set() if 0 else {0, 1, 2, 3}
@@ -91,6 +91,7 @@ class Tabs(pyglet.window.Window):
         self.sobj = util.Strings(LOG_FILE, self.sAlias)
         self.cobj = chord.Chord( LOG_FILE, self.sobj)
         util.Note.setType(util.Note.FLAT)  ;  self.log(f'{util.Note.TYPE=}')
+        self.dumpFreqsHdr()  ;  self.dumpFreqs()  ;  self.dumpFreqs(ref=432)
         self._initDataPath()
         if self.CAT: self.cobj.dumpOMAP(str(self.catPath))
         self._initWindowA()
@@ -137,6 +138,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def _reinit(self):
         self.log('BGN')
+        self.tpb, self.tpp, self.tpl, self.tps, self.tpc = self.ntp(dbg=1, dbg2=1)
         self.visib = []
         self.pages, self.lines, self.sects, self.colms = [], [], [], []  ;  self.A = [self.pages, self.lines, self.sects, self.colms]
         self.tabls, self.notes, self.ikeys, self.kords = [], [], [], []  ;  self.B = [self.tabls, self.notes, self.ikeys, self.kords]
@@ -198,7 +200,7 @@ class Tabs(pyglet.window.Window):
         self.n[P] = self.dl()[0]
         self.log(f'{self.fmtdl()}')
         self.log(f'Updating n[P] {old=} {self.fmtn()}')
-        self._initntp()
+        self.tpb, self.tpp, self.tpl, self.tps, self.tpc = self.ntp(dbg=1, dbg2=1)
 
     def _initDataPath(self):
         dataDir   = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
@@ -269,6 +271,7 @@ class Tabs(pyglet.window.Window):
         for i in range(len(self.tabls) * 2): self.cc2plct(i)
         self.log(hdr)
         self.dumpTniksSfx(f'BGN {j=} test')
+        self.log(f'{self.ntsl()=}')
     ####################################################################################################################################################################################################
     def lenA(self):                  return [ len(_) for _ in self.A ]
     def lenB(self):                  return [ len(_) for _ in self.B ]
@@ -385,33 +388,32 @@ class Tabs(pyglet.window.Window):
 #    def dumpObjs(objs, name, why=''):            [ Tabs.dumpObj(o, name, why) for o in objs ]
 #    @staticmethod
 #    def dumpObj( obj,  name, why='', file=None): util.slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}', file=file)
-#    def dumpJs(  self, why, w=None, d=1): self.log(f'J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'LE{self.fmtLE(w)} {why}')
+    def dumpFreqsHdr(self):
+        self.log(f'index{util.fmtl([ i for i in range(util.Note.MAX_INDEX) ], w="5")}', pfx=0)
+        self.log(f'sharp{util.fmtl(list(util.Note.FNAMES), w="5")}', pfx=0)
+        self.log(f' flat{util.fmtl(list(util.Note.SNAMES), w="5")}', pfx=0)
+    def dumpFreqs(self, ref=440):
+        f = util.FREQS if ref==440 else util.FREQS2
+        self.log(f'{ref}A {util.fmtl(f, w="5.0f")}', pfx=0)
     def dumpJs(  self, why, w=None, d=1): b = B*12 if self.TIDS else ''  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
     def dumpGeom(self, why='', why2=''):  b = B*12 if self.TIDS else ''  ;  self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fnvis()}] {why2}')
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={util.fmtm(self.smap)}', pos=pos)
     def dumpBlank(self): self.log(f'{self.fmtblnk()} {self.fmtBlnk()}')
     ####################################################################################################################################################################################################
-    def _initntp(self, dbg=1):
-        ncp = self.ncp(dbg=dbg)  ;  self.cpb, self.cpp, self.cpl           = ncp
-        ntp = self.ntp()         ;  self.tpb, self.tpp, self.tpl, self.tpc = ntp
-        if dbg: self.log(f'{self.tpb=} {self.tpp=} {self.tpl=} {self.tpc=} ntp={util.fmtl(ntp)}')
-
-    def ncp(self, dbg=0): ntp = self.ntp(dbg=dbg)  ;  ncp = [ ntp[i] for i in range(len(ntp)-1) ]  ;  self.log(util.fmtl(ncp)) if dbg else None  ;  return ncp
-
-    def ntp(self, d2=1, dbg=0):
-        d = 'd2' if d2 else '  '
-        n = list(self.n)     ;   self.log(f'           n={ self.fmtn("", n)}') if dbg else None
-        if d2:   del n[2]    ;   self.log(f'         n{d}={self.fmtn("", n)}') if dbg else None
-        n.reverse()          ;   self.log(f'       {d}Rev={self.fmtn("", n)}') if dbg else None
-        n = self.accProd(n)  ;   self.log(f'   n{d}RevPrd={util.fmtl(n)}')     if dbg else None
-        n.reverse()          ;   self.log(f'n{d}RevPrdRev={util.fmtl(n)}')     if dbg else None
+    def ntp(self, dbg=0, dbg2=0):
+        n = list(self.n)     ;   self.log(f'{B*9}         n={self.fmtn("", n)}') if dbg2 else None
+        n.reverse()          ;   self.log(f'{B*9}       Rev={self.fmtn("", n)}') if dbg2 else None
+        n = self.accProd(n)  ;   self.log(f'{B*9}   nRevPrd={util.fmtl(n)}')     if dbg2 else None
+        n.reverse()          ;   self.log(f'{B*9}nRevPrdRev={util.fmtl(n)}')     if dbg2 else None
+        self.log(f'tpb tpp tpl tps tpc={util.fmtl(n)}') if dbg else None
         return n
+
     @staticmethod
     def accProd(n):              return list(accumulate(n, operator.mul))
     ####################################################################################################################################################################################################
     def dumpStruct(self, why='', dbg=1, dbg2=0):
         self.dumpFont(why)
-        self.log(f'{self.fmtn()} ntp={util.fmtl(self.ntp())} ntp0={util.fmtl(self.ntp(0))}')
+        self.log(f'{self.fmtn()}  ntp={util.fmtl(self.ntp(dbg=1, dbg2=1))}')
         self.dumpVisible()
         self.dumpIdmKeys()
         if dbg:     self.dumpTniksA(f'{why}A')
@@ -1066,27 +1068,27 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def ntsl(self): n = 1 + self.n[T] * self.ssl() * self.i[L]   ;   return n
     ####################################################################################################################################################################################################
-    def createZZs(self, p, pi, why, dbg=1):
+    def createZZs(self, p, s, why, dbg=1):
         n = self.n[C] + self.zzl()
-        kz = self.k[Z]   ;   kk = self.cci(Z, pi, kz) if self.CHECKERED else 0
-        nz, iz, xz, yz, wz, hz = self.geom(Z, p, n, pi, dbg=dbg)
-        zclm = self.createTnik(self.zclms, pi, Z, xz, yz, wz, hz, kk, kz, why, v=1, dbg=dbg)
-        if pi == 0 or pi == 2:
+        kz = self.k[Z]   ;   kk = self.cci(Z, s, kz) if self.CHECKERED else 0
+        nz, iz, xz, yz, wz, hz = self.geom(Z, p, n, s, dbg=dbg)
+        zclm = self.createTnik(self.zclms, s, Z, xz, yz, wz, hz, kk, kz, why, v=1, dbg=dbg)
+        if s == 0 or s == 2:
             nu, iu, xu, yu, wu, hu = self.geom(U, zclm, self.n[T], self.i[L], dbg=dbg)
             for u in range(nu):
-                self.createZZ(pi, u, xu, yu, wu, hu, why)
-        if pi == 1 or pi == 3:
+                self.createZZ(s, u, xu, yu, wu, hu, why)
+        if s == 1 or s == 3:
             na, ia, xa, ya, wa, ha = self.geom(A, zclm, self.n[T], self.i[L], dbg=dbg)
             for a in range(na):
-                self.createZZ(pi, a, xa, ya, wa, ha, why)
+                self.createZZ(s, a, xa, ya, wa, ha, why)
         p = self.splitH(p, n, dbg)
         self.dumpTnik(p, S, why=why)
         return p
 
-    def createZZ(self, pi, i, x, y, w, h, why, dbg=1):
-        cc = i + self.n[S] * pi   ;   kk = NORMAL_STYLE
+    def createZZ(self, s, i, x, y, w, h, why, dbg=1):
+        cc = i + s * self.ntp()[0]   ;   kk = NORMAL_STYLE
         p, l, c, t = self.cc2plct(cc)
-        tlist, j, ki, txt = self.tnikInfo(p, l, pi, c, t, z=1)
+        tlist, j, ki, txt = self.tnikInfo(p, l, s, c, t, z=1)
         tnik = self.createTnik(tlist, cc, j, x, y-i*h, w, h, kk, ki, why, t=txt, v=1, dbg=dbg)
         return tnik
 
@@ -1379,7 +1381,8 @@ class Tabs(pyglet.window.Window):
         return ccm
 
     def cc2plct(self, cc, dbg=0):
-        tpb, tpp, tpl, tpc = self.ntp()  ;  np, nl, ns, nc, nt = self.n
+        tpb, tpp, tpl, tps, tpc = self.ntp()
+        np, nl, ns, nc, nt = self.n
         p =  cc // tpp % np
         l =  cc // tpl % nl
         c =  cc // tpc % nc
