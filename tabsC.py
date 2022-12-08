@@ -755,25 +755,32 @@ class Tabs(pyglet.window.Window):
                             else:           self.refZZ(p, l, s, c)
                         for c in range(nc): self.refZZ(p, l, s, c)
         self.dumpTniksSfx(why)
-
     def addZZs(self, how, ii):
+        np, nl, ns, nc, nt = self.n
+        for p in range(np):
+            self.pages[p] = self.splitH(self.pages[p], self.n[C] + 1) # self.zzl())
+            self.dumpTnik(self.pages[p], P, 'Ref')
+        self.resizeTniks(dbg=1)
+        self.toggleZZ(ii)  # zz = self.zz2sl()   ;   nc += len(zz)
+    def OLD__addZZs(self, how, ii):
         why = 'Add'  ;  why1 = f'{why} {how} {ii=}'  ;  why2 = 'Ref'
         np, nl, ns, nc, nt = self.n
         self.toggleZZ(ii) #        zz = self.zz2sl()   ;   nc += len(zz)
-        self.dumpTniksPfx(why1)
-        for p in range(np):
-            self.setJdump(P, p, why2)
-            if self.isV():
-                for l in range(nl):
-                    self.setJdump(L, l, why2)
-                    for s, s2 in enumerate(self.ss2sl()):
-                        self.setJdump(S, s2, why2)
-                        self.createZZs(self.sects[s], s, why, dbg=1)
+#        self.dumpTniksPfx(why1)
+        for p in range(np): #            self.setJdump(P, p, why2)
+            self.pages[p] = self.splitH(self.pages[p], self.n[C] + self.zzl())
+        self.resizeTniks(dbg=1)
+#            if self.isV() and 0:
+#                for l in range(nl): #                    self.setJdump(L, l, why2)
+#                    self.g_resizeTniks(self.lines, L, None, why=why2, dbg=1)
+#                    for s in range(self.ssl()): #                        self.setJdump(S, s, why2)
+#                        s += l * ns
+#                        self.createZZs(self.sects[s], s, why, dbg=1)
 #                        for c in range(nc): self.refZZ(p, l, s, c)
 #                        for c in self.zz2sl():
 #                            if   c == ii:      self.addZZ(p, l, s, c, why)
 #                            else:              self.refZZ(p, l, s, c)
-        self.dumpTniksSfx(why1)
+#        self.dumpTniksSfx(why1)
     ####################################################################################################################################################################################################
     def addZZ(self, p, l, s, c, why):
         np, nl, ns, nc, nt = self.n   ;   z1 = self.z1(c)   ;   z2 = self.z2(c)
@@ -927,7 +934,7 @@ class Tabs(pyglet.window.Window):
         c = h/a  ;  h -= c  ;  g = h/g  ;  self.log(f'{y=:6.2f} {h=:6.2f} {a=} {c=:6.2f} {g=:6.4f}', pfx=0, file=1)  if dbg else None  ;  return y, h, c, g
 
 #            if self.LL and self.isV() and not s:
-#                n, _, x, y, w, h = self.geom(C, self.rowLs[l], 1)
+#                n, _, x, y, w, h = self.geom2(C, self.rowLs[l], 1)
 #                lrCol = self.createLL(None, l, c, x, y, w, h, why)
 #                self.qclms.insert(c2, lrCol)
 #                msg = f'WARN not tested'   ;   self.log(msg)   ;   self.quit(msg)
@@ -1031,21 +1038,22 @@ class Tabs(pyglet.window.Window):
         elif j == Z:           w  =  p.width/n              ;  h  =  p.height
         else:                  w  =  p.width                ;  h  =  p.height/n   if j != P else p.height
         if self.SPRITES:
-            if   p is None:        x  =  0                  ;  y  =  self.height - h
+            if   p is None:        x  =  self.p0x           ;  y  =  self.height - h
             elif j == T:           x  =  p.x + w/2          ;  y  =  p.y + p.height - h/2
             elif j == Q:           x  =  p.x + w/2          ;  y  =  p.y + p.height - h/2
             elif j == A or j == U: x  =  p.x + w/2          ;  y  =  p.y + p.height - h/2
             elif j == Z:           x  =  p.x                ;  y  =  p.y + p.height - h
             else:                  x  =  p.x                ;  y  =  p.y + p.height - h
         else:
-            if   p is None:        x  =  w/2                ;  y  =  self.height - h/2
+            if   p is None:        x  =  self.p0x + w/2     ;  y  =  self.height - h/2
             elif j == Q:           x  =  w/2                ;  y  =  p.y
             elif j == Z:           x  =  w/2                ;  y  =  p.y
-            elif j == C:           x  =  w/2                ;  y  =  p.y
+            elif j == C:           x  =  self.p0x + w/2                ;  y  =  p.y
             elif j == T:           x  =  p.x                ;  y  =  p.y + p.height/2 - h/2
             elif j == A or j == U: x  =  p.x                ;  y  =  p.y + p.height/2 - h/2
-            else:           x  =  w/2                       ;  y  =  p.y + p.height/2 - h/2
-        if dbg and self.VERBOSE:
+            else:                  x  =  p.x - p.width/2 + w/2          ;  y  =  p.y + p.height/2 - h/2
+#            else:                  x  =  self.p0x + w/2                ;  y  =  p.y + p.height/2 - h/2
+        if dbg: # and self.VERBOSE:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
             msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
             msg += msg2 if p else " " * len(msg2)
@@ -1092,26 +1100,26 @@ class Tabs(pyglet.window.Window):
         tnik = self.createTnik(tlist, cc, j, x, y-i*h, w, h, kk, ki, why, t=txt, v=1, dbg=dbg)
         return tnik
 
-    def resizeZZs(self, p, why, dbg=1):
+    def resizeZZs(self, pt, why, dbg=1):
         n = self.n[C] + self.zzl()
-        nz, iz, xz, yz, wz, hz = self.geom(Z, p, n, self.i[S], dbg=dbg)
+        nz, iz, xz, yz, wz, hz = self.geom(Z, pt, n, self.i[S], dbg=dbg)
         zclm = self.resizeTnik(self.zclms, self.J2[Z], Z, xz, yz, wz, hz, why, dbg=dbg)
         nu, iu, xu, yu, wu, hu = self.geom(U, zclm, self.n[T], self.i[L], dbg=dbg)
         for u in range(nu):
             self.resizeTnik(self.snums, self.J2[U], U, xu, yu-u*hu, wu, hu, why, dbg=dbg)
-        p = self.splitH(p, n, dbg=dbg)
-        return p
+        pt = self.splitH(pt, n, dbg=dbg)
+        return pt
 
-    def createLLs(self, p, pi, why, dbg=1, dbg2=1):
+    def createLLs(self, pt, pi, why, dbg=1, dbg2=1):
         n = self.ntsl()   ;   kl = self.k[R]   ;   kk = self.cci(R, pi, kl) if self.CHECKERED else 0
-        nr, ir, xr, yr, wr, hr = self.geom(R, p, n, self.i[L], dbg=dbg2) #  ;   xr0 = xr
+        nr, ir, xr, yr, wr, hr = self.geom(R, pt, n, self.i[L], dbg=dbg2) #  ;   xr0 = xr
         lrow = self.createTnik(self.rowLs, pi, R, xr, yr, wr, hr, kk, kl, why, v=1, dbg=dbg)
         nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2) #  ;   xc0 = xc
         for c in range(nc):
             self.createLL(self.qclms, pi, c, xc, yc, wc, hc, why)
-        p = self.splitV(p, n, dbg=dbg2)
-        self.dumpTnik(p, L, why=why)
-        return p
+        pt = self.splitV(pt, n, dbg=dbg2)
+        self.dumpTnik(pt, L, why=why)
+        return pt
 
     def createLL(self, tlist, l, c, x, y, w, h, why, dbg=1):
         cc = c + self.n[C] * l
@@ -1124,20 +1132,20 @@ class Tabs(pyglet.window.Window):
         self.setLLStyle(cc, kk)
         return ll
 
-    def resizeLLs(self, p, why, dbg=1, dbg2=1):
+    def resizeLLs(self, pt, why, dbg=1, dbg2=1):
         n = self.ntsl()
-        nr, ir, xr, yr, wr, hr = self.geom(R, p, n, self.i[L], dbg=dbg2)  # ;    xr0 = xr
+        nr, ir, xr, yr, wr, hr = self.geom(R, pt, n, self.i[L], dbg=dbg2)  # ;    xr0 = xr
         lrow = self.resizeTnik(self.rowLs, self.J2[R], R, xr, yr, wr, hr, why, dbg=dbg)
         nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)  # ;    xc0 = xc
         for c in range(nc):
             self.resizeTnik(self.qclms, self.J2[Q], Q, xc + c*wc, yc, wc, hc, why, dbg=dbg)
-        p = self.splitV(p, n, dbg=dbg2)
-        return p
+        pt = self.splitV(pt, n, dbg=dbg2)
+        return pt
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
         self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2
         self.dumpTniksPfx(why)   ;   view = None   ;   i = 0
-#        if self.VIEWS: # _, _, x, y, w, h = self.geom(V, n=1, i=1, dbg=1)  ;  kk = 0  ;  kl = self.k[V] # view = self.createTnik(self.views, 0, V, x, y, w, h, kk, kl, why=why, dbg=1)
+#        if self.VIEWS: # _, _, x, y, w, h = self.geom2(V, n=1, i=1, dbg=1)  ;  kk = 0  ;  kl = self.k[V] # view = self.createTnik(self.views, 0, V, x, y, w, h, kk, kl, why=why, dbg=1)
         for i, page in enumerate(self.g_createTniks(self.pages, P, view, why=why, v=0 if i else 1)): # pass
             for line in          self.g_createTniks(self.lines, L, page, why=why, v=0 if i else 1): # pass
                 for sect in      self.g_createTniks(self.sects, S, line, why=why, v=0 if i else 1): # pass
@@ -1196,6 +1204,8 @@ class Tabs(pyglet.window.Window):
         if self.LL and j == L:
             if not self.rowLs or len(self.rowLs) < self.n[L]: tnik = self.createLLs(tnik, i, why)
             else:                                             tnik = self.splitV(tnik, self.ntsl(), dbg=dbg)
+        if self.ZZ and j == P:
+            tnik = self.splitH(tnik, self.n[C] + self.zzl())
         if self.ZZ and j == S and v:
             tnik = self.createZZs(tnik, i, why)
         return tnik
@@ -1212,7 +1222,7 @@ class Tabs(pyglet.window.Window):
         self.updC += 1  ;  why2 = f'Upd{self.updC}'  ;  why = why2
         self.dumpTniksPfx(why)   ;   view = None
 #        if self.VIEWS:
-#            _, _, x, y, w, h = self.geom(V, n=1, i=1, dbg=0)
+#            _, _, x, y, w, h = self.geom2(V, n=1, i=1, dbg=0)
 #            if not self.views:    msg = f'ERROR Empty views {self.n=} {self.zzl()}';   self.log(msg);   self.quit(msg)
 #            view = self.resizeTnik(self.views, 0, V, x, y, w, h, dbg=1)
         for i, page in enumerate(self.g_resizeTniks(self.pages, P, view, why=why)): # pass
@@ -1250,8 +1260,8 @@ class Tabs(pyglet.window.Window):
         if self.LL and j == L:
             if v: tnik = self.resizeLLs(tnik, why)
             else: tnik = self.splitV(tnik, self.ntsl(), dbg=dbg)
-        if self.ZZ and j == S:
-            tnik = self.resizeZZs(tnik, why)
+#        if self.ZZ and j == S:
+#            tnik = self.resizeZZs(tnik, why)
         self.dumpTnik(tnik, j, why) if dbg else None
         return tnik
     ####################################################################################################################################################################################################
