@@ -110,7 +110,7 @@ class Chord(object):
         else: self.log(f'type={dt} ', pfx=0, end='')
         self.log(']',                 pfx=0)
     ####################################################################################################################################################################################################
-    def dumpMlimap(self, why='', dbg=1):
+    def dumpMlimap(self, why='', dbg=0):
         mli = self.mlimap
         self.log(f'{why} <dumpLimap > {len(mli)} {util.fmtl(list(mli.keys()))}') if dbg else None   ;   [ self.dumpLimap( v[0], k, v[1]) for k,v in mli.items() ]
         self.log(f'{why} <dumpLimap1> {len(mli)} {util.fmtl(list(mli.keys()))}') if dbg else None   ;   [ self.dumpLimap1(v[0], k, v[1]) for k,v in mli.items() ]
