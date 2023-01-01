@@ -26,7 +26,7 @@ class Chord(object):
         for k in range(len(ixs)):
             ivals = []   ;   chunks = []   ;   rank = -1
             for j in range(len(ixs)):
-                if ixs[j] >= ixs[k]: i =           (ixs[j] - ixs[k])  % util.NTONES
+                if ixs[j] >= ixs[k]: i =                (ixs[j] - ixs[k])  % util.NTONES
                 else:                i = (util.NTONES - (ixs[k] - ixs[j])) % util.NTONES
                 ivals.append(i)
             vkey = ''.join([ f'{v:x}' for v in ivals ])
