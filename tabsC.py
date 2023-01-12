@@ -55,7 +55,6 @@ class Tabs(pyglet.window.Window):
         self.n         = [2, 2, 50, nt]
         self.i         = [1, 1,  1, 1]
         self.DATA_FILE_NAME = ''
-#        ARGS = util.parseCmdLine(file=LOG_FILE)
         self.log(f'argMap={util.fmtm(ARGS)}')
         if 'f' in ARGS and len(ARGS['f'])  > 0: self.DATA_FILE_NAME = ARGS['f'][0]
         if 'n' in ARGS and len(ARGS['n'])  > 0: self.n     = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
@@ -1144,14 +1143,11 @@ class Tabs(pyglet.window.Window):
         self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2
         self.dumpTniksPfx(why)    ;    view = None #  ;    j = self.j()  ;  p = 0  ;  v = 0
 #        if self.VIEWS: # _, _, x, y, w, h = self.geom2(V, n=1, i=1, dbg=1)  ;  kk = 0  ;  kl = self.k[V] # view = self.createTnik(self.views, 0, V, x, y, w, h, kk, kl, why=why, dbg=1)
-#        self.saveJs()
         for page in              self.g_createTniks(self.pages, P, view, why=why): # pass
-#            self.saveJs()
             for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
                 for sect in      self.g_createTniks(self.sects, S, line, why=why): # pass
                     for colm in  self.g_createTniks(self.colms, C, sect, why=why): # pass
                         for _ in self.g_createTniks(self.tabls, T, colm, why=why): pass
-#            self.saveJs()
         if self.tabls:  self.createCursor(why)
         self.dumpTniksSfx(why)
         if dbg:         self.dumpStruct(why2)
@@ -1168,8 +1164,6 @@ class Tabs(pyglet.window.Window):
             if   j == C or j == Z:                      x2 = x + i2 * w #  ;   j2 = len(self.J2) if ii is not None else j
             else:
                 if   j != P:                            y2 = y - i2 * h
-#                if   j == P:                            self.saveJs()
-#                else:                                   y2 = y - i2 * h
                 if   j == S:                             _ = self.ss2sl()[i2]  ;  self.SS.add(_)
                 elif j >= T:
                     s                    = self.ss2sl()[self.J1[S]]
@@ -1181,9 +1175,6 @@ class Tabs(pyglet.window.Window):
                         elif s == KK:  imap = self.getImap(p, l, c)  ;  text = self.imap2Chord(tobj, imap, i2, j2)
             kk = self.cci(j2, i2, kl) if self.CHECKERED else 0
             yield self.createTnik(tlist2, i2, j2, x2, y2, w, h, kk, kl, why=why, t=text, v=v, dbg=dbg)
-#            tnik = self.createTnik(tlist2, i2, j2, x2, y2, w, h, kk, kl, why=why, t=text, v=v, dbg=dbg)
-#            if j == P:                 self.saveJs()
-#            yield tnik
     ####################################################################################################################################################################################################
     def createTnik(self, tlist, i, j, x, y, w, h, kk, kl, why='', t='', v=0, g=None, dbg=0):
         if i is None or j is None: lt = len(tlist) if tlist is not None else None  ;  msg = f'ERROR i or j is None {i=} {j=} {lt=} {t=} {why}'  ;  self.log(msg)  ;  self.quit(msg)
@@ -1272,7 +1263,7 @@ class Tabs(pyglet.window.Window):
 #            tnik = self.resizeZZs(tnik, why)
         self.dumpTnik(tnik, j, why) if dbg else None
         return tnik
-    def p2Js(self, p): np, nl, ns, nc, nt = self.n  ;  l, s, c, t = p*nl, p*nl, p*nl*nc, p*nl*nc*nt  ;  j1 = [p%np,l%nl,s%ns,c%nc,t%nt,t%nt,t%nt,t%nt,0,0,0,0,0,0,0,0]  ;  j2 = [p, l, s, c, t, t, t, t, 0,0,0,0,0,0,0,0]  ;  self.log(f'{j1=} {j2=}')  ;  return j1, j2
+    def p2Js(self, p): np, nl, ns, nc, nt = self.n  ;  l, s, c, t = p*nl, p*nl, p*nl*nc, p*nl*nc*nt  ;  j1 = [p%np,l%nl,s%ns,c%nc,t%nt,t%nt,t%nt,t%nt,0,0,0,0,0,0,0,0,0]  ;  j2 = [p, l, s, c, t, t, t, t, 0,0,0,0,0,0,0,0,0]  ;  self.log(f'{util.fmtl(j1)=} {util.fmtl(j2)=}')  ;  return j1, j2
     ####################################################################################################################################################################################################
     def toggleVisible(self, p=None, dbg=1):
         why = 'TVis'   ;   np, nl, ns, nc, nt = self.n   ;   i = 0   ;   text = None
@@ -1280,7 +1271,6 @@ class Tabs(pyglet.window.Window):
         pid = f' {id(self.pages[p]):11x}' if self.TIDS else ''
         self.dumpTniksPfx(why)
         self.J1, self.J2 = self.p2Js(p%np)
-#        self.J1 = self.j1s[p]   ;   self.J2 = self.j2s[p]
         self.log(f'BGN {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
         self.pages[p].visible = not self.pages[p].visible                         ;  self.setJdump(P, p, why=why)
         for l in range(nl):
@@ -1305,16 +1295,56 @@ class Tabs(pyglet.window.Window):
             if dbg:                   self.log(f'{"".join(vl)}', pfx=0)
         self.dumpTniksSfx(why)
         self.log(f'END {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
+# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1274 tabsC toggleVisible      BGN TVis p=0  pages[0].v=1 i=[1 1 1 1 1] n=[3 2 3 10 6] [1    ]
+# 1296 tabsC toggleVisible      J1[1  2  3  10    6    6    0    6  0   0 0 0  0  0  0  0  429 429] TVis
+# 1296 tabsC toggleVisible      J2[1  2  6  60  120  120    0  120  0   0 0 0  0  0  0  0  429 429] TVis
+# 1297 tabsC toggleVisible      END TVis p=0  pages[0].v=0 i=[1 1 1 1 1] n=[3 2 3 10 6] [     ]
+# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1274 tabsC toggleVisible      BGN TVis p=1  pages[1].v=0 i=[2 1 1 1 1] n=[3 2 3 10 6] [     ]
+# 1296 tabsC toggleVisible      J1[2  2  3  10    6    6    1    6  0   0 0 0  0  0  0  0  429 429] TVis
+# 1296 tabsC toggleVisible      J2[2  4  8  80  240  240  120  240  0   0 0 0  0  0  0  0  429 429] TVis
+# 1297 tabsC toggleVisible      END TVis p=1  pages[1].v=1 i=[2 1 1 1 1] n=[3 2 3 10 6] [  2  ]
+# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1274 tabsC toggleVisible      BGN TVis p=1  pages[1].v=1 i=[2 1 1 1 1] n=[3 2 3 10 6] [  2  ]
+# 1296 tabsC toggleVisible      J1[2  2  3  10    6    6    1    6  0   0 0 0  0  0  0  0  429 429] TVis
+# 1296 tabsC toggleVisible      J2[2  4  8  80  240  240  120  240  0   0 0 0  0  0  0  0  429 429] TVis
+# 1297 tabsC toggleVisible      END TVis p=1  pages[1].v=0 i=[2 1 1 1 1] n=[3 2 3 10 6] [     ]
+# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1274 tabsC toggleVisible      BGN TVis p=2  pages[2].v=0 i=[3 1 1 1 1] n=[3 2 3 10 6] [     ]
+# 1296 tabsC toggleVisible      J1[3  2  3  10    6    6    1    6  0   0 0 0  0  0  0  0  429 429] TVis
+# 1296 tabsC toggleVisible      J2[3  6 10 100  360  360  240  360  0   0 0 0  0  0  0  0  429 429] TVis
+# 1297 tabsC toggleVisible      END TVis p=2  pages[2].v=1 i=[3 1 1 1 1] n=[3 2 3 10 6] [    3]
+# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1274 tabsC toggleVisible      BGN TVis p=2  pages[2].v=1 i=[3 1 1 1 1] n=[3 2 3 10 6] [    3]
+# 1296 tabsC toggleVisible      J1[3  2  3  10    6    6    1    6  0   0 0 0  0  0  0  0  429 429] TVis
+# 1296 tabsC toggleVisible      J2[3  6 10 100  360  360  240  360  0   0 0 0  0  0  0  0  429 429] TVis
+# 1297 tabsC toggleVisible      END TVis p=2  pages[2].v=0 i=[3 1 1 1 1] n=[3 2 3 10 6] [     ]
+# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
+# 1274 tabsC toggleVisible      BGN TVis p=0  pages[0].v=0 i=[1 1 1 1 1] n=[3 2 3 10 6] [     ]
+# 1296 tabsC toggleVisible      J1[1  2  3  10    6    6    0    6  0   0 0 0  0  0  0  0  429 429] TVis
+# 1296 tabsC toggleVisible      J2[1  2  6  60  120  120    0  120  0   0 0 0  0  0  0  0  429 429] TVis
+# 1297 tabsC toggleVisible      END TVis p=0  pages[0].v=1 i=[1 1 1 1 1] n=[3 2 3 10 6] [1    ]
+# 1266 tabsC p2Js               .fmtl(j1)=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+# 1266 tabsC p2Js               .fmtl(j1)=[1 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[1 2 2 20 120 120 120 120 0 0 0 0 0 0 0 0 0]
+# 1266 tabsC p2Js               .fmtl(j1)=[1 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[1 2 2 20 120 120 120 120 0 0 0 0 0 0 0 0 0]
+# 1266 tabsC p2Js               .fmtl(j1)=[2 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[2 4 4 40 240 240 240 240 0 0 0 0 0 0 0 0 0]
+# 1266 tabsC p2Js               .fmtl(j1)=[2 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[2 4 4 40 240 240 240 240 0 0 0 0 0 0 0 0 0]
+# 1266 tabsC p2Js               .fmtl(j1)=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
     ####################################################################################################################################################################################################
     def dumpTniksPfx(self, why='', h=1, r=1):
         if r:        self.resetJ(why)   ;   self.clearVisib()
         self.dumpGeom('BGN', why)
         if not r:    self.dumpJs(why, w=None)  if self.J1 and self.J2 else self.quit(f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')
-#        if h: hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)   ;   self.log(f'{hdr1}', pfx=0)   ;   self.log(f'{hdr0}', pfx=0)
         if h: self.dumpHdrs()
 
     def dumpTniksSfx(self, why='', h=1):
-#        if h: hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)   ;   self.log(f'{hdr1}', pfx=0)   ;   self.log(f'{hdr0}', pfx=0)
         if h: self.dumpHdrs()
         self.dumpJs(why, w=None)               if self.J1 and self.J2 else self.quit(f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')
         self.dumpGeom('END', why)
@@ -1672,10 +1702,8 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def on_mouse_release(self, x, y, button, mods, dbg=1):
         np, nl, ns, nc, nt = self.n   ;   nz = self.zzl()    ;  nc += nz    ;   ll = self.LL   ;   ww = self.width   ;   hh = self.height
-        y0 = y   ;   y = self.height - y   ;   m = ns * nt + ll   ;   n = nl * m # (ns * nt + ll)
-#        y0 = y   ;   y = self.height - y   ;   n = ns * (nl * nt + ll)   ;   m = ns * nt + ll
-#        y0 = y   ;   y = self.height - y   ;   n = nl * ns * nt + ns * ll   ;   m = int(ns * nt) + ll
-        w = ww/nc       ;  h = hh/n         ;   d = int(y/h) - ll   ;   tlen = len(self.tabls)
+        y0 = y     ;   y = self.height - y   ;   m = ns * nt + ll    ;   n = nl * m
+        w = ww/nc  ;   h = hh/n              ;   d = int(y/h) - ll   ;   tlen = len(self.tabls)
         l = int(d/m)            ;  c = int(x/w) - nz         ;   t = d - (l * m)     ;      p = self.j()[P]
         text = self.tabls[self.cc].text if self.cc < tlen else ''
         if dbg: self.log(f'BGN {x=} {y=:4} {w=:6.2f} {h=:6.2f}', pos=1)
@@ -2054,8 +2082,6 @@ class Tabs(pyglet.window.Window):
     def setTC(t, fgc, bgc=None): cm = {'color': fgc}  ;  cm |= {'background_color': bgc} if bgc else None  ;  d = t.document  ;  d.set_style(0, len(d.text), cm)
     ####################################################################################################################################################################################################
     def selectTabs(self, how, m=0, cn=None, dbg=1, dbg2=1):
-#        if cn is None:      cc = self.cc   ;      cn = self.cc2cn(cc)
-#        else:               cc = self.cn2cc(cn)
         cc         = self.cursorCol()  ;  old = cn
         p, l, c, t = self.cc2plct(cc)
         if cn is None:      cn = self.cc2cn(cc) # self.plc2cn_(p, l, c)
