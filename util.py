@@ -2,12 +2,9 @@
 import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
-# B               = ' '
 MIN_IVAL_LEN    = 1
 MAX_STACK_DEPTH = 0
 MAX_STACK_FRAME = inspect.stack()
-FMTN            = (1, 2, 2, 2, 3, 1)    # p, l, s, c, t remove?
-FMTN2           = (1, 1, 2, 2, 2, 2, 2) # generalize for any # of strings
 M12             = { 10:'a', 11:'b' }
 INTERVALS       = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
 INTERVAL_RANK   = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
@@ -89,10 +86,8 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
 #        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
         fp = pathlib.Path(sf.f_code.co_filename)
         msg = f'{sf.f_lineno:4} {fp.stem} {sf.f_code.co_name:18} ' + msg
-    if so:
-        if file is None or file.closed: print(f'{msg}', flush=flush, sep=sep, end=end, file=None)
-    if so==2 or not so:                 print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
-    if flush: os.fsync(file) if file is not None and not file.closed else None  ;  os.fsync(sys.stdout) if so else None
+    print(f'{msg}', flush=flush, sep=sep, end=end, file=None if file is None or file.closed else file)
+    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
 ########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1, file=None):
     if dbg: slog(f'{baseName =:12} {basePath = }', file=file)

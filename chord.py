@@ -6,6 +6,8 @@ from collections import OrderedDict as cOd
 import util
 #from util import Strings as us
 
+FMTN           = (1, 1, 2, 2, 2, 2, 2)
+
 class Chord(object):
     MIN_CHORD_LEN = 3
     def __init__(self, file, sobj):
@@ -145,7 +147,7 @@ class Chord(object):
         nmap = cOd(sorted(dict(zip(ivals, notes)).items()))
         ivals2, notes2 = list(nmap.keys()), list(nmap.values())
         self.log(f'{why}{rank:2} {name:12} {"".join(chunks):12} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {"".join(ikeys2):12} {"".join(f"{i:x}" for i in ivals2):6} {"".join(notes2):12}', pfx=0)
-#        self.log(f'{why}{rank:2} {name:12} {util.fmtl(chunks, w=2):19} {util.fmtl(sorted(ikeys, key=lambda t: INTERVAL_RANK[t]), w=tabs.FMTN2):18} {util.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', pfx=0)
+#        self.log(f'{why}{rank:2} {name:12} {util.fmtl(chunks, w=2):19} {util.fmtl(sorted(ikeys, key=lambda t: INTERVAL_RANK[t]), w=FMTN):18} {util.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', pfx=0)
     ####################################################################################################################################################################################################
     def rotateMLimap(self, cn):
         a = self.mlimap[cn]
@@ -924,6 +926,6 @@ class Chord(object):
                 self.log(f'{i+1:3} {util.fmtl(v, z="x")}', pfx=0, end='  ')
                 for j, u in enumerate(catmap2[v]):
                     for h, w in enumerate(u):
-                        if j:        self.log(f'{"" if h else "  "}{util.fmtl(w, w=util.FMTN2)}', pfx=0, end='')
+                        if j:        self.log(f'{"" if h else "  "}{util.fmtl(w, w=FMTN)}', pfx=0, end='')
                         elif w != v: self.log(f'{                   util.fmtl(w,        z="x")}', pfx=0, end='')
                 self.log(pfx=0)
