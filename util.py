@@ -233,6 +233,45 @@ class Strings(object):
     def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
     def tab2fn(self, tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  self.log(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
 
+class KeySig(object):
+    NSHRPS = {'C' :0, 'G' :1, 'D' :2, 'A' :3, 'E' :4, 'B' :5, 'F#':6, 'C#':7}
+    NFLATS = {'C' :0, 'F' :1, 'Bb':2, 'Eb':3, 'Ab':4, 'Db':5, 'Gb':6, 'Cb':7}
+    KG  = ['G' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F#']  ;  NbG  = 0  ;  NsG  = 1  ;  sG  = ['F#']                                      ;  bG  = []
+    KD  = ['D' , 'E' , 'F#', 'G' , 'A' , 'B' , 'C#']  ;  NbD  = 0  ;  NsD  = 2  ;  sD  = ['F#', 'C#']                                ;  bD  = []
+    KA  = ['A' , 'B' , 'C#', 'D' , 'E' , 'F#', 'G#']  ;  NbA  = 0  ;  NsA  = 3  ;  sA  = ['F#', 'C#', 'G#']                          ;  bA  = []
+    KE  = ['E' , 'F#', 'G#', 'A' , 'B' , 'C#', 'D#']  ;  NbE  = 0  ;  NsE  = 4  ;  sE  = ['F#', 'C#', 'G#', 'D#']                    ;  bE  = []
+    KB  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  NbB  = 0  ;  NsB  = 5  ;  sB  = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  bB  = []
+    KFs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  NbFs = 0  ;  NsFs = 6  ;  sFs = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  bFs = []
+    KCs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  NbCs = 0  ;  NsCs = 7  ;  sCs = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  bCs = []
+    KC  = ['C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' ]  ;  NbC  = 0  ;  NsC  = 0  ;  sC  = []                                          ;  bC  = []
+    KCb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  NbCb = 7  ;  NsCb = 0  ;  bCb = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  sCb = []
+    KGb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  NbGb = 6  ;  NsGb = 0  ;  bGb = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  sGb = []
+    KDb = ['Db', 'Eb', 'F' , 'Gb', 'Ab', 'Bb', 'C' ]  ;  NbDb = 5  ;  NsDb = 0  ;  bDb = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  sDb = []
+    KAb = ['Ab', 'Bb', 'C' , 'Db', 'Eb', 'F' , 'G' ]  ;  NbAb = 4  ;  NsAb = 0  ;  bAb = ['Bb', 'Eb', 'Ab', 'Db']                    ;  sAb = []
+    KEb = ['Eb', 'F' , 'G' , 'Ab', 'Bb', 'C' , 'D' ]  ;  NbEb = 3  ;  NsEb = 0  ;  bEb = ['Bb', 'Eb', 'Ab']                          ;  sEb = []
+    KBb = ['Bb', 'C' , 'D' , 'Eb', 'F' , 'G' , 'A' ]  ;  NbBb = 2  ;  NsBb = 0  ;  bBb = ['Bb', 'Eb']                                ;  sBb = []
+    KF  = ['F' , 'G' , 'A' , 'Bb', 'C' , 'D' , 'E' ]  ;  NbF  = 1  ;  NsF  = 0  ;  bF  = ['Bb']                                      ;  sF  = []
+
+    def __init__(self, k=None, f=0, s=0):
+        self.name   = k
+        self.nflats = f
+        self.nshrps = s
+        if   k is None and f==0 and s==0:           self.name, self.nflats, self.nshrps = 'C',  0, 0
+        elif k=='C'  or (f==0 and s==0):            self.name, self.nflats, self.nshrps = 'C',  0, 1
+        elif k=='G'  or (f==0 and s==1):            self.name, self.nflats, self.nshrps = 'G',  0, 1
+        elif k=='D'  or (f==0 and s==2):            self.name, self.nflats, self.nshrps = 'D',  0, 2
+        elif k=='A'  or (f==0 and s==3):            self.name, self.nflats, self.nshrps = 'A',  0, 3
+        elif k=='E'  or (f==0 and s==4):            self.name, self.nflats, self.nshrps = 'E',  0, 4
+        elif k=='B'  or (f==0 and s==5):            self.name, self.nflats, self.nshrps = 'B',  0, 5
+        elif k=='F#' or (f==0 and s==6):            self.name, self.nflats, self.nshrps = 'F#', 0, 6
+        elif k=='C#' or (f==0 and s==7):            self.name, self.nflats, self.nshrps = 'C#', 0, 7
+        elif k=='Cb' or (f==7 and s==0):            self.name, self.nflats, self.nshrps = 'Cb', 7, 0
+        elif k=='Gb' or (f==6 and s==0):            self.name, self.nflats, self.nshrps = 'Gb', 6, 0
+        elif k=='Db' or (f==5 and s==0):            self.name, self.nflats, self.nshrps = 'Db', 5, 0
+        elif k=='Ab' or (f==4 and s==0):            self.name, self.nflats, self.nshrps = 'Ab', 4, 0
+        elif k=='Eb' or (f==3 and s==0):            self.name, self.nflats, self.nshrps = 'Eb', 3, 0
+        elif k=='Bb' or (f==2 and s==0):            self.name, self.nflats, self.nshrps = 'Bb', 2, 0
+        elif k=='F'  or (f==1 and s==0):            self.name, self.nflats, self.nshrps = 'F',  1, 0
 ########################################################################################################################################################################################################
 class Test:
     def __init__(self, a, file=None): self._a = a  ;  slog(f'<Test_init_:     _a={self._a}>', pfx=1, file=file)

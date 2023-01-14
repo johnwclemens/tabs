@@ -1122,23 +1122,6 @@ class Tabs(pyglet.window.Window):
         pt = self.splitV(pt, n, dbg=dbg2)
         return pt
     ####################################################################################################################################################################################################
-    def saveJs(self):
-        self.j1s.append([ self.J1[j]                          for j in range(len(self.J1)) ])
-        self.j2s.append([ self.J2[j] - 1 if self.J2[j] else 0 for j in range(len(self.J2)) ])
-        self.dumpJJs()
-
-    def dumpJJs(self):
-        self.dumpHdrs()
-        lJ1, lJ2, lj1, lj2 = len(self.J1), len(self.J2), len(self.j1s), len(self.j2s)
-        pi = self.i[P]
-        self.log(f'{pi=}   {lJ1=} {self.fmtJ1(d=1)}')   ;   self.log(f'{pi=}   {lJ2=} {self.fmtJ2(d=1)}')
-        j1s, j2s = f'{B*3}', f'{B*3}'   ;   j1s += f'{lj1=:2} '   ;   j2s += f'{lj2=:2} '
-        for i in range(len(self.j1s)):
-            j1s += f'{i=} {util.fmtl(self.j1s[i], w=JFMT)}'  ;  j1s += f'\n{B*40}' if i < len(self.j1s)-1 else ''
-            j2s += f'{i=} {util.fmtl(self.j2s[i], w=JFMT)}'  ;  j2s += f'\n{B*40}' if i < len(self.j2s)-1 else ''
-        self.log(f'{j1s}')   ;   self.log(f'{j2s}')
-        self.dumpHdrs()
-    ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
         self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2
         self.dumpTniksPfx(why)    ;    view = None #  ;    j = self.j()  ;  p = 0  ;  v = 0
@@ -1265,8 +1248,8 @@ class Tabs(pyglet.window.Window):
         return tnik
     def p2Js(self, p): np, nl, ns, nc, nt = self.n  ;  l, s, c, t = p*nl, p*nl, p*nl*nc, p*nl*nc*nt  ;  j1 = [p%np,l%nl,s%ns,c%nc,t%nt,t%nt,t%nt,t%nt,0,0,0,0,0,0,0,0,0]  ;  j2 = [p, l, s, c, t, t, t, t, 0,0,0,0,0,0,0,0,0]  ;  self.log(f'{util.fmtl(j1)=} {util.fmtl(j2)=}')  ;  return j1, j2
     ####################################################################################################################################################################################################
-    def toggleVisible(self, p=None, dbg=1):
-        why = 'TVis'   ;   np, nl, ns, nc, nt = self.n   ;   i = 0   ;   text = None
+    def toggleVisible(self, why=None, p=None, dbg=1):
+        why = 'TVis' if why is None else why   ;   np, nl, ns, nc, nt = self.n   ;   i = 0   ;   text = None
         lines, sects, colms, tabs = self.lines, self.sects, self.colms, self.tabls
         pid = f' {id(self.pages[p]):11x}' if self.TIDS else ''
         self.dumpTniksPfx(why)
@@ -1295,48 +1278,6 @@ class Tabs(pyglet.window.Window):
             if dbg:                   self.log(f'{"".join(vl)}', pfx=0)
         self.dumpTniksSfx(why)
         self.log(f'END {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1274 tabsC toggleVisible      BGN TVis p=0  pages[0].v=1 i=[1 1 1 1 1] n=[3 2 3 10 6] [1    ]
-# 1296 tabsC toggleVisible      J1[1  2  3  10    6    6    0    6  0   0 0 0  0  0  0  0  429 429] TVis
-# 1296 tabsC toggleVisible      J2[1  2  6  60  120  120    0  120  0   0 0 0  0  0  0  0  429 429] TVis
-# 1297 tabsC toggleVisible      END TVis p=0  pages[0].v=0 i=[1 1 1 1 1] n=[3 2 3 10 6] [     ]
-# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1274 tabsC toggleVisible      BGN TVis p=1  pages[1].v=0 i=[2 1 1 1 1] n=[3 2 3 10 6] [     ]
-# 1296 tabsC toggleVisible      J1[2  2  3  10    6    6    1    6  0   0 0 0  0  0  0  0  429 429] TVis
-# 1296 tabsC toggleVisible      J2[2  4  8  80  240  240  120  240  0   0 0 0  0  0  0  0  429 429] TVis
-# 1297 tabsC toggleVisible      END TVis p=1  pages[1].v=1 i=[2 1 1 1 1] n=[3 2 3 10 6] [  2  ]
-# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1274 tabsC toggleVisible      BGN TVis p=1  pages[1].v=1 i=[2 1 1 1 1] n=[3 2 3 10 6] [  2  ]
-# 1296 tabsC toggleVisible      J1[2  2  3  10    6    6    1    6  0   0 0 0  0  0  0  0  429 429] TVis
-# 1296 tabsC toggleVisible      J2[2  4  8  80  240  240  120  240  0   0 0 0  0  0  0  0  429 429] TVis
-# 1297 tabsC toggleVisible      END TVis p=1  pages[1].v=0 i=[2 1 1 1 1] n=[3 2 3 10 6] [     ]
-# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1274 tabsC toggleVisible      BGN TVis p=2  pages[2].v=0 i=[3 1 1 1 1] n=[3 2 3 10 6] [     ]
-# 1296 tabsC toggleVisible      J1[3  2  3  10    6    6    1    6  0   0 0 0  0  0  0  0  429 429] TVis
-# 1296 tabsC toggleVisible      J2[3  6 10 100  360  360  240  360  0   0 0 0  0  0  0  0  429 429] TVis
-# 1297 tabsC toggleVisible      END TVis p=2  pages[2].v=1 i=[3 1 1 1 1] n=[3 2 3 10 6] [    3]
-# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1274 tabsC toggleVisible      BGN TVis p=2  pages[2].v=1 i=[3 1 1 1 1] n=[3 2 3 10 6] [    3]
-# 1296 tabsC toggleVisible      J1[3  2  3  10    6    6    1    6  0   0 0 0  0  0  0  0  429 429] TVis
-# 1296 tabsC toggleVisible      J2[3  6 10 100  360  360  240  360  0   0 0 0  0  0  0  0  429 429] TVis
-# 1297 tabsC toggleVisible      END TVis p=2  pages[2].v=0 i=[3 1 1 1 1] n=[3 2 3 10 6] [     ]
-# 1272 tabsC toggleVisible      J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1272 tabsC toggleVisible      J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] TVis
-# 1274 tabsC toggleVisible      BGN TVis p=0  pages[0].v=0 i=[1 1 1 1 1] n=[3 2 3 10 6] [     ]
-# 1296 tabsC toggleVisible      J1[1  2  3  10    6    6    0    6  0   0 0 0  0  0  0  0  429 429] TVis
-# 1296 tabsC toggleVisible      J2[1  2  6  60  120  120    0  120  0   0 0 0  0  0  0  0  429 429] TVis
-# 1297 tabsC toggleVisible      END TVis p=0  pages[0].v=1 i=[1 1 1 1 1] n=[3 2 3 10 6] [1    ]
-# 1266 tabsC p2Js               .fmtl(j1)=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
-# 1266 tabsC p2Js               .fmtl(j1)=[1 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[1 2 2 20 120 120 120 120 0 0 0 0 0 0 0 0 0]
-# 1266 tabsC p2Js               .fmtl(j1)=[1 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[1 2 2 20 120 120 120 120 0 0 0 0 0 0 0 0 0]
-# 1266 tabsC p2Js               .fmtl(j1)=[2 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[2 4 4 40 240 240 240 240 0 0 0 0 0 0 0 0 0]
-# 1266 tabsC p2Js               .fmtl(j1)=[2 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[2 4 4 40 240 240 240 240 0 0 0 0 0 0 0 0 0]
-# 1266 tabsC p2Js               .fmtl(j1)=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] .fmtl(j2)=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
     ####################################################################################################################################################################################################
     def dumpTniksPfx(self, why='', h=1, r=1):
         if r:        self.resetJ(why)   ;   self.clearVisib()
@@ -2132,22 +2073,23 @@ class Tabs(pyglet.window.Window):
         self.resyncData = 1
 
     def pasteTabs(self, how, kk=0, dbg=1):
-        cc = self.cursorCol()        ;  nt = self.n[T]
-        ntc = self.normalizeCC(cc)   ;  kt = 0
+        cc = self.cursorCol()       ;   nt = self.n[T]
+        cn = self.normalizeCC(cc)   ;   kt = 0
         p, l, s, c, t = self.j()
-        self.dumpSmap(f'BGN {how} {kk=} {cc=} {ntc=} cn={self.cc2cn(cc)} plct={self.fplct(p, l, c, t)}')
+        self.dumpSmap(f'BGN {how} {kk=} {cc=} {cn=}={self.cc2cn(cc)} plct={self.fplct(p, l, c, t)}')
         for i, (k, text) in enumerate(self.smap.items()):
-            if not i: dk = 0
-            elif kk:  dk = i * nt
-            else:     dk = (list(self.smap.keys())[i] - list(self.smap.keys())[0]) * nt
-            if dbg: self.log(f'{i=} {k=} {text=} {kk=} {dk=}')
+            if not i:   dk = 0
+            elif kk:    dk = i * nt
+            else:       dk = (list(self.smap.keys())[i] - list(self.smap.keys())[0]) * nt
+            if dbg:     self.log(f'{i=} {k=} {text=} {kk=} {dk=}')
             for n in range(nt):
-                kt = (ntc + dk + n) % self.tpp
+                kt         = (cn + dk + n) % self.tpp
                 p, l, c, t = self.cc2plct(kt)
                 self.setDTNIK(text[n], kt, p, l, c, n, kk=1 if n==nt-1 else 0)
-            if dbg: self.log(f'smap[{k}]={text=} {kt=} {kk=} {dk=}')
-        self.dumpSmap(f'END {how} {kk=} {cc=} {ntc=} cn={self.cc2cn(cc)} plct={self.fplct(p, l, c, t)}')
-        if self.SNAPS: self.regSnap(f'{how}', 'PAST')
+            if dbg:     self.log(f'{i=} {k=} {text=} {kk=} {dk=} {kt=}')
+        self.log(f'clearing {len(self.smap)=}')   ;   self.smap.clear()
+        self.dumpSmap(f'END {how} {kk=} {cc=} {cn=}={self.cc2cn(cc)} plct={self.fplct(p, l, c, t)}')
+        if self.SNAPS:  self.regSnap(f'{how}', 'PAST')
         self.resyncData = 1
     ####################################################################################################################################################################################################
     def swapCols(self, how):
@@ -2340,14 +2282,14 @@ class Tabs(pyglet.window.Window):
         assert imi == limap[imi][-1], f'{imi=} {limap[imi][-1]=}'
     ####################################################################################################################################################################################################
     def togglePage(self, how, dp=1, dbg=1):
-        pA = self.j()[P]
-        self.toggleVisible(self.j()[P])
-        pB = self.j()[P]    ;   self.log(f'{pA=} {pB=}, {self.fmtJ1()}, {self.fmtJ2()}', pfx=0)
+        pA = self.j()[P] if dbg else None
+        self.toggleVisible(how, self.j()[P])
+        if dbg: pB = self.j()[P]    ;   self.log(f'{pA=} {pB=}, {self.fmtJ1()}, {self.fmtJ2()}', pfx=0)
         self.dumpVisible()  ;   self.dumpVisible2()
         self.i[P] = ((self.j()[P] + dp) % self.n[P]) + 1
-        pA = self.j()[P]
-        self.toggleVisible(self.j()[P])
-        pB = self.j()[P]    ;   self.log(f'{pA=} {pB=}, {self.fmtJ1()}, {self.fmtJ2()}', pfx=0)
+        if dbg: pA = self.j()[P]
+        self.toggleVisible(how, self.j()[P])
+        if dbg: pB = self.j()[P]    ;   self.log(f'{pA=} {pB=}, {self.fmtJ1()}, {self.fmtJ2()}', pfx=0)
         self.dumpVisible()  ;   self.dumpVisible2()
         if self.SNAPS and dbg:  self.regSnap(how, f'TPag{self.i[P]}')
         self.resizeTniks(dbg)
