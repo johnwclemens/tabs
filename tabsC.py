@@ -229,7 +229,7 @@ class Tabs(pyglet.window.Window):
         self.dumpAxy()  ;   self.dumpAXY()
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
-        if self.TEST:     self.test() # ;  exit()
+        if self.TEST:     self.test()  ;  self.test2()
     ####################################################################################################################################################################################################
     def _initWindowA(self, dbg=1):
         display      = pyglet.canvas.get_display()
@@ -271,8 +271,9 @@ class Tabs(pyglet.window.Window):
         self.log(f'{util.fmtl(self.llText)}')
     ####################################################################################################################################################################################################
     def test(self, j=10):
-        hdrA = '  cc [  tpb  tpp tpl tps tpc] [p l s  c t]'
-        hdrB = '  cn   cc [  tpb  tpp tpl tps tpc] [p l s  c t]'
+        self.log(f'{self.ntsl()=}')
+        hdrA = '      cc [  tpb  tpp tpl tps tpc] [p l s  c t]'
+        hdrB = ' cn   cc [  tpb  tpp tpl tps tpc] [p l s  c t]'
         hdrC = '  cc  cn [  tpb  tpp tpl tps tpc] [p l s  c t]'
         np, nl, ns, nc, nt = self.i #  ;   p, l, c = 0, 0, 0
         self.dumpTniksPfx(f'BGN {j=} test', r=0)
@@ -301,7 +302,32 @@ class Tabs(pyglet.window.Window):
 #        for i in range(len(self.tabls) * ns):
 #            self.plc2cn_(p, l, c, dbg=1)
         self.dumpTniksSfx(f'END {j=} test')
-        self.log(f'{self.ntsl()=}')
+    
+    def test2(self):
+        c  = util.KeySig(None, 0, 0)
+        a  = util.KeySig('A')
+        fs = util.KeySig('F#')
+        eb = util.KeySig('Eb')
+        self.test2Log(c)
+        self.test2Log(a)
+        self.test2Log(eb)
+        self.test2Log(fs)
+        ds = util.KeySig('D#')
+        self.test2Log(ds)
+        bs = util.KeySig('B#')
+        self.test2Log(bs)
+
+    def test2Log(self, k):
+        self.log(f'{k.__repr__()}')
+        self.log(f'{k.__str__()} {k.name=} {k.nflats=} {k.nshrps=}')
+        b = f' {k.NFLATS[k.name]} FLATS {k.FLATS[ k.name]}' if k.name in k.NFLATS and len(k.NFLATS) else ''
+        s = f' {k.NSHRPS[k.name]} SHRPS {k.SHRPS[ k.name]}' if k.name in k.NSHRPS and len(k.NSHRPS) else ''
+        self.log(f'{k.name}:{b}{s}')
+    def OLD__test2Log(self, k):
+        self.log(f'{k=} {k.name=} {k.nflats=} {k.nshrps=}')
+        b = f' {k.NFLATS[k.name]} FLATS {k.FLATS[ k.name]}' if k.name in k.NFLATS and len(k.NFLATS) else ''
+        s = f' {k.NSHRPS[k.name]} SHRPS {k.SHRPS[ k.name]}' if k.name in k.NSHRPS and len(k.NSHRPS) else ''
+        self.log(f'{k.name}:{b}{s}')
     ####################################################################################################################################################################################################
     def lenA(self):                   return [ len(_) for _ in self.A ]
     def lenB(self):                   return [ len(_) for _ in self.B ]
@@ -2445,11 +2471,11 @@ class Tabs(pyglet.window.Window):
         util.slog(msg, pfx, file, flush, sep, end, so)
     ####################################################################################################################################################################################################
     def quit(self, why='', error=1, save=1, dbg=1): #, dbg2=1):
-        hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)  ;  self.log(f'{hdr1}', pfx=0)   ;   self.log(f'{hdr0}', pfx=0)
-        self.log(util.QUIT_BGN, pfx=0)   ;   util.dumpStack(inspect.stack(), file=LOG_FILE)    ;   self.log(util.QUIT, pfx=0)
+        hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)  ;  self.log(f'{hdr1}', pfx=0, file=2)   ;   self.log(f'{hdr0}', pfx=0, file=2)
+        self.log(util.QUIT_BGN, pfx=0, file=2)   ;   util.dumpStack(inspect.stack())    ;   self.log(util.QUIT, pfx=0, file=2)
         self.dumpTniksSfx(why)
         if not error:      util.dumpStack(util.MAX_STACK_FRAME, file=LOG_FILE)
-        self.log(f'BGN {why} {error=} {save=}')           ;   self.log(util.QUIT, pfx=0)
+        self.log(f'BGN {why} {error=} {save=}', file=2)           ;   self.log(util.QUIT, pfx=0, file=2)
         self.dumpArgs()
         if not error:
             if dbg:  self.dumpStruct(why)
@@ -2457,7 +2483,7 @@ class Tabs(pyglet.window.Window):
             if dbg:  self.A_transposeData(dump=dbg) if self.TRANSPOSE_A else self.OLD_transposeData()
             if dbg:  self.cobj.dumpMlimap(why)
         if self.SNAPS:                self.snapshot(f'quit {error=} {save=}', 'QUIT')
-        self.log(f'END {why} {error=} {save=}')           ;   self.log(util.QUIT_END, pfx=0)
+        self.log(f'END {why} {error=} {save=}', file=2)           ;   self.log(util.QUIT_END, pfx=0, file=2)
         self.cleanupLog()
         self.close()
         pyglet.app.exit()
