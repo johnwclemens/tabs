@@ -92,7 +92,7 @@ class Tabs(pyglet.window.Window):
         self.k         = {}
         self.sAlias = 'GUITAR_6_STD'
         self.sobj = util.Strings(LOG_FILE, self.sAlias)
-        util.testKeySig(LOG_FILE)
+        util.KeySig.testKeySig(  LOG_FILE)
         self.cobj = chord.Chord( LOG_FILE, self.sobj)
         util.Note.setType(util.Note.FLAT)  ;  self.log(f'{util.Note.TYPE=}')
         self.log(f'Frequency Info')
@@ -303,86 +303,6 @@ class Tabs(pyglet.window.Window):
 #        for i in range(len(self.tabls) * ns):
 #            self.plc2cn_(p, l, c, dbg=1)
         self.dumpTniksSfx(f'END {j=} test')
-
-    @staticmethod
-    def test2():
-        util.KeySig(k='Cb', file=LOG_FILE, dbg=1)
-        util.KeySig(k='Gb', file=LOG_FILE, dbg=1)
-        util.KeySig(k='Db', file=LOG_FILE, dbg=1)
-        util.KeySig(k='Ab', file=LOG_FILE, dbg=1)
-        util.KeySig(k='Eb', file=LOG_FILE, dbg=1)
-        util.KeySig(k='Bb', file=LOG_FILE, dbg=1)
-        util.KeySig(k='F' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='C' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='G' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='D' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='A' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='E' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='B' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='F#', file=LOG_FILE, dbg=1)
-        util.KeySig(k='C#', file=LOG_FILE, dbg=1)
-        l = len(util.KeySig.NACDNS)//2
-        for n in range(l, -l-1, -1):
-            util.KeySig(n=n, file=LOG_FILE, dbg=1)
-        util.KeySig(k='C#', file=LOG_FILE, dbg=1)
-        util.KeySig(k='F#', file=LOG_FILE, dbg=1)
-        util.KeySig(k='B' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='E' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='A' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='D' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='G' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='C' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='F' , file=LOG_FILE, dbg=1)
-        util.KeySig(k='Bb', file=LOG_FILE, dbg=1)
-        util.KeySig(k='Eb', file=LOG_FILE, dbg=1)
-        util.KeySig(k='Ab', file=LOG_FILE, dbg=1)
-        util.KeySig(k='Db', file=LOG_FILE, dbg=1)
-        util.KeySig(k='Gb', file=LOG_FILE, dbg=1)
-        util.KeySig(k='Cb', file=LOG_FILE, dbg=1)
-        util.KeySig(k='C#', n=7,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='F#', n=6,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='B' , n=5,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='E' , n=4,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='A' , n=3,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='D' , n=2,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='G' , n=1,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='C' , n=0,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='F' , n=-1, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Bb', n=-2, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Eb', n=-3, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Ab', n=-4, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Db', n=-5, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Gb', n=-6, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Cb', n=-7, file=LOG_FILE, dbg=1)
-        l = len(util.KeySig.NACDNS)//2
-        for n in range(-l, l+1, 1):
-            util.KeySig(n=n, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Cb', n=-7, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Gb', n=-6, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Db', n=-5, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Ab', n=-4, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Eb', n=-3, file=LOG_FILE, dbg=1)
-        util.KeySig(k='Bb', n=-2, file=LOG_FILE, dbg=1)
-        util.KeySig(k='F' , n=-1, file=LOG_FILE, dbg=1)
-        util.KeySig(k='C' , n=0,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='G' , n=1,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='D' , n=2,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='A' , n=3,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='E' , n=4,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='B' , n=5,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='F#', n=6,  file=LOG_FILE, dbg=1)
-        util.KeySig(k='C#', n=7,  file=LOG_FILE, dbg=1)
-
-    def OLD__test2Log(self, k):
-        self.log(f'{k.__repr__()}')
-        self.log(f'{k.__str__()} {k.name=} {k.nflats=} {k.nshrps=}')
-        b = f' {k.NFLATS[k.name]} FLATS {k.FLATS[ k.name]}' if k.name in k.NFLATS and len(k.NFLATS) else ''
-        s = f' {k.NSHRPS[k.name]} SHRPS {k.SHRPS[ k.name]}' if k.name in k.NSHRPS and len(k.NSHRPS) else ''
-        self.log(f'{k.name}:{b}{s}')
-    def test2Log(self, k):
-        self.log(f'{repr(k)}')
-#        _ = f'{k.NACDNS[k.name]:2} {util.fmtl(k.ACDNS[k.name])}' if k.name in k.NACDNS else ''
-#        self.log(f'{k.name:2}:{_}')
     ####################################################################################################################################################################################################
     def lenA(self):                   return [ len(_) for _ in self.A ]
     def lenB(self):                   return [ len(_) for _ in self.B ]

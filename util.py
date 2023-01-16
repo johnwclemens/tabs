@@ -103,75 +103,6 @@ def copyFile(src, trg, file=None):
     slog(f'### {cmd} ###', file=file, so=so)
     os.system(f'{cmd}')
 ########################################################################################################################################################################################################
-def testKeySig(file):
-    KeySig(k='Cb', file=file, dbg=1)
-    KeySig(k='Gb', file=file, dbg=1)
-    KeySig(k='Db', file=file, dbg=1)
-    KeySig(k='Ab', file=file, dbg=1)
-    KeySig(k='Eb', file=file, dbg=1)
-    KeySig(k='Bb', file=file, dbg=1)
-    KeySig(k='F' , file=file, dbg=1)
-    KeySig(k='C' , file=file, dbg=1)
-    KeySig(k='G' , file=file, dbg=1)
-    KeySig(k='D' , file=file, dbg=1)
-    KeySig(k='A' , file=file, dbg=1)
-    KeySig(k='E' , file=file, dbg=1)
-    KeySig(k='B' , file=file, dbg=1)
-    KeySig(k='F#', file=file, dbg=1)
-    KeySig(k='C#', file=file, dbg=1)
-    l = len(KeySig.NACDNS) // 2
-    for n in range(l, -l - 1, -1):
-        KeySig(n=n, file=file, dbg=1)
-    KeySig(k='C#', file=file, dbg=1)
-    KeySig(k='F#', file=file, dbg=1)
-    KeySig(k='B' , file=file, dbg=1)
-    KeySig(k='E' , file=file, dbg=1)
-    KeySig(k='A' , file=file, dbg=1)
-    KeySig(k='D' , file=file, dbg=1)
-    KeySig(k='G' , file=file, dbg=1)
-    KeySig(k='C' , file=file, dbg=1)
-    KeySig(k='F' , file=file, dbg=1)
-    KeySig(k='Bb', file=file, dbg=1)
-    KeySig(k='Eb', file=file, dbg=1)
-    KeySig(k='Ab', file=file, dbg=1)
-    KeySig(k='Db', file=file, dbg=1)
-    KeySig(k='Gb', file=file, dbg=1)
-    KeySig(k='Cb', file=file, dbg=1)
-    KeySig(k='C#', n=7,  file=file, dbg=1)
-    KeySig(k='F#', n=6,  file=file, dbg=1)
-    KeySig(k='B' , n=5,  file=file, dbg=1)
-    KeySig(k='E' , n=4,  file=file, dbg=1)
-    KeySig(k='A' , n=3,  file=file, dbg=1)
-    KeySig(k='D' , n=2,  file=file, dbg=1)
-    KeySig(k='G' , n=1,  file=file, dbg=1)
-    KeySig(k='C' , n=0,  file=file, dbg=1)
-    KeySig(k='F' , n=-1, file=file, dbg=1)
-    KeySig(k='Bb', n=-2, file=file, dbg=1)
-    KeySig(k='Eb', n=-3, file=file, dbg=1)
-    KeySig(k='Ab', n=-4, file=file, dbg=1)
-    KeySig(k='Db', n=-5, file=file, dbg=1)
-    KeySig(k='Gb', n=-6, file=file, dbg=1)
-    KeySig(k='Cb', n=-7, file=file, dbg=1)
-    l = len(KeySig.NACDNS)//2
-    for n in range(-l, l+1, 1):
-        KeySig(n=n, file=file, dbg=1)
-    KeySig(k='Cb', n=-7, file=file, dbg=1)
-    KeySig(k='Gb', n=-6, file=file, dbg=1)
-    KeySig(k='Db', n=-5, file=file, dbg=1)
-    KeySig(k='Ab', n=-4, file=file, dbg=1)
-    KeySig(k='Eb', n=-3, file=file, dbg=1)
-    KeySig(k='Bb', n=-2, file=file, dbg=1)
-    KeySig(k='F' , n=-1, file=file, dbg=1)
-    KeySig(k='C' , n=0,  file=file, dbg=1)
-    KeySig(k='G' , n=1,  file=file, dbg=1)
-    KeySig(k='D' , n=2,  file=file, dbg=1)
-    KeySig(k='A' , n=3,  file=file, dbg=1)
-    KeySig(k='E' , n=4,  file=file, dbg=1)
-    KeySig(k='B' , n=5,  file=file, dbg=1)
-    KeySig(k='F#', n=6,  file=file, dbg=1)
-    KeySig(k='C#', n=7,  file=file, dbg=1)
-
-########################################################################################################################################################################################################
 def parseCmdLine(file=None, dbg=1):
     options = dict()
     key = ''
@@ -329,7 +260,7 @@ class KeySig(object):
     def __repr__(self):
         _ = f'{self.NACDNS[self.name]:2} {fmtl(self.ACDNS[self.name])}' if self.name in self.ACDNS and self.name in self.NACDNS else ''
         return f'{self.name:2} {id(self):X} {_}'
-    def __init__(self, k=None, n=None, file=None, dbg=1):
+    def __init__(self, k=None, n=None, file=None): #, dbg=0):
         self.file   = file
         self.name   = k
         self.nacdns = n
@@ -351,11 +282,105 @@ class KeySig(object):
         elif k=='Gb' or n==-6: self.name, self.nacdns = 'Gb', -6
         elif k=='Cb' or n==-7: self.name, self.nacdns = 'Cb', -7
         else:   self.log(f'{k=} {n=} ERROR')
-        if dbg: self.log(f'{repr(self)}')
+#        if dbg: self.log(f'{repr(self)}')
 
     def log(self, msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
         if file is None: file=self.file
         slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
+
+########################################################################################################################################################################################################
+    @staticmethod
+    def testKeySig(file):
+        KeySig.testKeySig_1(file)
+        KeySig.testKeySig_2(file)
+        KeySig.testKeySig_3(file)
+        KeySig.testKeySig_4(file)
+        KeySig.testKeySig_5(file)
+        KeySig.testKeySig_6(file)
+
+    @staticmethod
+    def testKeySig_1(file):
+        slog(f'{KeySig(k="Cb")}', file=file)
+        slog(f"{KeySig(k='Gb')}", file=file)
+        slog(f"{KeySig(k='Db')}", file=file)
+        slog(f"{KeySig(k='Ab')}", file=file)
+        slog(f"{KeySig(k='Eb')}", file=file)
+        slog(f"{KeySig(k='Bb')}", file=file)
+        slog(f"{KeySig(k='F')}" , file=file)
+        slog(f"{KeySig(k='C')}" , file=file)
+        slog(f"{KeySig(k='G')}" , file=file)
+        slog(f"{KeySig(k='D')}" , file=file)
+        slog(f"{KeySig(k='A')}" , file=file)
+        slog(f"{KeySig(k='E')}" , file=file)
+        slog(f"{KeySig(k='B')}" , file=file)
+        slog(f"{KeySig(k='F#')}", file=file)
+        slog(f"{KeySig(k='C#')}", file=file)
+
+    @staticmethod
+    def testKeySig_2(file):
+        l = len(KeySig.NACDNS) // 2
+        for n in range(l, -l - 1, -1):
+            slog(f'{KeySig(n=n)}', file=file)
+
+    @staticmethod
+    def testKeySig_3(file):
+        slog(f"{KeySig(k='C#')}", file=file)
+        slog(f"{KeySig(k='F#')}", file=file)
+        slog(f"{KeySig(k='B')}" , file=file)
+        slog(f"{KeySig(k='E')}" , file=file)
+        slog(f"{KeySig(k='A')}" , file=file)
+        slog(f"{KeySig(k='D')}" , file=file)
+        slog(f"{KeySig(k='G')}" , file=file)
+        slog(f"{KeySig(k='C')}" , file=file)
+        slog(f"{KeySig(k='F')}" , file=file)
+        slog(f"{KeySig(k='Bb')}", file=file)
+        slog(f"{KeySig(k='Eb')}", file=file)
+        slog(f"{KeySig(k='Ab')}", file=file)
+        slog(f"{KeySig(k='Db')}", file=file)
+        slog(f"{KeySig(k='Gb')}", file=file)
+        slog(f"{KeySig(k='Cb')}", file=file)
+
+    @staticmethod
+    def testKeySig_4(file):
+        slog(f"{KeySig(k='C#', n=7)}",  file=file)
+        slog(f"{KeySig(k='F#', n=6)}",  file=file)
+        slog(f"{KeySig(k='B',  n=5)}",  file=file)
+        slog(f"{KeySig(k='E' , n=4)}",  file=file)
+        slog(f"{KeySig(k='A' , n=3)}",  file=file)
+        slog(f"{KeySig(k='D' , n=2)}",  file=file)
+        slog(f"{KeySig(k='G' , n=1)}",  file=file)
+        slog(f"{KeySig(k='C' , n=0)}",  file=file)
+        slog(f"{KeySig(k='F' , n=-1)}", file=file)
+        slog(f"{KeySig(k='Bb', n=-2)}", file=file)
+        slog(f"{KeySig(k='Eb', n=-3)}", file=file)
+        slog(f"{KeySig(k='Ab', n=-4)}", file=file)
+        slog(f"{KeySig(k='Db', n=-5)}", file=file)
+        slog(f"{KeySig(k='Gb', n=-6)}", file=file)
+        slog(f"{KeySig(k='Cb', n=-7)}", file=file)
+
+    @staticmethod
+    def testKeySig_5(file):
+        l = len(KeySig.NACDNS)//2
+        for n in range(-l, l+1, 1):
+            slog(f'{KeySig(n=n)}', file=file)
+
+    @staticmethod
+    def testKeySig_6(file):
+        slog(f"{KeySig(k='Cb', n=-7)}", file=file)
+        slog(f"{KeySig(k='Gb', n=-6)}", file=file)
+        slog(f"{KeySig(k='Db', n=-5)}", file=file)
+        slog(f"{KeySig(k='Ab', n=-4)}", file=file)
+        slog(f"{KeySig(k='Eb', n=-3)}", file=file)
+        slog(f"{KeySig(k='Bb', n=-2)}", file=file)
+        slog(f"{KeySig(k='F' , n=-1)}", file=file)
+        slog(f"{KeySig(k='C' , n=0)}",  file=file)
+        slog(f"{KeySig(k='G' , n=1)}",  file=file)
+        slog(f"{KeySig(k='D' , n=2)}",  file=file)
+        slog(f"{KeySig(k='A' , n=3)}",  file=file)
+        slog(f"{KeySig(k='E' , n=4)}",  file=file)
+        slog(f"{KeySig(k='B' , n=5)}",  file=file)
+        slog(f"{KeySig(k='F#', n=6)}",  file=file)
+        slog(f"{KeySig(k='C#', n=7)}",  file=file)
 
 ########################################################################################################################################################################################################
 class Test:
