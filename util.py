@@ -85,7 +85,7 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
         msg = msg.replace("'", '')
 #        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
         fp = pathlib.Path(sf.f_code.co_filename)
-        msg = f'{sf.f_lineno:4} {fp.stem} {sf.f_code.co_name:18} ' + msg
+        msg = f'{sf.f_lineno:4} {fp.stem:5} {sf.f_code.co_name:18} ' + msg
     print(f'{msg}', flush=flush, sep=sep, end=end, file=None if file is None or file.closed else file)
     print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
 ########################################################################################################################################################################################################
@@ -102,6 +102,75 @@ def copyFile(src, trg, file=None):
     cmd = f'copy {src} {trg}'
     slog(f'### {cmd} ###', file=file, so=so)
     os.system(f'{cmd}')
+########################################################################################################################################################################################################
+def testKeySig(file):
+    KeySig(k='Cb', file=file, dbg=1)
+    KeySig(k='Gb', file=file, dbg=1)
+    KeySig(k='Db', file=file, dbg=1)
+    KeySig(k='Ab', file=file, dbg=1)
+    KeySig(k='Eb', file=file, dbg=1)
+    KeySig(k='Bb', file=file, dbg=1)
+    KeySig(k='F' , file=file, dbg=1)
+    KeySig(k='C' , file=file, dbg=1)
+    KeySig(k='G' , file=file, dbg=1)
+    KeySig(k='D' , file=file, dbg=1)
+    KeySig(k='A' , file=file, dbg=1)
+    KeySig(k='E' , file=file, dbg=1)
+    KeySig(k='B' , file=file, dbg=1)
+    KeySig(k='F#', file=file, dbg=1)
+    KeySig(k='C#', file=file, dbg=1)
+    l = len(KeySig.NACDNS) // 2
+    for n in range(l, -l - 1, -1):
+        KeySig(n=n, file=file, dbg=1)
+    KeySig(k='C#', file=file, dbg=1)
+    KeySig(k='F#', file=file, dbg=1)
+    KeySig(k='B' , file=file, dbg=1)
+    KeySig(k='E' , file=file, dbg=1)
+    KeySig(k='A' , file=file, dbg=1)
+    KeySig(k='D' , file=file, dbg=1)
+    KeySig(k='G' , file=file, dbg=1)
+    KeySig(k='C' , file=file, dbg=1)
+    KeySig(k='F' , file=file, dbg=1)
+    KeySig(k='Bb', file=file, dbg=1)
+    KeySig(k='Eb', file=file, dbg=1)
+    KeySig(k='Ab', file=file, dbg=1)
+    KeySig(k='Db', file=file, dbg=1)
+    KeySig(k='Gb', file=file, dbg=1)
+    KeySig(k='Cb', file=file, dbg=1)
+    KeySig(k='C#', n=7,  file=file, dbg=1)
+    KeySig(k='F#', n=6,  file=file, dbg=1)
+    KeySig(k='B' , n=5,  file=file, dbg=1)
+    KeySig(k='E' , n=4,  file=file, dbg=1)
+    KeySig(k='A' , n=3,  file=file, dbg=1)
+    KeySig(k='D' , n=2,  file=file, dbg=1)
+    KeySig(k='G' , n=1,  file=file, dbg=1)
+    KeySig(k='C' , n=0,  file=file, dbg=1)
+    KeySig(k='F' , n=-1, file=file, dbg=1)
+    KeySig(k='Bb', n=-2, file=file, dbg=1)
+    KeySig(k='Eb', n=-3, file=file, dbg=1)
+    KeySig(k='Ab', n=-4, file=file, dbg=1)
+    KeySig(k='Db', n=-5, file=file, dbg=1)
+    KeySig(k='Gb', n=-6, file=file, dbg=1)
+    KeySig(k='Cb', n=-7, file=file, dbg=1)
+    l = len(KeySig.NACDNS)//2
+    for n in range(-l, l+1, 1):
+        KeySig(n=n, file=file, dbg=1)
+    KeySig(k='Cb', n=-7, file=file, dbg=1)
+    KeySig(k='Gb', n=-6, file=file, dbg=1)
+    KeySig(k='Db', n=-5, file=file, dbg=1)
+    KeySig(k='Ab', n=-4, file=file, dbg=1)
+    KeySig(k='Eb', n=-3, file=file, dbg=1)
+    KeySig(k='Bb', n=-2, file=file, dbg=1)
+    KeySig(k='F' , n=-1, file=file, dbg=1)
+    KeySig(k='C' , n=0,  file=file, dbg=1)
+    KeySig(k='G' , n=1,  file=file, dbg=1)
+    KeySig(k='D' , n=2,  file=file, dbg=1)
+    KeySig(k='A' , n=3,  file=file, dbg=1)
+    KeySig(k='E' , n=4,  file=file, dbg=1)
+    KeySig(k='B' , n=5,  file=file, dbg=1)
+    KeySig(k='F#', n=6,  file=file, dbg=1)
+    KeySig(k='C#', n=7,  file=file, dbg=1)
+
 ########################################################################################################################################################################################################
 def parseCmdLine(file=None, dbg=1):
     options = dict()
@@ -234,73 +303,59 @@ class Strings(object):
     def tab2fn(self, tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  self.log(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
 
 ########################################################################################################################################################################################################
-class OLD__KeySig(object):
-    KCb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  NbCb = 7  ;  NsCb = 0  ;  bCb = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  sCb = []
-    KGb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  NbGb = 6  ;  NsGb = 0  ;  bGb = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  sGb = []
-    KDb = ['Db', 'Eb', 'F' , 'Gb', 'Ab', 'Bb', 'C' ]  ;  NbDb = 5  ;  NsDb = 0  ;  bDb = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  sDb = []
-    KAb = ['Ab', 'Bb', 'C' , 'Db', 'Eb', 'F' , 'G' ]  ;  NbAb = 4  ;  NsAb = 0  ;  bAb = ['Bb', 'Eb', 'Ab', 'Db']                    ;  sAb = []
-    KEb = ['Eb', 'F' , 'G' , 'Ab', 'Bb', 'C' , 'D' ]  ;  NbEb = 3  ;  NsEb = 0  ;  bEb = ['Bb', 'Eb', 'Ab']                          ;  sEb = []
-    KBb = ['Bb', 'C' , 'D' , 'Eb', 'F' , 'G' , 'A' ]  ;  NbBb = 2  ;  NsBb = 0  ;  bBb = ['Bb', 'Eb']                                ;  sBb = []
-    KF  = ['F' , 'G' , 'A' , 'Bb', 'C' , 'D' , 'E' ]  ;  NbF  = 1  ;  NsF  = 0  ;  bF  = ['Bb']                                      ;  sF  = []
-    KC  = ['C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' ]  ;  NbC  = 0  ;  NsC  = 0  ;  sC  = []                                          ;  bC  = []
-    KG  = ['G' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F#']  ;  NsG  = 1  ;  NbG  = 0  ;  sG  = ['F#']                                      ;  bG  = []
-    KD  = ['D' , 'E' , 'F#', 'G' , 'A' , 'B' , 'C#']  ;  NsD  = 2  ;  NbD  = 0  ;  sD  = ['F#', 'C#']                                ;  bD  = []
-    KA  = ['A' , 'B' , 'C#', 'D' , 'E' , 'F#', 'G#']  ;  NsA  = 3  ;  NbA  = 0  ;  sA  = ['F#', 'C#', 'G#']                          ;  bA  = []
-    KE  = ['E' , 'F#', 'G#', 'A' , 'B' , 'C#', 'D#']  ;  NsE  = 4  ;  NbE  = 0  ;  sE  = ['F#', 'C#', 'G#', 'D#']                    ;  bE  = []
-    KB  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  NsB  = 5  ;  NbB  = 0  ;  sB  = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  bB  = []
-    KFs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  NsFs = 6  ;  NbFs = 0  ;  sFs = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  bFs = []
-    KCs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  NsCs = 7  ;  NbCs = 0  ;  sCs = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  bCs = []
-
 class KeySig(object):
-    SHRPS  = dict()
-    FLATS  = dict()
-    NSHRPS = dict()
-    NFLATS = dict()
-    KCb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  FLATS['Cb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  NFLATS['Cb'] = len(FLATS['Cb'])  ;  SHRPS['Cb'] = []
-    KGb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  FLATS['Gb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  NFLATS['Gb'] = len(FLATS['Gb'])  ;  SHRPS['Gb'] = []
-    KDb = ['Db', 'Eb', 'F' , 'Gb', 'Ab', 'Bb', 'C' ]  ;  FLATS['Db'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  NFLATS['Db'] = len(FLATS['Db'])  ;  SHRPS['Db'] = []
-    KAb = ['Ab', 'Bb', 'C' , 'Db', 'Eb', 'F' , 'G' ]  ;  FLATS['Ab'] = ['Bb', 'Eb', 'Ab', 'Db']                    ;  NFLATS['Ab'] = len(FLATS['Ab'])  ;  SHRPS['Ab'] = []
-    KEb = ['Eb', 'F' , 'G' , 'Ab', 'Bb', 'C' , 'D' ]  ;  FLATS['Eb'] = ['Bb', 'Eb', 'Ab']                          ;  NFLATS['Eb'] = len(FLATS['Eb'])  ;  SHRPS['Eb'] = []
-    KBb = ['Bb', 'C' , 'D' , 'Eb', 'F' , 'G' , 'A' ]  ;  FLATS['Bb'] = ['Bb', 'Eb']                                ;  NFLATS['Bb'] = len(FLATS['Bb'])  ;  SHRPS['Bb'] = []
-    KF  = ['F' , 'G' , 'A' , 'Bb', 'C' , 'D' , 'E' ]  ;  FLATS['F']  = ['Bb']                                      ;  NFLATS['F']  = len(FLATS['F'] )  ;  SHRPS['F']  = []
-    KC  = ['C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' ]  ;  SHRPS['C'], FLATS['C'] = [], []  ;  NSHRPS['C'], NFLATS['C'] = len(FLATS['C'] ), len(SHRPS['C'])
-    KG  = ['G' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F#']  ;  SHRPS['G']  = ['F#']                                      ;  NSHRPS['G']  = len(SHRPS['G'] )  ;  FLATS['G']  = []
-    KD  = ['D' , 'E' , 'F#', 'G' , 'A' , 'B' , 'C#']  ;  SHRPS['D']  = ['F#', 'C#']                                ;  NSHRPS['D']  = len(SHRPS['D'] )  ;  FLATS['D']  = []
-    KA  = ['A' , 'B' , 'C#', 'D' , 'E' , 'F#', 'G#']  ;  SHRPS['A']  = ['F#', 'C#', 'G#']                          ;  NSHRPS['A']  = len(SHRPS['A'] )  ;  FLATS['A']  = []
-    KE  = ['E' , 'F#', 'G#', 'A' , 'B' , 'C#', 'D#']  ;  SHRPS['E']  = ['F#', 'C#', 'G#', 'D#']                    ;  NSHRPS['E']  = len(SHRPS['E'] )  ;  FLATS['E']  = []
-    KB  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  SHRPS['B']  = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  NSHRPS['B']  = len(SHRPS['B'] )  ;  FLATS['B']  = []
-    KFs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  SHRPS['F#'] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  NSHRPS['F#'] = len(SHRPS['F#'])  ;  FLATS['F#'] = []
-    KCs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  SHRPS['C#'] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  NSHRPS['C#'] = len(SHRPS['C#'])  ;  FLATS['C#'] = []
+    ACDNS  = dict()
+    NACDNS = dict()
+    KCb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  ACDNS['Cb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  NACDNS['Cb'] = -len(ACDNS['Cb'])
+    KGb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  ACDNS['Gb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  NACDNS['Gb'] = -len(ACDNS['Gb'])
+    KDb = ['Db', 'Eb', 'F' , 'Gb', 'Ab', 'Bb', 'C' ]  ;  ACDNS['Db'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  NACDNS['Db'] = -len(ACDNS['Db'])
+    KAb = ['Ab', 'Bb', 'C' , 'Db', 'Eb', 'F' , 'G' ]  ;  ACDNS['Ab'] = ['Bb', 'Eb', 'Ab', 'Db']                    ;  NACDNS['Ab'] = -len(ACDNS['Ab'])
+    KEb = ['Eb', 'F' , 'G' , 'Ab', 'Bb', 'C' , 'D' ]  ;  ACDNS['Eb'] = ['Bb', 'Eb', 'Ab']                          ;  NACDNS['Eb'] = -len(ACDNS['Eb'])
+    KBb = ['Bb', 'C' , 'D' , 'Eb', 'F' , 'G' , 'A' ]  ;  ACDNS['Bb'] = ['Bb', 'Eb']                                ;  NACDNS['Bb'] = -len(ACDNS['Bb'])
+    KF  = ['F' , 'G' , 'A' , 'Bb', 'C' , 'D' , 'E' ]  ;  ACDNS['F']  = ['Bb']                                      ;  NACDNS['F']  = -len(ACDNS['F'] )
+    KC  = ['C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' ]  ;  ACDNS['C']  = []                                          ;  NACDNS['C']  =  len(ACDNS['C'] )
+    KG  = ['G' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F#']  ;  ACDNS['G']  = ['F#']                                      ;  NACDNS['G']  =  len(ACDNS['G'] )
+    KD  = ['D' , 'E' , 'F#', 'G' , 'A' , 'B' , 'C#']  ;  ACDNS['D']  = ['F#', 'C#']                                ;  NACDNS['D']  =  len(ACDNS['D'] )
+    KA  = ['A' , 'B' , 'C#', 'D' , 'E' , 'F#', 'G#']  ;  ACDNS['A']  = ['F#', 'C#', 'G#']                          ;  NACDNS['A']  =  len(ACDNS['A'] )
+    KE  = ['E' , 'F#', 'G#', 'A' , 'B' , 'C#', 'D#']  ;  ACDNS['E']  = ['F#', 'C#', 'G#', 'D#']                    ;  NACDNS['E']  =  len(ACDNS['E'] )
+    KB  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  ACDNS['B']  = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  NACDNS['B']  =  len(ACDNS['B'] )
+    KFs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  ACDNS['F#'] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  NACDNS['F#'] =  len(ACDNS['F#'])
+    KCs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  ACDNS['C#'] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  NACDNS['C#'] =  len(ACDNS['C#'])
     ACDNT1 = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B' :'Cb'}
     ACDNT2 = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
-    def __str__(self):  return f'{self.name}'
+    def __str__(self):
+        _ = f'{self.NACDNS[self.name]:2} {fmtl(self.ACDNS[self.name])}' if self.name in self.ACDNS and self.name in self.NACDNS else ''
+        return f'{self.name:2}:{_}'
     def __repr__(self):
-        _ = f' {-self.nflats:1} {self.FLATS[self.name]}' if self.nflats else f' { self.nshrps:2} {self.SHRPS[self.name]}' if self.nshrps else ''
-#        s = f' { self.nshrps:2} {self.SHRPS[self.name]}' if self.nshrps else ''
-        return f'{self.name}:{_} {id(self)}'
-    def __init__(self, k=None, f=0, s=0, dbg=1):
+        _ = f'{self.NACDNS[self.name]:2} {fmtl(self.ACDNS[self.name])}' if self.name in self.ACDNS and self.name in self.NACDNS else ''
+        return f'{self.name:2} {id(self):X} {_}'
+    def __init__(self, k=None, n=None, file=None, dbg=1):
+        self.file   = file
         self.name   = k
-        self.nflats = f
-        self.nshrps = s
-        if dbg: slog(f'{repr(self)=}')
-        if   k in self.ACDNT1:  k = self.ACDNT1[k]
-        elif k in self.ACDNT2:  k = self.ACDNT2[k]
-        if   k=='C#' or (f==0 and s==7):            self.name, self.nflats, self.nshrps = 'C#', 0, 7
-        elif k=='F#' or (f==0 and s==6):            self.name, self.nflats, self.nshrps = 'F#', 0, 6
-        elif k=='B'  or (f==0 and s==5):            self.name, self.nflats, self.nshrps = 'B',  0, 5
-        elif k=='E'  or (f==0 and s==4):            self.name, self.nflats, self.nshrps = 'E',  0, 4
-        elif k=='A'  or (f==0 and s==3):            self.name, self.nflats, self.nshrps = 'A',  0, 3
-        elif k=='D'  or (f==0 and s==2):            self.name, self.nflats, self.nshrps = 'D',  0, 2
-        elif k=='G'  or (f==0 and s==1):            self.name, self.nflats, self.nshrps = 'G',  0, 1
-        elif k=='C' and (f==0 and s==0):            self.name, self.nflats, self.nshrps = 'C',  0, 0
-        elif k=='F'  or (f==1 and s==0):            self.name, self.nflats, self.nshrps = 'F',  1, 0
-        elif k=='Bb' or (f==2 and s==0):            self.name, self.nflats, self.nshrps = 'Bb', 2, 0
-        elif k=='Eb' or (f==3 and s==0):            self.name, self.nflats, self.nshrps = 'Eb', 3, 0
-        elif k=='Ab' or (f==4 and s==0):            self.name, self.nflats, self.nshrps = 'Ab', 4, 0
-        elif k=='Db' or (f==5 and s==0):            self.name, self.nflats, self.nshrps = 'Db', 5, 0
-        elif k=='Gb' or (f==6 and s==0):            self.name, self.nflats, self.nshrps = 'Gb', 6, 0
-        elif k=='Cb' or (f==7 and s==0):            self.name, self.nflats, self.nshrps = 'Cb', 7, 0
-        else: slog(f'{k=} ERROR')
+        self.nacdns = n
+#        if   k in self.ACDNT1:  old = k  ;  k = self.ACDNT1[k]  ;  self.log(f'{old=} {k=}')
+#        elif k in self.ACDNT2:  old = k  ;  k = self.ACDNT2[k]  ;  self.log(f'{old=} {k=}')
+        if   k=='C#' or n==7:  self.name, self.nacdns = 'C#', 7
+        elif k=='F#' or n==6:  self.name, self.nacdns = 'F#', 6
+        elif k=='B'  or n==5:  self.name, self.nacdns = 'B' , 5
+        elif k=='E'  or n==4:  self.name, self.nacdns = 'E' , 4
+        elif k=='A'  or n==3:  self.name, self.nacdns = 'A' , 3
+        elif k=='D'  or n==2:  self.name, self.nacdns = 'D' , 2
+        elif k=='G'  or n==1:  self.name, self.nacdns = 'G' , 1
+        elif k=='C'  or n==0:  self.name, self.nacdns = 'C' , 0
+        elif k=='F'  or n==-1: self.name, self.nacdns = 'F' , -1
+        elif k=='Bb' or n==-2: self.name, self.nacdns = 'Bb', -2
+        elif k=='Eb' or n==-3: self.name, self.nacdns = 'Eb', -3
+        elif k=='Ab' or n==-4: self.name, self.nacdns = 'Ab', -4
+        elif k=='Db' or n==-5: self.name, self.nacdns = 'Db', -5
+        elif k=='Gb' or n==-6: self.name, self.nacdns = 'Gb', -6
+        elif k=='Cb' or n==-7: self.name, self.nacdns = 'Cb', -7
+        else:   self.log(f'{k=} {n=} ERROR')
+        if dbg: self.log(f'{repr(self)}')
+
+    def log(self, msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+        if file is None: file=self.file
+        slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
 
 ########################################################################################################################################################################################################
 class Test:
