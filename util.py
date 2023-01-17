@@ -2,6 +2,7 @@
 import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
+LOG_FILE        = None
 MIN_IVAL_LEN    = 1
 MAX_STACK_DEPTH = 0
 MAX_STACK_FRAME = inspect.stack()
@@ -16,6 +17,13 @@ QUIT_END         = '###   END Quit   ###' * 10
 #STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
 STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
+def init(file):
+    global LOG_FILE  ;  LOG_FILE = file
+
+#def log(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+#    if file is None: file=LOG_FILE
+#    slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
+
 def fmtl(ls, w=None, u='>', d1='[', d2=']', sep=' ', ll=0, z=''):
     if ls is None: return 'None'
     lts = (list, tuple, set, frozenset)  ;  dts = (int, float, str)
@@ -86,8 +94,11 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
 #        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
         fp = pathlib.Path(sf.f_code.co_filename)
         msg = f'{sf.f_lineno:4} {fp.stem:5} {sf.f_code.co_name:18} ' + msg
+    if file is None: file = LOG_FILE
     print(f'{msg}', flush=flush, sep=sep, end=end, file=None if file is None or file.closed else file)
     print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
+#    print(f'{msg}', flush=flush, sep=sep, end=end, file=LOG_FILE if file is None else None if file.closed else file)
+#    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
 ########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1, file=None):
     if dbg: slog(f'{baseName =:12} {basePath = }', file=file)
@@ -201,17 +212,13 @@ class Strings(object):
         self.stringCapo         = ''.join(         [ '0'        for _ in range(len(self.stringKeys)) ])
         self.strLabel           = 'STRING'
         self.cpoLabel           = ' CAPO '
-        self.log( f'stringMap   = {fmtm(self.stringMap)}')
-        self.log( f'stringKeys  = {fmtl(self.stringKeys)}')
-        self.log( f'stringNames =      {self.stringNames}')
-        self.log( f'stringNumbs =      {self.stringNumbs}')
-        self.log( f'stringCapo  =      {self.stringCapo}')
-        self.log( f'strLabel    =      {self.strLabel}')
-        self.log( f'cpoLabel    =      {self.cpoLabel}')
-
-    def log(self, msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
-        if file is None: file=self.file
-        slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
+        slog( f'stringMap   = {fmtm(self.stringMap)}')
+        slog( f'stringKeys  = {fmtl(self.stringKeys)}')
+        slog( f'stringNames =      {self.stringNames}')
+        slog( f'stringNumbs =      {self.stringNumbs}')
+        slog( f'stringCapo  =      {self.stringCapo}')
+        slog( f'strLabel    =      {self.strLabel}')
+        slog( f'cpoLabel    =      {self.cpoLabel}')
 
     def nStrings(self): return len(self.stringNames)
 
@@ -219,23 +226,23 @@ class Strings(object):
         strNum = self.nStrings() - s - 1    # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
         k      = self.stringKeys[strNum]
         i      = self.stringMap[k] + fn
-        if dbg: self.log(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
+        if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
         return i
 
     def tab2nn(self, tab, s, dbg=0):
         fn   = self.tab2fn(tab)
         i    = self.fn2ni(fn, s)
         name = Note.getName(i)
-        if dbg: self.log(f'tab={tab} s={s} fn={fn} i={i} name={name}')
+        if dbg: slog(f'tab={tab} s={s} fn={fn} i={i} name={name}')
         return name
 
     @staticmethod
     def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
-    def tab2fn(self, tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  self.log(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
+    @staticmethod
+    def tab2fn(tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  slog(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
 
 ########################################################################################################################################################################################################
 class KeySig(object):
-    FILE  = None
     ENHS  = dict()
     NENHS = dict()
     Cb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  ENHS['Cb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  NENHS['Cb'] = -len(ENHS['Cb'])
@@ -262,10 +269,10 @@ class KeySig(object):
         _ = f'{self.NENHS[self.name]:2} {fmtl(self.ENHS[self.name])}' if self.name in self.ENHS and self.name in self.NENHS else ''
         return f'{self.name:2} {id(self):X} {_}'
     def __init__(self, k=None, n=None):
-        self.name   = k
+        self.name  = k
         self.nenhs = n
-#        if   k in self.ENHS1:  old = k  ;  k = self.ENHS1[k]  ;  self.log(f'{old=} {k=}')
-#        elif k in self.ENHS2:  old = k  ;  k = self.ENHS2[k]  ;  self.log(f'{old=} {k=}')
+#        if   k in self.ENHS1:  old = k  ;  k = self.ENHS1[k]  ;  slog(f'{old=} {k=}')
+#        elif k in self.ENHS2:  old = k  ;  k = self.ENHS2[k]  ;  slog(f'{old=} {k=}')
         if   (k=='C#' and n==7)  or (k=='C#' and n is None) or (k is None and n==7):
             self.name, self.nenhs = 'C#', 7
         elif (k=='F#' and n==6)  or (k=='F#' and n is None) or (k is None and n==6):
@@ -297,114 +304,111 @@ class KeySig(object):
         elif (k=='Cb' and n==-7) or (k=='Cb' and n is None) or (k is None and n==-7):
             self.name, self.nenhs = 'Cb', -7
         else:
-            KeySig.log(f'{k=} {n=} ERROR')
-#        if dbg: self.log(f'{repr(self)}')
-
-    @classmethod
-    def log(cls, msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
-        if file is None: file=cls.FILE
-        slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
+            slog(f'ERROR {k=} {n=}')
+#        if dbg: slog(f'{repr(self)}')
 
 ########################################################################################################################################################################################################
     @classmethod
     def test(cls, file):
-        cls.FILE = file
+        global LOG_FILE; LOG_FILE = file
         cls.test_1()
         cls.test_2()
         cls.test_3()
         cls.test_4()
         cls.test_5()
         cls.test_6()
-        cls.test_7B()
+        cls.test_1B()
+
+    @classmethod
+    def test_1B(cls):
+        slog(f"{cls('Ab',  2)}")
+        slog(f"{cls('A#',  7)}")
+        slog(f"{cls('A' ,  3)}")
+        slog(f"{cls('Ab', -7)}")
 
     @classmethod
     def test_1(cls):
-        cls.log(f"{KeySig(k='Cb')}")
-        cls.log(f"{KeySig(k='Gb')}")
-        cls.log(f"{KeySig(k='Db')}")
-        cls.log(f"{KeySig(k='Ab')}")
-        cls.log(f"{KeySig(k='Eb')}")
-        cls.log(f"{KeySig(k='Bb')}")
-        cls.log(f"{KeySig(k='F') }")
-        cls.log(f"{KeySig(k='C') }")
-        cls.log(f"{KeySig(k='G') }")
-        cls.log(f"{KeySig(k='D') }")
-        cls.log(f"{KeySig(k='A') }")
-        cls.log(f"{KeySig(k='E') }")
-        cls.log(f"{KeySig(k='B') }")
-        cls.log(f"{KeySig(k='F#')}")
-        cls.log(f"{KeySig(k='C#')}")
+        slog(f"{cls(k='Cb')}")
+        slog(f"{cls(k='Gb')}")
+        slog(f"{cls(k='Db')}")
+        slog(f"{cls(k='Ab')}")
+        slog(f"{cls(k='Eb')}")
+        slog(f"{cls(k='Bb')}")
+        slog(f"{cls(k='F') }")
+        slog(f"{cls(k='C') }")
+        slog(f"{cls(k='G') }")
+        slog(f"{cls(k='D') }")
+        slog(f"{cls(k='A') }")
+        slog(f"{cls(k='E') }")
+        slog(f"{cls(k='B') }")
+        slog(f"{cls(k='F#')}")
+        slog(f"{cls(k='C#')}")
 
     @classmethod
     def test_2(cls):
         l = len(cls.NENHS) // 2
         for n in range(l, -l - 1, -1):
-            cls.log(f'{KeySig(n=n)}')
+            slog(f'{cls(n=n)}')
 
     @classmethod
     def test_3(cls):
-        cls.log(f"{KeySig(k='C#')}")
-        cls.log(f"{KeySig(k='F#')}")
-        cls.log(f"{KeySig(k='B') }")
-        cls.log(f"{KeySig(k='E') }")
-        cls.log(f"{KeySig(k='A') }")
-        cls.log(f"{KeySig(k='D') }")
-        cls.log(f"{KeySig(k='G') }")
-        cls.log(f"{KeySig(k='C') }")
-        cls.log(f"{KeySig(k='F') }")
-        cls.log(f"{KeySig(k='Bb')}")
-        cls.log(f"{KeySig(k='Eb')}")
-        cls.log(f"{KeySig(k='Ab')}")
-        cls.log(f"{KeySig(k='Db')}")
-        cls.log(f"{KeySig(k='Gb')}")
-        cls.log(f"{KeySig(k='Cb')}")
+        slog(f"{cls(k='C#')}")
+        slog(f"{cls(k='F#')}")
+        slog(f"{cls(k='B') }")
+        slog(f"{cls(k='E') }")
+        slog(f"{cls(k='A') }")
+        slog(f"{cls(k='D') }")
+        slog(f"{cls(k='G') }")
+        slog(f"{cls(k='C') }")
+        slog(f"{cls(k='F') }")
+        slog(f"{cls(k='Bb')}")
+        slog(f"{cls(k='Eb')}")
+        slog(f"{cls(k='Ab')}")
+        slog(f"{cls(k='Db')}")
+        slog(f"{cls(k='Gb')}")
+        slog(f"{cls(k='Cb')}")
 
     @classmethod
     def test_4(cls):
-        cls.log(f"{KeySig(k='C#', n=7)}")
-        cls.log(f"{KeySig(k='F#', n=6)}")
-        cls.log(f"{KeySig(k='B' , n=5)}")
-        cls.log(f"{KeySig(k='E' , n=4)}")
-        cls.log(f"{KeySig(k='A' , n=3)}")
-        cls.log(f"{KeySig(k='D' , n=2)}")
-        cls.log(f"{KeySig(k='G' , n=1)}")
-        cls.log(f"{KeySig(k='C' , n=0)}")
-        cls.log(f"{KeySig(k='F' , n=-1)}")
-        cls.log(f"{KeySig(k='Bb', n=-2)}")
-        cls.log(f"{KeySig(k='Eb', n=-3)}")
-        cls.log(f"{KeySig(k='Ab', n=-4)}")
-        cls.log(f"{KeySig(k='Db', n=-5)}")
-        cls.log(f"{KeySig(k='Gb', n=-6)}")
-        cls.log(f"{KeySig(k='Cb', n=-7)}")
+        slog(f"{cls(k='C#', n=7)}")
+        slog(f"{cls(k='F#', n=6)}")
+        slog(f"{cls(k='B' , n=5)}")
+        slog(f"{cls(k='E' , n=4)}")
+        slog(f"{cls(k='A' , n=3)}")
+        slog(f"{cls(k='D' , n=2)}")
+        slog(f"{cls(k='G' , n=1)}")
+        slog(f"{cls(k='C' , n=0)}")
+        slog(f"{cls(k='F' , n=-1)}")
+        slog(f"{cls(k='Bb', n=-2)}")
+        slog(f"{cls(k='Eb', n=-3)}")
+        slog(f"{cls(k='Ab', n=-4)}")
+        slog(f"{cls(k='Db', n=-5)}")
+        slog(f"{cls(k='Gb', n=-6)}")
+        slog(f"{cls(k='Cb', n=-7)}")
 
     @classmethod
     def test_5(cls):
         l = len(cls.NENHS)//2
         for n in range(-l, l+1, 1):
-            cls.log(f'{KeySig(n=n)}')
+            slog(f'{cls(n=n)}')
 
     @classmethod
     def test_6(cls):
-        cls.log(f"{KeySig(k='Cb', n=-7)}")
-        cls.log(f"{KeySig(k='Gb', n=-6)}")
-        cls.log(f"{KeySig(k='Db', n=-5)}")
-        cls.log(f"{KeySig(k='Ab', n=-4)}")
-        cls.log(f"{KeySig(k='Eb', n=-3)}")
-        cls.log(f"{KeySig(k='Bb', n=-2)}")
-        cls.log(f"{KeySig(k='F' , n=-1)}")
-        cls.log(f"{KeySig(k='C' , n=0)}")
-        cls.log(f"{KeySig(k='G' , n=1)}")
-        cls.log(f"{KeySig(k='D' , n=2)}")
-        cls.log(f"{KeySig(k='A' , n=3)}")
-        cls.log(f"{KeySig(k='E' , n=4)}")
-        cls.log(f"{KeySig(k='B' , n=5)}")
-        cls.log(f"{KeySig(k='F#', n=6)}")
-        cls.log(f"{KeySig(k='C#', n=7)}")
-
-    @classmethod
-    def test_7B(cls):
-        cls.log(f"{KeySig(k='A' , n=7)}")
-        cls.log(f"{KeySig(k='Ab', n=-7)}")
+        slog(f"{cls(k='Cb', n=-7)}")
+        slog(f"{cls(k='Gb', n=-6)}")
+        slog(f"{cls(k='Db', n=-5)}")
+        slog(f"{cls(k='Ab', n=-4)}")
+        slog(f"{cls(k='Eb', n=-3)}")
+        slog(f"{cls(k='Bb', n=-2)}")
+        slog(f"{cls(k='F' , n=-1)}")
+        slog(f"{cls(k='C' , n=0)}")
+        slog(f"{cls(k='G' , n=1)}")
+        slog(f"{cls(k='D' , n=2)}")
+        slog(f"{cls(k='A' , n=3)}")
+        slog(f"{cls(k='E' , n=4)}")
+        slog(f"{cls(k='B' , n=5)}")
+        slog(f"{cls(k='F#', n=6)}")
+        slog(f"{cls(k='C#', n=7)}")
 
 ########################################################################################################################################################################################################
 class Test:

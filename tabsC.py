@@ -51,14 +51,13 @@ class Tabs(pyglet.window.Window):
         self.ZZ        = set() if 1 else {0} #, 1}
         self.idmap     = cOd() if CODS else {}  ;  self.log(f'{CODS=} {type(self.idmap)=}')
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
-        nt             = 6
-        self.n         = [2, 2, 50, nt]
-        self.i         = [1, 1,  1, 1]
-        self.DATA_FILE_NAME = ''
+        self.n         = [4, 2, 10, 6]
+        self.i         = [1, 1,  1, 6]
+        self.DATA_FNAME = f'test.{self.n[0]}.{self.n[1]}.{self.n[2]}.dat' # test.4.2.10.dat
         self.log(f'argMap={util.fmtm(ARGS)}')
-        if 'f' in ARGS and len(ARGS['f'])  > 0: self.DATA_FILE_NAME = ARGS['f'][0]
-        if 'n' in ARGS and len(ARGS['n'])  > 0: self.n     = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
-        if 'i' in ARGS and len(ARGS['i'])  > 0: self.i     = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
+        if 'f' in ARGS and len(ARGS['f'])  > 0: self.DATA_FNAME = ARGS['f'][0]
+        if 'n' in ARGS and len(ARGS['n'])  > 0: self.n    = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
+        if 'i' in ARGS and len(ARGS['i'])  > 0: self.i    = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
         if 'a' in ARGS and len(ARGS['a']) == 0: self.AUTO_SAVE      =  1
         if 'b' in ARGS and len(ARGS['b']) == 0: self.FRET_BOARD     =  1
         if 'B' in ARGS and len(ARGS['B']) == 0: self.BGC            =  1
@@ -92,9 +91,9 @@ class Tabs(pyglet.window.Window):
         self.k         = {}
         self.sAlias = 'GUITAR_6_STD'
         self.sobj = util.Strings(LOG_FILE, self.sAlias)
-        ks = util.KeySig(LOG_FILE)
-        ks.test(LOG_FILE)
-#        util.KeySig.test()
+#        ks = util.KeySig(LOG_FILE)
+#        ks.test(LOG_FILE)
+        util.KeySig.test(LOG_FILE)
         self.cobj = chord.Chord(LOG_FILE, self.sobj)
         util.Note.setType(util.Note.FLAT)  ;  self.log(f'{util.Note.TYPE=}')
         self.log(f'Frequency Info')
@@ -116,7 +115,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'{util.INIT}', pfx=0)
     ####################################################################################################################################################################################################
     def dumpArgs(self):
-        self.log(f'[f] {self.DATA_FILE_NAME=}')
+        self.log(f'[f]     {self.DATA_FNAME=}')
         self.log(f'[n]               {self.fmtn()}')
         self.log(f'[i]               {self.fmti()}')
         self.log(f'[a]      {self.AUTO_SAVE=}')
@@ -213,7 +212,7 @@ class Tabs(pyglet.window.Window):
 
     def _initDataPath(self):
         dataDir   = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
-        baseName  = self.DATA_FILE_NAME if self.DATA_FILE_NAME else BASE_NAME + dataPfx + dataSfx
+        baseName  = self.DATA_FNAME if self.DATA_FNAME else BASE_NAME + dataPfx + dataSfx
         dataName0 = baseName + '.asv'
         dataName1 = baseName
         dataName2 = baseName + '.bck'
