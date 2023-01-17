@@ -235,152 +235,176 @@ class Strings(object):
 
 ########################################################################################################################################################################################################
 class KeySig(object):
-    ACDNS  = dict()
-    NACDNS = dict()
-    KCb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  ACDNS['Cb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  NACDNS['Cb'] = -len(ACDNS['Cb'])
-    KGb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  ACDNS['Gb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  NACDNS['Gb'] = -len(ACDNS['Gb'])
-    KDb = ['Db', 'Eb', 'F' , 'Gb', 'Ab', 'Bb', 'C' ]  ;  ACDNS['Db'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  NACDNS['Db'] = -len(ACDNS['Db'])
-    KAb = ['Ab', 'Bb', 'C' , 'Db', 'Eb', 'F' , 'G' ]  ;  ACDNS['Ab'] = ['Bb', 'Eb', 'Ab', 'Db']                    ;  NACDNS['Ab'] = -len(ACDNS['Ab'])
-    KEb = ['Eb', 'F' , 'G' , 'Ab', 'Bb', 'C' , 'D' ]  ;  ACDNS['Eb'] = ['Bb', 'Eb', 'Ab']                          ;  NACDNS['Eb'] = -len(ACDNS['Eb'])
-    KBb = ['Bb', 'C' , 'D' , 'Eb', 'F' , 'G' , 'A' ]  ;  ACDNS['Bb'] = ['Bb', 'Eb']                                ;  NACDNS['Bb'] = -len(ACDNS['Bb'])
-    KF  = ['F' , 'G' , 'A' , 'Bb', 'C' , 'D' , 'E' ]  ;  ACDNS['F']  = ['Bb']                                      ;  NACDNS['F']  = -len(ACDNS['F'] )
-    KC  = ['C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' ]  ;  ACDNS['C']  = []                                          ;  NACDNS['C']  =  len(ACDNS['C'] )
-    KG  = ['G' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F#']  ;  ACDNS['G']  = ['F#']                                      ;  NACDNS['G']  =  len(ACDNS['G'] )
-    KD  = ['D' , 'E' , 'F#', 'G' , 'A' , 'B' , 'C#']  ;  ACDNS['D']  = ['F#', 'C#']                                ;  NACDNS['D']  =  len(ACDNS['D'] )
-    KA  = ['A' , 'B' , 'C#', 'D' , 'E' , 'F#', 'G#']  ;  ACDNS['A']  = ['F#', 'C#', 'G#']                          ;  NACDNS['A']  =  len(ACDNS['A'] )
-    KE  = ['E' , 'F#', 'G#', 'A' , 'B' , 'C#', 'D#']  ;  ACDNS['E']  = ['F#', 'C#', 'G#', 'D#']                    ;  NACDNS['E']  =  len(ACDNS['E'] )
-    KB  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  ACDNS['B']  = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  NACDNS['B']  =  len(ACDNS['B'] )
-    KFs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  ACDNS['F#'] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  NACDNS['F#'] =  len(ACDNS['F#'])
-    KCs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  ACDNS['C#'] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  NACDNS['C#'] =  len(ACDNS['C#'])
-    ACDNT1 = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B' :'Cb'}
-    ACDNT2 = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
+    FILE  = None
+    ENHS  = dict()
+    NENHS = dict()
+    Cb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  ENHS['Cb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  NENHS['Cb'] = -len(ENHS['Cb'])
+    Gb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  ENHS['Gb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  NENHS['Gb'] = -len(ENHS['Gb'])
+    Db = ['Db', 'Eb', 'F' , 'Gb', 'Ab', 'Bb', 'C' ]  ;  ENHS['Db'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  NENHS['Db'] = -len(ENHS['Db'])
+    Ab = ['Ab', 'Bb', 'C' , 'Db', 'Eb', 'F' , 'G' ]  ;  ENHS['Ab'] = ['Bb', 'Eb', 'Ab', 'Db']                    ;  NENHS['Ab'] = -len(ENHS['Ab'])
+    Eb = ['Eb', 'F' , 'G' , 'Ab', 'Bb', 'C' , 'D' ]  ;  ENHS['Eb'] = ['Bb', 'Eb', 'Ab']                          ;  NENHS['Eb'] = -len(ENHS['Eb'])
+    Bb = ['Bb', 'C' , 'D' , 'Eb', 'F' , 'G' , 'A' ]  ;  ENHS['Bb'] = ['Bb', 'Eb']                                ;  NENHS['Bb'] = -len(ENHS['Bb'])
+    F  = ['F' , 'G' , 'A' , 'Bb', 'C' , 'D' , 'E' ]  ;  ENHS['F']  = ['Bb']                                      ;  NENHS['F']  = -len(ENHS['F'] )
+    C  = ['C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' ]  ;  ENHS['C']  = []                                          ;  NENHS['C']  =  len(ENHS['C'] )
+    G  = ['G' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F#']  ;  ENHS['G']  = ['F#']                                      ;  NENHS['G']  =  len(ENHS['G'] )
+    D  = ['D' , 'E' , 'F#', 'G' , 'A' , 'B' , 'C#']  ;  ENHS['D']  = ['F#', 'C#']                                ;  NENHS['D']  =  len(ENHS['D'] )
+    A  = ['A' , 'B' , 'C#', 'D' , 'E' , 'F#', 'G#']  ;  ENHS['A']  = ['F#', 'C#', 'G#']                          ;  NENHS['A']  =  len(ENHS['A'] )
+    E  = ['E' , 'F#', 'G#', 'A' , 'B' , 'C#', 'D#']  ;  ENHS['E']  = ['F#', 'C#', 'G#', 'D#']                    ;  NENHS['E']  =  len(ENHS['E'] )
+    B  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  ENHS['B']  = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  NENHS['B']  =  len(ENHS['B'] )
+    Fs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  ENHS['F#'] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  NENHS['F#'] =  len(ENHS['F#'])
+    Cs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  ENHS['C#'] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  NENHS['C#'] =  len(ENHS['C#'])
+    ENHS1 = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B' :'Cb'}
+    ENHS2 = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
     def __str__(self):
-        _ = f'{self.NACDNS[self.name]:2} {fmtl(self.ACDNS[self.name])}' if self.name in self.ACDNS and self.name in self.NACDNS else ''
+        _ = f'{self.NENHS[self.name]:2} {fmtl(self.ENHS[self.name])}' if self.name in self.ENHS and self.name in self.NENHS else ''
         return f'{self.name:2}:{_}'
     def __repr__(self):
-        _ = f'{self.NACDNS[self.name]:2} {fmtl(self.ACDNS[self.name])}' if self.name in self.ACDNS and self.name in self.NACDNS else ''
+        _ = f'{self.NENHS[self.name]:2} {fmtl(self.ENHS[self.name])}' if self.name in self.ENHS and self.name in self.NENHS else ''
         return f'{self.name:2} {id(self):X} {_}'
-    def __init__(self, k=None, n=None, file=None): #, dbg=0):
-        self.file   = file
+    def __init__(self, k=None, n=None):
         self.name   = k
-        self.nacdns = n
-#        if   k in self.ACDNT1:  old = k  ;  k = self.ACDNT1[k]  ;  self.log(f'{old=} {k=}')
-#        elif k in self.ACDNT2:  old = k  ;  k = self.ACDNT2[k]  ;  self.log(f'{old=} {k=}')
-        if   k=='C#' or n==7:  self.name, self.nacdns = 'C#', 7
-        elif k=='F#' or n==6:  self.name, self.nacdns = 'F#', 6
-        elif k=='B'  or n==5:  self.name, self.nacdns = 'B' , 5
-        elif k=='E'  or n==4:  self.name, self.nacdns = 'E' , 4
-        elif k=='A'  or n==3:  self.name, self.nacdns = 'A' , 3
-        elif k=='D'  or n==2:  self.name, self.nacdns = 'D' , 2
-        elif k=='G'  or n==1:  self.name, self.nacdns = 'G' , 1
-        elif k=='C'  or n==0:  self.name, self.nacdns = 'C' , 0
-        elif k=='F'  or n==-1: self.name, self.nacdns = 'F' , -1
-        elif k=='Bb' or n==-2: self.name, self.nacdns = 'Bb', -2
-        elif k=='Eb' or n==-3: self.name, self.nacdns = 'Eb', -3
-        elif k=='Ab' or n==-4: self.name, self.nacdns = 'Ab', -4
-        elif k=='Db' or n==-5: self.name, self.nacdns = 'Db', -5
-        elif k=='Gb' or n==-6: self.name, self.nacdns = 'Gb', -6
-        elif k=='Cb' or n==-7: self.name, self.nacdns = 'Cb', -7
-        else:   self.log(f'{k=} {n=} ERROR')
+        self.nenhs = n
+#        if   k in self.ENHS1:  old = k  ;  k = self.ENHS1[k]  ;  self.log(f'{old=} {k=}')
+#        elif k in self.ENHS2:  old = k  ;  k = self.ENHS2[k]  ;  self.log(f'{old=} {k=}')
+        if   (k=='C#' and n==7)  or (k=='C#' and n is None) or (k is None and n==7):
+            self.name, self.nenhs = 'C#', 7
+        elif (k=='F#' and n==6)  or (k=='F#' and n is None) or (k is None and n==6):
+            self.name, self.nenhs = 'F#', 6
+        elif (k=='B'  and n==5)  or (k=='B'  and n is None) or (k is None and n==5):
+            self.name, self.nenhs = 'B' , 5
+        elif (k=='E'  and n==4)  or (k=='E'  and n is None) or (k is None and n==4):
+            self.name, self.nenhs = 'E' , 4
+        elif (k=='A'  and n==3)  or (k=='A'  and n is None) or (k is None and n==3):
+            self.name, self.nenhs = 'A' , 3
+        elif (k=='D'  and n==2)  or (k=='D'  and n is None) or (k is None and n==2):
+            self.name, self.nenhs = 'D' , 2
+        elif (k=='G'  and n==1)  or (k=='G'  and n is None) or (k is None and n==1):
+            self.name, self.nenhs = 'G' , 1
+        elif (k=='C'  and n==0)  or (k=='C'  and n is None) or (k is None and n==0):
+            self.name, self.nenhs = 'C' , 0
+        elif (k=='F'  and n==-1) or (k=='F'  and n is None) or (k is None and n==-1):
+            self.name, self.nenhs = 'F' , -1
+        elif (k=='Bb' and n==-2) or (k=='Bb' and n is None) or (k is None and n==-2):
+            self.name, self.nenhs = 'Bb', -2
+        elif (k=='Eb' and n==-3) or (k=='Eb' and n is None) or (k is None and n==-3):
+            self.name, self.nenhs = 'Eb', -3
+        elif (k=='Ab' and n==-4) or (k=='Ab' and n is None) or (k is None and n==-4):
+            self.name, self.nenhs = 'Ab', -4
+        elif (k=='Db' and n==-5) or (k=='Db' and n is None) or (k is None and n==-5):
+            self.name, self.nenhs = 'Db', -5
+        elif (k=='Gb' and n==-6) or (k=='Gb' and n is None) or (k is None and n==-6):
+            self.name, self.nenhs = 'Gb', -6
+        elif (k=='Cb' and n==-7) or (k=='Cb' and n is None) or (k is None and n==-7):
+            self.name, self.nenhs = 'Cb', -7
+        else:
+            KeySig.log(f'{k=} {n=} ERROR')
 #        if dbg: self.log(f'{repr(self)}')
 
-    def log(self, msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
-        if file is None: file=self.file
+    @staticmethod
+    def log(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+        if file is None: file=KeySig.FILE
         slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
 
 ########################################################################################################################################################################################################
-    @staticmethod
-    def testKeySig(file):
-        KeySig.testKeySig_1(file)
-        KeySig.testKeySig_2(file)
-        KeySig.testKeySig_3(file)
-        KeySig.testKeySig_4(file)
-        KeySig.testKeySig_5(file)
-        KeySig.testKeySig_6(file)
+#    @staticmethod
+    def test(self, file):
+        KeySig.FILE = file
+        self.test_1()
+        self.test_2()
+        self.test_3()
+        self.test_4()
+        self.test_5()
+        self.test_6()
+        self.test_7B()
 
-    @staticmethod
-    def testKeySig_1(file):
-        slog(f'{KeySig(k="Cb")}', file=file)
-        slog(f"{KeySig(k='Gb')}", file=file)
-        slog(f"{KeySig(k='Db')}", file=file)
-        slog(f"{KeySig(k='Ab')}", file=file)
-        slog(f"{KeySig(k='Eb')}", file=file)
-        slog(f"{KeySig(k='Bb')}", file=file)
-        slog(f"{KeySig(k='F')}" , file=file)
-        slog(f"{KeySig(k='C')}" , file=file)
-        slog(f"{KeySig(k='G')}" , file=file)
-        slog(f"{KeySig(k='D')}" , file=file)
-        slog(f"{KeySig(k='A')}" , file=file)
-        slog(f"{KeySig(k='E')}" , file=file)
-        slog(f"{KeySig(k='B')}" , file=file)
-        slog(f"{KeySig(k='F#')}", file=file)
-        slog(f"{KeySig(k='C#')}", file=file)
+#    @staticmethod
+    def test_1(self):
+        self.log(f"{KeySig(k='Cb')}")
+        self.log(f"{KeySig(k='Gb')}")
+        self.log(f"{KeySig(k='Db')}")
+        self.log(f"{KeySig(k='Ab')}")
+        self.log(f"{KeySig(k='Eb')}")
+        self.log(f"{KeySig(k='Bb')}")
+        self.log(f"{KeySig(k='F') }")
+        self.log(f"{KeySig(k='C') }")
+        self.log(f"{KeySig(k='G') }")
+        self.log(f"{KeySig(k='D') }")
+        self.log(f"{KeySig(k='A') }")
+        self.log(f"{KeySig(k='E') }")
+        self.log(f"{KeySig(k='B') }")
+        self.log(f"{KeySig(k='F#')}")
+        self.log(f"{KeySig(k='C#')}")
 
-    @staticmethod
-    def testKeySig_2(file):
-        l = len(KeySig.NACDNS) // 2
+#    @staticmethod
+    def test_2(self):
+        l = len(self.NENHS) // 2
         for n in range(l, -l - 1, -1):
-            slog(f'{KeySig(n=n)}', file=file)
+            self.log(f'{KeySig(n=n)}')
 
-    @staticmethod
-    def testKeySig_3(file):
-        slog(f"{KeySig(k='C#')}", file=file)
-        slog(f"{KeySig(k='F#')}", file=file)
-        slog(f"{KeySig(k='B')}" , file=file)
-        slog(f"{KeySig(k='E')}" , file=file)
-        slog(f"{KeySig(k='A')}" , file=file)
-        slog(f"{KeySig(k='D')}" , file=file)
-        slog(f"{KeySig(k='G')}" , file=file)
-        slog(f"{KeySig(k='C')}" , file=file)
-        slog(f"{KeySig(k='F')}" , file=file)
-        slog(f"{KeySig(k='Bb')}", file=file)
-        slog(f"{KeySig(k='Eb')}", file=file)
-        slog(f"{KeySig(k='Ab')}", file=file)
-        slog(f"{KeySig(k='Db')}", file=file)
-        slog(f"{KeySig(k='Gb')}", file=file)
-        slog(f"{KeySig(k='Cb')}", file=file)
+#    @staticmethod
+    def test_3(self):
+        self.log(f"{KeySig(k='C#')}")
+        self.log(f"{KeySig(k='F#')}")
+        self.log(f"{KeySig(k='B') }")
+        self.log(f"{KeySig(k='E') }")
+        self.log(f"{KeySig(k='A') }")
+        self.log(f"{KeySig(k='D') }")
+        self.log(f"{KeySig(k='G') }")
+        self.log(f"{KeySig(k='C') }")
+        self.log(f"{KeySig(k='F') }")
+        self.log(f"{KeySig(k='Bb')}")
+        self.log(f"{KeySig(k='Eb')}")
+        self.log(f"{KeySig(k='Ab')}")
+        self.log(f"{KeySig(k='Db')}")
+        self.log(f"{KeySig(k='Gb')}")
+        self.log(f"{KeySig(k='Cb')}")
 
-    @staticmethod
-    def testKeySig_4(file):
-        slog(f"{KeySig(k='C#', n=7)}",  file=file)
-        slog(f"{KeySig(k='F#', n=6)}",  file=file)
-        slog(f"{KeySig(k='B',  n=5)}",  file=file)
-        slog(f"{KeySig(k='E' , n=4)}",  file=file)
-        slog(f"{KeySig(k='A' , n=3)}",  file=file)
-        slog(f"{KeySig(k='D' , n=2)}",  file=file)
-        slog(f"{KeySig(k='G' , n=1)}",  file=file)
-        slog(f"{KeySig(k='C' , n=0)}",  file=file)
-        slog(f"{KeySig(k='F' , n=-1)}", file=file)
-        slog(f"{KeySig(k='Bb', n=-2)}", file=file)
-        slog(f"{KeySig(k='Eb', n=-3)}", file=file)
-        slog(f"{KeySig(k='Ab', n=-4)}", file=file)
-        slog(f"{KeySig(k='Db', n=-5)}", file=file)
-        slog(f"{KeySig(k='Gb', n=-6)}", file=file)
-        slog(f"{KeySig(k='Cb', n=-7)}", file=file)
+#    @staticmethod
+    def test_4(self):
+        self.log(f"{KeySig(k='C#', n=7)}")
+        self.log(f"{KeySig(k='F#', n=6)}")
+        self.log(f"{KeySig(k='B' , n=5)}")
+        self.log(f"{KeySig(k='E' , n=4)}")
+        self.log(f"{KeySig(k='A' , n=3)}")
+        self.log(f"{KeySig(k='D' , n=2)}")
+        self.log(f"{KeySig(k='G' , n=1)}")
+        self.log(f"{KeySig(k='C' , n=0)}")
+        self.log(f"{KeySig(k='F' , n=-1)}")
+        self.log(f"{KeySig(k='Bb', n=-2)}")
+        self.log(f"{KeySig(k='Eb', n=-3)}")
+        self.log(f"{KeySig(k='Ab', n=-4)}")
+        self.log(f"{KeySig(k='Db', n=-5)}")
+        self.log(f"{KeySig(k='Gb', n=-6)}")
+        self.log(f"{KeySig(k='Cb', n=-7)}")
 
-    @staticmethod
-    def testKeySig_5(file):
-        l = len(KeySig.NACDNS)//2
+#    @staticmethod
+    def test_5(self):
+        l = len(self.NENHS)//2
         for n in range(-l, l+1, 1):
-            slog(f'{KeySig(n=n)}', file=file)
+            self.log(f'{KeySig(n=n)}')
 
-    @staticmethod
-    def testKeySig_6(file):
-        slog(f"{KeySig(k='Cb', n=-7)}", file=file)
-        slog(f"{KeySig(k='Gb', n=-6)}", file=file)
-        slog(f"{KeySig(k='Db', n=-5)}", file=file)
-        slog(f"{KeySig(k='Ab', n=-4)}", file=file)
-        slog(f"{KeySig(k='Eb', n=-3)}", file=file)
-        slog(f"{KeySig(k='Bb', n=-2)}", file=file)
-        slog(f"{KeySig(k='F' , n=-1)}", file=file)
-        slog(f"{KeySig(k='C' , n=0)}",  file=file)
-        slog(f"{KeySig(k='G' , n=1)}",  file=file)
-        slog(f"{KeySig(k='D' , n=2)}",  file=file)
-        slog(f"{KeySig(k='A' , n=3)}",  file=file)
-        slog(f"{KeySig(k='E' , n=4)}",  file=file)
-        slog(f"{KeySig(k='B' , n=5)}",  file=file)
-        slog(f"{KeySig(k='F#', n=6)}",  file=file)
-        slog(f"{KeySig(k='C#', n=7)}",  file=file)
+#    @staticmethod
+    def test_6(self):
+        self.log(f"{KeySig(k='Cb', n=-7)}")
+        self.log(f"{KeySig(k='Gb', n=-6)}")
+        self.log(f"{KeySig(k='Db', n=-5)}")
+        self.log(f"{KeySig(k='Ab', n=-4)}")
+        self.log(f"{KeySig(k='Eb', n=-3)}")
+        self.log(f"{KeySig(k='Bb', n=-2)}")
+        self.log(f"{KeySig(k='F' , n=-1)}")
+        self.log(f"{KeySig(k='C' , n=0)}")
+        self.log(f"{KeySig(k='G' , n=1)}")
+        self.log(f"{KeySig(k='D' , n=2)}")
+        self.log(f"{KeySig(k='A' , n=3)}")
+        self.log(f"{KeySig(k='E' , n=4)}")
+        self.log(f"{KeySig(k='B' , n=5)}")
+        self.log(f"{KeySig(k='F#', n=6)}")
+        self.log(f"{KeySig(k='C#', n=7)}")
+
+#    @staticmethod
+    def test_7B(self):
+        self.log(f"{KeySig(k='A' , n=7)}")
+        self.log(f"{KeySig(k='Ab', n=-7)}")
 
 ########################################################################################################################################################################################################
 class Test:

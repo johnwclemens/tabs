@@ -92,8 +92,10 @@ class Tabs(pyglet.window.Window):
         self.k         = {}
         self.sAlias = 'GUITAR_6_STD'
         self.sobj = util.Strings(LOG_FILE, self.sAlias)
-        util.KeySig.testKeySig(  LOG_FILE)
-        self.cobj = chord.Chord( LOG_FILE, self.sobj)
+        ks = util.KeySig(LOG_FILE)
+        ks.test(LOG_FILE)
+#        util.KeySig.test()
+        self.cobj = chord.Chord(LOG_FILE, self.sobj)
         util.Note.setType(util.Note.FLAT)  ;  self.log(f'{util.Note.TYPE=}')
         self.log(f'Frequency Info')
         self.dumpFreqsHdr()  ;  self.dumpFreqs()  ;  self.dumpFreqs(ref=432)
