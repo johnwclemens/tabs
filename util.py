@@ -300,111 +300,111 @@ class KeySig(object):
             KeySig.log(f'{k=} {n=} ERROR')
 #        if dbg: self.log(f'{repr(self)}')
 
-    @staticmethod
-    def log(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
-        if file is None: file=KeySig.FILE
+    @classmethod
+    def log(cls, msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+        if file is None: file=cls.FILE
         slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
 
 ########################################################################################################################################################################################################
-#    @staticmethod
-    def test(self, file):
-        KeySig.FILE = file
-        self.test_1()
-        self.test_2()
-        self.test_3()
-        self.test_4()
-        self.test_5()
-        self.test_6()
-        self.test_7B()
+    @classmethod
+    def test(cls, file):
+        cls.FILE = file
+        cls.test_1()
+        cls.test_2()
+        cls.test_3()
+        cls.test_4()
+        cls.test_5()
+        cls.test_6()
+        cls.test_7B()
 
-#    @staticmethod
-    def test_1(self):
-        self.log(f"{KeySig(k='Cb')}")
-        self.log(f"{KeySig(k='Gb')}")
-        self.log(f"{KeySig(k='Db')}")
-        self.log(f"{KeySig(k='Ab')}")
-        self.log(f"{KeySig(k='Eb')}")
-        self.log(f"{KeySig(k='Bb')}")
-        self.log(f"{KeySig(k='F') }")
-        self.log(f"{KeySig(k='C') }")
-        self.log(f"{KeySig(k='G') }")
-        self.log(f"{KeySig(k='D') }")
-        self.log(f"{KeySig(k='A') }")
-        self.log(f"{KeySig(k='E') }")
-        self.log(f"{KeySig(k='B') }")
-        self.log(f"{KeySig(k='F#')}")
-        self.log(f"{KeySig(k='C#')}")
+    @classmethod
+    def test_1(cls):
+        cls.log(f"{KeySig(k='Cb')}")
+        cls.log(f"{KeySig(k='Gb')}")
+        cls.log(f"{KeySig(k='Db')}")
+        cls.log(f"{KeySig(k='Ab')}")
+        cls.log(f"{KeySig(k='Eb')}")
+        cls.log(f"{KeySig(k='Bb')}")
+        cls.log(f"{KeySig(k='F') }")
+        cls.log(f"{KeySig(k='C') }")
+        cls.log(f"{KeySig(k='G') }")
+        cls.log(f"{KeySig(k='D') }")
+        cls.log(f"{KeySig(k='A') }")
+        cls.log(f"{KeySig(k='E') }")
+        cls.log(f"{KeySig(k='B') }")
+        cls.log(f"{KeySig(k='F#')}")
+        cls.log(f"{KeySig(k='C#')}")
 
-#    @staticmethod
-    def test_2(self):
-        l = len(self.NENHS) // 2
+    @classmethod
+    def test_2(cls):
+        l = len(cls.NENHS) // 2
         for n in range(l, -l - 1, -1):
-            self.log(f'{KeySig(n=n)}')
+            cls.log(f'{KeySig(n=n)}')
 
-#    @staticmethod
-    def test_3(self):
-        self.log(f"{KeySig(k='C#')}")
-        self.log(f"{KeySig(k='F#')}")
-        self.log(f"{KeySig(k='B') }")
-        self.log(f"{KeySig(k='E') }")
-        self.log(f"{KeySig(k='A') }")
-        self.log(f"{KeySig(k='D') }")
-        self.log(f"{KeySig(k='G') }")
-        self.log(f"{KeySig(k='C') }")
-        self.log(f"{KeySig(k='F') }")
-        self.log(f"{KeySig(k='Bb')}")
-        self.log(f"{KeySig(k='Eb')}")
-        self.log(f"{KeySig(k='Ab')}")
-        self.log(f"{KeySig(k='Db')}")
-        self.log(f"{KeySig(k='Gb')}")
-        self.log(f"{KeySig(k='Cb')}")
+    @classmethod
+    def test_3(cls):
+        cls.log(f"{KeySig(k='C#')}")
+        cls.log(f"{KeySig(k='F#')}")
+        cls.log(f"{KeySig(k='B') }")
+        cls.log(f"{KeySig(k='E') }")
+        cls.log(f"{KeySig(k='A') }")
+        cls.log(f"{KeySig(k='D') }")
+        cls.log(f"{KeySig(k='G') }")
+        cls.log(f"{KeySig(k='C') }")
+        cls.log(f"{KeySig(k='F') }")
+        cls.log(f"{KeySig(k='Bb')}")
+        cls.log(f"{KeySig(k='Eb')}")
+        cls.log(f"{KeySig(k='Ab')}")
+        cls.log(f"{KeySig(k='Db')}")
+        cls.log(f"{KeySig(k='Gb')}")
+        cls.log(f"{KeySig(k='Cb')}")
 
-#    @staticmethod
-    def test_4(self):
-        self.log(f"{KeySig(k='C#', n=7)}")
-        self.log(f"{KeySig(k='F#', n=6)}")
-        self.log(f"{KeySig(k='B' , n=5)}")
-        self.log(f"{KeySig(k='E' , n=4)}")
-        self.log(f"{KeySig(k='A' , n=3)}")
-        self.log(f"{KeySig(k='D' , n=2)}")
-        self.log(f"{KeySig(k='G' , n=1)}")
-        self.log(f"{KeySig(k='C' , n=0)}")
-        self.log(f"{KeySig(k='F' , n=-1)}")
-        self.log(f"{KeySig(k='Bb', n=-2)}")
-        self.log(f"{KeySig(k='Eb', n=-3)}")
-        self.log(f"{KeySig(k='Ab', n=-4)}")
-        self.log(f"{KeySig(k='Db', n=-5)}")
-        self.log(f"{KeySig(k='Gb', n=-6)}")
-        self.log(f"{KeySig(k='Cb', n=-7)}")
+    @classmethod
+    def test_4(cls):
+        cls.log(f"{KeySig(k='C#', n=7)}")
+        cls.log(f"{KeySig(k='F#', n=6)}")
+        cls.log(f"{KeySig(k='B' , n=5)}")
+        cls.log(f"{KeySig(k='E' , n=4)}")
+        cls.log(f"{KeySig(k='A' , n=3)}")
+        cls.log(f"{KeySig(k='D' , n=2)}")
+        cls.log(f"{KeySig(k='G' , n=1)}")
+        cls.log(f"{KeySig(k='C' , n=0)}")
+        cls.log(f"{KeySig(k='F' , n=-1)}")
+        cls.log(f"{KeySig(k='Bb', n=-2)}")
+        cls.log(f"{KeySig(k='Eb', n=-3)}")
+        cls.log(f"{KeySig(k='Ab', n=-4)}")
+        cls.log(f"{KeySig(k='Db', n=-5)}")
+        cls.log(f"{KeySig(k='Gb', n=-6)}")
+        cls.log(f"{KeySig(k='Cb', n=-7)}")
 
-#    @staticmethod
-    def test_5(self):
-        l = len(self.NENHS)//2
+    @classmethod
+    def test_5(cls):
+        l = len(cls.NENHS)//2
         for n in range(-l, l+1, 1):
-            self.log(f'{KeySig(n=n)}')
+            cls.log(f'{KeySig(n=n)}')
 
-#    @staticmethod
-    def test_6(self):
-        self.log(f"{KeySig(k='Cb', n=-7)}")
-        self.log(f"{KeySig(k='Gb', n=-6)}")
-        self.log(f"{KeySig(k='Db', n=-5)}")
-        self.log(f"{KeySig(k='Ab', n=-4)}")
-        self.log(f"{KeySig(k='Eb', n=-3)}")
-        self.log(f"{KeySig(k='Bb', n=-2)}")
-        self.log(f"{KeySig(k='F' , n=-1)}")
-        self.log(f"{KeySig(k='C' , n=0)}")
-        self.log(f"{KeySig(k='G' , n=1)}")
-        self.log(f"{KeySig(k='D' , n=2)}")
-        self.log(f"{KeySig(k='A' , n=3)}")
-        self.log(f"{KeySig(k='E' , n=4)}")
-        self.log(f"{KeySig(k='B' , n=5)}")
-        self.log(f"{KeySig(k='F#', n=6)}")
-        self.log(f"{KeySig(k='C#', n=7)}")
+    @classmethod
+    def test_6(cls):
+        cls.log(f"{KeySig(k='Cb', n=-7)}")
+        cls.log(f"{KeySig(k='Gb', n=-6)}")
+        cls.log(f"{KeySig(k='Db', n=-5)}")
+        cls.log(f"{KeySig(k='Ab', n=-4)}")
+        cls.log(f"{KeySig(k='Eb', n=-3)}")
+        cls.log(f"{KeySig(k='Bb', n=-2)}")
+        cls.log(f"{KeySig(k='F' , n=-1)}")
+        cls.log(f"{KeySig(k='C' , n=0)}")
+        cls.log(f"{KeySig(k='G' , n=1)}")
+        cls.log(f"{KeySig(k='D' , n=2)}")
+        cls.log(f"{KeySig(k='A' , n=3)}")
+        cls.log(f"{KeySig(k='E' , n=4)}")
+        cls.log(f"{KeySig(k='B' , n=5)}")
+        cls.log(f"{KeySig(k='F#', n=6)}")
+        cls.log(f"{KeySig(k='C#', n=7)}")
 
-#    @staticmethod
-    def test_7B(self):
-        self.log(f"{KeySig(k='A' , n=7)}")
-        self.log(f"{KeySig(k='Ab', n=-7)}")
+    @classmethod
+    def test_7B(cls):
+        cls.log(f"{KeySig(k='A' , n=7)}")
+        cls.log(f"{KeySig(k='Ab', n=-7)}")
 
 ########################################################################################################################################################################################################
 class Test:
