@@ -44,7 +44,7 @@ class Tabs(pyglet.window.Window):
         self.Y_TOP     = 0  ;  self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0  ;  self.RESIZE_FONTS = 1
         self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN  = 0  ;  self.LONG_TXT = 0
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RD_STDOUT  = 0  ;  self.RESIZE       = 1  ;  self.VARROW   = 1
-        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 1  ;  self.VRBY         = 0  ;  self.TIDS     = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 1  ;  self.VRBY         = 0  ;  self.OIDS     = 0
         self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD   = 0  ;  self.STRETCH  = 0
         self.LL        = 0
         self.SS        = set() if 0 else {0, 1, 2, 3}
@@ -68,6 +68,7 @@ class Tabs(pyglet.window.Window):
         if 'F' in ARGS and len(ARGS['F']) == 0: self.FULL_SCREEN    =  1
         if 'G' in ARGS and len(ARGS['G']) == 0: self.GEN_DATA       =  1
         if 'g' in ARGS and len(ARGS['g']) == 0: self.ORDER_GROUP    =  1
+        if 'o' in ARGS and len(ARGS['o']) == 0: self.OIDS           =  1
         if 'M' in ARGS and len(ARGS['M']) == 0: self.MULTI_LINE     =  1
         if 'R' in ARGS and len(ARGS['R']) == 0: self.RESIZE         = 0
         if 'p' in ARGS and len(ARGS['p']) == 0: self.SNAPS          =  1
@@ -90,10 +91,9 @@ class Tabs(pyglet.window.Window):
         self.fontStyle = NORMAL_STYLE
         self.k         = {}
         self.sAlias = 'GUITAR_6_STD'
-        self.sobj = util.Strings(LOG_FILE, self.sAlias)
-#        ks = util.KeySig(LOG_FILE)
-#        ks.test(LOG_FILE)
-        util.KeySig.test(LOG_FILE)
+        util.init(LOG_FILE, self.OIDS)
+        self.sobj = util.Strings(self.sAlias)
+        util.KeySig.test()
         self.cobj = chord.Chord(LOG_FILE, self.sobj)
         util.Note.setType(util.Note.FLAT)  ;  self.log(f'{util.Note.TYPE=}')
         self.log(f'Frequency Info')
@@ -129,6 +129,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[G]       {self.GEN_DATA=}')
         self.log(f'[M]     {self.MULTI_LINE=}')
         self.log(f'[g]    {self.ORDER_GROUP=}')
+        self.log(f'[o]           {self.OIDS=}')
         self.log(f'[p]          {self.SNAPS=}')
         self.log(f'[R]         {self.RESIZE=}')
         self.log(f'[x]         {self.SUBPIX=}')
@@ -422,8 +423,8 @@ class Tabs(pyglet.window.Window):
     def dumpFreqs(self, ref=440):
         f = util.FREQS if ref==440 else util.FREQS2
         self.log(f'{ref}A {util.fmtl(f, w="5.0f")}', pfx=0)
-    def dumpJs(  self, why, w=None, d=1): b = B*12 if self.TIDS else ''  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
-    def dumpGeom(self, why='', why2=''):  b = B*12 if self.TIDS else ''  ;  self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fnvis()}] {why2}')
+    def dumpJs(  self, why, w=None, d=1): b = B*12 if self.OIDS else ''  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
+    def dumpGeom(self, why='', why2=''):  b = B*12 if self.OIDS else ''  ;  self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fnvis()}] {why2}')
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={util.fmtm(self.smap)}', pos=pos)
     ####################################################################################################################################################################################################
     def dumpBlanks(self): self.dmpBlnkHdr()  ;  self.log(f'{self.fmtBlnkCol()}', pfx=0)  ;  self.log(f'{self.fmtBlnkRow()}', pfx=0)
@@ -1253,7 +1254,7 @@ class Tabs(pyglet.window.Window):
     def toggleVisible(self, why=None, p=None, dbg=1):
         why = 'TVis' if why is None else why   ;   np, nl, ns, nc, nt = self.n   ;   i = 0   ;   text = None
         lines, sects, colms, tabs = self.lines, self.sects, self.colms, self.tabls
-        pid = f' {id(self.pages[p]):11x}' if self.TIDS else ''
+        pid = f' {id(self.pages[p]):11x}' if self.OIDS else ''
         self.dumpTniksPfx(why)
         self.J1, self.J2 = self.p2Js(p%np)
         self.log(f'BGN {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
@@ -1273,7 +1274,7 @@ class Tabs(pyglet.window.Window):
                         elif s == KK: text = self.imap2Chord(tobj, imap, t, j)
                         j2 = self.J2[j]  ;  tnik = tlist[j2]
                         tnik.visible = not tnik.visible  ;  v = int(tnik.visible)  ;  self.setJdump(j, t, why=why)
-                        oid = f' {id(tnik):11x}' if self.TIDS else ''
+                        oid = f' {id(tnik):11x}' if self.OIDS else ''
                         if dbg:       self.log(f'{v=} {j2=:3} {s0} plsct={self.fplsct(p, l, s, c, t)} {text=:4} {oid} {self.J2[j]}', file=1)
                         if dbg:       vl.append(f'{v}')
                 if dbg:               vl.append(' ')
@@ -1295,7 +1296,7 @@ class Tabs(pyglet.window.Window):
     def dumpHdrs(self): hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)   ;   self.log(f'{hdr1}', pfx=0)   ;   self.log(f'{hdr0}', pfx=0)
     ####################################################################################################################################################################################################
     def fTnikHdr(self, spr=0):
-        tid  = ' TId  Identity  ' if self.TIDS else ' Tid'  ;  wnc = ' Why  Name  Cnt'  ; rtsgv = 'Rotated G V'       if spr else 'Txt fSz G V'
+        tid  = ' TId  Identity  ' if self.OIDS else ' Tid'  ;  wnc = ' Why  Name  Cnt'  ; rtsgv = 'Rotated G V'       if spr else 'Txt fSz G V'
         xywh = '    X       Y       W       H  '            ;  rgb = ' Red Grn Blu Opc'  if self.LONG_TXT else ''
         sfx  = (' Iax  Iay      Grp        pGrp' if spr else 'cw  ch v a x y dpi B I Font Name') if self.LONG_TXT else ''
         rgbM = (' M     Mx    My  ' if spr else rgb) if self.LONG_TXT else ''
@@ -1312,7 +1313,7 @@ class Tabs(pyglet.window.Window):
         if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)   ;  msg2 = self.fTxFs(t)  ;  msg5 = self.fLbl(t) if self.LONG_TXT else ''
         elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  msg2 = self.frot(t)   ;  msg5 = self.fSpr(t) if self.LONG_TXT else ''
         else: msg = f'ERROR BAD type(t) {why} {j=} {type(t)=}'   ;   self.log(msg)   ;   self.quit(msg)
-        msg1 = self.fid(t, j, why)   ;   msg3 = f'{self.ftvis(t)}'   ;   msg4 = f'{fc} {bc}' if self.LONG_TXT else ''
+        msg1 = self.foid(t, j, why)   ;   msg3 = f'{self.ftvis(t)}'   ;   msg4 = f'{fc} {bc}' if self.LONG_TXT else ''
         self.log(f'{msg1} {msg2} {g} {msg3} {self.fmtJ2()} {xywh} {msg4} {msg5}', pfx=0)
     ####################################################################################################################################################################################################
     def idmapkey(self, j): return f'{JTEXTS[j]}{self.J2[j]}'
@@ -1328,7 +1329,7 @@ class Tabs(pyglet.window.Window):
     def getDocColor(self, t, c=1): return util.fColor(self._getDocColor(t, c))
     @staticmethod
     def _getDocColor(t, c=1): s = 'background_color' if c else 'color'  ;  return t.document.get_style(s)
-    def fid(self, t, j, why): i, n = self.J2[-1], int(self.idmapkey(j)[4:])  ;  oid = f' {id(t):11x}' if self.TIDS else ''  ;  return f'{i:4}{oid} {why:5} {JTEXTS[j]} {n:4}'
+    def foid(self, t, j, why): i, n = self.J2[-1], int(self.idmapkey(j)[4:])  ;  oid = f' {id(t):11x}' if self.OIDS else ''  ;  return f'{i:4}{oid} {why:5} {JTEXTS[j]} {n:4}'
     ####################################################################################################################################################################################################
     def dumpTniksA(self, why=''):
         self.dumpTniksPfx(why)
