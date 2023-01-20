@@ -28,9 +28,10 @@ def fmtl(ls, w=None, u='>', d1='[', d2=']', sep=' ', ll=0, z=''):
     if ls is None: return 'None'
     lts = (list, tuple, set, frozenset)  ;  dts = (int, float, str)
     assert type(ls) in lts, f'{type(ls)=} {lts=}'
-    if d1 == '': d2 = ''
-    w = w if w else ''
-    t = ''   ;   s = f'<{len(ls)}' if ll else ''
+    if d1 == ''  :  d2 = ''
+    w = w if w else ''   ;   t = ''
+    sl = '-' if ll==-1 else ' ' if ll==1 else ''
+    s = f'{sl}{len(ls)}' if ll else ''
     for i, l in enumerate(ls):
         if type(l) in lts:
 #            d0 = sep + d1 if not i else d1  ;  d3 = d2 + sep
@@ -46,11 +47,11 @@ def fmtl(ls, w=None, u='>', d1='[', d2=']', sep=' ', ll=0, z=''):
 #            else:                             msg = f'ERROR l={l} is type {type(l)}'   ;   slog(msg)   ;   raise SystemExit(msg)
     return s + d1 + t + d2
 
-def fmtm(m, w=1, d0=':', d1='[', d2=']'):
+def fmtm(m, w=1, d0=':', d1='[', d2=']', ll=0):
     t = ''
     for k, v in m.items():
-        if   type(v) in (list, tuple, set):         t += f'{k}{d0}'   ;   t += fmtl(v, w)
-        elif type(v) in (int, str):                 t += f'{k:>{w}}{d0}{v:<{w}} '
+        if   type(v) in (list, tuple, set):         t += f'{d1}{k}{d0}{fmtl(v, w, ll=ll)}{d2} '
+        elif type(v) in (int, str):                 t += f'{d1}{k:>{w}}{d0}{v:<{w}}{d2} '
     return d1 + t.rstrip() + d2
 
 def fColor(c, d=1): (d1, d2) = ("[", "]") if d else ("", "")  ;  return f'{fmtl(c, w="3", d1=d1, d2=d2):17}'
@@ -195,8 +196,8 @@ def FREQ( index): return 440 * pow(pow(2, 1/NTONES), index - 57)
 def FREQ2(index): return 432 * pow(pow(2, 1/NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(Note.MAX_INDEX) ]
 FREQS2  = [ FREQ2(i) for i in range(Note.MAX_INDEX) ]
-########################################################################################################################################################################################################
 
+########################################################################################################################################################################################################
 class Strings(object):
     aliases = {'GUITAR_6_STD':    cOd([('E2', 28), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52)]),
                'GUITAR_6_DROP_D': cOd([('D2', 26), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52)]),
@@ -242,64 +243,69 @@ class Strings(object):
 
 ########################################################################################################################################################################################################
 class KeySig(object):
-    ENHS  = dict()
-    LENHS = dict()
-    Cb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  ENHS['Cb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  LENHS['Cb'] = -len(ENHS['Cb'])
-    Gb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  ENHS['Gb'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  LENHS['Gb'] = -len(ENHS['Gb'])
-    Db = ['Db', 'Eb', 'F' , 'Gb', 'Ab', 'Bb', 'C' ]  ;  ENHS['Db'] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  LENHS['Db'] = -len(ENHS['Db'])
-    Ab = ['Ab', 'Bb', 'C' , 'Db', 'Eb', 'F' , 'G' ]  ;  ENHS['Ab'] = ['Bb', 'Eb', 'Ab', 'Db']                    ;  LENHS['Ab'] = -len(ENHS['Ab'])
-    Eb = ['Eb', 'F' , 'G' , 'Ab', 'Bb', 'C' , 'D' ]  ;  ENHS['Eb'] = ['Bb', 'Eb', 'Ab']                          ;  LENHS['Eb'] = -len(ENHS['Eb'])
-    Bb = ['Bb', 'C' , 'D' , 'Eb', 'F' , 'G' , 'A' ]  ;  ENHS['Bb'] = ['Bb', 'Eb']                                ;  LENHS['Bb'] = -len(ENHS['Bb'])
-    F  = ['F' , 'G' , 'A' , 'Bb', 'C' , 'D' , 'E' ]  ;  ENHS['F']  = ['Bb']                                      ;  LENHS['F']  = -len(ENHS['F'] )
-    C  = ['C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' ]  ;  ENHS['C']  = []                                          ;  LENHS['C']  =  len(ENHS['C'] )
-    G  = ['G' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F#']  ;  ENHS['G']  = ['F#']                                      ;  LENHS['G']  =  len(ENHS['G'] )
-    D  = ['D' , 'E' , 'F#', 'G' , 'A' , 'B' , 'C#']  ;  ENHS['D']  = ['F#', 'C#']                                ;  LENHS['D']  =  len(ENHS['D'] )
-    A  = ['A' , 'B' , 'C#', 'D' , 'E' , 'F#', 'G#']  ;  ENHS['A']  = ['F#', 'C#', 'G#']                          ;  LENHS['A']  =  len(ENHS['A'] )
-    E  = ['E' , 'F#', 'G#', 'A' , 'B' , 'C#', 'D#']  ;  ENHS['E']  = ['F#', 'C#', 'G#', 'D#']                    ;  LENHS['E']  =  len(ENHS['E'] )
-    B  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  ENHS['B']  = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  LENHS['B']  =  len(ENHS['B'] )
-    Fs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  ENHS['F#'] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  LENHS['F#'] =  len(ENHS['F#'])
-    Cs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  ENHS['C#'] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  LENHS['C#'] =  len(ENHS['C#'])
-#    ENHS1 = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B' :'Cb'}
-#    ENHS2 = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
-    ALIAS1 = {'Cb':'B', 'Gb':'F#', 'Db':'C#', 'Ab':'G#', 'Eb':'D#', 'Bb':'A#', 'F':'E#', 'C':'B#', 'E':'Fb'}
-    ALIAS2 = {'B':'Cb', 'F#':'Gb', 'C#':'Db', 'G#':'Ab', 'D#':'Eb', 'A#':'Bb', 'E#':'F', 'B#':'C', 'Fb':'E'}
+#    S2F = {'B':'Cb', 'F#':'Gb', 'C#':'Db', 'G#':'Ab', 'D#':'Eb', 'A#':'Bb', 'E#':'F', 'B#':'C', 'Fb':'E'}
+#    F2S = {'Cb':'B', 'Gb':'F#', 'Db':'C#', 'Ab':'G#', 'Eb':'D#', 'Bb':'A#', 'F':'E#', 'C':'B#', 'E':'Fb'}
+    S2F = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B' :'Cb'}
+    F2S = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
+    Ks  = dict()  ;  Ls = dict()
+    _ = 'Cb'  ;  Cb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  Ks[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  Ls[_] = -len(Ks[_])
+    _ = 'Gb'  ;  Gb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  Ks[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  Ls[_] = -len(Ks[_])
+    _ = 'Db'  ;  Db = ['Db', 'Eb', 'F' , 'Gb', 'Ab', 'Bb', 'C' ]  ;  Ks[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  Ls[_] = -len(Ks[_])
+    _ = 'Ab'  ;  Ab = ['Ab', 'Bb', 'C' , 'Db', 'Eb', 'F' , 'G' ]  ;  Ks[_] = ['Bb', 'Eb', 'Ab', 'Db']                    ;  Ls[_] = -len(Ks[_])
+    _ = 'Eb'  ;  Eb = ['Eb', 'F' , 'G' , 'Ab', 'Bb', 'C' , 'D' ]  ;  Ks[_] = ['Bb', 'Eb', 'Ab']                          ;  Ls[_] = -len(Ks[_])
+    _ = 'Bb'  ;  Bb = ['Bb', 'C' , 'D' , 'Eb', 'F' , 'G' , 'A' ]  ;  Ks[_] = ['Bb', 'Eb']                                ;  Ls[_] = -len(Ks[_])
+    _ = 'F'   ;  F  = ['F' , 'G' , 'A' , 'Bb', 'C' , 'D' , 'E' ]  ;  Ks[_] = ['Bb']                                      ;  Ls[_] = -len(Ks[_])
+    _ = 'C'   ;  C  = ['C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' ]  ;  Ks[_] = []                                          ;  Ls[_] =  len(Ks[_])
+    _ = 'G'   ;  G  = ['G' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F#']  ;  Ks[_] = ['F#']                                      ;  Ls[_] =  len(Ks[_])
+    _ = 'D'   ;  D  = ['D' , 'E' , 'F#', 'G' , 'A' , 'B' , 'C#']  ;  Ks[_] = ['F#', 'C#']                                ;  Ls[_] =  len(Ks[_])
+    _ = 'A'   ;  A  = ['A' , 'B' , 'C#', 'D' , 'E' , 'F#', 'G#']  ;  Ks[_] = ['F#', 'C#', 'G#']                          ;  Ls[_] =  len(Ks[_])
+    _ = 'E'   ;  E  = ['E' , 'F#', 'G#', 'A' , 'B' , 'C#', 'D#']  ;  Ks[_] = ['F#', 'C#', 'G#', 'D#']                    ;  Ls[_] =  len(Ks[_])
+    _ = 'B'   ;  B  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  Ks[_] = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  Ls[_] =  len(Ks[_])
+    _ = 'F#'  ;  Fs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  Ks[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  Ls[_] =  len(Ks[_])
+    _ = 'C#'  ;  Cs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  Ks[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  Ls[_] =  len(Ks[_])
+    L = len(Ls) // 2
     def __init__(self, k=None, l=None, dbg=1):
-        self.name  = k   ;   self.lenhs = l   ;   pfx = 'PASS '  ;  sfx = ''  ;  self.alias = ''
-        if   l is None and k in self.ALIAS1:      pfx = 'ALIA '  ;  sfx = f' ALIAS1[{k}]={self.ALIAS1[k]}'  ;  self.name = self.ALIAS1[k]
-        elif l is None and k in self.ALIAS2:      pfx = 'ALIA '  ;  sfx = f' ALIAS2[{k}]={self.ALIAS2[k]}'  ;  self.name = self.ALIAS2[k]
-        elif l is not None and (l > 7 or l < -7): pfx = 'FAIL '  ;  sfx = f' {l=} is Invalid'
-#        elif 'A' > k > 'G':                       pfx = 'FAIL '  ;  sfx = f' {k=} is Invalid'
-        elif l is None and (k not in self.LENHS and k not in self.ENHS): pfx = 'FAIL '  ;  sfx =  ' k not in LENHS and k not in ENHS is Invalid'
-        elif (k is None and l==7)  or (k=='C#' and l==7)  or (k=='C#' and l is None): self.name = 'C#'  ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==6)  or (k=='F#' and l==6)  or (k=='F#' and l is None): self.name = 'F#'  ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==5)  or (k=='B'  and l==5)  or (k=='B'  and l is None): self.name = 'B'   ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==4)  or (k=='E'  and l==4)  or (k=='E'  and l is None): self.name = 'E'   ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==3)  or (k=='A'  and l==3)  or (k=='A'  and l is None): self.name = 'A'   ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==2)  or (k=='D'  and l==2)  or (k=='D'  and l is None): self.name = 'D'   ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==1)  or (k=='G'  and l==1)  or (k=='G'  and l is None): self.name = 'G'   ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==0)  or (k=='C'  and l==0)  or (k=='C'  and l is None): self.name = 'C'   ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==-1) or (k=='F'  and l==-1) or (k=='F'  and l is None): self.name = 'F'   ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==-2) or (k=='Bb' and l==-2) or (k=='Bb' and l is None): self.name = 'Bb'  ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==-3) or (k=='Eb' and l==-3) or (k=='Eb' and l is None): self.name = 'Eb'  ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==-4) or (k=='Ab' and l==-4) or (k=='Ab' and l is None): self.name = 'Ab'  ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==-5) or (k=='Db' and l==-5) or (k=='Db' and l is None): self.name = 'Db'  ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==-6) or (k=='Gb' and l==-6) or (k=='Gb' and l is None): self.name = 'Gb'  ;  self.lenhs = self.LENHS[self.name]
-        elif (k is None and l==-7) or (k=='Cb' and l==-7) or (k=='Cb' and l is None): self.name = 'Cb'  ;  self.lenhs = self.LENHS[self.name]
-        elif k is None and l is None:             pfx = 'FAIL '  ;  sfx =  ' k is None and l is None is Invalid'
+        self.k  = k   ;   self.l = l   ;   pfx = 'FAIL '  ;  sfx = ''  ;  self.alias = '' # ;  m = self.Ls[k]
+        if   l is None and k in self.S2F:      pfx = 'ALIA '  ;  sfx = f' S2F[{k}]={self.S2F[k]}'  ;  self.k = self.S2F[k]
+        elif l is None and k in self.F2S:      pfx = 'ALIA '  ;  sfx = f' F2S[{k}]={self.F2S[k]}'  ;  self.k = self.F2S[k]
+        elif l is not None and (l > self.L or l < -self.L): pfx = 'FAIL '  ;  sfx = f' {l=} is Invalid'
+        elif l is None and (k not in self.Ls and k not in self.Ks): pfx = 'FAIL '  ;  sfx =  ' k not in Ls and k not in Ks is Invalid'
+        elif (k is None and l==7)  or (k=='C#' and l==7)  or (k=='C#' and l is None): self.k = 'C#'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==6)  or (k=='F#' and l==6)  or (k=='F#' and l is None): self.k = 'F#'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==5)  or (k=='B'  and l==5)  or (k=='B'  and l is None): self.k = 'B'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==4)  or (k=='E'  and l==4)  or (k=='E'  and l is None): self.k = 'E'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==3)  or (k=='A'  and l==3)  or (k=='A'  and l is None): self.k = 'A'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==2)  or (k=='D'  and l==2)  or (k=='D'  and l is None): self.k = 'D'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==1)  or (k=='G'  and l==1)  or (k=='G'  and l is None): self.k = 'G'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==0)  or (k=='C'  and l==0)  or (k=='C'  and l is None): self.k = 'C'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==-1) or (k=='F'  and l==-1) or (k=='F'  and l is None): self.k = 'F'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==-2) or (k=='Bb' and l==-2) or (k=='Bb' and l is None): self.k = 'Bb'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==-3) or (k=='Eb' and l==-3) or (k=='Eb' and l is None): self.k = 'Eb'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==-4) or (k=='Ab' and l==-4) or (k=='Ab' and l is None): self.k = 'Ab'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==-5) or (k=='Db' and l==-5) or (k=='Db' and l is None): self.k = 'Db'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==-6) or (k=='Gb' and l==-6) or (k=='Gb' and l is None): self.k = 'Gb'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==-7) or (k=='Cb' and l==-7) or (k=='Cb' and l is None): self.k = 'Cb'  ;  self.l = self.Ls[self.k]
+        elif  k is None and l is None:            pfx = 'FAIL '  ;  sfx =  ' k is None and l is None is Invalid'
         else:                                     pfx = 'FAIL '  ;  sfx =  ' else ??? is Invalid'
         if dbg: slog(f'{pfx}{self!r}{sfx}')
 
     def __str__(self):
-        _ = f'{self.LENHS[self.name]:2} {fmtl(self.ENHS[self.name])}' if self.name in self.ENHS and self.name in self.LENHS else ''
-        return f'{self.name:2}: {_}'
+        _ = f'{self.Ls[self.k]:2} {fmtl(self.Ks[self.k])}' if self.k in self.Ks and self.k in self.Ls else ''
+        return f'{self.k:2}: {_}'
     def __repr__(self):
-        _ = f'{self.LENHS[self.name]:2} {fmtl(self.ENHS[self.name])}' if self.name in self.ENHS and self.name in self.LENHS else ''
-        l = 'None' if self.name is None else f'{self.name:4}'
+        _ = f'{self.Ls[self.k]:2} {fmtl(self.Ks[self.k])}' if self.k in self.Ks and self.k in self.Ls else ''
+        l = 'None' if self.k is None else f'{self.k:4}'
         oid = f'{id(self):11x} ' if OIDS else ''
         return f'{oid}{l} {_}'
+    @classmethod
+    def fLs(cls): return f'{fmtm(cls.Ls)}'
+    @classmethod
+    def fKs(cls, ll=1): return f'{fmtm(cls.Ks, d2=chr(10), ll=ll)}'
 ########################################################################################################################################################################################################
     @classmethod
     def test(cls):
+        slog(KeySig.fKs(ll=-1), pfx=0)
+        slog(KeySig.fLs())
         cls.test_1B()
         cls.test_1()
         cls.test_2()
@@ -351,7 +357,7 @@ class KeySig(object):
 
     @classmethod
     def test_2(cls):
-        l = len(cls.LENHS) // 2
+        l = len(cls.Ls) // 2
         for n in range(l, -l - 1, -1):
             slog(f'PASS {cls(l=n)!r}')
 
@@ -393,7 +399,7 @@ class KeySig(object):
 
     @classmethod
     def test_5(cls):
-        l = len(cls.LENHS)//2
+        l = len(cls.Ls)//2
         for n in range(-l, l+1, 1):
             slog(f'PASS {cls(l=n)!r}')
 

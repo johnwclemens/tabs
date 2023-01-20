@@ -91,6 +91,7 @@ class Tabs(pyglet.window.Window):
         self.fontStyle = NORMAL_STYLE
         self.k         = {}
         self.sAlias = 'GUITAR_6_STD'
+        ####################################################################################################################################################################################################
         util.init(LOG_FILE, self.OIDS)
         self.sobj = util.Strings(self.sAlias)
         util.KeySig.test()
@@ -98,6 +99,7 @@ class Tabs(pyglet.window.Window):
         util.Note.setType(util.Note.FLAT)  ;  self.log(f'{util.Note.TYPE=}')
         self.log(f'Frequency Info')
         self.dumpFreqsHdr()  ;  self.dumpFreqs()  ;  self.dumpFreqs(ref=432)
+        ####################################################################################################################################################################################################
         self._initDataPath()
         if self.CAT: self.cobj.dumpOMAP(str(self.catPath))
         self._initWindowA()
