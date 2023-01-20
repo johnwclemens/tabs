@@ -421,23 +421,23 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
 2595 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
 2596 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
- 123 util  parseCmdLine       argv=[-n 4 2 10 6 -S 0 1 3 -i 1 1 1 1]
+ 124 util  parseCmdLine       argv=[-n 4 2 10 6 -S 0 1 3 -i 1 1 1 1]
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
- 139 util  parseCmdLine        1 short   -n n [] 
- 157 util  parseCmdLine        2 arg     4  n [4] 
- 157 util  parseCmdLine        3 arg     2  n [4 2] 
- 157 util  parseCmdLine        4 arg     10 n [4 2 10] 
- 157 util  parseCmdLine        5 arg     6  n [4 2 10 6] 
- 139 util  parseCmdLine        6 short   -S S [] 
- 157 util  parseCmdLine        7 arg     0  S [0] 
- 157 util  parseCmdLine        8 arg     1  S [0 1] 
- 157 util  parseCmdLine        9 arg     3  S [0 1 3] 
- 139 util  parseCmdLine       10 short   -i i [] 
- 157 util  parseCmdLine       11 arg     1  i [1] 
- 157 util  parseCmdLine       12 arg     1  i [1 1] 
- 157 util  parseCmdLine       13 arg     1  i [1 1 1] 
- 157 util  parseCmdLine       14 arg     1  i [1 1 1 1] 
- 159 util  parseCmdLine       options=[[n:[4 2 10 6]] [S:[0 1 3]] [i:[1 1 1 1]]]
+ 140 util  parseCmdLine        1 short   -n n [] 
+ 158 util  parseCmdLine        2 arg     4  n [4] 
+ 158 util  parseCmdLine        3 arg     2  n [4 2] 
+ 158 util  parseCmdLine        4 arg     10 n [4 2 10] 
+ 158 util  parseCmdLine        5 arg     6  n [4 2 10 6] 
+ 140 util  parseCmdLine        6 short   -S S [] 
+ 158 util  parseCmdLine        7 arg     0  S [0] 
+ 158 util  parseCmdLine        8 arg     1  S [0 1] 
+ 158 util  parseCmdLine        9 arg     3  S [0 1 3] 
+ 140 util  parseCmdLine       10 short   -i i [] 
+ 158 util  parseCmdLine       11 arg     1  i [1] 
+ 158 util  parseCmdLine       12 arg     1  i [1 1] 
+ 158 util  parseCmdLine       13 arg     1  i [1 1 1] 
+ 158 util  parseCmdLine       14 arg     1  i [1 1 1 1] 
+ 160 util  parseCmdLine       options=[[n:[4 2 10 6]] [S:[0 1 3]] [i:[1 1 1 1]]]
 2491 tabsC dumpGlobals        BASE_NAME = tabs
 2492 tabsC dumpGlobals        argv      =  15[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 4 2 10 6 -S 0 1 3 -i 1 1 1 1]
 2493 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
@@ -447,13 +447,13 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
   21 tabsC __init__           BGN <class __main__.Tabs>
 2424 tabsC getFilePath        fdir=logs/ fsfx=.log
 2428 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2438 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.100.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.101.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.102.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.103.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.104.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.105.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.106.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.107.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.108.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.109.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.110.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.111.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.112.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.113.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.114.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.115.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.116.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.117.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.118.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.119.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.120.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.121.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.122.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.123.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.124.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.125.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.126.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.127.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.128.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.129.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.130.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.131.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.132.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.133.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.134.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.135.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.136.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.137.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.138.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.139.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.140.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.141.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.142.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.143.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.144.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.145.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.146.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.147.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.148.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.149.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.150.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.151.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.152.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.153.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.154.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.155.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.156.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.157.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.158.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.159.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.160.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.161.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.162.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.163.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.164.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.165.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.166.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.167.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.168.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.169.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.170.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.171.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.172.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.173.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.174.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.175.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.176.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.177.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.178.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.179.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.180.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.181.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.182.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.183.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.184.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.185.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.186.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.187.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.188.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.189.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.190.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.191.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.192.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.193.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.194.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.195.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.196.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.197.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.198.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.199.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.200.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.201.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.202.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.203.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.204.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.205.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.206.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.207.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.208.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.209.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.210.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.211.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.212.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.213.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.214.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.215.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.216.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.217.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.218.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.219.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.220.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.221.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.222.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.223.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.224.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.225.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.226.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.227.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.228.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.229.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.230.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.231.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.232.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.233.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.53.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.54.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.55.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.56.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.57.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.58.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.59.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.60.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.61.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.62.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.63.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.64.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.65.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.66.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.67.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.68.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.69.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.70.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.71.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.72.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.73.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.74.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.75.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.76.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.77.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.78.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.80.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.81.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.82.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.83.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.84.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.85.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.86.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.88.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.89.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.90.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.91.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.92.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.93.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.94.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.95.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.96.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.97.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.98.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.99.log]
-2440 tabsC getFileSeqNum      ids=[0 1 10 100 101 102 103 104 105 106 107 108 109 11 110 111 112 113 114 115 116 117 118 119 12 120 121 122 123 124 125 126 127 128 129 13 130 131 132 133 134 135 136 137 138 139 14 140 141 142 143 144 145 146 147 148 149 15 150 151 152 153 154 155 156 157 158 159 16 160 161 162 163 164 165 166 167 168 169 17 170 171 172 173 174 175 176 177 178 179 18 180 181 182 183 184 185 186 187 188 189 19 190 191 192 193 194 195 196 197 198 199 2 20 200 201 202 203 204 205 206 207 208 209 21 210 211 212 213 214 215 216 217 218 219 22 220 221 222 223 224 225 226 227 228 229 23 230 231 232 233 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 52 53 54 55 56 57 58 59 6 60 61 62 63 64 65 66 67 68 69 7 70 71 72 73 74 75 76 77 78 79 8 80 81 82 83 84 85 86 87 88 89 9 90 91 92 93 94 95 96 97 98 99]
-2432 tabsC getFilePath        fsfx=.234.log
- 105 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 108 util  getFilePath        fileName =tabs.234.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.234.log)
- 105 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 108 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+2438 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
+2440 tabsC getFileSeqNum      ids=[0 1 2 3 4 5 6 7 8 9]
+2432 tabsC getFilePath        fsfx=.10.log
+ 106 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 109 util  getFilePath        fileName =tabs.10.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.10.log)
+ 106 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 109 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
   27 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
   37 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=UP  
   52 tabsC __init__           CODS=0 type(.idmap)=<class dict>
@@ -487,250 +487,60 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  146 tabsC dumpArgs           [L]             .LL=0
  147 tabsC dumpArgs           [S]             .SS=[0 1 3]
  148 tabsC dumpArgs           [Z]             .ZZ=[]
- 215 util  __init__           stringMap   = [[E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]]
- 216 util  __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
- 217 util  __init__           stringNames =      EBGDAE
- 218 util  __init__           stringNumbs =      123456
- 219 util  __init__           stringCapo  =      000000
- 220 util  __init__           strLabel    =      STRING
- 221 util  __init__           cpoLabel    =       CAPO 
+ 216 util  __init__           stringMap   = [[E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]]
+ 217 util  __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
+ 218 util  __init__           stringNames =      EBGDAE
+ 219 util  __init__           stringNumbs =      123456
+ 220 util  __init__           stringCapo  =      000000
+ 221 util  __init__           strLabel    =      STRING
+ 222 util  __init__           cpoLabel    =       CAPO 
 [[Cb:-7[Bb Eb Ab Db Gb Cb Fb]
  [Gb:-6[Bb Eb Ab Db Gb Cb]
  [Db:-5[Bb Eb Ab Db Gb]
  [Ab:-4[Bb Eb Ab Db]
  [Eb:-3[Bb Eb Ab]
  [Bb:-2[Bb Eb]
- [F:-1[Bb]
- [C:-0[]
- [G:-1[F#]
- [D:-2[F# C#]
- [A:-3[F# C# G#]
- [E:-4[F# C# G# D#]
- [B:-5[F# C# G# D# A#]
- [F#:-6[F# C# G# D# A# E#]
- [C#:-7[F# C# G# D# A# E# B#]
+ [F :-1[Bb]
+ [C : 0[]
+ [G : 1[F#]
+ [D : 2[F# C#]
+ [A : 3[F# C# G#]
+ [E : 4[F# C# G# D#]
+ [B : 5[F# C# G# D# A#]
+ [F#: 6[F# C# G# D# A# E#]
+ [C#: 7[F# C# G# D# A# E# B#]
 
- 308 util  test               [[Cb:-7] [Gb:-6] [Db:-5] [Ab:-4] [Eb:-3] [Bb:-2] [F:-1] [C:0] [G:1] [D:2] [A:3] [E:4] [B:5] [F#:6] [C#:7]]
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 319 util  test_1B            PASS A     3 [F# C# G#]
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 320 util  test_1B            PASS A     3 [F# C# G#]
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 321 util  test_1B            PASS A     3 [F# C# G#]
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 322 util  test_1B            PASS A     3 [F# C# G#]
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 323 util  test_1B            PASS A     3 [F# C# G#]
- 290 util  __init__           FAIL Eb   -3 [Bb Eb Ab]
- 324 util  test_1B            PASS Eb   -3 [Bb Eb Ab]
- 290 util  __init__           ALIA B#    F2S[C]=B#
- 325 util  test_1B            PASS B#   
- 290 util  __init__           FAIL None  k not in Ls and k not in Ks is Invalid
- 326 util  test_1B            FAIL None 
- 290 util  __init__           FAIL A     3 [F# C# G#] else ??? is Invalid
- 327 util  test_1B            FAIL A     3 [F# C# G#]
- 290 util  __init__           FAIL A     3 [F# C# G#] else ??? is Invalid
- 328 util  test_1B            FAIL A     3 [F# C# G#]
- 290 util  __init__           FAIL B     5 [F# C# G# D# A#] else ??? is Invalid
- 329 util  test_1B            FAIL B     5 [F# C# G# D# A#]
- 290 util  __init__           FAIL Z     else ??? is Invalid
- 330 util  test_1B            FAIL Z    
- 290 util  __init__           FAIL       else ??? is Invalid
- 331 util  test_1B            FAIL      
- 290 util  __init__           FAIL    3  k not in Ls and k not in Ks is Invalid
- 332 util  test_1B            FAIL    3 
- 290 util  __init__           FAIL       k not in Ls and k not in Ks is Invalid
- 333 util  test_1B            FAIL      
- 290 util  __init__           FAIL X     k not in Ls and k not in Ks is Invalid
- 334 util  test_1B            FAIL X    
- 290 util  __init__           FAIL None  l=9 is Invalid
- 335 util  test_1B            FAIL None 
- 290 util  __init__           FAIL None  k not in Ls and k not in Ks is Invalid
- 336 util  test_1B            FAIL None 
- 290 util  __init__           ALIA Eb   -3 [Bb Eb Ab] S2F[D#]=Eb
- 337 util  test_1B            PASS Eb   -3 [Bb Eb Ab]
- 290 util  __init__           ALIA Ab   -4 [Bb Eb Ab Db] S2F[G#]=Ab
- 338 util  test_1B            PASS Ab   -4 [Bb Eb Ab Db]
- 290 util  __init__           ALIA B     5 [F# C# G# D# A#] F2S[Cb]=B
- 342 util  test_1             PASS B     5 [F# C# G# D# A#]
- 290 util  __init__           ALIA F#    6 [F# C# G# D# A# E#] F2S[Gb]=F#
- 343 util  test_1             PASS F#    6 [F# C# G# D# A# E#]
- 290 util  __init__           ALIA C#    7 [F# C# G# D# A# E# B#] F2S[Db]=C#
- 344 util  test_1             PASS C#    7 [F# C# G# D# A# E# B#]
- 290 util  __init__           ALIA G#    F2S[Ab]=G#
- 345 util  test_1             PASS G#   
- 290 util  __init__           ALIA D#    F2S[Eb]=D#
- 346 util  test_1             PASS D#   
- 290 util  __init__           ALIA A#    F2S[Bb]=A#
- 347 util  test_1             PASS A#   
- 290 util  __init__           ALIA E#    F2S[F]=E#
- 348 util  test_1             PASS E#   
- 290 util  __init__           ALIA B#    F2S[C]=B#
- 349 util  test_1             PASS B#   
- 290 util  __init__           FAIL G     1 [F#]
- 350 util  test_1             PASS G     1 [F#]
- 290 util  __init__           FAIL D     2 [F# C#]
- 351 util  test_1             PASS D     2 [F# C#]
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 352 util  test_1             PASS A     3 [F# C# G#]
- 290 util  __init__           ALIA Fb    S2F[E]=Fb
- 353 util  test_1             PASS Fb   
- 290 util  __init__           ALIA Cb   -7 [Bb Eb Ab Db Gb Cb Fb] S2F[B]=Cb
- 354 util  test_1             PASS Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
- 290 util  __init__           ALIA Gb   -6 [Bb Eb Ab Db Gb Cb] S2F[F#]=Gb
- 355 util  test_1             PASS Gb   -6 [Bb Eb Ab Db Gb Cb]
- 290 util  __init__           ALIA Db   -5 [Bb Eb Ab Db Gb] S2F[C#]=Db
- 356 util  test_1             PASS Db   -5 [Bb Eb Ab Db Gb]
- 290 util  __init__           FAIL C#    7 [F# C# G# D# A# E# B#]
- 362 util  test_2             PASS C#    7 [F# C# G# D# A# E# B#]
- 290 util  __init__           FAIL F#    6 [F# C# G# D# A# E#]
- 362 util  test_2             PASS F#    6 [F# C# G# D# A# E#]
- 290 util  __init__           FAIL B     5 [F# C# G# D# A#]
- 362 util  test_2             PASS B     5 [F# C# G# D# A#]
- 290 util  __init__           FAIL E     4 [F# C# G# D#]
- 362 util  test_2             PASS E     4 [F# C# G# D#]
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 362 util  test_2             PASS A     3 [F# C# G#]
- 290 util  __init__           FAIL D     2 [F# C#]
- 362 util  test_2             PASS D     2 [F# C#]
- 290 util  __init__           FAIL G     1 [F#]
- 362 util  test_2             PASS G     1 [F#]
- 290 util  __init__           FAIL C     0 []
- 362 util  test_2             PASS C     0 []
- 290 util  __init__           FAIL F    -1 [Bb]
- 362 util  test_2             PASS F    -1 [Bb]
- 290 util  __init__           FAIL Bb   -2 [Bb Eb]
- 362 util  test_2             PASS Bb   -2 [Bb Eb]
- 290 util  __init__           FAIL Eb   -3 [Bb Eb Ab]
- 362 util  test_2             PASS Eb   -3 [Bb Eb Ab]
- 290 util  __init__           FAIL Ab   -4 [Bb Eb Ab Db]
- 362 util  test_2             PASS Ab   -4 [Bb Eb Ab Db]
- 290 util  __init__           FAIL Db   -5 [Bb Eb Ab Db Gb]
- 362 util  test_2             PASS Db   -5 [Bb Eb Ab Db Gb]
- 290 util  __init__           FAIL Gb   -6 [Bb Eb Ab Db Gb Cb]
- 362 util  test_2             PASS Gb   -6 [Bb Eb Ab Db Gb Cb]
- 290 util  __init__           FAIL Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
- 362 util  test_2             PASS Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
- 290 util  __init__           ALIA Db   -5 [Bb Eb Ab Db Gb] S2F[C#]=Db
- 366 util  test_3             PASS Db   -5 [Bb Eb Ab Db Gb]
- 290 util  __init__           ALIA Gb   -6 [Bb Eb Ab Db Gb Cb] S2F[F#]=Gb
- 367 util  test_3             PASS Gb   -6 [Bb Eb Ab Db Gb Cb]
- 290 util  __init__           ALIA Cb   -7 [Bb Eb Ab Db Gb Cb Fb] S2F[B]=Cb
- 368 util  test_3             PASS Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
- 290 util  __init__           ALIA Fb    S2F[E]=Fb
- 369 util  test_3             PASS Fb   
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 370 util  test_3             PASS A     3 [F# C# G#]
- 290 util  __init__           FAIL D     2 [F# C#]
- 371 util  test_3             PASS D     2 [F# C#]
- 290 util  __init__           FAIL G     1 [F#]
- 372 util  test_3             PASS G     1 [F#]
- 290 util  __init__           ALIA B#    F2S[C]=B#
- 373 util  test_3             PASS B#   
- 290 util  __init__           ALIA E#    F2S[F]=E#
- 374 util  test_3             PASS E#   
- 290 util  __init__           ALIA A#    F2S[Bb]=A#
- 375 util  test_3             PASS A#   
- 290 util  __init__           ALIA D#    F2S[Eb]=D#
- 376 util  test_3             PASS D#   
- 290 util  __init__           ALIA G#    F2S[Ab]=G#
- 377 util  test_3             PASS G#   
- 290 util  __init__           ALIA C#    7 [F# C# G# D# A# E# B#] F2S[Db]=C#
- 378 util  test_3             PASS C#    7 [F# C# G# D# A# E# B#]
- 290 util  __init__           ALIA F#    6 [F# C# G# D# A# E#] F2S[Gb]=F#
- 379 util  test_3             PASS F#    6 [F# C# G# D# A# E#]
- 290 util  __init__           ALIA B     5 [F# C# G# D# A#] F2S[Cb]=B
- 380 util  test_3             PASS B     5 [F# C# G# D# A#]
- 290 util  __init__           FAIL C#    7 [F# C# G# D# A# E# B#]
- 384 util  test_4             PASS C#    7 [F# C# G# D# A# E# B#]
- 290 util  __init__           FAIL F#    6 [F# C# G# D# A# E#]
- 385 util  test_4             PASS F#    6 [F# C# G# D# A# E#]
- 290 util  __init__           FAIL B     5 [F# C# G# D# A#]
- 386 util  test_4             PASS B     5 [F# C# G# D# A#]
- 290 util  __init__           FAIL E     4 [F# C# G# D#]
- 387 util  test_4             PASS E     4 [F# C# G# D#]
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 388 util  test_4             PASS A     3 [F# C# G#]
- 290 util  __init__           FAIL D     2 [F# C#]
- 389 util  test_4             PASS D     2 [F# C#]
- 290 util  __init__           FAIL G     1 [F#]
- 390 util  test_4             PASS G     1 [F#]
- 290 util  __init__           FAIL C     0 []
- 391 util  test_4             PASS C     0 []
- 290 util  __init__           FAIL F    -1 [Bb]
- 392 util  test_4             PASS F    -1 [Bb]
- 290 util  __init__           FAIL Bb   -2 [Bb Eb]
- 393 util  test_4             PASS Bb   -2 [Bb Eb]
- 290 util  __init__           FAIL Eb   -3 [Bb Eb Ab]
- 394 util  test_4             PASS Eb   -3 [Bb Eb Ab]
- 290 util  __init__           FAIL Ab   -4 [Bb Eb Ab Db]
- 395 util  test_4             PASS Ab   -4 [Bb Eb Ab Db]
- 290 util  __init__           FAIL Db   -5 [Bb Eb Ab Db Gb]
- 396 util  test_4             PASS Db   -5 [Bb Eb Ab Db Gb]
- 290 util  __init__           FAIL Gb   -6 [Bb Eb Ab Db Gb Cb]
- 397 util  test_4             PASS Gb   -6 [Bb Eb Ab Db Gb Cb]
- 290 util  __init__           FAIL Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
- 398 util  test_4             PASS Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
- 290 util  __init__           FAIL Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
- 404 util  test_5             PASS Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
- 290 util  __init__           FAIL Gb   -6 [Bb Eb Ab Db Gb Cb]
- 404 util  test_5             PASS Gb   -6 [Bb Eb Ab Db Gb Cb]
- 290 util  __init__           FAIL Db   -5 [Bb Eb Ab Db Gb]
- 404 util  test_5             PASS Db   -5 [Bb Eb Ab Db Gb]
- 290 util  __init__           FAIL Ab   -4 [Bb Eb Ab Db]
- 404 util  test_5             PASS Ab   -4 [Bb Eb Ab Db]
- 290 util  __init__           FAIL Eb   -3 [Bb Eb Ab]
- 404 util  test_5             PASS Eb   -3 [Bb Eb Ab]
- 290 util  __init__           FAIL Bb   -2 [Bb Eb]
- 404 util  test_5             PASS Bb   -2 [Bb Eb]
- 290 util  __init__           FAIL F    -1 [Bb]
- 404 util  test_5             PASS F    -1 [Bb]
- 290 util  __init__           FAIL C     0 []
- 404 util  test_5             PASS C     0 []
- 290 util  __init__           FAIL G     1 [F#]
- 404 util  test_5             PASS G     1 [F#]
- 290 util  __init__           FAIL D     2 [F# C#]
- 404 util  test_5             PASS D     2 [F# C#]
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 404 util  test_5             PASS A     3 [F# C# G#]
- 290 util  __init__           FAIL E     4 [F# C# G# D#]
- 404 util  test_5             PASS E     4 [F# C# G# D#]
- 290 util  __init__           FAIL B     5 [F# C# G# D# A#]
- 404 util  test_5             PASS B     5 [F# C# G# D# A#]
- 290 util  __init__           FAIL F#    6 [F# C# G# D# A# E#]
- 404 util  test_5             PASS F#    6 [F# C# G# D# A# E#]
- 290 util  __init__           FAIL C#    7 [F# C# G# D# A# E# B#]
- 404 util  test_5             PASS C#    7 [F# C# G# D# A# E# B#]
- 290 util  __init__           FAIL Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
- 408 util  test_6             PASS Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
- 290 util  __init__           FAIL Gb   -6 [Bb Eb Ab Db Gb Cb]
- 409 util  test_6             PASS Gb   -6 [Bb Eb Ab Db Gb Cb]
- 290 util  __init__           FAIL Db   -5 [Bb Eb Ab Db Gb]
- 410 util  test_6             PASS Db   -5 [Bb Eb Ab Db Gb]
- 290 util  __init__           FAIL Ab   -4 [Bb Eb Ab Db]
- 411 util  test_6             PASS Ab   -4 [Bb Eb Ab Db]
- 290 util  __init__           FAIL Eb   -3 [Bb Eb Ab]
- 412 util  test_6             PASS Eb   -3 [Bb Eb Ab]
- 290 util  __init__           FAIL Bb   -2 [Bb Eb]
- 413 util  test_6             PASS Bb   -2 [Bb Eb]
- 290 util  __init__           FAIL F    -1 [Bb]
- 414 util  test_6             PASS F    -1 [Bb]
- 290 util  __init__           FAIL C     0 []
- 415 util  test_6             PASS C     0 []
- 290 util  __init__           FAIL G     1 [F#]
- 416 util  test_6             PASS G     1 [F#]
- 290 util  __init__           FAIL D     2 [F# C#]
- 417 util  test_6             PASS D     2 [F# C#]
- 290 util  __init__           FAIL A     3 [F# C# G#]
- 418 util  test_6             PASS A     3 [F# C# G#]
- 290 util  __init__           FAIL E     4 [F# C# G# D#]
- 419 util  test_6             PASS E     4 [F# C# G# D#]
- 290 util  __init__           FAIL B     5 [F# C# G# D# A#]
- 420 util  test_6             PASS B     5 [F# C# G# D# A#]
- 290 util  __init__           FAIL F#    6 [F# C# G# D# A# E#]
- 421 util  test_6             PASS F#    6 [F# C# G# D# A# E#]
- 290 util  __init__           FAIL C#    7 [F# C# G# D# A# E# B#]
- 422 util  test_6             PASS C#    7 [F# C# G# D# A# E# B#]
+ 309 util  test               [[Cb:-7] [Gb:-6] [Db:-5] [Ab:-4] [Eb:-3] [Bb:-2] [F:-1] [C:0] [G:1] [D:2] [A:3] [E:4] [B:5] [F#:6] [C#:7]]
+ 291 util  __init__           PASS Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
+ 343 util  test_1             PASS Cb   -7 [Bb Eb Ab Db Gb Cb Fb]
+ 291 util  __init__           PASS Gb   -6 [Bb Eb Ab Db Gb Cb]
+ 344 util  test_1             PASS Gb   -6 [Bb Eb Ab Db Gb Cb]
+ 291 util  __init__           PASS Db   -5 [Bb Eb Ab Db Gb]
+ 345 util  test_1             PASS Db   -5 [Bb Eb Ab Db Gb]
+ 291 util  __init__           PASS Ab   -4 [Bb Eb Ab Db]
+ 346 util  test_1             PASS Ab   -4 [Bb Eb Ab Db]
+ 291 util  __init__           PASS Eb   -3 [Bb Eb Ab]
+ 347 util  test_1             PASS Eb   -3 [Bb Eb Ab]
+ 291 util  __init__           PASS Bb   -2 [Bb Eb]
+ 348 util  test_1             PASS Bb   -2 [Bb Eb]
+ 291 util  __init__           PASS F    -1 [Bb]
+ 349 util  test_1             PASS F    -1 [Bb]
+ 291 util  __init__           PASS C     0 []
+ 350 util  test_1             PASS C     0 []
+ 291 util  __init__           PASS G     1 [F#]
+ 351 util  test_1             PASS G     1 [F#]
+ 291 util  __init__           PASS D     2 [F# C#]
+ 352 util  test_1             PASS D     2 [F# C#]
+ 291 util  __init__           PASS A     3 [F# C# G#]
+ 353 util  test_1             PASS A     3 [F# C# G#]
+ 291 util  __init__           PASS E     4 [F# C# G# D#]
+ 354 util  test_1             PASS E     4 [F# C# G# D#]
+ 291 util  __init__           PASS B     5 [F# C# G# D# A#]
+ 355 util  test_1             PASS B     5 [F# C# G# D# A#]
+ 291 util  __init__           PASS F#    6 [F# C# G# D# A# E#]
+ 356 util  test_1             PASS F#    6 [F# C# G# D# A# E#]
+ 291 util  __init__           PASS C#    7 [F# C# G# D# A# E# B#]
+ 357 util  test_1             PASS C#    7 [F# C# G# D# A# E# B#]
   99 tabsC __init__           .Note.TYPE=0
  100 tabsC __init__           Frequency Info
 index[    0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88    89    90    91    92    93    94    95    96]
@@ -745,7 +555,7 @@ self.dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.4.2.1
 self.dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.4.2.10.dat')
 self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.4.2.10.dat.bck')
  241 tabsC _initWindowA       BGN (  -1x-1  )
- 241 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002159B6F55A0>
+ 241 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000010F776A55A0>
  244 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
  244 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
  245 tabsC _initWindowA       END (  -1x-1  )
@@ -884,9 +694,9 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/test.4.2.1
 ---------- ---------- ---------- ---------- ---------- ----------
 
  559 tabsC dumpDataFile       END 4 pages, 2 lines per page, 6 rows per line, 10 tabs per line
- 113 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/test.4.2.10.dat)
- 113 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/test.4.2.10.dat.bck)
- 115 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\data\test.4.2.10.dat C:\Users\Owner\Documents\GitHub\tabs\data\test.4.2.10.dat.bck ###
+ 114 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/test.4.2.10.dat)
+ 114 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/test.4.2.10.dat.bck)
+ 116 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\data\test.4.2.10.dat C:\Users\Owner\Documents\GitHub\tabs\data\test.4.2.10.dat.bck ###
  606 tabsC A_transposeData    BGN ( 4x2x6x10 ) dump=1
  563 tabsC isVert             BGN dl=[4 2 6 10] dt=[list list list str]
 [[[---7------ --68------ -369------ 148------- 26-------- 4---------][---------- ---------- ---------- ---------- ---------- ----------]][[---------- ---------- ---------- ---------- ---------- ----------][---------- ---------- ---------- ---------- ---------- ----------]][[---------- ---------- ---------- ---------- ---------- ----------][---------- ---------- ---------- ---------- ---------- ----------]][[---------- ---------- ---------- ---------- ---------- ----------][---------- ---------- ---------- ---------- ---------- ----------]]]
@@ -9993,23 +9803,23 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
 1340 tabsC dumpTniksA         END[( 640x480 )( 4x2x10x6 )( 1x1x1x1  ) (0 1 3  ) 0 (   ) 1717 430] Upd1A
  442 tabsC ntp                tpb tpp tpl tps tpc=[1440 360 180 60 6]
  460 tabsC dumpStruct         [1 1 1  1 1]   1  1] n=[4 2 3 10 6] END ntp=[ 1440  360 180  60   6] ( 1x1x1x1  )
-2412 tabsC snapshot           SNAP_NAME=tabs.234.RSZC_0.0.png Upd1
+2412 tabsC snapshot           SNAP_NAME=tabs.10.RSZC_0.0.png Upd1
  472 tabsC on_draw            [1 1 1  1 1]   1  1] .snapWhy=Upd1 .snapType=RSZC_0 .snapId=1
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
-  78 util  dumpStack          10 tabsC      2454 quit                 .log(.QUIT_BGN, pfx=0, file=2)   ;   .dumpStack(inspect.stack())    ;   .log(.QUIT, pfx=0, file=2)
-  78 util  dumpStack           9 tabsC      1702 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
-  78 util  dumpStack           8 event       415 dispatch_event       if getattr(self, event_type)(*args):
-  78 util  dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
-  78 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
-  78 util  dumpStack           5 __init__    747 f                    result = event_handler(msg, wParam, lParam)
-  78 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
-  78 util  dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
-  78 util  dumpStack           2 __init__    107 run                  event_loop.run()
-  78 util  dumpStack           1 tabsC      2598 main                 ret = pyglet.app.run()
-  78 util  dumpStack           0 tabsC      2602 <module>             main()
-  79 util  dumpStack          MAX_STACK_DEPTH= 0
+  79 util  dumpStack          10 tabsC      2454 quit                 .log(.QUIT_BGN, pfx=0, file=2)   ;   .dumpStack(inspect.stack())    ;   .log(.QUIT, pfx=0, file=2)
+  79 util  dumpStack           9 tabsC      1702 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
+  79 util  dumpStack           8 event       415 dispatch_event       if getattr(self, event_type)(*args):
+  79 util  dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
+  79 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
+  79 util  dumpStack           5 __init__    747 f                    result = event_handler(msg, wParam, lParam)
+  79 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
+  79 util  dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
+  79 util  dumpStack           2 __init__    107 run                  event_loop.run()
+  79 util  dumpStack           1 tabsC      2598 main                 ret = pyglet.app.run()
+  79 util  dumpStack           0 tabsC      2602 <module>             main()
+  80 util  dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
@@ -10017,20 +9827,20 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
 2455 tabsC quit               J2[4  8 24 240  480  480    0  480  0   0 1 0  0  0  0  0 1717 430] @^Q
 2455 tabsC quit               LE[4  8 24 240  480  480    0  480  0   0 1 0  0  0  0  0 1717 430] @^Q
 2455 tabsC quit               END[( 640x480 )( 4x2x10x6 )( 1x1x1x1  ) (0 1 3  ) 0 (   ) 1717 430] @^Q
-  78 util  dumpStack          12 util          9 <module>             MAX_STACK_FRAME = inspect.stack()
-  78 util  dumpStack          11 <frozen importlib   241 _call_with_frames_removed 
-  78 util  dumpStack          10 <frozen importlib   883 exec_module          
-  78 util  dumpStack           9 <frozen importlib   688 _load_unlocked       
-  78 util  dumpStack           8 <frozen importlib  1006 _find_and_load_unlocked 
-  78 util  dumpStack           7 <frozen importlib  1027 _find_and_load       
-  78 util  dumpStack           6 chord         6 <module>             import util
-  78 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
-  78 util  dumpStack           4 <frozen importlib   883 exec_module          
-  78 util  dumpStack           3 <frozen importlib   688 _load_unlocked       
-  78 util  dumpStack           2 <frozen importlib  1006 _find_and_load_unlocked 
-  78 util  dumpStack           1 <frozen importlib  1027 _find_and_load       
-  78 util  dumpStack           0 tabsC        12 <module>             import chord, util
-  79 util  dumpStack          MAX_STACK_DEPTH= 0
+  79 util  dumpStack          12 util          9 <module>             MAX_STACK_FRAME = inspect.stack()
+  79 util  dumpStack          11 <frozen importlib   241 _call_with_frames_removed 
+  79 util  dumpStack          10 <frozen importlib   883 exec_module          
+  79 util  dumpStack           9 <frozen importlib   688 _load_unlocked       
+  79 util  dumpStack           8 <frozen importlib  1006 _find_and_load_unlocked 
+  79 util  dumpStack           7 <frozen importlib  1027 _find_and_load       
+  79 util  dumpStack           6 chord         6 <module>             import util
+  79 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
+  79 util  dumpStack           4 <frozen importlib   883 exec_module          
+  79 util  dumpStack           3 <frozen importlib   688 _load_unlocked       
+  79 util  dumpStack           2 <frozen importlib  1006 _find_and_load_unlocked 
+  79 util  dumpStack           1 <frozen importlib  1027 _find_and_load       
+  79 util  dumpStack           0 tabsC        12 <module>             import chord, util
+  80 util  dumpStack          MAX_STACK_DEPTH= 0
 2457 tabsC quit               BGN @^Q error=0 save=0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  120 tabsC dumpArgs           [f]     .DATA_FNAME=test.4.2.10.dat
@@ -12005,11 +11815,11 @@ Page 4 Line 2
   1 0 037    904    580                           Rm35         6RM3         4#5R         
   2 0 037    904    580                           Rm35         6RM3         4#5R         
   3 0 037    904    580                           Rm35         6RM3         4#5R         
-2412 tabsC snapshot           SNAP_NAME=tabs.234.QUIT.1.png quit error=0 save=0
+2412 tabsC snapshot           SNAP_NAME=tabs.10.QUIT.1.png quit error=0 save=0
 2465 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2480 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.234.log
- 113 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 113 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.234.log)
- 115 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.234.log ###
+2480 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log
+ 114 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 114 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.10.log)
+ 116 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log ###
 2482 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log

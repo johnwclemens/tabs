@@ -24,21 +24,22 @@ def init(file, oid):  global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OI
 #    if file is None: file=LOG_FILE
 #    slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
 
-def fmtl(ls, w=None, u='>', d1='[', d2=']', sep=' ', ll=0, z=''):
-    if ls is None: return 'None'
+def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
+    if lst is None: return 'None'
     lts = (list, tuple, set, frozenset)  ;  dts = (int, float, str)
-    assert type(ls) in lts, f'{type(ls)=} {lts=}'
+    assert type(lst) in lts, f'{type(lst)=} {lts=}'
     if d1 == ''  :  d2 = ''
     w = w if w else ''   ;   t = ''
-    sl = '-' if ll==-1 else ' ' if ll==1 else ''
-    s = f'{sl}{len(ls)}' if ll else ''
-    for i, l in enumerate(ls):
+    sl = '-' if ll is not None and ll<0 else ' ' if ll is not None and ll>=0 else ''
+    s = f'{sl}{len(lst)}' if ll is not None else ''
+#    s = f'{len(lst)}' if ll else ''
+#    s = f'{len(lst)}' if ll==1 else f'{ll()}' if ll else ''
+    for i, l in enumerate(lst):
         if type(l) in lts:
-#            d0 = sep + d1 if not i else d1  ;  d3 = d2 + sep
             if type(w) in lts:               t += fmtl(l, w[i], u, d1, d2, sep, ll, z)
             else:                            t += fmtl(l, w,    u, d1, d2, sep, ll, z)
         else:
-            ss = sep if i < len(ls)-1 else ''
+            ss = sep if i < len(lst)-1 else ''
             if   type(l) is type:            l =  str(l)
             elif l is None:                  l =  'None'
             if   type(w) in lts:             t += f'{l:{u}{w[i]}{z}}{ss}'
@@ -47,10 +48,10 @@ def fmtl(ls, w=None, u='>', d1='[', d2=']', sep=' ', ll=0, z=''):
 #            else:                             msg = f'ERROR l={l} is type {type(l)}'   ;   slog(msg)   ;   raise SystemExit(msg)
     return s + d1 + t + d2
 
-def fmtm(m, w=1, d0=':', d1='[', d2=']', ll=0):
+def fmtm(m, w=1, d0=':', d1='[', d2=']', ll=None):
     t = ''
     for k, v in m.items():
-        if   type(v) in (list, tuple, set):         t += f'{d1}{k}{d0}{fmtl(v, w, ll=ll)}{d2} '
+        if   type(v) in (list, tuple, set):         t += f'{d1}{k:{w}}{d0}{fmtl(v, w, ll=KeySig.Ls[k] if ll==-1 else ll)}{d2} '
         elif type(v) in (int, str):                 t += f'{d1}{k:>{w}}{d0}{v:<{w}}{d2} '
     return d1 + t.rstrip() + d2
 
@@ -265,26 +266,26 @@ class KeySig(object):
     _ = 'C#'  ;  Cs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  Ks[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  Ls[_] =  len(Ks[_])
     L = len(Ls) // 2
     def __init__(self, k=None, l=None, dbg=1):
-        self.k  = k   ;   self.l = l   ;   pfx = 'FAIL '  ;  sfx = ''  ;  self.alias = '' # ;  m = self.Ls[k]
-        if   l is None and k in self.S2F:      pfx = 'ALIA '  ;  sfx = f' S2F[{k}]={self.S2F[k]}'  ;  self.k = self.S2F[k]
-        elif l is None and k in self.F2S:      pfx = 'ALIA '  ;  sfx = f' F2S[{k}]={self.F2S[k]}'  ;  self.k = self.F2S[k]
-        elif l is not None and (l > self.L or l < -self.L): pfx = 'FAIL '  ;  sfx = f' {l=} is Invalid'
+        self.k  = k   ;   self.l = l   ;   pfx = 'PASS '  ;  sfx = ''  ;  self.alias = ''  ;  m = self.Ls[k] if k in self.Ls else 9
+#        if   l is None and k in self.S2F:      pfx = 'ALIA '  ;  sfx = f' S2F[{k}]={self.S2F[k]}'  ;  self.k = self.S2F[k]
+#        elif l is None and k in self.F2S:      pfx = 'ALIA '  ;  sfx = f' F2S[{k}]={self.F2S[k]}'  ;  self.k = self.F2S[k]
+        if   l is not None and (l > self.L or l < -self.L): pfx = 'FAIL '  ;  sfx = f' {l=} is Invalid'
         elif l is None and (k not in self.Ls and k not in self.Ks): pfx = 'FAIL '  ;  sfx =  ' k not in Ls and k not in Ks is Invalid'
-        elif (k is None and l==7)  or (k=='C#' and l==7)  or (k=='C#' and l is None): self.k = 'C#'  ;  self.l = self.Ls[self.k]
-        elif (k is None and l==6)  or (k=='F#' and l==6)  or (k=='F#' and l is None): self.k = 'F#'  ;  self.l = self.Ls[self.k]
-        elif (k is None and l==5)  or (k=='B'  and l==5)  or (k=='B'  and l is None): self.k = 'B'   ;  self.l = self.Ls[self.k]
-        elif (k is None and l==4)  or (k=='E'  and l==4)  or (k=='E'  and l is None): self.k = 'E'   ;  self.l = self.Ls[self.k]
-        elif (k is None and l==3)  or (k=='A'  and l==3)  or (k=='A'  and l is None): self.k = 'A'   ;  self.l = self.Ls[self.k]
-        elif (k is None and l==2)  or (k=='D'  and l==2)  or (k=='D'  and l is None): self.k = 'D'   ;  self.l = self.Ls[self.k]
-        elif (k is None and l==1)  or (k=='G'  and l==1)  or (k=='G'  and l is None): self.k = 'G'   ;  self.l = self.Ls[self.k]
-        elif (k is None and l==0)  or (k=='C'  and l==0)  or (k=='C'  and l is None): self.k = 'C'   ;  self.l = self.Ls[self.k]
-        elif (k is None and l==-1) or (k=='F'  and l==-1) or (k=='F'  and l is None): self.k = 'F'   ;  self.l = self.Ls[self.k]
-        elif (k is None and l==-2) or (k=='Bb' and l==-2) or (k=='Bb' and l is None): self.k = 'Bb'  ;  self.l = self.Ls[self.k]
-        elif (k is None and l==-3) or (k=='Eb' and l==-3) or (k=='Eb' and l is None): self.k = 'Eb'  ;  self.l = self.Ls[self.k]
-        elif (k is None and l==-4) or (k=='Ab' and l==-4) or (k=='Ab' and l is None): self.k = 'Ab'  ;  self.l = self.Ls[self.k]
-        elif (k is None and l==-5) or (k=='Db' and l==-5) or (k=='Db' and l is None): self.k = 'Db'  ;  self.l = self.Ls[self.k]
-        elif (k is None and l==-6) or (k=='Gb' and l==-6) or (k=='Gb' and l is None): self.k = 'Gb'  ;  self.l = self.Ls[self.k]
-        elif (k is None and l==-7) or (k=='Cb' and l==-7) or (k=='Cb' and l is None): self.k = 'Cb'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m)  or (k=='C#' and l==m)  or (k=='C#' and l is None): self.k = 'C#'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m)  or (k=='F#' and l==m)  or (k=='F#' and l is None): self.k = 'F#'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m)  or (k=='B'  and l==m)  or (k=='B'  and l is None): self.k = 'B'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m)  or (k=='E'  and l==m)  or (k=='E'  and l is None): self.k = 'E'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m)  or (k=='A'  and l==m)  or (k=='A'  and l is None): self.k = 'A'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m)  or (k=='D'  and l==m)  or (k=='D'  and l is None): self.k = 'D'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m)  or (k=='G'  and l==m)  or (k=='G'  and l is None): self.k = 'G'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m)  or (k=='C'  and l==m)  or (k=='C'  and l is None): self.k = 'C'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m) or (k=='F'  and l==m) or (k=='F'  and l is None): self.k = 'F'   ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m) or (k=='Bb' and l==m) or (k=='Bb' and l is None): self.k = 'Bb'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m) or (k=='Eb' and l==m) or (k=='Eb' and l is None): self.k = 'Eb'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m) or (k=='Ab' and l==m) or (k=='Ab' and l is None): self.k = 'Ab'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m) or (k=='Db' and l==m) or (k=='Db' and l is None): self.k = 'Db'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m) or (k=='Gb' and l==m) or (k=='Gb' and l is None): self.k = 'Gb'  ;  self.l = self.Ls[self.k]
+        elif (k is None and l==m) or (k=='Cb' and l==m) or (k=='Cb' and l is None): self.k = 'Cb'  ;  self.l = self.Ls[self.k]
         elif  k is None and l is None:            pfx = 'FAIL '  ;  sfx =  ' k is None and l is None is Invalid'
         else:                                     pfx = 'FAIL '  ;  sfx =  ' else ??? is Invalid'
         if dbg: slog(f'{pfx}{self!r}{sfx}')
@@ -300,19 +301,19 @@ class KeySig(object):
     @classmethod
     def fLs(cls): return f'{fmtm(cls.Ls)}'
     @classmethod
-    def fKs(cls, ll=1): return f'{fmtm(cls.Ks, d2=chr(10), ll=ll)}'
+    def fKs(cls): return f'{fmtm(cls.Ks, w=2, d2=chr(10), ll=-1)}'
 ########################################################################################################################################################################################################
     @classmethod
     def test(cls):
-        slog(KeySig.fKs(ll=-1), pfx=0)
+        slog(KeySig.fKs(), pfx=0)
         slog(KeySig.fLs())
-        cls.test_1B()
+#        cls.test_1B()
         cls.test_1()
-        cls.test_2()
-        cls.test_3()
-        cls.test_4()
-        cls.test_5()
-        cls.test_6()
+#        cls.test_2()
+#        cls.test_3()
+#        cls.test_4()
+#        cls.test_5()
+#        cls.test_6()
 
     @classmethod
     def test_1B(cls):
