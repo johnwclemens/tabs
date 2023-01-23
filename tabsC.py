@@ -92,7 +92,7 @@ class Tabs(pyglet.window.Window):
         self.k         = {}
         self.sAlias = 'GUITAR_6_STD'
         ####################################################################################################################################################################################################
-        util.init(LOG_FILE, self.OIDS)
+#        util.init(LOG_FILE, self.OIDS)
         self.sobj = util.Strings(self.sAlias)
         util.KeySig.test()
         self.cobj = chord.Chord(LOG_FILE, self.sobj)
@@ -234,7 +234,7 @@ class Tabs(pyglet.window.Window):
         self.dumpAxy()  ;   self.dumpAXY()
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
-        if self.TEST:     self.test() # ;  self.test2()
+        if self.TEST:     self.test()  ;  self.test2A()  ;  self.test2B()
     ####################################################################################################################################################################################################
     def _initWindowA(self, dbg=1):
         display      = pyglet.canvas.get_display()
@@ -307,6 +307,19 @@ class Tabs(pyglet.window.Window):
 #        for i in range(len(self.tabls) * ns):
 #            self.plc2cn_(p, l, c, dbg=1)
         self.dumpTniksSfx(f'END {j=} test')
+    @staticmethod
+    def test2A():
+        file = None  ;  util.slog(f'{file=} LOG FILE ONLY',        file=file)
+        file = 0     ;  util.slog(f'{file=} LOG FILE ONLY',        file=file)
+        file = 1     ;  util.slog(f'{file=} STD OUT  ONLY',        file=file)
+        file = 2     ;  util.slog(f'{file=} LOG FILE AND STD OUT', file=file)
+#        so   = 0     ;  util.slog(f'{file=} {so=} STD OUT  ONLY',        so=so)
+#        so   = 1     ;  util.slog(f'{file=} {so=} LOG FILE AND STD OUT', so=so)
+    def test2B(self):
+        file = None  ;  self.log(f'{file=} LOG FILE ONLY',        file=file)
+        file = 0     ;  self.log(f'{file=} LOG FILE ONLY',        file=file)
+        file = 1     ;  self.log(f'{file=} STD OUT  ONLY',        file=file)
+        file = 2     ;  self.log(f'{file=} LOG FILE AND STD OUT', file=file)
     ####################################################################################################################################################################################################
     def lenA(self):                   return [ len(_) for _ in self.A ]
     def lenB(self):                   return [ len(_) for _ in self.B ]
@@ -2443,11 +2456,23 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def sid(s, sfx): s = s[:-len(sfx)]   ;   j = s.rfind('.')   ;   return int(s[j+1:])
     ####################################################################################################################################################################################################
-    def log(self, msg='', pfx=1, pos=0, file=None, flush=False, sep=',', end='\n'):
-        so = 0 if file is None or file == 1 else 1
+    def OLD__log(self, msg='', pfx=1, pos=0, file=None, flush=False, sep=',', end='\n'):
+#        so = 1 if file == 2 else 0
         file = sys.stdout if file == 1 else LOG_FILE
         if   pos: msg = f'{self.fmtPos()} {msg}'
-        util.slog(msg, pfx, file, flush, sep, end, so)
+        util.slog(msg, pfx, file, flush, sep, end) #, so=so)
+    def OLD__log2(self, msg='', pfx=1, pos=0, file=None, flush=False, sep=',', end='\n'):
+#        so = 0
+        if   file is None or 0: file = LOG_FILE
+        elif file == 1:         file = sys.stdout
+        elif file == 2:         file = LOG_FILE # ;  so = 1
+        if   pos: msg = f'{self.fmtPos()} {msg}'
+        util.slog(msg, pfx, file, flush, sep, end) #, so=so)
+    def log(self, msg='', pfx=1, pos=0, file=None, flush=False, sep=',', end='\n'):
+        if   pos: msg = f'{self.fmtPos()} {msg}'
+#        if   file is None or 0: file = LOG_FILE
+#        elif file == 1:         file = sys.stdout
+        util.slog(msg, pfx, file, flush, sep, end)
     ####################################################################################################################################################################################################
     def quit(self, why='', error=1, save=1, dbg=1): #, dbg2=1):
         hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)  ;  self.log(f'{hdr1}', pfx=0, file=2)   ;   self.log(f'{hdr0}', pfx=0, file=2)
@@ -2497,7 +2522,7 @@ def initRGB(dbg=1):
     if dbg:
         s = f'{B*7}'  ;  t = f'{s}RGB '
         o = [ f' {o}' for o in range(len(OPC)) ]
-        util.slog(f'RGB{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=LOG_FILE)
+        util.slog(f'RGB{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=2) # LOG_FILE)
     _initRGB('FSH', (255,   0, 255))  # 0
     _initRGB('PNK', (255, 128, 192))  # 1
     _initRGB('RED', (255,   0,   0))  # 2
@@ -2587,8 +2612,11 @@ prevPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
 LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
 if LOG_PATH.exists():     util.copyFile(LOG_PATH, prevPath, LOG_FILE)
 with open(   str(LOG_PATH), 'w', encoding='utf-8')  as      LOG_FILE:
-    util.slog(f'{sys.argv[0]}', pfx=0, so=2,           file=LOG_FILE)
-    util.slog(f'argv={util.fmtl(sys.argv[1:])}', so=2, file=LOG_FILE)
+    util.init(LOG_FILE, 0) #self.OIDS)
+    util.slog(f'{sys.argv[0]}', pfx=0,           file=2)
+    util.slog(f'argv={util.fmtl(sys.argv[1:])}', file=2)
+#    util.slog(f'{sys.argv[0]}', pfx=0, so=2,           file=LOG_FILE)
+#    util.slog(f'argv={util.fmtl(sys.argv[1:])}', so=2, file=LOG_FILE)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
     FSH, PNK, RED, RST, PCH, ORN, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
     def main():
