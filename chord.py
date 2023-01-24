@@ -11,15 +11,10 @@ FMTN           = (1, 1, 2, 2, 2, 2, 2)
 class Chord(object):
     MIN_CHORD_LEN = 3
     def __init__(self, sobj):
-#        self.file = file
         self.sobj = sobj
         self.limap, self.mlimap, self.umap, self.cycles = [], {}, {}, {}
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), dict()
-    ####################################################################################################################################################################################################
-#    def log(self, msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
-#        if file is None: file=self.file
-#        util.slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
     ####################################################################################################################################################################################################
     def getChordName(self, data, cn, p, l, c, kk=1, dbg=0):
         self.limap = []   ;   imap = []
@@ -220,7 +215,7 @@ class Chord(object):
         util.slog(f'END   len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
 
     def _dumpOMAP(self, catfile=None, dbg=0):
-        file = catfile      if catfile else util.LOG_FILE # self.file
+        file = catfile      if catfile else util.LOG_FILE
         name = catfile.name if catfile else None
         omap = self.OMAP
         mapSet = {}   ;   r = {}   ;   rank = -1
@@ -897,7 +892,7 @@ class Chord(object):
         self.cat1.add(tuple(outer))
 #        util.slog(f'{why}', end='')
 #        for o in outer:
-#            util.slog(f'{util.fmtl(o, z="x", d2="] ")}', pfx=0, end='',  file=self.logFile)
+#            util.slog(f'{util.fmtl(o, z="x", d2="] ")}', pfx=0, end='')
 #        util.slog(pfx=0)
 
     def dumpInstanceCat(self, why=''):
@@ -916,17 +911,17 @@ class Chord(object):
         for i, c in enumerate(cat2):
             util.slog(f'{i+1:3} {util.fmtl(c, z="x")}', pfx=0)
         util.slog(f'{why} cat3 <{len(cat3)}>')
-        util.slog(f'{util.fmtm(cat3)}', pfx=0) # file=self.file)
+        util.slog(f'{util.fmtm(cat3)}', pfx=0)
         for k in cat3.keys():
             cat3[k] = sorted(tuple(cat3[k]))
             for j, v in enumerate(cat3[k]):
                 util.slog(f'{j+1:3} {util.fmtl(v, z="x")}', pfx=0)
         util.slog(f'{why} catmap <{len(catmap)}>')
-        util.slog(f'{util.fmtm(catmap)}', pfx=0) # file=self.file)
+        util.slog(f'{util.fmtm(catmap)}', pfx=0)
         for i, (k,v) in enumerate(catmap.items()):
             util.slog(f'{i+1:3} {util.fmtl(k, z="x")} {util.fmtl(v, w=2)}', pfx=0)
         util.slog(f'{why} catmap2 <{len(catmap2)}>')
-        util.slog(f'{util.fmtm(catmap2)}', pfx=0) # file=self.file)
+        util.slog(f'{util.fmtm(catmap2)}', pfx=0)
         for k in cat3.keys():
             for i, v in enumerate(cat3[k]):
                 util.slog(f'{i+1:3} {util.fmtl(v, z="x")}', pfx=0, end='  ')

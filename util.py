@@ -68,13 +68,13 @@ def stackDepth(sfs):
 
 def fmtSD(sd): return f'{sd:{sd}}'
 
-def dumpStack(sfs, file=None):
+def dumpStack(sfs):
     for i, sf in enumerate(sfs):
         fp = pathlib.Path(sf.filename)  ;   n = fp.stem  ;  l = sf.lineno  ;  f = sf.function  ;  c = sf.code_context[0].strip() if sf.code_context else ''  ;  j = len(sfs) - (i + 1)
-        slog(f'{j:2} {n:9} {l:5} {f:20} {c}', file=file)
-    slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}', file=file)
+        slog(f'{j:2} {n:9} {l:5} {f:20} {c}')
+    slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
 ########################################################################################################################################################################################################
-def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
+def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
     if pfx:
         sf   = inspect.currentframe().f_back
         while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
@@ -91,40 +91,34 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
         msg = msg.replace("'", '')
         fp = pathlib.Path(sf.f_code.co_filename)
         msg = f'{sf.f_lineno:4} {fp.stem:5} {sf.f_code.co_name:18} ' + msg
-#    file2 = LOG_FILE
-#    if   file == 1:                 file2 = sys.stdout
-#    elif file == 2:                 file2 = LOG_FILE # ;  file2 = 1
-#    print(f'{msg}', flush=flush, sep=sep, end=end, file=file2)
-#    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if file == 2 else None
-    file2 = 0
-    if   file == 0:  file = LOG_FILE
-    elif file == 1:  file = sys.stdout
-    elif file == 2:  file = LOG_FILE  ;  file2 = 1
+    so = 0
+    if   file == 0:  file = sys.stdout
+    elif file == 1:  file = LOG_FILE
+    elif file == 2:  file = LOG_FILE  ;  so = 1
     print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
-    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if file2 else None
-
+    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
 ########################################################################################################################################################################################################
-def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1, file=None):
-    if dbg: slog(f'{baseName =:12} {basePath = }', file=file)
+def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1):
+    if dbg: slog(f'{baseName =:12} {basePath = }', file=2)
     fileName      = baseName + fsfx
     filePath      = basePath / fdir / fileName
-    if dbg: slog(f'{fileName =:12} {filePath = }', file=file)
+    if dbg: slog(f'{fileName =:12} {filePath = }', file=2)
     return filePath
 
-def copyFile(src, trg, file=None):
+def copyFile(src, trg):
     if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;  raise SystemExit(msg)
-    slog(f'{src=}', file=file)
-    slog(f'{trg=}', file=file)
+    slog(f'{src=}')
+    slog(f'{trg=}')
     cmd = f'copy {src} {trg}'
-    slog(f'### {cmd} ###', file=file)
+    slog(f'### {cmd} ###')
     os.system(f'{cmd}')
 ########################################################################################################################################################################################################
-def parseCmdLine(file=None, dbg=1):
+def parseCmdLine(dbg=1):
     options = dict()
     key = ''
     vals = []
     largs = len(sys.argv)
-    if dbg: slog(f'argv={fmtl(sys.argv[1:])}', file=file)  ;  slog(f'{sys.argv[0]}', pfx=0, file=file)
+    if dbg: slog(f'argv={fmtl(sys.argv[1:])}')  ;  slog(f'{sys.argv[0]}', pfx=0)
     for j in range(1, largs):
         argv = sys.argv[j]
         if len(argv) > 2 and argv[0] == '-' and argv[1] == '-':
@@ -132,35 +126,35 @@ def parseCmdLine(file=None, dbg=1):
                 vals = []
                 key = argv[2:]
                 options[key] = vals
-                if dbg: slog(f'{j:2} long    {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
+                if dbg: slog(f'{j:2} long    {argv:2} {key} {fmtl(vals)}', end=' ')
             else:
-                slog(f'{j:2} ERROR long    {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
+                slog(f'{j:2} ERROR long    {argv:2} {key} {fmtl(vals)}', end=' ')
         elif len(argv) > 1 and argv[0] == '-':
             if argv[1].isalpha() or argv[1] == '?':
                 vals = []
                 if len(argv) == 2:
                     key = argv[1:]
-                    if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
+                    if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', end=' ')
                     options[key] = vals
                 elif len(argv) > 2:
                     for i in range(1, len(argv)):
                         key = argv[i]
-                        if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
+                        if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', end=' ')
                         options[key] = vals
             elif argv[1].isdigit():
                 vals.append(argv)
                 options[key] = vals
-                if dbg: slog(f'{j:2} neg arg {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
+                if dbg: slog(f'{j:2} neg arg {argv:2} {key} {fmtl(vals)}', end=' ')
             else:
                 vals.append(argv)
                 options[key] = vals
-                if dbg: slog(f'{j:2} ??? arg {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
+                if dbg: slog(f'{j:2} ??? arg {argv:2} {key} {fmtl(vals)}', end=' ')
         else:
             vals.append(argv)
             options[key] = vals
-            if dbg: slog(f'{j:2} arg     {argv:2} {key} {fmtl(vals)}', end=' ', file=file)
-        if dbg: slog(pfx=0, file=file)
-    if dbg: slog(f'options={fmtm(options)}', file=file)
+            if dbg: slog(f'{j:2} arg     {argv:2} {key} {fmtl(vals)}', end=' ')
+        if dbg: slog(pfx=0)
+    if dbg: slog(f'options={fmtm(options)}')
     return options
 ########################################################################################################################################################################################################
 class DSymb(object):
@@ -457,12 +451,12 @@ class KeySig(object):
         return i
 ########################################################################################################################################################################################################
 class Test:
-    def __init__(self, a, file=None): self._a = a  ;  slog(f'<Test_init_:     _a={self._a}>', pfx=1, file=file)
+    def __init__(self, a): self._a = a  ;  slog(f'<Test_init_:     _a={self._a}>', pfx=1)
     @property
-    def a(self, file=None):                           slog(f'<Test_prop_a:     _a={self._a}>', pfx=1, file=file)
+    def a(self):                           slog(f'<Test_prop_a:     _a={self._a}>', pfx=1)
     @a.setter
-    def a(self, a, file=None):        self._a = a  ;  slog(f'<Test_set_a:     _a={self._a}>', pfx=1, file=file)
+    def a(self, a):        self._a = a  ;  slog(f'<Test_set_a:     _a={self._a}>', pfx=1)
     @a.getter
-    def a(self, file=None):                           slog(f'<Test_get_a:     _a={self._a}>', pfx=1, file=file)  ;  return self._a
+    def a(self):                           slog(f'<Test_get_a:     _a={self._a}>', pfx=1)  ;  return self._a
     @a.deleter
-    def a(self, file=None):                           slog(f'<Test_del_a: del _a>', pfx=1, file=file)  ;  del self._a
+    def a(self):                           slog(f'<Test_del_a: del _a>', pfx=1)  ;  del self._a
