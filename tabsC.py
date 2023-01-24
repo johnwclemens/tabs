@@ -22,7 +22,6 @@ class Tabs(pyglet.window.Window):
         self.LOG_ID       = 0
         self.lfSeqPath    = self.getFilePath(seq=1, fdir='logs', fsfx='.log')
         self.snapWhy, self.snapType, self.snapReg, self.snapId = '?', '_', 0, 0
-#        self.catPath      = str(BASE_PATH / 'cats' / BASE_NAME) + '.cat'
         self.catPath      = self.getFilePath(seq=1, fdir='cats', fsfx='.cat')
         self.log(f'catPath={self.catPath}')
         self.settingN     = 0     ;   self.setNvals  = []    ;   self.setNtxt = ''
@@ -42,7 +41,7 @@ class Tabs(pyglet.window.Window):
         self.A_LEFT    = 0  ;  self.A_CENTER    = 1  ;  self.A_RIGHT      = 0
         self.X_LEFT    = 0  ;  self.X_CENTER    = 1  ;  self.X_RIGHT      = 0
         self.Y_TOP     = 0  ;  self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0  ;  self.RESIZE_FONTS = 1
-        self.AUTO_SAVE = 0  ;  self.CAT         = 0  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN  = 0  ;  self.LONG_TXT = 0
+        self.AUTO_SAVE = 0  ;  self.CAT         = 1  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN  = 0  ;  self.LONG_TXT = 0
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RD_STDOUT  = 0  ;  self.RESIZE       = 1  ;  self.VARROW   = 1
         self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 1  ;  self.VRBY         = 0  ;  self.OIDS     = 0
         self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD   = 0  ;  self.STRETCH  = 0
@@ -92,10 +91,9 @@ class Tabs(pyglet.window.Window):
         self.k         = {}
         self.sAlias = 'GUITAR_6_STD'
         ####################################################################################################################################################################################################
-#        util.init(LOG_FILE, self.OIDS)
         self.sobj = util.Strings(self.sAlias)
         util.KeySig.test()
-        self.cobj = chord.Chord(LOG_FILE, self.sobj)
+        self.cobj = chord.Chord(self.sobj) # LOG_FILE
         util.Note.setType(util.Note.FLAT)  ;  self.log(f'{util.Note.TYPE=}')
         self.log(f'Frequency Info')
         self.dumpFreqsHdr()  ;  self.dumpFreqs()  ;  self.dumpFreqs(ref=432)
@@ -313,8 +311,6 @@ class Tabs(pyglet.window.Window):
         file = 0     ;  util.slog(f'{file=} LOG FILE ONLY',        file=file)
         file = 1     ;  util.slog(f'{file=} STD OUT  ONLY',        file=file)
         file = 2     ;  util.slog(f'{file=} LOG FILE AND STD OUT', file=file)
-#        so   = 0     ;  util.slog(f'{file=} {so=} STD OUT  ONLY',        so=so)
-#        so   = 1     ;  util.slog(f'{file=} {so=} LOG FILE AND STD OUT', so=so)
     def test2B(self):
         file = None  ;  self.log(f'{file=} LOG FILE ONLY',        file=file)
         file = 0     ;  self.log(f'{file=} LOG FILE ONLY',        file=file)
@@ -2011,7 +2007,7 @@ class Tabs(pyglet.window.Window):
         self.setTC(self.qclms[i], self.llcolor(i, Q)[fs], self.llcolor(i, Q)[bs])
         self.qclms[i].bold   = bold
         self.qclms[i].italic = italic
-        if dbg: self.log(f'{self.fmtPos()}     {i=} = {c=} + {l=} * {nc=} * {nt=} {style=} {bold=} {italic=} {cc=}')
+        if dbg: self.log(f'     {i=} = {c=} + {l=} * {nc=} * {nt=} {style=} {bold=} {italic=} {cc=}', pos=1)
     ####################################################################################################################################################################################################
     def llcolor(self, i, j, dbg=0):
         nc = self.n[C]  ;   n = 1
@@ -2456,22 +2452,8 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def sid(s, sfx): s = s[:-len(sfx)]   ;   j = s.rfind('.')   ;   return int(s[j+1:])
     ####################################################################################################################################################################################################
-    def OLD__log(self, msg='', pfx=1, pos=0, file=None, flush=False, sep=',', end='\n'):
-#        so = 1 if file == 2 else 0
-        file = sys.stdout if file == 1 else LOG_FILE
-        if   pos: msg = f'{self.fmtPos()} {msg}'
-        util.slog(msg, pfx, file, flush, sep, end) #, so=so)
-    def OLD__log2(self, msg='', pfx=1, pos=0, file=None, flush=False, sep=',', end='\n'):
-#        so = 0
-        if   file is None or 0: file = LOG_FILE
-        elif file == 1:         file = sys.stdout
-        elif file == 2:         file = LOG_FILE # ;  so = 1
-        if   pos: msg = f'{self.fmtPos()} {msg}'
-        util.slog(msg, pfx, file, flush, sep, end) #, so=so)
     def log(self, msg='', pfx=1, pos=0, file=None, flush=False, sep=',', end='\n'):
         if   pos: msg = f'{self.fmtPos()} {msg}'
-#        if   file is None or 0: file = LOG_FILE
-#        elif file == 1:         file = sys.stdout
         util.slog(msg, pfx, file, flush, sep, end)
     ####################################################################################################################################################################################################
     def quit(self, why='', error=1, save=1, dbg=1): #, dbg2=1):
@@ -2522,7 +2504,7 @@ def initRGB(dbg=1):
     if dbg:
         s = f'{B*7}'  ;  t = f'{s}RGB '
         o = [ f' {o}' for o in range(len(OPC)) ]
-        util.slog(f'RGB{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=2) # LOG_FILE)
+        util.slog(f'RGB{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=2)
     _initRGB('FSH', (255,   0, 255))  # 0
     _initRGB('PNK', (255, 128, 192))  # 1
     _initRGB('RED', (255,   0,   0))  # 2
@@ -2615,13 +2597,11 @@ with open(   str(LOG_PATH), 'w', encoding='utf-8')  as      LOG_FILE:
     util.init(LOG_FILE, 0) #self.OIDS)
     util.slog(f'{sys.argv[0]}', pfx=0,           file=2)
     util.slog(f'argv={util.fmtl(sys.argv[1:])}', file=2)
-#    util.slog(f'{sys.argv[0]}', pfx=0, so=2,           file=LOG_FILE)
-#    util.slog(f'argv={util.fmtl(sys.argv[1:])}', so=2, file=LOG_FILE)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
     FSH, PNK, RED, RST, PCH, ORN, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
     def main():
-        util.slog(f'{LOG_PATH=}',      file=LOG_FILE)
-        util.slog(f'{LOG_FILE.name=}', file=LOG_FILE)
+        util.slog(f'{LOG_PATH=}',      file=2)
+        util.slog(f'{LOG_FILE.name=}', file=2)
         _ = Tabs()
         ret = pyglet.app.run()
         print(f'{ret=}')

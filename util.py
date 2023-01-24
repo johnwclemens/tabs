@@ -21,10 +21,6 @@ STFILT = ['log', 'tlog', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap',
 ########################################################################################################################################################################################################
 def init(file, oid):  global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
 
-#def log(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
-#    if file is None: file=LOG_FILE
-#    slog(msg=msg, pfx=pfx, file=file, flush=flush, sep=sep, end=end)
-
 def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
     lts = (list, tuple, set, frozenset)  ;  dts = (int, float, str)
@@ -33,8 +29,6 @@ def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
     w = w if w else ''   ;   t = ''
     sl = '-' if ll is not None and ll<0 else ' ' if ll is not None and ll>=0 else ''
     s = f'{sl}{len(lst)}' if ll is not None else ''
-#    s = f'{len(lst)}' if ll else ''
-#    s = f'{len(lst)}' if ll==1 else f'{ll()}' if ll else ''
     for i, l in enumerate(lst):
         if type(l) in lts:
             if type(w) in lts:               t += fmtl(l, w[i], u, d1, d2, sep, ll, z)
@@ -84,46 +78,31 @@ def slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n'):
     if pfx:
         sf   = inspect.currentframe().f_back
         while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
-        msg = msg.replace('self.', '.')
-        msg = msg.replace('util.', '.')
-        msg = msg.replace('"', '')
-        msg = msg.replace("'", '')
-        fp = pathlib.Path(sf.f_code.co_filename)
-        msg = f'{sf.f_lineno:4} {fp.stem:5} {sf.f_code.co_name:18} ' + msg
-    file2 = LOG_FILE
-#    if   file is None or file == 0: file2 = LOG_FILE
-    if   file == 1:                 file2 = sys.stdout
-    elif file == 2:                 file2 = LOG_FILE # ;  file2 = 1
-    print(f'{msg}', flush=flush, sep=sep, end=end, file=file2)
-    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if file == 2 else None
-
-def OLD__slog(msg='', pfx=1, file=None, flush=False, sep=',', end='\n', so=0):
-    if pfx:
-        sf   = inspect.currentframe().f_back
-        while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
 #        else:                           print(f'sf:  {sf.f_lineno}, {sf.f_code.co_name}')
 #        sfi = inspect.getframeinfo(sf)
 #        if sfi.function == 'log':
 #            sf = sf.f_back
 #            sfi = inspect.getframeinfo(sf)
 #        filename  = pathlib.Path(sfi.filename).name
+#        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
         msg = msg.replace('self.', '.')
         msg = msg.replace('util.', '.')
         msg = msg.replace('"', '')
         msg = msg.replace("'", '')
-#        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
         fp = pathlib.Path(sf.f_code.co_filename)
         msg = f'{sf.f_lineno:4} {fp.stem:5} {sf.f_code.co_name:18} ' + msg
-    if   file is None or 0: file = LOG_FILE
-    elif file == 1:         file = sys.stdout
-    elif file == 2:         file = LOG_FILE
-    print(f'{msg}', flush=flush, sep=sep, end=end, file=LOG_FILE if not file else sys.stdout if file==1 else file)
-    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
-#    if file is None: file = LOG_FILE
-#    print(f'{msg}', flush=flush, sep=sep, end=end, file=None if file is None or file.closed else file)
-#    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
-#    print(f'{msg}', flush=flush, sep=sep, end=end, file=LOG_FILE if file is None else None if file.closed else file)
-#    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
+#    file2 = LOG_FILE
+#    if   file == 1:                 file2 = sys.stdout
+#    elif file == 2:                 file2 = LOG_FILE # ;  file2 = 1
+#    print(f'{msg}', flush=flush, sep=sep, end=end, file=file2)
+#    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if file == 2 else None
+    file2 = 0
+    if   file == 0:  file = LOG_FILE
+    elif file == 1:  file = sys.stdout
+    elif file == 2:  file = LOG_FILE  ;  file2 = 1
+    print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
+    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if file2 else None
+
 ########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1, file=None):
     if dbg: slog(f'{baseName =:12} {basePath = }', file=file)
@@ -131,14 +110,7 @@ def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1, file=None)
     filePath      = basePath / fdir / fileName
     if dbg: slog(f'{fileName =:12} {filePath = }', file=file)
     return filePath
-def OLD__copyFile(src, trg, file=None):
-    if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;  raise SystemExit(msg)
-#    so = 0 if file is None else 1
-    slog(f'{src=}', file=file) #, so=so)
-    slog(f'{trg=}', file=file) #, so=so)
-    cmd = f'copy {src} {trg}'
-    slog(f'### {cmd} ###', file=file) #, so=so)
-    os.system(f'{cmd}')
+
 def copyFile(src, trg, file=None):
     if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;  raise SystemExit(msg)
     slog(f'{src=}', file=file)
