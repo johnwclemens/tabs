@@ -2,16 +2,17 @@
 import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
+B                = ' '
 PASS, FAIL, DFLT = 'PASS', 'FAIL', 'DFLT'
-OIDS            = 0
-LOG_FILE        = None
-MIN_IVAL_LEN    = 1
-MAX_STACK_DEPTH = 0
-MAX_STACK_FRAME = inspect.stack()
-M12             = { 10:'a', 11:'b' }
-INTERVALS       = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
-INTERVAL_RANK   = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
-NTONES          = len(INTERVALS)
+OIDS             = 0
+LOG_FILE         = None
+MIN_IVAL_LEN     = 1
+MAX_STACK_DEPTH  = 0
+MAX_STACK_FRAME  = inspect.stack()
+M12              = { 10:'a', 11:'b' }
+INTERVALS        = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
+INTERVAL_RANK    = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
+NTONES           = len(INTERVALS)
 INIT             = '###   Init   ###'     * 13
 QUIT_BGN         = '###   BGN Quit   ###' * 10
 QUIT             = '###   Quit   ###'     * 13
@@ -262,38 +263,85 @@ class KeySig(object):
     _ = 'F#'  ;  Fs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  Ks[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  Ls[_] =  len(Ks[_])
     _ = 'C#'  ;  Cs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  Ks[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  Ls[_] =  len(Ks[_])
     L = len(Ls) // 2
-    def __str__(self):
-        _ = f'{self.Ls[self.k]:2} {fmtl(self.Ks[self.k])}' if self.k in self.Ks and self.k in self.Ls else ''
-        return f'{self.k:2}: {_}'
-    def __repr__(self):
+    ########################################################################################################################################################################################################
+    def OLD__repr__(self):
         _ = f'{self.Ls[self.k]:2} {fmtl(self.Ks[self.k])}' if self.k in self.Ks and self.k in self.Ls else ''
         k = 'No' if self.k is None else f'{self.k:2}'
         oid = f'{id(self):11x} ' if OIDS else ''
         return f'{oid}{k} {_}'
-    ########################################################################################################################################################################################################
-    def __init__(self, k=None, l=None, dbg=1):
-        self.k = k  ;  self.l = l  ;  ls = self.Ls
-        if   self.hasnoKL(k, l):                         r = DFLT  ;  d =  'has no KL'   ;  self.k = 'C'          ;  self.l = ls[self.k]
-        elif self.hasK(   k, l) and     self.isK(k):     r = PASS  ;  d =  'hasK  isK'   ;                           self.l = ls[self.k]
-        elif self.hasK(   k, l) and not self.isK(k):     r = FAIL  ;  d = f'hask !isK={k}'
-        elif self.hasL(   k, l) and     self.isL(l):     r = PASS  ;  d =  'hasL  isL'   ;  self.k = self.l2k(l)  ;  self.l = ls[self.k]
-        elif self.hasL(   k, l) and not self.isL(l):     r = FAIL  ;  d = f'hasL !isL={l}'
-        elif self.hasKL(  k, l) and     self.isKL(k, l): r = PASS  ;  d =  'hasKL isKL'  ;  self.vldtKL(k, l)
-        else:                                            r = FAIL  ;  d = f'ERROR {k=} {l=}'
-        if dbg: self.tlog(f'{self!r}', r=r, d=d) #, so=1)
 
-    def vldtKL(self, k, l):
-        v  = 'L==Ls[k]' if l==self.Ls[k]  else f'ERROR {l=}!={self.Ls[k]=}'
-        v += 'k==l2k'   if k==self.l2k(l) else f'ERROR {k=}!={self.l2k(l)}'
+#    def OLD__init__(self, k=None, l=None): #        self.k = k  ;  self.l = l  ;  ls = self.Ls
+#        if   self.hasKL(  k, l) and     self.isKL(k, l) and     self.isKLv(k, l): r = PASS  ;  d =  'hasKL isKL  isKLv'  ;  self.k = self.l2k(l)  ;  self.l = self.Ls[self.k]
+#        elif self.hasKL(  k, l) and     self.isKL(k, l) and not self.isKLv(k, l): r = FAIL  ;  d =  'hasKL isKL !isKLv'  ;  self.k = k            ;  self.l = l
+#        elif self.hasK(   k, l) and     self.isK(k):                              r = PASS  ;  d =  'hasK  isK'          ;  self.k = k            ;  self.l = self.Ls[self.k]
+#        elif self.hasK(   k, l) and not self.isK(k):                              r = FAIL  ;  d = f'hask !isK={k}'      ;  self.k = k            ;  self.l = l
+#        elif self.hasL(   k, l) and     self.isL(l):                              r = PASS  ;  d =  'hasL  isL'          ;  self.k = self.l2k(l)  ;  self.l = self.Ls[self.k]
+#        elif self.hasL(   k, l) and not self.isL(l):                              r = FAIL  ;  d = f'hasL !isL={l}'      ;  self.k = k            ;  self.l = l
+#        elif self.hasNoKL(k, l):                                                  r = DFLT  ;  d =  'has No KL'          ;  self.k = 'C'          ;  self.l = self.Ls[self.k]
+#        else:                                                                     r = FAIL  ;  d = f'ERROR {k=} {l=}'    ;  self.k = k            ;  self.l = l
+#        self.tlog(f'{self!r}', r=r, d=d)
+
+    def OLD__klv(self, k, l):
+        if   k == self.l2k(l): kv = 1  ;  kt = f'{k:2}=={self.l2k(l):2}=l2k({l:2})'
+        else:                  kv = 0  ;  kt = f'{k:2}!={self.l2k(l):2}=l2k({l:2})'
+        if   l == self.Ls[k]:  lv = 1  ;  lt = f'{l:2}=={self.Ls[k]:2}=Ls[{k:2}]'
+        else:                  lv = 0  ;  lt = f'{l:2}!={self.Ls[k]:2}=Ls[{k:2}]'
+        v = kv * lv
+        return v, f'{v}={kv}*{lv} {kt} {lt}'
+    ########################################################################################################################################################################################################
+    def __str__(self):
+        _ = f'{self.Ls[self.k]:2} {fmtl(self.Ks[self.k])}' if self.k in self.Ks and self.k in self.Ls else ''
+        return f'{self.k:2}: {_}'
+
+    def __repr__(self):
+#        self.k = B*2 if self.k is None else self.k  ;  self.l = B*2 if self.l is None else self.l
+#        msg = f'{self.k:2} {self.l:2} '
+#        if   self.hasNoKL(self.k, self.l):                    # r = DFLT # ;  self.k = 'C'          ;  self.l = self.Ls[self.k] # d =  'has No KL'
+        if self.hasKL(self.k, self.l) and self.isKL(self.k, self.l):
+            klv = self.klv(self.k, self.l)
+            if klv[0]:                              self.k = klv[1][0]    ;  self.l = klv[2][0] # d =  'hasKL isKL  klv' # r = PASS
+            else:                                   self.k = klv[1][1]    ;  self.l = klv[2][1] # d =  'hasKL isKL !klv' # r = FAIL
+#        elif self.hasL(   k, l) and     self.isL(l): r = PASS  ;  self.k = self.l2k(l)  ;  self.l = self.Ls[self.k] # d =  'hasL  isL'
+#        elif self.hasL(   k, l) and not self.isL(l): r = FAIL  ;  self.k = k            ;  self.l = l # d = f'hasL !isL={l}'
+#        elif self.hasK(   k, l) and     self.isK(k): r = PASS  ;  self.k = k            ;  self.l = self.Ls[self.k] # d =  'hasK  isK'
+#        elif self.hasK(   k, l) and not self.isK(k): r = FAIL  ;  self.k = k            ;  self.l = l # d = f'hask !isK={k}'
+#        else:                                        r = FAIL  ;  self.k = k            ;  self.l = l # d = f'ERROR {k=} {l=}'
+#        k = B*2 if k is None else k  ;  l = B*2 if l is None else l
+#        self.tlog(t=f'{k:2} {l:2} {r} {self.k} {self.l}', r=None, d=f'{d:16}')
+        return f'{self.k:2} {self.l:2}'
+
+    def __init__(self, k=None, l=None, dbg=1):
+        self.k = k   ;   self.l = l
+#        msg = f'{self!r} '
+        if   self.hasNoKL(k, l):                     r = DFLT  ;  d =  'has No KL'        ;  self.k = 'C'          ;  self.l = self.Ls[self.k]
+        elif self.hasKL(k, l) and self.isKL(k, l):
+            klv = self.klv(k, l)
+            if klv[0]:                               r = PASS  ;  d =  'hasKL isKL  klv'  ;  self.k = klv[1][0]    ;  self.l = klv[2][0]
+            else:                                    r = FAIL  ;  d =  'hasKL isKL !klv'  ;  self.k = klv[1][1]    ;  self.l = klv[2][1]
+        elif self.hasL(   k, l) and     self.isL(l): r = PASS  ;  d =  'hasL  isL'        ;  self.k = self.l2k(l)  ;  self.l = self.Ls[self.k]
+        elif self.hasL(   k, l) and not self.isL(l): r = FAIL  ;  d = f'hasL !isL={l}'    ;  self.k = k            ;  self.l = l
+        elif self.hasK(   k, l) and     self.isK(k): r = PASS  ;  d =  'hasK  isK'        ;  self.k = k            ;  self.l = self.Ls[self.k]
+        elif self.hasK(   k, l) and not self.isK(k): r = FAIL  ;  d = f'hask !isK={k}'    ;  self.k = k            ;  self.l = l
+        else:                                        r = FAIL  ;  d = f'ERROR {k=} {l=}'  ;  self.k = k            ;  self.l = l
+#        k = B*2 if k is None else k  ;  l = B*2 if l is None else l
+        if dbg: self.tlog(f'{self!r}', r=r, d=f'{d:16}')
+
+    def klv(self, k, l):
+        kv = 1 if k == self.l2k(l) else 0
+        lv = 1 if l == self.Ls[k]  else 0
+        v = kv * lv   ;   ks = [k, self.l2k(l)]   ;   ls = [l, self.Ls[k]]
+        return v, ks, ls
+    ########################################################################################################################################################################################################
     def l2k(   self, l, dbg=0):
         for k, v in self.Ls.items():
-            if l==v: slog(f'{k=} {l=} {v=}') if dbg else None  ;  return k
-    def isK(   self, k):    return 1 if k     in self.Ks else 0
-    def isL(   self, l):    return 1 if       -self.L <= l <= self.L else 0
+            if v==l: slog(f'{k=} {v=} {l=}') if dbg else None  ;  return k
+
+    def isK(   self, k):    return 1 if k     in self.Ks                            else 0
+    def isL(   self, l):    return 1 if                      -self.L <= l <= self.L else 0
     def isKL(  self, k, l): return 1 if k     in self.Ks and -self.L <= l <= self.L else 0
-    def isnoKL(self, k, l): return 1 if k not in self.Ks and -self.L >= l >= self.L else 0
+#    def isNoKL(self, k, l): return 1 if k not in self.Ks and -self.L >= l >= self.L else 0
     @staticmethod
-    def hasnoKL(k, l): return 1 if k is     None and l is     None else 0
+    def hasNoKL(k, l): return 1 if k is     None and l is     None else 0
     @staticmethod
     def hasK(   k, l): return 1 if k is not None and l is     None else 0
     @staticmethod
@@ -309,7 +357,7 @@ class KeySig(object):
     def test(cls, i=0):
         slog(KeySig.fKs(), pfx=0)
         slog(KeySig.fLs())
-        i = cls.test_1A(i)
+#        i = cls.test_1A(i)
         i = cls.test_1B(i)
         i = cls.test_1(i)
         i = cls.test_2(i)
@@ -320,32 +368,39 @@ class KeySig(object):
         return i
 
     @classmethod
-    def tlog(cls, t, r, d='', i=None):
-        if i is not None: i += 1
-        else: i = ''
-        slog(f'{i:4} {r} {d:12} {t}')
+    def tlog(cls, t, r=None, d=None, i=None):
+        if i is not None: i = i + 1
+        j = B*2  if i is None else f'{i:3} '
+        r =  ''  if r is None else f'{r} '
+        d = B*17 if d is None else '' if d == '' else f'{d:15} '
+        slog(f'{j}{r}{d}{t}', file=0 if i else 1)
         return i
 
     @classmethod
     def test_1A(cls, i):
-        i = cls.tlog(f'{cls("A")!r}',       r=PASS, i=i)
-        i = cls.tlog(f'{cls("A", None)!r}', r=PASS, i=i)
-#        slog(f"PASS {cls('A')!r}")
-#        slog(f"PASS {cls('A', None)!r}")
-#        slog(f"PASS {cls(None, 3)!r}")
-#        slog(f"PASS {cls(l=3)!r}")
-#        slog(f"PASS {cls('A', 3)!r}")
-#        slog(f"DFLT {cls(None, None)!r}")
-#        slog(f"PASS {cls('Eb')!r}")
-#        slog(f"PASS {cls('Eb', None)!r}")
-#        slog(f"PASS {cls(l=-3)!r}")
-#        slog(f"PASS {cls('Eb', -3)!r}")
+        i = cls.tlog(f'{cls("A")!r}',        r=PASS, i=i)
+#        i = cls.tlog(f'{cls("A", None)!r}',  r=PASS, i=i)
+#        i = cls.tlog(f'{cls(None, 3)!r}',    r=PASS, i=i)
+        i = cls.tlog(f'{cls(l=3)!r}',        r=PASS, i=i)
+        i = cls.tlog(f'{cls("A", 3)!r}',     r=PASS, i=i)
+#        i = cls.tlog(f'{cls(None, None)!r}', r=PASS, i=i)
+        i = cls.tlog(f'{cls("Eb")!r}',       r=PASS, i=i)
+#        i = cls.tlog(f'{cls("Eb", None)!r}', r=PASS, i=i)
+        i = cls.tlog(f'{cls(l=-3)!r}',       r=PASS, i=i)
+        i = cls.tlog(f'{cls("Eb", -3)!r}',   r=PASS, i=i)
+        i = cls.tlog(f'{cls(k="A")}', r=PASS, i=i)
+#        i = cls.tlog(f'{cls(k="A", l=None)}', r=PASS, i=i)
+#        i = cls.tlog(f'{cls(k=None, l=-3)}', r=PASS, i=i)
+#        i = cls.tlog(f'{cls(k=None, l=None)}', r=PASS, i=i)
+#        i = cls.tlog(f'{cls(l=None, k=None)}', r=PASS, i=i)
         return i
 
     @classmethod
     def test_1B(cls, i):
+        i = cls.tlog(f'{cls()!r}'        , r=PASS, i=i)
+        i = cls.tlog(f'{cls("C")!r}'     , r=PASS, i=i)
         i = cls.tlog(f'{cls("A" , -3)!r}', r=FAIL, i=i)
-        i = cls.tlog(f'{cls("A" ,  6)!r}', r=FAIL, i=i)
+        i = cls.tlog(f'{cls("C" ,  3)!r}', r=FAIL, i=i)
 #        slog(f"FAIL {cls('A' , -3)!r}")
 #        slog(f"FAIL {cls('A' ,  6)!r}")
 #        slog(f"FAIL {cls('B' ,  3)!r}")

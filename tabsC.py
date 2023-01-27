@@ -682,21 +682,21 @@ class Tabs(pyglet.window.Window):
     def dumpLabelText(self, t, d='%', why='', dbg=0):
         self.log(f'{why} len(t)={len(t)} len(t[0])={len(t[0])}')
         for j in range(len(t)):
-            self.log(f'{t[j][0]:^3}', pfx=0, end=' ')
+            self.log(f'{t[j][0]:^3}', pfx=0, end=B)
         self.log(pfx=0)
         for k in range(len(t)//10):
-            for i in range(9): self.log(f'{" ":^3}', pfx=0, end=' ')
-            self.log(f' {d} ', pfx=0, end=' ')
+            for i in range(9): self.log(f'{" ":^3}', pfx=0, end=B)
+            self.log(f' {d} ', pfx=0, end=B)
         self.log(pfx=0)
         for j in range(len(t)):
-            self.log(f'{t[j][1]:^3}', pfx=0, end=' ')
+            self.log(f'{t[j][1]:^3}', pfx=0, end=B)
         self.log(pfx=0)
         if dbg:
             for i in range(len(t)):
-                self.log(f'{i+1:5}', pfx=0, end=' ')
-                self.log(f' {t[i][0]:>5}', pfx=0, end=' ')
+                self.log(f'{i+1:5}', pfx=0, end=B)
+                self.log(f' {t[i][0]:>5}', pfx=0, end=B)
                 d2 = ' ' if i == 1 or (i + 1) % 10 else d
-                self.log(f'{d2}{t[i][1]:>5}', pfx=0, end=' ')
+                self.log(f'{d2}{t[i][1]:>5}', pfx=0, end=B)
                 self.log(pfx=0)
     ####################################################################################################################################################################################################
     def toggleTTs(self, how, tt):
@@ -969,11 +969,11 @@ class Tabs(pyglet.window.Window):
         elif type(p) is SPR: p.y, h, g, p.scale_y = self.splitV2(p.y, p.height, a, p.image.height)  ;  self.log(f'{p.y=:6.2f} {p.scale_y=:6.4f} {a=} {h=:6.2f}', file=0) if dbg else None  ;   return p
 
     def splitV1(self, y, h, a, dbg=1):
-        self.log(f'{y=:6.2f} {h=:6.2f} {a=}', end=' ', file=0) if dbg else None
+        self.log(f'{y=:6.2f} {h=:6.2f} {a=}', end=B, file=0) if dbg else None
         c = h/a  ;  h -= c  ;  y -= c/2 ;  self.log(f'{y=:6.2f} {h=:6.2f} {a=} {c=:6.2f}', pfx=0, file=0) if dbg else None  ;  return y, h, c
 
     def splitV2(self, y, h, a, g, dbg=1):
-        self.log(f'{y=:6.2f} {h=:6.2f} {a=} {g=:6.4f}', end=' ', file=0) if dbg else None
+        self.log(f'{y=:6.2f} {h=:6.2f} {a=} {g=:6.4f}', end=B, file=0) if dbg else None
         c = h/a  ;  h -= c  ;  g = h/g  ;  self.log(f'{y=:6.2f} {h=:6.2f} {a=} {c=:6.2f} {g=:6.4f}', pfx=0, file=0)  if dbg else None  ;  return y, h, c, g
 
 #            if self.LL and self.isV() and not s:
@@ -2319,8 +2319,8 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def fVisible(n, j, l, v): return f'{n:4}{jTEXTS[j][0]}{l:<4}{v}'
     def dumpVisible2(self):
-#        consume(consume(self.log(f'{int(self.E[j][i].visible)}', pfx=0, end=' ') for i in range(len(self.E[j]))) for j in range(len(self.E)))
-#        [ [ self.log(f'{int(self.E[j][i].visible)}', pfx=0, end=' ') for i in range(len(self.E[j]))] for j in range(len(self.E)) ]
+#        consume(consume(self.log(f'{int(self.E[j][i].visible)}', pfx=0, end=B) for i in range(len(self.E[j]))) for j in range(len(self.E)))
+#        [ [ self.log(f'{int(self.E[j][i].visible)}', pfx=0, end=B) for i in range(len(self.E[j]))] for j in range(len(self.E)) ]
         for j in range(len(self.E)):
             for i in range(len(self.E[j])):
                 self.log(f'{int(self.E[j][i].visible)}', pfx=0, end='')
@@ -2535,7 +2535,7 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=2):
         for opc in range(lopc):
             if dbg: msg += f'{OPC[opc]:3} ' if not j else ''
             color = list([ fri(rgb[i]/dv + j*steps[i]) for i in range(lrgb) ])  ;  color.append(OPC[opc])  ;  clrs.append(tuple(color))
-            if   dbg > 1:       util.slog(f'{j:2} {key:4} {util.fColor(color)}', pfx=0, end=' ')
+            if   dbg > 1:       util.slog(f'{j:2} {key:4} {util.fColor(color)}', pfx=0, end=B)
         util.slog(pfx=0)
         if dbg: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
         colors.append(clrs)
@@ -2591,8 +2591,8 @@ FONT_NAMES = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Couri
 prevPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
 LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
 if LOG_PATH.exists():     util.copyFile(LOG_PATH, prevPath)
-with open(   str(LOG_PATH), 'w', encoding='utf-8')  as      LOG_FILE:
-    util.init(LOG_FILE, 0) #self.OIDS)
+with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE:
+    util.init(LOG_FILE, 0)
     util.slog(f'{sys.argv[0]}', pfx=0,           file=2)
     util.slog(f'argv={util.fmtl(sys.argv[1:])}', file=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
