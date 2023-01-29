@@ -264,10 +264,6 @@ class KeySig(object):
     _ = 'C#'  ;  Cs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  Ks[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  Ls[_] =  len(Ks[_])
     L = len(Ls) // 2
     ########################################################################################################################################################################################################
-    def __str__(self):
-        _ = f'{self.Ls[self.k]:2} {fmtl(self.Ks[self.k])}' if self.k in self.Ks and self.k in self.Ls else ''
-        return f'{self.k:2}: {_}'
-
     def OLD__repr__(self):
         k = self.k   ;   l = self.l
 #        if self.hasKL(k, l) and self.isKL(k, l):
@@ -294,40 +290,65 @@ class KeySig(object):
         elif self.hasK(   k, l) and     self.isK(k): r = PASS  ;  d =  'hasK  isK'        ;  self.k = k            ;  self.l = self.Ls[self.k]
         elif self.hasK(   k, l) and not self.isK(k): r = FAIL  ;  d = f'hask !isK={k}'    ;  self.k = k            ;  self.l = l
         else:                                        r = FAIL  ;  d = f'ERROR {k=} {l=}'  ;  self.k = k            ;  self.l = l
-        if dbg: self.tlog(f'{self}', r=r, d=f'{d:16}')
+        if dbg: self.OLD__tlog(f'{self}', r=r, d=f'{d:16}')
     ########################################################################################################################################################################################################
+    def __str__(self):
+        _ = f' {self.Ls[self.k]:2} {fmtl(self.Ks[self.k]):22}' if self.k in self.Ks and self.k in self.Ls else ''
+        return f'{self.k:2}{_} {self.r}'
+
     def __repr__(self):
         k = self.k   ;   l = self.l
         k = B*2 if k is None else k  ;  l = B*2 if l is None else l
         return f'{k:2} {l:2}'
-
-    def __init__(self, k=None, l=None, dbg=1):
-        self.k0 = B*2 if k is None else k  ;  self.l0 = B*2 if l is None else l
-        kl0 = f'{self.k0:2} {self.l0:2}'
-        if   self.hasNoKL(k, l):                     r = DFLT  ;  d =  'has No KL'        ;  self.k = 'C'          ;  self.l = self.Ls[self.k]
+    @staticmethod
+    def fmt(a): return B*2 if a is None else a
+    def info(self, k=None, l=None):
+        if self.hasNoKL(k, l):                        d = 'has No KL'  ;  k = 'C'  ;  l = self.Ls[k] # ;  r = DFLT
         elif self.hasKL(k, l) and self.isKL(k, l):
             klv = self.klv(k, l)
-            if klv[0]:                               r = PASS  ;  d =  'hasKL isKL  klv'  ;  self.k = klv[1][0]    ;  self.l = klv[2][0]
-            else:                                    r = FAIL  ;  d =  'hasKL isKL !klv'  ;  self.k = klv[1][1]    ;  self.l = klv[2][1]
-        elif self.hasL(   k, l) and     self.isL(l): r = PASS  ;  d =  'hasL  isL'        ;  self.k = self.l2k(l)  ;  self.l = self.Ls[self.k]
-        elif self.hasL(   k, l) and not self.isL(l): r = FAIL  ;  d = f'hasL !isL={l}'    ;  self.k = k            ;  self.l = l
-        elif self.hasK(   k, l) and     self.isK(k): r = PASS  ;  d =  'hasK  isK'        ;  self.k = k            ;  self.l = self.Ls[self.k]
-        elif self.hasK(   k, l) and not self.isK(k): r = FAIL  ;  d = f'hask !isK={k}'    ;  self.k = k            ;  self.l = l
-        else:                                        r = FAIL  ;  d = f'ERROR {k=} {l=}'  ;  self.k = k            ;  self.l = l
-#        if dbg: self.I = self.tlog(f'{self}', r=None, d=f'{d:16}', i=self.I)
-#        if dbg: self.I = self.tlog(f'{kl0} {r} {self}', r=None, d=f'{d:16}', i=self.I)
-        if dbg: self.tlog(f'{kl0} {r} {self}', r=None, d=f'{d:16}')
+            if klv[0]:                                d = 'hasKL isKL  klv'  ;  k = klv[1][0];  l = klv[2][0]  # r = PASS
+            else:                                     d = 'hasKL isKL !klv'  ;  k = klv[1][1];  l = klv[2][1]  # r = FAIL
+        elif self.hasL(   k, l) and     self.isL(l):  d =  'hasL  isL'       ;  k = self.l2k(l)  ;  l = self.Ls[k] # r = PASS
+        elif self.hasL(   k, l) and not self.isL(l):  d = f'hasL !isL={l}' #  ;  k = k            ;  l = l               # r = FAIL
+        elif self.hasK(   k, l) and     self.isK(k):  d =  'hasK  isK'        ;  l = self.Ls[k] # r = PASS
+        elif self.hasK(   k, l) and not self.isK(k):  d = f'hask !isK={k}' #   ;  self.k = k            ;  self.l = l               # r = FAIL
+        else:                                         d = f'ERROR {k=} {l=}' # ;  self.k = k            ;  self.l = l               # r = FAIL
+        return d, k, l
+    ########################################################################################################################################################################################################
+    def __init__(self, k=None, l=None, dbg=1):
+        self.ks = []  ;  self.ks.append(self.fmt(k)) if k else None  ;   self.ls = []  ;  self.ls.append(self.fmt(l)) if l else None   ;  self.r = FAIL
+        self.d, self.k, self.l = self.info(k, l)
+        if   self.ks and self.k == self.ks[0] or self.ls and self.l == self.ls[0]:                           self.r = PASS
+        if self.r == FAIL:  self.ks.append(self.fmt(self.k))   ;   self.ls.append(self.fmt(self.l))
+        if dbg: self.tlog() # d=f'{self.d:16}')
 
+    def OLD___init__(self, k=None, l=None, dbg=1):
+        self.ks = []  ;  self.ks.append(self.fmt(k)) if k else None  ;   self.ls = []  ;  self.ls.append(self.fmt(l)) if l else None   ;  self.r = FAIL
+        if   self.hasNoKL( k, l):                        d =  'has No KL'        ;  self.k = 'C'          ;  self.l = self.Ls[self.k]  ;  self.r = DFLT
+        elif self.hasKL(   k, l) and self.isKL(k, l):
+            klv = self.klv(k, l)
+            if klv[0]:                                   d =  'hasKL isKL  klv'  ;  self.k = klv[1][0]    ;  self.l = klv[2][0]       # r = PASS
+            else:                                        d =  'hasKL isKL !klv'  ;  self.k = klv[1][1]    ;  self.l = klv[2][1]       # r = FAIL
+        elif self.hasL(   k, l) and     self.isL(l):     d =  'hasL  isL'        ;  self.k = self.l2k(l)  ;  self.l = self.Ls[self.k] # r = PASS
+        elif self.hasL(   k, l) and not self.isL(l):     d = f'hasL !isL={l}'    ;  self.k = k            ;  self.l = l               # r = FAIL
+        elif self.hasK(   k, l) and     self.isK(k):     d =  'hasK  isK'        ;  self.k = k            ;  self.l = self.Ls[self.k] # r = PASS
+        elif self.hasK(   k, l) and not self.isK(k):     d = f'hask !isK={k}'    ;  self.k = k            ;  self.l = l               # r = FAIL
+        else:                                            d = f'ERROR {k=} {l=}'  ;  self.k = k            ;  self.l = l               # r = FAIL
+        if   self.ks and self.k == self.ks[0] or self.ls and self.l == self.ls[0]:                           self.r = PASS
+        if self.r == FAIL:  self.ks.append(self.fmt(self.k))   ;   self.ls.append(self.fmt(self.l))
+        if dbg: self.tlog() # d=f'{d:16}')
+#        if dbg: self.tlog(f'{fmtl(self.ks, w="2")} {fmtl(self.ls, w="2")}', d=f'{d:16}')
+    ########################################################################################################################################################################################################
     def klv(self, k, l):
         kv = 1 if k == self.l2k(l) else 0
         lv = 1 if l == self.Ls[k]  else 0
         v = kv * lv   ;   ks = [k, self.l2k(l)]   ;   ls = [l, self.Ls[k]]
         return v, ks, ls
-    ########################################################################################################################################################################################################
+
     def l2k(   self, l, dbg=0):
         for k, v in self.Ls.items():
             if v==l: slog(f'{k=} {v=} {l=}') if dbg else None  ;  return k
-
+    ########################################################################################################################################################################################################
     def isK(   self, k):    return 1 if k     in self.Ks                            else 0
     def isL(   self, l):    return 1 if                      -self.L <= l <= self.L else 0
     def isKL(  self, k, l): return 1 if k     in self.Ks and -self.L <= l <= self.L else 0
@@ -346,7 +367,7 @@ class KeySig(object):
     def fKs(cls):      return f'{fmtm(cls.Ks, w=2, d2=chr(10), ll=-1)}'
     ########################################################################################################################################################################################################
     @classmethod
-    def tlog(cls, t, r=None, d=None, i=None):
+    def OLD_tlog(cls, t, r=None, d=None, i=None):
         if i is not None: i = i + 1
         j = B*2  if i is None else f'{i:3} '
         r =  ''  if r is None else f'{r} '
@@ -354,46 +375,61 @@ class KeySig(object):
 #        pfx = f'{self.k0} {self.l0}'
         slog(f'{j}{r}{d}{t}', file=1) # 0 if i else 1)
         return i
-    ########################################################################################################################################################################################################
-    @classmethod
-    def test(cls, i=0):
-        slog(KeySig.fKs(), pfx=0)
-        slog(KeySig.fLs())
-        i = cls.test_1B(i)
-        i = cls.test_1A(i)
-        i = cls.test_1(i)
-        i = cls.test_2(i)
-        i = cls.test_3(i)
-        i = cls.test_4(i)
-        i = cls.test_5(i)
-        i = cls.test_6(i)
-        return i
-    ########################################################################################################################################################################################################
-    @classmethod
-    def test_1A(cls, i):
-        i = cls.tlog(f'{cls("A")}',        r=PASS, i=i)
-#        i = cls.tlog(f'{cls("A", None)}',  r=PASS, i=i)
-#        i = cls.tlog(f'{cls(None, 3)}',    r=PASS, i=i)
-        i = cls.tlog(f'{cls(l=3)}',        r=PASS, i=i)
-        i = cls.tlog(f'{cls("A", 3)}',     r=PASS, i=i)
-#        i = cls.tlog(f'{cls(None, None)}', r=PASS, i=i)
-        i = cls.tlog(f'{cls("Eb")}',       r=PASS, i=i)
-#        i = cls.tlog(f'{cls("Eb", None)}', r=PASS, i=i)
-        i = cls.tlog(f'{cls(l=-3)}',       r=PASS, i=i)
-        i = cls.tlog(f'{cls("Eb", -3)}',   r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="A")}', r=PASS, i=i)
-#        i = cls.tlog(f'{cls(k="A", l=None)}', r=PASS, i=i)
-#        i = cls.tlog(f'{cls(k=None, l=-3)}', r=PASS, i=i)
-#        i = cls.tlog(f'{cls(k=None, l=None)}', r=PASS, i=i)
-#        i = cls.tlog(f'{cls(l=None, k=None)}', r=PASS, i=i)
+#    @classmethod
+#    def tlog(cls, t, r=None, d=None, i=None):
+    def OLD__tlog(self, t, r=None, d=None, i=None):
+        if i is not None: i = i + 1
+        j = B*2  if i is None else f'{i:3} '
+        r =  ''  if r is None else '' # f'{r} '
+        d = B*17 if d is None else '' if d == '' else f'{d:15} '
+        sfx = f' {fmtl(self.ks)} {fmtl(self.ls)}' if self.ks or self.ls else ''
+        slog(f'{j}{d}{r}{t}{sfx}', file=1) # 0 if i else 1)
         return i
 
-    @classmethod
-    def test_1B(cls, i):
-        i = cls.tlog(f'{cls()}'        , r=PASS, i=i)
-        i = cls.tlog(f'{cls("C")}'     , r=PASS, i=i)
-        i = cls.tlog(f'{cls("A" , -3)}', r=FAIL, i=i)
-        i = cls.tlog(f'{cls("C" ,  3)}', r=FAIL, i=i)
+    def tlog(self, i=None):
+        if i is not None: i = i + 1
+        j = B*4  if i is None else f'{i:3} '
+#        d = B*17 if d is None else '' if d == '' else f'{self.d:15} '
+        sfx = f' {fmtl(self.ks)} {fmtl(self.ls)}' if self.ks or self.ls else ''
+        slog(f'{j}{self.d:15} {self!s}{sfx}', file=1) # 0 if i else 1)
+        return i
+    ########################################################################################################################################################################################################
+#    @classmethod
+#    def test(cls, i=0):
+    def test(self, i=0):
+        slog(self.fKs(), pfx=0)
+        slog(self.fLs())
+        i = self.test_1B(i)
+        i = self.test_1A(i)
+        i = self.test_1(i)
+#        i = cls.test_2(i)
+#        i = cls.test_3(i)
+#        i = cls.test_4(i)
+#        i = cls.test_5(i)
+#        i = cls.test_6(i)
+        return i
+    ########################################################################################################################################################################################################
+#    @classmethod
+#    def test_1B(cls, i):
+#        i = cls.tlog(f'{cls()}'        , r=PASS, i=i)
+#        i = cls.tlog(f'{cls("C")}'     , r=PASS, i=i)
+#        i = cls.tlog(f'{cls("A" , -3)}', r=FAIL, i=i)
+#        i = cls.tlog(f'{cls("C" ,  3)}', r=FAIL, i=i)
+
+    @staticmethod
+    def test_1B(i):
+        ks = KeySig('C')       ;  i = ks.tlog(i)
+        ks = KeySig('D',  2)   ;  i = ks.tlog(i)
+        ks = KeySig('A', -3)   ;  i = ks.tlog(i)
+        ks = KeySig('A',  4)   ;  i = ks.tlog(i)
+#        i = KeySig('C'    ).tlog(i=i)
+#        i = KeySig('D',  2).tlog(i=i)
+#        i = KeySig('A', -3).tlog(i=i)
+#        i = KeySig('A',  4).tlog(i=i)
+#        i = self.tlog(f'{KeySig()}',        i=i)
+#        i = self.tlog(f'{KeySig("C")}',     i=i)
+#        i = self.tlog(f'{KeySig("A", -3)}', i=i)
+#        i = self.tlog(f'{KeySig("D",  4)}', i=i)
 #        slog(f"FAIL {cls('A' , -3)}")
 #        slog(f"FAIL {cls('A' ,  6)}")
 #        slog(f"FAIL {cls('B' ,  3)}")
@@ -407,31 +443,50 @@ class KeySig(object):
 #        slog(f"PASS {cls('D#')}")
 #        slog(f"PASS {cls('G#')}")
         return i
+    @classmethod
+    def test_1A(cls, i):
+#        i = cls.tlog(f'{cls("A")}',        r=PASS, i=i)
+#        i = cls.tlog(f'{cls("A", None)}',  r=PASS, i=i)
+#        i = cls.tlog(f'{cls(None, 3)}',    r=PASS, i=i)
+#        i = cls.tlog(f'{cls(l=3)}',        r=PASS, i=i)
+#        i = cls.tlog(f'{cls("A", 3)}',     r=PASS, i=i)
+#        i = cls.tlog(f'{cls(None, None)}', r=PASS, i=i)
+#        i = cls.tlog(f'{cls("Eb")}',       r=PASS, i=i)
+#        i = cls.tlog(f'{cls("Eb", None)}', r=PASS, i=i)
+#        i = cls.tlog(f'{cls(l=-3)}',       r=PASS, i=i)
+#        i = cls.tlog(f'{cls("Eb", -3)}',   r=PASS, i=i)
+#        i = cls.tlog(f'{cls(k="A")}', r=PASS, i=i)
+#        i = cls.tlog(f'{cls(k="A", l=None)}', r=PASS, i=i)
+#        i = cls.tlog(f'{cls(k=None, l=-3)}', r=PASS, i=i)
+#        i = cls.tlog(f'{cls(k=None, l=None)}', r=PASS, i=i)
+#        i = cls.tlog(f'{cls(l=None, k=None)}', r=PASS, i=i)
+        return i
     ########################################################################################################################################################################################################
     @classmethod
     def test_1(cls, i):
-        i = cls.tlog(f'{cls(k="Cb")}', r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="Gb")}', r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="Db")}', r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="Ab")}', r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="Eb")}', r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="Bb")}', r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="F")}' , r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="C")}' , r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="G")}' , r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="D")}' , r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="A")}' , r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="E")}' , r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="B")}' , r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="F#")}', r=PASS, i=i)
-        i = cls.tlog(f'{cls(k="C#")}', r=PASS, i=i)
+        ks = KeySig('Cb')   ;  i = ks.tlog(i)
+        ks = KeySig('Gb')   ;  i = ks.tlog(i)
+        ks = KeySig('Db')   ;  i = ks.tlog(i)
+        ks = KeySig('Ab')   ;  i = ks.tlog(i)
+        ks = KeySig('Eb')   ;  i = ks.tlog(i)
+        ks = KeySig('Bb')   ;  i = ks.tlog(i)
+        ks = KeySig('F')    ;  i = ks.tlog(i)
+        ks = KeySig('C')    ;  i = ks.tlog(i)
+        ks = KeySig('G')    ;  i = ks.tlog(i)
+        ks = KeySig('D')    ;  i = ks.tlog(i)
+        ks = KeySig('A')    ;  i = ks.tlog(i)
+        ks = KeySig('E')    ;  i = ks.tlog(i)
+        ks = KeySig('B')    ;  i = ks.tlog(i)
+        ks = KeySig('F#')   ;  i = ks.tlog(i)
+        ks = KeySig('C#')   ;  i = ks.tlog(i)
         return i
 
     @classmethod
     def test_2(cls, i):
         l = len(cls.Ls) // 2
         for n in range(l, -l - 1, -1):
-            i = cls.tlog(f'{cls(l=n)}', r=PASS, i=i)
+            ks = KeySig(l=n)   ;   i = ks.tlog(i=i)
+#            i = cls.tlog(f'{cls(l=n)}', r=PASS, i=i)
         return i
 
     @classmethod
