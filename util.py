@@ -265,19 +265,27 @@ class KeySig(object):
     L = len(Ls) // 2
     ########################################################################################################################################################################################################
     def __str__(self):
-        k = self.k  ;  ls, ks = '', '' #  ;   l = self.l
+        k = self.k  ;  ls, ks = '', ''
         if k in self.Ls: ls = f'{self.Ls[k]:2}'
-        if k in self.ks and k in self.Ks: # and len(self.Ks[k]):
-            ks = f'{fmtl(self.Ks[k]):22}'
-        k = B*2 if k is None else k # ;  l = B*2 if l is None else l
-        return f'{k:2} {ls} {ks} {self.r}'
+        if k in self.Ks and k in self.ks:
+            ks = f'{fmtl(self.Ks[k])}'
+        k = B*2 if k is None else k
+        return f'{k:2} {ls:2} {ks:22} {self.r}'
 
     def __repr__(self):
         k = self.k   ;   l = self.l
         k = B*2 if k is None else k  ;  l = B*2 if l is None else l
         return f'{k:2} {l:2}'
-    @staticmethod
-    def fmt(a): return B*2 if a is None else a
+
+    def __init__(self, k=None, l=None, dbg=0):
+        self.ks = []  ;  self.ks.append(self.fmt(k)) if k else None
+        self.ls = []  ;  self.ls.append(self.fmt(l)) if l is not None else None #  ;  self.r = FAIL
+        self.d, self.k, self.l, self.r = self.info(k, l)
+#        if  self.ks and self.k in self.Ks and self.k == self.ks[0] or self.ls and self.k in self.Ks and self.l == self.ls[0]:  self.r = PASS
+        if self.r == FAIL:
+            self.ks.append(self.fmt(self.k))   ;   self.ls.append(self.fmt(self.l))
+        if dbg: self.tlog()
+    ########################################################################################################################################################################################################
     def info(self, k=None, l=None):
         if   self.hasNoKL(k, l):                    d = 'has No KL'        ;  k = 'C'          ;  l = self.Ls[k]  ;  r = DFLT
         elif self.hasKL(k, l) and self.isKL(k, l):
@@ -291,14 +299,15 @@ class KeySig(object):
         else:                                       d = f'ERROR {k=} {l=}' ;                                         r = FAIL # self.k = k  ;  self.l = l
         return d, k, l, r
     ########################################################################################################################################################################################################
-    def __init__(self, k=None, l=None, dbg=0):
-        self.ks = []  ;  self.ks.append(self.fmt(k)) if k else None
-        self.ls = []  ;  self.ls.append(self.fmt(l)) if l is not None else None #  ;  self.r = FAIL
-        self.d, self.k, self.l, self.r = self.info(k, l)
-#        if  self.ks and self.k in self.Ks and self.k == self.ks[0] or self.ls and self.k in self.Ks and self.l == self.ls[0]:  self.r = PASS
-        if self.r == FAIL:
-            self.ks.append(self.fmt(self.k))   ;   self.ls.append(self.fmt(self.l))
-        if dbg: self.tlog() # d=f'{self.d:16}')
+    def tlog(self, i=None):
+        if i is not None: i = i + 1
+        j = B*4  if i is None else f'{i:3} ' # ;  sfx = ''
+        sfx = [ f' [{self.ks[i] if len(self.ks)>i else B*2} {self.ls[i] if len(self.ls)>i else B*2}]' for i in range(max(len(self.ks), len(self.ls))) ]
+#        sfx = f' {fmtl(self.ks)} {fmtl(self.ls)}' if self.ks or self.ls else ''
+#        for i in range(max(len(self.ks), len(self.ls))):
+#            self.ks[i] if len(self.ks) else self.ls[i] if len(self.ls) else B*2
+        slog(f'{j}{self.d:15} {self!s}{fmtl(sfx, d1="")}', file=1) # 0 if i else 1)
+        return i
     ########################################################################################################################################################################################################
     def klv(self, k, l):
         kv = 1 if k == self.l2k(l) else 0
@@ -318,24 +327,18 @@ class KeySig(object):
     @staticmethod
     def hasNoKL(k, l): return 1 if k is     None and l is     None else 0
     @staticmethod
-    def hasK(   k   ): return 1 if k is not None else 0 # and l is     None else 0
-#    def hasK(   k, l): return 1 if k is not None and l is     None else 0
+    def hasK(   k   ): return 0 if k is None else 1
     @staticmethod
-    def hasL(      l): return 1 if l is not None else 0 # k is     None and l is not None else 0
-#    def hasL(   k, l): return 1 if l is not None and l is not None else 0
+    def hasL(      l): return 0 if l is None else 1
     @staticmethod
+#    def hasKL(  k, l): return 0 if k is None or l is None else 1
     def hasKL(  k, l): return 1 if k is not None and l is not None else 0
+    @staticmethod
+    def fmt(a):        return B*2 if a is None else f'{a:2}'
     @classmethod
     def fLs(cls):      return f'{fmtm(cls.Ls)}'
     @classmethod
     def fKs(cls):      return f'{fmtm(cls.Ks, w=2, d2=chr(10), ll=-1)}'
-    ########################################################################################################################################################################################################
-    def tlog(self, i=None):
-        if i is not None: i = i + 1
-        j = B*4  if i is None else f'{i:3} '
-        sfx = f' {fmtl(self.ks)} {fmtl(self.ls)}' if self.ks or self.ls else ''
-        slog(f'{j}{self.d:15} {self!s}{sfx}', file=1) # 0 if i else 1)
-        return i
     ########################################################################################################################################################################################################
     def test(self, i=0):
         slog(self.fKs(), pfx=0)
