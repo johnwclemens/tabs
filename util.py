@@ -85,13 +85,15 @@ def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
 #            sf = sf.f_back
 #            sfi = inspect.getframeinfo(sf)
 #        filename  = pathlib.Path(sfi.filename).name
-#        msg = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
-        msg = msg.replace('self.', '.')
-        msg = msg.replace('util.', '.')
-        msg = msg.replace('"', '')
-        msg = msg.replace("'", '')
-        fp = pathlib.Path(sf.f_code.co_filename)
-        msg = f'{sf.f_lineno:4} {fp.stem:5} {sf.f_code.co_name:18} ' + msg
+#        msg  = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
+        msg  = msg.replace('self.', '.')
+        msg  = msg.replace('util.', '.')
+        msg  = msg.replace('"', '')
+        msg  = msg.replace("'", '')
+        fp   = pathlib.Path(sf.f_code.co_filename)
+        pl   = 18 if pfx == 1 else 8
+        pfx  = f'{sf.f_lineno:4} {fp.stem:5} ' if pfx == 1 else ''
+        msg  = f'{pfx}{sf.f_code.co_name:{pl}} ' + msg
     so = 0
     if   file == 0:  file = sys.stdout
     elif file == 1:  file = LOG_FILE
@@ -278,7 +280,7 @@ class KeySig(object):
 
     def __init__(self, k=None, l=None, dbg=0):
         self.ks = []  ;  self.ks.append(self.fmt(k)) if k else None
-        self.ls = []  ;  self.ls.append(self.fmt(l)) if l is not None else None #  ;  self.r = FAIL
+        self.ls = []  ;  self.ls.append(self.fmt(l)) if l is not None else None
         self.d, self.k, self.l, self.r = self.info(k, l)
 #        if  self.ks and self.k in self.Ks and self.k == self.ks[0] or self.ls and self.k in self.Ks and self.l == self.ls[0]:  self.r = PASS
         if self.r == FAIL:
@@ -302,7 +304,7 @@ class KeySig(object):
         if i is not None: i = i + 1
         j = B*4  if i is None else f'{i:3} '
         kls = [ f'[{self.ks[i] if len(self.ks)>i else B*2} {self.ls[i] if len(self.ls)>i else B*2}]' for i in range(max(len(self.ks), len(self.ls))) ]
-        slog(f'{j}{self.d:15} {fmtl(kls, d1="", sep=""):14} {self!s}', file=1)
+        slog(f'{j}{self.d:15} {fmtl(kls, d1="", sep=""):14} {self!s}', pfx=2, file=1)
         return i
     ########################################################################################################################################################################################################
     def klv(self, k, l):
@@ -339,14 +341,30 @@ class KeySig(object):
     def test(self, i=0):
         slog(self.fKs(), pfx=0)
         slog(self.fLs())
-        i = self.test_1B(i)
-        i = self.test_1A(i)
+        i = self.test_A1(i)
+        i = self.test_A2(i)
         i = self.test_1(i)
         i = self.test_2(i)
         i = self.test_3(i)
         i = self.test_4(i)
-        i = self.test_5(i)
-        i = self.test_6(i)
+#        i = self.test_5(i)
+#        i = self.test_6(i)
+        i = self.test_1A(i)
+        i = self.test_1B(i)
+        return i
+    ########################################################################################################################################################################################################
+    @classmethod
+    def test_A1(cls, i):
+        l = len(cls.Ls) // 2
+        for n in range(-l, l+1, 1):
+            ks = KeySig(l=n)  ;  i = ks.tlog(i)
+        return i
+
+    @classmethod
+    def test_A2(cls, i):
+        l = len(cls.Ls) // 2
+        for n in range(l, -l-1, -1):
+            ks = KeySig(l=n)  ;  i = ks.tlog(i)
         return i
     ########################################################################################################################################################################################################
     @staticmethod
@@ -408,13 +426,6 @@ class KeySig(object):
 
     @classmethod
     def test_2(cls, i):
-        l = len(cls.Ls) // 2
-        for n in range(l, -l - 1, -1):
-            ks = KeySig(l=n)  ;  i = ks.tlog(i=i)
-        return i
-
-    @classmethod
-    def test_3(cls, i):
         ks = KeySig('C#')  ;  i = ks.tlog(i)
         ks = KeySig('F#')  ;  i = ks.tlog(i)
         ks = KeySig('B')   ;  i = ks.tlog(i)
@@ -430,6 +441,25 @@ class KeySig(object):
         ks = KeySig('Db')  ;  i = ks.tlog(i)
         ks = KeySig('Gb')  ;  i = ks.tlog(i)
         ks = KeySig('Cb')  ;  i = ks.tlog(i)
+        return i
+
+    @classmethod
+    def test_3(cls, i):
+        ks = KeySig('Cb', -7)  ;  i = ks.tlog(i)
+        ks = KeySig('Gb', -6)  ;  i = ks.tlog(i)
+        ks = KeySig('Db', -5)  ;  i = ks.tlog(i)
+        ks = KeySig('Ab', -4)  ;  i = ks.tlog(i)
+        ks = KeySig('Eb', -3)  ;  i = ks.tlog(i)
+        ks = KeySig('Bb', -2)  ;  i = ks.tlog(i)
+        ks = KeySig('F' , -1)  ;  i = ks.tlog(i)
+        ks = KeySig('C' ,  0)  ;  i = ks.tlog(i)
+        ks = KeySig('G' ,  1)  ;  i = ks.tlog(i)
+        ks = KeySig('D' ,  2)  ;  i = ks.tlog(i)
+        ks = KeySig('A' ,  3)  ;  i = ks.tlog(i)
+        ks = KeySig('E' ,  4)  ;  i = ks.tlog(i)
+        ks = KeySig('B' ,  5)  ;  i = ks.tlog(i)
+        ks = KeySig('F#',  6)  ;  i = ks.tlog(i)
+        ks = KeySig('C#',  7)  ;  i = ks.tlog(i)
         return i
 
     @classmethod
@@ -449,32 +479,6 @@ class KeySig(object):
         ks = KeySig('Db', -5)  ;  i = ks.tlog(i)
         ks = KeySig('Gb', -6)  ;  i = ks.tlog(i)
         ks = KeySig('Cb', -7)  ;  i = ks.tlog(i)
-        return i
-
-    @classmethod
-    def test_5(cls, i):
-        l = len(cls.Ls)//2
-        for n in range(-l, l+1, 1):
-            ks = KeySig(l=n)  ;  i = ks.tlog(i)
-        return i
-
-    @classmethod
-    def test_6(cls, i):
-        ks = KeySig('Cb', -7)  ;  i = ks.tlog(i)
-        ks = KeySig('Gb', -6)  ;  i = ks.tlog(i)
-        ks = KeySig('Db', -5)  ;  i = ks.tlog(i)
-        ks = KeySig('Ab', -4)  ;  i = ks.tlog(i)
-        ks = KeySig('Eb', -3)  ;  i = ks.tlog(i)
-        ks = KeySig('Bb', -2)  ;  i = ks.tlog(i)
-        ks = KeySig('F' , -1)  ;  i = ks.tlog(i)
-        ks = KeySig('C' ,  0)  ;  i = ks.tlog(i)
-        ks = KeySig('G' ,  1)  ;  i = ks.tlog(i)
-        ks = KeySig('D' ,  2)  ;  i = ks.tlog(i)
-        ks = KeySig('A' ,  3)  ;  i = ks.tlog(i)
-        ks = KeySig('E' ,  4)  ;  i = ks.tlog(i)
-        ks = KeySig('B' ,  5)  ;  i = ks.tlog(i)
-        ks = KeySig('F#',  6)  ;  i = ks.tlog(i)
-        ks = KeySig('C#',  7)  ;  i = ks.tlog(i)
         return i
 ########################################################################################################################################################################################################
 class Test:
