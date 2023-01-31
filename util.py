@@ -335,7 +335,6 @@ class KeySig(object):
     def tlog(self, i=None):
         if i is not None: i = i + 1
         j = B*4  if i is None else f'{i:3} '
-#        d = B*17 if d is None else '' if d == '' else f'{self.d:15} '
         sfx = f' {fmtl(self.ks)} {fmtl(self.ls)}' if self.ks or self.ls else ''
         slog(f'{j}{self.d:15} {self!s}{sfx}', file=1) # 0 if i else 1)
         return i
