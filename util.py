@@ -267,10 +267,9 @@ class KeySig(object):
     def __str__(self):
         k = self.k  ;  ls, ks = '', ''
         if k in self.Ls: ls = f'{self.Ls[k]:2}'
-        if k in self.Ks and k in self.ks:
-            ks = f'{fmtl(self.Ks[k])}'
+        if k in self.Ks: ks = f'{fmtl(self.Ks[k])}'
         k = B*2 if k is None else k
-        return f'{k:2} {ls:2} {ks:22} {self.r}'
+        return f'{self.r} [{k:2} {ls:2}] {ks:22}'
 
     def __repr__(self):
         k = self.k   ;   l = self.l
@@ -301,12 +300,9 @@ class KeySig(object):
     ########################################################################################################################################################################################################
     def tlog(self, i=None):
         if i is not None: i = i + 1
-        j = B*4  if i is None else f'{i:3} ' # ;  sfx = ''
-        sfx = [ f' [{self.ks[i] if len(self.ks)>i else B*2} {self.ls[i] if len(self.ls)>i else B*2}]' for i in range(max(len(self.ks), len(self.ls))) ]
-#        sfx = f' {fmtl(self.ks)} {fmtl(self.ls)}' if self.ks or self.ls else ''
-#        for i in range(max(len(self.ks), len(self.ls))):
-#            self.ks[i] if len(self.ks) else self.ls[i] if len(self.ls) else B*2
-        slog(f'{j}{self.d:15} {self!s}{fmtl(sfx, d1="")}', file=1) # 0 if i else 1)
+        j = B*4  if i is None else f'{i:3} '
+        kls = [ f'[{self.ks[i] if len(self.ks)>i else B*2} {self.ls[i] if len(self.ls)>i else B*2}]' for i in range(max(len(self.ks), len(self.ls))) ]
+        slog(f'{j}{self.d:15} {fmtl(kls, d1="", sep=""):14} {self!s}', file=1)
         return i
     ########################################################################################################################################################################################################
     def klv(self, k, l):
