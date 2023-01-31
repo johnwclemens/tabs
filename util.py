@@ -271,8 +271,6 @@ class KeySig(object):
             ks = f'{fmtl(self.Ks[k]):22}'
         k = B*2 if k is None else k # ;  l = B*2 if l is None else l
         return f'{k:2} {ls} {ks} {self.r}'
-#        _ = f' {self.Ls[self.k]:2} {fmtl(self.Ks[self.k]):22}' if self.k in self.Ks and self.k in self.Ls else ''
-#        return f'{self.k:2}{_} {self.r}'
 
     def __repr__(self):
         k = self.k   ;   l = self.l
