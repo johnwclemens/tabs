@@ -290,10 +290,10 @@ class KeySig(object):
             if klv[0]:                              d = 'hasKL isKL  klv'  ;  k = klv[1][0]    ;  l = klv[2][0]   ;  r = PASS
             else:                                   d = 'hasKL isKL !klv'  ;  k = klv[1][1]    ;  l = klv[2][1]   ;  r = FAIL
         elif self.hasL(    l) and     self.isL(l):  d =  'hasL  isL'       ;  k = self.l2k(l)  ;  l = self.Ls[k]  ;  r = PASS
-        elif self.hasL(    l) and not self.isL(l):  d = f'hasL !isL={l}'   ;                                         r = FAIL # self.k = k  ;  self.l = l
+        elif self.hasL(    l) and not self.isL(l):  d = f'hasL !isL={l}'   ;                                         r = FAIL
         elif self.hasK(    k) and     self.isK(k):  d =  'hasK  isK'       ;                      l = self.Ls[k]  ;  r = PASS
-        elif self.hasK(    k) and not self.isK(k):  d = f'hask !isK={k}'   ;                                         r = FAIL # self.k = k  ;  self.l = l
-        else:                                       d = f'ERROR {k=} {l=}' ;                                         r = FAIL # self.k = k  ;  self.l = l
+        elif self.hasK(    k) and not self.isK(k):  d = f'hask !isK={k}'   ;                                         r = FAIL
+        else:                                       d = f'ERROR {k=} {l=}' ;                                         r = FAIL
         if     r == FAIL:    self.ks.append(self.fmt(k))   ;   self.ls.append(self.fmt(l))
         return d, k, l, r
     ########################################################################################################################################################################################################
@@ -312,21 +312,21 @@ class KeySig(object):
 
     def l2k(   self, l, dbg=0):
         for k, v in self.Ls.items():
-            if v==l:
-                slog(f'{k=} {v=} {l=}') if dbg else None  ;  return k
+            if v==l:        slog(f'{k=} {v=} {l=}') if dbg else None  ;  return k
     ########################################################################################################################################################################################################
     def isK(   self, k):    return 1 if k     in self.Ks                            else 0
     def isL(   self, l):    return 1 if                      -self.L <= l <= self.L else 0
     def isKL(  self, k, l): return 1 if k     in self.Ks and -self.L <= l <= self.L else 0
 #    def isNoKL(self, k, l): return 1 if k not in self.Ks and -self.L >= l >= self.L else 0
     @staticmethod
-    def hasNoKL(k, l): return 1 if k is     None and l is     None else 0
+    def hasNoKL(k, l): return   1 if not k and not l else 0
+#    def hasNoKL(k, l): return   1 if k is None and l is None else 0
     @staticmethod
-    def hasK(   k   ): return 0 if k is None else 1
+    def hasK(   k   ): return   0 if k is None else 1
     @staticmethod
-    def hasL(      l): return 0 if l is None else 1
+    def hasL(      l): return   0 if l is None else 1
     @staticmethod
-    def hasKL(  k, l): return 0 if k is None or l is None else 1
+    def hasKL(  k, l): return   0 if k is None or l is None else 1
     @staticmethod
     def fmt(a):        return B*2 if a is None else f'{a:2}'
     @classmethod
@@ -339,14 +339,21 @@ class KeySig(object):
         slog(self.fLs())
         self.test_1A()
         self.test_1B()
+        self.test_1C()
+        self.test_1D()
         self.test_2A()
         self.test_2B()
+        self.test_2C()
+        self.test_2D()
+        self.test_2E()
         self.test_3A()
         self.test_3B()
-#        i = self.test_1(i)
-#        i = self.test_2(i)
-#        i = self.test_3(i)
-#        i = self.test_4(i)
+        self.test_3C()
+        self.test_3D()
+        self.test_3E()
+        self.test_4A()
+        self.test_4B()
+        self.test_4C()
         return i
     ########################################################################################################################################################################################################
     @classmethod
@@ -360,9 +367,25 @@ class KeySig(object):
     @classmethod
     def test_1B(cls, i=0, j=0):
         l = len(cls.Ls) // 2 + j
+        for k in cls.Ls.keys():
+            for n in range(l, -l-1, -1):
+                ks = KeySig(  k, l=n)  ;  i = ks.tlog(i)
+        return i
+
+    @classmethod
+    def test_1C(cls, i=0, j=0):
+        l = len(cls.Ls) // 2 + j
         for n in range(l, -l-1, -1):
             for k in cls.Ls.keys():
-                ks = KeySig(k=k, l=n)  ;  i = ks.tlog(i)
+                ks = KeySig(  k,   n)  ;  i = ks.tlog(i)
+        return i
+
+    @classmethod
+    def test_1D(cls, i=0, j=0):
+        l = len(cls.Ls) // 2 + j
+        for n in range(-l, l + 1, 1):
+            for k in cls.Ls.keys():
+                ks = KeySig(  k,   n)  ;  i = ks.tlog(i)
         return i
     ########################################################################################################################################################################################################
     @classmethod
@@ -373,8 +396,26 @@ class KeySig(object):
 
     @classmethod
     def test_2B(cls, i=0):
-        for k in cls.Ls.keys():
+        for k in reversed(cls.Ls.keys()):
             ks = KeySig(k=k)  ;  i = ks.tlog(i)
+        return i
+
+    @classmethod
+    def test_2C(cls, i=0):
+        for k in cls.Ls.keys():
+            ks = KeySig(k)  ;  i = ks.tlog(i)
+        return i
+
+    @classmethod
+    def test_2D(cls, i=0):
+        for k in cls.Ls.keys():
+            ks = KeySig(k, None)  ;  i = ks.tlog(i)
+        return i
+
+    @classmethod
+    def test_2E(cls, i=0):
+        for k in cls.Ls.keys():
+            ks = KeySig(k, l=None)  ;  i = ks.tlog(i)
         return i
     ########################################################################################################################################################################################################
     @classmethod
@@ -390,102 +431,63 @@ class KeySig(object):
         for n in range(l, -l-1, -1):
             ks = KeySig(l=n)  ;  i = ks.tlog(i)
         return i
+
+    @classmethod
+    def test_3C(cls, i=0, j=0):
+        l = len(cls.Ls) // 2 + j
+        for n in range(-l, l+1, 1):
+            ks = KeySig(None,   n)  ;  i = ks.tlog(i)
+        return i
+
+    @classmethod
+    def test_3D(cls, i=0, j=0):
+        l = len(cls.Ls) // 2 + j
+        for n in range(-l, l+1, 1):
+            ks = KeySig(None, l=n)  ;  i = ks.tlog(i)
+        return i
+
+    @classmethod
+    def test_3E(cls, i=0, j=0):
+        l = len(cls.Ls) // 2 + j
+        for n in range(-l, l+1, 1):
+            ks = KeySig('',   n)  ;  i = ks.tlog(i)
+        return i
     ########################################################################################################################################################################################################
     @classmethod
-    def test_1(cls, i):
-        ks = KeySig('Cb')  ;  i = ks.tlog(i)
-        ks = KeySig('Gb')  ;  i = ks.tlog(i)
-        ks = KeySig('Db')  ;  i = ks.tlog(i)
-        ks = KeySig('Ab')  ;  i = ks.tlog(i)
-        ks = KeySig('Eb')  ;  i = ks.tlog(i)
-        ks = KeySig('Bb')  ;  i = ks.tlog(i)
-        ks = KeySig('F')   ;  i = ks.tlog(i)
-        ks = KeySig('C')   ;  i = ks.tlog(i)
-        ks = KeySig('G')   ;  i = ks.tlog(i)
-        ks = KeySig('D')   ;  i = ks.tlog(i)
-        ks = KeySig('A')   ;  i = ks.tlog(i)
-        ks = KeySig('E')   ;  i = ks.tlog(i)
-        ks = KeySig('B')   ;  i = ks.tlog(i)
-        ks = KeySig('F#')  ;  i = ks.tlog(i)
-        ks = KeySig('C#')  ;  i = ks.tlog(i)
+    def test_4A(cls, i=0):
+        ks = KeySig()  ;  i = ks.tlog(i)
         return i
 
     @classmethod
-    def test_2(cls, i):
-        ks = KeySig('C#')  ;  i = ks.tlog(i)
-        ks = KeySig('F#')  ;  i = ks.tlog(i)
-        ks = KeySig('B')   ;  i = ks.tlog(i)
-        ks = KeySig('E')   ;  i = ks.tlog(i)
-        ks = KeySig('A')   ;  i = ks.tlog(i)
-        ks = KeySig('D')   ;  i = ks.tlog(i)
-        ks = KeySig('G')   ;  i = ks.tlog(i)
-        ks = KeySig('C')   ;  i = ks.tlog(i)
-        ks = KeySig('F')   ;  i = ks.tlog(i)
-        ks = KeySig('Bb')  ;  i = ks.tlog(i)
-        ks = KeySig('Eb')  ;  i = ks.tlog(i)
-        ks = KeySig('Ab')  ;  i = ks.tlog(i)
-        ks = KeySig('Db')  ;  i = ks.tlog(i)
-        ks = KeySig('Gb')  ;  i = ks.tlog(i)
-        ks = KeySig('Cb')  ;  i = ks.tlog(i)
+    def test_4B(cls, i=0):
+        ks = KeySig('')  ;  i = ks.tlog(i)
         return i
 
     @classmethod
-    def test_3(cls, i):
-        ks = KeySig('Cb', -7)  ;  i = ks.tlog(i)
-        ks = KeySig('Gb', -6)  ;  i = ks.tlog(i)
-        ks = KeySig('Db', -5)  ;  i = ks.tlog(i)
-        ks = KeySig('Ab', -4)  ;  i = ks.tlog(i)
-        ks = KeySig('Eb', -3)  ;  i = ks.tlog(i)
-        ks = KeySig('Bb', -2)  ;  i = ks.tlog(i)
-        ks = KeySig('F' , -1)  ;  i = ks.tlog(i)
-        ks = KeySig('C' ,  0)  ;  i = ks.tlog(i)
-        ks = KeySig('G' ,  1)  ;  i = ks.tlog(i)
-        ks = KeySig('D' ,  2)  ;  i = ks.tlog(i)
-        ks = KeySig('A' ,  3)  ;  i = ks.tlog(i)
-        ks = KeySig('E' ,  4)  ;  i = ks.tlog(i)
-        ks = KeySig('B' ,  5)  ;  i = ks.tlog(i)
-        ks = KeySig('F#',  6)  ;  i = ks.tlog(i)
-        ks = KeySig('C#',  7)  ;  i = ks.tlog(i)
+    def test_4C(cls, i=0):
+        ks = KeySig('', None)  ;  i = ks.tlog(i)
         return i
-
-    @classmethod
-    def test_4(cls, i):
-        ks = KeySig('C#',  7)  ;  i = ks.tlog(i)
-        ks = KeySig('F#',  6)  ;  i = ks.tlog(i)
-        ks = KeySig('B' ,  5)  ;  i = ks.tlog(i)
-        ks = KeySig('E' ,  4)  ;  i = ks.tlog(i)
-        ks = KeySig('A' ,  3)  ;  i = ks.tlog(i)
-        ks = KeySig('D' ,  2)  ;  i = ks.tlog(i)
-        ks = KeySig('G' ,  1)  ;  i = ks.tlog(i)
-        ks = KeySig('C' ,  0)  ;  i = ks.tlog(i)
-        ks = KeySig('F',  -1)  ;  i = ks.tlog(i)
-        ks = KeySig('Bb', -2)  ;  i = ks.tlog(i)
-        ks = KeySig('Eb', -3)  ;  i = ks.tlog(i)
-        ks = KeySig('Ab', -4)  ;  i = ks.tlog(i)
-        ks = KeySig('Db', -5)  ;  i = ks.tlog(i)
-        ks = KeySig('Gb', -6)  ;  i = ks.tlog(i)
-        ks = KeySig('Cb', -7)  ;  i = ks.tlog(i)
-        return i
+    ########################################################################################################################################################################################################
     @staticmethod
-    def test_B(i):
+    def test_BB(i):
         ks = KeySig(l=0)         ;  i = ks.tlog(i)
-        ks = KeySig(l=4)         ;  i = ks.tlog(i)
-        ks = KeySig(l=-4)        ;  i = ks.tlog(i)
+        ks = KeySig(l=7)         ;  i = ks.tlog(i)
+        ks = KeySig(l=-7)        ;  i = ks.tlog(i)
         ks = KeySig(l=8)         ;  i = ks.tlog(i)
         ks = KeySig(l=-8)        ;  i = ks.tlog(i)
         ks = KeySig('', l=0)     ;  i = ks.tlog(i)
-        ks = KeySig('', l=4)     ;  i = ks.tlog(i)
-        ks = KeySig('', l=-4)    ;  i = ks.tlog(i)
+        ks = KeySig('', l=7)     ;  i = ks.tlog(i)
+        ks = KeySig('', l=-7)    ;  i = ks.tlog(i)
         ks = KeySig('', l=8)     ;  i = ks.tlog(i)
         ks = KeySig('', l=-8)    ;  i = ks.tlog(i)
         ks = KeySig('C', l=0)    ;  i = ks.tlog(i)
-        ks = KeySig('E', l=4)    ;  i = ks.tlog(i)
-        ks = KeySig('Ab', l=-4)  ;  i = ks.tlog(i)
+        ks = KeySig('E', l=7)    ;  i = ks.tlog(i)
+        ks = KeySig('Ab', l=-7)  ;  i = ks.tlog(i)
         ks = KeySig('D', l=8)    ;  i = ks.tlog(i)
         ks = KeySig('Db', l=-8)  ;  i = ks.tlog(i)
         ks = KeySig('')          ;  i = ks.tlog(i)
-        ks = KeySig('E',  4)     ;  i = ks.tlog(i)
-        ks = KeySig('Ab', -4)    ;  i = ks.tlog(i)
+        ks = KeySig('E',  7)     ;  i = ks.tlog(i)
+        ks = KeySig('Ab', -7)    ;  i = ks.tlog(i)
         ks = KeySig('A',  3)     ;  i = ks.tlog(i)
         ks = KeySig('Z')         ;  i = ks.tlog(i)
         ks = KeySig('Z', 3)      ;  i = ks.tlog(i)
@@ -498,7 +500,7 @@ class KeySig(object):
         ks = KeySig('G#')        ;  i = ks.tlog(i)
         return i
     @classmethod
-    def test_A(cls, i):
+    def test_AA(cls, i):
         ks = KeySig('A')         ;  i = ks.tlog(i)
         ks = KeySig('A', None)   ;  i = ks.tlog(i)
         ks = KeySig(None, 3)     ;  i = ks.tlog(i)
