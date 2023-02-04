@@ -92,9 +92,7 @@ class Tabs(pyglet.window.Window):
         self.sAlias = 'GUITAR_6_STD'
         ####################################################################################################################################################################################################
         self.sobj = util.Strings(self.sAlias)
-#        util.KeySig.test()
-        foo = util.KeySig()
-        foo.test(0)
+        util.KeySig.test()
         self.cobj = chord.Chord(self.sobj)
         util.Note.setType(util.Note.FLAT)  ;  self.log(f'{util.Note.TYPE=}')
         self.log(f'Frequency Info')
