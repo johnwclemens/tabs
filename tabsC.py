@@ -148,7 +148,7 @@ class Tabs(pyglet.window.Window):
     def _reinit(self):
         self.log('BGN')
         self.tpb, self.tpp, self.tpl, self.tps, self.tpc = self.ntp(dbg=1, dbg2=1)
-        self.visib = []
+        self.visib = []   ;   self.enhms = set()
         self.pages, self.lines, self.sects, self.colms = [], [], [], []  ;  self.A = [self.pages, self.lines, self.sects, self.colms]
         self.tabls, self.notes, self.ikeys, self.kords = [], [], [], []  ;  self.B = [self.tabls, self.notes, self.ikeys, self.kords]
         self.rowLs, self.qclms, self.hcurs, self.views = [], [], [], []  ;  self.C = [self.rowLs, self.qclms, self.hcurs, self.views]
@@ -1685,7 +1685,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'E' and self.isCtrlShift(mods):    self.eraseTabs(       '@^E')
 #        elif kbk == 'E' and self.isCtrl(     mods):    self.eraseTabs(       '@ E')
         elif kbk == 'F' and self.isCtrlShift(mods):    self.toggleFullScreen('@^F')
-        elif kbk == 'F' and self.isCtrl(     mods):    self.toggleFlatSharp( '@ F')
+        elif kbk == 'F' and self.isCtrl(     mods):    self.toggleFlatSharp( '@ F')   ;   util.KeySig.test()
         elif kbk == 'G' and self.isCtrlShift(mods):    self.move2LastTab(    '@^G', page=1)
         elif kbk == 'G' and self.isCtrl(     mods):    self.move2LastTab(    '@ G', page=0)
         elif kbk == 'H' and self.isCtrlShift(mods):    self.move2FirstTab(   '@^H', page=1)
@@ -2221,7 +2221,7 @@ class Tabs(pyglet.window.Window):
     def toggleFlatSharp(self, how, dbg=1):  #  page line colm tab or select
         t1 = util.Note.TYPE  ;  t2 = (util.Note.TYPE + 1) % 2    ;   util.Note.setType(t2)
         self.log(  f'BGN {how} {t1=} {util.Note.TYPES[t1]} => {t2=} {util.Note.TYPES[t2]}')
-        s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i
+        s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i  ;  ehs = self.enhms  ;  ehs.clear()
         tniks, j, k, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
         for i in range(len(tniks)):
             text = ''  ;   sn = i % nt
@@ -2235,13 +2235,20 @@ class Tabs(pyglet.window.Window):
                 cn = self.cc2cn(cc)
                 if   text in util.Note.F2S: text = util.Note.F2S[text]
                 elif text in util.Note.S2F: text = util.Note.S2F[text]
-                self.notes[i].text = text
+                self.notes[i].text = text   ;   ehs.add(text)
                 if dbg: self.log(f'{sn=} {cn=} {cc=} {i=} {old} => {text} {self.notes[i].text=} {self.fplct(p, l, c, t)}')
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
+        self.checkEHs(ehs)
         self.log(  f'END {how} {t1=} {util.Note.TYPES[t1]} => {t2=} {util.Note.TYPES[t2]}')
     ####################################################################################################################################################################################################
+    def checkEHs(self, ehs):
+        for k, v in util.KeySig.Ks.items():
+            s = set(v)
+            msg = f'ehs={util.fmtl(ehs)} <= s={util.fmtl(s)}' if ehs <= s else f'ehs={util.fmtl(ehs)}.isdisjoint({util.fmtl(s)})={int(ehs.isdisjoint(s))}'
+            self.log(f'{k=:2} {msg}')
+
     def toggleChordNames(self, how, hit=0, dbg=1):
         cc = self.cc    ;    cn = self.cc2cn(cc)
         mks = list(self.cobj.mlimap.keys())   ;   sks = list(self.smap.keys())

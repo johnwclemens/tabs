@@ -301,26 +301,29 @@ class KeySig(object):
     def tlog(self, i=None):
         if i is not None: i = i + 1
         ii = B*4  if i is None else f'{i:3} '
-        kls = [ f'[{self.ks[j] if len(self.ks)>j else B*2} {self.ls[j] if len(self.ls)>j else B*2}]' for j in range(max(len(self.ks), len(self.ls))) ]
+        kls = self.kls()
         slog(f'{ii}{self.d:15} {fmtl(kls, d1="", sep=""):14} {self!s}', pfx=2, file=1)
         return i
     ########################################################################################################################################################################################################
+    def kls(self): return [ f'[{self.ks[j] if len(self.ks)>j else B*2} {self.ls[j] if len(self.ls)>j else B*2}]' for j in range(max(len(self.ks), len(self.ls))) ]
+
     def klv(self, k, l):
         kv = 1 if k == self.l2k(l) else 0
         lv = 1 if l == self.Ls[k]  else 0
         v = kv * lv   ;   ks = [k, self.l2k(l)]   ;   ls = [l, self.Ls[k]]
         return v, ks, ls
 
-    def l2k(   self, l, dbg=0):
+    def l2k(self, l, dbg=0):
         for k, v in self.Ls.items():
-            if v==l:        slog(f'{k=} {v=} {l=}') if dbg else None  ;  return k
+            if v==l:
+                slog(f'{k=} {v=} {l=}') if dbg else None  ;  return k
     ########################################################################################################################################################################################################
 ###    def isNoKL(self, k, l):    return 1 if k not in self.Ks and -self.L >= l >= self.L else 0
     def isK(   self, k):       return 1 if k in self.Ks           else 0
 #    def isL(   self,    l):    return 1 if -self.L <= l <= self.L else 0
+#    def isKL(  self, k, l):    return 1 if k in self.Ks and -self.L <= l <= self.L else 0
     def isL(   self,    l):    return 1 if                   self.l2k(l) in self.Ls or -l in self.Ls else 0
     def isKL(  self, k, l):    return 1 if k in self.Ks and (self.l2k(l) in self.Ls or -l in self.Ls) else 0
-#    def isKL(  self, k, l):    return 1 if k in self.Ks and -self.L <= l <= self.L else 0
     @staticmethod
 #    def hasNoKL(k, l): return   1 if not k and not l else 0
     def hasNoKL(k, l): return   1 if not k and l is None else 0
