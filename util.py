@@ -248,6 +248,7 @@ class KeySig(object):
 #    F2S = {'Cb':'B', 'Gb':'F#', 'Db':'C#', 'Ab':'G#', 'Eb':'D#', 'Bb':'A#', 'F':'E#', 'C':'B#', 'E':'Fb'}
     S2F = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B' :'Cb'}
     F2S = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
+    EHR = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1, '':0, 'F#':1, 'C#':2, 'G#':3, 'D#':4, 'A#':5, 'E#':6, 'B#':7}
     Ks  = dict()  ;  Ls = dict()
     _ = 'Cb'  ;  Cb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  Ks[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  Ls[_] = -len(Ks[_])
     _ = 'Gb'  ;  Gb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  Ks[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  Ls[_] = -len(Ks[_])

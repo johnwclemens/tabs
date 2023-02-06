@@ -10,6 +10,7 @@ import pyglet.text   as pygtxt
 import pyglet.window.event as pygwine
 import pyglet.window.key   as pygwink
 import chord, util
+from util import KeySig as KS
 
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
@@ -92,7 +93,7 @@ class Tabs(pyglet.window.Window):
         self.sAlias = 'GUITAR_6_STD'
         ####################################################################################################################################################################################################
         self.sobj = util.Strings(self.sAlias)
-        util.KeySig.test()
+        KS.test()
         self.cobj = chord.Chord(self.sobj)
         util.Note.setType(util.Note.FLAT)  ;  self.log(f'{util.Note.TYPE=}')
         self.log(f'Frequency Info')
@@ -1685,7 +1686,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'E' and self.isCtrlShift(mods):    self.eraseTabs(       '@^E')
 #        elif kbk == 'E' and self.isCtrl(     mods):    self.eraseTabs(       '@ E')
         elif kbk == 'F' and self.isCtrlShift(mods):    self.toggleFullScreen('@^F')
-        elif kbk == 'F' and self.isCtrl(     mods):    self.toggleFlatSharp( '@ F')   ;   util.KeySig.test()
+        elif kbk == 'F' and self.isCtrl(     mods):    self.toggleFlatSharp( '@ F')   ;   KS.test()
         elif kbk == 'G' and self.isCtrlShift(mods):    self.move2LastTab(    '@^G', page=1)
         elif kbk == 'G' and self.isCtrl(     mods):    self.move2LastTab(    '@ G', page=0)
         elif kbk == 'H' and self.isCtrlShift(mods):    self.move2FirstTab(   '@^H', page=1)
@@ -2244,11 +2245,10 @@ class Tabs(pyglet.window.Window):
         self.log(  f'END {how} {t1=} {util.Note.TYPES[t1]} => {t2=} {util.Note.TYPES[t2]}')
     ####################################################################################################################################################################################################
     def checkEHs(self, ehs):
-        for k, v in util.KeySig.Ks.items():
-            s = set(v)
-            msg = f'ehs={util.fmtl(ehs)} <= s={util.fmtl(s)}' if ehs <= s else f'ehs={util.fmtl(ehs)}.isdisjoint({util.fmtl(s)})={int(ehs.isdisjoint(s))}'
-            self.log(f'{k=:2} {msg}')
-
+        for k, v in KS.Ks.items():
+            s = set(v)   ;   _ = '!~' if ehs.isdisjoint(s) else '> ' if ehs > s else '< ' if ehs < s else '~~' if ehs == s else '??'
+            self.log(f'{k=:2} ehs={util.fmtl(sorted(ehs, key=lambda t: KS.EHR[t]))} {_} ks={util.fmtl(sorted(s, key=lambda t: KS.EHR[t]))}')
+    ####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):
         cc = self.cc    ;    cn = self.cc2cn(cc)
         mks = list(self.cobj.mlimap.keys())   ;   sks = list(self.smap.keys())
@@ -2528,7 +2528,7 @@ def initRGB(dbg=1):
     _initRGB('CL1', ( 13,  15, 255))  # 15
     _initRGB('CL2', (255, 128,   0))  # 16
     _initRGB('CL3', (250, 65,  190))  # 17
-    _initRGB('CL4', (255, 128, 255))  # 18
+    _initRGB('CL4', (151,  71,   6))  # 18
     return RGB.keys()
 ########################################################################################################################################################################################################
 def _initRGB(key, rgb, dv=32, n=None, dbg=2):
