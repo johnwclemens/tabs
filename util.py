@@ -243,9 +243,15 @@ class Strings(object):
     def tab2fn(tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  slog(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
 
 ########################################################################################################################################################################################################
+class Mode(object):
+    NAMES = 'IONIAN', 'DORIAN', 'PHRYGIAN', 'LYDIAN', 'MIXOLYDIAN', 'AEOLIAN', 'LOCRIAN'
+    def __init__(self, name='IONIAN', tonic='C', ks=0):
+        self.name  = name
+        self.tonic = tonic
+        self.ks    = ks
+
+########################################################################################################################################################################################################
 class KeySig(object):
-#    S2F = {'B':'Cb', 'F#':'Gb', 'C#':'Db', 'G#':'Ab', 'D#':'Eb', 'A#':'Bb', 'E#':'F', 'B#':'C', 'Fb':'E'}
-#    F2S = {'Cb':'B', 'Gb':'F#', 'Db':'C#', 'Ab':'G#', 'Eb':'D#', 'Bb':'A#', 'F':'E#', 'C':'B#', 'E':'Fb'}
     S2F = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B' :'Cb'}
     F2S = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
     EHR = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1, '':0, 'F#':1, 'C#':2, 'G#':3, 'D#':4, 'A#':5, 'E#':6, 'B#':7}
@@ -267,6 +273,12 @@ class KeySig(object):
     _ = 'C#'  ;  Cs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  Ks[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  Ls[_] =  len(Ks[_])
     L = len(Ls) // 2
     ########################################################################################################################################################################################################
+    def __init__(self, k=None, l=None):
+        self.ks = []  ;  self.ks.append(self.fmt(k)) if k else None
+        self.ls = []  ;  self.ls.append(self.fmt(l)) if l is not None else None
+        self.d, self.k, self.l, self.r = self.info(k, l)
+        if k is not None and k==0:  slog(f'{k=} {l=}')  ;  self.tlog()
+
     def __str__(self):
         k = self.k  ;  ls, ks = '', ''
         if k in self.Ls: ls = f'{self.Ls[k]:2}'
@@ -278,12 +290,6 @@ class KeySig(object):
         k = self.k   ;   l = self.l
         k = B*2 if k is None else k  ;  l = B*2 if l is None else l
         return f'{k:2} {l:2}'
-
-    def __init__(self, k=None, l=None):
-        self.ks = []  ;  self.ks.append(self.fmt(k)) if k else None
-        self.ls = []  ;  self.ls.append(self.fmt(l)) if l is not None else None
-        self.d, self.k, self.l, self.r = self.info(k, l)
-        if k is not None and k==0:  slog(f'{k=} {l=}')  ;  self.tlog()
     ########################################################################################################################################################################################################
     def info(self, k=None, l=None):
         if   self.hasNoKL(k, l):                    d = 'has No KL'        ;  k = 'C'          ;  l = self.Ls[k]  ;  r = DFLT
@@ -504,6 +510,7 @@ class KeySig(object):
         for n in range(-l, l+1, 1):
             ks = KeySig('',   n)  ;  i = ks.tlog(i)
         return i
+
 ########################################################################################################################################################################################################
 class Test:
     def __init__(self, a): self._a = a  ;  slog(f'<Test_init_:     _a={self._a}>', pfx=1)

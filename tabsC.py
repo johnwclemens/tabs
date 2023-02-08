@@ -53,7 +53,7 @@ class Tabs(pyglet.window.Window):
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         self.n         = [4, 2, 10, 6]
         self.i         = [1, 1,  1, 6]
-        self.DATA_FNAME = f'test.{self.n[0]}.{self.n[1]}.{self.n[2]}.dat' # test.4.2.10.dat
+        self.DATA_FNAME = f'testA.{self.n[0]}.{self.n[1]}.{self.n[2]}.dat' # test.4.2.10.dat
         self.log(f'argMap={util.fmtm(ARGS)}')
         if 'f' in ARGS and len(ARGS['f'])  > 0: self.DATA_FNAME = ARGS['f'][0]
         if 'n' in ARGS and len(ARGS['n'])  > 0: self.n    = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
@@ -182,7 +182,7 @@ class Tabs(pyglet.window.Window):
         j = L  ;  k[j] = i(j, BLU,  0, 17, RED, 17, 17) if a else i(j, GRY,  0,  0, GRY,  0,  0) if b else i(j, GRY,  0,  0, GRY,  0,  0) if c else i(j, GRY,  0,  0, GRY,  0,  0) if d else None
         j = S  ;  k[j] = i(j, BLU,  0, 17, RED, 17, 17) if a else i(j, GRY,  0,  0, GRY,  0,  0) if b else i(j, GRY,  0,  0, GRY,  0,  0) if c else i(j, GRY,  0,  0, GRY,  0,  0) if d else None
         j = C  ;  k[j] = i(j, BLU,  0, 17, RED, 17, 17) if a else i(j, GRY,  0,  0, GRY,  0,  0) if b else i(j, GRY,  0,  0, GRY,  0,  0) if c else i(j, GRY,  0,  0, GRY,  0,  0) if d else None
-        j = T  ;  k[j] = i(j, ORN,  0, 17, ORN, 17, 17) if a else i(j, ORN,  0, 17, ORN, 17, 17) if b else i(j, ORN,  0, 17, ORN, 17, 17) if c else i(j, ORN,  0, 17, ORN, 17, 17) if d else None
+        j = T  ;  k[j] = i(j, ORG,  0, 17, ORG, 17, 17) if a else i(j, ORG,  0, 17, ORG, 17, 17) if b else i(j, ORG,  0, 17, ORG, 17, 17) if c else i(j, ORG,  0, 17, ORG, 17, 17) if d else None
         j = N  ;  k[j] = i(j, GRN,  0, 17, GRN, 17, 17) if a else i(j, GRN,  0, 17, GRN, 17, 17) if b else i(j, GRN,  0, 17, GRN, 17, 17) if c else i(j, GRN,  0, 17, GRN, 17, 17) if d else None
         j = I  ;  k[j] = i(j, YLW,  0, 17, YLW, 17, 17) if a else i(j, YLW,  0, 17, YLW, 17, 17) if b else i(j, YLW,  0, 17, YLW, 17, 17) if c else i(j, YLW,  0, 17, YLW, 17, 17) if d else None
         j = K  ;  k[j] = i(j, IND,  0, 17, IND, 17, 17) if a else i(j, IND,  0, 17, IND, 17, 17) if b else i(j, IND,  0, 17, IND, 17, 17) if c else i(j, IND,  0, 17, IND, 17, 17) if d else None
@@ -640,7 +640,7 @@ class Tabs(pyglet.window.Window):
 #                if ll:  llt = f'{JTEXTS[L]} {l+1}'  ;  llab = f'{llt:{i+1}}'  ;  self.log(f'{B*i}{llab}', pfx=0)
                 if lc:  self.dumpDataLabels(data[p][l], i=i, sep=B)
                 for r in range(len(data[p][l])):
-                    self.log(f'{B*i}', pfx=0, end='')
+                    self.log(B*i, pfx=0, end='')
                     for c in range(len(data[p][l][r])):
                         self.log(f'{data[p][l][r][c]}', pfx=0, end='')
                     self.log(pfx=0)
@@ -2244,11 +2244,15 @@ class Tabs(pyglet.window.Window):
         self.checkEHs(ehs)
         self.log(  f'END {how} {t1=} {util.Note.TYPES[t1]} => {t2=} {util.Note.TYPES[t2]}')
     ####################################################################################################################################################################################################
-    def checkEHs(self, ehs):
+    @staticmethod
+    def fEH(k, e, o, s): return f'{k=:2} ehs={util.fmtl(sorted(e, key=lambda t: KS.EHR[t]))} {o} ks={util.fmtl(sorted(s, key=lambda t: KS.EHR[t]))}'
+    def checkEHs(self, e, dbg=1, f=''):
         for k, v in KS.Ks.items():
-            s = set(v)   ;   _ = '!~' if ehs.isdisjoint(s) else '> ' if ehs > s else '< ' if ehs < s else '~~' if ehs == s else '??'
-            self.log(f'{k=:2} ehs={util.fmtl(sorted(ehs, key=lambda t: KS.EHR[t]))} {_} ks={util.fmtl(sorted(s, key=lambda t: KS.EHR[t]))}')
-    ####################################################################################################################################################################################################
+            s = set(v)  ;   o = '!!' if not e and not s else '!~' if e.isdisjoint(s) else '> ' if e > s else '< ' if e < s else '~~' if e == s else '??'
+            if dbg:         self.log(f'{self.fEH(k, e, o, s)}')
+            if o=='!!' or o=='~~':  f = self.fEH(k, e, o, s)
+        if f:  self.log(f'KeySig: {f}')
+####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):
         cc = self.cc    ;    cn = self.cc2cn(cc)
         mks = list(self.cobj.mlimap.keys())   ;   sks = list(self.smap.keys())
@@ -2507,7 +2511,7 @@ def dumpGlobals():
 ########################################################################################################################################################################################################
 def initRGB(dbg=1):
     if dbg:
-        s = f'{B*7}'  ;  t = f'{s}RGB '
+        s = B*7  ;  t = f'{s}RGB '
         o = [ f' {o}' for o in range(len(OPC)) ]
         util.slog(f'RGB{s}{util.fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=2)
     _initRGB('FSH', (255,   0, 255))  # 0
@@ -2515,7 +2519,7 @@ def initRGB(dbg=1):
     _initRGB('RED', (255,   0,   0))  # 2
     _initRGB('RST', (255,  96,   0))  # 3
     _initRGB('PCH', (255, 160, 128))  # 4
-    _initRGB('ORN', (255, 176,   0))  # 5
+    _initRGB('ORG', (255, 176,   0))  # 5
     _initRGB('YLW', (255, 255,   0))  # 6
     _initRGB('LIM', (160, 255,   0))  # 7
     _initRGB('GRN', (  0, 255,   0))  # 8
@@ -2603,7 +2607,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE:
     util.slog(f'{sys.argv[0]}', pfx=0,           file=2)
     util.slog(f'argv={util.fmtl(sys.argv[1:])}', file=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
-    FSH, PNK, RED, RST, PCH, ORN, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
+    FSH, PNK, RED, RST, PCH, ORG, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
     def main():
         util.slog(f'{LOG_PATH=}',      file=2)
         util.slog(f'{LOG_FILE.name=}', file=2)
