@@ -273,7 +273,7 @@ class KeySig(object):
     _ = 'B'   ;  B  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  NS[_] =  len(KS[_])
     _ = 'F#'  ;  Fs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  NS[_] =  len(KS[_])
     _ = 'C#'  ;  Cs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  NS[_] =  len(KS[_])
-    N = len(NS) // 2
+    NN = len(NS) // 2
     ########################################################################################################################################################################################################
     def __init__(self, n=0):
         self.n  = n
@@ -306,6 +306,7 @@ class KeySig(object):
         slog(cls.fKS(), pfx=0)
         cls.defaultA()
         cls.test_1A()
+        cls.test_2A()
     ########################################################################################################################################################################################################
     @classmethod
     def defaultA(cls, i=0):
@@ -313,12 +314,20 @@ class KeySig(object):
         ks = KeySig( 0)          ;  i = ks.tlog(i)
         ks = KeySig( 1)          ;  i = ks.tlog(i)
         ks = KeySig(-1)          ;  i = ks.tlog(i)
+        ks = KeySig(n= 0)        ;  i = ks.tlog(i)
+        ks = KeySig(n= 1)        ;  i = ks.tlog(i)
+        ks = KeySig(n=-1)        ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_1A(cls, i=0, j=0):
-        l = len(cls.NS) // 2 + j
+        l = cls.NN + j
         for n in range(-l, l+1, 1):
             ns = KeySig(n)  ;  i = ns.tlog(i)
+        return i
+    @classmethod
+    def test_2A(cls, i=0):
+        for k in cls.KS.keys():
+            ks = KeySig(cls.NS[k])  ;  i = ks.tlog(i)
         return i
 
 ########################################################################################################################################################################################################
