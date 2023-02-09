@@ -22,7 +22,7 @@ STFILT = ['log', 'tlog', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap',
 ########################################################################################################################################################################################################
 def init(file, oid):  global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
 
-def ev(obj):        return f'{eval(f"{obj!r}")}'
+def ev(obj):          return f'{eval(f"{obj!r}")}'
 
 def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
@@ -49,7 +49,7 @@ def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
 def fmtm(m, w=1, d0=':', d1='[', d2=']', ll=None):
     t = ''
     for k, v in m.items():
-        if   type(v) in (list, tuple, set):         t += f'{d1}{k:{w}}{d0}{fmtl(v, w, ll=KeySig2.Ls[k] if ll==-1 else ll)}{d2} '
+        if   type(v) in (list, tuple, set):         t += f'{d1}{k:{w}}{d0}{fmtl(v, w, ll=KeySig.NS[k] if ll==-1 else ll)}{d2} '
         elif type(v) in (int, str):                 t += f'{d1}{k:>{w}}{d0}{v:<{w}}{d2} '
     return d1 + t.rstrip() + d2
 
@@ -254,25 +254,12 @@ class Mode(object):
 
 ########################################################################################################################################################################################################
 class KeySig(object):
-    S2F = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B' :'Cb'}
-    F2S = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
-    EHR = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1, '':0, 'F#':1, 'C#':2, 'G#':3, 'D#':4, 'A#':5, 'E#':6, 'B#':7}
-    KS  = dict()   ;   NS = dict()
-    _ = 'Cb'  ;  Cb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  NS[_] = -len(KS[_])
-    _ = 'Gb'  ;  Gb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  NS[_] = -len(KS[_])
-    _ = 'Db'  ;  Db = ['Db', 'Eb', 'F' , 'Gb', 'Ab', 'Bb', 'C' ]  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  NS[_] = -len(KS[_])
-    _ = 'Ab'  ;  Ab = ['Ab', 'Bb', 'C' , 'Db', 'Eb', 'F' , 'G' ]  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db']                    ;  NS[_] = -len(KS[_])
-    _ = 'Eb'  ;  Eb = ['Eb', 'F' , 'G' , 'Ab', 'Bb', 'C' , 'D' ]  ;  KS[_] = ['Bb', 'Eb', 'Ab']                          ;  NS[_] = -len(KS[_])
-    _ = 'Bb'  ;  Bb = ['Bb', 'C' , 'D' , 'Eb', 'F' , 'G' , 'A' ]  ;  KS[_] = ['Bb', 'Eb']                                ;  NS[_] = -len(KS[_])
-    _ = 'F'   ;  F  = ['F' , 'G' , 'A' , 'Bb', 'C' , 'D' , 'E' ]  ;  KS[_] = ['Bb']                                      ;  NS[_] = -len(KS[_])
-    _ = 'C'   ;  C  = ['C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' ]  ;  KS[_] = []                                          ;  NS[_] =  len(KS[_])
-    _ = 'G'   ;  G  = ['G' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F#']  ;  KS[_] = ['F#']                                      ;  NS[_] =  len(KS[_])
-    _ = 'D'   ;  D  = ['D' , 'E' , 'F#', 'G' , 'A' , 'B' , 'C#']  ;  KS[_] = ['F#', 'C#']                                ;  NS[_] =  len(KS[_])
-    _ = 'A'   ;  A  = ['A' , 'B' , 'C#', 'D' , 'E' , 'F#', 'G#']  ;  KS[_] = ['F#', 'C#', 'G#']                          ;  NS[_] =  len(KS[_])
-    _ = 'E'   ;  E  = ['E' , 'F#', 'G#', 'A' , 'B' , 'C#', 'D#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#']                    ;  NS[_] =  len(KS[_])
-    _ = 'B'   ;  B  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  NS[_] =  len(KS[_])
-    _ = 'F#'  ;  Fs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  NS[_] =  len(KS[_])
-    _ = 'C#'  ;  Cs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  NS[_] =  len(KS[_])
+    FO  = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1}
+    SO  = {'F#': 1, 'C#': 2, 'G#': 3, 'D#': 4, 'A#': 5, 'E#': 6, 'B#': 7}
+    EHR = dict(FO)  ;  EHR.update(SO)
+    KS  = dict()    ;   NS = dict()
+    for _ in range(-7, 7+1, 1):
+        EO = FO  if _ < 0 else SO   ;   KS[_] = list(EO.keys())[:abs(_)]  ;   NS[_] = _
     NN = len(NS) // 2
     ########################################################################################################################################################################################################
     def __init__(self, n=0):
@@ -331,7 +318,269 @@ class KeySig(object):
         return i
 
 ########################################################################################################################################################################################################
+class KeySig4(object):
+    FO  = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1}
+    SO  = {'F#': 1, 'C#': 2, 'G#': 3, 'D#': 4, 'A#': 5, 'E#': 6, 'B#': 7}
+    EHR = dict(FO)  ;  EHR.update(SO)
+    KS  = dict()    ;   NS = dict()
+    _ = -7  ;  KS[_] = list(FO.keys())[:-_]  ;  NS[_] = _
+    _ = -6  ;  KS[_] = list(FO.keys())[:-_]  ;  NS[_] = _
+    _ = -5  ;  KS[_] = list(FO.keys())[:-_]  ;  NS[_] = _
+    _ = -4  ;  KS[_] = list(FO.keys())[:-_]  ;  NS[_] = _
+    _ = -3  ;  KS[_] = list(FO.keys())[:-_]  ;  NS[_] = _
+    _ = -2  ;  KS[_] = list(FO.keys())[:-_]  ;  NS[_] = _
+    _ = -1  ;  KS[_] = list(FO.keys())[:-_]  ;  NS[_] = _
+    _ =  0  ;  KS[_] = list()                ;  NS[_] = _
+    _ =  1  ;  KS[_] = list(SO.keys())[: _]  ;  NS[_] = _
+    _ =  2  ;  KS[_] = list(SO.keys())[: _]  ;  NS[_] = _
+    _ =  3  ;  KS[_] = list(SO.keys())[: _]  ;  NS[_] = _
+    _ =  4  ;  KS[_] = list(SO.keys())[: _]  ;  NS[_] = _
+    _ =  5  ;  KS[_] = list(SO.keys())[: _]  ;  NS[_] = _
+    _ =  6  ;  KS[_] = list(SO.keys())[: _]  ;  NS[_] = _
+    _ =  7  ;  KS[_] = list(SO.keys())[: _]  ;  NS[_] = _
+    NN = len(NS) // 2
+    ########################################################################################################################################################################################################
+    def __init__(self, n=0):
+        self.n  = n
+        self.k  = self.n2k(n)
+        self.ks = self.KS[self.k]
+    def __str__( self):  return f'{self.n:2} {self.k:2} {fmtl(self.ks)}'
+    def __repr__(self):  return f'KeySig4({self.n})'
+    ########################################################################################################################################################################################################
+    def tlog(self, i=None):
+        if i is not None: i = i + 1
+        ii = B*4  if i is None else f'{i:3} '
+        slog(f'{ii}{ev(self)}')
+        return i
+    ########################################################################################################################################################################################################
+    def n2k(self, n, dbg=0):
+        for k, v in self.NS.items():
+            if v==n: slog(f'{k=} {v=} {n=}') if dbg else None  ;  return k
+        slog(f'ERROR {n=} Not Found')        if dbg else None  ;  return None
+    ########################################################################################################################################################################################################
+    @staticmethod
+    def fmt(a):        return B*2 if a is None else f'{a:2}'
+    @classmethod
+    def fNS(cls):      return f'{fmtm(cls.NS)}'
+    @classmethod
+    def fKS(cls):      return f'{fmtm(cls.KS, w=2, d2=chr(10), ll=-1)}'
+    ########################################################################################################################################################################################################
+    @classmethod
+    def test(cls):
+        slog(cls.fNS())
+        slog(cls.fKS(), pfx=0)
+        cls.defaultA()
+        cls.test_1A()
+        cls.test_2A()
+    ########################################################################################################################################################################################################
+    @classmethod
+    def defaultA(cls, i=0):
+        ks = KeySig4()            ;  i = ks.tlog(i)
+        ks = KeySig4( 0)          ;  i = ks.tlog(i)
+        ks = KeySig4( 1)          ;  i = ks.tlog(i)
+        ks = KeySig4(-1)          ;  i = ks.tlog(i)
+        ks = KeySig4(n= 0)        ;  i = ks.tlog(i)
+        ks = KeySig4(n= 1)        ;  i = ks.tlog(i)
+        ks = KeySig4(n=-1)        ;  i = ks.tlog(i)
+        return i
+    @classmethod
+    def test_1A(cls, i=0, j=0):
+        l = cls.NN + j
+        for n in range(-l, l+1, 1):
+            ns = KeySig4(n)  ;  i = ns.tlog(i)
+        return i
+    @classmethod
+    def test_2A(cls, i=0):
+        for k in cls.KS.keys():
+            ks = KeySig4(cls.NS[k])  ;  i = ks.tlog(i)
+        return i
+
+########################################################################################################################################################################################################
+class KeySig3(object):
+    EHR = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1, '':0, 'F#':1, 'C#':2, 'G#':3, 'D#':4, 'A#':5, 'E#':6, 'B#':7}
+    KS  = dict()   ;   NS = dict()
+    _ = -7  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  NS[_] = _
+    _ = -6  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  NS[_] = _
+    _ = -5  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  NS[_] = _
+    _ = -4  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db']                    ;  NS[_] = _
+    _ = -3  ;  KS[_] = ['Bb', 'Eb', 'Ab']                          ;  NS[_] = _
+    _ = -2  ;  KS[_] = ['Bb', 'Eb']                                ;  NS[_] = _
+    _ = -1  ;  KS[_] = ['Bb']                                      ;  NS[_] = _
+    _ =  0  ;  KS[_] = []                                          ;  NS[_] = _
+    _ =  1  ;  KS[_] = ['F#']                                      ;  NS[_] = _
+    _ =  2  ;  KS[_] = ['F#', 'C#']                                ;  NS[_] = _
+    _ =  3  ;  KS[_] = ['F#', 'C#', 'G#']                          ;  NS[_] = _
+    _ =  4  ;  KS[_] = ['F#', 'C#', 'G#', 'D#']                    ;  NS[_] = _
+    _ =  5  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  NS[_] = _
+    _ =  6  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  NS[_] = _
+    _ =  7  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  NS[_] = _
+    _ = -7  ;  NS[_] = _  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']
+    _ = -6  ;  NS[_] = _  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']
+    _ = -5  ;  NS[_] = _  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']
+    _ = -4  ;  NS[_] = _  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db']
+    _ = -3  ;  NS[_] = _  ;  KS[_] = ['Bb', 'Eb', 'Ab']
+    _ = -2  ;  NS[_] = _  ;  KS[_] = ['Bb', 'Eb']
+    _ = -1  ;  NS[_] = _  ;  KS[_] = ['Bb']
+    _ =  0  ;  NS[_] = _  ;  KS[_] = []
+    _ =  1  ;  NS[_] = _  ;  KS[_] = ['F#']
+    _ =  2  ;  NS[_] = _  ;  KS[_] = ['F#', 'C#']
+    _ =  3  ;  NS[_] = _  ;  KS[_] = ['F#', 'C#', 'G#']
+    _ =  4  ;  NS[_] = _  ;  KS[_] = ['F#', 'C#', 'G#', 'D#']
+    _ =  5  ;  NS[_] = _  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#']
+    _ =  6  ;  NS[_] = _  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']
+    _ =  7  ;  NS[_] = _  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']
+    NS[-7] = -7  ;  KS[-7] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']
+    NS[-6] = -6  ;  KS[-6] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']
+    NS[-5] = -5  ;  KS[-5] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']
+    NS[-4] = -4  ;  KS[-4] = ['Bb', 'Eb', 'Ab', 'Db']
+    NS[-3] = -3  ;  KS[-3] = ['Bb', 'Eb', 'Ab']
+    NS[-2] = -2  ;  KS[-2] = ['Bb', 'Eb']
+    NS[-1] = -1  ;  KS[-1] = ['Bb']
+    NS[ 0] =  0  ;  KS[ 0] = []
+    NS[ 1] =  1  ;  KS[ 1] = ['F#']
+    NS[ 2] =  2  ;  KS[ 2] = ['F#', 'C#']
+    NS[ 3] =  3  ;  KS[ 3] = ['F#', 'C#', 'G#']
+    NS[ 4] =  4  ;  KS[ 4] = ['F#', 'C#', 'G#', 'D#']
+    NS[ 5] =  5  ;  KS[ 5] = ['F#', 'C#', 'G#', 'D#', 'A#']
+    NS[ 6] =  6  ;  KS[ 6] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']
+    NS[ 7] =  7  ;  KS[ 7] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']
+    NN = len(NS) // 2
+    ########################################################################################################################################################################################################
+    def __init__(self, n=0):
+        self.n  = n
+        self.k  = self.n2k(n)
+        self.ks = self.KS[self.k]
+    def __str__( self):  return f'{self.n:2} {self.k:2} {fmtl(self.ks)}'
+    def __repr__(self):  return f'KeySig3({self.n})'
+    ########################################################################################################################################################################################################
+    def tlog(self, i=None):
+        if i is not None: i = i + 1
+        ii = B*4  if i is None else f'{i:3} '
+        slog(f'{ii}{ev(self)}')
+        return i
+    ########################################################################################################################################################################################################
+    def n2k(self, n, dbg=0):
+        for k, v in self.NS.items():
+            if v==n: slog(f'{k=} {v=} {n=}') if dbg else None  ;  return k
+        slog(f'ERROR {n=} Not Found')        if dbg else None  ;  return None
+    ########################################################################################################################################################################################################
+    @staticmethod
+    def fmt(a):        return B*2 if a is None else f'{a:2}'
+    @classmethod
+    def fNS(cls):      return f'{fmtm(cls.NS)}'
+    @classmethod
+    def fKS(cls):      return f'{fmtm(cls.KS, w=2, d2=chr(10), ll=-1)}'
+    ########################################################################################################################################################################################################
+    @classmethod
+    def test(cls):
+        slog(cls.fNS())
+        slog(cls.fKS(), pfx=0)
+        cls.defaultA()
+        cls.test_1A()
+        cls.test_2A()
+    ########################################################################################################################################################################################################
+    @classmethod
+    def defaultA(cls, i=0):
+        ks = KeySig3()            ;  i = ks.tlog(i)
+        ks = KeySig3( 0)          ;  i = ks.tlog(i)
+        ks = KeySig3( 1)          ;  i = ks.tlog(i)
+        ks = KeySig3(-1)          ;  i = ks.tlog(i)
+        ks = KeySig3(n= 0)        ;  i = ks.tlog(i)
+        ks = KeySig3(n= 1)        ;  i = ks.tlog(i)
+        ks = KeySig3(n=-1)        ;  i = ks.tlog(i)
+        return i
+    @classmethod
+    def test_1A(cls, i=0, j=0):
+        l = cls.NN + j
+        for n in range(-l, l+1, 1):
+            ns = KeySig3(n)  ;  i = ns.tlog(i)
+        return i
+    @classmethod
+    def test_2A(cls, i=0):
+        for k in cls.KS.keys():
+            ks = KeySig3(cls.NS[k])  ;  i = ks.tlog(i)
+        return i
+
+########################################################################################################################################################################################################
 class KeySig2(object):
+#    S2F = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B' :'Cb'}
+#    F2S = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
+    EHR = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1, '':0, 'F#':1, 'C#':2, 'G#':3, 'D#':4, 'A#':5, 'E#':6, 'B#':7}
+    KS  = dict()   ;   NS = dict()
+    _ = 'Cb'  ;  Cb = ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb']  ;  NS[_] = -len(KS[_])
+    _ = 'Gb'  ;  Gb = ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F' ]  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']        ;  NS[_] = -len(KS[_])
+    _ = 'Db'  ;  Db = ['Db', 'Eb', 'F' , 'Gb', 'Ab', 'Bb', 'C' ]  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db', 'Gb']              ;  NS[_] = -len(KS[_])
+    _ = 'Ab'  ;  Ab = ['Ab', 'Bb', 'C' , 'Db', 'Eb', 'F' , 'G' ]  ;  KS[_] = ['Bb', 'Eb', 'Ab', 'Db']                    ;  NS[_] = -len(KS[_])
+    _ = 'Eb'  ;  Eb = ['Eb', 'F' , 'G' , 'Ab', 'Bb', 'C' , 'D' ]  ;  KS[_] = ['Bb', 'Eb', 'Ab']                          ;  NS[_] = -len(KS[_])
+    _ = 'Bb'  ;  Bb = ['Bb', 'C' , 'D' , 'Eb', 'F' , 'G' , 'A' ]  ;  KS[_] = ['Bb', 'Eb']                                ;  NS[_] = -len(KS[_])
+    _ = 'F'   ;  F  = ['F' , 'G' , 'A' , 'Bb', 'C' , 'D' , 'E' ]  ;  KS[_] = ['Bb']                                      ;  NS[_] = -len(KS[_])
+    _ = 'C'   ;  C  = ['C' , 'D' , 'E' , 'F' , 'G' , 'A' , 'B' ]  ;  KS[_] = []                                          ;  NS[_] =  len(KS[_])
+    _ = 'G'   ;  G  = ['G' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F#']  ;  KS[_] = ['F#']                                      ;  NS[_] =  len(KS[_])
+    _ = 'D'   ;  D  = ['D' , 'E' , 'F#', 'G' , 'A' , 'B' , 'C#']  ;  KS[_] = ['F#', 'C#']                                ;  NS[_] =  len(KS[_])
+    _ = 'A'   ;  A  = ['A' , 'B' , 'C#', 'D' , 'E' , 'F#', 'G#']  ;  KS[_] = ['F#', 'C#', 'G#']                          ;  NS[_] =  len(KS[_])
+    _ = 'E'   ;  E  = ['E' , 'F#', 'G#', 'A' , 'B' , 'C#', 'D#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#']                    ;  NS[_] =  len(KS[_])
+    _ = 'B'   ;  B  = ['B' , 'C#', 'D#', 'E' , 'F#', 'G#', 'A#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#']              ;  NS[_] =  len(KS[_])
+    _ = 'F#'  ;  Fs = ['F#', 'G#', 'A#', 'B' , 'C#', 'D#', 'E#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#']        ;  NS[_] =  len(KS[_])
+    _ = 'C#'  ;  Cs = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']  ;  KS[_] = ['F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#']  ;  NS[_] =  len(KS[_])
+    NN = len(NS) // 2
+    ########################################################################################################################################################################################################
+    def __init__(self, n=0):
+        self.n  = n
+        self.k  = self.n2k(n)
+        self.ks = self.KS[self.k]
+    def __str__( self):  return f'{self.n:2} {self.k:2} {fmtl(self.ks)}'
+    def __repr__(self):  return f'KeySig2({self.n})'
+    ########################################################################################################################################################################################################
+    def tlog(self, i=None):
+        if i is not None: i = i + 1
+        ii = B*4  if i is None else f'{i:3} '
+        slog(f'{ii}{ev(self)}')
+        return i
+    ########################################################################################################################################################################################################
+    def n2k(self, n, dbg=0):
+        for k, v in self.NS.items():
+            if v==n: slog(f'{k=} {v=} {n=}') if dbg else None  ;  return k
+        slog(f'ERROR {n=} Not Found')        if dbg else None  ;  return None
+    ########################################################################################################################################################################################################
+    @staticmethod
+    def fmt(a):        return B*2 if a is None else f'{a:2}'
+    @classmethod
+    def fNS(cls):      return f'{fmtm(cls.NS)}'
+    @classmethod
+    def fKS(cls):      return f'{fmtm(cls.KS, w=2, d2=chr(10), ll=-1)}'
+    ########################################################################################################################################################################################################
+    @classmethod
+    def test(cls):
+        slog(cls.fNS())
+        slog(cls.fKS(), pfx=0)
+        cls.defaultA()
+        cls.test_1A()
+        cls.test_2A()
+    ########################################################################################################################################################################################################
+    @classmethod
+    def defaultA(cls, i=0):
+        ks = KeySig2()            ;  i = ks.tlog(i)
+        ks = KeySig2( 0)          ;  i = ks.tlog(i)
+        ks = KeySig2( 1)          ;  i = ks.tlog(i)
+        ks = KeySig2(-1)          ;  i = ks.tlog(i)
+        ks = KeySig2(n= 0)        ;  i = ks.tlog(i)
+        ks = KeySig2(n= 1)        ;  i = ks.tlog(i)
+        ks = KeySig2(n=-1)        ;  i = ks.tlog(i)
+        return i
+    @classmethod
+    def test_1A(cls, i=0, j=0):
+        l = cls.NN + j
+        for n in range(-l, l+1, 1):
+            ns = KeySig2(n)  ;  i = ns.tlog(i)
+        return i
+    @classmethod
+    def test_2A(cls, i=0):
+        for k in cls.KS.keys():
+            ks = KeySig2(cls.NS[k])  ;  i = ks.tlog(i)
+        return i
+
+########################################################################################################################################################################################################
+class KeySig1(object):
     S2F = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B' :'Cb'}
     F2S = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
     EHR = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1, '':0, 'F#':1, 'C#':2, 'G#':3, 'D#':4, 'A#':5, 'E#':6, 'B#':7}
@@ -447,62 +696,62 @@ class KeySig2(object):
     ########################################################################################################################################################################################################
     @classmethod
     def defaultA(cls, i=0):
-        ks = KeySig2()            ;  i = ks.tlog(i)
-        ks = KeySig2('')          ;  i = ks.tlog(i)
-        ks = KeySig2(None)        ;  i = ks.tlog(i)
-        ks = KeySig2('',   None)  ;  i = ks.tlog(i)
-        ks = KeySig2(None, None)  ;  i = ks.tlog(i)
+        ks = KeySig1()            ;  i = ks.tlog(i)
+        ks = KeySig1('')          ;  i = ks.tlog(i)
+        ks = KeySig1(None)        ;  i = ks.tlog(i)
+        ks = KeySig1('',   None)  ;  i = ks.tlog(i)
+        ks = KeySig1(None, None)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def defaultB(cls, i=0):
-        ks = KeySig2(k=None)          ;  i = ks.tlog(i)
-        ks = KeySig2(        l=None)  ;  i = ks.tlog(i)
-        ks = KeySig2(k=None, l=None)  ;  i = ks.tlog(i)
-        ks = KeySig2(k='')            ;  i = ks.tlog(i)
-        ks = KeySig2(k='',   l=None)  ;  i = ks.tlog(i)
-        ks = KeySig2(l=None, k=''  )  ;  i = ks.tlog(i)
-        ks = KeySig2(l=None, k=None)  ;  i = ks.tlog(i)
+        ks = KeySig1(k=None)          ;  i = ks.tlog(i)
+        ks = KeySig1(        l=None)  ;  i = ks.tlog(i)
+        ks = KeySig1(k=None, l=None)  ;  i = ks.tlog(i)
+        ks = KeySig1(k='')            ;  i = ks.tlog(i)
+        ks = KeySig1(k='',   l=None)  ;  i = ks.tlog(i)
+        ks = KeySig1(l=None, k=''  )  ;  i = ks.tlog(i)
+        ks = KeySig1(l=None, k=None)  ;  i = ks.tlog(i)
         return i
     ########################################################################################################################################################################################################
     @classmethod
     def test_A(cls, i=0):
-        ks = KeySig2(l=3)         ;  i = ks.tlog(i)
-        ks = KeySig2('A', 3)      ;  i = ks.tlog(i)
-        ks = KeySig2('Eb')        ;  i = ks.tlog(i)
-        ks = KeySig2('Eb', None)  ;  i = ks.tlog(i)
-        ks = KeySig2(l=-3)        ;  i = ks.tlog(i)
-        ks = KeySig2('Eb', -3)    ;  i = ks.tlog(i)
-        ks = KeySig2(k='A')       ;  i = ks.tlog(i)
-        ks = KeySig2(k='A', l=None)   ;  i = ks.tlog(i)
-        ks = KeySig2(None, l=-3)      ;  i = ks.tlog(i)
+        ks = KeySig1(l=3)         ;  i = ks.tlog(i)
+        ks = KeySig1('A', 3)      ;  i = ks.tlog(i)
+        ks = KeySig1('Eb')        ;  i = ks.tlog(i)
+        ks = KeySig1('Eb', None)  ;  i = ks.tlog(i)
+        ks = KeySig1(l=-3)        ;  i = ks.tlog(i)
+        ks = KeySig1('Eb', -3)    ;  i = ks.tlog(i)
+        ks = KeySig1(k='A')       ;  i = ks.tlog(i)
+        ks = KeySig1(k='A', l=None)   ;  i = ks.tlog(i)
+        ks = KeySig1(None, l=-3)      ;  i = ks.tlog(i)
         return i
     @staticmethod
     def test_B(i=0):
-        ks = KeySig2(l=-8)        ;  i = ks.tlog(i)
-        ks = KeySig2(l=-7)        ;  i = ks.tlog(i)
-        ks = KeySig2(l= 0)        ;  i = ks.tlog(i)
-        ks = KeySig2(l= 7)        ;  i = ks.tlog(i)
-        ks = KeySig2(l= 8)        ;  i = ks.tlog(i)
-        ks = KeySig2('',   l=-8)  ;  i = ks.tlog(i)
-        ks = KeySig2('',   l=-7)  ;  i = ks.tlog(i)
-        ks = KeySig2('',   l= 0)  ;  i = ks.tlog(i)
-        ks = KeySig2('',   l= 7)  ;  i = ks.tlog(i)
-        ks = KeySig2('',   l= 8)  ;  i = ks.tlog(i)
-        ks = KeySig2('Cb', l=-8)  ;  i = ks.tlog(i)
-        ks = KeySig2('Cb', l=-7)  ;  i = ks.tlog(i)
-        ks = KeySig2('Cb', l= 0)  ;  i = ks.tlog(i)
-        ks = KeySig2('Cb', l= 7)  ;  i = ks.tlog(i)
-        ks = KeySig2('Cb', l= 8)  ;  i = ks.tlog(i)
-        ks = KeySig2('C',  l=-8)  ;  i = ks.tlog(i)
-        ks = KeySig2('C',  l=-7)  ;  i = ks.tlog(i)
-        ks = KeySig2('C',  l= 0)  ;  i = ks.tlog(i)
-        ks = KeySig2('C',  l= 7)  ;  i = ks.tlog(i)
-        ks = KeySig2('C',  l= 8)  ;  i = ks.tlog(i)
-        ks = KeySig2('C#', l=-8)  ;  i = ks.tlog(i)
-        ks = KeySig2('C#', l=-7)  ;  i = ks.tlog(i)
-        ks = KeySig2('C#', l= 0)  ;  i = ks.tlog(i)
-        ks = KeySig2('C#', l= 7)  ;  i = ks.tlog(i)
-        ks = KeySig2('C#', l= 8)  ;  i = ks.tlog(i)
+        ks = KeySig1(l=-8)        ;  i = ks.tlog(i)
+        ks = KeySig1(l=-7)        ;  i = ks.tlog(i)
+        ks = KeySig1(l= 0)        ;  i = ks.tlog(i)
+        ks = KeySig1(l= 7)        ;  i = ks.tlog(i)
+        ks = KeySig1(l= 8)        ;  i = ks.tlog(i)
+        ks = KeySig1('',   l=-8)  ;  i = ks.tlog(i)
+        ks = KeySig1('',   l=-7)  ;  i = ks.tlog(i)
+        ks = KeySig1('',   l= 0)  ;  i = ks.tlog(i)
+        ks = KeySig1('',   l= 7)  ;  i = ks.tlog(i)
+        ks = KeySig1('',   l= 8)  ;  i = ks.tlog(i)
+        ks = KeySig1('Cb', l=-8)  ;  i = ks.tlog(i)
+        ks = KeySig1('Cb', l=-7)  ;  i = ks.tlog(i)
+        ks = KeySig1('Cb', l= 0)  ;  i = ks.tlog(i)
+        ks = KeySig1('Cb', l= 7)  ;  i = ks.tlog(i)
+        ks = KeySig1('Cb', l= 8)  ;  i = ks.tlog(i)
+        ks = KeySig1('C',  l=-8)  ;  i = ks.tlog(i)
+        ks = KeySig1('C',  l=-7)  ;  i = ks.tlog(i)
+        ks = KeySig1('C',  l= 0)  ;  i = ks.tlog(i)
+        ks = KeySig1('C',  l= 7)  ;  i = ks.tlog(i)
+        ks = KeySig1('C',  l= 8)  ;  i = ks.tlog(i)
+        ks = KeySig1('C#', l=-8)  ;  i = ks.tlog(i)
+        ks = KeySig1('C#', l=-7)  ;  i = ks.tlog(i)
+        ks = KeySig1('C#', l= 0)  ;  i = ks.tlog(i)
+        ks = KeySig1('C#', l= 7)  ;  i = ks.tlog(i)
+        ks = KeySig1('C#', l= 8)  ;  i = ks.tlog(i)
         return i
     ########################################################################################################################################################################################################
     @classmethod
@@ -510,85 +759,85 @@ class KeySig2(object):
         l = len(cls.Ls) // 2 + j
         for k in cls.Ls.keys():
             for n in range(-l, l+1, 1):
-                ks = KeySig2(k=k, l=n)  ;  i = ks.tlog(i)
+                ks = KeySig1(k=k, l=n)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_1B(cls, i=0, j=0):
         l = len(cls.Ls) // 2 + j
         for k in cls.Ls.keys():
             for n in range(l, -l-1, -1):
-                ks = KeySig2(  k, l=n)  ;  i = ks.tlog(i)
+                ks = KeySig1(  k, l=n)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_1C(cls, i=0, j=0):
         l = len(cls.Ls) // 2 + j
         for n in range(l, -l-1, -1):
             for k in cls.Ls.keys():
-                ks = KeySig2(  k,   n)  ;  i = ks.tlog(i)
+                ks = KeySig1(  k,   n)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_1D(cls, i=0, j=0):
         l = len(cls.Ls) // 2 + j
         for n in range(-l, l + 1, 1):
             for k in cls.Ls.keys():
-                ks = KeySig2(  k,   n)  ;  i = ks.tlog(i)
+                ks = KeySig1(  k,   n)  ;  i = ks.tlog(i)
         return i
     ########################################################################################################################################################################################################
     @classmethod
     def test_2A(cls, i=0):
         for k in cls.Ls.keys():
-            ks = KeySig2(k=k)  ;  i = ks.tlog(i)
+            ks = KeySig1(k=k)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_2B(cls, i=0):
         for k in reversed(cls.Ls.keys()):
-            ks = KeySig2(k=k)  ;  i = ks.tlog(i)
+            ks = KeySig1(k=k)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_2C(cls, i=0):
         for k in cls.Ls.keys():
-            ks = KeySig2(k)  ;  i = ks.tlog(i)
+            ks = KeySig1(k)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_2D(cls, i=0):
         for k in cls.Ls.keys():
-            ks = KeySig2(k, None)  ;  i = ks.tlog(i)
+            ks = KeySig1(k, None)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_2E(cls, i=0):
         for k in cls.Ls.keys():
-            ks = KeySig2(k, l=None)  ;  i = ks.tlog(i)
+            ks = KeySig1(k, l=None)  ;  i = ks.tlog(i)
         return i
     ########################################################################################################################################################################################################
     @classmethod
     def test_3A(cls, i=0, j=0):
         l = len(cls.Ls) // 2 + j
         for n in range(-l, l+1, 1):
-            ks = KeySig2(l=n)  ;  i = ks.tlog(i)
+            ks = KeySig1(l=n)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_3B(cls, i=0, j=0):
         l = len(cls.Ls) // 2 + j
         for n in range(l, -l-1, -1):
-            ks = KeySig2(l=n)  ;  i = ks.tlog(i)
+            ks = KeySig1(l=n)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_3C(cls, i=0, j=0):
         l = len(cls.Ls) // 2 + j
         for n in range(-l, l+1, 1):
-            ks = KeySig2(None,   n)  ;  i = ks.tlog(i)
+            ks = KeySig1(None,   n)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_3D(cls, i=0, j=0):
         l = len(cls.Ls) // 2 + j
         for n in range(-l, l+1, 1):
-            ks = KeySig2(None, l=n)  ;  i = ks.tlog(i)
+            ks = KeySig1(None, l=n)  ;  i = ks.tlog(i)
         return i
     @classmethod
     def test_3E(cls, i=0, j=0):
         l = len(cls.Ls) // 2 + j
         for n in range(-l, l+1, 1):
-            ks = KeySig2('',   n)  ;  i = ks.tlog(i)
+            ks = KeySig1('',   n)  ;  i = ks.tlog(i)
         return i
 
 ########################################################################################################################################################################################################

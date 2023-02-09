@@ -2251,7 +2251,7 @@ class Tabs(pyglet.window.Window):
             s = set(v)  ;   o = '!!' if not e and not s else '!~' if e.isdisjoint(s) else '> ' if e > s else '< ' if e < s else '~~' if e == s else '??'
             if dbg:         self.log(f'{self.fEH(k, e, o, s)}')
             if o=='!!' or o=='~~':  f = self.fEH(k, e, o, s)
-        if f:  self.log(f'KeySig: {f}')
+        if f:  self.log(f'KeySiG: {f}')
 ####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):
         cc = self.cc    ;    cn = self.cc2cn(cc)
