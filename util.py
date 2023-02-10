@@ -49,7 +49,7 @@ def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
 def fmtm(m, w=1, d0=':', d1='[', d2=']', ll=None):
     t = ''   ;   u = '>'
     for k, v in m.items():
-        if   type(v) in (list, tuple, set):         t += f'{d1}{k:{u}{w}}{d0}{fmtl(v, w, ll=KeySig.NS[k] if ll==-1 else ll)}{d2} '
+        if   type(v) in (list, tuple, set):         t += f'{d1}{k:{u}{w}}{d0}{fmtl(v, w, ll=k if ll==-1 else ll)}{d2} '
         elif type(v) in (int, str):                 t += f'{d1}{k:{u}{w}}{d0}{v:{u}{w}}{d2} '
     return d1 + t.rstrip() + d2
 
@@ -256,17 +256,16 @@ class Mode(object):
 class KeySig(object):
     FO  = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1}
     SO  = {'F#': 1, 'C#': 2, 'G#': 3, 'D#': 4, 'A#': 5, 'E#': 6, 'B#': 7}
-    KS  = dict()   ;   NS = dict()   ;   EHR = dict(FO)  ;  EHR.update(SO)   ;   NN = len(FO)
-    for _ in range(-NN, NN+1, 1):
-        EO = FO  if _ < 0 else SO    ;   KS[_] = list(EO.keys())[:abs(_)]    ;   NS[_] = _
-    slog(fmtm(FO))  ;  slog(fmtm(SO, w=2))  ;  slog(fmtm(EHR, w=2))  ;  slog(fmtm(NS, w=2))  ;  slog(fmtm(KS, w=2))
+    KS  = dict()   ;   EHR = dict(FO)  ;  EHR.update(SO)   ;   N = len(FO)
+    for _ in range(-N, N+1, 1):
+        EO = FO  if _ < 0 else SO    ;   KS[_] = list(EO.keys())[:abs(_)]
+    slog(fmtm(FO))  ;  slog(fmtm(SO, w=2))  ;  slog(fmtm(EHR, w=2))  ;  slog(fmtm(KS, w=2))
     ########################################################################################################################################################################################################
-    def __init__(self, n=0):
-        self.n  = n
-        self.k  = self.n2k(n)
+    def __init__(self, k=0):
+        self.k  = k
         self.ks = self.KS[self.k]
-    def __str__( self):  return f'{self.n:2} {self.k:2} {fmtl(self.ks)}'
-    def __repr__(self):  return f'KeySig({self.n})'
+    def __str__( self):  return f'{self.k:2} {fmtl(self.ks)}'
+    def __repr__(self):  return f'KeySig({self.k})'
     ########################################################################################################################################################################################################
     def tlog(self, i=None):
         if i is not None: i = i + 1
@@ -274,46 +273,32 @@ class KeySig(object):
         slog(f'{ii}{ev(self)}')
         return i
     ########################################################################################################################################################################################################
-    def n2k(self, n, dbg=0):
-        for k, v in self.NS.items():
-            if v==n: slog(f'{k=} {v=} {n=}') if dbg else None  ;  return k
-        slog(f'ERROR {n=} Not Found')        if dbg else None  ;  return None
-    ########################################################################################################################################################################################################
     @staticmethod
     def fmt(a):        return B*2 if a is None else f'{a:2}'
-    @classmethod
-    def fNS(cls):      return f'{fmtm(cls.NS)}'
     @classmethod
     def fKS(cls):      return f'{fmtm(cls.KS, w=2, d2=chr(10), ll=-1)}'
     ########################################################################################################################################################################################################
     @classmethod
     def test(cls):
-        slog(cls.fNS())
         slog(cls.fKS(), pfx=0)
-        cls.defaultA()
-        cls.test_1A()
-        cls.test_2A()
+        cls.default()
+        cls.test_1()
     ########################################################################################################################################################################################################
     @classmethod
-    def defaultA(cls, i=0):
+    def default(cls, i=0):
         ks = KeySig()            ;  i = ks.tlog(i)
         ks = KeySig( 0)          ;  i = ks.tlog(i)
         ks = KeySig( 1)          ;  i = ks.tlog(i)
         ks = KeySig(-1)          ;  i = ks.tlog(i)
-        ks = KeySig(n= 0)        ;  i = ks.tlog(i)
-        ks = KeySig(n= 1)        ;  i = ks.tlog(i)
-        ks = KeySig(n=-1)        ;  i = ks.tlog(i)
+        ks = KeySig(k= 0)        ;  i = ks.tlog(i)
+        ks = KeySig(k= 1)        ;  i = ks.tlog(i)
+        ks = KeySig(k=-1)        ;  i = ks.tlog(i)
         return i
     @classmethod
-    def test_1A(cls, i=0, j=0):
-        l = cls.NN + j
+    def test_1(cls, i=0, j=0):
+        l = cls.N + j
         for n in range(-l, l+1, 1):
             ns = KeySig(n)  ;  i = ns.tlog(i)
-        return i
-    @classmethod
-    def test_2A(cls, i=0):
-        for k in cls.KS.keys():
-            ks = KeySig(cls.NS[k])  ;  i = ks.tlog(i)
         return i
 
 ########################################################################################################################################################################################################
