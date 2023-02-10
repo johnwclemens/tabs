@@ -28,10 +28,10 @@ class Chord(object):
                 ivals.append(i)
             vkey = ''.join([ f'{v:x}' for v in ivals ])
             if vkey not in vkeys:
-                ikeys = [ util.INTERVALS[i] for i in ivals ]
+                ikeys = [ util.IVALS[i] for i in ivals ]
                 if dbg: self._dumpData(rank, ikeys, ivals, notes, mask, 0)
-                _imap = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: util.INTERVAL_RANK[t[0]]))
-                _ikeys = list(_imap.keys())   ;   _ivals = [ util.INTERVAL_RANK[k] for k in _ikeys ]   ;   _notes = list(_imap.values())
+                _imap = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: util.IVALR[t[0]]))
+                _ikeys = list(_imap.keys())   ;   _ivals = [ util.IVALR[k] for k in _ikeys ]   ;   _notes = list(_imap.values())
                 ikey  = ' '.join([ k for k in _ikeys ])
                 if ikey in self.OMAP:
                     root = _imap['R']
@@ -143,11 +143,11 @@ class Chord(object):
     def dumpImap(imap, why=''):
         ikeys, ivals, notes, name, chunks, rank = [], [], [], '', [], -1
         if imap and len(imap) == 6: ikeys, ivals, notes, name, chunks, rank = imap[0],imap[1], imap[2], imap[3], imap[4], imap[5]
-        ikeys2 = list(sorted(dict.fromkeys(ikeys), key=lambda t: util.INTERVAL_RANK[t]))
-        nmap = cOd(sorted(dict(zip(ivals, notes)).items()))
+        ikeys2 = list(sorted(dict.fromkeys(ikeys), key=lambda t: util.IVALR[t]))
+        nmap   = cOd(sorted(dict(zip(ivals, notes)).items()))
         ivals2, notes2 = list(nmap.keys()), list(nmap.values())
         util.slog(f'{why}{rank:2} {name:12} {"".join(chunks):12} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {"".join(ikeys2):12} {"".join(f"{i:x}" for i in ivals2):6} {"".join(notes2):12}', pfx=0)
-#        util.slog(f'{why}{rank:2} {name:12} {util.fmtl(chunks, w=2):19} {util.fmtl(sorted(ikeys, key=lambda t: INTERVAL_RANK[t]), w=FMTN):18} {util.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', pfx=0)
+#        util.slog(f'{why}{rank:2} {name:12} {util.fmtl(chunks, w=2):19} {util.fmtl(sorted(ikeys, key=lambda t: IVALR[t]), w=FMTN):18} {util.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', pfx=0)
     ####################################################################################################################################################################################################
     def rotateMLimap(self, cn):
         a = self.mlimap[cn]
@@ -176,8 +176,8 @@ class Chord(object):
         t = ''   ;   r = []
         for j in k:
             if j != ' ': t += j
-            else:        r.append(util.INTERVAL_RANK[t])  ;  t = ''
-        r.append(util.INTERVAL_RANK[t])
+            else:        r.append(util.IVALR[t])  ;  t = ''
+        r.append(util.IVALR[t])
         return r
 
     @staticmethod
@@ -230,7 +230,7 @@ class Chord(object):
             tstat.append(0)
             count, nord, none = 0, 0, 0
             for ii in sml:
-                keys = [ util.INTERVALS[i] for i in ii ]
+                keys = [ util.IVALS[i] for i in ii ]
                 keyStr    = ' '.join(keys)
                 keyStrFmt = '\'' + keyStr + '\''
                 v = omap[keyStr]
@@ -241,7 +241,7 @@ class Chord(object):
                 cycSet =  set()   ;   cycSet.add(tuple(ii))
                 for _ in range(len(ii) - 1):
                     ii = self.rotateIndices(ii)
-                    keys = [ util.INTERVALS[i] for i in ii ]
+                    keys = [ util.IVALS[i] for i in ii ]
                     keyStr = ' '.join(keys)   ;   ck = len(ii)   ;   jj = tuple(ii)    ;   cycle = 0
                     if keyStr in omap: rankSet.add(omap[keyStr][0])
                     if jj in cycSet:
@@ -258,7 +258,7 @@ class Chord(object):
         if not catfile:
             for kk, w in self.cycles.items():
                 for c in tuple(sorted(w)):
-                    keys = [ util.INTERVALS[j] for j in c ]   ;   key = ' '.join(keys)   ;   v = omap[key]
+                    keys = [ util.IVALS[j] for j in c ]   ;   key = ' '.join(keys)   ;   v = omap[key]
                     util.slog(f'{kk:2} note cycle {v[0]:2} {util.fmtl(c, z="x"):13} {key:16} {"".join(v[2]):12} {v[2]}')
             for j in range(len(mstat)):
                 util.slog(f'{mstat[j][0]:2} note chords  {mstat[j][1]:3} valid  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
@@ -878,7 +878,7 @@ class Chord(object):
         for i in limap:
             inner = []
             for j in i[0]:
-                inner.append(util.INTERVAL_RANK[j])
+                inner.append(util.IVALR[j])
             tmp = tuple(inner)
             outer.append(tmp)
             self.cat2.add(tmp)
@@ -887,7 +887,7 @@ class Chord(object):
             else:                      self.cat3[k].add(tmp)
             if tmp not in self.catmap: self.catmap[tmp] = [i[0], i[1]]
             keys.append(tmp)   ;   ivals.append(i[0])
-        for k in keys:                 self.catmap2[k] = [ sorted(keys), sorted(ivals, key=lambda b: [util.INTERVAL_RANK[c] for c in b]) ]
+        for k in keys:                 self.catmap2[k] = [ sorted(keys), sorted(ivals, key=lambda b: [util.IVALR[c] for c in b]) ]
         outer = sorted(outer, key=lambda a: [z for z in a])
         self.cat1.add(tuple(outer))
 #        util.slog(f'{why}', end='')

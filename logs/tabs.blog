@@ -447,11 +447,11 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
   22 tabsC __init__           BGN <class __main__.Tabs>
 2442 tabsC getFilePath        fdir=logs/ fsfx=.log
 2446 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2456 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.100.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.101.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.102.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.103.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.104.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.105.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.106.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.53.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.54.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.55.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.56.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.57.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.58.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.59.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.60.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.61.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.62.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.63.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.64.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.65.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.66.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.67.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.68.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.69.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.70.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.71.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.72.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.73.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.74.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.75.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.76.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.77.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.78.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.80.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.81.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.82.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.83.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.84.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.85.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.86.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.88.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.89.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.90.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.91.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.92.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.93.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.94.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.95.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.96.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.97.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.98.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.99.log]
-2458 tabsC getFileSeqNum      ids=[0 1 10 100 101 102 103 104 105 106 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 52 53 54 55 56 57 58 59 6 60 61 62 63 64 65 66 67 68 69 7 70 71 72 73 74 75 76 77 78 79 8 80 81 82 83 84 85 86 87 88 89 9 90 91 92 93 94 95 96 97 98 99]
-2450 tabsC getFilePath        fsfx=.107.log
+2456 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.100.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.101.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.102.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.103.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.104.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.105.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.106.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.107.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.53.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.54.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.55.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.56.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.57.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.58.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.59.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.60.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.61.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.62.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.63.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.64.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.65.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.66.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.67.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.68.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.69.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.70.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.71.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.72.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.73.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.74.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.75.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.76.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.77.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.78.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.80.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.81.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.82.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.83.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.84.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.85.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.86.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.88.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.89.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.90.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.91.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.92.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.93.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.94.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.95.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.96.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.97.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.98.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.99.log]
+2458 tabsC getFileSeqNum      ids=[0 1 10 100 101 102 103 104 105 106 107 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 52 53 54 55 56 57 58 59 6 60 61 62 63 64 65 66 67 68 69 7 70 71 72 73 74 75 76 77 78 79 8 80 81 82 83 84 85 86 87 88 89 9 90 91 92 93 94 95 96 97 98 99]
+2450 tabsC getFilePath        fsfx=.108.log
  106 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 109 util  getFilePath        fileName =tabs.107.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.107.log)
+ 109 util  getFilePath        fileName =tabs.108.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.108.log)
  106 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  109 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
   27 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
@@ -563,7 +563,7 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testA.4.2.
  266 chord _dumpOMAP          END len(OMAP)=581 catfile.name=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat len(r)=0
  215 chord dumpOMAP           END   len(OMAP)=581 len(umap)=0
  240 tabsC _initWindowA       BGN (  -1x-1  )
- 240 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002702585E350>
+ 240 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001680FBAE350>
  243 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
  243 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
  244 tabsC _initWindowA       END (  -1x-1  )
@@ -9815,7 +9815,7 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
 1348 tabsC dumpTniksA         END[( 640x480 )( 4x2x10x6 )( 1x1x1x1  ) (0 1 3  ) 0 (   ) 1717 430] Upd1A
  450 tabsC ntp                tpb tpp tpl tps tpc=[1440 360 180 60 6]
  468 tabsC dumpStruct         [1 1 1  1 1]   1  1] n=[4 2 3 10 6] END ntp=[ 1440  360 180  60   6] ( 1x1x1x1  )
-2430 tabsC snapshot           SNAP_NAME=tabs.107.RSZC_0.0.png Upd1
+2430 tabsC snapshot           SNAP_NAME=tabs.108.RSZC_0.0.png Upd1
  480 tabsC on_draw            [1 1 1  1 1]   1  1] .snapWhy=Upd1 .snapType=RSZC_0 .snapId=1
 2224 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHARP
 2240 tabsC toggleFlatSharp    sn=0 cn=10 cc=63 i=63 Gb => F# .notes[i].text=F# [1 2    1 4]
@@ -9830,22 +9830,22 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
 1645 tabsC setChordName       BGN [66-71] name=C#mM7x chunks=[C# m M 7 x] chords=<DbmM7x->7
 1650 tabsC setChordName       END [66-71] name=C#mM7x chunks=[C# m M 7 x] chords=<C#mM7x->7
 1640 tabsC setChord           [1 1 1  1 1]   1  1] END name=C#mM7x chunks=[C# m M 7 x] len(imap)=6
-2252 tabsC checkEHs           k=-7 ehs=[F# C#] !~ ks=[Bb Eb Ab Db Gb Cb Fb]
-2252 tabsC checkEHs           k=-6 ehs=[F# C#] !~ ks=[Bb Eb Ab Db Gb Cb]
-2252 tabsC checkEHs           k=-5 ehs=[F# C#] !~ ks=[Bb Eb Ab Db Gb]
-2252 tabsC checkEHs           k=-4 ehs=[F# C#] !~ ks=[Bb Eb Ab Db]
-2252 tabsC checkEHs           k=-3 ehs=[F# C#] !~ ks=[Bb Eb Ab]
-2252 tabsC checkEHs           k=-2 ehs=[F# C#] !~ ks=[Bb Eb]
-2252 tabsC checkEHs           k=-1 ehs=[F# C#] !~ ks=[Bb]
-2252 tabsC checkEHs           k= 0 ehs=[F# C#] !~ ks=[]
-2252 tabsC checkEHs           k= 1 ehs=[F# C#] >  ks=[F#]
-2252 tabsC checkEHs           k= 2 ehs=[F# C#] ~~ ks=[F# C#]
-2252 tabsC checkEHs           k= 3 ehs=[F# C#] <  ks=[F# C# G#]
-2252 tabsC checkEHs           k= 4 ehs=[F# C#] <  ks=[F# C# G# D#]
-2252 tabsC checkEHs           k= 5 ehs=[F# C#] <  ks=[F# C# G# D# A#]
-2252 tabsC checkEHs           k= 6 ehs=[F# C#] <  ks=[F# C# G# D# A# E#]
-2252 tabsC checkEHs           k= 7 ehs=[F# C#] <  ks=[F# C# G# D# A# E# B#]
-2254 tabsC checkEHs           KeySiG: k= 2 ehs=[F# C#] ~~ ks=[F# C#]
+2252 tabsC checkKS            k=-7 ehs=[F# C#] !~ ks=[Bb Eb Ab Db Gb Cb Fb]
+2252 tabsC checkKS            k=-6 ehs=[F# C#] !~ ks=[Bb Eb Ab Db Gb Cb]
+2252 tabsC checkKS            k=-5 ehs=[F# C#] !~ ks=[Bb Eb Ab Db Gb]
+2252 tabsC checkKS            k=-4 ehs=[F# C#] !~ ks=[Bb Eb Ab Db]
+2252 tabsC checkKS            k=-3 ehs=[F# C#] !~ ks=[Bb Eb Ab]
+2252 tabsC checkKS            k=-2 ehs=[F# C#] !~ ks=[Bb Eb]
+2252 tabsC checkKS            k=-1 ehs=[F# C#] !~ ks=[Bb]
+2252 tabsC checkKS            k= 0 ehs=[F# C#] !~ ks=[]
+2252 tabsC checkKS            k= 1 ehs=[F# C#] >  ks=[F#]
+2252 tabsC checkKS            k= 2 ehs=[F# C#] ~~ ks=[F# C#]
+2252 tabsC checkKS            k= 3 ehs=[F# C#] <  ks=[F# C# G#]
+2252 tabsC checkKS            k= 4 ehs=[F# C#] <  ks=[F# C# G# D#]
+2252 tabsC checkKS            k= 5 ehs=[F# C#] <  ks=[F# C# G# D# A#]
+2252 tabsC checkKS            k= 6 ehs=[F# C#] <  ks=[F# C# G# D# A# E#]
+2252 tabsC checkKS            k= 7 ehs=[F# C#] <  ks=[F# C# G# D# A# E# B#]
+2254 tabsC checkKS            KeySiG: k= 2 ehs=[F# C#] ~~ ks=[F# C#]
 2245 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHARP
 [[-7:-7[Bb Eb Ab Db Gb Cb Fb]
  [-6:-6[Bb Eb Ab Db Gb Cb]
@@ -9898,21 +9898,21 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
 1645 tabsC setChordName       BGN [66-71] name=DbmM7x chunks=[Db m M 7 x] chords=<C#mM7x->7
 1650 tabsC setChordName       END [66-71] name=DbmM7x chunks=[Db m M 7 x] chords=<DbmM7x->7
 1640 tabsC setChord           [1 1 1  1 1]   1  1] END name=DbmM7x chunks=[Db m M 7 x] len(imap)=6
-2252 tabsC checkEHs           k=-7 ehs=[Db Gb] <  ks=[Bb Eb Ab Db Gb Cb Fb]
-2252 tabsC checkEHs           k=-6 ehs=[Db Gb] <  ks=[Bb Eb Ab Db Gb Cb]
-2252 tabsC checkEHs           k=-5 ehs=[Db Gb] <  ks=[Bb Eb Ab Db Gb]
-2252 tabsC checkEHs           k=-4 ehs=[Db Gb] ?? ks=[Bb Eb Ab Db]
-2252 tabsC checkEHs           k=-3 ehs=[Db Gb] !~ ks=[Bb Eb Ab]
-2252 tabsC checkEHs           k=-2 ehs=[Db Gb] !~ ks=[Bb Eb]
-2252 tabsC checkEHs           k=-1 ehs=[Db Gb] !~ ks=[Bb]
-2252 tabsC checkEHs           k= 0 ehs=[Db Gb] !~ ks=[]
-2252 tabsC checkEHs           k= 1 ehs=[Db Gb] !~ ks=[F#]
-2252 tabsC checkEHs           k= 2 ehs=[Db Gb] !~ ks=[F# C#]
-2252 tabsC checkEHs           k= 3 ehs=[Db Gb] !~ ks=[F# C# G#]
-2252 tabsC checkEHs           k= 4 ehs=[Db Gb] !~ ks=[F# C# G# D#]
-2252 tabsC checkEHs           k= 5 ehs=[Db Gb] !~ ks=[F# C# G# D# A#]
-2252 tabsC checkEHs           k= 6 ehs=[Db Gb] !~ ks=[F# C# G# D# A# E#]
-2252 tabsC checkEHs           k= 7 ehs=[Db Gb] !~ ks=[F# C# G# D# A# E# B#]
+2252 tabsC checkKS            k=-7 ehs=[Db Gb] <  ks=[Bb Eb Ab Db Gb Cb Fb]
+2252 tabsC checkKS            k=-6 ehs=[Db Gb] <  ks=[Bb Eb Ab Db Gb Cb]
+2252 tabsC checkKS            k=-5 ehs=[Db Gb] <  ks=[Bb Eb Ab Db Gb]
+2252 tabsC checkKS            k=-4 ehs=[Db Gb] ?? ks=[Bb Eb Ab Db]
+2252 tabsC checkKS            k=-3 ehs=[Db Gb] !~ ks=[Bb Eb Ab]
+2252 tabsC checkKS            k=-2 ehs=[Db Gb] !~ ks=[Bb Eb]
+2252 tabsC checkKS            k=-1 ehs=[Db Gb] !~ ks=[Bb]
+2252 tabsC checkKS            k= 0 ehs=[Db Gb] !~ ks=[]
+2252 tabsC checkKS            k= 1 ehs=[Db Gb] !~ ks=[F#]
+2252 tabsC checkKS            k= 2 ehs=[Db Gb] !~ ks=[F# C#]
+2252 tabsC checkKS            k= 3 ehs=[Db Gb] !~ ks=[F# C# G#]
+2252 tabsC checkKS            k= 4 ehs=[Db Gb] !~ ks=[F# C# G# D#]
+2252 tabsC checkKS            k= 5 ehs=[Db Gb] !~ ks=[F# C# G# D# A#]
+2252 tabsC checkKS            k= 6 ehs=[Db Gb] !~ ks=[F# C# G# D# A# E#]
+2252 tabsC checkKS            k= 7 ehs=[Db Gb] !~ ks=[F# C# G# D# A# E# B#]
 2245 tabsC toggleFlatSharp    END @ F t1=1 SHARP => t2=0 FLAT
 [[-7:-7[Bb Eb Ab Db Gb Cb Fb]
  [-6:-6[Bb Eb Ab Db Gb Cb]
@@ -11965,11 +11965,11 @@ Page 4 Line 2
   1 0 070370 949049 505805                        R5Rm35R      6M36RM36     4R4#5R4      
  10 0 3525a0 a09057 02b279 13038a 574702          m3424b7R     b7R6R45      R27256       b2m3Rm3#5b7  45M35R2      
  11 0 03b    140    908                           Rm37         b2M3R        6R#5         
-2430 tabsC snapshot           SNAP_NAME=tabs.107.QUIT.1.png quit error=0 save=0
+2430 tabsC snapshot           SNAP_NAME=tabs.108.QUIT.1.png quit error=0 save=0
 2481 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2496 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.107.log
+2496 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.108.log
  114 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 115 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.107.log)
- 117 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.107.log ###
+ 115 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.108.log)
+ 117 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.108.log ###
 2498 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
