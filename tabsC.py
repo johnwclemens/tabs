@@ -2241,16 +2241,16 @@ class Tabs(pyglet.window.Window):
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
-        self.checkEHs(ehs)
+        self.checkKS(ehs)
         self.log(  f'END {how} {t1=} {util.Note.TYPES[t1]} => {t2=} {util.Note.TYPES[t2]}')
     ####################################################################################################################################################################################################
     @staticmethod
-    def fEH(k, e, o, s): return f'{k=:2} ehs={util.fmtl(sorted(e, key=lambda t: KS.EHR[t]))} {o} ks={util.fmtl(sorted(s, key=lambda t: KS.EHR[t]))}'
-    def checkEHs(self, e, dbg=1, f=''):
+    def fKS(k, e, o, s): return f'{k=:2} ehs={util.fmtl(sorted(e, key=lambda t: KS.KO[t]))} {o} ks={util.fmtl(sorted(s, key=lambda t: KS.KO[t]))}'
+    def checkKS(self, e, dbg=1, f=''):
         for k, v in KS.KS.items():
             s = set(v)  ;   o = '!!' if not e and not s else '!~' if e.isdisjoint(s) else '> ' if e > s else '< ' if e < s else '~~' if e == s else '??'
-            if dbg:         self.log(f'{self.fEH(k, e, o, s)}')
-            if o=='!!' or o=='~~':  f = self.fEH(k, e, o, s)
+            if dbg:         self.log(f'{self.fKS(k, e, o, s)}')
+            if o=='!!' or o=='~~':  f = self.fKS(k, e, o, s)
         if f:  self.log(f'KeySiG: {f}')
 ####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):

@@ -3,7 +3,6 @@ import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
 B                = ' '
-PASS, FAIL, DFLT = 'PASS', 'FAIL', 'DFLT'
 OIDS             = 0
 LOG_FILE         = None
 MIN_IVAL_LEN     = 1
@@ -171,8 +170,8 @@ class Note(object):
     TYPES       = ['FLAT', 'SHARP']
     S2F         = {'C#':'Db', 'D#':'Eb', 'F#':'Gb', 'G#':'Ab', 'A#':'Bb'}
     F2S         = {'Db':'C#', 'Eb':'D#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#'}
-    SHARPS      = { 0:'C', 1:'C#', 2:'D', 3:'D#', 4:'E', 5:'F', 6:'F#', 7:'G', 8:'G#', 9:'A', 10:'A#', 11:'B' }
     FLATS       = { 0:'C', 1:'Db', 2:'D', 3:'Eb', 4:'E', 5:'F', 6:'Gb', 7:'G', 8:'Ab', 9:'A', 10:'Bb', 11:'B' }
+    SHARPS      = { 0:'C', 1:'C#', 2:'D', 3:'D#', 4:'E', 5:'F', 6:'F#', 7:'G', 8:'G#', 9:'A', 10:'A#', 11:'B' }
     TONES       = [FLATS, SHARPS]
     MAX_INDEX   = 97
     INDICES = { 'C0': 0, 'C#0': 1, 'Db0': 1, 'D0': 2, 'D#0': 3, 'Eb0': 3, 'E0': 4, 'F0': 5, 'F#0': 6, 'Gb0': 6, 'G0': 7, 'G#0': 8, 'Ab0': 8, 'A0': 9, 'A#0':10, 'Bb0':10, 'B0':11,
@@ -251,15 +250,17 @@ class Mode(object):
         self.name  = name
         self.tonic = tonic
         self.ks    = ks
-
+class COFs(object):
+    CO5s = ['C', 'G', 'D' , 'A' , 'E' , 'B' , 'F#', 'C#']
+    CO4s = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']
 ########################################################################################################################################################################################################
 class KeySig(object):
     FO  = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1}
     SO  = {'F#': 1, 'C#': 2, 'G#': 3, 'D#': 4, 'A#': 5, 'E#': 6, 'B#': 7}
-    KS  = dict()   ;   EHR = dict(FO)  ;  EHR.update(SO)   ;   N = len(FO)
+    KS  = dict()   ;   KO = dict(FO)  ;  KO.update(SO)  ;   N = len(FO)
     for _ in range(-N, N+1, 1):
-        EO = FO  if _ < 0 else SO    ;   KS[_] = list(EO.keys())[:abs(_)]
-    slog(fmtm(FO))  ;  slog(fmtm(SO, w=2))  ;  slog(fmtm(EHR, w=2))  ;  slog(fmtm(KS, w=2))
+        O = FO  if _ < 0 else SO    ;   KS[_] = list(O.keys())[:abs(_)]
+    slog(fmtm(FO))  ;  slog(fmtm(SO, w=2))  ;  slog(fmtm(KO, w=2))  ;  slog(fmtm(KS, w=2))
     ########################################################################################################################################################################################################
     def __init__(self, k=0):
         self.k  = k
@@ -273,8 +274,6 @@ class KeySig(object):
         slog(f'{ii}{ev(self)}')
         return i
     ########################################################################################################################################################################################################
-    @staticmethod
-    def fmt(a):        return B*2 if a is None else f'{a:2}'
     @classmethod
     def fKS(cls):      return f'{fmtm(cls.KS, w=2, d2=chr(10), ll=-1)}'
     ########################################################################################################################################################################################################
