@@ -11,6 +11,7 @@ import pyglet.window.event as pygwine
 import pyglet.window.key   as pygwink
 import chord, util
 from util import KeySig as KS
+from util import Note as Note
 
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
@@ -95,7 +96,7 @@ class Tabs(pyglet.window.Window):
         self.sobj = util.Strings(self.sAlias)
         KS.test()
         self.cobj = chord.Chord(self.sobj)
-        util.Note.setType(util.Note.FLAT)  ;  self.log(f'{util.Note.TYPE=}')
+        Note.setType(Note.FLAT)  ;  self.log(f'{Note.TYPE=}')
         self.log(f'Frequency Info')
         self.dumpFreqsHdr()  ;  self.dumpFreqs()  ;  self.dumpFreqs(ref=432)
         ####################################################################################################################################################################################################
@@ -309,35 +310,35 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def test1A():
         m = 'C0'  ;  d = 7
-        i = util.Note.INDICES[m]
-        j = util.Note.indexI(i, d)
-        n = util.Note.getName(j)
+        i = Note.INDICES[m]
+        j = Note.indexI(i, d)
+        n = Note.getName(j)
         util.slog(f'{m=} {i=} {d=} {j=} {n=}')
     @staticmethod
     def test1B(iv):
-        m = 'C'
+        m = 'C0'
         for i in range(util.NTONES):
-            n = util.Note.noteIv(m, iv)
+            n = Note.noteIv(m, iv)
             util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
             m = n
     @staticmethod
     def test1C(iv):
-        util.Note.TYPE = util.Note.SHARP
-        m = 'C'
+        Note.TYPE = Note.SHARP
+        m = 'C0'
         for i in range(util.NTONES):
-            n = util.Note.noteIv(m, iv)
-            o = (util.Note.INDICES[n] - 1) % util.NTONES
-            p = util.Note.getName(o)
+            n =  Note.noteIv(m, iv)
+            o = (Note.INDICES[n] - 1) % util.NTONES
+            p =  Note.getName(o)
             util.slog(f'{i+1:2} {m:2} {iv:2} {n:2} {o:2} {p:2}')
             m = n
-        util.Note.TYPE = util.Note.FLAT
+        Note.TYPE = Note.FLAT
     @staticmethod
     def test1D(iv):
         j = util.IVALR[iv] - 1
         iv = util.IVALS[j]
         m = 'C'
         for i in range(util.NTONES):
-            n = util.Note.noteIv(m, iv)
+            n = Note.noteIv(m, iv)
             util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
             m = n
 
@@ -462,9 +463,9 @@ class Tabs(pyglet.window.Window):
 #    @staticmethod
 #    def dumpObj( obj,  name, why=''): util.slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     def dumpFreqsHdr(self):
-        self.log(f'index{util.fmtl([ i for i in range(util.Note.MAX_INDEX) ], w="5")}', pfx=0)
-        self.log(f'sharp{util.fmtl(list(util.Note.SNAMES), w="5")}', pfx=0)
-        self.log(f' flat{util.fmtl(list(util.Note.FNAMES), w="5")}', pfx=0)
+        self.log(f'index{util.fmtl([ i for i in range(Note.MAX_INDEX) ], w="5")}', pfx=0)
+        self.log(f'sharp{util.fmtl(list(Note.SNAMES), w="5")}', pfx=0)
+        self.log(f' flat{util.fmtl(list(Note.FNAMES), w="5")}', pfx=0)
     def dumpFreqs(self, ref=440):
         f = util.FREQS if ref==440 else util.FREQS2
         self.log(f'{ref}A {util.fmtl(f, w="5.0f")}', pfx=0)
@@ -2255,8 +2256,8 @@ class Tabs(pyglet.window.Window):
             self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
     ####################################################################################################################################################################################################
     def toggleFlatSharp(self, how, dbg=1):  #  page line colm tab or select
-        t1 = util.Note.TYPE  ;  t2 = (util.Note.TYPE + 1) % 2    ;   util.Note.setType(t2)
-        self.log(  f'BGN {how} {t1=} {util.Note.TYPES[t1]} => {t2=} {util.Note.TYPES[t2]}')
+        t1 = Note.TYPE  ;  t2 = (Note.TYPE + 1) % 2    ;   Note.setType(t2)
+        self.log(  f'BGN {how} {t1=} {Note.TYPES[t1]} => {t2=} {Note.TYPES[t2]}')
         s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i  ;  ehs = self.enhms  ;  ehs.clear()
         tniks, j, k, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
         for i in range(len(tniks)):
@@ -2269,15 +2270,15 @@ class Tabs(pyglet.window.Window):
                 cc = i * ns
                 p, l, c, t = self.cc2plct(cc)   ;   old = text
                 cn = self.cc2cn(cc)
-                if   text in util.Note.F2S: text = util.Note.F2S[text]
-                elif text in util.Note.S2F: text = util.Note.S2F[text]
+                if   text in Note.F2S: text = Note.F2S[text]
+                elif text in Note.S2F: text = Note.S2F[text]
                 self.notes[i].text = text   ;   ehs.add(text)
                 if dbg: self.log(f'{sn=} {cn=} {cc=} {i=} {old} => {text} {self.notes[i].text=} {self.fplct(p, l, c, t)}')
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
         self.checkKS(ehs)
-        self.log(  f'END {how} {t1=} {util.Note.TYPES[t1]} => {t2=} {util.Note.TYPES[t2]}')
+        self.log(  f'END {how} {t1=} {Note.TYPES[t1]} => {t2=} {Note.TYPES[t2]}')
     ####################################################################################################################################################################################################
     @staticmethod
     def fKS(k, e, o, s): return f'{k=:2} ehs={util.fmtl(sorted(e, key=lambda t: KS.KO[t]))} {o} ks={util.fmtl(sorted(s, key=lambda t: KS.KO[t]))}'
