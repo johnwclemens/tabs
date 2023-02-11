@@ -195,15 +195,15 @@ class Note(object):
         return name
 
     @staticmethod
-    def nextn(n, iv):
-        j = Note.INDICES[n]
-        i = IVALR[iv]
-        k = Note.nexti(j, i)
+    def noteIv(n, iv):
+        i = Note.INDICES[n]
+        j = IVALR[iv]
+        k = Note.indexI(i, j)
         m = Note.getName(k)
         return m
 
     @staticmethod
-    def nexti(i, d):
+    def indexI(i, d):
         return (i + d) % NTONES
 
 ########################################################################################################################################################################################################
@@ -263,11 +263,12 @@ class Mode(object):
         self.name  = name
         self.tonic = tonic
         self.ks    = ks
-class COFs(object):
-    CO5s = ['C', 'G', 'D' , 'A' , 'E' , 'B' , 'F#', 'C#']
-    CO4s = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']
+#class COFs(object):
+#    CO5s = ['C', 'G', 'D' , 'A' , 'E' , 'B' , 'F#', 'C#']
+#    CO4s = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']
 ########################################################################################################################################################################################################
 class KeySig(object):
+    def SKS(self): pass
     FO  = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1}
     SO  = {'F#': 1, 'C#': 2, 'G#': 3, 'D#': 4, 'A#': 5, 'E#': 6, 'B#': 7}
     KS  = dict()   ;   KO = dict(FO)  ;  KO.update(SO)  ;   N = len(FO)

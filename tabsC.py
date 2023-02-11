@@ -233,7 +233,7 @@ class Tabs(pyglet.window.Window):
         self.dumpAxy()  ;   self.dumpAXY()
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
-        if self.TEST:     self.test()  ;  self.test1C('5')  ;  self.test1C('4')  ;  self.test2A()  ;  self.test2B()
+        if self.TEST:     self.test()  ;  self.test1B('5')  ;  self.test1C('5')  ;  self.test2A()  ;  self.test2B()
     ####################################################################################################################################################################################################
     def _initWindowA(self, dbg=1):
         display      = pyglet.canvas.get_display()
@@ -310,20 +310,35 @@ class Tabs(pyglet.window.Window):
     def test1A():
         m = 'C0'  ;  d = 7
         i = util.Note.INDICES[m]
-        j = util.Note.nexti(i, d)
+        j = util.Note.indexI(i, d)
         n = util.Note.getName(j)
         util.slog(f'{m=} {i=} {d=} {j=} {n=}')
     @staticmethod
-    def test1B():
-        m = 'C0'  ;  d = 7
-        n = util.Note.nextn(m, 'm3')
-        util.slog(f'{m=} {d=} {n=}')
-    @staticmethod
-    def test1C(iv):
+    def test1B(iv):
         m = 'C'
         for i in range(util.NTONES):
-            n = util.Note.nextn(m, iv)
-            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}') # [:len(m)-1]
+            n = util.Note.noteIv(m, iv)
+            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
+            m = n
+    @staticmethod
+    def test1C(iv):
+        util.Note.TYPE = util.Note.SHARP
+        m = 'C'
+        for i in range(util.NTONES):
+            n = util.Note.noteIv(m, iv)
+            o = (util.Note.INDICES[n] - 1) % util.NTONES
+            p = util.Note.getName(o)
+            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2} {o:2} {p:2}')
+            m = n
+        util.Note.TYPE = util.Note.FLAT
+    @staticmethod
+    def test1D(iv):
+        j = util.IVALR[iv] - 1
+        iv = util.IVALS[j]
+        m = 'C'
+        for i in range(util.NTONES):
+            n = util.Note.noteIv(m, iv)
+            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
             m = n
 
     @staticmethod
