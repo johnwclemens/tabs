@@ -233,7 +233,7 @@ class Tabs(pyglet.window.Window):
         self.dumpAxy()  ;   self.dumpAXY()
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
-        if self.TEST:     self.test()  ;  self.test2A()  ;  self.test2B()
+        if self.TEST:     self.test()  ;  self.test1C('5')  ;  self.test1C('4')  ;  self.test2A()  ;  self.test2B()
     ####################################################################################################################################################################################################
     def _initWindowA(self, dbg=1):
         display      = pyglet.canvas.get_display()
@@ -306,6 +306,26 @@ class Tabs(pyglet.window.Window):
 #        for i in range(len(self.tabls) * ns):
 #            self.plc2cn_(p, l, c, dbg=1)
         self.dumpTniksSfx(f'END {j=} test')
+    @staticmethod
+    def test1A():
+        m = 'C0'  ;  d = 7
+        i = util.Note.INDICES[m]
+        j = util.Note.nexti(i, d)
+        n = util.Note.getName(j)
+        util.slog(f'{m=} {i=} {d=} {j=} {n=}')
+    @staticmethod
+    def test1B():
+        m = 'C0'  ;  d = 7
+        n = util.Note.nextn(m, 'm3')
+        util.slog(f'{m=} {d=} {n=}')
+    @staticmethod
+    def test1C(iv):
+        m = 'C'
+        for i in range(util.NTONES):
+            n = util.Note.nextn(m, iv)
+            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}') # [:len(m)-1]
+            m = n
+
     @staticmethod
     def test2A():
         file = 0     ;  util.slog(f'{file=} STD OUT  ONLY',        file=file)
@@ -428,8 +448,8 @@ class Tabs(pyglet.window.Window):
 #    def dumpObj( obj,  name, why=''): util.slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     def dumpFreqsHdr(self):
         self.log(f'index{util.fmtl([ i for i in range(util.Note.MAX_INDEX) ], w="5")}', pfx=0)
-        self.log(f'sharp{util.fmtl(list(util.Note.FNAMES), w="5")}', pfx=0)
-        self.log(f' flat{util.fmtl(list(util.Note.SNAMES), w="5")}', pfx=0)
+        self.log(f'sharp{util.fmtl(list(util.Note.SNAMES), w="5")}', pfx=0)
+        self.log(f' flat{util.fmtl(list(util.Note.FNAMES), w="5")}', pfx=0)
     def dumpFreqs(self, ref=440):
         f = util.FREQS if ref==440 else util.FREQS2
         self.log(f'{ref}A {util.fmtl(f, w="5.0f")}', pfx=0)
