@@ -2281,7 +2281,7 @@ class Tabs(pyglet.window.Window):
                 cn = self.cc2cn(cc)
                 if   text in Note.F2S: text = Note.F2S[text]
                 elif text in Note.S2F: text = Note.S2F[text]
-                self.notes[i].text = text   ;   ehs.add(text)
+                if len(text) > 1 :     self.notes[i].text = text   ;   ehs.add(text)
                 if dbg: self.log(f'{sn=} {cn=} {cc=} {i=} {old} => {text} {self.notes[i].text=} {self.fplct(p, l, c, t)}')
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
