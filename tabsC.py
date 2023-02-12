@@ -234,7 +234,7 @@ class Tabs(pyglet.window.Window):
         self.dumpAxy()  ;   self.dumpAXY()
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
-        if self.TEST:     self.test()  ;  self.test1B('5')  ;  self.test1C('5')  ;  self.test2A()  ;  self.test2B()
+        if self.TEST:     self.test()  ;  self.test1A()  ;  self.test1B('5')  ;  self.test1C('5')  ;  self.test2A()  ;  self.test2B()
     ####################################################################################################################################################################################################
     def _initWindowA(self, dbg=1):
         display      = pyglet.canvas.get_display()
@@ -309,29 +309,38 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(f'END {j=} test')
     @staticmethod
     def test1A():
+        ntype = Note.TYPE   ;   Note.TYPE = Note.SHARP
         m = 'C0'  ;  d = 7
-        i = Note.INDICES[m]
-        j = Note.indexI(i, d)
-        n = Note.getName(j)
-        util.slog(f'{m=} {i=} {d=} {j=} {n=}')
+        for i in range(util.NTONES):
+#            i = Note.INDICES[m]
+            j = (i * d) % util.NTONES # Note.indices(m)
+            k = Note.indexI(j, d)
+            n = Note.getName(k) + '0'
+            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {j:2} {d:2} {k:2} {n[:len(n)-1]:2}')
+            m = n
+        Note.TYPE = ntype
+
     @staticmethod
     def test1B(iv):
         m = 'C0'
         for i in range(util.NTONES):
             n = Note.noteIv(m, iv)
-            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
+            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {iv:2} {n[:len(n)-1]:2}')
             m = n
+
     @staticmethod
     def test1C(iv):
-        Note.TYPE = Note.SHARP
+        ntype = Note.TYPE   ;   Note.TYPE = Note.SHARP
         m = 'C0'
         for i in range(util.NTONES):
             n =  Note.noteIv(m, iv)
-            o = (Note.INDICES[n] - 1) % util.NTONES
-            p =  Note.getName(o)
-            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2} {o:2} {p:2}')
+#            o = (Note.INDICES[n] - 1) % util.NTONES
+            o = (Note.indices(n) - 1) % util.NTONES
+            p =  Note.getName(o) + '0'
+            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {iv:2} {n[:len(n)-1]:2} {o:2} {p[:len(p)-1]:2}')
             m = n
-        Note.TYPE = Note.FLAT
+        Note.TYPE = ntype
+
     @staticmethod
     def test1D(iv):
         j = util.IVALR[iv] - 1
@@ -464,8 +473,8 @@ class Tabs(pyglet.window.Window):
 #    def dumpObj( obj,  name, why=''): util.slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     def dumpFreqsHdr(self):
         self.log(f'index{util.fmtl([ i for i in range(Note.MAX_INDEX) ], w="5")}', pfx=0)
-        self.log(f'sharp{util.fmtl(list(Note.SNAMES), w="5")}', pfx=0)
-        self.log(f' flat{util.fmtl(list(Note.FNAMES), w="5")}', pfx=0)
+        self.log(f'sharp{util.fmtl(list(util.SNAMES), w="5")}', pfx=0)
+        self.log(f' flat{util.fmtl(list(util.FNAMES), w="5")}', pfx=0)
     def dumpFreqs(self, ref=440):
         f = util.FREQS if ref==440 else util.FREQS2
         self.log(f'{ref}A {util.fmtl(f, w="5.0f")}', pfx=0)
