@@ -310,34 +310,37 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def test1A():
         ntype = Note.TYPE   ;   Note.TYPE = Note.SHARP
-        m = 'C0'  ;  d = 7
+        m = 'C'  ;  d = 7
         for i in range(util.NTONES):
 #            i = Note.INDICES[m]
             j = (i * d) % util.NTONES # Note.indices(m)
             k = Note.indexI(j, d)
             n = Note.getName(k) + '0'
-            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {j:2} {d:2} {k:2} {n[:len(n)-1]:2}')
+            util.slog(f'{i+1:2} {m:2} {j:2} {d:2} {k:2} {n[:len(n)-1]:2}')
+#            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {j:2} {d:2} {k:2} {n[:len(n)-1]:2}')
             m = n
         Note.TYPE = ntype
 
     @staticmethod
     def test1B(iv):
-        m = 'C0'
+        m = 'C'
         for i in range(util.NTONES):
             n = Note.noteIv(m, iv)
-            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {iv:2} {n[:len(n)-1]:2}')
+            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
+#            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {iv:2} {n[:len(n)-1]:2}')
             m = n
 
     @staticmethod
     def test1C(iv):
         ntype = Note.TYPE   ;   Note.TYPE = Note.SHARP
-        m = 'C0'
+        m = 'C'
         for i in range(util.NTONES):
             n =  Note.noteIv(m, iv)
 #            o = (Note.INDICES[n] - 1) % util.NTONES
             o = (Note.indices(n) - 1) % util.NTONES
-            p =  Note.getName(o) + '0'
-            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {iv:2} {n[:len(n)-1]:2} {o:2} {p[:len(p)-1]:2}')
+            p =  Note.getName(o) #+ '0'
+            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2} {o:2} {p:2}')
+#            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {iv:2} {n[:len(n)-1]:2} {o:2} {p[:len(p)-1]:2}')
             m = n
         Note.TYPE = ntype
 
@@ -2282,7 +2285,7 @@ class Tabs(pyglet.window.Window):
                 if   text in Note.F2S: text = Note.F2S[text]
                 elif text in Note.S2F: text = Note.S2F[text]
                 if len(text) > 1 :     self.notes[i].text = text   ;   ehs.add(text)
-                if dbg: self.log(f'{sn=} {cn=} {cc=} {i=} {old} => {text} {self.notes[i].text=} {self.fplct(p, l, c, t)}')
+                if dbg: self.log(f'{sn=} {cn=:2} {cc=:4} {i=:4} {old:2} => {text:2} {self.notes[i].text=:2} {self.fplct(p, l, c, t)}')
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)

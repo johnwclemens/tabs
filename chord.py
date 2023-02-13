@@ -65,7 +65,7 @@ class Chord(object):
         strNames   = self.sobj.stringNames
         _tabs      = data[p][l][c]
 #        strIndices = [ Note.INDICES[k] for k in strKeys ]
-        strIndices = [ Note.indices(k) for k in strKeys ]
+        strIndices = [ Note.indices(k, 1) for k in strKeys ]
         mask, indices, notes = [], [], []  ;  nt = len(_tabs)
         for t in range(nt-1, -1, -1):
             if self.sobj.isFret(_tabs[t]):

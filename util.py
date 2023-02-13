@@ -195,8 +195,8 @@ class Note(object):
 #    SNAMES   = [ k for k in INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ]
 
     @staticmethod
-    def indices(k):
-        key = k[:len(k)-1]
+    def indices(k, o=0):
+        key = k[:len(k)-1] if o else k
         i = Note.INDICES[key]
         return i
 
@@ -214,7 +214,7 @@ class Note(object):
         j = IVALR[iv]
         k = Note.indexI(i, j)
         m = Note.getName(k)
-        return m + '0'
+        return m # + '0'
 
     @staticmethod
     def indexI(i, d):
