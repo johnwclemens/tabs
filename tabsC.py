@@ -54,7 +54,7 @@ class Tabs(pyglet.window.Window):
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         self.n         = [4, 2, 10, 6]
         self.i         = [1, 1,  1, 6]
-        self.DATA_FNAME = f'testA.{self.n[0]}.{self.n[1]}.{self.n[2]}.dat' # test.4.2.10.dat
+        self.DATA_FNAME = f'testC.{self.n[0]}.{self.n[1]}.{self.n[2]}.dat' # test.4.2.10.dat
         self.log(f'argMap={util.fmtm(ARGS)}')
         if 'f' in ARGS and len(ARGS['f'])  > 0: self.DATA_FNAME = ARGS['f'][0]
         if 'n' in ARGS and len(ARGS['n'])  > 0: self.n    = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
@@ -228,13 +228,6 @@ class Tabs(pyglet.window.Window):
         self.log(f'{self.dataPath0=}', pfx=0)
         self.log(f'{self.dataPath1=}', pfx=0)
         self.log(f'{self.dataPath2=}', pfx=0)
-
-    def _initTniks(self):
-        self.ssl()      ;   self.smap = {}
-        self.dumpAxy()  ;   self.dumpAXY()
-        [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
-        self.createTniks()
-        if self.TEST:     self.test()  ;  self.test1A()  ;  self.test1B('5')  ;  self.test1C('5')  ;  self.test2A()  ;  self.test2B()
     ####################################################################################################################################################################################################
     def _initWindowA(self, dbg=1):
         display      = pyglet.canvas.get_display()
@@ -275,6 +268,13 @@ class Tabs(pyglet.window.Window):
         self.llText.extend(self.labelTextB)
         self.log(f'{util.fmtl(self.llText)}')
     ####################################################################################################################################################################################################
+    def _initTniks(self):
+        self.ssl()      ;   self.smap = {}
+        self.dumpAxy()  ;   self.dumpAXY()
+        [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
+        self.createTniks()
+        if self.TEST: self.test1A(1)  ;  self.test1A(1, o=0)  ;  self.test1A(0, o=1)  ;  self.test1B(0)  ;  self.test1B(1)  ;  self.test1C(0)  ;  self.test1C(1)
+
     def test(self, j=10):
         self.log(f'{self.ntsl()=}')
         hdrA = '      cc [  tpb  tpp tpl tps tpc] [p l s  c t]'
@@ -307,45 +307,40 @@ class Tabs(pyglet.window.Window):
 #        for i in range(len(self.tabls) * ns):
 #            self.plc2cn_(p, l, c, dbg=1)
         self.dumpTniksSfx(f'END {j=} test')
+    ####################################################################################################################################################################################################
     @staticmethod
-    def test1A():
-        ntype = Note.TYPE   ;   Note.TYPE = Note.SHARP
-        m = 'C'  ;  d = 7
+    def test1A(t, m='C', o=-1, d=7):
+        ntype = Note.TYPE  ;  Note.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
+        util.slog(f'{t=} {m=} {d=}')
         for i in range(util.NTONES):
-#            i = Note.INDICES[m]
-            j = (i * d) % util.NTONES # Note.indices(m)
+            j = (i * d) % util.NTONES
             k = Note.indexI(j, d)
-            n = Note.getName(k) + '0'
-            util.slog(f'{i+1:2} {m:2} {j:2} {d:2} {k:2} {n[:len(n)-1]:2}')
-#            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {j:2} {d:2} {k:2} {n[:len(n)-1]:2}')
-            m = n
+            n = Note.getName(k)  ;  n += f'{o}' if o>=0 else ''
+            util.slog(f'{i+1:2} {m:3} {j:2} {d:2} {k:2} {n:3}')  ;  m = n
         Note.TYPE = ntype
 
     @staticmethod
-    def test1B(iv):
-        m = 'C'
+    def test1B(t, m='C', o=-1, iv='5'):
+        ntype = Note.TYPE  ;  Note.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
+        util.slog(f'{t=} {m=} {iv=}')
         for i in range(util.NTONES):
             n = Note.noteIv(m, iv)
-            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
-#            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {iv:2} {n[:len(n)-1]:2}')
-            m = n
-
-    @staticmethod
-    def test1C(iv):
-        ntype = Note.TYPE   ;   Note.TYPE = Note.SHARP
-        m = 'C'
-        for i in range(util.NTONES):
-            n =  Note.noteIv(m, iv)
-#            o = (Note.INDICES[n] - 1) % util.NTONES
-            o = (Note.indices(n) - 1) % util.NTONES
-            p =  Note.getName(o) #+ '0'
-            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2} {o:2} {p:2}')
-#            util.slog(f'{i+1:2} {m[:len(m)-1]:2} {iv:2} {n[:len(n)-1]:2} {o:2} {p[:len(p)-1]:2}')
-            m = n
+            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}')  ;  m = n
         Note.TYPE = ntype
 
     @staticmethod
-    def test1D(iv):
+    def test1C(t, m='C', o=-1, iv='5'):
+        ntype = Note.TYPE  ;  Note.TYPE = t ;  m = f'{m}{o}' if o>=0 else m
+        util.slog(f'{t=} {m=} {iv=}')
+        for i in range(util.NTONES):
+            n =  Note.noteIv(m, iv)
+            p = (Note.indices(n) - 1) % util.NTONES
+            q =  Note.getName(p)  ;  q += f'{o}' if o>=0 else ''
+            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2} {p:2} {q:2}')  ;  m = n
+        Note.TYPE = ntype
+
+    @staticmethod
+    def test1F(iv):
         j = util.IVALR[iv] - 1
         iv = util.IVALS[j]
         m = 'C'
@@ -353,7 +348,7 @@ class Tabs(pyglet.window.Window):
             n = Note.noteIv(m, iv)
             util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
             m = n
-
+    ####################################################################################################################################################################################################
     @staticmethod
     def test2A():
         file = 0     ;  util.slog(f'{file=} STD OUT  ONLY',        file=file)
