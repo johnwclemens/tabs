@@ -19,7 +19,16 @@ QUIT_END         = '###   END Quit   ###' * 10
 #STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
 STFILT = ['log', 'tlog', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
-def init(file, oid):  global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
+def init(file, oid):
+    global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
+    slog('BGN')
+    slog(f'{B*15}{len(Note.INDICES):3}    INDICES', pfx=0)   ;   slog(f'{fmtm(Note.INDICES)}', pfx=0)
+    slog(f'{B*15}{len(FNAMES):3}    FNAMES', pfx=0)          ;   slog(f'{fmtl(FNAMES)}'      , pfx=0)
+    slog(f'{B*15}{len(SNAMES):3}    SNAMES', pfx=0)          ;   slog(f'{fmtl(SNAMES)}'      , pfx=0)
+    slog(f'{B*15}{len(KeySig.FO):3}    FO', pfx=0)           ;   slog(f'{fmtm(KeySig.FO)}'   , pfx=0)
+    slog(f'{B*15}{len(KeySig.SO):3}    SO', pfx=0)           ;   slog(f'{fmtm(KeySig.SO)}'   , pfx=0)
+    slog(f'{B*15}{len(KeySig.KS):3}    KS', pfx=0)           ;   slog(f'{fmtm(KeySig.KS)}'   , pfx=0)
+    slog('END')
 
 def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
@@ -179,7 +188,7 @@ class Note(object):
 
     INDICES = {         'C' :0, 'C#':1, 'Db':1, 'D': 2, 'D#':3, 'Eb':3, 'E' :4,                 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11 }
 #   INDICES = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' : 11 }
-    MAX_INDEX = 100
+    MAX_IDX = 100
     TONES = [FLATS, SHRPS]
 #    OLD_INDICES = {#'C' : 0, 'C#' : 1, 'Db' : 1, 'D' : 2, 'D#' : 3, 'Eb' : 3, 'E' : 4, 'F' : 5, 'F#' : 6, 'Gb' : 6, 'G' : 7, 'G#' : 8, 'Ab' : 8, 'A' : 9, 'A#' :10, 'Bb' :10, 'B' :11,
 #                'C0': 0, 'C#0': 1, 'Db0': 1, 'D0': 2, 'D#0': 3, 'Eb0': 3, 'E0': 4, 'F0': 5, 'F#0': 6, 'Gb0': 6, 'G0': 7, 'G#0': 8, 'Ab0': 8, 'A0': 9, 'A#0':10, 'Bb0':10, 'B0':11,
@@ -217,18 +226,66 @@ class Note(object):
     @staticmethod
     def indexI(i, d):
         return (i + d) % NTONES
-
 ########################################################################################################################################################################################################
-#FNAMES   =[ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_INDEX]
-#SNAMES   =[ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Note.MAX_INDEX]
-FNAMES   = [ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_INDEX-1]
-SNAMES   = [ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][1:Note.MAX_INDEX]
+#FNAMES   =[ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_IDX]
+#SNAMES   =[ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Note.MAX_IDX]
+FNAMES   = [ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_IDX-1]
+SNAMES   = [ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Note.MAX_IDX-1]
 
 def FREQ( index): return 440 * pow(pow(2, 1/NTONES), index - 57)
 def FREQ2(index): return 432 * pow(pow(2, 1/NTONES), index - 57)
 
-FREQS   = [ FREQ( i) for i in range(Note.MAX_INDEX) ]
-FREQS2  = [ FREQ2(i) for i in range(Note.MAX_INDEX) ]
+FREQS   = [ FREQ( i) for i in range(Note.MAX_IDX) ]
+FREQS2  = [ FREQ2(i) for i in range(Note.MAX_IDX) ]
+
+########################################################################################################################################################################################################
+class KeySig(object):
+    def SKS(self): pass
+    FO  = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1}
+    SO  = {'F#': 1, 'C#': 2, 'G#': 3, 'D#': 4, 'A#': 5, 'E#': 6, 'B#': 7}
+#    SO  = Note.INDICES
+    KS  =  dict()   ;   KO = dict(FO)  ;  KO.update(SO)  ;   N = len(FO)
+    for _ in range(-N, N+1, 1):
+        O = FO  if _ < 0 else SO    ;   KS[_] = list(O.keys())[:abs(_)]
+    slog(fmtm(FO))  ;  slog(fmtm(SO, w=2))  ;  slog(fmtm(KO, w=2))  ;  slog(fmtm(KS, w=2))
+    ########################################################################################################################################################################################################
+    def __init__(self, k=0):
+        self.k  = k
+        self.ks = self.KS[self.k]
+    def __str__( self):  return f'{self.k:2} {fmtl(self.ks)}'
+    def __repr__(self):  return f'KeySig({self.k})'
+    ########################################################################################################################################################################################################
+    def tlog(self, i=None):
+        if i is not None: i = i + 1
+        ii = B*4  if i is None else f'{i:3} '
+        slog(f'{ii}{ev(self)}')
+        return i
+    ########################################################################################################################################################################################################
+    @classmethod
+    def fKS(cls):      return f'{fmtm(cls.KS, w=2, d2=chr(10), ll=-1)}'
+    ########################################################################################################################################################################################################
+    @classmethod
+    def test(cls):
+        slog(cls.fKS(), pfx=0)
+        cls.default()
+        cls.test_1()
+    ########################################################################################################################################################################################################
+    @classmethod
+    def default(cls, i=0):
+        ks = KeySig()            ;  i = ks.tlog(i)
+        ks = KeySig( 0)          ;  i = ks.tlog(i)
+        ks = KeySig( 1)          ;  i = ks.tlog(i)
+        ks = KeySig(-1)          ;  i = ks.tlog(i)
+        ks = KeySig(k= 0)        ;  i = ks.tlog(i)
+        ks = KeySig(k= 1)        ;  i = ks.tlog(i)
+        ks = KeySig(k=-1)        ;  i = ks.tlog(i)
+        return i
+    @classmethod
+    def test_1(cls, i=0, j=0):
+        l = cls.N + j
+        for n in range(-l, l+1, 1):
+            ns = KeySig(n)  ;  i = ns.tlog(i)
+        return i
 
 ########################################################################################################################################################################################################
 class Strings(object):
@@ -284,55 +341,6 @@ class Mode(object):
 #class COFs(object):
 #    CO5s = ['C', 'G', 'D' , 'A' , 'E' , 'B' , 'F#', 'C#']
 #    CO4s = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']
-########################################################################################################################################################################################################
-class KeySig(object):
-    def SKS(self): pass
-    FO  = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1}
-    SO  = {'F#': 1, 'C#': 2, 'G#': 3, 'D#': 4, 'A#': 5, 'E#': 6, 'B#': 7}
-#    SO  = Note.INDICES
-    KS  =  dict()   ;   KO = dict(FO)  ;  KO.update(SO)  ;   N = len(FO)
-    for _ in range(-N, N+1, 1):
-        O = FO  if _ < 0 else SO    ;   KS[_] = list(O.keys())[:abs(_)]
-    slog(fmtm(FO))  ;  slog(fmtm(SO, w=2))  ;  slog(fmtm(KO, w=2))  ;  slog(fmtm(KS, w=2))
-    ########################################################################################################################################################################################################
-    def __init__(self, k=0):
-        self.k  = k
-        self.ks = self.KS[self.k]
-    def __str__( self):  return f'{self.k:2} {fmtl(self.ks)}'
-    def __repr__(self):  return f'KeySig({self.k})'
-    ########################################################################################################################################################################################################
-    def tlog(self, i=None):
-        if i is not None: i = i + 1
-        ii = B*4  if i is None else f'{i:3} '
-        slog(f'{ii}{ev(self)}')
-        return i
-    ########################################################################################################################################################################################################
-    @classmethod
-    def fKS(cls):      return f'{fmtm(cls.KS, w=2, d2=chr(10), ll=-1)}'
-    ########################################################################################################################################################################################################
-    @classmethod
-    def test(cls):
-        slog(cls.fKS(), pfx=0)
-        cls.default()
-        cls.test_1()
-    ########################################################################################################################################################################################################
-    @classmethod
-    def default(cls, i=0):
-        ks = KeySig()            ;  i = ks.tlog(i)
-        ks = KeySig( 0)          ;  i = ks.tlog(i)
-        ks = KeySig( 1)          ;  i = ks.tlog(i)
-        ks = KeySig(-1)          ;  i = ks.tlog(i)
-        ks = KeySig(k= 0)        ;  i = ks.tlog(i)
-        ks = KeySig(k= 1)        ;  i = ks.tlog(i)
-        ks = KeySig(k=-1)        ;  i = ks.tlog(i)
-        return i
-    @classmethod
-    def test_1(cls, i=0, j=0):
-        l = cls.N + j
-        for n in range(-l, l+1, 1):
-            ns = KeySig(n)  ;  i = ns.tlog(i)
-        return i
-
 ########################################################################################################################################################################################################
 class Test:
     def __init__(self, a): self._a = a  ;  slog(f'<Test_init_:     _a={self._a}>', pfx=1)
