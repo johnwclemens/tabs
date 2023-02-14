@@ -273,7 +273,10 @@ class Tabs(pyglet.window.Window):
         self.dumpAxy()  ;   self.dumpAXY()
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
-        if self.TEST: self.test1A(1)  ;  self.test1A(1, o=0)  ;  self.test1A(0, o=1)  ;  self.test1B(0)  ;  self.test1B(1)  ;  self.test1C(0)  ;  self.test1C(1)
+        if self.TEST:
+            self.test1A(1)  ;  self.test1A(1, o=0)  ;  self.test1A(0, o=1)
+            self.test1B(1)  ;  self.test1B(1, o=2)
+            self.test1C(1)  ;  self.test1C(1, o=3)
 
     def test(self, j=10):
         self.log(f'{self.ntsl()=}')
@@ -324,8 +327,8 @@ class Tabs(pyglet.window.Window):
         ntype = Note.TYPE  ;  Note.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
         util.slog(f'{t=} {m=} {iv=}')
         for i in range(util.NTONES):
-            n = Note.noteIv(m, iv)
-            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2}')  ;  m = n
+            n = Note.noteIv(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
+            util.slog(f'{i+1:2} {m:3} {iv:2} {n:3}')  ;  m = n
         Note.TYPE = ntype
 
     @staticmethod
@@ -333,10 +336,10 @@ class Tabs(pyglet.window.Window):
         ntype = Note.TYPE  ;  Note.TYPE = t ;  m = f'{m}{o}' if o>=0 else m
         util.slog(f'{t=} {m=} {iv=}')
         for i in range(util.NTONES):
-            n =  Note.noteIv(m, iv)
-            p = (Note.indices(n) - 1) % util.NTONES
+            n = Note.noteIv(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
+            p = (Note.indices(  n, 1 if o>=0 else 0) - 1) % util.NTONES
             q =  Note.getName(p)  ;  q += f'{o}' if o>=0 else ''
-            util.slog(f'{i+1:2} {m:2} {iv:2} {n:2} {p:2} {q:2}')  ;  m = n
+            util.slog(f'{i+1:2} {m:3} {iv:2} {n:3} {p:2} {q:3}')  ;  m = n
         Note.TYPE = ntype
 
     @staticmethod

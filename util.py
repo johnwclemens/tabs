@@ -207,12 +207,12 @@ class Note(object):
         return name
 
     @staticmethod
-    def noteIv(n, iv):
-        i = Note.indices(n)
+    def noteIv(n, iv, o=0):
+        i = Note.indices(n, o)
         j = IVALR[iv]
         k = Note.indexI(i, j)
         m = Note.getName(k)
-        return m # + '0'
+        return m
 
     @staticmethod
     def indexI(i, d):

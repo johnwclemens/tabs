@@ -1,5 +1,5 @@
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
-2651 tabsC <module>           argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
+2654 tabsC <module>           argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 RGB         0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
  0 FSH  [  8   0   8   0]  0 FSH  [  8   0   8  15]  0 FSH  [  8   0   8  30]  0 FSH  [  8   0   8  45]  0 FSH  [  8   0   8  60]  0 FSH  [  8   0   8  75]  0 FSH  [  8   0   8  90]  0 FSH  [  8   0   8 105]  0 FSH  [  8   0   8 120]  0 FSH  [  8   0   8 135]  0 FSH  [  8   0   8 150]  0 FSH  [  8   0   8 165]  0 FSH  [  8   0   8 170]  0 FSH  [  8   0   8 195]  0 FSH  [  8   0   8 210]  0 FSH  [  8   0   8 225]  0 FSH  [  8   0   8 240]  0 FSH  [  8   0   8 255] 
  1 FSH  [ 23   0  23   0]  1 FSH  [ 23   0  23  15]  1 FSH  [ 23   0  23  30]  1 FSH  [ 23   0  23  45]  1 FSH  [ 23   0  23  60]  1 FSH  [ 23   0  23  75]  1 FSH  [ 23   0  23  90]  1 FSH  [ 23   0  23 105]  1 FSH  [ 23   0  23 120]  1 FSH  [ 23   0  23 135]  1 FSH  [ 23   0  23 150]  1 FSH  [ 23   0  23 165]  1 FSH  [ 23   0  23 170]  1 FSH  [ 23   0  23 195]  1 FSH  [ 23   0  23 210]  1 FSH  [ 23   0  23 225]  1 FSH  [ 23   0  23 240]  1 FSH  [ 23   0  23 255] 
@@ -419,8 +419,8 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        R=[  5  13  22  31  39  48  56  65  74  82  91  99 108 117 125 134 142 151]
        G=[  2   6  10  14  18  22  26  31  35  39  43  47  51  55  59  63  67  71]
        B=[  0   1   1   1   2   2   2   3   3   3   4   4   4   5   5   5   6   6]
-2655 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2656 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2658 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+2659 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
  124 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  140 util  parseCmdLine        1 short   -n n [] 
@@ -438,20 +438,20 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  158 util  parseCmdLine       13 arg     1  i [1 1 1] 
  158 util  parseCmdLine       14 arg     6  i [1 1 1 6] 
  160 util  parseCmdLine       options=[[n:[1 1 10 6]] [S:[0 1 3]] [i:[1 1 1 6]]]
-2550 tabsC dumpGlobals        BASE_NAME = tabs
-2551 tabsC dumpGlobals        argv      =  15[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
-2552 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2553 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+2553 tabsC dumpGlobals        BASE_NAME = tabs
+2554 tabsC dumpGlobals        argv      =  15[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
+2555 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2556 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
   22 tabsC __init__           STFILT:
 [log tlog dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
   23 tabsC __init__           BGN <class __main__.Tabs>
-2485 tabsC getFilePath        fdir=logs/ fsfx=.log
-2489 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2499 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.100.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.101.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.102.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.103.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.104.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.105.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.106.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.107.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.108.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.109.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.110.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.111.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.112.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.113.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.114.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.115.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.116.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.117.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.118.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.119.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.120.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.121.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.122.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.123.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.124.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.125.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.126.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.127.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.128.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.129.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.130.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.131.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.132.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.133.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.134.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.135.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.136.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.137.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.138.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.139.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.140.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.141.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.142.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.143.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.144.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.145.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.146.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.147.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.148.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.149.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.150.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.151.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.152.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.153.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.154.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.155.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.156.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.157.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.158.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.159.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.160.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.161.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.162.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.163.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.164.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.165.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.166.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.167.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.168.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.169.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.170.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.171.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.172.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.173.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.174.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.175.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.176.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.177.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.178.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.179.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.180.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.181.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.182.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.183.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.184.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.185.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.186.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.187.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.188.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.189.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.190.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.191.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.192.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.193.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.194.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.195.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.196.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.197.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.198.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.199.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.200.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.201.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.202.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.203.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.204.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.205.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.206.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.207.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.208.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.209.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.210.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.211.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.212.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.213.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.214.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.215.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.216.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.217.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.218.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.219.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.220.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.221.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.53.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.54.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.55.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.56.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.57.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.58.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.59.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.60.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.61.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.62.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.63.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.64.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.65.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.66.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.67.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.68.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.69.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.70.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.71.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.72.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.73.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.74.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.75.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.76.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.77.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.78.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.80.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.81.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.82.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.83.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.84.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.85.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.86.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.88.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.89.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.90.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.91.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.92.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.93.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.94.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.95.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.96.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.97.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.98.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.99.log]
-2501 tabsC getFileSeqNum      ids=[0 1 10 100 101 102 103 104 105 106 107 108 109 11 110 111 112 113 114 115 116 117 118 119 12 120 121 122 123 124 125 126 127 128 129 13 130 131 132 133 134 135 136 137 138 139 14 140 141 142 143 144 145 146 147 148 149 15 150 151 152 153 154 155 156 157 158 159 16 160 161 162 163 164 165 166 167 168 169 17 170 171 172 173 174 175 176 177 178 179 18 180 181 182 183 184 185 186 187 188 189 19 190 191 192 193 194 195 196 197 198 199 2 20 200 201 202 203 204 205 206 207 208 209 21 210 211 212 213 214 215 216 217 218 219 22 220 221 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 52 53 54 55 56 57 58 59 6 60 61 62 63 64 65 66 67 68 69 7 70 71 72 73 74 75 76 77 78 79 8 80 81 82 83 84 85 86 87 88 89 9 90 91 92 93 94 95 96 97 98 99]
-2493 tabsC getFilePath        fsfx=.222.log
+2488 tabsC getFilePath        fdir=logs/ fsfx=.log
+2492 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
+2502 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.100.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.101.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.102.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.103.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.104.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.105.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.106.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.107.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.108.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.109.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.110.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.111.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.112.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.113.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.114.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.115.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.116.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.117.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.118.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.119.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.120.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.121.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.122.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.123.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.124.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.125.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.126.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.127.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.128.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.129.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.130.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.131.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.132.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.133.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.134.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.135.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.136.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.137.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.138.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.139.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.140.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.141.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.142.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.143.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.144.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.145.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.146.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.147.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.148.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.149.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.150.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.151.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.152.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.153.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.154.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.155.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.156.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.157.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.158.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.159.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.160.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.161.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.162.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.163.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.164.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.165.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.166.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.167.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.168.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.169.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.170.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.171.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.172.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.173.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.174.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.175.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.176.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.177.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.178.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.179.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.180.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.181.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.182.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.183.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.184.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.185.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.186.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.187.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.188.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.189.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.190.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.191.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.192.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.193.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.194.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.195.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.196.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.197.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.198.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.199.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.200.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.201.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.202.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.203.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.204.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.205.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.206.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.207.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.208.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.209.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.210.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.211.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.212.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.213.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.214.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.215.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.216.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.217.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.218.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.219.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.220.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.221.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.222.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.223.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.224.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.225.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.226.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.227.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.53.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.54.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.55.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.56.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.57.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.58.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.59.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.60.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.61.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.62.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.63.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.64.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.65.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.66.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.67.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.68.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.69.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.70.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.71.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.72.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.73.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.74.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.75.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.76.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.77.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.78.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.80.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.81.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.82.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.83.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.84.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.85.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.86.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.88.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.89.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.90.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.91.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.92.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.93.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.94.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.95.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.96.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.97.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.98.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.99.log]
+2504 tabsC getFileSeqNum      ids=[0 1 10 100 101 102 103 104 105 106 107 108 109 11 110 111 112 113 114 115 116 117 118 119 12 120 121 122 123 124 125 126 127 128 129 13 130 131 132 133 134 135 136 137 138 139 14 140 141 142 143 144 145 146 147 148 149 15 150 151 152 153 154 155 156 157 158 159 16 160 161 162 163 164 165 166 167 168 169 17 170 171 172 173 174 175 176 177 178 179 18 180 181 182 183 184 185 186 187 188 189 19 190 191 192 193 194 195 196 197 198 199 2 20 200 201 202 203 204 205 206 207 208 209 21 210 211 212 213 214 215 216 217 218 219 22 220 221 222 223 224 225 226 227 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 52 53 54 55 56 57 58 59 6 60 61 62 63 64 65 66 67 68 69 7 70 71 72 73 74 75 76 77 78 79 8 80 81 82 83 84 85 86 87 88 89 9 90 91 92 93 94 95 96 97 98 99]
+2496 tabsC getFilePath        fsfx=.228.log
  105 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 108 util  getFilePath        fileName =tabs.222.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.222.log)
+ 108 util  getFilePath        fileName =tabs.228.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.228.log)
  105 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  108 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
   28 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
@@ -563,7 +563,7 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.
  268 chord _dumpOMAP          END len(OMAP)=581 catfile.name=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat len(r)=0
  217 chord dumpOMAP           END   len(OMAP)=581 len(umap)=0
  234 tabsC _initWindowA       BGN (  -1x-1  )
- 234 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000022708BBBD30>
+ 234 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000015DBD4C7CA0>
  237 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
  237 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
  238 tabsC _initWindowA       END (  -1x-1  )
@@ -583,22 +583,22 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.
  245 tabsC _initWindowB       get_size=(640, 480)
  251 tabsC _initWindowB       END ( 640x480 )
  110 tabsC __init__           WxH=( 640x480 )
- 457 tabsC dumpAxy            .a=center .ax=center .ay=center
- 459 tabsC dumpAXY            .A_LEFT=0 .A_CENTER=1 .A_RIGHT=0
- 460 tabsC dumpAXY            .X_LEFT=0 .X_CENTER=1 .X_RIGHT=0
- 461 tabsC dumpAXY            .Y_TOP=0  .Y_CENTER=1 .Y_BOTTOM=0 .Y_BASELINE=0
+ 460 tabsC dumpAxy            .a=center .ax=center .ay=center
+ 462 tabsC dumpAXY            .A_LEFT=0 .A_CENTER=1 .A_RIGHT=0
+ 463 tabsC dumpAXY            .X_LEFT=0 .X_CENTER=1 .X_RIGHT=0
+ 464 tabsC dumpAXY            .Y_TOP=0  .Y_CENTER=1 .Y_BOTTOM=0 .Y_BASELINE=0
  151 tabsC _reinit            BGN
- 489 tabsC ntp                                  n=[1 1 3 10 6]
- 490 tabsC ntp                                Rev=[6 10 3 1 1]
- 491 tabsC ntp                            nRevPrd=[6 60 180 180 180]
- 492 tabsC ntp                         nRevPrdRev=[180 180 180 60 6]
- 493 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 492 tabsC ntp                                  n=[1 1 3 10 6]
+ 493 tabsC ntp                                Rev=[6 10 3 1 1]
+ 494 tabsC ntp                            nRevPrd=[6 60 180 180 180]
+ 495 tabsC ntp                         nRevPrdRev=[180 180 180 60 6]
+ 496 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
  159 tabsC _reinit            E= [ []  []  []  []  []  []  []  []  []  []  []  []  []  []  []  [] ] 
  160 tabsC _reinit            J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
  160 tabsC _reinit            J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
  160 tabsC _reinit            LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
  164 tabsC _reinit            [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- 484 tabsC dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=10
+ 487 tabsC dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=10
 ------
 ----------
  0  Page  [BLU  0 17] [ RED 17 17] [  0   0   8 255] [255   0   0 255]
@@ -622,9 +622,9 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.
 self.dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat.asv')
 self.dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat')
 self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat.bck')
- 564 tabsC readDataFile       BGN n=[1 1 3 10 6]
- 571 tabsC readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat  74 bytes = 0.1 KB
- 572 tabsC readDataFile       Raw Data File BGN:
+ 567 tabsC readDataFile       BGN n=[1 1 3 10 6]
+ 574 tabsC readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat  74 bytes = 0.1 KB
+ 575 tabsC readDataFile       Raw Data File BGN:
 0---------
 6---------
 0---------
@@ -632,25 +632,25 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.
 6---------
 ----------
 
- 586 tabsC readDataFile       Raw Data File END:
- 587 tabsC readDataFile       .fmtdl()=[1 1 6 10] .fmtdt()=[list list list str]
- 597 tabsC assertDataFileSize dsize= 60 = nlines=  1 *     nr= 6 *   nt=10
- 598 tabsC assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
- 599 tabsC assertDataFileSize  size= 74 =  dsize= 60 +  crlfs= 14   ref=74
- 590 tabsC readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 tabs
- 591 tabsC readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 10 tabs per row
- 605 tabsC dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
+ 589 tabsC readDataFile       Raw Data File END:
+ 590 tabsC readDataFile       .fmtdl()=[1 1 6 10] .fmtdt()=[list list list str]
+ 600 tabsC assertDataFileSize dsize= 60 = nlines=  1 *     nr= 6 *   nt=10
+ 601 tabsC assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
+ 602 tabsC assertDataFileSize  size= 74 =  dsize= 60 +  crlfs= 14   ref=74
+ 593 tabsC readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 tabs
+ 594 tabsC readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 10 tabs per row
+ 608 tabsC dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
 0--------- 6--------- 0--------- 8--------- 6--------- ----------
 
- 610 tabsC dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
+ 613 tabsC dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
  113 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat)
  114 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat.bck)
  116 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat.bck ###
- 657 tabsC A_transposeData    BGN ( 1x1x6x10 ) dump=1
- 614 tabsC isVert             BGN dl=[1 1 6 10] dt=[list list list str]
+ 660 tabsC A_transposeData    BGN ( 1x1x6x10 ) dump=1
+ 617 tabsC isVert             BGN dl=[1 1 6 10] dt=[list list list str]
 [[[0--------- 6--------- 0--------- 8--------- 6--------- ----------]]]
- 619 tabsC isVert             END dl=[1 1 6 10] dt=[list list list str] vert=0
- 678 tabsC dumpDataHorz       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0
+ 622 tabsC isVert             END dl=[1 1 6 10] dt=[list list list str] vert=0
+ 681 tabsC dumpDataHorz       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0
 Page 1 Line 1
          1
 1234567890
@@ -662,16 +662,16 @@ Page 1 Line 1
 6---------
 ----------
 
- 691 tabsC dumpDataHorz       END ( 1x1x6x10 ) lc=1 ll=1 i=0
- 660 tabsC A_transposeData    dl=[1 1 6 10] dt=[list list list str]
- 661 tabsC A_transposeData    dl=[1 1 6 10] dt=[list list list str]
+ 694 tabsC dumpDataHorz       END ( 1x1x6x10 ) lc=1 ll=1 i=0
+ 663 tabsC A_transposeData    dl=[1 1 6 10] dt=[list list list str]
+ 664 tabsC A_transposeData    dl=[1 1 6 10] dt=[list list list str]
 0--------- 6--------- 0--------- 8--------- 6--------- ----------
 
 06086- ------ ------ ------ ------ ------ ------ ------ ------ ------
- 614 tabsC isVert             BGN dl=[1 1 6 10] dt=[list list list str]
+ 617 tabsC isVert             BGN dl=[1 1 6 10] dt=[list list list str]
 [[[0--------- 6--------- 0--------- 8--------- 6--------- ----------]]]
- 619 tabsC isVert             END dl=[1 1 6 10] dt=[list list list str] vert=1
- 696 tabsC dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt=Colm 
+ 622 tabsC isVert             END dl=[1 1 6 10] dt=[list list list str] vert=1
+ 699 tabsC dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt=Colm 
 Page 1
 Colm Line 1
   1 06086- 
@@ -684,38 +684,38 @@ Colm Line 1
   8 ------ 
   9 ------ 
  10 ------ 
- 704 tabsC dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
- 673 tabsC A_transposeData    END ( 1x1x10x6 ) dump=1
+ 707 tabsC dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
+ 676 tabsC A_transposeData    END ( 1x1x10x6 ) dump=1
  212 tabsC _initData          [1 1 10 6]
  213 tabsC _initData          Updating n[P] old=[1 1 3 10 6] n=[1 1 3 10 6]
- 489 tabsC ntp                                  n=[1 1 3 10 6]
- 490 tabsC ntp                                Rev=[6 10 3 1 1]
- 491 tabsC ntp                            nRevPrd=[6 60 180 180 180]
- 492 tabsC ntp                         nRevPrdRev=[180 180 180 60 6]
- 493 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
-1550 tabsC calcFontSize       j=4 Tab  t=X w= 64.00 h= 26.67 pix= 26.67=min(scale=1.2*w, h) fs= 20.74
-1559 tabsC _initFonts         w=64.000=.width =640/(10)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=20.000pt
-1560 tabsC _initFonts         h=26.667=.height=480/(nl=1 * ns=3 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=20.000pt
-1572 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels 
+ 492 tabsC ntp                                  n=[1 1 3 10 6]
+ 493 tabsC ntp                                Rev=[6 10 3 1 1]
+ 494 tabsC ntp                            nRevPrd=[6 60 180 180 180]
+ 495 tabsC ntp                         nRevPrdRev=[180 180 180 60 6]
+ 496 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+1553 tabsC calcFontSize       j=4 Tab  t=X w= 64.00 h= 26.67 pix= 26.67=min(scale=1.2*w, h) fs= 20.74
+1562 tabsC _initFonts         w=64.000=.width =640/(10)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=20.000pt
+1563 tabsC _initFonts         h=26.667=.height=480/(nl=1 * ns=3 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=20.000pt
+1575 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels 
 labelTextA=[ 1  2  3  4  5  6  7  8  9 10]
 labelTextB=[ 1  2  3  4  5  6  7  8  9  1]
 texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
- 727 tabsC dumpLabelText       len(t)=10 len(t[0])=2
+ 730 tabsC dumpLabelText       len(t)=10 len(t[0])=2
  1   2   3   4   5   6   7   8   9  10  
                                      %  
  1   2   3   4   5   6   7   8   9   1  
  269 tabsC _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1]
- 457 tabsC dumpAxy            .a=center .ax=center .ay=center
- 459 tabsC dumpAXY            .A_LEFT=0 .A_CENTER=1 .A_RIGHT=0
- 460 tabsC dumpAXY            .X_LEFT=0 .X_CENTER=1 .X_RIGHT=0
- 461 tabsC dumpAXY            .Y_TOP=0  .Y_CENTER=1 .Y_BOTTOM=0 .Y_BASELINE=0
-1183 tabsC createTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1183 tabsC createTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1183 tabsC createTniks        LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1183 tabsC createTniks        BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )    0   0] New1
+ 460 tabsC dumpAxy            .a=center .ax=center .ay=center
+ 462 tabsC dumpAXY            .A_LEFT=0 .A_CENTER=1 .A_RIGHT=0
+ 463 tabsC dumpAXY            .X_LEFT=0 .X_CENTER=1 .X_RIGHT=0
+ 464 tabsC dumpAXY            .Y_TOP=0  .Y_CENTER=1 .Y_BOTTOM=0 .Y_BASELINE=0
+1186 tabsC createTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1186 tabsC createTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1186 tabsC createTniks        LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1186 tabsC createTniks        BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )    0   0] New1
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-1201 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+1204 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
    1 New1  Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
    2 New1  Line    1     373 2 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  320.00  240.00  640.00  480.00  
    3 New1  Sect    1     124 3 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  320.00  400.00  640.00  160.00  
@@ -934,13 +934,13 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  216 New1  HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   27.00  
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-1191 tabsC createTniks        J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] New1
-1191 tabsC createTniks        J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] New1
-1191 tabsC createTniks        LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] New1
-1191 tabsC createTniks        END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] New1
- 493 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 501 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-1572 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels New1
+1194 tabsC createTniks        J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] New1
+1194 tabsC createTniks        J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] New1
+1194 tabsC createTniks        LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] New1
+1194 tabsC createTniks        END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] New1
+ 496 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 504 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+1575 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels New1
    2p2   11
    2l2   11
    6s6   111111
@@ -950,7 +950,7 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  120K120 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
    2h2   11
  432t432           10        20        30        40        50        60        70        80        90        100       110       120       130       140       150       160       170       180       190       200       210       220       230       240       250       260       270       280       290       300       310       320       330       340       350       360       370       380       390       400       410       420       430
-1373 tabsC dumpIdmKeys         216[Page1 Line1 Sect1 Colm1 Tab 1 Tab 2 Tab 3 Tab 4 Tab 5 Tab 6 Colm2 Tab 7 Tab 8 Tab 9 Tab 10 Tab 11 Tab 12 Colm3 Tab 13 Tab 14 Tab 15 Tab 16 Tab 17 Tab 18 Colm4 Tab 19 Tab 20 Tab 21 Tab 22 Tab 23 Tab 24 Colm5 Tab 25 Tab 26 Tab 27 Tab 28 Tab 29 Tab 30 Colm6 Tab 31 Tab 32 Tab 33 Tab 34 Tab 35 Tab 36 Colm7 Tab 37 Tab 38 Tab 39 Tab 40 Tab 41 Tab 42 Colm8 Tab 43 Tab 44 Tab 45 Tab 46 Tab 47 Tab 48 Colm9 Tab 49 Tab 50 Tab 51 Tab 52 Tab 53 Tab 54 Colm10 Tab 55 Tab 56 Tab 57 Tab 58 Tab 59 Tab 60 Sect2 Colm11 Note1 Note2 Note3 Note4 Note5 Note6 Colm12 Note7 Note8 Note9 Note10 Note11 Note12 Colm13 Note13 Note14 Note15 Note16 Note17 Note18 Colm14 Note19 Note20 Note21 Note22 Note23 Note24 Colm15 Note25 Note26 Note27 Note28 Note29 Note30 Colm16 Note31 Note32 Note33 Note34 Note35 Note36 Colm17 Note37 Note38 Note39 Note40 Note41 Note42 Colm18 Note43 Note44 Note45 Note46 Note47 Note48 Colm19 Note49 Note50 Note51 Note52 Note53 Note54 Colm20 Note55 Note56 Note57 Note58 Note59 Note60 Sect3 Colm21 Kord1 Kord2 Kord3 Kord4 Kord5 Kord6 Colm22 Kord7 Kord8 Kord9 Kord10 Kord11 Kord12 Colm23 Kord13 Kord14 Kord15 Kord16 Kord17 Kord18 Colm24 Kord19 Kord20 Kord21 Kord22 Kord23 Kord24 Colm25 Kord25 Kord26 Kord27 Kord28 Kord29 Kord30 Colm26 Kord31 Kord32 Kord33 Kord34 Kord35 Kord36 Colm27 Kord37 Kord38 Kord39 Kord40 Kord41 Kord42 Colm28 Kord43 Kord44 Kord45 Kord46 Kord47 Kord48 Colm29 Kord49 Kord50 Kord51 Kord52 Kord53 Kord54 Colm30 Kord55 Kord56 Kord57 Kord58 Kord59 Kord60 HCrs1]
+1376 tabsC dumpIdmKeys         216[Page1 Line1 Sect1 Colm1 Tab 1 Tab 2 Tab 3 Tab 4 Tab 5 Tab 6 Colm2 Tab 7 Tab 8 Tab 9 Tab 10 Tab 11 Tab 12 Colm3 Tab 13 Tab 14 Tab 15 Tab 16 Tab 17 Tab 18 Colm4 Tab 19 Tab 20 Tab 21 Tab 22 Tab 23 Tab 24 Colm5 Tab 25 Tab 26 Tab 27 Tab 28 Tab 29 Tab 30 Colm6 Tab 31 Tab 32 Tab 33 Tab 34 Tab 35 Tab 36 Colm7 Tab 37 Tab 38 Tab 39 Tab 40 Tab 41 Tab 42 Colm8 Tab 43 Tab 44 Tab 45 Tab 46 Tab 47 Tab 48 Colm9 Tab 49 Tab 50 Tab 51 Tab 52 Tab 53 Tab 54 Colm10 Tab 55 Tab 56 Tab 57 Tab 58 Tab 59 Tab 60 Sect2 Colm11 Note1 Note2 Note3 Note4 Note5 Note6 Colm12 Note7 Note8 Note9 Note10 Note11 Note12 Colm13 Note13 Note14 Note15 Note16 Note17 Note18 Colm14 Note19 Note20 Note21 Note22 Note23 Note24 Colm15 Note25 Note26 Note27 Note28 Note29 Note30 Colm16 Note31 Note32 Note33 Note34 Note35 Note36 Colm17 Note37 Note38 Note39 Note40 Note41 Note42 Colm18 Note43 Note44 Note45 Note46 Note47 Note48 Colm19 Note49 Note50 Note51 Note52 Note53 Note54 Colm20 Note55 Note56 Note57 Note58 Note59 Note60 Sect3 Colm21 Kord1 Kord2 Kord3 Kord4 Kord5 Kord6 Colm22 Kord7 Kord8 Kord9 Kord10 Kord11 Kord12 Colm23 Kord13 Kord14 Kord15 Kord16 Kord17 Kord18 Colm24 Kord19 Kord20 Kord21 Kord22 Kord23 Kord24 Colm25 Kord25 Kord26 Kord27 Kord28 Kord29 Kord30 Colm26 Kord31 Kord32 Kord33 Kord34 Kord35 Kord36 Colm27 Kord37 Kord38 Kord39 Kord40 Kord41 Kord42 Colm28 Kord43 Kord44 Kord45 Kord46 Kord47 Kord48 Colm29 Kord49 Kord50 Kord51 Kord52 Kord53 Kord54 Colm30 Kord55 Kord56 Kord57 Kord58 Kord59 Kord60 HCrs1]
 1
 1
 111
@@ -959,10 +959,10 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
 111111111111111111111111111111111111111111111111111111111111
 111111111111111111111111111111111111111111111111111111111111
 1
-1388 tabsC dumpTniksA         J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1A
-1388 tabsC dumpTniksA         J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1A
-1388 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] New1A
-1388 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] New1A
+1391 tabsC dumpTniksA         J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1A
+1391 tabsC dumpTniksA         J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1A
+1391 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] New1A
+1391 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] New1A
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
    1 New1A Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
@@ -1183,114 +1183,114 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  216 New1A HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   27.00  
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-1391 tabsC dumpTniksA         J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] New1A
-1391 tabsC dumpTniksA         J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] New1A
-1391 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] New1A
-1391 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] New1A
- 493 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 511 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
- 314 tabsC test1A             t=1 m=C d=7
- 319 tabsC test1A              1 C    0  7  7 G  
- 319 tabsC test1A              2 G    7  7  2 D  
- 319 tabsC test1A              3 D    2  7  9 A  
- 319 tabsC test1A              4 A    9  7  4 E  
- 319 tabsC test1A              5 E    4  7 11 B  
- 319 tabsC test1A              6 B   11  7  6 F# 
- 319 tabsC test1A              7 F#   6  7  1 C# 
- 319 tabsC test1A              8 C#   1  7  8 G# 
- 319 tabsC test1A              9 G#   8  7  3 D# 
- 319 tabsC test1A             10 D#   3  7 10 A# 
- 319 tabsC test1A             11 A#  10  7  5 F  
- 319 tabsC test1A             12 F    5  7  0 C  
- 314 tabsC test1A             t=1 m=C0 d=7
- 319 tabsC test1A              1 C0   0  7  7 G0 
- 319 tabsC test1A              2 G0   7  7  2 D0 
- 319 tabsC test1A              3 D0   2  7  9 A0 
- 319 tabsC test1A              4 A0   9  7  4 E0 
- 319 tabsC test1A              5 E0   4  7 11 B0 
- 319 tabsC test1A              6 B0  11  7  6 F#0
- 319 tabsC test1A              7 F#0  6  7  1 C#0
- 319 tabsC test1A              8 C#0  1  7  8 G#0
- 319 tabsC test1A              9 G#0  8  7  3 D#0
- 319 tabsC test1A             10 D#0  3  7 10 A#0
- 319 tabsC test1A             11 A#0 10  7  5 F0 
- 319 tabsC test1A             12 F0   5  7  0 C0 
- 314 tabsC test1A             t=0 m=C1 d=7
- 319 tabsC test1A              1 C1   0  7  7 G1 
- 319 tabsC test1A              2 G1   7  7  2 D1 
- 319 tabsC test1A              3 D1   2  7  9 A1 
- 319 tabsC test1A              4 A1   9  7  4 E1 
- 319 tabsC test1A              5 E1   4  7 11 B1 
- 319 tabsC test1A              6 B1  11  7  6 Gb1
- 319 tabsC test1A              7 Gb1  6  7  1 Db1
- 319 tabsC test1A              8 Db1  1  7  8 Ab1
- 319 tabsC test1A              9 Ab1  8  7  3 Eb1
- 319 tabsC test1A             10 Eb1  3  7 10 Bb1
- 319 tabsC test1A             11 Bb1 10  7  5 F1 
- 319 tabsC test1A             12 F1   5  7  0 C1 
- 325 tabsC test1B             t=0 m=C iv=5
- 328 tabsC test1B              1 C  5  G 
- 328 tabsC test1B              2 G  5  D 
- 328 tabsC test1B              3 D  5  A 
- 328 tabsC test1B              4 A  5  E 
- 328 tabsC test1B              5 E  5  B 
- 328 tabsC test1B              6 B  5  Gb
- 328 tabsC test1B              7 Gb 5  Db
- 328 tabsC test1B              8 Db 5  Ab
- 328 tabsC test1B              9 Ab 5  Eb
- 328 tabsC test1B             10 Eb 5  Bb
- 328 tabsC test1B             11 Bb 5  F 
- 328 tabsC test1B             12 F  5  C 
- 325 tabsC test1B             t=1 m=C iv=5
- 328 tabsC test1B              1 C  5  G 
- 328 tabsC test1B              2 G  5  D 
- 328 tabsC test1B              3 D  5  A 
- 328 tabsC test1B              4 A  5  E 
- 328 tabsC test1B              5 E  5  B 
- 328 tabsC test1B              6 B  5  F#
- 328 tabsC test1B              7 F# 5  C#
- 328 tabsC test1B              8 C# 5  G#
- 328 tabsC test1B              9 G# 5  D#
- 328 tabsC test1B             10 D# 5  A#
- 328 tabsC test1B             11 A# 5  F 
- 328 tabsC test1B             12 F  5  C 
- 334 tabsC test1C             t=0 m=C iv=5
- 339 tabsC test1C              1 C  5  G   6 Gb
- 339 tabsC test1C              2 G  5  D   1 Db
- 339 tabsC test1C              3 D  5  A   8 Ab
- 339 tabsC test1C              4 A  5  E   3 Eb
- 339 tabsC test1C              5 E  5  B  10 Bb
- 339 tabsC test1C              6 B  5  Gb  5 F 
- 339 tabsC test1C              7 Gb 5  Db  0 C 
- 339 tabsC test1C              8 Db 5  Ab  7 G 
- 339 tabsC test1C              9 Ab 5  Eb  2 D 
- 339 tabsC test1C             10 Eb 5  Bb  9 A 
- 339 tabsC test1C             11 Bb 5  F   4 E 
- 339 tabsC test1C             12 F  5  C  11 B 
- 334 tabsC test1C             t=1 m=C iv=5
- 339 tabsC test1C              1 C  5  G   6 F#
- 339 tabsC test1C              2 G  5  D   1 C#
- 339 tabsC test1C              3 D  5  A   8 G#
- 339 tabsC test1C              4 A  5  E   3 D#
- 339 tabsC test1C              5 E  5  B  10 A#
- 339 tabsC test1C              6 B  5  F#  5 F 
- 339 tabsC test1C              7 F# 5  C#  0 C 
- 339 tabsC test1C              8 C# 5  G#  7 G 
- 339 tabsC test1C              9 G# 5  D#  2 D 
- 339 tabsC test1C             10 D# 5  A#  9 A 
- 339 tabsC test1C             11 A# 5  F   4 E 
- 339 tabsC test1C             12 F  5  C  11 B 
-2460 tabsC regSnap            .snapWhy=init .snapType=INIT .snapReg=1 .snapId=0
+1394 tabsC dumpTniksA         J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] New1A
+1394 tabsC dumpTniksA         J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] New1A
+1394 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] New1A
+1394 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] New1A
+ 496 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 514 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 317 tabsC test1A             t=1 m=C d=7
+ 322 tabsC test1A              1 C    0  7  7 G  
+ 322 tabsC test1A              2 G    7  7  2 D  
+ 322 tabsC test1A              3 D    2  7  9 A  
+ 322 tabsC test1A              4 A    9  7  4 E  
+ 322 tabsC test1A              5 E    4  7 11 B  
+ 322 tabsC test1A              6 B   11  7  6 F# 
+ 322 tabsC test1A              7 F#   6  7  1 C# 
+ 322 tabsC test1A              8 C#   1  7  8 G# 
+ 322 tabsC test1A              9 G#   8  7  3 D# 
+ 322 tabsC test1A             10 D#   3  7 10 A# 
+ 322 tabsC test1A             11 A#  10  7  5 F  
+ 322 tabsC test1A             12 F    5  7  0 C  
+ 317 tabsC test1A             t=1 m=C0 d=7
+ 322 tabsC test1A              1 C0   0  7  7 G0 
+ 322 tabsC test1A              2 G0   7  7  2 D0 
+ 322 tabsC test1A              3 D0   2  7  9 A0 
+ 322 tabsC test1A              4 A0   9  7  4 E0 
+ 322 tabsC test1A              5 E0   4  7 11 B0 
+ 322 tabsC test1A              6 B0  11  7  6 F#0
+ 322 tabsC test1A              7 F#0  6  7  1 C#0
+ 322 tabsC test1A              8 C#0  1  7  8 G#0
+ 322 tabsC test1A              9 G#0  8  7  3 D#0
+ 322 tabsC test1A             10 D#0  3  7 10 A#0
+ 322 tabsC test1A             11 A#0 10  7  5 F0 
+ 322 tabsC test1A             12 F0   5  7  0 C0 
+ 317 tabsC test1A             t=0 m=C1 d=7
+ 322 tabsC test1A              1 C1   0  7  7 G1 
+ 322 tabsC test1A              2 G1   7  7  2 D1 
+ 322 tabsC test1A              3 D1   2  7  9 A1 
+ 322 tabsC test1A              4 A1   9  7  4 E1 
+ 322 tabsC test1A              5 E1   4  7 11 B1 
+ 322 tabsC test1A              6 B1  11  7  6 Gb1
+ 322 tabsC test1A              7 Gb1  6  7  1 Db1
+ 322 tabsC test1A              8 Db1  1  7  8 Ab1
+ 322 tabsC test1A              9 Ab1  8  7  3 Eb1
+ 322 tabsC test1A             10 Eb1  3  7 10 Bb1
+ 322 tabsC test1A             11 Bb1 10  7  5 F1 
+ 322 tabsC test1A             12 F1   5  7  0 C1 
+ 328 tabsC test1B             t=1 m=C iv=5
+ 331 tabsC test1B              1 C   5  G  
+ 331 tabsC test1B              2 G   5  D  
+ 331 tabsC test1B              3 D   5  A  
+ 331 tabsC test1B              4 A   5  E  
+ 331 tabsC test1B              5 E   5  B  
+ 331 tabsC test1B              6 B   5  F# 
+ 331 tabsC test1B              7 F#  5  C# 
+ 331 tabsC test1B              8 C#  5  G# 
+ 331 tabsC test1B              9 G#  5  D# 
+ 331 tabsC test1B             10 D#  5  A# 
+ 331 tabsC test1B             11 A#  5  F  
+ 331 tabsC test1B             12 F   5  C  
+ 328 tabsC test1B             t=1 m=C2 iv=5
+ 331 tabsC test1B              1 C2  5  G2 
+ 331 tabsC test1B              2 G2  5  D2 
+ 331 tabsC test1B              3 D2  5  A2 
+ 331 tabsC test1B              4 A2  5  E2 
+ 331 tabsC test1B              5 E2  5  B2 
+ 331 tabsC test1B              6 B2  5  F#2
+ 331 tabsC test1B              7 F#2 5  C#2
+ 331 tabsC test1B              8 C#2 5  G#2
+ 331 tabsC test1B              9 G#2 5  D#2
+ 331 tabsC test1B             10 D#2 5  A#2
+ 331 tabsC test1B             11 A#2 5  F2 
+ 331 tabsC test1B             12 F2  5  C2 
+ 337 tabsC test1C             t=1 m=C iv=5
+ 342 tabsC test1C              1 C   5  G    6 F# 
+ 342 tabsC test1C              2 G   5  D    1 C# 
+ 342 tabsC test1C              3 D   5  A    8 G# 
+ 342 tabsC test1C              4 A   5  E    3 D# 
+ 342 tabsC test1C              5 E   5  B   10 A# 
+ 342 tabsC test1C              6 B   5  F#   5 F  
+ 342 tabsC test1C              7 F#  5  C#   0 C  
+ 342 tabsC test1C              8 C#  5  G#   7 G  
+ 342 tabsC test1C              9 G#  5  D#   2 D  
+ 342 tabsC test1C             10 D#  5  A#   9 A  
+ 342 tabsC test1C             11 A#  5  F    4 E  
+ 342 tabsC test1C             12 F   5  C   11 B  
+ 337 tabsC test1C             t=1 m=C3 iv=5
+ 342 tabsC test1C              1 C3  5  G3   6 F#3
+ 342 tabsC test1C              2 G3  5  D3   1 C#3
+ 342 tabsC test1C              3 D3  5  A3   8 G#3
+ 342 tabsC test1C              4 A3  5  E3   3 D#3
+ 342 tabsC test1C              5 E3  5  B3  10 A#3
+ 342 tabsC test1C              6 B3  5  F#3  5 F3 
+ 342 tabsC test1C              7 F#3 5  C#3  0 C3 
+ 342 tabsC test1C              8 C#3 5  G#3  7 G3 
+ 342 tabsC test1C              9 G#3 5  D#3  2 D3 
+ 342 tabsC test1C             10 D#3 5  A#3  9 A3 
+ 342 tabsC test1C             11 A#3 5  F3   4 E3 
+ 342 tabsC test1C             12 F3  5  C3  11 B3 
+2463 tabsC regSnap            .snapWhy=init .snapType=INIT .snapReg=1 .snapId=0
  169 tabsC _reinit            [1 1 1  1 6]   6  1] END
  116 tabsC __init__           END <class __main__.Tabs>
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
-1259 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1
-1259 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1
-1259 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] Upd1
-1259 tabsC resizeTniks        BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] Upd1
+1262 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1
+1262 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1
+1262 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] Upd1
+1262 tabsC resizeTniks        BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] Upd1
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-1282 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+1285 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
    1 Upd1  Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
    2 Upd1  Line    1     373 2 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  320.00  240.00  640.00  480.00  
    3 Upd1  Sect    1     124 3 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  320.00  400.00  640.00  160.00  
@@ -1506,18 +1506,18 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  213 Upd1  Kord   58   -  20 5 V 1  1  3  30   60   60    0   58  0   0 0 0  0  0  0  0  213 213  608.00   66.67   64.00   26.67  
  214 Upd1  Kord   59   -  20 5 V 1  1  3  30   60   60    0   59  0   0 0 0  0  0  0  0  214 214  608.00   40.00   64.00   26.67  
  215 Upd1  Kord   60   -  20 5 V 1  1  3  30   60   60    0   60  0   0 0 0  0  0  0  0  215 215  608.00   13.33   64.00   26.67  
-1294 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+1297 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
  216 Upd1  HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   26.67  
-2460 tabsC regSnap            .snapWhy=Upd1 .snapType=RSZC_5 .snapReg=1 .snapId=0
+2463 tabsC regSnap            .snapWhy=Upd1 .snapType=RSZC_5 .snapReg=1 .snapId=0
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-1270 tabsC resizeTniks        J1[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1
-1270 tabsC resizeTniks        J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1
-1270 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1
-1270 tabsC resizeTniks        END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd1
- 493 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 501 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-1572 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels Upd1
+1273 tabsC resizeTniks        J1[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1
+1273 tabsC resizeTniks        J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1
+1273 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1
+1273 tabsC resizeTniks        END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd1
+ 496 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 504 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+1575 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels Upd1
    1p1   1
    1l1   1
    3s3   111
@@ -1527,7 +1527,7 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   60K60  111111111111111111111111111111111111111111111111111111111111
    1h1   1
  216t216           10        20        30        40        50        60        70        80        90        100       110       120       130       140       150       160       170       180       190       200       210
-1373 tabsC dumpIdmKeys         216[Page1 Line1 Sect1 Colm1 Tab 1 Tab 2 Tab 3 Tab 4 Tab 5 Tab 6 Colm2 Tab 7 Tab 8 Tab 9 Tab 10 Tab 11 Tab 12 Colm3 Tab 13 Tab 14 Tab 15 Tab 16 Tab 17 Tab 18 Colm4 Tab 19 Tab 20 Tab 21 Tab 22 Tab 23 Tab 24 Colm5 Tab 25 Tab 26 Tab 27 Tab 28 Tab 29 Tab 30 Colm6 Tab 31 Tab 32 Tab 33 Tab 34 Tab 35 Tab 36 Colm7 Tab 37 Tab 38 Tab 39 Tab 40 Tab 41 Tab 42 Colm8 Tab 43 Tab 44 Tab 45 Tab 46 Tab 47 Tab 48 Colm9 Tab 49 Tab 50 Tab 51 Tab 52 Tab 53 Tab 54 Colm10 Tab 55 Tab 56 Tab 57 Tab 58 Tab 59 Tab 60 Sect2 Colm11 Note1 Note2 Note3 Note4 Note5 Note6 Colm12 Note7 Note8 Note9 Note10 Note11 Note12 Colm13 Note13 Note14 Note15 Note16 Note17 Note18 Colm14 Note19 Note20 Note21 Note22 Note23 Note24 Colm15 Note25 Note26 Note27 Note28 Note29 Note30 Colm16 Note31 Note32 Note33 Note34 Note35 Note36 Colm17 Note37 Note38 Note39 Note40 Note41 Note42 Colm18 Note43 Note44 Note45 Note46 Note47 Note48 Colm19 Note49 Note50 Note51 Note52 Note53 Note54 Colm20 Note55 Note56 Note57 Note58 Note59 Note60 Sect3 Colm21 Kord1 Kord2 Kord3 Kord4 Kord5 Kord6 Colm22 Kord7 Kord8 Kord9 Kord10 Kord11 Kord12 Colm23 Kord13 Kord14 Kord15 Kord16 Kord17 Kord18 Colm24 Kord19 Kord20 Kord21 Kord22 Kord23 Kord24 Colm25 Kord25 Kord26 Kord27 Kord28 Kord29 Kord30 Colm26 Kord31 Kord32 Kord33 Kord34 Kord35 Kord36 Colm27 Kord37 Kord38 Kord39 Kord40 Kord41 Kord42 Colm28 Kord43 Kord44 Kord45 Kord46 Kord47 Kord48 Colm29 Kord49 Kord50 Kord51 Kord52 Kord53 Kord54 Colm30 Kord55 Kord56 Kord57 Kord58 Kord59 Kord60 HCrs1]
+1376 tabsC dumpIdmKeys         216[Page1 Line1 Sect1 Colm1 Tab 1 Tab 2 Tab 3 Tab 4 Tab 5 Tab 6 Colm2 Tab 7 Tab 8 Tab 9 Tab 10 Tab 11 Tab 12 Colm3 Tab 13 Tab 14 Tab 15 Tab 16 Tab 17 Tab 18 Colm4 Tab 19 Tab 20 Tab 21 Tab 22 Tab 23 Tab 24 Colm5 Tab 25 Tab 26 Tab 27 Tab 28 Tab 29 Tab 30 Colm6 Tab 31 Tab 32 Tab 33 Tab 34 Tab 35 Tab 36 Colm7 Tab 37 Tab 38 Tab 39 Tab 40 Tab 41 Tab 42 Colm8 Tab 43 Tab 44 Tab 45 Tab 46 Tab 47 Tab 48 Colm9 Tab 49 Tab 50 Tab 51 Tab 52 Tab 53 Tab 54 Colm10 Tab 55 Tab 56 Tab 57 Tab 58 Tab 59 Tab 60 Sect2 Colm11 Note1 Note2 Note3 Note4 Note5 Note6 Colm12 Note7 Note8 Note9 Note10 Note11 Note12 Colm13 Note13 Note14 Note15 Note16 Note17 Note18 Colm14 Note19 Note20 Note21 Note22 Note23 Note24 Colm15 Note25 Note26 Note27 Note28 Note29 Note30 Colm16 Note31 Note32 Note33 Note34 Note35 Note36 Colm17 Note37 Note38 Note39 Note40 Note41 Note42 Colm18 Note43 Note44 Note45 Note46 Note47 Note48 Colm19 Note49 Note50 Note51 Note52 Note53 Note54 Colm20 Note55 Note56 Note57 Note58 Note59 Note60 Sect3 Colm21 Kord1 Kord2 Kord3 Kord4 Kord5 Kord6 Colm22 Kord7 Kord8 Kord9 Kord10 Kord11 Kord12 Colm23 Kord13 Kord14 Kord15 Kord16 Kord17 Kord18 Colm24 Kord19 Kord20 Kord21 Kord22 Kord23 Kord24 Colm25 Kord25 Kord26 Kord27 Kord28 Kord29 Kord30 Colm26 Kord31 Kord32 Kord33 Kord34 Kord35 Kord36 Colm27 Kord37 Kord38 Kord39 Kord40 Kord41 Kord42 Colm28 Kord43 Kord44 Kord45 Kord46 Kord47 Kord48 Colm29 Kord49 Kord50 Kord51 Kord52 Kord53 Kord54 Colm30 Kord55 Kord56 Kord57 Kord58 Kord59 Kord60 HCrs1]
 1
 1
 111
@@ -1536,10 +1536,10 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
 111111111111111111111111111111111111111111111111111111111111
 111111111111111111111111111111111111111111111111111111111111
 1
-1388 tabsC dumpTniksA         J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1A
-1388 tabsC dumpTniksA         J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1A
-1388 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] Upd1A
-1388 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] Upd1A
+1391 tabsC dumpTniksA         J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1A
+1391 tabsC dumpTniksA         J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1A
+1391 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] Upd1A
+1391 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] Upd1A
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
    1 Upd1A Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
@@ -1760,43 +1760,43 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  216 Upd1A HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   26.67  
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-1391 tabsC dumpTniksA         J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] Upd1A
-1391 tabsC dumpTniksA         J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1A
-1391 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1A
-1391 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd1A
- 493 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 511 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-2473 tabsC snapshot           SNAP_NAME=tabs.222.RSZC_5.0.png Upd1
- 523 tabsC on_draw            [1 1 1  1 6]   6  1] .snapWhy=Upd1 .snapType=RSZC_5 .snapId=1
-2267 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
-2283 tabsC toggleFlatSharp    sn=3 cn= 0 cc=   3 i=   3 Bb => A# .notes[i].text=A# [1 1    1 4]
+1394 tabsC dumpTniksA         J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] Upd1A
+1394 tabsC dumpTniksA         J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1A
+1394 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1A
+1394 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd1A
+ 496 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 514 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+2476 tabsC snapshot           SNAP_NAME=tabs.228.RSZC_5.0.png Upd1
+ 526 tabsC on_draw            [1 1 1  1 6]   6  1] .snapWhy=Upd1 .snapType=RSZC_5 .snapId=1
+2270 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
+2286 tabsC toggleFlatSharp    sn=3 cn= 0 cc=   3 i=   3 Bb => A# .notes[i].text=A# [1 1    1 4]
  0 Gm+13/D#     Gm+13/D#     #5m3Rb76     830a9  D#A#GFE      Rm3#56b7     0389a  GA#D#EF     
-1681 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=Gm+13/D# chunks=[G m + 13 /D#] len(imap)=6
-1688 tabsC setChordName       BGN [ 0- 5] name=Gm+13/D# chunks=[G m + 13 /D#] chords=<Gm+13/Eb->9
-1693 tabsC setChordName       END [ 0- 5] name=Gm+13/D# chunks=[G m + 13 /D#] chords=<Gm+13/D#->9
-1683 tabsC setChord           [1 1 1  1 6]   6  1] END name=Gm+13/D# chunks=[G m + 13 /D#] len(imap)=6
-2283 tabsC toggleFlatSharp    sn=4 cn= 0 cc=   4 i=   4 Eb => D# .notes[i].text=D# [1 1    1 5]
+1684 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=Gm+13/D# chunks=[G m + 13 /D#] len(imap)=6
+1691 tabsC setChordName       BGN [ 0- 5] name=Gm+13/D# chunks=[G m + 13 /D#] chords=<Gm+13/Eb->9
+1696 tabsC setChordName       END [ 0- 5] name=Gm+13/D# chunks=[G m + 13 /D#] chords=<Gm+13/D#->9
+1686 tabsC setChord           [1 1 1  1 6]   6  1] END name=Gm+13/D# chunks=[G m + 13 /D#] len(imap)=6
+2286 tabsC toggleFlatSharp    sn=4 cn= 0 cc=   4 i=   4 Eb => D# .notes[i].text=D# [1 1    1 5]
  0 Gm+13/D#     Gm+13/D#     #5m3Rb76     830a9  D#A#GFE      Rm3#56b7     0389a  GA#D#EF     
-1681 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=Gm+13/D# chunks=[G m + 13 /D#] len(imap)=6
-1688 tabsC setChordName       BGN [ 0- 5] name=Gm+13/D# chunks=[G m + 13 /D#] chords=<Gm+13/D#->9
-1693 tabsC setChordName       END [ 0- 5] name=Gm+13/D# chunks=[G m + 13 /D#] chords=<Gm+13/D#->9
-1683 tabsC setChord           [1 1 1  1 6]   6  1] END name=Gm+13/D# chunks=[G m + 13 /D#] len(imap)=6
-2295 tabsC checkKS            k=-7 ehs=[D# A#] !~ ks=[Bb Eb Ab Db Gb Cb Fb]
-2295 tabsC checkKS            k=-6 ehs=[D# A#] !~ ks=[Bb Eb Ab Db Gb Cb]
-2295 tabsC checkKS            k=-5 ehs=[D# A#] !~ ks=[Bb Eb Ab Db Gb]
-2295 tabsC checkKS            k=-4 ehs=[D# A#] !~ ks=[Bb Eb Ab Db]
-2295 tabsC checkKS            k=-3 ehs=[D# A#] !~ ks=[Bb Eb Ab]
-2295 tabsC checkKS            k=-2 ehs=[D# A#] !~ ks=[Bb Eb]
-2295 tabsC checkKS            k=-1 ehs=[D# A#] !~ ks=[Bb]
-2295 tabsC checkKS            k= 0 ehs=[D# A#] !~ ks=[]
-2295 tabsC checkKS            k= 1 ehs=[D# A#] !~ ks=[F#]
-2295 tabsC checkKS            k= 2 ehs=[D# A#] !~ ks=[F# C#]
-2295 tabsC checkKS            k= 3 ehs=[D# A#] !~ ks=[F# C# G#]
-2295 tabsC checkKS            k= 4 ehs=[D# A#] ?? ks=[F# C# G# D#]
-2295 tabsC checkKS            k= 5 ehs=[D# A#] <  ks=[F# C# G# D# A#]
-2295 tabsC checkKS            k= 6 ehs=[D# A#] <  ks=[F# C# G# D# A# E#]
-2295 tabsC checkKS            k= 7 ehs=[D# A#] <  ks=[F# C# G# D# A# E# B#]
-2288 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHRP
+1684 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=Gm+13/D# chunks=[G m + 13 /D#] len(imap)=6
+1691 tabsC setChordName       BGN [ 0- 5] name=Gm+13/D# chunks=[G m + 13 /D#] chords=<Gm+13/D#->9
+1696 tabsC setChordName       END [ 0- 5] name=Gm+13/D# chunks=[G m + 13 /D#] chords=<Gm+13/D#->9
+1686 tabsC setChord           [1 1 1  1 6]   6  1] END name=Gm+13/D# chunks=[G m + 13 /D#] len(imap)=6
+2298 tabsC checkKS            k=-7 ehs=[D# A#] !~ ks=[Bb Eb Ab Db Gb Cb Fb]
+2298 tabsC checkKS            k=-6 ehs=[D# A#] !~ ks=[Bb Eb Ab Db Gb Cb]
+2298 tabsC checkKS            k=-5 ehs=[D# A#] !~ ks=[Bb Eb Ab Db Gb]
+2298 tabsC checkKS            k=-4 ehs=[D# A#] !~ ks=[Bb Eb Ab Db]
+2298 tabsC checkKS            k=-3 ehs=[D# A#] !~ ks=[Bb Eb Ab]
+2298 tabsC checkKS            k=-2 ehs=[D# A#] !~ ks=[Bb Eb]
+2298 tabsC checkKS            k=-1 ehs=[D# A#] !~ ks=[Bb]
+2298 tabsC checkKS            k= 0 ehs=[D# A#] !~ ks=[]
+2298 tabsC checkKS            k= 1 ehs=[D# A#] !~ ks=[F#]
+2298 tabsC checkKS            k= 2 ehs=[D# A#] !~ ks=[F# C#]
+2298 tabsC checkKS            k= 3 ehs=[D# A#] !~ ks=[F# C# G#]
+2298 tabsC checkKS            k= 4 ehs=[D# A#] ?? ks=[F# C# G# D#]
+2298 tabsC checkKS            k= 5 ehs=[D# A#] <  ks=[F# C# G# D# A#]
+2298 tabsC checkKS            k= 6 ehs=[D# A#] <  ks=[F# C# G# D# A# E#]
+2298 tabsC checkKS            k= 7 ehs=[D# A#] <  ks=[F# C# G# D# A# E# B#]
+2291 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHRP
 [[-7:-7[Bb Eb Ab Db Gb Cb Fb]
  [-6:-6[Bb Eb Ab Db Gb Cb]
  [-5:-5[Bb Eb Ab Db Gb]
@@ -1835,36 +1835,36 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  333 util  test_1              13  5 [F# C# G# D# A#]
  333 util  test_1              14  6 [F# C# G# D# A# E#]
  333 util  test_1              15  7 [F# C# G# D# A# E# B#]
-2267 tabsC toggleFlatSharp    BGN @ F t1=1 SHRP => t2=0 FLAT
-2283 tabsC toggleFlatSharp    sn=3 cn= 0 cc=   3 i=   3 A# => Bb .notes[i].text=Bb [1 1    1 4]
+2270 tabsC toggleFlatSharp    BGN @ F t1=1 SHRP => t2=0 FLAT
+2286 tabsC toggleFlatSharp    sn=3 cn= 0 cc=   3 i=   3 A# => Bb .notes[i].text=Bb [1 1    1 4]
  0 Gm+13/Eb     Gm+13/Eb     #5m3Rb76     830a9  EbBbGFE      Rm3#56b7     0389a  GBbEbEF     
-1681 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=Gm+13/Eb chunks=[G m + 13 /Eb] len(imap)=6
-1688 tabsC setChordName       BGN [ 0- 5] name=Gm+13/Eb chunks=[G m + 13 /Eb] chords=<Gm+13/D#->9
-1693 tabsC setChordName       END [ 0- 5] name=Gm+13/Eb chunks=[G m + 13 /Eb] chords=<Gm+13/Eb->9
-1683 tabsC setChord           [1 1 1  1 6]   6  1] END name=Gm+13/Eb chunks=[G m + 13 /Eb] len(imap)=6
-2283 tabsC toggleFlatSharp    sn=4 cn= 0 cc=   4 i=   4 D# => Eb .notes[i].text=Eb [1 1    1 5]
+1684 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=Gm+13/Eb chunks=[G m + 13 /Eb] len(imap)=6
+1691 tabsC setChordName       BGN [ 0- 5] name=Gm+13/Eb chunks=[G m + 13 /Eb] chords=<Gm+13/D#->9
+1696 tabsC setChordName       END [ 0- 5] name=Gm+13/Eb chunks=[G m + 13 /Eb] chords=<Gm+13/Eb->9
+1686 tabsC setChord           [1 1 1  1 6]   6  1] END name=Gm+13/Eb chunks=[G m + 13 /Eb] len(imap)=6
+2286 tabsC toggleFlatSharp    sn=4 cn= 0 cc=   4 i=   4 D# => Eb .notes[i].text=Eb [1 1    1 5]
  0 Gm+13/Eb     Gm+13/Eb     #5m3Rb76     830a9  EbBbGFE      Rm3#56b7     0389a  GBbEbEF     
-1681 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=Gm+13/Eb chunks=[G m + 13 /Eb] len(imap)=6
-1688 tabsC setChordName       BGN [ 0- 5] name=Gm+13/Eb chunks=[G m + 13 /Eb] chords=<Gm+13/Eb->9
-1693 tabsC setChordName       END [ 0- 5] name=Gm+13/Eb chunks=[G m + 13 /Eb] chords=<Gm+13/Eb->9
-1683 tabsC setChord           [1 1 1  1 6]   6  1] END name=Gm+13/Eb chunks=[G m + 13 /Eb] len(imap)=6
-2295 tabsC checkKS            k=-7 ehs=[Bb Eb] <  ks=[Bb Eb Ab Db Gb Cb Fb]
-2295 tabsC checkKS            k=-6 ehs=[Bb Eb] <  ks=[Bb Eb Ab Db Gb Cb]
-2295 tabsC checkKS            k=-5 ehs=[Bb Eb] <  ks=[Bb Eb Ab Db Gb]
-2295 tabsC checkKS            k=-4 ehs=[Bb Eb] <  ks=[Bb Eb Ab Db]
-2295 tabsC checkKS            k=-3 ehs=[Bb Eb] <  ks=[Bb Eb Ab]
-2295 tabsC checkKS            k=-2 ehs=[Bb Eb] ~~ ks=[Bb Eb]
-2295 tabsC checkKS            k=-1 ehs=[Bb Eb] >  ks=[Bb]
-2295 tabsC checkKS            k= 0 ehs=[Bb Eb] !~ ks=[]
-2295 tabsC checkKS            k= 1 ehs=[Bb Eb] !~ ks=[F#]
-2295 tabsC checkKS            k= 2 ehs=[Bb Eb] !~ ks=[F# C#]
-2295 tabsC checkKS            k= 3 ehs=[Bb Eb] !~ ks=[F# C# G#]
-2295 tabsC checkKS            k= 4 ehs=[Bb Eb] !~ ks=[F# C# G# D#]
-2295 tabsC checkKS            k= 5 ehs=[Bb Eb] !~ ks=[F# C# G# D# A#]
-2295 tabsC checkKS            k= 6 ehs=[Bb Eb] !~ ks=[F# C# G# D# A# E#]
-2295 tabsC checkKS            k= 7 ehs=[Bb Eb] !~ ks=[F# C# G# D# A# E# B#]
-2297 tabsC checkKS            KeySiG: k=-2 ehs=[Bb Eb] ~~ ks=[Bb Eb]
-2288 tabsC toggleFlatSharp    END @ F t1=1 SHRP => t2=0 FLAT
+1684 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=Gm+13/Eb chunks=[G m + 13 /Eb] len(imap)=6
+1691 tabsC setChordName       BGN [ 0- 5] name=Gm+13/Eb chunks=[G m + 13 /Eb] chords=<Gm+13/Eb->9
+1696 tabsC setChordName       END [ 0- 5] name=Gm+13/Eb chunks=[G m + 13 /Eb] chords=<Gm+13/Eb->9
+1686 tabsC setChord           [1 1 1  1 6]   6  1] END name=Gm+13/Eb chunks=[G m + 13 /Eb] len(imap)=6
+2298 tabsC checkKS            k=-7 ehs=[Bb Eb] <  ks=[Bb Eb Ab Db Gb Cb Fb]
+2298 tabsC checkKS            k=-6 ehs=[Bb Eb] <  ks=[Bb Eb Ab Db Gb Cb]
+2298 tabsC checkKS            k=-5 ehs=[Bb Eb] <  ks=[Bb Eb Ab Db Gb]
+2298 tabsC checkKS            k=-4 ehs=[Bb Eb] <  ks=[Bb Eb Ab Db]
+2298 tabsC checkKS            k=-3 ehs=[Bb Eb] <  ks=[Bb Eb Ab]
+2298 tabsC checkKS            k=-2 ehs=[Bb Eb] ~~ ks=[Bb Eb]
+2298 tabsC checkKS            k=-1 ehs=[Bb Eb] >  ks=[Bb]
+2298 tabsC checkKS            k= 0 ehs=[Bb Eb] !~ ks=[]
+2298 tabsC checkKS            k= 1 ehs=[Bb Eb] !~ ks=[F#]
+2298 tabsC checkKS            k= 2 ehs=[Bb Eb] !~ ks=[F# C#]
+2298 tabsC checkKS            k= 3 ehs=[Bb Eb] !~ ks=[F# C# G#]
+2298 tabsC checkKS            k= 4 ehs=[Bb Eb] !~ ks=[F# C# G# D#]
+2298 tabsC checkKS            k= 5 ehs=[Bb Eb] !~ ks=[F# C# G# D# A#]
+2298 tabsC checkKS            k= 6 ehs=[Bb Eb] !~ ks=[F# C# G# D# A# E#]
+2298 tabsC checkKS            k= 7 ehs=[Bb Eb] !~ ks=[F# C# G# D# A# E# B#]
+2300 tabsC checkKS            KeySiG: k=-2 ehs=[Bb Eb] ~~ ks=[Bb Eb]
+2291 tabsC toggleFlatSharp    END @ F t1=1 SHRP => t2=0 FLAT
 [[-7:-7[Bb Eb Ab Db Gb Cb Fb]
  [-6:-6[Bb Eb Ab Db Gb Cb]
  [-5:-5[Bb Eb Ab Db Gb]
@@ -1906,8 +1906,8 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
-  75 util  dumpStack          10 tabsC      2513 quit                 .log(.QUIT_BGN, pfx=0, file=2)   ;   .dumpStack(inspect.stack())    ;   .log(.QUIT, pfx=0, file=2)
-  75 util  dumpStack           9 tabsC      1753 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
+  75 util  dumpStack          10 tabsC      2516 quit                 .log(.QUIT_BGN, pfx=0, file=2)   ;   .dumpStack(inspect.stack())    ;   .log(.QUIT, pfx=0, file=2)
+  75 util  dumpStack           9 tabsC      1756 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
   75 util  dumpStack           8 event       415 dispatch_event       if getattr(self, event_type)(*args):
   75 util  dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
   75 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
@@ -1915,16 +1915,16 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   75 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
   75 util  dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
   75 util  dumpStack           2 __init__    107 run                  event_loop.run()
-  75 util  dumpStack           1 tabsC      2658 main                 ret = pyglet.app.run()
-  75 util  dumpStack           0 tabsC      2662 <module>             main()
+  75 util  dumpStack           1 tabsC      2661 main                 ret = pyglet.app.run()
+  75 util  dumpStack           0 tabsC      2665 <module>             main()
   76 util  dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-2514 tabsC quit               J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] @^Q
-2514 tabsC quit               J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
-2514 tabsC quit               LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
-2514 tabsC quit               END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] @^Q
+2517 tabsC quit               J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] @^Q
+2517 tabsC quit               J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
+2517 tabsC quit               LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
+2517 tabsC quit               END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] @^Q
   75 util  dumpStack          12 util         10 <module>             MAX_STACK_FRAME  = inspect.stack()
   75 util  dumpStack          11 <frozen importlib   241 _call_with_frames_removed 
   75 util  dumpStack          10 <frozen importlib   883 exec_module          
@@ -1939,7 +1939,7 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   75 util  dumpStack           1 <frozen importlib  1027 _find_and_load       
   75 util  dumpStack           0 tabsC        12 <module>             import chord, util
   76 util  dumpStack          MAX_STACK_DEPTH= 0
-2516 tabsC quit               BGN @^Q error=0 save=0
+2519 tabsC quit               BGN @^Q error=0 save=0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  120 tabsC dumpArgs           [f]     .DATA_FNAME=testC.4.2.10.dat
  121 tabsC dumpArgs           [n]               n=[1 1 3 10 6]
@@ -1970,9 +1970,9 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  146 tabsC dumpArgs           [L]             .LL=0
  147 tabsC dumpArgs           [S]             .SS=[0 1 3]
  148 tabsC dumpArgs           [Z]             .ZZ=[]
- 493 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 501 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-1572 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels @^Q
+ 496 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 504 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+1575 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels @^Q
    1p1   1
    1l1   1
    3s3   111
@@ -1982,7 +1982,7 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   60K60  111111111111111111111111111111111111111111111111111111111111
    1h1   1
  216t216           10        20        30        40        50        60        70        80        90        100       110       120       130       140       150       160       170       180       190       200       210
-1373 tabsC dumpIdmKeys         216[Page1 Line1 Sect1 Colm1 Tab 1 Tab 2 Tab 3 Tab 4 Tab 5 Tab 6 Colm2 Tab 7 Tab 8 Tab 9 Tab 10 Tab 11 Tab 12 Colm3 Tab 13 Tab 14 Tab 15 Tab 16 Tab 17 Tab 18 Colm4 Tab 19 Tab 20 Tab 21 Tab 22 Tab 23 Tab 24 Colm5 Tab 25 Tab 26 Tab 27 Tab 28 Tab 29 Tab 30 Colm6 Tab 31 Tab 32 Tab 33 Tab 34 Tab 35 Tab 36 Colm7 Tab 37 Tab 38 Tab 39 Tab 40 Tab 41 Tab 42 Colm8 Tab 43 Tab 44 Tab 45 Tab 46 Tab 47 Tab 48 Colm9 Tab 49 Tab 50 Tab 51 Tab 52 Tab 53 Tab 54 Colm10 Tab 55 Tab 56 Tab 57 Tab 58 Tab 59 Tab 60 Sect2 Colm11 Note1 Note2 Note3 Note4 Note5 Note6 Colm12 Note7 Note8 Note9 Note10 Note11 Note12 Colm13 Note13 Note14 Note15 Note16 Note17 Note18 Colm14 Note19 Note20 Note21 Note22 Note23 Note24 Colm15 Note25 Note26 Note27 Note28 Note29 Note30 Colm16 Note31 Note32 Note33 Note34 Note35 Note36 Colm17 Note37 Note38 Note39 Note40 Note41 Note42 Colm18 Note43 Note44 Note45 Note46 Note47 Note48 Colm19 Note49 Note50 Note51 Note52 Note53 Note54 Colm20 Note55 Note56 Note57 Note58 Note59 Note60 Sect3 Colm21 Kord1 Kord2 Kord3 Kord4 Kord5 Kord6 Colm22 Kord7 Kord8 Kord9 Kord10 Kord11 Kord12 Colm23 Kord13 Kord14 Kord15 Kord16 Kord17 Kord18 Colm24 Kord19 Kord20 Kord21 Kord22 Kord23 Kord24 Colm25 Kord25 Kord26 Kord27 Kord28 Kord29 Kord30 Colm26 Kord31 Kord32 Kord33 Kord34 Kord35 Kord36 Colm27 Kord37 Kord38 Kord39 Kord40 Kord41 Kord42 Colm28 Kord43 Kord44 Kord45 Kord46 Kord47 Kord48 Colm29 Kord49 Kord50 Kord51 Kord52 Kord53 Kord54 Colm30 Kord55 Kord56 Kord57 Kord58 Kord59 Kord60 HCrs1]
+1376 tabsC dumpIdmKeys         216[Page1 Line1 Sect1 Colm1 Tab 1 Tab 2 Tab 3 Tab 4 Tab 5 Tab 6 Colm2 Tab 7 Tab 8 Tab 9 Tab 10 Tab 11 Tab 12 Colm3 Tab 13 Tab 14 Tab 15 Tab 16 Tab 17 Tab 18 Colm4 Tab 19 Tab 20 Tab 21 Tab 22 Tab 23 Tab 24 Colm5 Tab 25 Tab 26 Tab 27 Tab 28 Tab 29 Tab 30 Colm6 Tab 31 Tab 32 Tab 33 Tab 34 Tab 35 Tab 36 Colm7 Tab 37 Tab 38 Tab 39 Tab 40 Tab 41 Tab 42 Colm8 Tab 43 Tab 44 Tab 45 Tab 46 Tab 47 Tab 48 Colm9 Tab 49 Tab 50 Tab 51 Tab 52 Tab 53 Tab 54 Colm10 Tab 55 Tab 56 Tab 57 Tab 58 Tab 59 Tab 60 Sect2 Colm11 Note1 Note2 Note3 Note4 Note5 Note6 Colm12 Note7 Note8 Note9 Note10 Note11 Note12 Colm13 Note13 Note14 Note15 Note16 Note17 Note18 Colm14 Note19 Note20 Note21 Note22 Note23 Note24 Colm15 Note25 Note26 Note27 Note28 Note29 Note30 Colm16 Note31 Note32 Note33 Note34 Note35 Note36 Colm17 Note37 Note38 Note39 Note40 Note41 Note42 Colm18 Note43 Note44 Note45 Note46 Note47 Note48 Colm19 Note49 Note50 Note51 Note52 Note53 Note54 Colm20 Note55 Note56 Note57 Note58 Note59 Note60 Sect3 Colm21 Kord1 Kord2 Kord3 Kord4 Kord5 Kord6 Colm22 Kord7 Kord8 Kord9 Kord10 Kord11 Kord12 Colm23 Kord13 Kord14 Kord15 Kord16 Kord17 Kord18 Colm24 Kord19 Kord20 Kord21 Kord22 Kord23 Kord24 Colm25 Kord25 Kord26 Kord27 Kord28 Kord29 Kord30 Colm26 Kord31 Kord32 Kord33 Kord34 Kord35 Kord36 Colm27 Kord37 Kord38 Kord39 Kord40 Kord41 Kord42 Colm28 Kord43 Kord44 Kord45 Kord46 Kord47 Kord48 Colm29 Kord49 Kord50 Kord51 Kord52 Kord53 Kord54 Colm30 Kord55 Kord56 Kord57 Kord58 Kord59 Kord60 HCrs1]
 1
 1
 111
@@ -1991,10 +1991,10 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
 111111111111111111111111111111111111111111111111111111111111
 111111111111111111111111111111111111111111111111111111111111
 1
-1388 tabsC dumpTniksA         J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^QA
-1388 tabsC dumpTniksA         J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^QA
-1388 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] @^QA
-1388 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] @^QA
+1391 tabsC dumpTniksA         J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^QA
+1391 tabsC dumpTniksA         J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^QA
+1391 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] @^QA
+1391 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] @^QA
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
    1 @^QA  Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
@@ -2215,17 +2215,17 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  216 @^QA  HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   26.67  
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-1391 tabsC dumpTniksA         J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] @^QA
-1391 tabsC dumpTniksA         J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^QA
-1391 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^QA
-1391 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] @^QA
- 493 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 511 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
- 657 tabsC A_transposeData    BGN ( 1x1x10x6 ) dump=1
- 614 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
+1394 tabsC dumpTniksA         J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] @^QA
+1394 tabsC dumpTniksA         J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^QA
+1394 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^QA
+1394 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] @^QA
+ 496 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 514 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 660 tabsC A_transposeData    BGN ( 1x1x10x6 ) dump=1
+ 617 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
 [[[06086- ------ ------ ------ ------ ------ ------ ------ ------ ------]]]
- 619 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=1
- 696 tabsC dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt=Colm 
+ 622 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=1
+ 699 tabsC dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt=Colm 
 Page 1
 Colm Line 1
   1 06086- 
@@ -2238,16 +2238,16 @@ Colm Line 1
   8 ------ 
   9 ------ 
  10 ------ 
- 704 tabsC dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
- 660 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
- 661 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
+ 707 tabsC dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
+ 663 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
+ 664 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
 06086- ------ ------ ------ ------ ------ ------ ------ ------ ------
 
 0--------- 6--------- 0--------- 8--------- 6--------- ----------
- 614 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
+ 617 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
 [[[06086- ------ ------ ------ ------ ------ ------ ------ ------ ------]]]
- 619 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=0
- 678 tabsC dumpDataHorz       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0
+ 622 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=0
+ 681 tabsC dumpDataHorz       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0
 Page 1 Line 1
          1
 1234567890
@@ -2259,8 +2259,8 @@ Page 1 Line 1
 6---------
 ----------
 
- 691 tabsC dumpDataHorz       END ( 1x1x6x10 ) lc=1 ll=1 i=0
- 673 tabsC A_transposeData    END ( 1x1x6x10 ) dump=1
+ 694 tabsC dumpDataHorz       END ( 1x1x6x10 ) lc=1 ll=1 i=0
+ 676 tabsC A_transposeData    END ( 1x1x6x10 ) dump=1
   0 0 0 Gm+13/Eb     Gm+13/Eb     #5m3Rb76     830a9  EbBbGFE      Rm3#56b7     0389a  GBbEbEF     
   0 0 1 EoMb9/Eb     EoMb9/Eb     7b5m3b2R     b6310  EbBbGFE      Rb2m3b57     0136b  EFGBbEb     
   0 0 2 F#13s2s4/Eb  F#13s2s4/Eb  b742R7       a520b  EbBbGFE      R24b77       025ab  FGBbEbE     
@@ -2269,11 +2269,11 @@ Page 1 Line 1
   0 0 Gm+13/Eb     #5m3Rb76     EoMb9/Eb     7b5m3b2R     F#13s2s4/Eb  b742R7       Bb#46s4/Eb   4R65b5       Ebb22        R5M32b2      
   0 0Gm+13/Eb     830a9 EoMb9/Eb     b6310 F#13s2s4/Eb  a520b Bb#46s4/Eb   50976 Ebb22        07421 
   0 0 830a9  b6310  a520b  50976  07421           #5m3Rb76     7b5m3b2R     b742R7       4R65b5       R5M32b2      
-2473 tabsC snapshot           SNAP_NAME=tabs.222.QUIT.1.png quit error=0 save=0
-2524 tabsC quit               END @^Q error=0 save=0
+2476 tabsC snapshot           SNAP_NAME=tabs.228.QUIT.1.png quit error=0 save=0
+2527 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2539 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.222.log
+2542 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.228.log
  113 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 114 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.222.log)
- 116 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.222.log ###
-2541 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
+ 114 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.228.log)
+ 116 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.228.log ###
+2544 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
