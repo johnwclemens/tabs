@@ -475,9 +475,9 @@ class Tabs(pyglet.window.Window):
 #    @staticmethod
 #    def dumpObj( obj,  name, why=''): slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     def dumpFreqsHdr(self):
-        self.log(f'index{fmtl([ i for i in range(Note.MAX_IDX) ], w="5")}', pfx=0)
-        self.log(f'sharp{fmtl(list(util.SHRPS),                  w="5")}', pfx=0)
-        self.log(f' flat{fmtl(list(util.FLATS),                  w="5")}', pfx=0)
+        self.log(f'index{fmtl([ i+1 for i in range(Note.MAX_IDX) ],  w="5")}',  pfx=0)
+        self.log(f'sharp{fmtl(list(util.SHRPS),                      w="5")}',  pfx=0)
+        self.log(f' flat{fmtl(list(util.FLATS),                      w="5")}',  pfx=0)
     def dumpFreqs(self, r=440):
         f = FRQS if r==440 else FRQS2  ;  self.log(f'{r}A {fmtl(f, w="5.0f")}', pfx=0)
     def dumpJs(  self, why, w=None, d=1): b = B*12 if self.OIDS else ''  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
