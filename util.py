@@ -22,19 +22,25 @@ STFILT = ['log', 'tlog', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap',
 def init(file, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
     slog('BGN')
-    slog(f'{B*15}{len(Note.INDICES):3}    INDICES', pfx=0)   ;   slog(f'{fmtm(Note.INDICES)}', pfx=0)
-    slog(f'{B*15}{len(FNAMES):3}    FNAMES', pfx=0)          ;   slog(f'{fmtl(FNAMES)}'      , pfx=0)
-    slog(f'{B*15}{len(SNAMES):3}    SNAMES', pfx=0)          ;   slog(f'{fmtl(SNAMES)}'      , pfx=0)
-    slog(f'{B*15}{len(KeySig.FO):3}    FO', pfx=0)           ;   slog(f'{fmtm(KeySig.FO)}'   , pfx=0)
-    slog(f'{B*15}{len(KeySig.SO):3}    SO', pfx=0)           ;   slog(f'{fmtm(KeySig.SO)}'   , pfx=0)
-    slog(f'{B*15}{len(KeySig.KS):3}    KS', pfx=0)           ;   slog(f'{fmtm(KeySig.KS)}'   , pfx=0)
+    slog(f'{B*15}{len(Note.F2S):3}    F2S', pfx=0)   ;   slog(f'{fmtm(Note.F2S,  d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.S2F):3}    S2F', pfx=0)   ;   slog(f'{fmtm(Note.S2F,  d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.I2F):3}    I2F', pfx=0)   ;   slog(f'{fmtm(Note.I2F,  d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.I2S):3}    I2S', pfx=0)   ;   slog(f'{fmtm(Note.I2S,  d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.N2I):3}    N2I', pfx=0)   ;   slog(f'{fmtm(Note.N2I,  d1="")}',  pfx=0)
+    slog(f'{B*15}{len(FLATS):3}    FLATS',  pfx=0)   ;   slog(f'{fmtl(FLATS, w="3", d1="")}', pfx=0)
+    slog(f'{fmtl( [ f"{i + 1:3}" for i in range(Note.MAX_IDX - 1) ],             d1="")}',    pfx=0)
+    slog(f'{fmtl(SHRPS, w="3", d1="")}', pfx=0)   ;   slog(f'{B*15}{len(SHRPS):3}    SHRPS',  pfx=0)
+#    slog(f'{B*15}{len(SHRPS):3}    SHRPS',  pfx=0)   ;   slog(f'{fmtl(SHRPS, w="3", d1="")}', pfx=0)
+    slog(f'{B*15}{len(KeySig.FO):3}    FO', pfx=0)   ;   slog(f'{fmtm(KeySig.FO, d1="")}', pfx=0)
+    slog(f'{B*15}{len(KeySig.SO):3}    SO', pfx=0)   ;   slog(f'{fmtm(KeySig.SO, d1="")}', pfx=0)
+    slog(f'{B*15}{len(KeySig.KS):3}    KS', pfx=0)   ;   slog(f'{fmtm(KeySig.KS, d1="")}', pfx=0)
     slog('END')
 
 def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
     lts = (list, tuple, set, frozenset)  ;  dts = (int, float, str)
     assert type(lst) in lts, f'{type(lst)=} {lts=}'
-    if d1 == ''  :  d2 = ''
+    if d1=='':   d2 = ''
     w = w if w else ''   ;   t = ''
     sl = '-' if ll is not None and ll<0 else ' ' if ll is not None and ll>=0 else ''
     s = f'{sl}{len(lst)}' if ll is not None else ''
@@ -53,6 +59,7 @@ def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
     return s + d1 + t + d2
 
 def fmtm(m, w=1, d0=':', d1='[', d2=']', ll=None):
+    if d1=='':   d2 = ''
     t = ''   ;   u = '>'
     for k, v in m.items():
         if   type(v) in (list, tuple, set):         t += f'{d1}{k:{u}{w}}{d0}{fmtl(v, w, ll=k if ll==-1 else ll)}{d2} '
@@ -181,15 +188,15 @@ class Note(object):
 #   S2F2       = {'B#':'C' , 'C#':'Db', 'D#':'Eb',            'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb'}
 #   F2S2       = {           'Db':'C#', 'Eb':'D#', 'Fb':'E' ,            'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B'  }
 
-    FLATS      = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'  }
-    SHRPS      = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
-#   FLATS2     = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
-#   SHRPS2     = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
+    I2F      = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'  }
+    I2S      = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
+#   I2F2     = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
+#   I2S2     = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
 
-    INDICES = {         'C' :0, 'C#':1, 'Db':1, 'D': 2, 'D#':3, 'Eb':3, 'E' :4,                 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11 }
-#   INDICES = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' : 11 }
+    N2I = {         'C' :0, 'C#':1, 'Db':1, 'D': 2, 'D#':3, 'Eb':3, 'E' :4,                 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11 }
+#   N2I = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' : 11 }
     MAX_IDX = 100
-    TONES = [FLATS, SHRPS]
+    TONES = [I2F, I2S]
 #    OLD_INDICES = {#'C' : 0, 'C#' : 1, 'Db' : 1, 'D' : 2, 'D#' : 3, 'Eb' : 3, 'E' : 4, 'F' : 5, 'F#' : 6, 'Gb' : 6, 'G' : 7, 'G#' : 8, 'Ab' : 8, 'A' : 9, 'A#' :10, 'Bb' :10, 'B' :11,
 #                'C0': 0, 'C#0': 1, 'Db0': 1, 'D0': 2, 'D#0': 3, 'Eb0': 3, 'E0': 4, 'F0': 5, 'F#0': 6, 'Gb0': 6, 'G0': 7, 'G#0': 8, 'Ab0': 8, 'A0': 9, 'A#0':10, 'Bb0':10, 'B0':11,
 #                'C1':12, 'C#1':13, 'Db1':13, 'D1':14, 'D#1':15, 'Eb1':15, 'E1':16, 'F1':17, 'F#1':18, 'Gb1':18, 'G1':19, 'G#1':20, 'Ab1':20, 'A1':21, 'A#1':22, 'Bb1':22, 'B1':23,
@@ -200,11 +207,15 @@ class Note(object):
 #                'C6':72, 'C#6':73, 'Db6':73, 'D6':74, 'D#6':75, 'Eb6':75, 'E6':76, 'F6':77, 'F#6':78, 'Gb6':78, 'G6':79, 'G#6':80, 'Ab6':80, 'A6':81, 'A#6':82, 'Bb6':82, 'B6':83,
 #                'C7':84, 'C#7':85, 'Db7':85, 'D7':86, 'D#7':87, 'Eb7':87, 'E7':88, 'F7':89, 'F#7':90, 'Gb7':90, 'G7':91, 'G#7':92, 'Ab7':92, 'A7':93, 'A#7':94, 'Bb7':94, 'B7':95,
 #                'C8':96 } # For simplicity omit double flats and double sharps and other redundant enharmonic note names e.g. Abb, C##, Cb, B#, Fb, E# etc...
+#                 99    FLATS
+# C0 Db0 D0 Eb0 E0 F0 Gb0 G0 Ab0 A0 Bb0 B0 C1 Db1 D1 Eb1 E1 F1 Gb1 G1 Ab1 A1 Bb1 B1 C2 Db2 D2 Eb2 E2 F2 Gb2 G2 Ab2 A2 Bb2 B2 C3 Db3 D3 Eb3 E3 F3 Gb3 G3 Ab3 A3 Bb3 B3 C4 Db4 D4 Eb4 E4 F4 Gb4 G4 Ab4 A4 Bb4 B4 C5 Db5 D5 Eb5 E5 F5 Gb5 G5 Ab5 A5 Bb5 B5 C6 Db6 D6 Eb6 E6 F6 Gb6 G6 Ab6 A6 Bb6 B6 C7 Db7 D7 Eb7 E7 F7 Gb7 G7 Ab7 A7 Bb7 B7 C8 Db8 D8
+#                 99    SHRPS
+# C0 C#0 D0 D#0 E0 F0 F#0 G0 G#0 A0 A#0 B0 C1 C#1 D1 D#1 E1 F1 F#1 G1 G#1 A1 A#1 B1 C2 C#2 D2 D#2 E2 F2 F#2 G2 G#2 A2 A#2 B2 C3 C#3 D3 D#3 E3 F3 F#3 G3 G#3 A3 A#3 B3 C4 C#4 D4 D#4 E4 F4 F#4 G4 G#4 A4 A#4 B4 C5 C#5 D5 D#5 E5 F5 F#5 G5 G#5 A5 A#5 B5 C6 C#6 D6 D#6 E6 F6 F#6 G6 G#6 A6 A#6 B6 C7 C#7 D7 D#7 E7 F7 F#7 G7 G#7 A7 A#7 B7 C8 C#8 D8
 
     @staticmethod
     def indices(k, o=0):
         key = k[:len(k)-1] if o else k
-        i = Note.INDICES[key]
+        i = Note.N2I[key]
         return i
 
     @staticmethod
@@ -227,10 +238,10 @@ class Note(object):
     def indexI(i, d):
         return (i + d) % NTONES
 ########################################################################################################################################################################################################
-#FNAMES   =[ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_IDX]
-#SNAMES   =[ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Note.MAX_IDX]
-FNAMES   = [ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_IDX-1]
-SNAMES   = [ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Note.MAX_IDX-1]
+#FLATS   =[ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_IDX]
+#SHRPS   =[ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Note.MAX_IDX]
+FLATS   = [ f'{k}{n}' for n in range(9) for k in Note.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_IDX-1]
+SHRPS   = [ f'{k}{n}' for n in range(9) for k in Note.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Note.MAX_IDX-1]
 
 def FREQ( index): return 440 * pow(pow(2, 1/NTONES), index - 57)
 def FREQ2(index): return 432 * pow(pow(2, 1/NTONES), index - 57)
