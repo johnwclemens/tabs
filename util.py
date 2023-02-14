@@ -27,13 +27,17 @@ def init(file, oid):
     slog(f'{B*15}{len(Note.I2F):3}    I2F', pfx=0)   ;   slog(f'{fmtm(Note.I2F,  d1="")}',  pfx=0)
     slog(f'{B*15}{len(Note.I2S):3}    I2S', pfx=0)   ;   slog(f'{fmtm(Note.I2S,  d1="")}',  pfx=0)
     slog(f'{B*15}{len(Note.N2I):3}    N2I', pfx=0)   ;   slog(f'{fmtm(Note.N2I,  d1="")}',  pfx=0)
-    slog(f'{B*15}{len(FLATS):3}    FLATS',  pfx=0)   ;   slog(f'{fmtl(FLATS, w="3", d1="")}', pfx=0)
+    slog(f'{B*15}{len(FLATS):3}    FLATS',  pfx=0)
+    slog(f'{fmtl(FLATS, w="3", d1="")}',    pfx=0)
     slog(f'{fmtl( [ f"{i + 1:3}" for i in range(Note.MAX_IDX) ],             d1="")}',    pfx=0)
-    slog(f'{fmtl(SHRPS, w="3", d1="")}', pfx=0)   ;   slog(f'{B*15}{len(SHRPS):3}    SHRPS',  pfx=0)
-#    slog(f'{B*15}{len(SHRPS):3}    SHRPS',  pfx=0)   ;   slog(f'{fmtl(SHRPS, w="3", d1="")}', pfx=0)
-    slog(f'{B*15}{len(KeySig.FO):3}    FO', pfx=0)   ;   slog(f'{fmtm(KeySig.FO, d1="")}', pfx=0)
-    slog(f'{B*15}{len(KeySig.SO):3}    SO', pfx=0)   ;   slog(f'{fmtm(KeySig.SO, d1="")}', pfx=0)
-    slog(f'{B*15}{len(KeySig.KS):3}    KS', pfx=0)   ;   slog(f'{fmtm(KeySig.KS, d1="")}', pfx=0)
+    slog(f'{fmtl(SHRPS, w="3", d1="")}',    pfx=0)
+    slog(f'{B*15}{len(SHRPS):3}    SHRPS',  pfx=0)
+    slog(f'{B*15}{len(KeySig.FO):3}    FO', pfx=0)   ;   slog(f'{fmtm(KeySig.FO, w=3, d1="")}', pfx=0)
+    slog(f'{B*15}{len(KeySig.SO):3}    SO', pfx=0)   ;   slog(f'{fmtm(KeySig.SO, w=3, d1="")}', pfx=0)
+    slog(f'{B*15}{len(KeySig.KS):3}    KS', pfx=0)   ;   slog(f'{fmtm(KeySig.KS, w=2, d1="")}', pfx=0)
+    for i in range(len(Note.TONES)):
+        slog(f'{B * 15}{len(Note.TONES[i]):3}    TONES[{Note.TYPES[i]}]', pfx=0)
+        slog(f'{fmtm(Note.TONES[i], w=2, d1="")}', pfx=0)
     slog('END')
 
 def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
