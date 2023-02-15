@@ -264,48 +264,7 @@ def FREQ2(index): return 432 * pow(pow(2, 1/NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(Note.MAX_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(Note.MAX_IDX) ]
 
-def OLD__initO():
-    _, j, m, iv, iw = [], 7, 'F', '4', 0
-    for i in range(-j, j+1, 1):
-        t = 0 if i < 0 else 1
-        if i==0:   m, iv = 'B', '5'  ;  continue
-        n = Note.noteIv(m, iv)
-        p = (Note.indices(n, 0) - iw) % NTONES
-        q = Note.getName2(p, t=t)
-        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
-        _.append(q)   ;   m = n
-    return _
-def OLD__init1(j=7, m='F#', iv='5', t=1):
-    _ = []  ;  k = 1 if t else -1  ;  j *= k
-    for i in range(k, j+k, k):
-        _.append(m)
-        n = Note.noteIv(m, iv)
-        p = Note.indices(n, 0) % NTONES
-        q = Note.getName2(p, t=t)
-        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
-        m = q
-    return _
-def OLD__initKS(j=7, m='F#', iv='5', t=1):
-    _ = {}  ;  k = 1 if t else -1  ;  j *= k
-    for i in range(k, j+k, k):
-        _[m] = i
-        n = Note.noteIv(m, iv)
-        p = Note.indices(n, 0) % NTONES
-        q = Note.getName2(p, t=t)
-        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
-        m = q
-    return _
-def initKSA(j=7, m='F#', iv='5', t=1):
-    _ = {}  ;  k = 1 if t else -1  ;  j *= k
-    for i in range(k, j+k, k):
-        _[m] = i
-        n = Note.noteIv(m, iv)
-        p = Note.indices(n, 0) % NTONES
-        q = Note.getName2(p, t=t)
-        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
-        m = q
-    return _
-def initKS(j=7, m='F#', iv='5', t=1):
+def initKS(j=7, m='B#', iv='4', t=1):
     _ = {}  ;  a = 1 if t else -j  ;  b = j+1 if t else 0
     for i in range(a, b):
         _[m] = i
