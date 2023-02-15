@@ -200,8 +200,8 @@ class Note(object):
     I2F2     = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
     I2S2     = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
 
-    N2I = {         'C' :0, 'C#':1, 'Db':1, 'D': 2, 'D#':3, 'Eb':3, 'E' :4,                 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11 }
-#   N2I = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' : 11 }
+#   N2I = {         'C' :0, 'C#':1, 'Db':1, 'D': 2, 'D#':3, 'Eb':3, 'E' :4,                 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11 }
+    N2I = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' : 11 }
     MAX_IDX = 10 * NTONES + 1
     I2N  = [I2F,  I2S]
     I2N2 = [I2F2, I2S2]
@@ -264,7 +264,7 @@ def FREQ2(index): return 432 * pow(pow(2, 1/NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(Note.MAX_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(Note.MAX_IDX) ]
 
-def initO():
+def OLD__initO():
     _, j, m, iv, iw = [], 7, 'F', '4', 0
     for i in range(-j, j+1, 1):
         t = 0 if i < 0 else 1
@@ -275,16 +275,61 @@ def initO():
         slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
         _.append(q)   ;   m = n
     return _
+def OLD__init1(j=7, m='F#', iv='5', t=1):
+    _ = []  ;  k = 1 if t else -1  ;  j *= k
+    for i in range(k, j+k, k):
+        _.append(m)
+        n = Note.noteIv(m, iv)
+        p = Note.indices(n, 0) % NTONES
+        q = Note.getName2(p, t=t)
+        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
+        m = q
+    return _
+def OLD__initKS(j=7, m='F#', iv='5', t=1):
+    _ = {}  ;  k = 1 if t else -1  ;  j *= k
+    for i in range(k, j+k, k):
+        _[m] = i
+        n = Note.noteIv(m, iv)
+        p = Note.indices(n, 0) % NTONES
+        q = Note.getName2(p, t=t)
+        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
+        m = q
+    return _
+def initKSA(j=7, m='F#', iv='5', t=1):
+    _ = {}  ;  k = 1 if t else -1  ;  j *= k
+    for i in range(k, j+k, k):
+        _[m] = i
+        n = Note.noteIv(m, iv)
+        p = Note.indices(n, 0) % NTONES
+        q = Note.getName2(p, t=t)
+        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
+        m = q
+    return _
+def initKS(j=7, m='F#', iv='5', t=1):
+    _ = {}  ;  a = 1 if t else -j  ;  b = j+1 if t else 0
+    for i in range(a, b):
+        _[m] = i
+        n = Note.noteIv(m, iv)
+        p = Note.indices(n, 0) % NTONES
+        q = Note.getName2(p, t=t)
+        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
+        m = q
+    return _
 ########################################################################################################################################################################################################
+
 class KeySig(object):
-#    def SKS(self): pass
     FO  = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1}
     SO  = {'F#': 1, 'C#': 2, 'G#': 3, 'D#': 4, 'A#': 5, 'E#': 6, 'B#': 7}
-    foo = initO()
-    KS  =  dict()   ;   KO = dict(FO)  ;  KO.update(SO)  ;   N = len(FO)
+    SO2 = initKS()
+    FO2 = initKS(m='Bb', iv='4', t=0)
+    KO  = dict(FO)   ;  KO.update(SO)  ;  KS  =  dict()  ;   N = len(FO)
+    KO2 = dict(FO2)  ;  KO2.update(SO2)
     for _ in range(-N, N+1, 1):
         O = FO  if _ < 0 else SO    ;   KS[_] = list(O.keys())[:abs(_)]
-    slog(fmtm(FO))  ;  slog(fmtm(SO, w=2))  ;  slog(fmtm(KO, w=2))  ;  slog(fmtm(KS, w=2))
+    slog(f'FO ={fmtm(FO, w=2, d1="")}')  ;  slog(f'FO2={fmtm(FO2, w=2, d1="")}')
+    slog(f'SO ={fmtm(SO, w=2, d1="")}')  ;  slog(f'SO2={fmtm(SO2, w=2, d1="")}')
+    slog(f'KO ={fmtm(KO, w=2, d1="")}')  ;  slog(f'KO2={fmtm(KO2, w=2, d1="")}')
+    slog(f'KS ={fmtm(KS, w=2, d1="")}')
     ########################################################################################################################################################################################################
     def __init__(self, k=0):
         self.k  = k
