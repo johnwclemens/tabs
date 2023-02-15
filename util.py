@@ -22,22 +22,25 @@ STFILT = ['log', 'tlog', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap',
 def init(file, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
     slog('BGN')
-    slog(f'{B*15}{len(Note.F2S):3}    F2S', pfx=0)   ;   slog(f'{fmtm(Note.F2S,  d1="")}',  pfx=0)
-    slog(f'{B*15}{len(Note.S2F):3}    S2F', pfx=0)   ;   slog(f'{fmtm(Note.S2F,  d1="")}',  pfx=0)
-    slog(f'{B*15}{len(Note.I2F):3}    I2F', pfx=0)   ;   slog(f'{fmtm(Note.I2F,  d1="")}',  pfx=0)
-    slog(f'{B*15}{len(Note.I2S):3}    I2S', pfx=0)   ;   slog(f'{fmtm(Note.I2S,  d1="")}',  pfx=0)
-    slog(f'{B*15}{len(Note.N2I):3}    N2I', pfx=0)   ;   slog(f'{fmtm(Note.N2I,  d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.F2S):3}    F2S', pfx=0)   ;   slog(f'{fmtm(Note.F2S, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.S2F):3}    S2F', pfx=0)   ;   slog(f'{fmtm(Note.S2F, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.I2F):3}    I2F', pfx=0)   ;   slog(f'{fmtm(Note.I2F, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.I2S):3}    I2S', pfx=0)   ;   slog(f'{fmtm(Note.I2S, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.I2F2):3}    I2F2', pfx=0)   ;   slog(f'{fmtm(Note.I2F2, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.I2S2):3}    I2S2', pfx=0)   ;   slog(f'{fmtm(Note.I2S2, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Note.N2I):3}    N2I', pfx=0)   ;   slog(f'{fmtm(Note.N2I, w=2, d1="")}',  pfx=0)
     slog(f'{B*15}{len(FLATS):3}    FLATS',  pfx=0)
     slog(f'{fmtl(FLATS, w="3", d1="")}',    pfx=0)
-    slog(f'{fmtl( [ f"{i + 1:3}" for i in range(Note.MAX_IDX) ],             d1="")}',    pfx=0)
+    slog(f'{fmtl( [ f"{i + 1:3}" for i in range(Note.MAX_IDX) ], d1="")}', pfx=0)
     slog(f'{fmtl(SHRPS, w="3", d1="")}',    pfx=0)
     slog(f'{B*15}{len(SHRPS):3}    SHRPS',  pfx=0)
-    slog(f'{B*15}{len(KeySig.FO):3}    FO', pfx=0)   ;   slog(f'{fmtm(KeySig.FO, w=3, d1="")}', pfx=0)
-    slog(f'{B*15}{len(KeySig.SO):3}    SO', pfx=0)   ;   slog(f'{fmtm(KeySig.SO, w=3, d1="")}', pfx=0)
-    slog(f'{B*15}{len(KeySig.KS):3}    KS', pfx=0)   ;   slog(f'{fmtm(KeySig.KS, w=2, d1="")}', pfx=0)
-    for i in range(len(Note.TONES)):
-        slog(f'{B * 15}{len(Note.TONES[i]):3}    TONES[{Note.TYPES[i]}]', pfx=0)
-        slog(f'{fmtm(Note.TONES[i], w=2, d1="")}', pfx=0)
+    slog(f'{B*15}{len(KeySig.FO):3}    FO', pfx=0)   ;   slog(f'{fmtm(KeySig.FO, w=2, d1="")}', pfx=0)
+    slog(f'{B*15}{len(KeySig.SO):3}    SO', pfx=0)   ;   slog(f'{fmtm(KeySig.SO, w=2, d1="")}', pfx=0)
+    slog(f'{B*15}{len(KeySig.KO):3}    KO', pfx=0)   ;   slog(f'{fmtm(KeySig.KO, w=2, d1="")}', pfx=0)
+    for i in range(len(Note.I2N)):
+        slog(f'{B * 15}{len(Note.I2N[i]):3}    I2N[{Note.TYPES[i]}]', pfx=0)
+        slog(f'{fmtm(Note.I2N[i], w=2, d1="")}', pfx=0)
+    slog(f'{B*15}{len(KeySig.KS):3}    KS', pfx=0)   ;   slog(f'{fmtm(KeySig.KS, w=2, d2=chr(10), ll=-1)}', pfx=0)
     slog('END')
 
 def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
@@ -194,13 +197,14 @@ class Note(object):
 
     I2F      = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'  }
     I2S      = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
-#   I2F2     = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
-#   I2S2     = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
+    I2F2     = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
+    I2S2     = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
 
     N2I = {         'C' :0, 'C#':1, 'Db':1, 'D': 2, 'D#':3, 'Eb':3, 'E' :4,                 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11 }
 #   N2I = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' : 11 }
     MAX_IDX = 10 * NTONES + 1
-    TONES = [I2F, I2S]
+    I2N  = [I2F,  I2S]
+    I2N2 = [I2F2, I2S2]
 #    OLD_INDICES = {#'C' : 0, 'C#' : 1, 'Db' : 1, 'D' : 2, 'D#' : 3, 'Eb' : 3, 'E' : 4, 'F' : 5, 'F#' : 6, 'Gb' : 6, 'G' : 7, 'G#' : 8, 'Ab' : 8, 'A' : 9, 'A#' :10, 'Bb' :10, 'B' :11,
 #                'C0': 0, 'C#0': 1, 'Db0': 1, 'D0': 2, 'D#0': 3, 'Eb0': 3, 'E0': 4, 'F0': 5, 'F#0': 6, 'Gb0': 6, 'G0': 7, 'G#0': 8, 'Ab0': 8, 'A0': 9, 'A#0':10, 'Bb0':10, 'B0':11,
 #                'C1':12, 'C#1':13, 'Db1':13, 'D1':14, 'D#1':15, 'Eb1':15, 'E1':16, 'F1':17, 'F#1':18, 'Gb1':18, 'G1':19, 'G#1':20, 'Ab1':20, 'A1':21, 'A#1':22, 'Bb1':22, 'B1':23,
@@ -226,8 +230,15 @@ class Note(object):
     def setType(t): Note.TYPE = t
 
     @staticmethod
-    def getName(i):
-        name = Note.TONES[Note.TYPE][i % NTONES]
+    def getName(i, t=-1):
+        t = t if t >= 0 else Note.TYPE
+        name = Note.I2N[t][i % NTONES]
+        return name
+
+    @staticmethod
+    def getName2(i, t=-1):
+        t = t if t >= 0 else Note.TYPE
+        name = Note.I2N2[t][i % NTONES]
         return name
 
     @staticmethod
@@ -253,12 +264,23 @@ def FREQ2(index): return 432 * pow(pow(2, 1/NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(Note.MAX_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(Note.MAX_IDX) ]
 
+def initO():
+    _, m, iv, iw = [], 'C', 7, 1
+    for i in range(16):
+        t = 1 if i <= 7 else 0
+        if t==7:   m = 'C'   ;   iw = 7
+        n = Note.noteIv(m, IVALS[iv])
+        p = (Note.indices(n, 0) - iw) % NTONES
+        q = Note.getName2(p, t=t)
+        slog(f'{i + 1:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
+        _.append(q)   ;   m = n
+    return _
 ########################################################################################################################################################################################################
 class KeySig(object):
-    def SKS(self): pass
+#    def SKS(self): pass
     FO  = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1}
     SO  = {'F#': 1, 'C#': 2, 'G#': 3, 'D#': 4, 'A#': 5, 'E#': 6, 'B#': 7}
-#    SO  = Note.INDICES
+    foo = initO()
     KS  =  dict()   ;   KO = dict(FO)  ;  KO.update(SO)  ;   N = len(FO)
     for _ in range(-N, N+1, 1):
         O = FO  if _ < 0 else SO    ;   KS[_] = list(O.keys())[:abs(_)]
@@ -334,10 +356,10 @@ class Strings(object):
         if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
         return i
 
-    def tab2nn(self, tab, s, dbg=0):
+    def tab2nn(self, tab, s, n2=0, dbg=0):
         fn   = self.tab2fn(tab)
         i    = self.fn2ni(fn, s)
-        name = Note.getName(i)
+        name = Note.getName2(i) if n2 else Note.getName(i)
         if dbg: slog(f'tab={tab} s={s} fn={fn} i={i} name={name}')
         return name
 

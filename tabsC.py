@@ -341,7 +341,7 @@ class Tabs(pyglet.window.Window):
         for i in range(util.NTONES):
             n = Note.noteIv(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
             p = (Note.indices(  n, 1 if o>=0 else 0) - 1) % util.NTONES
-            q =  Note.getName(p)  ;  q += f'{o}' if o>=0 else ''
+            q =  Note.getName2(p)  ;  q += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {iv:2} {n:3} {p:2} {q:3}')  ;  m = n
         Note.TYPE = ntype
     @staticmethod
