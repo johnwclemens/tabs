@@ -265,14 +265,14 @@ FREQS   = [ FREQ( i) for i in range(Note.MAX_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(Note.MAX_IDX) ]
 
 def initO():
-    _, m, iv, iw = [], 'C', 7, 1
-    for i in range(16):
-        t = 1 if i <= 7 else 0
-        if t==7:   m = 'C'   ;   iw = 7
-        n = Note.noteIv(m, IVALS[iv])
+    _, j, m, iv, iw = [], 7, 'F', '4', 0
+    for i in range(-j, j+1, 1):
+        t = 0 if i < 0 else 1
+        if i==0:   m, iv = 'B', '5'  ;  continue
+        n = Note.noteIv(m, iv)
         p = (Note.indices(n, 0) - iw) % NTONES
         q = Note.getName2(p, t=t)
-        slog(f'{i + 1:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
+        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
         _.append(q)   ;   m = n
     return _
 ########################################################################################################################################################################################################
