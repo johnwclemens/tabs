@@ -495,11 +495,11 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
   28 tabsC __init__           BGN <class __main__.Tabs>
 2489 tabsC getFilePath        fdir=logs/ fsfx=.log
 2493 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2503 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
-2505 tabsC getFileSeqNum      ids=[0 1 10 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 3 4 5 6 7 8 9]
-2497 tabsC getFilePath        fsfx=.27.log
+2503 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
+2505 tabsC getFileSeqNum      ids=[0 1 10 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 5 6 7 8 9]
+2497 tabsC getFilePath        fsfx=.42.log
  128 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 131 util  getFilePath        fileName =tabs.27.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.27.log)
+ 131 util  getFilePath        fileName =tabs.42.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.42.log)
  128 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  131 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
   33 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
@@ -535,13 +535,13 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  151 tabsC dumpArgs           [L]             .LL=0
  152 tabsC dumpArgs           [S]             .SS=[0 1 3]
  153 tabsC dumpArgs           [Z]             .ZZ=[]
- 346 util  __init__           stringMap   = [[E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]]
- 347 util  __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
- 348 util  __init__           stringNames =      EBGDAE
- 349 util  __init__           stringNumbs =      123456
- 350 util  __init__           stringCapo  =      000000
- 351 util  __init__           strLabel    =      STRING
- 352 util  __init__           cpoLabel    =       CAPO 
+ 332 util  __init__           stringMap   = [[E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]]
+ 333 util  __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
+ 334 util  __init__           stringNames =      EBGDAE
+ 335 util  __init__           stringNumbs =      123456
+ 336 util  __init__           stringCapo  =      000000
+ 337 util  __init__           strLabel    =      STRING
+ 338 util  __init__           cpoLabel    =       CAPO 
 [[-7:-7[Bb Eb Ab Db Gb Cb Fb]
  [-6:-6[Bb Eb Ab Db Gb Cb]
  [-5:-5[Bb Eb Ab Db Gb]
@@ -558,28 +558,28 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  [ 6: 6[F# C# G# D# A# E#]
  [ 7: 7[F# C# G# D# A# E# B#]
 
- 316 util  default              1  0 []
- 317 util  default              2  0 []
- 318 util  default              3  1 [F#]
- 319 util  default              4 -1 [Bb]
- 320 util  default              5  0 []
- 321 util  default              6  1 [F#]
- 322 util  default              7 -1 [Bb]
- 328 util  test_1               1 -7 [Bb Eb Ab Db Gb Cb Fb]
- 328 util  test_1               2 -6 [Bb Eb Ab Db Gb Cb]
- 328 util  test_1               3 -5 [Bb Eb Ab Db Gb]
- 328 util  test_1               4 -4 [Bb Eb Ab Db]
- 328 util  test_1               5 -3 [Bb Eb Ab]
- 328 util  test_1               6 -2 [Bb Eb]
- 328 util  test_1               7 -1 [Bb]
- 328 util  test_1               8  0 []
- 328 util  test_1               9  1 [F#]
- 328 util  test_1              10  2 [F# C#]
- 328 util  test_1              11  3 [F# C# G#]
- 328 util  test_1              12  4 [F# C# G# D#]
- 328 util  test_1              13  5 [F# C# G# D# A#]
- 328 util  test_1              14  6 [F# C# G# D# A# E#]
- 328 util  test_1              15  7 [F# C# G# D# A# E# B#]
+ 302 util  default              1  0 []
+ 303 util  default              2  0 []
+ 304 util  default              3  1 [F#]
+ 305 util  default              4 -1 [Bb]
+ 306 util  default              5  0 []
+ 307 util  default              6  1 [F#]
+ 308 util  default              7 -1 [Bb]
+ 314 util  test_1               1 -7 [Bb Eb Ab Db Gb Cb Fb]
+ 314 util  test_1               2 -6 [Bb Eb Ab Db Gb Cb]
+ 314 util  test_1               3 -5 [Bb Eb Ab Db Gb]
+ 314 util  test_1               4 -4 [Bb Eb Ab Db]
+ 314 util  test_1               5 -3 [Bb Eb Ab]
+ 314 util  test_1               6 -2 [Bb Eb]
+ 314 util  test_1               7 -1 [Bb]
+ 314 util  test_1               8  0 []
+ 314 util  test_1               9  1 [F#]
+ 314 util  test_1              10  2 [F# C#]
+ 314 util  test_1              11  3 [F# C# G#]
+ 314 util  test_1              12  4 [F# C# G# D#]
+ 314 util  test_1              13  5 [F# C# G# D# A#]
+ 314 util  test_1              14  6 [F# C# G# D# A# E#]
+ 314 util  test_1              15  7 [F# C# G# D# A# E# B#]
  104 tabsC __init__           Note.TYPE=0
  105 tabsC __init__           Frequency Info
 index[    1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88    89    90    91    92    93    94    95    96    97    98    99   100   101   102   103   104   105   106   107   108   109   110   111   112   113   114   115   116   117   118   119   120   121]
@@ -611,7 +611,7 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.
  268 chord _dumpOMAP          END len(OMAP)=581 catfile.name=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat len(r)=0
  217 chord dumpOMAP           END   len(OMAP)=581 len(umap)=0
  239 tabsC _initWindowA       BGN (  -1x-1  )
- 239 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002107AD97070>
+ 239 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000024E1FB27070>
  242 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
  242 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
  243 tabsC _initWindowA       END (  -1x-1  )
@@ -1814,7 +1814,7 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
 1395 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd1A
  497 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
  515 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-2477 tabsC snapshot           SNAP_NAME=tabs.27.RSZC_5.0.png Upd1
+2477 tabsC snapshot           SNAP_NAME=tabs.42.RSZC_5.0.png Upd1
  527 tabsC on_draw            [1 1 1  1 6]   6  1] .snapWhy=Upd1 .snapType=RSZC_5 .snapId=1
 2271 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
 2287 tabsC toggleFlatSharp    sn=3 cn= 0 cc=   3 i=   3 Bb => A# .notes[i].text=A# [1 1    1 4]
@@ -1861,28 +1861,28 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  [ 6: 6[F# C# G# D# A# E#]
  [ 7: 7[F# C# G# D# A# E# B#]
 
- 316 util  default              1  0 []
- 317 util  default              2  0 []
- 318 util  default              3  1 [F#]
- 319 util  default              4 -1 [Bb]
- 320 util  default              5  0 []
- 321 util  default              6  1 [F#]
- 322 util  default              7 -1 [Bb]
- 328 util  test_1               1 -7 [Bb Eb Ab Db Gb Cb Fb]
- 328 util  test_1               2 -6 [Bb Eb Ab Db Gb Cb]
- 328 util  test_1               3 -5 [Bb Eb Ab Db Gb]
- 328 util  test_1               4 -4 [Bb Eb Ab Db]
- 328 util  test_1               5 -3 [Bb Eb Ab]
- 328 util  test_1               6 -2 [Bb Eb]
- 328 util  test_1               7 -1 [Bb]
- 328 util  test_1               8  0 []
- 328 util  test_1               9  1 [F#]
- 328 util  test_1              10  2 [F# C#]
- 328 util  test_1              11  3 [F# C# G#]
- 328 util  test_1              12  4 [F# C# G# D#]
- 328 util  test_1              13  5 [F# C# G# D# A#]
- 328 util  test_1              14  6 [F# C# G# D# A# E#]
- 328 util  test_1              15  7 [F# C# G# D# A# E# B#]
+ 302 util  default              1  0 []
+ 303 util  default              2  0 []
+ 304 util  default              3  1 [F#]
+ 305 util  default              4 -1 [Bb]
+ 306 util  default              5  0 []
+ 307 util  default              6  1 [F#]
+ 308 util  default              7 -1 [Bb]
+ 314 util  test_1               1 -7 [Bb Eb Ab Db Gb Cb Fb]
+ 314 util  test_1               2 -6 [Bb Eb Ab Db Gb Cb]
+ 314 util  test_1               3 -5 [Bb Eb Ab Db Gb]
+ 314 util  test_1               4 -4 [Bb Eb Ab Db]
+ 314 util  test_1               5 -3 [Bb Eb Ab]
+ 314 util  test_1               6 -2 [Bb Eb]
+ 314 util  test_1               7 -1 [Bb]
+ 314 util  test_1               8  0 []
+ 314 util  test_1               9  1 [F#]
+ 314 util  test_1              10  2 [F# C#]
+ 314 util  test_1              11  3 [F# C# G#]
+ 314 util  test_1              12  4 [F# C# G# D#]
+ 314 util  test_1              13  5 [F# C# G# D# A#]
+ 314 util  test_1              14  6 [F# C# G# D# A# E#]
+ 314 util  test_1              15  7 [F# C# G# D# A# E# B#]
 2271 tabsC toggleFlatSharp    BGN @ F t1=1 SHRP => t2=0 FLAT
 2287 tabsC toggleFlatSharp    sn=3 cn= 0 cc=   3 i=   3 A# => Bb .notes[i].text=Bb [1 1    1 4]
  0 Gm+13/Eb     Gm+13/Eb     #5m3Rb76     830a9  EbBbGFE      Rm3#56b7     0389a  GBbEbEF     
@@ -1929,28 +1929,28 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  [ 6: 6[F# C# G# D# A# E#]
  [ 7: 7[F# C# G# D# A# E# B#]
 
- 316 util  default              1  0 []
- 317 util  default              2  0 []
- 318 util  default              3  1 [F#]
- 319 util  default              4 -1 [Bb]
- 320 util  default              5  0 []
- 321 util  default              6  1 [F#]
- 322 util  default              7 -1 [Bb]
- 328 util  test_1               1 -7 [Bb Eb Ab Db Gb Cb Fb]
- 328 util  test_1               2 -6 [Bb Eb Ab Db Gb Cb]
- 328 util  test_1               3 -5 [Bb Eb Ab Db Gb]
- 328 util  test_1               4 -4 [Bb Eb Ab Db]
- 328 util  test_1               5 -3 [Bb Eb Ab]
- 328 util  test_1               6 -2 [Bb Eb]
- 328 util  test_1               7 -1 [Bb]
- 328 util  test_1               8  0 []
- 328 util  test_1               9  1 [F#]
- 328 util  test_1              10  2 [F# C#]
- 328 util  test_1              11  3 [F# C# G#]
- 328 util  test_1              12  4 [F# C# G# D#]
- 328 util  test_1              13  5 [F# C# G# D# A#]
- 328 util  test_1              14  6 [F# C# G# D# A# E#]
- 328 util  test_1              15  7 [F# C# G# D# A# E# B#]
+ 302 util  default              1  0 []
+ 303 util  default              2  0 []
+ 304 util  default              3  1 [F#]
+ 305 util  default              4 -1 [Bb]
+ 306 util  default              5  0 []
+ 307 util  default              6  1 [F#]
+ 308 util  default              7 -1 [Bb]
+ 314 util  test_1               1 -7 [Bb Eb Ab Db Gb Cb Fb]
+ 314 util  test_1               2 -6 [Bb Eb Ab Db Gb Cb]
+ 314 util  test_1               3 -5 [Bb Eb Ab Db Gb]
+ 314 util  test_1               4 -4 [Bb Eb Ab Db]
+ 314 util  test_1               5 -3 [Bb Eb Ab]
+ 314 util  test_1               6 -2 [Bb Eb]
+ 314 util  test_1               7 -1 [Bb]
+ 314 util  test_1               8  0 []
+ 314 util  test_1               9  1 [F#]
+ 314 util  test_1              10  2 [F# C#]
+ 314 util  test_1              11  3 [F# C# G#]
+ 314 util  test_1              12  4 [F# C# G# D#]
+ 314 util  test_1              13  5 [F# C# G# D# A#]
+ 314 util  test_1              14  6 [F# C# G# D# A# E#]
+ 314 util  test_1              15  7 [F# C# G# D# A# E# B#]
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
@@ -2317,11 +2317,11 @@ Page 1 Line 1
   0 0 Gm+13/Eb     #5m3Rb76     EoMb9/Eb     7b5m3b2R     F#13s2s4/Eb  b742R7       Bb#46s4/Eb   4R65b5       Ebb22        R5M32b2      
   0 0Gm+13/Eb     830a9 EoMb9/Eb     b6310 F#13s2s4/Eb  a520b Bb#46s4/Eb   50976 Ebb22        07421 
   0 0 830a9  b6310  a520b  50976  07421           #5m3Rb76     7b5m3b2R     b742R7       4R65b5       R5M32b2      
-2477 tabsC snapshot           SNAP_NAME=tabs.27.QUIT.1.png quit error=0 save=0
+2477 tabsC snapshot           SNAP_NAME=tabs.42.QUIT.1.png quit error=0 save=0
 2528 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2543 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log
+2543 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log
  136 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 137 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.27.log)
- 139 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log ###
+ 137 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.42.log)
+ 139 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log ###
 2545 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log

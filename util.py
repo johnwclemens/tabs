@@ -205,20 +205,6 @@ class Note(object):
     MAX_IDX = 10 * NTONES + 1
     I2N  = [I2F,  I2S]
     I2N2 = [I2F2, I2S2]
-#    OLD_INDICES = {#'C' : 0, 'C#' : 1, 'Db' : 1, 'D' : 2, 'D#' : 3, 'Eb' : 3, 'E' : 4, 'F' : 5, 'F#' : 6, 'Gb' : 6, 'G' : 7, 'G#' : 8, 'Ab' : 8, 'A' : 9, 'A#' :10, 'Bb' :10, 'B' :11,
-#                'C0': 0, 'C#0': 1, 'Db0': 1, 'D0': 2, 'D#0': 3, 'Eb0': 3, 'E0': 4, 'F0': 5, 'F#0': 6, 'Gb0': 6, 'G0': 7, 'G#0': 8, 'Ab0': 8, 'A0': 9, 'A#0':10, 'Bb0':10, 'B0':11,
-#                'C1':12, 'C#1':13, 'Db1':13, 'D1':14, 'D#1':15, 'Eb1':15, 'E1':16, 'F1':17, 'F#1':18, 'Gb1':18, 'G1':19, 'G#1':20, 'Ab1':20, 'A1':21, 'A#1':22, 'Bb1':22, 'B1':23,
-#                'C2':24, 'C#2':25, 'Db2':25, 'D2':26, 'D#2':27, 'Eb2':27, 'E2':28, 'F2':29, 'F#2':30, 'Gb2':30, 'G2':31, 'G#2':32, 'Ab2':32, 'A2':33, 'A#2':34, 'Bb2':34, 'B2':35,
-#                'C3':36, 'C#3':37, 'Db3':37, 'D3':38, 'D#3':39, 'Eb3':39, 'E3':40, 'F3':41, 'F#3':42, 'Gb3':42, 'G3':43, 'G#3':44, 'Ab3':44, 'A3':45, 'A#3':46, 'Bb3':46, 'B3':47,
-#                'C4':48, 'C#4':49, 'Db4':49, 'D4':50, 'D#4':51, 'Eb4':51, 'E4':52, 'F4':53, 'F#4':54, 'Gb4':54, 'G4':55, 'G#4':56, 'Ab4':56, 'A4':57, 'A#4':58, 'Bb4':58, 'B4':59,
-#                'C5':60, 'C#5':61, 'Db5':61, 'D5':62, 'D#5':63, 'Eb5':63, 'E5':64, 'F5':65, 'F#5':66, 'Gb5':66, 'G5':67, 'G#5':68, 'Ab5':68, 'A5':69, 'A#5':70, 'Bb5':70, 'B5':71,
-#                'C6':72, 'C#6':73, 'Db6':73, 'D6':74, 'D#6':75, 'Eb6':75, 'E6':76, 'F6':77, 'F#6':78, 'Gb6':78, 'G6':79, 'G#6':80, 'Ab6':80, 'A6':81, 'A#6':82, 'Bb6':82, 'B6':83,
-#                'C7':84, 'C#7':85, 'Db7':85, 'D7':86, 'D#7':87, 'Eb7':87, 'E7':88, 'F7':89, 'F#7':90, 'Gb7':90, 'G7':91, 'G#7':92, 'Ab7':92, 'A7':93, 'A#7':94, 'Bb7':94, 'B7':95,
-#                'C8':96 } # For simplicity omit double flats and double sharps and other redundant enharmonic note names e.g. Abb, C##, Cb, B#, Fb, E# etc...
-#                 99    FLATS
-# C0 Db0  D0 Eb0  E0  F0 Gb0  G0 Ab0  A0 Bb0  B0  C1 Db1  D1 Eb1  E1  F1 Gb1  G1 Ab1  A1 Bb1  B1  C2 Db2  D2 Eb2  E2  F2 Gb2  G2 Ab2  A2 Bb2  B2  C3 Db3  D3 Eb3  E3  F3 Gb3  G3 Ab3  A3 Bb3  B3  C4 Db4  D4 Eb4  E4  F4 Gb4  G4 Ab4  A4 Bb4  B4  C5 Db5  D5 Eb5  E5  F5 Gb5  G5 Ab5  A5 Bb5  B5  C6 Db6  D6 Eb6  E6  F6 Gb6  G6 Ab6  A6 Bb6  B6  C7 Db7  D7 Eb7  E7  F7 Gb7  G7 Ab7  A7 Bb7  B7  C8 Db8  D8
-#  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99
-# C0 C#0  D0 D#0  E0  F0 F#0  G0 G#0  A0 A#0  B0  C1 C#1  D1 D#1  E1  F1 F#1  G1 G#1  A1 A#1  B1  C2 C#2  D2 D#2  E2  F2 F#2  G2 G#2  A2 A#2  B2  C3 C#3  D3 D#3  E3  F3 F#3  G3 G#3  A3 A#3  B3  C4 C#4  D4 D#4  E4  F4 F#4  G4 G#4  A4 A#4  B4  C5 C#5  D5 D#5  E5  F5 F#5  G5 G#5  A5 A#5  B5  C6 C#6  D6 D#6  E6  F6 F#6  G6 G#6  A6 A#6  B6  C7 C#7  D7 D#7  E7  F7 F#7  G7 G#7  A7 A#7  B7  C8 C#8  D8
 
     @staticmethod
     def indices(k, o=0):
@@ -253,8 +239,6 @@ class Note(object):
     def indexI(i, d):
         return (i + d) % NTONES
 ########################################################################################################################################################################################################
-#FLATS   =[ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_IDX]
-#SHRPS   =[ f'{k}{n}' for n in range(9) for k in Note.INDICES.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Note.MAX_IDX]
 FLATS   = [ f'{k}{n}' for n in range(11) for k in Note.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_IDX]
 SHRPS   = [ f'{k}{n}' for n in range(11) for k in Note.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Note.MAX_IDX]
 
@@ -264,9 +248,13 @@ def FREQ2(index): return 432 * pow(pow(2, 1/NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(Note.MAX_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(Note.MAX_IDX) ]
 
-def initKS(j=7, m='B#', iv='4', t=1):
-    _ = {}  ;  a = 1 if t else -j  ;  b = j+1 if t else 0
-    for i in range(a, b):
+#def initKS(j=7, m='F#', iv='5', t=1):
+#    _ = {}  ;  a = 1 if t else -j  ;  b = j+1 if t else 0
+#    _ = {}  ;  k = 1 if t else -1  ;  j *= k
+#    for i in range(j, 0, -k):
+def initKS(j=-7, m='Bb', iv='4', t=0):
+    _ = {}  ;  k = 7 # -1 if t==0 else 1
+    for i in range(j, j+k, 1):
         _[m] = i
         n = Note.noteIv(m, iv)
         p = Note.indices(n, 0) % NTONES
@@ -277,17 +265,15 @@ def initKS(j=7, m='B#', iv='4', t=1):
 ########################################################################################################################################################################################################
 
 class KeySig(object):
-    FO  = {'Bb':-7, 'Eb':-6, 'Ab':-5, 'Db':-4, 'Gb':-3, 'Cb':-2, 'Fb':-1}
-    SO  = {'F#': 1, 'C#': 2, 'G#': 3, 'D#': 4, 'A#': 5, 'E#': 6, 'B#': 7}
-    SO2 = initKS()
-    FO2 = initKS(m='Bb', iv='4', t=0)
-    KO  = dict(FO)   ;  KO.update(SO)  ;  KS  =  dict()  ;   N = len(FO)
-    KO2 = dict(FO2)  ;  KO2.update(SO2)
-    for _ in range(-N, N+1, 1):
-        O = FO  if _ < 0 else SO    ;   KS[_] = list(O.keys())[:abs(_)]
-    slog(f'FO ={fmtm(FO, w=2, d1="")}')  ;  slog(f'FO2={fmtm(FO2, w=2, d1="")}')
-    slog(f'SO ={fmtm(SO, w=2, d1="")}')  ;  slog(f'SO2={fmtm(SO2, w=2, d1="")}')
-    slog(f'KO ={fmtm(KO, w=2, d1="")}')  ;  slog(f'KO2={fmtm(KO2, w=2, d1="")}')
+    FO = initKS() # m='Bb', iv='4', t=0)
+#    SO = initKS(j=1, m='B#', iv='4', t=1)
+    SO = initKS(j=1, m='F#', iv='5', t=1)
+    KO  = dict(FO)   ;  KO.update(SO)
+    KS  =  dict()  ;   N = len(FO)
+    for _ in range(-N, N+1, 1):        O = FO  if _ < 0 else SO    ;   KS[_] = list(O.keys())[:abs(_)]
+    slog(f'FO ={fmtm(FO, w=2, d1="")}')
+    slog(f'SO ={fmtm(SO, w=2, d1="")}')
+    slog(f'KO ={fmtm(KO, w=2, d1="")}')
     slog(f'KS ={fmtm(KS, w=2, d1="")}')
     ########################################################################################################################################################################################################
     def __init__(self, k=0):
@@ -327,8 +313,8 @@ class KeySig(object):
         for n in range(-l, l+1, 1):
             ns = KeySig(n)  ;  i = ns.tlog(i)
         return i
-
 ########################################################################################################################################################################################################
+
 class Strings(object):
     aliases = {'GUITAR_6_STD':    cOd([('E2', 28), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52)]),
                'GUITAR_6_DROP_D': cOd([('D2', 26), ('A2', 33), ('D3', 38), ('G3', 43), ('B3', 47), ('E4', 52)]),
@@ -360,10 +346,10 @@ class Strings(object):
         if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
         return i
 
-    def tab2nn(self, tab, s, n2=0, dbg=0):
+    def tab2nn(self, tab, s, dbg=0):
         fn   = self.tab2fn(tab)
         i    = self.fn2ni(fn, s)
-        name = Note.getName2(i) if n2 else Note.getName(i)
+        name = Note.getName(i)
         if dbg: slog(f'tab={tab} s={s} fn={fn} i={i} name={name}')
         return name
 
@@ -371,8 +357,8 @@ class Strings(object):
     def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
     @staticmethod
     def tab2fn(tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  slog(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
-
 ########################################################################################################################################################################################################
+
 class Mode(object):
     NAMES = 'IONIAN', 'DORIAN', 'PHRYGIAN', 'LYDIAN', 'MIXOLYDIAN', 'AEOLIAN', 'LOCRIAN'
     def __init__(self, name='IONIAN', tonic='C', ks=0):
