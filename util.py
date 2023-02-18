@@ -190,21 +190,24 @@ class Note(object):
     FLAT, SHRP = 0, 1
     TYPE       = FLAT
     TYPES      = ['FLAT', 'SHRP']
-    S2F        = {           'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'}
-    F2S        = {           'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'}
-#   S2F2       = {'B#':'C' , 'C#':'Db', 'D#':'Eb',            'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb'}
-#   F2S2       = {           'Db':'C#', 'Eb':'D#', 'Fb':'E' ,            'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B'  }
+#    FS2N       = {'Cb':'B', 'B#':'C', 'Fb':'E', 'E#':'F'}
+#    N2FS       = {'B':'Cb', 'C':'B#', 'E':'Fb', 'F':'E#'}
+#    S2F2        = {           'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'}
+#    F2S2        = {           'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'}
+    S2F        = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B':'Cb' }
+    F2S        = {'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
 
-    I2F      = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'  }
-    I2S      = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
-    I2F2     = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
-    I2S2     = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
+#    I2F        = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'  }
+#    I2S        = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
+    I2F2       = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
+    I2S2       = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
+    I2F        = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
+    I2S        = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
 
-#   N2I = {         'C' :0, 'C#':1, 'Db':1, 'D': 2, 'D#':3, 'Eb':3, 'E' :4,                 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11 }
-    N2I = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' : 11 }
-    MAX_IDX = 10 * NTONES + 1
-    I2N  = [I2F,  I2S]
-    I2N2 = [I2F2, I2S2]
+    N2I = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11 }
+    MAX_IDX    = 10 * NTONES + 1
+    I2N        = [I2F,  I2S]
+    I2N2       = [I2F2, I2S2]
 
     @staticmethod
     def indices(k, o=0):
@@ -216,15 +219,9 @@ class Note(object):
     def setType(t): Note.TYPE = t
 
     @staticmethod
-    def getName(i, t=-1):
+    def getName(i, t=-1, n2=0):
         t = t if t >= 0 else Note.TYPE
-        name = Note.I2N[t][i % NTONES]
-        return name
-
-    @staticmethod
-    def getName2(i, t=-1):
-        t = t if t >= 0 else Note.TYPE
-        name = Note.I2N2[t][i % NTONES]
+        name = Note.I2N2[t][i % NTONES] if n2 else Note.I2N[t][i % NTONES]
         return name
 
     @staticmethod
@@ -248,25 +245,23 @@ def FREQ2(index): return 432 * pow(pow(2, 1/NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(Note.MAX_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(Note.MAX_IDX) ]
 
-#def initKS(j=7, m='F#', iv='5', t=1):
-#    _ = {}  ;  a = 1 if t else -j  ;  b = j+1 if t else 0
-#    _ = {}  ;  k = 1 if t else -1  ;  j *= k
-#    for i in range(j, 0, -k):
 def initKS(j=-7, m='Bb', iv='4', t=0):
-    _ = {}  ;  k = 7 # -1 if t==0 else 1
+    _ = {}  ;  k = 7
     for i in range(j, j+k, 1):
         _[m] = i
         n = Note.noteIv(m, iv)
         p = Note.indices(n, 0) % NTONES
-        q = Note.getName2(p, t=t)
+        q = Note.getName(p, t=t, n2=1)
+#        if m in Note.FS2N:
+#            a = Note.FS2N[m]
+#            _[a] = i
         slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
         m = q
     return _
 ########################################################################################################################################################################################################
 
 class KeySig(object):
-    FO = initKS() # m='Bb', iv='4', t=0)
-#    SO = initKS(j=1, m='B#', iv='4', t=1)
+    FO = initKS()
     SO = initKS(j=1, m='F#', iv='5', t=1)
     KO  = dict(FO)   ;  KO.update(SO)
     KS  =  dict()  ;   N = len(FO)
@@ -288,6 +283,8 @@ class KeySig(object):
         slog(f'{ii}{ev(self)}')
         return i
     ########################################################################################################################################################################################################
+    @classmethod
+    def sortKS(cls, e): return sorted(e, key=lambda t: cls.KO[t])
     @classmethod
     def fKS(cls):      return f'{fmtm(cls.KS, w=2, d2=chr(10), ll=-1)}'
     ########################################################################################################################################################################################################

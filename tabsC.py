@@ -341,7 +341,7 @@ class Tabs(pyglet.window.Window):
         for i in range(util.NTONES):
             n = Note.noteIv(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
             p = (Note.indices(  n, 1 if o>=0 else 0) - 1) % util.NTONES
-            q =  Note.getName2(p)  ;  q += f'{o}' if o>=0 else ''
+            q =  Note.getName(p, n2=1)  ;  q += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {iv:2} {n:3} {p:2} {q:3}')  ;  m = n
         Note.TYPE = ntype
     @staticmethod
@@ -1646,9 +1646,11 @@ class Tabs(pyglet.window.Window):
         self.tabls[cc].text = text
         if dbg: self.log(f'END         {text=} tabs[{cc}]={self.tabls[cc].text}', pos=pos)
 
-    def setNote(self, text, cc, t, pos=0, dbg=0):
+    def setNote(self, text, cc, t, pos=0, dbg=1):
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
-        self.notes[cc].text = self.sobj.tab2nn(text, t) if self.sobj.isFret(text) else self.tblank
+        ntext = self.sobj.tab2nn(text, t)
+        self.notes[cc].text = ntext if self.sobj.isFret(text) else self.tblank
+        if len(ntext) > 1:    self.updateEnhms(ntext)   ;   self.checkKS(self.enhms)
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
     ####################################################################################################################################################################################################
     def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=0):
@@ -2266,7 +2268,7 @@ class Tabs(pyglet.window.Window):
             self.log(f'Setting {old=} {self.n=}')
             self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
     ####################################################################################################################################################################################################
-    def toggleFlatSharp(self, how, dbg=1):  #  page line colm tab or select
+    def toggleFlatSharp(self, how, dbg=0):  #  page line colm tab or select
         t1 = Note.TYPE  ;  t2 = (Note.TYPE + 1) % 2    ;   Note.setType(t2)
         self.log(  f'BGN {how} {t1=} {Note.TYPES[t1]} => {t2=} {Note.TYPES[t2]}')
         s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i  ;  ehs = self.enhms  ;  ehs.clear()
@@ -2278,12 +2280,12 @@ class Tabs(pyglet.window.Window):
                 tabtxt = self.tabls[i].text
                 text   = self.sobj.tab2nn(tabtxt, sn) if self.sobj.isFret(tabtxt) else self.tblank
             if len(text) > 1:
-                cc = i * ns
-                p, l, c, t = self.cc2plct(cc)   ;   old = text
-                cn = self.cc2cn(cc)
+                cc = i * ns   ;   old = text    ;   old2 = set(ehs)
+                p, l, c, t = self.cc2plct(cc)   ;   cn = self.cc2cn(cc)
                 if   text in Note.F2S: text = Note.F2S[text]
                 elif text in Note.S2F: text = Note.S2F[text]
-                if len(text) > 1 :     self.notes[i].text = text   ;   ehs.add(text)
+                self.notes[i].text = text   ;   ehs.add(text) # if len(text) > 1 :
+                self.log(f'{old:2} -> {text:2} + {self.fKSO(old2)} = {self.fKSO(ehs)}')
                 if dbg: self.log(f'{sn=} {cn=:2} {cc=:4} {i=:4} {old:2} => {text:2} {self.notes[i].text=:2} {self.fplct(p, l, c, t)}')
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
@@ -2291,14 +2293,21 @@ class Tabs(pyglet.window.Window):
         self.checkKS(ehs)
         self.log(  f'END {how} {t1=} {Note.TYPES[t1]} => {t2=} {Note.TYPES[t2]}')
     ####################################################################################################################################################################################################
+    def updateEnhms(self, t):   self.enhms.add(t)   ;   slog(f'add {t} to enhms set={fmtl(self.enhms)}')
+#    @staticmethod
+#    def fKS(k, e, o, s): return f'{k=:2} ehs={fmtl(sorted(e, key=lambda t: KS.KO[t]))} {o} ks={fmtl(sorted(s, key=lambda t: KS.KO[t]))}'
     @staticmethod
-    def fKS(k, e, o, s): return f'{k=:2} ehs={fmtl(sorted(e, key=lambda t: KS.KO[t]))} {o} ks={fmtl(sorted(s, key=lambda t: KS.KO[t]))}'
+#    def fKSO(e): return f'{fmtl(sorted(e, key=lambda t: KS.KO[t]))}'
+    def fKSO(e): return f'{fmtl(KS.sortKS(e))}'
+#    @staticmethod
+#    def sortKS(e): return sorted(e, key=lambda t: KS.KO[t])
+
     def checkKS(self, e, dbg=1, f=''):
         for k, v in KS.KS.items():
             s = set(v)  ;   o = '!!' if not e and not s else '!~' if e.isdisjoint(s) else '> ' if e > s else '< ' if e < s else '~~' if e == s else '??'
-            if dbg:         self.log(f'{self.fKS(k, e, o, s)}')
-            if o=='!!' or o=='~~':  f = self.fKS(k, e, o, s)
-        if f:  self.log(f'KeySiG: {f}')
+            if dbg:              self.log(f'{k=:2} {self.fKSO(e)} {o} {self.fKSO(s)}')
+            if o=='!!' or o=='~~':    f = f'{k=:2} {self.fKSO(e)} {o} {self.fKSO(s)}'
+        if f:  self.log(f'KS: {f}', file=2)
 ####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):
         cc = self.cc    ;    cn = self.cc2cn(cc)
