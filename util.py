@@ -262,7 +262,7 @@ def initKSDATA(l=11):
         slog(f'{i:2} {m:3} {l:2} {n:3} {p:2} {q:3} {o:3} {Notes.TYPES[t]}')
         m = o
     return _
-def initKSD():
+def init_KSO():
     _ = {}  ;  t = 0  ;  j  =  11;  k = j-1  ;   m = Notes.I2N[t][j]  ;  n = Notes.I2N[t][k]  ;  u = '5'  ;  v = '4'  ;  p = j  ;  q = k
     slog(f' i  j  k  m  m2  m3   p  q  n  n2  n3   {m=:3} {n=:3} {j=:2} {k=:2} {u=:2} {v=:2}')
     for i in range(-7, 7+1, 1):
@@ -277,6 +277,29 @@ def initKSD():
         _[i] = [ m2, j, n2, k ]
         slog(f'{i:2} {j:2} {k:2} {m:3} {m2:3} {m3:3} {p:2} {q:2} {n:3} {n2:3} {n3:3} {Notes.TYPES[t]}')
         m    = m3  ;  n = n3
+    return _
+def initKSD_1():
+    _ = {}  ;  t = 0  ;  l = 11  ;  m = Notes.I2N[t][l]  ;  v = '5'  ;  p = l
+    slog(f'{l=:2} {v=:2}')
+    for i in range(-7, 7+1, 1):
+        if i==0:  t = 1
+        l = p
+        n = Notes.nextName(m, v)
+        p = Notes.index(n, 0)
+        o = Notes.name(p, t=t)
+        _[i] = [ m, l ]
+        slog(f'{i:2} {m:3} {l:2} {n:3} {p:2} {o:3} {Notes.TYPES[t]}')
+        m = o
+    return _
+def initKSD():
+    _ = {}  ;  t = 0  ;  i = 11  ;  d = 7
+    slog(f'{i=:2} {d=:2}')
+    for k in range(-7, 7+1, 1):
+        n = Notes.name(i, t=t)
+        _[k] = [ n, i ]
+        slog(f'{k:2} {n:3} {i:2} {Notes.TYPES[t]}')
+        i = Notes.nextIndex(i, d)
+        if k == 0:  t = 1
     return _
 ########################################################################################################################################################################################################
 class KeySig(object):
