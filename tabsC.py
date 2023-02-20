@@ -9,9 +9,9 @@ import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
 import pyglet.window.event as pygwine
 import pyglet.window.key   as pygwink
-import chord, util
+import util, chord
 from util import KeySig    as KS
-from util import Note      as Note
+from util import Notes     as Notes
 from util import FREQS     as FRQS
 from util import FREQS2    as FRQS2
 from util import slog      as slog
@@ -99,9 +99,9 @@ class Tabs(pyglet.window.Window):
         self.sAlias = 'GUITAR_6_STD'
         ####################################################################################################################################################################################################
         self.sobj = util.Strings(self.sAlias)
-        KS.test()
+#        KS.test()
         self.cobj = chord.Chord(self.sobj)
-        Note.setType(Note.FLAT)  ;  self.log(f'{Note.TYPE=}')
+        Notes.setType(Notes.FLAT)  ;  self.log(f'{Notes.TYPE=}')
         self.log(f'Frequency Info')
         self.dumpFreqsHdr()  ;  self.dumpFreqs()  ;  self.dumpFreqs(r=432)
         ####################################################################################################################################################################################################
@@ -318,39 +318,39 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     @staticmethod
     def test1A(t, m='C', o=-1, d=7):
-        ntype = Note.TYPE  ;  Note.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
+        ntype = Notes.TYPE  ;  Notes.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
         slog(f'{t=} {m=} {d=}')
         for i in range(util.NTONES):
             j = (i * d) % util.NTONES
-            k = Note.indexI(j, d)
-            n = Note.getName(k)  ;  n += f'{o}' if o>=0 else ''
+            k = Notes.indexI(j, d)
+            n = Notes.getName(k)  ;  n += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {j:2} {d:2} {k:2} {n:3}')  ;  m = n
-        Note.TYPE = ntype
+        Notes.TYPE = ntype
     @staticmethod
     def test1B(t, m='C', o=-1, iv='5'):
-        ntype = Note.TYPE  ;  Note.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
+        ntype = Notes.TYPE  ;  Notes.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
         slog(f'{t=} {m=} {iv=}')
         for i in range(util.NTONES):
-            n = Note.noteIv(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
+            n = Notes.noteIv(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {iv:2} {n:3}')  ;  m = n
-        Note.TYPE = ntype
+        Notes.TYPE = ntype
     @staticmethod
     def test1C(t, m='C', o=-1, iv='5'):
-        ntype = Note.TYPE  ;  Note.TYPE = t ;  m = f'{m}{o}' if o>=0 else m
+        ntype = Notes.TYPE  ;  Notes.TYPE = t ;  m = f'{m}{o}' if o>=0 else m
         slog(f'{t=} {m=} {iv=}')
         for i in range(util.NTONES):
-            n = Note.noteIv(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
-            p = (Note.indices(  n, 1 if o>=0 else 0) - 1) % util.NTONES
-            q =  Note.getName(p, n2=1)  ;  q += f'{o}' if o>=0 else ''
+            n =  Notes.noteIv(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
+            p = (Notes.index(     n, 1 if o>=0 else 0) - 1) % util.NTONES
+            q =  Notes.getName(p, n2=1)                 ;  q += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {iv:2} {n:3} {p:2} {q:3}')  ;  m = n
-        Note.TYPE = ntype
+        Notes.TYPE = ntype
     @staticmethod
     def test1F(iv):
         j = util.IVALR[iv] - 1
         iv = util.IVALS[j]
         m = 'C'
         for i in range(util.NTONES):
-            n = Note.noteIv(m, iv)
+            n = Notes.noteIv(m, iv)
             slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
             m = n
     ####################################################################################################################################################################################################
@@ -475,7 +475,7 @@ class Tabs(pyglet.window.Window):
 #    @staticmethod
 #    def dumpObj( obj,  name, why=''): slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     def dumpFreqsHdr(self):
-        self.log(f'index{fmtl([ i+1 for i in range(Note.MAX_IDX) ],  w="5")}',  pfx=0)
+        self.log(f'index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ],  w="5")}',  pfx=0)
         self.log(f'sharp{fmtl(list(util.SHRPS),                      w="5")}',  pfx=0)
         self.log(f' flat{fmtl(list(util.FLATS),                      w="5")}',  pfx=0)
     def dumpFreqs(self, r=440):
@@ -1735,7 +1735,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'E' and self.isCtrlShift(mods):    self.eraseTabs(       '@^E')
 #        elif kbk == 'E' and self.isCtrl(     mods):    self.eraseTabs(       '@ E')
         elif kbk == 'F' and self.isCtrlShift(mods):    self.toggleFullScreen('@^F')
-        elif kbk == 'F' and self.isCtrl(     mods):    self.toggleFlatSharp( '@ F')   ;   KS.test()
+        elif kbk == 'F' and self.isCtrl(     mods):    self.toggleFlatSharp( '@ F') #  ;   KS.test()
         elif kbk == 'G' and self.isCtrlShift(mods):    self.move2LastTab(    '@^G', page=1)
         elif kbk == 'G' and self.isCtrl(     mods):    self.move2LastTab(    '@ G', page=0)
         elif kbk == 'H' and self.isCtrlShift(mods):    self.move2FirstTab(   '@^H', page=1)
@@ -2269,8 +2269,8 @@ class Tabs(pyglet.window.Window):
             self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
     ####################################################################################################################################################################################################
     def toggleFlatSharp(self, how, dbg=0):  #  page line colm tab or select
-        t1 = Note.TYPE  ;  t2 = (Note.TYPE + 1) % 2    ;   Note.setType(t2)
-        self.log(  f'BGN {how} {t1=} {Note.TYPES[t1]} => {t2=} {Note.TYPES[t2]}')
+        t1 = Notes.TYPE    ;    t2 = (Notes.TYPE + 1) % 2    ;   Notes.setType(t2)
+        self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
         s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i  ;  ehs = self.enhms  ;  ehs.clear()
         tniks, j, k, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
         for i in range(len(tniks)):
@@ -2280,30 +2280,26 @@ class Tabs(pyglet.window.Window):
                 tabtxt = self.tabls[i].text
                 text   = self.sobj.tab2nn(tabtxt, sn) if self.sobj.isFret(tabtxt) else self.tblank
             if len(text) > 1:
-                cc = i * ns   ;   old = text    ;   old2 = set(ehs)
+                cc = i * ns   ;   old = text  #  ;   old2 = set(ehs)
                 p, l, c, t = self.cc2plct(cc)   ;   cn = self.cc2cn(cc)
-                if   text in Note.F2S: text = Note.F2S[text]
-                elif text in Note.S2F: text = Note.S2F[text]
+                if   text in Notes.F2S: text = Notes.F2S[text]
+                elif text in Notes.S2F: text = Notes.S2F[text]
                 self.notes[i].text = text   ;   ehs.add(text) # if len(text) > 1 :
-                self.log(f'{old:2} -> {text:2} + {self.fKSO(old2)} = {self.fKSO(ehs)}')
+                self.log(f'{old:2} -> {text:2} = {self.fKSO(ehs)}') # + {self.fKSO(old2)}
                 if dbg: self.log(f'{sn=} {cn=:2} {cc=:4} {i=:4} {old:2} => {text:2} {self.notes[i].text=:2} {self.fplct(p, l, c, t)}')
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
         self.checkKS(ehs)
-        self.log(  f'END {how} {t1=} {Note.TYPES[t1]} => {t2=} {Note.TYPES[t2]}')
+        self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
     def updateEnhms(self, t):   self.enhms.add(t)   ;   slog(f'add {t} to enhms set={fmtl(self.enhms)}')
 #    @staticmethod
 #    def fKS(k, e, o, s): return f'{k=:2} ehs={fmtl(sorted(e, key=lambda t: KS.KO[t]))} {o} ks={fmtl(sorted(s, key=lambda t: KS.KO[t]))}'
     @staticmethod
-#    def fKSO(e): return f'{fmtl(sorted(e, key=lambda t: KS.KO[t]))}'
     def fKSO(e): return f'{fmtl(KS.sortKS(e))}'
-#    @staticmethod
-#    def sortKS(e): return sorted(e, key=lambda t: KS.KO[t])
-
     def checkKS(self, e, dbg=1, f=''):
-        for k, v in KS.KS.items():
+        for k, v in KS.KSO.items():
             s = set(v)  ;   o = '!!' if not e and not s else '!~' if e.isdisjoint(s) else '> ' if e > s else '< ' if e < s else '~~' if e == s else '??'
             if dbg:              self.log(f'{k=:2} {self.fKSO(e)} {o} {self.fKSO(s)}')
             if o=='!!' or o=='~~':    f = f'{k=:2} {self.fKSO(e)} {o} {self.fKSO(s)}'
@@ -2660,7 +2656,7 @@ LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
 if LOG_PATH.exists():     util.copyFile(LOG_PATH, prevPath)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE:
     util.init(LOG_FILE, 0)
-    slog(f'{sys.argv[0]}', pfx=0,           file=2)
+    slog(f'{sys.argv[0]}', pfx=0,      file=2)
     slog(f'argv={fmtl(sys.argv[1:])}', file=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
     FSH, PNK, RED, RST, PCH, ORG, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()

@@ -1,4 +1,4 @@
-"""util.py module.  class list: [DSymb, Note, Strings, Test]."""
+"""util.py module.  class list: [DSymb, Notes, Strings, Test]."""
 import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
@@ -8,7 +8,8 @@ LOG_FILE         = None
 MIN_IVAL_LEN     = 1
 MAX_STACK_DEPTH  = 0
 MAX_STACK_FRAME  = inspect.stack()
-M12              = { 10:'a', 11:'b' }
+#M12              = { 10:'a', 11:'b' }
+#IDCS             = range(12)
 IVALS            = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
 IVALR            = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
 NTONES           = len(IVALS)
@@ -22,30 +23,35 @@ STFILT = ['log', 'tlog', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap',
 def init(file, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
     slog('BGN')
-    slog(f'{B*15}{len(Note.F2S):3}    F2S', pfx=0)   ;   slog(f'{fmtm(Note.F2S, w=2, d1="")}',  pfx=0)
-    slog(f'{B*15}{len(Note.S2F):3}    S2F', pfx=0)   ;   slog(f'{fmtm(Note.S2F, w=2, d1="")}',  pfx=0)
-    slog(f'{B*15}{len(Note.I2F):3}    I2F', pfx=0)   ;   slog(f'{fmtm(Note.I2F, w=2, d1="")}',  pfx=0)
-    slog(f'{B*15}{len(Note.I2S):3}    I2S', pfx=0)   ;   slog(f'{fmtm(Note.I2S, w=2, d1="")}',  pfx=0)
-    slog(f'{B*15}{len(Note.I2F2):3}    I2F2', pfx=0)   ;   slog(f'{fmtm(Note.I2F2, w=2, d1="")}',  pfx=0)
-    slog(f'{B*15}{len(Note.I2S2):3}    I2S2', pfx=0)   ;   slog(f'{fmtm(Note.I2S2, w=2, d1="")}',  pfx=0)
-    slog(f'{B*15}{len(Note.N2I):3}    N2I', pfx=0)   ;   slog(f'{fmtm(Note.N2I, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Notes.F2S):3}    F2S', pfx=0)   ;   slog(f'{fmtm(Notes.F2S, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Notes.S2F):3}    S2F', pfx=0)   ;   slog(f'{fmtm(Notes.S2F, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Notes.I2F):3}    I2F', pfx=0)   ;   slog(f'{fmtm(Notes.I2F, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Notes.I2S):3}    I2S', pfx=0)   ;   slog(f'{fmtm(Notes.I2S, w=2, d1="")}',  pfx=0)
+    slog(f'{B*15}{len(Notes.N2I):3}    N2I', pfx=0)   ;   slog(f'{fmtm(Notes.N2I, w=2, d1="")}',  pfx=0)
     slog(f'{B*15}{len(FLATS):3}    FLATS',  pfx=0)
-    slog(f'{fmtl(FLATS, w="3", d1="")}',    pfx=0)
-    slog(f'{fmtl( [ f"{i + 1:3}" for i in range(Note.MAX_IDX) ], d1="")}', pfx=0)
-    slog(f'{fmtl(SHRPS, w="3", d1="")}',    pfx=0)
+    slog(f'{fmtl(FLATS, w="3", u=">", d1="")}',    pfx=0)
+    slog(f'{fmtl( [ f"{i + 1:3}" for i in range(Notes.MAX_IDX) ], d1="")}', pfx=0)
+    slog(f'{fmtl(SHRPS, w="3", u=">", d1="")}',    pfx=0)
     slog(f'{B*15}{len(SHRPS):3}    SHRPS',  pfx=0)
-    slog(f'{B*15}{len(KeySig.FO):3}    FO', pfx=0)   ;   slog(f'{fmtm(KeySig.FO, w=2, d1="")}', pfx=0)
-    slog(f'{B*15}{len(KeySig.SO):3}    SO', pfx=0)   ;   slog(f'{fmtm(KeySig.SO, w=2, d1="")}', pfx=0)
-    slog(f'{B*15}{len(KeySig.KO):3}    KO', pfx=0)   ;   slog(f'{fmtm(KeySig.KO, w=2, d1="")}', pfx=0)
-    for i in range(len(Note.I2N)):
-        slog(f'{B * 15}{len(Note.I2N[i]):3}    I2N[{Note.TYPES[i]}]', pfx=0)
-        slog(f'{fmtm(Note.I2N[i], w=2, d1="")}', pfx=0)
-    slog(f'{B*15}{len(KeySig.KS):3}    KS', pfx=0)   ;   slog(f'{fmtm(KeySig.KS, w=2, d2=chr(10), ll=-1)}', pfx=0)
+#    slog(f'{B*15}{len(KeySig.FO):3}    FO', pfx=0)   ;   slog(f'{fmtm(KeySig.FO, w=2, d1="")}', pfx=0)
+#    slog(f'{B*15}{len(KeySig.SO):3}    SO', pfx=0)   ;   slog(f'{fmtm(KeySig.SO, w=2, d1="")}', pfx=0)
+#    slog(f'{B*15}{len(KeySig.KO):3}    KO', pfx=0)   ;   slog(f'{fmtm(KeySig.KO, w=2, d1="")}', pfx=0)
+#    for i in range(len(Notes.I2N)):
+#        slog(f'{B * 15}{len(Notes.I2N[i]):3}    I2N[{Notes.TYPES[i]}]', pfx=0)
+#        slog(f'{fmtm(Notes.I2N[i], w=2, d1="")}', pfx=0)
+#    slog(f'{B*15}{len(KeySig.KS):3}    KS', pfx=0)   ;   slog(f'{fmtm(KeySig.KS, w=2, d2=chr(10), ll=-1)}', pfx=0)
+    slog(' I F  S  V   Notes Table', pfx=0)
+    for i in range(len(DATA)):
+        slog(f'{i:2} {fmtl(DATA[i], w="2", d1="")}', pfx=0)
+    slog(' I F  S  V   Notes Table', pfx=0)
+    slog(f'{B*15}{len(KeySig.KSO):3}    KSO', pfx=0)
+    slog(f'{fmtm(KeySig.KSO, w=2, d1="")}', pfx=0)
+    for k,v in KeySig.KSO.items(): slog(f'{k:2} {v:2}', pfx=0)
     slog('END')
 
-def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
+def fmtl(lst, w=None, u=None, d1='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
-    lts = (list, tuple, set, frozenset)  ;  dts = (int, float, str)
+    lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts, f'{type(lst)=} {lts=}'
     if d1=='':   d2 = ''
     w = w if w else ''   ;   t = ''
@@ -57,9 +63,11 @@ def fmtl(lst, w=None, u='>', d1='[', d2=']', sep=' ', ll=None, z=''):
             else:                            t += fmtl(l, w,    u, d1, d2, sep, ll, z)
         else:
             ss = sep if i < len(lst)-1 else ''
+            u = '' if u is None else u
             if   type(l) is type:            l =  str(l)
             elif l is None:                  l =  'None'
             if   type(w) in lts:             t += f'{l:{u}{w[i]}{z}}{ss}'
+            elif type(l) in dtn:             t += f'{l:{u}{w   }{z}}{ss}'
             elif type(l) in dts:             t += f'{l:{u}{w   }{z}}{ss}'
             else:                            t += f'{l}{ss}'
 #            else:                             msg = f'ERROR l={l} is type {type(l)}'   ;   slog(msg)   ;   raise SystemExit(msg)
@@ -186,12 +194,11 @@ def parseCmdLine(dbg=1):
 class DSymb(object):
     SYMBS = {'X': 'mute', '/': 'slide', '\\': 'bend', '+': 'hammer', '~': 'vibrato', '^': 'tie', '.': 'staccato', '_': 'legato', '%': 'repeat', '|': 'bar', '[': 'groupL', ']': 'groupR'}
 ########################################################################################################################################################################################################
-class Note(object):
+
+class OLD__Note(object):
     FLAT, SHRP = 0, 1
     TYPE       = FLAT
     TYPES      = ['FLAT', 'SHRP']
-#    FS2N       = {'Cb':'B', 'B#':'C', 'Fb':'E', 'E#':'F'}
-#    N2FS       = {'B':'Cb', 'C':'B#', 'E':'Fb', 'F':'E#'}
 #    S2F2        = {           'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'}
 #    F2S2        = {           'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'}
     S2F        = {'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B':'Cb' }
@@ -212,104 +219,180 @@ class Note(object):
     @staticmethod
     def indices(k, o=0):
         key = k[:len(k)-1] if o else k
-        i = Note.N2I[key]
+        i = OLD__Note.N2I[key]
         return i
 
     @staticmethod
-    def setType(t): Note.TYPE = t
+    def setType(t): OLD__Note.TYPE = t
 
     @staticmethod
-    def getName(i, t=-1, n2=0):
-        t = t if t >= 0 else Note.TYPE
-        name = Note.I2N2[t][i % NTONES] if n2 else Note.I2N[t][i % NTONES]
+    def getName(i, t=-1): #n2=0
+        t = t if t >= 0 else Notes.TYPE
+        name = OLD__Note.I2N[t][i % NTONES] # if n2 else Notes.I2N[t][i % NTONES]
         return name
 
     @staticmethod
     def noteIv(n, iv, o=0):
-        i = Note.indices(n, o)
+        i = OLD__Note.indices(n, o)
         j = IVALR[iv]
-        k = Note.indexI(i, j)
-        m = Note.getName(k)
+        k = OLD__Note.indexI(i, j)
+        m = OLD__Note.getName(k)
         return m
 
     @staticmethod
     def indexI(i, d):
         return (i + d) % NTONES
 ########################################################################################################################################################################################################
-FLATS   = [ f'{k}{n}' for n in range(11) for k in Note.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Note.MAX_IDX]
-SHRPS   = [ f'{k}{n}' for n in range(11) for k in Note.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Note.MAX_IDX]
+class Notes(object):
+    FLAT, SHRP = 0, 1
+    TYPE       = FLAT
+    TYPES      = ['FLAT', 'SHRP']
+    S2F        = { 'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B':'Cb' }
+    F2S        = { 'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
+    I2F        = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
+    I2S        = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
+    I2V        = { 0: 'R', 1: 'b2', 2: '2', 3: 'm3', 4: 'M3', 5: '4', 6: 'b5', 7: '5', 8: '#5', 9: '6', 10: 'b7', 11: '7' }
+    N2I        = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11 }
+    MAX_IDX    = 10 * NTONES + 1
+    I2N        = [I2F, I2S]
+
+    @staticmethod
+    def index(k, o=0):
+        key = k[:len(k)-1] if o else k
+        i = Notes.N2I[key]
+        return i
+
+    @staticmethod
+    def setType(t): Notes.TYPE = t
+
+    @staticmethod
+    def getName(i, t=-1, n2=0):
+        t = t if t >= 0 else Notes.TYPE
+        name = Notes.I2N[t][i % NTONES] if n2 else Notes.I2N[t][i % NTONES]
+        return name
+
+    @staticmethod
+    def noteIv(n, iv, o=0):
+        i = Notes.index(n, o)
+        j = IVALR[iv]
+        k = Notes.indexI(i, j)
+        m = Notes.getName(k)
+        return m
+
+    @staticmethod
+    def indexI(i, d):
+        return (i + d) % NTONES
+
+########################################################################################################################################################################################################
+def initDATA():
+    return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i] ] for i in range(NTONES) }
+DATA    = initDATA()
+
+FLATS   = [ f'{k}{n}' for n in range(11) for k in Notes.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Notes.MAX_IDX]
+SHRPS   = [ f'{k}{n}' for n in range(11) for k in Notes.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Notes.MAX_IDX]
 
 def FREQ( index): return 440 * pow(pow(2, 1/NTONES), index - 57)
 def FREQ2(index): return 432 * pow(pow(2, 1/NTONES), index - 57)
 
-FREQS   = [ FREQ( i) for i in range(Note.MAX_IDX) ]
-FREQS2  = [ FREQ2(i) for i in range(Note.MAX_IDX) ]
-
+FREQS   = [ FREQ( i) for i in range(Notes.MAX_IDX) ]
+FREQS2  = [ FREQ2(i) for i in range(Notes.MAX_IDX) ]
+########################################################################################################################################################################################################
+def initKSO_A(j=-7, m=11):
+    _ = {}  ;  k = 7
+    for i in range(j, j+k, 1):
+        _[i] = m % NTONES
+        m += k
+    return _
 def initKS(j=-7, m='Bb', iv='4', t=0):
     _ = {}  ;  k = 7
     for i in range(j, j+k, 1):
         _[m] = i
-        n = Note.noteIv(m, iv)
-        p = Note.indices(n, 0) % NTONES
-        q = Note.getName(p, t=t, n2=1)
-#        if m in Note.FS2N:
-#            a = Note.FS2N[m]
-#            _[a] = i
-        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {Note.TYPES[t]}')
+        n = OLD__Note.noteIv(m, iv)
+        p = OLD__Note.indices(n, 0) % NTONES
+        q = OLD__Note.getName(p, t=t) #, n2=1)
+        slog(f'{i:2} {m:3} {iv:2} {n:3} {p:2} {q:3} {OLD__Note.TYPES[t]}')
         m = q
+    return _
+########################################################################################################################################################################################################
+def initKSO(l=11):
+    _ = {}  ;  t = 0  ;  j = 7  ;  m = Notes.I2N[t][l]  ;  iv = '5'  ;  p = l
+    slog(f'{l=:2} {iv=:2}')
+    for i in range(-j, j+1, 1):
+        _[m] = i   ;  l = p
+        if i==0: t = 1
+        n = Notes.noteIv(m, iv)
+        p = Notes.index(n, 0)
+        o = Notes.getName(p, t=t)
+        slog(f'{i:2} {m:3} {l:2} {n:3} {p:2} {o:3} {Notes.TYPES[t]}')
+        m = o
     return _
 ########################################################################################################################################################################################################
 
 class KeySig(object):
-    FO = initKS()
-    SO = initKS(j=1, m='F#', iv='5', t=1)
-    KO  = dict(FO)   ;  KO.update(SO)
-    KS  =  dict()  ;   N = len(FO)
-    for _ in range(-N, N+1, 1):        O = FO  if _ < 0 else SO    ;   KS[_] = list(O.keys())[:abs(_)]
-    slog(f'FO ={fmtm(FO, w=2, d1="")}')
-    slog(f'SO ={fmtm(SO, w=2, d1="")}')
-    slog(f'KO ={fmtm(KO, w=2, d1="")}')
-    slog(f'KS ={fmtm(KS, w=2, d1="")}')
-    ########################################################################################################################################################################################################
-    def __init__(self, k=0):
-        self.k  = k
-        self.ks = self.KS[self.k]
-    def __str__( self):  return f'{self.k:2} {fmtl(self.ks)}'
-    def __repr__(self):  return f'KeySig({self.k})'
-    ########################################################################################################################################################################################################
-    def tlog(self, i=None):
-        if i is not None: i = i + 1
-        ii = B*4  if i is None else f'{i:3} '
-        slog(f'{ii}{ev(self)}')
-        return i
-    ########################################################################################################################################################################################################
+#    FO = initKSO()
+#    SO = initKSO(j=1, l=10)
+#    KO  = dict(FO)  ;  KO.update(SO)
+#    KS  = dict()    ;    N = len(FO)
+#    for _ in range(-N, N+1, 1):        O = FO  if _ < 0 else SO    ;   KS[_] = list(O.keys())[:abs(_)]
+    KSO = initKSO()
+    slog(f'KSO = {fmtm(KSO, w=2, d1="")}')
+    for k, v in KSO.items():   slog(f'{k:2} {v:2}')
+
     @classmethod
-    def sortKS(cls, e): return sorted(e, key=lambda t: cls.KO[t])
-    @classmethod
-    def fKS(cls):      return f'{fmtm(cls.KS, w=2, d2=chr(10), ll=-1)}'
+    def sortKS(cls, e): return sorted(e, key=lambda t: cls.KSO[Notes.N2I[t]])
+########################################################################################################################################################################################################
+
+#class OLD__KeySig(object):
+#    pass
+#    FO = initKS()
+#    SO = initKS(j=1, m='F#', iv='5', t=1)
+#    KO  = dict(FO)   ;  KO.update(SO)
+#    KS  =  dict()  ;   N = len(FO)
+#    for _ in range(-N, N+1, 1):        O = FO  if _ < 0 else SO    ;   KS[_] = list(O.keys())[:abs(_)]
+#    slog(f'FO ={fmtm(FO, w=2, d1="")}')
+#    slog(f'SO ={fmtm(SO, w=2, d1="")}')
+#    slog(f'KO ={fmtm(KO, w=2, d1="")}')
+#    slog(f'KS ={fmtm(KS, w=2, d1="")}')
     ########################################################################################################################################################################################################
-    @classmethod
-    def test(cls):
-        slog(cls.fKS(), pfx=0)
-        cls.default()
-        cls.test_1()
+#    def __init__(self, k=0):
+#        self.k  = k
+#        self.ks = self.KS[self.k]
+#    def __str__( self):  return f'{self.k:2} {fmtl(self.ks)}'
+#    def __repr__(self):  return f'KeySig({self.k})'
     ########################################################################################################################################################################################################
-    @classmethod
-    def default(cls, i=0):
-        ks = KeySig()            ;  i = ks.tlog(i)
-        ks = KeySig( 0)          ;  i = ks.tlog(i)
-        ks = KeySig( 1)          ;  i = ks.tlog(i)
-        ks = KeySig(-1)          ;  i = ks.tlog(i)
-        ks = KeySig(k= 0)        ;  i = ks.tlog(i)
-        ks = KeySig(k= 1)        ;  i = ks.tlog(i)
-        ks = KeySig(k=-1)        ;  i = ks.tlog(i)
-        return i
-    @classmethod
-    def test_1(cls, i=0, j=0):
-        l = cls.N + j
-        for n in range(-l, l+1, 1):
-            ns = KeySig(n)  ;  i = ns.tlog(i)
-        return i
+#    def tlog(self, i=None):
+#        if i is not None: i = i + 1
+#        ii = B*4  if i is None else f'{i:3} '
+#        slog(f'{ii}{ev(self)}')
+#        return i
+    ########################################################################################################################################################################################################
+#    @classmethod
+#    def sortKS(cls, e): return sorted(e, key=lambda t: cls.KO[t])
+#    @classmethod
+#    def fKS(cls):      return f'{fmtm(cls.KS, w=2, d2=chr(10), ll=-1)}'
+    ########################################################################################################################################################################################################
+#    @classmethod
+#    def test(cls):
+#        slog(cls.fKS(), pfx=0)
+#        cls.default()
+#        cls.test_1()
+    ########################################################################################################################################################################################################
+#    @classmethod
+#    def default(cls, i=0):
+#        ks = OLD__KeySig()            ;  i = ks.tlog(i)
+#        ks = OLD__KeySig( 0)          ;  i = ks.tlog(i)
+#        ks = OLD__KeySig( 1)          ;  i = ks.tlog(i)
+#        ks = OLD__KeySig(-1)          ;  i = ks.tlog(i)
+#        ks = OLD__KeySig(k= 0)        ;  i = ks.tlog(i)
+#        ks = OLD__KeySig(k= 1)        ;  i = ks.tlog(i)
+#        ks = OLD__KeySig(k=-1)        ;  i = ks.tlog(i)
+#        return i
+#    @classmethod
+#    def test_1(cls, i=0, j=0):
+#        l = cls.N + j
+#        for n in range(-l, l+1, 1):
+#            ns = OLD__KeySig(n)  ;  i = ns.tlog(i)
+#        return i
 ########################################################################################################################################################################################################
 
 class Strings(object):
@@ -346,7 +429,7 @@ class Strings(object):
     def tab2nn(self, tab, s, dbg=0):
         fn   = self.tab2fn(tab)
         i    = self.fn2ni(fn, s)
-        name = Note.getName(i)
+        name = Notes.getName(i)
         if dbg: slog(f'tab={tab} s={s} fn={fn} i={i} name={name}')
         return name
 
