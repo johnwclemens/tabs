@@ -4,7 +4,7 @@ from collections import OrderedDict as cOd
 #for _ in sys.path:
 #    print(f'{_}')
 import util
-from util import Note as Note
+from util import Notes as Notes
 #from util import Strings as us
 
 FMTN           = (1, 1, 2, 2, 2, 2, 2)
@@ -64,8 +64,8 @@ class Chord(object):
         strKeys    = self.sobj.stringKeys
         strNames   = self.sobj.stringNames
         _tabs      = data[p][l][c]
-#        strIndices = [ Note.INDICES[k] for k in strKeys ]
-        strIndices = [ Note.indices(k, 1) for k in strKeys ]
+#        strIndices = [ Notes.INDICES[k] for k in strKeys ]
+        strIndices = [ Notes.index(k, 1) for k in strKeys ]
         mask, indices, notes = [], [], []  ;  nt = len(_tabs)
         for t in range(nt-1, -1, -1):
             if self.sobj.isFret(_tabs[t]):

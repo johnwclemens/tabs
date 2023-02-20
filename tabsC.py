@@ -322,8 +322,8 @@ class Tabs(pyglet.window.Window):
         slog(f'{t=} {m=} {d=}')
         for i in range(util.NTONES):
             j = (i * d) % util.NTONES
-            k = Notes.indexI(j, d)
-            n = Notes.getName(k)  ;  n += f'{o}' if o>=0 else ''
+            k = Notes.nextIndex(j, d)
+            n = Notes.name(k)  ;  n += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {j:2} {d:2} {k:2} {n:3}')  ;  m = n
         Notes.TYPE = ntype
     @staticmethod
@@ -331,7 +331,7 @@ class Tabs(pyglet.window.Window):
         ntype = Notes.TYPE  ;  Notes.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
         slog(f'{t=} {m=} {iv=}')
         for i in range(util.NTONES):
-            n = Notes.noteIv(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
+            n = Notes.nextName(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {iv:2} {n:3}')  ;  m = n
         Notes.TYPE = ntype
     @staticmethod
@@ -339,9 +339,9 @@ class Tabs(pyglet.window.Window):
         ntype = Notes.TYPE  ;  Notes.TYPE = t ;  m = f'{m}{o}' if o>=0 else m
         slog(f'{t=} {m=} {iv=}')
         for i in range(util.NTONES):
-            n =  Notes.noteIv(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
+            n =  Notes.nextName(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
             p = (Notes.index(     n, 1 if o>=0 else 0) - 1) % util.NTONES
-            q =  Notes.getName(p, n2=1)                 ;  q += f'{o}' if o>=0 else ''
+            q =  Notes.name(p, n2=1)                 ;  q += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {iv:2} {n:3} {p:2} {q:3}')  ;  m = n
         Notes.TYPE = ntype
     @staticmethod
@@ -350,7 +350,7 @@ class Tabs(pyglet.window.Window):
         iv = util.IVALS[j]
         m = 'C'
         for i in range(util.NTONES):
-            n = Notes.noteIv(m, iv)
+            n = Notes.nextName(m, iv)
             slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
             m = n
     ####################################################################################################################################################################################################
@@ -2299,7 +2299,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def fKSO(e): return f'{fmtl(KS.sortKS(e))}'
     def checkKS(self, e, dbg=1, f=''):
-        for k, v in KS.KSO.items():
+        for k, v in KS.KSD.items():
             s = set(v)  ;   o = '!!' if not e and not s else '!~' if e.isdisjoint(s) else '> ' if e > s else '< ' if e < s else '~~' if e == s else '??'
             if dbg:              self.log(f'{k=:2} {self.fKSO(e)} {o} {self.fKSO(s)}')
             if o=='!!' or o=='~~':    f = f'{k=:2} {self.fKSO(e)} {o} {self.fKSO(s)}'
