@@ -44,9 +44,17 @@ def init(file, oid):
     for i in range(len(ND)):
         slog(f'{i:2} {fmtl(ND[i], w="2", d1="")}', pfx=0)
     slog(' I F  S  V   Notes Table', pfx=0)
-    slog(f'{B*15}{len(KeySig.KSD):3}    KSO', pfx=0)
-    slog(f'{fmtm(KeySig.KSD, w=2, d1="")}', pfx=0)
-    for k,v in KeySig.KSD.items(): slog(f'{k:2} {fmtl(v, w="2", d1="")}', pfx=0)
+    slog(f'{B*15}{len(KeySig.KSD):3}    KSD', pfx=0)
+#    slog(f'{fmtm(KeySig.KSD, w=2, d1="")}'  , pfx=0)
+    items = sorted(KeySig.KSD.items())
+    for k, v in items:
+        msg1 = ''   ;   msg2 = ''  ;  msg3 = ''
+        for i in range(len(v)):
+            w = v[i]
+            if   i <= 1:      msg1 += f'{w:2} '
+            elif i == 2:      msg2 += f'{fmtl(w[:abs(k)], w="2")} '
+            else:             msg3 += f'{fmtl(w[:abs(k)], w="2")} '
+        slog(f'{k:2} {msg1:} {msg2:23} {msg3}', pfx=0)
     slog('END')
 
 def fmtl(lst, w=None, u=None, d1='[', d2=']', sep=' ', ll=None, z=''):
@@ -278,7 +286,7 @@ def init_KSO():
         slog(f'{i:2} {j:2} {k:2} {m:3} {m2:3} {m3:3} {p:2} {q:2} {n:3} {n2:3} {n3:3} {Notes.TYPES[t]}')
         m    = m3  ;  n = n3
     return _
-def initKSD_1():
+def initKSD_0():
     _ = {}  ;  t = 0  ;  l = 11  ;  m = Notes.I2N[t][l]  ;  v = '5'  ;  p = l
     slog(f'{l=:2} {v=:2}')
     for i in range(-7, 7+1, 1):
@@ -291,7 +299,7 @@ def initKSD_1():
         slog(f'{i:2} {m:3} {l:2} {n:3} {p:2} {o:3} {Notes.TYPES[t]}')
         m = o
     return _
-def initKSD():
+def initKSD_1():
     _ = {}  ;  t = 0  ;  i = 11  ;  d = 7
     slog(f'{i=:2} {d=:2}')
     for k in range(-7, 7+1, 1):
@@ -301,11 +309,51 @@ def initKSD():
         i = Notes.nextIndex(i, d)
         if k == 0:  t = 1
     return _
+def initKSD_2(t=1):
+    _ = {}
+    if t:   i1 = 7  ;  i2 =  6  ;  d = 7  ;  j1 =  1  ;  j2 =  7
+    else:   i1 = 5  ;  i2 = 10  ;  d = 5  ;  j1 = -1  ;  j2 = -7
+    slog(f'{i1=:2} {i2=:2} {d=:2}')
+    for k in range(j1, j1+j2, j1):
+        n1 = Notes.name(i1, t=t)
+        n2 = Notes.name(i2, t=t)
+        _[k] = [ n1, i1, n2, i2 ]
+        slog(f'{k:2} {n1:2} {i1:2} {n2:2} {i2:2} {Notes.TYPES[t]}')
+        i1 = Notes.nextIndex(i1, d)
+        i2 = Notes.nextIndex(i2, d)
+    return _
+def initKSD_3(m, t=1):
+    ln = []  ;  li = []
+    if t:   i1 = 7  ;  i2 =  6  ;  d = 7  ;  j1 =  1  ;  j2 =  7
+    else:   i1 = 5  ;  i2 = 10  ;  d = 5  ;  j1 = -1  ;  j2 = -7
+    slog(f'{i1=:2} {i2=:2} {d=:2}')
+    for k in range(j1, j1+j2, j1):
+        n1 = Notes.name(i1, t=t)
+        n2 = Notes.name(i2, t=t)   ;  ln.append(n2)  ;  li.append(i2)
+        m[k] = [ n1, i1, ln, li ]
+        slog(f'{k:2} {Notes.TYPES[t]} {n1:2} {i1:2} {fmtl(ln, w="2"):22} {fmtl(li, w="2"):22}')
+        i1 = Notes.nextIndex(i1, d)
+        i2 = Notes.nextIndex(i2, d)
+    return m
+def initKSD(m, t=1):
+    ln = []  ;  li = []
+    if t:   i1 = 7  ;  i2 = 6  ;  d = 7  ;  j1 =  1  ;  j2 =  7
+    else:   i1 = 0  ;  i2 = 5  ;  d = 5  ;  j1 = -1  ;  j2 = -7
+    slog(f'{i1=:2} {i2=:2} {d=:2}')
+    for k in range(t, j1+j2, j1):
+        n1 = Notes.name(i1, t=t)
+        n2 = Notes.name(i2, t=t)
+        if abs(k) >= 1:   ln.append(n2)  ;  li.append(i2)
+        m[k] = [ n1, i1, ln, li ]
+        slog(f'{k:2} {Notes.TYPES[t]} {n1:2} {i1:2} {fmtl(ln, w="2"):22} {fmtl(li, w="2"):22}')
+        i1 = Notes.nextIndex(i1, d)
+        i2 = Notes.nextIndex(i2, d)
+    return m
 ########################################################################################################################################################################################################
 class KeySig(object):
-    KSD = initKSD()
-    slog(f'KSD = {fmtm(KSD, w=2, d1="")}')
-    for k, v in KSD.items():   slog(f'{k:2} {fmtl(v, w="2", d1="")}')
+    KSD = {}
+    KSD = initKSD(KSD, t=0)
+    KSD = initKSD(KSD, t=1)
 
     @classmethod
     def sortKS(cls, e): return sorted(e, key=lambda t: cls.KSD[Notes.N2I[t]])
