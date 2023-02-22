@@ -4,6 +4,7 @@ from itertools      import accumulate
 from more_itertools import consume
 CODS    = 0
 if CODS: from collections import OrderedDict as cOd
+from collections import Counter
 import pyglet
 import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
@@ -155,7 +156,7 @@ class Tabs(pyglet.window.Window):
     def _reinit(self):
         self.log('BGN')
         self.tpb, self.tpp, self.tpl, self.tps, self.tpc = self.ntp(dbg=1, dbg2=1)
-        self.visib = []   ;   self.enhms = set()
+        self.visib = []   ;   self.nic = Counter()
         self.pages, self.lines, self.sects, self.colms = [], [], [], []  ;  self.A = [self.pages, self.lines, self.sects, self.colms]
         self.tabls, self.notes, self.ikeys, self.kords = [], [], [], []  ;  self.B = [self.tabls, self.notes, self.ikeys, self.kords]
         self.rowLs, self.qclms, self.hcurs, self.views = [], [], [], []  ;  self.C = [self.rowLs, self.qclms, self.hcurs, self.views]
@@ -475,7 +476,7 @@ class Tabs(pyglet.window.Window):
 #    @staticmethod
 #    def dumpObj( obj,  name, why=''): slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     def dumpFreqsHdr(self):
-        self.log(f'index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ],  w="5")}',  pfx=0)
+        self.log(f'index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w="5")}',  pfx=0)
         self.log(f'sharp{fmtl(list(util.SHRPS),                      w="5")}',  pfx=0)
         self.log(f' flat{fmtl(list(util.FLATS),                      w="5")}',  pfx=0)
     def dumpFreqs(self, r=440):
@@ -483,6 +484,8 @@ class Tabs(pyglet.window.Window):
     def dumpJs(  self, why, w=None, d=1): b = B*12 if self.OIDS else ''  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
     def dumpGeom(self, why='', why2=''):  b = B*12 if self.OIDS else ''  ;  self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fnvis()}] {why2}')
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={fmtm(self.smap)}', pos=pos)
+    def dumpNic(self): #                   self.log(f'{fmtm(self.nic)}')
+        for k, v in self.nic.items(): self.log(f'{k:2} {Notes.I2N[0][k]:2}/{Notes.I2N[1][k]:2} {v}')
     ####################################################################################################################################################################################################
     def dumpBlanks(self): self.dmpBlnkHdr()  ;  self.log(f'{self.fmtBlnkCol()}', pfx=0)  ;  self.log(f'{self.fmtBlnkRow()}', pfx=0)
     def dmpBlnkHdr(self): self.log(f'{len(self.tblankCol)=} {len(self.tblankRow)=}')
@@ -503,6 +506,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpStruct(self, why='', dbg=1, dbg2=0):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
+        self.dumpNic()
         self.dumpFont(why)
         self.dumpVisible()
         self.dumpIdmKeys()
@@ -1212,7 +1216,7 @@ class Tabs(pyglet.window.Window):
                     s                    = self.ss2sl()[self.J1[S]]
                     tlist2, j2, kl, tobj = self.tnikInfo(p, l, s, c, i2, why=why)
                     if   s == TT:                     text = tobj
-                    elif s == NN:                     text = tobj if j2 > K else self.sobj.tab2nn(tobj, i2) if self.sobj.isFret(tobj) else self.tblank
+                    elif s == NN:                     text = tobj if j2 > K else self.sobj.tab2nn(tobj, i2, self.nic) if self.sobj.isFret(tobj) else self.tblank
                     elif s >= II:
                         if   s == II:  imap = self.getImap(p, l, c)  ;  text = self.imap2ikey( tobj, imap, i3, j2)  ;  i3 += 1 if text != self.tblank else 0
                         elif s == KK:  imap = self.getImap(p, l, c)  ;  text = self.imap2Chord(tobj, imap, i2, j2)
@@ -1326,7 +1330,7 @@ class Tabs(pyglet.window.Window):
                         imap = self.getImap(p, l, c) if s >= II else []
                         tlist, j, kl, tobj = self.tnikInfo(p, l, s, c, t, why=why)
                         if   s == TT: text = tobj
-                        elif s == NN: text = tobj if j > K else self.sobj.tab2nn(tobj, t) if self.sobj.isFret(tobj) else self.tblank
+                        elif s == NN: text = tobj if j > K else self.sobj.tab2nn(tobj, t, self.nic) if self.sobj.isFret(tobj) else self.tblank
                         elif s == II: text = self.imap2ikey( tobj, imap, i, j)   ;   i += 1 if text != self.tblank else 0
                         elif s == KK: text = self.imap2Chord(tobj, imap, t, j)
                         j2 = self.J2[j]  ;  tnik = tlist[j2]
@@ -1648,9 +1652,9 @@ class Tabs(pyglet.window.Window):
 
     def setNote(self, text, cc, t, pos=0, dbg=1):
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
-        ntext = self.sobj.tab2nn(text, t)
+        ntext = self.sobj.tab2nn(text, t, self.nic)
         self.notes[cc].text = ntext if self.sobj.isFret(text) else self.tblank
-        if len(ntext) > 1:    self.updateEnhms(ntext)   ;   self.checkKS(self.enhms)
+#        if len(ntext) > 1:    self.updateNics(ntext)   ;   self.checkKS(self.nic)
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
     ####################################################################################################################################################################################################
     def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=0):
@@ -2271,7 +2275,7 @@ class Tabs(pyglet.window.Window):
     def toggleFlatSharp(self, how, dbg=0):  #  page line colm tab or select
         t1 = Notes.TYPE    ;    t2 = (Notes.TYPE + 1) % 2    ;   Notes.setType(t2)
         self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
-        s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i  ;  ehs = self.enhms  ;  ehs.clear()
+        s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i # ;  ehs = self.nic  ;  ehs.clear()
         tniks, j, k, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
         for i in range(len(tniks)):
             text = ''  ;   sn = i % nt
@@ -2284,26 +2288,26 @@ class Tabs(pyglet.window.Window):
                 p, l, c, t = self.cc2plct(cc)   ;   cn = self.cc2cn(cc)
                 if   text in Notes.F2S: text = Notes.F2S[text]
                 elif text in Notes.S2F: text = Notes.S2F[text]
-                self.notes[i].text = text   ;   ehs.add(text) # if len(text) > 1 :
-                self.log(f'{old:2} -> {text:2} = {self.fKSO(ehs)}') # + {self.fKSO(old2)}
+                self.notes[i].text = text # ehs.add(text) # if len(text) > 1 :
+                self.log(f'{old:2} -> {text:2} = ') # {self.fKSO(ehs)} # + {self.fKSO(old2)}
                 if dbg: self.log(f'{sn=} {cn=:2} {cc=:4} {i=:4} {old:2} => {text:2} {self.notes[i].text=:2} {self.fplct(p, l, c, t)}')
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
-        self.checkKS(ehs)
+#        self.checkKS(ehs)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
-    def updateEnhms(self, t):   self.enhms.add(t)   ;   slog(f'add {t} to enhms set={fmtl(self.enhms)}')
+#    def updateNics(self, t):   self.nic.add(t)   ;   slog(f'add {t} nics={fmtl(self.nic)}')
 #    @staticmethod
 #    def fKS(k, e, o, s): return f'{k=:2} ehs={fmtl(sorted(e, key=lambda t: KS.KO[t]))} {o} ks={fmtl(sorted(s, key=lambda t: KS.KO[t]))}'
     @staticmethod
     def fKSO(e): return f'{fmtl(KS.sortKS(e))}'
-    def checkKS(self, e, dbg=1, f=''):
-        for k, v in KS.KSD.items():
-            s = set(v)  ;   o = '!!' if not e and not s else '!~' if e.isdisjoint(s) else '> ' if e > s else '< ' if e < s else '~~' if e == s else '??'
-            if dbg:              self.log(f'{k=:2} {self.fKSO(e)} {o} {self.fKSO(s)}')
-            if o=='!!' or o=='~~':    f = f'{k=:2} {self.fKSO(e)} {o} {self.fKSO(s)}'
-        if f:  self.log(f'KS: {f}', file=2)
+#    def checkKS(self, e, dbg=1, f=''):
+#        for k, v in KS.KSD.items():
+#            s = set(v)  ;   o = '!!' if not e and not s else '!~' if e.isdisjoint(s) else '> ' if e > s else '< ' if e < s else '~~' if e == s else '??'
+#            if dbg:              self.log(f'{k=:2} {self.fKSO(e)} {o} {self.fKSO(s)}')
+#            if o=='!!' or o=='~~':    f = f'{k=:2} {self.fKSO(e)} {o} {self.fKSO(s)}'
+#        if f:  self.log(f'KS: {f}', file=2)
 ####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):
         cc = self.cc    ;    cn = self.cc2cn(cc)

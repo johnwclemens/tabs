@@ -45,15 +45,15 @@ def init(file, oid):
     slog('END')
 
 def dumpND():
-    slog(f' I  F  S  V   Notes Table {len(ND)}', pfx=0)
+    slog(f' I  F  S  V    Notes Table {len(ND)}', pfx=0)
     for i in range(len(ND)):
         slog(f'{i:2} {fmtl(ND[i], w="2")}', pfx=0)
-    slog(' I  F  S  V   Notes Table', pfx=0)
+    slog(f' I  F  S  V    Notes Table {len(ND)}', pfx=0)
 
 def dumpKS():
-    slog(f'{B*15}{len(KeySig.KSD):3}    KSD', pfx=0)
-#    items = sorted(KeySig.KSD.items())
-    for k, v in KeySig.KSD.items():
+    slog(f'KS  N   I      Flats/Sharps {B*10} F/S Indices {B*8} Key Sig Table {len(KeySig.KSD)}', pfx=0)
+    items = sorted(KeySig.KSD.items())
+    for k, v in items: # KeySig.KSD.items():
         msg1 = ''   ;   msg2 = ''  ;  msg3 = ''
         for i in range(len(v)):
             w = v[i]
@@ -61,6 +61,7 @@ def dumpKS():
             elif i == 1:      msg2 += f'{fmtl(w[:abs(k)], w="2")} '
             else:             msg3 += f'{fmtl(w[:abs(k)], w="2")} '
         slog(f'{k:2} {msg1:} {msg2:23} {msg3}', pfx=0)
+    slog(f'KS  N   I      Flats/Sharps {B*10} F/S Indices {B*8} Key Sig Table {len(KeySig.KSD)}', pfx=0)
 
 def fmtl(lst, w=None, u=None, d1='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
@@ -370,11 +371,14 @@ class Strings(object):
         if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
         return i
 
-    def tab2nn(self, tab, s, dbg=0):
+    def tab2nn(self, tab, s, nic=None, dbg=0):
         fn   = self.tab2fn(tab)
         i    = self.fn2ni(fn, s)
+        j    = i % NTONES
+        if nic is not None:   nic[j] += 1  ;  nics = f'nic[{j}]={nic[j]}'
+        else:                 nics = ''
         name = Notes.name(i)
-        if dbg: slog(f'tab={tab} s={s} fn={fn} i={i} name={name}')
+        if dbg or nics: slog(f'tab={tab} s={s} fn={fn} i={i} name={name} {nics}')
         return name
 
     @staticmethod
