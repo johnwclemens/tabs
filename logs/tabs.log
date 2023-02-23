@@ -1,4 +1,4 @@
-  25 util  init               BGN
+  24 util  init               BGN
                  9    F2S
  C:B# Db:C# Eb:D# Fb: E  F:E# Gb:F# Ab:G# Bb:A# Cb: B
                  9    S2F
@@ -27,23 +27,23 @@ I  F  S  V    Notes Table 12
 9 [A  A  6 ]
 a [Bb A# b7]
 b [Cb B  7 ]
-KS N  I      Flats/Sharps            F/S Indices        Key Sig Table 15
--7 Cb b [Bb Eb Ab Db Gb Cb Fb]  [a  3  8  1  6  b  4]
--6 Gb 6 [Bb Eb Ab Db Gb Cb]     [a  3  8  1  6  b]
--5 Db 1 [Bb Eb Ab Db Gb]        [a  3  8  1  6]
--4 Ab 8 [Bb Eb Ab Db]           [a  3  8  1]
--3 Eb 3 [Bb Eb Ab]              [a  3  8]
--2 Bb a [Bb Eb]                 [a  3]
--1 F  5 [Bb]                    [a]
- 0 C  0 []                      []
- 1 G  7 [F#]                    [6]
- 2 D  2 [F# C#]                 [6  1]
- 3 A  9 [F# C# G#]              [6  1  8]
- 4 E  4 [F# C# G# D#]           [6  1  8  3]
- 5 B  b [F# C# G# D# A#]        [6  1  8  3  a]
- 6 F# 6 [F# C# G# D# A# E#]     [6  1  8  3  a  5]
- 7 C# 1 [F# C# G# D# A# E# B#]  [6  1  8  3  a  5  0]
-  45 util  init               END
+KS  N  I      Flats/Sharps         F/S Indices     Key Sig Table 15
+-7 [Cb b] [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4]
+-6 [Gb 6] [Bb Eb Ab Db Gb Cb]    [a 3 8 1 6 b]
+-5 [Db 1] [Bb Eb Ab Db Gb]       [a 3 8 1 6]
+-4 [Ab 8] [Bb Eb Ab Db]          [a 3 8 1]
+-3 [Eb 3] [Bb Eb Ab]             [a 3 8]
+-2 [Bb a] [Bb Eb]                [a 3]
+-1 [F  5] [Bb]                   [a]
+ 0 [C  0] []                     []
+ 1 [G  7] [F#]                   [6]
+ 2 [D  2] [F# C#]                [6 1]
+ 3 [A  9] [F# C# G#]             [6 1 8]
+ 4 [E  4] [F# C# G# D#]          [6 1 8 3]
+ 5 [B  b] [F# C# G# D# A#]       [6 1 8 3 a]
+ 6 [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
+ 7 [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0]
+  44 util  init               END
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
 2666 tabsC <module>           argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
@@ -467,23 +467,23 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        B=[  0   1   1   1   2   2   2   3   3   3   4   4   4   5   5   5   6   6]
 2670 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
 2671 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
- 194 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
+ 207 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
- 210 util  parseCmdLine        1 short   -n n [] 
- 228 util  parseCmdLine        2 arg     1  n [1] 
- 228 util  parseCmdLine        3 arg     1  n [1 1] 
- 228 util  parseCmdLine        4 arg     10 n [1 1 10] 
- 228 util  parseCmdLine        5 arg     6  n [1 1 10 6] 
- 210 util  parseCmdLine        6 short   -S S [] 
- 228 util  parseCmdLine        7 arg     0  S [0] 
- 228 util  parseCmdLine        8 arg     1  S [0 1] 
- 228 util  parseCmdLine        9 arg     3  S [0 1 3] 
- 210 util  parseCmdLine       10 short   -i i [] 
- 228 util  parseCmdLine       11 arg     1  i [1] 
- 228 util  parseCmdLine       12 arg     1  i [1 1] 
- 228 util  parseCmdLine       13 arg     1  i [1 1 1] 
- 228 util  parseCmdLine       14 arg     6  i [1 1 1 6] 
- 230 util  parseCmdLine       options=[[n:[1 1 10 6]] [S:[0 1 3]] [i:[1 1 1 6]]]
+ 223 util  parseCmdLine        1 short   -n n [] 
+ 241 util  parseCmdLine        2 arg     1  n [1] 
+ 241 util  parseCmdLine        3 arg     1  n [1 1] 
+ 241 util  parseCmdLine        4 arg     10 n [1 1 10] 
+ 241 util  parseCmdLine        5 arg     6  n [1 1 10 6] 
+ 223 util  parseCmdLine        6 short   -S S [] 
+ 241 util  parseCmdLine        7 arg     0  S [0] 
+ 241 util  parseCmdLine        8 arg     1  S [0 1] 
+ 241 util  parseCmdLine        9 arg     3  S [0 1 3] 
+ 223 util  parseCmdLine       10 short   -i i [] 
+ 241 util  parseCmdLine       11 arg     1  i [1] 
+ 241 util  parseCmdLine       12 arg     1  i [1 1] 
+ 241 util  parseCmdLine       13 arg     1  i [1 1 1] 
+ 241 util  parseCmdLine       14 arg     6  i [1 1 1 6] 
+ 243 util  parseCmdLine       options=[[n:[1 1 10 6]] [S:[0 1 3]] [i:[1 1 1 6]]]
 2565 tabsC dumpGlobals        BASE_NAME = tabs
 2566 tabsC dumpGlobals        argv      =  15[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 2567 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
@@ -493,13 +493,13 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
   29 tabsC __init__           BGN <class __main__.Tabs>
 2500 tabsC getFilePath        fdir=logs/ fsfx=.log
 2504 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2514 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
-2516 tabsC getFileSeqNum      ids=[0 1 10 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 5 6 7 8 9]
-2508 tabsC getFilePath        fsfx=.47.log
- 175 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 178 util  getFilePath        fileName =tabs.47.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.47.log)
- 175 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 178 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+2514 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.100.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.101.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.102.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.103.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.104.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.105.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.106.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.53.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.54.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.55.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.56.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.57.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.58.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.59.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.60.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.61.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.62.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.63.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.64.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.65.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.66.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.67.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.68.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.69.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.70.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.71.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.72.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.73.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.74.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.75.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.76.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.77.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.78.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.80.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.81.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.82.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.83.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.84.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.85.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.86.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.88.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.89.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.90.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.91.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.92.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.93.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.94.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.95.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.96.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.97.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.98.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.99.log]
+2516 tabsC getFileSeqNum      ids=[0 1 10 100 101 102 103 104 105 106 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 52 53 54 55 56 57 58 59 6 60 61 62 63 64 65 66 67 68 69 7 70 71 72 73 74 75 76 77 78 79 8 80 81 82 83 84 85 86 87 88 89 9 90 91 92 93 94 95 96 97 98 99]
+2508 tabsC getFilePath        fsfx=.107.log
+ 188 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 191 util  getFilePath        fileName =tabs.107.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.107.log)
+ 188 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 191 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
   34 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
   44 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=UP  
   59 tabsC __init__           CODS=0 type(.idmap)=<class dict>
@@ -533,13 +533,13 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  152 tabsC dumpArgs           [L]             .LL=0
  153 tabsC dumpArgs           [S]             .SS=[0 1 3]
  154 tabsC dumpArgs           [Z]             .ZZ=[]
- 382 util  __init__           stringMap   = [[E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]]
- 383 util  __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
- 384 util  __init__           stringNames =      EBGDAE
- 385 util  __init__           stringNumbs =      123456
- 386 util  __init__           stringCapo  =      000000
- 387 util  __init__           strLabel    =      STRING
- 388 util  __init__           cpoLabel    =       CAPO 
+ 379 util  __init__           stringMap   = [[E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]]
+ 380 util  __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
+ 381 util  __init__           stringNames =      EBGDAE
+ 382 util  __init__           stringNumbs =      123456
+ 383 util  __init__           stringCapo  =      000000
+ 384 util  __init__           strLabel    =      STRING
+ 385 util  __init__           cpoLabel    =       CAPO 
  105 tabsC __init__           Notes.TYPE=0
  106 tabsC __init__           Frequency Info
 index[    1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88    89    90    91    92    93    94    95    96    97    98    99   100   101   102   103   104   105   106   107   108   109   110   111   112   113   114   115   116   117   118   119   120   121]
@@ -571,7 +571,7 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.
  268 chord _dumpOMAP          END len(OMAP)=581 catfile.name=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat len(r)=0
  217 chord dumpOMAP           END   len(OMAP)=581 len(umap)=0
  240 tabsC _initWindowA       BGN (  -1x-1  )
- 240 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x00000235512FEC50>
+ 240 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000023E7CC6EC50>
  243 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
  243 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
  244 tabsC _initWindowA       END (  -1x-1  )
@@ -651,9 +651,9 @@ self.dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.
 ---------- ---------- -2-------- 24-------- 45-------- 5---------
 
  620 tabsC dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
- 183 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat)
- 184 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat.bck)
- 186 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat.bck ###
+ 196 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat)
+ 197 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat.bck)
+ 199 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat.bck ###
  667 tabsC A_transposeData    BGN ( 1x1x6x10 ) dump=1
  624 tabsC isVert             BGN dl=[1 1 6 10] dt=[list list list str]
 [[[---------- ---------- -2-------- 24-------- 45-------- 5---------]]]
@@ -802,20 +802,20 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   76 New1  Note    1   -  20 5 V 1  1  2  11   60    1    0    0  0   0 0 0  0  0  0  0   76  76   32.00  306.67   64.00   26.67  
   77 New1  Note    2   -  20 5 V 1  1  2  11   60    2    0    0  0   0 0 0  0  0  0  0   77  77   32.00  280.00   64.00   26.67  
   78 New1  Note    3   -  20 5 V 1  1  2  11   60    3    0    0  0   0 0 0  0  0  0  0   78  78   32.00  253.33   64.00   26.67  
- 406 util  tab2nn             tab=2 s=3 fn=2 i=40 name=Fb nic[ 4]=1
+ 403 util  tab2nn             tab=2 s=3 fn=2 i=40 name=Fb nic[ 4]=1
   79 New1  Note    4  Fb  20 5 V 1  1  2  11   60    4    0    0  0   0 0 0  0  0  0  0   79  79   32.00  226.67   64.00   26.67  
- 406 util  tab2nn             tab=4 s=4 fn=4 i=37 name=Db nic[ 1]=1
+ 403 util  tab2nn             tab=4 s=4 fn=4 i=37 name=Db nic[ 1]=1
   80 New1  Note    5  Db  20 5 V 1  1  2  11   60    5    0    0  0   0 0 0  0  0  0  0   80  80   32.00  200.00   64.00   26.67  
- 406 util  tab2nn             tab=5 s=5 fn=5 i=33 name=A  nic[ 9]=1
+ 403 util  tab2nn             tab=5 s=5 fn=5 i=33 name=A  nic[ 9]=1
   81 New1  Note    6   A  20 5 V 1  1  2  11   60    6    0    0  0   0 0 0  0  0  0  0   81  81   32.00  173.33   64.00   26.67  
   82 New1  Colm   12      74 4 V 1  1  2  12   60    6    0    0  0   0 0 0  0  0  0  0   82  82   96.00  240.00   64.00  160.00  
   83 New1  Note    7   -  20 5 V 1  1  2  12   60    7    0    0  0   0 0 0  0  0  0  0   83  83   96.00  306.67   64.00   26.67  
   84 New1  Note    8   -  20 5 V 1  1  2  12   60    8    0    0  0   0 0 0  0  0  0  0   84  84   96.00  280.00   64.00   26.67  
- 406 util  tab2nn             tab=2 s=2 fn=2 i=45 name=A  nic[ 9]=2
+ 403 util  tab2nn             tab=2 s=2 fn=2 i=45 name=A  nic[ 9]=2
   85 New1  Note    9   A  20 5 V 1  1  2  12   60    9    0    0  0   0 0 0  0  0  0  0   85  85   96.00  253.33   64.00   26.67  
- 406 util  tab2nn             tab=4 s=3 fn=4 i=42 name=Gb nic[ 6]=1
+ 403 util  tab2nn             tab=4 s=3 fn=4 i=42 name=Gb nic[ 6]=1
   86 New1  Note   10  Gb  20 5 V 1  1  2  12   60   10    0    0  0   0 0 0  0  0  0  0   86  86   96.00  226.67   64.00   26.67  
- 406 util  tab2nn             tab=5 s=4 fn=5 i=38 name=D  nic[ 2]=1
+ 403 util  tab2nn             tab=5 s=4 fn=5 i=38 name=D  nic[ 2]=1
   87 New1  Note   11   D  20 5 V 1  1  2  12   60   11    0    0  0   0 0 0  0  0  0  0   87  87   96.00  200.00   64.00   26.67  
   88 New1  Note   12   -  20 5 V 1  1  2  12   60   12    0    0  0   0 0 0  0  0  0  0   88  88   96.00  173.33   64.00   26.67  
   89 New1  Colm   13      74 4 V 1  1  2  13   60   12    0    0  0   0 0 0  0  0  0  0   89  89  160.00  240.00   64.00  160.00  
@@ -954,22 +954,22 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
 1201 tabsC createTniks        END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] New1
  500 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
  508 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-KS N  I      Flats/Sharps            F/S Indices        Key Sig Table 15
--7 Cb b [Bb Eb Ab Db Gb Cb Fb]  [a  3  8  1  6  b  4]
--6 Gb 6 [Bb Eb Ab Db Gb Cb]     [a  3  8  1  6  b]
--5 Db 1 [Bb Eb Ab Db Gb]        [a  3  8  1  6]
--4 Ab 8 [Bb Eb Ab Db]           [a  3  8  1]
--3 Eb 3 [Bb Eb Ab]              [a  3  8]
--2 Bb a [Bb Eb]                 [a  3]
--1 F  5 [Bb]                    [a]
- 0 C  0 []                      []
- 1 G  7 [F#]                    [6]
- 2 D  2 [F# C#]                 [6  1]
- 3 A  9 [F# C# G#]              [6  1  8]
- 4 E  4 [F# C# G# D#]           [6  1  8  3]
- 5 B  b [F# C# G# D# A#]        [6  1  8  3  a]
- 6 F# 6 [F# C# G# D# A# E#]     [6  1  8  3  a  5]
- 7 C# 1 [F# C# G# D# A# E# B#]  [6  1  8  3  a  5  0]
+KS  N  I      Flats/Sharps         F/S Indices     Key Sig Table 15
+-7 [Cb b] [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4]
+-6 [Gb 6] [Bb Eb Ab Db Gb Cb]    [a 3 8 1 6 b]
+-5 [Db 1] [Bb Eb Ab Db Gb]       [a 3 8 1 6]
+-4 [Ab 8] [Bb Eb Ab Db]          [a 3 8 1]
+-3 [Eb 3] [Bb Eb Ab]             [a 3 8]
+-2 [Bb a] [Bb Eb]                [a 3]
+-1 [F  5] [Bb]                   [a]
+ 0 [C  0] []                     []
+ 1 [G  7] [F#]                   [6]
+ 2 [D  2] [F# C#]                [6 1]
+ 3 [A  9] [F# C# G#]             [6 1 8]
+ 4 [E  4] [F# C# G# D#]          [6 1 8 3]
+ 5 [B  b] [F# C# G# D# A#]       [6 1 8 3 a]
+ 6 [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
+ 7 [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0]
  488 tabsC dumpNic             4 Fb/E  1
  488 tabsC dumpNic             1 Db/C# 1
  488 tabsC dumpNic             9 A /A  2
@@ -1565,22 +1565,22 @@ b [Cb B  7 ]
 1280 tabsC resizeTniks        END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd1
  500 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
  508 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-KS N  I      Flats/Sharps            F/S Indices        Key Sig Table 15
--7 Cb b [Bb Eb Ab Db Gb Cb Fb]  [a  3  8  1  6  b  4]
--6 Gb 6 [Bb Eb Ab Db Gb Cb]     [a  3  8  1  6  b]
--5 Db 1 [Bb Eb Ab Db Gb]        [a  3  8  1  6]
--4 Ab 8 [Bb Eb Ab Db]           [a  3  8  1]
--3 Eb 3 [Bb Eb Ab]              [a  3  8]
--2 Bb a [Bb Eb]                 [a  3]
--1 F  5 [Bb]                    [a]
- 0 C  0 []                      []
- 1 G  7 [F#]                    [6]
- 2 D  2 [F# C#]                 [6  1]
- 3 A  9 [F# C# G#]              [6  1  8]
- 4 E  4 [F# C# G# D#]           [6  1  8  3]
- 5 B  b [F# C# G# D# A#]        [6  1  8  3  a]
- 6 F# 6 [F# C# G# D# A# E#]     [6  1  8  3  a  5]
- 7 C# 1 [F# C# G# D# A# E# B#]  [6  1  8  3  a  5  0]
+KS  N  I      Flats/Sharps         F/S Indices     Key Sig Table 15
+-7 [Cb b] [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4]
+-6 [Gb 6] [Bb Eb Ab Db Gb Cb]    [a 3 8 1 6 b]
+-5 [Db 1] [Bb Eb Ab Db Gb]       [a 3 8 1 6]
+-4 [Ab 8] [Bb Eb Ab Db]          [a 3 8 1]
+-3 [Eb 3] [Bb Eb Ab]             [a 3 8]
+-2 [Bb a] [Bb Eb]                [a 3]
+-1 [F  5] [Bb]                   [a]
+ 0 [C  0] []                     []
+ 1 [G  7] [F#]                   [6]
+ 2 [D  2] [F# C#]                [6 1]
+ 3 [A  9] [F# C# G#]             [6 1 8]
+ 4 [E  4] [F# C# G# D#]          [6 1 8 3]
+ 5 [B  b] [F# C# G# D# A#]       [6 1 8 3 a]
+ 6 [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
+ 7 [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0]
  488 tabsC dumpNic             4 Fb/E  1
  488 tabsC dumpNic             1 Db/C# 1
  488 tabsC dumpNic             9 A /A  2
@@ -1848,7 +1848,7 @@ b [Cb B  7 ]
 1401 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd1A
  500 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
  521 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-2488 tabsC snapshot           SNAP_NAME=tabs.47.RSZC_5.0.png Upd1
+2488 tabsC snapshot           SNAP_NAME=tabs.107.RSZC_5.0.png Upd1
  533 tabsC on_draw            [1 1 1  1 6]   6  1] .snapWhy=Upd1 .snapType=RSZC_5 .snapId=1
 2279 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
 2294 tabsC toggleFlatSharp    Fb -> E  = 
@@ -1869,9 +1869,12 @@ b [Cb B  7 ]
 1700 tabsC setChordName       BGN [ 6-11] name=D chunks=[D] chords=<D----->6
 1705 tabsC setChordName       END [ 6-11] name=D chunks=[D] chords=<D----->6
 1695 tabsC setChord           [1 1 1  1 6]   6  1] END name=D chunks=[D] len(imap)=6
-  81 util  FOO                -7 -6 -5 -4 -3 -2 -1  0  1  2  3  4  5  6  7
-  83 util  FOO                Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
-  85 util  FOO                 b  6  1  8  3  a  5  0  7  2  9  4  b  6  1
+  87 util  FOO                -  -  -  -  -  -  -     +  +  +  +  +  +  +
+  88 util  FOO                7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
+  90 util  FOO                Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
+  92 util  FOO                b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 
+  94 util  FOO                a  3  8  1  6  b  4     6  1  8  3  a  5  0 
+  96 util  FOO                Bb Eb Ab Db Gb Cb Fb    F# C# G# D# A# E# B#
 2300 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHRP
 2279 tabsC toggleFlatSharp    BGN @ F t1=1 SHRP => t2=0 FLAT
 2294 tabsC toggleFlatSharp    E  -> Fb = 
@@ -1892,25 +1895,28 @@ b [Cb B  7 ]
 1700 tabsC setChordName       BGN [ 6-11] name=D chunks=[D] chords=<D----->6
 1705 tabsC setChordName       END [ 6-11] name=D chunks=[D] chords=<D----->6
 1695 tabsC setChord           [1 1 1  1 6]   6  1] END name=D chunks=[D] len(imap)=6
-  81 util  FOO                -7 -6 -5 -4 -3 -2 -1  0  1  2  3  4  5  6  7
-  83 util  FOO                Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
-  85 util  FOO                 b  6  1  8  3  a  5  0  7  2  9  4  b  6  1
+  87 util  FOO                -  -  -  -  -  -  -     +  +  +  +  +  +  +
+  88 util  FOO                7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
+  90 util  FOO                Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
+  92 util  FOO                b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 
+  94 util  FOO                a  3  8  1  6  b  4     6  1  8  3  a  5  0 
+  96 util  FOO                Bb Eb Ab Db Gb Cb Fb    F# C# G# D# A# E# B#
 2300 tabsC toggleFlatSharp    END @ F t1=1 SHRP => t2=0 FLAT
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
- 145 util  dumpStack          10 tabsC      2528 quit                 .log(.QUIT_BGN, pfx=0, file=2)   ;   .dumpStack(inspect.stack())    ;   .log(.QUIT, pfx=0, file=2)
- 145 util  dumpStack           9 tabsC      1765 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
- 145 util  dumpStack           8 event       415 dispatch_event       if getattr(self, event_type)(*args):
- 145 util  dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
- 145 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
- 145 util  dumpStack           5 __init__    747 f                    result = event_handler(msg, wParam, lParam)
- 145 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
- 145 util  dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
- 145 util  dumpStack           2 __init__    107 run                  event_loop.run()
- 145 util  dumpStack           1 tabsC      2673 main                 ret = pyglet.app.run()
- 145 util  dumpStack           0 tabsC      2677 <module>             main()
- 146 util  dumpStack          MAX_STACK_DEPTH= 0
+ 158 util  dumpStack          10 tabsC      2528 quit                 .log(.QUIT_BGN, pfx=0, file=2)   ;   .dumpStack(inspect.stack())    ;   .log(.QUIT, pfx=0, file=2)
+ 158 util  dumpStack           9 tabsC      1765 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
+ 158 util  dumpStack           8 event       415 dispatch_event       if getattr(self, event_type)(*args):
+ 158 util  dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(self, *args) != False:
+ 158 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
+ 158 util  dumpStack           5 __init__    747 f                    result = event_handler(msg, wParam, lParam)
+ 158 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
+ 158 util  dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
+ 158 util  dumpStack           2 __init__    107 run                  event_loop.run()
+ 158 util  dumpStack           1 tabsC      2673 main                 ret = pyglet.app.run()
+ 158 util  dumpStack           0 tabsC      2677 <module>             main()
+ 159 util  dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
@@ -1918,14 +1924,14 @@ b [Cb B  7 ]
 2529 tabsC quit               J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
 2529 tabsC quit               LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
 2529 tabsC quit               END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] @^Q
- 145 util  dumpStack           6 util         10 <module>             MAX_STACK_FRAME  = inspect.stack()
- 145 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
- 145 util  dumpStack           4 <frozen importlib   883 exec_module          
- 145 util  dumpStack           3 <frozen importlib   688 _load_unlocked       
- 145 util  dumpStack           2 <frozen importlib  1006 _find_and_load_unlocked 
- 145 util  dumpStack           1 <frozen importlib  1027 _find_and_load       
- 145 util  dumpStack           0 tabsC        13 <module>             import util, chord
- 146 util  dumpStack          MAX_STACK_DEPTH= 0
+ 158 util  dumpStack           6 util         10 <module>             MAX_STACK_FRAME  = inspect.stack()
+ 158 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
+ 158 util  dumpStack           4 <frozen importlib   883 exec_module          
+ 158 util  dumpStack           3 <frozen importlib   688 _load_unlocked       
+ 158 util  dumpStack           2 <frozen importlib  1006 _find_and_load_unlocked 
+ 158 util  dumpStack           1 <frozen importlib  1027 _find_and_load       
+ 158 util  dumpStack           0 tabsC        13 <module>             import util, chord
+ 159 util  dumpStack          MAX_STACK_DEPTH= 0
 2531 tabsC quit               BGN @^Q error=0 save=0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  126 tabsC dumpArgs           [f]     .DATA_FNAME=testC.4.2.10.dat
@@ -1959,22 +1965,22 @@ b [Cb B  7 ]
  154 tabsC dumpArgs           [Z]             .ZZ=[]
  500 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
  508 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-KS N  I      Flats/Sharps            F/S Indices        Key Sig Table 15
--7 Cb b [Bb Eb Ab Db Gb Cb Fb]  [a  3  8  1  6  b  4]
--6 Gb 6 [Bb Eb Ab Db Gb Cb]     [a  3  8  1  6  b]
--5 Db 1 [Bb Eb Ab Db Gb]        [a  3  8  1  6]
--4 Ab 8 [Bb Eb Ab Db]           [a  3  8  1]
--3 Eb 3 [Bb Eb Ab]              [a  3  8]
--2 Bb a [Bb Eb]                 [a  3]
--1 F  5 [Bb]                    [a]
- 0 C  0 []                      []
- 1 G  7 [F#]                    [6]
- 2 D  2 [F# C#]                 [6  1]
- 3 A  9 [F# C# G#]              [6  1  8]
- 4 E  4 [F# C# G# D#]           [6  1  8  3]
- 5 B  b [F# C# G# D# A#]        [6  1  8  3  a]
- 6 F# 6 [F# C# G# D# A# E#]     [6  1  8  3  a  5]
- 7 C# 1 [F# C# G# D# A# E# B#]  [6  1  8  3  a  5  0]
+KS  N  I      Flats/Sharps         F/S Indices     Key Sig Table 15
+-7 [Cb b] [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4]
+-6 [Gb 6] [Bb Eb Ab Db Gb Cb]    [a 3 8 1 6 b]
+-5 [Db 1] [Bb Eb Ab Db Gb]       [a 3 8 1 6]
+-4 [Ab 8] [Bb Eb Ab Db]          [a 3 8 1]
+-3 [Eb 3] [Bb Eb Ab]             [a 3 8]
+-2 [Bb a] [Bb Eb]                [a 3]
+-1 [F  5] [Bb]                   [a]
+ 0 [C  0] []                     []
+ 1 [G  7] [F#]                   [6]
+ 2 [D  2] [F# C#]                [6 1]
+ 3 [A  9] [F# C# G#]             [6 1 8]
+ 4 [E  4] [F# C# G# D#]          [6 1 8 3]
+ 5 [B  b] [F# C# G# D# A#]       [6 1 8 3 a]
+ 6 [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
+ 7 [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0]
  488 tabsC dumpNic             4 Fb/E  1
  488 tabsC dumpNic             1 Db/C# 1
  488 tabsC dumpNic             9 A /A  2
@@ -2294,11 +2300,11 @@ Page 1 Line 1
   1 0D            047   Gbm+/D       803   A6s4x/D      590   
   0 0 047    803    590                           RM35         #5Rm3        46R          
   1 0 047    803    590                           RM35         #5Rm3        46R          
-2488 tabsC snapshot           SNAP_NAME=tabs.47.QUIT.1.png quit error=0 save=0
+2488 tabsC snapshot           SNAP_NAME=tabs.107.QUIT.1.png quit error=0 save=0
 2539 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2554 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log
- 183 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 184 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.47.log)
- 186 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log ###
+2554 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.107.log
+ 196 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 197 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.107.log)
+ 199 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.107.log ###
 2556 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log

@@ -9,7 +9,6 @@ MIN_IVAL_LEN     = 1
 MAX_STACK_DEPTH  = 0
 MAX_STACK_FRAME  = inspect.stack()
 M12              = { 10:'a', 11:'b' }
-#IDCS             = range(12)
 IVALS            = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
 IVALR            = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
 NTONES           = len(IVALS)
@@ -44,47 +43,57 @@ def init(file, oid):
     dumpKS()
     slog('END')
 
+def initKSD(m, t=1):
+    ln = []  ;  li = []  ;  ln2 = []  ;  li2 = []
+    if t:   i1 = 7  ;  i2 = 6  ;  d = 7  ;  j1 =  1  ;  j2 =  7
+    else:   i1 = 0  ;  i2 = 5  ;  d = 5  ;  j1 = -1  ;  j2 = -7
+    slog(f'KS Type  N  I      Flats/Sharps {B*7} F/S Indices     Key Sig Table {j1+j2-t}', pfx=0)
+    for k in range(t, j1+j2, j1):
+        n1 = Notes.name(i1, t=t)
+        n2 = Notes.name(i2, t=t)
+        lni = [n1, i1]
+        if abs(k) >= 1:   ln.append(n2)  ;  li.append(i2)  ;  ln2 = list(ln)  ;  li2 = list(li)
+        m[k] = [ lni, ln2, li2 ]
+        _ = [ f'{m12(i)}' for i in li ]
+        slog(f'{k:2} {Notes.TYPES[t]} [{n1:2} {m12(i1)}] {fmtl(ln, w="2"):22} {fmtl(_)}', pfx=0)
+        i1 = Notes.nextIndex(i1, d)
+        i2 = Notes.nextIndex(i2, d)
+    return m
+########################################################################################################################################################################################################
 def dumpND():
     slog(f'I  F  S  V    Notes Table {len(ND)}', pfx=0)
     for i in range(len(ND)):
         slog(f'{m12(i)} {fmtl(ND[i], w="2")}', pfx=0)
 
-def OLD__dumpKS():
-    slog(f'KS  N   I      Flats/Sharps {B*10} F/S Indices {B*8} Key Sig Table {len(KeySig.KSD)}', pfx=0)
-    items = sorted(KeySig.KSD.items())
-    for k, v in items:
-        t1, t2, t3 = [], [], []
-        for i in range(len(v)):
-            w = v[i]
-            if   i == 0:      t1.append(f'{fmtl(w, w="2")} ')           ;  t1 = ''.join(t1)
-            elif i == 1:      t2.append(f'{fmtl(w[:abs(k)], w="2")} ')  ;  t2 = ''.join(t2)
-            else:             t3.append(f'{fmtl(w[:abs(k)], w="2")} ')  ;  t3 = ''.join(t3)
-        slog(f'{k:2} {t1} {t2:23} {t3}', pfx=0)
-
 def dumpKS():
     ksd = KeySig.KSD
-    slog(f'KS N  I      Flats/Sharps {B*10} F/S Indices {B*6} Key Sig Table {len(ksd)}', pfx=0)
+    slog(f'KS  N  I      Flats/Sharps {B*7} F/S Indices     Key Sig Table {len(ksd)}', pfx=0)
     items = sorted(ksd.items())
     for k, v in items:
         t1, t2, t3 = [], [], []
         for i in range(len(v)):
-            w = v[i] #      t1.append(f'{fmtl(w, w="2")} ')           ;  t1 = ''.join(t1)
+            w = v[i]
+#           if   i == 0:   t1.append(f'{fmtl(w, w="2")} ')                         ;  t1 = ''.join(t1)
+#           elif i == 1:   t2.append(f'{fmtl(w[:abs(k)], w="2")} ')                ;  t2 = ''.join(t2)
+#           else:          t3.append(f'{fmtl(w[:abs(k)], w="2")} ')                ;  t3 = ''.join(t3)
             if   i == 0:   t1.append(f'{w[0]:2} ')  ;  t1.append(f'{m12(w[1])}')   ;  t1 = ''.join(t1)
-            elif i == 1:   t2.append(f'{fmtl(w[:abs(k)], w="2")} ')  ;  t2 = ''.join(t2)
-            else:  #        t3.append(f'{fmtl(w[:abs(k)], w="2")} ')  ;  t3 = ''.join(t3)
-                t3 = [ f'{m12(l)}' for l in w ]  ;  t3 = '  '.join(t3)
-        slog(f'{k:2} {t1} {t2:23} [{t3}]', pfx=0)
+            elif i == 1:   t2.append(f'{fmtl(w[:abs(k)], w="2")}')                 ;  t2 = ' '.join(t2)
+            else:          t3 = [ f'{m12(i)}' for i in w ]                         ;  t3 = ' '.join(t3)
+        slog(f'{k:2} [{t1}] {t2:22} [{t3}]', pfx=0)
 
 def FOO():
     ksd = KeySig.KSD
     keys = sorted(ksd.keys())
-    slog(f'{fmtl(keys, w="2", d1="")}')
+    _ = [ '-' if _ < 0  else '+' if _ > 0 else ' ' for _ in keys ]   ;   _ = '  '.join(_)   ;   slog(_)
+    slog(f'{fmtl(list(map(abs, keys)), w="2", u="<", d1="")}')
     _ = [ f'{ksd[k][0][0]}' for k in keys ]
     slog(f'{fmtl(_, w="2", d1="")}')
-    _ = [ f'{m12(ksd[k][0][1]):>2}' for k in keys ]
+    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]
     slog(f'{fmtl(_, w="2", d1="")}')
-#    _ = [ f'{m12(ksd[k][2]):>2}' for k in keys ]
-#    slog(f'{fmtl(_, w="2", d1="")}')
+    _ = [ [ f'{m12(ksd[k][2][j]):<2}' for j in range(len(ksd[k][2])) ] for k in (-7, 0, 7) ]
+    slog(f'{fmtl(_[0], w="2", d1="")} {B*2} {fmtl(_[2], w="2", d1="")}')
+    f = [ j for j in ksd[-7][1] ]   ;   s = [ j for j in ksd[7][1] ]
+    slog(f'{fmtl(f, d1="")} {B*2} {fmtl(s, d1="")}')
 
 def m12(s):   return M12[s] if s in M12 else s
 
@@ -286,22 +295,6 @@ FREQS2  = [ FREQ2(i) for i in range(Notes.MAX_IDX) ]
 def initND():
     return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i] ] for i in range(NTONES) }
 ND    = initND()
-########################################################################################################################################################################################################
-def initKSD(m, t=1):
-    ln = []  ;  li = []  ;  ln2 = []  ;  li2 = []
-    if t:   i1 = 7  ;  i2 = 6  ;  d = 7  ;  j1 =  1  ;  j2 =  7
-    else:   i1 = 0  ;  i2 = 5  ;  d = 5  ;  j1 = -1  ;  j2 = -7
-    slog(f'{i1=:2} {i2=:2} {d=:2}')
-    for k in range(t, j1+j2, j1):
-        n1 = Notes.name(i1, t=t)
-        n2 = Notes.name(i2, t=t)
-        lni = [n1, i1]
-        if abs(k) >= 1:   ln.append(n2)  ;  li.append(i2)  ;  ln2 = list(ln)  ;  li2 = list(li)
-        m[k] = [ lni, ln2, li2 ]
-        slog(f'{k:2} {Notes.TYPES[t]} {n1:2} {i1:2} {fmtl(ln, w="2"):22} {fmtl(li, w="2"):22}')
-        i1 = Notes.nextIndex(i1, d)
-        i2 = Notes.nextIndex(i2, d)
-    return m
 ########################################################################################################################################################################################################
 class KeySig(object):
     KSD = {}
