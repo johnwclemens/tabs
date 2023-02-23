@@ -8,7 +8,7 @@ LOG_FILE         = None
 MIN_IVAL_LEN     = 1
 MAX_STACK_DEPTH  = 0
 MAX_STACK_FRAME  = inspect.stack()
-#M12              = { 10:'a', 11:'b' }
+M12              = { 10:'a', 11:'b' }
 #IDCS             = range(12)
 IVALS            = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
 IVALR            = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
@@ -45,23 +45,48 @@ def init(file, oid):
     slog('END')
 
 def dumpND():
-    slog(f' I  F  S  V    Notes Table {len(ND)}', pfx=0)
+    slog(f'I  F  S  V    Notes Table {len(ND)}', pfx=0)
     for i in range(len(ND)):
-        slog(f'{i:2} {fmtl(ND[i], w="2")}', pfx=0)
-    slog(f' I  F  S  V    Notes Table {len(ND)}', pfx=0)
+        slog(f'{m12(i)} {fmtl(ND[i], w="2")}', pfx=0)
 
-def dumpKS():
+def OLD__dumpKS():
     slog(f'KS  N   I      Flats/Sharps {B*10} F/S Indices {B*8} Key Sig Table {len(KeySig.KSD)}', pfx=0)
     items = sorted(KeySig.KSD.items())
-    for k, v in items: # KeySig.KSD.items():
-        msg1 = ''   ;   msg2 = ''  ;  msg3 = ''
+    for k, v in items:
+        t1, t2, t3 = [], [], []
         for i in range(len(v)):
             w = v[i]
-            if   i == 0:      msg1 += f'{fmtl(w, w="2")} '
-            elif i == 1:      msg2 += f'{fmtl(w[:abs(k)], w="2")} '
-            else:             msg3 += f'{fmtl(w[:abs(k)], w="2")} '
-        slog(f'{k:2} {msg1:} {msg2:23} {msg3}', pfx=0)
-    slog(f'KS  N   I      Flats/Sharps {B*10} F/S Indices {B*8} Key Sig Table {len(KeySig.KSD)}', pfx=0)
+            if   i == 0:      t1.append(f'{fmtl(w, w="2")} ')           ;  t1 = ''.join(t1)
+            elif i == 1:      t2.append(f'{fmtl(w[:abs(k)], w="2")} ')  ;  t2 = ''.join(t2)
+            else:             t3.append(f'{fmtl(w[:abs(k)], w="2")} ')  ;  t3 = ''.join(t3)
+        slog(f'{k:2} {t1} {t2:23} {t3}', pfx=0)
+
+def dumpKS():
+    ksd = KeySig.KSD
+    slog(f'KS N  I      Flats/Sharps {B*10} F/S Indices {B*6} Key Sig Table {len(ksd)}', pfx=0)
+    items = sorted(ksd.items())
+    for k, v in items:
+        t1, t2, t3 = [], [], []
+        for i in range(len(v)):
+            w = v[i] #      t1.append(f'{fmtl(w, w="2")} ')           ;  t1 = ''.join(t1)
+            if   i == 0:   t1.append(f'{w[0]:2} ')  ;  t1.append(f'{m12(w[1])}')   ;  t1 = ''.join(t1)
+            elif i == 1:   t2.append(f'{fmtl(w[:abs(k)], w="2")} ')  ;  t2 = ''.join(t2)
+            else:  #        t3.append(f'{fmtl(w[:abs(k)], w="2")} ')  ;  t3 = ''.join(t3)
+                t3 = [ f'{m12(l)}' for l in w ]  ;  t3 = '  '.join(t3)
+        slog(f'{k:2} {t1} {t2:23} [{t3}]', pfx=0)
+
+def FOO():
+    ksd = KeySig.KSD
+    keys = sorted(ksd.keys())
+    slog(f'{fmtl(keys, w="2", d1="")}')
+    _ = [ f'{ksd[k][0][0]}' for k in keys ]
+    slog(f'{fmtl(_, w="2", d1="")}')
+    _ = [ f'{m12(ksd[k][0][1]):>2}' for k in keys ]
+    slog(f'{fmtl(_, w="2", d1="")}')
+#    _ = [ f'{m12(ksd[k][2]):>2}' for k in keys ]
+#    slog(f'{fmtl(_, w="2", d1="")}')
+
+def m12(s):   return M12[s] if s in M12 else s
 
 def fmtl(lst, w=None, u=None, d1='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
@@ -263,7 +288,7 @@ def initND():
 ND    = initND()
 ########################################################################################################################################################################################################
 def initKSD(m, t=1):
-    ln = []  ;  li = []  ;  ln2 = []  ;  li2 = [] # ;  lni = []
+    ln = []  ;  li = []  ;  ln2 = []  ;  li2 = []
     if t:   i1 = 7  ;  i2 = 6  ;  d = 7  ;  j1 =  1  ;  j2 =  7
     else:   i1 = 0  ;  i2 = 5  ;  d = 5  ;  j1 = -1  ;  j2 = -7
     slog(f'{i1=:2} {i2=:2} {d=:2}')
@@ -375,10 +400,10 @@ class Strings(object):
         fn   = self.tab2fn(tab)
         i    = self.fn2ni(fn, s)
         j    = i % NTONES
-        if nic is not None:   nic[j] += 1  ;  nics = f'nic[{j}]={nic[j]}'
+        if nic is not None:   nic[j] += 1  ;  nics = f'nic[{j:2}]={nic[j]}'
         else:                 nics = ''
         name = Notes.name(i)
-        if dbg or nics: slog(f'tab={tab} s={s} fn={fn} i={i} name={name} {nics}')
+        if dbg or nics: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nics}')
         return name
 
     @staticmethod

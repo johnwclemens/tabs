@@ -506,7 +506,9 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpStruct(self, why='', dbg=1, dbg2=0):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
+        util.dumpKS()
         self.dumpNic()
+        util.dumpND()
         self.dumpFont(why)
         self.dumpVisible()
         self.dumpIdmKeys()
@@ -2275,7 +2277,7 @@ class Tabs(pyglet.window.Window):
     def toggleFlatSharp(self, how, dbg=0):  #  page line colm tab or select
         t1 = Notes.TYPE    ;    t2 = (Notes.TYPE + 1) % 2    ;   Notes.setType(t2)
         self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
-        s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i # ;  ehs = self.nic  ;  ehs.clear()
+        s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i # ;  ehs = self.ehs  ;  ehs.clear()
         tniks, j, k, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
         for i in range(len(tniks)):
             text = ''  ;   sn = i % nt
@@ -2283,7 +2285,7 @@ class Tabs(pyglet.window.Window):
             elif self.kords and self.tabls:
                 tabtxt = self.tabls[i].text
                 text   = self.sobj.tab2nn(tabtxt, sn) if self.sobj.isFret(tabtxt) else self.tblank
-            if len(text) > 1:
+            if text in Notes.N2I and (Notes.N2I[text] != 2 and Notes.N2I[text] != 7 and Notes.N2I[text] != 9):
                 cc = i * ns   ;   old = text  #  ;   old2 = set(ehs)
                 p, l, c, t = self.cc2plct(cc)   ;   cn = self.cc2cn(cc)
                 if   text in Notes.F2S: text = Notes.F2S[text]
@@ -2294,7 +2296,7 @@ class Tabs(pyglet.window.Window):
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
-#        self.checkKS(ehs)
+        util.FOO()
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
 #    def updateNics(self, t):   self.nic.add(t)   ;   slog(f'add {t} nics={fmtl(self.nic)}')
