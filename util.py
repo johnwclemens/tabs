@@ -84,16 +84,13 @@ def dumpKS():
 def FOO():
     ksd = KeySig.KSD
     keys = sorted(ksd.keys())
-    _ = [ '-' if _ < 0  else '+' if _ > 0 else ' ' for _ in keys ]   ;   _ = '  '.join(_)   ;   slog(_)
-    slog(f'{fmtl(list(map(abs, keys)), w="2", u="<", d1="")}')
-    _ = [ f'{ksd[k][0][0]}' for k in keys ]
-    slog(f'{fmtl(_, w="2", d1="")}')
-    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]
-    slog(f'{fmtl(_, w="2", d1="")}')
-    _ = [ [ f'{m12(ksd[k][2][j]):<2}' for j in range(len(ksd[k][2])) ] for k in (-7, 0, 7) ]
-    slog(f'{fmtl(_[0], w="2", d1="")} {B*2} {fmtl(_[2], w="2", d1="")}')
-    f = [ j for j in ksd[-7][1] ]   ;   s = [ j for j in ksd[7][1] ]
-    slog(f'{fmtl(f, d1="")} {B*2} {fmtl(s, d1="")}')
+    _ = [ '-' if k < 0  else '+' if k > 0 else ' ' for k in keys ]
+    _ = '  '.join(_)   ;   slog(_)                     ;   slog(f'{fmtl(list(map(abs, keys)), w="2", u="<", d1="")}')
+    _ = [ f'{ksd[k][0][0]}'          for k in keys ]   ;   slog(f'{fmtl(_, w="2", d1="")}')
+    _ = [ f'{m12(ksd[k][0][1]):<2}'  for k in keys ]   ;   slog(f'{fmtl(_, w="2", d1="")}')
+    f = [ f'{m12(ksd[-7][2][j]):<2}' for j in range(len(ksd[-7][2])-1, -1, -1) ]
+    s = [ f'{m12(ksd[ 7][2][j]):<2}' for j in range(len(ksd[ 7][2])) ]        ;  slog(f'{fmtl(f, w="2", d1="")} {B*2} {fmtl(s, w="2", d1="")}')
+    f = [ j for j in reversed(ksd[-7][1]) ]  ;  s = [ j for j in ksd[7][1] ]  ;  slog(f'{fmtl(f,        d1="")} {B*2} {fmtl(s,        d1="")}')
 
 def m12(s):   return M12[s] if s in M12 else s
 
