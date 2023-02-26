@@ -3,6 +3,8 @@ import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
 B                = ' '
+M                = '-'
+P                = '+'
 OIDS             = 0
 LOG_FILE         = None
 MIN_IVAL_LEN     = 1
@@ -81,7 +83,7 @@ def dumpKS():
             else:          t3 = [ f'{m12(i)}' for i in w ]                         ;  t3 = ' '.join(t3)
         slog(f'{k:2} [{t1}] {t2:22} [{t3}]', pfx=0)
 
-def FOO():
+def OLD__FOO():
     ksd = KeySig.KSD
     keys = sorted(ksd.keys())
     _ = [ '-' if k < 0  else '+' if k > 0 else ' ' for k in keys ]
@@ -91,6 +93,36 @@ def FOO():
     f = [ f'{m12(ksd[-7][2][j]):<2}' for j in range(len(ksd[-7][2])-1, -1, -1) ]
     s = [ f'{m12(ksd[ 7][2][j]):<2}' for j in range(len(ksd[ 7][2])) ]        ;  slog(f'{fmtl(f, w="2", d1="")} {B*2} {fmtl(s, w="2", d1="")}')
     f = [ j for j in reversed(ksd[-7][1]) ]  ;  s = [ j for j in ksd[7][1] ]  ;  slog(f'{fmtl(f,        d1="")} {B*2} {fmtl(s,        d1="")}')
+def BAR(nic, t, w='2', u='>'):
+    _ = []
+    for i in t:
+        if i in nic: _.append(m12(i))
+        else:        break
+    slog(f'{fmtl((_, t), w=w, u=u)}')   ;   return _
+
+def FOO(nic):
+    ksd  = KeySig.KSD        ;   keys = sorted(ksd.keys())   ;   w = '2'   ;   u = '>'
+    mc = nic.most_common()   ;     nt = nic.total()   ;   m = -7   ;   p = 7
+    f = ksd[m][2]   ;   s = ksd[p][2]
+    slog(f'{fmtl([ m12(f[j]) for j in range(len(f)) ], w=w, u=u)} : [ f[j] for j in range(len(f)) ]')
+    slog(f'{fmtl([ m12(s[j]) for j in range(len(s)) ], w=w, u=u)} : [ s[j] for j in range(len(s)) ]')
+    slog(f'{fmtl(       list(dict(nic).keys()),  w=w)} :        list(dict(nic).keys())')
+    slog(f'{fmtl(sorted(list(dict(nic).keys())), w=w)} : sorted(list(dict(nic).keys()))')
+    BAR(nic, f)   ;   BAR(nic, s)
+#    slog(f'{fmtl(BAR(nic, f), w=w, u=u)} : BAR(nic, f)')
+#    slog(f'{fmtl(BAR(nic, s), w=w, u=u)} : BAR(nic, s)')
+
+    i = list(list(zip(*mc)))[0]      ;  j = list(list(zip(*mc)))[1]   ;   k = [ (100*n[1])//nt for n in mc ]
+    slog(f'{fmtl(m12(i), w=w)}')     ;  slog(f'{fmtl(j, w=w)}')       ;   slog(f'{fmtl(k, w=w)}')
+    f = [ Notes.I2F[n] for n in i ]  ;  s = [ Notes.I2S[n] for n in i ]
+    slog(f'{fmtl(f, w=2)}')  ;  slog(f'{fmtl(s, w=2)}')
+    _ = [ '-' if k < 0  else '+' if k > 0 else ' ' for k in keys ]
+    _ = '  '.join(_)   ;   slog(_)                    ;   slog(f'{fmtl(list(map(abs, keys)), w=w, u="<", d1="")}')
+    _ = [ f'{    ksd[k][0][0]}'     for k in keys ]   ;   slog(f'{fmtl(_, w=w, d1="")}')
+    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]   ;   slog(f'{fmtl(_, w=w, d1="")}')
+    f = [ f'{m12(ksd[m][2][j]):<2}' for j in range(len(ksd[m][2])-1, -1, -1) ]
+    s = [ f'{m12(ksd[p][2][j]):<2}' for j in range(len(ksd[p][2])) ]         ;  slog(f'{fmtl(f, w=w, d1="")} {B*2} {fmtl(s, w=w, d1="")}')
+    f = [ j for j in reversed(ksd[m][1]) ]  ;  s = [ j for j in ksd[p][1] ]  ;  slog(f'{fmtl(f,      d1="")} {B*2} {fmtl(s,      d1="")}')
 
 def m12(s):   return M12[s] if s in M12 else s
 
@@ -298,8 +330,8 @@ class KeySig(object):
     KSD = initKSD(KSD, t=0)
     KSD = initKSD(KSD, t=1)
 
-    @classmethod
-    def sortKS(cls, e): return sorted(e, key=lambda t: cls.KSD[Notes.N2I[t]])
+#    @classmethod
+#    def sortKS(cls, e): return sorted(e, key=lambda t: cls.KSD[Notes.N2I[t]])
 ########################################################################################################################################################################################################
 
 #class OLD__KeySig(object):
@@ -390,8 +422,8 @@ class Strings(object):
         fn   = self.tab2fn(tab)
         i    = self.fn2ni(fn, s)
         j    = i % NTONES
-        if nic is not None:   nic[j] += 1  ;  nics = f'nic[{j:2}]={nic[j]}'
-        else:                 nics = ''
+        if nic is not None:  nic[j] += 1  ;  nics = f'nic[{m12(j)}]={nic[j]}'
+        else:                                nics = ''
         name = Notes.name(i)
         if dbg or nics: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nics}')
         return name
