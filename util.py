@@ -3,8 +3,8 @@ import sys, os, inspect, pathlib
 from collections import OrderedDict as cOd
 
 B                = ' '
-M                = '-'
-P                = '+'
+# M                = '-'
+# P                = '+'
 OIDS             = 0
 LOG_FILE         = None
 MIN_IVAL_LEN     = 1
@@ -19,7 +19,7 @@ QUIT_BGN         = '###   BGN Quit   ###' * 10
 QUIT             = '###   Quit   ###'     * 13
 QUIT_END         = '###   END Quit   ###' * 10
 #STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
-STFILT = ['log', 'tlog', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
+STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'm12', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
 def init(file, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
@@ -83,48 +83,44 @@ def dumpKS():
             else:          t3 = [ f'{m12(i)}' for i in w ]                         ;  t3 = ' '.join(t3)
         slog(f'{k:2} [{t1}] {t2:22} [{t3}]', pfx=0)
 
-def OLD__FOO():
-    ksd = KeySig.KSD
-    keys = sorted(ksd.keys())
+def getKS(nic):
+    ksd  = KeySig.KSD        ;   keys = sorted(ksd.keys())   ;   u = '>'   ;   w = 2   ;   v = B*32 # NTONES*3+2
+    mc = nic.most_common()   ;     nt = nic.total()   ;   m = -7   ;   p = 7   ;   d1 = ''
+    f = ksd[m][2]   ;   s = ksd[p][2]
+    slog(f'{fmtl([ m12(f[_]) for _ in range(len(f))  ], w=w, u=u)  = }', pfx=0)
+    slog(f'{fmtl([ m12(s[_]) for _ in range(len(s))  ], w=w, u=u)  = }', pfx=0)
+    slog(f'{fmtl([ m12(_) for _ in        dict(nic)  ], w=w, u=u)  = }', pfx=0)
+    slog(f'{fmtl([ m12(_) for _ in sorted(dict(nic)) ], w=w, u=u)  = }', pfx=0)
+    fks = -_getKS(nic, f)   ;   sks = _getKS(nic, s)   ;   ks = fks if abs(fks) > sks else sks if sks > abs(fks) else 0    ;   u = '<'
     _ = [ '-' if k < 0  else '+' if k > 0 else ' ' for k in keys ]
-    _ = '  '.join(_)   ;   slog(_)                     ;   slog(f'{fmtl(list(map(abs, keys)), w="2", u="<", d1="")}')
-    _ = [ f'{ksd[k][0][0]}'          for k in keys ]   ;   slog(f'{fmtl(_, w="2", d1="")}')
-    _ = [ f'{m12(ksd[k][0][1]):<2}'  for k in keys ]   ;   slog(f'{fmtl(_, w="2", d1="")}')
-    f = [ f'{m12(ksd[-7][2][j]):<2}' for j in range(len(ksd[-7][2])-1, -1, -1) ]
-    s = [ f'{m12(ksd[ 7][2][j]):<2}' for j in range(len(ksd[ 7][2])) ]        ;  slog(f'{fmtl(f, w="2", d1="")} {B*2} {fmtl(s, w="2", d1="")}')
-    f = [ j for j in reversed(ksd[-7][1]) ]  ;  s = [ j for j in ksd[7][1] ]  ;  slog(f'{fmtl(f,        d1="")} {B*2} {fmtl(s,        d1="")}')
-def BAR(nic, t, w='2', u='>'):
+    _ = '  '.join(_)   ;   slog(f'{v}{_}', pfx=0)     ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d1=d1)}', pfx=0)
+    _ = [ f'{    ksd[k][0][0]}'     for k in keys ]   ;   slog(f'{v}{fmtl(_, w=w, d1=d1)}', pfx=0)
+    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]   ;   slog(f'{v}{fmtl(_, w=w, d1=d1)}', pfx=0)
+    f = [ f'{m12(ksd[m][2][f]):<2}' for f in range(len(ksd[m][2])-1, -1, -1) ]
+    s = [ f'{m12(ksd[p][2][s]):<2}' for s in range(len(ksd[p][2])) ]         ;  slog(f'{v}{fmtl(f, w=w, d1=d1)} {B*2} {fmtl(s, w=w, d1=d1)}', pfx=0)
+    f = [ f for f in reversed(ksd[m][1]) ]  ;  s = [ s for s in ksd[p][1] ]  ;  slog(f'{v}{fmtl(f,      d1=d1)} {B*2} {fmtl(s,      d1=d1)}', pfx=0)
+    slog(f'"  ".join(["-" if k<0 else "+" if \n k>0 else " " for k in keys) ]  = {"  ".join([ "-" if k<0 else "+" if k>0 else " " for k in keys ])}', pfx=0)
+    slog(f'{fmtl(list(map(abs, keys)), w=w, u=u, d1=d1)        = }', pfx=0)
+    slog(f'{fmtl([ ksd[k][0][0] for k in keys ], w=w, d1=d1)    = }', pfx=0)
+    slog(f'{fmtl([ m12(ksd[k][0][1]) for k in keys ], w=w, u=u, d1=d1)  = }', pfx=0)
+    slog(f'{fmtl([ m12(ksd[m][2][f]) for f in range(len(ksd[m][2])-1,-1,-1) ], w=w, d1=d1) = } {B*2} {fmtl([ m12(ksd[p][2][s]) for s in range(len(ksd[p][2])) ], w=w, d1=d1)}', pfx=0)
+    slog(f'{fmtl([ f for f in reversed(ksd[m][1]) ], d1=d1)= } {B*2} {fmtl([ s for s in ksd[p][1] ], d1=d1)}', pfx=0)
+    _ = list(list(zip(*mc)))[0]
+    slog(f'{fmtl(m12(list(list(zip(*mc)))[0]), w=w) = }', pfx=0)
+    slog(f'{fmtl(m12(list(list(zip(*mc)))[1]), w=w) = }', pfx=0)
+    slog(f'{fmtl([ (100*n[1])//nt for n in mc ], w=w)  = }', pfx=0)
+    slog(f'{fmtl([ Notes.I2F[n]   for n in  _ ], w=w)  = }', pfx=0)
+    slog(f'{fmtl([ Notes.I2S[n]   for n in  _ ], w=w)  = }', pfx=0)
+    return ks
+
+def m12(s):   return M12[s] if s in M12 else s
+
+def _getKS(nic, t, w='2', u='>'):
     _ = []
     for i in t:
         if i in nic: _.append(m12(i))
         else:        break
-    slog(f'{fmtl((_, t), w=w, u=u)}')   ;   return _
-
-def FOO(nic):
-    ksd  = KeySig.KSD        ;   keys = sorted(ksd.keys())   ;   w = '2'   ;   u = '>'
-    mc = nic.most_common()   ;     nt = nic.total()   ;   m = -7   ;   p = 7
-    f = ksd[m][2]   ;   s = ksd[p][2]
-    slog(f'{fmtl([ m12(f[j]) for j in range(len(f)) ], w=w, u=u)} : [ f[j] for j in range(len(f)) ]')
-    slog(f'{fmtl([ m12(s[j]) for j in range(len(s)) ], w=w, u=u)} : [ s[j] for j in range(len(s)) ]')
-    slog(f'{fmtl(       list(dict(nic).keys()),  w=w)} :        list(dict(nic).keys())')
-    slog(f'{fmtl(sorted(list(dict(nic).keys())), w=w)} : sorted(list(dict(nic).keys()))')
-    BAR(nic, f)   ;   BAR(nic, s)
-#    slog(f'{fmtl(BAR(nic, f), w=w, u=u)} : BAR(nic, f)')
-#    slog(f'{fmtl(BAR(nic, s), w=w, u=u)} : BAR(nic, s)')
-
-    i = list(list(zip(*mc)))[0]      ;  j = list(list(zip(*mc)))[1]   ;   k = [ (100*n[1])//nt for n in mc ]
-    slog(f'{fmtl(m12(i), w=w)}')     ;  slog(f'{fmtl(j, w=w)}')       ;   slog(f'{fmtl(k, w=w)}')
-    f = [ Notes.I2F[n] for n in i ]  ;  s = [ Notes.I2S[n] for n in i ]
-    slog(f'{fmtl(f, w=2)}')  ;  slog(f'{fmtl(s, w=2)}')
-    _ = [ '-' if k < 0  else '+' if k > 0 else ' ' for k in keys ]
-    _ = '  '.join(_)   ;   slog(_)                    ;   slog(f'{fmtl(list(map(abs, keys)), w=w, u="<", d1="")}')
-    _ = [ f'{    ksd[k][0][0]}'     for k in keys ]   ;   slog(f'{fmtl(_, w=w, d1="")}')
-    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]   ;   slog(f'{fmtl(_, w=w, d1="")}')
-    f = [ f'{m12(ksd[m][2][j]):<2}' for j in range(len(ksd[m][2])-1, -1, -1) ]
-    s = [ f'{m12(ksd[p][2][j]):<2}' for j in range(len(ksd[p][2])) ]         ;  slog(f'{fmtl(f, w=w, d1="")} {B*2} {fmtl(s, w=w, d1="")}')
-    f = [ j for j in reversed(ksd[m][1]) ]  ;  s = [ j for j in ksd[p][1] ]  ;  slog(f'{fmtl(f,      d1="")} {B*2} {fmtl(s,      d1="")}')
-
-def m12(s):   return M12[s] if s in M12 else s
+    slog(f'{B*28}{fmtl(_, w=w, u=u) = }', pfx=0)   ;   return len(_)
 
 def fmtl(lst, w=None, u=None, d1='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
@@ -184,6 +180,7 @@ def dumpStack(sfs):
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
 ########################################################################################################################################################################################################
 def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
+    msg = filtText(msg)
     if pfx:
         sf   = inspect.currentframe().f_back
         while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
@@ -194,10 +191,6 @@ def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
 #            sfi = inspect.getframeinfo(sf)
 #        filename  = pathlib.Path(sfi.filename).name
 #        msg  = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
-        msg  = msg.replace('self.', '.')
-        msg  = msg.replace('util.', '.')
-        msg  = msg.replace('"', '')
-        msg  = msg.replace("'", '')
         fp   = pathlib.Path(sf.f_code.co_filename)
         pl   = 18 if pfx == 1 else 8
         pfx  = f'{sf.f_lineno:4} {fp.stem:5} ' if pfx == 1 else ''
@@ -208,6 +201,25 @@ def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
     elif file == 2:  file = LOG_FILE  ;  so = 1
     print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
     print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
+
+def filtText(text): # ([
+    text = text.replace('"', '')
+    text = text.replace("'", '')
+    text = text.replace('self', '')
+    text = text.replace('util', '')
+    text = text.replace('fmtl', '')
+    text = text.replace('fmtm', '')
+    text = text.replace('m12', '')
+    text = text.replace(', w=w', '')
+    text = text.replace(', u=u', '')
+    text = text.replace(', d1=d1', '')
+    text = text.replace('([ ', '')
+    text = text.replace(' ])', '')
+    text = text.replace('(_)', '_')
+    text = text.replace('(f[_])', 'f[_]')
+    text = text.replace('(s[_])', 's[_]')
+    return text
+
 ########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1):
     if dbg: slog(f'{baseName =:12} {basePath = }', file=2)
@@ -276,10 +288,14 @@ class Notes(object):
     FLAT, SHRP = 0, 1
     TYPE       = FLAT
     TYPES      = ['FLAT', 'SHRP']
-    S2F        = { 'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B':'Cb' }
-    F2S        = { 'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
-    I2F        = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
-    I2S        = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
+    S2F        = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           }
+    F2S        = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'           }
+#   S2F2       = { 'B#':'C' , 'C#':'Db', 'D#':'Eb', 'E' :'Fb', 'E#':'F' , 'F#':'Gb', 'G#':'Ab', 'A#':'Bb', 'B':'Cb' }
+#   F2S2       = { 'C' :'B#', 'Db':'C#', 'Eb':'D#', 'Fb':'E' , 'F' :'E#', 'Gb':'F#', 'Ab':'G#', 'Bb':'A#', 'Cb':'B' }
+    I2F        = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'  }
+    I2S        = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
+#   I2F2       = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',        5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
+#   I2S2       = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
     I2V        = { 0: 'R', 1: 'b2', 2: '2', 3: 'm3', 4: 'M3', 5: '4', 6: 'b5', 7: '5', 8: '#5', 9: '6', 10: 'b7', 11: '7' }
     N2I        = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11 }
     MAX_IDX    = 10 * NTONES + 1

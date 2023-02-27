@@ -2278,7 +2278,8 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def toggleFlatSharp(self, how, dbg=0):  #  page line colm tab or select
         t1 = Notes.TYPE    ;    t2 = (Notes.TYPE + 1) % 2    ;   Notes.setType(t2)
-        self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
+        ks = util.getKS(self.nic)
+        self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]} {ks=}')
         s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i
         tniks, j, k, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
         for i in range(len(tniks)):
@@ -2298,7 +2299,6 @@ class Tabs(pyglet.window.Window):
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
-        util.FOO(self.nic)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
 #    @staticmethod
