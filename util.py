@@ -91,7 +91,7 @@ def getKS(nic):
     slog(f'{fmtl([ m12(s[_]) for _ in range(len(s))  ], w=w, u=u)  = }', pfx=0)
     slog(f'{fmtl([ m12(_) for _ in        dict(nic)  ], w=w, u=u)  = }', pfx=0)
     slog(f'{fmtl([ m12(_) for _ in sorted(dict(nic)) ], w=w, u=u)  = }', pfx=0)
-    fks = -_getKS(nic, f)   ;   sks = _getKS(nic, s)   ;   ks = fks if abs(fks) > sks else sks if sks > abs(fks) else 0   ;   u = '<'
+    fks = -_getKS(nic, f)   ;   sks = _getKS(nic, s)   ;   ks = fks if abs(fks) > sks else sks if sks >= abs(fks) else 0   ;   u = '<'
     _ = [ '-' if k < 0  else '+' if k > 0 else ' ' for k in keys ]
     _ = '  '.join(_)   ;   slog(f'{v}{_}', pfx=0)     ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d1=d1)}', pfx=0)
     _ = [ f'{    ksd[k][0][0]}'     for k in keys ]   ;   slog(f'{v}{fmtl(_, w=w, d1=d1)}', pfx=0)
@@ -99,12 +99,12 @@ def getKS(nic):
     f = [ f'{m12(ksd[m][2][f]):<2}' for f in range(len(ksd[m][2])-1, -1, -1) ]
     s = [ f'{m12(ksd[p][2][s]):<2}' for s in range(len(ksd[p][2])) ]         ;  slog(f'{v}{fmtl(f, w=w, d1=d1)} {B*2} {fmtl(s, w=w, d1=d1)}', pfx=0)
     f = [ f for f in reversed(ksd[m][1]) ]  ;  s = [ s for s in ksd[p][1] ]  ;  slog(f'{v}{fmtl(f,      d1=d1)} {B*2} {fmtl(s,      d1=d1)}', pfx=0)
-    slog(f'"  ".join(["-" if k<0 else "+" if \n k>0 else " " for k in keys) ]  = {"  ".join([ "-" if k<0 else "+" if k>0 else " " for k in keys ])}', pfx=0)
-    slog(f'{fmtl(list(map(abs, keys)), w=w, u=u, d1=d1)        = }', pfx=0)
-    slog(f'{fmtl([ ksd[k][0][0] for k in keys ], w=w, d1=d1)    = }', pfx=0)
-    slog(f'{fmtl([ m12(ksd[k][0][1]) for k in keys ], w=w, u=u, d1=d1)  = }', pfx=0)
-    slog(f'{fmtl([ m12(ksd[m][2][f]) for f in range(len(ksd[m][2])-1,-1,-1) ], w=w, d1=d1) = } {B*2} {fmtl([ m12(ksd[p][2][s]) for s in range(len(ksd[p][2])) ], w=w, d1=d1)}', pfx=0)
-    slog(f'{fmtl([ f for f in reversed(ksd[m][1]) ], d1=d1)= } {B*2} {fmtl([ s for s in ksd[p][1] ], d1=d1)}', pfx=0)
+#    slog(f'"  ".join(["-" if k<0 else "+" if \n k>0 else " " for k in keys) ]  = {"  ".join([ "-" if k<0 else "+" if k>0 else " " for k in keys ])}', pfx=0)
+#    slog(f'{fmtl(list(map(abs, keys)), w=w, u=u, d1=d1)        = }',  pfx=0)
+#    slog(f'{fmtl([ ksd[k][0][0] for k in keys ], w=w, d1=d1)    = }', pfx=0)
+#    slog(f'{fmtl([ m12(ksd[k][0][1]) for k in keys ], w=w, u=u, d1=d1)  = }', pfx=0)
+#    slog(f'{fmtl([ m12(ksd[m][2][f]) for f in range(len(ksd[m][2])-1,-1,-1) ], w=w, d1=d1) = } {B*2} {fmtl([ m12(ksd[p][2][s]) for s in range(len(ksd[p][2])) ], w=w, d1=d1)}', pfx=0)
+#    slog(f'{fmtl([ f for f in reversed(ksd[m][1]) ], d1=d1)= } {B*2} {fmtl([ s for s in ksd[p][1] ], d1=d1)}', pfx=0)
     _ = list(list(zip(*mc)))[0] if mc else []
     if _:
         slog(f'{fmtl(m12(list(list(zip(*mc)))[0]), w=w) = }', pfx=0)
