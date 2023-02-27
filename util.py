@@ -91,7 +91,7 @@ def getKS(nic):
     slog(f'{fmtl([ m12(s[_]) for _ in range(len(s))  ], w=w, u=u)  = }', pfx=0)
     slog(f'{fmtl([ m12(_) for _ in        dict(nic)  ], w=w, u=u)  = }', pfx=0)
     slog(f'{fmtl([ m12(_) for _ in sorted(dict(nic)) ], w=w, u=u)  = }', pfx=0)
-    fks = -_getKS(nic, f)   ;   sks = _getKS(nic, s)   ;   ks = fks if abs(fks) > sks else sks if sks > abs(fks) else 0    ;   u = '<'
+    fks = -_getKS(nic, f)   ;   sks = _getKS(nic, s)   ;   ks = fks if abs(fks) > sks else sks if sks > abs(fks) else 0   ;   u = '<'
     _ = [ '-' if k < 0  else '+' if k > 0 else ' ' for k in keys ]
     _ = '  '.join(_)   ;   slog(f'{v}{_}', pfx=0)     ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d1=d1)}', pfx=0)
     _ = [ f'{    ksd[k][0][0]}'     for k in keys ]   ;   slog(f'{v}{fmtl(_, w=w, d1=d1)}', pfx=0)
@@ -105,12 +105,13 @@ def getKS(nic):
     slog(f'{fmtl([ m12(ksd[k][0][1]) for k in keys ], w=w, u=u, d1=d1)  = }', pfx=0)
     slog(f'{fmtl([ m12(ksd[m][2][f]) for f in range(len(ksd[m][2])-1,-1,-1) ], w=w, d1=d1) = } {B*2} {fmtl([ m12(ksd[p][2][s]) for s in range(len(ksd[p][2])) ], w=w, d1=d1)}', pfx=0)
     slog(f'{fmtl([ f for f in reversed(ksd[m][1]) ], d1=d1)= } {B*2} {fmtl([ s for s in ksd[p][1] ], d1=d1)}', pfx=0)
-    _ = list(list(zip(*mc)))[0]
-    slog(f'{fmtl(m12(list(list(zip(*mc)))[0]), w=w) = }', pfx=0)
-    slog(f'{fmtl(m12(list(list(zip(*mc)))[1]), w=w) = }', pfx=0)
-    slog(f'{fmtl([ (100*n[1])//nt for n in mc ], w=w)  = }', pfx=0)
-    slog(f'{fmtl([ Notes.I2F[n]   for n in  _ ], w=w)  = }', pfx=0)
-    slog(f'{fmtl([ Notes.I2S[n]   for n in  _ ], w=w)  = }', pfx=0)
+    _ = list(list(zip(*mc)))[0] if mc else []
+    if _:
+        slog(f'{fmtl(m12(list(list(zip(*mc)))[0]), w=w) = }', pfx=0)
+        slog(f'{fmtl(m12(list(list(zip(*mc)))[1]), w=w) = }', pfx=0)
+        slog(f'{fmtl([ (100*n[1])//nt for n in mc ], w=w)  = }', pfx=0)
+        slog(f'{fmtl([ Notes.I2F[n]   for n in  _ ], w=w)  = }', pfx=0)
+        slog(f'{fmtl([ Notes.I2S[n]   for n in  _ ], w=w)  = }', pfx=0)
     return ks
 
 def m12(s):   return M12[s] if s in M12 else s
@@ -180,7 +181,8 @@ def dumpStack(sfs):
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
 ########################################################################################################################################################################################################
 def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
-    msg = filtText(msg)
+    msg = filtText( msg)
+    msg = filtText2(msg)
     if pfx:
         sf   = inspect.currentframe().f_back
         while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
@@ -202,7 +204,7 @@ def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
     print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
     print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
 
-def filtText(text): # ([
+def filtText(text):
     text = text.replace('"', '')
     text = text.replace("'", '')
     text = text.replace('self', '')
@@ -210,6 +212,9 @@ def filtText(text): # ([
     text = text.replace('fmtl', '')
     text = text.replace('fmtm', '')
     text = text.replace('m12', '')
+    return text
+
+def filtText2(text):
     text = text.replace(', w=w', '')
     text = text.replace(', u=u', '')
     text = text.replace(', d1=d1', '')

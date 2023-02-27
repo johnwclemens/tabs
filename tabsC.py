@@ -487,7 +487,6 @@ class Tabs(pyglet.window.Window):
     def dumpNic(self):
         for k, v in self.nic.items():   self.log(f'{k:2} {Notes.I2N[0][k]:2}/{Notes.I2N[1][k]:2} {v}')
         self.log(f'{self.nic.most_common()=}')
-#        self.log(f'{fmtl(self.nic.elements())}')
         self.log(fmtl([ f'{e}' for e in self.nic.elements() ]))
     ####################################################################################################################################################################################################
     def dumpBlanks(self): self.dmpBlnkHdr()  ;  self.log(f'{self.fmtBlnkCol()}', pfx=0)  ;  self.log(f'{self.fmtBlnkRow()}', pfx=0)
@@ -1657,8 +1656,13 @@ class Tabs(pyglet.window.Window):
 
     def setNote(self, text, cc, t, pos=0, dbg=1):
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
-        ntext = self.sobj.tab2nn(text, t, self.nic)
-        self.notes[cc].text = ntext if self.sobj.isFret(text) else self.tblank
+        if self.sobj.isFret(text):      ntext = self.sobj.tab2nn(text, t, self.nic)
+        else:                           ntext = self.tblank
+        i = Notes.N2I[self.notes[cc].text]
+        self.dumpNic()
+        self.nic[i] -= 1
+        if self.nic[i] <= 0: del self.nic[i]   ;   self.dumpNic()
+        self.notes[cc].text = ntext
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
     ####################################################################################################################################################################################################
     def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=0):
@@ -2278,8 +2282,8 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def toggleFlatSharp(self, how, dbg=0):  #  page line colm tab or select
         t1 = Notes.TYPE    ;    t2 = (Notes.TYPE + 1) % 2    ;   Notes.setType(t2)
-        ks = util.getKS(self.nic)
-        self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]} {ks=}')
+        self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
+        ks = util.getKS(self.nic)   ;   self.log(f'{ks=:2}')
         s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i
         tniks, j, k, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
         for i in range(len(tniks)):
