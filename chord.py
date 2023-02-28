@@ -238,7 +238,7 @@ class Chord(object):
                 v = omap[keyStr]
                 rankSet = set()  ;  rankSet.add(v[0])
                 if not catfile: count += 1  ;  none += 1 if not v[2] else 0  ;  nord += 1 if v[0] == rank else 0
-                v2 = util.fmtl(v[2], sep='\',\'', d1='[\'', d2='\']),') if v[2] else '[]),' if type(v[2]) is list else 'None),'
+                v2 = util.fmtl(v[2], sep='\',\'', d='[\'', d2='\']),') if v[2] else '[]),' if type(v[2]) is list else 'None),'
                 if dbg: util.slog(f'{keyStrFmt:19}: ({v[0]}, {util.fmtl(v[1], sep=",", d2="],"):15} {v2:28} # ', pfx=0, file=file, end='')
                 cycSet =  set()   ;   cycSet.add(tuple(ii))
                 for _ in range(len(ii) - 1):
@@ -249,13 +249,13 @@ class Chord(object):
                     if jj in cycSet:
                         if ck not in self.cycles: self.cycles[ck] = set()
                         self.cycles[ck].add(jj)                                        ;   cycle = 1
-                    cycSet.add(jj)    ;     d1 = '@' if cycle else '['    ;    d2 = '@' if cycle else ']'
+                    cycSet.add(jj)    ;     d = '@' if cycle else '['    ;    d2 = '@' if cycle else ']'
                     if keyStr not in omap:        util.slog(f'Not in map: ', pfx=0, end='', file=file)     ;    r[keyStr] = (rank, ii, None)
-                    if dbg: util.slog(f'{keyStr:16} {util.fmtl(ii, z="x", d1=d1, d2=d2):13} ', pfx=0, end='', file=file)
+                    if dbg: util.slog(f'{keyStr:16} {util.fmtl(ii, z="x", d=d, d2=d2):13} ', pfx=0, end='', file=file)
                 refSet = { _ for _ in range(len(ii)) }
                 if dbg:
                     if    rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet: util.slog(pfx=0, file=file)
-                    else: util.slog(f'\n{msg} {util.fmtl(refSet, d1="<", d2=">")} {util.fmtl(rankSet, d1="<", d2=">")} {util.fmtl(sorted(cycSet))}', pfx=0, file=file)  # ;  q = 1
+                    else: util.slog(f'\n{msg} {util.fmtl(refSet, d="<", d2=">")} {util.fmtl(rankSet, d="<", d2=">")} {util.fmtl(sorted(cycSet))}', pfx=0, file=file)  # ;  q = 1
             if not catfile: mstat.append([k, count, nord, none])
         if not catfile:
             for kk, w in self.cycles.items():

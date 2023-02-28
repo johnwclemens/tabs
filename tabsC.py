@@ -162,7 +162,7 @@ class Tabs(pyglet.window.Window):
         self.rowLs, self.qclms, self.hcurs, self.views = [], [], [], []  ;  self.C = [self.rowLs, self.qclms, self.hcurs, self.views]
         self.zclms, self.snums, self.snams, self.capos = [], [], [], []  ;  self.D = [self.zclms, self.snums, self.snams, self.capos]
         self.E    = [*self.A, *self.B, *self.C, *self.D]
-        self.log(f'E={fmtl(self.E, d1=" [", d2="] ")}')
+        self.log(f'E={fmtl(self.E, d=" [", d2="] ")}')
         self.resetJ('_reinit')
         self.data = []
         self.cursor,  self.caret, self.cc                                = None, None, 0
@@ -202,7 +202,7 @@ class Tabs(pyglet.window.Window):
         j = D  ;  k[j] = i(j, FSH,  0,  0, FSH, 17, 17) if a else i(j, FSH,  0,  0, FSH, 17, 17) if b else i(j, FSH,  0,  0, FSH, 17, 17) if c else i(j, FSH,  0,  0, FSH, 17, 17) if d else None
 
     def initk(self, j, key0, rgb0, opc0, key1, rgb1, opc1):
-        self.log(f'{j:2}  {JTEXTS[j]:4}  [{key0} {rgb0:2} {opc0:2}] [ {key1} {rgb1:2} {opc1:2}] {fmtl(RGB[key0][rgb0][opc0], w="3")} {fmtl(RGB[key1][rgb1][opc1], w="3")}', pfx=0)
+        self.log(f'{j:2}  {JTEXTS[j]:4}  [{key0} {rgb0:2} {opc0:2}] [ {key1} {rgb1:2} {opc1:2}] {fmtl(RGB[key0][rgb0][opc0], w=3)} {fmtl(RGB[key1][rgb1][opc1], w=3)}', pfx=0)
         return [RGB[key0][rgb0][opc0], RGB[key1][rgb1][opc1]]
     ####################################################################################################################################################################################################
     def _initData(self, dbg=1):
@@ -260,7 +260,7 @@ class Tabs(pyglet.window.Window):
         hdrA    = [P, L, S, C,  T, N, I, K,  R, Q, H, V,  Z, U, A, D]
         hdrB    = ' '.join([ f'{t[0]:2}' for t in JTEXTS ])
         self.gn = [1, 2, 3, 4,  5, 5, 5, 5,  5, 5, 6, 0,  5, 5, 5, 5]  ;  self.g = []
-        self.log(f'{fmtl(hdrA, w="2")}')  ;  self.log(f'  {hdrB}')  ;  self.log(f'{fmtl(self.gn, w="2")}')
+        self.log(f'{fmtl(hdrA, w=2)}')  ;  self.log(f'  {hdrB}')  ;  self.log(f'{fmtl(self.gn, w=2)}')
         for i in range(1+max(self.gn)):
             p = None if self.ORDER_GROUP or i==0 else self.g[i-1]
             self.g.append(self._initGroup(i, p))
@@ -406,9 +406,9 @@ class Tabs(pyglet.window.Window):
     def jsum(  self, a=1):          return [ _ + a if self.J2[j] and j < len(self.J1)-1 else _ if j == len(self.J1)-1 else 0 for j, _ in enumerate(self.J1) ]
     def fmtdl( self, data=None):    return f'{fmtl(self.dl(data))}'
     def fmtdt( self, data=None):    return f"[{' '.join([ t.replace('class ', '') for t in self.dtA(data) ])}]"
-    def fmtJ1( self, w=None, d=0):  w = w if w is not None else JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return     f'{fmtl(self.jsum(), w=w, d1=d1, d2="")} {self.fnvis()}{d2}'
-    def fmtJ2( self, w=None, d=0):  w = w if w is not None else JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return     f'{fmtl(self.J2,     w=w, d1=d1, d2="")} {self.fnvis()}{d2}'
-    def fmtLE( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d1 = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return f'{d1}{fmtl(self.lenE(), w=w, d1="", d2="")} {sum(self.lenE()[:-1]):4} {self.fnvis()}{d2}'
+    def fmtJ1( self, w=None, d=0):  w = w if w is not None else JFMT  ;  d = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return     f'{fmtl(self.jsum(), w=w, d=d, d2="")} {self.fnvis()}{d2}'
+    def fmtJ2( self, w=None, d=0):  w = w if w is not None else JFMT  ;  d = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return     f'{fmtl(self.J2,     w=w, d=d, d2="")} {self.fnvis()}{d2}'
+    def fmtLE( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = "" if not d else "["  ;  d2 ="" if not d else "]"  ;  return f'{d}{fmtl(self.lenE(), w=w, d="", d2="")} {sum(self.lenE()[:-1]):4} {self.fnvis()}{d2}'
     ####################################################################################################################################################################################################
     def fmtPos(self):                         cc = self.plct2cc(*self.j2())  ;  cn = self.cc2cn(cc)  ;  return f'{fmtl(self.i, w=FIN)} {cc+1:3} {cn+1:2}]'
     def fmtn(  self, pfx='n=', n=None):       n = n if n is not None else self.n   ;   return f'{pfx}{fmtl(n)}'
@@ -428,7 +428,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def ffont(t):    return f'{t.dpi:3} {t.bold:1} {t.italic:1} {t.font_name}'
     @staticmethod
-    def ftcolor(t, d=1): (d1, d2) = ("[", "]") if d else ("", "")  ;  k = ' '.join([ f'{k:3}' for k in t.color[:3] ])  ;  k += f' {t.opacity:3}'  ;  return f'{d1}{k}{d2}'
+    def ftcolor(t, d=1): (d, d2) = ("[", "]") if d else ("", "")  ;  k = ' '.join([ f'{k:3}' for k in t.color[:3] ])  ;  k += f' {t.opacity:3}'  ;  return f'{d}{k}{d2}'
     @staticmethod
     def ftfntsiz(t): return F'{t.font_size:3.0f}'
     @staticmethod
@@ -476,9 +476,9 @@ class Tabs(pyglet.window.Window):
 #    @staticmethod
 #    def dumpObj( obj,  name, why=''): slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     def dumpFreqsHdr(self):
-        self.log(f'index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w="5")}',  pfx=0)
-        self.log(f'sharp{fmtl(list(util.SHRPS),                      w="5")}',  pfx=0)
-        self.log(f' flat{fmtl(list(util.FLATS),                      w="5")}',  pfx=0)
+        self.log(f'index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w=5)}',  pfx=0)
+        self.log(f'sharp{fmtl(list(util.SHRPS),                      w=5)}',  pfx=0)
+        self.log(f' flat{fmtl(list(util.FLATS),                      w=5)}',  pfx=0)
     def dumpFreqs(self, r=440):
         f = FRQS if r==440 else FRQS2  ;  self.log(f'{r}A {fmtl(f, w="5.0f")}', pfx=0)
     def dumpJs(  self, why, w=None, d=1): b = B*12 if self.OIDS else ''  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
@@ -621,7 +621,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'BGN {d0} pages, {d1} lines per page, {d2} rows per line, {d3} tabs per line')
         for n0 in range(len(data)):
             for n1 in range(len(data[n0])):
-                self.log(f'{fmtl(data[n0][n1], d1="")}', pfx=0)
+                self.log(f'{fmtl(data[n0][n1], d="")}', pfx=0)
             self.log(pfx=0)
         self.log(f'END {d0} pages, {d1} lines per page, {d2} rows per line, {d3} tabs per line')
     ####################################################################################################################################################################################################
@@ -658,9 +658,9 @@ class Tabs(pyglet.window.Window):
         for p, page in enumerate(data):
             Xpage = []
             for l, line in enumerate(page):
-                if dbg: msg1.append(f'{fmtl( line, d1="")}')
+                if dbg: msg1.append(f'{fmtl( line, d="")}')
                 Xline = list(map(''.join, itertools.zip_longest(*line, fillvalue=' ')))
-                if dbg: msg2.append(f'{fmtl(Xline, d1="")}')
+                if dbg: msg2.append(f'{fmtl(Xline, d="")}')
                 Xpage.append(Xline)
             Xdata.append(Xpage)
         if dbg: [ self.log(m, pfx=0) for m in msg1 ]   ;   self.log(pfx=0)
@@ -678,9 +678,9 @@ class Tabs(pyglet.window.Window):
         for p, page in enumerate(data):
             Xpage = []
             for l, line in enumerate(page):
-                if dbg: msg1.append(f'{fmtl( line, d1="")}')
+                if dbg: msg1.append(f'{fmtl( line, d="")}')
                 Xline = list(map(''.join, itertools.zip_longest(*line, fillvalue=' ')))
-                if dbg: msg2.append(f'{fmtl(Xline, d1="")}')
+                if dbg: msg2.append(f'{fmtl(Xline, d="")}')
                 Xpage.append(Xline)
             Xdata.append(Xpage)
         if dbg: [ self.log(m, pfx=0) for m in msg1 ]   ;   self.log(pfx=0)
@@ -711,7 +711,7 @@ class Tabs(pyglet.window.Window):
         w = max(len(data[0][0][0]), len(JTEXTS[P]) + 2, len(JTEXTS[L]) + 2)   ;   txt = B * i + JTEXTS[C] + B if i >= 0 else JTEXTS[C]
         self.log(f'BGN {self.fmtD(data)} {lc=} {ll=} {i=} {w=} {txt=}')
         for p in range(len(data)):
-            if ll: self.log(f'{JTEXTS[P]} {p+1}', pfx=0)  ;  self.log(f'{txt:{3}}', pfx=0, end='')  ;  txt2 = [ f'{JTEXTS[L]} {l+1}' for l in range(len(data[0])) ]  ;  self.log(f'{fmtl(txt2, w=w, d1="")}', pfx=0)
+            if ll: self.log(f'{JTEXTS[P]} {p+1}', pfx=0)  ;  self.log(f'{txt:{3}}', pfx=0, end='')  ;  txt2 = [ f'{JTEXTS[L]} {l+1}' for l in range(len(data[0])) ]  ;  self.log(f'{fmtl(txt2, w=w, d="")}', pfx=0)
             for c in range(len(data[p][0])):
                 pfx = f'{c+1:3} ' if i >= 0 and lc else ''   ;   self.log(f'{pfx}{B*i}', pfx=0, end='')
                 for l in range(len(data[p])):
@@ -733,8 +733,8 @@ class Tabs(pyglet.window.Window):
     def createLabelText(self):
         self.labelTextA.extend(f'{j}' for j in range(1, self.n[C] + 1))
         self.labelTextB.extend(f'{j%10}' if j % 10 else f'{j // 10 % 10}' for j in range(1, self.n[C] + 1))
-        self.log(f'labelTextA={fmtl(self.labelTextA, w="2")}', pfx=0)
-        self.log(f'labelTextB={fmtl(self.labelTextB, w="2")}', pfx=0)
+        self.log(f'labelTextA={fmtl(self.labelTextA, w=2)}', pfx=0)
+        self.log(f'labelTextB={fmtl(self.labelTextB, w=2)}', pfx=0)
         texts = list(zip(self.labelTextA, self.labelTextB))
         self.log(f'texts={fmtl(texts)}', pfx=0)
         self.dumpLabelText(texts)
@@ -2326,12 +2326,12 @@ class Tabs(pyglet.window.Window):
         if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   self.log(msg)   ;   self.quit(msg)
         ivals =  [ u[1] for u in mli[cn][0] ]
         msg   =  [ fmtl(v, z="x") for v in ivals ]
-        if dbg: self.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d1="")}')
+        if dbg: self.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d="")}')
         hits = self.ivalhits(ivals, how)
         for cn in hits:
             if cn not in self.smap: self.selectTabs(how, m=0, cn=cn)
             self.toggleChordName(how, cn)
-        if dbg: self.log(f'END {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d1="")}')
+        if dbg: self.log(f'END {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d="")}')
 
     def ivalhits(self, ivals, how, dbg=1):
         mli = self.cobj.mlimap   ;   mks = list(mli.keys())   ;   hits = set()
@@ -2569,7 +2569,7 @@ def initRGB(dbg=1):
     if dbg:
         s = B*7  ;  t = f'{s}RGB '
         o = [ f' {o}' for o in range(len(OPC)) ]
-        slog(f'RGB{s}{fmtl(o, w="3",d1="")}{t}Diffs  {t}Steps', pfx=0, file=2)
+        slog(f'RGB{s}{fmtl(o, w=3,d="")}{t}Diffs  {t}Steps', pfx=0, file=2)
     _initRGB('FSH', (255,   0, 255))  # 0
     _initRGB('PNK', (255, 128, 192))  # 1
     _initRGB('RED', (255,   0,   0))  # 2
@@ -2598,7 +2598,7 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=2):
     if dbg: msg = f'{key:3}:   O=['
     for j in range(n):
         clrs = []
-        if dbg > 2: slog(f'{key:4} {fmtl(rgb, w="3")} {opc=:2} {OPC[opc]:3} {dv=} {n=} {fmtl(diffs, w=".2f")} ', end='');  slog(f'{fmtl(steps, w=".2f")}', pfx=0, file=1)
+        if dbg > 2: slog(f'{key:4} {fmtl(rgb, w=3)} {opc=:2} {OPC[opc]:3} {dv=} {n=} {fmtl(diffs, w=".2f")} ', end='');  slog(f'{fmtl(steps, w=".2f")}', pfx=0, file=1)
         for opc in range(lopc):
             if dbg: msg += f'{OPC[opc]:3} ' if not j else ''
             color = list([ fri(rgb[i]/dv + j*steps[i]) for i in range(lrgb) ])  ;  color.append(OPC[opc])  ;  clrs.append(tuple(color))
@@ -2608,7 +2608,7 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=2):
         colors.append(clrs)
     if dbg:
         slog( f'{msg[:-1]}] {fmtl(diffs, w="5.1f")} {fmtl(steps, w="4.1f")}', pfx=0)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
-        for i, msg in enumerate(msgs): slog(f'       {rgb[i]}={fmtl(msg, w="3")}', pfx=0)
+        for i, msg in enumerate(msgs): slog(f'       {rgb[i]}={fmtl(msg, w=3)}', pfx=0)
     global RGB  ;  RGB[key] = colors
     return list(RGB.keys())
 ########################################################################################################################################################################################################
