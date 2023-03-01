@@ -2306,8 +2306,8 @@ class Tabs(pyglet.window.Window):
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
-        ks = util.getKS(self.nic) # ;   self.log(f'{ks=:2} {fmtl(list(self.nic.keys()))}', file=2)
-        self.log(f'{fmtl(ks)}', file=1)
+        ks = util.calcKS(self.nic) # ;   self.log(f'{ks=:2} {fmtl(list(self.nic.keys()))}', file=2)
+        self.log(f'{fmtl(ks, d="")}', file=1)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):
