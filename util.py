@@ -77,36 +77,26 @@ def dumpKS():
         slog(f'{k:2} [{t1}] {t2:22} [{t3}]', pfx=0)
 
 def dumpKSD(ksd, w=2, u='<'):
-    keys = sorted(ksd.keys())   ;   v = B*32   ;   d = ''
+    keys = sorted(ksd.keys())   ;   v = B*19   ;   d = ''   ;   pfx = 1
     _ = [ '-' if k < 0  else '+' if k > 0 else ' ' for k in keys ]
-    _ = '  '.join(_)   ;   slog(f'{v}{_}', pfx=0)     ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}', pfx=0)
-    _ = [ f'{    ksd[k][0][0]}'     for k in keys ]   ;   slog(f'{v}{fmtl(_, w=w, d=d)}', pfx=0)
-    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]   ;   slog(f'{v}{fmtl(_, w=w, d=d)}', pfx=0)
+    _ = '  '.join(_)   ;   slog(f'{v}{_}', pfx=pfx)   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}', pfx=pfx)
+    _ = [ f'{    ksd[k][0][0]}'     for k in keys ]   ;   slog(f'{v}{fmtl(_, w=w, d=d)}', pfx=pfx)
+    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]   ;   slog(f'{v}{fmtl(_, w=w, d=d)}', pfx=pfx)
     f = [ f'{m12(ksd[M][2][f]):<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ f'{m12(ksd[P][2][s]):<2}' for s in range(len(ksd[P][2])) ]         ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}', pfx=0)
-    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}', pfx=0)
+    s = [ f'{m12(ksd[P][2][s]):<2}' for s in range(len(ksd[P][2])) ]         ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}', pfx=pfx)
+    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}', pfx=pfx)
 
 def dumpNic(nic, w=2):
-    mc = nic.most_common()   ;   nt = nic.total()
-    _ = list(list(zip(*mc)))[0] if mc else []   ;   u = '>'   ;   v = B*32
+    mc = nic.most_common()   ;   nt = nic.total()   ;  pfx=1
+    _ = list(list(zip(*mc)))[0] if mc else []   ;   u = '>'
     if _:
-        slog(f'{v}{fmtl([m12(_) for _ in dict(nic)], w=w, u=u)}', pfx=0)
-        slog(f'{v}{fmtl([m12(_) for _ in sorted(dict(nic))], w=w, u=u)}', pfx=0)
-        slog(f'{v}{fmtl(m12(list(list(zip(*mc)))[0]), w=w)}', pfx=0)
-        slog(f'{v}{fmtl(m12(list(list(zip(*mc)))[1]), w=w)}', pfx=0)
-        slog(f'{v}{fmtl([(100 * n[1]) // nt for n in mc], w=w)}', pfx=0)
-        slog(f'{v}{fmtl([ Notes.I2F[n]   for n in  _ ], w=w)}', pfx=0)
-        slog(f'{v}{fmtl([ Notes.I2S[n]   for n in  _ ], w=w)}', pfx=0)
-
-def getKS(nic):
-    ksd  = KeySig.KSD   ;   w = 2   ;   u = '<'   ;   v = B*32
-    dumpKSD(ksd)
-    f = ksd[M][2]   ;   s = ksd[P][2]
-    slog(f'{v}{fmtl([ m12(f[_]) for _ in range(len(f))  ], w=w, u=u)}', pfx=0)
-    slog(f'{v}{fmtl([ m12(s[_]) for _ in range(len(s))  ], w=w, u=u)}', pfx=0)
-    dumpNic(nic)
-    fks = -_getKS(nic, f)   ;   sks = _getKS(nic, s)   ;   ks = fks if abs(fks) > sks else sks if sks >= abs(fks) else 0
-    return ks
+        slog(f'        dict(nic) {fmtl([m12(_) for _ in dict(nic)],         w=w, u=u)}', pfx=pfx)
+        slog(f'sorted(dict(nic)) {fmtl([m12(_) for _ in sorted(dict(nic))], w=w, u=u)}', pfx=pfx)
+        slog(f'      zip(*mc)[0] {fmtl([m12(_) for _ in list(list(zip(*mc)))[0] ], w=w, u=u)}', pfx=pfx)
+        slog(f'      zip(*mc)[1] {fmtl(                 list(list(zip(*mc))[1]),   w=w)}',      pfx=pfx)
+        slog(f' mc[n][1]/nt*100% {fmtl([(100 * n[1]) // nt for n in mc],    w=w)}',      pfx=pfx)
+        slog(f'           I2F[n] {fmtl([ Notes.I2F[n]   for n in  _ ],      w=w)}',      pfx=pfx)
+        slog(f'           I2S[n] {fmtl([ Notes.I2S[n]   for n in  _ ],      w=w)}',      pfx=pfx)
 
 def OLD__getKS(nic):
     ksd  = KeySig.KSD        ;   keys = sorted(ksd.keys())   ;   u = '>'   ;   w = 2   ;   v = B*32
@@ -116,7 +106,7 @@ def OLD__getKS(nic):
     slog(f'{fmtl([ m12(s[_]) for _ in range(len(s))  ], w=w, u=u)  = }', pfx=0)
     slog(f'{fmtl([ m12(_) for _ in        dict(nic)  ], w=w, u=u)  = }', pfx=0)
     slog(f'{fmtl([ m12(_) for _ in sorted(dict(nic)) ], w=w, u=u)  = }', pfx=0)
-    fks = -_getKS(nic, f)   ;   sks = _getKS(nic, s)   ;   ks = fks if abs(fks) > sks else sks if sks >= abs(fks) else 0   ;   u = '<'
+    fks = -len(_getKS(nic, f, 0))   ;   sks = len(_getKS(nic, s, 1))   ;   ks = fks if abs(fks) > sks else sks if sks >= abs(fks) else 0   ;   u = '<'
     _ = [ '-' if k < 0  else '+' if k > 0 else ' ' for k in keys ]
     _ = '  '.join(_)   ;   slog(f'{v}{_}', pfx=0)     ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}', pfx=0)
     _ = [ f'{    ksd[k][0][0]}'     for k in keys ]   ;   slog(f'{v}{fmtl(_, w=w, d=d)}', pfx=0)
@@ -138,15 +128,27 @@ def OLD__getKS(nic):
         slog(f'{fmtl([ Notes.I2F[n]   for n in  _ ], w=w)  = }', pfx=0)
         slog(f'{fmtl([ Notes.I2S[n]   for n in  _ ], w=w)  = }', pfx=0)
     return ks
+def getKS(nic):
+    ksd  = KeySig.KSD   ;   w = 2   ;   u = '<'
+    dumpKSD(ksd)
+    f    = ksd[M][2]    ;   s = ksd[P][2]
+    slog(f'        ksd[M][2] {fmtl([ m12(f[_]) for _ in range(len(f))  ], w=w, u=u)}', pfx=1)
+    slog(f'        ksd[P][2] {fmtl([ m12(s[_]) for _ in range(len(s))  ], w=w, u=u)}', pfx=1)
+    dumpNic(nic)
+    if Notes.TYPE==Notes.FLAT: f = _getKS(nic, f, 0)
+    else:                      s = _getKS(nic, s, 1)
+    lf = -len(f)  ;  ls = len(s)
+    ks   = f if abs(lf) > ls else s if abs(lf) < ls else f if Notes.TYPE == Notes.FLAT else s
+    return ks
 
 def m12(s):   return M12[s] if s in M12 else s
-
-def _getKS(nic, t, w='2', u='>'):
+def _getKS(nic, t, tt, u='>'):
     _ = []
     for i in t:
         if i in nic: _.append(m12(i))
         else:        break
-    slog(f'{B*28}{fmtl(_, w=w, u=u) = }', pfx=0)   ;   return len(_)
+    slog(f'             {Notes.TYPES[tt]} {fmtl(_, u=u, ll=1 if tt else -1)}', file=2)
+    return _
 
 def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
@@ -207,7 +209,7 @@ def dumpStack(sfs):
 ########################################################################################################################################################################################################
 def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
     msg = filtText( msg)
-    msg = filtText2(msg)
+#    msg = filtText2(msg)
     if pfx:
         sf   = inspect.currentframe().f_back
         while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
@@ -471,8 +473,8 @@ class Strings(object):
         if nic is not None:  nic[j] += 1  ;  nics = f'nic[{m12(j)}]={nic[j]}'
         else:                                nics = ''
         name = Notes.name(i)
-        if dbg or nics: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nics}')
-        return name
+        if dbg: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nics}')
+        return name # if dbg or nics
 
     @staticmethod
     def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0

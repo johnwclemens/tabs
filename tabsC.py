@@ -1209,27 +1209,27 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def g_createTniks(self, tlist, j, pt, ii=None, why='', dbg=1, dbg2=1):
         n = 1 if ii is not None else None
-        n, _, x, y, w, h = self.geom(j, pt, n, ii, dbg=dbg2)   ;   text = ''   ;    kl = self.k[j]    ;  tlist2 = tlist   ;   p, l, c, _ = self.J1plct()
+        n, _, x, y, w, h = self.geom(j, pt, n, ii, dbg=dbg2)   ;   t = ''   ;    kl = self.k[j]    ;  tl2 = tlist   ;   p, l, c, _ = self.J1plct()
         n                = n if ii is None else 1       ;   j2 = j   ;   i3 = 0   ;   x2 = x   ;   y2 = y
         for i in range(n):
-            if self.DBG_TAB_TEXT:                      dlm = '\n' if j == C else ''  ;  text = f'{JTEXTS[j][0]}{dlm}{self.lenE()[-1]}'
+            if self.DBG_TAB_TEXT:          dlm = '\n' if j == C else ''  ;  t = f'{JTEXTS[j][0]}{dlm}{self.lenE()[-1]}'
             i2 = i if ii is None else ii
-            if   j == P:                                 v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}')
-            else:                                        v = int(self.pages[self.J1[P]].visible)
-            if   j == C or j == Z:                      x2 = x + i2 * w #  ;   j2 = len(self.J2) if ii is not None else j
+            if   j == P:                   v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}')
+            else:                          v = int(self.pages[self.J1[P]].visible)
+            if   j == C or j == Z:         x2 = x + i2 * w #  ;   j2 = len(self.J2) if ii is not None else j
             else:
-                if   j != P:                            y2 = y - i2 * h
-                if   j == S:                             _ = self.ss2sl()[i2]  ;  self.SS.add(_)
+                if   j != P:               y2 = y - i2 * h
+                if   j == S:               _ = self.ss2sl()[i2]  ;  self.SS.add(_)
                 elif j >= T:
-                    s                    = self.ss2sl()[self.J1[S]]
-                    tlist2, j2, kl, tobj = self.tnikInfo(p, l, s, c, i2, why=why)
-                    if   s == TT:                     text = tobj
-                    elif s == NN:                     text = tobj if j2 > K else self.sobj.tab2nn(tobj, i2, self.nic) if self.sobj.isFret(tobj) else self.tblank
+                    s               = self.ss2sl()[self.J1[S]]
+                    tl2, j2, kl, to = self.tnikInfo(p, l, s, c, i2, why=why)
+                    if   s == TT:          t = to
+                    elif s == NN:          t = to if j2 > K else self.sobj.tab2nn(to, i2, self.nic) if self.sobj.isFret(to) else self.tblank
                     elif s >= II:
-                        if   s == II:  imap = self.getImap(p, l, c)  ;  text = self.imap2ikey( tobj, imap, i3, j2)  ;  i3 += 1 if text != self.tblank else 0
-                        elif s == KK:  imap = self.getImap(p, l, c)  ;  text = self.imap2Chord(tobj, imap, i2, j2)
+                        if   s == II: m = self.getImap(p, l, c)  ;  t = self.imap2ikey( to, m, i3, j2)  ;  i3 += 1 if t != self.tblank else 0
+                        elif s == KK: m = self.getImap(p, l, c)  ;  t = self.imap2Chord(to, m, i2, j2)
             kk = self.cci(j2, i2, kl) if self.CHECKERED else 0
-            yield self.createTnik(tlist2, i2, j2, x2, y2, w, h, kk, kl, why=why, t=text, v=v, dbg=dbg)
+            yield self.createTnik(tl2, i2, j2, x2, y2, w, h, kk, kl, why=why, t=t, v=v, dbg=dbg)
     ####################################################################################################################################################################################################
     def createTnik(self, tlist, i, j, x, y, w, h, kk, kl, why='', t='', v=0, g=None, dbg=0):
         if i is None or j is None: lt = len(tlist) if tlist is not None else None  ;  msg = f'ERROR i or j is None {i=} {j=} {lt=} {t=} {why}'  ;  self.log(msg)  ;  self.quit(msg)
@@ -2287,7 +2287,6 @@ class Tabs(pyglet.window.Window):
     def toggleFlatSharp(self, how, dbg=0):  #  page line colm tab or select
         t1 = Notes.TYPE    ;    t2 = (Notes.TYPE + 1) % 2    ;   Notes.setType(t2)
         self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
-        ks = util.getKS(self.nic)   ;   self.log(f'{ks=:2}', file=2)
         s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i
         tniks, j, k, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
         for i in range(len(tniks)):
@@ -2307,6 +2306,8 @@ class Tabs(pyglet.window.Window):
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
+        ks = util.getKS(self.nic) # ;   self.log(f'{ks=:2} {fmtl(list(self.nic.keys()))}', file=2)
+        self.log(f'{fmtl(ks)}', file=1)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):
