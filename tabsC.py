@@ -485,12 +485,16 @@ class Tabs(pyglet.window.Window):
     def dumpGeom(self, why='', why2=''):  b = B*12 if self.OIDS else ''  ;  self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fnvis()}] {why2}')
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={fmtm(self.smap)}', pos=pos)
     def dumpNic(self):
-#        for k, v in self.nic.items():   self.log(f'{k:2} {Notes.I2N[0][k]:2}/{Notes.I2N[1][k]:2} {v}')
-#        self.log(f'{self.nic.most_common()=}')
-        self.log(fmtl([ f'{util.m12(e)}'  for e in self.nic.elements() ]))
+        self.log(fmtl([ f'{util.m12(e)}'  for e in self.nic.elements() ], w=2))
         self.log(fmtl([ f'{Notes.I2F[f]}' for f in self.nic.elements() ]))
         self.log(fmtl([ f'{Notes.I2S[s]}' for s in self.nic.elements() ]))
-        self.log(fmtl([ f'{util.m12(v)}'  for v in self.nic.values()   ]))
+        msg = []
+        for v in self.nic.values():
+            for n in range(v):
+                msg.append(f'{v:<2}')
+        msg = f'[{" ".join(msg)}]'
+        slog(msg)
+#        self.log(fmtl([ [ f'{v} '  for _ in range(v) ] for v in self.nic.values() ], w=2, u=">", d=""))
 
 ####################################################################################################################################################################################################
     def dumpBlanks(self): self.dmpBlnkHdr()  ;  self.log(f'{self.fmtBlnkCol()}', pfx=0)  ;  self.log(f'{self.fmtBlnkRow()}', pfx=0)
