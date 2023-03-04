@@ -46,41 +46,8 @@ def dumpND():
     slog(f'I  F  S  IV   Notes Table {len(ND)}', pfx=0)
     for i in range(len(ND)):   slog(f'{m12(i)} {fmtl(ND[i], w=2)}', pfx=0)
 ########################################################################################################################################################################################################
-def initKSD(m, t=None):
-    ln = []  ;  li = []  ;  ln2 = []  ;  li2 = []
-    if   t is None: i1 = 0  ;  i2 = 0   ;  d = 0  ;  j1 =  1  ;  j2 =  0
-    elif t:         i1 = 7  ;  i2 = 6   ;  d = 7  ;  j1 =  1  ;  j2 =  7
-    else:           i1 = 5  ;  i2 = 10  ;  d = 5  ;  j1 = -1  ;  j2 = -7
-    dmpKSDhdr(t)
-    for k in range(0 if t is None else 1 if t else -1, j1+j2, j1):
-        n1 = Notes.name(i1, t=t, n2=1)
-        n2 = Notes.name(i2, t=t, n2=1) if t is not None else None
-        lni = [n1, i1]
-        if abs(k) >= 1:   ln.append(n2)  ;  li.append(i2)  ;  ln2 = list(ln)  ;  li2 = list(li)
-        m[k] = [ lni, ln2, li2 ]
-        _ = [ f'{m12(i)}' for i in li ]
-        sign = t2sign(t)   ;   t = 2 if t is None else t
-        nt = Notes.TYPES[t]
-        slog(fmtks(sign, k, nt, n1, i1, ln, _), pfx=0)
-        i1 = Notes.nextIndex(i1, d)
-        i2 = Notes.nextIndex(i2, d) if t is not None else None
-    return m
-
-def dmpKSDhdr(t):
-    l = M if t == Notes.FLAT else P if t == Notes.SHRP else 0   ;   sign = t2sign(t)
-    slog(f'KS Type  N  I       Flats/Sharps {B*6} F/S Indices     Key Sig Table {sign}{l}', pfx=0)
-
-def dumpKSD(ksd, w=2, u='<'):
-    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
-    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}')
-    _ = [ f'{    ksd[k][0][0]}'     for k in keys ]                  ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
-    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]                  ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
-    f = [ f'{m12(ksd[M][2][f]):<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ f'{m12(ksd[P][2][s]):<2}' for s in range(len(ksd[P][2])) ]         ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
-    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
-########################################################################################################################################################################################################
 def dumpKS():
-    ksd = KeySig.KSD   ;   t = Notes.NONE   ;   dmpKSDhdr(t)
+    ksd = KSD   ;   t = Notes.NONE   ;   dmpKSDhdr(t)
     items = sorted(ksd.items())
     for k, v in items:
         a, b, c = [], [], []  ;  a2, b2 = [], []
@@ -93,6 +60,19 @@ def dumpKS():
         sign = t2sign(t)   ;   nt = Notes.TYPES[t]
         slog(fmtks(sign, k, nt, a[0], a[1], b, c), pfx=0)
 
+def dmpKSDhdr(t):
+    l = 2*P+1 if t is Notes.NONE else M if t==Notes.FLAT else P if t==Notes.SHRP else 1  ;   sign = t2sign(t)
+    slog(f'KS Type  N  I       Flats/Sharps {B*6} F/S Indices     Key Sig Table {sign}{l}', pfx=0)
+
+def dumpKSD(ksd, w=2, u='<'):
+    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
+    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}')
+    _ = [ f'{    ksd[k][0][0]}'     for k in keys ]                  ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
+    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]                  ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
+    f = [ f'{m12(ksd[M][2][f]):<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
+    s = [ f'{m12(ksd[P][2][s]):<2}' for s in range(len(ksd[P][2])) ]         ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
+    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
+########################################################################################################################################################################################################
 def dumpNic(nic, w=2, dbg=0):
     mc = nic.most_common()   ;   nt = nic.total()
     _ = list(list(zip(*mc)))[0] if mc else []   ;   u = '<'
@@ -106,7 +86,7 @@ def dumpNic(nic, w=2, dbg=0):
         slog(f'                I2S[n] {fmtl([Notes.I2S[n]       for n in  _ ],         w=w)}')
 ########################################################################################################################################################################################################
 def calcKS(nic, dbg=0):
-    ksd = KeySig.KSD
+    ksd = KSD
     dumpKSD(ksd)
     dumpNic(nic)
     js  = []   ;   t = Notes.TYPE   ;   nt = Notes.TYPES[t]
@@ -351,11 +331,37 @@ ND    = initND()
 
 ########################################################################################################################################################################################################
 
-class KeySig(object):
-    KSD = {}
-    KSD = initKSD(KSD, t=0)
-    KSD = initKSD(KSD)
-    KSD = initKSD(KSD, t=1)
+#class KeySig(object):
+#    KSD = {}
+#    KSD = initKSD(KSD, t=0)
+#    KSD = initKSD(KSD)
+#    KSD = initKSD(KSD, t=1)
+
+def initKSD(m, t=None):
+    ln = []  ;  li = []  ;  ln2 = []  ;  li2 = []
+    if   t is None: i1 = 0  ;  i2 = 0   ;  d = 0  ;  j1 =  1  ;  j2 =  0
+    elif t:         i1 = 7  ;  i2 = 6   ;  d = 7  ;  j1 =  1  ;  j2 =  7
+    else:           i1 = 5  ;  i2 = 10  ;  d = 5  ;  j1 = -1  ;  j2 = -7
+    dmpKSDhdr(t)
+    for k in range(0 if t is None else 1 if t else -1, j1+j2, j1):
+        n1 = Notes.name(i1, t=t, n2=1)
+        n2 = Notes.name(i2, t=t, n2=1) if t is not None else None
+        lni = [n1, i1]
+        if abs(k) >= 1:   ln.append(n2)  ;  li.append(i2)  ;  ln2 = list(ln)  ;  li2 = list(li)
+        m[k] = [ lni, ln2, li2 ]
+        _ = [ f'{m12(i)}' for i in li ]
+        sign = t2sign(t)   ;   t = 2 if t is None else t
+        nt = Notes.TYPES[t]
+        slog(fmtks(sign, k, nt, n1, i1, ln, _), pfx=0)
+        i1 = Notes.nextIndex(i1, d)
+        i2 = Notes.nextIndex(i2, d) if t is not None else None
+    return m
+########################################################################################################################################################################################################
+KSD = {}
+KSD = initKSD(KSD, t=0)
+KSD = initKSD(KSD)
+KSD = initKSD(KSD, t=1)
+
 ########################################################################################################################################################################################################
 
 class Strings(object):
