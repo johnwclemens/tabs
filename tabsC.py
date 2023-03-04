@@ -2311,7 +2311,7 @@ class Tabs(pyglet.window.Window):
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
         k = util.calcKS(self.nic)
-        self.log(util.fmtks(k), file=2)
+        self.log(util.fmtks(*k), file=2)
 #        self.log(f'{k[0]} {k[1]} {k[2]}{k[3]} {fmtl(k[4])} {fmtl(k[5])}', file=1)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
