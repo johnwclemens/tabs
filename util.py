@@ -43,7 +43,8 @@ def init(file, oid):
     slog('END')
 
 def dumpND():
-    slog(f'I  F  S  IV   Notes Table {len(ND)}', pfx=0)   ;   for i in range(len(ND)):   slog(f'{m12(i)} {fmtl(ND[i], w=2)}', pfx=0)
+    slog(f'I  F  S  IV   Notes Table {len(ND)}', pfx=0)
+    for i in range(len(ND)):   slog(f'{m12(i)} {fmtl(ND[i], w=2)}', pfx=0)
 ########################################################################################################################################################################################################
 def initKSD(m, t=None):
     ln = []  ;  li = []  ;  ln2 = []  ;  li2 = []
@@ -52,8 +53,8 @@ def initKSD(m, t=None):
     else:           i1 = 5  ;  i2 = 10  ;  d = 5  ;  j1 = -1  ;  j2 = -7
     dmpKSDhdr(t)
     for k in range(0 if t is None else 1 if t else -1, j1+j2, j1):
-        n1 = Notes.name(i1, t=t)
-        n2 = Notes.name(i2, t=t) if t is not None else None
+        n1 = Notes.name(i1, t=t, n2=1)
+        n2 = Notes.name(i2, t=t, n2=1) if t is not None else None
         lni = [n1, i1]
         if abs(k) >= 1:   ln.append(n2)  ;  li.append(i2)  ;  ln2 = list(ln)  ;  li2 = list(li)
         m[k] = [ lni, ln2, li2 ]
@@ -300,12 +301,13 @@ class Notes(object):
     F2S2       = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                  'Cb':'B' }
     I2F        = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'  }
     I2S        = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
-#   I2F2       = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',        5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
-#   I2S2       = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
+    I2F2       = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',        5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
+    I2S2       = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
     I2V        = { 0: 'R', 1: 'b2', 2: '2', 3: 'm3', 4: 'M3', 5: '4', 6: 'b5', 7: '5', 8: '#5', 9: '6', 10: 'b7', 11: '7' }
     N2I        = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11 }
     MAX_IDX    = 10 * NTONES + 1
-    I2N        = [I2F, I2S]
+    I2N        = [I2F,  I2S]
+    I2N2       = [I2F2, I2S2]
 
     @staticmethod
     def setType(t): Notes.TYPE = t
@@ -323,7 +325,7 @@ class Notes(object):
     @staticmethod
     def name(i, t=None, n2=0):
         t = t if t is not None else Notes.TYPE
-        name = Notes.I2N[t][i % NTONES] if n2 else Notes.I2N[t][i % NTONES]
+        name = Notes.I2N2[t][i % NTONES] if n2 else Notes.I2N[t][i % NTONES]
         return name
 
     @staticmethod
