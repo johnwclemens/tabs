@@ -43,16 +43,14 @@ def init(file, oid):
     slog('END')
 
 def dumpND():
-    slog(f'I  F  S  IV   Notes Table {len(ND)}', pfx=0)
-    for i in range(len(ND)):
-        slog(f'{m12(i)} {fmtl(ND[i], w=2)}', pfx=0)
+    slog(f'I  F  S  IV   Notes Table {len(ND)}', pfx=0)   ;   for i in range(len(ND)):   slog(f'{m12(i)} {fmtl(ND[i], w=2)}', pfx=0)
 ########################################################################################################################################################################################################
 def initKSD(m, t=None):
     ln = []  ;  li = []  ;  ln2 = []  ;  li2 = []
     if   t is None: i1 = 0  ;  i2 = 0   ;  d = 0  ;  j1 =  1  ;  j2 =  0
     elif t:         i1 = 7  ;  i2 = 6   ;  d = 7  ;  j1 =  1  ;  j2 =  7
     else:           i1 = 5  ;  i2 = 10  ;  d = 5  ;  j1 = -1  ;  j2 = -7
-    dmpKSDhdr(t) # t if t is not None else 0
+    dmpKSDhdr(t)
     for k in range(0 if t is None else 1 if t else -1, j1+j2, j1):
         n1 = Notes.name(i1, t=t)
         n2 = Notes.name(i2, t=t) if t is not None else None
@@ -60,10 +58,8 @@ def initKSD(m, t=None):
         if abs(k) >= 1:   ln.append(n2)  ;  li.append(i2)  ;  ln2 = list(ln)  ;  li2 = list(li)
         m[k] = [ lni, ln2, li2 ]
         _ = [ f'{m12(i)}' for i in li ]
-        sign = t2sign(t)
-        t = 2 if t is None else t
+        sign = t2sign(t)   ;   t = 2 if t is None else t
         nt = Notes.TYPES[t]
-        slog(f'{sign}{k} {nt} [{n1:2} {m12(i1)}] {fmtl(ln, w=2):22} {fmtl(_)}', pfx=0)
         slog(fmtks(sign, k, nt, n1, i1, ln, _), pfx=0)
         i1 = Notes.nextIndex(i1, d)
         i2 = Notes.nextIndex(i2, d) if t is not None else None
@@ -72,7 +68,6 @@ def initKSD(m, t=None):
 def dmpKSDhdr(t):
     l = M if t == Notes.FLAT else P if t == Notes.SHRP else 0   ;   sign = t2sign(t)
     slog(f'KS Type  N  I       Flats/Sharps {B*6} F/S Indices     Key Sig Table {sign}{l}', pfx=0)
-#    slog(f'KS Type  N  I       Flats/Sharps {B*6} F/S Indices     Key Sig Table {l:+}', pfx=0)
 
 def dumpKSD(ksd, w=2, u='<'):
     keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
@@ -87,18 +82,14 @@ def dumpKS():
     ksd = KeySig.KSD   ;   t = Notes.NONE   ;   dmpKSDhdr(t)
     items = sorted(ksd.items())
     for k, v in items:
-        a, b, c = [], [], []  ;  a2, b2, c2 = [], [], [] # ;  w = []
+        a, b, c = [], [], []  ;  a2, b2 = [], []
         for i in range(len(v)):
             w = v[i]
             if   i==0: a.append(w[0])  ;  a.append(w[1])  ;  a2.append(f'{w[0]:2} ')  ;  a2.append(f'{m12(w[1])}')  ;  a2 =  ''.join(a2)
             elif i==1: b.append(w[:abs(k)])               ;  b2.append(f'{fmtl(w[:abs(k)], w=2)}')                  ;  b2 = ' '.join(b2)
-            else:      c = w                              ;  c2 = [ f'{m12(i)}' for i in w ]                        ;  c2 = ' '.join(c2)
-#            if   i == 0:   t1.append(f'{w[0]:2} ')  ;  t1.append(f'{m12(w[1])}')   ;  t1 =  ''.join(t1)
-#            elif i == 1:   t2.append(f'{fmtl(w[:abs(k)], w=2)}')                   ;  t2 = ' '.join(t2)
-#            else:          t3 = [ f'{m12(i)}' for i in w ]                         ;  t3 = ' '.join(t3)
+            else:      c = w
             t = Notes.FLAT if k < 0 else Notes.SHRP if k > 0 else Notes.NONE
         sign = t2sign(t)   ;   nt = Notes.TYPES[t]
-        slog(f'{sign}{k} {nt} [{a2}] {b2:22} [{c2}]', pfx=0) # [{a[0]:2} {m12(a[1])}]
         slog(fmtks(sign, k, nt, a[0], a[1], b, c), pfx=0)
 
 def dumpNic(nic, w=2, dbg=0):
@@ -113,7 +104,7 @@ def dumpNic(nic, w=2, dbg=0):
         slog(f'                I2F[n] {fmtl([Notes.I2F[n]       for n in  _ ],         w=w)}')
         slog(f'                I2S[n] {fmtl([Notes.I2S[n]       for n in  _ ],         w=w)}')
 ########################################################################################################################################################################################################
-def calcKS(nic):
+def calcKS(nic, dbg=0):
     ksd = KeySig.KSD
     dumpKSD(ksd)
     dumpNic(nic)
@@ -127,11 +118,9 @@ def calcKS(nic):
     nn  = ksd[l][0][0] if js else '??'
     ni  = ksd[l][0][1]
     ns  = ksd[l][1]
-    fmtks( s, l, nt, nn, ni, ns, js)
-    return s, l, nt, nn, ni, ns, js
+    slog(fmtks( s, l, nt, nn, ni, ns, js)) if dbg else None
+    return      s, l, nt, nn, ni, ns, js
 ########################################################################################################################################################################################################
-#def fmtks(k): return f'{k[0]} {k[1]:2} {k[2]}{k[3]} {fmtl(k[4])} {fmtl(k[5])}'
-#def fmtks(s, l, nt, nn, ni, ns, js): return f'{s}{l} {nt} [{nn:2} {m12(ni)}] [{fmtl(ns, d=""):20}] [{fmtl(js, d="")}]'
 def fmtks(s, l, nt, nn, ni, ns, js):
     ns = f'[{fmtl(ns, w=2, d="")}]'  ;  js = [ m12(j) for j in js ]  ;  return f'{s}{l} {nt} [{nn:2} {m12(ni)}] {ns:22} [{fmtl(js, d="")}]'
 
