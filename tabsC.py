@@ -1672,7 +1672,24 @@ class Tabs(pyglet.window.Window):
         else:                           ntext = self.tblank
         if old in Notes.N2I:
             i = Notes.N2I[old]    ;   self.nic[i] -= 1
-            if self.nic[i] <= 0: del self.nic[i]   ;   self.dumpNic()
+            if self.nic[i] <= 0:
+                del self.nic[i]   ;   self.dumpNic()
+                if   i == 11 and Notes.TYPE == Notes.FLAT:
+                    Notes.I2F[11] = 'B'
+                    if 'Cb' in Notes.F2S:  del Notes.F2S['Cb']
+                    if 'B'  in Notes.S2F:  del Notes.S2F['B']
+                elif i ==  5 and Notes.TYPE == Notes.SHRP:
+                    Notes.I2S[5]  = 'F'
+                    if 'F'  in Notes.F2S:  del Notes.F2S['F']
+                    if 'E#' in Notes.S2F:  del Notes.S2F['E#']
+                elif i ==  4 and Notes.TYPE == Notes.FLAT:
+                    Notes.I2F[4]  = 'E'
+                    if 'Fb' in Notes.F2S:  del Notes.F2S['Fb']
+                    if 'E'  in Notes.S2F:  del Notes.S2F['E']
+                elif i ==  0 and Notes.TYPE == Notes.SHRP:
+                    Notes.I2S[0]  = 'C'
+                    if 'C'  in Notes.F2S:  del Notes.F2S['C']
+                    if 'B#' in Notes.S2F:  del Notes.S2F['B#']
         self.notes[cc].text = ntext
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
     ####################################################################################################################################################################################################

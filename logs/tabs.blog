@@ -45,7 +45,7 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
 +7 SHRP [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0]
   46 util  dumpNotes          END
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
-2672 tabsC <module>           argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
+2677 tabsC <module>           argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
  0 FSH  [  8   0   8   0]  0 FSH  [  8   0   8  15]  0 FSH  [  8   0   8  30]  0 FSH  [  8   0   8  45]  0 FSH  [  8   0   8  60]  0 FSH  [  8   0   8  75]  0 FSH  [  8   0   8  90]  0 FSH  [  8   0   8 105]  0 FSH  [  8   0   8 120]  0 FSH  [  8   0   8 135]  0 FSH  [  8   0   8 150]  0 FSH  [  8   0   8 165]  0 FSH  [  8   0   8 170]  0 FSH  [  8   0   8 195]  0 FSH  [  8   0   8 210]  0 FSH  [  8   0   8 225]  0 FSH  [  8   0   8 240]  0 FSH  [  8   0   8 255] 
  1 FSH  [ 23   0  23   0]  1 FSH  [ 23   0  23  15]  1 FSH  [ 23   0  23  30]  1 FSH  [ 23   0  23  45]  1 FSH  [ 23   0  23  60]  1 FSH  [ 23   0  23  75]  1 FSH  [ 23   0  23  90]  1 FSH  [ 23   0  23 105]  1 FSH  [ 23   0  23 120]  1 FSH  [ 23   0  23 135]  1 FSH  [ 23   0  23 150]  1 FSH  [ 23   0  23 165]  1 FSH  [ 23   0  23 170]  1 FSH  [ 23   0  23 195]  1 FSH  [ 23   0  23 210]  1 FSH  [ 23   0  23 225]  1 FSH  [ 23   0  23 240]  1 FSH  [ 23   0  23 255] 
@@ -465,8 +465,8 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        R=[  5  13  22  31  39  48  56  65  74  82  91  99 108 117 125 134 142 151]
        G=[  2   6  10  14  18  22  26  31  35  39  43  47  51  55  59  63  67  71]
        B=[  0   1   1   1   2   2   2   3   3   3   4   4   4   5   5   5   6   6]
-2676 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2677 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2681 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+2682 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
  233 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  249 util  parseCmdLine        1 short   -n n [] 
@@ -484,20 +484,20 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  267 util  parseCmdLine       13 arg     1  i [1 1 1] 
  267 util  parseCmdLine       14 arg     6  i [1 1 1 6] 
  269 util  parseCmdLine       options=[[n:[1 1 10 6]] [S:[0 1 3]] [i:[1 1 1 6]]]
-2571 tabsC dumpGlobals        BASE_NAME = tabs
-2572 tabsC dumpGlobals        argv      = +15[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
-2573 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2574 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+2576 tabsC dumpGlobals        BASE_NAME = tabs
+2577 tabsC dumpGlobals        argv      = +15[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
+2578 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2579 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
   28 tabsC __init__           STFILT:
 [log tlog    dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
   29 tabsC __init__           BGN <class __main__.Tabs>
-2506 tabsC getFilePath        fdir=logs/ fsfx=.log
-2510 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2520 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log]
-2522 tabsC getFileSeqNum      ids=[0 1 2 3 4 5 6]
-2514 tabsC getFilePath        fsfx=.7.log
+2511 tabsC getFilePath        fdir=logs/ fsfx=.log
+2515 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
+2525 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
+2527 tabsC getFileSeqNum      ids=[0 1 2 3 4 5 6 7 8 9]
+2519 tabsC getFilePath        fsfx=.10.log
  214 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 217 util  getFilePath        fileName =tabs.7.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.7.log)
+ 217 util  getFilePath        fileName =tabs.10.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.10.log)
  214 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  217 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
   34 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
@@ -570,7 +570,7 @@ sharp[B#0   C0    C#0   D0    D#0   E0    E#0   F0    F#0   G0    G#0   A0    A#
  268 chord _dumpOMAP          END len(OMAP)=581 catfile.name=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat len(r)=0
  217 chord dumpOMAP           END   len(OMAP)=581 len(umap)=0
  239 tabsC _initWindowA       BGN (  -1x-1  )
- 239 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001EACDF731F0>
+ 239 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001F75BD8FC10>
  242 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
  242 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
  243 tabsC _initWindowA       END (  -1x-1  )
@@ -801,21 +801,21 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   76 New1  Note    1   -  20 5 V 1  1  2  11   60    1    0    0  0   0 0 0  0  0  0  0   76  76   32.00  306.67   64.00   26.67  
   77 New1  Note    2   -  20 5 V 1  1  2  11   60    2    0    0  0   0 0 0  0  0  0  0   77  77   32.00  280.00   64.00   26.67  
   78 New1  Note    3   -  20 5 V 1  1  2  11   60    3    0    0  0   0 0 0  0  0  0  0   78  78   32.00  253.33   64.00   26.67  
- 418 util  tab2nn             adding nic[j]=1
- 422 util  tab2nn             tab=1 s=3 fn=1 i=39 name=Eb nic[3]=1
+ 407 util  tab2nn             adding nic[3]=1
+ 413 util  tab2nn             tab=1 s=3 fn=1 i=39 name=Eb nic[3]=1
   79 New1  Note    4  Eb  20 5 V 1  1  2  11   60    4    0    0  0   0 0 0  0  0  0  0   79  79   32.00  226.67   64.00   26.67  
   80 New1  Note    5   -  20 5 V 1  1  2  11   60    5    0    0  0   0 0 0  0  0  0  0   80  80   32.00  200.00   64.00   26.67  
- 418 util  tab2nn             adding nic[j]=1
- 422 util  tab2nn             tab=4 s=5 fn=4 i=32 name=Ab nic[8]=1
+ 407 util  tab2nn             adding nic[8]=1
+ 413 util  tab2nn             tab=4 s=5 fn=4 i=32 name=Ab nic[8]=1
   81 New1  Note    6  Ab  20 5 V 1  1  2  11   60    6    0    0  0   0 0 0  0  0  0  0   81  81   32.00  173.33   64.00   26.67  
   82 New1  Colm   12      74 4 V 1  1  2  12   60    6    0    0  0   0 0 0  0  0  0  0   82  82   96.00  240.00   64.00  160.00  
   83 New1  Note    7   -  20 5 V 1  1  2  12   60    7    0    0  0   0 0 0  0  0  0  0   83  83   96.00  306.67   64.00   26.67  
   84 New1  Note    8   -  20 5 V 1  1  2  12   60    8    0    0  0   0 0 0  0  0  0  0   84  84   96.00  280.00   64.00   26.67  
- 422 util  tab2nn             tab=1 s=2 fn=1 i=44 name=Ab nic[8]=2
+ 413 util  tab2nn             tab=1 s=2 fn=1 i=44 name=Ab nic[8]=2
   85 New1  Note    9  Ab  20 5 V 1  1  2  12   60    9    0    0  0   0 0 0  0  0  0  0   85  85   96.00  253.33   64.00   26.67  
   86 New1  Note   10   -  20 5 V 1  1  2  12   60   10    0    0  0   0 0 0  0  0  0  0   86  86   96.00  226.67   64.00   26.67  
- 418 util  tab2nn             adding nic[j]=1
- 422 util  tab2nn             tab=4 s=4 fn=4 i=37 name=Db nic[1]=1
+ 407 util  tab2nn             adding nic[1]=1
+ 413 util  tab2nn             tab=4 s=4 fn=4 i=37 name=Db nic[1]=1
   87 New1  Note   11  Db  20 5 V 1  1  2  12   60   11    0    0  0   0 0 0  0  0  0  0   87  87   96.00  200.00   64.00   26.67  
   88 New1  Note   12   -  20 5 V 1  1  2  12   60   12    0    0  0   0 0 0  0  0  0  0   88  88   96.00  173.33   64.00   26.67  
   89 New1  Colm   13      74 4 V 1  1  2  13   60   12    0    0  0   0 0 0  0  0  0  0   89  89  160.00  240.00   64.00  160.00  
@@ -823,19 +823,19 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   91 New1  Note   14   -  20 5 V 1  1  2  13   60   14    0    0  0   0 0 0  0  0  0  0   91  91  160.00  280.00   64.00   26.67  
   92 New1  Note   15   -  20 5 V 1  1  2  13   60   15    0    0  0   0 0 0  0  0  0  0   92  92  160.00  253.33   64.00   26.67  
   93 New1  Note   16   -  20 5 V 1  1  2  13   60   16    0    0  0   0 0 0  0  0  0  0   93  93  160.00  226.67   64.00   26.67  
- 422 util  tab2nn             tab=4 s=4 fn=4 i=37 name=Db nic[1]=2
+ 413 util  tab2nn             tab=4 s=4 fn=4 i=37 name=Db nic[1]=2
   94 New1  Note   17  Db  20 5 V 1  1  2  13   60   17    0    0  0   0 0 0  0  0  0  0   94  94  160.00  200.00   64.00   26.67  
- 418 util  tab2nn             adding nic[j]=1
- 422 util  tab2nn             tab=6 s=5 fn=6 i=34 name=Bb nic[a]=1
+ 407 util  tab2nn             adding nic[10]=1
+ 413 util  tab2nn             tab=6 s=5 fn=6 i=34 name=Bb nic[a]=1
   95 New1  Note   18  Bb  20 5 V 1  1  2  13   60   18    0    0  0   0 0 0  0  0  0  0   95  95  160.00  173.33   64.00   26.67  
   96 New1  Colm   14      74 4 V 1  1  2  14   60   18    0    0  0   0 0 0  0  0  0  0   96  96  224.00  240.00   64.00  160.00  
   97 New1  Note   19   -  20 5 V 1  1  2  14   60   19    0    0  0   0 0 0  0  0  0  0   97  97  224.00  306.67   64.00   26.67  
- 422 util  tab2nn             tab=2 s=1 fn=2 i=49 name=Db nic[1]=3
+ 413 util  tab2nn             tab=2 s=1 fn=2 i=49 name=Db nic[1]=3
   98 New1  Note   20  Db  20 5 V 1  1  2  14   60   20    0    0  0   0 0 0  0  0  0  0   98  98  224.00  280.00   64.00   26.67  
- 422 util  tab2nn             tab=3 s=2 fn=3 i=46 name=Bb nic[a]=2
+ 413 util  tab2nn             tab=3 s=2 fn=3 i=46 name=Bb nic[a]=2
   99 New1  Note   21  Bb  20 5 V 1  1  2  14   60   21    0    0  0   0 0 0  0  0  0  0   99  99  224.00  253.33   64.00   26.67  
- 418 util  tab2nn             adding nic[j]=1
- 422 util  tab2nn             tab=4 s=3 fn=4 i=42 name=Gb nic[6]=1
+ 407 util  tab2nn             adding nic[6]=1
+ 413 util  tab2nn             tab=4 s=3 fn=4 i=42 name=Gb nic[6]=1
  100 New1  Note   22  Gb  20 5 V 1  1  2  14   60   22    0    0  0   0 0 0  0  0  0  0  100 100  224.00  226.67   64.00   26.67  
  101 New1  Note   23   -  20 5 V 1  1  2  14   60   23    0    0  0   0 0 0  0  0  0  0  101 101  224.00  200.00   64.00   26.67  
  102 New1  Note   24   -  20 5 V 1  1  2  14   60   24    0    0  0   0 0 0  0  0  0  0  102 102  224.00  173.33   64.00   26.67  
@@ -1393,7 +1393,7 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
  347 tabsC test1C             10 D#3 5  A#3  9 A3 
  347 tabsC test1C             11 A#3 5  F3   4 E3 
  347 tabsC test1C             12 F3  5  C3  11 B3 
-2481 tabsC regSnap            .snapWhy=init .snapType=INIT .snapReg=1 .snapId=0
+2486 tabsC regSnap            .snapWhy=init .snapType=INIT .snapReg=1 .snapId=0
  174 tabsC _reinit            [1 1 1  1 6]   6  1] END
  121 tabsC __init__           END <class __main__.Tabs>
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
@@ -1621,7 +1621,7 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
  215 Upd1  Kord   60   -  20 5 V 1  1  3  30   60   60    0   60  0   0 0 0  0  0  0  0  215 215  608.00   13.33   64.00   26.67  
 1316 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
  216 Upd1  HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   26.67  
-2481 tabsC regSnap            .snapWhy=Upd1 .snapType=RSZC_5 .snapReg=1 .snapId=0
+2486 tabsC regSnap            .snapWhy=Upd1 .snapType=RSZC_5 .snapReg=1 .snapId=0
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
 1292 tabsC resizeTniks        J1[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1
@@ -1958,394 +1958,112 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
 1413 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd1A
  511 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
  533 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-2494 tabsC snapshot           SNAP_NAME=tabs.7.RSZC_5.0.png Upd1
+2499 tabsC snapshot           SNAP_NAME=tabs.10.RSZC_5.0.png Upd1
  545 tabsC on_draw            [1 1 1  1 6]   6  1] .snapWhy=Upd1 .snapType=RSZC_5 .snapId=1
-2296 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
-2311 tabsC toggleFlatSharp    Eb -> D# = 
--1                           R5           07     G#D#         R5           07     G#D#        
-1710 tabsC setChord           [1 1 1  1 6]   6  1] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  1 6]   6  1] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Ab -> G# = 
--1                           R5           07     G#D#         R5           07     G#D#        
-1710 tabsC setChord           [1 1 1  1 6]   6  1] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  1 6]   6  1] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Ab -> G# = 
--1                           R5           07     C#G#         R5           07     C#G#        
-1710 tabsC setChord           [1 1 1  1 6]   6  1] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 6-11] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  1 6]   6  1] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
--1                           R5           07     C#G#         R5           07     C#G#        
-1710 tabsC setChord           [1 1 1  1 6]   6  1] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 6-11] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  1 6]   6  1] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
--1                           Rm3          03     A#C#         Rm3          03     A#C#        
-1710 tabsC setChord           [1 1 1  1 6]   6  1] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  1 6]   6  1] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Bb -> A# = 
--1                           Rm3          03     A#C#         Rm3          03     A#C#        
-1710 tabsC setChord           [1 1 1  1 6]   6  1] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  1 6]   6  1] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
- 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<Gb----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  1 6]   6  1] END name=F# chunks=[F#] len(imap)=6
-2311 tabsC toggleFlatSharp    Bb -> A# = 
- 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  1 6]   6  1] END name=F# chunks=[F#] len(imap)=6
-2311 tabsC toggleFlatSharp    Gb -> F# = 
- 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  1 6]   6  1] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  1 6]   6  1] END name=F# chunks=[F#] len(imap)=6
-  72 util  dumpKSD            -  -  -  -  -  -  -     +  +  +  +  +  +  +
-  72 util  dumpKSD            7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
-  73 util  dumpKSD            Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
-  74 util  dumpKSD            b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 
-  76 util  dumpKSD            4  b  6  1  8  3  a     6  1  8  3  a  5  0 
-  77 util  dumpKSD            Fb Cb Gb Db Ab Eb Bb    F# C# G# D# A# E# B#
-  84 util  dumpNic                 sorted(dict(nic)) [1  3  6  8  a ]
-  85 util  dumpNic                       zip(*mc)[0] [1  8  a  3  6 ]
-  86 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1 ]
-  87 util  dumpNic                  mc[n][1]/nt*100% [33 22 22 11 11]
-  88 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb]
-  89 util  dumpNic                            I2S[n] [C# G# A# D# F#]
-2317 tabsC toggleFlatSharp    +5 SHRP [B  b] [F# C# G# D# A#]       [6 1 8 3 a]
-2318 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHRP
-1855 tabsC on_text_motion     BGN <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
-1997 tabsC move               [1 1 1  1 6]   6  1] BGN n=6  RIGHT (         65363)
-2004 tabsC _moveTo            [1 1 1  1 6]   6  1] BGN n=6 plct=[1 1    1 6]
-2014 tabsC _moveTo            [1 1 1  2 6]  12  2] END n=6 i=[1 1 1 2 6] plct=[1 1    1 6] plct2=[1 1    2 12]
+1860 tabsC on_text_motion     BGN <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
+2002 tabsC move               [1 1 1  1 6]   6  1] BGN n=6  RIGHT (         65363)
+2009 tabsC _moveTo            [1 1 1  1 6]   6  1] BGN n=6 plct=[1 1    1 6]
+2019 tabsC _moveTo            [1 1 1  2 6]  12  2] END n=6 i=[1 1 1 2 6] plct=[1 1    1 6] plct2=[1 1    2 12]
 1471 tabsC moveCursor         [1 1 1  2 6]  12  2] BGN ss=0 .cc=5
 1316 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
  216  RIGHT (         65363) HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216   64.00  320.00   64.00   26.67  
-2481 tabsC regSnap            .snapWhy= RIGHT (         65363) .snapType=RSZC_5 .snapReg=1 .snapId=1
+2486 tabsC regSnap            .snapWhy= RIGHT (         65363) .snapType=RSZC_5 .snapReg=1 .snapId=1
 1475 tabsC moveCursor         [1 1 1  2 6]  12  2] END ss=0 .cc=11
-2001 tabsC move               [1 1 1  2 6]  12  2] END n=6  RIGHT (         65363)
-1899 tabsC on_text_motion     END <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
-2494 tabsC snapshot           SNAP_NAME=tabs.7.RSZC_5.1.png  RIGHT (         65363)
+2006 tabsC move               [1 1 1  2 6]  12  2] END n=6  RIGHT (         65363)
+1904 tabsC on_text_motion     END <   65363> <   65363> <RIGHT           > < 0> <                > motion=65363
+2499 tabsC snapshot           SNAP_NAME=tabs.10.RSZC_5.1.png  RIGHT (         65363)
  545 tabsC on_draw            [1 1 1  2 6]  12  2] .snapWhy= RIGHT (         65363) .snapType=RSZC_5 .snapId=2
-2296 tabsC toggleFlatSharp    BGN @ F t1=1 SHRP => t2=0 FLAT
-2311 tabsC toggleFlatSharp    D# -> Eb = 
--1                           R5           07     AbEb         R5           07     AbEb        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    G# -> Ab = 
--1                           R5           07     AbEb         R5           07     AbEb        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    G# -> Ab = 
--1                           R5           07     DbAb         R5           07     DbAb        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 6-11] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    C# -> Db = 
--1                           R5           07     DbAb         R5           07     DbAb        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 6-11] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    C# -> Db = 
--1                           Rm3          03     BbDb         Rm3          03     BbDb        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    A# -> Bb = 
--1                           Rm3          03     BbDb         Rm3          03     BbDb        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    C# -> Db = 
- 0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name=Gb chunks=[Gb] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name=Gb chunks=[Gb] len(imap)=6
-2311 tabsC toggleFlatSharp    A# -> Bb = 
- 0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name=Gb chunks=[Gb] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1722 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name=Gb chunks=[Gb] len(imap)=6
-2311 tabsC toggleFlatSharp    F# -> Gb = 
- 0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name=Gb chunks=[Gb] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1722 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name=Gb chunks=[Gb] len(imap)=6
-  72 util  dumpKSD                                    -  -  -  -  -  -  -     +  +  +  +  +  +  +
-  72 util  dumpKSD                                    7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
-  73 util  dumpKSD                                    Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
-  74 util  dumpKSD                                    b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 
-  76 util  dumpKSD                                    4  b  6  1  8  3  a     6  1  8  3  a  5  0 
-  77 util  dumpKSD                                    Fb Cb Gb Db Ab Eb Bb    F# C# G# D# A# E# B#
-  84 util  dumpNic                 sorted(dict(nic)) [1  3  6  8  a ]
-  85 util  dumpNic                       zip(*mc)[0] [1  8  a  3  6 ]
-  86 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1 ]
-  87 util  dumpNic                  mc[n][1]/nt*100% [33 22 22 11 11]
-  88 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb]
-  89 util  dumpNic                            I2S[n] [C# G# A# D# F#]
-2317 tabsC toggleFlatSharp    -5 FLAT [Db 1] [Bb Eb Ab Db Gb]       [a 3 8 1 6]
-2318 tabsC toggleFlatSharp    END @ F t1=1 SHRP => t2=0 FLAT
-2296 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
-2311 tabsC toggleFlatSharp    Eb -> D# = 
--1                           R5           07     G#D#         R5           07     G#D#        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Ab -> G# = 
--1                           R5           07     G#D#         R5           07     G#D#        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Ab -> G# = 
--1                           R5           07     C#G#         R5           07     C#G#        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 6-11] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
--1                           R5           07     C#G#         R5           07     C#G#        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 6-11] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
--1                           Rm3          03     A#C#         Rm3          03     A#C#        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Bb -> A# = 
--1                           Rm3          03     A#C#         Rm3          03     A#C#        
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
- 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<Gb----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name=F# chunks=[F#] len(imap)=6
-2311 tabsC toggleFlatSharp    Bb -> A# = 
- 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name=F# chunks=[F#] len(imap)=6
-2311 tabsC toggleFlatSharp    Gb -> F# = 
- 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name=F# chunks=[F#] len(imap)=6
-  72 util  dumpKSD            -  -  -  -  -  -  -     +  +  +  +  +  +  +
-  72 util  dumpKSD            7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
-  73 util  dumpKSD            Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
-  74 util  dumpKSD            b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 
-  76 util  dumpKSD            4  b  6  1  8  3  a     6  1  8  3  a  5  0 
-  77 util  dumpKSD            Fb Cb Gb Db Ab Eb Bb    F# C# G# D# A# E# B#
-  84 util  dumpNic                 sorted(dict(nic)) [1  3  6  8  a ]
-  85 util  dumpNic                       zip(*mc)[0] [1  8  a  3  6 ]
-  86 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1 ]
-  87 util  dumpNic                  mc[n][1]/nt*100% [33 22 22 11 11]
-  88 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb]
-  89 util  dumpNic                            I2S[n] [C# G# A# D# F#]
-2317 tabsC toggleFlatSharp    +5 SHRP [B  b] [F# C# G# D# A#]       [6 1 8 3 a]
-2318 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHRP
 1634 tabsC setTab             [1 1 1  2 6]  12  2] BGN onTxt text=1 data=- rev=0 old= 11 cc= 11
 1646 tabsC setDTNIK           BGN kk=1    text=1
 1657 tabsC setData            BGN t=5 text=1 data=--1-4-
 1660 tabsC setData            END t=5 text=1 data=--1-41
 1669 tabsC setNote            BGN     t=5 text=1 notes[11]=-
-1670 tabsC setNote            +5 SHRP [B  b] [F# C# G# D# A#]       [6 1 8 3 a]
- 418 util  tab2nn             adding nic[j]=1
- 422 util  tab2nn             tab=1 s=5 fn=1 i=29 name=E# nic[5]=1
-1677 tabsC setNote            END     t=5 text=1 notes[11]=E#
-1710 tabsC setChord           [1 1 1  2 6]  12  2] BGN name=C#/F chunks=[C# /F] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=C#/F chunks=[C# /F] chords=<------>6
-1722 tabsC setChordName       END [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
-1712 tabsC setChord           [1 1 1  2 6]  12  2] END name=C#/F chunks=[C# /F] len(imap)=6
+1670 tabsC setNote            -5 FLAT [Db 1] [Bb Eb Ab Db Gb]       [a 3 8 1 6]
+ 407 util  tab2nn             adding nic[5]=1
+ 413 util  tab2nn             tab=1 s=5 fn=1 i=29 name=F  nic[5]=1
+1682 tabsC setNote            END     t=5 text=1 notes[11]=F
+1715 tabsC setChord           [1 1 1  2 6]  12  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<------>6
+1727 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1717 tabsC setChord           [1 1 1  2 6]  12  2] END name=Db/F chunks=[Db /F] len(imap)=6
 1653 tabsC setDTNIK           END kk=1    text=1 len(imap)=6
 1637 tabsC setTab             [1 1 1  2 6]  12  2] END onTxt text=1 data=1 rev=0 old= 11 cc= 11
-2017 tabsC autoMove           [1 1 1  2 6]  12  2] BGN onTxt
-2024 tabsC autoMove           [1 1 1  2 6]  12  2]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=UP  
-1997 tabsC move               [1 1 1  2 6]  12  2] BGN n=-1 onTxt
-2004 tabsC _moveTo            [1 1 1  2 6]  12  2] BGN n=-1 plct=[1 1    2 6]
-2014 tabsC _moveTo            [1 1 1  2 5]  11  2] END n=-1 i=[1 1 1 2 5] plct=[1 1    2 6] plct2=[1 1    2 5]
+2022 tabsC autoMove           [1 1 1  2 6]  12  2] BGN onTxt
+2029 tabsC autoMove           [1 1 1  2 6]  12  2]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=UP  
+2002 tabsC move               [1 1 1  2 6]  12  2] BGN n=-1 onTxt
+2009 tabsC _moveTo            [1 1 1  2 6]  12  2] BGN n=-1 plct=[1 1    2 6]
+2019 tabsC _moveTo            [1 1 1  2 5]  11  2] END n=-1 i=[1 1 1 2 5] plct=[1 1    2 6] plct2=[1 1    2 5]
 1471 tabsC moveCursor         [1 1 1  2 5]  11  2] BGN ss=0 .cc=11
 1316 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
  216 onTxt HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216   64.00  346.67   64.00   26.67  
-2481 tabsC regSnap            .snapWhy=onTxt .snapType=RSZC_11 .snapReg=1 .snapId=2
+2486 tabsC regSnap            .snapWhy=onTxt .snapType=RSZC_11 .snapReg=1 .snapId=2
 1475 tabsC moveCursor         [1 1 1  2 5]  11  2] END ss=0 .cc=10
-2001 tabsC move               [1 1 1  2 5]  11  2] END n=-1 onTxt
-2031 tabsC autoMove           [1 1 1  2 5]  11  2] END onTxt
-2481 tabsC regSnap            .snapWhy=how .snapType=TXT_1 .snapReg=1 .snapId=2
-2494 tabsC snapshot           SNAP_NAME=tabs.7.TXT_1.2.png how
+2006 tabsC move               [1 1 1  2 5]  11  2] END n=-1 onTxt
+2036 tabsC autoMove           [1 1 1  2 5]  11  2] END onTxt
+2486 tabsC regSnap            .snapWhy=how .snapType=TXT_1 .snapReg=1 .snapId=2
+2499 tabsC snapshot           SNAP_NAME=tabs.10.TXT_1.2.png how
  545 tabsC on_draw            [1 1 1  2 5]  11  2] .snapWhy=how .snapType=TXT_1 .snapId=3
-2296 tabsC toggleFlatSharp    BGN @ F t1=1 SHRP => t2=0 FLAT
-2311 tabsC toggleFlatSharp    D# -> Eb = 
--1                           R5           07     AbEb         R5           07     AbEb        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    G# -> Ab = 
--1                           R5           07     AbEb         R5           07     AbEb        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    G# -> Ab = 
- 0 Db/F         Db/F         M3R5         407    FDbAb        RM35         047    DbFAb       
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<C#/F---->8
-1722 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
-2311 tabsC toggleFlatSharp    C# -> Db = 
- 0 Db/F         Db/F         M3R5         407    FDbAb        RM35         047    DbFAb       
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
-1722 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
-2311 tabsC toggleFlatSharp    E# -> F  = 
- 0 Db/F         Db/F         M3R5         407    FDbAb        RM35         047    DbFAb       
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
-1722 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
-2311 tabsC toggleFlatSharp    C# -> Db = 
--1                           Rm3          03     BbDb         Rm3          03     BbDb        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    A# -> Bb = 
--1                           Rm3          03     BbDb         Rm3          03     BbDb        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    C# -> Db = 
- 0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
-2311 tabsC toggleFlatSharp    A# -> Bb = 
- 0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1722 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
-2311 tabsC toggleFlatSharp    F# -> Gb = 
- 0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1722 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
-  72 util  dumpKSD                                    -  -  -  -  -  -  -     +  +  +  +  +  +  +
-  72 util  dumpKSD                                    7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
-  73 util  dumpKSD                                    Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
-  74 util  dumpKSD                                    b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 
-  76 util  dumpKSD                                    4  b  6  1  8  3  a     6  1  8  3  a  5  0 
-  77 util  dumpKSD                                    Fb Cb Gb Db Ab Eb Bb    F# C# G# D# A# E# B#
-  84 util  dumpNic                 sorted(dict(nic)) [1  3  5  6  8  a ]
-  85 util  dumpNic                       zip(*mc)[0] [1  8  a  3  6  5 ]
-  86 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1  1 ]
-  87 util  dumpNic                  mc[n][1]/nt*100% [30 20 20 10 10 10]
-  88 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb F ]
-  89 util  dumpNic                            I2S[n] [C# G# A# D# F# E#]
-2317 tabsC toggleFlatSharp    -5 FLAT [Db 1] [Bb Eb Ab Db Gb]       [a 3 8 1 6]
-2318 tabsC toggleFlatSharp    END @ F t1=1 SHRP => t2=0 FLAT
-2296 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
-2311 tabsC toggleFlatSharp    Eb -> D# = 
+2301 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
+2316 tabsC toggleFlatSharp    Eb -> D# = 
 -1                           R5           07     G#D#         R5           07     G#D#        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Ab -> G# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Ab -> G# = 
 -1                           R5           07     G#D#         R5           07     G#D#        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Ab -> G# = 
- 0 C#/E#        C#/E#        M3R5         407    E#C#G#       RM35         047    C#E#G#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/E# chunks=[C# /E#] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=C#/E# chunks=[C# /E#] chords=<Db/F---->8
-1722 tabsC setChordName       END [ 6-11] name=C#/E# chunks=[C# /E#] chords=<C#/E#---->9
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/E# chunks=[C# /E#] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
- 0 C#/E#        C#/E#        M3R5         407    E#C#G#       RM35         047    C#E#G#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/E# chunks=[C# /E#] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=C#/E# chunks=[C# /E#] chords=<C#/E#---->9
-1722 tabsC setChordName       END [ 6-11] name=C#/E# chunks=[C# /E#] chords=<C#/E#---->9
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/E# chunks=[C# /E#] len(imap)=6
-2311 tabsC toggleFlatSharp    F  -> E# = 
- 0 C#/E#        C#/E#        M3R5         407    E#C#G#       RM35         047    C#E#G#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/E# chunks=[C# /E#] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=C#/E# chunks=[C# /E#] chords=<C#/E#---->9
-1722 tabsC setChordName       END [ 6-11] name=C#/E# chunks=[C# /E#] chords=<C#/E#---->9
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/E# chunks=[C# /E#] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Ab -> G# = 
+ 0 C#/F         C#/F         M3R5         407    FC#G#        RM35         047    C#FG#       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/F chunks=[C# /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=C#/F chunks=[C# /F] chords=<Db/F---->8
+1727 tabsC setChordName       END [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/F chunks=[C# /F] len(imap)=6
+2316 tabsC toggleFlatSharp    Db -> C# = 
+ 0 C#/F         C#/F         M3R5         407    FC#G#        RM35         047    C#FG#       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/F chunks=[C# /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1727 tabsC setChordName       END [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/F chunks=[C# /F] len(imap)=6
+2316 tabsC toggleFlatSharp    F  -> F  = 
+ 0 C#/F         C#/F         M3R5         407    FC#G#        RM35         047    C#FG#       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/F chunks=[C# /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1727 tabsC setChordName       END [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/F chunks=[C# /F] len(imap)=6
+2316 tabsC toggleFlatSharp    Db -> C# = 
 -1                           Rm3          03     A#C#         Rm3          03     A#C#        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Bb -> A# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Bb -> A# = 
 -1                           Rm3          03     A#C#         Rm3          03     A#C#        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Db -> C# = 
  0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<Gb----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
-2311 tabsC toggleFlatSharp    Bb -> A# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<Gb----->7
+1727 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
+2316 tabsC toggleFlatSharp    Bb -> A# = 
  0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
-2311 tabsC toggleFlatSharp    Gb -> F# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
+1727 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
+2316 tabsC toggleFlatSharp    Gb -> F# = 
  0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
+1727 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
   72 util  dumpKSD            -  -  -  -  -  -  -     +  +  +  +  +  +  +
   72 util  dumpKSD            7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
   73 util  dumpKSD            Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
@@ -2357,70 +2075,70 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
   86 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1  1 ]
   87 util  dumpNic                  mc[n][1]/nt*100% [30 20 20 10 10 10]
   88 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb F ]
-  89 util  dumpNic                            I2S[n] [C# G# A# D# F# E#]
-2317 tabsC toggleFlatSharp    +6 SHRP [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
-2318 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHRP
-2296 tabsC toggleFlatSharp    BGN @ F t1=1 SHRP => t2=0 FLAT
-2311 tabsC toggleFlatSharp    D# -> Eb = 
+  89 util  dumpNic                            I2S[n] [C# G# A# D# F# F ]
+2322 tabsC toggleFlatSharp    +6 SHRP [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
+2323 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHRP
+2301 tabsC toggleFlatSharp    BGN @ F t1=1 SHRP => t2=0 FLAT
+2316 tabsC toggleFlatSharp    D# -> Eb = 
 -1                           R5           07     AbEb         R5           07     AbEb        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    G# -> Ab = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    G# -> Ab = 
 -1                           R5           07     AbEb         R5           07     AbEb        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    G# -> Ab = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    G# -> Ab = 
  0 Db/F         Db/F         M3R5         407    FDbAb        RM35         047    DbFAb       
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<C#/E#---->9
-1722 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
-2311 tabsC toggleFlatSharp    C# -> Db = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<C#/F---->8
+1727 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
+2316 tabsC toggleFlatSharp    C# -> Db = 
  0 Db/F         Db/F         M3R5         407    FDbAb        RM35         047    DbFAb       
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
-1722 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
-2311 tabsC toggleFlatSharp    E# -> F  = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1727 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
+2316 tabsC toggleFlatSharp    F  -> F  = 
  0 Db/F         Db/F         M3R5         407    FDbAb        RM35         047    DbFAb       
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
-1722 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
-2311 tabsC toggleFlatSharp    C# -> Db = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1727 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
+2316 tabsC toggleFlatSharp    C# -> Db = 
 -1                           Rm3          03     BbDb         Rm3          03     BbDb        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    A# -> Bb = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    A# -> Bb = 
 -1                           Rm3          03     BbDb         Rm3          03     BbDb        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    C# -> Db = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    C# -> Db = 
  0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
-2311 tabsC toggleFlatSharp    A# -> Bb = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<F#----->7
+1727 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
+2316 tabsC toggleFlatSharp    A# -> Bb = 
  0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1722 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
-2311 tabsC toggleFlatSharp    F# -> Gb = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
+1727 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
+2316 tabsC toggleFlatSharp    F# -> Gb = 
  0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1722 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
+1727 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
   72 util  dumpKSD                                    -  -  -  -  -  -  -     +  +  +  +  +  +  +
   72 util  dumpKSD                                    7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
   73 util  dumpKSD                                    Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
@@ -2432,70 +2150,70 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
   86 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1  1 ]
   87 util  dumpNic                  mc[n][1]/nt*100% [30 20 20 10 10 10]
   88 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb F ]
-  89 util  dumpNic                            I2S[n] [C# G# A# D# F# E#]
-2317 tabsC toggleFlatSharp    -5 FLAT [Db 1] [Bb Eb Ab Db Gb]       [a 3 8 1 6]
-2318 tabsC toggleFlatSharp    END @ F t1=1 SHRP => t2=0 FLAT
-2296 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
-2311 tabsC toggleFlatSharp    Eb -> D# = 
+  89 util  dumpNic                            I2S[n] [C# G# A# D# F# F ]
+2322 tabsC toggleFlatSharp    -5 FLAT [Db 1] [Bb Eb Ab Db Gb]       [a 3 8 1 6]
+2323 tabsC toggleFlatSharp    END @ F t1=1 SHRP => t2=0 FLAT
+2301 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
+2316 tabsC toggleFlatSharp    Eb -> D# = 
 -1                           R5           07     G#D#         R5           07     G#D#        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Ab -> G# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Ab -> G# = 
 -1                           R5           07     G#D#         R5           07     G#D#        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Ab -> G# = 
- 0 C#/E#        C#/E#        M3R5         407    E#C#G#       RM35         047    C#E#G#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/E# chunks=[C# /E#] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=C#/E# chunks=[C# /E#] chords=<Db/F---->8
-1722 tabsC setChordName       END [ 6-11] name=C#/E# chunks=[C# /E#] chords=<C#/E#---->9
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/E# chunks=[C# /E#] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
- 0 C#/E#        C#/E#        M3R5         407    E#C#G#       RM35         047    C#E#G#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/E# chunks=[C# /E#] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=C#/E# chunks=[C# /E#] chords=<C#/E#---->9
-1722 tabsC setChordName       END [ 6-11] name=C#/E# chunks=[C# /E#] chords=<C#/E#---->9
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/E# chunks=[C# /E#] len(imap)=6
-2311 tabsC toggleFlatSharp    F  -> E# = 
- 0 C#/E#        C#/E#        M3R5         407    E#C#G#       RM35         047    C#E#G#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/E# chunks=[C# /E#] len(imap)=6
-1717 tabsC setChordName       BGN [ 6-11] name=C#/E# chunks=[C# /E#] chords=<C#/E#---->9
-1722 tabsC setChordName       END [ 6-11] name=C#/E# chunks=[C# /E#] chords=<C#/E#---->9
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/E# chunks=[C# /E#] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Ab -> G# = 
+ 0 C#/F         C#/F         M3R5         407    FC#G#        RM35         047    C#FG#       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/F chunks=[C# /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=C#/F chunks=[C# /F] chords=<Db/F---->8
+1727 tabsC setChordName       END [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/F chunks=[C# /F] len(imap)=6
+2316 tabsC toggleFlatSharp    Db -> C# = 
+ 0 C#/F         C#/F         M3R5         407    FC#G#        RM35         047    C#FG#       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/F chunks=[C# /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1727 tabsC setChordName       END [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/F chunks=[C# /F] len(imap)=6
+2316 tabsC toggleFlatSharp    F  -> F  = 
+ 0 C#/F         C#/F         M3R5         407    FC#G#        RM35         047    C#FG#       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/F chunks=[C# /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1727 tabsC setChordName       END [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/F chunks=[C# /F] len(imap)=6
+2316 tabsC toggleFlatSharp    Db -> C# = 
 -1                           Rm3          03     A#C#         Rm3          03     A#C#        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Bb -> A# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Bb -> A# = 
 -1                           Rm3          03     A#C#         Rm3          03     A#C#        
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
-1717 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
-1722 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
-2311 tabsC toggleFlatSharp    Db -> C# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Db -> C# = 
  0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<Gb----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
-2311 tabsC toggleFlatSharp    Bb -> A# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<Gb----->7
+1727 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
+2316 tabsC toggleFlatSharp    Bb -> A# = 
  0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
-2311 tabsC toggleFlatSharp    Gb -> F# = 
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
+1727 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
+2316 tabsC toggleFlatSharp    Gb -> F# = 
  0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-1710 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
-1717 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
-1722 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
-1712 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
+1727 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
   72 util  dumpKSD            -  -  -  -  -  -  -     +  +  +  +  +  +  +
   72 util  dumpKSD            7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
   73 util  dumpKSD            Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
@@ -2507,14 +2225,191 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
   86 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1  1 ]
   87 util  dumpNic                  mc[n][1]/nt*100% [30 20 20 10 10 10]
   88 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb F ]
-  89 util  dumpNic                            I2S[n] [C# G# A# D# F# E#]
-2317 tabsC toggleFlatSharp    +6 SHRP [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
-2318 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHRP
+  89 util  dumpNic                            I2S[n] [C# G# A# D# F# F ]
+2322 tabsC toggleFlatSharp    +6 SHRP [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
+2323 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHRP
+2301 tabsC toggleFlatSharp    BGN @ F t1=1 SHRP => t2=0 FLAT
+2316 tabsC toggleFlatSharp    D# -> Eb = 
+-1                           R5           07     AbEb         R5           07     AbEb        
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    G# -> Ab = 
+-1                           R5           07     AbEb         R5           07     AbEb        
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    G# -> Ab = 
+ 0 Db/F         Db/F         M3R5         407    FDbAb        RM35         047    DbFAb       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<C#/F---->8
+1727 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
+2316 tabsC toggleFlatSharp    C# -> Db = 
+ 0 Db/F         Db/F         M3R5         407    FDbAb        RM35         047    DbFAb       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1727 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
+2316 tabsC toggleFlatSharp    F  -> F  = 
+ 0 Db/F         Db/F         M3R5         407    FDbAb        RM35         047    DbFAb       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Db/F chunks=[Db /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1727 tabsC setChordName       END [ 6-11] name=Db/F chunks=[Db /F] chords=<Db/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Db/F chunks=[Db /F] len(imap)=6
+2316 tabsC toggleFlatSharp    C# -> Db = 
+-1                           Rm3          03     BbDb         Rm3          03     BbDb        
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    A# -> Bb = 
+-1                           Rm3          03     BbDb         Rm3          03     BbDb        
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    C# -> Db = 
+ 0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<F#----->7
+1727 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
+2316 tabsC toggleFlatSharp    A# -> Bb = 
+ 0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
+1727 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
+2316 tabsC toggleFlatSharp    F# -> Gb = 
+ 0 Gb           Gb           RM35         047    GbBbDb       RM35         047    GbBbDb      
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=Gb chunks=[Gb] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
+1727 tabsC setChordName       END [18-23] name=Gb chunks=[Gb] chords=<Gb----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=Gb chunks=[Gb] len(imap)=6
+  72 util  dumpKSD                                    -  -  -  -  -  -  -     +  +  +  +  +  +  +
+  72 util  dumpKSD                                    7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
+  73 util  dumpKSD                                    Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
+  74 util  dumpKSD                                    b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 
+  76 util  dumpKSD                                    4  b  6  1  8  3  a     6  1  8  3  a  5  0 
+  77 util  dumpKSD                                    Fb Cb Gb Db Ab Eb Bb    F# C# G# D# A# E# B#
+  84 util  dumpNic                 sorted(dict(nic)) [1  3  5  6  8  a ]
+  85 util  dumpNic                       zip(*mc)[0] [1  8  a  3  6  5 ]
+  86 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1  1 ]
+  87 util  dumpNic                  mc[n][1]/nt*100% [30 20 20 10 10 10]
+  88 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb F ]
+  89 util  dumpNic                            I2S[n] [C# G# A# D# F# F ]
+2322 tabsC toggleFlatSharp    -5 FLAT [Db 1] [Bb Eb Ab Db Gb]       [a 3 8 1 6]
+2323 tabsC toggleFlatSharp    END @ F t1=1 SHRP => t2=0 FLAT
+2301 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
+2316 tabsC toggleFlatSharp    Eb -> D# = 
+-1                           R5           07     G#D#         R5           07     G#D#        
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Ab -> G# = 
+-1                           R5           07     G#D#         R5           07     G#D#        
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [ 0- 5] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [ 0- 5] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Ab -> G# = 
+ 0 C#/F         C#/F         M3R5         407    FC#G#        RM35         047    C#FG#       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/F chunks=[C# /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=C#/F chunks=[C# /F] chords=<Db/F---->8
+1727 tabsC setChordName       END [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/F chunks=[C# /F] len(imap)=6
+2316 tabsC toggleFlatSharp    Db -> C# = 
+ 0 C#/F         C#/F         M3R5         407    FC#G#        RM35         047    C#FG#       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/F chunks=[C# /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1727 tabsC setChordName       END [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/F chunks=[C# /F] len(imap)=6
+2316 tabsC toggleFlatSharp    F  -> F  = 
+ 0 C#/F         C#/F         M3R5         407    FC#G#        RM35         047    C#FG#       
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=C#/F chunks=[C# /F] len(imap)=6
+1722 tabsC setChordName       BGN [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1727 tabsC setChordName       END [ 6-11] name=C#/F chunks=[C# /F] chords=<C#/F---->8
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=C#/F chunks=[C# /F] len(imap)=6
+2316 tabsC toggleFlatSharp    Db -> C# = 
+-1                           Rm3          03     A#C#         Rm3          03     A#C#        
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Bb -> A# = 
+-1                           Rm3          03     A#C#         Rm3          03     A#C#        
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name= chunks=[] len(imap)=6
+1722 tabsC setChordName       BGN [12-17] name= chunks=[] chords=<------>6
+1727 tabsC setChordName       END [12-17] name= chunks=[] chords=<------>6
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name= chunks=[] len(imap)=6
+2316 tabsC toggleFlatSharp    Db -> C# = 
+ 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<Gb----->7
+1727 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
+2316 tabsC toggleFlatSharp    Bb -> A# = 
+ 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
+1727 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
+2316 tabsC toggleFlatSharp    Gb -> F# = 
+ 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
+1715 tabsC setChord           [1 1 1  2 5]  11  2] BGN name=F# chunks=[F#] len(imap)=6
+1722 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
+1727 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
+1717 tabsC setChord           [1 1 1  2 5]  11  2] END name=F# chunks=[F#] len(imap)=6
+  72 util  dumpKSD            -  -  -  -  -  -  -     +  +  +  +  +  +  +
+  72 util  dumpKSD            7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
+  73 util  dumpKSD            Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
+  74 util  dumpKSD            b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 
+  76 util  dumpKSD            4  b  6  1  8  3  a     6  1  8  3  a  5  0 
+  77 util  dumpKSD            Fb Cb Gb Db Ab Eb Bb    F# C# G# D# A# E# B#
+  84 util  dumpNic                 sorted(dict(nic)) [1  3  5  6  8  a ]
+  85 util  dumpNic                       zip(*mc)[0] [1  8  a  3  6  5 ]
+  86 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1  1 ]
+  87 util  dumpNic                  mc[n][1]/nt*100% [30 20 20 10 10 10]
+  88 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb F ]
+  89 util  dumpNic                            I2S[n] [C# G# A# D# F# F ]
+2322 tabsC toggleFlatSharp    +6 SHRP [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
+2323 tabsC toggleFlatSharp    END @ F t1=0 FLAT => t2=1 SHRP
+1860 tabsC on_text_motion     BGN <   65288> <   65288> <BACKSPACE       > < 0> <                > motion=65288
+2438 tabsC reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=UP  
+2441 tabsC reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=0=DOWN
+2022 tabsC autoMove           [1 1 1  2 5]  11  2] BGN BACKSPACE (      65288)
+2029 tabsC autoMove           [1 1 1  2 5]  11  2]     BACKSPACE (      65288) M=6 C=1 A=7 csrMode=1=CHORD  hArrow=1=RIGHT vArrow=0=DOWN
+2002 tabsC move               [1 1 1  2 5]  11  2] BGN n=1 BACKSPACE (      65288)
+2009 tabsC _moveTo            [1 1 1  2 5]  11  2] BGN n=1 plct=[1 1    2 5]
+2019 tabsC _moveTo            [1 1 1  2 6]  12  2] END n=1 i=[1 1 1 2 6] plct=[1 1    2 5] plct2=[1 1    2 6]
+1471 tabsC moveCursor         [1 1 1  2 6]  12  2] BGN ss=0 .cc=10
+1316 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
+ 216 BACKSPACE (      65288) HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216   64.00  320.00   64.00   26.67  
+2486 tabsC regSnap            .snapWhy=BACKSPACE (      65288) .snapType=RSZC_10 .snapReg=1 .snapId=3
+1475 tabsC moveCursor         [1 1 1  2 6]  12  2] END ss=0 .cc=11
+2006 tabsC move               [1 1 1  2 6]  12  2] END n=1 BACKSPACE (      65288)
+2036 tabsC autoMove           [1 1 1  2 6]  12  2] END BACKSPACE (      65288)
+1634 tabsC setTab             [1 1 1  2 6]  12  2] BGN BACKSPACE (      65288) text=- data=1 rev=1 old= 11 cc= 11
+1646 tabsC setDTNIK           BGN kk=1    text=-
+1657 tabsC setData            BGN t=5 text=- data=--1-41
+1660 tabsC setData            END t=5 text=- data=--1-4-
+1669 tabsC setNote            BGN     t=5 text=- notes[11]=F
+1670 tabsC setNote            +6 SHRP [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
+ 489 tabsC dumpNic            [3  8  8  1  1  1  a  a  6 ]
+ 490 tabsC dumpNic            [Eb Ab Ab Db Db Db Bb Bb Gb]
+ 491 tabsC dumpNic            [D# G# G# C# C# C# A# A# F#]
+ 497 tabsC dumpNic            [1  2  2  3  3  3  2  2  1 ]
+2499 tabsC snapshot           SNAP_NAME=tabs.10.RSZC_10.3.png BACKSPACE (      65288)
+ 545 tabsC on_draw            [1 1 1  2 6]  12  2] .snapWhy=BACKSPACE (      65288) .snapType=RSZC_10 .snapId=4
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
- 164 util  dumpStack          10 tabsC      2534 quit                 .log(.QUIT_BGN, pfx=0, file=2)   ;   .dumpStack(inspect.stack())    ;   .log(.QUIT, pfx=0, file=2)
- 164 util  dumpStack           9 tabsC      1782 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
+ 164 util  dumpStack          10 tabsC      2539 quit                 .log(.QUIT_BGN, pfx=0, file=2)   ;   .dumpStack(inspect.stack())    ;   .log(.QUIT, pfx=0, file=2)
+ 164 util  dumpStack           9 tabsC      1787 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
  164 util  dumpStack           8 event       415 dispatch_event       if getattr(, event_type)(*args):
  164 util  dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(, *args) != False:
  164 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
@@ -2522,16 +2417,16 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
  164 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
  164 util  dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
  164 util  dumpStack           2 __init__    107 run                  event_loop.run()
- 164 util  dumpStack           1 tabsC      2679 main                 ret = pyglet.app.run()
- 164 util  dumpStack           0 tabsC      2683 <module>             main()
+ 164 util  dumpStack           1 tabsC      2684 main                 ret = pyglet.app.run()
+ 164 util  dumpStack           0 tabsC      2688 <module>             main()
  165 util  dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-2535 tabsC quit               J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] @^Q
-2535 tabsC quit               J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
-2535 tabsC quit               LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
-2535 tabsC quit               END[( 640x480 )( 1x1x10x6 )( 1x1x2x5  ) (0 1 3  ) 0 (   )  216 216] @^Q
+2540 tabsC quit               J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] @^Q
+2540 tabsC quit               J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
+2540 tabsC quit               LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
+2540 tabsC quit               END[( 640x480 )( 1x1x10x6 )( 1x1x2x6  ) (0 1 3  ) 0 (   )  216 216] @^Q
  164 util  dumpStack           6          12 <module>             MAX_STACK_FRAME  = inspect.stack()
  164 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
  164 util  dumpStack           4 <frozen importlib   883 exec_module          
@@ -2540,11 +2435,11 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
  164 util  dumpStack           1 <frozen importlib  1027 _find_and_load       
  164 util  dumpStack           0 tabsC        13 <module>             import , chord
  165 util  dumpStack          MAX_STACK_DEPTH= 0
-2537 tabsC quit               BGN @^Q error=0 save=0
+2542 tabsC quit               BGN @^Q error=0 save=0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  125 tabsC dumpArgs           [f]     .DATA_FNAME=testC.4.2.10.dat
  126 tabsC dumpArgs           [n]               n=[1 1 3 10 6]
- 127 tabsC dumpArgs           [i]               i=[1 1 1 2 5]
+ 127 tabsC dumpArgs           [i]               i=[1 1 1 2 6]
  128 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  129 tabsC dumpArgs           [b]     .FRET_BOARD=0
  130 tabsC dumpArgs           [B]            .BGC=0
@@ -2572,7 +2467,7 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
  152 tabsC dumpArgs           [S]             .SS=[0 1 3]
  153 tabsC dumpArgs           [Z]             .ZZ=[]
  511 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 519 tabsC dumpStruct         [1 1 1  2 5]  11  2] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x2x5  )
+ 519 tabsC dumpStruct         [1 1 1  2 6]  12  2] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x2x6  )
 KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
 -7 FLAT [Cb b] [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4]
 -6 FLAT [Gb 6] [Bb Eb Ab Db Gb Cb]    [a 3 8 1 6 b]
@@ -2589,10 +2484,10 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
 +5 SHRP [B  b] [F# C# G# D# A#]       [6 1 8 3 a]
 +6 SHRP [F# 6] [F# C# G# D# A# E#]    [6 1 8 3 a 5]
 +7 SHRP [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0]
- 489 tabsC dumpNic            [3  8  8  1  1  1  a  a  6  5 ]
- 490 tabsC dumpNic            [Eb Ab Ab Db Db Db Bb Bb Gb F]
- 491 tabsC dumpNic            [D# G# G# C# C# C# A# A# F# E#]
- 497 tabsC dumpNic            [1  2  2  3  3  3  2  2  1  1 ]
+ 489 tabsC dumpNic            [3  8  8  1  1  1  a  a  6 ]
+ 490 tabsC dumpNic            [Eb Ab Ab Db Db Db Bb Bb Gb]
+ 491 tabsC dumpNic            [D# G# G# C# C# C# A# A# F#]
+ 497 tabsC dumpNic            [1  2  2  3  3  3  2  2  1 ]
 I  F  S  IV   Notes Table 12
 0 [C  C  R ]
 1 [Db C# b2]
@@ -2607,14 +2502,14 @@ I  F  S  IV   Notes Table 12
 a [Bb A# b7]
 b [B  B  7 ]
   33 util  dumpNotes          BGN
-                 6    F2S
-Db:C# Eb:D# Gb:F# Ab:G# Bb:A#  F:E#
-                 6    S2F
-C#:Db D#:Eb F#:Gb G#:Ab A#:Bb E#: F
+                 5    F2S
+Db:C# Eb:D# Gb:F# Ab:G# Bb:A#
+                 5    S2F
+C#:Db D#:Eb F#:Gb G#:Ab A#:Bb
                 12    I2F
  0: C  1:Db  2: D  3:Eb  4: E  5: F  6:Gb  7: G  8:Ab  9: A 10:Bb 11: B
                 12    I2S
- 0: C  1:C#  2: D  3:D#  4: E  5:E#  6:F#  7: G  8:G#  9: A 10:A# 11: B
+ 0: C  1:C#  2: D  3:D#  4: E  5: F  6:F#  7: G  8:G#  9: A 10:A# 11: B
                 21    N2I
 B#: 0  C: 0 C#: 1 Db: 1  D: 2 D#: 3 Eb: 3  E: 4 Fb: 4 E#: 5  F: 5 F#: 6 Gb: 6  G: 7 G#: 8 Ab: 8  A: 9 A#:10 Bb:10  B:11 Cb:11
                121    FLATS
@@ -2674,7 +2569,7 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
 1410 tabsC dumpTniksA         J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^QA
 1410 tabsC dumpTniksA         J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^QA
 1410 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] @^QA
-1410 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x2x5  ) (0 1 3  ) 0 (   )  216   0] @^QA
+1410 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x2x6  ) (0 1 3  ) 0 (   )  216   0] @^QA
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
    1 @^QA  Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
@@ -2693,7 +2588,7 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
   14 @^QA  Tab     9   1  20 5 V 1  1  1   2    9    0    0    0  0   0 0 0  0  0  0  0   14  14   96.00  413.33   64.00   26.67  
   15 @^QA  Tab    10   -  20 5 V 1  1  1   2   10    0    0    0  0   0 0 0  0  0  0  0   15  15   96.00  386.67   64.00   26.67  
   16 @^QA  Tab    11   4  20 5 V 1  1  1   2   11    0    0    0  0   0 0 0  0  0  0  0   16  16   96.00  360.00   64.00   26.67  
-  17 @^QA  Tab    12   1  20 5 V 1  1  1   2   12    0    0    0  0   0 0 0  0  0  0  0   17  17   96.00  333.33   64.00   26.67  
+  17 @^QA  Tab    12   -  20 5 V 1  1  1   2   12    0    0    0  0   0 0 0  0  0  0  0   17  17   96.00  333.33   64.00   26.67  
   18 @^QA  Colm    3      74 4 V 1  1  1   3   12    0    0    0  0   0 0 0  0  0  0  0   18  18  160.00  400.00   64.00  160.00  
   19 @^QA  Tab    13   -  20 5 V 1  1  1   3   13    0    0    0  0   0 0 0  0  0  0  0   19  19  160.00  466.67   64.00   26.67  
   20 @^QA  Tab    14   -  20 5 V 1  1  1   3   14    0    0    0  0   0 0 0  0  0  0  0   20  20  160.00  440.00   64.00   26.67  
@@ -2764,7 +2659,7 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
   85 @^QA  Note    9  G#  20 5 V 1  1  2  12   60    9    0    0  0   0 0 0  0  0  0  0   85  85   96.00  253.33   64.00   26.67  
   86 @^QA  Note   10   -  20 5 V 1  1  2  12   60   10    0    0  0   0 0 0  0  0  0  0   86  86   96.00  226.67   64.00   26.67  
   87 @^QA  Note   11  C#  20 5 V 1  1  2  12   60   11    0    0  0   0 0 0  0  0  0  0   87  87   96.00  200.00   64.00   26.67  
-  88 @^QA  Note   12  E#  20 5 V 1  1  2  12   60   12    0    0  0   0 0 0  0  0  0  0   88  88   96.00  173.33   64.00   26.67  
+  88 @^QA  Note   12   F  20 5 V 1  1  2  12   60   12    0    0  0   0 0 0  0  0  0  0   88  88   96.00  173.33   64.00   26.67  
   89 @^QA  Colm   13      74 4 V 1  1  2  13   60   12    0    0  0   0 0 0  0  0  0  0   89  89  160.00  240.00   64.00  160.00  
   90 @^QA  Note   13   -  20 5 V 1  1  2  13   60   13    0    0  0   0 0 0  0  0  0  0   90  90  160.00  306.67   64.00   26.67  
   91 @^QA  Note   14   -  20 5 V 1  1  2  13   60   14    0    0  0   0 0 0  0  0  0  0   91  91  160.00  280.00   64.00   26.67  
@@ -2831,7 +2726,7 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
  152 @^QA  Kord    6   -  20 5 V 1  1  3  21   60   60    0    6  0   0 0 0  0  0  0  0  152 152   32.00   13.33   64.00   26.67  
  153 @^QA  Colm   22      74 4 V 1  1  3  22   60   60    0    6  0   0 0 0  0  0  0  0  153 153   96.00   80.00   64.00  160.00  
  154 @^QA  Kord    7  C#  20 5 V 1  1  3  22   60   60    0    7  0   0 0 0  0  0  0  0  154 154   96.00  146.67   64.00   26.67  
- 155 @^QA  Kord    8 /E#  20 5 V 1  1  3  22   60   60    0    8  0   0 0 0  0  0  0  0  155 155   96.00  120.00   64.00   26.67  
+ 155 @^QA  Kord    8  /F  20 5 V 1  1  3  22   60   60    0    8  0   0 0 0  0  0  0  0  155 155   96.00  120.00   64.00   26.67  
  156 @^QA  Kord    9   -  20 5 V 1  1  3  22   60   60    0    9  0   0 0 0  0  0  0  0  156 156   96.00   93.33   64.00   26.67  
  157 @^QA  Kord   10   -  20 5 V 1  1  3  22   60   60    0   10  0   0 0 0  0  0  0  0  157 157   96.00   66.67   64.00   26.67  
  158 @^QA  Kord   11   -  20 5 V 1  1  3  22   60   60    0   11  0   0 0 0  0  0  0  0  158 158   96.00   40.00   64.00   26.67  
@@ -2892,24 +2787,24 @@ KS Type  N  I       Flats/Sharps        F/S Indices     Key Sig Table  15
  213 @^QA  Kord   58   -  20 5 V 1  1  3  30   60   60    0   58  0   0 0 0  0  0  0  0  213 213  608.00   66.67   64.00   26.67  
  214 @^QA  Kord   59   -  20 5 V 1  1  3  30   60   60    0   59  0   0 0 0  0  0  0  0  214 214  608.00   40.00   64.00   26.67  
  215 @^QA  Kord   60   -  20 5 V 1  1  3  30   60   60    0   60  0   0 0 0  0  0  0  0  215 215  608.00   13.33   64.00   26.67  
- 216 @^QA  HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216   64.00  346.67   64.00   26.67  
+ 216 @^QA  HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216   64.00  320.00   64.00   26.67  
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
 1413 tabsC dumpTniksA         J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] @^QA
 1413 tabsC dumpTniksA         J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^QA
 1413 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^QA
-1413 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x2x5  ) (0 1 3  ) 0 (   )  216 216] @^QA
+1413 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x2x6  ) (0 1 3  ) 0 (   )  216 216] @^QA
  511 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 533 tabsC dumpStruct         [1 1 1  2 5]  11  2] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x2x5  )
+ 533 tabsC dumpStruct         [1 1 1  2 6]  12  2] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x2x6  )
  679 tabsC A_transposeData    BGN ( 1x1x10x6 ) dump=1
  636 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
-[[[---1-4 --1-41 ----46 -234-- ------ ------ ------ ------ ------ ------]]]
+[[[---1-4 --1-4- ----46 -234-- ------ ------ ------ ------ ------ ------]]]
  641 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=1
  718 tabsC dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt=Colm 
 Page 1
 Colm Line 1
   1 ---1-4 
-  2 --1-41 
+  2 --1-4- 
   3 ----46 
   4 -234-- 
   5 ------ 
@@ -2921,11 +2816,11 @@ Colm Line 1
  726 tabsC dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
  682 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
  683 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
----1-4 --1-41 ----46 -234-- ------ ------ ------ ------ ------ ------
+---1-4 --1-4- ----46 -234-- ------ ------ ------ ------ ------ ------
 
----------- ---2------ -1-3------ 1--4------ -44------- 416-------
+---------- ---2------ -1-3------ 1--4------ -44------- 4-6-------
  636 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
-[[[---1-4 --1-41 ----46 -234-- ------ ------ ------ ------ ------ ------]]]
+[[[---1-4 --1-4- ----46 -234-- ------ ------ ------ ------ ------ ------]]]
  641 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=0
  700 tabsC dumpDataHorz       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0
 Page 1 Line 1
@@ -2937,37 +2832,36 @@ Page 1 Line 1
 -1-3------
 1--4------
 -44-------
-416-------
+4-6-------
 
  713 tabsC dumpDataHorz       END ( 1x1x6x10 ) lc=1 ll=1 i=0
  695 tabsC A_transposeData    END ( 1x1x6x10 ) dump=1
   0 0-1                           R5           07     G#D#         R5           07     G#D#        
   0 0-1                           4R           50     G#D#         R4           05     D#G#        
-  1 0 0 C#/E#        C#/E#        M3R5         407    E#C#G#       RM35         047    C#E#G#      
-  1 0 1 E#m+         E#m+         R#5m3        083    E#C#G#       Rm3#5        038    E#G#C#      
-  1 0 2 G#6s4x/E#    G#6s4x/E#    64R          950    E#C#G#       R46          059    G#C#E#      
+  1 0-1                           R5           07     C#G#         R5           07     C#G#        
+  1 0-1                           4R           50     C#G#         R4           05     G#C#        
   2 0-1                           Rm3          03     A#C#         Rm3          03     A#C#        
   2 0-1                           6R           90     A#C#         R6           09     C#A#        
   3 0 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
   3 0 1 A#m+/F#      A#m+/F#      #5Rm3        803    F#A#C#       Rm3#5        038    A#C#F#      
   3 0 2 C#6s4x/F#    C#6s4x/F#    46R          590    F#A#C#       R46          059    C#F#A#      
   0 0              R5                        4R           
-  1 0 C#/E#        M3R5         E#m+         R#5m3        G#6s4x/E#    64R          
+  1 0              R5                        4R           
   2 0              Rm3                       6R           
   3 0 F#           RM35         A#m+/F#      #5Rm3        C#6s4x/F#    46R          
   0 0             07                 50    
-  1 0C#/E#        407   E#m+         083   G#6s4x/E#    950   
+  1 0             07                 50    
   2 0             03                 90    
   3 0F#           047   A#m+/F#      803   C#6s4x/F#    590   
   0 0 07     50                                   R5           4R           
-  1 0 407    083    950                           M3R5         R#5m3        64R          
+  1 0 07     50                                   R5           4R           
   2 0 03     90                                   Rm3          6R           
   3 0 047    803    590                           RM35         #5Rm3        46R          
-2494 tabsC snapshot           SNAP_NAME=tabs.7.QUIT.3.png quit error=0 save=0
-2545 tabsC quit               END @^Q error=0 save=0
+2499 tabsC snapshot           SNAP_NAME=tabs.10.QUIT.4.png quit error=0 save=0
+2550 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2560 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log
+2565 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log
  222 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 223 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.7.log)
- 225 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log ###
-2562 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
+ 223 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.10.log)
+ 225 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log ###
+2567 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log

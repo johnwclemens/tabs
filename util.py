@@ -404,13 +404,13 @@ class Strings(object):
         if   nic is None:   nict = ''
         else:
             nic[j] += 1   ;   nict = f'nic[{m12(j)}]={nic[j]}'
-            if nic[j] == 1:   slog(f'adding {nic[j]=}')
+            if nic[j] == 1:   slog(f'adding nic[{j}]={nic[j]}')
             if   j == 11 and Notes.TYPE == Notes.FLAT: Notes.I2F[11] = 'Cb'   ;   Notes.F2S['Cb'] = 'B'    ;   Notes.S2F['B']  = 'Cb'
             elif j ==  5 and Notes.TYPE == Notes.SHRP: Notes.I2S[5]  = 'E#'   ;   Notes.F2S['F']  = 'E#'   ;   Notes.S2F['E#'] = 'F'
             elif j ==  4 and Notes.TYPE == Notes.FLAT: Notes.I2F[4]  = 'Fb'   ;   Notes.F2S['Fb'] = 'E'    ;   Notes.S2F['E']  = 'Fb'
             elif j ==  0 and Notes.TYPE == Notes.SHRP: Notes.I2S[0]  = 'B#'   ;   Notes.F2S['C']  = 'B#'   ;   Notes.S2F['B#'] = 'C'
         name = Notes.name(i)
-        if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nict}') # if dbg or nict
+        if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nict}')
         return name
 
     @staticmethod
