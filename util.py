@@ -27,6 +27,9 @@ def js2sign(l):     return [ '-' if k<0  else '+' if k>0 else ' ' for k in l ]
 
 def init(file, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
+    dumpNotes()
+
+def dumpNotes():
     slog('BGN')
     slog(f'{B*15}{len(Notes.F2S):3}    F2S', pfx=0)   ;   slog(f'{fmtm(Notes.F2S, w=2, d="")}',  pfx=0)
     slog(f'{B*15}{len(Notes.S2F):3}    S2F', pfx=0)   ;   slog(f'{fmtm(Notes.S2F, w=2, d="")}',  pfx=0)
@@ -47,8 +50,8 @@ def dumpND():
     for i in range(len(ND)):   slog(f'{m12(i)} {fmtl(ND[i], w=2)}', pfx=0)
 ########################################################################################################################################################################################################
 def dumpKS():
-    ksd = KSD   ;   t = Notes.NONE   ;   dmpKSDhdr(t)
-    items = sorted(ksd.items())
+    t = Notes.NONE   ;   dmpKSDhdr(t)
+    items = sorted(KSD.items())
     for k, v in items:
         a, b, c = [], [], []  ;  a2, b2 = [], []
         for i in range(len(v)):
@@ -86,19 +89,18 @@ def dumpNic(nic, w=2, dbg=0):
         slog(f'                I2S[n] {fmtl([Notes.I2S[n]       for n in  _ ],         w=w)}')
 ########################################################################################################################################################################################################
 def calcKS(nic, dbg=0):
-    ksd = KSD
-    dumpKSD(ksd)
+    dumpKSD(KSD)
     dumpNic(nic)
     js  = []   ;   t = Notes.TYPE   ;   nt = Notes.TYPES[t]
-    ks  = ksd[M][2] if t == Notes.FLAT else ksd[P][2]
+    ks  = KSD[M][2] if t == Notes.FLAT else KSD[P][2]
     for j in ks:
         if j in nic: js.append(m12(j))
         else:        break
     l   = -len(js) if t==Notes.FLAT else len(js)
     s   = t2sign(t) if js else '?'
-    nn  = ksd[l][0][0] if js else '??'
-    ni  = ksd[l][0][1]
-    ns  = ksd[l][1]
+    nn  = KSD[l][0][0] if js else '??'
+    ni  = KSD[l][0][1]
+    ns  = KSD[l][1]
     slog(fmtks( s, l, nt, nn, ni, ns, js)) if dbg else None
     return      s, l, nt, nn, ni, ns, js
 ########################################################################################################################################################################################################
@@ -399,11 +401,17 @@ class Strings(object):
         fn   = self.tab2fn(tab)
         i    = self.fn2ni(fn, s)
         j    = i % NTONES
-        if nic is not None:  nic[j] += 1  ;  nics = f'nic[{m12(j)}]={nic[j]}'
-        else:                                nics = ''
+        if   nic is None:   nict = ''
+        else:
+            nic[j] += 1   ;   nict = f'nic[{m12(j)}]={nic[j]}'
+            if nic[j] == 1:   slog(f'adding {nic[j]=}')
+            if   j == 11 and Notes.TYPE == Notes.FLAT: Notes.I2F[11] = 'Cb'   ;   Notes.F2S['Cb'] = 'B'    ;   Notes.S2F['B']  = 'Cb'
+            elif j ==  5 and Notes.TYPE == Notes.SHRP: Notes.I2S[5]  = 'E#'   ;   Notes.F2S['F']  = 'E#'   ;   Notes.S2F['E#'] = 'F'
+            elif j ==  4 and Notes.TYPE == Notes.FLAT: Notes.I2F[4]  = 'Fb'   ;   Notes.F2S['Fb'] = 'E'    ;   Notes.S2F['E']  = 'Fb'
+            elif j ==  0 and Notes.TYPE == Notes.SHRP: Notes.I2S[0]  = 'B#'   ;   Notes.F2S['C']  = 'B#'   ;   Notes.S2F['B#'] = 'C'
         name = Notes.name(i)
-        if dbg: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nics}')
-        return name # if dbg or nics
+        if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nict}') # if dbg or nict
+        return name
 
     @staticmethod
     def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
