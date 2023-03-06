@@ -29,11 +29,11 @@ class Chord(object):
                 ivals.append(i)
             vkey = ''.join([ f'{v:x}' for v in ivals ])
             if vkey not in vkeys:
-                ikeys = [ util.IVALS[i] for i in ivals ]
+                ikeys  = [ util.IVALS[i] for i in ivals ]
                 if dbg: self._dumpData(rank, ikeys, ivals, notes, mask, 0)
-                _imap = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: util.IVALR[t[0]]))
+                _imap  = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: util.IVALR[t[0]]))
                 _ikeys = list(_imap.keys())   ;   _ivals = [ util.IVALR[k] for k in _ikeys ]   ;   _notes = list(_imap.values())
-                ikey  = ' '.join([ k for k in _ikeys ])
+                ikey   = ' '.join([ k for k in _ikeys ])
                 if ikey in self.OMAP:
                     root = _imap['R']
                     chunks.append(root)
@@ -48,7 +48,7 @@ class Chord(object):
                 elif len(_imap) >= util.MIN_IVAL_LEN:
                     pass
                 if dbg:    self._dumpData(rank, _ikeys, _ivals, _notes, mask, 1)
-                imap  = [ ikeys, ivals, notes, name, chunks, rank ]
+                imap   = [ ikeys, ivals, notes, name, chunks, rank ]
                 vkeys.append(vkey)   ;   self.limap.append(imap)
                 if dbg: util.slog(f'{rank:2} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {name:12} {"".join(chunks):12} {"".join(_ikeys):12} {"".join(f"{i:x}" for i in _ivals):6} {"".join(_notes):12}')
 #                if dbg: util.slog(f'{rank:2} {util.fmtl(ikeys):19} {util.fmtl(ivals, z="x")} {" ".join(notes):12} {name:12} {"".join(chunks)} {util.fmtl(_ikeys)} {util.fmtl(_ivals, z="x")} {" ".join(_notes):12}', pfx=0)

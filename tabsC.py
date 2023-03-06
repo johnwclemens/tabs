@@ -51,7 +51,7 @@ class Tabs(pyglet.window.Window):
         self.Y_TOP     = 0  ;  self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0  ;  self.RESIZE_FONTS = 1
         self.AUTO_SAVE = 0  ;  self.CAT         = 1  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN  = 0  ;  self.LONG_TXT = 0
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RD_STDOUT  = 0  ;  self.RESIZE       = 1  ;  self.VARROW   = 1
-        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 1  ;  self.VRBY         = 0  ;  self.OIDS     = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 0  ;  self.VRBY         = 0  ;  self.OIDS     = 0
         self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD   = 0  ;  self.STRETCH  = 0
         self.LL        = 0
         self.SS        = set() if 0 else {0, 1, 2, 3}
@@ -279,7 +279,7 @@ class Tabs(pyglet.window.Window):
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
         self.ks = util.calcKS(self.nic)
-        self.log(util.fmtks(*self.ks), file=2)
+        self.log( util.fmtks(*self.ks), file=2)
         if self.TEST:
             self.test1A(1)  ;  self.test1A(1, o=0)  ;  self.test1A(0, o=1)
             self.test1B(1)  ;  self.test1B(1, o=2)
@@ -517,10 +517,8 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpStruct(self, why='', dbg=1, dbg2=0):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
-        util.dumpKS()
         self.dumpNic()
-        util.dumpND()
-        util.dumpNotes()
+        util.dumpData()
         self.dumpFont(why)
         self.dumpVisible()
         self.dumpIdmKeys()
@@ -1674,22 +1672,26 @@ class Tabs(pyglet.window.Window):
             i = Notes.N2I[old]    ;   self.nic[i] -= 1
             if self.nic[i] <= 0:
                 del self.nic[i]   ;   self.dumpNic()
-                if   i == 11 and Notes.TYPE == Notes.FLAT:
-                    Notes.I2F[11] = 'B'
-                    if 'Cb' in Notes.F2S:  del Notes.F2S['Cb']
-                    if 'B'  in Notes.S2F:  del Notes.S2F['B']
-                elif i ==  5 and Notes.TYPE == Notes.SHRP:
-                    Notes.I2S[5]  = 'F'
-                    if 'F'  in Notes.F2S:  del Notes.F2S['F']
-                    if 'E#' in Notes.S2F:  del Notes.S2F['E#']
-                elif i ==  4 and Notes.TYPE == Notes.FLAT:
-                    Notes.I2F[4]  = 'E'
-                    if 'Fb' in Notes.F2S:  del Notes.F2S['Fb']
-                    if 'E'  in Notes.S2F:  del Notes.S2F['E']
-                elif i ==  0 and Notes.TYPE == Notes.SHRP:
-                    Notes.I2S[0]  = 'C'
-                    if 'C'  in Notes.F2S:  del Notes.F2S['C']
-                    if 'B#' in Notes.S2F:  del Notes.S2F['B#']
+                util.updNks(11, 'B', 'Cb', Notes.FLAT, -1)
+                util.updNks( 5, 'F', 'E#', Notes.SHRP, -1)
+                util.updNks( 4, 'E', 'Fb', Notes.FLAT, -1)
+                util.updNks( 0, 'C', 'B#', Notes.SHRP, -1)
+#                if   i == 11 and Notes.TYPE == Notes.FLAT:
+#                    Notes.I2F[11] = 'B'
+#                    if 'Cb' in Notes.F2S:  del Notes.F2S['Cb']
+#                    if 'B'  in Notes.S2F:  del Notes.S2F['B']
+#                elif i ==  5 and Notes.TYPE == Notes.SHRP:
+#                    Notes.I2S[5]  = 'F'
+#                    if 'F'  in Notes.F2S:  del Notes.F2S['F']
+#                    if 'E#' in Notes.S2F:  del Notes.S2F['E#']
+#                elif i ==  4 and Notes.TYPE == Notes.FLAT:
+#                    Notes.I2F[4]  = 'E'
+#                    if 'Fb' in Notes.F2S:  del Notes.F2S['Fb']
+#                    if 'E'  in Notes.S2F:  del Notes.S2F['E']
+#                elif i ==  0 and Notes.TYPE == Notes.SHRP:
+#                    Notes.I2S[0]  = 'C'
+#                    if 'C'  in Notes.F2S:  del Notes.F2S['C']
+#                    if 'B#' in Notes.S2F:  del Notes.S2F['B#']
         self.notes[cc].text = ntext
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
     ####################################################################################################################################################################################################
@@ -2320,12 +2322,12 @@ class Tabs(pyglet.window.Window):
                 tabtxt = self.tabls[i].text
                 text   = self.sobj.tab2nn(tabtxt, sn) if self.sobj.isFret(tabtxt) else self.tblank
             if text in Notes.N2I and (Notes.N2I[text] != 2 and Notes.N2I[text] != 7 and Notes.N2I[text] != 9):
-                cc = i * ns   ;   old = text
+                cc = i * ns    ;   old = text
                 p, l, c, t = self.cc2plct(cc)   ;   cn = self.cc2cn(cc)
-                if   text in Notes.F2S: text = Notes.F2S[text]
-                elif text in Notes.S2F: text = Notes.S2F[text]
-                self.notes[i].text = text
-                self.log(f'{old:2} -> {text:2} = ')
+                if   text in Notes.F2S:  text = Notes.F2S[text]
+                elif text in Notes.S2F:  text = Notes.S2F[text]
+                self.notes[i].text     = text
+                self.log(  f'{old:2} -> {text:2} = ')
                 if dbg: self.log(f'{sn=} {cn=:2} {cc=:4} {i=:4} {old:2} => {text:2} {self.notes[i].text=:2} {self.fplct(p, l, c, t)}')
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)

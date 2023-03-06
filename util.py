@@ -27,9 +27,9 @@ def js2sign(l):     return [ '-' if k<0  else '+' if k>0 else ' ' for k in l ]
 
 def init(file, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
-    dumpNotes()
+    dumpData()
 
-def dumpNotes():
+def dumpData():
     slog('BGN')
     slog(f'{B*15}{len(Notes.F2S):3}    F2S', pfx=0)   ;   slog(f'{fmtm(Notes.F2S, w=2, d="")}',  pfx=0)
     slog(f'{B*15}{len(Notes.S2F):3}    S2F', pfx=0)   ;   slog(f'{fmtm(Notes.S2F, w=2, d="")}',  pfx=0)
@@ -333,30 +333,45 @@ ND    = initND()
 
 ########################################################################################################################################################################################################
 
-#class KeySig(object):
-#    KSD = {}
-#    KSD = initKSD(KSD, t=0)
-#    KSD = initKSD(KSD)
-#    KSD = initKSD(KSD, t=1)
-
-def initKSD(m, t=None):
+def OLD__initKSD(m, t=None):
     ln = []  ;  li = []  ;  ln2 = []  ;  li2 = []
     if   t is None: i1 = 0  ;  i2 = 0   ;  d = 0  ;  j1 =  1  ;  j2 =  0
     elif t:         i1 = 7  ;  i2 = 6   ;  d = 7  ;  j1 =  1  ;  j2 =  7
     else:           i1 = 5  ;  i2 = 10  ;  d = 5  ;  j1 = -1  ;  j2 = -7
     dmpKSDhdr(t)
     for k in range(0 if t is None else 1 if t else -1, j1+j2, j1):
-        n1 = Notes.name(i1, t=t, n2=1)
-        n2 = Notes.name(i2, t=t, n2=1) if t is not None else None
-        lni = [n1, i1]
+        n1   = Notes.name(i1, t=t, n2=1)
+        n2   = Notes.name(i2, t=t, n2=1) if t is not None else None
+        lni  = [n1, i1]
         if abs(k) >= 1:   ln.append(n2)  ;  li.append(i2)  ;  ln2 = list(ln)  ;  li2 = list(li)
         m[k] = [ lni, ln2, li2 ]
-        _ = [ f'{m12(i)}' for i in li ]
-        sign = t2sign(t)   ;   t = 2 if t is None else t
-        nt = Notes.TYPES[t]
-        slog(fmtks(sign, k, nt, n1, i1, ln, _), pfx=0)
-        i1 = Notes.nextIndex(i1, d)
-        i2 = Notes.nextIndex(i2, d) if t is not None else None
+        mli  = [ f'{m12(i)}' for i in li ]
+        sign = t2sign(t)     ;     t = 2 if t is     None else t
+        nt   = Notes.TYPES[t]
+        slog(fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
+        i1   = Notes.nextIndex(i1, d)
+        i2   = Notes.nextIndex(i2, d)    if t is not None else None
+    return m
+
+def initKSD(m, t=None):
+    ln = []   ;     li = []  ;  ln2 = []  ;  li2 = []  ;   NT = NTONES
+    if   t is None: i1 = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li3 = [ (i2+1+j*d) % NT for j in range(0,  7,  j1) ]  ;  ln3 = [ Notes.name(j, t) for j in li3 ]
+    elif t:         i1 = 7   ;   i2 = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li3 = [ (i2-1+j*d) % NT for j in range(1,  j2, j1) ]  ;  ln3 = [ Notes.name(j, t) for j in li3 ]
+    else:           i1 = 5   ;   i2 = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li3 = [ (i2+1+j*d) % NT for j in range(1, -j2, 1) ]   ;  ln3 = [ Notes.name(j, t) for j in li3 ]
+    slog(f'{fmtl(li3)} {fmtl(ln3)}')
+    dmpKSDhdr(t)
+    for k in range(0 if t is None else 1 if t else -1, j1+j2, j1):
+        n1   = Notes.name(i1, t=t, n2=1)
+        n2   = Notes.name(i2, t=t, n2=1) if t is not None else None
+        lni  = [n1, i1]
+        if abs(k) >= 1:   ln.append(n2)  ;  li.append(i2)  ;  ln2 = list(ln)  ;  li2 = list(li)
+        m[k] = [ lni, ln2, li2 ]
+        mli  = [ f'{m12(i)}' for i in li ]
+        sign = t2sign(t)     ;     t = 2 if t is     None else t
+        nt   = Notes.TYPES[t]
+        slog(fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
+        i1   = Notes.nextIndex(i1, d)
+        i2   = Notes.nextIndex(i2, d)    if t is not None else None
     return m
 ########################################################################################################################################################################################################
 KSD = {}
@@ -403,12 +418,16 @@ class Strings(object):
         j    = i % NTONES
         if   nic is None:   nict = ''
         else:
-            nic[j] += 1   ;   nict = f'nic[{m12(j)}]={nic[j]}'
-            if nic[j] == 1:   slog(f'adding nic[{j}]={nic[j]}')
-            if   j == 11 and Notes.TYPE == Notes.FLAT: Notes.I2F[11] = 'Cb'   ;   Notes.F2S['Cb'] = 'B'    ;   Notes.S2F['B']  = 'Cb'
-            elif j ==  5 and Notes.TYPE == Notes.SHRP: Notes.I2S[5]  = 'E#'   ;   Notes.F2S['F']  = 'E#'   ;   Notes.S2F['E#'] = 'F'
-            elif j ==  4 and Notes.TYPE == Notes.FLAT: Notes.I2F[4]  = 'Fb'   ;   Notes.F2S['Fb'] = 'E'    ;   Notes.S2F['E']  = 'Fb'
-            elif j ==  0 and Notes.TYPE == Notes.SHRP: Notes.I2S[0]  = 'B#'   ;   Notes.F2S['C']  = 'B#'   ;   Notes.S2F['B#'] = 'C'
+            nic[j] += 1   ;      nict = f'nic[{m12(j)}]={nic[j]}'
+            if nic[j] == 1:      slog(f'adding nic[{j}]={nic[j]}')
+            if     j  == 11:     updNks(j, 'Cb', 'B', Notes.FLAT, 1)
+            elif   j  ==  5:     updNks(j, 'F', 'E#', Notes.SHRP, 1)
+            elif   j  ==  4:     updNks(j, 'Fb', 'E', Notes.FLAT, 1)
+            elif   j  ==  0:     updNks(j, 'C', 'B#', Notes.SHRP, 1)
+#            if   j == 11 and Notes.TYPE == Notes.FLAT: Notes.I2F[11] = 'Cb'   ;   Notes.F2S['Cb'] = 'B'    ;   Notes.S2F['B']  = 'Cb'
+#            elif j ==  5 and Notes.TYPE == Notes.SHRP: Notes.I2S[5]  = 'E#'   ;   Notes.F2S['F']  = 'E#'   ;   Notes.S2F['E#'] = 'F'
+#            elif j ==  4 and Notes.TYPE == Notes.FLAT: Notes.I2F[4]  = 'Fb'   ;   Notes.F2S['Fb'] = 'E'    ;   Notes.S2F['E']  = 'Fb'
+#            elif j ==  0 and Notes.TYPE == Notes.SHRP: Notes.I2S[0]  = 'B#'   ;   Notes.F2S['C']  = 'B#'   ;   Notes.S2F['B#'] = 'C'
         name = Notes.name(i)
         if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nict}')
         return name
@@ -417,6 +436,16 @@ class Strings(object):
     def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
     @staticmethod
     def tab2fn(tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  slog(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
+########################################################################################################################################################################################################
+
+def updNks(i, n1, n2, t, t2):
+    if   t  == Notes.FLAT:  Notes.I2F[i] = n1
+    elif t  == Notes.SHRP:  Notes.I2S[i] = n2
+    if   t2 == -1:
+        if n1 in Notes.S2F:  del Notes.S2F[n1]
+        if n2 in Notes.F2S:  del Notes.F2S[n2]
+    elif t2 ==  1:
+        Notes.F2S[n2] = n1   ;   Notes.S2F[n1] = n2
 ########################################################################################################################################################################################################
 
 class Mode(object):
