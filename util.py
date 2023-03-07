@@ -57,7 +57,7 @@ def dumpKS():
         for i in range(len(v)):
             w = v[i]
             if   i==0: a.append(w[0])  ;  a.append(w[1])  ;  a2.append(f'{w[0]:2} ')  ;  a2.append(f'{m12(w[1])}')  ;  a2 =  ''.join(a2)
-            elif i==1: b.append(w[:abs(k)])               ;  b2.append(f'{fmtl(w[:abs(k)], w=2)}')                  ;  b2 = ' '.join(b2)
+            elif i==1: b.append(w)                        ;  b2.append(f'{fmtl(w, w=2)}')                           ;  b2 = ' '.join(b2)
             else:      c = w
             t = Notes.FLAT if k < 0 else Notes.SHRP if k > 0 else Notes.NONE
         sign = t2sign(t)   ;   nt = Notes.TYPES[t]
@@ -374,7 +374,7 @@ def OLD_2_initKSD(m, t=None):
         i2   = Notes.nextIndex(i2, d)    if t is not None else None
     return m
 
-def initKSD(m, t=None):
+def OLD_3_initKSD(m, t=None):
     ln2 = []  ;  li2 = []  ;   NT = NTONES
     if   t is None:
         i1 = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (i2+1+j*d) % NT for j in range(0,  7,  j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
@@ -398,6 +398,30 @@ def initKSD(m, t=None):
         slog(fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
         i1   = Notes.nextIndex(i1, d)
         i2   = Notes.nextIndex(i2, d)    if t is not None else None
+    return m
+
+def initKSD(m, t=None):
+    NT = NTONES
+    if   t is None:
+        i1 = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (i2+1+j*d) % NT for j in range(0,  7,  j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+    elif t:
+        i1 = 7   ;   i2 = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+j*d) % NT for j in range(1,  j1+j2, j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+    else:
+        i1 = 5   ;   i2 = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i1+1+j*d) % NT for j in range(1, -j1-j2, 1) ]   ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+    li  = list(li0)   ;   ln = list(ln0)   ;   dmpKSDhdr(t)
+    for k in range(0 if t is None else 1 if t else -1, j1+j2, j1):
+        n1   = Notes.name(i1, t=t, n2=1)
+        n2   = Notes.name(i2, t=t, n2=1)
+        lni  = [n1, i1]      ;    ak = abs(k)
+        if ak >= 1:   ln[ak-1] = n2  ;  li[ak-1] = i2  ;  ln2 = list(ln)  ;  li2 = list(li)
+        else:                                             ln2 = list(ln)  ;  li2 = list(li)
+        m[k] = [ lni, ln2, li2 ]
+        mli  = [ f'{m12(i)}' for i in li ]
+        sign = t2sign(t)     ;     t = 2 if t is     None else t
+        nt   = Notes.TYPES[t]
+        slog(fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
+        i1   = Notes.nextIndex(i1, d)
+        i2   = Notes.nextIndex(i2, d)
     return m
 ########################################################################################################################################################################################################
 KSD = {}
@@ -450,10 +474,6 @@ class Strings(object):
             elif   j  ==  5:     updNks(j, 'F', 'E#', Notes.SHRP, 1)
             elif   j  ==  4:     updNks(j, 'Fb', 'E', Notes.FLAT, 1)
             elif   j  ==  0:     updNks(j, 'C', 'B#', Notes.SHRP, 1)
-#            if   j == 11 and Notes.TYPE == Notes.FLAT: Notes.I2F[11] = 'Cb'   ;   Notes.F2S['Cb'] = 'B'    ;   Notes.S2F['B']  = 'Cb'
-#            elif j ==  5 and Notes.TYPE == Notes.SHRP: Notes.I2S[5]  = 'E#'   ;   Notes.F2S['F']  = 'E#'   ;   Notes.S2F['E#'] = 'F'
-#            elif j ==  4 and Notes.TYPE == Notes.FLAT: Notes.I2F[4]  = 'Fb'   ;   Notes.F2S['Fb'] = 'E'    ;   Notes.S2F['E']  = 'Fb'
-#            elif j ==  0 and Notes.TYPE == Notes.SHRP: Notes.I2S[0]  = 'B#'   ;   Notes.F2S['C']  = 'B#'   ;   Notes.S2F['B#'] = 'C'
         name = Notes.name(i)
         if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nict}')
         return name
