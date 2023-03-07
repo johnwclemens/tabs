@@ -353,7 +353,7 @@ def OLD__initKSD(m, t=None):
         i2   = Notes.nextIndex(i2, d)    if t is not None else None
     return m
 
-def initKSD(m, t=None):
+def OLD_2_initKSD(m, t=None):
     ln = []   ;     li = []  ;  ln2 = []  ;  li2 = []  ;   NT = NTONES
     if   t is None: i1 = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li3 = [ (i2+1+j*d) % NT for j in range(0,  7,  j1) ]  ;  ln3 = [ Notes.name(j, t) for j in li3 ]
     elif t:         i1 = 7   ;   i2 = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li3 = [ (i2-1+j*d) % NT for j in range(1,  j2, j1) ]  ;  ln3 = [ Notes.name(j, t) for j in li3 ]
@@ -365,6 +365,32 @@ def initKSD(m, t=None):
         n2   = Notes.name(i2, t=t, n2=1) if t is not None else None
         lni  = [n1, i1]
         if abs(k) >= 1:   ln.append(n2)  ;  li.append(i2)  ;  ln2 = list(ln)  ;  li2 = list(li)
+        m[k] = [ lni, ln2, li2 ]
+        mli  = [ f'{m12(i)}' for i in li ]
+        sign = t2sign(t)     ;     t = 2 if t is     None else t
+        nt   = Notes.TYPES[t]
+        slog(fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
+        i1   = Notes.nextIndex(i1, d)
+        i2   = Notes.nextIndex(i2, d)    if t is not None else None
+    return m
+
+def initKSD(m, t=None):
+    ln2 = []  ;  li2 = []  ;   NT = NTONES
+    if   t is None:
+        i1 = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (i2+1+j*d) % NT for j in range(0,  7,  j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+    elif t:
+        i1 = 7   ;   i2 = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+j*d) % NT for j in range(1,  j1+j2, j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+    else:
+        i1 = 5   ;   i2 = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i1+1+j*d) % NT for j in range(1, -j1-j2, 1) ]   ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+    li   = list(li0)   ;   ln = list(ln0)
+    mli0 = [ f'{m12(i)}' for i in li0 ]
+    slog(f'{fmtl(ln0)} {fmtl(mli0)}')
+    dmpKSDhdr(t)
+    for k in range(0 if t is None else 1 if t else -1, j1+j2, j1):
+        n1   = Notes.name(i1, t=t, n2=1)
+        n2   = Notes.name(i2, t=t, n2=1) if t is not None else None
+        lni  = [n1, i1]   ;   ak = abs(k)
+        if ak >= 1:   ln[ak-1] = n2  ;  li[ak-1] = i2  ;  ln2 = list(ln)  ;  li2 = list(li)
         m[k] = [ lni, ln2, li2 ]
         mli  = [ f'{m12(i)}' for i in li ]
         sign = t2sign(t)     ;     t = 2 if t is     None else t
