@@ -61,11 +61,12 @@ def dumpKS():
             else:      c = w
             t = Notes.FLAT if k < 0 else Notes.SHRP if k > 0 else Notes.NONE
         sign = t2sign(t)   ;   nt = Notes.TYPES[t]
-        slog(fmtks(sign, k, nt, a[0], a[1], b, c), pfx=0)
+#        slog(fmtks(sign, k, nt, a[0], a[1], b, c), pfx=0)
+        slog(OLD__fmtks(sign, k, nt, a[0], a[1], b, c), pfx=0)
 
 def dmpKSDhdr(t):
     l = 2*P+1 if t is Notes.NONE else M if t==Notes.FLAT else P if t==Notes.SHRP else 1  ;   sign = t2sign(t)
-    slog(f'KS Type  N  I       Flats/Sharps {B*6} F/S Indices     Key Sig Table {sign}{l}', pfx=0)
+    slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{l}', pfx=0)
 
 def dumpKSD(ksd, w=2, u='<'):
     keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
@@ -92,20 +93,27 @@ def calcKS(nic, dbg=0):
     dumpKSD(KSD)
     dumpNic(nic)
     js  = []   ;   t = Notes.TYPE   ;   nt = Notes.TYPES[t]
-    ks  = KSD[M][2] if t == Notes.FLAT else KSD[P][2]
+    ks  = KSD[M][2]    if t == Notes.FLAT else KSD[P][2]
     for j in ks:
-        if j in nic: js.append(m12(j))
-        else:        break
-    l   = -len(js) if t==Notes.FLAT else len(js)
-    s   = t2sign(t) if js else '?'
+        if j in nic:   js.append(m12(j))
+        else:          break
+    l   = -len(js)     if t == Notes.FLAT else len(js)
+    s   = t2sign(t)    if js else '?'
     nn  = KSD[l][0][0] if js else '??'
     ni  = KSD[l][0][1]
     ns  = KSD[l][1]
-    slog(fmtks( s, l, nt, nn, ni, ns, js)) if dbg else None
+    slog(OLD__fmtks( s, l, nt, nn, ni, ns, js)) if dbg else None
+#    slog(fmtks( s, l, nt, nn, ni, ns, js, ns2, js2)) if dbg else None
     return      s, l, nt, nn, ni, ns, js
 ########################################################################################################################################################################################################
-def fmtks(s, l, nt, nn, ni, ns, js):
-    ns = f'[{fmtl(ns, w=2, d="")}]'  ;  js = [ m12(j) for j in js ]  ;  return f'{s}{l} {nt} [{nn:2} {m12(ni)}] {ns:22} [{fmtl(js, d="")}]'
+def OLD__fmtks(s, l, nt, nn, ni, ns, js):
+    ns  = f'[{fmtl(ns,  w=2, d="")}]'  ;   js = [ m12(j) for j in js ]
+    return f'{s}{l} {nt} [{nn:2} {m12(ni)}] {ns:22} [{fmtl(js, d="")}]'
+
+def fmtks(s, l, nt, nn, ni, ns, js, ns2, js2):
+    ns  = f'[{fmtl(ns,  w=2, d="")}]'  ;   js = [ m12(j) for j in js ]
+    ns2 = f'[{fmtl(ns2, w=2, d="")}]'  ;  js2 = [ m12(j) for j in js2 ]
+    return f'{s}{l} {nt} [{nn:2} {m12(ni)}] {ns:22} [{fmtl(js, d="")}] [{fmtl(js2, d="")}] {ns2}'
 
 def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
@@ -348,7 +356,7 @@ def OLD__initKSD(m, t=None):
         mli  = [ f'{m12(i)}' for i in li ]
         sign = t2sign(t)     ;     t = 2 if t is     None else t
         nt   = Notes.TYPES[t]
-        slog(fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
+        slog(OLD__fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
         i1   = Notes.nextIndex(i1, d)
         i2   = Notes.nextIndex(i2, d)    if t is not None else None
     return m
@@ -369,7 +377,7 @@ def OLD_2_initKSD(m, t=None):
         mli  = [ f'{m12(i)}' for i in li ]
         sign = t2sign(t)     ;     t = 2 if t is     None else t
         nt   = Notes.TYPES[t]
-        slog(fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
+        slog(OLD__fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
         i1   = Notes.nextIndex(i1, d)
         i2   = Notes.nextIndex(i2, d)    if t is not None else None
     return m
@@ -395,7 +403,7 @@ def OLD_3_initKSD(m, t=None):
         mli  = [ f'{m12(i)}' for i in li ]
         sign = t2sign(t)     ;     t = 2 if t is     None else t
         nt   = Notes.TYPES[t]
-        slog(fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
+        slog(OLD__fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
         i1   = Notes.nextIndex(i1, d)
         i2   = Notes.nextIndex(i2, d)    if t is not None else None
     return m
@@ -403,32 +411,36 @@ def OLD_3_initKSD(m, t=None):
 def initKSD(m, t=None):
     NT = NTONES
     if   t is None:
-        i1 = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (i2+1+j*d) % NT for j in range(0,  7,  j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+        i1 = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (i2+1+j*d) % NT for j in range(0,    7,   j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
     elif t:
-        i1 = 7   ;   i2 = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+j*d) % NT for j in range(1,  j1+j2, j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+        i1 = 7   ;   i2 = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+j*d)   % NT for j in range(1,  j1+j2, j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
     else:
-        i1 = 5   ;   i2 = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i1+1+j*d) % NT for j in range(1, -j1-j2, 1) ]   ;  ln0 = [ Notes.name(j, t) for j in li0 ]
-    li  = list(li0)   ;   ln = list(ln0)   ;   dmpKSDhdr(t)
+        i1 = 5   ;   i2 = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i1+1+j*d) % NT for j in range(1, -j1-j2, 1)  ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+    li  = list(li0)   ;   ln = list(ln0)
     for k in range(0 if t is None else 1 if t else -1, j1+j2, j1):
-        n1   = Notes.name(i1, t=t, n2=1)
-        n2   = Notes.name(i2, t=t, n2=1)
+        n1   = Notes.name(i1, t, n2=1)
+        n2   = Notes.name(i2, t, n2=1)
         lni  = [n1, i1]      ;    ak = abs(k)
-        if ak >= 1:   ln[ak-1] = n2  ;  li[ak-1] = i2  ;  ln2 = list(ln)  ;  li2 = list(li)
-        else:                                             ln2 = list(ln)  ;  li2 = list(li)
-        m[k] = [ lni, ln2, li2 ]
+        if ak >= 1:   ln[ak-1] = n2  ;  li[ak-1] = i2   ;  ln2 = list(ln)  ;  li2 = list(li)
+        else:                                              ln2 = list(ln)  ;  li2 = list(li)
+        li3  = [ (i+i1) % NT for i in (0, 2, 4, 5, 7, 9, 11) ]
+        ln3  = [ Notes.name(n, t, n2=1 if k >= 5 else 0) for n in li3 ]
+        m[k] = [ lni, ln2, li2, ln3, li3 ]
         mli  = [ f'{m12(i)}' for i in li ]
+        mli3 = [ f'{m12(i)}' for i in li3 ]
         sign = t2sign(t)     ;     t = 2 if t is     None else t
         nt   = Notes.TYPES[t]
-        slog(fmtks(sign, k, nt, n1, i1, ln, mli), pfx=0)
+        slog(fmtks(sign, k, nt, n1, i1, ln, mli, ln3, mli3), pfx=0)
         i1   = Notes.nextIndex(i1, d)
         i2   = Notes.nextIndex(i2, d)
     return m
 ########################################################################################################################################################################################################
 KSD = {}
+dmpKSDhdr(0)
 KSD = initKSD(KSD, t=0)
 KSD = initKSD(KSD)
 KSD = initKSD(KSD, t=1)
-
+dmpKSDhdr(1)
 ########################################################################################################################################################################################################
 
 class Strings(object):
