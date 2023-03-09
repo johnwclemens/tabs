@@ -22,7 +22,8 @@ QUIT_END         = '###   END Quit   ###' * 10
 STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'm12', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
 def m12(s):         return M12[s] if s in M12 else s
-def t2sign(t=None): return ' ' if t is None or t==2 else '+' if t==1 else ''
+#def t2sign(t=None): return ' ' if t is None or t==2 else '+' if t==1 else ''
+def t2sign(t=0):    return ' ' if not t else '+' if t==1 else ''
 def js2sign(l):     return [ '-' if k<0  else '+' if k>0 else ' ' for k in l ]
 
 def init(file, oid):
@@ -55,8 +56,8 @@ def dumpKS():
     for k in keys:      slog(fmtks(k), pfx=0)
 
 def dmpKSDhdr(t):
-    l = 2*P+1 if t is Notes.NONE else M if t==Notes.FLAT else P if t==Notes.SHRP else 1  ;   sign = t2sign(t)
-    slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{l}', pfx=0)
+    k = 2*P+1 if t == Notes.NONE else M if t == Notes.FLAT else P if t == Notes.SHRP else 1  ;   sign = t2sign(t)
+    slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{k}', pfx=0)
 
 def dumpKSD(ksd, w=2, u='<'):
     keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
@@ -95,7 +96,8 @@ def nic2KS(nic, dbg=0):
     return  s, k, nt, n, i, ns, js(i)
 ########################################################################################################################################################################################################
 def fmtks(k):
-    t   = 1 if k > 0 else 0 if k < 0 else 2    ;   nt = Notes.TYPES[t]
+#    t   = 1 if k > 0 else 0 if k < 0 else 2    ;   nt = Notes.TYPES[t]
+    t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
     s   = t2sign(t)     ;   im = KSD[k][KIM]   ;    i = im[0]      ;    m = im[1]
     iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]   ;   ms = KSD[k][KMS]
     ns  = [ Notes.name(j, t, 1 if abs(k) >= 5 else 0) for j in jz ]
@@ -269,9 +271,11 @@ class DSymb(object):
 ########################################################################################################################################################################################################
 
 class Notes(object):
-    FLAT, SHRP, NONE = 0, 1, 2
+#    FLAT, SHRP, NONE = 0, 1, 2
+    FLAT, NONE, SHRP = -1, 0,      1   # -1 ~= 2
+    TYPES            = [ 'NONE', 'SHRP', 'FLAT' ] # 0=NONE, 1=SHRP, 2=FLAT=-1
+#    TYPES      = ['FLAT', 'SHRP', 'NONE']
     TYPE       = FLAT
-    TYPES      = ['FLAT', 'SHRP', 'NONE']
     S2F        = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           }
     F2S        = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'           }
     S2F2       = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B':'Cb' }
@@ -283,8 +287,8 @@ class Notes(object):
     I2V        = { 0: 'R', 1: 'b2', 2: '2', 3: 'm3', 4: 'M3', 5: '4', 6: 'b5', 7: '5', 8: '#5', 9: '6', 10: 'b7', 11: '7' }
     N2I        = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11 }
     MAX_IDX    = 10 * NTONES + 1
-    I2N        = [I2F,  I2S]
-    I2N2       = [I2F2, I2S2]
+    I2N        = [I2F,  I2S,  I2F]
+    I2N2       = [I2F2, I2S2, I2F2]
 
     @staticmethod
     def setType(t): Notes.TYPE = t
@@ -300,8 +304,14 @@ class Notes(object):
         return  (i + d) % NTONES
 
     @staticmethod
-    def name(i, t=None, n2=0):
+    def OLD__name(i, t=None, n2=0):
         t    = 0 if t == 2 else t if t is not None else Notes.TYPE
+        name = Notes.I2N2[t][i % NTONES]   if n2   else Notes.I2N[t][i % NTONES]
+        return name
+
+    @staticmethod
+    def name(i, t=0, n2=0):
+        t    = t if t else Notes.TYPE
         name = Notes.I2N2[t][i % NTONES]   if n2   else Notes.I2N[t][i % NTONES]
         return name
 
@@ -326,9 +336,9 @@ def initND():
     return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i] ] for i in range(NTONES) }
 ND = initND()
 ########################################################################################################################################################################################################
-def initKSD(ks, t=None):
+def OLD__initKSD(ks, t=None):
     NT = NTONES
-    if   t is None:
+    if   not t: # is None:
         i = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (i2+1+j*d) % NT for j in range(0,    7,   j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
     elif t:
         i = 7   ;   i2 = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+j*d)   % NT for j in range(1,  j1+j2, j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
@@ -349,6 +359,29 @@ def initKSD(ks, t=None):
         i2 = Notes.nextIndex(i2, d)
     return ks
 
+def initKSD(ks, t=0):
+    NT = NTONES
+    if   t < 0:
+        i = 5   ;   i2 = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i+1+j*d) % NT for j in range(1, -j1-j2, 1)  ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+    elif t > 0:
+        i = 7   ;   i2 = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+j*d)   % NT for j in range(1,  j1+j2, j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+    else:
+        i = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (i2+1+j*d) % NT for j in range(0,    7,   j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
+    li  = list(li0)   ;   ln = list(ln0)
+    for k in range(0 if not t else t, j1+j2, j1):
+        m  = Notes.name(i, t, 1)
+        n  = Notes.name(i2, t, 1)
+        im = [i, m]      ;    ak = abs(k)
+        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = i2   ;  ms = list(ln)  ;  iz = list(li)
+        else:                                             ms = list(ln)  ;  iz = list(li)
+        jz = js(i)
+        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
+        ks[k] = [ im, iz, ms, jz, ns ]
+        slog(fmtks(k), pfx=0)
+        i  = Notes.nextIndex(i, d)
+        i2 = Notes.nextIndex(i2, d)
+    return ks
+
 ########################################################################################################################################################################################################
 def js(i):  return [ (i+j) % NTONES for j in JS ]
 
@@ -356,9 +389,9 @@ JS  = (0, 2, 4, 5, 7, 9, 11)
 KIM = 0  ;  KIS = 1  ;  KMS = 2  ;  KJS = 3  ;  KNS = 4
 KSD = {}
 dmpKSDhdr(0)
-KSD = initKSD(KSD, t=0)
-KSD = initKSD(KSD)
-KSD = initKSD(KSD, t=1)
+KSD = initKSD(KSD, t=-1)
+KSD = initKSD(KSD, t= 0)
+KSD = initKSD(KSD, t= 1)
 dmpKSDhdr(1)
 ########################################################################################################################################################################################################
 

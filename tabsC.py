@@ -2295,7 +2295,8 @@ class Tabs(pyglet.window.Window):
             self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
     ####################################################################################################################################################################################################
     def toggleFlatSharp(self, how, dbg=0):  #  page line colm tab or select
-        t1 = Notes.TYPE    ;    t2 = (Notes.TYPE + 1) % 2    ;   Notes.setType(t2)
+#        t1 = Notes.TYPE    ;    t2 = (Notes.TYPE + 1) % 2    ;   Notes.setType(t2)
+        t1 = Notes.TYPE    ;    t2 =  Notes.TYPE * -1      ;     Notes.setType(t2)
         self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
         s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i
         tniks, j, _, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
