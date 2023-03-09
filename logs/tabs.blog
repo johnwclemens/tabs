@@ -28,24 +28,24 @@ I  F  S  IV   Notes Table 12
 a [Bb A# b7]
 b [B  B  7 ]
 KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table  15
--7 FLAT [Cb b] [Bb Eb Ab Db Gb Cb Fb] [b 1 3 4 6 8 a]
--6 FLAT [Gb 6] [Bb Eb Ab Db Gb Cb F ] [6 8 a b 1 3 5]
--5 FLAT [Db 1] [Bb Eb Ab Db Gb C  F ] [1 3 5 6 8 a 0]
--4 FLAT [Ab 8] [Bb Eb Ab Db G  C  F ] [8 a 0 1 3 5 7]
--3 FLAT [Eb 3] [Bb Eb Ab D  G  C  F ] [3 5 7 8 a 0 2]
--2 FLAT [Bb a] [Bb Eb A  D  G  C  F ] [a 0 2 3 5 7 9]
--1 FLAT [F  5] [Bb E  A  D  G  C  F ] [5 7 9 a 0 2 4]
- 0 NONE [C  0] [B  E  A  D  G  C  F ] [0 2 4 5 7 9 b]
-+1 SHRP [G  7] [F# C  G  D  A  E  B ] [7 9 b 0 2 4 6]
-+2 SHRP [D  2] [F# C# G  D  A  E  B ] [2 4 6 7 9 b 1]
-+3 SHRP [A  9] [F# C# G# D  A  E  B ] [9 b 1 2 4 6 8]
-+4 SHRP [E  4] [F# C# G# D# A  E  B ] [4 6 8 9 b 1 3]
-+5 SHRP [B  b] [F# C# G# D# A# E  B ] [b 1 3 4 6 8 a]
-+6 SHRP [F# 6] [F# C# G# D# A# E# B ] [6 8 a b 1 3 5]
-+7 SHRP [C# 1] [F# C# G# D# A# E# B#] [1 3 5 6 8 a 0]
+-7 FLAT [Cb b] [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [B  Db Eb E  Gb Ab Bb]
+-6 FLAT [Gb 6] [Bb Eb Ab Db Gb Cb F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [Gb Ab Bb B  Db Eb F ]
+-5 FLAT [Db 1] [Bb Eb Ab Db Gb C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [Db Eb F  Gb Ab Bb C ]
+-4 FLAT [Ab 8] [Bb Eb Ab Db G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [Ab Bb C  Db Eb F  G ]
+-3 FLAT [Eb 3] [Bb Eb Ab D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [Eb F  G  Ab Bb C  D ]
+-2 FLAT [Bb a] [Bb Eb A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [Bb C  D  Eb F  G  A ]
+-1 FLAT [F  5] [Bb E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  Bb C  D  E ]
+ 0 NONE [C  0] [B  E  A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
++1 SHRP [G  7] [F# C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F#]
++2 SHRP [D  2] [F# C# G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F# G  A  B  C#]
++3 SHRP [A  9] [F# C# G# D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C# D  E  F# G#]
++4 SHRP [E  4] [F# C# G# D# A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F# G# A  B  C# D#]
++5 SHRP [B  b] [F# C# G# D# A# E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C# D# E  F# G# A#]
++6 SHRP [F# 6] [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
++7 SHRP [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   46 util  dumpData           END
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
-2675 tabsC <module>           argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
+2676 tabsC <module>           argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
  0 FSH  [  8   0   8   0]  0 FSH  [  8   0   8  15]  0 FSH  [  8   0   8  30]  0 FSH  [  8   0   8  45]  0 FSH  [  8   0   8  60]  0 FSH  [  8   0   8  75]  0 FSH  [  8   0   8  90]  0 FSH  [  8   0   8 105]  0 FSH  [  8   0   8 120]  0 FSH  [  8   0   8 135]  0 FSH  [  8   0   8 150]  0 FSH  [  8   0   8 165]  0 FSH  [  8   0   8 170]  0 FSH  [  8   0   8 195]  0 FSH  [  8   0   8 210]  0 FSH  [  8   0   8 225]  0 FSH  [  8   0   8 240]  0 FSH  [  8   0   8 255] 
  1 FSH  [ 23   0  23   0]  1 FSH  [ 23   0  23  15]  1 FSH  [ 23   0  23  30]  1 FSH  [ 23   0  23  45]  1 FSH  [ 23   0  23  60]  1 FSH  [ 23   0  23  75]  1 FSH  [ 23   0  23  90]  1 FSH  [ 23   0  23 105]  1 FSH  [ 23   0  23 120]  1 FSH  [ 23   0  23 135]  1 FSH  [ 23   0  23 150]  1 FSH  [ 23   0  23 165]  1 FSH  [ 23   0  23 170]  1 FSH  [ 23   0  23 195]  1 FSH  [ 23   0  23 210]  1 FSH  [ 23   0  23 225]  1 FSH  [ 23   0  23 240]  1 FSH  [ 23   0  23 255] 
@@ -465,41 +465,41 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        R=[  5  13  22  31  39  48  56  65  74  82  91  99 108 117 125 134 142 151]
        G=[  2   6  10  14  18  22  26  31  35  39  43  47  51  55  59  63  67  71]
        B=[  0   1   1   1   2   2   2   3   3   3   4   4   4   5   5   5   6   6]
-2679 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2680 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
- 241 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
+2680 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+2681 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+ 288 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
- 257 util  parseCmdLine        1 short   -n n [] 
- 275 util  parseCmdLine        2 arg     1  n [1] 
- 275 util  parseCmdLine        3 arg     1  n [1 1] 
- 275 util  parseCmdLine        4 arg     10 n [1 1 10] 
- 275 util  parseCmdLine        5 arg     6  n [1 1 10 6] 
- 257 util  parseCmdLine        6 short   -S S [] 
- 275 util  parseCmdLine        7 arg     0  S [0] 
- 275 util  parseCmdLine        8 arg     1  S [0 1] 
- 275 util  parseCmdLine        9 arg     3  S [0 1 3] 
- 257 util  parseCmdLine       10 short   -i i [] 
- 275 util  parseCmdLine       11 arg     1  i [1] 
- 275 util  parseCmdLine       12 arg     1  i [1 1] 
- 275 util  parseCmdLine       13 arg     1  i [1 1 1] 
- 275 util  parseCmdLine       14 arg     6  i [1 1 1 6] 
- 277 util  parseCmdLine       options=[[n:[1 1 10 6]] [S:[0 1 3]] [i:[1 1 1 6]]]
-2574 tabsC dumpGlobals        BASE_NAME = tabs
-2575 tabsC dumpGlobals        argv      = +15[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
-2576 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2577 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+ 304 util  parseCmdLine        1 short   -n n [] 
+ 322 util  parseCmdLine        2 arg     1  n [1] 
+ 322 util  parseCmdLine        3 arg     1  n [1 1] 
+ 322 util  parseCmdLine        4 arg     10 n [1 1 10] 
+ 322 util  parseCmdLine        5 arg     6  n [1 1 10 6] 
+ 304 util  parseCmdLine        6 short   -S S [] 
+ 322 util  parseCmdLine        7 arg     0  S [0] 
+ 322 util  parseCmdLine        8 arg     1  S [0 1] 
+ 322 util  parseCmdLine        9 arg     3  S [0 1 3] 
+ 304 util  parseCmdLine       10 short   -i i [] 
+ 322 util  parseCmdLine       11 arg     1  i [1] 
+ 322 util  parseCmdLine       12 arg     1  i [1 1] 
+ 322 util  parseCmdLine       13 arg     1  i [1 1 1] 
+ 322 util  parseCmdLine       14 arg     6  i [1 1 1 6] 
+ 324 util  parseCmdLine       options=[[n:[1 1 10 6]] [S:[0 1 3]] [i:[1 1 1 6]]]
+2575 tabsC dumpGlobals        BASE_NAME = tabs
+2576 tabsC dumpGlobals        argv      = +15[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
+2577 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2578 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
   28 tabsC __init__           STFILT:
 [log tlog    dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
   29 tabsC __init__           BGN <class __main__.Tabs>
-2509 tabsC getFilePath        fdir=logs/ fsfx=.log
-2513 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2523 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.53.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.54.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.55.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.56.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.57.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.58.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.59.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.60.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.61.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.62.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.63.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.64.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.65.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.66.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.67.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.68.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.69.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.70.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.71.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.72.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.73.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.74.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.75.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.76.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.77.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.78.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log]
-2525 tabsC getFileSeqNum      ids=[0 1 10 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 52 53 54 55 56 57 58 59 6 60 61 62 63 64 65 66 67 68 69 7 70 71 72 73 74 75 76 77 78 8 9]
-2517 tabsC getFilePath        fsfx=.79.log
- 222 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 225 util  getFilePath        fileName =tabs.79.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.79.log)
- 222 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 225 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+2510 tabsC getFilePath        fdir=logs/ fsfx=.log
+2514 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
+2524 tabsC getFileSeqNum      sfx=.log files=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.10.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.11.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.12.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.13.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.14.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.15.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.16.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.17.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.18.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.19.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.20.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.21.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.22.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.23.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.24.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.25.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.27.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.29.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.3.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.30.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.31.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.32.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.33.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.34.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.35.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.36.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.37.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.38.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.39.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.4.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.40.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.41.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.42.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.44.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.45.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.46.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.47.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.48.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.49.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.5.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.50.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.51.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.52.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.53.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.54.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.55.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.56.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.57.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.58.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.59.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.6.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.60.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.61.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.62.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.63.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.64.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.65.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.66.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.67.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.68.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.69.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.7.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.70.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.71.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.72.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.73.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.74.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.75.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.76.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.77.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.78.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.8.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.80.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.81.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.82.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.83.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.84.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.85.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.86.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.88.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.89.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.9.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.90.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.91.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.92.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.93.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.94.log]
+2526 tabsC getFileSeqNum      ids=[0 1 10 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 26 27 28 29 3 30 31 32 33 34 35 36 37 38 39 4 40 41 42 43 44 45 46 47 48 49 5 50 51 52 53 54 55 56 57 58 59 6 60 61 62 63 64 65 66 67 68 69 7 70 71 72 73 74 75 76 77 78 79 8 80 81 82 83 84 85 86 87 88 89 9 90 91 92 93 94]
+2518 tabsC getFilePath        fsfx=.95.log
+ 269 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 272 util  getFilePath        fileName =tabs.95.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.95.log)
+ 269 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 272 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
   34 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
   43 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=UP  
   59 tabsC __init__           CODS=0 type(.idmap)=<class dict>
@@ -533,13 +533,13 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  151 tabsC dumpArgs           [L]             .LL=0
  152 tabsC dumpArgs           [S]             .SS=[0 1 3]
  153 tabsC dumpArgs           [Z]             .ZZ=[]
- 460 util  __init__           stringMap   = [[E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]]
- 461 util  __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
- 462 util  __init__           stringNames =      EBGDAE
- 463 util  __init__           stringNumbs =      123456
- 464 util  __init__           stringCapo  =      000000
- 465 util  __init__           strLabel    =      STRING
- 466 util  __init__           cpoLabel    =       CAPO 
+ 468 util  __init__           stringMap   = [[E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]]
+ 469 util  __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
+ 470 util  __init__           stringNames =      EBGDAE
+ 471 util  __init__           stringNumbs =      123456
+ 472 util  __init__           stringCapo  =      000000
+ 473 util  __init__           strLabel    =      STRING
+ 474 util  __init__           cpoLabel    =       CAPO 
  105 tabsC __init__           Frequency Info
 index[    1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88    89    90    91    92    93    94    95    96    97    98    99   100   101   102   103   104   105   106   107   108   109   110   111   112   113   114   115   116   117   118   119   120   121]
 sharp[B#0   C0    C#0   D0    D#0   E0    E#0   F0    F#0   G0    G#0   A0    A#0   B0    B#1   C1    C#1   D1    D#1   E1    E#1   F1    F#1   G1    G#1   A1    A#1   B1    B#2   C2    C#2   D2    D#2   E2    E#2   F2    F#2   G2    G#2   A2    A#2   B2    B#3   C3    C#3   D3    D#3   E3    E#3   F3    F#3   G3    G#3   A3    A#3   B3    B#4   C4    C#4   D4    D#4   E4    E#4   F4    F#4   G4    G#4   A4    A#4   B4    B#5   C5    C#5   D5    D#5   E5    E#5   F5    F#5   G5    G#5   A5    A#5   B5    B#6   C6    C#6   D6    D#6   E6    E#6   F6    F#6   G6    G#6   A6    A#6   B6    B#7   C7    C#7   D7    D#7   E7    E#7   F7    F#7   G7    G#7   A7    A#7   B7    B#8   C8    C#8   D8    D#8   E8    E#8   F8    F#8  ]
@@ -570,7 +570,7 @@ sharp[B#0   C0    C#0   D0    D#0   E0    E#0   F0    F#0   G0    G#0   A0    A#
  268 chord _dumpOMAP          END len(OMAP)=581 catfile.name=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat len(r)=0
  217 chord dumpOMAP           END   len(OMAP)=581 len(umap)=0
  239 tabsC _initWindowA       BGN (  -1x-1  )
- 239 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002719C87F5E0>
+ 239 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001940168DB70>
  242 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
  242 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
  243 tabsC _initWindowA       END (  -1x-1  )
@@ -650,9 +650,9 @@ sharp[B#0   C0    C#0   D0    D#0   E0    E#0   F0    F#0   G0    G#0   A0    A#
 ---------- ---2------ -1-3------ 1--4------ -44------- 4-6-------
 
  630 tabsC dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
- 230 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat)
- 231 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat.bck)
- 233 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat.bck ###
+ 277 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat)
+ 278 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/testC.4.2.10.dat.bck)
+ 280 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat C:\Users\Owner\Documents\GitHub\tabs\data\testC.4.2.10.dat.bck ###
  677 tabsC A_transposeData    BGN ( 1x1x6x10 ) dump=1
  634 tabsC isVert             BGN dl=[1 1 6 10] dt=[list list list str]
 [[[---------- ---2------ -1-3------ 1--4------ -44------- 4-6-------]]]
@@ -801,21 +801,21 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   76 New1  Note    1   -  20 5 V 1  1  2  11   60    1    0    0  0   0 0 0  0  0  0  0   76  76   32.00  306.67   64.00   26.67  
   77 New1  Note    2   -  20 5 V 1  1  2  11   60    2    0    0  0   0 0 0  0  0  0  0   77  77   32.00  280.00   64.00   26.67  
   78 New1  Note    3   -  20 5 V 1  1  2  11   60    3    0    0  0   0 0 0  0  0  0  0   78  78   32.00  253.33   64.00   26.67  
- 484 util  tab2nn             adding nic[3]=1
- 490 util  tab2nn             tab=1 s=3 fn=1 i=39 name=Eb nic[3]=1
+ 492 util  tab2nn             adding nic[3]=1
+ 498 util  tab2nn             tab=1 s=3 fn=1 i=39 name=Eb nic[3]=1
   79 New1  Note    4  Eb  20 5 V 1  1  2  11   60    4    0    0  0   0 0 0  0  0  0  0   79  79   32.00  226.67   64.00   26.67  
   80 New1  Note    5   -  20 5 V 1  1  2  11   60    5    0    0  0   0 0 0  0  0  0  0   80  80   32.00  200.00   64.00   26.67  
- 484 util  tab2nn             adding nic[8]=1
- 490 util  tab2nn             tab=4 s=5 fn=4 i=32 name=Ab nic[8]=1
+ 492 util  tab2nn             adding nic[8]=1
+ 498 util  tab2nn             tab=4 s=5 fn=4 i=32 name=Ab nic[8]=1
   81 New1  Note    6  Ab  20 5 V 1  1  2  11   60    6    0    0  0   0 0 0  0  0  0  0   81  81   32.00  173.33   64.00   26.67  
   82 New1  Colm   12      74 4 V 1  1  2  12   60    6    0    0  0   0 0 0  0  0  0  0   82  82   96.00  240.00   64.00  160.00  
   83 New1  Note    7   -  20 5 V 1  1  2  12   60    7    0    0  0   0 0 0  0  0  0  0   83  83   96.00  306.67   64.00   26.67  
   84 New1  Note    8   -  20 5 V 1  1  2  12   60    8    0    0  0   0 0 0  0  0  0  0   84  84   96.00  280.00   64.00   26.67  
- 490 util  tab2nn             tab=1 s=2 fn=1 i=44 name=Ab nic[8]=2
+ 498 util  tab2nn             tab=1 s=2 fn=1 i=44 name=Ab nic[8]=2
   85 New1  Note    9  Ab  20 5 V 1  1  2  12   60    9    0    0  0   0 0 0  0  0  0  0   85  85   96.00  253.33   64.00   26.67  
   86 New1  Note   10   -  20 5 V 1  1  2  12   60   10    0    0  0   0 0 0  0  0  0  0   86  86   96.00  226.67   64.00   26.67  
- 484 util  tab2nn             adding nic[1]=1
- 490 util  tab2nn             tab=4 s=4 fn=4 i=37 name=Db nic[1]=1
+ 492 util  tab2nn             adding nic[1]=1
+ 498 util  tab2nn             tab=4 s=4 fn=4 i=37 name=Db nic[1]=1
   87 New1  Note   11  Db  20 5 V 1  1  2  12   60   11    0    0  0   0 0 0  0  0  0  0   87  87   96.00  200.00   64.00   26.67  
   88 New1  Note   12   -  20 5 V 1  1  2  12   60   12    0    0  0   0 0 0  0  0  0  0   88  88   96.00  173.33   64.00   26.67  
   89 New1  Colm   13      74 4 V 1  1  2  13   60   12    0    0  0   0 0 0  0  0  0  0   89  89  160.00  240.00   64.00  160.00  
@@ -823,19 +823,19 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   91 New1  Note   14   -  20 5 V 1  1  2  13   60   14    0    0  0   0 0 0  0  0  0  0   91  91  160.00  280.00   64.00   26.67  
   92 New1  Note   15   -  20 5 V 1  1  2  13   60   15    0    0  0   0 0 0  0  0  0  0   92  92  160.00  253.33   64.00   26.67  
   93 New1  Note   16   -  20 5 V 1  1  2  13   60   16    0    0  0   0 0 0  0  0  0  0   93  93  160.00  226.67   64.00   26.67  
- 490 util  tab2nn             tab=4 s=4 fn=4 i=37 name=Db nic[1]=2
+ 498 util  tab2nn             tab=4 s=4 fn=4 i=37 name=Db nic[1]=2
   94 New1  Note   17  Db  20 5 V 1  1  2  13   60   17    0    0  0   0 0 0  0  0  0  0   94  94  160.00  200.00   64.00   26.67  
- 484 util  tab2nn             adding nic[10]=1
- 490 util  tab2nn             tab=6 s=5 fn=6 i=34 name=Bb nic[a]=1
+ 492 util  tab2nn             adding nic[10]=1
+ 498 util  tab2nn             tab=6 s=5 fn=6 i=34 name=Bb nic[a]=1
   95 New1  Note   18  Bb  20 5 V 1  1  2  13   60   18    0    0  0   0 0 0  0  0  0  0   95  95  160.00  173.33   64.00   26.67  
   96 New1  Colm   14      74 4 V 1  1  2  14   60   18    0    0  0   0 0 0  0  0  0  0   96  96  224.00  240.00   64.00  160.00  
   97 New1  Note   19   -  20 5 V 1  1  2  14   60   19    0    0  0   0 0 0  0  0  0  0   97  97  224.00  306.67   64.00   26.67  
- 490 util  tab2nn             tab=2 s=1 fn=2 i=49 name=Db nic[1]=3
+ 498 util  tab2nn             tab=2 s=1 fn=2 i=49 name=Db nic[1]=3
   98 New1  Note   20  Db  20 5 V 1  1  2  14   60   20    0    0  0   0 0 0  0  0  0  0   98  98  224.00  280.00   64.00   26.67  
- 490 util  tab2nn             tab=3 s=2 fn=3 i=46 name=Bb nic[a]=2
+ 498 util  tab2nn             tab=3 s=2 fn=3 i=46 name=Bb nic[a]=2
   99 New1  Note   21  Bb  20 5 V 1  1  2  14   60   21    0    0  0   0 0 0  0  0  0  0   99  99  224.00  253.33   64.00   26.67  
- 484 util  tab2nn             adding nic[6]=1
- 490 util  tab2nn             tab=4 s=3 fn=4 i=42 name=Gb nic[6]=1
+ 492 util  tab2nn             adding nic[6]=1
+ 498 util  tab2nn             tab=4 s=3 fn=4 i=42 name=Gb nic[6]=1
  100 New1  Note   22  Gb  20 5 V 1  1  2  14   60   22    0    0  0   0 0 0  0  0  0  0  100 100  224.00  226.67   64.00   26.67  
  101 New1  Note   23   -  20 5 V 1  1  2  14   60   23    0    0  0   0 0 0  0  0  0  0  101 101  224.00  200.00   64.00   26.67  
  102 New1  Note   24   -  20 5 V 1  1  2  14   60   24    0    0  0   0 0 0  0  0  0  0  102 102  224.00  173.33   64.00   26.67  
@@ -995,21 +995,21 @@ I  F  S  IV   Notes Table 12
 a [Bb A# b7]
 b [B  B  7 ]
 KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table  15
--7 FLAT [Cb b] [Bb Eb Ab Db Gb Cb Fb] [b 1 3 4 6 8 a]
--6 FLAT [Gb 6] [Bb Eb Ab Db Gb Cb F ] [6 8 a b 1 3 5]
--5 FLAT [Db 1] [Bb Eb Ab Db Gb C  F ] [1 3 5 6 8 a 0]
--4 FLAT [Ab 8] [Bb Eb Ab Db G  C  F ] [8 a 0 1 3 5 7]
--3 FLAT [Eb 3] [Bb Eb Ab D  G  C  F ] [3 5 7 8 a 0 2]
--2 FLAT [Bb a] [Bb Eb A  D  G  C  F ] [a 0 2 3 5 7 9]
--1 FLAT [F  5] [Bb E  A  D  G  C  F ] [5 7 9 a 0 2 4]
- 0 NONE [C  0] [B  E  A  D  G  C  F ] [0 2 4 5 7 9 b]
-+1 SHRP [G  7] [F# C  G  D  A  E  B ] [7 9 b 0 2 4 6]
-+2 SHRP [D  2] [F# C# G  D  A  E  B ] [2 4 6 7 9 b 1]
-+3 SHRP [A  9] [F# C# G# D  A  E  B ] [9 b 1 2 4 6 8]
-+4 SHRP [E  4] [F# C# G# D# A  E  B ] [4 6 8 9 b 1 3]
-+5 SHRP [B  b] [F# C# G# D# A# E  B ] [b 1 3 4 6 8 a]
-+6 SHRP [F# 6] [F# C# G# D# A# E# B ] [6 8 a b 1 3 5]
-+7 SHRP [C# 1] [F# C# G# D# A# E# B#] [1 3 5 6 8 a 0]
+-7 FLAT [Cb b] [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [B  Db Eb E  Gb Ab Bb]
+-6 FLAT [Gb 6] [Bb Eb Ab Db Gb Cb F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [Gb Ab Bb B  Db Eb F ]
+-5 FLAT [Db 1] [Bb Eb Ab Db Gb C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [Db Eb F  Gb Ab Bb C ]
+-4 FLAT [Ab 8] [Bb Eb Ab Db G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [Ab Bb C  Db Eb F  G ]
+-3 FLAT [Eb 3] [Bb Eb Ab D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [Eb F  G  Ab Bb C  D ]
+-2 FLAT [Bb a] [Bb Eb A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [Bb C  D  Eb F  G  A ]
+-1 FLAT [F  5] [Bb E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  Bb C  D  E ]
+ 0 NONE [C  0] [B  E  A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
++1 SHRP [G  7] [F# C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F#]
++2 SHRP [D  2] [F# C# G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F# G  A  B  C#]
++3 SHRP [A  9] [F# C# G# D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C# D  E  F# G#]
++4 SHRP [E  4] [F# C# G# D# A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F# G# A  B  C# D#]
++5 SHRP [B  b] [F# C# G# D# A# E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C# D# E  F# G# A#]
++6 SHRP [F# 6] [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
++7 SHRP [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   46 util  dumpData           END
 1592 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels New1
    2p2   11
@@ -1260,20 +1260,20 @@ KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian No
 1411 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] New1A
  511 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
  531 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-  73 util  dumpKSD                                    -  -  -  -  -  -  -     +  +  +  +  +  +  +
-  73 util  dumpKSD                                    7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
-  74 util  dumpKSD                                    Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
-  75 util  dumpKSD                                    b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 
-  77 util  dumpKSD                                    4  b  6  1  8  3  a     6  1  8  3  a  5  0 
-  78 util  dumpKSD                                    Fb Cb Gb Db Ab Eb Bb    F# C# G# D# A# E# B#
-  85 util  dumpNic                 sorted(dict(nic)) [1  3  6  8  a ]
-  86 util  dumpNic                       zip(*mc)[0] [1  8  a  3  6 ]
-  87 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1 ]
-  88 util  dumpNic                  mc[n][1]/nt*100% [33 22 22 11 11]
-  89 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb]
-  90 util  dumpNic                            I2S[n] [C# G# A# D# F#]
- 282 tabsC _initTniks         -5 FLAT [Db 1] [Bb Eb Ab Db Gb C  F ] [a 3 8 1 6]
-2484 tabsC regSnap            .snapWhy=init .snapType=INIT .snapReg=1 .snapId=0
+  87 util  dumpKSD                                    -  -  -  -  -  -  -     +  +  +  +  +  +  +
+  87 util  dumpKSD                                    7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
+  88 util  dumpKSD                                    11 6  1  8  3  10 5  0  7  2  9  4  11 6  1 
+  89 util  dumpKSD                                    Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
+  91 util  dumpKSD                                    Fb Cb Gb Db Ab Eb Bb    F# C# G# D# A# E# B#
+  92 util  dumpKSD                                     4 11  6  1  8  3 10     6  1  8  3 10  5  0
+  99 util  dumpNic                 sorted(dict(nic)) [1  3  6  8  a ]
+ 100 util  dumpNic                       zip(*mc)[0] [1  8  a  3  6 ]
+ 101 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1 ]
+ 102 util  dumpNic                  mc[n][1]/nt*100% [33 22 22 11 11]
+ 103 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb]
+ 104 util  dumpNic                            I2S[n] [C# G# A# D# F#]
+ 282 tabsC _initTniks         ?0 FLAT [?? 0] [11  4  9  2  7  0  5] [0 2 4 5 7 9 b]
+2485 tabsC regSnap            .snapWhy=init .snapType=INIT .snapReg=1 .snapId=0
  174 tabsC _reinit            [1 1 1  1 6]   6  1] END
  121 tabsC __init__           END <class __main__.Tabs>
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
@@ -1501,7 +1501,7 @@ KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian No
  215 Upd1  Kord   60   -  20 5 V 1  1  3  30   60   60    0   60  0   0 0 0  0  0  0  0  215 215  608.00   13.33   64.00   26.67  
 1314 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
  216 Upd1  HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   26.67  
-2484 tabsC regSnap            .snapWhy=Upd1 .snapType=RSZC_5 .snapReg=1 .snapId=0
+2485 tabsC regSnap            .snapWhy=Upd1 .snapType=RSZC_5 .snapReg=1 .snapId=0
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
 1290 tabsC resizeTniks        J1[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd1
@@ -1544,21 +1544,21 @@ I  F  S  IV   Notes Table 12
 a [Bb A# b7]
 b [B  B  7 ]
 KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table  15
--7 FLAT [Cb b] [Bb Eb Ab Db Gb Cb Fb] [b 1 3 4 6 8 a]
--6 FLAT [Gb 6] [Bb Eb Ab Db Gb Cb F ] [6 8 a b 1 3 5]
--5 FLAT [Db 1] [Bb Eb Ab Db Gb C  F ] [1 3 5 6 8 a 0]
--4 FLAT [Ab 8] [Bb Eb Ab Db G  C  F ] [8 a 0 1 3 5 7]
--3 FLAT [Eb 3] [Bb Eb Ab D  G  C  F ] [3 5 7 8 a 0 2]
--2 FLAT [Bb a] [Bb Eb A  D  G  C  F ] [a 0 2 3 5 7 9]
--1 FLAT [F  5] [Bb E  A  D  G  C  F ] [5 7 9 a 0 2 4]
- 0 NONE [C  0] [B  E  A  D  G  C  F ] [0 2 4 5 7 9 b]
-+1 SHRP [G  7] [F# C  G  D  A  E  B ] [7 9 b 0 2 4 6]
-+2 SHRP [D  2] [F# C# G  D  A  E  B ] [2 4 6 7 9 b 1]
-+3 SHRP [A  9] [F# C# G# D  A  E  B ] [9 b 1 2 4 6 8]
-+4 SHRP [E  4] [F# C# G# D# A  E  B ] [4 6 8 9 b 1 3]
-+5 SHRP [B  b] [F# C# G# D# A# E  B ] [b 1 3 4 6 8 a]
-+6 SHRP [F# 6] [F# C# G# D# A# E# B ] [6 8 a b 1 3 5]
-+7 SHRP [C# 1] [F# C# G# D# A# E# B#] [1 3 5 6 8 a 0]
+-7 FLAT [Cb b] [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [B  Db Eb E  Gb Ab Bb]
+-6 FLAT [Gb 6] [Bb Eb Ab Db Gb Cb F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [Gb Ab Bb B  Db Eb F ]
+-5 FLAT [Db 1] [Bb Eb Ab Db Gb C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [Db Eb F  Gb Ab Bb C ]
+-4 FLAT [Ab 8] [Bb Eb Ab Db G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [Ab Bb C  Db Eb F  G ]
+-3 FLAT [Eb 3] [Bb Eb Ab D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [Eb F  G  Ab Bb C  D ]
+-2 FLAT [Bb a] [Bb Eb A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [Bb C  D  Eb F  G  A ]
+-1 FLAT [F  5] [Bb E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  Bb C  D  E ]
+ 0 NONE [C  0] [B  E  A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
++1 SHRP [G  7] [F# C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F#]
++2 SHRP [D  2] [F# C# G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F# G  A  B  C#]
++3 SHRP [A  9] [F# C# G# D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C# D  E  F# G#]
++4 SHRP [E  4] [F# C# G# D# A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F# G# A  B  C# D#]
++5 SHRP [B  b] [F# C# G# D# A# E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C# D# E  F# G# A#]
++6 SHRP [F# 6] [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
++7 SHRP [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   46 util  dumpData           END
 1592 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels Upd1
    1p1   1
@@ -1809,8 +1809,542 @@ KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian No
 1411 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd1A
  511 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
  531 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-2497 tabsC snapshot           SNAP_NAME=tabs.79.RSZC_5.0.png Upd1
+2498 tabsC snapshot           SNAP_NAME=tabs.95.RSZC_5.0.png Upd1
  543 tabsC on_draw            [1 1 1  1 6]   6  1] .snapWhy=Upd1 .snapType=RSZC_5 .snapId=1
+1279 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd2
+1279 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd2
+1279 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] Upd2
+1279 tabsC resizeTniks        BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] Upd2
+ Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
+ Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
+1302 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+   1 Upd2  Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
+   2 Upd2  Line    1     373 2 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  320.00  240.00  640.00  480.00  
+   3 Upd2  Sect    1     124 3 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  320.00  400.00  640.00  160.00  
+   4 Upd2  Colm    1      74 4 V 1  1  1   1    0    0    0    0  0   0 0 0  0  0  0  0    4   4   32.00  400.00   64.00  160.00  
+   5 Upd2  Tab     1   -  20 5 V 1  1  1   1    1    0    0    0  0   0 0 0  0  0  0  0    5   5   32.00  466.67   64.00   26.67  
+   6 Upd2  Tab     2   -  20 5 V 1  1  1   1    2    0    0    0  0   0 0 0  0  0  0  0    6   6   32.00  440.00   64.00   26.67  
+   7 Upd2  Tab     3   -  20 5 V 1  1  1   1    3    0    0    0  0   0 0 0  0  0  0  0    7   7   32.00  413.33   64.00   26.67  
+   8 Upd2  Tab     4   1  20 5 V 1  1  1   1    4    0    0    0  0   0 0 0  0  0  0  0    8   8   32.00  386.67   64.00   26.67  
+   9 Upd2  Tab     5   -  20 5 V 1  1  1   1    5    0    0    0  0   0 0 0  0  0  0  0    9   9   32.00  360.00   64.00   26.67  
+  10 Upd2  Tab     6   4  20 5 V 1  1  1   1    6    0    0    0  0   0 0 0  0  0  0  0   10  10   32.00  333.33   64.00   26.67  
+  11 Upd2  Colm    2      74 4 V 1  1  1   2    6    0    0    0  0   0 0 0  0  0  0  0   11  11   96.00  400.00   64.00  160.00  
+  12 Upd2  Tab     7   -  20 5 V 1  1  1   2    7    0    0    0  0   0 0 0  0  0  0  0   12  12   96.00  466.67   64.00   26.67  
+  13 Upd2  Tab     8   -  20 5 V 1  1  1   2    8    0    0    0  0   0 0 0  0  0  0  0   13  13   96.00  440.00   64.00   26.67  
+  14 Upd2  Tab     9   1  20 5 V 1  1  1   2    9    0    0    0  0   0 0 0  0  0  0  0   14  14   96.00  413.33   64.00   26.67  
+  15 Upd2  Tab    10   -  20 5 V 1  1  1   2   10    0    0    0  0   0 0 0  0  0  0  0   15  15   96.00  386.67   64.00   26.67  
+  16 Upd2  Tab    11   4  20 5 V 1  1  1   2   11    0    0    0  0   0 0 0  0  0  0  0   16  16   96.00  360.00   64.00   26.67  
+  17 Upd2  Tab    12   -  20 5 V 1  1  1   2   12    0    0    0  0   0 0 0  0  0  0  0   17  17   96.00  333.33   64.00   26.67  
+  18 Upd2  Colm    3      74 4 V 1  1  1   3   12    0    0    0  0   0 0 0  0  0  0  0   18  18  160.00  400.00   64.00  160.00  
+  19 Upd2  Tab    13   -  20 5 V 1  1  1   3   13    0    0    0  0   0 0 0  0  0  0  0   19  19  160.00  466.67   64.00   26.67  
+  20 Upd2  Tab    14   -  20 5 V 1  1  1   3   14    0    0    0  0   0 0 0  0  0  0  0   20  20  160.00  440.00   64.00   26.67  
+  21 Upd2  Tab    15   -  20 5 V 1  1  1   3   15    0    0    0  0   0 0 0  0  0  0  0   21  21  160.00  413.33   64.00   26.67  
+  22 Upd2  Tab    16   -  20 5 V 1  1  1   3   16    0    0    0  0   0 0 0  0  0  0  0   22  22  160.00  386.67   64.00   26.67  
+  23 Upd2  Tab    17   4  20 5 V 1  1  1   3   17    0    0    0  0   0 0 0  0  0  0  0   23  23  160.00  360.00   64.00   26.67  
+  24 Upd2  Tab    18   6  20 5 V 1  1  1   3   18    0    0    0  0   0 0 0  0  0  0  0   24  24  160.00  333.33   64.00   26.67  
+  25 Upd2  Colm    4      74 4 V 1  1  1   4   18    0    0    0  0   0 0 0  0  0  0  0   25  25  224.00  400.00   64.00  160.00  
+  26 Upd2  Tab    19   -  20 5 V 1  1  1   4   19    0    0    0  0   0 0 0  0  0  0  0   26  26  224.00  466.67   64.00   26.67  
+  27 Upd2  Tab    20   2  20 5 V 1  1  1   4   20    0    0    0  0   0 0 0  0  0  0  0   27  27  224.00  440.00   64.00   26.67  
+  28 Upd2  Tab    21   3  20 5 V 1  1  1   4   21    0    0    0  0   0 0 0  0  0  0  0   28  28  224.00  413.33   64.00   26.67  
+  29 Upd2  Tab    22   4  20 5 V 1  1  1   4   22    0    0    0  0   0 0 0  0  0  0  0   29  29  224.00  386.67   64.00   26.67  
+  30 Upd2  Tab    23   -  20 5 V 1  1  1   4   23    0    0    0  0   0 0 0  0  0  0  0   30  30  224.00  360.00   64.00   26.67  
+  31 Upd2  Tab    24   -  20 5 V 1  1  1   4   24    0    0    0  0   0 0 0  0  0  0  0   31  31  224.00  333.33   64.00   26.67  
+  32 Upd2  Colm    5      74 4 V 1  1  1   5   24    0    0    0  0   0 0 0  0  0  0  0   32  32  288.00  400.00   64.00  160.00  
+  33 Upd2  Tab    25   -  20 5 V 1  1  1   5   25    0    0    0  0   0 0 0  0  0  0  0   33  33  288.00  466.67   64.00   26.67  
+  34 Upd2  Tab    26   -  20 5 V 1  1  1   5   26    0    0    0  0   0 0 0  0  0  0  0   34  34  288.00  440.00   64.00   26.67  
+  35 Upd2  Tab    27   -  20 5 V 1  1  1   5   27    0    0    0  0   0 0 0  0  0  0  0   35  35  288.00  413.33   64.00   26.67  
+  36 Upd2  Tab    28   -  20 5 V 1  1  1   5   28    0    0    0  0   0 0 0  0  0  0  0   36  36  288.00  386.67   64.00   26.67  
+  37 Upd2  Tab    29   -  20 5 V 1  1  1   5   29    0    0    0  0   0 0 0  0  0  0  0   37  37  288.00  360.00   64.00   26.67  
+  38 Upd2  Tab    30   -  20 5 V 1  1  1   5   30    0    0    0  0   0 0 0  0  0  0  0   38  38  288.00  333.33   64.00   26.67  
+  39 Upd2  Colm    6      74 4 V 1  1  1   6   30    0    0    0  0   0 0 0  0  0  0  0   39  39  352.00  400.00   64.00  160.00  
+  40 Upd2  Tab    31   -  20 5 V 1  1  1   6   31    0    0    0  0   0 0 0  0  0  0  0   40  40  352.00  466.67   64.00   26.67  
+  41 Upd2  Tab    32   -  20 5 V 1  1  1   6   32    0    0    0  0   0 0 0  0  0  0  0   41  41  352.00  440.00   64.00   26.67  
+  42 Upd2  Tab    33   -  20 5 V 1  1  1   6   33    0    0    0  0   0 0 0  0  0  0  0   42  42  352.00  413.33   64.00   26.67  
+  43 Upd2  Tab    34   -  20 5 V 1  1  1   6   34    0    0    0  0   0 0 0  0  0  0  0   43  43  352.00  386.67   64.00   26.67  
+  44 Upd2  Tab    35   -  20 5 V 1  1  1   6   35    0    0    0  0   0 0 0  0  0  0  0   44  44  352.00  360.00   64.00   26.67  
+  45 Upd2  Tab    36   -  20 5 V 1  1  1   6   36    0    0    0  0   0 0 0  0  0  0  0   45  45  352.00  333.33   64.00   26.67  
+  46 Upd2  Colm    7      74 4 V 1  1  1   7   36    0    0    0  0   0 0 0  0  0  0  0   46  46  416.00  400.00   64.00  160.00  
+  47 Upd2  Tab    37   -  20 5 V 1  1  1   7   37    0    0    0  0   0 0 0  0  0  0  0   47  47  416.00  466.67   64.00   26.67  
+  48 Upd2  Tab    38   -  20 5 V 1  1  1   7   38    0    0    0  0   0 0 0  0  0  0  0   48  48  416.00  440.00   64.00   26.67  
+  49 Upd2  Tab    39   -  20 5 V 1  1  1   7   39    0    0    0  0   0 0 0  0  0  0  0   49  49  416.00  413.33   64.00   26.67  
+  50 Upd2  Tab    40   -  20 5 V 1  1  1   7   40    0    0    0  0   0 0 0  0  0  0  0   50  50  416.00  386.67   64.00   26.67  
+  51 Upd2  Tab    41   -  20 5 V 1  1  1   7   41    0    0    0  0   0 0 0  0  0  0  0   51  51  416.00  360.00   64.00   26.67  
+  52 Upd2  Tab    42   -  20 5 V 1  1  1   7   42    0    0    0  0   0 0 0  0  0  0  0   52  52  416.00  333.33   64.00   26.67  
+  53 Upd2  Colm    8      74 4 V 1  1  1   8   42    0    0    0  0   0 0 0  0  0  0  0   53  53  480.00  400.00   64.00  160.00  
+  54 Upd2  Tab    43   -  20 5 V 1  1  1   8   43    0    0    0  0   0 0 0  0  0  0  0   54  54  480.00  466.67   64.00   26.67  
+  55 Upd2  Tab    44   -  20 5 V 1  1  1   8   44    0    0    0  0   0 0 0  0  0  0  0   55  55  480.00  440.00   64.00   26.67  
+  56 Upd2  Tab    45   -  20 5 V 1  1  1   8   45    0    0    0  0   0 0 0  0  0  0  0   56  56  480.00  413.33   64.00   26.67  
+  57 Upd2  Tab    46   -  20 5 V 1  1  1   8   46    0    0    0  0   0 0 0  0  0  0  0   57  57  480.00  386.67   64.00   26.67  
+  58 Upd2  Tab    47   -  20 5 V 1  1  1   8   47    0    0    0  0   0 0 0  0  0  0  0   58  58  480.00  360.00   64.00   26.67  
+  59 Upd2  Tab    48   -  20 5 V 1  1  1   8   48    0    0    0  0   0 0 0  0  0  0  0   59  59  480.00  333.33   64.00   26.67  
+  60 Upd2  Colm    9      74 4 V 1  1  1   9   48    0    0    0  0   0 0 0  0  0  0  0   60  60  544.00  400.00   64.00  160.00  
+  61 Upd2  Tab    49   -  20 5 V 1  1  1   9   49    0    0    0  0   0 0 0  0  0  0  0   61  61  544.00  466.67   64.00   26.67  
+  62 Upd2  Tab    50   -  20 5 V 1  1  1   9   50    0    0    0  0   0 0 0  0  0  0  0   62  62  544.00  440.00   64.00   26.67  
+  63 Upd2  Tab    51   -  20 5 V 1  1  1   9   51    0    0    0  0   0 0 0  0  0  0  0   63  63  544.00  413.33   64.00   26.67  
+  64 Upd2  Tab    52   -  20 5 V 1  1  1   9   52    0    0    0  0   0 0 0  0  0  0  0   64  64  544.00  386.67   64.00   26.67  
+  65 Upd2  Tab    53   -  20 5 V 1  1  1   9   53    0    0    0  0   0 0 0  0  0  0  0   65  65  544.00  360.00   64.00   26.67  
+  66 Upd2  Tab    54   -  20 5 V 1  1  1   9   54    0    0    0  0   0 0 0  0  0  0  0   66  66  544.00  333.33   64.00   26.67  
+  67 Upd2  Colm   10      74 4 V 1  1  1  10   54    0    0    0  0   0 0 0  0  0  0  0   67  67  608.00  400.00   64.00  160.00  
+  68 Upd2  Tab    55   -  20 5 V 1  1  1  10   55    0    0    0  0   0 0 0  0  0  0  0   68  68  608.00  466.67   64.00   26.67  
+  69 Upd2  Tab    56   -  20 5 V 1  1  1  10   56    0    0    0  0   0 0 0  0  0  0  0   69  69  608.00  440.00   64.00   26.67  
+  70 Upd2  Tab    57   -  20 5 V 1  1  1  10   57    0    0    0  0   0 0 0  0  0  0  0   70  70  608.00  413.33   64.00   26.67  
+  71 Upd2  Tab    58   -  20 5 V 1  1  1  10   58    0    0    0  0   0 0 0  0  0  0  0   71  71  608.00  386.67   64.00   26.67  
+  72 Upd2  Tab    59   -  20 5 V 1  1  1  10   59    0    0    0  0   0 0 0  0  0  0  0   72  72  608.00  360.00   64.00   26.67  
+  73 Upd2  Tab    60   -  20 5 V 1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73  608.00  333.33   64.00   26.67  
+  74 Upd2  Sect    2     124 3 V 1  1  2  10   60    0    0    0  0   0 0 0  0  0  0  0   74  74  320.00  240.00  640.00  160.00  
+  75 Upd2  Colm   11      74 4 V 1  1  2  11   60    0    0    0  0   0 0 0  0  0  0  0   75  75   32.00  240.00   64.00  160.00  
+  76 Upd2  Note    1   -  20 5 V 1  1  2  11   60    1    0    0  0   0 0 0  0  0  0  0   76  76   32.00  306.67   64.00   26.67  
+  77 Upd2  Note    2   -  20 5 V 1  1  2  11   60    2    0    0  0   0 0 0  0  0  0  0   77  77   32.00  280.00   64.00   26.67  
+  78 Upd2  Note    3   -  20 5 V 1  1  2  11   60    3    0    0  0   0 0 0  0  0  0  0   78  78   32.00  253.33   64.00   26.67  
+  79 Upd2  Note    4  Eb  20 5 V 1  1  2  11   60    4    0    0  0   0 0 0  0  0  0  0   79  79   32.00  226.67   64.00   26.67  
+  80 Upd2  Note    5   -  20 5 V 1  1  2  11   60    5    0    0  0   0 0 0  0  0  0  0   80  80   32.00  200.00   64.00   26.67  
+  81 Upd2  Note    6  Ab  20 5 V 1  1  2  11   60    6    0    0  0   0 0 0  0  0  0  0   81  81   32.00  173.33   64.00   26.67  
+  82 Upd2  Colm   12      74 4 V 1  1  2  12   60    6    0    0  0   0 0 0  0  0  0  0   82  82   96.00  240.00   64.00  160.00  
+  83 Upd2  Note    7   -  20 5 V 1  1  2  12   60    7    0    0  0   0 0 0  0  0  0  0   83  83   96.00  306.67   64.00   26.67  
+  84 Upd2  Note    8   -  20 5 V 1  1  2  12   60    8    0    0  0   0 0 0  0  0  0  0   84  84   96.00  280.00   64.00   26.67  
+  85 Upd2  Note    9  Ab  20 5 V 1  1  2  12   60    9    0    0  0   0 0 0  0  0  0  0   85  85   96.00  253.33   64.00   26.67  
+  86 Upd2  Note   10   -  20 5 V 1  1  2  12   60   10    0    0  0   0 0 0  0  0  0  0   86  86   96.00  226.67   64.00   26.67  
+  87 Upd2  Note   11  Db  20 5 V 1  1  2  12   60   11    0    0  0   0 0 0  0  0  0  0   87  87   96.00  200.00   64.00   26.67  
+  88 Upd2  Note   12   -  20 5 V 1  1  2  12   60   12    0    0  0   0 0 0  0  0  0  0   88  88   96.00  173.33   64.00   26.67  
+  89 Upd2  Colm   13      74 4 V 1  1  2  13   60   12    0    0  0   0 0 0  0  0  0  0   89  89  160.00  240.00   64.00  160.00  
+  90 Upd2  Note   13   -  20 5 V 1  1  2  13   60   13    0    0  0   0 0 0  0  0  0  0   90  90  160.00  306.67   64.00   26.67  
+  91 Upd2  Note   14   -  20 5 V 1  1  2  13   60   14    0    0  0   0 0 0  0  0  0  0   91  91  160.00  280.00   64.00   26.67  
+  92 Upd2  Note   15   -  20 5 V 1  1  2  13   60   15    0    0  0   0 0 0  0  0  0  0   92  92  160.00  253.33   64.00   26.67  
+  93 Upd2  Note   16   -  20 5 V 1  1  2  13   60   16    0    0  0   0 0 0  0  0  0  0   93  93  160.00  226.67   64.00   26.67  
+  94 Upd2  Note   17  Db  20 5 V 1  1  2  13   60   17    0    0  0   0 0 0  0  0  0  0   94  94  160.00  200.00   64.00   26.67  
+  95 Upd2  Note   18  Bb  20 5 V 1  1  2  13   60   18    0    0  0   0 0 0  0  0  0  0   95  95  160.00  173.33   64.00   26.67  
+  96 Upd2  Colm   14      74 4 V 1  1  2  14   60   18    0    0  0   0 0 0  0  0  0  0   96  96  224.00  240.00   64.00  160.00  
+  97 Upd2  Note   19   -  20 5 V 1  1  2  14   60   19    0    0  0   0 0 0  0  0  0  0   97  97  224.00  306.67   64.00   26.67  
+  98 Upd2  Note   20  Db  20 5 V 1  1  2  14   60   20    0    0  0   0 0 0  0  0  0  0   98  98  224.00  280.00   64.00   26.67  
+  99 Upd2  Note   21  Bb  20 5 V 1  1  2  14   60   21    0    0  0   0 0 0  0  0  0  0   99  99  224.00  253.33   64.00   26.67  
+ 100 Upd2  Note   22  Gb  20 5 V 1  1  2  14   60   22    0    0  0   0 0 0  0  0  0  0  100 100  224.00  226.67   64.00   26.67  
+ 101 Upd2  Note   23   -  20 5 V 1  1  2  14   60   23    0    0  0   0 0 0  0  0  0  0  101 101  224.00  200.00   64.00   26.67  
+ 102 Upd2  Note   24   -  20 5 V 1  1  2  14   60   24    0    0  0   0 0 0  0  0  0  0  102 102  224.00  173.33   64.00   26.67  
+ 103 Upd2  Colm   15      74 4 V 1  1  2  15   60   24    0    0  0   0 0 0  0  0  0  0  103 103  288.00  240.00   64.00  160.00  
+ 104 Upd2  Note   25   -  20 5 V 1  1  2  15   60   25    0    0  0   0 0 0  0  0  0  0  104 104  288.00  306.67   64.00   26.67  
+ 105 Upd2  Note   26   -  20 5 V 1  1  2  15   60   26    0    0  0   0 0 0  0  0  0  0  105 105  288.00  280.00   64.00   26.67  
+ 106 Upd2  Note   27   -  20 5 V 1  1  2  15   60   27    0    0  0   0 0 0  0  0  0  0  106 106  288.00  253.33   64.00   26.67  
+ 107 Upd2  Note   28   -  20 5 V 1  1  2  15   60   28    0    0  0   0 0 0  0  0  0  0  107 107  288.00  226.67   64.00   26.67  
+ 108 Upd2  Note   29   -  20 5 V 1  1  2  15   60   29    0    0  0   0 0 0  0  0  0  0  108 108  288.00  200.00   64.00   26.67  
+ 109 Upd2  Note   30   -  20 5 V 1  1  2  15   60   30    0    0  0   0 0 0  0  0  0  0  109 109  288.00  173.33   64.00   26.67  
+ 110 Upd2  Colm   16      74 4 V 1  1  2  16   60   30    0    0  0   0 0 0  0  0  0  0  110 110  352.00  240.00   64.00  160.00  
+ 111 Upd2  Note   31   -  20 5 V 1  1  2  16   60   31    0    0  0   0 0 0  0  0  0  0  111 111  352.00  306.67   64.00   26.67  
+ 112 Upd2  Note   32   -  20 5 V 1  1  2  16   60   32    0    0  0   0 0 0  0  0  0  0  112 112  352.00  280.00   64.00   26.67  
+ 113 Upd2  Note   33   -  20 5 V 1  1  2  16   60   33    0    0  0   0 0 0  0  0  0  0  113 113  352.00  253.33   64.00   26.67  
+ 114 Upd2  Note   34   -  20 5 V 1  1  2  16   60   34    0    0  0   0 0 0  0  0  0  0  114 114  352.00  226.67   64.00   26.67  
+ 115 Upd2  Note   35   -  20 5 V 1  1  2  16   60   35    0    0  0   0 0 0  0  0  0  0  115 115  352.00  200.00   64.00   26.67  
+ 116 Upd2  Note   36   -  20 5 V 1  1  2  16   60   36    0    0  0   0 0 0  0  0  0  0  116 116  352.00  173.33   64.00   26.67  
+ 117 Upd2  Colm   17      74 4 V 1  1  2  17   60   36    0    0  0   0 0 0  0  0  0  0  117 117  416.00  240.00   64.00  160.00  
+ 118 Upd2  Note   37   -  20 5 V 1  1  2  17   60   37    0    0  0   0 0 0  0  0  0  0  118 118  416.00  306.67   64.00   26.67  
+ 119 Upd2  Note   38   -  20 5 V 1  1  2  17   60   38    0    0  0   0 0 0  0  0  0  0  119 119  416.00  280.00   64.00   26.67  
+ 120 Upd2  Note   39   -  20 5 V 1  1  2  17   60   39    0    0  0   0 0 0  0  0  0  0  120 120  416.00  253.33   64.00   26.67  
+ 121 Upd2  Note   40   -  20 5 V 1  1  2  17   60   40    0    0  0   0 0 0  0  0  0  0  121 121  416.00  226.67   64.00   26.67  
+ 122 Upd2  Note   41   -  20 5 V 1  1  2  17   60   41    0    0  0   0 0 0  0  0  0  0  122 122  416.00  200.00   64.00   26.67  
+ 123 Upd2  Note   42   -  20 5 V 1  1  2  17   60   42    0    0  0   0 0 0  0  0  0  0  123 123  416.00  173.33   64.00   26.67  
+ 124 Upd2  Colm   18      74 4 V 1  1  2  18   60   42    0    0  0   0 0 0  0  0  0  0  124 124  480.00  240.00   64.00  160.00  
+ 125 Upd2  Note   43   -  20 5 V 1  1  2  18   60   43    0    0  0   0 0 0  0  0  0  0  125 125  480.00  306.67   64.00   26.67  
+ 126 Upd2  Note   44   -  20 5 V 1  1  2  18   60   44    0    0  0   0 0 0  0  0  0  0  126 126  480.00  280.00   64.00   26.67  
+ 127 Upd2  Note   45   -  20 5 V 1  1  2  18   60   45    0    0  0   0 0 0  0  0  0  0  127 127  480.00  253.33   64.00   26.67  
+ 128 Upd2  Note   46   -  20 5 V 1  1  2  18   60   46    0    0  0   0 0 0  0  0  0  0  128 128  480.00  226.67   64.00   26.67  
+ 129 Upd2  Note   47   -  20 5 V 1  1  2  18   60   47    0    0  0   0 0 0  0  0  0  0  129 129  480.00  200.00   64.00   26.67  
+ 130 Upd2  Note   48   -  20 5 V 1  1  2  18   60   48    0    0  0   0 0 0  0  0  0  0  130 130  480.00  173.33   64.00   26.67  
+ 131 Upd2  Colm   19      74 4 V 1  1  2  19   60   48    0    0  0   0 0 0  0  0  0  0  131 131  544.00  240.00   64.00  160.00  
+ 132 Upd2  Note   49   -  20 5 V 1  1  2  19   60   49    0    0  0   0 0 0  0  0  0  0  132 132  544.00  306.67   64.00   26.67  
+ 133 Upd2  Note   50   -  20 5 V 1  1  2  19   60   50    0    0  0   0 0 0  0  0  0  0  133 133  544.00  280.00   64.00   26.67  
+ 134 Upd2  Note   51   -  20 5 V 1  1  2  19   60   51    0    0  0   0 0 0  0  0  0  0  134 134  544.00  253.33   64.00   26.67  
+ 135 Upd2  Note   52   -  20 5 V 1  1  2  19   60   52    0    0  0   0 0 0  0  0  0  0  135 135  544.00  226.67   64.00   26.67  
+ 136 Upd2  Note   53   -  20 5 V 1  1  2  19   60   53    0    0  0   0 0 0  0  0  0  0  136 136  544.00  200.00   64.00   26.67  
+ 137 Upd2  Note   54   -  20 5 V 1  1  2  19   60   54    0    0  0   0 0 0  0  0  0  0  137 137  544.00  173.33   64.00   26.67  
+ 138 Upd2  Colm   20      74 4 V 1  1  2  20   60   54    0    0  0   0 0 0  0  0  0  0  138 138  608.00  240.00   64.00  160.00  
+ 139 Upd2  Note   55   -  20 5 V 1  1  2  20   60   55    0    0  0   0 0 0  0  0  0  0  139 139  608.00  306.67   64.00   26.67  
+ 140 Upd2  Note   56   -  20 5 V 1  1  2  20   60   56    0    0  0   0 0 0  0  0  0  0  140 140  608.00  280.00   64.00   26.67  
+ 141 Upd2  Note   57   -  20 5 V 1  1  2  20   60   57    0    0  0   0 0 0  0  0  0  0  141 141  608.00  253.33   64.00   26.67  
+ 142 Upd2  Note   58   -  20 5 V 1  1  2  20   60   58    0    0  0   0 0 0  0  0  0  0  142 142  608.00  226.67   64.00   26.67  
+ 143 Upd2  Note   59   -  20 5 V 1  1  2  20   60   59    0    0  0   0 0 0  0  0  0  0  143 143  608.00  200.00   64.00   26.67  
+ 144 Upd2  Note   60   -  20 5 V 1  1  2  20   60   60    0    0  0   0 0 0  0  0  0  0  144 144  608.00  173.33   64.00   26.67  
+ 145 Upd2  Sect    3     124 3 V 1  1  3  20   60   60    0    0  0   0 0 0  0  0  0  0  145 145  320.00   80.00  640.00  160.00  
+ 146 Upd2  Colm   21      74 4 V 1  1  3  21   60   60    0    0  0   0 0 0  0  0  0  0  146 146   32.00   80.00   64.00  160.00  
+ 147 Upd2  Kord    1   -  20 5 V 1  1  3  21   60   60    0    1  0   0 0 0  0  0  0  0  147 147   32.00  146.67   64.00   26.67  
+ 148 Upd2  Kord    2   -  20 5 V 1  1  3  21   60   60    0    2  0   0 0 0  0  0  0  0  148 148   32.00  120.00   64.00   26.67  
+ 149 Upd2  Kord    3   -  20 5 V 1  1  3  21   60   60    0    3  0   0 0 0  0  0  0  0  149 149   32.00   93.33   64.00   26.67  
+ 150 Upd2  Kord    4   -  20 5 V 1  1  3  21   60   60    0    4  0   0 0 0  0  0  0  0  150 150   32.00   66.67   64.00   26.67  
+ 151 Upd2  Kord    5   -  20 5 V 1  1  3  21   60   60    0    5  0   0 0 0  0  0  0  0  151 151   32.00   40.00   64.00   26.67  
+ 152 Upd2  Kord    6   -  20 5 V 1  1  3  21   60   60    0    6  0   0 0 0  0  0  0  0  152 152   32.00   13.33   64.00   26.67  
+ 153 Upd2  Colm   22      74 4 V 1  1  3  22   60   60    0    6  0   0 0 0  0  0  0  0  153 153   96.00   80.00   64.00  160.00  
+ 154 Upd2  Kord    7   -  20 5 V 1  1  3  22   60   60    0    7  0   0 0 0  0  0  0  0  154 154   96.00  146.67   64.00   26.67  
+ 155 Upd2  Kord    8   -  20 5 V 1  1  3  22   60   60    0    8  0   0 0 0  0  0  0  0  155 155   96.00  120.00   64.00   26.67  
+ 156 Upd2  Kord    9   -  20 5 V 1  1  3  22   60   60    0    9  0   0 0 0  0  0  0  0  156 156   96.00   93.33   64.00   26.67  
+ 157 Upd2  Kord   10   -  20 5 V 1  1  3  22   60   60    0   10  0   0 0 0  0  0  0  0  157 157   96.00   66.67   64.00   26.67  
+ 158 Upd2  Kord   11   -  20 5 V 1  1  3  22   60   60    0   11  0   0 0 0  0  0  0  0  158 158   96.00   40.00   64.00   26.67  
+ 159 Upd2  Kord   12   -  20 5 V 1  1  3  22   60   60    0   12  0   0 0 0  0  0  0  0  159 159   96.00   13.33   64.00   26.67  
+ 160 Upd2  Colm   23      74 4 V 1  1  3  23   60   60    0   12  0   0 0 0  0  0  0  0  160 160  160.00   80.00   64.00  160.00  
+ 161 Upd2  Kord   13   -  20 5 V 1  1  3  23   60   60    0   13  0   0 0 0  0  0  0  0  161 161  160.00  146.67   64.00   26.67  
+ 162 Upd2  Kord   14   -  20 5 V 1  1  3  23   60   60    0   14  0   0 0 0  0  0  0  0  162 162  160.00  120.00   64.00   26.67  
+ 163 Upd2  Kord   15   -  20 5 V 1  1  3  23   60   60    0   15  0   0 0 0  0  0  0  0  163 163  160.00   93.33   64.00   26.67  
+ 164 Upd2  Kord   16   -  20 5 V 1  1  3  23   60   60    0   16  0   0 0 0  0  0  0  0  164 164  160.00   66.67   64.00   26.67  
+ 165 Upd2  Kord   17   -  20 5 V 1  1  3  23   60   60    0   17  0   0 0 0  0  0  0  0  165 165  160.00   40.00   64.00   26.67  
+ 166 Upd2  Kord   18   -  20 5 V 1  1  3  23   60   60    0   18  0   0 0 0  0  0  0  0  166 166  160.00   13.33   64.00   26.67  
+ 167 Upd2  Colm   24      74 4 V 1  1  3  24   60   60    0   18  0   0 0 0  0  0  0  0  167 167  224.00   80.00   64.00  160.00  
+ 168 Upd2  Kord   19  Gb  20 5 V 1  1  3  24   60   60    0   19  0   0 0 0  0  0  0  0  168 168  224.00  146.67   64.00   26.67  
+ 169 Upd2  Kord   20   -  20 5 V 1  1  3  24   60   60    0   20  0   0 0 0  0  0  0  0  169 169  224.00  120.00   64.00   26.67  
+ 170 Upd2  Kord   21   -  20 5 V 1  1  3  24   60   60    0   21  0   0 0 0  0  0  0  0  170 170  224.00   93.33   64.00   26.67  
+ 171 Upd2  Kord   22   -  20 5 V 1  1  3  24   60   60    0   22  0   0 0 0  0  0  0  0  171 171  224.00   66.67   64.00   26.67  
+ 172 Upd2  Kord   23   -  20 5 V 1  1  3  24   60   60    0   23  0   0 0 0  0  0  0  0  172 172  224.00   40.00   64.00   26.67  
+ 173 Upd2  Kord   24   -  20 5 V 1  1  3  24   60   60    0   24  0   0 0 0  0  0  0  0  173 173  224.00   13.33   64.00   26.67  
+ 174 Upd2  Colm   25      74 4 V 1  1  3  25   60   60    0   24  0   0 0 0  0  0  0  0  174 174  288.00   80.00   64.00  160.00  
+ 175 Upd2  Kord   25   -  20 5 V 1  1  3  25   60   60    0   25  0   0 0 0  0  0  0  0  175 175  288.00  146.67   64.00   26.67  
+ 176 Upd2  Kord   26   -  20 5 V 1  1  3  25   60   60    0   26  0   0 0 0  0  0  0  0  176 176  288.00  120.00   64.00   26.67  
+ 177 Upd2  Kord   27   -  20 5 V 1  1  3  25   60   60    0   27  0   0 0 0  0  0  0  0  177 177  288.00   93.33   64.00   26.67  
+ 178 Upd2  Kord   28   -  20 5 V 1  1  3  25   60   60    0   28  0   0 0 0  0  0  0  0  178 178  288.00   66.67   64.00   26.67  
+ 179 Upd2  Kord   29   -  20 5 V 1  1  3  25   60   60    0   29  0   0 0 0  0  0  0  0  179 179  288.00   40.00   64.00   26.67  
+ 180 Upd2  Kord   30   -  20 5 V 1  1  3  25   60   60    0   30  0   0 0 0  0  0  0  0  180 180  288.00   13.33   64.00   26.67  
+ 181 Upd2  Colm   26      74 4 V 1  1  3  26   60   60    0   30  0   0 0 0  0  0  0  0  181 181  352.00   80.00   64.00  160.00  
+ 182 Upd2  Kord   31   -  20 5 V 1  1  3  26   60   60    0   31  0   0 0 0  0  0  0  0  182 182  352.00  146.67   64.00   26.67  
+ 183 Upd2  Kord   32   -  20 5 V 1  1  3  26   60   60    0   32  0   0 0 0  0  0  0  0  183 183  352.00  120.00   64.00   26.67  
+ 184 Upd2  Kord   33   -  20 5 V 1  1  3  26   60   60    0   33  0   0 0 0  0  0  0  0  184 184  352.00   93.33   64.00   26.67  
+ 185 Upd2  Kord   34   -  20 5 V 1  1  3  26   60   60    0   34  0   0 0 0  0  0  0  0  185 185  352.00   66.67   64.00   26.67  
+ 186 Upd2  Kord   35   -  20 5 V 1  1  3  26   60   60    0   35  0   0 0 0  0  0  0  0  186 186  352.00   40.00   64.00   26.67  
+ 187 Upd2  Kord   36   -  20 5 V 1  1  3  26   60   60    0   36  0   0 0 0  0  0  0  0  187 187  352.00   13.33   64.00   26.67  
+ 188 Upd2  Colm   27      74 4 V 1  1  3  27   60   60    0   36  0   0 0 0  0  0  0  0  188 188  416.00   80.00   64.00  160.00  
+ 189 Upd2  Kord   37   -  20 5 V 1  1  3  27   60   60    0   37  0   0 0 0  0  0  0  0  189 189  416.00  146.67   64.00   26.67  
+ 190 Upd2  Kord   38   -  20 5 V 1  1  3  27   60   60    0   38  0   0 0 0  0  0  0  0  190 190  416.00  120.00   64.00   26.67  
+ 191 Upd2  Kord   39   -  20 5 V 1  1  3  27   60   60    0   39  0   0 0 0  0  0  0  0  191 191  416.00   93.33   64.00   26.67  
+ 192 Upd2  Kord   40   -  20 5 V 1  1  3  27   60   60    0   40  0   0 0 0  0  0  0  0  192 192  416.00   66.67   64.00   26.67  
+ 193 Upd2  Kord   41   -  20 5 V 1  1  3  27   60   60    0   41  0   0 0 0  0  0  0  0  193 193  416.00   40.00   64.00   26.67  
+ 194 Upd2  Kord   42   -  20 5 V 1  1  3  27   60   60    0   42  0   0 0 0  0  0  0  0  194 194  416.00   13.33   64.00   26.67  
+ 195 Upd2  Colm   28      74 4 V 1  1  3  28   60   60    0   42  0   0 0 0  0  0  0  0  195 195  480.00   80.00   64.00  160.00  
+ 196 Upd2  Kord   43   -  20 5 V 1  1  3  28   60   60    0   43  0   0 0 0  0  0  0  0  196 196  480.00  146.67   64.00   26.67  
+ 197 Upd2  Kord   44   -  20 5 V 1  1  3  28   60   60    0   44  0   0 0 0  0  0  0  0  197 197  480.00  120.00   64.00   26.67  
+ 198 Upd2  Kord   45   -  20 5 V 1  1  3  28   60   60    0   45  0   0 0 0  0  0  0  0  198 198  480.00   93.33   64.00   26.67  
+ 199 Upd2  Kord   46   -  20 5 V 1  1  3  28   60   60    0   46  0   0 0 0  0  0  0  0  199 199  480.00   66.67   64.00   26.67  
+ 200 Upd2  Kord   47   -  20 5 V 1  1  3  28   60   60    0   47  0   0 0 0  0  0  0  0  200 200  480.00   40.00   64.00   26.67  
+ 201 Upd2  Kord   48   -  20 5 V 1  1  3  28   60   60    0   48  0   0 0 0  0  0  0  0  201 201  480.00   13.33   64.00   26.67  
+ 202 Upd2  Colm   29      74 4 V 1  1  3  29   60   60    0   48  0   0 0 0  0  0  0  0  202 202  544.00   80.00   64.00  160.00  
+ 203 Upd2  Kord   49   -  20 5 V 1  1  3  29   60   60    0   49  0   0 0 0  0  0  0  0  203 203  544.00  146.67   64.00   26.67  
+ 204 Upd2  Kord   50   -  20 5 V 1  1  3  29   60   60    0   50  0   0 0 0  0  0  0  0  204 204  544.00  120.00   64.00   26.67  
+ 205 Upd2  Kord   51   -  20 5 V 1  1  3  29   60   60    0   51  0   0 0 0  0  0  0  0  205 205  544.00   93.33   64.00   26.67  
+ 206 Upd2  Kord   52   -  20 5 V 1  1  3  29   60   60    0   52  0   0 0 0  0  0  0  0  206 206  544.00   66.67   64.00   26.67  
+ 207 Upd2  Kord   53   -  20 5 V 1  1  3  29   60   60    0   53  0   0 0 0  0  0  0  0  207 207  544.00   40.00   64.00   26.67  
+ 208 Upd2  Kord   54   -  20 5 V 1  1  3  29   60   60    0   54  0   0 0 0  0  0  0  0  208 208  544.00   13.33   64.00   26.67  
+ 209 Upd2  Colm   30      74 4 V 1  1  3  30   60   60    0   54  0   0 0 0  0  0  0  0  209 209  608.00   80.00   64.00  160.00  
+ 210 Upd2  Kord   55   -  20 5 V 1  1  3  30   60   60    0   55  0   0 0 0  0  0  0  0  210 210  608.00  146.67   64.00   26.67  
+ 211 Upd2  Kord   56   -  20 5 V 1  1  3  30   60   60    0   56  0   0 0 0  0  0  0  0  211 211  608.00  120.00   64.00   26.67  
+ 212 Upd2  Kord   57   -  20 5 V 1  1  3  30   60   60    0   57  0   0 0 0  0  0  0  0  212 212  608.00   93.33   64.00   26.67  
+ 213 Upd2  Kord   58   -  20 5 V 1  1  3  30   60   60    0   58  0   0 0 0  0  0  0  0  213 213  608.00   66.67   64.00   26.67  
+ 214 Upd2  Kord   59   -  20 5 V 1  1  3  30   60   60    0   59  0   0 0 0  0  0  0  0  214 214  608.00   40.00   64.00   26.67  
+ 215 Upd2  Kord   60   -  20 5 V 1  1  3  30   60   60    0   60  0   0 0 0  0  0  0  0  215 215  608.00   13.33   64.00   26.67  
+1314 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+ 216 Upd2  HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   26.67  
+2485 tabsC regSnap            .snapWhy=Upd2 .snapType=RSZC_5 .snapReg=1 .snapId=1
+ Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
+ Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
+1290 tabsC resizeTniks        J1[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd2
+1290 tabsC resizeTniks        J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd2
+1290 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd2
+1290 tabsC resizeTniks        END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd2
+ 511 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 519 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 489 tabsC dumpNic            [3  8  8  1  1  1  a  a  6 ]
+ 490 tabsC dumpNic            [Eb Ab Ab Db Db Db Bb Bb Gb]
+ 491 tabsC dumpNic            [D# G# G# C# C# C# A# A# F#]
+ 497 tabsC dumpNic            [1  2  2  3  3  3  2  2  1 ]
+  33 util  dumpData           BGN
+                 5    F2S
+Db:C# Eb:D# Gb:F# Ab:G# Bb:A#
+                 5    S2F
+C#:Db D#:Eb F#:Gb G#:Ab A#:Bb
+                12    I2F
+ 0: C  1:Db  2: D  3:Eb  4: E  5: F  6:Gb  7: G  8:Ab  9: A 10:Bb 11: B
+                12    I2S
+ 0: C  1:C#  2: D  3:D#  4: E  5: F  6:F#  7: G  8:G#  9: A 10:A# 11: B
+                21    N2I
+B#: 0  C: 0 C#: 1 Db: 1  D: 2 D#: 3 Eb: 3  E: 4 Fb: 4 E#: 5  F: 5 F#: 6 Gb: 6  G: 7 G#: 8 Ab: 8  A: 9 A#:10 Bb:10  B:11 Cb:11
+               121    FLATS
+ C0 Db0  D0 Eb0  E0 Fb0  F0 Gb0  G0 Ab0  A0 Bb0  B0 Cb0  C1 Db1  D1 Eb1  E1 Fb1  F1 Gb1  G1 Ab1  A1 Bb1  B1 Cb1  C2 Db2  D2 Eb2  E2 Fb2  F2 Gb2  G2 Ab2  A2 Bb2  B2 Cb2  C3 Db3  D3 Eb3  E3 Fb3  F3 Gb3  G3 Ab3  A3 Bb3  B3 Cb3  C4 Db4  D4 Eb4  E4 Fb4  F4 Gb4  G4 Ab4  A4 Bb4  B4 Cb4  C5 Db5  D5 Eb5  E5 Fb5  F5 Gb5  G5 Ab5  A5 Bb5  B5 Cb5  C6 Db6  D6 Eb6  E6 Fb6  F6 Gb6  G6 Ab6  A6 Bb6  B6 Cb6  C7 Db7  D7 Eb7  E7 Fb7  F7 Gb7  G7 Ab7  A7 Bb7  B7 Cb7  C8 Db8  D8 Eb8  E8 Fb8  F8 Gb8  G8
+  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121
+B#0  C0 C#0  D0 D#0  E0 E#0  F0 F#0  G0 G#0  A0 A#0  B0 B#1  C1 C#1  D1 D#1  E1 E#1  F1 F#1  G1 G#1  A1 A#1  B1 B#2  C2 C#2  D2 D#2  E2 E#2  F2 F#2  G2 G#2  A2 A#2  B2 B#3  C3 C#3  D3 D#3  E3 E#3  F3 F#3  G3 G#3  A3 A#3  B3 B#4  C4 C#4  D4 D#4  E4 E#4  F4 F#4  G4 G#4  A4 A#4  B4 B#5  C5 C#5  D5 D#5  E5 E#5  F5 F#5  G5 G#5  A5 A#5  B5 B#6  C6 C#6  D6 D#6  E6 E#6  F6 F#6  G6 G#6  A6 A#6  B6 B#7  C7 C#7  D7 D#7  E7 E#7  F7 F#7  G7 G#7  A7 A#7  B7 B#8  C8 C#8  D8 D#8  E8 E#8  F8 F#8
+               121    SHRPS
+I  F  S  IV   Notes Table 12
+0 [C  C  R ]
+1 [Db C# b2]
+2 [D  D  2 ]
+3 [Eb D# m3]
+4 [E  E  M3]
+5 [F  F  4 ]
+6 [Gb F# b5]
+7 [G  G  5 ]
+8 [Ab G# #5]
+9 [A  A  6 ]
+a [Bb A# b7]
+b [B  B  7 ]
+KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table  15
+-7 FLAT [Cb b] [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [B  Db Eb E  Gb Ab Bb]
+-6 FLAT [Gb 6] [Bb Eb Ab Db Gb Cb F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [Gb Ab Bb B  Db Eb F ]
+-5 FLAT [Db 1] [Bb Eb Ab Db Gb C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [Db Eb F  Gb Ab Bb C ]
+-4 FLAT [Ab 8] [Bb Eb Ab Db G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [Ab Bb C  Db Eb F  G ]
+-3 FLAT [Eb 3] [Bb Eb Ab D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [Eb F  G  Ab Bb C  D ]
+-2 FLAT [Bb a] [Bb Eb A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [Bb C  D  Eb F  G  A ]
+-1 FLAT [F  5] [Bb E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  Bb C  D  E ]
+ 0 NONE [C  0] [B  E  A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
++1 SHRP [G  7] [F# C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F#]
++2 SHRP [D  2] [F# C# G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F# G  A  B  C#]
++3 SHRP [A  9] [F# C# G# D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C# D  E  F# G#]
++4 SHRP [E  4] [F# C# G# D# A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F# G# A  B  C# D#]
++5 SHRP [B  b] [F# C# G# D# A# E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C# D# E  F# G# A#]
++6 SHRP [F# 6] [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
++7 SHRP [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
+  46 util  dumpData           END
+1592 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels Upd2
+   1p1   1
+   1l1   1
+   3s3   111
+  30c30  111111111111111111111111111111
+  60t60  111111111111111111111111111111111111111111111111111111111111
+  60n60  111111111111111111111111111111111111111111111111111111111111
+  60K60  111111111111111111111111111111111111111111111111111111111111
+   1h1   1
+ 216t216           10        20        30        40        50        60        70        80        90        100       110       120       130       140       150       160       170       180       190       200       210
+1393 tabsC dumpIdmKeys        +216[Page1 Line1 Sect1 Colm1 Tab 1 Tab 2 Tab 3 Tab 4 Tab 5 Tab 6 Colm2 Tab 7 Tab 8 Tab 9 Tab 10 Tab 11 Tab 12 Colm3 Tab 13 Tab 14 Tab 15 Tab 16 Tab 17 Tab 18 Colm4 Tab 19 Tab 20 Tab 21 Tab 22 Tab 23 Tab 24 Colm5 Tab 25 Tab 26 Tab 27 Tab 28 Tab 29 Tab 30 Colm6 Tab 31 Tab 32 Tab 33 Tab 34 Tab 35 Tab 36 Colm7 Tab 37 Tab 38 Tab 39 Tab 40 Tab 41 Tab 42 Colm8 Tab 43 Tab 44 Tab 45 Tab 46 Tab 47 Tab 48 Colm9 Tab 49 Tab 50 Tab 51 Tab 52 Tab 53 Tab 54 Colm10 Tab 55 Tab 56 Tab 57 Tab 58 Tab 59 Tab 60 Sect2 Colm11 Note1 Note2 Note3 Note4 Note5 Note6 Col Note7 Note8 Note9 Note10 Note11 Note12 Colm13 Note13 Note14 Note15 Note16 Note17 Note18 Colm14 Note19 Note20 Note21 Note22 Note23 Note24 Colm15 Note25 Note26 Note27 Note28 Note29 Note30 Colm16 Note31 Note32 Note33 Note34 Note35 Note36 Colm17 Note37 Note38 Note39 Note40 Note41 Note42 Colm18 Note43 Note44 Note45 Note46 Note47 Note48 Colm19 Note49 Note50 Note51 Note52 Note53 Note54 Colm20 Note55 Note56 Note57 Note58 Note59 Note60 Sect3 Colm21 Kord1 Kord2 Kord3 Kord4 Kord5 Kord6 Colm22 Kord7 Kord8 Kord9 Kord10 Kord11 Kord12 Colm23 Kord13 Kord14 Kord15 Kord16 Kord17 Kord18 Colm24 Kord19 Kord20 Kord21 Kord22 Kord23 Kord24 Colm25 Kord25 Kord26 Kord27 Kord28 Kord29 Kord30 Colm26 Kord31 Kord32 Kord33 Kord34 Kord35 Kord36 Colm27 Kord37 Kord38 Kord39 Kord40 Kord41 Kord42 Colm28 Kord43 Kord44 Kord45 Kord46 Kord47 Kord48 Colm29 Kord49 Kord50 Kord51 Kord52 Kord53 Kord54 Colm30 Kord55 Kord56 Kord57 Kord58 Kord59 Kord60 HCrs1]
+1
+1
+111
+111111111111111111111111111111
+111111111111111111111111111111111111111111111111111111111111
+111111111111111111111111111111111111111111111111111111111111
+111111111111111111111111111111111111111111111111111111111111
+1
+1408 tabsC dumpTniksA         J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd2A
+1408 tabsC dumpTniksA         J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd2A
+1408 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] Upd2A
+1408 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] Upd2A
+ Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
+ Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
+   1 Upd2A Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
+   2 Upd2A Line    1     373 2 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  320.00  240.00  640.00  480.00  
+   3 Upd2A Sect    1     124 3 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  320.00  400.00  640.00  160.00  
+   4 Upd2A Colm    1      74 4 V 1  1  1   1    0    0    0    0  0   0 0 0  0  0  0  0    4   4   32.00  400.00   64.00  160.00  
+   5 Upd2A Tab     1   -  20 5 V 1  1  1   1    1    0    0    0  0   0 0 0  0  0  0  0    5   5   32.00  466.67   64.00   26.67  
+   6 Upd2A Tab     2   -  20 5 V 1  1  1   1    2    0    0    0  0   0 0 0  0  0  0  0    6   6   32.00  440.00   64.00   26.67  
+   7 Upd2A Tab     3   -  20 5 V 1  1  1   1    3    0    0    0  0   0 0 0  0  0  0  0    7   7   32.00  413.33   64.00   26.67  
+   8 Upd2A Tab     4   1  20 5 V 1  1  1   1    4    0    0    0  0   0 0 0  0  0  0  0    8   8   32.00  386.67   64.00   26.67  
+   9 Upd2A Tab     5   -  20 5 V 1  1  1   1    5    0    0    0  0   0 0 0  0  0  0  0    9   9   32.00  360.00   64.00   26.67  
+  10 Upd2A Tab     6   4  20 5 V 1  1  1   1    6    0    0    0  0   0 0 0  0  0  0  0   10  10   32.00  333.33   64.00   26.67  
+  11 Upd2A Colm    2      74 4 V 1  1  1   2    6    0    0    0  0   0 0 0  0  0  0  0   11  11   96.00  400.00   64.00  160.00  
+  12 Upd2A Tab     7   -  20 5 V 1  1  1   2    7    0    0    0  0   0 0 0  0  0  0  0   12  12   96.00  466.67   64.00   26.67  
+  13 Upd2A Tab     8   -  20 5 V 1  1  1   2    8    0    0    0  0   0 0 0  0  0  0  0   13  13   96.00  440.00   64.00   26.67  
+  14 Upd2A Tab     9   1  20 5 V 1  1  1   2    9    0    0    0  0   0 0 0  0  0  0  0   14  14   96.00  413.33   64.00   26.67  
+  15 Upd2A Tab    10   -  20 5 V 1  1  1   2   10    0    0    0  0   0 0 0  0  0  0  0   15  15   96.00  386.67   64.00   26.67  
+  16 Upd2A Tab    11   4  20 5 V 1  1  1   2   11    0    0    0  0   0 0 0  0  0  0  0   16  16   96.00  360.00   64.00   26.67  
+  17 Upd2A Tab    12   -  20 5 V 1  1  1   2   12    0    0    0  0   0 0 0  0  0  0  0   17  17   96.00  333.33   64.00   26.67  
+  18 Upd2A Colm    3      74 4 V 1  1  1   3   12    0    0    0  0   0 0 0  0  0  0  0   18  18  160.00  400.00   64.00  160.00  
+  19 Upd2A Tab    13   -  20 5 V 1  1  1   3   13    0    0    0  0   0 0 0  0  0  0  0   19  19  160.00  466.67   64.00   26.67  
+  20 Upd2A Tab    14   -  20 5 V 1  1  1   3   14    0    0    0  0   0 0 0  0  0  0  0   20  20  160.00  440.00   64.00   26.67  
+  21 Upd2A Tab    15   -  20 5 V 1  1  1   3   15    0    0    0  0   0 0 0  0  0  0  0   21  21  160.00  413.33   64.00   26.67  
+  22 Upd2A Tab    16   -  20 5 V 1  1  1   3   16    0    0    0  0   0 0 0  0  0  0  0   22  22  160.00  386.67   64.00   26.67  
+  23 Upd2A Tab    17   4  20 5 V 1  1  1   3   17    0    0    0  0   0 0 0  0  0  0  0   23  23  160.00  360.00   64.00   26.67  
+  24 Upd2A Tab    18   6  20 5 V 1  1  1   3   18    0    0    0  0   0 0 0  0  0  0  0   24  24  160.00  333.33   64.00   26.67  
+  25 Upd2A Colm    4      74 4 V 1  1  1   4   18    0    0    0  0   0 0 0  0  0  0  0   25  25  224.00  400.00   64.00  160.00  
+  26 Upd2A Tab    19   -  20 5 V 1  1  1   4   19    0    0    0  0   0 0 0  0  0  0  0   26  26  224.00  466.67   64.00   26.67  
+  27 Upd2A Tab    20   2  20 5 V 1  1  1   4   20    0    0    0  0   0 0 0  0  0  0  0   27  27  224.00  440.00   64.00   26.67  
+  28 Upd2A Tab    21   3  20 5 V 1  1  1   4   21    0    0    0  0   0 0 0  0  0  0  0   28  28  224.00  413.33   64.00   26.67  
+  29 Upd2A Tab    22   4  20 5 V 1  1  1   4   22    0    0    0  0   0 0 0  0  0  0  0   29  29  224.00  386.67   64.00   26.67  
+  30 Upd2A Tab    23   -  20 5 V 1  1  1   4   23    0    0    0  0   0 0 0  0  0  0  0   30  30  224.00  360.00   64.00   26.67  
+  31 Upd2A Tab    24   -  20 5 V 1  1  1   4   24    0    0    0  0   0 0 0  0  0  0  0   31  31  224.00  333.33   64.00   26.67  
+  32 Upd2A Colm    5      74 4 V 1  1  1   5   24    0    0    0  0   0 0 0  0  0  0  0   32  32  288.00  400.00   64.00  160.00  
+  33 Upd2A Tab    25   -  20 5 V 1  1  1   5   25    0    0    0  0   0 0 0  0  0  0  0   33  33  288.00  466.67   64.00   26.67  
+  34 Upd2A Tab    26   -  20 5 V 1  1  1   5   26    0    0    0  0   0 0 0  0  0  0  0   34  34  288.00  440.00   64.00   26.67  
+  35 Upd2A Tab    27   -  20 5 V 1  1  1   5   27    0    0    0  0   0 0 0  0  0  0  0   35  35  288.00  413.33   64.00   26.67  
+  36 Upd2A Tab    28   -  20 5 V 1  1  1   5   28    0    0    0  0   0 0 0  0  0  0  0   36  36  288.00  386.67   64.00   26.67  
+  37 Upd2A Tab    29   -  20 5 V 1  1  1   5   29    0    0    0  0   0 0 0  0  0  0  0   37  37  288.00  360.00   64.00   26.67  
+  38 Upd2A Tab    30   -  20 5 V 1  1  1   5   30    0    0    0  0   0 0 0  0  0  0  0   38  38  288.00  333.33   64.00   26.67  
+  39 Upd2A Colm    6      74 4 V 1  1  1   6   30    0    0    0  0   0 0 0  0  0  0  0   39  39  352.00  400.00   64.00  160.00  
+  40 Upd2A Tab    31   -  20 5 V 1  1  1   6   31    0    0    0  0   0 0 0  0  0  0  0   40  40  352.00  466.67   64.00   26.67  
+  41 Upd2A Tab    32   -  20 5 V 1  1  1   6   32    0    0    0  0   0 0 0  0  0  0  0   41  41  352.00  440.00   64.00   26.67  
+  42 Upd2A Tab    33   -  20 5 V 1  1  1   6   33    0    0    0  0   0 0 0  0  0  0  0   42  42  352.00  413.33   64.00   26.67  
+  43 Upd2A Tab    34   -  20 5 V 1  1  1   6   34    0    0    0  0   0 0 0  0  0  0  0   43  43  352.00  386.67   64.00   26.67  
+  44 Upd2A Tab    35   -  20 5 V 1  1  1   6   35    0    0    0  0   0 0 0  0  0  0  0   44  44  352.00  360.00   64.00   26.67  
+  45 Upd2A Tab    36   -  20 5 V 1  1  1   6   36    0    0    0  0   0 0 0  0  0  0  0   45  45  352.00  333.33   64.00   26.67  
+  46 Upd2A Colm    7      74 4 V 1  1  1   7   36    0    0    0  0   0 0 0  0  0  0  0   46  46  416.00  400.00   64.00  160.00  
+  47 Upd2A Tab    37   -  20 5 V 1  1  1   7   37    0    0    0  0   0 0 0  0  0  0  0   47  47  416.00  466.67   64.00   26.67  
+  48 Upd2A Tab    38   -  20 5 V 1  1  1   7   38    0    0    0  0   0 0 0  0  0  0  0   48  48  416.00  440.00   64.00   26.67  
+  49 Upd2A Tab    39   -  20 5 V 1  1  1   7   39    0    0    0  0   0 0 0  0  0  0  0   49  49  416.00  413.33   64.00   26.67  
+  50 Upd2A Tab    40   -  20 5 V 1  1  1   7   40    0    0    0  0   0 0 0  0  0  0  0   50  50  416.00  386.67   64.00   26.67  
+  51 Upd2A Tab    41   -  20 5 V 1  1  1   7   41    0    0    0  0   0 0 0  0  0  0  0   51  51  416.00  360.00   64.00   26.67  
+  52 Upd2A Tab    42   -  20 5 V 1  1  1   7   42    0    0    0  0   0 0 0  0  0  0  0   52  52  416.00  333.33   64.00   26.67  
+  53 Upd2A Colm    8      74 4 V 1  1  1   8   42    0    0    0  0   0 0 0  0  0  0  0   53  53  480.00  400.00   64.00  160.00  
+  54 Upd2A Tab    43   -  20 5 V 1  1  1   8   43    0    0    0  0   0 0 0  0  0  0  0   54  54  480.00  466.67   64.00   26.67  
+  55 Upd2A Tab    44   -  20 5 V 1  1  1   8   44    0    0    0  0   0 0 0  0  0  0  0   55  55  480.00  440.00   64.00   26.67  
+  56 Upd2A Tab    45   -  20 5 V 1  1  1   8   45    0    0    0  0   0 0 0  0  0  0  0   56  56  480.00  413.33   64.00   26.67  
+  57 Upd2A Tab    46   -  20 5 V 1  1  1   8   46    0    0    0  0   0 0 0  0  0  0  0   57  57  480.00  386.67   64.00   26.67  
+  58 Upd2A Tab    47   -  20 5 V 1  1  1   8   47    0    0    0  0   0 0 0  0  0  0  0   58  58  480.00  360.00   64.00   26.67  
+  59 Upd2A Tab    48   -  20 5 V 1  1  1   8   48    0    0    0  0   0 0 0  0  0  0  0   59  59  480.00  333.33   64.00   26.67  
+  60 Upd2A Colm    9      74 4 V 1  1  1   9   48    0    0    0  0   0 0 0  0  0  0  0   60  60  544.00  400.00   64.00  160.00  
+  61 Upd2A Tab    49   -  20 5 V 1  1  1   9   49    0    0    0  0   0 0 0  0  0  0  0   61  61  544.00  466.67   64.00   26.67  
+  62 Upd2A Tab    50   -  20 5 V 1  1  1   9   50    0    0    0  0   0 0 0  0  0  0  0   62  62  544.00  440.00   64.00   26.67  
+  63 Upd2A Tab    51   -  20 5 V 1  1  1   9   51    0    0    0  0   0 0 0  0  0  0  0   63  63  544.00  413.33   64.00   26.67  
+  64 Upd2A Tab    52   -  20 5 V 1  1  1   9   52    0    0    0  0   0 0 0  0  0  0  0   64  64  544.00  386.67   64.00   26.67  
+  65 Upd2A Tab    53   -  20 5 V 1  1  1   9   53    0    0    0  0   0 0 0  0  0  0  0   65  65  544.00  360.00   64.00   26.67  
+  66 Upd2A Tab    54   -  20 5 V 1  1  1   9   54    0    0    0  0   0 0 0  0  0  0  0   66  66  544.00  333.33   64.00   26.67  
+  67 Upd2A Colm   10      74 4 V 1  1  1  10   54    0    0    0  0   0 0 0  0  0  0  0   67  67  608.00  400.00   64.00  160.00  
+  68 Upd2A Tab    55   -  20 5 V 1  1  1  10   55    0    0    0  0   0 0 0  0  0  0  0   68  68  608.00  466.67   64.00   26.67  
+  69 Upd2A Tab    56   -  20 5 V 1  1  1  10   56    0    0    0  0   0 0 0  0  0  0  0   69  69  608.00  440.00   64.00   26.67  
+  70 Upd2A Tab    57   -  20 5 V 1  1  1  10   57    0    0    0  0   0 0 0  0  0  0  0   70  70  608.00  413.33   64.00   26.67  
+  71 Upd2A Tab    58   -  20 5 V 1  1  1  10   58    0    0    0  0   0 0 0  0  0  0  0   71  71  608.00  386.67   64.00   26.67  
+  72 Upd2A Tab    59   -  20 5 V 1  1  1  10   59    0    0    0  0   0 0 0  0  0  0  0   72  72  608.00  360.00   64.00   26.67  
+  73 Upd2A Tab    60   -  20 5 V 1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73  608.00  333.33   64.00   26.67  
+  74 Upd2A Sect    2     124 3 V 1  1  2  10   60    0    0    0  0   0 0 0  0  0  0  0   74  74  320.00  240.00  640.00  160.00  
+  75 Upd2A Colm   11      74 4 V 1  1  2  11   60    0    0    0  0   0 0 0  0  0  0  0   75  75   32.00  240.00   64.00  160.00  
+  76 Upd2A Note    1   -  20 5 V 1  1  2  11   60    1    0    0  0   0 0 0  0  0  0  0   76  76   32.00  306.67   64.00   26.67  
+  77 Upd2A Note    2   -  20 5 V 1  1  2  11   60    2    0    0  0   0 0 0  0  0  0  0   77  77   32.00  280.00   64.00   26.67  
+  78 Upd2A Note    3   -  20 5 V 1  1  2  11   60    3    0    0  0   0 0 0  0  0  0  0   78  78   32.00  253.33   64.00   26.67  
+  79 Upd2A Note    4  Eb  20 5 V 1  1  2  11   60    4    0    0  0   0 0 0  0  0  0  0   79  79   32.00  226.67   64.00   26.67  
+  80 Upd2A Note    5   -  20 5 V 1  1  2  11   60    5    0    0  0   0 0 0  0  0  0  0   80  80   32.00  200.00   64.00   26.67  
+  81 Upd2A Note    6  Ab  20 5 V 1  1  2  11   60    6    0    0  0   0 0 0  0  0  0  0   81  81   32.00  173.33   64.00   26.67  
+  82 Upd2A Colm   12      74 4 V 1  1  2  12   60    6    0    0  0   0 0 0  0  0  0  0   82  82   96.00  240.00   64.00  160.00  
+  83 Upd2A Note    7   -  20 5 V 1  1  2  12   60    7    0    0  0   0 0 0  0  0  0  0   83  83   96.00  306.67   64.00   26.67  
+  84 Upd2A Note    8   -  20 5 V 1  1  2  12   60    8    0    0  0   0 0 0  0  0  0  0   84  84   96.00  280.00   64.00   26.67  
+  85 Upd2A Note    9  Ab  20 5 V 1  1  2  12   60    9    0    0  0   0 0 0  0  0  0  0   85  85   96.00  253.33   64.00   26.67  
+  86 Upd2A Note   10   -  20 5 V 1  1  2  12   60   10    0    0  0   0 0 0  0  0  0  0   86  86   96.00  226.67   64.00   26.67  
+  87 Upd2A Note   11  Db  20 5 V 1  1  2  12   60   11    0    0  0   0 0 0  0  0  0  0   87  87   96.00  200.00   64.00   26.67  
+  88 Upd2A Note   12   -  20 5 V 1  1  2  12   60   12    0    0  0   0 0 0  0  0  0  0   88  88   96.00  173.33   64.00   26.67  
+  89 Upd2A Colm   13      74 4 V 1  1  2  13   60   12    0    0  0   0 0 0  0  0  0  0   89  89  160.00  240.00   64.00  160.00  
+  90 Upd2A Note   13   -  20 5 V 1  1  2  13   60   13    0    0  0   0 0 0  0  0  0  0   90  90  160.00  306.67   64.00   26.67  
+  91 Upd2A Note   14   -  20 5 V 1  1  2  13   60   14    0    0  0   0 0 0  0  0  0  0   91  91  160.00  280.00   64.00   26.67  
+  92 Upd2A Note   15   -  20 5 V 1  1  2  13   60   15    0    0  0   0 0 0  0  0  0  0   92  92  160.00  253.33   64.00   26.67  
+  93 Upd2A Note   16   -  20 5 V 1  1  2  13   60   16    0    0  0   0 0 0  0  0  0  0   93  93  160.00  226.67   64.00   26.67  
+  94 Upd2A Note   17  Db  20 5 V 1  1  2  13   60   17    0    0  0   0 0 0  0  0  0  0   94  94  160.00  200.00   64.00   26.67  
+  95 Upd2A Note   18  Bb  20 5 V 1  1  2  13   60   18    0    0  0   0 0 0  0  0  0  0   95  95  160.00  173.33   64.00   26.67  
+  96 Upd2A Colm   14      74 4 V 1  1  2  14   60   18    0    0  0   0 0 0  0  0  0  0   96  96  224.00  240.00   64.00  160.00  
+  97 Upd2A Note   19   -  20 5 V 1  1  2  14   60   19    0    0  0   0 0 0  0  0  0  0   97  97  224.00  306.67   64.00   26.67  
+  98 Upd2A Note   20  Db  20 5 V 1  1  2  14   60   20    0    0  0   0 0 0  0  0  0  0   98  98  224.00  280.00   64.00   26.67  
+  99 Upd2A Note   21  Bb  20 5 V 1  1  2  14   60   21    0    0  0   0 0 0  0  0  0  0   99  99  224.00  253.33   64.00   26.67  
+ 100 Upd2A Note   22  Gb  20 5 V 1  1  2  14   60   22    0    0  0   0 0 0  0  0  0  0  100 100  224.00  226.67   64.00   26.67  
+ 101 Upd2A Note   23   -  20 5 V 1  1  2  14   60   23    0    0  0   0 0 0  0  0  0  0  101 101  224.00  200.00   64.00   26.67  
+ 102 Upd2A Note   24   -  20 5 V 1  1  2  14   60   24    0    0  0   0 0 0  0  0  0  0  102 102  224.00  173.33   64.00   26.67  
+ 103 Upd2A Colm   15      74 4 V 1  1  2  15   60   24    0    0  0   0 0 0  0  0  0  0  103 103  288.00  240.00   64.00  160.00  
+ 104 Upd2A Note   25   -  20 5 V 1  1  2  15   60   25    0    0  0   0 0 0  0  0  0  0  104 104  288.00  306.67   64.00   26.67  
+ 105 Upd2A Note   26   -  20 5 V 1  1  2  15   60   26    0    0  0   0 0 0  0  0  0  0  105 105  288.00  280.00   64.00   26.67  
+ 106 Upd2A Note   27   -  20 5 V 1  1  2  15   60   27    0    0  0   0 0 0  0  0  0  0  106 106  288.00  253.33   64.00   26.67  
+ 107 Upd2A Note   28   -  20 5 V 1  1  2  15   60   28    0    0  0   0 0 0  0  0  0  0  107 107  288.00  226.67   64.00   26.67  
+ 108 Upd2A Note   29   -  20 5 V 1  1  2  15   60   29    0    0  0   0 0 0  0  0  0  0  108 108  288.00  200.00   64.00   26.67  
+ 109 Upd2A Note   30   -  20 5 V 1  1  2  15   60   30    0    0  0   0 0 0  0  0  0  0  109 109  288.00  173.33   64.00   26.67  
+ 110 Upd2A Colm   16      74 4 V 1  1  2  16   60   30    0    0  0   0 0 0  0  0  0  0  110 110  352.00  240.00   64.00  160.00  
+ 111 Upd2A Note   31   -  20 5 V 1  1  2  16   60   31    0    0  0   0 0 0  0  0  0  0  111 111  352.00  306.67   64.00   26.67  
+ 112 Upd2A Note   32   -  20 5 V 1  1  2  16   60   32    0    0  0   0 0 0  0  0  0  0  112 112  352.00  280.00   64.00   26.67  
+ 113 Upd2A Note   33   -  20 5 V 1  1  2  16   60   33    0    0  0   0 0 0  0  0  0  0  113 113  352.00  253.33   64.00   26.67  
+ 114 Upd2A Note   34   -  20 5 V 1  1  2  16   60   34    0    0  0   0 0 0  0  0  0  0  114 114  352.00  226.67   64.00   26.67  
+ 115 Upd2A Note   35   -  20 5 V 1  1  2  16   60   35    0    0  0   0 0 0  0  0  0  0  115 115  352.00  200.00   64.00   26.67  
+ 116 Upd2A Note   36   -  20 5 V 1  1  2  16   60   36    0    0  0   0 0 0  0  0  0  0  116 116  352.00  173.33   64.00   26.67  
+ 117 Upd2A Colm   17      74 4 V 1  1  2  17   60   36    0    0  0   0 0 0  0  0  0  0  117 117  416.00  240.00   64.00  160.00  
+ 118 Upd2A Note   37   -  20 5 V 1  1  2  17   60   37    0    0  0   0 0 0  0  0  0  0  118 118  416.00  306.67   64.00   26.67  
+ 119 Upd2A Note   38   -  20 5 V 1  1  2  17   60   38    0    0  0   0 0 0  0  0  0  0  119 119  416.00  280.00   64.00   26.67  
+ 120 Upd2A Note   39   -  20 5 V 1  1  2  17   60   39    0    0  0   0 0 0  0  0  0  0  120 120  416.00  253.33   64.00   26.67  
+ 121 Upd2A Note   40   -  20 5 V 1  1  2  17   60   40    0    0  0   0 0 0  0  0  0  0  121 121  416.00  226.67   64.00   26.67  
+ 122 Upd2A Note   41   -  20 5 V 1  1  2  17   60   41    0    0  0   0 0 0  0  0  0  0  122 122  416.00  200.00   64.00   26.67  
+ 123 Upd2A Note   42   -  20 5 V 1  1  2  17   60   42    0    0  0   0 0 0  0  0  0  0  123 123  416.00  173.33   64.00   26.67  
+ 124 Upd2A Colm   18      74 4 V 1  1  2  18   60   42    0    0  0   0 0 0  0  0  0  0  124 124  480.00  240.00   64.00  160.00  
+ 125 Upd2A Note   43   -  20 5 V 1  1  2  18   60   43    0    0  0   0 0 0  0  0  0  0  125 125  480.00  306.67   64.00   26.67  
+ 126 Upd2A Note   44   -  20 5 V 1  1  2  18   60   44    0    0  0   0 0 0  0  0  0  0  126 126  480.00  280.00   64.00   26.67  
+ 127 Upd2A Note   45   -  20 5 V 1  1  2  18   60   45    0    0  0   0 0 0  0  0  0  0  127 127  480.00  253.33   64.00   26.67  
+ 128 Upd2A Note   46   -  20 5 V 1  1  2  18   60   46    0    0  0   0 0 0  0  0  0  0  128 128  480.00  226.67   64.00   26.67  
+ 129 Upd2A Note   47   -  20 5 V 1  1  2  18   60   47    0    0  0   0 0 0  0  0  0  0  129 129  480.00  200.00   64.00   26.67  
+ 130 Upd2A Note   48   -  20 5 V 1  1  2  18   60   48    0    0  0   0 0 0  0  0  0  0  130 130  480.00  173.33   64.00   26.67  
+ 131 Upd2A Colm   19      74 4 V 1  1  2  19   60   48    0    0  0   0 0 0  0  0  0  0  131 131  544.00  240.00   64.00  160.00  
+ 132 Upd2A Note   49   -  20 5 V 1  1  2  19   60   49    0    0  0   0 0 0  0  0  0  0  132 132  544.00  306.67   64.00   26.67  
+ 133 Upd2A Note   50   -  20 5 V 1  1  2  19   60   50    0    0  0   0 0 0  0  0  0  0  133 133  544.00  280.00   64.00   26.67  
+ 134 Upd2A Note   51   -  20 5 V 1  1  2  19   60   51    0    0  0   0 0 0  0  0  0  0  134 134  544.00  253.33   64.00   26.67  
+ 135 Upd2A Note   52   -  20 5 V 1  1  2  19   60   52    0    0  0   0 0 0  0  0  0  0  135 135  544.00  226.67   64.00   26.67  
+ 136 Upd2A Note   53   -  20 5 V 1  1  2  19   60   53    0    0  0   0 0 0  0  0  0  0  136 136  544.00  200.00   64.00   26.67  
+ 137 Upd2A Note   54   -  20 5 V 1  1  2  19   60   54    0    0  0   0 0 0  0  0  0  0  137 137  544.00  173.33   64.00   26.67  
+ 138 Upd2A Colm   20      74 4 V 1  1  2  20   60   54    0    0  0   0 0 0  0  0  0  0  138 138  608.00  240.00   64.00  160.00  
+ 139 Upd2A Note   55   -  20 5 V 1  1  2  20   60   55    0    0  0   0 0 0  0  0  0  0  139 139  608.00  306.67   64.00   26.67  
+ 140 Upd2A Note   56   -  20 5 V 1  1  2  20   60   56    0    0  0   0 0 0  0  0  0  0  140 140  608.00  280.00   64.00   26.67  
+ 141 Upd2A Note   57   -  20 5 V 1  1  2  20   60   57    0    0  0   0 0 0  0  0  0  0  141 141  608.00  253.33   64.00   26.67  
+ 142 Upd2A Note   58   -  20 5 V 1  1  2  20   60   58    0    0  0   0 0 0  0  0  0  0  142 142  608.00  226.67   64.00   26.67  
+ 143 Upd2A Note   59   -  20 5 V 1  1  2  20   60   59    0    0  0   0 0 0  0  0  0  0  143 143  608.00  200.00   64.00   26.67  
+ 144 Upd2A Note   60   -  20 5 V 1  1  2  20   60   60    0    0  0   0 0 0  0  0  0  0  144 144  608.00  173.33   64.00   26.67  
+ 145 Upd2A Sect    3     124 3 V 1  1  3  20   60   60    0    0  0   0 0 0  0  0  0  0  145 145  320.00   80.00  640.00  160.00  
+ 146 Upd2A Colm   21      74 4 V 1  1  3  21   60   60    0    0  0   0 0 0  0  0  0  0  146 146   32.00   80.00   64.00  160.00  
+ 147 Upd2A Kord    1   -  20 5 V 1  1  3  21   60   60    0    1  0   0 0 0  0  0  0  0  147 147   32.00  146.67   64.00   26.67  
+ 148 Upd2A Kord    2   -  20 5 V 1  1  3  21   60   60    0    2  0   0 0 0  0  0  0  0  148 148   32.00  120.00   64.00   26.67  
+ 149 Upd2A Kord    3   -  20 5 V 1  1  3  21   60   60    0    3  0   0 0 0  0  0  0  0  149 149   32.00   93.33   64.00   26.67  
+ 150 Upd2A Kord    4   -  20 5 V 1  1  3  21   60   60    0    4  0   0 0 0  0  0  0  0  150 150   32.00   66.67   64.00   26.67  
+ 151 Upd2A Kord    5   -  20 5 V 1  1  3  21   60   60    0    5  0   0 0 0  0  0  0  0  151 151   32.00   40.00   64.00   26.67  
+ 152 Upd2A Kord    6   -  20 5 V 1  1  3  21   60   60    0    6  0   0 0 0  0  0  0  0  152 152   32.00   13.33   64.00   26.67  
+ 153 Upd2A Colm   22      74 4 V 1  1  3  22   60   60    0    6  0   0 0 0  0  0  0  0  153 153   96.00   80.00   64.00  160.00  
+ 154 Upd2A Kord    7   -  20 5 V 1  1  3  22   60   60    0    7  0   0 0 0  0  0  0  0  154 154   96.00  146.67   64.00   26.67  
+ 155 Upd2A Kord    8   -  20 5 V 1  1  3  22   60   60    0    8  0   0 0 0  0  0  0  0  155 155   96.00  120.00   64.00   26.67  
+ 156 Upd2A Kord    9   -  20 5 V 1  1  3  22   60   60    0    9  0   0 0 0  0  0  0  0  156 156   96.00   93.33   64.00   26.67  
+ 157 Upd2A Kord   10   -  20 5 V 1  1  3  22   60   60    0   10  0   0 0 0  0  0  0  0  157 157   96.00   66.67   64.00   26.67  
+ 158 Upd2A Kord   11   -  20 5 V 1  1  3  22   60   60    0   11  0   0 0 0  0  0  0  0  158 158   96.00   40.00   64.00   26.67  
+ 159 Upd2A Kord   12   -  20 5 V 1  1  3  22   60   60    0   12  0   0 0 0  0  0  0  0  159 159   96.00   13.33   64.00   26.67  
+ 160 Upd2A Colm   23      74 4 V 1  1  3  23   60   60    0   12  0   0 0 0  0  0  0  0  160 160  160.00   80.00   64.00  160.00  
+ 161 Upd2A Kord   13   -  20 5 V 1  1  3  23   60   60    0   13  0   0 0 0  0  0  0  0  161 161  160.00  146.67   64.00   26.67  
+ 162 Upd2A Kord   14   -  20 5 V 1  1  3  23   60   60    0   14  0   0 0 0  0  0  0  0  162 162  160.00  120.00   64.00   26.67  
+ 163 Upd2A Kord   15   -  20 5 V 1  1  3  23   60   60    0   15  0   0 0 0  0  0  0  0  163 163  160.00   93.33   64.00   26.67  
+ 164 Upd2A Kord   16   -  20 5 V 1  1  3  23   60   60    0   16  0   0 0 0  0  0  0  0  164 164  160.00   66.67   64.00   26.67  
+ 165 Upd2A Kord   17   -  20 5 V 1  1  3  23   60   60    0   17  0   0 0 0  0  0  0  0  165 165  160.00   40.00   64.00   26.67  
+ 166 Upd2A Kord   18   -  20 5 V 1  1  3  23   60   60    0   18  0   0 0 0  0  0  0  0  166 166  160.00   13.33   64.00   26.67  
+ 167 Upd2A Colm   24      74 4 V 1  1  3  24   60   60    0   18  0   0 0 0  0  0  0  0  167 167  224.00   80.00   64.00  160.00  
+ 168 Upd2A Kord   19  Gb  20 5 V 1  1  3  24   60   60    0   19  0   0 0 0  0  0  0  0  168 168  224.00  146.67   64.00   26.67  
+ 169 Upd2A Kord   20   -  20 5 V 1  1  3  24   60   60    0   20  0   0 0 0  0  0  0  0  169 169  224.00  120.00   64.00   26.67  
+ 170 Upd2A Kord   21   -  20 5 V 1  1  3  24   60   60    0   21  0   0 0 0  0  0  0  0  170 170  224.00   93.33   64.00   26.67  
+ 171 Upd2A Kord   22   -  20 5 V 1  1  3  24   60   60    0   22  0   0 0 0  0  0  0  0  171 171  224.00   66.67   64.00   26.67  
+ 172 Upd2A Kord   23   -  20 5 V 1  1  3  24   60   60    0   23  0   0 0 0  0  0  0  0  172 172  224.00   40.00   64.00   26.67  
+ 173 Upd2A Kord   24   -  20 5 V 1  1  3  24   60   60    0   24  0   0 0 0  0  0  0  0  173 173  224.00   13.33   64.00   26.67  
+ 174 Upd2A Colm   25      74 4 V 1  1  3  25   60   60    0   24  0   0 0 0  0  0  0  0  174 174  288.00   80.00   64.00  160.00  
+ 175 Upd2A Kord   25   -  20 5 V 1  1  3  25   60   60    0   25  0   0 0 0  0  0  0  0  175 175  288.00  146.67   64.00   26.67  
+ 176 Upd2A Kord   26   -  20 5 V 1  1  3  25   60   60    0   26  0   0 0 0  0  0  0  0  176 176  288.00  120.00   64.00   26.67  
+ 177 Upd2A Kord   27   -  20 5 V 1  1  3  25   60   60    0   27  0   0 0 0  0  0  0  0  177 177  288.00   93.33   64.00   26.67  
+ 178 Upd2A Kord   28   -  20 5 V 1  1  3  25   60   60    0   28  0   0 0 0  0  0  0  0  178 178  288.00   66.67   64.00   26.67  
+ 179 Upd2A Kord   29   -  20 5 V 1  1  3  25   60   60    0   29  0   0 0 0  0  0  0  0  179 179  288.00   40.00   64.00   26.67  
+ 180 Upd2A Kord   30   -  20 5 V 1  1  3  25   60   60    0   30  0   0 0 0  0  0  0  0  180 180  288.00   13.33   64.00   26.67  
+ 181 Upd2A Colm   26      74 4 V 1  1  3  26   60   60    0   30  0   0 0 0  0  0  0  0  181 181  352.00   80.00   64.00  160.00  
+ 182 Upd2A Kord   31   -  20 5 V 1  1  3  26   60   60    0   31  0   0 0 0  0  0  0  0  182 182  352.00  146.67   64.00   26.67  
+ 183 Upd2A Kord   32   -  20 5 V 1  1  3  26   60   60    0   32  0   0 0 0  0  0  0  0  183 183  352.00  120.00   64.00   26.67  
+ 184 Upd2A Kord   33   -  20 5 V 1  1  3  26   60   60    0   33  0   0 0 0  0  0  0  0  184 184  352.00   93.33   64.00   26.67  
+ 185 Upd2A Kord   34   -  20 5 V 1  1  3  26   60   60    0   34  0   0 0 0  0  0  0  0  185 185  352.00   66.67   64.00   26.67  
+ 186 Upd2A Kord   35   -  20 5 V 1  1  3  26   60   60    0   35  0   0 0 0  0  0  0  0  186 186  352.00   40.00   64.00   26.67  
+ 187 Upd2A Kord   36   -  20 5 V 1  1  3  26   60   60    0   36  0   0 0 0  0  0  0  0  187 187  352.00   13.33   64.00   26.67  
+ 188 Upd2A Colm   27      74 4 V 1  1  3  27   60   60    0   36  0   0 0 0  0  0  0  0  188 188  416.00   80.00   64.00  160.00  
+ 189 Upd2A Kord   37   -  20 5 V 1  1  3  27   60   60    0   37  0   0 0 0  0  0  0  0  189 189  416.00  146.67   64.00   26.67  
+ 190 Upd2A Kord   38   -  20 5 V 1  1  3  27   60   60    0   38  0   0 0 0  0  0  0  0  190 190  416.00  120.00   64.00   26.67  
+ 191 Upd2A Kord   39   -  20 5 V 1  1  3  27   60   60    0   39  0   0 0 0  0  0  0  0  191 191  416.00   93.33   64.00   26.67  
+ 192 Upd2A Kord   40   -  20 5 V 1  1  3  27   60   60    0   40  0   0 0 0  0  0  0  0  192 192  416.00   66.67   64.00   26.67  
+ 193 Upd2A Kord   41   -  20 5 V 1  1  3  27   60   60    0   41  0   0 0 0  0  0  0  0  193 193  416.00   40.00   64.00   26.67  
+ 194 Upd2A Kord   42   -  20 5 V 1  1  3  27   60   60    0   42  0   0 0 0  0  0  0  0  194 194  416.00   13.33   64.00   26.67  
+ 195 Upd2A Colm   28      74 4 V 1  1  3  28   60   60    0   42  0   0 0 0  0  0  0  0  195 195  480.00   80.00   64.00  160.00  
+ 196 Upd2A Kord   43   -  20 5 V 1  1  3  28   60   60    0   43  0   0 0 0  0  0  0  0  196 196  480.00  146.67   64.00   26.67  
+ 197 Upd2A Kord   44   -  20 5 V 1  1  3  28   60   60    0   44  0   0 0 0  0  0  0  0  197 197  480.00  120.00   64.00   26.67  
+ 198 Upd2A Kord   45   -  20 5 V 1  1  3  28   60   60    0   45  0   0 0 0  0  0  0  0  198 198  480.00   93.33   64.00   26.67  
+ 199 Upd2A Kord   46   -  20 5 V 1  1  3  28   60   60    0   46  0   0 0 0  0  0  0  0  199 199  480.00   66.67   64.00   26.67  
+ 200 Upd2A Kord   47   -  20 5 V 1  1  3  28   60   60    0   47  0   0 0 0  0  0  0  0  200 200  480.00   40.00   64.00   26.67  
+ 201 Upd2A Kord   48   -  20 5 V 1  1  3  28   60   60    0   48  0   0 0 0  0  0  0  0  201 201  480.00   13.33   64.00   26.67  
+ 202 Upd2A Colm   29      74 4 V 1  1  3  29   60   60    0   48  0   0 0 0  0  0  0  0  202 202  544.00   80.00   64.00  160.00  
+ 203 Upd2A Kord   49   -  20 5 V 1  1  3  29   60   60    0   49  0   0 0 0  0  0  0  0  203 203  544.00  146.67   64.00   26.67  
+ 204 Upd2A Kord   50   -  20 5 V 1  1  3  29   60   60    0   50  0   0 0 0  0  0  0  0  204 204  544.00  120.00   64.00   26.67  
+ 205 Upd2A Kord   51   -  20 5 V 1  1  3  29   60   60    0   51  0   0 0 0  0  0  0  0  205 205  544.00   93.33   64.00   26.67  
+ 206 Upd2A Kord   52   -  20 5 V 1  1  3  29   60   60    0   52  0   0 0 0  0  0  0  0  206 206  544.00   66.67   64.00   26.67  
+ 207 Upd2A Kord   53   -  20 5 V 1  1  3  29   60   60    0   53  0   0 0 0  0  0  0  0  207 207  544.00   40.00   64.00   26.67  
+ 208 Upd2A Kord   54   -  20 5 V 1  1  3  29   60   60    0   54  0   0 0 0  0  0  0  0  208 208  544.00   13.33   64.00   26.67  
+ 209 Upd2A Colm   30      74 4 V 1  1  3  30   60   60    0   54  0   0 0 0  0  0  0  0  209 209  608.00   80.00   64.00  160.00  
+ 210 Upd2A Kord   55   -  20 5 V 1  1  3  30   60   60    0   55  0   0 0 0  0  0  0  0  210 210  608.00  146.67   64.00   26.67  
+ 211 Upd2A Kord   56   -  20 5 V 1  1  3  30   60   60    0   56  0   0 0 0  0  0  0  0  211 211  608.00  120.00   64.00   26.67  
+ 212 Upd2A Kord   57   -  20 5 V 1  1  3  30   60   60    0   57  0   0 0 0  0  0  0  0  212 212  608.00   93.33   64.00   26.67  
+ 213 Upd2A Kord   58   -  20 5 V 1  1  3  30   60   60    0   58  0   0 0 0  0  0  0  0  213 213  608.00   66.67   64.00   26.67  
+ 214 Upd2A Kord   59   -  20 5 V 1  1  3  30   60   60    0   59  0   0 0 0  0  0  0  0  214 214  608.00   40.00   64.00   26.67  
+ 215 Upd2A Kord   60   -  20 5 V 1  1  3  30   60   60    0   60  0   0 0 0  0  0  0  0  215 215  608.00   13.33   64.00   26.67  
+ 216 Upd2A HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   26.67  
+ Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
+ Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
+1411 tabsC dumpTniksA         J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] Upd2A
+1411 tabsC dumpTniksA         J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd2A
+1411 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd2A
+1411 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd2A
+ 511 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 531 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+2498 tabsC snapshot           SNAP_NAME=tabs.95.RSZC_5.1.png Upd2
+ 543 tabsC on_draw            [1 1 1  1 6]   6  1] .snapWhy=Upd2 .snapType=RSZC_5 .snapId=2
 2299 tabsC toggleFlatSharp    BGN @ F t1=0 FLAT => t2=1 SHRP
 2314 tabsC toggleFlatSharp    Eb -> D# = 
 -1                           R5           07     G#D#         R5           07     G#D#        
@@ -1866,79 +2400,249 @@ KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian No
 1720 tabsC setChordName       BGN [18-23] name=F# chunks=[F#] chords=<F#----->7
 1725 tabsC setChordName       END [18-23] name=F# chunks=[F#] chords=<F#----->7
 1715 tabsC setChord           [1 1 1  1 6]   6  1] END name=F# chunks=[F#] len(imap)=6
-  73 util  dumpKSD            -  -  -  -  -  -  -     +  +  +  +  +  +  +
-  73 util  dumpKSD            7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
-  74 util  dumpKSD            Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
-  75 util  dumpKSD            b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 
-  77 util  dumpKSD            4  b  6  1  8  3  a     6  1  8  3  a  5  0 
-  78 util  dumpKSD            Fb Cb Gb Db Ab Eb Bb    F# C# G# D# A# E# B#
-  85 util  dumpNic                 sorted(dict(nic)) [1  3  6  8  a ]
-  86 util  dumpNic                       zip(*mc)[0] [1  8  a  3  6 ]
-  87 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1 ]
-  88 util  dumpNic                  mc[n][1]/nt*100% [33 22 22 11 11]
-  89 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb]
-  90 util  dumpNic                            I2S[n] [C# G# A# D# F#]
+  87 util  dumpKSD            -  -  -  -  -  -  -     +  +  +  +  +  +  +
+  87 util  dumpKSD            7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 
+  88 util  dumpKSD            11 6  1  8  3  10 5  0  7  2  9  4  11 6  1 
+  89 util  dumpKSD            Cb Gb Db Ab Eb Bb F  C  G  D  A  E  B  F# C#
+  91 util  dumpKSD            Fb Cb Gb Db Ab Eb Bb    F# C# G# D# A# E# B#
+  92 util  dumpKSD             4 11  6  1  8  3 10     6  1  8  3 10  5  0
+  99 util  dumpNic                 sorted(dict(nic)) [1  3  6  8  a ]
+ 100 util  dumpNic                       zip(*mc)[0] [1  8  a  3  6 ]
+ 101 util  dumpNic                       zip(*mc)[1] [3  2  2  1  1 ]
+ 102 util  dumpNic                  mc[n][1]/nt*100% [33 22 22 11 11]
+ 103 util  dumpNic                            I2F[n] [Db Ab Bb Eb Gb]
+ 104 util  dumpNic                            I2S[n] [C# G# A# D# F#]
+1279 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd3
+1279 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd3
+1279 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] Upd3
+1279 tabsC resizeTniks        BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] Upd3
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
- 172 util  dumpStack          10 tabsC      2537 quit                 .log(.QUIT_BGN, pfx=0, file=2)   ;   .dumpStack(inspect.stack())    ;   .log(.QUIT, pfx=0, file=2)
- 172 util  dumpStack           9 tabsC      1785 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
- 172 util  dumpStack           8 event       415 dispatch_event       if getattr(, event_type)(*args):
- 172 util  dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(, *args) != False:
- 172 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
- 172 util  dumpStack           5 __init__    747 f                    result = event_handler(msg, wParam, lParam)
- 172 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
- 172 util  dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
- 172 util  dumpStack           2 __init__    107 run                  event_loop.run()
- 172 util  dumpStack           1 tabsC      2682 main                 ret = pyglet.app.run()
- 172 util  dumpStack           0 tabsC      2686 <module>             main()
- 173 util  dumpStack          MAX_STACK_DEPTH= 0
-###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
+1302 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+   1 Upd3  Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
+   2 Upd3  Line    1     373 2 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  320.00  240.00  640.00  480.00  
+   3 Upd3  Sect    1     124 3 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  320.00  400.00  640.00  160.00  
+   4 Upd3  Colm    1      74 4 V 1  1  1   1    0    0    0    0  0   0 0 0  0  0  0  0    4   4   32.00  400.00   64.00  160.00  
+   5 Upd3  Tab     1   -  20 5 V 1  1  1   1    1    0    0    0  0   0 0 0  0  0  0  0    5   5   32.00  466.67   64.00   26.67  
+   6 Upd3  Tab     2   -  20 5 V 1  1  1   1    2    0    0    0  0   0 0 0  0  0  0  0    6   6   32.00  440.00   64.00   26.67  
+   7 Upd3  Tab     3   -  20 5 V 1  1  1   1    3    0    0    0  0   0 0 0  0  0  0  0    7   7   32.00  413.33   64.00   26.67  
+   8 Upd3  Tab     4   1  20 5 V 1  1  1   1    4    0    0    0  0   0 0 0  0  0  0  0    8   8   32.00  386.67   64.00   26.67  
+   9 Upd3  Tab     5   -  20 5 V 1  1  1   1    5    0    0    0  0   0 0 0  0  0  0  0    9   9   32.00  360.00   64.00   26.67  
+  10 Upd3  Tab     6   4  20 5 V 1  1  1   1    6    0    0    0  0   0 0 0  0  0  0  0   10  10   32.00  333.33   64.00   26.67  
+  11 Upd3  Colm    2      74 4 V 1  1  1   2    6    0    0    0  0   0 0 0  0  0  0  0   11  11   96.00  400.00   64.00  160.00  
+  12 Upd3  Tab     7   -  20 5 V 1  1  1   2    7    0    0    0  0   0 0 0  0  0  0  0   12  12   96.00  466.67   64.00   26.67  
+  13 Upd3  Tab     8   -  20 5 V 1  1  1   2    8    0    0    0  0   0 0 0  0  0  0  0   13  13   96.00  440.00   64.00   26.67  
+  14 Upd3  Tab     9   1  20 5 V 1  1  1   2    9    0    0    0  0   0 0 0  0  0  0  0   14  14   96.00  413.33   64.00   26.67  
+  15 Upd3  Tab    10   -  20 5 V 1  1  1   2   10    0    0    0  0   0 0 0  0  0  0  0   15  15   96.00  386.67   64.00   26.67  
+  16 Upd3  Tab    11   4  20 5 V 1  1  1   2   11    0    0    0  0   0 0 0  0  0  0  0   16  16   96.00  360.00   64.00   26.67  
+  17 Upd3  Tab    12   -  20 5 V 1  1  1   2   12    0    0    0  0   0 0 0  0  0  0  0   17  17   96.00  333.33   64.00   26.67  
+  18 Upd3  Colm    3      74 4 V 1  1  1   3   12    0    0    0  0   0 0 0  0  0  0  0   18  18  160.00  400.00   64.00  160.00  
+  19 Upd3  Tab    13   -  20 5 V 1  1  1   3   13    0    0    0  0   0 0 0  0  0  0  0   19  19  160.00  466.67   64.00   26.67  
+  20 Upd3  Tab    14   -  20 5 V 1  1  1   3   14    0    0    0  0   0 0 0  0  0  0  0   20  20  160.00  440.00   64.00   26.67  
+  21 Upd3  Tab    15   -  20 5 V 1  1  1   3   15    0    0    0  0   0 0 0  0  0  0  0   21  21  160.00  413.33   64.00   26.67  
+  22 Upd3  Tab    16   -  20 5 V 1  1  1   3   16    0    0    0  0   0 0 0  0  0  0  0   22  22  160.00  386.67   64.00   26.67  
+  23 Upd3  Tab    17   4  20 5 V 1  1  1   3   17    0    0    0  0   0 0 0  0  0  0  0   23  23  160.00  360.00   64.00   26.67  
+  24 Upd3  Tab    18   6  20 5 V 1  1  1   3   18    0    0    0  0   0 0 0  0  0  0  0   24  24  160.00  333.33   64.00   26.67  
+  25 Upd3  Colm    4      74 4 V 1  1  1   4   18    0    0    0  0   0 0 0  0  0  0  0   25  25  224.00  400.00   64.00  160.00  
+  26 Upd3  Tab    19   -  20 5 V 1  1  1   4   19    0    0    0  0   0 0 0  0  0  0  0   26  26  224.00  466.67   64.00   26.67  
+  27 Upd3  Tab    20   2  20 5 V 1  1  1   4   20    0    0    0  0   0 0 0  0  0  0  0   27  27  224.00  440.00   64.00   26.67  
+  28 Upd3  Tab    21   3  20 5 V 1  1  1   4   21    0    0    0  0   0 0 0  0  0  0  0   28  28  224.00  413.33   64.00   26.67  
+  29 Upd3  Tab    22   4  20 5 V 1  1  1   4   22    0    0    0  0   0 0 0  0  0  0  0   29  29  224.00  386.67   64.00   26.67  
+  30 Upd3  Tab    23   -  20 5 V 1  1  1   4   23    0    0    0  0   0 0 0  0  0  0  0   30  30  224.00  360.00   64.00   26.67  
+  31 Upd3  Tab    24   -  20 5 V 1  1  1   4   24    0    0    0  0   0 0 0  0  0  0  0   31  31  224.00  333.33   64.00   26.67  
+  32 Upd3  Colm    5      74 4 V 1  1  1   5   24    0    0    0  0   0 0 0  0  0  0  0   32  32  288.00  400.00   64.00  160.00  
+  33 Upd3  Tab    25   -  20 5 V 1  1  1   5   25    0    0    0  0   0 0 0  0  0  0  0   33  33  288.00  466.67   64.00   26.67  
+  34 Upd3  Tab    26   -  20 5 V 1  1  1   5   26    0    0    0  0   0 0 0  0  0  0  0   34  34  288.00  440.00   64.00   26.67  
+  35 Upd3  Tab    27   -  20 5 V 1  1  1   5   27    0    0    0  0   0 0 0  0  0  0  0   35  35  288.00  413.33   64.00   26.67  
+  36 Upd3  Tab    28   -  20 5 V 1  1  1   5   28    0    0    0  0   0 0 0  0  0  0  0   36  36  288.00  386.67   64.00   26.67  
+  37 Upd3  Tab    29   -  20 5 V 1  1  1   5   29    0    0    0  0   0 0 0  0  0  0  0   37  37  288.00  360.00   64.00   26.67  
+  38 Upd3  Tab    30   -  20 5 V 1  1  1   5   30    0    0    0  0   0 0 0  0  0  0  0   38  38  288.00  333.33   64.00   26.67  
+  39 Upd3  Colm    6      74 4 V 1  1  1   6   30    0    0    0  0   0 0 0  0  0  0  0   39  39  352.00  400.00   64.00  160.00  
+  40 Upd3  Tab    31   -  20 5 V 1  1  1   6   31    0    0    0  0   0 0 0  0  0  0  0   40  40  352.00  466.67   64.00   26.67  
+  41 Upd3  Tab    32   -  20 5 V 1  1  1   6   32    0    0    0  0   0 0 0  0  0  0  0   41  41  352.00  440.00   64.00   26.67  
+  42 Upd3  Tab    33   -  20 5 V 1  1  1   6   33    0    0    0  0   0 0 0  0  0  0  0   42  42  352.00  413.33   64.00   26.67  
+  43 Upd3  Tab    34   -  20 5 V 1  1  1   6   34    0    0    0  0   0 0 0  0  0  0  0   43  43  352.00  386.67   64.00   26.67  
+  44 Upd3  Tab    35   -  20 5 V 1  1  1   6   35    0    0    0  0   0 0 0  0  0  0  0   44  44  352.00  360.00   64.00   26.67  
+  45 Upd3  Tab    36   -  20 5 V 1  1  1   6   36    0    0    0  0   0 0 0  0  0  0  0   45  45  352.00  333.33   64.00   26.67  
+  46 Upd3  Colm    7      74 4 V 1  1  1   7   36    0    0    0  0   0 0 0  0  0  0  0   46  46  416.00  400.00   64.00  160.00  
+  47 Upd3  Tab    37   -  20 5 V 1  1  1   7   37    0    0    0  0   0 0 0  0  0  0  0   47  47  416.00  466.67   64.00   26.67  
+  48 Upd3  Tab    38   -  20 5 V 1  1  1   7   38    0    0    0  0   0 0 0  0  0  0  0   48  48  416.00  440.00   64.00   26.67  
+  49 Upd3  Tab    39   -  20 5 V 1  1  1   7   39    0    0    0  0   0 0 0  0  0  0  0   49  49  416.00  413.33   64.00   26.67  
+  50 Upd3  Tab    40   -  20 5 V 1  1  1   7   40    0    0    0  0   0 0 0  0  0  0  0   50  50  416.00  386.67   64.00   26.67  
+  51 Upd3  Tab    41   -  20 5 V 1  1  1   7   41    0    0    0  0   0 0 0  0  0  0  0   51  51  416.00  360.00   64.00   26.67  
+  52 Upd3  Tab    42   -  20 5 V 1  1  1   7   42    0    0    0  0   0 0 0  0  0  0  0   52  52  416.00  333.33   64.00   26.67  
+  53 Upd3  Colm    8      74 4 V 1  1  1   8   42    0    0    0  0   0 0 0  0  0  0  0   53  53  480.00  400.00   64.00  160.00  
+  54 Upd3  Tab    43   -  20 5 V 1  1  1   8   43    0    0    0  0   0 0 0  0  0  0  0   54  54  480.00  466.67   64.00   26.67  
+  55 Upd3  Tab    44   -  20 5 V 1  1  1   8   44    0    0    0  0   0 0 0  0  0  0  0   55  55  480.00  440.00   64.00   26.67  
+  56 Upd3  Tab    45   -  20 5 V 1  1  1   8   45    0    0    0  0   0 0 0  0  0  0  0   56  56  480.00  413.33   64.00   26.67  
+  57 Upd3  Tab    46   -  20 5 V 1  1  1   8   46    0    0    0  0   0 0 0  0  0  0  0   57  57  480.00  386.67   64.00   26.67  
+  58 Upd3  Tab    47   -  20 5 V 1  1  1   8   47    0    0    0  0   0 0 0  0  0  0  0   58  58  480.00  360.00   64.00   26.67  
+  59 Upd3  Tab    48   -  20 5 V 1  1  1   8   48    0    0    0  0   0 0 0  0  0  0  0   59  59  480.00  333.33   64.00   26.67  
+  60 Upd3  Colm    9      74 4 V 1  1  1   9   48    0    0    0  0   0 0 0  0  0  0  0   60  60  544.00  400.00   64.00  160.00  
+  61 Upd3  Tab    49   -  20 5 V 1  1  1   9   49    0    0    0  0   0 0 0  0  0  0  0   61  61  544.00  466.67   64.00   26.67  
+  62 Upd3  Tab    50   -  20 5 V 1  1  1   9   50    0    0    0  0   0 0 0  0  0  0  0   62  62  544.00  440.00   64.00   26.67  
+  63 Upd3  Tab    51   -  20 5 V 1  1  1   9   51    0    0    0  0   0 0 0  0  0  0  0   63  63  544.00  413.33   64.00   26.67  
+  64 Upd3  Tab    52   -  20 5 V 1  1  1   9   52    0    0    0  0   0 0 0  0  0  0  0   64  64  544.00  386.67   64.00   26.67  
+  65 Upd3  Tab    53   -  20 5 V 1  1  1   9   53    0    0    0  0   0 0 0  0  0  0  0   65  65  544.00  360.00   64.00   26.67  
+  66 Upd3  Tab    54   -  20 5 V 1  1  1   9   54    0    0    0  0   0 0 0  0  0  0  0   66  66  544.00  333.33   64.00   26.67  
+  67 Upd3  Colm   10      74 4 V 1  1  1  10   54    0    0    0  0   0 0 0  0  0  0  0   67  67  608.00  400.00   64.00  160.00  
+  68 Upd3  Tab    55   -  20 5 V 1  1  1  10   55    0    0    0  0   0 0 0  0  0  0  0   68  68  608.00  466.67   64.00   26.67  
+  69 Upd3  Tab    56   -  20 5 V 1  1  1  10   56    0    0    0  0   0 0 0  0  0  0  0   69  69  608.00  440.00   64.00   26.67  
+  70 Upd3  Tab    57   -  20 5 V 1  1  1  10   57    0    0    0  0   0 0 0  0  0  0  0   70  70  608.00  413.33   64.00   26.67  
+  71 Upd3  Tab    58   -  20 5 V 1  1  1  10   58    0    0    0  0   0 0 0  0  0  0  0   71  71  608.00  386.67   64.00   26.67  
+  72 Upd3  Tab    59   -  20 5 V 1  1  1  10   59    0    0    0  0   0 0 0  0  0  0  0   72  72  608.00  360.00   64.00   26.67  
+  73 Upd3  Tab    60   -  20 5 V 1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73  608.00  333.33   64.00   26.67  
+  74 Upd3  Sect    2     124 3 V 1  1  2  10   60    0    0    0  0   0 0 0  0  0  0  0   74  74  320.00  240.00  640.00  160.00  
+  75 Upd3  Colm   11      74 4 V 1  1  2  11   60    0    0    0  0   0 0 0  0  0  0  0   75  75   32.00  240.00   64.00  160.00  
+  76 Upd3  Note    1   -  20 5 V 1  1  2  11   60    1    0    0  0   0 0 0  0  0  0  0   76  76   32.00  306.67   64.00   26.67  
+  77 Upd3  Note    2   -  20 5 V 1  1  2  11   60    2    0    0  0   0 0 0  0  0  0  0   77  77   32.00  280.00   64.00   26.67  
+  78 Upd3  Note    3   -  20 5 V 1  1  2  11   60    3    0    0  0   0 0 0  0  0  0  0   78  78   32.00  253.33   64.00   26.67  
+  79 Upd3  Note    4  D#  20 5 V 1  1  2  11   60    4    0    0  0   0 0 0  0  0  0  0   79  79   32.00  226.67   64.00   26.67  
+  80 Upd3  Note    5   -  20 5 V 1  1  2  11   60    5    0    0  0   0 0 0  0  0  0  0   80  80   32.00  200.00   64.00   26.67  
+  81 Upd3  Note    6  G#  20 5 V 1  1  2  11   60    6    0    0  0   0 0 0  0  0  0  0   81  81   32.00  173.33   64.00   26.67  
+  82 Upd3  Colm   12      74 4 V 1  1  2  12   60    6    0    0  0   0 0 0  0  0  0  0   82  82   96.00  240.00   64.00  160.00  
+  83 Upd3  Note    7   -  20 5 V 1  1  2  12   60    7    0    0  0   0 0 0  0  0  0  0   83  83   96.00  306.67   64.00   26.67  
+  84 Upd3  Note    8   -  20 5 V 1  1  2  12   60    8    0    0  0   0 0 0  0  0  0  0   84  84   96.00  280.00   64.00   26.67  
+  85 Upd3  Note    9  G#  20 5 V 1  1  2  12   60    9    0    0  0   0 0 0  0  0  0  0   85  85   96.00  253.33   64.00   26.67  
+  86 Upd3  Note   10   -  20 5 V 1  1  2  12   60   10    0    0  0   0 0 0  0  0  0  0   86  86   96.00  226.67   64.00   26.67  
+  87 Upd3  Note   11  C#  20 5 V 1  1  2  12   60   11    0    0  0   0 0 0  0  0  0  0   87  87   96.00  200.00   64.00   26.67  
+  88 Upd3  Note   12   -  20 5 V 1  1  2  12   60   12    0    0  0   0 0 0  0  0  0  0   88  88   96.00  173.33   64.00   26.67  
+  89 Upd3  Colm   13      74 4 V 1  1  2  13   60   12    0    0  0   0 0 0  0  0  0  0   89  89  160.00  240.00   64.00  160.00  
+  90 Upd3  Note   13   -  20 5 V 1  1  2  13   60   13    0    0  0   0 0 0  0  0  0  0   90  90  160.00  306.67   64.00   26.67  
+  91 Upd3  Note   14   -  20 5 V 1  1  2  13   60   14    0    0  0   0 0 0  0  0  0  0   91  91  160.00  280.00   64.00   26.67  
+  92 Upd3  Note   15   -  20 5 V 1  1  2  13   60   15    0    0  0   0 0 0  0  0  0  0   92  92  160.00  253.33   64.00   26.67  
+  93 Upd3  Note   16   -  20 5 V 1  1  2  13   60   16    0    0  0   0 0 0  0  0  0  0   93  93  160.00  226.67   64.00   26.67  
+  94 Upd3  Note   17  C#  20 5 V 1  1  2  13   60   17    0    0  0   0 0 0  0  0  0  0   94  94  160.00  200.00   64.00   26.67  
+  95 Upd3  Note   18  A#  20 5 V 1  1  2  13   60   18    0    0  0   0 0 0  0  0  0  0   95  95  160.00  173.33   64.00   26.67  
+  96 Upd3  Colm   14      74 4 V 1  1  2  14   60   18    0    0  0   0 0 0  0  0  0  0   96  96  224.00  240.00   64.00  160.00  
+  97 Upd3  Note   19   -  20 5 V 1  1  2  14   60   19    0    0  0   0 0 0  0  0  0  0   97  97  224.00  306.67   64.00   26.67  
+  98 Upd3  Note   20  C#  20 5 V 1  1  2  14   60   20    0    0  0   0 0 0  0  0  0  0   98  98  224.00  280.00   64.00   26.67  
+  99 Upd3  Note   21  A#  20 5 V 1  1  2  14   60   21    0    0  0   0 0 0  0  0  0  0   99  99  224.00  253.33   64.00   26.67  
+ 100 Upd3  Note   22  F#  20 5 V 1  1  2  14   60   22    0    0  0   0 0 0  0  0  0  0  100 100  224.00  226.67   64.00   26.67  
+ 101 Upd3  Note   23   -  20 5 V 1  1  2  14   60   23    0    0  0   0 0 0  0  0  0  0  101 101  224.00  200.00   64.00   26.67  
+ 102 Upd3  Note   24   -  20 5 V 1  1  2  14   60   24    0    0  0   0 0 0  0  0  0  0  102 102  224.00  173.33   64.00   26.67  
+ 103 Upd3  Colm   15      74 4 V 1  1  2  15   60   24    0    0  0   0 0 0  0  0  0  0  103 103  288.00  240.00   64.00  160.00  
+ 104 Upd3  Note   25   -  20 5 V 1  1  2  15   60   25    0    0  0   0 0 0  0  0  0  0  104 104  288.00  306.67   64.00   26.67  
+ 105 Upd3  Note   26   -  20 5 V 1  1  2  15   60   26    0    0  0   0 0 0  0  0  0  0  105 105  288.00  280.00   64.00   26.67  
+ 106 Upd3  Note   27   -  20 5 V 1  1  2  15   60   27    0    0  0   0 0 0  0  0  0  0  106 106  288.00  253.33   64.00   26.67  
+ 107 Upd3  Note   28   -  20 5 V 1  1  2  15   60   28    0    0  0   0 0 0  0  0  0  0  107 107  288.00  226.67   64.00   26.67  
+ 108 Upd3  Note   29   -  20 5 V 1  1  2  15   60   29    0    0  0   0 0 0  0  0  0  0  108 108  288.00  200.00   64.00   26.67  
+ 109 Upd3  Note   30   -  20 5 V 1  1  2  15   60   30    0    0  0   0 0 0  0  0  0  0  109 109  288.00  173.33   64.00   26.67  
+ 110 Upd3  Colm   16      74 4 V 1  1  2  16   60   30    0    0  0   0 0 0  0  0  0  0  110 110  352.00  240.00   64.00  160.00  
+ 111 Upd3  Note   31   -  20 5 V 1  1  2  16   60   31    0    0  0   0 0 0  0  0  0  0  111 111  352.00  306.67   64.00   26.67  
+ 112 Upd3  Note   32   -  20 5 V 1  1  2  16   60   32    0    0  0   0 0 0  0  0  0  0  112 112  352.00  280.00   64.00   26.67  
+ 113 Upd3  Note   33   -  20 5 V 1  1  2  16   60   33    0    0  0   0 0 0  0  0  0  0  113 113  352.00  253.33   64.00   26.67  
+ 114 Upd3  Note   34   -  20 5 V 1  1  2  16   60   34    0    0  0   0 0 0  0  0  0  0  114 114  352.00  226.67   64.00   26.67  
+ 115 Upd3  Note   35   -  20 5 V 1  1  2  16   60   35    0    0  0   0 0 0  0  0  0  0  115 115  352.00  200.00   64.00   26.67  
+ 116 Upd3  Note   36   -  20 5 V 1  1  2  16   60   36    0    0  0   0 0 0  0  0  0  0  116 116  352.00  173.33   64.00   26.67  
+ 117 Upd3  Colm   17      74 4 V 1  1  2  17   60   36    0    0  0   0 0 0  0  0  0  0  117 117  416.00  240.00   64.00  160.00  
+ 118 Upd3  Note   37   -  20 5 V 1  1  2  17   60   37    0    0  0   0 0 0  0  0  0  0  118 118  416.00  306.67   64.00   26.67  
+ 119 Upd3  Note   38   -  20 5 V 1  1  2  17   60   38    0    0  0   0 0 0  0  0  0  0  119 119  416.00  280.00   64.00   26.67  
+ 120 Upd3  Note   39   -  20 5 V 1  1  2  17   60   39    0    0  0   0 0 0  0  0  0  0  120 120  416.00  253.33   64.00   26.67  
+ 121 Upd3  Note   40   -  20 5 V 1  1  2  17   60   40    0    0  0   0 0 0  0  0  0  0  121 121  416.00  226.67   64.00   26.67  
+ 122 Upd3  Note   41   -  20 5 V 1  1  2  17   60   41    0    0  0   0 0 0  0  0  0  0  122 122  416.00  200.00   64.00   26.67  
+ 123 Upd3  Note   42   -  20 5 V 1  1  2  17   60   42    0    0  0   0 0 0  0  0  0  0  123 123  416.00  173.33   64.00   26.67  
+ 124 Upd3  Colm   18      74 4 V 1  1  2  18   60   42    0    0  0   0 0 0  0  0  0  0  124 124  480.00  240.00   64.00  160.00  
+ 125 Upd3  Note   43   -  20 5 V 1  1  2  18   60   43    0    0  0   0 0 0  0  0  0  0  125 125  480.00  306.67   64.00   26.67  
+ 126 Upd3  Note   44   -  20 5 V 1  1  2  18   60   44    0    0  0   0 0 0  0  0  0  0  126 126  480.00  280.00   64.00   26.67  
+ 127 Upd3  Note   45   -  20 5 V 1  1  2  18   60   45    0    0  0   0 0 0  0  0  0  0  127 127  480.00  253.33   64.00   26.67  
+ 128 Upd3  Note   46   -  20 5 V 1  1  2  18   60   46    0    0  0   0 0 0  0  0  0  0  128 128  480.00  226.67   64.00   26.67  
+ 129 Upd3  Note   47   -  20 5 V 1  1  2  18   60   47    0    0  0   0 0 0  0  0  0  0  129 129  480.00  200.00   64.00   26.67  
+ 130 Upd3  Note   48   -  20 5 V 1  1  2  18   60   48    0    0  0   0 0 0  0  0  0  0  130 130  480.00  173.33   64.00   26.67  
+ 131 Upd3  Colm   19      74 4 V 1  1  2  19   60   48    0    0  0   0 0 0  0  0  0  0  131 131  544.00  240.00   64.00  160.00  
+ 132 Upd3  Note   49   -  20 5 V 1  1  2  19   60   49    0    0  0   0 0 0  0  0  0  0  132 132  544.00  306.67   64.00   26.67  
+ 133 Upd3  Note   50   -  20 5 V 1  1  2  19   60   50    0    0  0   0 0 0  0  0  0  0  133 133  544.00  280.00   64.00   26.67  
+ 134 Upd3  Note   51   -  20 5 V 1  1  2  19   60   51    0    0  0   0 0 0  0  0  0  0  134 134  544.00  253.33   64.00   26.67  
+ 135 Upd3  Note   52   -  20 5 V 1  1  2  19   60   52    0    0  0   0 0 0  0  0  0  0  135 135  544.00  226.67   64.00   26.67  
+ 136 Upd3  Note   53   -  20 5 V 1  1  2  19   60   53    0    0  0   0 0 0  0  0  0  0  136 136  544.00  200.00   64.00   26.67  
+ 137 Upd3  Note   54   -  20 5 V 1  1  2  19   60   54    0    0  0   0 0 0  0  0  0  0  137 137  544.00  173.33   64.00   26.67  
+ 138 Upd3  Colm   20      74 4 V 1  1  2  20   60   54    0    0  0   0 0 0  0  0  0  0  138 138  608.00  240.00   64.00  160.00  
+ 139 Upd3  Note   55   -  20 5 V 1  1  2  20   60   55    0    0  0   0 0 0  0  0  0  0  139 139  608.00  306.67   64.00   26.67  
+ 140 Upd3  Note   56   -  20 5 V 1  1  2  20   60   56    0    0  0   0 0 0  0  0  0  0  140 140  608.00  280.00   64.00   26.67  
+ 141 Upd3  Note   57   -  20 5 V 1  1  2  20   60   57    0    0  0   0 0 0  0  0  0  0  141 141  608.00  253.33   64.00   26.67  
+ 142 Upd3  Note   58   -  20 5 V 1  1  2  20   60   58    0    0  0   0 0 0  0  0  0  0  142 142  608.00  226.67   64.00   26.67  
+ 143 Upd3  Note   59   -  20 5 V 1  1  2  20   60   59    0    0  0   0 0 0  0  0  0  0  143 143  608.00  200.00   64.00   26.67  
+ 144 Upd3  Note   60   -  20 5 V 1  1  2  20   60   60    0    0  0   0 0 0  0  0  0  0  144 144  608.00  173.33   64.00   26.67  
+ 145 Upd3  Sect    3     124 3 V 1  1  3  20   60   60    0    0  0   0 0 0  0  0  0  0  145 145  320.00   80.00  640.00  160.00  
+ 146 Upd3  Colm   21      74 4 V 1  1  3  21   60   60    0    0  0   0 0 0  0  0  0  0  146 146   32.00   80.00   64.00  160.00  
+ 147 Upd3  Kord    1   -  20 5 V 1  1  3  21   60   60    0    1  0   0 0 0  0  0  0  0  147 147   32.00  146.67   64.00   26.67  
+ 148 Upd3  Kord    2   -  20 5 V 1  1  3  21   60   60    0    2  0   0 0 0  0  0  0  0  148 148   32.00  120.00   64.00   26.67  
+ 149 Upd3  Kord    3   -  20 5 V 1  1  3  21   60   60    0    3  0   0 0 0  0  0  0  0  149 149   32.00   93.33   64.00   26.67  
+ 150 Upd3  Kord    4   -  20 5 V 1  1  3  21   60   60    0    4  0   0 0 0  0  0  0  0  150 150   32.00   66.67   64.00   26.67  
+ 151 Upd3  Kord    5   -  20 5 V 1  1  3  21   60   60    0    5  0   0 0 0  0  0  0  0  151 151   32.00   40.00   64.00   26.67  
+ 152 Upd3  Kord    6   -  20 5 V 1  1  3  21   60   60    0    6  0   0 0 0  0  0  0  0  152 152   32.00   13.33   64.00   26.67  
+ 153 Upd3  Colm   22      74 4 V 1  1  3  22   60   60    0    6  0   0 0 0  0  0  0  0  153 153   96.00   80.00   64.00  160.00  
+ 154 Upd3  Kord    7   -  20 5 V 1  1  3  22   60   60    0    7  0   0 0 0  0  0  0  0  154 154   96.00  146.67   64.00   26.67  
+ 155 Upd3  Kord    8   -  20 5 V 1  1  3  22   60   60    0    8  0   0 0 0  0  0  0  0  155 155   96.00  120.00   64.00   26.67  
+ 156 Upd3  Kord    9   -  20 5 V 1  1  3  22   60   60    0    9  0   0 0 0  0  0  0  0  156 156   96.00   93.33   64.00   26.67  
+ 157 Upd3  Kord   10   -  20 5 V 1  1  3  22   60   60    0   10  0   0 0 0  0  0  0  0  157 157   96.00   66.67   64.00   26.67  
+ 158 Upd3  Kord   11   -  20 5 V 1  1  3  22   60   60    0   11  0   0 0 0  0  0  0  0  158 158   96.00   40.00   64.00   26.67  
+ 159 Upd3  Kord   12   -  20 5 V 1  1  3  22   60   60    0   12  0   0 0 0  0  0  0  0  159 159   96.00   13.33   64.00   26.67  
+ 160 Upd3  Colm   23      74 4 V 1  1  3  23   60   60    0   12  0   0 0 0  0  0  0  0  160 160  160.00   80.00   64.00  160.00  
+ 161 Upd3  Kord   13   -  20 5 V 1  1  3  23   60   60    0   13  0   0 0 0  0  0  0  0  161 161  160.00  146.67   64.00   26.67  
+ 162 Upd3  Kord   14   -  20 5 V 1  1  3  23   60   60    0   14  0   0 0 0  0  0  0  0  162 162  160.00  120.00   64.00   26.67  
+ 163 Upd3  Kord   15   -  20 5 V 1  1  3  23   60   60    0   15  0   0 0 0  0  0  0  0  163 163  160.00   93.33   64.00   26.67  
+ 164 Upd3  Kord   16   -  20 5 V 1  1  3  23   60   60    0   16  0   0 0 0  0  0  0  0  164 164  160.00   66.67   64.00   26.67  
+ 165 Upd3  Kord   17   -  20 5 V 1  1  3  23   60   60    0   17  0   0 0 0  0  0  0  0  165 165  160.00   40.00   64.00   26.67  
+ 166 Upd3  Kord   18   -  20 5 V 1  1  3  23   60   60    0   18  0   0 0 0  0  0  0  0  166 166  160.00   13.33   64.00   26.67  
+ 167 Upd3  Colm   24      74 4 V 1  1  3  24   60   60    0   18  0   0 0 0  0  0  0  0  167 167  224.00   80.00   64.00  160.00  
+ 168 Upd3  Kord   19  F#  20 5 V 1  1  3  24   60   60    0   19  0   0 0 0  0  0  0  0  168 168  224.00  146.67   64.00   26.67  
+ 169 Upd3  Kord   20   -  20 5 V 1  1  3  24   60   60    0   20  0   0 0 0  0  0  0  0  169 169  224.00  120.00   64.00   26.67  
+ 170 Upd3  Kord   21   -  20 5 V 1  1  3  24   60   60    0   21  0   0 0 0  0  0  0  0  170 170  224.00   93.33   64.00   26.67  
+ 171 Upd3  Kord   22   -  20 5 V 1  1  3  24   60   60    0   22  0   0 0 0  0  0  0  0  171 171  224.00   66.67   64.00   26.67  
+ 172 Upd3  Kord   23   -  20 5 V 1  1  3  24   60   60    0   23  0   0 0 0  0  0  0  0  172 172  224.00   40.00   64.00   26.67  
+ 173 Upd3  Kord   24   -  20 5 V 1  1  3  24   60   60    0   24  0   0 0 0  0  0  0  0  173 173  224.00   13.33   64.00   26.67  
+ 174 Upd3  Colm   25      74 4 V 1  1  3  25   60   60    0   24  0   0 0 0  0  0  0  0  174 174  288.00   80.00   64.00  160.00  
+ 175 Upd3  Kord   25   -  20 5 V 1  1  3  25   60   60    0   25  0   0 0 0  0  0  0  0  175 175  288.00  146.67   64.00   26.67  
+ 176 Upd3  Kord   26   -  20 5 V 1  1  3  25   60   60    0   26  0   0 0 0  0  0  0  0  176 176  288.00  120.00   64.00   26.67  
+ 177 Upd3  Kord   27   -  20 5 V 1  1  3  25   60   60    0   27  0   0 0 0  0  0  0  0  177 177  288.00   93.33   64.00   26.67  
+ 178 Upd3  Kord   28   -  20 5 V 1  1  3  25   60   60    0   28  0   0 0 0  0  0  0  0  178 178  288.00   66.67   64.00   26.67  
+ 179 Upd3  Kord   29   -  20 5 V 1  1  3  25   60   60    0   29  0   0 0 0  0  0  0  0  179 179  288.00   40.00   64.00   26.67  
+ 180 Upd3  Kord   30   -  20 5 V 1  1  3  25   60   60    0   30  0   0 0 0  0  0  0  0  180 180  288.00   13.33   64.00   26.67  
+ 181 Upd3  Colm   26      74 4 V 1  1  3  26   60   60    0   30  0   0 0 0  0  0  0  0  181 181  352.00   80.00   64.00  160.00  
+ 182 Upd3  Kord   31   -  20 5 V 1  1  3  26   60   60    0   31  0   0 0 0  0  0  0  0  182 182  352.00  146.67   64.00   26.67  
+ 183 Upd3  Kord   32   -  20 5 V 1  1  3  26   60   60    0   32  0   0 0 0  0  0  0  0  183 183  352.00  120.00   64.00   26.67  
+ 184 Upd3  Kord   33   -  20 5 V 1  1  3  26   60   60    0   33  0   0 0 0  0  0  0  0  184 184  352.00   93.33   64.00   26.67  
+ 185 Upd3  Kord   34   -  20 5 V 1  1  3  26   60   60    0   34  0   0 0 0  0  0  0  0  185 185  352.00   66.67   64.00   26.67  
+ 186 Upd3  Kord   35   -  20 5 V 1  1  3  26   60   60    0   35  0   0 0 0  0  0  0  0  186 186  352.00   40.00   64.00   26.67  
+ 187 Upd3  Kord   36   -  20 5 V 1  1  3  26   60   60    0   36  0   0 0 0  0  0  0  0  187 187  352.00   13.33   64.00   26.67  
+ 188 Upd3  Colm   27      74 4 V 1  1  3  27   60   60    0   36  0   0 0 0  0  0  0  0  188 188  416.00   80.00   64.00  160.00  
+ 189 Upd3  Kord   37   -  20 5 V 1  1  3  27   60   60    0   37  0   0 0 0  0  0  0  0  189 189  416.00  146.67   64.00   26.67  
+ 190 Upd3  Kord   38   -  20 5 V 1  1  3  27   60   60    0   38  0   0 0 0  0  0  0  0  190 190  416.00  120.00   64.00   26.67  
+ 191 Upd3  Kord   39   -  20 5 V 1  1  3  27   60   60    0   39  0   0 0 0  0  0  0  0  191 191  416.00   93.33   64.00   26.67  
+ 192 Upd3  Kord   40   -  20 5 V 1  1  3  27   60   60    0   40  0   0 0 0  0  0  0  0  192 192  416.00   66.67   64.00   26.67  
+ 193 Upd3  Kord   41   -  20 5 V 1  1  3  27   60   60    0   41  0   0 0 0  0  0  0  0  193 193  416.00   40.00   64.00   26.67  
+ 194 Upd3  Kord   42   -  20 5 V 1  1  3  27   60   60    0   42  0   0 0 0  0  0  0  0  194 194  416.00   13.33   64.00   26.67  
+ 195 Upd3  Colm   28      74 4 V 1  1  3  28   60   60    0   42  0   0 0 0  0  0  0  0  195 195  480.00   80.00   64.00  160.00  
+ 196 Upd3  Kord   43   -  20 5 V 1  1  3  28   60   60    0   43  0   0 0 0  0  0  0  0  196 196  480.00  146.67   64.00   26.67  
+ 197 Upd3  Kord   44   -  20 5 V 1  1  3  28   60   60    0   44  0   0 0 0  0  0  0  0  197 197  480.00  120.00   64.00   26.67  
+ 198 Upd3  Kord   45   -  20 5 V 1  1  3  28   60   60    0   45  0   0 0 0  0  0  0  0  198 198  480.00   93.33   64.00   26.67  
+ 199 Upd3  Kord   46   -  20 5 V 1  1  3  28   60   60    0   46  0   0 0 0  0  0  0  0  199 199  480.00   66.67   64.00   26.67  
+ 200 Upd3  Kord   47   -  20 5 V 1  1  3  28   60   60    0   47  0   0 0 0  0  0  0  0  200 200  480.00   40.00   64.00   26.67  
+ 201 Upd3  Kord   48   -  20 5 V 1  1  3  28   60   60    0   48  0   0 0 0  0  0  0  0  201 201  480.00   13.33   64.00   26.67  
+ 202 Upd3  Colm   29      74 4 V 1  1  3  29   60   60    0   48  0   0 0 0  0  0  0  0  202 202  544.00   80.00   64.00  160.00  
+ 203 Upd3  Kord   49   -  20 5 V 1  1  3  29   60   60    0   49  0   0 0 0  0  0  0  0  203 203  544.00  146.67   64.00   26.67  
+ 204 Upd3  Kord   50   -  20 5 V 1  1  3  29   60   60    0   50  0   0 0 0  0  0  0  0  204 204  544.00  120.00   64.00   26.67  
+ 205 Upd3  Kord   51   -  20 5 V 1  1  3  29   60   60    0   51  0   0 0 0  0  0  0  0  205 205  544.00   93.33   64.00   26.67  
+ 206 Upd3  Kord   52   -  20 5 V 1  1  3  29   60   60    0   52  0   0 0 0  0  0  0  0  206 206  544.00   66.67   64.00   26.67  
+ 207 Upd3  Kord   53   -  20 5 V 1  1  3  29   60   60    0   53  0   0 0 0  0  0  0  0  207 207  544.00   40.00   64.00   26.67  
+ 208 Upd3  Kord   54   -  20 5 V 1  1  3  29   60   60    0   54  0   0 0 0  0  0  0  0  208 208  544.00   13.33   64.00   26.67  
+ 209 Upd3  Colm   30      74 4 V 1  1  3  30   60   60    0   54  0   0 0 0  0  0  0  0  209 209  608.00   80.00   64.00  160.00  
+ 210 Upd3  Kord   55   -  20 5 V 1  1  3  30   60   60    0   55  0   0 0 0  0  0  0  0  210 210  608.00  146.67   64.00   26.67  
+ 211 Upd3  Kord   56   -  20 5 V 1  1  3  30   60   60    0   56  0   0 0 0  0  0  0  0  211 211  608.00  120.00   64.00   26.67  
+ 212 Upd3  Kord   57   -  20 5 V 1  1  3  30   60   60    0   57  0   0 0 0  0  0  0  0  212 212  608.00   93.33   64.00   26.67  
+ 213 Upd3  Kord   58   -  20 5 V 1  1  3  30   60   60    0   58  0   0 0 0  0  0  0  0  213 213  608.00   66.67   64.00   26.67  
+ 214 Upd3  Kord   59   -  20 5 V 1  1  3  30   60   60    0   59  0   0 0 0  0  0  0  0  214 214  608.00   40.00   64.00   26.67  
+ 215 Upd3  Kord   60   -  20 5 V 1  1  3  30   60   60    0   60  0   0 0 0  0  0  0  0  215 215  608.00   13.33   64.00   26.67  
+1314 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+ 216 Upd3  HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   26.67  
+2485 tabsC regSnap            .snapWhy=Upd3 .snapType=RSZC_5 .snapReg=1 .snapId=2
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-2538 tabsC quit               J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] @^Q
-2538 tabsC quit               J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
-2538 tabsC quit               LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^Q
-2538 tabsC quit               END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] @^Q
- 172 util  dumpStack           6          12 <module>             MAX_STACK_FRAME  = inspect.stack()
- 172 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
- 172 util  dumpStack           4 <frozen importlib   883 exec_module          
- 172 util  dumpStack           3 <frozen importlib   688 _load_unlocked       
- 172 util  dumpStack           2 <frozen importlib  1006 _find_and_load_unlocked 
- 172 util  dumpStack           1 <frozen importlib  1027 _find_and_load       
- 172 util  dumpStack           0 tabsC        13 <module>             import , chord
- 173 util  dumpStack          MAX_STACK_DEPTH= 0
-2540 tabsC quit               BGN @^Q error=0 save=0
-###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
- 125 tabsC dumpArgs           [f]     .DATA_FNAME=testC.4.2.10.dat
- 126 tabsC dumpArgs           [n]               n=[1 1 3 10 6]
- 127 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
- 128 tabsC dumpArgs           [a]      .AUTO_SAVE=0
- 129 tabsC dumpArgs           [b]     .FRET_BOARD=0
- 130 tabsC dumpArgs           [B]            .BGC=0
- 131 tabsC dumpArgs           [c]            .CAT=1
- 132 tabsC dumpArgs           [C]      .CHECKERED=0
- 133 tabsC dumpArgs           [d]   .DBG_TAB_TEXT=0
- 134 tabsC dumpArgs           [e]      .EVENT_LOG=0
- 135 tabsC dumpArgs           [F]    .FULL_SCREEN=0
- 136 tabsC dumpArgs           [G]       .GEN_DATA=0
- 137 tabsC dumpArgs           [M]     .MULTI_LINE=1
- 138 tabsC dumpArgs           [g]    .ORDER_GROUP=1
- 139 tabsC dumpArgs           [o]           .OIDS=0
- 140 tabsC dumpArgs           [p]          .SNAPS=1
- 141 tabsC dumpArgs           [R]         .RESIZE=1
- 142 tabsC dumpArgs           [x]         .SUBPIX=1
- 143 tabsC dumpArgs           [s]        .SPRITES=0
- 144 tabsC dumpArgs           [t]           .TEST=0
- 145 tabsC dumpArgs           [T]       .LONG_TXT=0
- 146 tabsC dumpArgs           [v]           .VRBY=0
- 147 tabsC dumpArgs           [V]          .VIEWS=0
- 148 tabsC dumpArgs           [r]      .RD_STDOUT=0
- 149 tabsC dumpArgs           [u]    .TRANSPOSE_A=1
- 150 tabsC dumpArgs           [A]         .VARROW=1
- 151 tabsC dumpArgs           [L]             .LL=0
- 152 tabsC dumpArgs           [S]             .SS=[0 1 3]
- 153 tabsC dumpArgs           [Z]             .ZZ=[]
+1290 tabsC resizeTniks        J1[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd3
+1290 tabsC resizeTniks        J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd3
+1290 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] Upd3
+1290 tabsC resizeTniks        END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd3
  511 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
  519 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
  489 tabsC dumpNic            [3  8  8  1  1  1  a  a  6 ]
@@ -1975,23 +2679,23 @@ I  F  S  IV   Notes Table 12
 a [Bb A# b7]
 b [B  B  7 ]
 KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table  15
--7 FLAT [Cb b] [Bb Eb Ab Db Gb Cb Fb] [b 1 3 4 6 8 a]
--6 FLAT [Gb 6] [Bb Eb Ab Db Gb Cb F ] [6 8 a b 1 3 5]
--5 FLAT [Db 1] [Bb Eb Ab Db Gb C  F ] [1 3 5 6 8 a 0]
--4 FLAT [Ab 8] [Bb Eb Ab Db G  C  F ] [8 a 0 1 3 5 7]
--3 FLAT [Eb 3] [Bb Eb Ab D  G  C  F ] [3 5 7 8 a 0 2]
--2 FLAT [Bb a] [Bb Eb A  D  G  C  F ] [a 0 2 3 5 7 9]
--1 FLAT [F  5] [Bb E  A  D  G  C  F ] [5 7 9 a 0 2 4]
- 0 NONE [C  0] [B  E  A  D  G  C  F ] [0 2 4 5 7 9 b]
-+1 SHRP [G  7] [F# C  G  D  A  E  B ] [7 9 b 0 2 4 6]
-+2 SHRP [D  2] [F# C# G  D  A  E  B ] [2 4 6 7 9 b 1]
-+3 SHRP [A  9] [F# C# G# D  A  E  B ] [9 b 1 2 4 6 8]
-+4 SHRP [E  4] [F# C# G# D# A  E  B ] [4 6 8 9 b 1 3]
-+5 SHRP [B  b] [F# C# G# D# A# E  B ] [b 1 3 4 6 8 a]
-+6 SHRP [F# 6] [F# C# G# D# A# E# B ] [6 8 a b 1 3 5]
-+7 SHRP [C# 1] [F# C# G# D# A# E# B#] [1 3 5 6 8 a 0]
+-7 FLAT [Cb b] [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [B  Db Eb E  Gb Ab Bb]
+-6 FLAT [Gb 6] [Bb Eb Ab Db Gb Cb F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [Gb Ab Bb B  Db Eb F ]
+-5 FLAT [Db 1] [Bb Eb Ab Db Gb C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [Db Eb F  Gb Ab Bb C ]
+-4 FLAT [Ab 8] [Bb Eb Ab Db G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [Ab Bb C  Db Eb F  G ]
+-3 FLAT [Eb 3] [Bb Eb Ab D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [Eb F  G  Ab Bb C  D ]
+-2 FLAT [Bb a] [Bb Eb A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [Bb C  D  Eb F  G  A ]
+-1 FLAT [F  5] [Bb E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  Bb C  D  E ]
+ 0 NONE [C  0] [B  E  A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
++1 SHRP [G  7] [F# C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F#]
++2 SHRP [D  2] [F# C# G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F# G  A  B  C#]
++3 SHRP [A  9] [F# C# G# D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C# D  E  F# G#]
++4 SHRP [E  4] [F# C# G# D# A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F# G# A  B  C# D#]
++5 SHRP [B  b] [F# C# G# D# A# E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C# D# E  F# G# A#]
++6 SHRP [F# 6] [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
++7 SHRP [C# 1] [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   46 util  dumpData           END
-1592 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels @^Q
+1592 tabsC dumpFont           4:96dpi 20.000pt 0:Lucida Console 0: 20.000pt = 0.778(pt/pix) * 25.714pixels Upd3
    1p1   1
    1l1   1
    3s3   111
@@ -2010,302 +2714,113 @@ KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian No
 111111111111111111111111111111111111111111111111111111111111
 111111111111111111111111111111111111111111111111111111111111
 1
-1408 tabsC dumpTniksA         J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^QA
-1408 tabsC dumpTniksA         J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^QA
-1408 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] @^QA
-1408 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] @^QA
+1408 tabsC dumpTniksA         J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd3A
+1408 tabsC dumpTniksA         J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd3A
+1408 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216   0] Upd3A
+1408 tabsC dumpTniksA         BGN[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] Upd3A
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-   1 @^QA  Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
-   2 @^QA  Line    1     373 2 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  320.00  240.00  640.00  480.00  
-   3 @^QA  Sect    1     124 3 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  320.00  400.00  640.00  160.00  
-   4 @^QA  Colm    1      74 4 V 1  1  1   1    0    0    0    0  0   0 0 0  0  0  0  0    4   4   32.00  400.00   64.00  160.00  
-   5 @^QA  Tab     1   -  20 5 V 1  1  1   1    1    0    0    0  0   0 0 0  0  0  0  0    5   5   32.00  466.67   64.00   26.67  
-   6 @^QA  Tab     2   -  20 5 V 1  1  1   1    2    0    0    0  0   0 0 0  0  0  0  0    6   6   32.00  440.00   64.00   26.67  
-   7 @^QA  Tab     3   -  20 5 V 1  1  1   1    3    0    0    0  0   0 0 0  0  0  0  0    7   7   32.00  413.33   64.00   26.67  
-   8 @^QA  Tab     4   1  20 5 V 1  1  1   1    4    0    0    0  0   0 0 0  0  0  0  0    8   8   32.00  386.67   64.00   26.67  
-   9 @^QA  Tab     5   -  20 5 V 1  1  1   1    5    0    0    0  0   0 0 0  0  0  0  0    9   9   32.00  360.00   64.00   26.67  
-  10 @^QA  Tab     6   4  20 5 V 1  1  1   1    6    0    0    0  0   0 0 0  0  0  0  0   10  10   32.00  333.33   64.00   26.67  
-  11 @^QA  Colm    2      74 4 V 1  1  1   2    6    0    0    0  0   0 0 0  0  0  0  0   11  11   96.00  400.00   64.00  160.00  
-  12 @^QA  Tab     7   -  20 5 V 1  1  1   2    7    0    0    0  0   0 0 0  0  0  0  0   12  12   96.00  466.67   64.00   26.67  
-  13 @^QA  Tab     8   -  20 5 V 1  1  1   2    8    0    0    0  0   0 0 0  0  0  0  0   13  13   96.00  440.00   64.00   26.67  
-  14 @^QA  Tab     9   1  20 5 V 1  1  1   2    9    0    0    0  0   0 0 0  0  0  0  0   14  14   96.00  413.33   64.00   26.67  
-  15 @^QA  Tab    10   -  20 5 V 1  1  1   2   10    0    0    0  0   0 0 0  0  0  0  0   15  15   96.00  386.67   64.00   26.67  
-  16 @^QA  Tab    11   4  20 5 V 1  1  1   2   11    0    0    0  0   0 0 0  0  0  0  0   16  16   96.00  360.00   64.00   26.67  
-  17 @^QA  Tab    12   -  20 5 V 1  1  1   2   12    0    0    0  0   0 0 0  0  0  0  0   17  17   96.00  333.33   64.00   26.67  
-  18 @^QA  Colm    3      74 4 V 1  1  1   3   12    0    0    0  0   0 0 0  0  0  0  0   18  18  160.00  400.00   64.00  160.00  
-  19 @^QA  Tab    13   -  20 5 V 1  1  1   3   13    0    0    0  0   0 0 0  0  0  0  0   19  19  160.00  466.67   64.00   26.67  
-  20 @^QA  Tab    14   -  20 5 V 1  1  1   3   14    0    0    0  0   0 0 0  0  0  0  0   20  20  160.00  440.00   64.00   26.67  
-  21 @^QA  Tab    15   -  20 5 V 1  1  1   3   15    0    0    0  0   0 0 0  0  0  0  0   21  21  160.00  413.33   64.00   26.67  
-  22 @^QA  Tab    16   -  20 5 V 1  1  1   3   16    0    0    0  0   0 0 0  0  0  0  0   22  22  160.00  386.67   64.00   26.67  
-  23 @^QA  Tab    17   4  20 5 V 1  1  1   3   17    0    0    0  0   0 0 0  0  0  0  0   23  23  160.00  360.00   64.00   26.67  
-  24 @^QA  Tab    18   6  20 5 V 1  1  1   3   18    0    0    0  0   0 0 0  0  0  0  0   24  24  160.00  333.33   64.00   26.67  
-  25 @^QA  Colm    4      74 4 V 1  1  1   4   18    0    0    0  0   0 0 0  0  0  0  0   25  25  224.00  400.00   64.00  160.00  
-  26 @^QA  Tab    19   -  20 5 V 1  1  1   4   19    0    0    0  0   0 0 0  0  0  0  0   26  26  224.00  466.67   64.00   26.67  
-  27 @^QA  Tab    20   2  20 5 V 1  1  1   4   20    0    0    0  0   0 0 0  0  0  0  0   27  27  224.00  440.00   64.00   26.67  
-  28 @^QA  Tab    21   3  20 5 V 1  1  1   4   21    0    0    0  0   0 0 0  0  0  0  0   28  28  224.00  413.33   64.00   26.67  
-  29 @^QA  Tab    22   4  20 5 V 1  1  1   4   22    0    0    0  0   0 0 0  0  0  0  0   29  29  224.00  386.67   64.00   26.67  
-  30 @^QA  Tab    23   -  20 5 V 1  1  1   4   23    0    0    0  0   0 0 0  0  0  0  0   30  30  224.00  360.00   64.00   26.67  
-  31 @^QA  Tab    24   -  20 5 V 1  1  1   4   24    0    0    0  0   0 0 0  0  0  0  0   31  31  224.00  333.33   64.00   26.67  
-  32 @^QA  Colm    5      74 4 V 1  1  1   5   24    0    0    0  0   0 0 0  0  0  0  0   32  32  288.00  400.00   64.00  160.00  
-  33 @^QA  Tab    25   -  20 5 V 1  1  1   5   25    0    0    0  0   0 0 0  0  0  0  0   33  33  288.00  466.67   64.00   26.67  
-  34 @^QA  Tab    26   -  20 5 V 1  1  1   5   26    0    0    0  0   0 0 0  0  0  0  0   34  34  288.00  440.00   64.00   26.67  
-  35 @^QA  Tab    27   -  20 5 V 1  1  1   5   27    0    0    0  0   0 0 0  0  0  0  0   35  35  288.00  413.33   64.00   26.67  
-  36 @^QA  Tab    28   -  20 5 V 1  1  1   5   28    0    0    0  0   0 0 0  0  0  0  0   36  36  288.00  386.67   64.00   26.67  
-  37 @^QA  Tab    29   -  20 5 V 1  1  1   5   29    0    0    0  0   0 0 0  0  0  0  0   37  37  288.00  360.00   64.00   26.67  
-  38 @^QA  Tab    30   -  20 5 V 1  1  1   5   30    0    0    0  0   0 0 0  0  0  0  0   38  38  288.00  333.33   64.00   26.67  
-  39 @^QA  Colm    6      74 4 V 1  1  1   6   30    0    0    0  0   0 0 0  0  0  0  0   39  39  352.00  400.00   64.00  160.00  
-  40 @^QA  Tab    31   -  20 5 V 1  1  1   6   31    0    0    0  0   0 0 0  0  0  0  0   40  40  352.00  466.67   64.00   26.67  
-  41 @^QA  Tab    32   -  20 5 V 1  1  1   6   32    0    0    0  0   0 0 0  0  0  0  0   41  41  352.00  440.00   64.00   26.67  
-  42 @^QA  Tab    33   -  20 5 V 1  1  1   6   33    0    0    0  0   0 0 0  0  0  0  0   42  42  352.00  413.33   64.00   26.67  
-  43 @^QA  Tab    34   -  20 5 V 1  1  1   6   34    0    0    0  0   0 0 0  0  0  0  0   43  43  352.00  386.67   64.00   26.67  
-  44 @^QA  Tab    35   -  20 5 V 1  1  1   6   35    0    0    0  0   0 0 0  0  0  0  0   44  44  352.00  360.00   64.00   26.67  
-  45 @^QA  Tab    36   -  20 5 V 1  1  1   6   36    0    0    0  0   0 0 0  0  0  0  0   45  45  352.00  333.33   64.00   26.67  
-  46 @^QA  Colm    7      74 4 V 1  1  1   7   36    0    0    0  0   0 0 0  0  0  0  0   46  46  416.00  400.00   64.00  160.00  
-  47 @^QA  Tab    37   -  20 5 V 1  1  1   7   37    0    0    0  0   0 0 0  0  0  0  0   47  47  416.00  466.67   64.00   26.67  
-  48 @^QA  Tab    38   -  20 5 V 1  1  1   7   38    0    0    0  0   0 0 0  0  0  0  0   48  48  416.00  440.00   64.00   26.67  
-  49 @^QA  Tab    39   -  20 5 V 1  1  1   7   39    0    0    0  0   0 0 0  0  0  0  0   49  49  416.00  413.33   64.00   26.67  
-  50 @^QA  Tab    40   -  20 5 V 1  1  1   7   40    0    0    0  0   0 0 0  0  0  0  0   50  50  416.00  386.67   64.00   26.67  
-  51 @^QA  Tab    41   -  20 5 V 1  1  1   7   41    0    0    0  0   0 0 0  0  0  0  0   51  51  416.00  360.00   64.00   26.67  
-  52 @^QA  Tab    42   -  20 5 V 1  1  1   7   42    0    0    0  0   0 0 0  0  0  0  0   52  52  416.00  333.33   64.00   26.67  
-  53 @^QA  Colm    8      74 4 V 1  1  1   8   42    0    0    0  0   0 0 0  0  0  0  0   53  53  480.00  400.00   64.00  160.00  
-  54 @^QA  Tab    43   -  20 5 V 1  1  1   8   43    0    0    0  0   0 0 0  0  0  0  0   54  54  480.00  466.67   64.00   26.67  
-  55 @^QA  Tab    44   -  20 5 V 1  1  1   8   44    0    0    0  0   0 0 0  0  0  0  0   55  55  480.00  440.00   64.00   26.67  
-  56 @^QA  Tab    45   -  20 5 V 1  1  1   8   45    0    0    0  0   0 0 0  0  0  0  0   56  56  480.00  413.33   64.00   26.67  
-  57 @^QA  Tab    46   -  20 5 V 1  1  1   8   46    0    0    0  0   0 0 0  0  0  0  0   57  57  480.00  386.67   64.00   26.67  
-  58 @^QA  Tab    47   -  20 5 V 1  1  1   8   47    0    0    0  0   0 0 0  0  0  0  0   58  58  480.00  360.00   64.00   26.67  
-  59 @^QA  Tab    48   -  20 5 V 1  1  1   8   48    0    0    0  0   0 0 0  0  0  0  0   59  59  480.00  333.33   64.00   26.67  
-  60 @^QA  Colm    9      74 4 V 1  1  1   9   48    0    0    0  0   0 0 0  0  0  0  0   60  60  544.00  400.00   64.00  160.00  
-  61 @^QA  Tab    49   -  20 5 V 1  1  1   9   49    0    0    0  0   0 0 0  0  0  0  0   61  61  544.00  466.67   64.00   26.67  
-  62 @^QA  Tab    50   -  20 5 V 1  1  1   9   50    0    0    0  0   0 0 0  0  0  0  0   62  62  544.00  440.00   64.00   26.67  
-  63 @^QA  Tab    51   -  20 5 V 1  1  1   9   51    0    0    0  0   0 0 0  0  0  0  0   63  63  544.00  413.33   64.00   26.67  
-  64 @^QA  Tab    52   -  20 5 V 1  1  1   9   52    0    0    0  0   0 0 0  0  0  0  0   64  64  544.00  386.67   64.00   26.67  
-  65 @^QA  Tab    53   -  20 5 V 1  1  1   9   53    0    0    0  0   0 0 0  0  0  0  0   65  65  544.00  360.00   64.00   26.67  
-  66 @^QA  Tab    54   -  20 5 V 1  1  1   9   54    0    0    0  0   0 0 0  0  0  0  0   66  66  544.00  333.33   64.00   26.67  
-  67 @^QA  Colm   10      74 4 V 1  1  1  10   54    0    0    0  0   0 0 0  0  0  0  0   67  67  608.00  400.00   64.00  160.00  
-  68 @^QA  Tab    55   -  20 5 V 1  1  1  10   55    0    0    0  0   0 0 0  0  0  0  0   68  68  608.00  466.67   64.00   26.67  
-  69 @^QA  Tab    56   -  20 5 V 1  1  1  10   56    0    0    0  0   0 0 0  0  0  0  0   69  69  608.00  440.00   64.00   26.67  
-  70 @^QA  Tab    57   -  20 5 V 1  1  1  10   57    0    0    0  0   0 0 0  0  0  0  0   70  70  608.00  413.33   64.00   26.67  
-  71 @^QA  Tab    58   -  20 5 V 1  1  1  10   58    0    0    0  0   0 0 0  0  0  0  0   71  71  608.00  386.67   64.00   26.67  
-  72 @^QA  Tab    59   -  20 5 V 1  1  1  10   59    0    0    0  0   0 0 0  0  0  0  0   72  72  608.00  360.00   64.00   26.67  
-  73 @^QA  Tab    60   -  20 5 V 1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73  608.00  333.33   64.00   26.67  
-  74 @^QA  Sect    2     124 3 V 1  1  2  10   60    0    0    0  0   0 0 0  0  0  0  0   74  74  320.00  240.00  640.00  160.00  
-  75 @^QA  Colm   11      74 4 V 1  1  2  11   60    0    0    0  0   0 0 0  0  0  0  0   75  75   32.00  240.00   64.00  160.00  
-  76 @^QA  Note    1   -  20 5 V 1  1  2  11   60    1    0    0  0   0 0 0  0  0  0  0   76  76   32.00  306.67   64.00   26.67  
-  77 @^QA  Note    2   -  20 5 V 1  1  2  11   60    2    0    0  0   0 0 0  0  0  0  0   77  77   32.00  280.00   64.00   26.67  
-  78 @^QA  Note    3   -  20 5 V 1  1  2  11   60    3    0    0  0   0 0 0  0  0  0  0   78  78   32.00  253.33   64.00   26.67  
-  79 @^QA  Note    4  D#  20 5 V 1  1  2  11   60    4    0    0  0   0 0 0  0  0  0  0   79  79   32.00  226.67   64.00   26.67  
-  80 @^QA  Note    5   -  20 5 V 1  1  2  11   60    5    0    0  0   0 0 0  0  0  0  0   80  80   32.00  200.00   64.00   26.67  
-  81 @^QA  Note    6  G#  20 5 V 1  1  2  11   60    6    0    0  0   0 0 0  0  0  0  0   81  81   32.00  173.33   64.00   26.67  
-  82 @^QA  Colm   12      74 4 V 1  1  2  12   60    6    0    0  0   0 0 0  0  0  0  0   82  82   96.00  240.00   64.00  160.00  
-  83 @^QA  Note    7   -  20 5 V 1  1  2  12   60    7    0    0  0   0 0 0  0  0  0  0   83  83   96.00  306.67   64.00   26.67  
-  84 @^QA  Note    8   -  20 5 V 1  1  2  12   60    8    0    0  0   0 0 0  0  0  0  0   84  84   96.00  280.00   64.00   26.67  
-  85 @^QA  Note    9  G#  20 5 V 1  1  2  12   60    9    0    0  0   0 0 0  0  0  0  0   85  85   96.00  253.33   64.00   26.67  
-  86 @^QA  Note   10   -  20 5 V 1  1  2  12   60   10    0    0  0   0 0 0  0  0  0  0   86  86   96.00  226.67   64.00   26.67  
-  87 @^QA  Note   11  C#  20 5 V 1  1  2  12   60   11    0    0  0   0 0 0  0  0  0  0   87  87   96.00  200.00   64.00   26.67  
-  88 @^QA  Note   12   -  20 5 V 1  1  2  12   60   12    0    0  0   0 0 0  0  0  0  0   88  88   96.00  173.33   64.00   26.67  
-  89 @^QA  Colm   13      74 4 V 1  1  2  13   60   12    0    0  0   0 0 0  0  0  0  0   89  89  160.00  240.00   64.00  160.00  
-  90 @^QA  Note   13   -  20 5 V 1  1  2  13   60   13    0    0  0   0 0 0  0  0  0  0   90  90  160.00  306.67   64.00   26.67  
-  91 @^QA  Note   14   -  20 5 V 1  1  2  13   60   14    0    0  0   0 0 0  0  0  0  0   91  91  160.00  280.00   64.00   26.67  
-  92 @^QA  Note   15   -  20 5 V 1  1  2  13   60   15    0    0  0   0 0 0  0  0  0  0   92  92  160.00  253.33   64.00   26.67  
-  93 @^QA  Note   16   -  20 5 V 1  1  2  13   60   16    0    0  0   0 0 0  0  0  0  0   93  93  160.00  226.67   64.00   26.67  
-  94 @^QA  Note   17  C#  20 5 V 1  1  2  13   60   17    0    0  0   0 0 0  0  0  0  0   94  94  160.00  200.00   64.00   26.67  
-  95 @^QA  Note   18  A#  20 5 V 1  1  2  13   60   18    0    0  0   0 0 0  0  0  0  0   95  95  160.00  173.33   64.00   26.67  
-  96 @^QA  Colm   14      74 4 V 1  1  2  14   60   18    0    0  0   0 0 0  0  0  0  0   96  96  224.00  240.00   64.00  160.00  
-  97 @^QA  Note   19   -  20 5 V 1  1  2  14   60   19    0    0  0   0 0 0  0  0  0  0   97  97  224.00  306.67   64.00   26.67  
-  98 @^QA  Note   20  C#  20 5 V 1  1  2  14   60   20    0    0  0   0 0 0  0  0  0  0   98  98  224.00  280.00   64.00   26.67  
-  99 @^QA  Note   21  A#  20 5 V 1  1  2  14   60   21    0    0  0   0 0 0  0  0  0  0   99  99  224.00  253.33   64.00   26.67  
- 100 @^QA  Note   22  F#  20 5 V 1  1  2  14   60   22    0    0  0   0 0 0  0  0  0  0  100 100  224.00  226.67   64.00   26.67  
- 101 @^QA  Note   23   -  20 5 V 1  1  2  14   60   23    0    0  0   0 0 0  0  0  0  0  101 101  224.00  200.00   64.00   26.67  
- 102 @^QA  Note   24   -  20 5 V 1  1  2  14   60   24    0    0  0   0 0 0  0  0  0  0  102 102  224.00  173.33   64.00   26.67  
- 103 @^QA  Colm   15      74 4 V 1  1  2  15   60   24    0    0  0   0 0 0  0  0  0  0  103 103  288.00  240.00   64.00  160.00  
- 104 @^QA  Note   25   -  20 5 V 1  1  2  15   60   25    0    0  0   0 0 0  0  0  0  0  104 104  288.00  306.67   64.00   26.67  
- 105 @^QA  Note   26   -  20 5 V 1  1  2  15   60   26    0    0  0   0 0 0  0  0  0  0  105 105  288.00  280.00   64.00   26.67  
- 106 @^QA  Note   27   -  20 5 V 1  1  2  15   60   27    0    0  0   0 0 0  0  0  0  0  106 106  288.00  253.33   64.00   26.67  
- 107 @^QA  Note   28   -  20 5 V 1  1  2  15   60   28    0    0  0   0 0 0  0  0  0  0  107 107  288.00  226.67   64.00   26.67  
- 108 @^QA  Note   29   -  20 5 V 1  1  2  15   60   29    0    0  0   0 0 0  0  0  0  0  108 108  288.00  200.00   64.00   26.67  
- 109 @^QA  Note   30   -  20 5 V 1  1  2  15   60   30    0    0  0   0 0 0  0  0  0  0  109 109  288.00  173.33   64.00   26.67  
- 110 @^QA  Colm   16      74 4 V 1  1  2  16   60   30    0    0  0   0 0 0  0  0  0  0  110 110  352.00  240.00   64.00  160.00  
- 111 @^QA  Note   31   -  20 5 V 1  1  2  16   60   31    0    0  0   0 0 0  0  0  0  0  111 111  352.00  306.67   64.00   26.67  
- 112 @^QA  Note   32   -  20 5 V 1  1  2  16   60   32    0    0  0   0 0 0  0  0  0  0  112 112  352.00  280.00   64.00   26.67  
- 113 @^QA  Note   33   -  20 5 V 1  1  2  16   60   33    0    0  0   0 0 0  0  0  0  0  113 113  352.00  253.33   64.00   26.67  
- 114 @^QA  Note   34   -  20 5 V 1  1  2  16   60   34    0    0  0   0 0 0  0  0  0  0  114 114  352.00  226.67   64.00   26.67  
- 115 @^QA  Note   35   -  20 5 V 1  1  2  16   60   35    0    0  0   0 0 0  0  0  0  0  115 115  352.00  200.00   64.00   26.67  
- 116 @^QA  Note   36   -  20 5 V 1  1  2  16   60   36    0    0  0   0 0 0  0  0  0  0  116 116  352.00  173.33   64.00   26.67  
- 117 @^QA  Colm   17      74 4 V 1  1  2  17   60   36    0    0  0   0 0 0  0  0  0  0  117 117  416.00  240.00   64.00  160.00  
- 118 @^QA  Note   37   -  20 5 V 1  1  2  17   60   37    0    0  0   0 0 0  0  0  0  0  118 118  416.00  306.67   64.00   26.67  
- 119 @^QA  Note   38   -  20 5 V 1  1  2  17   60   38    0    0  0   0 0 0  0  0  0  0  119 119  416.00  280.00   64.00   26.67  
- 120 @^QA  Note   39   -  20 5 V 1  1  2  17   60   39    0    0  0   0 0 0  0  0  0  0  120 120  416.00  253.33   64.00   26.67  
- 121 @^QA  Note   40   -  20 5 V 1  1  2  17   60   40    0    0  0   0 0 0  0  0  0  0  121 121  416.00  226.67   64.00   26.67  
- 122 @^QA  Note   41   -  20 5 V 1  1  2  17   60   41    0    0  0   0 0 0  0  0  0  0  122 122  416.00  200.00   64.00   26.67  
- 123 @^QA  Note   42   -  20 5 V 1  1  2  17   60   42    0    0  0   0 0 0  0  0  0  0  123 123  416.00  173.33   64.00   26.67  
- 124 @^QA  Colm   18      74 4 V 1  1  2  18   60   42    0    0  0   0 0 0  0  0  0  0  124 124  480.00  240.00   64.00  160.00  
- 125 @^QA  Note   43   -  20 5 V 1  1  2  18   60   43    0    0  0   0 0 0  0  0  0  0  125 125  480.00  306.67   64.00   26.67  
- 126 @^QA  Note   44   -  20 5 V 1  1  2  18   60   44    0    0  0   0 0 0  0  0  0  0  126 126  480.00  280.00   64.00   26.67  
- 127 @^QA  Note   45   -  20 5 V 1  1  2  18   60   45    0    0  0   0 0 0  0  0  0  0  127 127  480.00  253.33   64.00   26.67  
- 128 @^QA  Note   46   -  20 5 V 1  1  2  18   60   46    0    0  0   0 0 0  0  0  0  0  128 128  480.00  226.67   64.00   26.67  
- 129 @^QA  Note   47   -  20 5 V 1  1  2  18   60   47    0    0  0   0 0 0  0  0  0  0  129 129  480.00  200.00   64.00   26.67  
- 130 @^QA  Note   48   -  20 5 V 1  1  2  18   60   48    0    0  0   0 0 0  0  0  0  0  130 130  480.00  173.33   64.00   26.67  
- 131 @^QA  Colm   19      74 4 V 1  1  2  19   60   48    0    0  0   0 0 0  0  0  0  0  131 131  544.00  240.00   64.00  160.00  
- 132 @^QA  Note   49   -  20 5 V 1  1  2  19   60   49    0    0  0   0 0 0  0  0  0  0  132 132  544.00  306.67   64.00   26.67  
- 133 @^QA  Note   50   -  20 5 V 1  1  2  19   60   50    0    0  0   0 0 0  0  0  0  0  133 133  544.00  280.00   64.00   26.67  
- 134 @^QA  Note   51   -  20 5 V 1  1  2  19   60   51    0    0  0   0 0 0  0  0  0  0  134 134  544.00  253.33   64.00   26.67  
- 135 @^QA  Note   52   -  20 5 V 1  1  2  19   60   52    0    0  0   0 0 0  0  0  0  0  135 135  544.00  226.67   64.00   26.67  
- 136 @^QA  Note   53   -  20 5 V 1  1  2  19   60   53    0    0  0   0 0 0  0  0  0  0  136 136  544.00  200.00   64.00   26.67  
- 137 @^QA  Note   54   -  20 5 V 1  1  2  19   60   54    0    0  0   0 0 0  0  0  0  0  137 137  544.00  173.33   64.00   26.67  
- 138 @^QA  Colm   20      74 4 V 1  1  2  20   60   54    0    0  0   0 0 0  0  0  0  0  138 138  608.00  240.00   64.00  160.00  
- 139 @^QA  Note   55   -  20 5 V 1  1  2  20   60   55    0    0  0   0 0 0  0  0  0  0  139 139  608.00  306.67   64.00   26.67  
- 140 @^QA  Note   56   -  20 5 V 1  1  2  20   60   56    0    0  0   0 0 0  0  0  0  0  140 140  608.00  280.00   64.00   26.67  
- 141 @^QA  Note   57   -  20 5 V 1  1  2  20   60   57    0    0  0   0 0 0  0  0  0  0  141 141  608.00  253.33   64.00   26.67  
- 142 @^QA  Note   58   -  20 5 V 1  1  2  20   60   58    0    0  0   0 0 0  0  0  0  0  142 142  608.00  226.67   64.00   26.67  
- 143 @^QA  Note   59   -  20 5 V 1  1  2  20   60   59    0    0  0   0 0 0  0  0  0  0  143 143  608.00  200.00   64.00   26.67  
- 144 @^QA  Note   60   -  20 5 V 1  1  2  20   60   60    0    0  0   0 0 0  0  0  0  0  144 144  608.00  173.33   64.00   26.67  
- 145 @^QA  Sect    3     124 3 V 1  1  3  20   60   60    0    0  0   0 0 0  0  0  0  0  145 145  320.00   80.00  640.00  160.00  
- 146 @^QA  Colm   21      74 4 V 1  1  3  21   60   60    0    0  0   0 0 0  0  0  0  0  146 146   32.00   80.00   64.00  160.00  
- 147 @^QA  Kord    1   -  20 5 V 1  1  3  21   60   60    0    1  0   0 0 0  0  0  0  0  147 147   32.00  146.67   64.00   26.67  
- 148 @^QA  Kord    2   -  20 5 V 1  1  3  21   60   60    0    2  0   0 0 0  0  0  0  0  148 148   32.00  120.00   64.00   26.67  
- 149 @^QA  Kord    3   -  20 5 V 1  1  3  21   60   60    0    3  0   0 0 0  0  0  0  0  149 149   32.00   93.33   64.00   26.67  
- 150 @^QA  Kord    4   -  20 5 V 1  1  3  21   60   60    0    4  0   0 0 0  0  0  0  0  150 150   32.00   66.67   64.00   26.67  
- 151 @^QA  Kord    5   -  20 5 V 1  1  3  21   60   60    0    5  0   0 0 0  0  0  0  0  151 151   32.00   40.00   64.00   26.67  
- 152 @^QA  Kord    6   -  20 5 V 1  1  3  21   60   60    0    6  0   0 0 0  0  0  0  0  152 152   32.00   13.33   64.00   26.67  
- 153 @^QA  Colm   22      74 4 V 1  1  3  22   60   60    0    6  0   0 0 0  0  0  0  0  153 153   96.00   80.00   64.00  160.00  
- 154 @^QA  Kord    7   -  20 5 V 1  1  3  22   60   60    0    7  0   0 0 0  0  0  0  0  154 154   96.00  146.67   64.00   26.67  
- 155 @^QA  Kord    8   -  20 5 V 1  1  3  22   60   60    0    8  0   0 0 0  0  0  0  0  155 155   96.00  120.00   64.00   26.67  
- 156 @^QA  Kord    9   -  20 5 V 1  1  3  22   60   60    0    9  0   0 0 0  0  0  0  0  156 156   96.00   93.33   64.00   26.67  
- 157 @^QA  Kord   10   -  20 5 V 1  1  3  22   60   60    0   10  0   0 0 0  0  0  0  0  157 157   96.00   66.67   64.00   26.67  
- 158 @^QA  Kord   11   -  20 5 V 1  1  3  22   60   60    0   11  0   0 0 0  0  0  0  0  158 158   96.00   40.00   64.00   26.67  
- 159 @^QA  Kord   12   -  20 5 V 1  1  3  22   60   60    0   12  0   0 0 0  0  0  0  0  159 159   96.00   13.33   64.00   26.67  
- 160 @^QA  Colm   23      74 4 V 1  1  3  23   60   60    0   12  0   0 0 0  0  0  0  0  160 160  160.00   80.00   64.00  160.00  
- 161 @^QA  Kord   13   -  20 5 V 1  1  3  23   60   60    0   13  0   0 0 0  0  0  0  0  161 161  160.00  146.67   64.00   26.67  
- 162 @^QA  Kord   14   -  20 5 V 1  1  3  23   60   60    0   14  0   0 0 0  0  0  0  0  162 162  160.00  120.00   64.00   26.67  
- 163 @^QA  Kord   15   -  20 5 V 1  1  3  23   60   60    0   15  0   0 0 0  0  0  0  0  163 163  160.00   93.33   64.00   26.67  
- 164 @^QA  Kord   16   -  20 5 V 1  1  3  23   60   60    0   16  0   0 0 0  0  0  0  0  164 164  160.00   66.67   64.00   26.67  
- 165 @^QA  Kord   17   -  20 5 V 1  1  3  23   60   60    0   17  0   0 0 0  0  0  0  0  165 165  160.00   40.00   64.00   26.67  
- 166 @^QA  Kord   18   -  20 5 V 1  1  3  23   60   60    0   18  0   0 0 0  0  0  0  0  166 166  160.00   13.33   64.00   26.67  
- 167 @^QA  Colm   24      74 4 V 1  1  3  24   60   60    0   18  0   0 0 0  0  0  0  0  167 167  224.00   80.00   64.00  160.00  
- 168 @^QA  Kord   19  F#  20 5 V 1  1  3  24   60   60    0   19  0   0 0 0  0  0  0  0  168 168  224.00  146.67   64.00   26.67  
- 169 @^QA  Kord   20   -  20 5 V 1  1  3  24   60   60    0   20  0   0 0 0  0  0  0  0  169 169  224.00  120.00   64.00   26.67  
- 170 @^QA  Kord   21   -  20 5 V 1  1  3  24   60   60    0   21  0   0 0 0  0  0  0  0  170 170  224.00   93.33   64.00   26.67  
- 171 @^QA  Kord   22   -  20 5 V 1  1  3  24   60   60    0   22  0   0 0 0  0  0  0  0  171 171  224.00   66.67   64.00   26.67  
- 172 @^QA  Kord   23   -  20 5 V 1  1  3  24   60   60    0   23  0   0 0 0  0  0  0  0  172 172  224.00   40.00   64.00   26.67  
- 173 @^QA  Kord   24   -  20 5 V 1  1  3  24   60   60    0   24  0   0 0 0  0  0  0  0  173 173  224.00   13.33   64.00   26.67  
- 174 @^QA  Colm   25      74 4 V 1  1  3  25   60   60    0   24  0   0 0 0  0  0  0  0  174 174  288.00   80.00   64.00  160.00  
- 175 @^QA  Kord   25   -  20 5 V 1  1  3  25   60   60    0   25  0   0 0 0  0  0  0  0  175 175  288.00  146.67   64.00   26.67  
- 176 @^QA  Kord   26   -  20 5 V 1  1  3  25   60   60    0   26  0   0 0 0  0  0  0  0  176 176  288.00  120.00   64.00   26.67  
- 177 @^QA  Kord   27   -  20 5 V 1  1  3  25   60   60    0   27  0   0 0 0  0  0  0  0  177 177  288.00   93.33   64.00   26.67  
- 178 @^QA  Kord   28   -  20 5 V 1  1  3  25   60   60    0   28  0   0 0 0  0  0  0  0  178 178  288.00   66.67   64.00   26.67  
- 179 @^QA  Kord   29   -  20 5 V 1  1  3  25   60   60    0   29  0   0 0 0  0  0  0  0  179 179  288.00   40.00   64.00   26.67  
- 180 @^QA  Kord   30   -  20 5 V 1  1  3  25   60   60    0   30  0   0 0 0  0  0  0  0  180 180  288.00   13.33   64.00   26.67  
- 181 @^QA  Colm   26      74 4 V 1  1  3  26   60   60    0   30  0   0 0 0  0  0  0  0  181 181  352.00   80.00   64.00  160.00  
- 182 @^QA  Kord   31   -  20 5 V 1  1  3  26   60   60    0   31  0   0 0 0  0  0  0  0  182 182  352.00  146.67   64.00   26.67  
- 183 @^QA  Kord   32   -  20 5 V 1  1  3  26   60   60    0   32  0   0 0 0  0  0  0  0  183 183  352.00  120.00   64.00   26.67  
- 184 @^QA  Kord   33   -  20 5 V 1  1  3  26   60   60    0   33  0   0 0 0  0  0  0  0  184 184  352.00   93.33   64.00   26.67  
- 185 @^QA  Kord   34   -  20 5 V 1  1  3  26   60   60    0   34  0   0 0 0  0  0  0  0  185 185  352.00   66.67   64.00   26.67  
- 186 @^QA  Kord   35   -  20 5 V 1  1  3  26   60   60    0   35  0   0 0 0  0  0  0  0  186 186  352.00   40.00   64.00   26.67  
- 187 @^QA  Kord   36   -  20 5 V 1  1  3  26   60   60    0   36  0   0 0 0  0  0  0  0  187 187  352.00   13.33   64.00   26.67  
- 188 @^QA  Colm   27      74 4 V 1  1  3  27   60   60    0   36  0   0 0 0  0  0  0  0  188 188  416.00   80.00   64.00  160.00  
- 189 @^QA  Kord   37   -  20 5 V 1  1  3  27   60   60    0   37  0   0 0 0  0  0  0  0  189 189  416.00  146.67   64.00   26.67  
- 190 @^QA  Kord   38   -  20 5 V 1  1  3  27   60   60    0   38  0   0 0 0  0  0  0  0  190 190  416.00  120.00   64.00   26.67  
- 191 @^QA  Kord   39   -  20 5 V 1  1  3  27   60   60    0   39  0   0 0 0  0  0  0  0  191 191  416.00   93.33   64.00   26.67  
- 192 @^QA  Kord   40   -  20 5 V 1  1  3  27   60   60    0   40  0   0 0 0  0  0  0  0  192 192  416.00   66.67   64.00   26.67  
- 193 @^QA  Kord   41   -  20 5 V 1  1  3  27   60   60    0   41  0   0 0 0  0  0  0  0  193 193  416.00   40.00   64.00   26.67  
- 194 @^QA  Kord   42   -  20 5 V 1  1  3  27   60   60    0   42  0   0 0 0  0  0  0  0  194 194  416.00   13.33   64.00   26.67  
- 195 @^QA  Colm   28      74 4 V 1  1  3  28   60   60    0   42  0   0 0 0  0  0  0  0  195 195  480.00   80.00   64.00  160.00  
- 196 @^QA  Kord   43   -  20 5 V 1  1  3  28   60   60    0   43  0   0 0 0  0  0  0  0  196 196  480.00  146.67   64.00   26.67  
- 197 @^QA  Kord   44   -  20 5 V 1  1  3  28   60   60    0   44  0   0 0 0  0  0  0  0  197 197  480.00  120.00   64.00   26.67  
- 198 @^QA  Kord   45   -  20 5 V 1  1  3  28   60   60    0   45  0   0 0 0  0  0  0  0  198 198  480.00   93.33   64.00   26.67  
- 199 @^QA  Kord   46   -  20 5 V 1  1  3  28   60   60    0   46  0   0 0 0  0  0  0  0  199 199  480.00   66.67   64.00   26.67  
- 200 @^QA  Kord   47   -  20 5 V 1  1  3  28   60   60    0   47  0   0 0 0  0  0  0  0  200 200  480.00   40.00   64.00   26.67  
- 201 @^QA  Kord   48   -  20 5 V 1  1  3  28   60   60    0   48  0   0 0 0  0  0  0  0  201 201  480.00   13.33   64.00   26.67  
- 202 @^QA  Colm   29      74 4 V 1  1  3  29   60   60    0   48  0   0 0 0  0  0  0  0  202 202  544.00   80.00   64.00  160.00  
- 203 @^QA  Kord   49   -  20 5 V 1  1  3  29   60   60    0   49  0   0 0 0  0  0  0  0  203 203  544.00  146.67   64.00   26.67  
- 204 @^QA  Kord   50   -  20 5 V 1  1  3  29   60   60    0   50  0   0 0 0  0  0  0  0  204 204  544.00  120.00   64.00   26.67  
- 205 @^QA  Kord   51   -  20 5 V 1  1  3  29   60   60    0   51  0   0 0 0  0  0  0  0  205 205  544.00   93.33   64.00   26.67  
- 206 @^QA  Kord   52   -  20 5 V 1  1  3  29   60   60    0   52  0   0 0 0  0  0  0  0  206 206  544.00   66.67   64.00   26.67  
- 207 @^QA  Kord   53   -  20 5 V 1  1  3  29   60   60    0   53  0   0 0 0  0  0  0  0  207 207  544.00   40.00   64.00   26.67  
- 208 @^QA  Kord   54   -  20 5 V 1  1  3  29   60   60    0   54  0   0 0 0  0  0  0  0  208 208  544.00   13.33   64.00   26.67  
- 209 @^QA  Colm   30      74 4 V 1  1  3  30   60   60    0   54  0   0 0 0  0  0  0  0  209 209  608.00   80.00   64.00  160.00  
- 210 @^QA  Kord   55   -  20 5 V 1  1  3  30   60   60    0   55  0   0 0 0  0  0  0  0  210 210  608.00  146.67   64.00   26.67  
- 211 @^QA  Kord   56   -  20 5 V 1  1  3  30   60   60    0   56  0   0 0 0  0  0  0  0  211 211  608.00  120.00   64.00   26.67  
- 212 @^QA  Kord   57   -  20 5 V 1  1  3  30   60   60    0   57  0   0 0 0  0  0  0  0  212 212  608.00   93.33   64.00   26.67  
- 213 @^QA  Kord   58   -  20 5 V 1  1  3  30   60   60    0   58  0   0 0 0  0  0  0  0  213 213  608.00   66.67   64.00   26.67  
- 214 @^QA  Kord   59   -  20 5 V 1  1  3  30   60   60    0   59  0   0 0 0  0  0  0  0  214 214  608.00   40.00   64.00   26.67  
- 215 @^QA  Kord   60   -  20 5 V 1  1  3  30   60   60    0   60  0   0 0 0  0  0  0  0  215 215  608.00   13.33   64.00   26.67  
- 216 @^QA  HCrs    1    0.00 6 V 1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216    0.00  320.00   64.00   26.67  
- Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
- Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H     
-1411 tabsC dumpTniksA         J1[1  1  3  10    6    6    0    6  0   0 1 0  0  0  0  0  216 216] @^QA
-1411 tabsC dumpTniksA         J2[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^QA
-1411 tabsC dumpTniksA         LE[1  1  3  30   60   60    0   60  0   0 1 0  0  0  0  0  216 216] @^QA
-1411 tabsC dumpTniksA         END[( 640x480 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] @^QA
- 511 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 531 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
- 677 tabsC A_transposeData    BGN ( 1x1x10x6 ) dump=1
- 634 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
-[[[---1-4 --1-4- ----46 -234-- ------ ------ ------ ------ ------ ------]]]
- 639 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=1
- 716 tabsC dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt=Colm 
-Page 1
-Colm Line 1
-  1 ---1-4 
-  2 --1-4- 
-  3 ----46 
-  4 -234-- 
-  5 ------ 
-  6 ------ 
-  7 ------ 
-  8 ------ 
-  9 ------ 
- 10 ------ 
- 724 tabsC dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
- 680 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
- 681 tabsC A_transposeData    dl=[1 1 10 6] dt=[list list list str]
----1-4 --1-4- ----46 -234-- ------ ------ ------ ------ ------ ------
-
----------- ---2------ -1-3------ 1--4------ -44------- 4-6-------
- 634 tabsC isVert             BGN dl=[1 1 10 6] dt=[list list list str]
-[[[---1-4 --1-4- ----46 -234-- ------ ------ ------ ------ ------ ------]]]
- 639 tabsC isVert             END dl=[1 1 10 6] dt=[list list list str] vert=0
- 698 tabsC dumpDataHorz       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0
-Page 1 Line 1
-         1
-1234567890
-             
-----------
----2------
--1-3------
-1--4------
--44-------
-4-6-------
-
- 711 tabsC dumpDataHorz       END ( 1x1x6x10 ) lc=1 ll=1 i=0
- 693 tabsC A_transposeData    END ( 1x1x6x10 ) dump=1
-  0 0-1                           R5           07     G#D#         R5           07     G#D#        
-  0 0-1                           4R           50     G#D#         R4           05     D#G#        
-  1 0-1                           R5           07     C#G#         R5           07     C#G#        
-  1 0-1                           4R           50     C#G#         R4           05     G#C#        
-  2 0-1                           Rm3          03     A#C#         Rm3          03     A#C#        
-  2 0-1                           6R           90     A#C#         R6           09     C#A#        
-  3 0 0 F#           F#           RM35         047    F#A#C#       RM35         047    F#A#C#      
-  3 0 1 A#m+/F#      A#m+/F#      #5Rm3        803    F#A#C#       Rm3#5        038    A#C#F#      
-  3 0 2 C#6s4x/F#    C#6s4x/F#    46R          590    F#A#C#       R46          059    C#F#A#      
-  0 0              R5                        4R           
-  1 0              R5                        4R           
-  2 0              Rm3                       6R           
-  3 0 F#           RM35         A#m+/F#      #5Rm3        C#6s4x/F#    46R          
-  0 0             07                 50    
-  1 0             07                 50    
-  2 0             03                 90    
-  3 0F#           047   A#m+/F#      803   C#6s4x/F#    590   
-  0 0 07     50                                   R5           4R           
-  1 0 07     50                                   R5           4R           
-  2 0 03     90                                   Rm3          6R           
-  3 0 047    803    590                           RM35         #5Rm3        46R          
-2497 tabsC snapshot           SNAP_NAME=tabs.79.QUIT.1.png quit error=0 save=0
-2548 tabsC quit               END @^Q error=0 save=0
-###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2563 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log
- 230 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 231 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.79.log)
- 233 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.79.log ###
-2565 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
+   1 Upd3A Page    1     373 1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00  
+   2 Upd3A Line    1     373 2 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  320.00  240.00  640.00  480.00  
+   3 Upd3A Sect    1     124 3 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  320.00  400.00  640.00  160.00  
+   4 Upd3A Colm    1      74 4 V 1  1  1   1    0    0    0    0  0   0 0 0  0  0  0  0    4   4   32.00  400.00   64.00  160.00  
+   5 Upd3A Tab     1   -  20 5 V 1  1  1   1    1    0    0    0  0   0 0 0  0  0  0  0    5   5   32.00  466.67   64.00   26.67  
+   6 Upd3A Tab     2   -  20 5 V 1  1  1   1    2    0    0    0  0   0 0 0  0  0  0  0    6   6   32.00  440.00   64.00   26.67  
+   7 Upd3A Tab     3   -  20 5 V 1  1  1   1    3    0    0    0  0   0 0 0  0  0  0  0    7   7   32.00  413.33   64.00   26.67  
+   8 Upd3A Tab     4   1  20 5 V 1  1  1   1    4    0    0    0  0   0 0 0  0  0  0  0    8   8   32.00  386.67   64.00   26.67  
+   9 Upd3A Tab     5   -  20 5 V 1  1  1   1    5    0    0    0  0   0 0 0  0  0  0  0    9   9   32.00  360.00   64.00   26.67  
+  10 Upd3A Tab     6   4  20 5 V 1  1  1   1    6    0    0    0  0   0 0 0  0  0  0  0   10  10   32.00  333.33   64.00   26.67  
+  11 Upd3A Colm    2      74 4 V 1  1  1   2    6    0    0    0  0   0 0 0  0  0  0  0   11  11   96.00  400.00   64.00  160.00  
+  12 Upd3A Tab     7   -  20 5 V 1  1  1   2    7    0    0    0  0   0 0 0  0  0  0  0   12  12   96.00  466.67   64.00   26.67  
+  13 Upd3A Tab     8   -  20 5 V 1  1  1   2    8    0    0    0  0   0 0 0  0  0  0  0   13  13   96.00  440.00   64.00   26.67  
+  14 Upd3A Tab     9   1  20 5 V 1  1  1   2    9    0    0    0  0   0 0 0  0  0  0  0   14  14   96.00  413.33   64.00   26.67  
+  15 Upd3A Tab    10   -  20 5 V 1  1  1   2   10    0    0    0  0   0 0 0  0  0  0  0   15  15   96.00  386.67   64.00   26.67  
+  16 Upd3A Tab    11   4  20 5 V 1  1  1   2   11    0    0    0  0   0 0 0  0  0  0  0   16  16   96.00  360.00   64.00   26.67  
+  17 Upd3A Tab    12   -  20 5 V 1  1  1   2   12    0    0    0  0   0 0 0  0  0  0  0   17  17   96.00  333.33   64.00   26.67  
+  18 Upd3A Colm    3      74 4 V 1  1  1   3   12    0    0    0  0   0 0 0  0  0  0  0   18  18  160.00  400.00   64.00  160.00  
+  19 Upd3A Tab    13   -  20 5 V 1  1  1   3   13    0    0    0  0   0 0 0  0  0  0  0   19  19  160.00  466.67   64.00   26.67  
+  20 Upd3A Tab    14   -  20 5 V 1  1  1   3   14    0    0    0  0   0 0 0  0  0  0  0   20  20  160.00  440.00   64.00   26.67  
+  21 Upd3A Tab    15   -  20 5 V 1  1  1   3   15    0    0    0  0   0 0 0  0  0  0  0   21  21  160.00  413.33   64.00   26.67  
+  22 Upd3A Tab    16   -  20 5 V 1  1  1   3   16    0    0    0  0   0 0 0  0  0  0  0   22  22  160.00  386.67   64.00   26.67  
+  23 Upd3A Tab    17   4  20 5 V 1  1  1   3   17    0    0    0  0   0 0 0  0  0  0  0   23  23  160.00  360.00   64.00   26.67  
+  24 Upd3A Tab    18   6  20 5 V 1  1  1   3   18    0    0    0  0   0 0 0  0  0  0  0   24  24  160.00  333.33   64.00   26.67  
+  25 Upd3A Colm    4      74 4 V 1  1  1   4   18    0    0    0  0   0 0 0  0  0  0  0   25  25  224.00  400.00   64.00  160.00  
+  26 Upd3A Tab    19   -  20 5 V 1  1  1   4   19    0    0    0  0   0 0 0  0  0  0  0   26  26  224.00  466.67   64.00   26.67  
+  27 Upd3A Tab    20   2  20 5 V 1  1  1   4   20    0    0    0  0   0 0 0  0  0  0  0   27  27  224.00  440.00   64.00   26.67  
+  28 Upd3A Tab    21   3  20 5 V 1  1  1   4   21    0    0    0  0   0 0 0  0  0  0  0   28  28  224.00  413.33   64.00   26.67  
+  29 Upd3A Tab    22   4  20 5 V 1  1  1   4   22    0    0    0  0   0 0 0  0  0  0  0   29  29  224.00  386.67   64.00   26.67  
+  30 Upd3A Tab    23   -  20 5 V 1  1  1   4   23    0    0    0  0   0 0 0  0  0  0  0   30  30  224.00  360.00   64.00   26.67  
+  31 Upd3A Tab    24   -  20 5 V 1  1  1   4   24    0    0    0  0   0 0 0  0  0  0  0   31  31  224.00  333.33   64.00   26.67  
+  32 Upd3A Colm    5      74 4 V 1  1  1   5   24    0    0    0  0   0 0 0  0  0  0  0   32  32  288.00  400.00   64.00  160.00  
+  33 Upd3A Tab    25   -  20 5 V 1  1  1   5   25    0    0    0  0   0 0 0  0  0  0  0   33  33  288.00  466.67   64.00   26.67  
+  34 Upd3A Tab    26   -  20 5 V 1  1  1   5   26    0    0    0  0   0 0 0  0  0  0  0   34  34  288.00  440.00   64.00   26.67  
+  35 Upd3A Tab    27   -  20 5 V 1  1  1   5   27    0    0    0  0   0 0 0  0  0  0  0   35  35  288.00  413.33   64.00   26.67  
+  36 Upd3A Tab    28   -  20 5 V 1  1  1   5   28    0    0    0  0   0 0 0  0  0  0  0   36  36  288.00  386.67   64.00   26.67  
+  37 Upd3A Tab    29   -  20 5 V 1  1  1   5   29    0    0    0  0   0 0 0  0  0  0  0   37  37  288.00  360.00   64.00   26.67  
+  38 Upd3A Tab    30   -  20 5 V 1  1  1   5   30    0    0    0  0   0 0 0  0  0  0  0   38  38  288.00  333.33   64.00   26.67  
+  39 Upd3A Colm    6      74 4 V 1  1  1   6   30    0    0    0  0   0 0 0  0  0  0  0   39  39  352.00  400.00   64.00  160.00  
+  40 Upd3A Tab    31   -  20 5 V 1  1  1   6   31    0    0    0  0   0 0 0  0  0  0  0   40  40  352.00  466.67   64.00   26.67  
+  41 Upd3A Tab    32   -  20 5 V 1  1  1   6   32    0    0    0  0   0 0 0  0  0  0  0   41  41  352.00  440.00   64.00   26.67  
+  42 Upd3A Tab    33   -  20 5 V 1  1  1   6   33    0    0    0  0   0 0 0  0  0  0  0   42  42  352.00  413.33   64.00   26.67  
+  43 Upd3A Tab    34   -  20 5 V 1  1  1   6   34    0    0    0  0   0 0 0  0  0  0  0   43  43  352.00  386.67   64.00   26.67  
+  44 Upd3A Tab    35   -  20 5 V 1  1  1   6   35    0    0    0  0   0 0 0  0  0  0  0   44  44  352.00  360.00   64.00   26.67  
+  45 Upd3A Tab    36   -  20 5 V 1  1  1   6   36    0    0    0  0   0 0 0  0  0  0  0   45  45  352.00  333.33   64.00   26.67  
+  46 Upd3A Colm    7      74 4 V 1  1  1   7   36    0    0    0  0   0 0 0  0  0  0  0   46  46  416.00  400.00   64.00  160.00  
+  47 Upd3A Tab    37   -  20 5 V 1  1  1   7   37    0    0    0  0   0 0 0  0  0  0  0   47  47  416.00  466.67   64.00   26.67  
+  48 Upd3A Tab    38   -  20 5 V 1  1  1   7   38    0    0    0  0   0 0 0  0  0  0  0   48  48  416.00  440.00   64.00   26.67  
+  49 Upd3A Tab    39   -  20 5 V 1  1  1   7   39    0    0    0  0   0 0 0  0  0  0  0   49  49  416.00  413.33   64.00   26.67  
+  50 Upd3A Tab    40   -  20 5 V 1  1  1   7   40    0    0    0  0   0 0 0  0  0  0  0   50  50  416.00  386.67   64.00   26.67  
+  51 Upd3A Tab    41   -  20 5 V 1  1  1   7   41    0    0    0  0   0 0 0  0  0  0  0   51  51  416.00  360.00   64.00   26.67  
+  52 Upd3A Tab    42   -  20 5 V 1  1  1   7   42    0    0    0  0   0 0 0  0  0  0  0   52  52  416.00  333.33   64.00   26.67  
+  53 Upd3A Colm    8      74 4 V 1  1  1   8   42    0    0    0  0   0 0 0  0  0  0  0   53  53  480.00  400.00   64.00  160.00  
+  54 Upd3A Tab    43   -  20 5 V 1  1  1   8   43    0    0    0  0   0 0 0  0  0  0  0   54  54  480.00  466.67   64.00   26.67  
+  55 Upd3A Tab    44   -  20 5 V 1  1  1   8   44    0    0    0  0   0 0 0  0  0  0  0   55  55  480.00  440.00   64.00   26.67  
+  56 Upd3A Tab    45   -  20 5 V 1  1  1   8   45    0    0    0  0   0 0 0  0  0  0  0   56  56  480.00  413.33   64.00   26.67  
+  57 Upd3A Tab    46   -  20 5 V 1  1  1   8   46    0    0    0  0   0 0 0  0  0  0  0   57  57  480.00  386.67   64.00   26.67  
+  58 Upd3A Tab    47   -  20 5 V 1  1  1   8   47    0    0    0  0   0 0 0  0  0  0  0   58  58  480.00  360.00   64.00   26.67  
+  59 Upd3A Tab    48   -  20 5 V 1  1  1   8   48    0    0    0  0   0 0 0  0  0  0  0   59  59  480.00  333.33   64.00   26.67  
+  60 Upd3A Colm    9      74 4 V 1  1  1   9   48    0    0    0  0   0 0 0  0  0  0  0   60  60  544.00  400.00   64.00  160.00  
+  61 Upd3A Tab    49   -  20 5 V 1  1  1   9   49    0    0    0  0   0 0 0  0  0  0  0   61  61  544.00  466.67   64.00   26.67  
+  62 Upd3A Tab    50   -  20 5 V 1  1  1   9   50    0    0    0  0   0 0 0  0  0  0  0   62  62  544.00  440.00   64.00   26.67  
+  63 Upd3A Tab    51   -  20 5 V 1  1  1   9   51    0    0    0  0   0 0 0  0  0  0  0   63  63  544.00  413.33   64.00   26.67  
+  64 Upd3A Tab    52   -  20 5 V 1  1  1   9   52    0    0    0  0   0 0 0  0  0  0  0   64  64  544.00  386.67   64.00   26.67  
+  65 Upd3A Tab    53   -  20 5 V 1  1  1   9   53    0    0    0  0   0 0 0  0  0  0  0   65  65  544.00  360.00   64.00   26.67  
+  66 Upd3A Tab    54   -  20 5 V 1  1  1   9   54    0    0    0  0   0 0 0  0  0  0  0   66  66  544.00  333.33   64.00   26.67  
+  67 Upd3A Colm   10      74 4 V 1  1  1  10   54    0    0    0  0   0 0 0  0  0  0  0   67  67  608.00  400.00   64.00  160.00  
+  68 Upd3A Tab    55   -  20 5 V 1  1  1  10   55    0    0    0  0   0 0 0  0  0  0  0   68  68  608.00  466.67   64.00   26.67  
+  69 Upd3A Tab    56   -  20 5 V 1  1  1  10   56    0    0    0  0   0 0 0  0  0  0  0   69  69  608.00  440.00   64.00   26.67  
+  70 Upd3A Tab    57   -  20 5 V 1  1  1  10   57    0    0    0  0   0 0 0  0  0  0  0   70  70  608.00  413.33   64.00   26.67  
+  71 Upd3A Tab    58   -  20 5 V 1  1  1  10   58    0    0    0  0   0 0 0  0  0  0  0   71  71  608.00  386.67   64.00   26.67  
+  72 Upd3A Tab    59   -  20 5 V 1  1  1  10   59    0    0    0  0   0 0 0  0  0  0  0   72  72  608.00  360.00   64.00   26.67  
+  73 Upd3A Tab    60   -  20 5 V 1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73  608.00  333.33   64.00   26.67  
+  74 Upd3A Sect    2     124 3 V 1  1  2  10   60    0    0    0  0   0 0 0  0  0  0  0   74  74  320.00  240.00  640.00  160.00  
+  75 Upd3A Colm   11      74 4 V 1  1  2  11   60    0    0    0  0   0 0 0  0  0  0  0   75  75   32.00  240.00   64.00  160.00  
+  76 Upd3A Note    1   -  20 5 V 1  1  2  11   60    1    0    0  0   0 0 0  0  0  0  0   76  76   32.00  306.67   64.00   26.67  
+  77 Upd3A Note    2   -  20 5 V 1  1  2  11   60    2    0    0  0   0 0 0  0  0  0  0   77  77   32.00  280.00   64.00   26.67  
+  78 Upd3A Note    3   -  20 5 V 1  1  2  11   60    3    0    0  0   0 0 0  0  0  0  0   78  78   32.00  253.33   64.00   26.67  
+  79 Upd3A Note    4  D#  20 5 V 1  1  2  11   60    4    0    0  0   0 0 0  0  0  0  0   79  79   32.00  226.67   64.00   26.67  
+  80 Upd3A Note    5   -  20 5 V 1  1  2  11   60    5    0    0  0   0 0 0  0  0  0  0   80  80   32.00  200.00   64.00   26.67  
+  81 Upd3A Note    6  G#  20 5 V 1  1  2  11   60    6    0    0  0   0 0 0  0  0  0  0   81  81   32.00  173.33   64.00   26.67  
+  82 Upd3A Colm   12      74 4 V 1  1  2  12   60    6    0    0  0   0 0 0  0  0  0  0   82  82   96.00  240.00   64.00  160.00  
+  83 Upd3A Note    7   -  20 5 V 1  1  2  12   60    7    0    0  0   0 0 0  0  0  0  0   83  83   96.00  306.67   64.00   26.67  
+  84 Upd3A Note    8   -  20 5 V 1  1  2  12   60    8    0    0  0   0 0 0  0  0  0  0   84  84   96.00  280.00   64.00   26.67  
+  85 Upd3A Note    9  G#  20 5 V 1  1  2  12   60    9    0    0  0   0 0 0  0  0  0  0   85  85   96.00  253.33   64.00   26.67  
+  86 Upd3A Note   10   -  20 5 V 1  1  2  12   60   10    0    0  0   0 0 0  0  0  0  0   86  86   96.00  226.67   64.00   26.67  
+  87 Upd3A Note   11  C#  20 5 V 1  1  2  12   60   11    0    0  0   0 0 0  0  0  0  0   87  87   96.00  200.00   64.00   26.67  
+  88 Upd3A Note   12   -  20 5 V 1  1  2  12   60   12    0    0  0   0 0 0  0  0  0  0   88  88   96.00  173.33   64.00   26.67  
+  89 Upd3A Colm   13      74 4 V 1  1  2  13   60   12    0    0  0   0 0 0  0  0  0  0   89  89  160.00  240.00   64.00  160.00  
+  90 Upd3A Note   13   -  20 5 V 1  1  2  13   60   13    0    0  0   0 0 0  0  0  0  0   90  90  160.00  306.67   64.00   26.67  
+  91 Upd3A Note   14   -  20 5 V 1  1  2  13   60   14    0    0  0   0 0 0  0  0  0  0   91  91  160.00  280.00   64.00   26.67  
+  92 Upd3A Note   15   -  20 5 V 1  1  2  13   60   15    0    0  0   0 0 0  0  0  0  0   92  92  160.00  253.33   64.00   26.67  
+  93 Upd3A Note   16   -  20 5 V 1  1  2  13   60   16    0    0  0   0 0 0  0  0  0  0   93  93  160.00  226.67   64.00   26.67  
+  94 Upd3A Note   17  C#  20 5 V 1  1  2  13   60   17    0    0  0   0 0 0  0  0  0  0   94  94  160.00  200.00   64.00   26.67  
+  95 Upd3A Note   18  A#  20 5 V 1  1  2  13   60   18    0    0  0   0 0 0  0  0  0  0   95  95  160.00  173.33   64.00   26.67  
+  96 Upd3A Colm   14      74 4 V 1  1  2  14   60   18    0    0  0   0 0 0  0  0  0  0   96  96  224.00  240.00   64.00  160.00  
+  97 Upd3A Note   19   -  20 5 V 1  1  2  14   60   19    0    0  0   0 0 0  0  0  0  0   97  97  224.00  306.67   64.00   26.67  
+  98 Upd3A Note   20  C#  20 5 V 1  1  2  14   60   20    0    0  0   0 0 0  0  0  0  0   98  98  224.00  280.00   64.00   26.67  
+  99 Upd3A Note   21  A#  20 5 V 1  1  2  14   60   21    0    0  0   0 0 0  0  0  0  0   99  99  224.00  253.33   64.00   26.67  
+ 100 Upd3A Note   22  F#  20 5 V 1  1  2  14   60   22    0    0  0   0 0 0  0  0  0  0  100 100  224.00  226.67   64.00   26.67  
+ 101 Upd3A Note   23   -  20 5 V 1  1  2  14   60   23    0    0  0   0 0 0  0  0  0  0  101 101  224.00  200.00   64.00   26.67  
+ 102 Upd3A Note   24   -  20 5 V 1  1  2  14   60   24    0    0  0   0 0 0  0  0  0  0  102 102  224.00  173.33   64.00   26.67  
+ 103 Upd3A Colm   15      74 4 V 1  1  2  15   60   24    0    0  0   0 0 0  0  0  0  0  103 103  288.00  240.00   64.00  160.00  
+ 104 Upd3A Note   25   -  20 5 V 1  1  2  15   60   25    0    0  0   0 0 0  0  0  0  0  104 104  288.00  306.67   64.00   26.67  

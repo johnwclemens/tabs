@@ -278,7 +278,7 @@ class Tabs(pyglet.window.Window):
         self.dumpAxy()  ;   self.dumpAXY()
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
-        self.ks = util.calcKS(self.nic)
+        self.ks = util.nic2KS(self.nic)
         self.log( util.OLD__fmtks(*self.ks), file=2)
         if self.TEST:
             self.test1A(1)  ;  self.test1A(1, o=0)  ;  self.test1A(0, o=1)
@@ -1665,7 +1665,7 @@ class Tabs(pyglet.window.Window):
     def setNote(self, text, cc, t, pos=0, dbg=1):
         old = self.notes[cc].text
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={old}', pos=pos)
-        if dbg: self.log(f'{util.fmtks(*self.ks)}')
+        if dbg: self.log(f'{util.fmtks(self.ks[1])}')
         if self.sobj.isFret(text):      ntext = self.sobj.tab2nn(text, t, self.nic)
         else:                           ntext = self.tblank
         if old in Notes.N2I:
@@ -2316,8 +2316,9 @@ class Tabs(pyglet.window.Window):
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
-        self.ks = util.calcKS(self.nic)
-        self.log(util.fmtks(*self.ks), file=2)
+        self.ks = util.nic2KS(self.nic)
+#        return s, k, nt, n, i, ns, js(i)
+        self.log(util.fmtks(self.ks[1]), file=2)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):
