@@ -279,7 +279,7 @@ class Tabs(pyglet.window.Window):
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
         self.ks = util.nic2KS(self.nic)
-        self.log( util.OLD__fmtks(*self.ks), file=2)
+        self.log( util.fmtks(self.ks[1]), file=2)
         if self.TEST:
             self.test1A(1)  ;  self.test1A(1, o=0)  ;  self.test1A(0, o=1)
             self.test1B(1)  ;  self.test1B(1, o=2)
