@@ -382,7 +382,7 @@ def OLD_2_initKSD(ks, t=0):
         i2 = Notes.nextIndex(i2, d)
     return ks
 
-def initKSD(ks, t=0):
+def OLD_3_initKSD(ks, t=0):
     NT = NTONES
     if   t < 0:
         i = 5   ;   j = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i+1+k*d) % NT for k in range(1, -j1-j2, 1)  ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
@@ -404,6 +404,74 @@ def initKSD(ks, t=0):
         slog(fmtks(k), pfx=0)
         i  = Notes.nextIndex(i, d)
         j  = Notes.nextIndex(j, d)
+    return ks
+
+def OLD_4_initKSD(ks, t=0):
+    NT = NTONES
+    if   t < 0: i = 5   ;   j = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i+1+k*d) % NT for k in range(1, -j1-j2, 1)  ]
+    elif t > 0: i = 7   ;   j = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+k*d)   % NT for k in range(1,  j1+j2, j1) ]
+    else:       i = 0   ;   j = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (j+1+k*d) % NT for k in range(0,    7,   j1) ]
+    ln0 = [Notes.name(j, t) for j in li0]
+    li  = list(li0)   ;   ln = list(ln0)
+    slog(f'{fmtl(li)=} {fmtl(ln)=}')
+    for k in range(0 if not t else t, j1+j2, j1):
+        m  = Notes.name(i, t, 1)
+        n  = Notes.name(j, t, 1)
+        im = [i, m]      ;    ak = abs(k)
+        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
+        else:                                            ms = list(ln)  ;  iz = list(li)
+        jz = js(i)
+        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
+        ks[k] = [ im, iz, ms, jz, ns ]
+        slog(fmtks(k), pfx=0)
+        i  = Notes.nextIndex(i, d)
+        j  = Notes.nextIndex(j, d)
+    return ks
+
+def old_5_initKSD(ks, t):
+    NT = NTONES #  ;   a = t   ;   b = P + 1
+    if   t == -1:  i = 5  ;  j = 10  ;  d = 5  ;  a = -1  ;  b = -7  ;  c =  1
+    elif t ==  1:  i = 7  ;  j = 6   ;  d = 7  ;  a =  1  ;  b =  7  ;  c =  3
+    else:          i = 0  ;  j = 10  ;  d = 7  ;  a =  1  ;  b =  0  ;  c =  0
+    li0 = [ (i+c+k*d) % NT  for k in range(abs(a), abs(a)+P) ]
+    ln0 = [Notes.name(j, t) for j in li0]
+    li  = list(li0)      ;      ln = list(ln0)
+    slog(f'{t=} {a=} {b=} {c=} {fmtl(li)=} {fmtl(ln)=}')
+    for k in range(a, a+b, a):
+        m  = Notes.name(i, t, 1)
+        n  = Notes.name(j, t, 1)
+        im = [i, m]      ;    ak = abs(k)
+        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
+        else:                                            ms = list(ln)  ;  iz = list(li)
+        jz = js(i)
+        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
+        ks[k] = [ im, iz, ms, jz, ns ]
+        slog(fmtks(k), pfx=0)
+        i  = Notes.nextIndex(i, d)
+        j  = Notes.nextIndex(j, d)
+    return ks
+
+def initKSD(ks, t):
+    NT = NTONES #  ;   a = t   ;   b = P + 1
+    if   t == -1:  i = 5  ;  j = 10  ;  s = 5  ;  a = -1  ;  b = a-7  ;  c = -1  ;  d = 1
+    elif t ==  1:  i = 7  ;  j = 6   ;  s = 7  ;  a =  1  ;  b = a+7  ;  c =  1  ;  d = 3
+    else:          i = 0  ;  j = 5   ;  s = 5  ;  a =  0  ;  b = a-1  ;  c = -1  ;  d = -1
+    li0 = [ (i+d+k*s) % NT  for k in range(abs(a), abs(a)+P) ]
+    ln0 = [Notes.name(j, t) for j in li0]
+    li  = list(li0)       ;      ln = list(ln0)
+    slog(f'{t=} {a=} {b=} {c=} {fmtl(li)=} {fmtl(ln)=}')
+    for k in range(a, b, c):
+        m  = Notes.name(i, t, 1)
+        n  = Notes.name(j, t, 1)
+        im = [i, m]       ;      ak = abs(k)
+        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
+        else:                                            ms = list(ln)  ;  iz = list(li)
+        jz = js(i)
+        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
+        ks[k] = [ im, iz, ms, jz, ns ]
+        slog(fmtks(k), pfx=0)
+        i  = Notes.nextIndex(i, s)
+        j  = Notes.nextIndex(j, s)
     return ks
 
 ########################################################################################################################################################################################################
