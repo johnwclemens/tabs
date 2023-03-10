@@ -428,8 +428,8 @@ def OLD_4_initKSD(ks, t=0):
         j  = Notes.nextIndex(j, d)
     return ks
 
-def old_5_initKSD(ks, t):
-    NT = NTONES #  ;   a = t   ;   b = P + 1
+def OLD_5_initKSD(ks, t):
+    NT = NTONES
     if   t == -1:  i = 5  ;  j = 10  ;  d = 5  ;  a = -1  ;  b = -7  ;  c =  1
     elif t ==  1:  i = 7  ;  j = 6   ;  d = 7  ;  a =  1  ;  b =  7  ;  c =  3
     else:          i = 0  ;  j = 10  ;  d = 7  ;  a =  1  ;  b =  0  ;  c =  0
@@ -451,8 +451,8 @@ def old_5_initKSD(ks, t):
         j  = Notes.nextIndex(j, d)
     return ks
 
-def initKSD(ks, t):
-    NT = NTONES #  ;   a = t   ;   b = P + 1
+def OLD_6_initKSD(ks, t):
+    NT = NTONES
     if   t == -1:  i = 5  ;  j = 10  ;  s = 5  ;  a = -1  ;  b = a-7  ;  c = -1  ;  d = 1
     elif t ==  1:  i = 7  ;  j = 6   ;  s = 7  ;  a =  1  ;  b = a+7  ;  c =  1  ;  d = 3
     else:          i = 0  ;  j = 5   ;  s = 5  ;  a =  0  ;  b = a-1  ;  c = -1  ;  d = -1
@@ -461,6 +461,29 @@ def initKSD(ks, t):
     li  = list(li0)       ;      ln = list(ln0)
     slog(f'{t=} {a=} {b=} {c=} {fmtl(li)=} {fmtl(ln)=}')
     for k in range(a, b, c):
+        m  = Notes.name(i, t, 1)
+        n  = Notes.name(j, t, 1)
+        im = [i, m]       ;      ak = abs(k)
+        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
+        else:                                            ms = list(ln)  ;  iz = list(li)
+        jz = js(i)
+        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
+        ks[k] = [ im, iz, ms, jz, ns ]
+        slog(fmtks(k), pfx=0)
+        i  = Notes.nextIndex(i, s)
+        j  = Notes.nextIndex(j, s)
+    return ks
+
+def initKSD(ks, t):
+    NT = NTONES
+    if   t == -1:  i = 5  ;  j = 10  ;  s = -7  ;  b = t-7  ;  c = -1  ;  d = 1
+    elif t ==  1:  i = 7  ;  j = 6   ;  s =  7  ;  b = t+7  ;  c =  1  ;  d = 3
+    else:          i = 0  ;  j = 5   ;  s = -7  ;  b = t-1  ;  c = -1  ;  d = -1
+    li0 = [ (i+d+k*s) % NT  for k in range(abs(t), abs(t)+P) ]
+    ln0 = [Notes.name(j, t) for j in li0]
+    li  = list(li0)       ;      ln = list(ln0)
+    slog(f'{t=} {b=} {c=} {fmtl(li)=} {fmtl(ln)=}')
+    for k in range(t, b, c):
         m  = Notes.name(i, t, 1)
         n  = Notes.name(j, t, 1)
         im = [i, m]       ;      ak = abs(k)
