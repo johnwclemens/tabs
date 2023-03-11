@@ -4,7 +4,10 @@ from collections import OrderedDict as cOd
 #for _ in sys.path:
 #    print(f'{_}')
 import util
-from util import Notes as Notes
+from   util import slog  as slog
+from   util import fmtl  as fmtl
+from   util import fmtm  as fmtm
+from   util import Notes as Notes
 #from util import Strings as us
 
 FMTN           = (1, 1, 2, 2, 2, 2, 2)
@@ -24,15 +27,15 @@ class Chord(object):
         for k in range(len(ixs)):
             ivals = []   ;   chunks = []   ;   rank = -1
             for j in range(len(ixs)):
-                if ixs[j] >= ixs[k]: i =                (ixs[j] - ixs[k])  % util.NTONES
-                else:                i = (util.NTONES - (ixs[k] - ixs[j])) % util.NTONES
+                if ixs[j] >= ixs[k]: i =                 (ixs[j] - ixs[k])  % Notes.NTONES
+                else:                i = (Notes.NTONES - (ixs[k] - ixs[j])) % Notes.NTONES
                 ivals.append(i)
             vkey = ''.join([ f'{v:x}' for v in ivals ])
             if vkey not in vkeys:
-                ikeys  = [ util.IVALS[i] for i in ivals ]
+                ikeys  = [ Notes.I2V[i] for i in ivals ]
                 if dbg: self._dumpData(rank, ikeys, ivals, notes, mask, 0)
-                _imap  = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: util.IVALR[t[0]]))
-                _ikeys = list(_imap.keys())   ;   _ivals = [ util.IVALR[k] for k in _ikeys ]   ;   _notes = list(_imap.values())
+                _imap  = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: Notes.V2I[t[0]]))
+                _ikeys = list(_imap.keys())   ;   _ivals = [ Notes.V2I[k] for k in _ikeys ]   ;   _notes = list(_imap.values())
                 ikey   = ' '.join([ k for k in _ikeys ])
                 if ikey in self.OMAP:
                     root = _imap['R']
@@ -42,7 +45,7 @@ class Chord(object):
                     name = ''.join(chunks)      ;     rank = self.OMAP[ikey][0]
                     assert _ivals == self.OMAP[ikey][1]
                 elif len(_imap) >= Chord.MIN_CHORD_LEN:
-                    msg = f'ADDING {ikey=} {util.fmtl(ivals)=} to OMAP'   ;   util.slog(f'{msg} {kk=}')
+                    msg = f'ADDING {ikey=} {fmtl(ivals)=} to OMAP'   ;   slog(f'{msg} {kk=}')
                     if kk: self.umap[ikey] = (rank, ivals, [])
                     else:  raise SystemExit(msg)
                 elif len(_imap) >= util.MIN_IVAL_LEN:
@@ -50,8 +53,8 @@ class Chord(object):
                 if dbg:    self._dumpData(rank, _ikeys, _ivals, _notes, mask, 1)
                 imap   = [ ikeys, ivals, notes, name, chunks, rank ]
                 vkeys.append(vkey)   ;   self.limap.append(imap)
-                if dbg: util.slog(f'{rank:2} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {name:12} {"".join(chunks):12} {"".join(_ikeys):12} {"".join(f"{i:x}" for i in _ivals):6} {"".join(_notes):12}')
-#                if dbg: util.slog(f'{rank:2} {util.fmtl(ikeys):19} {util.fmtl(ivals, z="x")} {" ".join(notes):12} {name:12} {"".join(chunks)} {util.fmtl(_ikeys)} {util.fmtl(_ivals, z="x")} {" ".join(_notes):12}', pfx=0)
+                if dbg: slog(f'{rank:2} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {name:12} {"".join(chunks):12} {"".join(_ikeys):12} {"".join(f"{i:x}" for i in _ivals):6} {"".join(_notes):12}')
+#                if dbg: slog(f'{rank:2} {fmtl(ikeys):19} {fmtl(ivals, z="x")} {" ".join(notes):12} {name:12} {"".join(chunks)} {fmtl(_ikeys)} {fmtl(_ivals, z="x")} {" ".join(_notes):12}', pfx=0)
         if self.limap:
             self.limap.sort(key=lambda m: m[-1])   ;   imi = 0
             if dbg > 1: self.dumpLimap(self.limap, cn, imi)
@@ -95,61 +98,61 @@ class Chord(object):
     @staticmethod
     def dumpData(data, mask, why, w=5, u='<', r=0):
         if r:     data = data[::-1]  ;  mask = mask[::-1]
-        j = 0   ;   dt = type(data)  ;  util.slog(f'{why:26} [ ', end='')
+        j = 0   ;   dt = type(data)  ;  slog(f'{why:26} [ ', end='')
         if dt is list or dt is str:
             for i in range(len(mask)):
-                if   mask[i] and j < len(data): util.slog('{:{}{}} '.format(data[j], u, w), pfx=0, end='')  ;  j += 1
-                elif mask[i]:                   util.slog('{:{}{}} '.format(' ',     u, w), pfx=0, end='')
-                else:                           util.slog('{:{}{}} '.format('~',     u, w), pfx=0, end='')
+                if   mask[i] and j < len(data): slog('{:{}{}} '.format(data[j], u, w), pfx=0, end='')  ;  j += 1
+                elif mask[i]:                   slog('{:{}{}} '.format(' ',     u, w), pfx=0, end='')
+                else:                           slog('{:{}{}} '.format('~',     u, w), pfx=0, end='')
         elif dt is cOd:
             w2 = 2  ;   i = 0
             for k,v in data.items():
-                while not mask[i]: util.slog('{:{}{}} '.format('-', u, w),    pfx=0, end='')  ;  i += 1
-                util.slog('{:>{}}{}{:<{}} '.       format(k, w2, ':', v, w2), pfx=0, end='')  ;  i += 1
-            while i < len(mask): util.slog('{:{}{}} '.  format('-', u, w),    pfx=0, end='')  ;  i += 1
-        else: util.slog(f'type={dt} ', pfx=0, end='')
-        util.slog(']',                 pfx=0)
+                while not mask[i]: slog('{:{}{}} '.format('-', u, w),    pfx=0, end='')  ;  i += 1
+                slog('{:>{}}{}{:<{}} '.       format(k, w2, ':', v, w2), pfx=0, end='')  ;  i += 1
+            while i < len(mask):   slog('{:{}{}} '.format('-', u, w),    pfx=0, end='')  ;  i += 1
+        else: slog(f'type={dt} ', pfx=0, end='')
+        slog(']',                 pfx=0)
     ####################################################################################################################################################################################################
     def dumpMlimap(self, why='', dbg=0):
         mli = self.mlimap
-        util.slog(f'{why} <dumpLimap > {len(mli)} {util.fmtl(list(mli.keys()))}') if dbg else None   ;   [ self.dumpLimap( v[0], k, v[1]) for k,v in mli.items() ]
-        util.slog(f'{why} <dumpLimap1> {len(mli)} {util.fmtl(list(mli.keys()))}') if dbg else None   ;   [ self.dumpLimap1(v[0], k, v[1]) for k,v in mli.items() ]
-        util.slog(f'{why} <dumpLimap2> {len(mli)} {util.fmtl(list(mli.keys()))}') if dbg else None   ;   [ self.dumpLimap2(v[0], k, v[1]) for k,v in mli.items() ]
-        util.slog(f'{why} <dumpLimap3> {len(mli)} {util.fmtl(list(mli.keys()))}') if dbg else None   ;   [ self.dumpLimap3(v[0], k, v[1]) for k,v in mli.items() ]
+        slog(f'{why} <dumpLimap > {len(mli)} {fmtl(list(mli.keys()))}') if dbg else None   ;   [ self.dumpLimap( v[0], k, v[1]) for k,v in mli.items() ]
+        slog(f'{why} <dumpLimap1> {len(mli)} {fmtl(list(mli.keys()))}') if dbg else None   ;   [ self.dumpLimap1(v[0], k, v[1]) for k,v in mli.items() ]
+        slog(f'{why} <dumpLimap2> {len(mli)} {fmtl(list(mli.keys()))}') if dbg else None   ;   [ self.dumpLimap2(v[0], k, v[1]) for k,v in mli.items() ]
+        slog(f'{why} <dumpLimap3> {len(mli)} {fmtl(list(mli.keys()))}') if dbg else None   ;   [ self.dumpLimap3(v[0], k, v[1]) for k,v in mli.items() ]
 
     def dumpLimap(self, limap, key, imi=-1):
         [ self.dumpImap(im, f'{key:3} {imi}') for im in limap ]
 
     @staticmethod
     def dumpLimap1(limap, key, imi=-1):
-        util.slog(f'{key:3} {imi}', pfx=0, end=' ')
+        slog(f'{key:3} {imi}', pfx=0, end=' ')
         for m in limap:
-            util.slog(f'{"".join(m[3]):12} {"".join(m[0]):12}', pfx=0, end=' ')
-        util.slog(pfx=0)
+            slog(f'{"".join(m[3]):12} {"".join(m[0]):12}', pfx=0, end=' ')
+        slog(pfx=0)
 
     @staticmethod
     def dumpLimap2(limap, key, imi=-1):
-        util.slog(f'{key:3} {imi}', pfx=0, end='')
-        [ util.slog(f'{m[3]:12} {"".join(f"{i:x}" for i in m[1]):6}', pfx=0, end='') for m in limap ]
-        util.slog(pfx=0)
+        slog(f'{key:3} {imi}', pfx=0, end='')
+        [ slog(f'{m[3]:12} {"".join(f"{i:x}" for i in m[1]):6}', pfx=0, end='') for m in limap ]
+        slog(pfx=0)
 
     @staticmethod
     def dumpLimap3(limap, key, imi=-1):
-        util.slog(f'{key:3} {imi}', pfx=0, end=' ')   ;   msg1, msg2 = '', ''
+        slog(f'{key:3} {imi}', pfx=0, end=' ')   ;   msg1, msg2 = '', ''
         for m in limap:
             msg1 += f'{"".join(f"{i:x}" for i in m[1]):6} '
             msg2 += f'{"".join(m[0]):12} '
-        util.slog(f'{msg1:44}{msg2}', pfx=0)
+        slog(f'{msg1:44}{msg2}', pfx=0)
 
     @staticmethod
     def dumpImap(imap, why=''):
         ikeys, ivals, notes, name, chunks, rank = [], [], [], '', [], -1
         if imap and len(imap) == 6: ikeys, ivals, notes, name, chunks, rank = imap[0],imap[1], imap[2], imap[3], imap[4], imap[5]
-        ikeys2 = list(sorted(dict.fromkeys(ikeys), key=lambda t: util.IVALR[t]))
+        ikeys2 = list(sorted(dict.fromkeys(ikeys), key=lambda t: Notes.V2I[t]))
         nmap   = cOd(sorted(dict(zip(ivals, notes)).items()))
         ivals2, notes2 = list(nmap.keys()), list(nmap.values())
-        util.slog(f'{why}{rank:2} {name:12} {"".join(chunks):12} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {"".join(ikeys2):12} {"".join(f"{i:x}" for i in ivals2):6} {"".join(notes2):12}', pfx=0)
-#        util.slog(f'{why}{rank:2} {name:12} {util.fmtl(chunks, w=2):19} {util.fmtl(sorted(ikeys, key=lambda t: IVALR[t]), w=FMTN):18} {util.fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', pfx=0)
+        slog(f'{why}{rank:2} {name:12} {"".join(chunks):12} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {"".join(ikeys2):12} {"".join(f"{i:x}" for i in ivals2):6} {"".join(notes2):12}', pfx=0)
+#        slog(f'{why}{rank:2} {name:12} {fmtl(chunks, w=2):19} {fmtl(sorted(ikeys, key=lambda t: IVALR[t]), w=FMTN):18} {fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', pfx=0)
     ####################################################################################################################################################################################################
     def rotateMLimap(self, cn):
         a = self.mlimap[cn]
@@ -166,7 +169,7 @@ class Chord(object):
     def rotateIndices(a):
        r = [0]
        for i in range(1, len(a)):
-            b = a[i+1] if i + 1 < len(a) else util.NTONES   ;   r.append(b - a[i] + r[i-1])
+            b = a[i+1] if i + 1 < len(a) else Notes.NTONES   ;   r.append(b - a[i] + r[i-1])
 #           if    i + 1 < len(a): r.append(a[i+1] - a[i] + r[i-1])
 #           else:                 r.append(NTONES - a[i] + r[i-1])
        return r
@@ -178,29 +181,29 @@ class Chord(object):
         t = ''   ;   r = []
         for j in k:
             if j != ' ': t += j
-            else:        r.append(util.IVALR[t])  ;  t = ''
-        r.append(util.IVALR[t])
+            else:        r.append(Notes.V2I[t])  ;  t = ''
+        r.append(Notes.V2I[t])
         return r
 
     @staticmethod
     def mergeMaps(src, trg):
-        util.slog(f'BGN len(src) ={len(src)} len(trg)={len(trg)}')
+        slog(f'BGN len(src) ={len(src)} len(trg)={len(trg)}')
         for k, v in src.items():
             trg[k] = v
-        util.slog(f'END len(src) ={len(src)} len(trg)={len(trg)}')
+        slog(f'END len(src) ={len(src)} len(trg)={len(trg)}')
     ####################################################################################################################################################################################################
     def dumpUmap(self):
         if self.umap:
-            util.slog('BGN umap:')
+            slog('BGN umap:')
             umapKeys = sorted(self.umap.keys() , key=lambda a: self.umap[a][1])
             for k in umapKeys:
                 v = self.umap[k]
                 k = '\'' + k + '\''
-                util.slog(f'{k:19}: ({v[0]}, {util.fmtl(v[1], sep=",", d2="],"):15})', pfx=0)
-            util.slog(f'END umap len={len(self.umap)}')
+                slog(f'{k:19}: ({v[0]}, {fmtl(v[1], sep=",", d2="],"):15})', pfx=0)
+            slog(f'END umap len={len(self.umap)}')
 
     def dumpOMAP(self, catpath=None, merge=0):
-        util.slog(f'BGN len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
+        slog(f'BGN len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
         if merge and self.umap: self.mergeMaps(self.umap, self.OMAP)
         r = self._dumpOMAP()
         if catpath:
@@ -214,14 +217,14 @@ class Chord(object):
                 with open(str(catpath), 'w') as CAT_FILE:
                     self._dumpOMAP(CAT_FILE)
         if self.umap: self.dumpUmap()
-        util.slog(f'END   len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
+        slog(f'END   len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
 
     def _dumpOMAP(self, catfile=None, dbg=0):
         file = catfile      if catfile else util.LOG_FILE
         name = catfile.name if catfile else None
         omap = self.OMAP
         mapSet = {}   ;   r = {}   ;   rank = -1
-        util.slog('BGN len(OMAP)={} catfile.name={}'.format(len(omap), name))
+        slog('BGN len(OMAP)={} catfile.name={}'.format(len(omap), name))
         for k, v in omap.items():
             kv = len(v[1])
             if kv not in mapSet: mapSet[kv] = set()
@@ -232,41 +235,41 @@ class Chord(object):
             tstat.append(0)
             count, nord, none = 0, 0, 0
             for ii in sml:
-                keys = [ util.IVALS[i] for i in ii ]
+                keys = [ Notes.I2V[i] for i in ii ]
                 keyStr    = ' '.join(keys)
                 keyStrFmt = '\'' + keyStr + '\''
                 v = omap[keyStr]
                 rankSet = set()  ;  rankSet.add(v[0])
                 if not catfile: count += 1  ;  none += 1 if not v[2] else 0  ;  nord += 1 if v[0] == rank else 0
-                v2 = util.fmtl(v[2], sep='\',\'', d='[\'', d2='\']),') if v[2] else '[]),' if type(v[2]) is list else 'None),'
-                if dbg: util.slog(f'{keyStrFmt:19}: ({v[0]}, {util.fmtl(v[1], sep=",", d2="],"):15} {v2:28} # ', pfx=0, file=file, end='')
+                v2 = fmtl(v[2], sep='\',\'', d='[\'', d2='\']),') if v[2] else '[]),' if type(v[2]) is list else 'None),'
+                if dbg: slog(f'{keyStrFmt:19}: ({v[0]}, {fmtl(v[1], sep=",", d2="],"):15} {v2:28} # ', pfx=0, file=file, end='')
                 cycSet =  set()   ;   cycSet.add(tuple(ii))
                 for _ in range(len(ii) - 1):
                     ii = self.rotateIndices(ii)
-                    keys = [ util.IVALS[i] for i in ii ]
+                    keys = [ Notes.I2V[i] for i in ii ]
                     keyStr = ' '.join(keys)   ;   ck = len(ii)   ;   jj = tuple(ii)    ;   cycle = 0
                     if keyStr in omap: rankSet.add(omap[keyStr][0])
                     if jj in cycSet:
                         if ck not in self.cycles: self.cycles[ck] = set()
                         self.cycles[ck].add(jj)                                        ;   cycle = 1
                     cycSet.add(jj)    ;     d = '@' if cycle else '['    ;    d2 = '@' if cycle else ']'
-                    if keyStr not in omap:        util.slog(f'Not in map: ', pfx=0, end='', file=file)     ;    r[keyStr] = (rank, ii, None)
-                    if dbg: util.slog(f'{keyStr:16} {util.fmtl(ii, z="x", d=d, d2=d2):13} ', pfx=0, end='', file=file)
+                    if keyStr not in omap:        slog(f'Not in map: ', pfx=0, end='', file=file)     ;    r[keyStr] = (rank, ii, None)
+                    if dbg: slog(f'{keyStr:16} {fmtl(ii, z="x", d=d, d2=d2):13} ', pfx=0, end='', file=file)
                 refSet = { _ for _ in range(len(ii)) }
                 if dbg:
-                    if    rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet: util.slog(pfx=0, file=file)
-                    else: util.slog(f'\n{msg} {util.fmtl(refSet, d="<", d2=">")} {util.fmtl(rankSet, d="<", d2=">")} {util.fmtl(sorted(cycSet))}', pfx=0, file=file)  # ;  q = 1
+                    if    rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet: slog(pfx=0, file=file)
+                    else: slog(f'\n{msg} {fmtl(refSet, d="<", d2=">")} {fmtl(rankSet, d="<", d2=">")} {fmtl(sorted(cycSet))}', pfx=0, file=file)  # ;  q = 1
             if not catfile: mstat.append([k, count, nord, none])
         if not catfile:
             for kk, w in self.cycles.items():
                 for c in tuple(sorted(w)):
-                    keys = [ util.IVALS[j] for j in c ]   ;   key = ' '.join(keys)   ;   v = omap[key]
-                    util.slog(f'{kk:2} note cycle {v[0]:2} {util.fmtl(c, z="x"):13} {key:16} {"".join(v[2]):12} {v[2]}')
+                    keys = [ Notes.I2V[j] for j in c ]   ;   key = ' '.join(keys)   ;   v = omap[key]
+                    slog(f'{kk:2} note cycle {v[0]:2} {fmtl(c, z="x"):13} {key:16} {"".join(v[2]):12} {v[2]}')
             for j in range(len(mstat)):
-                util.slog(f'{mstat[j][0]:2} note chords  {mstat[j][1]:3} valid  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
+                slog(f'{mstat[j][0]:2} note chords  {mstat[j][1]:3} valid  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
                 tstat[0] += mstat[j][0]   ;   tstat[1] += mstat[j][1]   ;   tstat[2] += mstat[j][2]   ;   tstat[3] += mstat[j][3]
-        if catfile: util.slog('END len(OMAP)={} catfile.name={} len(r)={}'.format(len(omap), name, len(r)))
-        else: util.slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}')
+        if catfile: slog('END len(OMAP)={} catfile.name={} len(r)={}'.format(len(omap), name, len(r)))
+        else: slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}')
 #        if q: self.quit(msg, code=2)
         return r
     ####################################################################################################################################################################################################
@@ -880,7 +883,7 @@ class Chord(object):
         for i in limap:
             inner = []
             for j in i[0]:
-                inner.append(util.IVALR[j])
+                inner.append(Notes.V2I[j])
             tmp = tuple(inner)
             outer.append(tmp)
             self.cat2.add(tmp)
@@ -889,13 +892,13 @@ class Chord(object):
             else:                      self.cat3[k].add(tmp)
             if tmp not in self.catmap: self.catmap[tmp] = [i[0], i[1]]
             keys.append(tmp)   ;   ivals.append(i[0])
-        for k in keys:                 self.catmap2[k] = [ sorted(keys), sorted(ivals, key=lambda b: [util.IVALR[c] for c in b]) ]
+        for k in keys:                 self.catmap2[k] = [ sorted(keys), sorted(ivals, key=lambda b: [Notes.V2I[c] for c in b]) ]
         outer = sorted(outer, key=lambda a: [z for z in a])
         self.cat1.add(tuple(outer))
-#        util.slog(f'{why}', end='')
+#        slog(f'{why}', end='')
 #        for o in outer:
-#            util.slog(f'{util.fmtl(o, z="x", d2="] ")}', pfx=0, end='')
-#        util.slog(pfx=0)
+#            slog(f'{fmtl(o, z="x", d2="] ")}', pfx=0, end='')
+#        slog(pfx=0)
 
     def dumpInstanceCat(self, why=''):
         cat1 = sorted(self.cat1)
@@ -903,32 +906,32 @@ class Chord(object):
         cat3 = self.cat3
         catmap = self.catmap
         catmap2 = self.catmap2
-        util.slog(f'{why} cat1 <{len(cat1)}>')
+        slog(f'{why} cat1 <{len(cat1)}>')
         n = 0
         for c in cat1:
             n += len(c)
-            util.slog(f'{n:3} {util.fmtl(c, z="x")}', pfx=0)
-        util.slog(f'{why} cat2 <{len(cat2)}>')
-        util.slog(f'{util.fmtl(cat2, z="x")}', pfx=0)
+            slog(f'{n:3} {fmtl(c, z="x")}', pfx=0)
+        slog(f'{why} cat2 <{len(cat2)}>')
+        slog(f'{fmtl(cat2, z="x")}', pfx=0)
         for i, c in enumerate(cat2):
-            util.slog(f'{i+1:3} {util.fmtl(c, z="x")}', pfx=0)
-        util.slog(f'{why} cat3 <{len(cat3)}>')
-        util.slog(f'{util.fmtm(cat3)}', pfx=0)
+            slog(f'{i+1:3} {fmtl(c, z="x")}', pfx=0)
+        slog(f'{why} cat3 <{len(cat3)}>')
+        slog(f'{fmtm(cat3)}', pfx=0)
         for k in cat3.keys():
             cat3[k] = sorted(tuple(cat3[k]))
             for j, v in enumerate(cat3[k]):
-                util.slog(f'{j+1:3} {util.fmtl(v, z="x")}', pfx=0)
-        util.slog(f'{why} catmap <{len(catmap)}>')
-        util.slog(f'{util.fmtm(catmap)}', pfx=0)
+                slog(f'{j+1:3} {fmtl(v, z="x")}', pfx=0)
+        slog(f'{why} catmap <{len(catmap)}>')
+        slog(f'{fmtm(catmap)}', pfx=0)
         for i, (k,v) in enumerate(catmap.items()):
-            util.slog(f'{i+1:3} {util.fmtl(k, z="x")} {util.fmtl(v, w=2)}', pfx=0)
-        util.slog(f'{why} catmap2 <{len(catmap2)}>')
-        util.slog(f'{util.fmtm(catmap2)}', pfx=0)
+            slog(f'{i+1:3} {fmtl(k, z="x")} {fmtl(v, w=2)}', pfx=0)
+        slog(f'{why} catmap2 <{len(catmap2)}>')
+        slog(f'{fmtm(catmap2)}', pfx=0)
         for k in cat3.keys():
             for i, v in enumerate(cat3[k]):
-                util.slog(f'{i+1:3} {util.fmtl(v, z="x")}', pfx=0, end='  ')
+                slog(f'{i+1:3} {fmtl(v, z="x")}', pfx=0, end='  ')
                 for j, u in enumerate(catmap2[v]):
                     for h, w in enumerate(u):
-                        if j:        util.slog(f'{"" if h else "  "}{util.fmtl(w, w=FMTN)}', pfx=0, end='')
-                        elif w != v: util.slog(f'{                   util.fmtl(w,        z="x")}', pfx=0, end='')
-                util.slog(pfx=0)
+                        if j:        slog(f'{"" if h else "  "}{fmtl(w, w=FMTN)}', pfx=0, end='')
+                        elif w != v: slog(f'{                   fmtl(w,        z="x")}', pfx=0, end='')
+                slog(pfx=0)

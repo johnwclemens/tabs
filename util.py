@@ -11,9 +11,6 @@ MIN_IVAL_LEN     = 1
 MAX_STACK_DEPTH  = 0
 MAX_STACK_FRAME  = inspect.stack()
 M12              = { 10:'a', 11:'b' }
-IVALS            = { 0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
-IVALR            = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11 }
-NTONES           = len(IVALS)
 INIT             = '###   Init   ###'     * 13
 QUIT_BGN         = '###   BGN Quit   ###' * 10
 QUIT             = '###   Quit   ###'     * 13
@@ -96,7 +93,6 @@ def nic2KS(nic, dbg=0):
     return  s, k, nt, n, i, ns, js(i)
 ########################################################################################################################################################################################################
 def fmtks(k):
-#    t   = 1 if k > 0 else 0 if k < 0 else 2    ;   nt = Notes.TYPES[t]
     t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
     s   = t2sign(t)     ;   im = KSD[k][KIM]   ;    i = im[0]      ;    m = im[1]
     iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]   ;   ms = KSD[k][KMS]
@@ -271,10 +267,8 @@ class DSymb(object):
 ########################################################################################################################################################################################################
 
 class Notes(object):
-#    FLAT, SHRP, NONE = 0, 1, 2
-    FLAT, NONE, SHRP = -1, 0,      1   # -1 ~= 2
+    FLAT, NONE, SHRP =    -1,      0,      1      # -1 ~= 2
     TYPES            = [ 'NONE', 'SHRP', 'FLAT' ] # 0=NONE, 1=SHRP, 2=FLAT=-1
-#    TYPES      = ['FLAT', 'SHRP', 'NONE']
     TYPE       = FLAT
     S2F        = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           }
     F2S        = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'           }
@@ -284,8 +278,10 @@ class Notes(object):
     I2S        = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
     I2F2       = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',        5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
     I2S2       = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
-    I2V        = { 0: 'R', 1: 'b2', 2: '2', 3: 'm3', 4: 'M3', 5: '4', 6: 'b5', 7: '5', 8: '#5', 9: '6', 10: 'b7', 11: '7' }
+    V2I        = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11  }
+    I2V        = {  0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
     N2I        = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11 }
+    NTONES     = len(I2V)
     MAX_IDX    = 10 * NTONES + 1
     I2N        = [I2F,  I2S,  I2F]
     I2N2       = [I2F2, I2S2, I2F2]
@@ -301,24 +297,24 @@ class Notes(object):
 
     @staticmethod
     def nextIndex(i, d):
-        return  (i + d) % NTONES
+        return  (i + d) % Notes.NTONES
 
     @staticmethod
     def OLD__name(i, t=None, n2=0):
         t    = 0 if t == 2 else t if t is not None else Notes.TYPE
-        name = Notes.I2N2[t][i % NTONES]   if n2   else Notes.I2N[t][i % NTONES]
+        name = Notes.I2N2[t][i % Notes.NTONES]   if n2   else Notes.I2N[t][i % Notes.NTONES]
         return name
 
     @staticmethod
     def name(i, t=0, n2=0):
         t    = t if t else Notes.TYPE
-        name = Notes.I2N2[t][i % NTONES]   if n2   else Notes.I2N[t][i % NTONES]
+        name = Notes.I2N2[t][i % Notes.NTONES]   if n2   else Notes.I2N[t][i % Notes.NTONES]
         return name
 
     @staticmethod
     def nextName(n, iv, o=0):
         i = Notes.index(n, o)
-        j = IVALR[iv]
+        j = Notes.V2I[iv]
         k = Notes.nextIndex(i, j)
         m = Notes.name(k)
         return m
@@ -326,179 +322,18 @@ class Notes(object):
 FLATS   = [ f'{k}{n}' for n in range(11) for k in Notes.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Notes.MAX_IDX]
 SHRPS   = [ f'{k}{n}' for n in range(11) for k in Notes.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Notes.MAX_IDX]
 
-def FREQ( index): return 440 * pow(pow(2, 1/NTONES), index - 57)
-def FREQ2(index): return 432 * pow(pow(2, 1/NTONES), index - 57)
+def FREQ( index): return 440 * pow(pow(2, 1/Notes.NTONES), index - 57)
+def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
 
 FREQS   = [ FREQ( i) for i in range(Notes.MAX_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(Notes.MAX_IDX) ]
 
 def initND():
-    return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i] ] for i in range(NTONES) }
+    return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i] ] for i in range(Notes.NTONES) }
 ND = initND()
 ########################################################################################################################################################################################################
-def OLD__initKSD(ks, t=None):
-    NT = NTONES
-    if   not t: # is None:
-        i = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (i2+1+j*d) % NT for j in range(0,    7,   j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
-    elif t:
-        i = 7   ;   i2 = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+j*d)   % NT for j in range(1,  j1+j2, j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
-    else:
-        i = 5   ;   i2 = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i+1+j*d) % NT for j in range(1, -j1-j2, 1)  ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
-    li  = list(li0)   ;   ln = list(ln0)
-    for k in range(0 if t is None else 1 if t else -1, j1+j2, j1):
-        m  = Notes.name(i, t, 1)
-        n  = Notes.name(i2, t, 1)
-        im = [i, m]      ;    ak = abs(k)
-        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = i2   ;  ms = list(ln)  ;  iz = list(li)
-        else:                                             ms = list(ln)  ;  iz = list(li)
-        jz = js(i)
-        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
-        ks[k] = [ im, iz, ms, jz, ns ]
-        slog(fmtks(k), pfx=0)
-        i  = Notes.nextIndex(i, d)
-        i2 = Notes.nextIndex(i2, d)
-    return ks
-
-def OLD_2_initKSD(ks, t=0):
-    NT = NTONES
-    if   t < 0:
-        i = 5   ;   i2 = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i+1+j*d) % NT for j in range(1, -j1-j2, 1)  ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
-    elif t > 0:
-        i = 7   ;   i2 = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+j*d)   % NT for j in range(1,  j1+j2, j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
-    else:
-        i = 0   ;   i2 = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (i2+1+j*d) % NT for j in range(0,    7,   j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
-    li  = list(li0)   ;   ln = list(ln0)
-    for k in range(0 if not t else t, j1+j2, j1):
-        m  = Notes.name(i, t, 1)
-        n  = Notes.name(i2, t, 1)
-        im = [i, m]      ;    ak = abs(k)
-        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = i2   ;  ms = list(ln)  ;  iz = list(li)
-        else:                                             ms = list(ln)  ;  iz = list(li)
-        jz = js(i)
-        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
-        ks[k] = [ im, iz, ms, jz, ns ]
-        slog(fmtks(k), pfx=0)
-        i  = Notes.nextIndex(i, d)
-        i2 = Notes.nextIndex(i2, d)
-    return ks
-
-def OLD_3_initKSD(ks, t=0):
-    NT = NTONES
-    if   t < 0:
-        i = 5   ;   j = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i+1+k*d) % NT for k in range(1, -j1-j2, 1)  ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
-    elif t > 0:
-        i = 7   ;   j = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+k*d)   % NT for k in range(1,  j1+j2, j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
-    else:
-        i = 0   ;   j = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (j+1+k*d) % NT for k in range(0,    7,   j1) ]  ;  ln0 = [ Notes.name(j, t) for j in li0 ]
-    li  = list(li0)   ;   ln = list(ln0)
-    slog(f'{fmtl(li)=} {fmtl(ln)=}')
-    for k in range(0 if not t else t, j1+j2, j1):
-        m  = Notes.name(i, t, 1)
-        n  = Notes.name(j, t, 1)
-        im = [i, m]      ;    ak = abs(k)
-        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
-        else:                                            ms = list(ln)  ;  iz = list(li)
-        jz = js(i)
-        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
-        ks[k] = [ im, iz, ms, jz, ns ]
-        slog(fmtks(k), pfx=0)
-        i  = Notes.nextIndex(i, d)
-        j  = Notes.nextIndex(j, d)
-    return ks
-
-def OLD_4_initKSD(ks, t=0):
-    NT = NTONES
-    if   t < 0: i = 5   ;   j = 10  ;    d = 5   ;   j1 = -1  ;   j2 = -7  ;  li0 = [ (i+1+k*d) % NT for k in range(1, -j1-j2, 1)  ]
-    elif t > 0: i = 7   ;   j = 6   ;    d = 7   ;   j1 =  1  ;   j2 =  7  ;  li0 = [ (10+k*d)   % NT for k in range(1,  j1+j2, j1) ]
-    else:       i = 0   ;   j = 10  ;    d = 5   ;   j1 =  1  ;   j2 =  0  ;  li0 = [ (j+1+k*d) % NT for k in range(0,    7,   j1) ]
-    ln0 = [Notes.name(j, t) for j in li0]
-    li  = list(li0)   ;   ln = list(ln0)
-    slog(f'{fmtl(li)=} {fmtl(ln)=}')
-    for k in range(0 if not t else t, j1+j2, j1):
-        m  = Notes.name(i, t, 1)
-        n  = Notes.name(j, t, 1)
-        im = [i, m]      ;    ak = abs(k)
-        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
-        else:                                            ms = list(ln)  ;  iz = list(li)
-        jz = js(i)
-        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
-        ks[k] = [ im, iz, ms, jz, ns ]
-        slog(fmtks(k), pfx=0)
-        i  = Notes.nextIndex(i, d)
-        j  = Notes.nextIndex(j, d)
-    return ks
-
-def OLD_5_initKSD(ks, t):
-    NT = NTONES
-    if   t == -1:  i = 5  ;  j = 10  ;  d = 5  ;  a = -1  ;  b = -7  ;  c =  1
-    elif t ==  1:  i = 7  ;  j = 6   ;  d = 7  ;  a =  1  ;  b =  7  ;  c =  3
-    else:          i = 0  ;  j = 10  ;  d = 7  ;  a =  1  ;  b =  0  ;  c =  0
-    li0 = [ (i+c+k*d) % NT  for k in range(abs(a), abs(a)+P) ]
-    ln0 = [Notes.name(j, t) for j in li0]
-    li  = list(li0)      ;      ln = list(ln0)
-    slog(f'{t=} {a=} {b=} {c=} {fmtl(li)=} {fmtl(ln)=}')
-    for k in range(a, a+b, a):
-        m  = Notes.name(i, t, 1)
-        n  = Notes.name(j, t, 1)
-        im = [i, m]      ;    ak = abs(k)
-        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
-        else:                                            ms = list(ln)  ;  iz = list(li)
-        jz = js(i)
-        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
-        ks[k] = [ im, iz, ms, jz, ns ]
-        slog(fmtks(k), pfx=0)
-        i  = Notes.nextIndex(i, d)
-        j  = Notes.nextIndex(j, d)
-    return ks
-
-def OLD_6_initKSD(ks, t):
-    NT = NTONES
-    if   t == -1:  i = 5  ;  j = 10  ;  s = 5  ;  a = -1  ;  b = a-7  ;  c = -1  ;  d = 1
-    elif t ==  1:  i = 7  ;  j = 6   ;  s = 7  ;  a =  1  ;  b = a+7  ;  c =  1  ;  d = 3
-    else:          i = 0  ;  j = 5   ;  s = 5  ;  a =  0  ;  b = a-1  ;  c = -1  ;  d = -1
-    li0 = [ (i+d+k*s) % NT  for k in range(abs(a), abs(a)+P) ]
-    ln0 = [Notes.name(j, t) for j in li0]
-    li  = list(li0)       ;      ln = list(ln0)
-    slog(f'{t=} {a=} {b=} {c=} {fmtl(li)=} {fmtl(ln)=}')
-    for k in range(a, b, c):
-        m  = Notes.name(i, t, 1)
-        n  = Notes.name(j, t, 1)
-        im = [i, m]       ;      ak = abs(k)
-        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
-        else:                                            ms = list(ln)  ;  iz = list(li)
-        jz = js(i)
-        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
-        ks[k] = [ im, iz, ms, jz, ns ]
-        slog(fmtks(k), pfx=0)
-        i  = Notes.nextIndex(i, s)
-        j  = Notes.nextIndex(j, s)
-    return ks
-
-def OLD_7_initKSD(ks, t):
-    NT = NTONES
-    if   t == -1:  i = 5  ;  j = 10  ;  s = -7  ;  b = t-7  ;  c = -1  ;  d = 1
-    elif t ==  1:  i = 7  ;  j = 6   ;  s =  7  ;  b = t+7  ;  c =  1  ;  d = 3
-    else:          i = 0  ;  j = 5   ;  s = -7  ;  b = t-1  ;  c = -1  ;  d = -1
-    li0 = [ (i+d+k*s) % NT  for k in range(abs(t), abs(t)+P) ]
-    ln0 = [Notes.name(j, t) for j in li0]
-    li  = list(li0)       ;      ln = list(ln0)
-    slog(f'{t=} {b=} {c=} {fmtl(li)=} {fmtl(ln)=}')
-    for k in range(t, b, c):
-        m  = Notes.name(i, t, 1)
-        n  = Notes.name(j, t, 1)
-        im = [i, m]       ;      ak = abs(k)
-        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
-        else:                                            ms = list(ln)  ;  iz = list(li)
-        jz = js(i)
-        ns = [ Notes.name(n, t, 1 if ak >= 5 else 0) for n in jz ]
-        ks[k] = [ im, iz, ms, jz, ns ]
-        slog(fmtks(k), pfx=0)
-        i  = Notes.nextIndex(i, s)
-        j  = Notes.nextIndex(j, s)
-    return ks
-
 def initKSD(ks, t):
-    NT = NTONES
+    NT = Notes.NTONES
     if   t == -1:  i = 0  ;  j = 6   ;  s = M  ;  b = t+M  ;  c = -1
     else:          i = 0  ;  j = 10  ;  s = P  ;  b = t+P  ;  c =  1
     li0 = [ (j + k * s) % NT for k in range(abs(t), abs(t)+P) ]
@@ -520,14 +355,13 @@ def initKSD(ks, t):
     return ks
 
 ########################################################################################################################################################################################################
-def js(i):  return [ (i+j) % NTONES for j in JS ]
+def js(i):  return [ (i+j) % Notes.NTONES for j in JS ]
 
 JS  = (0, 2, 4, 5, 7, 9, 11)
 KIM = 0  ;  KIS = 1  ;  KMS = 2  ;  KJS = 3  ;  KNS = 4
 KSD = {}
 dmpKSDhdr(0)
 KSD = initKSD(KSD, t=-1)
-#KSD = initKSD(KSD, t= 0)
 KSD = initKSD(KSD, t= 1)
 dmpKSDhdr(1)
 ########################################################################################################################################################################################################
@@ -566,7 +400,7 @@ class Strings(object):
     def tab2nn(self, tab, s, nic=None, dbg=0):
         fn   = self.tab2fn(tab)
         i    = self.fn2ni(fn, s)
-        j    = i % NTONES
+        j    = i % Notes.NTONES
         if   nic is None:   nict = ''
         else:
             nic[   j] += 1   ;   nict = f'nic[{m12(j)}]={nic[j]}'

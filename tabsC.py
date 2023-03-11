@@ -101,7 +101,6 @@ class Tabs(pyglet.window.Window):
         ####################################################################################################################################################################################################
         self.sobj = util.Strings(self.sAlias)
         self.cobj = chord.Chord(self.sobj)
-#        Notes.setType(Notes.FLAT)  ;  self.log(f'{Notes.TYPE=}')
         self.log(f'Frequency Info')
         self.dumpFreqsHdr()  ;  self.dumpFreqs()  ;  self.dumpFreqs(r=432)
         ####################################################################################################################################################################################################
@@ -322,8 +321,8 @@ class Tabs(pyglet.window.Window):
     def test1A(t, m='C', o=-1, d=7):
         ntype = Notes.TYPE  ;  Notes.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
         slog(f'{t=} {m=} {d=}')
-        for i in range(util.NTONES):
-            j = (i * d) % util.NTONES
+        for i in range(Notes.NTONES):
+            j = (i * d) % Notes.NTONES
             k = Notes.nextIndex(j, d)
             n = Notes.name(k)  ;  n += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {j:2} {d:2} {k:2} {n:3}')  ;  m = n
@@ -332,7 +331,7 @@ class Tabs(pyglet.window.Window):
     def test1B(t, m='C', o=-1, iv='5'):
         ntype = Notes.TYPE  ;  Notes.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
         slog(f'{t=} {m=} {iv=}')
-        for i in range(util.NTONES):
+        for i in range(Notes.NTONES):
             n = Notes.nextName(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {iv:2} {n:3}')  ;  m = n
         Notes.TYPE = ntype
@@ -340,18 +339,18 @@ class Tabs(pyglet.window.Window):
     def test1C(t, m='C', o=-1, iv='5'):
         ntype = Notes.TYPE  ;  Notes.TYPE = t ;  m = f'{m}{o}' if o>=0 else m
         slog(f'{t=} {m=} {iv=}')
-        for i in range(util.NTONES):
+        for i in range(Notes.NTONES):
             n =  Notes.nextName(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
-            p = (Notes.index(     n, 1 if o>=0 else 0) - 1) % util.NTONES
+            p = (Notes.index(     n, 1 if o>=0 else 0) - 1) % Notes.NTONES
             q =  Notes.name(p, n2=1)                 ;  q += f'{o}' if o>=0 else ''
             slog(f'{i+1:2} {m:3} {iv:2} {n:3} {p:2} {q:3}')  ;  m = n
         Notes.TYPE = ntype
     @staticmethod
     def test1F(iv):
-        j = util.IVALR[iv] - 1
-        iv = util.IVALS[j]
+        j  = Notes.V2I[iv] - 1
+        iv = Notes.I2V[j]
         m = 'C'
-        for i in range(util.NTONES):
+        for i in range(Notes.NTONES):
             n = Notes.nextName(m, iv)
             slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
             m = n
@@ -1669,7 +1668,7 @@ class Tabs(pyglet.window.Window):
         if self.sobj.isFret(text):      ntext = self.sobj.tab2nn(text, t, self.nic)
         else:                           ntext = self.tblank
         if old in Notes.N2I:
-            i = Notes.N2I[old]    ;   self.nic[i] -= 1
+            i  =  Notes.N2I[old]    ;   self.nic[i] -= 1
             if self.nic[i] <= 0:
                 del self.nic[i]   ;   self.dumpNic()
                 util.updNks(11, 'B', 'Cb', Notes.FLAT, -1)
@@ -2272,7 +2271,7 @@ class Tabs(pyglet.window.Window):
                 cc = self.cn2cc(cn)   ;   p, l, c, r = self.cc2plct(cc, dbg=0)
                 self.log(f'{cc=} {cn=} {v=} text={self.smap[cn]}')
                 for t in range(nt):
-                    text = self.smap[cn][t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = util.NTONES * 2
+                    text = self.smap[cn][t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = Notes.NTONES * 2
                     if self.sobj.isFret(text):
                         fn = self.afn(str((self.tab2fn(text) + self.shiftSign * self.tab2fn(nf)) % ntones))  ;  self.log(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {self.shiftSign=}')
                     if fn and self.sobj.isFret(fn):  self.setDTNIK(fn, kt, p, l, c, t, kk=1 if t==nt-1 else 0)
@@ -2295,7 +2294,6 @@ class Tabs(pyglet.window.Window):
             self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
     ####################################################################################################################################################################################################
     def toggleFlatSharp(self, how, dbg=0):  #  page line colm tab or select
-#        t1 = Notes.TYPE    ;    t2 = (Notes.TYPE + 1) % 2    ;   Notes.setType(t2)
         t1 = Notes.TYPE    ;    t2 =  Notes.TYPE * -1      ;     Notes.setType(t2)
         self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
         s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i
