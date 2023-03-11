@@ -474,7 +474,7 @@ def OLD_6_initKSD(ks, t):
         j  = Notes.nextIndex(j, s)
     return ks
 
-def initKSD(ks, t):
+def OLD_7_initKSD(ks, t):
     NT = NTONES
     if   t == -1:  i = 5  ;  j = 10  ;  s = -7  ;  b = t-7  ;  c = -1  ;  d = 1
     elif t ==  1:  i = 7  ;  j = 6   ;  s =  7  ;  b = t+7  ;  c =  1  ;  d = 3
@@ -497,6 +497,28 @@ def initKSD(ks, t):
         j  = Notes.nextIndex(j, s)
     return ks
 
+def initKSD(ks, t):
+    NT = NTONES
+    if   t == -1:  i = 0  ;  j = 6   ;  s = M  ;  b = t+M  ;  c = -1
+    else:          i = 0  ;  j = 10  ;  s = P  ;  b = t+P  ;  c =  1
+    li0 = [ (j + k * s) % NT for k in range(abs(t), abs(t)+P) ]
+    ln0 = [Notes.name(j, t)  for j in li0]
+    li  = list(li0)       ;      ln = list(ln0)
+    slog(f'{t=} {i=} {j=} {s=} {b=} {c=} {fmtl(li)=} {fmtl(ln)=}')  ;  j += t
+    for k in range(0, b, c):
+        ak = abs(k)
+        m  = Notes.name(i, t, 1 if ak >= 5 else 0)
+        n  = Notes.name(j, t, 1 if ak >= 5 else 0)
+        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
+        else:                                            ms = list(ln)  ;  iz = list(li)
+        jz = js(i)   ;   im = [i, m]
+        ns = [ Notes.name(j, t, 1 if ak >= 5 else 0) for j in jz ]
+        ks[k] = [ im, iz, ms, jz, ns ]
+        slog(fmtks(k), pfx=0)
+        i  = Notes.nextIndex(i, s)
+        j  = Notes.nextIndex(j, s)
+    return ks
+
 ########################################################################################################################################################################################################
 def js(i):  return [ (i+j) % NTONES for j in JS ]
 
@@ -505,7 +527,7 @@ KIM = 0  ;  KIS = 1  ;  KMS = 2  ;  KJS = 3  ;  KNS = 4
 KSD = {}
 dmpKSDhdr(0)
 KSD = initKSD(KSD, t=-1)
-KSD = initKSD(KSD, t= 0)
+#KSD = initKSD(KSD, t= 0)
 KSD = initKSD(KSD, t= 1)
 dmpKSDhdr(1)
 ########################################################################################################################################################################################################
