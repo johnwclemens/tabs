@@ -48,12 +48,12 @@ def dumpND():
     for i in range(len(ND)):   slog(f'{m12(i)} {fmtl(ND[i], w=2)}', pfx=0)
 ########################################################################################################################################################################################################
 def dumpKS():
-    t    = Notes.NONE   ;   dmpKSDhdr(t)
+    dmpKSDhdr()
     keys = sorted(KSD.keys())
     for k in keys:      slog(fmtks(k), pfx=0)
 
-def dmpKSDhdr(t):
-    k = 2*P+1 if t == Notes.NONE else M if t == Notes.FLAT else P if t == Notes.SHRP else 1  ;   sign = t2sign(t)
+def dmpKSDhdr(t=0):
+    k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1   ;   sign = t2sign(t)
     slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{k}', pfx=0)
 
 def dumpKSD(ksd, w=2, u='<'):
@@ -94,13 +94,13 @@ def nic2KS(nic, dbg=0):
 ########################################################################################################################################################################################################
 def fmtks(k):
     t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
-    s   = t2sign(t)     ;   im = KSD[k][KIM]   ;    i = im[0]      ;    m = im[1]
-    iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]   ;   ms = KSD[k][KMS]
+    s   = t2sign(t)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
+    iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]    ;   ms = KSD[k][KMS]
     ns  = [ Notes.name(j, t, 1 if abs(k) >= 5 else 0) for j in jz ]
     iz  = [ m12(i) for i in iz ]
     jz  = [ m12(j) for j in jz ]
     return f'{s}{k} {nt} [{m:2} {m12(i)}] {fmtl(ms, w=2)} {fmtl(iz)} {fmtl(jz)} {fmtl(ns, w=2)}'
-
+########################################################################################################################################################################################################
 def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None, z=''):
     if lst is None: return 'None'
     lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
@@ -132,7 +132,7 @@ def fmtm(m, w=1, d0=':', d='[', d2=']', ll=None):
         if   type(v) in (list, tuple, set):  t += f'{d}{k:{u}{w}}{d0}{fmtl(v, w, ll=k if ll==-1 else ll)}{d2} '
         elif type(v) in (int, str):          t += f'{d}{k:{u}{w}}{d0}{v:{u}{w}}{d2} '
     return d + t.rstrip() + d2
-
+########################################################################################################################################################################################################
 def ev(obj):         return f'{eval(f"{obj!r}")}'
 def fColor(c, d=1): (d, d2) = ("[", "]") if d else ("", "")  ;  return f'{fmtl(c, w=3, d=d, d2=d2):17}'
 
@@ -180,7 +180,7 @@ def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
     elif file == 2:  file = LOG_FILE  ;  so = 1
     print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
     print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
-
+########################################################################################################################################################################################################
 def filtText(text):
     text = text.replace('"', '')
     text = text.replace("'", '')
@@ -201,7 +201,6 @@ def filtText2(text):
     text = text.replace('(f[_])', 'f[_]')
     text = text.replace('(s[_])', 's[_]')
     return text
-
 ########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1):
     if dbg: slog(f'{baseName =:12} {basePath = }', file=2)
@@ -269,22 +268,19 @@ class DSymb(object):
 class Notes(object):
     FLAT, NONE, SHRP =    -1,      0,      1      # -1 ~= 2
     TYPES            = [ 'NONE', 'SHRP', 'FLAT' ] # 0=NONE, 1=SHRP, 2=FLAT=-1
-    TYPE       = FLAT
-    S2F        = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           }
-    F2S        = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'           }
-    S2F2       = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B':'Cb' }
-    F2S2       = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                  'Cb':'B' }
-    I2F        = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'  }
-    I2S        = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
-    I2F2       = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',        5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' }
-    I2S2       = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'  }
-    V2I        = { 'R':0, 'b2':1, '2':2, 'm3':3, 'M3':4, '4':5, 'b5':6, '5':7, '#5':8, '6':9, 'b7':10, '7':11  }
-    I2V        = {  0:'R', 1:'b2', 2:'2', 3:'m3', 4:'M3', 5:'4', 6:'b5', 7:'5', 8:'#5', 9:'6', 10:'b7', 11:'7' }
-    N2I        = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11 }
-    NTONES     = len(I2V)
-    MAX_IDX    = 10 * NTONES + 1
-    I2N        = [I2F,  I2S,  I2F]
-    I2N2       = [I2F2, I2S2, I2F2]
+    F2S        = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'           } # 5/9
+    S2F        = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           } # 5/9
+    F2S2       = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                  'Cb':'B' } # 4/9
+    S2F2       = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B':'Cb' } # 4/9
+    I2F       = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'         } # 8/12/16
+    I2S       = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'         } # 8/12/16
+    I2F2      = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' } # 8/12/16
+    I2S2      = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'         } # 8/12/16
+    V2I       = { 'R':0,          'b2':1, '2':2,  'm3':3, 'M3':4,         '4':5,          'b5':6, '5':7,  '#5':8, '6':9,  'b7':10, '7':11         } # 8/12/16
+    I2V       = { 0:'R',          1:'b2', 2:'2',  3:'m3', 4:'M3',         5:'4',          6:'b5', 7:'5',  8:'#5', 9:'6',  10:'b7', 11:'7'         } # 8/12/16
+    N2I       = { 'B#':0, 'C':0, 'C#':1, 'Db':1, 'D':2, 'D#':3, 'Eb':3, 'E':4, 'Fb':4, 'E#':5, 'F':5, 'F#':6, 'Gb':6, 'G':7, 'G#':8, 'Ab':8, 'A':9, 'A#':10, 'Bb':10, 'B':11, 'Cb' :11 } #21
+#   N2I        = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11 } #21
+    I2N        = [I2F, I2S, I2F]   ;   I2N2 = [I2F2, I2S2, I2F2]   ;   TYPE = FLAT   ;   NTONES = len(I2V)   ;   MAX_IDX = 10 * NTONES + 1
 
     @staticmethod
     def setType(t): Notes.TYPE = t
@@ -300,12 +296,6 @@ class Notes(object):
         return  (i + d) % Notes.NTONES
 
     @staticmethod
-    def OLD__name(i, t=None, n2=0):
-        t    = 0 if t == 2 else t if t is not None else Notes.TYPE
-        name = Notes.I2N2[t][i % Notes.NTONES]   if n2   else Notes.I2N[t][i % Notes.NTONES]
-        return name
-
-    @staticmethod
     def name(i, t=0, n2=0):
         t    = t if t else Notes.TYPE
         name = Notes.I2N2[t][i % Notes.NTONES]   if n2   else Notes.I2N[t][i % Notes.NTONES]
@@ -319,6 +309,9 @@ class Notes(object):
         m = Notes.name(k)
         return m
 ########################################################################################################################################################################################################
+def js(i):  return [ (i+j) % Notes.NTONES for j in JS ]
+JS  = (0, 2, 4, 5, 7, 9, 11)
+
 FLATS   = [ f'{k}{n}' for n in range(11) for k in Notes.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != '#' ][:Notes.MAX_IDX]
 SHRPS   = [ f'{k}{n}' for n in range(11) for k in Notes.N2I.keys() if len(k) == 1 or len(k) > 1 and k[1] != 'b' ][:Notes.MAX_IDX]
 
@@ -327,7 +320,16 @@ def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
 
 FREQS   = [ FREQ( i) for i in range(Notes.MAX_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(Notes.MAX_IDX) ]
-
+########################################################################################################################################################################################################
+def updNks(i, m, n, t, t2):
+    if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
+    elif t  ==  Notes.SHRP:    Notes.I2S[i] = n
+    if   t2 ==  Notes.FLAT:
+        if m in Notes.S2F: del Notes.S2F[m]
+        if n in Notes.F2S: del Notes.F2S[n]
+    elif t2 ==  Notes.SHRP:
+        Notes.F2S[n] = m   ;   Notes.S2F[m] = n
+########################################################################################################################################################################################################
 def initND():
     return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i] ] for i in range(Notes.NTONES) }
 ND = initND()
@@ -337,7 +339,7 @@ def initKSD(ks, t):
     else:             i = 0  ;  j = 10  ;  s = P
     iz1 = [ (j + k * s) % Notes.NTONES for k in range(1, 1+abs(s)) ]
     ms1 = [ Notes.name(j, t)           for j in iz1 ]
-    iz2  = list(iz1)           ;       ms2 = list(ms1)
+    iz2 = list(iz1)           ;        ms2 = list(ms1)
     slog(f'{t=} {i=} {j=} {s=} {fmtl(iz2)=} {fmtl(ms2)=}')   ;   j += t
     for  k in range(0, t + s, t):
         ak = abs(k)
@@ -352,17 +354,13 @@ def initKSD(ks, t):
         i  =   Notes.nextIndex(i, s)
         j  =   Notes.nextIndex(j, s)
     return ks
-
 ########################################################################################################################################################################################################
-def js(i):  return [ (i+j) % Notes.NTONES for j in JS ]
-
-JS  = (0, 2, 4, 5, 7, 9, 11)
 KIM = 0  ;  KIS = 1  ;  KMS = 2  ;  KJS = 3  ;  KNS = 4
 KSD = {}
-dmpKSDhdr(0)
+dmpKSDhdr(-1)
 KSD = initKSD(KSD, t=-1)
 KSD = initKSD(KSD, t= 1)
-dmpKSDhdr(1)
+dmpKSDhdr( 1)
 ########################################################################################################################################################################################################
 
 class Strings(object):
@@ -415,17 +413,7 @@ class Strings(object):
     @staticmethod
     def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
     @staticmethod
-    def tab2fn(tab, dbg=0): fn = int(tab) if '0' <= tab <= '9' else int(ord(tab) - 87) if 'a' <= tab <= 'o' else None  ;  slog(f'tab={tab} fretNum={fn}') if dbg else None  ;  return fn
-########################################################################################################################################################################################################
-
-def updNks(i, m, n, t, t2):
-    if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
-    elif t  ==  Notes.SHRP:    Notes.I2S[i] = n
-    if   t2 == -1:
-        if m in Notes.S2F: del Notes.S2F[m]
-        if n in Notes.F2S: del Notes.F2S[n]
-    elif t2 ==  1:
-        Notes.F2S[n] = m   ;   Notes.S2F[m] = n
+    def tab2fn(t, dbg=0): fn = int(t) if '0'<=t<='9' else int(ord(t)-87) if 'a'<=t<='o' else None  ;  slog(f'tab={t} fretNum={fn}') if dbg else None  ;  return fn
 ########################################################################################################################################################################################################
 
 class Mode(object):
