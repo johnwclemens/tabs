@@ -333,25 +333,24 @@ def initND():
 ND = initND()
 ########################################################################################################################################################################################################
 def initKSD(ks, t):
-    NT = Notes.NTONES
-    if   t == -1:  i = 0  ;  j = 6   ;  s = M  ;  b = t+M  ;  c = -1
-    else:          i = 0  ;  j = 10  ;  s = P  ;  b = t+P  ;  c =  1
-    li0 = [ (j + k * s) % NT for k in range(abs(t), abs(t)+P) ]
-    ln0 = [Notes.name(j, t)  for j in li0]
-    li  = list(li0)       ;      ln = list(ln0)
-    slog(f'{t=} {i=} {j=} {s=} {b=} {c=} {fmtl(li)=} {fmtl(ln)=}')  ;  j += t
-    for k in range(0, b, c):
+    if     t == -1:   i = 0  ;  j = 6   ;  s = M
+    else:             i = 0  ;  j = 10  ;  s = P
+    iz1 = [ (j + k * s) % Notes.NTONES for k in range(1, 1+abs(s)) ]
+    ms1 = [ Notes.name(j, t)           for j in iz1 ]
+    iz2  = list(iz1)           ;       ms2 = list(ms1)
+    slog(f'{t=} {i=} {j=} {s=} {fmtl(iz2)=} {fmtl(ms2)=}')   ;   j += t
+    for  k in range(0, t + s, t):
         ak = abs(k)
-        m  = Notes.name(i, t, 1 if ak >= 5 else 0)
-        n  = Notes.name(j, t, 1 if ak >= 5 else 0)
-        if ak >= 1:   ln[ak-1] = n  ;  li[ak-1] = j   ;  ms = list(ln)  ;  iz = list(li)
-        else:                                            ms = list(ln)  ;  iz = list(li)
+        m  =   Notes.name(i, t, 1 if ak >= 5 else 0)
+        n  =   Notes.name(j, t, 1 if ak >= 5 else 0)
+        if ak >= 1:   ms2[ak-1] = n  ;  iz2[ak-1] = j   ;  ms = list(ms2)  ;  iz = list(iz2)
+        else:                                              ms = list(ms2)  ;  iz = list(iz2)
         jz = js(i)   ;   im = [i, m]
         ns = [ Notes.name(j, t, 1 if ak >= 5 else 0) for j in jz ]
-        ks[k] = [ im, iz, ms, jz, ns ]
+        ks[k]  =  [ im, iz, ms, jz, ns ]
         slog(fmtks(k), pfx=0)
-        i  = Notes.nextIndex(i, s)
-        j  = Notes.nextIndex(j, s)
+        i  =   Notes.nextIndex(i, s)
+        j  =   Notes.nextIndex(j, s)
     return ks
 
 ########################################################################################################################################################################################################
@@ -435,9 +434,6 @@ class Mode(object):
         self.name  = name
         self.tonic = tonic
         self.ks    = ks
-#class COFs(object):
-#    CO5s = ['C', 'G', 'D' , 'A' , 'E' , 'B' , 'F#', 'C#']
-#    CO4s = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb']
 ########################################################################################################################################################################################################
 class Test:
     def __init__(self, a): self._a = a  ;  slog(f'<Test_init_:     _a={self._a}>', pfx=1)
