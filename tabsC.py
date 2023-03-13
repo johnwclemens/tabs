@@ -13,8 +13,6 @@ import pyglet.window.key   as pygwink
 import util, chord
 #from util import KeySig    as KS
 from util import Notes     as Notes
-from util import FREQS     as FRQS
-from util import FREQS2    as FRQS2
 from util import slog      as slog
 from util import fmtl      as fmtl
 from util import fmtm      as fmtm
@@ -101,8 +99,6 @@ class Tabs(pyglet.window.Window):
         ####################################################################################################################################################################################################
         self.sobj = util.Strings(self.sAlias)
         self.cobj = chord.Chord(self.sobj)
-        self.log(f'Frequency Info')
-        self.dumpFreqsHdr()  ;  self.dumpFreqs()  ;  self.dumpFreqs(r=432)
         ####################################################################################################################################################################################################
         self._initDataPath()
         if self.CAT: self.cobj.dumpOMAP(str(self.catPath))
@@ -477,17 +473,27 @@ class Tabs(pyglet.window.Window):
 #    @staticmethod
 #    def dumpObj( obj,  name, why=''): slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     ####################################################################################################################################################################################################
-    def dumpFreqsHdr(self):
-        self.log(f'Index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w=5, u="^")}',  pfx=0)
-        self.log(f'Flats{fmtl(list(util.FLATS),                      w=5, u="^")}',  pfx=0)
-        self.log(f'Shrps{fmtl(list(util.SHRPS),                      w=5, u="^")}',  pfx=0)
-    def dumpFreqs(self, r=440):
-        f = FRQS if r==440 else FRQS2   ;   g = []
-        for _ in f:       g.append(f'{_:5.2f}' if _ < 100 else f'{_:5.1f}' if _ < 1000 else f'{_:5.0f}')
-        ' '.join(f'{g}')   ;   self.log(f'     {fmtl(g, w=5)}', pfx=0)
+#    def dumpFreqsHdr(self):
+#        self.log(f'Index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w=5, u="^")}',  pfx=0)
+#        self.log(f'Flats{fmtl(list(util.FLATS),                      w=5, u="^")}',  pfx=0)
+#        self.log(f'Shrps{fmtl(list(util.SHRPS),                      w=5, u="^")}',  pfx=0)
+#    def dumpFreqs(self, r=440):
+#        f = FRQS if r==440 else FRQS2   ;   g = []
+#        for _ in f:       g.append(f'{_:5.2f}' if _ < 100 else f'{_:5.1f}' if _ < 1000 else f'{_:5.0f}')
+#        ' '.join(f'{g}')   ;   self.log(f'{B*5}{fmtl(g, w=5)}', pfx=0)
     def dumpJs(  self, why, w=None, d=1): b = B*12 if self.OIDS else ''  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
     def dumpGeom(self, why='', why2=''):  b = B*12 if self.OIDS else ''  ;  self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fnvis()}] {why2}')
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={fmtm(self.smap)}', pos=pos)
+    def OLD__dumpNic(self):
+        self.log(fmtl([ f'{util.m12(e)}'  for e in self.nic.elements() ], w=2))
+        self.log(fmtl([ f'{Notes.I2F[f]}' for f in self.nic.elements() ]))
+        self.log(fmtl([ f'{Notes.I2S[s]}' for s in self.nic.elements() ]))
+        msg = []
+        for v in self.nic.values():
+            for n in range(v):
+                msg.append(f'{v:<2}')
+        ' '.join(msg)   ;   slog(f'{fmtl(msg)}')
+#        self.log(fmtl([ [ f'{v} '  for _ in range(v) ] for v in self.nic.values() ], w=2, u=">", d=""))
     def dumpNic(self):
         self.log(fmtl([ f'{util.m12(e)}'  for e in self.nic.elements() ], w=2))
         self.log(fmtl([ f'{Notes.I2F[f]}' for f in self.nic.elements() ]))
@@ -496,9 +502,7 @@ class Tabs(pyglet.window.Window):
         for v in self.nic.values():
             for n in range(v):
                 msg.append(f'{v:<2}')
-        msg = f'[{" ".join(msg)}]'
-        slog(msg)
-#        self.log(fmtl([ [ f'{v} '  for _ in range(v) ] for v in self.nic.values() ], w=2, u=">", d=""))
+        ' '.join(msg)   ;   slog(f'{fmtl(msg)}')
     ####################################################################################################################################################################################################
     def dumpBlanks(self): self.dmpBlnkHdr()  ;  self.log(f'{self.fmtBlnkCol()}', pfx=0)  ;  self.log(f'{self.fmtBlnkRow()}', pfx=0)
     def dmpBlnkHdr(self): self.log(f'{len(self.tblankCol)=} {len(self.tblankRow)=}')
@@ -508,9 +512,9 @@ class Tabs(pyglet.window.Window):
     def ntp(self, dbg=0, dbg2=0):
         n = list(self.n)     ;   self.log(f'{B*9}         n={self.fmtn("", n)}') if dbg2 else None
         n.reverse()          ;   self.log(f'{B*9}       Rev={self.fmtn("", n)}') if dbg2 else None
-        n = self.accProd(n)  ;   self.log(f'{B*9}   nRevPrd={fmtl(n)}')     if dbg2 else None
-        n.reverse()          ;   self.log(f'{B*9}nRevPrdRev={fmtl(n)}')     if dbg2 else None
-        self.log(f'tpb tpp tpl tps tpc={fmtl(n)}') if dbg else None
+        n = self.accProd(n)  ;   self.log(f'{B*9}   nRevPrd={fmtl(n)}')          if dbg2 else None
+        n.reverse()          ;   self.log(f'{B*9}nRevPrdRev={fmtl(n)}')          if dbg2 else None
+        self.log(f'tpb tpp tpl tps tpc={fmtl(n)}')  if dbg else None
         return n
     def fntp(  self, dbg=0, dbg2=0):   return fmtl(self.ntp(dbg=dbg, dbg2=dbg2), w=FNTP)
     ####################################################################################################################################################################################################
