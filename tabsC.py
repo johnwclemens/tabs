@@ -370,6 +370,7 @@ class Tabs(pyglet.window.Window):
     def lenC(self):                   return [ len(_) for _ in self.C ]
     def lenD(self):                   return [ len(_) for _ in self.D ]
     def lenE(self):                   return [ len(_) for _ in self.E ]
+    ####################################################################################################################################################################################################
     def j(   self):                   return [ i-1 if i else 0 for    i in           self.i ]
     def j2(  self):                   return [ i-1 if i else 0 for j, i in enumerate(self.i)  if j != S ]
     def j2g( self, j):                return self.g[ self.gn[j] ]
@@ -475,12 +476,15 @@ class Tabs(pyglet.window.Window):
 #    def dumpObjs(objs, name, why=''):            [ Tabs.dumpObj(o, name, why) for o in objs ]
 #    @staticmethod
 #    def dumpObj( obj,  name, why=''): slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
+    ####################################################################################################################################################################################################
     def dumpFreqsHdr(self):
-        self.log(f'index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w=5)}',  pfx=0)
-        self.log(f'sharp{fmtl(list(util.SHRPS),                      w=5)}',  pfx=0)
-        self.log(f' flat{fmtl(list(util.FLATS),                      w=5)}',  pfx=0)
+        self.log(f'Index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w=5, u="^")}',  pfx=0)
+        self.log(f'Flats{fmtl(list(util.FLATS),                      w=5, u="^")}',  pfx=0)
+        self.log(f'Shrps{fmtl(list(util.SHRPS),                      w=5, u="^")}',  pfx=0)
     def dumpFreqs(self, r=440):
-        f = FRQS if r==440 else FRQS2  ;  self.log(f'{r}A {fmtl(f, w="5.0f")}', pfx=0)
+        f = FRQS if r==440 else FRQS2   ;   g = []
+        for _ in f:       g.append(f'{_:5.2f}' if _ < 100 else f'{_:5.1f}' if _ < 1000 else f'{_:5.0f}')
+        ' '.join(f'{g}')   ;   self.log(f'     {fmtl(g, w=5)}', pfx=0)
     def dumpJs(  self, why, w=None, d=1): b = B*12 if self.OIDS else ''  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
     def dumpGeom(self, why='', why2=''):  b = B*12 if self.OIDS else ''  ;  self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fnvis()}] {why2}')
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={fmtm(self.smap)}', pos=pos)
@@ -495,8 +499,7 @@ class Tabs(pyglet.window.Window):
         msg = f'[{" ".join(msg)}]'
         slog(msg)
 #        self.log(fmtl([ [ f'{v} '  for _ in range(v) ] for v in self.nic.values() ], w=2, u=">", d=""))
-
-####################################################################################################################################################################################################
+    ####################################################################################################################################################################################################
     def dumpBlanks(self): self.dmpBlnkHdr()  ;  self.log(f'{self.fmtBlnkCol()}', pfx=0)  ;  self.log(f'{self.fmtBlnkRow()}', pfx=0)
     def dmpBlnkHdr(self): self.log(f'{len(self.tblankCol)=} {len(self.tblankRow)=}')
     def fmtBlnkCol(self): return f'{self.tblankCol}'
@@ -517,6 +520,7 @@ class Tabs(pyglet.window.Window):
     def dumpStruct(self, why='', dbg=1, dbg2=0):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
         self.dumpNic()
+        util.dumpNic(self.nic)
         util.dumpData()
         self.dumpFont(why)
         self.dumpVisible()
@@ -2316,7 +2320,6 @@ class Tabs(pyglet.window.Window):
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
         self.ks = util.nic2KS(self.nic)
-#        return s, k, nt, n, i, ns, js(i)
         self.log(util.fmtks(self.ks[1]), file=2)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
