@@ -45,9 +45,6 @@ def dumpData():
     slog(f'[I2N2[-1]: {len(Notes.I2N2[-1] ):2}] [{fmtm(Notes.I2N2[-1],  w=2, d="")}]',  pfx=0)
     slog(f'[I2N2[ 0]: {len(Notes.I2N2[ 0] ):2}] [{fmtm(Notes.I2N2[ 0],  w=2, d="")}]',  pfx=0)
     slog(f'[I2N2[ 1]: {len(Notes.I2N2[ 1] ):2}] [{fmtm(Notes.I2N2[ 1],  w=2, d="")}]',  pfx=0)
-#    slog(f'[FLATS:   {len(FLATS):3}] [{fmtl(FLATS, w=3, u=">", d="")}]', pfx=0)
-#    slog(f'[{B*12}] [{fmtl( [ f"{i + 1:3}" for i in range(Notes.MAX_IDX) ], d="")}]', pfx=0)
-#    slog(f'[SHRPS:   {len(SHRPS):3}] [{fmtl(SHRPS, w=3, u=">", d="")}]', pfx=0)
     dumpNF()
     dumpND()
     dumpKS()
@@ -103,17 +100,29 @@ def nic2KS(nic, dbg=0):
     slog(fmtks(k))       if dbg else None
     return  s, k, nt, n, i, ns, Scales.majIs(i)
 
-def dumpNic(nic, w=2, dbg=0):
+def dumpNic(nic):
+    slog(f'{fmtl([ f"{m12(i)}:{Notes.I2F[i]}:{c}" for i, c in nic.items() ])} {fmtl([ f"{m12(i)}:{Notes.I2S[i]}:{c}" for i, c in nic.items() ])}')
+    slog(f'{fmtl([ f"{m12(i)}:{Notes.I2S[i]}:{c}" for i, c in nic.items() ])}')
+
+def OLD__dumpNic(nic, w=2, dbg=1):
     mc = nic.most_common()   ;   nt = nic.total()
     _ = list(list(zip(*mc)))[0] if mc else []   ;   u = '<'
     if _:
-        slog(f'             dict(nic) {fmtl([m12(_) for _ in dict(nic)],               w=w, u=u)}')   if dbg else None
-        slog(f'     sorted(dict(nic)) {fmtl([m12(_) for _ in sorted(dict(nic))],       w=w, u=u)}')
-        slog(f'           zip(*mc)[0] {fmtl([m12(_) for _ in list(list(zip(*mc)))[0]], w=w, u=u)}')
-        slog(f'           zip(*mc)[1] {fmtl(                 list(list(zip(*mc))[1]),  w=w, u=u)}')
-        slog(f'      mc[n][1]/nt*100% {fmtl([(100 * n[1]) // nt for n in mc],          w=w)}')
-        slog(f'                I2F[n] {fmtl([Notes.I2F[n]       for n in  _ ],         w=w)}')
-        slog(f'                I2S[n] {fmtl([Notes.I2S[n]       for n in  _ ],         w=w)}')
+        slog(fmtl([ f'{m12(e)}'       for e in nic.elements() ], w=2))
+        slog(fmtl([ f'{Notes.I2F[f]}' for f in nic.elements() ]))
+        slog(fmtl([ f'{Notes.I2S[s]}' for s in nic.elements() ]))
+        msg = []
+        for v in nic.values():
+            for n in range(v):
+                msg.append(f'{v:<2}')
+        ' '.join(msg)   ;   slog(f'{fmtl(msg)}')
+        slog(f'             dict(nic) {fmtl([ m12(_) for _ in dict(nic) ],               w=w, u=u)}')   if dbg else None
+        slog(f'     sorted(dict(nic)) {fmtl([ m12(_) for _ in sorted(dict(nic)) ],       w=w, u=u)}')
+        slog(f'           zip(*mc)[0] {fmtl([ m12(_) for _ in list(list(zip(*mc)))[0] ], w=w, u=u)}')
+        slog(f'           zip(*mc)[1] {fmtl(                  list(list(zip(*mc))[1]),   w=w, u=u)}')
+        slog(f'      mc[n][1]/nt*100% {fmtl([ (100 * n[1]) // nt for n in mc ],          w=w)}')
+        slog(f'                I2F[n] {fmtl([ Notes.I2F[n]       for n in  _ ],          w=w)}')
+        slog(f'                I2S[n] {fmtl([ Notes.I2S[n]       for n in  _ ],          w=w)}')
 ########################################################################################################################################################################################################
 def initKSD(ks, t):
     if     t == -1:   i = 0  ;  j = 6   ;  s = M

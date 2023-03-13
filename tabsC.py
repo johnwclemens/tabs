@@ -473,36 +473,9 @@ class Tabs(pyglet.window.Window):
 #    @staticmethod
 #    def dumpObj( obj,  name, why=''): slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     ####################################################################################################################################################################################################
-#    def dumpFreqsHdr(self):
-#        self.log(f'Index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w=5, u="^")}',  pfx=0)
-#        self.log(f'Flats{fmtl(list(util.FLATS),                      w=5, u="^")}',  pfx=0)
-#        self.log(f'Shrps{fmtl(list(util.SHRPS),                      w=5, u="^")}',  pfx=0)
-#    def dumpFreqs(self, r=440):
-#        f = FRQS if r==440 else FRQS2   ;   g = []
-#        for _ in f:       g.append(f'{_:5.2f}' if _ < 100 else f'{_:5.1f}' if _ < 1000 else f'{_:5.0f}')
-#        ' '.join(f'{g}')   ;   self.log(f'{B*5}{fmtl(g, w=5)}', pfx=0)
     def dumpJs(  self, why, w=None, d=1): b = B*12 if self.OIDS else ''  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
     def dumpGeom(self, why='', why2=''):  b = B*12 if self.OIDS else ''  ;  self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fnvis()}] {why2}')
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={fmtm(self.smap)}', pos=pos)
-    def OLD__dumpNic(self):
-        self.log(fmtl([ f'{util.m12(e)}'  for e in self.nic.elements() ], w=2))
-        self.log(fmtl([ f'{Notes.I2F[f]}' for f in self.nic.elements() ]))
-        self.log(fmtl([ f'{Notes.I2S[s]}' for s in self.nic.elements() ]))
-        msg = []
-        for v in self.nic.values():
-            for n in range(v):
-                msg.append(f'{v:<2}')
-        ' '.join(msg)   ;   slog(f'{fmtl(msg)}')
-#        self.log(fmtl([ [ f'{v} '  for _ in range(v) ] for v in self.nic.values() ], w=2, u=">", d=""))
-    def dumpNic(self):
-        self.log(fmtl([ f'{util.m12(e)}'  for e in self.nic.elements() ], w=2))
-        self.log(fmtl([ f'{Notes.I2F[f]}' for f in self.nic.elements() ]))
-        self.log(fmtl([ f'{Notes.I2S[s]}' for s in self.nic.elements() ]))
-        msg = []
-        for v in self.nic.values():
-            for n in range(v):
-                msg.append(f'{v:<2}')
-        ' '.join(msg)   ;   slog(f'{fmtl(msg)}')
     ####################################################################################################################################################################################################
     def dumpBlanks(self): self.dmpBlnkHdr()  ;  self.log(f'{self.fmtBlnkCol()}', pfx=0)  ;  self.log(f'{self.fmtBlnkRow()}', pfx=0)
     def dmpBlnkHdr(self): self.log(f'{len(self.tblankCol)=} {len(self.tblankRow)=}')
@@ -523,7 +496,6 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpStruct(self, why='', dbg=1, dbg2=0):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
-        self.dumpNic()
         util.dumpNic(self.nic)
         util.dumpData()
         self.dumpFont(why)
@@ -1678,7 +1650,7 @@ class Tabs(pyglet.window.Window):
         if old in Notes.N2I:
             i  =  Notes.N2I[old]    ;   self.nic[i] -= 1
             if self.nic[i] <= 0:
-                del self.nic[i]   ;   self.dumpNic()
+                del self.nic[i]   ;   util.dumpNic(self.nic)
                 util.updNks(11, 'B', 'Cb', Notes.FLAT, -1)
                 util.updNks( 5, 'F', 'E#', Notes.SHRP, -1)
                 util.updNks( 4, 'E', 'Fb', Notes.FLAT, -1)
@@ -2323,7 +2295,7 @@ class Tabs(pyglet.window.Window):
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
-        self.ks = util.nic2KS(self.nic)
+        self.ks = util.nic2KS(dict(self.nic))
         self.log(util.fmtks(self.ks[1]), file=2)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
