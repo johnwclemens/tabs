@@ -101,28 +101,8 @@ def nic2KS(nic, dbg=0):
     return  s, k, nt, n, i, ns, Scales.majIs(i)
 
 def dumpNic(nic):
-    slog(f'{fmtl([ f"{m12(i)}:{Notes.I2F[i]}:{c}" for i, c in nic.items() ])} {fmtl([ f"{m12(i)}:{Notes.I2S[i]}:{c}" for i, c in nic.items() ])}')
-    slog(f'{fmtl([ f"{m12(i)}:{Notes.I2S[i]}:{c}" for i, c in nic.items() ])}')
-
-def OLD__dumpNic(nic, w=2, dbg=1):
-    mc = nic.most_common()   ;   nt = nic.total()
-    _ = list(list(zip(*mc)))[0] if mc else []   ;   u = '<'
-    if _:
-        slog(fmtl([ f'{m12(e)}'       for e in nic.elements() ], w=2))
-        slog(fmtl([ f'{Notes.I2F[f]}' for f in nic.elements() ]))
-        slog(fmtl([ f'{Notes.I2S[s]}' for s in nic.elements() ]))
-        msg = []
-        for v in nic.values():
-            for n in range(v):
-                msg.append(f'{v:<2}')
-        ' '.join(msg)   ;   slog(f'{fmtl(msg)}')
-        slog(f'             dict(nic) {fmtl([ m12(_) for _ in dict(nic) ],               w=w, u=u)}')   if dbg else None
-        slog(f'     sorted(dict(nic)) {fmtl([ m12(_) for _ in sorted(dict(nic)) ],       w=w, u=u)}')
-        slog(f'           zip(*mc)[0] {fmtl([ m12(_) for _ in list(list(zip(*mc)))[0] ], w=w, u=u)}')
-        slog(f'           zip(*mc)[1] {fmtl(                  list(list(zip(*mc))[1]),   w=w, u=u)}')
-        slog(f'      mc[n][1]/nt*100% {fmtl([ (100 * n[1]) // nt for n in mc ],          w=w)}')
-        slog(f'                I2F[n] {fmtl([ Notes.I2F[n]       for n in  _ ],          w=w)}')
-        slog(f'                I2S[n] {fmtl([ Notes.I2S[n]       for n in  _ ],          w=w)}')
+    slog(f'{fmtl([ f"{m12(i)}:{Notes.I2F[i]:2}:{c:2}" for i, c in nic.items() ])} {fmtl([ f"{m12(i)}:{Notes.I2S[i]}:{c}" for i, c in nic.items() ])}')
+    slog(f'{fmtl([ f"{m12(i)}:{Notes.I2S[i]:2}:{c:2}" for i, c in nic.items() ])}')
 ########################################################################################################################################################################################################
 def initKSD(ks, t):
     if     t == -1:   i = 0  ;  j = 6   ;  s = M
@@ -144,6 +124,77 @@ def initKSD(ks, t):
         i  =   Notes.nextIndex(i, s)
         j  =   Notes.nextIndex(j, s)
     return ks
+########################################################################################################################################################################################################
+
+class DSymb(object):
+    SYMBS = {'X': 'mute', '/': 'slide', '\\': 'bend', '+': 'hammer', '~': 'vibrato', '^': 'tie', '.': 'staccato', '_': 'legato', '%': 'repeat', '|': 'bar', '[': 'groupL', ']': 'groupR'}
+########################################################################################################################################################################################################
+
+class Scales(object):
+    MajorIs = [ 0, 2, 4, 5, 7, 9, 11 ]
+    @classmethod
+    def majIs(cls, i):  return [ (i + j) % Notes.NTONES for j in cls.MajorIs ]
+
+########################################################################################################################################################################################################
+
+class Modes(object):
+    IONIAN, DORIAN, PHRYGIAN, LYDIAN, MIXOLYDIAN, AEOLIAN, LOCRIAN = range(7)
+    NAMES = [ 'IONIAN', 'DORIAN', 'PHRYGIAN', 'LYDIAN', 'MIXOLYDIAN', 'AEOLIAN', 'LOCRIAN' ]
+    TYPES = [  IONIAN,   DORIAN,   PHRYGIAN,   LYDIAN,   MIXOLYDIAN,   AEOLIAN,   LOCRIAN  ]
+
+########################################################################################################################################################################################################
+
+class Strings(object):
+    aliases = {'GUITAR_6_STD':    cOd([('E2', 28), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
+               'GUITAR_6_DROP_D': cOd([('D2', 26), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
+               'GUITAR_7_STD':    cOd([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
+              }
+    def __init__(self, alias=None):
+        if alias is None: alias = 'GUITAR_6_STD'
+        self.stringMap          = self.aliases[alias]
+        self.stringKeys         = list(self.stringMap.keys())
+        self.stringNames        = ''.join(reversed([ str(k[0])  for k in            self.stringKeys ]))
+        self.stringNumbs        = ''.join(         [ str(r + 1) for r in range(len(self.stringKeys)) ])
+        self.stringCapo         = ''.join(         [ '0'        for _ in range(len(self.stringKeys)) ])
+        self.strLabel           = 'STRING'
+        self.cpoLabel           = ' CAPO '
+        slog( f'stringMap   = {fmtm(self.stringMap)}')
+        slog( f'stringKeys  = {fmtl(self.stringKeys)}')
+        slog( f'stringNames =      {self.stringNames}')
+        slog( f'stringNumbs =      {self.stringNumbs}')
+        slog( f'stringCapo  =      {self.stringCapo}')
+        slog( f'strLabel    =      {self.strLabel}')
+        slog( f'cpoLabel    =      {self.cpoLabel}')
+
+    @staticmethod
+    def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
+    @staticmethod
+    def tab2fn(t, dbg=0): fn = int(t) if '0'<=t<='9' else int(ord(t)-87) if 'a'<=t<='o' else None  ;  slog(f'tab={t} fretNum={fn}') if dbg else None  ;  return fn
+
+    def nStrings(self): return len(self.stringNames)
+
+    def fn2ni(self, fn, s, dbg=0):
+        strNum = self.nStrings() - s - 1    # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
+        k      = self.stringKeys[strNum]
+        i      = self.stringMap[k] + fn
+        if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
+        return i
+
+    def tab2nn(self, tab, s, nic=None, dbg=0):
+        fn   = self.tab2fn(tab)
+        i    = self.fn2ni(fn, s)
+        j    = i % Notes.NTONES
+        if   nic is None:   nict = ''
+        else:
+            nic[   j] += 1   ;   nict = f'nic[{m12(j)}]={nic[j]}'
+            if nic[j] == 1:      slog(f'adding nic[{j}]={nic[j]}')
+            if     j  == 11:     updNotes(j, 'Cb', 'B', Notes.TYPE, 0)
+            elif   j  ==  5:     updNotes(j, 'F', 'E#', Notes.TYPE, 0)
+            elif   j  ==  4:     updNotes(j, 'Fb', 'E', Notes.TYPE, 0)
+            elif   j  ==  0:     updNotes(j, 'C', 'B#', Notes.TYPE, 0)
+        name = Notes.name(i)
+        if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nict}')
+        return name
 ########################################################################################################################################################################################################
 
 class Notes(object):
@@ -189,7 +240,29 @@ class Notes(object):
         k = Notes.nextIndex(i, j)
         m = Notes.name(k)
         return m
+########################################################################################################################################################################################################
+def initND():
+    return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i] ] for i in range(Notes.NTONES) }
+ND = initND()
+########################################################################################################################################################################################################
+FLATS  = [ f'{v}{n}' for n in range(11) for v in Notes.I2F2.values() ][:Notes.MAX_IDX]
+SHRPS  = [ f'{v}{n}' for n in range(11) for v in Notes.I2S2.values() ][:Notes.MAX_IDX]
 
+def FREQ( index): return 440 * pow(pow(2, 1/Notes.NTONES), index - 57)
+def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
+
+FREQS   = [ FREQ( i) for i in range(Notes.MAX_IDX) ]
+FREQS2  = [ FREQ2(i) for i in range(Notes.MAX_IDX) ]
+########################################################################################################################################################################################################
+def updNotes(i, m, n, t, d): # fix bug
+    if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
+    elif t  ==  Notes.SHRP:    Notes.I2S[i] = n
+    if   d:
+        if m in Notes.S2F: del Notes.S2F[m]
+        if n in Notes.F2S: del Notes.F2S[n]
+    else:
+        Notes.F2S[n] = m   ;   Notes.S2F[m] = n
+########################################################################################################################################################################################################
 def fmtks(k):
     t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
     s   = t2sign(t)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
@@ -359,105 +432,20 @@ def parseCmdLine(dbg=1):
     if dbg: slog(f'options={fmtm(options)}')
     return options
 ########################################################################################################################################################################################################
-
-class DSymb(object):
-    SYMBS = {'X': 'mute', '/': 'slide', '\\': 'bend', '+': 'hammer', '~': 'vibrato', '^': 'tie', '.': 'staccato', '_': 'legato', '%': 'repeat', '|': 'bar', '[': 'groupL', ']': 'groupR'}
-########################################################################################################################################################################################################
-FLATS  = [ f'{v}{n}' for n in range(11) for v in Notes.I2F2.values() ][:Notes.MAX_IDX]
-SHRPS  = [ f'{v}{n}' for n in range(11) for v in Notes.I2S2.values() ][:Notes.MAX_IDX]
-
-def FREQ( index): return 440 * pow(pow(2, 1/Notes.NTONES), index - 57)
-def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
-
-FREQS   = [ FREQ( i) for i in range(Notes.MAX_IDX) ]
-FREQS2  = [ FREQ2(i) for i in range(Notes.MAX_IDX) ]
-########################################################################################################################################################################################################
-def updNks(i, m, n, t, t2):
-    if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
-    elif t  ==  Notes.SHRP:    Notes.I2S[i] = n
-    if   t2 ==  Notes.FLAT:
-        if m in Notes.S2F: del Notes.S2F[m]
-        if n in Notes.F2S: del Notes.F2S[n]
-    elif t2 ==  Notes.SHRP:
-        Notes.F2S[n] = m   ;   Notes.S2F[m] = n
-########################################################################################################################################################################################################
-def initND():
-    return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i] ] for i in range(Notes.NTONES) }
-ND = initND()
-########################################################################################################################################################################################################
-
-class Scales(object):
-    MajorIs = [ 0, 2, 4, 5, 7, 9, 11 ]
-    @classmethod
-    def majIs(cls, i):  return [ (i + j) % Notes.NTONES for j in cls.MajorIs ]
-
-########################################################################################################################################################################################################
-
-class Modes(object):
-    IONIAN, DORIAN, PHRYGIAN, LYDIAN, MIXOLYDIAN, AEOLIAN, LOCRIAN = range(7)
-    NAMES = [ 'IONIAN', 'DORIAN', 'PHRYGIAN', 'LYDIAN', 'MIXOLYDIAN', 'AEOLIAN', 'LOCRIAN' ]
-    TYPES = [  IONIAN,   DORIAN,   PHRYGIAN,   LYDIAN,   MIXOLYDIAN,   AEOLIAN,   LOCRIAN  ]
-
-########################################################################################################################################################################################################
 KIM = 0  ;  KIS = 1  ;  KMS = 2  ;  KJS = 3  ;  KNS = 4
 KSD = {}
 dmpKSDhdr(-1)
 KSD = initKSD(KSD, t=-1)
 KSD = initKSD(KSD, t= 1)
 dmpKSDhdr( 1)
-########################################################################################################################################################################################################
+#class KS(object):
+#    def __init__(self):
+#        self.KSD = {}
+#        dmpKSDhdr(-1)
+#        self.KSD = initKSD(self.KSD, t=-1)
+#        self.KSD = initKSD(self.KSD, t= 1)
+#        dmpKSDhdr( 1)
 
-class Strings(object):
-    aliases = {'GUITAR_6_STD':    cOd([('E2', 28), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
-               'GUITAR_6_DROP_D': cOd([('D2', 26), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
-               'GUITAR_7_STD':    cOd([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
-              }
-    def __init__(self, alias=None):
-        if alias is None: alias = 'GUITAR_6_STD'
-        self.stringMap          = self.aliases[alias]
-        self.stringKeys         = list(self.stringMap.keys())
-        self.stringNames        = ''.join(reversed([ str(k[0])  for k in            self.stringKeys ]))
-        self.stringNumbs        = ''.join(         [ str(r + 1) for r in range(len(self.stringKeys)) ])
-        self.stringCapo         = ''.join(         [ '0'        for _ in range(len(self.stringKeys)) ])
-        self.strLabel           = 'STRING'
-        self.cpoLabel           = ' CAPO '
-        slog( f'stringMap   = {fmtm(self.stringMap)}')
-        slog( f'stringKeys  = {fmtl(self.stringKeys)}')
-        slog( f'stringNames =      {self.stringNames}')
-        slog( f'stringNumbs =      {self.stringNumbs}')
-        slog( f'stringCapo  =      {self.stringCapo}')
-        slog( f'strLabel    =      {self.strLabel}')
-        slog( f'cpoLabel    =      {self.cpoLabel}')
-
-    def nStrings(self): return len(self.stringNames)
-
-    def fn2ni(self, fn, s, dbg=0):
-        strNum = self.nStrings() - s - 1    # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
-        k      = self.stringKeys[strNum]
-        i      = self.stringMap[k] + fn
-        if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
-        return i
-
-    def tab2nn(self, tab, s, nic=None, dbg=0):
-        fn   = self.tab2fn(tab)
-        i    = self.fn2ni(fn, s)
-        j    = i % Notes.NTONES
-        if   nic is None:   nict = ''
-        else:
-            nic[   j] += 1   ;   nict = f'nic[{m12(j)}]={nic[j]}'
-            if nic[j] == 1:      slog(f'adding nic[{j}]={nic[j]}')
-            if     j  == 11:     updNks(j, 'Cb', 'B', Notes.FLAT, 1)
-            elif   j  ==  5:     updNks(j, 'F', 'E#', Notes.SHRP, 1)
-            elif   j  ==  4:     updNks(j, 'Fb', 'E', Notes.FLAT, 1)
-            elif   j  ==  0:     updNks(j, 'C', 'B#', Notes.SHRP, 1)
-        name = Notes.name(i)
-        if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nict}')
-        return name
-
-    @staticmethod
-    def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
-    @staticmethod
-    def tab2fn(t, dbg=0): fn = int(t) if '0'<=t<='9' else int(ord(t)-87) if 'a'<=t<='o' else None  ;  slog(f'tab={t} fretNum={fn}') if dbg else None  ;  return fn
 ########################################################################################################################################################################################################
 
 class Test:

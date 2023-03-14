@@ -1648,13 +1648,13 @@ class Tabs(pyglet.window.Window):
         if self.sobj.isFret(text):      ntext = self.sobj.tab2nn(text, t, self.nic)
         else:                           ntext = self.tblank
         if old in Notes.N2I:
-            i  =  Notes.N2I[old]    ;   self.nic[i] -= 1
+            i  =  Notes.N2I[old]   ;   self.nic[i] -= 1
             if self.nic[i] <= 0:
-                del self.nic[i]   ;   util.dumpNic(self.nic)
-                util.updNks(11, 'B', 'Cb', Notes.FLAT, -1)
-                util.updNks( 5, 'F', 'E#', Notes.SHRP, -1)
-                util.updNks( 4, 'E', 'Fb', Notes.FLAT, -1)
-                util.updNks( 0, 'C', 'B#', Notes.SHRP, -1)
+                del self.nic[i]    ;   util.dumpNic(self.nic)
+                util.updNotes(11, 'B', 'Cb', Notes.TYPE, -1)
+                util.updNotes( 5, 'F', 'E#', Notes.TYPE, -1)
+                util.updNotes( 4, 'E', 'Fb', Notes.TYPE, -1)
+                util.updNotes( 0, 'C', 'B#', Notes.TYPE, -1)
         self.notes[cc].text = ntext
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
     ####################################################################################################################################################################################################
@@ -2284,7 +2284,7 @@ class Tabs(pyglet.window.Window):
             elif self.kords and self.tabls:
                 tabtxt = self.tabls[i].text
                 text   = self.sobj.tab2nn(tabtxt, sn) if self.sobj.isFret(tabtxt) else self.tblank
-            if text in Notes.N2I and (Notes.N2I[text] != 2 and Notes.N2I[text] != 7 and Notes.N2I[text] != 9):
+            if text in Notes.N2I and (Notes.N2I[text] != 2 and Notes.N2I[text] != 7 and Notes.N2I[text] != 9): # fix this hack
                 cc = i * ns    ;   old = text
                 p, l, c, t = self.cc2plct(cc)   ;   cn = self.cc2cn(cc)
                 if   text in Notes.F2S:  text = Notes.F2S[text]
