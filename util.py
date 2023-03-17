@@ -1,5 +1,6 @@
 """util.py module.  class list: [DSymb, Notes, Strings, Test]."""
 import sys, os, inspect, pathlib
+from collections import Counter
 from collections import OrderedDict as cOd
 
 B                = ' '
@@ -76,78 +77,19 @@ def dmpKSDhdr(t=0):
     k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1   ;   sign = t2sign(t)
     slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{k}', pfx=0)
 
-def OLD_1_dumpKSD(ksd, w=2, u='<'):
-    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
-    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}')
-    _ = [ f'{    ksd[k][0][0]}'     for k in keys ]                  ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
-#    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]                  ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
-#    f = [ f'{m12(ksd[M][2][f]):<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
-#    s = [ f'{m12(ksd[P][2][s]):<2}' for s in range(len(ksd[P][2])) ]         ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
-    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
-def OLD_2_dumpKSD(ksd, w=2, u='<'):
-    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
-    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}')
-    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl([ f"{_:x}" for _ in _ ], w=w, d=d)}')
-    _ = [ f'{ksd[k][0][1]:<2}' for k in keys ] ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
-    f = [ f'{ksd[M][2][f]:<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ f'{ksd[P][2][s]:<2}' for s in range(len(ksd[P][2])) ]      ;   slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
-    f = [ f'{f:x}' for f in reversed(ksd[M][1]) ]  ;  s = [ f'{s:x}' for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
-def OLD_3_dumpKSD(ksd, w=2, u='<'):
-    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''   ;   uwx = f'{u}{w}x'
-    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}')
-    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uwx, d=d)}')
-    _ = [ f'{ksd[k][0][1]:<2}' for k in keys ] ;   slog(f'{v}{fmtl(_, w=w,   d=d)}')
-    f = [ f'{ksd[M][2][f]:<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ f'{ksd[P][2][s]:<2}' for s in range(len(ksd[P][2])) ]      ;   slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
-    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=uwx, d=d)} {B*2} {fmtl(s, w=uwx, d=d)}')
-def OLD_4_dumpKSD(ksd, w=2, u='<'):
-    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'
-    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}')
-    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uwx, d=d)}')
-    _ = [ f'{ksd[k][0][1]:<2}' for k in keys ] ;   slog(f'{v}{fmtl(_, w=w,   d=d)}')
-    f = [ f'{ksd[M][2][f]:<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ f'{ksd[P][2][s]:<2}' for s in range(len(ksd[P][2])) ]      ;   slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
-    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=uwx, d=d)} {B*2} {fmtl(s, w=uwx, d=d)}')
-def OLD_5_dumpKSD(ksd, w=2, u='<'):
-    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'
-    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=uw, d=d)}')
-    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uwx, d=d)}')
-    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uw,  d=d)}')
-    f = [ f'{ksd[M][2][f]:<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ f'{ksd[P][2][s]:<2}' for s in range(len(ksd[P][2])) ]      ;   slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
-    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=uwx, d=d)} {B*2} {fmtl(s, w=uwx, d=d)}')
-def OLD_6_dumpKSD(ksd, w=2, u='<'):
-    keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'  ;  d = ''
-#   keys = sorted(ksd.keys())  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
-#   keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'
-    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=uw, d=d)}')
-    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uwx, d=d)}')
-    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uw,  d=d)}')
-    f = [ ksd[M][2][f]    for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ ksd[P][2][s]    for s in range(len(ksd[P][2]))           ]         ;  slog(f'{v}{fmtl(f, w=uw,  d=d)} {B*2} {fmtl(s, w=uw,  d=d)}')
-    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=uwx, d=d)} {B*2} {fmtl(s, w=uwx, d=d)}')
-def OLD_7_dumpKSD(ksd, w=2, u='<'):
-    keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'  ;  d = ''
-    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=uw, d=d)}')
-    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uwx, d=d)}')
-    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uw,  d=d)}')
-    f = [ ksd[M][2][f]    for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ ksd[P][2][s]    for s in range(len(ksd[P][2]))           ]         ;  slog(f'{v}{fmtl(f, w=uw,  d=d)} {B*2} {fmtl(s, w=uw,  d=d)}')
-    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=uwx, d=d)} {B*2} {fmtl(s, w=uwx, d=d)}')
-
 def dumpKSD(ksd, w=2, u='<'):
-#   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  wx = f'{w}x'  ;  d = ''  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''
-#   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  wx = f'{w}x'  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  d = ''
-    keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  w = f'{u}{w}'  ;  wx = f'{w}x'  ;  d = ''
-#   keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  d = ''  ;  w = f'{u}{w}'  ;  wx = f'{w}x'
-#   keys = sorted(ksd.keys())  ;  d = ''  ;  w = f'{u}{w}'  ;  wx = f'{w}x'  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''
-#   keys = sorted(ksd.keys())  ;  d = ''  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  w = f'{u}{w}'  ;  wx = f'{w}x'
+#   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  x = f'{w}x'  ;  d = ''  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''
+#   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  x = f'{w}x'  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  d = ''
+    keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  w = f'{u}{w}'  ;  x = f'{w}x'  ;  d = ''
+#   keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  d = ''  ;  w = f'{u}{w}'  ;  x = f'{w}x'
+#   keys = sorted(ksd.keys())  ;  d = ''  ;  w = f'{u}{w}'  ;  x = f'{w}x'  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''
+#   keys = sorted(ksd.keys())  ;  d = ''  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  w = f'{u}{w}'  ;  x = f'{w}x'
     _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d)}')
-    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=wx, d=d)}')
-    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=w,  d=d)}')
+    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=x, d=d)}')
+    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
     f = [ ksd[M][2][f]    for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ ksd[P][2][s]    for s in range(len(ksd[P][2]))           ]         ;  slog(f'{v}{fmtl(f, w=w,  d=d)} {B*2} {fmtl(s, w=w,  d=d)}')
-    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=wx, d=d)} {B*2} {fmtl(s, w=wx, d=d)}')
+    s = [ ksd[P][2][s]    for s in range(len(ksd[P][2]))           ]         ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
+    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=x, d=d)} {B*2} {fmtl(s, w=x, d=d)}')
 ########################################################################################################################################################################################################
 def nic2KS(nic, dbg=0):
     dumpKSD(KSD)   ;   dumpNic(nic)
@@ -252,12 +194,10 @@ class Strings(object):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = ''
         j   = i % Notes.NTONES
-        if nic:
-            if nic[j] == 0:      slog(f'adding nic[{j}]={nic[j]}')
-            else:                nic[   j] += 1   ;   nict = f'nic[{j:x}]={nic[j]}'
-        else: nic = dict()
+        if nic is not None:  nic[j] += 1  ;  nict = f'nic[{j:x}]={nic[j]} '  ;  slog(f'adding {nict}', file=0) if nic[j]==1 else None
+        else:                nic     = Counter()
         name = Notes.name(i)
-        if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} j={j:x} name={name:2} {nict} {fmtm(nic)}')
+        if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} j={j:x} name={name:2} {nict}{fmtm(nic)}')
         return name
 ########################################################################################################################################################################################################
 class Notes(object):
