@@ -145,13 +145,13 @@ class Chord(object):
         slog(f'{msg1:44}{msg2}', pfx=0)
 
     @staticmethod
-    def dumpImap(imap, why=''):
+    def dumpImap(imap, why='', file=0):
         ikeys, ivals, notes, name, chunks, rank = [], [], [], '', [], -1
         if imap and len(imap) == 6: ikeys, ivals, notes, name, chunks, rank = imap[0],imap[1], imap[2], imap[3], imap[4], imap[5]
         ikeys2 = list(sorted(dict.fromkeys(ikeys), key=lambda t: Notes.V2I[t]))
         nmap   = cOd(sorted(dict(zip(ivals, notes)).items()))
         ivals2, notes2 = list(nmap.keys()), list(nmap.values())
-        slog(f'{why}{rank:2} {name:12} {"".join(chunks):12} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {"".join(ikeys2):12} {"".join(f"{i:x}" for i in ivals2):6} {"".join(notes2):12}', pfx=0)
+        slog(f'{why}{rank:2} {name:12} {"".join(chunks):12} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {"".join(ikeys2):12} {"".join(f"{i:x}" for i in ivals2):6} {"".join(notes2):12}', pfx=0, file=file)
 #        slog(f'{why}{rank:2} {name:12} {fmtl(chunks, w=2):19} {fmtl(sorted(ikeys, key=lambda t: IVALR[t]), w=FMTN):18} {fmtl(ivals, z="x"):13} {tabs.fmtl(inotes, w=2):19}', pfx=0)
     ####################################################################################################################################################################################################
     def rotateMLimap(self, cn):

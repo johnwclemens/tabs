@@ -10,17 +10,17 @@ LOG_FILE         = None
 MIN_IVAL_LEN     = 1
 MAX_STACK_DEPTH  = 0
 MAX_STACK_FRAME  = inspect.stack()
-M12              = { 10:'a', 11:'b' }
+#M12              = { 10:'a', 11:'b' }
 INIT             = '###   Init   ###'     * 13
 QUIT_BGN         = '###   BGN Quit   ###' * 10
 QUIT             = '###   Quit   ###'     * 13
 QUIT_END         = '###   END Quit   ###' * 10
 #STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
-STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'm12', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
+STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
-def m12(s):         return M12[s] if s in M12 else s
+#def m12(s):         return M12[s] if s in M12 else s
 def t2sign(t=0):    return ' ' if not t else '+' if t==1 else ''
-def js2sign(l):     return [ '-' if k<0  else '+' if k>0 else ' ' for k in l ]
+def js2sign(l):     return [ '-' if k<0 else '+' if k>0  else ' ' for k in l ]
 
 def init(file, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
@@ -60,7 +60,7 @@ def dumpNF():
 
 def dumpND():
     slog(f'I  F  S  IV   Notes Table {len(ND)}', pfx=0)
-    for i in range(len(ND)):   slog(f'{m12(i)} {fmtl(ND[i], w=2)}', pfx=0)
+    for i in range(len(ND)):   slog(f'{i:x} {fmtl(ND[i], w=2)}', pfx=0)
 
 def dumpKS():
     dmpKSDhdr()
@@ -76,21 +76,85 @@ def dmpKSDhdr(t=0):
     k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1   ;   sign = t2sign(t)
     slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{k}', pfx=0)
 
-def dumpKSD(ksd, w=2, u='<'):
+def OLD_1_dumpKSD(ksd, w=2, u='<'):
     keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
     _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}')
     _ = [ f'{    ksd[k][0][0]}'     for k in keys ]                  ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
-    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]                  ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
-    f = [ f'{m12(ksd[M][2][f]):<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ f'{m12(ksd[P][2][s]):<2}' for s in range(len(ksd[P][2])) ]         ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
+#    _ = [ f'{m12(ksd[k][0][1]):<2}' for k in keys ]                  ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
+#    f = [ f'{m12(ksd[M][2][f]):<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
+#    s = [ f'{m12(ksd[P][2][s]):<2}' for s in range(len(ksd[P][2])) ]         ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
     f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
+def OLD_2_dumpKSD(ksd, w=2, u='<'):
+    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
+    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}')
+    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl([ f"{_:x}" for _ in _ ], w=w, d=d)}')
+    _ = [ f'{ksd[k][0][1]:<2}' for k in keys ] ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
+    f = [ f'{ksd[M][2][f]:<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
+    s = [ f'{ksd[P][2][s]:<2}' for s in range(len(ksd[P][2])) ]      ;   slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
+    f = [ f'{f:x}' for f in reversed(ksd[M][1]) ]  ;  s = [ f'{s:x}' for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
+def OLD_3_dumpKSD(ksd, w=2, u='<'):
+    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''   ;   uwx = f'{u}{w}x'
+    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}')
+    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uwx, d=d)}')
+    _ = [ f'{ksd[k][0][1]:<2}' for k in keys ] ;   slog(f'{v}{fmtl(_, w=w,   d=d)}')
+    f = [ f'{ksd[M][2][f]:<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
+    s = [ f'{ksd[P][2][s]:<2}' for s in range(len(ksd[P][2])) ]      ;   slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
+    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=uwx, d=d)} {B*2} {fmtl(s, w=uwx, d=d)}')
+def OLD_4_dumpKSD(ksd, w=2, u='<'):
+    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'
+    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, u=u, d=d)}')
+    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uwx, d=d)}')
+    _ = [ f'{ksd[k][0][1]:<2}' for k in keys ] ;   slog(f'{v}{fmtl(_, w=w,   d=d)}')
+    f = [ f'{ksd[M][2][f]:<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
+    s = [ f'{ksd[P][2][s]:<2}' for s in range(len(ksd[P][2])) ]      ;   slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
+    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=uwx, d=d)} {B*2} {fmtl(s, w=uwx, d=d)}')
+def OLD_5_dumpKSD(ksd, w=2, u='<'):
+    keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'
+    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=uw, d=d)}')
+    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uwx, d=d)}')
+    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uw,  d=d)}')
+    f = [ f'{ksd[M][2][f]:<2}' for f in range(len(ksd[M][2])-1, -1, -1) ]
+    s = [ f'{ksd[P][2][s]:<2}' for s in range(len(ksd[P][2])) ]      ;   slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
+    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=uwx, d=d)} {B*2} {fmtl(s, w=uwx, d=d)}')
+def OLD_6_dumpKSD(ksd, w=2, u='<'):
+    keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'  ;  d = ''
+#   keys = sorted(ksd.keys())  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''
+#   keys = sorted(ksd.keys())    ;   d = ''    ;   v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'
+    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=uw, d=d)}')
+    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uwx, d=d)}')
+    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uw,  d=d)}')
+    f = [ ksd[M][2][f]    for f in range(len(ksd[M][2])-1, -1, -1) ]
+    s = [ ksd[P][2][s]    for s in range(len(ksd[P][2]))           ]         ;  slog(f'{v}{fmtl(f, w=uw,  d=d)} {B*2} {fmtl(s, w=uw,  d=d)}')
+    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=uwx, d=d)} {B*2} {fmtl(s, w=uwx, d=d)}')
+def OLD_7_dumpKSD(ksd, w=2, u='<'):
+    keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  uw = f'{u}{w}'  ;  uwx = f'{uw}x'  ;  d = ''
+    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=uw, d=d)}')
+    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uwx, d=d)}')
+    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=uw,  d=d)}')
+    f = [ ksd[M][2][f]    for f in range(len(ksd[M][2])-1, -1, -1) ]
+    s = [ ksd[P][2][s]    for s in range(len(ksd[P][2]))           ]         ;  slog(f'{v}{fmtl(f, w=uw,  d=d)} {B*2} {fmtl(s, w=uw,  d=d)}')
+    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=uwx, d=d)} {B*2} {fmtl(s, w=uwx, d=d)}')
+
+def dumpKSD(ksd, w=2, u='<'):
+#   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  wx = f'{w}x'  ;  d = ''  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''
+#   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  wx = f'{w}x'  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  d = ''
+    keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  w = f'{u}{w}'  ;  wx = f'{w}x'  ;  d = ''
+#   keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  d = ''  ;  w = f'{u}{w}'  ;  wx = f'{w}x'
+#   keys = sorted(ksd.keys())  ;  d = ''  ;  w = f'{u}{w}'  ;  wx = f'{w}x'  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''
+#   keys = sorted(ksd.keys())  ;  d = ''  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  w = f'{u}{w}'  ;  wx = f'{w}x'
+    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d)}')
+    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=wx, d=d)}')
+    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=w,  d=d)}')
+    f = [ ksd[M][2][f]    for f in range(len(ksd[M][2])-1, -1, -1) ]
+    s = [ ksd[P][2][s]    for s in range(len(ksd[P][2]))           ]         ;  slog(f'{v}{fmtl(f, w=w,  d=d)} {B*2} {fmtl(s, w=w,  d=d)}')
+    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=wx, d=d)} {B*2} {fmtl(s, w=wx, d=d)}')
 ########################################################################################################################################################################################################
 def nic2KS(nic, dbg=0):
     dumpKSD(KSD)   ;   dumpNic(nic)
     iz  = []       ;   t = Notes.TYPE   ;   nt = Notes.TYPES[t]
     ks  = KSD[M][KIS]    if t == Notes.FLAT else KSD[P][KIS]
     for i in ks:
-        if i in nic:     iz.append(m12(i))
+        if i in nic:     iz.append(f'{i:x}')
         else:            break
     k   = -len(iz)       if t == Notes.FLAT else len(iz)
     s   = t2sign(t)      if iz else '?'
@@ -101,8 +165,8 @@ def nic2KS(nic, dbg=0):
     return  s, k, nt, n, i, ns, Scales.majIs(i)
 
 def dumpNic(nic):
-    slog(f'{fmtl([ f"{m12(i)}:{Notes.I2F[i]:2}:{c:2}" for i, c in nic.items() ])} {fmtl([ f"{m12(i)}:{Notes.I2S[i]}:{c}" for i, c in nic.items() ])}')
-    slog(f'{fmtl([ f"{m12(i)}:{Notes.I2S[i]:2}:{c:2}" for i, c in nic.items() ])}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{c:2}" for i, c in nic.items() ])} {fmtl([ f"{i:x}:{Notes.I2S[i]}:{c}" for i, c in nic.items() ])}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{c:2}" for i, c in nic.items() ])}')
 ########################################################################################################################################################################################################
 def initKSD(ks, t):
     if     t == -1:   i = 0  ;  j = 6   ;  s = M
@@ -167,36 +231,35 @@ class Strings(object):
         slog( f'cpoLabel    =      {self.cpoLabel}')
 
     @staticmethod
-    def isFret(txt):             return 1 if '0' <= txt <= '9'  or 'a' <= txt <= 'o'   else 0
-    @staticmethod
     def tab2fn(t, dbg=0): fn = int(t) if '0'<=t<='9' else int(ord(t)-87) if 'a'<=t<='o' else None  ;  slog(f'tab={t} fretNum={fn}') if dbg else None  ;  return fn
+    @staticmethod
+    def isFret(t):      return   1    if '0'<=t<='9'          or            'a'<=t<='o' else 0
 
     def nStrings(self): return len(self.stringNames)
 
     def fn2ni(self, fn, s, dbg=0):
-        strNum = self.nStrings() - s - 1    # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
+        strNum = self.nStrings() - s - 1   # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
         k      = self.stringKeys[strNum]
         i      = self.stringMap[k] + fn
         if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
         return i
 
-    def tab2nn(self, tab, s, nic=None, dbg=0):
-        fn   = self.tab2fn(tab)
-        i    = self.fn2ni(fn, s)
-        j    = i % Notes.NTONES
-        if   nic is None:   nict = ''
-        else:
-            nic[   j] += 1   ;   nict = f'nic[{m12(j)}]={nic[j]}'
-            if nic[j] == 1:      slog(f'adding nic[{j}]={nic[j]}')
-            if     j  == 11:     updNotes(j, 'Cb', 'B', Notes.TYPE, 0)
-            elif   j  ==  5:     updNotes(j, 'F', 'E#', Notes.TYPE, 0)
-            elif   j  ==  4:     updNotes(j, 'Fb', 'E', Notes.TYPE, 0)
-            elif   j  ==  0:     updNotes(j, 'C', 'B#', Notes.TYPE, 0)
+#            if     j  == 11:     updNotes(j, 'Cb', 'B', Notes.TYPE, 0)
+#            if     j  ==  5:     updNotes(j, 'F', 'E#', Notes.TYPE, 0)
+#            elif   j  ==  4:     updNotes(j, 'Fb', 'E', Notes.TYPE, 0)
+#            elif   j  ==  0:     updNotes(j, 'C', 'B#', Notes.TYPE, 0)
+    def tab2nn(self, tab, s, nic=None, dbg=1):
+        fn  = self.tab2fn(tab)
+        i   = self.fn2ni(fn, s)   ;   nict = ''
+        j   = i % Notes.NTONES
+        if nic:
+            if nic[j] == 0:      slog(f'adding nic[{j}]={nic[j]}')
+            else:                nic[   j] += 1   ;   nict = f'nic[{j:x}]={nic[j]}'
+        else: nic = dict()
         name = Notes.name(i)
-        if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} name={name:2} {nict}')
+        if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} j={j:x} name={name:2} {nict} {fmtm(nic)}')
         return name
 ########################################################################################################################################################################################################
-
 class Notes(object):
     F2S     = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'           } # 5/9
     S2F     = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           } # 5/9
@@ -241,6 +304,15 @@ class Notes(object):
         m = Notes.name(k)
         return m
 ########################################################################################################################################################################################################
+def updNotes(i, m, n, t, d):
+    if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
+    elif t  ==  Notes.SHRP:    Notes.I2S[i] = n
+    if   d:
+        if m in Notes.S2F: del Notes.S2F[m]
+        if n in Notes.F2S: del Notes.F2S[n]
+    else:
+        Notes.F2S[n] = m   ;   Notes.S2F[m] = n
+########################################################################################################################################################################################################
 def initND():
     return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i] ] for i in range(Notes.NTONES) }
 ND = initND()
@@ -254,26 +326,17 @@ def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(Notes.MAX_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(Notes.MAX_IDX) ]
 ########################################################################################################################################################################################################
-def updNotes(i, m, n, t, d): # fix bug
-    if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
-    elif t  ==  Notes.SHRP:    Notes.I2S[i] = n
-    if   d:
-        if m in Notes.S2F: del Notes.S2F[m]
-        if n in Notes.F2S: del Notes.F2S[n]
-    else:
-        Notes.F2S[n] = m   ;   Notes.S2F[m] = n
-########################################################################################################################################################################################################
 def fmtks(k):
     t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
     s   = t2sign(t)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
     iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]    ;   ms = KSD[k][KMS]
     ns  = [ Notes.name(j, t, 1 if abs(k) >= 5 else 0) for j in jz ]
-    iz  = [ m12(i) for i in iz ]
-    jz  = [ m12(j) for j in jz ]
-    return f'{s}{k} {nt} [{m:2} {m12(i)}] {fmtl(ms, w=2)} {fmtl(iz)} {fmtl(jz)} {fmtl(ns, w=2)}'
+    iz  = [ f'{i:x}' for i in iz ]
+    jz  = [ f'{j:x}' for j in jz ]
+    return f'{s}{k} {nt} [{m:2} {i:x}] {fmtl(ms, w=2)} {fmtl(iz)} {fmtl(jz)} {fmtl(ns, w=2)}'
 ########################################################################################################################################################################################################
 def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None, z=''):
-    if lst is None: return 'None'
+    if   lst is None:   return  'None'
     lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts, f'{type(lst)=} {lts=}'
     if d == '':    d2 = ''
@@ -359,7 +422,7 @@ def filtText(text):
     text = text.replace('util', '')
     text = text.replace('fmtl', '')
     text = text.replace('fmtm', '')
-    text = text.replace('m12', '')
+#    text = text.replace('m12', '')
     return text
 
 def filtText2(text):
