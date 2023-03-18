@@ -25,37 +25,37 @@ def init(file, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
     dumpData()
 
-def dumpData():
+def dumpData(w=2, d='', p=0):
     slog('BGN')
-    slog(f'[F2S:      {len(Notes.F2S ):2}] [{fmtm(Notes.F2S,  w=2, d="")}]',  p=0)
-    slog(f'[S2F:      {len(Notes.S2F ):2}] [{fmtm(Notes.S2F,  w=2, d="")}]',  p=0)
-    slog(f'[F2S2:     {len(Notes.F2S2):2}] [{fmtm(Notes.F2S2, w=2, d="")}]',  p=0)
-    slog(f'[S2F2:     {len(Notes.S2F2):2}] [{fmtm(Notes.S2F2, w=2, d="")}]',  p=0)
-    slog(f'[I2F:      {len(Notes.I2F ):2}] [{fmtm(Notes.I2F,  w=2, d="")}]',  p=0)
-    slog(f'[I2S:      {len(Notes.I2S ):2}] [{fmtm(Notes.I2S,  w=2, d="")}]',  p=0)
-    slog(f'[I2F2:     {len(Notes.I2F2):2}] [{fmtm(Notes.I2F2, w=2, d="")}]',  p=0)
-    slog(f'[I2S2:     {len(Notes.I2S2):2}] [{fmtm(Notes.I2S2, w=2, d="")}]',  p=0)
-    slog(f'[I2V:      {len(Notes.I2V ):2}] [{fmtm(Notes.I2V,  w=2, d="")}]',  p=0)
-    slog(f'[V2I:      {len(Notes.V2I ):2}] [{fmtm(Notes.V2I,  w=2, d="")}]',  p=0)
-    slog(f'[N2I:      {len(Notes.N2I ):2}] [{fmtm(Notes.N2I,  w=2, d="")}]',  p=0)
-    slog(f'[I2N[-1]:  {len(Notes.I2N[-1] ):2}] [{fmtm(Notes.I2N[-1],   w=2, d="")}]',  p=0)
-    slog(f'[I2N[ 0]:  {len(Notes.I2N[ 0] ):2}] [{fmtm(Notes.I2N[ 0],   w=2, d="")}]',  p=0)
-    slog(f'[I2N[ 1]:  {len(Notes.I2N[ 1] ):2}] [{fmtm(Notes.I2N[ 1],   w=2, d="")}]',  p=0)
-    slog(f'[I2N2[-1]: {len(Notes.I2N2[-1] ):2}] [{fmtm(Notes.I2N2[-1],  w=2, d="")}]',  p=0)
-    slog(f'[I2N2[ 0]: {len(Notes.I2N2[ 0] ):2}] [{fmtm(Notes.I2N2[ 0],  w=2, d="")}]',  p=0)
-    slog(f'[I2N2[ 1]: {len(Notes.I2N2[ 1] ):2}] [{fmtm(Notes.I2N2[ 1],  w=2, d="")}]',  p=0)
+    slog(f'[F2S:      {len(Notes.F2S ):2}] [{fmtm(Notes.F2S,  w=w, d=d)}]', p=p)
+    slog(f'[S2F:      {len(Notes.S2F ):2}] [{fmtm(Notes.S2F,  w=w, d=d)}]', p=p)
+    slog(f'[F2S2:     {len(Notes.F2S2):2}] [{fmtm(Notes.F2S2, w=w, d=d)}]', p=p)
+    slog(f'[S2F2:     {len(Notes.S2F2):2}] [{fmtm(Notes.S2F2, w=w, d=d)}]', p=p)
+    slog(f'[I2F:      {len(Notes.I2F ):2}] [{fmtm(Notes.I2F,  w=w, d=d)}]', p=p)
+    slog(f'[I2S:      {len(Notes.I2S ):2}] [{fmtm(Notes.I2S,  w=w, d=d)}]', p=p)
+    slog(f'[I2F2:     {len(Notes.I2F2):2}] [{fmtm(Notes.I2F2, w=w, d=d)}]', p=p)
+    slog(f'[I2S2:     {len(Notes.I2S2):2}] [{fmtm(Notes.I2S2, w=w, d=d)}]', p=p)
+    slog(f'[I2V:      {len(Notes.I2V ):2}] [{fmtm(Notes.I2V,  w=w, d=d)}]', p=p)
+    slog(f'[V2I:      {len(Notes.V2I ):2}] [{fmtm(Notes.V2I,  w=w, d=d)}]', p=p)
+    slog(f'[N2I:      {len(Notes.N2I ):2}] [{fmtm(Notes.N2I,  w=w, d=d)}]', p=p)
+    slog(f'[I2N[-1]:  {len(Notes.I2N[-1] ):2}] [{fmtm(Notes.I2N[-1],   w=w, d=d)}]', p=p)
+    slog(f'[I2N[ 0]:  {len(Notes.I2N[ 0] ):2}] [{fmtm(Notes.I2N[ 0],   w=w, d=d)}]', p=p)
+    slog(f'[I2N[ 1]:  {len(Notes.I2N[ 1] ):2}] [{fmtm(Notes.I2N[ 1],   w=w, d=d)}]', p=p)
+    slog(f'[I2N2[-1]: {len(Notes.I2N2[-1] ):2}] [{fmtm(Notes.I2N2[-1], w=w, d=d)}]', p=p)
+    slog(f'[I2N2[ 0]: {len(Notes.I2N2[ 0] ):2}] [{fmtm(Notes.I2N2[ 0], w=w, d=d)}]', p=p)
+    slog(f'[I2N2[ 1]: {len(Notes.I2N2[ 1] ):2}] [{fmtm(Notes.I2N2[ 1], w=w, d=d)}]', p=p)
     dumpNF()
     dumpND()
     dumpKS()
     slog('END')
 ########################################################################################################################################################################################################
 def dumpNF():
-    slog(f'Note Frequency Hz')   ;   msg = f'Piano Note Index{B*43}'
-    slog(f'{msg}{fmtl([ i+1 for i in range(88) ], w=5, u="^")}',  p=0)
-    slog(f'Index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w=5, u="^")}',  p=0)
+    slog(f'Note Frequencies in Hertz')   ;   msg = f'Piano Note Index{B*43}'  ;  nm = Notes.MAX_IDX
+    slog(f'{msg}{fmtl([ i+1 for i in range(88) ], w="^5")}', p=0)
+    slog(f'Index{fmtl([ i+1 for i in range(nm) ], w="^5")}', p=0)
     dumpFreqs(432)  ;  dumpFreqs(440)
-    slog(f'Flats{fmtl(list(FLATS),                           w=5, u="^")}',  p=0)
-    slog(f'Shrps{fmtl(list(SHRPS),                           w=5, u="^")}',  p=0)
+    slog(f'Flats{fmtl(list(FLATS),                w="^5")}', p=0)
+    slog(f'Shrps{fmtl(list(SHRPS),                w="^5")}', p=0)
 
 def dumpND():
     slog(f'I  F  S  IV   Notes Table {len(ND)}', p=0)
@@ -76,12 +76,7 @@ def dmpKSDhdr(t=0):
     slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{k}', p=0)
 
 def dumpKSD(ksd, w=2, u='<'):
-#   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  x = f'{w}x'  ;  d = ''  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''
-#   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  x = f'{w}x'  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  d = ''
     keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  w = f'{u}{w}'  ;  x = f'{w}x'  ;  d = ''
-#   keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  d = ''  ;  w = f'{u}{w}'  ;  x = f'{w}x'
-#   keys = sorted(ksd.keys())  ;  d = ''  ;  w = f'{u}{w}'  ;  x = f'{w}x'  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''
-#   keys = sorted(ksd.keys())  ;  d = ''  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  w = f'{u}{w}'  ;  x = f'{w}x'
     _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d)}')
     _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=x, d=d)}')
     _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
@@ -90,8 +85,8 @@ def dumpKSD(ksd, w=2, u='<'):
     f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=x, d=d)} {B*2} {fmtl(s, w=x, d=d)}')
 ########################################################################################################################################################################################################
 def nic2KS(nic, dbg=0):
-    dumpKSD(KSD)   ;   dumpNic(nic)
-    iz  = []       ;   t = Notes.TYPE   ;   nt = Notes.TYPES[t]
+    dumpKSD(KSD)      ;     dumpNic(nic)
+    iz  = []          ;     t  = Notes.TYPE   ;   nt = Notes.TYPES[t]
     ks  = KSD[M][KIS]    if t == Notes.FLAT else KSD[P][KIS]
     for i in ks:
         if i in nic:     iz.append(f'{i:x}')
@@ -105,8 +100,8 @@ def nic2KS(nic, dbg=0):
     return  s, k, nt, n, i, ns, Scales.majIs(i)
 
 def dumpNic(nic):
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{c:2}" for i, c in nic.items() ])} {fmtl([ f"{i:x}:{Notes.I2S[i]}:{c}" for i, c in nic.items() ])}')
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{c:2}" for i, c in nic.items() ])}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{c}" for i, c in nic.items() ])}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{c}" for i, c in nic.items() ])}')
 ########################################################################################################################################################################################################
 def initKSD(ks, t):
     if     t == -1:   i = 0  ;  j = 6   ;  s = M
@@ -214,26 +209,21 @@ class Notes(object):
     FLAT, NONE, SHRP =    -1,      0,      1    # -1 ~= 2
     TYPES            =          [ 'NONE', 'SHRP', 'FLAT' ] # 0=NONE, 1=SHRP, 2=FLAT=-1
     I2N     = [I2F, I2S, I2F]   ;   I2N2 = [I2F2, I2S2, I2F2]   ;   TYPE = FLAT   ;   NTONES = len(I2V)   ;   MAX_IDX = 10 * NTONES + 1
-
     @staticmethod
     def setType(t): Notes.TYPE = t
-
     @staticmethod
     def index(n, o=0):
         name = n[:len(n)-1] if o else n
         i    = Notes.N2I[name]
         return i
-
     @staticmethod
     def nextIndex(i, d):
         return  (i + d) % Notes.NTONES
-
     @staticmethod
     def name(i, t=0, n2=0):
         t    = t if t else Notes.TYPE
         name = Notes.I2N2[t][i % Notes.NTONES]   if n2   else Notes.I2N[t][i % Notes.NTONES]
         return name
-
     @staticmethod
     def nextName(n, iv, o=0):
         i = Notes.index(n, o)
@@ -273,7 +263,7 @@ def fmtks(k):
     jz  = [ f'{j:x}' for j in jz ]
     return f'{s}{k} {nt} [{m:2} {i:x}] {fmtl(ms, w=2)} {fmtl(iz)} {fmtl(jz)} {fmtl(ns, w=2)}'
 ########################################################################################################################################################################################################
-def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None, z=''):
+def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None):
     if   lst is None:   return  'None'
     lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts, f'{type(lst)=} {lts=}'
@@ -283,16 +273,16 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None, z=''):
     s   = f'{sl}{len(lst)}' if ll is not None          else ''
     for i, l in enumerate(lst):
         if type(l) in lts:
-            if type(w) in lts:               t += fmtl(l, w[i], u, d, d2, sep, ll, z)
-            else:                            t += fmtl(l, w,    u, d, d2, sep, ll, z)
+            if type(w) in lts:               t += fmtl(l, w[i], u, d, d2, sep, ll)
+            else:                            t += fmtl(l, w,    u, d, d2, sep, ll)
         else:
             ss = sep if i < len(lst)-1 else ''
             u = '' if u is None else u
             if   type(l) is type:            l =  str(l)
             elif l is None:                  l =  'None'
-            if   type(w) in lts:             t += f'{l:{u}{w[i]}{z}}{ss}'
-            elif type(l) in dtn:             t += f'{l:{u}{w   }{z}}{ss}'
-            elif type(l) in dts:             t += f'{l:{u}{w   }{z}}{ss}'
+            if   type(w) in lts:             t += f'{l:{u}{w[i]}}{ss}'
+            elif type(l) in dtn:             t += f'{l:{u}{w   }}{ss}'
+            elif type(l) in dts:             t += f'{l:{u}{w   }}{ss}'
             else:                            t += f'{l}{ss}'
     return s + d + t + d2
 ########################################################################################################################################################################################################
@@ -329,28 +319,6 @@ def dumpStack(sfs):
         slog(f'{j:2} {n:9} {l:5} {f:20} {c}')
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
 ########################################################################################################################################################################################################
-def OLD__slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
-    msg = filtText( msg) #    msg = filtText2(msg)
-    if pfx:
-        sf   = inspect.currentframe().f_back
-        while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
-#        else:                           print(f'sf:  {sf.f_lineno}, {sf.f_code.co_name}')
-#        sfi = inspect.getframeinfo(sf)
-#        if sfi.function == 'log':
-#            sf = sf.f_back
-#            sfi = inspect.getframeinfo(sf)
-#        filename  = pathlib.Path(sfi.filename).name
-#        msg  = f'{sfi.lineno:5} {filename:7} {sfi.function:>20} ' + msg
-        fp   = pathlib.Path(sf.f_code.co_filename)
-        pl   = 18 if pfx == 1 else 8
-        pfx  = f'{sf.f_lineno:4} {fp.stem:5} ' if pfx == 1 else ''
-        msg  = f'{pfx}{sf.f_code.co_name:{pl}} ' + msg
-    so = 0
-    if   file == 0:  file = sys.stdout
-    elif file == 1:  file = LOG_FILE
-    elif file == 2:  file = LOG_FILE  ;  so = 1
-    print(msg, sep=sep, end=end, file=file, flush=flush)
-    print(msg, sep=sep, end=end, file=None, flush=flush) if so else None
 def slog(t='', p=1, f=1, s=',', e='\n', ff=False):
     t = filtText(t) #    t = filtText2(t)
     if p:
@@ -407,7 +375,7 @@ def parseCmdLine(dbg=1):
     key     = ''
     vals    = []
     largs   = len(sys.argv)
-    if dbg: slog(f'argv={fmtl(sys.argv[1:])}')  ;  slog(f'{sys.argv[0]}', p=0)
+    if dbg: slog(f'argv={fmtl(sys.argv[1:])}')  ;  slog(sys.argv[0], p=0)
     for j in range(1, largs):
         argv = sys.argv[j]
         if len(argv) > 2 and argv[0] == '-' and argv[1] == '-':
