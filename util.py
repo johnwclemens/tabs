@@ -11,7 +11,6 @@ LOG_FILE         = None
 MIN_IVAL_LEN     = 1
 MAX_STACK_DEPTH  = 0
 MAX_STACK_FRAME  = inspect.stack()
-#M12              = { 10:'a', 11:'b' }
 INIT             = '###   Init   ###'     * 13
 QUIT_BGN         = '###   BGN Quit   ###' * 10
 QUIT             = '###   Quit   ###'     * 13
@@ -19,7 +18,6 @@ QUIT_END         = '###   END Quit   ###' * 10
 #STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
 STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
-#def m12(s):         return M12[s] if s in M12 else s
 def t2sign(t=0):    return ' ' if not t else '+' if t==1 else ''
 def js2sign(l):     return [ '-' if k<0 else '+' if k>0  else ' ' for k in l ]
 
@@ -29,23 +27,23 @@ def init(file, oid):
 
 def dumpData():
     slog('BGN')
-    slog(f'[F2S:      {len(Notes.F2S ):2}] [{fmtm(Notes.F2S,  w=2, d="")}]',  pfx=0)
-    slog(f'[S2F:      {len(Notes.S2F ):2}] [{fmtm(Notes.S2F,  w=2, d="")}]',  pfx=0)
-    slog(f'[F2S2:     {len(Notes.F2S2):2}] [{fmtm(Notes.F2S2, w=2, d="")}]',  pfx=0)
-    slog(f'[S2F2:     {len(Notes.S2F2):2}] [{fmtm(Notes.S2F2, w=2, d="")}]',  pfx=0)
-    slog(f'[I2F:      {len(Notes.I2F ):2}] [{fmtm(Notes.I2F,  w=2, d="")}]',  pfx=0)
-    slog(f'[I2S:      {len(Notes.I2S ):2}] [{fmtm(Notes.I2S,  w=2, d="")}]',  pfx=0)
-    slog(f'[I2F2:     {len(Notes.I2F2):2}] [{fmtm(Notes.I2F2, w=2, d="")}]',  pfx=0)
-    slog(f'[I2S2:     {len(Notes.I2S2):2}] [{fmtm(Notes.I2S2, w=2, d="")}]',  pfx=0)
-    slog(f'[I2V:      {len(Notes.I2V ):2}] [{fmtm(Notes.I2V,  w=2, d="")}]',  pfx=0)
-    slog(f'[V2I:      {len(Notes.V2I ):2}] [{fmtm(Notes.V2I,  w=2, d="")}]',  pfx=0)
-    slog(f'[N2I:      {len(Notes.N2I ):2}] [{fmtm(Notes.N2I,  w=2, d="")}]',  pfx=0)
-    slog(f'[I2N[-1]:  {len(Notes.I2N[-1] ):2}] [{fmtm(Notes.I2N[-1],   w=2, d="")}]',  pfx=0)
-    slog(f'[I2N[ 0]:  {len(Notes.I2N[ 0] ):2}] [{fmtm(Notes.I2N[ 0],   w=2, d="")}]',  pfx=0)
-    slog(f'[I2N[ 1]:  {len(Notes.I2N[ 1] ):2}] [{fmtm(Notes.I2N[ 1],   w=2, d="")}]',  pfx=0)
-    slog(f'[I2N2[-1]: {len(Notes.I2N2[-1] ):2}] [{fmtm(Notes.I2N2[-1],  w=2, d="")}]',  pfx=0)
-    slog(f'[I2N2[ 0]: {len(Notes.I2N2[ 0] ):2}] [{fmtm(Notes.I2N2[ 0],  w=2, d="")}]',  pfx=0)
-    slog(f'[I2N2[ 1]: {len(Notes.I2N2[ 1] ):2}] [{fmtm(Notes.I2N2[ 1],  w=2, d="")}]',  pfx=0)
+    slog(f'[F2S:      {len(Notes.F2S ):2}] [{fmtm(Notes.F2S,  w=2, d="")}]',  p=0)
+    slog(f'[S2F:      {len(Notes.S2F ):2}] [{fmtm(Notes.S2F,  w=2, d="")}]',  p=0)
+    slog(f'[F2S2:     {len(Notes.F2S2):2}] [{fmtm(Notes.F2S2, w=2, d="")}]',  p=0)
+    slog(f'[S2F2:     {len(Notes.S2F2):2}] [{fmtm(Notes.S2F2, w=2, d="")}]',  p=0)
+    slog(f'[I2F:      {len(Notes.I2F ):2}] [{fmtm(Notes.I2F,  w=2, d="")}]',  p=0)
+    slog(f'[I2S:      {len(Notes.I2S ):2}] [{fmtm(Notes.I2S,  w=2, d="")}]',  p=0)
+    slog(f'[I2F2:     {len(Notes.I2F2):2}] [{fmtm(Notes.I2F2, w=2, d="")}]',  p=0)
+    slog(f'[I2S2:     {len(Notes.I2S2):2}] [{fmtm(Notes.I2S2, w=2, d="")}]',  p=0)
+    slog(f'[I2V:      {len(Notes.I2V ):2}] [{fmtm(Notes.I2V,  w=2, d="")}]',  p=0)
+    slog(f'[V2I:      {len(Notes.V2I ):2}] [{fmtm(Notes.V2I,  w=2, d="")}]',  p=0)
+    slog(f'[N2I:      {len(Notes.N2I ):2}] [{fmtm(Notes.N2I,  w=2, d="")}]',  p=0)
+    slog(f'[I2N[-1]:  {len(Notes.I2N[-1] ):2}] [{fmtm(Notes.I2N[-1],   w=2, d="")}]',  p=0)
+    slog(f'[I2N[ 0]:  {len(Notes.I2N[ 0] ):2}] [{fmtm(Notes.I2N[ 0],   w=2, d="")}]',  p=0)
+    slog(f'[I2N[ 1]:  {len(Notes.I2N[ 1] ):2}] [{fmtm(Notes.I2N[ 1],   w=2, d="")}]',  p=0)
+    slog(f'[I2N2[-1]: {len(Notes.I2N2[-1] ):2}] [{fmtm(Notes.I2N2[-1],  w=2, d="")}]',  p=0)
+    slog(f'[I2N2[ 0]: {len(Notes.I2N2[ 0] ):2}] [{fmtm(Notes.I2N2[ 0],  w=2, d="")}]',  p=0)
+    slog(f'[I2N2[ 1]: {len(Notes.I2N2[ 1] ):2}] [{fmtm(Notes.I2N2[ 1],  w=2, d="")}]',  p=0)
     dumpNF()
     dumpND()
     dumpKS()
@@ -53,29 +51,29 @@ def dumpData():
 ########################################################################################################################################################################################################
 def dumpNF():
     slog(f'Note Frequency Hz')   ;   msg = f'Piano Note Index{B*43}'
-    slog(f'{msg}{fmtl([ i+1 for i in range(88) ], w=5, u="^")}',  pfx=0)
-    slog(f'Index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w=5, u="^")}',  pfx=0)
+    slog(f'{msg}{fmtl([ i+1 for i in range(88) ], w=5, u="^")}',  p=0)
+    slog(f'Index{fmtl([ i+1 for i in range(Notes.MAX_IDX) ], w=5, u="^")}',  p=0)
     dumpFreqs(432)  ;  dumpFreqs(440)
-    slog(f'Flats{fmtl(list(FLATS),                           w=5, u="^")}',  pfx=0)
-    slog(f'Shrps{fmtl(list(SHRPS),                           w=5, u="^")}',  pfx=0)
+    slog(f'Flats{fmtl(list(FLATS),                           w=5, u="^")}',  p=0)
+    slog(f'Shrps{fmtl(list(SHRPS),                           w=5, u="^")}',  p=0)
 
 def dumpND():
-    slog(f'I  F  S  IV   Notes Table {len(ND)}', pfx=0)
-    for i in range(len(ND)):   slog(f'{i:x} {fmtl(ND[i], w=2)}', pfx=0)
+    slog(f'I  F  S  IV   Notes Table {len(ND)}', p=0)
+    for i in range(len(ND)):   slog(f'{i:x} {fmtl(ND[i], w=2)}', p=0)
 
 def dumpKS():
     dmpKSDhdr()
     keys = sorted(KSD.keys())
-    for k in keys:      slog(fmtks(k), pfx=0)
+    for k in keys:      slog(fmtks(k), p=0)
 ########################################################################################################################################################################################################
 def dumpFreqs(r=440):
     fs = FREQS if r == 440 else FREQS2   ;   g = []   ;   ref = 'A 440' if r == 440 else  'A 432'
     for f in fs:       g.append(f'{f:5.2f}' if f < 100 else f'{f:5.1f}' if f < 1000 else f'{f:5.0f}')
-    ' '.join(f'{g}')   ;   slog(f'{ref}{fmtl(g, w=5)} Hz', pfx=0)
+    ' '.join(f'{g}')   ;   slog(f'{ref}{fmtl(g, w=5)} Hz', p=0)
 ########################################################################################################################################################################################################
 def dmpKSDhdr(t=0):
     k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1   ;   sign = t2sign(t)
-    slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{k}', pfx=0)
+    slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{k}', p=0)
 
 def dumpKSD(ksd, w=2, u='<'):
 #   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  x = f'{w}x'  ;  d = ''  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''
@@ -116,7 +114,7 @@ def initKSD(ks, t):
     iz1 = [ (j + k * s) % Notes.NTONES for k in range(1, 1+abs(s)) ]
     ms1 = [ Notes.name(j, t)           for j in iz1 ]
     iz2 = list(iz1)          ;         ms2 = list(ms1)
-    slog(f'{t=} {i=} {j=} {s=} {fmtl(iz2)=} {fmtl(ms2)=}', pfx=0)   ;   j += t
+    slog(f'{t=} {i=} {j=} {s=} {fmtl(iz2)=} {fmtl(ms2)=}', p=0)   ;   j += t
     for  k in range(0, t + s, t):
         ak = abs(k)
         m  =   Notes.name(i, t, 1 if ak >= 5 else 0)
@@ -126,7 +124,7 @@ def initKSD(ks, t):
         jz = Scales.majIs(i)    ;    im  = [i, m]
         ns = [ Notes.name(j, t, 1 if ak >= 5 else 0) for j in jz ]
         ks[k]  =  [ im, iz, ms, jz, ns ]
-        slog(fmtks(k), pfx=0)
+        slog(fmtks(k), p=0)
         i  =   Notes.nextIndex(i, s)
         j  =   Notes.nextIndex(j, s)
     return ks
@@ -194,7 +192,7 @@ class Strings(object):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = ''
         j   = i % Notes.NTONES
-        if nic is not None:  nic[j] += 1  ;  nict = f'nic[{j:x}]={nic[j]} '  ;  slog(f'adding {nict}', file=0) if nic[j]==1 else None
+        if nic is not None:  nic[j] += 1  ;  nict = f'nic[{j:x}]={nic[j]} '  ;  slog(f'adding {nict}', f=0) if nic[j]==1 else None
         else:                nic     = Counter()
         name = Notes.name(i)
         if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} j={j:x} name={name:2} {nict}{fmtm(nic)}')
@@ -296,7 +294,6 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None, z=''):
             elif type(l) in dtn:             t += f'{l:{u}{w   }{z}}{ss}'
             elif type(l) in dts:             t += f'{l:{u}{w   }{z}}{ss}'
             else:                            t += f'{l}{ss}'
-#            else:                             msg = f'ERROR l={l} is type {type(l)}'   ;   slog(msg)   ;   raise SystemExit(msg)
     return s + d + t + d2
 ########################################################################################################################################################################################################
 def fmtm(m, w=1, d0=':', d='[', d2=']', ll=None):
@@ -332,7 +329,7 @@ def dumpStack(sfs):
         slog(f'{j:2} {n:9} {l:5} {f:20} {c}')
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
 ########################################################################################################################################################################################################
-def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
+def OLD__slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
     msg = filtText( msg) #    msg = filtText2(msg)
     if pfx:
         sf   = inspect.currentframe().f_back
@@ -352,8 +349,23 @@ def slog(msg='', pfx=1, file=1, flush=False, sep=',', end='\n'):
     if   file == 0:  file = sys.stdout
     elif file == 1:  file = LOG_FILE
     elif file == 2:  file = LOG_FILE  ;  so = 1
-    print(f'{msg}', flush=flush, sep=sep, end=end, file=file)
-    print(f'{msg}', flush=flush, sep=sep, end=end, file=None) if so else None
+    print(msg, sep=sep, end=end, file=file, flush=flush)
+    print(msg, sep=sep, end=end, file=None, flush=flush) if so else None
+def slog(t='', p=1, f=1, s=',', e='\n', ff=False):
+    t = filtText(t) #    t = filtText2(t)
+    if p:
+        sf   = inspect.currentframe().f_back
+        while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
+        fp   = pathlib.Path(sf.f_code.co_filename)
+        pl   = 18 if p == 1 else 8
+        p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else ''
+        t    = f'{p}{sf.f_code.co_name:{pl}} ' + t
+    so = 0
+    if   f == 0:  f = sys.stdout
+    elif f == 1:  f = LOG_FILE
+    elif f == 2:  f = LOG_FILE  ;  so = 1
+    print(t, sep=s, end=e, file=f,    flush=ff)
+    print(t, sep=s, end=e, file=None, flush=ff) if so else None
 ########################################################################################################################################################################################################
 def filtText(text):
     text = text.replace('"', '')
@@ -362,7 +374,6 @@ def filtText(text):
     text = text.replace('util', '')
     text = text.replace('fmtl', '')
     text = text.replace('fmtm', '')
-#    text = text.replace('m12', '')
     return text
 
 def filtText2(text):
@@ -377,10 +388,10 @@ def filtText2(text):
     return text
 ########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1):
-    if dbg: slog(f'{baseName =:12} {basePath = }', file=2)
+    if dbg: slog(f'{baseName =:12} {basePath = }', f=2)
     fileName      = baseName + fsfx
     filePath      = basePath / fdir / fileName
-    if dbg: slog(f'{fileName =:12} {filePath = }', file=2)
+    if dbg: slog(f'{fileName =:12} {filePath = }', f=2)
     return filePath
 
 def copyFile(src, trg):
@@ -396,7 +407,7 @@ def parseCmdLine(dbg=1):
     key     = ''
     vals    = []
     largs   = len(sys.argv)
-    if dbg: slog(f'argv={fmtl(sys.argv[1:])}')  ;  slog(f'{sys.argv[0]}', pfx=0)
+    if dbg: slog(f'argv={fmtl(sys.argv[1:])}')  ;  slog(f'{sys.argv[0]}', p=0)
     for j in range(1, largs):
         argv = sys.argv[j]
         if len(argv) > 2 and argv[0] == '-' and argv[1] == '-':
@@ -404,34 +415,34 @@ def parseCmdLine(dbg=1):
                 vals = []
                 key = argv[2:]
                 options[key] = vals
-                if dbg: slog(f'{j:2} long    {argv:2} {key} {fmtl(vals)}', end=' ')
+                if dbg: slog(f'{j:2} long    {argv:2} {key} {fmtl(vals)}', e=' ')
             else:
-                slog(f'{j:2} ERROR long    {argv:2} {key} {fmtl(vals)}', end=' ')
+                slog(f'{j:2} ERROR long    {argv:2} {key} {fmtl(vals)}', e=' ')
         elif len(argv) > 1 and argv[0] == '-':
             if argv[1].isalpha() or argv[1] == '?':
                 vals = []
                 if len(argv) == 2:
                     key = argv[1:]
-                    if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', end=' ')
+                    if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', e=' ')
                     options[key] = vals
                 elif len(argv) > 2:
                     for i in range(1, len(argv)):
                         key = argv[i]
-                        if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', end=' ')
+                        if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', e=' ')
                         options[key] = vals
             elif argv[1].isdigit():
                 vals.append(argv)
                 options[key] = vals
-                if dbg: slog(f'{j:2} neg arg {argv:2} {key} {fmtl(vals)}', end=' ')
+                if dbg: slog(f'{j:2} neg arg {argv:2} {key} {fmtl(vals)}', e=' ')
             else:
                 vals.append(argv)
                 options[key] = vals
-                if dbg: slog(f'{j:2} ??? arg {argv:2} {key} {fmtl(vals)}', end=' ')
+                if dbg: slog(f'{j:2} ??? arg {argv:2} {key} {fmtl(vals)}', e=' ')
         else:
             vals.append(argv)
             options[key] = vals
-            if dbg: slog(f'{j:2} arg     {argv:2} {key} {fmtl(vals)}', end=' ')
-        if dbg: slog(pfx=0)
+            if dbg: slog(f'{j:2} arg     {argv:2} {key} {fmtl(vals)}', e=' ')
+        if dbg: slog(p=0)
     if dbg: slog(f'options={fmtm(options)}')
     return options
 ########################################################################################################################################################################################################
@@ -452,12 +463,12 @@ dmpKSDhdr( 1)
 ########################################################################################################################################################################################################
 
 class Test:
-    def __init__(self, a): self._a = a  ;  slog(f'<Test_init_:     _a={self._a}>', pfx=1)
+    def __init__(self, a): self._a = a  ;  slog(f'<Test_init_:     _a={self._a}>', p=1)
     @property
-    def a(self):                           slog(f'<Test_prop_a:     _a={self._a}>', pfx=1)
+    def a(self):                           slog(f'<Test_prop_a:    _a={self._a}>', p=1)
     @a.setter
-    def a(self, a):        self._a = a  ;  slog(f'<Test_set_a:     _a={self._a}>', pfx=1)
+    def a(self, a):        self._a = a  ;  slog(f'<Test_set_a:     _a={self._a}>', p=1)
     @a.getter
-    def a(self):                           slog(f'<Test_get_a:     _a={self._a}>', pfx=1)  ;  return self._a
+    def a(self):                           slog(f'<Test_get_a:     _a={self._a}>', p=1)  ;  return self._a
     @a.deleter
-    def a(self):                           slog(f'<Test_del_a: del _a>', pfx=1)  ;  del self._a
+    def a(self):                           slog(f'<Test_del_a: del _a>', p=1)  ;  del self._a
