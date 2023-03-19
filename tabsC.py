@@ -274,7 +274,7 @@ class Tabs(pyglet.window.Window):
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
         self.ks = util.nic2KS(self.nic)
-        self.log( util.fmtks(self.ks[1]), f=2)
+        self.log( util.fmtksk(self.ks[1]), f=2)
         if self.TEST:
             self.test1A(1)  ;  self.test1A(1, o=0)  ;  self.test1A(0, o=1)
             self.test1B(1)  ;  self.test1B(1, o=2)
@@ -1644,7 +1644,7 @@ class Tabs(pyglet.window.Window):
     def setNote(self, text, cc, t, pos=1, dbg=1):
         old   = self.notes[cc].text
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={old}', pos=pos)
-        if dbg: self.log(util.fmtks(self.ks[1]))
+        if dbg: self.log(util.fmtksk(self.ks[1]))
         ntext = self.sobj.tab2nn(text, t, self.nic) if self.sobj.isFret(text) else self.tblank
         if old in Notes.N2I:
             i  =  Notes.N2I[old]
@@ -1662,7 +1662,7 @@ class Tabs(pyglet.window.Window):
         old = self.notes[cc].text
 #        text = imap[2][0] if imap and imap[2] else self.tblank
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={old}', pos=pos)
-        if dbg: self.log(util.fmtks(self.ks[1]))
+        if dbg: self.log(util.fmtksk(self.ks[1]))
         if old in Notes.N2I:
             i  =  Notes.N2I[old]   ;   self.nic[i] -= 1
             if self.nic[i] <= 0:
@@ -2308,7 +2308,7 @@ class Tabs(pyglet.window.Window):
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
         self.ks = util.nic2KS(dict(self.nic))
-        self.log(util.fmtks(self.ks[1]), f=2)
+        self.log(util.fmtksk(self.ks[1]), f=2)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):
