@@ -25,7 +25,7 @@ def init(file, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
     dumpData()
 
-def dumpData(w=2, d='', p=0):
+def dumpData(w=2, d='', p=0): #fix me
     slog('BGN')     ;  x = f'{w}x'  ;  u = f'>{w}'  ;  y = f'<{w}x'  ;  z = f'<{w}'  ;  q = f'>{w}x'
     slog(f'[F2S:      {len(Notes.F2S ):2}] [{fmtm(Notes.F2S,  w=w, d=d)}]', p=p)
     slog(f'[S2F:      {len(Notes.S2F ):2}] [{fmtm(Notes.S2F,  w=w, d=d)}]', p=p)
@@ -35,15 +35,15 @@ def dumpData(w=2, d='', p=0):
     slog(f'[I2S:      {len(Notes.I2S ):2}] [{fmtm(Notes.I2S,  w=x, wv=w, d=d)}]', p=p)
     slog(f'[I2F2:     {len(Notes.I2F2):2}] [{fmtm(Notes.I2F2, w=x, wv=w, d=d)}]', p=p)
     slog(f'[I2S2:     {len(Notes.I2S2):2}] [{fmtm(Notes.I2S2, w=x, wv=w, d=d)}]', p=p)
+    slog(f'[I2N[-1]:  {len(Notes.I2N[-1] ):2}] [{fmtm(Notes.I2N[-1],   w=q, wv=z, d=d)}]', p=p)
+#    slog(f'[I2N[ 0]:  {len(Notes.I2N[ 0] ):2}] [{fmtm(Notes.I2N[ 0],   w=q, wv=z, d=d)}]', p=p)
+    slog(f'[I2N[ 1]:  {len(Notes.I2N[ 1] ):2}] [{fmtm(Notes.I2N[ 1],   w=q, wv=z, d=d)}]', p=p)
+    slog(f'[I2N2[-1]: {len(Notes.I2N2[-1] ):2}] [{fmtm(Notes.I2N2[-1], w=q, wv=z, d=d)}]', p=p)
+#    slog(f'[I2N2[ 0]: {len(Notes.I2N2[ 0] ):2}] [{fmtm(Notes.I2N2[ 0], w=q, wv=z, d=d)}]', p=p)
+    slog(f'[I2N2[ 1]: {len(Notes.I2N2[ 1] ):2}] [{fmtm(Notes.I2N2[ 1], w=q, wv=z, d=d)}]', p=p)
     slog(f'[I2V:      {len(Notes.I2V ):2}] [{fmtm(Notes.I2V,  w=x, wv=w, d=d)}]', p=p)
     slog(f'[V2I:      {len(Notes.V2I ):2}] [{fmtm(Notes.V2I,  w=u, wv=y, d=d)}]', p=p)
     slog(f'[N2I:      {len(Notes.N2I ):2}] [{fmtm(Notes.N2I,  w=u, wv=y, d=d)}]', p=p)
-    slog(f'[I2N[-1]:  {len(Notes.I2N[-1] ):2}] [{fmtm(Notes.I2N[-1],   w=q, wv=z, d=d)}]', p=p)
-    slog(f'[I2N[ 0]:  {len(Notes.I2N[ 0] ):2}] [{fmtm(Notes.I2N[ 0],   w=q, wv=z, d=d)}]', p=p)
-    slog(f'[I2N[ 1]:  {len(Notes.I2N[ 1] ):2}] [{fmtm(Notes.I2N[ 1],   w=q, wv=z, d=d)}]', p=p)
-    slog(f'[I2N2[-1]: {len(Notes.I2N2[-1] ):2}] [{fmtm(Notes.I2N2[-1], w=q, wv=z, d=d)}]', p=p)
-    slog(f'[I2N2[ 0]: {len(Notes.I2N2[ 0] ):2}] [{fmtm(Notes.I2N2[ 0], w=q, wv=z, d=d)}]', p=p)
-    slog(f'[I2N2[ 1]: {len(Notes.I2N2[ 1] ):2}] [{fmtm(Notes.I2N2[ 1], w=q, wv=z, d=d)}]', p=p)
     dumpNF()
     dumpND()
     dumpKSH()
@@ -101,7 +101,7 @@ def nic2KS(nic, dbg=0):
     slog(fmtKSK(k))      if dbg else None
     return s, k, nt, n, i, ns, Scales.majIs(i)
 
-def dumpNic(nic):
+def dumpNic(nic): #fix me
     slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" for i in nic.keys() ])}')
     slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{nic[i]}" for i in nic.keys() ])}')
     slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if i in nic and nic[i] > 0 else None for i in KSD[M][KIS] ])}')
@@ -211,12 +211,12 @@ class Notes(object):
     S2F     = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           } # 5/9
     F2S2    = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                  'Cb':'B' } # 4/9
     S2F2    = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B':'Cb' } # 4/9
+    V2I     = { 'R':0,          'b2':1, '2':2,  'm3':3, 'M3':4,         '4':5,          'b5':6, '5':7,  '#5':8, '6':9,  'b7':10, '7':11         } # 8/12/16
+    I2V     = { 0:'R',          1:'b2', 2:'2',  3:'m3', 4:'M3',         5:'4',          6:'b5', 7:'5',  8:'#5', 9:'6',  10:'b7', 11:'7'         } # 8/12/16
     I2F     = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'         } # 8/12/16
     I2S     = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'         } # 8/12/16
     I2F2    = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' } # 8/12/16
     I2S2    = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'         } # 8/12/16
-    I2V     = { 0:'R',          1:'b2', 2:'2',  3:'m3', 4:'M3',         5:'4',          6:'b5', 7:'5',  8:'#5', 9:'6',  10:'b7', 11:'7'         } # 8/12/16
-    V2I     = { 'R':0,          'b2':1, '2':2,  'm3':3, 'M3':4,         '4':5,          'b5':6, '5':7,  '#5':8, '6':9,  'b7':10, '7':11         } # 8/12/16
     N2I     = { 'B#':0, 'C':0, 'C#':1, 'Db':1, 'D':2, 'D#':3, 'Eb':3, 'E':4, 'Fb':4, 'E#':5, 'F':5, 'F#':6, 'Gb':6, 'G':7, 'G#':8, 'Ab':8, 'A':9, 'A#':10, 'Bb':10, 'B':11, 'Cb' :11 } #21
 #   N2I     = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11 } #21
     FLAT, NONE, SHRP =    -1,      0,      1    # -1 ~= 2
@@ -299,16 +299,17 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None):
             else:                            t += f'{l}{ss}'
     return s + d + t + d2
 ########################################################################################################################################################################################################
-def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', ll=None): # u = '>'
+def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', sep=' ', ll=None):
     w  = w  if w  else ''   ;   t = ''
     wv = wv if wv else w
     if d=='':   d2 = ''
     u  = '' if u  is None else u
     uv = '' if uv is None else uv
-    for k, v in m.items():
-        if   type(v) in (list, tuple, set):  t += f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2} '
-        elif type(v) in (int, str):          t += f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2} '
-    return d + t.rstrip() + d2
+    for i, (k, v) in enumerate(m.items()):
+        ss = sep if i < len(m) - 1 else ''
+        if   type(v) in (list, tuple, set):  t += f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2}{ss}'
+        elif type(v) in (int, str):          t += f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}'
+    return d + t + d2 # .rstrip()
 ########################################################################################################################################################################################################
 def ev(obj):         return f'{eval(f"{obj!r}")}'
 def fColor(c, d=1): (d, d2) = ("[", "]") if d else ("", "")  ;  return f'{fmtl(c, w=3, d=d, d2=d2):17}'

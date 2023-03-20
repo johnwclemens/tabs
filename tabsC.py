@@ -58,8 +58,10 @@ class Tabs(pyglet.window.Window):
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         self.n         = [4, 2, 10, 6]
         self.i         = [1, 1,  1, 6]
-        self.DATA_FNAME = f'testC.{self.n[0]}.{self.n[1]}.{self.n[2]}.dat' # test.4.2.10.dat
+        self.CSV_FNAME  = f'testC.{self.n[0]}.{self.n[1]}.{self.n[2]}.csv' # testC.4.2.10.csv
+        self.DATA_FNAME = f'testC.{self.n[0]}.{self.n[1]}.{self.n[2]}.dat' # testC.4.2.10.dat
         self.log(f'argMap={fmtm(ARGS)}')
+        if 'z' in ARGS and len(ARGS['z'])  > 0: self.CSV_FNAME  = ARGS['z'][0]
         if 'f' in ARGS and len(ARGS['f'])  > 0: self.DATA_FNAME = ARGS['f'][0]
         if 'n' in ARGS and len(ARGS['n'])  > 0: self.n    = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'i' in ARGS and len(ARGS['i'])  > 0: self.i    = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
@@ -117,6 +119,7 @@ class Tabs(pyglet.window.Window):
         self.log(util.INIT, p=0)
     ####################################################################################################################################################################################################
     def dumpArgs(self):
+        self.log(f'[z]      {self.CSV_FNAME=}')
         self.log(f'[f]     {self.DATA_FNAME=}')
         self.log(f'[n]               {self.fmtn()}')
         self.log(f'[i]               {self.fmti()}')
@@ -200,6 +203,7 @@ class Tabs(pyglet.window.Window):
         return [RGB[key0][rgb0][opc0], RGB[key1][rgb1][opc1]]
     ####################################################################################################################################################################################################
     def _initData(self, dbg=1):
+        self._initCsvPath()  ;  self.saveCsvFile('_initData', self.csvPath)
         self._initDataPath()
         if self.GEN_DATA: self.genDataFile(self.dataPath1)
         self.readDataFile(self.dataPath1)
@@ -212,6 +216,13 @@ class Tabs(pyglet.window.Window):
         self.log(self.fmtdl())
         self.log(f'Updating n[P] {old=} {self.fmtn()}')
         self.tpb, self.tpp, self.tpl, self.tps, self.tpc = self.ntp(dbg=1, dbg2=1)
+
+    def _initCsvPath(self):
+        csvDir    = 'csv'  ;  csvSfx = '.csv'  ;  csvPfx = f'.{self.n[C]}'
+        csvName   = self.CSV_FNAME if self.CSV_FNAME else BASE_NAME + csvPfx + csvSfx
+        self.csvPath = BASE_PATH / csvDir / csvName
+        self.log(f'{csvName=}')
+        self.log(f'{self.csvPath=}', p=0)
 
     def _initDataPath(self):
         dataDir   = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
@@ -526,6 +537,28 @@ class Tabs(pyglet.window.Window):
 #        self.updC += 1   ;   why = f'Upd{self.updC}'
         if self.RESIZE: self.resizeTniks()
 #        if dbg and self.SNAPS: self.regSnap(f'{why2}{why}', 'RSIZ')
+    ####################################################################################################################################################################################################
+    def saveCsvFile(self, why, path, dbg=1):
+        if dbg:   self.log(f'{why} {path}')
+        with open(path, 'w') as CSV_FILE:
+            self.log(f'{CSV_FILE.name:40}', p=0)
+            csv = f'F2S,  {fmtm(Notes.F2S,  d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'F2S2, {fmtm(Notes.F2S2, d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'S2F,  {fmtm(Notes.S2F,  d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'S2F2, {fmtm(Notes.S2F2, d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2F,  {fmtm(Notes.I2F,  d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2F2, {fmtm(Notes.I2F2, d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2S,  {fmtm(Notes.I2S,  d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2S2, {fmtm(Notes.I2S2, d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2V,  {fmtm(Notes.I2V,  d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'V2I,  {fmtm(Notes.V2I,  d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'N2I,  {fmtm(Notes.N2I,  d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2N[],  {fmtm(Notes.I2N[ -1], d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2N2[], {fmtm(Notes.I2N2[-1], d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2N[],  {fmtm(Notes.I2N[  1], d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2N2[], {fmtm(Notes.I2N2[ 1], d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+        size = path.stat().st_size   ;   self.log(f'{self.fmtn()} {self.fmtdl()} {size=}')
+        return size
     ####################################################################################################################################################################################################
     def saveDataFile(self, why, path, dbg=1):
         if dbg:   self.log(f'{why} {path}')
@@ -1641,7 +1674,7 @@ class Tabs(pyglet.window.Window):
         self.tabls[cc].text = text
         if dbg: self.log(f'END         {text=} tabs[{cc}]={self.tabls[cc].text}', pos=pos)
 
-    def setNote(self, text, cc, t, pos=1, dbg=1):
+    def setNote(self, text, cc, t, pos=1, dbg=1): #fix me
         old   = self.notes[cc].text
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={old}', pos=pos)
         if dbg: self.log(util.fmtKSK(self.ks[util.KSK]))
@@ -2296,7 +2329,7 @@ class Tabs(pyglet.window.Window):
             elif self.kords and self.tabls:
                 tabtxt = self.tabls[i].text
                 text   = self.sobj.tab2nn(tabtxt, sn) if self.sobj.isFret(tabtxt) else self.tblank
-            if text in Notes.N2I and (Notes.N2I[text] != 2 and Notes.N2I[text] != 7 and Notes.N2I[text] != 9): # fix this hack
+            if text in Notes.N2I and (Notes.N2I[text] != 2 and Notes.N2I[text] != 7 and Notes.N2I[text] != 9): #fix me
                 cc = i * ns    ;   old = text
                 p, l, c, t = self.cc2plct(cc)   ;   cn = self.cc2cn(cc)
                 if   text in Notes.F2S:  text = Notes.F2S[text]
