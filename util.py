@@ -26,27 +26,28 @@ def init(file, oid):
     dumpData()
 
 def dumpData(w=2, d='', p=0):
-    slog('BGN')
+    slog('BGN')     ;  x = f'{w}x'  ;  u = f'>{w}'  ;  y = f'<{w}x'  ;  z = f'<{w}'  ;  q = f'>{w}x'
     slog(f'[F2S:      {len(Notes.F2S ):2}] [{fmtm(Notes.F2S,  w=w, d=d)}]', p=p)
     slog(f'[S2F:      {len(Notes.S2F ):2}] [{fmtm(Notes.S2F,  w=w, d=d)}]', p=p)
-    slog(f'[F2S2:     {len(Notes.F2S2):2}] [{fmtm(Notes.F2S2, w=w, d=d)}]', p=p)
-    slog(f'[S2F2:     {len(Notes.S2F2):2}] [{fmtm(Notes.S2F2, w=w, d=d)}]', p=p)
-    slog(f'[I2F:      {len(Notes.I2F ):2}] [{fmtm(Notes.I2F,  w=w, d=d)}]', p=p)
-    slog(f'[I2S:      {len(Notes.I2S ):2}] [{fmtm(Notes.I2S,  w=w, d=d)}]', p=p)
-    slog(f'[I2F2:     {len(Notes.I2F2):2}] [{fmtm(Notes.I2F2, w=w, d=d)}]', p=p)
-    slog(f'[I2S2:     {len(Notes.I2S2):2}] [{fmtm(Notes.I2S2, w=w, d=d)}]', p=p)
-    slog(f'[I2V:      {len(Notes.I2V ):2}] [{fmtm(Notes.I2V,  w=w, d=d)}]', p=p)
-    slog(f'[V2I:      {len(Notes.V2I ):2}] [{fmtm(Notes.V2I,  w=w, d=d)}]', p=p)
-    slog(f'[N2I:      {len(Notes.N2I ):2}] [{fmtm(Notes.N2I,  w=w, d=d)}]', p=p)
-    slog(f'[I2N[-1]:  {len(Notes.I2N[-1] ):2}] [{fmtm(Notes.I2N[-1],   w=w, d=d)}]', p=p)
-    slog(f'[I2N[ 0]:  {len(Notes.I2N[ 0] ):2}] [{fmtm(Notes.I2N[ 0],   w=w, d=d)}]', p=p)
-    slog(f'[I2N[ 1]:  {len(Notes.I2N[ 1] ):2}] [{fmtm(Notes.I2N[ 1],   w=w, d=d)}]', p=p)
-    slog(f'[I2N2[-1]: {len(Notes.I2N2[-1] ):2}] [{fmtm(Notes.I2N2[-1], w=w, d=d)}]', p=p)
-    slog(f'[I2N2[ 0]: {len(Notes.I2N2[ 0] ):2}] [{fmtm(Notes.I2N2[ 0], w=w, d=d)}]', p=p)
-    slog(f'[I2N2[ 1]: {len(Notes.I2N2[ 1] ):2}] [{fmtm(Notes.I2N2[ 1], w=w, d=d)}]', p=p)
+    slog(f'[F2S2:     {len(Notes.F2S2):2}] [{fmtm(Notes.F2S2, w=u, wv=z, d=d)}]', p=p)
+    slog(f'[S2F2:     {len(Notes.S2F2):2}] [{fmtm(Notes.S2F2, w=u, wv=z, d=d)}]', p=p)
+    slog(f'[I2F:      {len(Notes.I2F ):2}] [{fmtm(Notes.I2F,  w=x, wv=w, d=d)}]', p=p)
+    slog(f'[I2S:      {len(Notes.I2S ):2}] [{fmtm(Notes.I2S,  w=x, wv=w, d=d)}]', p=p)
+    slog(f'[I2F2:     {len(Notes.I2F2):2}] [{fmtm(Notes.I2F2, w=x, wv=w, d=d)}]', p=p)
+    slog(f'[I2S2:     {len(Notes.I2S2):2}] [{fmtm(Notes.I2S2, w=x, wv=w, d=d)}]', p=p)
+    slog(f'[I2V:      {len(Notes.I2V ):2}] [{fmtm(Notes.I2V,  w=x, wv=w, d=d)}]', p=p)
+    slog(f'[V2I:      {len(Notes.V2I ):2}] [{fmtm(Notes.V2I,  w=u, wv=y, d=d)}]', p=p)
+    slog(f'[N2I:      {len(Notes.N2I ):2}] [{fmtm(Notes.N2I,  w=u, wv=y, d=d)}]', p=p)
+    slog(f'[I2N[-1]:  {len(Notes.I2N[-1] ):2}] [{fmtm(Notes.I2N[-1],   w=q, wv=z, d=d)}]', p=p)
+    slog(f'[I2N[ 0]:  {len(Notes.I2N[ 0] ):2}] [{fmtm(Notes.I2N[ 0],   w=q, wv=z, d=d)}]', p=p)
+    slog(f'[I2N[ 1]:  {len(Notes.I2N[ 1] ):2}] [{fmtm(Notes.I2N[ 1],   w=q, wv=z, d=d)}]', p=p)
+    slog(f'[I2N2[-1]: {len(Notes.I2N2[-1] ):2}] [{fmtm(Notes.I2N2[-1], w=q, wv=z, d=d)}]', p=p)
+    slog(f'[I2N2[ 0]: {len(Notes.I2N2[ 0] ):2}] [{fmtm(Notes.I2N2[ 0], w=q, wv=z, d=d)}]', p=p)
+    slog(f'[I2N2[ 1]: {len(Notes.I2N2[ 1] ):2}] [{fmtm(Notes.I2N2[ 1], w=q, wv=z, d=d)}]', p=p)
     dumpNF()
     dumpND()
-    dumpKS()
+    dumpKSH()
+    dumpKSV()
     slog('END')
 ########################################################################################################################################################################################################
 def dumpNF():
@@ -57,35 +58,36 @@ def dumpNF():
     slog(f'Flats{fmtl(list(FLATS),                w="^5")}', p=0)
     slog(f'Shrps{fmtl(list(SHRPS),                w="^5")}', p=0)
 
-def dumpND():
-    slog(f'I  F  S  IV   Notes Table {len(ND)}', p=0)
-    for i in range(len(ND)):   slog(f'{i:x} {fmtl(ND[i], w=2)}', p=0)
-
-def dumpKS():
-    dmpKSDhdr()
-    keys = sorted(KSD.keys())
-    for k in keys:      slog(fmtks(k), p=0)
-########################################################################################################################################################################################################
 def dumpFreqs(r=440):
     fs = FREQS if r == 440 else FREQS2   ;   g = []   ;   ref = 'A 440' if r == 440 else  'A 432'
     for f in fs:       g.append(f'{f:5.2f}' if f < 100 else f'{f:5.1f}' if f < 1000 else f'{f:5.0f}')
     ' '.join(f'{g}')   ;   slog(f'{ref}{fmtl(g, w=5)} Hz', p=0)
 ########################################################################################################################################################################################################
-def dmpKSDhdr(t=0):
+def dumpND():
+    slog(f'I  F  S  IV   Notes Table {len(ND)}', p=0)
+    for i in range(len(ND)):   slog(f'{i:x} {fmtl(ND[i], w=2)}', p=0)
+########################################################################################################################################################################################################
+def dumpKSV(ksd=None, p=0):
+    dmpKSVHdr()   ;   ksd = KSD if ksd is None else ksd
+    keys = sorted(ksd.keys())
+    for k in keys:    slog(fmtKSK(k), p=p)
+
+def dmpKSVHdr(t=0):
     k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1   ;   sign = t2sign(t)
     slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{k}', p=0)
 
-def dumpKSD(ksd, w=2, u='<'):
-    keys = sorted(ksd.keys())  ;  v = B*24 if Notes.TYPE==Notes.FLAT else ''  ;  w = f'{u}{w}'  ;  x = f'{w}x'  ;  d = ''
-    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}')   ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d)}')
-    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=x, d=d)}')
-    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=w, d=d)}')
+def dumpKSH(ksd=None, p=0, v=0, w=2, u='<', d=''):
+    flats = 'Flats'     ;    shrps = 'Sharps'  ;   slog(f'{flats:^20} KS {shrps:^20}', p=p)     ;  v = B*v if v and Notes.TYPE==Notes.FLAT else ''
+    ksd = KSD if ksd is None else ksd          ;   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  x = f'{w}x'
+    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}', p=p)       ;  slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d)}', p=p)
+    _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=x, d=d)}', p=p)
+    _ = [ ksd[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=w, d=d)}', p=p)
     f = [ ksd[M][2][f]    for f in range(len(ksd[M][2])-1, -1, -1) ]
-    s = [ ksd[P][2][s]    for s in range(len(ksd[P][2]))           ]         ;  slog(f'{v}{fmtl(f, w=w, d=d)} {B*2} {fmtl(s, w=w, d=d)}')
-    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]  ;  slog(f'{v}{fmtl(f, w=x, d=d)} {B*2} {fmtl(s, w=x, d=d)}')
+    s = [ ksd[P][2][s]    for s in range(len(ksd[P][2]))           ]          ;  slog(f'{v}{fmtl(f, w=w, d=d)}    {fmtl(s, w=w, d=d)}', p=p)
+    f = [ f for f in reversed(ksd[M][1]) ]  ;  s = [ s for s in ksd[P][1] ]   ;  slog(f'{v}{fmtl(f, w=x, d=d)}    {fmtl(s, w=x, d=d)}', p=p)
 ########################################################################################################################################################################################################
 def nic2KS(nic, dbg=0):
-    dumpKSD(KSD)      ;     dumpNic(nic)
+    dumpKSV()   ;   dumpKSH()   ;   dumpNic(nic)
     iz  = []          ;     t  = Notes.TYPE   ;   nt = Notes.TYPES[t]
     ks  = KSD[M][KIS]    if t == Notes.FLAT else KSD[P][KIS]
     for i in ks:
@@ -96,12 +98,14 @@ def nic2KS(nic, dbg=0):
     n   = KSD[k][KIM][1] if iz else '??'
     i   = KSD[k][KIM][0]
     ns  = KSD[k][KMS]
-    slog(fmtks(k))       if dbg else None
-    return  s, k, nt, n, i, ns, Scales.majIs(i)
+    slog(fmtKSK(k))      if dbg else None
+    return s, k, nt, n, i, ns, Scales.majIs(i)
 
 def dumpNic(nic):
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{c}" for i, c in nic.items() ])}')
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{c}" for i, c in nic.items() ])}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" for i in nic.keys() ])}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{nic[i]}" for i in nic.keys() ])}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if i in nic and nic[i] > 0 else None for i in KSD[M][KIS] ])}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if i in nic and nic[i] > 0 else None for i in KSD[P][KIS] ])}')
 ########################################################################################################################################################################################################
 def initKSD(ks, t):
     if     t == -1:   i = 0  ;  j = 6   ;  s = M
@@ -119,7 +123,7 @@ def initKSD(ks, t):
         jz = Scales.majIs(i)    ;    im  = [i, m]
         ns = [ Notes.name(j, t, 1 if ak >= 5 else 0) for j in jz ]
         ks[k]  =  [ im, iz, ms, jz, ns ]
-        slog(fmtks(k), p=0)
+        slog(fmtKSK(k), p=0)
         i  =   Notes.nextIndex(i, s)
         j  =   Notes.nextIndex(j, s)
     return ks
@@ -179,18 +183,27 @@ class Strings(object):
         if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
         return i
 
-#            if     j  == 11:     updNotes(j, 'Cb', 'B', Notes.TYPE, 0)
-#            if     j  ==  5:     updNotes(j, 'F', 'E#', Notes.TYPE, 0)
-#            elif   j  ==  4:     updNotes(j, 'Fb', 'E', Notes.TYPE, 0)
-#            elif   j  ==  0:     updNotes(j, 'C', 'B#', Notes.TYPE, 0)
+#                    if   j == 5  and k ==  6 or k == -5:  Notes.I2S[j] = 'E#'  ;  Notes.F2S['F'] = 'E#'
+#                    elif j == 0  and k ==  7 or k == -5:  Notes.I2S[j] = 'B#'  ;  Notes.F2S['C'] = 'B#'
+#                    elif j == 11 and k == -6 or k ==  5:  Notes.I2F[j] = 'Cb'  ;  Notes.S2F['B'] = 'Cb'
+#                    elif j == 4  and k == -7 or k ==  5:  Notes.I2F[j] = 'Fb'  ;  Notes.S2F['E'] = 'Fb'
     def tab2nn(self, tab, s, nic=None, dbg=1):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = ''
         j   = i % Notes.NTONES
-        if nic is not None:  nic[j] += 1  ;  nict = f'nic[{j:x}]={nic[j]} '  ;  slog(f'adding {nict}', f=0) if nic[j]==1 else None
-        else:                nic     = Counter()
+        if  nic is None:    nic = Counter()
+        else:
+            nic[j]    += 1
+            if nic[j] == 1:
+                if j in (0, 4, 5, 11):
+                    ks = nic2KS(nic)  ;  k = ks[KSK]  ;  slog(f'{fmtKSK(k)}', f=2)
+                    if     j  == 11:     updNotes(j, 'Cb', 'B', Notes.TYPE, 0)
+                    if     j  ==  5:     updNotes(j, 'F', 'E#', Notes.TYPE, 0)
+                    elif   j  ==  4:     updNotes(j, 'Fb', 'E', Notes.TYPE, 0)
+                    elif   j  ==  0:     updNotes(j, 'C', 'B#', Notes.TYPE, 0)
+                nict = f'nic[{j:x}]={nic[j]} '        ;  slog(f'adding {nict}', f=2)
         name = Notes.name(i)
-        if dbg or nict: slog(f'tab={tab} s={s} fn={fn} i={i:2} j={j:x} name={name:2} {nict}{fmtm(nic)}')
+        if dbg and nict:    slog(f'tab={tab} fn={fn:2} s={s} i={i:2} j={j:x} name={name:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
 ########################################################################################################################################################################################################
 class Notes(object):
@@ -232,7 +245,7 @@ class Notes(object):
         m = Notes.name(k)
         return m
 ########################################################################################################################################################################################################
-def updNotes(i, m, n, t, d):
+def updNotes(i, m, n, t, d=0):
     if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
     elif t  ==  Notes.SHRP:    Notes.I2S[i] = n
     if   d:
@@ -254,7 +267,7 @@ def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(Notes.MAX_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(Notes.MAX_IDX) ]
 ########################################################################################################################################################################################################
-def fmtks(k):
+def fmtKSK(k):
     t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
     s   = t2sign(t)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
     iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]    ;   ms = KSD[k][KMS]
@@ -286,12 +299,15 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None):
             else:                            t += f'{l}{ss}'
     return s + d + t + d2
 ########################################################################################################################################################################################################
-def fmtm(m, w=1, d0=':', d='[', d2=']', ll=None):
+def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', ll=None): # u = '>'
+    w  = w  if w  else ''   ;   t = ''
+    wv = wv if wv else w
     if d=='':   d2 = ''
-    t = ''   ;   u = '>'
+    u  = '' if u  is None else u
+    uv = '' if uv is None else uv
     for k, v in m.items():
-        if   type(v) in (list, tuple, set):  t += f'{d}{k:{u}{w}}{d0}{fmtl(v, w, ll=k if ll==-1 else ll)}{d2} '
-        elif type(v) in (int, str):          t += f'{d}{k:{u}{w}}{d0}{v:{u}{w}}{d2} '
+        if   type(v) in (list, tuple, set):  t += f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2} '
+        elif type(v) in (int, str):          t += f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2} '
     return d + t.rstrip() + d2
 ########################################################################################################################################################################################################
 def ev(obj):         return f'{eval(f"{obj!r}")}'
@@ -414,19 +430,14 @@ def parseCmdLine(dbg=1):
     if dbg: slog(f'options={fmtm(options)}')
     return options
 ########################################################################################################################################################################################################
-KIM = 0  ;  KIS = 1  ;  KMS = 2  ;  KJS = 3  ;  KNS = 4
 KSD = {}
-dmpKSDhdr(-1)
+KIM, KIS, KMS, KJS, KNS             = range(5)
+KSS, KSK, KST, KSN, KSI, KSMS, KSSI = range(7)
+dmpKSVHdr(-1)
 KSD = initKSD(KSD, t=-1)
 KSD = initKSD(KSD, t= 1)
-dmpKSDhdr( 1)
-#class KS(object):
-#    def __init__(self):
-#        self.KSD = {}
-#        dmpKSDhdr(-1)
-#        self.KSD = initKSD(self.KSD, t=-1)
-#        self.KSD = initKSD(self.KSD, t= 1)
-#        dmpKSDhdr( 1)
+dmpKSVHdr( 1)
+dumpKSH()
 
 ########################################################################################################################################################################################################
 

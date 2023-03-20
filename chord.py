@@ -54,7 +54,7 @@ class Chord(object):
                 imap   = [ ikeys, ivals, notes, name, chunks, rank ]
                 vkeys.append(vkey)   ;   self.limap.append(imap)
                 if dbg: slog(f'{rank:2} {"".join(ikeys):12} {"".join(f"{i:x}" for i in ivals):6} {"".join(notes):12} {name:12} {"".join(chunks):12} {"".join(_ikeys):12} {"".join(f"{i:x}" for i in _ivals):6} {"".join(_notes):12}')
-                if dbg: slog(f'{rank:2} {fmtl(ikeys):19} {fmtl(ivals, w="x")} {" ".join(notes):12} {name:12} {"".join(chunks)} {fmtl(_ikeys)} {fmtl(_ivals, w="x")} {" ".join(_notes):12}', p=1)
+                if dbg: slog(f'{rank:2} {fmtl(ikeys):19} {fmtl(ivals, w="x")} {" ".join(notes):12} {name:12} {"".join(chunks)} {fmtl(_ikeys)} {fmtl(_ivals, w="x")} {" ".join(_notes):12}')
         if self.limap:
             self.limap.sort(key=lambda m: m[-1])   ;   imi = 0
             if dbg > 1: self.dumpLimap(self.limap, cn, imi)
