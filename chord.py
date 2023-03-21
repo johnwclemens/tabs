@@ -192,7 +192,7 @@ class Chord(object):
             trg[k] = v
         slog(f'END len(src) ={len(src)} len(trg)={len(trg)}')
     ####################################################################################################################################################################################################
-    def dumpUmap(self):
+    def dumpUmap(self): # optimize str concat?
         if self.umap:
             slog('BGN umap:')
             umapKeys = sorted(self.umap.keys() , key=lambda a: self.umap[a][1])
@@ -219,7 +219,7 @@ class Chord(object):
         if self.umap: self.dumpUmap()
         slog(f'END   len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
 
-    def _dumpOMAP(self, catfile=None, dbg=0):
+    def _dumpOMAP(self, catfile=None, dbg=0): # optimize str concat?
         file = catfile      if catfile else util.LOG_FILE
         name = catfile.name if catfile else None
         omap = self.OMAP

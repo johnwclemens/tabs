@@ -270,7 +270,7 @@ def fmtKSK(k):
     jz  = [ f'{j:x}' for j in jz ]
     return f'{s}{k} {nt} [{m:2} {i:x}] {fmtl(ms, w=2)} {fmtl(iz)} {fmtl(jz)} {fmtl(ns, w=2)}'
 ########################################################################################################################################################################################################
-def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None):
+def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None): # optimize str concat?
     if   lst is None:   return  'None'
     lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts, f'{type(lst)=} {lts=}'

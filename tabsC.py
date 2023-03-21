@@ -1336,7 +1336,7 @@ class Tabs(pyglet.window.Window):
         rgbM = (' M     Mx    My  ' if spr else rgb) if self.LONG_TXT else ''
         return f'{tid} {wnc} {rtsgv} {self.fjtxt()} {xywh} {rgb} {rgbM} {sfx}'
     @staticmethod
-    def fjtxt(): return ' '.join(f'{jtxt[0]:>{JFMT[i]}}' for i, jtxt in enumerate(JTEXTS)) + ' Vis'
+    def fjtxt(): return ' '.join(f'{jtxt[0]:>{JFMT[i]}}' for i, jtxt in enumerate(JTEXTS)) + ' Vis' # optimize str concat?
     def clearVisib(self):             consume(v.clear() for v in self.visib)
 
     def dumpTnik(self, t=None, j=None, why=''):
@@ -1995,7 +1995,7 @@ class Tabs(pyglet.window.Window):
         elif    self.csrMode == ARPG:                                       self.move(how, amDist)
         self.log(f'END {how}', pos=1)
     ####################################################################################################################################################################################################
-    def jump(self, how, txt='0', a=0):
+    def jump(self, how, txt='0', a=0): # optimize str concat?
         cc = self.cursorCol()   ;   self.jumpAbs = a
         self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {self.fmti()}')
         if not self.jumping:                  self.jumping = 1
@@ -2053,7 +2053,7 @@ class Tabs(pyglet.window.Window):
             self.log(  f'if   {msg} {self.k[R]=}') if dbg else None   ;   return self.k[R]
         else: self.log(f'else {msg} {self.k[j]=}') if dbg else None   ;   return self.k[j]
     ####################################################################################################################################################################################################
-    def setTNIKStyle(self, k, nt, style, text='', blank=0):
+    def setTNIKStyle(self, k, nt, style, text='', blank=0): # optimize str concat?
         for t in range(k, k + nt):
             msg = f'{t=} {k=} {nt=} {blank=}' #  {text=:{self.n[T]}
             if self.tabls: self._setTNIKStyle(self.tabls[t], self.k[T], style)  ;  text += self.tabls[t].text
@@ -2097,7 +2097,7 @@ class Tabs(pyglet.window.Window):
         if m:               self.move(how, m)
         if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
     ####################################################################################################################################################################################################
-    def copyTabs(self, how, dbg=1):
+    def copyTabs(self, how, dbg=1): # optimize str concat?
         self.dumpSmap(f'BGN {how}')   ;   nt = self.n[T]   ;   style = NORMAL_STYLE   ;   text = []
         for k in list(self.smap.keys()):
             k *= nt
@@ -2161,8 +2161,8 @@ class Tabs(pyglet.window.Window):
         data = data or self.data
         if not self.swapping: self.swapping = 1
         elif txt.isalnum():
-            if   self.swapping == 1:   src += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}')
-            elif self.swapping == 2:   trg += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}')
+            if   self.swapping == 1:   src += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
+            elif self.swapping == 2:   trg += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
             self.swapSrc, self.swapTrg = src, trg
         elif txt == '\r':
             self.log(f'    {how} {self.swapping=} {src=} {trg=}')
@@ -2194,7 +2194,7 @@ class Tabs(pyglet.window.Window):
             if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
             self.resyncData = 1
 
-    def insertSpace(self, how, txt='0', dbg=1):
+    def insertSpace(self, how, txt='0', dbg=1): # optimize str concat?
         cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
         if not self.inserting: self.inserting = 1   ;    self.setCaption('Enter nc: number of cols to indent int')
         elif txt.isdecimal():  self.insertStr += txt
@@ -2243,7 +2243,7 @@ class Tabs(pyglet.window.Window):
             self.unselectAll('shiftTabs()')
         self.dumpSmap(f'END {how} {self.shiftingTabs=} {nf=} {self.shiftSign=}')
 
-    def setn_cmd(self, how, txt='', dbg=1):
+    def setn_cmd(self, how, txt='', dbg=1): # optimize str concat?
         if not self.settingN: self.settingN = 1   ;  self.setNtxt = '' ;  self.log(f'BGN {how} {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
         elif txt.isdecimal(): self.setNtxt += txt                      ;  self.log(   f'Concat {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
         elif txt == ' ':      self.setNvals.append(int(self.setNtxt))  ;  self.log(   f'Append {txt=} {self.settingN=} {self.setNvals=}') if dbg else None   ;  self.setNtxt = ''
@@ -2294,7 +2294,7 @@ class Tabs(pyglet.window.Window):
             else:   self.toggleChordName(    how, cn)
         if dbg:     self.dumpSmap(f'END {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
 
-    def toggleChordNameHits(self, how, cn, dbg=1):
+    def toggleChordNameHits(self, how, cn, dbg=1): # optimize str concat?
         mli = self.cobj.mlimap   ;   mks = list(mli.keys())
         if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   self.log(msg)   ;   self.quit(msg)
         ivals =  [ u[1] for u in mli[cn][0] ]
@@ -2446,7 +2446,7 @@ class Tabs(pyglet.window.Window):
         self.snapReg  = 1
         if dbg: self.log(f'{self.snapWhy=} {self.snapType=} {self.snapReg=} {self.snapId=}')
 
-    def snapshot(self, why='', typ='', dbg=0, dbg2=1):
+    def snapshot(self, why='', typ='', dbg=0, dbg2=1): # optimize str concat?
         WHY       =  f'{why}' if why else self.snapWhy
         TYPE      = f'.{typ}' if typ else f'.{self.snapType}'
         SNAP_ID   = f'.{self.snapId}'
