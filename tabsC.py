@@ -49,7 +49,7 @@ class Tabs(pyglet.window.Window):
         self.Y_TOP     = 0  ;  self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0  ;  self.RESIZE_FONTS = 1
         self.AUTO_SAVE = 0  ;  self.CAT         = 1  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN  = 0  ;  self.LONG_TXT = 0
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RD_STDOUT  = 0  ;  self.RESIZE       = 1  ;  self.VARROW   = 1
-        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 0  ;  self.VRBY         = 0  ;  self.OIDS     = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 1  ;  self.VRBY         = 0  ;  self.OIDS     = 0
         self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD   = 0  ;  self.STRETCH  = 0
         self.LL        = 0
         self.SS        = set() if 0 else {0, 1, 2, 3}
@@ -286,10 +286,7 @@ class Tabs(pyglet.window.Window):
         self.createTniks()
         self.ks = util.nic2KS(self.nic)
         self.log( util.fmtKSK(self.ks[util.KSK]), f=2)
-        if self.TEST:
-            self.test1A(1)  ;  self.test1A(1, o=0)  ;  self.test1A(0, o=1)
-            self.test1B(1)  ;  self.test1B(1, o=2)
-            self.test1C(1)  ;  self.test1C(1, o=3)
+        if self.TEST: self.test()
 
     def test(self, j=10):
         self.log(f'{self.ntsl()=}')
@@ -323,54 +320,6 @@ class Tabs(pyglet.window.Window):
 #        for i in range(len(self.tabls) * ns):
 #            self.plc2cn_(p, l, c, dbg=1)
         self.dumpTniksSfx(f'END {j=} test')
-    ####################################################################################################################################################################################################
-    @staticmethod
-    def test1A(t, m='C', o=-1, d=7):
-        ntype = Notes.TYPE  ;  Notes.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
-        slog(f'{t=} {m=} {d=}')
-        for i in range(Notes.NTONES):
-            j = (i * d) % Notes.NTONES
-            k = Notes.nextIndex(j, d)
-            n = Notes.name(k)  ;  n += f'{o}' if o>=0 else ''
-            slog(f'{i+1:2} {m:3} {j:2} {d:2} {k:2} {n:3}')  ;  m = n
-        Notes.TYPE = ntype
-    @staticmethod
-    def test1B(t, m='C', o=-1, iv='5'):
-        ntype = Notes.TYPE  ;  Notes.TYPE = t  ;  m = f'{m}{o}' if o>=0 else m
-        slog(f'{t=} {m=} {iv=}')
-        for i in range(Notes.NTONES):
-            n = Notes.nextName(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
-            slog(f'{i+1:2} {m:3} {iv:2} {n:3}')  ;  m = n
-        Notes.TYPE = ntype
-    @staticmethod
-    def test1C(t, m='C', o=-1, iv='5'):
-        ntype = Notes.TYPE  ;  Notes.TYPE = t ;  m = f'{m}{o}' if o>=0 else m
-        slog(f'{t=} {m=} {iv=}')
-        for i in range(Notes.NTONES):
-            n =  Notes.nextName(m, iv, 1 if o>=0 else 0)  ;  n += f'{o}' if o>=0 else ''
-            p = (Notes.index(     n, 1 if o>=0 else 0) - 1) % Notes.NTONES
-            q =  Notes.name(p, n2=1)                 ;  q += f'{o}' if o>=0 else ''
-            slog(f'{i+1:2} {m:3} {iv:2} {n:3} {p:2} {q:3}')  ;  m = n
-        Notes.TYPE = ntype
-    @staticmethod
-    def test1F(iv):
-        j  = Notes.V2I[iv] - 1
-        iv = Notes.I2V[j]
-        m = 'C'
-        for i in range(Notes.NTONES):
-            n = Notes.nextName(m, iv)
-            slog(f'{i+1:2} {m:2} {iv:2} {n:2}')
-            m = n
-    ####################################################################################################################################################################################################
-    @staticmethod
-    def test2A():
-        f = 0     ;  slog(f'{f=} STD OUT  ONLY',        f=f)
-        f = 1     ;  slog(f'{f=} LOG FILE ONLY',        f=f)
-        f = 2     ;  slog(f'{f=} LOG FILE AND STD OUT', f=f)
-    def test2B(self):
-        f = 0     ;  self.log(f'{f=} STD OUT  ONLY',        f=f)
-        f = 1     ;  self.log(f'{f=} LOG FILE ONLY',        f=f)
-        f = 2     ;  self.log(f'{f=} LOG FILE AND STD OUT', f=f)
     ####################################################################################################################################################################################################
     def lenA(self):                   return [ len(_) for _ in self.A ]
     def lenB(self):                   return [ len(_) for _ in self.B ]
@@ -1690,18 +1639,6 @@ class Tabs(pyglet.window.Window):
 #                util.updNotes( 5, 'F', 'E#', Notes.TYPE, -1)
 #                util.updNotes( 4, 'E', 'Fb', Notes.TYPE, -1)
 #                util.updNotes( 0, 'C', 'B#', Notes.TYPE, -1)
-
-    def NEW__setNote(self, text, cc, t, pos=1, dbg=1):
-        old = self.notes[cc].text
-#        text = imap[2][0] if imap and imap[2] else self.tblank
-        if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={old}', pos=pos)
-        if dbg: self.log(util.fmtKSK(self.ks[util.KSK]))
-        if old in Notes.N2I:
-            i  =  Notes.N2I[old]   ;   self.nic[i] -= 1
-            if self.nic[i] <= 0:
-                del self.nic[i]    ;   util.dumpNic(self.nic)
-        self.notes[cc].text = text
-        if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
     ####################################################################################################################################################################################################
     def getImap(self, p=None, l=None, c=None, dbg=1, dbg2=1):
         dl    = self.dl()

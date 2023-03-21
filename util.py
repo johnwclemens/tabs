@@ -36,10 +36,8 @@ def dumpData(w=2, d='', p=0): #fix me
     slog(f'[I2F2:     {len(Notes.I2F2):2}] [{fmtm(Notes.I2F2, w=x, wv=w, d=d)}]', p=p)
     slog(f'[I2S2:     {len(Notes.I2S2):2}] [{fmtm(Notes.I2S2, w=x, wv=w, d=d)}]', p=p)
     slog(f'[I2N[-1]:  {len(Notes.I2N[-1] ):2}] [{fmtm(Notes.I2N[-1],   w=q, wv=z, d=d)}]', p=p)
-#    slog(f'[I2N[ 0]:  {len(Notes.I2N[ 0] ):2}] [{fmtm(Notes.I2N[ 0],   w=q, wv=z, d=d)}]', p=p)
     slog(f'[I2N[ 1]:  {len(Notes.I2N[ 1] ):2}] [{fmtm(Notes.I2N[ 1],   w=q, wv=z, d=d)}]', p=p)
     slog(f'[I2N2[-1]: {len(Notes.I2N2[-1] ):2}] [{fmtm(Notes.I2N2[-1], w=q, wv=z, d=d)}]', p=p)
-#    slog(f'[I2N2[ 0]: {len(Notes.I2N2[ 0] ):2}] [{fmtm(Notes.I2N2[ 0], w=q, wv=z, d=d)}]', p=p)
     slog(f'[I2N2[ 1]: {len(Notes.I2N2[ 1] ):2}] [{fmtm(Notes.I2N2[ 1], w=q, wv=z, d=d)}]', p=p)
     slog(f'[I2V:      {len(Notes.I2V ):2}] [{fmtm(Notes.I2V,  w=x, wv=w, d=d)}]', p=p)
     slog(f'[V2I:      {len(Notes.V2I ):2}] [{fmtm(Notes.V2I,  w=u, wv=y, d=d)}]', p=p)
@@ -183,10 +181,6 @@ class Strings(object):
         if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
         return i
 
-#                    if   j == 5  and k ==  6 or k == -5:  Notes.I2S[j] = 'E#'  ;  Notes.F2S['F'] = 'E#'
-#                    elif j == 0  and k ==  7 or k == -5:  Notes.I2S[j] = 'B#'  ;  Notes.F2S['C'] = 'B#'
-#                    elif j == 11 and k == -6 or k ==  5:  Notes.I2F[j] = 'Cb'  ;  Notes.S2F['B'] = 'Cb'
-#                    elif j == 4  and k == -7 or k ==  5:  Notes.I2F[j] = 'Fb'  ;  Notes.S2F['E'] = 'Fb'
     def tab2nn(self, tab, s, nic=None, dbg=1):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = ''
@@ -281,35 +275,35 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None):
     lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts, f'{type(lst)=} {lts=}'
     if d == '':    d2 = ''
-    w   = w   if w else ''   ;   t = ''
+    w   = w   if w else ''   ;   t = []
     sl  = '-'               if ll is not None and ll<0 else '+' if ll is not None and ll>=0 else ''
     s   = f'{sl}{len(lst)}' if ll is not None          else ''
     for i, l in enumerate(lst):
         if type(l) in lts:
-            if type(w) in lts:               t += fmtl(l, w[i], u, d, d2, sep, ll)
-            else:                            t += fmtl(l, w,    u, d, d2, sep, ll)
+            if type(w) in lts:               t.append(fmtl(l, w[i], u, d, d2, sep, ll))
+            else:                            t.append(fmtl(l, w,    u, d, d2, sep, ll))
         else:
             ss = sep if i < len(lst)-1 else ''
             u = '' if u is None else u
             if   type(l) is type:            l =  str(l)
             elif l is None:                  l =  'None'
-            if   type(w) in lts:             t += f'{l:{u}{w[i]}}{ss}'
-            elif type(l) in dtn:             t += f'{l:{u}{w   }}{ss}'
-            elif type(l) in dts:             t += f'{l:{u}{w   }}{ss}'
-            else:                            t += f'{l}{ss}'
-    return s + d + t + d2
+            if   type(w) in lts:             t.append(f'{l:{u}{w[i]}}{ss}')
+            elif type(l) in dtn:             t.append(f'{l:{u}{w   }}{ss}')
+            elif type(l) in dts:             t.append(f'{l:{u}{w   }}{ss}')
+            else:                            t.append(f'{l}{ss}')
+    return s + d + ''.join(t) + d2
 ########################################################################################################################################################################################################
 def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', sep=' ', ll=None):
-    w  = w  if w  else ''   ;   t = ''
+    w  = w  if w  else ''   ;  t = []
     wv = wv if wv else w
     if d=='':   d2 = ''
     u  = '' if u  is None else u
     uv = '' if uv is None else uv
     for i, (k, v) in enumerate(m.items()):
         ss = sep if i < len(m) - 1 else ''
-        if   type(v) in (list, tuple, set):  t += f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2}{ss}'
-        elif type(v) in (int, str):          t += f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}'
-    return d + t + d2 # .rstrip()
+        if   type(v) in (list, tuple, set):  t.append(f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2}{ss}')
+        elif type(v) in (int, str):          t.append(f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}')
+    return ''.join(t)
 ########################################################################################################################################################################################################
 def ev(obj):         return f'{eval(f"{obj!r}")}'
 def fColor(c, d=1): (d, d2) = ("[", "]") if d else ("", "")  ;  return f'{fmtl(c, w=3, d=d, d2=d2):17}'

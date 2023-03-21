@@ -132,17 +132,17 @@ class Chord(object):
 
     @staticmethod
     def dumpLimap2(limap, key, imi=-1):
-        slog(f'{key:3} {imi}', p=0, e='')
+        slog(f'{key:3} {imi}', p=0, e=' ')
         [ slog(f'{m[3]:12} {"".join(f"{i:x}" for i in m[1]):6}', p=0, e='') for m in limap ]
         slog(p=0)
 
     @staticmethod
     def dumpLimap3(limap, key, imi=-1):
-        slog(f'{key:3} {imi}', p=0, e=' ')   ;   msg1, msg2 = '', ''
+        slog(f'{key:3} {imi}', p=0, e=' ')   ;   msg1, msg2 = [], []
         for m in limap:
-            msg1 += f'{"".join(f"{i:x}" for i in m[1]):6} '
-            msg2 += f'{"".join(m[0]):12} '
-        slog(f'{msg1:44}{msg2}', p=0)
+            msg1.append(f'{"".join(f"{i:x}" for i in m[1]):6} ')
+            msg2.append(f'{"".join(m[0]):12} ')
+        slog(f'{"".join(msg1):44}{"".join(msg2)}', p=0)
 
     @staticmethod
     def dumpImap(imap, why='', f=0):
@@ -177,10 +177,10 @@ class Chord(object):
     def fsort(ivals): s = set([ i for i in ivals ])   ;   return sorted(list(s))
     ####################################################################################################################################################################################################
     @staticmethod
-    def key2Indices(k):
+    def key2Indices(k): # N/A?
         t = ''   ;   r = []
         for j in k:
-            if j != ' ': t += j
+            if j != ' ': t += j # optimize str concat
             else:        r.append(Notes.V2I[t])  ;  t = ''
         r.append(Notes.V2I[t])
         return r
