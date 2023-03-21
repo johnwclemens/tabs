@@ -49,7 +49,7 @@ class Tabs(pyglet.window.Window):
         self.Y_TOP     = 0  ;  self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0  ;  self.RESIZE_FONTS = 1
         self.AUTO_SAVE = 0  ;  self.CAT         = 1  ;  self.CHECKERED    = 0  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN  = 0  ;  self.LONG_TXT = 0
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RD_STDOUT  = 0  ;  self.RESIZE       = 1  ;  self.VARROW   = 1
-        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 1  ;  self.VRBY         = 0  ;  self.OIDS     = 0
+        self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 0  ;  self.VRBY         = 0  ;  self.OIDS     = 0
         self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD   = 0  ;  self.STRETCH  = 0
         self.LL        = 0
         self.SS        = set() if 0 else {0, 1, 2, 3}
@@ -521,9 +521,10 @@ class Tabs(pyglet.window.Window):
                 for l in range(len(data[p])):
                     if dbg: self.log(f'writing {l+1}{util.ordSfx(l+1)} line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
                     for r in range(len(data[p][l])):
-                        text = ''
+                        text = []
                         for c in range(len(data[p][l][r])):
-                            text += data[p][l][r][c]
+                            text.append(data[p][l][r][c])
+                        text = ''.join(text)
                         if dbg: self.log(f'writing {r+1}{util.ordSfx(r+1)} string {text}', p=0)  # if dbg  else  self.log(text, p=0)
                         DATA_FILE.write(f'{text}\n')
                     DATA_FILE.write('\n')  #   if l < nl:
@@ -1072,7 +1073,7 @@ class Tabs(pyglet.window.Window):
         if dbg and self.VRBY >= 2:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
             msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
-            msg += msg2 if p else " " * len(msg2)
+            msg += msg2 if p else B * len(msg2)
             self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
         return n, i, x, y, w, h
     ####################################################################################################################################################################################################
@@ -2097,13 +2098,13 @@ class Tabs(pyglet.window.Window):
         if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
     ####################################################################################################################################################################################################
     def copyTabs(self, how, dbg=1):
-        self.dumpSmap(f'BGN {how}')   ;   nt = self.n[T]   ;   style = NORMAL_STYLE   ;   text = ''
+        self.dumpSmap(f'BGN {how}')   ;   nt = self.n[T]   ;   style = NORMAL_STYLE   ;   text = []
         for k in list(self.smap.keys()):
             k *= nt
             if self.LL:  self.setLLStyle(k, style)
-            text += self.setTNIKStyle(k, nt, style)
-            if dbg: text += ' '
-        if dbg:         self.log(f'{text=}')
+            text.append(self.setTNIKStyle(k, nt, style))
+            if dbg: text.append(' ')
+        if dbg:         self.log(f'{"".join(text)=}')
         self.dumpSmap(f'END {how}')
         if self.SNAPS:  self.regSnap(f'{how}', 'COPY')
     ####################################################################################################################################################################################################
@@ -2318,7 +2319,7 @@ class Tabs(pyglet.window.Window):
 
     def toggleChordName(self, how, cn, dbg=1, dbg2=1):
         cc = self.cn2cc(cn)   ;   mli = self.cobj.mlimap
-        p, l, c, t = self.cc2plct(cc)    ;   msg = ''
+        p, l, c, t = self.cc2plct(cc)     ;   msg = ''
         if not self.ikeys and not self.kords: msg +=  'ERROR: Both ikeys and chords are Empty '
         if cn not in mli:                     msg += f'ERROR: {cn=} not in mks={fmtl(list(mli.keys()))}'
         if msg: self.log(msg)   ;   return
@@ -2565,21 +2566,22 @@ def initRGB(dbg=1):
     return RGB.keys()
 ########################################################################################################################################################################################################
 def _initRGB(key, rgb, dv=32, n=None, dbg=2):
-    colors = []  ;  lrgb, lopc = len(rgb), len(OPC)  ;  msg, msgR, msgG, msgB = '', [], [], []  ;  n = n + 1 if n is not None else lopc  ;  opc, color = None, None
+    colors = []  ;  lrgb, lopc = len(rgb), len(OPC)  ;  msg, msgR, msgG, msgB = [], [], [], []  ;  n = n + 1 if n is not None else lopc  ;  opc, color = None, None
     diffs  = [ rgb[i] - rgb[i]/dv for i in range(lrgb) ]
     steps  = [ diffs[i]/(n-1)     for i in range(lrgb) ]
-    if dbg: msg = f'{key:3}:   O=['
+    if dbg: msg.append(f'{key:3}:   O=[')
     for j in range(n):
         clrs = []
         if dbg > 2: slog(f'{key:4} {fmtl(rgb, w=3)} {opc=:2} {OPC[opc]:3} {dv=} {n=} {fmtl(diffs, w=".2f")} ', e='');  slog(fmtl(steps, w=".2f"), p=0, f=1)
         for opc in range(lopc):
-            if dbg: msg += f'{OPC[opc]:3} ' if not j else ''
+            if dbg: msg.append(f'{OPC[opc]:3} ' if not j else '')
             color = list([ fri(rgb[i]/dv + j*steps[i]) for i in range(lrgb) ])  ;  color.append(OPC[opc])  ;  clrs.append(tuple(color))
             if   dbg > 1:       slog(f'{j:2} {key:4} {util.fColor(color)}', p=0, e=B)
         slog(p=0)
         if dbg: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
         colors.append(clrs)
     if dbg:
+        msg = ''.join(msg)
         slog( f'{msg[:-1]}] {fmtl(diffs, w="5.1f")} {fmtl(steps, w="4.1f")}', p=0)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
         for i, msg in enumerate(msgs): slog(f'       {rgb[i]}={fmtl(msg, w=3)}', p=0)
     global RGB  ;  RGB[key] = colors
