@@ -258,14 +258,18 @@ class Notes(object):#0        :1         :3         :4         :5         :6    
         if dbg:   slog(f'{why} {path}')
         with open(path, 'w') as CSV_FILE:
             n   = Notes.NTONES  ;    s  = Notes.SHRP  ;    f  = Notes.FLAT
-            i2n = Notes.I2N     ;  f2s  = Notes.F2S   ;  s2f  = Notes.S2F   ;  tks1 = Notes.TKS1
-            i2m = Notes.I2N2    ;  f2s2 = Notes.F2S2  ;  s2f2 = Notes.S2F2  ;  tks2 = Notes.TKS2
+            i2n = Notes.I2N     ;  f2s  = Notes.F2S   ;  s2f  = Notes.S2F   ;  tks1 = Notes.TKS1  ;   i2f = Notes.I2F   ;   i2s = Notes.I2S
+            i2m = Notes.I2N2    ;  f2s2 = Notes.F2S2  ;  s2f2 = Notes.S2F2  ;  tks2 = Notes.TKS2  ;  i2f2 = Notes.I2F2  ;  i2s2 = Notes.I2S2
             slog(f'{CSV_FILE.name:40}', p=0)
             csv = f' ,{fmtl([ r for r in range(21) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
             csv = f'F2S,{ fmtl([ f"{i2n[f][k]}:{f2s[i2n [f][k]]}"  if k in tks1 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
             csv = f'F2S2,{fmtl([ f"{i2m[f][k]}:{f2s2[i2m[f][k]]}"  if k in tks2 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
             csv = f'S2F,{ fmtl([ f"{i2n[s][k]}:{s2f[i2n [s][k]]}"  if k in tks1 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
             csv = f'S2F2,{fmtl([ f"{i2m[s][k]}:{s2f2[i2m[s][k]]}"  if k in tks2 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2F,{ fmtl([ f"{k}:{i2f [k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2F2,{fmtl([ f"{k}:{i2f2[k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2S,{ fmtl([ f"{k}:{i2s [k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2S2,{fmtl([ f"{k}:{i2s2[k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
         size = path.stat().st_size   ;   slog(f'{size=}')
         return size
 #            _ = [ f'{i2n[k]}:{f2s[i2n[k]]}'  if k in t1ks else B for k in range(n) ]
