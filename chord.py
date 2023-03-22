@@ -199,7 +199,7 @@ class Chord(object):
             for k in umapKeys:
                 v = self.umap[k]
                 k = '\'' + k + '\''
-                slog(f'{k:19}: ({v[0]}, {fmtl(v[1], sep=",", d2="],"):15})', p=0)
+                slog(f'{k:19}: ({v[0]}, {fmtl(v[1], s=",", d2="],"):15})', p=0)
             slog(f'END umap len={len(self.umap)}')
 
     def dumpOMAP(self, catpath=None, merge=0):
@@ -241,8 +241,8 @@ class Chord(object):
                 v = omap[keyStr]
                 rankSet = set()  ;  rankSet.add(v[0])
                 if not catfile: count += 1  ;  none += 1 if not v[2] else 0  ;  nord += 1 if v[0] == rank else 0
-                v2 = fmtl(v[2], sep='\',\'', d='[\'', d2='\']),') if v[2] else '[]),' if type(v[2]) is list else 'None),'
-                if dbg: slog(f'{keyStrFmt:19}: ({v[0]}, {fmtl(v[1], sep=",", d2="],"):15} {v2:28} # ', p=0, f=file, e='')
+                v2 = fmtl(v[2], s='\',\'', d='[\'', d2='\']),') if v[2] else '[]),' if type(v[2]) is list else 'None),'
+                if dbg: slog(f'{keyStrFmt:19}: ({v[0]}, {fmtl(v[1], s=",", d2="],"):15} {v2:28} # ', p=0, f=file, e='')
                 cycSet =  set()   ;   cycSet.add(tuple(ii))
                 for _ in range(len(ii) - 1):
                     ii = self.rotateIndices(ii)

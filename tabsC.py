@@ -203,7 +203,7 @@ class Tabs(pyglet.window.Window):
         return [RGB[key0][rgb0][opc0], RGB[key1][rgb1][opc1]]
     ####################################################################################################################################################################################################
     def _initData(self, dbg=1):
-        self._initCsvPath()  ;  self.saveCsvFile('_initData', self.csvPath)
+        self._initCsvPath()  ;  Notes.genCsvFile('_initData', self.csvPath)
         self._initDataPath()
         if self.GEN_DATA: self.genDataFile(self.dataPath1)
         self.readDataFile(self.dataPath1)
@@ -487,26 +487,26 @@ class Tabs(pyglet.window.Window):
         if self.RESIZE: self.resizeTniks()
 #        if dbg and self.SNAPS: self.regSnap(f'{why2}{why}', 'RSIZ')
     ####################################################################################################################################################################################################
-    def saveCsvFile(self, why, path, dbg=1):
+    def OLD__saveCsvFile(self, why, path, dbg=1):
         if dbg:   self.log(f'{why} {path}')
         with open(path, 'w') as CSV_FILE:
             self.log(f'{CSV_FILE.name:40}', p=0)
-            csv = f' ,{fmtl([ r for r in range(21) ], d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'F2S,{      fmtm(Notes.F2S,        d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'F2S2,{     fmtm(Notes.F2S2,       d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'S2F,{      fmtm(Notes.S2F,        d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'S2F2,{     fmtm(Notes.S2F2,       d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2F,{      fmtm(Notes.I2F,        d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2F2,{     fmtm(Notes.I2F2,       d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2S,{      fmtm(Notes.I2S,        d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2S2,{     fmtm(Notes.I2S2,       d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2V,{      fmtm(Notes.I2V,        d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'V2I,{      fmtm(Notes.V2I,        d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'N2I,{      fmtm(Notes.N2I,        d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2N[-1],{  fmtm(Notes.I2N[-1],    d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2N2[-1],{ fmtm(Notes.I2N2[-1],   d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2N[1],{   fmtm(Notes.I2N[1],     d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2N2[1],{  fmtm(Notes.I2N2[1],    d="", sep=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f' ,{fmtl([ r for r in range(21) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'F2S,{      fmtm(Notes.F2S,        d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n') # 1 3 6 8 a
+            csv = f'F2S2,{     fmtm(Notes.F2S2,       d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n') # 0 4 5 b
+            csv = f'S2F,{      fmtm(Notes.S2F,        d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n') # 1 3 6 8 a
+            csv = f'S2F2,{     fmtm(Notes.S2F2,       d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n') # 0 4 5 b
+            csv = f'I2F,{      fmtm(Notes.I2F,        d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2F2,{     fmtm(Notes.I2F2,       d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2S,{      fmtm(Notes.I2S,        d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2S2,{     fmtm(Notes.I2S2,       d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2V,{      fmtm(Notes.I2V,        d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'V2I,{      fmtm(Notes.V2I,        d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'N2I,{      fmtm(Notes.N2I,        d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2N[-1],{  fmtm(Notes.I2N[-1],    d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2N2[-1],{ fmtm(Notes.I2N2[-1],   d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2N[1],{   fmtm(Notes.I2N[1],     d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'I2N2[1],{  fmtm(Notes.I2N2[1],    d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
         size = path.stat().st_size   ;   self.log(f'{self.fmtn()} {self.fmtdl()} {size=}')
         return size
     ####################################################################################################################################################################################################

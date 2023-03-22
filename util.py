@@ -200,11 +200,25 @@ class Strings(object):
         if dbg and nict:    slog(f'tab={tab} fn={fn:2} s={s} i={i:2} j={j:x} name={name:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
 ########################################################################################################################################################################################################
-class Notes(object):
-    F2S     = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'           } # 5/9
-    S2F     = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           } # 5/9
-    F2S2    = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                  'Cb':'B' } # 4/9
-    S2F2    = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B':'Cb' } # 4/9
+class Notes2(object): #0       :1         :2         :3         :4         :5         :6         :7         :8         :9         :a         :b     #  2    7 9  #
+    F2S     = {            'Db':'C#',            'Eb':'D#',                       'Gb':'F#',            'Ab':'G#',            'Bb':'A#'            } # 1 3  6 8 a # 5/9
+    S2F     = {            'C#':'Db',            'D#':'Eb',                       'F#':'Gb',            'G#':'Ab',            'A#':'Bb'            } # 1 3  6 8 a # 5/9
+    F2S2    = { 'C' :'B#',                                  'Fb':'E' , 'F' :'E#',                                                        'Cb':'B'  } #0   45     b# 4/9
+    S2F2    = { 'B#':'C' ,                                  'E' :'Fb', 'E#':'F' ,                                                        'B' :'Cb' } #0   45     b# 4/9
+#                   :0         :1         :2        :3         :4         :5         :6         :7          :8         :9         :a         :b
+    V2I     = {  'R':0   ,          'b2':1, '2':2,  'm3':3, 'M3':4,         '4':5,          'b5':6, '5':7,  '#5':8, '6':9,  'b7':10, '7':11         } # 8/12/16
+    I2V     = {   0:'R'  ,          1:'b2', 2:'2',  3:'m3', 4:'M3',         5:'4',          6:'b5', 7:'5',  8:'#5', 9:'6',  10:'b7', 11:'7'         } # 8/12/16
+    I2F     = {               0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'       } # 8/12/16
+    I2S     = {               0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'       } # 8/12/16
+    I2F2    = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' } # 8/12/16
+    I2S2    = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'         } # 8/12/16
+    N2I     = { 'B#':0, 'C':0, 'C#':1, 'Db':1, 'D':2, 'D#':3, 'Eb':3, 'E':4, 'Fb':4, 'E#':5, 'F':5, 'F#':6, 'Gb':6, 'G':7, 'G#':8, 'Ab':8, 'A':9, 'A#':10, 'Bb':10, 'B':11, 'Cb' :11 } #21
+class Notes(object):#0        :1         :3         :4         :5         :6         :8        :a         :b       #  2    7 9  #
+    T0KS, T1KS, T2KS = [2, 7, 9], [1, 3, 6, 8, 10], [0, 4, 5, 11]
+    F2S     = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'           } # 1 3  6 8 a # 5/9
+    S2F     = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           } # 1 3  6 8 a # 5/9
+    F2S2    = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                 'Cb':'B'  } #0   45     b# 4/9
+    S2F2    = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B':'Cb' } #0   45     b# 4/9
     V2I     = { 'R':0,          'b2':1, '2':2,  'm3':3, 'M3':4,         '4':5,          'b5':6, '5':7,  '#5':8, '6':9,  'b7':10, '7':11         } # 8/12/16
     I2V     = { 0:'R',          1:'b2', 2:'2',  3:'m3', 4:'M3',         5:'4',          6:'b5', 7:'5',  8:'#5', 9:'6',  10:'b7', 11:'7'         } # 8/12/16
     I2F     = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'         } # 8/12/16
@@ -238,6 +252,22 @@ class Notes(object):
         k = Notes.nextIndex(i, j)
         m = Notes.name(k)
         return m
+
+    @staticmethod
+    def genCsvFile(why, path, dbg=1):
+        if dbg:   slog(f'{why} {path}')
+        with open(path, 'w') as CSV_FILE:
+            n   = Notes.NTONES   ;     t = Notes.TYPE
+            i2n = Notes.I2N[ t]  ;  f2s  = Notes.F2S   ;  t1ks = Notes.T1KS
+            i2m = Notes.I2N2[t]  ;  f2s2 = Notes.F2S2  ;  t2ks = Notes.T2KS
+            slog(f'{CSV_FILE.name:40}', p=0)
+            csv = f' ,{fmtl([ r for r in range(21) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            _ = [ f'{i2n[k]}:{f2s[i2n[k]]}'  if k in t1ks else B for k in range(n) ]
+            csv = f'F2S,{ fmtl(_, d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            _ = [ f'{i2m[k]}:{f2s2[i2m[k]]}' if k in t2ks else B for k in range(n) ]
+            csv = f'F2S2,{fmtl(_, d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+        size = path.stat().st_size   ;   slog(f'{size=}')
+        return size
 ########################################################################################################################################################################################################
 def updNotes(i, m, n, t, d=0):
     if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
@@ -270,20 +300,20 @@ def fmtKSK(k):
     jz  = [ f'{j:x}' for j in jz ]
     return f'{s}{k} {nt} [{m:2} {i:x}] {fmtl(ms, w=2)} {fmtl(iz)} {fmtl(jz)} {fmtl(ns, w=2)}'
 ########################################################################################################################################################################################################
-def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None): # optimize str concat?
+def fmtl(lst, w=None, u=None, d='[', d2=']', s=' ', ll=None): # optimize str concat?
     if   lst is None:   return  'None'
     lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts, f'{type(lst)=} {lts=}'
     if d == '':    d2 = ''
     w   = w   if w else ''   ;   t = []
-    sl  = '-'               if ll is not None and ll<0 else '+' if ll is not None and ll>=0 else ''
-    s   = f'{sl}{len(lst)}' if ll is not None          else ''
+    zl  = '-'               if ll is not None and ll<0 else '+' if ll is not None and ll>=0 else ''
+    z   = f'{zl}{len(lst)}' if ll is not None          else ''
     for i, l in enumerate(lst):
         if type(l) in lts:
-            if type(w) in lts:               t.append(fmtl(l, w[i], u, d, d2, sep, ll))
-            else:                            t.append(fmtl(l, w,    u, d, d2, sep, ll))
+            if type(w) in lts:               t.append(fmtl(l, w[i], u, d, d2, s, ll))
+            else:                            t.append(fmtl(l, w,    u, d, d2, s, ll))
         else:
-            ss = sep if i < len(lst)-1 else ''
+            ss = s if i < len(lst)-1 else ''
             u = '' if u is None else u
             if   type(l) is type:            l =  str(l)
             elif l is None:                  l =  'None'
@@ -291,16 +321,16 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', sep=' ', ll=None): # optimize str c
             elif type(l) in dtn:             t.append(f'{l:{u}{w   }}{ss}')
             elif type(l) in dts:             t.append(f'{l:{u}{w   }}{ss}')
             else:                            t.append(f'{l}{ss}')
-    return s + d + ''.join(t) + d2
+    return z + d + ''.join(t) + d2
 ########################################################################################################################################################################################################
-def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', sep=' ', ll=None):
+def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=' ', ll=None):
     w  = w  if w  else ''   ;  t = []
     wv = wv if wv else w
     if d=='':   d2 = ''
     u  = '' if u  is None else u
     uv = '' if uv is None else uv
     for i, (k, v) in enumerate(m.items()):
-        ss = sep if i < len(m) - 1 else ''
+        ss = s if i < len(m) - 1 else ''
         if   type(v) in (list, tuple, set):  t.append(f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2}{ss}')
         elif type(v) in (int, str):          t.append(f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}')
     return ''.join(t)
