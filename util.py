@@ -214,7 +214,7 @@ class Notes2(object): #0       :1         :2         :3         :4         :5   
     I2S2    = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'         } # 8/12/16
     N2I     = { 'B#':0, 'C':0, 'C#':1, 'Db':1, 'D':2, 'D#':3, 'Eb':3, 'E':4, 'Fb':4, 'E#':5, 'F':5, 'F#':6, 'Gb':6, 'G':7, 'G#':8, 'Ab':8, 'A':9, 'A#':10, 'Bb':10, 'B':11, 'Cb' :11 } #21
 class Notes(object):#0        :1         :3         :4         :5         :6         :8        :a         :b       #  2    7 9  #
-    T0KS, T1KS, T2KS = [2, 7, 9], [1, 3, 6, 8, 10], [0, 4, 5, 11]
+    TKS0, TKS1, TKS2 = [2, 7, 9], [1, 3, 6, 8, 10], [0, 4, 5, 11]
     F2S     = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'           } # 1 3  6 8 a # 5/9
     S2F     = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           } # 1 3  6 8 a # 5/9
     F2S2    = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                 'Cb':'B'  } #0   45     b# 4/9
@@ -257,17 +257,21 @@ class Notes(object):#0        :1         :3         :4         :5         :6    
     def genCsvFile(why, path, dbg=1):
         if dbg:   slog(f'{why} {path}')
         with open(path, 'w') as CSV_FILE:
-            n   = Notes.NTONES   ;     t = Notes.TYPE
-            i2n = Notes.I2N[ t]  ;  f2s  = Notes.F2S   ;  t1ks = Notes.T1KS
-            i2m = Notes.I2N2[t]  ;  f2s2 = Notes.F2S2  ;  t2ks = Notes.T2KS
+            n   = Notes.NTONES  ;    s  = Notes.SHRP  ;    f  = Notes.FLAT
+            i2n = Notes.I2N     ;  f2s  = Notes.F2S   ;  s2f  = Notes.S2F   ;  tks1 = Notes.TKS1
+            i2m = Notes.I2N2    ;  f2s2 = Notes.F2S2  ;  s2f2 = Notes.S2F2  ;  tks2 = Notes.TKS2
             slog(f'{CSV_FILE.name:40}', p=0)
             csv = f' ,{fmtl([ r for r in range(21) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            _ = [ f'{i2n[k]}:{f2s[i2n[k]]}'  if k in t1ks else B for k in range(n) ]
-            csv = f'F2S,{ fmtl(_, d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            _ = [ f'{i2m[k]}:{f2s2[i2m[k]]}' if k in t2ks else B for k in range(n) ]
-            csv = f'F2S2,{fmtl(_, d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'F2S,{ fmtl([ f"{i2n[f][k]}:{f2s[i2n [f][k]]}"  if k in tks1 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'F2S2,{fmtl([ f"{i2m[f][k]}:{f2s2[i2m[f][k]]}"  if k in tks2 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'S2F,{ fmtl([ f"{i2n[s][k]}:{s2f[i2n [s][k]]}"  if k in tks1 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+            csv = f'S2F2,{fmtl([ f"{i2m[s][k]}:{s2f2[i2m[s][k]]}"  if k in tks2 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
         size = path.stat().st_size   ;   slog(f'{size=}')
         return size
+#            _ = [ f'{i2n[k]}:{f2s[i2n[k]]}'  if k in t1ks else B for k in range(n) ]
+#            csv = f'F2S,{ fmtl(_, d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            _ = [ f'{i2m[k]}:{f2s2[i2m[k]]}' if k in t2ks else B for k in range(n) ]
+#            csv = f'F2S2,{fmtl(_, d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
 ########################################################################################################################################################################################################
 def updNotes(i, m, n, t, d=0):
     if   t  ==  Notes.FLAT:    Notes.I2F[i] = m

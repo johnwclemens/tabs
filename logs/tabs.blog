@@ -481,23 +481,23 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        B=[  0   1   1   1   2   2   2   3   3   3   4   4   4   5   5   5   6   6]
 2644 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
 2645 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
- 418 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
+ 423 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
- 434 util  parseCmdLine        1 short   -n n [] 
- 452 util  parseCmdLine        2 arg     1  n [1] 
- 452 util  parseCmdLine        3 arg     1  n [1 1] 
- 452 util  parseCmdLine        4 arg     10 n [1 1 10] 
- 452 util  parseCmdLine        5 arg     6  n [1 1 10 6] 
- 434 util  parseCmdLine        6 short   -S S [] 
- 452 util  parseCmdLine        7 arg     0  S [0] 
- 452 util  parseCmdLine        8 arg     1  S [0 1] 
- 452 util  parseCmdLine        9 arg     3  S [0 1 3] 
- 434 util  parseCmdLine       10 short   -i i [] 
- 452 util  parseCmdLine       11 arg     1  i [1] 
- 452 util  parseCmdLine       12 arg     1  i [1 1] 
- 452 util  parseCmdLine       13 arg     1  i [1 1 1] 
- 452 util  parseCmdLine       14 arg     6  i [1 1 1 6] 
- 454 util  parseCmdLine       options=[n:[1 1 10 6]] [S:[0 1 3]] [i:[1 1 1 6]]
+ 439 util  parseCmdLine        1 short   -n n [] 
+ 457 util  parseCmdLine        2 arg     1  n [1] 
+ 457 util  parseCmdLine        3 arg     1  n [1 1] 
+ 457 util  parseCmdLine        4 arg     10 n [1 1 10] 
+ 457 util  parseCmdLine        5 arg     6  n [1 1 10 6] 
+ 439 util  parseCmdLine        6 short   -S S [] 
+ 457 util  parseCmdLine        7 arg     0  S [0] 
+ 457 util  parseCmdLine        8 arg     1  S [0 1] 
+ 457 util  parseCmdLine        9 arg     3  S [0 1 3] 
+ 439 util  parseCmdLine       10 short   -i i [] 
+ 457 util  parseCmdLine       11 arg     1  i [1] 
+ 457 util  parseCmdLine       12 arg     1  i [1 1] 
+ 457 util  parseCmdLine       13 arg     1  i [1 1 1] 
+ 457 util  parseCmdLine       14 arg     6  i [1 1 1 6] 
+ 459 util  parseCmdLine       options=[n:[1 1 10 6]] [S:[0 1 3]] [i:[1 1 1 6]]
 2538 tabsC dumpGlobals        BASE_NAME = tabs
 2539 tabsC dumpGlobals        argv      = +15[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 1 3 -i 1 1 1 6]
 2540 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
@@ -507,11 +507,11 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
   27 tabsC __init__           BGN <class __main__.Tabs>
 2473 tabsC getFilePath        fdir=logs/ fsfx=.log
 2477 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2481 tabsC getFilePath        fsfx=.161.log
- 399 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 402 util  getFilePath        fileName =tabs.161.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.161.log)
- 399 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 402 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+2481 tabsC getFilePath        fsfx=.164.log
+ 404 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 407 util  getFilePath        fileName =tabs.164.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.164.log)
+ 404 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 407 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
   32 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
   41 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=UP  
   57 tabsC __init__           CODS=0 type(.idmap)=<class dict>
@@ -577,7 +577,7 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  271 chord _dumpOMAP          END len(OMAP)=581 catfile.name=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat len(r)=0
  220 chord dumpOMAP           END   len(OMAP)=581 len(umap)=0
  245 tabsC _initWindowA       BGN (  -1x-1  )
- 245 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001FB2C5A8940>
+ 245 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001FAA6CA8940>
  248 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
  248 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
  249 tabsC _initWindowA       END (  -1x-1  )
