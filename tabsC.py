@@ -2245,7 +2245,7 @@ class Tabs(pyglet.window.Window):
             elif self.kords and self.tabls:
                 tabtxt = self.tabls[i].text
                 text   = self.sobj.tab2nn(tabtxt, sn) if self.sobj.isFret(tabtxt) else self.tblank
-            if text in Notes.N2I and (Notes.N2I[text] != 2 and Notes.N2I[text] != 7 and Notes.N2I[text] != 9): #fix me
+            if text in Notes.N2I and (Notes.N2I[text] not in Notes.IS0):
                 cc = i * ns    ;   old = text
                 p, l, c, t = self.cc2plct(cc)   ;   cn = self.cc2cn(cc)
                 if   text in Notes.F2S:  text = Notes.F2S[text]
