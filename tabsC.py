@@ -203,7 +203,7 @@ class Tabs(pyglet.window.Window):
         return [RGB[key0][rgb0][opc0], RGB[key1][rgb1][opc1]]
     ####################################################################################################################################################################################################
     def _initData(self, dbg=1):
-        self._initCsvPath()  ;  Notes.genCsvFile('_initData', self.csvPath)
+#        self._initCsvPath()  ;  Notes.genCsvFile('_initData', self.csvPath)
         self._initDataPath()
         if self.GEN_DATA: self.genDataFile(self.dataPath1)
         self.readDataFile(self.dataPath1)
@@ -217,12 +217,12 @@ class Tabs(pyglet.window.Window):
         self.log(f'Updating n[P] {old=} {self.fmtn()}')
         self.tpb, self.tpp, self.tpl, self.tps, self.tpc = self.ntp(dbg=1, dbg2=1)
 
-    def _initCsvPath(self):
-        csvDir    = 'csv'  ;  csvSfx = '.csv'  ;  csvPfx = f'.{self.n[C]}'
-        csvName   = self.CSV_FNAME if self.CSV_FNAME else BASE_NAME + csvPfx + csvSfx
-        self.csvPath = BASE_PATH / csvDir / csvName
-        self.log(f'{csvName=}')
-        self.log(f'{self.csvPath=}', p=0)
+#    def _initCsvPath(self):
+#        csvDir    = 'csv'  ;  csvSfx = '.csv'  ;  csvPfx = f'.{self.n[C]}'
+#        csvName   = self.CSV_FNAME if self.CSV_FNAME else BASE_NAME + csvPfx + csvSfx
+#        self.csvPath = BASE_PATH / csvDir / csvName
+#        self.log(f'{csvName=}')
+#        self.log(f'{self.csvPath=}', p=0)
 
     def _initDataPath(self):
         dataDir   = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'.{self.n[C]}'
@@ -2501,6 +2501,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {dump=}')
 
     def cleanupLog(self):
+        CSV_FILE.close()
         self.log(f'Copying {LOG_FILE.name} to {self.lfSeqPath}')
         util.copyFile(LOG_PATH, self.lfSeqPath)
         self.log(f'closing {LOG_FILE.name}', ff=True)
@@ -2575,6 +2576,7 @@ BASE_NAME = BASE_PATH.stem
 SNAP_DIR  = 'snaps'
 SNAP_SFX  = '.png'
 LOG_FILE  = None
+CSV_FILE  = None
 ########################################################################################################################################################################################################
 B                     = ' '
 FIN                   = [1, 1, 1, 2, 1]
@@ -2610,9 +2612,10 @@ FONT_NAMES = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Couri
 ########################################################################################################################################################################################################
 prevPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
 LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
+CSV_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='csv',  fsfx='.csv')
 if LOG_PATH.exists():     util.copyFile(LOG_PATH, prevPath)
-with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE:
-    util.init(LOG_FILE, 0)
+with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE:
+    util.init(LOG_FILE, CSV_FILE, 0)
     slog(sys.argv[0], p=0,      f=2)
     slog(f'argv={fmtl(sys.argv[1:])}', f=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
@@ -2620,6 +2623,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE:
     def main():
         slog(f'{LOG_PATH=}',      f=2)
         slog(f'{LOG_FILE.name=}', f=2)
+        slog(f'{CSV_FILE.name=}', f=2)
         _ = Tabs()
         ret = pyglet.app.run()
         print(f'{ret=}')

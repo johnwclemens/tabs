@@ -8,6 +8,7 @@ M                = -7
 P                = 7
 OIDS             = 0
 LOG_FILE         = None
+CSV_FILE         = None
 MAX_FREQ_IDX     = 10 * 12 + 1
 MIN_IVAL_LEN     = 1
 MAX_STACK_DEPTH  = 0
@@ -22,11 +23,11 @@ STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpIm
 def t2sign(t=0):    return ' ' if not t else '+' if t==1 else ''
 def js2sign(l):     return [ '-' if k<0 else '+' if k>0  else ' ' for k in l ]
 
-def init(file, oid):
-    global LOG_FILE  ;  LOG_FILE = file  ;  global OIDS  ;  OIDS = oid
-    dumpData()
+def init(file, file2, oid):
+    global LOG_FILE  ;  LOG_FILE = file  ;  global CSV_FILE  ;  CSV_FILE = file2  ;  global OIDS  ;  OIDS = oid
+    dumpData(csv=1)
 
-def dumpData(w=2, d='', p=0):
+def dumpData(csv=0, w=2, d='', p=0):
     slog('BGN')     ;  x = f'{w}x'  ;  u = f'>{w}'  ;  y = f'<{w}x'  ;  z = f'<{w}'  ;  q = f'>{w}x'
     slog(f'[F2S:     {len(Notes.F2S):2}] [{fmtm(Notes.F2S, w=w,       d=d)}]', p=p)
     slog(f'[S2F:     {len(Notes.S2F):2}] [{fmtm(Notes.S2F, w=w,       d=d)}]', p=p)
@@ -43,28 +44,34 @@ def dumpData(w=2, d='', p=0):
     slog(f'[I2V:     {len(Notes.I2V ):2}] [{fmtm(Notes.I2V, w=x, wv=w, d=d)}]', p=p)
     slog(f'[V2I:     {len(Notes.V2I ):2}] [{fmtm(Notes.V2I, w=u, wv=y, d=d)}]', p=p)
     slog(f'[N2I:     {len(Notes.N2I ):2}] [{fmtm(Notes.N2I, w=u, wv=y, d=d)}]', p=p)
-    dumpNF()
-    dumpND()
+    dumpNF(csv)
+    dumpND(csv)
     dumpKSH()
     dumpKSV()
     slog('END')
 ########################################################################################################################################################################################################
-def dumpNF():
+def dumpNF(csv=0):
+    w, s, f = ('', ',', 3) if csv else ('^5', B, 1)
     slog(f'Note Frequencies in Hertz')   ;   msg = f'Piano Note Index{B*43}'  ;  nm = MAX_FREQ_IDX
-    slog(f'{msg}{fmtl([ i+1 for i in range(88) ], w="^5")}', p=0)
-    slog(f'Index{fmtl([ i+1 for i in range(nm) ], w="^5")}', p=0)
-    dumpFreqs(432)  ;  dumpFreqs(440)
-    slog(f'Flats{fmtl(list(FLATS),                w="^5")}', p=0)
-    slog(f'Shrps{fmtl(list(SHRPS),                w="^5")}', p=0)
+    slog(f'{msg}{fmtl([ i+1 for i in range(88) ], w=w, s=s)}', p=0, f=f)
+    slog(f'Index{fmtl([ i+1 for i in range(nm) ], w=w, s=s)}', p=0, f=f)
+    dumpFreqs(432, csv)  ;  dumpFreqs(440, csv)
+    slog(f'Flats{fmtl(list(FLATS),                w=w, s=s)}', p=0, f=f)
+    slog(f'Shrps{fmtl(list(SHRPS),                w=w, s=s)}', p=0, f=f)
 
-def dumpFreqs(r=440):
+def dumpFreqs(r=440, csv=0):
+    s, ff = (',', 3) if csv else (B, 1)
     fs = FREQS if r == 440 else FREQS2   ;   g = []   ;   ref = 'A 440' if r == 440 else  'A 432'
-    for f in fs:       g.append(f'{f:5.2f}' if f < 100 else f'{f:5.1f}' if f < 1000 else f'{f:5.0f}')
-    ' '.join(f'{g}')   ;   slog(f'{ref}{fmtl(g, w=5)} Hz', p=0)
+    for f in fs:
+        f = f'{f:5.2f}' if f < 100 else f'{f:5.1f}' if f < 1000 else f'{f:5.0f}'
+        g.append(f'{f}')
+    g = f'{s}'.join(g)
+    slog(f'{ref}{g} Hz', p=0, f=ff)
 ########################################################################################################################################################################################################
-def dumpND():
-    slog(f'I  F  S  IV   Notes Table {len(ND)}', p=0)
-    for i in range(len(ND)):   slog(f'{i:x} {fmtl(ND[i], w=2)}', p=0)
+def dumpND(csv=0):
+    d, s, f = ('', ',', 3) if csv else ('[', B, 1)
+    slog(f'I  F  S  IV   Notes Table {len(ND)}', p=0, f=f)
+    for i in range(len(ND)):   slog(f'{i:x} {fmtl(ND[i], w=2, d=d, s=s)}', p=0, f=f)
 ########################################################################################################################################################################################################
 def dumpKSV(ksd=None, p=0):
     dmpKSVHdr()   ;   ksd = KSD if ksd is None else ksd
@@ -255,32 +262,32 @@ class Notes(object):#0     :1         :3         :4         :5         :6       
         k = Notes.nextIndex(i, j)
         m = Notes.name(k)
         return m
-    @staticmethod
-    def genCsvFile(why, path, dbg=1):
-        if dbg:   slog(f'{why} {path}')
-        with open(path, 'w') as CSV_FILE:
-            n   = Notes.NTONES  ;    s = Notes.SHRP  ;    f = Notes.FLAT  ;  is1 = Notes.IS1  ;  is2 = Notes.IS2  ;  n2i = Notes.N2I
-            i2n = Notes.I2N     ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i2v = Notes.I2V
-            i4n = Notes.I4N     ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  v2i = Notes.V2I
-            slog(f'{CSV_FILE.name:40}', p=0)
-            csv = f' ,{   fmtl([ r for r in range(21) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'F2S,{ fmtl([ f"{i2n[f][k]}:{f2s[i2n[f][k]]}"  if k in is1 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'F4S,{ fmtl([ f"{i4n[f][k]}:{f4s[i4n[f][k]]}"  if k in is2 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'S2F,{ fmtl([ f"{i2n[s][k]}:{s2f[i2n[s][k]]}"  if k in is1 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'S4F,{ fmtl([ f"{i4n[s][k]}:{s4f[i4n[s][k]]}"  if k in is2 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2F,{ fmtl([ f"{k}:{i2f[k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I4F,{ fmtl([ f"{k}:{i4f[k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2S,{ fmtl([ f"{k}:{i2s[k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I4S,{ fmtl([ f"{k}:{i4s[k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'N2I,{ fmtl([ f"{k}:{v}" for k,v in n2i.items() ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2NF,{fmtl([ f"{k}:{i2n[f][k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I4NF,{fmtl([ f"{k}:{i4n[f][k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2NS,{fmtl([ f"{k}:{i2n[s][k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I4NS,{fmtl([ f"{k}:{i4n[s][k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'I2V,{ fmtl([ f"{k}:{v}" for k,v in i2v.items() ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-            csv = f'V2I,{ fmtl([ f"{k}:{v}" for k,v in v2i.items() ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
-        size = path.stat().st_size   ;   slog(f'{size=}')
-        return size
+#    @staticmethod
+#    def genCsvFile(why, path, dbg=1):
+#        if dbg:   slog(f'{why} {path}')
+#        with open(path, 'w') as CSV_FILE2:
+#            n   = Notes.NTONES  ;    s = Notes.SHRP  ;    f = Notes.FLAT  ;  is1 = Notes.IS1  ;  is2 = Notes.IS2  ;  n2i = Notes.N2I
+#            i2n = Notes.I2N     ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i2v = Notes.I2V
+#            i4n = Notes.I4N     ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  v2i = Notes.V2I
+#            slog(f'{CSV_FILE.name:40}', p=0)
+#            csv = f' ,{   fmtl([ r for r in range(21) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'F2S,{ fmtl([ f"{i2n[f][k]}:{f2s[i2n[f][k]]}"  if k in is1 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'F4S,{ fmtl([ f"{i4n[f][k]}:{f4s[i4n[f][k]]}"  if k in is2 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'S2F,{ fmtl([ f"{i2n[s][k]}:{s2f[i2n[s][k]]}"  if k in is1 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'S4F,{ fmtl([ f"{i4n[s][k]}:{s4f[i4n[s][k]]}"  if k in is2 else B for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'I2F,{ fmtl([ f"{k}:{i2f[k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'I4F,{ fmtl([ f"{k}:{i4f[k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'I2S,{ fmtl([ f"{k}:{i2s[k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'I4S,{ fmtl([ f"{k}:{i4s[k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'N2I,{ fmtl([ f"{k}:{v}" for k,v in n2i.items() ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'I2NF,{fmtl([ f"{k}:{i2n[f][k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'I4NF,{fmtl([ f"{k}:{i4n[f][k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'I2NS,{fmtl([ f"{k}:{i2n[s][k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'I4NS,{fmtl([ f"{k}:{i4n[s][k]}" for k in range(n) ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'I2V,{ fmtl([ f"{k}:{v}" for k,v in i2v.items() ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#            csv = f'V2I,{ fmtl([ f"{k}:{v}" for k,v in v2i.items() ], d="", s=",")}'  ;  CSV_FILE.write(f'{csv}\n')
+#        size = path.stat().st_size   ;   slog(f'{size=}')
+#        return size
 ########################################################################################################################################################################################################
 def updNotes(i, m, n, t, d=0):
     if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
@@ -386,6 +393,7 @@ def slog(t='', p=1, f=1, s=',', e='\n', ff=False):
     if   f == 0:  f = sys.stdout
     elif f == 1:  f = LOG_FILE
     elif f == 2:  f = LOG_FILE  ;  so = 1
+    elif f == 3:  f = CSV_FILE # ;  so = 1
     print(t, sep=s, end=e, file=f,    flush=ff)
     print(t, sep=s, end=e, file=None, flush=ff) if so else None
 ########################################################################################################################################################################################################
