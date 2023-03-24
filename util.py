@@ -53,22 +53,22 @@ def dumpData(csv=0, w=2, d='', p=0):
     slog('END')
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
-    w, s, f = ('', ',', 3) if csv else ('^5', B, 1)
-    slog(f'Note Frequencies in Hertz')   ;   msg = f'Piano Note Index{B*43}'  ;  nm = MAX_FREQ_IDX
-    slog(f'{msg}{fmtl([ i+1 for i in range(88) ], w=w, s=s)}', p=0, f=f)
-    slog(f'Index{fmtl([ i+1 for i in range(nm) ], w=w, s=s)}', p=0, f=f)
+    w, d, s, m, f = ('', '', ',', ',', 3) if csv else ('^5', '[', B, B*43, 1)
+    slog(f'Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   msg = f'Piano Note Index{m}'
+    slog(f'{msg}{fmtl([ i+1 for i in range(88) ], w=w, d=d, s=s)}', p=0, f=f)   ;  m = ',' if csv else ''  ;  msg =f'Index{m}'
+    slog(f'{msg}{fmtl([ i+1 for i in range(nm) ], w=w, d=d, s=s)}', p=0, f=f)
     dumpFreqs(432, csv)  ;  dumpFreqs(440, csv)
-    slog(f'Flats{fmtl(list(FLATS),                w=w, s=s)}', p=0, f=f)
-    slog(f'Shrps{fmtl(list(SHRPS),                w=w, s=s)}', p=0, f=f)
+    slog(f'Flats{m}{fmtl(list(FLATS),             w=w, d=d, s=s)}', p=0, f=f)
+    slog(f'Shrps{m}{fmtl(list(SHRPS),             w=w, d=d, s=s)}', p=0, f=f)
 
 def dumpFreqs(r=440, csv=0):
     s, ff = (',', 3) if csv else (B, 1)
-    fs = FREQS if r == 440 else FREQS2   ;   g = []   ;   ref = 'A 440' if r == 440 else  'A 432'
+    fs = FREQS if r == 440 else FREQS2   ;   g = []   ;   ref = '440A' if r == 440 else '432A'
     for f in fs:
         f = f'{f:5.2f}' if f < 100 else f'{f:5.1f}' if f < 1000 else f'{f:5.0f}'
         g.append(f'{f}')
-    g = f'{s}'.join(g)
-    slog(f'{ref}{g} Hz', p=0, f=ff)
+    g = f'{s}'.join(g)  ;  sfx = '' if csv else '] Hz'  ;  ref += f'{s}' if csv else ' ['
+    slog(f'{ref}{g}{sfx}', p=0, f=ff)
 ########################################################################################################################################################################################################
 def dumpND(csv=0):
     w, d, s, f = (0, '', ',', 3) if csv else (2, '[', B, 1)
