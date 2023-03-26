@@ -3,7 +3,9 @@ import sys, os, inspect, pathlib
 from collections import Counter
 from collections import OrderedDict as cOd
 
-B                = ' '
+W                = ' '
+Z                = ''
+Y                = ','
 M                = -7
 P                = 7
 OIDS             = 0
@@ -27,75 +29,77 @@ def init(file, file2, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global CSV_FILE  ;  CSV_FILE = file2  ;  global OIDS  ;  OIDS = oid
     dumpData(csv=1)
 ########################################################################################################################################################################################################
-def dumpData(csv=0): #, w=2, d='', p=0):
+def dumpData(csv=0):
     slog('BGN')
-#    OLD__dumpTest(w, d, p)
-    dumpTestA(csv)  ;  dumpTestB()
+    dumpTestA(csv)
     dumpNF(csv)
+    dumpTestB(csv)
     dumpND(csv)
     dumpKSH()
     dumpKSV()
     slog('END')
 ########################################################################################################################################################################################################
-def dumpTestB(w=2, d='', p=0):
-    x = f'{w}x'  ;  u = f'>{w}'  ;  y = f'<{w}x'  ;  z = f'<{w}'  ;  q = f'>{w}x'
-    slog('BGN')
-    slog(f'F2S [{fmtm(Notes.F2S, w=w,       d=d)}]', p=p)
-    slog(f'F4S [{fmtm(Notes.F4S, w=u, wv=z, d=d)}]', p=p)
-    slog(f'S2F [{fmtm(Notes.S2F, w=w,       d=d)}]', p=p)
-    slog(f'S4F [{fmtm(Notes.S4F, w=u, wv=z, d=d)}]', p=p)
-    slog(f'I2F [{fmtm(Notes.I2F, w=x, wv=w, d=d)}]', p=p)
-    slog(f'I4F [{fmtm(Notes.I4F, w=x, wv=w, d=d)}]', p=p)
-    slog(f'I2S [{fmtm(Notes.I2S, w=x, wv=w, d=d)}]', p=p)
-    slog(f'I4S [{fmtm(Notes.I4S, w=x, wv=w, d=d)}]', p=p)
-    slog(f'N2I [{fmtm(Notes.N2I, w=u, wv=y, d=d)}]', p=p)
-    slog(f'I2NF [{fmtm(Notes.I2N[-1], w=q, wv=z, d=d)}]', p=p)
-    slog(f'I4NF [{fmtm(Notes.I4N[-1], w=q, wv=z, d=d)}]', p=p)
-    slog(f'I2NS [{fmtm(Notes.I2N[ 1], w=q, wv=z, d=d)}]', p=p)
-    slog(f'I4NS [{fmtm(Notes.I4N[ 1], w=q, wv=z, d=d)}]', p=p)
-    slog(f'I2V [{fmtm(Notes.I2V, w=x, wv=w, d=d)}]', p=p)
-    slog(f'I4V [{fmtm(Notes.I4V, w=x, wv=w, d=d)}]', p=p)
-    slog(f'I6V [{fmtm(Notes.I6V, w=x, wv=w, d=d)}]', p=p)
-    slog(f'V2I [{fmtm(Notes.V2I, w=u, wv=y, d=d)}]', p=p)
+def dumpTestA(csv=0):
+    w, d, m, n, ff = (0, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
+    t   = Notes.NTONES  ;    s = Notes.SHRP  ;    f = Notes.FLAT  ;  is1 = Notes.IS1  ;  is2 = Notes.IS2  ;  i2v = Notes.I2V
+    i2n = Notes.I2N     ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i4v = Notes.I4V  ;  n2i = Notes.N2I
+    i4n = Notes.I4N     ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  i6v = Notes.I6V  ;  v2i = Notes.V2I
+    slog('BGN')         ;    o = t + 1       ;    p = 0
+    slog(f'   {m}{ fmtl([ r for r in range(21) ], w=w, d=d, s=m)}', p=p, f=ff)   ;   m = Y if csv else W
+    slog(f'F2S{m}{ fmtl([ f"{i2n[f][k]}:{f2s[i2n[f][k]]}"  if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'F4S{m}{ fmtl([ f"{i4n[f][k]}:{f4s[i4n[f][k]]}"  if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'S2F{m}{ fmtl([ f"{i2n[s][k]}:{s2f[i2n[s][k]]}"  if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'S4F{m}{ fmtl([ f"{i4n[s][k]}:{s4f[i4n[s][k]]}"  if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I2F{m}{ fmtl([ f"{k}:{i2f[k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I4F{m}{ fmtl([ f"{k}:{i4f[k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I2S{m}{ fmtl([ f"{k}:{i2s[k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I4S{m}{ fmtl([ f"{k}:{i4s[k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'N2I{m}{ fmtl([ f"{k}:{v}" for k,v in n2i.items() ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I2NF{n}{fmtl([ f"{k}:{i2n[f][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I4NF{n}{fmtl([ f"{k}:{i4n[f][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I2NS{n}{fmtl([ f"{k}:{i2n[s][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I4NS{n}{fmtl([ f"{k}:{i4n[s][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I2V{m}{ fmtl([ f"{k}:{v}" for k,v in i2v.items() ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I4V{m}{ fmtl([ f"{k}:{v}" for k,v in i4v.items() ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I6V{m}{ fmtl([ f"{k}:{v}" for k,v in i6v.items() ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'V2I{m}{ fmtl([ f"{k}:{v}" for k,v in v2i.items() ], w=w, d=d, s=m)}', p=p, f=ff)
     slog('END')
 
-def dumpTestA(csv=0):
-    w, d, ss, o, ff = ('', '', ',', ',', 3) if csv else ('^5', '[', B, B, 1)
-    n   = Notes.NTONES  ;    s = Notes.SHRP  ;    f = Notes.FLAT  ;  is1 = Notes.IS1  ;  is2 = Notes.IS2  ;  n2i = Notes.N2I
-    i2n = Notes.I2N     ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i2v = Notes.I2V  ;  i4v = Notes.I4V
-    i4n = Notes.I4N     ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  v2i = Notes.V2I  ;  i6v = Notes.I6V
-    slog('BGN')         ;   m = ',' if csv else ''   ;   o = n + 1
-    slog(f' {m}{   fmtl([ r for r in range(21) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'F2S{m}{ fmtl([ f"{i2n[f][k]}:{f2s[i2n[f][k]]}"  if k in is1 else B for k in range(n) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'F4S{m}{ fmtl([ f"{i4n[f][k]}:{f4s[i4n[f][k]]}"  if k in is2 else B for k in range(n) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'S2F{m}{ fmtl([ f"{i2n[s][k]}:{s2f[i2n[s][k]]}"  if k in is1 else B for k in range(n) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'S4F{m}{ fmtl([ f"{i4n[s][k]}:{s4f[i4n[s][k]]}"  if k in is2 else B for k in range(n) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I2F{m}{ fmtl([ f"{k}:{i2f[k]}" for k in range(o) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I4F{m}{ fmtl([ f"{k}:{i4f[k]}" for k in range(n) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I2S{m}{ fmtl([ f"{k}:{i2s[k]}" for k in range(o) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I4S{m}{ fmtl([ f"{k}:{i4s[k]}" for k in range(n) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'N2I{m}{ fmtl([ f"{k}:{v}" for k,v in n2i.items() ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I2NF{m}{fmtl([ f"{k}:{i2n[f][k]}" for k in range(n) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I4NF{m}{fmtl([ f"{k}:{i4n[f][k]}" for k in range(n) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I2NS{m}{fmtl([ f"{k}:{i2n[s][k]}" for k in range(n) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I4NS{m}{fmtl([ f"{k}:{i4n[s][k]}" for k in range(n) ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I2V{m}{ fmtl([ f"{k}:{v}" for k,v in i2v.items() ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I4V{m}{ fmtl([ f"{k}:{v}" for k,v in i4v.items() ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'I6V{m}{ fmtl([ f"{k}:{v}" for k,v in i6v.items() ], w=w, d=d, s=ss)}', p=0, f=ff)
-    slog(f'V2I{m}{ fmtl([ f"{k}:{v}" for k,v in v2i.items() ], w=w, d=d, s=ss)}', p=0, f=ff)
+def dumpTestB(csv=0):
+    w, d, m, n, ff = (0, Z, Y, Y, 3) if csv else (2, '[', W, Z, 1)   ;   p = 0
+    x = f'{w}x'  ;  u = f'>{w}'  ;  y = f'<{w}x'  ;  z = f'<{w}'  ;  q = f'>{w}x'
+    slog('BGN')  ;  w = 0 if csv else '^5'
+    slog(f'   {m}{ fmtl([ r for r in range(21) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'F2S{m}{ fmtm(Notes.F2S, w=w,       d=d, s=m)}', p=p, f=ff)   ;   w = 0 if csv else 2
+    slog(f'F4S{m}{ fmtm(Notes.F4S, w=u, wv=z, d=d, s=m)}', p=p, f=ff)
+    slog(f'S2F{m}{ fmtm(Notes.S2F, w=w,       d=d, s=m)}', p=p, f=ff)
+    slog(f'S4F{m}{ fmtm(Notes.S4F, w=u, wv=z, d=d, s=m)}', p=p, f=ff)
+    slog(f'I2F{m}{ fmtm(Notes.I2F, w=x, wv=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I4F{m}{ fmtm(Notes.I4F, w=x, wv=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I2S{m}{ fmtm(Notes.I2S, w=x, wv=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I4S{m}{ fmtm(Notes.I4S, w=x, wv=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'N2I{m}{ fmtm(Notes.N2I, w=u, wv=y, d=d, s=m)}', p=p, f=ff)
+    slog(f'I2NF{n}{fmtm(Notes.I2N[-1], w=q, wv=z, d=d, s=m)}', p=p, f=ff)
+    slog(f'I4NF{n}{fmtm(Notes.I4N[-1], w=q, wv=z, d=d, s=m)}', p=p, f=ff)
+    slog(f'I2NS{n}{fmtm(Notes.I2N[ 1], w=q, wv=z, d=d, s=m)}', p=p, f=ff)
+    slog(f'I4NS{n}{fmtm(Notes.I4N[ 1], w=q, wv=z, d=d, s=m)}', p=p, f=ff)
+    slog(f'I2V{m}{ fmtm(Notes.I2V, w=x, wv=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I4V{m}{ fmtm(Notes.I4V, w=x, wv=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'I6V{m}{ fmtm(Notes.I6V, w=x, wv=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'V2I{m}{ fmtm(Notes.V2I, w=u, wv=y, d=d, s=m)}', p=p, f=ff)
     slog('END')
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
-    w, d, s, m,  f = ('', '', ',', ',', 3) if csv else ('^5', '[', B, B*43, 1)
-    slog(f'Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   msg = f'Piano Note Index{m}'
-    slog(f'{msg}{fmtl([ i+1 for i in range(88) ], w=w, d=d, s=s)}', p=0, f=f)   ;  m = ',' if csv else ''  ;  msg =f'Index{m}'
-    slog(f'{msg}{fmtl([ i+1 for i in range(nm) ], w=w, d=d, s=s)}', p=0, f=f)
-    dumpFreqs(432, csv)  ;  dumpFreqs(440, csv)
+    w, d, s, m,  f = ('', '', ',', ',', 3) if csv else ('^5', '[', W, W*43, 1)
+    slog(f'Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   p1, p2 = -8, 88+1   ;   g1, g2 = 1, nm+1  ;  msg = f'Piano{m}'
+    slog(f'{msg}{fmtl([ i for i in range(p1, p2) ], w=w, d=d, s=s)}', p=0, f=f)   ;  m = ',' if csv else ''  ;  msg = f'Index{m}'
+    slog(f'{msg}{fmtl([ i for i in range(g1, g2) ], w=w, d=d, s=s)}', p=0, f=f)
+    dumpFreqs(432, csv)   ;   dumpFreqs(440, csv)
     slog(f'Flats{m}{fmtl(list(FLATS),             w=w, d=d, s=s)}', p=0, f=f)
     slog(f'Shrps{m}{fmtl(list(SHRPS),             w=w, d=d, s=s)}', p=0, f=f)
 
 def dumpFreqs(r=440, csv=0):
-    s, ff = (',', 3) if csv else (B, 1)
+    s, ff = (',', 3) if csv else (W, 1)
     fs = FREQS if r == 440 else FREQS2   ;   g = []   ;   ref = '440A' if r == 440 else '432A'
     for f in fs:
         f = f'{f:5.2f}' if f < 100 else f'{f:5.1f}' if f < 1000 else f'{f:5.0f}'
@@ -104,7 +108,7 @@ def dumpFreqs(r=440, csv=0):
     slog(f'{ref}{g}{sfx}', p=0, f=ff)
 ########################################################################################################################################################################################################
 def dumpND(csv=0):
-    w, d, s, f = (0, '', ',', 3) if csv else (2, '[', B, 1)
+    w, d, s, f = (0, '', ',', 3) if csv else (2, '[', W, 1)
     hdrs = [f'I', 'F', 'S', 'IV', 'mM', 'dA']
     hdrs = f'{s.join([ f"{h:{w}}" for h in hdrs ])}'
     slog(f'{hdrs}', p=0, f=f)
@@ -120,7 +124,7 @@ def dmpKSVHdr(t=0):
     slog(f'KS Type  N  I   Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{k}', p=0)
 
 def dumpKSH(ksd=None, p=0, v=0, w=2, u='<', d=''):
-    flats = 'Flats'     ;    shrps = 'Sharps'  ;   slog(f'{flats:^20} KS {shrps:^20}', p=p)     ;  v = B*v if v and Notes.TYPE==Notes.FLAT else ''
+    flats = 'Flats'     ;    shrps = 'Sharps'  ;   slog(f'{flats:^20} KS {shrps:^20}', p=p)     ;  v = W*v if v and Notes.TYPE==Notes.FLAT else ''
     ksd = KSD if ksd is None else ksd          ;   keys = sorted(ksd.keys())  ;  w = f'{u}{w}'  ;  x = f'{w}x'
     _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}', p=p)       ;  slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d)}', p=p)
     _ = [ ksd[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=x, d=d)}', p=p)
@@ -245,33 +249,36 @@ class Strings(object):
         if dbg and nict:    slog(f'tab={tab} fn={fn:2} s={s} i={i:2} j={j:x} name={name:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
 ########################################################################################################################################################################################################
-class Notes2(object): #0   :1         :2         :3         :4         :5         :6         :7         :8         :9         :a         :b     #  2    7 9  #
-    F2S = {            'Db':'C#',            'Eb':'D#',                       'Gb':'F#',            'Ab':'G#',            'Bb':'A#'            } # 1 3  6 8 a # 5/9
-    S2F = {            'C#':'Db',            'D#':'Eb',                       'F#':'Gb',            'G#':'Ab',            'A#':'Bb'            } # 1 3  6 8 a # 5/9
-    F4S = { 'C' :'B#',                                  'Fb':'E' , 'F' :'E#',                                                        'Cb':'B'  } #0   45     b# 4/9
-    S4F = { 'B#':'C' ,                                  'E' :'Fb', 'E#':'F' ,                                                        'B' :'Cb' } #0   45     b# 4/9
-    V2I = {  'R':0,      'm2':1,  'M2':2,    'm3':3,    'M3':4,    'P4':5,    'b5':6,    'P5':7,    'm6':8,    'M6':9,    'm7':10,   'M7':11   } # 8/12/16
-    I2V = {   0:'R',      1:'m2',  2:'M2',   3:'m3',    4:'M3',     5:'P4',    6:'b5',    7:'P5',    8:'m6',    9:'M6',    10:'m7',   11:'M7'  } # 8/12/16
-#               :0   :0      :1      :2      :3      :4      :4      :5      :5      :6      :7      :8      :9       :a       :b     :b
-    I2F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B'   } # 8/12/16
-    I2S = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'   } # 8/12/16
-    I4F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' } # 8/12/16
-    I4S = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'         } # 8/12/16
-    N2I = { 'B#':0, 'C':0, 'C#':1, 'Db':1, 'D':2, 'D#':3, 'Eb':3, 'E':4, 'Fb':4, 'E#':5, 'F':5, 'F#':6, 'Gb':6, 'G':7, 'G#':8, 'Ab':8, 'A':9, 'A#':10, 'Bb':10, 'B':11, 'Cb' :11 } #21
-class Notes(object):#0     :1         :3         :4         :5         :6         :8        :a         :b      #[  2    7 9  ]
-    F2S = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'           } #[ 1 3  6 8 a ]# 5/9
-    S2F = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'           } #[ 1 3  6 8 a ]# 5/9
-    F4S = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                 'Cb':'B'  } #[0   45     b]# 4/9
-    S4F = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B':'Cb' } #[0   45     b]# 4/9
-    V2I = { 'R':0,          'b2':1, '2':2,  'm3':3, 'M3':4,         '4':5,          'b5':6, '5':7,  '#5':8, '6':9,  'b7':10, '7':11         } # 8/12/16
-    I2V = { 0:'R',          1:'b2', 2:'2',  3:'m3', 4:'M3',         5:'4',          6:'b5', 7:'5',  8:'#5', 9:'6',  10:'b7', 11:'7',12:'R'  } # 8/12/16
-    I4V = { 0:'P1',         1:'m2', 2:'M2', 3:'m3', 4:'M3',         5:'P4',         6:'TT', 7:'P5', 8:'m6', 9:'M6', 10:'m7', 11:'M7',12:'P8'} # 8/12/16
-    I6V = { 0:'d2',         1:'A1', 2:'d3', 3:'A2', 4:'d4',         5:'A3',         6:'TT', 7:'d6', 8:'A5', 9:'d7', 10:'A6', 11:'d8',12:'A7'} # 8/12/16
-    I2F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' ,                 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb', 11:'B',12:'C'  } # 8/12/16
-    I2S = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' ,                 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B',12:'C'  } # 8/12/16
-    I4F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb',         4:'Fb',         5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' , 10:'Bb',        11:'Cb' } # 8/12/16
-    I4S = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' ,         5:'E#',         6:'F#', 7:'G' , 8:'G#', 9:'A' , 10:'A#', 11:'B'         } # 8/12/16
-    N2I = { 'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11 } #21
+class Notes2(object):#0   1. . .. . .2. . .. . .3. . .. . .4. . .. . .5. . .. . .6. . .. . .7. . .. . .8. . .. . .9. . .. . .a. . .. . .b. . .. . .0      #  2    7 9  #
+    F2S = {           'Db':'C#',            'Eb':'D#',                       'Gb':'F#',            'Ab':'G#',            'Bb':'A#'                       } # 1 3  6 8 a # 5/9
+    S2F = {           'C#':'Db',            'D#':'Eb',                       'F#':'Gb',            'G#':'Ab',            'A#':'Bb'                       } # 1 3  6 8 a # 5/9
+    F4S = {'C' :'B#',                                  'Fb':'E' , 'F' :'E#',                                                       'Cb':'B' , 'C`' :'B#' } #0   45     b# 4/9
+    S4F = {'B#':'C' ,                                  'E' :'Fb', 'E#':'F' ,                                                       'B' :'Cb', 'B#`':'C'  } #0   45     b# 4/9
+#            0. . . 0 . . . 1 . . . 2 . . . 3 . . . 4 . . . 5 . . . 6 . . . 7 . . . 8 . . . 9 . . . a . . . b . . . 0
+    V2I = {        'R':0 , 'm2':1, 'M2':2, 'm3':3, 'M3':4, 'P4':5, 'b5':6, 'P5':7, 'm6':8, 'M6':9,'m7':10,'M7':11,'R`':12 } # 8/12/16
+    I2V = {        0:'R' , 1:'m2', 2:'M2', 3:'m3', 4:'M3', 5:'P4', 6:'b5', 7:'P5', 8:'m6', 9:'M6',10:'m7',11:'M7',12:'R'  } # 8/12/16
+    I2F = {        0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' , 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb',11:'B' ,12:'C'  } # 8/12/16
+    I2S = {        0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#',11:'B' ,12:'C'  } # 8/12/16
+    I4F = {        0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'Fb', 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb',11:'Cb',12:'C'  } # 8/12/16
+    I4S = { 0:'B#'       , 1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'E#', 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#',11:'B' ,12:'B#' } # 8/12/16
+#            0. . . 0 . . . 1 . . . 2 . . . 3 . . . 4 . . . 5 . . . 6 . . . 7 . . . 8 . . . 9 . . . a . . . b . . . 0
+    N2I = {'B#':0, 'C':0 ,'C#':1, 'Db':1, 'D':2, 'D#':3, 'Eb':3, 'E':4, 'Fb':4, 'E#':5, 'F':5, 'F#':6, 'Gb':6, 'G':7, 'G#':8, 'Ab':8, 'A':9, 'A#':10, 'Bb':10, 'B':11, 'Cb':11, 'B#`':12, 'C`':12 } #21
+class Notes(object):#0       1       2       3       4       5       6       7       8       9       a       b       0      #[  2    7 9  ]#
+    I2F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' , 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'B' ,12:'C' } # 8/12/16
+    I2S = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' ,12:'C' } # 8/12/16
+    I4F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'Fb', 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'Cb',12:'C' } # 8/12/16
+    I4S = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'E#', 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' ,12:'C' } # 8/12/16
+    I2V = {         0:'R' , 1:'b2', 2:'2' , 3:'m3', 4:'M3', 5:'4' , 6:'b5', 7:'5' , 8:'#5', 9:'6' ,10:'b7', 11:'7' ,12:'R' } # 8/12/16
+    I4V = {         0:'P1', 1:'m2', 2:'M2', 3:'m3', 4:'M3', 5:'P4', 6:'TT', 7:'P5', 8:'m6', 9:'M6',10:'m7', 11:'M7',12:'P8'} # 8/12/16
+    I6V = {         0:'d2', 1:'A1', 2:'d3', 3:'A2', 4:'d4', 5:'A3', 6:'TT', 7:'d6', 8:'A5', 9:'d7',10:'A6', 11:'d8',12:'A7'} # 8/12/16
+    V2I = {         'R':0 ,'b2':1, '2':2 , 'm3':3, 'M3':4, '4':5 , 'b5':6, '5':7 , '#5':8, '6':9 ,'b7':10,  '7':11,'R`':12 } # 8/12/16
+    N2I = {'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11, 'B#`':12, 'C`':12 } #21
+#              0       0       1       2       3       4       5       6       7       8       9        a       b      0
+    F2S = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'                        } #[ 1 3  6 8 a ]# 5/9
+    S2F = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'                        } #[ 1 3  6 8 a ]# 5/9
+    F4S = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                  'Cb':'B' ,'C``' :'B#' } #[0   45     b]# 4/9
+    S4F = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B' :'Cb','B#``':'C'  } #[0   45     b]# 4/9
+#               0       0       1       2       3
     I2N, I4N         = [None, I2S, I2F], [None, I4S, I4F]
     IS0,  IS1,  IS2  = [2, 7, 9], [1, 3, 6, 8, 10], [0, 4, 5, 11]
     FLAT, NONE, SHRP =    -1,      0,      1    # -1 ~= 2
@@ -310,7 +317,7 @@ def updNotes(i, m, n, t, d=0):
         Notes.F2S[n] = m   ;   Notes.S2F[m] = n
 ########################################################################################################################################################################################################
 def initND():
-    return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i], Notes.I4V[i], Notes.I6V[i] ] for i in range(1 + Notes.NTONES) }
+    return { i:[ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i], Notes.I4V[i], Notes.I6V[i] ] for i in range(Notes.NTONES) }
 ND = initND()
 ########################################################################################################################################################################################################
 FLATS  = [ f'{v}{n}' for n in range(11) for v in Notes.I4F.values() ][:MAX_FREQ_IDX]
@@ -355,8 +362,8 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', s=' ', ll=None): # optimize str con
     return z + d + ''.join(t) + d2
 ########################################################################################################################################################################################################
 def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=' ', ll=None):
-    w  = w  if w  else ''   ;  t = []
-    wv = wv if wv else w
+    w  = w  if w  is not None else ''   ;  t = []
+    wv = wv if wv is not None else w
     if d=='':   d2 = ''
     u  = '' if u  is None else u
     uv = '' if uv is None else uv
