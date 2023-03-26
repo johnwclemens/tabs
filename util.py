@@ -45,7 +45,7 @@ def dumpTestA(csv=0):
     i2n = Notes.I2N     ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i4v = Notes.I4V  ;  n2i = Notes.N2I
     i4n = Notes.I4N     ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  i6v = Notes.I6V  ;  v2i = Notes.V2I
     slog('BGN')         ;    o = t + 1       ;    p = 0
-    slog(f'   {m}{ fmtl([ r for r in range(21) ], w=w, d=d, s=m)}', p=p, f=ff)   ;   m = Y if csv else W
+    slog(f'   {m}{ fmtl([ r for r in range(21) ], w=w, d=d, s=m)}', p=p, f=ff)
     slog(f'F2S{m}{ fmtl([ f"{i2n[f][k]}:{f2s[i2n[f][k]]}"  if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
     slog(f'F4S{m}{ fmtl([ f"{i4n[f][k]}:{f4s[i4n[f][k]]}"  if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=ff)
     slog(f'S2F{m}{ fmtl([ f"{i2n[s][k]}:{s2f[i2n[s][k]]}"  if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
@@ -64,7 +64,6 @@ def dumpTestA(csv=0):
     slog(f'I6V{m}{ fmtl([ f"{k}:{v}" for k,v in i6v.items() ], w=w, d=d, s=m)}', p=p, f=ff)
     slog(f'V2I{m}{ fmtl([ f"{k}:{v}" for k,v in v2i.items() ], w=w, d=d, s=m)}', p=p, f=ff)
     slog('END')
-
 def dumpTestB(csv=0):
     w, d, m, n, ff = (0, Z, Y, Y, 3) if csv else (2, '[', W, Z, 1)   ;   p = 0
     x = f'{w}x'  ;  u = f'>{w}'  ;  y = f'<{w}x'  ;  z = f'<{w}'  ;  q = f'>{w}x'
@@ -90,29 +89,30 @@ def dumpTestB(csv=0):
     slog('END')
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
-    w, d, s, m,  f = ('', '', ',', ',', 3) if csv else ('^5', '[', W, W*43, 1)
-    slog(f'Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   p1, p2 = -8, 88+1   ;   g1, g2 = 1, nm+1  ;  msg = f'Piano{m}'
-    slog(f'{msg}{fmtl([ i for i in range(p1, p2) ], w=w, d=d, s=s)}', p=0, f=f)   ;  m = ',' if csv else ''  ;  msg = f'Index{m}'
-    slog(f'{msg}{fmtl([ i for i in range(g1, g2) ], w=w, d=d, s=s)}', p=0, f=f)
-    dumpFreqs(432, csv)   ;   dumpFreqs(440, csv)
-    slog(f'Flats{m}{fmtl(list(FLATS),             w=w, d=d, s=s)}', p=0, f=f)
-    slog(f'Shrps{m}{fmtl(list(SHRPS),             w=w, d=d, s=s)}', p=0, f=f)
+    w, d, m, n, f = (Z, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
+    slog(f'Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   p, q = -8, 88+1   ;   g, h = 1, nm+1
+    slog(f'Piano{n}{fmtl([ i for i in range(p, q) ], w=w, d=d, s=m)}', p=0, f=f)
+    slog(f'Index{n}{fmtl([ i for i in range(g, h) ], w=w, d=d, s=m)}', p=0, f=f)
+#    dumpFreqs(432, csv)
+    dumpFreqs(440, csv)
+    slog(f'Flats{n}{fmtl(list(FLATS),                w=w, d=d, s=m)}', p=0, f=f)
+    slog(f'Shrps{n}{fmtl(list(SHRPS),                w=w, d=d, s=m)}', p=0, f=f)
 
 def dumpFreqs(r=440, csv=0):
-    s, ff = (',', 3) if csv else (W, 1)
-    fs = FREQS if r == 440 else FREQS2   ;   g = []   ;   ref = '440A' if r == 440 else '432A'
-    for f in fs:
-        f = f'{f:5.2f}' if f < 100 else f'{f:5.1f}' if f < 1000 else f'{f:5.0f}'
-        g.append(f'{f}')
-    g = f'{s}'.join(g)  ;  sfx = '' if csv else '] Hz'  ;  ref += f'{s}' if csv else ' ['
-    slog(f'{ref}{g}{sfx}', p=0, f=ff)
+    m, f = (Y, 3) if csv else (W, 1)
+    freqs = FREQS if r == 440 else FREQS2   ;   ref = '440A' if r == 440 else '432A'   ;   fs = []
+    for i in freqs:
+        ff = f'{i:5.2f}' if i < 100 else f'{i:5.1f}' if i < 1000 else f'{i:5.0f}'
+        fs.append(f'{ff}')
+    fs = m.join(fs)  ;  sfx = Z if csv else '] Hz'  ;  ref += m if csv else ' ['
+    slog(f'{ref}{fs}{sfx}', p=0, f=f)
 ########################################################################################################################################################################################################
 def dumpND(csv=0):
-    w, d, s, f = (0, '', ',', 3) if csv else (2, '[', W, 1)
+    w, d, m, f = (0, Z, Y, 3) if csv else (2, '[', W, 1)
     hdrs = [f'I', 'F', 'S', 'IV', 'mM', 'dA']
-    hdrs = f'{s.join([ f"{h:{w}}" for h in hdrs ])}'
+    hdrs = f'{m.join([ f"{h:{w}}" for h in hdrs ])}'
     slog(f'{hdrs}', p=0, f=f)
-    for i in range(len(ND)):   slog(f'{i:x}{s}{fmtl(ND[i], w=w, d=d, s=s)}', p=0, f=f)
+    for i in range(len(ND)):   slog(f'{i:x}{m}{fmtl(ND[i], w=w, d=d, s=m)}', p=0, f=f)
 ########################################################################################################################################################################################################
 def dumpKSV(ksd=None, p=0):
     dmpKSVHdr()   ;   ksd = KSD if ksd is None else ksd
@@ -283,7 +283,7 @@ class Notes(object):#0       1       2       3       4       5       6       7  
     IS0,  IS1,  IS2  = [2, 7, 9], [1, 3, 6, 8, 10], [0, 4, 5, 11]
     FLAT, NONE, SHRP =    -1,      0,      1    # -1 ~= 2
     TYPES            =          [ 'NONE', 'SHRP', 'FLAT' ] # 0=NONE, 1=SHRP, 2=FLAT=-1
-    TYPE, NTONES     = FLAT, len(V2I)
+    TYPE, NTONES     = FLAT, len(V2I) - 1
     @staticmethod
     def setType(t): Notes.TYPE = t
     @staticmethod
