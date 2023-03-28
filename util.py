@@ -1,4 +1,5 @@
 """util.py module.  class list: [DSymb, Notes, Strings, Test]."""
+import random
 import sys, os, inspect, pathlib
 from collections import Counter
 from collections import OrderedDict as cOd
@@ -22,8 +23,11 @@ QUIT_END         = '###   END Quit   ###' * 10
 #STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
 STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
-def t2sign(t=0):    return ' ' if not t else '+' if t==1 else ''
-def js2sign(l):     return [ '-' if k<0 else '+' if k>0  else ' ' for k in l ]
+#def t2sign(t=0):    return f'{"+" if t>0 else "" if t<0 else " "}'
+#def t2sign(t=0):    return ' ' if not t else '+' if t==1 else ''
+def ns2signs(l):    return [ '-' if k<0 else '+' if k>0  else ' ' for k in l ]
+def signedA(n): return f'{"+" if n>0 else "" if n<0 else " "}{n}'
+def signedB(n): return f' {n}' if n==0 else f'{n:+}'
 
 def init(file, file2, oid):
     global LOG_FILE  ;  LOG_FILE = file  ;  global CSV_FILE  ;  CSV_FILE = file2  ;  global OIDS  ;  OIDS = oid
@@ -115,28 +119,42 @@ def dumpND(csv=0):
     for i in range(len(ND)):   slog(f'{i:x}{m}{fmtl(ND[i], w=w, d=d, s=m)}', p=0, f=f)
 ########################################################################################################################################################################################################
 def dumpKSV(csv=0):
-    dmpKSVHdr(csv) #  ;   ksd = KSD if ksd is None else ksd
+    f = 3 if csv else 1
+    dmpKSVHdr(csv)
     keys = sorted(KSD.keys())
-    for k in keys:    slog(fmtKSK(k), p=0)
+    for k in keys:    slog(fmtKSK(k, csv), p=0, f=f)
 
 def dmpKSVHdr(csv=0, t=0):
-    h , f = (Y, 3) if csv else (W, 1)
-    k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1   ;   sign = t2sign(t)
-    hdrs = ['KS', 'Type', 'N', 'I', 'Flats/Sharps Naturals', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {sign}{k}']
-    hdrs = Y.join(hdrs)
-    slog(hdrs, p=0, f=f)
-#    slog(f'KS Type  N  I #  Flats/Sharps Naturals  F/S/N Indices  Ionian Indices   Ionian Note Ordering   Key Sig Table {sign}{k}', p=0)
+    m, f = (Y, 3) if csv else (W, 1)
+    k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1
+    hdrs = ['KS', 'Type', 'N', 'I', 'Flats/Sharps Naturals', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {signedB(k)}']
+#    k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1   ;   sign = t2sign(t)
+#    hdrs = ['KS', 'Type', 'N', 'I', 'Flats/Sharps Naturals', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {sign}{k}']
+    hdrs = m.join(hdrs)   ;   slog(hdrs, p=0, f=f)
 
-def dumpKSH(csv=0): # p=0, v=0, w=2, u='<', d=''):
-    w, d, f = (0, Z, 3) if csv else (2, '[', 1)   ;   u, v, p = '<', 0, 0
-    flats = 'Flats'     ;    shrps = 'Sharps'  ;   slog(f'{flats:^20} KS {shrps:^20}', p=p)     ;  v = W*v if v and Notes.TYPE==Notes.FLAT else ''
+def fmtKSK(k, csv=0):
+    w, d, n = (0, Z, Y) if csv else (2, '[', W)
+    t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
+#    s   = t2sign(t)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
+    s   = signedB(t)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
+    iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]    ;   ms = KSD[k][KMS]
+    ns  = [ Notes.name(j, t, 1 if abs(k) >= 5 else 0) for j in jz ]
+    iz  = [ f'{i:x}' for i in iz ]
+    jz  = [ f'{j:x}' for j in jz ]
+#    return f'{s}{k} {nt} [{m:2} {i:x}] {fmtl(ms, w=2)} {fmtl(iz)} {fmtl(jz)} {fmtl(ns, w=2)}'
+    _ = [s, nt, f'{m:{w}}', f'{i:x}', fmtl(ms, w=w, d=d, s=n), fmtl(iz, d=d, s=n), fmtl(jz, d=d, s=n), fmtl(ns, w=w, d=d, s=n)]
+    return n.join(_)
+
+def dumpKSH(csv=0):
+    w, d, m, n, ff = (0, Z, Y, Y, 3) if csv else (2, '[', W, '  ', 1)   ;   u, v, p = '<', 0, 0
+    flats = 'Flats'     ;    shrps = 'Sharps'  ;   slog(f'{flats:^20} KS {shrps:^20}', p=p, f=ff)   ;  v = W*v if v and Notes.TYPE==Notes.FLAT else ''
     keys = sorted(KSD.keys())  ;  w = f'{u}{w}'  ;  x = f'{w}x'
-    _ = js2sign(keys)   ;   _ = '  '.join(_)   ;   slog(f'{v}{_}', p=p)       ;  slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d)}', p=p)
-    _ = [ KSD[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=x, d=d)}', p=p)
-    _ = [ KSD[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=w, d=d)}', p=p)
+    _ = ns2signs(keys)  ;   _ = n.join(_)      ;   slog(f'{v}{_}', p=p, f=ff)  ;  slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=ff)
+    _ = [ KSD[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=x, d=d, s=m)}', p=p, f=ff)
+    _ = [ KSD[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=w, d=d, s=m)}', p=p, f=ff)
     f = [ KSD[M][2][f]    for f in range(len(KSD[M][2])-1, -1, -1) ]
-    s = [ KSD[P][2][s]    for s in range(len(KSD[P][2]))           ]          ;  slog(f'{v}{fmtl(f, w=w, d=d)}    {fmtl(s, w=w, d=d)}', p=p)
-    f = [ f for f in reversed(KSD[M][1]) ]  ;  s = [ s for s in KSD[P][1] ]   ;  slog(f'{v}{fmtl(f, w=x, d=d)}    {fmtl(s, w=x, d=d)}', p=p)
+    s = [ KSD[P][2][s]    for s in range(len(KSD[P][2]))           ]          ;  slog(f'{v}{fmtl(f, w=w, d=d, s=m)}    {fmtl(s, w=w, d=d, s=m)}', p=p, f=ff)
+    f = [ f for f in reversed(KSD[M][1]) ]  ;  s = [ s for s in KSD[P][1] ]   ;  slog(f'{v}{fmtl(f, w=x, d=d, s=m)}    {fmtl(s, w=x, d=d, s=m)}', p=p, f=ff)
 ########################################################################################################################################################################################################
 def nic2KS(nic, dbg=0):
     dumpKSV()   ;   dumpKSH()   ;   dumpNic(nic)
@@ -146,12 +164,14 @@ def nic2KS(nic, dbg=0):
         if i in nic:     iz.append(f'{i:x}')
         else:            break
     k   = -len(iz)       if t == Notes.FLAT else len(iz)
-    s   = t2sign(t)      if iz else '?'
+#    s   = signedB(t)     if iz else '?'
+#    s   = t2sign(t)      if iz else '?'
     n   = KSD[k][KIM][1] if iz else '??'
     i   = KSD[k][KIM][0]
     ns  = KSD[k][KMS]
     slog(fmtKSK(k))      if dbg else None
-    return s, k, nt, n, i, ns, Scales.majIs(i)
+    return k, nt, n, i, ns, Scales.majIs(i)
+#    return s, s, nt, n, i, ns, Scales.majIs(i)
 
 def dumpNic(nic): #fix me
     slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" for i in nic.keys() ])}')
@@ -175,7 +195,7 @@ def initKSD(ks, t):
         jz = Scales.majIs(i)    ;    im  = [i, m]
         ns = [ Notes.name(j, t, 1 if ak >= 5 else 0) for j in jz ]
         ks[k]  =  [ im, iz, ms, jz, ns ]
-        slog(fmtKSK(k), p=0)
+        slog(fmtKSK(k, csv=1), p=0)
         i  =   Notes.nextIndex(i, s)
         j  =   Notes.nextIndex(j, s)
     return ks
@@ -334,15 +354,6 @@ def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(MAX_FREQ_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(MAX_FREQ_IDX) ]
 ########################################################################################################################################################################################################
-def fmtKSK(k):
-    t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
-    s   = t2sign(t)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
-    iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]    ;   ms = KSD[k][KMS]
-    ns  = [ Notes.name(j, t, 1 if abs(k) >= 5 else 0) for j in jz ]
-    iz  = [ f'{i:x}' for i in iz ]
-    jz  = [ f'{j:x}' for j in jz ]
-    return f'{s}{k} {nt} [{m:2} {i:x}] {fmtl(ms, w=2)} {fmtl(iz)} {fmtl(jz)} {fmtl(ns, w=2)}'
-########################################################################################################################################################################################################
 def fmtl(lst, w=None, u=None, d='[', d2=']', s=' ', ll=None): # optimize str concat?
     if   lst is None:   return  'None'
     lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
@@ -499,15 +510,28 @@ def parseCmdLine(dbg=1):
     if dbg: slog(f'options={fmtm(options)}')
     return options
 ########################################################################################################################################################################################################
+randData = [ random.randint(-3, 3) for _ in range(25) ]
+print(''.join(signedA(r) for r in randData))
+print(''.join(signedB(r) for r in randData))
+print(''.join([ f' {r}' if not r else f'+{r}' if r>1 else f'{r}' for r in randData ]))
+#quit()
+
+#def test():
+#    print([ f'{i}'    for i in range(-1, 2) ], "f'{i}'")
+#    print([ f'{i:+}'  for i in range(-1, 2) ], "f'{i:+}'")
+#    print([ f'{i:+0}' for i in range(-1, 2) ], "f'{i:+0}'")
+#    print([f' {n}' if not n else f'+{n}' if n==1 else f'{n}' for n in range(-1, 2)]) # , "f' {n}' if not n else f'+{n}' if n==1 else f'{n}'")
+#test()
+
 KSD = {}
-KIM, KIS, KMS, KJS, KNS             = range(5)
-KSS, KSK, KST, KSN, KSI, KSMS, KSSI = range(7)
-dmpKSVHdr(-1)
+KIM, KIS, KMS, KJS, KNS        = range(5)
+KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
+#KSS, KSK, KST, KSN, KSI, KSMS, KSSI = range(7)
+dmpKSVHdr(csv=1, t=-1)
 KSD = initKSD(KSD, t=-1)
 KSD = initKSD(KSD, t= 1)
-dmpKSVHdr( 1)
+dmpKSVHdr(csv=1, t=1)
 dumpKSH()
-
 ########################################################################################################################################################################################################
 
 class Test:
