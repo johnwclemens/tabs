@@ -9,6 +9,9 @@ Z                = ''
 Y                = ','
 M                = -7
 P                = 7
+UF              = '\u266D'
+UN              = '\u266E'
+US              = '\u266F'
 OIDS             = 0
 LOG_FILE         = None
 CSV_FILE         = None
@@ -31,14 +34,15 @@ def init(file, file2, oid):
     dumpData(csv=1)
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
-    slog('BGN')
+    slog(f'BGN \u266B{UF}{UN}{US}')
     dumpTestA(csv)
     dumpNF(csv)
     dumpTestB(csv)
     dumpND(csv)
     dumpKSH(csv)
     dumpKSV(csv)
-    slog('END')
+    slog(f'END \u266B{UF}{UN}{US}')
+
 ########################################################################################################################################################################################################
 def dumpTestA(csv=0):
     w, d, m, n, ff = (0, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
@@ -122,15 +126,18 @@ def dumpKSV(csv=0):
     for k in keys:    slog(fmtKSK(k, csv), p=0, f=f)
 
 def dmpKSVHdr(csv=0, t=0):
-    m, f = (Y, 3) if csv else (W, 1)
+    c, d, m, n, o, f = (Z, Z, Y, Z, Z, 3) if csv else ('^20', '^13', W, W, W*2, 1)
     k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1
-    hdrs = ['KS', 'Type', 'N', 'I', 'Flats/Sharps Naturals', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {signed(k)}']
+    fsn, fsi, ii, ino, kst = 'Flats/Shrps Naturals', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {signed(k)}'
+#    slog(f'KS{m}Type{m}N{n}I{n}{fsn:{c}}{n}{fsi:{d}}{n}{ii:{d}}{o}{ino:{c}}{n}{kst}', p=0, f=f)
+#    hdrs = ['KS', 'Type', 'N', 'I', 'Flats/Sharps Naturals', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {signed(k)}']
+    hdrs = ['KS', 'Type', 'N', f'{n}I', f'{n}{fsn:{c}}', f'{o}{fsi:{d}}', f'{o}{ii:{d}}', f'{n}{ino:{c}}', f'{n}{kst}']
     hdrs = m.join(hdrs)   ;   slog(hdrs, p=0, f=f)
 
 def fmtKSK(k, csv=0):
     w, d, n = (0, Z, Y) if csv else (2, '[', W)
     t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
-    s   = signed(t)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
+    s   = signed(k)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
     iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]    ;   ms = KSD[k][KMS]
     ns  = [ Notes.name(j, t, 1 if abs(k) >= 5 else 0) for j in jz ]
     iz  = [ f'{i:x}' for i in iz ]
@@ -139,16 +146,17 @@ def fmtKSK(k, csv=0):
     return n.join(_)
 
 def dumpKSH(csv=0):
-    c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0
-    w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  f, k, s = f'Flats', 'Ks', f'Shrps'
-    v = W*v if v and Notes.TYPE==Notes.FLAT else ''  ;  slog(f'{y}{f:{c}}{m}{k}{m}{s:{c}}', p=p, f=ff)
+    c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0   ;   f, k, s = f'Flats', 'N', f'Shrps'
+    w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  v = W*v if v and Notes.TYPE==Notes.FLAT else ''
+    hdrs = [ f'{y}{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]   ;   hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=ff)
+#    slog(f'{y}{f:{c}}{m}{k}{m}{s:{c}}', p=p, f=ff)
     keys = sorted(KSD.keys())  ;  w = f'{u}{w}' ;   x = f'{w}x'
     _  = ns2signs(keys)  ;   _ = n.join(_)      ;   slog(f'{v}{y}{_}', p=p, f=ff)  ;  slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=ff)
-    _  = [ KSD[k][0][0]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=x, d=d, s=m)}', p=p, f=ff)
-    _  = [ KSD[k][0][1]    for k in keys ]      ;   slog(f'{v}{fmtl(_, w=w, d=d, s=m)}', p=p, f=ff)   ;  y = Z if csv else W*2
-    f  = [ KSD[M][2][f]    for f in range(len(KSD[M][2])-1, -1, -1) ]  ;  s = [ KSD[P][2][s]    for s in range(len(KSD[P][2])) ]
+    _  = [ KSD[k][KIM][KSK]    for k in keys ]  ;   slog(f'{v}{fmtl(_, w=x, d=d, s=m)}', p=p, f=ff)
+    _  = [ KSD[k][KIM][KST]    for k in keys ]  ;   slog(f'{v}{fmtl(_, w=w, d=d, s=m)}', p=p, f=ff)   ;  y = Z if csv else W*2
+    f  = [ KSD[M][KMS][f]      for f in range(len(KSD[M][KMS])-1, -1, -1) ]  ;  s = [ KSD[P][KMS][s]    for s in range(len(KSD[P][KMS])) ]
     fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{v}{fmtl(fs, w=w, d=d, s=m)}', p=p, f=ff)
-    f  = [ f for f in reversed(KSD[M][1]) ]     ;   s = [ s for s in KSD[P][1] ]
+    f  = [ f'{f:x}' for f in reversed(KSD[M][KIS]) ]   ;   s = [ f'{s:x}' for s in KSD[P][KIS] ]
     fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{v}{fmtl(fs, w=w, d=d, s=m)}', p=p, f=ff)
 ########################################################################################################################################################################################################
 def nic2KS(nic, dbg=0):
@@ -159,8 +167,8 @@ def nic2KS(nic, dbg=0):
         if i in nic:     iz.append(f'{i:x}')
         else:            break
     k   = -len(iz)       if t == Notes.FLAT else len(iz)
-    n   = KSD[k][KIM][1] if iz else '??'
-    i   = KSD[k][KIM][0]
+    n   = KSD[k][KIM][KST] if iz else '??'
+    i   = KSD[k][KIM][KSK]
     ns  = KSD[k][KMS]
     slog(fmtKSK(k))      if dbg else None
     return k, nt, n, i, ns, Scales.majIs(i)
@@ -267,9 +275,9 @@ class Strings(object):
         return name
 ########################################################################################################################################################################################################
 class Notes2(object):#0   1. . .. . .2. . .. . .3. . .. . .4. . .. . .5. . .. . .6. . .. . .7. . .. . .8. . .. . .9. . .. . .a. . .. . .b. . .. . .0      #  2    7 9  #
-    F2S = {           'Db':'C#',            'Eb':'D#',                       'Gb':'F#',            'Ab':'G#',            'Bb':'A#'                       } # 1 3  6 8 a # 5/9
-    S2F = {           'C#':'Db',            'D#':'Eb',                       'F#':'Gb',            'G#':'Ab',            'A#':'Bb'                       } # 1 3  6 8 a # 5/9
-    F4S = {'C' :'B#',                                  'Fb':'E' , 'F' :'E#',                                                       'Cb':'B' , 'C`' :'B#' } #0   45     b# 4/9
+    F2S = {           'Db\u266D':'C#',            'Eb':'D#',                       'Gb':'F#',            'Ab':'G#',            'Bb':'A#'                       } # 1 3  6 8 a # 5/9
+    S2F = {           'C#\u266F':'Db',            'D#':'Eb',                       'F#':'Gb',            'G#':'Ab',            'A#':'Bb'                       } # 1 3  6 8 a # 5/9
+    F4S = {'C\u266E' :'B#',                                  'Fb':'E' , 'F' :'E#',                                                       'Cb':'B' , 'C`' :'B#' } #0   45     b# 4/9
     S4F = {'B#':'C' ,                                  'E' :'Fb', 'E#':'F' ,                                                       'B' :'Cb', 'B#`':'C'  } #0   45     b# 4/9
 #            0. . . 0 . . . 1 . . . 2 . . . 3 . . . 4 . . . 5 . . . 6 . . . 7 . . . 8 . . . 9 . . . a . . . b . . . 0
     V2I = {        'R':0 , 'm2':1, 'M2':2, 'm3':3, 'M3':4, 'P4':5, 'b5':6, 'P5':7, 'm6':8, 'M6':9,'m7':10,'M7':11,'R`':12 } # 8/12/16
@@ -281,8 +289,8 @@ class Notes2(object):#0   1. . .. . .2. . .. . .3. . .. . .4. . .. . .5. . .. . 
 #            0. . . 0 . . . 1 . . . 2 . . . 3 . . . 4 . . . 5 . . . 6 . . . 7 . . . 8 . . . 9 . . . a . . . b . . . 0
     N2I = {'B#':0, 'C':0 ,'C#':1, 'Db':1, 'D':2, 'D#':3, 'Eb':3, 'E':4, 'Fb':4, 'E#':5, 'F':5, 'F#':6, 'Gb':6, 'G':7, 'G#':8, 'Ab':8, 'A':9, 'A#':10, 'Bb':10, 'B':11, 'Cb':11, 'B#`':12, 'C`':12 } #21
 class Notes(object):#0       1       2       3       4       5       6       7       8       9       a       b       0      #[  2    7 9  ]#
-    I2F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' , 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'B' } # ,12:'C' } # 8/12/16
-    I2S = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' } # ,12:'C' } # 8/12/16
+    I2F = {         0:'C' , 1:'D\u266D', 2:'D' , 3:'Eb', 4:'E' , 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'B' } # ,12:'C' } # 8/12/16
+    I2S = {         0:'C' , 1:'C\u266F', 2:'D' , 3:'D#', 4:'E' , 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' } # ,12:'C' } # 8/12/16
     I4F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'Fb', 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'Cb'} #,12:'C' } # 8/12/16
     I4S = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'E#', 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' } # ,12:'C' } # 8/12/16
     I2V = {         0:'R' , 1:'b2', 2:'2' , 3:'m3', 4:'M3', 5:'4' , 6:'b5', 7:'5' , 8:'#5', 9:'6' ,10:'b7', 11:'7' } # ,12:'R' } # 8/12/16
@@ -291,8 +299,8 @@ class Notes(object):#0       1       2       3       4       5       6       7  
     V2I = {         'R':0 ,'b2':1, '2':2 , 'm3':3, 'M3':4, '4':5 , 'b5':6, '5':7 , '#5':8, '6':9 ,'b7':10,  '7':11 } #,'R`':12 } # 8/12/16
     N2I = {'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11, 'B#`':12, 'C`':12 } #21
 #              0       0       1       2       3       4       5       6       7       8       9        a       b      0
-    F2S = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'                        } #[ 1 3  6 8 a ]# 5/9
-    S2F = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'                        } #[ 1 3  6 8 a ]# 5/9
+    F2S = {            'D\u266D':'C\u266F', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'                        } #[ 1 3  6 8 a ]# 5/9
+    S2F = {            'C\u266F':'D\u266D', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'                        } #[ 1 3  6 8 a ]# 5/9
     F4S = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                  'Cb':'B' } #,'C``' :'B#' } #[0   45     b]# 4/9
     S4F = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B' :'Cb'} #,'B#``':'C'  } #[0   45     b]# 4/9
 #               0       0       1       2       3
@@ -504,7 +512,7 @@ def parseCmdLine(dbg=1):
 ########################################################################################################################################################################################################
 randData = [ random.randint(-3, 3) for _ in range(25) ]
 print(''.join(signed(r) for r in randData))
-print(''.join([ f' {r}' if not r else f'+{r}' if r>1 else f'{r}' for r in randData ]))
+print(''.join([ f' {r}' if not r else f'+{r}' if r>0 else f'{r}' for r in randData ]))
 #quit()
 
 #def test():
@@ -517,12 +525,11 @@ print(''.join([ f' {r}' if not r else f'+{r}' if r>1 else f'{r}' for r in randDa
 KSD = {}
 KIM, KIS, KMS, KJS, KNS        = range(5)
 KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
-#KSS, KSK, KST, KSN, KSI, KSMS, KSSI = range(7)
-dmpKSVHdr(csv=1, t=-1)
+dmpKSVHdr(csv=1,   t=-1)
 KSD = initKSD(KSD, t=-1)
 KSD = initKSD(KSD, t= 1)
-dmpKSVHdr(csv=1, t=1)
-dumpKSH()
+dmpKSVHdr(csv=1,   t= 1)
+dumpKSH(  csv=1)
 ########################################################################################################################################################################################################
 
 class Test:
