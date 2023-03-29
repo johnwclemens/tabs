@@ -285,7 +285,7 @@ class Tabs(pyglet.window.Window):
         [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
         self.createTniks()
         self.ks = util.nic2KS(self.nic)
-#        self.log( util.fmtKSK(self.ks[util.KSK]), f=2)
+        self.log( util.fmtKSK(self.ks[util.KSK]), f=2)
         if self.TEST: self.test()
 
     def test(self, j=10):
@@ -2257,7 +2257,7 @@ class Tabs(pyglet.window.Window):
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
         self.ks = util.nic2KS(dict(self.nic))
-#        self.log(util.fmtKSK(self.ks[util.KSK]), f=2)
+        self.log(util.fmtKSK(self.ks[util.KSK]), f=2)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
     def toggleChordNames(self, how, hit=0, dbg=1):
