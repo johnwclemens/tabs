@@ -9,12 +9,11 @@ from collections import OrderedDict as cOd
 #Z                = ''
 #M                = -7
 #P                = 7
-#F                = f'{0x266D:c}'
-#N                = f'{0x266E:c}'
-#S                = f'{0x266F:c}'
+F                = f'{0x266D:c}'
+N                = f'{0x266E:c}'
+S                = f'{0x266F:c}'
 W, Y, Z          = ' ', ',', ''
 M, P             = -7, 7
-F, N, S          = f'{0x266D:c}', f'{0x266E:c}', f'{0x266F:c}'
 OIDS             = 0
 LOG_FILE         = None
 CSV_FILE         = None
@@ -149,9 +148,9 @@ def fmtKSK(k, csv=0):
 def dumpKSH(csv=0):
     c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0   ;   f, k, s = f'Flats', 'N', f'Shrps'
     w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  v = W*v if v and Notes.TYPE==Notes.FLAT else ''
-    hdrs = [ f'{y}{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]   ;   hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=ff)
+    hdrs = [ f'{y}{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]        ;  hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=ff)
     keys = sorted(KSD.keys())  ;  w = f'{u}{w}' ;   x = f'{w}x'
-    _  = ns2signs(keys)  ;   _ = n.join(_)      ;   slog(f'{v}{y}{_}', p=p, f=ff)  ;  slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=ff)
+    _  = ns2signs(keys)  ;   _ = n.join(_)      ;   slog(f'{v}{y}{_}', p=p, f=ff)    ;  slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=ff)
     _  = [ KSD[k][KIM][KSK]    for k in keys ]  ;   slog(f'{v}{fmtl(_, w=x, d=d, s=m)}', p=p, f=ff)
     _  = [ KSD[k][KIM][KST]    for k in keys ]  ;   slog(f'{v}{fmtl(_, w=w, d=d, s=m)}', p=p, f=ff)   ;  y = Z if csv else W*2
     f  = [ KSD[M][KMS][f]      for f in range(len(KSD[M][KMS])-1, -1, -1) ]  ;  s = [ KSD[P][KMS][s]    for s in range(len(KSD[P][KMS])) ]
@@ -174,10 +173,10 @@ def nic2KS(nic, dbg=0):
     return k, nt, n, i, ns, Scales.majIs(i)
 
 def dumpNic(nic): #fix me
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" for i in nic.keys() ])}')
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{nic[i]}" for i in nic.keys() ])}')
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if i in nic and nic[i] > 0 else None for i in KSD[M][KIS] ])}')
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if i in nic and nic[i] > 0 else None for i in KSD[P][KIS] ])}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" for i in nic.keys() ], s=Y)}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{nic[i]}" for i in nic.keys() ], s=Y)}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if i in nic and nic[i] > 0 else None for i in KSD[M][KIS] ], s=Y)}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if i in nic and nic[i] > 0 else None for i in KSD[P][KIS] ], s=Y)}')
 ########################################################################################################################################################################################################
 def initKSD(ks, t):
     if     t == -1:   i = 0  ;  j = 6   ;  s = M
@@ -252,26 +251,33 @@ class Strings(object):
         strNum = self.nStrings() - s - 1   # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
         k      = self.stringKeys[strNum]
         i      = self.stringMap[k] + fn
-        if dbg: slog(f'fn={fn} s={s} strNum={strNum} k={k} i={i} stringMap={fmtm(self.stringMap)}')
+        if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} stringMap={fmtm(self.stringMap)}')
         return i
 
     def tab2nn(self, tab, s, nic=None, dbg=1):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = ''
         j   = i % Notes.NTONES
-        if  nic is None:    nic = Counter()
+        if  nic is None:
+            nic = Counter()
         else:
             nic[j]    += 1
             if nic[j] == 1:
                 if j in (0, 4, 5, 11):
-                    ks = nic2KS(nic)  ;  k = ks[KSK]  ;  slog(f'{fmtKSK(k)}', f=2)
-                    if     j  == 11:     updNotes(j, f'C{F}', 'B', Notes.TYPE, 0)
-                    if     j  ==  5:     updNotes(j, 'F', f'E{S}', Notes.TYPE, 0)
-                    elif   j  ==  4:     updNotes(j, f'F{F}', 'E', Notes.TYPE, 0)
-                    elif   j  ==  0:     updNotes(j, 'C', f'B{S}', Notes.TYPE, 0)
+                    ks = nic2KS(nic)  ;  k = ks[KSK]
+                    if abs(k) >= 5:
+                        slog(f'KSK[{k}]={fmtKSK(k)}', f=2)
+                        if     j  == 11:     updNotes(j, 'Cb', 'B',  Notes.TYPE, 0)
+                        if     j  ==  5:     updNotes(j, 'F',  'E#', Notes.TYPE, 0)
+                        elif   j  ==  4:     updNotes(j, 'Fb', 'E',  Notes.TYPE, 0)
+                        elif   j  ==  0:     updNotes(j, 'C',  'B#', Notes.TYPE, 0)
+#                        if     j  == 11:     updNotes(j, f'C{F}', 'B', Notes.TYPE, 0)
+#                        if     j  ==  5:     updNotes(j, 'F', f'E{S}', Notes.TYPE, 0)
+#                        elif   j  ==  4:     updNotes(j, f'F{F}', 'E', Notes.TYPE, 0)
+#                        elif   j  ==  0:     updNotes(j, 'C', f'B{S}', Notes.TYPE, 0)
                 nict = f'nic[{j:x}]={nic[j]} '        ;  slog(f'adding {nict}', f=2)
         name = Notes.name(i)
-        if dbg and nict:    slog(f'tab={tab} fn={fn:2} s={s} i={i:2} j={j:x} name={name:2} {nict}{fmtm(nic, w="x")}', f=2)
+        if dbg and nict:    slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
 ########################################################################################################################################################################################################
 class Notes_2(object):#0   1. . .. . .2. . .. . .3. . .. . .4. . .. . .5. . .. . .6. . .. . .7. . .. . .8. . .. . .9. . .. . .a. . .. . .b. . .. . .0      #  2    7 9  #
@@ -288,7 +294,7 @@ class Notes_2(object):#0   1. . .. . .2. . .. . .3. . .. . .4. . .. . .5. . .. .
     I4S = { 0:'B#'       , 1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'E#', 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#',11:'B' ,12:'B#' } # 8/12/16
 #            0. . . 0 . . . 1 . . . 2 . . . 3 . . . 4 . . . 5 . . . 6 . . . 7 . . . 8 . . . 9 . . . a . . . b . . . 0
     N2I = {'B#':0, 'C':0 ,'C#':1, 'Db':1, 'D':2, 'D#':3, 'Eb':3, 'E':4, 'Fb':4, 'E#':5, 'F':5, 'F#':6, 'Gb':6, 'G':7, 'G#':8, 'Ab':8, 'A':9, 'A#':10, 'Bb':10, 'B':11, 'Cb':11, 'B#`':12, 'C`':12 } #21
-class Notes_3(object):#0       1       2       3       4       5       6       7       8       9       a       b       0      #[  2    7 9  ]#
+class Notes(object):#0       1       2       3       4       5       6       7       8       9       a       b       0      #[  2    7 9  ]#
     I2F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' , 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'B' } # ,12:'C' } # 8/12/16
     I2S = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' } # ,12:'C' } # 8/12/16
     I4F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'Fb', 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'Cb'} #,12:'C' } # 8/12/16
@@ -303,8 +309,26 @@ class Notes_3(object):#0       1       2       3       4       5       6       7
     S2F = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'                        } #[ 1 3  6 8 a ]# 5/9
     F4S = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                  'Cb':'B' } #,'C``' :'B#' } #[0   45     b]# 4/9
     S4F = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B' :'Cb'} #,'B#``':'C'  } #[0   45     b]# 4/9
+    I2N, I4N         = [None, I2S, I2F],  [None, I4S, I4F]
+    IS0,  IS1,  IS2  = [2, 7, 9],  [1, 3, 6, 8, 10],  [0, 4, 5, 11]
+    FLAT, NONE, SHRP =    -1,      0,      1    # -1 ~= 2
+    TYPES            =          [ 'NONE', 'SHRP', 'FLAT' ] # 0=NONE, 1=SHRP, 2=FLAT=-1
+    TYPE, NTONES     = FLAT, len(V2I) # - 1
 
-class Notes(object):#0       1          2       3          4          5          6          7       8          9       a          b       0      #[  2    7 9  ]#
+    @staticmethod
+    def setType(t):         Notes.TYPE = t
+    @staticmethod
+    def index(n, o=0):      name = n[:len(n)-1] if o else n  ;  return Notes.N2I[name]
+    @staticmethod
+    def nextIndex(i, d=1):  return  (i + d) % Notes.NTONES
+    @staticmethod
+    def name(i, t=0, n2=0): t = t if t else Notes.TYPE       ;  return Notes.I4N[t][i % Notes.NTONES] if n2 else Notes.I2N[t][i % Notes.NTONES]
+    @staticmethod
+    def nextName(n, iv, o=0): i = Notes.index(n, o)  ;  j = Notes.V2I[iv]  ;  k = Notes.nextIndex(i, j)  ;  return Notes.name(k)
+########################################################################################################################################################################################################
+
+class NotesB(object):#0       1          2       3          4          5          6          7       8          9       a          b       0      #[  2    7 9  ]#
+    F, N, S = f'{0x266D:c}', f'{0x266E:c}', f'{0x266F:c}'
     I2F = {         0:'C' , 1:f'D{F}', 2:'D' , 3:f'E{F}', 4:'E' ,    5:'F' ,    6:f'G{F}', 7:'G' , 8:f'A{F}', 9:'A' ,10:f'B{F}', 11:'B'    } # ,12:'C' } # 8/12/16
     I2S = {         0:'C' , 1:f'C{S}', 2:'D' , 3:f'D{S}', 4:'E' ,    5:'F' ,    6:f'F{S}', 7:'G' , 8:f'G{S}', 9:'A' ,10:f'A{S}', 11:'B'    } # ,12:'C' } # 8/12/16
     I4F = {         0:'C' , 1:f'D{F}', 2:'D' , 3:f'E{F}', 4:f'F{F}', 5:'F' ,    6:f'G{F}', 7:'G' , 8:f'A{F}', 9:'A' ,10:f'B{F}', 11:f'C{F}'} # ,12:'C' } # 8/12/16
@@ -324,28 +348,17 @@ class Notes(object):#0       1          2       3          4          5         
     FLAT, NONE, SHRP =    -1,      0,      1    # -1 ~= 2
     TYPES            =          [ 'NONE', 'SHRP', 'FLAT' ] # 0=NONE, 1=SHRP, 2=FLAT=-1
     TYPE, NTONES     = FLAT, len(V2I) # - 1
+
     @staticmethod
-    def setType(t): Notes.TYPE = t
+    def setType(t):         Notes.TYPE = t
     @staticmethod
-    def index(n, o=0):
-        name = n[:len(n)-1] if o else n
-        i    = Notes.N2I[name]
-        return i
+    def index(n, o=0):      name = n[:len(n)-1] if o else n  ;  return Notes.N2I[name]
     @staticmethod
-    def nextIndex(i, d):
-        return  (i + d) % Notes.NTONES
+    def nextIndex(i, d=1):  return  (i + d) % Notes.NTONES
     @staticmethod
-    def name(i, t=0, n2=0):
-        t    = t if t else Notes.TYPE
-        name = Notes.I4N[t][i % Notes.NTONES]   if n2   else Notes.I2N[t][i % Notes.NTONES]
-        return name
+    def name(i, t=0, n2=0): t = t if t else Notes.TYPE       ;  return Notes.I4N[t][i % Notes.NTONES] if n2 else Notes.I2N[t][i % Notes.NTONES]
     @staticmethod
-    def nextName(n, iv, o=0):
-        i = Notes.index(n, o)
-        j = Notes.V2I[iv]
-        k = Notes.nextIndex(i, j)
-        m = Notes.name(k)
-        return m
+    def nextName(n, iv, o=0): i = Notes.index(n, o)  ;  j = Notes.V2I[iv]  ;  k = Notes.nextIndex(i, j)  ;  return Notes.name(k)
 ########################################################################################################################################################################################################
 def updNotes(i, m, n, t, d=0):
     if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
