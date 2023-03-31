@@ -1533,9 +1533,9 @@ class Tabs(pyglet.window.Window):
     def setFontParam(self, n, v, m, dbg=1):
         setattr(self, m, v)
         if m == "clrIdx": self.fontStyle = NORMAL_STYLE if self.fontStyle == SELECT_STYLE else SELECT_STYLE
-        if dbg:                         self.log( f'      {n:12}  {v:4}  {m}  {len(self.E)=}')
+        if dbg:                        self.log( f'      {n:12}  {v:4}  {m}  {len(self.E)=}')
         for i in range(len(self.E)):
-            if dbg and self.VRBY:    self.log(f'{i:4}  {n:12}  {v:4}  {m}  {len(self.E)=}')
+            if dbg and self.VRBY:      self.log(f'{i:4}  {n:12}  {v:4}  {m}  {len(self.E)=}')
             self._setFontParam(self.E[i], n, v, m)
         self.setCaption(self.fmtFont())
 
@@ -1686,7 +1686,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def kbkEvntTxt(self): return f'<{self.kbk:8}> <{self.symb:8}> <{self.symbStr:16}> <{self.mods:2}> <{self.modsStr:16}>'
     ####################################################################################################################################################################################################
-    def on_key_press(self, symb, mods, dbg=0): # avoid these
+    def on_key_press(self, symb, mods, dbg=1): # avoid these
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
         self.kbk = self.symbStr  ;  kbk = self.kbk
         if   dbg: self.log(f'BGN {self.kbkEvntTxt()}')
@@ -1764,8 +1764,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam('color',        (self.clrIdx - 1) % len(RGB),               'clrIdx')
         elif kbk == 'I' and self.isAltShift(mods):     self.setFontParam('italic',    not self.fontItalic,                           'fontItalic')
         elif kbk == 'I' and self.isAlt(     mods):     self.setFontParam('italic',    not self.fontItalic,                           'fontItalic')
-        elif kbk == 'N' and self.isAltShift(mods):     self.setFontParam('font_name',    (self.fontNameIndex + 1) % len(FONT_NAMES), 'fontNameIndex')
-        elif kbk == 'N' and self.isAlt(     mods):     self.setFontParam('font_name',    (self.fontNameIndex - 1) % len(FONT_NAMES), 'fontNameIndex')
+        elif kbk == 'A' and self.isAltShift(mods):     self.setFontParam('font_name',    (self.fontNameIndex + 1) % len(FONT_NAMES), 'fontNameIndex')
+        elif kbk == 'A' and self.isAlt(     mods):     self.setFontParam('font_name',    (self.fontNameIndex - 1) % len(FONT_NAMES), 'fontNameIndex')
         elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam('font_size',     self.fontSize      + 1,                    'fontSize') # )  % FS_MAX
         elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam('font_size', max(self.fontSize      - 1, 1),                'fontSize') # )  % FS_MAX
     ####################################################################################################################################################################################################
@@ -1776,12 +1776,12 @@ class Tabs(pyglet.window.Window):
         elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()}')
         if   dbg: self.log(       f'END {self.kbkEvntTxt()}')
     ####################################################################################################################################################################################################
-    def on_key_release(self, symb, mods, dbg=0):
+    def on_key_release(self, symb, mods, dbg=1):
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
         self.kbk = self.symbStr
         if dbg: self.log(self.kbkEvntTxt())
     ####################################################################################################################################################################################################
-    def on_text(self, text, dbg=0): # use for entering strings not for motion
+    def on_text(self, text, dbg=1): # use for entering strings not for motion
         self.kbk = text
         if dbg: self.log(f'BGN {self.kbkEvntTxt()} swapping={self.swapping}')
         if   self.shiftingTabs:                              self.shiftTabs(  'onTxt', text)
@@ -2224,13 +2224,13 @@ class Tabs(pyglet.window.Window):
     def setn_cmd(self, how, txt='', dbg=1): # optimize str concat?
         if not self.settingN: self.settingN = 1   ;  self.setNtxt = '' ;  self.log(f'BGN {how} {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
         elif txt.isdecimal(): self.setNtxt += txt                      ;  self.log(   f'Concat {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
-        elif txt == ' ':      self.setNvals.append(int(self.setNtxt))  ;  self.log(   f'Append {txt=} {self.settingN=} {self.setNvals=}') if dbg else None   ;  self.setNtxt = ''
-        elif txt == 'Q':      self.settingN = 0  ;  self.log(f'Cancel {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
+        elif txt ==  W:       self.setNvals.append(int(self.setNtxt))  ;  self.log(   f'Append {txt=} {self.settingN=} {self.setNvals=}') if dbg else None  ;  self.setNtxt = ''
+        elif txt == 'Q':      self.settingN = 0                        ;  self.log(   f'Cancel {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
         elif txt == '\r':
             self.settingN = 0   ;   old = self.n
             self.setNvals.append(int(self.setNtxt))
             if len(self.setNvals) == 4:
-                self.n[:2] = self.setNvals[:2]   ;  self.n[3:] = self.setNvals[2:]
+                self.n[:2] = self.setNvals[:2]   ;   self.n[3:] = self.setNvals[2:]
             self.log(f'Setting {old=} {self.n=}')
             self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
     ####################################################################################################################################################################################################
@@ -2578,7 +2578,10 @@ SNAP_SFX  = '.png'
 LOG_FILE  = None
 CSV_FILE  = None
 ########################################################################################################################################################################################################
-W                     = ' '
+#W                     = ' '
+#Y                     = ','
+#Z                     = ''
+W, Y, Z               = ' ', ',', ''
 FIN                   = [1, 1, 1, 2, 1]
 FNTP                  = [5, 4, 3, 3, 3]
 LBL                   = pygtxt.Label

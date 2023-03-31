@@ -4,14 +4,17 @@ import sys, os, inspect, pathlib
 from collections import Counter
 from collections import OrderedDict as cOd
 
-W                = ' '
-Z                = ''
-Y                = ','
-M                = -7
-P                = 7
-UF              = '\u266D'
-UN              = '\u266E'
-US              = '\u266F'
+#W                = ' '
+#Y                = ','
+#Z                = ''
+#M                = -7
+#P                = 7
+#F                = f'{0x266D:c}'
+#N                = f'{0x266E:c}'
+#S                = f'{0x266F:c}'
+W, Y, Z          = ' ', ',', ''
+M, P             = -7, 7
+F, N, S          = f'{0x266D:c}', f'{0x266E:c}', f'{0x266F:c}'
 OIDS             = 0
 LOG_FILE         = None
 CSV_FILE         = None
@@ -34,14 +37,14 @@ def init(file, file2, oid):
     dumpData(csv=1)
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
-    slog(f'BGN \u266B{UF}{UN}{US}')
+    slog(f'BGN D{F} D{N} D{S} {0x1d11a:c}')
     dumpTestA(csv)
     dumpNF(csv)
     dumpTestB(csv)
     dumpND(csv)
     dumpKSH(csv)
     dumpKSV(csv)
-    slog(f'END \u266B{UF}{UN}{US}')
+    slog(f'END D{F} D{N} D{S} {0x1d11a:c}')
 
 ########################################################################################################################################################################################################
 def dumpTestA(csv=0):
@@ -129,8 +132,6 @@ def dmpKSVHdr(csv=0, t=0):
     c, d, m, n, o, f = (Z, Z, Y, Z, Z, 3) if csv else ('^20', '^13', W, W, W*2, 1)
     k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1
     fsn, fsi, ii, ino, kst = 'Flats/Shrps Naturals', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {signed(k)}'
-#    slog(f'KS{m}Type{m}N{n}I{n}{fsn:{c}}{n}{fsi:{d}}{n}{ii:{d}}{o}{ino:{c}}{n}{kst}', p=0, f=f)
-#    hdrs = ['KS', 'Type', 'N', 'I', 'Flats/Sharps Naturals', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {signed(k)}']
     hdrs = ['KS', 'Type', 'N', f'{n}I', f'{n}{fsn:{c}}', f'{o}{fsi:{d}}', f'{o}{ii:{d}}', f'{n}{ino:{c}}', f'{n}{kst}']
     hdrs = m.join(hdrs)   ;   slog(hdrs, p=0, f=f)
 
@@ -149,7 +150,6 @@ def dumpKSH(csv=0):
     c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0   ;   f, k, s = f'Flats', 'N', f'Shrps'
     w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  v = W*v if v and Notes.TYPE==Notes.FLAT else ''
     hdrs = [ f'{y}{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]   ;   hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=ff)
-#    slog(f'{y}{f:{c}}{m}{k}{m}{s:{c}}', p=p, f=ff)
     keys = sorted(KSD.keys())  ;  w = f'{u}{w}' ;   x = f'{w}x'
     _  = ns2signs(keys)  ;   _ = n.join(_)      ;   slog(f'{v}{y}{_}', p=p, f=ff)  ;  slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=ff)
     _  = [ KSD[k][KIM][KSK]    for k in keys ]  ;   slog(f'{v}{fmtl(_, w=x, d=d, s=m)}', p=p, f=ff)
@@ -265,16 +265,16 @@ class Strings(object):
             if nic[j] == 1:
                 if j in (0, 4, 5, 11):
                     ks = nic2KS(nic)  ;  k = ks[KSK]  ;  slog(f'{fmtKSK(k)}', f=2)
-                    if     j  == 11:     updNotes(j, 'Cb', 'B', Notes.TYPE, 0)
-                    if     j  ==  5:     updNotes(j, 'F', 'E#', Notes.TYPE, 0)
-                    elif   j  ==  4:     updNotes(j, 'Fb', 'E', Notes.TYPE, 0)
-                    elif   j  ==  0:     updNotes(j, 'C', 'B#', Notes.TYPE, 0)
+                    if     j  == 11:     updNotes(j, f'C{F}', 'B', Notes.TYPE, 0)
+                    if     j  ==  5:     updNotes(j, 'F', f'E{S}', Notes.TYPE, 0)
+                    elif   j  ==  4:     updNotes(j, f'F{F}', 'E', Notes.TYPE, 0)
+                    elif   j  ==  0:     updNotes(j, 'C', f'B{S}', Notes.TYPE, 0)
                 nict = f'nic[{j:x}]={nic[j]} '        ;  slog(f'adding {nict}', f=2)
         name = Notes.name(i)
         if dbg and nict:    slog(f'tab={tab} fn={fn:2} s={s} i={i:2} j={j:x} name={name:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
 ########################################################################################################################################################################################################
-class Notes2(object):#0   1. . .. . .2. . .. . .3. . .. . .4. . .. . .5. . .. . .6. . .. . .7. . .. . .8. . .. . .9. . .. . .a. . .. . .b. . .. . .0      #  2    7 9  #
+class Notes_2(object):#0   1. . .. . .2. . .. . .3. . .. . .4. . .. . .5. . .. . .6. . .. . .7. . .. . .8. . .. . .9. . .. . .a. . .. . .b. . .. . .0      #  2    7 9  #
     F2S = {           'Db\u266D':'C#',            'Eb':'D#',                       'Gb':'F#',            'Ab':'G#',            'Bb':'A#'                       } # 1 3  6 8 a # 5/9
     S2F = {           'C#\u266F':'Db',            'D#':'Eb',                       'F#':'Gb',            'G#':'Ab',            'A#':'Bb'                       } # 1 3  6 8 a # 5/9
     F4S = {'C\u266E' :'B#',                                  'Fb':'E' , 'F' :'E#',                                                       'Cb':'B' , 'C`' :'B#' } #0   45     b# 4/9
@@ -288,9 +288,9 @@ class Notes2(object):#0   1. . .. . .2. . .. . .3. . .. . .4. . .. . .5. . .. . 
     I4S = { 0:'B#'       , 1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'E#', 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#',11:'B' ,12:'B#' } # 8/12/16
 #            0. . . 0 . . . 1 . . . 2 . . . 3 . . . 4 . . . 5 . . . 6 . . . 7 . . . 8 . . . 9 . . . a . . . b . . . 0
     N2I = {'B#':0, 'C':0 ,'C#':1, 'Db':1, 'D':2, 'D#':3, 'Eb':3, 'E':4, 'Fb':4, 'E#':5, 'F':5, 'F#':6, 'Gb':6, 'G':7, 'G#':8, 'Ab':8, 'A':9, 'A#':10, 'Bb':10, 'B':11, 'Cb':11, 'B#`':12, 'C`':12 } #21
-class Notes(object):#0       1       2       3       4       5       6       7       8       9       a       b       0      #[  2    7 9  ]#
-    I2F = {         0:'C' , 1:'D\u266D', 2:'D' , 3:'Eb', 4:'E' , 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'B' } # ,12:'C' } # 8/12/16
-    I2S = {         0:'C' , 1:'C\u266F', 2:'D' , 3:'D#', 4:'E' , 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' } # ,12:'C' } # 8/12/16
+class Notes_3(object):#0       1       2       3       4       5       6       7       8       9       a       b       0      #[  2    7 9  ]#
+    I2F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' , 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'B' } # ,12:'C' } # 8/12/16
+    I2S = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' } # ,12:'C' } # 8/12/16
     I4F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'Fb', 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'Cb'} #,12:'C' } # 8/12/16
     I4S = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'E#', 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' } # ,12:'C' } # 8/12/16
     I2V = {         0:'R' , 1:'b2', 2:'2' , 3:'m3', 4:'M3', 5:'4' , 6:'b5', 7:'5' , 8:'#5', 9:'6' ,10:'b7', 11:'7' } # ,12:'R' } # 8/12/16
@@ -299,13 +299,28 @@ class Notes(object):#0       1       2       3       4       5       6       7  
     V2I = {         'R':0 ,'b2':1, '2':2 , 'm3':3, 'M3':4, '4':5 , 'b5':6, '5':7 , '#5':8, '6':9 ,'b7':10,  '7':11 } #,'R`':12 } # 8/12/16
     N2I = {'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11, 'B#`':12, 'C`':12 } #21
 #              0       0       1       2       3       4       5       6       7       8       9        a       b      0
-    F2S = {            'D\u266D':'C\u266F', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'                        } #[ 1 3  6 8 a ]# 5/9
-    S2F = {            'C\u266F':'D\u266D', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'                        } #[ 1 3  6 8 a ]# 5/9
+    F2S = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'                        } #[ 1 3  6 8 a ]# 5/9
+    S2F = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'                        } #[ 1 3  6 8 a ]# 5/9
     F4S = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                  'Cb':'B' } #,'C``' :'B#' } #[0   45     b]# 4/9
     S4F = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B' :'Cb'} #,'B#``':'C'  } #[0   45     b]# 4/9
-#               0       0       1       2       3
-    I2N, I4N         = [None, I2S, I2F], [None, I4S, I4F]
-    IS0,  IS1,  IS2  = [2, 7, 9], [1, 3, 6, 8, 10], [0, 4, 5, 11]
+
+class Notes(object):#0       1          2       3          4          5          6          7       8          9       a          b       0      #[  2    7 9  ]#
+    I2F = {         0:'C' , 1:f'D{F}', 2:'D' , 3:f'E{F}', 4:'E' ,    5:'F' ,    6:f'G{F}', 7:'G' , 8:f'A{F}', 9:'A' ,10:f'B{F}', 11:'B'    } # ,12:'C' } # 8/12/16
+    I2S = {         0:'C' , 1:f'C{S}', 2:'D' , 3:f'D{S}', 4:'E' ,    5:'F' ,    6:f'F{S}', 7:'G' , 8:f'G{S}', 9:'A' ,10:f'A{S}', 11:'B'    } # ,12:'C' } # 8/12/16
+    I4F = {         0:'C' , 1:f'D{F}', 2:'D' , 3:f'E{F}', 4:f'F{F}', 5:'F' ,    6:f'G{F}', 7:'G' , 8:f'A{F}', 9:'A' ,10:f'B{F}', 11:f'C{F}'} # ,12:'C' } # 8/12/16
+    I4S = { 0:f'B{S}',      1:f'C{S}', 2:'D' , 3:f'D{S}', 4:'E' ,    5:f'E{S}', 6:f'F{S}', 7:'G' , 8:f'G{S}', 9:'A' ,10:f'A{S}', 11:'B'    } # ,12:'C' } # 8/12/16
+    I2V = {         0:'R' , 1:'b2',    2:'2' , 3:'m3',    4:'M3',    5:'4' ,    6:'b5',    7:'5' , 8:'#5',    9:'6' ,10:'b7',    11:'7'    } # ,12:'R' } # 8/12/16
+    I4V = {         0:'P1', 1:'m2',    2:'M2', 3:'m3',    4:'M3',    5:'P4',    6:'TT',    7:'P5', 8:'m6',    9:'M6',10:'m7',    11:'M7'   } # ,12:'P8'} # 8/12/16
+    I6V = {         0:'d2', 1:'A1',    2:'d3', 3:'A2',    4:'d4',    5:'A3',    6:'TT',    7:'d6', 8:'A5',    9:'d7',10:'A6',    11:'d8'   } # ,12:'A7'} # 8/12/16
+    V2I = {       'R':0 ,'b2':1,     '2':2, 'm3':3,    'M3':4,     '4':5 ,   'b5':6,     '5':7 ,'#5':8,     '6':9, 'b7':10,     '7':11     } # ,'R`':12 } # 8/12/16
+    N2I = {f'B{S}':0, 'C' :0, f'C{S}':1, f'D{F}':1, 'D' :2, f'D{S}':3, f'E{F}':3, 'E' :4, f'F{F}':4, f'E{S}':5, 'F' :5, f'F{S}':6, f'G{F}':6, 'G' :7, f'G{S}':8, f'A{F}':8, 'A' :9, f'A{S}':10, f'B{F}':10, 'B' :11, f'C{F}' :11, f'B{S}`':12, 'C`':12 } #21
+    F2S = {            f'D{F}':f'C{S}', f'E{F}':f'D{S}',                       f'G{F}':f'F{S}', f'A{F}':f'G{S}', f'B{F}':f'A{S}'                        } #[ 1 3  6 8 a ]# 5/9
+    S2F = {            f'C{S}':f'D{F}', f'D{S}':f'E{F}',                       f'F{S}':f'G{F}', f'G{S}':f'A{F}', f'A{S}':f'B{F}'                        } #[ 1 3  6 8 a ]# 5/9
+#               0             1                2             3          4             5                6                7           8
+    F4S = { 'C' :f'B{S}',                             f'F{F}':'E' , 'F' :f'E{S}',                                             f'C{F}':'B'  } #,'C``' :'B#' } #[0   45     b]# 4/9
+    S4F = { f'B{S}':'C' ,                             'E' :f'F{F}', f'E{S}':'F' ,                                             'B' :f'C{F}' } #,'B#``':'C'  } #[0   45     b]# 4/9
+    I2N, I4N         = [None, I2S, I2F],  [None, I4S, I4F]
+    IS0,  IS1,  IS2  = [2, 7, 9],  [1, 3, 6, 8, 10],  [0, 4, 5, 11]
     FLAT, NONE, SHRP =    -1,      0,      1    # -1 ~= 2
     TYPES            =          [ 'NONE', 'SHRP', 'FLAT' ] # 0=NONE, 1=SHRP, 2=FLAT=-1
     TYPE, NTONES     = FLAT, len(V2I) # - 1
