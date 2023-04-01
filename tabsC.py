@@ -193,6 +193,7 @@ class Tabs(pyglet.window.Window):
         j = R  ;  k[j] = i(j, BLU,  0, 17, BLU, 17, 17) if a else i(j, BLU,  0, 17, BLU, 17, 17) if b else i(j, BLU,  0,  4, BLU, 17,  4) if c else i(j, BLU,  0, 17, BLU, 17, 17) if d else None
         j = Q  ;  k[j] = i(j, CYA,  0, 17, CYA, 17, 17) if a else i(j, CYA,  0,  0, CYA, 17, 17) if b else i(j, CYA,  0, 17, CYA, 17, 17) if c else i(j, CYA,  0,  0, CYA, 17, 17) if d else None
         j = H  ;  k[j] = i(j, YLW, 17, 11, YLW, 17, 10) if a else i(j, PNK, 17, 10, PNK, 17, 17) if b else i(j, PNK, 17, 17, PNK, 17, 17) if c else i(j, PNK, 17, 17, PNK, 17, 17) if d else None
+        j = M  ;  k[j] = i(j, GRN, 17, 11, GRN, 17, 10) if a else i(j, PNK, 17, 10, PNK, 17, 17) if b else i(j, PNK, 17, 17, PNK, 17, 17) if c else i(j, PNK, 17, 17, PNK, 17, 17) if d else None
         j = E  ;  k[j] = i(j, VLT,  0,  0, VLT, 17, 17) if a else i(j, VLT,  0,  0, VLT, 17, 17) if b else i(j, VLT,  0,  0, VLT, 17, 17) if c else i(j, VLT,  0,  0, VLT, 17, 17) if d else None
         j = B  ;  k[j] = i(j, PNK,  0,  0, PNK, 17, 17) if a else i(j, PNK,  0,  0, PNK, 17, 17) if b else i(j, PNK,  0,  0, PNK, 17, 17) if c else i(j, PNK,  0,  0, PNK, 17, 17) if d else None
         j = A  ;  k[j] = i(j, BLU,  0,  0, BLU, 17, 17) if a else i(j, BLU,  0,  0, BLU, 17, 17) if b else i(j, BLU,  0,  0, BLU, 17, 17) if c else i(j, BLU,  0,  0, BLU, 17, 17) if d else None
@@ -1530,24 +1531,29 @@ class Tabs(pyglet.window.Window):
         pix = s / FONT_SCALE   ;   fcs = '' # f'{fmtl( [k])}'
         self.log(f'{dpi}:{FONT_DPIS[dpi]}dpi {s:6.3f}pt {n}:{FONT_NAMES[n]} {k}:{fcs} {s:6.3f}pt = {FONT_SCALE:5.3f}(pt/pix) * {pix:6.3f}pixels {why}')
 
-    def setFontParam(self, n, v, m, dbg=1):
+    def setFontParam(self, n, v, m, dbg=1): # if m == 'clrIdx': self.fontStyle = NORMAL_STYLE if self.fontStyle == SELECT_STYLE else SELECT_STYLE
         setattr(self, m, v)
-        if m == "clrIdx": self.fontStyle = NORMAL_STYLE if self.fontStyle == SELECT_STYLE else SELECT_STYLE
-        if dbg:                        self.log( f'      {n:12}  {v:4}  {m}  {len(self.E)=}')
-        for i in range(len(self.E)):
-            if dbg and self.VRBY:      self.log(f'{i:4}  {n:12}  {v:4}  {m}  {len(self.E)=}')
-            self._setFontParam(self.E[i], n, v, m)
+        t = self.B  ;  lt = len(t)
+        if dbg:                self.log( f'      {n:12}  {v:4}  {lt=}  {m}')
+        for i in range(1):
+            if dbg:            self.log(f'{i:4}  {n:12}  {v:4}  {lt=}  {m}') #  and self.VRBY
+            self._setFontParam(self.B[i], n, v, m)
         self.setCaption(self.fmtFont())
 
-    def _setFontParam(self, p, n, v, m, dbg=1):
+    def _setFontParam(self, p, n, v, m, dbg=1): # self.setTNIKStyle(i, 1, self.fontStyle)
+        k = 3  ;  fb = 0 # if self.fontStyle == NORMAL_STYLE else 1
         for i in range(len(p)):
-            # k = len(p[i].color) # { [v][:k]=}' if m == "clrIdx" else
-            msg = f'{FONT_NAMES[v]=}' if m == "fontNameIndex" else f'{v=}'
+            if   m == 'clrIdx':        k = len(p[i].color)  ;  msg = f'{self.k[v][fb][:k]=}'
+            elif m == 'fontNameIndex':                         msg = f'{FONT_NAMES[v]=}'
+            else:                                              msg = f'{v=}'
             if dbg:
-                f = 1 if self.VRBY else 10
-                if not i % f:           self.log(f'{i:4}  {n:12}  {v:4}  {msg}')
-            if   m == 'clrIdx':         self.setTNIKStyle(i, 1, self.fontStyle)
-            else:                       setattr(p[i], n, FONT_NAMES[v] if m == 'fontNameIndex' else v)
+                j = 1 if self.VRBY else 10
+                if not i % j:           self.log(f'{i=}  {n=}  {v=}  {m=}  {fb=}  {k=} {fmtl(p[i].color)} {fmtl(p[i].document.get_style(n))} {msg}', p=0, f=2)
+#            if   m == 'clrIdx':         setattr(p[i], n, self.k[v][fb][:k])
+#            if   m == 'clrIdx':         self.setTNIKStyle(i, 1, self.fontStyle)
+            if   m == 'clrIdx':         self._setTNIKStyle(p[i], self.k[v], self.fontStyle)
+            elif m == 'fontNameIndex':  setattr(p[i], n, FONT_NAMES[v])
+            else:                       setattr(p[i], n, v)
     @staticmethod
     def pix2fontsize(pix): return pix * FONT_SCALE # ( ) % FS_MAX
     def fontParams(self):    return self.fontBold, self.clrIdx, self.fontDpiIndex, self.fontItalic, self.fontNameIndex, self.fontSize
@@ -1619,7 +1625,7 @@ class Tabs(pyglet.window.Window):
 #                util.updNotes( 4, 'E', 'Fb', Notes.TYPE, -1)
 #                util.updNotes( 0, 'C', 'B#', Notes.TYPE, -1)
     ####################################################################################################################################################################################################
-    def getImap(self, p=None, l=None, c=None, dbg=1, dbg2=1):
+    def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=0):
         dl    = self.dl()
         cn    = self.plc2cn(p, l, c)          ;     key = cn   ;   mli = self.cobj.mlimap
         msg1  = f'plc={self.fplc(p, l, c)}'   ;    msg2 = f'dl={self.fmtdl()} {cn=} {key=} keys={fmtl(list(mli.keys()))}'
@@ -1760,8 +1766,8 @@ class Tabs(pyglet.window.Window):
 ####################################################################################################################################################################################################
         elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam('bold',      not self.fontBold,                             'fontBold')
         elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam('bold',      not self.fontBold,                             'fontBold')
-        elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam('color',        (self.clrIdx + 1) % len(RGB),               'clrIdx')
-        elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam('color',        (self.clrIdx - 1) % len(RGB),               'clrIdx')
+        elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam('color',        (self.clrIdx + 1) % len(self.k),            'clrIdx')
+        elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam('color',        (self.clrIdx - 1) % len(self.k),            'clrIdx')
         elif kbk == 'I' and self.isAltShift(mods):     self.setFontParam('italic',    not self.fontItalic,                           'fontItalic')
         elif kbk == 'I' and self.isAlt(     mods):     self.setFontParam('italic',    not self.fontItalic,                           'fontItalic')
         elif kbk == 'A' and self.isAltShift(mods):     self.setFontParam('font_name',    (self.fontNameIndex + 1) % len(FONT_NAMES), 'fontNameIndex')
@@ -2491,6 +2497,12 @@ class Tabs(pyglet.window.Window):
         self.close()
         pyglet.app.exit()
     ####################################################################################################################################################################################################
+    def cleanupLog(self):
+        self.log(f'Copying {LOG_FILE.name} to {self.lfSeqPath}')
+        util.copyFile(LOG_PATH, self.lfSeqPath)
+        self.log(f'closing {LOG_FILE.name}', ff=True)
+        self.log(f'closing {CSV_FILE.name}', ff=True)
+
     def cleanupCat(self, dump=1):
         self.log(f'BGN {dump=}')
         if   dump and self.CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
@@ -2499,13 +2511,6 @@ class Tabs(pyglet.window.Window):
             cfp = self.getFilePath(seq=0, fdir='cats', fsfx='.cat')
             util.copyFile(self.catPath, cfp)
         self.log(f'END {dump=}')
-
-    def cleanupLog(self):
-        CSV_FILE.close()
-        self.log(f'Copying {LOG_FILE.name} to {self.lfSeqPath}')
-        util.copyFile(LOG_PATH, self.lfSeqPath)
-        self.log(f'closing {LOG_FILE.name}', ff=True)
-        LOG_FILE.close()
     ####################################################################################################################################################################################################
 
 # Global Functions BGN
@@ -2630,6 +2635,10 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
         _ = Tabs()
         ret = pyglet.app.run()
         print(f'{ret=}')
+        CSV_FILE.flush()
+        LOG_FILE.flush()
+        CSV_FILE.close()
+        LOG_FILE.close()
     ########################################################################################################################################################################################################
     if __name__ == '__main__':
         main()
