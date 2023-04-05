@@ -4,11 +4,6 @@ import sys, os, inspect, pathlib
 from collections import Counter
 from collections import OrderedDict as cOd
 
-#W                = ' '
-#Y                = ','
-#Z                = ''
-#M                = -7
-#P                = 7
 F                = f'{0x266D:c}'
 N                = f'{0x266E:c}'
 S                = f'{0x266F:c}'
@@ -147,7 +142,7 @@ def fmtKSK(k, csv=0):
 
 def dumpKSH(csv=0):
     c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0   ;   f, k, s = f'Flats', 'N', f'Shrps'
-    w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  v = W*v if v and Notes.TYPE==Notes.FLAT else ''
+    w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  v = W*v if v and Notes.TYPE==Notes.FLAT else Z
     hdrs = [ f'{y}{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]        ;  hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=ff)
     keys = sorted(KSD.keys())  ;  w = f'{u}{w}' ;   x = f'{w}x'
     _  = ns2signs(keys)  ;   _ = n.join(_)      ;   slog(f'{v}{y}{_}', p=p, f=ff)    ;  slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=ff)
@@ -227,9 +222,9 @@ class Strings(object):
         if alias is None: alias = 'GUITAR_6_STD'
         self.stringMap          = self.aliases[alias]
         self.stringKeys         = list(self.stringMap.keys())
-        self.stringNames        = ''.join(reversed([ str(k[0])  for k in            self.stringKeys ]))
-        self.stringNumbs        = ''.join(         [ str(r + 1) for r in range(len(self.stringKeys)) ])
-        self.stringCapo         = ''.join(         [ '0'        for _ in range(len(self.stringKeys)) ])
+        self.stringNames        = Z.join(reversed([ str(k[0])  for k in            self.stringKeys ]))
+        self.stringNumbs        = Z.join(         [ str(r + 1) for r in range(len(self.stringKeys)) ])
+        self.stringCapo         = Z.join(         [ '0'        for _ in range(len(self.stringKeys)) ])
         self.strLabel           = 'STRING'
         self.cpoLabel           = ' CAPO '
         slog( f'stringMap   = {fmtm(self.stringMap)}')
@@ -256,7 +251,7 @@ class Strings(object):
 
     def tab2nn(self, tab, s, nic=None, dbg=1):
         fn  = self.tab2fn(tab)
-        i   = self.fn2ni(fn, s)   ;   nict = ''
+        i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
         name = Notes.name(i)
         if   j == 0: name = f'Cb'
@@ -270,7 +265,7 @@ class Strings(object):
 
     def A_tab2nn(self, tab, s, nic=None, dbg=1):
         fn  = self.tab2fn(tab)
-        i   = self.fn2ni(fn, s)   ;   nict = ''
+        i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
         if  nic is None:
             nic = Counter()
@@ -396,43 +391,43 @@ def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(MAX_FREQ_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(MAX_FREQ_IDX) ]
 ########################################################################################################################################################################################################
-def fmtl(lst, w=None, u=None, d='[', d2=']', s=' ', ll=None): # optimize str concat?
+def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str concat?
     if   lst is None:   return  'None'
     lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts, f'{type(lst)=} {lts=}'
-    if d == '':    d2 = ''
-    w   = w   if w else ''   ;   t = []
-    zl  = '-'               if ll is not None and ll<0 else '+' if ll is not None and ll>0 else ''
-    z   = f'{zl}{len(lst)}' if ll is not None          else ''
+    if d == Z:    d2 = Z
+    w   = w   if w else Z   ;   t = []
+    zl  = '-'               if ll is not None and ll<0 else '+' if ll is not None and ll>0 else Z
+    z   = f'{zl}{len(lst)}' if ll is not None          else Z
     for i, l in enumerate(lst):
         if type(l) in lts:
             if type(w) in lts:               t.append(fmtl(l, w[i], u, d, d2, s, ll))
             else:                            t.append(fmtl(l, w,    u, d, d2, s, ll))
         else:
-            ss = s if i < len(lst)-1 else ''
-            u = '' if u is None else u
+            ss = s if i < len(lst)-1 else Z
+            u = Z if u is None else u
             if   type(l) is type:            l =  str(l)
             elif l is None:                  l =  'None'
             if   type(w) in lts:             t.append(f'{l:{u}{w[i]}}{ss}')
             elif type(l) in dtn:             t.append(f'{l:{u}{w   }}{ss}')
             elif type(l) in dts:             t.append(f'{l:{u}{w   }}{ss}')
             else:                            t.append(f'{l}{ss}')
-    return z + d + ''.join(t) + d2
+    return z + d + Z.join(t) + d2
 ########################################################################################################################################################################################################
-def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=' ', ll=None):
-    w  = w  if w  is not None else ''   ;  t = []
+def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=W, ll=None):
+    w  = w  if w  is not None else Z   ;  t = []
     wv = wv if wv is not None else w
-    if d=='':   d2 = ''
-    u  = '' if u  is None else u
-    uv = '' if uv is None else uv
+    if d==Z:   d2 = Z
+    u  = Z if u  is None else u
+    uv = Z if uv is None else uv
     for i, (k, v) in enumerate(m.items()):
-        ss = s if i < len(m) - 1 else ''
+        ss = s if i < len(m) - 1 else Z
         if   type(v) in (list, tuple, set):  t.append(f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2}{ss}')
         elif type(v) in (int, str):          t.append(f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}')
-    return ''.join(t)
+    return Z.join(t)
 ########################################################################################################################################################################################################
 def ev(obj):         return f'{eval(f"{obj!r}")}'
-def fColor(c, d=1): (d, d2) = ("[", "]") if d else ("", "")  ;  return f'{fmtl(c, w=3, d=d, d2=d2):17}'
+def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{fmtl(c, w=3, d=d, d2=d2):17}'
 
 def ordSfx(n):
     m = n % 10
@@ -452,18 +447,18 @@ def fmtSD(sd): return f'{sd:{sd}}'
 
 def dumpStack(sfs):
     for i, sf in enumerate(sfs):
-        fp = pathlib.Path(sf.filename)  ;   n = fp.stem  ;  l = sf.lineno  ;  f = sf.function  ;  c = sf.code_context[0].strip() if sf.code_context else ''  ;  j = len(sfs) - (i + 1)
+        fp = pathlib.Path(sf.filename)  ;   n = fp.stem  ;  l = sf.lineno  ;  f = sf.function  ;  c = sf.code_context[0].strip() if sf.code_context else Z  ;  j = len(sfs) - (i + 1)
         slog(f'{j:2} {n:9} {l:5} {f:20} {c}')
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
 ########################################################################################################################################################################################################
-def slog(t='', p=1, f=1, s=',', e='\n', ff=False):
+def slog(t=Z, p=1, f=1, s=',', e='\n', ff=False):
     t = filtText(t) #    t = filtText2(t)
     if p:
         sf   = inspect.currentframe().f_back
         while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
         fp   = pathlib.Path(sf.f_code.co_filename)
         pl   = 18 if p == 1 else 8
-        p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else ''
+        p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else Z
         t    = f'{p}{sf.f_code.co_name:{pl}} ' + t
     so = 0
     if   f == 0:  f = sys.stdout
@@ -474,20 +469,20 @@ def slog(t='', p=1, f=1, s=',', e='\n', ff=False):
     print(t, sep=s, end=e, file=None, flush=ff) if so else None
 ########################################################################################################################################################################################################
 def filtText(text):
-    text = text.replace('"', '')
-    text = text.replace("'", '')
-    text = text.replace('self', '')
-    text = text.replace('util', '')
-    text = text.replace('fmtl', '')
-    text = text.replace('fmtm', '')
+    text = text.replace('"', Z)
+    text = text.replace("'", Z)
+    text = text.replace('self', Z)
+    text = text.replace('util', Z)
+    text = text.replace('fmtl', Z)
+    text = text.replace('fmtm', Z)
     return text
 
 def filtText2(text):
-    text = text.replace(', w=w', '')
-    text = text.replace(', u=u', '')
-    text = text.replace(', d=d', '')
-    text = text.replace('([ ', '')
-    text = text.replace(' ])', '')
+    text = text.replace(', w=w', Z)
+    text = text.replace(', u=u', Z)
+    text = text.replace(', d=d', Z)
+    text = text.replace('([ ', Z)
+    text = text.replace(' ])', Z)
     text = text.replace('(_)', '_')
     text = text.replace('(f[_])', 'f[_]')
     text = text.replace('(s[_])', 's[_]')
@@ -510,7 +505,7 @@ def copyFile(src, trg):
 ########################################################################################################################################################################################################
 def parseCmdLine(dbg=1):
     options = dict()
-    key     = ''
+    key     = Z
     vals    = []
     largs   = len(sys.argv)
     if dbg: slog(f'argv={fmtl(sys.argv[1:])}')  ;  slog(sys.argv[0], p=0)
@@ -521,40 +516,40 @@ def parseCmdLine(dbg=1):
                 vals = []
                 key = argv[2:]
                 options[key] = vals
-                if dbg: slog(f'{j:2} long    {argv:2} {key} {fmtl(vals)}', e=' ')
+                if dbg: slog(f'{j:2} long    {argv:2} {key} {fmtl(vals)}', e=W)
             else:
-                slog(f'{j:2} ERROR long    {argv:2} {key} {fmtl(vals)}', e=' ')
+                slog(f'{j:2} ERROR long    {argv:2} {key} {fmtl(vals)}', e=W)
         elif len(argv) > 1 and argv[0] == '-':
             if argv[1].isalpha() or argv[1] == '?':
                 vals = []
                 if len(argv) == 2:
                     key = argv[1:]
-                    if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', e=' ')
+                    if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', e=W)
                     options[key] = vals
                 elif len(argv) > 2:
                     for i in range(1, len(argv)):
                         key = argv[i]
-                        if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', e=' ')
+                        if dbg: slog(f'{j:2} short   {argv:2} {key} {fmtl(vals)}', e=W)
                         options[key] = vals
             elif argv[1].isdigit():
                 vals.append(argv)
                 options[key] = vals
-                if dbg: slog(f'{j:2} neg arg {argv:2} {key} {fmtl(vals)}', e=' ')
+                if dbg: slog(f'{j:2} neg arg {argv:2} {key} {fmtl(vals)}', e=W)
             else:
                 vals.append(argv)
                 options[key] = vals
-                if dbg: slog(f'{j:2} ??? arg {argv:2} {key} {fmtl(vals)}', e=' ')
+                if dbg: slog(f'{j:2} ??? arg {argv:2} {key} {fmtl(vals)}', e=W)
         else:
             vals.append(argv)
             options[key] = vals
-            if dbg: slog(f'{j:2} arg     {argv:2} {key} {fmtl(vals)}', e=' ')
+            if dbg: slog(f'{j:2} arg     {argv:2} {key} {fmtl(vals)}', e=W)
         if dbg: slog(p=0)
     if dbg: slog(f'options={fmtm(options)}')
     return options
 ########################################################################################################################################################################################################
 randData = [ random.randint(-3, 3) for _ in range(25) ]
-print(''.join(signed(r) for r in randData))
-print(''.join([ f' {r}' if not r else f'+{r}' if r>0 else f'{r}' for r in randData ]))
+print(Z.join(signed(r) for r in randData))
+print(Z.join([ f' {r}' if not r else f'+{r}' if r>0 else f'{r}' for r in randData ]))
 #quit()
 
 #def test():
