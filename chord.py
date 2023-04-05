@@ -20,7 +20,7 @@ class Chord(object):
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), dict()
     ####################################################################################################################################################################################################
-    def getChordName(self, data, nic, cn, p, l, c, kk=1, dbg=1):
+    def getChordName(self, data, nic, cn, p, l, c, kk=1, dbg=0):
         self.limap = []   ;   imap = []
         ikeys, ivals, notes, name, chunks, rank = [], [], [], '', [], -1
         mask, notes, ixs = self._getIndices(data, nic, p, l, c)   ;   _imap, vkeys = None, []
