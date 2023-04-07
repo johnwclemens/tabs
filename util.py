@@ -249,7 +249,7 @@ class Strings(object):
         if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} stringMap={fmtm(self.stringMap)}')
         return i
 
-    def tab2nn(self, tab, s, nic=None, dbg=1):
+    def A_tab2nn(self, tab, s, nic=None, dbg=1):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
@@ -263,7 +263,7 @@ class Strings(object):
         if dbg and nict:    slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
 
-    def A_tab2nn(self, tab, s, nic=None, dbg=1):
+    def tab2nn(self, tab, s, nic=None, dbg=1):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES

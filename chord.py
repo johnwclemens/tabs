@@ -103,7 +103,7 @@ class Chord(object):
         if dt is list or dt is str:
             for i in range(len(mask)):
                 if   mask[i] and j < len(data): slog('{:{}{}} '.format(data[j], u, w), p=0, e=Z)  ;  j += 1
-                elif mask[i]:                   slog('{:{}{}} '.format(W,     u, w), p=0, e=Z)
+                elif mask[i]:                   slog('{:{}{}} '.format(W,       u, w), p=0, e=Z)
                 else:                           slog('{:{}{}} '.format('~',     u, w), p=0, e=Z)
         elif dt is cOd:
             w2 = 2  ;   i = 0
@@ -188,10 +188,10 @@ class Chord(object):
 
     @staticmethod
     def mergeMaps(src, trg):
-        slog(f'BGN len(src) ={len(src)} len(trg)={len(trg)}')
+        slog(f'BGN {len(src)=} {len(trg)=}')
         for k, v in src.items():
             trg[k] = v
-        slog(f'END len(src) ={len(src)} len(trg)={len(trg)}')
+        slog(f'END {len(src)=} {len(trg)=}')
     ####################################################################################################################################################################################################
     def dumpUmap(self): # optimize str concat?
         if self.umap:
@@ -201,10 +201,10 @@ class Chord(object):
                 v = self.umap[k]
                 k = '\'' + k + '\''
                 slog(f'{k:19}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):15})', p=0)
-            slog(f'END umap len={len(self.umap)}')
+            slog(f'END {len(self.umap)=}')
 
     def dumpOMAP(self, catpath=None, merge=0):
-        slog(f'BGN len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
+        slog(f'BGN {len(self.OMAP)=} {len(self.umap)=}')
         if merge and self.umap: self.mergeMaps(self.umap, self.OMAP)
         r = self._dumpOMAP()
         if catpath:
@@ -218,7 +218,7 @@ class Chord(object):
                 with open(str(catpath), 'w') as CAT_FILE:
                     self._dumpOMAP(CAT_FILE)
         if self.umap: self.dumpUmap()
-        slog(f'END   len(OMAP)={len(self.OMAP)} len(umap)={len(self.umap)}')
+        slog(f'END {len(self.OMAP)=} {len(self.umap)=}')
 
     def _dumpOMAP(self, catfile=None, dbg=0): # optimize str concat?
         file = catfile      if catfile else util.LOG_FILE
@@ -934,5 +934,5 @@ class Chord(object):
                 for j, u in enumerate(catmap2[v]):
                     for h, w in enumerate(u):
                         if j:        slog(f'{Z if h else "  "}{fmtl(w, w=FMTN)}', p=0, e=Z)
-                        elif w != v: slog(f'{                   fmtl(w, w="x")}',  p=0, e=Z)
+                        elif w != v: slog(f'{                  fmtl(w, w="x")}',  p=0, e=Z)
                 slog(p=0)
