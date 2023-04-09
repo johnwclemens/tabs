@@ -56,7 +56,7 @@ class Tabs(pyglet.window.Window):
 #        self.X_LEFT    = 1  ;  self.X_CENTER    = 0  ;  self.X_RIGHT      = 0
         self.X_LEFT    = 0  ;  self.X_CENTER    = 1  ;  self.X_RIGHT      = 0
 #        self.X_LEFT    = 0  ;  self.X_CENTER    = 0  ;  self.X_RIGHT      = 1
-        self.Y_TOP     = 0  ;  self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0  ;  self.RESIZE_FONTS = 1  ;  self.W_NONE   = 0
+        self.Y_TOP     = 0  ;  self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0  ;  self.W_NONE   = 0
         self.AUTO_SAVE = 0  ;  self.CAT         = 1  ;  self.CHECKERED    = 1  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN  = 0  ;  self.LONG_TXT = 1
         self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.RD_STDOUT  = 0  ;  self.RESIZE       = 1  ;  self.VARROW   = 1
         self.SNAPS     = 1  ;  self.SPRITES     = 0  ;  self.SUBPIX       = 1  ;  self.TEST       = 0  ;  self.VRBY         = 0  ;  self.OIDS     = 0
@@ -202,8 +202,8 @@ class Tabs(pyglet.window.Window):
         j = N  ;  k[j] = i(j, GRN,  3, 15, GRN, 17, 15) if a else i(j, GRN,  2, 15, GRN,  3, 13) if b else i(j, GRN,  1, 15, GRN, 17, 15) if c else i(j, GRN,  0, 17, GRN, 11, 17) if d else None
         j = I  ;  k[j] = i(j, YLW,  3, 15, YLW, 17, 15) if a else i(j, YLW,  2, 17, YLW, 17, 17) if b else i(j, YLW,  1, 15, YLW, 17, 15) if c else i(j, YLW,  0, 17, YLW, 17, 17) if d else None
         j = K  ;  k[j] = i(j, IND,  3, 15, IND, 17, 15) if a else i(j, IND,  2, 17, IND, 17, 17) if b else i(j, IND,  1, 15, IND, 17, 15) if c else i(j, IND,  0, 17, IND, 17, 17) if d else None
-        j = R  ;  k[j] = i(j, BLU,  0, 17, BLU, 17, 17) if a else i(j, BLU,  0, 17, BLU, 17, 17) if b else i(j, BLU,  3, 10, BLU, 17, 10) if c else i(j, BLU,  0, 17, BLU, 17, 17) if d else None
-        j = Q  ;  k[j] = i(j, CYA,  0, 17, CYA, 17, 17) if a else i(j, CYA,  0,  0, CYA, 17, 17) if b else i(j, CYA,  2, 17, CYA, 17, 17) if c else i(j, CYA,  0,  0, CYA, 17, 17) if d else None
+        j = R  ;  k[j] = i(j, VLT,  0, 17, VLT, 17, 17) if a else i(j, VLT,  0, 17, VLT, 17, 17) if b else i(j, VLT,  3, 10, VLT, 17, 10) if c else i(j, VLT,  0, 17, VLT, 17, 17) if d else None
+        j = Q  ;  k[j] = i(j, CYA,  3, 17, CYA, 17, 17) if a else i(j, CYA,  3, 17, CYA, 17, 17) if b else i(j, CYA,  3, 17, CYA, 17, 17) if c else i(j, CYA,  3, 17, CYA, 17, 17) if d else None
         j = H  ;  k[j] = i(j, YLW, 17, 11, YLW, 17, 10) if a else i(j, YLW, 14, 10, YLW, 14, 10) if b else i(j, PNK, 15, 13, PNK, 15, 13) if c else i(j, PNK, 14, 11, PNK, 14, 10) if d else None
         j = M  ;  k[j] = i(j, GRN, 17, 11, GRN, 17, 10) if a else i(j, PNK, 17, 10, PNK, 17, 17) if b else i(j, PNK, 17, 17, PNK, 17, 17) if c else i(j, PNK, 17, 17, PNK, 17, 17) if d else None
         j = B  ;  k[j] = i(j, PNK,  0,  0, PNK, 17, 17) if a else i(j, PNK,  0,  0, PNK, 17, 17) if b else i(j, PNK,  0,  0, PNK, 17, 17) if c else i(j, PNK,  0,  0, PNK, 17, 17) if d else None
@@ -1041,117 +1041,6 @@ class Tabs(pyglet.window.Window):
             return  tlist, j, k, txt
         else:       msg = f'{msg3} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # self.fmtJText(j, t, why)
     ####################################################################################################################################################################################################
-    def OLD_0_geom(self, j, p=None, n=None, i=None, dbg=1):
-        assert 0 <= j <= len(JTEXTS), f'{j=} {len(JTEXTS)=}'
-        if n is None: n = self.n[j] #        n += self.zzl() if j == E or j == R else 0 #!#
-        i = i if i is not None else self.i[j]
-        if   p is None:  pw = 0  ;  ph = 0  ;  w = self.width - self.p0w  ;  h  = self.height
-        else:
-            pw, ph =  p.width if p.width is not None else p.height, p.height
-            if   j == C or j == Q: w  =  pw/n              ;  h  =  ph
-            elif j == E:           w  =  pw/n              ;  h  =  ph
-            else:                  w  =  pw                ;  h  =  ph/n   if j != P else ph
-        w2,  h2  = (w/2  if w is not None else 0, h/2 ) if self.a == 'center' else (0, 0)
-        pw2, ph2 = (pw/2 if w is not None else 0, ph/2) if self.a == 'center' else (0, 0)
-        if self.SPRITES:
-            if   p is None:        x  =  self.p0x          ;  y  =  self.height    - h2*2
-            elif j == T:           x  =  p.x + w2          ;  y  =  p.y + ph - h2
-            elif j == Q:           x  =  p.x + w2          ;  y  =  p.y + ph - h2
-            elif j == A or j == B: x  =  p.x + w2          ;  y  =  p.y + ph - h2
-            elif j == E:           x  =  p.x               ;  y  =  p.y + ph - h2*2
-            else:                  x  =  p.x               ;  y  =  p.y + ph - h2*2
-        else:
-            if   p is None:        x  =  self.p0x + w2     ;  y  =  self.height - h2
-            elif j == Q:           x  =  w2                ;  y  =  p.y
-            elif j == E:           x  =  w2                ;  y  =  p.y
-            elif j == C:           x  =  self.p0x + w2     ;  y  =  p.y
-            elif j == T:           x  =  p.x - w2          ;  y  =  p.y + ph2 - h2
-            elif j == A or j == B: x  =  p.x               ;  y  =  p.y + ph2 - h2
-            else:                  x  =  p.x - pw2 + w2    ;  y  =  p.y + ph2 - h2
-        if dbg and self.VRBY >= 2:
-            msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
-            msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
-            msg += msg2 if p else W * len(msg2)
-            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
-        return n, i, x, y, w, h
-    def OLD_1_geom(self, j, p=None, n=None, i=None, dbg=1):
-        assert 0 <= j <= len(JTEXTS), f'{j=} {len(JTEXTS)=}'
-        if n is None: n = self.n[j]
-        i = i if i is not None else self.i[j]
-        x0, y0, w0, h0 = self.p0x, self.p0y, self.width, self.height
-        px, py, pw, ph = (x0, y0, w0, h0) if p is None else (p.x, p.y, p.width, p.height)
-        if   j == C or j == Q: w = pw/n       ;  h = ph
-        elif j == E:           w = pw/n       ;  h = ph
-        else:                  w = pw         ;  h = ph/n   if j != P else ph
-        w2,  h2  = (w/2,  h/2 ) if self.a == 'center' else (w/4, 0) if self.a == 'left' else (3*w/4, 0)
-#        pw2, ph2 = (pw/2, ph/2) if self.a == 'center' else (w/4, 0) if self.a == 'left' else (3*w/4, 0)
-#        w2,  h2  = (w/2  if w is not None else 0, h/2 ) if self.a == 'center' else (w/4, 0) if self.a == 'left' else (w/2, 0)
-#        pw2, ph2 = (pw/2 if w is not None else 0, ph/2) if self.a == 'center' else (w/4, 0) if self.a == 'left' else (w/2, 0)
-        if self.SPRITES: #            if   p is None:        x = x0         ;  y = y0 # h - h2*2
-            if   j == T:           x = px + w2    ;  y = py + ph - h2 # + w2
-            elif j == Q:           x = px         ;  y = py + ph - h2 # + w2
-            elif j == A or j == B: x = px         ;  y = py + ph - h2 # + w2
-            elif j == E:           x = px         ;  y = py + ph - h2*2
-            else:                  x = px         ;  y = py + ph - h2*2
-        else:
-#            if   p is None:        x = px         ;  y = py + h2
-            if   j == T:           x = px + w2    ;  y = py + ph - h2
-            elif j == Q:           x = 0          ;  y = py # w2
-#            elif j == C:           x = px         ;  y = py # + w2
-            elif j == A or j == B: x = px         ;  y = py #+ ph2 #- h2
-            elif j == E:           x = 0          ;  y = py # w2
-            else:                  x = px         ;  y = py + ph - h # + w2 - pw2
-        if dbg and self.VRBY >= 2:
-            msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
-            msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
-            msg += msg2 if p else W * len(msg2)
-            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
-        return n, i, x, y, w, h
-    def OLD_2_geom(self, j, p=None, n=None, i=None, dbg=1):
-        assert 0 <= j <= len(JTEXTS), f'{j=} {len(JTEXTS)=}'
-        n = n if n is not None else self.n[j]
-        i = i if i is not None else self.i[j]
-        x0, y0, w0, h0 = self.p0x, self.p0y, self.width, self.height
-        px, py, pw, ph = (x0, y0, w0, h0) if p is None else (p.x, p.y, p.width, p.height)
-        if    j in (C, Q, E): w = pw/n       ;  h = ph
-        else:                 w = pw         ;  h = ph/n if j != P else ph
-        w2,  h2  = (w/2,  h/2 ) if self.a == 'center' else (w/4, 0) if self.a == 'left' else (3*w/4, 0)
-#        pw2, ph2 = (pw/2, ph/2) if self.a == 'center' else (w/4, 0) if self.a == 'left' else (3*w/4, 0)
-        if self.SPRITES:    # x = px - pw2 + w2  ;  y = py - ph2 + h2
-            if   j in (T, Q): x = px + w2    ;  y = py + ph - h2
-#            elif j == A or j == B: x = px         ;  y = py + ph - h2
-#            elif j == E:           x = px         ;  y = py + ph - h2*2
-            else:             x = px         ;  y = py + ph - h
-        else:
-            if   j in (T, Q): x = px + w2    ;  y = py + ph - h2
-#            elif j == C:           x = px         ;  y = py + ph - h2*2
-#            elif j == A or j == B: x = px         ;  y = py
-#            elif j == E:           x = 0          ;  y = py
-            else:             x = px         ;  y = py + ph - h
-        if dbg and self.VRBY >= 2:
-            msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
-            msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
-            msg += msg2 if p else W * len(msg2)
-            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
-        return n, i, x, y, w, h
-    def OLD_3_geom(self, j, p=None, n=None, i=None, dbg=1):
-        assert 0 <= j <= len(JTEXTS), f'{j=} {len(JTEXTS)=}'
-        n = n if n is not None else self.n[j]
-        i = i if i is not None else self.i[j]
-        x0, y0, w0, h0 = self.p0x, self.p0y, self.width, self.height
-        px, py, pw, ph = (x0, y0, w0, h0) if p is None else (p.x, p.y, p.width, p.height)
-        if    j in (C, Q, E): w = pw/n       ;  h = ph
-        else:                 w = pw         ;  h = ph/n if j != P else ph
-        w2,  h2  = (w/2,  h/2 ) if self.a == 'center' else (w/4, 0) if self.a == 'left' else (3*w/4, 0)
-        if j in (T, Q):       x = px + w2    ;  y = py + ph - h2
-        else:                 x = px         ;  y = py + ph - h
-        if dbg and self.VRBY >= 2:
-            msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
-            msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
-            msg += msg2 if p else W * len(msg2)
-            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
-        return n, i, x, y, w, h
-    ####################################################################################################################################################################################################
     def geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS), f'{j=} {len(JTEXTS)=}'
         n = n if n is not None else self.n[j]
@@ -1298,7 +1187,7 @@ class Tabs(pyglet.window.Window):
             img  = scip.create_image(width=fri(w), height=fri(h))
             tnik = SPR(img, x, y, batch=b, group=g, subpixel=self.SUBPIX)
             tnik.color, tnik.opacity = k[:3], k[3]
-        else: # * v if self.RESIZE_FONTS else 1
+        else:
             s = self.calcFontSize(t, w, h, j) ;  a, ax, ay = self.a, self.ax, self.ay  # left center right  # bottom baseline center top
             z = 1 if self.STRETCH else 0      ;  d, n = FONT_DPIS[d], FONT_NAMES[n]  ;  ml = self.MULTI_LINE # ;  w = None if self.W_NONE else w
             tnik = LBL(t, font_name=n, font_size=s, bold=o, italic=ii, stretch=z, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, multiline=ml, dpi=d, batch=b, group=g)
@@ -1367,20 +1256,19 @@ class Tabs(pyglet.window.Window):
             yield tnik
     ####################################################################################################################################################################################################
     def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=1):
-        if not tlist:          msg = f'ERROR tlist is Empty {      self.fmtJText(j, why)}'  ;  self.log(msg)  ;  self.quit(msg)
-        elif i >=  len(tlist): msg = f'ERROR {i=} >={len(tlist)=} {self.fmtJText(j, why)}'  ;  self.log(msg)  ;  self.quit(msg)
-        tnik = tlist[i]      ;   v = tnik.visible
+        if   not tlist:       msg = f'ERROR tlist is Empty {      self.fmtJText(j, why)}'  ;  self.log(msg)  ;  self.quit(msg)
+        elif i >= len(tlist): msg = f'ERROR {i=} >={len(tlist)=} {self.fmtJText(j, why)}'  ;  self.log(msg)  ;  self.quit(msg)
+        tnik = tlist[i]     ;   v = tnik.visible
         self.log(f'{H=} {j=} {i=} {self.J2[H]=}') if dbg and j == H  else None
         self.setJ(j, i, v) if j != H or (j == H and self.J2[H] == 0) else None
-        if   type(tnik) is LBL:
-            fs  = self.calcFontSize(tnik.text, w, h, j)
-            fs *= v if self.RESIZE_FONTS else 1 #  ;   w = None if self.W_NONE else w
-            tnik.x, tnik.y, tnik.width, tnik.height, tnik.font_size = x, y, w, h, fs
-            self.checkTnik(tnik, w, self.a, self.ax, self.ay)
-        elif type(tnik) is SPR:
+        if   type(tnik) is SPR:
             mx, my = w/tnik.image.width, h/tnik.image.height
             tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
-        if self.LL and j == L:
+        elif type(tnik) is LBL: # w = None if self.W_NONE else w
+            if v: tnik.font_size = self.calcFontSize(tnik.text, w, h, j)
+            tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
+            self.checkTnik(tnik, w, self.a, self.ax, self.ay)
+        if  self.LL and j == L:
             if v: tnik = self.resizeLLs(tnik, why)
             else: tnik = self.splitV(tnik, self.ntsl(), dbg=dbg)
 #        if self.ZZ and j == S:
