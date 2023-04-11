@@ -154,7 +154,7 @@ def dumpKSH(csv=0):
     fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{v}{fmtl(fs, w=w, d=d, s=m)}', p=p, f=ff)
 ########################################################################################################################################################################################################
 def nic2KS(nic, dbg=0):
-    dumpKSV()   ;   dumpKSH()   ;   dumpNic(nic)
+    if dbg: dumpKSV()   ;   dumpKSH()   ;   dumpNic(nic)
     iz  = []          ;     t  = Notes.TYPE   ;   nt = Notes.TYPES[t]
     ks  = KSD[M][KIS]    if t == Notes.FLAT else KSD[P][KIS]
     for i in ks:
@@ -263,7 +263,7 @@ class Strings(object):
         if dbg and nict:    slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
 
-    def tab2nn(self, tab, s, nic=None, dbg=1):
+    def tab2nn(self, tab, s, nic=None, dbg=0):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
@@ -275,7 +275,7 @@ class Strings(object):
                 if j in (0, 4, 5, 11):
                     ks = nic2KS(nic)  ;  k = ks[KSK]
                     if abs(k) >= 5:
-                        slog(f'KSK[{k}]={fmtKSK(k)}', f=2)
+                        if dbg: slog(f'KSK[{k}]={fmtKSK(k)}', f=2)
                         if     j  == 11:     updNotes(j, 'Cb', 'B',  Notes.TYPE, 0)
                         if     j  ==  5:     updNotes(j, 'F',  'E#', Notes.TYPE, 0)
                         elif   j  ==  4:     updNotes(j, 'Fb', 'E',  Notes.TYPE, 0)
@@ -284,7 +284,7 @@ class Strings(object):
 #                        if     j  ==  5:     updNotes(j, 'F', f'E{S}', Notes.TYPE, 0)
 #                        elif   j  ==  4:     updNotes(j, f'F{F}', 'E', Notes.TYPE, 0)
 #                        elif   j  ==  0:     updNotes(j, 'C', f'B{S}', Notes.TYPE, 0)
-                nict = f'nic[{j:x}]={nic[j]} '        ;  slog(f'adding {nict}', f=2)
+                if dbg and nict: nict = f'nic[{j:x}]={nic[j]} '        ;  slog(f'adding {nict}', f=2)
         name = Notes.name(i)
         if dbg and nict:    slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
@@ -451,6 +451,22 @@ def dumpStack(sfs):
         slog(f'{j:2} {n:9} {l:5} {f:20} {c}')
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
 ########################################################################################################################################################################################################
+def olog(o=None, p=1, f=1, s=',', e='\n', ff=False):
+    o = s.join(str(o)) if o is not None else ''
+    if p:
+        sf   = inspect.currentframe().f_back
+        while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
+        fp   = pathlib.Path(sf.f_code.co_filename)
+        pl   = 18 if p == 1 else 8
+        p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else Z
+        o    = [f'{p}{sf.f_code.co_name:{pl}} ', o]
+    so = 0
+    if   f == 0:  f = sys.stdout
+    elif f == 1:  f = LOG_FILE
+    elif f == 2:  f = LOG_FILE  ;  so = 1
+    elif f == 3:  f = CSV_FILE # ;  so = 1
+    print(o, sep=s, end=e, file=f,    flush=ff)
+    print(o, sep=s, end=e, file=None, flush=ff) if so else None
 def slog(t=Z, p=1, f=1, s=',', e='\n', ff=False):
     t = filtText(t) #    t = filtText2(t)
     if p:
