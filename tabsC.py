@@ -422,10 +422,10 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def ftvis(t):    return 'V' if t.visible else 'I'
     @staticmethod
-    def ftxywh(t, s=W):   return Tabs.fxywh(t.x, t.y, t.width, t.height, s=s) # if t.width is not None else Tabs.fxywh(t.x, t.y, 'None', t.height)
+    def ftxywh(t, s=W, csv=0):   return Tabs.fxywh(t.x, t.y, t.width, t.height, s=s, csv=csv) # if t.width is not None else Tabs.fxywh(t.x, t.y, 'None', t.height)
     ####################################################################################################################################################################################################
     @staticmethod
-    def fxywh(x, y, w, h, s=W): w = f'{w:.2f}' if w is not None else '  None '  ;  return f'{x:.2f}{s}{y:.2f}{s}{w}{s}{h:.2f}'
+    def fxywh(x, y, w, h, s=W, csv=0): f = Z if csv else'7.2f'  ;  return f'{x:{f}}{s}{y:{f}}{s}{w:{f}}{s}{h:{f}}'
     ####################################################################################################################################################################################################
     @staticmethod
     def fiax(t):     return f'{t.image.anchor_x:4}'
@@ -1209,7 +1209,6 @@ class Tabs(pyglet.window.Window):
         tnik.visible = v        ;  self.visib[j].append(v)
         if    tlist is not None:   tlist.append(tnik)
         key = self.idmapkey(j)  ;  self.idmap[key] = (tnik, j, i)   ;   self.dumpTnik(tnik, j, why) if dbg else None
-#        xywhs = self.ftxywh(tnik, csv=1)  ;  self.log(f'{j},{JTEXTS[j]},{i},{xywhs}', p=0, f=3)
         if self.LL and j == L:
             if not self.rowLs or len(self.rowLs) < self.n[L]: tnik = self.createLLs(tnik, i, why)
             else:                                             tnik = self.splitV(tnik, self.ntsl(), dbg=dbg)
@@ -1442,22 +1441,30 @@ class Tabs(pyglet.window.Window):
         for i in range(len(self.tabls)):  self.txywh2csv(b[0][i], T, i)
 
     def dumpTniksCsv(self):
-        self.log('tnik,i,X,Y,W,H', p=0, f=3)  ;  a  = self.A  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
+        e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
+        for _ in range(np*nl):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
+        self.log(p=0, f=3)
         for l in range(nl):
             for p in range(np):
-                self.txywh2csv(a[P][l], P, p) if not (p % np) else self.log(f'{z}', p=0, f=3, e=Y)
+                self.log(f'{z}', p=0, f=3, e=Y) if p else self.txywh2csv(e[P][l], P, l)
         self.log(p=0, f=3)
         for l in range(np*nl):
-            self.txywh2csv(a[L][l], L, l)
+            self.txywh2csv(e[L][l], L, l)
         self.log(p=0, f=3)
         for s in range(np*nl*ns):
-            self.txywh2csv(a[S][s], S, s)
+            self.txywh2csv(e[S][s], S, s)
         self.log(p=0, f=3)
-        for c in range(np*nl*ns*nc):
-            self.txywh2csv(a[C][c], C, c, e='\n')
+        for c in range(nc):
+            for l in range(np*nl):
+                self.txywh2csv(e[C][c+l*nc], C, c+l*nc)
+            self.log(p=0, f=3)
+        for t in range(nt*nc):
+            for c in range(np*nl):
+                self.txywh2csv(e[T][t+c*nt*nc], T, t+c*nt*nc)
+            self.log(p=0, f=3)
 
     def txywh2csv(self, tnik, j, i, e=Y):
-        xywh = self.ftxywh(tnik, s=Y)
+        xywh = self.ftxywh(tnik, s=Y, csv=1)
         self.log(f'{JTEXTS[j]},{i+1},{xywh}', p=0, f=3, e=e)
 #        self.log(p=0, f=3) if e==Y else None
     ####################################################################################################################################################################################################
@@ -2676,8 +2683,8 @@ MELODY, CHORD, ARPG   =  0, 1, 2
 LEFT, RIGHT, DOWN, UP =  0, 1, 0, 1
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE, COPY_STYLE = 0, 1, 2, 3
 #           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16
-JTEXTS = ['Page',  'Line',  'Sect',  'Colm',  'Tab ',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
-jTEXTS = ['pages', 'lines', 'sects', 'colms', 'tabs ', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
+JTEXTS = ['Page',  'Line',  'Sect',  'Colm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
+jTEXTS = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
 JFMT   = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       2,       2,       4]
 #JFMT   = [  2,       3,       3,       6,       6,       6,       6,       6,       3,       5,       1,       1,       3,       3,       3,       4,       7]
 #          0   1   2   3   4   5   6   7    8    9   10   11   12   13   14   15   16   17
