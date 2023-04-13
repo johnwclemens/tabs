@@ -25,7 +25,7 @@ R, Q, H, M            =  8,  9, 10, 11
 B, A, D, E            = 12, 13, 14, 15
 
 ########################################################################################################################################################################################################
-class Tabs(pyglet.window.Window):
+class Tabs(pyglet.window.Window): # ToDo: Add str() and/or rpr()
 ####################################################################################################################################################################################################
     def __init__(self):
         ARGS = util.parseCmdLine()
@@ -1423,7 +1423,7 @@ class Tabs(pyglet.window.Window):
         for k in range(ek):        self.setJdump(K, k % self.n[T], v=int(self.kords[k].visible), why=why)
         self.setJdump(H, 0, v=int(self.hcurs[0].visible), why=why)
         self.dumpTniksSfx(why)
-
+    ####################################################################################################################################################################################################
     def dumpTniksE(self):
         self.log('j,tnik,i,X,Y,W,H', p=0, f=3)
         for i, t in enumerate(self.pages): self.t2csv(t, P, i)
@@ -1439,84 +1439,10 @@ class Tabs(pyglet.window.Window):
         for i in range(len(self.sects)):  self.t2csv(a[2][i], S, i)
         for i in range(len(self.colms)):  self.t2csv(a[3][i], C, i)
         for i in range(len(self.tabls)):  self.t2csv(b[0][i], T, i)
-
-    def OLD__dumpTniksCsv(self):
-        e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
-        for _ in range(np*nl):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
-        self.log(p=0, f=3)
-        for l in range(nl):
-            for p in range(np):
-                self.log(f'{z}', p=0, f=3, e=Y) if p else self.t2csv(e[P][l], P, l)
-        self.log(p=0, f=3)
-        for l in range(np*nl):
-            self.t2csv(e[L][l], L, l)
-        self.log(p=0, f=3)
-        for s in range(np*nl*ns):
-            self.t2csv(e[S][s], S, s)
-        self.log(p=0, f=3)
-        for c in range(nc):
-            for l in range(np*nl):
-                self.t2csv(e[C][c+l*nc], C, c+l*nc)
-            self.log(p=0, f=3)
-        for t in range(nt*nc):
-            for c in range(np*nl):
-                self.t2csv(e[T][t+c*nt*nc], T, t+c*nt*nc)
-            self.log(p=0, f=3)
-
-    def OLD_1_dumpTniksCsv(self):
-        e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
-        for _ in range(np*nl):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
-        self.log(p=0, f=3)
-        for l in range(nl):
-            for s in range(ns):
-                for p in range(np):
-                    self.log(f'{z}', p=0, f=3, e=Y) if s or p else self.t2csv(e[P][l], P, l)
-        self.log(p=0, f=3)
-        for p in range(np):
-            for s in range(ns):
-                for l in range(nl):
-                    self.log(f'{z}', p=0, f=3, e=Y) if l or p else self.t2csv(e[L][s], L, s)
-        self.log(p=0, f=3)
-        for s in range(np*nl*ns):
-            self.t2csv(e[S][s], S, s)
-        self.log(p=0, f=3)
-        for c in range(nc):
-            for l in range(np*nl):
-                self.t2csv(e[C][c+l*nc], C, c+l*nc)
-            self.log(p=0, f=3)
-        for t in range(nt*nc):
-            for c in range(np*nl):
-                self.t2csv(e[T][t+c*nt*nc], T, t+c*nt*nc)
-            self.log(p=0, f=3)
-
-    def OLD_2_dumpTniksCsv(self):
-        e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
-        for _ in range(np*nl):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
-        self.log(p=0, f=3)
-        for l in range(nl):
-            for s in range(ns):
-                for p in range(np):
-                    self.log(f'{z}', p=0, f=3, e=Y) if s or p else self.t2csv(e[P][l], P, l)
-        self.log(p=0, f=3)
-        for s in range(ns):
-            for p in range(np):
-                for l in range(nl):
-                    self.log(f'{z}', p=0, f=3, e=Y) if l else self.t2csv(e[L][p], L, p)
-        self.log(p=0, f=3)
-        for s in range(np*nl*ns):
-            self.t2csv(e[S][s], S, s)
-        self.log(p=0, f=3)
-        for c in range(nc):
-            for l in range(np*nl*ns):
-                self.t2csv(e[C][c+l*nc], C, c+l*nc)
-            self.log(p=0, f=3)
-        for t in range(nt*nc):
-            for c in range(np*nl):
-                self.t2csv(e[T][t+c*nt*nc], T, t+c*nt*nc)
-            self.log(p=0, f=3)
+    ####################################################################################################################################################################################################
     def dumpTniksCsv(self):
         e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
-        for _ in range(np*nl):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
+        for _ in range(np*nl*ns):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
         self.log(p=0, f=3)
         for l in range(nl):
             for s in range(ns):
@@ -2497,7 +2423,7 @@ class Tabs(pyglet.window.Window):
         for j in range(len(self.visib) - 1):
             vl = []   ;   n = 0
             for w in self.visib[j]:
-                vl.append(str(int(w)))      ;  lsum += 1   ;    n += 1    if w           else 0
+                vl.append(str(int(w)))     ;  lsum += 1   ;    n += 1    if w           else 0
             v = Z.join(vl)  ;  l = len(v)  ;  nsum += n   ;  nmax = nsum if nsum > nmax else nmax
             if l:                              self.log(self.fVisible(n, j, l, v), p=0)
         v = Z.join([ f'{a if not i else b if i//10 < 1 else c if i//10 < 10 else d if i//10 < 100 else e}{10+i*10}' for i in range(nmax//10) ])
@@ -2612,7 +2538,7 @@ class Tabs(pyglet.window.Window):
             self.log(f)
             os.system(f'del {f}')
 
-    def getFilePath(self, seq=0, fdir='files', fsfx='.txt', dbg=0):
+    def getFilePath(self, seq=0, fdir='files', fsfx='.txt', dbg=1):
         if seq and not self.LOG_ID:
             fdir      += '/'
             self.log(f'{fdir=} {fsfx=}')
@@ -2626,16 +2552,25 @@ class Tabs(pyglet.window.Window):
             self.log(f'{fsfx=}')
         return util.getFilePath(BASE_NAME, BASE_PATH, fdir=fdir, fsfx=fsfx)
 
-    def getFileSeqNum(self, files, sfx, dbg=0, dbg2=0):
-        i = -1
+    def getFileSeqNum(self, files, sfx, dbg=1, dbg2=0):
+        i = -1  ;  ids = []
         if len(files):
             if dbg2: self.log(f'{sfx=} files={fmtl(files)}')
-            ids =  [ self.sid(s, sfx) for s in files if s.endswith(sfx) ]
+            for s in files:
+                if s.endswith(sfx):
+                    _ = self.sid(s, sfx)
+                    ids.append(_) if type(_) is int else None
+                else: continue
+#            ids =  [ self.sid(s, sfx) for s in files if s is not None and s.endswith(sfx) ]
             if dbg:  self.log(f'ids={fmtl(ids)}')
             i = max(ids)
         return i
     @staticmethod
-    def sid(s, sfx): s = s[:-len(sfx)]   ;   j = s.rfind('.')   ;   return int(s[j+1:])
+    def sid(s, sfx):
+        s = s[:-len(sfx)]
+        j = s.rfind('.')
+        i = s[j+1:]
+        return int(i) if type(i) is str and i.isdigit() else None
     ####################################################################################################################################################################################################
     def log(self, t=Z, p=1, pos=0, f=1, s=Y, e='\n', ff=False):
         if pos:   t = f'{self.fmtPos()} {t}'
@@ -2775,10 +2710,10 @@ FONT_NAMES = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Couri
 
 # Log and Main BGN
 ########################################################################################################################################################################################################
-LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
-plogPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
-CSV_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='csv',  fsfx='.csv')
-pcsvPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='csv',  fsfx='.bcsv')
+LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx=  '.log')
+plogPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='._.log')
+CSV_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='csv',  fsfx=  '.csv')
+pcsvPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='csv',  fsfx='._.csv')
 if LOG_PATH.exists():     util.copyFile(LOG_PATH, plogPath)
 if CSV_PATH.exists():     util.copyFile(CSV_PATH, pcsvPath)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE:

@@ -6,7 +6,7 @@
   91 util  dumpTestB          END
   41 util  dumpData           END D♭ D♮ D♯ 𝄚
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
-2787 tabsC <module>           argv=[-n 2 2 10 6 -S 0 1 -i 1 1 1 6]
+2722 tabsC <module>           argv=[-n 2 2 10 6 -S 0 1 -i 1 1 1 6]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
  0 FSH  [  8   0   8   0]  0 FSH  [  8   0   8  15]  0 FSH  [  8   0   8  30]  0 FSH  [  8   0   8  45]  0 FSH  [  8   0   8  60]  0 FSH  [  8   0   8  75]  0 FSH  [  8   0   8  90]  0 FSH  [  8   0   8 105]  0 FSH  [  8   0   8 120]  0 FSH  [  8   0   8 135]  0 FSH  [  8   0   8 150]  0 FSH  [  8   0   8 165]  0 FSH  [  8   0   8 170]  0 FSH  [  8   0   8 195]  0 FSH  [  8   0   8 210]  0 FSH  [  8   0   8 225]  0 FSH  [  8   0   8 240]  0 FSH  [  8   0   8 255] 
  1 FSH  [ 23   1  23   0]  1 FSH  [ 23   1  23  15]  1 FSH  [ 23   1  23  30]  1 FSH  [ 23   1  23  45]  1 FSH  [ 23   1  23  60]  1 FSH  [ 23   1  23  75]  1 FSH  [ 23   1  23  90]  1 FSH  [ 23   1  23 105]  1 FSH  [ 23   1  23 120]  1 FSH  [ 23   1  23 135]  1 FSH  [ 23   1  23 150]  1 FSH  [ 23   1  23 165]  1 FSH  [ 23   1  23 170]  1 FSH  [ 23   1  23 195]  1 FSH  [ 23   1  23 210]  1 FSH  [ 23   1  23 225]  1 FSH  [ 23   1  23 240]  1 FSH  [ 23   1  23 255] 
@@ -426,10 +426,10 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        R=[  5  13  22  31  39  48  56  65  74  82  91  99 108 117 125 134 142 151]
        G=[  2   6  10  14  18  22  26  31  35  39  43  47  51  55  59  63  67  71]
        B=[  0   1   1   2   3   3   4   4   5   5   6   7   7   8   8   9   9  10]
-2791 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csv/tabs.csv)
-2792 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csv\\tabs.csv
-2793 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2794 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2726 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csv/tabs.csv)
+2727 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csv\\tabs.csv
+2728 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+2729 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
  527 util  parseCmdLine       argv=[-n 2 2 10 6 -S 0 1 -i 1 1 1 6]
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  543 util  parseCmdLine        1 short   -n n [] 
@@ -446,18 +446,20 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  561 util  parseCmdLine       12 arg     1  i [1 1 1] 
  561 util  parseCmdLine       13 arg     6  i [1 1 1 6] 
  563 util  parseCmdLine       options=[n:[2 2 10 6]] [S:[0 1]] [i:[1 1 1 6]]
-2686 tabsC dumpGlobals        BASE_NAME = tabs
-2687 tabsC dumpGlobals        argv      = +14[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 2 2 10 6 -S 0 1 -i 1 1 1 6]
-2688 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2689 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+2621 tabsC dumpGlobals        BASE_NAME = tabs
+2622 tabsC dumpGlobals        argv      = +14[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 2 2 10 6 -S 0 1 -i 1 1 1 6]
+2623 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2624 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
   33 tabsC __init__           STFILT:
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
   34 tabsC __init__           BGN <class __main__.Tabs>
-2618 tabsC getFilePath        fdir=logs/ fsfx=.log
-2622 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2626 tabsC getFilePath        fsfx=.2.log
+2544 tabsC getFilePath        fdir=logs/ fsfx=.log
+2548 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
+2565 tabsC getFileSeqNum      ids=[0]
+fGlob=[C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.0.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs._.log]
+2552 tabsC getFilePath        fsfx=.1.log
  508 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 511 util  getFilePath        fileName =tabs.2.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.2.log)
+ 511 util  getFilePath        fileName =tabs.1.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.1.log)
  508 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  511 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
   39 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
@@ -526,7 +528,7 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  272 chord _dumpOMAP          END len(OMAP)=581 catfile.name=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat len(r)=0
  221 chord dumpOMAP           END len(.OMAP)=581 len(.umap)=0
  261 tabsC _initWindowA       BGN (  -1x-1  )
- 261 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001366A461CC0>
+ 261 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002B1460B6830>
  266 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
  266 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
  267 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -733,10 +735,10 @@ Colm Line 1 Line 2
  476 tabsC ntp                            nRevPrd=[6 60 120 240 480]
  477 tabsC ntp                         nRevPrdRev=[480 240 120 60 6]
  478 tabsC ntp                tpb tpp tpl tps tpc=[480 240 120 60 6]
-1665 tabsC calcFontSize       j=4 Tabl t=X w= 64.00 h= 20.00 pix= 20.00=min(scale=1.2*w, h) fs= 15.56
-1674 tabsC _initFonts         w=64.000=.width =640/(10)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
-1675 tabsC _initFonts         h=20.000=.height=480/(nl=2 * ns=2 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
-1687 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
+1591 tabsC calcFontSize       j=4 Tabl t=X w= 64.00 h= 20.00 pix= 20.00=min(scale=1.2*w, h) fs= 15.56
+1600 tabsC _initFonts         w=64.000=.width =640/(10)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
+1601 tabsC _initFonts         h=20.000=.height=480/(nl=2 * ns=2 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
+1613 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
 labelTextA=[1  2  3  4  5  6  7  8  9  10]
 labelTextB=[1  2  3  4  5  6  7  8  9  1 ]
 texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
@@ -1429,7 +1431,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +6 SHRP F# 6 [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
 +7 SHRP C# 1 [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   41 util  dumpData           END D♭ D♮ D♯ 𝄚
-1687 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels New1
+1613 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels New1
    2p4   1100
    4l8   11110000
    8s16  1111111100000000
@@ -1448,7 +1450,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
  478 tabsC ntp                tpb tpp tpl tps tpc=[480 240 120 60 6]
  499 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[2 2 2 10 6] END ntp=[  480  240 120  60   6] ( 1x1x1x6  )
  306 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2593 tabsC regSnap            .snapWhy=init .snapType=INIT .snapReg=1 .snapId=0
+2519 tabsC regSnap            .snapWhy=init .snapType=INIT .snapReg=1 .snapId=0
  185 tabsC _reinit            [1 1 1  1 6]   6  1] END
  130 tabsC __init__           END <class __main__.Tabs>
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
@@ -2036,7 +2038,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
  574 Upd1  Note  240   -  15 5 I 2  4  8  80  240  240    0    0  0   0 0 0  0  0  0  0  574 287  608.00   10.00   64.00   20.00 [ 10 255  10 225][  1  23   1 225] 16  20 T C C C  96 0 0 Lucida Console
 1274 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
  575 Upd1  HCrs    1    0.00 6 V 2  4  8  80  240  240    0    0  0   0 1 0  0  0  0  0  575 288    0.00  360.00   64.00   20.00 [226 113 170 195]1.000 1.000 1.000    0    0 OrderedGroup(6) None
-2593 tabsC regSnap            .snapWhy=Upd1 .snapType=RSZC_5 .snapReg=1 .snapId=0
+2519 tabsC regSnap            .snapWhy=Upd1 .snapType=RSZC_5 .snapReg=1 .snapId=0
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cw  ch v a x y dpi B I Font Name
 1250 tabsC resizeTniks        J1[2  4  8  80  240  240    0    0  0   0 1 0  0  0  0  0  575 288] Upd1
@@ -2134,7 +2136,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +6 SHRP F# 6 [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
 +7 SHRP C# 1 [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   41 util  dumpData           END D♭ D♮ D♯ 𝄚
-1687 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels Upd1
+1613 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels Upd1
    1p2   10
    2l4   1100
    4s8   11110000
@@ -2152,18 +2154,18 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 1
  478 tabsC ntp                tpb tpp tpl tps tpc=[480 240 120 60 6]
  499 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[2 2 2 10 6] END ntp=[  480  240 120  60   6] ( 1x1x1x6  )
-2606 tabsC snapshot           SNAP_NAME=tabs.2.RSZC_5.0.png Upd1
+2532 tabsC snapshot           SNAP_NAME=tabs.1.RSZC_5.0.png Upd1
  511 tabsC on_draw            [1 1 1  1 6]   6  1] .snapWhy=Upd1 .snapType=RSZC_5 .snapId=1
-1854 tabsC on_key_press       BGN <LCTRL   > <   65507> <LCTRL           > < 2> <MOD_CTRL        >
-1943 tabsC on_key_press       END <LCTRL   > <   65507> <LCTRL           > < 2> <MOD_CTRL        >
-1854 tabsC on_key_press       BGN <LSHIFT  > <   65505> <LSHIFT          > < 3> <MOD_SHIFT|MOD_CTRL>
-1943 tabsC on_key_press       END <LSHIFT  > <   65505> <LSHIFT          > < 3> <MOD_SHIFT|MOD_CTRL>
-1854 tabsC on_key_press       BGN <Q       > <     113> <Q               > < 3> <MOD_SHIFT|MOD_CTRL>
+1780 tabsC on_key_press       BGN <LCTRL   > <   65507> <LCTRL           > < 2> <MOD_CTRL        >
+1869 tabsC on_key_press       END <LCTRL   > <   65507> <LCTRL           > < 2> <MOD_CTRL        >
+1780 tabsC on_key_press       BGN <LSHIFT  > <   65505> <LSHIFT          > < 3> <MOD_SHIFT|MOD_CTRL>
+1869 tabsC on_key_press       END <LSHIFT  > <   65505> <LSHIFT          > < 3> <MOD_SHIFT|MOD_CTRL>
+1780 tabsC on_key_press       BGN <Q       > <     113> <Q               > < 3> <MOD_SHIFT|MOD_CTRL>
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cw  ch v a x y dpi B I Font Name
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
- 451 util  dumpStack          10 tabsC      2649 quit                 .log(.QUIT_BGN, p=0, f=2)   ;   .dumpStack(inspect.stack())     ;   .log(.QUIT, p=0, f=2)
- 451 util  dumpStack           9 tabsC      1887 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
+ 451 util  dumpStack          10 tabsC      2584 quit                 .log(.QUIT_BGN, p=0, f=2)   ;   .dumpStack(inspect.stack())     ;   .log(.QUIT, p=0, f=2)
+ 451 util  dumpStack           9 tabsC      1813 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(            @^Q, error=0, save=0)
  451 util  dumpStack           8 event       415 dispatch_event       if getattr(, event_type)(*args):
  451 util  dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(, *args) != False:
  451 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
@@ -2171,16 +2173,16 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
  451 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
  451 util  dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
  451 util  dumpStack           2 __init__    107 run                  event_loop.run()
- 451 util  dumpStack           1 tabsC      2796 main                 ret = pyglet.app.run()
- 451 util  dumpStack           0 tabsC      2804 <module>             main()
+ 451 util  dumpStack           1 tabsC      2731 main                 ret = pyglet.app.run()
+ 451 util  dumpStack           0 tabsC      2739 <module>             main()
  452 util  dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cw  ch v a x y dpi B I Font Name
-2650 tabsC quit               J1[2  4  8  80  240  240    0    0  0   0 1 0  0  0  0  0  575 288] @^Q
-2650 tabsC quit               J2[2  4  8  80  240  240    0    0  0   0 1 0  0  0  0  0  575 288] @^Q
-2650 tabsC quit               LE[2  4  8  80  240  240    0    0  0   0 1 0  0  0  0  0  575 288] @^Q
-2650 tabsC quit               END[( 640x480 )( 2x2x10x6 )( 1x1x1x6  ) (0 1    ) 0 (   )  575 288] @^Q
+2585 tabsC quit               J1[2  4  8  80  240  240    0    0  0   0 1 0  0  0  0  0  575 288] @^Q
+2585 tabsC quit               J2[2  4  8  80  240  240    0    0  0   0 1 0  0  0  0  0  575 288] @^Q
+2585 tabsC quit               LE[2  4  8  80  240  240    0    0  0   0 1 0  0  0  0  0  575 288] @^Q
+2585 tabsC quit               END[( 640x480 )( 2x2x10x6 )( 1x1x1x6  ) (0 1    ) 0 (   )  575 288] @^Q
  451 util  dumpStack           6          18 <module>             MAX_STACK_FRAME  = inspect.stack()
  451 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
  451 util  dumpStack           4 <frozen importlib   883 exec_module          
@@ -2189,7 +2191,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
  451 util  dumpStack           1 <frozen importlib  1027 _find_and_load       
  451 util  dumpStack           0 tabsC        13 <module>             import , chord
  452 util  dumpStack          MAX_STACK_DEPTH= 0
-2652 tabsC quit               BGN @^Q error=0 save=0
+2587 tabsC quit               BGN @^Q error=0 save=0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  134 tabsC dumpArgs           [z]      .CSV_FNAME=testC.2.2.10.6.csv
  135 tabsC dumpArgs           [f]     .DATA_FNAME=testC.2.2.10.6.dat
@@ -2313,7 +2315,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +6 SHRP F# 6 [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
 +7 SHRP C# 1 [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   41 util  dumpData           END D♭ D♮ D♯ 𝄚
-1687 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels @^Q
+1613 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels @^Q
    1p2   10
    2l4   1100
    4s8   11110000
@@ -2422,13 +2424,13 @@ Page 2 Line 2
 
  680 tabsC dumpDataHorz       END ( 2x2x6x10 ) lc=1 ll=1 i=0
  662 tabsC A_transposeData    END ( 2x2x6x10 ) dump=1
-2606 tabsC snapshot           SNAP_NAME=tabs.2.QUIT.1.png quit error=0 save=0
-2660 tabsC quit               END @^Q error=0 save=0
+2532 tabsC snapshot           SNAP_NAME=tabs.1.QUIT.1.png quit error=0 save=0
+2595 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2666 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log
+2601 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log
  516 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 517 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.2.log)
- 519 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.2.log ###
-2668 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
-2669 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\csv\tabs.csv
-1943 tabsC on_key_press       END <Q       > <     113> <Q               > < 3> <MOD_SHIFT|MOD_CTRL>
+ 517 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.1.log)
+ 519 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.1.log ###
+2603 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
+2604 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\csv\tabs.csv
+1869 tabsC on_key_press       END <Q       > <     113> <Q               > < 3> <MOD_SHIFT|MOD_CTRL>
