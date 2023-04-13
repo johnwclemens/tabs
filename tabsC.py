@@ -1426,44 +1426,122 @@ class Tabs(pyglet.window.Window):
 
     def dumpTniksE(self):
         self.log('j,tnik,i,X,Y,W,H', p=0, f=3)
-        for i, t in enumerate(self.pages): self.txywh2csv(t, P, i)
-        for i, t in enumerate(self.lines): self.txywh2csv(t, L, i)
-        for i, t in enumerate(self.sects): self.txywh2csv(t, S, i)
-        for i, t in enumerate(self.colms): self.txywh2csv(t, C, i)
-        for i, t in enumerate(self.tabls): self.txywh2csv(t, T, i)
+        for i, t in enumerate(self.pages): self.t2csv(t, P, i)
+        for i, t in enumerate(self.lines): self.t2csv(t, L, i)
+        for i, t in enumerate(self.sects): self.t2csv(t, S, i)
+        for i, t in enumerate(self.colms): self.t2csv(t, C, i)
+        for i, t in enumerate(self.tabls): self.t2csv(t, T, i)
 
     def dumpTniksF(self):
         self.log('j,tnik,i,X,Y,W,H', p=0, f=3)  ; a  = self.A  ;  b = self.B
-        for i in range(len(self.pages)):  self.txywh2csv(a[0][i], P, i)
-        for i in range(len(self.lines)):  self.txywh2csv(a[1][i], L, i)
-        for i in range(len(self.sects)):  self.txywh2csv(a[2][i], S, i)
-        for i in range(len(self.colms)):  self.txywh2csv(a[3][i], C, i)
-        for i in range(len(self.tabls)):  self.txywh2csv(b[0][i], T, i)
+        for i in range(len(self.pages)):  self.t2csv(a[0][i], P, i)
+        for i in range(len(self.lines)):  self.t2csv(a[1][i], L, i)
+        for i in range(len(self.sects)):  self.t2csv(a[2][i], S, i)
+        for i in range(len(self.colms)):  self.t2csv(a[3][i], C, i)
+        for i in range(len(self.tabls)):  self.t2csv(b[0][i], T, i)
 
-    def dumpTniksCsv(self):
+    def OLD__dumpTniksCsv(self):
         e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
         for _ in range(np*nl):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
         self.log(p=0, f=3)
         for l in range(nl):
             for p in range(np):
-                self.log(f'{z}', p=0, f=3, e=Y) if p else self.txywh2csv(e[P][l], P, l)
+                self.log(f'{z}', p=0, f=3, e=Y) if p else self.t2csv(e[P][l], P, l)
         self.log(p=0, f=3)
         for l in range(np*nl):
-            self.txywh2csv(e[L][l], L, l)
+            self.t2csv(e[L][l], L, l)
         self.log(p=0, f=3)
         for s in range(np*nl*ns):
-            self.txywh2csv(e[S][s], S, s)
+            self.t2csv(e[S][s], S, s)
         self.log(p=0, f=3)
         for c in range(nc):
             for l in range(np*nl):
-                self.txywh2csv(e[C][c+l*nc], C, c+l*nc)
+                self.t2csv(e[C][c+l*nc], C, c+l*nc)
             self.log(p=0, f=3)
         for t in range(nt*nc):
             for c in range(np*nl):
-                self.txywh2csv(e[T][t+c*nt*nc], T, t+c*nt*nc)
+                self.t2csv(e[T][t+c*nt*nc], T, t+c*nt*nc)
             self.log(p=0, f=3)
 
-    def txywh2csv(self, tnik, j, i, e=Y):
+    def OLD_1_dumpTniksCsv(self):
+        e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
+        for _ in range(np*nl):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
+        self.log(p=0, f=3)
+        for l in range(nl):
+            for s in range(ns):
+                for p in range(np):
+                    self.log(f'{z}', p=0, f=3, e=Y) if s or p else self.t2csv(e[P][l], P, l)
+        self.log(p=0, f=3)
+        for p in range(np):
+            for s in range(ns):
+                for l in range(nl):
+                    self.log(f'{z}', p=0, f=3, e=Y) if l or p else self.t2csv(e[L][s], L, s)
+        self.log(p=0, f=3)
+        for s in range(np*nl*ns):
+            self.t2csv(e[S][s], S, s)
+        self.log(p=0, f=3)
+        for c in range(nc):
+            for l in range(np*nl):
+                self.t2csv(e[C][c+l*nc], C, c+l*nc)
+            self.log(p=0, f=3)
+        for t in range(nt*nc):
+            for c in range(np*nl):
+                self.t2csv(e[T][t+c*nt*nc], T, t+c*nt*nc)
+            self.log(p=0, f=3)
+
+    def OLD_2_dumpTniksCsv(self):
+        e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
+        for _ in range(np*nl):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
+        self.log(p=0, f=3)
+        for l in range(nl):
+            for s in range(ns):
+                for p in range(np):
+                    self.log(f'{z}', p=0, f=3, e=Y) if s or p else self.t2csv(e[P][l], P, l)
+        self.log(p=0, f=3)
+        for s in range(ns):
+            for p in range(np):
+                for l in range(nl):
+                    self.log(f'{z}', p=0, f=3, e=Y) if l else self.t2csv(e[L][p], L, p)
+        self.log(p=0, f=3)
+        for s in range(np*nl*ns):
+            self.t2csv(e[S][s], S, s)
+        self.log(p=0, f=3)
+        for c in range(nc):
+            for l in range(np*nl*ns):
+                self.t2csv(e[C][c+l*nc], C, c+l*nc)
+            self.log(p=0, f=3)
+        for t in range(nt*nc):
+            for c in range(np*nl):
+                self.t2csv(e[T][t+c*nt*nc], T, t+c*nt*nc)
+            self.log(p=0, f=3)
+    def dumpTniksCsv(self):
+        e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
+        for _ in range(np*nl):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
+        self.log(p=0, f=3)
+        for l in range(nl):
+            for s in range(ns):
+                for p in range(np):
+                    self.log(f'{z}', p=0, f=3, e=Y) if s or p else self.t2csv(e[P][l], P, l)
+        self.log(p=0, f=3)
+        for s in range(ns):
+            for p in range(np):
+                for l in range(nl):
+                    self.log(f'{z}', p=0, f=3, e=Y) if l else self.t2csv(e[L][p], L, p)
+        self.log(p=0, f=3)
+        for s in range(np*nl*ns):
+            self.t2csv(e[S][s], S, s)
+        self.log(p=0, f=3)
+        for c in range(nc):
+            for l in range(np*nl*ns):
+                i = c + l*nc  ;  self.t2csv(e[C][i], C, i)
+            self.log(p=0, f=3)
+        for t in range(nt*nc):
+            for c in range(np*nl):
+                for s in range(ns):
+                    i = t + c*nt*nc  ;  j = T + s  ;  self.t2csv(e[j][i], j, i)
+            self.log(p=0, f=3)
+
+    def t2csv(self, tnik, j, i, e=Y):
         xywh = self.ftxywh(tnik, s=Y, csv=1)
         self.log(f'{JTEXTS[j]},{i+1},{xywh}', p=0, f=3, e=e)
 #        self.log(p=0, f=3) if e==Y else None
@@ -2697,10 +2775,12 @@ FONT_NAMES = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Couri
 
 # Log and Main BGN
 ########################################################################################################################################################################################################
-prevPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
 LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.log')
+plogPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='logs', fsfx='.blog')
 CSV_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir='csv',  fsfx='.csv')
-if LOG_PATH.exists():     util.copyFile(LOG_PATH, prevPath)
+pcsvPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir='csv',  fsfx='.bcsv')
+if LOG_PATH.exists():     util.copyFile(LOG_PATH, plogPath)
+if CSV_PATH.exists():     util.copyFile(CSV_PATH, pcsvPath)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE:
     util.init(LOG_FILE, CSV_FILE, 0)
     slog(sys.argv[0], p=0,      f=2)
@@ -2708,9 +2788,10 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
     FSH, PNK, RED, RST, PCH, ORG, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
     def main():
+        slog(f'{CSV_PATH=}',      f=2)
+        slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{LOG_PATH=}',      f=2)
         slog(f'{LOG_FILE.name=}', f=2)
-        slog(f'{CSV_FILE.name=}', f=2)
         _ = Tabs()
         ret = pyglet.app.run()
         print(f'{ret=}')

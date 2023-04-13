@@ -26,8 +26,8 @@ STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpIm
 def signed(n):      return f' {n}' if n==0 else f'{n:+}'
 def ns2signs(ns):   return [ '-' if n<0 else '+' if n>0  else W for n in ns ]
 
-def init(file, file2, oid):
-    global LOG_FILE  ;  LOG_FILE = file  ;  global CSV_FILE  ;  CSV_FILE = file2  ;  global OIDS  ;  OIDS = oid
+def init(lfile, cfile, oid):
+    global LOG_FILE  ;  LOG_FILE = lfile  ;  global CSV_FILE  ;  CSV_FILE = cfile  ;  global OIDS  ;  OIDS = oid
     dumpData(csv=1)
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
