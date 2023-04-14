@@ -425,7 +425,7 @@ class Tabs(pyglet.window.Window): # ToDo: Add str() and/or rpr()
     def ftxywh(t, s=W, csv=0):   return Tabs.fxywh(t.x, t.y, t.width, t.height, s=s, csv=csv) # if t.width is not None else Tabs.fxywh(t.x, t.y, 'None', t.height)
     ####################################################################################################################################################################################################
     @staticmethod
-    def fxywh(x, y, w, h, s=W, csv=0): f = Z if csv else'7.2f'  ;  return f'{x:{f}}{s}{y:{f}}{s}{w:{f}}{s}{h:{f}}'
+    def fxywh(x, y, w, h, s=W, csv=0): f = '0.2f' if csv else'7.2f'  ;  return f'{x:{f}}{s}{y:{f}}{s}{w:{f}}{s}{h:{f}}'
     ####################################################################################################################################################################################################
     @staticmethod
     def fiax(t):     return f'{t.image.anchor_x:4}'
@@ -1258,8 +1258,8 @@ class Tabs(pyglet.window.Window): # ToDo: Add str() and/or rpr()
         for i in range(n):
             if   j == C or j == E:       x2 = x + i * w
             else:
-                if    j != P:            y2 = y - i * h
-                else: v = int(self.pages[self.J1[P]].visible)  ;  self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}')
+                if    j == P: v = int(self.pages[self.J1[P]].visible)  ;  self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}')
+                else:         y2 = y - i * h
                 if    j == L and self.J2[L] >= lp * ll: msg = f'WARN MAX Line {self.J2[L]=} >= {lp=} * {ll=}'  ;   self.log(msg)  ;  self.quit(msg)
                 elif  j >= T:
                     s = self.ss2sl()[self.J1[S] % self.ssl()]
@@ -1276,7 +1276,7 @@ class Tabs(pyglet.window.Window): # ToDo: Add str() and/or rpr()
         if   type(tnik) is SPR:
             mx, my = w/tnik.image.width, h/tnik.image.height
             tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
-        elif type(tnik) is LBL: # w = None if self.W_NONE else w
+        elif type(tnik) is LBL:
             if v: tnik.font_size = self.calcFontSize(tnik.text, w, h, j)
             tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
             self.checkTnik(tnik, w, self.a, self.ax, self.ay)
@@ -1444,15 +1444,15 @@ class Tabs(pyglet.window.Window): # ToDo: Add str() and/or rpr()
         e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
         for _ in range(np*nl*ns):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
         self.log(p=0, f=3)
-        for l in range(nl):
-            for s in range(ns):
-                for p in range(np):
-                    self.log(f'{z}', p=0, f=3, e=Y) if s or p else self.t2csv(e[P][l], P, l)
+        for p in range(np):
+            for l in range(nl):
+                for s in range(ns):
+                    self.log(f'{z}', p=0, f=3, e=Y) if s or l else self.t2csv(e[P][p], P, p)
         self.log(p=0, f=3)
-        for s in range(ns):
-            for p in range(np):
-                for l in range(nl):
-                    self.log(f'{z}', p=0, f=3, e=Y) if l else self.t2csv(e[L][p], L, p)
+        for p in range(np):
+            for l in range(nl):
+                for s in range(ns):
+                    self.log(f'{z}', p=0, f=3, e=Y) if s else self.t2csv(e[L][l], L, l)
         self.log(p=0, f=3)
         for s in range(np*nl*ns):
             self.t2csv(e[S][s], S, s)
@@ -1463,8 +1463,8 @@ class Tabs(pyglet.window.Window): # ToDo: Add str() and/or rpr()
             self.log(p=0, f=3)
         for t in range(nt*nc):
             for c in range(np*nl):
-                for s in range(ns):
-                    i = t + c*nt*nc  ;  j = T + s  ;  self.t2csv(e[j][i], j, i)
+                for s, s2 in enumerate(self.ss2sl()):
+                    i = t + c*nt*nc  ;  j = T + s2  ;  self.t2csv(e[j][i], j, i)
             self.log(p=0, f=3)
 
     def t2csv(self, tnik, j, i, e=Y):
@@ -2553,15 +2553,15 @@ class Tabs(pyglet.window.Window): # ToDo: Add str() and/or rpr()
         return util.getFilePath(BASE_NAME, BASE_PATH, fdir=fdir, fsfx=fsfx)
 
     def getFileSeqNum(self, files, sfx, dbg=1, dbg2=0):
-        i = -1  ;  ids = []
+        i = -1 # ;  ids = []
         if len(files):
             if dbg2: self.log(f'{sfx=} files={fmtl(files)}')
-            for s in files:
-                if s.endswith(sfx):
-                    _ = self.sid(s, sfx)
-                    ids.append(_) if type(_) is int else None
-                else: continue
-#            ids =  [ self.sid(s, sfx) for s in files if s is not None and s.endswith(sfx) ]
+#            for s in files:
+#                if s.endswith(sfx):
+#                    _ = self.sid(s, sfx)
+#                    ids.append(_) if type(_) is int else None
+#                else: continue
+            ids =  [ self.sid(s, sfx) for s in files if s.endswith(sfx) and self.sid(s, sfx) is not None ]
             if dbg:  self.log(f'ids={fmtl(ids)}')
             i = max(ids)
         return i
