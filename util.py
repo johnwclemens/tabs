@@ -32,9 +32,9 @@ def init(lfile, cfile, oid):
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
     slog(f'BGN D{F} D{N} D{S} {0x1d11a:c}')
-    dumpTestA(csv)
+#    dumpTestA(csv)
     dumpNF(csv)
-    dumpTestB(csv)
+#    dumpTestB(csv)
     dumpND(csv)
     dumpKSH(csv)
     dumpKSV(csv)
@@ -426,7 +426,7 @@ def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=W, ll=Non
         elif type(v) in (int, str):          t.append(f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}')
     return Z.join(t)
 ########################################################################################################################################################################################################
-def ev(obj):         return f'{eval(f"{obj!r}")}'
+# def ev(obj):         return f'{eval(f"{obj!r}")}'
 def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{fmtl(c, w=3, d=d, d2=d2):17}'
 
 def ordSfx(n):
@@ -451,7 +451,7 @@ def dumpStack(sfs):
         slog(f'{j:2} {n:9} {l:5} {f:20} {c}')
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
 ########################################################################################################################################################################################################
-def olog(o=None, p=1, f=1, s=',', e='\n', ff=False):
+def olog(o=None, p=1, f=1, s=Y, e='\n', ff=False):
     o = s.join(str(o)) if o is not None else ''
     if p:
         sf   = inspect.currentframe().f_back
@@ -467,7 +467,8 @@ def olog(o=None, p=1, f=1, s=',', e='\n', ff=False):
     elif f == 3:  f = CSV_FILE # ;  so = 1
     print(o, sep=s, end=e, file=f,    flush=ff)
     print(o, sep=s, end=e, file=None, flush=ff) if so else None
-def slog(t=Z, p=1, f=1, s=',', e='\n', ff=False):
+
+def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=False):
     t = filtText(t) #    t = filtText2(t)
     if p:
         sf   = inspect.currentframe().f_back
