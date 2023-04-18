@@ -2,7 +2,7 @@
   95 util  dumpNF             Note Frequencies in Hertz
   41 util  dumpData           END D♭ D♮ D♯ 𝄚
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
-2780 tabsC <module>           argv=[-n 3 2 10 6 -S 0 3 -i 1 1 1 6]
+2771 tabsC <module>           argv=[-n 3 2 10 6 -S 0 3 -i 1 1 1 6]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
  0 FSH  [  8   0   8   0]  0 FSH  [  8   0   8  15]  0 FSH  [  8   0   8  30]  0 FSH  [  8   0   8  45]  0 FSH  [  8   0   8  60]  0 FSH  [  8   0   8  75]  0 FSH  [  8   0   8  90]  0 FSH  [  8   0   8 105]  0 FSH  [  8   0   8 120]  0 FSH  [  8   0   8 135]  0 FSH  [  8   0   8 150]  0 FSH  [  8   0   8 165]  0 FSH  [  8   0   8 170]  0 FSH  [  8   0   8 195]  0 FSH  [  8   0   8 210]  0 FSH  [  8   0   8 225]  0 FSH  [  8   0   8 240]  0 FSH  [  8   0   8 255] 
  1 FSH  [ 23   1  23   0]  1 FSH  [ 23   1  23  15]  1 FSH  [ 23   1  23  30]  1 FSH  [ 23   1  23  45]  1 FSH  [ 23   1  23  60]  1 FSH  [ 23   1  23  75]  1 FSH  [ 23   1  23  90]  1 FSH  [ 23   1  23 105]  1 FSH  [ 23   1  23 120]  1 FSH  [ 23   1  23 135]  1 FSH  [ 23   1  23 150]  1 FSH  [ 23   1  23 165]  1 FSH  [ 23   1  23 170]  1 FSH  [ 23   1  23 195]  1 FSH  [ 23   1  23 210]  1 FSH  [ 23   1  23 225]  1 FSH  [ 23   1  23 240]  1 FSH  [ 23   1  23 255] 
@@ -422,10 +422,10 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        R=[  5  13  22  31  39  48  56  65  74  82  91  99 108 117 125 134 142 151]
        G=[  2   6  10  14  18  22  26  31  35  39  43  47  51  55  59  63  67  71]
        B=[  0   1   1   2   3   3   4   4   5   5   6   7   7   8   8   9   9  10]
-2784 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csv/tabs.csv)
-2785 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csv\\tabs.csv
-2786 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2787 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2775 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csv/tabs.csv)
+2776 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csv\\tabs.csv
+2777 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+2778 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
  528 util  parseCmdLine       argv=[-n 3 2 10 6 -S 0 3 -i 1 1 1 6]
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  544 util  parseCmdLine        1 short   -n n [] 
@@ -442,18 +442,18 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  562 util  parseCmdLine       12 arg     1  i [1 1 1] 
  562 util  parseCmdLine       13 arg     6  i [1 1 1 6] 
  564 util  parseCmdLine       options=[n:[3 2 10 6]] [S:[0 3]] [i:[1 1 1 6]]
-2679 tabsC dumpGlobals        BASE_NAME = tabs
-2680 tabsC dumpGlobals        argv      = +14[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 3 2 10 6 -S 0 3 -i 1 1 1 6]
-2681 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2682 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+2670 tabsC dumpGlobals        BASE_NAME = tabs
+2671 tabsC dumpGlobals        argv      = +14[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 3 2 10 6 -S 0 3 -i 1 1 1 6]
+2672 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2673 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
   33 tabsC __init__           STFILT:
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
   34 tabsC __init__           BGN <class __main__.Tabs>
-2599 tabsC getFilePath        fdir=logs/ fsfx=.log
-2603 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
-2607 tabsC getFilePath        fsfx=.43.log
+2590 tabsC getFilePath        fdir=logs/ fsfx=.log
+2594 tabsC getFilePath        fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
+2598 tabsC getFilePath        fsfx=.87.log
  509 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 512 util  getFilePath        fileName =tabs.43.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.43.log)
+ 512 util  getFilePath        fileName =tabs.87.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.87.log)
  509 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  512 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
   39 tabsC __init__           catPath=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat
@@ -484,7 +484,7 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  159 tabsC dumpArgs           [T]       .LONG_TXT=1
  160 tabsC dumpArgs           [v]           .VRBY=0
  161 tabsC dumpArgs           [M]          .VIEWS=0
- 162 tabsC dumpArgs           [I]        .ABS_IDX=1
+ 162 tabsC dumpArgs           [I]           .PIDX=0
  163 tabsC dumpArgs           [u]    .TRANSPOSE_A=1
  165 tabsC dumpArgs           [A]         .VARROW=1
  166 tabsC dumpArgs           [L]             .LL=0
@@ -521,7 +521,7 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  272 chord _dumpOMAP          END len(OMAP)=581 catfile.name=C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat len(r)=0
  221 chord dumpOMAP           END len(.OMAP)=581 len(.umap)=0
  265 tabsC _initWindowA       BGN (  -1x-1  )
- 265 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001B3634ED390>
+ 265 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x00000209A1659510>
  270 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
  270 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
  271 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -783,10 +783,10 @@ Colm Line 1 Line 2
  482 tabsC ntp                            nRevPrd=[6 60 120 240 720]
  483 tabsC ntp                         nRevPrdRev=[720 240 120 60 6]
  484 tabsC ntp                tpb tpp tpl tps tpc=[720 240 120 60 6]
-1646 tabsC calcFontSize       j=4 Tabl t=X w= 64.00 h= 20.00 pix= 20.00=min(scale=1.2*w, h) fs= 15.56
-1655 tabsC _initFonts         w=64.000=.width =640/(10)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
-1656 tabsC _initFonts         h=20.000=.height=480/(nl=2 * ns=2 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
-1668 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
+1637 tabsC calcFontSize       j=4 Tabl t=X w= 64.00 h= 20.00 pix= 20.00=min(scale=1.2*w, h) fs= 15.56
+1646 tabsC _initFonts         w=64.000=.width =640/(10)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
+1647 tabsC _initFonts         h=20.000=.height=480/(nl=2 * ns=2 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
+1659 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
 labelTextA=[1  2  3  4  5  6  7  8  9  10]
 labelTextB=[1  2  3  4  5  6  7  8  9  1 ]
 texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
@@ -1727,7 +1727,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +6 SHRP F# 6 [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
 +7 SHRP C# 1 [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   41 util  dumpData           END D♭ D♮ D♯ 𝄚
-1668 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels New1
+1659 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels New1
    2p6   110000
    4l12  111100000000
    8s24  111111110000000000000000
@@ -1743,29 +1743,890 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 1
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
+1480 tabsC t2csv              old=861 len(.tids)=861
  484 tabsC ntp                tpb tpp tpl tps tpc=[720 240 120 60 6]
  505 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[3 2 2 10 6] END ntp=[  720  240 120  60   6] ( 1x1x1x6  )
  310 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cw  ch v a x y dpi B I Font Name
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
- 451 util  dumpStack           7 tabsC      2639 quit                 .log(.QUIT_BGN, p=0, f=2)   ;   .dumpStack(inspect.stack())     ;   .log(.QUIT, p=0, f=2)
+ 451 util  dumpStack           7 tabsC      2630 quit                 .log(.QUIT_BGN, p=0, f=2)   ;   .dumpStack(inspect.stack())     ;   .log(.QUIT, p=0, f=2)
  451 util  dumpStack           6 tabsC       320 test                 .quit(Z.join((test, str(a))))
  451 util  dumpStack           5 tabsC       311 _initTniks           if .TEST: .test()
  451 util  dumpStack           4 tabsC       197 _init                ._initTniks()
  451 util  dumpStack           3 tabsC       188 _reinit              ._init()
  451 util  dumpStack           2 tabsC       130 __init__             ._reinit()
- 451 util  dumpStack           1 tabsC      2788 main                 _ = Tabs()
- 451 util  dumpStack           0 tabsC      2800 <module>             main()
+ 451 util  dumpStack           1 tabsC      2779 main                 _ = Tabs()
+ 451 util  dumpStack           0 tabsC      2791 <module>             main()
  452 util  dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  Tid  Why  Name  Cnt Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt Txt fSz G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cw  ch v a x y dpi B I Font Name
-2640 tabsC quit               J1[3  2  2  10    6    0    0    6  0   0 1 0  0  0  0  0  862 288] test[{a: 1, b: 2, c: 3.3333333333333335}]
-2640 tabsC quit               J2[3  6 12 120  360    0    0  360  0   0 1 0  0  0  0  0  862 288] test[{a: 1, b: 2, c: 3.3333333333333335}]
-2640 tabsC quit               LE[3  6 12 120  360    0    0  360  0   0 1 0  0  0  0  0  862 288] test[{a: 1, b: 2, c: 3.3333333333333335}]
-2640 tabsC quit               END[( 640x480 )( 3x2x10x6 )( 1x1x1x6  ) (0 3    ) 0 (   )  862 288] test[{a: 1, b: 2, c: 3.3333333333333335}]
-2642 tabsC quit               BGN test[{a: 1, b: 2, c: 3.3333333333333335}] error=1 save=1
+2631 tabsC quit               J1[3  2  2  10    6    0    0    6  0   0 1 0  0  0  0  0  862 288] test[{a: 1, b: 2, c: 3.3333333333333335}]
+2631 tabsC quit               J2[3  6 12 120  360    0    0  360  0   0 1 0  0  0  0  0  862 288] test[{a: 1, b: 2, c: 3.3333333333333335}]
+2631 tabsC quit               LE[3  6 12 120  360    0    0  360  0   0 1 0  0  0  0  0  862 288] test[{a: 1, b: 2, c: 3.3333333333333335}]
+2631 tabsC quit               END[( 640x480 )( 3x2x10x6 )( 1x1x1x6  ) (0 3    ) 0 (   )  862 288] test[{a: 1, b: 2, c: 3.3333333333333335}]
+2633 tabsC quit               BGN test[{a: 1, b: 2, c: 3.3333333333333335}] error=1 save=1
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  138 tabsC dumpArgs           [z]      .CSV_FNAME=testC.3.2.10.6.csv
  139 tabsC dumpArgs           [f]     .DATA_FNAME=testC.3.2.10.6.dat
@@ -1791,18 +2652,18 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
  159 tabsC dumpArgs           [T]       .LONG_TXT=1
  160 tabsC dumpArgs           [v]           .VRBY=0
  161 tabsC dumpArgs           [M]          .VIEWS=0
- 162 tabsC dumpArgs           [I]        .ABS_IDX=1
+ 162 tabsC dumpArgs           [I]           .PIDX=True
  163 tabsC dumpArgs           [u]    .TRANSPOSE_A=1
  165 tabsC dumpArgs           [A]         .VARROW=1
  166 tabsC dumpArgs           [L]             .LL=0
  167 tabsC dumpArgs           [S]             .SS=[0 3]
  168 tabsC dumpArgs           [E]             .ZZ=[]
-2587 tabsC snapshot           SNAP_NAME=tabs.43.QUIT.0.png quit error=1 save=1
-2650 tabsC quit               END test[{a: 1, b: 2, c: 3.3333333333333335}] error=1 save=1
+2578 tabsC snapshot           SNAP_NAME=tabs.87.QUIT.0.png quit error=1 save=1
+2641 tabsC quit               END test[{a: 1, b: 2, c: 3.3333333333333335}] error=1 save=1
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2659 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log
+2650 tabsC cleanupLog         Copying C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log
  517 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 518 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.43.log)
- 520 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.43.log ###
-2661 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
-2662 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\csv\tabs.csv
+ 518 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.87.log)
+ 520 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.87.log ###
+2652 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log
+2653 tabsC cleanupLog         closing C:\Users\Owner\Documents\GitHub\tabs\csv\tabs.csv

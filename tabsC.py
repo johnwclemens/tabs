@@ -59,7 +59,7 @@ class Tabs(pyglet.window.Window):
 #        self.X_LEFT    = 0  ;  self.X_CENTER    = 0  ;  self.X_RIGHT      = 1
         self.Y_TOP     = 0  ;  self.Y_CENTER    = 1  ;  self.Y_BOTTOM     = 0  ;  self.Y_BASELINE = 0 # ;  self.W_NONE       = 0
         self.AUTO_SAVE = 0  ;  self.CAT         = 1  ;  self.CHECKERED    = 1  ;  self.EVENT_LOG  = 0  ;  self.FULL_SCREEN  = 0  ;  self.LONG_TXT = 1
-        self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.ABS_IDX    = 1  ;  self.RESIZE       = 1  ;  self.VARROW   = 1
+        self.GEN_DATA  = 0  ;  self.MULTI_LINE  = 1  ;  self.ORDER_GROUP  = 1  ;  self.PIDX       = 0  ;  self.RESIZE       = 1  ;  self.VARROW   = 1
         self.SNAPS     = 1  ;  self.SPRITES     = 1  ;  self.SUBPIX       = 1  ;  self.TEST       = 1  ;  self.VRBY         = 0  ;  self.OIDS     = 0
         self.VIEWS     = 0  ;  self.TRANSPOSE_A = 1  ;  self.DBG_TAB_TEXT = 0  ;  self.BGC        = 0  ;  self.FRET_BOARD   = 0  ;  self.STRETCH  = 0
         self.LL        = 0
@@ -74,7 +74,7 @@ class Tabs(pyglet.window.Window):
         if 'f' in ARGS and len(ARGS['f'])  > 0: self.DATA_FNAME = ARGS['f'][0]
         if 'n' in ARGS and len(ARGS['n'])  > 0: self.n    = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'i' in ARGS and len(ARGS['i'])  > 0: self.i    = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
-        if 'I' in ARGS and len(ARGS['I']) == 0: self.ABS_IDX        =  1
+        if 'I' in ARGS and len(ARGS['I']) == 0: self.PIDX           =  1
         if 'a' in ARGS and len(ARGS['a']) == 0: self.AUTO_SAVE      =  1
         if 'b' in ARGS and len(ARGS['b']) == 0: self.FRET_BOARD     =  1
         if 'B' in ARGS and len(ARGS['B']) == 0: self.BGC            =  1
@@ -159,7 +159,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[T]       {self.LONG_TXT=}')
         self.log(f'[v]           {self.VRBY=}')
         self.log(f'[M]          {self.VIEWS=}')
-        self.log(f'[I]        {self.ABS_IDX=}')
+        self.log(f'[I]           {self.PIDX=}')
         self.log(f'[u]    {self.TRANSPOSE_A=}')
 #        self.log(f'[w]         {self.W_NONE=}')
         self.log(f'[A]         {self.VARROW=}')
@@ -500,7 +500,7 @@ class Tabs(pyglet.window.Window):
         if dbg2:    self.dumpTniksB(f'{why}B')
         if dbg2:    self.dumpTniksC(f'{why}C')
         if dbg2:    self.dumpTniksD(f'{why}D')
-        if csv:     self.dumpTniksCsv()
+        if csv:     self.dumpTniksCsv()   ;   self.PIDX = not self.PIDX   ;   self.dumpTniksCsv()
         if dbg2:    self.cobj.dumpMlimap(f'MLim') if self.VRBY else None
         self.log(f'{self.fmtn()} END ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
     ####################################################################################################################################################################################################
@@ -1473,57 +1473,45 @@ class Tabs(pyglet.window.Window):
                 for s, s2 in enumerate(self.ss2sl()):
                     i = t + c*nt*nc  ;  j = T + s2  ;  self.t2csv(e[j][i], j, i)
             self.log(p=0, f=3)
-
-    def dumpTniksCsv(self):
-        np, nl, ns, nc, nt = self.n # ;  e = self.E
-        self.log(f'{self.args}', p=0, f=3)
-        for _ in range(np*nl*ns):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
-        self.log(p=0, f=3)
-        self.dumpTnik2Csv(P)
-        self.dumpTnik2Csv(L)
-#        self.dumpTnik3Csv(S)
-#        self.log(p=0, f=3)
-#        for c in range(nc): self.dumpTnik3Csv(C, c)
-        self.log(p=0, f=3)
-#        for s in range(np*nl*ns):
-#            self.t2csv(e[S][s], S, s)
-#        self.log(p=0, f=3)
-#        self.log(p=0, f=3)
-#        for c in range(nc):
-#            for s in range(np*nl*ns):
-#                i = c + s*nc  ;  self.t2csv(self.E[C][i], C, i)
-#            self.log(p=0, f=3)
-        for t in range(nt*nc):
-            for c in range(np*nl):
-                for s, s2 in enumerate(self.ss2sl()):
-                    i = t + c*nt*nc  ;  j = T + s2  ;  self.t2csv(self.E[j][i], j, i)
-            self.log(p=0, f=3)
-####################################################################################################################################################################################################
+    ####################################################################################################################################################################################################
     def t2csv(self, tnik, j, i, e=Y):
         assert tnik == self.E[j][i], f'{tnik=} != {self.E[j][i]=}'  ;  old = len(self.tids)
 #        assert len(self.tids) == old + 1, f'{len(self.tids)=} != {old+1=}'
         self.tids.add(id(tnik))  ;  self.log(f'{old=} {len(self.tids)=}') if old+1 != len(self.tids) else None
         self.log(Y.join([f'{JTEXTS[j]}',f'{i+1}',f'{self.ftxywh(tnik, s=Y)}']), p=0, f=3, e=e)
     ####################################################################################################################################################################################################
-    def dumpTnik2Csv(self, j): # i = p if j==P else l if j==L else s  ;  k = s or l if j==P else s if j==L else 0
-        np, nl, ns, nc, nt = self.n  ;  z = Y.join([ Z for _ in range(6) ])  ;  k = 0  ;  i = 0
+    def dumpTniksCsv(self):
+        np, nl, ns, nc, nt = self.n
+        self.log(f'{self.args}', p=0, f=3)
+        for _ in range(np*nl*ns):   self.log('tnik,i,X,Y,W,H', p=0, f=3, e=Y)
+        self.log(p=0, f=3)
+        self.dumpTnik2Csv(P)
+        self.dumpTnik2Csv(L)
+        self.dumpTnik3Csv(S)
+        for c in range(nc): self.dumpTnik3Csv(C, c)
+        for t in range(nt*nc):
+            for c in range(np*nl):
+                for s, s2 in enumerate(self.ss2sl()):
+                    i = t + c*nt*nc  ;  j = T + s2  ;  self.t2csv(self.E[j][i], j, i)
+            self.log(p=0, f=3)
+    ####################################################################################################################################################################################################
+    def dumpTnik2Csv(self, j):
+        np, nl, ns, nc, nt = self.n  ;  z = Y.join([ Z for _ in range(6) ])  ;  k = 0  ;  i = 0  ;  absIdx = not self.PIDX
         for p in range(np):
             for l in range(nl):
                 for s, s2 in enumerate(self.ss2sl()):
-                    if   j == P:  i = p      ;  k = s or l
-                    elif j == L:  i = l      ;  k = s   ;   i += p*ns if self.ABS_IDX else 0
-                    elif j == T:  i = s      ;  k = 0   ;   j  = j + s2
-                    self.log(f'{z}', p=0, f=3, e=Y) if k else self.t2csv(self.E[j][i], j, i)
+                    if   j == P:    i = p      ;   k = s or l
+                    elif j == L:    i = l      ;   k = s    ;   i += p*ns if absIdx else 0
+                    self.t2csv(self.E[j][i], j, i) if not k else self.log(f'{z}', p=0, f=3, e=Y)
         self.log(p=0, f=3)
+
     def dumpTnik3Csv(self, j, k=0):
-        np, nl, ns, nc, nt = self.n   ;   i = 0   ;  absIdx = self.ABS_IDX # ;  m = (C, T)
-#        for s, s2 in enumerate(range(1) if j == C or absIdx and j == S else self.ss2sl()):
-        for s in         range(1 if j == C or absIdx and j == S else ns):
-            for l in     range(1 if j == C or absIdx and j == S else nl):
-                for p in range(1 if j == C or absIdx and j == S else np):
-                    if   j == S:    i = p
-                    elif j == C:    i = k + p*nc
-#                   elif j == T:    i = k          ;  j  = T + s2 # ;  n += 1
+        np, nl, ns, nc, nt = self.n   ;   i = 0   ;   absIdx = not self.PIDX  ;  n = np*nl*ns
+        for p in         range(1 if absIdx else np):
+            for l in     range(1 if absIdx else 1):
+                for s in range(n if absIdx else ns*nl):
+                    if   j == S:    i = s
+                    elif j == C:    i = k + s*nc if absIdx else k + s*nc
                     self.t2csv(self.E[j][i], j, i)
         self.log(p=0, f=3)
     ####################################################################################################################################################################################################
