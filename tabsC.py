@@ -2639,6 +2639,10 @@ class Tabs(pyglet.window.Window):
         self.log(f'Copying {LOG_FILE.name} to {self.lfSeqPath}')
         util.copyFile(LOG_PATH, self.lfSeqPath)
         self.log(f'closing {LOG_FILE.name}', ff=True)
+        csvPath  = util.getFilePath(BASE_NAME,      BASE_PATH, fdir='csv', fsfx='.csv')
+        csvPath2 = util.getFilePath(self.CSV_FNAME, BASE_PATH, fdir='csv', fsfx=Z)
+        self.log(f'Copying {CSV_FILE.name} to {csvPath2}')
+        util.copyFile(csvPath, csvPath2)
         self.log(f'closing {CSV_FILE.name}', ff=True)
 
     def cleanupCat(self, dump=1):
