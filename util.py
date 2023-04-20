@@ -4,11 +4,12 @@ import sys, os, inspect, pathlib
 from collections import Counter
 from collections import OrderedDict as cOd
 
-F                = f'{0x266D:c}'
-N                = f'{0x266E:c}'
-S                = f'{0x266F:c}'
 W, Y, Z          = ' ', ',', ''
 M, P             = -7, 7
+F                = f'{0x266D :c}' # Flat
+N                = f'{0x266E :c}' # Natural
+S                = f'{0x266F :c}' # Sharp
+T                = f'{0x1d11a:c}' # (Treble) Staff
 OIDS             = 0
 LOG_FILE         = None
 CSV_FILE         = None
@@ -31,14 +32,14 @@ def init(lfile, cfile, oid):
     dumpData(csv=1)
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
-    slog(f'BGN D{F} D{N} D{S} {0x1d11a:c}')
+    slog(f'BGN D{F} D{N} D{S}')
 #    dumpTestA(csv)
     dumpNF(csv)
 #    dumpTestB(csv)
     dumpND(csv)
     dumpKSH(csv)
     dumpKSV(csv)
-    slog(f'END D{F} D{N} D{S} {0x1d11a:c}')
+    slog(f'END D{F} D{N} D{S}')
 
 ########################################################################################################################################################################################################
 def dumpTestA(csv=0):
