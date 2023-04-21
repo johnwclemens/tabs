@@ -33,22 +33,22 @@ class Tabs(pyglet.window.Window):
         self.log(f'STFILT:\n{fmtl(util.STFILT)}')
         self.log(f'BGN {__class__}')
         self.LOG_ID       = 0
-        self.lfSeqPath    = self.getFilePath(seq=1, fdir='logs', fsfx='.log')
-        self.snapWhy, self.snapType, self.snapReg, self.snapId = '?', '_', 0, 0
-        self.catPath      = self.getFilePath(seq=1, fdir='cats', fsfx='.cat')   ;   self.log(f'catPath={self.catPath}')
-        self.settingN     = 0    ;  self.setNvals  = []   ;   self.setNtxt = Z
-        self.shiftingTabs = 0    ;  self.shiftSign = 1
-        self.inserting    = 0    ;  self.insertStr = Z
-        self.jumping      = 0    ;  self.jumpStr   = Z    ;   self.jumpAbs = 0
-        self.swapping     = 0    ;  self.swapSrc   = Z    ;   self.swapTrg = Z
-        self.newC         = 0    ;  self.updC      = 0
-        self.cc           = 0    ;  self.nvis      = 0    ;   self.kbk     = 0
-        self.allTabSel    = 0    ;  self.rsyncData = 0
-        self.ki           = []   ;  self.ks        = [ W, 0, Notes.NONE, 'C', 0, [], [] ]
-        self.symbStr, self.modsStr, self.symb,    self.mods     = Z, Z, 0, 0
-        self.J1,      self.J2,      self.j1s,     self.j2s      = [], [], [], []
-        self.hArrow,  self.vArrow,  self.csrMode, self.tids     = RIGHT, UP, CHORD, set()   ;   self.dumpCursorArrows('init()')
-        self.tblank,  self.tblanki, self.cursor,  self.data     = None, None, None, []
+        self.snapWhy, self.snapType, self.snapReg, self.snapId   = '?', '_', 0, 0
+        self.logFileSeqNumPath   =   self.getFilePath(seq=1, fdir='logs', fsfx='.log')
+        self.catPath             =   self.getFilePath(seq=1, fdir='cats', fsfx='.cat')   ;   self.log(f'catPath={self.catPath}')
+        self.settingN     = 0    ;   self.setNvals  = []   ;   self.setNtxt = Z
+        self.shiftingTabs = 0    ;   self.shiftSign = 1
+        self.inserting    = 0    ;   self.insertStr = Z
+        self.jumping      = 0    ;   self.jumpStr   = Z    ;   self.jumpAbs = 0
+        self.swapping     = 0    ;   self.swapSrc   = Z    ;   self.swapTrg = Z
+        self.newC         = 0    ;   self.updC      = 0
+        self.cc           = 0    ;   self.nvis      = 0    ;   self.kbk     = 0
+        self.allTabSel    = 0    ;   self.rsyncData = 0
+        self.ki           = []   ;   self.ks        = [ W, 0, Notes.NONE, 'C', 0, [], [] ]
+        self.symbStr, self.modsStr,  self.symb,    self.mods    = Z, Z, 0, 0
+        self.J1,      self.J2,       self.j1s,     self.j2s     = [], [], [], []
+        self.hArrow,  self.vArrow,   self.csrMode, self.tids    = RIGHT, UP, CHORD, set()   ;   self.dumpCursorArrows('init()')
+        self.tblank,  self.tblanki,  self.cursor,  self.data    = None, None, None, []
 #       self.A_LEFT = 1  ;  self.A_CENTER = 0  ;  self.A_RIGHT  = 0
         self.A_LEFT = 0  ;  self.A_CENTER = 1  ;  self.A_RIGHT  = 0
 #       self.A_LEFT = 0  ;  self.A_CENTER = 0  ;  self.A_RIGHT  = 1
@@ -68,8 +68,7 @@ class Tabs(pyglet.window.Window):
         self.n      = [1, 2, 10, 6]
         self.i      = [1, 1,  1, 6]
         self.log(f'argMap={fmtm(ARGS)}')
-        if 'z' in ARGS and len(ARGS['z'])  > 0: self.CSV_FNAME  = ARGS['z'][0]
-        if 'f' in ARGS and len(ARGS['f'])  > 0: self.DATA_FNAME = ARGS['f'][0]
+#        if 'f' in ARGS and len(ARGS['f'])  > 0: self.DATA_FNAME = ARGS['f'][0]
         if 'n' in ARGS and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'i' in ARGS and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
         if 'I' in ARGS and len(ARGS['I']) == 0: self.PIDX       =  1
@@ -98,10 +97,10 @@ class Tabs(pyglet.window.Window):
         if 'E' in ARGS and len(ARGS['E']) >= 0: self.ZZ         = { int(ARGS['E'][i]) for i in range(len(ARGS['E'])) }
         if 'A' in ARGS: l = len(ARGS['A'])   ;  self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
         if 'v' in ARGS: l = len(ARGS['v'])   ;  self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
-        self.CSV_FNAME  = f'test.{self.n[0]}.{self.n[1]}.{self.n[2]}.{self.n[3]}.csv' # test.p.l.c.t.csv
-        self.DATA_FNAME = f'test.{self.n[0]}.{self.n[1]}.{self.n[2]}.{self.n[3]}.dat' # test.p.l.c.t.dat
+        _ = [BASE_NAME]   ;   _ .extend([ str(n) for n in self.n ])   ;   _.append('dat')   ;   self.DATA_FNAME = '.'.join(_) # test.p.l.c.t.dat
         self.n.insert(S, self.ssl())
         self.i.insert(S, 1)
+        _ = [BASE_NAME]   ;   _ .extend([ str(n) for n in self.n ])   ;   _.append('csv')   ;   self.CSV_FNAME = '.'.join(_) # tabs.p.l.s.c.t.csv
         self.dumpArgs()
         self.vArrow     = UP if self.VARROW == 1 else DOWN
         self.fontStyle  = NORMAL_STYLE
@@ -2384,7 +2383,7 @@ class Tabs(pyglet.window.Window):
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
-        self.ks = util.dumpNic(dict(self.nic))
+        util.dumpNic(dict(self.nic))
         self.log(util.fmtKSK(self.ks[util.KSK]), f=2)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
@@ -2627,7 +2626,7 @@ class Tabs(pyglet.window.Window):
             if dbg:  self.cobj.dumpMlimap(why)
         if self.SNAPS:                self.snapshot(f'quit {error=} {save=}', 'QUIT')
         self.log(f'END {why} {error=} {save=}', f=2)         ;   self.log(util.QUIT_END, p=0, f=2)
-        self.cleanupLog()
+        self.cleanupFiles()
         self.close()
         self.log(f'END {why} {error=} {save=}', f=0)         ;   self.log(util.QUIT_END, p=0, f=0)
 #        print('Calling pyglet.app.exit()', end=Y)
@@ -2635,17 +2634,20 @@ class Tabs(pyglet.window.Window):
 #        print('Calling exit()')
 #        exit()
     ####################################################################################################################################################################################################
-    def cleanupLog(self):
-        self.log(f'Copying {LOG_FILE.name} to {self.lfSeqPath}')
-        util.copyFile(LOG_PATH, self.lfSeqPath)
-        self.log(f'closing {LOG_FILE.name}', ff=True)
+    def cleanupFiles(self):
+        self.cleanupCsvFile()
+#        self.cleanupCatFile()
+
+    def cleanupCsvFile(self):
+        self.log(f'closing {CSV_FILE.name}', ff=True)
+        CSV_FILE.flush()
+        CSV_FILE.close()
         csvPath  = util.getFilePath(BASE_NAME,      BASE_PATH, fdir='csv', fsfx='.csv')
         csvPath2 = util.getFilePath(self.CSV_FNAME, BASE_PATH, fdir='csv', fsfx=Z)
         self.log(f'Copying {CSV_FILE.name} to {csvPath2}')
         util.copyFile(csvPath, csvPath2)
-        self.log(f'closing {CSV_FILE.name}', ff=True)
 
-    def cleanupCat(self, dump=1):
+    def cleanupCatFile(self, dump=1): # revisit
         self.log(f'BGN {dump=}')
         if   dump and self.CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
         elif dump:              self.cobj.dumpOMAP(None, merge=1)
@@ -2764,18 +2766,16 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
     FSH, PNK, RED, RST, PCH, ORG, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
     def main():
-        slog(f'{CSV_PATH=}',      f=2)
-        slog(f'{CSV_FILE.name=}', f=2)
-        slog(f'{LOG_PATH=}',      f=2)
-        slog(f'{LOG_FILE.name=}', f=2)
-        _ = Tabs()
-        slog(f'{str(_)}')
-        slog(f'{_=}')
+        slog(f'{CSV_PATH=}',      f=2)   ;   slog(f'{CSV_FILE.name=}', f=2)
+        slog(f'{LOG_PATH=}',      f=2)   ;   slog(f'{LOG_FILE.name=}', f=2)
+        _ = Tabs()          ;   lfsnp    =   _.logFileSeqNumPath
+        slog(f'{str(_)}')   ;   slog(f'{_=}')
         ret = pyglet.app.run()
-        print(f'{ret=}')
-        CSV_FILE.flush()
+        slog(f'pyglet.app.run(): {ret=}')
+        slog(f'Copying {LOG_FILE.name} to {lfsnp}')
+        util.copyFile(LOG_PATH, lfsnp)
+        slog(f'closing {LOG_FILE.name}', ff=True)
         LOG_FILE.flush()
-        CSV_FILE.close()
         LOG_FILE.close()
         print('thats all folks')
     ########################################################################################################################################################################################################
