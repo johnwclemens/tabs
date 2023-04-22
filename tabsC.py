@@ -34,7 +34,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'BGN {__class__}')
         self.LOG_ID       = 0
         self.snapWhy, self.snapType, self.snapReg, self.snapId   = '?', '_', 0, 0
-        self.logFileSeqNumPath   =   self.getFilePath(seq=1, fdir='logs', fsfx='.log')
+        self.seqNumLogFilePath   =   self.getFilePath(seq=1, fdir='logs', fsfx='.log')
         self.catPath             =   self.getFilePath(seq=1, fdir='cats', fsfx='.cat')   ;   self.log(f'catPath={self.catPath}')
         self.settingN     = 0    ;   self.setNvals  = []   ;   self.setNtxt = Z
         self.shiftingTabs = 0    ;   self.shiftSign = 1
@@ -59,7 +59,7 @@ class Tabs(pyglet.window.Window):
         self.BGC    = 0  ;  self.GEN_DATA = 0  ;  self.DBG_TABT = 0  ;  self.CHECKERED  = 1  ;  self.EVENT_LOG = 0
         self.CAT    = 1  ;  self.LONG_TXT = 1  ;  self.FRT_BRD  = 0  ;  self.FULL_SCRN  = 0  ;  self.SPRITES   = 1  ;  self.SNAPS = 1
         self.OIDS   = 0  ;  self.ORD_GRP  = 1  ;  self.RESIZE   = 1  ;  self.MULTI_LINE = 1  ;  self.SUBPIX    = 1  ;  self.TEST  = 0
-        self.PIDX   = 0  ;  self.STRETCH  = 0  ;  self.XFORM_A  = 1  ;  self.VARROW    = 1   ;  self.VIEWS     = 0  ;  self.VRBY  = 0
+        self.PIDX   = 0  ;  self.STRETCH  = 0  ;  self.XPOSE_B  = 1  ;  self.VARROW    = 1   ;  self.VIEWS     = 0  ;  self.VRBY  = 0
         self.LL     = 0
         self.SS     = set() if 0 else {0, 1, 2, 3}
         self.ZZ     = set() if 1 else {0} #, 1}
@@ -67,8 +67,8 @@ class Tabs(pyglet.window.Window):
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         self.n      = [1, 2, 10, 6]
         self.i      = [1, 1,  1, 6]
-        self.log(f'argMap={fmtm(ARGS)}')
-#        if 'f' in ARGS and len(ARGS['f'])  > 0: self.DATA_FNAME = ARGS['f'][0]
+        self.log(f'argMap={fmtm(ARGS)}')   ;    self.FILE_NAME  = BASE_NAME
+        if 'f' in ARGS and len(ARGS['f'])  > 0: self.FILE_NAME  = ARGS['f'][0]
         if 'n' in ARGS and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'i' in ARGS and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
         if 'I' in ARGS and len(ARGS['I']) == 0: self.PIDX       =  1
@@ -91,25 +91,26 @@ class Tabs(pyglet.window.Window):
         if 't' in ARGS and len(ARGS['t']) == 0: self.TEST       =  1
         if 'T' in ARGS and len(ARGS['T']) == 0: self.LONG_TXT   =  1
         if 'M' in ARGS and len(ARGS['M']) == 0: self.VIEWS      =  1
-        if 'u' in ARGS and len(ARGS['u']) == 0: self.XFORM_A    =  1
+        if 'u' in ARGS and len(ARGS['u']) == 0: self.XPOSE_B    =  1
         if 'L' in ARGS and len(ARGS['L']) == 0: self.LL         =  1
         if 'S' in ARGS and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
         if 'E' in ARGS and len(ARGS['E']) >= 0: self.ZZ         = { int(ARGS['E'][i]) for i in range(len(ARGS['E'])) }
         if 'A' in ARGS: l = len(ARGS['A'])   ;  self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
         if 'v' in ARGS: l = len(ARGS['v'])   ;  self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
-        _ = [BASE_NAME]   ;   _ .extend([ str(n) for n in self.n ])   ;   _.append('dat')   ;   self.DATA_FNAME = '.'.join(_) # test.p.l.c.t.dat
+#        self.DAT_GFN   = self.geomFileName('dat', self.FILE_NAME)
         self.n.insert(S, self.ssl())
         self.i.insert(S, 1)
-        _ = [BASE_NAME]   ;   _ .extend([ str(n) for n in self.n ])   ;   _.append('csv')   ;   self.CSV_FNAME = '.'.join(_) # tabs.p.l.s.c.t.csv
+        self.LOG_GFN   = self.geomFileName('log', self.FILE_NAME)
+        self.CSV_GFN   = self.geomFileName('csv', self.FILE_NAME)
         self.dumpArgs()
-        self.vArrow     = UP if self.VARROW == 1 else DOWN
-        self.fontStyle  = NORMAL_STYLE
-        self.k          = {}
-        self.tixywhHdr  = ['tnik', '  i ', '    X  ', '    Y  ', '    W  ', '    H  ']
-        self.sAlias     = 'GUITAR_6_STD'
+        self.vArrow    = UP if self.VARROW == 1 else DOWN
+        self.fontStyle = NORMAL_STYLE
+        self.k         = {}
+        self.tixywhHdr = ['tnik', '  i ', '    X  ', '    Y  ', '    W  ', '    H  ']
+        self.sAlias    = 'GUITAR_6_STD'
         ####################################################################################################################################################################################################
-        self.sobj       = util.Strings(self.sAlias)
-        self.cobj       = chord.Chord(self.sobj)
+        self.sobj      = util.Strings(self.sAlias)
+        self.cobj      = chord.Chord(self.sobj)
         ####################################################################################################################################################################################################
         self._initDataPath()
         if self.CAT:    self.cobj.dumpOMAP(str(self.catPath))
@@ -130,9 +131,10 @@ class Tabs(pyglet.window.Window):
     def __str__(self):  return f'{ARGS}'
     def __repr__(self): return f'{self.__class__.__name__} {self.width=} {self.height=} {ARGS=}'
     ####################################################################################################################################################################################################
+    def geomFileName(self, ext, base=None):
+        _ = [base] if base is not None else [BASE_NAME]  ;  _ .extend([ str(n) for n in self.n ])  ;  _.append(ext)  ;  return '.'.join(_) # base.p.l.c.t.ext
     def dumpArgs(self):
-        self.log(f'[z]      {self.CSV_FNAME=}')
-        self.log(f'[f]     {self.DATA_FNAME=}')
+        self.log(f'[f]      {self.FILE_NAME=}')
         self.log(f'[n]               {self.fmtn()}')
         self.log(f'[i]               {self.fmti()}')
         self.log(f'[a]      {self.AUTO_SAVE=}')
@@ -156,7 +158,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[v]           {self.VRBY=}')
         self.log(f'[M]          {self.VIEWS=}')
         self.log(f'[I]           {self.PIDX=}')
-        self.log(f'[u]        {self.XFORM_A=}')
+        self.log(f'[u]        {self.XPOSE_B=}')
         self.log(f'[A]         {self.VARROW=}')
         self.log(f'[L]             {self.LL=}')
         self.log(f'[S]             .SS={fmtl(self.SS)}')
@@ -219,9 +221,10 @@ class Tabs(pyglet.window.Window):
         if self.GEN_DATA: self.genDataFile(self.dataPath1)
         self.readDataFile(self.dataPath1)
         util.copyFile    (self.dataPath1, self.dataPath2)
-#        self.data = self.A_transposeData(dump=dbg) if self.XFORM_A else self.transposeDataDump() if dbg else self.OLD_transposeData()
-        if self.XFORM_A:    self.data = self.A_transposeData(dump=dbg)
-        else:               self.transposeDataDump() if dbg else self.OLD_transposeData()
+#        self.data = self.transposeDataB(dump=dbg) if self.XPOSE_B else self.transposeDataDump() if dbg else self.transposeDataA()
+#        if self.XPOSE_B:    self.data = self.transposeDataB(dump=dbg)
+#        else:               self.transposeDataDump() if dbg else self.transposeDataA()
+        self.data = self.transposeData(dump=1 if dbg else 0)
         old = self.fmtn(Z)
         self.n[P] = self.dl()[0]
         self.log(self.fmtdl())
@@ -230,7 +233,7 @@ class Tabs(pyglet.window.Window):
 
     def _initDataPath(self):
         dataDir   = 'data'  ;  dataSfx = '.dat'  ;  dataPfx = f'{self.n[P]}.{self.n[L]}.{self.n[C]}.{self.n[T]}'
-        baseName  = BASE_NAME + dataPfx + dataSfx
+        baseName  = self.FILE_NAME + dataPfx + dataSfx
         dataName0 = baseName + '.asv'
         dataName1 = baseName
         dataName2 = baseName + '.bck'
@@ -513,8 +516,9 @@ class Tabs(pyglet.window.Window):
         if dbg:   self.log(f'{why} {path}')
         with open(path, 'w') as DATA_FILE:
             self.log(f'{DATA_FILE.name:40}', p=0)
-            if    self.isVert(): data = self.A_transposeData() if self.XFORM_A else self.OLD_transposeData()
-            else:                data = self.data
+            data = self.transposeData(dump=1 if dbg else 0) if self.isVert() else self.data
+#            if    self.isVert(): data = self.transposeDataB(dump=dbg) if self.XPOSE_B else self.transposeDataA()
+#            else:                data = self.data
             self.log(f'{self.fmtn()} {self.fmtdl(data)}')
             for p in range(len(data)):
                 if dbg: self.log(f'writing {p+1}{util.ordSfx(p+1)} page', p=0)
@@ -610,35 +614,15 @@ class Tabs(pyglet.window.Window):
                 for c in range(len(data[p][l])):
                     assert len(data[p][l][c]) == dl[3], f'{len(data[p][l])=} {dl=} {vert=}'
     ####################################################################################################################################################################################################
-    def transposeDataDump(self, data=None, why='External', dbg=1):
-        self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
-        self.data = self.OLD_transposeData(data, why, dbg)
-        self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
+#    def transposeDataDump(self, data=None, dbg=1):
+#        self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
+#        self.data = self.transposeDataA(data, dbg)
+#        self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
 
-    def OLD_transposeData(self, data=None, why='External', dbg=1):
+    def transposeDataA(self, data=None, dbg=1):
         data = self.dproxy(data)
-        Xdata, msg1, msg2 = [], [], []
-        self.log(f'BGN {self.fmtD(data)} {why}')
-        self.log(f'{self.fmtdl()} {self.fmtdt()}')
-        self.log(f'dl={self.fmtdl(data)} dt={self.fmtdt(data)}') if dbg else None
-        for p, page in enumerate(data):
-            Xpage = []
-            for l, line in enumerate(page):
-                if dbg: msg1.append(f'{fmtl( line, d=Z)}')
-                Xline = list(map(Z.join, itertools.zip_longest(*line, fillvalue=W)))
-                if dbg: msg2.append(f'{fmtl(Xline, d=Z)}')
-                Xpage.append(Xline)
-            Xdata.append(Xpage)
-        if dbg: [ self.log(m, p=0) for m in msg1 ]   ;   self.log(p=0)
-        if dbg: [ self.log(m, p=0) for m in msg2 ]
-        self.log(f'END {self.fmtD(Xdata)} {why}')
-        return Xdata
-
-    def A_transposeData(self, data=None, dump=0, dbg=1):
-        data = self.dproxy(data)
-        self.log(f'BGN {self.fmtD(data)} {dump=}')
-        if dump:        self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
-        Xdata, msg1, msg2 = [], [], []
+        xpose, msg1, msg2 = [], [], []
+        self.log(f'BGN {self.fmtD(data)}')
         self.log(f'dl={self.fmtdl()} dt={self.fmtdt()}')
         self.log(f'dl={self.fmtdl(data)} dt={self.fmtdt(data)}') if dbg else None
         for p, page in enumerate(data):
@@ -648,12 +632,53 @@ class Tabs(pyglet.window.Window):
                 Xline = list(map(Z.join, itertools.zip_longest(*line, fillvalue=W)))
                 if dbg: msg2.append(f'{fmtl(Xline, d=Z)}')
                 Xpage.append(Xline)
-            Xdata.append(Xpage)
+            xpose.append(Xpage)
         if dbg: [ self.log(m, p=0) for m in msg1 ]   ;   self.log(p=0)
         if dbg: [ self.log(m, p=0) for m in msg2 ]
-        self.dumpDataVert(Xdata) if self.isVert(Xdata) else self.dumpDataHorz(Xdata)
-        self.log(f'END {self.fmtD(Xdata)} {dump=}')
-        return Xdata
+        self.log(f'END {self.fmtD(xpose)}')
+        return xpose
+    def transposeData(self, data=None, dump=0, dbg=1):
+        data = self.dproxy(data)
+        self.log(f'BGN {self.fmtD(data)} {dump=}')
+        if dump > 1:  self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
+        tpose, msg1, msg2 = [], [], []
+        assert self.fmtdl() == self.fmtdl(data), f'{self.fmtdl()} != {self.fmtdl(data)}'
+        assert self.fmtdt() == self.fmtdt(data), f'{self.fmtdt()} != {self.fmtdt(data)}'
+#        self.log(f'dl={self.fmtdl()} dt={self.fmtdt()}')
+#        self.log(f'dl={self.fmtdl(data)} dt={self.fmtdt(data)}') if dbg else None
+        for p, page in enumerate(data):
+            pageTP = []
+            for l, line in enumerate(page):
+                if dbg: msg1.append(f'{fmtl( line, d=Z)}')
+                lineTP = list(map(Z.join, itertools.zip_longest(*line, fillvalue=W)))
+                if dbg: msg2.append(f'{fmtl(lineTP, d=Z)}')
+                pageTP.append(lineTP)
+            tpose.append(pageTP)
+        if dbg: [ self.log(m, p=0) for m in msg1 ]   ;   self.log(p=0)
+        if dbg: [ self.log(m, p=0) for m in msg2 ]
+        if dump > 0:  self.dumpDataVert(tpose) if self.isVert(tpose) else self.dumpDataHorz(tpose)
+        self.log(f'END {self.fmtD(tpose)} {dump=}')
+        return tpose
+    def transposeDataB(self, data=None, dump=0, dbg=1):
+        data = self.dproxy(data)
+        self.log(f'BGN {self.fmtD(data)} {dump=}')
+        if dump:        self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
+        xpose, msg1, msg2 = [], [], []
+        self.log(f'dl={self.fmtdl()} dt={self.fmtdt()}')
+        self.log(f'dl={self.fmtdl(data)} dt={self.fmtdt(data)}') if dbg else None
+        for p, page in enumerate(data):
+            Xpage = []
+            for l, line in enumerate(page):
+                if dbg: msg1.append(f'{fmtl( line, d=Z)}')
+                Xline = list(map(Z.join, itertools.zip_longest(*line, fillvalue=W)))
+                if dbg: msg2.append(f'{fmtl(Xline, d=Z)}')
+                Xpage.append(Xline)
+            xpose.append(Xpage)
+        if dbg: [ self.log(m, p=0) for m in msg1 ]   ;   self.log(p=0)
+        if dbg: [ self.log(m, p=0) for m in msg2 ]
+        self.dumpDataVert(xpose) if self.isVert(xpose) else self.dumpDataHorz(xpose)
+        self.log(f'END {self.fmtD(xpose)} {dump=}')
+        return xpose
     ####################################################################################################################################################################################################
     def dumpDataHorz(self, data=None, lc=1, ll=1, i=0):
         data = data or self.data
@@ -951,9 +976,11 @@ class Tabs(pyglet.window.Window):
         if ins is not None: self.flipVisible(how, self.j()[P])
         self.n[P] += 1   ;   kl = self.k[P]
         data      = [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ]
-        self.data = self.A_transposeData(dump=dbg) if self.XFORM_A else self.OLD_transposeData()
+        self.data = self.transposeData(dump=1 if dbg else 0)
+#        self.data = self.transposeDataB(dump=dbg) if self.XPOSE_B else self.transposeDataA()
         self.data.append(data) if ins is None else self.data.insert(ins, data)
-        self.data = self.A_transposeData(dump=dbg) if self.XFORM_A else self.OLD_transposeData()
+#        self.data = self.transposeDataB(dump=dbg) if self.XPOSE_B else self.transposeDataA()
+        self.data = self.transposeData(dump=1 if dbg else 0)
         if ins is None: self.dumpTniksPfx(how, r=0)   ;   pi = len(self.pages)
         else:           self.dumpTniksPfx(how, r=1)   ;   pi = self.J1[P]
         self.J1[L], self.J1[S], self.J1[C], self.J1[T] = 0, 0, 0, 0
@@ -2622,7 +2649,8 @@ class Tabs(pyglet.window.Window):
         if not error:
             if dbg:  self.dumpStruct(why)
             if save: self.saveDataFile(why, self.dataPath1)
-            if dbg:  self.A_transposeData(dump=dbg) if self.XFORM_A else self.OLD_transposeData()
+            if dbg:  self.transposeData(dump=1 if dbg else 0)
+#            if dbg:  self.transposeDataB(dump=dbg) if self.XPOSE_B else self.transposeDataA()
             if dbg:  self.cobj.dumpMlimap(why)
         if self.SNAPS:                self.snapshot(f'quit {error=} {save=}', 'QUIT')
         self.log(f'END {why} {error=} {save=}', f=2)         ;   self.log(util.QUIT_END, p=0, f=2)
@@ -2642,8 +2670,8 @@ class Tabs(pyglet.window.Window):
         self.log(f'closing {CSV_FILE.name}', ff=True)
         CSV_FILE.flush()
         CSV_FILE.close()
-        csvPath  = util.getFilePath(BASE_NAME,      BASE_PATH, fdir='csv', fsfx='.csv')
-        csvPath2 = util.getFilePath(self.CSV_FNAME, BASE_PATH, fdir='csv', fsfx=Z)
+        csvPath  = util.getFilePath(BASE_NAME,    BASE_PATH, fdir='csv', fsfx='.csv')
+        csvPath2 = util.getFilePath(self.CSV_GFN, BASE_PATH, fdir='csv', fsfx=Z)
         self.log(f'Copying {CSV_FILE.name} to {csvPath2}')
         util.copyFile(csvPath, csvPath2)
 
@@ -2761,23 +2789,24 @@ if LOG_PATH.exists():     util.copyFile(LOG_PATH, plogPath)
 if CSV_PATH.exists():     util.copyFile(CSV_PATH, pcsvPath)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE:
     util.init(LOG_FILE, CSV_FILE, 0)
-    slog(sys.argv[0], p=0,      f=2)
+    slog(sys.argv[0],   p=0,           f=2)
     slog(f'argv={fmtl(sys.argv[1:])}', f=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
     FSH, PNK, RED, RST, PCH, ORG, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
     def main():
-        slog(f'{CSV_PATH=}',      f=2)   ;   slog(f'{CSV_FILE.name=}', f=2)
-        slog(f'{LOG_PATH=}',      f=2)   ;   slog(f'{LOG_FILE.name=}', f=2)
-        _ = Tabs()          ;   lfsnp    =   _.logFileSeqNumPath
+        slog(f'{CSV_PATH=}', f=2)   ;   slog(f'{CSV_FILE.name=}', f=2)
+        slog(f'{LOG_PATH=}', f=2)   ;   slog(f'{LOG_FILE.name=}', f=2)
+        _ = Tabs()          ;   snlfp    =   _.seqNumLogFilePath  #      glfp = _.getFilePath(fdir='logs', fsfx='.log')
+        glfp = util.getFilePath(_.LOG_GFN, BASE_PATH, fdir='logs', fsfx=Z)
         slog(f'{str(_)}')   ;   slog(f'{_=}')
         ret = pyglet.app.run()
-        slog(f'pyglet.app.run(): {ret=}')
-        slog(f'Copying {LOG_FILE.name} to {lfsnp}')
-        util.copyFile(LOG_PATH, lfsnp)
-        slog(f'closing {LOG_FILE.name}', ff=True)
-        LOG_FILE.flush()
-        LOG_FILE.close()
-        print('thats all folks')
+        slog(f'pyglet.app.run(): {ret=}')   ;  msg = 'Closing & Copying'
+        slog(f'{msg} {LOG_FILE.name} to {snlfp}', ff=1)
+        util.copyFile(LOG_PATH,          snlfp)
+        slog(f'{msg} {LOG_FILE.name} to { glfp}', ff=1)
+        util.copyFile(LOG_PATH,           glfp)
+        LOG_FILE.flush()    ;     LOG_FILE.close()
+        print('Thats all folks')
     ########################################################################################################################################################################################################
     if __name__ == '__main__':
         main()
