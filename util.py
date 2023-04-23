@@ -29,7 +29,7 @@ def ns2signs(ns):   return [ '-' if n<0 else '+' if n>0  else W for n in ns ]
 
 def init(lfile, cfile, oid):
     global LOG_FILE  ;  LOG_FILE = lfile  ;  global CSV_FILE  ;  CSV_FILE = cfile  ;  global OIDS  ;  OIDS = oid
-    dumpData(csv=1)
+#    dumpData(csv=1)
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
     slog(f'BGN D{F} D{N} D{S}')
