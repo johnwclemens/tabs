@@ -32,19 +32,21 @@ class Tabs(pyglet.window.Window):
         dumpGlobals()
         self.log(f'STFILT:\n{fmtl(util.STFILT)}')
         self.log(f'BGN {__class__}')
-        self.LOG_ID       = 0
+        self.LOG_ID        = 0
         self.snapWhy, self.snapType, self.snapReg, self.snapId   = '?', '_', 0, 0
-        self.seqNumLogFilePath   =   self.getFilePath(seq=1, fdir='logs', fsfx='.log')
-        self.catPath             =   self.getFilePath(seq=1, fdir='cats', fsfx='.cat')   ;   self.log(f'catPath={self.catPath}')
-        self.settingN     = 0    ;   self.setNvals  = []   ;   self.setNtxt = Z
-        self.shiftingTabs = 0    ;   self.shiftSign = 1
-        self.inserting    = 0    ;   self.insertStr = Z
-        self.jumping      = 0    ;   self.jumpStr   = Z    ;   self.jumpAbs = 0
-        self.swapping     = 0    ;   self.swapSrc   = Z    ;   self.swapTrg = Z
-        self.newC         = 0    ;   self.updC      = 0
-        self.cc           = 0    ;   self.nvis      = 0    ;   self.kbk     = 0
-        self.allTabSel    = 0    ;   self.rsyncData = 0
-        self.ki           = []   ;   self.ks        = [ W, 0, Notes.NONE, 'C', 0, [], [] ]
+        self.seqNumLogPath       =   self.getFilePath(seq=1, fdir='logs', fsfx='.log')   ;   self.log(f'{self.seqNumLogPath=}')
+        baseName = f'{BASE_NAME}.{self.LOG_ID}'
+        self.seqNumCsvPath = util.getFilePath(baseName, BASE_PATH, fdir='csv', fsfx='.csv')   ;   self.log(f'{self.seqNumCsvPath=}')
+        self.catPath       = util.getFilePath(baseName, BASE_PATH, fdir='cats', fsfx='.cat')   ;   self.log(f'{self.catPath=}')
+        self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt = Z
+        self.shiftingTabs  = 0   ;   self.shiftSign = 1
+        self.inserting     = 0   ;   self.insertStr = Z
+        self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs = 0
+        self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg = Z
+        self.newC          = 0   ;   self.updC      = 0
+        self.cc            = 0   ;   self.nvis      = 0    ;   self.kbk     = 0
+        self.allTabSel     = 0   ;   self.rsyncData = 0
+        self.ki            = []  ;   self.ks        = [ W, 0, Notes.NONE, 'C', 0, [], [] ]
         self.symbStr, self.modsStr,  self.symb,    self.mods    = Z, Z, 0, 0
         self.J1,      self.J2,       self.j1s,     self.j2s     = [], [], [], []
         self.hArrow,  self.vArrow,   self.csrMode, self.tids    = RIGHT, UP, CHORD, set()   ;   self.dumpCursorArrows('init()')
@@ -130,8 +132,6 @@ class Tabs(pyglet.window.Window):
     def __str__(self):  return f'{ARGS}'
     def __repr__(self): return f'{self.__class__.__name__} {self.width=} {self.height=} {ARGS=}'
     ####################################################################################################################################################################################################
-#    def geomFileName(self, ext, base=None):
-#        _ = [base] if base is not None else [BASE_NAME]  ;  _ .extend([ str(i) for i in self.m ])  ;  _.append(ext)  ;  return '.'.join(_) # base.p.l.c.t.ext
     def geomFileName(self, ext, base=None, n=None):
         n = self.n if n is None else n  ;  _ = [base] if base is not None else [BASE_NAME]  ;  _ .extend([ str(i) for i in n ])  ;  _.append(ext)  ;  return '.'.join(_) # base.p.l.c.t.ext
     def dumpArgs(self):
@@ -230,8 +230,6 @@ class Tabs(pyglet.window.Window):
 
     def _initDataPath(self):
         dataDir   = 'data'
-#        dataSfx   = '.dat'  ;  dataPfx = f'{self.n[P]}.{self.n[L]}.{self.n[C]}.{self.n[T]}'
-#        baseName  = self.FILE_NAME + dataPfx + dataSfx
         baseName  = self.geomFileName('dat', self.FILE_NAME, n=self.m)
         dataName0 = baseName + '.asv'
         dataName1 = baseName
@@ -2560,19 +2558,20 @@ class Tabs(pyglet.window.Window):
             self.log(f)
             os.system(f'del {f}')
 
-    def getFilePath(self, seq=0, fdir='files', fsfx='.txt', dbg=0):
-        if seq and not self.LOG_ID:
+    def getFilePath(self, seq=0, bn=None, fdir='files', fsfx='.txt', dbg=0):
+        bn = bn if bn is not None else BASE_NAME
+        if seq: # and not self.LOG_ID:
             fdir      += '/'
             self.log(f'{fdir=} {fsfx=}')
             pathlib.Path(fdir).mkdir(parents=True, exist_ok=True)
-            fGlobArg   = str(BASE_PATH / fdir / BASE_NAME) + '.*' + fsfx
+            fGlobArg   = str(BASE_PATH / fdir / bn) + '.*' + fsfx
             fGlob      = glob.glob(fGlobArg)
             self.log(f'{fGlobArg=}')
             self.LOG_ID = 1 + self.getFileSeqNum(fGlob, fsfx)
             fsfx        = f'.{self.LOG_ID}{fsfx}'
             if dbg:     self.log(f'fGlob={fmtl(fGlob)}', p=0)
             self.log(f'{fsfx=}')
-        return util.getFilePath(BASE_NAME, BASE_PATH, fdir=fdir, fsfx=fsfx)
+        return util.getFilePath(bn, BASE_PATH, fdir=fdir, fsfx=fsfx)
 
     def getFileSeqNum(self, files, sfx, dbg=0, dbg2=0):
         i = -1  ;  ids = []
@@ -2631,11 +2630,16 @@ class Tabs(pyglet.window.Window):
         self.log(f'closing {CSV_FILE.name}', ff=True)
         CSV_FILE.flush()
         CSV_FILE.close()
+        baseName = f'{BASE_NAME}.{self.LOG_ID}'
         csvPath  = util.getFilePath(BASE_NAME,    BASE_PATH, fdir='csv', fsfx='.csv')
         csvPath2 = util.getFilePath(self.CSV_GFN, BASE_PATH, fdir='csv', fsfx=Z)
+        csvPath3 = util.getFilePath(baseName,     BASE_PATH, fdir='csv', fsfx='.csv')
         self.makeSubDirs(csvPath2)
         self.log(f'Copying {CSV_FILE.name} to {csvPath2}', f=2)
         util.copyFile(csvPath, csvPath2)
+        self.makeSubDirs(csvPath3)
+        self.log(f'Copying {CSV_FILE.name} to {csvPath3}', f=2)
+        util.copyFile(csvPath, csvPath3)
 
     def cleanupCatFile(self, dump=1): # revisit
         self.log(f'BGN {dump=}')
@@ -2758,14 +2762,13 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     def main():
         slog(f'{CSV_PATH=}', f=2)   ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{LOG_PATH=}', f=2)   ;   slog(f'{LOG_FILE.name=}', f=2)
-        tabs = Tabs()               ;   snlfp    =   tabs.seqNumLogFilePath
-        slog(f'{str(tabs)}')        ;   slog(f'{tabs=}')
-        ret = pyglet.app.run()      ;   msg = 'Closing & Copying'
+        tabs = Tabs()               ;   snlfp    =    tabs.seqNumLogPath
+        slog(f'{str(tabs)=}')       ;   slog(f'{tabs=}')
+        ret = pyglet.app.run()      ;   msg      =    'Closing & Copying'
         slog(f'pyglet.app.run(): {ret=}')
-        glfp = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir='logs', fsfx=Z)
-        tabs.makeSubDirs(glfp)
         slog(f'{msg} {LOG_FILE.name} to {snlfp}', ff=1)
         util.copyFile(LOG_PATH,          snlfp)
+        glfp = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir='logs', fsfx=Z)    ;    tabs.makeSubDirs(glfp)
         slog(f'{msg} {LOG_FILE.name} to { glfp}', ff=1)
         util.copyFile(LOG_PATH,           glfp)
         LOG_FILE.flush()    ;     LOG_FILE.close()
