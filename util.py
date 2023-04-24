@@ -506,10 +506,10 @@ def filtText2(text):
     text = text.replace('(s[_])', 's[_]')
     return text
 ########################################################################################################################################################################################################
-def getFilePath(baseName, basePath, fdir='files', fsfx='.txt', dbg=1):
+def getFilePath(baseName, basePath, fdir='files', fsfx='txt', dbg=1):
     if dbg: slog(f'{baseName =:12} {basePath = }', f=2)
-    fileName      = baseName + fsfx
-    filePath      = basePath / fdir / fileName
+    fileName   = f'{baseName}.{fsfx}' if fsfx else baseName
+    filePath   =    basePath / fdir / fileName
     if dbg: slog(f'{fileName =:12} {filePath = }', f=2)
     return filePath
 
