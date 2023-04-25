@@ -1,5 +1,5 @@
 """util.py module.  class list: [DSymb, Notes, Strings, Test]."""
-import random
+#import random
 import sys, os, inspect, pathlib
 from collections import Counter
 from collections import OrderedDict as cOd
@@ -565,10 +565,9 @@ def parseCmdLine(dbg=1):
     if dbg: slog(f'options={fmtm(options)}')
     return options
 ########################################################################################################################################################################################################
-randData = [ random.randint(-3, 3) for _ in range(25) ]
-print(Z.join(signed(r) for r in randData))
-print(Z.join([ f' {r}' if not r else f'+{r}' if r>0 else f'{r}' for r in randData ]))
-#quit()
+#randData = [ random.randint(-3, 3) for _ in range(25) ]
+#print(Z.join(signed(r) for r in randData))
+#print(Z.join([ f' {r}' if not r else f'+{r}' if r>0 else f'{r}' for r in randData ]))
 
 #def test():
 #    print([ f'{i}'    for i in range(-1, 2) ], "f'{i}'")
