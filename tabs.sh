@@ -4,7 +4,9 @@ pwd
 ls -ltr
 cp      stdo/tabs.txt stdo/tabs._.txt
 ls -ltr stdo
-python tabsC.py -n 1 1 10 6 -S 0 1 -f Test/test 2&>stdo/tabs.txt
+#python tabsC.py -n 1 1 10 6 -S 0 1 -f Test/test 2&>stdo/tabs.txt
+python tabsC.py -n 1 1 10 6 -S 0 1 -f Test/test 2>stdo/tabs.txt
+
 #python tabsC.py -f BlackMagicWoman.4.2.50.dat -n 4 2 50 6 -S 0 1 3 -i 1 1 1 6
 #python tabsC.py -f GiantSteps.50.dat -n 3 2 50 6 -S 0 1 3 -i 1 1 1 6
 #python tabsC.py -f LydianTriads.50.dat -n 3 2 50 6 -S 0 1 3 -i 1 1 1 6 -L
