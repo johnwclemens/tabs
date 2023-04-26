@@ -31,8 +31,6 @@ class Tabs(pyglet.window.Window):
     def __init__(self):
         self.log(f'BGN {__class__}')   ;   dumpGlobals()   ;   self.LOG_ID = 1
         self.log(f'STFILT:\n{fmtl(util.STFILT)}')          ;   self.snapWhy, self.snapType, self.snapReg, self.snapId = '?', '_', 0, 0
-#        self.seqNumLogPath = self.getFilePath(     seq=1   ,            fdir=LOGS, fsfx=LOG)   ;   self.log(f'{self.seqNumLogPath=}')
-#        self.fNameLid = f'{BASE_NAME}.{self.LOG_ID}'
         self.fNameLid      = self.getFileSeqName(fdir=LOGS, fsfx=LOG)
         self.seqNumLogPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=LOGS, fsfx=LOG)   ;   self.log(f'{self.seqNumLogPath=}')
         self.seqNumCsvPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CSVS, fsfx=CSV)   ;   self.log(f'{self.seqNumCsvPath=}')
@@ -2534,28 +2532,14 @@ class Tabs(pyglet.window.Window):
         self.snapReg  = 1
         if dbg: self.log(f'{self.LOG_ID:3} {self.snapId:3} {self.snapType:8} {self.snapWhy}')
 
-    def OLD__snapshot(self, why=Z, typ=Z, dbg=0, dbg2=1):
-        WHY       = why if why else self.snapWhy
-        TYPE      = typ if typ else self.snapType
-        SNAP_ID   = self.snapId
-        LOG_ID    = self.LOG_ID if self.LOG_ID else Z
-        SNAP_NAME = f'{BASE_NAME}.{LOG_ID}.{SNAP_ID}.{TYPE}.{PNG}'
-        SNAP_PATH = BASE_PATH / PNGS / SNAP_NAME
-        if dbg:     self.log(f'{BASE_NAME=} {LOG_ID=} {SNAP_ID=} {TYPE=} {PNG=}')
-        if dbg:     self.log(f'{PNGS=} {SNAP_NAME=} {WHY}')
-        if dbg:     self.log(f'{SNAP_PATH=}', p=0)
-        pyglet.image.get_buffer_manager().get_color_buffer().save(f'{SNAP_PATH}')
-        if dbg2:    self.log(f'{SNAP_NAME=} {WHY}', f=2)
-        self.snapId += 1
     def snapshot(self, why=Z, typ=Z, dbg=1, dbg2=1):
         why       = why if why else self.snapWhy
         typ       = typ if typ else self.snapType
-        snapId    = self.snapId
-        logId     = self.LOG_ID if  self.LOG_ID else Z
+        snapId    = self.snapId    ;    logId     = self.LOG_ID
         snapName  = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
         SnapPath  = BASE_PATH / PNGS / snapName
         if dbg:     self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
-        if dbg:     self.log(f'{PNGS=} {snapName=} {why}')
+        if dbg:     self.log(f'{self.fNameLid=} {PNGS=} {snapName=} {why}')
         if dbg:     self.log(f'{SnapPath=}', p=2)
         pyglet.image.get_buffer_manager().get_color_buffer().save(f'{SnapPath}')
         if dbg2:    self.log(f'{snapName=} {why}', f=2)
@@ -2566,20 +2550,6 @@ class Tabs(pyglet.window.Window):
         for f in g:
             self.log(f)
             os.system(f'del {f}')
-
-    def OLD__getFilePath(self, seq=0, fdir='files', fsfx='txt', dbg=0):
-        if seq:
-            fdir      += '/'
-            self.log(f'{fdir=} {fsfx=}')
-            pathlib.Path(fdir).mkdir(parents=True, exist_ok=True)
-            fGlobArg   = f'{(BASE_PATH / fdir / BASE_NAME)}.*.{fsfx}'
-            fGlob      = glob.glob(fGlobArg)
-            self.log(f'{fGlobArg=}')
-            self.LOG_ID = 1 + self.getFileSeqNum(fGlob, fsfx)
-            fsfx        = f'{self.LOG_ID}.{fsfx}'
-            if dbg:     self.log(f'fGlob={fmtl(fGlob)}', p=0)
-            self.log(f'{fsfx=}')
-        return util.getFilePath(BASE_NAME, BASE_PATH, fdir=fdir, fsfx=fsfx)
 
     def getFileSeqName(self, fdir='files', fsfx='txt'):
         fdir += '/'
@@ -2592,13 +2562,9 @@ class Tabs(pyglet.window.Window):
         return f'{BASE_NAME}.{self.LOG_ID}'
 
     def getFileSeqNum(self, files, sfx, dbg=0, dbg2=0):
-        i = -1  ;  fsfx = f'.{sfx}' # ;  ids = []
+        i = -1  ;  fsfx = f'.{sfx}'
         if len(files):
             if dbg2: self.log(f'{sfx=} files={fmtl(files)}')
-#            for s in files:
-#                if s.endswith(fsfx):
-#                    _ = self.sid(s, fsfx)
-#                    ids.append(_) if type(_) is int else None
             ids =  [ self.sid(s, fsfx) for s in files if s.endswith(fsfx) and type(self.sid(s, fsfx)) is int ]
             if dbg:  self.log(f'ids={fmtl(ids)}')
             i = max(ids) if ids else 0
