@@ -428,7 +428,7 @@ def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=W, ll=Non
     return Z.join(t)
 ########################################################################################################################################################################################################
 # def ev(obj):         return f'{eval(f"{obj!r}")}'
-def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{fmtl(c, w=3, d=d, d2=d2):17}'
+def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 
 def ordSfx(n):
     m = n % 10

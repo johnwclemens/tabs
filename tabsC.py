@@ -56,7 +56,7 @@ class Tabs(pyglet.window.Window):
         self.X_LEFT = 0  ;  self.X_CENTER = 1  ;  self.X_RIGHT  = 0
 #       self.X_LEFT = 0  ;  self.X_CENTER = 0  ;  self.X_RIGHT  = 1
         self.Y_TOP  = 0  ;  self.Y_CENTER = 1  ;  self.Y_BOTTOM = 0  ;  self.Y_BASELINE = 0  ;  self.AUTO_SAVE = 0
-        self.BGC    = 0  ;  self.GEN_DATA = 0  ;  self.DBG_TABT = 2  ;  self.CHECKERED  = 1  ;  self.CURSOR    = 1
+        self.BGC    = 0  ;  self.GEN_DATA = 0  ;  self.DBG_TABT = 3  ;  self.CHECKERED  = 1  ;  self.CURSOR    = 1
         self.CAT    = 0  ;  self.LONG_TXT = 1  ;  self.FRT_BRD  = 0  ;  self.EVENT_LOG  = 0  ;  self.SPRITES   = 0  ;  self.SNAPS  = 1
         self.OIDS   = 0  ;  self.ORD_GRP  = 1  ;  self.RESIZE   = 1  ;  self.FULL_SCRN  = 0  ;  self.SUBPIX    = 1  ;  self.TEST   = 0
         self.PIDX   = 0  ;  self.STRETCH  = 0  ;  self.VARROW   = 1  ;  self.MULTI_LINE = 1  ;  self.VIEWS     = 0  ;  self.VRBY   = 0
@@ -97,7 +97,7 @@ class Tabs(pyglet.window.Window):
         if 'A' in ARGS: l = len(ARGS['A'])   ;  self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
         if 'v' in ARGS: l = len(ARGS['v'])   ;  self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
         self.n0        = list(self.n)        ;  self.i0         =  list(self.i)
-        self.n.insert(S, self.ssl())         ;  self.i.insert(S, 1)         ;  self.dumpArgs()
+        self.n.insert(S, self.ssl())         ;  self.i.insert(S, 1)         ;  self.dumpArgs(f=2)
         self.LOG_GFN   = self.geomFileName(LOG, self.FILE_NAME)             ;  self.log(f'{self.LOG_GFN=}')
         self.CSV_GFN   = self.geomFileName(CSV, self.FILE_NAME)             ;  self.log(f'{self.CSV_GFN=}')
         self.DAT_GFN   = self.geomFileName(DAT, self.FILE_NAME, n=self.n0)  ;  self.log(f'{self.DAT_GFN=} {self.n0=}')
@@ -132,35 +132,35 @@ class Tabs(pyglet.window.Window):
     def geomFileName(self, ext, base=None, n=None):
         n = self.n if n is None else n  ;  _ = [base] if base is not None else [BASE_NAME]  ;  _.extend([ str(i) for i in n ])  ;  _.append(ext)  ;  return '.'.join(_) # base.p.l.c.t.ext
 
-    def dumpArgs(self):
-        self.log(f'[f]      {self.FILE_NAME=}')
-        self.log(f'[n]               {self.fmtn()}')
-        self.log(f'[i]               {self.fmti()}')
-        self.log(f'[a]      {self.AUTO_SAVE=}')
-        self.log(f'[b]        {self.FRT_BRD=}')
-        self.log(f'[B]            {self.BGC=}')
-        self.log(f'[c]            {self.CAT=}')
-        self.log(f'[C]      {self.CHECKERED=}')
-        self.log(f'[d]       {self.DBG_TABT=}')
-        self.log(f'[e]      {self.EVENT_LOG=}')
-        self.log(f'[F]      {self.FULL_SCRN=}')
-        self.log(f'[G]       {self.GEN_DATA=}')
-        self.log(f'[M]     {self.MULTI_LINE=}')
-        self.log(f'[g]        {self.ORD_GRP=}')
-        self.log(f'[o]           {self.OIDS=}')
-        self.log(f'[p]          {self.SNAPS=}')
-        self.log(f'[R]         {self.RESIZE=}')
-        self.log(f'[x]         {self.SUBPIX=}')
-        self.log(f'[s]        {self.SPRITES=}')
-        self.log(f'[t]           {self.TEST=}')
-        self.log(f'[T]       {self.LONG_TXT=}')
-        self.log(f'[v]           {self.VRBY=}')
-        self.log(f'[M]          {self.VIEWS=}')
-        self.log(f'[I]           {self.PIDX=}')
-        self.log(f'[A]         {self.VARROW=}')
-        self.log(f'[L]             {self.LL=}')
-        self.log(f'[S]             .SS={fmtl(self.SS)}')
-        self.log(f'[E]             .ZZ={fmtl(self.ZZ)}')
+    def dumpArgs(self, f=1):
+        self.log(f'[f]      {self.FILE_NAME=}', f=f)
+        self.log(f'[n]               {self.fmtn()}', f=f)
+        self.log(f'[i]               {self.fmti()}', f=f)
+        self.log(f'[a]      {self.AUTO_SAVE=}', f=f)
+        self.log(f'[b]        {self.FRT_BRD=}', f=f)
+        self.log(f'[B]            {self.BGC=}', f=f)
+        self.log(f'[c]            {self.CAT=}', f=f)
+        self.log(f'[C]      {self.CHECKERED=}', f=f)
+        self.log(f'[d]       {self.DBG_TABT=}', f=f)
+        self.log(f'[e]      {self.EVENT_LOG=}', f=f)
+        self.log(f'[F]      {self.FULL_SCRN=}', f=f)
+        self.log(f'[G]       {self.GEN_DATA=}', f=f)
+        self.log(f'[M]     {self.MULTI_LINE=}', f=f)
+        self.log(f'[g]        {self.ORD_GRP=}', f=f)
+        self.log(f'[o]           {self.OIDS=}', f=f)
+        self.log(f'[p]          {self.SNAPS=}', f=f)
+        self.log(f'[R]         {self.RESIZE=}', f=f)
+        self.log(f'[x]         {self.SUBPIX=}', f=f)
+        self.log(f'[s]        {self.SPRITES=}', f=f)
+        self.log(f'[t]           {self.TEST=}', f=f)
+        self.log(f'[T]       {self.LONG_TXT=}', f=f)
+        self.log(f'[v]           {self.VRBY=}', f=f)
+        self.log(f'[M]          {self.VIEWS=}', f=f)
+        self.log(f'[I]           {self.PIDX=}', f=f)
+        self.log(f'[A]         {self.VARROW=}', f=f)
+        self.log(f'[L]             {self.LL=}', f=f)
+        self.log(f'[S]             .SS={fmtl(self.SS)}', f=f)
+        self.log(f'[E]             .ZZ={fmtl(self.ZZ)}', f=f)
     ####################################################################################################################################################################################################
     def _reinit(self):
         self.log('BGN')
@@ -412,7 +412,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def ftcolor(t):  k = W.join([ f'{k:3}' for k in t.color[:3] ])  ;  k += f' {t.opacity:3}'  ;  return f'[{k}]'
     @staticmethod
-    def fFntSz(t):    return f'{t.font_size:3.0f}'
+    def fFntSz(t):    return f'{t.font_size:4.0f}'
     @staticmethod
     def ftMxy(t):     return f'{t.scale:5.3f} {t.scale_x:5.3f} {t.scale_y:5.3f}'
     @staticmethod
@@ -1152,7 +1152,7 @@ class Tabs(pyglet.window.Window):
         n, _, x, y, w, h = self.geom(j, pt, n, ii, dbg=dbg2)   ;   t = Z  ;  kl = self.k[j]  ;  tl2 = tlist   ;   p, l, c, _ = self.J1plct()
         n                = n if ii is None else 1              ;  x2 = x  ;  y2 = y  ;  j2 = j  ;  i3 = 0
         for i in range(n):
-            if self.DBG_TABT:              t = self.dbgTabTxt(j, i)
+            if self.DBG_TABT and j < T:    t = self.dbgTabTxt(j, i)
             i2 = i if ii is None else ii
             if   j == P:                   v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}')
             else:                          v = int(self.pages[self.J1[P]].visible)
@@ -1185,7 +1185,7 @@ class Tabs(pyglet.window.Window):
             s = self.calcFontSize(j)       ;   a, ax, ay = self.a, self.ax, self.ay  # left center right  # bottom baseline center top
             z = 1 if self.STRETCH else 0   ;        d, n = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTI_LINE
             tnik = LBL(t, font_name=n, font_size=s, bold=o, italic=ii, stretch=z, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, multiline=ml, dpi=d, batch=b, group=g)
-            self.checkTnik(tnik, i, j, w, a, ax, ay)
+            self.checkTnik(tnik, i, j)
             if   T <= j <= K:      self._setTNIKStyle(tnik, self.k[j], NORMAL_STYLE)
             elif j == Q:           self._setTNIKStyle(tnik, self.k[j] if (i+1) % 10 else self.k[R], NORMAL_STYLE)
         tnik.visible = v        ;  self.visib[j].append(v)
@@ -1198,42 +1198,32 @@ class Tabs(pyglet.window.Window):
         if self.ZZ and j == S and v:                          tnik = self.createZZs(tnik, i, why)
         return tnik
     ####################################################################################################################################################################################################
-    def checkTnik(self, t, i, j, w, a, ax, ay, dbg=0):
-        old = t.content_width
-        t.content_width    = int(t.width/4) if w else 30  ;   cw = t.content_width    ;  ch = t.content_height  ;  cva = t.content_valign
-        align              = t.document.styles[ALIGN]     ;  dsm = t.document.styles  ;  ml = int(t.multiline)
-        assert      align == a,   f'     {align=} != {a=}'
-        assert t.anchor_x == ax,  f'{t.anchor_x=} != {ax=}'
-        assert t.anchor_y == ay,  f'{t.anchor_y=} != {ay=}'
-        if dbg and self.VRBY:  self.log(f'{align=} {a=}')   ;   self.log(f'{t.anchor_x=} {ax=}')  ;  self.log(f'{t.anchor_y=} {ay=}')
-        if dbg:    self.log(f'<{len(t.text)}>{t.text=:2} {old=:2} {cw=:2} {ch=:2} {cva=:3} {ml=} {fmtm(dsm, d=Z)}', p=0, f=0)
-        t.document.set_paragraph_style(0, len(t.document.text), {LNSP:None, LEAD:0})
-        v = 'Vis' if t.visible else 'Inv'  ;   js = JTEXTS[j]   ;   sm = t.document.styles   ;   ks = sorted(sm)
-        fnt = pygfont.load(sm[FONT_NAME], sm[FONT_SIZE])
-        fnt2 = t.document.get_font()       ;   asc = fnt.ascent   ;   dsc = fnt.descent
-        h, s = self.fmtDocStyles(sm, ks)   ;   net = asc - dsc
-        self.log(f'{W*11}{h} Ascn Dscn nA-D', p=0, f=0) if j==0 else None
-        self.log(f'{js} {i+1:3} {v} {s} {asc:4} {dsc:4} {net:4}', p=0, f=0)
-        assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
-
-    def fmtDocStyles(self, sm, ks): #           s.append(f'{fmtl(sm[k], w="3") if type(sm[k]) is list else sm[k]}')
-        h, s = [], []   ;   w = W*6
-        for k in ks:
-            _ = 'A' if k==ALIGN else f'   {BGC}  ' if k==BGC else 'B' if k==BOLD else f'{w}{COLOR}{w}' if k==COLOR else f'{w}{FONT_NAME}{w}' if k==FONT_NAME else 'FnSz' if k==FONT_SIZE else 'I' if k==ITALIC else 'Lead' if k==LEAD else 'LnSp' if k==LNSP else 'Strt' if k==STRT else '????'
-            h.append(_)
-            v = sm[k]
-            if   k==ALIGN:             s.append(self.ftAx(v))
-            elif k==COLOR or k==BGC:   s.append(fmtl(v, w=3))
-            elif k==FONT_NAME:         s.append(f'{v:21}')
-            elif k==BOLD or k==ITALIC: s.append(f'{v}')
-            elif v is None:            s.append('None')
-            else:                      s.append(f'{v:4}')
+    def checkTnik(self, t, i, j, dbg=1):
+        td = t.document   ;   sm = td.styles
+        a,  ax,  ay,  ml   =  self.a,    self.ax,    self.ay,    self.MULTI_LINE
+        ta, tax, tay, tml  =  sm[ALIGN], t.anchor_x, t.anchor_y, int(t.multiline)
+        assert  ta == a,   f' {ta=} != {a=}'
+        assert tax == ax,  f'{tax=} != {ax=}'
+        assert tay == ay,  f'{tay=} != {ay=}'
+        td.set_paragraph_style(0, len(td.text), {LNSP:None, LEAD:0})
+        v    = 'V' if t.visible else 'I'  ;    js = JTEXTS[j]
+        fnt  =  td.get_font()   ;   asc  = fnt.ascent   ;   dsc = fnt.descent   ;   net = asc - dsc
+        h, s =  self.fmtDocStyles(sm)
+        self.log(f'{W*21} CW   CH V A x y Ascn Dscn nA-D {h}', p=0, f=0) if j==0 else None
+        self.log(f'{js} {i+1:3} {self.ffTxt(t)} {v} {self.fCtnt(t)} {self.fAxy()} {asc:4} {dsc:4} {net:4} {s}', p=0, f=0)
+        if dbg:    fnt2 = pygfont.load(sm[FONT_NAME], sm[FONT_SIZE])   ;   assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
+    @staticmethod
+    def fmtDocStyles(m):
+        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;   clr = f'{fmtl(m[COLOR], w=3)}'   ;   bgc = util.fColor(m[BGC] if BGC in m else None)
+        h = [    'FnSz',              'Lead',    'LnSp', f'{COLOR:^17}', f'{BGC:^17}',    'B',          'I',            'S',        f'{FONT_NAME:^18}' ]
+        s = [f'{m[FONT_SIZE]:4}', f'{m[LEAD]:4}', lnsp,     clr,            bgc,      f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{m[FONT_NAME]:^18}']
         return W.join(h), W.join(s)
 
     def dbgTabTxt(self, j, i):
-        d = '\n' if j == C else Z
-        if self.DBG_TABT == 1:   a = j+2 if P<j<C else 4 if j==C else 1   ;   b = f'{0x2588:c}'    ;    return d.join(b*a)
-        if self.DBG_TABT == 2:   a = 3 if j==L else 4 if j==S else 1      ;   e = d.join([ JTEXTS[j][k] for k in range(a) ])   ;   return f'{e}{d}{(i+1)%10}'
+        d = '\n' if j == C else Z   ;   k = f'{i+1:03}' if j==C else f'{i+1}'        ;       k = d.join(k)
+        if   self.DBG_TABT == 1:   a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'    ;    return d.join(b*a)
+        elif self.DBG_TABT == 2:   a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS[j][k]  for k in range(a) ])   ;   return f'{e}{d}{i+1}'
+        elif self.DBG_TABT == 3:   a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS2[j][k] for k in range(a) ])   ;   return f'{e}{d}{k}'
 
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]    ;    ha = hasattr(c, 'text')
@@ -1285,7 +1275,7 @@ class Tabs(pyglet.window.Window):
             if v:
                 tnik.font_size = self.calcFontSize(j)
                 tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
-            self.checkTnik(tnik, i, j, w, self.a, self.ax, self.ay)
+            self.checkTnik(tnik, i, j)
         if  self.LL and j == L:
             if v: tnik = self.resizeLLs(tnik, why)
             else: tnik = self.splitV(tnik, self.ntsl(), dbg=dbg)
@@ -1346,7 +1336,7 @@ class Tabs(pyglet.window.Window):
     def fTnikHdr(self, spr=0):
         tid  = ' TId  Identity  ' if self.OIDS else ' Tid'  ;  wnc = ' Why  Name  Cnt'  ;  rtsgv = ' Rotated G V' if spr else '  Text   G V'
         xywh = W.join(self.tixwHdr[2:6])                    ;  rgb = ' Red Grn Blu Opc'                if self.LONG_TXT else Z
-        sfx  = (' Iax  Iay      Grp        pGrp' if spr else '  cw  ch v a x y fSz dpi B I Font Name') if self.LONG_TXT else Z
+        sfx  = (' Iax  Iay      Grp        pGrp' if spr else ' cntw cnth v a x y fnSz dpi B I Font Name') if self.LONG_TXT else Z
         rgbM = (' M     Mx    My  ' if spr else rgb) if self.LONG_TXT else Z
         return f'{tid} {wnc} {rtsgv} {self.fjtxt()} {xywh} {rgb} {rgbM} {sfx}'
     @staticmethod
@@ -1362,7 +1352,6 @@ class Tabs(pyglet.window.Window):
         xywh = self.ftxywh(t)   ;   g = self.gn[j]   ;   fc, bc = Z, Z    ;   msg2, msg5 = Z, Z
         if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)   ;  msg2 = self.ffTxt(t)  ;  msg5 = f' {self.fLbl(t)}' if self.LONG_TXT else Z
         elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  msg2 = self.frot(t)   ;  msg5 = f' {self.fSpr(t)}' if self.LONG_TXT else Z
-        elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  msg2 = self.frot(t)   ;  msg5 = f' {self.fSpr(t)}' if self.LONG_TXT else Z
         msg1 = self.foid(t, j, why)   ;   msg3 = f'{self.ftvis(t)}'   ;   msg4 = f' {fc}{bc}' if self.LONG_TXT else Z
         self.log(f'{msg1} {msg2} {g} {msg3} {self.fmtJ2()} {xywh}{msg4}{msg5}', p=0)
         ####################################################################################################################################################################################################
@@ -1375,7 +1364,7 @@ class Tabs(pyglet.window.Window):
     def fnvis(self):        return f'{self.nvis:3}'
     @staticmethod
     def ffTxt(t):     _ = '\n'  ;  return f'{t.text.replace(_, Z):8}'
-    def fCtnt(self, t, d=W):       return f'{t.content_width:3}{d}{t.content_height:3}{d}{self.fcva(t)}'
+    def fCtnt(self, t, d=W):       return f'{t.content_width:4}{d}{t.content_height:4}{d}{self.fcva(t)}'
     def getDocColor(self, t, c=1): return util.fColor(self._getDocColor(t, c))
     @staticmethod
     def _getDocColor(t, c=1):      s = BGC if c else COLOR    ;  return t.document.get_style(s)
@@ -1477,7 +1466,7 @@ class Tabs(pyglet.window.Window):
         assert tnik == self.E[j][i],  f'{tnik=} != {self.E[j][i]=}'   ;   old = len(self.tids)
         self.tids.add(id(tnik))   ;   xywh = self.ftxywh(tnik, s=Y)   ;    ii = f'{i+1:4}'
         ctnt = self.fCtnt(tnik, d=Y) if type(tnik) is LBL else Z      ;   axy = self.fAxy(d=Y)
-        fsz = self.fFntSz(tnik)      if type(tnik) is LBL else Z
+        fsz  = self.fFntSz(tnik)     if type(tnik) is LBL else Z
         if dbg: self.log(f'{old=} {len(self.tids)=}') if old+1 != len(self.tids) else None
         self.log(Y.join([JTEXTS[j], ii, xywh, fsz, ctnt, axy]), p=0, f=3, e=e)
     @staticmethod
@@ -1545,8 +1534,7 @@ class Tabs(pyglet.window.Window):
 #        if cc >= tpl: cc = cc % tpl + tps
 #        if cc >= tpc: cc = cc % tpc
         t = self.tabls[cc]
-        cw, ch, ca = t.content_width, t.content_height, t.content_valign
-        if dbg: self.log(f'{cc=:4} {old=:4} {self.fntp()} {self.ftxywh(t)} {t.text=} {cw=} {ch=} {ca}', f=0) # i={Notes.index(self.sobj.tab2nn(t, cc % tpc))}
+        if dbg: self.log(f'{cc=:4} {old=:4} {self.fntp()} {self.ftxywh(t)} {t.text=} {self.fCtnt(t)}', f=0) # i={Notes.index(self.sobj.tab2nn(t, cc % tpc))}
         w, h = t.width if t.width is not None else t.height , t.height
         x, y = t.x - w/2, t.y - h/2
         return x, y, w, h, cc
@@ -1632,8 +1620,9 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def calcFontSize(self, j=T, dbg=0):
         np, nl, ns, nc, nt = self.n   ;   h = self.height
-        pix  =  h if j==P else h/nl if j==L else h/ns if j==S else h/nt if j==C else h/nt
+        pix  =  h if j==P else h/nl if j==L else h/(nl*ns) if j==S else h/(nl*ns*nt) # if j==C else h/nt
         fs   =  self.pix2fontsize(pix)
+#        fs  =  fs * 3/4 if j==L else fs * 2/3 if j==S else fs
         if dbg: self.log(f'{j=} {JTEXTS[j]:4} {h=:6.2f} {pix=:6.2f} {fs=:6.2f}')
         return int(fs)
 
@@ -2751,14 +2740,15 @@ HARROWS, VARROWS      = ['LEFT', 'RIGHT'], ['DOWN', 'UP']
 MELODY, CHORD, ARPG   =  0, 1, 2
 LEFT, RIGHT, DOWN, UP =  0, 1, 0, 1
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE, COPY_STYLE = 0, 1, 2, 3
-ALIGN, BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, LEAD, LNSP, STRT  = 'align', 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'leading', 'line_spacing', 'stretch'
+ALIGN, BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, LEAD, LNSP, STRH  = 'align', 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'leading', 'line_spacing', 'stretch'
 #           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16
-JTEXTS = ['Page',  'Line',  'Sect',  'Colm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
-jTEXTS = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
-JFMT   = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       2,       2,       4]
+JTEXTS  = ['Page',  'Line',  'Sect',  'Colm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
+JTEXTS2 = ['Pg',    'Ln',    'Sec',   'Clm',   'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
+jTEXTS  = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
+JFMT    = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       2,       2,       4]
 #JFMT   = [  2,       3,       3,       6,       6,       6,       6,       6,       3,       5,       1,       1,       3,       3,       3,       4,       7]
 #          0   1   2   3   4   5   6   7    8    9   10   11   12   13   14   15   16   17
-OPC    = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
+OPC     = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
 FONT_SCALE =  14/18  # 14pts/18pix
 FONT_DPIS  = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
 FONT_NAMES = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
