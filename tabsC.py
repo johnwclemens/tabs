@@ -30,7 +30,8 @@ ARGS = util.parseCmdLine()
 class Tabs(pyglet.window.Window):
 ####################################################################################################################################################################################################
     def __init__(self):
-        self.log(f'BGN {__class__}')   ;   dumpGlobals()   ;   self.LOG_ID = 1
+        self.LOG_ID = 1                ;   self.log(f'{self.LOG_ID=}')
+        self.log(f'BGN {__class__}')   ;   dumpGlobals()
         self.log(f'STFILT:\n{fmtl(util.STFILT)}')          ;   self.snapWhy, self.snapType, self.snapReg, self.snapId = '?', '_', 0, 0
         self.fNameLid      = self.getFileSeqName(fdir=LOGS, fsfx=LOG)
         self.seqNumLogPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=LOGS, fsfx=LOG)   ;   self.log(f'{self.seqNumLogPath=}')
@@ -192,14 +193,14 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def _initColors(self): # j = M = 11
         k = self.k  ;  a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC  ;  i = self.initk
-        j = P  ;  k[j] = i(j, PNK,  3, 17, PNK, 17, 17) if a else i(j, VLT,  3, 17, VLT, 17, 17) if b else i(j, VLT,  3, 17, VLT, 17, 17) if c else i(j, VLT,  3, 17, VLT, 17, 17) if d else None
-        j = L  ;  k[j] = i(j, RED,  3, 17, RED, 17, 17) if a else i(j, RED,  3, 15, RED, 17, 15) if b else i(j, RED,  3, 15, RED, 17, 15) if c else i(j, RED,  3, 15, RED, 17, 15) if d else None
-        j = S  ;  k[j] = i(j, CYA,  3, 17, CYA, 17, 17) if a else i(j, CYA,  3, 13, CYA, 17, 13) if b else i(j, CYA,  3, 13, CYA, 17, 13) if c else i(j, CYA,  3, 13, CYA, 17, 13) if d else None
-        j = C  ;  k[j] = i(j, GRY, 17, 17, GRY, 17,  3) if a else i(j, GRY,  3, 11, GRY, 17, 17) if b else i(j, PNK,  3, 11, PNK, 17, 11) if c else i(j, PNK,  3, 11, PNK, 17, 11) if d else None
-        j = T  ;  k[j] = i(j, ORG,  3, 11, ORG, 17, 11) if a else i(j, GRY,  3, 17, GRY, 17, 17) if b else i(j, ORG,  3, 17, ORG, 17, 17) if c else i(j, GRY,  3, 17, GRY, 17, 17) if d else None
-        j = N  ;  k[j] = i(j, GRN,  3, 11, GRN, 17, 11) if a else i(j, GRY,  3, 17, GRY, 17, 17) if b else i(j, GRN,  3, 17, GRN, 17, 17) if c else i(j, GRY,  3, 17, GRY, 17, 17) if d else None
-        j = I  ;  k[j] = i(j, YLW,  3, 11, YLW, 17, 11) if a else i(j, GRY,  3, 17, GRY, 17, 17) if b else i(j, YLW,  3, 17, YLW, 17, 17) if c else i(j, GRY,  3, 17, GRY, 17, 17) if d else None
-        j = K  ;  k[j] = i(j, IND,  3, 11, IND, 17, 11) if a else i(j, GRY,  3, 17, GRY, 17, 17) if b else i(j, IND,  3, 17, IND, 17, 17) if c else i(j, GRY,  3, 17, GRY, 17, 17) if d else None
+        j = P  ;  k[j] = i(j, VLT,  3, 17, VLT, 17, 17) if a else i(j, VLT,  3, 17, VLT, 17, 17) if b else i(j, VLT,  3, 17, VLT, 17, 17) if c else i(j, VLT,  3, 17, VLT, 17, 17) if d else None
+        j = L  ;  k[j] = i(j, RED,  3, 15, RED, 17, 15) if a else i(j, RED,  3, 15, RED, 17, 15) if b else i(j, RED,  3, 15, RED, 17, 15) if c else i(j, RED,  3, 15, RED, 17, 15) if d else None
+        j = S  ;  k[j] = i(j, CYA,  3, 15, CYA, 17, 15) if a else i(j, CYA,  3, 15, CYA, 17, 15) if b else i(j, CYA,  3, 15, CYA, 17, 15) if c else i(j, CYA,  3, 15, CYA, 17, 15) if d else None
+        j = C  ;  k[j] = i(j, PNK,  3, 15, PNK, 17, 15) if a else i(j, PNK,  3, 15, PNK, 17, 15) if b else i(j, PNK,  3, 15, PNK, 17, 15) if c else i(j, PNK,  3, 15, PNK, 17, 15) if d else None
+        j = T  ;  k[j] = i(j, ORG,  3, 13, ORG, 17, 13) if a else i(j, ORG,  3, 13, ORG, 17, 13) if b else i(j, ORG,  3, 13, ORG, 17, 13) if c else i(j, ORG,  3, 13, ORG, 17, 13) if d else None
+        j = N  ;  k[j] = i(j, GRN,  3, 13, GRN, 17, 13) if a else i(j, GRN,  3, 13, GRN, 17, 13) if b else i(j, GRN,  3, 13, GRN, 17, 13) if c else i(j, GRN,  3, 13, GRN, 17, 13) if d else None
+        j = I  ;  k[j] = i(j, YLW,  3, 13, YLW, 17, 13) if a else i(j, YLW,  3, 13, YLW, 17, 13) if b else i(j, YLW,  3, 13, YLW, 17, 13) if c else i(j, YLW,  3, 13, YLW, 17, 13) if d else None
+        j = K  ;  k[j] = i(j, IND,  3, 13, IND, 17, 13) if a else i(j, IND,  3, 13, IND, 17, 13) if b else i(j, IND,  3, 13, IND, 17, 13) if c else i(j, IND,  3, 13, IND, 17, 13) if d else None
         j = R  ;  k[j] = i(j, VLT,  0, 17, VLT, 17, 17) if a else i(j, VLT,  0, 17, VLT, 17, 17) if b else i(j, VLT,  3, 10, VLT, 17, 10) if c else i(j, VLT,  3, 17, VLT, 17, 13) if d else None
         j = Q  ;  k[j] = i(j, CYA,  3, 17, CYA, 17, 17) if a else i(j, CYA,  3, 17, CYA, 17, 17) if b else i(j, CYA,  3, 17, CYA, 17, 17) if c else i(j, CYA,  3, 17, CYA, 17, 17) if d else None
         j = H  ;  k[j] = i(j, YLW, 17, 11, YLW, 17, 10) if a else i(j, YLW, 14, 10, YLW, 14, 10) if b else i(j, PNK, 15, 13, PNK, 15, 13) if c else i(j, PNK, 14, 11, PNK, 14, 10) if d else None
@@ -561,8 +562,8 @@ class Tabs(pyglet.window.Window):
                     if len(tabs) != ntabs:      msg = f'ERROR BAD tabs len {len(tabs)=} != {ntabs=}'   ;   self.log(msg)   ;   self.quit(msg)
                     rows.append(tabs)       ;   st += len(tabs)       ;     sr += 1
                 else:
-                    if rows  and not (sr % nr): lines.append(rows)    ;    rows = []   ;   sl += 1
-                    if lines and not (sl % nl): data.append(lines)    ;   lines = []   ;   sp += 1
+                    if rows  and not sr % nr:   lines.append(rows)    ;    rows = []   ;   sl += 1
+                    if lines and not sl % nl:   data.append(lines)    ;   lines = []   ;   sp += 1
                 self.log(tabs, p=0)
             if rows:  lines.append(rows)    ;   sl += 1
             if lines: data.append(lines)    ;   sp += 1
@@ -1206,12 +1207,11 @@ class Tabs(pyglet.window.Window):
         assert tax == ax,  f'{tax=} != {ax=}'
         assert tay == ay,  f'{tay=} != {ay=}'
         td.set_paragraph_style(0, len(td.text), {LNSP:None, LEAD:0})
-        v    = 'V' if t.visible else 'I'  ;    js = JTEXTS[j]
+        h, s =  self.fmtDocStyles(sm)    ;      v = 'V' if t.visible else 'I'   ;    js = JTEXTS[j]
         fnt  =  td.get_font()   ;   asc  = fnt.ascent   ;   dsc = fnt.descent   ;   net = asc - dsc
-        h, s =  self.fmtDocStyles(sm)
         self.log(f'{W*21} CW   CH V A x y Ascn Dscn nA-D {h}', p=0, f=0) if j==0 else None
         self.log(f'{js} {i+1:3} {self.ffTxt(t)} {v} {self.fCtnt(t)} {self.fAxy()} {asc:4} {dsc:4} {net:4} {s}', p=0, f=0)
-        if dbg:    fnt2 = pygfont.load(sm[FONT_NAME], sm[FONT_SIZE])   ;   assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
+        if dbg:    fnt2 = pygfont.load(sm[FONT_NAME], sm[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
     @staticmethod
     def fmtDocStyles(m):
         lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;   clr = f'{fmtl(m[COLOR], w=3)}'   ;   bgc = util.fColor(m[BGC] if BGC in m else None)

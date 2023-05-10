@@ -26,6 +26,8 @@ STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpIm
 ########################################################################################################################################################################################################
 def signed(n):      return f' {n}' if n==0 else f'{n:+}'
 def ns2signs(ns):   return [ '-' if n<0 else '+' if n>0  else W for n in ns ]
+def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
+#def ev(obj):         return f'{eval(f"{obj!r}")}'
 
 def init(lfile, cfile, oid):
     global LOG_FILE  ;  LOG_FILE = lfile  ;  global CSV_FILE  ;  CSV_FILE = cfile  ;  global OIDS  ;  OIDS = oid
@@ -96,19 +98,29 @@ def dumpNF(csv=0):
     slog(f'Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   p, q = -8, 88+1   ;   g, h = 1, nm+1
     slog(f'Piano{n}{fmtl([ i for i in range(p, q) ], w=w, d=d, s=m)}', p=0, f=f)
     slog(f'Index{n}{fmtl([ i for i in range(g, h) ], w=w, d=d, s=m)}', p=0, f=f)
-    dumpFreqs(432, csv)
-    dumpFreqs(440, csv)
+    dumpFreqs(432, csv)    ;    dumpFreqs(440, csv)
+    dumpWaves(432, csv)    ;    dumpWaves(440, csv)
     slog(f'Flats{n}{fmtl(list(FLATS),                w=w, d=d, s=m)}', p=0, f=f)
     slog(f'Shrps{n}{fmtl(list(SHRPS),                w=w, d=d, s=m)}', p=0, f=f)
 
 def dumpFreqs(r=440, csv=0):
-    m, f = (Y, 3) if csv else (W, 1)
+    m, ff = (Y, 3) if csv else (W, 1)
     freqs = FREQS if r == 440 else FREQS2   ;   ref = '440A' if r == 440 else '432A'   ;   fs = []
-    for i in freqs:
-        ff = f'{i:5.2f}' if i < 100 else f'{i:5.1f}' if i < 1000 else f'{i:5.0f}'
-        fs.append(f'{ff}')
-    fs = m.join(fs)  ;  sfx = Z if csv else '] Hz'  ;  ref += m if csv else ' ['
-    slog(f'{ref}{fs}{sfx}', p=0, f=f)
+    for f in freqs:
+        ft = f'{f:5.2f}' if f < 100 else f'{f:5.1f}' if f < 1000 else f'{f:5.0f}'
+        fs.append(f'{ft}')
+    fs = m.join(fs)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] Hz'
+    slog(f'{ref}{fs}{sfx}', p=0, f=ff)
+
+def dumpWaves(r=440, csv=0, v=340):
+    m, ff = (Y, 3) if csv else (W, 1)       ;   cmpm = 100
+    freqs = FREQS if r == 440 else FREQS2   ;   ref = '440A' if r == 440 else '432A'   ;   ws = []
+    for f in freqs:
+        w = cmpm * v/f
+        wt = f'{w:5.3f}' if w < 10 else f'{w:5.2f}' if w < 100 else f'{w:5.1f}' if w < 1000 else f'{w:5.0f}'
+        ws.append(f'{wt}')
+    ws = m.join(ws)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] cm'
+    slog(f'{ref}{ws}{sfx}', p=0, f=ff)
 ########################################################################################################################################################################################################
 def dumpND(csv=0):
     w, d, m, f = (0, Z, Y, 3) if csv else (2, '[', W, 1)
@@ -142,7 +154,7 @@ def fmtKSK(k, csv=0):
     return n.join(_)
 
 def dumpKSH(csv=0):
-    c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0   ;   f, k, s = f'Flats', 'N', f'Shrps'
+    c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0   ;   f, k, s = 'Flats', 'N', f'Shrps'
     w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  v = W*v if v and Notes.TYPE==Notes.FLAT else Z
     hdrs = [ f'{y}{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]        ;  hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=ff)
     keys = sorted(KSD.keys())  ;  w = f'{u}{w}' ;   x = f'{w}x'
@@ -392,6 +404,15 @@ def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
 FREQS   = [ FREQ( i) for i in range(MAX_FREQ_IDX) ]
 FREQS2  = [ FREQ2(i) for i in range(MAX_FREQ_IDX) ]
 ########################################################################################################################################################################################################
+def Piano(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
+
+def ordSfx(n):
+    m = n % 10
+    if   m == 1 and n != 11: return 'st'
+    elif m == 2 and n != 12: return 'nd'
+    elif m == 3 and n != 13: return 'rd'
+    else:                    return 'th'
+########################################################################################################################################################################################################
 def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str concat?
     if   lst is None:   return  'None'
     lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
@@ -426,16 +447,6 @@ def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=W, ll=Non
         if   type(v) in (list, tuple, set):  t.append(f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2}{ss}')
         elif type(v) in (int, str):          t.append(f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}')
     return Z.join(t)
-########################################################################################################################################################################################################
-# def ev(obj):         return f'{eval(f"{obj!r}")}'
-def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
-
-def ordSfx(n):
-    m = n % 10
-    if   m == 1 and n != 11: return 'st'
-    elif m == 2 and n != 12: return 'nd'
-    elif m == 3 and n != 13: return 'rd'
-    else:                    return 'th'
 ########################################################################################################################################################################################################
 def stackDepth(sfs):
     global     MAX_STACK_DEPTH, MAX_STACK_FRAME
@@ -595,4 +606,4 @@ class Test:
     @a.getter
     def a(self):                           slog(f'<Test_get_a:     _a={self._a}>', p=1)  ;  return self._a
     @a.deleter
-    def a(self):                           slog(f'<Test_del_a: del _a>', p=1)  ;  del self._a
+    def a(self):                           slog( '<Test_del_a: del _a>', p=1)  ;  del self._a

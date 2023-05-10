@@ -6,14 +6,14 @@ echo ls -l stdo
 ls      -l stdo
 echo cksum stdo/*
 cksum      stdo/*
-#echo cp    stdo/tabs.txt stdo/tabs._.txt
-#cp         stdo/tabs.txt stdo/tabs._.txt
+echo cp    stdo/tabs.txt stdo/tabs._.txt
+cp         stdo/tabs.txt stdo/tabs._.txt
 echo ls -l stdo
 ls      -l stdo
 echo cksum stdo/*
 cksum      stdo/*
-echo python tabsC.py -n 1 2 20 6 -S 0 1 -f Test/test 2&>stdo/tabs.lbl.3.txt
-python      tabsC.py -n 1 2 20 6 -S 0 1 -f Test/test 2&>stdo/tabs.lbl.3.txt
+echo python tabsC.py -n 1 2 20 6 -S 0 1 -f Test/test 2&>stdo/tabs.txt
+python      tabsC.py -n 1 2 20 6 -S 0 1 -f Test/test 2&>stdo/tabs.txt
 echo ls -l stdo
 ls      -l stdo
 echo cksum stdo/*
