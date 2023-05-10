@@ -1,0 +1,28 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="RIGHT_MARGIN" value="255" />
+    <option name="SOFT_MARGINS" value="100,150,200,250" />
+    <Python>
+      <option name="BLANK_LINES_AROUND_TOP_LEVEL_CLASSES_FUNCTIONS" value="0" />
+      <option name="ALIGN_MULTILINE_IMPORTS" value="false" />
+      <option name="NEW_LINE_AFTER_COLON_MULTI_CLAUSE" value="false" />
+      <option name="DICT_ALIGNMENT" value="2" />
+      <option name="DICT_WRAPPING" value="0" />
+      <option name="USE_CONTINUATION_INDENT_FOR_PARAMETERS" value="false" />
+      <option name="FROM_IMPORT_WRAPPING" value="0" />
+      <option name="HANG_CLOSING_BRACKETS" value="true" />
+    </Python>
+    <codeStyleSettings language="EditorConfig">
+      <option name="ALIGN_GROUP_FIELD_DECLARATIONS" value="true" />
+    </codeStyleSettings>
+    <codeStyleSettings language="Python">
+      <option name="RIGHT_MARGIN" value="255" />
+      <option name="KEEP_LINE_BREAKS" value="false" />
+      <option name="BLANK_LINES_AROUND_CLASS" value="0" />
+      <option name="BLANK_LINES_AROUND_METHOD" value="0" />
+      <option name="CALL_PARAMETERS_WRAP" value="0" />
+      <option name="METHOD_PARAMETERS_WRAP" value="0" />
+      <option name="SOFT_MARGINS" value="100,150,200,250" />
+    </codeStyleSettings>
+  </code_scheme>
+</component>
