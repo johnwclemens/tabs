@@ -1,3 +1,15 @@
+# jwc used in cfg
+#--msg-template="$FileDir$\{path}:{line}:{column}:{C}:({symbol}){msg}"
+#C0103: Variable name "abc" doesn't conform to snake_case naming style (invalid-name)
+#C0321: More than one statement on a single line (multiple-statements)
+#C0115: Missing class docstring (missing-class-docstring)
+#C0116: Missing function or method docstring (missing-function-docstring)
+#R0912: Too many branches (29/12) (too-many-branches)
+#R0913: Too many arguments (6/5) (too-many-arguments)
+#R0914: Too many local variables (16/15) (too-many-locals)
+#R0915: Too many statements (179/50) (too-many-statements)
+#
+
 [MAIN]
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
@@ -435,6 +447,9 @@ disable=raw-checker-failed,
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once). See also the "--disable" option for examples.
 enable=c-extension-no-member
+
+[pylint.messages.control]
+disable=invalid-name
 
 
 [METHOD_ARGS]
