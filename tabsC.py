@@ -58,7 +58,7 @@ class Tabs(pyglet.window.Window):
 #       self.X_LEFT = 0  ;  self.X_CENTER = 0  ;  self.X_RIGHT  = 1
         self.Y_TOP  = 0  ;  self.Y_CENTER = 1  ;  self.Y_BOTTOM = 0  ;  self.Y_BASELINE = 0  ;  self.AUTO_SAVE = 0
         self.BGC    = 0  ;  self.GEN_DATA = 0  ;  self.DBG_TABT = 3  ;  self.CHECKERED  = 1  ;  self.CURSOR    = 1
-        self.CAT    = 0  ;  self.LONG_TXT = 1  ;  self.FRT_BRD  = 0  ;  self.EVENT_LOG  = 0  ;  self.SPRITES   = 0  ;  self.SNAPS  = 1
+        self.CAT    = 1  ;  self.LONG_TXT = 1  ;  self.FRT_BRD  = 0  ;  self.EVENT_LOG  = 0  ;  self.SPRITES   = 0  ;  self.SNAPS  = 1
         self.OIDS   = 0  ;  self.ORD_GRP  = 1  ;  self.RESIZE   = 1  ;  self.FULL_SCRN  = 0  ;  self.SUBPIX    = 1  ;  self.TEST   = 0
         self.PIDX   = 0  ;  self.STRETCH  = 0  ;  self.VARROW   = 1  ;  self.MULTI_LINE = 1  ;  self.VIEWS     = 0  ;  self.VRBY   = 0
         self.LL     = 0
@@ -293,7 +293,7 @@ class Tabs(pyglet.window.Window):
     def _initTniks(self):
         self.ssl()      ;   self.smap = {}
         self.log(self.fAxy())   ;   self.log(self.fmtAxy())
-        [ self.visib.append(list()) for _ in range(len(JTEXTS)) ]
+        [ self.visib.append([]) for _ in range(len(JTEXTS)) ]
         self.createTniks()
         self.ks = util.nic2KS(self.nic)
         self.log( util.fmtKSK(self.ks[util.KSK]), f=2)
@@ -320,7 +320,7 @@ class Tabs(pyglet.window.Window):
         self.log(hdrB)
         for p in range(np):
             for l in range(nl):
-                for s in range(ns):
+                for _ in range(ns):
                     for c in range(nc):
                         for t in range(nt):
                             cc = self.plct2cc(p, l, c, t, dbg=1)
@@ -493,7 +493,7 @@ class Tabs(pyglet.window.Window):
         if dbg2:    self.dumpTniksE()
         if dbg2:    self.dumpTniksF()
         if csv:     self.dumpTniksCsv()   ;   self.PIDX = not self.PIDX   ;   self.dumpTniksCsv()
-        if dbg2:    self.cobj.dumpMlimap(f'MLim') if self.VRBY else None
+        if dbg2:    self.cobj.dumpMlimap('MLim') if self.VRBY else None
         self.log(f'{self.fmtn()} END ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
     ####################################################################################################################################################################################################
     def autoSave(self, dt, why, dbg=1):
@@ -510,7 +510,7 @@ class Tabs(pyglet.window.Window):
 
     def on_resize(self, width, height, dbg=1):
         super().on_resize(width, height)
-        if self.RESIZE: self.resizeTniks()
+        if self.RESIZE: self.resizeTniks(dbg)
     ####################################################################################################################################################################################################
     def saveDataFile(self, why, path, dbg=1):
         if dbg:   self.log(f'{why} {path}')
@@ -710,7 +710,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def flipTTs(self, how, tt):
         msg2 = f'{how} {tt=}'
-        self.dumpGeom(f'BGN', f'     {msg2}')
+        self.dumpGeom('BGN', f'     {msg2}')
         if   tt not in self.SS and not self.B[tt]: msg = 'ADD'    ;   self.addTTs( how, tt)
         elif tt     in self.SS:                    msg = 'HIDE'   ;   self.hideTTs(how, tt)
         else:                                      msg = 'SKIP'   ;   self.dumpGeom(W*3, f'{msg} {msg2}')   ;   self.flipTT(tt)
@@ -994,7 +994,7 @@ class Tabs(pyglet.window.Window):
 ####################################################################################################################################################################################################
     def isV(self, j=0, dbg=0):
         if   j <= K and self.J1[P] == self.j()[P]:   v = 1
-        elif j == H     or       j == Q:             v = 1
+        elif j in (H, Q):                            v = 1
         else:                                        v = 0
         if dbg:  why = f'{v=}'  ;  self.log(f'{self.fmtJText(j, why)} {self.J2[j]=} {self.i[j]=} {self.fmti()} {v=}', f=0)
         return v
@@ -1074,11 +1074,11 @@ class Tabs(pyglet.window.Window):
         kz = self.k[E]   ;  kk = self.cci(E, s, kz) if self.CHECKERED else 0
         nz, iz, xz, yz, wz, hz = self.geom(E, p, n, s, dbg=dbg)
         zclm = self.createTnik(self.zclms, s, E, xz, yz, wz, hz, kk, kz, why, v=1, dbg=dbg)
-        if s == 0 or s == 2:
+        if s in (0, 2):
             nu, iu, xu, yu, wu, hu = self.geom(B, zclm, self.n[T], self.i[L], dbg=dbg)
             for u in range(nu):
                 self.createZZ(s, u, xu, yu, wu, hu, why)
-        if s == 1 or s == 3:
+        if s in (1, 3):
             na, ia, xa, ya, wa, ha = self.geom(A, zclm, self.n[T], self.i[L], dbg=dbg)
             for a in range(na):
                 self.createZZ(s, a, xa, ya, wa, ha, why)
@@ -1801,7 +1801,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'    {m=} {n=} {ll=} {nc=} {nz=} {d=}', pos=1)
         if dbg: self.log(f'    {p=}=i[P] {l=}=(d/m) {c=}=(x/w-nz) {t=}=(d-l*m)', pos=1)
         if dbg: self.log(f'    before plct={self.fplct(p, l, c, t)}', pos=1)
-        self.moveTo(f'MOUSE RELEASE', p, l, c, t)
+        self.moveTo('MOUSE RELEASE', p, l, c, t)
         if dbg: self.log(f'    after  plct={self.fplct(p, l, c, t)}', pos=1)
         if dbg: self.log(f'END {x=} {y0=:4} {ww=:6.2f} {hh=:6.2f}', pos=1)
     ####################################################################################################################################################################################################

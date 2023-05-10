@@ -168,12 +168,12 @@ class Chord(object):
         return a
     @staticmethod
     def rotateIndices(a):
-       r = [0]
-       for i in range(1, len(a)):
+        r = [0]
+        for i in range(1, len(a)):
             b = a[i+1] if i + 1 < len(a) else Notes.NTONES   ;   r.append(b - a[i] + r[i-1])
 #           if    i + 1 < len(a): r.append(a[i+1] - a[i] + r[i-1])
 #           else:                 r.append(NTONES - a[i] + r[i-1])
-       return r
+        return r
     @staticmethod
     def fsort(ivals): s = set([ i for i in ivals ])   ;   return sorted(list(s))
     ####################################################################################################################################################################################################
@@ -254,7 +254,7 @@ class Chord(object):
                         if ck not in self.cycles: self.cycles[ck] = set()
                         self.cycles[ck].add(jj)                                        ;   cycle = 1
                     cycSet.add(jj)    ;     d = '@' if cycle else '['    ;    d2 = '@' if cycle else ']'
-                    if keyStr not in omap:        slog(f'Not in map: ', p=0, e=Z, f=file)     ;    r[keyStr] = (rank, ii, None)
+                    if keyStr not in omap:        slog('Not in map: ', p=0, e=Z, f=file)     ;    r[keyStr] = (rank, ii, None)
                     if dbg: slog(f'{keyStr:16} {fmtl(ii, w="x", d=d, d2=d2):13} ', p=0, e=Z, f=file)
                 refSet = { _ for _ in range(len(ii)) }
                 if dbg:

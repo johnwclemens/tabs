@@ -95,7 +95,7 @@ def dumpTestB(csv=0):
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
     w, d, m, n, f = (Z, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
-    slog(f'Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   p, q = -8, 88+1   ;   g, h = 1, nm+1
+    slog('Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   p, q = -8, 88+1   ;   g, h = 1, nm+1
     slog(f'Piano{n}{fmtl([ i for i in range(p, q) ], w=w, d=d, s=m)}', p=0, f=f)
     slog(f'Index{n}{fmtl([ i for i in range(g, h) ], w=w, d=d, s=m)}', p=0, f=f)
     dumpFreqs(432, csv)    ;    dumpFreqs(440, csv)
@@ -124,8 +124,8 @@ def dumpWaves(r=440, csv=0, v=340):
 ########################################################################################################################################################################################################
 def dumpND(csv=0):
     w, d, m, f = (0, Z, Y, 3) if csv else (2, '[', W, 1)
-    hdrs = [f'I', 'F', 'S', 'IV', 'mM', 'dA']
-    hdrs = f'{m.join([ f"{h:{w}}" for h in hdrs ])}'
+    hdrs       = ['I', 'F', 'S', 'IV', 'mM', 'dA']
+    hdrs       = f'{m.join([ f"{h:{w}}" for h in hdrs ])}'
     slog(f'{hdrs}', p=0, f=f)
     for i in range(len(ND)):   slog(f'{i:x}{m}{fmtl(ND[i], w=w, d=d, s=m)}', p=0, f=f)
 ########################################################################################################################################################################################################
@@ -267,12 +267,12 @@ class Strings(object):
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
         name = Notes.name(i)
-        if   j == 0: name = f'Cb'
+        if   j == 0: name =  'Cb'
         elif j == 1: name = f'C{F}'
-        elif j == 2: name = f'C'
+        elif j == 2: name =  'C'
         elif j == 3: name = f'C{N}'
         elif j == 4: name = f'C{S}'
-        elif j == 5: name = f'C#'
+        elif j == 5: name =  'C#'
         if dbg and nict:    slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
 
