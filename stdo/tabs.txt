@@ -28,59 +28,59 @@ b,6,1,8,3,a,5,0,7,2,9,4,b,6,1
 Cb,Gb,Db,Ab,Eb,Bb,F,C,G,D,A,E,B,F#,C#
 Fb,Cb,Gb,Db,Ab,Eb,Bb,,F#,C#,G#,D#,A#,E#,B#
 4,b,6,1,8,3,a,,6,1,8,3,a,5,0
- 537 util  parseCmdLine       argv=[-n 1 2 20 6 -S 0 1 -f Test/test 2]
+ 546 util  parseCmdLine       argv=[-n 1 2 20 6 -S 0 1 -f Test/test 2]
 tabsC.py
- 553 util  parseCmdLine        1 short   -n n [] 
- 571 util  parseCmdLine        2 arg     1  n [1] 
- 571 util  parseCmdLine        3 arg     2  n [1 2] 
- 571 util  parseCmdLine        4 arg     20 n [1 2 20] 
- 571 util  parseCmdLine        5 arg     6  n [1 2 20 6] 
- 553 util  parseCmdLine        6 short   -S S [] 
- 571 util  parseCmdLine        7 arg     0  S [0] 
- 571 util  parseCmdLine        8 arg     1  S [0 1] 
- 553 util  parseCmdLine        9 short   -f f [] 
- 571 util  parseCmdLine       10 arg     Test/test f [Test/test] 
- 571 util  parseCmdLine       11 arg     2  f [Test/test 2] 
- 573 util  parseCmdLine       options=[n:[1 2 20 6]] [S:[0 1]] [f:[Test/test 2]]
- 521 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 521 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.log     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 524 util  getFilePath        fileName =tabs.log     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 521 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 521 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
- 524 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
- 521 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 521 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs._.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs._.log)
- 524 util  getFilePath        fileName =tabs._.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs._.log)
- 521 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 521 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs._.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs._.csv)
- 524 util  getFilePath        fileName =tabs._.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs._.csv)
- 529 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 530 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs._.log)
- 532 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs._.log ###
- 529 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
- 530 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs._.csv)
- 532 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs._.csv ###
+ 562 util  parseCmdLine        1 short   -n n [] 
+ 580 util  parseCmdLine        2 arg     1  n [1] 
+ 580 util  parseCmdLine        3 arg     2  n [1 2] 
+ 580 util  parseCmdLine        4 arg     20 n [1 2 20] 
+ 580 util  parseCmdLine        5 arg     6  n [1 2 20 6] 
+ 562 util  parseCmdLine        6 short   -S S [] 
+ 580 util  parseCmdLine        7 arg     0  S [0] 
+ 580 util  parseCmdLine        8 arg     1  S [0 1] 
+ 562 util  parseCmdLine        9 short   -f f [] 
+ 580 util  parseCmdLine       10 arg     Test/test f [Test/test] 
+ 580 util  parseCmdLine       11 arg     2  f [Test/test 2] 
+ 582 util  parseCmdLine       options=[n:[1 2 20 6]] [S:[0 1]] [f:[Test/test 2]]
+ 530 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 530 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.log     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 533 util  getFilePath        fileName =tabs.log     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 530 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 530 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+ 533 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+ 530 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 530 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs._.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs._.log)
+ 533 util  getFilePath        fileName =tabs._.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs._.log)
+ 530 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 530 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs._.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs._.csv)
+ 533 util  getFilePath        fileName =tabs._.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs._.csv)
+ 538 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 539 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs._.log)
+ 541 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs._.log ###
+ 538 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+ 539 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs._.csv)
+ 541 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs._.csv ###
 tabsC.py
-2772 tabsC <module>           argv=[-n 1 2 20 6 -S 0 1 -f Test/test 2]
+2778 tabsC <module>           argv=[-n 1 2 20 6 -S 0 1 -f Test/test 2]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2776 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
-2776 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
-2777 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2777 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
-2670 tabsC dumpGlobals        BASE_NAME = tabs
-2671 tabsC dumpGlobals        argv      = +12[tabsC.py -n 1 2 20 6 -S 0 1 -f Test/test 2]
-2672 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2673 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
- 521 util  getFilePath        baseName =tabs.26      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.26.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.26.log)
- 521 util  getFilePath        baseName =tabs.26      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.26.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.26.csv)
- 521 util  getFilePath        baseName =tabs.26      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.26.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.26.cat)
+2782 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+2782 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
+2783 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+2783 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2676 tabsC dumpGlobals        BASE_NAME = tabs
+2677 tabsC dumpGlobals        argv      = +12[tabsC.py -n 1 2 20 6 -S 0 1 -f Test/test 2]
+2678 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2679 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+ 530 util  getFilePath        baseName =tabs.28      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.28.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.28.log)
+ 530 util  getFilePath        baseName =tabs.28      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.28.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.28.csv)
+ 530 util  getFilePath        baseName =tabs.28      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.28.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.28.cat)
  137 tabsC dumpArgs           [f]      .FILE_NAME=Test/test
  138 tabsC dumpArgs           [n]               n=[1 2 2 20 6]
  139 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
@@ -677,10 +677,10 @@ Note   3 -        V   13   20 T C C C   16   -4   20   15    0 None [  2  52   2
 Note   4 -        V   13   20 T C C C   16   -4   20   15    0 None [ 10 255  10 195]       None        0 0 0   Lucida Console  
 Note   5 -        V   13   20 T C C C   16   -4   20   15    0 None [  2  52   2 195]       None        0 0 0   Lucida Console  
 Note   6 -        V   13   20 T C C C   16   -4   20   15    0 None [ 10 255  10 195]       None        0 0 0   Lucida Console  
- 299 tabsC _initTniks         -7 FLAT Cb b [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [Cb Db Eb Fb Gb Ab Bb]
-2779 tabsC main               str(tabs)={n: [1, 2, 20, 6], S: [0, 1], f: [Test/test, 2]}
-2779 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 2, 20, 6], S: [0, 1], f: [Test/test, 2]}
-1259 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+ 302 tabsC _initTniks         -7 FLAT Cb b [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [Cb Db Eb Fb Gb Ab Bb]
+2785 tabsC main               str(tabs)={n: [1, 2, 20, 6], S: [0, 1], f: [Test/test, 2]}
+2785 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 2, 20, 6], S: [0, 1], f: [Test/test, 2]}
+1264 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
                       CW   CH V A x y Ascn Dscn nA-D FnSz Lead LnSp       color       background_color  B I S     font_name     
 Page   1 P1       V  600  498 T C C C  393 -105  498  373    0 None [128  10 255 255]       None        0 0 0   Lucida Console  
 Line   1 Ln1      V  450  248 T C C C  196  -52  248  186    0 None [255  10  10 225]       None        0 0 0   Lucida Console  
@@ -1253,31 +1253,32 @@ Note 237 -        V   13   20 T C C C   16   -4   20   15    0 None [ 10 255  10
 Note 238 -        V   13   20 T C C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
 Note 239 -        V   13   20 T C C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
 Note 240 -        V   13   20 T C C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
-2572 tabsC snapshot           snapName=tabs.26.0.Upd5.png Upd1
-2572 tabsC snapshot           snapName=tabs.26.1.Upd5.png  UP (            65362)
-2572 tabsC snapshot           snapName=tabs.26.2.TXT_6.png onTxt
+2577 tabsC snapshot           snapName=tabs.28.0.Upd5.png Upd1
+2577 tabsC snapshot           snapName=tabs.28.1.Upd5.png  UP (            65362)
+2577 tabsC snapshot           snapName=tabs.28.2.Upd4.png  UP (            65362)
+2577 tabsC snapshot           snapName=tabs.28.3.TXT_6.png onTxt
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cntw cnth v a x y fnSz dpi B I Font Name
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
-2620 tabsC quit               BGN @^Q error=0 save=0
+2626 tabsC quit               BGN @^Q error=0 save=0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  125 chord dumpLimap            0 0 0 Ab7s4x/Gb    Ab7s4x/Gb    b74R         a50    GbDbAb       R4b7         05a    AbDbGb      
  125 chord dumpLimap            0 0 1 Gbs2         Gbs2         R52          072    GbDbAb       R25          027    GbAbDb      
  125 chord dumpLimap            0 0 2 Dbs4/Gb      Dbs4/Gb      4R5          507    GbDbAb       R45          057    DbGbAb      
-2572 tabsC snapshot           snapName=tabs.26.3.QUIT.png quit error=0 save=0
-2628 tabsC quit               END @^Q error=0 save=0
+2577 tabsC snapshot           snapName=tabs.28.4.QUIT.png quit error=0 save=0
+2634 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
- 521 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
- 521 util  getFilePath        baseName =Test/test.1.2.2.20.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =Test/test.1.2.2.20.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.2.2.20.6.csv)
- 521 util  getFilePath        baseName =tabs.26      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.26.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.26.csv)
-2650 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.2.2.20.6.csv
-2653 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.26.csv
-2631 tabsC quit               END @^Q error=0 save=0
+ 530 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+ 530 util  getFilePath        baseName =Test/test.1.2.2.20.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =Test/test.1.2.2.20.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.2.2.20.6.csv)
+ 530 util  getFilePath        baseName =tabs.28      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.28.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.28.csv)
+2656 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.2.2.20.6.csv
+2659 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.28.csv
+2637 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
- 521 util  getFilePath        baseName =Test/test.1.2.2.20.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =Test/test.1.2.2.20.6.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/Test/test.1.2.2.20.6.log)
+ 530 util  getFilePath        baseName =Test/test.1.2.2.20.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =Test/test.1.2.2.20.6.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/Test/test.1.2.2.20.6.log)
 Thats all folks

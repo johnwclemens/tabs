@@ -30,7 +30,8 @@ def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^
 #def ev(obj):         return f'{eval(f"{obj!r}")}'
 
 def init(lfile, cfile, oid):
-    global LOG_FILE  ;  LOG_FILE = lfile  ;  global CSV_FILE  ;  CSV_FILE = cfile  ;  global OIDS  ;  OIDS = oid
+    global LOG_FILE, CSV_FILE, OIDS   ;   LOG_FILE, CSV_FILE, OIDS = lfile, cfile, oid
+#    global LOG_FILE  ;  LOG_FILE = lfile  ;  global CSV_FILE  ;  CSV_FILE = cfile  ;  global OIDS  ;  OIDS = oid
 #    dumpData(csv=1)
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
@@ -50,7 +51,7 @@ def dumpTestA(csv=0):
     i2n = Notes.I2N     ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i4v = Notes.I4V  ;  n2i = Notes.N2I
     i4n = Notes.I4N     ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  i6v = Notes.I6V  ;  v2i = Notes.V2I
     slog('BGN')         ;    o = t + 1       ;    p = 0
-    slog(f'   {m}{ fmtl([ r for r in range(21) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'   {m}{ fmtl(list(range(21)), w=w, d=d, s=m)}', p=p, f=ff)
     slog(f'F2S{m}{ fmtl([ f"{i2n[f][k]}:{f2s[i2n[f][k]]}"  if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
     slog(f'F4S{m}{ fmtl([ f"{i4n[f][k]}:{f4s[i4n[f][k]]}"  if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=ff)
     slog(f'S2F{m}{ fmtl([ f"{i2n[s][k]}:{s2f[i2n[s][k]]}"  if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
@@ -409,9 +410,11 @@ def Piano(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^1
 def ordSfx(n):
     m = n % 10
     if   m == 1 and n != 11: return 'st'
-    elif m == 2 and n != 12: return 'nd'
-    elif m == 3 and n != 13: return 'rd'
-    else:                    return 'th'
+    if   m == 2 and n != 12: return 'nd'
+    if   m == 3 and n != 13: return 'rd'
+    return 'th'
+
+def isi(o, t):  return isinstance(o, t)
 ########################################################################################################################################################################################################
 def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str concat?
     if   lst is None:   return  'None'
@@ -428,12 +431,12 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str conca
         else:
             ss = s if i < len(lst)-1 else Z
             u = Z if u is None else u
-            if   type(l) is type:            l =  str(l)
-            elif l is None:                  l =  'None'
-            if   type(w) in lts:             t.append(f'{l:{u}{w[i]}}{ss}')
-            elif type(l) in dtn:             t.append(f'{l:{u}{w   }}{ss}')
-            elif type(l) in dts:             t.append(f'{l:{u}{w   }}{ss}')
-            else:                            t.append(f'{l}{ss}')
+            if   isi(l, type):            l =  str(l)
+            elif l is None:               l =  'None'
+            if   isi(w, lts):             t.append(f'{l:{u}{w[i]}}{ss}')
+            elif isi(l, dtn):             t.append(f'{l:{u}{w   }}{ss}')
+            elif isi(l, dts):             t.append(f'{l:{u}{w   }}{ss}')
+            else:                         t.append(f'{l}{ss}')
     return z + d + Z.join(t) + d2
 ########################################################################################################################################################################################################
 def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=W, ll=None):

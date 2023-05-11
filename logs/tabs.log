@@ -1,29 +1,29 @@
 tabsC.py
-2772 tabsC <module>           argv=[-n 1 2 20 6 -S 0 1 -f Test/test 2]
+2778 tabsC <module>           argv=[-n 1 2 20 6 -S 0 1 -f Test/test 2]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2776 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
-2776 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
-2777 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2777 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2782 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+2782 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
+2783 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+2783 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
   33 tabsC __init__           .LOG_ID=1
   34 tabsC __init__           BGN <class __main__.Tabs>
-2670 tabsC dumpGlobals        BASE_NAME = tabs
-2671 tabsC dumpGlobals        argv      = +12[tabsC.py -n 1 2 20 6 -S 0 1 -f Test/test 2]
-2672 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2673 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+2676 tabsC dumpGlobals        BASE_NAME = tabs
+2677 tabsC dumpGlobals        argv      = +12[tabsC.py -n 1 2 20 6 -S 0 1 -f Test/test 2]
+2678 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2679 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
   35 tabsC __init__           STFILT:
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
-2583 tabsC getFileSeqName     fdir=logs/ fsfx=log
-2587 tabsC getFileSeqName     fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
- 521 util  getFilePath        baseName =tabs.26      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.26.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.26.log)
-  37 tabsC __init__           .seqNumLogPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.26.log)
- 521 util  getFilePath        baseName =tabs.26      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.26.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.26.csv)
-  38 tabsC __init__           .seqNumCsvPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.26.csv)
- 521 util  getFilePath        baseName =tabs.26      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.26.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.26.cat)
-  39 tabsC __init__           .catPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.26.cat)
+2588 tabsC getFileSeqName     fdir=logs/ fsfx=log
+2592 tabsC getFileSeqName     fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.*.log
+ 530 util  getFilePath        baseName =tabs.28      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.28.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.28.log)
+  37 tabsC __init__           .seqNumLogPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.28.log)
+ 530 util  getFilePath        baseName =tabs.28      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.28.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.28.csv)
+  38 tabsC __init__           .seqNumCsvPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.28.csv)
+ 530 util  getFilePath        baseName =tabs.28      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.28.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.28.cat)
+  39 tabsC __init__           .catPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.28.cat)
   51 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=UP  
   67 tabsC __init__           CODS=0 type(.idmap)=<class dict>
   71 tabsC __init__           argMap=[n:[1 2 20 6]] [S:[0 1]] [f:[Test/test 2]]
@@ -58,13 +58,13 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
  102 tabsC __init__           .LOG_GFN=Test/test.1.2.2.20.6.log
  103 tabsC __init__           .CSV_GFN=Test/test.1.2.2.20.6.csv
  104 tabsC __init__           .DAT_GFN=Test/test.1.2.20.6.dat .n0=[1, 2, 20, 6]
- 243 util  __init__           stringMap   = [E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]
- 244 util  __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
- 245 util  __init__           stringNames =      EBGDAE
- 246 util  __init__           stringNumbs =      123456
- 247 util  __init__           stringCapo  =      000000
- 248 util  __init__           strLabel    =      STRING
- 249 util  __init__           cpoLabel    =       CAPO 
+ 244 util  __init__           stringMap   = [E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]
+ 245 util  __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
+ 246 util  __init__           stringNames =      EBGDAE
+ 247 util  __init__           stringNumbs =      123456
+ 248 util  __init__           stringCapo  =      000000
+ 249 util  __init__           strLabel    =      STRING
+ 250 util  __init__           cpoLabel    =       CAPO 
  238 tabsC _initDataPath      dataName0=Test/test.1.2.20.6.dat.asv
  239 tabsC _initDataPath      dataName1=Test/test.1.2.20.6.dat
  240 tabsC _initDataPath      dataName2=Test/test.1.2.20.6.dat.bck
@@ -85,44 +85,44 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
  271 chord _dumpOMAP           5 note chords  330 valid    0 unordered    0 unnamed
  271 chord _dumpOMAP           6 note chords   31 valid    0 unordered    0 unnamed
  274 chord _dumpOMAP          END grand total 581 total    0 unordered    0 unnamed  len(r)=0
- 229 chord _dumpOMAP          BGN lm=581 catfile.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\cats\\tabs.26.cat
- 273 chord _dumpOMAP          END lm=581 catfile.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\cats\\tabs.26.cat lr=0
+ 229 chord _dumpOMAP          BGN lm=581 catfile.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\cats\\tabs.28.cat
+ 273 chord _dumpOMAP          END lm=581 catfile.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\cats\\tabs.28.cat lr=0
  222 chord dumpOMAP           END len(.OMAP)=581 len(.umap)=0
  254 tabsC _initWindowA       BGN (  -1x-1  )
- 254 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001881249F010>
- 259 tabsC _initWindowA       screens[0] x=0 y= 1200 (1920x1080)
- 259 tabsC _initWindowA       screens[1] x=0 y=    0 (1920x1200)
- 260 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
+ 254 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x00000176CE602F20>
+ 259 tabsC _initWindowA       screens[0] s.x=0  1200 (1920x1080)
+ 259 tabsC _initWindowA       screens[1] s.x=0     0 (1920x1200)
+ 263 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
  117 tabsC __init__           WxH=(  -1x-1  )
  119 tabsC __init__           WxH=( 640x480 )
- 263 tabsC _initWindowB       BGN ( 640x480 )
- 279 tabsC _initGroups        [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15]
- 279 tabsC _initGroups          P  L  S  C  T  N  I  K  R  Q  H  V  Z  U  A  D  T 
- 279 tabsC _initGroups        [ 1  2  3  4  5  5  5  5  5  5  6  0  5  5  5  5]
- 283 tabsC _initGroups        g[0]=OrderedGroup(0) p=None
- 283 tabsC _initGroups        g[1]=OrderedGroup(1) p=None
- 283 tabsC _initGroups        g[2]=OrderedGroup(2) p=None
- 283 tabsC _initGroups        g[3]=OrderedGroup(3) p=None
- 283 tabsC _initGroups        g[4]=OrderedGroup(4) p=None
- 283 tabsC _initGroups        g[5]=OrderedGroup(5) p=None
- 283 tabsC _initGroups        g[6]=OrderedGroup(6) p=None
- 267 tabsC _initWindowB       get_size=(640, 480)
- 273 tabsC _initWindowB       END ( 640x480 )
+ 266 tabsC _initWindowB       BGN ( 640x480 )
+ 282 tabsC _initGroups        [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15]
+ 282 tabsC _initGroups          P  L  S  C  T  N  I  K  R  Q  H  V  Z  U  A  D  T 
+ 282 tabsC _initGroups        [ 1  2  3  4  5  5  5  5  5  5  6  0  5  5  5  5]
+ 286 tabsC _initGroups        g[0]=OrderedGroup(0) p=None
+ 286 tabsC _initGroups        g[1]=OrderedGroup(1) p=None
+ 286 tabsC _initGroups        g[2]=OrderedGroup(2) p=None
+ 286 tabsC _initGroups        g[3]=OrderedGroup(3) p=None
+ 286 tabsC _initGroups        g[4]=OrderedGroup(4) p=None
+ 286 tabsC _initGroups        g[5]=OrderedGroup(5) p=None
+ 286 tabsC _initGroups        g[6]=OrderedGroup(6) p=None
+ 270 tabsC _initWindowB       get_size=(640, 480)
+ 276 tabsC _initWindowB       END ( 640x480 )
  121 tabsC __init__           WxH=( 640x480 )
  125 tabsC __init__           C C C
  125 tabsC __init__           center center center
  167 tabsC _reinit            BGN
- 470 tabsC ntp                                  n=[1 2 2 20 6]
- 471 tabsC ntp                                Rev=[6 20 2 2 1]
- 472 tabsC ntp                            nRevPrd=[6 120 240 480 480]
- 473 tabsC ntp                         nRevPrdRev=[480 480 240 120 6]
- 474 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
+ 473 tabsC ntp                                  n=[1 2 2 20 6]
+ 474 tabsC ntp                                Rev=[6 20 2 2 1]
+ 475 tabsC ntp                            nRevPrd=[6 120 240 480 480]
+ 476 tabsC ntp                         nRevPrdRev=[480 480 240 120 6]
+ 477 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
  174 tabsC _reinit            E= [ []  []  []  []  []  []  []  []  []  []  []  []  []  []  []  [] ] 
  175 tabsC _reinit            J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
  175 tabsC _reinit            J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
  175 tabsC _reinit            LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
  178 tabsC _reinit            [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- 465 tabsC dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=20
+ 468 tabsC dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=20
 ------
 --------------------
  0  Page  [VLT  3 17] [ VLT 17 17] [ 26   2  52 255] [128  10 255 255]
@@ -147,9 +147,9 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 .dataPath0=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/Test/test.1.2.20.6.dat.asv)
 .dataPath1=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/Test/test.1.2.20.6.dat)
 .dataPath2=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/Test/test.1.2.20.6.dat.bck)
- 550 tabsC readDataFile       BGN n=[1 2 2 20 6]
- 557 tabsC readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\Test\test.1.2.20.6.dat 268 bytes = 0.3 KB
- 558 tabsC readDataFile       Raw Data File BGN:
+ 553 tabsC readDataFile       BGN n=[1 2 2 20 6]
+ 560 tabsC readDataFile       C:\Users\Owner\Documents\GitHub\tabs\data\Test\test.1.2.20.6.dat 268 bytes = 0.3 KB
+ 561 tabsC readDataFile       Raw Data File BGN:
 --------------------
 --------------------
 --------------------
@@ -164,32 +164,32 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 --------------------
 --------------------
 
- 572 tabsC readDataFile       Raw Data File END:
- 573 tabsC readDataFile       .fmtdl()=[1 2 6 20] .fmtdt()=[list list list str]
- 583 tabsC assertDataFileSize dsize=240 = nlines=  2 *     nr= 6 *   nt=20
- 584 tabsC assertDataFileSize crlfs= 28 = nlines=  2 * (nr+1)= 7 * crlf=2
- 585 tabsC assertDataFileSize  size=268 =  dsize=240 +  crlfs= 28   ref=268
- 576 tabsC readDataFile       1 ( 1.000) pages = 2 lines =          12 rows =          240 tabs
- 577 tabsC readDataFile       1 ( 1.000) pages @  2 lines per page, @ 6 rows per line, @ 20 tabs per row
- 591 tabsC dumpDataFile       BGN 1 pages, 2 lines per page, 6 rows per line, 20 tabs per line
+ 575 tabsC readDataFile       Raw Data File END:
+ 576 tabsC readDataFile       .fmtdl()=[1 2 6 20] .fmtdt()=[list list list str]
+ 586 tabsC assertDataFileSize dsize=240 = nlines=  2 *     nr= 6 *   nt=20
+ 587 tabsC assertDataFileSize crlfs= 28 = nlines=  2 * (nr+1)= 7 * crlf=2
+ 588 tabsC assertDataFileSize  size=268 =  dsize=240 +  crlfs= 28   ref=268
+ 579 tabsC readDataFile       1 ( 1.000) pages = 2 lines =          12 rows =          240 tabs
+ 580 tabsC readDataFile       1 ( 1.000) pages @  2 lines per page, @ 6 rows per line, @ 20 tabs per row
+ 594 tabsC dumpDataFile       BGN 1 pages, 2 lines per page, 6 rows per line, 20 tabs per line
 -------------------- -------------------- -------------------- --46--89------------ 442467679----------- 22--45--7-----------
 -------------------- -------------------- 9\b~9--------------- -------------------- -------------------- --------------------
 
- 596 tabsC dumpDataFile       END 1 pages, 2 lines per page, 6 rows per line, 20 tabs per line
- 529 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/Test/test.1.2.20.6.dat)
- 530 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/Test/test.1.2.20.6.dat.bck)
- 532 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\data\Test\test.1.2.20.6.dat C:\Users\Owner\Documents\GitHub\tabs\data\Test\test.1.2.20.6.dat.bck ###
- 624 tabsC transposeData      BGN ( 1x2x6x20 ) dump=1
- 628 tabsC transposeData      dl=[1 2 6 20] dt=[list list list str]
+ 599 tabsC dumpDataFile       END 1 pages, 2 lines per page, 6 rows per line, 20 tabs per line
+ 538 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/Test/test.1.2.20.6.dat)
+ 539 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/data/Test/test.1.2.20.6.dat.bck)
+ 541 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\data\Test\test.1.2.20.6.dat C:\Users\Owner\Documents\GitHub\tabs\data\Test\test.1.2.20.6.dat.bck ###
+ 627 tabsC transposeData      BGN ( 1x2x6x20 ) dump=1
+ 631 tabsC transposeData      dl=[1 2 6 20] dt=[list list list str]
 -------------------- -------------------- -------------------- --46--89------------ 442467679----------- 22--45--7-----------
 -------------------- -------------------- 9\b~9--------------- -------------------- -------------------- --------------------
 
 ----42 ----42 ---42- ---64- ----64 ----75 ---86- ---97- ----97 ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------
 --9--- --\--- --b--- --~--- --9--- ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------
- 600 tabsC isVert             BGN dl=[1 2 6 20] dt=[list list list str]
+ 603 tabsC isVert             BGN dl=[1 2 6 20] dt=[list list list str]
 [[[-------------------- -------------------- -------------------- --46--89------------ 442467679----------- 22--45--7-----------][-------------------- -------------------- 9\b~9--------------- -------------------- -------------------- --------------------]]]
- 605 tabsC isVert             END dl=[1 2 6 20] dt=[list list list str] vert=1
- 663 tabsC dumpDataVert       BGN ( 1x2x20x6 ) lc=1 ll=1 i=0 w=6 txt=Colm 
+ 608 tabsC isVert             END dl=[1 2 6 20] dt=[list list list str] vert=1
+ 666 tabsC dumpDataVert       BGN ( 1x2x20x6 ) lc=1 ll=1 i=0 w=6 txt=Colm 
 Page 1
 Colm Line 1 Line 2
   1 ----42 --9--- 
@@ -212,36 +212,36 @@ Colm Line 1 Line 2
  18 ------ ------ 
  19 ------ ------ 
  20 ------ ------ 
- 671 tabsC dumpDataVert       END ( 1x2x20x6 ) lc=1 ll=1 i=0
- 640 tabsC transposeData      END ( 1x2x20x6 ) dump=1
+ 674 tabsC dumpDataVert       END ( 1x2x20x6 ) lc=1 ll=1 i=0
+ 643 tabsC transposeData      END ( 1x2x20x6 ) dump=1
  225 tabsC _initData          [1 2 20 6]
  226 tabsC _initData          Updating n[P] old=[1 2 2 20 6] n=[1 2 2 20 6]
- 470 tabsC ntp                                  n=[1 2 2 20 6]
- 471 tabsC ntp                                Rev=[6 20 2 2 1]
- 472 tabsC ntp                            nRevPrd=[6 120 240 480 480]
- 473 tabsC ntp                         nRevPrdRev=[480 480 240 120 6]
- 474 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
-1629 tabsC calcFontSize       j=4 Tabl h=480.00 pix= 20.00 fs= 15.56
-1638 tabsC _initFonts         w=32.000=.width =640/(20)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
-1639 tabsC _initFonts         h=20.000=.height=480/(nl=2 * ns=2 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
-1651 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
+ 473 tabsC ntp                                  n=[1 2 2 20 6]
+ 474 tabsC ntp                                Rev=[6 20 2 2 1]
+ 475 tabsC ntp                            nRevPrd=[6 120 240 480 480]
+ 476 tabsC ntp                         nRevPrdRev=[480 480 240 120 6]
+ 477 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
+1634 tabsC calcFontSize       j=4 Tabl h=480.00 pix= 20.00 fs= 15.56
+1643 tabsC _initFonts         w=32.000=.width =640/(20)                   FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
+1644 tabsC _initFonts         h=20.000=.height=480/(nl=2 * ns=2 * nt=6)  FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
+1656 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
 labelTextA=[1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20]
 labelTextB=[1  2  3  4  5  6  7  8  9  1  1  2  3  4  5  6  7  8  9  2 ]
 texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1][11 1][12 2][13 3][14 4][15 5][16 6][17 7][18 8][19 9][20 2]]
- 694 tabsC dumpLabelText       len(t)=20 len(t[0])=2
+ 697 tabsC dumpLabelText       len(t)=20 len(t[0])=2
  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  
                                      %                                       %  
  1   2   3   4   5   6   7   8   9   1   1   2   3   4   5   6   7   8   9   2  
- 291 tabsC _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1 1 2 3 4 5 6 7 8 9 2]
- 295 tabsC _initTniks         C C C
- 295 tabsC _initTniks         center center center
-1143 tabsC createTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1143 tabsC createTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1143 tabsC createTniks        LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1143 tabsC createTniks        BGN[( 640x480 )( 1x2x20x6 )( 1x1x1x6  ) (0 1    ) 0 (   )    0   0] New1
+ 294 tabsC _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1 1 2 3 4 5 6 7 8 9 2]
+ 298 tabsC _initTniks         C C C
+ 298 tabsC _initTniks         center center center
+1148 tabsC createTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1148 tabsC createTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1148 tabsC createTniks        LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1148 tabsC createTniks        BGN[( 640x480 )( 1x2x20x6 )( 1x1x1x6  ) (0 1    ) 0 (   )    0   0] New1
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cntw cnth v a x y fnSz dpi B I Font Name
-1160 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+1165 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
    1 New1  Page    1 P1       1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00 [128  10 255 255]      None         600  498 T C C C  373  96 0 0 Lucida Console
    2 New1  Line    1 Ln1      2 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  320.00  360.00  640.00  240.00 [255  10  10 225]      None         450  248 T C C C  186  96 0 0 Lucida Console
    3 New1  Sect    1 Sec1     3 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  320.00  420.00  640.00  120.00 [ 10 255 255 225]      None         300  124 T C C C   93  96 0 0 Lucida Console
@@ -811,21 +811,21 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1][11 1][12 2][13 3][14 
  567 New1  Note  240 -        5 V 1  2  4  80  240  240    0    0  0   0 0 0  0  0  0  0  567 567  624.00   10.00   32.00   20.00 [ 10 255  10 195][  2  52   2 195]   13   20 T C C C   15  96 0 0 Lucida Console
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cntw cnth v a x y fnSz dpi B I Font Name
-1149 tabsC createTniks        J1[1  2  2  20    6    6    0    0  0   0 0 0  0  0  0  0  567 567] New1
-1149 tabsC createTniks        J2[1  2  4  80  240  240    0    0  0   0 0 0  0  0  0  0  567 567] New1
-1149 tabsC createTniks        LE[1  2  4  80  240  240    0    0  0   0 0 0  0  0  0  0  567 567] New1
-1149 tabsC createTniks        END[( 640x480 )( 1x2x20x6 )( 1x1x1x6  ) (0 1    ) 0 (   )  567 567] New1
+1154 tabsC createTniks        J1[1  2  2  20    6    6    0    0  0   0 0 0  0  0  0  0  567 567] New1
+1154 tabsC createTniks        J2[1  2  4  80  240  240    0    0  0   0 0 0  0  0  0  0  567 567] New1
+1154 tabsC createTniks        LE[1  2  4  80  240  240    0    0  0   0 0 0  0  0  0  0  567 567] New1
+1154 tabsC createTniks        END[( 640x480 )( 1x2x20x6 )( 1x1x1x6  ) (0 1    ) 0 (   )  567 567] New1
  568 New1  HCrs    1    0.000 6 V 1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568    0.00  360.00   32.00   20.00 [255 255  10 165]1.000 1.000 1.000    0    0 OrderedGroup(6) None
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cntw cnth v a x y fnSz dpi B I Font Name
- 474 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
- 484 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 2 2 20 6] BGN ntp=[  480  480 240 120   6] ( 1x1x1x6  )
- 184 util  dumpNic            [1:Db:3,6:Gb:5,b:B :3,8:Ab:2,3:Eb:2,4:E :4,9:A :1,a:Bb:1]
- 185 util  dumpNic            [1:C#:3,6:F#:5,b:B :3,8:G#:2,3:D#:2,4:E :4,9:A :1,a:A#:1]
- 186 util  dumpNic            [a:Bb:1,3:Eb:2,8:Ab:2,1:Db:3,6:Gb:5,b:B :3,4:E :4]
- 187 util  dumpNic            [6:Gb:5,1:Db:3,8:Ab:2,3:Eb:2,a:Bb:1,None,None]
-  37 util  dumpData           BGN D♭ D♮ D♯
-  98 util  dumpNF             Note Frequencies in Hertz
+ 477 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
+ 487 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 2 2 20 6] BGN ntp=[  480  480 240 120   6] ( 1x1x1x6  )
+ 185 util  dumpNic            [1:Db:3,6:Gb:5,b:B :3,8:Ab:2,3:Eb:2,4:E :4,9:A :1,a:Bb:1]
+ 186 util  dumpNic            [1:C#:3,6:F#:5,b:B :3,8:G#:2,3:D#:2,4:E :4,9:A :1,a:A#:1]
+ 187 util  dumpNic            [a:Bb:1,3:Eb:2,8:Ab:2,1:Db:3,6:Gb:5,b:B :3,4:E :4]
+ 188 util  dumpNic            [6:Gb:5,1:Db:3,8:Ab:2,3:Eb:2,a:Bb:1,None,None]
+  38 util  dumpData           BGN D♭ D♮ D♯
+  99 util  dumpNF             Note Frequencies in Hertz
 Piano[ -8    -7    -6    -5    -4    -3    -2    -1     0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88  ]
 Index[  1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88    89    90    91    92    93    94    95    96    97    98    99    100   101   102   103   104   105   106   107   108   109   110   111   112   113   114   115   116   117   118   119   120   121 ]
 432A [16.05 17.01 18.02 19.09 20.23 21.43 22.70 24.05 25.48 27.00 28.61 30.31 32.11 34.02 36.04 38.18 40.45 42.86 45.41 48.11 50.97 54.00 57.21 60.61 64.22 68.04 72.08 76.37 80.91 85.72 90.82 96.22 101.9 108.0 114.4 121.2 128.4 136.1 144.2 152.7 161.8 171.4 181.6 192.4 203.9 216.0 228.8 242.5 256.9 272.1 288.3 305.5 323.6 342.9 363.3 384.9 407.8 432.0 457.7 484.9 513.7 544.3 576.7 610.9 647.3 685.8 726.5 769.7 815.5 864.0 915.4 969.8  1027  1089  1153  1222  1295  1372  1453  1539  1631  1728  1831  1940  2055  2177  2307  2444  2589  2743  2906  3079  3262  3456  3662  3879  4110  4354  4613  4888  5178  5486  5812  6158  6524  6912  7323  7758  8220  8709  9226  9775 10356 10972 11625 12316 13048 13824 14646 15517 16440] Hz
@@ -870,8 +870,8 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +5 SHRP B  b [F# C# G# D# A# E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C# D# E  F# G# A#]
 +6 SHRP F# 6 [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
 +7 SHRP C# 1 [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
-  44 util  dumpData           END D♭ D♮ D♯
-1651 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels New1
+  45 util  dumpData           END D♭ D♮ D♯
+1656 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels New1
    2p2   11
    4l4   1111
    8s8   11111111
@@ -887,19 +887,19 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 1
- 474 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
- 499 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 2 2 20 6] END ntp=[  480  480 240 120   6] ( 1x1x1x6  )
- 299 tabsC _initTniks         -7 FLAT Cb b [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [Cb Db Eb Fb Gb Ab Bb]
-2560 tabsC regSnap             26   0 Init     init
+ 477 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
+ 502 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 2 2 20 6] END ntp=[  480  480 240 120   6] ( 1x1x1x6  )
+ 302 tabsC _initTniks         -7 FLAT Cb b [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [Cb Db Eb Fb Gb Ab Bb]
+2565 tabsC regSnap             28   0 Init     init
  183 tabsC _reinit            [1 1 1  1 6]   6  1] END
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
  128 tabsC __init__           END <class __main__.Tabs>
-2779 tabsC main               str(tabs)={n: [1, 2, 20, 6], S: [0, 1], f: [Test/test, 2]}
-2779 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 2, 20, 6], S: [0, 1], f: [Test/test, 2]}
-1241 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1
-1241 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1
-1241 tabsC resizeTniks        LE[1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568   0] Upd1
-1241 tabsC resizeTniks        BGN[( 640x480 )( 1x2x20x6 )( 1x1x1x6  ) (0 1    ) 0 (   )  568   0] Upd1
+2785 tabsC main               str(tabs)={n: [1, 2, 20, 6], S: [0, 1], f: [Test/test, 2]}
+2785 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 2, 20, 6], S: [0, 1], f: [Test/test, 2]}
+1246 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1
+1246 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd1
+1246 tabsC resizeTniks        LE[1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568   0] Upd1
+1246 tabsC resizeTniks        BGN[( 640x480 )( 1x2x20x6 )( 1x1x1x6  ) (0 1    ) 0 (   )  568   0] Upd1
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cntw cnth v a x y fnSz dpi B I Font Name
    1 Upd1  Page    1 P1       1 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  320.00  240.00  640.00  480.00 [128  10 255 255]      None         600  498 T C C C  373  96 0 0 Lucida Console
@@ -1471,23 +1471,23 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
  567 Upd1  Note  240 -        5 V 1  2  4  80  240  240    0    0  0   0 0 0  0  0  0  0  567 567  624.00   10.00   32.00   20.00 [ 10 255  10 195][  2  52   2 195]   13   20 T C C C   15  96 0 0 Lucida Console
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cntw cnth v a x y fnSz dpi B I Font Name
-1247 tabsC resizeTniks        J1[1  2  4  80  240  240    0    0  0   0 0 0  0  0  0  0  567 567] Upd1
-1247 tabsC resizeTniks        J2[1  2  4  80  240  240    0    0  0   0 0 0  0  0  0  0  567 567] Upd1
-1247 tabsC resizeTniks        LE[1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 567] Upd1
-1247 tabsC resizeTniks        END[( 640x480 )( 1x2x20x6 )( 1x1x1x6  ) (0 1    ) 0 (   )  568 567] Upd1
-1272 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+1252 tabsC resizeTniks        J1[1  2  4  80  240  240    0    0  0   0 0 0  0  0  0  0  567 567] Upd1
+1252 tabsC resizeTniks        J2[1  2  4  80  240  240    0    0  0   0 0 0  0  0  0  0  567 567] Upd1
+1252 tabsC resizeTniks        LE[1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 567] Upd1
+1252 tabsC resizeTniks        END[( 640x480 )( 1x2x20x6 )( 1x1x1x6  ) (0 1    ) 0 (   )  568 567] Upd1
+1277 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
  568 Upd1  HCrs    1    0.000 6 V 1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568    0.00  360.00   32.00   20.00 [255 255  10 165]1.000 1.000 1.000    0    0 OrderedGroup(6) None
-2560 tabsC regSnap             26   0 Upd5     Upd1
+2565 tabsC regSnap             28   0 Upd5     Upd1
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cntw cnth v a x y fnSz dpi B I Font Name
- 474 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
- 484 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 2 2 20 6] BGN ntp=[  480  480 240 120   6] ( 1x1x1x6  )
- 184 util  dumpNic            [1:Db:3,6:Gb:5,b:B :3,8:Ab:2,3:Eb:2,4:E :4,9:A :1,a:Bb:1]
- 185 util  dumpNic            [1:C#:3,6:F#:5,b:B :3,8:G#:2,3:D#:2,4:E :4,9:A :1,a:A#:1]
- 186 util  dumpNic            [a:Bb:1,3:Eb:2,8:Ab:2,1:Db:3,6:Gb:5,b:B :3,4:E :4]
- 187 util  dumpNic            [6:Gb:5,1:Db:3,8:Ab:2,3:Eb:2,a:Bb:1,None,None]
-  37 util  dumpData           BGN D♭ D♮ D♯
-  98 util  dumpNF             Note Frequencies in Hertz
+ 477 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
+ 487 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 2 2 20 6] BGN ntp=[  480  480 240 120   6] ( 1x1x1x6  )
+ 185 util  dumpNic            [1:Db:3,6:Gb:5,b:B :3,8:Ab:2,3:Eb:2,4:E :4,9:A :1,a:Bb:1]
+ 186 util  dumpNic            [1:C#:3,6:F#:5,b:B :3,8:G#:2,3:D#:2,4:E :4,9:A :1,a:A#:1]
+ 187 util  dumpNic            [a:Bb:1,3:Eb:2,8:Ab:2,1:Db:3,6:Gb:5,b:B :3,4:E :4]
+ 188 util  dumpNic            [6:Gb:5,1:Db:3,8:Ab:2,3:Eb:2,a:Bb:1,None,None]
+  38 util  dumpData           BGN D♭ D♮ D♯
+  99 util  dumpNF             Note Frequencies in Hertz
 Piano[ -8    -7    -6    -5    -4    -3    -2    -1     0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88  ]
 Index[  1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88    89    90    91    92    93    94    95    96    97    98    99    100   101   102   103   104   105   106   107   108   109   110   111   112   113   114   115   116   117   118   119   120   121 ]
 432A [16.05 17.01 18.02 19.09 20.23 21.43 22.70 24.05 25.48 27.00 28.61 30.31 32.11 34.02 36.04 38.18 40.45 42.86 45.41 48.11 50.97 54.00 57.21 60.61 64.22 68.04 72.08 76.37 80.91 85.72 90.82 96.22 101.9 108.0 114.4 121.2 128.4 136.1 144.2 152.7 161.8 171.4 181.6 192.4 203.9 216.0 228.8 242.5 256.9 272.1 288.3 305.5 323.6 342.9 363.3 384.9 407.8 432.0 457.7 484.9 513.7 544.3 576.7 610.9 647.3 685.8 726.5 769.7 815.5 864.0 915.4 969.8  1027  1089  1153  1222  1295  1372  1453  1539  1631  1728  1831  1940  2055  2177  2307  2444  2589  2743  2906  3079  3262  3456  3662  3879  4110  4354  4613  4888  5178  5486  5812  6158  6524  6912  7323  7758  8220  8709  9226  9775 10356 10972 11625 12316 13048 13824 14646 15517 16440] Hz
@@ -1532,8 +1532,8 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +5 SHRP B  b [F# C# G# D# A# E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C# D# E  F# G# A#]
 +6 SHRP F# 6 [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
 +7 SHRP C# 1 [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
-  44 util  dumpData           END D♭ D♮ D♯
-1651 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels Upd1
+  45 util  dumpData           END D♭ D♮ D♯
+1656 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels Upd1
    1p1   1
    2l2   11
    4s4   1111
@@ -1549,53 +1549,58 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 1
- 474 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
- 499 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 2 2 20 6] END ntp=[  480  480 240 120   6] ( 1x1x1x6  )
-2568 tabsC snapshot           BASE_NAME=tabs logId=26 snapId=0 typ=Upd5 PNG=png
-2569 tabsC snapshot           .fNameLid=tabs.26 PNGS=pngs snapName=tabs.26.0.Upd5.png Upd1
-snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.26.0.Upd5.png)
-2572 tabsC snapshot           snapName=tabs.26.0.Upd5.png Upd1
- 511 tabsC on_draw            [1 1 1  1 6]   6  1] .snapWhy=Upd1 .snapType=Upd5 .snapId=1
-1816 tabsC on_key_press       BGN <UP      > <   65362> <UP              > < 0> <                >
-1905 tabsC on_key_press       END <UP      > <   65362> <UP              > < 0> <                >
-1926 tabsC on_text_motion     BGN <   65362> <   65362> <UP              > < 0> <                > motion=65362
-2074 tabsC move               [1 1 1  1 6]   6  1] BGN n=-1  UP (            65362)
-2081 tabsC _moveTo            [1 1 1  1 6]   6  1] BGN n=-1 plct=[1 1    1 6]
-2091 tabsC _moveTo            [1 1 1  1 5]   5  1] END n=-1 i=[1 1 1 1 5] plct=[1 1    1 6] plct2=[1 1    1 5]
-1527 tabsC moveCursor         [1 1 1  1 5]   5  1] BGN ss=0 .cc=5
-1272 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
+ 477 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
+ 502 tabsC dumpStruct         [1 1 1  1 6]   6  1] n=[1 2 2 20 6] END ntp=[  480  480 240 120   6] ( 1x1x1x6  )
+2573 tabsC snapshot           BASE_NAME=tabs logId=28 snapId=0 typ=Upd5 PNG=png
+2574 tabsC snapshot           .fNameLid=tabs.28 PNGS=pngs snapName=tabs.28.0.Upd5.png Upd1
+snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.28.0.Upd5.png)
+2577 tabsC snapshot           snapName=tabs.28.0.Upd5.png Upd1
+ 514 tabsC on_draw            [1 1 1  1 6]   6  1] .snapWhy=Upd1 .snapType=Upd5 .snapId=1
+1821 tabsC on_key_press       BGN <UP      > <   65362> <UP              > < 0> <                >
+1910 tabsC on_key_press       END <UP      > <   65362> <UP              > < 0> <                >
+1931 tabsC on_text_motion     BGN <   65362> <   65362> <UP              > < 0> <                > motion=65362
+2079 tabsC move               [1 1 1  1 6]   6  1] BGN n=-1  UP (            65362)
+2086 tabsC _moveTo            [1 1 1  1 6]   6  1] BGN n=-1 plct=[1 1    1 6]
+2096 tabsC _moveTo            [1 1 1  1 5]   5  1] END n=-1 i=[1 1 1 1 5] plct=[1 1    1 6] plct2=[1 1    1 5]
+1532 tabsC moveCursor         [1 1 1  1 5]   5  1] BGN ss=0 .cc=5
+1277 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
  568  UP (            65362) HCrs    1    0.000 6 V 1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568    0.00  380.00   32.00   20.00 [255 255  10 165]1.000 1.000 1.000    0    0 OrderedGroup(6) None
-2560 tabsC regSnap             26   1 Upd5      UP (            65362)
-1531 tabsC moveCursor         [1 1 1  1 5]   5  1] END ss=0 .cc=4
-2078 tabsC move               [1 1 1  1 5]   5  1] END n=-1  UP (            65362)
-1970 tabsC on_text_motion     END <   65362> <   65362> <UP              > < 0> <                > motion=65362
-2568 tabsC snapshot           BASE_NAME=tabs logId=26 snapId=1 typ=Upd5 PNG=png
-2569 tabsC snapshot           .fNameLid=tabs.26 PNGS=pngs snapName=tabs.26.1.Upd5.png  UP (            65362)
-snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.26.1.Upd5.png)
-2572 tabsC snapshot           snapName=tabs.26.1.Upd5.png  UP (            65362)
- 511 tabsC on_draw            [1 1 1  1 5]   5  1] .snapWhy= UP (            65362) .snapType=Upd5 .snapId=2
-1910 tabsC on_key_release     <UP      > <   65362> <UP              > < 0> <                >
-1816 tabsC on_key_press       BGN <UP      > <   65362> <UP              > < 0> <                >
-1905 tabsC on_key_press       END <UP      > <   65362> <UP              > < 0> <                >
-1926 tabsC on_text_motion     BGN <   65362> <   65362> <UP              > < 0> <                > motion=65362
-2074 tabsC move               [1 1 1  1 5]   5  1] BGN n=-1  UP (            65362)
-2081 tabsC _moveTo            [1 1 1  1 5]   5  1] BGN n=-1 plct=[1 1    1 5]
-2091 tabsC _moveTo            [1 1 1  1 4]   4  1] END n=-1 i=[1 1 1 1 4] plct=[1 1    1 5] plct2=[1 1    1 4]
-1527 tabsC moveCursor         [1 1 1  1 4]   4  1] BGN ss=0 .cc=4
-1272 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
+2565 tabsC regSnap             28   1 Upd5      UP (            65362)
+1536 tabsC moveCursor         [1 1 1  1 5]   5  1] END ss=0 .cc=4
+2083 tabsC move               [1 1 1  1 5]   5  1] END n=-1  UP (            65362)
+1975 tabsC on_text_motion     END <   65362> <   65362> <UP              > < 0> <                > motion=65362
+2573 tabsC snapshot           BASE_NAME=tabs logId=28 snapId=1 typ=Upd5 PNG=png
+2574 tabsC snapshot           .fNameLid=tabs.28 PNGS=pngs snapName=tabs.28.1.Upd5.png  UP (            65362)
+snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.28.1.Upd5.png)
+2577 tabsC snapshot           snapName=tabs.28.1.Upd5.png  UP (            65362)
+ 514 tabsC on_draw            [1 1 1  1 5]   5  1] .snapWhy= UP (            65362) .snapType=Upd5 .snapId=2
+1915 tabsC on_key_release     <UP      > <   65362> <UP              > < 0> <                >
+1821 tabsC on_key_press       BGN <UP      > <   65362> <UP              > < 0> <                >
+1910 tabsC on_key_press       END <UP      > <   65362> <UP              > < 0> <                >
+1931 tabsC on_text_motion     BGN <   65362> <   65362> <UP              > < 0> <                > motion=65362
+2079 tabsC move               [1 1 1  1 5]   5  1] BGN n=-1  UP (            65362)
+2086 tabsC _moveTo            [1 1 1  1 5]   5  1] BGN n=-1 plct=[1 1    1 5]
+2096 tabsC _moveTo            [1 1 1  1 4]   4  1] END n=-1 i=[1 1 1 1 4] plct=[1 1    1 5] plct2=[1 1    1 4]
+1532 tabsC moveCursor         [1 1 1  1 4]   4  1] BGN ss=0 .cc=4
+1277 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
  568  UP (            65362) HCrs    1    0.000 6 V 1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568    0.00  400.00   32.00   20.00 [255 255  10 165]1.000 1.000 1.000    0    0 OrderedGroup(6) None
-2560 tabsC regSnap             26   2 Upd4      UP (            65362)
-1531 tabsC moveCursor         [1 1 1  1 4]   4  1] END ss=0 .cc=3
-2078 tabsC move               [1 1 1  1 4]   4  1] END n=-1  UP (            65362)
-1970 tabsC on_text_motion     END <   65362> <   65362> <UP              > < 0> <                > motion=65362
-1910 tabsC on_key_release     <UP      > <   65362> <UP              > < 0> <                >
-1816 tabsC on_key_press       BGN <_6      > <      54> <_6              > < 0> <                >
-1905 tabsC on_key_press       END <_6      > <      54> <_6              > < 0> <                >
-1914 tabsC on_text            BGN <6       > <      54> <_6              > < 0> <                > swapping=0
-1695 tabsC setTab             [1 1 1  1 4]   4  1] BGN onTxt text=6 data=- rev=0 old=  3 cc=  3
-1707 tabsC setDTNIK           [1 1 1  1 4]   4  1] BGN kk=1    text=6
-1719 tabsC setData            BGN t=3 text=6 data=----42
-1722 tabsC setData            END t=3 text=6 data=---642
+2565 tabsC regSnap             28   2 Upd4      UP (            65362)
+1536 tabsC moveCursor         [1 1 1  1 4]   4  1] END ss=0 .cc=3
+2083 tabsC move               [1 1 1  1 4]   4  1] END n=-1  UP (            65362)
+1975 tabsC on_text_motion     END <   65362> <   65362> <UP              > < 0> <                > motion=65362
+1915 tabsC on_key_release     <UP      > <   65362> <UP              > < 0> <                >
+2573 tabsC snapshot           BASE_NAME=tabs logId=28 snapId=2 typ=Upd4 PNG=png
+2574 tabsC snapshot           .fNameLid=tabs.28 PNGS=pngs snapName=tabs.28.2.Upd4.png  UP (            65362)
+snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.28.2.Upd4.png)
+2577 tabsC snapshot           snapName=tabs.28.2.Upd4.png  UP (            65362)
+ 514 tabsC on_draw            [1 1 1  1 4]   4  1] .snapWhy= UP (            65362) .snapType=Upd4 .snapId=3
+1821 tabsC on_key_press       BGN <_6      > <      54> <_6              > < 0> <                >
+1910 tabsC on_key_press       END <_6      > <      54> <_6              > < 0> <                >
+1919 tabsC on_text            BGN <6       > <      54> <_6              > < 0> <                > swapping=0
+1700 tabsC setTab             [1 1 1  1 4]   4  1] BGN onTxt text=6 data=- rev=0 old=  3 cc=  3
+1712 tabsC setDTNIK           [1 1 1  1 4]   4  1] BGN kk=1    text=6
+1724 tabsC setData            BGN t=3 text=6 data=----42
+1727 tabsC setData            END t=3 text=6 data=---642
  102 chord dumpData           Tabs                       [ 2     4     6     -     -     -     ]
  102 chord dumpData           Note Indices               [ 30    37    44    ~     ~     ~     ]
  102 chord dumpData           -1 Notes Gb Db Ab          [ Gb    Db    Ab    ~     ~     ~     ]
@@ -1622,70 +1627,67 @@ snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.26.
  102 chord dumpData            0 Notes Ab Db Gb          [ Ab    Db    Gb    ~     ~     ~     ]
   57 chord getChordName        0 b74R         a50    GbDbAb       Ab7s4x/Gb    Ab7s4x/Gb    R4b7         05a    AbDbGb      
   58 chord getChordName        0 [b7 4 R]            [a 5 0] Gb Db Ab     Ab7s4x/Gb    Ab7s4x/Gb [R 4 b7] [0 5 a] Ab Db Gb    
-1731 tabsC setNote            [1 1 1  1 4]   4  1] BGN     t=3 text=6 notes[3]=-
-1732 tabsC setNote            -7 FLAT Cb b [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [Cb Db Eb Fb Gb Ab Bb]
-1740 tabsC setNote            [1 1 1  1 4]   4  1] END     t=3 text=6 notes[3]=Ab
-1715 tabsC setDTNIK           [1 1 1  1 4]   4  1] END kk=1    text=6 len(imap)=6
-1698 tabsC setTab             [1 1 1  1 4]   4  1] END onTxt text=6 data=6 rev=0 old=  3 cc=  3
-2094 tabsC autoMove           [1 1 1  1 4]   4  1] BGN onTxt
-2101 tabsC autoMove           [1 1 1  1 4]   4  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=UP  
-2074 tabsC move               [1 1 1  1 4]   4  1] BGN n=-1 onTxt
-2081 tabsC _moveTo            [1 1 1  1 4]   4  1] BGN n=-1 plct=[1 1    1 4]
-2091 tabsC _moveTo            [1 1 1  1 3]   3  1] END n=-1 i=[1 1 1 1 3] plct=[1 1    1 4] plct2=[1 1    1 3]
-1527 tabsC moveCursor         [1 1 1  1 3]   3  1] BGN ss=0 .cc=3
-1272 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
+1736 tabsC setNote            [1 1 1  1 4]   4  1] BGN     t=3 text=6 notes[3]=-
+1737 tabsC setNote            -7 FLAT Cb b [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [Cb Db Eb Fb Gb Ab Bb]
+1745 tabsC setNote            [1 1 1  1 4]   4  1] END     t=3 text=6 notes[3]=Ab
+1720 tabsC setDTNIK           [1 1 1  1 4]   4  1] END kk=1    text=6 len(imap)=6
+1703 tabsC setTab             [1 1 1  1 4]   4  1] END onTxt text=6 data=6 rev=0 old=  3 cc=  3
+2099 tabsC autoMove           [1 1 1  1 4]   4  1] BGN onTxt
+2106 tabsC autoMove           [1 1 1  1 4]   4  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RIGHT vArrow=1=UP  
+2079 tabsC move               [1 1 1  1 4]   4  1] BGN n=-1 onTxt
+2086 tabsC _moveTo            [1 1 1  1 4]   4  1] BGN n=-1 plct=[1 1    1 4]
+2096 tabsC _moveTo            [1 1 1  1 3]   3  1] END n=-1 i=[1 1 1 1 3] plct=[1 1    1 4] plct2=[1 1    1 3]
+1532 tabsC moveCursor         [1 1 1  1 3]   3  1] BGN ss=0 .cc=3
+1277 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
  568 onTxt HCrs    1    0.000 6 V 1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568    0.00  420.00   32.00   20.00 [255 255  10 165]1.000 1.000 1.000    0    0 OrderedGroup(6) None
-2560 tabsC regSnap             26   2 Upd3     onTxt
-1531 tabsC moveCursor         [1 1 1  1 3]   3  1] END ss=0 .cc=2
-2078 tabsC move               [1 1 1  1 3]   3  1] END n=-1 onTxt
-2108 tabsC autoMove           [1 1 1  1 3]   3  1] END onTxt
-2560 tabsC regSnap             26   2 TXT_6    onTxt
-1922 tabsC on_text            END <6       > <      54> <_6              > < 0> <                > swapping=0
-2568 tabsC snapshot           BASE_NAME=tabs logId=26 snapId=2 typ=TXT_6 PNG=png
-2569 tabsC snapshot           .fNameLid=tabs.26 PNGS=pngs snapName=tabs.26.2.TXT_6.png onTxt
-snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.26.2.TXT_6.png)
-2572 tabsC snapshot           snapName=tabs.26.2.TXT_6.png onTxt
- 511 tabsC on_draw            [1 1 1  1 3]   3  1] .snapWhy=onTxt .snapType=TXT_6 .snapId=3
-1910 tabsC on_key_release     <_6      > <      54> <_6              > < 0> <                >
-1816 tabsC on_key_press       BGN <LSHIFT  > <   65505> <LSHIFT          > < 1> <MOD_SHIFT       >
-1905 tabsC on_key_press       END <LSHIFT  > <   65505> <LSHIFT          > < 1> <MOD_SHIFT       >
-1910 tabsC on_key_release     <LSHIFT  > <   65505> <LSHIFT          > < 0> <                >
-1816 tabsC on_key_press       BGN <LCTRL   > <   65507> <LCTRL           > < 2> <MOD_CTRL        >
-1905 tabsC on_key_press       END <LCTRL   > <   65507> <LCTRL           > < 2> <MOD_CTRL        >
-1816 tabsC on_key_press       BGN <LSHIFT  > <   65505> <LSHIFT          > < 3> <MOD_SHIFT|MOD_CTRL>
-1905 tabsC on_key_press       END <LSHIFT  > <   65505> <LSHIFT          > < 3> <MOD_SHIFT|MOD_CTRL>
-1816 tabsC on_key_press       BGN <Q       > <     113> <Q               > < 3> <MOD_SHIFT|MOD_CTRL>
+2565 tabsC regSnap             28   3 Upd3     onTxt
+1536 tabsC moveCursor         [1 1 1  1 3]   3  1] END ss=0 .cc=2
+2083 tabsC move               [1 1 1  1 3]   3  1] END n=-1 onTxt
+2113 tabsC autoMove           [1 1 1  1 3]   3  1] END onTxt
+2565 tabsC regSnap             28   3 TXT_6    onTxt
+1927 tabsC on_text            END <6       > <      54> <_6              > < 0> <                > swapping=0
+2573 tabsC snapshot           BASE_NAME=tabs logId=28 snapId=3 typ=TXT_6 PNG=png
+2574 tabsC snapshot           .fNameLid=tabs.28 PNGS=pngs snapName=tabs.28.3.TXT_6.png onTxt
+snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.28.3.TXT_6.png)
+2577 tabsC snapshot           snapName=tabs.28.3.TXT_6.png onTxt
+ 514 tabsC on_draw            [1 1 1  1 3]   3  1] .snapWhy=onTxt .snapType=TXT_6 .snapId=4
+1915 tabsC on_key_release     <_6      > <      54> <_6              > < 0> <                >
+1821 tabsC on_key_press       BGN <LSHIFT  > <   65505> <LSHIFT          > < 1> <MOD_SHIFT       >
+1910 tabsC on_key_press       END <LSHIFT  > <   65505> <LSHIFT          > < 1> <MOD_SHIFT       >
+1821 tabsC on_key_press       BGN <LCTRL   > <   65507> <LCTRL           > < 3> <MOD_SHIFT|MOD_CTRL>
+1910 tabsC on_key_press       END <LCTRL   > <   65507> <LCTRL           > < 3> <MOD_SHIFT|MOD_CTRL>
+1821 tabsC on_key_press       BGN <Q       > <     113> <Q               > < 3> <MOD_SHIFT|MOD_CTRL>
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cntw cnth v a x y fnSz dpi B I Font Name
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
- 463 util  dumpStack          10 tabsC      2617 quit                 .log(.QUIT_BGN, p=0, f=2)   ;   .dumpStack(inspect.stack())     ;   .log(.QUIT, p=0, f=2)
- 463 util  dumpStack           9 tabsC      1849 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(          @^Q, error=0, save=0)
- 463 util  dumpStack           8 event       415 dispatch_event       if getattr(, event_type)(*args):
- 463 util  dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(, *args) != False:
- 463 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
- 463 util  dumpStack           5 __init__    747 f                    result = event_handler(msg, wParam, lParam)
- 463 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
- 463 util  dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
- 463 util  dumpStack           2 __init__    107 run                  event_loop.run()
- 463 util  dumpStack           1 tabsC      2780 main                 ret = pyglet.app.run()       ;   msg      =    Close & Copy
- 463 util  dumpStack           0 tabsC      2791 <module>             main()
- 464 util  dumpStack          MAX_STACK_DEPTH= 0
+ 472 util  dumpStack          10 tabsC      2623 quit                 .log(.QUIT_BGN, p=0, f=2)   ;   .dumpStack(inspect.stack())     ;   .log(.QUIT, p=0, f=2)
+ 472 util  dumpStack           9 tabsC      1854 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(          @^Q, error=0, save=0)
+ 472 util  dumpStack           8 event       415 dispatch_event       if getattr(, event_type)(*args):
+ 472 util  dumpStack           7 __init__   1352 dispatch_event       if EventDispatcher.dispatch_event(, *args) != False:
+ 472 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
+ 472 util  dumpStack           5 __init__    747 f                    result = event_handler(msg, wParam, lParam)
+ 472 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
+ 472 util  dumpStack           3 base        170 run                  platform_event_loop.step(timeout)
+ 472 util  dumpStack           2 __init__    107 run                  event_loop.run()
+ 472 util  dumpStack           1 tabsC      2786 main                 ret = pyglet.app.run()       ;   msg      =    Close & Copy
+ 472 util  dumpStack           0 tabsC      2797 <module>             main()
+ 473 util  dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cntw cnth v a x y fnSz dpi B I Font Name
-2618 tabsC quit               J1[1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568] @^Q
-2618 tabsC quit               J2[1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568] @^Q
-2618 tabsC quit               LE[1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568] @^Q
-2618 tabsC quit               END[( 640x480 )( 1x2x20x6 )( 1x1x1x3  ) (0 1    ) 0 (   )  568 568] @^Q
- 463 util  dumpStack           6          19 <module>             MAX_STACK_FRAME  = inspect.stack()
- 463 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
- 463 util  dumpStack           4 <frozen importlib   883 exec_module          
- 463 util  dumpStack           3 <frozen importlib   688 _load_unlocked       
- 463 util  dumpStack           2 <frozen importlib  1006 _find_and_load_unlocked 
- 463 util  dumpStack           1 <frozen importlib  1027 _find_and_load       
- 463 util  dumpStack           0 tabsC        14 <module>             import , chord
- 464 util  dumpStack          MAX_STACK_DEPTH= 0
-2620 tabsC quit               BGN @^Q error=0 save=0
+2624 tabsC quit               J1[1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568] @^Q
+2624 tabsC quit               J2[1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568] @^Q
+2624 tabsC quit               LE[1  2  4  80  240  240    0    0  0   0 1 0  0  0  0  0  568 568] @^Q
+2624 tabsC quit               END[( 640x480 )( 1x2x20x6 )( 1x1x1x3  ) (0 1    ) 0 (   )  568 568] @^Q
+ 472 util  dumpStack           6          19 <module>             MAX_STACK_FRAME  = inspect.stack()
+ 472 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
+ 472 util  dumpStack           4 <frozen importlib   883 exec_module          
+ 472 util  dumpStack           3 <frozen importlib   688 _load_unlocked       
+ 472 util  dumpStack           2 <frozen importlib  1006 _find_and_load_unlocked 
+ 472 util  dumpStack           1 <frozen importlib  1027 _find_and_load       
+ 472 util  dumpStack           0 tabsC        14 <module>             import , chord
+ 473 util  dumpStack          MAX_STACK_DEPTH= 0
+2626 tabsC quit               BGN @^Q error=0 save=0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
  137 tabsC dumpArgs           [f]      .FILE_NAME=Test/test
  138 tabsC dumpArgs           [n]               n=[1 2 2 20 6]
@@ -1715,14 +1717,14 @@ snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.26.
  162 tabsC dumpArgs           [L]             .LL=0
  163 tabsC dumpArgs           [S]             .SS=[0 1]
  164 tabsC dumpArgs           [E]             .ZZ=[]
- 474 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
- 484 tabsC dumpStruct         [1 1 1  1 3]   3  1] n=[1 2 2 20 6] BGN ntp=[  480  480 240 120   6] ( 1x1x1x3  )
- 184 util  dumpNic            [1:Db:3,6:Gb:5,b:B :3,8:Ab:3,3:Eb:2,4:E :4,9:A :1,a:Bb:1]
- 185 util  dumpNic            [1:C#:3,6:F#:5,b:B :3,8:G#:3,3:D#:2,4:E :4,9:A :1,a:A#:1]
- 186 util  dumpNic            [a:Bb:1,3:Eb:2,8:Ab:3,1:Db:3,6:Gb:5,b:B :3,4:E :4]
- 187 util  dumpNic            [6:Gb:5,1:Db:3,8:Ab:3,3:Eb:2,a:Bb:1,None,None]
-  37 util  dumpData           BGN D♭ D♮ D♯
-  98 util  dumpNF             Note Frequencies in Hertz
+ 477 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
+ 487 tabsC dumpStruct         [1 1 1  1 3]   3  1] n=[1 2 2 20 6] BGN ntp=[  480  480 240 120   6] ( 1x1x1x3  )
+ 185 util  dumpNic            [1:Db:3,6:Gb:5,b:B :3,8:Ab:3,3:Eb:2,4:E :4,9:A :1,a:Bb:1]
+ 186 util  dumpNic            [1:C#:3,6:F#:5,b:B :3,8:G#:3,3:D#:2,4:E :4,9:A :1,a:A#:1]
+ 187 util  dumpNic            [a:Bb:1,3:Eb:2,8:Ab:3,1:Db:3,6:Gb:5,b:B :3,4:E :4]
+ 188 util  dumpNic            [6:Gb:5,1:Db:3,8:Ab:3,3:Eb:2,a:Bb:1,None,None]
+  38 util  dumpData           BGN D♭ D♮ D♯
+  99 util  dumpNF             Note Frequencies in Hertz
 Piano[ -8    -7    -6    -5    -4    -3    -2    -1     0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88  ]
 Index[  1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88    89    90    91    92    93    94    95    96    97    98    99    100   101   102   103   104   105   106   107   108   109   110   111   112   113   114   115   116   117   118   119   120   121 ]
 432A [16.05 17.01 18.02 19.09 20.23 21.43 22.70 24.05 25.48 27.00 28.61 30.31 32.11 34.02 36.04 38.18 40.45 42.86 45.41 48.11 50.97 54.00 57.21 60.61 64.22 68.04 72.08 76.37 80.91 85.72 90.82 96.22 101.9 108.0 114.4 121.2 128.4 136.1 144.2 152.7 161.8 171.4 181.6 192.4 203.9 216.0 228.8 242.5 256.9 272.1 288.3 305.5 323.6 342.9 363.3 384.9 407.8 432.0 457.7 484.9 513.7 544.3 576.7 610.9 647.3 685.8 726.5 769.7 815.5 864.0 915.4 969.8  1027  1089  1153  1222  1295  1372  1453  1539  1631  1728  1831  1940  2055  2177  2307  2444  2589  2743  2906  3079  3262  3456  3662  3879  4110  4354  4613  4888  5178  5486  5812  6158  6524  6912  7323  7758  8220  8709  9226  9775 10356 10972 11625 12316 13048 13824 14646 15517 16440] Hz
@@ -1767,8 +1769,8 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +5 SHRP B  b [F# C# G# D# A# E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C# D# E  F# G# A#]
 +6 SHRP F# 6 [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
 +7 SHRP C# 1 [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
-  44 util  dumpData           END D♭ D♮ D♯
-1651 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels @^Q
+  45 util  dumpData           END D♭ D♮ D♯
+1656 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels @^Q
    1p1   1
    2l2   11
    4s4   1111
@@ -1784,19 +1786,19 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 1
- 474 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
- 499 tabsC dumpStruct         [1 1 1  1 3]   3  1] n=[1 2 2 20 6] END ntp=[  480  480 240 120   6] ( 1x1x1x3  )
- 624 tabsC transposeData      BGN ( 1x2x20x6 ) dump=1
- 628 tabsC transposeData      dl=[1 2 20 6] dt=[list list list str]
+ 477 tabsC ntp                tpb tpp tpl tps tpc=[480 480 240 120 6]
+ 502 tabsC dumpStruct         [1 1 1  1 3]   3  1] n=[1 2 2 20 6] END ntp=[  480  480 240 120   6] ( 1x1x1x3  )
+ 627 tabsC transposeData      BGN ( 1x2x20x6 ) dump=1
+ 631 tabsC transposeData      dl=[1 2 20 6] dt=[list list list str]
 ---642 ----42 ---42- ---64- ----64 ----75 ---86- ---97- ----97 ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------
 --9--- --\--- --b--- --~--- --9--- ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------
 
 -------------------- -------------------- -------------------- 6-46--89------------ 442467679----------- 22--45--7-----------
 -------------------- -------------------- 9\b~9--------------- -------------------- -------------------- --------------------
- 600 tabsC isVert             BGN dl=[1 2 20 6] dt=[list list list str]
+ 603 tabsC isVert             BGN dl=[1 2 20 6] dt=[list list list str]
 [[[---642 ----42 ---42- ---64- ----64 ----75 ---86- ---97- ----97 ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------][--9--- --\--- --b--- --~--- --9--- ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------]]]
- 605 tabsC isVert             END dl=[1 2 20 6] dt=[list list list str] vert=0
- 645 tabsC dumpDataHorz       BGN ( 1x2x6x20 ) lc=1 ll=1 i=0
+ 608 tabsC isVert             END dl=[1 2 20 6] dt=[list list list str] vert=0
+ 648 tabsC dumpDataHorz       BGN ( 1x2x6x20 ) lc=1 ll=1 i=0
 Page 1 Line 1
          11111111112
 12345678901234567890
@@ -1819,44 +1821,44 @@ Page 1 Line 2
 --------------------
 --------------------
 
- 658 tabsC dumpDataHorz       END ( 1x2x6x20 ) lc=1 ll=1 i=0
- 640 tabsC transposeData      END ( 1x2x6x20 ) dump=1
+ 661 tabsC dumpDataHorz       END ( 1x2x6x20 ) lc=1 ll=1 i=0
+ 643 tabsC transposeData      END ( 1x2x6x20 ) dump=1
  125 chord dumpLimap            0 0 0 Ab7s4x/Gb    [Ab 7  s4 x  /Gb]   [R 4 b7]           [a 5 0]       [Gb Db Ab]         
  125 chord dumpLimap            0 0 1 Gbs2         [Gb s2]             [R 2 5 ]           [0 7 2]       [Gb Db Ab]         
  125 chord dumpLimap            0 0 2 Dbs4/Gb      [Db s4 /Gb]         [R 4 5 ]           [5 0 7]       [Gb Db Ab]         
   0 0 Ab7s4x/Gb    b74R         Gbs2         R52          Dbs4/Gb      4R5          
   0 0 Ab7s4x/Gb    a50   Gbs2         072   Dbs4/Gb      507   
   0 0 a50    072    507                           b74R         R52          4R5          
-2568 tabsC snapshot           BASE_NAME=tabs logId=26 snapId=3 typ=QUIT PNG=png
-2569 tabsC snapshot           .fNameLid=tabs.26 PNGS=pngs snapName=tabs.26.3.QUIT.png quit error=0 save=0
-snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.26.3.QUIT.png)
-2572 tabsC snapshot           snapName=tabs.26.3.QUIT.png quit error=0 save=0
-2628 tabsC quit               END @^Q error=0 save=0
+2573 tabsC snapshot           BASE_NAME=tabs logId=28 snapId=4 typ=QUIT PNG=png
+2574 tabsC snapshot           .fNameLid=tabs.28 PNGS=pngs snapName=tabs.28.4.QUIT.png quit error=0 save=0
+snapshot SnapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/pngs/tabs.28.4.QUIT.png)
+2577 tabsC snapshot           snapName=tabs.28.4.QUIT.png quit error=0 save=0
+2634 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
-2643 tabsC cleanupCsvFile     closing C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv
- 521 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
- 521 util  getFilePath        baseName =Test/test.1.2.2.20.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =Test/test.1.2.2.20.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.2.2.20.6.csv)
- 521 util  getFilePath        baseName =tabs.26      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =tabs.26.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.26.csv)
-2650 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.2.2.20.6.csv
- 529 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
- 530 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.2.2.20.6.csv)
- 532 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.2.2.20.6.csv ###
-2653 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.26.csv
- 529 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
- 530 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.26.csv)
- 532 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.26.csv ###
-1905 tabsC on_key_press       END <Q       > <     113> <Q               > < 3> <MOD_SHIFT|MOD_CTRL>
-2781 tabsC main               pyglet.app.run(): ret=None
-2782 tabsC main               Close & Copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log
- 529 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 530 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.26.log)
- 532 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.26.log ###
- 521 util  getFilePath        baseName =Test/test.1.2.2.20.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 524 util  getFilePath        fileName =Test/test.1.2.2.20.6.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/Test/test.1.2.2.20.6.log)
-2785 tabsC main               Close & Copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\Test\test.1.2.2.20.6.log
- 529 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
- 530 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/Test/test.1.2.2.20.6.log)
- 532 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\Test\test.1.2.2.20.6.log ###
+2649 tabsC cleanupCsvFile     closing C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv
+ 530 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+ 530 util  getFilePath        baseName =Test/test.1.2.2.20.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =Test/test.1.2.2.20.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.2.2.20.6.csv)
+ 530 util  getFilePath        baseName =tabs.28      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =tabs.28.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.28.csv)
+2656 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.2.2.20.6.csv
+ 538 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+ 539 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.2.2.20.6.csv)
+ 541 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.2.2.20.6.csv ###
+2659 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.28.csv
+ 538 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+ 539 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.28.csv)
+ 541 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.28.csv ###
+1910 tabsC on_key_press       END <Q       > <     113> <Q               > < 3> <MOD_SHIFT|MOD_CTRL>
+2787 tabsC main               pyglet.app.run(): ret=None
+2788 tabsC main               Close & Copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log
+ 538 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 539 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.28.log)
+ 541 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.28.log ###
+ 530 util  getFilePath        baseName =Test/test.1.2.2.20.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 533 util  getFilePath        fileName =Test/test.1.2.2.20.6.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/Test/test.1.2.2.20.6.log)
+2791 tabsC main               Close & Copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log to C:\Users\Owner\Documents\GitHub\tabs\logs\Test\test.1.2.2.20.6.log
+ 538 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+ 539 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/Test/test.1.2.2.20.6.log)
+ 541 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\Test\test.1.2.2.20.6.log ###
