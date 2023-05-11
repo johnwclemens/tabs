@@ -448,8 +448,8 @@ disable=raw-checker-failed,
 # it should appear only once). See also the "--disable" option for examples.
 enable=c-extension-no-member
 
-[pylint.messages.control]
-disable=invalid-name
+#[pylint.messages.control]
+#disable=invalid-name
 
 
 [METHOD_ARGS]
