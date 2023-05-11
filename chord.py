@@ -63,7 +63,7 @@ class Chord(object):
             return self.limap[imi]
         return imap # [ ikeys, ivals, notes, name, chunks, rank ]
     ####################################################################################################################################################################################################
-    def _getIndices(self, data, nic, p, l, c, dbg=0, dbg2=0):
+    def _getIndices(self, data, nic, p, l, c, dbg=1, dbg2=0):
         strNumbs   = self.sobj.stringNumbs
         strKeys    = self.sobj.stringKeys
         strNames   = self.sobj.stringNames
@@ -102,15 +102,15 @@ class Chord(object):
         j = 0   ;   dt = type(data)  ;  slog(f'{why:26} [ ', e=Z)
         if dt is list or dt is str:
             for i in range(len(mask)):
-                if   mask[i] and j < len(data): slog('{:{}{}} '.format(data[j], u, w), p=0, e=Z)  ;  j += 1
-                elif mask[i]:                   slog('{:{}{}} '.format(W,       u, w), p=0, e=Z)
-                else:                           slog('{:{}{}} '.format('~',     u, w), p=0, e=Z)
+                if   mask[i] and j < len(data): slog(f'{data[j]:{u}{w}} ', p=0, e=Z)  ;  j += 1
+                elif mask[i]:                   slog(f'{W:{u}{w}} ',       p=0, e=Z)
+                else:          _ = '~'    ;     slog(f'{_:{u}{w}} ',       p=0, e=Z)
         elif dt is cOd:
             w2 = 2  ;   i = 0
             for k,v in data.items():
-                while not mask[i]: slog('{:{}{}} '.format('-', u, w),    p=0, e=Z)  ;  i += 1
-                slog('{:>{}}{}{:<{}} '.       format(k, w2, ':', v, w2), p=0, e=Z)  ;  i += 1
-            while i < len(mask):   slog('{:{}{}} '.format('-', u, w),    p=0, e=Z)  ;  i += 1
+                while not mask[i]: _ = '-'   ;   slog(f'{_:{u}{w}} ', p=0, e=Z)  ;  i += 1
+                slog(f'{k:>{w2}}:{v:<{w2}} ',                         p=0, e=Z)  ;  i += 1
+            while i < len(mask):   _ = '-'   ;   slog(f'{_:{u}{w}} ', p=0, e=Z)  ;  i += 1
         else: slog(f'type={dt} ', p=0, e=Z)
         slog(']',                 p=0)
     ####################################################################################################################################################################################################
@@ -223,9 +223,9 @@ class Chord(object):
     def _dumpOMAP(self, catfile=None, dbg=0): # optimize str concat?
         file = catfile      if catfile else util.LOG_FILE
         name = catfile.name if catfile else None
-        omap = self.OMAP
+        omap = self.OMAP    ;    lm = len(self.OMAP)
         mapSet = {}   ;   r = {}   ;   rank = -1
-        slog('BGN len(OMAP)={} catfile.name={}'.format(len(omap), name))
+        slog(f'BGN {lm=} catfile.{name=}')
         for k, v in omap.items():
             kv = len(v[1])
             if kv not in mapSet: mapSet[kv] = set()
@@ -269,7 +269,7 @@ class Chord(object):
             for j in range(len(mstat)):
                 slog(f'{mstat[j][0]:2} note chords  {mstat[j][1]:3} valid  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
                 tstat[0] += mstat[j][0]   ;   tstat[1] += mstat[j][1]   ;   tstat[2] += mstat[j][2]   ;   tstat[3] += mstat[j][3]
-        if catfile: slog('END len(OMAP)={} catfile.name={} len(r)={}'.format(len(omap), name, len(r)))
+        if catfile: lm, lr = len(omap), len(r)   ;   slog(f'END {lm=} catfile.{name=} {lr=}')
         else: slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}')
 #        if q: self.quit(msg, code=2)
         return r

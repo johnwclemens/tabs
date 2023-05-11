@@ -1220,10 +1220,10 @@ class Tabs(pyglet.window.Window):
         return W.join(h), W.join(s)
 
     def dbgTabTxt(self, j, i):
-        d = '\n' if j == C else Z   ;   k = f'{i+1:03}' if j==C else f'{i+1}'        ;       k = d.join(k)
-        if   self.DBG_TABT == 1:   a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'    ;    return d.join(b*a)
-        elif self.DBG_TABT == 2:   a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS[j][k]  for k in range(a) ])   ;   return f'{e}{d}{i+1}'
-        elif self.DBG_TABT == 3:   a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS2[j][k] for k in range(a) ])   ;   return f'{e}{d}{k}'
+        d = '\n' if j == C else Z   ;   k = f'{i+1:03}' if j==C else f'{i+1}'      ;       k = d.join(k)
+        if self.DBG_TABT == 1:   a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'    ;    return d.join(b*a)
+        if self.DBG_TABT == 2:   a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS[j][k]  for k in range(a) ])   ;   return f'{e}{d}{i+1}'
+        if self.DBG_TABT == 3:   a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS2[j][k] for k in range(a) ])   ;   return f'{e}{d}{k}'
 
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]    ;    ha = hasattr(c, 'text')
@@ -1236,7 +1236,7 @@ class Tabs(pyglet.window.Window):
     def resizeTniks(self, dbg=1):
         self.updC += 1  ;  why = f'Upd{self.updC}'
         self.dumpTniksPfx(why)   ;   view = None
-        for i, page in enumerate(self.g_resizeTniks(self.pages, P, view, why=why)): # pass
+        for _, page in enumerate(self.g_resizeTniks(self.pages, P, view, why=why)): # pass
             for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
                 for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
                     for colm in  self.g_resizeTniks(self.colms, C, sect, why=why): # pass
@@ -1335,12 +1335,12 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def fTnikHdr(self, spr=0):
         tid  = ' TId  Identity  ' if self.OIDS else ' Tid'  ;  wnc = ' Why  Name  Cnt'  ;  rtsgv = ' Rotated G V' if spr else '  Text   G V'
-        xywh = W.join(self.tixwHdr[2:6])                    ;  rgb = ' Red Grn Blu Opc'                if self.LONG_TXT else Z
+        xywh = W.join(self.tixwHdr[2:6])                    ;  rgb = ' Red Grn Blu Opc'                   if self.LONG_TXT else Z
         sfx  = (' Iax  Iay      Grp        pGrp' if spr else ' cntw cnth v a x y fnSz dpi B I Font Name') if self.LONG_TXT else Z
         rgbM = (' M     Mx    My  ' if spr else rgb) if self.LONG_TXT else Z
         return f'{tid} {wnc} {rtsgv} {self.fjtxt()} {xywh} {rgb} {rgbM} {sfx}'
     @staticmethod
-    def xywhHdr(d): return d.join([ t.format('^7') for t in ('X', 'Y', 'W', 'H') ])
+    def xywhHdr(d): return d.join([ f'{t:^7}' for t in ('X', 'Y', 'W', 'H') ])
     @staticmethod
     def fjtxt():    return W.join(f'{jtxt[0]:>{JFMT[i]}}' for i, jtxt in enumerate(JTEXTS)) + ' Vis' # optimize str concat?
     def clearVisib(self):               consume(v.clear() for v in self.visib)
@@ -1354,7 +1354,7 @@ class Tabs(pyglet.window.Window):
         elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  msg2 = self.frot(t)   ;  msg5 = f' {self.fSpr(t)}' if self.LONG_TXT else Z
         msg1 = self.foid(t, j, why)   ;   msg3 = f'{self.ftvis(t)}'   ;   msg4 = f' {fc}{bc}' if self.LONG_TXT else Z
         self.log(f'{msg1} {msg2} {g} {msg3} {self.fmtJ2()} {xywh}{msg4}{msg5}', p=0)
-        ####################################################################################################################################################################################################
+    ####################################################################################################################################################################################################
     def idmapkey(self, j):  return f'{JTEXTS[j]}{self.J2[j]}'
     def dumpIdmKeys(self):  self.log(fmtl(list(self.idmap.keys()), ll=1))
     def fLbl(self, t, d=W): return f'{self.fCtnt(t)}{d}{self.fAxy()}{d}{self.fFntSz(t)}{d}{self.ffont(t)}'
@@ -1746,7 +1746,7 @@ class Tabs(pyglet.window.Window):
         msg1  = f'plc={self.fplc(p, l, c)}'   ;    msg2 = f'dl={self.fmtdl()} {cn=} {key=} keys={fmtl(list(mli.keys()))}'
         if dbg:        self.log(f'{msg1} {msg2}', f=0)
         if p >= dl[0] or l >= dl[1] or c >= dl[2]:  msg = f'ERROR Indexing {msg1} >= {msg2}'  ;  self.log(msg)  ;  self.quit(msg)
-        imap  = self.cobj.getChordName(self.data, None, cn, p, l, c)
+        imap  = self.cobj.getChordName(self.data, None, cn, p, l, c, dbg=1)
         if dbg2 and imap: self.cobj.dumpImap(imap, f=1)
         return imap
     ####################################################################################################################################################################################################
@@ -2718,7 +2718,7 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
     return list(RGB.keys())
 ########################################################################################################################################################################################################
 # Global Functions END
-
+#--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabsC.py util.py chord.py
 # Globals BGN
 ########################################################################################################################################################################################################
 PATH      = pathlib.Path.cwd() / sys.argv[0]
