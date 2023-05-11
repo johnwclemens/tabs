@@ -13,13 +13,13 @@ from   util import Notes as Notes
 W, Y, Z        = ' ', ',', ''
 FMTN           = (1, 1, 2, 2, 2, 2, 2)
 
-class Chord(object):
+class Chord:
     MIN_CHORD_LEN = 3
     def __init__(self, sobj):
         self.sobj = sobj
         self.limap, self.mlimap, self.umap, self.cycles = [], {}, {}, {}
         self.catmap, self.catmap2 = {}, {}
-        self.cat1, self.cat2, self.cat3 = set(), set(), dict()
+        self.cat1, self.cat2, self.cat3 = set(), set(), {}
     ####################################################################################################################################################################################################
     def getChordName(self, data, nic, cn, p, l, c, kk=1, dbg=0):
         self.limap = []   ;   imap = []
@@ -175,7 +175,8 @@ class Chord(object):
 #           else:                 r.append(NTONES - a[i] + r[i-1])
         return r
     @staticmethod
-    def fsort(ivals): s = set([ i for i in ivals ])   ;   return sorted(list(s))
+    def fsort(ivals): s = { i for i in ivals }   ;   return sorted(list(s))
+#    def fsort(ivals): s = set([ i for i in ivals ])   ;   return sorted(list(s))
     ####################################################################################################################################################################################################
     @staticmethod
     def key2Indices(k): # N/A?

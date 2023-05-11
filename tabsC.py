@@ -378,7 +378,7 @@ class Tabs(pyglet.window.Window):
             if l >= len(data[p]):        msg = f'ERROR BAD l index {p=} {l=} {c=} {len(data[p])=}'     ;  self.log(msg)  ;  self.quit(msg)
             if c >= len(data[p][l]):     msg = f'ERROR BAD c index {p=} {l=} {c=} {len(data[p][l])=}'  ;  self.log(msg)  ;  self.quit(msg)
             return data, data[p], data[p][l], data[p][l][c]
-        else: return []
+        return []
     ####################################################################################################################################################################################################
     def fplc(  self, p=None, l=None,         c=None):         j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  c = j[C] if c is None else c  ;                                                                    return f'[{p+1} {l+1}   {c+1:2}]'
     def fplct( self, p=None, l=None,         c=None, t=None): j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  c = j[C] if c is None else c  ;  t = j[T] if t is None else t  ;                                   return f'[{p+1} {l+1}   {c+1:2} {t+1}]'
@@ -476,7 +476,9 @@ class Tabs(pyglet.window.Window):
     def fntp(  self, dbg=0, dbg2=0):   return fmtl(self.ntp(dbg=dbg, dbg2=dbg2), w=FNTP)
     ####################################################################################################################################################################################################
     @staticmethod
-    def accProd(n):              return list(accumulate(n, operator.mul))
+    def isi(o, t):  return isinstance(o, t)
+    @staticmethod
+    def accProd(n): return list(accumulate(n, operator.mul))
     ####################################################################################################################################################################################################
     def dumpStruct(self, why=Z, csv=0, dbg=1, dbg2=0):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
@@ -974,8 +976,8 @@ class Tabs(pyglet.window.Window):
         return x, s, x2, w2
     ####################################################################################################################################################################################################
     def splitV(self, p, a, dbg=0):
-        if   type(p) is LBL: p.y, p.height, g     = self.splitV1(p.y, p.height, a)                  ;  self.log(f'{p.y=:6.2f} {p.height=:6.2f} {a=} {g=:6.2f}', f=0)  if dbg else None  ;   return p
-        elif type(p) is SPR: p.y, h, g, p.scale_y = self.splitV2(p.y, p.height, a, p.image.height)  ;  self.log(f'{p.y=:6.2f} {p.scale_y=:6.4f} {a=} {h=:6.2f}', f=0) if dbg else None  ;   return p
+        if type(p) is LBL: p.y, p.height, g     = self.splitV1(p.y, p.height, a)                  ;  self.log(f'{p.y=:6.2f} {p.height=:6.2f} {a=} {g=:6.2f}', f=0)  if dbg else None  ;   return p
+        if type(p) is SPR: p.y, h, g, p.scale_y = self.splitV2(p.y, p.height, a, p.image.height)  ;  self.log(f'{p.y=:6.2f} {p.scale_y=:6.4f} {a=} {h=:6.2f}', f=0) if dbg else None  ;   return p
 
     def splitV1(self, y, h, a, dbg=1):
         self.log(f'{y=:6.2f} {h=:6.2f} {a=}', e=W, f=0) if dbg else None
@@ -1020,17 +1022,17 @@ class Tabs(pyglet.window.Window):
             else:   msg = f'{msg2} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # f'{self.fmtJText(j, why=why)}'
             if dbg: msg =        f'{msg1}'   ;    self.log(msg, f=0) # self.fmtJText(j, why=why)
             return  tlist, j
-        elif 0 <= t < self.n[T]:
+        if 0 <= t < self.n[T]:
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[B], self.k[A], self.k[D]
             tab = self.data[p][l][c][t]  # if C1 != z1 != C2 and C2 != z2 else Z
             if   s == TT:  tlist, j, k, txt = (self.snums, B, kO, self.sobj.stringNumbs[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.tabls, T, kT, tab)
             elif s == NN:  tlist, j, k, txt = (self.snams, A, kA, self.sobj.stringNames[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.notes, N, kN, tab)
             elif s == II:  tlist, j, k, txt = (self.snums, B, kO, self.sobj.stringNumbs[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.ikeys, I, kI, tab)
             elif s == KK:  tlist, j, k, txt = (self.snams, A, kA, self.sobj.stringNames[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.kords, K, kK, tab)
-            else:   msg = f'{msg2} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # self.fmtJText(j, t, why)
-            if dbg: msg =        f'{msg1}'   ;    self.log(msg, f=0) # self.fmtJText(j, t, why)
+            else:   msg = f'{msg2} {msg1}'  ;   self.log(msg)   ;   self.quit(msg) # self.fmtJText(j, t, why)
+            if dbg: msg =        f'{msg1}'  ;   self.log(msg, f=0) # self.fmtJText(j, t, why)
             return  tlist, j, k, txt
-        else:       msg = f'{msg3} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # self.fmtJText(j, t, why)
+        msg = f'{msg3} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # self.fmtJText(j, t, why)
     ####################################################################################################################################################################################################
     def geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'
@@ -1220,10 +1222,11 @@ class Tabs(pyglet.window.Window):
         return W.join(h), W.join(s)
 
     def dbgTabTxt(self, j, i):
-        d = '\n' if j == C else Z   ;   k = f'{i+1:03}' if j==C else f'{i+1}'      ;       k = d.join(k)
-        if self.DBG_TABT == 1:   a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'    ;    return d.join(b*a)
-        if self.DBG_TABT == 2:   a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS[j][k]  for k in range(a) ])   ;   return f'{e}{d}{i+1}'
-        if self.DBG_TABT == 3:   a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS2[j][k] for k in range(a) ])   ;   return f'{e}{d}{k}'
+        dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1:03}' if j==C else f'{i+1}'  ;      k = d.join(k)
+        if dt==1:  a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'                                 ;   return d.join(b*a)
+        if dt==2:  a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS[j][k]  for k in range(a) ])   ;   return f'{e}{d}{i+1}'
+        if dt==3:  a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS2[j][k] for k in range(a) ])   ;   return f'{e}{d}{k}'
+        return d.join('?'*3)
 
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]    ;    ha = hasattr(c, 'text')
@@ -1339,19 +1342,19 @@ class Tabs(pyglet.window.Window):
         sfx  = (' Iax  Iay      Grp        pGrp' if spr else ' cntw cnth v a x y fnSz dpi B I Font Name') if self.LONG_TXT else Z
         rgbM = (' M     Mx    My  ' if spr else rgb) if self.LONG_TXT else Z
         return f'{tid} {wnc} {rtsgv} {self.fjtxt()} {xywh} {rgb} {rgbM} {sfx}'
-    @staticmethod
-    def xywhHdr(d): return d.join([ f'{t:^7}' for t in ('X', 'Y', 'W', 'H') ])
+#    @staticmethod
+#    def xywhHdr(d): return d.join([ f'{t:^7}' for t in ('X', 'Y', 'W', 'H') ])
     @staticmethod
     def fjtxt():    return W.join(f'{jtxt[0]:>{JFMT[i]}}' for i, jtxt in enumerate(JTEXTS)) + ' Vis' # optimize str concat?
     def clearVisib(self):               consume(v.clear() for v in self.visib)
 
     def dumpTnik(self, t=None, j=None, why=Z):
         if   t is None: self.log(self.fTnikHdr(), p=0)   ;   return # hack
-        elif j is None:                                 msg = f'{why} ERROR BAD j {j=}'             ;  self.log(msg)  ;  self.quit(msg)
+        if   j is None:                                 msg = f'{why} ERROR BAD j {j=}'             ;  self.log(msg)  ;  self.quit(msg)
         elif type(t) is not LBL and type(t) is not SPR: msg = f'{why} ERROR Bad t type {type(t)=}'  ;  self.log(msg)  ;  self.quit(msg)
         xywh = self.ftxywh(t)   ;   g = self.gn[j]   ;   fc, bc = Z, Z    ;   msg2, msg5 = Z, Z
-        if   type(t) is LBL: fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)   ;  msg2 = self.ffTxt(t)  ;  msg5 = f' {self.fLbl(t)}' if self.LONG_TXT else Z
-        elif type(t) is SPR: fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  msg2 = self.frot(t)   ;  msg5 = f' {self.fSpr(t)}' if self.LONG_TXT else Z
+        if   self.isi(t, LBL): fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)   ;  msg2 = self.ffTxt(t)  ;  msg5 = f' {self.fLbl(t)}' if self.LONG_TXT else Z
+        elif self.isi(t, SPR): fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  msg2 = self.frot(t)   ;  msg5 = f' {self.fSpr(t)}' if self.LONG_TXT else Z
         msg1 = self.foid(t, j, why)   ;   msg3 = f'{self.ftvis(t)}'   ;   msg4 = f' {fc}{bc}' if self.LONG_TXT else Z
         self.log(f'{msg1} {msg2} {g} {msg3} {self.fmtJ2()} {xywh}{msg4}{msg5}', p=0)
     ####################################################################################################################################################################################################
@@ -2178,8 +2181,8 @@ class Tabs(pyglet.window.Window):
         if type(tnik) is LBL:   self.setTC(tnik, color[fgs], color[bgs])
     @staticmethod
     def setTC(t, fgc, bgc=None):
-        cm = dict()  ;  cm[COLOR]            = fgc
-        if bgc:         cm[BGC] = bgc
+        cm = {COLOR:fgc}
+        if bgc:             cm[BGC] = bgc
         d = t.document  ;  d.set_style(0, len(d.text), cm)
     ####################################################################################################################################################################################################
     def selectTabs(self, how, m=0, cn=None, dbg=1, dbg2=1):
