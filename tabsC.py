@@ -2425,7 +2425,6 @@ class Tabs(pyglet.window.Window):
                 if cn in hits: break
                 for iv in ivals:
                     iv1 = sorted(iv)      ;   iv2 = sorted(im[1])
-#                    iv1 = self.cobj.fsort(iv)      ;   iv2 = self.cobj.fsort(im[1])
                     if iv1 == iv2:   hits.add(cn)  ;   break
         if dbg: self.log(f'    {how} mks={fmtl(mks)} hits={fmtl(hits)}')
         return list(hits)

@@ -25,11 +25,11 @@ class Chord:
         self.limap = []   ;   imap = []
         ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1
         mask, notes, ixs = self._getIndices(data, nic, p, l, c)   ;   _imap, vkeys = None, []
-        for k in range(len(ixs)):
+        for k, ixk in enumerate(ixs):
             ivals = []   ;   chunks = []   ;   rank = -1
-            for j in range(len(ixs)):
-                if ixs[j] >= ixs[k]: i =                 (ixs[j] - ixs[k])  % Notes.NTONES
-                else:                i = (Notes.NTONES - (ixs[k] - ixs[j])) % Notes.NTONES
+            for ixj in ixs:
+                if ixj >= ixk:       i =                 (ixj - ixk)  % Notes.NTONES
+                else:                i = (Notes.NTONES - (ixk - ixj)) % Notes.NTONES
                 ivals.append(i)
             vkey = Z.join([ f'{v:x}' for v in ivals ])
             if vkey not in vkeys:
@@ -38,7 +38,6 @@ class Chord:
                 _imap  = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: Notes.V2I[t[0]]))
                 _ikeys = list(_imap.keys())   ;   _ivals = [ Notes.V2I[k] for k in _ikeys ]   ;   _notes = list(_imap.values())
                 ikey   = W.join(_ikeys)
-#                ikey   = W.join([ k for k in _ikeys ])
                 if ikey in self.OMAP:
                     root = _imap['R']
                     chunks.append(root)
@@ -69,7 +68,6 @@ class Chord:
         strKeys    = self.sobj.stringKeys
         strNames   = self.sobj.stringNames
         _tabs      = data[p][l][c]
-#        strIndices = [ Notes.INDICES[k] for k in strKeys ]
         strIndices = [ Notes.index(k, 1) for k in strKeys ]
         mask, indices, notes = [], [], []  ;  nt = len(_tabs)
         for t in range(nt-1, -1, -1):
@@ -105,10 +103,7 @@ class Chord:
             for m in mask:
                 if   m and j < len(data): slog(f'{data[j]:{u}{w}} ', p=0, e=Z)  ;  j += 1
                 elif m:                   slog(f'{W:{u}{w}} ',       p=0, e=Z)
-#            for i in range(len(mask)):
-#                if   mask[i] and j < len(data): slog(f'{data[j]:{u}{w}} ', p=0, e=Z)  ;  j += 1
-#                elif mask[i]:                   slog(f'{W:{u}{w}} ',       p=0, e=Z)
-                else:          _ = '~'    ;     slog(f'{_:{u}{w}} ',       p=0, e=Z)
+                else:         _ = '~'  ;  slog(f'{_:{u}{w}} ',       p=0, e=Z)
         elif dt is cOd:
             w2 = 2  ;   i = 0
             for k,v in data.items():
@@ -178,11 +173,8 @@ class Chord:
 #           if    i + 1 < len(a): r.append(a[i+1] - a[i] + r[i-1])
 #           else:                 r.append(NTONES - a[i] + r[i-1])
         return r
-    @staticmethod
-    def fsort(ivals): s = set(ivals)   ;   return sorted(s)
-#    def fsort(ivals): s = set(ivals)   ;   return sorted(list(s))
-#    def fsort(ivals): s = { i for i in ivals }   ;   return sorted(list(s))
-#    def fsort(ivals): s = set([ i for i in ivals ])   ;   return sorted(list(s))
+#    @staticmethod
+#    def fsort(ivals): s = set(ivals)   ;   return sorted(s)
     ####################################################################################################################################################################################################
     @staticmethod
     def key2Indices(k): # N/A?
@@ -273,9 +265,6 @@ class Chord:
                 for c in tuple(sorted(w)):
                     keys = [ Notes.I2V[j] for j in c ]   ;   key = W.join(keys)   ;   v = omap[key]
                     slog(f'{kk:2} note cycle {v[0]:2} {fmtl(c, w="x"):13} {key:16} {Z.join(v[2]):12} {v[2]}')
-#            for j in range(len(mstat)):
-#                slog(f'{mstat[j][0]:2} note chords  {mstat[j][1]:3} valid  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
-#                tstat[0] += mstat[j][0]   ;   tstat[1] += mstat[j][1]   ;   tstat[2] += mstat[j][2]   ;   tstat[3] += mstat[j][3]
             for m in mstat:
                 slog(f'{m[0]:2} note chords  {m[1]:3} valid  {m[2]:3} unordered  {m[3]:3} unnamed')
                 tstat[0] += m[0]   ;   tstat[1] += m[1]   ;   tstat[2] += m[2]   ;   tstat[3] += m[3]
@@ -904,7 +893,6 @@ class Chord:
             if tmp not in self.catmap: self.catmap[tmp] = [i[0], i[1]]
             keys.append(tmp)   ;   ivals.append(i[0])
         for k in keys:                 self.catmap2[k] = [ sorted(keys), sorted(ivals, key=lambda b: [Notes.V2I[c] for c in b]) ]
-#        outer = sorted(outer, key=lambda a: [z for z in a])
         outer = sorted(outer, key=lambda a: list(a))
         self.cat1.add(tuple(outer))
 #        slog(f'{why}', end=Z)
