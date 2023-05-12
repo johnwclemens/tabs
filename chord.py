@@ -37,7 +37,8 @@ class Chord:
                 if dbg: self._dumpData(rank, ikeys, ivals, notes, mask, 0)
                 _imap  = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: Notes.V2I[t[0]]))
                 _ikeys = list(_imap.keys())   ;   _ivals = [ Notes.V2I[k] for k in _ikeys ]   ;   _notes = list(_imap.values())
-                ikey   = W.join([ k for k in _ikeys ])
+                ikey   = W.join(_ikeys)
+#                ikey   = W.join([ k for k in _ikeys ])
                 if ikey in self.OMAP:
                     root = _imap['R']
                     chunks.append(root)
@@ -101,9 +102,12 @@ class Chord:
         if r:     data = data[::-1]  ;  mask = mask[::-1]
         j = 0   ;   dt = type(data)  ;  slog(f'{why:26} [ ', e=Z)
         if dt is list or dt is str:
-            for i in range(len(mask)):
-                if   mask[i] and j < len(data): slog(f'{data[j]:{u}{w}} ', p=0, e=Z)  ;  j += 1
-                elif mask[i]:                   slog(f'{W:{u}{w}} ',       p=0, e=Z)
+            for m in mask:
+                if   m and j < len(data): slog(f'{data[j]:{u}{w}} ', p=0, e=Z)  ;  j += 1
+                elif m:                   slog(f'{W:{u}{w}} ',       p=0, e=Z)
+#            for i in range(len(mask)):
+#                if   mask[i] and j < len(data): slog(f'{data[j]:{u}{w}} ', p=0, e=Z)  ;  j += 1
+#                elif mask[i]:                   slog(f'{W:{u}{w}} ',       p=0, e=Z)
                 else:          _ = '~'    ;     slog(f'{_:{u}{w}} ',       p=0, e=Z)
         elif dt is cOd:
             w2 = 2  ;   i = 0
@@ -175,7 +179,9 @@ class Chord:
 #           else:                 r.append(NTONES - a[i] + r[i-1])
         return r
     @staticmethod
-    def fsort(ivals): s = { i for i in ivals }   ;   return sorted(list(s))
+    def fsort(ivals): s = set(ivals)   ;   return sorted(s)
+#    def fsort(ivals): s = set(ivals)   ;   return sorted(list(s))
+#    def fsort(ivals): s = { i for i in ivals }   ;   return sorted(list(s))
 #    def fsort(ivals): s = set([ i for i in ivals ])   ;   return sorted(list(s))
     ####################################################################################################################################################################################################
     @staticmethod
@@ -209,14 +215,14 @@ class Chord:
         if merge and self.umap: self.mergeMaps(self.umap, self.OMAP)
         r = self._dumpOMAP()
         if catpath:
-            with open(str(catpath), 'w') as CAT_FILE:
+            with open(str(catpath), 'w', encoding='utf-8') as CAT_FILE:
                 self._dumpOMAP(CAT_FILE)
         if r:
             for (k,v) in r.items():
                 self.OMAP[k] = v
             self._dumpOMAP()
             if catpath:
-                with open(str(catpath), 'w') as CAT_FILE:
+                with open(str(catpath), 'w', encoding='utf-8') as CAT_FILE:
                     self._dumpOMAP(CAT_FILE)
         if self.umap: self.dumpUmap()
         slog(f'END {len(self.OMAP)=} {len(self.umap)=}')
@@ -243,7 +249,7 @@ class Chord:
                 v = omap[keyStr]
                 rankSet = set()  ;  rankSet.add(v[0])
                 if not catfile: count += 1  ;  none += 1 if not v[2] else 0  ;  nord += 1 if v[0] == rank else 0
-                v2 = fmtl(v[2], s='\',\'', d='[\'', d2='\']),') if v[2] else '[]),' if type(v[2]) is list else 'None),'
+                v2 = fmtl(v[2], s='\',\'', d='[\'', d2='\']),') if v[2] else '[]),' if util.isi(v[2], list) else 'None),'
                 if dbg: slog(f'{keyStrFmt:19}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):15} {v2:28} # ', p=0, f=file, e=Z)
                 cycSet =  set()   ;   cycSet.add(tuple(ii))
                 for _ in range(len(ii) - 1):
@@ -257,7 +263,7 @@ class Chord:
                     cycSet.add(jj)    ;     d = '@' if cycle else '['    ;    d2 = '@' if cycle else ']'
                     if keyStr not in omap:        slog('Not in map: ', p=0, e=Z, f=file)     ;    r[keyStr] = (rank, ii, None)
                     if dbg: slog(f'{keyStr:16} {fmtl(ii, w="x", d=d, d2=d2):13} ', p=0, e=Z, f=file)
-                refSet = { _ for _ in range(len(ii)) }
+                refSet = set(range(len(ii)))
                 if dbg:
                     if    rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet: slog(p=0, f=file)
                     else: slog(f'\n{msg} {fmtl(refSet, d="<", d2=">")} {fmtl(rankSet, d="<", d2=">")} {fmtl(sorted(cycSet))}', p=0, f=file)  # ;  q = 1
@@ -267,9 +273,12 @@ class Chord:
                 for c in tuple(sorted(w)):
                     keys = [ Notes.I2V[j] for j in c ]   ;   key = W.join(keys)   ;   v = omap[key]
                     slog(f'{kk:2} note cycle {v[0]:2} {fmtl(c, w="x"):13} {key:16} {Z.join(v[2]):12} {v[2]}')
-            for j in range(len(mstat)):
-                slog(f'{mstat[j][0]:2} note chords  {mstat[j][1]:3} valid  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
-                tstat[0] += mstat[j][0]   ;   tstat[1] += mstat[j][1]   ;   tstat[2] += mstat[j][2]   ;   tstat[3] += mstat[j][3]
+#            for j in range(len(mstat)):
+#                slog(f'{mstat[j][0]:2} note chords  {mstat[j][1]:3} valid  {mstat[j][2]:3} unordered  {mstat[j][3]:3} unnamed')
+#                tstat[0] += mstat[j][0]   ;   tstat[1] += mstat[j][1]   ;   tstat[2] += mstat[j][2]   ;   tstat[3] += mstat[j][3]
+            for m in mstat:
+                slog(f'{m[0]:2} note chords  {m[1]:3} valid  {m[2]:3} unordered  {m[3]:3} unnamed')
+                tstat[0] += m[0]   ;   tstat[1] += m[1]   ;   tstat[2] += m[2]   ;   tstat[3] += m[3]
         if catfile: lm, lr = len(omap), len(r)   ;   slog(f'END {lm=} catfile.{name=} {lr=}')
         else: slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}')
 #        if q: self.quit(msg, code=2)
@@ -895,7 +904,8 @@ class Chord:
             if tmp not in self.catmap: self.catmap[tmp] = [i[0], i[1]]
             keys.append(tmp)   ;   ivals.append(i[0])
         for k in keys:                 self.catmap2[k] = [ sorted(keys), sorted(ivals, key=lambda b: [Notes.V2I[c] for c in b]) ]
-        outer = sorted(outer, key=lambda a: [z for z in a])
+#        outer = sorted(outer, key=lambda a: [z for z in a])
+        outer = sorted(outer, key=lambda a: list(a))
         self.cat1.add(tuple(outer))
 #        slog(f'{why}', end=Z)
 #        for o in outer:

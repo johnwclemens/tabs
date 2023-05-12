@@ -514,7 +514,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def saveDataFile(self, why, path, dbg=1):
         if dbg:   self.log(f'{why} {path}')
-        with open(path, 'w') as DATA_FILE:
+        with open(path, 'w', encoding='utf-8') as DATA_FILE:
             self.log(f'{DATA_FILE.name:40}', p=0)
             data = self.transposeData(dump=1 if dbg else 0) if self.isVert() else self.data
             self.log(f'{self.fmtn()} {self.fmtdl(data)}')
@@ -550,7 +550,7 @@ class Tabs(pyglet.window.Window):
         stat = path.stat()  ;   size = stat.st_size
         if size == 0:           self.log(f'WARN Zero Len Data File  {path} -> Generate Data File')   ;   size = self.genDataFile(path)
         if size == 0:            msg =  f'ERROR Zero Len Data File {size=}'    ;   self.log(msg)     ;   self.quit(msg)
-        with open(path, 'r') as DATA_FILE:
+        with open(path, 'r', encoding='utf-8') as DATA_FILE:
             DATA_FILE.seek(0, 2)      ;     size = DATA_FILE.tell()   ;   DATA_FILE.seek(0, 0)
             self.log(f'{DATA_FILE.name:40} {size:3,} bytes = {size/1024:3,.1f} KB')
             self.log('Raw Data File BGN:')
@@ -693,7 +693,7 @@ class Tabs(pyglet.window.Window):
         for j in range(len(t)):
             self.log(f'{t[j][0]:^3}', p=0, e=W)
         self.log(p=0)
-        for k in range(len(t)//10):
+        for _ in range(len(t)//10):
             for i in range(9): self.log(f'{W:^3}', p=0, e=W)
             self.log(f' {d} ', p=0, e=W)
         self.log(p=0)
@@ -2424,7 +2424,8 @@ class Tabs(pyglet.window.Window):
             for im in lim[0]:
                 if cn in hits: break
                 for iv in ivals:
-                    iv1 = self.cobj.fsort(iv)      ;   iv2 = self.cobj.fsort(im[1])
+                    iv1 = sorted(iv)      ;   iv2 = sorted(im[1])
+#                    iv1 = self.cobj.fsort(iv)      ;   iv2 = self.cobj.fsort(im[1])
                     if iv1 == iv2:   hits.add(cn)  ;   break
         if dbg: self.log(f'    {how} mks={fmtl(mks)} hits={fmtl(hits)}')
         return list(hits)

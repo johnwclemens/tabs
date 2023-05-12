@@ -74,7 +74,7 @@ def dumpTestB(csv=0):
     w, d, m, n, ff = (0, Z, Y, Y, 3) if csv else (2, '[', W, Z, 1)   ;   p = 0
     x = f'{w}x'  ;  u = f'>{w}'  ;  y = f'<{w}x'  ;  z = f'<{w}'  ;  q = f'>{w}x'
     slog('BGN')  ;  w = 0 if csv else '^5'
-    slog(f'   {m}{ fmtl([ r for r in range(21) ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'   {m}{ fmtl(list(range(21)), w=w, d=d, s=m)}', p=p, f=ff)
     slog(f'F2S{m}{ fmtm(Notes.F2S, w=w,       d=d, s=m)}', p=p, f=ff)   ;   w = 0 if csv else 2
     slog(f'F4S{m}{ fmtm(Notes.F4S, w=u, wv=z, d=d, s=m)}', p=p, f=ff)
     slog(f'S2F{m}{ fmtm(Notes.S2F, w=w,       d=d, s=m)}', p=p, f=ff)
@@ -97,8 +97,10 @@ def dumpTestB(csv=0):
 def dumpNF(csv=0):
     w, d, m, n, f = (Z, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
     slog('Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   p, q = -8, 88+1   ;   g, h = 1, nm+1
-    slog(f'Piano{n}{fmtl([ i for i in range(p, q) ], w=w, d=d, s=m)}', p=0, f=f)
-    slog(f'Index{n}{fmtl([ i for i in range(g, h) ], w=w, d=d, s=m)}', p=0, f=f)
+    slog(f'Piano{n}{fmtl(list(range(p, q)), w=w, d=d, s=m)}', p=0, f=f)
+    slog(f'Index{n}{fmtl(list(range(g, h)), w=w, d=d, s=m)}', p=0, f=f)
+#    slog(f'Piano{n}{fmtl([ i for i in range(p, q) ], w=w, d=d, s=m)}', p=0, f=f)
+#    slog(f'Index{n}{fmtl([ i for i in range(g, h) ], w=w, d=d, s=m)}', p=0, f=f)
     dumpFreqs(432, csv)    ;    dumpFreqs(440, csv)
     dumpWaves(432, csv)    ;    dumpWaves(440, csv)
     slog(f'Flats{n}{fmtl(list(FLATS),                w=w, d=d, s=m)}', p=0, f=f)
@@ -128,7 +130,9 @@ def dumpND(csv=0):
     hdrs       = ['I', 'F', 'S', 'IV', 'mM', 'dA']
     hdrs       = f'{m.join([ f"{h:{w}}" for h in hdrs ])}'
     slog(f'{hdrs}', p=0, f=f)
-    for i in range(len(ND)):   slog(f'{i:x}{m}{fmtl(ND[i], w=w, d=d, s=m)}', p=0, f=f)
+    for i, n in enumerate(ND):
+        slog(f'{i:x}{m}{fmtl(n, w=w, d=d, s=m) if isi(n, list) else n}', p=0, f=f)
+#    for i in range(len(ND)):   slog(f'{i:x}{m}{fmtl(ND[i], w=w, d=d, s=m)}', p=0, f=f)
 ########################################################################################################################################################################################################
 def dumpKSV(csv=0):
     f = 3 if csv else 1
@@ -155,7 +159,7 @@ def fmtKSK(k, csv=0):
     return n.join(_)
 
 def dumpKSH(csv=0):
-    c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0   ;   f, k, s = 'Flats', 'N', f'Shrps'
+    c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0   ;   f, k, s = 'Flats', 'N', 'Shrps'
     w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  v = W*v if v and Notes.TYPE==Notes.FLAT else Z
     hdrs = [ f'{y}{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]        ;  hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=ff)
     keys = sorted(KSD.keys())  ;  w = f'{u}{w}' ;   x = f'{w}x'
@@ -419,7 +423,7 @@ def isi(o, t):  return isinstance(o, t)
 def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str concat?
     if   lst is None:   return  'None'
     lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
-    assert type(lst) in lts, f'{type(lst)=} {lts=}'
+    assert type(lst) in lts,   f'{type(lst)=} {lts=}'
     if d == Z:    d2 = Z
     w   = w   if w else Z   ;   t = []
     zl  = '-'               if ll is not None and ll<0 else '+' if ll is not None and ll>0 else Z
@@ -453,7 +457,7 @@ def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=W, ll=Non
 ########################################################################################################################################################################################################
 def stackDepth(sfs):
     global     MAX_STACK_DEPTH, MAX_STACK_FRAME
-    for i, sf in enumerate(sfs):
+    for i, _ in enumerate(sfs):
         j = len(sfs) - (i + 1)
         if j > MAX_STACK_DEPTH: MAX_STACK_FRAME = sfs  ;  MAX_STACK_DEPTH = j
     return  len(sfs)
