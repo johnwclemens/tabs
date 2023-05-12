@@ -62,8 +62,8 @@ class Tabs(pyglet.window.Window):
         self.OIDS   = 0  ;  self.ORD_GRP  = 1  ;  self.RESIZE   = 1  ;  self.FULL_SCRN  = 0  ;  self.SUBPIX    = 1  ;  self.TEST   = 0
         self.PIDX   = 0  ;  self.STRETCH  = 0  ;  self.VARROW   = 1  ;  self.MULTI_LINE = 1  ;  self.VIEWS     = 0  ;  self.VRBY   = 0
         self.LL     = 0
-        self.SS     = set() if 0 else {0, 1, 2, 3}
-        self.ZZ     = set() if 1 else {0} #, 1}
+        self.SS     = set(range(4))  # set() if 0 else {0, 1, 2, 3}
+        self.ZZ     = set()          # set() if 1 else {0} #, 1}
         self.idmap  = cOd() if CODS else {}  ;  self.log(f'{CODS=} {type(self.idmap)=}')
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         self.n      = [1, 1, 10, 6]
@@ -518,14 +518,22 @@ class Tabs(pyglet.window.Window):
             self.log(f'{DATA_FILE.name:40}', p=0)
             data = self.transposeData(dump=1 if dbg else 0) if self.isVert() else self.data
             self.log(f'{self.fmtn()} {self.fmtdl(data)}')
-            for p in range(len(data)):
+            for p, page in enumerate(data):
                 if dbg: self.log(f'writing {p+1}{util.ordSfx(p+1)} page', p=0)
-                for l in range(len(data[p])):
+                for l, line in enumerate(page):
                     if dbg: self.log(f'writing {l+1}{util.ordSfx(l+1)} line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
-                    for r in range(len(data[p][l])):
+                    for r, row in enumerate(line):
                         text = []
-                        for c in range(len(data[p][l][r])):
-                            text.append(data[p][l][r][c])
+                        for c, col in enumerate(row):
+                            text.append(col)
+#            for p in range(len(data)):
+#                if dbg: self.log(f'writing {p+1}{util.ordSfx(p+1)} page', p=0)
+#                for l in range(len(data[p])):
+#                    if dbg: self.log(f'writing {l+1}{util.ordSfx(l+1)} line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
+#                    for r in range(len(data[p][l])):
+#                        text = []
+#                        for c in range(len(data[p][l][r])):
+#                            text.append(data[p][l][r][c])
                         text = Z.join(text)
                         if dbg: self.log(f'writing {r+1}{util.ordSfx(r+1)} string {text}', p=0)  # if dbg  else  self.log(text, p=0)
                         DATA_FILE.write(f'{text}\n')
@@ -1008,7 +1016,8 @@ class Tabs(pyglet.window.Window):
     def tnikInfo(self, p, l, s, c, t=None, z=0, why=Z, dbg=0):
         tlist, j, k, txt = None, -1, None, None   ;   z1, z2 = None, None
         if z: z1, z2 = self.z1(c), self.z2(c)
-        exp1 = z1 == C1   ;  exp2 = z1 == C2 or z2 == C2
+#        exp1 = z1 == C1   ;  exp2 = z1 == C2 or z2 == C2
+        exp1 = z1 == C1   ;  exp2 = C2 in (z1, z2)
         p, l, s, c, t = self.lens2n([p, l, s, c, t])
         msg1 = f'plsct={self.fplsct(p, l, s, c, t)} {z1=} {z2=} {exp1=} {exp2=} {txt=} {why}'
         msg2 = f'ERROR {s=} is Invalid:'
@@ -1228,11 +1237,11 @@ class Tabs(pyglet.window.Window):
         return d.join('?'*3)
 
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
-        c = tlist[i]    ;    ha = hasattr(c, 'text')
-        if   type(c) is LBL: c.x, c.y, c.width, c.height = 0, 0, 1, 0  # Zero width not allowed
-        elif type(c) is SPR: c.update(x=0, y=0, scale_x=0, scale_y=0)
+        c = tlist[i]      ;     ha = hasattr(c, 'text')
+        if   util.isi(c, LBL):  c.x, c.y, c.width, c.height = 0, 0, 1, 0  # Zero width not allowed
+        elif util.isi(c, SPR):  c.update(x=0, y=0, scale_x=0, scale_y=0)
         self.setJ(j, i)
-        if dbg: self.dumpTnik(c, j, 'Hide')
+        if dbg:         self.dumpTnik(c, j, 'Hide')
         if dbg > 1:     text = c.text if ha else Z  ;  self.log(f'{self.fmtJText(j)} {i=} {id(c):x} {text:6} {self.ftxywh(c)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0)
     ####################################################################################################################################################################################################
     def resizeTniks(self, dbg=1):
@@ -1660,13 +1669,13 @@ class Tabs(pyglet.window.Window):
 
     def _setFontParam(self, p, n, v, m, dbg=1):
         k = 3  ;  fb = 0 # if self.fontStyle == NORMAL_STYLE else 1
-        for i in range(len(p)):
-            if   m == 'clrIdx':      k = len(p[i].color)  ;  msg = f'{self.k[v][fb][:k]=}'
+        for i, pi in enumerate(p):
+            if   m == 'clrIdx':      k = len(pi.color)  ;  msg = f'{self.k[v][fb][:k]=}'
             elif m == 'fontNameIdx':                         msg = f'{FONT_NAMES[v]=}'
             else:                                            msg = f'{v=}'
             if dbg:
                 j = 1 if self.VRBY else 10
-                if not i % j:         self.log(f'{i=:4}  {n=:8}  {v=:2}  {m=:12}  {fb=}  {k=} {fmtl(p[i].color, w=3)} {fmtl(p[i].document.get_style(n), w=3)} {msg}', p=0, f=2)
+                if not i % j:         self.log(f'{i=:4}  {n=:8}  {v=:2}  {m=:12}  {fb=}  {k=} {fmtl(pi.color, w=3)} {fmtl(p[i].document.get_style(n), w=3)} {msg}', p=0, f=2)
             if   m == 'clrIdx':       self._setTNIKStyle(p[i], self.k[v], self.fontStyle)
             elif m == 'fontNameIdx':  setattr(p[i], n, FONT_NAMES[v])
             else:                     setattr(p[i], n, v)
@@ -2407,16 +2416,16 @@ class Tabs(pyglet.window.Window):
         if dbg:     self.dumpSmap(f'END {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
 
     def flipChordNameHits(self, how, cn, dbg=1): # optimize str concat?
-        mli = self.cobj.mlimap   ;   mks = list(mli.keys())
+        mli = self.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
         if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   self.log(msg)   ;   self.quit(msg)
         ivals =  [ u[1] for u in mli[cn][0] ]
         msg   =  [ fmtl(v, w="x") for v in ivals ]
         if dbg: self.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d=Z)}')
         hits = self.ivalhits(ivals, how)
-        for cn in hits:
-            if cn not in self.smap: self.selectTabs(how, m=0, cn=cn)
-            self.flipChordName(how, cn)
-        if dbg: self.log(f'END {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d=Z)}')
+        for cn2 in hits:
+            if cn2 not in self.smap: self.selectTabs(how, m=0, cn=cn2)
+            self.flipChordName(how, cn2)
+        if dbg: self.log(f'END {how} mks={fmtl(mks)} cn2={cn2:2} ivals={fmtl(msg, d=Z)}')
 
     def ivalhits(self, ivals, how, dbg=1):
         mli = self.cobj.mlimap    ;   mks = list(mli.keys())   ;   hits = set()
@@ -2473,10 +2482,13 @@ class Tabs(pyglet.window.Window):
     def dumpVisible2(self):
 #        consume(consume(self.log(f'{int(self.E[j][i].visible)}', pfx=0, end=W) for i in range(len(self.E[j]))) for j in range(len(self.E)))
 #        [ [ self.log(f'{int(self.E[j][i].visible)}', pfx=0, end=W) for i in range(len(self.E[j]))] for j in range(len(self.E)) ]
-        for j in range(len(self.E)):
-            for i in range(len(self.E[j])):
-                self.log(f'{int(self.E[j][i].visible)}', p=0, e=Z)
-            if len(self.E[j]): self.log(p=0)
+#        for j in range(len(self.E)):
+#            for i in range(len(self.E[j])):
+#                self.log(f'{int(self.E[j][i].visible)}', p=0, e=Z)
+        for j, e in enumerate(self.E):
+            for e2 in e:
+                self.log(f'{int(e2.visible)}', p=0, e=Z)
+            if len(e): self.log(p=0)
     def fVis(self): return f'{fmtl([ i + 1 if p.visible else W for i, p in enumerate(self.pages) ])}'
     ####################################################################################################################################################################################################
     def flipCursorMode(self, how, m):
@@ -2508,8 +2520,8 @@ class Tabs(pyglet.window.Window):
     def dumpCursorArrows(self, how): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;  self.log(f'{how} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
     def reverseArrow(self, dbg=1):
         if dbg: self.dumpCursorArrows('reverseArrow()')
-        if self.csrMode == MELODY or self.csrMode == ARPG: self.flipArrow('reverseArrow() MELODY or ARPG', v=0)
-        if self.csrMode == CHORD  or self.csrMode == ARPG: self.flipArrow('reverseArrow() CHORD or ARPG',  v=1)
+        if self.csrMode in (MELODY, ARPG): self.flipArrow('reverseArrow() MELODY or ARPG', v=0)
+        if self.csrMode in (CHORD, ARPG):  self.flipArrow('reverseArrow() CHORD or ARPG',  v=1)
         if dbg: self.dumpCursorArrows('reverseArrow()')
 
     def setCHVMode(self, how, c=None, h=None, v=None):
@@ -2524,14 +2536,14 @@ class Tabs(pyglet.window.Window):
         self.log(f'BGN {how} {np=} {nl=} {ns=} {nc=} {nt=}')
         self.nic.clear()
         self.dumpBlanks()
-        for i in range(len(self.tabls)):
-            self.tabls[i].text = self.tblank
-        for i in range(len(self.notes)):
-            self.notes[i].text = self.tblank
-        for i in range(len(self.ikeys)):
-            self.ikeys[i].text = self.tblank
-        for i in range(len(self.kords)):
-            self.kords[i].text = self.tblank
+        for t in enumerate(self.tabls):
+            t.text = self.tblank
+        for n in enumerate(self.notes):
+            n.text = self.tblank
+        for i in enumerate(self.ikeys):
+            i.text = self.tblank
+        for k in range(len(self.kords)):
+            k.text = self.tblank
         for p in range(np):
             for l in range(nl):
                 for c in range(nz, nc):

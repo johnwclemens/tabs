@@ -66,22 +66,22 @@ tabsC.py
  537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs._.csv)
  539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs._.csv ###
 tabsC.py
-2771 tabsC <module>           argv=[-n 1 2 20 6 -S 0 1 3 -f Test/test 2]
+2783 tabsC <module>           argv=[-n 1 2 20 6 -S 0 1 3 -f Test/test 2]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2775 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
-2775 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
-2776 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2776 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
-2669 tabsC dumpGlobals        BASE_NAME = tabs
-2670 tabsC dumpGlobals        argv      = +13[tabsC.py -n 1 2 20 6 -S 0 1 3 -f Test/test 2]
-2671 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2672 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
- 528 util  getFilePath        baseName =tabs.38      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.38.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.38.log)
- 528 util  getFilePath        baseName =tabs.38      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.38.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.38.csv)
- 528 util  getFilePath        baseName =tabs.38      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.38.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.38.cat)
+2787 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+2787 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
+2788 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+2788 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2681 tabsC dumpGlobals        BASE_NAME = tabs
+2682 tabsC dumpGlobals        argv      = +13[tabsC.py -n 1 2 20 6 -S 0 1 3 -f Test/test 2]
+2683 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2684 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+ 528 util  getFilePath        baseName =tabs.47      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.47.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.47.log)
+ 528 util  getFilePath        baseName =tabs.47      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.47.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.47.csv)
+ 528 util  getFilePath        baseName =tabs.47      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.47.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.47.cat)
  137 tabsC dumpArgs           [f]      .FILE_NAME=Test/test
  138 tabsC dumpArgs           [n]               n=[1 2 3 20 6]
  139 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
@@ -118,9 +118,9 @@ Colm   1 Clm001   V    8   84 T C C C   11   -3   14   10    0 None [255 128 192
 Tabl   1 -        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195]       None        0 0 0   Lucida Console  
 Tabl   2 -        V    8   14 T C C C   11   -3   14   10    0 None [ 52  36   2 195]       None        0 0 0   Lucida Console  
 Tabl   3 -        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195]       None        0 0 0   Lucida Console  
-Tabl   4 -        V    8   14 T C C C   11   -3   14   10    0 None [ 52  36   2 195]       None        0 0 0   Lucida Console  
-Tabl   5 4        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195]       None        0 0 0   Lucida Console  
-Tabl   6 2        V    8   14 T C C C   11   -3   14   10    0 None [ 52  36   2 195]       None        0 0 0   Lucida Console  
+Tabl   4 1        V    8   14 T C C C   11   -3   14   10    0 None [ 52  36   2 195]       None        0 0 0   Lucida Console  
+Tabl   5 3        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195]       None        0 0 0   Lucida Console  
+Tabl   6 1        V    8   14 T C C C   11   -3   14   10    0 None [ 52  36   2 195]       None        0 0 0   Lucida Console  
 Colm   2 Clm002   V    8   84 T C C C   11   -3   14   10    0 None [ 52  26  39 225]       None        0 0 0   Lucida Console  
 Tabl   1 -        V    8   14 T C C C   11   -3   14   10    0 None [ 52  36   2 195]       None        0 0 0   Lucida Console  
 Tabl   2 -        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195]       None        0 0 0   Lucida Console  
@@ -259,9 +259,9 @@ Colm   1 Clm001   V    8   84 T C C C   11   -3   14   10    0 None [ 52  26  39
 Note   1 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195]       None        0 0 0   Lucida Console  
 Note   2 -        V    8   14 T C C C   11   -3   14   10    0 None [  2  52   2 195]       None        0 0 0   Lucida Console  
 Note   3 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195]       None        0 0 0   Lucida Console  
-Note   4 -        V    8   14 T C C C   11   -3   14   10    0 None [  2  52   2 195]       None        0 0 0   Lucida Console  
-Note   5 Db       V   16   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195]       None        0 0 0   Lucida Console  
-Note   6 Gb       V   16   14 T C C C   11   -3   14   10    0 None [  2  52   2 195]       None        0 0 0   Lucida Console  
+Note   4 Eb       V   16   14 T C C C   11   -3   14   10    0 None [  2  52   2 195]       None        0 0 0   Lucida Console  
+Note   5 C        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195]       None        0 0 0   Lucida Console  
+Note   6 F        V    8   14 T C C C   11   -3   14   10    0 None [  2  52   2 195]       None        0 0 0   Lucida Console  
 Colm   2 Clm002   V    8   84 T C C C   11   -3   14   10    0 None [255 128 192 225]       None        0 0 0   Lucida Console  
 Note   1 -        V    8   14 T C C C   11   -3   14   10    0 None [  2  52   2 195]       None        0 0 0   Lucida Console  
 Note   2 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195]       None        0 0 0   Lucida Console  
@@ -397,9 +397,9 @@ Note   5 -        V    8   14 T C C C   11   -3   14   10    0 None [  2  52   2
 Note   6 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195]       None        0 0 0   Lucida Console  
 Sect   3 Sec3     V  200   83 T C C C   65  -18   83   62    0 None [ 10 255 255 225]       None        0 0 0   Lucida Console  
 Colm   1 Clm001   V    8   84 T C C C   11   -3   14   10    0 None [255 128 192 225]       None        0 0 0   Lucida Console  
-Kord   1 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
-Kord   2 -        V    8   14 T C C C   11   -3   14   10    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
-Kord   3 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+Kord   1 F        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+Kord   2 7        V    8   14 T C C C   11   -3   14   10    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+Kord   3 y        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
 Kord   4 -        V    8   14 T C C C   11   -3   14   10    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
 Kord   5 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
 Kord   6 -        V    8   14 T C C C   11   -3   14   10    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
@@ -961,9 +961,9 @@ Kord   4 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255
 Kord   5 -        V    8   14 T C C C   11   -3   14   10    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
 Kord   6 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
  299 tabsC _initTniks         -7 FLAT Cb b [Bb Eb Ab Db Gb Cb Fb] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [Cb Db Eb Fb Gb Ab Bb]
-2778 tabsC main               str(tabs)={n: [1, 2, 20, 6], S: [0, 1, 3], f: [Test/test, 2]}
-2778 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 2, 20, 6], S: [0, 1, 3], f: [Test/test, 2]}
-1258 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+2790 tabsC main               str(tabs)={n: [1, 2, 20, 6], S: [0, 1, 3], f: [Test/test, 2]}
+2790 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 2, 20, 6], S: [0, 1, 3], f: [Test/test, 2]}
+1267 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
                       CW   CH V A x y Ascn Dscn nA-D FnSz Lead LnSp       color       background_color  B I S     font_name     
 Page   1 P1       V  600  498 T C C C  393 -105  498  373    0 None [128  10 255 255]       None        0 0 0   Lucida Console  
 Line   1 Ln1      V  450  248 T C C C  196  -52  248  186    0 None [255  10  10 225]       None        0 0 0   Lucida Console  
@@ -972,9 +972,9 @@ Colm   1 Clm001   V    8   84 T C C C   11   -3   14   10    0 None [255 128 192
 Tabl   1 -        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
 Tabl   2 -        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
 Tabl   3 -        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
-Tabl   4 -        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
-Tabl   5 4        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
-Tabl   6 2        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
+Tabl   4 1        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
+Tabl   5 3        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
+Tabl   6 1        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
 Colm   2 Clm002   V    8   84 T C C C   11   -3   14   10    0 None [ 52  26  39 225]       None        0 0 0   Lucida Console  
 Tabl   7 -        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
 Tabl   8 -        V    8   14 T C C C   11   -3   14   10    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0   Lucida Console  
@@ -1113,9 +1113,9 @@ Colm  21 Clm001   V    8   84 T C C C   11   -3   14   10    0 None [ 52  26  39
 Note   1 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
 Note   2 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
 Note   3 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
-Note   4 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
-Note   5 Db       V   16   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
-Note   6 Gb       V   16   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
+Note   4 Eb       V   16   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
+Note   5 C        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
+Note   6 F        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
 Colm  22 Clm002   V    8   84 T C C C   11   -3   14   10    0 None [255 128 192 225]       None        0 0 0   Lucida Console  
 Note   7 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
 Note   8 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
@@ -1251,9 +1251,9 @@ Note 119 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10
 Note 120 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0   Lucida Console  
 Sect   3 Sec3     V  200   83 T C C C   65  -18   83   62    0 None [ 10 255 255 225]       None        0 0 0   Lucida Console  
 Colm  41 Clm001   V    8   84 T C C C   11   -3   14   10    0 None [255 128 192 225]       None        0 0 0   Lucida Console  
-Kord   1 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
-Kord   2 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
-Kord   3 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
+Kord   1 F        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
+Kord   2 7        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
+Kord   3 y        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
 Kord   4 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
 Kord   5 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
 Kord   6 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
@@ -1818,22 +1818,16 @@ Kord 237 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255
 Kord 238 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
 Kord 239 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
 Kord 240 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
-2571 tabsC snapshot           snapName=tabs.38.0.Upd5.png Upd1
-2571 tabsC snapshot           snapName=tabs.38.1.Upd5.png  UP (            65362)
-2571 tabsC snapshot           snapName=tabs.38.2.Upd4.png  UP (            65362)
-2571 tabsC snapshot           snapName=tabs.38.3.TXT_3.png onTxt
-2445 tabsC flipChordName       0 1 Db4x/Gb      Db4x/Gb      4RM3         504    GbDbF        RM34         045    DbFGb       
-2445 tabsC flipChordName       0 2 F+b2y/Gb     F+b2y/Gb     b2#5R        180    GbDbF        Rb2#5        018    FGbDb       
-2445 tabsC flipChordName       0 0 GbM7y        GbM7y        R57          07b    GbDbF        R57          07b    GbDbF       
+2583 tabsC snapshot           snapName=tabs.47.0.Upd5.png Upd1
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  cntw cnth v a x y fnSz dpi B I Font Name
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
-2619 tabsC quit               BGN @^Q error=0 save=0
+2631 tabsC quit               BGN @^Q error=0 save=0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
- 124 chord dumpLimap            0 0 0 GbM7y        GbM7y        R57          07b    GbDbF        R57          07b    GbDbF       
- 124 chord dumpLimap            0 0 1 Db4x/Gb      Db4x/Gb      4RM3         504    GbDbF        RM34         045    DbFGb       
- 124 chord dumpLimap            0 0 2 F+b2y/Gb     F+b2y/Gb     b2#5R        180    GbDbF        Rb2#5        018    FGbDb       
+ 124 chord dumpLimap            0 0 0 F7y          F7y          R5b7         07a    FCEb         R5b7         07a    FCEb        
+ 124 chord dumpLimap            0 0 1 Eb6s2x/F     Eb6s2x/F     26R          290    FCEb         R26          029    EbFC        
+ 124 chord dumpLimap            0 0 2 Cm4x/F       Cm4x/F       4Rm3         503    FCEb         Rm34         035    CEbF        
  124 chord dumpLimap            1 0-1                           R5           07     GbDb         R5           07     GbDb        
  124 chord dumpLimap            1 0-1                           4R           50     GbDb         R4           05     DbGb        
  124 chord dumpLimap            2 0-1                           R5           07     BGb          R5           07     BGb         
@@ -1853,18 +1847,18 @@ Kord 240 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255
  124 chord dumpLimap           20 0-1                           R            0      E            R            0      E           
  124 chord dumpLimap           22 0-1                           R            0      Gb           R            0      Gb          
  124 chord dumpLimap           24 0-1                           R            0      E            R            0      E           
-2571 tabsC snapshot           snapName=tabs.38.4.QUIT.png quit error=0 save=0
-2627 tabsC quit               END @^Q error=0 save=0
+2583 tabsC snapshot           snapName=tabs.47.1.QUIT.png quit error=0 save=0
+2639 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
  528 util  getFilePath        baseName =Test/test.1.2.3.20.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =Test/test.1.2.3.20.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.2.3.20.6.csv)
- 528 util  getFilePath        baseName =tabs.38      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.38.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.38.csv)
-2649 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.2.3.20.6.csv
-2652 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.38.csv
-2630 tabsC quit               END @^Q error=0 save=0
+ 528 util  getFilePath        baseName =tabs.47      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.47.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.47.csv)
+2661 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.2.3.20.6.csv
+2664 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.47.csv
+2642 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
  528 util  getFilePath        baseName =Test/test.1.2.3.20.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =Test/test.1.2.3.20.6.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/Test/test.1.2.3.20.6.log)

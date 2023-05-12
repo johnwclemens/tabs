@@ -440,8 +440,16 @@ disable=raw-checker-failed,
         suppressed-message,
         useless-suppression,
         deprecated-pragma,
-        use-symbolic-message-instead,
+        use-symbolic-message-instead
+# jwc bgn # # # # #
+        ,
         invalid-name
+# jwc end # # # # #
+
+# jwc bgn # # # # #
+#[pylint.messages.control]
+#disable=invalid-name
+# jwc end # # # # #
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -449,8 +457,6 @@ disable=raw-checker-failed,
 # it should appear only once). See also the "--disable" option for examples.
 enable=c-extension-no-member
 
-#[pylint.messages.control]
-#disable=invalid-name
 
 
 [METHOD_ARGS]
@@ -647,9 +653,12 @@ init-import=no
 redefining-builtins-modules=six.moves,past.builtins,future.builtins,builtins,io
 
 
-# jwc # # # # # # # # # #
+# jwc # # # # # # #
+# --outfile=lnts/lnt.txt
 # --disable=C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106
 #           C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702
-# jwc # # # # # # # # # #
-#--disable=C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106 tabsC.py util.py chord.py
-#--disable=C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702,C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106 tabsC.py util.py chord.py
+# jwc # # # # # # #
+#--disable=C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106
+#--disable=C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702,C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106
+#--disable=W0201
+#--output=lnts/lnt.txt --disable=C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702,C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106 tabsC.py util.py chord.py
