@@ -76,12 +76,12 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 2670 tabsC dumpGlobals        argv      = +13[tabsC.py -n 1 2 20 6 -S 0 1 3 -f Test/test 2]
 2671 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
 2672 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
- 528 util  getFilePath        baseName =tabs.37      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.37.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.37.log)
- 528 util  getFilePath        baseName =tabs.37      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.37.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.37.csv)
- 528 util  getFilePath        baseName =tabs.37      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.37.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.37.cat)
+ 528 util  getFilePath        baseName =tabs.38      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.38.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.38.log)
+ 528 util  getFilePath        baseName =tabs.38      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.38.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.38.csv)
+ 528 util  getFilePath        baseName =tabs.38      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.38.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.38.cat)
  137 tabsC dumpArgs           [f]      .FILE_NAME=Test/test
  138 tabsC dumpArgs           [n]               n=[1 2 3 20 6]
  139 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
@@ -1818,10 +1818,10 @@ Kord 237 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255
 Kord 238 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
 Kord 239 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
 Kord 240 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
-2571 tabsC snapshot           snapName=tabs.37.0.Upd5.png Upd1
-2571 tabsC snapshot           snapName=tabs.37.1.Upd5.png  UP (            65362)
-2571 tabsC snapshot           snapName=tabs.37.2.Upd4.png  UP (            65362)
-2571 tabsC snapshot           snapName=tabs.37.3.TXT_3.png onTxt
+2571 tabsC snapshot           snapName=tabs.38.0.Upd5.png Upd1
+2571 tabsC snapshot           snapName=tabs.38.1.Upd5.png  UP (            65362)
+2571 tabsC snapshot           snapName=tabs.38.2.Upd4.png  UP (            65362)
+2571 tabsC snapshot           snapName=tabs.38.3.TXT_3.png onTxt
 2445 tabsC flipChordName       0 1 Db4x/Gb      Db4x/Gb      4RM3         504    GbDbF        RM34         045    DbFGb       
 2445 tabsC flipChordName       0 2 F+b2y/Gb     F+b2y/Gb     b2#5R        180    GbDbF        Rb2#5        018    FGbDb       
 2445 tabsC flipChordName       0 0 GbM7y        GbM7y        R57          07b    GbDbF        R57          07b    GbDbF       
@@ -1831,39 +1831,39 @@ Kord 240 -        V    8   14 T C C C   11   -3   14   10    0 None [ 10 180 255
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
 2619 tabsC quit               BGN @^Q error=0 save=0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
- 129 chord dumpLimap            0 0 0 GbM7y        GbM7y        R57          07b    GbDbF        R57          07b    GbDbF       
- 129 chord dumpLimap            0 0 1 Db4x/Gb      Db4x/Gb      4RM3         504    GbDbF        RM34         045    DbFGb       
- 129 chord dumpLimap            0 0 2 F+b2y/Gb     F+b2y/Gb     b2#5R        180    GbDbF        Rb2#5        018    FGbDb       
- 129 chord dumpLimap            1 0-1                           R5           07     GbDb         R5           07     GbDb        
- 129 chord dumpLimap            1 0-1                           4R           50     GbDb         R4           05     DbGb        
- 129 chord dumpLimap            2 0-1                           R5           07     BGb          R5           07     BGb         
- 129 chord dumpLimap            2 0-1                           4R           50     BGb          R4           05     GbB         
- 129 chord dumpLimap            3 0-1                           R5           07     DbAb         R5           07     DbAb        
- 129 chord dumpLimap            3 0-1                           4R           50     DbAb         R4           05     AbDb        
- 129 chord dumpLimap            4 0-1                           R5           07     AbEb         R5           07     AbEb        
- 129 chord dumpLimap            4 0-1                           4R           50     AbEb         R4           05     EbAb        
- 129 chord dumpLimap            5 0-1                           R5           07     AE           R5           07     AE          
- 129 chord dumpLimap            5 0-1                           4R           50     AE           R4           05     EA          
- 129 chord dumpLimap            6 0-1                           R5           07     EbBb         R5           07     EbBb        
- 129 chord dumpLimap            6 0-1                           4R           50     EbBb         R4           05     BbEb        
- 129 chord dumpLimap            7 0-1                           R5           07     EB           R5           07     EB          
- 129 chord dumpLimap            7 0-1                           4R           50     EB           R4           05     BE          
- 129 chord dumpLimap            8 0-1                           R5           07     BGb          R5           07     BGb         
- 129 chord dumpLimap            8 0-1                           4R           50     BGb          R4           05     GbB         
- 129 chord dumpLimap           20 0-1                           R            0      E            R            0      E           
- 129 chord dumpLimap           22 0-1                           R            0      Gb           R            0      Gb          
- 129 chord dumpLimap           24 0-1                           R            0      E            R            0      E           
-2571 tabsC snapshot           snapName=tabs.37.4.QUIT.png quit error=0 save=0
+ 124 chord dumpLimap            0 0 0 GbM7y        GbM7y        R57          07b    GbDbF        R57          07b    GbDbF       
+ 124 chord dumpLimap            0 0 1 Db4x/Gb      Db4x/Gb      4RM3         504    GbDbF        RM34         045    DbFGb       
+ 124 chord dumpLimap            0 0 2 F+b2y/Gb     F+b2y/Gb     b2#5R        180    GbDbF        Rb2#5        018    FGbDb       
+ 124 chord dumpLimap            1 0-1                           R5           07     GbDb         R5           07     GbDb        
+ 124 chord dumpLimap            1 0-1                           4R           50     GbDb         R4           05     DbGb        
+ 124 chord dumpLimap            2 0-1                           R5           07     BGb          R5           07     BGb         
+ 124 chord dumpLimap            2 0-1                           4R           50     BGb          R4           05     GbB         
+ 124 chord dumpLimap            3 0-1                           R5           07     DbAb         R5           07     DbAb        
+ 124 chord dumpLimap            3 0-1                           4R           50     DbAb         R4           05     AbDb        
+ 124 chord dumpLimap            4 0-1                           R5           07     AbEb         R5           07     AbEb        
+ 124 chord dumpLimap            4 0-1                           4R           50     AbEb         R4           05     EbAb        
+ 124 chord dumpLimap            5 0-1                           R5           07     AE           R5           07     AE          
+ 124 chord dumpLimap            5 0-1                           4R           50     AE           R4           05     EA          
+ 124 chord dumpLimap            6 0-1                           R5           07     EbBb         R5           07     EbBb        
+ 124 chord dumpLimap            6 0-1                           4R           50     EbBb         R4           05     BbEb        
+ 124 chord dumpLimap            7 0-1                           R5           07     EB           R5           07     EB          
+ 124 chord dumpLimap            7 0-1                           4R           50     EB           R4           05     BE          
+ 124 chord dumpLimap            8 0-1                           R5           07     BGb          R5           07     BGb         
+ 124 chord dumpLimap            8 0-1                           4R           50     BGb          R4           05     GbB         
+ 124 chord dumpLimap           20 0-1                           R            0      E            R            0      E           
+ 124 chord dumpLimap           22 0-1                           R            0      Gb           R            0      Gb          
+ 124 chord dumpLimap           24 0-1                           R            0      E            R            0      E           
+2571 tabsC snapshot           snapName=tabs.38.4.QUIT.png quit error=0 save=0
 2627 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
  528 util  getFilePath        baseName =Test/test.1.2.3.20.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =Test/test.1.2.3.20.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.2.3.20.6.csv)
- 528 util  getFilePath        baseName =tabs.37      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.37.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.37.csv)
+ 528 util  getFilePath        baseName =tabs.38      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.38.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.38.csv)
 2649 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.2.3.20.6.csv
-2652 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.37.csv
+2652 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.38.csv
 2630 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
  528 util  getFilePath        baseName =Test/test.1.2.3.20.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)

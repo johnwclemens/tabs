@@ -624,12 +624,12 @@ class Tabs(pyglet.window.Window):
         assert self.fmtdl() == self.fmtdl(data),     f'{self.fmtdl()} != {self.fmtdl(data)}'
         assert self.fmtdt() == self.fmtdt(data),     f'{self.fmtdt()} != {self.fmtdt(data)}'
         tpose, msg1, msg2 = [], [], []   ;   self.log(f'dl={self.fmtdl(data)} dt={self.fmtdt(data)}') if dbg else None
-        for p, page in enumerate(data):
+        for page in data:
             pageTP = []
-            for l, line in enumerate(page):
-                if dbg: msg1.append(f'{fmtl(line,   d=Z)}')
+            for line in page:
+                if dbg:  msg1.append(f'{fmtl(line,   d=Z)}')
                 lineTP = list(map(Z.join, itertools.zip_longest(*line, fillvalue=W)))
-                if dbg: msg2.append(f'{fmtl(lineTP, d=Z)}')
+                if dbg:  msg2.append(f'{fmtl(lineTP, d=Z)}')
                 pageTP.append(lineTP)
             tpose.append(pageTP)
         if dbg: [ self.log(m, p=0) for m in msg1 ]   ;   self.log(p=0)
