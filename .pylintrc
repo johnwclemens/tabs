@@ -657,26 +657,28 @@ redefining-builtins-modules=six.moves,past.builtins,future.builtins,builtins,io
 # --outfile=lnts/lnt.txt
 # --disable=C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106
 #           C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702
-# jwc # # # # # # #
-#--disable=C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106
 #--disable=C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702,C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106
 #--disable=W0201,W0237,W0602,W0603,R0902,R0903
 #--disable=R0904,C0201,C0206,C0411,R1710,R1728,W0108,W0644,E1126
 #--output=lnts/lnt.txt --disable=C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702,C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106 tabsC.py util.py chord.py
-# tabsC.py:287:8:  W0201: Attribute 'labelTextA' defined outside __init__ (attribute-defined-outside-init)
-# tabsC.py:1804:4: W0237: Parameter 'modifiers' has been renamed to 'mods' in overriding 'Tabs.on_mouse_release' method (arguments-renamed)
-#  util.py:33:4:   W0602: Using global for 'LOG_FILE' but no assignment is done (global-variable-not-assigned)
-#  util.py:459:4:  W0603: Using the global statement (global-statement)
-# chord.py:16:0:   R0902: Too many instance attributes (10/7) (too-many-instance-attributes)
-#  util.py:220:0:  R0903: Too few public methods (1/2) (too-few-public-methods)
-# tabsC.py:30:0:   R0904: Too many public methods (289/20) (too-many-public-methods)
-
-# tabsC.py:1021:4:  R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
-# tabsC.py:2728:62: E1126: Sequence index is not an int, slice, or instance with __index__ (invalid-sequence-index)
-# tabsC.py:2731:20: R1728: Consider using a generator instead 'list(fri(rgb[i] / dv + j * steps[i]) for i in range(lrgb))' (consider-using-generator)
-# tabsC.py:2794:4:  W0644: Possible unbalanced dict unpacking with initRGB(): left side has 19 labels, right side has 0 values (unbalanced-dict-unpacking)
-# tabsC.py:7:0:     C0411: standard import "from collections import Counter" should be placed before "from more_itertools import consume" (wrong-import-order)
-# chord.py:896:34:  W0108: Lambda may not be necessary (unnecessary-lambda)
 # chord.py:920:17:  C0201: Consider iterating the dictionary directly instead of calling .keys() (consider-iterating-dictionary)
 # chord.py:930:8:   C0206: Consider iterating with .items() (consider-using-dict-items)
-# jwc # # # # # # #
+# tabsC.py:7:0:     C0411: standard import "from collections import Counter" should be placed before "from more_itertools import consume" (wrong-import-order)
+# chord.py:896:34:  W0108: Lambda may not be necessary (unnecessary-lambda)
+# tabsC.py:287:8:   W0201: Attribute 'labelTextA' defined outside __init__ (attribute-defined-outside-init)
+# tabsC.py:1804:4:  W0237: Parameter 'modifiers' has been renamed to 'mods' in overriding 'Tabs.on_mouse_release' method (arguments-renamed)
+#  util.py:33:4:    W0602: Using global for 'LOG_FILE' but no assignment is done (global-variable-not-assigned)
+#  util.py:459:4:   W0603: Using the global statement (global-statement)
+# tabsC.py:2794:4:  W0644: Possible unbalanced dict unpacking with initRGB(): left side has 19 labels, right side has 0 values (unbalanced-dict-unpacking)
+# chord.py:16:0:    R0902: Too many instance attributes (10/7) (too-many-instance-attributes)
+#  util.py:220:0:   R0903: Too few public methods (1/2) (too-few-public-methods)
+# tabsC.py:30:0:    R0904: Too many public methods (289/20) (too-many-public-methods)
+# tabsC.py:1021:4:  R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+# tabsC.py:2731:20: R1728: Consider using a generator instead 'list(fri(rgb[i] / dv + j * steps[i]) for i in range(lrgb))' (consider-using-generator)
+# tabsC.py:2728:62: E1126: Sequence index is not an int, slice, or instance with __index__ (invalid-sequence-index)
+# jwc # # # # # # # Not much point using this tool in build/run because the external pylint job ends even when successful???
+# Owner@DESKTOP-38CCATT MINGW64 ~/Documents/GitHub/tabs (master)
+# $ pylint --disable=C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702,C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106,W0201,W0237,W0602,W0603,
+# R0902,R0903,R0904,C0201,C0206,C0411,R1710,R1728,W0108,W0644,E1126 tabsC.py util.py chord.py --output=lnts/lnt.txt
+# jwc # # # # # # #        Use " " around args or around spaces within args if any
+# https://www.jetbrains.com/help/pycharm/2022.1/configuring-third-party-tools.html
