@@ -1,16 +1,4 @@
-************* Module tabsC
-tabsC.py:1021:4: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
-tabsC.py:30:0: R0904: Too many public methods (289/20) (too-many-public-methods)
-tabsC.py:2728:62: E1126: Sequence index is not an int, slice, or instance with __index__ (invalid-sequence-index)
-tabsC.py:2731:20: R1728: Consider using a generator instead 'list(fri(rgb[i] / dv + j * steps[i]) for i in range(lrgb))' (consider-using-generator)
-tabsC.py:2794:4: W0644: Possible unbalanced dict unpacking with initRGB(): left side has 19 labels, right side has 0 values (unbalanced-dict-unpacking)
-tabsC.py:7:0: C0411: standard import "from collections import Counter" should be placed before "from more_itertools import consume" (wrong-import-order)
-************* Module chord
-chord.py:896:34: W0108: Lambda may not be necessary (unnecessary-lambda)
-chord.py:920:17: C0201: Consider iterating the dictionary directly instead of calling .keys() (consider-iterating-dictionary)
-chord.py:930:8: C0206: Consider iterating with .items() (consider-using-dict-items)
-chord.py:930:17: C0201: Consider iterating the dictionary directly instead of calling .keys() (consider-iterating-dictionary)
 
-------------------------------------------------------------------
-Your code has been rated at 9.97/10 (previous run: 9.97/10, +0.00)
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
