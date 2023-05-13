@@ -595,9 +595,12 @@ class Tabs(pyglet.window.Window):
         data = self.dproxy(data)
         d0, d1, d2, d3 = self.dl()
         self.log(f'BGN {d0} pages, {d1} lines per page, {d2} rows per line, {d3} tabs per line')
-        for n0 in range(len(data)):
-            for n1 in range(len(data[n0])):
-                self.log(f'{fmtl(data[n0][n1], d=Z)}', p=0)
+        for n0, dn0 in enumerate(data):
+            for n1, dn1 in enumerate(dn0):
+                self.log(f'{fmtl(dn1, d=Z)}', p=0)
+#        for n0 in range(len(data)):
+#            for n1 in range(len(data[n0])):
+#                self.log(f'{fmtl(data[n0][n1], d=Z)}', p=0)
             self.log(p=0)
         self.log(f'END {d0} pages, {d1} lines per page, {d2} rows per line, {d3} tabs per line')
     ####################################################################################################################################################################################################
@@ -649,30 +652,32 @@ class Tabs(pyglet.window.Window):
     def dumpDataHorz(self, data=None, lc=1, ll=1, i=0):
         data = data or self.data
         self.log(f'BGN {self.fmtD(data)} {lc=} {ll=} {i=}')
-        for p in range(len(data)):
-#            if ll:  plt = f'{JTEXTS[P]} {p+1}'  ;  plab = f'{plt:{i+1}}'  ;  self.log(f'{W*i}{plab}', pfx=0)
-            for l in range(len(data[p])):
+        for p, page in enumerate(data):                       #           #  for p in range(len(data)):
+##            if ll:  plt = f'{JTEXTS[P]} {p+1}'  ;  plab = f'{plt:{i+1}}'  ;  self.log(f'{W*i}{plab}', pfx=0)
+            for l, line in enumerate(page):                   #           #  for l in range(len(data[p])):
                 if ll:  llt = f'{JTEXTS[P]} {p+1}'  ;  llab = f'{llt:{i+1}} '  ;  self.log(f'{W*i}{llab}', p=0, e=Z)   ;   self.log(f'{JTEXTS[L]} {l+1}', p=0)
-#                if ll:  llt = f'{JTEXTS[L]} {l+1}'  ;  llab = f'{llt:{i+1}}'  ;  self.log(f'{W*i}{llab}', p=0)
-                if lc:  self.dumpDataLabels(data[p][l], i=i, sep=W)
-                for r in range(len(data[p][l])):
+##                if ll:  llt = f'{JTEXTS[L]} {l+1}'  ;  llab = f'{llt:{i+1}}'  ;  self.log(f'{W*i}{llab}', p=0)
+                if lc:  self.dumpDataLabels(line, i=i, sep=W) #           #  if lc:  self.dumpDataLabels(data[p][l], i=i, sep=W)
+                for r, row in enumerate(line):                #           #  for r in range(len(         data[p][l])):
                     self.log(W*i, p=0, e=Z)
-                    for c in range(len(data[p][l][r])):
-                        self.log(f'{data[p][l][r][c]}', p=0, e=Z)
+                    for c, col in enumerate(row):             #           #  for c in range(len(data[p][l][r])):
+                        self.log(f'{col}', p=0, e=Z)          #           #      self.log(   f'{data[p][l][r][c]}', p=0, e=Z)
                     self.log(p=0)
                 self.log(p=0)
         self.log(f'END {self.fmtD(data)} {lc=} {ll=} {i=}')
 
     def dumpDataVert(self, data=None, lc=1, ll=1, i=0):
-        data = data or self.data
+        data = data or self.data   ;   line = []
         w = max(len(data[0][0][0]), len(JTEXTS[P]) + 2, len(JTEXTS[L]) + 2)   ;   txt = W * i + JTEXTS[C] + W if i >= 0 else JTEXTS[C]
         self.log(f'BGN {self.fmtD(data)} {lc=} {ll=} {i=} {w=} {txt=}')
-        for p in range(len(data)):
-            if ll: self.log(f'{JTEXTS[P]} {p+1}', p=0)  ;  self.log(f'{txt:{3}}', p=0, e=Z)  ;  txt2 = [ f'{JTEXTS[L]} {l+1}' for l in range(len(data[0])) ]  ;  self.log(f'{fmtl(txt2, w=w, d=Z)}', p=0)
-            for c in range(len(data[p][0])):
+        for p, page in enumerate(data):                       #           #  for p in range(len(data)):
+            if ll: self.log(f'{JTEXTS[P]} {p+1}', p=0)  ;  self.log(f'{txt:{3}}', p=0, e=Z)  ;  txt2 = [ f'{JTEXTS[L]} {l+1}' for l, line in enumerate(page) ]  ;  self.log(f'{fmtl(txt2, w=w, d=Z)}', p=0)
+#            if ll: self.log(f'{JTEXTS[P]} {p+1}', p=0)  ;  self.log(f'{txt:{3}}', p=0, e=Z)  ;  txt2 = [ f'{JTEXTS[L]} {l+1}' for l in range(len(page)) ]  ;  self.log(f'{fmtl(txt2, w=w, d=Z)}', p=0)
+#            if ll: self.log(f'{JTEXTS[P]} {p+1}', p=0)  ;  self.log(f'{txt:{3}}', p=0, e=Z)  ;  txt2 = [ f'{JTEXTS[L]} {l+1}' for l in range(len(data[0])) ]  ;  self.log(f'{fmtl(txt2, w=w, d=Z)}', p=0)
+            for c, col in enumerate(line):                    #           #  for c in range(len(data[p][0])):
                 pfx = f'{c+1:3} ' if i >= 0 and lc else Z   ;   self.log(f'{pfx}{W*i}', p=0, e=Z)
-                for l in range(len(data[p])):
-                    self.log(f'{data[p][l][c]}', p=0, e=W)
+                for l, line in enumerate(page):               #           #  for l in range(len(data[p])):
+                    self.log(f'{col}', p=0, e=W)    #           #      self.log(f'{data[p][l][c]}', p=0, e=W)
                 self.log(p=0)
         self.log(f'END {self.fmtD(data)} {lc=} {ll=} {i=}')
     ####################################################################################################################################################################################################
@@ -696,24 +701,24 @@ class Tabs(pyglet.window.Window):
         self.log(f'texts={fmtl(texts)}', p=0)
         self.dumpLabelText(texts)
 
+#        for j in range(len(t)):            self.log(f'{t[j][0]:^3}', p=0, e=W)
+#        for j in range(len(t)):            self.log(f'{t[j][1]:^3}', p=0, e=W)
     def dumpLabelText(self, t, d='%', why=Z, dbg=0):
         self.log(f'{why} {len(t)=} {len(t[0])=}')
-        for j in range(len(t)):
-            self.log(f'{t[j][0]:^3}', p=0, e=W)
+        for tj in t:     self.log(f'{tj[0]:^3}', p=0, e=W)
         self.log(p=0)
         for _ in range(len(t)//10):
             for i in range(9): self.log(f'{W:^3}', p=0, e=W)
             self.log(f' {d} ', p=0, e=W)
         self.log(p=0)
-        for j in range(len(t)):
-            self.log(f'{t[j][1]:^3}', p=0, e=W)
+        for tj in t:     self.log(f'{tj[1]:^3}', p=0, e=W)
         self.log(p=0)
         if dbg:
-            for i in range(len(t)):
+            for i, ti in enumerate(t):
                 self.log(f'{i+1:5}', p=0, e=W)
-                self.log(f' {t[i][0]:>5}', p=0, e=W)
+                self.log(f' {ti[0]:>5}', p=0, e=W)
                 d2 = W if i == 1 or (i + 1) % 10 else d
-                self.log(f'{d2}{t[i][1]:>5}', p=0, e=W)
+                self.log(f'{d2}{ti[1]:>5}', p=0, e=W)
                 self.log(p=0)
     ####################################################################################################################################################################################################
     def flipTTs(self, how, tt):
@@ -778,7 +783,7 @@ class Tabs(pyglet.window.Window):
                         if s != ii:      self.setJdump(C, c, why=why2)
                         else:            self.hideTnik(self.colms,   (p*nl + l)*nc + c,   C, dbg=dbg)
                         for t in range(nt):
-                            tlist, j  =  self.tnikInfo(p, l, s, c)
+                            tlist, j, _, _  =  self.tnikInfo(p, l, s, c)
                             if s != ii:  self.setJdump(j, t, why=why2)
                             else:        self.hideTnik(tlist, ((p*nl + l)*nc + c)*nt + t, j, dbg=dbg)
         if ii == TT:                     self.hideTnik(self.hcurs,                     0, H, dbg=dbg)
@@ -858,7 +863,7 @@ class Tabs(pyglet.window.Window):
         self.setJdump(C, c, why=why)
 #            self.setJ(C, c3)
 #            self.dumpTnik(self.colms[c3], C, why2)
-        tlist, j = self.tnikInfo(p, l, s, c, zz)
+        tlist, j, _, _ = self.tnikInfo(p, l, s, c, zz)
         self.log(f'{zz=} j={C} {JTEXTS[C]:4} {nc=}       ltl={len(tlist)} plsc =[{self.fplsc(p, l, s, c)} J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)} z1={self.z1(c)} z2={self.z2(c)}', f=0)
         for t in range(nt):
             t2 = t + nt*(c + nc*(s + ns*(l + nl*p))) if j <= K else t
@@ -905,8 +910,8 @@ class Tabs(pyglet.window.Window):
             self.setJdump(P, p, why=why2)
             for l in range(nl):
                 self.setJdump(L, l, why=why2)   ;   ss = self.ss2sl()
-                for s in range(len(ss)):
-                    if ss[s] == ii:
+                for s, so in enumerate(ss):
+                    if so == ii:
                         for sect in      self.g_createTniks(self.sects, S, self.lines[l], ii=s):
                             for colm in  self.g_createTniks(self.colms, C, sect):
                                 for _ in self.g_createTniks(self.tabls, T, colm): #, v=1 if p == self.j()[P] else 0): # , ii=s):
@@ -916,7 +921,7 @@ class Tabs(pyglet.window.Window):
                         for c in range(nc):
                             self.setJdump(C, c, why=why2)
                             for t in range(nt):
-                                tlist, j = self.tnikInfo(p, l, s, c, why=why2)
+                                tlist, j, _, _ = self.tnikInfo(p, l, s, c, why=why2)
                                 self.setJ(j, t)
                                 self.dumpTnik(tlist[t], j, why=why2)
         self.dumpTniksSfx(why)
@@ -1029,7 +1034,7 @@ class Tabs(pyglet.window.Window):
             elif s == KK:  tlist, j = (self.snams, A) if exp1 else (self.capos, D) if exp2 else (self.kords, K)
             else:   msg = f'{msg2} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # f'{self.fmtJText(j, why=why)}'
             if dbg: msg =        f'{msg1}'   ;    self.log(msg, f=0) # self.fmtJText(j, why=why)
-            return  tlist, j
+            return  tlist, j, None, None
         if 0 <= t < self.n[T]:
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[B], self.k[A], self.k[D]
             tab = self.data[p][l][c][t]  # if C1 != z1 != C2 and C2 != z2 else Z
@@ -1167,7 +1172,7 @@ class Tabs(pyglet.window.Window):
             i2 = i if ii is None else ii
             if   j == P:                   v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}')
             else:                          v = int(self.pages[self.J1[P]].visible)
-            if   j == C or j == E:         x2 = x + i2 * w #  ;   j2 = len(self.J2) if ii is not None else j
+            if   j in (C, E):              x2 = x + i2 * w #  ;   j2 = len(self.J2) if ii is not None else j
             else:
                 if   j != P:               y2 = y - i2 * h
                 if   j == S:                _ = self.ss2sl()[i2] if self.ss2sl() else 0  ;  self.SS.add(_)
@@ -1262,14 +1267,14 @@ class Tabs(pyglet.window.Window):
         x2 = x  ;  y2 = y  ;  j2 = j  ;  tlist2 = tlist
         p, l, c, t = self.J1plct()    ;  lp, ll = self.dl()[0], self.dl()[1]
         for i in range(n):
-            if   j == C or j == E:       x2 = x + i * w
+            if   j in (C, E):   x2 = x + i * w
             else:
-                if    j == P: v = int(self.pages[self.J1[P]].visible)  ;  self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
-                else:         y2 = y - i * h
+                if    j == P:   v = int(self.pages[self.J1[P]].visible)  ;  self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
+                else:           y2 = y - i * h
                 if    j == L and self.J2[L] >= lp * ll: msg = f'WARN MAX Line {self.J2[L]=} >= {lp=} * {ll=}'  ;   self.log(msg)  ;  self.quit(msg)
                 elif  j >= T:
                     s = self.ss2sl()[self.J1[S] % self.ssl()]
-                    tlist2, j2 = self.tnikInfo(p, l, s, c, why=why)
+                    tlist2, j2, _, _ = self.tnikInfo(p, l, s, c, why=why)
             tnik = self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
             yield tnik
     ####################################################################################################################################################################################################
@@ -2293,11 +2298,15 @@ class Tabs(pyglet.window.Window):
             cc0 = self.cursorCol()         ;     p0, l0, c0, t0 = self.cc2plct(cc0)   ;   self.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
             blanks = self.tblanks          ;     blank = 1 if src in blanks and trg in blanks else 0
             if blank:
-                for i in range(len(self.tabls)):
-                    if self.tabls and self.tabls[i].text == src: self.tabls[i].text = trg
-                    if self.notes and self.notes[i].text == src: self.notes[i].text = trg
-                    if self.ikeys and self.ikeys[i].text == src: self.ikeys[i].text = trg
-                    if self.kords and self.kords[i].text == src: self.kords[i].text = trg
+                for t in self.tabls:   t.text = trg if t.text==src else None
+                for n in self.notes:   n.text = trg if n.text==src else None
+                for i in self.ikeys:   i.text = trg if i.text==src else None
+                for k in self.kords:   k.text = trg if k.text==src else None
+#                for i in range(len(self.tabls)):
+#                    if self.tabls and self.tabls[i].text == src: self.tabls[i].text = trg
+#                    if self.notes and self.notes[i].text == src: self.notes[i].text = trg
+#                    if self.ikeys and self.ikeys[i].text == src: self.ikeys[i].text = trg
+#                    if self.kords and self.kords[i].text == src: self.kords[i].text = trg
             else:
                 for p in range(np):
                     for l in range(nl):
@@ -2319,7 +2328,7 @@ class Tabs(pyglet.window.Window):
         cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
         if not self.inserting: self.inserting = 1   ;    self.setCaption('Enter nc: number of cols to indent int')
         elif txt.isdecimal():  self.insertStr += txt
-        elif txt == W or txt == '/r':
+        elif txt in (W, '/r'):
             self.inserting = 0
             width = int(self.insertStr)
             tcs   = sorted(self.cobj.mlimap)
@@ -2353,9 +2362,9 @@ class Tabs(pyglet.window.Window):
             self.shiftingTabs = 0     ;   nt = self.n[T]
             for cn, v in self.smap.items():
                 cc = self.cn2cc(cn)   ;   p, l, c, r = self.cc2plct(cc, dbg=0)
-                self.log(f'{cc=} {cn=} {v=} text={self.smap[cn]}')
+                self.log(f'{cc=} {cn=} {v=} text={v}')
                 for t in range(nt):
-                    text = self.smap[cn][t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = Notes.NTONES * 2
+                    text = v[t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = Notes.NTONES * 2
                     if self.sobj.isFret(text):
                         fn = self.afn(str((self.tab2fn(text) + self.shiftSign * self.tab2fn(nf)) % ntones))  ;  self.log(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {self.shiftSign=}')
                     if fn and self.sobj.isFret(fn):  self.setDTNIK(fn, kt, p, l, c, t, kk=1 if t==nt-1 else 0)

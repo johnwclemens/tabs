@@ -660,5 +660,13 @@ redefining-builtins-modules=six.moves,past.builtins,future.builtins,builtins,io
 # jwc # # # # # # #
 #--disable=C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106
 #--disable=C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702,C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106
-#--disable=W0201
+#--disable=W0201,W0237,W0602,W0603,R0902,R0903
+#--disable=R0904,
 #--output=lnts/lnt.txt --disable=C0302,C0114,C0410,C0413,C0414,W0223,W0612,R0915,R1702,C0301,C0304,C0321,C0115,C0116,R0912,R0913,R0914,W0106 tabsC.py util.py chord.py
+# tabsC.py:287:8:  W0201: Attribute 'labelTextA' defined outside __init__ (attribute-defined-outside-init)
+# tabsC.py:1804:4: W0237: Parameter 'modifiers' has been renamed to 'mods' in overriding 'Tabs.on_mouse_release' method (arguments-renamed)
+#  util.py:33:4:   W0602: Using global for 'LOG_FILE' but no assignment is done (global-variable-not-assigned)
+#  util.py:459:4:  W0603: Using the global statement (global-statement)
+# chord.py:16:0:   R0902: Too many instance attributes (10/7) (too-many-instance-attributes)
+#  util.py:220:0:  R0903: Too few public methods (1/2) (too-few-public-methods)
+# tabsC.py:30:0:   R0904: Too many public methods (289/20) (too-many-public-methods)
