@@ -104,9 +104,8 @@ class Tabs(pyglet.window.Window):
         self.DAT_GFN   = self.geomFileName(DAT, self.FILE_NAME, n=self.n0)  ;  self.log(f'{self.DAT_GFN=} {self.n0=}')
         self.vArrow    = UP if self.VARROW == 1 else DOWN
         self.fontStyle = NORMAL_STYLE
-        self.k         = {}
-        self.tixwHdr   = ['tnik', '  i ', '    X  ', '    Y  ', '    W  ', '    H  ', 'fSz', ' cw', ' ch', 'v', 'a', 'x', 'y']
         self.sAlias    = 'GUITAR_6_STD'
+        self.k         = {}
         ####################################################################################################################################################################################################
         self.sobj      = util.Strings(self.sAlias)
         self.cobj      = chord.Chord(self.sobj)
@@ -1170,7 +1169,7 @@ class Tabs(pyglet.window.Window):
         for i in range(n):
             if self.DBG_TABT and j < T:    t = self.dbgTabTxt(j, i)
             i2 = i if ii is None else ii
-            if   j == P:                   v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}')
+            if   j == P:                   v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
             else:                          v = int(self.pages[self.J1[P]].visible)
             if   j in (C, E):              x2 = x + i2 * w #  ;   j2 = len(self.J2) if ii is not None else j
             else:
@@ -1230,7 +1229,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def fmtDocStyles(m):
         lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;   clr = f'{fmtl(m[COLOR], w=3)}'   ;   bgc = util.fColor(m[BGC] if BGC in m else None)
-        h = [    'FnSz',              'Lead',    'LnSp', f'{COLOR:^17}', f'{BGC:^17}',    'B',          'I',            'S',        f'{FONT_NAME:^18}' ]
+        h = [     FNSZ,               'Lead',    'LnSp', f'{COLOR:^17}', f'{BGC:^17}',    'B',          'I',            'S',        f'{FONT_NAME:^18}' ]
         s = [f'{m[FONT_SIZE]:4}', f'{m[LEAD]:4}', lnsp,     clr,            bgc,      f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{m[FONT_NAME]:^18}']
         return W.join(h), W.join(s)
 
@@ -1351,8 +1350,8 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def fTnikHdr(self, spr=0):
         tid  = ' TId  Identity  ' if self.OIDS else ' Tid'  ;  wnc = ' Why  Name  Cnt'  ;  rtsgv = ' Rotated G V' if spr else '  Text   G V'
-        xywh = W.join(self.tixwHdr[2:6])                    ;  rgb = ' Red Grn Blu Opc'                   if self.LONG_TXT else Z
-        sfx  = (' Iax  Iay      Grp        pGrp' if spr else ' cntw cnth v a x y fnSz dpi B I Font Name') if self.LONG_TXT else Z
+        xywh = W.join(XYWH)  ;  cwhv = W.join(CWHV)  ;  axy = W.join(AXY)   ;  rgb = ' Red Grn Blu Opc' if self.LONG_TXT else Z
+        sfx  = (' Iax  Iay      Grp        pGrp' if spr else f' {cwhv} {axy} {FNSZ} dpi B I Font Name') if self.LONG_TXT else Z
         rgbM = (' M     Mx    My  ' if spr else rgb) if self.LONG_TXT else Z
         return f'{tid} {wnc} {rtsgv} {self.fjtxt()} {xywh} {rgb} {rgbM} {sfx}'
 #    @staticmethod
@@ -1436,7 +1435,7 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTniksE(self):
-        self.log(Y.join(self.tixwHdr), p=0, f=3)
+        self.log(Y.join(TXCA), p=0, f=3)
         for i, t in enumerate(self.pages): self.t2csv(t, P, i)
         for i, t in enumerate(self.lines): self.t2csv(t, L, i)
         for i, t in enumerate(self.sects): self.t2csv(t, S, i)
@@ -1444,7 +1443,7 @@ class Tabs(pyglet.window.Window):
         for i, t in enumerate(self.tabls): self.t2csv(t, T, i)
 
     def dumpTniksF(self):
-        self.log(Y.join(self.tixwHdr), p=0, f=3)  ; a  = self.A  ;  b = self.B
+        self.log(Y.join(TXCA), p=0, f=3)  ; a  = self.A  ;  b = self.B
         for i in range(len(self.pages)):  self.t2csv(a[0][i], P, i)
         for i in range(len(self.lines)):  self.t2csv(a[1][i], L, i)
         for i in range(len(self.sects)):  self.t2csv(a[2][i], S, i)
@@ -1492,7 +1491,7 @@ class Tabs(pyglet.window.Window):
     def dumpTniksCsv(self):
         np, nl, ns, nc, nt = self.n
         self.log(f'{fmtl(self.args2csv(), d=Z, s=Y)}', p=0, f=3) #, e=Y)
-        for _ in range(np*nl*ns):   self.log(Y.join(self.tixwHdr), p=0, f=3, e=Y)
+        for _ in range(np*nl*ns):   self.log(Y.join(TXCA), p=0, f=3, e=Y)
         self.log(p=0, f=3)
         self.dumpTnik2Csv(P)
         self.dumpTnik2Csv(L)
@@ -1505,7 +1504,7 @@ class Tabs(pyglet.window.Window):
             self.log(p=0, f=3)
     ####################################################################################################################################################################################################
     def dumpTnik2Csv(self, j):
-        np, nl, ns, nc, nt = self.n  ;  z = Y.join([ W*len(self.tixwHdr[_]) for _ in range(len(self.tixwHdr)) ])  ;  k = 0  ;  i = 0  ;  absIdx = not self.PIDX
+        np, nl, ns, nc, nt = self.n  ;  z = Y.join([ W*len(TXCA[_]) for _ in range(len(TXCA)) ])  ;  k = 0  ;  i = 0  ;  absIdx = not self.PIDX
         for p in range(np):
             for l in range(nl):
                 for s, s2 in enumerate(self.ss2sl()):
@@ -2656,7 +2655,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def cleanupFiles(self):
         self.cleanupCsvFile()
-#        self.cleanupCatFile()
+        self.cleanupCatFile()
 
     def cleanupCsvFile(self):
         if not CSV_FILE.closed:
@@ -2749,7 +2748,15 @@ BASE_PATH = PATH.parent
 BASE_NAME = BASE_PATH.stem
 CAT,  CSV,  LOG,  PNG,  DAT     = 'cat',  'csv',  'log',  'png',  'dat'
 CATS, CSVS, LOGS, PNGS, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'data'
-CSV_FILE, LOG_FILE, CSVP, LOGP  = None, None, f'_.{CSV}', f'_.{LOG}'
+CSVP, LOGP                      = f'_.{CSV}', f'_.{LOG}'
+CSV_FILE, LOG_FILE              = None, None
+########################################################################################################################################################################################################
+FNSZ      =  'FnSz'
+AXY       = ['a', 'x', 'y']
+TI        = ['tnik', '  i ']
+CWHV      = ['CtnW', 'CntH', 'v']
+XYWH      = ['    X  ', '    Y  ', '    W  ', '    H  ']
+TXCA      = list(itertools.chain(TI, XYWH, [FNSZ], CWHV, AXY))
 ########################################################################################################################################################################################################
 FIN                   = [1, 1, 1, 2, 1]
 FNTP                  = [5, 4, 3, 3, 3]

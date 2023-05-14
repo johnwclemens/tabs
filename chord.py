@@ -219,7 +219,7 @@ class Chord:
         if self.umap: self.dumpUmap()
         slog(f'END {len(self.OMAP)=} {len(self.umap)=}')
 
-    def _dumpOMAP(self, catfile=None, dbg=0): # optimize str concat?
+    def _dumpOMAP(self, catfile=None, dbg=1): # optimize str concat?
         file = catfile      if catfile else util.LOG_FILE
         name = catfile.name if catfile else None
         omap = self.OMAP    ;    lm = len(self.OMAP)
