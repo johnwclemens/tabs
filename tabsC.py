@@ -36,7 +36,7 @@ class Tabs(pyglet.window.Window):
         self.fNameLid      = self.getFileSeqName(fdir=LOGS, fsfx=LOG)
         self.seqNumLogPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=LOGS, fsfx=LOG)   ;   self.log(f'{self.seqNumLogPath=}')
         self.seqNumCsvPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CSVS, fsfx=CSV)   ;   self.log(f'{self.seqNumCsvPath=}')
-        self.catPath       = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)   ;   self.log(f'{self.catPath=}')
+        self.seqNumCatPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)   ;   self.log(f'{self.seqNumCatPath=}')
         self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt  = Z
         self.shiftingTabs  = 0   ;   self.shiftSign = 1    ;   self.quitting = 0
         self.inserting     = 0   ;   self.insertStr = Z
@@ -57,7 +57,7 @@ class Tabs(pyglet.window.Window):
         self.X_LEFT = 0  ;  self.X_CENTER = 1  ;  self.X_RIGHT  = 0
 #       self.X_LEFT = 0  ;  self.X_CENTER = 0  ;  self.X_RIGHT  = 1
         self.Y_TOP  = 0  ;  self.Y_CENTER = 1  ;  self.Y_BOTTOM = 0  ;  self.Y_BASELINE = 0  ;  self.AUTO_SAVE = 0
-        self.BGC    = 0  ;  self.GEN_DATA = 0  ;  self.DBG_TABT = 3  ;  self.CHECKERED  = 1  ;  self.CURSOR    = 1
+        self.BGC    = 0  ;  self.GEN_DATA = 0  ;  self.DBG_TABT = 0  ;  self.CHECKERED  = 1  ;  self.CURSOR    = 1
         self.CAT    = 1  ;  self.LONG_TXT = 1  ;  self.FRT_BRD  = 0  ;  self.EVENT_LOG  = 0  ;  self.SPRITES   = 0  ;  self.SNAPS  = 1
         self.OIDS   = 0  ;  self.ORD_GRP  = 1  ;  self.RESIZE   = 1  ;  self.FULL_SCRN  = 0  ;  self.SUBPIX    = 1  ;  self.TEST   = 0
         self.PIDX   = 0  ;  self.STRETCH  = 0  ;  self.VARROW   = 1  ;  self.MULTI_LINE = 1  ;  self.VIEWS     = 0  ;  self.VRBY   = 0
@@ -111,7 +111,7 @@ class Tabs(pyglet.window.Window):
         self.cobj      = chord.Chord(self.sobj)
         ####################################################################################################################################################################################################
         self._initDataPath()
-        if self.CAT:    self.cobj.dumpOMAP(str(self.catPath))
+        if self.CAT:    self.cobj.dumpOMAP(str(CAT_PATH)) # rvcat
         self._initWindowA()
         self.log(f'WxH={self.fmtWH()}')
         super().__init__(screen=self.screens[self.screenIdx], fullscreen=self.FULL_SCRN, resizable=True, visible=False)
@@ -2544,13 +2544,13 @@ class Tabs(pyglet.window.Window):
         self.log(f'BGN {how} {np=} {nl=} {ns=} {nc=} {nt=}')
         self.nic.clear()
         self.dumpBlanks()
-        for t in enumerate(self.tabls):
+        for t in self.tabls:
             t.text = self.tblank
-        for n in enumerate(self.notes):
+        for n in self.notes:
             n.text = self.tblank
-        for i in enumerate(self.ikeys):
+        for i in self.ikeys:
             i.text = self.tblank
-        for k in range(len(self.kords)):
+        for k in self.kords:
             k.text = self.tblank
         for p in range(np):
             for l in range(nl):
@@ -2659,7 +2659,7 @@ class Tabs(pyglet.window.Window):
 
     def cleanupCsvFile(self):
         if not CSV_FILE.closed:
-            self.log(f'closing {CSV_FILE.name}', ff=True)
+            self.log(f'Closing {CSV_FILE.name}', ff=True)
             CSV_FILE.flush()
             CSV_FILE.close()
         csvPath  = util.getFilePath(BASE_NAME,     BASE_PATH, fdir=CSVS, fsfx=CSV)
@@ -2672,7 +2672,18 @@ class Tabs(pyglet.window.Window):
         self.log(f'Copying {CSV_FILE.name} to {csvPath3}', f=2)
         util.copyFile(csvPath, csvPath3)
 
-    def cleanupCatFile(self, dump=1): # revisit
+    def cleanupCatFile(self):
+        if not CAT_FILE.closed:
+            self.log(f'Closing {CAT_FILE.name}', ff=True)
+            CAT_FILE.flush()
+            CAT_FILE.close()
+        catPath  = util.getFilePath(BASE_NAME,     BASE_PATH, fdir=CATS, fsfx=CAT)
+        catPath2 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)
+        self.makeSubDirs(catPath2)
+        self.log(f'Copying {CAT_FILE.name} to {catPath2}', f=2)
+        util.copyFile(catPath, catPath2)
+
+    def OLD_cleanupCatFile(self, dump=1): # revisit
         self.log(f'BGN {dump=}')
         if   dump and self.CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
         elif dump:              self.cobj.dumpOMAP(None, merge=1)
@@ -2748,8 +2759,8 @@ BASE_PATH = PATH.parent
 BASE_NAME = BASE_PATH.stem
 CAT,  CSV,  LOG,  PNG,  DAT     = 'cat',  'csv',  'log',  'png',  'dat'
 CATS, CSVS, LOGS, PNGS, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'data'
-CSVP, LOGP                      = f'_.{CSV}', f'_.{LOG}'
-CSV_FILE, LOG_FILE              = None, None
+CATP, CSVP, LOGP                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}'
+CAT_FILE, CSV_FILE, LOG_FILE    = None, None, None
 ########################################################################################################################################################################################################
 FNSZ      =  'FnSz'
 AXY       = ['a', 'x', 'y']
@@ -2789,17 +2800,21 @@ FONT_NAMES = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Couri
 ########################################################################################################################################################################################################
 LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG)
 CSV_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV)
+CAT_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT)  # rvcat
 plogPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOGP)
 pcsvPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSVP)
+pcatPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CATP) # rvcat
 if LOG_PATH.exists():     util.copyFile(LOG_PATH, plogPath)
 if CSV_PATH.exists():     util.copyFile(CSV_PATH, pcsvPath)
-with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE:
+if CAT_PATH.exists():     util.copyFile(CAT_PATH, pcatPath)             # rvcat
+with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(CAT_PATH), 'w', encoding='utf-8') as CAT_FILE: # rvcat
     util.init(LOG_FILE, CSV_FILE, 0)
     slog(sys.argv[0],   p=0,           f=2)
     slog(f'argv={fmtl(sys.argv[1:])}', f=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
     FSH, PNK, RED, RST, PCH, ORG, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
     def main():
+        slog(f'{CAT_PATH=}',  f=2)   ;   slog(f'{CAT_FILE.name=}', f=2) # rvcat
         slog(f'{CSV_PATH=}',  f=2)   ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{LOG_PATH=}',  f=2)   ;   slog(f'{LOG_FILE.name=}', f=2)
         tabs = Tabs()                ;   snlfp    =    tabs.seqNumLogPath
@@ -2811,7 +2826,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
         glfp = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=LOGS, fsfx=Z)    ;    tabs.makeSubDirs(glfp)
         slog(f'{msg} {LOG_FILE.name} to { glfp}', ff=1)
         util.copyFile(LOG_PATH,           glfp)
-        LOG_FILE.flush()             ;     LOG_FILE.close()
+        LOG_FILE.flush()             ;    LOG_FILE.close()
         print('Thats all folks', flush=True)
     ########################################################################################################################################################################################################
     if __name__ == '__main__':

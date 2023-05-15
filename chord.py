@@ -220,13 +220,13 @@ class Chord:
         slog(f'END {len(self.OMAP)=} {len(self.umap)=}')
 
     def _dumpOMAP(self, catfile=None, dbg=1): # optimize str concat?
-        file = catfile      if catfile else util.LOG_FILE
-        name = catfile.name if catfile else None
-        omap = self.OMAP    ;    lm = len(self.OMAP)
-        mapSet = {}   ;   r = {}   ;   rank = -1
+        file    = catfile      if catfile else util.LOG_FILE
+        name    = catfile.name if catfile else None
+        omap    = self.OMAP    ;    lm = len(self.OMAP)
+        mapSet  = {}   ;   r = {}   ;   rank = -1
         slog(f'BGN {lm=} catfile.{name=}')
         for k, v in omap.items():
-            kv = len(v[1])
+            kv  = len(v[1])
             if kv not in mapSet: mapSet[kv] = set()
             mapSet[kv].add(tuple(v[1]))
         j, mstat, tstat = 0, [], []  ;  msg = 'ERROR: Invalid Rank'  # ;  q = 0
@@ -235,10 +235,11 @@ class Chord:
             tstat.append(0)
             count, nord, none = 0, 0, 0
             for ii in sml:
-                keys = [ Notes.I2V[i] for i in ii ]
+                keys      = [ Notes.I2V[i] for i in ii ]
                 keyStr    = W.join(keys)
+                if keyStr not in omap:   slog(f'{keyStr=} Error not in omap, continue')   ;   continue
                 keyStrFmt = '\'' + keyStr + '\''
-                v = omap[keyStr]
+                v         = omap[keyStr]
                 rankSet = set()  ;  rankSet.add(v[0])
                 if not catfile: count += 1  ;  none += 1 if not v[2] else 0  ;  nord += 1 if v[0] == rank else 0
                 v2 = fmtl(v[2], s='\',\'', d='[\'', d2='\']),') if v[2] else '[]),' if util.isi(v[2], list) else 'None),'
