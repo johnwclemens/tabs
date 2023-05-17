@@ -16,5 +16,6 @@ function cleanup {
 }
 
 cleanup "log"
-cleanup "csv"
 cleanup "png"
+cleanup "csv"
+cleanup "cat"

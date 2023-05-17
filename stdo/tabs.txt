@@ -49,20 +49,12 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  531 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
- 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
- 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs._.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs._.log)
  531 util  getFilePath        fileName =tabs._.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs._.log)
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs._.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs._.csv)
  531 util  getFilePath        fileName =tabs._.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs._.csv)
- 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
- 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
  536 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
  537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs._.log)
  539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\logs\tabs.log C:\Users\Owner\Documents\GitHub\tabs\logs\tabs._.log ###
@@ -71,59 +63,53 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs._.csv)
  539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs._.csv ###
         1 file(s) copied.
- 536 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
- 537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
- 539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat C:\Users\Owner\Documents\GitHub\tabs\cats\tabs._.cat ###
-        1 file(s) copied.
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
-2813 tabsC <module>           argv=[-n 1 1 10 6 -S 0 1 3 -f Test/test]
+2821 tabsC <module>           argv=[-n 1 1 10 6 -S 0 1 3 -f Test/test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2817 tabsC main               CAT_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
-2817 tabsC main               CAT_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\cats\\tabs.cat
-2818 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
-2818 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
-2819 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2819 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
-2700 tabsC dumpGlobals        BASE_NAME = tabs
-2701 tabsC dumpGlobals        argv      = +12[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 1 3 -f Test/test]
-2702 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2703 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
- 528 util  getFilePath        baseName =tabs.12      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.12.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.12.log)
- 528 util  getFilePath        baseName =tabs.12      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.12.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.12.csv)
- 528 util  getFilePath        baseName =tabs.12      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.12.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.12.cat)
- 136 tabsC dumpArgs           [f]      .FILE_NAME=Test/test
- 137 tabsC dumpArgs           [n]               n=[1 1 3 10 6]
- 138 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
- 139 tabsC dumpArgs           [a]      .AUTO_SAVE=0
- 140 tabsC dumpArgs           [b]        .FRT_BRD=0
- 141 tabsC dumpArgs           [B]            .BGC=0
- 142 tabsC dumpArgs           [c]            .CAT=1
- 143 tabsC dumpArgs           [C]      .CHECKERED=1
- 144 tabsC dumpArgs           [d]       .DBG_TABT=0
- 145 tabsC dumpArgs           [e]      .EVENT_LOG=0
- 146 tabsC dumpArgs           [F]      .FULL_SCRN=0
- 147 tabsC dumpArgs           [G]       .GEN_DATA=0
- 148 tabsC dumpArgs           [M]     .MULTI_LINE=1
- 149 tabsC dumpArgs           [g]        .ORD_GRP=1
- 150 tabsC dumpArgs           [o]           .OIDS=0
- 151 tabsC dumpArgs           [p]          .SNAPS=1
- 152 tabsC dumpArgs           [R]         .RESIZE=1
- 153 tabsC dumpArgs           [x]         .SUBPIX=1
- 154 tabsC dumpArgs           [s]        .SPRITES=0
- 155 tabsC dumpArgs           [t]           .TEST=0
- 156 tabsC dumpArgs           [T]       .LONG_TXT=1
- 157 tabsC dumpArgs           [v]           .VRBY=0
- 158 tabsC dumpArgs           [M]          .VIEWS=0
- 159 tabsC dumpArgs           [I]           .PIDX=0
- 160 tabsC dumpArgs           [A]         .VARROW=1
- 161 tabsC dumpArgs           [L]             .LL=0
- 162 tabsC dumpArgs           [S]             .SS=[0 1 3]
- 163 tabsC dumpArgs           [E]             .ZZ=[]
+2825 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+2825 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
+2826 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+2826 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2711 tabsC dumpGlobals        BASE_NAME = tabs
+2712 tabsC dumpGlobals        argv      = +12[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 1 3 -f Test/test]
+2713 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2714 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+ 528 util  getFilePath        baseName =tabs.19      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.19.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.19.log)
+ 528 util  getFilePath        baseName =tabs.19      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.19.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.19.csv)
+ 528 util  getFilePath        baseName =tabs.19      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.19.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.19.cat)
+ 135 tabsC dumpArgs           [f]      .FILE_NAME=Test/test
+ 136 tabsC dumpArgs           [n]               n=[1 1 3 10 6]
+ 137 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
+ 138 tabsC dumpArgs           [a]      .AUTO_SAVE=0
+ 139 tabsC dumpArgs           [b]        .FRT_BRD=0
+ 140 tabsC dumpArgs           [B]            .BGC=0
+ 141 tabsC dumpArgs           [c]            .CAT=1
+ 142 tabsC dumpArgs           [C]      .CHECKERED=1
+ 143 tabsC dumpArgs           [d]       .DBG_TABT=0
+ 144 tabsC dumpArgs           [e]      .EVENT_LOG=0
+ 145 tabsC dumpArgs           [F]      .FULL_SCRN=0
+ 146 tabsC dumpArgs           [G]       .GEN_DATA=0
+ 147 tabsC dumpArgs           [M]     .MULTI_LINE=1
+ 148 tabsC dumpArgs           [g]        .ORD_GRP=1
+ 149 tabsC dumpArgs           [o]           .OIDS=0
+ 150 tabsC dumpArgs           [p]          .SNAPS=1
+ 151 tabsC dumpArgs           [R]         .RESIZE=1
+ 152 tabsC dumpArgs           [x]         .SUBPIX=1
+ 153 tabsC dumpArgs           [s]        .SPRITES=0
+ 154 tabsC dumpArgs           [t]           .TEST=0
+ 155 tabsC dumpArgs           [T]       .LONG_TXT=1
+ 156 tabsC dumpArgs           [v]           .VRBY=0
+ 157 tabsC dumpArgs           [M]          .VIEWS=0
+ 158 tabsC dumpArgs           [I]           .PIDX=0
+ 159 tabsC dumpArgs           [A]         .VARROW=1
+ 160 tabsC dumpArgs           [L]             .LL=0
+ 161 tabsC dumpArgs           [S]             .SS=[0 1 3]
+ 162 tabsC dumpArgs           [E]             .ZZ=[]
         1 file(s) copied.
-1172 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+1171 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
                       CW   CH V A x y Ascn Dscn nA-D FnSz Lead LnSp       color       background_color  B I S     font_name     
 Page   1          V    0    0 T C C C  393 -105  498  373    0 None [128  10 255 255]       None        0 0 0   Lucida Console  
 Line   1          V    0    0 T C C C  393 -105  498  373    0 None [255  10  10 225]       None        0 0 0   Lucida Console  
@@ -271,79 +257,379 @@ Note   5 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  52   2
 Note   6 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 255  10 195]       None        0 0 0   Lucida Console  
 Sect   3          V    0    0 T C C C  131  -35  166  124    0 None [ 10 255 255 225]       None        0 0 0   Lucida Console  
 Colm   1          V    0    0 T C C C   21   -6   27   20    0 None [255 128 192 225]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   1 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   2 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   3 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   4 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   5 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   6 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
 Colm   2          V    0    0 T C C C   21   -6   27   20    0 None [ 52  26  39 225]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   1 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   2 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   3 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   4 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   5 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   6 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
 Colm   3          V    0    0 T C C C   21   -6   27   20    0 None [255 128 192 225]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   1 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   2 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   3 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   4 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   5 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   6 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
 Colm   4          V    0    0 T C C C   21   -6   27   20    0 None [ 52  26  39 225]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   1 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   2 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   3 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   4 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   5 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   6 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
 Colm   5          V    0    0 T C C C   21   -6   27   20    0 None [255 128 192 225]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   1 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   2 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   3 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   4 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   5 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   6 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
 Colm   6          V    0    0 T C C C   21   -6   27   20    0 None [ 52  26  39 225]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   1 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   2 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   3 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   4 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   5 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   6 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
 Colm   7          V    0    0 T C C C   21   -6   27   20    0 None [255 128 192 225]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   1 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   2 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   3 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   4 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   5 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   6 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
 Colm   8          V    0    0 T C C C   21   -6   27   20    0 None [ 52  26  39 225]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   1 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   2 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   3 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   4 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   5 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   6 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
 Colm   9          V    0    0 T C C C   21   -6   27   20    0 None [255 128 192 225]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   1 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   2 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   3 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   4 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   5 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   6 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
 Colm  10          V    0    0 T C C C   21   -6   27   20    0 None [ 52  26  39 225]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   1 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   2 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   3 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   4 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   5 -        V   16   27 T C C C   21   -6   27   20    0 None [  2  36  52 195]       None        0 0 0   Lucida Console  
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
+        1 file(s) copied.
 Kord   6 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195]       None        0 0 0   Lucida Console  
- 298 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2821 tabsC main               str(tabs)={n: [1, 1, 10, 6], S: [0, 1, 3], f: [Test/test]}
-2821 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 1, 10, 6], S: [0, 1, 3], f: [Test/test]}
-1271 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+ 297 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+2828 tabsC main               str(tabs)={n: [1, 1, 10, 6], S: [0, 1, 3], f: [Test/test]}
+2828 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 1, 10, 6], S: [0, 1, 3], f: [Test/test]}
+1278 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
                       CW   CH V A x y Ascn Dscn nA-D FnSz Lead LnSp       color       background_color  B I S     font_name     
 Page   1          V    0    0 T C C C  393 -105  498  373    0 None [128  10 255 255]       None        0 0 0   Lucida Console  
 Line   1          V    0    0 T C C C  393 -105  498  373    0 None [255  10  10 225]       None        0 0 0   Lucida Console  
@@ -560,40 +846,44 @@ Kord  57 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255
 Kord  58 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
 Kord  59 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
 Kord  60 -        V   16   27 T C C C   21   -6   27   20    0 None [ 10 180 255 195] [  2  36  52 195] 0 0 0   Lucida Console  
-2591 tabsC snapshot           snapName=tabs.12.0.Upd5.png Upd1
-2591 tabsC snapshot           snapName=tabs.12.1.TXT_6.png onTxt
+2598 tabsC snapshot           snapName=tabs.19.0.Upd5.png Upd1
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  CtnW CntH v a x y FnSz dpi B I Font Name
 ###   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ######   BGN Quit   ###
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
-2639 tabsC quit               BGN @^Q error=0 save=0
+2646 tabsC quit               BGN @^Q error=0 save=0
 ###   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ######   Quit   ###
- 124 chord dumpLimap            0 0-1                           R#5b2M37b5   0814b6 BbGbBDAE     Rb2M3b5#57   01468b BbBDEGbA    
- 124 chord dumpLimap            0 0-1                           M3R4#5m3b7   40583a BbGbBDAE     Rm3M34#5b7   03458a GbABbBDE    
- 124 chord dumpLimap            0 0-1                           75Rm3b74     b703a5 BbGbBDAE     Rm345b77     0357ab BDEGbABb    
- 124 chord dumpLimap            0 0-1                           #5M36R52     849072 BbGbBDAE     R2M35#56     024789 DEGbABbB    
- 124 chord dumpLimap            0 0-1                           b2624R5      192507 BbGbBDAE     Rb22456      012579 ABbBDEGb    
- 124 chord dumpLimap            0 0-1                           b525b74R     627a50 BbGbBDAE     R24b55b7     02567a EGbABbBD    
-2591 tabsC snapshot           snapName=tabs.12.2.QUIT.png quit error=0 save=0
-2647 tabsC quit               END @^Q error=0 save=0
+ 117 chord dumpLimap            0 0-1                           Rb5726M3     06b294 CGbBDAE      R2M3b567     02469b CDEGbAB     
+ 117 chord dumpLimap            0 0-1                           b5R4#5m3b7   60583a CGbBDAE      Rm34b5#5b7   03568a GbABCDE     
+ 117 chord dumpLimap            0 0 0 E119x/C      E119x/C      M3b7424R     4a5250 CGbBDAE      R2M34b7      0245a  EDCAGb      
+ 117 chord dumpLimap            0 0 1 Bm#1311x/C   Bm#1311x/C   74Rm3b74     b503a5 CGbBDAE      Rm34b77      035ab  BDEAC       
+ 117 chord dumpLimap            0 0 2 Am1311/C     Am1311/C     6m3b75R4     93a705 CGbBDAE      Rm3456b7     03579a AGbEDCB     
+ 117 chord dumpLimap            0 0 3 Dm+2/C       Dm+2/C       2#5m3R52     283072 CGbBDAE      R2m35#5      02378  DEBAGb      
+2598 tabsC snapshot           snapName=tabs.19.1.QUIT.png quit error=0 save=0
+2654 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
  528 util  getFilePath        baseName =Test/test.1.1.3.10.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =Test/test.1.1.3.10.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.1.3.10.6.csv)
- 528 util  getFilePath        baseName =tabs.12      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.12.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.12.csv)
-2669 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.1.3.10.6.csv
+ 528 util  getFilePath        baseName =tabs.19      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.19.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.19.csv)
+2676 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.1.3.10.6.csv
         1 file(s) copied.
-2672 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.12.csv
+2679 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.19.csv
         1 file(s) copied.
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
- 528 util  getFilePath        baseName =tabs.12      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.12.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.12.cat)
-2683 tabsC cleanupCatFile     Copying C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat to C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.12.cat
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs._.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs._.cat)
         1 file(s) copied.
-2650 tabsC quit               END @^Q error=0 save=0
+ 528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.cat     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.cat)
+ 528 util  getFilePath        baseName =tabs.19      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.19.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.19.cat)
+2694 tabsC cleanupCatFile     Copying C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.cat to C:\Users\Owner\Documents\GitHub\tabs\cats\tabs.19.cat
+        1 file(s) copied.
+2657 tabsC quit               END @^Q error=0 save=0
 ###   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ######   END Quit   ###
         1 file(s) copied.
  528 util  getFilePath        baseName =Test/test.1.1.3.10.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)

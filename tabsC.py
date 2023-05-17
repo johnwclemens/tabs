@@ -111,7 +111,6 @@ class Tabs(pyglet.window.Window):
         self.cobj      = chord.Chord(self.sobj)
         ####################################################################################################################################################################################################
         self._initDataPath()
-        if self.CAT:    self.cobj.dumpOMAP(str(CAT_PATH)) # rvcat
         self._initWindowA()
         self.log(f'WxH={self.fmtWH()}')
         super().__init__(screen=self.screens[self.screenIdx], fullscreen=self.FULL_SCRN, resizable=True, visible=False)
@@ -1075,10 +1074,10 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'{ikey=}')
         return ikey
 
-    def imap2Chord(self, tobj, imap, i, j, dbg=0):
+    def imap2Chord(self, tobj, imap, i, j, dbg=1):
         chunks    = imap[4]  if (imap and len(imap) > 4) else []
         chordName = tobj     if j > K else chunks[i] if len(chunks) > i else self.tblank
-        if dbg: self.log(f'{chordName=}')
+        if dbg: self.log(f'{chordName=} chunks={fmtl(chunks)} imap={fmtl(imap)}')
         return chordName
     ####################################################################################################################################################################################################
     def ntsl(self): n = 1 + self.n[T] * self.ssl() * self.i[L]   ;   return n
@@ -1180,9 +1179,10 @@ class Tabs(pyglet.window.Window):
                     tl2, j2, kl, to = self.tnikInfo(p, l, s, c, i2, why=why)
                     if   s == TT:          t = to
                     elif s == NN:          t = to if j2 > K else self.sobj.tab2nn(to, i2, self.nic) if self.sobj.isFret(to) else self.tblank
-                    elif s >= II:
-                        if   s == II: m = self.getImap(p, l, c)  ;  t = self.imap2ikey( to, m, i3, j2)  ;  i3 += 1 if t != self.tblank else 0
-                        elif s == KK: m = self.getImap(p, l, c)  ;  t = self.imap2Chord(to, m, i2, j2)
+                    elif s in (II, KK):
+                        m = self.getImap(p, l, c)
+                        if   s == II:      t = self.imap2ikey( to, m, i3, j2)  ;  i3 += 1 if t != self.tblank else 0
+                        elif s == KK:      t = self.imap2Chord(to, m, i2, j2)  ;  self.prepCats() if self.cobj.umap else None
             kk = self.cci(j2, i2, kl) if self.CHECKERED else 0
             yield self.createTnik(tl2, i2, j2, x2, y2, w, h, kk, kl, why=why, t=t, v=v, dbg=dbg)
     ####################################################################################################################################################################################################
@@ -1213,6 +1213,13 @@ class Tabs(pyglet.window.Window):
         if self.ZZ and j == S and v:                          tnik = self.createZZs(tnik, i, why)
         return tnik
     ####################################################################################################################################################################################################
+    def prepCats(self):
+        self.log('BGN')
+        CAT_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT)
+        pcatPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CATP)
+        if CAT_PATH.exists():     util.copyFile(CAT_PATH, pcatPath)
+        self.log('END')
+
     def checkTnik(self, t, i, j, dbg=1):
         td = t.document   ;   sm = td.styles
         a,  ax,  ay,  ml   =  self.a,    self.ax,    self.ay,    self.MULTI_LINE
@@ -1226,12 +1233,6 @@ class Tabs(pyglet.window.Window):
         self.log(f'{W*21} CW   CH V A x y Ascn Dscn nA-D {h}', p=0, f=0) if j==0 else None
         self.log(f'{js} {i+1:3} {self.ffTxt(t)} {v} {self.fCtnt(t)} {self.fAxy()} {asc:4} {dsc:4} {net:4} {s}', p=0, f=0)
         if dbg:    fnt2 = pygfont.load(sm[FONT_NAME], sm[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
-    @staticmethod
-    def fmtDocStyles(m):
-        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;   clr = f'{fmtl(m[COLOR], w=3)}'   ;   bgc = util.fColor(m[BGC] if BGC in m else None)
-        h = [     FNSZ,               'Lead',    'LnSp', f'{COLOR:^17}', f'{BGC:^17}',    'B',          'I',            'S',        f'{FONT_NAME:^18}' ]
-        s = [f'{m[FONT_SIZE]:4}', f'{m[LEAD]:4}', lnsp,     clr,            bgc,      f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{m[FONT_NAME]:^18}']
-        return W.join(h), W.join(s)
 
     def dbgTabTxt(self, j, i):
         dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1:03}' if j==C else f'{i+1}'  ;      k = d.join(k)
@@ -1239,6 +1240,12 @@ class Tabs(pyglet.window.Window):
         if dt==2:  a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS[j][k]  for k in range(a) ])   ;   return f'{e}{d}{i+1}'
         if dt==3:  a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS2[j][k] for k in range(a) ])   ;   return f'{e}{d}{k}'
         return d.join('?'*3)
+    @staticmethod
+    def fmtDocStyles(m):
+        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;   clr = f'{fmtl(m[COLOR], w=3)}'   ;   bgc = util.fColor(m[BGC] if BGC in m else None)
+        h = [     FNSZ,               'Lead',    'LnSp', f'{COLOR:^17}', f'{BGC:^17}',    'B',          'I',            'S',        f'{FONT_NAME:^18}' ]
+        s = [f'{m[FONT_SIZE]:4}', f'{m[LEAD]:4}', lnsp,     clr,            bgc,      f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{m[FONT_NAME]:^18}']
+        return W.join(h), W.join(s)
 
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]      ;     ha = hasattr(c, 'text')
@@ -2673,7 +2680,11 @@ class Tabs(pyglet.window.Window):
         util.copyFile(csvPath, csvPath3)
 
     def cleanupCatFile(self):
-        if not CAT_FILE.closed:
+        CAT_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT)
+        pcatPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CATP)
+        if CAT_PATH.exists():     util.copyFile(CAT_PATH, pcatPath)
+        with open(str(CAT_PATH), 'w', encoding='utf-8') as CAT_FILE:
+            self.cobj.dumpOMAP(CAT_PATH)
             self.log(f'Closing {CAT_FILE.name}', ff=True)
             CAT_FILE.flush()
             CAT_FILE.close()
@@ -2760,7 +2771,7 @@ BASE_NAME = BASE_PATH.stem
 CAT,  CSV,  LOG,  PNG,  DAT     = 'cat',  'csv',  'log',  'png',  'dat'
 CATS, CSVS, LOGS, PNGS, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'data'
 CATP, CSVP, LOGP                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}'
-CAT_FILE, CSV_FILE, LOG_FILE    = None, None, None
+CSV_FILE, LOG_FILE    = None, None
 ########################################################################################################################################################################################################
 FNSZ      =  'FnSz'
 AXY       = ['a', 'x', 'y']
@@ -2800,21 +2811,17 @@ FONT_NAMES = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Couri
 ########################################################################################################################################################################################################
 LOG_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG)
 CSV_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV)
-CAT_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT)  # rvcat
 plogPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOGP)
 pcsvPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSVP)
-pcatPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CATP) # rvcat
 if LOG_PATH.exists():     util.copyFile(LOG_PATH, plogPath)
 if CSV_PATH.exists():     util.copyFile(CSV_PATH, pcsvPath)
-if CAT_PATH.exists():     util.copyFile(CAT_PATH, pcatPath)             # rvcat
-with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(CAT_PATH), 'w', encoding='utf-8') as CAT_FILE: # rvcat
+with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE:
     util.init(LOG_FILE, CSV_FILE, 0)
     slog(sys.argv[0],   p=0,           f=2)
     slog(f'argv={fmtl(sys.argv[1:])}', f=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
     FSH, PNK, RED, RST, PCH, ORG, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
     def main():
-        slog(f'{CAT_PATH=}',  f=2)   ;   slog(f'{CAT_FILE.name=}', f=2) # rvcat
         slog(f'{CSV_PATH=}',  f=2)   ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{LOG_PATH=}',  f=2)   ;   slog(f'{LOG_FILE.name=}', f=2)
         tabs = Tabs()                ;   snlfp    =    tabs.seqNumLogPath

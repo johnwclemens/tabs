@@ -21,38 +21,28 @@ class Chord:
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), {}
     ####################################################################################################################################################################################################
-    def getChordName(self, data, nic, cn, p, l, c, kk=1, dbg=0):
-        self.limap = []   ;   imap = []
-        ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1
-        mask, notes, ixs = self._getIndices(data, nic, p, l, c)   ;   _imap, vkeys = None, []
-        for k, ixk in enumerate(ixs):
-            ivals = []   ;   chunks = []   ;   rank = -1
-            for ixj in ixs:
-                if ixj >= ixk:       i =                 (ixj - ixk)  % Notes.NTONES
-                else:                i = (Notes.NTONES - (ixk - ixj)) % Notes.NTONES
-                ivals.append(i)
-            vkey = Z.join([ f'{v:x}' for v in ivals ])
+    def getChordName(self, data, nic, cn, p, l, c, dbg=0):
+        ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1   ;   vkeys = []   ;   self.limap = []
+        mask, notes, js  = self._getIndices(data, nic, p, l, c)   ;   imap = []   ;   _imap = None  ;  nt = Notes.NTONES
+        for k, jk in enumerate(js):
+            ivals = [ ((ji-jk) if ji >= jk else (nt-(ji-jk))) % nt for ji in js ]
+            vkey = Z.join([ f'{v:x}' for v in ivals ])   ;   chunks = []   ;   rank = -1
             if vkey not in vkeys:
-                ikeys  = [ Notes.I2V[i] for i in ivals ]
-                if dbg: self._dumpData(rank, ikeys, ivals, notes, mask, 0)
-                _imap  = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: Notes.V2I[t[0]]))
-                _ikeys = list(_imap.keys())   ;   _ivals = [ Notes.V2I[k] for k in _ikeys ]   ;   _notes = list(_imap.values())
-                ikey   = W.join(_ikeys)
+                ikeys    = [ Notes.I2V[i] for i in ivals ]
+                if dbg:    self._dumpData(rank, ikeys, ivals, notes, mask, 0)
+                _imap    = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: Notes.V2I[t[0]]))   ;   leni = len(_imap)
+                _ikeys   = list(_imap.keys())   ;    _ivals = [ Notes.V2I[k] for k in _ikeys ]   ;   _notes = list(_imap.values())
+                ikey     = W.join(_ikeys)
                 if ikey in self.OMAP:
-                    root = _imap['R']
-                    chunks.append(root)
+                    root = _imap['R']           ;     chunks.append(root)
                     [ chunks.append(n) for n in self.OMAP[ikey][2] if n ]
                     if root != notes[0]: nsfx = f'/{notes[0]}'  ;  chunks.append(nsfx)
-                    name = Z.join(chunks)      ;     rank = self.OMAP[ikey][0]
+                    name = Z.join(chunks)       ;     rank = self.OMAP[ikey][0]
                     assert _ivals == self.OMAP[ikey][1]
-                elif len(_imap) >= Chord.MIN_CHORD_LEN:
-                    msg = f'ADDING {ikey=} {fmtl(ivals)=} to OMAP'   ;   slog(f'{msg} {kk=}')
-                    if kk: self.umap[ikey] = (rank, ivals, [])
-                    else:  raise SystemExit(msg)
-                elif len(_imap) >= util.MIN_IVAL_LEN:
-                    pass
+                elif len(_imap) >= self.MIN_CHORD_LEN:  self.add2Umap(leni, ikey, rank, ivals)
+                elif len(_imap) >= util.MIN_IVAL_LEN:   slog(f'{leni=} is Not a Chord {ikey=} v={fmtl(ivals)}')
                 if dbg:    self._dumpData(rank, _ikeys, _ivals, _notes, mask, 1)
-                imap   = [ ikeys, ivals, notes, name, chunks, rank ]
+                imap     = [ ikeys, ivals, notes, name, chunks, rank ]
                 vkeys.append(vkey)   ;   self.limap.append(imap)
                 if dbg: slog(f'{rank:2} {Z.join(ikeys):12} {Z.join(f"{i:x}" for i in ivals):6} {Z.join(notes):12} {name:12} {Z.join(chunks):12} {Z.join(_ikeys):12} {Z.join(f"{i:x}" for i in _ivals):6} {Z.join(_notes):12}')
                 if dbg: slog(f'{rank:2} {fmtl(ikeys):19} {fmtl(ivals, w="x")} {W.join(notes):12} {name:12} {Z.join(chunks)} {fmtl(_ikeys)} {fmtl(_ivals, w="x")} {W.join(_notes):12}') #fix me
@@ -62,6 +52,9 @@ class Chord:
             self.mlimap[cn] = [ self.limap, imi ]
             return self.limap[imi]
         return imap # [ ikeys, ivals, notes, name, chunks, rank ]
+    ####################################################################################################################################################################################################
+    def add2Umap(self, li, ikey, rank, ivals, dbg=1):
+        slog(f'{li=} Adding {ikey=} v={fmtl(ivals)} to umap')  ;  self.umap[ikey] = (rank, ivals, [])  ;  self.dumpUmap() if dbg else None
     ####################################################################################################################################################################################################
     def _getIndices(self, data, nic, p, l, c, dbg=1, dbg2=0):
         strNumbs   = self.sobj.stringNumbs

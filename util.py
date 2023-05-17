@@ -240,7 +240,7 @@ class Strings:
         if alias is None: alias = 'GUITAR_6_STD'
         self.stringMap          = self.aliases[alias]
         self.stringKeys         = list(self.stringMap.keys())
-        self.stringNames        = Z.join(reversed([ str(k[0])  for k in            self.stringKeys ]))
+        self.stringNames        = Z.join(reversed([ str(k[0])  for k in           self.stringKeys ]))
         self.stringNumbs        = Z.join(         [ str(r + 1) for r in range(len(self.stringKeys)) ])
         self.stringCapo         = Z.join(         [ '0'        for _ in range(len(self.stringKeys)) ])
         self.strLabel           = 'STRING'
