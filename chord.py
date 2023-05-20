@@ -15,7 +15,8 @@ FMTN           = (1, 1, 2, 2, 2, 2, 2)
 
 class Chord:
     MIN_CHORD_LEN = 3
-    def __init__(self, sobj):
+    def __init__(self, tobj, sobj):
+        self.tobj = tobj
         self.sobj = sobj
         self.limap, self.mlimap, self.umap, self.cycles = [], {}, {}, {}
         self.catmap, self.catmap2 = {}, {}
@@ -39,7 +40,7 @@ class Chord:
                     if root != notes[0]: nsfx = f'/{notes[0]}'  ;  chunks.append(nsfx)
                     name = Z.join(chunks)       ;     rank = self.OMAP[ikey][0]
                     assert _ivals == self.OMAP[ikey][1]
-                elif len(_imap) >= self.MIN_CHORD_LEN:  self.add2Umap(leni, ikey, rank, ivals)
+                elif len(_imap) >= self.MIN_CHORD_LEN:  self.add2uMap(leni, ikey, rank, ivals)
                 elif len(_imap) >= util.MIN_IVAL_LEN:   slog(f'{leni=} is Not a Chord {ikey=} v={fmtl(ivals)}')
                 if dbg:    self._dumpData(rank, _ikeys, _ivals, _notes, mask, 1)
                 imap     = [ ikeys, ivals, notes, name, chunks, rank ]
@@ -53,10 +54,12 @@ class Chord:
             return self.limap[imi]
         return imap # [ ikeys, ivals, notes, name, chunks, rank ]
     ####################################################################################################################################################################################################
-    def add2Umap(self, li, ikey, rank, ivals, dbg=1):
-        slog(f'{li=} Adding {ikey=} v={fmtl(ivals)} to umap')  ;  self.umap[ikey] = (rank, ivals, [])  ;  self.dumpUmap() if dbg else None
+    def add2uMap(self, li, ikey, rank, ivals, dbg=1):
+        slog(f'{li=} Adding {ikey=} v={fmtl(ivals)} to umap')
+        self.umap[ikey] = (rank, ivals, [])
+        self.dumpUmap() if dbg else None
     ####################################################################################################################################################################################################
-    def _getIndices(self, data, nic, p, l, c, dbg=1, dbg2=0):
+    def _getIndices(self, data, nic, p, l, c, dbg=0, dbg2=0):
         strNumbs   = self.sobj.stringNumbs
         strKeys    = self.sobj.stringKeys
         strNames   = self.sobj.stringNames
@@ -78,9 +81,9 @@ class Chord:
             if dbg2: self.dumpData(strKeys,    mask0, 'strKeys')
             if dbg2: self.dumpData(strIndices, mask0, 'strIndices')
             if dbg2: self.dumpData(strNames,   mask0, 'strNames', r=1)
-            if dbg:  self.dumpData(_tabs,      mask0, 'Tabs',     r=1)
-            if dbg:  self.dumpData(indices,    mask,  'Note Indices')
-#            if dbg:  self.dumpData(notes,      mask,  'Notes')
+            if dbg2: self.dumpData(_tabs,      mask0, 'Tabs',     r=1)
+            if dbg2: self.dumpData(indices,    mask,  'Note Indices')
+            if dbg:  self.dumpData(notes,      mask,  'Notes')
         return mask, notes, indices
     ####################################################################################################################################################################################################
     def _dumpData(self, rank, ikeys, ivals, notes, mask, a):
@@ -187,29 +190,19 @@ class Chord:
     ####################################################################################################################################################################################################
     def dumpUmap(self): # optimize str concat?
         if self.umap:
-            slog('BGN umap:')
             umapKeys = sorted(self.umap.keys() , key=lambda a: self.umap[a][1])
             for k in umapKeys:
                 v = self.umap[k]
                 k = '\'' + k + '\''
-                slog(f'{k:19}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):15})', p=0)
-            slog(f'END {len(self.umap)=}')
+                slog(f'{k:19}: ({v[0]} {fmtl(v[1]):15})', p=2)
 
     def dumpOMAP(self, catpath=None, merge=0):
         slog(f'BGN {len(self.OMAP)=} {len(self.umap)=}')
+        if self.umap:           self.dumpUmap()
         if merge and self.umap: self.mergeMaps(self.umap, self.OMAP)
-        r = self._dumpOMAP()
         if catpath:
             with open(str(catpath), 'w', encoding='utf-8') as CAT_FILE:
                 self._dumpOMAP(CAT_FILE)
-        if r:
-            for (k,v) in r.items():
-                self.OMAP[k] = v
-            self._dumpOMAP()
-            if catpath:
-                with open(str(catpath), 'w', encoding='utf-8') as CAT_FILE:
-                    self._dumpOMAP(CAT_FILE)
-        if self.umap: self.dumpUmap()
         slog(f'END {len(self.OMAP)=} {len(self.umap)=}')
 
     def _dumpOMAP(self, catfile=None, dbg=1): # optimize str concat?
@@ -228,9 +221,10 @@ class Chord:
             tstat.append(0)
             count, nord, none = 0, 0, 0
             for ii in sml:
-                keys      = [ Notes.I2V[i] for i in ii ]
+                keys      = [ Notes.I2V[i] for i in ii ]   ;   j += 1   ;   slog(f'{j} {ii} {keys}', f=2, ff=1)
+                keys      = sorted(keys, key=lambda a: Notes.V2I[a])
                 keyStr    = W.join(keys)
-                if keyStr not in omap:   slog(f'{keyStr=} Error not in omap, continue')   ;   continue
+                if keyStr not in omap:   msg = f'Error {keyStr=} not in omap, quitting'   ;   slog(msg)   ;   self.tobj.quit(msg)
                 keyStrFmt = '\'' + keyStr + '\''
                 v         = omap[keyStr]
                 rankSet = set()  ;  rankSet.add(v[0])
@@ -247,7 +241,7 @@ class Chord:
                         if ck not in self.cycles: self.cycles[ck] = set()
                         self.cycles[ck].add(jj)                                        ;   cycle = 1
                     cycSet.add(jj)    ;     d = '@' if cycle else '['    ;    d2 = '@' if cycle else ']'
-                    if keyStr not in omap:        slog('Not in map: ', p=0, e=Z, f=file)     ;    r[keyStr] = (rank, ii, None)
+                    if keyStr not in omap:        slog('not in map: ', p=0, e=Z, f=file)     ;    r[keyStr] = (rank, ii, None)
                     if dbg: slog(f'{keyStr:16} {fmtl(ii, w="x", d=d, d2=d2):13} ', p=0, e=Z, f=file)
                 refSet = set(range(len(ii)))
                 if dbg:
@@ -264,8 +258,8 @@ class Chord:
                 tstat[0] += m[0]   ;   tstat[1] += m[1]   ;   tstat[2] += m[2]   ;   tstat[3] += m[3]
         if catfile: lm, lr = len(omap), len(r)   ;   slog(f'END {lm=} catfile.{name=} {lr=}')
         else: slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}')
-#        if q: self.quit(msg, code=2)
         return r
+
     ####################################################################################################################################################################################################
     #    0  1  2  3  4  5  6  7  8   9  10 11 0
     #    R  b2 2  m3 M3 4  b5 5  #5  6  b7 7  R
@@ -871,7 +865,7 @@ class Chord:
     #  10    55                     #
     #################################
 
-    def add2cat(self, limap, cc):
+    def add2cat(self, limap, cc): # N/A?
         self.dumpLimap(limap, cc)
         outer = []   ;   keys, ivals = [], []
         for i in limap:

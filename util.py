@@ -18,9 +18,9 @@ MIN_IVAL_LEN     = 1
 MAX_STACK_DEPTH  = 0
 MAX_STACK_FRAME  = inspect.stack()
 INIT             = '###   Init   ###'     * 13
-QUIT_BGN         = '###   BGN Quit   ###' * 10
-QUIT             = '###   Quit   ###'     * 13
-QUIT_END         = '###   END Quit   ###' * 10
+QUIT_BGN         = '###   Quit BGN  ###' * 10
+QUIT             = '###   Quit      ###' * 10
+QUIT_END         = '###   Quit END  ###' * 10
 #STFILT = ['log', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx']
 STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
@@ -130,8 +130,8 @@ def dumpND(csv=0):
     hdrs       = ['I', 'F', 'S', 'IV', 'mM', 'dA']
     hdrs       = f'{m.join([ f"{h:{w}}" for h in hdrs ])}'
     slog(f'{hdrs}', p=0, f=f)
-    for i, n in enumerate(ND):
-        slog(f'{i:x}{m}{fmtl(n, w=w, d=d, s=m) if isi(n, list) else n}', p=0, f=f)
+    for i, (k, v) in enumerate(ND.items()):
+        slog(f'{i:x}{m}{fmtl(v, w=w, d=d, s=m)}', p=0, f=f)
 #    for i in range(len(ND)):   slog(f'{i:x}{m}{fmtl(ND[i], w=w, d=d, s=m)}', p=0, f=f)
 ########################################################################################################################################################################################################
 def dumpKSV(csv=0):

@@ -57,11 +57,11 @@ class Tabs(pyglet.window.Window):
         self.X_LEFT = 0  ;  self.X_CENTER = 1  ;  self.X_RIGHT  = 0
 #       self.X_LEFT = 0  ;  self.X_CENTER = 0  ;  self.X_RIGHT  = 1
         self.Y_TOP  = 0  ;  self.Y_CENTER = 1  ;  self.Y_BOTTOM = 0  ;  self.Y_BASELINE = 0  ;  self.AUTO_SAVE = 0
-        self.BGC    = 0  ;  self.GEN_DATA = 0  ;  self.DBG_TABT = 0  ;  self.CHECKERED  = 1  ;  self.CURSOR    = 1
+        self.BGC    = 0  ;  self.GEN_DATA = 0  ;  self.DBG_TABT = 4  ;  self.CHECKERED  = 1  ;  self.CURSOR    = 1
         self.CAT    = 1  ;  self.LONG_TXT = 1  ;  self.FRT_BRD  = 0  ;  self.EVENT_LOG  = 0  ;  self.SPRITES   = 0  ;  self.SNAPS  = 1
         self.OIDS   = 0  ;  self.ORD_GRP  = 1  ;  self.RESIZE   = 1  ;  self.FULL_SCRN  = 0  ;  self.SUBPIX    = 1  ;  self.TEST   = 0
         self.PIDX   = 0  ;  self.STRETCH  = 0  ;  self.VARROW   = 1  ;  self.MULTI_LINE = 1  ;  self.VIEWS     = 0  ;  self.VRBY   = 0
-        self.LL     = 0
+        self.LL     = 1
         self.SS     = set(range(4))  # set() if 0 else {0, 1, 2, 3}
         self.ZZ     = set()          # set() if 1 else {0} #, 1}
         self.idmap  = cOd() if CODS else {}  ;  self.log(f'{CODS=} {type(self.idmap)=}')
@@ -108,7 +108,7 @@ class Tabs(pyglet.window.Window):
         self.k         = {}
         ####################################################################################################################################################################################################
         self.sobj      = util.Strings(self.sAlias)
-        self.cobj      = chord.Chord(self.sobj)
+        self.cobj      = chord.Chord(self, self.sobj)
         ####################################################################################################################################################################################################
         self._initDataPath()
         self._initWindowA()
@@ -190,23 +190,27 @@ class Tabs(pyglet.window.Window):
         if self.SNAPS: self.regSnap('init', 'Init')
     ####################################################################################################################################################################################################
     def _initColors(self): # j = M = 11
+        KP1, KP2 = VLT, VLT  ;  KL1, KL2 = RED, RED  ;  KS1, KS2 = CYA, CYA  ;  KC1, KC2 = PNK, PNK
+        KT1, KT2 = ORG, ORG  ;  KN1, KN2 = GRN, GRN  ;  KI1, KI2 = YLW, YLW  ;  KK1, KK2 = IND, IND
+        KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = GRY, GRY  ;  KH1, KH2 = YLW, YLW  ;  KM1, KM2 = GRN, GRN
+        KB1, KB2 = PNK, PNK  ;  KA1, KA2 = BLU, BLU  ;  KD1, KD2 = FSH, FSH  ;  KE1, KE2 = VLT, VLT
         k = self.k  ;  a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC  ;  i = self.initk
-        j = P  ;  k[j] = i(j, VLT,  3, 17, VLT, 17, 17) if a else i(j, VLT,  3, 17, VLT, 17, 17) if b else i(j, VLT,  3, 17, VLT, 17, 17) if c else i(j, VLT,  3, 17, VLT, 17, 17) if d else None
-        j = L  ;  k[j] = i(j, RED,  3, 15, RED, 17, 15) if a else i(j, RED,  3, 15, RED, 17, 15) if b else i(j, RED,  3, 15, RED, 17, 15) if c else i(j, RED,  3, 15, RED, 17, 15) if d else None
-        j = S  ;  k[j] = i(j, CYA,  3, 15, CYA, 17, 15) if a else i(j, CYA,  3, 15, CYA, 17, 15) if b else i(j, CYA,  3, 15, CYA, 17, 15) if c else i(j, CYA,  3, 15, CYA, 17, 15) if d else None
-        j = C  ;  k[j] = i(j, PNK,  3, 15, PNK, 17, 15) if a else i(j, PNK,  3, 15, PNK, 17, 15) if b else i(j, PNK,  3, 15, PNK, 17, 15) if c else i(j, PNK,  3, 15, PNK, 17, 15) if d else None
-        j = T  ;  k[j] = i(j, ORG,  3, 13, ORG, 17, 13) if a else i(j, ORG,  3, 13, ORG, 17, 13) if b else i(j, ORG,  3, 13, ORG, 17, 13) if c else i(j, ORG,  3, 13, ORG, 17, 13) if d else None
-        j = N  ;  k[j] = i(j, GRN,  3, 13, GRN, 17, 13) if a else i(j, GRN,  3, 13, GRN, 17, 13) if b else i(j, GRN,  3, 13, GRN, 17, 13) if c else i(j, GRN,  3, 13, GRN, 17, 13) if d else None
-        j = I  ;  k[j] = i(j, YLW,  3, 13, YLW, 17, 13) if a else i(j, YLW,  3, 13, YLW, 17, 13) if b else i(j, YLW,  3, 13, YLW, 17, 13) if c else i(j, YLW,  3, 13, YLW, 17, 13) if d else None
-        j = K  ;  k[j] = i(j, IND,  3, 13, IND, 17, 13) if a else i(j, IND,  3, 13, IND, 17, 13) if b else i(j, IND,  3, 13, IND, 17, 13) if c else i(j, IND,  3, 13, IND, 17, 13) if d else None
-        j = R  ;  k[j] = i(j, VLT,  0, 17, VLT, 17, 17) if a else i(j, VLT,  0, 17, VLT, 17, 17) if b else i(j, VLT,  3, 10, VLT, 17, 10) if c else i(j, VLT,  3, 17, VLT, 17, 13) if d else None
-        j = Q  ;  k[j] = i(j, CYA,  3, 17, CYA, 17, 17) if a else i(j, CYA,  3, 17, CYA, 17, 17) if b else i(j, CYA,  3, 17, CYA, 17, 17) if c else i(j, CYA,  3, 17, CYA, 17, 17) if d else None
-        j = H  ;  k[j] = i(j, YLW, 17, 11, YLW, 17, 10) if a else i(j, YLW, 14, 10, YLW, 14, 10) if b else i(j, PNK, 15, 13, PNK, 15, 13) if c else i(j, PNK, 14, 11, PNK, 14, 10) if d else None
-        j = M  ;  k[j] = i(j, GRN, 17, 11, GRN, 17, 10) if a else i(j, PNK, 17, 10, PNK, 17, 17) if b else i(j, PNK, 17, 17, PNK, 17, 17) if c else i(j, PNK, 17, 17, PNK, 17, 17) if d else None
-        j = B  ;  k[j] = i(j, PNK,  0,  0, PNK, 17, 17) if a else i(j, PNK,  0,  0, PNK, 17, 17) if b else i(j, PNK,  0,  0, PNK, 17, 17) if c else i(j, PNK,  0,  0, PNK, 17, 17) if d else None
-        j = A  ;  k[j] = i(j, BLU,  0,  0, BLU, 17, 17) if a else i(j, BLU,  0,  0, BLU, 17, 17) if b else i(j, BLU,  0,  0, BLU, 17, 17) if c else i(j, BLU,  0,  0, BLU, 17, 17) if d else None
-        j = D  ;  k[j] = i(j, FSH,  0,  0, FSH, 17, 17) if a else i(j, FSH,  0,  0, FSH, 17, 17) if b else i(j, FSH,  0,  0, FSH, 17, 17) if c else i(j, FSH,  0,  0, FSH, 17, 17) if d else None
-        j = E  ;  k[j] = i(j, VLT,  0,  0, VLT, 17, 17) if a else i(j, VLT,  0,  0, VLT, 17, 17) if b else i(j, VLT,  0,  0, VLT, 17, 17) if c else i(j, VLT,  0,  0, VLT, 17, 17) if d else None
+        j = P  ;  k[j] = i(j, KP1,  3, 17, KP2, 17, 17) if a else i(j, KP1,  3, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
+        j = L  ;  k[j] = i(j, KL1,  3, 15, KL2, 17, 15) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
+        j = S  ;  k[j] = i(j, KS1,  3, 15, KS2, 17, 15) if a else i(j, KS1,  3, 15, KS2, 17, 15) if b else i(j, KS1,  3, 15, KS2, 17, 15) if c else i(j, KS1,  3, 15, KS2, 17, 15) if d else None
+        j = C  ;  k[j] = i(j, KC1,  3, 15, KC2, 17, 15) if a else i(j, KC1,  3, 15, KC2, 17, 15) if b else i(j, KC1,  3, 15, KC2, 17, 15) if c else i(j, KC1,  3, 15, KC2, 17, 15) if d else None
+        j = T  ;  k[j] = i(j, KT1,  3, 13, KT2, 17, 13) if a else i(j, KT1,  3, 13, KT2, 17, 13) if b else i(j, KT1,  3, 13, KT2, 17, 13) if c else i(j, KT1,  3, 13, KT2, 17, 13) if d else None
+        j = N  ;  k[j] = i(j, KN1,  3, 13, KN2, 17, 13) if a else i(j, KN1,  3, 13, KN2, 17, 13) if b else i(j, KN1,  3, 13, KN2, 17, 13) if c else i(j, KN1,  3, 13, KN2, 17, 13) if d else None
+        j = I  ;  k[j] = i(j, KI1,  3, 13, KI2, 17, 13) if a else i(j, KI1,  3, 13, KI2, 17, 13) if b else i(j, KI1,  3, 13, KI2, 17, 13) if c else i(j, KI1,  3, 13, KI2, 17, 13) if d else None
+        j = K  ;  k[j] = i(j, KK1,  3, 13, KK2, 17, 13) if a else i(j, KK1,  3, 13, KK2, 17, 13) if b else i(j, KK1,  3, 13, KK2, 17, 13) if c else i(j, KK1,  3, 13, KK2, 17, 13) if d else None
+        j = R  ;  k[j] = i(j, KR1, 17, 17, KR2, 17, 17) if a else i(j, KR1, 17, 17, KR2, 17, 17) if b else i(j, KR1, 17, 17, KR2, 17, 17) if c else i(j, KR1, 17, 17, KR2, 17, 17) if d else None
+        j = Q  ;  k[j] = i(j, KQ1,  3, 10, KQ2, 17, 10) if a else i(j, KQ1,  3, 10, KQ2, 17, 10) if b else i(j, KQ1,  3, 10, KQ2, 17, 10) if c else i(j, KQ1,  3, 10, KQ2, 17, 10) if d else None
+        j = H  ;  k[j] = i(j, KH1, 17, 11, KH2, 17, 10) if a else i(j, KH1, 14, 10, KH2, 14, 10) if b else i(j, KH1, 15, 13, KH2, 15, 13) if c else i(j, KH1, 14, 11, KH2, 14, 10) if d else None
+        j = M  ;  k[j] = i(j, KM1, 17, 11, KM2, 17, 10) if a else i(j, KM1, 17, 10, KM2, 17, 17) if b else i(j, KM1, 17, 17, KM2, 17, 17) if c else i(j, KM1, 17, 17, KM2, 17, 17) if d else None
+        j = B  ;  k[j] = i(j, KB1,  0,  0, KB2, 17, 17) if a else i(j, KB1,  0,  0, KB2, 17, 17) if b else i(j, KB1,  0,  0, KB2, 17, 17) if c else i(j, KB1,  0,  0, KB2, 17, 17) if d else None
+        j = A  ;  k[j] = i(j, KA1,  0,  0, KA2, 17, 17) if a else i(j, KA1,  0,  0, KA2, 17, 17) if b else i(j, KA1,  0,  0, KA2, 17, 17) if c else i(j, KA1,  0,  0, KA2, 17, 17) if d else None
+        j = D  ;  k[j] = i(j, KD1,  0,  0, KD2, 17, 17) if a else i(j, KD1,  0,  0, KD2, 17, 17) if b else i(j, KD1,  0,  0, KD2, 17, 17) if c else i(j, KD1,  0,  0, KD2, 17, 17) if d else None
+        j = E  ;  k[j] = i(j, KE1,  0,  0, KE2, 17, 17) if a else i(j, KE1,  0,  0, KE2, 17, 17) if b else i(j, KE1,  0,  0, KE2, 17, 17) if c else i(j, KE1,  0,  0, KE2, 17, 17) if d else None
 
     def initk(self, j, key0, rgb0, opc0, key1, rgb1, opc1):
         self.log(f'{j:2}  {JTEXTS[j]:4}  [{key0} {rgb0:2} {opc0:2}] [ {key1} {rgb1:2} {opc1:2}] {fmtl(RGB[key0][rgb0][opc0], w=3)} {fmtl(RGB[key1][rgb1][opc1], w=3)}', p=0)
@@ -273,7 +277,7 @@ class Tabs(pyglet.window.Window):
     def _initGroups(self):
         hdrA    = [P, L, S, C,  T, N, I, K,  R, Q, H, M,  B, A, D, E]
         hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ])
-        self.gn = [1, 2, 3, 4,  5, 5, 5, 5,  5, 5, 6, 0,  5, 5, 5, 5]  ;  self.g = []
+        self.gn = [1, 2, 3, 4,  5, 5, 5, 5,  6, 7, 8, 0,  6, 6, 6, 6]  ;  self.g = []
         self.log(fmtl(hdrA, w=2))  ;  self.log(f'  {hdrB}')  ;  self.log(fmtl(self.gn, w=2))
         for i in range(1+max(self.gn)):
             p   = None if self.ORD_GRP or i==0 else self.g[i-1]
@@ -1047,17 +1051,19 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'
-        n = n if n is not None else self.n[j]   ;   cqe = (C, Q, E)  ;  ls = (L, S)  # returng')   ;   return n, 0, 0, 0, 0, 0
-        if n == 0:    n = 1    ;    self.log(f'ERROR n=0 setting {n=}')
-        i = i if i is not None else self.i[j]
+        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (L, S, R) # ;  t = (T, Q)
+        if n == 0:    n = 1    ;     self.log(f'ERROR n=0 setting {n=}')
+        i               = i if i is not None else self.i[j]
         px, py, pw, ph  = (self.p0x, self.p0y, self.width, self.height) if p is None else (p.x, p.y, p.width, p.height)
-        if j in cqe:  w = pw/n        ;  h = ph
-        else:         w = pw          ;  h = ph/n if j != P else ph
+        if   j in c:  w = pw/n        ;  h = ph
+        elif j == P:  w = pw          ;  h = ph
+        else:         w = pw          ;  h = ph/n
         a = 0 if self.SPRITES else 1  ;  b = not a
         if   j == P:  x = px + a*w/2  ;  y = py + a*ph   - a*h/2
-        elif j in ls: x = px          ;  y = py + a*ph/2 - a*h/2 + b*ph - b*h
+        elif j in s:  x = px          ;  y = py + a*ph/2 - a*h/2 + b*ph - b*h
         elif j == C:  x = a*w/2       ;  y = py + a*ph - a*h
-        elif j == T:  x = px + b*w/2  ;  y = py + ph/2 - h/2 + b*ph/2
+        elif j == T:  x = px + b*w/2  ;  y = py + a*ph/2 - a*h/2 + b*ph/2
+        elif j == Q:  x = w/2         ;  y = py + a*ph/2 - a*h/2 #+ b*ph - b*h
         else:         x = px          ;  y = py + ph - h
         if dbg and self.VRBY >= 2:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
@@ -1077,7 +1083,7 @@ class Tabs(pyglet.window.Window):
     def imap2Chord(self, tobj, imap, i, j, dbg=1):
         chunks    = imap[4]  if (imap and len(imap) > 4) else []
         chordName = tobj     if j > K else chunks[i] if len(chunks) > i else self.tblank
-        if dbg: self.log(f'{chordName=} chunks={fmtl(chunks)} imap={fmtl(imap)}')
+        if dbg and chunks:   self.log(f'{chordName=} chunks={fmtl(chunks)} imap={fmtl(imap)}')
         return chordName
     ####################################################################################################################################################################################################
     def ntsl(self): n = 1 + self.n[T] * self.ssl() * self.i[L]   ;   return n
@@ -1166,23 +1172,23 @@ class Tabs(pyglet.window.Window):
         n, _, x, y, w, h = self.geom(j, pt, n, ii, dbg=dbg2)   ;   t = Z  ;  kl = self.k[j]  ;  tl2 = tlist   ;   p, l, c, _ = self.J1plct()
         n                = n if ii is None else 1              ;  x2 = x  ;  y2 = y  ;  j2 = j  ;  i3 = 0
         for i in range(n):
-            if self.DBG_TABT and j < T:    t = self.dbgTabTxt(j, i)
+            if self.DBG_TABT and j < T:     t = self.dbgTabTxt(j, i)
             i2 = i if ii is None else ii
-            if   j == P:                   v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
-            else:                          v = int(self.pages[self.J1[P]].visible)
+            if   j == P:                    v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
+            else:                           v = int(self.pages[self.J1[P]].visible)
             if   j in (C, E):              x2 = x + i2 * w #  ;   j2 = len(self.J2) if ii is not None else j
             else:
                 if   j != P:               y2 = y - i2 * h
                 if   j == S:                _ = self.ss2sl()[i2] if self.ss2sl() else 0  ;  self.SS.add(_)
                 elif j >= T:
-                    s               = self.ss2sl()[self.J1[S]]
-                    tl2, j2, kl, to = self.tnikInfo(p, l, s, c, i2, why=why)
-                    if   s == TT:          t = to
-                    elif s == NN:          t = to if j2 > K else self.sobj.tab2nn(to, i2, self.nic) if self.sobj.isFret(to) else self.tblank
+                    s                         = self.ss2sl()[self.J1[S]]
+                    tl2, j2, kl, to           = self.tnikInfo(p, l, s, c, i2, why=why)
+                    if   s == TT:           t = to
+                    elif s == NN:           t = to if j2 > K else self.sobj.tab2nn(to, i2, self.nic) if self.sobj.isFret(to) else self.tblank
                     elif s in (II, KK):
                         m = self.getImap(p, l, c)
-                        if   s == II:      t = self.imap2ikey( to, m, i3, j2)  ;  i3 += 1 if t != self.tblank else 0
-                        elif s == KK:      t = self.imap2Chord(to, m, i2, j2)  ;  self.prepCats() if self.cobj.umap else None
+                        if   s == II:       t = self.imap2ikey( to, m, i3, j2)  ;  i3 += 1 if t != self.tblank else 0
+                        elif s == KK:       t = self.imap2Chord(to, m, i2, j2)
             kk = self.cci(j2, i2, kl) if self.CHECKERED else 0
             yield self.createTnik(tl2, i2, j2, x2, y2, w, h, kk, kl, why=why, t=t, v=v, dbg=dbg)
     ####################################################################################################################################################################################################
@@ -1213,14 +1219,7 @@ class Tabs(pyglet.window.Window):
         if self.ZZ and j == S and v:                          tnik = self.createZZs(tnik, i, why)
         return tnik
     ####################################################################################################################################################################################################
-    def prepCats(self):
-        self.log('BGN')
-        CAT_PATH = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT)
-        pcatPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CATP)
-        if CAT_PATH.exists():     util.copyFile(CAT_PATH, pcatPath)
-        self.log('END')
-
-    def checkTnik(self, t, i, j, dbg=1):
+    def checkTnik(self, t, i, j, dbg=0):
         td = t.document   ;   sm = td.styles
         a,  ax,  ay,  ml   =  self.a,    self.ax,    self.ay,    self.MULTI_LINE
         ta, tax, tay, tml  =  sm[ALIGN], t.anchor_x, t.anchor_y, int(t.multiline)
@@ -1235,10 +1234,11 @@ class Tabs(pyglet.window.Window):
         if dbg:    fnt2 = pygfont.load(sm[FONT_NAME], sm[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
 
     def dbgTabTxt(self, j, i):
-        dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1:03}' if j==C else f'{i+1}'  ;      k = d.join(k)
+        dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1:03}' if j==C else f'{i+1}'  ;      k = d.join(k)   ;  t = JTEXTS[j]*2  ;  l = len(t)
         if dt==1:  a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'                                 ;   return d.join(b*a)
-        if dt==2:  a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS[j][k]  for k in range(a) ])   ;   return f'{e}{d}{i+1}'
+        if dt==2:  a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS[ j][k] for k in range(a) ])   ;   return f'{e}{d}{i+1}'
         if dt==3:  a = 3 if j==C else j+1   ;   e = d.join([ JTEXTS2[j][k] for k in range(a) ])   ;   return f'{e}{d}{k}'
+        if dt==4:  a = l if j!=P else 3*l   ;   e = d.join([ t[k] for k in range(a) ])   ;   return f'{e}{d}{k}'
         return d.join('?'*3)
     @staticmethod
     def fmtDocStyles(m):
@@ -1294,9 +1294,9 @@ class Tabs(pyglet.window.Window):
             mx, my = w/tnik.image.width, h/tnik.image.height
             tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
         elif util.isi(tnik, LBL):
-            if v:
-                tnik.font_size = self.calcFontSize(j)
-                tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
+#            if v:
+            tnik.font_size = self.calcFontSize(j)
+            tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
             self.checkTnik(tnik, i, j)
         if  self.LL and j == L:
             if v: tnik = self.resizeLLs(tnik, why)
@@ -1368,13 +1368,13 @@ class Tabs(pyglet.window.Window):
     def clearVisib(self):               consume(v.clear() for v in self.visib)
 
     def dumpTnik(self, t=None, j=None, why=Z):
-        if   t is None: self.log(self.fTnikHdr(), p=0)   ;   return # hack
-        if   j is None:                                 msg = f'{why} ERROR BAD j {j=}'             ;  self.log(msg)  ;  self.quit(msg)
-        elif not util.isi(t, LBL) and not util.isi(t, SPR): msg = f'{why} ERROR Bad t type {type(t)=}'  ;  self.log(msg)  ;  self.quit(msg)
-        xywh = self.ftxywh(t)   ;   g = self.gn[j]   ;   fc, bc = Z, Z    ;   msg2, msg5 = Z, Z
+        if   t is None: self.log(self.fTnikHdr(), p=0)      ;  return # hack
+        if   j is None:                                        msg = f'{why} ERROR BAD j {j=}'             ;  self.log(msg)  ;  self.quit(msg)
+        elif not util.isi(t, LBL) and not util.isi(t, SPR):    msg = f'{why} ERROR Bad t type {type(t)=}'  ;  self.log(msg)  ;  self.quit(msg)
+        fc, bc, msg2, msg5 = Z, Z, Z, Z  ;  g = self.gn[j]  ;  xywh = self.ftxywh(t)
         if   util.isi(t, LBL): fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)   ;  msg2 = self.ffTxt(t)  ;  msg5 = f' {self.fLbl(t)}' if self.LONG_TXT else Z
         elif util.isi(t, SPR): fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  msg2 = self.frot(t)   ;  msg5 = f' {self.fSpr(t)}' if self.LONG_TXT else Z
-        msg1 = self.foid(t, j, why)   ;   msg3 = f'{self.ftvis(t)}'   ;   msg4 = f' {fc}{bc}' if self.LONG_TXT else Z
+        msg1 = self.foid(t, j, why)   ;   msg3 = self.ftvis(t)   ;   msg4 = f' {fc}{bc}' if self.LONG_TXT else Z
         self.log(f'{msg1} {msg2} {g} {msg3} {self.fmtJ2()} {xywh}{msg4}{msg5}', p=0)
     ####################################################################################################################################################################################################
     def idmapkey(self, j):  return f'{JTEXTS[j]}{self.J2[j]}'
@@ -2467,7 +2467,7 @@ class Tabs(pyglet.window.Window):
         if self.kords and chordName and chunks: self.setChordName(cc, chordName, chunks)
         elif dbg: self.log(f'    {how} {cn=} {cc=} is NOT a chord')
         if dbg2:  self.cobj.dumpImap(limap[imi], why=f'{cn:2}')
-        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
+#        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
     ####################################################################################################################################################################################################
     def flipPage(self, how, dp=1, dbg=1):
         pA = self.j()[P] if dbg else None
@@ -2637,24 +2637,22 @@ class Tabs(pyglet.window.Window):
         olog((pos, o), p, f, s, e, ff)
     ####################################################################################################################################################################################################
     def quit(self, why=Z, error=1, save=1, dbg=1):
-        if self.quitting: msg = f'ERROR Recursion {self.quitting=} close Tabs'  ;  self.log(msg)  ;  self.close()  ;  return
-        self.quitting += 1
-        hdr1 = self.fTnikHdr(1)  ;  hdr0 = self.fTnikHdr(0)  ;  self.log(hdr1, p=0, f=2)  ;  self.log(hdr0, p=0, f=2)
-        self.log(util.QUIT_BGN, p=0, f=2)   ;   util.dumpStack(inspect.stack())     ;   self.log(util.QUIT, p=0, f=2)
-        self.dumpTniksSfx(why)
-        if not error:      util.dumpStack(util.MAX_STACK_FRAME)
-        self.log(f'BGN {why} {error=} {save=}', f=2)         ;   self.log(util.QUIT,     p=0, f=2)
-        self.dumpArgs()
+        hdr1 = self.fTnikHdr(1)  ;  hdr0 = self.fTnikHdr(0)  ;  self.log(hdr1, p=0, f=2)  ;  self.log(hdr0, p=0, f=2)   ;   err = f'Error={error}'
+        self.log(f'BGN {why} {err} {save=} {self.quitting=}', f=2)                  ;   self.log(util.QUIT, p=0, f=2)   ;   msg = 'Recursion Error'
+        self.log(util.QUIT_BGN, p=0, f=2)    ;    util.dumpStack(inspect.stack())   ;   self.log(util.QUIT, p=0, f=2)
+        if self.quitting:        msg += f' {self.quitting=} Exiting'  ;  self.log(msg)  ;  self.close()   ;   return
+        self.dumpTniksSfx(why)         ;    self.quitting += 1
         if not error:
+            util.dumpStack(util.MAX_STACK_FRAME)
             if dbg:  self.dumpStruct(why)
             if save: self.saveDataFile(why, self.dataPath1)
             if dbg:  self.transposeData(dump=1 if dbg else 0)
             if dbg:  self.cobj.dumpMlimap(why)
-        if self.SNAPS:                self.snapshot(f'quit {error=} {save=}', 'QUIT')
-        self.log(f'END {why} {error=} {save=}', f=2)         ;   self.log(util.QUIT_END, p=0, f=2)
+        if self.SNAPS:                      self.snapshot(f'quit {error} {save=}', 'QUIT')
+        self.log(f'END {why} {err} {save=} {self.quitting=}', f=2)       ;   self.log(util.QUIT_END, p=0, f=2)
         self.cleanupFiles()
         self.close()
-        self.log(f'END {why} {error=} {save=}', f=0)         ;   self.log(util.QUIT_END, p=0, f=0)
+        self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(util.QUIT_END, p=0, f=0)
 #        print('Calling pyglet.app.exit()', end=Y)
 #        pyglet.app.exit()
 #        print('Calling exit()')
@@ -2662,7 +2660,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def cleanupFiles(self):
         self.cleanupCsvFile()
-        self.cleanupCatFile()
+        self.cleanupCatFile() if self.cobj.umap else None
 
     def cleanupCsvFile(self):
         if not CSV_FILE.closed:
@@ -2684,7 +2682,7 @@ class Tabs(pyglet.window.Window):
         pcatPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CATP)
         if CAT_PATH.exists():     util.copyFile(CAT_PATH, pcatPath)
         with open(str(CAT_PATH), 'w', encoding='utf-8') as CAT_FILE:
-            self.cobj.dumpOMAP(CAT_PATH)
+            self.cobj.dumpOMAP( CAT_PATH, merge=1)
             self.log(f'Closing {CAT_FILE.name}', ff=True)
             CAT_FILE.flush()
             CAT_FILE.close()
@@ -2693,15 +2691,6 @@ class Tabs(pyglet.window.Window):
         self.makeSubDirs(catPath2)
         self.log(f'Copying {CAT_FILE.name} to {catPath2}', f=2)
         util.copyFile(catPath, catPath2)
-
-    def OLD_cleanupCatFile(self, dump=1): # revisit
-        self.log(f'BGN {dump=}')
-        if   dump and self.CAT: self.cobj.dumpOMAP(str(self.catPath), merge=1)
-        elif dump:              self.cobj.dumpOMAP(None, merge=1)
-        if self.CAT:
-            cfp = self.getFilePath(seq=0, fdir=CATS, fsfx=CAT)
-            util.copyFile(self.catPath, cfp)
-        self.log(f'END {dump=}')
 ########################################################################################################################################################################################################
 # Global Functions BGN
 ########################################################################################################################################################################################################
