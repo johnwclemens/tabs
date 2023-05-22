@@ -1,7 +1,5 @@
 #bash
 #C:\Users\Owner\Documents\GitHub\tabs\venv\Scripts\
-echo pwd
-pwd
 
 function cleanup {
   for file in "$1"s/*
@@ -11,11 +9,21 @@ function cleanup {
       rm "$file"
     fi
   done
-  echo ls -l "$1"s
-  ls      -l "$1"s
+  echo ls -l "$1"
+  ls      -l "$1"
 }
 
-cleanup "log"
-cleanup "png"
-cleanup "csv"
-cleanup "cat"
+echo pwd
+pwd
+
+echo "dirs=(logs pngs csvs cats)"
+dirs=("logs" "pngs" "csvs" "cats")
+
+for dir in "${dirs[@]}"; do
+  cleanup "$dir"
+done
+
+echo "done cleaning file dirs"
+echo "### ### ### ### ### ### ### ### ### ###"
+echo "ls -lt logs pngs csvs cats"
+ls -lt logs pngs csvs cats
