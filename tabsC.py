@@ -1253,11 +1253,6 @@ class Tabs(pyglet.window.Window):
         return                    d.join([f'{m[FONT_SIZE]:4}', f'{m[LEAD]:4}', lnsp,     clr,            bgc,      f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{int(m[WRAP])}' f' {m[FONT_NAME]:21}'])
     @staticmethod
     def docStylesHdr(d=W): return d.join([     FNSZ,               'Lead',    'LnSp', f'{COLOR:^17}', f'{BGC:17}',    'B',          'I',            'S',              'W',          f'{FONT_NAME:21}' ])
-#    def fmtDocStyles(m, d=W):
-#        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;   clr = util.fColor(m[COLOR])   ;   bgc = util.fColor(m[BGC] if BGC in m else None)
-#        h = [     FNSZ,               'Lead',    'LnSp', f'{COLOR:^17}', f'{BGC:17}',    'B',          'I',            'S',              'W',          f'{FONT_NAME:21}' ]
-#        s = [f'{m[FONT_SIZE]:4}', f'{m[LEAD]:4}', lnsp,     clr,            bgc,      f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{int(m[WRAP])}' f' {m[FONT_NAME]:21}']
-#        return d.join(h), d.join(s)
 
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]      ;     ha = hasattr(c, 'text')
@@ -1483,10 +1478,10 @@ class Tabs(pyglet.window.Window):
         assert tnik == self.E[j][i],  f'{tnik=} != {self.E[j][i]=}'   ;   old = len(self.tids)
         self.tids.add(id(tnik))   ;   xywh = self.ftxywh(tnik, s=Y)   ;    ii = f'{i+1:4}'
         ctnt = self.fCtnt(tnik, d=Y) if util.isi(tnik, LBL) else Z    ;   axy = self.fAxy(d=Y)
-        fsz  = self.fFntSz(tnik)     if util.isi(tnik, LBL) else Z
-#        td = tnik.document  ;  sm = td.styles  ;  dh, ds = self.fmtDocStyles(sm, Y)
+#        fsz  = self.fFntSz(tnik)     if util.isi(tnik, LBL) else Z
         if dbg: self.log(f'{old=} {len(self.tids)=}') if old+1 != len(self.tids) else None
-        self.log(Y.join([JTEXTS[j], ii, xywh, fsz, ctnt, axy, ds]), p=0, f=3, e=e)
+        self.log(Y.join([JTEXTS[j], ii, xywh, ctnt, axy, ds]), p=0, f=3, e=e)
+#        self.log(Y.join([JTEXTS[j], ii, xywh, fsz, ctnt, axy, ds]), p=0, f=3, e=e)
     @staticmethod
     def a2csv(a):        return fmtl(a, w=7, u="^", d=Z, s=Y)
     def args2csv(self):  return f'{W*4},  n ,{self.a2csv(self.n0)}', f'{W*4},  i ,{self.a2csv(self.i0)}', f'{W*4},  s ,{self.a2csv(self.ss2sl())}'
@@ -1494,9 +1489,9 @@ class Tabs(pyglet.window.Window):
     def dumpTnikCsvs(self):
         np, nl, ns, nc, nt = self.n
         self.log(f'{fmtl(self.args2csv(), d=Z, s=Y)}', p=0, f=3) #, e=Y)
-        for _ in range(np*nl*ns):  # self.log(Y.join(TXCA), p=0, f=3, e=Y)
+        for _ in range(np*nl*ns):
             h = self.docStylesHdr(Y)
-            self.log(f'{Y.join(TXCA)} {h}', p=0, f=3, e=Y)
+            self.log(f'{Y.join(TXCA)}{Y}{h}', p=0, f=3, e=Y)
         self.log(p=0, f=3)
         self.dumpTnikCsvA(P)
         self.dumpTnikCsvA(L)
@@ -1508,29 +1503,31 @@ class Tabs(pyglet.window.Window):
         for t in range(nt*nc):
             for c in range(np*nl):
                 for s, s2 in enumerate(self.ss2sl()):
-                    i = t + c*nt*nc  ;  j = T + s2  ;  self.t2csv(self.E[j][i], j, i)
+                    i = t + c*nt*nc  ;  j = T + s2
+                    tnik = self.E[j][i]  ;  td = tnik.document  ;  sm = td.styles  ;  ds = self.fmtDocStyles(sm, Y)
+                    self.t2csv(self.E[j][i], j, i, ds)
             self.log(p=0, f=3)
     ####################################################################################################################################################################################################
     def dumpTnikCsvA(self, j):
-        k = 0  ;  i = 0  ;  absIdx = not self.PIDX  ;  tnik = self.E[j][i]
-        np, nl, ns, nc, nt = self.n  ;  z = Y.join([ W*len(TXCA[_]) for _ in range(len(TXCA)) ])
+        np, nl, ns, nc, nt = self.n   ;   i, k = 0, 0   ;   absIdx = not self.PIDX   ;   z = Y.join([ W*len(TXCA[_]) for _ in range(len(TXCA)) ])
         for p in range(np):
             for l in range(nl):
                 for s, s2 in enumerate(self.ss2sl()):
                     if   j == P:    i = p      ;   k = s or l
                     elif j == L:    i = l      ;   k = s    ;   i += p*ns if absIdx else 0
-                    td = tnik.document   ;  sm = td.styles  ;  ds = self.fmtDocStyles(sm, Y)
+                    tnik = self.E[j][i]  ;  td = tnik.document  ;  sm = td.styles  ;  ds = self.fmtDocStyles(sm, Y)
                     self.t2csv(tnik, j, i, ds) if not k else self.log(f'{z}', p=0, f=3, e=Y)
         self.log(p=0, f=3)
 
     def dumpTnikCsvB(self, j, k=0):
-        np, nl, ns, nc, nt = self.n   ;   i = 0   ;   absIdx = not self.PIDX  ;  n = np*nl*ns
+        np, nl, ns, nc, nt = self.n   ;   i = 0   ;   absIdx = not self.PIDX   ;   n = np*nl*ns
         for p in         range(1 if absIdx else np):
             for l in     range(1 if absIdx else 1):
                 for s in range(n if absIdx else ns*nl):
                     if   j == S:    i = s
                     elif j == C:    i = k + s*nc if absIdx else k + s*nc
-                    self.t2csv(self.E[j][i], j, i)
+                    tnik = self.E[j][i]  ;  td = tnik.document  ;  sm = td.styles  ;  ds = self.fmtDocStyles(sm, Y)
+                    self.t2csv(self.E[j][i], j, i, ds)
         self.log(p=0, f=3)
     ####################################################################################################################################################################################################
     def createCursor(self, why, dbg=1):
@@ -2764,12 +2761,13 @@ CATS, CSVS, LOGS, PNGS, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'data'
 CATP, CSVP, LOGP                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}'
 CSV_FILE, LOG_FILE    = None, None
 ########################################################################################################################################################################################################
-FNSZ      =  'FnSz'  ;  FNSZ2 = [FNSZ]
+FNSZ      =  'FnSz' # ;  FNSZ2 = [FNSZ]
 AXY       = ['a', 'x', 'y']
 TI        = ['tnik', '  i ']
 CWHV      = ['CntW', 'CntH', 'v']
 XYWH      = ['    X  ', '    Y  ', '    W  ', '    H  ']
-TXCA      = list(itertools.chain(TI, XYWH, FNSZ2, CWHV, AXY))
+TXCA      = list(itertools.chain(TI, XYWH, CWHV, AXY))
+#TXCA      = list(itertools.chain(TI, XYWH, FNSZ2, CWHV, AXY))
 ########################################################################################################################################################################################################
 FIN                   = [1, 1, 1, 2, 1]
 FNTP                  = [5, 4, 3, 3, 3]
