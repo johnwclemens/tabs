@@ -17,9 +17,9 @@ echo pwd
 pwd
 
 echo "dirs=(logs pngs csvs cats)"
-dirs=("logs" "pngs" "csvs" "cats")
+dirs=("log" "png" "csv" "cat")
 
-for dir in "${dirs[@]}"; do
+for dir in "${dirs[@]}"s; do
   cleanup "$dir"
 done
 
