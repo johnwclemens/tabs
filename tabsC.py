@@ -50,15 +50,11 @@ class Tabs(pyglet.window.Window):
         self.J1,      self.J2,       self.j1s,     self.j2s     = [], [], [], []
         self.hArrow,  self.vArrow,   self.csrMode, self.tids    = RIGHT, UP, CHORD, set()   ;   self.dumpCursorArrows('init()')
         self.tblank,  self.tblanki,  self.cursor,  self.data    = None, None, None, []
-#       self.A_LEFT = 1  ;  self.A_CENTER = 0  ;  self.A_RIGHT  = 0
         self.A_LEFT = 0  ;  self.A_CENTER = 1  ;  self.A_RIGHT  = 0
-#       self.A_LEFT = 0  ;  self.A_CENTER = 0  ;  self.A_RIGHT  = 1
-#       self.X_LEFT = 1  ;  self.X_CENTER = 0  ;  self.X_RIGHT  = 0
-        self.X_LEFT = 0  ;  self.X_CENTER = 1  ;  self.X_RIGHT  = 0
-#       self.X_LEFT = 0  ;  self.X_CENTER = 0  ;  self.X_RIGHT  = 1
-        self.Y_TOP  = 0  ;  self.Y_CENTER = 1  ;  self.Y_BOTTOM = 0  ;  self.Y_BASELINE = 0  ;  self.AUTO_SAVE = 0
+        self.X_LEFT = 1  ;  self.X_CENTER = 0  ;  self.X_RIGHT  = 0
+        self.Y_TOP  = 0  ;  self.Y_CENTER = 0  ;  self.Y_BOTTOM = 1  ;  self.Y_BASELINE = 0  ;  self.AUTO_SAVE = 0
         self.BGC    = 0  ;  self.GEN_DATA = 0  ;  self.DBG_TABT = 4  ;  self.CHECKERED  = 0  ;  self.CURSOR    = 1  ;  self.SNAPS   = 1
-        self.CAT    = 1  ;  self.LONG_TXT = 1  ;  self.FRT_BRD  = 0  ;  self.EVENT_LOG  = 0  ;  self.MULTILINE = 1  ;  self.SPRITES = 0
+        self.CAT    = 1  ;  self.LONG_TXT = 1  ;  self.FRT_BRD  = 0  ;  self.EVENT_LOG  = 0  ;  self.MULTILINE = 1  ;  self.SPRITES = 1
         self.OIDS   = 0  ;  self.ORD_GRP  = 1  ;  self.RESIZE   = 1  ;  self.FULL_SCRN  = 0  ;  self.EXIT_TEST = 0  ;  self.TEST    = 0
         self.PIDX   = 0  ;  self.SUBPIX   = 1  ;  self.STRETCH  = 0  ;  self.VARROW     = 1  ;  self.VIEWS     = 0  ;  self.VRBY    = 0
         self.LL     = 0
@@ -88,7 +84,7 @@ class Tabs(pyglet.window.Window):
         if 'R' in ARGS and len(ARGS['R']) == 0: self.RESIZE     = 0
         if 'p' in ARGS and len(ARGS['p']) == 0: self.SNAPS      =  1
         if 'q' in ARGS and len(ARGS['q']) == 0: self.EXIT_TEST  =  1
-        if 'x' in ARGS and len(ARGS['x']) == 0: self.SUBPIX     =  1
+        if 'u' in ARGS and len(ARGS['u']) == 0: self.SUBPIX     =  1
         if 's' in ARGS and len(ARGS['s']) == 0: self.SPRITES    =  1
         if 't' in ARGS and len(ARGS['t']) == 0: self.TEST       =  1
         if 'T' in ARGS and len(ARGS['T']) == 0: self.LONG_TXT   =  1
@@ -151,7 +147,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[p]          {self.SNAPS=}', f=f)
         self.log(f'[q]      {self.EXIT_TEST=}', f=f)
         self.log(f'[R]         {self.RESIZE=}', f=f)
-        self.log(f'[x]         {self.SUBPIX=}', f=f)
+        self.log(f'[u]         {self.SUBPIX=}', f=f)
         self.log(f'[s]        {self.SPRITES=}', f=f)
         self.log(f'[t]           {self.TEST=}', f=f)
         self.log(f'[T]       {self.LONG_TXT=}', f=f)
@@ -1085,7 +1081,7 @@ class Tabs(pyglet.window.Window):
             return  tlist, j, k, txt
         msg = f'{msg3} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # self.fmtJText(j, t, why)
     ####################################################################################################################################################################################################
-    def geom(self, j, p=None, n=None, i=None, dbg=1):
+    def OLD__geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'
         n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (L, S, R) # ;  t = (T, Q)
         if n == 0:    n = 1    ;     self.log(f'ERROR n=0 setting {n=}')
@@ -1101,6 +1097,29 @@ class Tabs(pyglet.window.Window):
         elif j == T:  x = px + b*w/2  ;  y = py + a*ph/2 - a*h/2 + b*ph/2
         elif j == Q:  x = w/2         ;  y = py + a*ph/2 - a*h/2 #+ b*ph - b*h
         else:         x = px          ;  y = py + ph - h
+        if dbg and self.VRBY >= 2:
+            msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
+            msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
+            msg += msg2 if p else W * len(msg2)
+            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
+        return n, i, x, y, w, h
+
+    def geom(self, j, p=None, n=None, i=None, dbg=1):
+        assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'
+        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (L, S, R)
+        if n == 0:    n = 1    ;     self.log(f'ERROR n=0 setting {n=}')
+        i               = i if i is not None else self.i[j]
+        px, py, pw, ph  = (self.p0x, self.p0y, self.width, self.height) if p is None else (p.x, p.y, p.width, p.height)
+        if   j in c:  w = pw/n        ;  h = ph
+        elif j == P:  w = pw          ;  h = ph
+        else:         w = pw          ;  h = ph/n
+        a = self.axWgt(self.ax)
+        b = self.ayWgt(self.ay)
+        if   j == P:  x = px + a*w  ;  y = py + b*ph - b*h
+        elif j in s:  x = px        ;  y = py + b*ph - b*h
+        elif j == C:  x = px + a*w  ;  y = py + b*ph
+        elif j == T:  x = px + a*w  ;  y = py + b*ph + ph - h
+        else:         x = px        ;  y = py - h
         if dbg and self.VRBY >= 2:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
             msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
@@ -1228,6 +1247,11 @@ class Tabs(pyglet.window.Window):
                         elif s == KK:       t = self.imap2Chord(to, m, i2, j2)
             kk = self.cci(j2, i2, kl) if self.CHECKERED else 0
             yield self.createTnik(tl2, i2, j2, x2, y2, w, h, kk, kl, why=why, t=t, v=v, dbg=dbg)
+
+    def axWgt(self, x): wgt = 0.0 if x=='left'   else 0.5 if x=='center' else 1.0 if x=='right' else -1  ;  self.log(f'{x=:6} {wgt=}')  ;  return wgt
+    def ayWgt(self, y): wgt = 0.0 if y=='bottom' else 0.5 if y=='center' else 1.0 if y=='top'   else -1  ;  self.log(f'{y=:6} {wgt=}')  ;  return wgt
+#    def lbl2sprAx(self, x, w): r = 0 if x=='left'   else w//2 if x=='center' else w if x=='right' else -1  ;  self.log(f'{x=:6} {w=:8.3f} {r=}')  ;  return r
+#    def lbl2sprAy(self, y, h): r = 0 if y=='bottom' else h//2 if y=='center' else h if y=='top'   else -1  ;  self.log(f'{y=:6} {h=:8.3f} {r=}')  ;  return r
     ####################################################################################################################################################################################################
     def createTnik(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
         if i is None or j is None: lt = len(tlist) if tlist is not None else None  ;  msg = f'ERROR i or j is None {i=} {j=} {lt=} {t=} {why}'  ;  self.log(msg)  ;  self.quit(msg)
@@ -1239,7 +1263,7 @@ class Tabs(pyglet.window.Window):
             img  = scip.create_image(width=fri(w), height=fri(h))
             tnik = SPR(img, x, y, batch=b, group=g, subpixel=self.SUBPIX)
             tnik.color, tnik.opacity = k[:3], k[3]
-            tnik.anchor_x, tnik.anchor_y = w//2, h//2
+            tnik.anchor_x, tnik.anchor_y = w*self.axWgt(self.ax), h*self.ayWgt(self.ay)
         else:
             s = self.calcFontSize(j)       ;   a, ax, ay = self.a, self.ax, self.ay  # left center right  # bottom baseline center top
             z = 1 if self.STRETCH else 0   ;        d, n = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTILINE
@@ -2891,8 +2915,6 @@ LLBL      = list(itertools.chain(LTXCA, ADN, LTDS))
 def JLBL(n, d): return (f'{d.join(LLBL)}{d}'*n).removesuffix(d)
 def JSPR(n, d): return (f'{d.join(LTX)} {d}'*n).removesuffix(d)
 ########################################################################################################################################################################################################
-FIN                   = [1, 1, 1, 2, 1]
-FNTP                  = [5, 4, 3, 3, 3]
 LBL                   = pygtxt.Label
 SPR                   = pygsprt.Sprite
 RGB                   = cOd() if CODS else {}
@@ -2903,7 +2925,9 @@ HARROWS, VARROWS      = ['LEFT', 'RIGHT'], ['DOWN', 'UP']
 MELODY, CHORD, ARPG   =  0, 1, 2
 LEFT, RIGHT, DOWN, UP =  0, 1, 0, 1
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE, COPY_STYLE = 0, 1, 2, 3
-#ALIGN, BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, LEAD, LNSP, STRH, WRAP  = 'align', 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'leading', 'line_spacing', 'stretch', 'wrap'
+########################################################################################################################################################################################################
+FIN     = [1, 1, 1, 2, 1]
+FNTP    = [5, 4, 3, 3, 3]
 #           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16
 JTEXTS  = ['Page',  'Line',  'Sect',  'Colm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
 JTEXTS2 = ['Pg',    'Ln',    'Sec',   'Clm',   'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
