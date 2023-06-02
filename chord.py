@@ -190,11 +190,13 @@ class Chord:
     ####################################################################################################################################################################################################
     def dumpUmap(self): # optimize str concat?
         if self.umap:
+            slog(f'BGN {len(self.OMAP)=} {len(self.umap)=}')
             umapKeys = sorted(self.umap.keys() , key=lambda a: self.umap[a][1])
             for k in umapKeys:
                 v = self.umap[k]
                 k = '\'' + k + '\''
                 slog(f'{k:19}: ({v[0]} {fmtl(v[1]):15})', p=2)
+            slog(f'END {len(self.OMAP)=} {len(self.umap)=}')
 
     def dumpOMAP(self, catpath=None, merge=0):
         slog(f'BGN {len(self.OMAP)=} {len(self.umap)=}')

@@ -2,6 +2,10 @@
   <code_scheme name="Project" version="173">
     <option name="RIGHT_MARGIN" value="255" />
     <option name="SOFT_MARGINS" value="100,150,200,250" />
+    <CsvCodeStyleSettings>
+      <option name="TABULARIZE" value="false" />
+      <option name="WHITE_SPACES_OUTSIDE_QUOTES" value="false" />
+    </CsvCodeStyleSettings>
     <Python>
       <option name="BLANK_LINES_AROUND_TOP_LEVEL_CLASSES_FUNCTIONS" value="0" />
       <option name="ALIGN_MULTILINE_IMPORTS" value="false" />

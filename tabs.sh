@@ -12,8 +12,8 @@ echo ls -l stdo
 ls      -l stdo
 echo cksum stdo/*
 cksum      stdo/*
-echo python tabsC.py -n 1 2 20 6 -S 0 1 3 -f Test/test 2&>stdo/tabs.txt
-python      tabsC.py -n 1 2 20 6 -S 0 1 3 -f Test/test 2&>stdo/tabs.txt
+echo python tabsC.py -n 1 1 20 6 -S 0 1 3 -f Test/test -t -- 2&>stdo/tabs.txt
+python      tabsC.py -n 1 1 20 6 -S 0 1 3 -f Test/test -t -- 2&>stdo/tabs.txt
 echo ls -l stdo
 ls      -l stdo
 echo cksum stdo/*
