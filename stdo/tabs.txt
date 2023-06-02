@@ -25,7 +25,7 @@ b,6,1,8,3,a,5,0,7,2,9,4,b,6,1
 Cb,Gb,Db,Ab,Eb,Bb,F,C,G,D,A,E,B,F#,C#
 Fb,Cb,Gb,Db,Ab,Eb,Bb,,F#,C#,G#,D#,A#,E#,B#
 4,b,6,1,8,3,a,,6,1,8,3,a,5,0
- 544 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 -f Test/test -t]
+ 544 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 -f Test/test -t -x 1 -y 1]
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  560 util  parseCmdLine        1 short   -n n [] 
  578 util  parseCmdLine        2 arg     1  n [1] 
@@ -37,7 +37,11 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  560 util  parseCmdLine        8 short   -f f [] 
  578 util  parseCmdLine        9 arg     Test/test f [Test/test] 
  560 util  parseCmdLine       10 short   -t t [] 
- 580 util  parseCmdLine       options=[n:[1 1 10 6]] [S:[0]] [f:[Test/test]] [t:[]]
+ 560 util  parseCmdLine       11 short   -x x [] 
+ 578 util  parseCmdLine       12 arg     1  x [1] 
+ 560 util  parseCmdLine       13 short   -y y [] 
+ 578 util  parseCmdLine       14 arg     1  y [1] 
+ 580 util  parseCmdLine       options=[n:[1 1 10 6]] [S:[0]] [f:[Test/test]] [t:[]] [x:[1]] [y:[1]]
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs.log     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
@@ -63,56 +67,59 @@ C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
  539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs._.csv ###
         1 file(s) copied.
 C:/Users/Owner/Documents/GitHub/tabs/tabsC.py
-2968 tabsC <module>           argv=[-n 1 1 10 6 -S 0 -f Test/test -t]
+2955 tabsC <module>           argv=[-n 1 1 10 6 -S 0 -f Test/test -t -x 1 -y 1]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2972 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
-2972 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
-2973 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-2973 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
-2849 tabsC dumpGlobals        BASE_NAME = tabs
-2850 tabsC dumpGlobals        argv      = +11[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 -f Test/test -t]
-2851 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2852 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
- 528 util  getFilePath        baseName =tabs.52      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.52.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.52.log)
- 528 util  getFilePath        baseName =tabs.52      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.52.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.52.csv)
- 528 util  getFilePath        baseName =tabs.52      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.52.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.52.cat)
- 132 tabsC dumpArgs           [f]      .FILE_NAME=Test/test
- 133 tabsC dumpArgs           [n]               n=[1 1 1 10 6]
- 134 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
- 135 tabsC dumpArgs           [a]      .AUTO_SAVE=0
- 136 tabsC dumpArgs           [b]        .FRT_BRD=0
- 137 tabsC dumpArgs           [B]            .BGC=0
- 138 tabsC dumpArgs           [c]            .CAT=1
- 139 tabsC dumpArgs           [C]      .CHECKERED=1
- 140 tabsC dumpArgs           [d]       .DBG_TABT=4
- 141 tabsC dumpArgs           [e]      .EVENT_LOG=0
- 142 tabsC dumpArgs           [F]      .FULL_SCRN=0
- 143 tabsC dumpArgs           [G]       .GEN_DATA=0
- 144 tabsC dumpArgs           [M]      .MULTILINE=1
- 145 tabsC dumpArgs           [g]        .ORD_GRP=1
- 146 tabsC dumpArgs           [o]           .OIDS=0
- 147 tabsC dumpArgs           [p]          .SNAPS=1
- 148 tabsC dumpArgs           [q]      .EXIT_TEST=0
- 149 tabsC dumpArgs           [R]         .RESIZE=1
- 150 tabsC dumpArgs           [u]         .SUBPIX=1
- 151 tabsC dumpArgs           [s]        .SPRITES=0
- 152 tabsC dumpArgs           [t]           .TEST=1
- 153 tabsC dumpArgs           [T]       .LONG_TXT=1
- 154 tabsC dumpArgs           [v]           .VRBY=0
- 155 tabsC dumpArgs           [M]          .VIEWS=0
- 156 tabsC dumpArgs           [I]           .PIDX=0
- 157 tabsC dumpArgs           [A]         .VARROW=1
- 158 tabsC dumpArgs           [L]             .LL=0
- 159 tabsC dumpArgs           [S]             .SS=[0]
- 160 tabsC dumpArgs           [E]             .ZZ=[]
+2959 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+2959 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
+2960 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+2960 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2835 tabsC dumpGlobals        BASE_NAME = tabs
+2836 tabsC dumpGlobals        argv      = +15[C:/Users/Owner/Documents/GitHub/tabs/tabsC.py -n 1 1 10 6 -S 0 -f Test/test -t -x 1 -y 1]
+2837 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2838 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+ 528 util  getFilePath        baseName =tabs.8       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.8.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.8.log)
+ 528 util  getFilePath        baseName =tabs.8       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.8.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.8.csv)
+ 528 util  getFilePath        baseName =tabs.8       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.8.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.8.cat)
+ 139 tabsC dumpArgs           [f]      .FILE_NAME=Test/test
+ 140 tabsC dumpArgs           [n]               n=[1 1 1 10 6]
+ 141 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
+ 142 tabsC dumpArgs           [a]      .AUTO_SAVE=0
+ 143 tabsC dumpArgs           [b]        .FRT_BRD=0
+ 144 tabsC dumpArgs           [B]            .BGC=0
+ 145 tabsC dumpArgs           [c]            .CAT=1
+ 146 tabsC dumpArgs           [C]      .CHECKERED=1
+ 147 tabsC dumpArgs           [d]       .DBG_TABT=4
+ 148 tabsC dumpArgs           [e]      .EVENT_LOG=0
+ 149 tabsC dumpArgs           [F]      .FULL_SCRN=0
+ 150 tabsC dumpArgs           [G]       .GEN_DATA=0
+ 151 tabsC dumpArgs           [M]      .MULTILINE=1
+ 152 tabsC dumpArgs           [g]        .ORD_GRP=1
+ 153 tabsC dumpArgs           [o]           .OIDS=0
+ 154 tabsC dumpArgs           [p]          .SNAPS=1
+ 155 tabsC dumpArgs           [q]      .TEST_EXIT=0
+ 156 tabsC dumpArgs           [R]         .RESIZE=1
+ 157 tabsC dumpArgs           [u]         .SUBPIX=1
+ 158 tabsC dumpArgs           [s]        .SPRITES=0
+ 159 tabsC dumpArgs           [t]           .TEST=1
+ 160 tabsC dumpArgs           [T]       .LONG_TXT=1
+ 161 tabsC dumpArgs           [v]           .VRBY=0
+ 162 tabsC dumpArgs           [x]             .AX=[1]
+ 163 tabsC dumpArgs           [y]             .AY=[1]
+ 164 tabsC dumpArgs           [z]             .AZ=0
+ 165 tabsC dumpArgs           [M]          .VIEWS=0
+ 166 tabsC dumpArgs           [I]           .PIDX=0
+ 167 tabsC dumpArgs           [A]         .VARROW=1
+ 168 tabsC dumpArgs           [L]             .LL=0
+ 169 tabsC dumpArgs           [S]             .SS=[0]
+ 170 tabsC dumpArgs           [Z]             .ZZ=[]
         1 file(s) copied.
-1807 tabsC _initFonts         w=64.000=.width =640/(10)                 FONT_SCALE=0.778 fs=w*FONT_SCALE=62.000pt
-1808 tabsC _initFonts         h=80.000=.height=480/(nl=1 * ns=1 * nt=6) FONT_SCALE=0.778 fs=h*FONT_SCALE=62.000pt
-1820 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels 
-1232 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+1793 tabsC _initFonts         w=64.000=.width =640/(10)                 FONT_SCALE=0.778 fs=w*FONT_SCALE=62.000pt
+1794 tabsC _initFonts         h=80.000=.height=480/(nl=1 * ns=1 * nt=6) FONT_SCALE=0.778 fs=h*FONT_SCALE=62.000pt
+1806 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels 
+1238 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
                      x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp       color       background_color  B I S M W w font_name             Full Text
 Page   1 Page1Pag+ V C C  320  240  600  372 T C   98  -26  124   93    0 None [ 26   2  52 255]       None        0 0 0 ? 1 c Lucida Console        Page1Page1Page1Page1
 Line   1 Line1     V C C  320  240  600 1494 T C  393 -105  498  373    0 None [ 52   2   2 225]       None        0 0 0 ? 1 c Lucida Console        Line1
@@ -187,11 +194,11 @@ Tabl   3 0         V C C   32   40   50   83 T C   65  -18   83   62    0 None [
 Tabl   4 1         V C C   32   40   50   83 T C   65  -18   83   62    0 None [255 176  10 195]       None        0 0 0 ? 1 c Lucida Console        1
 Tabl   5 2         V C C   32   40   50   83 T C   65  -18   83   62    0 None [ 52  36   2 195]       None        0 0 0 ? 1 c Lucida Console        2
 Tabl   6 0         V C C   32   40   50   83 T C   65  -18   83   62    0 None [255 176  10 195]       None        0 0 0 ? 1 c Lucida Console        0
-1820 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels New1
- 299 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2975 tabsC main               str(tabs)={n: [1, 1, 10, 6], S: [0], f: [Test/test], t: []}
-2975 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 1, 10, 6], S: [0], f: [Test/test], t: []}
-1348 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+1806 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels New1
+ 309 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+2962 tabsC main               str(tabs)={n: [1, 1, 10, 6], S: [0], f: [Test/test], t: [], x: [1], y: [1]}
+2962 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 1, 10, 6], S: [0], f: [Test/test], t: [], x: [1], y: [1]}
+1354 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
                      x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp       color       background_color  B I S M W w font_name             Full Text
 Page   1 Page1Pag+ V C C  320  240  600  372 T C   98  -26  124   93    0 None [ 26   2  52 255]       None        0 0 0 ? 1 c Lucida Console        Page1Page1Page1Page1
 Line   1 Line1     V C C  320  240  600 1494 T C  393 -105  498  373    0 None [ 52   2   2 225]       None        0 0 0 ? 1 c Lucida Console        Line1
@@ -266,29 +273,29 @@ Tabl  57 0         V C C   32   40   50   83 T C   65  -18   83   62    0 None [
 Tabl  58 1         V C C   32   40   50   83 T C   65  -18   83   62    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0 ? 1 c Lucida Console        1
 Tabl  59 2         V C C   32   40   50   83 T C   65  -18   83   62    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0 ? 1 c Lucida Console        2
 Tabl  60 0         V C C   32   40   50   83 T C   65  -18   83   62    0 None [255 176  10 195] [ 52  36   2 195] 0 0 0 ? 1 c Lucida Console        0
-1820 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels Upd1
-2747 tabsC snapshot           snapName=tabs.52.0.Upd5.png Upd1
+1806 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels Upd1
+2733 tabsC snapshot           snapName=tabs.8.0.Upd5.png Upd1
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  M     Mx    My    Iax  Iay      Grp        pGrp
  Tid  Why  Name  Cnt   Text   G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    Red Grn Blu Opc  Red Grn Blu Opc  x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz dpi B I Font Name             Full Text
-2790 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
+2776 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
-1820 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels @^Q
-2747 tabsC snapshot           snapName=tabs.52.1.QUIT.png quit 0 save=0
-2801 tabsC quit               END @^Q Error=0 save=0 .quitting=1
+1806 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels @^Q
+2733 tabsC snapshot           snapName=tabs.8.1.QUIT.png quit 0 save=0
+2787 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
  528 util  getFilePath        baseName =Test/test.1.1.1.10.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =Test/test.1.1.1.10.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.1.1.10.6.csv)
- 528 util  getFilePath        baseName =tabs.52      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.52.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.52.csv)
-2823 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.1.1.10.6.csv
+ 528 util  getFilePath        baseName =tabs.8       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.8.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.8.csv)
+2809 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.1.1.10.6.csv
         1 file(s) copied.
-2826 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.52.csv
+2812 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.8.csv
         1 file(s) copied.
-2804 tabsC quit               END @^Q Error=0 save=0 .quitting=1
+2790 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
 Calling pyglet.app.exit(),        1 file(s) copied.
  528 util  getFilePath        baseName =Test/test.1.1.1.10.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)

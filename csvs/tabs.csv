@@ -1,9 +1,7 @@
     ,  n ,   1   ,   1   ,  10   ,   6   ,    ,  i ,   1   ,   1   ,   1   ,   6   ,    ,  s ,   0   
 tnik,  i ,    X  ,    Y  ,    W  ,    H  ,x,y,AncX,AncY,CntW,CntH,v,a,Ascn,Dscn,nA-D,FnSz,Lead,LnSp,      color      ,background_color ,B,I,S,M,W,w,font_name            
 Page,   1, 320.00, 240.00, 640.00, 480.00,C,C, 320, 240, 600, 372,T,C,  98, -26, 124,  93,   0,None,[ 26   2  52 255],      None       ,0,0,0,?,1,c,Lucida Console       
-tnik,  i ,    X  ,    Y  ,    W  ,    H  ,x,y,AncX,AncY,CntW,CntH,v,a,Ascn,Dscn,nA-D,FnSz,Lead,LnSp,      color      ,background_color ,B,I,S,M,W,w,font_name            
 Line,   1, 320.00, 240.00, 640.00, 480.00,C,C, 320, 240, 600,1494,T,C, 393,-105, 498, 373,   0,None,[ 52   2   2 225],      None       ,0,0,0,?,1,c,Lucida Console       
-tnik,  i ,    X  ,    Y  ,    W  ,    H  ,x,y,AncX,AncY,CntW,CntH,v,a,Ascn,Dscn,nA-D,FnSz,Lead,LnSp,      color      ,background_color ,B,I,S,M,W,w,font_name            
 Sect,   1, 320.00, 240.00, 640.00, 480.00,C,C, 320, 240, 600,1494,T,C, 393,-105, 498, 373,   0,None,[  2  52  52 225],      None       ,0,0,0,?,1,c,Lucida Console       
 tnik,  i ,    X  ,    Y  ,    W  ,    H  ,x,y,AncX,AncY,CntW,CntH,v,a,Ascn,Dscn,nA-D,FnSz,Lead,LnSp,      color      ,background_color ,B,I,S,M,W,w,font_name            
 Colm,   1,  32.00, 240.00,  64.00, 480.00,C,C,  32, 240,  50, 581,T,C,  65, -18,  83,  62,   0,None,[ 52  19   2 225],      None       ,0,0,0,?,1,c,Lucida Console       

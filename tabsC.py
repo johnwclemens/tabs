@@ -46,29 +46,35 @@ class Tabs(pyglet.window.Window):
         self.cc            = 0   ;   self.nvis      = 0    ;   self.kbk      = 0
         self.allTabSel     = 0   ;   self.rsyncData = 0
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NONE, 'C', 0, [], [] ]
-        self.symbStr, self.modsStr,  self.symb,    self.mods    = Z, Z, 0, 0
-        self.J1,      self.J2,       self.j1s,     self.j2s     = [], [], [], []
-        self.hArrow,  self.vArrow,   self.csrMode, self.tids    = RIGHT, UP, CHORD, set()   ;   self.dumpCursorArrows('init()')
-        self.tblank,  self.tblanki,  self.cursor,  self.data    = None, None, None, []
-        self.A_LEFT = 0  ;  self.A_CENTER = 1  ;  self.A_RIGHT  = 0
-        self.X_LEFT = 0  ;  self.X_CENTER = 1  ;  self.X_RIGHT  = 0
-        self.Y_TOP  = 0  ;  self.Y_CENTER = 1  ;  self.Y_BOTTOM = 0  ;  self.Y_BASELINE = 0  ;  self.AUTO_SAVE = 0
-        self.BGC    = 0  ;  self.GEN_DATA = 0  ;  self.DBG_TABT = 4  ;  self.CHECKERED  = 1  ;  self.CURSOR    = 1  ;  self.SNAPS   = 1
-        self.CAT    = 1  ;  self.LONG_TXT = 1  ;  self.FRT_BRD  = 0  ;  self.EVENT_LOG  = 0  ;  self.MULTILINE = 1  ;  self.SPRITES = 0
-        self.OIDS   = 0  ;  self.ORD_GRP  = 1  ;  self.RESIZE   = 1  ;  self.FULL_SCRN  = 0  ;  self.EXIT_TEST = 0  ;  self.TEST    = 0
-        self.PIDX   = 0  ;  self.SUBPIX   = 1  ;  self.STRETCH  = 0  ;  self.VARROW     = 1  ;  self.VIEWS     = 0  ;  self.VRBY    = 0
-        self.LL     = 0
-        self.SS     = set(range(4))  # set() if 0 else {0, 1, 2, 3}
-        self.ZZ     = set()          # set() if 1 else {0} #, 1}
-        self.idmap  = cOd() if CODS else {}  ;  self.log(f'{CODS=} {type(self.idmap)=}')
+        self.symbStr,  self.modsStr,  self.symb,    self.mods    = Z, Z, 0, 0
+        self.J1,       self.J2,       self.j1s,     self.j2s     = [], [], [], []
+        self.hArrow,   self.vArrow,   self.csrMode, self.tids    = RIGHT, UP, CHORD, set()   ;   self.dumpCursorArrows('init()')
+        self.tblank,   self.tblanki,  self.cursor,  self.data    = None, None, None, []
+        self.AX        = 0
+        self.AY        = 0
+        self.AZ        = 0
+        self.X_LEFT    = 1 if self.AX==-1 else 0   ;   self.X_CENTER = 1 if self.AX==0 else 0   ;   self.X_RIGHT = 1 if self.AX==1 else 0
+        self.Y_BOTTOM  = 1 if self.AY==-1 else 0   ;   self.Y_CENTER = 1 if self.AY==0 else 0   ;   self.Y_TOP   = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
+        self.A_LEFT    = 1 if self.AZ==-1 else 0   ;   self.A_CENTER = 1 if self.AZ==0 else 0   ;   self.A_RIGHT = 1 if self.AZ==1 else 0
+        self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT      = 1  ;  self.CHECKERED = 1  ;  self.CURSOR   = 1
+        self.DBG_TABT  = 4  ;  self.EVENT_LOG = 0  ;  self.FRT_BRD  = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0
+        self.LONG_TXT  = 1  ;  self.MULTILINE = 1  ;  self.OIDS     = 0  ;  self.ORD_GRP   = 1  ;  self.PIDX     = 0
+        self.RESIZE    = 1  ;  self.SNAPS     = 1  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0  ;  self.SUBPIX   = 1
+        self.TEST      = 0  ;  self.TEST_EXIT = 0  ;  self.VARROW   = 1  ;  self.VIEWS     = 0  ;  self.VRBY     = 0
+        self.LL        = 0
+        self.SS        = set(range(4))  # set() if 0 else {0, 1, 2, 3}
+        self.ZZ        = set()          # set() if 1 else {0} #, 1}
+        self.idmap     = cOd() if CODS else {}  ;  self.log(f'{CODS=} {type(self.idmap)=}')
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
-        self.n      = [1, 1, 10, 6]
-        self.i      = [1, 1,  1, 6]
+        self.n         = [1, 1, 10, 6]
+        self.i         = [1, 1,  1, 6]
         self.log(f'argMap={fmtm(ARGS)}')   ;    self.FILE_NAME  = BASE_NAME
         if 'f' in ARGS and len(ARGS['f'])  > 0: self.FILE_NAME  = ARGS['f'][0]
-        if 'n' in ARGS and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'i' in ARGS and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
-        if 'I' in ARGS and len(ARGS['I']) == 0: self.PIDX       =  1
+        if 'n' in ARGS and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
+        if 'x' in ARGS and len(ARGS['x'])  > 0: self.AX         = [ int(ARGS['x'][i]) for i in range(len(ARGS['x'])) ]
+        if 'y' in ARGS and len(ARGS['y'])  > 0: self.AY         = [ int(ARGS['y'][i]) for i in range(len(ARGS['y'])) ]
+        if 'z' in ARGS and len(ARGS['z'])  > 0: self.AZ         = [ int(ARGS['z'][i]) for i in range(len(ARGS['z'])) ]
         if 'a' in ARGS and len(ARGS['a']) == 0: self.AUTO_SAVE  =  1
         if 'b' in ARGS and len(ARGS['b']) == 0: self.FRT_BRD    =  1
         if 'B' in ARGS and len(ARGS['B']) == 0: self.BGC        =  1
@@ -79,11 +85,12 @@ class Tabs(pyglet.window.Window):
         if 'F' in ARGS and len(ARGS['F']) == 0: self.FULL_SCRN  =  1
         if 'G' in ARGS and len(ARGS['G']) == 0: self.GEN_DATA   =  1
         if 'g' in ARGS and len(ARGS['g']) == 0: self.ORD_GRP    =  1
+        if 'I' in ARGS and len(ARGS['I']) == 0: self.PIDX       =  1
         if 'o' in ARGS and len(ARGS['o']) == 0: self.OIDS       =  1
         if 'M' in ARGS and len(ARGS['M']) == 0: self.MULTILINE  =  1
         if 'R' in ARGS and len(ARGS['R']) == 0: self.RESIZE     = 0
         if 'p' in ARGS and len(ARGS['p']) == 0: self.SNAPS      =  1
-        if 'q' in ARGS and len(ARGS['q']) == 0: self.EXIT_TEST  =  1
+        if 'q' in ARGS and len(ARGS['q']) == 0: self.TEST_EXIT  =  1
         if 'u' in ARGS and len(ARGS['u']) == 0: self.SUBPIX     =  1
         if 's' in ARGS and len(ARGS['s']) == 0: self.SPRITES    =  1
         if 't' in ARGS and len(ARGS['t']) == 0: self.TEST       =  1
@@ -91,7 +98,7 @@ class Tabs(pyglet.window.Window):
         if 'M' in ARGS and len(ARGS['M']) == 0: self.VIEWS      =  1
         if 'L' in ARGS and len(ARGS['L']) == 0: self.LL         =  1
         if 'S' in ARGS and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
-        if 'E' in ARGS and len(ARGS['E']) >= 0: self.ZZ         = { int(ARGS['E'][i]) for i in range(len(ARGS['E'])) }
+        if 'Z' in ARGS and len(ARGS['Z']) >= 0: self.ZZ         = { int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) }
         if 'A' in ARGS: l = len(ARGS['A'])   ;  self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
         if 'v' in ARGS: l = len(ARGS['v'])   ;  self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
         self.n0        = list(self.n)        ;  self.i0         =  list(self.i)
@@ -114,9 +121,9 @@ class Tabs(pyglet.window.Window):
         self.log(f'WxH={self.fmtWH()}')
         self._initWindowB()
         self.log(f'WxH={self.fmtWH()}')
-        self.a  = 'left' if self.A_LEFT else 'center' if self.A_CENTER else 'right'  if self.A_RIGHT  else '???'
-        self.ax = 'left' if self.X_LEFT else 'center' if self.X_CENTER else 'right'  if self.X_RIGHT  else '???'
-        self.ay = 'top'  if self.Y_TOP  else 'center' if self.Y_CENTER else 'bottom' if self.Y_BOTTOM else 'baseline' if self.Y_BASELINE else '???'
+        self.a  = LEFT if self.A_LEFT else CENTER if self.A_CENTER else RIGHT  if self.A_RIGHT  else '???'
+        self.ax = LEFT if self.X_LEFT else CENTER if self.X_CENTER else RIGHT  if self.X_RIGHT  else '???'
+        self.ay = TOP  if self.Y_TOP  else CENTER if self.Y_CENTER else BOTTOM if self.Y_BOTTOM else BASELINE if self.Y_BASELINE else '???'
         self.log(self.fAxy())   ;   self.log(self.fmtAxy())
         self._reinit()
         self.log(util.INIT, p=0)
@@ -145,19 +152,22 @@ class Tabs(pyglet.window.Window):
         self.log(f'[g]        {self.ORD_GRP=}', f=f)
         self.log(f'[o]           {self.OIDS=}', f=f)
         self.log(f'[p]          {self.SNAPS=}', f=f)
-        self.log(f'[q]      {self.EXIT_TEST=}', f=f)
+        self.log(f'[q]      {self.TEST_EXIT=}', f=f)
         self.log(f'[R]         {self.RESIZE=}', f=f)
         self.log(f'[u]         {self.SUBPIX=}', f=f)
         self.log(f'[s]        {self.SPRITES=}', f=f)
         self.log(f'[t]           {self.TEST=}', f=f)
         self.log(f'[T]       {self.LONG_TXT=}', f=f)
         self.log(f'[v]           {self.VRBY=}', f=f)
+        self.log(f'[x]             {self.AX=}', f=f)
+        self.log(f'[y]             {self.AY=}', f=f)
+        self.log(f'[z]             {self.AZ=}', f=f)
         self.log(f'[M]          {self.VIEWS=}', f=f)
         self.log(f'[I]           {self.PIDX=}', f=f)
         self.log(f'[A]         {self.VARROW=}', f=f)
         self.log(f'[L]             {self.LL=}', f=f)
         self.log(f'[S]             .SS={fmtl(self.SS)}', f=f)
-        self.log(f'[E]             .ZZ={fmtl(self.ZZ)}', f=f)
+        self.log(f'[Z]             .ZZ={fmtl(self.ZZ)}', f=f)
     ####################################################################################################################################################################################################
     def _reinit(self):
         self.log('BGN')
@@ -297,7 +307,7 @@ class Tabs(pyglet.window.Window):
         self.createTniks()
         self.ks = util.nic2KS(self.nic)
         self.log( util.fmtKSK(self.ks[util.KSK]), f=2)
-        if self.TEST: self.test1(self.EXIT_TEST)
+        if self.TEST: self.test1(self.TEST_EXIT)
     ####################################################################################################################################################################################################
     def test(self): #        self.olog('test', a, p=1)
         a = 1/0  ;  self.log(f'{a=}')
@@ -470,11 +480,11 @@ class Tabs(pyglet.window.Window):
     def fmtAxy(self, d=W): return f'{self.ax}{d}{self.ay}'
     def fAxy(  self, d=W): return f'{self.ftAx(self.ax)}{d}{self.ftAy(self.ay)}'
     @staticmethod
-    def ftAx(a):      return 'L' if a == 'left'     else 'C' if a == 'center' else 'R' if a == 'right'  else '???'
+    def ftAx(a):      return 'L' if a == LEFT     else 'C' if a == CENTER else 'R' if a == RIGHT  else '???'
     @staticmethod
-    def ftAy(a):      return 'N' if a == 'baseline' else 'T' if a == 'top'    else 'C' if a == 'center' else 'B' if a == 'bottom' else '???'
+    def ftAy(a):      return 'N' if a == BASELINE else 'T' if a == TOP    else 'C' if a == CENTER else 'B' if a == BOTTOM else '???'
     @staticmethod
-    def fcva(t):      a = t.content_valign   ;    return 'T' if a == 'top'    else 'C' if a == 'center' else 'B' if a == 'bottom' else '???'
+    def fcva(t):      a = t.content_valign  ;   return 'T' if a == TOP    else 'C' if a == CENTER else 'B' if a == BOTTOM else '???'
     ####################################################################################################################################################################################################
     def dumpAXY(self):
         self.log(f'{self.A_LEFT=} {self.A_CENTER=} {self.A_RIGHT=}')
@@ -1114,11 +1124,7 @@ class Tabs(pyglet.window.Window):
         if   j in c:  w = pw/n        ;  h = ph
         elif j == P:  w = pw          ;  h = ph
         else:         w = pw          ;  h = ph/n
-#        if   j == P:  x = px - a*pw + a*w  ;  y = ph - py + b*ph - b*h #+ b*ph - b*h
-#        elif j in s:  x = px - a*pw + a*w  ;  y = ph - py + b*ph - b*h #+ b*ph - b*h
-#        elif j == C:  x = px - a*pw + a*w  ;  y = ph - py + b*ph - b*h
-#        elif j == T:  x = px + a*w         ;  y = py + b*ph + ph - h
-        x = px - a*pw + a*w           ;  y = py + b*ph - b*h
+        x = px - a*pw + a*w           ;  y = ph - py + b*ph - b*h
         if dbg and self.VRBY >= 2:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
             msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
@@ -1247,11 +1253,11 @@ class Tabs(pyglet.window.Window):
             kk = self.cci(j2, i2, kl) if self.CHECKERED else 0
             yield self.createTnik(tl2, i2, j2, x2, y2, w, h, kk, kl, why=why, t=t, v=v, dbg=dbg)
 
-    def axyWgt(self, x, y): wx, wy = self.axWgt(x), self.ayWgt(y)  ;  self.log(f'{x=:6} {y=:6} {wx=:4.2f} {wy=:4.2f}')  ;  return wx, wy
+    def axyWgt(self, x, y, dbg=0): u, v = self.axWgt(x), self.ayWgt(y)  ;  self.log(f'{x=:6} {y=:6} {u=:4.2f} {v=:4.2f}') if dbg else None  ;  return u, v
     @staticmethod
-    def axWgt(x): return 0.0 if x=='left'   else 0.5 if x=='center' else 1.0 if x=='right' else -1.0
+    def axWgt(x): return 0.0 if x==LEFT   else 0.5 if x==CENTER else 1.0 if x==RIGHT else -1.0
     @staticmethod
-    def ayWgt(y): return 0.0 if y=='bottom' else 0.5 if y=='center' else 1.0 if y=='top'   else -1.0
+    def ayWgt(y): return 0.0 if y==BOTTOM else 0.5 if y==CENTER else 1.0 if y==TOP   else -1.0
     ####################################################################################################################################################################################################
     def createTnik(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
         if i is None or j is None: lt = len(tlist) if tlist is not None else None  ;  msg = f'ERROR i or j is None {i=} {j=} {lt=} {t=} {why}'  ;  self.log(msg)  ;  self.quit(msg)
@@ -1539,17 +1545,6 @@ class Tabs(pyglet.window.Window):
     def csvHdr(self, j, n):
         if   util.isi(self.E[j][0], LBL): return JLBL(n, Y)
         elif util.isi(self.E[j][0], SPR): return JSPR(n, Y)
-    def OLD__t2csv(self, tnik, j, i, d=W, ds=Z, e=Y, dbg=0):
-        if dbg:   self.log(f'E[{j=}][{i=}]={self.E[j][i]} =? {tnik=}')
-        assert tnik == self.E[j][i],  f'{tnik=} != {self.E[j][i]=}' # ;  old = len(self.tids)
-#        if dbg: self.log(f'{old=} {len(self.tids)=}') if old+1 != len(self.tids) else None
-        self.tids.add(id(tnik))  ;   xywh = self.ftxywh(tnik, s=d)   ;   ii = f'{i+1:4}'  ;  w = tnik.width  ;  h = tnik.height
-        axy = self.fAxy(d)   ;  ancX, ancY = f'{int(w*self.axWgt(self.ax)):4}', f'{int(h*self.ayWgt(self.ay)):4}'
-        if util.isi(tnik, LBL):
-            td  = tnik.document  ;  fnt = td.get_font()     ;  asc, dsc = fnt.ascent, fnt.descent  ;  net = asc - dsc
-            adn = d.join([f'{asc:4}', f'{dsc:4}', f'{net:4}'])  ;  ctnt = self.fCtnt(tnik, d)
-            self.log(d.join([JTEXTS[j], ii, xywh, axy, ancX, ancY, ctnt, adn, ds]),   p=0, f=3, e=e)
-        elif util.isi(tnik, SPR): self.log(d.join([JTEXTS[j], ii, xywh, axy, ancX, ancY]), p=0, f=3, e=e)
 
     def t2csv(self, tnik, j, i, d=W, ds=Z): #, e=Y, dbg=0): # self.log(f'E[{j=}][{i=}]={self.E[j][i]} =? {tnik=}') if dbg else None
         assert tnik == self.E[j][i],  f'{tnik=} != {self.E[j][i]=}'
@@ -1619,20 +1614,14 @@ class Tabs(pyglet.window.Window):
             self.dumpTnikCsv(t, T, i)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def dumpTnikCsv(self, t, j, i):
-        if not i:   np, nl, ns, nc, nt = self.n  ;  h = self.csvHdr(P, np*nl*ns)  ;  self.log(f'{h}', p=0, f=3)
+    def dumpTnikCsv(self, t, j, i): # j in (P, C, T)
+        if not i and j not in (L, S):   np, nl, ns, nc, nt = self.n  ;  h = self.csvHdr(j, np*nl*ns)  ;  self.log(f'{h}', p=0, f=3)
         self.log(self.fmtTnikCsv(t, j, i), p=0, f=3)
     def fmtTnikCsv(self, t, j, i):
         s = {}
         if   util.isi(t, LBL):   d = t.document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)
 #        elif util.isi(t, SPR):   z = Y.join([W * len(_) for _ in LTXX])
         return self.t2csv(t, j, i, Y, s)
-#    def OLD__dumpTnikCsv(self, t, j, i):
-#        s = {} #  ;   z = '???'
-#        if   util.isi(t, LBL):   d = t.document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)
-#        elif util.isi(t, SPR):   z = Y.join([ W*len(_) for _ in LTXX ])
-#        self.log(p=0, f=3) if not i or j > K else None
-#        self.log(self.t2csv(t, j, i, Y, s), p=0, f=3)
     ####################################################################################################################################################################################################
     def NEW__dumpTnikCsvs(self):
         self.log(f'{fmtl(self.args2csv(), d=Z, s=Y)}', p=0, f=3)   ;   np, nl, ns, nc, nt = self.n
@@ -1702,15 +1691,11 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def cc2xywh(self, dbg=0):
         tpb, tpp, tpl, tps, tpc = self.ntp()
-        cc = self.cursorCol()   ;   old = cc
-        if cc >= tpp: cc = cc % tpp # + tpl
-#        if cc >= tpl: cc = cc % tpl + tps
-#        if cc >= tpc: cc = cc % tpc
-        t = self.tabls[cc]
+        old   = self.cursorCol()  ;  cc = old % tpp
+        t     = self.tabls[cc]
         if dbg: self.log(f'{cc=:4} {old=:4} {self.fntp()} {self.ftxywh(t)} {t.text=} {self.fCtnt(t)}', f=0) # i={Notes.index(self.sobj.tab2nn(t, cc % tpc))}
         w, h = t.width if t.width is not None else t.height , t.height
-        x, y = t.x - w/2, t.y - h/2
-        return x, y, w, h, cc
+        return t.x, t.y, w, h, cc
     ####################################################################################################################################################################################################
     def plc2cn(self, p, l, c, dbg=0):
         tpb, tpp, tpl, tps, tpc = self.ntp()  ;  ns = self.n[S]
@@ -2912,9 +2897,10 @@ CATS, CSVS, LOGS, PNGS, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'data'
 CATP, CSVP, LOGP                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}'
 CSV_FILE, LOG_FILE              = None, None
 ########################################################################################################################################################################################################
-MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'
-BASELINE, BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'baseline',  'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
-ALIGN, INDENT, LEAD, LNSP, MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM, STRH, TAB_STOPS, WRAP = 'align', 'indent', 'leading', 'line_spacing', 'margin_left', 'margin_right', 'margin_top', 'margin_bottom', 'stretch', 'tab_stops', 'wrap'
+MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'   ;   LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
+BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
+ALIGN, INDENT, LEAD, LNSP, STRH, TAB_STOPS, WRAP = 'align', 'indent', 'leading', 'line_spacing', 'stretch', 'tab_stops', 'wrap'
+MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM = 'margin_left', 'margin_right', 'margin_top', 'margin_bottom'
 FNSZ      =  'FnSz'
 TI        = ['tnik', '  i ']
 XYWH      = ['    X  ', '    Y  ', '    W  ', '    H  ']
