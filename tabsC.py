@@ -48,18 +48,19 @@ class Tabs(pyglet.window.Window):
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NONE, 'C', 0, [], [] ]
         self.symbStr,  self.modsStr,  self.symb,    self.mods    = Z, Z, 0, 0
         self.J1,       self.J2,       self.j1s,     self.j2s     = [], [], [], []
-        self.hArrow,   self.vArrow,   self.csrMode, self.tids    = RIGHT, UP, CHORD, set()   ;   self.dumpCursorArrows('init()')
+        self.hArrow,   self.vArrow,   self.csrMode, self.tids    = RARROW, UARROW, CHORD, set()   ;   self.dumpCursorArrows('init()')
         self.tblank,   self.tblanki,  self.cursor,  self.data    = None, None, None, []
-        self.AX        = 0
-        self.AY        = 0
-        self.AZ        = 0
-        self.X_LEFT    = 1 if self.AX==-1 else 0   ;   self.X_CENTER = 1 if self.AX==0 else 0   ;   self.X_RIGHT = 1 if self.AX==1 else 0
-        self.Y_BOTTOM  = 1 if self.AY==-1 else 0   ;   self.Y_CENTER = 1 if self.AY==0 else 0   ;   self.Y_TOP   = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
-        self.A_LEFT    = 1 if self.AZ==-1 else 0   ;   self.A_CENTER = 1 if self.AZ==0 else 0   ;   self.A_RIGHT = 1 if self.AZ==1 else 0
+        self.AXY       = [0, 0, 0]
+        self.AX        = self.AXY[0]
+        self.AY        = self.AXY[1]
+        self.AZ        = self.AXY[2]
+        self.X_LEFT    = 1  if self.AX==-1 else 0  ;  self.X_CENTER = 1  if self.AX==0  else 0  ;  self.X_RIGHT  = 1 if self.AX==1 else 0
+        self.Y_BOTTOM  = 1  if self.AY==-1 else 0  ;  self.Y_CENTER = 1  if self.AY==0  else 0  ;  self.Y_TOP    = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
+        self.A_LEFT    = 1  if self.AZ==-1 else 0  ;  self.A_CENTER = 1  if self.AZ==0  else 0  ;  self.A_RIGHT  = 1 if self.AZ==1 else 0
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT      = 1  ;  self.CHECKERED = 1  ;  self.CURSOR   = 1
         self.DBG_TABT  = 4  ;  self.EVENT_LOG = 0  ;  self.FRT_BRD  = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0
         self.LONG_TXT  = 1  ;  self.MULTILINE = 1  ;  self.OIDS     = 0  ;  self.ORD_GRP   = 1  ;  self.PIDX     = 0
-        self.RESIZE    = 1  ;  self.SNAPS     = 1  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0  ;  self.SUBPIX   = 1
+        self.RESIZE    = 1  ;  self.SNAPS     = 1  ;  self.SPRITES  = 1  ;  self.STRETCH   = 0  ;  self.SUBPIX   = 1
         self.TEST      = 0  ;  self.TEST_EXIT = 0  ;  self.VARROW   = 1  ;  self.VIEWS     = 0  ;  self.VRBY     = 0
         self.LL        = 0
         self.SS        = set(range(4))  # set() if 0 else {0, 1, 2, 3}
@@ -69,44 +70,50 @@ class Tabs(pyglet.window.Window):
         self.n         = [1, 1, 10, 6]
         self.i         = [1, 1,  1, 6]
         self.log(f'argMap={fmtm(ARGS)}')   ;    self.FILE_NAME  = BASE_NAME
-        if 'f' in ARGS and len(ARGS['f'])  > 0: self.FILE_NAME  = ARGS['f'][0]
-        if 'i' in ARGS and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
-        if 'n' in ARGS and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
-        if 'x' in ARGS and len(ARGS['x'])  > 0: self.AX         = [ int(ARGS['x'][i]) for i in range(len(ARGS['x'])) ]
-        if 'y' in ARGS and len(ARGS['y'])  > 0: self.AY         = [ int(ARGS['y'][i]) for i in range(len(ARGS['y'])) ]
-        if 'z' in ARGS and len(ARGS['z'])  > 0: self.AZ         = [ int(ARGS['z'][i]) for i in range(len(ARGS['z'])) ]
+        ####################################################################################################################################################################################################
         if 'a' in ARGS and len(ARGS['a']) == 0: self.AUTO_SAVE  =  1
+        if 'A' in ARGS: l = len(ARGS['A'])   ;  self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
         if 'b' in ARGS and len(ARGS['b']) == 0: self.FRT_BRD    =  1
         if 'B' in ARGS and len(ARGS['B']) == 0: self.BGC        =  1
         if 'c' in ARGS and len(ARGS['c']) == 0: self.CAT        =  1
         if 'C' in ARGS and len(ARGS['C']) == 0: self.CHECKERED  =  1
         if 'd' in ARGS and len(ARGS['d']) == 0: self.DBG_TABT   =  1
         if 'e' in ARGS and len(ARGS['e']) == 0: self.EVENT_LOG  =  1
+        if 'f' in ARGS and len(ARGS['f'])  > 0: self.FILE_NAME  =  ARGS['f'][0]
         if 'F' in ARGS and len(ARGS['F']) == 0: self.FULL_SCRN  =  1
-        if 'G' in ARGS and len(ARGS['G']) == 0: self.GEN_DATA   =  1
         if 'g' in ARGS and len(ARGS['g']) == 0: self.ORD_GRP    =  1
+        if 'G' in ARGS and len(ARGS['G']) == 0: self.GEN_DATA   =  1
+        if 'i' in ARGS and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
         if 'I' in ARGS and len(ARGS['I']) == 0: self.PIDX       =  1
+        if 'L' in ARGS and len(ARGS['L']) == 0: self.LL         =  1
+        if 'M' in ARGS and len(ARGS['M']) == 0: self.MULTILINE  =  1 # duplicate key M fixme todo
+        if 'M' in ARGS and len(ARGS['M']) == 0: self.VIEWS      =  1 # duplicate key M fixme todo
+        if 'n' in ARGS and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'o' in ARGS and len(ARGS['o']) == 0: self.OIDS       =  1
-        if 'M' in ARGS and len(ARGS['M']) == 0: self.MULTILINE  =  1
-        if 'R' in ARGS and len(ARGS['R']) == 0: self.RESIZE     = 0
         if 'p' in ARGS and len(ARGS['p']) == 0: self.SNAPS      =  1
         if 'q' in ARGS and len(ARGS['q']) == 0: self.TEST_EXIT  =  1
-        if 'u' in ARGS and len(ARGS['u']) == 0: self.SUBPIX     =  1
+        if 'R' in ARGS and len(ARGS['R']) == 0: self.RESIZE     = 0
         if 's' in ARGS and len(ARGS['s']) == 0: self.SPRITES    =  1
+        if 'S' in ARGS and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
         if 't' in ARGS and len(ARGS['t']) == 0: self.TEST       =  1
         if 'T' in ARGS and len(ARGS['T']) == 0: self.LONG_TXT   =  1
-        if 'M' in ARGS and len(ARGS['M']) == 0: self.VIEWS      =  1
-        if 'L' in ARGS and len(ARGS['L']) == 0: self.LL         =  1
-        if 'S' in ARGS and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
-        if 'Z' in ARGS and len(ARGS['Z']) >= 0: self.ZZ         = { int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) }
-        if 'A' in ARGS: l = len(ARGS['A'])   ;  self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
+        if 'u' in ARGS and len(ARGS['u']) == 0: self.SUBPIX     =  1
         if 'v' in ARGS: l = len(ARGS['v'])   ;  self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
+        if 'w' in ARGS and len(ARGS['w'])  > 0: self.AXY        = [ int(ARGS['w'][i]) for i in range(len(ARGS['w'])) ]
+        if 'x' in ARGS and len(ARGS['x'])  > 0: self.AX         =  ARGS['x'][0] if 'w' in ARGS else 0
+        if 'y' in ARGS and len(ARGS['y'])  > 0: self.AY         =  ARGS['y'][0] if 'w' in ARGS else 0
+        if 'z' in ARGS and len(ARGS['z'])  > 0: self.AZ         =  ARGS['z'][0]
+        if 'Z' in ARGS and len(ARGS['Z']) >= 0: self.ZZ         = { int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) }
+        self.AX        = self.AXY[0]
+        self.AY        = self.AXY[1]
+#        self.AZ        = self.AXY[2] if len(self.AXY > 2) else
+        ####################################################################################################################################################################################################
         self.n0        = list(self.n)        ;  self.i0         =  list(self.i)
         self.n.insert(S, self.ssl())         ;  self.i.insert(S, 1)         ;  self.dumpArgs(f=2)
         self.LOG_GFN   = self.geomFileName(LOG, self.FILE_NAME)             ;  self.log(f'{self.LOG_GFN=}')
         self.CSV_GFN   = self.geomFileName(CSV, self.FILE_NAME)             ;  self.log(f'{self.CSV_GFN=}')
         self.DAT_GFN   = self.geomFileName(DAT, self.FILE_NAME, n=self.n0)  ;  self.log(f'{self.DAT_GFN=} {self.n0=}')
-        self.vArrow    = UP if self.VARROW == 1 else DOWN
+        self.vArrow    = UARROW if self.VARROW == 1 else DARROW
         self.fontStyle = NORMAL_STYLE
         self.sAlias    = 'GUITAR_6_STD'
         self.k         = {}
@@ -124,7 +131,7 @@ class Tabs(pyglet.window.Window):
         self.a  = LEFT if self.A_LEFT else CENTER if self.A_CENTER else RIGHT  if self.A_RIGHT  else '???'
         self.ax = LEFT if self.X_LEFT else CENTER if self.X_CENTER else RIGHT  if self.X_RIGHT  else '???'
         self.ay = TOP  if self.Y_TOP  else CENTER if self.Y_CENTER else BOTTOM if self.Y_BOTTOM else BASELINE if self.Y_BASELINE else '???'
-        self.log(self.fAxy())   ;   self.log(self.fmtAxy())
+        self.dumpAXY()
         self._reinit()
         self.log(util.INIT, p=0)
         self.log(f'END {__class__}')
@@ -136,37 +143,38 @@ class Tabs(pyglet.window.Window):
         n = self.n if n is None else n  ;  _ = [base] if base is not None else [BASE_NAME]  ;  _.extend([ str(i) for i in n ])  ;  _.append(ext)  ;  return '.'.join(_) # base.p.l.c.t.ext
 
     def dumpArgs(self, f=1):
-        self.log(f'[f]      {self.FILE_NAME=}', f=f)
-        self.log(f'[n]               {self.fmtn()}', f=f)
-        self.log(f'[i]               {self.fmti()}', f=f)
         self.log(f'[a]      {self.AUTO_SAVE=}', f=f)
+        self.log(f'[A]         {self.VARROW=}', f=f)
         self.log(f'[b]        {self.FRT_BRD=}', f=f)
         self.log(f'[B]            {self.BGC=}', f=f)
         self.log(f'[c]            {self.CAT=}', f=f)
         self.log(f'[C]      {self.CHECKERED=}', f=f)
         self.log(f'[d]       {self.DBG_TABT=}', f=f)
         self.log(f'[e]      {self.EVENT_LOG=}', f=f)
+        self.log(f'[f]      {self.FILE_NAME=}', f=f)
         self.log(f'[F]      {self.FULL_SCRN=}', f=f)
-        self.log(f'[G]       {self.GEN_DATA=}', f=f)
-        self.log(f'[M]      {self.MULTILINE=}', f=f)
         self.log(f'[g]        {self.ORD_GRP=}', f=f)
+        self.log(f'[G]       {self.GEN_DATA=}', f=f)
+        self.log(f'[i]               {self.fmti()}', f=f)
+        self.log(f'[I]           {self.PIDX=}', f=f)
+        self.log(f'[L]             {self.LL=}', f=f)
+        self.log(f'[M]          {self.VIEWS=}', f=f) # duplicate key M fixme todo
+        self.log(f'[M]      {self.MULTILINE=}', f=f) # duplicate key M fixme todo
+        self.log(f'[n]               {self.fmtn()}', f=f)
         self.log(f'[o]           {self.OIDS=}', f=f)
         self.log(f'[p]          {self.SNAPS=}', f=f)
         self.log(f'[q]      {self.TEST_EXIT=}', f=f)
         self.log(f'[R]         {self.RESIZE=}', f=f)
-        self.log(f'[u]         {self.SUBPIX=}', f=f)
         self.log(f'[s]        {self.SPRITES=}', f=f)
+        self.log(f'[S]             .SS={fmtl(self.SS)}', f=f)
         self.log(f'[t]           {self.TEST=}', f=f)
         self.log(f'[T]       {self.LONG_TXT=}', f=f)
+        self.log(f'[u]         {self.SUBPIX=}', f=f)
         self.log(f'[v]           {self.VRBY=}', f=f)
+        self.log(f'[w]            {self.AXY=}', f=f)
         self.log(f'[x]             {self.AX=}', f=f)
         self.log(f'[y]             {self.AY=}', f=f)
         self.log(f'[z]             {self.AZ=}', f=f)
-        self.log(f'[M]          {self.VIEWS=}', f=f)
-        self.log(f'[I]           {self.PIDX=}', f=f)
-        self.log(f'[A]         {self.VARROW=}', f=f)
-        self.log(f'[L]             {self.LL=}', f=f)
-        self.log(f'[S]             .SS={fmtl(self.SS)}', f=f)
         self.log(f'[Z]             .ZZ={fmtl(self.ZZ)}', f=f)
     ####################################################################################################################################################################################################
     def _reinit(self):
@@ -477,19 +485,18 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def fgrpp(t):     return f'{t.group.parent}'
     ####################################################################################################################################################################################################
-    def fmtAxy(self, d=W): return f'{self.ax}{d}{self.ay}'
-    def fAxy(  self, d=W): return f'{self.ftAx(self.ax)}{d}{self.ftAy(self.ay)}'
+    def dumpAXY(self, dbg=1):                    d = '\n' if dbg else Z  ;  self.log(f'{self.fAxy(d=d, dbg=dbg)}{d}{self.fmtAxy(d=d, dbg=dbg)}{d}{self.fAxyf(dbg=dbg)}', p=0)
+    def fmtAxy( self, d=W, dbg=0): (a,b) = ('ax=', 'ay=') if dbg else (Z, Z)  ;  return f'{a}{self.ax}{d}{b}{self.ay}'
+    def fAxy(   self, d=W, dbg=0): (a,b) = ('ax=', 'ay=') if dbg else (Z, Z)  ;  return f'{a}{self.ftAx(self.ax)}{d}{b}{self.ftAy(self.ay)}'
+    def fAxyf(self, dbg=0):        s = '\n' if dbg else Z  ;  return W.join([f'{self.A_LEFT}', f'{self.A_CENTER}', f'{self.A_RIGHT}{s}', f'{self.X_LEFT}', f'{self.X_CENTER}', f'{self.X_RIGHT}{s}', f'{self.Y_BOTTOM}', f'{self.Y_CENTER}', f'{self.Y_TOP}', f'{self.Y_BASELINE}'])
+#    def fAxyf(self, dbg=0):        s = '\n' if dbg else W  ;  return f'{self.A_LEFT=} {self.A_CENTER=} {self.A_RIGHT=}{s}{self.X_LEFT=} {self.X_CENTER=} {self.X_RIGHT=}{s}{self.Y_TOP=}  {self.Y_CENTER=} {self.Y_BOTTOM=} {self.Y_BASELINE=}'
     @staticmethod
-    def ftAx(a):      return 'L' if a == LEFT     else 'C' if a == CENTER else 'R' if a == RIGHT  else '???'
+    def ftAx(a):                          return 'L' if a == LEFT   else 'C' if a == CENTER else 'R' if a == RIGHT else '???'
     @staticmethod
-    def ftAy(a):      return 'N' if a == BASELINE else 'T' if a == TOP    else 'C' if a == CENTER else 'B' if a == BOTTOM else '???'
+    def ftAy(a):                          return 'B' if a == BOTTOM else 'C' if a == CENTER else 'T' if a == TOP   else 'N' if a == BASELINE else '???'
     @staticmethod
-    def fcva(t):      a = t.content_valign  ;   return 'T' if a == TOP    else 'C' if a == CENTER else 'B' if a == BOTTOM else '???'
+    def fcva(t): a = t.content_valign  ;  return 'B' if a == BOTTOM else 'C' if a == CENTER else 'T' if a == TOP   else '???'
     ####################################################################################################################################################################################################
-    def dumpAXY(self):
-        self.log(f'{self.A_LEFT=} {self.A_CENTER=} {self.A_RIGHT=}')
-        self.log(f'{self.X_LEFT=} {self.X_CENTER=} {self.X_RIGHT=}')
-        self.log(f'{self.Y_TOP=}  {self.Y_CENTER=} {self.Y_BOTTOM=} {self.Y_BASELINE=}')
     def dumpWxHp0(self): self.log(self.fmtWHP0())
     def dumpDataSlice(self, p, l, c, cc):
         for t in range(self.n[T]):
@@ -1278,10 +1285,10 @@ class Tabs(pyglet.window.Window):
             s = self.calcFontSize(j)       ;   a, ax, ay = self.a, self.ax, self.ay  # left center right  # bottom baseline center top
             z = 1 if self.STRETCH else 0   ;        d, n = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTILINE
             tnik = LBL(t, font_name=n, font_size=s, bold=o, italic=ii, stretch=z, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=a, multiline=ml, dpi=d, batch=b, group=g)
-            self.checkTnik(tnik, i, j)
             if   T <= j <= K:      self._setTNIKStyle(tnik, self.k[j], NORMAL_STYLE)
             elif j == Q:           self._setTNIKStyle(tnik, self.k[j] if (i+1) % 10 else self.k[R], NORMAL_STYLE)
         tnik.visible = v        ;  self.visib[j].append(v)
+        self.checkTnik(tnik, i, j)
         if    tlist is not None:   tlist.append(tnik)
         key = self.idmapkey(j)  ;  self.idmap[key] = (tnik, j, i)   ;   self.dumpTnik(tnik, j, why) if dbg else None
         if self.LL and j == L:
@@ -1292,20 +1299,29 @@ class Tabs(pyglet.window.Window):
         return tnik
     ####################################################################################################################################################################################################
     def checkTnik(self, t, i, j, dbg=0):
-        td = t.document   ;   sm = td.styles   ;   wrap = 'char'
-        a,  ax,  ay,  ml   =  self.a,    self.ax,    self.ay,     self.MULTILINE
-        ta, tax, tay, tml  =  sm[ALIGN], t.anchor_x, t.anchor_y, int(t.multiline)
-        assert  ta == a,   f' {ta=} != {a=}'
-        assert tax == ax,  f'{tax=} != {ax=}'
-        assert tay == ay,  f'{tay=} != {ay=}'
-        td.set_paragraph_style(0, len(td.text), {LNSP:None, LEAD:0, WRAP:wrap, WRAP_LINES:True, })
-        h = self.docStylesHdr()  ;   s =  self.fmtDocStyles(sm, W)    ;    v = 'V' if t.visible else 'I'   ;    js = JTEXTS[j]
+        cwhvaHdr, adnHdr, dsh, ftxt = Z, Z, Z, Z   ;   cwch, adn, s = Z, Z, Z  ;  m, fnt = None, None
+        ntidv = 'Name  Tid V '  ;  ptxt = W*9   ;   xyaxyHdr = self.xyaxyHdr()
+        if util.isi(t, LBL):
+            cwhvaHdr = f' {self.cwhvaHdr()} '   ;   dsh = f' {self.docStylesHdr()} '   ;   adnHdr = W.join(ADN)  ;  ptxt, ftxt = 'PrtlText ', 'Full Text'
+        self.log(f'{ntidv}{ptxt}{xyaxyHdr}{cwhvaHdr}{adnHdr}{dsh}{ftxt}', p=0, f=0)  if j==P or (j==T and i==0) else None
+        v = 'V' if t.visible else 'I'   ;    js = JTEXTS[j]
+        ax,  ay    =  self.ax,    self.ay
+        tax, tay   =  t.anchor_x, t.anchor_y
         ancX, ancY = f'{int(t.width * self.axWgt(self.ax)):4}', f'{int(t.height * self.ayWgt(self.ay)):4}'
-        fnt  =  td.get_font()    ;   asc  = fnt.ascent   ;   dsc = fnt.descent   ;   net = asc - dsc    ;   adnHdr = W.join(ADN)
-        adn  = W.join([f'{asc:4}', f'{dsc:4}', f'{net:4}'])
-        self.log(f'{W*21}{self.xyaxyHdr()} {self.cwhvaHdr()} {adnHdr} {h} Full Text', p=0, f=0) if j==0 else None
-        self.log(f'{js} {i+1:3} {self.fpTxt(t)} {v} {self.fAxy()} {ancX} {ancY} {self.fCtnt(t)} {adn} {s} {self.ffTxt(t)}', p=0, f=0)
-        if dbg:    fnt2 = pygfont.load(sm[FONT_NAME], sm[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
+        if util.isi(t, LBL):
+            d = t.document  ;  m = d.styles  ;  wrap = 'char'  ;  a = self.a  ;  ta = m[ALIGN]  ;  ml = self.MULTILINE  ;  tml = int(t.multiline)
+            assert tax == ax,  f'{tax=} != {ax=}'
+            assert tay == ay,  f'{tay=} != {ay=}'
+            assert ta  == a,   f' {ta=} != {a=}'
+            assert tml == ml,  f'{tml=} != {ml=}'
+            d.set_paragraph_style(0, len(d.text), {LNSP:None, LEAD:0, WRAP:wrap, WRAP_LINES:True, })
+            s =  self.fmtDocStyles(m, W)
+            fnt  =  d.get_font()    ;   asc = fnt.ascent   ;   dsc = fnt.descent   ;   net = asc - dsc
+            adn  = W.join([f'{asc:4}', f'{dsc:4}', f'{net:4}'])
+            ptxt = f'{self.fpTxt(t)}'    ;   ftxt = self.ffTxt(t)
+            cwch = self.fCtnt(t)
+        self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwch} {adn} {s} {ftxt}', p=0, f=0)
+        if util.isi(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
 
     def dbgTabTxt(self, j, i):
         dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1:03}' if j==C else f'{i+1}'  ;  k = d.join(k)  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  l = len(s)
@@ -1426,14 +1442,20 @@ class Tabs(pyglet.window.Window):
         self.dumpJs(why, w=None)               if self.J1 and self.J2 else self.quit(f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')
         self.dumpGeom('END', why)
 
-    def dumpHdrs(self): hdr1 = self.fTnikHdr(1)   ;   hdr0 = self.fTnikHdr(0)   ;   self.log(hdr1, p=0)   ;   self.log(hdr0, p=0)
+    def dumpHdrs(self): hdr1 = self.fTnikHdr(0)   ;   hdr0 = self.fTnikHdr(1)   ;   self.log(hdr1, p=0)   ;   self.log(hdr0, p=0)
     ####################################################################################################################################################################################################
     def fTnikHdr(self, spr=0):
         tid  = ' TId  Identity  ' if self.OIDS else ' Tid'  ;    wnc = ' Why  Name  Cnt'  ;  rtsgv = ' Rotated G V'    if spr else '  Text   G V'
         xywh = W.join(XYWH)  ;    cwhva = self.cwhvaHdr()   ;  xyaxy = self.xyaxyHdr()    ;    rgb = ' Red Grn Blu Opc' if self.LONG_TXT else Z
-        sfx  = (' Iax  Iay      Grp        pGrp'         if spr else f' {xyaxy} {cwhva} {W.join(ADN)} {FNSZ} dpi B I Font Name')  if self.LONG_TXT else Z
+        sfx  = ('x y AncX AncY Grp             pGrp'         if spr else f' {xyaxy} {cwhva} {W.join(ADN)} {FNSZ} dpi B I Font Name')  if self.LONG_TXT else Z
         rgbM = (' M     Mx    My  ' if spr else rgb)        if self.LONG_TXT else Z       ;     ft = f'{W*13}Full Text' if self.LONG_TXT and not spr and self.DBG_TABT else Z
         return f'{tid} {wnc} {rtsgv} {self.fjtxt()} {xywh} {rgb} {rgbM} {sfx}{ft}'
+    @staticmethod
+    def fTnikHdr2(spr):
+        h = ['Name  Cnt Text     V x y AncX AncY ']
+        if spr: h.append('Grp             pGrp')
+        else:   h.append('CntW CntH v a Ascn Dscn nA-D')
+        return f'{W.join(h)}'
     @staticmethod
     def xyaxyHdr(d=W):  return d.join(XYAXY)
     @staticmethod
@@ -1456,7 +1478,7 @@ class Tabs(pyglet.window.Window):
     def dumpIdmKeys(self):  self.log(fmtl(list(self.idmap.keys()), ll=1))
     def fSpr(self, t, d=W): return f'{self.fAxy()}{d}{self.fiax(t)}{d}{self.fiay(t)}{d}{self.fgrp(t)}{d}{self.fgrpp(t)}'
     def fLbl(self, t, d=W):
-        dtxt = f'{d}{t.text}' if self.DBG_TABT and len(t.text) > 8 else ''       ;    td = t.document
+        dtxt = f'{d}{self.ffTxt(t)}' if self.DBG_TABT and len(t.text) > 8 else ''       ;    td = t.document
         ancX, ancY = f'{int(t.width * self.axWgt(self.ax)):4}', f'{int(t.height * self.ayWgt(self.ay)):4}'
         fnt  =  td.get_font()    ;   asc  = fnt.ascent   ;   dsc = fnt.descent   ;   net = asc - dsc
         adn = d.join([f'{asc:4}', f'{dsc:4}', f'{net:4}'])
@@ -2020,16 +2042,16 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'X' and self.isCtrl(     mods):    self.cutTabs(       '@ X')
     ####################################################################################################################################################################################################
         elif kbk == 'ESCAPE':                          self.flipSelectAll( 'ESCAPE')
-        elif kbk == 'TAB'       and self.isCtrl(mods): self.setCHVMode(    '@ TAB',       MELODY, LEFT)
-        elif kbk == 'TAB':                             self.setCHVMode(    '  TAB',       MELODY, RIGHT)
+        elif kbk == 'TAB'       and self.isCtrl(mods): self.setCHVMode(    '@ TAB',       MELODY, LARROW)
+        elif kbk == 'TAB':                             self.setCHVMode(    '  TAB',       MELODY, RARROW)
 #       elif kbk == 'SLASH'     and self.isCtrl(mods): self.setTab(        '@ SLASH', '/')
 #       elif kbk == 'SLASH':                           self.setTab(        '  SLASH', '/')
 #       elif kbk == 'BACKSLASH' and self.isCtrl(mods): self.setTab(        '@ BACKSLASH', '\\')
 #       elif kbk == 'BACKSLASH':                       self.setTab(        '  BACKSLASH', '\\')
-#       elif kbk == 'SLASH'     and self.isCtrl(mods): self.setCHVMode(    '@ SLASH',     ARPG,   LEFT,  DOWN)
-#       elif kbk == 'SLASH':                           self.setCHVMode(    '  SLASH',     ARPG,   RIGHT, UP)
-#       elif kbk == 'BACKSLASH' and self.isCtrl(mods): self.setCHVMode(    '@ BACKSLASH', ARPG,   LEFT,  UP)
-#       elif kbk == 'BACKSLASH':                       self.setCHVMode(    '  BACKSLASH', ARPG,   RIGHT, DOWN)
+#       elif kbk == 'SLASH'     and self.isCtrl(mods): self.setCHVMode(    '@ SLASH',     ARPG,   LARROW,  DARROW)
+#       elif kbk == 'SLASH':                           self.setCHVMode(    '  SLASH',     ARPG,   RARROW, UARROW)
+#       elif kbk == 'BACKSLASH' and self.isCtrl(mods): self.setCHVMode(    '@ BACKSLASH', ARPG,   LARROW,  UARROW)
+#       elif kbk == 'BACKSLASH':                       self.setCHVMode(    '  BACKSLASH', ARPG,   RARROW, DARROW)
     ####################################################################################################################################################################################################
         elif kbk == 'D' and self.isAltShift(mods):     self.flipBGC('&^D')
         elif kbk == 'D' and self.isAlt(     mods):     self.flipBGC('& D')
@@ -2052,8 +2074,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam(FONT_SIZE, max(self.fontSize    - 1, 1),                'fontSize') # )  % FS_MAX
     ####################################################################################################################################################################################################
         if not self.isParsing():
-            if   kbk == 'ENTER' and self.isCtrl(mods): self.setCHVMode(  '@  ENTER',     CHORD,       v=DOWN)
-            elif kbk == 'ENTER':                       self.setCHVMode(  '   ENTER',     CHORD,       v=UP)
+            if   kbk == 'ENTER' and self.isCtrl(mods): self.setCHVMode(  '@  ENTER',     CHORD,       v=DARROW)
+            elif kbk == 'ENTER':                       self.setCHVMode(  '   ENTER',     CHORD,       v=UARROW)
             elif kbk == 'SPACE':                       self.autoMove(    '   SPACE')
         elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()}')
         if   dbg: self.log(       f'END {self.kbkEvntTxt()}')
@@ -2246,8 +2268,8 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def autoMove(self, how, dbg=1):
         self.log(f'BGN {how}', pos=1)
-        ha = 1 if self.hArrow == RIGHT else -1
-        va = 1 if self.vArrow == DOWN  else -1
+        ha = 1 if self.hArrow == RARROW else -1
+        va = 1 if self.vArrow == DARROW  else -1
         nt, it = self.n[T], self.i[T]
         mmDist = ha * nt
         cmDist = va
@@ -2255,8 +2277,8 @@ class Tabs(pyglet.window.Window):
         if dbg: self.dumpCursorArrows(f'{self.fmtPos()}     {how} M={mmDist} C={cmDist} A={amDist}')
         if      self.csrMode == MELODY:                                     self.move(how, mmDist)
         elif    self.csrMode == CHORD:
-            if   it == 1 and self.vArrow  == UP   and self.hArrow == RIGHT: self.move(how,   nt*2-1)
-            elif it == 6 and self.vArrow  == DOWN and self.hArrow == LEFT:  self.move(how, -(nt*2-1))
+            if   it == 1 and self.vArrow  == UARROW   and self.hArrow == RARROW: self.move(how,   nt*2-1)
+            elif it == 6 and self.vArrow  == DARROW and self.hArrow == LARROW:  self.move(how, -(nt*2-1))
             else:                                                           self.move(how, cmDist)
         elif    self.csrMode == ARPG:                                       self.move(how, amDist)
         self.log(f'END {how}', pos=1)
@@ -2920,9 +2942,9 @@ RGB                   = cOd() if CODS else {}
 TT, NN, II, KK        =  0,  1,  2,  3
 C1,  C2               =  0,  1
 CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
-HARROWS, VARROWS      = ['LEFT', 'RIGHT'], ['DOWN', 'UP']
+HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
 MELODY, CHORD, ARPG   =  0, 1, 2
-LEFT, RIGHT, DOWN, UP =  0, 1, 0, 1
+LARROW, RARROW, DARROW, UARROW =  0, 1, 0, 1
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE, COPY_STYLE = 0, 1, 2, 3
 ########################################################################################################################################################################################################
 FIN     = [1, 1, 1, 2, 1]
