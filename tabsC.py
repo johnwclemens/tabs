@@ -60,7 +60,7 @@ class Tabs(pyglet.window.Window):
         self.Y_BOTTOM  = 1  if self.AY==-1 else 0  ;  self.Y_CENTER = 1  if self.AY==0  else 0  ;  self.Y_TOP    = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
         self.V_BOTTOM  = 1  if self.VA==-1 else 0  ;  self.V_CENTER = 1  if self.VA==0  else 0  ;  self.V_TOP    = 1 if self.VA==1 else 0
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT      = 1  ;  self.CHECKERED = 0  ;  self.CURSOR   = 1
-        self.DBG_TABT  = 4  ;  self.EVENT_LOG = 0  ;  self.FRT_BRD  = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0
+        self.DBG_TABT  = 2  ;  self.EVENT_LOG = 0  ;  self.FRT_BRD  = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0
         self.LONG_TXT  = 1  ;  self.MULTILINE = 1  ;  self.OIDS     = 0  ;  self.ORD_GRP   = 1  ;  self.PIDX     = 0
         self.RESIZE    = 1  ;  self.SNAPS     = 1  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0  ;  self.SUBPIX   = 1
         self.TEST      = 0  ;  self.TEST_EXIT = 0  ;  self.VARROW   = 1  ;  self.VIEWS     = 0  ;  self.VRBY     = 0
@@ -1146,7 +1146,7 @@ class Tabs(pyglet.window.Window):
 
     def geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.width, self.height
-        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (L, S, R)
+        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (L, S, R, T)
         if n == 0:    n = 1    ;     self.log(f'ERROR n=0 setting {n=}')
         i               = i if i is not None else self.i[j]
         a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)
@@ -1154,8 +1154,8 @@ class Tabs(pyglet.window.Window):
         if   j in c:  w = pw/n             ;  h = ph
         elif j == P:  w = pw               ;  h = ph
         else:         w = pw               ;  h = ph/n
-        if   j == T:  x = px - a*pw + a*w  ;  y = py + ph - h
-        elif j in s:  x = px - a*pw + a*w  ;  y = py + b*ph - b*h
+#        if   j == T:  x = px - a*pw + a*w  ;  y = py + ph - h
+        if   j in s:  x = px - a*pw + a*w  ;  y = py + (1-b)*ph - (1-b)*h
         elif j in c:  x = a*w              ;  y = py + b*ph - b*h
         else:         x = px - a*pw + a*w  ;  y = py + b*ph - b*h
         if dbg and self.VRBY >= 2:
@@ -1325,12 +1325,6 @@ class Tabs(pyglet.window.Window):
         if self.ZZ and j == S and v:                          tnik = self.createZZs(tnik, i, why)
         return tnik
     ####################################################################################################################################################################################################
-#    @staticmethod
-#    def fTnikHdr2(spr):
-#        h = ['Name  Tid V Text     x y AncX AncY ']
-#        if spr: h.append('Grp             pGrp')
-#        else:   h.append('CntW CntH v A Ascn Dscn nA-D')
-#        return f'{W.join(h)}'
     def checkTnik(self, t, i, j, dbg=0):
         whvaH, adnHdr, dsh, ftxt = Z, Z, Z, Z   ;   cwchva, adn, s = Z, Z, Z  ;  m, fnt = None, None
         ntidv = 'Name  Tid V '  ;  ptxt = W*9   ;   axy2H = self.axy2H()
@@ -1357,9 +1351,9 @@ class Tabs(pyglet.window.Window):
         if util.isi(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
 
     def dbgTabTxt(self, j, i):
-        dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1:03}' if j==C else f'{i+1:04}'  ;  k = d.join(k)  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  l = len(t)
+        dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1:03}' if j==C else f'{i+1}'  ;  k = d.join(k)  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  l = len(t)
         if dt==1:  a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'                        ;  return       d.join(b*a)
-        if dt==2:  a = 3 if j==C else j+1   ;   e = d.join([ s[_] for _ in range(a) ])   ;  return f'{e}{d}{i+1}'
+        if dt==2:  a = 3 if j==C else 4     ;   e = d.join([ s[_] for _ in range(a) ])   ;  return f'{e}{d}{i+1}'
         if dt==3:  a = 3 if j==C else j+1   ;   e = d.join([ t[_] for _ in range(a) ])   ;  return f'{e}{d}{k}'
         e = d.join([ t[_] for _ in range(l) ])
         e = f'{e}{d}{k}'
@@ -1517,11 +1511,6 @@ class Tabs(pyglet.window.Window):
     def ffTxt(t):           return t.text.replace('\n', Z)
     @staticmethod
     def fpTxt(t): a = t.text.replace('\n', Z)  ;  b = a[:8]  ;  b += '+' if len(a) > 8 else W  ;  return f'{b:9}'
-#        a = t.text
-#        b = a.replace('\n', Z)
-#        c = b[:8]
-#        d = c + '+' if len(b) > 8 else c + ' '
-#        return f'{d:9}'
     def fCtnt(self, t, d=W):       return f'{t.content_width:4}{d}{t.content_height:4}{d}{self.fcva(t.content_valign)}{d}{self.ftAx(self.aa)}'
     def getDocColor(self, t, c=1): return util.fColor(self._getDocColor(t, c))
     @staticmethod
@@ -1656,20 +1645,27 @@ class Tabs(pyglet.window.Window):
     def dumpTnikCsvs(self, why):
         self.dumpTniksPfx(why)
         self.log(f'{fmtl(self.args2csv(), d=Z, s=Y)}', p=0, f=3)
-        for i, p in enumerate(self.pages):
-            self.dumpTnikCsv(p, P, i)
-        for i, l in enumerate(self.lines):
-            self.dumpTnikCsv(l, L, i)
-        for i, _ in enumerate(self.ss2sl()):
-            s = self.sects[i]  ;  self.dumpTnikCsv(s, S, i)
-        for i, c in enumerate(self.colms):
-            self.dumpTnikCsv(c, C, i)
-        for i, t in enumerate(self.tabls):
-            self.dumpTnikCsv(t, T, i)
+        for j, p in enumerate(self.pages):
+            self.dumpTnikCsv(p, P, j)
+        for j, l in enumerate(self.lines):
+            self.dumpTnikCsv(l, L, j)
+        for j, s in enumerate(self.sects):
+            self.dumpTnikCsv(s, S, j)
+        for j, c in enumerate(self.colms):
+            self.dumpTnikCsv(c, C, j)
+        for j, t in enumerate(self.tabls):
+            self.dumpTnikCsv(t, T, j)
+        for j, n in enumerate(self.notes):
+            self.dumpTnikCsv(n, N, j)
+        for j, i in enumerate(self.ikeys):
+            self.dumpTnikCsv(i, I, j)
+        for j, k in enumerate(self.kords):
+            self.dumpTnikCsv(k, K, j)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTnikCsv(self, t, j, i): # j in (P, C, T)
-        if not i and j not in (L, S):   np, nl, ns, nc, nt = self.n  ;  h = self.csvHdr(j, np*nl*ns)  ;  self.log(f'{h}', p=0, f=3)
+        if not i and j not in (L, S):   h = self.csvHdr(j, n=1)  ;  self.log(f'{h}', p=0, f=3)
+#        if not i and j not in (L, S):   np, nl, ns, nc, nt = self.n  ;  n = np*nl*ns  ;  h = self.csvHdr(j, n)  ;  self.log(f'{h}', p=0, f=3)
         self.log(self.fmtTnikCsv(t, j, i), p=0, f=3)
     def fmtTnikCsv(self, t, j, i):
         s = {}
@@ -1831,10 +1827,11 @@ class Tabs(pyglet.window.Window):
         self.set_caption(msg)
     ####################################################################################################################################################################################################
     def calcFontSize(self, j=T, dbg=0):
-        np, nl, ns, nc, nt = self.n   ;   h = self.height
+        np, nl, ns, nc, nt = self.n   ;   h = self.height   ;   g = (L, S)
         pix  =  h if j==P else h/nl if j==L else h/(nl*ns) if j==S else h/(nl*ns*nt) # if j==C else h/nt
         fs   =  self.pix2fontsize(pix)
-        if j == P:  fs *= 0.25
+        if j in g:  fs *= 0.8
+        if j == P:  fs *= 0.4
         if dbg: self.log(f'{j=} {JTEXTS[j]:4} {h=:6.2f} {pix=:6.2f} {fs=:6.2f}')
         return int(fs)
 
