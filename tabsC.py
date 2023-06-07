@@ -490,8 +490,7 @@ class Tabs(pyglet.window.Window):
     def dumpAXY(self, dbg=1):                    d = '\n' if dbg else Z  ;  self.log(f'{self.fAxy(d=d, dbg=dbg)}{d}{self.fmtAxy(d=d, dbg=dbg)}{d}{self.fAxyf(dbg=dbg)}', p=0)
     def fmtAxy( self, d=W, dbg=0): (a,b) = ('ax=', 'ay=') if dbg else (Z, Z)  ;  return f'{a}{self.ax}{d}{b}{self.ay}'
     def fAxy(   self, d=W, dbg=0): (a,b) = ('ax=', 'ay=') if dbg else (Z, Z)  ;  return f'{a}{self.ftAx(self.ax)}{d}{b}{self.ftAy(self.ay)}'
-    def fAxyf(self, dbg=0):        s = '\n' if dbg else Z  ;  return W.join([f'{self.A_LEFT}', f'{self.A_CENTER}', f'{self.A_RIGHT}{s}', f'{self.X_LEFT}', f'{self.X_CENTER}', f'{self.X_RIGHT}{s}', f'{self.Y_BOTTOM}', f'{self.Y_CENTER}', f'{self.Y_TOP}', f'{self.Y_BASELINE}{s}', f'{self.Y_BOTTOM}', f'{self.Y_CENTER}', f'{self.Y_TOP}'])
-#    def fAxyf(self, dbg=0):        s = '\n' if dbg else W  ;  return f'{self.A_LEFT=} {self.A_CENTER=} {self.A_RIGHT=}{s}{self.X_LEFT=} {self.X_CENTER=} {self.X_RIGHT=}{s}{self.Y_TOP=}  {self.Y_CENTER=} {self.Y_BOTTOM=} {self.Y_BASELINE=}'
+    def fAxyf(self, dbg=0):        s = '\n' if dbg else Z  ;  return W.join([f'{self.A_LEFT}', f'{self.A_CENTER}', f'{self.A_RIGHT}{s}', f'{self.X_LEFT}', f'{self.X_CENTER}', f'{self.X_RIGHT}{s}', f'{self.Y_BOTTOM}', f'{self.Y_CENTER}', f'{self.Y_TOP}', f'{self.Y_BASELINE}{s}', f'{self.V_BOTTOM}', f'{self.V_CENTER}', f'{self.V_TOP}'])
     @staticmethod
     def ftAx(a):  return 'L' if a == LEFT   else 'C' if a == CENTER else 'R' if a == RIGHT else '???'
     @staticmethod
@@ -1100,50 +1099,6 @@ class Tabs(pyglet.window.Window):
             return  tlist, j, k, txt
         msg = f'{msg3} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # self.fmtJText(j, t, why)
     ####################################################################################################################################################################################################
-    def OLD__geom(self, j, p=None, n=None, i=None, dbg=1):
-        assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'
-        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (L, S, R) # ;  t = (T, Q)
-        if n == 0:    n = 1    ;     self.log(f'ERROR n=0 setting {n=}')
-        i               = i if i is not None else self.i[j]
-        px, py, pw, ph  = (self.p0x, self.p0y, self.width, self.height) if p is None else (p.x, p.y, p.width, p.height)
-        if   j in c:  w = pw/n        ;  h = ph
-        elif j == P:  w = pw          ;  h = ph
-        else:         w = pw          ;  h = ph/n
-        a = 0 if self.SPRITES else 1  ;  b = not a
-        if   j == P:  x = px + a*w/2  ;  y = py + a*ph   - a*h/2
-        elif j in s:  x = px          ;  y = py + a*ph/2 - a*h/2 + b*ph - b*h
-        elif j == C:  x = a*w/2       ;  y = py + a*ph - a*h
-        elif j == T:  x = px + b*w/2  ;  y = py + a*ph/2 - a*h/2 + b*ph/2
-        elif j == Q:  x = w/2         ;  y = py + a*ph/2 - a*h/2 #+ b*ph - b*h
-        else:         x = px          ;  y = py + ph - h
-        if dbg and self.VRBY >= 2:
-            msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
-            msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
-            msg += msg2 if p else W * len(msg2)
-            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
-        return n, i, x, y, w, h
-
-    def geom__1(self, j, p=None, n=None, i=None, dbg=1):
-        assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'
-        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (L, S, R)
-        if n == 0:    n = 1    ;     self.log(f'ERROR n=0 setting {n=}')
-        i               = i if i is not None else self.i[j]
-        a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)
-        px, py, pw, ph  = (0, 0, self.width, self.height) if p is None else (p.x, p.y, p.width, p.height)
-        if   j in c:  w = pw/n             ;  h = ph
-        elif j == P:  w = pw               ;  h = ph
-        else:         w = pw               ;  h = ph/n
-        if   j == T:  x = px - a*pw + a*w  ;  y = py + ph - h
-        elif j in c:  x = a*w              ;  y = py + b*ph - b*h
-        elif j in s:  x = px - a*pw + a*w  ;  y = py + ph - h
-        else:         x = px - a*pw + a*w  ;  y = py + b*ph - b*h
-        if dbg and self.VRBY >= 2:
-            msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
-            msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
-            msg += msg2 if p else W * len(msg2)
-            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
-        return n, i, x, y, w, h
-
     def geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.width, self.height
         n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (L, S, R, T)
@@ -1154,7 +1109,6 @@ class Tabs(pyglet.window.Window):
         if   j in c:  w = pw/n             ;  h = ph
         elif j == P:  w = pw               ;  h = ph
         else:         w = pw               ;  h = ph/n
-#        if   j == T:  x = px - a*pw + a*w  ;  y = py + ph - h
         if   j in s:  x = px - a*pw + a*w  ;  y = py + (1-b)*ph - (1-b)*h
         elif j in c:  x = a*w              ;  y = py + b*ph - b*h
         else:         x = px - a*pw + a*w  ;  y = py + b*ph - b*h
@@ -1326,28 +1280,19 @@ class Tabs(pyglet.window.Window):
         return tnik
     ####################################################################################################################################################################################################
     def checkTnik(self, t, i, j, dbg=0):
-        whvaH, adnHdr, dsh, ftxt = Z, Z, Z, Z   ;   cwchva, adn, s = Z, Z, Z  ;  m, fnt = None, None
-        ntidv = 'Name  Tid V '  ;  ptxt = W*9   ;   axy2H = self.axy2H()
-        if util.isi(t, LBL):
-            whvaH = f' {self.whvaH()} '   ;   dsh = f' {self.docStylesHdr()} '   ;   adnHdr = W.join(ADN)  ;  ptxt, ftxt = 'PrtlText ', 'FullText'
-        self.log(f'{ntidv}{ptxt}{axy2H}{whvaH}{adnHdr}{dsh}{ftxt}', p=0, f=0)  if j==P or (j==T and i==0) else None
-        v = 'V' if t.visible else 'I'   ;    js = JTEXTS[j]
-        ax,  ay    =  self.ax,    self.ay
-        tax, tay   =  t.anchor_x, t.anchor_y
+        ntvH = 'Name  Tid V'  ;  ptxtH = W*8  ;  axy2H = self.axy2H()  ;  whvaH, adnH, dsH, ftxtH = Z, Z, Z, Z  ;  whva, adn, s = Z, Z, Z  ;  m, fnt = None, None
+        if util.isi(t, LBL):  whvaH = f'{self.whvaH()}'  ;  dsH = f'{self.docStyleH()}'  ;  adnH = W.join(ADN)  ;  ptxtH, ftxtH = ' PrtlText', ' FullText'
+        self.log(f'{ntvH}{ptxtH} {axy2H} {whvaH} {adnH} {dsH}{ftxtH}', p=0, f=0)  if j==P or (j==T and i==0) else None
+        ptxt, ftxt = Z, Z  ;  js = JTEXTS[j]   ;   v = 'V' if t.visible else 'I'
+        ax,   ay   =  self.ax, self.ay  ;   tax, tay =  t.anchor_x, t.anchor_y
         ancX, ancY = f'{int(t.width * self.axWgt(self.ax)):4}', f'{int(t.height * self.ayWgt(self.ay)):4}'
         if util.isi(t, LBL):
-            d = t.document  ;  m = d.styles  ;  wrap = 'char'  ;  aa = self.aa  ;  taa = m[ALIGN]  ;  ml = self.MULTILINE  ;  tml = int(t.multiline)
-            assert tax == ax,  f'{tax=} != {ax=}'
-            assert tay == ay,  f'{tay=} != {ay=}'
-            assert taa == aa,  f'{taa=} != {aa=}'
-            assert tml == ml,  f'{tml=} != {ml=}'
+            d    = t.document  ;  m = d.styles  ;  wrap = 'char'  ;  aa = self.aa  ;  taa = m[ALIGN]  ;  ml = self.MULTILINE  ;  tml = int(t.multiline)
+            assert tax == ax,  f'{tax=} != {ax=}'  ;  assert tay == ay,  f'{tay=} != {ay=}'  ;  assert taa == aa,  f'{taa=} != {aa=}'  ;  assert tml == ml,  f'{tml=} != {ml=}'
             d.set_paragraph_style(0, len(d.text), {LNSP:None, LEAD:0, WRAP:wrap, WRAP_LINES:True})
-            s =  self.fmtDocStyles(m, W)
-            fnt  =  d.get_font()    ;   asc = fnt.ascent   ;   dsc = fnt.descent   ;   net = asc - dsc
-            adn  = W.join([f'{asc:4}', f'{dsc:4}', f'{net:4}'])
-            ptxt = f'{self.fpTxt(t)}'    ;   ftxt = self.ffTxt(t)
-            cwchva = self.fCtnt(t)
-        self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwchva} {adn} {s} {ftxt}', p=0, f=0)
+            fnt  = d.get_font()    ;   asc, dsc = fnt.ascent, fnt.descent   ;   net = asc - dsc   ;   ptxt, ftxt = f'{self.fpTxt(t)}', self.ffTxt(t)
+            whva = self.fCtnt(t)   ;   adn = W.join([f'{asc:4}', f'{dsc:4}', f'{net:4}'])   ;   s = self.fDocStyle(m, W, t)
+        self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {whva} {adn} {s} {ftxt}', p=0, f=0)
         if util.isi(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
 
     def dbgTabTxt(self, j, i):
@@ -1360,11 +1305,11 @@ class Tabs(pyglet.window.Window):
         e = e*4 if j==P else e
         return e
     @staticmethod
-    def fmtDocStyles(m, d, t=None):
+    def fDocStyle(m, d, t):
         lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;  clr = util.fColor(m[COLOR])  ;  bgc = util.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?'
         return d.join([f'{m[FONT_SIZE]:4}', f'{m[LEAD]:4}', lnsp, clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
     @staticmethod
-    def docStylesHdr(d=W): return d.join([FNSZ, 'Lead', 'LnSp', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          f'{FONT_NAME:21}'])
+    def docStyleH(d=W): return d.join([FNSZ, 'Lead', 'LnSp', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          f'{FONT_NAME:21}'])
 
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]      ;     ha = hasattr(c, 'text')
@@ -1568,19 +1513,19 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpTniksE(self):
         self.log(Y.join(LTXX), p=0, f=3)
-        for i, t in enumerate(self.pages): d =       t.document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)  ;  self.log(self.t2csv(   t,    P, i, Y, s), p=0, f=3)
-        for i, t in enumerate(self.lines): d =       t.document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)  ;  self.log(self.t2csv(   t,    L, i, Y, s), p=0, f=3)
-        for i, t in enumerate(self.sects): d =       t.document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)  ;  self.log(self.t2csv(   t,    S, i, Y, s), p=0, f=3)
-        for i, t in enumerate(self.colms): d =       t.document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)  ;  self.log(self.t2csv(   t,    C, i, Y, s), p=0, f=3)
-        for i, t in enumerate(self.tabls): d =       t.document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)  ;  self.log(self.t2csv(   t,    T, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.pages):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, P, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.lines):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, L, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.sects):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, S, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.colms):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, C, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.tabls):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, T, i, Y, s), p=0, f=3)
 
     def dumpTniksF(self):
         self.log(Y.join(LTXX), p=0, f=3)  ;  a = self.A  ;  b = self.B
-        for i in range(len(self.pages)):   d = a[0][i].document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)  ;  self.log(self.t2csv(a[0][i], P, i, Y, s), p=0, f=3)
-        for i in range(len(self.lines)):   d = a[1][i].document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)  ;  self.log(self.t2csv(a[1][i], L, i, Y, s), p=0, f=3)
-        for i in range(len(self.sects)):   d = a[2][i].document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)  ;  self.log(self.t2csv(a[2][i], S, i, Y, s), p=0, f=3)
-        for i in range(len(self.colms)):   d = a[3][i].document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)  ;  self.log(self.t2csv(a[3][i], C, i, Y, s), p=0, f=3)
-        for i in range(len(self.tabls)):   d = b[0][i].document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)  ;  self.log(self.t2csv(b[0][i], T, i, Y, s), p=0, f=3)
+        for i in range(len(self.pages)): t = a[0][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, P, i, Y, s), p=0, f=3)
+        for i in range(len(self.lines)): t = a[1][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, L, i, Y, s), p=0, f=3)
+        for i in range(len(self.sects)): t = a[2][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, S, i, Y, s), p=0, f=3)
+        for i in range(len(self.colms)): t = a[3][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, C, i, Y, s), p=0, f=3)
+        for i in range(len(self.tabls)): t = b[0][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, T, i, Y, s), p=0, f=3)
     ####################################################################################################################################################################################################
     @staticmethod
     def a2csv(a):        return fmtl(a, w=7, u="^", d=Z, s=Y)
@@ -1600,67 +1545,20 @@ class Tabs(pyglet.window.Window):
         elif util.isi(tnik, SPR):
             return d.join([JTEXTS[j], ii, xywh, axy, ancX, ancY])
     ####################################################################################################################################################################################################
-    def OLD__dumpTnikCsvs(self):
-        e  = self.E  ;  np, nl, ns, nc, nt = self.n  ;  n = np*nl*ns  ;  z = f'{Z},{Z},{Z},{Z},{Z},{Z}'
-        for _ in range(n): h = Y.join(JSPR(n, Y)) if self.SPRITES else Y.join(JLBL(n, Y))  ;  self.log(f'{h}', p=0, f=3, e=Y)
-        self.log(p=0, f=3)
-        for p in range(np):
-            for l in range(nl):
-                for s in range(ns):
-                    self.log(f'{z}', p=0, f=3, e=Y) if s or l else self.log(self.t2csv(e[P][p], P, p), p=0, f=3)
-        self.log(p=0, f=3)
-        for p in range(np):
-            for l in range(nl):
-                for s in range(ns):
-                    self.log(f'{z}', p=0, f=3, e=Y) if s      else self.log(self.t2csv(e[L][l], L, l), p=0, f=3)
-        self.log(p=0, f=3)
-        for s in range(np*nl*ns):
-            self.log(self.t2csv(e[S][s], S, s), p=0, f=3)
-        self.log(p=0, f=3)
-        for c in range(nc):
-            for l in range(np*nl*ns):
-                i = c + l*nc  ;  self.log(self.t2csv(e[C][i], C, i), p=0, f=3)
-            self.log(p=0, f=3)
-        for t in range(nt*nc):
-            for c in range(np*nl):
-                for s, s2 in enumerate(self.ss2sl()):
-                    i = t + c*nt*nc  ;  j = T + s2  ;  self.log(self.t2csv(e[j][i], j, i), p=0, f=3)
-            self.log(p=0, f=3)
-    ####################################################################################################################################################################################################
-    def dumpTnikCsvs__1(self):
-        self.log(f'{fmtl(self.args2csv(), d=Z, s=Y)}', p=0, f=3)   ;   np, nl, ns, nc, nt = self.n
-        h = self.csvHdr(P, np*nl*ns)
-        self.log(f'{h}', p=0, f=3, e=Y)   ;   self.log(p=0, f=3)
-        for p in range(np):
-            self.dumpTnikCsv(self.pages[p], P, p)
-            for l in range(nl):
-                self.dumpTnikCsv(self.lines[l], L, l)
-                for si, ss in enumerate(self.ss2sl()):
-                    s = self.sects[si]  ;  self.dumpTnikCsv(s, S, si)
-                    for c in range(nc):
-                        self.dumpTnikCsv(self.colms[c], C, c)
-                        for t in range(nt):
-                            self.dumpTnikCsv(self.tabls[t], T, t)
-    ####################################################################################################################################################################################################
     def dumpTnikCsvs(self, why):
         self.dumpTniksPfx(why)
         self.log(f'{fmtl(self.args2csv(), d=Z, s=Y)}', p=0, f=3)
-        for j, p in enumerate(self.pages):
-            self.dumpTnikCsv(p, P, j)
-        for j, l in enumerate(self.lines):
-            self.dumpTnikCsv(l, L, j)
-        for j, s in enumerate(self.sects):
-            self.dumpTnikCsv(s, S, j)
-        for j, c in enumerate(self.colms):
-            self.dumpTnikCsv(c, C, j)
-        for j, t in enumerate(self.tabls):
-            self.dumpTnikCsv(t, T, j)
-        for j, n in enumerate(self.notes):
-            self.dumpTnikCsv(n, N, j)
-        for j, i in enumerate(self.ikeys):
-            self.dumpTnikCsv(i, I, j)
-        for j, k in enumerate(self.kords):
-            self.dumpTnikCsv(k, K, j)
+        for j, p in enumerate(self.pages):     self.dumpTnikCsv(p, P, j)
+        for j, l in enumerate(self.lines):     self.dumpTnikCsv(l, L, j)
+        if self.LL and self.rowLs and self.qclms:
+            for j, r in enumerate(self.rowLs): self.dumpTnikCsv(r, R, j)
+            for j, q in enumerate(self.qclms): self.dumpTnikCsv(q, Q, j)
+        for j, s in enumerate(self.sects):     self.dumpTnikCsv(s, S, j)
+        for j, c in enumerate(self.colms):     self.dumpTnikCsv(c, C, j)
+        for j, t in enumerate(self.tabls):     self.dumpTnikCsv(t, T, j)
+        for j, n in enumerate(self.notes):     self.dumpTnikCsv(n, N, j)
+        for j, i in enumerate(self.ikeys):     self.dumpTnikCsv(i, I, j)
+        for j, k in enumerate(self.kords):     self.dumpTnikCsv(k, K, j)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTnikCsv(self, t, j, i): # j in (P, C, T)
@@ -1669,56 +1567,9 @@ class Tabs(pyglet.window.Window):
         self.log(self.fmtTnikCsv(t, j, i), p=0, f=3)
     def fmtTnikCsv(self, t, j, i):
         s = {}
-        if   util.isi(t, LBL):   d = t.document  ;  m = d.styles  ;  s = self.fmtDocStyles(m, Y)
+        if   util.isi(t, LBL):   d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)
 #        elif util.isi(t, SPR):   z = Y.join([W * len(_) for _ in LTXX])
         return self.t2csv(t, j, i, Y, s)
-    ####################################################################################################################################################################################################
-    def NEW__dumpTnikCsvs(self):
-        self.log(f'{fmtl(self.args2csv(), d=Z, s=Y)}', p=0, f=3)   ;   np, nl, ns, nc, nt = self.n
-        h = self.csvHdr(P, np*nl*ns)
-        self.log(f'{h}', p=0, f=3, e=Y)   ;   self.log(p=0, f=3)
-        self.dumpTnikCsvA(P)
-        self.dumpTnikCsvA(L)
-        if self.LL and self.rowLs and self.qclms:
-            for r in range(nl):    self.dumpTnikCsvA(R)
-            for q in range(nl*nc): self.dumpTnikCsvA(Q)
-        self.dumpTnikCsvB(S)
-        for c in range(nc): self.dumpTnikCsvB(C, c)
-        for t in range(nt*nc):
-            for c in range(np*nl):
-                for s, s2 in enumerate(self.ss2sl()):
-                    i = t + c*nt*nc   ;  j = T + s2
-                    tnik = self.E[j][i]  ;  td = tnik.document  ;  sm = td.styles  ;  ds = self.fmtDocStyles(sm, Y)
-                    self.log(self.t2csv(self.E[j][i], j, i, d=Y, ds=ds), p=0, f=3)
-            self.log(p=0, f=3)
-    ####################################################################################################################################################################################################
-    def dumpTnikCsvA(self, j):
-        np, nl, ns, nc, nt = self.n   ;   i, k = 0, 0   ;   absIdx = not self.PIDX   ;   z = '???'
-        for p in range(np):
-            for l in range(nl):
-                for s, s2 in enumerate(self.ss2sl()):
-                    if   j == P:             i = p  ;   k = s or l
-                    elif j == L:             i = l  ;   k = s    ;   i += p*ns if absIdx else 0
-                    t = self.E[j][i]     ;  ds = Z
-                    if   util.isi(t, LBL):
-                        z  = Y.join([ W*len(l) for l in LLBL ])
-                        td = t.document  ;  sm = td.styles  ;  ds = self.fmtDocStyles(sm, Y)
-                    elif util.isi(t, SPR):
-                        z = Y.join([ W*len(s) for s in LTXX ])
-                    self.log(self.t2csv(self.E[j][i], j, i, d=Y, ds=ds), p=0, f=3) if not k else self.log(f'{z}', p=0, f=3, e=Y)
-        self.log(p=0, f=3)
-
-    def dumpTnikCsvB(self, j, k=0):
-        np, nl, ns, nc, nt = self.n    ;     i = 0   ;   absIdx = not self.PIDX   ;   n = np*nl*ns
-        for p in         range(1 if absIdx else np):
-            for l in     range(1 if absIdx else 1):
-                for s in range(n if absIdx else ns*nl):
-                    if   j == S:             i = s
-                    elif j == C:             i = k + s*nc if absIdx else k + s*nc
-                    t = self.E[j][i]     ;  ds = Z
-                    if util.isi(t, LBL):    td = t.document  ;  sm = td.styles  ;  ds = self.fmtDocStyles(sm, Y)
-                    self.log(self.t2csv(t, j, i, d=Y, ds=ds), p=0, f=3)
-        self.log(p=0, f=3)
     ####################################################################################################################################################################################################
     def createCursor(self, why, dbg=1):
         x, y, w, h, c = self.cc2xywh()
