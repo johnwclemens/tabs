@@ -26,7 +26,7 @@ class Chord:
         ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1   ;   vkeys = []   ;   self.limap = []
         mask, notes, js  = self._getIndices(data, nic, p, l, c)   ;   imap = []   ;   _imap = None  ;  nt = Notes.NTONES
         for k, jk in enumerate(js):
-            ivals = [ ((ji-jk) if ji >= jk else (nt-(ji-jk))) % nt for ji in js ]
+            ivals = [ ((ji-jk) if ji >= jk else (nt+(ji-jk))) % nt for ji in js ]
             vkey = Z.join([ f'{v:x}' for v in ivals ])   ;   chunks = []   ;   rank = -1
             if vkey not in vkeys:
                 ikeys    = [ Notes.I2V[i] for i in ivals ]
@@ -343,7 +343,7 @@ class Chord:
             'R b2 M3 4'        : (2, [0,1,4,5],      ['b2','4','x']),             # R m3 M3 7        [0 3 4 b]     R b2 #5 6        [0 1 8 9]     R 5 #5 7         [0 7 8 b]
             'R b2 M3 b5'       : (2, [0,1,4,6],      ['b2','b5']),                # R m3 4 7         [0 3 5 b]     R 2 #5 6         [0 2 8 9]     R b5 5 b7        [0 6 7 a]
             'R b2 M3 5'        : (1, [0,1,4,7],      ['b2']),                     # R m3 b5 7        [0 3 6 b]     R m3 #5 6        [0 3 8 9]     R 4 b5 6         [0 5 6 9]
-#            'R b2 M3 5'        : (1, [0,1,4,7],      ['b2']),                     # R m3 b5 7        [0 3 6 b]     R m3 #5 6        [0 3 8 9]     R 4 b5 6         [0 5 6 9]
+#           'R b2 M3 5'        : (1, [0,1,4,7],      ['b2']),                     # R m3 b5 7        [0 3 6 b]     R m3 #5 6        [0 3 8 9]     R 4 b5 6         [0 5 6 9]
             'R b2 M3 #5'       : (3, [0,1,4,8],      ['+','b2']),                 # R m3 5 7         [0 3 7 b]     R M3 #5 6        [0 4 8 9]     R M3 4 #5        [0 4 5 8]
             'R b2 M3 6'        : (2, [0,1,4,9],      ['b2','6']),                 # R m3 #5 7        [0 3 8 b]     R 4 #5 6         [0 5 8 9]     R m3 M3 5        [0 3 4 7]
             'R b2 M3 b7'       : (1, [0,1,4,10],     ['b9','x']),                 # R m3 6 7         [0 3 9 b]     R b5 #5 6        [0 6 8 9]     R 2 m3 b5        [0 2 3 6]
