@@ -59,7 +59,7 @@ class Chord:
         self.umap[ikey] = (rank, ivals, [])
         self.dumpUmap() if dbg else None
     ####################################################################################################################################################################################################
-    def _getIndices(self, data, nic, p, l, c, dbg=0, dbg2=0):
+    def _getIndices(self, data, nic, p, l, c, dbg=0):
         strNumbs   = self.sobj.stringNumbs
         strKeys    = self.sobj.stringKeys
         strNames   = self.sobj.stringNames
@@ -77,13 +77,13 @@ class Chord:
             else: mask.append(0)
         if notes:
             mask0 = [1] * self.sobj.nStrings()
-            if dbg2: self.dumpData(strNumbs,   mask0, 'strNumbs', r=1)
-            if dbg2: self.dumpData(strKeys,    mask0, 'strKeys')
-            if dbg2: self.dumpData(strIndices, mask0, 'strIndices')
-            if dbg2: self.dumpData(strNames,   mask0, 'strNames', r=1)
-            if dbg2: self.dumpData(_tabs,      mask0, 'Tabs',     r=1)
-            if dbg2: self.dumpData(indices,    mask,  'Note Indices')
-            if dbg:  self.dumpData(notes,      mask,  'Notes')
+            if dbg: self.dumpData(strNumbs,   mask0, 'strNumbs', r=1)
+            if dbg: self.dumpData(strKeys,    mask0, 'strKeys')
+            if dbg: self.dumpData(strIndices, mask0, 'strIndices')
+            if dbg: self.dumpData(strNames,   mask0, 'strNames', r=1)
+            if dbg: self.dumpData(_tabs,      mask0, 'Tabs',     r=1)
+            if dbg: self.dumpData(indices,    mask,  'Note Indices')
+            if dbg: self.dumpData(notes,      mask,  'Notes')
         return mask, notes, indices
     ####################################################################################################################################################################################################
     def _dumpData(self, rank, ikeys, ivals, notes, mask, a):

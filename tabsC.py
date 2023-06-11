@@ -341,7 +341,7 @@ class Tabs(pyglet.window.Window):
 #        self.log(f'BGN {path=} {r=} {c=}')
 #        lbl = self.tabls[0]
 #        tex = self.batch.get_texture()
-#        spr = SPR(tex, x=100, y=100, batch=self.batch, group=self.j2g(T), subpixel=self.SUBPIX)
+#        spr = SPR(tex, x=100, y=100, batch=self.batch, group=self.j2g(H), subpixel=self.SUBPIX)
 #        spr.anchor_x, spr.anchor_y = self.axyWgt(self.ax, self.ay)
 
     def testSprTxt_1(self, path):
@@ -366,25 +366,23 @@ class Tabs(pyglet.window.Window):
         np, nl, ns, nc, nt = self.n  ;  r, c = nt*ns*nl, nc
         self.log(f'BGN {path=} {r=} {c=}')
         img = pyglet.image.load(path)
-        spr = SPR(img, x=100, y=100, batch=self.batch, group=self.j2g(T), subpixel=self.SUBPIX)
+        spr = SPR(img, x=100, y=100, batch=self.batch, group=self.j2g(H), subpixel=self.SUBPIX)
         spr.anchor_x, spr.anchor_y = self.axyWgt(self.ax, self.ay)
         self.sprs.append(spr)
 
-    def testSprTxt(self): # , path):
+    def testSprTxt_3(self): # , path):
         np, nl, ns, nc, nt = self.n  ;  r, c = 1, nc # nt*ns*nl, nc
         path = util.getFilePath('testA', BASE_PATH, PNGS, PNG)
         self.log(f'BGN {path=} {r=} {c=}')
         pimg = pyglet.image.load(path)
         ig = pyglet.image.ImageGrid(pimg, r, c)
-        spr = SPR(ig[2], x=300, y=200, batch=self.batch, group=self.j2g(T), subpixel=self.SUBPIX)
+        spr = SPR(ig[2], x=300, y=200, batch=self.batch, group=self.j2g(H), subpixel=self.SUBPIX)
         spr.anchor_x, spr.anchor_y = self.axyWgt(self.ax, self.ay)
         self.sprs.append(spr)
         self.log(f'END {path=} {r=} {c=}')
         #Install pillow for SVG files
 
     def test1(self, q=0):
-#   T,i,X,Y,W,H,x,y,ankX,ankY,
-#   T,i,X,Y,W,H,x,y,ankX,ankY,cntW,cntH,v,a,Ascn,Dscn,A-D,Lead,LnSp,DPI,B,G,S,B,I,S,A,M,w,W,FNSZ, COLOR , BGC , FONT_NAME ,TEXT
         self.log(f'{    TI=}')
         self.log(f'{  XYWH=}')
         self.log(f'{  AXY2=}')
@@ -606,7 +604,7 @@ class Tabs(pyglet.window.Window):
         if self.SNAPS and self.snapReg:
             self.snapReg = 0       ;    path = self.snapshot()
             self.log(f'{self.snapWhy=} {self.snapType=} {self.snapId=}\n{path=}', pos=1)
-            if self.TEST:    self.testSprTxt() # path
+#            if self.TEST:    self.testSprTxt(path) # path
 
     def on_resize(self, width, height, dbg=1):
         super().on_resize(width, height)
@@ -1293,6 +1291,24 @@ class Tabs(pyglet.window.Window):
     def axWgt(x): return 0.0 if x==LEFT   else 0.5 if x==CENTER else 1.0 if x==RIGHT else -1.0
     @staticmethod
     def ayWgt(y): return 0.0 if y==BOTTOM else 0.5 if y==CENTER else 1.0 if y==TOP   else -1.0
+
+    def createSprite(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
+        path = util.getFilePath('_2_150', BASE_PATH, PNGS, PNG)
+        self.setJ(j, i, v)   ;   k = kl[kk]
+        if dbg:    self.log(f'{j=} {JTEXTS[j]} {i=} {t=} [{x} {y} {w} {h}] {g=} {kk=} {util.fmtl(kl)} {why}\n{path=}')
+        img = pyglet.image.load(path)
+        wx, wy = self.axyWgt(self.ax, self.ay)
+        img.anchor_x, img.anchor_y = int(wx*w), int(wy*h)
+        tnik = SPR(img, x=x, y=y, batch=self.batch, group=self.j2g(j), subpixel=self.SUBPIX)
+        tnik.color, tnik.opacity = k[:3], k[3]
+        tnik.anchor_x, tnik.anchor_y = wx*w, wy*h
+        assert int(tnik.anchor_x)==img.anchor_x,  f'{int(tnik.anchor_x)=} != {img.anchor_x=}'
+        assert int(tnik.anchor_y)==img.anchor_y,  f'{int(tnik.anchor_y)=} != {img.anchor_y=}'
+        tnik.visible = v        ;  self.visib[j].append(v)
+#        self.checkTnik(tnik, i, j)
+        if    tlist is not None:   tlist.append(tnik)
+        key = self.idmapkey(j)  ;  self.idmap[key] = (tnik, j, i)   ;   self.dumpTnik(tnik, j, why) if dbg else None
+        return tnik
     ####################################################################################################################################################################################################
     def createTnik(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
         if i is None or j is None: lt = len(tlist) if tlist is not None else None  ;  msg = f'ERROR i or j is None {i=} {j=} {lt=} {t=} {why}'  ;  self.log(msg)  ;  self.quit(msg)
@@ -1357,7 +1373,7 @@ class Tabs(pyglet.window.Window):
         lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;  clr = util.fColor(m[COLOR])  ;  bgc = util.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?'
         return d.join([f'{m[FONT_SIZE]:4}', f'{m[LEAD]:4}', lnsp, clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
     @staticmethod
-    def docStyleH(d=W): return d.join([FNSZ, 'Lead', 'LnSp', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          f'{FONT_NAME:21}'])
+    def docStyleH(d=W): return d.join(['FnSz', 'Lead', 'LnSp', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          'FontName             '])
 
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]      ;     ha = hasattr(c, 'text')
@@ -1465,11 +1481,12 @@ class Tabs(pyglet.window.Window):
     def dumpHdrs(self): hdr1 = self.fTnikHdr(0)   ;   hdr0 = self.fTnikHdr(1)   ;   self.log(hdr1, p=0)   ;   self.log(hdr0, p=0)
     ####################################################################################################################################################################################################
     def fTnikHdr(self, spr=0):
-        tid  = ' TId  Identity  ' if self.OIDS else ' Tid'  ;    wnc = ' Why  Name  Cnt'  ;  rotOrTxt = ' Rotated ' if spr else 'PrtlText '  ;  cnc = ' CC  NC CN'
-        xywh = W.join(XYWH)     ;     whva = self.whvaH()   ;  axy2 = self.axy2H()        ;    rgb = ' Red Grn Blu Opc' if self.LONG_TXT else Z  ;  gv = 'G V'
-        sfx  = ('x y AncX AncY Grp             pGrp'        if spr else f' {axy2} {whva} {W.join(ADN)} {FNSZ} dpi B I FontName')  if self.LONG_TXT else Z
-        rgbM = (' M     Mx    My  ' if spr else rgb)        if self.LONG_TXT else Z       ;     ft = f'{W*13}FullText'  if self.LONG_TXT and not spr and self.DBG_TABT else Z
-        return f'{tid} {wnc} {rotOrTxt}{gv} {self.fjtxt()} {xywh} {cnc} {rgb} {rgbM} {sfx}{ft}'
+        tid = ' TId  Identity  ' if self.OIDS else ' Tid'  ;    wnc = ' Why  Name  Cnt'  ;  rot_txt = ' Rotated ' if spr else 'PrtlText '
+        gv  = 'G V'     ;     jts = self.fjtxt()   ;   xywh = W.join(XYWH)           ;   whva = self.whvaH()   ;   axy2 = self.axy2H()
+        cnc = ' CC  NC CN'   ;   rgb = ' Red Grn Blu Opc' if self.LONG_TXT else Z    ;   rgbM = (' M     Mx    My  ' if spr else rgb) if self.LONG_TXT else Z
+        sfx = ('x y AncX AncY Grp             pGrp'     if spr     else     f' {axy2} {whva} {W.join(ADN)} FnSz dpi B I FontName')  if self.LONG_TXT else Z
+        ft  = f'{W*13}FullText' if self.LONG_TXT and not spr and self.DBG_TABT else Z
+        return f'{tid} {wnc} {rot_txt}{gv} {jts} {xywh} {cnc} {rgb} {rgbM} {sfx}{ft}'
     @staticmethod
     def axy2H(d=W):  return d.join(AXY2)
     @staticmethod
@@ -1482,8 +1499,20 @@ class Tabs(pyglet.window.Window):
         if   t is None: self.log(self.fTnikHdr(), p=0)      ;  return # hack
         if   j is None:                                        msg = f'{why} ERROR BAD j {j=}'             ;  self.log(msg)  ;  self.quit(msg)
         elif not util.isi(t, LBL) and not util.isi(t, SPR):    msg = f'{why} ERROR Bad t type {type(t)=}'  ;  self.log(msg)  ;  self.quit(msg)
+        j1 = self.J1   ;   p, l, c, t2 = j1[P], j1[L], j1[C], j1[T]   ;   fc, bc, rot_txt, sfx = Z, Z, Z, Z
+        foid = self.foid(t, j, why)   ;    gv = f'{self.gn[j]} {self.ftvis(t)}'   ;   fj2 = self.fmtJ2()   ;   xywh = self.ftxywh(t)
+        cc = self.plct2cc(p, l, c, t2)   ;   cnc = f'{cc+1:3} {self.normalizeCC(cc):3} {self.cc2cn(cc)+1:2}' if j >= T else W*10
+        if   util.isi(t, LBL):  rot_txt = self.fpTxt(t)  ;  fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)   ;  sfx = f' {self.fLbl(t)}' if self.LONG_TXT else Z
+        elif util.isi(t, SPR):  rot_txt = self.frot(t)   ;  fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  sfx = f' {self.fSpr(t)}' if self.LONG_TXT else Z
+        colors = f' {fc}{bc}' if self.LONG_TXT else Z
+        self.log(f'{foid} {rot_txt}{gv} {fj2} {xywh} {cnc}{colors}{sfx}', p=0)
+
+    def OLD__dumpTnik(self, t=None, j=None, why=Z):
+        if   t is None: self.log(self.fTnikHdr(), p=0)      ;  return # hack
+        if   j is None:                                        msg = f'{why} ERROR BAD j {j=}'             ;  self.log(msg)  ;  self.quit(msg)
+        elif not util.isi(t, LBL) and not util.isi(t, SPR):    msg = f'{why} ERROR Bad t type {type(t)=}'  ;  self.log(msg)  ;  self.quit(msg)
         j1 = self.J1  ;  p, l, c, t2 = j1[P], j1[L], j1[C], j1[T]   ;   fc, bc, msg2, msg5 = Z, Z, Z, Z  ;  g = self.gn[j]
-        xywh = self.ftxywh(t)   ;  cc = self.plct2cc(p, l, c, t2)   ;   cnc = f'{cc:3} {self.normalizeCC(cc):3} {self.cc2cn(cc):2}'
+        xywh = self.ftxywh(t)   ;  cc = self.plct2cc(p, l, c, t2)   ;   cnc = f'{cc+1:3} {self.normalizeCC(cc):3} {self.cc2cn(cc)+1:2}' if j >= T else W*10
         if   util.isi(t, LBL): fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)   ;  msg2 = self.fpTxt(t)  ;  msg5 = f' {self.fLbl(t)}' if self.LONG_TXT else Z
         elif util.isi(t, SPR): fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  msg2 = self.frot(t)   ;  msg5 = f' {self.fSpr(t)}' if self.LONG_TXT else Z
         msg1 = self.foid(t, j, why)   ;   msg3 = self.ftvis(t)   ;   msg4 = f' {fc}{bc}' if self.LONG_TXT else Z
@@ -1624,7 +1653,8 @@ class Tabs(pyglet.window.Window):
         x, y, w, h, c = self.cc2xywh()
         kk = 0  ;  kl = self.k[H]
         if w == 0 or h == 0: msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   self.quit(msg)
-        self.cursor   = self.createTnik(self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
+        self.cursor   = self.createSprite(self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
+#        self.cursor   = self.createTnik(self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
         if self.LL:     self.setLLStyle(self.cc, CURRENT_STYLE)
 
     def resizeCursor(self, why, why2, dbg=1):
@@ -1668,7 +1698,7 @@ class Tabs(pyglet.window.Window):
         return cc
 
     def cursorCol(  self,     dbg=1):   cc = self.plct2cc(*self.j2(), dbg=dbg)   ;  self.log( f'{cc=:3} {util.fmtl(self.j2())}', f=0) if dbg else None  ;  self.cc = cc  ;  return self.cc
-    def normalizeCC(self, cc, dbg=0):  tpc = self.tpc  ;  old = cc  ;  cc = cc//tpc*tpc  ;  self.log(f'{old=:4} {cc=:4} {tpc=}', f=0) if dbg else None  ;  return cc//tpc*tpc
+    def normalizeCC(self, cc, dbg=0):  tpc = self.tpc  ;  old = cc  ;  cc = cc//tpc*tpc  ;  self.log(f'{old=:4} {cc=:4} {tpc=}', f=0) if dbg else None  ;  return cc
     def cc2cn(      self, cc, dbg=0):  tpc = self.tpc  ;  cn = cc//tpc  ;  self.log(f'{cn:3} {cc:4}//{tpc=} {cc//tpc=}', f=0) if dbg else None  ;  return  cn
     def cn2cc(      self, cn, dbg=0):  tpc = self.tpc  ;  cc = cn *tpc  ;  self.log(f'{cc:4} {cn:3} *{tpc=} {cn *tpc=}', f=0) if dbg else None  ;  return  cc
     def cn2txt(self, cn, dbg=0):  #  usefull? re-name f cn2tabtxt()
@@ -1859,7 +1889,7 @@ class Tabs(pyglet.window.Window):
         msg1  = f'plc={self.fplc(p, l, c)}'   ;    msg2 = f'dl={self.fmtdl()} {cn=} {key=} keys={fmtl(list(mli.keys()))}'
         if dbg:        self.log(f'{msg1} {msg2}', f=0)
         if p >= dl[0] or l >= dl[1] or c >= dl[2]:  msg = f'ERROR Indexing {msg1} >= {msg2}'  ;  self.log(msg)  ;  self.quit(msg)
-        imap  = self.cobj.getChordName(self.data, None, cn, p, l, c, dbg=1)
+        imap  = self.cobj.getChordName(self.data, None, cn, p, l, c)
         if dbg2 and imap: self.cobj.dumpImap(imap, f=1)
         return imap
     ####################################################################################################################################################################################################
@@ -1987,14 +2017,16 @@ class Tabs(pyglet.window.Window):
 #       elif kbk == 'BACKSLASH' and self.isCtrl(mods): self.setCHVMode(    '@ BACKSLASH', ARPG,   LARROW,  UARROW)
 #       elif kbk == 'BACKSLASH':                       self.setCHVMode(    '  BACKSLASH', ARPG,   RARROW, DARROW)
     ####################################################################################################################################################################################################
-        elif kbk == 'D' and self.isAltShift(mods):     self.flipBGC('&^D')
-        elif kbk == 'D' and self.isAlt(     mods):     self.flipBGC('& D')
-        elif kbk == 'N' and self.isAltShift(mods):     self.setn_cmd(  '&^N', txt=Z)
-        elif kbk == 'N' and self.isAlt(     mods):     self.setn_cmd(  '& N', txt=Z)
-        elif kbk == 'P' and self.isAltShift(mods):     self.flipPage('&^P', 1)
-        elif kbk == 'P' and self.isAlt(     mods):     self.flipPage('& P', -1)
-        elif kbk == 'R' and self.isAltShift(mods):     self.RESIZE = not self.RESIZE  ;  self.resizeTniks(dbg=1) # if self.RESIZE else None
-        elif kbk == 'R' and self.isAlt(     mods):                                       self.resizeTniks(dbg=1) # if self.RESIZE else None
+        elif kbk == 'D' and self.isAltShift(mods):     self.flipBGC(     '&^D')
+        elif kbk == 'D' and self.isAlt(     mods):     self.flipBGC(     '& D')
+        elif kbk == 'N' and self.isAltShift(mods):     self.setn_cmd(    '&^N', txt=Z)
+        elif kbk == 'N' and self.isAlt(     mods):     self.setn_cmd(    '& N', txt=Z)
+        elif kbk == 'P' and self.isAltShift(mods):     self.flipPage(    '&^P', 1)
+        elif kbk == 'P' and self.isAlt(     mods):     self.flipPage(    '& P', -1)
+        elif kbk == 'R' and self.isAltShift(mods):     self.rotateSprite('&^R', self.hcurs[0], -1)
+        elif kbk == 'R' and self.isAlt(     mods):     self.rotateSprite('& R', self.hcurs[0],  1)
+        elif kbk == 'Z' and self.isAltShift(mods):     self.RESIZE = not self.RESIZE  ;  self.resizeTniks(dbg=1) # if self.RESIZE else None
+        elif kbk == 'Z' and self.isAlt(     mods):                                       self.resizeTniks(dbg=1) # if self.RESIZE else None
 ####################################################################################################################################################################################################
         elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam(BOLD,      not self.fontBold,                           'fontBold')
         elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam(BOLD,      not self.fontBold,                           'fontBold')
@@ -2006,12 +2038,13 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'A' and self.isAlt(     mods):     self.setFontParam(FONT_NAME,    (self.fontNameIdx - 1) % len(FONT_NAMES), 'fontNameIdx')
         elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam(FONT_SIZE,     self.fontSize    + 1,                    'fontSize') # )  % FS_MAX
         elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam(FONT_SIZE, max(self.fontSize    - 1, 1),                'fontSize') # )  % FS_MAX
+        else:   self.log(f'Unexpected {self.kbkEvntTxt()}', f=2)
     ####################################################################################################################################################################################################
         if not self.isParsing():
             if   kbk == 'ENTER' and self.isCtrl(mods): self.setCHVMode(  '@  ENTER',     CHORD,       v=DARROW)
             elif kbk == 'ENTER':                       self.setCHVMode(  '   ENTER',     CHORD,       v=UARROW)
             elif kbk == 'SPACE':                       self.autoMove(    '   SPACE')
-        elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()}')
+#            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
         if   dbg: self.log(       f'END {self.kbkEvntTxt()}')
     ####################################################################################################################################################################################################
     def on_key_release(self, symb, mods, dbg=1):
@@ -2483,6 +2516,11 @@ class Tabs(pyglet.window.Window):
             self.log(f'Setting {old=} {self.n=}')
             self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
     ####################################################################################################################################################################################################
+    def rotateSprite(self, how, spr, cw=1):
+        old = spr.rotation
+        spr.rotation =  (spr.rotation + cw * 10) % 360
+        self.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
+    ####################################################################################################################################################################################################
     def flipFlatSharp(self, how, dbg=0):  #  page line colm tab or select
         t1 = Notes.TYPE    ;    t2 =  Notes.TYPE * -1      ;     Notes.setType(t2)
         self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
@@ -2860,7 +2898,6 @@ MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'   ;   LEFT, CENTER, RIGHT, BOT
 BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
 ALIGN, INDENT, LEAD, LNSP, STRH, TAB_STOPS, WRAP = 'align', 'indent', 'leading', 'line_spacing', 'stretch', 'tab_stops', 'wrap'
 MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM = 'margin_left', 'margin_right', 'margin_top', 'margin_bottom'
-FNSZ      =  'FnSz'
 TI        = ['tnik', '  i ']
 XYWH      = ['    X  ', '    Y  ', '    W  ', '    H  ']
 AXY2      = ['x', 'y', 'AncX', 'AncY']
@@ -2868,7 +2905,7 @@ WHVA      = ['CntW', 'CntH', 'v', 'a']
 ADN       = ['Ascn', 'Dscn', 'nA-D']
 LTXX      = list(itertools.chain(TI, XYWH, AXY2))
 LTXXCA    = list(itertools.chain(TI, XYWH, AXY2, WHVA))
-LDS       = [FNSZ, 'Lead', 'LnSp', f'{COLOR:^17}', f'{BGC:17}', 'B', 'I', 'S', 'M', 'W', 'w', f'{FONT_NAME:21}']
+LDS       = ['FnSz', 'Lead', 'LnSp', ' ForegroundColor ', ' BackgroundColor ', 'B', 'I', 'S', 'M', 'W', 'w', 'FontName']
 LLBL      = list(itertools.chain(LTXXCA, ADN, LDS))
 def JLBL(n, d): return (f'{d.join(LLBL)}{d}'*n).removesuffix(d)
 def JSPR(n, d): return (f'{d.join(LTXX)}{d}'*n).removesuffix(d)
