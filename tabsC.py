@@ -6,6 +6,8 @@ CODS    = 0
 if CODS: from collections import OrderedDict as cOd
 from          collections import Counter
 import pyglet
+from pyglet.text import document, layout
+import pyglet.image        as pygimg
 import pyglet.font         as pygfont
 import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
@@ -336,9 +338,9 @@ class Tabs(pyglet.window.Window):
         self.dispatch_event('on_key_press',   113, 3)
         self.log(f'END {why} {e}')
 
-#    def testSprTxt_0(self, path):
-#        np, nl, ns, nc, nt = self.n  ;  r, c = nt*ns*nl, nc
-#        self.log(f'BGN {path=} {r=} {c=}')
+    def testSprTxt_0(self, path):
+        np, nl, ns, nc, nt = self.n  ;  r, c = nt*ns*nl, nc
+        self.log(f'BGN {path=} {r=} {c=}')
 #        lbl = self.tabls[0]
 #        tex = self.batch.get_texture()
 #        spr = SPR(tex, x=100, y=100, batch=self.batch, group=self.j2g(H), subpixel=self.SUBPIX)
@@ -351,10 +353,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'BGN {path=} {r=} {c=}')
         img = pyglet.image.load(path)
         ig = pyglet.image.ImageGrid(img, r, c)
-        itg = pyglet.image.TextureGrid(ig)
-        self.log(f'{img=}')
-        self.log(f' {ig=}')
-        self.log(f'{itg=}')
+#        itg = pyglet.image.TextureGrid(ig)
         ds = ig[0:10]
         for j, d in enumerate(ds):
             self.log(f'ds[{j}]=d={d}')
@@ -1291,24 +1290,6 @@ class Tabs(pyglet.window.Window):
     def axWgt(x): return 0.0 if x==LEFT   else 0.5 if x==CENTER else 1.0 if x==RIGHT else -1.0
     @staticmethod
     def ayWgt(y): return 0.0 if y==BOTTOM else 0.5 if y==CENTER else 1.0 if y==TOP   else -1.0
-
-    def createSprite(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
-        path = util.getFilePath('_2_150', BASE_PATH, PNGS, PNG)
-        self.setJ(j, i, v)   ;   k = kl[kk]
-        if dbg:    self.log(f'{j=} {JTEXTS[j]} {i=} {t=} [{x} {y} {w} {h}] {g=} {kk=} {util.fmtl(kl)} {why}\n{path=}')
-        img = pyglet.image.load(path)
-        wx, wy = self.axyWgt(self.ax, self.ay)
-        img.anchor_x, img.anchor_y = int(wx*w), int(wy*h)
-        tnik = SPR(img, x=x, y=y, batch=self.batch, group=self.j2g(j), subpixel=self.SUBPIX)
-        tnik.color, tnik.opacity = k[:3], k[3]
-        tnik.anchor_x, tnik.anchor_y = wx*w, wy*h
-        assert int(tnik.anchor_x)==img.anchor_x,  f'{int(tnik.anchor_x)=} != {img.anchor_x=}'
-        assert int(tnik.anchor_y)==img.anchor_y,  f'{int(tnik.anchor_y)=} != {img.anchor_y=}'
-        tnik.visible = v        ;  self.visib[j].append(v)
-#        self.checkTnik(tnik, i, j)
-        if    tlist is not None:   tlist.append(tnik)
-        key = self.idmapkey(j)  ;  self.idmap[key] = (tnik, j, i)   ;   self.dumpTnik(tnik, j, why) if dbg else None
-        return tnik
     ####################################################################################################################################################################################################
     def createTnik(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
         if i is None or j is None: lt = len(tlist) if tlist is not None else None  ;  msg = f'ERROR i or j is None {i=} {j=} {lt=} {t=} {why}'  ;  self.log(msg)  ;  self.quit(msg)
@@ -1637,6 +1618,7 @@ class Tabs(pyglet.window.Window):
         for j, n in enumerate(self.notes):     self.dumpTnikCsv(n, N, j)
         for j, i in enumerate(self.ikeys):     self.dumpTnikCsv(i, I, j)
         for j, k in enumerate(self.kords):     self.dumpTnikCsv(k, K, j)
+        for j, h in enumerate(self.hcurs):     self.dumpTnikCsv(h, H, j)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTnikCsv(self, t, j, i): # j in (P, C, T)
@@ -1649,13 +1631,55 @@ class Tabs(pyglet.window.Window):
 #        elif util.isi(t, SPR):   z = Y.join([W * len(_) for _ in LTXX])
         return self.t2csv(t, j, i, Y, s)
     ####################################################################################################################################################################################################
+    def saveDigits__old(self):
+        path = util.getFilePath('_2', BASE_PATH, PNGS, PNG)
+        for i in range(self.n[C] * self.n[T], self.n[T]):
+#            self.tabls[i]
+            bm = pyglet.image.get_buffer_manager()
+            frame = bm.get_color_buffer()
+            img = frame.get_image_data()
+            with open(path, 'wb') as file:
+                file.write(img.get_image_data())
+
+    def saveImg(self, path):
+        doc      = document.FormattedDocument()
+        doc.text = '0123456789'
+        layout.TextLayout(doc)
+#        tl.view_x     = tl.get_point_from_position(0)[0]
+#        tl.view_width = tl.get_point_from_position(len(doc.text))[0]
+        bm        = pygimg.get_buffer_manager()
+        frame     = bm.get_color_buffer()
+        img       = frame.get_image_data()
+        self.log(f'{path=}', f=2)
+        with open(path, 'wb') as file:
+            file.write(img.get_data())
+
+    def createSprite(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
+        path = util.getFilePath('_2', BASE_PATH, PNGS, PNG)
+        self.saveImg(path)
+        self.setJ(j, i, v)   ;   k = kl[kk]
+        if dbg:    self.log(f'{j=} {JTEXTS[j]} {i=} {t=} [{x} {y} {w} {h}] {g=} {kk=} {util.fmtl(kl)} {why}\n{path=}')
+        img = pyglet.image.load(path)
+        wx, wy = self.axyWgt(self.ax, self.ay)
+        img.anchor_x, img.anchor_y = int(wx*w), int(wy*h)
+        tnik = SPR(img, x=x, y=y, batch=self.batch, group=self.j2g(j), subpixel=self.SUBPIX)
+        tnik.color, tnik.opacity = k[:3], k[3]
+        tnik.anchor_x, tnik.anchor_y = wx*w, wy*h
+        assert int(tnik.anchor_x)==img.anchor_x,  f'{int(tnik.anchor_x)=} != {img.anchor_x=}'
+        assert int(tnik.anchor_y)==img.anchor_y,  f'{int(tnik.anchor_y)=} != {img.anchor_y=}'
+        tnik.visible = v        ;  self.visib[j].append(v)
+#        self.checkTnik(tnik, i, j)
+        if    tlist is not None:   tlist.append(tnik)
+        key = self.idmapkey(j)  ;  self.idmap[key] = (tnik, j, i)   ;   self.dumpTnik(tnik, j, why) if dbg else None
+        return tnik
+    ####################################################################################################################################################################################################
     def createCursor(self, why, dbg=1):
         x, y, w, h, c = self.cc2xywh()
         kk = 0  ;  kl = self.k[H]
         if w == 0 or h == 0: msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   self.quit(msg)
-        self.cursor   = self.createSprite(self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
-#        self.cursor   = self.createTnik(self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
-        if self.LL:     self.setLLStyle(self.cc, CURRENT_STYLE)
+        if self.TEST: self.cursor   = self.createSprite(self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
+        else:         self.cursor   = self.createTnik(  self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
+        if self.LL:   self.setLLStyle(self.cc, CURRENT_STYLE)
 
     def resizeCursor(self, why, why2, dbg=1):
         x, y, w, h, c = self.cc2xywh()
@@ -1934,19 +1958,19 @@ class Tabs(pyglet.window.Window):
         return text
     ####################################################################################################################################################################################################
     def on_mouse_release(self, x, y, button, mods, dbg=1):
-        np, nl, ns, nc, nt = self.n   ;   nz = self.zzl()    ;  nc += nz    ;   ll = self.LL   ;   ww = self.width   ;   hh = self.height
-        y0 = y     ;   y = self.height - y   ;   m = ns * nt  + ll   ;      n = nl * m
-        w = ww/nc  ;   h = hh/n              ;   d = int(y/h) - ll   ;   tlen = len(self.tabls)
-        l = int(d/m)  ;  c = int(x/w) - nz   ;   t = d - (l * m)     ;      p = self.j()[P]
-        text = self.tabls[self.cc].text if self.cc < tlen else Z
-        if dbg: self.log(f'BGN {x=} {y=:4} {w=:6.2f} {h=:6.2f}', pos=1)
-        if dbg: self.log(f'    {button=} {mods=} {self.cc=} {tlen=} {text=}', pos=1, f=2)
-        if dbg: self.log(f'    {m=} {n=} {ll=} {nc=} {nz=} {d=}', pos=1)
-        if dbg: self.log(f'    {p=}=i[P] {l=}=(d/m) {c=}=(x/w-nz) {t=}=(d-l*m)', pos=1)
-        if dbg: self.log(f'    before plct={self.fplct(p, l, c, t)}', pos=1)
-        self.moveTo('MOUSE RELEASE', p, l, c, t)
-        if dbg: self.log(f'    after  plct={self.fplct(p, l, c, t)}', pos=1)
-        if dbg: self.log(f'END {x=} {y0=:4} {ww=:6.2f} {hh=:6.2f}', pos=1)
+        nz = self.zzl()  ;  ll = self.LL   ;  ww = self.width    ;  hh = self.height    ;  np, nl, ns, nc, nt = self.n  ;  nc += nz
+        y0 = y           ;   y = hh - y    ;  m = ns * nt  + ll  ;   n = nl * m         ;  tlen = len(self.tabls)       ;  cc  = self.cc
+        w = ww/nc        ;   h = hh/n      ;  d = int(y/h) - ll
+        p = self.j()[P]  ;   l = int(d/m)  ;  s = self.j()[S]    ;   c = int(x/w) - nz  ;   t = d - l*m
+        text = self.tabls[cc].text if cc < tlen else Z
+        if dbg: self.log(f'BGN {x=:4} {y0=:4} {y=:4} {w=:6.2f} {h=:6.2f}',   pos=1, f=2)
+        if dbg: self.log(f'    {button=} {mods=} {cc=} {tlen=} {text=}',     pos=1, f=2)
+        if dbg: self.log(f'    {m=} {n=} {ll=} {nc=:2} {nz=} {d=}',          pos=1, f=2)
+        if dbg: self.log(f'    {p=} {l=}(d/m) {c=}(x/w-nz) {t=}(d-l*m)',     pos=1, f=2)
+        if dbg: self.log(f'    before plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
+        self.moveTo('MOUSE RELEASE', p, l, s, c, t)
+        if dbg: self.log(f'    after  plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
+        if dbg: self.log(f'END {x=:4} {y0=:4} {y=:4} {ww=:6.2f} {hh=:6.2f}', pos=1, f=2)
     ####################################################################################################################################################################################################
     def kbkEvntTxt(self): return f'<{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
     ####################################################################################################################################################################################################
