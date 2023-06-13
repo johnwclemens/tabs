@@ -12,13 +12,14 @@ echo ls -l stdo
 ls      -l stdo
 echo cksum stdo/*
 cksum      stdo/*
-echo python tabsC.py -n 1 1 10 6 -S 0 -f Test/test -w 0 0 0 -t -- 2&>stdo/tabs.txt
-python      tabsC.py -n 1 1 10 6 -S 0 -f Test/test -w 0 0 0 -t -- 2&>stdo/tabs.txt
+echo python tabsC.py -n 1 2 10 6 -S 0 1 -f Test/test -t -w 0 0 0 0  2&>stdo/tabs.txt
+python      tabsC.py -n 1 2 10 6 -S 0 1 -f Test/test -t -w 0 0 0 0  2&>stdo/tabs.txt
 echo ls -l stdo
 ls      -l stdo
 echo cksum stdo/*
 cksum      stdo/*
 
+#-n 1 1 10 6 -S 0 1 -i 1 1 1 6 -f Test/test -s -d 0 -w 0 0 0 0
 #python tabsC.py -f BlackMagicWoman.4.2.50.dat -n 4 2 50 6 -S 0 1 3 -i 1 1 1 6
 #python tabsC.py -f GiantSteps.50.dat -n 3 2 50 6 -S 0 1 3 -i 1 1 1 6
 #python tabsC.py -f LydianTriads.50.dat -n 3 2 50 6 -S 0 1 3 -i 1 1 1 6 -L
