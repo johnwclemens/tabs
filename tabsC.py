@@ -1763,8 +1763,6 @@ class Tabs(pyglet.window.Window):
         c2 = t2 // nt + c
         l2 = c2 // nc + l
         p2 = l2 // nl + p
-#        b2 = p2 // np + b
-#        rb = b2
         rp = p2 % np
         rl = l2 % nl
         rc = c2 % nc
@@ -1772,17 +1770,17 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'plct={self.fplct(p, l, c, t)} plct2={self.fplct(p2, l2, c2, t2)} rplct={rp, rl, rc, rt}')
         return rp, rl, rc, rt # todo
     def J1plsct(self, p=None, l=None, s=None, c=None, t=None, dbg=0):
-        np, nl, ns, nc, nt = self.n   ;   n = 0
+        np, nl, ns, nc, nt = self.n
         if p is None:    p = self.J1[P]
         if l is None:    l = self.J1[L]
         if s is None:    s = self.J1[S]
         if c is None:    c = self.J1[C]
         if t is None:    t = self.J1[T]
-        t2 = n + t
-        c2 = t2 // nt + c
-        s2 = c2 // nc + s
-        l2 = s2 // ns + l
-        p2 = s2 // nl + p
+        t2 = t  % nt
+        c2 = t2 // nt
+        s2 = c2 // nc
+        l2 = s2 // ns
+        p2 = l2 // nl
         rp = p2 % np
         rl = l2 % nl
         rs = s2 % ns
@@ -1970,15 +1968,14 @@ class Tabs(pyglet.window.Window):
         nz = self.zzl()   ;  ll = self.LL  ;  ww = self.width     ;  hh = self.height  ;  np, nl, ns, nc, nt = self.n  ;  nc += nz
         y0 = y            ;   y = hh - y   ;   m = ns*nt    + ll  ;   n = nl*m         ;  tlen = len(self.tabls)       ;  cc  = self.cc
         w  = ww/nc        ;   h = hh/n     ;   d = int(y/h) - ll  ;   a = int(d/n)     ;     b = int(x/w) - nz
-        p  = self.j()[P]  ;   l = a        ;   s = d//nt          ;   c = b            ;     t = (d - l*n) # % nt
-        text = self.tabls[cc].text if cc < tlen else Z #        if dbg: self.log(f'    {button=} {mods=} {nz=} {cc=} {tlen=} {text=}',     pos=1, f=2)
+#        p = self.j()[P]   ;   l = a        ;   s = d//nt          ;   c = b            ;     t = (d - l*n) # % nt
+        p0 = self.j()[P]  ;  l0 = a        ;  s0 = d//nt          ;  c0 = b            ;    t0 = (d - l0*n) # % nt
+        p, l, s, c, t = self.nrmPlsct(p0, l0, s0, c0, t0)
+        text = self.tabls[cc].text if cc < tlen else Z
         if dbg:   self.log(f'BGN {x=:4} {y0=:4} {y=:4} {w=:6.2f} {h=:6.2f} {ll=} {nc=:2} {m=:2} {n=:2} {d=:2} {text=}',   pos=1, f=2)
-        if dbg:   self.log(f'    {p=} {l=}=(d/m) {s=} {c=}=(x/w-nz) {t=}=(d-l*m)', pos=1, f=2)
-#        if dbg:   self.log(f'    before  plct={self.fplct( p, l,    c, t)}',   pos=1, f=2)
-#        self.moveTo( 'MOUSE RELEASE', p, l,    c, t)
-#        if dbg:   self.log(f'    after   plct={self.fplct( p, l,    c, t)}',   pos=1, f=2)
+        if dbg:   self.log(f'    p={p+1} l={l+1}=(d/m) s={s+1}=(d//nt) c={c+1}=(x/w) t={t+1}=(d-l*m)', pos=1, f=2)
         if dbg:   self.log(f'    before plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
-        self.moveToB('MOUSE RELEASE', p, l, s, c, t)
+        p, l, s, c, t = self.moveToB('MOUSE RELEASE', p, l, s, c, t)
         if dbg:   self.log(f'    after  plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
         if dbg:   self.log(f'END {x=:4} {y0=:4} {y=:4} {ww=:6.2f} {hh=:6.2f}', pos=1, f=2)
     ####################################################################################################################################################################################################
@@ -2286,9 +2283,10 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def moveToB(self, how, p, l, s, c, t, ss=0, dbg=1):
         if dbg:    self.log(f'BGN {how}', pos=1)
-        self._moveToB(p, l, s, c, t)
+        p2, l2, s2, c2, t2 = self._moveToB(p, l, s, c, t)
         self.moveCursor(ss, how)
         if dbg:    self.log(f'END {how}', pos=1)
+        return p2, l2, s2, c2, t2
 
     def moveB(self, how, n, ss=0, dbg=1):
         if dbg:    self.log(f'BGN {how} {n=}', pos=1)
@@ -2298,19 +2296,35 @@ class Tabs(pyglet.window.Window):
         if dbg:    self.log(f'END {how} {n=}', pos=1)
 
     def _moveToB(self, p, l, s, c, t, n=0, dbg=1): # todo
-        if dbg: self.log(f'BGN plsct={self.fplsct(p, l, s, c, t)} {n=}', pos=1)
+        p2, l2, s2, c2, t2 = self.trncPlsct(p, l, s, c, t+n)
+        self.i[T] = t2 + 1
+        self.i[C] = c2 + 1
+        self.i[S] = s2 + 1
+        self.i[L] = l2 + 1
+        self.i[P] = p2 + 1
+        if dbg: self.log(f'plsct={self.fplsct(p, l, s, c, t)} {n=} plsct2={self.fplsct(p2, l2, s2, c2, t2)} {self.fmti()}', pos=1)
+        return p2, l2, s2, c2, t2
+
+    def nrmPlsct(self, p, l, s, c, t):
         np, nl, ns, nc, nt = self.n
-        t2        =       n  + t
-        c2        = t2 // nt + c
-        s2        = c2 // nc + s
-        l2        = s2 // ns + l
-        p2        = l2 // nl + p
-        self.i[T] = t2  % nt + 1
-        self.i[C] = c2  % nc + 1
-        self.i[S] = s2  % ns + 1
-        self.i[L] = l2  % nl + 1
-        self.i[P] = p2  % np + 1
-        if dbg: self.log(f'END {n=} {self.fmti()} plsct={self.fplsct(p, l, s, c, t)} plsct2={self.fplsct(p2, l2, s2, c2, t2)}', pos=1)
+        t0 =  int(t/nt)  ;  t2 = t0 % ns
+#        c2 = t // nt + c
+#        s2 = c // nc + s
+        s2 = (s + int(t/nt)) % ns
+        l2 = (l + int(s/ns)) % nl
+#        s2 = s + 1 if t / nt else s
+#        l2 = l + 1 if s / ns >= ns else l
+#        p2 = p + 1 if l // nl else p
+        return p, l2, s2, c, t2
+
+    def trncPlsct(self, p, l, s, c, t):
+        np, nl, ns, nc, nt = self.n
+        t2 = t % nt
+        c2 = c % nc
+        s2 = s % ns
+        l2 = l % nl
+        p2 = p % np
+        return p2, l2, s2, c2, t2
     ####################################################################################################################################################################################################
     def jump(self, how, txt='0', a=0): # optimize str concat?
         cc = self.cursorCol()                 ;    self.jumpAbs = a
@@ -2784,7 +2798,7 @@ class Tabs(pyglet.window.Window):
         SnapPath  = BASE_PATH / PNGS / snapName
         if dbg:     self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
         if dbg:     self.log(f'{self.fNameLid=} {PNGS=} {snapName=} {why}')
-        if dbg:     self.log(f'{SnapPath=}', p=2)
+        if dbg:     self.log(f'{SnapPath}', p=2)
         pyglet.image.get_buffer_manager().get_color_buffer().save(f'{SnapPath}')
         if dbg2:    self.log(f'{snapName=} {why}', f=2)
         self.snapId += 1

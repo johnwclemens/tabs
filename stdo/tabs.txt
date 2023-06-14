@@ -74,22 +74,22 @@ C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
  539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs._.csv ###
         1 file(s) copied.
 C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-3013 tabsC <module>           argv=[-n 2 2 10 6 -S 0 1 -i 1 1 1 6 -f Test/test -s -w 0 0 0 0]
+3027 tabsC <module>           argv=[-n 2 2 10 6 -S 0 1 -i 1 1 1 6 -f Test/test -s -w 0 0 0 0]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-3017 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
-3017 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
-3018 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-3018 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
-2894 tabsC dumpGlobals        BASE_NAME = tabs
-2895 tabsC dumpGlobals        argv      = +22[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -n 2 2 10 6 -S 0 1 -i 1 1 1 6 -f Test/test -s -w 0 0 0 0]
-2896 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2897 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
- 528 util  getFilePath        baseName =tabs.7       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.7.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.7.log)
- 528 util  getFilePath        baseName =tabs.7       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.7.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.7.csv)
- 528 util  getFilePath        baseName =tabs.7       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.7.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.7.cat)
+3031 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+3031 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
+3032 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+3032 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2908 tabsC dumpGlobals        BASE_NAME = tabs
+2909 tabsC dumpGlobals        argv      = +22[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -n 2 2 10 6 -S 0 1 -i 1 1 1 6 -f Test/test -s -w 0 0 0 0]
+2910 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2911 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+ 528 util  getFilePath        baseName =tabs.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.30.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.30.log)
+ 528 util  getFilePath        baseName =tabs.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.30.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.30.csv)
+ 528 util  getFilePath        baseName =tabs.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.30.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.30.cat)
  153 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  154 tabsC dumpArgs           [A]         .VARROW=1
  155 tabsC dumpArgs           [b]        .FRT_BRD=0
@@ -121,9 +121,9 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
  181 tabsC dumpArgs           [w]           .XYVA=[0, 0, 0, 0]
  182 tabsC dumpArgs           [Z]             .ZZ=[]
         1 file(s) copied.
-1813 tabsC _initFonts         w=64.000=.width =640/(10)                 FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
-1814 tabsC _initFonts         h=20.000=.height=480/(nl=2 * ns=2 * nt=6) FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
-1826 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
+1811 tabsC _initFonts         w=64.000=.width =640/(10)                 FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
+1812 tabsC _initFonts         h=20.000=.height=480/(nl=2 * ns=2 * nt=6) FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
+1824 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
 1270 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V         x y AncX AncY   
 Page    1 V C C  320  240    
@@ -747,10 +747,10 @@ Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [
 1700 tabsC cc2xywh            tpp=240 old=5 lenT=240 cc=5 old % lenT
 1705 tabsC cc2xywh            cc=   5 old=   5 [  480  240 120  60   6]   32.00  370.00   64.00   20.00 t.text=1   13   20 C C
 HCrs    1 V C C   32   10    
-1826 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels New1
+1824 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels New1
  321 tabsC _initTniks         -2 FLAT Bb a [Bb Eb A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [Bb C  D  Eb F  G  A ]
-3020 tabsC main               str(tabs)={n: [2, 2, 10, 6], S: [0, 1], i: [1, 1, 1, 6], f: [Test/test], s: [], w: [0, 0, 0, 0]}
-3020 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [2, 2, 10, 6], S: [0, 1], i: [1, 1, 1, 6], f: [Test/test], s: [], w: [0, 0, 0, 0]}
+3034 tabsC main               str(tabs)={n: [2, 2, 10, 6], S: [0, 1], i: [1, 1, 1, 6], f: [Test/test], s: [], w: [0, 0, 0, 0]}
+3034 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [2, 2, 10, 6], S: [0, 1], i: [1, 1, 1, 6], f: [Test/test], s: [], w: [0, 0, 0, 0]}
 1387 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
 Tabl    1 V 6        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        6
@@ -1238,165 +1238,103 @@ Note  240 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [
 1725 tabsC cursorCol          cc=  5 [0 0 0 5]
 1700 tabsC cc2xywh            tpp=240 old=5 lenT=240 cc=5 old % lenT
 1705 tabsC cc2xywh            cc=   5 old=   5 [  480  240 120  60   6]   32.00  370.00   64.00   20.00 t.text=1   13   20 C C
-1826 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels Upd1
-2789 tabsC snapshot           snapName=tabs.7.0.Upd5.png Upd1
-1975 tabsC on_mouse_release   [1 1 1  1 6]   6   0  1] BGN x=  27 y0= 472 y=   8 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d= 0 text=1
-1976 tabsC on_mouse_release   [1 1 1  1 6]   6   0  1]     p=0 l=0=(d/m) s=0 c=0=(x/w-nz) t=0=(d-l*m)
-1980 tabsC on_mouse_release   [1 1 1  1 6]   6   0  1]     before plsct=[1 1 1  1 1]
+1824 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels Upd1
+2803 tabsC snapshot           snapName=tabs.30.0.Upd5.png Upd1
+1975 tabsC on_mouse_release   [1 1 1  1 6]   6   0  1] BGN x=  25 y0= 465 y=  15 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d= 0 text=1
+1976 tabsC on_mouse_release   [1 1 1  1 6]   6   0  1]     p=1 l=1=(d/m) s=1=(d//nt) c=1=(x/w) t=1=(d-l*m)
+1977 tabsC on_mouse_release   [1 1 1  1 6]   6   0  1]     before plsct=[1 1 1  1 1]
 1722 tabsC plct2cc                   0 [  480  240 120  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
 1725 tabsC cursorCol          cc=  0 [0 0 0 0]
 1700 tabsC cc2xywh            tpp=240 old=0 lenT=240 cc=0 old % lenT
 1705 tabsC cc2xywh            cc=   0 old=   0 [  480  240 120  60   6]   32.00  470.00   64.00   20.00 t.text=6   13   20 C C
-1982 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1]     after  plsct=[1 1 1  1 1]
-1983 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1] END x=  27 y0= 472 y=   8 ww=640.00 hh=480.00
-2789 tabsC snapshot           snapName=tabs.7.1.Upd5.png MOUSE RELEASE
-1975 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1] BGN x=  27 y0= 357 y= 123 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d= 6 text=6
-1976 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1]     p=0 l=0=(d/m) s=1 c=0=(x/w-nz) t=6=(d-l*m)
-1980 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1]     before plsct=[1 1 2  1 7]
-1722 tabsC plct2cc                   6 [  480  240 120  60   6] [1 1    2 1] (   0 +  0 + 60 +  6 +0)
-1725 tabsC cursorCol          cc=  6 [0 0 1 0]
-1700 tabsC cc2xywh            tpp=240 old=6 lenT=240 cc=6 old % lenT
-1705 tabsC cc2xywh            cc=   6 old=   6 [  480  240 120  60   6]   96.00  470.00   64.00   20.00 t.text=c   13   20 C C
-1982 tabsC on_mouse_release   [1 1 2  2 1]   7   6  2]     after  plsct=[1 1 2  1 7]
-1983 tabsC on_mouse_release   [1 1 2  2 1]   7   6  2] END x=  27 y0= 357 y= 123 ww=640.00 hh=480.00
-2789 tabsC snapshot           snapName=tabs.7.2.Upd0.png MOUSE RELEASE
-1975 tabsC on_mouse_release   [1 1 2  2 1]   7   6  2] BGN x=  27 y0= 234 y= 246 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d=12 text=c
-1976 tabsC on_mouse_release   [1 1 2  2 1]   7   6  2]     p=0 l=0=(d/m) s=2 c=0=(x/w-nz) t=12=(d-l*m)
-1980 tabsC on_mouse_release   [1 1 2  2 1]   7   6  2]     before plsct=[1 1 3  1 13]
-1722 tabsC plct2cc                  72 [  480  240 120  60   6] [1 2    3 1] (   0 +120 + 60 + 12 +0)
-1725 tabsC cursorCol          cc= 72 [0 1 2 0]
-1700 tabsC cc2xywh            tpp=240 old=72 lenT=240 cc=72 old % lenT
-1705 tabsC cc2xywh            cc=  72 old=  72 [  480  240 120  60   6]  160.00  230.00   64.00   20.00 t.text=-   13   20 C C
-1982 tabsC on_mouse_release   [1 2 1  3 1]  73  72 13]     after  plsct=[1 1 3  1 13]
-1983 tabsC on_mouse_release   [1 2 1  3 1]  73  72 13] END x=  27 y0= 234 y= 246 ww=640.00 hh=480.00
-2789 tabsC snapshot           snapName=tabs.7.3.Upd6.png MOUSE RELEASE
-1975 tabsC on_mouse_release   [1 2 1  3 1]  73  72 13] BGN x=  32 y0= 108 y= 372 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d=18 text=-
-1976 tabsC on_mouse_release   [1 2 1  3 1]  73  72 13]     p=0 l=0=(d/m) s=3 c=0=(x/w-nz) t=18=(d-l*m)
-1980 tabsC on_mouse_release   [1 2 1  3 1]  73  72 13]     before plsct=[1 1 4  1 19]
-1722 tabsC plct2cc                  78 [  480  240 120  60   6] [1 2    4 1] (   0 +120 + 60 + 18 +0)
-1725 tabsC cursorCol          cc= 78 [0 1 3 0]
-1700 tabsC cc2xywh            tpp=240 old=78 lenT=240 cc=78 old % lenT
-1705 tabsC cc2xywh            cc=  78 old=  78 [  480  240 120  60   6]  224.00  230.00   64.00   20.00 t.text=-   13   20 C C
-1982 tabsC on_mouse_release   [1 2 2  4 1]  79  78 14]     after  plsct=[1 1 4  1 19]
-1983 tabsC on_mouse_release   [1 2 2  4 1]  79  78 14] END x=  32 y0= 108 y= 372 ww=640.00 hh=480.00
-2789 tabsC snapshot           snapName=tabs.7.4.Upd72.png MOUSE RELEASE
-1975 tabsC on_mouse_release   [1 2 2  4 1]  79  78 14] BGN x= 598 y0=  14 y= 466 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d=23 text=-
-1976 tabsC on_mouse_release   [1 2 2  4 1]  79  78 14]     p=0 l=0=(d/m) s=3 c=9=(x/w-nz) t=23=(d-l*m)
-1980 tabsC on_mouse_release   [1 2 2  4 1]  79  78 14]     before plsct=[1 1 4 10 24]
-1722 tabsC plct2cc                 137 [  480  240 120  60   6] [2 1    3 6] ( 240 +  0 + 60 + 12 +5)
-1725 tabsC cursorCol          cc=137 [1 0 2 5]
-1700 tabsC cc2xywh            tpp=240 old=137 lenT=240 cc=137 old % lenT
-1705 tabsC cc2xywh            cc= 137 old= 137 [  480  240 120  60   6]  160.00  370.00   64.00   20.00 t.text=-   13   20 C C
-1982 tabsC on_mouse_release   [2 1 1  3 6] 138 132 23]     after  plsct=[1 1 4 10 24]
-1983 tabsC on_mouse_release   [2 1 1  3 6] 138 132 23] END x= 598 y0=  14 y= 466 ww=640.00 hh=480.00
-2789 tabsC snapshot           snapName=tabs.7.5.Upd78.png MOUSE RELEASE
-1975 tabsC on_mouse_release   [2 1 1  3 6] 138 132 23] BGN x= 609 y0= 374 y= 106 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d= 5 text=-
-1976 tabsC on_mouse_release   [2 1 1  3 6] 138 132 23]     p=1 l=0=(d/m) s=0 c=9=(x/w-nz) t=5=(d-l*m)
-1980 tabsC on_mouse_release   [2 1 1  3 6] 138 132 23]     before plsct=[2 1 1 10 6]
-1722 tabsC plct2cc                 179 [  480  240 120  60   6] [2 1   10 6] ( 240 +  0 + 60 + 54 +5)
-1725 tabsC cursorCol          cc=179 [1 0 9 5]
-1700 tabsC cc2xywh            tpp=240 old=179 lenT=240 cc=179 old % lenT
-1705 tabsC cc2xywh            cc= 179 old= 179 [  480  240 120  60   6]  608.00  370.00   64.00   20.00 t.text=-   13   20 C C
-1982 tabsC on_mouse_release   [2 1 1 10 6] 180 174 30]     after  plsct=[2 1 1 10 6]
-1983 tabsC on_mouse_release   [2 1 1 10 6] 180 174 30] END x= 609 y0= 374 y= 106 ww=640.00 hh=480.00
-2789 tabsC snapshot           snapName=tabs.7.6.Upd137.png MOUSE RELEASE
-1975 tabsC on_mouse_release   [2 1 1 10 6] 180 174 30] BGN x= 608 y0= 138 y= 342 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d=17 text=-
-1976 tabsC on_mouse_release   [2 1 1 10 6] 180 174 30]     p=1 l=0=(d/m) s=2 c=9=(x/w-nz) t=17=(d-l*m)
-1980 tabsC on_mouse_release   [2 1 1 10 6] 180 174 30]     before plsct=[2 1 3 10 18]
-1722 tabsC plct2cc                 191 [  480  240 120  60   6] [2 2    2 6] ( 240 +120 + 60 +  6 +5)
-1725 tabsC cursorCol          cc=191 [1 1 1 5]
-1700 tabsC cc2xywh            tpp=240 old=191 lenT=240 cc=191 old % lenT
-1705 tabsC cc2xywh            cc= 191 old= 191 [  480  240 120  60   6]   96.00  130.00   64.00   20.00 t.text=-   13   20 C C
-1982 tabsC on_mouse_release   [2 2 2  2 6] 192 186 32]     after  plsct=[2 1 3 10 18]
-1983 tabsC on_mouse_release   [2 2 2  2 6] 192 186 32] END x= 608 y0= 138 y= 342 ww=640.00 hh=480.00
-2789 tabsC snapshot           snapName=tabs.7.7.Upd179.png MOUSE RELEASE
-1975 tabsC on_mouse_release   [2 2 2  2 6] 192 186 32] BGN x= 606 y0= 128 y= 352 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d=17 text=-
-1976 tabsC on_mouse_release   [2 2 2  2 6] 192 186 32]     p=1 l=0=(d/m) s=2 c=9=(x/w-nz) t=17=(d-l*m)
-1980 tabsC on_mouse_release   [2 2 2  2 6] 192 186 32]     before plsct=[2 1 3 10 18]
-1722 tabsC plct2cc                 191 [  480  240 120  60   6] [2 2    2 6] ( 240 +120 + 60 +  6 +5)
-1725 tabsC cursorCol          cc=191 [1 1 1 5]
-1700 tabsC cc2xywh            tpp=240 old=191 lenT=240 cc=191 old % lenT
-1705 tabsC cc2xywh            cc= 191 old= 191 [  480  240 120  60   6]   96.00  130.00   64.00   20.00 t.text=-   13   20 C C
-1982 tabsC on_mouse_release   [2 2 2  2 6] 192 186 32]     after  plsct=[2 1 3 10 18]
-1983 tabsC on_mouse_release   [2 2 2  2 6] 192 186 32] END x= 606 y0= 128 y= 352 ww=640.00 hh=480.00
-2789 tabsC snapshot           snapName=tabs.7.8.Upd191.png MOUSE RELEASE
-2075 tabsC on_key_press       Unexpected <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1722 tabsC plct2cc                 197 [  480  240 120  60   6] [2 2    3 6] ( 240 +120 + 60 + 12 +5)
-1725 tabsC cursorCol          cc=197 [1 1 2 5]
-1700 tabsC cc2xywh            tpp=240 old=197 lenT=240 cc=197 old % lenT
-1705 tabsC cc2xywh            cc= 197 old= 197 [  480  240 120  60   6]  160.00  130.00   64.00   20.00 t.text=-   13   20 C C
-2789 tabsC snapshot           snapName=tabs.7.9.Upd191.png  RIGHT (         65363)
-2075 tabsC on_key_press       Unexpected <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1722 tabsC plct2cc                 203 [  480  240 120  60   6] [2 2    4 6] ( 240 +120 + 60 + 18 +5)
-1725 tabsC cursorCol          cc=203 [1 1 3 5]
-1700 tabsC cc2xywh            tpp=240 old=203 lenT=240 cc=203 old % lenT
-1705 tabsC cc2xywh            cc= 203 old= 203 [  480  240 120  60   6]  224.00  130.00   64.00   20.00 t.text=-   13   20 C C
-2789 tabsC snapshot           snapName=tabs.7.10.Upd197.png  RIGHT (         65363)
-2075 tabsC on_key_press       Unexpected <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1722 tabsC plct2cc                 209 [  480  240 120  60   6] [2 2    5 6] ( 240 +120 + 60 + 24 +5)
-1725 tabsC cursorCol          cc=209 [1 1 4 5]
-1700 tabsC cc2xywh            tpp=240 old=209 lenT=240 cc=209 old % lenT
-1705 tabsC cc2xywh            cc= 209 old= 209 [  480  240 120  60   6]  288.00  130.00   64.00   20.00 t.text=-   13   20 C C
-2075 tabsC on_key_press       Unexpected <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1722 tabsC plct2cc                 215 [  480  240 120  60   6] [2 2    6 6] ( 240 +120 + 60 + 30 +5)
-1725 tabsC cursorCol          cc=215 [1 1 5 5]
-1700 tabsC cc2xywh            tpp=240 old=215 lenT=240 cc=215 old % lenT
-1705 tabsC cc2xywh            cc= 215 old= 215 [  480  240 120  60   6]  352.00  130.00   64.00   20.00 t.text=-   13   20 C C
-2075 tabsC on_key_press       Unexpected <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1722 tabsC plct2cc                 221 [  480  240 120  60   6] [2 2    7 6] ( 240 +120 + 60 + 36 +5)
-1725 tabsC cursorCol          cc=221 [1 1 6 5]
-1700 tabsC cc2xywh            tpp=240 old=221 lenT=240 cc=221 old % lenT
-1705 tabsC cc2xywh            cc= 221 old= 221 [  480  240 120  60   6]  416.00  130.00   64.00   20.00 t.text=-   13   20 C C
-2789 tabsC snapshot           snapName=tabs.7.11.Upd215.png  RIGHT (         65363)
-2075 tabsC on_key_press       Unexpected <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1722 tabsC plct2cc                 227 [  480  240 120  60   6] [2 2    8 6] ( 240 +120 + 60 + 42 +5)
-1725 tabsC cursorCol          cc=227 [1 1 7 5]
-1700 tabsC cc2xywh            tpp=240 old=227 lenT=240 cc=227 old % lenT
-1705 tabsC cc2xywh            cc= 227 old= 227 [  480  240 120  60   6]  480.00  130.00   64.00   20.00 t.text=-   13   20 C C
-2075 tabsC on_key_press       Unexpected <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1722 tabsC plct2cc                 233 [  480  240 120  60   6] [2 2    9 6] ( 240 +120 + 60 + 48 +5)
-1725 tabsC cursorCol          cc=233 [1 1 8 5]
-1700 tabsC cc2xywh            tpp=240 old=233 lenT=240 cc=233 old % lenT
-1705 tabsC cc2xywh            cc= 233 old= 233 [  480  240 120  60   6]  544.00  130.00   64.00   20.00 t.text=-   13   20 C C
-2789 tabsC snapshot           snapName=tabs.7.12.Upd227.png  RIGHT (         65363)
-2075 tabsC on_key_press       Unexpected <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1722 tabsC plct2cc                 239 [  480  240 120  60   6] [2 2   10 6] ( 240 +120 + 60 + 54 +5)
-1725 tabsC cursorCol          cc=239 [1 1 9 5]
-1700 tabsC cc2xywh            tpp=240 old=239 lenT=240 cc=239 old % lenT
-1705 tabsC cc2xywh            cc= 239 old= 239 [  480  240 120  60   6]  608.00  130.00   64.00   20.00 t.text=-   13   20 C C
-2789 tabsC snapshot           snapName=tabs.7.13.Upd233.png  RIGHT (         65363)
-2075 tabsC on_key_press       Unexpected <.kbk=_1      > <.symb=      49> <.symbStr=_1              > <.mods= 0> <.modsStr=                >
-1722 tabsC plct2cc                 239 [  480  240 120  60   6] [2 2   10 6] ( 240 +120 + 60 + 54 +5)
-1725 tabsC cursorCol          cc=239 [1 1 9 5]
-1865 tabsC setTab             [2 2 2 10 6] 240 234 40] BGN onTxt text=1 rev=0 old=239 cc=239 p=1 l=1 c=9 t=5
-1868 tabsC setTab              tp= 60 dtp=3 mtp=0 cc2= 60
+1979 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1]     after  plsct=[1 1 1  1 1]
+1980 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1] END x=  25 y0= 465 y=  15 ww=640.00 hh=480.00
+2803 tabsC snapshot           snapName=tabs.30.1.Upd5.png MOUSE RELEASE
+1975 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1] BGN x=  28 y0= 354 y= 126 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d= 6 text=6
+1976 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1]     p=1 l=1=(d/m) s=1=(d//nt) c=1=(x/w) t=2=(d-l*m)
+1977 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1]     before plsct=[1 1 1  1 2]
+1722 tabsC plct2cc                   1 [  480  240 120  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
+1725 tabsC cursorCol          cc=  1 [0 0 0 1]
+1700 tabsC cc2xywh            tpp=240 old=1 lenT=240 cc=1 old % lenT
+1705 tabsC cc2xywh            cc=   1 old=   1 [  480  240 120  60   6]   32.00  450.00   64.00   20.00 t.text=5   13   20 C C
+1979 tabsC on_mouse_release   [1 1 1  1 2]   2   0  1]     after  plsct=[1 1 1  1 2]
+1980 tabsC on_mouse_release   [1 1 1  1 2]   2   0  1] END x=  28 y0= 354 y= 126 ww=640.00 hh=480.00
+2803 tabsC snapshot           snapName=tabs.30.2.Upd0.png MOUSE RELEASE
+1975 tabsC on_mouse_release   [1 1 1  1 2]   2   0  1] BGN x=  29 y0= 233 y= 247 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d=12 text=5
+1976 tabsC on_mouse_release   [1 1 1  1 2]   2   0  1]     p=1 l=2=(d/m) s=1=(d//nt) c=1=(x/w) t=1=(d-l*m)
+1977 tabsC on_mouse_release   [1 1 1  1 2]   2   0  1]     before plsct=[1 2 1  1 1]
+1722 tabsC plct2cc                  60 [  480  240 120  60   6] [1 2    1 1] (   0 +120 + 60 +  0 +0)
+1725 tabsC cursorCol          cc= 60 [0 1 0 0]
+1700 tabsC cc2xywh            tpp=240 old=60 lenT=240 cc=60 old % lenT
+1705 tabsC cc2xywh            cc=  60 old=  60 [  480  240 120  60   6]   32.00  230.00   64.00   20.00 t.text=h   13   20 C C
+1979 tabsC on_mouse_release   [1 2 1  1 1]  61  60 11]     after  plsct=[1 2 1  1 1]
+1980 tabsC on_mouse_release   [1 2 1  1 1]  61  60 11] END x=  29 y0= 233 y= 247 ww=640.00 hh=480.00
+2803 tabsC snapshot           snapName=tabs.30.3.Upd1.png MOUSE RELEASE
+1975 tabsC on_mouse_release   [1 2 1  1 1]  61  60 11] BGN x=  30 y0= 111 y= 369 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d=18 text=h
+1976 tabsC on_mouse_release   [1 2 1  1 1]  61  60 11]     p=1 l=2=(d/m) s=1=(d//nt) c=1=(x/w) t=2=(d-l*m)
+1977 tabsC on_mouse_release   [1 2 1  1 1]  61  60 11]     before plsct=[1 2 1  1 2]
+1722 tabsC plct2cc                  61 [  480  240 120  60   6] [1 2    1 2] (   0 +120 + 60 +  0 +1)
+1725 tabsC cursorCol          cc= 61 [0 1 0 1]
+1700 tabsC cc2xywh            tpp=240 old=61 lenT=240 cc=61 old % lenT
+1705 tabsC cc2xywh            cc=  61 old=  61 [  480  240 120  60   6]   32.00  210.00   64.00   20.00 t.text=g   13   20 C C
+1979 tabsC on_mouse_release   [1 2 1  1 2]  62  60 11]     after  plsct=[1 2 1  1 2]
+1980 tabsC on_mouse_release   [1 2 1  1 2]  62  60 11] END x=  30 y0= 111 y= 369 ww=640.00 hh=480.00
+2803 tabsC snapshot           snapName=tabs.30.4.Upd60.png MOUSE RELEASE
+2072 tabsC on_key_press       Unexpected <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2072 tabsC on_key_press       Unexpected <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp             pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz dpi B I FontName
-2833 tabsC quit               BGN  tp= 60 dtp=3 mtp=0 cc2= 60 Error=1 save=1 .quitting=0
+2847 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
-2789 tabsC snapshot           snapName=tabs.7.14.QUIT.png quit 1 save=1
-2844 tabsC quit               END  tp= 60 dtp=3 mtp=0 cc2= 60 Error=1 save=1 .quitting=1
+ 153 tabsC dumpArgs           [a]      .AUTO_SAVE=0
+ 154 tabsC dumpArgs           [A]         .VARROW=1
+ 155 tabsC dumpArgs           [b]        .FRT_BRD=0
+ 156 tabsC dumpArgs           [B]            .BGC=0
+ 157 tabsC dumpArgs           [c]            .CAT=1
+ 158 tabsC dumpArgs           [C]      .CHECKERED=0
+ 159 tabsC dumpArgs           [d]       .DBG_TABT=0
+ 160 tabsC dumpArgs           [e]      .EVENT_LOG=0
+ 161 tabsC dumpArgs           [f]      .FILE_NAME=Test/test
+ 162 tabsC dumpArgs           [F]      .FULL_SCRN=0
+ 163 tabsC dumpArgs           [g]        .ORD_GRP=1
+ 164 tabsC dumpArgs           [G]       .GEN_DATA=0
+ 165 tabsC dumpArgs           [i]               i=[1 2 1 1 2]
+ 166 tabsC dumpArgs           [I]           .PIDX=0
+ 167 tabsC dumpArgs           [L]             .LL=0
+ 168 tabsC dumpArgs           [M]      .MULTILINE=1
+ 169 tabsC dumpArgs           [n]               n=[2 2 2 10 6]
+ 170 tabsC dumpArgs           [o]           .OIDS=0
+ 171 tabsC dumpArgs           [p]          .SNAPS=1
+ 172 tabsC dumpArgs           [q]      .TEST_EXIT=0
+ 173 tabsC dumpArgs           [R]         .RESIZE=1
+ 174 tabsC dumpArgs           [s]        .SPRITES=1
+ 175 tabsC dumpArgs           [S]             .SS=[0 1]
+ 176 tabsC dumpArgs           [t]           .TEST=0
+ 177 tabsC dumpArgs           [T]       .LONG_TXT=1
+ 178 tabsC dumpArgs           [u]         .SUBPIX=1
+ 179 tabsC dumpArgs           [v]           .VRBY=0
+ 180 tabsC dumpArgs           [V]          .VIEWS=0
+ 181 tabsC dumpArgs           [w]           .XYVA=[0, 0, 0, 0]
+ 182 tabsC dumpArgs           [Z]             .ZZ=[]
+1824 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels @^Q
+2803 tabsC snapshot           snapName=tabs.30.5.QUIT.png quit 0 save=0
+2858 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
  528 util  getFilePath        baseName =Test/test.2.2.2.10.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =Test/test.2.2.2.10.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.2.2.2.10.6.csv)
- 528 util  getFilePath        baseName =tabs.7       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.7.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.7.csv)
-2868 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.2.2.2.10.6.csv
+ 528 util  getFilePath        baseName =tabs.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.30.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.30.csv)
+2882 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.2.2.2.10.6.csv
         1 file(s) copied.
-2871 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.7.csv
+2885 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.30.csv
         1 file(s) copied.
-2847 tabsC quit               END  tp= 60 dtp=3 mtp=0 cc2= 60 Error=1 save=1 .quitting=1
+2861 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-Calling close(),1713 tabsC plc2cn               59  354 [  480  240 120  60   6] plc=[2 2   10] (p*tpp= 240 +l*tpl=120 +c*tpc= 54)
-1722 tabsC plct2cc                 238 [  480  240 120  60   6] [2 2   10 5] ( 240 +120 + 60 + 54 +4)
-1725 tabsC cursorCol          cc=238 [1 1 9 4]
-1700 tabsC cc2xywh            tpp=240 old=238 lenT=240 cc=238 old % lenT
-1705 tabsC cc2xywh            cc= 238 old= 238 [  480  240 120  60   6]  608.00  150.00   64.00   20.00 t.text=-   13   20 C C
-        1 file(s) copied.
+Calling close(),        1 file(s) copied.
  528 util  getFilePath        baseName =Test/test.2.2.2.10.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =Test/test.2.2.2.10.6.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/Test/test.2.2.2.10.6.log)
         1 file(s) copied.
