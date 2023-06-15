@@ -25,30 +25,30 @@ b,6,1,8,3,a,5,0,7,2,9,4,b,6,1
 Cb,Gb,Db,Ab,Eb,Bb,F,C,G,D,A,E,B,F#,C#
 Fb,Cb,Gb,Db,Ab,Eb,Bb,,F#,C#,G#,D#,A#,E#,B#
 4,b,6,1,8,3,a,,6,1,8,3,a,5,0
- 544 util  parseCmdLine       argv=[-n 2 2 10 6 -S 0 1 -i 1 1 1 6 -f Test/test -s -w 0 0 0 0]
+ 544 util  parseCmdLine       argv=[-n 1 1 10 6 -S 0 -i 1 1 1 6 -f Test/test -L -s -w 0 0 0 0]
 C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
  560 util  parseCmdLine        1 short   -n n [] 
- 578 util  parseCmdLine        2 arg     2  n [2] 
- 578 util  parseCmdLine        3 arg     2  n [2 2] 
- 578 util  parseCmdLine        4 arg     10 n [2 2 10] 
- 578 util  parseCmdLine        5 arg     6  n [2 2 10 6] 
+ 578 util  parseCmdLine        2 arg     1  n [1] 
+ 578 util  parseCmdLine        3 arg     1  n [1 1] 
+ 578 util  parseCmdLine        4 arg     10 n [1 1 10] 
+ 578 util  parseCmdLine        5 arg     6  n [1 1 10 6] 
  560 util  parseCmdLine        6 short   -S S [] 
  578 util  parseCmdLine        7 arg     0  S [0] 
- 578 util  parseCmdLine        8 arg     1  S [0 1] 
- 560 util  parseCmdLine        9 short   -i i [] 
- 578 util  parseCmdLine       10 arg     1  i [1] 
- 578 util  parseCmdLine       11 arg     1  i [1 1] 
- 578 util  parseCmdLine       12 arg     1  i [1 1 1] 
- 578 util  parseCmdLine       13 arg     6  i [1 1 1 6] 
- 560 util  parseCmdLine       14 short   -f f [] 
- 578 util  parseCmdLine       15 arg     Test/test f [Test/test] 
+ 560 util  parseCmdLine        8 short   -i i [] 
+ 578 util  parseCmdLine        9 arg     1  i [1] 
+ 578 util  parseCmdLine       10 arg     1  i [1 1] 
+ 578 util  parseCmdLine       11 arg     1  i [1 1 1] 
+ 578 util  parseCmdLine       12 arg     6  i [1 1 1 6] 
+ 560 util  parseCmdLine       13 short   -f f [] 
+ 578 util  parseCmdLine       14 arg     Test/test f [Test/test] 
+ 560 util  parseCmdLine       15 short   -L L [] 
  560 util  parseCmdLine       16 short   -s s [] 
  560 util  parseCmdLine       17 short   -w w [] 
  578 util  parseCmdLine       18 arg     0  w [0] 
  578 util  parseCmdLine       19 arg     0  w [0 0] 
  578 util  parseCmdLine       20 arg     0  w [0 0 0] 
  578 util  parseCmdLine       21 arg     0  w [0 0 0 0] 
- 580 util  parseCmdLine       options=[n:[2 2 10 6]] [S:[0 1]] [i:[1 1 1 6]] [f:[Test/test]] [s:[]] [w:[0 0 0 0]]
+ 580 util  parseCmdLine       options=[n:[1 1 10 6]] [S:[0]] [i:[1 1 1 6]] [f:[Test/test]] [L:[]] [s:[]] [w:[0 0 0 0]]
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs.log     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
@@ -74,22 +74,22 @@ C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
  539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs._.csv ###
         1 file(s) copied.
 C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-3027 tabsC <module>           argv=[-n 2 2 10 6 -S 0 1 -i 1 1 1 6 -f Test/test -s -w 0 0 0 0]
+3033 tabsC <module>           argv=[-n 1 1 10 6 -S 0 -i 1 1 1 6 -f Test/test -L -s -w 0 0 0 0]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-3031 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
-3031 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
-3032 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
-3032 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
-2908 tabsC dumpGlobals        BASE_NAME = tabs
-2909 tabsC dumpGlobals        argv      = +22[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -n 2 2 10 6 -S 0 1 -i 1 1 1 6 -f Test/test -s -w 0 0 0 0]
-2910 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2911 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
- 528 util  getFilePath        baseName =tabs.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.30.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.30.log)
- 528 util  getFilePath        baseName =tabs.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.30.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.30.csv)
- 528 util  getFilePath        baseName =tabs.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.30.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.30.cat)
+3037 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
+3037 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\csvs\\tabs.csv
+3038 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.log)
+3038 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\logs\\tabs.log
+2914 tabsC dumpGlobals        BASE_NAME = tabs
+2915 tabsC dumpGlobals        argv      = +22[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -n 1 1 10 6 -S 0 -i 1 1 1 6 -f Test/test -L -s -w 0 0 0 0]
+2916 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2917 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs
+ 528 util  getFilePath        baseName =tabs.13      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.13.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/tabs.13.log)
+ 528 util  getFilePath        baseName =tabs.13      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.13.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.13.csv)
+ 528 util  getFilePath        baseName =tabs.13      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.13.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/cats/tabs.13.cat)
  153 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  154 tabsC dumpArgs           [A]         .VARROW=1
  155 tabsC dumpArgs           [b]        .FRT_BRD=0
@@ -104,15 +104,15 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
  164 tabsC dumpArgs           [G]       .GEN_DATA=0
  165 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
  166 tabsC dumpArgs           [I]           .PIDX=0
- 167 tabsC dumpArgs           [L]             .LL=0
+ 167 tabsC dumpArgs           [L]             .LL=1
  168 tabsC dumpArgs           [M]      .MULTILINE=1
- 169 tabsC dumpArgs           [n]               n=[2 2 2 10 6]
+ 169 tabsC dumpArgs           [n]               n=[1 1 1 10 6]
  170 tabsC dumpArgs           [o]           .OIDS=0
  171 tabsC dumpArgs           [p]          .SNAPS=1
  172 tabsC dumpArgs           [q]      .TEST_EXIT=0
  173 tabsC dumpArgs           [R]         .RESIZE=1
  174 tabsC dumpArgs           [s]        .SPRITES=1
- 175 tabsC dumpArgs           [S]             .SS=[0 1]
+ 175 tabsC dumpArgs           [S]             .SS=[0]
  176 tabsC dumpArgs           [t]           .TEST=0
  177 tabsC dumpArgs           [T]       .LONG_TXT=1
  178 tabsC dumpArgs           [u]         .SUBPIX=1
@@ -121,1170 +121,187 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
  181 tabsC dumpArgs           [w]           .XYVA=[0, 0, 0, 0]
  182 tabsC dumpArgs           [Z]             .ZZ=[]
         1 file(s) copied.
-1811 tabsC _initFonts         w=64.000=.width =640/(10)                 FONT_SCALE=0.778 fs=w*FONT_SCALE=15.000pt
-1812 tabsC _initFonts         h=20.000=.height=480/(nl=2 * ns=2 * nt=6) FONT_SCALE=0.778 fs=h*FONT_SCALE=15.000pt
-1824 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels 
-1270 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+1818 tabsC _initFonts         w=64.000=.width =640/(10)                 FONT_SCALE=0.778 fs=w*FONT_SCALE=62.000pt
+1819 tabsC _initFonts         h=68.571=.height=480/(nl=1 * ns=1 * nt=6) FONT_SCALE=0.778 fs=h*FONT_SCALE=62.000pt
+1831 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels 
+1273 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V         x y AncX AncY   
 Page    1 V C C  320  240    
-Line    1 V C C  320  120    
-Sect    1 V C C  320   60    
-Colm    1 V C C   32   60    
+Line    1 V C C  320  240    
+Sect    1 V C C  320  240    
+Colm    1 V C C   32  240    
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 6        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        6
-Tabl    2 V 5        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        5
-Tabl    3 V 4        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        4
-Tabl    4 V 3        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        3
-Tabl    5 V 2        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        2
-Tabl    6 V 1        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        1
-Colm    2 V C C   32   60    
+Tabl    1 V 6        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        6
+Tabl    2 V 5        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        5
+Tabl    3 V 4        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        4
+Tabl    4 V 3        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        3
+Tabl    5 V 2        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        2
+Tabl    6 V 1        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        1
+1281 tabsC g_createTniks      .LL=1 j=4 i2=6 yield None
+Colm    2 V C C   32  240    
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V c        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        c
-Tabl    2 V b        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        b
-Tabl    3 V a        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        a
-Tabl    4 V 9        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        9
-Tabl    5 V 8        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        8
-Tabl    6 V 7        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        7
-Colm    3 V C C   32   60    
+Tabl    1 V c        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        c
+Tabl    2 V b        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        b
+Tabl    3 V a        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        a
+Tabl    4 V 9        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        9
+Tabl    5 V 8        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        8
+Tabl    6 V 7        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        7
+1281 tabsC g_createTniks      .LL=1 j=4 i2=6 yield None
+Colm    3 V C C   32  240    
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    4 V C C   32   60    
+Tabl    1 V i        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        i
+Tabl    2 V h        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        h
+Tabl    3 V g        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        g
+Tabl    4 V f        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        f
+Tabl    5 V e        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        e
+Tabl    6 V d        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        d
+1281 tabsC g_createTniks      .LL=1 j=4 i2=6 yield None
+Colm    4 V C C   32  240    
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    5 V C C   32   60    
+Tabl    1 V o        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        o
+Tabl    2 V n        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        n
+Tabl    3 V m        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        m
+Tabl    4 V l        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        l
+Tabl    5 V k        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        k
+Tabl    6 V j        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        j
+1281 tabsC g_createTniks      .LL=1 j=4 i2=6 yield None
+Colm    5 V C C   32  240    
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    6 V C C   32   60    
+Tabl    1 V 6        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        6
+Tabl    2 V 5        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        5
+Tabl    3 V 4        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        4
+Tabl    4 V 3        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        3
+Tabl    5 V 2        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        2
+Tabl    6 V 1        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        1
+1281 tabsC g_createTniks      .LL=1 j=4 i2=6 yield None
+Colm    6 V C C   32  240    
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    7 V C C   32   60    
+Tabl    1 V c        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        c
+Tabl    2 V b        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        b
+Tabl    3 V a        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        a
+Tabl    4 V 9        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        9
+Tabl    5 V 8        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        8
+Tabl    6 V 7        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        7
+1281 tabsC g_createTniks      .LL=1 j=4 i2=6 yield None
+Colm    7 V C C   32  240    
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    8 V C C   32   60    
+Tabl    1 V i        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        i
+Tabl    2 V h        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        h
+Tabl    3 V g        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        g
+Tabl    4 V f        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        f
+Tabl    5 V e        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        e
+Tabl    6 V d        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        d
+1281 tabsC g_createTniks      .LL=1 j=4 i2=6 yield None
+Colm    8 V C C   32  240    
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    9 V C C   32   60    
+Tabl    1 V o        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        o
+Tabl    2 V n        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        n
+Tabl    3 V m        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        m
+Tabl    4 V l        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        l
+Tabl    5 V k        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        k
+Tabl    6 V j        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        j
+1281 tabsC g_createTniks      .LL=1 j=4 i2=6 yield None
+Colm    9 V C C   32  240    
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm   10 V C C   32   60    
+Tabl    1 V 6        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        6
+Tabl    2 V 5        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        5
+Tabl    3 V 4        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        4
+Tabl    4 V 3        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        3
+Tabl    5 V 2        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        2
+Tabl    6 V 1        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        1
+1281 tabsC g_createTniks      .LL=1 j=4 i2=6 yield None
+Colm   10 V C C   32  240    
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Sect    2 V C C  320   60    
-Colm    1 V C C   32   60    
-Note    1 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note    2 V E        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        E
-Note    3 V B        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        B
-Note    4 V F        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        F
-Note    5 V B        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        B
-Note    6 V F        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        F
-Colm    2 V C C   32   60    
-Note    1 V E        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        E
-Note    2 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note    3 V F        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        F
-Note    4 V B        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        B
-Note    5 V F        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        F
-Note    6 V B        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        B
-Colm    3 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    4 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    5 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    6 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    7 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    8 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    9 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm   10 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Line    2 V C C  320  120    
-Sect    1 V C C  320   60    
-Colm    1 V C C   32   60    
+Tabl    1 V c        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        c
+Tabl    2 V b        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        b
+Tabl    3 V a        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        a
+Tabl    4 V 9        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        9
+Tabl    5 V 8        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        8
+Tabl    6 V 7        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        7
+1281 tabsC g_createTniks      .LL=1 j=4 i2=6 yield None
+1729 tabsC plct2cc                   5 [   60   60  60  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1732 tabsC cursorCol          cc=  5 [0 0 0 5]
+1707 tabsC cc2xywh            tpp=60 old=5 lenT=60 cc=5 old % lenT
+1712 tabsC cc2xywh            cc=   5 old=   5 [   60   60  60  60   6]   32.00  102.86   64.00   68.57 t.text=1   50   83 C C
+HCrs    1 V C C   32   34    
+1831 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels New1
+ 321 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+3040 tabsC main               str(tabs)={n: [1, 1, 10, 6], S: [0], i: [1, 1, 1, 6], f: [Test/test], L: [], s: [], w: [0, 0, 0, 0]}
+3040 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [1, 1, 10, 6], S: [0], i: [1, 1, 1, 6], f: [Test/test], L: [], s: [], w: [0, 0, 0, 0]}
+1394 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V h        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        h
-Tabl    2 V g        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        g
-Tabl    3 V f        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        f
-Tabl    4 V e        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        e
-Tabl    5 V d        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        d
-Tabl    6 V a        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        a
-Colm    2 V C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V n        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        n
-Tabl    2 V m        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        m
-Tabl    3 V l        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        l
-Tabl    4 V k        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        k
-Tabl    5 V j        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        j
-Tabl    6 V i        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        i
-Colm    3 V C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    4 V C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    5 V C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    6 V C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    7 V C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    8 V C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    9 V C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm   10 V C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Sect    2 V C C  320   60    
-Colm    1 V C C   32   60    
-Note    1 V A        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        A
-Note    2 V Eb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Eb
-Note    3 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note    4 V E        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        E
-Note    5 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note    6 V D        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        D
-Colm    2 V C C   32   60    
-Note    1 V Eb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Eb
-Note    2 V A        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        A
-Note    3 V E        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        E
-Note    4 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note    5 V E        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        E
-Note    6 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Colm    3 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    4 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    5 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    6 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    7 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    8 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    9 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm   10 V C C   32   60    
-Note    1 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-1270 tabsC g_createTniks      j==P: i=1 v=0 .j()[P]=0 .i[P]=1
-Name  Tid V         x y AncX AncY   
-Page    2 I C C  320  240    
-Line    1 I C C  320  120    
-Sect    1 I C C  320   60    
-Colm    1 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    2 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    3 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    4 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    5 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    6 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    7 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    8 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    9 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm   10 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Sect    2 I C C  320   60    
-Colm    1 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    2 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    3 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    4 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    5 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    6 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    7 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    8 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    9 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm   10 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Line    2 I C C  320  120    
-Sect    1 I C C  320   60    
-Colm    1 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    2 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    3 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    4 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    5 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    6 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    7 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    8 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm    9 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Colm   10 I C C   32   60    
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Sect    2 I C C  320   60    
-Colm    1 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    2 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    3 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    4 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    5 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    6 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    7 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    8 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm    9 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Colm   10 I C C   32   60    
-Note    1 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    2 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    3 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    4 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    5 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note    6 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-1722 tabsC plct2cc                   5 [  480  240 120  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
-1725 tabsC cursorCol          cc=  5 [0 0 0 5]
-1700 tabsC cc2xywh            tpp=240 old=5 lenT=240 cc=5 old % lenT
-1705 tabsC cc2xywh            cc=   5 old=   5 [  480  240 120  60   6]   32.00  370.00   64.00   20.00 t.text=1   13   20 C C
-HCrs    1 V C C   32   10    
-1824 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels New1
- 321 tabsC _initTniks         -2 FLAT Bb a [Bb Eb A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [Bb C  D  Eb F  G  A ]
-3034 tabsC main               str(tabs)={n: [2, 2, 10, 6], S: [0, 1], i: [1, 1, 1, 6], f: [Test/test], s: [], w: [0, 0, 0, 0]}
-3034 tabsC main               tabs=Tabs .width=640 .height=480 ARGS={n: [2, 2, 10, 6], S: [0, 1], i: [1, 1, 1, 6], f: [Test/test], s: [], w: [0, 0, 0, 0]}
-1387 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
-Name  Tid V PrtlText x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 6        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        6
-Tabl    2 V 5        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        5
-Tabl    3 V 4        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        4
-Tabl    4 V 3        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        3
-Tabl    5 V 2        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        2
-Tabl    6 V 1        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        1
-Tabl    7 V c        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        c
-Tabl    8 V b        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        b
-Tabl    9 V a        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        a
-Tabl   10 V 9        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        9
-Tabl   11 V 8        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        8
-Tabl   12 V 7        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        7
-Tabl   13 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   14 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   15 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   16 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   17 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   18 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   19 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   20 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   21 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   22 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   23 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   24 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   25 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   26 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   27 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   28 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   29 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   30 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   31 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   32 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   33 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   34 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   35 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   36 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   37 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   38 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   39 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   40 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   41 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   42 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   43 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   44 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   45 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   46 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   47 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   48 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   49 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   50 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   51 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   52 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   53 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   54 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   55 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   56 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   57 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   58 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   59 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   60 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Note    1 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note    2 V E        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        E
-Note    3 V B        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        B
-Note    4 V F        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        F
-Note    5 V B        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        B
-Note    6 V F        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        F
-Note    7 V E        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        E
-Note    8 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note    9 V F        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        F
-Note   10 V B        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        B
-Note   11 V F        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        F
-Note   12 V B        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        B
-Note   13 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   14 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   15 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   16 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   17 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   18 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   19 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   20 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   21 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   22 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   23 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   24 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   25 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   26 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   27 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   28 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   29 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   30 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   31 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   32 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   33 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   34 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   35 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   36 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   37 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   38 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   39 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   40 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   41 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   42 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   43 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   44 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   45 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   46 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   47 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   48 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   49 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   50 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   51 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   52 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   53 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   54 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   55 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   56 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   57 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   58 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   59 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   60 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   61 V h        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        h
-Tabl   62 V g        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        g
-Tabl   63 V f        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        f
-Tabl   64 V e        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        e
-Tabl   65 V d        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        d
-Tabl   66 V a        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        a
-Tabl   67 V n        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        n
-Tabl   68 V m        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        m
-Tabl   69 V l        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        l
-Tabl   70 V k        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        k
-Tabl   71 V j        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        j
-Tabl   72 V i        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        i
-Tabl   73 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   74 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   75 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   76 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   77 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   78 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   79 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   80 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   81 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   82 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   83 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   84 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   85 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   86 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   87 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   88 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   89 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   90 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   91 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   92 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   93 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   94 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   95 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   96 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   97 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   98 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl   99 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  100 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  101 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  102 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  103 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  104 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  105 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  106 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  107 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  108 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  109 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  110 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  111 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  112 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  113 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  114 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  115 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  116 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  117 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  118 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  119 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  120 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Note   61 V A        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        A
-Note   62 V Eb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Eb
-Note   63 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note   64 V E        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        E
-Note   65 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note   66 V D        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        D
-Note   67 V Eb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Eb
-Note   68 V A        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        A
-Note   69 V E        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        E
-Note   70 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note   71 V E        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        E
-Note   72 V Bb       C C   32   10   26   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        Bb
-Note   73 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   74 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   75 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   76 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   77 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   78 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   79 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   80 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   81 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   82 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   83 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   84 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   85 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   86 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   87 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   88 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   89 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   90 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   91 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   92 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   93 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   94 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   95 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   96 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   97 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   98 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note   99 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  100 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  101 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  102 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  103 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  104 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  105 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  106 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  107 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  108 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  109 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  110 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  111 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  112 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  113 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  114 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  115 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  116 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  117 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  118 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  119 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  120 V -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-1387 tabsC g_resizeTniks      j==P: i=1 v=1 .j()[P]=0 .i[P]=1
-Tabl  121 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  122 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  123 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  124 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  125 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  126 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  127 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  128 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  129 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  130 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  131 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  132 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  133 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  134 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  135 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  136 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  137 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  138 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  139 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  140 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  141 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  142 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  143 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  144 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  145 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  146 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  147 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  148 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  149 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  150 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  151 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  152 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  153 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  154 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  155 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  156 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  157 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  158 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  159 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  160 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  161 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  162 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  163 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  164 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  165 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  166 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  167 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  168 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  169 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  170 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  171 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  172 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  173 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  174 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  175 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  176 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  177 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  178 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  179 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  180 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Note  121 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  122 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  123 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  124 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  125 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  126 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  127 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  128 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  129 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  130 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  131 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  132 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  133 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  134 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  135 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  136 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  137 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  138 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  139 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  140 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  141 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  142 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  143 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  144 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  145 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  146 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  147 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  148 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  149 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  150 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  151 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  152 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  153 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  154 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  155 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  156 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  157 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  158 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  159 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  160 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  161 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  162 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  163 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  164 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  165 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  166 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  167 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  168 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  169 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  170 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  171 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  172 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  173 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  174 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  175 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  176 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  177 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  178 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  179 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  180 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  181 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  182 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  183 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  184 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  185 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  186 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  187 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  188 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  189 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  190 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  191 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  192 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  193 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  194 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  195 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  196 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  197 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  198 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  199 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  200 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  201 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  202 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  203 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  204 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  205 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  206 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  207 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  208 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  209 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  210 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  211 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  212 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  213 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  214 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  215 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  216 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  217 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  218 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  219 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  220 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  221 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  222 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  223 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  224 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  225 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  226 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  227 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  228 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  229 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  230 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  231 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  232 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  233 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  234 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  235 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  236 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  237 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  238 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  239 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Tabl  240 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        -
-Note  181 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  182 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  183 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  184 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  185 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  186 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  187 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  188 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  189 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  190 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  191 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  192 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  193 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  194 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  195 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  196 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  197 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  198 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  199 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  200 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  201 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  202 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  203 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  204 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  205 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  206 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  207 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  208 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  209 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  210 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  211 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  212 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  213 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  214 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  215 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  216 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  217 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  218 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  219 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  220 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  221 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  222 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  223 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  224 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  225 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  226 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  227 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  228 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  229 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  230 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  231 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  232 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  233 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  234 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  235 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  236 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  237 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  238 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  239 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-Note  240 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [ 10 255  10 195] [  2  52   2 195] 0 0 0 1 1 c Lucida Console        -
-1722 tabsC plct2cc                   5 [  480  240 120  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
-1725 tabsC cursorCol          cc=  5 [0 0 0 5]
-1700 tabsC cc2xywh            tpp=240 old=5 lenT=240 cc=5 old % lenT
-1705 tabsC cc2xywh            cc=   5 old=   5 [  480  240 120  60   6]   32.00  370.00   64.00   20.00 t.text=1   13   20 C C
-1824 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels Upd1
-2803 tabsC snapshot           snapName=tabs.30.0.Upd5.png Upd1
-1975 tabsC on_mouse_release   [1 1 1  1 6]   6   0  1] BGN x=  25 y0= 465 y=  15 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d= 0 text=1
-1976 tabsC on_mouse_release   [1 1 1  1 6]   6   0  1]     p=1 l=1=(d/m) s=1=(d//nt) c=1=(x/w) t=1=(d-l*m)
-1977 tabsC on_mouse_release   [1 1 1  1 6]   6   0  1]     before plsct=[1 1 1  1 1]
-1722 tabsC plct2cc                   0 [  480  240 120  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
-1725 tabsC cursorCol          cc=  0 [0 0 0 0]
-1700 tabsC cc2xywh            tpp=240 old=0 lenT=240 cc=0 old % lenT
-1705 tabsC cc2xywh            cc=   0 old=   0 [  480  240 120  60   6]   32.00  470.00   64.00   20.00 t.text=6   13   20 C C
-1979 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1]     after  plsct=[1 1 1  1 1]
-1980 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1] END x=  25 y0= 465 y=  15 ww=640.00 hh=480.00
-2803 tabsC snapshot           snapName=tabs.30.1.Upd5.png MOUSE RELEASE
-1975 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1] BGN x=  28 y0= 354 y= 126 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d= 6 text=6
-1976 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1]     p=1 l=1=(d/m) s=1=(d//nt) c=1=(x/w) t=2=(d-l*m)
-1977 tabsC on_mouse_release   [1 1 1  1 1]   1   0  1]     before plsct=[1 1 1  1 2]
-1722 tabsC plct2cc                   1 [  480  240 120  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
-1725 tabsC cursorCol          cc=  1 [0 0 0 1]
-1700 tabsC cc2xywh            tpp=240 old=1 lenT=240 cc=1 old % lenT
-1705 tabsC cc2xywh            cc=   1 old=   1 [  480  240 120  60   6]   32.00  450.00   64.00   20.00 t.text=5   13   20 C C
-1979 tabsC on_mouse_release   [1 1 1  1 2]   2   0  1]     after  plsct=[1 1 1  1 2]
-1980 tabsC on_mouse_release   [1 1 1  1 2]   2   0  1] END x=  28 y0= 354 y= 126 ww=640.00 hh=480.00
-2803 tabsC snapshot           snapName=tabs.30.2.Upd0.png MOUSE RELEASE
-1975 tabsC on_mouse_release   [1 1 1  1 2]   2   0  1] BGN x=  29 y0= 233 y= 247 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d=12 text=5
-1976 tabsC on_mouse_release   [1 1 1  1 2]   2   0  1]     p=1 l=2=(d/m) s=1=(d//nt) c=1=(x/w) t=1=(d-l*m)
-1977 tabsC on_mouse_release   [1 1 1  1 2]   2   0  1]     before plsct=[1 2 1  1 1]
-1722 tabsC plct2cc                  60 [  480  240 120  60   6] [1 2    1 1] (   0 +120 + 60 +  0 +0)
-1725 tabsC cursorCol          cc= 60 [0 1 0 0]
-1700 tabsC cc2xywh            tpp=240 old=60 lenT=240 cc=60 old % lenT
-1705 tabsC cc2xywh            cc=  60 old=  60 [  480  240 120  60   6]   32.00  230.00   64.00   20.00 t.text=h   13   20 C C
-1979 tabsC on_mouse_release   [1 2 1  1 1]  61  60 11]     after  plsct=[1 2 1  1 1]
-1980 tabsC on_mouse_release   [1 2 1  1 1]  61  60 11] END x=  29 y0= 233 y= 247 ww=640.00 hh=480.00
-2803 tabsC snapshot           snapName=tabs.30.3.Upd1.png MOUSE RELEASE
-1975 tabsC on_mouse_release   [1 2 1  1 1]  61  60 11] BGN x=  30 y0= 111 y= 369 w= 64.00 h= 20.00 ll=0 nc=10 m=12 n=24 d=18 text=h
-1976 tabsC on_mouse_release   [1 2 1  1 1]  61  60 11]     p=1 l=2=(d/m) s=1=(d//nt) c=1=(x/w) t=2=(d-l*m)
-1977 tabsC on_mouse_release   [1 2 1  1 1]  61  60 11]     before plsct=[1 2 1  1 2]
-1722 tabsC plct2cc                  61 [  480  240 120  60   6] [1 2    1 2] (   0 +120 + 60 +  0 +1)
-1725 tabsC cursorCol          cc= 61 [0 1 0 1]
-1700 tabsC cc2xywh            tpp=240 old=61 lenT=240 cc=61 old % lenT
-1705 tabsC cc2xywh            cc=  61 old=  61 [  480  240 120  60   6]   32.00  210.00   64.00   20.00 t.text=g   13   20 C C
-1979 tabsC on_mouse_release   [1 2 1  1 2]  62  60 11]     after  plsct=[1 2 1  1 2]
-1980 tabsC on_mouse_release   [1 2 1  1 2]  62  60 11] END x=  30 y0= 111 y= 369 ww=640.00 hh=480.00
-2803 tabsC snapshot           snapName=tabs.30.4.Upd60.png MOUSE RELEASE
-2072 tabsC on_key_press       Unexpected <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2072 tabsC on_key_press       Unexpected <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+Tabl    1 V 6        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        6
+Tabl    2 V 5        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        5
+Tabl    3 V 4        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        4
+Tabl    4 V 3        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        3
+Tabl    5 V 2        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        2
+Tabl    6 V 1        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        1
+Tabl    7 V c        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        c
+Tabl    8 V b        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        b
+Tabl    9 V a        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        a
+Tabl   10 V 9        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        9
+Tabl   11 V 8        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        8
+Tabl   12 V 7        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        7
+Tabl   13 V i        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        i
+Tabl   14 V h        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        h
+Tabl   15 V g        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        g
+Tabl   16 V f        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        f
+Tabl   17 V e        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        e
+Tabl   18 V d        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        d
+Tabl   19 V o        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        o
+Tabl   20 V n        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        n
+Tabl   21 V m        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        m
+Tabl   22 V l        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        l
+Tabl   23 V k        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        k
+Tabl   24 V j        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        j
+Tabl   25 V 6        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        6
+Tabl   26 V 5        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        5
+Tabl   27 V 4        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        4
+Tabl   28 V 3        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        3
+Tabl   29 V 2        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        2
+Tabl   30 V 1        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        1
+Tabl   31 V c        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        c
+Tabl   32 V b        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        b
+Tabl   33 V a        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        a
+Tabl   34 V 9        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        9
+Tabl   35 V 8        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        8
+Tabl   36 V 7        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        7
+Tabl   37 V i        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        i
+Tabl   38 V h        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        h
+Tabl   39 V g        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        g
+Tabl   40 V f        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        f
+Tabl   41 V e        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        e
+Tabl   42 V d        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        d
+Tabl   43 V o        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        o
+Tabl   44 V n        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        n
+Tabl   45 V m        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        m
+Tabl   46 V l        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        l
+Tabl   47 V k        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        k
+Tabl   48 V j        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        j
+Tabl   49 V 6        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        6
+Tabl   50 V 5        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        5
+Tabl   51 V 4        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        4
+Tabl   52 V 3        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        3
+Tabl   53 V 2        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        2
+Tabl   54 V 1        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        1
+Tabl   55 V c        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        c
+Tabl   56 V b        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        b
+Tabl   57 V a        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        a
+Tabl   58 V 9        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        9
+Tabl   59 V 8        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        8
+Tabl   60 V 7        C C   32   34   50   83 C C   65  -18   83   62    0 None [255 176  10 195] [  8   6   0 195] 0 0 0 1 1 c Lucida Console        7
+1729 tabsC plct2cc                   5 [   60   60  60  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1732 tabsC cursorCol          cc=  5 [0 0 0 5]
+1707 tabsC cc2xywh            tpp=60 old=5 lenT=60 cc=5 old % lenT
+1712 tabsC cc2xywh            cc=   5 old=   5 [   60   60  60  60   6]   32.00  102.86   64.00   68.57 t.text=1   50   83 C C
+1831 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels Upd1
+2809 tabsC snapshot           snapName=tabs.13.0.Upd5.png Upd1
+2077 tabsC on_key_press       Unexpected <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2077 tabsC on_key_press       Unexpected <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 1> <.modsStr=MOD_SHIFT       >
+2077 tabsC on_key_press       Unexpected <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp             pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis     X       Y       W       H    CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AncX AncY CntW CntH v a Ascn Dscn nA-D FnSz dpi B I FontName
-2847 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
+2853 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
@@ -1300,17 +317,17 @@ Note  240 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [
  162 tabsC dumpArgs           [F]      .FULL_SCRN=0
  163 tabsC dumpArgs           [g]        .ORD_GRP=1
  164 tabsC dumpArgs           [G]       .GEN_DATA=0
- 165 tabsC dumpArgs           [i]               i=[1 2 1 1 2]
+ 165 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
  166 tabsC dumpArgs           [I]           .PIDX=0
- 167 tabsC dumpArgs           [L]             .LL=0
+ 167 tabsC dumpArgs           [L]             .LL=1
  168 tabsC dumpArgs           [M]      .MULTILINE=1
- 169 tabsC dumpArgs           [n]               n=[2 2 2 10 6]
+ 169 tabsC dumpArgs           [n]               n=[1 1 1 10 6]
  170 tabsC dumpArgs           [o]           .OIDS=0
  171 tabsC dumpArgs           [p]          .SNAPS=1
  172 tabsC dumpArgs           [q]      .TEST_EXIT=0
  173 tabsC dumpArgs           [R]         .RESIZE=1
  174 tabsC dumpArgs           [s]        .SPRITES=1
- 175 tabsC dumpArgs           [S]             .SS=[0 1]
+ 175 tabsC dumpArgs           [S]             .SS=[0]
  176 tabsC dumpArgs           [t]           .TEST=0
  177 tabsC dumpArgs           [T]       .LONG_TXT=1
  178 tabsC dumpArgs           [u]         .SUBPIX=1
@@ -1318,24 +335,24 @@ Note  240 I -        C C   32   10   13   20 C C   16   -4   20   15    0 None [
  180 tabsC dumpArgs           [V]          .VIEWS=0
  181 tabsC dumpArgs           [w]           .XYVA=[0, 0, 0, 0]
  182 tabsC dumpArgs           [Z]             .ZZ=[]
-1824 tabsC dumpFont           4:96dpi 15.000pt 0:Lucida Console 0: 15.000pt = 0.778(pt/pix) * 19.286pixels @^Q
-2803 tabsC snapshot           snapName=tabs.30.5.QUIT.png quit 0 save=0
-2858 tabsC quit               END @^Q Error=0 save=0 .quitting=1
+1831 tabsC dumpFont           4:96dpi 62.000pt 0:Lucida Console 0: 62.000pt = 0.778(pt/pix) * 79.714pixels @^Q
+2809 tabsC snapshot           snapName=tabs.13.1.QUIT.png quit 0 save=0
+2864 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
  528 util  getFilePath        baseName =tabs         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
  531 util  getFilePath        fileName =tabs.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.csv)
- 528 util  getFilePath        baseName =Test/test.2.2.2.10.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =Test/test.2.2.2.10.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.2.2.2.10.6.csv)
- 528 util  getFilePath        baseName =tabs.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =tabs.30.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.30.csv)
-2882 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.2.2.2.10.6.csv
+ 528 util  getFilePath        baseName =Test/test.1.1.1.10.6.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =Test/test.1.1.1.10.6.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/Test/test.1.1.1.10.6.csv)
+ 528 util  getFilePath        baseName =tabs.13      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =tabs.13.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/csvs/tabs.13.csv)
+2888 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\Test\test.1.1.1.10.6.csv
         1 file(s) copied.
-2885 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.30.csv
+2891 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.csv to C:\Users\Owner\Documents\GitHub\tabs\csvs\tabs.13.csv
         1 file(s) copied.
-2861 tabsC quit               END @^Q Error=0 save=0 .quitting=1
+2867 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
 Calling close(),        1 file(s) copied.
- 528 util  getFilePath        baseName =Test/test.2.2.2.10.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
- 531 util  getFilePath        fileName =Test/test.2.2.2.10.6.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/Test/test.2.2.2.10.6.log)
+ 528 util  getFilePath        baseName =Test/test.1.1.1.10.6.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs)
+ 531 util  getFilePath        fileName =Test/test.1.1.1.10.6.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/logs/Test/test.1.1.1.10.6.log)
         1 file(s) copied.
 Thats all folks
