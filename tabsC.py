@@ -304,7 +304,7 @@ class Tabs(pyglet.window.Window):
             p   = None if self.ORD_GRP or i==0 else self.g[i-1]
             self.g.append(self._initGroup(i, p))
             self.log(f'g[{i}]={self.g[i]} p={self.g[i].parent}')
-    def _initGroup(self, order=0, parent=None): return pyglet.graphics.OrderedGroup(order, parent) if self.ORD_GRP else pyglet.graphics.Group(parent)
+    def _initGroup(self, order=0, parent=None): return pyglet.graphics.Group(order, parent) if self.ORD_GRP else pyglet.graphics.Group(parent)
     ####################################################################################################################################################################################################
     def _initTextLabels(self):
         self.labelTextA, self.labelTextB = [], []
@@ -597,7 +597,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'Every {dt:=7.4f} seconds, {why} {self.rsyncData=}')
         if self.rsyncData: self.saveDataFile(why, self.dataPath0)   ;  self.rsyncData = 0
     ####################################################################################################################################################################################################
-    def on_draw(self):
+    def on_draw(self, **kwargs):
         pyglet.gl.glClearColor(0, 0, 0, 0) # (1, 1, 1, 1) # (R, G, B, A)
         self.clear()
         self.batch.draw()

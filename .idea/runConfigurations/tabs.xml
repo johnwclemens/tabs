@@ -12,7 +12,7 @@
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tabs.py" />
-    <option name="PARAMETERS" value="-f test.0.dat -n 1 1 6 20 -e -s -G -a" />
+    <option name="PARAMETERS" value="tabsC.py -n 1 2 10 6 -S 0 1 -f Test/test -t -w 0 0 0 0  2&amp;&gt;stdo/tabs.txt" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />
