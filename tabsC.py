@@ -53,14 +53,7 @@ class Tabs(pyglet.window.Window):
         self.hArrow,   self.vArrow,   self.csrMode, self.tids    = RARROW, UARROW, CHORD, set()   ;   self.dumpCursorArrows('init()')
         self.tblank,   self.tblanki,  self.cursor,  self.data    = None, None, None, []
         self.XYVA      = [0, 0, 0, 0]
-        self.AX        = self.XYVA[0]
-        self.AY        = self.XYVA[1]
-        self.VA        = self.XYVA[2]
-        self.AA        = self.XYVA[3]
-        self.A_LEFT    = 1  if self.AA==-1 else 0  ;  self.A_CENTER = 1  if self.AA==0  else 0  ;  self.A_RIGHT  = 1 if self.AA==1 else 0
-        self.X_LEFT    = 1  if self.AX==-1 else 0  ;  self.X_CENTER = 1  if self.AX==0  else 0  ;  self.X_RIGHT  = 1 if self.AX==1 else 0
-        self.Y_BOTTOM  = 1  if self.AY==-1 else 0  ;  self.Y_CENTER = 1  if self.AY==0  else 0  ;  self.Y_TOP    = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
-        self.V_BOTTOM  = 1  if self.VA==-1 else 0  ;  self.V_CENTER = 1  if self.VA==0  else 0  ;  self.V_TOP    = 1 if self.VA==1 else 0
+        self._init_xyva()
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT       = 1  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DBG_TABT  = 0
         self.EVENT_LOG = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1  ;  self.MULTILINE = 1
         self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.PIDX      = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 1  ;  self.SPRITES   = 0
@@ -75,50 +68,47 @@ class Tabs(pyglet.window.Window):
         self.i         = [1, 1,  1, 6]
         self.log(f'argMap={fmtm(ARGS)}')   ;    self.FILE_NAME  = BASE_NAME
         ####################################################################################################################################################################################################
-        if 'a' in ARGS and len(ARGS['a']) == 0: self.AUTO_SAVE  =  1
-        if 'A' in ARGS: l = len(ARGS['A'])   ;  self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
-        if 'b' in ARGS and len(ARGS['b']) == 0: self.FRT_BRD    =  1
-        if 'B' in ARGS and len(ARGS['B']) == 0: self.BGC        =  1
-        if 'c' in ARGS and len(ARGS['c']) == 0: self.CAT        =  1
-        if 'C' in ARGS and len(ARGS['C']) == 0: self.CHECKERED  =  1
-        if 'd' in ARGS and len(ARGS['d'])  > 0: self.DBG_TABT   =  ARGS['d'][0]
-        if 'e' in ARGS and len(ARGS['e']) == 0: self.EVENT_LOG  =  1
-        if 'f' in ARGS and len(ARGS['f'])  > 0: self.FILE_NAME  =  ARGS['f'][0]
-        if 'F' in ARGS and len(ARGS['F']) == 0: self.FULL_SCRN  =  1
-        if 'g' in ARGS and len(ARGS['g']) == 0: self.ORD_GRP    =  1
-        if 'G' in ARGS and len(ARGS['G']) == 0: self.GEN_DATA   =  1
-        if 'i' in ARGS and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
-        if 'I' in ARGS and len(ARGS['I']) == 0: self.PIDX       =  1
-        if 'L' in ARGS and len(ARGS['L']) == 0: self.LL         =  1
-        if 'M' in ARGS and len(ARGS['M']) == 0: self.MULTILINE  =  1
-        if 'n' in ARGS and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
-        if 'o' in ARGS and len(ARGS['o']) == 0: self.OIDS       =  1
-        if 'p' in ARGS and len(ARGS['p']) == 0: self.SNAPS      =  1
-        if 'q' in ARGS and len(ARGS['q']) == 0: self.TEST_EXIT  =  1
-        if 'R' in ARGS and len(ARGS['R']) == 0: self.RESIZE     = 0
-        if 's' in ARGS and len(ARGS['s']) == 0: self.SPRITES    =  1
-        if 'S' in ARGS and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
-        if 't' in ARGS and len(ARGS['t']) == 0: self.TEST       =  1
-        if 'T' in ARGS and len(ARGS['T']) == 0: self.LONG_TXT   =  1
-        if 'u' in ARGS and len(ARGS['u']) == 0: self.SUBPIX     =  1
-        if 'v' in ARGS: l = len(ARGS['v'])   ;  self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
-        if 'V' in ARGS and len(ARGS['V']) == 0: self.VIEWS      =  1
-        if 'w' in ARGS and len(ARGS['w'])  > 0: self.XYVA       = [ int(ARGS['w'][i]) for i in range(len(ARGS['w'])) ]
-        if 'Z' in ARGS and len(ARGS['Z']) >= 0: self.ZZ         = { int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) }
-        self.AX        = self.XYVA[0]
-        self.AY        = self.XYVA[1]
-        self.VA        = self.XYVA[2]
-        self.AA        = self.XYVA[3]
-        self.A_LEFT    = 1  if self.AA==-1 else 0  ;  self.A_CENTER = 1  if self.AA==0  else 0  ;  self.A_RIGHT  = 1 if self.AA==1 else 0
-        self.X_LEFT    = 1  if self.AX==-1 else 0  ;  self.X_CENTER = 1  if self.AX==0  else 0  ;  self.X_RIGHT  = 1 if self.AX==1 else 0
-        self.Y_BOTTOM  = 1  if self.AY==-1 else 0  ;  self.Y_CENTER = 1  if self.AY==0  else 0  ;  self.Y_TOP    = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
-        self.V_BOTTOM  = 1  if self.VA==-1 else 0  ;  self.V_CENTER = 1  if self.VA==0  else 0  ;  self.V_TOP    = 1 if self.VA==1 else 0
+        if 'a' in ARGS  and len(ARGS['a']) == 0: self.AUTO_SAVE  =  1
+        if 'A' in ARGS: l = len(ARGS['A'])    ;  self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
+        if 'b' in ARGS  and len(ARGS['b']) == 0: self.FRT_BRD    =  1
+        if 'B' in ARGS  and len(ARGS['B']) == 0: self.BGC        =  1
+        if 'c' in ARGS  and len(ARGS['c']) == 0: self.CAT        =  1
+        if 'C' in ARGS  and len(ARGS['C']) == 0: self.CHECKERED  =  1
+        if 'd' in ARGS  and len(ARGS['d'])  > 0: self.DBG_TABT   =  ARGS['d'][0]
+        if 'e' in ARGS  and len(ARGS['e']) == 0: self.EVENT_LOG  =  1
+        if 'f' in ARGS  and len(ARGS['f'])  > 0: self.FILE_NAME  =  ARGS['f'][0]
+        if 'F' in ARGS  and len(ARGS['F']) == 0: self.FULL_SCRN  =  1
+        if 'g' in ARGS  and len(ARGS['g']) == 0: self.ORD_GRP    =  1
+        if 'G' in ARGS  and len(ARGS['G']) == 0: self.GEN_DATA   =  1
+        if 'i' in ARGS  and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
+        if 'I' in ARGS  and len(ARGS['I']) == 0: self.PIDX       =  1
+        if 'L' in ARGS  and len(ARGS['L']) == 0: self.LL         =  1
+        if 'M' in ARGS  and len(ARGS['M']) == 0: self.MULTILINE  =  1
+        if 'n' in ARGS  and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
+        if 'o' in ARGS  and len(ARGS['o']) == 0: self.OIDS       =  1
+        if 'p' in ARGS  and len(ARGS['p']) == 0: self.SNAPS      =  1
+        if 'q' in ARGS  and len(ARGS['q']) == 0: self.TEST_EXIT  =  1
+        if 'R' in ARGS  and len(ARGS['R']) == 0: self.RESIZE     = 0
+        if 's' in ARGS  and len(ARGS['s']) == 0: self.SPRITES    =  1
+        if 'S' in ARGS  and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
+        if 't' in ARGS  and len(ARGS['t']) == 0: self.TEST       =  1
+        if 'T' in ARGS  and len(ARGS['T']) == 0: self.LONG_TXT   =  1
+        if 'u' in ARGS  and len(ARGS['u']) == 0: self.SUBPIX     =  1
+        if 'v' in ARGS: l = len(ARGS['v'])    ;  self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
+        if 'V' in ARGS  and len(ARGS['V']) == 0: self.VIEWS      =  1
+        if 'w' in ARGS  and len(ARGS['w'])  > 0: self.XYVA       = [ int(ARGS['w'][i]) for i in range(len(ARGS['w'])) ]
+        if 'Z' in ARGS  and len(ARGS['Z']) >= 0: self.ZZ         = { int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) }
+        self._init_xyva()
         ####################################################################################################################################################################################################
+        self.aa = LEFT   if self.A_LEFT   else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '??'
+        self.ax = LEFT   if self.X_LEFT   else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
+        self.ay = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP   if self.Y_TOP   else BASELINE if self.Y_BASELINE else '??'
+        self.va = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP   if self.V_TOP   else '??'
         self.n0        = list(self.n)        ;  self.i0         =  list(self.i)
         self.n.insert(S, self.ssl())         ;  self.i.insert(S, 1)         ;  self.dumpArgs(f=2)
-        self.LOG_GFN   = self.geomFileName(LOG, self.FILE_NAME)             ;  self.log(f'{self.LOG_GFN=}')
-        self.CSV_GFN   = self.geomFileName(CSV, self.FILE_NAME)             ;  self.log(f'{self.CSV_GFN=}')
-        self.DAT_GFN   = self.geomFileName(DAT, self.FILE_NAME, n=self.n0)  ;  self.log(f'{self.DAT_GFN=} {self.n0=}')
+        self.LOG_GFN   = self.geomFileName(self.FILE_NAME, LOG)             ;  self.log(f'{self.LOG_GFN=}')
+        self.CSV_GFN   = self.geomFileName(self.FILE_NAME, CSV)             ;  self.log(f'{self.CSV_GFN=}')
+        self.DAT_GFN   = self.geomFileName(self.FILE_NAME, DAT, n=self.n0)  ;  self.log(f'{self.DAT_GFN=} {self.n0=}')
         self.vArrow    = UARROW if self.VARROW == 1 else DARROW
         self.fontStyle = NORMAL_STYLE
         self.sAlias    = 'GUITAR_6_STD'
@@ -134,10 +124,6 @@ class Tabs(pyglet.window.Window):
         self.log(f'WxH={self.fmtWH()}')
         self._initWindowB()
         self.log(f'WxH={self.fmtWH()}')
-        self.aa = LEFT   if self.A_LEFT   else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '???'
-        self.ax = LEFT   if self.X_LEFT   else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '???'
-        self.ay = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP   if self.Y_TOP   else BASELINE if self.Y_BASELINE else '???'
-        self.va = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP   if self.V_TOP   else '???'
         self.dumpAXY()
         self._reinit()
         self.log(util.INIT, p=0)
@@ -146,8 +132,28 @@ class Tabs(pyglet.window.Window):
     def __str__(self):  return f'{ARGS}'
     def __repr__(self): return f'{self.__class__.__name__} {self.width=} {self.height=} {ARGS=}'
     ####################################################################################################################################################################################################
-    def geomFileName(self, ext, base=None, n=None):
-        n = self.n if n is None else n  ;  _ = [base] if base is not None else [BASE_NAME]  ;  _.extend([ str(i) for i in n ])  ;  _.append(ext)  ;  return '.'.join(_) # base.p.l.c.t.ext
+    def _init_xyva(self):
+        self.AX        = self.XYVA[0]
+        self.AY        = self.XYVA[1]
+        self.VA        = self.XYVA[2]
+        self.AA        = self.XYVA[3]
+        self.A_LEFT    = 1  if self.AA==-1 else 0  ;  self.A_CENTER = 1  if self.AA==0  else 0  ;  self.A_RIGHT  = 1 if self.AA==1 else 0
+        self.X_LEFT    = 1  if self.AX==-1 else 0  ;  self.X_CENTER = 1  if self.AX==0  else 0  ;  self.X_RIGHT  = 1 if self.AX==1 else 0
+        self.Y_BOTTOM  = 1  if self.AY==-1 else 0  ;  self.Y_CENTER = 1  if self.AY==0  else 0  ;  self.Y_TOP    = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
+        self.V_BOTTOM  = 1  if self.VA==-1 else 0  ;  self.V_CENTER = 1  if self.VA==0  else 0  ;  self.V_TOP    = 1 if self.VA==1 else 0
+
+    def geomFileName(self, base, ext, n=None, axy=None, spr=None, vaa=None):
+        n = n      if n    is not None else self.n
+        _ = [base] if base is not None else [BASE_NAME]
+        _.extend([ str(i) for i in n ])
+        axy  = axy if axy  is not None else f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
+        spr = spr  if spr  is not None else self.SPRITES
+        vaa = vaa  if vaa  is not None else f'{self.ftAy(self.va)}{self.ftAx(self.aa)}'
+        vaa = vaa  if spr != self.SPRITES else Z
+        _.extend([axy, f'{spr}'])
+        _.append(vaa) if vaa else Z
+        _.append(ext)
+        return '.'.join(_) # base.p.l.s.c.t.axy.spr.(vaa.)ext
 
     def dumpArgs(self, f=1):
         self.log(f'[a]      {self.AUTO_SAVE=}', f=f)
@@ -215,16 +221,16 @@ class Tabs(pyglet.window.Window):
         KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = CYA, CYA  ;  KH1, KH2 = YLW, YLW  ;  KM1, KM2 = GRN, GRN
         KB1, KB2 = PNK, PNK  ;  KA1, KA2 = BLU, BLU  ;  KD1, KD2 = FSH, FSH  ;  KE1, KE2 = VLT, VLT
         k = self.k  ;  a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC  ;  i = self.initk
-        j = P  ;  k[j] = i(j, KP1, 17, 17, KP2,  3, 17) if a else i(j, KP1,  3, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
-        j = L  ;  k[j] = i(j, KL1, 17, 15, KL2,  3, 15) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
-        j = S  ;  k[j] = i(j, KS1, 17, 15, KS2,  3, 15) if a else i(j, KS1,  3, 15, KS2, 17, 15) if b else i(j, KS1,  3, 15, KS2, 17, 15) if c else i(j, KS1,  3, 15, KS2, 17, 15) if d else None
-        j = C  ;  k[j] = i(j, KC1, 17, 15, KC2,  3, 15) if a else i(j, KC1,  3, 15, KC2, 17, 15) if b else i(j, KC1,  3, 15, KC2, 17, 15) if c else i(j, KC1,  3, 15, KC2, 17, 15) if d else None
-        j = T  ;  k[j] = i(j, KT1,  3, 13, KT2, 17, 13) if a else i(j, KT1,  3, 13, KT2, 17, 13) if b else i(j, KT1,  0, 13, KT2, 17, 13) if c else i(j, KT1,  3, 13, KT2, 17, 13) if d else None
-        j = N  ;  k[j] = i(j, KN1,  3, 13, KN2, 17, 13) if a else i(j, KN1,  3, 13, KN2, 17, 13) if b else i(j, KN1,  3, 13, KN2, 17, 13) if c else i(j, KN1,  3, 13, KN2, 17, 13) if d else None
-        j = I  ;  k[j] = i(j, KI1,  3, 13, KI2, 17, 13) if a else i(j, KI1,  3, 13, KI2, 17, 13) if b else i(j, KI1,  3, 13, KI2, 17, 13) if c else i(j, KI1,  3, 13, KI2, 17, 13) if d else None
-        j = K  ;  k[j] = i(j, KK1,  3, 13, KK2, 17, 13) if a else i(j, KK1,  3, 13, KK2, 17, 13) if b else i(j, KK1,  3, 13, KK2, 17, 13) if c else i(j, KK1,  3, 13, KK2, 17, 13) if d else None
-        j = R  ;  k[j] = i(j, KR1, 17, 17, KR2, 17, 17) if a else i(j, KR1, 17, 17, KR2, 17, 17) if b else i(j, KR1, 17, 10, KR2, 17, 10) if c else i(j, KR1, 17, 17, KR2, 17, 17) if d else None
-        j = Q  ;  k[j] = i(j, KQ1,  3, 10, KQ2, 17, 10) if a else i(j, KQ1,  3, 10, KQ2, 17, 10) if b else i(j, KQ1, 17, 14, KQ2, 17, 14) if c else i(j, KQ1,  3, 10, KQ2, 17, 10) if d else None
+        j = P  ;  k[j] = i(j, KP1,  3, 17, KP2, 17, 17) if a else i(j, KP1,  3, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
+        j = L  ;  k[j] = i(j, KL1,  3, 15, KL2, 17, 15) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
+        j = S  ;  k[j] = i(j, KS1,  3, 15, KS2, 17, 15) if a else i(j, KS1,  3, 15, KS2, 17, 15) if b else i(j, KS1,  3, 15, KS2, 17, 15) if c else i(j, KS1,  3, 15, KS2, 17, 15) if d else None
+        j = C  ;  k[j] = i(j, KC1,  3, 15, KC2, 17, 15) if a else i(j, KC1,  3, 15, KC2, 17, 15) if b else i(j, KC1,  3, 15, KC2, 17, 15) if c else i(j, KC1,  3, 15, KC2, 17, 15) if d else None
+        j = T  ;  k[j] = i(j, KT1,  0, 13, KT2, 17, 13) if a else i(j, KT1,  0, 13, KT2, 17, 13) if b else i(j, KT1,  0, 13, KT2, 17, 13) if c else i(j, KT1,  0, 13, KT2, 17, 13) if d else None
+        j = N  ;  k[j] = i(j, KN1,  0, 13, KN2, 17, 13) if a else i(j, KN1,  0, 13, KN2, 17, 13) if b else i(j, KN1,  0, 13, KN2, 17, 13) if c else i(j, KN1,  0, 13, KN2, 17, 13) if d else None
+        j = I  ;  k[j] = i(j, KI1,  0, 13, KI2, 17, 13) if a else i(j, KI1,  0, 13, KI2, 17, 13) if b else i(j, KI1,  0, 13, KI2, 17, 13) if c else i(j, KI1,  0, 13, KI2, 17, 13) if d else None
+        j = K  ;  k[j] = i(j, KK1,  0, 13, KK2, 17, 13) if a else i(j, KK1,  0, 13, KK2, 17, 13) if b else i(j, KK1,  0, 13, KK2, 17, 13) if c else i(j, KK1,  0, 13, KK2, 17, 13) if d else None
+        j = R  ;  k[j] = i(j, KR1,  0, 17, KR2, 17, 17) if a else i(j, KR1,  0, 17, KR2, 17, 17) if b else i(j, KR1,  0, 17, KR2, 17, 17) if c else i(j, KR1,  0, 17, KR2, 17, 17) if d else None
+        j = Q  ;  k[j] = i(j, KQ1,  0, 17, KQ2, 17, 17) if a else i(j, KQ1,  0, 17, KQ2, 17, 17) if b else i(j, KQ1,  0, 17, KQ2, 17, 17) if c else i(j, KQ1,  0, 17, KQ2, 17, 10) if d else None
         j = H  ;  k[j] = i(j, KH1, 17, 11, KH2, 17, 10) if a else i(j, KH1, 14, 10, KH2, 14, 10) if b else i(j, KH1, 15, 13, KH2, 15, 13) if c else i(j, KH1, 14, 11, KH2, 14, 10) if d else None
         j = M  ;  k[j] = i(j, KM1, 17, 11, KM2, 17, 10) if a else i(j, KM1, 17, 10, KM2, 17, 17) if b else i(j, KM1, 17, 17, KM2, 17, 17) if c else i(j, KM1, 17, 17, KM2, 17, 17) if d else None
         j = B  ;  k[j] = i(j, KB1,  0,  0, KB2, 17, 17) if a else i(j, KB1,  0,  0, KB2, 17, 17) if b else i(j, KB1,  0,  0, KB2, 17, 17) if c else i(j, KB1,  0,  0, KB2, 17, 17) if d else None
@@ -537,11 +543,11 @@ class Tabs(pyglet.window.Window):
     def fAxy(   self, d=W, dbg=0): (a,b) = ('ax=', 'ay=') if dbg else (Z, Z)  ;  return f'{a}{self.ftAx(self.ax)}{d}{b}{self.ftAy(self.ay)}'
     def fAxyf(self, dbg=0):        s = '\n' if dbg else Z  ;  return W.join([f'{self.A_LEFT}', f'{self.A_CENTER}', f'{self.A_RIGHT}{s}', f'{self.X_LEFT}', f'{self.X_CENTER}', f'{self.X_RIGHT}{s}', f'{self.Y_BOTTOM}', f'{self.Y_CENTER}', f'{self.Y_TOP}', f'{self.Y_BASELINE}{s}', f'{self.V_BOTTOM}', f'{self.V_CENTER}', f'{self.V_TOP}'])
     @staticmethod
-    def ftAx(a):  return 'L' if a == LEFT   else 'C' if a == CENTER else 'R' if a == RIGHT else '???'
+    def ftAx(a):  return 'L' if a == LEFT   else 'C' if a == CENTER else 'R' if a == RIGHT else '??'
     @staticmethod
-    def ftAy(a):  return 'B' if a == BOTTOM else 'C' if a == CENTER else 'T' if a == TOP   else 'N' if a == BASELINE else '???'
+    def ftAy(a):  return 'B' if a == BOTTOM else 'C' if a == CENTER else 'T' if a == TOP   else 'N' if a == BASELINE else '??'
     @staticmethod
-    def fcva(a):  return 'B' if a == BOTTOM else 'C' if a == CENTER else 'T' if a == TOP   else '???'
+    def fcva(a):  return 'B' if a == BOTTOM else 'C' if a == CENTER else 'T' if a == TOP   else '??'
     ####################################################################################################################################################################################################
     def dumpWxHp0(self): self.log(self.fmtWHP0())
     def dumpDataSlice(self, p, l, c, cc):
@@ -1149,22 +1155,21 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.width, self.height
-        n  = n if n is not None else self.n[j]   ;   s = (S, T)  ;   c = (C, Q, E) # ;   t = (T, N, I, K)
-#        n += 1 if ll and j in t else 0
+        n  = n if n is not None else self.n[j]   ;   s = (P, L, S, T)  ;   c = (C, Q, E) # ;   t = (T, N, I, K)  ;  n += 1 if ll and j in t else 0
         if n == 0:         n  = 1      ;     self.log(f'ERROR n=0 setting {n=}')
         i               = i if i is not None else self.i[j]
         a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)
         px, py, pw, ph  = (a*ww, b*hh, ww, hh) if p is None else (p.x, p.y, p.width, p.height)
-        if self.LL and j == L:   np, nl, ns, nc, nt = self.n  ;  nr = nl*(ns*nt + self.LL)  ;  py -= ph/(2*nr)  ;  ph -= ph/nr
-        if   j in c:       w  = pw/n             ;    h = ph
-        elif j == P:       w  = pw               ;    h = ph
-        else:              w  = pw               ;    h = ph/n
-        if   j in s:       x  = px - a*pw + a*w  ;    y = py + b*ph - b*h
-        elif j in c:       x  = a*w              ;    y = py + b*ph - b*h
-        elif j == R:       x =  px - a*pw + a*w  ;    y = py + b*ph + b*h
-        else:              x  = px - a*pw + a*w  ;    y = py + b*ph - b*h
-#        n -= 1 if ll and j in t else 0
-        if dbg and self.VRBY >= 2:
+        if self.LL and j == L:   np, nl, ns, nc, nt = self.n  ;  nr = nl*(ns*nt + self.LL)  ;  py -= b*ph/nr  ;  ph -= ph/nr
+#        if self.LL and j == L:   np, nl, ns, nc, nt = self.n  ;  nr = nl*(ns*nt + self.LL)  ;  py -= ph/(2*nr)  ;  ph -= ph/nr
+        if   j in c:       w  = pw/n             ;  h = ph
+        elif j == P:       w  = pw               ;  h = ph
+        else:              w  = pw               ;  h = ph/n
+        if   j in s:       x  = px - a*pw + a*w  ;  y = py + b*ph - b*h
+        elif j in c:       x  = a*w              ;  y = py + b*ph - b*h
+        elif j == R:       x =  px - a*pw + a*w  ;  y = py + b*ph + b*h
+        else:              x = -1                 ;  y = -1   ;   msg = f'ERROR Unhandled Tnik type {j=} {JTEXTS[j]=}'  ;  self.log(msg)  ;  self.quit(msg)
+        if dbg and self.VRBY >= 2:   #        n -= 1 if ll and j in t else 0
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
             msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
             msg += msg2 if p else W * len(msg2)
@@ -1266,7 +1271,7 @@ class Tabs(pyglet.window.Window):
                         for _ in self.g_createTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
         if self.CURSOR and self.tabls and not self.cursor:  self.createCursor(why)   ;  self.dumpHdrs()
-        if dbg:         self.dumpStruct(why2, csv=1)
+        if dbg:         self.dumpStruct(why2, csv=0)
     ####################################################################################################################################################################################################
     def g_createTniks(self, tlist, j, pt, ii=None, why=Z, dbg=1, dbg2=1): # {0x2588:c}{0x2591:c}{0x2592:c}{0x2593:c}
         n  = 1  if ii is not None      else None
@@ -1297,7 +1302,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def createTnik(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
         if i is None or j is None: lt = len(tlist) if tlist is not None else None  ;  msg = f'ERROR i or j is None {i=} {j=} {lt=} {t=} {why}'  ;  self.log(msg)  ;  self.quit(msg)
-        if tlist is None or kl is None:   msg = f'ERROR {tlist=} or {kl=} is None'   ;   self.log(msg)   ;   return None #fixme
+        if tlist is None or kl is None:   msg = f'ERROR {tlist=} or {kl=} is None'   ;   self.log(msg)   ;   self.quit(msg) # return None #fixme
         self.setJ(j, i, v)
         o, k2, d, ii, n, s = self.fontParams()   ;   b = self.batch   ;   k = kl[kk]
         g = g           if g is not None else self.j2g(j)
@@ -1312,7 +1317,7 @@ class Tabs(pyglet.window.Window):
             assert int(tnik.anchor_x)==img.anchor_x,  f'{int(tnik.anchor_x)=} != {img.anchor_x=}'
             assert int(tnik.anchor_y)==img.anchor_y,  f'{int(tnik.anchor_y)=} != {img.anchor_y=}'
         else:
-            s = self.calcFontSize(j)       ;   aa, ax, ay, va = self.aa, self.ax, self.ay, self.va  # left center right  # bottom baseline center top
+            s = self.calcFontSize(j)       ;   aa, ax, ay, va = self.aa, self.ax, self.ay, self.va  # left center right  # bottom center top (baseline)
             z = 1 if self.STRETCH else 0   ;        d, n = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTILINE
             tnik = LBL(t, font_name=n, font_size=s, bold=o, italic=ii, stretch=z, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=aa, multiline=ml, dpi=d, batch=b, group=g)
             tnik.content_valign = self.va
@@ -1637,7 +1642,7 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTnikCsv(self, t, j, i): # j in (P, C, T)
-        if not i and j not in (L, S):   h = self.csvHdr(j, n=1)  ;  self.log(f'{h}', p=0, f=3)
+        if i == 0 and j not in (L, S):   h = self.csvHdr(j, n=1)  ;  self.log(f'{h}', p=0, f=3)
 #        if not i and j not in (L, S):   np, nl, ns, nc, nt = self.n  ;  n = np*nl*ns  ;  h = self.csvHdr(j, n)  ;  self.log(f'{h}', p=0, f=3)
         self.log(self.fmtTnikCsv(t, j, i), p=0, f=3)
     def fmtTnikCsv(self, t, j, i):
@@ -1668,7 +1673,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'{path=}', f=2)
         with open(path, 'wb') as file:
             file.write(img.get_data())
-
+    ####################################################################################################################################################################################################
     def createSprite(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
         path = util.getFilePath('_2', BASE_PATH, PNGS, PNG)
         self.saveImg(path)
@@ -1711,15 +1716,15 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def cc2xywh(self, dbg=1):
         tpb, tpp, tpl, tps, tpc = self.ntp()   ;   lenT = len(self.tabls)
-        old   = self.cursorCol()  ;  cc = old % lenT
+        old   = self.cursorCol()   ;   cc = old % lenT
         self.log(f'{tpp=} {old=} {lenT=} {cc=} old % lenT', f=0)
         if cc < 0 or cc >= lenT:  msg = f'Invalid index {cc=} {tpp=} {old=} {lenT=}'  ;  self.log(msg)  ;  self.quit(msg)
 #       assert 0 <= cc < lenT,          f'Invalid index {cc=} {lenT=}'
         else:
             t     = self.tabls[cc]
             if dbg: self.log(f'{cc=:4} {old=:4} {self.fntp()} {self.ftxywh(t)} {t.text=} {self.fCtnt(t)}', f=0) # i={Notes.index(self.sobj.tab2nn(t, cc % lenT))}
-            w, h = t.width if t.width is not None else t.height , t.height
-            return t.x, t.y, w, h, cc
+            w, h  = t.width if t.width is not None else t.height , t.height
+            return  t.x, t.y, w, h, cc
     ####################################################################################################################################################################################################
     def plc2cn(self, p, l, c, dbg=1):
         tpb, tpp, tpl, tps, tpc = self.ntp()  ;  ns = self.n[S]
@@ -2384,7 +2389,7 @@ class Tabs(pyglet.window.Window):
 #        d = self.qclms[i].document # #
 #        d.set_style(0, len(d.text), {COLOR: self.llcolor(i, Q)[fs], BGC: self.llcolor(i, Q)[bs]}) # #
         if self.qclms and len(self.qclms) >= i:
-            self.setTC(self.qclms[i], self.llcolor(i, Q)[fs], self.llcolor(i, Q)[bs])
+            self.setFgcBgc(self.qclms[i], self.llcolor(i, Q)[fs], self.llcolor(i, Q)[bs])
             self.qclms[i].bold   = bold
             self.qclms[i].italic = italic
         if dbg: self.log(f'     {i=} = {c=} + {l=} * {nc=} * {nt=} {style=} {bold=} {italic=} {cc=}', pos=1)
@@ -2411,9 +2416,9 @@ class Tabs(pyglet.window.Window):
 
     def _setTNIKStyle(self, tnik, color, style=0): # d =  tnik.document ; d.set_style(0, len(d.text), {COLOR: color[fgs], BGC: color[bgs]})
         (bgs, fgs) = (0, 1)  if style == NORMAL_STYLE else (1, 0)
-        if util.isi(tnik, LBL):   self.setTC(tnik, color[fgs], color[bgs])
+        if util.isi(tnik, LBL):   self.setFgcBgc(tnik, color[fgs], color[bgs])
     @staticmethod
-    def setTC(t, fgc, bgc=None):
+    def setFgcBgc(t, fgc, bgc=None):
         cm = {COLOR:fgc}
         if bgc:             cm[BGC] = bgc
         d = t.document  ;  d.set_style(0, len(d.text), cm)
