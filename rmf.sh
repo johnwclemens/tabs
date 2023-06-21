@@ -2,28 +2,35 @@
 #C:\Users\Owner\Documents\GitHub\tabs\venv\Scripts\
 
 function cleanup {
-  for file in "$1"s/*
-  do
-    if [[ $file = *[0-9]*.$1 ]]; then
-      echo rm "$file"
-      rm "$file"
-    fi
+  echo BGN cleanup "$1"
+  echo ls "$1"
+  ls "$1"
+  for file in "$1"/*; do
+    echo rm "$file"
+    rm      "$file"
   done
-  echo ls -l "$1"
-  ls      -l "$1"
+  echo ls "$1"
+  ls "$1"
+  echo END cleanup "$1"
 }
 
 echo pwd
 pwd
+echo ls test
+ls      test
 
-echo "dirs=(logs pngs csvs cats)"
-dirs=("log" "png" "csv" "cat")
+echo cd "test" || exit
+cd      "test" || exit
 
-for dir in "${dirs[@]}"s; do
-  cleanup "$dir"
+echo pwd
+pwd
+echo ls
+ls
+
+echo dirs='("log" "png" "csv" "cat")'
+dirs=(     "log" "png" "csv" "cat")
+
+for dir in "${dirs[@]}"; do
+  echo cleanup "$dir"s
+  cleanup      "$dir"s
 done
-
-echo "done cleaning file dirs"
-echo "### ### ### ### ### ### ### ### ### ###"
-echo "ls -lt logs pngs csvs cats"
-ls -lt logs pngs csvs cats

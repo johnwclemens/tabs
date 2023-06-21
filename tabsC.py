@@ -2,8 +2,6 @@ import glob, math, os, pathlib, sys
 import operator, inspect, itertools
 from itertools      import accumulate
 from more_itertools import consume
-CODS    = 0
-if CODS: from collections import OrderedDict as cOd
 from          collections import Counter
 import pyglet
 from pyglet.text import document, layout
@@ -56,13 +54,13 @@ class Tabs(pyglet.window.Window):
         self._init_xyva()
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT       = 1  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DBG_TABT  = 0
         self.EVENT_LOG = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1  ;  self.MULTILINE = 1
-        self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.PIDX      = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 1  ;  self.SPRITES   = 0
+        self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.PIDX      = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0  ;  self.SPRITES   = 0
         self.STRETCH   = 1  ;  self.SUBPIX    = 1  ;  self.TEST      = 1  ;  self.TEST_EXIT = 0  ;  self.VARROW    = 1  ;  self.VIEWS     = 0
         self.VRBY      = 0
         self.LL        = 0
         self.SS        = set(range(4))  # set() if 0 else {0, 1, 2, 3}
         self.ZZ        = set()          # set() if 1 else {0} #, 1}
-        self.idmap     = cOd() if CODS else {}  ;  self.log(f'{CODS=} {type(self.idmap)=}')
+        self.idmap     = {}
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         self.n         = [1, 1, 10, 6]
         self.i         = [1, 1,  1, 6]
@@ -104,11 +102,11 @@ class Tabs(pyglet.window.Window):
         self.ax = LEFT   if self.X_LEFT   else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
         self.ay = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP   if self.Y_TOP   else BASELINE if self.Y_BASELINE else '??'
         self.va = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP   if self.V_TOP   else '??'
-        self.n0        = list(self.n)        ;  self.i0         =  list(self.i)
-        self.n.insert(S, self.ssl())         ;  self.i.insert(S, 1)         ;  self.dumpArgs(f=2)
-        self.LOG_GFN   = self.geomFileName(self.FILE_NAME, LOG)             ;  self.log(f'{self.LOG_GFN=}')
-        self.CSV_GFN   = self.geomFileName(self.FILE_NAME, CSV)             ;  self.log(f'{self.CSV_GFN=}')
-        self.DAT_GFN   = self.geomFileName(self.FILE_NAME, DAT, n=self.n0)  ;  self.log(f'{self.DAT_GFN=} {self.n0=}')
+        self.n0        = list(self.n)        ;  self.i0 =  list(self.i)
+        self.n.insert(S, self.ssl())         ;  self.i.insert(S, 1)  ;  self.dumpArgs(f=2)
+        self.LOG_GFN   = self.geomFileName(self.FILE_NAME, LOG)      ;  self.log(f'{self.LOG_GFN=}')
+        self.CSV_GFN   = self.geomFileName(self.FILE_NAME, CSV)      ;  self.log(f'{self.CSV_GFN=}')
+        self.DAT_GFN   = self.geomFileName(self.FILE_NAME, DAT)      ;  self.log(f'{self.DAT_GFN=} {self.n0=}')
         self.vArrow    = UARROW if self.VARROW == 1 else DARROW
         self.fontStyle = NORMAL_STYLE
         self.sAlias    = 'GUITAR_6_STD'
@@ -142,16 +140,14 @@ class Tabs(pyglet.window.Window):
         self.Y_BOTTOM  = 1  if self.AY==-1 else 0  ;  self.Y_CENTER = 1  if self.AY==0  else 0  ;  self.Y_TOP    = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
         self.V_BOTTOM  = 1  if self.VA==-1 else 0  ;  self.V_CENTER = 1  if self.VA==0  else 0  ;  self.V_TOP    = 1 if self.VA==1 else 0
 
-    def geomFileName(self, base, ext, n=None, axy=None, spr=None, vaa=None):
-        n = n      if n    is not None else self.n
-        _ = [base] if base is not None else [BASE_NAME]
+    def geomFileName(self, base, ext):
+        n = self.n0
+        _ = [base]
         _.extend([ str(i) for i in n ])
-        axy  = axy if axy  is not None else f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
-        spr = spr  if spr  is not None else self.SPRITES
-        vaa = vaa  if vaa  is not None else f'{self.ftAy(self.va)}{self.ftAx(self.aa)}'
-        vaa = vaa  if spr != self.SPRITES else Z
-        _.extend([axy, f'{spr}'])
-        _.append(vaa) if vaa else Z
+        axy = f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
+        vaa = f'{self.ftAy(self.va)}{self.ftAx(self.aa)}' if not self.SPRITES else Z
+        _.append(axy)
+        _.append(vaa) if vaa else None
         _.append(ext)
         return '.'.join(_) # base.p.l.s.c.t.axy.spr.(vaa.)ext
 
@@ -184,7 +180,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[u]         {self.SUBPIX=}', f=f)
         self.log(f'[v]           {self.VRBY=}', f=f)
         self.log(f'[V]          {self.VIEWS=}', f=f)
-        self.log(f'[w]           {self.XYVA=}', f=f)
+        self.log(f'[w]           .XYVA={fmtl(self.XYVA, d=W)}', f=f)
         self.log(f'[Z]             .ZZ={fmtl(self.ZZ)}', f=f)
     ####################################################################################################################################################################################################
     def _reinit(self):
@@ -213,7 +209,8 @@ class Tabs(pyglet.window.Window):
         self._initFonts()
         self._initTextLabels()
         self._initTniks()
-        if self.SNAPS: self.regSnap('init', 'Init')
+#        if self.SNAPS:
+        self.regSnap('init', 'INIT')
     ####################################################################################################################################################################################################
     def _initColors(self): # j = M = 11
         KP1, KP2 = VLT, VLT  ;  KL1, KL2 = RED, RED  ;  KS1, KS2 = CYA, CYA  ;  KC1, KC2 = RST, RST
@@ -260,9 +257,9 @@ class Tabs(pyglet.window.Window):
         dataName1 = self.DAT_GFN
         dataName2 = self.DAT_GFN + '.bck'
         self.dataPath0 = BASE_PATH / dataDir / dataName0
-        self.dataPath1 = BASE_PATH / dataDir / dataName1
+        self.dataPath1 = BASE_PATH /           dataName1
         self.dataPath2 = BASE_PATH / dataDir / dataName2
-        self.makeSubDirs(self.dataPath1)
+#        self.makeSubDirs(self.dataPath1)
         self.log(f'{dataName0=}')
         self.log(f'{dataName1=}')
         self.log(f'{dataName2=}')
@@ -608,8 +605,9 @@ class Tabs(pyglet.window.Window):
         pyglet.gl.glClearColor(0, 0, 0, 0) # (1, 1, 1, 1) # (R, G, B, A)
         self.clear()
         self.batch.draw()
-        if self.SNAPS and self.snapReg:
-            self.snapReg = 0       ;    path = self.snapshot()
+        if  self.snapReg and (self.SNAPS or self.snapId == 0):
+            self.snapReg = 0
+            path = self.snapshot()
             self.log(f'{self.snapWhy=} {self.snapType=} {self.snapId=}\n{path=}', pos=1)
 #            if self.TEST:    self.testSprTxt(path) # path
 
@@ -2810,16 +2808,17 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'{self.LOG_ID:3} {self.snapId:3} {self.snapType:8} {self.snapWhy}')
 
     def snapshot(self, why=Z, typ=Z, dbg=1, dbg2=1):
-        why       = why if why else self.snapWhy
-        typ       = typ if typ else self.snapType
-        snapId    = self.snapId    ;    logId     = self.LOG_ID
-        snapName  = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
-        SnapPath  = BASE_PATH / PNGS / snapName
-        if dbg:     self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
-        if dbg:     self.log(f'{self.fNameLid=} {PNGS=} {snapName=} {why}')
-        if dbg:     self.log(f'{SnapPath}', p=2)
+        why      = why  if why         else self.snapWhy
+        typ      = typ  if typ         else self.snapType
+        fdir     = Z    if typ=='INIT' else PNGS
+        if fdir: snapId = self.snapId  ; logId = self.LOG_ID  ;  snapName = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
+        else:                                                    snapName = self.geomFileName(BASE_NAME, PNG)
+        SnapPath = BASE_PATH / fdir / snapName  ;  logId = 'None'  ;  snapId = 'None'
+        if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}'if fdir else f'{BASE_NAME=} {self.fmtn(Z)}')
+        if dbg:  self.log(f'{self.fNameLid=} {fdir=} {snapName=} {why}')
+        if dbg:  self.log(f'{SnapPath}', p=2)
         pyglet.image.get_buffer_manager().get_color_buffer().save(f'{SnapPath}')
-        if dbg2:    self.log(f'{snapName=} {why}', f=2)
+        if dbg2: self.log(f'{snapName=} {why}', f=2)
         self.snapId += 1
         return SnapPath
     ####################################################################################################################################################################################################
@@ -2873,7 +2872,8 @@ class Tabs(pyglet.window.Window):
             if save: self.saveDataFile(why, self.dataPath1)
             if dbg:  self.transposeData(dump=1 if dbg else 0)
             if dbg:  self.cobj.dumpMlimap(why)
-        if self.SNAPS:                      self.snapshot(f'quit {error} {save=}', 'QUIT')
+        if self.SNAPS:
+            self.snapshot(f'quit {error} {save=}', 'QUIT')
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=2)       ;   self.log(util.QUIT_END, p=0, f=2)
         self.cleanupFiles()
 #        self.close()
@@ -2895,9 +2895,9 @@ class Tabs(pyglet.window.Window):
             CSV_FILE.flush()
             CSV_FILE.close()
         csvPath  = util.getFilePath(BASE_NAME,     BASE_PATH, fdir=CSVS, fsfx=CSV)
-        csvPath2 = util.getFilePath(self.CSV_GFN,  BASE_PATH, fdir=CSVS, fsfx=Z)
+        csvPath2 = util.getFilePath(self.CSV_GFN,  BASE_PATH, fdir=None, fsfx=Z)
         csvPath3 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CSVS, fsfx=CSV)
-        self.makeSubDirs(csvPath2)
+#        self.makeSubDirs(csvPath2)
         self.log(f'Copying {CSV_FILE.name} to {csvPath2}', f=2)
         util.copyFile(csvPath, csvPath2)
         self.makeSubDirs(csvPath3)
@@ -2915,7 +2915,7 @@ class Tabs(pyglet.window.Window):
             CAT_FILE.close()
         catPath  = util.getFilePath(BASE_NAME,     BASE_PATH, fdir=CATS, fsfx=CAT)
         catPath2 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)
-        self.makeSubDirs(catPath2)
+#        self.makeSubDirs(catPath2)
         self.log(f'Copying {CAT_FILE.name} to {catPath2}', f=2)
         util.copyFile(catPath, catPath2)
 ########################################################################################################################################################################################################
@@ -2982,7 +2982,7 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
 # Globals BGN
 ########################################################################################################################################################################################################
 PATH      = pathlib.Path.cwd() / sys.argv[0]
-BASE_PATH = PATH.parent
+BASE_PATH = PATH.parent / 'test'
 BASE_NAME = BASE_PATH.stem
 CAT,  CSV,  LOG,  PNG,  DAT     = 'cat',  'csv',  'log',  'png',  'dat'
 CATS, CSVS, LOGS, PNGS, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'data'
@@ -3007,7 +3007,7 @@ def JSPR(n, d): return (f'{d.join(LTXX)}{d}'*n).removesuffix(d)
 ########################################################################################################################################################################################################
 LBL                   = pygtxt.Label
 SPR                   = pygsprt.Sprite
-RGB                   = cOd() if CODS else {}
+RGB                   = {}
 TT, NN, II, KK        =  0,  1,  2,  3
 C1,  C2               =  0,  1
 CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
@@ -3049,13 +3049,15 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     def main():
         slog(f'{CSV_PATH=}',  f=2)   ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{LOG_PATH=}',  f=2)   ;   slog(f'{LOG_FILE.name=}', f=2)
+        slog('constructing Tabs object')
         tabs = Tabs()                ;   snlfp    =    tabs.seqNumLogPath
         slog(f'{str(tabs)=}', f=2)   ;   slog(f'{tabs=}', f=2)
+        slog('calling pyglet.app.run()')
         ret = pyglet.app.run()       ;   msg      =    'Close & Copy'
-        slog(f'pyglet.app.run(): {ret=}')
+        slog(f'pyglet.app.run(): return={ret}')
         slog(f'{msg} {LOG_FILE.name} to {snlfp}', ff=1)
         util.copyFile(LOG_PATH,          snlfp)
-        glfp = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=LOGS, fsfx=Z)    ;    tabs.makeSubDirs(glfp)
+        glfp = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z) #   ;    tabs.makeSubDirs(glfp)
         slog(f'{msg} {LOG_FILE.name} to { glfp}', ff=1)
         util.copyFile(LOG_PATH,           glfp)
         LOG_FILE.flush()             ;    LOG_FILE.close()
