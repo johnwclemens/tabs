@@ -2,22 +2,23 @@
 #C:\Users\Owner\Documents\GitHub\tabs\venv\Scripts\
 echo pwd
 pwd
-echo ls -l test
-ls      -l test
-echo cksum test/tabs*.txt
-cksum      test/tabs*.txt
-echo cp    test/tabs.txt test/tabs._.txt
-cp         test/tabs.txt test/tabs._.txt
-echo ls -l test
-ls      -l test
-echo cksum test/tabs*.txt
-cksum      test/tabs*.txt
-echo python tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -t -L -s -S 0 -f test 2&> test/tabs.txt
-python      tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -t -L -s -S 0 -f test 2&> test/tabs.txt
-echo ls -l test
-ls      -l test
-echo cksum test/tabs*.txt
-cksum      test/tabs*.txt
+path=test/stdo
+echo ls -l $path
+ls      -l $path
+echo cksum $path/tabs*.txt
+cksum      $path/tabs*.txt
+echo cp    $path/tabs.txt $path/tabs._.txt
+cp         $path/tabs.txt $path/tabs._.txt
+echo ls -l $path
+ls      -l $path
+echo cksum $path/tabs*.txt
+cksum      $path/tabs*.txt
+echo python tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -p -s -t -L -S 0 -f test 2&> $path/tabs.txt
+python      tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -p -s -t -L -S 0 -f test 2&> $path/tabs.txt
+echo ls -l $path
+ls      -l $path
+echo cksum $path/tabs*.txt
+cksum      $path/tabs*.txt
 
 #python tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -t -L -S 0 -f test 2&> test/tabs.txt
 #python tabsC.py -f BlackMagicWoman.4.2.50.dat -n 4 2 50 6 -S 0 1 3 -i 1 1 1 6

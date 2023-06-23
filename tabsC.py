@@ -140,16 +140,36 @@ class Tabs(pyglet.window.Window):
         self.Y_BOTTOM  = 1  if self.AY==-1 else 0  ;  self.Y_CENTER = 1  if self.AY==0  else 0  ;  self.Y_TOP    = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
         self.V_BOTTOM  = 1  if self.VA==-1 else 0  ;  self.V_CENTER = 1  if self.VA==0  else 0  ;  self.V_TOP    = 1 if self.VA==1 else 0
 
-    def geomFileName(self, base, ext):
-        n = self.n0
-        _ = [base]
-        _.extend([ str(i) for i in n ])
+    def geomFileName(self, base, ext, dbg=1):
+        n   = self.n0
+        n1  = [base]
+        n1.extend([ str(i) for i in n ])
         axy = f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
         vaa = f'{self.ftAy(self.va)}{self.ftAx(self.aa)}' if not self.SPRITES else Z
-        _.append(axy)
-        _.append(vaa) if vaa else None
-        _.append(ext)
-        return '.'.join(_) # base.p.l.s.c.t.axy.spr.(vaa.)ext
+        n2  = ['_', axy]
+        n2.extend(['_', vaa]) if vaa else None
+        n2.extend(['.', ext])
+        n1  = '.'.join(n1)
+        n2  = Z.join(n2)
+        _   = Z.join([n1, n2]) # base.p.l.s.c.t_axy(_vaa).ext  test.1.1.10.6_CC_CC.txt
+        self.log(f'{_}') if dbg else None
+        return _
+
+    def NEW__geomFileName(self, base, ext, dbg=1):
+        n   = self.n0
+        n1  = [base]
+        axy = f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
+        vaa = f'{self.ftAy(self.va)}{self.ftAx(self.aa)}' if not self.SPRITES else Z
+        n1.extend(['_', axy])
+        n1.extend(['_', vaa]) if vaa else None
+        n1.append('_')
+        n1  = Z.join(n1)
+        n2  = [ str(i) for i in n ]
+        n2.append(ext)
+        n2  = '.'.join(n2)
+        _   = Z.join([n1, n2]) # base_axy_(vaa_)p.l.s.c.t.ext  test_CC_CC.1.1.10.6.txt
+        self.log(f'{_}') if dbg else None
+        return _
 
     def dumpArgs(self, f=1):
         self.log(f'[a]      {self.AUTO_SAVE=}', f=f)
@@ -210,7 +230,7 @@ class Tabs(pyglet.window.Window):
         self._initTextLabels()
         self._initTniks()
 #        if self.SNAPS:
-        self.regSnap('init', 'INIT')
+        self.regSnap('init', INIT)
     ####################################################################################################################################################################################################
     def _initColors(self): # j = M = 11
         KP1, KP2 = VLT, VLT  ;  KL1, KL2 = RED, RED  ;  KS1, KS2 = CYA, CYA  ;  KC1, KC2 = RST, RST
@@ -356,7 +376,7 @@ class Tabs(pyglet.window.Window):
 #        ssPath = self.snapshot('text img for Sprites', 'SPRTXT')
         self.log(f'BGN {path=} {r=} {c=}')
         img = pyglet.image.load(path)
-        ig = pyglet.image.ImageGrid(img, r, c)
+        ig  = pyglet.image.ImageGrid(img, r, c)
 #        itg = pyglet.image.TextureGrid(ig)
         ds = ig[0:10]
         for j, d in enumerate(ds):
@@ -378,8 +398,8 @@ class Tabs(pyglet.window.Window):
         path = util.getFilePath('testA', BASE_PATH, PNGS, PNG)
         self.log(f'BGN {path=} {r=} {c=}')
         pimg = pyglet.image.load(path)
-        ig = pyglet.image.ImageGrid(pimg, r, c)
-        spr = SPR(ig[2], x=300, y=200, batch=self.batch, group=self.j2g(H), subpixel=self.SUBPIX)
+        ig   = pyglet.image.ImageGrid(pimg, r, c)
+        spr  = SPR(ig[2], x=300, y=200, batch=self.batch, group=self.j2g(H), subpixel=self.SUBPIX)
         spr.anchor_x, spr.anchor_y = self.axyWgt(self.ax, self.ay)
         self.sprs.append(spr)
         self.log(f'END {path=} {r=} {c=}')
@@ -605,7 +625,7 @@ class Tabs(pyglet.window.Window):
         pyglet.gl.glClearColor(0, 0, 0, 0) # (1, 1, 1, 1) # (R, G, B, A)
         self.clear()
         self.batch.draw()
-        if  self.snapReg and (self.SNAPS or self.snapId == 0):
+        if  self.snapReg and (self.SNAPS or self.snapType == INIT):
             self.snapReg = 0
             path = self.snapshot()
             self.log(f'{self.snapWhy=} {self.snapType=} {self.snapId=}\n{path=}', pos=1)
@@ -1388,7 +1408,8 @@ class Tabs(pyglet.window.Window):
                     for colm in  self.g_resizeTniks(self.colms, C, sect, why=why): # pass
                         for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
-        if self.CURSOR and self.cursor: self.resizeCursor(why, self.cc)   ;   self.dumpHdrs()
+        if self.CURSOR and self.cursor: self.resizeCursor(why)   ;   self.dumpHdrs()
+        if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd{self.cc + 1}')
         if dbg:   self.dumpStruct(why)
     ####################################################################################################################################################################################################
     def g_resizeTniks(self, tlist, j, pt=None, why=Z, dbg=1, dbg2=1):
@@ -1700,15 +1721,14 @@ class Tabs(pyglet.window.Window):
 #        else:         self.cursor   = self.createTnik(  self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
         if self.LL:   self.setLLStyle(self.cc, CURRENT_STYLE)
 
-    def resizeCursor(self, why, why2, dbg=1):
+    def resizeCursor(self, why, dbg=1):
         x, y, w, h, c = self.cc2xywh()
         self.resizeTnik(self.hcurs, 0, H, x, y, w, h, why, dbg=dbg)
-        if dbg and self.SNAPS: self.regSnap(why, f'Upd{why2}')
 
     def moveCursor(self, ss=0, why=Z, dbg=1):
         if dbg:           self.log(f'BGN {ss=} {self.cc=}', pos=1)
         if self.LL:       self.setLLStyle(self.cc, SELECT_STYLE if ss else NORMAL_STYLE)
-        self.resizeCursor(why, why2=self.cc, dbg=dbg)
+        self.resizeCursor(why, dbg=dbg)
         if self.LL:       self.setLLStyle(self.cc, CURRENT_STYLE)
         if dbg:           self.log(f'END {ss=} {self.cc=}', pos=1)
     ####################################################################################################################################################################################################
@@ -2810,7 +2830,7 @@ class Tabs(pyglet.window.Window):
     def snapshot(self, why=Z, typ=Z, dbg=1, dbg2=1):
         why      = why  if why         else self.snapWhy
         typ      = typ  if typ         else self.snapType
-        fdir     = Z    if typ=='INIT' else PNGS
+        fdir     = Z    if typ==INIT else PNGS
         if fdir: snapId = self.snapId  ; logId = self.LOG_ID  ;  snapName = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
         else:                                                    snapName = self.geomFileName(BASE_NAME, PNG)
         SnapPath = BASE_PATH / fdir / snapName  ;  logId = 'None'  ;  snapId = 'None'
@@ -2872,8 +2892,7 @@ class Tabs(pyglet.window.Window):
             if save: self.saveDataFile(why, self.dataPath1)
             if dbg:  self.transposeData(dump=1 if dbg else 0)
             if dbg:  self.cobj.dumpMlimap(why)
-        if self.SNAPS:
-            self.snapshot(f'quit {error} {save=}', 'QUIT')
+#        if self.SNAPS:    self.snapshot(f'quit {error} {save=}', 'QUIT')
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=2)       ;   self.log(util.QUIT_END, p=0, f=2)
         self.cleanupFiles()
 #        self.close()
@@ -3016,6 +3035,7 @@ MELODY, CHORD, ARPG   =  0, 1, 2
 LARROW, RARROW, DARROW, UARROW =  0, 1, 0, 1
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE, COPY_STYLE = 0, 1, 2, 3
 ########################################################################################################################################################################################################
+INIT    = 'INIT'
 FIN     = [1, 1, 1, 2, 1]
 FNTP    = [5, 4, 3, 3, 3]
 #           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16
@@ -3058,9 +3078,9 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
         slog(f'{msg} {LOG_FILE.name} to {snlfp}', ff=1)
         util.copyFile(LOG_PATH,          snlfp)
         glfp = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z) #   ;    tabs.makeSubDirs(glfp)
-        slog(f'{msg} {LOG_FILE.name} to { glfp}', ff=1)
-        util.copyFile(LOG_PATH,           glfp)
-        LOG_FILE.flush()             ;    LOG_FILE.close()
+        slog(f'{msg} {LOG_FILE.name} to {glfp}', ff=1)
+        util.copyFile(LOG_PATH,          glfp)
+        LOG_FILE.flush()             ;   LOG_FILE.close()
         print('Thats all folks', flush=True)
     ########################################################################################################################################################################################################
     if __name__ == '__main__':
