@@ -142,7 +142,8 @@ class Tabs(pyglet.window.Window):
 
     def geomFileName(self, base, ext, dbg=1):
         n   = self.n0
-        n1  = [base]
+        lbl = 'B' if self.LL else 'A'
+        n1  = ['_'.join([lbl, base])]
         n1.extend([ str(i) for i in n ])
         axy = f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
         vaa = f'{self.ftAy(self.va)}{self.ftAx(self.aa)}' if not self.SPRITES else Z
@@ -1171,30 +1172,6 @@ class Tabs(pyglet.window.Window):
         msg = f'{msg3} {msg1}'   ;    self.log(msg) #  ;   self.quit(msg) # self.fmtJText(j, t, why)
         return tlist, j, k, txt
     ####################################################################################################################################################################################################
-    def OLD__geom(self, j, p=None, n=None, i=None, dbg=1):
-        assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.width, self.height
-        n  = n if n is not None else self.n[j]   ;   s = (P, S, T)  ;   c = (C, Q, E) # ;   t = (T, N, I, K)  ;  n += 1 if ll and j in t else 0
-        if n == 0:         n  = 1      ;     self.log(f'ERROR n=0 setting {n=}')
-        i               = i if i is not None else self.i[j]
-        a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)
-        px, py, pw, ph  = (a*ww, b*hh, ww, hh) if p is None else (p.x, p.y, p.width, p.height)
-#        if self.LL and j == L:   np, nl, ns, nc, nt = self.n  ;  nr = nl*(ns*nt + self.LL)  ;  py -= b*ph/nr  ;  ph -= ph/nr
-        if self.LL and j == L:   np, nl, ns, nc, nt = self.n  ;  nr = nl*(ns*nt + self.LL)  ;  py -= ph/(2*nr)  ;  ph -= ph/nr
-        if   j in c:       w  = pw/n             ;  h = ph
-        elif j == P:       w  = pw               ;  h = ph
-        else:              w  = pw               ;  h = ph/n
-        if   j in s:       x  = px - a*pw + a*w  ;  y = py + b*ph - b*h
-        elif j in c:       x  = a*w              ;  y = py + b*ph - b*h
-#        elif j == L:       x  = px - a*pw + a*w  ;  y = py + (1-b)*ph - (1-b)*h
-        elif j == R:       x =  px - a*pw + a*w  ;  y = py + b*ph + b*h
-        else:              x = -1                 ;  y = -1   ;   msg = f'ERROR Unhandled Tnik type {j=} {JTEXTS[j]=}'  ;  self.log(msg)  ;  self.quit(msg)
-        if dbg and self.VRBY >= 2:   #        n -= 1 if ll and j in t else 0
-            msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
-            msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
-            msg += msg2 if p else W * len(msg2)
-            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
-        return n, i, x, y, w, h
-
     def geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.width, self.height
         n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (L, S, R, T)
@@ -1420,7 +1397,7 @@ class Tabs(pyglet.window.Window):
         if dbg > 1:     text = c.text if ha else Z  ;  self.log(f'{self.fmtJText(j)} {i=} {id(c):x} {text:6} {self.ftxywh(c)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0)
     ####################################################################################################################################################################################################
     def resizeTniks(self, dbg=1):
-        self.updC += 1  ;  why = f'Upd{self.updC}'
+        self.updC += 1  ;  why = f'Upd.{self.updC}'
         self.dumpTniksPfx(why)
         for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
             for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
@@ -1430,7 +1407,7 @@ class Tabs(pyglet.window.Window):
                         for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
         if self.CURSOR and self.cursor: self.resizeCursor(why)   ;   self.dumpHdrs()
-        if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd{self.cc + 1}')
+        if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd.{self.cc + 1}')
         if dbg:   self.dumpStruct(why)
     ####################################################################################################################################################################################################
     def g_resizeTniks(self, tlist, j, pt=None, why=Z, dbg=1, dbg2=1):
@@ -1930,7 +1907,7 @@ class Tabs(pyglet.window.Window):
         if rev: self.reverseArrow()
         else:   self.autoMove(how)
         if dbg and self.SNAPS:
-            stype = f'TXT_{text}' if self.sobj.isFret(text) else 'SYMB' if text in util.DSymb.SYMBS else 'UNKN'
+            stype = f'Txt.{text}' if self.sobj.isFret(text) else 'SYMB' if text in util.DSymb.SYMBS else 'UNKN'
             self.regSnap(f'{how}', stype)
         self.rsyncData = 1
 
