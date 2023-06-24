@@ -13,8 +13,8 @@ echo ls -l $path
 ls      -l $path
 echo cksum $path/tabs*.txt
 cksum      $path/tabs*.txt
-echo python tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -p -s -t -L -S 0 -f test 2&> $path/tabs.txt
-python      tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -p -s -t -L -S 0 -f test 2&> $path/tabs.txt
+echo python tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -p -s -t -S 0 -f test 2&> $path/tabs.txt
+python      tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -p -s -t -S 0 -f test 2&> $path/tabs.txt
 echo ls -l $path
 ls      -l $path
 echo cksum $path/tabs*.txt

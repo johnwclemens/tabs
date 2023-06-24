@@ -26,8 +26,10 @@ pwd
 echo ls
 ls
 
-echo dirs='("csv" "dat" "log" "png" "std" "cat")'
-dirs=(      "csv" "dat" "log" "png" "std" "cat")
+echo dirs='("csv" "dat" "log" "png" "std")'
+dirs=(      "csv" "dat" "log" "png" "std")
+#echo dirs='("csv" "dat" "log" "png" "std" "cat")'
+#dirs=(      "csv" "dat" "log" "png" "std" "cat")
 
 for dir in "${dirs[@]}"  ; do
   if   [[ $dir = "dat" ]]; then

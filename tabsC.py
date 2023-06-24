@@ -152,23 +152,7 @@ class Tabs(pyglet.window.Window):
         n2.extend(['.', ext])
         n1  = '.'.join(n1)
         n2  = Z.join(n2)
-        _   = Z.join([n1, n2]) # base.p.l.s.c.t_axy(_vaa).ext  test.1.1.10.6_CC_CC.txt
-        self.log(f'{_}') if dbg else None
-        return _
-
-    def NEW__geomFileName(self, base, ext, dbg=1):
-        n   = self.n0
-        n1  = [base]
-        axy = f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
-        vaa = f'{self.ftAy(self.va)}{self.ftAx(self.aa)}' if not self.SPRITES else Z
-        n1.extend(['_', axy])
-        n1.extend(['_', vaa]) if vaa else None
-        n1.append('_')
-        n1  = Z.join(n1)
-        n2  = [ str(i) for i in n ]
-        n2.append(ext)
-        n2  = '.'.join(n2)
-        _   = Z.join([n1, n2]) # base_axy_(vaa_)p.l.s.c.t.ext  test_CC_CC.1.1.10.6.txt
+        _   = Z.join([n1, n2]) # A[B]_base.p.l.s.c.t_axy(_vaa).ext  B_test.1.1.10.6_CC_CC.txt
         self.log(f'{_}') if dbg else None
         return _
 
@@ -276,11 +260,10 @@ class Tabs(pyglet.window.Window):
         dataDir   = DATA
         dataName0 = self.DAT_GFN + '.asv'
         dataName1 = self.DAT_GFN
-        dataName2 = self.DAT_GFN + '.bck'
+        dataName2 = self.DAT_GFN
         self.dataPath0 = BASE_PATH / dataDir / dataName0
         self.dataPath1 = BASE_PATH /           dataName1
-        self.dataPath2 = BASE_PATH / dataDir / dataName2
-#        self.makeSubDirs(self.dataPath1)
+        self.dataPath2 = BASE_PATH / dataDir / dataName0
         self.log(f'{dataName0=}')
         self.log(f'{dataName1=}')
         self.log(f'{dataName2=}')
@@ -322,7 +305,6 @@ class Tabs(pyglet.window.Window):
         hdrA    = [P, L, S, C,  T, N, I, K,  R, Q, H, M,  B, A, D, E]
         hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ])
         self.gn = [1, 2, 3, 4,  7, 7, 7, 7,  5, 6, 8, 0,  8, 8, 8, 8]  ;  self.g = []
-#        self.gn = [1, 2, 3, 4,  5, 5, 5, 5,  6, 7, 8, 0,  6, 6, 6, 6]  ;  self.g = []
         self.log(fmtl(hdrA, w=2))  ;  self.log(f'  {hdrB}')  ;  self.log(fmtl(self.gn, w=2))
         for i in range(1+max(self.gn)):
             p   = None if self.ORD_GRP or i==0 else self.g[i-1]
