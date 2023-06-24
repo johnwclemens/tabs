@@ -1171,23 +1171,44 @@ class Tabs(pyglet.window.Window):
         msg = f'{msg3} {msg1}'   ;    self.log(msg) #  ;   self.quit(msg) # self.fmtJText(j, t, why)
         return tlist, j, k, txt
     ####################################################################################################################################################################################################
-    def geom(self, j, p=None, n=None, i=None, dbg=1):
+    def OLD__geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.width, self.height
-        n  = n if n is not None else self.n[j]   ;   s = (P, L, S, T)  ;   c = (C, Q, E) # ;   t = (T, N, I, K)  ;  n += 1 if ll and j in t else 0
+        n  = n if n is not None else self.n[j]   ;   s = (P, S, T)  ;   c = (C, Q, E) # ;   t = (T, N, I, K)  ;  n += 1 if ll and j in t else 0
         if n == 0:         n  = 1      ;     self.log(f'ERROR n=0 setting {n=}')
         i               = i if i is not None else self.i[j]
         a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)
         px, py, pw, ph  = (a*ww, b*hh, ww, hh) if p is None else (p.x, p.y, p.width, p.height)
-        if self.LL and j == L:   np, nl, ns, nc, nt = self.n  ;  nr = nl*(ns*nt + self.LL)  ;  py -= b*ph/nr  ;  ph -= ph/nr
-#        if self.LL and j == L:   np, nl, ns, nc, nt = self.n  ;  nr = nl*(ns*nt + self.LL)  ;  py -= ph/(2*nr)  ;  ph -= ph/nr
+#        if self.LL and j == L:   np, nl, ns, nc, nt = self.n  ;  nr = nl*(ns*nt + self.LL)  ;  py -= b*ph/nr  ;  ph -= ph/nr
+        if self.LL and j == L:   np, nl, ns, nc, nt = self.n  ;  nr = nl*(ns*nt + self.LL)  ;  py -= ph/(2*nr)  ;  ph -= ph/nr
         if   j in c:       w  = pw/n             ;  h = ph
         elif j == P:       w  = pw               ;  h = ph
         else:              w  = pw               ;  h = ph/n
         if   j in s:       x  = px - a*pw + a*w  ;  y = py + b*ph - b*h
         elif j in c:       x  = a*w              ;  y = py + b*ph - b*h
+#        elif j == L:       x  = px - a*pw + a*w  ;  y = py + (1-b)*ph - (1-b)*h
         elif j == R:       x =  px - a*pw + a*w  ;  y = py + b*ph + b*h
         else:              x = -1                 ;  y = -1   ;   msg = f'ERROR Unhandled Tnik type {j=} {JTEXTS[j]=}'  ;  self.log(msg)  ;  self.quit(msg)
         if dbg and self.VRBY >= 2:   #        n -= 1 if ll and j in t else 0
+            msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
+            msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
+            msg += msg2 if p else W * len(msg2)
+            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
+        return n, i, x, y, w, h
+
+    def geom(self, j, p=None, n=None, i=None, dbg=1):
+        assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.width, self.height
+        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (L, S, R, T)
+        if n == 0:    n = 1    ;     self.log(f'ERROR n=0 setting {n=}')
+        i               = i if i is not None else self.i[j]
+        a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)
+        px, py, pw, ph  = (a*ww, b*hh, ww, hh) if p is None else (p.x, p.y, p.width, p.height)
+        if   j in c:  w = pw/n             ;  h = ph
+        elif j == P:  w = pw               ;  h = ph
+        else:         w = pw               ;  h = ph/n
+        if   j in s:  x = px - a*pw + a*w  ;  y = py + (1-b)*ph - (1-b)*h
+        elif j in c:  x = a*w              ;  y = py + b*ph - b*h
+        else:         x = px - a*pw + a*w  ;  y = py + b*ph - b*h
+        if dbg and self.VRBY >= 2:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
             msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
             msg += msg2 if p else W * len(msg2)
@@ -1403,7 +1424,7 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksPfx(why)
         for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
             for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
-                self.resizeLLs(line, why)
+                if self.LL:      self.resizeLLs(line, why)
                 for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
                     for colm in  self.g_resizeTniks(self.colms, C, sect, why=why): # pass
                         for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
