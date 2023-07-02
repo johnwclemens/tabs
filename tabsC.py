@@ -142,13 +142,13 @@ class Tabs(pyglet.window.Window):
 
     def geomFileName(self, base, ext, dbg=1):
         n   = self.n0
-        lbl = 'B' if self.LL else 'A'
-        n1  = ['_'.join([lbl, base])]
+        lbl = Z      if ext==DAT else 'B' if self.LL else 'A'
+        n1  = [base] if ext==DAT else ['_'.join([lbl, base])]
         n1.extend([ str(i) for i in n ])
         axy = f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
         vaa = f'{self.ftAy(self.va)}{self.ftAx(self.aa)}' if not self.SPRITES else Z
-        n2  = ['_', axy]
-        n2.extend(['_', vaa]) if vaa else None
+        if ext == DAT: n2 = []
+        else:          n2 = ['_', axy]  ;  n2.extend(['_', vaa]) if vaa else None
         n2.extend(['.', ext])
         n1  = '.'.join(n1)
         n2  = Z.join(n2)
@@ -214,7 +214,6 @@ class Tabs(pyglet.window.Window):
         self._initFonts()
         self._initTextLabels()
         self._initTniks()
-#        if self.SNAPS:
         self.regSnap('init', INIT)
     ####################################################################################################################################################################################################
     def _initColors(self): # j = M = 11
@@ -263,7 +262,7 @@ class Tabs(pyglet.window.Window):
         dataName2 = self.DAT_GFN
         self.dataPath0 = BASE_PATH / dataDir / dataName0
         self.dataPath1 = BASE_PATH /           dataName1
-        self.dataPath2 = BASE_PATH / dataDir / dataName0
+        self.dataPath2 = BASE_PATH / dataDir / dataName2
         self.log(f'{dataName0=}')
         self.log(f'{dataName1=}')
         self.log(f'{dataName2=}')
@@ -668,7 +667,7 @@ class Tabs(pyglet.window.Window):
         stat = path.stat()  ;   size = stat.st_size
         if size == 0:           self.log(f'WARN Zero Len Data File  {path} -> Generate Data File')   ;   size = self.genDataFile(path)
         if size == 0:            msg =  f'ERROR Zero Len Data File {size=}'    ;   self.log(msg)     ;   self.quit(msg)
-        with open(path, 'r', encoding='utf-8') as DATA_FILE:
+        with open(path, 'r', encoding='utf-8')  as DATA_FILE:
             DATA_FILE.seek(0, 2)      ;     size = DATA_FILE.tell()   ;   DATA_FILE.seek(0, 0)
             self.log(f'{DATA_FILE.name:40} {size:3,} bytes = {size/1024:3,.1f} KB')
             self.log('Raw Data File BGN:')
@@ -1127,7 +1126,7 @@ class Tabs(pyglet.window.Window):
     def lens2n(ls):        return [ len(i) if util.isi(i, str) else i for i in ls ]
     ####################################################################################################################################################################################################
     def tnikInfo(self, p, l, s, c, t=None, z=0, why=Z, dbg=0):
-        tlist, j, k, txt = None, -1, None, None   ;   z1, z2 = None, None   ;   ll = 0 #self.LL
+        tlist, j, k, txt = None, -1, None, None   ;   z1, z2 = None, None
         if z: z1, z2 = self.z1(c), self.z2(c)
         exp1 = z1 == C1   ;  exp2 = C2 in (z1, z2)
         p, l, s, c, t = self.lens2n([p, l, s, c, t])
@@ -1142,7 +1141,7 @@ class Tabs(pyglet.window.Window):
             else:   msg = f'{msg2} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # f'{self.fmtJText(j, why=why)}'
             if dbg: msg =        f'{msg1}'   ;    self.log(msg, f=0) # self.fmtJText(j, why=why)
             return  tlist, j, None, None
-        if ll <= t < ll + self.n[T]:
+        if 0 <= t < self.n[T]:
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[B], self.k[A], self.k[D]
             tab = self.data[p][l][c][t]  # if C1 != z1 != C2 and C2 != z2 else Z
             if   s == TT:  tlist, j, k, txt = (self.snums, B, kO, self.sobj.stringNumbs[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.tabls, T, kT, tab)
@@ -1155,33 +1154,39 @@ class Tabs(pyglet.window.Window):
         msg = f'{msg3} {msg1}'   ;   self.log(msg)   ;   self.quit(msg)   ;   self.fmtJText(j, why)
         return tlist, j, k, txt
     ####################################################################################################################################################################################################
-#        if self.LL and j == L:  py -= ph/2*nr  ;  ph -= ph/nr
-#        if self.LL and j == L:  ph -= ph/nr    ;  py -= ph/2
     def geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.width, self.height
-        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (S, T) # ;  t = (T, N, I, K)
-#        n += 1 if self.LL and j in t else 0
-        np, nl, ns, nc, nt = self.n  ;  nr = ns*nt + self.LL
+        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (S, T) # ;  r = (R, L) # ;  t = (T, N, I, K)
+        np, nl, ns, nc, nt = self.n   ;   nsnt = ns*nt   ;   nr = nsnt + self.LL
         if n == 0:    n = 1    ;     self.log(f'ERROR n=0 setting {n=}')
         i               = i if i is not None else self.i[j]
-        a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)
-        px, py, pw, ph  = (a*ww, b*hh, ww, hh) if p is None else (p.x, p.y, p.width, p.height)
+        a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)  ;  d = 1 - b  ;  dn = nr - nsnt # ;  e = d + 1 # {d*ph=:6.2f} {d*h=:6.2f}
+        px, py, pw, ph  = (a*ww, b*hh, ww, hh) if p is None else (p.x, p.y, p.width, p.height)  ;  ph_n = ph/n  ;  ph_n_nr = ph_n/nr
         if   j in c:  w = pw/n             ;  h = ph
         elif j == P:  w = pw               ;  h = ph
-        elif j == L:  w = pw               ;  h = ph/n - ph/(nr*n)
-        else:         w = pw               ;  h = ph/n
-        if   j in s:  x = px - a*pw + a*w  ;  y = py + (1-b)*ph - (1-b)*h
-        elif j == L:  x = px - a*pw + a*w  ;  y = py + (1-b)*ph - (1-b)*h - ph/nr
-        elif j == R:  x = px - a*pw + a*w  ;  y = py + (1-b)*ph - (1-b)*h + ph/nt
+        elif j == L:  w = pw               ;  h = ph_n - dn*ph_n_nr # ph/n - (ph/n)*(dn/nr)
+        elif j == R:  w = pw               ;  h = ph/nsnt
+        else:         w = pw               ;  h = ph_n
+        if   j in s:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h
+#        elif j == L:  x = px - a*pw + a*w  ;  y = ph - dn*ph_n_nr - dn*h/n - b*(i+1)*h/n  ;  self.log(f'{ph=} {ph_n=:.2f} {ph_n_nr=:.2f} {n=} {nr=} {d=} {dn=} {h=:.2f} y={y:.2f}', f=2)  ;  self.dmpTnikYs(ph, h/n, n, ph_n_nr)
+#        elif j == L:  x = px - a*pw + a*w  ;  y = ph - dn*ph_n_nr - dn*h/n - b*(self.i[L]+1)*h/n  ;  self.log(f'{ph=} {ph_n=:.2f} {ph_n_nr=:.2f} {n=} {nr=} {d=} {dn=} {h=:.2f} y=ph-dn*ph_n_nr-dn*h/n={ph}-{ph_n_nr:.2f}-{d*h/n:.2f}={y:.2f}', f=2)  ;  self.dmpTnikYs(ph, h/n, n, ph_n_nr)
+        elif j == L:  x = px - a*pw + a*w  ;  y = b*ph_n # - b*ph_n_nr # - b*h/n  ;  self.log(f'{ph=} {ph_n=:.2f} {ph_n_nr=:.2f} {n=} {nr=} {d=} {dn=} {h=:.2f} y=ph-ph_n_nr-h/n={ph}-{ph_n_nr:.2f}-{h/n:.2f}={y:.2f}', f=2)  ;  self.dmpTnikYs(ph, ph_n_nr, n, h/n)
+#        elif j == L:  x = px - a*pw + a*w  ;  y = py + e*ph - e*h # - e*dn*ph/(nr*n)  ;  self.log(f'{dn=} {d=} {e=} {py=} {ph=} {h=:6.2f} {d*ph=:6.2f} {d*h=:6.2f} {y=:6.2f}', f=2)
+        elif j == R:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h + ph/nsnt
         elif j in c:  x = a*w              ;  y = py + b*ph - b*h
         else:         x = px - a*pw + a*w  ;  y = py + b*ph - b*h
-#        n -= 1 if self.LL and j in t else 0
         if dbg and self.VRBY >= 2:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
             msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
             msg += msg2 if p else W * len(msg2)
             self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
         return n, i, x, y, w, h
+#    def dmpTnikYs(self, yA, yB, a, b):   y = [ yA - (yB + b*i) for i in range(a) ]  ;  self.log(f'{fmtl(y, w=".2f")}', f=2)
+    def dmpTnikYs(self, ph, dy, n, h):
+        y = []   ;   ph -= h/2
+        for i in range(n):
+            y.append(ph - (h*i + dy))
+        self.log(f'{fmtl(y, w=".2f")}', f=2)
     ####################################################################################################################################################################################################
     def imap2ikey(self, tobj, imap, i, j, dbg=0):
         imap0 = imap[0][::-1] if imap and len(imap) else []
@@ -1491,7 +1496,7 @@ class Tabs(pyglet.window.Window):
         tid = ' TId  Identity  ' if self.OIDS else ' Tid'  ;    wnc = ' Why  Name  Cnt'  ;  rot_txt = ' Rotated ' if spr else 'PrtlText '
         gv  = 'G V'     ;     jts = self.fjtxt()   ;   xywh = W.join(XYWH)           ;   cwh = self.cwhH()   ;  cva = self.cvaH()  ;   axy2 = self.axy2H()
         cnc = ' CC  NC CN'   ;   rgb = ' Red Grn Blu Opc' if self.LONG_TXT else Z    ;   rgbM = (' M     Mx    My  ' if spr else rgb) if self.LONG_TXT else Z
-        sfx = ('x y AncX AncY Grp             pGrp'     if spr     else     f' {axy2} {cwh} {W.join(ADN)} {cva} FnSz dpi B I FontName')  if self.LONG_TXT else Z
+        sfx = ('x y AncX AncY Grp            pGrp'     if spr     else     f' {axy2} {cwh} {cva} {W.join(ADN)} FnSz dpi B I FontName')  if self.LONG_TXT else Z
         ft  = f'{W*13}FullText' if self.LONG_TXT and not spr and self.DBG_TABT else Z
         return f'{tid} {wnc} {rot_txt}{gv} {jts} {xywh} {cnc} {rgb} {rgbM} {sfx}{ft}'
     @staticmethod
@@ -1523,7 +1528,7 @@ class Tabs(pyglet.window.Window):
         dtxt = f'{d}{self.ffTxt(t)}' if self.DBG_TABT and len(t.text.replace('\n', Z)) > 8 else Z  ;  td = t.document
         ancX, ancY = f'{int(t.width * self.axWgt(self.ax)):4}', f'{int(t.height * self.ayWgt(self.ay)):4}'
         fnt  = td.get_font()    ;   asc  = fnt.ascent   ;   dsc = fnt.descent   ;   net = asc - dsc
-        adn  =  d.join([f'{asc:4}', f'{dsc:4}', f'{net:4}'])
+        adn  =  d.join([f'{asc:4.1f}', f'{dsc:4.1f}', f'{net:4.1f}'])
         return f'{self.fAxy()}{d}{ancX}{d}{ancY}{d}{self.fCtnt(t)}{d}{adn}{d}{self.fFntSz(t)}{d}{self.ffont(t)}{dtxt}'
     @staticmethod
     def frot(t):            return f'{t.rotation:8.3f} '
@@ -1733,10 +1738,10 @@ class Tabs(pyglet.window.Window):
 #        return ( p *self.tpp//self.tpc) + (l *self.tpl//self.tpc) + c//self.tpc
 
     def plct2cc(self, p, l, c, t, dbg=0):
-        tpb, tpp, tpl, tps, tpc = self.ntp()  ;  ns = self.n[S]
-        if ns == 0: cc = p*tpp     + l*tpl     + c*tpc + t
-        else:       cc = p*tpp//ns + l*tpl//ns + c*tpc + t
-#       cc = p*tpp + l*tpl + s*tps + c*tpc + t
+        tpb, tpp, tpl, tps, tpc = self.ntp()
+        ns = self.n[S] if self.n[S] else 1
+        cc = p*tpp//ns + l*tpl//ns + c*tpc + t
+        cc = cc % tpp
         if dbg: self.log(f'    {cc:4} {self.fntp()} {self.fplct(p, l, c, t)} ({p*tpp:4} +{l*tpl:3} +{tps:3} +{c*tpc:3} +{t})', f=0)
         return cc
 
@@ -1841,24 +1846,25 @@ class Tabs(pyglet.window.Window):
         pix = s / FONT_SCALE   ;   fcs = Z # f'{fmtl( [k])}'
         self.log(f'{dpi}:{FONT_DPIS[dpi]}dpi {s:6.3f}pt {n}:{FONT_NAMES[n]} {k}:{fcs} {s:6.3f}pt = {FONT_SCALE:5.3f}(pt/pix) * {pix:6.3f}pixels {why}', f=2)
 
-    def setFontParam(self, n, v, m, dbg=1): # if m == 'clrIdx': self.fontStyle = NORMAL_STYLE if self.fontStyle == SELECT_STYLE else SELECT_STYLE
+    def setFontParam(self, n, v, m, dbg=0): # if m == 'clrIdx': self.fontStyle = NORMAL_STYLE if self.fontStyle == SELECT_STYLE else SELECT_STYLE
         setattr(self, m, v)
         t = self.B  ;  lt = len(t)
         if dbg:                self.log( f'      {n:12}  {v:4}  {lt=}  {m}')
-        for i in range(1):
+        for i in range(4):
             if dbg:            self.log(f'{i:4}  {n:12}  {v:4}  {lt=}  {m}') #  and self.VRBY
             self._setFontParam(self.B[i], n, v, m)
         self.setCaption(self.fmtFont())
 
-    def _setFontParam(self, p, n, v, m, dbg=1):
+    def _setFontParam(self, p, n, v, m, dbg=0):
         k = 3  ;  fb = 0 # if self.fontStyle == NORMAL_STYLE else 1
         for i, pi in enumerate(p):
-            if   m == 'clrIdx':      k = len(pi.color)  ;  msg = f'{self.k[v][fb][:k]=}'
+            if   m == 'clrIdx':      k = len(pi.color)   ;   msg = f'{self.k[v][fb][:k]=}'
             elif m == 'fontNameIdx':                         msg = f'{FONT_NAMES[v]=}'
             else:                                            msg = f'{v=}'
             if dbg:
                 j = 1 if self.VRBY else 10
-                if not i % j:         self.log(f'{i=:4}  {n=:8}  {v=:2}  {m=:12}  {fb=}  {k=} {fmtl(pi.color, w=3)} {fmtl(p[i].document.get_style(n), w=3)} {msg}', p=0, f=2)
+                if not i % j:         self.log(f'{i=:4}  {n=:8}  {v=:2}  {m=:12}  {fb=}  {k=} {fmtl(pi.color, w=3)} {p[i].document.get_style(n)} {msg}', p=0, f=2)
+#                if not i % j:         self.log(f'{i=:4}  {n=:8}  {v=:2}  {m=:12}  {fb=}  {k=} {fmtl(pi.color, w=3)} {fmtl(p[i].document.get_style(n), w=3)} {msg}', p=0, f=2)
             if   m == 'clrIdx':       self._setTNIKStyle(p[i], self.k[v], self.fontStyle)
             elif m == 'fontNameIdx':  setattr(p[i], n, FONT_NAMES[v])
             else:                     setattr(p[i], n, v)
@@ -1869,8 +1875,8 @@ class Tabs(pyglet.window.Window):
     def qdmod(self, n, j, dbg=1):
         if    j == P: tp = self.tpp//self.n[S]  ;  tp2 = len(self.tabls)//self.n[P]
         else:         tp = self.tpl//self.n[S]  ;  tp2 = len(self.tabls)//(self.n[P] * self.n[L])
-        assert  tp == tp2,     f'{tp=} != {tp2=}'
-        if dbg:       self.log(f'{n=} {tp=} {tp2=} {n//tp=} {n%tp=}')
+        assert  tp == tp2,     f'{tp=} != {tp2=}, {n=} {j=}'
+        if dbg:       self.log(f'{n=} {j=} {tp=} {tp2=} {n//tp=} {n%tp=}')
         return tp, n//tp, tp % tp
     ####################################################################################################################################################################################################
     def setTab(self, how, text, rev=0, dbg=1): # if isDataFret or isTextFret else 0)
@@ -1880,8 +1886,6 @@ class Tabs(pyglet.window.Window):
         cc   = self.plct2cc(p, l, c, t)   ;   cc2 = cc
         self.log(f'BGN {how} {text=} {rev=} {old=:3} {cc=:3} {p=} {l=} {c=} {t=}', pos=1, f=2)
         data = self.data[p][l][c][t]
-        if cc2 >= self.tpp:  tp, dtp, mtp = self.qdmod(cc, P)  ;  cc2 = tp + mtp  ;  msg = f' {tp=:3} {dtp=} {mtp=} {cc2=:3}'  ;  self.log(msg, f=2)  ;  self.quit(msg)
-        if cc2 >= self.tpl:  tp, dtp, mtp = self.qdmod(cc, L)  ;  cc2 = tp + mtp  ;  msg = f' {tp=:3} {dtp=} {mtp=} {cc2=:3}'  ;  self.log(msg, f=2)  ;  self.quit(msg)
         self.log(f'    {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
         self.setDTNIK(text, cc2, p, l, c, t, kk=1)
         p, l, c, t = self.j2()   ;   data = self.data[p][l][c][t]
@@ -2380,13 +2384,13 @@ class Tabs(pyglet.window.Window):
         bold, italic = 0, 0   ;   np, nl, ns, nc, nt = self.n
         i = c + l * nc if self.qclms else 0
         if   style == NORMAL_STYLE:    bold = 0   ;  italic = 0
-        elif style == CURRENT_STYLE:   bold = 1   ;  italic = 1
+        elif style == CURRENT_STYLE:   bold = 1   ;  italic = 0
         elif style == SELECT_STYLE:    bold = 1   ;  italic = 1
         else: msg = f'ERROR Invalid style @ plct={self.fplct(p, l, c, t)} {i=} {style=}'  ;  self.log(msg)  ;  self.quit(msg)
         (bs, fs) = (0, 1) if style == NORMAL_STYLE else (1, 0)
 #        d = self.qclms[i].document # #
 #        d.set_style(0, len(d.text), {COLOR: self.llcolor(i, Q)[fs], BGC: self.llcolor(i, Q)[bs]}) # #
-        if self.qclms and len(self.qclms) >= i:
+        if self.qclms and len(self.qclms) > i:
             self.setFgcBgc(self.qclms[i], self.llcolor(i, Q)[fs], self.llcolor(i, Q)[bs])
             self.qclms[i].bold   = bold
             self.qclms[i].italic = italic
