@@ -28,7 +28,10 @@ ARGS = util.parseCmdLine()
 
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
-####################################################################################################################################################################################################
+########################################################################################################################################################################################################
+    def __str__(self):  return f'{ARGS}'
+    def __repr__(self): return f'{self.__class__.__name__} {self.width=} {self.height=} {ARGS=}'
+    ####################################################################################################################################################################################################
     def __init__(self):
         self.LOG_ID = 1                ;   self.log(f'{self.LOG_ID=}')
         self.log(f'BGN {__class__}')   ;   dumpGlobals()
@@ -65,7 +68,7 @@ class Tabs(pyglet.window.Window):
         self.n         = [1, 1, 10, 6]
         self.i         = [1, 1,  1, 6]
         self.log(f'argMap={fmtm(ARGS)}')   ;    self.FILE_NAME  = BASE_NAME
-        ####################################################################################################################################################################################################
+        ################################################################################################################################################################################################
         if 'a' in ARGS  and len(ARGS['a']) == 0: self.AUTO_SAVE  =  1
         if 'A' in ARGS: l = len(ARGS['A'])    ;  self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
         if 'b' in ARGS  and len(ARGS['b']) == 0: self.FRT_BRD    =  1
@@ -97,24 +100,24 @@ class Tabs(pyglet.window.Window):
         if 'w' in ARGS  and len(ARGS['w'])  > 0: self.XYVA       = [ int(ARGS['w'][i]) for i in range(len(ARGS['w'])) ]
         if 'Z' in ARGS  and len(ARGS['Z']) >= 0: self.ZZ         = { int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) }
         self._init_xyva()
-        ####################################################################################################################################################################################################
+        ################################################################################################################################################################################################
         self.aa = LEFT   if self.A_LEFT   else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '??'
         self.ax = LEFT   if self.X_LEFT   else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
         self.ay = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP   if self.Y_TOP   else BASELINE if self.Y_BASELINE else '??'
         self.va = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP   if self.V_TOP   else '??'
-        self.n0        = list(self.n)        ;  self.i0 =  list(self.i)
-        self.n.insert(S, self.ssl())         ;  self.i.insert(S, 1)  ;  self.dumpArgs(f=2)
-        self.LOG_GFN   = self.geomFileName(self.FILE_NAME, LOG)      ;  self.log(f'{self.LOG_GFN=}')
-        self.CSV_GFN   = self.geomFileName(self.FILE_NAME, CSV)      ;  self.log(f'{self.CSV_GFN=}')
-        self.DAT_GFN   = self.geomFileName(self.FILE_NAME, DAT)      ;  self.log(f'{self.DAT_GFN=} {self.n0=}')
+        self.n0        = []           ;    self.n0.extend(self.n)  ;  self.i0 = [self.i]
+        self.n.insert(S, self.ssl())  ;    self.i.insert(S, 1)     ;  self.dumpArgs(f=2)
+        self.LOG_GFN   = self.geomFileName(self.FILE_NAME, LOG)    ;  self.log(f'{self.LOG_GFN=}')
+        self.CSV_GFN   = self.geomFileName(self.FILE_NAME, CSV)    ;  self.log(f'{self.CSV_GFN=}')
+        self.DAT_GFN   = self.geomFileName(self.FILE_NAME, DAT)    ;  self.log(f'{self.DAT_GFN=}')
         self.vArrow    = UARROW if self.VARROW == 1 else DARROW
         self.fontStyle = NORMAL_STYLE
         self.sAlias    = 'GUITAR_6_STD'
         self.k         = {}
-        ####################################################################################################################################################################################################
+        ################################################################################################################################################################################################
         self.sobj      = util.Strings(self.sAlias)
         self.cobj      = chord.Chord(self, self.sobj)
-        ####################################################################################################################################################################################################
+        ################################################################################################################################################################################################
         self._initDataPath()
         self._initWindowA()
         self.log(f'WxH={self.fmtWH()}')
@@ -127,9 +130,6 @@ class Tabs(pyglet.window.Window):
         self.log(util.INIT, p=0)
         self.log(f'END {__class__}')
     ####################################################################################################################################################################################################
-    def __str__(self):  return f'{ARGS}'
-    def __repr__(self): return f'{self.__class__.__name__} {self.width=} {self.height=} {ARGS=}'
-    ####################################################################################################################################################################################################
     def _init_xyva(self):
         self.AX        = self.XYVA[0]
         self.AY        = self.XYVA[1]
@@ -141,18 +141,20 @@ class Tabs(pyglet.window.Window):
         self.V_BOTTOM  = 1  if self.VA==-1 else 0  ;  self.V_CENTER = 1  if self.VA==0  else 0  ;  self.V_TOP    = 1 if self.VA==1 else 0
 
     def geomFileName(self, base, ext, dbg=1):
-        n   = self.n0
+        n0 = []  ;  n0.extend(self.n0)
+        n0.insert(S, '_')
+        n   = self.n if ext!=DAT else n0
         lbl = Z      if ext==DAT else 'B' if self.LL else 'A'
         n1  = [base] if ext==DAT else ['_'.join([lbl, base])]
-        n1.extend([ str(i) for i in n ])
+        n1.extend([ '_' if ext==DAT and i==S else str(i) for i in n ])
         axy = f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
         vaa = f'{self.ftAy(self.va)}{self.ftAx(self.aa)}' if not self.SPRITES else Z
         if ext == DAT: n2 = []
         else:          n2 = ['_', axy]  ;  n2.extend(['_', vaa]) if vaa else None
         n2.extend(['.', ext])
         n1  = '.'.join(n1)
-        n2  = Z.join(n2)
-        _   = Z.join([n1, n2]) # A[B]_base.p.l.s.c.t_axy(_vaa).ext  B_test.1.1.10.6_CC_CC.txt
+        n2  =   Z.join(n2)
+        _   =   Z.join([n1, n2]) # A_test.1.2.3.40.6_RT.csv  B_test.4.2.3.50.6_LB_CC.log  A_test.5.2.4.80.6_CC.txt  test.2.1._.30.6.dat
         self.log(f'{_}') if dbg else None
         return _
 
@@ -414,7 +416,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'{JSPR(2, Y)}', p=0)
         self.log(f'{JLBL(2, Y)}', p=0)
         if q:    self.exitTest('test1', 0)
-####################################################################################################################################################################################################
+    ####################################################################################################################################################################################################
     def testA(self, j=10):
         self.log(f'{self.ntsl()=}')
         hdrA = '      cc [  tpb  tpp tpl tps tpc] [p l s  c t]'
@@ -574,7 +576,8 @@ class Tabs(pyglet.window.Window):
         n.reverse()          ;   self.log(f'{W*9}       Rev={self.fmtn(Z, n)}') if dbg2 else None
         n = self.accProd(n)  ;   self.log(f'{W*9}   nRevPrd={fmtl(n)}')         if dbg2 else None
         n.reverse()          ;   self.log(f'{W*9}nRevPrdRev={fmtl(n)}')         if dbg2 else None
-        self.log(f'tpb tpp tpl tps tpc={fmtl(n)}')  if dbg else None
+        pfx = 'tpb ' if len(n) == 5 else ''
+        self.log(f'{pfx}tpp tpl tps tpc={fmtl(n)}')  if dbg else None
         return n
     def fntp(  self, dbg=0, dbg2=0):   return fmtl(self.ntp(dbg=dbg, dbg2=dbg2), w=FNTP)
     ####################################################################################################################################################################################################
@@ -1112,7 +1115,7 @@ class Tabs(pyglet.window.Window):
 #                self.qclms.insert(c2, lrCol)
 #                msg = f'WARN not tested'   ;   self.log(msg)   ;   self.quit(msg)
 #    def sprite2LabelPos(self, x, y, w, h, dbg=0): x0 = x  ;  y0 = y  ;  x += w/2  ;  y -= h/2  ;  self.log(f'{x0=:6.2f} {y0=:6.2f}, {w/2=:6.2f} {-h/2=:6.2f}, {x=:6.2f} {y=:6.2f} {self.p0x=:6.2f} {self.p0y=:6.2f}', so=1) if dbg else None  ;  return x, y
-####################################################################################################################################################################################################
+    ####################################################################################################################################################################################################
     def isV(self, j=0, dbg=0):
         if   j <= K and self.J1[P] == self.j()[P]:   v = 1
         elif j in (H, Q):                            v = 1
@@ -1156,22 +1159,19 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def geom(self, j, p=None, n=None, i=None, dbg=1):
         assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.width, self.height
-        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (S, T) # ;  r = (R, L) # ;  t = (T, N, I, K)
+        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)  ;  s = (S, T)
         np, nl, ns, nc, nt = self.n   ;   nsnt = ns*nt   ;   nr = nsnt + self.LL
         if n == 0:    n = 1    ;     self.log(f'ERROR n=0 setting {n=}')
         i               = i if i is not None else self.i[j]
-        a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)  ;  d = 1 - b  ;  dn = nr - nsnt # ;  e = d + 1 # {d*ph=:6.2f} {d*h=:6.2f}
+        a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)  ;  d = 1 - b  ;  dn = nr - nsnt
         px, py, pw, ph  = (a*ww, b*hh, ww, hh) if p is None else (p.x, p.y, p.width, p.height)  ;  ph_n = ph/n  ;  ph_n_nr = ph_n/nr
         if   j in c:  w = pw/n             ;  h = ph
         elif j == P:  w = pw               ;  h = ph
-        elif j == L:  w = pw               ;  h = ph_n - dn*ph_n_nr # ph/n - (ph/n)*(dn/nr)
+        elif j == L:  w = pw               ;  h = ph_n - dn*ph_n_nr
         elif j == R:  w = pw               ;  h = ph/nsnt
         else:         w = pw               ;  h = ph_n
         if   j in s:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h
-#        elif j == L:  x = px - a*pw + a*w  ;  y = ph - dn*ph_n_nr - dn*h/n - b*(i+1)*h/n  ;  self.log(f'{ph=} {ph_n=:.2f} {ph_n_nr=:.2f} {n=} {nr=} {d=} {dn=} {h=:.2f} y={y:.2f}', f=2)  ;  self.dmpTnikYs(ph, h/n, n, ph_n_nr)
-#        elif j == L:  x = px - a*pw + a*w  ;  y = ph - dn*ph_n_nr - dn*h/n - b*(self.i[L]+1)*h/n  ;  self.log(f'{ph=} {ph_n=:.2f} {ph_n_nr=:.2f} {n=} {nr=} {d=} {dn=} {h=:.2f} y=ph-dn*ph_n_nr-dn*h/n={ph}-{ph_n_nr:.2f}-{d*h/n:.2f}={y:.2f}', f=2)  ;  self.dmpTnikYs(ph, h/n, n, ph_n_nr)
-        elif j == L:  x = px - a*pw + a*w  ;  y = b*ph_n # - b*ph_n_nr # - b*h/n  ;  self.log(f'{ph=} {ph_n=:.2f} {ph_n_nr=:.2f} {n=} {nr=} {d=} {dn=} {h=:.2f} y=ph-ph_n_nr-h/n={ph}-{ph_n_nr:.2f}-{h/n:.2f}={y:.2f}', f=2)  ;  self.dmpTnikYs(ph, ph_n_nr, n, h/n)
-#        elif j == L:  x = px - a*pw + a*w  ;  y = py + e*ph - e*h # - e*dn*ph/(nr*n)  ;  self.log(f'{dn=} {d=} {e=} {py=} {ph=} {h=:6.2f} {d*ph=:6.2f} {d*h=:6.2f} {y=:6.2f}', f=2)
+        elif j == L:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h - dn*ph_n_nr  ;  self.log(f'{y=:.2f} {py=:.2f} {d*ph=:.2f} {-d*h=:.2f} {-dn*ph_n/nsnt=:.2f}')
         elif j == R:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h + ph/nsnt
         elif j in c:  x = a*w              ;  y = py + b*ph - b*h
         else:         x = px - a*pw + a*w  ;  y = py + b*ph - b*h
@@ -1181,12 +1181,9 @@ class Tabs(pyglet.window.Window):
             msg += msg2 if p else W * len(msg2)
             self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
         return n, i, x, y, w, h
-#    def dmpTnikYs(self, yA, yB, a, b):   y = [ yA - (yB + b*i) for i in range(a) ]  ;  self.log(f'{fmtl(y, w=".2f")}', f=2)
-    def dmpTnikYs(self, ph, dy, n, h):
-        y = []   ;   ph -= h/2
-        for i in range(n):
-            y.append(ph - (h*i + dy))
-        self.log(f'{fmtl(y, w=".2f")}', f=2)
+#        elif j == L:  x = px - a*pw + a*w  ;  y = ph - dn*ph_n_nr - dn*h/n - b*(i+1)*h/n
+#        elif j == L:  x = px - a*pw + a*w  ;  y = ph - dn*ph_n_nr - dn*h/n - b*(self.i[L]+1)*h/n
+#        elif j == L:  x = px - a*pw + a*w  ;  y = b*ph_n # - b*ph_n_nr # - b*h/n
     ####################################################################################################################################################################################################
     def imap2ikey(self, tobj, imap, i, j, dbg=0):
         imap0 = imap[0][::-1] if imap and len(imap) else []
@@ -1611,7 +1608,7 @@ class Tabs(pyglet.window.Window):
         for i in range(len(self.tabls)): t = b[0][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, T, i, Y, s), p=0, f=3)
     ####################################################################################################################################################################################################
     @staticmethod
-    def a2csv(a, w=7):   return fmtl(a, w=w, u="^", d=Z, s=Y)
+    def a2csv(a, w=7):   return fmtl(a, w=w, u="^", d=Z, s=Y) if util.isi(a, list) else f'{a:^{w}}'
     def args2csv(self):  return f'{W*4}, -n ,{self.a2csv(self.n0)}', f'{W},{W}, -i ,{self.a2csv(self.i0, w=4)}', f'{W*4}, -s ,{self.a2csv(self.ss2sl()[:2], w=1)},{self.a2csv(self.ss2sl()[2:], w=4)}'
     def csvHdr(self, j, n):
         if   util.isi(self.E[j][0], LBL): return JLBL(n, Y)
@@ -2078,7 +2075,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'R' and self.isAlt(     mods):     self.rotateSprite('& R', self.hcurs[0],  1)
         elif kbk == 'Z' and self.isAltShift(mods):     self.RESIZE = not self.RESIZE  ;  self.resizeTniks(dbg=1) # if self.RESIZE else None
         elif kbk == 'Z' and self.isAlt(     mods):                                       self.resizeTniks(dbg=1) # if self.RESIZE else None
-####################################################################################################################################################################################################
+    ####################################################################################################################################################################################################
         elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam(BOLD,      not self.fontBold,                           'fontBold')
         elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam(BOLD,      not self.fontBold,                           'fontBold')
         elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam(COLOR,        (self.clrIdx + 1) % len(self.k),          'clrIdx')
@@ -3066,7 +3063,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
         util.copyFile(LOG_PATH,          glfp)
         LOG_FILE.flush()             ;   LOG_FILE.close()
         print('Thats all folks', flush=True)
-    ########################################################################################################################################################################################################
+    ####################################################################################################################################################################################################
     if __name__ == '__main__':
         main()
 ########################################################################################################################################################################################################
