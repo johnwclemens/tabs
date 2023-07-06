@@ -75,7 +75,7 @@ class Tabs(pyglet.window.Window):
         if 'B' in ARGS  and len(ARGS['B']) == 0: self.BGC        =  1
         if 'c' in ARGS  and len(ARGS['c']) == 0: self.CAT        =  1
         if 'C' in ARGS  and len(ARGS['C']) == 0: self.CHECKERED  =  1
-        if 'd' in ARGS  and len(ARGS['d'])  > 0: self.DBG_TABT   =  ARGS['d'][0]
+        if 'd' in ARGS  and len(ARGS['d'])  > 0: self.DBG_TABT   =  int(ARGS['d'][0])
         if 'e' in ARGS  and len(ARGS['e']) == 0: self.EVENT_LOG  =  1
         if 'f' in ARGS  and len(ARGS['f'])  > 0: self.FILE_NAME  =  ARGS['f'][0]
         if 'F' in ARGS  and len(ARGS['F']) == 0: self.FULL_SCRN  =  1
@@ -218,21 +218,21 @@ class Tabs(pyglet.window.Window):
         self.regSnap('init', INIT)
     ####################################################################################################################################################################################################
     def _initColors(self): # j = M = 11
-        KP1, KP2 = VLT, VLT  ;  KL1, KL2 = RED, RED  ;  KS1, KS2 = CYA, CYA  ;  KC1, KC2 = RST, RST
+        KP1, KP2 = VLT, VLT  ;  KL1, KL2 = RED, RED  ;  KS1, KS2 = CYA, CYA  ;  KC1, KC2 = YLW, YLW
         KT1, KT2 = ORG, ORG  ;  KN1, KN2 = GRN, GRN  ;  KI1, KI2 = YLW, YLW  ;  KK1, KK2 = IND, IND
         KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = CYA, CYA  ;  KH1, KH2 = YLW, YLW  ;  KM1, KM2 = GRN, GRN
         KB1, KB2 = PNK, PNK  ;  KA1, KA2 = BLU, BLU  ;  KD1, KD2 = FSH, FSH  ;  KE1, KE2 = VLT, VLT
         k = self.k  ;  a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC  ;  i = self.initk
-        j = P  ;  k[j] = i(j, KP1,  3, 17, KP2, 17, 17) if a else i(j, KP1,  3, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
-        j = L  ;  k[j] = i(j, KL1,  3, 15, KL2, 17, 15) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
-        j = S  ;  k[j] = i(j, KS1,  3, 15, KS2, 17, 15) if a else i(j, KS1,  3, 15, KS2, 17, 15) if b else i(j, KS1,  3, 15, KS2, 17, 15) if c else i(j, KS1,  3, 15, KS2, 17, 15) if d else None
-        j = C  ;  k[j] = i(j, KC1,  3, 15, KC2, 17, 15) if a else i(j, KC1,  3, 15, KC2, 17, 15) if b else i(j, KC1,  3, 15, KC2, 17, 15) if c else i(j, KC1,  3, 15, KC2, 17, 15) if d else None
-        j = T  ;  k[j] = i(j, KT1,  0, 13, KT2, 17, 13) if a else i(j, KT1,  0, 13, KT2, 17, 13) if b else i(j, KT1,  0, 13, KT2, 17, 13) if c else i(j, KT1,  0, 13, KT2, 17, 13) if d else None
-        j = N  ;  k[j] = i(j, KN1,  0, 13, KN2, 17, 13) if a else i(j, KN1,  0, 13, KN2, 17, 13) if b else i(j, KN1,  0, 13, KN2, 17, 13) if c else i(j, KN1,  0, 13, KN2, 17, 13) if d else None
-        j = I  ;  k[j] = i(j, KI1,  0, 13, KI2, 17, 13) if a else i(j, KI1,  0, 13, KI2, 17, 13) if b else i(j, KI1,  0, 13, KI2, 17, 13) if c else i(j, KI1,  0, 13, KI2, 17, 13) if d else None
-        j = K  ;  k[j] = i(j, KK1,  0, 13, KK2, 17, 13) if a else i(j, KK1,  0, 13, KK2, 17, 13) if b else i(j, KK1,  0, 13, KK2, 17, 13) if c else i(j, KK1,  0, 13, KK2, 17, 13) if d else None
-        j = R  ;  k[j] = i(j, KR1,  0, 17, KR2, 17, 17) if a else i(j, KR1,  0, 17, KR2, 17, 17) if b else i(j, KR1,  0, 17, KR2, 17, 17) if c else i(j, KR1,  0, 17, KR2, 17, 17) if d else None
-        j = Q  ;  k[j] = i(j, KQ1,  0, 17, KQ2, 17, 17) if a else i(j, KQ1,  0, 17, KQ2, 17, 17) if b else i(j, KQ1,  0, 17, KQ2, 17, 17) if c else i(j, KQ1,  0, 17, KQ2, 17, 10) if d else None
+        j = P  ;  k[j] = i(j, KP1, 17, 17, KP2, 17, 17) if a else i(j, KP1, 17, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
+        j = L  ;  k[j] = i(j, KL1, 17, 13, KL2,  3, 13) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
+        j = S  ;  k[j] = i(j, KS1, 17, 13, KS2,  3, 13) if a else i(j, KS1,  3, 15, KS2, 17, 15) if b else i(j, KS1,  3, 15, KS2, 17, 15) if c else i(j, KS1,  3, 15, KS2, 17, 15) if d else None
+        j = C  ;  k[j] = i(j, KC1, 17, 13, KC2,  3, 13) if a else i(j, KC1,  3, 15, KC2, 17, 15) if b else i(j, KC1,  3, 15, KC2, 17, 15) if c else i(j, KC1,  3, 15, KC2, 17, 15) if d else None
+        j = T  ;  k[j] = i(j, KT1,  0, 11, KT2, 17, 11) if a else i(j, KT1,  0, 13, KT2, 17, 13) if b else i(j, KT1,  0, 13, KT2, 17, 13) if c else i(j, KT1,  0, 13, KT2, 17, 13) if d else None
+        j = N  ;  k[j] = i(j, KN1,  0, 11, KN2, 17, 11) if a else i(j, KN1,  0, 13, KN2, 17, 13) if b else i(j, KN1,  0, 13, KN2, 17, 13) if c else i(j, KN1,  0, 13, KN2, 17, 13) if d else None
+        j = I  ;  k[j] = i(j, KI1,  0, 11, KI2, 17, 11) if a else i(j, KI1,  0, 13, KI2, 17, 13) if b else i(j, KI1,  0, 13, KI2, 17, 13) if c else i(j, KI1,  0, 13, KI2, 17, 13) if d else None
+        j = K  ;  k[j] = i(j, KK1,  0, 11, KK2, 17, 11) if a else i(j, KK1,  0, 13, KK2, 17, 13) if b else i(j, KK1,  0, 13, KK2, 17, 13) if c else i(j, KK1,  0, 13, KK2, 17, 13) if d else None
+        j = R  ;  k[j] = i(j, KR1,  0,  0, KR2,  0,  0) if a else i(j, KR1,  0, 17, KR2, 17, 17) if b else i(j, KR1,  0, 17, KR2, 17, 17) if c else i(j, KR1,  0, 17, KR2, 17, 17) if d else None
+        j = Q  ;  k[j] = i(j, KQ1,  3, 17, KQ2, 17, 17) if a else i(j, KQ1,  0, 17, KQ2, 17, 17) if b else i(j, KQ1,  0, 17, KQ2, 17, 17) if c else i(j, KQ1,  0, 17, KQ2, 17, 10) if d else None
         j = H  ;  k[j] = i(j, KH1, 17, 11, KH2, 17, 10) if a else i(j, KH1, 14, 10, KH2, 14, 10) if b else i(j, KH1, 15, 13, KH2, 15, 13) if c else i(j, KH1, 14, 11, KH2, 14, 10) if d else None
         j = M  ;  k[j] = i(j, KM1, 17, 11, KM2, 17, 10) if a else i(j, KM1, 17, 10, KM2, 17, 17) if b else i(j, KM1, 17, 17, KM2, 17, 17) if c else i(j, KM1, 17, 17, KM2, 17, 17) if d else None
         j = B  ;  k[j] = i(j, KB1,  0,  0, KB2, 17, 17) if a else i(j, KB1,  0,  0, KB2, 17, 17) if b else i(j, KB1,  0,  0, KB2, 17, 17) if c else i(j, KB1,  0,  0, KB2, 17, 17) if d else None
@@ -303,8 +303,8 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def _initGroups(self):
         hdrA    = [P, L, S, C,  T, N, I, K,  R, Q, H, M,  B, A, D, E]
-        hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ])
-        self.gn = [1, 2, 3, 4,  7, 7, 7, 7,  5, 6, 8, 0,  8, 8, 8, 8]  ;  self.g = []
+        hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ])   ;   t = 7   ;   e = 8
+        self.gn = [1, 2, 3, 4,  t, t, t, t,  5, 6, 9, 0,  e, e, e, e]  ;  self.g = []
         self.log(fmtl(hdrA, w=2))  ;  self.log(f'  {hdrB}')  ;  self.log(fmtl(self.gn, w=2))
         for i in range(1+max(self.gn)):
             p   = None if self.ORD_GRP or i==0 else self.g[i-1]
@@ -1385,13 +1385,13 @@ class Tabs(pyglet.window.Window):
     def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
 
     def dbgTabTxt(self, j, i):
-        dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1:03}' if j==C else f'{i+1}'  ;  k = d.join(k)  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  l = len(t)
-        if dt==1:  a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'                        ;  return       d.join(b*a)
-        if dt==2:  a = 3 if j==C else 4     ;   e = d.join([ s[_] for _ in range(a) ])   ;  return f'{e}{d}{i+1}'
-        if dt==3:  a = 3 if j==C else j+1   ;   e = d.join([ t[_] for _ in range(a) ])   ;  return f'{e}{d}{k}'
+        dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1}' ;  k = d.join(k)  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  l = len(t)
+        if dt==1:  a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'                         ;  return       d.join(b*a)
+        if dt==2:  a = 3 if j==C else 4     ;   e = d.join([ s[_] for _ in range(a) ])    ;  return f'{e}{d}{i+1}'
+        if dt==3:  a = 1 if j==C else 3     ;   e = d.join([ t[_] for _ in range(a) ])    ;     _ = f'{e}{d}{k}' if j!=P else ''  ;  return f'{_}'
         e = d.join([ t[_] for _ in range(l) ])
         e = f'{e}{d}{k}'
-        e = e*4 if j==P else e
+        if j==P: e = ''
         return e
 
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
@@ -1864,11 +1864,11 @@ class Tabs(pyglet.window.Window):
 
     def setFontParam(self, n, v, m, dbg=0): # if m == 'clrIdx': self.fontStyle = NORMAL_STYLE if self.fontStyle == SELECT_STYLE else SELECT_STYLE
         setattr(self, m, v)
-        t = self.B  ;  lt = len(t)
+        t = list(itertools.chain(self.A, self.B, self.C))  ;  lt = len(t)
         if dbg:                self.log( f'      {n:12}  {v:4}  {lt=}  {m}')
-        for i in range(4):
+        for i in range(lt):
             if dbg:            self.log(f'{i:4}  {n:12}  {v:4}  {lt=}  {m}') #  and self.VRBY
-            self._setFontParam(self.B[i], n, v, m)
+            self._setFontParam(t[i], n, v, m)
         self.setCaption(self.fmtFont())
 
     def _setFontParam(self, p, n, v, m, dbg=0):
@@ -2102,8 +2102,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'I' and self.isAlt(     mods):     self.setFontParam(ITALIC,    not self.fontItalic,                         'fontItalic')
         elif kbk == 'A' and self.isAltShift(mods):     self.setFontParam(FONT_NAME,    (self.fontNameIdx + 1) % len(FONT_NAMES), 'fontNameIdx')
         elif kbk == 'A' and self.isAlt(     mods):     self.setFontParam(FONT_NAME,    (self.fontNameIdx - 1) % len(FONT_NAMES), 'fontNameIdx')
-        elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam(FONT_SIZE,     self.fontSize    + 1,                    'fontSize') # )  % FS_MAX
-        elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam(FONT_SIZE, max(self.fontSize    - 1, 1),                'fontSize') # )  % FS_MAX
+        elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam(FONT_SIZE,     self.fontSize * 33 / 32,                   'fontSize') # )  % FS_MAX
+        elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam(FONT_SIZE,     self.fontSize * 32 / 33,                   'fontSize') # )  % FS_MAX
         else:   self.log(f'Unexpected {self.kbkEvntTxt()}', f=2)
     ####################################################################################################################################################################################################
         if not self.isParsing():
@@ -3045,7 +3045,7 @@ FIN     = [1, 1, 1, 2, 1]
 FNTP    = [5, 4, 3, 3, 3]
 #           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16
 JTEXTS  = ['Page',  'Line',  'Sect',  'Colm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
-JTEXTS2 = ['Pag',   'Lin',   'Sct',   'Clm',   'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
+JTEXTS2 = ['Pag',   'Lin',   'Sct',   'K',     'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
 jTEXTS  = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
 JFMT    = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       2,       2,       4]
 #JFMT   = [  2,       3,       3,       6,       6,       6,       6,       6,       3,       5,       1,       1,       3,       3,       3,       4,       7]
