@@ -391,15 +391,22 @@ class Tabs(pyglet.window.Window):
 
     def test0(self, n):
         a = .314159265359   ;   d = 3
-        a0, a1, a2, a3, a4, a5, a6 = a*1, a*10, a*100, a*1000, a*10000, a*100000, a*1000000
+#        a0, a1, a2, a3, a4, a5, a6 = a*1, a*10, a*100, a*1000, a*10000, a*100000, a*1000000
         self.log(f'{a=} {n=} {d=}')
-        self.log(fmtf(a0, n))
-        self.log(fmtf(a1, n))
-        self.log(fmtf(a2, n))
-        self.log(fmtf(a3, n))
-        self.log(fmtf(a4, n))
-        self.log(fmtf(a5, n))
-        self.log(fmtf(a6, n))
+        self.log(fmtf(a*1, n))
+        self.log(fmtf(a*10, n))
+        self.log(fmtf(a*100, n))
+        self.log(fmtf(a*1000, n))
+        self.log(fmtf(a*10000, n))
+        self.log(fmtf(a*100000, n))
+        self.log(fmtf(a*1000000, n))
+#        self.log(fmtf(a0, n))
+#        self.log(fmtf(a1, n))
+#        self.log(fmtf(a2, n))
+#        self.log(fmtf(a3, n))
+#        self.log(fmtf(a4, n))
+#        self.log(fmtf(a5, n))
+#        self.log(fmtf(a6, n))
 #        self.exitTest('test0', 0)
 
     def test1(self, q=0):

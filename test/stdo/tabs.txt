@@ -76,22 +76,22 @@ C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
  548 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test._.csv ###
         1 file(s) copied.
 C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-3085 tabsC <module>           argv=[-i 1 1 1 6 -n 1 2 10 5 -w 0 0 0 0 -d 1 -t -S 0 -f test]
+3092 tabsC <module>           argv=[-i 1 1 1 6 -n 1 2 10 5 -w 0 0 0 0 -d 1 -t -S 0 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-3089 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
-3089 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv
-3090 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
-3090 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log
-2964 tabsC dumpGlobals        BASE_NAME = test
-2965 tabsC dumpGlobals        argv      = +23[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 2 10 5 -w 0 0 0 0 -d 1 -t -S 0 -f test]
-2966 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2967 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
- 537 util  getFilePath        baseName =test.33      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 540 util  getFilePath        fileName =test.33.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.33.log)
- 537 util  getFilePath        baseName =test.33      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 540 util  getFilePath        fileName =test.33.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.33.csv)
- 537 util  getFilePath        baseName =test.33      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 540 util  getFilePath        fileName =test.33.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.33.cat)
+3096 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
+3096 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv
+3097 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
+3097 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log
+2971 tabsC dumpGlobals        BASE_NAME = test
+2972 tabsC dumpGlobals        argv      = +23[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 2 10 5 -w 0 0 0 0 -d 1 -t -S 0 -f test]
+2973 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2974 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+ 537 util  getFilePath        baseName =test.34      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 540 util  getFilePath        fileName =test.34.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.34.log)
+ 537 util  getFilePath        baseName =test.34      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 540 util  getFilePath        fileName =test.34.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.34.csv)
+ 537 util  getFilePath        baseName =test.34      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 540 util  getFilePath        fileName =test.34.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.34.cat)
  162 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  163 tabsC dumpArgs           [A]         .VARROW=1
  164 tabsC dumpArgs           [b]        .FRT_BRD=0
@@ -123,10 +123,10 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
  190 tabsC dumpArgs           [w]           .XYVA= 0 0 0 0]
  191 tabsC dumpArgs           [Z]             .ZZ=[]
         1 file(s) copied.
-1859 tabsC _initFonts         w=96.000=.width =960/(10)                 FONT_SCALE=0.778 fs=w*FONT_SCALE=42.000pt
-1860 tabsC _initFonts         h=54.000=.height=540/(nl=2 * ns=1 * nt=5) FONT_SCALE=0.778 fs=h*FONT_SCALE=42.000pt
-1872 tabsC dumpFont           4:96dpi 42.000pt 0:Lucida Console 0: 42.000pt = 0.778(pt/pix) * 54.000pixels 
-1306 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+1866 tabsC _initFonts         w=96.000=.width =960/(10)                 FONT_SCALE=0.778 fs=w*FONT_SCALE=42.000pt
+1867 tabsC _initFonts         h=54.000=.height=540/(nl=2 * ns=1 * nt=5) FONT_SCALE=0.778 fs=h*FONT_SCALE=42.000pt
+1879 tabsC dumpFont           4:96dpi 42.000pt 0:Lucida Console 0: 42.000pt = 0.778(pt/pix) * 54.000pixels 
+1313 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
 Page    1 V ??       C C   480   270 269.9,176.8 176.8 47.25 224.0 v a  168    0 None [128  10 255 255]       None        0 0 1 1 1 c Lucida Console        ??
 Line    1 V ???      C C   480   135 404.9,176.8 176.8 47.25 224.0 v a  168    0 None [255  10  10 195]       None        0 0 1 1 1 c Lucida Console        ???
@@ -273,16 +273,16 @@ Tabl    2 V -        C C    48    27 33.74,44.19 44.19 11.81 56.00 v a 42.0    0
 Tabl    3 V -        C C    48    27 33.74,44.19 44.19 11.81 56.00 v a 42.0    0 None [255 176  10 165] [  8   6   0 165] 0 0 1 1 1 c Lucida Console        -
 Tabl    4 V -        C C    48    27 33.74,44.19 44.19 11.81 56.00 v a 42.0    0 None [255 176  10 165] [  8   6   0 165] 0 0 1 1 1 c Lucida Console        -
 Tabl    5 V -        C C    48    27 33.74,44.19 44.19 11.81 56.00 v a 42.0    0 None [255 176  10 165] [  8   6   0 165] 0 0 1 1 1 c Lucida Console        -
-1770 tabsC plct2cc                   5 [  100  100  50  50   5] [1 1    1 6] (   0 +  0 + 50 +  0 +5)
-1773 tabsC cursorCol          cc=  5 [0 0 0 5]
-1748 tabsC cc2xywh            tpp=100 old=5 lenT=100 cc=5 old % lenT
-1753 tabsC cc2xywh            cc=   5 old=   5 [  100  100  50  50   5]  144.00  513.00   96.00   54.00 t.text=- 33.74,44.19 C,C
+1777 tabsC plct2cc                   5 [  100  100  50  50   5] [1 1    1 6] (   0 +  0 + 50 +  0 +5)
+1780 tabsC cursorCol          cc=  5 [0 0 0 5]
+1755 tabsC cc2xywh            tpp=100 old=5 lenT=100 cc=5 old % lenT
+1760 tabsC cc2xywh            cc=   5 old=   5 [  100  100  50  50   5]  144.00  513.00   96.00   54.00 t.text=- 33.74,44.19 C,C
 HCrs    1 V C C    48    27     
-1872 tabsC dumpFont           4:96dpi 42.000pt 0:Lucida Console 0: 42.000pt = 0.778(pt/pix) * 54.000pixels New1
+1879 tabsC dumpFont           4:96dpi 42.000pt 0:Lucida Console 0: 42.000pt = 0.778(pt/pix) * 54.000pixels New1
  329 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-3093 tabsC main               str(tabs)={i: [1, 1, 1, 6], n: [1, 2, 10, 5], w: [0, 0, 0, 0], d: [1], t: [], S: [0], f: [test]}
-3093 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={i: [1, 1, 1, 6], n: [1, 2, 10, 5], w: [0, 0, 0, 0], d: [1], t: [], S: [0], f: [test]}
-1430 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+3100 tabsC main               str(tabs)={i: [1, 1, 1, 6], n: [1, 2, 10, 5], w: [0, 0, 0, 0], d: [1], t: [], S: [0], f: [test]}
+3100 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={i: [1, 1, 1, 6], n: [1, 2, 10, 5], w: [0, 0, 0, 0], d: [1], t: [], S: [0], f: [test]}
+1437 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
 Page    1 V ??       C C   480   270 269.9,176.8 176.8 47.25 224.0 v a  168    0 None [128  10 255 255]       None        0 0 1 1 1 c Lucida Console        ??
 Line    1 V ???      C C   480   135 404.9,176.8 176.8 47.25 224.0 v a  168    0 None [255  10  10 195]       None        0 0 1 1 1 c Lucida Console        ???
@@ -410,18 +410,18 @@ Tabl   97 V -        C C    48    27 33.74,44.19 44.19 11.81 56.00 v a 42.0    0
 Tabl   98 V -        C C    48    27 33.74,44.19 44.19 11.81 56.00 v a 42.0    0 None [255 176  10 165] [  8   6   0 165] 0 0 1 1 1 c Lucida Console        -
 Tabl   99 V -        C C    48    27 33.74,44.19 44.19 11.81 56.00 v a 42.0    0 None [255 176  10 165] [  8   6   0 165] 0 0 1 1 1 c Lucida Console        -
 Tabl  100 V -        C C    48    27 33.74,44.19 44.19 11.81 56.00 v a 42.0    0 None [255 176  10 165] [  8   6   0 165] 0 0 1 1 1 c Lucida Console        -
-1770 tabsC plct2cc                   5 [  100  100  50  50   5] [1 1    1 6] (   0 +  0 + 50 +  0 +5)
-1773 tabsC cursorCol          cc=  5 [0 0 0 5]
-1748 tabsC cc2xywh            tpp=100 old=5 lenT=100 cc=5 old % lenT
-1753 tabsC cc2xywh            cc=   5 old=   5 [  100  100  50  50   5]  144.00  513.00   96.00   54.00 t.text=- 33.74,44.19 C,C
-1872 tabsC dumpFont           4:96dpi 42.000pt 0:Lucida Console 0: 42.000pt = 0.778(pt/pix) * 54.000pixels Upd.1
-2848 tabsC snapshot           snapName=test.33.0.INIT.png init
+1777 tabsC plct2cc                   5 [  100  100  50  50   5] [1 1    1 6] (   0 +  0 + 50 +  0 +5)
+1780 tabsC cursorCol          cc=  5 [0 0 0 5]
+1755 tabsC cc2xywh            tpp=100 old=5 lenT=100 cc=5 old % lenT
+1760 tabsC cc2xywh            cc=   5 old=   5 [  100  100  50  50   5]  144.00  513.00   96.00   54.00 t.text=- 33.74,44.19 C,C
+1879 tabsC dumpFont           4:96dpi 42.000pt 0:Lucida Console 0: 42.000pt = 0.778(pt/pix) * 54.000pixels Upd.1
+2855 tabsC snapshot           snapName=test.34.0.INIT.png init
         1 file(s) copied.
-2116 tabsC on_key_press       Unexpected <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2116 tabsC on_key_press       Unexpected <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2123 tabsC on_key_press       Unexpected <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2123 tabsC on_key_press       Unexpected <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
-2898 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
+2905 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
@@ -455,20 +455,20 @@ Tabl  100 V -        C C    48    27 33.74,44.19 44.19 11.81 56.00 v a 42.0    0
  189 tabsC dumpArgs           [V]          .VIEWS=0
  190 tabsC dumpArgs           [w]           .XYVA= 0 0 0 0]
  191 tabsC dumpArgs           [Z]             .ZZ=[]
-1872 tabsC dumpFont           4:96dpi 42.000pt 0:Lucida Console 0: 42.000pt = 0.778(pt/pix) * 54.000pixels @^Q
-2909 tabsC quit               END @^Q Error=0 save=0 .quitting=1
+1879 tabsC dumpFont           4:96dpi 42.000pt 0:Lucida Console 0: 42.000pt = 0.778(pt/pix) * 54.000pixels @^Q
+2916 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
  537 util  getFilePath        baseName =test         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  540 util  getFilePath        fileName =test.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
  537 util  getFilePath        baseName =Atest.1.2.1.10.5_CC_CC.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  540 util  getFilePath        fileName =Atest.1.2.1.10.5_CC_CC.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.2.1.10.5_CC_CC.csv)
- 537 util  getFilePath        baseName =test.33      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 540 util  getFilePath        fileName =test.33.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.33.csv)
-2932 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.2.1.10.5_CC_CC.csv
+ 537 util  getFilePath        baseName =test.34      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 540 util  getFilePath        fileName =test.34.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.34.csv)
+2939 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.2.1.10.5_CC_CC.csv
         1 file(s) copied.
-2935 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.33.csv
+2942 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.34.csv
         1 file(s) copied.
-2912 tabsC quit               END @^Q Error=0 save=0 .quitting=1
+2919 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
 Calling close(),        1 file(s) copied.
  537 util  getFilePath        baseName =Atest.1.2.1.10.5_CC_CC.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)

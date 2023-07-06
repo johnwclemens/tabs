@@ -77,7 +77,7 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 .dataPath1=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/_test.1._._.10.5.dat)
 .dataPath2=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/data/_test.1._._.10.5.dat)
  284 tabsC _initWindowA       BGN (  -1x-1  )
- 284 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x00000144D64A82E0>
+ 284 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002123AD240A0>
  289 tabsC _initWindowA       screens[0] s.x=894  2160 (1536x864 )
  289 tabsC _initWindowA       screens[1] s.x=0     0 (3840x2160)
  290 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -452,8 +452,6 @@ tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscn
  400 tabsC test0              3142
  401 tabsC test0              31416
  402 tabsC test0              314159
- 343 tabsC exitTest           BGN test0 0
- 347 tabsC exitTest           END test0 0
  395 tabsC test0              a=0.314159265359 n=5 d=3
  396 tabsC test0              0.314
  397 tabsC test0              3.142
@@ -462,8 +460,6 @@ tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscn
  400 tabsC test0               3142
  401 tabsC test0              31416
  402 tabsC test0              314159
- 343 tabsC exitTest           BGN test0 0
- 347 tabsC exitTest           END test0 0
 2836 tabsC regSnap             33   0 INIT     init
  210 tabsC _reinit            [1 1 1  1 6]   6   5  2] END
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
@@ -680,6 +676,19 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 1
  618 tabsC dumpStruct         [1 1 1  1 6]   6   5  2] n=[1 2 1 10 5] END ntp=[  100  100  50  50   5] ( 1x1x1x6  )
+2844 tabsC snapshot           BASE_NAME=test logId=None snapId=None typ=INIT PNG=png
+2845 tabsC snapshot           .fNameLid=test.33 snapName=test.33.0.INIT.png init
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.33.0.INIT.png
+2848 tabsC snapshot           snapName=test.33.0.INIT.png init
+ 158 tabsC geomFileName       Atest.1.2.1.10.5_CC_CC.png
+ 545 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.33.0.INIT.png)
+ 546 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.2.1.10.5_CC_CC.png)
+ 548 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.33.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.2.1.10.5_CC_CC.png ###
+2853 tabsC snapshot           BASE_NAME=test [1 2 1 10 5]
+2854 tabsC snapshot           snapName2=Atest.1.2.1.10.5_CC_CC.png init
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.2.1.10.5_CC_CC.png
+ 631 tabsC on_draw            [1 1 1  1 6]   6   5  2] .snapWhy=init .snapType=INIT .snapId=1
+path=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.33.0.INIT.png)
 2031 tabsC on_key_press       BGN <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 2116 tabsC on_key_press       Unexpected <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 2123 tabsC on_key_press       END <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
@@ -692,11 +701,14 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 2898 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
- 479 util  dumpStack           7 tabsC      2899 quit                 .log(.QUIT_BGN, p=0, f=2)    ;    .dumpStack(inspect.stack())   ;   .log(.QUIT, p=0, f=2)
- 479 util  dumpStack           6 tabsC      2064 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(          @^Q, error=0, save=0)
- 479 util  dumpStack           5 event       422 dispatch_event       if getattr(, event_type)(*args):
- 479 util  dumpStack           4 __init__    736 dispatch_pending_events EventDispatcher.dispatch_event(, *event)
- 479 util  dumpStack           3 base        176 run                  window.dispatch_pending_events()
+ 479 util  dumpStack          10 tabsC      2899 quit                 .log(.QUIT_BGN, p=0, f=2)    ;    .dumpStack(inspect.stack())   ;   .log(.QUIT, p=0, f=2)
+ 479 util  dumpStack           9 tabsC      2064 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(          @^Q, error=0, save=0)
+ 479 util  dumpStack           8 event       422 dispatch_event       if getattr(, event_type)(*args):
+ 479 util  dumpStack           7 __init__   1340 dispatch_event       super().dispatch_event(*args)
+ 479 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
+ 479 util  dumpStack           5 __init__    747 f                    result = event_handler(msg, wParam, lParam)
+ 479 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
+ 479 util  dumpStack           3 base        185 run                  platform_event_loop.step(timeout)
  479 util  dumpStack           2 __init__    107 run                  event_loop.run(interval)
  479 util  dumpStack           1 tabsC      3095 main                 ret = pyglet.app.run()       ;   msg      =    Close & Copy
  479 util  dumpStack           0 tabsC      3106 <module>             main()
@@ -878,3 +890,14 @@ Page 1 Line 2
  546 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.33.csv)
  548 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.33.csv ###
 2123 tabsC on_key_press       END <.kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+3096 tabsC main               pyglet.app.run(): return=None
+3097 tabsC main               Close & Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.33.log
+ 545 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
+ 546 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.33.log)
+ 548 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.33.log ###
+ 537 util  getFilePath        baseName =Atest.1.2.1.10.5_CC_CC.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 540 util  getFilePath        fileName =Atest.1.2.1.10.5_CC_CC.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.2.1.10.5_CC_CC.log)
+3100 tabsC main               Close & Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.2.1.10.5_CC_CC.log
+ 545 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
+ 546 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.2.1.10.5_CC_CC.log)
+ 548 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.2.1.10.5_CC_CC.log ###
