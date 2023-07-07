@@ -109,7 +109,7 @@ def dumpFreqs(r=440, csv=0):
     m, ff = (Y, 3) if csv else (W, 1)
     freqs = FREQS if r == 440 else FREQS2   ;   ref = '440A' if r == 440 else '432A'   ;   fs = []
     for f in freqs:
-        ft = fmtf(f)
+        ft = fmtf(f, 5)
         fs.append(f'{ft}')
     fs = m.join(fs)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] Hz'
     slog(f'{ref}{fs}{sfx}', p=0, f=ff)
@@ -119,7 +119,7 @@ def dumpWaves(r=440, csv=0, v=340):
     freqs = FREQS if r == 440 else FREQS2   ;   ref = '440A' if r == 440 else '432A'   ;   ws = []
     for f in freqs:
         w = cmpm * v/f
-        wt = fmtf(w)
+        wt = fmtf(w, 5)
         ws.append(f'{wt}')
     ws = m.join(ws)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] cm'
     slog(f'{ref}{ws}{sfx}', p=0, f=ff)
@@ -462,7 +462,10 @@ def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=W, ll=Non
         elif type(v) in (int, str):          t.append(f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}')
     return Z.join(t)
 
-def fmtf(a): return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
+def fmtf(a, b):
+    if b==4: return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
+    if b==5: return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
+#def fmtf(a): return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
 ########################################################################################################################################################################################################
 def stackDepth(sfs):
     global     MAX_STACK_DEPTH, MAX_STACK_FRAME

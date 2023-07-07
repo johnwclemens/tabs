@@ -18,7 +18,7 @@ from util import slog      as slog
 from util import olog      as olog
 from util import fmtl      as fmtl
 from util import fmtm      as fmtm
-#from util import fmtf      as fmtf
+from util import fmtf      as fmtf
 
 W, Y, Z               = ' ', ',', ''
 P, L, S, C            =  0,  1,  2,  3
@@ -90,6 +90,7 @@ class Tabs(pyglet.window.Window):
         if 'o' in ARGS  and len(ARGS['o']) == 0: self.OIDS       =  1
         if 'p' in ARGS  and len(ARGS['p']) == 0: self.SNAPS      =  1
         if 'q' in ARGS  and len(ARGS['q']) == 0: self.TEST_EXIT  =  1
+        if 'q' in ARGS  and len(ARGS['q'])  > 0: self.TEST_EXIT  =  int(ARGS['q'][0])
         if 'R' in ARGS  and len(ARGS['R']) == 0: self.RESIZE     = 0
         if 's' in ARGS  and len(ARGS['s']) == 0: self.SPRITES    =  1
         if 'S' in ARGS  and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
@@ -327,7 +328,7 @@ class Tabs(pyglet.window.Window):
         self.createTniks()
         self.ks = util.nic2KS(self.nic)
         self.log( util.fmtKSK(self.ks[util.KSK]), f=2)
-        if self.TEST:  self.test1(self.TEST_EXIT)  ;  self.test0(4)  ;  self.test0(5)
+        if self.TEST:  self.test1(self.TEST_EXIT)  ;  self.test0(4)  ;  self.test0(5, q=self.TEST_EXIT)
     ####################################################################################################################################################################################################
     def test(self): #        self.olog('test', a, p=1)
         a = 1/0  ;  self.log(f'{a=}')
@@ -344,6 +345,8 @@ class Tabs(pyglet.window.Window):
         self.dispatch_event('on_key_press', 65507, 2)
         self.dispatch_event('on_key_press', 65505, 3)
         self.dispatch_event('on_key_press',   113, 3)
+        self.dispatch_event('on_key_release', 65507, 2)
+        self.dispatch_event('on_key_release', 65505, 3)
         self.log(f'END {why} {e}')
 
     def testSprTxt_0(self, path):
@@ -389,10 +392,9 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {path=} {r=} {c=}')
         #Install pillow for SVG files
 
-    def test0(self, n):
-        a = .314159265359   ;   d = 3
-#        a0, a1, a2, a3, a4, a5, a6 = a*1, a*10, a*100, a*1000, a*10000, a*100000, a*1000000
-        self.log(f'{a=} {n=} {d=}')
+    def test0(self, n, q=0):
+        a = .314159265359
+        self.log(f'BGN {a=} {n=} {q=}')
         self.log(fmtf(a*1, n))
         self.log(fmtf(a*10, n))
         self.log(fmtf(a*100, n))
@@ -400,14 +402,9 @@ class Tabs(pyglet.window.Window):
         self.log(fmtf(a*10000, n))
         self.log(fmtf(a*100000, n))
         self.log(fmtf(a*1000000, n))
-#        self.log(fmtf(a0, n))
-#        self.log(fmtf(a1, n))
-#        self.log(fmtf(a2, n))
-#        self.log(fmtf(a3, n))
-#        self.log(fmtf(a4, n))
-#        self.log(fmtf(a5, n))
-#        self.log(fmtf(a6, n))
-#        self.exitTest('test0', 0)
+        if   q==2: self.exitTest('test0', 0)
+        elif q==1: self.quit(f'test0({n=}) {a=}', 0, 0)
+        self.log(f'END {a=} {n=} {q=}')
 
     def test1(self, q=0):
         self.log(f'{self.ntsl()=}')
@@ -1388,9 +1385,9 @@ class Tabs(pyglet.window.Window):
     def docStyleH(d=W): return d.join(['FnSz', 'Lead', 'LnSp', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          'FontName             '])
     @staticmethod
     def fDocStyle(m, d, t):
-        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;  clr = util.fColor(m[COLOR])  ;  bgc = util.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?'  ;  fs = fmtf(m[FONT_SIZE], 4)
+        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;  clr = util.fColor(m[COLOR])  ;  bgc = util.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?' # ;  fs = fmtf(m[FONT_SIZE], 4)
 #        return d.join([f'{m[FONT_SIZE]:4}', f'{m[LEAD]:4}', lnsp, clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
-        return d.join([f'{fs}', f'{m[LEAD]:4}', lnsp, clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
+        return d.join([f'{fmtf(m[FONT_SIZE], 4)}', f'{m[LEAD]:4}', lnsp, clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
 
     def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
 
@@ -1554,9 +1551,9 @@ class Tabs(pyglet.window.Window):
         return d.join([self.fAxy(), ancX, ancY, self.fcwh(t), ads, self.fcvaa(t), self.fFntSz(t), self.ffont(t), dtxt])
     @staticmethod
 #    def fads(asc, dsc, sad, d):    return d.join([f'{asc}', f'{dsc}', f'{sad}'])
-#    def fads(asc, dsc, sad, d):     return d.join([f'{fmtf5(asc)}', f'{fmtf5(dsc)}', f'{fmtf5(sad)}'])
+    def fads(asc, dsc, sad, d):     return d.join([f'{fmtf(asc, 5)}', f'{fmtf(dsc, 5)}', f'{fmtf(sad, 5)}'])
 #    def fads(asc, dsc, sad, d): asc, dsc, sad = fmtf5(asc), fmtf5(dsc), fmtf5(sad)  ;  return d.join([f'{asc}', f'{dsc}', f'{sad}'])
-    def fads(asc, dsc, sad, d): asc, dsc, sad = fmtf(asc, 5), fmtf(dsc, 5), fmtf(sad, 5)  ;  return d.join([f'{asc}', f'{dsc}', f'{sad}'])
+#    def fads(asc, dsc, sad, d): asc, dsc, sad = fmtf(asc, 5), fmtf(dsc, 5), fmtf(sad, 5)  ;  return d.join([f'{asc}', f'{dsc}', f'{sad}'])
     @staticmethod
     def frot(t):                   return f'{t.rotation:8.3f} '
     def fnvis(self):               return f'{self.nvis:3}'
@@ -1566,9 +1563,9 @@ class Tabs(pyglet.window.Window):
     def fpTxt(t): a = t.text.replace('\n', Z)  ;  b = a[:8]  ;  b += '+' if len(a) > 8 else W  ;  return f'{b:9}'
     @staticmethod
 #    def fcwh(       t, d=Y):       return f'{t.content_width}{d}{t.content_height}'
-#    def fcwh(       t, d=Y):       return f'{fmtf5(t.content_width)}{d}{fmtf5(t.content_height)}'
+    def fcwh(       t, d=Y):       return f'{fmtf(t.content_width, 5)}{d}{fmtf(t.content_height, 5)}'
 #    def fcwh(       t, d=Y): cw, ch = fmtf5(t.content_width), fmtf5(t.content_height)  ;  return d.join([f'{cw}', f'{ch}'])
-    def fcwh(       t, d=Y): cw, ch = fmtf(t.content_width, 5), fmtf(t.content_height, 5)  ;  return d.join([f'{cw}', f'{ch}'])
+#    def fcwh(       t, d=Y): cw, ch = fmtf(t.content_width, 5), fmtf(t.content_height, 5)  ;  return d.join([f'{cw}', f'{ch}'])
     def fcvaa(self, t, d=Y):       return f'{self.fcva(t.content_valign)}{d}{self.ftAx(self.aa)}'
     def fCtnt(self, t, d=W):       return f'{self.fcwh(t)}{d}{self.fcvaa(t)}'
     def getDocColor(self, t, c=1): return util.fColor(self._getDocColor(t, c))
@@ -2415,8 +2412,8 @@ class Tabs(pyglet.window.Window):
         bold, italic = 0, 0   ;   np, nl, ns, nc, nt = self.n
         i = c + l * nc if self.qclms else 0
         if   style == NORMAL_STYLE:    bold = 0   ;  italic = 0
-        elif style == CURRENT_STYLE:   bold = 1   ;  italic = 0
-        elif style == SELECT_STYLE:    bold = 1   ;  italic = 1
+        elif style == CURRENT_STYLE:   bold = 0   ;  italic = 0
+        elif style == SELECT_STYLE:    bold = 0   ;  italic = 0
         else: msg = f'ERROR Invalid style @ plct={self.fplct(p, l, c, t)} {i=} {style=}'  ;  self.log(msg)  ;  self.quit(msg)
         (bs, fs) = (0, 1) if style == NORMAL_STYLE else (1, 0)
 #        d = self.qclms[i].document # #
@@ -2961,9 +2958,9 @@ class Tabs(pyglet.window.Window):
 def fri(f):  return int(math.floor(f + 0.5))
 #def fmtf4(a): return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
 #def fmtf5(a): return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
-def fmtf(a, b):
-    if b==4: return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
-    if b==5: return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
+#def fmtf(a, b):
+#    if b==4: return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
+#    if b==5: return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
 #    if b==4: return f'{a:{b}.2f}' if a < 10 else f'{a:{b}.1f}' if a < 100 else f'{a:{b}.0f}'
 #    if b==5: return f'{a:{b}.3f}' if a < 10 else f'{a:{b}.2f}' if a < 100 else f'{a:{b}.1f}' if a < 1000 else f'{a:{b}.0f}'
 ########################################################################################################################################################################################################
