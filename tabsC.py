@@ -57,9 +57,9 @@ class Tabs(pyglet.window.Window):
         self.XYVA      = [0, 0, 0, 0]
         self._init_xyva()
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT       = 1  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DBG_TABT  = 0
-        self.EVENT_LOG = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1  ;  self.MULTILINE = 1
-        self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.PIDX      = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0  ;  self.SPRITES   = 0
-        self.STRETCH   = 1  ;  self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.TEST_EXIT = 0  ;  self.VARROW    = 1  ;  self.VIEWS     = 0
+        self.EVENT_LOG = 0  ;  self.EXIT      = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1
+        self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.PIDX      = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0
+        self.SPRITES   = 0  ;  self.STRETCH   = 1  ;  self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.VARROW    = 1  ;  self.VIEWS     = 0
         self.VRBY      = 0
         self.LL        = 0
         self.SS        = set(range(4))  # set() if 0 else {0, 1, 2, 3}
@@ -84,22 +84,22 @@ class Tabs(pyglet.window.Window):
         if 'G' in ARGS  and len(ARGS['G']) == 0: self.GEN_DATA   =  1
         if 'i' in ARGS  and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
         if 'I' in ARGS  and len(ARGS['I']) == 0: self.PIDX       =  1
+        if 'l' in ARGS  and len(ARGS['l']) == 0: self.LONG_TXT   =  1
         if 'L' in ARGS  and len(ARGS['L']) == 0: self.LL         =  1
         if 'M' in ARGS  and len(ARGS['M']) == 0: self.MULTILINE  =  1
         if 'n' in ARGS  and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'o' in ARGS  and len(ARGS['o']) == 0: self.OIDS       =  1
         if 'p' in ARGS  and len(ARGS['p']) == 0: self.SNAPS      =  1
-        if 'q' in ARGS  and len(ARGS['q']) == 0: self.TEST_EXIT  =  1
-        if 'q' in ARGS  and len(ARGS['q'])  > 0: self.TEST_EXIT  =  int(ARGS['q'][0])
         if 'R' in ARGS  and len(ARGS['R']) == 0: self.RESIZE     = 0
         if 's' in ARGS  and len(ARGS['s']) == 0: self.SPRITES    =  1
         if 'S' in ARGS  and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
         if 't' in ARGS  and len(ARGS['t']) == 0: self.TEST       =  1
-        if 'T' in ARGS  and len(ARGS['T']) == 0: self.LONG_TXT   =  1
         if 'u' in ARGS  and len(ARGS['u']) == 0: self.SUBPIX     =  1
         if 'v' in ARGS: l = len(ARGS['v'])    ;  self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
         if 'V' in ARGS  and len(ARGS['V']) == 0: self.VIEWS      =  1
         if 'w' in ARGS  and len(ARGS['w'])  > 0: self.XYVA       = [ int(ARGS['w'][i]) for i in range(len(ARGS['w'])) ]
+        if 'x' in ARGS  and len(ARGS['x']) == 0: self.EXIT       =  1
+        if 'x' in ARGS  and len(ARGS['x'])  > 0: self.EXIT       =  int(ARGS['x'][0])
         if 'Z' in ARGS  and len(ARGS['Z']) >= 0: self.ZZ         = { int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) }
         self._init_xyva()
         ################################################################################################################################################################################################
@@ -174,21 +174,21 @@ class Tabs(pyglet.window.Window):
         self.log(f'[G]       {self.GEN_DATA=}', f=f)
         self.log(f'[i]               {self.fmti()}', f=f)
         self.log(f'[I]           {self.PIDX=}', f=f)
+        self.log(f'[l]       {self.LONG_TXT=}', f=f)
         self.log(f'[L]             {self.LL=}', f=f)
         self.log(f'[M]      {self.MULTILINE=}', f=f)
         self.log(f'[n]               {self.fmtn()}', f=f)
         self.log(f'[o]           {self.OIDS=}', f=f)
         self.log(f'[p]          {self.SNAPS=}', f=f)
-        self.log(f'[q]      {self.TEST_EXIT=}', f=f)
         self.log(f'[R]         {self.RESIZE=}', f=f)
         self.log(f'[s]        {self.SPRITES=}', f=f)
         self.log(f'[S]             .SS={fmtl(self.SS)}', f=f)
         self.log(f'[t]           {self.TEST=}', f=f)
-        self.log(f'[T]       {self.LONG_TXT=}', f=f)
         self.log(f'[u]         {self.SUBPIX=}', f=f)
         self.log(f'[v]           {self.VRBY=}', f=f)
         self.log(f'[V]          {self.VIEWS=}', f=f)
-        self.log(f'[w]           .XYVA={fmtl(self.XYVA, d=W)}', f=f)
+        self.log(f'[w]           .XYVA={fmtl(self.XYVA)}', f=f)
+        self.log(f'[x]           {self.EXIT=}', f=f)
         self.log(f'[Z]             .ZZ={fmtl(self.ZZ)}', f=f)
     ####################################################################################################################################################################################################
     def _reinit(self):
@@ -328,7 +328,7 @@ class Tabs(pyglet.window.Window):
         self.createTniks()
         self.ks = util.nic2KS(self.nic)
         self.log( util.fmtKSK(self.ks[util.KSK]), f=2)
-        if self.TEST:  self.test1(self.TEST_EXIT)  ;  self.test0(4)  ;  self.test0(5, q=self.TEST_EXIT)
+        if self.TEST:  self.test1()  ;  self.test0(4)  ;  self.test0(5, q=self.EXIT)
     ####################################################################################################################################################################################################
     def test(self): #        self.olog('test', a, p=1)
         a = 1/0  ;  self.log(f'{a=}')
@@ -340,15 +340,16 @@ class Tabs(pyglet.window.Window):
         print(self.__class__.__name__, 'testD', d, sep=Y, file=f)
         self.quit(Z.join(('test', str(a))))
 
-    def exitTest(self, why, e): #        self.dispatch_event('on_close')
+    def exit(self, why, e): #        self.dispatch_event('on_close')
         self.log(f'BGN {why} {e}')
-        self.dispatch_event('on_key_press', 65507, 2)
-        self.dispatch_event('on_key_press', 65505, 3)
-        self.dispatch_event('on_key_press',   113, 3)
-        self.dispatch_event('on_key_release', 65507, 2)
+        self.dispatch_event('on_key_press',   65507, 2)
+        self.dispatch_event('on_key_press',   65505, 3)
+        self.dispatch_event('on_key_press',     113, 3)
+        self.dispatch_event('on_key_release',   113, 3)
         self.dispatch_event('on_key_release', 65505, 3)
+        self.dispatch_event('on_key_release', 65507, 2)
         self.log(f'END {why} {e}')
-
+    ####################################################################################################################################################################################################
     def testSprTxt_0(self, path):
         np, nl, ns, nc, nt = self.n  ;  r, c = nt*ns*nl, nc
         self.log(f'BGN {path=} {r=} {c=}')
@@ -402,8 +403,8 @@ class Tabs(pyglet.window.Window):
         self.log(fmtf(a*10000, n))
         self.log(fmtf(a*100000, n))
         self.log(fmtf(a*1000000, n))
-        if   q==2: self.exitTest('test0', 0)
-        elif q==1: self.quit(f'test0({n=}) {a=}', 0, 0)
+        if   q==2: self.exit(f'test0 {a=} {n=} {q=}', 0)
+        elif q==1: self.quit(f'test0 {a=} {n=} {q=}', 0, 0)
         self.log(f'END {a=} {n=} {q=}')
 
     def test1(self, q=0):
@@ -432,7 +433,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'{JLBL(2, Y)=}')
         self.log(f'{JSPR(2, Y)}', p=0)
         self.log(f'{JLBL(2, Y)}', p=0)
-        if q:    self.exitTest('test1', 0)
+        if q:    self.exit('test1', 0)
     ####################################################################################################################################################################################################
     def test2(self, j=10):
         self.log(f'{self.ntsl()=}')
@@ -1288,11 +1289,11 @@ class Tabs(pyglet.window.Window):
     def ntsl(self):    return self.n[T] * self.n[S] * self.n[L]
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
-        self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2
+        self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2   ;   llr = self.LL and self.isLLRow()
         self.dumpTniksPfx(why)
         for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
             for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
-                if self.LL  and  self.isLLRow():    self.createLLs(line, len(self.lines)-1, why=why)
+                if llr:          self.createLLs(line, len(self.lines)-1, why=why)
                 for sect in      self.g_createTniks(self.sects, S, line, why=why): # pass
                     for colm in  self.g_createTniks(self.colms, C, sect, why=why): # pass
                         for _ in self.g_createTniks(self.tabls, T, colm, why=why): pass
@@ -1385,8 +1386,7 @@ class Tabs(pyglet.window.Window):
     def docStyleH(d=W): return d.join(['FnSz', 'Lead', 'LnSp', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          'FontName             '])
     @staticmethod
     def fDocStyle(m, d, t):
-        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;  clr = util.fColor(m[COLOR])  ;  bgc = util.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?' # ;  fs = fmtf(m[FONT_SIZE], 4)
-#        return d.join([f'{m[FONT_SIZE]:4}', f'{m[LEAD]:4}', lnsp, clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
+        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;  clr = util.fColor(m[COLOR])  ;  bgc = util.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?'
         return d.join([f'{fmtf(m[FONT_SIZE], 4)}', f'{m[LEAD]:4}', lnsp, clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
 
     def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
@@ -1550,10 +1550,7 @@ class Tabs(pyglet.window.Window):
         ads  =  self.fads(asc, dsc, sad, d)
         return d.join([self.fAxy(), ancX, ancY, self.fcwh(t), ads, self.fcvaa(t), self.fFntSz(t), self.ffont(t), dtxt])
     @staticmethod
-#    def fads(asc, dsc, sad, d):    return d.join([f'{asc}', f'{dsc}', f'{sad}'])
     def fads(asc, dsc, sad, d):     return d.join([f'{fmtf(asc, 5)}', f'{fmtf(dsc, 5)}', f'{fmtf(sad, 5)}'])
-#    def fads(asc, dsc, sad, d): asc, dsc, sad = fmtf5(asc), fmtf5(dsc), fmtf5(sad)  ;  return d.join([f'{asc}', f'{dsc}', f'{sad}'])
-#    def fads(asc, dsc, sad, d): asc, dsc, sad = fmtf(asc, 5), fmtf(dsc, 5), fmtf(sad, 5)  ;  return d.join([f'{asc}', f'{dsc}', f'{sad}'])
     @staticmethod
     def frot(t):                   return f'{t.rotation:8.3f} '
     def fnvis(self):               return f'{self.nvis:3}'
@@ -1562,10 +1559,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def fpTxt(t): a = t.text.replace('\n', Z)  ;  b = a[:8]  ;  b += '+' if len(a) > 8 else W  ;  return f'{b:9}'
     @staticmethod
-#    def fcwh(       t, d=Y):       return f'{t.content_width}{d}{t.content_height}'
     def fcwh(       t, d=Y):       return f'{fmtf(t.content_width, 5)}{d}{fmtf(t.content_height, 5)}'
-#    def fcwh(       t, d=Y): cw, ch = fmtf5(t.content_width), fmtf5(t.content_height)  ;  return d.join([f'{cw}', f'{ch}'])
-#    def fcwh(       t, d=Y): cw, ch = fmtf(t.content_width, 5), fmtf(t.content_height, 5)  ;  return d.join([f'{cw}', f'{ch}'])
     def fcvaa(self, t, d=Y):       return f'{self.fcva(t.content_valign)}{d}{self.ftAx(self.aa)}'
     def fCtnt(self, t, d=W):       return f'{self.fcwh(t)}{d}{self.fcvaa(t)}'
     def getDocColor(self, t, c=1): return util.fColor(self._getDocColor(t, c))
@@ -2117,7 +2111,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'A' and self.isAlt(     mods):     self.setFontParam(FONT_NAME,    (self.fontNameIdx - 1) % len(FONT_NAMES), 'fontNameIdx')
         elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam(FONT_SIZE,     self.fontSize * 33 / 32,                   'fontSize') # )  % FS_MAX
         elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam(FONT_SIZE,     self.fontSize * 32 / 33,                   'fontSize') # )  % FS_MAX
-        else:   self.log(f'Unexpected {self.kbkEvntTxt()}', f=2)
+        else:   self.log(f'UNH {self.kbkEvntTxt()} Unhandled', f=2)
     ####################################################################################################################################################################################################
         if not self.isParsing():
             if   kbk == 'ENTER' and self.isCtrl(mods): self.setCHVMode(  '@  ENTER',     CHORD,       v=DARROW)
@@ -2912,14 +2906,14 @@ class Tabs(pyglet.window.Window):
 #        if self.SNAPS:    self.snapshot(f'quit {error} {save=}', 'QUIT')
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=2)       ;   self.log(util.QUIT_END, p=0, f=2)
         self.cleanupFiles()
-#        self.close()
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(util.QUIT_END, p=0, f=0)
-        print('Calling close()', end=Y)
+        self.log('Calling close()', e=Y, f=2)
         self.close()
-#        print('Calling pyglet.app.exit()', end=Y)
-#        pyglet.app.exit()
-#        print('Calling exit()')
-#        exit()
+        if self.TEST and self.EXIT:
+            print('Calling pyglet.app.exit()', end=Y)
+            pyglet.app.exit()
+            print('Calling exit()')
+            exit()
     ####################################################################################################################################################################################################
     def cleanupFiles(self):
         self.cleanupCsvFile()
@@ -2956,13 +2950,6 @@ class Tabs(pyglet.window.Window):
 # Global Functions BGN
 ########################################################################################################################################################################################################
 def fri(f):  return int(math.floor(f + 0.5))
-#def fmtf4(a): return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
-#def fmtf5(a): return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
-#def fmtf(a, b):
-#    if b==4: return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
-#    if b==5: return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
-#    if b==4: return f'{a:{b}.2f}' if a < 10 else f'{a:{b}.1f}' if a < 100 else f'{a:{b}.0f}'
-#    if b==5: return f'{a:{b}.3f}' if a < 10 else f'{a:{b}.2f}' if a < 100 else f'{a:{b}.1f}' if a < 1000 else f'{a:{b}.0f}'
 ########################################################################################################################################################################################################
 def dumpGlobals():
     slog(f'BASE_NAME = {BASE_NAME}', f=2)
@@ -3090,21 +3077,22 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
     FSH, PNK, RED, RST, PCH, ORG, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
     def main():
-        slog(f'{CSV_PATH=}',  f=2)   ;   slog(f'{CSV_FILE.name=}', f=2)
-        slog(f'{LOG_PATH=}',  f=2)   ;   slog(f'{LOG_FILE.name=}', f=2)
+        slog(f'{CSV_PATH=}',  f=2)     ;   slog(f'{CSV_FILE.name=}', f=2)
+        slog(f'{LOG_PATH=}',  f=2)     ;   slog(f'{LOG_FILE.name=}', f=2)
         slog('constructing Tabs object')
-        tabs = Tabs()                ;   snlfp    =    tabs.seqNumLogPath
-        slog(f'{str(tabs)=}', f=2)   ;   slog(f'{tabs=}', f=2)
-        slog('calling pyglet.app.run()')
-        ret = pyglet.app.run()       ;   msg      =    'Close & Copy'
+        tabs = Tabs()                  ;   snlfp    =    tabs.seqNumLogPath
+        slog(f'{str(tabs)=}', f=2)     ;   slog(f'{tabs=}', f=2)
+        slog('Call pyglet.app.run()')
+        ret = pyglet.app.run()
         slog(f'pyglet.app.run(): return={ret}')
-        slog(f'{msg} {LOG_FILE.name} to {snlfp}', ff=1)
-        util.copyFile(LOG_PATH,          snlfp)
+        slog(f'Copy {LOG_FILE.name} to {snlfp}', ff=1)
+        util.copyFile(LOG_PATH,         snlfp)
         glfp = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
-        slog(f'{msg} {LOG_FILE.name} to {glfp}', ff=1)
-        util.copyFile(LOG_PATH,          glfp)
-        LOG_FILE.flush()             ;   LOG_FILE.close()
-        print('Thats all folks', flush=True)
+        slog(f'Copy {LOG_FILE.name} to {glfp}', ff=1)
+        util.copyFile(LOG_PATH,         glfp)
+        slog('Flush & Close Log File')
+        LOG_FILE.flush()               ;   LOG_FILE.close()
+        print('Thats all folks!', flush=True)
     ####################################################################################################################################################################################################
     if __name__ == '__main__':
         main()
