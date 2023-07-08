@@ -109,6 +109,7 @@ class Tabs(pyglet.window.Window):
         self.va = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP   if self.V_TOP   else '??'
         self.n0        = []           ;    self.n0.extend(self.n)  ;  self.i0 = [self.i]
         self.n.insert(S, self.ssl())  ;    self.i.insert(S, 1)     ;  self.dumpArgs(f=2)
+        self.normi()
         self.LOG_GFN   = self.geomFileName(self.FILE_NAME, LOG)    ;  self.log(f'{self.LOG_GFN=}')
         self.CSV_GFN   = self.geomFileName(self.FILE_NAME, CSV)    ;  self.log(f'{self.CSV_GFN=}')
         self.DAT_GFN   = self.geomFileName(self.FILE_NAME, DAT)    ;  self.log(f'{self.DAT_GFN=}')
@@ -142,6 +143,11 @@ class Tabs(pyglet.window.Window):
         self.Y_BOTTOM  = 1  if self.AY==-1 else 0  ;  self.Y_CENTER = 1  if self.AY==0  else 0  ;  self.Y_TOP    = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
         self.V_BOTTOM  = 1  if self.VA==-1 else 0  ;  self.V_CENTER = 1  if self.VA==0  else 0  ;  self.V_TOP    = 1 if self.VA==1 else 0
 
+    def normi(self, dbg=1):
+        if dbg: self.log(f'before {self.i=} {self.n=}')
+        i, n = self.i, self.n   ;   self.i = [ i[j] if i[j] <= n[j] else n[j] for j in range(len(i)) ]
+        if dbg: self.log(f'after  {self.i=} {self.n=}')
+    ####################################################################################################################################################################################################
     def geomFileName(self, base, ext, dbg=1):
         n0  = []     ;  n0.extend(self.n0)   ;   n0.insert(S, '_')
         n   = n0        if ext==DAT          else self.n
@@ -158,7 +164,7 @@ class Tabs(pyglet.window.Window):
         _   =   Z.join([n1, n2]) # A_test.1.2.3.40.6_RT.csv  B_test.4.2.3.50.6_LB_CC.log  A_test.5.2.4.80.6_CC.txt  test.2.1._.30.6.dat
         self.log(f'{_}') if dbg else None
         return _
-
+    ####################################################################################################################################################################################################
     def dumpArgs(self, f=1):
         self.log(f'[a]      {self.AUTO_SAVE=}', f=f)
         self.log(f'[A]         {self.VARROW=}', f=f)
@@ -1393,10 +1399,11 @@ class Tabs(pyglet.window.Window):
 
     def dbgTabTxt(self, j, i):
         dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1}' ;  k = d.join(k)  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  l = len(t)
-        if dt==1:  a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'                         ;  return       d.join(b*a)
-        if dt==2:  a = 3 if j==C else 4     ;   e = d.join([ s[_] for _ in range(a) ])    ;  return f'{e}{d}{i+1}'
-        if dt==3:  a = 1 if j==C else 3     ;   e = d.join([ t[_] for _ in range(a) ])    ;     _ = f'{e}{d}{k}' if j!=P else ''  ;  return f'{_}'
-        e = d.join([ t[_] for _ in range(l) ])
+        if   dt==0:  return Z
+        elif dt==1:  a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'                         ;  return       d.join(b*a)
+        elif dt==2:  a = 3 if j==C else 4     ;   e = d.join([ s[_] for _ in range(a) ])    ;  return f'{e}{d}{i+1}'
+        elif dt==3:  a = 1 if j==C else 3     ;   e = d.join([ t[_] for _ in range(a) ])    ;     _ = f'{e}{d}{k}' if j!=P else ''  ;  return f'{_}'
+        else:        e = d.join([ t[_] for _ in range(l) ])
         e = f'{e}{d}{k}'
         if j==P: e = ''
         return e
@@ -2021,7 +2028,7 @@ class Tabs(pyglet.window.Window):
         if dbg:   self.log(f'    after  MOVE plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
         if dbg:   self.log(f'END {x=:4} {y0=:4} {y=:4} {ww=:6.2f} {hh=:6.2f}', pos=1, f=2)
     ####################################################################################################################################################################################################
-    def kbkEvntTxt(self): return f'<{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
+    def kbkEvntTxt(self): return f'    <{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
     ####################################################################################################################################################################################################
     def on_key_press(self, symb, mods, dbg=1): # avoid these
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
