@@ -1,1 +1,0 @@
-python tabsC.py -i 1 8 8 8 -n 1 1 10 5 -w 0 0 0 0 -d 1 -L -S 0 -f test 2
