@@ -36,7 +36,7 @@ class Tabs(pyglet.window.Window):
     def __init__(self):
         self.LOG_ID = 1                ;   self.log(f'{self.LOG_ID=}')
         self.log(f'BGN {__class__}')   ;   dumpGlobals()
-        self.log(f'STFILT:\n{fmtl(util.STFILT)}')          ;   self.snapWhy, self.snapType, self.snapReg, self.snapId = '?', '_', 0, 0
+        self.log(f'STFILT:\n{fmtl(util.STFILT)}')          ;   self.snapWhy, self.snapType, self.snapReg, self.snapId, self.snapPath = '?', '_', 0, 0, None
         self.fNameLid      = self.getFileSeqName(fdir=LOGS, fsfx=LOG)
         self.seqNumLogPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=LOGS, fsfx=LOG)   ;   self.log(f'{self.seqNumLogPath=}')
         self.seqNumCsvPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CSVS, fsfx=CSV)   ;   self.log(f'{self.seqNumCsvPath=}')
@@ -150,10 +150,10 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def geomFileName(self, base, ext, dbg=1):
         n0  = []     ;  n0.extend(self.n0)   ;   n0.insert(S, '_')
-        n   = n0        if ext==DAT          else self.n
-        lbl = '_'       if ext==DAT          else 'B' if self.LL else 'A'
+        n   = n0        if ext==DAT         else self.n
+        lbl = '_'       if ext==DAT         else 'B' if self.LL else 'A'
         n1  = [Z.join([lbl, base])]
-        n1.extend([ '_' if ext==DAT and i==S else str(i) for i in n ])
+        n1.extend([ str(i) for i in n ])
         axy = f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
         vaa = f'{self.ftAy(self.va)}{self.ftAx(self.aa)}' if not self.SPRITES else Z
         if ext == DAT:   n2 = []
@@ -624,8 +624,8 @@ class Tabs(pyglet.window.Window):
             self.dumpTniksD(f'{why}D')
             self.dumpTniksE()
             self.dumpTniksF()
-        if csv:      self.dumpTnikCsvs(f'CSVs {int(self.PIDX)}') #  ;   self.PIDX = not self.PIDX   ;   self.dumpTnikCsvs(f'CSVs {int(self.PIDX)}')
-        if dbg2:     self.cobj.dumpMlimap('MLim') if self.VRBY else None
+#        if dbg and csv: self.dumpTnikCsvs(f'CSVs {int(self.PIDX)}') #  ;   self.PIDX = not self.PIDX   ;   self.dumpTnikCsvs(f'CSVs {int(self.PIDX)}')
+        if dbg2:        self.cobj.dumpMlimap('MLim') if self.VRBY else None
         self.log(f'{self.fmtn()} END ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
     ####################################################################################################################################################################################################
     def autoSave(self, dt, why, dbg=1):
@@ -638,9 +638,9 @@ class Tabs(pyglet.window.Window):
         self.batch.draw()
         if  self.snapReg and (self.SNAPS or self.snapType == INIT):
             self.snapReg = 0
-            path = self.snapshot()
-            self.log(f'{self.snapWhy=} {self.snapType=} {self.snapId=}\n{path=}', pos=1)
-#            if self.TEST:    self.testSprTxt(path) # path
+            snapPath = self.snapshot(f'on_draw({fmtm(kwargs)=})')
+            self.log(f'{self.snapWhy=} {self.snapType=} {self.snapId=}\n{snapPath=}', pos=1)
+#            if self.TEST:    self.testSprTxt(path)
 
     def on_resize(self, width, height, dbg=1):
         super().on_resize(width, height)
@@ -1305,7 +1305,7 @@ class Tabs(pyglet.window.Window):
                         for _ in self.g_createTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
         if self.CURSOR and self.tabls and not self.cursor:  self.createCursor(why)   ;  self.dumpHdrs()
-        if dbg:         self.dumpStruct(why2, csv=0)
+        if dbg:         self.dumpStruct(why2, csv=0, dbg=dbg)
     ####################################################################################################################################################################################################
     def g_createTniks(self, tlist, j, pt, ii=None, why=Z, dbg=1, dbg2=1): # {0x2588:c}{0x2591:c}{0x2592:c}{0x2593:c}
         n  = 1  if ii is not None       else None   ;   m = 0 # 1 if j in (T, N, I, K) else 0
@@ -1398,15 +1398,13 @@ class Tabs(pyglet.window.Window):
     def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
 
     def dbgTabTxt(self, j, i):
-        dt = self.DBG_TABT  ;  d = '\n' if j==C else Z  ;  k = f'{i+1}' ;  k = d.join(k)  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  l = len(t)
+        dt = self.DBG_TABT
         if   dt==0:  return Z
-        elif dt==1:  a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'                         ;  return       d.join(b*a)
-        elif dt==2:  a = 3 if j==C else 4     ;   e = d.join([ s[_] for _ in range(a) ])    ;  return f'{e}{d}{i+1}'
-        elif dt==3:  a = 1 if j==C else 3     ;   e = d.join([ t[_] for _ in range(a) ])    ;     _ = f'{e}{d}{k}' if j!=P else ''  ;  return f'{_}'
-        else:        e = d.join([ t[_] for _ in range(l) ])
-        e = f'{e}{d}{k}'
-        if j==P: e = ''
-        return e
+        d  = '\n' if j==C else Z  ;  k = f'{i+1}' ;  k = d.join(k)  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  l = len(t)
+        if   dt==1:  a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'                         ;  return d.join(b*a)
+        elif dt==2:  a = 3 if j==C else 4     ;   e = d.join([ s[_] for _ in range(a) ])    ;  return d.join([e, i+1])
+        elif dt==3:  a = 1 if j==C else 3     ;   e = d.join([ t[_] for _ in range(a) ])    ;  return d.join([e, k]) if j!=P else Z
+        else:                                     e = d.join([ t[_] for _ in range(l) ])    ;  return d.join([e, k])
 
     def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         c = tlist[i]      ;     ha = hasattr(c, 'text')
@@ -1428,7 +1426,7 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(why)
         if self.CURSOR and self.cursor: self.resizeCursor(why)   ;   self.dumpHdrs()
         if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd.{self.cc + 1}')
-        if dbg:   self.dumpStruct(why)
+        if dbg:   self.dumpStruct(why, csv=1, dbg=dbg)
     ####################################################################################################################################################################################################
     def g_resizeTniks(self, tlist, j, pt=None, why=Z, dbg=1, dbg2=1):
         if not self.n[j]:     msg = f'ERROR {self.fmtJText(j, why)} SKIP {self.n[j]=}'   ;   self.log(msg) #  ;   self.quit(msg)
@@ -1661,7 +1659,9 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpTnikCsvs(self, why):
         self.dumpTniksPfx(why)
-        self.log(f'{fmtl(self.args2csv(), d=Z, s=Y)}', p=0, f=3)
+#        self.log(f'{fmtl(self.args2csv(), d=Z, s=Y)}', p=0, f=3)
+        name = self.snapPath.stem if self.snapPath else Z
+        args = self.args2csv()  ;  self.log(f'{fmtl(args, d=Z, s=Y)} {name}', p=0, f=3)
         for j, p in enumerate(self.pages):     self.dumpTnikCsv(p, P, j)
         for j, l in enumerate(self.lines):     self.dumpTnikCsv(l, L, j)
         if self.LL and self.rowLs and self.qclms:
@@ -1676,9 +1676,10 @@ class Tabs(pyglet.window.Window):
         for j, h in enumerate(self.hcurs):     self.dumpTnikCsv(h, H, j)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def dumpTnikCsv(self, t, j, i): # j in (P, C, T)
-        if i == 0 and j not in (L, S):   h = self.csvHdr(j, n=1)  ;  self.log(f'{h}', p=0, f=3)
+    def dumpTnikCsv(self, t, j, i):
+        if i == 0 and j == P:    h = self.csvHdr(j, n=1)   ;   self.log(f'{h}', p=0, f=3)
         self.log(self.fmtTnikCsv(t, j, i), p=0, f=3)
+#        if i == 0 and j == H:    h = self.csvHdr(j, n=1)   ;   self.log(f'{h}', p=0, f=3)
     def fmtTnikCsv(self, t, j, i):
         s = {}
         if   util.isi(t, LBL):   d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)
@@ -2105,8 +2106,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'P' and self.isAlt(     mods):     self.flipPage(    '& P', -1)
         elif kbk == 'R' and self.isAltShift(mods):     self.rotateSprite('&^R', self.hcurs[0], -1)
         elif kbk == 'R' and self.isAlt(     mods):     self.rotateSprite('& R', self.hcurs[0],  1)
-        elif kbk == 'Z' and self.isAltShift(mods):     self.RESIZE = not self.RESIZE  ;  self.resizeTniks(dbg=1) # if self.RESIZE else None
-        elif kbk == 'Z' and self.isAlt(     mods):                                       self.resizeTniks(dbg=1) # if self.RESIZE else None
+        elif kbk == 'Z' and self.isAltShift(mods):     self.RESIZE = not self.RESIZE  ;  self.resizeTniks(dbg=1)
+        elif kbk == 'Z' and self.isAlt(     mods):                                       self.resizeTniks(dbg=1)
     ####################################################################################################################################################################################################
         elif kbk == 'B' and self.isAltShift(mods):     self.setFontParam(BOLD,      not self.fontBold,                           'fontBold')
         elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam(BOLD,      not self.fontBold,                           'fontBold')
@@ -2845,21 +2846,22 @@ class Tabs(pyglet.window.Window):
         typ    = typ if typ else self.snapType
         snapId = self.snapId  ;  logId = self.LOG_ID
         snapName = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
-        snapPath = BASE_PATH / PNGS / snapName   ;   logId = 'None'   ;   snapId = 'None'
+        self.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = 'None'   ;   snapId = 'None'
         if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
         if dbg:  self.log(f'{self.fNameLid=} {snapName=} {why}')
-        if dbg:  self.log(f'{snapPath}', p=2)
-        pyglet.image.get_buffer_manager().get_color_buffer().save(f'{snapPath}')
+        if dbg:  self.log(f'{self.snapPath}', p=2)
+        pyglet.image.get_buffer_manager().get_color_buffer().save(f'{self.snapPath}')
         if dbg2: self.log(f'{snapName=} {why}', f=2)
         if typ == INIT:
             snapName2 = self.geomFileName(BASE_NAME, PNG)
             snapPath2 = BASE_PATH / snapName2
-            util.copyFile(snapPath, snapPath2)
+            util.copyFile(self.snapPath, snapPath2)
             if dbg:   self.log(f'{BASE_NAME=} {self.fmtn(Z)}')
             if dbg:  self.log(f'{snapName2=} {why}')
             if dbg:  self.log(f'{snapPath2}', p=2)
+        self.dumpTnikCsvs(self.fNameLid)
         self.snapId += 1
-        return snapPath
+        return self.snapPath
     ####################################################################################################################################################################################################
     def deleteGlob(self, g, why=Z):
         self.log(f'deleting {len(g)} files from glob {why=}')
@@ -3061,7 +3063,7 @@ JTEXTS2 = ['Pag',   'Lin',   'Sct',   'K',     'Tabl',  'Note',  'IKey',  'Kord'
 jTEXTS  = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
 JFMT    = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       2,       2,       4]
 #JFMT   = [  2,       3,       3,       6,       6,       6,       6,       6,       3,       5,       1,       1,       3,       3,       3,       4,       7]
-#          0   1   2   3   4   5   6   7    8    9   10   11   12   13   14   15   16   17
+#           0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17
 OPC     = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
 FONT_SCALE =  14/18  # 14pts/18pix
 FONT_DPIS  = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]

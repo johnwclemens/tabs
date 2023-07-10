@@ -5,9 +5,10 @@ function cleanup {
   echo BGN cleanup: ls "$1"
   ls "$1"
   for file in "$1"/*; do
-#    if [[ $file = *[0-9]*.$1 ]]; then
-    echo rm "$file"
-    rm      "$file"
+    if [[ $file = *[0-9]* ]]; then
+      echo rm "$file"
+      rm      "$file"
+    fi
   done
   echo END cleanup: ls "$1"
   ls "$1"
