@@ -1195,21 +1195,16 @@ class Tabs(pyglet.window.Window):
         elif j == R:  w = pw               ;  h = ph/nsnt
         else:         w = pw               ;  h = ph_n
         if   j in s:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h
-#        elif j == L:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h - dn*ph_n_nr  ;  self.log(f'{y=:.2f} {d=:.1f} {dn=} {py=:.2f} {ph=:.2f} {h=:.2f} {ph_n=:.2f} {ph_n_nr=:.2f}')
-        elif j == L:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h - dn*d*ph/nr  ;  self.log(f'{y=:.2f} {d=:.1f} {dn=} {py=:.2f} {ph=:.2f} {h=:.2f} {ph_n=:.2f} {ph_n_nr=:.2f}')
+        elif j == L:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h - dn*ph_n_nr  ;  self.log(f'{y=:.2f} {d=:.1f} {dn=} {d*py=:.2f} {d*ph=:.2f} {d*h=:.2f} {dn*ph_n_nr=:.2f}')
         elif j == R:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h + ph/nsnt
         elif j in c:  x = a*w              ;  y = py + b*ph - b*h
         else:         x = px - a*pw + a*w  ;  y = py + b*ph - b*h
-#        if j == L:    h = ph_n
         if dbg and self.VRBY >= 2:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
             msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
             msg += msg2 if p else W * len(msg2)
             self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
         return n, i, x, y, w, h
-#        elif j == L:  x = px - a*pw + a*w  ;  y = ph - dn*ph_n_nr - dn*h/n - b*(i+1)*h/n
-#        elif j == L:  x = px - a*pw + a*w  ;  y = ph - dn*ph_n_nr - dn*h/n - b*(self.i[L]+1)*h/n
-#        elif j == L:  x = px - a*pw + a*w  ;  y = b*ph_n # - b*ph_n_nr # - b*h/n
     ####################################################################################################################################################################################################
     def imap2ikey(self, tobj, imap, i, j, dbg=0):
         imap0 = imap[0][::-1] if imap and len(imap) else []
@@ -1268,8 +1263,6 @@ class Tabs(pyglet.window.Window):
         nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2) #  ;   xc0 = xc
         for c in range(nc):
             self.createLL(self.qclms, pi, c, xc, yc, wc, hc, why)
-#        pt   = self.splitV(pt, n, dbg=dbg2)
-#        self.dumpTnik(pt, L, why=why)
         return pt
 
     def createLL(self, tlist, l, c, x, y, w, h, why, dbg=1):
@@ -1290,10 +1283,10 @@ class Tabs(pyglet.window.Window):
         nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)  # ;    xc0 = xc
         for c in range(nc):
             self.resizeTnik(self.qclms, self.J2[Q], Q, xc + c*wc, yc, wc, hc, why, dbg=dbg)
-#        pt   = self.splitV(pt, n, dbg=dbg2)
         return pt
     ####################################################################################################################################################################################################
-    def ntsl(self):    return self.n[T] * self.n[S] * self.n[L]
+    def ntsl(self):       return self.n[T] * self.n[S] * self.n[L]
+    def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
         self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2   ;   llr = self.LL and self.isLLRow()
@@ -1312,7 +1305,7 @@ class Tabs(pyglet.window.Window):
         n  = 1  if ii is not None       else None #  ;   m = 0 # 1 if j in (T, N, I, K) else 0
         n, _, x, y, w, h = self.geom(j, pt, n, ii, dbg=dbg2)   ;   t = Z  ;  kl = self.k[j]  ;  tl2 = tlist   ;   p, l, c, _ = self.J1plct()
         n                = n if ii is None else 1              ;  x2 = x  ;  y2 = y  ;  j2 = j  ;  i3 = 0     ;   js = (P, L, S, C, R, Q)
-        for i in range(n): #         if self.LL and j == L and i == 0 and self.isLLRow():      self.createLLs(pt, i, why)
+        for i in range(n):
             if self.DBG_TABT and j in js:   t = self.dbgTabTxt(j, i)
             i2 = i if ii is None else ii   ;   np, nl, ns, nc, nt = self.n
             if   j == S:                    self.SS.add(self.ss2sl()[i2] if self.ss2sl() else 0)
@@ -1320,7 +1313,7 @@ class Tabs(pyglet.window.Window):
             else:                           v = int(self.pages[self.J1[P]].visible)
             if   j == C:                    x2 = x + i2*w # ;  j2 = len(self.J2) if ii is not None else j
             else:
-                if   j == L:               y2 = y - i2*h - i2*h/(ns*nt)
+                if   j == L:               y2 = y - i2*h - self.LL*i2*h/(ns*nt)
                 elif j >= T:
                     s                         = self.ss2sl()[self.J1[S]]
                     tl2, j2, kl, to           = self.tnikInfo(p, l, s, c, i2, why=why)
@@ -1362,7 +1355,6 @@ class Tabs(pyglet.window.Window):
         self.checkTnik(tnik, i, j)
         if    tlist is not None:   tlist.append(tnik)
         key = self.idmapkey(j)  ;  self.idmap[key] = (tnik, j, i)   ;   self.dumpTnik(tnik, j, why) if dbg else None
-#        if self.LL and j == L:            if not self.rowLs or len(self.rowLs) < self.n[L]: tnik = self.createLLs(tnik, i, why)
         if self.ZZ and j == P:                                tnik = self.splitH(tnik, self.n[C] + self.zzl())
         if self.ZZ and j == S and v:                          tnik = self.createZZs(tnik, i, why)
         return tnik
@@ -1397,8 +1389,6 @@ class Tabs(pyglet.window.Window):
     def fDocStyle(m, d, t):
         lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;  clr = util.fColor(m[COLOR])  ;  bgc = util.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?'
         return d.join([f'{fmtf(m[FONT_SIZE], 4)}', f'{m[LEAD]:4}', lnsp, clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
-
-    def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
 
     def dbgTabTxt(self, j, i):
         dt = self.DBG_TABT
@@ -1443,10 +1433,8 @@ class Tabs(pyglet.window.Window):
                 else:                           y2 = y - i*h
                 if    j == L:
                     if self.J2[L] >= lp*ll:     msg = f'WARN MAX Line {self.J2[L]=} >= {lp=} * {ll=}'  ;   self.log(msg)  ;  self.quit(msg)
-                    y2 = y - i*h - i*h/(self.n[S]*self.n[T])
-#                    if self.LL and i == 0:      self.resizeLLs(pt, why)
+                    y2 = y - i*h - self.LL*i*h/(self.n[S]*self.n[T])
                 elif  j >= T:
-#                    if self.LL and i == 0:      self.resizeLLs(pt, why)
                     s = self.ss2sl()[self.J1[S] % self.ssl()]
                     tlist2, j2, _, _ = self.tnikInfo(p, l, s, c, why=why)
             yield self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
@@ -1464,9 +1452,6 @@ class Tabs(pyglet.window.Window):
             tnik.font_size = self.calcFontSize(j)
             tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
             self.checkTnik(tnik, i, j)
-#        if  self.LL and j == L:
-#            if v: tnik = self.resizeLLs(tnik, why)
-#            else: tnik = self.splitV(tnik, self.ntsl(), dbg=dbg)
         self.dumpTnik(tnik, j, why) if dbg else None
         return tnik
     ####################################################################################################################################################################################################
