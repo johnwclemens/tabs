@@ -1308,20 +1308,20 @@ class Tabs(pyglet.window.Window):
         if self.CURSOR and self.tabls and not self.cursor:  self.createCursor(why)   ;  self.dumpHdrs()
         if dbg:         self.dumpStruct(why2, dbg=dbg)
     ####################################################################################################################################################################################################
-    def g_createTniks(self, tlist, j, pt, ii=None, why=Z, dbg=1, dbg2=1): # {0x2588:c}{0x2591:c}{0x2592:c}{0x2593:c}
-        n  = 1  if ii is not None       else None   ;   m = 0 # 1 if j in (T, N, I, K) else 0
+    def g_createTniks(self, tlist, j, pt, ii=None, why=Z, dbg=1, dbg2=1):
+        n  = 1  if ii is not None       else None #  ;   m = 0 # 1 if j in (T, N, I, K) else 0
         n, _, x, y, w, h = self.geom(j, pt, n, ii, dbg=dbg2)   ;   t = Z  ;  kl = self.k[j]  ;  tl2 = tlist   ;   p, l, c, _ = self.J1plct()
         n                = n if ii is None else 1              ;  x2 = x  ;  y2 = y  ;  j2 = j  ;  i3 = 0     ;   js = (P, L, S, C, R, Q)
-        for i in range(m, n + m):
+        for i in range(n): #         if self.LL and j == L and i == 0 and self.isLLRow():      self.createLLs(pt, i, why)
             if self.DBG_TABT and j in js:   t = self.dbgTabTxt(j, i)
-            i2 = i if ii is None else ii
+            i2 = i if ii is None else ii   ;   np, nl, ns, nc, nt = self.n
+            if   j == S:                    self.SS.add(self.ss2sl()[i2] if self.ss2sl() else 0)
             if   j == P:                    v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
-            else:                           v = int(self.pages[self.J1[P]].visible) #            if self.LL and j == L and i == 0 and self.isLLRow():      self.createLLs(pt, i, why)
-            if   j in (C, E):              x2 = x + i2*w # ;  j2 = len(self.J2) if ii is not None else j
-            else: #                if   j == L:               y2 = y - (i2*h)/(self.n[S]*self.n[T])
-                if   j == S:               self.SS.add(self.ss2sl()[i2] if self.ss2sl() else 0)
-                elif j == L:               y2 = y - i2*h - h/(self.n[S]*self.n[T]+self.LL)
-                elif j >= T: #                    if self.LL    and i == 0 and self.isLLRow():      self.createLLs(pt, i, why)
+            else:                           v = int(self.pages[self.J1[P]].visible)
+            if   j == C:                    x2 = x + i2*w # ;  j2 = len(self.J2) if ii is not None else j
+            else:
+                if   j == L:               y2 = y - i2*h - i2*h/(ns*nt)
+                elif j >= T:
                     s                         = self.ss2sl()[self.J1[S]]
                     tl2, j2, kl, to           = self.tnikInfo(p, l, s, c, i2, why=why)
                     if   s == TT:           t = to
@@ -1330,6 +1330,7 @@ class Tabs(pyglet.window.Window):
                         m = self.getImap(p, l, c)
                         if   s == II:       t = self.imap2ikey( to, m, i3, j2)  ;  i3 += 1 if t != self.tblank else 0
                         elif s == KK:       t = self.imap2Chord(to, m, i2, j2)
+                    y2 = y - i2*h
                 else:                      y2 = y - i2*h
             kk = self.cci(j2, i2, kl) if self.CHECKERED else 0
             yield self.createTnik(tl2, i2, j2, x2, y2, w, h, kk, kl, why=why, t=t, v=v, dbg=dbg)
@@ -1436,12 +1437,13 @@ class Tabs(pyglet.window.Window):
         x2 = x  ;  y2 = y  ;  j2 = j  ;  tlist2 = tlist
         p, l, c, t = self.J1plct()    ;  lp, ll = self.dl()[0], self.dl()[1]
         for i in range(n):
-            if   j in (C, E):                   x2 = x + i * w
+            if   j in (C, E):                   x2 = x + i*w
             else:
                 if    j == P:                   v = int(self.pages[self.J1[P]].visible)  ;  self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
-                else:                           y2 = y - i * h
+                else:                           y2 = y - i*h
                 if    j == L:
                     if self.J2[L] >= lp*ll:     msg = f'WARN MAX Line {self.J2[L]=} >= {lp=} * {ll=}'  ;   self.log(msg)  ;  self.quit(msg)
+                    y2 = y - i*h - i*h/(self.n[S]*self.n[T])
 #                    if self.LL and i == 0:      self.resizeLLs(pt, why)
                 elif  j >= T:
 #                    if self.LL and i == 0:      self.resizeLLs(pt, why)
