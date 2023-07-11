@@ -1060,19 +1060,6 @@ class Tabs(pyglet.window.Window):
                                 self.dumpTnik(tlist[t], j, why=why2)
         self.dumpTniksSfx(why)
         if self.CURSOR and self.tabls and not self.cursor: self.createCursor(why)
-
-    def addLLs(self, how):
-        why = f'ADD {how}'  ;  why2 = 'Ref'
-        np, nl = self.n[P], self.n[L]
-        self.dumpTniksPfx(why)
-        for p in range(np):
-            self.setJdump(P, p, why=why2)
-            if self.isV():
-                for l in range(nl):
-                    i = l + p*nl
-                    self.setJdump(L, l, why=why2)
-                    self.createLLs(self.lines[i], i, why)  ;  break
-        self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def addPage(self, how, ins=None, dbg=1):
         np, nl, ns, nc, nt = self.n   ;   how = f'{how} {ins=}'
@@ -1284,6 +1271,19 @@ class Tabs(pyglet.window.Window):
         for c in range(nc):
             self.resizeTnik(self.qclms, self.J2[Q], Q, xc + c*wc, yc, wc, hc, why, dbg=dbg)
         return pt
+
+    def addLLs(self, how):
+        why = f'ADD {how}'  ;  why2 = 'Ref'
+        np, nl = self.n[P], self.n[L]
+        self.dumpTniksPfx(why)
+        for p in range(np):
+            self.setJdump(P, p, why=why2)
+            if self.isV():
+                for l in range(nl):
+                    i = l + p*nl
+                    self.setJdump(L, i, why=why2)
+                    self.createLLs(self.lines[i], i, why)
+        self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def ntsl(self):       return self.n[T] * self.n[S] * self.n[L]
     def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
