@@ -1,4 +1,4 @@
-    , -n ,   1   ,   1   ,  10   ,   5   , , , -i  ,  1  ,  1  ,  1  ,  1  ,  6  , -s  ,0, test.10.0.INIT
+    , -n ,   1   ,   1   ,  10   ,   5   , , , -i  ,  1  ,  1  ,  1  ,  1  ,  6  , -s  ,0, test.2.0.INIT
 tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscnt,As+Ds,v,a,FnSz,Lead,LnSp, ForegroundColor , BackgroundColor ,B,I,S,M,W,w,FontName
 Page,   1, 480.00, 270.00, 960.00, 540.00,C,C,  480,  270,674.8,176.8,176.8,47.25,224.0,C,C, 168,   0,None,[128  10 255 255],      None       ,0,0,1,1,1,c,Lucida Console       
 Line,   1, 480.00, 225.00, 960.00, 450.00,C,C,  480,  225,809.8,707.0,353.5,94.50,448.0,C,C, 336,   0,None,[255  10  10 255],      None       ,0,0,1,1,1,c,Lucida Console       

@@ -16,15 +16,15 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
 2686 tabsC getFileSeqName     fdir=logs/ fsfx=log
 2689 tabsC getFileSeqName     fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log
- 538 util  getFilePath        baseName =test.10      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 541 util  getFilePath        fileName =test.10.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.10.log)
-  41 tabsC __init__           .seqNumLogPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.10.log)
- 538 util  getFilePath        baseName =test.10      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 541 util  getFilePath        fileName =test.10.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.10.csv)
-  42 tabsC __init__           .seqNumCsvPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.10.csv)
- 538 util  getFilePath        baseName =test.10      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 541 util  getFilePath        fileName =test.10.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.10.cat)
-  43 tabsC __init__           .seqNumCatPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.10.cat)
+ 538 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 541 util  getFilePath        fileName =test.2.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log)
+  41 tabsC __init__           .seqNumLogPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log)
+ 538 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 541 util  getFilePath        fileName =test.2.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv)
+  42 tabsC __init__           .seqNumCsvPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv)
+ 538 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 541 util  getFilePath        fileName =test.2.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.2.cat)
+  43 tabsC __init__           .seqNumCatPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.2.cat)
   55 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
   71 tabsC __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 5]] [w:[0 0 0 0]] [d:[2]] [p:[]] [L:[]] [S:[0]] [f:[test]]
  169 tabsC dumpArgs           [a]      .AUTO_SAVE=0
@@ -79,7 +79,7 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 .dataPath1=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/_test.1.1._.10.5.dat)
 .dataPath2=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/data/_test.1.1._.10.5.dat)
  291 tabsC _initWindowA       BGN (  -1x-1  )
- 291 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001FCFCB3F9D0>
+ 291 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000014BBACEF9D0>
  296 tabsC _initWindowA       screens[0] s.x=894  2160 (1280x720 )
  296 tabsC _initWindowA       screens[1] s.x=0     0 (3840x2160)
  297 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -403,7 +403,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
  605 tabsC ntp                tpb tpp tpl tps tpc=[50 50 50 50 5]
  629 tabsC dumpStruct         [1 1 1  1 5]   5   0  1] n=[1 1 1 10 5] END ntp=[   50   50  50  50   5] ( 1x1x1x5  )
  337 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2654 tabsC regSnap             10   0 INIT     init
+2654 tabsC regSnap              2   0 INIT     init
  217 tabsC _reinit            [1 1 1  1 5]   5   0  1] END
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
  134 tabsC __init__           END <class __main__.Tabs>
@@ -605,292 +605,30 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
  605 tabsC ntp                tpb tpp tpl tps tpc=[50 50 50 50 5]
  629 tabsC dumpStruct         [1 1 1  1 5]   5   0  1] n=[1 1 1 10 5] END ntp=[   50   50  50  50   5] ( 1x1x1x5  )
 2662 tabsC snapshot           BASE_NAME=test logId=None snapId=None typ=INIT PNG=png
-2663 tabsC snapshot           .fNameLid=test.10 snapName=test.10.0.INIT.png on_draw((kwargs)=)
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.0.INIT.png
-2666 tabsC snapshot           snapName=test.10.0.INIT.png on_draw((kwargs)=)
+2663 tabsC snapshot           .fNameLid=test.2 snapName=test.2.0.INIT.png on_draw((kwargs)=)
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.0.INIT.png
+2666 tabsC snapshot           snapName=test.2.0.INIT.png on_draw((kwargs)=)
  165 tabsC geomFileName       Btest.1.1.1.10.5_CC_CC.png
- 546 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.INIT.png)
+ 546 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.0.INIT.png)
  547 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.1.10.5_CC_CC.png)
- 549 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.1.10.5_CC_CC.png ###
+ 549 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.1.10.5_CC_CC.png ###
 2671 tabsC snapshot           BASE_NAME=test [1 1 1 10 5]
 2672 tabsC snapshot           snapName2=Btest.1.1.1.10.5_CC_CC.png on_draw((kwargs)=)
 snapshot C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.1.10.5_CC_CC.png
-1473 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
-1473 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
-1473 tabsC dumpTnikCsvs       LE[1  1  1  10   50    0    0    0  1  10 1 0  0  0  0  0   75   0] test.10
-1473 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x5 )( 1x1x1x5  ) (0      ) 1 (   )   75   0] test.10
+1473 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
+1473 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
+1473 tabsC dumpTnikCsvs       LE[1  1  1  10   50    0    0    0  1  10 1 0  0  0  0  0   75   0] test.2
+1473 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x5 )( 1x1x1x5  ) (0      ) 1 (   )   75   0] test.2
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1489 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
-1489 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
-1489 tabsC dumpTnikCsvs       LE[1  1  1  10   50    0    0    0  1  10 1 0  0  0  0  0   75   0] test.10
-1489 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x5 )( 1x1x1x5  ) (0      ) 1 (   )   75   0] test.10
+1489 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
+1489 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
+1489 tabsC dumpTnikCsvs       LE[1  1  1  10   50    0    0    0  1  10 1 0  0  0  0  0   75   0] test.2
+1489 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x5 )( 1x1x1x5  ) (0      ) 1 (   )   75   0] test.2
  642 tabsC on_draw            [1 1 1  1 5]   5   0  1] .snapWhy=init .snapType=INIT .snapId=1
-snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.INIT.png)
-1849 tabsC on_key_press       BGN     <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1934 tabsC on_key_press       UNH     <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                > Unhandled
-1941 tabsC on_key_press       END     <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1962 tabsC on_text_motion     BGN     <.kbk=   65363> <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                > motion=65363
-2110 tabsC move               [1 1 1  1 5]   5   0  1] BGN  RIGHT (         65363) n=5
-2117 tabsC _moveTo            [1 1 1  1 5]   5   0  1] BGN plct=[1 1    1 5]
-2127 tabsC _moveTo            [1 1 1  2 5]  10   5  2] END n=5 i=[1 1 1 2 5] plct=[1 1    1 5] plct2=[1 1    2 10]
-1557 tabsC moveCursor         [1 1 1  2 5]  10   5  2] BGN ss=0 .cc=4
-1269 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
-   1  RIGHT (         65363) HCrs    1    0.000 15 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1  144.00   45.00   96.00   90.00   1   0  1 [255 255  10 165]1.000 1.000 1.000 C C   48   45 Group(order=15) None
-1561 tabsC moveCursor         [1 1 1  2 5]  10   5  2] END ss=0 .cc=9
-2114 tabsC move               [1 1 1  2 5]  10   5  2] END  RIGHT (         65363) n=5
-2006 tabsC on_text_motion     END     <.kbk=   65363> <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                > motion=65363
-1946 tabsC on_key_release         <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1849 tabsC on_key_press       BGN     <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1934 tabsC on_key_press       UNH     <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                > Unhandled
-1941 tabsC on_key_press       END     <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1962 tabsC on_text_motion     BGN     <.kbk=   65363> <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                > motion=65363
-2110 tabsC move               [1 1 1  2 5]  10   5  2] BGN  RIGHT (         65363) n=5
-2117 tabsC _moveTo            [1 1 1  2 5]  10   5  2] BGN plct=[1 1    2 5]
-2127 tabsC _moveTo            [1 1 1  3 5]  15  10  3] END n=5 i=[1 1 1 3 5] plct=[1 1    2 5] plct2=[1 1    3 10]
-1557 tabsC moveCursor         [1 1 1  3 5]  15  10  3] BGN ss=0 .cc=9
-1269 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
-   1  RIGHT (         65363) HCrs    1    0.000 15 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1  240.00   45.00   96.00   90.00   1   0  1 [255 255  10 165]1.000 1.000 1.000 C C   48   45 Group(order=15) None
-1561 tabsC moveCursor         [1 1 1  3 5]  15  10  3] END ss=0 .cc=14
-2114 tabsC move               [1 1 1  3 5]  15  10  3] END  RIGHT (         65363) n=5
-2006 tabsC on_text_motion     END     <.kbk=   65363> <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                > motion=65363
-1946 tabsC on_key_release         <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1849 tabsC on_key_press       BGN     <.kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1934 tabsC on_key_press       UNH     <.kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                > Unhandled
-1941 tabsC on_key_press       END     <.kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1962 tabsC on_text_motion     BGN     <.kbk=   65362> <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                > motion=65362
-2110 tabsC move               [1 1 1  3 5]  15  10  3] BGN  UP (            65362) n=-1
-2117 tabsC _moveTo            [1 1 1  3 5]  15  10  3] BGN plct=[1 1    3 5]
-2127 tabsC _moveTo            [1 1 1  3 4]  14  10  3] END n=-1 i=[1 1 1 3 4] plct=[1 1    3 5] plct2=[1 1    3 4]
-1557 tabsC moveCursor         [1 1 1  3 4]  14  10  3] BGN ss=0 .cc=14
-1269 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
-   1  UP (            65362) HCrs    1    0.000 15 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1  240.00  135.00   96.00   90.00   1   0  1 [255 255  10 165]1.000 1.000 1.000 C C   48   45 Group(order=15) None
-1561 tabsC moveCursor         [1 1 1  3 4]  14  10  3] END ss=0 .cc=13
-2114 tabsC move               [1 1 1  3 4]  14  10  3] END  UP (            65362) n=-1
-2006 tabsC on_text_motion     END     <.kbk=   65362> <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                > motion=65362
-1946 tabsC on_key_release         <.kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1849 tabsC on_key_press       BGN     <.kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1934 tabsC on_key_press       UNH     <.kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                > Unhandled
-1941 tabsC on_key_press       END     <.kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1962 tabsC on_text_motion     BGN     <.kbk=   65362> <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                > motion=65362
-2110 tabsC move               [1 1 1  3 4]  14  10  3] BGN  UP (            65362) n=-1
-2117 tabsC _moveTo            [1 1 1  3 4]  14  10  3] BGN plct=[1 1    3 4]
-2127 tabsC _moveTo            [1 1 1  3 3]  13  10  3] END n=-1 i=[1 1 1 3 3] plct=[1 1    3 4] plct2=[1 1    3 3]
-1557 tabsC moveCursor         [1 1 1  3 3]  13  10  3] BGN ss=0 .cc=13
-1269 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
-   1  UP (            65362) HCrs    1    0.000 15 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1  240.00  225.00   96.00   90.00   1   0  1 [255 255  10 165]1.000 1.000 1.000 C C   48   45 Group(order=15) None
-1561 tabsC moveCursor         [1 1 1  3 3]  13  10  3] END ss=0 .cc=12
-2114 tabsC move               [1 1 1  3 3]  13  10  3] END  UP (            65362) n=-1
-2006 tabsC on_text_motion     END     <.kbk=   65362> <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                > motion=65362
-1946 tabsC on_key_release         <.kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1849 tabsC on_key_press       BGN     <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1934 tabsC on_key_press       UNH     <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                > Unhandled
-1941 tabsC on_key_press       END     <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1962 tabsC on_text_motion     BGN     <.kbk=   65363> <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                > motion=65363
-2110 tabsC move               [1 1 1  3 3]  13  10  3] BGN  RIGHT (         65363) n=5
-2117 tabsC _moveTo            [1 1 1  3 3]  13  10  3] BGN plct=[1 1    3 3]
-2127 tabsC _moveTo            [1 1 1  4 3]  18  15  4] END n=5 i=[1 1 1 4 3] plct=[1 1    3 3] plct2=[1 1    4 8]
-1557 tabsC moveCursor         [1 1 1  4 3]  18  15  4] BGN ss=0 .cc=12
-1269 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
-   1  RIGHT (         65363) HCrs    1    0.000 15 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1  336.00  225.00   96.00   90.00   1   0  1 [255 255  10 165]1.000 1.000 1.000 C C   48   45 Group(order=15) None
-1561 tabsC moveCursor         [1 1 1  4 3]  18  15  4] END ss=0 .cc=17
-2114 tabsC move               [1 1 1  4 3]  18  15  4] END  RIGHT (         65363) n=5
-2006 tabsC on_text_motion     END     <.kbk=   65363> <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                > motion=65363
-1946 tabsC on_key_release         <.kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 0> <.modsStr=                >
-1849 tabsC on_key_press       BGN     <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 1> <.modsStr=MOD_SHIFT       >
-1934 tabsC on_key_press       UNH     <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 1> <.modsStr=MOD_SHIFT       > Unhandled
-1941 tabsC on_key_press       END     <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 1> <.modsStr=MOD_SHIFT       >
-1946 tabsC on_key_release         <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 0> <.modsStr=                >
-1849 tabsC on_key_press       BGN     <.kbk=LALT    > <.symb=   65513> <.symbStr=LALT            > <.mods= 4> <.modsStr=MOD_ALT         >
-1934 tabsC on_key_press       UNH     <.kbk=LALT    > <.symb=   65513> <.symbStr=LALT            > <.mods= 4> <.modsStr=MOD_ALT         > Unhandled
-1941 tabsC on_key_press       END     <.kbk=LALT    > <.symb=   65513> <.symbStr=LALT            > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 81.45pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1934 tabsC on_key_press       UNH     <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT> Unhandled
-1941 tabsC on_key_press       END     <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 84.00pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 86.62pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 89.33pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 92.12pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 95.00pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 97.97pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 101.03pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 104.19pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 107.45pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 110.80pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 114.27pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 117.84pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 121.52pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 125.32pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 129.23pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1659 tabsC setCaption         96dpi 133.27pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
-1946 tabsC on_key_release         <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 129.23pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 125.32pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 121.52pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 117.84pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 114.27pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 110.80pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 107.45pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 104.19pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 101.03pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 97.97pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 95.00pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 92.12pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 89.33pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 86.62pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 84.00pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 81.45pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 78.99pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 76.59pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 74.27pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 72.02pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 69.84pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 67.72pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 65.67pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 63.68pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 61.75pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 59.88pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 58.06pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1849 tabsC on_key_press       BGN     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1659 tabsC setCaption         96dpi 56.31pt Lucida Console 0
-1941 tabsC on_key_press       END     <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=S       > <.symb=     115> <.symbStr=S               > <.mods= 4> <.modsStr=MOD_ALT         >
-1946 tabsC on_key_release         <.kbk=LALT    > <.symb=   65513> <.symbStr=LALT            > <.mods= 0> <.modsStr=                >
+snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.0.INIT.png)
 1849 tabsC on_key_press       BGN     <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 1934 tabsC on_key_press       UNH     <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        > Unhandled
 1941 tabsC on_key_press       END     <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
@@ -918,10 +656,10 @@ snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.IN
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-2720 tabsC quit               J1[0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1] @^Q
-2720 tabsC quit               J2[0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1] @^Q
-2720 tabsC quit               LE[1  1  1  10   50    0    0    0  1  10 1 0  0  0  0  0   75   1] @^Q
-2720 tabsC quit               END[( 960x540 )( 1x1x10x5 )( 1x1x4x3  ) (0      ) 1 (   )   75   1] @^Q
+2720 tabsC quit               J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
+2720 tabsC quit               J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
+2720 tabsC quit               LE[1  1  1  10   50    0    0    0  1  10 1 0  0  0  0  0   75   0] @^Q
+2720 tabsC quit               END[( 960x540 )( 1x1x10x5 )( 1x1x1x5  ) (0      ) 1 (   )   75   0] @^Q
  480 util  dumpStack           6          19 <module>             MAX_STACK_FRAME  = inspect.stack()
  480 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
  480 util  dumpStack           4 <frozen importlib   883 exec_module          
@@ -931,7 +669,7 @@ snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.IN
  480 util  dumpStack           0 tabsC        14 <module>             import , chord
  481 util  dumpStack          MAX_STACK_DEPTH= 0
  605 tabsC ntp                tpb tpp tpl tps tpc=[50 50 50 50 5]
- 613 tabsC dumpStruct         [1 1 1  4 3]  18  15  4] n=[1 1 1 10 5] BGN ntp=[   50   50  50  50   5] ( 1x1x4x3  )
+ 613 tabsC dumpStruct         [1 1 1  1 5]   5   0  1] n=[1 1 1 10 5] BGN ntp=[   50   50  50  50   5] ( 1x1x1x5  )
  169 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  170 tabsC dumpArgs           [A]         .VARROW=1
  171 tabsC dumpArgs           [b]        .FRT_BRD=0
@@ -944,7 +682,7 @@ snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.IN
  178 tabsC dumpArgs           [F]      .FULL_SCRN=0
  179 tabsC dumpArgs           [g]        .ORD_GRP=1
  180 tabsC dumpArgs           [G]       .GEN_DATA=0
- 181 tabsC dumpArgs           [i]               i=[1 1 1 4 3]
+ 181 tabsC dumpArgs           [i]               i=[1 1 1 1 5]
  182 tabsC dumpArgs           [I]           .PIDX=1
  183 tabsC dumpArgs           [l]       .LONG_TXT=1
  184 tabsC dumpArgs           [L]             .LL=1
@@ -1013,9 +751,8 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ E♯ B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ E♯]
 +7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ E♯ B♯] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ E♯ F♯ G♯ A♯ B♯]
   44 util  dumpData           END D♭ D♮ D♯
-1690 tabsC dumpFont           4:96dpi 56.305pt 0:Lucida Console 0: 56.305pt = 0.778(pt/pix) * 72.392pixels @^Q
-   1h1   1
-   1t1   
+1690 tabsC dumpFont           4:96dpi 84.000pt 0:Lucida Console 0: 84.000pt = 0.778(pt/pix) * 108.000pixels @^Q
+   0t0   
 1
 1
 1
@@ -1025,7 +762,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 1111111111
 1
  605 tabsC ntp                tpb tpp tpl tps tpc=[50 50 50 50 5]
- 629 tabsC dumpStruct         [1 1 1  4 3]  18  15  4] n=[1 1 1 10 5] END ntp=[   50   50  50  50   5] ( 1x1x4x3  )
+ 629 tabsC dumpStruct         [1 1 1  1 5]   5   0  1] n=[1 1 1 10 5] END ntp=[   50   50  50  50   5] ( 1x1x1x5  )
  770 tabsC transposeData      BGN ( 1x1x10x5 ) dump=1
  774 tabsC transposeData      dl=[1 1 10 5] dt=[list list list str]
 11111 22222 33333 44444 55555 66666 77777 88888 99999 00000
@@ -1054,22 +791,22 @@ Page 1 Line 1
  541 util  getFilePath        fileName =test.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
  538 util  getFilePath        baseName =Btest.1.1.1.10.5_CC_CC.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  541 util  getFilePath        fileName =Btest.1.1.1.10.5_CC_CC.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.1.10.5_CC_CC.csv)
- 538 util  getFilePath        baseName =test.10      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 541 util  getFilePath        fileName =test.10.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.10.csv)
+ 538 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 541 util  getFilePath        fileName =test.2.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv)
 2751 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.1.10.5_CC_CC.csv
  546 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
  547 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.1.10.5_CC_CC.csv)
  549 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.1.10.5_CC_CC.csv ###
-2754 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.10.csv
+2754 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.2.csv
  546 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
- 547 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.10.csv)
- 549 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.10.csv ###
+ 547 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv)
+ 549 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.2.csv ###
 2731 tabsC quit               Calling close(),1941 tabsC on_key_press       END     <.kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 2908 tabsC main               pyglet.app.run(): return=None
-2909 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.10.log
+2909 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.2.log
  546 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
- 547 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.10.log)
- 549 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.10.log ###
+ 547 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log)
+ 549 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.2.log ###
  538 util  getFilePath        baseName =Btest.1.1.1.10.5_CC_CC.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  541 util  getFilePath        fileName =Btest.1.1.1.10.5_CC_CC.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.1.10.5_CC_CC.log)
 2912 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.1.10.5_CC_CC.log

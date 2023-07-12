@@ -27,10 +27,17 @@ pwd
 echo ls
 ls
 
+echo exts='("csv" "log" "png")'
+exts=(      "csv" "log" "png")
+
+for ext in "${exts[@]}"  ; do
+  dir=.
+  echo cleanup "$dir" "$ext" files
+  cleanup "$dir" "$ext"
+done
+
 echo exts='("csv" "dat" "log" "png" "std")'
 exts=(      "csv" "dat" "log" "png" "std")
-#echo exts='("csv" "dat" "log" "png" "std" "cat")'
-#exts=(      "csv" "dat" "log" "png" "std" "cat")
 
 for ext in "${exts[@]}"  ; do
   if   [[ $ext = "dat" ]]; then
