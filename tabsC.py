@@ -232,15 +232,15 @@ class Tabs(pyglet.window.Window):
         KB1, KB2 = PNK, PNK  ;  KA1, KA2 = BLU, BLU  ;  KD1, KD2 = FSH, FSH  ;  KE1, KE2 = VLT, VLT
         k = self.k  ;  a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC  ;  i = self.initk
         j = P  ;  k[j] = i(j, KP1, 17, 17, KP2, 17, 17) if a else i(j, KP1, 17, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
-        j = L  ;  k[j] = i(j, KL1, 17, 13, KL2,  3, 13) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
-        j = S  ;  k[j] = i(j, KS1, 17, 13, KS2,  3, 13) if a else i(j, KS1,  3, 15, KS2, 17, 15) if b else i(j, KS1,  3, 15, KS2, 17, 15) if c else i(j, KS1,  3, 15, KS2, 17, 15) if d else None
-        j = C  ;  k[j] = i(j, KC1, 17, 13, KC2,  3, 13) if a else i(j, KC1,  3, 15, KC2, 17, 15) if b else i(j, KC1,  3, 15, KC2, 17, 15) if c else i(j, KC1,  3, 15, KC2, 17, 15) if d else None
-        j = T  ;  k[j] = i(j, KT1,  0, 11, KT2, 17, 11) if a else i(j, KT1,  0, 13, KT2, 17, 13) if b else i(j, KT1,  0, 13, KT2, 17, 13) if c else i(j, KT1,  0, 13, KT2, 17, 13) if d else None
-        j = N  ;  k[j] = i(j, KN1,  0, 11, KN2, 17, 11) if a else i(j, KN1,  0, 13, KN2, 17, 13) if b else i(j, KN1,  0, 13, KN2, 17, 13) if c else i(j, KN1,  0, 13, KN2, 17, 13) if d else None
-        j = I  ;  k[j] = i(j, KI1,  0, 11, KI2, 17, 11) if a else i(j, KI1,  0, 13, KI2, 17, 13) if b else i(j, KI1,  0, 13, KI2, 17, 13) if c else i(j, KI1,  0, 13, KI2, 17, 13) if d else None
-        j = K  ;  k[j] = i(j, KK1,  0, 11, KK2, 17, 11) if a else i(j, KK1,  0, 13, KK2, 17, 13) if b else i(j, KK1,  0, 13, KK2, 17, 13) if c else i(j, KK1,  0, 13, KK2, 17, 13) if d else None
+        j = L  ;  k[j] = i(j, KL1, 17, 17, KL2,  3, 17) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
+        j = S  ;  k[j] = i(j, KS1, 17, 17, KS2,  3, 17) if a else i(j, KS1,  3, 15, KS2, 17, 15) if b else i(j, KS1,  3, 15, KS2, 17, 15) if c else i(j, KS1,  3, 15, KS2, 17, 15) if d else None
+        j = C  ;  k[j] = i(j, KC1, 17, 17, KC2,  3, 17) if a else i(j, KC1,  3, 15, KC2, 17, 15) if b else i(j, KC1,  3, 15, KC2, 17, 15) if c else i(j, KC1,  3, 15, KC2, 17, 15) if d else None
+        j = T  ;  k[j] = i(j, KT1,  0, 17, KT2,  2, 17) if a else i(j, KT1,  0, 13, KT2, 17, 13) if b else i(j, KT1,  0, 13, KT2, 17, 13) if c else i(j, KT1,  0, 13, KT2, 17, 13) if d else None
+        j = N  ;  k[j] = i(j, KN1,  0,  9, KN2, 17,  9) if a else i(j, KN1,  0, 13, KN2, 17, 13) if b else i(j, KN1,  0, 13, KN2, 17, 13) if c else i(j, KN1,  0, 13, KN2, 17, 13) if d else None
+        j = I  ;  k[j] = i(j, KI1,  0,  9, KI2, 17,  9) if a else i(j, KI1,  0, 13, KI2, 17, 13) if b else i(j, KI1,  0, 13, KI2, 17, 13) if c else i(j, KI1,  0, 13, KI2, 17, 13) if d else None
+        j = K  ;  k[j] = i(j, KK1,  0,  9, KK2, 17,  9) if a else i(j, KK1,  0, 13, KK2, 17, 13) if b else i(j, KK1,  0, 13, KK2, 17, 13) if c else i(j, KK1,  0, 13, KK2, 17, 13) if d else None
         j = R  ;  k[j] = i(j, KR1,  0,  0, KR2,  0,  0) if a else i(j, KR1,  0, 17, KR2, 17, 17) if b else i(j, KR1,  0, 17, KR2, 17, 17) if c else i(j, KR1,  0, 17, KR2, 17, 17) if d else None
-        j = Q  ;  k[j] = i(j, KQ1,  3, 17, KQ2, 17, 17) if a else i(j, KQ1,  0, 17, KQ2, 17, 17) if b else i(j, KQ1,  0, 17, KQ2, 17, 17) if c else i(j, KQ1,  0, 17, KQ2, 17, 10) if d else None
+        j = Q  ;  k[j] = i(j, KQ1,  0, 17, KQ2, 17, 17) if a else i(j, KQ1,  0, 17, KQ2, 17, 17) if b else i(j, KQ1,  0, 17, KQ2, 17, 17) if c else i(j, KQ1,  0, 17, KQ2, 17, 10) if d else None
         j = H  ;  k[j] = i(j, KH1, 17, 11, KH2, 17, 10) if a else i(j, KH1, 14, 10, KH2, 14, 10) if b else i(j, KH1, 15, 13, KH2, 15, 13) if c else i(j, KH1, 14, 11, KH2, 14, 10) if d else None
         j = M  ;  k[j] = i(j, KM1, 17, 11, KM2, 17, 10) if a else i(j, KM1, 17, 10, KM2, 17, 17) if b else i(j, KM1, 17, 17, KM2, 17, 17) if c else i(j, KM1, 17, 17, KM2, 17, 17) if d else None
         j = B  ;  k[j] = i(j, KB1,  0,  0, KB2, 17, 17) if a else i(j, KB1,  0,  0, KB2, 17, 17) if b else i(j, KB1,  0,  0, KB2, 17, 17) if c else i(j, KB1,  0,  0, KB2, 17, 17) if d else None
@@ -310,10 +310,11 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'END {self.fmtWH()}')
     ####################################################################################################################################################################################################
     def _initGroups(self):
-        hdrA    = [P, L, S, C,  T, N, I, K,  R, Q, H, M,  B, A, D, E]
-        hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ])   ;   t = 7   ;   e = 8
-        self.gn = [1, 2, 3, 4,  t, t, t, t,  5, 6, 9, 0,  e, e, e, e]  ;  self.g = []
-        self.log(fmtl(hdrA, w=2))  ;  self.log(f'  {hdrB}')  ;  self.log(fmtl(self.gn, w=2))
+        hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ]) #  ;   t = 7   ;   e = 8
+        hdrA    = [P,  L,  S,  C,    T,  N,  I,  K,    R,  Q,  H,  M,    B,  A,  D,  E]
+#       self.gn = [1,  2,  3,  4,    t,  t,  t,  t,    5,  6,  9,  0,    e,  e,  e,  e]  ;  self.g = []
+        self.gn = [7,  8,  9, 10,   11, 12, 13, 14,    5,  6, 15,  0,    1,  2,  3,  4]  ;  self.g = []
+        self.log(fmtl(hdrA, w=2))    ;    self.log(f'  {hdrB}')    ;    self.log(fmtl(self.gn, w=2))
         for i in range(1+max(self.gn)):
             p   = None if self.ORD_GRP or i==0 else self.g[i-1]
             self.g.append(self._initGroup(i, p))
@@ -1099,10 +1100,10 @@ class Tabs(pyglet.window.Window):
         dt = self.DBG_TABT
         if   dt==0:  return Z
         d  = '\n' if j==C else Z  ;  k = f'{i+1}' ;  k = d.join(k)  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  l = len(t)
-        if   dt==1:  a = 4 if j==C else j+2   ;   b = f'{0x2588:c}'                         ;  return d.join(b*a)
-        elif dt==2:  a = 3 if j==C else 4     ;   e = d.join([ s[_] for _ in range(a) ])    ;  return d.join([e, i+1])
-        elif dt==3:  a = 1 if j==C else 3     ;   e = d.join([ t[_] for _ in range(a) ])    ;  return d.join([e, k]) if j!=P else Z
-        else:                                     e = d.join([ t[_] for _ in range(l) ])    ;  return d.join([e, k])
+        if   dt==1:  a = 4 if j==C else j+2               ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
+        elif dt==2:  a = 4                                ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
+        elif dt==3:  a = 2 if j==0 else 4 if j==C else 3  ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k]) if j!=P else Z
+        else:                                                e = d.join([ t[_] for _ in range(l) ])  ;  return d.join([e, k])
 
     def ntsl(self):       return self.n[T] * self.n[S] * self.n[L]
     def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
@@ -1165,7 +1166,7 @@ class Tabs(pyglet.window.Window):
             assert int(tnik.anchor_y)==img.anchor_y,  f'{int(tnik.anchor_y)=} != {img.anchor_y=}'
         else:
             s = self.calcFontSize(j)       ;   aa, ax, ay, va = self.aa, self.ax, self.ay, self.va  # left center right  # bottom center top (baseline)
-            z = 1 if self.STRETCH else 0   ;        d, n = FONT_DPIS[d], FONT_NAMES[n]   ;   ml = self.MULTILINE
+            z = 1 if self.STRETCH else 0   ;         d, n, ml = FONT_DPIS[d], FONT_NAMES[n], self.MULTILINE
             tnik = LBL(t, font_name=n, font_size=s, bold=o, italic=ii, stretch=z, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=aa, multiline=ml, dpi=d, batch=b, group=g)
             tnik.content_valign =  self.va
             if   T <= j <= K:      self._setTNIKStyle(tnik, self.k[j], NORMAL_STYLE)
@@ -2870,13 +2871,13 @@ FIN     = [1, 1, 1, 2, 1]
 FNTP    = [5, 4, 3, 3, 3]
 #           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16
 JTEXTS  = ['Page',  'Line',  'Sect',  'Colm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
-JTEXTS2 = ['Pag',   'Lin',   'Sct',   'K',     'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
-jTEXTS  = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qclms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
+JTEXTS2 = ['Page',  'Line',  'Sect',  'Kolm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QKlm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
+jTEXTS  = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qklms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
 JFMT    = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       2,       2,       4]
 #JFMT   = [  2,       3,       3,       6,       6,       6,       6,       6,       3,       5,       1,       1,       3,       3,       3,       4,       7]
 #           0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17
 OPC     = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
-FONT_SCALE =  14/18  # 14pts/18pix
+FONT_SCALE =  7/9  # 14pts/18pix
 FONT_DPIS  = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
 FONT_NAMES = [ 'Lucida Console', 'Times New Roman', 'Helvetica', 'Arial', 'Courier New', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
 ########################################################################################################################################################################################################

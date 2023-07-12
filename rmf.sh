@@ -2,22 +2,22 @@
 #C:\Users\Owner\Documents\GitHub\tabs\venv\Scripts\
 
 function cleanup {
-  echo BGN cleanup: ls "$1"
-  ls "$1"
-  for file in "$1"/*; do
-    if [[ $file = *[0-9]* ]]; then
+  dir="$1"
+  ext="$2"
+  echo BGN cleanup "$ext" files: in "$dir"
+  ls "$dir"
+  for file in "$dir"/*; do
+    if [[ $file = *[0-9]*.$ext ]]; then
       echo rm "$file"
       rm      "$file"
     fi
   done
-  echo END cleanup: ls "$1"
-  ls "$1"
+  echo END cleanup "$ext" files: in "$dir"
+  ls "$dir"
 }
 
 echo pwd
 pwd
-echo ls test
-ls      test
 
 echo cd "test" || exit
 cd      "test" || exit
@@ -27,20 +27,23 @@ pwd
 echo ls
 ls
 
-echo dirs='("csv" "dat" "log" "png" "std")'
-dirs=(      "csv" "dat" "log" "png" "std")
-#echo dirs='("csv" "dat" "log" "png" "std" "cat")'
-#dirs=(      "csv" "dat" "log" "png" "std" "cat")
+echo exts='("csv" "dat" "log" "png" "std")'
+exts=(      "csv" "dat" "log" "png" "std")
+#echo exts='("csv" "dat" "log" "png" "std" "cat")'
+#exts=(      "csv" "dat" "log" "png" "std" "cat")
 
-for dir in "${dirs[@]}"  ; do
-  if   [[ $dir = "dat" ]]; then
-    echo cleanup "$dir"a
-    cleanup      "$dir"a
-  elif [[ $dir = "std" ]]; then
-    echo cleanup "$dir"o
-    cleanup      "$dir"o
+for ext in "${exts[@]}"  ; do
+  if   [[ $ext = "dat" ]]; then
+    dir="$ext"a
+    echo cleanup "$dir" "$ext"
+    cleanup      "$dir" "$ext"
+  elif [[ $ext = "std" ]]; then
+    dir="$ext"o
+    echo cleanup "$dir" "$ext"
+    cleanup      "$dir" "$ext"
   else
-    echo cleanup "$dir"s
-    cleanup      "$dir"s
+    dir="$ext"s
+    echo cleanup "$dir" "$ext"
+    cleanup      "$dir" "$ext"
   fi
 done
