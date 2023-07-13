@@ -26,7 +26,7 @@ b,6,1,8,3,a,5,0,7,2,9,4,b,6,1
 C?,G?,D?,A?,E?,B?,F,C,G,D,A,E,B,F?,C?
 F?,C?,G?,D?,A?,E?,B?,,F?,C?,G?,D?,A?,E?,B?
 4,b,6,1,8,3,a,,6,1,8,3,a,5,0
- 554 util  parseCmdLine       argv=[-i 1 1 1 6 -n 1 1 10 5 -w 0 0 0 0 -d 2 -p -L -S 0 -f test]
+ 554 util  parseCmdLine       argv=[-i 1 1 1 6 -n 1 1 10 5 -w 0 0 0 0 -d 0 -S 0 1 3 -f test]
 C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
  570 util  parseCmdLine        1 short   -i i [] 
  588 util  parseCmdLine        2 arg     1  i [1] 
@@ -44,14 +44,14 @@ C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
  588 util  parseCmdLine       14 arg     0  w [0 0 0] 
  588 util  parseCmdLine       15 arg     0  w [0 0 0 0] 
  570 util  parseCmdLine       16 short   -d d [] 
- 588 util  parseCmdLine       17 arg     2  d [2] 
- 570 util  parseCmdLine       18 short   -p p [] 
- 570 util  parseCmdLine       19 short   -L L [] 
- 570 util  parseCmdLine       20 short   -S S [] 
- 588 util  parseCmdLine       21 arg     0  S [0] 
+ 588 util  parseCmdLine       17 arg     0  d [0] 
+ 570 util  parseCmdLine       18 short   -S S [] 
+ 588 util  parseCmdLine       19 arg     0  S [0] 
+ 588 util  parseCmdLine       20 arg     1  S [0 1] 
+ 588 util  parseCmdLine       21 arg     3  S [0 1 3] 
  570 util  parseCmdLine       22 short   -f f [] 
  588 util  parseCmdLine       23 arg     test f [test] 
- 590 util  parseCmdLine       options=[i:[1 1 1 6]] [n:[1 1 10 5]] [w:[0 0 0 0]] [d:[2]] [p:[]] [L:[]] [S:[0]] [f:[test]]
+ 590 util  parseCmdLine       options=[i:[1 1 1 6]] [n:[1 1 10 5]] [w:[0 0 0 0]] [d:[0]] [S:[0 1 3]] [f:[test]]
  538 util  getFilePath        baseName =test         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  538 util  getFilePath        baseName =test         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  541 util  getFilePath        fileName =test.log     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
@@ -77,29 +77,29 @@ C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
  549 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test._.csv ###
         1 file(s) copied.
 C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2897 tabsC <module>           argv=[-i 1 1 1 6 -n 1 1 10 5 -w 0 0 0 0 -d 2 -p -L -S 0 -f test]
+2901 tabsC <module>           argv=[-i 1 1 1 6 -n 1 1 10 5 -w 0 0 0 0 -d 0 -S 0 1 3 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2901 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
-2901 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv
-2902 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
-2902 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log
-2776 tabsC dumpGlobals        BASE_NAME = test
-2777 tabsC dumpGlobals        argv      = +24[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 1 10 5 -w 0 0 0 0 -d 2 -p -L -S 0 -f test]
-2778 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2779 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
- 538 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 541 util  getFilePath        fileName =test.2.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log)
- 538 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 541 util  getFilePath        fileName =test.2.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv)
- 538 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 541 util  getFilePath        fileName =test.2.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.2.cat)
+2905 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
+2905 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv
+2906 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
+2906 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log
+2780 tabsC dumpGlobals        BASE_NAME = test
+2781 tabsC dumpGlobals        argv      = +24[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 1 10 5 -w 0 0 0 0 -d 0 -S 0 1 3 -f test]
+2782 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2783 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+ 538 util  getFilePath        baseName =test.46      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 541 util  getFilePath        fileName =test.46.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.46.log)
+ 538 util  getFilePath        baseName =test.46      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 541 util  getFilePath        fileName =test.46.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.46.csv)
+ 538 util  getFilePath        baseName =test.46      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 541 util  getFilePath        fileName =test.46.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.46.cat)
  169 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  170 tabsC dumpArgs           [A]         .VARROW=1
  171 tabsC dumpArgs           [b]        .FRT_BRD=0
  172 tabsC dumpArgs           [B]            .BGC=0
  173 tabsC dumpArgs           [c]            .CAT=1
  174 tabsC dumpArgs           [C]      .CHECKERED=0
- 175 tabsC dumpArgs           [d]       .DBG_TABT=2
+ 175 tabsC dumpArgs           [d]       .DBG_TABT=0
  176 tabsC dumpArgs           [e]      .EVENT_LOG=0
  177 tabsC dumpArgs           [f]      .FILE_NAME=test
  178 tabsC dumpArgs           [F]      .FULL_SCRN=0
@@ -108,14 +108,14 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
  181 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
  182 tabsC dumpArgs           [I]           .PIDX=1
  183 tabsC dumpArgs           [l]       .LONG_TXT=1
- 184 tabsC dumpArgs           [L]             .LL=1
+ 184 tabsC dumpArgs           [L]             .LL=0
  185 tabsC dumpArgs           [M]      .MULTILINE=1
- 186 tabsC dumpArgs           [n]               n=[1 1 1 10 5]
+ 186 tabsC dumpArgs           [n]               n=[1 1 3 10 5]
  187 tabsC dumpArgs           [o]           .OIDS=0
- 188 tabsC dumpArgs           [p]          .SNAPS=1
+ 188 tabsC dumpArgs           [p]          .SNAPS=0
  189 tabsC dumpArgs           [R]         .RESIZE=1
  190 tabsC dumpArgs           [s]        .SPRITES=0
- 191 tabsC dumpArgs           [S]             .SS=[0]
+ 191 tabsC dumpArgs           [S]             .SS=[0 1 3]
  192 tabsC dumpArgs           [t]           .TEST=0
  193 tabsC dumpArgs           [u]         .SUBPIX=1
  194 tabsC dumpArgs           [v]           .VRBY=0
@@ -124,107 +124,268 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
  197 tabsC dumpArgs           [x]           .EXIT=0
  198 tabsC dumpArgs           [Z]             .ZZ=[]
         1 file(s) copied.
-1677 tabsC _initFonts         w=96.000=.width =960/(10)                 FONT_SCALE=0.778 fs=w*FONT_SCALE=84.000pt
-1678 tabsC _initFonts         h=90.000=.height=540/(nl=1 * ns=1 * nt=5) FONT_SCALE=0.778 fs=h*FONT_SCALE=84.000pt
-1690 tabsC dumpFont           4:96dpi 84.000pt 0:Lucida Console 0: 84.000pt = 0.778(pt/pix) * 108.000pixels 
+1677 tabsC _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.778 fs=w*PNT_PER_PIX=28.000pt
+1678 tabsC _initFonts         h=36.000=.height=540/(nl=1 * ns=3 * nt=5) PNT_PER_PIX=0.778 fs=h*PNT_PER_PIX=28.000pt
+1690 tabsC dumpFont           4:96dpi 28.000pt 0:Lucida Console 0: 28.000pt = 0.778(pt/pix) * 36.000pixels 
 1132 tabsC g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Page    1 V Page1    C C   480   270 674.8,176.8 176.8 47.25 224.0 v a  168    0 None [128  10 255 255]       None        0 0 1 1 1 c Lucida Console        Page1
-Line    1 V Line1    C C   480   225 809.8,707.0 353.5 94.50 448.0 v a  336    0 None [255  10  10 255]       None        0 0 1 1 1 c Lucida Console        Line1
-RowL    1 V RowL1    C C   480    45 337.4,88.38 88.38 23.62 112.0 v a 84.0    0 None [  0   0   8   0]       None        0 0 1 1 1 c Lucida Console        RowL1
-QClm    1 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        1
-QClm    2 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        2
-QClm    3 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        3
-QClm    4 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        4
-QClm    5 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        5
-QClm    6 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        6
-QClm    7 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        7
-QClm    8 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        8
-QClm    9 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        9
-QClm   10 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [  0   0   8   0] [  0   0   8   0] 0 0 1 1 1 c Lucida Console        1
-Sect    1 V Sect1    C C   480   225 809.8,707.0 353.5 94.50 448.0 v a  336    0 None [ 10 255 255 255]       None        0 0 1 1 1 c Lucida Console        Sect1
-Colm    1 V Colm1    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm1
+Page    1 V          C C   480   270 0.000,0.000 441.9 118.1 560.0 v a  420    0 None [128  10 255   0]       None        0 0 1 1 1 c Lucida Console        
+Line    1 V          C C   480   270 0.000,0.000 441.9 118.1 560.0 v a  420    0 None [255  10  10 255]       None        0 0 1 1 1 c Lucida Console        
+Sect    1 V          C C   480    90 0.000,0.000 146.8 39.23 186.0 v a  140    0 None [ 10 255 255 255]       None        0 0 1 1 1 c Lucida Console        
+Colm    1 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        1
-Tabl    2 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        1
-Tabl    3 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        1
-Tabl    4 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        1
-Tabl    5 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        1
-Colm    2 V Colm2    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm2
+Tabl    1 V 1        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        1
+Tabl    2 V 1        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        1
+Tabl    3 V 1        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        1
+Tabl    4 V 1        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        1
+Tabl    5 V 1        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        1
+Colm    2 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        2
-Tabl    2 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        2
-Tabl    3 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        2
-Tabl    4 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        2
-Tabl    5 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        2
-Colm    3 V Colm3    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm3
+Tabl    1 V 2        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        2
+Tabl    2 V 2        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        2
+Tabl    3 V 2        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        2
+Tabl    4 V 2        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        2
+Tabl    5 V 2        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        2
+Colm    3 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        3
-Tabl    2 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        3
-Tabl    3 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        3
-Tabl    4 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        3
-Tabl    5 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        3
-Colm    4 V Colm4    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm4
+Tabl    1 V 3        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        3
+Tabl    2 V 3        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        3
+Tabl    3 V 3        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        3
+Tabl    4 V 3        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        3
+Tabl    5 V 3        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        3
+Colm    4 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        4
-Tabl    2 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        4
-Tabl    3 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        4
-Tabl    4 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        4
-Tabl    5 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        4
-Colm    5 V Colm5    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm5
+Tabl    1 V 4        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        4
+Tabl    2 V 4        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        4
+Tabl    3 V 4        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        4
+Tabl    4 V 4        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        4
+Tabl    5 V 4        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        4
+Colm    5 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        5
-Tabl    2 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        5
-Tabl    3 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        5
-Tabl    4 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        5
-Tabl    5 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        5
-Colm    6 V Colm6    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm6
+Tabl    1 V 5        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        5
+Tabl    2 V 5        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        5
+Tabl    3 V 5        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        5
+Tabl    4 V 5        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        5
+Tabl    5 V 5        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        5
+Colm    6 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        6
-Tabl    2 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        6
-Tabl    3 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        6
-Tabl    4 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        6
-Tabl    5 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        6
-Colm    7 V Colm7    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm7
+Tabl    1 V 6        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        6
+Tabl    2 V 6        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        6
+Tabl    3 V 6        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        6
+Tabl    4 V 6        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        6
+Tabl    5 V 6        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        6
+Colm    7 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        7
-Tabl    2 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        7
-Tabl    3 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        7
-Tabl    4 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        7
-Tabl    5 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        7
-Colm    8 V Colm8    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm8
+Tabl    1 V 7        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        7
+Tabl    2 V 7        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        7
+Tabl    3 V 7        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        7
+Tabl    4 V 7        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        7
+Tabl    5 V 7        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        7
+Colm    8 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        8
-Tabl    2 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        8
-Tabl    3 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        8
-Tabl    4 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        8
-Tabl    5 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        8
-Colm    9 V Colm9    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm9
+Tabl    1 V 8        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        8
+Tabl    2 V 8        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        8
+Tabl    3 V 8        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        8
+Tabl    4 V 8        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        8
+Tabl    5 V 8        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        8
+Colm    9 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        9
-Tabl    2 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        9
-Tabl    3 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        9
-Tabl    4 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        9
-Tabl    5 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        9
-Colm   10 V Colm10   C C    48   225 67.48,530.2 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm10
+Tabl    1 V 9        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        9
+Tabl    2 V 9        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        9
+Tabl    3 V 9        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        9
+Tabl    4 V 9        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        9
+Tabl    5 V 9        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        9
+Colm   10 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        0
-Tabl    2 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        0
-Tabl    3 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        0
-Tabl    4 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        0
-Tabl    5 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        0
-1588 tabsC plct2cc                   4 [   50   50  50  50   5] [1 1    1 5] (   0 +  0 + 50 +  0 +4)
+Tabl    1 V 0        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        0
+Tabl    2 V 0        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        0
+Tabl    3 V 0        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        0
+Tabl    4 V 0        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        0
+Tabl    5 V 0        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        0
+Sect    2 V          C C   480    90 0.000,0.000 146.8 39.23 186.0 v a  140    0 None [ 10 255 255 255]       None        0 0 1 1 1 c Lucida Console        
+Colm    1 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V F        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        F
+Note    2 V C        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        C
+Note    3 V A?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A?
+Note    4 V E?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        E?
+Note    5 V B?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        B?
+Colm    2 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V G?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G?
+Note    2 V D?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D?
+Note    3 V A        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A
+Note    4 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Fb
+Note    5 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Cb
+Colm    3 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V G        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G
+Note    2 V D        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D
+Note    3 V B?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        B?
+Note    4 V F        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        F
+Note    5 V C        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        C
+Colm    4 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V A?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A?
+Note    2 V E?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        E?
+Note    3 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Cb
+Note    4 V G?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G?
+Note    5 V D?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D?
+Colm    5 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V A        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A
+Note    2 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Fb
+Note    3 V C        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        C
+Note    4 V G        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G
+Note    5 V D        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D
+Colm    6 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V B?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        B?
+Note    2 V F        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        F
+Note    3 V D?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D?
+Note    4 V A?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A?
+Note    5 V E?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        E?
+Colm    7 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Cb
+Note    2 V G?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G?
+Note    3 V D        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D
+Note    4 V A        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A
+Note    5 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Fb
+Colm    8 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V C        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        C
+Note    2 V G        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G
+Note    3 V E?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        E?
+Note    4 V B?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        B?
+Note    5 V F        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        F
+Colm    9 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V D?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D?
+Note    2 V A?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A?
+Note    3 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Fb
+Note    4 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Cb
+Note    5 V G?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G?
+Colm   10 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Fb
+Note    2 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Cb
+Note    3 V G        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G
+Note    4 V D        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D
+Note    5 V A        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A
+Sect    3 V          C C   480    90 0.000,0.000 146.8 39.23 186.0 v a  140    0 None [ 10 255 255 255]       None        0 0 1 1 1 c Lucida Console        
+Colm    1 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+1579 tabsC plc2cn                0    0 [  150  150 150  50   5] plc=[1 1    1] (p*tpp=   0 +l*tpl=  0 +c*tpc=  0)
+Kord    1 V F        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        F
+1579 tabsC plc2cn                0    0 [  150  150 150  50   5] plc=[1 1    1] (p*tpp=   0 +l*tpl=  0 +c*tpc=  0)
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+1579 tabsC plc2cn                0    0 [  150  150 150  50   5] plc=[1 1    1] (p*tpp=   0 +l*tpl=  0 +c*tpc=  0)
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+1579 tabsC plc2cn                0    0 [  150  150 150  50   5] plc=[1 1    1] (p*tpp=   0 +l*tpl=  0 +c*tpc=  0)
+Kord    4 V /B?      C C    48    18 61.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /B?
+1579 tabsC plc2cn                0    0 [  150  150 150  50   5] plc=[1 1    1] (p*tpp=   0 +l*tpl=  0 +c*tpc=  0)
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm    2 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+1579 tabsC plc2cn                1    5 [  150  150 150  50   5] plc=[1 1    2] (p*tpp=   0 +l*tpl=  0 +c*tpc=  5)
+Kord    1 V G?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        G?
+1579 tabsC plc2cn                1    5 [  150  150 150  50   5] plc=[1 1    2] (p*tpp=   0 +l*tpl=  0 +c*tpc=  5)
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+1579 tabsC plc2cn                1    5 [  150  150 150  50   5] plc=[1 1    2] (p*tpp=   0 +l*tpl=  0 +c*tpc=  5)
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+1579 tabsC plc2cn                1    5 [  150  150 150  50   5] plc=[1 1    2] (p*tpp=   0 +l*tpl=  0 +c*tpc=  5)
+Kord    4 V /Cb      C C    48    18 66.88,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /Cb
+1579 tabsC plc2cn                1    5 [  150  150 150  50   5] plc=[1 1    2] (p*tpp=   0 +l*tpl=  0 +c*tpc=  5)
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm    3 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+1579 tabsC plc2cn                2   10 [  150  150 150  50   5] plc=[1 1    3] (p*tpp=   0 +l*tpl=  0 +c*tpc= 10)
+Kord    1 V G        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        G
+1579 tabsC plc2cn                2   10 [  150  150 150  50   5] plc=[1 1    3] (p*tpp=   0 +l*tpl=  0 +c*tpc= 10)
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+1579 tabsC plc2cn                2   10 [  150  150 150  50   5] plc=[1 1    3] (p*tpp=   0 +l*tpl=  0 +c*tpc= 10)
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+1579 tabsC plc2cn                2   10 [  150  150 150  50   5] plc=[1 1    3] (p*tpp=   0 +l*tpl=  0 +c*tpc= 10)
+Kord    4 V /C       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /C
+1579 tabsC plc2cn                2   10 [  150  150 150  50   5] plc=[1 1    3] (p*tpp=   0 +l*tpl=  0 +c*tpc= 10)
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm    4 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+1579 tabsC plc2cn                3   15 [  150  150 150  50   5] plc=[1 1    4] (p*tpp=   0 +l*tpl=  0 +c*tpc= 15)
+Kord    1 V A?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        A?
+1579 tabsC plc2cn                3   15 [  150  150 150  50   5] plc=[1 1    4] (p*tpp=   0 +l*tpl=  0 +c*tpc= 15)
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+1579 tabsC plc2cn                3   15 [  150  150 150  50   5] plc=[1 1    4] (p*tpp=   0 +l*tpl=  0 +c*tpc= 15)
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+1579 tabsC plc2cn                3   15 [  150  150 150  50   5] plc=[1 1    4] (p*tpp=   0 +l*tpl=  0 +c*tpc= 15)
+Kord    4 V /D?      C C    48    18 61.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /D?
+1579 tabsC plc2cn                3   15 [  150  150 150  50   5] plc=[1 1    4] (p*tpp=   0 +l*tpl=  0 +c*tpc= 15)
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm    5 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+1579 tabsC plc2cn                4   20 [  150  150 150  50   5] plc=[1 1    5] (p*tpp=   0 +l*tpl=  0 +c*tpc= 20)
+Kord    1 V A        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        A
+1579 tabsC plc2cn                4   20 [  150  150 150  50   5] plc=[1 1    5] (p*tpp=   0 +l*tpl=  0 +c*tpc= 20)
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+1579 tabsC plc2cn                4   20 [  150  150 150  50   5] plc=[1 1    5] (p*tpp=   0 +l*tpl=  0 +c*tpc= 20)
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+1579 tabsC plc2cn                4   20 [  150  150 150  50   5] plc=[1 1    5] (p*tpp=   0 +l*tpl=  0 +c*tpc= 20)
+Kord    4 V /D       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /D
+1579 tabsC plc2cn                4   20 [  150  150 150  50   5] plc=[1 1    5] (p*tpp=   0 +l*tpl=  0 +c*tpc= 20)
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm    6 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+1579 tabsC plc2cn                5   25 [  150  150 150  50   5] plc=[1 1    6] (p*tpp=   0 +l*tpl=  0 +c*tpc= 25)
+Kord    1 V B?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        B?
+1579 tabsC plc2cn                5   25 [  150  150 150  50   5] plc=[1 1    6] (p*tpp=   0 +l*tpl=  0 +c*tpc= 25)
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+1579 tabsC plc2cn                5   25 [  150  150 150  50   5] plc=[1 1    6] (p*tpp=   0 +l*tpl=  0 +c*tpc= 25)
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+1579 tabsC plc2cn                5   25 [  150  150 150  50   5] plc=[1 1    6] (p*tpp=   0 +l*tpl=  0 +c*tpc= 25)
+Kord    4 V /E?      C C    48    18 61.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /E?
+1579 tabsC plc2cn                5   25 [  150  150 150  50   5] plc=[1 1    6] (p*tpp=   0 +l*tpl=  0 +c*tpc= 25)
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm    7 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+1579 tabsC plc2cn                6   30 [  150  150 150  50   5] plc=[1 1    7] (p*tpp=   0 +l*tpl=  0 +c*tpc= 30)
+Kord    1 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        Cb
+1579 tabsC plc2cn                6   30 [  150  150 150  50   5] plc=[1 1    7] (p*tpp=   0 +l*tpl=  0 +c*tpc= 30)
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+1579 tabsC plc2cn                6   30 [  150  150 150  50   5] plc=[1 1    7] (p*tpp=   0 +l*tpl=  0 +c*tpc= 30)
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+1579 tabsC plc2cn                6   30 [  150  150 150  50   5] plc=[1 1    7] (p*tpp=   0 +l*tpl=  0 +c*tpc= 30)
+Kord    4 V /Fb      C C    48    18 66.88,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /Fb
+1579 tabsC plc2cn                6   30 [  150  150 150  50   5] plc=[1 1    7] (p*tpp=   0 +l*tpl=  0 +c*tpc= 30)
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm    8 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+1579 tabsC plc2cn                7   35 [  150  150 150  50   5] plc=[1 1    8] (p*tpp=   0 +l*tpl=  0 +c*tpc= 35)
+Kord    1 V C        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        C
+1579 tabsC plc2cn                7   35 [  150  150 150  50   5] plc=[1 1    8] (p*tpp=   0 +l*tpl=  0 +c*tpc= 35)
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+1579 tabsC plc2cn                7   35 [  150  150 150  50   5] plc=[1 1    8] (p*tpp=   0 +l*tpl=  0 +c*tpc= 35)
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+1579 tabsC plc2cn                7   35 [  150  150 150  50   5] plc=[1 1    8] (p*tpp=   0 +l*tpl=  0 +c*tpc= 35)
+Kord    4 V /F       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /F
+1579 tabsC plc2cn                7   35 [  150  150 150  50   5] plc=[1 1    8] (p*tpp=   0 +l*tpl=  0 +c*tpc= 35)
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm    9 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+1579 tabsC plc2cn                8   40 [  150  150 150  50   5] plc=[1 1    9] (p*tpp=   0 +l*tpl=  0 +c*tpc= 40)
+Kord    1 V D?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        D?
+1579 tabsC plc2cn                8   40 [  150  150 150  50   5] plc=[1 1    9] (p*tpp=   0 +l*tpl=  0 +c*tpc= 40)
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+1579 tabsC plc2cn                8   40 [  150  150 150  50   5] plc=[1 1    9] (p*tpp=   0 +l*tpl=  0 +c*tpc= 40)
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+1579 tabsC plc2cn                8   40 [  150  150 150  50   5] plc=[1 1    9] (p*tpp=   0 +l*tpl=  0 +c*tpc= 40)
+Kord    4 V /G?      C C    48    18 61.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /G?
+1579 tabsC plc2cn                8   40 [  150  150 150  50   5] plc=[1 1    9] (p*tpp=   0 +l*tpl=  0 +c*tpc= 40)
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm   10 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+1579 tabsC plc2cn                9   45 [  150  150 150  50   5] plc=[1 1   10] (p*tpp=   0 +l*tpl=  0 +c*tpc= 45)
+Kord    1 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        Fb
+1579 tabsC plc2cn                9   45 [  150  150 150  50   5] plc=[1 1   10] (p*tpp=   0 +l*tpl=  0 +c*tpc= 45)
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+1579 tabsC plc2cn                9   45 [  150  150 150  50   5] plc=[1 1   10] (p*tpp=   0 +l*tpl=  0 +c*tpc= 45)
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+1579 tabsC plc2cn                9   45 [  150  150 150  50   5] plc=[1 1   10] (p*tpp=   0 +l*tpl=  0 +c*tpc= 45)
+Kord    4 V /A       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /A
+1579 tabsC plc2cn                9   45 [  150  150 150  50   5] plc=[1 1   10] (p*tpp=   0 +l*tpl=  0 +c*tpc= 45)
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+1588 tabsC plct2cc                   4 [  150  150 150  50   5] [1 1    1 5] (   0 +  0 + 50 +  0 +4)
 1591 tabsC cursorCol          cc=  4 [0 0 0 4]
-1566 tabsC cc2xywh            tpp=50 old=4 lenT=50 cc=4 old % lenT
-1571 tabsC cc2xywh            cc=   4 old=   4 [   50   50  50  50   5]   48.00   45.00   96.00   90.00 t.text=1 67.48,88.38 C,C
-HCrs    1 V C C    48    45     
+1566 tabsC cc2xywh            tpp=150 old=4 lenT=50 cc=4 old % lenT
+1571 tabsC cc2xywh            cc=   4 old=   4 [  150  150 150  50   5]   48.00  378.00   96.00   36.00 t.text=1 22.29,29.20 C,C
+HCrs    1 V C C    48    18     
  169 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  170 tabsC dumpArgs           [A]         .VARROW=1
  171 tabsC dumpArgs           [b]        .FRT_BRD=0
  172 tabsC dumpArgs           [B]            .BGC=0
  173 tabsC dumpArgs           [c]            .CAT=1
  174 tabsC dumpArgs           [C]      .CHECKERED=0
- 175 tabsC dumpArgs           [d]       .DBG_TABT=2
+ 175 tabsC dumpArgs           [d]       .DBG_TABT=0
  176 tabsC dumpArgs           [e]      .EVENT_LOG=0
  177 tabsC dumpArgs           [f]      .FILE_NAME=test
  178 tabsC dumpArgs           [F]      .FULL_SCRN=0
@@ -233,14 +394,14 @@ HCrs    1 V C C    48    45
  181 tabsC dumpArgs           [i]               i=[1 1 1 1 5]
  182 tabsC dumpArgs           [I]           .PIDX=1
  183 tabsC dumpArgs           [l]       .LONG_TXT=1
- 184 tabsC dumpArgs           [L]             .LL=1
+ 184 tabsC dumpArgs           [L]             .LL=0
  185 tabsC dumpArgs           [M]      .MULTILINE=1
- 186 tabsC dumpArgs           [n]               n=[1 1 1 10 5]
+ 186 tabsC dumpArgs           [n]               n=[1 1 3 10 5]
  187 tabsC dumpArgs           [o]           .OIDS=0
- 188 tabsC dumpArgs           [p]          .SNAPS=1
+ 188 tabsC dumpArgs           [p]          .SNAPS=0
  189 tabsC dumpArgs           [R]         .RESIZE=1
  190 tabsC dumpArgs           [s]        .SPRITES=0
- 191 tabsC dumpArgs           [S]             .SS=[0]
+ 191 tabsC dumpArgs           [S]             .SS=[0 1 3]
  192 tabsC dumpArgs           [t]           .TEST=0
  193 tabsC dumpArgs           [u]         .SUBPIX=1
  194 tabsC dumpArgs           [v]           .VRBY=0
@@ -248,98 +409,209 @@ HCrs    1 V C C    48    45
  196 tabsC dumpArgs           [w]           .XYVA=[0 0 0 0]
  197 tabsC dumpArgs           [x]           .EXIT=0
  198 tabsC dumpArgs           [Z]             .ZZ=[]
-1690 tabsC dumpFont           4:96dpi 84.000pt 0:Lucida Console 0: 84.000pt = 0.778(pt/pix) * 108.000pixels New1
- 337 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2905 tabsC main               str(tabs)={i: [1, 1, 1, 6], n: [1, 1, 10, 5], w: [0, 0, 0, 0], d: [2], p: [], L: [], S: [0], f: [test]}
-2905 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={i: [1, 1, 1, 6], n: [1, 1, 10, 5], w: [0, 0, 0, 0], d: [2], p: [], L: [], S: [0], f: [test]}
+1690 tabsC dumpFont           4:96dpi 28.000pt 0:Lucida Console 0: 28.000pt = 0.778(pt/pix) * 36.000pixels New1
+ 337 tabsC _initTniks         -7 FLAT C? b [B? E? A? D? G? C? F?] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [C? D? E? F? G? A? B?]
+2909 tabsC main               str(tabs)={i: [1, 1, 1, 6], n: [1, 1, 10, 5], w: [0, 0, 0, 0], d: [0], S: [0, 1, 3], f: [test]}
+2909 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={i: [1, 1, 1, 6], n: [1, 1, 10, 5], w: [0, 0, 0, 0], d: [0], S: [0, 1, 3], f: [test]}
 1255 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Page    1 V Page1    C C   480   270 674.8,176.8 176.8 47.25 224.0 v a  168    0 None [128  10 255 255]       None        0 0 1 1 1 c Lucida Console        Page1
-Line    1 V Line1    C C   480   225 809.8,707.0 353.5 94.50 448.0 v a  336    0 None [255  10  10 255]       None        0 0 1 1 1 c Lucida Console        Line1
-RowL    1 V RowL1    C C   480    45 337.4,88.38 88.38 23.62 112.0 v a 84.0    0 None [  0   0   8   0]       None        0 0 1 1 1 c Lucida Console        RowL1
-QClm    1 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [  0   8   8 255] [ 10 255 255 255] 0 0 1 1 1 c Lucida Console        1
-QClm    2 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        2
-QClm    3 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        3
-QClm    4 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        4
-QClm    5 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        5
-QClm    6 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        6
-QClm    7 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        7
-QClm    8 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        8
-QClm    9 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 10 255 255 255] [  0   8   8 255] 0 0 1 1 1 c Lucida Console        9
-QClm   10 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [  0   0   8   0] [  0   0   8   0] 0 0 1 1 1 c Lucida Console        1
-Sect    1 V Sect1    C C   480   225 809.8,707.0 353.5 94.50 448.0 v a  336    0 None [ 10 255 255 255]       None        0 0 1 1 1 c Lucida Console        Sect1
-Colm    1 V Colm1    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm1
+Page    1 V          C C   480   270 0.000,0.000 441.9 118.1 560.0 v a  420    0 None [128  10 255   0]       None        0 0 1 1 1 c Lucida Console        
+Line    1 V          C C   480   270 0.000,0.000 441.9 118.1 560.0 v a  420    0 None [255  10  10 255]       None        0 0 1 1 1 c Lucida Console        
+Sect    1 V          C C   480    90 0.000,0.000 146.8 39.23 186.0 v a  140    0 None [ 10 255 255 255]       None        0 0 1 1 1 c Lucida Console        
+Colm    1 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        1
-Tabl    2 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        1
-Tabl    3 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        1
-Tabl    4 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        1
-Tabl    5 V 1        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        1
-Colm    2 V Colm2    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm2
-Tabl    6 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        2
-Tabl    7 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        2
-Tabl    8 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        2
-Tabl    9 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        2
-Tabl   10 V 2        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        2
-Colm    3 V Colm3    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm3
-Tabl   11 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        3
-Tabl   12 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        3
-Tabl   13 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        3
-Tabl   14 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        3
-Tabl   15 V 3        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        3
-Colm    4 V Colm4    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm4
-Tabl   16 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        4
-Tabl   17 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        4
-Tabl   18 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        4
-Tabl   19 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        4
-Tabl   20 V 4        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        4
-Colm    5 V Colm5    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm5
-Tabl   21 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        5
-Tabl   22 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        5
-Tabl   23 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        5
-Tabl   24 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        5
-Tabl   25 V 5        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        5
-Colm    6 V Colm6    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm6
-Tabl   26 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        6
-Tabl   27 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        6
-Tabl   28 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        6
-Tabl   29 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        6
-Tabl   30 V 6        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        6
-Colm    7 V Colm7    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm7
-Tabl   31 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        7
-Tabl   32 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        7
-Tabl   33 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        7
-Tabl   34 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        7
-Tabl   35 V 7        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        7
-Colm    8 V Colm8    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm8
-Tabl   36 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        8
-Tabl   37 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        8
-Tabl   38 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        8
-Tabl   39 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        8
-Tabl   40 V 8        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        8
-Colm    9 V Colm9    C C    48   225 67.48,441.9 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm9
-Tabl   41 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        9
-Tabl   42 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        9
-Tabl   43 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        9
-Tabl   44 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        9
-Tabl   45 V 9        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        9
-Colm   10 V Colm10   C C    48   225 67.48,530.2 88.38 23.62 112.0 v a 84.0    0 None [255 255  10 255]       None        0 0 1 1 1 c Lucida Console        Colm10
-Tabl   46 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        0
-Tabl   47 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        0
-Tabl   48 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        0
-Tabl   49 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        0
-Tabl   50 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0 None [ 37  26   1 255] [  8   6   0 255] 0 0 1 1 1 c Lucida Console        0
-1588 tabsC plct2cc                   4 [   50   50  50  50   5] [1 1    1 5] (   0 +  0 + 50 +  0 +4)
+Tabl    1 V 1        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        1
+Tabl    2 V 1        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        1
+Tabl    3 V 1        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        1
+Tabl    4 V 1        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        1
+Tabl    5 V 1        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        1
+Colm    2 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Tabl    6 V 2        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        2
+Tabl    7 V 2        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        2
+Tabl    8 V 2        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        2
+Tabl    9 V 2        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        2
+Tabl   10 V 2        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        2
+Colm    3 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Tabl   11 V 3        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        3
+Tabl   12 V 3        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        3
+Tabl   13 V 3        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        3
+Tabl   14 V 3        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        3
+Tabl   15 V 3        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        3
+Colm    4 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Tabl   16 V 4        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        4
+Tabl   17 V 4        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        4
+Tabl   18 V 4        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        4
+Tabl   19 V 4        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        4
+Tabl   20 V 4        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        4
+Colm    5 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Tabl   21 V 5        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        5
+Tabl   22 V 5        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        5
+Tabl   23 V 5        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        5
+Tabl   24 V 5        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        5
+Tabl   25 V 5        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        5
+Colm    6 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Tabl   26 V 6        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        6
+Tabl   27 V 6        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        6
+Tabl   28 V 6        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        6
+Tabl   29 V 6        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        6
+Tabl   30 V 6        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        6
+Colm    7 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Tabl   31 V 7        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        7
+Tabl   32 V 7        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        7
+Tabl   33 V 7        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        7
+Tabl   34 V 7        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        7
+Tabl   35 V 7        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        7
+Colm    8 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Tabl   36 V 8        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        8
+Tabl   37 V 8        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        8
+Tabl   38 V 8        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        8
+Tabl   39 V 8        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        8
+Tabl   40 V 8        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        8
+Colm    9 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Tabl   41 V 9        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        9
+Tabl   42 V 9        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        9
+Tabl   43 V 9        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        9
+Tabl   44 V 9        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        9
+Tabl   45 V 9        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        9
+Colm   10 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Tabl   46 V 0        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        0
+Tabl   47 V 0        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        0
+Tabl   48 V 0        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        0
+Tabl   49 V 0        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        0
+Tabl   50 V 0        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [255 255  10 255] [  8   8   0 255] 0 0 1 1 1 c Lucida Console        0
+Sect    2 V          C C   480    90 0.000,0.000 146.8 39.23 186.0 v a  140    0 None [ 10 255 255 255]       None        0 0 1 1 1 c Lucida Console        
+Colm   11 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    1 V F        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        F
+Note    2 V C        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        C
+Note    3 V A?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A?
+Note    4 V E?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        E?
+Note    5 V B?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        B?
+Colm   12 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note    6 V G?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G?
+Note    7 V D?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D?
+Note    8 V A        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A
+Note    9 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Fb
+Note   10 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Cb
+Colm   13 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note   11 V G        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G
+Note   12 V D        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D
+Note   13 V B?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        B?
+Note   14 V F        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        F
+Note   15 V C        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        C
+Colm   14 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note   16 V A?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A?
+Note   17 V E?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        E?
+Note   18 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Cb
+Note   19 V G?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G?
+Note   20 V D?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D?
+Colm   15 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note   21 V A        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A
+Note   22 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Fb
+Note   23 V C        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        C
+Note   24 V G        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G
+Note   25 V D        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D
+Colm   16 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note   26 V B?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        B?
+Note   27 V F        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        F
+Note   28 V D?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D?
+Note   29 V A?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A?
+Note   30 V E?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        E?
+Colm   17 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note   31 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Cb
+Note   32 V G?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G?
+Note   33 V D        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D
+Note   34 V A        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A
+Note   35 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Fb
+Colm   18 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note   36 V C        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        C
+Note   37 V G        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G
+Note   38 V E?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        E?
+Note   39 V B?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        B?
+Note   40 V F        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        F
+Colm   19 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note   41 V D?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D?
+Note   42 V A?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A?
+Note   43 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Fb
+Note   44 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Cb
+Note   45 V G?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G?
+Colm   20 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Note   46 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Fb
+Note   47 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        Cb
+Note   48 V G        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        G
+Note   49 V D        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        D
+Note   50 V A        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 255  10 255] [  0   8   0 255] 0 0 1 1 1 c Lucida Console        A
+Sect    3 V          C C   480    90 0.000,0.000 146.8 39.23 186.0 v a  140    0 None [ 10 255 255 255]       None        0 0 1 1 1 c Lucida Console        
+Colm   21 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Kord    1 V F        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        F
+Kord    2 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+Kord    3 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+Kord    4 V /B?      C C    48    18 61.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /B?
+Kord    5 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm   22 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Kord    6 V G?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        G?
+Kord    7 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+Kord    8 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+Kord    9 V /Cb      C C    48    18 66.88,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /Cb
+Kord   10 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm   23 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Kord   11 V G        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        G
+Kord   12 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+Kord   13 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+Kord   14 V /C       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /C
+Kord   15 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm   24 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Kord   16 V A?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        A?
+Kord   17 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+Kord   18 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+Kord   19 V /D?      C C    48    18 61.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /D?
+Kord   20 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm   25 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Kord   21 V A        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        A
+Kord   22 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+Kord   23 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+Kord   24 V /D       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /D
+Kord   25 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm   26 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Kord   26 V B?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        B?
+Kord   27 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+Kord   28 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+Kord   29 V /E?      C C    48    18 61.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /E?
+Kord   30 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm   27 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Kord   31 V Cb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        Cb
+Kord   32 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+Kord   33 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+Kord   34 V /Fb      C C    48    18 66.88,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /Fb
+Kord   35 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm   28 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Kord   36 V C        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        C
+Kord   37 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+Kord   38 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+Kord   39 V /F       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /F
+Kord   40 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm   29 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Kord   41 V D?       C C    48    18 39.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        D?
+Kord   42 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+Kord   43 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+Kord   44 V /G?      C C    48    18 61.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /G?
+Kord   45 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+Colm   30 V          C C    48    90 0.000,0.000 29.20 7.805 37.00 v a 28.0    0 None [255 176  10   0]       None        0 0 1 1 1 c Lucida Console        
+Kord   46 V Fb       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        Fb
+Kord   47 V m        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        m
+Kord   48 V 11       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        11
+Kord   49 V /A       C C    48    18 44.59,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        /A
+Kord   50 V -        C C    48    18 22.29,29.20 29.20 7.805 37.00 v a 28.0    0 None [ 10 180 255 255] [  0   6   8 255] 0 0 1 1 1 c Lucida Console        -
+1588 tabsC plct2cc                   4 [  150  150 150  50   5] [1 1    1 5] (   0 +  0 + 50 +  0 +4)
 1591 tabsC cursorCol          cc=  4 [0 0 0 4]
-1566 tabsC cc2xywh            tpp=50 old=4 lenT=50 cc=4 old % lenT
-1571 tabsC cc2xywh            cc=   4 old=   4 [   50   50  50  50   5]   48.00   45.00   96.00   90.00 t.text=1 67.48,88.38 C,C
+1566 tabsC cc2xywh            tpp=150 old=4 lenT=50 cc=4 old % lenT
+1571 tabsC cc2xywh            cc=   4 old=   4 [  150  150 150  50   5]   48.00  378.00   96.00   36.00 t.text=1 22.29,29.20 C,C
  169 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  170 tabsC dumpArgs           [A]         .VARROW=1
  171 tabsC dumpArgs           [b]        .FRT_BRD=0
  172 tabsC dumpArgs           [B]            .BGC=0
  173 tabsC dumpArgs           [c]            .CAT=1
  174 tabsC dumpArgs           [C]      .CHECKERED=0
- 175 tabsC dumpArgs           [d]       .DBG_TABT=2
+ 175 tabsC dumpArgs           [d]       .DBG_TABT=0
  176 tabsC dumpArgs           [e]      .EVENT_LOG=0
  177 tabsC dumpArgs           [f]      .FILE_NAME=test
  178 tabsC dumpArgs           [F]      .FULL_SCRN=0
@@ -348,14 +620,14 @@ Tabl   50 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0
  181 tabsC dumpArgs           [i]               i=[1 1 1 1 5]
  182 tabsC dumpArgs           [I]           .PIDX=1
  183 tabsC dumpArgs           [l]       .LONG_TXT=1
- 184 tabsC dumpArgs           [L]             .LL=1
+ 184 tabsC dumpArgs           [L]             .LL=0
  185 tabsC dumpArgs           [M]      .MULTILINE=1
- 186 tabsC dumpArgs           [n]               n=[1 1 1 10 5]
+ 186 tabsC dumpArgs           [n]               n=[1 1 3 10 5]
  187 tabsC dumpArgs           [o]           .OIDS=0
- 188 tabsC dumpArgs           [p]          .SNAPS=1
+ 188 tabsC dumpArgs           [p]          .SNAPS=0
  189 tabsC dumpArgs           [R]         .RESIZE=1
  190 tabsC dumpArgs           [s]        .SPRITES=0
- 191 tabsC dumpArgs           [S]             .SS=[0]
+ 191 tabsC dumpArgs           [S]             .SS=[0 1 3]
  192 tabsC dumpArgs           [t]           .TEST=0
  193 tabsC dumpArgs           [u]         .SUBPIX=1
  194 tabsC dumpArgs           [v]           .VRBY=0
@@ -363,14 +635,14 @@ Tabl   50 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0
  196 tabsC dumpArgs           [w]           .XYVA=[0 0 0 0]
  197 tabsC dumpArgs           [x]           .EXIT=0
  198 tabsC dumpArgs           [Z]             .ZZ=[]
-1690 tabsC dumpFont           4:96dpi 84.000pt 0:Lucida Console 0: 84.000pt = 0.778(pt/pix) * 108.000pixels Upd.1
-2666 tabsC snapshot           snapName=test.2.0.INIT.png on_draw((kwargs)=)
+1690 tabsC dumpFont           4:96dpi 28.000pt 0:Lucida Console 0: 28.000pt = 0.778(pt/pix) * 36.000pixels Upd.1
+2670 tabsC snapshot           snapName=test.46.0.INIT.png on_draw((kwargs)=)
         1 file(s) copied.
-1934 tabsC on_key_press       UNH     <.kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        > Unhandled
-1934 tabsC on_key_press       UNH     <.kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL> Unhandled
+1938 tabsC on_key_press       UNH <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        > Unhandled
+1938 tabsC on_key_press       UNH <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL> Unhandled
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
-2717 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+2721 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
@@ -380,7 +652,7 @@ Tabl   50 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0
  172 tabsC dumpArgs           [B]            .BGC=0
  173 tabsC dumpArgs           [c]            .CAT=1
  174 tabsC dumpArgs           [C]      .CHECKERED=0
- 175 tabsC dumpArgs           [d]       .DBG_TABT=2
+ 175 tabsC dumpArgs           [d]       .DBG_TABT=0
  176 tabsC dumpArgs           [e]      .EVENT_LOG=0
  177 tabsC dumpArgs           [f]      .FILE_NAME=test
  178 tabsC dumpArgs           [F]      .FULL_SCRN=0
@@ -389,14 +661,14 @@ Tabl   50 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0
  181 tabsC dumpArgs           [i]               i=[1 1 1 1 5]
  182 tabsC dumpArgs           [I]           .PIDX=1
  183 tabsC dumpArgs           [l]       .LONG_TXT=1
- 184 tabsC dumpArgs           [L]             .LL=1
+ 184 tabsC dumpArgs           [L]             .LL=0
  185 tabsC dumpArgs           [M]      .MULTILINE=1
- 186 tabsC dumpArgs           [n]               n=[1 1 1 10 5]
+ 186 tabsC dumpArgs           [n]               n=[1 1 3 10 5]
  187 tabsC dumpArgs           [o]           .OIDS=0
- 188 tabsC dumpArgs           [p]          .SNAPS=1
+ 188 tabsC dumpArgs           [p]          .SNAPS=0
  189 tabsC dumpArgs           [R]         .RESIZE=1
  190 tabsC dumpArgs           [s]        .SPRITES=0
- 191 tabsC dumpArgs           [S]             .SS=[0]
+ 191 tabsC dumpArgs           [S]             .SS=[0 1 3]
  192 tabsC dumpArgs           [t]           .TEST=0
  193 tabsC dumpArgs           [u]         .SUBPIX=1
  194 tabsC dumpArgs           [v]           .VRBY=0
@@ -404,23 +676,73 @@ Tabl   50 V 0        C C    48    45 67.48,88.38 88.38 23.62 112.0 v a 84.0    0
  196 tabsC dumpArgs           [w]           .XYVA=[0 0 0 0]
  197 tabsC dumpArgs           [x]           .EXIT=0
  198 tabsC dumpArgs           [Z]             .ZZ=[]
-1690 tabsC dumpFont           4:96dpi 84.000pt 0:Lucida Console 0: 84.000pt = 0.778(pt/pix) * 108.000pixels @^Q
-2728 tabsC quit               END @^Q Error=0 save=0 .quitting=1
+1690 tabsC dumpFont           4:96dpi 28.000pt 0:Lucida Console 0: 28.000pt = 0.778(pt/pix) * 36.000pixels @^Q
+ 120 chord dumpLimap            0 0 0 Fm11/B?      Fm11/B?      4b7m35R      5a370  B?E?A?CF     Rm345b7      0357a  FA?B?CE?    
+ 120 chord dumpLimap            0 0 1 A?26/B?      A?26/B?      25RM36       27049  B?E?A?CF     R2M356       02479  A?B?CE?F    
+ 120 chord dumpLimap            0 0 2 E?6s2s4/B?   E?6s2s4/B?   5R462        70592  B?E?A?CF     R2456        02579  E?FA?B?C    
+ 120 chord dumpLimap            0 0 3 B?7s2s4      B?7s2s4      R4b725       05a27  B?E?A?CF     R245b7       0257a  B?CE?FA?    
+ 120 chord dumpLimap            0 0 4 Cm+11/B?     Cm+11/B?     b7m3#5R4     a3805  B?E?A?CF     Rm34#5b7     0358a  CE?FA?B?    
+ 120 chord dumpLimap            1 0 0 G?m11/Cb     G?m11/Cb     4b7m35R      5a370  CbFbAD?G?    Rm345b7      0357a  G?ACbD?Fb   
+ 120 chord dumpLimap            1 0 1 A26/Cb       A26/Cb       25RM36       27049  CbFbAD?G?    R2M356       02479  ACbD?FbG?   
+ 120 chord dumpLimap            1 0 2 Fb6s2s4/Cb   Fb6s2s4/Cb   5R462        70592  CbFbAD?G?    R2456        02579  FbG?ACbD?   
+ 120 chord dumpLimap            1 0 3 Cb7s2s4      Cb7s2s4      R4b725       05a27  CbFbAD?G?    R245b7       0257a  CbD?FbG?A   
+ 120 chord dumpLimap            1 0 4 D?m+11/Cb    D?m+11/Cb    b7m3#5R4     a3805  CbFbAD?G?    Rm34#5b7     0358a  D?FbG?ACb   
+ 120 chord dumpLimap            2 0 0 Gm11/C       Gm11/C       4b7m35R      5a370  CFB?DG       Rm345b7      0357a  GB?CDF      
+ 120 chord dumpLimap            2 0 1 B?26/C       B?26/C       25RM36       27049  CFB?DG       R2M356       02479  B?CDFG      
+ 120 chord dumpLimap            2 0 2 F6s2s4/C     F6s2s4/C     5R462        70592  CFB?DG       R2456        02579  FGB?CD      
+ 120 chord dumpLimap            2 0 3 C7s2s4       C7s2s4       R4b725       05a27  CFB?DG       R245b7       0257a  CDFGB?      
+ 120 chord dumpLimap            2 0 4 Dm+11/C      Dm+11/C      b7m3#5R4     a3805  CFB?DG       Rm34#5b7     0358a  DFGB?C      
+ 120 chord dumpLimap            3 0 0 A?m11/D?     A?m11/D?     4b7m35R      5a370  D?G?CbE?A?   Rm345b7      0357a  A?CbD?E?G?  
+ 120 chord dumpLimap            3 0 1 Cb26/D?      Cb26/D?      25RM36       27049  D?G?CbE?A?   R2M356       02479  CbD?E?G?A?  
+ 120 chord dumpLimap            3 0 2 G?6s2s4/D?   G?6s2s4/D?   5R462        70592  D?G?CbE?A?   R2456        02579  G?A?CbD?E?  
+ 120 chord dumpLimap            3 0 3 D?7s2s4      D?7s2s4      R4b725       05a27  D?G?CbE?A?   R245b7       0257a  D?E?G?A?Cb  
+ 120 chord dumpLimap            3 0 4 E?m+11/D?    E?m+11/D?    b7m3#5R4     a3805  D?G?CbE?A?   Rm34#5b7     0358a  E?G?A?CbD?  
+ 120 chord dumpLimap            4 0 0 Am11/D       Am11/D       4b7m35R      5a370  DGCFbA       Rm345b7      0357a  ACDFbG      
+ 120 chord dumpLimap            4 0 1 C26/D        C26/D        25RM36       27049  DGCFbA       R2M356       02479  CDFbGA      
+ 120 chord dumpLimap            4 0 2 G6s2s4/D     G6s2s4/D     5R462        70592  DGCFbA       R2456        02579  GACDFb      
+ 120 chord dumpLimap            4 0 3 D7s2s4       D7s2s4       R4b725       05a27  DGCFbA       R245b7       0257a  DFbGAC      
+ 120 chord dumpLimap            4 0 4 Fbm+11/D     Fbm+11/D     b7m3#5R4     a3805  DGCFbA       Rm34#5b7     0358a  FbGACD      
+ 120 chord dumpLimap            5 0 0 B?m11/E?     B?m11/E?     4b7m35R      5a370  E?A?D?FB?    Rm345b7      0357a  B?D?E?FA?   
+ 120 chord dumpLimap            5 0 1 D?26/E?      D?26/E?      25RM36       27049  E?A?D?FB?    R2M356       02479  D?E?FA?B?   
+ 120 chord dumpLimap            5 0 2 A?6s2s4/E?   A?6s2s4/E?   5R462        70592  E?A?D?FB?    R2456        02579  A?B?D?E?F   
+ 120 chord dumpLimap            5 0 3 E?7s2s4      E?7s2s4      R4b725       05a27  E?A?D?FB?    R245b7       0257a  E?FA?B?D?   
+ 120 chord dumpLimap            5 0 4 Fm+11/E?     Fm+11/E?     b7m3#5R4     a3805  E?A?D?FB?    Rm34#5b7     0358a  FA?B?D?E?   
+ 120 chord dumpLimap            6 0 0 Cbm11/Fb     Cbm11/Fb     4b7m35R      5a370  FbADG?Cb     Rm345b7      0357a  CbDFbG?A    
+ 120 chord dumpLimap            6 0 1 D26/Fb       D26/Fb       25RM36       27049  FbADG?Cb     R2M356       02479  DFbG?ACb    
+ 120 chord dumpLimap            6 0 2 A6s2s4/Fb    A6s2s4/Fb    5R462        70592  FbADG?Cb     R2456        02579  ACbDFbG?    
+ 120 chord dumpLimap            6 0 3 Fb7s2s4      Fb7s2s4      R4b725       05a27  FbADG?Cb     R245b7       0257a  FbG?ACbD    
+ 120 chord dumpLimap            6 0 4 G?m+11/Fb    G?m+11/Fb    b7m3#5R4     a3805  FbADG?Cb     Rm34#5b7     0358a  G?ACbDFb    
+ 120 chord dumpLimap            7 0 0 Cm11/F       Cm11/F       4b7m35R      5a370  FB?E?GC      Rm345b7      0357a  CE?FGB?     
+ 120 chord dumpLimap            7 0 1 E?26/F       E?26/F       25RM36       27049  FB?E?GC      R2M356       02479  E?FGB?C     
+ 120 chord dumpLimap            7 0 2 B?6s2s4/F    B?6s2s4/F    5R462        70592  FB?E?GC      R2456        02579  B?CE?FG     
+ 120 chord dumpLimap            7 0 3 F7s2s4       F7s2s4       R4b725       05a27  FB?E?GC      R245b7       0257a  FGB?CE?     
+ 120 chord dumpLimap            7 0 4 Gm+11/F      Gm+11/F      b7m3#5R4     a3805  FB?E?GC      Rm34#5b7     0358a  GB?CE?F     
+ 120 chord dumpLimap            8 0 0 D?m11/G?     D?m11/G?     4b7m35R      5a370  G?CbFbA?D?   Rm345b7      0357a  D?FbG?A?Cb  
+ 120 chord dumpLimap            8 0 1 Fb26/G?      Fb26/G?      25RM36       27049  G?CbFbA?D?   R2M356       02479  FbG?A?CbD?  
+ 120 chord dumpLimap            8 0 2 Cb6s2s4/G?   Cb6s2s4/G?   5R462        70592  G?CbFbA?D?   R2456        02579  CbD?FbG?A?  
+ 120 chord dumpLimap            8 0 3 G?7s2s4      G?7s2s4      R4b725       05a27  G?CbFbA?D?   R245b7       0257a  G?A?CbD?Fb  
+ 120 chord dumpLimap            8 0 4 A?m+11/G?    A?m+11/G?    b7m3#5R4     a3805  G?CbFbA?D?   Rm34#5b7     0358a  A?CbD?FbG?  
+ 120 chord dumpLimap            9 0 0 Fbm11/A      Fbm11/A      4b7m35R      5a370  ADGCbFb      Rm345b7      0357a  FbGACbD     
+ 120 chord dumpLimap            9 0 1 G26/A        G26/A        25RM36       27049  ADGCbFb      R2M356       02479  GACbDFb     
+ 120 chord dumpLimap            9 0 2 D6s2s4/A     D6s2s4/A     5R462        70592  ADGCbFb      R2456        02579  DFbGACb     
+ 120 chord dumpLimap            9 0 3 A7s2s4       A7s2s4       R4b725       05a27  ADGCbFb      R245b7       0257a  ACbDFbG     
+ 120 chord dumpLimap            9 0 4 Cbm+11/A     Cbm+11/A     b7m3#5R4     a3805  ADGCbFb      Rm34#5b7     0358a  CbDFbGA     
+2732 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
  538 util  getFilePath        baseName =test         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  541 util  getFilePath        fileName =test.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
- 538 util  getFilePath        baseName =Btest.1.1.1.10.5_CC_CC.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 541 util  getFilePath        fileName =Btest.1.1.1.10.5_CC_CC.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.1.10.5_CC_CC.csv)
- 538 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 541 util  getFilePath        fileName =test.2.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv)
-2751 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.1.10.5_CC_CC.csv
+ 538 util  getFilePath        baseName =Atest.1.1.3.10.5_CC_CC.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 541 util  getFilePath        fileName =Atest.1.1.3.10.5_CC_CC.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.5_CC_CC.csv)
+ 538 util  getFilePath        baseName =test.46      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 541 util  getFilePath        fileName =test.46.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.46.csv)
+2755 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.5_CC_CC.csv
         1 file(s) copied.
-2754 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.2.csv
+2758 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.46.csv
         1 file(s) copied.
-2730 tabsC quit               END @^Q Error=0 save=0 .quitting=1
+2734 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-2731 tabsC quit               Calling close(),        1 file(s) copied.
- 538 util  getFilePath        baseName =Btest.1.1.1.10.5_CC_CC.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 541 util  getFilePath        fileName =Btest.1.1.1.10.5_CC_CC.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.1.10.5_CC_CC.log)
+2735 tabsC quit               Calling close(),        1 file(s) copied.
+ 538 util  getFilePath        baseName =Atest.1.1.3.10.5_CC_CC.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 541 util  getFilePath        fileName =Atest.1.1.3.10.5_CC_CC.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.5_CC_CC.log)
         1 file(s) copied.
 Thats all folks!

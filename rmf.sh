@@ -29,6 +29,7 @@ ls
 
 echo exts='("csv" "log" "png")'
 exts=(      "csv" "log" "png")
+echo "   >>> Removing Files from Local Dir >>> ..."
 
 for ext in "${exts[@]}"  ; do
   dir=.
@@ -38,6 +39,7 @@ done
 
 echo exts='("csv" "dat" "log" "png" "std")'
 exts=(      "csv" "dat" "log" "png" "std")
+echo "   >>> Removing Files from Sub-Dirs >>> ..."
 
 for ext in "${exts[@]}"  ; do
   if   [[ $ext = "dat" ]]; then
