@@ -56,6 +56,7 @@ class Tabs(pyglet.window.Window):
         self.tblank,   self.tblanki,  self.cursor,  self.data    = None, None, None, []
         self.XYVA      = [0, 0, 0, 0]
         self._init_xyva()
+        self.UNICODE   = UNICODE
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT       = 1  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DBG_TABT  = 0
         self.EVENT_LOG = 0  ;  self.EXIT      = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1
         self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.PIDX      = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0
@@ -1691,7 +1692,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'{dpi}:{FONT_DPIS[dpi]}dpi {s:6.3f}pt {n}:{FONT_NAMES[n]} {k}:{fcs} {s:6.3f}pt = {PNT_PER_PIX:5.3f}(pt/pix) * {pix:6.3f}pixels {why}', f=2)
 
     def setFontParam(self, n, v, m, dbg=0):
-        if m == 'clrIdx':   v += getattr(self, m)   ;   v %= len(self.k)   ;  self.log(f'{self.clrIdx=} {v=}')
+        if m == 'clrIdx':   v += getattr(self, m)   ;   v %= len(self.k)   ;  self.log(f'{self.clrIdx=:2} {v=:2}')
         setattr(self, m, v)
         ts = list(itertools.chain(self.A, self.B, self.C))  ;  lt = len(ts)
         if dbg:                self.log( f'      {n:12}  {v:4}  {lt=}  {m}')
@@ -1702,10 +1703,10 @@ class Tabs(pyglet.window.Window):
 
     def _setFontParam(self, ts, n, v, m, j, dbg=0):
         l = 0   ;   fb = 0   ;   fs = 1
-#        if m == 'clrIdx' and not j:         v = (v + j) % len(self.k)   ;   setattr(self, m, v)
+        if m == 'clrIdx' and not j:         v = (v + j) % len(self.k)   ;   setattr(self, m, v)
         for i, t in enumerate(ts):
-#           if   m == 'clrIdx':   l = len(t.color)                         ;  msg = f'{self.k[v][fb][:l]=} {t=}'
-            if   m == 'clrIdx': v = (v+j) % len(self.k)  ;  setattr(self, m, v)  ;  msg = f'{self.k[v][fb][:len(t.color)]=} {t=}'
+            if   m == 'clrIdx':   l = len(t.color)                         ;  msg = f'{self.k[v][fb][:l]=} {t=}'
+#           if   m == 'clrIdx': v = (v+j) % len(self.k)  ;  setattr(self, m, v)  ;  msg = f'{self.k[v][fb][:len(t.color)]=} {t=}'
             elif m == 'fontNameIdx':                                          msg = f'{FONT_NAMES[v]=}'
             elif m == 'fontSize' and util.isi(t, LBL): fs = getattr(t, n)  ;  msg = f'{v=} {fs=}'
             else:                                                             msg = f'{v=}'
@@ -2863,6 +2864,7 @@ LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
 def JLBL(n, d): return (f'{d.join(LLBL)}{d}'*n).removesuffix(d)
 def JSPR(n, d): return (f'{d.join(LTXA)}{d}'*n).removesuffix(d)
 ########################################################################################################################################################################################################
+UNICODE               = 0
 LBL                   = pygtxt.Label
 SPR                   = pygsprt.Sprite
 RGB                   = {}
@@ -2900,7 +2902,7 @@ pcsvPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSVP)
 if LOG_PATH.exists():     util.copyFile(LOG_PATH, plogPath)
 if CSV_PATH.exists():     util.copyFile(CSV_PATH, pcsvPath)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE:
-    util.init(LOG_FILE, CSV_FILE, 0)
+    util.init(LOG_FILE, CSV_FILE, 0, UNICODE)
     slog(sys.argv[0],   p=0,           f=2)
     slog(f'argv={fmtl(sys.argv[1:])}', f=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
