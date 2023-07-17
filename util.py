@@ -268,26 +268,11 @@ class Strings:
         if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} stringMap={fmtm(self.stringMap)}')
         return i
 
-    def A_tab2nn(self, tab, s, nic=None, dbg=1):
-        fn  = self.tab2fn(tab)
-        i   = self.fn2ni(fn, s)   ;   nict = Z
-        j   = i % Notes.NTONES
-        name = Notes.name(i)
-        if   j == 0: name =  'Cb'
-        elif j == 1: name = f'C{F}'
-        elif j == 2: name =  'C'
-        elif j == 3: name = f'C{N}'
-        elif j == 4: name = f'C{S}'
-        elif j == 5: name =  'C#'
-        if dbg and nict:    slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
-        return name
-
     def tab2nn(self, tab, s, nic=None, dbg=0):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
-        if  nic is None:
-            nic = Counter()
+        if  nic is None:               nic = Counter()
         else:
             nic[j]    += 1
             if nic[j] == 1:
