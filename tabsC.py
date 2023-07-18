@@ -1,7 +1,8 @@
+import collections
 import glob, math, os, pathlib, sys
 import operator, inspect, itertools
 from itertools      import accumulate
-from more_itertools import consume
+#from more_itertools import consume  # not installed in GitBash's Python
 from          collections import Counter
 import pyglet
 from pyglet.text import document, layout
@@ -59,7 +60,7 @@ class Tabs(pyglet.window.Window):
         self.UNICODE   = UNICODE
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT       = 1  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DBG_TABT  = 0
         self.EVENT_LOG = 0  ;  self.EXIT      = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1
-        self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.DSP_J_LEV = 0  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0
+        self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.DSP_J_LEV = 4  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0
         self.SPRITES   = 0  ;  self.STRETCH   = 1  ;  self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.VARROW    = 1  ;  self.VIEWS     = 0
         self.VRBY      = 0
         self.LL        = 0
@@ -648,8 +649,9 @@ class Tabs(pyglet.window.Window):
         super().on_resize(width, height)
         if self.RESIZE: self.resizeTniks(dbg)
 
-#    def on_close(self):
-#        self.log('????', f=2)
+    def on_close(self):
+        self.log('????', f=2)
+        return pyglet.event.EVENT_HANDLED
     ####################################################################################################################################################################################################
     def saveDataFile(self, why, path, dbg=1):
         if dbg:   self.log(f'{why} {path}')
@@ -1094,7 +1096,7 @@ class Tabs(pyglet.window.Window):
         if   dt==1:  a = 1        ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
         elif dt==2:  a = j+1      ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
         elif dt==3:  a = 4        ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
-        elif dt==4:  a = 1        ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
+        if   dt==4:  a = 1        ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
         elif dt==5:  a = j+1      ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
         elif dt==6:  a = 4        ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
         elif dt==7:  a = 1        ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k])
@@ -1373,10 +1375,12 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def cvaH(d=W):   return d.join(CVA)
     @staticmethod
-    def cwhH(d=W): return d.join(CWH)
+    def cwhH(d=W):   return d.join(CWH)
     @staticmethod
-    def fjtxt():    return W.join(f'{jtxt[0]:>{JFMT[i]}}' for i, jtxt in enumerate(JTEXTS)) + ' Vis' # optimize str concat?
-    def clearVisib(self):               consume(v.clear() for v in self.visib)
+    def fjtxt():     return W.join(f'{jtxt[0]:>{JFMT[i]}}' for i, jtxt in enumerate(JTEXTS)) + ' Vis' # optimize str concat?
+    @staticmethod
+    def consMe(it): return collections.deque(it)
+    def clearVisib(self):               Tabs.consMe(v.clear() for v in self.visib)
 
     def dumpTnik(self, t=None, j=None, why=Z):
         if   t is None: self.log(self.fTnikHdr(), p=0)      ;  return # hack
@@ -1446,7 +1450,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpTniksC(self, why=Z):
         self.dumpTniksPfx(why)
-        consume(consume(self.setJdump(j, i % self.n[j], why=why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
+        Tabs.consMe(Tabs.consMe(self.setJdump(j, i % self.n[j], why=why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
         self.dumpTniksSfx(why)
 
     def dumpTniksD(self, why=Z):
