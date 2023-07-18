@@ -59,7 +59,7 @@ class Tabs(pyglet.window.Window):
         self.UNICODE   = UNICODE
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT       = 1  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DBG_TABT  = 0
         self.EVENT_LOG = 0  ;  self.EXIT      = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1
-        self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.PIDX      = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0
+        self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.DSP_J_LEV = 0  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0
         self.SPRITES   = 0  ;  self.STRETCH   = 1  ;  self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.VARROW    = 1  ;  self.VIEWS     = 0
         self.VRBY      = 0
         self.LL        = 0
@@ -84,7 +84,7 @@ class Tabs(pyglet.window.Window):
         if 'g' in ARGS  and len(ARGS['g']) == 0: self.ORD_GRP    =  1
         if 'G' in ARGS  and len(ARGS['G']) == 0: self.GEN_DATA   =  1
         if 'i' in ARGS  and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
-        if 'I' in ARGS  and len(ARGS['I']) == 0: self.PIDX       =  1
+        if 'J' in ARGS  and len(ARGS['J'])  > 0: self.DSP_J_LEV  =  int(ARGS['J'][0])
         if 'l' in ARGS  and len(ARGS['l']) == 0: self.LONG_TXT   =  1
         if 'L' in ARGS  and len(ARGS['L']) == 0: self.LL         =  1
         if 'M' in ARGS  and len(ARGS['M']) == 0: self.MULTILINE  =  1
@@ -180,7 +180,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[g]        {self.ORD_GRP=}', f=f)
         self.log(f'[G]       {self.GEN_DATA=}', f=f)
         self.log(f'[i]               {self.fmti()}', f=f)
-        self.log(f'[I]           {self.PIDX=}', f=f)
+        self.log(f'[J]      {self.DSP_J_LEV=}', f=f)
         self.log(f'[l]       {self.LONG_TXT=}', f=f)
         self.log(f'[L]             {self.LL=}', f=f)
         self.log(f'[M]      {self.MULTILINE=}', f=f)
@@ -1089,7 +1089,8 @@ class Tabs(pyglet.window.Window):
     def dbgTabTxt(self, j, i):
         dt = self.DBG_TABT
         if   dt==0:  return Z
-        d  = '\n' if j==C else Z  ;  k = f'{i+1}' ;  k = d.join(k)  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  u = jTEXTS[j][0] #  ;   l = len(t)
+        i2 = (i + 1) % 10 if j==C else i + 1
+        d  = '\n' if j==C else Z ;  k = d.join(f'{i2}')  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  u = jTEXTS[j][0]
         if   dt==1:  a = 1                                ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
         elif dt==2:  a = j+1                              ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
         elif dt==3:  a = 4                                ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
@@ -1105,14 +1106,31 @@ class Tabs(pyglet.window.Window):
     def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
-        self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2 #  ;   llr = self.LL and self.isLLRow()
+        self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2   ;   llr = self.LL and self.isLLRow()
         self.dumpTniksPfx(why)
-        for page in              self.g_createTniks(self.pages, P, None, why=why):  pass
-#            for line in          self.g_createTniks(self.lines, L, page, why=why):  pass
-#                if llr:          self.createLLs(line, len(self.lines)-1, why=why)
-#                for sect in      self.g_createTniks(self.sects, S, line, why=why):  pass
-#                    for colm in  self.g_createTniks(self.colms, C, sect, why=why):  pass
-#                        for _ in self.g_createTniks(self.tabls, T, colm, why=why): pass
+        if   self.DSP_J_LEV == P:
+            for _ in                 self.g_createTniks(self.pages, P, None, why=why):  pass
+        elif self.DSP_J_LEV == L:
+            for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
+                for _ in             self.g_createTniks(self.lines, L, page, why=why): pass
+        elif self.DSP_J_LEV == S:
+            for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
+                    if llr:          self.createLLs(line, len(self.lines)-1, why=why)
+                    for _ in         self.g_createTniks(self.sects, S, line, why=why): pass
+        elif self.DSP_J_LEV == C:
+            for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
+                    if llr:          self.createLLs(line, len(self.lines)-1, why=why)
+                    for sect in      self.g_createTniks(self.sects, S, line, why=why): # pass
+                        for _ in     self.g_createTniks(self.colms, C, sect, why=why): pass
+        else:
+            for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
+                    if llr:          self.createLLs(line, len(self.lines)-1, why=why)
+                    for sect in      self.g_createTniks(self.sects, S, line, why=why): # pass
+                        for colm in  self.g_createTniks(self.colms, C, sect, why=why): # pass
+                            for _ in self.g_createTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
         if self.CURSOR and self.tabls and not self.cursor:  self.createCursor(why)   ;  self.dumpHdrs()
         if dbg:         self.dumpStruct(why2, dbg=dbg)
@@ -1229,12 +1247,29 @@ class Tabs(pyglet.window.Window):
     def resizeTniks(self, dbg=1):
         self.updC += 1  ;  why = f'Upd.{self.updC}'
         self.dumpTniksPfx(why)
-        for page in              self.g_resizeTniks(self.pages, P, None, why=why):  pass
-#            for line in          self.g_resizeTniks(self.lines, L, page, why=why):  pass
-#                if self.LL:      self.resizeLLs(line, why)
-#                for sect in      self.g_resizeTniks(self.sects, S, line, why=why):  pass
-#                    for colm in  self.g_resizeTniks(self.colms, C, sect, why=why):  pass
-#                        for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
+        if   self.DSP_J_LEV == P:
+            for _ in                 self.g_resizeTniks(self.pages, P, None, why=why): pass
+        elif self.DSP_J_LEV == L:
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for _ in             self.g_resizeTniks(self.lines, L, page, why=why): pass
+        elif self.DSP_J_LEV == S:
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
+                    if self.LL:      self.resizeLLs(line, why)
+                    for _ in         self.g_resizeTniks(self.sects, S, line, why=why): pass
+        elif self.DSP_J_LEV == C:
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
+                    if self.LL:      self.resizeLLs(line, why)
+                    for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
+                        for _ in     self.g_resizeTniks(self.colms, C, sect, why=why): pass
+        else:
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
+                    if self.LL:      self.resizeLLs(line, why)
+                    for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
+                        for colm in  self.g_resizeTniks(self.colms, C, sect, why=why): # pass
+                            for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
         if self.CURSOR and self.cursor: self.resizeCursor(why)   ;   self.dumpHdrs()
         if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd.{self.cc + 1}')
@@ -1663,10 +1698,11 @@ class Tabs(pyglet.window.Window):
         if j < L: nl = 1
         nr = nl * (ns * nt + ll)
         pw, ph = w/nc, h/nr
+        pw /= j+1 if j < C else 1
         pix = min(pw, ph)
         fs   =  self.pix2pnt(pix)
-        if dbg: self.log(f'{j=} {JTEXTS[j]:4} {w=:6.2f} {h=:6.2f} {nc=} {nr=} {pix=:6.2f} {fs=:6.2f}')
-        return int(fs)
+        if dbg: self.log(f'{j=} {JTEXTS[j]:4} {w=:6.2f} {h=:6.2f} {nc=} {nr=} {pw=} {ph=} {pix=:6.2f} {fs=:6.2f}')
+        return fs
 
     def _initFonts(self):
         np, nl, ns, nc, nt = self.n            ;  nc += self.zzl()
