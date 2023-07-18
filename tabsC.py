@@ -227,10 +227,10 @@ class Tabs(pyglet.window.Window):
         self.regSnap('init', INIT)
     ####################################################################################################################################################################################################
     def _initColors(self): # j = M = 11
-        KP1, KP2 = VLT, VLT  ;  KL1, KL2 = RED, RED  ;  KS1, KS2 = LIM, LIM  ;  KC1, KC2 = ORG, ORG  ;  OP1, OP2 = 17, 17  ;  OL1, OL2 = 17, 17  ;  OS1, OS2 = 17, 17  ;  OC1, OC2 =  17, 17
+        KP1, KP2 = VLT, VLT  ;  KL1, KL2 = FSH, FSH  ;  KS1, KS2 = RED, RED  ;  KC1, KC2 = YLW, YLW  ;  OP1, OP2 = 17, 17  ;  OL1, OL2 = 17, 17  ;  OS1, OS2 = 17, 17  ;  OC1, OC2 =  17, 17
         KT1, KT2 = ORG, ORG  ;  KN1, KN2 = GRN, GRN  ;  KI1, KI2 = PNK, PNK  ;  KK1, KK2 = IND, IND  ;  OT1, OT2 = 17, 17 # ;  ON1, ON2 =  0,  0  ;  OI1, OI2 =  0,  0  ;  OK1, OK2 =  0,  0
-        KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = CYA, CYA  ;  KH1, KH2 = YLW, YLW  ;  KM1, KM2 = PCH, PCH  ;  OR1, OR2 = 17, 17  ;  OQ1, OQ2 = 17, 17  ;  OH1, OH2 =  9,  9
-        KB1, KB2 = CL3, CL3  ;  KA1, KA2 = CL4, CL4  ;  KD1, KD2 = FSH, FSH  ;  KE1, KE2 = GRY, GRY  ;  OE1, OE2 = 17, 17  ;  aa, zz = 6, 17
+        KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = CYA, CYA  ;  KH1, KH2 = TRQ, TRQ  ;  KM1, KM2 = PCH, PCH  ;  OR1, OR2 = 17, 17  ;  OQ1, OQ2 = 17, 17  ;  OH1, OH2 =  9,  9
+        KB1, KB2 = CL3, CL3  ;  KA1, KA2 = CL4, CL4  ;  KD1, KD2 = LIM, LIM  ;  KE1, KE2 = GRY, GRY  ;  OE1, OE2 = 17, 17  ;  aa, zz = 5, 17
         k = self.k  ;  a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC  ;  i = self.initk
         j = P  ;  k[j] = i(j, KP1, aa, OP1, KP2, zz, OP2) if a else i(j, KP1, 17, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
         j = L  ;  k[j] = i(j, KL1, aa, OL1, KL2, zz, OL2) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
@@ -1090,17 +1090,19 @@ class Tabs(pyglet.window.Window):
         dt = self.DBG_TABT
         if   dt==0:  return Z
         i2 = (i + 1) % 10 if j==C else i + 1
-        d  = '\n' if j==C else Z ;  k = d.join(f'{i2}')  ;  s, t = JTEXTS[j], JTEXTS2[j]  ;  u = jTEXTS[j][0]
-        if   dt==1:  a = 1                                ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
-        elif dt==2:  a = j+1                              ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
-        elif dt==3:  a = 4                                ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
-        elif dt==4:  a = 1                                ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==5:  a = j+1                              ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==6:  a = 4                                ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==7:  a = 1                                ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==8:  a = j+1                              ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==9:  a = 4                                ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k])
-        else:        a = 1                                ;  e = d.join([ u[_] for _ in range(a) ])  ;  return d.join([e, k])
+        d  = '\n' if j==C else Z  ;  k = d.join(f'{i2}')  ;  s, t, u = JTEXTS[j], JTEXTS2[j], jTEXTS[j]
+        if   dt==1:  a = 1        ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
+        elif dt==2:  a = j+1      ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
+        elif dt==3:  a = 4        ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
+        elif dt==4:  a = 1        ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
+        elif dt==5:  a = j+1      ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
+        elif dt==6:  a = 4        ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
+        elif dt==7:  a = 1        ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k])
+        elif dt==8:  a = j+1      ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k])
+        elif dt==9:  a = 4        ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k])
+        elif dt==10: a = 1        ;  e = d.join([ u[_] for _ in range(a) ])  ;  return d.join([e, k])
+        elif dt==11: a = j+1      ;  e = d.join([ u[_] for _ in range(a) ])  ;  return d.join([e, k])
+        elif dt==12: a = 4        ;  e = d.join([ u[_] for _ in range(a) ])  ;  return d.join([e, k])
 
     def ntsl(self):       return self.n[T] * self.n[S] * self.n[L]
     def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
@@ -1109,7 +1111,7 @@ class Tabs(pyglet.window.Window):
         self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2   ;   llr = self.LL and self.isLLRow()
         self.dumpTniksPfx(why)
         if   self.DSP_J_LEV == P:
-            for _ in                 self.g_createTniks(self.pages, P, None, why=why):  pass
+            for _ in                 self.g_createTniks(self.pages, P, None, why=why): pass
         elif self.DSP_J_LEV == L:
             for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
                 for _ in             self.g_createTniks(self.lines, L, page, why=why): pass
@@ -1726,35 +1728,37 @@ class Tabs(pyglet.window.Window):
         self.log(f'{dpi}:{FONT_DPIS[dpi]}dpi {s:6.3f}pt {n}:{FONT_NAMES[n]} {k}:{fcs} {s:6.3f}pt = {PNT_PER_PIX:5.3f}(pt/pix) * {pix:6.3f}pixels {why}', f=2)
 
     def setFontParam(self, n, v, m, dbg=1):
-        if m == 'clrIdx':   v += getattr(self, m)   ;   v %= len(self.k)  ;  self.log(f'{n=:12} {v=:2} {self.clrIdx=:2}')
+        if   m == 'clrIdx':      v += getattr(self, m)   ;   v %= len(self.k)      ;  self.log(f'{n=:12} {v=:2} {self.clrIdx=:2}')
+        elif m == 'fontNameIdx': v += getattr(self, m)   ;   v %= len(FONT_NAMES)  ;  self.log(f'{n=:12} {v=:2} {self.fontNameIdx=:2}')
         setattr(self, m, v)
         ts = list(itertools.chain(self.A, self.B, self.C))  ;  lt = len(ts)
         if dbg:             self.log(f'{W*1}        {lt=} {m=:12} {n=:12} {v=:2}', p=0)
-        for j in range(lt):
+        for j, t in enumerate(ts):
             if dbg:         self.log(f'{j=:2} {W*3} {lt=} {m=:12} {n=:12} {v=:2}', p=0) #  and self.VRBY
-            self._setFontParam(ts[j], n, v, m, j)
+            self._setFontParam(t, n, v, m, j)
         self.setCaption(self.fmtFont())
 
     def _setFontParam(self, ts, n, v, m, j, dbg=1):
         l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
 #        if m == 'clrIdx' and not j:         v = (v + j) % len(self.k)   ;   setattr(self, m, v) # duplicate call
         for i, t in enumerate(ts):
-            if   m == 'clrIdx'   and util.isi(t, LBL):  l = len(t.color)   ;  msg = f'{v=:2} tc={fmtl(t.color, w=3)}  ds={fmtl(t.document.get_style(n), w=3)}  kv={fmtl(self.k[v][fb][:l], w=3)}'
-#           if   m == 'clrIdx': v = (v+j) % len(self.k)  ;  setattr(self, m, v)  ;  msg = f'{self.k[v][fb][:len(t.color)]=} {t=}'
-            elif m == 'fontNameIdx':                                          msg = f'{v=:2} {FONT_NAMES[v]=}'
-            elif m == 'fontSize' and util.isi(t, LBL): fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
-            if dbg and util.isi(t, LBL):
-                ii = 1 # if self.VRBY else 10
-                if not i % ii:         self.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', p=0, f=2)
-            if   m == 'clrIdx':        self._setTNIKStyle(t, self.k[v], self.fontStyle)
-#            if   m == 'clrIdx':
-#                if util.isi(t, LBL) and len(self.k[v][fb]) >= l:
-#                    _ = getattr(t, n)
-#                    c = self.k[v][:l] if len(_) > 1 else self.k[v][fb][:l]
-#                    setattr(t, n, c)
-            elif m == 'fontNameIdx':   setattr(t, n, FONT_NAMES[v])
-            elif m == 'fontSize':      setattr(t, n, v*fs)
-            else:                      setattr(t, n, v)
+            if util.isi(t, LBL):
+#               if   m == 'clrIdx': v = (v+j) % len(self.k)  ;  setattr(self, m, v)  ;  msg = f'{self.k[v][fb][:len(t.color)]=} {t=}'
+                if   m == 'clrIdx':       l = len(t.color)   ;  msg = f'{v=:2} tc={fmtl(t.color, w=3)}  ds={fmtl(t.document.get_style(n), w=3)}  kv={fmtl(self.k[v][fb][:l], w=3)}'
+                elif m == 'fontNameIdx':                        msg = f'{v=:2} {FONT_NAMES[v]=}'
+                elif m == 'fontSize':    fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
+                if dbg and util.isi(t, LBL):
+                    ii = 1 # if self.VRBY else 10
+                    if not i % ii:       self.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', p=0, f=2)
+                if   m == 'clrIdx':      self._setTNIKStyle(t, self.k[v], self.fontStyle)
+#               if   m == 'clrIdx':
+#                   if util.isi(t, LBL) and len(self.k[v][fb]) >= l:
+#                       _ = getattr(t, n)
+#                   c = self.k[v][:l] if len(_) > 1 else self.k[v][fb][:l]
+#                   setattr(t, n, c)
+                elif m == 'fontNameIdx': setattr(t, n, FONT_NAMES[v])
+                elif m == 'fontSize':    setattr(t, n, v*fs)
+                else:                    setattr(t, n, v)
     @staticmethod
     def pix2pnt(pix):      return pix * PNT_PER_PIX # ( ) % FS_MAX
     def fontParams(self):  return self.fontBold, self.clrIdx, self.fontDpiIndex, self.fontItalic, self.fontNameIdx, self.fontSize
@@ -1975,14 +1979,10 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'B' and self.isAlt(     mods):     self.setFontParam(BOLD,      not self.fontBold,                           'fontBold')
         elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam(COLOR,         1,                                       'clrIdx')
         elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam(COLOR,        -1,                                       'clrIdx')
-#       elif kbk == 'C' and self.isAltShift(mods):     self.setFontParam(COLOR,        (self.clrIdx + 1) % len(self.k),          'clrIdx')
-#       elif kbk == 'C' and self.isAlt(     mods):     self.setFontParam(COLOR,        (self.clrIdx - 1) % len(self.k),          'clrIdx')
         elif kbk == 'I' and self.isAltShift(mods):     self.setFontParam(ITALIC,    not self.fontItalic,                         'fontItalic')
         elif kbk == 'I' and self.isAlt(     mods):     self.setFontParam(ITALIC,    not self.fontItalic,                         'fontItalic')
         elif kbk == 'A' and self.isAltShift(mods):     self.setFontParam(FONT_NAME,     1,                                       'fontNameIdx')
         elif kbk == 'A' and self.isAlt(     mods):     self.setFontParam(FONT_NAME,    -1,                                       'fontNameIdx')
-#       elif kbk == 'A' and self.isAltShift(mods):     self.setFontParam(FONT_NAME,    (self.fontNameIdx + 1) % len(FONT_NAMES), 'fontNameIdx')
-#       elif kbk == 'A' and self.isAlt(     mods):     self.setFontParam(FONT_NAME,    (self.fontNameIdx - 1) % len(FONT_NAMES), 'fontNameIdx')
         elif kbk == 'S' and self.isAltShift(mods):     self.setFontParam(FONT_SIZE,     33 / 32,                                 'fontSize')
         elif kbk == 'S' and self.isAlt(     mods):     self.setFontParam(FONT_SIZE,     32 / 33,                                 'fontSize')
         else:   self.log(f'UNH {self.kbkEvntTxt()} Unhandled', f=1) if self.VRBY else None
@@ -1993,8 +1993,7 @@ class Tabs(pyglet.window.Window):
             elif kbk == 'SPACE':                       self.autoMove(    '   SPACE')
 #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
         if   dbg: self.log(f'END {self.kbkEvntTxt()}', f=2)
-#        retv = pygwine.EVENT_HANDLED  ;  self.log(f'{retv=}')  ;  return retv
-        self.log(f'{pyglet.event.EVENT_HANDLED=}')  ;  return pyglet.event.EVENT_HANDLED
+        retv = pyglet.event.EVENT_HANDLED   ;   self.log(f'{retv=}')  ;  return retv
     ####################################################################################################################################################################################################
     def on_key_release(self, symb, mods, dbg=1):
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)

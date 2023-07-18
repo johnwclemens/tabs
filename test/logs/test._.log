@@ -1,46 +1,46 @@
 C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2949 tabsC <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 5 -J 3 -S 0 -f test]
+2953 tabsC <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -J 4 -S 0 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2953 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
-2953 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv
-2954 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
-2954 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log
-2955 tabsC main               constructing Tabs object
+2957 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
+2957 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv
+2958 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
+2958 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log
+2959 tabsC main               constructing Tabs object
   37 tabsC __init__           .LOG_ID=1
   38 tabsC __init__           BGN <class __main__.Tabs>
-2826 tabsC dumpGlobals        BASE_NAME = test
-2827 tabsC dumpGlobals        argv      = +24[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 5 -J 3 -S 0 -f test]
-2828 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2829 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+2830 tabsC dumpGlobals        BASE_NAME = test
+2831 tabsC dumpGlobals        argv      = +24[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -J 4 -S 0 -f test]
+2832 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2833 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
   39 tabsC __init__           STFILT:
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
-2736 tabsC getFileSeqName     fdir=logs/ fsfx=log
-2739 tabsC getFileSeqName     fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log
- 528 util  getFilePath        baseName =test.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 531 util  getFilePath        fileName =test.30.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.30.log)
-  41 tabsC __init__           .seqNumLogPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.30.log)
- 528 util  getFilePath        baseName =test.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 531 util  getFilePath        fileName =test.30.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.30.csv)
-  42 tabsC __init__           .seqNumCsvPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.30.csv)
- 528 util  getFilePath        baseName =test.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 531 util  getFilePath        fileName =test.30.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.30.cat)
-  43 tabsC __init__           .seqNumCatPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.30.cat)
+2740 tabsC getFileSeqName     fdir=logs/ fsfx=log
+2743 tabsC getFileSeqName     fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log
+ 528 util  getFilePath        baseName =test.29      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 531 util  getFilePath        fileName =test.29.log  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.29.log)
+  41 tabsC __init__           .seqNumLogPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.29.log)
+ 528 util  getFilePath        baseName =test.29      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 531 util  getFilePath        fileName =test.29.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.29.csv)
+  42 tabsC __init__           .seqNumCsvPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.29.csv)
+ 528 util  getFilePath        baseName =test.29      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 531 util  getFilePath        fileName =test.29.cat  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.29.cat)
+  43 tabsC __init__           .seqNumCatPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.29.cat)
   55 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  72 tabsC __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[5]] [J:[3]] [S:[0]] [f:[test]]
+  72 tabsC __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [J:[4]] [S:[0]] [f:[test]]
  170 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  171 tabsC dumpArgs           [A]         .VARROW=1
  172 tabsC dumpArgs           [b]        .FRT_BRD=0
  173 tabsC dumpArgs           [B]            .BGC=0
  174 tabsC dumpArgs           [c]            .CAT=1
  175 tabsC dumpArgs           [C]      .CHECKERED=0
- 176 tabsC dumpArgs           [d]       .DBG_TABT=5
+ 176 tabsC dumpArgs           [d]       .DBG_TABT=0
  177 tabsC dumpArgs           [e]      .EVENT_LOG=0
  178 tabsC dumpArgs           [f]      .FILE_NAME=test
  179 tabsC dumpArgs           [F]      .FULL_SCRN=0
  180 tabsC dumpArgs           [g]        .ORD_GRP=1
  181 tabsC dumpArgs           [G]       .GEN_DATA=0
  182 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
- 183 tabsC dumpArgs           [J]      .DSP_J_LEV=3
+ 183 tabsC dumpArgs           [J]      .DSP_J_LEV=4
  184 tabsC dumpArgs           [l]       .LONG_TXT=1
  185 tabsC dumpArgs           [L]             .LL=0
  186 tabsC dumpArgs           [M]      .MULTILINE=1
@@ -79,7 +79,7 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 .dataPath1=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/_test.1.1._.10.6.dat)
 .dataPath2=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/data/_test.1.1._.10.6.dat)
  291 tabsC _initWindowA       BGN (  -1x-1  )
- 291 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001C39EB59B40>
+ 291 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000019374890E80>
  296 tabsC _initWindowA       screens[0] s.x=894  2160 (1280x720 )
  296 tabsC _initWindowA       screens[1] s.x=0     0 (3840x2160)
  297 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -130,22 +130,22 @@ ay=center
  596 tabsC dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=10
 ------
 ----------
- 0  Page  [VLT  6 17] [ VLT 17 17] [ 48  24  95 255] [128  63 255 255]
- 1  Line  [RED  6 17] [ RED 17 17] [ 95  24  12 255] [255  63  31 255]
- 2  Sect  [LIM  6 17] [ LIM 17 17] [ 60  95  12 255] [160 255  31 255]
- 3  Colm  [ORG  6 17] [ ORG 17 17] [ 95  66  12 255] [255 176  31 255]
- 4  Tabl  [ORG  6 17] [ ORG 17 17] [ 95  66  12 255] [255 176  31 255]
- 5  Note  [GRN  6 17] [ GRN 17 17] [ 24  95  24 255] [ 63 255  63 255]
- 6  IKey  [PNK  6 17] [ PNK 17 17] [ 95  48  72 255] [255 128 192 255]
- 7  Kord  [IND  6 17] [ IND 17 17] [ 12  67  95 255] [ 31 180 255 255]
- 8  RowL  [BLU  6 17] [ BLU 17 17] [ 24  12  95 255] [ 63  31 255 255]
- 9  QClm  [CYA  6 17] [ CYA 17 17] [ 12  95  95 255] [ 31 255 255 255]
-10  HCrs  [YLW 17  9] [ YLW  6  9] [255 255  63 135] [ 95  95  24 135]
-11  View  [PCH  6 17] [ PCH 17 17] [ 95  60  48 255] [255 160 128 255]
-12  ZClm  [CL3  6 17] [ CL3 17 17] [ 12  95  47 255] [ 31 255 127 255]
-13  UNum  [CL4  6 17] [ CL4 17 17] [ 12  47  24 255] [ 31 127  63 255]
-14  ANam  [FSH  6 17] [ FSH 17 17] [ 95  12  95 255] [255  31 255 255]
-15  DCpo  [GRY  6 17] [ GRY 17 17] [ 95  95  95 255] [255 255 255 255]
+ 0  Page  [VLT  5 17] [ VLT 17 17] [ 40  20  81 255] [128  63 255 255]
+ 1  Line  [FSH  5 17] [ FSH 17 17] [ 81  10  81 255] [255  31 255 255]
+ 2  Sect  [RED  5 17] [ RED 17 17] [ 81  20  10 255] [255  63  31 255]
+ 3  Colm  [YLW  5 17] [ YLW 17 17] [ 81  81  20 255] [255 255  63 255]
+ 4  Tabl  [ORG  5 17] [ ORG 17 17] [ 81  56  10 255] [255 176  31 255]
+ 5  Note  [GRN  5 17] [ GRN 17 17] [ 20  81  20 255] [ 63 255  63 255]
+ 6  IKey  [PNK  5 17] [ PNK 17 17] [ 81  40  61 255] [255 128 192 255]
+ 7  Kord  [IND  5 17] [ IND 17 17] [ 10  57  81 255] [ 31 180 255 255]
+ 8  RowL  [BLU  5 17] [ BLU 17 17] [ 20  10  81 255] [ 63  31 255 255]
+ 9  QClm  [CYA  5 17] [ CYA 17 17] [ 10  81  81 255] [ 31 255 255 255]
+10  HCrs  [TRQ 17  9] [ TRQ  5  9] [ 31 255 192 135] [ 10  81  61 135]
+11  View  [PCH  5 17] [ PCH 17 17] [ 81  51  40 255] [255 160 128 255]
+12  ZClm  [CL3  5 17] [ CL3 17 17] [ 10  81  40 255] [ 31 255 127 255]
+13  UNum  [CL4  5 17] [ CL4 17 17] [ 10  40  20 255] [ 31 127  63 255]
+14  ANam  [LIM  5 17] [ LIM 17 17] [ 51  81  10 255] [160 255  31 255]
+15  DCpo  [GRY  5 17] [ GRY 17 17] [ 81  81  81 255] [255 255 255 255]
  275 tabsC _initDataPath      dataName0=_test.1.1._.10.6.dat.asv
  276 tabsC _initDataPath      dataName1=_test.1.1._.10.6.dat
  277 tabsC _initDataPath      dataName2=_test.1.1._.10.6.dat
@@ -193,10 +193,10 @@ Colm Line 1
  603 tabsC ntp                            nRevPrd=[6 60 60 60 60]
  604 tabsC ntp                         nRevPrdRev=[60 60 60 60 6]
  606 tabsC ntp                tpb tpp tpl tps tpc=[60 60 60 60 6]
-1704 tabsC calcFontSize       j=4 Tabl w=960.00 h=540.00 nc=10 nr=6 pw=96.0 ph=90.0 pix= 90.00 fs= 70.00
-1713 tabsC _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.778 fs=w*PNT_PER_PIX=70.000pt
-1714 tabsC _initFonts         h=90.000=.height=540/(nl=1 * ns=1 * nt=6) PNT_PER_PIX=0.778 fs=h*PNT_PER_PIX=70.000pt
-1726 tabsC dumpFont           4:96dpi 70.000pt 0:Lucida Console 0: 70.000pt = 0.778(pt/pix) * 90.000pixels 
+1706 tabsC calcFontSize       j=4 Tabl w=960.00 h=540.00 nc=10 nr=6 pw=96.0 ph=90.0 pix= 90.00 fs= 70.00
+1715 tabsC _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.778 fs=w*PNT_PER_PIX=70.000pt
+1716 tabsC _initFonts         h=90.000=.height=540/(nl=1 * ns=1 * nt=6) PNT_PER_PIX=0.778 fs=h*PNT_PER_PIX=70.000pt
+1728 tabsC dumpFont           4:96dpi 70.000pt 0:Lucida Console 0: 70.000pt = 0.778(pt/pix) * 90.000pixels 
 labelTextA=[1  2  3  4  5  6  7  8  9  10]
 labelTextB=[1  2  3  4  5  6  7  8  9  1 ]
 texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
@@ -207,32 +207,95 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  330 tabsC _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1]
  334 tabsC _initTniks         C C
  334 tabsC _initTniks         center center
-1110 tabsC createTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1110 tabsC createTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1110 tabsC createTniks        LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1110 tabsC createTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )    0   0] New1
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
+1112 tabsC createTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1112 tabsC createTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1112 tabsC createTniks        LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1112 tabsC createTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )    0   0] New1
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-   1 New1  Page    1 P1       0 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [128  63 255 255][ 48  24  95 255] C C   480   270 674.8 441.9 441.9 118.1 560.0 C,C  420  96 0 0 Lucida Console        
+   1 New1  Page    1          0 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [128  63 255 255][ 40  20  81 255] C C   480   270 0.000 0.000 441.9 118.1 560.0 C,C  420  96 0 0 Lucida Console        
 1024 tabsC geom               y=270.00 d=0.5 dn=0 d*py=135.00 d*ph=270.00 d*h=270.00 dn*ph_n_nr=0.00
-   2 New1  Line    1 Li1      1 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  480.00  270.00  960.00  540.00            [255  63  31 255][ 95  24  12 255] C C   480   270 898.4 392.2 392.2 104.8 497.0 C,C  373  96 0 0 Lucida Console        
-   3 New1  Sect    1 Sec1     2 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  480.00  270.00  960.00  540.00            [160 255  31 255][ 60  95  12 255] C C   480   270 797.8 261.2 261.2 69.82 331.0 C,C  249  96 0 0 Lucida Console        
-   4 New1  Colm    1 Colm1    3 V 1  1  1   1    0    0    0    0  0   0 0 0  0  0  0  0    4   4   48.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-   5 New1  Colm    2 Colm2    3 V 1  1  1   2    0    0    0    0  0   0 0 0  0  0  0  0    5   5  144.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-   6 New1  Colm    3 Colm3    3 V 1  1  1   3    0    0    0    0  0   0 0 0  0  0  0  0    6   6  240.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-   7 New1  Colm    4 Colm4    3 V 1  1  1   4    0    0    0    0  0   0 0 0  0  0  0  0    7   7  336.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-   8 New1  Colm    5 Colm5    3 V 1  1  1   5    0    0    0    0  0   0 0 0  0  0  0  0    8   8  432.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-   9 New1  Colm    6 Colm6    3 V 1  1  1   6    0    0    0    0  0   0 0 0  0  0  0  0    9   9  528.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-  10 New1  Colm    7 Colm7    3 V 1  1  1   7    0    0    0    0  0   0 0 0  0  0  0  0   10  10  624.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-  11 New1  Colm    8 Colm8    3 V 1  1  1   8    0    0    0    0  0   0 0 0  0  0  0  0   11  11  720.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-  12 New1  Colm    9 Colm9    3 V 1  1  1   9    0    0    0    0  0   0 0 0  0  0  0  0   12  12  816.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-  13 New1  Colm   10 Colm10   3 V 1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13  13  912.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 468.7 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
+   2 New1  Line    1          1 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  480.00  270.00  960.00  540.00            [255  31 255 255][ 81  10  81 255] C C   480   270 0.000 0.000 392.2 104.8 497.0 C,C  373  96 0 0 Lucida Console        
+   3 New1  Sect    1          2 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  480.00  270.00  960.00  540.00            [255  63  31 255][ 81  20  10 255] C C   480   270 0.000 0.000 261.2 69.82 331.0 C,C  249  96 0 0 Lucida Console        
+   4 New1  Colm    1          3 V 1  1  1   1    0    0    0    0  0   0 0 0  0  0  0  0    4   4   48.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+   5 New1  Tabl    1 1        6 V 1  1  1   1    1    0    0    0  0   0 0 0  0  0  0  0    5   5   48.00  495.00   96.00   90.00   1   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+   6 New1  Tabl    2 2        6 V 1  1  1   1    2    0    0    0  0   0 0 0  0  0  0  0    6   6   48.00  405.00   96.00   90.00   2   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+   7 New1  Tabl    3 3        6 V 1  1  1   1    3    0    0    0  0   0 0 0  0  0  0  0    7   7   48.00  315.00   96.00   90.00   3   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+   8 New1  Tabl    4 4        6 V 1  1  1   1    4    0    0    0  0   0 0 0  0  0  0  0    8   8   48.00  225.00   96.00   90.00   4   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+   9 New1  Tabl    5 5        6 V 1  1  1   1    5    0    0    0  0   0 0 0  0  0  0  0    9   9   48.00  135.00   96.00   90.00   5   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  10 New1  Tabl    6 6        6 V 1  1  1   1    6    0    0    0  0   0 0 0  0  0  0  0   10  10   48.00   45.00   96.00   90.00   6   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  11 New1  Colm    2          3 V 1  1  1   2    6    0    0    0  0   0 0 0  0  0  0  0   11  11  144.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  12 New1  Tabl    7 7        6 V 1  1  1   2    7    0    0    0  0   0 0 0  0  0  0  0   12  12  144.00  495.00   96.00   90.00   7   6  2 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  13 New1  Tabl    8 8        6 V 1  1  1   2    8    0    0    0  0   0 0 0  0  0  0  0   13  13  144.00  405.00   96.00   90.00   8   6  2 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  14 New1  Tabl    9 9        6 V 1  1  1   2    9    0    0    0  0   0 0 0  0  0  0  0   14  14  144.00  315.00   96.00   90.00   9   6  2 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  15 New1  Tabl   10 a        6 V 1  1  1   2   10    0    0    0  0   0 0 0  0  0  0  0   15  15  144.00  225.00   96.00   90.00  10   6  2 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  16 New1  Tabl   11 b        6 V 1  1  1   2   11    0    0    0  0   0 0 0  0  0  0  0   16  16  144.00  135.00   96.00   90.00  11   6  2 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  17 New1  Tabl   12 c        6 V 1  1  1   2   12    0    0    0  0   0 0 0  0  0  0  0   17  17  144.00   45.00   96.00   90.00  12   6  2 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  18 New1  Colm    3          3 V 1  1  1   3   12    0    0    0  0   0 0 0  0  0  0  0   18  18  240.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  19 New1  Tabl   13 -        6 V 1  1  1   3   13    0    0    0  0   0 0 0  0  0  0  0   19  19  240.00  495.00   96.00   90.00  13  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  20 New1  Tabl   14 -        6 V 1  1  1   3   14    0    0    0  0   0 0 0  0  0  0  0   20  20  240.00  405.00   96.00   90.00  14  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  21 New1  Tabl   15 -        6 V 1  1  1   3   15    0    0    0  0   0 0 0  0  0  0  0   21  21  240.00  315.00   96.00   90.00  15  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  22 New1  Tabl   16 -        6 V 1  1  1   3   16    0    0    0  0   0 0 0  0  0  0  0   22  22  240.00  225.00   96.00   90.00  16  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  23 New1  Tabl   17 -        6 V 1  1  1   3   17    0    0    0  0   0 0 0  0  0  0  0   23  23  240.00  135.00   96.00   90.00  17  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  24 New1  Tabl   18 -        6 V 1  1  1   3   18    0    0    0  0   0 0 0  0  0  0  0   24  24  240.00   45.00   96.00   90.00  18  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  25 New1  Colm    4          3 V 1  1  1   4   18    0    0    0  0   0 0 0  0  0  0  0   25  25  336.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  26 New1  Tabl   19 -        6 V 1  1  1   4   19    0    0    0  0   0 0 0  0  0  0  0   26  26  336.00  495.00   96.00   90.00  19  18  4 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  27 New1  Tabl   20 -        6 V 1  1  1   4   20    0    0    0  0   0 0 0  0  0  0  0   27  27  336.00  405.00   96.00   90.00  20  18  4 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  28 New1  Tabl   21 -        6 V 1  1  1   4   21    0    0    0  0   0 0 0  0  0  0  0   28  28  336.00  315.00   96.00   90.00  21  18  4 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  29 New1  Tabl   22 -        6 V 1  1  1   4   22    0    0    0  0   0 0 0  0  0  0  0   29  29  336.00  225.00   96.00   90.00  22  18  4 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  30 New1  Tabl   23 -        6 V 1  1  1   4   23    0    0    0  0   0 0 0  0  0  0  0   30  30  336.00  135.00   96.00   90.00  23  18  4 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  31 New1  Tabl   24 -        6 V 1  1  1   4   24    0    0    0  0   0 0 0  0  0  0  0   31  31  336.00   45.00   96.00   90.00  24  18  4 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  32 New1  Colm    5          3 V 1  1  1   5   24    0    0    0  0   0 0 0  0  0  0  0   32  32  432.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  33 New1  Tabl   25 -        6 V 1  1  1   5   25    0    0    0  0   0 0 0  0  0  0  0   33  33  432.00  495.00   96.00   90.00  25  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  34 New1  Tabl   26 -        6 V 1  1  1   5   26    0    0    0  0   0 0 0  0  0  0  0   34  34  432.00  405.00   96.00   90.00  26  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  35 New1  Tabl   27 -        6 V 1  1  1   5   27    0    0    0  0   0 0 0  0  0  0  0   35  35  432.00  315.00   96.00   90.00  27  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  36 New1  Tabl   28 -        6 V 1  1  1   5   28    0    0    0  0   0 0 0  0  0  0  0   36  36  432.00  225.00   96.00   90.00  28  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  37 New1  Tabl   29 -        6 V 1  1  1   5   29    0    0    0  0   0 0 0  0  0  0  0   37  37  432.00  135.00   96.00   90.00  29  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  38 New1  Tabl   30 -        6 V 1  1  1   5   30    0    0    0  0   0 0 0  0  0  0  0   38  38  432.00   45.00   96.00   90.00  30  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  39 New1  Colm    6          3 V 1  1  1   6   30    0    0    0  0   0 0 0  0  0  0  0   39  39  528.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  40 New1  Tabl   31 -        6 V 1  1  1   6   31    0    0    0  0   0 0 0  0  0  0  0   40  40  528.00  495.00   96.00   90.00  31  30  6 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  41 New1  Tabl   32 -        6 V 1  1  1   6   32    0    0    0  0   0 0 0  0  0  0  0   41  41  528.00  405.00   96.00   90.00  32  30  6 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  42 New1  Tabl   33 -        6 V 1  1  1   6   33    0    0    0  0   0 0 0  0  0  0  0   42  42  528.00  315.00   96.00   90.00  33  30  6 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  43 New1  Tabl   34 -        6 V 1  1  1   6   34    0    0    0  0   0 0 0  0  0  0  0   43  43  528.00  225.00   96.00   90.00  34  30  6 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  44 New1  Tabl   35 -        6 V 1  1  1   6   35    0    0    0  0   0 0 0  0  0  0  0   44  44  528.00  135.00   96.00   90.00  35  30  6 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  45 New1  Tabl   36 -        6 V 1  1  1   6   36    0    0    0  0   0 0 0  0  0  0  0   45  45  528.00   45.00   96.00   90.00  36  30  6 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  46 New1  Colm    7          3 V 1  1  1   7   36    0    0    0  0   0 0 0  0  0  0  0   46  46  624.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  47 New1  Tabl   37 -        6 V 1  1  1   7   37    0    0    0  0   0 0 0  0  0  0  0   47  47  624.00  495.00   96.00   90.00  37  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  48 New1  Tabl   38 -        6 V 1  1  1   7   38    0    0    0  0   0 0 0  0  0  0  0   48  48  624.00  405.00   96.00   90.00  38  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  49 New1  Tabl   39 -        6 V 1  1  1   7   39    0    0    0  0   0 0 0  0  0  0  0   49  49  624.00  315.00   96.00   90.00  39  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  50 New1  Tabl   40 -        6 V 1  1  1   7   40    0    0    0  0   0 0 0  0  0  0  0   50  50  624.00  225.00   96.00   90.00  40  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  51 New1  Tabl   41 -        6 V 1  1  1   7   41    0    0    0  0   0 0 0  0  0  0  0   51  51  624.00  135.00   96.00   90.00  41  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  52 New1  Tabl   42 -        6 V 1  1  1   7   42    0    0    0  0   0 0 0  0  0  0  0   52  52  624.00   45.00   96.00   90.00  42  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  53 New1  Colm    8          3 V 1  1  1   8   42    0    0    0  0   0 0 0  0  0  0  0   53  53  720.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  54 New1  Tabl   43 -        6 V 1  1  1   8   43    0    0    0  0   0 0 0  0  0  0  0   54  54  720.00  495.00   96.00   90.00  43  42  8 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  55 New1  Tabl   44 -        6 V 1  1  1   8   44    0    0    0  0   0 0 0  0  0  0  0   55  55  720.00  405.00   96.00   90.00  44  42  8 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  56 New1  Tabl   45 -        6 V 1  1  1   8   45    0    0    0  0   0 0 0  0  0  0  0   56  56  720.00  315.00   96.00   90.00  45  42  8 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  57 New1  Tabl   46 -        6 V 1  1  1   8   46    0    0    0  0   0 0 0  0  0  0  0   57  57  720.00  225.00   96.00   90.00  46  42  8 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  58 New1  Tabl   47 -        6 V 1  1  1   8   47    0    0    0  0   0 0 0  0  0  0  0   58  58  720.00  135.00   96.00   90.00  47  42  8 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  59 New1  Tabl   48 -        6 V 1  1  1   8   48    0    0    0  0   0 0 0  0  0  0  0   59  59  720.00   45.00   96.00   90.00  48  42  8 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  60 New1  Colm    9          3 V 1  1  1   9   48    0    0    0  0   0 0 0  0  0  0  0   60  60  816.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  61 New1  Tabl   49 7        6 V 1  1  1   9   49    0    0    0  0   0 0 0  0  0  0  0   61  61  816.00  495.00   96.00   90.00  49  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  62 New1  Tabl   50 8        6 V 1  1  1   9   50    0    0    0  0   0 0 0  0  0  0  0   62  62  816.00  405.00   96.00   90.00  50  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  63 New1  Tabl   51 9        6 V 1  1  1   9   51    0    0    0  0   0 0 0  0  0  0  0   63  63  816.00  315.00   96.00   90.00  51  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  64 New1  Tabl   52 a        6 V 1  1  1   9   52    0    0    0  0   0 0 0  0  0  0  0   64  64  816.00  225.00   96.00   90.00  52  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  65 New1  Tabl   53 b        6 V 1  1  1   9   53    0    0    0  0   0 0 0  0  0  0  0   65  65  816.00  135.00   96.00   90.00  53  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  66 New1  Tabl   54 c        6 V 1  1  1   9   54    0    0    0  0   0 0 0  0  0  0  0   66  66  816.00   45.00   96.00   90.00  54  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  67 New1  Colm   10          3 V 1  1  1  10   54    0    0    0  0   0 0 0  0  0  0  0   67  67  912.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  68 New1  Tabl   55 1        6 V 1  1  1  10   55    0    0    0  0   0 0 0  0  0  0  0   68  68  912.00  495.00   96.00   90.00  55  54 10 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  69 New1  Tabl   56 2        6 V 1  1  1  10   56    0    0    0  0   0 0 0  0  0  0  0   69  69  912.00  405.00   96.00   90.00  56  54 10 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  70 New1  Tabl   57 3        6 V 1  1  1  10   57    0    0    0  0   0 0 0  0  0  0  0   70  70  912.00  315.00   96.00   90.00  57  54 10 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  71 New1  Tabl   58 4        6 V 1  1  1  10   58    0    0    0  0   0 0 0  0  0  0  0   71  71  912.00  225.00   96.00   90.00  58  54 10 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  72 New1  Tabl   59 5        6 V 1  1  1  10   59    0    0    0  0   0 0 0  0  0  0  0   72  72  912.00  135.00   96.00   90.00  59  54 10 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  73 New1  Tabl   60 6        6 V 1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73  912.00   45.00   96.00   90.00  60  54 10 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1134 tabsC createTniks        J1[1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13  13] New1
-1134 tabsC createTniks        J2[1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13  13] New1
-1134 tabsC createTniks        LE[1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13  13] New1
-1134 tabsC createTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   13  13] New1
+1136 tabsC createTniks        J1[1  1  1  10    6    0    0    0  0   0 0 0  0  0  0  0   73  73] New1
+1136 tabsC createTniks        J2[1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73] New1
+1136 tabsC createTniks        LE[1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73] New1
+1136 tabsC createTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   73  73] New1
+  74 New1  HCrs    1    0.000 10 V 1  1  1  10   60    0    0    0  0   0 1 0  0  0  0  0   74  74   48.00   45.00   96.00   90.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   45 Group(order=10) None
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  606 tabsC ntp                tpb tpp tpl tps tpc=[60 60 60 60 6]
  614 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 1 10 6] BGN ntp=[   60   60  60  60   6] ( 1x1x1x6  )
  170 tabsC dumpArgs           [a]      .AUTO_SAVE=0
@@ -241,14 +304,14 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  173 tabsC dumpArgs           [B]            .BGC=0
  174 tabsC dumpArgs           [c]            .CAT=1
  175 tabsC dumpArgs           [C]      .CHECKERED=0
- 176 tabsC dumpArgs           [d]       .DBG_TABT=5
+ 176 tabsC dumpArgs           [d]       .DBG_TABT=0
  177 tabsC dumpArgs           [e]      .EVENT_LOG=0
  178 tabsC dumpArgs           [f]      .FILE_NAME=test
  179 tabsC dumpArgs           [F]      .FULL_SCRN=0
  180 tabsC dumpArgs           [g]        .ORD_GRP=1
  181 tabsC dumpArgs           [G]       .GEN_DATA=0
  182 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
- 183 tabsC dumpArgs           [J]      .DSP_J_LEV=3
+ 183 tabsC dumpArgs           [J]      .DSP_J_LEV=4
  184 tabsC dumpArgs           [l]       .LONG_TXT=1
  185 tabsC dumpArgs           [L]             .LL=0
  186 tabsC dumpArgs           [M]      .MULTILINE=1
@@ -316,52 +379,120 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +6 SHRP F# 6 [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
 +7 SHRP C# 1 [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   45 util  dumpData           END D♭ D♮ D♯
-1726 tabsC dumpFont           4:96dpi 70.000pt 0:Lucida Console 0: 70.000pt = 0.778(pt/pix) * 90.000pixels New1
+1728 tabsC dumpFont           4:96dpi 70.000pt 0:Lucida Console 0: 70.000pt = 0.778(pt/pix) * 90.000pixels New1
    2p2   11
    2l2   11
    2s2   11
   20c20  11111111111111111111
-  26t26            10        20
+ 120t120 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+   2h2   11
+ 148t148           10        20        30        40        50        60        70        80        90        100       110       120       130       140
 1
 1
 1
 1111111111
+111111111111111111111111111111111111111111111111111111111111
+1
  606 tabsC ntp                tpb tpp tpl tps tpc=[60 60 60 60 6]
  630 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 1 10 6] END ntp=[   60   60  60  60   6] ( 1x1x1x6  )
  338 tabsC _initTniks          0 NONE C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2704 tabsC regSnap             30   0 INIT     init
+2708 tabsC regSnap             29   0 INIT     init
  218 tabsC _reinit            [1 1 1  1 6]   6   0  1] END
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
  135 tabsC __init__           END <class __main__.Tabs>
-2957 tabsC main               str(tabs)={i: [1, 1, 1, 6], n: [1, 1, 10, 6], w: [0, 0, 0, 0], d: [5], J: [3], S: [0], f: [test]}
-2957 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={i: [1, 1, 1, 6], n: [1, 1, 10, 6], w: [0, 0, 0, 0], d: [5], J: [3], S: [0], f: [test]}
-2958 tabsC main               Call pyglet.app.run()
-1249 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
-1249 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
-1249 tabsC resizeTniks        LE[1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13   0] Upd.1
-1249 tabsC resizeTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   13   0] Upd.1
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
+2961 tabsC main               str(tabs)={i: [1, 1, 1, 6], n: [1, 1, 10, 6], w: [0, 0, 0, 0], d: [0], J: [4], S: [0], f: [test]}
+2961 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={i: [1, 1, 1, 6], n: [1, 1, 10, 6], w: [0, 0, 0, 0], d: [0], J: [4], S: [0], f: [test]}
+2962 tabsC main               Call pyglet.app.run()
+1251 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
+1251 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
+1251 tabsC resizeTniks        LE[1  1  1  10   60    0    0    0  0   0 1 0  0  0  0  0   74   0] Upd.1
+1251 tabsC resizeTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   74   0] Upd.1
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-   1 Upd.1 Page    1 P1       0 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [128  63 255 255][ 48  24  95 255] C C   480   270 674.8 441.9 441.9 118.1 560.0 C,C  420  96 0 0 Lucida Console        
+   1 Upd.1 Page    1          0 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [128  63 255 255][ 40  20  81 255] C C   480   270 0.000 0.000 441.9 118.1 560.0 C,C  420  96 0 0 Lucida Console        
 1024 tabsC geom               y=270.00 d=0.5 dn=0 d*py=135.00 d*ph=270.00 d*h=270.00 dn*ph_n_nr=0.00
-   2 Upd.1 Line    1 Li1      1 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  480.00  270.00  960.00  540.00            [255  63  31 255][ 95  24  12 255] C C   480   270 898.4 392.2 392.2 104.8 497.0 C,C  373  96 0 0 Lucida Console        
-   3 Upd.1 Sect    1 Sec1     2 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  480.00  270.00  960.00  540.00            [160 255  31 255][ 60  95  12 255] C C   480   270 797.8 261.2 261.2 69.82 331.0 C,C  249  96 0 0 Lucida Console        
-   4 Upd.1 Colm    1 Colm1    3 V 1  1  1   1    0    0    0    0  0   0 0 0  0  0  0  0    4   4   48.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-   5 Upd.1 Colm    2 Colm2    3 V 1  1  1   2    0    0    0    0  0   0 0 0  0  0  0  0    5   5  144.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-   6 Upd.1 Colm    3 Colm3    3 V 1  1  1   3    0    0    0    0  0   0 0 0  0  0  0  0    6   6  240.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-   7 Upd.1 Colm    4 Colm4    3 V 1  1  1   4    0    0    0    0  0   0 0 0  0  0  0  0    7   7  336.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-   8 Upd.1 Colm    5 Colm5    3 V 1  1  1   5    0    0    0    0  0   0 0 0  0  0  0  0    8   8  432.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-   9 Upd.1 Colm    6 Colm6    3 V 1  1  1   6    0    0    0    0  0   0 0 0  0  0  0  0    9   9  528.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-  10 Upd.1 Colm    7 Colm7    3 V 1  1  1   7    0    0    0    0  0   0 0 0  0  0  0  0   10  10  624.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-  11 Upd.1 Colm    8 Colm8    3 V 1  1  1   8    0    0    0    0  0   0 0 0  0  0  0  0   11  11  720.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-  12 Upd.1 Colm    9 Colm9    3 V 1  1  1   9    0    0    0    0  0   0 0 0  0  0  0  0   12  12  816.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 390.6 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
-  13 Upd.1 Colm   10 Colm10   3 V 1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13  13  912.00  270.00   96.00  540.00            [255 176  31 255][ 95  66  12 255] C C    48   270 59.65 468.7 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
+   2 Upd.1 Line    1          1 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  480.00  270.00  960.00  540.00            [255  31 255 255][ 81  10  81 255] C C   480   270 0.000 0.000 392.2 104.8 497.0 C,C  373  96 0 0 Lucida Console        
+   3 Upd.1 Sect    1          2 V 1  1  1   0    0    0    0    0  0   0 0 0  0  0  0  0    3   3  480.00  270.00  960.00  540.00            [255  63  31 255][ 81  20  10 255] C C   480   270 0.000 0.000 261.2 69.82 331.0 C,C  249  96 0 0 Lucida Console        
+   4 Upd.1 Colm    1          3 V 1  1  1   1    0    0    0    0  0   0 0 0  0  0  0  0    4   4   48.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+   5 Upd.1 Tabl    1 1        6 V 1  1  1   1    1    0    0    0  0   0 0 0  0  0  0  0    5   5   48.00  495.00   96.00   90.00   1   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+   6 Upd.1 Tabl    2 2        6 V 1  1  1   1    2    0    0    0  0   0 0 0  0  0  0  0    6   6   48.00  405.00   96.00   90.00   2   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+   7 Upd.1 Tabl    3 3        6 V 1  1  1   1    3    0    0    0  0   0 0 0  0  0  0  0    7   7   48.00  315.00   96.00   90.00   3   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+   8 Upd.1 Tabl    4 4        6 V 1  1  1   1    4    0    0    0  0   0 0 0  0  0  0  0    8   8   48.00  225.00   96.00   90.00   4   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+   9 Upd.1 Tabl    5 5        6 V 1  1  1   1    5    0    0    0  0   0 0 0  0  0  0  0    9   9   48.00  135.00   96.00   90.00   5   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  10 Upd.1 Tabl    6 6        6 V 1  1  1   1    6    0    0    0  0   0 0 0  0  0  0  0   10  10   48.00   45.00   96.00   90.00   6   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  11 Upd.1 Colm    2          3 V 1  1  1   2    6    0    0    0  0   0 0 0  0  0  0  0   11  11  144.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  12 Upd.1 Tabl    7 7        6 V 1  1  1   2    7    0    0    0  0   0 0 0  0  0  0  0   12  12  144.00  495.00   96.00   90.00  13  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  13 Upd.1 Tabl    8 8        6 V 1  1  1   2    8    0    0    0  0   0 0 0  0  0  0  0   13  13  144.00  405.00   96.00   90.00  14  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  14 Upd.1 Tabl    9 9        6 V 1  1  1   2    9    0    0    0  0   0 0 0  0  0  0  0   14  14  144.00  315.00   96.00   90.00  15  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  15 Upd.1 Tabl   10 a        6 V 1  1  1   2   10    0    0    0  0   0 0 0  0  0  0  0   15  15  144.00  225.00   96.00   90.00  16  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  16 Upd.1 Tabl   11 b        6 V 1  1  1   2   11    0    0    0  0   0 0 0  0  0  0  0   16  16  144.00  135.00   96.00   90.00  17  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  17 Upd.1 Tabl   12 c        6 V 1  1  1   2   12    0    0    0  0   0 0 0  0  0  0  0   17  17  144.00   45.00   96.00   90.00  18  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  18 Upd.1 Colm    3          3 V 1  1  1   3   12    0    0    0  0   0 0 0  0  0  0  0   18  18  240.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  19 Upd.1 Tabl   13 -        6 V 1  1  1   3   13    0    0    0  0   0 0 0  0  0  0  0   19  19  240.00  495.00   96.00   90.00  25  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  20 Upd.1 Tabl   14 -        6 V 1  1  1   3   14    0    0    0  0   0 0 0  0  0  0  0   20  20  240.00  405.00   96.00   90.00  26  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  21 Upd.1 Tabl   15 -        6 V 1  1  1   3   15    0    0    0  0   0 0 0  0  0  0  0   21  21  240.00  315.00   96.00   90.00  27  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  22 Upd.1 Tabl   16 -        6 V 1  1  1   3   16    0    0    0  0   0 0 0  0  0  0  0   22  22  240.00  225.00   96.00   90.00  28  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  23 Upd.1 Tabl   17 -        6 V 1  1  1   3   17    0    0    0  0   0 0 0  0  0  0  0   23  23  240.00  135.00   96.00   90.00  29  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  24 Upd.1 Tabl   18 -        6 V 1  1  1   3   18    0    0    0  0   0 0 0  0  0  0  0   24  24  240.00   45.00   96.00   90.00  30  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  25 Upd.1 Colm    4          3 V 1  1  1   4   18    0    0    0  0   0 0 0  0  0  0  0   25  25  336.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  26 Upd.1 Tabl   19 -        6 V 1  1  1   4   19    0    0    0  0   0 0 0  0  0  0  0   26  26  336.00  495.00   96.00   90.00  37  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  27 Upd.1 Tabl   20 -        6 V 1  1  1   4   20    0    0    0  0   0 0 0  0  0  0  0   27  27  336.00  405.00   96.00   90.00  38  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  28 Upd.1 Tabl   21 -        6 V 1  1  1   4   21    0    0    0  0   0 0 0  0  0  0  0   28  28  336.00  315.00   96.00   90.00  39  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  29 Upd.1 Tabl   22 -        6 V 1  1  1   4   22    0    0    0  0   0 0 0  0  0  0  0   29  29  336.00  225.00   96.00   90.00  40  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  30 Upd.1 Tabl   23 -        6 V 1  1  1   4   23    0    0    0  0   0 0 0  0  0  0  0   30  30  336.00  135.00   96.00   90.00  41  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  31 Upd.1 Tabl   24 -        6 V 1  1  1   4   24    0    0    0  0   0 0 0  0  0  0  0   31  31  336.00   45.00   96.00   90.00  42  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  32 Upd.1 Colm    5          3 V 1  1  1   5   24    0    0    0  0   0 0 0  0  0  0  0   32  32  432.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  33 Upd.1 Tabl   25 -        6 V 1  1  1   5   25    0    0    0  0   0 0 0  0  0  0  0   33  33  432.00  495.00   96.00   90.00  49  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  34 Upd.1 Tabl   26 -        6 V 1  1  1   5   26    0    0    0  0   0 0 0  0  0  0  0   34  34  432.00  405.00   96.00   90.00  50  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  35 Upd.1 Tabl   27 -        6 V 1  1  1   5   27    0    0    0  0   0 0 0  0  0  0  0   35  35  432.00  315.00   96.00   90.00  51  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  36 Upd.1 Tabl   28 -        6 V 1  1  1   5   28    0    0    0  0   0 0 0  0  0  0  0   36  36  432.00  225.00   96.00   90.00  52  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  37 Upd.1 Tabl   29 -        6 V 1  1  1   5   29    0    0    0  0   0 0 0  0  0  0  0   37  37  432.00  135.00   96.00   90.00  53  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  38 Upd.1 Tabl   30 -        6 V 1  1  1   5   30    0    0    0  0   0 0 0  0  0  0  0   38  38  432.00   45.00   96.00   90.00  54  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  39 Upd.1 Colm    6          3 V 1  1  1   6   30    0    0    0  0   0 0 0  0  0  0  0   39  39  528.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  40 Upd.1 Tabl   31 -        6 V 1  1  1   6   31    0    0    0  0   0 0 0  0  0  0  0   40  40  528.00  495.00   96.00   90.00   1   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  41 Upd.1 Tabl   32 -        6 V 1  1  1   6   32    0    0    0  0   0 0 0  0  0  0  0   41  41  528.00  405.00   96.00   90.00   2   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  42 Upd.1 Tabl   33 -        6 V 1  1  1   6   33    0    0    0  0   0 0 0  0  0  0  0   42  42  528.00  315.00   96.00   90.00   3   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  43 Upd.1 Tabl   34 -        6 V 1  1  1   6   34    0    0    0  0   0 0 0  0  0  0  0   43  43  528.00  225.00   96.00   90.00   4   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  44 Upd.1 Tabl   35 -        6 V 1  1  1   6   35    0    0    0  0   0 0 0  0  0  0  0   44  44  528.00  135.00   96.00   90.00   5   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  45 Upd.1 Tabl   36 -        6 V 1  1  1   6   36    0    0    0  0   0 0 0  0  0  0  0   45  45  528.00   45.00   96.00   90.00   6   0  1 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  46 Upd.1 Colm    7          3 V 1  1  1   7   36    0    0    0  0   0 0 0  0  0  0  0   46  46  624.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  47 Upd.1 Tabl   37 -        6 V 1  1  1   7   37    0    0    0  0   0 0 0  0  0  0  0   47  47  624.00  495.00   96.00   90.00  13  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  48 Upd.1 Tabl   38 -        6 V 1  1  1   7   38    0    0    0  0   0 0 0  0  0  0  0   48  48  624.00  405.00   96.00   90.00  14  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  49 Upd.1 Tabl   39 -        6 V 1  1  1   7   39    0    0    0  0   0 0 0  0  0  0  0   49  49  624.00  315.00   96.00   90.00  15  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  50 Upd.1 Tabl   40 -        6 V 1  1  1   7   40    0    0    0  0   0 0 0  0  0  0  0   50  50  624.00  225.00   96.00   90.00  16  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  51 Upd.1 Tabl   41 -        6 V 1  1  1   7   41    0    0    0  0   0 0 0  0  0  0  0   51  51  624.00  135.00   96.00   90.00  17  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  52 Upd.1 Tabl   42 -        6 V 1  1  1   7   42    0    0    0  0   0 0 0  0  0  0  0   52  52  624.00   45.00   96.00   90.00  18  12  3 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  53 Upd.1 Colm    8          3 V 1  1  1   8   42    0    0    0  0   0 0 0  0  0  0  0   53  53  720.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  54 Upd.1 Tabl   43 -        6 V 1  1  1   8   43    0    0    0  0   0 0 0  0  0  0  0   54  54  720.00  495.00   96.00   90.00  25  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  55 Upd.1 Tabl   44 -        6 V 1  1  1   8   44    0    0    0  0   0 0 0  0  0  0  0   55  55  720.00  405.00   96.00   90.00  26  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  56 Upd.1 Tabl   45 -        6 V 1  1  1   8   45    0    0    0  0   0 0 0  0  0  0  0   56  56  720.00  315.00   96.00   90.00  27  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  57 Upd.1 Tabl   46 -        6 V 1  1  1   8   46    0    0    0  0   0 0 0  0  0  0  0   57  57  720.00  225.00   96.00   90.00  28  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  58 Upd.1 Tabl   47 -        6 V 1  1  1   8   47    0    0    0  0   0 0 0  0  0  0  0   58  58  720.00  135.00   96.00   90.00  29  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  59 Upd.1 Tabl   48 -        6 V 1  1  1   8   48    0    0    0  0   0 0 0  0  0  0  0   59  59  720.00   45.00   96.00   90.00  30  24  5 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  60 Upd.1 Colm    9          3 V 1  1  1   9   48    0    0    0  0   0 0 0  0  0  0  0   60  60  816.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  61 Upd.1 Tabl   49 7        6 V 1  1  1   9   49    0    0    0  0   0 0 0  0  0  0  0   61  61  816.00  495.00   96.00   90.00  37  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  62 Upd.1 Tabl   50 8        6 V 1  1  1   9   50    0    0    0  0   0 0 0  0  0  0  0   62  62  816.00  405.00   96.00   90.00  38  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  63 Upd.1 Tabl   51 9        6 V 1  1  1   9   51    0    0    0  0   0 0 0  0  0  0  0   63  63  816.00  315.00   96.00   90.00  39  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  64 Upd.1 Tabl   52 a        6 V 1  1  1   9   52    0    0    0  0   0 0 0  0  0  0  0   64  64  816.00  225.00   96.00   90.00  40  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  65 Upd.1 Tabl   53 b        6 V 1  1  1   9   53    0    0    0  0   0 0 0  0  0  0  0   65  65  816.00  135.00   96.00   90.00  41  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  66 Upd.1 Tabl   54 c        6 V 1  1  1   9   54    0    0    0  0   0 0 0  0  0  0  0   66  66  816.00   45.00   96.00   90.00  42  36  7 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  67 Upd.1 Colm   10          3 V 1  1  1  10   54    0    0    0  0   0 0 0  0  0  0  0   67  67  912.00  270.00   96.00  540.00            [255 255  63 255][ 81  81  20 255] C C    48   270 0.000 0.000 78.12 20.88 99.00 C,C   75  96 0 0 Lucida Console        
+  68 Upd.1 Tabl   55 1        6 V 1  1  1  10   55    0    0    0  0   0 0 0  0  0  0  0   68  68  912.00  495.00   96.00   90.00  49  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  69 Upd.1 Tabl   56 2        6 V 1  1  1  10   56    0    0    0  0   0 0 0  0  0  0  0   69  69  912.00  405.00   96.00   90.00  50  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  70 Upd.1 Tabl   57 3        6 V 1  1  1  10   57    0    0    0  0   0 0 0  0  0  0  0   70  70  912.00  315.00   96.00   90.00  51  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  71 Upd.1 Tabl   58 4        6 V 1  1  1  10   58    0    0    0  0   0 0 0  0  0  0  0   71  71  912.00  225.00   96.00   90.00  52  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  72 Upd.1 Tabl   59 5        6 V 1  1  1  10   59    0    0    0  0   0 0 0  0  0  0  0   72  72  912.00  135.00   96.00   90.00  53  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+  73 Upd.1 Tabl   60 6        6 V 1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73  912.00   45.00   96.00   90.00  54  48  9 [255 176  31 255][ 81  56  10 255] C C    48    45 56.04 73.38 73.38 19.62 93.00 C,C   70  96 0 0 Lucida Console        
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1273 tabsC resizeTniks        J1[1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13  13] Upd.1
-1273 tabsC resizeTniks        J2[1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13  13] Upd.1
-1273 tabsC resizeTniks        LE[1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13  13] Upd.1
-1273 tabsC resizeTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   13  13] Upd.1
+1275 tabsC resizeTniks        J1[1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73] Upd.1
+1275 tabsC resizeTniks        J2[1  1  1  10   60    0    0    0  0   0 0 0  0  0  0  0   73  73] Upd.1
+1275 tabsC resizeTniks        LE[1  1  1  10   60    0    0    0  0   0 1 0  0  0  0  0   74  73] Upd.1
+1275 tabsC resizeTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   74  73] Upd.1
+1302 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+  74 Upd.1 HCrs    1    0.000 10 V 1  1  1  10   60    0    0    0  0   0 1 0  0  0  0  0   74  74   48.00   45.00   96.00   90.00  54  48  9 [ 31 255 192 135]1.000 1.000 1.000 C C   48   45 Group(order=10) None
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  606 tabsC ntp                tpb tpp tpl tps tpc=[60 60 60 60 6]
  614 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 1 10 6] BGN ntp=[   60   60  60  60   6] ( 1x1x1x6  )
  170 tabsC dumpArgs           [a]      .AUTO_SAVE=0
@@ -370,14 +501,14 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
  173 tabsC dumpArgs           [B]            .BGC=0
  174 tabsC dumpArgs           [c]            .CAT=1
  175 tabsC dumpArgs           [C]      .CHECKERED=0
- 176 tabsC dumpArgs           [d]       .DBG_TABT=5
+ 176 tabsC dumpArgs           [d]       .DBG_TABT=0
  177 tabsC dumpArgs           [e]      .EVENT_LOG=0
  178 tabsC dumpArgs           [f]      .FILE_NAME=test
  179 tabsC dumpArgs           [F]      .FULL_SCRN=0
  180 tabsC dumpArgs           [g]        .ORD_GRP=1
  181 tabsC dumpArgs           [G]       .GEN_DATA=0
  182 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
- 183 tabsC dumpArgs           [J]      .DSP_J_LEV=3
+ 183 tabsC dumpArgs           [J]      .DSP_J_LEV=4
  184 tabsC dumpArgs           [l]       .LONG_TXT=1
  185 tabsC dumpArgs           [L]             .LL=0
  186 tabsC dumpArgs           [M]      .MULTILINE=1
@@ -445,57 +576,1062 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +6 SHRP F# 6 [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
 +7 SHRP C# 1 [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   45 util  dumpData           END D♭ D♮ D♯
-1726 tabsC dumpFont           4:96dpi 70.000pt 0:Lucida Console 0: 70.000pt = 0.778(pt/pix) * 90.000pixels Upd.1
+1728 tabsC dumpFont           4:96dpi 70.000pt 0:Lucida Console 0: 70.000pt = 0.778(pt/pix) * 90.000pixels Upd.1
    1p1   1
    1l1   1
    1s1   1
   10c10  1111111111
-  13t13            10
+  60t60  111111111111111111111111111111111111111111111111111111111111
+   1h1   1
+  74t74            10        20        30        40        50        60        70
 1
 1
 1
 1111111111
+111111111111111111111111111111111111111111111111111111111111
+1
  606 tabsC ntp                tpb tpp tpl tps tpc=[60 60 60 60 6]
  630 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 1 10 6] END ntp=[   60   60  60  60   6] ( 1x1x1x6  )
-2712 tabsC snapshot           BASE_NAME=test logId=None snapId=None typ=INIT PNG=png
-2713 tabsC snapshot           .fNameLid=test.30 snapName=test.30.0.INIT.png on_draw((kwargs)=)
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.30.0.INIT.png
-2716 tabsC snapshot           snapName=test.30.0.INIT.png on_draw((kwargs)=)
+2716 tabsC snapshot           BASE_NAME=test logId=None snapId=None typ=INIT PNG=png
+2717 tabsC snapshot           .fNameLid=test.29 snapName=test.29.0.INIT.png on_draw((kwargs)=)
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.29.0.INIT.png
+2720 tabsC snapshot           snapName=test.29.0.INIT.png on_draw((kwargs)=)
  166 tabsC geomFileName       Atest.1.1.1.10.6_CC_CC.png
- 536 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.30.0.INIT.png)
+ 536 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.29.0.INIT.png)
  537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.png)
- 539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.30.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.png ###
-2721 tabsC snapshot           BASE_NAME=test [1 1 1 10 6]
-2722 tabsC snapshot           snapName2=Atest.1.1.1.10.6_CC_CC.png on_draw((kwargs)=)
+ 539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.29.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.png ###
+2725 tabsC snapshot           BASE_NAME=test [1 1 1 10 6]
+2726 tabsC snapshot           snapName2=Atest.1.1.1.10.6_CC_CC.png on_draw((kwargs)=)
 snapshot C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.png
-1504 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.30
-1504 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.30
-1504 tabsC dumpTnikCsvs       LE[1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13   0] test.30
-1504 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   13   0] test.30
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
+1506 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.29
+1506 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.29
+1506 tabsC dumpTnikCsvs       LE[1  1  1  10   60    0    0    0  0   0 1 0  0  0  0  0   74   0] test.29
+1506 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   74   0] test.29
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1520 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.30
-1520 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.30
-1520 tabsC dumpTnikCsvs       LE[1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13   0] test.30
-1520 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   13   0] test.30
+1522 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.29
+1522 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.29
+1522 tabsC dumpTnikCsvs       LE[1  1  1  10   60    0    0    0  0   0 1 0  0  0  0  0   74   0] test.29
+1522 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   74   0] test.29
  644 tabsC on_draw            [1 1 1  1 6]   6   0  1] .snapWhy=init .snapType=INIT .snapId=1
-snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.30.0.INIT.png)
-1899 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-1995 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-1997 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
-1899 tabsC on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
-1995 tabsC on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
-1997 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
-1899 tabsC on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.29.0.INIT.png)
+1903 tabsC on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 1> <.modsStr=MOD_SHIFT       >
+1999 tabsC on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 1> <.modsStr=MOD_SHIFT       >
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+1903 tabsC on_key_press       BGN <    .kbk=LALT    > <.symb=   65513> <.symbStr=LALT            > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1999 tabsC on_key_press       END <    .kbk=LALT    > <.symb=   65513> <.symbStr=LALT            > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1732 tabsC setFontParam       n=font_name    v= 1 .fontNameIdx= 0
+         lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 1  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 2  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 3  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 4  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 5  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 6  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 7  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 8  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 9  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=10  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=11  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=12  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=13  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=14  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=15  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=16  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=17  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=18  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=19  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=20  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=21  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=22  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=23  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=24  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=25  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=26  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=27  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=28  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=29  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=30  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=31  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=32  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=33  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=34  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=35  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=36  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=37  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=38  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=39  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=40  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=41  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=42  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=43  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=44  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=45  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=46  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=47  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=48  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=49  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=50  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=51  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=52  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=53  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=54  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=55  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=56  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=57  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=58  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=59  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 5     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 6     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 7     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 8     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 9     lt=12 m=fontNameIdx  n=font_name    v= 1
+j=10     lt=12 m=fontNameIdx  n=font_name    v= 1
+j=11     lt=12 m=fontNameIdx  n=font_name    v= 1
+1692 tabsC setCaption         96dpi 70.00pt Times New Roman 0
+1999 tabsC on_key_press       END <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1732 tabsC setFontParam       n=font_name    v= 2 .fontNameIdx= 1
+         lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 1  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 2  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 3  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 4  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 5  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 6  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 7  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 8  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 9  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=10  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=11  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=12  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=13  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=14  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=15  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=16  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=17  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=18  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=19  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=20  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=21  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=22  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=23  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=24  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=25  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=26  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=27  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=28  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=29  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=30  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=31  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=32  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=33  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=34  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=35  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=36  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=37  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=38  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=39  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=40  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=41  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=42  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=43  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=44  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=45  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=46  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=47  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=48  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=49  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=50  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=51  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=52  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=53  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=54  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=55  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=56  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=57  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=58  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=59  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 5     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 6     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 7     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 8     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 9     lt=12 m=fontNameIdx  n=font_name    v= 2
+j=10     lt=12 m=fontNameIdx  n=font_name    v= 2
+j=11     lt=12 m=fontNameIdx  n=font_name    v= 2
+1692 tabsC setCaption         96dpi 70.00pt Arial 0
+1999 tabsC on_key_press       END <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1732 tabsC setFontParam       n=font_name    v= 3 .fontNameIdx= 2
+         lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 1  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 2  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 3  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 4  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 5  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 6  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 7  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 8  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 9  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=10  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=11  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=12  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=13  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=14  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=15  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=16  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=17  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=18  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=19  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=20  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=21  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=22  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=23  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=24  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=25  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=26  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=27  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=28  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=29  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=30  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=31  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=32  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=33  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=34  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=35  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=36  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=37  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=38  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=39  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=40  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=41  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=42  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=43  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=44  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=45  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=46  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=47  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=48  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=49  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=50  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=51  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=52  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=53  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=54  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=55  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=56  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=57  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=58  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=59  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 5     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 6     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 7     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 8     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 9     lt=12 m=fontNameIdx  n=font_name    v= 3
+j=10     lt=12 m=fontNameIdx  n=font_name    v= 3
+j=11     lt=12 m=fontNameIdx  n=font_name    v= 3
+1692 tabsC setCaption         96dpi 70.00pt Courier New 0
+1999 tabsC on_key_press       END <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1732 tabsC setFontParam       n=font_name    v= 4 .fontNameIdx= 3
+         lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+2006 tabsC on_key_release         <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 4> <.modsStr=MOD_ALT         >
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1732 tabsC setFontParam       n=font_name    v= 3 .fontNameIdx= 4
+         lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 1  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 2  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 3  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 4  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 5  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 6  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 7  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 8  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 9  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=10  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=11  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=12  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=13  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=14  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=15  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=16  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=17  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=18  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=19  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=20  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=21  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=22  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=23  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=24  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=25  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=26  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=27  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=28  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=29  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=30  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=31  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=32  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=33  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=34  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=35  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=36  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=37  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=38  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=39  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=40  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=41  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=42  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=43  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=44  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=45  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=46  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=47  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=48  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=49  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=50  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=51  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=52  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=53  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=54  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=55  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=56  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=57  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=58  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=59  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 5     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 6     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 7     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 8     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 9     lt=12 m=fontNameIdx  n=font_name    v= 3
+j=10     lt=12 m=fontNameIdx  n=font_name    v= 3
+j=11     lt=12 m=fontNameIdx  n=font_name    v= 3
+1692 tabsC setCaption         96dpi 70.00pt Courier New 0
+1999 tabsC on_key_press       END <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1732 tabsC setFontParam       n=font_name    v= 2 .fontNameIdx= 3
+         lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 1  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 2  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 3  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 4  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 5  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 6  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 7  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 8  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 9  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=10  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=11  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=12  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=13  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=14  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=15  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=16  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=17  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=18  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=19  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=20  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=21  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=22  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=23  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=24  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=25  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=26  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=27  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=28  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=29  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=30  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=31  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=32  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=33  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=34  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=35  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=36  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=37  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=38  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=39  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=40  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=41  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=42  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=43  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=44  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=45  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=46  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=47  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=48  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=49  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=50  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=51  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=52  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=53  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=54  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=55  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=56  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=57  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=58  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=59  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 5     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 6     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 7     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 8     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 9     lt=12 m=fontNameIdx  n=font_name    v= 2
+j=10     lt=12 m=fontNameIdx  n=font_name    v= 2
+j=11     lt=12 m=fontNameIdx  n=font_name    v= 2
+1692 tabsC setCaption         96dpi 70.00pt Arial 0
+1999 tabsC on_key_press       END <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1903 tabsC on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1999 tabsC on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1732 tabsC setFontParam       n=font_name    v= 3 .fontNameIdx= 2
+         lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 1  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 2  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 3  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 4  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 5  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 6  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 7  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 8  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 9  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=10  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=11  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=12  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=13  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=14  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=15  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=16  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=17  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=18  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=19  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=20  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=21  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=22  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=23  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=24  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=25  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=26  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=27  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=28  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=29  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=30  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=31  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=32  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=33  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=34  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=35  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=36  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=37  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=38  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=39  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=40  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=41  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=42  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=43  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=44  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=45  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=46  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=47  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=48  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=49  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=50  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=51  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=52  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=53  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=54  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=55  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=56  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=57  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=58  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=59  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 5     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 6     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 7     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 8     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 9     lt=12 m=fontNameIdx  n=font_name    v= 3
+j=10     lt=12 m=fontNameIdx  n=font_name    v= 3
+j=11     lt=12 m=fontNameIdx  n=font_name    v= 3
+1692 tabsC setCaption         96dpi 70.00pt Courier New 0
+1999 tabsC on_key_press       END <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+1732 tabsC setFontParam       n=font_name    v= 4 .fontNameIdx= 3
+         lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 4
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 4 FONT_NAMES[v]=Helvetica
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 5> <.modsStr=MOD_SHIFT|MOD_ALT>
+2006 tabsC on_key_release         <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 4> <.modsStr=MOD_ALT         >
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1732 tabsC setFontParam       n=font_name    v= 3 .fontNameIdx= 4
+         lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 1  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 2  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 3  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 4  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 5  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 6  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 7  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 8  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i= 9  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=10  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=11  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=12  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=13  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=14  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=15  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=16  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=17  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=18  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=19  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=20  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=21  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=22  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=23  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=24  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=25  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=26  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=27  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=28  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=29  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=30  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=31  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=32  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=33  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=34  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=35  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=36  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=37  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=38  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=39  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=40  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=41  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=42  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=43  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=44  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=45  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=46  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=47  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=48  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=49  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=50  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=51  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=52  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=53  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=54  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=55  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=56  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=57  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=58  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 4 i=59  0 0 m=fontNameIdx  n=font_name    v= 3 FONT_NAMES[v]=Courier New
+j= 5     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 6     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 7     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 8     lt=12 m=fontNameIdx  n=font_name    v= 3
+j= 9     lt=12 m=fontNameIdx  n=font_name    v= 3
+j=10     lt=12 m=fontNameIdx  n=font_name    v= 3
+j=11     lt=12 m=fontNameIdx  n=font_name    v= 3
+1692 tabsC setCaption         96dpi 70.00pt Courier New 0
+1999 tabsC on_key_press       END <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1732 tabsC setFontParam       n=font_name    v= 2 .fontNameIdx= 3
+         lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 1  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 2  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 3  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 4  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 5  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 6  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 7  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 8  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i= 9  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=10  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=11  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=12  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=13  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=14  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=15  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=16  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=17  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=18  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=19  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=20  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=21  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=22  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=23  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=24  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=25  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=26  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=27  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=28  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=29  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=30  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=31  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=32  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=33  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=34  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=35  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=36  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=37  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=38  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=39  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=40  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=41  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=42  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=43  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=44  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=45  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=46  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=47  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=48  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=49  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=50  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=51  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=52  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=53  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=54  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=55  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=56  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=57  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=58  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 4 i=59  0 0 m=fontNameIdx  n=font_name    v= 2 FONT_NAMES[v]=Arial
+j= 5     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 6     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 7     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 8     lt=12 m=fontNameIdx  n=font_name    v= 2
+j= 9     lt=12 m=fontNameIdx  n=font_name    v= 2
+j=10     lt=12 m=fontNameIdx  n=font_name    v= 2
+j=11     lt=12 m=fontNameIdx  n=font_name    v= 2
+1692 tabsC setCaption         96dpi 70.00pt Arial 0
+1999 tabsC on_key_press       END <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1732 tabsC setFontParam       n=font_name    v= 1 .fontNameIdx= 2
+         lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 1  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 2  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 3  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 4  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 5  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 6  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 7  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 8  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i= 9  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=10  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=11  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=12  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=13  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=14  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=15  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=16  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=17  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=18  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=19  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=20  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=21  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=22  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=23  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=24  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=25  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=26  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=27  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=28  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=29  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=30  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=31  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=32  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=33  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=34  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=35  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=36  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=37  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=38  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=39  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=40  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=41  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=42  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=43  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=44  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=45  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=46  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=47  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=48  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=49  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=50  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=51  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=52  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=53  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=54  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=55  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=56  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=57  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=58  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 4 i=59  0 0 m=fontNameIdx  n=font_name    v= 1 FONT_NAMES[v]=Times New Roman
+j= 5     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 6     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 7     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 8     lt=12 m=fontNameIdx  n=font_name    v= 1
+j= 9     lt=12 m=fontNameIdx  n=font_name    v= 1
+j=10     lt=12 m=fontNameIdx  n=font_name    v= 1
+j=11     lt=12 m=fontNameIdx  n=font_name    v= 1
+1692 tabsC setCaption         96dpi 70.00pt Times New Roman 0
+1999 tabsC on_key_press       END <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1732 tabsC setFontParam       n=font_name    v= 0 .fontNameIdx= 1
+         lt=12 m=fontNameIdx  n=font_name    v= 0
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 0
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 0
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 0
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 0
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 0
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i= 1  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i= 2  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i= 3  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i= 4  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i= 5  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i= 6  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i= 7  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i= 8  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i= 9  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=10  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=11  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=12  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=13  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=14  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=15  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=16  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=17  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=18  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=19  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=20  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=21  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=22  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=23  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=24  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=25  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=26  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=27  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=28  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=29  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=30  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=31  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=32  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=33  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=34  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=35  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=36  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=37  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=38  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=39  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=40  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=41  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=42  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=43  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=44  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=45  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=46  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=47  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=48  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=49  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=50  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=51  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=52  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=53  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=54  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=55  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=56  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=57  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=58  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 4 i=59  0 0 m=fontNameIdx  n=font_name    v= 0 FONT_NAMES[v]=Lucida Console
+j= 5     lt=12 m=fontNameIdx  n=font_name    v= 0
+j= 6     lt=12 m=fontNameIdx  n=font_name    v= 0
+j= 7     lt=12 m=fontNameIdx  n=font_name    v= 0
+j= 8     lt=12 m=fontNameIdx  n=font_name    v= 0
+j= 9     lt=12 m=fontNameIdx  n=font_name    v= 0
+j=10     lt=12 m=fontNameIdx  n=font_name    v= 0
+j=11     lt=12 m=fontNameIdx  n=font_name    v= 0
+1692 tabsC setCaption         96dpi 70.00pt Lucida Console 0
+1999 tabsC on_key_press       END <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1903 tabsC on_key_press       BGN <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+1732 tabsC setFontParam       n=font_name    v= 7 .fontNameIdx= 0
+         lt=12 m=fontNameIdx  n=font_name    v= 7
+j= 0     lt=12 m=fontNameIdx  n=font_name    v= 7
+j= 0 i= 0  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 1     lt=12 m=fontNameIdx  n=font_name    v= 7
+j= 1 i= 0  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 2     lt=12 m=fontNameIdx  n=font_name    v= 7
+j= 2 i= 0  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 3     lt=12 m=fontNameIdx  n=font_name    v= 7
+j= 3 i= 0  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 3 i= 1  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 3 i= 2  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 3 i= 3  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 3 i= 4  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 3 i= 5  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 3 i= 6  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 3 i= 7  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 3 i= 8  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 3 i= 9  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+j= 4     lt=12 m=fontNameIdx  n=font_name    v= 7
+j= 4 i= 0  0 0 m=fontNameIdx  n=font_name    v= 7 FONT_NAMES[v]=Antique Olive
+2006 tabsC on_key_release         <    .kbk=A       > <.symb=      97> <.symbStr=A               > <.mods= 4> <.modsStr=MOD_ALT         >
+2006 tabsC on_key_release         <    .kbk=LALT    > <.symb=   65513> <.symbStr=LALT            > <.mods= 0> <.modsStr=                >
+1903 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+1999 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+1903 tabsC on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+1999 tabsC on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+1903 tabsC on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
-2767 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+2771 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
- 470 util  dumpStack          10 tabsC      2768 quit                 .log(.QUIT_BGN, p=0, f=2)    ;    .dumpStack(inspect.stack())   ;   .log(.QUIT, p=0, f=2)
- 470 util  dumpStack           9 tabsC      1932 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(          @^Q, error=0, save=0)
+ 470 util  dumpStack          10 tabsC      2772 quit                 .log(.QUIT_BGN, p=0, f=2)    ;    .dumpStack(inspect.stack())   ;   .log(.QUIT, p=0, f=2)
+ 470 util  dumpStack           9 tabsC      1936 on_key_press         elif kbk == Q and .isCtrlShift(mods):    .quit(          @^Q, error=0, save=0)
  470 util  dumpStack           8 event       422 dispatch_event       if getattr(, event_type)(*args):
  470 util  dumpStack           7 __init__   1340 dispatch_event       super().dispatch_event(*args)
  470 util  dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
@@ -503,16 +1639,16 @@ snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.30.0.IN
  470 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
  470 util  dumpStack           3 base        185 run                  platform_event_loop.step(timeout)
  470 util  dumpStack           2 __init__    107 run                  event_loop.run(interval)
- 470 util  dumpStack           1 tabsC      2959 main                 ret = pyglet.app.run()
- 470 util  dumpStack           0 tabsC      2971 <module>             main()
+ 470 util  dumpStack           1 tabsC      2963 main                 ret = pyglet.app.run()
+ 470 util  dumpStack           0 tabsC      2975 <module>             main()
  471 util  dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName             FullText
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-2770 tabsC quit               J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
-2770 tabsC quit               J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
-2770 tabsC quit               LE[1  1  1  10    0    0    0    0  0   0 0 0  0  0  0  0   13   0] @^Q
-2770 tabsC quit               END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   13   0] @^Q
+2774 tabsC quit               J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
+2774 tabsC quit               J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
+2774 tabsC quit               LE[1  1  1  10   60    0    0    0  0   0 1 0  0  0  0  0   74   0] @^Q
+2774 tabsC quit               END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0      ) 0 (   )   74   0] @^Q
  470 util  dumpStack           6          20 <module>             MAX_STACK_FRAME  = inspect.stack()
  470 util  dumpStack           5 <frozen importlib   241 _call_with_frames_removed 
  470 util  dumpStack           4 <frozen importlib   883 exec_module          
@@ -529,14 +1665,14 @@ snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.30.0.IN
  173 tabsC dumpArgs           [B]            .BGC=0
  174 tabsC dumpArgs           [c]            .CAT=1
  175 tabsC dumpArgs           [C]      .CHECKERED=0
- 176 tabsC dumpArgs           [d]       .DBG_TABT=5
+ 176 tabsC dumpArgs           [d]       .DBG_TABT=0
  177 tabsC dumpArgs           [e]      .EVENT_LOG=0
  178 tabsC dumpArgs           [f]      .FILE_NAME=test
  179 tabsC dumpArgs           [F]      .FULL_SCRN=0
  180 tabsC dumpArgs           [g]        .ORD_GRP=1
  181 tabsC dumpArgs           [G]       .GEN_DATA=0
  182 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
- 183 tabsC dumpArgs           [J]      .DSP_J_LEV=3
+ 183 tabsC dumpArgs           [J]      .DSP_J_LEV=4
  184 tabsC dumpArgs           [l]       .LONG_TXT=1
  185 tabsC dumpArgs           [L]             .LL=0
  186 tabsC dumpArgs           [M]      .MULTILINE=1
@@ -604,12 +1740,14 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +6 SHRP F# 6 [F# C# G# D# A# E# B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F# G# A# B  C# D# E#]
 +7 SHRP C# 1 [F# C# G# D# A# E# B#] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C# D# E# F# G# A# B#]
   45 util  dumpData           END D♭ D♮ D♯
-1726 tabsC dumpFont           4:96dpi 70.000pt 0:Lucida Console 0: 70.000pt = 0.778(pt/pix) * 90.000pixels @^Q
+1728 tabsC dumpFont           4:96dpi 70.000pt 7:Antique Olive 0: 70.000pt = 0.778(pt/pix) * 90.000pixels @^Q
    0t0   
 1
 1
 1
 1111111111
+111111111111111111111111111111111111111111111111111111111111
+1
  606 tabsC ntp                tpb tpp tpl tps tpc=[60 60 60 60 6]
  630 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 1 10 6] END ntp=[   60   60  60  60   6] ( 1x1x1x6  )
  761 tabsC transposeData      BGN ( 1x1x10x6 ) dmp=1
@@ -622,34 +1760,34 @@ Page 1
 Colm Line 1    
  810 tabsC dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
  777 tabsC transposeData      END ( 1x1x6x10 ) dmp=1
-2778 tabsC quit               END @^Q Error=0 save=0 .quitting=1
+2782 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-2795 tabsC cleanupCsvFile     Closing C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
+2799 tabsC cleanupCsvFile     Closing C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
  528 util  getFilePath        baseName =test         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  531 util  getFilePath        fileName =test.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
  528 util  getFilePath        baseName =Atest.1.1.1.10.6_CC_CC.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  531 util  getFilePath        fileName =Atest.1.1.1.10.6_CC_CC.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.csv)
- 528 util  getFilePath        baseName =test.30      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 531 util  getFilePath        fileName =test.30.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.30.csv)
-2801 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.csv
+ 528 util  getFilePath        baseName =test.29      basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 531 util  getFilePath        fileName =test.29.csv  filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.29.csv)
+2805 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.csv
  536 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
  537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.csv)
  539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.csv ###
-2804 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.30.csv
+2808 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.29.csv
  536 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
- 537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.30.csv)
- 539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.30.csv ###
-2781 tabsC quit               Calling close(),1995 tabsC on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
-1997 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
-2960 tabsC main               pyglet.app.run(): return=None
-2961 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.30.log
+ 537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.29.csv)
+ 539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.29.csv ###
+2785 tabsC quit               Calling close(),1999 tabsC on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2001 tabsC on_key_press       pyglet.event.EVENT_HANDLED=True
+2964 tabsC main               pyglet.app.run(): return=None
+2965 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.29.log
  536 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
- 537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.30.log)
- 539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.30.log ###
+ 537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.29.log)
+ 539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.29.log ###
  528 util  getFilePath        baseName =Atest.1.1.1.10.6_CC_CC.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  531 util  getFilePath        fileName =Atest.1.1.1.10.6_CC_CC.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.log)
-2964 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.log
+2968 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.log
  536 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
  537 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.log)
  539 util  copyFile           ### copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.log ###
-2966 tabsC main               Flush & Close Log File
+2970 tabsC main               Flush & Close Log File
