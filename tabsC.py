@@ -2,7 +2,7 @@ import collections
 import glob, math, os, pathlib, sys
 import operator, inspect, itertools
 from itertools      import accumulate
-#from more_itertools import consume  # not installed in GitBash's Python
+from more_itertools import consume  # not installed in GitBash's Python
 from          collections import Counter
 import pyglet
 from pyglet.text import document, layout
@@ -27,6 +27,10 @@ T, N, I, K            =  4,  5,  6,  7
 R, Q, H, M            =  8,  9, 10, 11
 B, A, D, E            = 12, 13, 14, 15
 ARGS = util.parseCmdLine()
+CAT,  CSV,  LOG,  PNG,  DAT     = 'cat',  'csv',  'log',  'png',  'dat'
+CATS, CSVS, LOGS, PNGS, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'data'
+CATP, CSVP, LOGP                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}'
+
 
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
@@ -50,7 +54,7 @@ class Tabs(pyglet.window.Window):
         self.newC          = 0   ;   self.updC      = 0
         self.cc            = 0   ;   self.nvis      = 0    ;   self.kbk      = 0
         self.allTabSel     = 0   ;   self.rsyncData = 0    ;   self.sprs     = []
-        self.ki            = []  ;   self.ks        = [ W, 0, Notes.NONE, 'C', 0, [], [] ]
+        self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
         self.symbStr,  self.modsStr,  self.symb,    self.mods    = Z, Z, 0, 0
         self.J1,       self.J2,       self.j1s,     self.j2s     = [], [], [], []
         self.hArrow,   self.vArrow,   self.csrMode, self.tids    = RARROW, UARROW, CHORD, set()   ;   self.dumpCursorArrows('init()')
@@ -624,6 +628,7 @@ class Tabs(pyglet.window.Window):
             self.dumpTniksA(f'{why}A')
             self.dumpTniksB(f'{why}B')
             self.dumpTniksC(f'{why}C')
+#            self.dumpTniksCC(f'{why}C')
             self.dumpTniksD(f'{why}D')
             self.dumpTniksE()
             self.dumpTniksF()
@@ -1228,11 +1233,11 @@ class Tabs(pyglet.window.Window):
         if dbg > 1:     text = c.text if ha else Z  ;  self.log(f'{self.fmtJText(j)} {i=} {id(c):x} {text:6} {self.ftxywh(c)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0)
     ####################################################################################################################################################################################################
     @staticmethod
-    def docStyleH(d=W): return d.join(['FnSz', 'Lead', 'LnSp', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          'FontName             '])
-    @staticmethod
     def fDocStyle(m, d, t):
-        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;  clr = util.fColor(m[COLOR])  ;  bgc = util.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?'
-        return d.join([f'{fmtf(m[FONT_SIZE], 4)}', f'{m[LEAD]:4}', lnsp, clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
+        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;  txt = t.document.text  ;  clr = util.fColor(m[COLOR])  ;  bgc = util.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?'
+        return d.join([f'{fmtf(m[FONT_SIZE], 4)}', f'{m[LEAD]:4}', lnsp, f'{txt:8}', clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
+    @staticmethod
+    def docStyleH(d=W):       return d.join(['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          'FontName             '])
     ####################################################################################################################################################################################################
     def imap2ikey(self, tobj, imap, i, j, dbg=0):
         imap0 = imap[0][::-1] if imap and len(imap) else []
@@ -1379,7 +1384,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def fjtxt():     return W.join(f'{jtxt[0]:>{JFMT[i]}}' for i, jtxt in enumerate(JTEXTS)) + ' Vis' # optimize str concat?
     @staticmethod
-    def consMe(it): return collections.deque(it)
+    def consMe(it):  return collections.deque(it, maxlen=0)
     def clearVisib(self):               Tabs.consMe(v.clear() for v in self.visib)
 
     def dumpTnik(self, t=None, j=None, why=Z):
@@ -1450,7 +1455,14 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpTniksC(self, why=Z):
         self.dumpTniksPfx(why)
-        Tabs.consMe(Tabs.consMe(self.setJdump(j, i % self.n[j], why=why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
+        it = list(itertools.chain(self.A, self.B)) # , self.C
+        consume(consume(self.setJdump(j, i % self.n[j], why=why) for i in range(len(it[j]))) for j in range(len(it)))
+#        Tabs.consMe(Tabs.consMe(self.setJdump(j, i % self.n[j], why=why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
+        self.dumpTniksSfx(why)
+
+    def dumpTniksCC(self, why=Z):
+        self.dumpTniksPfx(why)
+        Tabs.consMe(Tabs.consMe(self.setJdump(j, i % self.n[j], v=int(self.E[j][i]), why=why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
         self.dumpTniksSfx(why)
 
     def dumpTniksD(self, why=Z):
@@ -1490,7 +1502,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     @staticmethod
     def a2csv(a, w=7):   return fmtl(a, w=w, u="^", d=Z, s=Y) if util.isi(a, list) else f'{a:^{w}}'
-    def args2csv(self):  return f'{W*4}, -n ,{self.a2csv(self.n0)}', f'{W},{W}, -i  ,{self.a2csv(self.i0, w=5)}', f' -s  ,{self.a2csv(self.ss2sl()[:2], w=1)},{self.a2csv(self.ss2sl()[2:], w=4)} ,{W*4},{W*4},{W*4},'
+    def args2csv(self):  return f'{W*4}, -n ,{self.a2csv(self.n0)}', f'{W},{W}, -i  ,{self.a2csv(self.i0, w=5)}', f' -s  ,{self.a2csv(self.ss2sl()[:2], w=1)},{self.a2csv(self.ss2sl()[2:], w=4)} ,{W*4},{W*4},{W*4},{W*8}'
     @staticmethod
     def csvHdr(n): return JLBL(n, Y)
 #    def csvHdr(self, j, n): return JLBL(n, Y) if util.isi(self.E[j][0], LBL) else JSPR(n, Y) # util.isi(self.E[j][0], SPR)
@@ -2734,7 +2746,7 @@ class Tabs(pyglet.window.Window):
             self.log(f)
             os.system(f'del {f}')
 
-    def getFileSeqName(self, fdir='files', fsfx='txt'):
+    def getFileSeqName(self, fdir=LOGS, fsfx='log'):
         fdir += '/'
         self.log(f'{fdir=} {fsfx=}')
         fGlobArg = f'{(BASE_PATH / fdir / BASE_NAME)}.*.{fsfx}'
@@ -2887,9 +2899,9 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
 PATH      = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH = PATH.parent / 'test'
 BASE_NAME = BASE_PATH.stem
-CAT,  CSV,  LOG,  PNG,  DAT     = 'cat',  'csv',  'log',  'png',  'dat'
-CATS, CSVS, LOGS, PNGS, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'data'
-CATP, CSVP, LOGP                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}'
+#CAT,  CSV,  LOG,  PNG,  DAT     = 'cat',  'csv',  'log',  'png',  'dat'
+#CATS, CSVS, LOGS, PNGS, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'data'
+#CATP, CSVP, LOGP                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}'
 CSV_FILE, LOG_FILE              = None, None
 ########################################################################################################################################################################################################
 MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'   ;   LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
@@ -2904,7 +2916,7 @@ CVA       = ['v', 'a']
 ADS       = ['Ascnt', 'Dscnt', 'As+Ds']
 LTXA      = list(itertools.chain(TI, XYWH, AXY2))
 LTXAC     = list(itertools.chain(TI, XYWH, AXY2, CWH))
-LDS       = ['FnSz', 'Lead', 'LnSp', ' ForegroundColor ', ' BackgroundColor ', 'B', 'I', 'S', 'M', 'W', 'w', 'FontName']
+LDS       = ['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B', 'I', 'S', 'M', 'W', 'w', 'FontName']
 LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
 def JLBL(n, d): return (f'{d.join(LLBL)}{d}'*n).removesuffix(d)
 def JSPR(n, d): return (f'{d.join(LTXA)}{d}'*n).removesuffix(d)

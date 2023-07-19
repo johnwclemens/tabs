@@ -2,7 +2,7 @@
 #import random
 import sys, os, inspect, pathlib
 from collections import Counter
-from collections import OrderedDict as cOd
+#from collections import OrderedDict as cOd
 
 W, Y, Z          = ' ', ',', ''
 M, P             = -7, 7
@@ -233,9 +233,9 @@ class Modes:
 ########################################################################################################################################################################################################
 
 class Strings:
-    aliases = {'GUITAR_6_STD':    cOd([('E2', 28), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
-               'GUITAR_6_DROP_D': cOd([('D2', 26), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
-               'GUITAR_7_STD':    cOd([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
+    aliases = {'GUITAR_6_STD':    dict([('E2', 28), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
+               'GUITAR_6_DROP_D': dict([('D2', 26), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
+               'GUITAR_7_STD':    dict([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
               }
     def __init__(self, alias=None):
         if alias is None: alias = 'GUITAR_6_STD'
@@ -332,8 +332,8 @@ if UNICODE:
         S4F = { f'B{S}':'C' ,                             'E' :f'F{F}', f'E{S}':'F' ,                                             'B' :f'C{F}' } #,'B#``':'C'  } #[0   45     b]# 4/9
         I2N, I4N         = [None, I2S, I2F],  [None, I4S, I4F]
         IS0,  IS1,  IS2  = [2, 7, 9],  [1, 3, 6, 8, 10],  [0, 4, 5, 11]
-        FLAT, NONE, SHRP =    -1,      0,      1    # -1 ~= 2
-        TYPES            =          [ 'NONE', 'SHRP', 'FLAT' ] # 0=NONE, 1=SHRP, 2=FLAT=-1
+        FLAT, NTRL, SHRP =    -1,      0,      1    # -1 ~= 2
+        TYPES            =          [ 'NTRL', 'SHRP', 'FLAT' ] # 0=NTRL, 1=SHRP, 2=FLAT=-1
         TYPE, NTONES     = SHRP, len(V2I) # - 1
 
         @staticmethod
@@ -366,8 +366,8 @@ else:
         S4F = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B' :'Cb'} #,'B#``':'C'  } #[0   45     b]# 4/9
         I2N, I4N         = [None, I2S, I2F],  [None, I4S, I4F]
         IS0,  IS1,  IS2  = [2, 7, 9],  [1, 3, 6, 8, 10],  [0, 4, 5, 11]
-        FLAT, NONE, SHRP =    -1,      0,      1    # -1 ~= 2
-        TYPES            =          [ 'NONE', 'SHRP', 'FLAT' ] # 0=NONE, 1=SHRP, 2=FLAT=-1
+        FLAT, NTRL, SHRP =    -1,      0,      1    # -1 ~= 2
+        TYPES            =          [ 'NTRL', 'SHRP', 'FLAT' ] # 0=NTRL, 1=SHRP, 2=FLAT=-1
         TYPE, NTONES     = FLAT, len(V2I) # - 1
 
         @staticmethod
