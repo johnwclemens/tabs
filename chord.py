@@ -40,8 +40,9 @@ class Chord:
                     root = _imap['R']           ;     chunks.append(root)
                     assert util.isi(omap[ikey],   tuple),  slog(f'Invalid type, expected tuple, got {type(omap[ikey])=} {omap[ikey]=}')
                     assert util.isi(omap[ikey][2], list),  slog(f'Invalid type, expected tuple, got {type(omap[ikey][2])=} {omap[ikey][2]=}')
-                    for n in omap[ikey][2]:           chunks.append(n) if n else None
-#                    [ chunks.append(n) for n in omap[ikey][2] if n ]
+#                    for n in omap[ikey][2]:
+#                        chunks.append(n) if n else None
+                    [ chunks.append(n) for n in omap[ikey][2] if n ]
                     if root != notes[0]:              nsfx = f'/{notes[0]}'  ;  chunks.append(nsfx)
                     name = Z.join(chunks)       ;     rank = omap[ikey][0]
                     assert _ivals == omap[ikey][1],   slog(f'Error _ivals != omap[ikey][1], {_ivals=} {omap[ikey][1]=}')

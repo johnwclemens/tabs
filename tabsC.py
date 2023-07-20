@@ -1,25 +1,26 @@
-import collections
-import glob, math, os, pathlib, sys
-import operator, inspect, itertools
-from itertools      import accumulate
-from more_itertools import consume  # not installed in GitBash's Python
-from          collections import Counter
+import  glob, os, pathlib, sys
+import  inspect, math, operator
+import  collections, itertools
+from    collections  import Counter
+from      itertools  import accumulate
+from more_itertools  import consume  # not installed in GitBash's Python
 import pyglet
-from pyglet.text import document, layout
-import pyglet.image        as pygimg
-import pyglet.font         as pygfont
-import pyglet.sprite       as pygsprt
-import pyglet.text         as pygtxt
+import pyglet.font   as pygfont
+import pyglet.image  as pygimg
+import pyglet.sprite as pygsprt
+import pyglet.text   as pygtxt
 import pyglet.window.event as pygwine
 import pyglet.window.key   as pygwink
-import util, chord
-#from util import KeySig    as KS
-from util import Notes     as Notes
-from util import slog      as slog
-from util import olog      as olog
-from util import fmtl      as fmtl
-from util import fmtm      as fmtm
-from util import fmtf      as fmtf
+from   pyglet.text import document, layout
+import chord
+import util
+#from util import KeySig as KS
+from util import Notes as Notes
+from util import fmtf  as fmtf
+from util import fmtl  as fmtl
+from util import fmtm  as fmtm
+from util import olog  as olog
+from util import slog  as slog
 
 W, Y, Z               = ' ', ',', ''
 P, L, S, C            =  0,  1,  2,  3
@@ -30,7 +31,6 @@ ARGS = util.parseCmdLine()
 CAT,  CSV,  LOG,  PNG,  DAT     = 'cat',  'csv',  'log',  'png',  'dat'
 CATS, CSVS, LOGS, PNGS, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'data'
 CATP, CSVP, LOGP                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}'
-
 
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
@@ -61,7 +61,6 @@ class Tabs(pyglet.window.Window):
         self.tblank,   self.tblanki,  self.cursor,  self.data    = None, None, None, []
         self.XYVA      = [0, 0, 0, 0]
         self._init_xyva()
-        self.UNICODE   = UNICODE
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT       = 1  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DBG_TABT  = 0
         self.EVENT_LOG = 0  ;  self.EXIT      = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1
         self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.DSP_J_LEV = 4  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0
@@ -1554,7 +1553,7 @@ class Tabs(pyglet.window.Window):
             bm = pyglet.image.get_buffer_manager()
             frame = bm.get_color_buffer()
             img = frame.get_image_data()
-            with open(path, 'wb') as file:
+            with open(path, 'wb', encoding='utf-8') as file:
                 file.write(img.get_image_data())
 
     def saveImg(self, path):
@@ -1567,7 +1566,7 @@ class Tabs(pyglet.window.Window):
         frame     = bm.get_color_buffer()
         img       = frame.get_image_data()
         self.log(f'{path=}', f=2)
-        with open(path, 'wb') as file:
+        with open(path, 'wb', encoding='utf-8') as file:
             file.write(img.get_data())
     ####################################################################################################################################################################################################
     def createSprite(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
@@ -2921,7 +2920,6 @@ LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
 def JLBL(n, d): return (f'{d.join(LLBL)}{d}'*n).removesuffix(d)
 def JSPR(n, d): return (f'{d.join(LTXA)}{d}'*n).removesuffix(d)
 ########################################################################################################################################################################################################
-UNICODE               = 1
 LBL                   = pygtxt.Label
 SPR                   = pygsprt.Sprite
 RGB                   = {}
@@ -2959,7 +2957,7 @@ pcsvPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSVP)
 if LOG_PATH.exists():     util.copyFile(LOG_PATH, plogPath)
 if CSV_PATH.exists():     util.copyFile(CSV_PATH, pcsvPath)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE:
-    util.init(LOG_FILE, CSV_FILE, 0, UNICODE)
+    util.init(LOG_FILE, CSV_FILE, 0)
     slog(sys.argv[0],   p=0,           f=2)
     slog(f'argv={fmtl(sys.argv[1:])}', f=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
