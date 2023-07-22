@@ -515,13 +515,13 @@ def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=False):
         pl   = 18 if p == 1 else 8
         p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else Z
         t    = f'{p}{sf.f_code.co_name:{pl}} ' + t
-    so = 0
+    tf = 0
     if   f == 0:  f = TXT_FILE
     elif f == 1:  f = LOG_FILE
-    elif f == 2:  f = LOG_FILE  ;  so = 1
-    elif f == 3:  f = CSV_FILE # ;  so = 1
-    print(t, sep=s, end=e, file=f, flush=ff)
-    print(t, sep=s, end=e,         flush=ff) if so else None
+    elif f == 2:  f = LOG_FILE  ;  tf = 1
+    elif f == 3:  f = CSV_FILE
+    print(t, sep=s, end=e, file=f,        flush=ff)
+    print(t, sep=s, end=e, file=TXT_FILE, flush=ff) if tf else None
 ########################################################################################################################################################################################################
 def filtText(text):
     text = text.replace('"', Z)

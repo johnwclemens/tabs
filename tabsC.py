@@ -2982,15 +2982,15 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
         ret = pyglet.app.run()
         slog(f'pyglet.app.run(): return={ret}')
 
+        slog(f'Copy {LOG_FILE.name} to {seqNumLogPath}', ff=1)
+        util.copyFile(LOG_PATH,         seqNumLogPath)
+        geomLogFilePath = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
+
         slog(f'Copy {TXT_FILE.name} to {seqNumTxtPath}', f=0)
         slog('Flush & Close Txt File', f=0)
         print('Thats all folks!', flush=True)
         TXT_FILE.flush()               ;   TXT_FILE.close()
         util.copyFile(TXT_PATH,         seqNumTxtPath, dbg=0)
-
-        slog(f'Copy {LOG_FILE.name} to {seqNumLogPath}', ff=1)
-        util.copyFile(LOG_PATH,         seqNumLogPath)
-        geomLogFilePath = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
 
         slog(f'Copy {LOG_FILE.name} to {geomLogFilePath}', ff=1)
         util.copyFile(LOG_PATH,         geomLogFilePath)

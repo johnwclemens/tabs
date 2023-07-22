@@ -50,6 +50,10 @@ for ext in "${exts[@]}"  ; do
     dir="$ext"o
     echo cleanup "$dir" "$ext"
     cleanup      "$dir" "$ext"
+  elif [[ $ext = "txt" ]]; then
+    dir="text"
+    echo cleanup "$dir" "$ext"
+    cleanup      "$dir" "$ext"
   else
     dir="$ext"s
     echo cleanup "$dir" "$ext"
