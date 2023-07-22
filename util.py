@@ -75,52 +75,52 @@ def dumpData(csv=0):
     slog(f'END D{F} D{N} D{S}')
 ########################################################################################################################################################################################################
 def dumpTestA(csv=0):
-    w, d, m, n, ff = (0, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
+    w, d, m, n, file = (0, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
     t   = Notes.NTONES  ;    s = Notes.SHRP  ;    f = Notes.FLAT  ;  is1 = Notes.IS1  ;  is2 = Notes.IS2  ;  i2v = Notes.I2V  ;  v = 21
     i2n = Notes.I2N     ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i4v = Notes.I4V  ;  n2i = Notes.N2I
     i4n = Notes.I4N     ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  i6v = Notes.I6V  ;  v2i = Notes.V2I
     slog('BGN')         ;    o = t + 1       ;    p = 0
-    slog(f'    {m}{fmtl(list(range(v)), w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' F2S{m}{fmtl([ f"{i2n[f][k]}:{f2s[i2n[f][k]]}"  if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' F4S{m}{fmtl([ f"{i4n[f][k]}:{f4s[i4n[f][k]]}"  if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' S2F{m}{fmtl([ f"{i2n[s][k]}:{s2f[i2n[s][k]]}"  if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' S4F{m}{fmtl([ f"{i4n[s][k]}:{s4f[i4n[s][k]]}"  if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I2F{m}{fmtl([ f"{k}:{i2f[k]}"    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I4F{m}{fmtl([ f"{k}:{i4f[k]}"    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I2S{m}{fmtl([ f"{k}:{i2s[k]}"    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I4S{m}{fmtl([ f"{k}:{i4s[k]}"    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' N2I{m}{fmtl([ f"{k}:{v}"    for k,v in n2i.items() ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f'I2NF{n}{fmtl([ f"{k}:{i2n[f][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f'I4NF{n}{fmtl([ f"{k}:{i4n[f][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f'I2NS{n}{fmtl([ f"{k}:{i2n[s][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f'I4NS{n}{fmtl([ f"{k}:{i4n[s][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I2V{m}{fmtl([ f"{k}:{v}"    for k,v in i2v.items() ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I4V{m}{fmtl([ f"{k}:{v}"    for k,v in i4v.items() ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I6V{m}{fmtl([ f"{k}:{v}"    for k,v in i6v.items() ], w=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' V2I{m}{fmtl([ f"{k}:{v}"    for k,v in v2i.items() ], w=w, d=d, s=m)}', p=p, f=ff)
+    slog(f'    {m}{fmtl(list(range(v)), w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' F2S{m}{fmtl([ f"{i2n[f][k]}:{f2s[i2n[f][k]]}"  if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' F4S{m}{fmtl([ f"{i4n[f][k]}:{f4s[i4n[f][k]]}"  if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' S2F{m}{fmtl([ f"{i2n[s][k]}:{s2f[i2n[s][k]]}"  if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' S4F{m}{fmtl([ f"{i4n[s][k]}:{s4f[i4n[s][k]]}"  if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I2F{m}{fmtl([ f"{k}:{i2f[k]}"    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I4F{m}{fmtl([ f"{k}:{i4f[k]}"    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I2S{m}{fmtl([ f"{k}:{i2s[k]}"    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I4S{m}{fmtl([ f"{k}:{i4s[k]}"    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' N2I{m}{fmtl([ f"{k}:{v}"    for k,v in n2i.items() ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f'I2NF{n}{fmtl([ f"{k}:{i2n[f][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f'I4NF{n}{fmtl([ f"{k}:{i4n[f][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f'I2NS{n}{fmtl([ f"{k}:{i2n[s][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f'I4NS{n}{fmtl([ f"{k}:{i4n[s][k]}" for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I2V{m}{fmtl([ f"{k}:{v}"    for k,v in i2v.items() ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I4V{m}{fmtl([ f"{k}:{v}"    for k,v in i4v.items() ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I6V{m}{fmtl([ f"{k}:{v}"    for k,v in i6v.items() ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' V2I{m}{fmtl([ f"{k}:{v}"    for k,v in v2i.items() ], w=w, d=d, s=m)}', p=p, f=file)
     slog('END')
 def dumpTestB(csv=0):
-    w, d, m, n, ff = (0, Z, Y, Y, 3) if csv else (2, '[', W, Z, 1)   ;   p = 0  ;  v = 21
+    w, d, m, n, f = (0, Z, Y, Y, 3) if csv else (2, '[', W, Z, 1)   ;   p = 0  ;  v = 21
     x = f'{w}x'  ;  u = f'>{w}'  ;  y = f'<{w}x'  ;  z = f'<{w}'  ;  q = f'>{w}x'
     slog('BGN')  ;  w = 0 if csv else '^5'
-    slog(f'    {m}{fmtl(list(range(v)), w=w,       d=d, s=m)}', p=p, f=ff)
-    slog(f' F2S{m}{fmtm(Notes.F2S,      w=w,       d=d, s=m)}', p=p, f=ff)   ;   w = 0 if csv else 2
-    slog(f' F4S{m}{fmtm(Notes.F4S,      w=u, wv=z, d=d, s=m)}', p=p, f=ff)
-    slog(f' S2F{m}{fmtm(Notes.S2F,      w=w,       d=d, s=m)}', p=p, f=ff)
-    slog(f' S4F{m}{fmtm(Notes.S4F,      w=u, wv=z, d=d, s=m)}', p=p, f=ff)
-    slog(f' I2F{m}{fmtm(Notes.I2F,      w=x, wv=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I4F{m}{fmtm(Notes.I4F,      w=x, wv=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I2S{m}{fmtm(Notes.I2S,      w=x, wv=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I4S{m}{fmtm(Notes.I4S,      w=x, wv=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' N2I{m}{fmtm(Notes.N2I,      w=u, wv=y, d=d, s=m)}', p=p, f=ff)
-    slog(f'I2NF{n}{fmtm(Notes.I2N[-1],  w=q, wv=z, d=d, s=m)}', p=p, f=ff)
-    slog(f'I4NF{n}{fmtm(Notes.I4N[-1],  w=q, wv=z, d=d, s=m)}', p=p, f=ff)
-    slog(f'I2NS{n}{fmtm(Notes.I2N[ 1],  w=q, wv=z, d=d, s=m)}', p=p, f=ff)
-    slog(f'I4NS{n}{fmtm(Notes.I4N[ 1],  w=q, wv=z, d=d, s=m)}', p=p, f=ff)
-    slog(f' I2V{m}{fmtm(Notes.I2V,      w=x, wv=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I4V{m}{fmtm(Notes.I4V,      w=x, wv=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' I6V{m}{fmtm(Notes.I6V,      w=x, wv=w, d=d, s=m)}', p=p, f=ff)
-    slog(f' V2I{m}{fmtm(Notes.V2I,      w=u, wv=y, d=d, s=m)}', p=p, f=ff)
+    slog(f'    {m}{fmtl(list(range(v)), w=w,       d=d, s=m)}', p=p, f=f)
+    slog(f' F2S{m}{fmtm(Notes.F2S,      w=w,       d=d, s=m)}', p=p, f=f)   ;   w = 0 if csv else 2
+    slog(f' F4S{m}{fmtm(Notes.F4S,      w=u, wv=z, d=d, s=m)}', p=p, f=f)
+    slog(f' S2F{m}{fmtm(Notes.S2F,      w=w,       d=d, s=m)}', p=p, f=f)
+    slog(f' S4F{m}{fmtm(Notes.S4F,      w=u, wv=z, d=d, s=m)}', p=p, f=f)
+    slog(f' I2F{m}{fmtm(Notes.I2F,      w=x, wv=w, d=d, s=m)}', p=p, f=f)
+    slog(f' I4F{m}{fmtm(Notes.I4F,      w=x, wv=w, d=d, s=m)}', p=p, f=f)
+    slog(f' I2S{m}{fmtm(Notes.I2S,      w=x, wv=w, d=d, s=m)}', p=p, f=f)
+    slog(f' I4S{m}{fmtm(Notes.I4S,      w=x, wv=w, d=d, s=m)}', p=p, f=f)
+    slog(f' N2I{m}{fmtm(Notes.N2I,      w=u, wv=y, d=d, s=m)}', p=p, f=f)
+    slog(f'I2NF{n}{fmtm(Notes.I2N[-1],  w=q, wv=z, d=d, s=m)}', p=p, f=f)
+    slog(f'I4NF{n}{fmtm(Notes.I4N[-1],  w=q, wv=z, d=d, s=m)}', p=p, f=f)
+    slog(f'I2NS{n}{fmtm(Notes.I2N[ 1],  w=q, wv=z, d=d, s=m)}', p=p, f=f)
+    slog(f'I4NS{n}{fmtm(Notes.I4N[ 1],  w=q, wv=z, d=d, s=m)}', p=p, f=f)
+    slog(f' I2V{m}{fmtm(Notes.I2V,      w=x, wv=w, d=d, s=m)}', p=p, f=f)
+    slog(f' I4V{m}{fmtm(Notes.I4V,      w=x, wv=w, d=d, s=m)}', p=p, f=f)
+    slog(f' I6V{m}{fmtm(Notes.I6V,      w=x, wv=w, d=d, s=m)}', p=p, f=f)
+    slog(f' V2I{m}{fmtm(Notes.V2I,      w=u, wv=y, d=d, s=m)}', p=p, f=f)
     slog('END')
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
@@ -136,23 +136,23 @@ def dumpNF(csv=0):
     slog(f'Shrps{n}{fmtl(list(SHRPS),                w=w, d=d, s=m)}', p=0, f=f)
 
 def dumpFreqs(r=440, csv=0):
-    m, ff = (Y, 3) if csv else (W, 1)
+    m, f = (Y, 3) if csv else (W, 1)
     freqs = FREQS if r == 440 else FREQS2   ;   ref = '440A' if r == 440 else '432A'   ;   fs = []
-    for f in freqs:
-        ft = fmtf(f, 5)
+    for freq in freqs:
+        ft = fmtf(freq, 5)
         fs.append(f'{ft}')
     fs = m.join(fs)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] Hz'
-    slog(f'{ref}{fs}{sfx}', p=0, f=ff)
+    slog(f'{ref}{fs}{sfx}', p=0, f=f)
 
 def dumpWaves(r=440, csv=0, v=340):
-    m, ff = (Y, 3) if csv else (W, 1)       ;   cmpm = 100
+    m, f = (Y, 3) if csv else (W, 1)       ;   cmpm = 100
     freqs = FREQS if r == 440 else FREQS2   ;   ref = '440A' if r == 440 else '432A'   ;   ws = []
-    for f in freqs:
-        w = cmpm * v/f
+    for freq in freqs:
+        w = cmpm * v/freq
         wt = fmtf(w, 5)
         ws.append(f'{wt}')
     ws = m.join(ws)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] cm'
-    slog(f'{ref}{ws}{sfx}', p=0, f=ff)
+    slog(f'{ref}{ws}{sfx}', p=0, f=f)
 ########################################################################################################################################################################################################
 def dumpND(csv=0):
     w, d, m, f = (0, Z, Y, 3) if csv else (2, '[', W, 1)
