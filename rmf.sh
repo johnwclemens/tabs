@@ -37,8 +37,8 @@ for ext in "${exts[@]}"  ; do
   cleanup "$dir" "$ext"
 done
 
-echo exts='("csv" "dat" "log" "png" "std")'
-exts=(      "csv" "dat" "log" "png" "std")
+echo exts='("csv" "dat" "log" "png" "txt")'
+exts=(      "csv" "dat" "log" "png" "txt")
 echo "   >>> Removing Files from Sub-Dirs >>> ..."
 
 for ext in "${exts[@]}"  ; do

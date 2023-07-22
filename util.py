@@ -1,6 +1,6 @@
 """util.py module.  class list: [DSymb, Notes, Strings, Test]."""
 #import random
-import sys, os, inspect, pathlib
+import sys, os, inspect, pathlib, glob
 from collections import Counter
 #from collections import OrderedDict as cOd
 
@@ -14,6 +14,11 @@ M, P             = -7, 7
 OIDS             = 0
 LOG_FILE         = None
 CSV_FILE         = None
+TXT_FILE         = None
+PATH             = pathlib.Path.cwd() / sys.argv[0]
+BASE_PATH        = PATH.parent / 'test'
+BASE_NAME        = BASE_PATH.stem
+
 MAX_FREQ_IDX     = 10 * 12 + 1
 MIN_IVAL_LEN     = 1
 MAX_STACK_DEPTH  = 0
@@ -29,10 +34,35 @@ def signed(n):      return f' {n}' if n==0 else f'{n:+}'
 def ns2signs(ns):   return [ '-' if n<0 else '+' if n>0  else W for n in ns ]
 def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 #def ev(obj):         return f'{eval(f"{obj!r}")}'
-
-def init(lfile, cfile, oid):
-    global LOG_FILE, CSV_FILE, OIDS   ;   LOG_FILE, CSV_FILE, OIDS = lfile, cfile, oid
+########################################################################################################################################################################################################
+def init(lfile, cfile, tfile, oid):
+    global LOG_FILE, CSV_FILE, TXT_FILE, OIDS   ;   LOG_FILE, CSV_FILE, TXT_FILE, OIDS = lfile, cfile, tfile, oid
 #    dumpData(csv=1)
+########################################################################################################################################################################################################
+def getFileSeqName(curr=1, fdir='logs', fsfx='log'):
+    fdir += '/'
+    slog(f'{fdir=} {fsfx=}')
+    fGlobArg = f'{(BASE_PATH / fdir / BASE_NAME)}.*.{fsfx}'
+    fGlob = glob.glob(fGlobArg)
+    slog(f'{fGlobArg=}')
+    LOG_ID = curr + getFileSeqNum(fGlob, fsfx)
+    return f'{BASE_NAME}.{LOG_ID}'
+
+def getFileSeqNum(files, sfx, dbg=0, dbg2=0):
+    i = 0
+    fsfx = f'.{sfx}'
+    if len(files):
+        if dbg2: slog(f'{sfx=} files={fmtl(files)}')
+        ids = [sid(s, fsfx) for s in files if s.endswith(fsfx) and isinstance(sid(s, fsfx), int)]
+        if dbg:  slog(f'ids={fmtl(ids)}')
+        i = max(ids) if ids else 0
+    return i
+
+def sid(s, sfx):
+    s = s[:-len(sfx)]
+    j = s.rfind('.')
+    i = s[j + 1:]
+    return int(i) if isinstance(i, str) and i.isdigit() else None
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
     slog(f'BGN D{F} D{N} D{S}')
@@ -43,7 +73,6 @@ def dumpData(csv=0):
     dumpKSH(csv)
     dumpKSV(csv)
     slog(f'END D{F} D{N} D{S}')
-
 ########################################################################################################################################################################################################
 def dumpTestA(csv=0):
     w, d, m, n, ff = (0, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
@@ -487,12 +516,12 @@ def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=False):
         p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else Z
         t    = f'{p}{sf.f_code.co_name:{pl}} ' + t
     so = 0
-    if   f == 0:  f = sys.stdout
+    if   f == 0:  f = TXT_FILE
     elif f == 1:  f = LOG_FILE
     elif f == 2:  f = LOG_FILE  ;  so = 1
     elif f == 3:  f = CSV_FILE # ;  so = 1
-    print(t, sep=s, end=e, file=f,    flush=ff)
-    print(t, sep=s, end=e, file=None, flush=ff) if so else None
+    print(t, sep=s, end=e, file=f, flush=ff)
+    print(t, sep=s, end=e,         flush=ff) if so else None
 ########################################################################################################################################################################################################
 def filtText(text):
     text = text.replace('"', Z)
@@ -521,12 +550,12 @@ def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1):
     if dbg: slog(f'{fileName =:12} {filePath = }', f=2)
     return filePath
 
-def copyFile(src, trg):
-    if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   slog(msg)   ;  raise SystemExit(msg)
-    slog(f'{src=}')
-    slog(f'{trg=}')
+def copyFile(src, trg, dbg=1):
+    if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   print(msg)   ;  raise SystemExit(msg)
+    if dbg: slog(f'{src=}')
+    if dbg: slog(f'{trg=}')
     cmd = f'copy {src} {trg}'
-    slog(f'### {cmd} ###')
+    if dbg: slog(f'### {cmd} ###')
     os.system(f'{cmd}')
 ########################################################################################################################################################################################################
 def parseCmdLine(dbg=1):
