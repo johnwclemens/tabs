@@ -47,13 +47,13 @@ def init(lfile, cfile, tfile, oid):
 #    dmpKSVHdr(csv=1,   t= 1)
 #    dumpKSH(  csv=1)
 ########################################################################################################################################################################################################
-def getSeqFileName(curr=1, fdir='logs', fsfx='log'):
-    fdir += '/'
+def getSeqFileName(fdir='logs', fsfx='log', off=1):
+    fdir    += '/'
     slog(f'{fdir=} {fsfx=}')
     fGlobArg = f'{(BASE_PATH / fdir / BASE_NAME)}.*.{fsfx}'
-    fGlob = glob.glob(fGlobArg)
+    fGlob    = glob.glob(fGlobArg)
     slog(f'{fGlobArg=}')
-    LOG_ID = curr + getSeqFileNum(fGlob, fsfx)
+    LOG_ID   = getSeqFileNum(fGlob, fsfx) + off
     return f'{BASE_NAME}.{LOG_ID}'
 
 def getSeqFileNum(files, sfx, dbg=0, dbg2=0):
@@ -514,7 +514,7 @@ def olog(o=None, p=1, f=1, s=Y, e='\n', ff=False):
     print(o, sep=s, end=e, file=f,    flush=ff)
     print(o, sep=s, end=e, file=None, flush=ff) if so else None
 
-def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=False):
+def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0):
     t = filtText(t) #    t = filtText2(t)
     if p:
         sf   = inspect.currentframe().f_back
@@ -570,7 +570,7 @@ def copyFile(src, trg, dbg=1):
     if dbg: slog(f'{src=}')
     if dbg: slog(f'{trg=}')
     cmd = f'copy {src} {trg}'
-    if dbg: slog(f'### {cmd} ###')
+    if dbg: slog(f'{cmd} ###')
     os.system(f'{cmd}')
 ########################################################################################################################################################################################################
 def parseCmdLine(dbg=1):

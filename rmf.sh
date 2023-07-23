@@ -15,15 +15,14 @@ function cleanup {
   echo END cleanup "$ext" files: in "$dir"
   ls "$dir"
 }
+
 echo ARG1 \(root\) = "$1"
-root="$1"
-if [[ $root = "" ]]; then
-  echo "Error - Missing arg1 root dir name - Exit"
+if [[ $1 = "" ]]; then
+  echo "Error - Missing arg1 (root dir name) - Exit"
   exit
-#  root="test"
-#else
-#  root=$1
 fi
+root="$1"
+
 echo pwd
 pwd
 echo cd "$root" || exit
@@ -32,21 +31,27 @@ echo pwd
 pwd
 echo ls
 ls
-echo exts='("csv" "log" "png")'
-exts=(      "csv" "log" "png")
-echo "   >>> Removing Files from Dir =" "$root" ">>> ..."
 
+echo ARG2 \(all\) = "$2"
+if [[ $2 = "all" ]]; then
+  all=1
+else
+  all=0
+fi
+echo "all =" "$all"
+
+dir=.
+echo exts='("csv" "log" "png" "txt")'
+exts=(      "csv" "log" "png" "txt")
+echo "   >>> Removing Files from root Dir =" "$root" ">>> ..."
 for ext in "${exts[@]}"  ; do
-  dir=.
   echo cleanup "$dir" "$ext" files
-  cleanup "$dir" "$ext"
+  cleanup      "$dir" "$ext"
 done
-
 
 echo exts='("csv" "dat" "log" "png" "txt")'
 exts=(      "csv" "dat" "log" "png" "txt")
-echo "   >>> Removing Files from Dir =" "$root" "of type" "csv dat log png txt >>> ..."
-
+echo "   >>> Removing Files from SubDirs of" "$root" "with type" "csv dat log png txt >>> ..."
 for ext in "${exts[@]}"  ; do
   if   [[ $ext = "dat" ]]; then
     dir="$ext"a
