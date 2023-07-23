@@ -682,11 +682,12 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def genDataFile(self, path):
         self.log(f'{path} {self.fmtn()}')
-        np, nl, ns, nc, nr = self.n  ;  nc += self.zzl()
+        np, nl, ns, nc, nt = self.n # ;  nc += self.zzl()
         self.dumpBlanks()
-        self.data = [ [ [ self.tblankRow for _ in range(nr) ] for _ in range(nl) ] for _ in range(np) ]
+        self.data = [ [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ] for _ in range(np) ]
+        self.data = self.transposeData(dmp=1)
         size      = self.saveDataFile('Generated Data', path)
-        self.log(f'{path} {size=} {len(self.data)=}')
+        self.log(f'{path} {size=} len(data)={len(self.data)} {len(self.data[0])} {len(self.data[0][0])}  {len(self.data[0][0][0])}')
         self.data = []
         return size
    ####################################################################################################################################################################################################
