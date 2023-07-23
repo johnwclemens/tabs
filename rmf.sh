@@ -4,12 +4,20 @@
 function cleanup {
   dir="$1"
   ext="$2"
-  echo BGN cleanup "$ext" files: in "$dir"
+  all="$3"
+  echo BGN cleanup all = "$all" "$ext" files: in "$dir"
   ls "$dir"
   for file in "$dir"/*; do
-    if [[ $file = *[0-9]*.$ext ]]; then
-      echo rm "$file"
-      rm      "$file"
+    if [[ $all = 0 ]]; then
+      if [[ $file = *[0-9]*.$ext ]]; then
+        echo rm "$file"
+        rm      "$file"
+      fi
+    else
+      if [[ $file = *.$ext ]]; then
+        echo rm "$file"
+        rm      "$file"
+      fi
     fi
   done
   echo END cleanup "$ext" files: in "$dir"
@@ -45,8 +53,8 @@ echo exts='("csv" "log" "png" "txt")'
 exts=(      "csv" "log" "png" "txt")
 echo "   >>> Removing Files from root Dir =" "$root" ">>> ..."
 for ext in "${exts[@]}"  ; do
-  echo cleanup "$dir" "$ext" files
-  cleanup      "$dir" "$ext"
+  echo cleanup "$dir" "$ext" "$all" files
+  cleanup      "$dir" "$ext" "$all"
 done
 
 echo exts='("csv" "dat" "log" "png" "txt")'
@@ -55,19 +63,19 @@ echo "   >>> Removing Files from SubDirs of" "$root" "with type" "csv dat log pn
 for ext in "${exts[@]}"  ; do
   if   [[ $ext = "dat" ]]; then
     dir="$ext"a
-    echo cleanup "$dir" "$ext"
-    cleanup      "$dir" "$ext"
+    echo cleanup "$dir" "$ext" "$all"
+    cleanup      "$dir" "$ext" "$all"
   elif [[ $ext = "std" ]]; then
     dir="$ext"o
-    echo cleanup "$dir" "$ext"
-    cleanup      "$dir" "$ext"
+    echo cleanup "$dir" "$ext" "$all"
+    cleanup      "$dir" "$ext" "$all"
   elif [[ $ext = "txt" ]]; then
     dir="text"
-    echo cleanup "$dir" "$ext"
-    cleanup      "$dir" "$ext"
+    echo cleanup "$dir" "$ext" "$all"
+    cleanup      "$dir" "$ext" "$all"
   else
     dir="$ext"s
-    echo cleanup "$dir" "$ext"
-    cleanup      "$dir" "$ext"
+    echo cleanup "$dir" "$ext" "$all"
+    cleanup      "$dir" "$ext" "$all"
   fi
 done

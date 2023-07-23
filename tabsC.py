@@ -2947,13 +2947,13 @@ FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'He
 ########################################################################################################################################################################################################
 # Globals END
 
-def cleanupTxtFile(gfp, snp):
-    slog(f'Copy { TXT_FILE.name} to {snp}', f=0)
-    util.copyFile(TXT_PATH, snp, dbg=0)
-    slog(f'Copy { TXT_FILE.name} to {gfp}', ff=1)
-    util.copyFile(TXT_PATH,         gfp)
-    slog('Flush & Close Txt File', f=0)
-    TXT_FILE.flush()            ;   TXT_FILE.close()
+def cleanupOutFiles(file, fp, gfp, snp, f):
+    slog(f'Copy {   file} to {snp}', ff=1, f=f)
+    util.copyFile(  fp,       snp,  dbg=0)
+    slog(f'Copy {   file} to {gfp}', ff=1, f=f)
+    util.copyFile(  fp,       gfp)
+    slog('Flush & Close Txt File',   ff=1, f=f)
+    file.flush()     ;     file.close()
 
 # Log and Main BGN
 ########################################################################################################################################################################################################
@@ -2983,16 +2983,10 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
         ret = pyglet.app.run()
         slog(f'pyglet.app.run(): return={ret}')
         slog('Thats all folks!', ff=1, f=2)
-        geomLogFilePath = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
-        geomTxtPath     = util.getFilePath(tabs.TXT_GFN, BASE_PATH, fdir=None, fsfx=Z)
-        cleanupTxtFile(geomTxtPath,     seqNumTxtPath)
-        slog(f'Copy {LOG_FILE.name} to {seqNumLogPath}', ff=1)
-        util.copyFile(LOG_PATH,         seqNumLogPath)
-
-        slog(f'Copy {LOG_FILE.name} to {geomLogFilePath}', ff=1)
-        util.copyFile(LOG_PATH,         geomLogFilePath)
-        slog('Flush & Close Log File', ff=1)
-        LOG_FILE.flush()               ;   LOG_FILE.close()
+        geomLogPath = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
+        geomTxtPath = util.getFilePath(tabs.TXT_GFN, BASE_PATH, fdir=None, fsfx=Z)
+        cleanupOutFiles(TXT_FILE, TXT_PATH, geomTxtPath, seqNumTxtPath, f=2)
+        cleanupOutFiles(LOG_FILE, LOG_PATH, geomLogPath, seqNumLogPath, f=1)
     ####################################################################################################################################################################################################
     if __name__ == '__main__':
         main()
