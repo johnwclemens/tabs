@@ -1,35 +1,35 @@
 C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2982 tabsC <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -s -J 4 -L -S 0 1 -f test]
+2975 tabsC <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -s -J 4 -L -S 0 1 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2986 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
-2986 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log
-2987 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
-2987 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv
-2988 tabsC main               TXT_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt)
-2988 tabsC main               TXT_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt
-2989 tabsC main               constructing Tabs object
+2979 tabsC main               LOG_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
+2979 tabsC main               LOG_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log
+2980 tabsC main               CSV_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
+2980 tabsC main               CSV_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv
+2981 tabsC main               TXT_PATH=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt)
+2981 tabsC main               TXT_FILE.name=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt
+2982 tabsC main               constructing Tabs object
   42 tabsC __init__           .LOG_ID=0
   43 tabsC __init__           BGN <class __main__.Tabs>
-2849 tabsC dumpGlobals        BASE_NAME = test
-2850 tabsC dumpGlobals        argv      = +27[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -s -J 4 -L -S 0 1 -f test]
-2851 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2852 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+2842 tabsC dumpGlobals        BASE_NAME = test
+2843 tabsC dumpGlobals        argv      = +27[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -s -J 4 -L -S 0 1 -f test]
+2844 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2845 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
   44 tabsC __init__           STFILT:
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
   52 util  getSeqFileName     fdir=logs/ fsfx=log
   55 util  getSeqFileName     fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log
- 562 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.2.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log)
-  46 tabsC __init__           .seqNumLogPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log)
- 562 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.2.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv)
-  47 tabsC __init__           .seqNumCsvPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv)
- 562 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.2.txt   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.2.txt)
-  48 tabsC __init__           .seqNumTxtPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.2.txt)
- 562 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.2.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.2.cat)
-  49 tabsC __init__           .seqNumCatPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.2.cat)
+ 562 util  getFilePath        baseName =test.3       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 565 util  getFilePath        fileName =test.3.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.3.log)
+  46 tabsC __init__           .seqNumLogPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.3.log)
+ 562 util  getFilePath        baseName =test.3       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 565 util  getFilePath        fileName =test.3.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv)
+  47 tabsC __init__           .seqNumCsvPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv)
+ 562 util  getFilePath        baseName =test.3       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 565 util  getFilePath        fileName =test.3.txt   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.3.txt)
+  48 tabsC __init__           .seqNumTxtPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.3.txt)
+ 562 util  getFilePath        baseName =test.3       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 565 util  getFilePath        fileName =test.3.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.3.cat)
+  49 tabsC __init__           .seqNumCatPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.3.cat)
   61 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
   77 tabsC __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [s:[]] [J:[4]] [L:[]] [S:[0 1]] [f:[test]]
  176 tabsC dumpArgs           [a]      .AUTO_SAVE=0
@@ -86,7 +86,7 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 .dataPath1=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/_test.1.1._.10.6.dat)
 .dataPath2=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/data/_test.1.1._.10.6.dat)
  297 tabsC _initWindowA       BGN (  -1x-1  )
- 297 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000002B98D1D42E0>
+ 297 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000018411B4B670>
  302 tabsC _initWindowA       screens[0] s.x=894  2160 (1280x720 )
  302 tabsC _initWindowA       screens[1] s.x=0     0 (3840x2160)
  303 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -463,9 +463,9 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
  224 tabsC _reinit            [1 1 1  1 6]   6   0  1] END
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
  141 tabsC __init__           END <class __main__.Tabs>
-2991 tabsC main               str(tabs)={i: [1, 1, 1, 6], n: [1, 1, 10, 6], w: [0, 0, 0, 0], d: [0], s: [], J: [4], L: [], S: [0, 1], f: [test]}
-2991 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={i: [1, 1, 1, 6], n: [1, 1, 10, 6], w: [0, 0, 0, 0], d: [0], s: [], J: [4], L: [], S: [0, 1], f: [test]}
-2992 tabsC main               Call pyglet.app.run()
+2984 tabsC main               str(tabs)={i: [1, 1, 1, 6], n: [1, 1, 10, 6], w: [0, 0, 0, 0], d: [0], s: [], J: [4], L: [], S: [0, 1], f: [test]}
+2984 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={i: [1, 1, 1, 6], n: [1, 1, 10, 6], w: [0, 0, 0, 0], d: [0], s: [], J: [4], L: [], S: [0, 1], f: [test]}
+2985 tabsC main               Call pyglet.app.run()
 1259 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
 1259 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
 1259 tabsC resizeTniks        LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   0] Upd.1
@@ -712,7 +712,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 1
  637 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 2 10 6] END ntp=[  120  120 120  60   6] ( 1x1x1x6  )
 2728 tabsC snapshot           BASE_NAME=test logId=None snapId=None typ=INIT PNG=png
-2729 tabsC snapshot           .fNameLid=test.2 snapName=test.1.0.INIT.png on_draw((kwargs)=)
+2729 tabsC snapshot           .fNameLid=test.3 snapName=test.1.0.INIT.png on_draw((kwargs)=)
 snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.0.INIT.png
 2732 tabsC snapshot           snapName=test.1.0.INIT.png on_draw((kwargs)=)
  172 tabsC geomFileName       Btest.1.1.2.10.6_CC.png
@@ -722,177 +722,26 @@ snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.0.INIT.png
 2737 tabsC snapshot           BASE_NAME=test [1 1 2 10 6]
 2738 tabsC snapshot           snapName2=Btest.1.1.2.10.6_CC.png on_draw((kwargs)=)
 snapshot C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.png
-1523 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
-1523 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
-1523 tabsC dumpTnikCsvs       LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   0] test.2
-1523 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1    ) 1 (   )  156   0] test.2
+1523 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
+1523 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
+1523 tabsC dumpTnikCsvs       LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   0] test.3
+1523 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1    ) 1 (   )  156   0] test.3
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1539 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
-1539 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
-1539 tabsC dumpTnikCsvs       LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   0] test.2
-1539 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1    ) 1 (   )  156   0] test.2
+1539 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
+1539 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
+1539 tabsC dumpTnikCsvs       LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   0] test.3
+1539 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1    ) 1 (   )  156   0] test.3
  651 tabsC on_draw            [1 1 1  1 6]   6   0  1] .snapWhy=init .snapType=INIT .snapId=1
 snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.0.INIT.png)
-1920 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2012 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2013 tabsC on_key_press       retv=True
-1920 tabsC on_key_press       BGN <    .kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2012 tabsC on_key_press       END <    .kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2013 tabsC on_key_press       retv=True
-2034 tabsC on_text_motion     BGN <    .kbk=       1> <.symb=   65363> <.symbStr=RIGHT           > <.mods= 2> <.modsStr=MOD_CTRL        > motion=1
-2346 tabsC selectTabs         m=6 old=None cc=5 cn=0 6 k=0 [1 1 1  1 6]
-2348 tabsC selectTabs         BGN @  RIGHT (       1) m=6 cn=0 cc=5 k=0 smap=
-2329 tabsC setTNIKStyle       t=0 k=0 nt=6 blank=0 text=1     
-2329 tabsC setTNIKStyle       t=1 k=0 nt=6 blank=0 text=12    
-2329 tabsC setTNIKStyle       t=2 k=0 nt=6 blank=0 text=123   
-2329 tabsC setTNIKStyle       t=3 k=0 nt=6 blank=0 text=1234  
-2329 tabsC setTNIKStyle       t=4 k=0 nt=6 blank=0 text=12345 
-2329 tabsC setTNIKStyle       t=5 k=0 nt=6 blank=0 text=123456
-2182 tabsC move               [1 1 1  1 6]   6   0  1] BGN @  RIGHT (       1) n=6
-2189 tabsC _moveTo            [1 1 1  1 6]   6   0  1] BGN plct=[1 1    1 6]
-2199 tabsC _moveTo            [1 1 1  2 6]  12   6  2] END n=6 i=[1 1 1 2 6] plct=[1 1    1 6] plct2=[1 1    2 12]
-1607 tabsC moveCursor         [1 1 1  2 6]  12   6  2] BGN ss=1 .cc=5
-1310 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
-   1 @  RIGHT (       1) HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1  144.00  270.00   96.00   41.54   1   0  1 [ 27 226 170 195]1.000 1.000 0.989 C C   48   20 Group(order=10) None
-1611 tabsC moveCursor         [1 1 1  2 6]  12   6  2] END ss=1 .cc=11
-2186 tabsC move               [1 1 1  2 6]  12   6  2] END @  RIGHT (       1) n=6
-2352 tabsC selectTabs         END @  RIGHT (       1) m=6 cn=0 cc=5 k=0 smap=[0:123456]
-2078 tabsC on_text_motion     END <    .kbk=       1> <.symb=   65363> <.symbStr=RIGHT           > <.mods= 2> <.modsStr=MOD_CTRL        > motion=1
-2018 tabsC on_key_release         <    .kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 2> <.modsStr=MOD_CTRL        >
-1920 tabsC on_key_press       BGN <    .kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2012 tabsC on_key_press       END <    .kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2013 tabsC on_key_press       retv=True
-2034 tabsC on_text_motion     BGN <    .kbk=       1> <.symb=   65363> <.symbStr=RIGHT           > <.mods= 2> <.modsStr=MOD_CTRL        > motion=1
-2346 tabsC selectTabs         m=6 old=None cc=11 cn=1 6 k=6 [1 1 1  2 6]
-2348 tabsC selectTabs         BGN @  RIGHT (       1) m=6 cn=1 cc=11 k=6 smap=[0:123456]
-2329 tabsC setTNIKStyle       t=6 k=6 nt=6 blank=0 text=7     
-2329 tabsC setTNIKStyle       t=7 k=6 nt=6 blank=0 text=78    
-2329 tabsC setTNIKStyle       t=8 k=6 nt=6 blank=0 text=789   
-2329 tabsC setTNIKStyle       t=9 k=6 nt=6 blank=0 text=789a  
-2329 tabsC setTNIKStyle       t=10 k=6 nt=6 blank=0 text=789ab 
-2329 tabsC setTNIKStyle       t=11 k=6 nt=6 blank=0 text=789abc
-2182 tabsC move               [1 1 1  2 6]  12   6  2] BGN @  RIGHT (       1) n=6
-2189 tabsC _moveTo            [1 1 1  2 6]  12   6  2] BGN plct=[1 1    2 6]
-2199 tabsC _moveTo            [1 1 1  3 6]  18  12  3] END n=6 i=[1 1 1 3 6] plct=[1 1    2 6] plct2=[1 1    3 12]
-1607 tabsC moveCursor         [1 1 1  3 6]  18  12  3] BGN ss=1 .cc=11
-1310 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
-   1 @  RIGHT (       1) HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1  240.00  270.00   96.00   41.54   1   0  1 [ 27 226 170 195]1.000 1.000 0.989 C C   48   20 Group(order=10) None
-1611 tabsC moveCursor         [1 1 1  3 6]  18  12  3] END ss=1 .cc=17
-2186 tabsC move               [1 1 1  3 6]  18  12  3] END @  RIGHT (       1) n=6
-2352 tabsC selectTabs         END @  RIGHT (       1) m=6 cn=1 cc=11 k=6 smap=[0:123456] [1:789abc]
-2078 tabsC on_text_motion     END <    .kbk=       1> <.symb=   65363> <.symbStr=RIGHT           > <.mods= 2> <.modsStr=MOD_CTRL        > motion=1
-2018 tabsC on_key_release         <    .kbk=RIGHT   > <.symb=   65363> <.symbStr=RIGHT           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2018 tabsC on_key_release         <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 0> <.modsStr=                >
 1920 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 2012 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 2013 tabsC on_key_press       retv=True
 1920 tabsC on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 2012 tabsC on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 2013 tabsC on_key_press       retv=True
-1920 tabsC on_key_press       BGN <    .kbk=V       > <.symb=     118> <.symbStr=V               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
-2395 tabsC pasteTabs          BGN @^V kk=1 cc=17 cn=12=2 plct=[1 1    3 6] smap=[0:123456] [1:789abc]
-2400 tabsC pasteTabs          i=0 k=0 text=123456 kk=1 dk=0
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=0    text=1
-1820 tabsC setData            BGN t=0 text=1 data=------
-1823 tabsC setData            END t=0 text=1 data=1-----
-  50 chord getChordName       leni=1 is Not a Chord ikey=R v=[0]
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=0 text=1 notes[12]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=0 text=1 notes[12]=F
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=0    text=1 len(imap)=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=0    text=2
-1820 tabsC setData            BGN t=1 text=2 data=1-----
-1823 tabsC setData            END t=1 text=2 data=12----
-  50 chord getChordName       leni=2 is Not a Chord ikey=R M3 v=[0 4]
-  50 chord getChordName       leni=2 is Not a Chord ikey=R #5 v=[8 0]
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=1 text=2 notes[13]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=1 text=2 notes[13]=C♯
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=0    text=2 len(imap)=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=0    text=3
-1820 tabsC setData            BGN t=2 text=3 data=12----
-1823 tabsC setData            END t=2 text=3 data=123---
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=2 text=3 notes[14]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=2 text=3 notes[14]=A♯
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=0    text=3 len(imap)=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=0    text=4
-1820 tabsC setData            BGN t=3 text=4 data=123---
-1823 tabsC setData            END t=3 text=4 data=1234--
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=3 text=4 notes[15]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=3 text=4 notes[15]=F♯
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=0    text=4 len(imap)=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=0    text=5
-1820 tabsC setData            BGN t=4 text=5 data=1234--
-1823 tabsC setData            END t=4 text=5 data=12345-
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=4 text=5 notes[16]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=4 text=5 notes[16]=D
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=0    text=5 len(imap)=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=1    text=6
-1820 tabsC setData            BGN t=5 text=6 data=12345-
-1823 tabsC setData            END t=5 text=6 data=123456
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=5 text=6 notes[17]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=5 text=6 notes[17]=A♯
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=1    text=6 len(imap)=6
-2405 tabsC pasteTabs          i=0 k=0 text=123456 kk=1 dk=0 kt=17
-2400 tabsC pasteTabs          i=1 k=1 text=789abc kk=1 dk=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=0    text=7
-1820 tabsC setData            BGN t=0 text=7 data=------
-1823 tabsC setData            END t=0 text=7 data=7-----
-  50 chord getChordName       leni=1 is Not a Chord ikey=R v=[0]
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=0 text=7 notes[18]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=0 text=7 notes[18]=B
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=0    text=7 len(imap)=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=0    text=8
-1820 tabsC setData            BGN t=1 text=8 data=7-----
-1823 tabsC setData            END t=1 text=8 data=78----
-  50 chord getChordName       leni=2 is Not a Chord ikey=R M3 v=[0 4]
-  50 chord getChordName       leni=2 is Not a Chord ikey=R #5 v=[8 0]
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=1 text=8 notes[19]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=1 text=8 notes[19]=G
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=0    text=8 len(imap)=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=0    text=9
-1820 tabsC setData            BGN t=2 text=9 data=78----
-1823 tabsC setData            END t=2 text=9 data=789---
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=2 text=9 notes[20]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=2 text=9 notes[20]=E
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=0    text=9 len(imap)=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=0    text=a
-1820 tabsC setData            BGN t=3 text=a data=789---
-1823 tabsC setData            END t=3 text=a data=789a--
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=3 text=a notes[21]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=3 text=a notes[21]=C
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=0    text=a len(imap)=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=0    text=b
-1820 tabsC setData            BGN t=4 text=b data=789a--
-1823 tabsC setData            END t=4 text=b data=789ab-
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=4 text=b notes[22]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=4 text=b notes[22]=G♯
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=0    text=b len(imap)=6
-1809 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] BGN kk=1    text=c
-1820 tabsC setData            BGN t=5 text=c data=789ab-
-1823 tabsC setData            END t=5 text=c data=789abc
-1832 tabsC setNote            [1 1 1  3 6]  18  12  3] BGN     t=5 text=c notes[23]=-
-1833 tabsC setNote            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-1841 tabsC setNote            [1 1 1  3 6]  18  12  3] END     t=5 text=c notes[23]=E
-1816 tabsC setDTNIK           [1 1 1  3 6]  18  12  3] END kk=1    text=c len(imap)=6
-2405 tabsC pasteTabs          i=1 k=1 text=789abc kk=1 dk=6 kt=23
-2406 tabsC pasteTabs          clearing len(.smap)=2
-2407 tabsC pasteTabs          END @^V kk=1 cc=17 cn=12=2 plct=[1 1    4 6] smap=
-2012 tabsC on_key_press       END <    .kbk=V       > <.symb=     118> <.symbStr=V               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
-2013 tabsC on_key_press       retv=True
-2018 tabsC on_key_release         <    .kbk=V       > <.symb=     118> <.symbStr=V               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 1920 tabsC on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
@@ -908,16 +757,16 @@ snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.0.INI
  497 util  dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
  497 util  dumpStack           3 base        185 run                  platform_event_loop.step(timeout)
  497 util  dumpStack           2 __init__    107 run                  event_loop.run(interval)
- 497 util  dumpStack           1 tabsC      2993 main                 ret = pyglet.app.run()
- 497 util  dumpStack           0 tabsC      3007 <module>             main()
+ 497 util  dumpStack           1 tabsC      2986 main                 ret = pyglet.app.run()
+ 497 util  dumpStack           0 tabsC      3000 <module>             main()
  498 util  dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-2786 tabsC quit               J1[0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1] @^Q
-2786 tabsC quit               J2[0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1] @^Q
-2786 tabsC quit               LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   1] @^Q
-2786 tabsC quit               END[( 960x540 )( 1x1x10x6 )( 1x1x3x6  ) (0 1    ) 1 (   )  156   1] @^Q
+2786 tabsC quit               J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
+2786 tabsC quit               J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
+2786 tabsC quit               LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   0] @^Q
+2786 tabsC quit               END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1    ) 1 (   )  156   0] @^Q
  497 util  dumpStack          12          25 <module>             MAX_STACK_FRAME  = inspect.stack()
  497 util  dumpStack          11 <frozen importlib   241 _call_with_frames_removed 
  497 util  dumpStack          10 <frozen importlib   883 exec_module          
@@ -933,7 +782,7 @@ snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.0.INI
  497 util  dumpStack           0 tabsC        15 <module>             import chord
  498 util  dumpStack          MAX_STACK_DEPTH= 0
  612 tabsC ntp                tpb tpp tpl tps tpc=[120 120 120 60 6]
- 620 tabsC dumpStruct         [1 1 1  3 6]  18  12  3] n=[1 1 2 10 6] BGN ntp=[  120  120 120  60   6] ( 1x1x3x6  )
+ 620 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 2 10 6] BGN ntp=[  120  120 120  60   6] ( 1x1x1x6  )
  176 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  177 tabsC dumpArgs           [A]         .VARROW=1
  178 tabsC dumpArgs           [b]        .FRT_BRD=0
@@ -946,7 +795,7 @@ snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.0.INI
  185 tabsC dumpArgs           [F]      .FULL_SCRN=0
  186 tabsC dumpArgs           [g]        .ORD_GRP=1
  187 tabsC dumpArgs           [G]       .GEN_DATA=0
- 188 tabsC dumpArgs           [i]               i=[1 1 1 3 6]
+ 188 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
  189 tabsC dumpArgs           [J]      .DSP_J_LEV=4
  190 tabsC dumpArgs           [l]       .LONG_TXT=1
  191 tabsC dumpArgs           [L]             .LL=1
@@ -964,10 +813,10 @@ snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.0.INI
  203 tabsC dumpArgs           [w]           .XYVA=[0 0 0 0]
  204 tabsC dumpArgs           [x]           .EXIT=0
  205 tabsC dumpArgs           [Z]             .ZZ=[]
- 226 util  dumpNic            [5:F :3,1:D♭:3,a:B♭:6,6:G♭:3,2:D :3,b:B :3,7:G :3,4:E :6,0:C :3,8:A♭:3]
- 227 util  dumpNic            [5:F :3,1:C♯:3,a:A♯:6,6:F♯:3,2:D :3,b:B :3,7:G :3,4:E :6,0:C :3,8:G♯:3]
- 228 util  dumpNic            [a:B♭:6,None,8:A♭:3,1:D♭:3,6:G♭:3,b:B :3,4:E :6]
- 229 util  dumpNic            [6:G♭:3,1:D♭:3,8:A♭:3,None,a:B♭:6,5:F :3,0:C :3]
+ 226 util  dumpNic            [5:F :2,1:D♭:2,a:B♭:4,6:G♭:2,2:D :2,b:B :2,7:G :2,4:E :4,0:C :2,8:A♭:2]
+ 227 util  dumpNic            [5:F :2,1:C♯:2,a:A♯:4,6:F♯:2,2:D :2,b:B :2,7:G :2,4:E :4,0:C :2,8:G♯:2]
+ 228 util  dumpNic            [a:B♭:4,None,8:A♭:2,1:D♭:2,6:G♭:2,b:B :2,4:E :4]
+ 229 util  dumpNic            [6:G♭:2,1:D♭:2,8:A♭:2,None,a:B♭:4,5:F :2,0:C :2]
   76 util  dumpData           BGN D♭ D♮ D♯
  136 util  dumpNF             Note Frequencies in Hertz
 Piano[ -8    -7    -6    -5    -4    -3    -2    -1     0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33    34    35    36    37    38    39    40    41    42    43    44    45    46    47    48    49    50    51    52    53    54    55    56    57    58    59    60    61    62    63    64    65    66    67    68    69    70    71    72    73    74    75    76    77    78    79    80    81    82    83    84    85    86    87    88  ]
@@ -1016,8 +865,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ E♯ B♯] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ E♯ F♯ G♯ A♯ B♯]
   83 util  dumpData           END D♭ D♮ D♯
 1745 tabsC dumpFont           4:96dpi 32.308pt 0:Lucida Console 0: 32.308pt = 0.778(pt/pix) * 41.538pixels @^Q
-   1h1   1
-   1t1   
+   0t0   
 1
 1
 11
@@ -1028,71 +876,52 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 1111111111
 1
  612 tabsC ntp                tpb tpp tpl tps tpc=[120 120 120 60 6]
- 637 tabsC dumpStruct         [1 1 1  3 6]  18  12  3] n=[1 1 2 10 6] END ntp=[  120  120 120  60   6] ( 1x1x3x6  )
+ 637 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 2 10 6] END ntp=[  120  120 120  60   6] ( 1x1x1x6  )
  769 tabsC transposeData      BGN ( 1x1x10x6 ) dmp=1
  773 tabsC transposeData      dl=[1 1 10 6] dt=[list list list str]
-123456 789abc 123456 789abc ------ ------ ------ ------ 789abc 123456
+123456 789abc ------ ------ ------ ------ ------ ------ 789abc 123456
 
-1717----71 2828----82 3939----93 4a4a----a4 5b5b----b5 6c6c----c6
+17------71 28------82 39------93 4a------a4 5b------b5 6c------c6
  808 tabsC dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt=Colm 
 Page 1
 Colm Line 1    
  818 tabsC dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
  785 tabsC transposeData      END ( 1x1x6x10 ) dmp=1
- 126 chord dumpLimap            2 0 0 F♯Mb13/A♯    [F♯ M  b  13 /A♯]   [R M3 M3 5  #5 7 ] [4 8 0 4 7 b] [A♯ D  F♯ A♯ C♯ F ]
- 126 chord dumpLimap            2 0 1 D+M#9/A♯     [D  +  M  #9 /A♯]   [R m3 M3 #5 #5 7 ] [8 0 4 8 b 3] [A♯ D  F♯ A♯ C♯ F ]
- 126 chord dumpLimap            2 0 2 A♯#2b6       [A♯ #2 b6]          [R R m3 M3 5  #5]  [0 4 8 0 3 7] [A♯ D  F♯ A♯ C♯ F ]
- 126 chord dumpLimap            2 0 3 C♯b246x/A♯   [C♯ b2 4  6  x  /A♯] [R b2 M3 4  6  6 ] [9 1 5 9 0 4] [A♯ D  F♯ A♯ C♯ F ]
- 126 chord dumpLimap            2 0 4 F+b26s4/A♯   [F  +  b2 6  s4 /A♯] [R b2 4  4  #5 6 ] [5 9 1 5 8 0] [A♯ D  F♯ A♯ C♯ F ]
- 126 chord dumpLimap            3 0 0 CMb13/E      [C  M  b  13 /E]    [R M3 M3 5  #5 7 ] [4 8 0 4 7 b] [E  G♯ C  E  G  B ]
- 126 chord dumpLimap            3 0 1 G♯+M#9/E     [G♯ +  M  #9 /E]    [R m3 M3 #5 #5 7 ] [8 0 4 8 b 3] [E  G♯ C  E  G  B ]
- 126 chord dumpLimap            3 0 2 E#2b6        [E  #2 b6]          [R R m3 M3 5  #5]  [0 4 8 0 3 7] [E  G♯ C  E  G  B ]
- 126 chord dumpLimap            3 0 3 Gb246x/E     [G  b2 4  6  x  /E] [R b2 M3 4  6  6 ] [9 1 5 9 0 4] [E  G♯ C  E  G  B ]
- 126 chord dumpLimap            3 0 4 B+b26s4/E    [B  +  b2 6  s4 /E] [R b2 4  4  #5 6 ] [5 9 1 5 8 0] [E  G♯ C  E  G  B ]
-  2 0 F♯Mb13/A♯    M3#5RM357    D+M#9/A♯     #5RM3#57m3   A♯#2b6       RM3#5Rm35    C♯b246x/A♯   6b246RM3     F+b26s4/A♯   46b24#5R     
-  3 0 CMb13/E      M3#5RM357    G♯+M#9/E     #5RM3#57m3   E#2b6        RM3#5Rm35    Gb246x/E     6b246RM3     B+b26s4/E    46b24#5R     
-  2 0 F♯Mb13/A♯    48047bD+M#9/A♯     8048b3A♯#2b6       048037C♯b246x/A♯   915904F+b26s4/A♯   591580
-  3 0 CMb13/E      48047bG♯+M#9/E     8048b3E#2b6        048037Gb246x/E     915904B+b26s4/E    591580
-  2 0 48047b 8048b3 048037 915904 591580          M3#5RM357    #5RM3#57m3   RM3#5Rm35    6b246RM3     46b24#5R     
-  3 0 48047b 8048b3 048037 915904 591580          M3#5RM357    #5RM3#57m3   RM3#5Rm35    6b246RM3     46b24#5R     
 2794 tabsC quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-2818 tabsC cleanupCsvFile     Closing C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
+2811 tabsC cleanupCsvFile     Closing C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
  562 util  getFilePath        baseName =test         basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  565 util  getFilePath        fileName =test.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
  562 util  getFilePath        baseName =Btest.1.1.2.10.6_CC.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  565 util  getFilePath        fileName =Btest.1.1.2.10.6_CC.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.2.10.6_CC.csv)
- 562 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.2.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv)
-2824 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.csv
+ 562 util  getFilePath        baseName =test.3       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 565 util  getFilePath        fileName =test.3.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv)
+2817 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.csv
  570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
  571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.2.10.6_CC.csv)
  573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.csv ###
-2827 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.2.csv
+2820 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.3.csv
  570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
- 571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv)
- 573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.2.csv ###
+ 571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv)
+ 573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.3.csv ###
 2797 tabsC quit               Calling close(),2012 tabsC on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 2013 tabsC on_key_press       retv=True
-2994 tabsC main               pyglet.app.run(): return=None
-2997 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.2.log
- 570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
- 571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log)
- 573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.2.log ###
+2987 tabsC main               pyglet.app.run(): return=None
+2988 tabsC main               Thats all folks!
  562 util  getFilePath        baseName =Btest.1.1.2.10.6_CC.log basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  565 util  getFilePath        fileName =Btest.1.1.2.10.6_CC.log filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.2.10.6_CC.log)
-  52 util  getSeqFileName     fdir=logs/ fsfx=log
-  55 util  getSeqFileName     fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log
- 562 util  getFilePath        baseName =test.2       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.2.txt   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.2.txt)
  562 util  getFilePath        baseName =Btest.1.1.2.10.6_CC.txt basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  565 util  getFilePath        fileName =Btest.1.1.2.10.6_CC.txt filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.2.10.6_CC.txt)
-2963 tabsC cleanupTxtFile     Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.txt
+2956 tabsC cleanupTxtFile     Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.txt
  570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt)
  571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.2.10.6_CC.txt)
  573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.txt ###
-3001 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.log
+2991 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.3.log
+ 570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
+ 571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.3.log)
+ 573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.3.log ###
+2994 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.log
  570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
  571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.2.10.6_CC.log)
  573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.log ###
-3003 tabsC main               Flush & Close Log File
+2996 tabsC main               Flush & Close Log File

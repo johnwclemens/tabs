@@ -18,18 +18,18 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
   52 util  getSeqFileName     fdir=logs/ fsfx=log
   55 util  getSeqFileName     fGlobArg=C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log
- 562 util  getFilePath        baseName =test.3       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.3.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.3.log)
-  46 tabsC __init__           .seqNumLogPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.3.log)
- 562 util  getFilePath        baseName =test.3       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.3.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv)
-  47 tabsC __init__           .seqNumCsvPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv)
- 562 util  getFilePath        baseName =test.3       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.3.txt   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.3.txt)
-  48 tabsC __init__           .seqNumTxtPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.3.txt)
- 562 util  getFilePath        baseName =test.3       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.3.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.3.cat)
-  49 tabsC __init__           .seqNumCatPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.3.cat)
+ 562 util  getFilePath        baseName =test.1       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 565 util  getFilePath        fileName =test.1.log   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.1.log)
+  46 tabsC __init__           .seqNumLogPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.1.log)
+ 562 util  getFilePath        baseName =test.1       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 565 util  getFilePath        fileName =test.1.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.1.csv)
+  47 tabsC __init__           .seqNumCsvPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.1.csv)
+ 562 util  getFilePath        baseName =test.1       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 565 util  getFilePath        fileName =test.1.txt   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.1.txt)
+  48 tabsC __init__           .seqNumTxtPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.1.txt)
+ 562 util  getFilePath        baseName =test.1       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 565 util  getFilePath        fileName =test.1.cat   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.1.cat)
+  49 tabsC __init__           .seqNumCatPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.1.cat)
   61 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
   77 tabsC __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [s:[]] [J:[4]] [L:[]] [S:[0 1]] [f:[test]]
  176 tabsC dumpArgs           [a]      .AUTO_SAVE=0
@@ -86,7 +86,7 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 .dataPath1=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/_test.1.1._.10.6.dat)
 .dataPath2=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/data/_test.1.1._.10.6.dat)
  297 tabsC _initWindowA       BGN (  -1x-1  )
- 297 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000018411B4B670>
+ 297 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001D468C6B670>
  302 tabsC _initWindowA       screens[0] s.x=894  2160 (1280x720 )
  302 tabsC _initWindowA       screens[1] s.x=0     0 (3840x2160)
  303 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -712,7 +712,7 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 1
  637 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 2 10 6] END ntp=[  120  120 120  60   6] ( 1x1x1x6  )
 2728 tabsC snapshot           BASE_NAME=test logId=None snapId=None typ=INIT PNG=png
-2729 tabsC snapshot           .fNameLid=test.3 snapName=test.1.0.INIT.png on_draw((kwargs)=)
+2729 tabsC snapshot           .fNameLid=test.1 snapName=test.1.0.INIT.png on_draw((kwargs)=)
 snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.0.INIT.png
 2732 tabsC snapshot           snapName=test.1.0.INIT.png on_draw((kwargs)=)
  172 tabsC geomFileName       Btest.1.1.2.10.6_CC.png
@@ -722,25 +722,37 @@ snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.0.INIT.png
 2737 tabsC snapshot           BASE_NAME=test [1 1 2 10 6]
 2738 tabsC snapshot           snapName2=Btest.1.1.2.10.6_CC.png on_draw((kwargs)=)
 snapshot C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.png
-1523 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
-1523 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
-1523 tabsC dumpTnikCsvs       LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   0] test.3
-1523 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1    ) 1 (   )  156   0] test.3
+1523 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
+1523 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
+1523 tabsC dumpTnikCsvs       LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   0] test.1
+1523 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1    ) 1 (   )  156   0] test.1
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1539 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
-1539 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
-1539 tabsC dumpTnikCsvs       LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   0] test.3
-1539 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1    ) 1 (   )  156   0] test.3
+1539 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
+1539 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
+1539 tabsC dumpTnikCsvs       LE[1  1  2  20   60   60    0    0  1  10 1 0  0  0  0  0  156   0] test.1
+1539 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1    ) 1 (   )  156   0] test.1
  651 tabsC on_draw            [1 1 1  1 6]   6   0  1] .snapWhy=init .snapType=INIT .snapId=1
 snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.0.INIT.png)
 1920 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 2012 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 2013 tabsC on_key_press       retv=True
+2018 tabsC on_key_release         <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 0> <.modsStr=                >
+1920 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2012 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2013 tabsC on_key_press       retv=True
+2018 tabsC on_key_release         <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 0> <.modsStr=                >
+1920 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2012 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2013 tabsC on_key_press       retv=True
 1920 tabsC on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 2012 tabsC on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2013 tabsC on_key_press       retv=True
+2018 tabsC on_key_release         <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 1> <.modsStr=MOD_SHIFT       >
+1920 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2012 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 2013 tabsC on_key_press       retv=True
 1920 tabsC on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
@@ -758,7 +770,7 @@ snapPath=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.0.INI
  497 util  dumpStack           3 base        185 run                  platform_event_loop.step(timeout)
  497 util  dumpStack           2 __init__    107 run                  event_loop.run(interval)
  497 util  dumpStack           1 tabsC      2986 main                 ret = pyglet.app.run()
- 497 util  dumpStack           0 tabsC      3000 <module>             main()
+ 497 util  dumpStack           0 tabsC      3001 <module>             main()
  498 util  dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
@@ -894,16 +906,16 @@ Colm Line 1
  565 util  getFilePath        fileName =test.csv     filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
  562 util  getFilePath        baseName =Btest.1.1.2.10.6_CC.csv basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
  565 util  getFilePath        fileName =Btest.1.1.2.10.6_CC.csv filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.2.10.6_CC.csv)
- 562 util  getFilePath        baseName =test.3       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
- 565 util  getFilePath        fileName =test.3.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv)
+ 562 util  getFilePath        baseName =test.1       basePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test)
+ 565 util  getFilePath        fileName =test.1.csv   filePath = WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.1.csv)
 2817 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.csv
  570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
  571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.2.10.6_CC.csv)
  573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.csv ###
-2820 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.3.csv
+2820 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.1.csv
  570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv)
- 571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv)
- 573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.3.csv ###
+ 571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.1.csv)
+ 573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.1.csv ###
 2797 tabsC quit               Calling close(),2012 tabsC on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 2013 tabsC on_key_press       retv=True
 2987 tabsC main               pyglet.app.run(): return=None
@@ -916,12 +928,12 @@ Colm Line 1
  570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt)
  571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.2.10.6_CC.txt)
  573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.txt ###
-2991 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.3.log
+2992 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.1.log
  570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
- 571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.3.log)
- 573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.3.log ###
-2994 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.log
+ 571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.1.log)
+ 573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.1.log ###
+2995 tabsC main               Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.log
  570 util  copyFile           src=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log)
  571 util  copyFile           trg=WindowsPath(C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.2.10.6_CC.log)
  573 util  copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.2.10.6_CC.log ###
-2996 tabsC main               Flush & Close Log File
+2997 tabsC main               Flush & Close Log File

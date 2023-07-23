@@ -2947,14 +2947,11 @@ FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'He
 ########################################################################################################################################################################################################
 # Globals END
 
-def cleanupTxtFile(gfn, snp):
-#    seqFileName   = util.getSeqFileName(fdir=LOGS, fsfx=LOG, off=0)
-#    seqNumTxtPath = util.getFilePath(seqFileName, BASE_PATH, fdir=TEXT, fsfx=TXT)
-    slog(f'Copy {TXT_FILE.name} to {snp}', f=0)
+def cleanupTxtFile(gfp, snp):
+    slog(f'Copy { TXT_FILE.name} to {snp}', f=0)
     util.copyFile(TXT_PATH, snp, dbg=0)
-    geomTxtPath   = util.getFilePath(gfn,         BASE_PATH, fdir=None, fsfx=Z)
-    slog(f'Copy {TXT_FILE.name} to {geomTxtPath}', ff=1)
-    util.copyFile(TXT_PATH,         geomTxtPath)
+    slog(f'Copy { TXT_FILE.name} to {gfp}', ff=1)
+    util.copyFile(TXT_PATH,         gfp)
     slog('Flush & Close Txt File', f=0)
     TXT_FILE.flush()            ;   TXT_FILE.close()
 
@@ -2987,7 +2984,8 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
         slog(f'pyglet.app.run(): return={ret}')
         slog('Thats all folks!', ff=1, f=2)
         geomLogFilePath = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
-        cleanupTxtFile(tabs.TXT_GFN, seqNumTxtPath)
+        geomTxtPath     = util.getFilePath(tabs.TXT_GFN, BASE_PATH, fdir=None, fsfx=Z)
+        cleanupTxtFile(geomTxtPath,     seqNumTxtPath)
         slog(f'Copy {LOG_FILE.name} to {seqNumLogPath}', ff=1)
         util.copyFile(LOG_PATH,         seqNumLogPath)
 
