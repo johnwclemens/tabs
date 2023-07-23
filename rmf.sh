@@ -15,21 +15,26 @@ function cleanup {
   echo END cleanup "$ext" files: in "$dir"
   ls "$dir"
 }
-
+echo ARG1 \(root\) = "$1"
+root="$1"
+if [[ $root = "" ]]; then
+  echo "Error - Missing arg1 root dir name - Exit"
+  exit
+#  root="test"
+#else
+#  root=$1
+fi
 echo pwd
 pwd
-
-echo cd "test" || exit
-cd      "test" || exit
-
+echo cd "$root" || exit
+cd      "$root" || exit
 echo pwd
 pwd
 echo ls
 ls
-
 echo exts='("csv" "log" "png")'
 exts=(      "csv" "log" "png")
-echo "   >>> Removing Files from Local Dir >>> ..."
+echo "   >>> Removing Files from Dir =" "$root" ">>> ..."
 
 for ext in "${exts[@]}"  ; do
   dir=.
@@ -37,9 +42,10 @@ for ext in "${exts[@]}"  ; do
   cleanup "$dir" "$ext"
 done
 
+
 echo exts='("csv" "dat" "log" "png" "txt")'
 exts=(      "csv" "dat" "log" "png" "txt")
-echo "   >>> Removing Files from Sub-Dirs >>> ..."
+echo "   >>> Removing Files from Dir =" "$root" "of type" "csv dat log png txt >>> ..."
 
 for ext in "${exts[@]}"  ; do
   if   [[ $ext = "dat" ]]; then

@@ -4,6 +4,7 @@ export LC_CTYPE=en_US.UTF-8
 
 echo pwd
 pwd
+echo path=test/text
 path=test/text
 echo ls -l $path
 ls      -l $path
@@ -15,8 +16,10 @@ echo ls -l $path
 ls      -l $path
 echo cksum $path/test*.txt
 cksum      $path/test*.txt
-echo python tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2&> $path/test.std
-python      tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2&> $path/test.std
+echo "!! execute the script !!"
+echo python tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2> test/stdo/stdo.std
+python      tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2> test/stdo/stdo.std
+echo "!! script has returned !!"
 echo ls -l $path
 ls      -l $path
 echo cksum $path/test*.txt

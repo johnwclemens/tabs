@@ -42,7 +42,7 @@ class Tabs(pyglet.window.Window):
         self.LOG_ID = 0                ;   self.log(f'{self.LOG_ID=}')
         self.log(f'BGN {__class__}')   ;   dumpGlobals()
         self.log(f'STFILT:\n{fmtl(util.STFILT)}')          ;   self.snapWhy, self.snapType, self.snapReg, self.snapId, self.snapPath = '?', '_', 0, 0, None
-        self.fNameLid      = util.getFileSeqName(curr=1, fdir=LOGS, fsfx=LOG)
+        self.fNameLid      = util.getSeqFileName(curr=1, fdir=LOGS, fsfx=LOG)
         self.seqNumLogPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=LOGS, fsfx=LOG)   ;   self.log(f'{self.seqNumLogPath=}')
         self.seqNumCsvPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CSVS, fsfx=CSV)   ;   self.log(f'{self.seqNumCsvPath=}')
         self.seqNumTxtPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=TEXT, fsfx=TXT)   ;   self.log(f'{self.seqNumTxtPath=}')
@@ -2721,7 +2721,7 @@ class Tabs(pyglet.window.Window):
     def snapshot(self, why=Z, typ=Z, dbg=1, dbg2=1):
         why    = why if why else self.snapWhy
         typ    = typ if typ else self.snapType
-        snapId = self.snapId  ;  logId = self.LOG_ID
+        snapId = self.snapId  ;  logId = self.LOG_ID + 1
         snapName = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
         self.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = 'None'   ;   snapId = 'None'
         if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
@@ -2746,7 +2746,7 @@ class Tabs(pyglet.window.Window):
             self.log(f)
             os.system(f'del {f}')
 
-#    def getFileSeqName(self, fdir=LOGS, fsfx=LOG):
+#    def getSeqFileName(self, fdir=LOGS, fsfx=LOG):
 #        fdir += '/'
 #        self.log(f'{fdir=} {fsfx=}')
 #        fGlobArg = f'{(BASE_PATH / fdir / BASE_NAME)}.*.{fsfx}'
@@ -2806,6 +2806,13 @@ class Tabs(pyglet.window.Window):
         self.cleanupCatFile() if self.CAT and self.cobj.umap else None
         self.cleanupTxtFile()
 
+    def cleanupTxtFile(self):
+        self.fNameLid = util.getSeqFileName(         curr=1,       fdir=LOGS, fsfx=LOG)
+        txtFileName   = BASE_NAME
+        txtFilePath   = util.getFilePath(txtFileName,   BASE_PATH, fdir=TEXT, fsfx=TXT) # '_.' +
+        seqNumTxtPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=TEXT, fsfx=TXT)   ;   self.log(f'{seqNumTxtPath=}')
+        util.copyFile(txtFilePath, seqNumTxtPath)
+
     def cleanupCsvFile(self):
         if not CSV_FILE.closed:
             self.log(f'Closing {CSV_FILE.name}', ff=True)
@@ -2833,13 +2840,6 @@ class Tabs(pyglet.window.Window):
         catPath2 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)
         self.log(f'Copying {CAT_FILE.name} to {catPath2}', f=2)
         util.copyFile(catPath, catPath2)
-
-    def cleanupTxtFile(self):
-        self.fNameLid = util.getFileSeqName(         curr=1,       fdir=LOGS, fsfx=LOG)
-        txtFileName   = BASE_NAME
-        txtFilePath   = util.getFilePath(txtFileName,   BASE_PATH, fdir=TEXT, fsfx=TXT) # '_.' +
-        seqNumTxtPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=TEXT, fsfx=TXT)   ;   self.log(f'{seqNumTxtPath=}')
-        util.copyFile(txtFilePath, seqNumTxtPath)
 ########################################################################################################################################################################################################
 # Global Functions BGN
 ########################################################################################################################################################################################################

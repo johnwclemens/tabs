@@ -38,17 +38,25 @@ def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^
 def init(lfile, cfile, tfile, oid):
     global LOG_FILE, CSV_FILE, TXT_FILE, OIDS   ;   LOG_FILE, CSV_FILE, TXT_FILE, OIDS = lfile, cfile, tfile, oid
 #    dumpData(csv=1)
+#    KSD = {}
+#    KIM, KIS, KMS, KJS, KNS        = range(5)
+#    KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
+#    dmpKSVHdr(csv=1,   t=-1)
+#    KSD = initKSD(KSD, t=-1)
+#    KSD = initKSD(KSD, t= 1)
+#    dmpKSVHdr(csv=1,   t= 1)
+#    dumpKSH(  csv=1)
 ########################################################################################################################################################################################################
-def getFileSeqName(curr=1, fdir='logs', fsfx='log'):
+def getSeqFileName(curr=1, fdir='logs', fsfx='log'):
     fdir += '/'
     slog(f'{fdir=} {fsfx=}')
     fGlobArg = f'{(BASE_PATH / fdir / BASE_NAME)}.*.{fsfx}'
     fGlob = glob.glob(fGlobArg)
     slog(f'{fGlobArg=}')
-    LOG_ID = curr + getFileSeqNum(fGlob, fsfx)
+    LOG_ID = curr + getSeqFileNum(fGlob, fsfx)
     return f'{BASE_NAME}.{LOG_ID}'
 
-def getFileSeqNum(files, sfx, dbg=0, dbg2=0):
+def getSeqFileNum(files, sfx, dbg=0, dbg2=0):
     i = 0
     fsfx = f'.{sfx}'
     if len(files):
@@ -515,13 +523,20 @@ def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=False):
         pl   = 18 if p == 1 else 8
         p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else Z
         t    = f'{p}{sf.f_code.co_name:{pl}} ' + t
-    tf = 0
+    lf = 0
     if   f == 0:  f = TXT_FILE
     elif f == 1:  f = LOG_FILE
-    elif f == 2:  f = LOG_FILE  ;  tf = 1
+    elif f == 2:  f = TXT_FILE  ;  lf = 1
     elif f == 3:  f = CSV_FILE
     print(t, sep=s, end=e, file=f,        flush=ff)
-    print(t, sep=s, end=e, file=TXT_FILE, flush=ff) if tf else None
+    print(t, sep=s, end=e, file=LOG_FILE, flush=ff) if lf else None
+#    tf = 0
+#    if   f == 0:  f = TXT_FILE
+#    elif f == 1:  f = LOG_FILE
+#    elif f == 2:  f = LOG_FILE  ;  tf = 1
+#    elif f == 3:  f = CSV_FILE
+#    print(t, sep=s, end=e, file=f,        flush=ff)
+#    print(t, sep=s, end=e, file=TXT_FILE, flush=ff) if tf else None
 ########################################################################################################################################################################################################
 def filtText(text):
     text = text.replace('"', Z)
