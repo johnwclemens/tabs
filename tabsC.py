@@ -2806,13 +2806,6 @@ class Tabs(pyglet.window.Window):
         self.cleanupCsvFile()
         self.cleanupCatFile() if self.CAT and self.cobj.umap else None
 
-    def OLD__cleanupTxtFile(self):
-        self.fNameLid = util.getSeqFileName(fdir=LOGS, fsfx=LOG)
-        txtFileName   = BASE_NAME
-        txtFilePath   = util.getFilePath(txtFileName,   BASE_PATH, fdir=TEXT, fsfx=TXT) # '_.' +
-        seqNumTxtPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=TEXT, fsfx=TXT)   ;   self.log(f'{seqNumTxtPath=}')
-        util.copyFile(txtFilePath, seqNumTxtPath)
-
     def cleanupCsvFile(self):
         if not CSV_FILE.closed:
             self.log(f'Closing {CSV_FILE.name}', ff=True)
@@ -2954,11 +2947,11 @@ FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'He
 ########################################################################################################################################################################################################
 # Globals END
 
-def cleanupTxtFile(gfn):
-    seqFileName   = util.getSeqFileName(fdir=LOGS, fsfx=LOG, off=0)
-    seqNumTxtPath = util.getFilePath(seqFileName, BASE_PATH, fdir=TEXT, fsfx=TXT)
-    slog(f'Copy {TXT_FILE.name} to {seqNumTxtPath}', f=0)
-    util.copyFile(TXT_PATH, seqNumTxtPath, dbg=0)
+def cleanupTxtFile(gfn, snp):
+#    seqFileName   = util.getSeqFileName(fdir=LOGS, fsfx=LOG, off=0)
+#    seqNumTxtPath = util.getFilePath(seqFileName, BASE_PATH, fdir=TEXT, fsfx=TXT)
+    slog(f'Copy {TXT_FILE.name} to {snp}', f=0)
+    util.copyFile(TXT_PATH, snp, dbg=0)
     geomTxtPath   = util.getFilePath(gfn,         BASE_PATH, fdir=None, fsfx=Z)
     slog(f'Copy {TXT_FILE.name} to {geomTxtPath}', ff=1)
     util.copyFile(TXT_PATH,         geomTxtPath)
@@ -2987,16 +2980,16 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
         slog(f'{CSV_PATH=}',  f=2)        ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{TXT_PATH=}',  f=2)        ;   slog(f'{TXT_FILE.name=}', f=2)
         slog('constructing Tabs object')
-        tabs = Tabs()  ;  seqNumLogPath = tabs.seqNumLogPath # ;  seqNumTxtPath = tabs.seqNumTxtPath
+        tabs = Tabs()  ;  seqNumLogPath = tabs.seqNumLogPath  ;  seqNumTxtPath = tabs.seqNumTxtPath
         slog(f'{str(tabs)=}', f=2)        ;   slog(f'{tabs=}', f=2)
         slog('Call pyglet.app.run()')
         ret = pyglet.app.run()
         slog(f'pyglet.app.run(): return={ret}')
         slog('Thats all folks!', ff=1, f=2)
-        cleanupTxtFile(tabs.TXT_GFN)
+        geomLogFilePath = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
+        cleanupTxtFile(tabs.TXT_GFN, seqNumTxtPath)
         slog(f'Copy {LOG_FILE.name} to {seqNumLogPath}', ff=1)
         util.copyFile(LOG_PATH,         seqNumLogPath)
-        geomLogFilePath = util.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
 
         slog(f'Copy {LOG_FILE.name} to {geomLogFilePath}', ff=1)
         util.copyFile(LOG_PATH,         geomLogFilePath)
