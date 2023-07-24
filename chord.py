@@ -38,8 +38,8 @@ class Chord:
                 ikey     = W.join(_ikeys)
                 if ikey in omap:
                     root = _imap['R']           ;     chunks.append(root)
-                    assert util.isi(omap[ikey],   tuple),  slog(f'Invalid type, expected tuple, got {type(omap[ikey])=} {omap[ikey]=}')
-                    assert util.isi(omap[ikey][2], list),  slog(f'Invalid type, expected tuple, got {type(omap[ikey][2])=} {omap[ikey][2]=}')
+                    assert util.isi(omap[ikey],   tuple),  slog(f'Invalid type, expected tuple {type(omap[ikey])=} {omap[ikey]=}')
+                    assert util.isi(omap[ikey][2], list),  slog(f'Invalid type, expected list  {type(omap[ikey][2])=} {omap[ikey][2]=}')
 #                    for n in omap[ikey][2]:
 #                        chunks.append(n) if n else None
                     [ chunks.append(n) for n in omap[ikey][2] if n ]

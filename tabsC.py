@@ -687,7 +687,7 @@ class Tabs(pyglet.window.Window):
         self.data = [ [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ] for _ in range(np) ]
         self.data = self.transposeData(dmp=1)
         size      = self.saveDataFile('Generated Data', path)
-        self.log(f'{path} {size=} len(data)={len(self.data)} {len(self.data[0])} {len(self.data[0][0])}  {len(self.data[0][0][0])}')
+        self.log(f'{path} {size=} {self.fmtdl()}')
         self.data = []
         return size
    ####################################################################################################################################################################################################
@@ -2809,9 +2809,8 @@ class Tabs(pyglet.window.Window):
 
     def cleanupCsvFile(self):
         if not CSV_FILE.closed:
-            self.log(f'Closing {CSV_FILE.name}', ff=True)
-            CSV_FILE.flush()
-            CSV_FILE.close()
+            self.log(f'Flush & Close {CSV_FILE.name}', ff=True)
+            CSV_FILE.flush()     ;    CSV_FILE.close()
         csvPath  = util.getFilePath(BASE_NAME,     BASE_PATH, fdir=CSVS, fsfx=CSV)
         csvPath2 = util.getFilePath(self.CSV_GFN,  BASE_PATH, fdir=None, fsfx=Z)
         csvPath3 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CSVS, fsfx=CSV)
@@ -2827,9 +2826,8 @@ class Tabs(pyglet.window.Window):
         if CAT_PATH.exists():     util.copyFile(CAT_PATH, pcatPath)
         with open(str(CAT_PATH), 'w', encoding='utf-8') as CAT_FILE:
             self.cobj.dumpOMAP( CAT_PATH, merge=1)
-            self.log(f'Closing {CAT_FILE.name}', ff=True)
-            CAT_FILE.flush()
-            CAT_FILE.close()
+            self.log(f'Flush & Close {CAT_FILE.name}', ff=True)
+            CAT_FILE.flush()     ;    CAT_FILE.close()
         catPath  = util.getFilePath(BASE_NAME,     BASE_PATH, fdir=CATS, fsfx=CAT)
         catPath2 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)
         self.log(f'Copying {CAT_FILE.name} to {catPath2}', f=2)
