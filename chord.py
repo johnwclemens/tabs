@@ -33,7 +33,6 @@ class Chord:
                 ikeys    = [ Notes.I2V[i] for i in ivals ]
                 if dbg:    self._dumpData(rank, ikeys, ivals, notes, mask, 0)
                 _imap    = dict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: Notes.V2I[t[0]]))
-#                _imap    = cOd(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: Notes.V2I[t[0]]))
                 _ikeys   = list(_imap.keys())   ;    _ivals = [ Notes.V2I[k] for k in _ikeys ]   ;   _notes = list(_imap.values())   ;   leni = len(_imap)
                 ikey     = W.join(_ikeys)
                 if ikey in omap:
@@ -169,11 +168,11 @@ class Chord:
         return a
     @staticmethod
     def rotateIndices(a):
-        r = [0]
+        r = [0]   ;   ntones = Notes.NTONES
         for i in range(1, len(a)):
-            b = a[i+1] if i + 1 < len(a) else Notes.NTONES   ;   r.append(b - a[i] + r[i-1])
-#           if    i + 1 < len(a): r.append(a[i+1] - a[i] + r[i-1])
-#           else:                 r.append(NTONES - a[i] + r[i-1])
+#            b = a[i+1] if i + 1 < len(a) else Notes.NTONES   ;   r.append(b - a[i] + r[i-1])
+           if    i + 1 < len(a): r.append(abs(a[i+1] - a[i] + r[i-1]) % ntones)
+           else:                 r.append(abs(ntones - a[i] + r[i-1]) % ntones)
         return r
 #    @staticmethod
 #    def fsort(ivals): s = set(ivals)   ;   return sorted(s)
@@ -213,47 +212,47 @@ class Chord:
                 self._dumpOMAP(CAT_FILE)
         slog(f'END {len(self.OMAP)=} {len(self.umap)=}')
 
-    def _dumpOMAP(self, catfile=None, dbg=1): # optimize str concat?
-        file    = catfile      if catfile else util.LOG_FILE
-        name    = catfile.name if catfile else None
-        omap    = self.OMAP    ;    lm = len(self.OMAP)
-        mapSet, r, rank    = {}, {}, -1
-        slog(f'BGN {lm=} catfile.{name=}')
+    @staticmethod
+    def getMapSets(omap):
+        mapSet = {}
         for k, v in omap.items():
-            assert util.isi(omap[k],   tuple),  slog(f'Invalid type, expected tuple, got {type(omap[k])=} {omap[k]=}')
-            assert util.isi(omap[k][2], list),  slog(f'Invalid type, expected tuple, got {type(omap[k][2])=} {omap[k][2]=}')
-            kv             = len(v[1])
-            if kv not in mapSet:  mapSet[kv] = set()
-            mapSet[kv].add(tuple(v[1]))
-        j, mstat, tstat    = 0, [], []   ;   msg = 'ERROR: Invalid Rank'
+            assert util.isi(omap[k],   tuple),  slog(f'ERROR: Invalid type, expected tuple, got {type(omap[k])=} {omap[k]=}')
+            assert util.isi(omap[k][2], list),  slog(f'ERROR: Invalid type, expected tuple, got {type(omap[k][2])=} {omap[k][2]=}')
+            kv               = len(v[1])
+            if kv not in mapSet:   mapSet[kv] = set()
+            if mapSet:             mapSet[kv].add(tuple(v[1]))
+        return mapSet
+
+    def _dumpOMAP(  self, catfile=None, dbg=1):
+        file = catfile if catfile else util.LOG_FILE    ;   name = catfile.name if catfile else None   ;   omap, lm = self.OMAP, len(self.OMAP)   ;   mapSet, r, rank = {}, {}, -1
+        slog(f'BGN {lm=} catfile.{name=}')   ;   j, mstat, tstat = 0, [], []   ;   msg = 'ERROR: Invalid Rank'
+        mapSet = self.getMapSets(omap)
         for k, sml in mapSet.items():
-            sml            = sorted(sml)
-            tstat.append(0)
+            if sml:       sml = sorted(sml)
             count, nord, none = 0, 0, 0
+            tstat.append(0)
             for ii in sml:
-                keys       = [ Notes.I2V[i] for i in ii ]   ;   j += 1   ;   slog(f'{j} {ii} {keys}', f=2, ff=1)
-                keys       = sorted(keys, key=lambda a: Notes.V2I[a])
-                keyStr     = W.join(keys)
-                if keyStr not in omap:   msg = f'Error {keyStr=} not in omap, quitting'   ;   slog(msg)   ;   self.tobj.quit(msg)
-                keyStrFmt  = '\'' + keyStr + '\''
-                v          = omap[keyStr]
-                rankSet    = set()  ;  rankSet.add(v[0])
-                if not catfile: count += 1  ;  none += 1 if not v[2] else 0  ;  nord += 1 if v[0] == rank else 0
-                v2         = fmtl(v[2], s='\',\'', d='[\'', d2='\']),') if v[2] else '[]),' if util.isi(v[2], list) else 'None),'
-                if dbg:      slog(f'{keyStrFmt:19}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):15} {v2:28} # ', p=0, f=file, e=Z)
-                cycSet     = set()   ;   cycSet.add(tuple(ii))
+                keys          = [ Notes.I2V[i] for i in ii ]    ;     j += 1
+                keys          = sorted(keys, key=lambda a: Notes.V2I[a])        ;   slog(f'{j} {ii} {keys}', f=2, ff=1)   ;   keyStr   = W.join(keys)
+                keyStrFmt     = '\'' + keyStr + '\''     ;   v = omap[keyStr]   ;   rankSet  = set()     ;    rankSet.add(v[0])
+                if not catfile: count += 1  ;  none += 1 if not v[2] else 0  ;    nord   += 1 if v[0] == rank else 0
+                v2            = fmtl(v[2], s='\',\'', d='[\'', d2='\']),') if v[2] else '[]),' if util.isi(v[2], list) else 'None),'
+                if dbg:         slog(f'{keyStrFmt:19}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):15} {v2:28} # ', p=0, f=file, e=Z)
+                cycSet        = set()   ;   cycSet.add(tuple(ii))   ;   i2 = []
                 for _ in range(len(ii) - 1):
-                    ii     = self.rotateIndices(ii)
-                    keys   = [ Notes.I2V[i] for i in ii ]
-                    keyStr = W.join(keys)   ;   ck = len(ii)   ;   jj = tuple(ii)    ;   cycle = 0
+                    i2        = self.rotateIndices(ii)
+                    keys2     = [ Notes.I2V[i] for i in i2 ]
+                    keyStr    = W.join(keys2)   ;   ck = len(i2)   ;      jj = tuple(i2)    ;   cycle = 0
                     if keyStr in omap: rankSet.add(omap[keyStr][0])
                     if jj in cycSet:
-                        if ck not in self.cycles: self.cycles[ck] = set()
-                        self.cycles[ck].add(jj)                                        ;   cycle = 1
-                    cycSet.add(jj)    ;     d = '@' if cycle else '['    ;    d2 = '@' if cycle else ']'
-                    if keyStr not in omap:        slog('not in map: ', p=0, e=Z, f=file)     ;    r[keyStr] = (rank, ii, None)
-                    if dbg: slog(f'{keyStr:16} {fmtl(ii, w="x", d=d, d2=d2):13} ', p=0, e=Z, f=file)
-                refSet     = set(range(len(ii)))
+                        if ck not in self.cycles:        self.cycles[ck] = set()
+                        self.cycles[ck].add(jj)      ;   cycle = 1
+                    d = '@' if cycle else '['    ;      d2 = '@' if cycle else ']'
+                    cycSet.add(jj)
+                    if keyStr not in omap:
+                        slog('not in map: ', p=0, e=Z, f=file)     ;    r[keyStr] = (rank, i2, None)
+                    if dbg: slog(f'{keyStr:16} {fmtl(i2, w="x", d=d, d2=d2):13} ', p=0, e=Z, f=file)
+                refSet        = set(range(len(i2)))
                 if dbg:
                     if    rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet: slog(p=0, f=file)
                     else: slog(f'\n{msg} {fmtl(refSet, d="<", d2=">")} {fmtl(rankSet, d="<", d2=">")} {fmtl(sorted(cycSet))}', p=0, f=file)  # ;  q = 1
@@ -261,12 +260,12 @@ class Chord:
         if not catfile:
             for kk, w in self.cycles.items():
                 for c in tuple(sorted(w)):
-                    keys   = [ Notes.I2V[j] for j in c ]   ;   key = W.join(keys)   ;   v = omap[key]
+                    keys      = [ Notes.I2V[j] for j in c ]   ;   key = W.join(keys)   ;   v = omap[key]
                     slog(f'{kk:2} note cycle {v[0]:2} {fmtl(c, w="x"):13} {key:16} {Z.join(v[2]):12} {v[2]}')
             for m in mstat:
                 slog(f'{m[0]:2} note chords  {m[1]:3} valid  {m[2]:3} unordered  {m[3]:3} unnamed')
-                tstat[0]  += m[0]   ;   tstat[1] += m[1]   ;   tstat[2] += m[2]   ;   tstat[3] += m[3]
-        if catfile: lm, lr = len(omap), len(r)   ;   slog(f'END {lm=} catfile.{name=} {lr=}')
+                tstat[0]     += m[0]   ;   tstat[1] += m[1]   ;   tstat[2] += m[2]   ;   tstat[3] += m[3]
+        if catfile: lm, lr    = len(omap), len(r)   ;   slog(f'END {lm=} catfile.{name=} {lr=}')
         else:       slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}')
         return r
 
@@ -830,6 +829,7 @@ class Chord:
             'R 5 6 b7 7'       : (2, [0,7,9,10,11],  ['#','13','13','y']),        # R 2 m3 M3 4      [0 2 3 4 5]   R b2 2 m3 b7     [0 1 2 3 a]   R b2 2 6 7       [0 1 2 9 b]   R b2 #5 b7 7     [0 1 8 a b]
             'R #5 6 b7 7'      : (2, [0,8,9,10,11],  ['+','#','13','13','y']),    # R b2 2 m3 M3     [0 1 2 3 4]   R b2 2 m3 7      [0 1 2 3 b]   R b2 2 b7 7      [0 1 2 a b]   R b2 6 b7 7      [0 1 9 a b]
     ####################################################################################################################################################################################################
+            'R b2 m3 M3 b5 6'  : (-1, [0,1,3,4,6,9],  ['b2','#2','b5','6']),      # R 2 5 b2 m3 R    [0 2 7 1 3 0] R 2 5 b2 m3 R    @0 2 7 1 3 0@ R 2 5 b2 m3 R    @0 2 7 1 3 0@ R 2 5 b2 m3 R    @0 2 7 1 3 0@ R 2 5 b2 m3 R    @0 2 7 1 3 0@
             'R b2 m3 M3 #5 6'  : (5, [0,1,3,4,8,9],  ['+','b2','#2','6']),        # R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b]
             'R b2 m3 4 b5 b7'  : (3, [0,1,3,5,6,10], ['o','11','b9']),            # R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a] R M3 b5 5 6 7    [0 4 6 7 9 b] R 2 m3 4 5 #5    [0 2 3 5 7 8]
             'R b2 m3 4 5 #5'   : (5, [0,1,3,5,7,8],  ['m','b2','4','b6']),        # R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a] R b2 4 b5 #5 b7  [0 1 5 6 8 a] R M3 4 5 6 7     [0 4 5 7 9 b]
@@ -837,21 +837,21 @@ class Chord:
             'R b2 m3 b5 #5 b7' : (3, [0,1,3,6,8,10], ['o','+','b9']),             # R 2 4 5 6 7      [0 2 5 7 9 b] R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a]
             'R b2 M3 4 5 #5'   : (4, [0,1,4,5,7,8],  ['b2','4','b6']),            # R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b]
             'R b2 M3 4 #5 b7'  : (1, [0,1,4,5,8,10], ['+','11','b9']),            # R m3 M3  5 6 7   [0 3 4 7 9 b] R m3  4  5 #5 7  [0 3 5 7 8 b] R 2 M3 4 #5 6    [0 2 4 5 8 9] R  2 m3 b5 5 b7  [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a]
-            'R b2 M3 b5  5 b7' : (0, [0,1,4,6,7,10], ['#','11','b9']),            # R m3  4 b5  6 7  @0 3 5 6 9 b@ R  2 m3 b5 #5 6  @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@ R  2 m3 b5 #5  6 @0 2 3 6 8 9@
-            'R b2 M3 b5 #5  6' : (5, [0,1,4,6,8,9],  ['+','b2','#4','6']),        # R m3  4  5 #5 7  [0 3 5 7 8 b] R  2 M3  4 #5 6  [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 10] R b2 M3 4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b]
+            'R b2 M3 b5 5 b7'  : (0, [0,1,4,6,7,10], ['#','11','b9']),            # R m3  4 b5  6 7  @0 3 5 6 9 b@ R  2 m3 b5 #5 6  @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@ R  2 m3 b5 #5  6 @0 2 3 6 8 9@
+            'R b2 M3 b5 #5 6'  : (5, [0,1,4,6,8,9],  ['+','b2','#4','6']),        # R m3  4  5 #5 7  [0 3 5 7 8 b] R  2 M3  4 #5 6  [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 10] R b2 M3 4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b]
             'R b2 4 b5 #5 b7'  : (4, [0,1,5,6,8,10], ['o','+','b9','s4']),        # R M3 4 5 6 7     [0 4 5 7 9 b] R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a]
             'R b2 4 b5 6 b7'   : (2, [0,1,5,6,9,10], ['o','13','b9','s4']),       # R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b]
             'R b2 4 5 #5 b7'   : (4, [0,1,5,7,8,10], ['b','13','b9','s4']),       # R M3 b5 5 6 7    [0 4 6 7 9 b] R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a]
             'R 2 m3 4 5 #5'    : (5, [0,2,3,5,7,8],  ['m','+','2','4']),          # R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a] R M3 b5 5 6 7    [0 4 6 7 9 b]
             'R 2 m3 4 5 b7'    : (0, [0,2,3,5,7,10], ['m','11','9']),             # R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b] R 2 4 5 6 b7     [0 2 5 7 9 a] R m3 4 5 #5 b7   [0 3 5 7 8 a] R 2 M3 4 5 6     [0 2 4 5 7 9]
             'R 2 m3 4 #5 b7'   : (1, [0,2,3,5,8,10], ['m','+','11','9']),         # R b2 m3 b5 #5 b7 [0 1 3 6 8 a] R 2 4 5 6 7      [0 2 5 7 9 b] R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a]
-            'R  2 m3 b5  5 b7' : (0, [0,2,3,6,7,10], ['m','#','11','9']),         # R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b] R m3  4  5 #5  7 [0 3 5 7 8 b] R  2 M3  4 #5  6 [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 a]
-            'R  2 m3 b5 #5  6' : (2, [0,2,3,6,8,9],  ['o','+','2','6']),          # R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@ R  2 m3 b5 #5  6 @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@
+            'R 2 m3 b5 5 b7'   : (0, [0,2,3,6,7,10], ['m','#','11','9']),         # R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b] R m3  4  5 #5  7 [0 3 5 7 8 b] R  2 M3  4 #5  6 [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 a]
+            'R 2 m3 b5 #5 6'   : (2, [0,2,3,6,8,9],  ['o','+','2','6']),          # R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@ R  2 m3 b5 #5  6 @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@
             'R 2 m3 5 #5 b7'   : (3, [0,2,3,7,8,10], ['m','b','13','9']),         # R b2 4 b5 #5 b7  [0 1 5 6 8 a] R M3 4 5 6 7     [0 4 5 7 9 b] R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a]
             'R 2 m3 5 #5 7'    : (3, [0,2,3,7,8,11], ['m','M','b','13','9']),     # R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9]
             'R 2 m3 5 6 b7'    : (2, [0,2,3,7,9,10], ['m','13','9']),             # R b2 4 5 #5 b7   [0 1 5 7 8 a] R M3 b5 5 6 7    [0 4 6 7 9 b] R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b]
             'R 2 M3 4 5 6'     : (5, [0,2,4,5,7,9],  ['2','4','6']),              # R 2 m3 4 5 b7    [0 2 3 5 7 a] R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b] R 2 4 5 6 b7     [0 2 5 7 9 a] R m3 4 5 #5 b7   [0 3 5 7 8 a]
-            'R  2 M3  4 #5  6' : (3, [0,2,4,5,8,9],  ['+','2','4','6']),          # R 2 m3 b5  5 b7  [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b] R b2 M3 b5 #5  6 [0 1 4 6 8 9] R  2 M3  4 #5  6 [0 2 4 5 8 9]
+            'R 2 M3 4 #5 6'    : (3, [0,2,4,5,8,9],  ['+','2','4','6']),          # R 2 m3 b5  5 b7  [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b] R b2 M3 b5 #5  6 [0 1 4 6 8 9] R  2 M3  4 #5  6 [0 2 4 5 8 9]
             'R 2 M3 4 5 b7'    : (0, [0,2,4,5,7,10], ['11','9']),                 # R 2 m3 4 #5 b7   [0 2 3 5 8 a] R b2 m3 b5 #5 b7 [0 1 3 6 8 a] R 2 4 5 6 7      [0 2 5 7 9 b] R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9]
             'R 2 M3 4 6 b7'    : (2, [0,2,4,5,9,10], ['13','11','9','x']),        # R 2 m3 5 #5 b7   [0 2 3 7 8 a] R b2 4 b5 #5 b7  [0 1 5 6 8 a] R M3 4 5 6 7     [0 4 5 7 9 b] R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b]
             'R 2 M3 4 6 7'     : (0, [0,2,4,5,9,11], ['M','13','11','9','x']),    # R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a] R M3 b5 5 6 7    [0 4 6 7 9 b] R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a]
@@ -862,10 +862,10 @@ class Chord:
             'R 2 4 5 6 b7'     : (4, [0,2,5,7,9,10], ['13','s2','s4']),           # R m3 4 5 #5 b7   [0 3 5 7 8 a] R 2 M3 4 5 6     [0 2 4 5 7 9] R 2 m3 4 5 b7    [0 2 3 5 7 a] R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b]
             'R 2 4 5 6 7'      : (4, [0,2,5,7,9,11], ['M','13','s2','s4']),       # R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a] R b2 m3 b5 #5 b7 [0 1 3 6 8 a]
             'R m3 M3 b5 5 7'   : (0, [0,3,4,6,7,11], ['M','#','11','#9']),        # R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8]
-            'R m3 M3  5  6  7' : (2, [0,3,4,7,9,11], ['m','M','13','#9']),        # R m3  4  5 #5  7 [0 3 5 7 8 b] R  2 M3  4 #5  6 [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b]
-            'R m3  4 b5  6 7'  : (1, [0,3,5,6,9,11], ['o','M','13','11']),        # R  2 m3 b5 #5  6 @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@ R  2 m3 b5 #5  6 @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@
+            'R m3 M3 5 6 7'    : (2, [0,3,4,7,9,11], ['m','M','13','#9']),        # R m3  4  5 #5  7 [0 3 5 7 8 b] R  2 M3  4 #5  6 [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b]
+            'R m3 4 b5 6 7'    : (1, [0,3,5,6,9,11], ['o','M','13','11']),        # R  2 m3 b5 #5  6 @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@ R  2 m3 b5 #5  6 @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@
             'R m3 4 5 #5 b7'   : (2, [0,3,5,7,8,10], ['m','b','13','11']),        # R 2 M3 4 5 6     [0 2 4 5 7 9] R 2 m3 4 5 b7    [0 2 3 5 7 a] R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b] R 2 4 5 6 b7     [0 2 5 7 9 a]
-            'R m3  4  5 #5  7' : (4, [0,3,5,7,8,11], ['+','m','M','11']),         # R  2 M3  4 #5  6 [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b] R b2 M3 b5 #5  6 [0 1 4 6 8 9]
+            'R m3 4 5 #5 7'    : (4, [0,3,5,7,8,11], ['+','m','M','11']),         # R  2 M3  4 #5  6 [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b] R b2 M3 b5 #5  6 [0 1 4 6 8 9]
             'R m3 4 5 6 b7'    : (2, [0,3,5,7,9,10], ['m','13','11']),            # R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a] R b2 m3 b5 #5 b7 [0 1 3 6 8 a] R 2 4 5 6 7      [0 2 5 7 9 b]
             'R M3 4 5 6 7'     : (0, [0,4,5,7,9,11], ['M','13','11']),            # R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a] R b2 4 b5 #5 b7  [0 1 5 6 8 a]
             'R M3 4 #5 6 7'    : (1, [0,4,5,8,9,11], ['+','M','13','11']),        # R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a]
