@@ -1623,7 +1623,7 @@ class Tabs(pyglet.window.Window):
             w, h  = t.width if t.width is not None else t.height , t.height
             return  t.x, t.y, w, h, cc
     ####################################################################################################################################################################################################
-    def plc2cn(self, p, l, c, dbg=1):
+    def plc2cn(self, p, l, c, dbg=0):
         tpb, tpp, tpl, tps, tpc = self.ntp()  ;  ns = self.n[S]
         cn = p*tpp//tpc + l*tpl//tpc//ns + c
 #        cc = p*tpp + l*tpl//ns + c*tpc

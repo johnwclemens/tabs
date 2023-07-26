@@ -39,9 +39,9 @@ class Chord:
                     root = _imap['R']           ;     chunks.append(root)
                     assert util.isi(omap[ikey],   tuple),  slog(f'Invalid type, expected tuple {type(omap[ikey])=} {omap[ikey]=}')
                     assert util.isi(omap[ikey][2], list),  slog(f'Invalid type, expected list  {type(omap[ikey][2])=} {omap[ikey][2]=}')
-#                    for n in omap[ikey][2]:
-#                        chunks.append(n) if n else None
-                    [ chunks.append(n) for n in omap[ikey][2] if n ]
+                    for n in omap[ikey][2]:    # ? Expected type 'collections.Iterable', got 'int' instead ?
+                        chunks.append(n) if n else None
+#                    [ chunks.append(n) for n in omap[ikey][2] if n ]    # ? Expected type 'collections.Iterable', got 'int' instead ?
                     if root != notes[0]:              nsfx = f'/{notes[0]}'  ;  chunks.append(nsfx)
                     name = Z.join(chunks)       ;     rank = omap[ikey][0]
                     assert _ivals == omap[ikey][1],   slog(f'Error _ivals != omap[ikey][1], {_ivals=} {omap[ikey][1]=}')
@@ -226,58 +226,50 @@ class Chord:
         return mapSet
 
     def _dumpOMAP(  self, catfile=None, dbg=1):
-        file = catfile if catfile else util.LOG_FILE    ;   name = catfile.name if catfile else None   ;   omap, lm = self.OMAP, len(self.OMAP)   ;   mapSet, r, rank = {}, {}, -1
-        slog(f'BGN {lm=} catfile.{name=}')   ;   j, mstat, tstat = 0, [], []   ;   msg = 'ERROR: Invalid Rank'
-        mapSet = self.getMapSets(omap)
+        file = catfile if catfile else util.LOG_FILE   ;   omap, lm = self.OMAP, len(self.OMAP)   ;   r, rank = {}, -1   ;   j, mstat, tstat = 0, [], []
+        name = catfile.name if catfile else None       ;     mapSet = self.getMapSets(omap)       ;   slog(f'BGN {lm=} catfile.{name=}')     ;   msg = 'ERROR: Invalid Rank'
         for k, sml in mapSet.items():
-            if sml:       sml = sorted(sml)
-            count, nord, none = 0, 0, 0
-            tstat.append(0)
+            tstat.append(0)    ;    count, nord, none = 0, 0, 0    ;    sml = sorted(sml) if sml else None
             for ii in sml:
-                keys           = [ Notes.I2V[i] for i in ii ]    ;     j += 1
-                keys           = sorted(keys, key=lambda a: Notes.V2I[a])        ;   slog(f'{j:3} {fmtl(keys):19} {fmtl(ii)}', f=2, ff=1)   ;   keyStr = W.join(keys)
-                keyStrFmt      = "\'" + keyStr + "\'"     ;   v = omap[keyStr]   ;   rankSet  = set()     ;    rankSet.add(v[0])
-                if not catfile: count += 1  ;  none += 1 if not v[2] else 0  ;    nord   += 1 if v[0] == rank else 0
-#                v2            = f'{v[2]}' if v[2] else '[]),' if util.isi(v[2], list) else 'None),'
-                v2             = fmtl(v[2], s="\',\'", d="[\'", d2="\']),") if v[2] else '[]),' if util.isi(v[2], list) else 'None),'
-                if dbg:          slog(f'{keyStrFmt:20}: ({v[0]}, {fmtl(sorted(v[1]), s=Y, d2="],"):15} {v2} # ', p=0, f=file, e=Z, ft=0)
-#                if dbg:         slog(f'{keyStrFmt:19}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):15} {v[2]:28} # ', p=0, f=file, e=Z)
-                cycSet         = set()   ;   cycSet.add(tuple(ii))   ;   i2 = list(ii)
+                keys        = [ Notes.I2V[i] for i in ii ]    ;     j += 1
+                keys        = sorted(keys, key=lambda a:   Notes.V2I[a])      ;   slog(f'{j:3} {fmtl(keys):19} {fmtl(ii)}', f=2, ff=1)   ;   keyStr = W.join(keys)
+                keyStrFmt   = "\'" + keyStr + "\'"     ;   v = omap[keyStr]   ;   rankSet  = set()      ;    rankSet.add(v[0])
+                if not catfile:  count += 1  ;  none += 1 if not v[2] else 0  ;   nord    += 1 if v[0] == rank else 0
+                v2          = fmtl(v[2], s="\',\'", d="[\'", d2="\']),") if v[2] else '[]),' if util.isi(v[2], list) else 'None),'
+#               if dbg:       slog(f'{keyStrFmt:20}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):15} {v2} # ', p=0, f=file, e=Z, ft=0)
+                if dbg:       slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(sorted(v[1]), s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, e=Z, ft=0) # ? Expected type 'Iterable' (matched generic type 'Iterable[SupportsLessThanT]'), got 'int' instead ?
+                cycSet      = set()   ;   cycSet.add(tuple(ii))   ;   i2 = list(ii)
                 for _ in range(len(ii) - 1):
-                    i2         = self.rotateIndices(i2)
-                    keys2      = [ Notes.I2V[i] for i in i2 ]
-                    keyStr2    = W.join(keys2)   ;   ck = len(i2)   ;      jj = tuple(i2)    ;   cycle = 0   ;   keyStrFmt2 = keyStr2
-#                    keyStrFmt2 = "\'" + keyStr2 + "\'"
+                    i2      = self.rotateIndices(i2)
+                    keys2   = [ Notes.I2V[i] for i in i2 ]
+                    keyStr2 = W.join(keys2)   ;   ck = len(i2)    ;   jj = tuple(i2)    ;   cycle = 0   ;    keyStrFmt2 = keyStr2
                     if keyStr2 in omap: rankSet.add(omap[keyStr2][0])
                     if jj in cycSet:
                         if ck not in self.cycles:        self.cycles[ck] = set()
-                        self.cycles[ck].add(jj)      ;   cycle = 1
-                    d = '@' if cycle else '['    ;      d2 = '@' if cycle else ']'
-                    cycSet.add(jj)
-                    if keyStr2 not in omap:
-                        slog('not in map: ', p=0, e=Z, f=file)     ;    r[keyStr2] = (rank, i2, None)
-                    if dbg: slog(f'{keyStrFmt2:18} {fmtl(i2, w="x", d=d, d2=d2):13} ', p=0, e=Z, f=file, ft=0)
-                refSet         = set(range(len(i2)))
+                        self.cycles[ck].add(jj)     ;    cycle = 1
+                    cycSet.add(jj)     ;      d = '@' if cycle else '['     ;     d2 = '@' if cycle else ']'
+                    if keyStr2 not in omap:   slog('not in map: ', p=0, e=Z, f=file)    ;    r[keyStr2] = (rank, i2, None)
+                    if dbg:                   slog(f'{keyStrFmt2:18} {fmtl(i2, w="x", d=d, d2=d2):13} ', p=0, e=Z, f=file, ft=0)
+                refSet      = set(range(len(i2)))
                 if dbg:
-                    if    rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet: slog(p=0, f=file, ft=0)
-                    else: slog(f'\n{msg} {fmtl(refSet, d="<", d2=">")} {fmtl(rankSet, d="<", d2=">")} {fmtl(sorted(cycSet))}', p=0, f=file, ft=0)  # ;  q = 1
+                    if       rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet:            slog(p=0, f=file, ft=0)
+                    else:    slog(f'\n{msg} {fmtl(refSet, d="<", d2=">")} {fmtl(rankSet, d="<", d2=">")} {fmtl(sorted(cycSet))}', p=0, f=file, ft=0)
             if not catfile:  mstat.append([k, count, nord, none])
         if not catfile:
             for kk, w in self.cycles.items():
                 for c in tuple(sorted(w)):
-                    keys       = [ Notes.I2V[j] for j in c ]   ;   key = W.join(keys)   ;   v = omap[key]
-                    slog(f'{kk:2} note cycle {v[0]:2} {fmtl(c, w="x"):13} {key:16} {Z.join(v[2]):12} {v[2]}')
+                    keys    = [ Notes.I2V[j] for j in c ]   ;   key = W.join(keys)   ;   v = omap[key]
+                    slog(f'{kk:2} note cycle {v[0]:2} {fmtl(c, w="x"):13} {key:16} {Z.join(v[2]):12} {v[2]}')    # ? Expected type 'Iterable[str]', got 'int' instead ?
             for m in mstat:
                 slog(f'{m[0]:2} note chords  {m[1]:3} valid  {m[2]:3} unordered  {m[3]:3} unnamed')
-                tstat[0]      += m[0]   ;   tstat[1] += m[1]   ;   tstat[2] += m[2]   ;   tstat[3] += m[3]
-        if catfile: lm, lr     = len(omap), len(r)   ;   slog(f'END {lm=} catfile.{name=} {lr=}')
-        else:       slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}')
+                tstat[0]   += m[0]   ;   tstat[1] += m[1]   ;   tstat[2] += m[2]   ;   tstat[3] += m[3]
+        if catfile:  lm, lr = len(omap), len(r)   ;   slog(f'END {lm=} catfile.{name=} {lr=}')
+        else:        slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}')
         return r
-
     ####################################################################################################################################################################################################
     #    0  1  2  3  4  5  6  7  8   9  10 11 0
     #    R  b2 2  m3 M3 4  b5 5  #5  6  b7 7  R
-    #       b9 9  #9    11 #11   b13 13
+    #       b9 9  #9    11 #11   b13 13       15
     ####################################################################################################################################################################################################
     OMAP = {
             'R b2 2'           : (2, [0,1,2],        ['b2','s2','x']),            # R b2 7           [0 1 b]       R b7 7           [0 a b]
@@ -878,8 +870,22 @@ class Chord:
             'R m3 4 5 6 b7'    : (2, [0,3,5,7,9,10], ['m','13','11']),            # R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a] R b2 m3 b5 #5 b7 [0 1 3 6 8 a] R 2 4 5 6 7      [0 2 5 7 9 b]
             'R M3 4 5 6 7'     : (0, [0,4,5,7,9,11], ['M','13','11']),            # R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a] R b2 4 b5 #5 b7  [0 1 5 6 8 a]
             'R M3 4 #5 6 7'    : (1, [0,4,5,8,9,11], ['+','M','13','11']),        # R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a]
-            'R m3 b5 5 6 b7'   : (0, [0,3,6,7,9,10], ['m','13','#','11']),           # R m3 M3 b5 5 6   [0 3 4 6 7 9] R b2 m3 M3 b5 6  [0 1 3 4 6 9] R 2 m3 4 #5 7    [0 2 3 5 8 b] R b2 m3 b5 6 b7  [0 1 3 6 9 a] R 2 4 #5 6 7     [0 2 5 8 9 b]
+            'R m3 b5 5 6 b7'   : (0, [0,3,6,7,9,10], ['m','13','#','11']),        # R m3 M3 b5 5 6   [0 3 4 6 7 9] R b2 m3 M3 b5 6  [0 1 3 4 6 9] R 2 m3 4 #5 7    [0 2 3 5 8 b] R b2 m3 b5 6 b7  [0 1 3 6 9 a] R 2 4 #5 6 7     [0 2 5 8 9 b]
             'R M3 b5 5 6 7'    : (1, [0,4,6,7,9,11], ['M','13','#','11']),        # R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a]
+
+            'R b2 2 m3 4 #5'    : (4, [0,1,2,3,5,8],  ['+','m','s24','b2']),                       # R b2 2 M3 5 7      [0 1 2 4 7 b] R b2 m3 b5 b7 7    [0 1 3 6 a b] R 2 4 6 b7 7       [0 2 5 9 a b] R m3 5 #5 6 b7     [0 3 7 8 9 a] R M3 4 b5 5 6      [0 4 5 6 7 9]
+            'R b2 2 M3 5 7'     : (1, [0,1,2,4,7,11], ['M9','b9','']),                       # R b2 m3 b5 b7 7    [0 1 3 6 a b] R 2 4 6 b7 7       [0 2 5 9 a b] R m3 5 #5 6 b7     [0 3 7 8 9 a] R M3 4 b5 5 6      [0 4 5 6 7 9] R b2 2 m3 4 #5     [0 1 2 3 5 8]
+            'R b2 m3 b5 b7 7'   : (3, [0,1,3,6,10,11], ['m7','b5','b9']),                       # R 2 4 6 b7 7       [0 2 5 9 a b] R m3 5 #5 6 b7     [0 3 7 8 9 a] R M3 4 b5 5 6      [0 4 5 6 7 9] R b2 2 m3 4 #5     [0 1 2 3 5 8] R b2 2 M3 5 7      [0 1 2 4 7 b]
+            'R 2 4 6 b7 7'      : (5, [0,2,5,9,10,11], ['7','M13','s24']),                       # R m3 5 #5 6 b7     [0 3 7 8 9 a] R M3 4 b5 5 6      [0 4 5 6 7 9] R b2 2 m3 4 #5     [0 1 2 3 5 8] R b2 2 M3 5 7      [0 1 2 4 7 b] R b2 m3 b5 b7 7    [0 1 3 6 a b]
+            'R m3 5 #5 6 b7'    : (0, [0,3,7,8,9,10], ['+','m13','']),                       # R M3 4 b5 5 6      [0 4 5 6 7 9] R b2 2 m3 4 #5     [0 1 2 3 5 8] R b2 2 M3 5 7      [0 1 2 4 7 b] R b2 m3 b5 b7 7    [0 1 3 6 a b] R 2 4 6 b7 7       [0 2 5 9 a b]
+            'R M3 4 b5 5 6'     : (2, [0,4,5,6,7,9],  ['4','#4','6']),                       # R b2 2 m3 4 #5     [0 1 2 3 5 8] R b2 2 M3 5 7      [0 1 2 4 7 b] R b2 m3 b5 b7 7    [0 1 3 6 a b] R 2 4 6 b7 7       [0 2 5 9 a b] R m3 5 #5 6 b7     [0 3 7 8 9 a]
+
+            'R b2 2 m3 b5 b7'   : (4, [0,1,2,3,6,10], ['07','9','#15']),                       # R b2 2 4 6 7       [0 1 2 5 9 b] R b2 M3 #5 b7 7    [0 1 4 8 a b] R m3 5 6 b7 7      [0 3 7 9 a b] R M3 b5 5 #5 6     [0 4 6 7 8 9] R 2 m3 M3 4 #5     [0 2 3 4 5 8]
+            'R b2 2 4 6 7'      : (2, [0,1,2,5,9,11], ['M13','b9','s24']),                       # R b2 M3 #5 b7 7    [0 1 4 8 a b] R m3 5 6 b7 7      [0 3 7 9 a b] R M3 b5 5 #5 6     [0 4 6 7 8 9] R 2 m3 M3 4 #5     [0 2 3 4 5 8] R b2 2 m3 b5 b7    [0 1 2 3 6 a]
+            'R b2 M3 #5 b7 7'   : (1, [0,1,4,8,10,11], ['+','7','M9']),                       # R m3 5 6 b7 7      [0 3 7 9 a b] R M3 b5 5 #5 6     [0 4 6 7 8 9] R 2 m3 M3 4 #5     [0 2 3 4 5 8] R b2 2 m3 b5 b7    [0 1 2 3 6 a] R b2 2 4 6 7       [0 1 2 5 9 b]
+            'R 2 m3 M3 4 #5'    : (5, [0,2,3,4,5,8],  ['+','mM','24']),                       # R b2 2 m3 b5 b7    [0 1 2 3 6 a] R b2 2 4 6 7       [0 1 2 5 9 b] R b2 M3 #5 b7 7    [0 1 4 8 a b] R m3 5 6 b7 7      [0 3 7 9 a b] R M3 b5 5 #5 6     [0 4 6 7 8 9]
+            'R m3 5 6 b7 7'     : (0, [0,3,7,9,10,11], ['m7','M13','']),                       # R M3 b5 5 #5 6     [0 4 6 7 8 9] R 2 m3 M3 4 #5     [0 2 3 4 5 8] R b2 2 m3 b5 b7    [0 1 2 3 6 a] R b2 2 4 6 7       [0 1 2 5 9 b] R b2 M3 #5 b7 7    [0 1 4 8 a b]
+            'R M3 b5 5 #5 6'    : (3, [0,4,6,7,8,9],  ['b6','#4','']),                       # R 2 m3 M3 4 #5     [0 2 3 4 5 8] R b2 2 m3 b5 b7    [0 1 2 3 6 a] R b2 2 4 6 7       [0 1 2 5 9 b] R b2 M3 #5 b7 7    [0 1 4 8 a b] R m3 5 6 b7 7      [0 3 7 9 a b]
             }
     ####################################################################################################################################################################################################
     #################################
