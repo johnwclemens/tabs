@@ -514,8 +514,9 @@ def olog(o=None, p=1, f=1, s=Y, e='\n', ff=False):
     print(o, sep=s, end=e, file=f,    flush=ff)
     print(o, sep=s, end=e, file=None, flush=ff) if so else None
 
-def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0):
-    t = filtText(t) #    t = filtText2(t)
+def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0, ft=1):
+    if ft: t = filtText(t)
+#   t = filtText2(t)
     if p:
         sf   = inspect.currentframe().f_back
         while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
@@ -539,8 +540,8 @@ def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0):
 #    print(t, sep=s, end=e, file=TXT_FILE, flush=ff) if tf else None
 ########################################################################################################################################################################################################
 def filtText(text):
-    text = text.replace('"', Z)
-    text = text.replace("'", Z)
+#    text = text.replace('"', Z)
+#    text = text.replace("'", Z)
     text = text.replace('self', Z)
     text = text.replace('util', Z)
     text = text.replace('fmtl', Z)
