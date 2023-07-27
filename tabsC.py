@@ -2804,7 +2804,6 @@ class Tabs(pyglet.window.Window):
             self.cobj.dumpOMAP( catPath, merge=1)
             self.log(f'Flush & Close {catFile.name}', ff=True)
             catFile.flush()     ;    catFile.close()
-#       catPath  = util.getFilePath(BASE_NAME,     BASE_PATH, fdir=CATS, fsfx=CAT)
         catPath2 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)
         self.log(f'Copying {catFile.name} to {catPath2}', f=2)
         util.copyFile(catPath, catPath2)
@@ -2935,19 +2934,14 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
 LOG_PATH    = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG)
 CSV_PATH    = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV)
 TXT_PATH    = util.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT)
-#CAT_PATH    = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT)
 prevLogPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOGP)
 prevCsvPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSVP)
 prevTxtPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXTP)
-#prevCatPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT)
 if LOG_PATH.exists():     util.copyFile(LOG_PATH, prevLogPath)
 if CSV_PATH.exists():     util.copyFile(CSV_PATH, prevCsvPath)
 if TXT_PATH.exists():     util.copyFile(TXT_PATH, prevTxtPath)
-#if CAT_PATH.exists():     util.copyFile(CAT_PATH, prevCatPath)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
-#with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(CAT_PATH), 'w', encoding='utf-8') as CAT_FILE:
     util.init(LOG_FILE, CSV_FILE, TXT_FILE, 0)
-#    util.init(LOG_FILE, CSV_FILE, TXT_FILE, CAT_FILE, 0)
     slog(sys.argv[0],   p=0,           f=2)
     slog(f'argv={fmtl(sys.argv[1:])}', f=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
@@ -2956,7 +2950,6 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
         slog(f'{LOG_PATH=}',  f=2)        ;   slog(f'{LOG_FILE.name=}', f=2)
         slog(f'{CSV_PATH=}',  f=2)        ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{TXT_PATH=}',  f=2)        ;   slog(f'{TXT_FILE.name=}', f=2)
-#        slog(f'{CAT_PATH=}',  f=2)        ;   slog(f'{CAT_FILE.name=}', f=2)
         slog('constructing Tabs object')
         tabs = Tabs()  ;  seqNumLogPath = tabs.seqNumLogPath  ;  seqNumTxtPath = tabs.seqNumTxtPath
         slog(f'{str(tabs)=}', f=2)        ;   slog(f'{tabs=}', f=2)

@@ -15,7 +15,6 @@ OIDS             = 0
 LOG_FILE         = None
 CSV_FILE         = None
 TXT_FILE         = None
-#CAT_FILE         = None
 PATH             = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH        = PATH.parent / 'test'
 BASE_NAME        = BASE_PATH.stem
@@ -38,8 +37,6 @@ def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^
 ########################################################################################################################################################################################################
 def init(lfile, cfile, tfile, oid):
     global LOG_FILE, CSV_FILE, TXT_FILE, OIDS   ;   LOG_FILE, CSV_FILE, TXT_FILE, OIDS = lfile, cfile, tfile, oid
-#def init(lfile, cfile, tfile, zfile, oid):
-#    global LOG_FILE, CSV_FILE, TXT_FILE, CAT_FILE, OIDS   ;   LOG_FILE, CSV_FILE, TXT_FILE, CAT_FILE, OIDS = lfile, cfile, tfile, zfile, oid
 
 #    dumpData(csv=1)
 #    KSD = {}
