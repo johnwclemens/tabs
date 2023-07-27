@@ -15,6 +15,7 @@ OIDS             = 0
 LOG_FILE         = None
 CSV_FILE         = None
 TXT_FILE         = None
+#CAT_FILE         = None
 PATH             = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH        = PATH.parent / 'test'
 BASE_NAME        = BASE_PATH.stem
@@ -37,6 +38,9 @@ def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^
 ########################################################################################################################################################################################################
 def init(lfile, cfile, tfile, oid):
     global LOG_FILE, CSV_FILE, TXT_FILE, OIDS   ;   LOG_FILE, CSV_FILE, TXT_FILE, OIDS = lfile, cfile, tfile, oid
+#def init(lfile, cfile, tfile, zfile, oid):
+#    global LOG_FILE, CSV_FILE, TXT_FILE, CAT_FILE, OIDS   ;   LOG_FILE, CSV_FILE, TXT_FILE, CAT_FILE, OIDS = lfile, cfile, tfile, zfile, oid
+
 #    dumpData(csv=1)
 #    KSD = {}
 #    KIM, KIS, KMS, KJS, KNS        = range(5)
@@ -529,8 +533,8 @@ def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0, ft=1):
     elif f == 1:  f = LOG_FILE
     elif f == 2:  f = TXT_FILE  ;  lf = 1
     elif f == 3:  f = CSV_FILE
-    print(t, sep=s, end=e, file=f,        flush=ff)
-    print(t, sep=s, end=e, file=LOG_FILE, flush=ff) if lf else None
+    print(t, sep=s, end=e, file=f,        flush=bool(ff))
+    print(t, sep=s, end=e, file=LOG_FILE, flush=bool(ff)) if lf else None
 #    tf = 0
 #    if   f == 0:  f = TXT_FILE
 #    elif f == 1:  f = LOG_FILE

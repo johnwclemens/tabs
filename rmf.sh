@@ -57,9 +57,9 @@ for ext in "${exts[@]}"  ; do
   cleanup      "$dir" "$ext" "$all"
 done
 
-echo exts='("csv" "dat" "log" "png" "txt")'
-exts=(      "csv" "dat" "log" "png" "txt")
-echo "   >>> Removing Files from SubDirs of" "$root" "with type" "csv dat log png txt >>> ..."
+echo exts='("cat" "csv" "dat" "log" "png" "txt")'
+exts=(      "cat" "csv" "dat" "log" "png" "txt")
+echo "   >>> Removing Files from SubDirs of" "$root" "with type" "cat csv dat log png txt >>> ..."
 for ext in "${exts[@]}"  ; do
   if   [[ $ext = "dat" ]]; then
     dir="$ext"a

@@ -52,15 +52,15 @@ class Chord:
                 vkeys.append(vkey)   ;   self.limap.append(imap)
                 if dbg: slog(f'{rank:2} {Z.join(ikeys):12} {Z.join(f"{i:x}" for i in ivals):6} {Z.join(notes):12} {name:12} {Z.join(chunks):12} {Z.join(_ikeys):12} {Z.join(f"{i:x}" for i in _ivals):6} {Z.join(_notes):12}')
                 if dbg: slog(f'{rank:2} {fmtl(ikeys):19} {fmtl(ivals, w="x")} {W.join(notes):12} {name:12} {Z.join(chunks)} {fmtl(_ikeys)} {fmtl(_ivals, w="x")} {W.join(_notes):12}') #fix me
-        if self.limap:
+        if  self.limap:
             self.limap.sort(key=lambda m: m[-1])   ;   imi = 0
             if dbg > 1: self.dumpLimap(self.limap, cn, imi)
             self.mlimap[cn] = [ self.limap, imi ]
-            return self.limap[imi]
-        return imap # [ ikeys, ivals, notes, name, chunks, rank ]
+            return              self.limap[imi]
+        return  imap # [ ikeys, ivals, notes, name, chunks, rank ]
     ####################################################################################################################################################################################################
     def add2uMap(self, li, ikey, rank, ivals, dbg=1):
-        slog(f'{li=} Adding {ikey=} v={fmtl(ivals)} to umap')
+        slog(f'{li=} Adding {ikey=} v={fmtl(sorted(ivals))} to umap')
         self.umap[ikey] = (rank, ivals, [])
         self.dumpUmap() if dbg else None
     ####################################################################################################################################################################################################
@@ -78,8 +78,8 @@ class Chord:
                 note  = self.sobj.tab2nn(_tabs[t], t, nic)
                 if index: indices.append(index)
                 if note :   notes.append(note)   ;   mask.append(1)
-                else: mask.append(0)
-            else: mask.append(0)
+                else:        mask.append(0)
+            else:            mask.append(0)
         if notes:
             mask0 = [1] * self.sobj.nStrings()
             if dbg: self.dumpData(strNumbs,   mask0, 'strNumbs', r=1)
@@ -199,8 +199,8 @@ class Chord:
             umapKeys = sorted(self.umap.keys() , key=lambda a: self.umap[a][1])
             for k in umapKeys:
                 v = self.umap[k]
-                k = '\'' + k + '\''
-                slog(f'{k:19}: ({v[0]} {fmtl(sorted(v[1])):15})', p=2)
+                k = "'" + k + "'"
+                slog(f'{k:18}: ({v[0]} {fmtl(sorted(v[1])):15})', p=2)
             slog(f'END {len(self.OMAP)=} {len(self.umap)=}')
 
     def dumpOMAP(self, catpath=None, merge=0):
@@ -226,8 +226,8 @@ class Chord:
         return mapSet
 
     def _dumpOMAP(  self, catfile=None, dbg=1):
-        file = catfile if catfile else util.LOG_FILE   ;   omap, lm = self.OMAP, len(self.OMAP)   ;   r, rank = {}, -1   ;   j, mstat, tstat = 0, [], []
-        name = catfile.name if catfile else None       ;     mapSet = self.getMapSets(omap)       ;   slog(f'BGN {lm=} catfile.{name=}')     ;   msg = 'ERROR: Invalid Rank'
+        file = catfile      if catfile else util.LOG_FILE   ;   omap, lm = self.OMAP, len(self.OMAP)   ;   r, rank = {}, -1   ;   j, mstat, tstat = 0, [], []
+        name = catfile.name if catfile else None            ;     mapSet = self.getMapSets(omap)       ;   slog(f'BGN {lm=} catfile.{name=}')     ;   msg = 'ERROR: Invalid Rank'
         for k, sml in mapSet.items():
             tstat.append(0)    ;    count, nord, none = 0, 0, 0    ;    sml = sorted(sml) if sml else None
             for ii in sml:
@@ -236,7 +236,7 @@ class Chord:
                 keyStrFmt   = "\'" + keyStr + "\'"     ;   v = omap[keyStr]   ;   rankSet  = set()      ;    rankSet.add(v[0])
                 if not catfile:  count += 1  ;  none += 1 if not v[2] else 0  ;   nord    += 1 if v[0] == rank else 0
                 v2          = fmtl(v[2], s="\',\'", d="[\'", d2="\']),") if v[2] else '[]),' if util.isi(v[2], list) else 'None),'
-#               if dbg:       slog(f'{keyStrFmt:20}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):15} {v2} # ', p=0, f=file, e=Z, ft=0)
+#               if dbg:       slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):16} {v2} # ', p=0, f=file, e=Z, ft=0)
                 if dbg:       slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(sorted(v[1]), s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, e=Z, ft=0) # ? Expected type 'Iterable' (matched generic type 'Iterable[SupportsLessThanT]'), got 'int' instead ?
                 cycSet      = set()   ;   cycSet.add(tuple(ii))   ;   i2 = list(ii)
                 for _ in range(len(ii) - 1):
@@ -269,7 +269,7 @@ class Chord:
     ####################################################################################################################################################################################################
     #    0  1  2  3  4  5  6  7  8   9  10 11 0
     #    R  b2 2  m3 M3 4  b5 5  #5  6  b7 7  R
-    #       b9 9  #9    11 #11   b13 13       15
+    #       b9 9  #9    11 #11   b13 13    15
     ####################################################################################################################################################################################################
     OMAP = {
             'R b2 2'           : (2, [0,1,2],        ['b2','s2','x']),            # R b2 7           [0 1 b]       R b7 7           [0 a b]
