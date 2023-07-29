@@ -30,7 +30,7 @@ B, A, D, E            = 12, 13, 14, 15
 ARGS = util.parseCmdLine()
 CAT,  CSV,  LOG,  PNG,  TXT,  DAT     = 'cat',  'csv',  'log',  'png',  'txt',  'dat'
 CATS, CSVS, LOGS, PNGS, TEXT, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'text', 'data'
-CATP, CSVP, LOGP, TXTP                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{TXT}'
+CAT2, CSV2, LOG2, TXT2                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{TXT}'
 
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
@@ -2798,15 +2798,15 @@ class Tabs(pyglet.window.Window):
 
     def cleanupCatFile(self):
         catPath  = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT)
-        pcatPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CATP)
-        if catPath.exists():     util.copyFile(catPath, pcatPath)
+        catPath2 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT2)
+        if catPath.exists():     util.copyFile(catPath, catPath2)
         with open(str(catPath), 'w', encoding='utf-8') as catFile:
             self.cobj.dumpOMAP( catPath, merge=1)
             self.log(f'Flush & Close {catFile.name}', ff=True)
-            catFile.flush()     ;    catFile.close()
-        catPath2 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)
-        self.log(f'Copying {catFile.name} to {catPath2}', f=2)
-        util.copyFile(catPath, catPath2)
+            catFile.flush()     ;     catFile.close()
+        catPath3 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)
+        self.log(f'Copying {catFile.name} to {catPath3}', f=2)
+        util.copyFile(catPath, catPath3)
 ########################################################################################################################################################################################################
 # Global Functions BGN
 ########################################################################################################################################################################################################
@@ -2931,18 +2931,18 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
 
 # Log and Main BGN
 ########################################################################################################################################################################################################
-LOG_PATH    = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG)
-CSV_PATH    = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV)
-TXT_PATH    = util.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT)
-prevLogPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOGP)
-prevCsvPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSVP)
-prevTxtPath = util.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXTP)
-if LOG_PATH.exists():     util.copyFile(LOG_PATH, prevLogPath)
-if CSV_PATH.exists():     util.copyFile(CSV_PATH, prevCsvPath)
-if TXT_PATH.exists():     util.copyFile(TXT_PATH, prevTxtPath)
+LOG_PATH  = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG)
+CSV_PATH  = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV)
+TXT_PATH  = util.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT)
+LOG_PATH2 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2)
+CSV_PATH2 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV2)
+TXT_PATH2 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2)
+if LOG_PATH.exists():    util.copyFile(LOG_PATH, LOG_PATH2)
+if CSV_PATH.exists():    util.copyFile(CSV_PATH, CSV_PATH2)
+if TXT_PATH.exists():    util.copyFile(TXT_PATH, TXT_PATH2)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
     util.init(LOG_FILE, CSV_FILE, TXT_FILE, 0)
-    slog(sys.argv[0],   p=0,           f=2)
+    slog(sys.argv[0],      p=0,        f=2)
     slog(f'argv={fmtl(sys.argv[1:])}', f=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
     FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()

@@ -238,12 +238,14 @@ class Chord:
             tstat.append(0)  ;  count, nord, none = 0, 0, 0  ;       msV = sorted(msV) if msV else None
             for ii in msV:
                 keys        = [ Notes.I2V[i] for i in ii ]   ;        j += 1
-                keys        = sorted(keys, key=lambda a:   Notes.V2I[a])        ;   slog(f'{j:3} {fmtl(keys):19} {fmtl(ii)}', f=2, ff=1)   ;   keyStr = W.join(keys)
+                keys        = sorted(keys, key=lambda a:   Notes.V2I[a])        ;     keyStr = W.join(keys)
                 keyStrFmt   = "'" + keyStr + "'"       ;   v = omap[keyStr]     ;   rankSet  = set()      ;    rankSet.add(v[0])
-                count += 1  ;  none += 1 if not v[2] else 0   ;   nord    += 1 if v[0] == rank else 0 # if not catfile
+                count += 1  ;  none += 1 if not v[2] else 0   ;   nord += 1 if v[0] == rank else 0
                 v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else "['','','',''])," if util.isi(v[2], list) else 'None),'
-                if dbg:  v1 = ii      ;   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v1, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, e=Z, ft=0)
-#                if dbg:                  slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, e=Z, ft=0) # ? Expected type 'Iterable' (matched generic type 'Iterable[SupportsLessThanT]'), got 'int' instead ?
+                slog(                    f'{j:4} {keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=2, ft=0)
+                if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0, e=Z) # , e=Z
+#               if dbg:  v1 = ii      ;   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v1, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0, e=Z) # , e=Z
+#               if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0) # ? Expected type 'Iterable' (matched generic type 'Iterable[SupportsLessThanT]'), got 'int' instead ?
                 cycSet      = set()   ;   cycSet.add(tuple(ii))   ;   i2 = list(ii)
                 for _ in range(len(ii) - 1):
                     i2      = self.rotateIndices(i2)
@@ -254,20 +256,20 @@ class Chord:
                         if ck not in self.cycles:        self.cycles[ck] = set()
                         self.cycles[ck].add(jj)     ;    cycle = 1
                     cycSet.add(jj)    ;       d = '@' if cycle else '['     ;     d2 = '@' if cycle else ']'
-                    if keyStr2 not in omap:   slog('not in map: ', p=0, e=Z, f=file)    ;    r[keyStr2] = (rank, i2, None)
-                    if dbg:                   slog(f'{keyStrFmt2:16} {fmtl(i2, w="x", d=d, d2=d2):15} ', p=0, e=Z, f=file, ft=0)
+                    if keyStr2 not in omap:   slog('not in OMAP: ', p=0, e=Z, f=file)    ;    r[keyStr2] = (rank, i2, None)
+                    if dbg:                   slog(f'{keyStrFmt2:16} {fmtl(i2, w="x", d=d, d2=d2):15} ', p=0, f=file, ft=0, e=Z)
                 refSet      = set(range(len(i2)))
                 if dbg:
                     if       rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet:            slog(p=0, f=file, ft=0)
                     else:    slog(f'\n{msg} {fmtl(refSet, d="<", d2=">")} {fmtl(rankSet, d="<", d2=">")} {fmtl(sorted(cycSet))}', p=0, f=file, ft=0)
-            mstat.append([msK, count, nord, none]) # if not catfile
+            mstat.append([msK, count, nord, none])
         for kk, w in self.cycles.items():
             for c in tuple(sorted(w)):
                 keys    = [ Notes.I2V[j] for j in c ]   ;   key = W.join(keys)   ;   v = omap[key]
-                slog(f'{kk:2} note cycle {v[0]:2} {fmtl(c, w="x"):13} {key:16} {Z.join(v[2]):12} {v[2]}')    # ? Expected type 'Iterable[str]', got 'int' instead ?
+                slog(f'{kk:2} note cycle {v[0]:2} {fmtl(c, w="x"):13} {key:16} {Z.join(str(v[2])):12} {v[2]}')    # ? Expected type 'Iterable[str]', got 'int' instead ?
         for m in mstat:
-            slog(f'{m[0]:2} note chords  {m[1]:3} valid  {m[2]:3} unordered  {m[3]:3} unnamed')
-            tstat[0]   += m[0]   ;   tstat[1] += m[1]   ;   tstat[2] += m[2]   ;   tstat[3] += m[3]
+            tstat[0]   += m[0]       ;   tstat[1] += m[1]     ;   tstat[2] += m[2]     ;   tstat[3] += m[3]
+            slog(f'{m[0]:2} note chords  {tstat[1]:3}  {m[1]:3} valid  {m[2]:3} unordered  {m[3]:3} unnamed')
         lm, lr = len(omap), len(r)   ;   slog(f'{lm=} catfile.{name=} {lr=}') # if catfile
         slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}') # else
         return r
