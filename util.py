@@ -310,7 +310,7 @@ class Strings:
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
-        if  nic is None:               nic = Counter()
+        if  nic is None:               nic = Counter() # dict(key:int, val:int) keys: 0-11 vals: count
         else:
             nic[j]    += 1
             if nic[j] == 1:

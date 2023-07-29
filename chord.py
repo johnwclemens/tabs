@@ -3,6 +3,7 @@
 #print(f'{len(sys.path)=}')
 #for _ in sys.path:
 #    print(f'{_}')
+from   collections import Counter
 import util
 from   util import slog  as slog
 from   util import fmtl  as fmtl
@@ -18,6 +19,7 @@ class Chord:
     def __init__(self, tobj, sobj):
         self.tobj = tobj
         self.sobj = sobj
+        self.chordCounter = Counter()
         self.limap, self.mlimap, self.umap, self.cycles = [], {}, {}, {}
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), {}
@@ -45,8 +47,8 @@ class Chord:
                     if root != notes[0]:              nsfx = f'/{notes[0]}'  ;  chunks.append(nsfx)
                     name = Z.join(chunks)       ;     rank = omap[ikey][0]
                     assert _ivals == omap[ikey][1],   slog(f'Error _ivals != omap[ikey][1], {_ivals=} {omap[ikey][1]=}')
-                elif len(_imap) >= self.MIN_CHORD_LEN:  self.add2uMap(leni, ikey, rank, ivals)
-                elif len(_imap) >= util.MIN_IVAL_LEN:   slog(f'{leni=} is Not a Chord {ikey=} v={fmtl(ivals)}')
+                elif len(_imap) >= self.MIN_CHORD_LEN and ikey not in self.umap:  self.add2uMap(leni, ikey, rank, ivals)
+                elif len(_imap) >= util.MIN_IVAL_LEN:                             slog(f'{leni=} is Not a Chord {ikey=:21} v={fmtl(sorted(ivals))}')
                 if dbg:                  self._dumpData(rank, _ikeys, _ivals, _notes, mask, 1)
                 imap     = [ ikeys, ivals, notes, name, chunks, rank ]
                 vkeys.append(vkey)   ;   self.limap.append(imap)
@@ -60,6 +62,10 @@ class Chord:
         return  imap # [ ikeys, ivals, notes, name, chunks, rank ]
     ####################################################################################################################################################################################################
     def add2uMap(self, li, ikey, rank, ivals, dbg=1):
+#        if ikey in self.umap:    msg = f'ERROR {ikey=} already in umap, return'   ;   slog(msg)   ;   quit(msg)   ;   return
+        kc = self.chordCounter
+        if    kc[ikey]:   slog(f'return why: already counted {ikey=} {kc=}')      ;   return
+        else:             kc[ikey] = 1
         slog(f'{li=} Adding {ikey=} v={fmtl(sorted(ivals))} to umap')
         self.umap[ikey] = (rank, ivals, [])
         self.dumpUmap() if dbg else None
@@ -181,7 +187,7 @@ class Chord:
     def key2Indices(k): # N/A?
         t = Z   ;   r = []
         for j in k:
-            if j != W: t += j # optimize str concat
+            if j != W:   t += j # optimize str concat
             else:        r.append(Notes.V2I[t])  ;  t = Z
         r.append(Notes.V2I[t])
         return r
@@ -214,30 +220,30 @@ class Chord:
 
     @staticmethod
     def getMapSets(omap):
-        mapSet = {}
+        mapSet   = {}
         for k, v in omap.items():
-            v1 = v[1]
+            v1   = v[1]
             assert util.isi(omap[k],   tuple),  slog(f'ERROR: Invalid type, expected tuple, got {type(omap[k])=} {omap[k]=}')
             assert util.isi(omap[k][2], list),  slog(f'ERROR: Invalid type, expected list, got {type(omap[k][2])=} {omap[k][2]=}')
-            kv                 = len(v1)
-            if kv not in mapSet: mapSet[kv] = set()
-            if v[0]==-1:         v1 = sorted(v1)
-            if mapSet:           mapSet[kv].add(tuple(v1))
+            msK  = len(v1)
+            if msK not in mapSet: mapSet[msK] = set()
+            if v[0] == -1:        v1 = sorted(v1)
+            if mapSet:            mapSet[msK].add(tuple(v1))
         return mapSet
 
-    def _dumpOMAP(  self, catfile=None, dbg=1):
-        file = catfile      if catfile else util.LOG_FILE   ;   omap, lm = self.OMAP, len(self.OMAP)   ;   r, rank = {}, -1   ;   j, mstat, tstat = 0, [], []
-        name = catfile.name if catfile else None            ;     mapSet = self.getMapSets(omap)       ;   slog(f'BGN {lm=} catfile.{name=}')     ;   msg = 'ERROR: Invalid Rank'
-        for k, sml in mapSet.items():
-            tstat.append(0)    ;    count, nord, none = 0, 0, 0    ;    sml = sorted(sml) if sml else None
-            for ii in sml:
-                keys        = [ Notes.I2V[i] for i in ii ]    ;     j += 1
-                keys        = sorted(keys, key=lambda a:   Notes.V2I[a])      ;   slog(f'{j:3} {fmtl(keys):19} {fmtl(ii)}', f=2, ff=1)   ;   keyStr = W.join(keys)
-                keyStrFmt   = "\'" + keyStr + "\'"     ;   v = omap[keyStr]   ;   rankSet  = set()      ;    rankSet.add(v[0])
-                if not catfile:  count += 1  ;  none += 1 if not v[2] else 0  ;   nord    += 1 if v[0] == rank else 0
-                v2          = fmtl(v[2], s="\',\'", d="[\'", d2="\']),") if v[2] else '[]),' if util.isi(v[2], list) else 'None),'
-#               if dbg:       slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):16} {v2} # ', p=0, f=file, e=Z, ft=0)
-                if dbg:       slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(sorted(v[1]), s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, e=Z, ft=0) # ? Expected type 'Iterable' (matched generic type 'Iterable[SupportsLessThanT]'), got 'int' instead ?
+    def _dumpOMAP(self, catfile=None, dbg=1):
+        file = catfile      if catfile else util.LOG_FILE    ;   omap, l = self.OMAP, len(self.OMAP)   ;   r, rank = {}, -1   ;   j, mstat, tstat = 0, [], []
+        name = catfile.name if catfile else None             ;    mapSet = self.getMapSets(omap)       ;   slog(f'BGN {l=} catfile.{name=}')     ;   msg = 'ERROR: Invalid Rank'
+        for msK, msV in mapSet.items():
+            tstat.append(0)  ;  count, nord, none = 0, 0, 0  ;       msV = sorted(msV) if msV else None
+            for ii in msV:
+                keys        = [ Notes.I2V[i] for i in ii ]   ;        j += 1
+                keys        = sorted(keys, key=lambda a:   Notes.V2I[a])        ;   slog(f'{j:3} {fmtl(keys):19} {fmtl(ii)}', f=2, ff=1)   ;   keyStr = W.join(keys)
+                keyStrFmt   = "'" + keyStr + "'"       ;   v = omap[keyStr]     ;   rankSet  = set()      ;    rankSet.add(v[0])
+                count += 1  ;  none += 1 if not v[2] else 0   ;   nord    += 1 if v[0] == rank else 0 # if not catfile
+                v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else "['','','',''])," if util.isi(v[2], list) else 'None),'
+                if dbg:  v1 = ii      ;   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v1, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, e=Z, ft=0)
+#                if dbg:                  slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, e=Z, ft=0) # ? Expected type 'Iterable' (matched generic type 'Iterable[SupportsLessThanT]'), got 'int' instead ?
                 cycSet      = set()   ;   cycSet.add(tuple(ii))   ;   i2 = list(ii)
                 for _ in range(len(ii) - 1):
                     i2      = self.rotateIndices(i2)
@@ -247,24 +253,23 @@ class Chord:
                     if jj in cycSet:
                         if ck not in self.cycles:        self.cycles[ck] = set()
                         self.cycles[ck].add(jj)     ;    cycle = 1
-                    cycSet.add(jj)     ;      d = '@' if cycle else '['     ;     d2 = '@' if cycle else ']'
+                    cycSet.add(jj)    ;       d = '@' if cycle else '['     ;     d2 = '@' if cycle else ']'
                     if keyStr2 not in omap:   slog('not in map: ', p=0, e=Z, f=file)    ;    r[keyStr2] = (rank, i2, None)
-                    if dbg:                   slog(f'{keyStrFmt2:18} {fmtl(i2, w="x", d=d, d2=d2):13} ', p=0, e=Z, f=file, ft=0)
+                    if dbg:                   slog(f'{keyStrFmt2:16} {fmtl(i2, w="x", d=d, d2=d2):15} ', p=0, e=Z, f=file, ft=0)
                 refSet      = set(range(len(i2)))
                 if dbg:
                     if       rankSet == refSet or len(cycSet) != len(refSet) or -1 in rankSet:            slog(p=0, f=file, ft=0)
                     else:    slog(f'\n{msg} {fmtl(refSet, d="<", d2=">")} {fmtl(rankSet, d="<", d2=">")} {fmtl(sorted(cycSet))}', p=0, f=file, ft=0)
-            if not catfile:  mstat.append([k, count, nord, none])
-        if not catfile:
-            for kk, w in self.cycles.items():
-                for c in tuple(sorted(w)):
-                    keys    = [ Notes.I2V[j] for j in c ]   ;   key = W.join(keys)   ;   v = omap[key]
-                    slog(f'{kk:2} note cycle {v[0]:2} {fmtl(c, w="x"):13} {key:16} {Z.join(v[2]):12} {v[2]}')    # ? Expected type 'Iterable[str]', got 'int' instead ?
-            for m in mstat:
-                slog(f'{m[0]:2} note chords  {m[1]:3} valid  {m[2]:3} unordered  {m[3]:3} unnamed')
-                tstat[0]   += m[0]   ;   tstat[1] += m[1]   ;   tstat[2] += m[2]   ;   tstat[3] += m[3]
-        if catfile:  lm, lr = len(omap), len(r)   ;   slog(f'END {lm=} catfile.{name=} {lr=}')
-        else:        slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}')
+            mstat.append([msK, count, nord, none]) # if not catfile
+        for kk, w in self.cycles.items():
+            for c in tuple(sorted(w)):
+                keys    = [ Notes.I2V[j] for j in c ]   ;   key = W.join(keys)   ;   v = omap[key]
+                slog(f'{kk:2} note cycle {v[0]:2} {fmtl(c, w="x"):13} {key:16} {Z.join(v[2]):12} {v[2]}')    # ? Expected type 'Iterable[str]', got 'int' instead ?
+        for m in mstat:
+            slog(f'{m[0]:2} note chords  {m[1]:3} valid  {m[2]:3} unordered  {m[3]:3} unnamed')
+            tstat[0]   += m[0]   ;   tstat[1] += m[1]   ;   tstat[2] += m[2]   ;   tstat[3] += m[3]
+        lm, lr = len(omap), len(r)   ;   slog(f'{lm=} catfile.{name=} {lr=}') # if catfile
+        slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}') # else
         return r
     ####################################################################################################################################################################################################
     #    0  1  2  3  4  5  6  7  8   9  10 11 0
@@ -811,91 +816,97 @@ class Chord:
             'R 4 #5 b7 7'      : (3, [0,5,8,10,11],  ['+','#','13','s4']),        # R m3 4 b5 5      [0 3 5 6 7]   R 2 m3 M3 6      [0 2 3 4 9]   R b2 2 5 b7      [0 1 2 7 a]   R b2 b5 6 7      [0 1 6 9 b]
             'R 4 6 b7 7'       : (2, [0,5,9,10,11],  ['#','13','13','s4']),       # R M3 4 b5 5      [0 4 5 6 7]   R b2 2 m3 #5     [0 1 2 3 8]   R b2 2 5 7       [0 1 2 7 b]   R b2 b5 b7 7     [0 1 6 a b]
             'R b5 5 #5 6'      : (4, [0,6,7,8,9],    ['#4','b6','6','y']),        # R b2 2 m3 b5     [0 1 2 3 6]   R b2 2 4 7       [0 1 2 5 b]   R b2 M3 b7 7     [0 1 4 a b]   R m3 6 b7 7      [0 3 9 a b]
-            'R b5 5 #5 b7'     : (2, [0,6,7,8,10],   ['b','13','#','11','y']),    # R b2 2 M3 b5     [0 1 2 4 6]   R b2 m3 4 7      [0 1 3 5 b]   R 2 M3 b7 7      [0 2 4 a b]   R 2 #5 6 b7      [0 2 8 9 a]
-            'R b5 5 #5 7'      : (2, [0,6,7,8,11],   ['M','b','13','#','11','y']), # R b2 2 4 b5      [0 1 2 5 6]   R b2 M3 4 7      [0 1 4 5 b]   R m3 M3 b7 7     [0 3 4 a b]   R b2 5 #5 6      [0 1 7 8 9]
-            'R b5 5 6 b7'      : (1, [0,6,7,9,10],   ['13','#','11','y']),        # R b2 m3 M3 b5    [0 1 3 4 6]   R 2 m3 4 7       [0 2 3 5 b]   R b2 m3 6 b7     [0 1 3 9 a]   R 2 #5 6 7       [0 2 8 9 b]
-            'R b5 5 6 7'       : (3, [0,6,7,9,11],   ['M','13','#','11','y']),    # R b2 m3 4 b5     [0 1 3 5 6]   R 2 M3 4 7       [0 2 4 5 b]   R 2 m3 6 b7      [0 2 3 9 a]   R b2 5 #5 b7     [0 1 7 8 a]
-            'R b5 5 b7 7'      : (2, [0,6,7,10,11],  ['#','13','#','11','y']),    # R b2 M3 4 b5     [0 1 4 5 6]   R m3 M3 4 7      [0 3 4 5 b]   R b2 2 #5 6      [0 1 2 8 9]   R b2 5 #5 7      [0 1 7 8 b]
-            'R b5 #5 6 b7'     : (2, [0,6,8,9,10],   ['o','+','13','y']),         # R 2 m3 M3 b5     [0 2 3 4 6]   R b2 2 M3 b7     [0 1 2 4 a]   R b2 m3 6 7      [0 1 3 9 b]   R 2 #5 b7 7      [0 2 8 a b]
-            'R b5 #5 6 7'      : (2, [0,6,8,9,11],   ['o','+','13','y']),         # R 2 m3 4 b5      [0 2 3 5 6]   R b2 m3 M3 b7    [0 1 3 4 a]   R 2 m3 6 7       [0 2 3 9 b]   R b2 5 6 b7      [0 1 7 9 a]
-            'R b5 #5 b7 7'     : (4, [0,6,8,10,11],  ['o','+','#','13','y']),     # R 2 M3 4 b5      [0 2 4 5 6]   R 2 m3 M3 b7     [0 2 3 4 a]   R b2 2 #5 b7     [0 1 2 8 a]   R b2 5 6 7       [0 1 7 9 b]
-            'R b5 6 b7 7'      : (1, [0,6,9,10,11],  ['o','#','13','13','y']),    # R m3 M3 4 b5     [0 3 4 5 6]   R b2 2 m3 6      [0 1 2 3 9]   R b2 2 #5 7      [0 1 2 8 b]   R b2 5 b7 7      [0 1 7 a b]
-            'R 5 #5 6 b7'      : (2, [0,7,8,9,10],   ['13','b','13','y']),        # R b2 2 m3 4      [0 1 2 3 5]   R b2 2 M3 7      [0 1 2 4 b]   R b2 m3 b7 7     [0 1 3 a b]   R 2 6 b7 7       [0 2 9 a b]
-            'R 5 #5 6 7'       : (0, [0,7,8,9,11],   ['+','13','y']),             # R b2 2 M3 4      [0 1 2 4 5]   R b2 m3 M3 7     [0 1 3 4 b]   R 2 m3 b7 7      [0 2 3 a b]   R b2 #5 6 b7     [0 1 8 9 a]
-            'R 5 #5 b7 7'      : (2, [0,7,8,10,11],  ['+','#','13','y']),         # R b2 m3 M3 4     [0 1 3 4 5]   R 2 m3 M3 7      [0 2 3 4 b]   R b2 2 6 b7      [0 1 2 9 a]   R b2 #5 6 7      [0 1 8 9 b]
-            'R 5 6 b7 7'       : (2, [0,7,9,10,11],  ['#','13','13','y']),        # R 2 m3 M3 4      [0 2 3 4 5]   R b2 2 m3 b7     [0 1 2 3 a]   R b2 2 6 7       [0 1 2 9 b]   R b2 #5 b7 7     [0 1 8 a b]
-            'R #5 6 b7 7'      : (2, [0,8,9,10,11],  ['+','#','13','13','y']),    # R b2 2 m3 M3     [0 1 2 3 4]   R b2 2 m3 7      [0 1 2 3 b]   R b2 2 b7 7      [0 1 2 a b]   R b2 6 b7 7      [0 1 9 a b]
+            'R b5 5 #5 b7'     : (2, [0,6,7,8,10],   ['b13','#11','y']),    # R b2 2 M3 b5     [0 1 2 4 6]   R b2 m3 4 7      [0 1 3 5 b]   R 2 M3 b7 7      [0 2 4 a b]   R 2 #5 6 b7      [0 2 8 9 a]
+            'R b5 5 #5 7'      : (2, [0,6,7,8,11],   ['M7','b13','#11','y']),     # R b2 2 4 b5      [0 1 2 5 6]   R b2 M3 4 7      [0 1 4 5 b]   R m3 M3 b7 7     [0 3 4 a b]   R b2 5 #5 6      [0 1 7 8 9]
+            'R b5 5 6 b7'      : (1, [0,6,7,9,10],   ['13','#1','y']),        # R b2 m3 M3 b5    [0 1 3 4 6]   R 2 m3 4 7       [0 2 3 5 b]   R b2 m3 6 b7     [0 1 3 9 a]   R 2 #5 6 7       [0 2 8 9 b]
+            'R b5 5 6 7'       : (3, [0,6,7,9,11],   ['M','13','#11','y']),    # R b2 m3 4 b5     [0 1 3 5 6]   R 2 M3 4 7       [0 2 4 5 b]   R 2 m3 6 b7      [0 2 3 9 a]   R b2 5 #5 b7     [0 1 7 8 a]
+            'R b5 5 b7 7'      : (2, [0,6,7,10,11],  ['7M7','#13','#11','y']),    # R b2 M3 4 b5     [0 1 4 5 6]   R m3 M3 4 7      [0 3 4 5 b]   R b2 2 #5 6      [0 1 2 8 9]   R b2 5 #5 7      [0 1 7 8 b]
+            'R b5 #5 6 b7'     : (2, [0,6,8,9,10],   ['+','13','#11','y']),         # R 2 m3 M3 b5     [0 2 3 4 6]   R b2 2 M3 b7     [0 1 2 4 a]   R b2 m3 6 7      [0 1 3 9 b]   R 2 #5 b7 7      [0 2 8 a b]
+            'R b5 #5 6 7'      : (2, [0,6,8,9,11],   ['+','b5','M13','y']),         # R 2 m3 4 b5      [0 2 3 5 6]   R b2 m3 M3 b7    [0 1 3 4 a]   R 2 m3 6 7       [0 2 3 9 b]   R b2 5 6 b7      [0 1 7 9 a]
+            'R b5 #5 b7 7'     : (4, [0,6,8,10,11],  ['+M7','b13','#11','y']),     # R 2 M3 4 b5      [0 2 4 5 6]   R 2 m3 M3 b7     [0 2 3 4 a]   R b2 2 #5 b7     [0 1 2 8 a]   R b2 5 6 7       [0 1 7 9 b]
+            'R b5 6 b7 7'      : (1, [0,6,9,10,11],  ['M7','b5','13','y']),    # R m3 M3 4 b5     [0 3 4 5 6]   R b2 2 m3 6      [0 1 2 3 9]   R b2 2 #5 7      [0 1 2 8 b]   R b2 5 b7 7      [0 1 7 a b]
+            'R 5 #5 6 b7'      : (2, [0,7,8,9,10],   ['13','b13','y']),        # R b2 2 m3 4      [0 1 2 3 5]   R b2 2 M3 7      [0 1 2 4 b]   R b2 m3 b7 7     [0 1 3 a b]   R 2 6 b7 7       [0 2 9 a b]
+            'R 5 #5 6 7'       : (0, [0,7,8,9,11],   ['M13','b13','y']),             # R b2 2 M3 4      [0 1 2 4 5]   R b2 m3 M3 7     [0 1 3 4 b]   R 2 m3 b7 7      [0 2 3 a b]   R b2 #5 6 b7     [0 1 8 9 a]
+            'R 5 #5 b7 7'      : (2, [0,7,8,10,11],  ['M7','b13','y']),         # R b2 m3 M3 4     [0 1 3 4 5]   R 2 m3 M3 7      [0 2 3 4 b]   R b2 2 6 b7      [0 1 2 9 a]   R b2 #5 6 7      [0 1 8 9 b]
+            'R 5 6 b7 7'       : (2, [0,7,9,10,11],  ['13','M7','y']),        # R 2 m3 M3 4      [0 2 3 4 5]   R b2 2 m3 b7     [0 1 2 3 a]   R b2 2 6 7       [0 1 2 9 b]   R b2 #5 b7 7     [0 1 8 a b]
+            'R #5 6 b7 7'      : (2, [0,8,9,10,11],  ['13','M7','b13','y']),    # R b2 2 m3 M3     [0 1 2 3 4]   R b2 2 m3 7      [0 1 2 3 b]   R b2 2 b7 7      [0 1 2 a b]   R b2 6 b7 7      [0 1 9 a b]
     ####################################################################################################################################################################################################
-            'R b2 m3 M3 b5 6'  : (5, [0,1,3,4,6,9],  ['M','b2','#2','b5','6']),   # R 2 m3 4 #5 7    [0 2 3 5 8 b] R b2 m3 b5 6 b7  [0 1 3 6 9 a] R 2 4 #5 6 7     [0 2 5 8 9 b] R m3 b5 5 6 b7   [0 3 6 7 9 a] R m3 M3 b5 5 6   [0 3 4 6 7 9]
-            'R b2 m3 M3 #5 6'  : (5, [0,1,3,4,8,9],  ['+','b2','#2','6']),        # R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b]
+            'R b2 m3 M3 b5 6'  : (5, [0,1,3,4,6,9],  ['b#2','b5','6']),           # R 2 m3 4 #5 7    [0 2 3 5 8 b] R b2 m3 b5 6 b7  [0 1 3 6 9 a] R 2 4 #5 6 7     [0 2 5 8 9 b] R m3 b5 5 6 b7   [0 3 6 7 9 a] R m3 M3 b5 5 6   [0 3 4 6 7 9]
+            'R b2 m3 M3 #5 6'  : (5, [0,1,3,4,8,9],  ['+','b#2','6']),            # R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b]
             'R b2 m3 4 b5 b7'  : (3, [0,1,3,5,6,10], ['o','11','b9']),            # R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a] R M3 b5 5 6 7    [0 4 6 7 9 b] R 2 m3 4 5 #5    [0 2 3 5 7 8]
             'R b2 m3 4 5 #5'   : (5, [0,1,3,5,7,8],  ['m','b2','4','b6']),        # R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a] R b2 4 b5 #5 b7  [0 1 5 6 8 a] R M3 4 5 6 7     [0 4 5 7 9 b]
             'R b2 m3 4 #5 b7'  : (1, [0,1,3,5,8,10], ['m','+','11','b9']),        # R 2 M3 5 6 7     [0 2 4 7 9 b] R 2 4 5 6 b7     [0 2 5 7 9 a] R m3 4 5 #5 b7   [0 3 5 7 8 a] R 2 M3 4 5 6     [0 2 4 5 7 9] R 2 m3 4 5 b7    [0 2 3 5 7 a]
             'R b2 m3 b5 #5 b7' : (3, [0,1,3,6,8,10], ['o','+','b9']),             # R 2 4 5 6 7      [0 2 5 7 9 b] R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a]
             'R b2 m3 b5 6 b7'  : (2, [0,1,3,6,9,10], ['0','13','b9']),            # R 2 4 #5 6 7     [0 2 5 8 9 b] R m3 b5 5 6 b7   [0 3 6 7 9 a] R m3 M3 b5 5 6   [0 3 4 6 7 9] R b2 m3 M3 b5 6  [0 1 3 4 6 9] R 2 m3 4 #5 7    [0 2 3 5 8 b]
             'R b2 M3 4 5 #5'   : (4, [0,1,4,5,7,8],  ['b2','4','b6']),            # R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b]
-            'R b2 M3 4 #5 b7'  : (1, [0,1,4,5,8,10], ['+','11','b9']),            # R m3 M3  5 6 7   [0 3 4 7 9 b] R m3  4  5 #5 7  [0 3 5 7 8 b] R 2 M3 4 #5 6    [0 2 4 5 8 9] R  2 m3 b5 5 b7  [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a]
-            'R b2 M3 b5 5 b7'  : (0, [0,1,4,6,7,10], ['#','11','b9']),            # R m3  4 b5  6 7  @0 3 5 6 9 b@ R  2 m3 b5 #5 6  @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@ R  2 m3 b5 #5  6 @0 2 3 6 8 9@
-            'R b2 M3 b5 #5 6'  : (5, [0,1,4,6,8,9],  ['+','b2','#4','6']),        # R m3  4  5 #5 7  [0 3 5 7 8 b] R  2 M3  4 #5 6  [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 10] R b2 M3 4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b]
-            'R b2 4 b5 #5 b7'  : (4, [0,1,5,6,8,10], ['o','+','b9','s4']),        # R M3 4 5 6 7     [0 4 5 7 9 b] R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a]
-            'R b2 4 b5 6 b7'   : (2, [0,1,5,6,9,10], ['o','13','b9','s4']),       # R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b]
-            'R b2 4 5 #5 b7'   : (4, [0,1,5,7,8,10], ['b','13','b9','s4']),       # R M3 b5 5 6 7    [0 4 6 7 9 b] R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a]
-            'R 2 m3 4 5 #5'    : (5, [0,2,3,5,7,8],  ['m','+','2','4']),          # R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a] R M3 b5 5 6 7    [0 4 6 7 9 b]
+            'R b2 M3 4 #5 b7'  : (1, [0,1,4,5,8,10], ['+','11','b9']),            # R m3 M3 5 6 7    [0 3 4 7 9 b] R m3 4 5 #5 7    [0 3 5 7 8 b] R 2 M3 4 #5 6    [0 2 4 5 8 9] R 2 m3 b5 5 b7   [0 2 3 6 7 a] R b2 M3 4 #5 b7 [0 1 4 5 8 a]
+            'R b2 M3 b5 5 b7'  : (0, [0,1,4,6,7,10], ['#11','b9']),               # R m3 4 b5 6 7    @0 3 5 6 9 b@ R 2 m3 b5 #5 6   @0 2 3 6 8 9@ R b2 M3 b5 5 b7  @0 1 4 6 7 a@ R m3 4 b5 6 7 @0 3 5 6 9 b@ R 2 m3 b5 #5 6 @0 2 3 6 8 9@
+            'R b2 M3 b5 #5 6'  : (5, [0,1,4,6,8,9],  ['+','b2','#4','6']),        # R m3 4 5 #5 7    [0 3 5 7 8 b] R 2 M3 4 #5 6    [0 2 4 5 8 9] R 2 m3 b5 5 b7   [0 2 3 6 7 10] R b2 M3 4 #5 b7 [0 1 4 5 8 a] R m3 M3 5 6 7 [0 3 4 7 9 b]
+            'R b2 4 b5 #5 b7'  : (4, [0,1,5,6,8,10], ['b#5','b9','s4']),          # R M3 4 5 6 7     [0 4 5 7 9 b] R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a]
+            'R b2 4 b5 6 b7'   : (2, [0,1,5,6,9,10], ['b5','13','b9','s4']),      # R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b]
+            'R b2 4 5 #5 b7'   : (4, [0,1,5,7,8,10], ['b13','b9','s4']),          # R M3 b5 5 6 7    [0 4 6 7 9 b] R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a]
+            'R 2 m3 4 5 #5'    : (5, [0,2,3,5,7,8],  ['m2','4','b6']),            # R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a] R M3 b5 5 6 7    [0 4 6 7 9 b]
             'R 2 m3 4 5 b7'    : (0, [0,2,3,5,7,10], ['m','11','9']),             # R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b] R 2 4 5 6 b7     [0 2 5 7 9 a] R m3 4 5 #5 b7   [0 3 5 7 8 a] R 2 M3 4 5 6     [0 2 4 5 7 9]
-            'R 2 m3 4 #5 b7'   : (1, [0,2,3,5,8,10], ['m','+','11','9']),         # R b2 m3 b5 #5 b7 [0 1 3 6 8 a] R 2 4 5 6 7      [0 2 5 7 9 b] R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a]
-            'R 2 m3 4 #5 7'    : (1, [0,2,3,5,8,11], ['+','m','11','9']),         # R b2 m3 b5 6 b7  [0 1 3 6 9 a] R 2 4 #5 6 7     [0 2 5 8 9 b] R m3 b5 5 6 b7   [0 3 6 7 9 a] R m3 M3 b5 5 6   [0 3 4 6 7 9] R b2 m3 M3 b5 6  [0 1 3 4 6 9]
-            'R 2 m3 b5 5 b7'   : (0, [0,2,3,6,7,10], ['m','#','11','9']),         # R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b] R m3  4  5 #5  7 [0 3 5 7 8 b] R  2 M3  4 #5  6 [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 a]
-            'R 2 m3 b5 #5 6'   : (2, [0,2,3,6,8,9],  ['o','+','2','6']),          # R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@ R  2 m3 b5 #5  6 @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@
-            'R 2 m3 5 #5 b7'   : (3, [0,2,3,7,8,10], ['m','b','13','9']),         # R b2 4 b5 #5 b7  [0 1 5 6 8 a] R M3 4 5 6 7     [0 4 5 7 9 b] R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a]
-            'R 2 m3 5 #5 7'    : (3, [0,2,3,7,8,11], ['m','M','b','13','9']),     # R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9]
+            'R 2 m3 4 #5 b7'   : (1, [0,2,3,5,8,10], ['m+','11','9']),            # R b2 m3 b5 #5 b7 [0 1 3 6 8 a] R 2 4 5 6 7      [0 2 5 7 9 b] R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a]
+            'R 2 m3 4 #5 7'    : (1, [0,2,3,5,8,11], ['m+','11','9']),            # R b2 m3 b5 6 b7  [0 1 3 6 9 a] R 2 4 #5 6 7     [0 2 5 8 9 b] R m3 b5 5 6 b7   [0 3 6 7 9 a] R m3 M3 b5 5 6   [0 3 4 6 7 9] R b2 m3 M3 b5 6  [0 1 3 4 6 9]
+            'R 2 m3 b5 5 b7'   : (0, [0,2,3,6,7,10], ['m9','#11']),               # R b2 M3 4 #5 b7  [0 1 4 5 8 a] R m3 M3 5 6 7    [0 3 4 7 9 b] R m3 4 5 #5 7    [0 3 5 7 8 b] R  2 M3 4 #5 6   [0 2 4 5 8 9] R 2 m3 b5 5 b7 [0 2 3 6 7 a]
+            'R 2 m3 b5 #5 6'   : (2, [0,2,3,6,8,9],  ['o+','2','6']),             # R b2 M3 b5 5 b7  @0 1 4 6 7 a@ R m3 4 b5 6 7    @0 3 5 6 9 b@ R 2 m3 b5 #5 6   @0 2 3 6 8 9@ R b2 M3 b5 5 b7  @0 1 4 6 7 a@ R m3 4 b5 6 7 @0 3 5 6 9 b@
+            'R 2 m3 5 #5 b7'   : (3, [0,2,3,7,8,10], ['m9','b13']),               # R b2 4 b5 #5 b7  [0 1 5 6 8 a] R M3 4 5 6 7     [0 4 5 7 9 b] R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a]
+            'R 2 m3 5 #5 7'    : (3, [0,2,3,7,8,11], ['m','M9','b13']),           # R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9]
             'R 2 m3 5 6 b7'    : (2, [0,2,3,7,9,10], ['m','13','9']),             # R b2 4 5 #5 b7   [0 1 5 7 8 a] R M3 b5 5 6 7    [0 4 6 7 9 b] R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b]
             'R 2 M3 4 5 6'     : (5, [0,2,4,5,7,9],  ['2','4','6']),              # R 2 m3 4 5 b7    [0 2 3 5 7 a] R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b] R 2 4 5 6 b7     [0 2 5 7 9 a] R m3 4 5 #5 b7   [0 3 5 7 8 a]
-            'R 2 M3 4 #5 6'    : (3, [0,2,4,5,8,9],  ['+','2','4','6']),          # R 2 m3 b5  5 b7  [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b] R b2 M3 b5 #5  6 [0 1 4 6 8 9] R  2 M3  4 #5  6 [0 2 4 5 8 9]
+            'R 2 M3 4 #5 6'    : (3, [0,2,4,5,8,9],  ['+','2','4','6']),          # R 2 m3 b5 5 b7   [0 2 3 6 7 a] R b2 M3 4 #5 b7  [0 1 4 5 8 a] R m3 M3 5 6 7    [0 3 4 7 9 b] R b2 M3 b5 #5 6  [0 1 4 6 8 9] R 2 M3 4 #5 6    [0 2 4 5 8 9]
             'R 2 M3 4 5 b7'    : (0, [0,2,4,5,7,10], ['11','9']),                 # R 2 m3 4 #5 b7   [0 2 3 5 8 a] R b2 m3 b5 #5 b7 [0 1 3 6 8 a] R 2 4 5 6 7      [0 2 5 7 9 b] R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9]
             'R 2 M3 4 6 b7'    : (2, [0,2,4,5,9,10], ['13','11','9','x']),        # R 2 m3 5 #5 b7   [0 2 3 7 8 a] R b2 4 b5 #5 b7  [0 1 5 6 8 a] R M3 4 5 6 7     [0 4 5 7 9 b] R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b]
-            'R 2 M3 4 6 7'     : (0, [0,2,4,5,9,11], ['M','13','11','9','x']),    # R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a] R M3 b5 5 6 7    [0 4 6 7 9 b] R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a]
+            'R 2 M3 4 6 7'     : (0, [0,2,4,5,9,11], ['M13','11','9','x']),       # R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a] R M3 b5 5 6 7    [0 4 6 7 9 b] R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a]
             'R 2 M3 b5 5 6'    : (5, [0,2,4,6,7,9],  ['2','#4','6']),             # R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a] R b2 m3 b5 #5 b7 [0 1 3 6 8 a] R 2 4 5 6 7      [0 2 5 7 9 b] R m3 4 5 6 b7    [0 3 5 7 9 a]
-            'R 2 M3 b5 5 7'    : (1, [0,2,4,6,7,11], ['M','#','11','9']),         # R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a] R b2 4 b5 #5 b7  [0 1 5 6 8 a] R M3 4 5 6 7     [0 4 5 7 9 b] R b2 m3 4 5 #5   [0 1 3 5 7 8]
-            'R 2 M3 b5 #5 b7'  : (0, [0,2,4,6,8,10], ['+','#','11','9']),         # R 2 M3 b5 #5 b7  @0 2 4 6 8 a@ R 2 M3 b5 #5 b7  @0 2 4 6 8 a@ R 2 M3 b5 #5 b7  @0 2 4 6 8 a@ R 2 M3 b5 #5 b7  @0 2 4 6 8 a@ R 2 M3 b5 #5 b7  @0 2 4 6 8 a@
+            'R 2 M3 b5 5 7'    : (1, [0,2,4,6,7,11], ['M9','#11','9']),           # R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a] R b2 4 b5 #5 b7  [0 1 5 6 8 a] R M3 4 5 6 7     [0 4 5 7 9 b] R b2 m3 4 5 #5   [0 1 3 5 7 8]
+            'R 2 M3 b5 #5 b7'  : (0, [0,2,4,6,8,10], ['b#5','9']),                # R 2 M3 b5 #5 b7  @0 2 4 6 8 a@ R 2 M3 b5 #5 b7  @0 2 4 6 8 a@ R 2 M3 b5 #5 b7  @0 2 4 6 8 a@ R 2 M3 b5 #5 b7  @0 2 4 6 8 a@ R 2 M3 b5 #5 b7  @0 2 4 6 8 a@
             'R 2 M3 5 6 7'     : (3, [0,2,4,7,9,11], ['M','13','9']),             # R 2 4 5 6 b7     [0 2 5 7 9 a] R m3 4 5 #5 b7   [0 3 5 7 8 a] R 2 M3 4 5 6     [0 2 4 5 7 9] R 2 m3 4 5 b7    [0 2 3 5 7 a] R b2 m3 4 #5 b7  [0 1 3 5 8 a]
-            'R 2 4 5 6 b7'     : (4, [0,2,5,7,9,10], ['13','s2','s4']),           # R m3 4 5 #5 b7   [0 3 5 7 8 a] R 2 M3 4 5 6     [0 2 4 5 7 9] R 2 m3 4 5 b7    [0 2 3 5 7 a] R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b]
-            'R 2 4 5 6 7'      : (4, [0,2,5,7,9,11], ['M','13','s2','s4']),       # R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a] R b2 m3 b5 #5 b7 [0 1 3 6 8 a]
-            'R 2 4 #5 6 7'     : (4, [0,2,5,8,9,11], ['+','M','13','11','9']),    # R m3 b5 5 6 b7   [0 3 6 7 9 a] R m3 M3 b5 5 6   [0 3 4 6 7 9] R b2 m3 M3 b5 6  [0 1 3 4 6 9] R 2 m3 4 #5 7    [0 2 3 5 8 b] R b2 m3 b5 6 b7  [0 1 3 6 9 a]
-            'R m3 M3 b5 5 6'   : (3, [0,3,4,6,7,9],  ['m','M','#4','6']),         # R b2 m3 M3 b5 6  [0 1 3 4 6 9] R 2 m3 4 #5 7    [0 2 3 5 8 b] R b2 m3 b5 6 b7  [0 1 3 6 9 a] R 2 4 #5 6 7     [0 2 5 8 9 b] R m3 b5 5 6 b7   [0 3 6 7 9 a]
-            'R m3 M3 b5 5 7'   : (0, [0,3,4,6,7,11], ['M','#','11','#9']),        # R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8]
-            'R m3 M3 5 6 7'    : (2, [0,3,4,7,9,11], ['m','M','13','#9']),        # R m3  4  5 #5  7 [0 3 5 7 8 b] R  2 M3  4 #5  6 [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b]
-            'R m3 4 b5 6 7'    : (1, [0,3,5,6,9,11], ['o','M','13','11']),        # R  2 m3 b5 #5  6 @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@ R m3  4 b5  6  7 @0 3 5 6 9 b@ R  2 m3 b5 #5  6 @0 2 3 6 8 9@ R b2 M3 b5  5 b7 @0 1 4 6 7 a@
-            'R m3 4 5 #5 b7'   : (2, [0,3,5,7,8,10], ['m','b','13','11']),        # R 2 M3 4 5 6     [0 2 4 5 7 9] R 2 m3 4 5 b7    [0 2 3 5 7 a] R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b] R 2 4 5 6 b7     [0 2 5 7 9 a]
-            'R m3 4 5 #5 7'    : (4, [0,3,5,7,8,11], ['+','m','M','11']),         # R  2 M3  4 #5  6 [0 2 4 5 8 9] R  2 m3 b5  5 b7 [0 2 3 6 7 a] R b2 M3  4 #5 b7 [0 1 4 5 8 a] R m3 M3  5  6  7 [0 3 4 7 9 b] R b2 M3 b5 #5  6 [0 1 4 6 8 9]
+            'R 2 4 5 6 b7'     : (4, [0,2,5,7,9,10], ['13','s24']),               # R m3 4 5 #5 b7   [0 3 5 7 8 a] R 2 M3 4 5 6     [0 2 4 5 7 9] R 2 m3 4 5 b7    [0 2 3 5 7 a] R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b]
+            'R 2 4 5 6 7'      : (4, [0,2,5,7,9,11], ['M13','s24']),              # R m3 4 5 6 b7    [0 3 5 7 9 a] R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a] R b2 m3 b5 #5 b7 [0 1 3 6 8 a]
+            'R 2 4 #5 6 7'     : (4, [0,2,5,8,9,11], ['+','M13','11','9']),       # R m3 b5 5 6 b7   [0 3 6 7 9 a] R m3 M3 b5 5 6   [0 3 4 6 7 9] R b2 m3 M3 b5 6  [0 1 3 4 6 9] R 2 m3 4 #5 7    [0 2 3 5 8 b] R b2 m3 b5 6 b7  [0 1 3 6 9 a]
+            'R m3 M3 b5 5 6'   : (3, [0,3,4,6,7,9],  ['#2','#4','6']),            # R b2 m3 M3 b5 6  [0 1 3 4 6 9] R 2 m3 4 #5 7    [0 2 3 5 8 b] R b2 m3 b5 6 b7  [0 1 3 6 9 a] R 2 4 #5 6 7     [0 2 5 8 9 b] R m3 b5 5 6 b7   [0 3 6 7 9 a]
+            'R m3 M3 b5 5 7'   : (0, [0,3,4,6,7,11], ['M','#11','#9']),           # R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a] R M3 4 #5 6 7    [0 4 5 8 9 b] R b2 M3 4 5 #5   [0 1 4 5 7 8]
+            'R m3 M3 5 6 7'    : (2, [0,3,4,7,9,11], ['m','M','13','#9']),        # R m3 4 5 #5 7    [0 3 5 7 8 b] R 2 M3 4 #5 6    [0 2 4 5 8 9] R 2 m3 b5 5 b7   [0 2 3 6 7 a] R b2 M3 4 #5 b7  [0 1 4 5 8 a] R m3 M3 5 6 7    [0 3 4 7 9 b]
+            'R m3 4 b5 6 7'    : (1, [0,3,5,6,9,11], ['o','M13','11']),           # R 2 m3 b5 #5 6   @0 2 3 6 8 9@ R b2 M3 b5 5 b7  @0 1 4 6 7 a@ R m3 4 b5 6 7    @0 3 5 6 9 b@ R 2 m3 b5 #5 6   @0 2 3 6 8 9@ R b2 M3 b5 5 b7  @0 1 4 6 7 a@
+            'R m3 4 5 #5 b7'   : (2, [0,3,5,7,8,10], ['m','b13','11']),           # R 2 M3 4 5 6     [0 2 4 5 7 9] R 2 m3 4 5 b7    [0 2 3 5 7 a] R b2 m3 4 #5 b7  [0 1 3 5 8 a] R 2 M3 5 6 7     [0 2 4 7 9 b] R 2 4 5 6 b7     [0 2 5 7 9 a]
+            'R m3 4 5 #5 7'    : (4, [0,3,5,7,8,11], ['+','m','M11']),            # R 2 M3 4 #5 6    [0 2 4 5 8 9] R 2 m3 b5 5 b7   [0 2 3 6 7 a] R b2 M3 4 #5 b7  [0 1 4 5 8 a] R m3 M3 5 6 7    [0 3 4 7 9 b] R b2 M3 b5 #5 6  [0 1 4 6 8 9]
             'R m3 4 5 6 b7'    : (2, [0,3,5,7,9,10], ['m','13','11']),            # R 2 M3 b5 5 6    [0 2 4 6 7 9] R 2 M3 4 5 b7    [0 2 4 5 7 a] R 2 m3 4 #5 b7   [0 2 3 5 8 a] R b2 m3 b5 #5 b7 [0 1 3 6 8 a] R 2 4 5 6 7      [0 2 5 7 9 b]
-            'R M3 4 5 6 7'     : (0, [0,4,5,7,9,11], ['M','13','11']),            # R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a] R b2 4 b5 #5 b7  [0 1 5 6 8 a]
-            'R M3 4 #5 6 7'    : (1, [0,4,5,8,9,11], ['+','M','13','11']),        # R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a]
-            'R m3 b5 5 6 b7'   : (0, [0,3,6,7,9,10], ['m','13','#','11']),        # R m3 M3 b5 5 6   [0 3 4 6 7 9] R b2 m3 M3 b5 6  [0 1 3 4 6 9] R 2 m3 4 #5 7    [0 2 3 5 8 b] R b2 m3 b5 6 b7  [0 1 3 6 9 a] R 2 4 #5 6 7     [0 2 5 8 9 b]
-            'R M3 b5 5 6 7'    : (1, [0,4,6,7,9,11], ['M','13','#','11']),        # R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a]
+            'R M3 4 5 6 7'     : (0, [0,4,5,7,9,11], ['M13','11']),               # R b2 m3 4 5 #5   [0 1 3 5 7 8] R 2 M3 b5 5 7    [0 2 4 6 7 b] R 2 M3 4 6 b7    [0 2 4 5 9 a] R 2 m3 5 #5 b7   [0 2 3 7 8 a] R b2 4 b5 #5 b7  [0 1 5 6 8 a]
+            'R M3 4 #5 6 7'    : (1, [0,4,5,8,9,11], ['+','M13','11']),           # R b2 M3 4 5 #5   [0 1 4 5 7 8] R m3 M3 b5 5 7   [0 3 4 6 7 b] R b2 m3 M3 #5 6  [0 1 3 4 8 9] R 2 m3 5 #5 7    [0 2 3 7 8 b] R b2 4 b5 6 b7   [0 1 5 6 9 a]
+            'R m3 b5 5 6 b7'   : (0, [0,3,6,7,9,10], ['m13','#11']),              # R m3 M3 b5 5 6   [0 3 4 6 7 9] R b2 m3 M3 b5 6  [0 1 3 4 6 9] R 2 m3 4 #5 7    [0 2 3 5 8 b] R b2 m3 b5 6 b7  [0 1 3 6 9 a] R 2 4 #5 6 7     [0 2 5 8 9 b]
+            'R M3 b5 5 6 7'    : (1, [0,4,6,7,9,11], ['M13','#11']),              # R 2 m3 4 5 #5    [0 2 3 5 7 8] R b2 m3 4 b5 b7  [0 1 3 5 6 a] R 2 M3 4 6 7     [0 2 4 5 9 b] R 2 m3 5 6 b7    [0 2 3 7 9 a] R b2 4 5 #5 b7   [0 1 5 7 8 a]
 
-            'R b2 2 m3 4 #5'    : (4, [0,1,2,3,5,8],  ['+','m','s24','b2']),      # R b2 2 M3 5 7      [0 1 2 4 7 b] R b2 m3 b5 b7 7    [0 1 3 6 a b] R 2 4 6 b7 7       [0 2 5 9 a b] R m3 5 #5 6 b7     [0 3 7 8 9 a] R M3 4 b5 5 6      [0 4 5 6 7 9]
-            'R b2 2 M3 5 7'     : (1, [0,1,2,4,7,11], ['M9','b9','']),            # R b2 m3 b5 b7 7    [0 1 3 6 a b] R 2 4 6 b7 7       [0 2 5 9 a b] R m3 5 #5 6 b7     [0 3 7 8 9 a] R M3 4 b5 5 6      [0 4 5 6 7 9] R b2 2 m3 4 #5     [0 1 2 3 5 8]
-            'R b2 m3 b5 b7 7'   : (3, [0,1,3,6,10,11], ['m7','b5','b9']),         # R 2 4 6 b7 7       [0 2 5 9 a b] R m3 5 #5 6 b7     [0 3 7 8 9 a] R M3 4 b5 5 6      [0 4 5 6 7 9] R b2 2 m3 4 #5     [0 1 2 3 5 8] R b2 2 M3 5 7      [0 1 2 4 7 b]
-            'R 2 4 6 b7 7'      : (5, [0,2,5,9,10,11], ['7','M13','s24']),        # R m3 5 #5 6 b7     [0 3 7 8 9 a] R M3 4 b5 5 6      [0 4 5 6 7 9] R b2 2 m3 4 #5     [0 1 2 3 5 8] R b2 2 M3 5 7      [0 1 2 4 7 b] R b2 m3 b5 b7 7    [0 1 3 6 a b]
-            'R m3 5 #5 6 b7'    : (0, [0,3,7,8,9,10], ['+','m13','']),            # R M3 4 b5 5 6      [0 4 5 6 7 9] R b2 2 m3 4 #5     [0 1 2 3 5 8] R b2 2 M3 5 7      [0 1 2 4 7 b] R b2 m3 b5 b7 7    [0 1 3 6 a b] R 2 4 6 b7 7       [0 2 5 9 a b]
-            'R M3 4 b5 5 6'     : (2, [0,4,5,6,7,9],  ['4','#4','6']),            # R b2 2 m3 4 #5     [0 1 2 3 5 8] R b2 2 M3 5 7      [0 1 2 4 7 b] R b2 m3 b5 b7 7    [0 1 3 6 a b] R 2 4 6 b7 7       [0 2 5 9 a b] R m3 5 #5 6 b7     [0 3 7 8 9 a]
+            'R b2 2 m3 4 #5'   : (4, [0,1,2,3,5,8],  ['m+','2b2','4']),           # R b2 2 M3 5 7    [0 1 2 4 7 b] R b2 m3 b5 b7 7  [0 1 3 6 a b] R 2 4 6 b7 7     [0 2 5 9 a b] R m3 5 #5 6 b7   [0 3 7 8 9 a] R M3 4 b5 5 6    [0 4 5 6 7 9]
+            'R b2 2 M3 5 7'    : (1, [0,1,2,4,7,11], ['M9','b9']),                # R b2 m3 b5 b7 7  [0 1 3 6 a b] R 2 4 6 b7 7     [0 2 5 9 a b] R m3 5 #5 6 b7   [0 3 7 8 9 a] R M3 4 b5 5 6    [0 4 5 6 7 9] R b2 2 m3 4 #5   [0 1 2 3 5 8]
+            'R b2 m3 b5 b7 7'  : (3, [0,1,3,6,10,11], ['07','M7','b9']),          # R 2 4 6 b7 7     [0 2 5 9 a b] R m3 5 #5 6 b7   [0 3 7 8 9 a] R M3 4 b5 5 6    [0 4 5 6 7 9] R b2 2 m3 4 #5   [0 1 2 3 5 8] R b2 2 M3 5 7    [0 1 2 4 7 b]
+            'R 2 4 6 b7 7'     : (5, [0,2,5,9,10,11], ['7','M13','s24']),         # R m3 5 #5 6 b7   [0 3 7 8 9 a] R M3 4 b5 5 6    [0 4 5 6 7 9] R b2 2 m3 4 #5   [0 1 2 3 5 8] R b2 2 M3 5 7    [0 1 2 4 7 b] R b2 m3 b5 b7 7  [0 1 3 6 a b]
+            'R m3 5 #5 6 b7'   : (0, [0,3,7,8,9,10], ['m13','b13']),              # R M3 4 b5 5 6    [0 4 5 6 7 9] R b2 2 m3 4 #5   [0 1 2 3 5 8] R b2 2 M3 5 7    [0 1 2 4 7 b] R b2 m3 b5 b7 7  [0 1 3 6 a b] R 2 4 6 b7 7     [0 2 5 9 a b]
+            'R M3 4 b5 5 6'    : (2, [0,4,5,6,7,9],  ['4#4','6']),                # R b2 2 m3 4 #5   [0 1 2 3 5 8] R b2 2 M3 5 7    [0 1 2 4 7 b] R b2 m3 b5 b7 7  [0 1 3 6 a b] R 2 4 6 b7 7     [0 2 5 9 a b] R m3 5 #5 6 b7   [0 3 7 8 9 a]
 
-            'R b2 2 m3 b5 b7'   : (4, [0,1,2,3,6,10], ['07','9','#15']),          # R b2 2 4 6 7       [0 1 2 5 9 b] R b2 M3 #5 b7 7    [0 1 4 8 a b] R m3 5 6 b7 7      [0 3 7 9 a b] R M3 b5 5 #5 6     [0 4 6 7 8 9] R 2 m3 M3 4 #5     [0 2 3 4 5 8]
-            'R b2 2 4 6 7'      : (2, [0,1,2,5,9,11], ['M13','b9','s24']),        # R b2 M3 #5 b7 7    [0 1 4 8 a b] R m3 5 6 b7 7      [0 3 7 9 a b] R M3 b5 5 #5 6     [0 4 6 7 8 9] R 2 m3 M3 4 #5     [0 2 3 4 5 8] R b2 2 m3 b5 b7    [0 1 2 3 6 a]
-            'R b2 M3 #5 b7 7'   : (1, [0,1,4,8,10,11], ['+','7','M9']),           # R m3 5 6 b7 7      [0 3 7 9 a b] R M3 b5 5 #5 6     [0 4 6 7 8 9] R 2 m3 M3 4 #5     [0 2 3 4 5 8] R b2 2 m3 b5 b7    [0 1 2 3 6 a] R b2 2 4 6 7       [0 1 2 5 9 b]
-            'R 2 m3 M3 4 #5'    : (5, [0,2,3,4,5,8],  ['+','mM','24']),           # R b2 2 m3 b5 b7    [0 1 2 3 6 a] R b2 2 4 6 7       [0 1 2 5 9 b] R b2 M3 #5 b7 7    [0 1 4 8 a b] R m3 5 6 b7 7      [0 3 7 9 a b] R M3 b5 5 #5 6     [0 4 6 7 8 9]
-            'R m3 5 6 b7 7'     : (0, [0,3,7,9,10,11], ['m7','M13','']),          # R M3 b5 5 #5 6     [0 4 6 7 8 9] R 2 m3 M3 4 #5     [0 2 3 4 5 8] R b2 2 m3 b5 b7    [0 1 2 3 6 a] R b2 2 4 6 7       [0 1 2 5 9 b] R b2 M3 #5 b7 7    [0 1 4 8 a b]
-            'R M3 b5 5 #5 6'    : (3, [0,4,6,7,8,9],  ['b6','#4','']),            # R 2 m3 M3 4 #5     [0 2 3 4 5 8] R b2 2 m3 b5 b7    [0 1 2 3 6 a] R b2 2 4 6 7       [0 1 2 5 9 b] R b2 M3 #5 b7 7    [0 1 4 8 a b] R m3 5 6 b7 7      [0 3 7 9 a b]
+            'R b2 2 m3 b5 b7'  : (4, [0,1,2,3,6,10], ['07','9b9']),               # R b2 2 4 6 7     [0 1 2 5 9 b] R b2 M3 #5 b7 7  [0 1 4 8 a b] R m3 5 6 b7 7    [0 3 7 9 a b] R M3 b5 5 #5 6   [0 4 6 7 8 9] R 2 m3 M3 4 #5   [0 2 3 4 5 8]
+            'R b2 2 4 6 7'     : (2, [0,1,2,5,9,11], ['M13','b9','s24']),         # R b2 M3 #5 b7 7  [0 1 4 8 a b] R m3 5 6 b7 7    [0 3 7 9 a b] R M3 b5 5 #5 6   [0 4 6 7 8 9] R 2 m3 M3 4 #5   [0 2 3 4 5 8] R b2 2 m3 b5 b7  [0 1 2 3 6 a]
+            'R b2 M3 #5 b7 7'  : (1, [0,1,4,8,10,11], ['7+','M9']),               # R m3 5 6 b7 7    [0 3 7 9 a b] R M3 b5 5 #5 6   [0 4 6 7 8 9] R 2 m3 M3 4 #5   [0 2 3 4 5 8] R b2 2 m3 b5 b7  [0 1 2 3 6 a] R b2 2 4 6 7     [0 1 2 5 9 b]
+            'R 2 m3 M3 4 #5'   : (5, [0,2,3,4,5,8],  ['m+','2#2','4']),           # R b2 2 m3 b5 b7  [0 1 2 3 6 a] R b2 2 4 6 7     [0 1 2 5 9 b] R b2 M3 #5 b7 7  [0 1 4 8 a b] R m3 5 6 b7 7    [0 3 7 9 a b] R M3 b5 5 #5 6   [0 4 6 7 8 9]
+            'R m3 5 6 b7 7'    : (0, [0,3,7,9,10,11], ['m7','M13']),              # R M3 b5 5 #5 6   [0 4 6 7 8 9] R 2 m3 M3 4 #5   [0 2 3 4 5 8] R b2 2 m3 b5 b7  [0 1 2 3 6 a] R b2 2 4 6 7     [0 1 2 5 9 b] R b2 M3 #5 b7 7  [0 1 4 8 a b]
+            'R M3 b5 5 #5 6'   : (3, [0,4,6,7,8,9],  ['6b6','#4']),               # R 2 m3 M3 4 #5   [0 2 3 4 5 8] R b2 2 m3 b5 b7  [0 1 2 3 6 a] R b2 2 4 6 7     [0 1 2 5 9 b] R b2 M3 #5 b7 7  [0 1 4 8 a b] R m3 5 6 b7 7    [0 3 7 9 a b]
 
-            'R b2 2 b5 5 b7'  : (1, [0,1,2,6,7,10],  ['#11','9','b9','y']),       # R b2 4 b5 6 7      [0 1 5 6 9 b] R M3 4 #5 b7 7     [0 4 5 8 a b] R b2 M3 b5 5 #5    [0 1 4 6 7 8] R m3 4 b5 5 7      [0 3 5 6 7 b] R 2 m3 M3 #5 6     [0 2 3 4 8 9]
-            'R b2 M3 b5 5 #5' : (0, [0,1,4,6,7,8],   ['b2','#4','b6']),           # R m3 4 b5 5 7      [0 3 5 6 7 b] R 2 m3 M3 #5 6     [0 2 3 4 8 9] R b2 2 b5 5 b7     [0 1 2 6 7 a] R b2 4 b5 6 7      [0 1 5 6 9 b] R M3 4 #5 b7 7     [0 4 5 8 a b]
-            'R b2 4 b5 6 7'   : (2, [0,1,5,6,9,11],  ['13','11','b9','b5']),      # R M3 4 #5 b7 7     [0 4 5 8 a b] R b2 M3 b5 5 #5    [0 1 4 6 7 8] R m3 4 b5 5 7      [0 3 5 6 7 b] R 2 m3 M3 #5 6     [0 2 3 4 8 9] R b2 2 b5 5 b7     [0 1 2 6 7 a]
-            'R 2 m3 M3 #5 6'  : (3, [0,2,3,4,8,9],   ['6','2#2','b6']),           # R b2 2 b5 5 b7     [0 1 2 6 7 a] R b2 4 b5 6 7      [0 1 5 6 9 b] R M3 4 #5 b7 7     [0 4 5 8 a b] R b2 M3 b5 5 #5    [0 1 4 6 7 8] R m3 4 b5 5 7      [0 3 5 6 7 b]
-            'R m3 4 b5 5 7'   : (4, [0,3,5,6,7,11],  ['mM','11','b5']),           # R 2 m3 M3 #5 6     [0 2 3 4 8 9] R b2 2 b5 5 b7     [0 1 2 6 7 a] R b2 4 b5 6 7      [0 1 5 6 9 b] R M3 4 #5 b7 7     [0 4 5 8 a b] R b2 M3 b5 5 #5    [0 1 4 6 7 8]
-            'R M3 4 #5 b7 7'  : (5, [0,4,5,8,10,11], ['+','M11','#13','x']),      # R b2 M3 b5 5 #5    [0 1 4 6 7 8] R m3 4 b5 5 7      [0 3 5 6 7 b] R 2 m3 M3 #5 6     [0 2 3 4 8 9] R b2 2 b5 5 b7     [0 1 2 6 7 a] R b2 4 b5 6 7      [0 1 5 6 9 b]
+            'R b2 2 b5 5 b7'   : (1, [0,1,2,6,7,10],  ['#11','9b9','y']),         # R b2 4 b5 6 7    [0 1 5 6 9 b] R M3 4 #5 b7 7   [0 4 5 8 a b] R b2 M3 b5 5 #5  [0 1 4 6 7 8] R m3 4 b5 5 7    [0 3 5 6 7 b] R 2 m3 M3 #5 6   [0 2 3 4 8 9]
+            'R b2 M3 b5 5 #5'  : (0, [0,1,4,6,7,8],   ['b2','#4','b6']),          # R m3 4 b5 5 7    [0 3 5 6 7 b] R 2 m3 M3 #5 6   [0 2 3 4 8 9] R b2 2 b5 5 b7   [0 1 2 6 7 a] R b2 4 b5 6 7    [0 1 5 6 9 b] R M3 4 #5 b7 7   [0 4 5 8 a b]
+            'R b2 4 b5 6 7'    : (2, [0,1,5,6,9,11],  ['13','11','b9','b5']),     # R M3 4 #5 b7 7   [0 4 5 8 a b] R b2 M3 b5 5 #5  [0 1 4 6 7 8] R m3 4 b5 5 7    [0 3 5 6 7 b] R 2 m3 M3 #5 6   [0 2 3 4 8 9] R b2 2 b5 5 b7   [0 1 2 6 7 a]
+            'R 2 m3 M3 #5 6'   : (3, [0,2,3,4,8,9],   ['6b6','2#2']),             # R b2 2 b5 5 b7   [0 1 2 6 7 a] R b2 4 b5 6 7    [0 1 5 6 9 b] R M3 4 #5 b7 7   [0 4 5 8 a b] R b2 M3 b5 5 #5  [0 1 4 6 7 8] R m3 4 b5 5 7    [0 3 5 6 7 b]
+            'R m3 4 b5 5 7'    : (4, [0,3,5,6,7,11],  ['m','M11','#11']),         # R 2 m3 M3 #5 6   [0 2 3 4 8 9] R b2 2 b5 5 b7   [0 1 2 6 7 a] R b2 4 b5 6 7    [0 1 5 6 9 b] R M3 4 #5 b7 7   [0 4 5 8 a b] R b2 M3 b5 5 #5  [0 1 4 6 7 8]
+            'R M3 4 #5 b7 7'   : (5, [0,4,5,8,10,11], ['+','13','M11']),          # R b2 M3 b5 5 #5  [0 1 4 6 7 8] R m3 4 b5 5 7    [0 3 5 6 7 b] R 2 m3 M3 #5 6   [0 2 3 4 8 9] R b2 2 b5 5 b7   [0 1 2 6 7 a] R b2 4 b5 6 7    [0 1 5 6 9 b]
+
+          # 'R b2 m3 4 b5 6'  : (-1, [0,1,3,5,6,9],   ['o','b2','4','6']),        # R 2 M3 4 #5 7    [0 2 4 5 8 b] R 2 m3 b5 6 b7   [0 2 3 6 9 a] R b2 M3 5 #5 b7  [0 1 4 7 8 a] R m3 b5 5 6 7    [0 3 6 7 9 b] R m3 M3 b5 #5 6  [0 3 4 6 8 9]
+          # 'R b2 M3 5 #5 b7' : (-1, [0,1,4,7,8,10],  ['b13','b9']),              # R m3 b5 5 6 7    [0 3 6 7 9 b] R m3 M3 b5 #5 6  [0 3 4 6 8 9] R b2 m3 4 b5 6   [0 1 3 5 6 9] R 2 M3 4 #5 7    [0 2 4 5 8 b] R 2 m3 b5 6 b7   [0 2 3 6 9 a]
+          # 'R 2 m3 b5 6 b7'  : (-1, [0,2,3,6,9,10],  ['7','o7','9']),            # R b2 M3 5 #5 b7  [0 1 4 7 8 a] R m3 b5 5 6 7    [0 3 6 7 9 b] R m3 M3 b5 #5 6  [0 3 4 6 8 9] R b2 m3 4 b5 6   [0 1 3 5 6 9] R 2 M3 4 #5 7    [0 2 4 5 8 b]
+          # 'R 2 M3 4 #5 7'   : (-1, [0,2,4,5,8,11],  ['+','M11','9']),           # R 2 m3 b5 6 b7   [0 2 3 6 9 a] R b2 M3 5 #5 b7  [0 1 4 7 8 a] R m3 b5 5 6 7    [0 3 6 7 9 b] R m3 M3 b5 #5 6  [0 3 4 6 8 9] R b2 m3 4 b5 6   [0 1 3 5 6 9]
+          # 'R m3 M3 b5 #5 6' : (-1, [0,3,4,6,8,9],   ['+','b5','#2','6']),       # R b2 m3 4 b5 6   [0 1 3 5 6 9] R 2 M3 4 #5 7    [0 2 4 5 8 b] R 2 m3 b5 6 b7   [0 2 3 6 9 a] R b2 M3 5 #5 b7  [0 1 4 7 8 a] R m3 b5 5 6 7    [0 3 6 7 9 b]
+          # 'R m3 b5 5 6 7'   : (-1, [0,3,6,7,9,11],  ['o7','M7','#11']),         # R m3 M3 b5 #5 6  [0 3 4 6 8 9] R b2 m3 4 b5 6   [0 1 3 5 6 9] R 2 M3 4 #5 7    [0 2 4 5 8 b] R 2 m3 b5 6 b7   [0 2 3 6 9 a] R b2 M3 5 #5 b7  [0 1 4 7 8 a]
             }
     ####################################################################################################################################################################################################
-    #################################
     # index 3note 4note 5note 6note #
     #   1     1     1     1     1   #
     #   2     3     4     5     6   #
@@ -908,6 +919,8 @@ class Chord:
     #   9    45   165               #
     #  10    55                     #
     #################################
+    # 1-10   55   220   550  1012   #
+    ####################################################################################################################################################################################################
 
     def add2cat(self, limap, cc): # N/A?
         self.dumpLimap(limap, cc)
