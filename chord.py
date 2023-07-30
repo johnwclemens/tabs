@@ -23,6 +23,18 @@ class Chord:
         self.limap, self.mlimap, self.umap, self.cycles = [], {}, {}, {}
         self.catmap, self.catmap2 = {}, {}
         self.cat1, self.cat2, self.cat3 = set(), set(), {}
+
+    @staticmethod
+    def checkOmap(o):
+        assert     util.isi(o,      tuple),  slog(f'ERROR: Invalid type expected tuple {type(o)=}')
+        assert     util.isi(o[0],     int),  slog(f'ERROR: Invalid type expected int   {type(o[0])=}')
+        assert     util.isi(o[1],    list),  slog(f'ERROR: Invalid type expected list  {type(o[1])=}')
+        assert     util.isi(o[2],    list),  slog(f'ERROR: Invalid type expected list  {type(o[2])=}')
+        for i in  range(len(o[1])):
+            assert util.isi(o[1][i],  int),  slog(f'ERROR: Invalid type expected int  {type(o[1][i])=}')
+        for i in  range(len(o[2])):
+            assert util.isi(o[2][i],  str),  slog(f'ERROR: Invalid type expected str  {type(o[2][i])=}')
+        return tuple(o[2])
     ####################################################################################################################################################################################################
     def getChordName(self, data, nic, cn, p, l, c, dbg=0):
         ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1
@@ -39,15 +51,13 @@ class Chord:
                 ikey     = W.join(_ikeys)
                 if ikey in omap:
                     root = _imap['R']           ;     chunks.append(root)
-                    assert util.isi(omap[ikey],   tuple),  slog(f'Invalid type, expected tuple {type(omap[ikey])=} {omap[ikey]=}')
-                    assert util.isi(omap[ikey][2], list),  slog(f'Invalid type, expected list  {type(omap[ikey][2])=} {omap[ikey][2]=}')
-                    for n in omap[ikey][2]:    # ? Expected type 'collections.Iterable', got 'int' instead ?
-                        chunks.append(n) if n else None
+                    chnks = self.checkOmap(omap[ikey])
+                    [ chunks.append(n) for n in chnks if n ]
 #                    [ chunks.append(n) for n in omap[ikey][2] if n ]    # ? Expected type 'collections.Iterable', got 'int' instead ?
-                    if root != notes[0]:              nsfx = f'/{notes[0]}'  ;  chunks.append(nsfx)
-                    name = Z.join(chunks)       ;     rank = omap[ikey][0]
-                    assert _ivals == omap[ikey][1],   slog(f'Error _ivals != omap[ikey][1], {_ivals=} {omap[ikey][1]=}')
-                elif len(_imap) >= self.MIN_CHORD_LEN and ikey not in self.umap:  self.add2uMap(leni, ikey, rank, ivals)
+                    if root != notes[0]:               nsfx = f'/{notes[0]}'  ;  chunks.append(nsfx)
+                    name = Z.join(chunks)       ;      rank = omap[ikey][0]
+                    assert _ivals == omap[ikey][1],    slog(f'Error _ivals != omap[ikey][1], {_ivals=} {omap[ikey][1]=}')
+                elif len(_imap) >= self.MIN_CHORD_LEN: self.add2uMap(leni, ikey, rank, ivals)
                 elif len(_imap) >= util.MIN_IVAL_LEN:                             slog(f'{leni=} is Not a Chord {ikey=:21} v={fmtl(sorted(ivals))}')
                 if dbg:                  self._dumpData(rank, _ikeys, _ivals, _notes, mask, 1)
                 imap     = [ ikeys, ivals, notes, name, chunks, rank ]
@@ -62,10 +72,9 @@ class Chord:
         return  imap # [ ikeys, ivals, notes, name, chunks, rank ]
     ####################################################################################################################################################################################################
     def add2uMap(self, li, ikey, rank, ivals, dbg=1):
-#        if ikey in self.umap:    msg = f'ERROR {ikey=} already in umap, return'   ;   slog(msg)   ;   quit(msg)   ;   return
         kc = self.chordCounter
-        if    kc[ikey]:   slog(f'return why: already counted {ikey=} {kc=}')      ;   return
-        else:             kc[ikey] = 1
+        kc[ikey]    += 1
+        if kc[ikey] != 1:   slog(f'return why: already counted {ikey=} {kc=}')      ;   return
         slog(f'{li=} Adding {ikey=} v={fmtl(sorted(ivals))} to umap')
         self.umap[ikey] = (rank, ivals, [])
         self.dumpUmap() if dbg else None
@@ -218,13 +227,11 @@ class Chord:
                 self._dumpOMAP(CAT_FILE)
         slog(f'END {len(self.OMAP)=} {len(self.umap)=}')
 
-    @staticmethod
-    def getMapSets(omap):
+    def getMapSets(self, omap):
         mapSet   = {}
         for k, v in omap.items():
             v1   = v[1]
-            assert util.isi(omap[k],   tuple),  slog(f'ERROR: Invalid type, expected tuple, got {type(omap[k])=} {omap[k]=}')
-            assert util.isi(omap[k][2], list),  slog(f'ERROR: Invalid type, expected list, got {type(omap[k][2])=} {omap[k][2]=}')
+            self.checkOmap(omap[k])
             msK  = len(v1)
             if msK not in mapSet: mapSet[msK] = set()
             if v[0] == -1:        v1 = sorted(v1)
@@ -244,7 +251,6 @@ class Chord:
                 v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else "['','','',''])," if util.isi(v[2], list) else 'None),'
                 slog(                    f'{j:4} {keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=2, ft=0)
                 if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0, e=Z) # , e=Z
-#               if dbg:  v1 = ii      ;   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v1, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0, e=Z) # , e=Z
 #               if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0) # ? Expected type 'Iterable' (matched generic type 'Iterable[SupportsLessThanT]'), got 'int' instead ?
                 cycSet      = set()   ;   cycSet.add(tuple(ii))   ;   i2 = list(ii)
                 for _ in range(len(ii) - 1):
