@@ -28,9 +28,9 @@ T, N, I, K            =  4,  5,  6,  7
 R, Q, H, M            =  8,  9, 10, 11
 B, A, D, E            = 12, 13, 14, 15
 ARGS = util.parseCmdLine()
-CAT,  CSV,  LOG,  PNG,  TXT,  DAT     = 'cat',  'csv',  'log',  'png',  'txt',  'dat'
-CATS, CSVS, LOGS, PNGS, TEXT, DATA    = 'cats', 'csvs', 'logs', 'pngs', 'text', 'data'
-CAT2, CSV2, LOG2, TXT2                = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{TXT}'
+CAT,  CSV,  LOG,  PNG,  TXT,  DAT     =  'cat',      'csv',      'log',      'png',      'txt',      'dat'
+CATS, CSVS, LOGS, PNGS, TEXT, DATA    =  'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
+CAT2, CSV2, LOG2, PNG2, TXT2          = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
 
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
@@ -42,11 +42,11 @@ class Tabs(pyglet.window.Window):
         self.LOG_ID = 0                ;   self.log(f'{self.LOG_ID=}')
         self.log(f'BGN {__class__}')   ;   dumpGlobals()
         self.log(f'STFILT:\n{fmtl(util.STFILT)}')          ;   self.snapWhy, self.snapType, self.snapReg, self.snapId, self.snapPath = '?', '_', 0, 0, None
-        self.fNameLid      = util.getSeqFileName(fdir=LOGS, fsfx=LOG)
-        self.seqNumLogPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=LOGS, fsfx=LOG)   ;   self.log(f'{self.seqNumLogPath=}')
-        self.seqNumCsvPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CSVS, fsfx=CSV)   ;   self.log(f'{self.seqNumCsvPath=}')
-        self.seqNumTxtPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=TEXT, fsfx=TXT)   ;   self.log(f'{self.seqNumTxtPath=}')
-        self.seqNumCatPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)   ;   self.log(f'{self.seqNumCatPath=}')
+        self.fNameLid, self.LOG_ID = util.getSeqFileName(fdir=LOGS, fsfx=LOG)    ;   self.log(f'{self.LOG_ID=} {self.fNameLid}')
+        self.seqNumCatPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)  ;  self.log(f'{self.seqNumCatPath=}')
+        self.seqNumCsvPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CSVS, fsfx=CSV)  ;  self.log(f'{self.seqNumCsvPath=}')
+        self.seqNumLogPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.seqNumLogPath=}')
+        self.seqNumTxtPath = util.getFilePath(self.fNameLid, BASE_PATH, fdir=TEXT, fsfx=TXT)  ;  self.log(f'{self.seqNumTxtPath=}')
         self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt  = Z
         self.shiftingTabs  = 0   ;   self.shiftSign = 1    ;   self.quitting = 0
         self.inserting     = 0   ;   self.insertStr = Z
@@ -62,7 +62,7 @@ class Tabs(pyglet.window.Window):
         self.tblank,   self.tblanki,  self.cursor,  self.data    = None, None, None, []
         self.XYVA      = [0, 0, 0, 0]
         self._init_xyva()
-        self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT       = 1  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DBG_TABT  = 0
+        self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT       = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DBG_TABT  = 0
         self.EVENT_LOG = 0  ;  self.EXIT      = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1
         self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.DSP_J_LEV = 4  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0
         self.SPRITES   = 0  ;  self.STRETCH   = 1  ;  self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.VARROW    = 1  ;  self.VIEWS     = 0
@@ -2333,6 +2333,7 @@ class Tabs(pyglet.window.Window):
 
     def _setTNIKStyle(self, tnik, color, style=0): # d =  tnik.document ; d.set_style(0, len(d.text), {COLOR: color[fgs], BGC: color[bgs]})
         if util.isi(tnik, LBL):   (bgs, fgs) = (0, 1)  if style == NORMAL_STYLE or style == CURRENT_STYLE else (1, 0)   ;   self.setFgcBgc(tnik, color[fgs], color[bgs])
+#        self.setFgcBgc(tnik, color[1], color[0])
     @staticmethod
     def setFgcBgc(t, fgc, bgc=None):
         cm = {COLOR:fgc}
@@ -2723,8 +2724,8 @@ class Tabs(pyglet.window.Window):
     def snapshot(self, why=Z, typ=Z, dbg=1, dbg2=1):
         why    = why if why else self.snapWhy
         typ    = typ if typ else self.snapType
-        snapId = self.snapId  ;  logId = self.LOG_ID + 1
-        snapName = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
+        snapId = self.snapId   ;  logId = self.LOG_ID
+        snapName      = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
         self.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = 'None'   ;   snapId = 'None'
         if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
         if dbg:  self.log(f'{self.fNameLid=} {snapName=} {why}')
@@ -2732,12 +2733,17 @@ class Tabs(pyglet.window.Window):
         pyglet.image.get_buffer_manager().get_color_buffer().save(f'{self.snapPath}')
         if dbg2: self.log(f'{snapName=} {why}', f=2)
         if typ == INIT:
+            snapName0 = f'{BASE_NAME}.{PNG}'
             snapName2 = self.geomFileName(BASE_NAME, PNG)
+            snapPath0 = BASE_PATH / PNGS / snapName0
             snapPath2 = BASE_PATH / snapName2
+            util.copyFile(self.snapPath, snapPath0)
             util.copyFile(self.snapPath, snapPath2)
-            if dbg:   self.log(f'{BASE_NAME=} {self.fmtn(Z)}')
+            if dbg:  self.log(f'{BASE_NAME=} {self.fmtn(Z)}')
+            if dbg:  self.log(f'{snapName0=} {why}')
             if dbg:  self.log(f'{snapName2=} {why}')
-            if dbg:  self.log(f'{snapPath2}', p=2)
+            if dbg:  self.log(f'{snapPath0=}', p=2)
+            if dbg:  self.log(f'{snapPath2=}', p=2)
         self.dumpTnikCsvs(self.fNameLid)
         self.snapId += 1
         return self.snapPath
@@ -2781,7 +2787,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def cleanupFiles(self):
         self.cleanupCsvFile()
-        self.cleanupCatFile() if self.CAT and self.cobj.umap else None
+        self.cleanupCatFile() if self.cobj.umap else None
 
     def cleanupCsvFile(self):
         if not CSV_FILE.closed:
@@ -2800,13 +2806,14 @@ class Tabs(pyglet.window.Window):
         catPath  = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT)
         catPath2 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT2)
         if catPath.exists():     util.copyFile(catPath, catPath2)
-        with open(str(catPath), 'w', encoding='utf-8') as catFile:
-            self.cobj.dumpOMAP( catPath, merge=1)
-            self.log(f'Flush & Close {catFile.name}', ff=True)
-            catFile.flush()     ;     catFile.close()
-        catPath3 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)
-        self.log(f'Copying {catFile.name} to {catPath3}', f=2)
-        util.copyFile(catPath, catPath3)
+        if self.CAT:
+            with open(str(catPath), 'w', encoding='utf-8') as catFile:
+                self.cobj.dumpOMAP(catPath, merge=1)
+#                self.log(f'Flush & Close {catFile.name}', ff=True)
+#                catFile.flush()     ;     catFile.close()
+            catPath3 = util.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)
+            self.log(f'Copying {catFile.name} to {catPath3}', f=2)
+            util.copyFile(catPath, catPath3)
 ########################################################################################################################################################################################################
 # Global Functions BGN
 ########################################################################################################################################################################################################
@@ -2934,12 +2941,15 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
 LOG_PATH  = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG)
 CSV_PATH  = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV)
 TXT_PATH  = util.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT)
+PNG_PATH  = util.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG)
+PNG_PATH2 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2)
 LOG_PATH2 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2)
 CSV_PATH2 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV2)
 TXT_PATH2 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2)
 if LOG_PATH.exists():    util.copyFile(LOG_PATH, LOG_PATH2)
 if CSV_PATH.exists():    util.copyFile(CSV_PATH, CSV_PATH2)
 if TXT_PATH.exists():    util.copyFile(TXT_PATH, TXT_PATH2)
+if PNG_PATH.exists():    util.copyFile(PNG_PATH, PNG_PATH2)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
     util.init(LOG_FILE, CSV_FILE, TXT_FILE, 0)
     slog(sys.argv[0],      p=0,        f=2)

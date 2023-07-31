@@ -17,64 +17,64 @@ FMTN           = (1, 1, 2, 2, 2, 2, 2)
 class Chord:
     MIN_CHORD_LEN = 3
     def __init__(self, tobj, sobj):
-        self.tobj = tobj
-        self.sobj = sobj
-        self.chordCounter = Counter()
-        self.limap, self.mlimap, self.umap, self.cycles = [], {}, {}, {}
+        self.tobj                 = tobj
+        self.sobj                 = sobj
+        self.chordCounter         = Counter()
+        self.limap,  self.mlimap  = [], {}
+        self.umap,   self.cycles  = {}, {}
         self.catmap, self.catmap2 = {}, {}
-        self.cat1, self.cat2, self.cat3 = set(), set(), {}
-
+        self.cat1,   self.cat2    = set(), set()
+        self.cat3                 = {}
     @staticmethod
     def checkOmap(o):
-        assert     util.isi(o,      tuple),  slog(f'ERROR: Invalid type expected tuple {type(o)=}')
-        assert     util.isi(o[0],     int),  slog(f'ERROR: Invalid type expected int   {type(o[0])=}')
-        assert     util.isi(o[1],    list),  slog(f'ERROR: Invalid type expected list  {type(o[1])=}')
-        assert     util.isi(o[2],    list),  slog(f'ERROR: Invalid type expected list  {type(o[2])=}')
+        assert     util.isi(o,      tuple),  slog(f'ERROR: Invalid type, expected tuple {type(o)=}')
+        assert     util.isi(o[0],     int),  slog(f'ERROR: Invalid type, expected int   {type(o[0])=}')
+        assert     util.isi(o[1],    list),  slog(f'ERROR: Invalid type, expected list  {type(o[1])=}')
+        assert     util.isi(o[2],    list),  slog(f'ERROR: Invalid type, expected list  {type(o[2])=}')
         for i in  range(len(o[1])):
-            assert util.isi(o[1][i],  int),  slog(f'ERROR: Invalid type expected int  {type(o[1][i])=}')
+            assert util.isi(o[1][i],  int),  slog(f'ERROR: Invalid type, expected int   {type(o[1][i])=}')
         for i in  range(len(o[2])):
-            assert util.isi(o[2][i],  str),  slog(f'ERROR: Invalid type expected str  {type(o[2][i])=}')
+            assert util.isi(o[2][i],  str),  slog(f'ERROR: Invalid type, expected str   {type(o[2][i])=}')
         return tuple(o[2])
     ####################################################################################################################################################################################################
     def getChordName(self, data, nic, cn, p, l, c, dbg=0):
         ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1
         vkeys, self.limap, imap, _imap, nnt     = [], [], [], None, Notes.NTONES
-        mask, notes, js  = self._getIndices(data, nic, p, l, c)   ;   omap = self.OMAP
+        mask,          notes,         js        = self._getIndices(data, nic, p, l, c)   ;   omap = self.OMAP
         for k, jk in enumerate(js):
             ivals = [ ((ji-jk) if ji >= jk else (nnt+(ji-jk))) % nnt for ji in js ]
-            vkey = Z.join([ f'{v:x}' for v in ivals ])   ;   chunks = []   ;   rank = -1
+            vkey  = Z.join([ f'{v:x}' for v in ivals ])   ;   chunks = []   ;   rank = -1
             if vkey not in vkeys:
-                ikeys    = [ Notes.I2V[i] for i in ivals ]
-                if dbg:    self._dumpData(rank, ikeys, ivals, notes, mask, 0)
-                _imap    = dict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: Notes.V2I[t[0]]))
-                _ikeys   = list(_imap.keys())   ;    _ivals = [ Notes.V2I[k] for k in _ikeys ]   ;   _notes = list(_imap.values())   ;   leni = len(_imap)
-                ikey     = W.join(_ikeys)
+                ikeys        = [ Notes.I2V[i] for i in ivals ]
+                if dbg:        self._dumpData(rank, ikeys, ivals, notes, mask, 0)
+                _imap        = dict(sorted(dict(zip(ikeys, notes)).items(), key=lambda t: Notes.V2I[t[0]]))
+                _ikeys       = list(_imap.keys())   ;     _ivals = [ Notes.V2I[k] for k in _ikeys ]   ;   _notes = list(_imap.values())   ;   leni = len(_imap)
+                ikey         = W.join(_ikeys)
                 if ikey in omap:
-                    root = _imap['R']           ;     chunks.append(root)
-                    chnks = self.checkOmap(omap[ikey])
-                    [ chunks.append(n) for n in chnks if n ]
-#                    [ chunks.append(n) for n in omap[ikey][2] if n ]    # ? Expected type 'collections.Iterable', got 'int' instead ?
-                    if root != notes[0]:               nsfx = f'/{notes[0]}'  ;  chunks.append(nsfx)
-                    name = Z.join(chunks)       ;      rank = omap[ikey][0]
-                    assert _ivals == omap[ikey][1],    slog(f'Error _ivals != omap[ikey][1], {_ivals=} {omap[ikey][1]=}')
-                elif len(_imap) >= self.MIN_CHORD_LEN: self.add2uMap(leni, ikey, rank, ivals)
-                elif len(_imap) >= util.MIN_IVAL_LEN:                             slog(f'{leni=} is Not a Chord {ikey=:21} v={fmtl(sorted(ivals))}')
+                    root     = _imap['R']           ;     chunks.append(root)
+                    chnks    = self.checkOmap(omap[ikey])
+                    chunks   = [ n for n in chnks if n ]
+                    if root != notes[0]:                  nsfx = f'/{notes[0]}'  ;  chunks.append(nsfx)
+                    name     = Z.join(chunks)       ;     rank = omap[ikey][0]
+                    assert _ivals == omap[ikey][1],       slog(f'Error _ivals != omap[ikey][1], {_ivals=} {omap[ikey][1]=}')
+                elif len(_imap) >= self.MIN_CHORD_LEN:    self.add2uMap(leni, ikey, rank, ivals)
+                elif len(_imap) >= util.MIN_IVAL_LEN:     slog(f'{leni=} is Not a Chord {ikey=:21} v={fmtl(sorted(ivals))}')
                 if dbg:                  self._dumpData(rank, _ikeys, _ivals, _notes, mask, 1)
-                imap     = [ ikeys, ivals, notes, name, chunks, rank ]
+                imap         = [ ikeys, ivals, notes, name, chunks, rank ]
                 vkeys.append(vkey)   ;   self.limap.append(imap)
                 if dbg: slog(f'{rank:2} {Z.join(ikeys):12} {Z.join(f"{i:x}" for i in ivals):6} {Z.join(notes):12} {name:12} {Z.join(chunks):12} {Z.join(_ikeys):12} {Z.join(f"{i:x}" for i in _ivals):6} {Z.join(_notes):12}')
                 if dbg: slog(f'{rank:2} {fmtl(ikeys):19} {fmtl(ivals, w="x")} {W.join(notes):12} {name:12} {Z.join(chunks)} {fmtl(_ikeys)} {fmtl(_ivals, w="x")} {W.join(_notes):12}') #fix me
         if  self.limap:
             self.limap.sort(key=lambda m: m[-1])   ;   imi = 0
             if dbg > 1: self.dumpLimap(self.limap, cn, imi)
-            self.mlimap[cn] = [ self.limap, imi ]
-            return              self.limap[imi]
-        return  imap # [ ikeys, ivals, notes, name, chunks, rank ]
+            self.mlimap[cn]  = [ self.limap, imi ]
+            return               self.limap[imi]
+        return     imap # [ ikeys, ivals, notes, name, chunks, rank ]
     ####################################################################################################################################################################################################
     def add2uMap(self, li, ikey, rank, ivals, dbg=1):
         kc = self.chordCounter
         kc[ikey]    += 1
-        if kc[ikey] != 1:   slog(f'return why: already counted {ikey=} {kc=}')      ;   return
+        if kc[ikey] != 1:   slog(f'return already counted {ikey=:17} {kc=}')    ;    return
         slog(f'{li=} Adding {ikey=} v={fmtl(sorted(ivals))} to umap')
         self.umap[ikey] = (rank, ivals, [])
         self.dumpUmap() if dbg else None
@@ -247,7 +247,7 @@ class Chord:
                 keys        = [ Notes.I2V[i] for i in ii ]   ;        j += 1
                 keys        = sorted(keys, key=lambda a:   Notes.V2I[a])        ;     keyStr = W.join(keys)
                 keyStrFmt   = "'" + keyStr + "'"       ;   v = omap[keyStr]     ;   rankSet  = set()      ;    rankSet.add(v[0])
-                count += 1  ;  none += 1 if not v[2] else 0   ;   nord += 1 if v[0] == rank else 0
+                count += 1  ;  none += 1 if not v[2] else 0   ;    nord += 1 if v[0] == rank else 0
                 v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else "['','','',''])," if util.isi(v[2], list) else 'None),'
                 slog(                    f'{j:4} {keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=2, ft=0)
                 if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0, e=Z) # , e=Z
@@ -260,8 +260,8 @@ class Chord:
                     if keyStr2 in omap: rankSet.add(omap[keyStr2][0])
                     if jj in cycSet:
                         if ck not in self.cycles:        self.cycles[ck] = set()
-                        self.cycles[ck].add(jj)     ;    cycle = 1
-                    cycSet.add(jj)    ;       d = '@' if cycle else '['     ;     d2 = '@' if cycle else ']'
+                        self.cycles[ck].add(jj)    ;     cycle = 1
+                    cycSet.add(jj)     ;      d = '@' if cycle else '['     ;      d2 = '@' if cycle else ']'
                     if keyStr2 not in omap:   slog('not in OMAP: ', p=0, e=Z, f=file)    ;    r[keyStr2] = (rank, i2, None)
                     if dbg:                   slog(f'{keyStrFmt2:16} {fmtl(i2, w="x", d=d, d2=d2):15} ', p=0, f=file, ft=0, e=Z)
                 refSet      = set(range(len(i2)))
@@ -276,8 +276,8 @@ class Chord:
         for m in mstat:
             tstat[0]   += m[0]       ;   tstat[1] += m[1]     ;   tstat[2] += m[2]     ;   tstat[3] += m[3]
             slog(f'{m[0]:2} note chords  {tstat[1]:3}  {m[1]:3} valid  {m[2]:3} unordered  {m[3]:3} unnamed')
-        lm, lr = len(omap), len(r)   ;   slog(f'{lm=} catfile.{name=} {lr=}') # if catfile
-        slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  len(r)={len(r)}') # else
+        lm, lr = len(omap), len(r)   ;   slog(f'{lm=} catfile.{name=} {lr=}')
+        slog(f'END grand total {tstat[1]:3} total  {tstat[2]:3} unordered  {tstat[3]:3} unnamed  {len(r)=}')
         return r
     ####################################################################################################################################################################################################
     #    0  1  2  3  4  5  6  7  8   9  10 11 0

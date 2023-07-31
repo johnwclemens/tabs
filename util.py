@@ -55,7 +55,7 @@ def getSeqFileName(fdir='logs', fsfx='log', off=1):
     fGlob    = glob.glob(fGlobArg)
     slog(f'{fGlobArg=}')
     LOG_ID   = getSeqFileNum(fGlob, fsfx) + off
-    return f'{BASE_NAME}.{LOG_ID}'
+    return f'{BASE_NAME}.{LOG_ID}', LOG_ID
 
 def getSeqFileNum(files, sfx, dbg=0, dbg2=0):
     i = 0
