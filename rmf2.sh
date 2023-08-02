@@ -1,7 +1,7 @@
 #bash
 #C:\Users\Owner\Documents\GitHub\tabs\venv\Scripts\
 
-function cleanRootA {
+function cleanRoot {
   lvl="$1"
   exts="$2"
   pwd
@@ -9,20 +9,16 @@ function cleanRootA {
   find      . -maxdepth 1 -type f
   echo BGN cleanRoot \(lvl exts\) = \("$lvl ${exts[*]}"\)
   for ext in "${exts[@]}"  ; do
-    echo ext = "$ext"
-    ls -l -- *."$ext"
+    if   [[ $lvl = 2 ]]; then
+      ls -l -- *."$ext"
+    fi
+    if [[ $lvl = 3 ]]; then
+      ls -l -- *.dat;    break
+    else
+      echo ext = "$ext"
+    fi
   done
   echo END cleanRoot \(lvl exts\) = \("$lvl ${exts[*]}"\)
-}
-
-function cleanRootB {
-  exts="$1"
-  lvl="$2"
-  echo BGN cleanRoot \(exts lvl\) = \("${exts[*]} $lvl"\)
-  for ext in "${exts[@]}"  ; do
-    echo ext = "$ext"
-  done
-  echo END cleanRoot \(exts lvl\) = \("${exts[*]} $lvl"\)
 }
 
 function cleanSubDir {
@@ -95,10 +91,10 @@ echo exts=\(csv   log   png   txt\)
 exts=(     "csv" "log" "png" "txt")
 echo "... Removing Files from root Dir = $root ..."
 
-echo cleanRootA "$lvl" "${exts[@]}"
-cleanRootA      "$lvl" "${exts[@]}"
-#echo cleanRootB "${exts[@]}" "$lvl"
-#cleanRootB      "${exts[@]}" "$lvl"
+echo cleanRoot "$lvl" "${exts[@]}"
+cleanRoot      "$lvl" "${exts[@]}"
+
+echo exit ">>>"
 exit
 
 echo exts=\(cat   csv   dat   log   png   txt\)
