@@ -2804,8 +2804,9 @@ class Tabs(pyglet.window.Window):
 
     def cleanupCatFile(self):
         catPath  = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT)
+        catPath1 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=None, fsfx=CAT)
         catPath2 = util.getFilePath(BASE_NAME, BASE_PATH, fdir=CATS, fsfx=CAT2)
-        if catPath.exists():     util.copyFile(catPath, catPath2)
+        if catPath.exists():     util.copyFile(catPath, catPath1)    ;    util.copyFile(catPath, catPath2)
         if self.CAT:
             with open(str(catPath), 'w', encoding='utf-8') as catFile:
                 self.cobj.dumpOMAP(catPath, merge=1)
