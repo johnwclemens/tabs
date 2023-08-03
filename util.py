@@ -48,6 +48,21 @@ def init(lfile, cfile, tfile, oid):
 #    dmpKSVHdr(csv=1,   t= 1)
 #    dumpKSH(  csv=1)
 ########################################################################################################################################################################################################
+def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1):
+    if dbg: slog(f'{baseName =:12} {basePath = }', f=2)
+    fileName   = f'{baseName}.{fsfx}' if fsfx else baseName
+    filePath   =    basePath / fdir / fileName if fdir else basePath / fileName
+    if dbg: slog(f'{fileName =:12} {filePath = }', f=2)
+    return  filePath
+
+def copyFile(src, trg, dbg=1):
+    if not src.exists():   msg = f'ERROR Path Does not Exist {src=}'   ;   print(msg)   ;  raise SystemExit(msg)
+    if dbg: slog(f'{src=}')
+    if dbg: slog(f'{trg=}')
+    cmd  =  f'copy {src} {trg}'
+    if dbg: slog(f'{cmd} ###')
+    os.system(f'{cmd}')
+########################################################################################################################################################################################################
 def getSeqFileName(fdir='logs', fsfx='log', off=1):
     fdir    += '/'
     slog(f'{fdir=} {fsfx=}')
@@ -559,21 +574,6 @@ def filtText2(text):
     text = text.replace('(f[_])', 'f[_]')
     text = text.replace('(s[_])', 's[_]')
     return text
-########################################################################################################################################################################################################
-def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1):
-    if dbg: slog(f'{baseName =:12} {basePath = }', f=2)
-    fileName   = f'{baseName}.{fsfx}' if fsfx else baseName
-    filePath   =    basePath / fdir / fileName if fdir else basePath / fileName
-    if dbg: slog(f'{fileName =:12} {filePath = }', f=2)
-    return filePath
-
-def copyFile(src, trg, dbg=1):
-    if not src.exists(): msg = f'ERROR Path Doesnt Exist {src=}'   ;   print(msg)   ;  raise SystemExit(msg)
-    if dbg: slog(f'{src=}')
-    if dbg: slog(f'{trg=}')
-    cmd = f'copy {src} {trg}'
-    if dbg: slog(f'{cmd} ###')
-    os.system(f'{cmd}')
 ########################################################################################################################################################################################################
 def parseCmdLine(dbg=1):
     options, key, vals, largs = {}, Z, [], len(sys.argv)

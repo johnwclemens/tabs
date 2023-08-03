@@ -2,33 +2,27 @@
 #C:\Users\Owner\Documents\GitHub\tabs\venv\Scripts\
 
 function cleanSubDir {
-    dirs="$1"
-    ext="$2"
-    lvl="$3"
+    dirs="$1"  ;  ext="$2"  ;  lvl="$3"
     echo BGN cleanSubDir \(dirs ext lvl\) = \("$dirs $ext $lvl"\)
     ls -l "$dir"
     for file in "$dir"/*  ; do
         if   [[ $lvl = 1 ]]; then
             if [[ $file = *.[0-9].$ext ]]; then
                 echo rm "$file" ">>>" lvl = "$lvl"
-#                ls "$file"
                 rm "$file"
             fi
         elif [[ $lvl = 2 ]]; then
             if [[ $file = *.*.$ext ]]; then
                 echo rm "$file" ">>>" lvl = "$lvl"
-#                ls "$file"
                 rm "$file"
             fi
         elif [[ $lvl = 3 ]]; then
             if [[ $file = *.$ext ]]; then
                 echo rm "$file" ">>>" lvl = "$lvl"
-#                ls "$file"
                 rm "$file"
             fi
         elif [[ $lvl = 4 ]]; then
             echo rm "$file" ">>>" lvl = "$lvl"
-#            ls "$file"
             rm "$file"
         else
             echo exit ">>>" Error - Invalid value, lvl = "$lvl" check cmd line arg2 - Exit
@@ -76,13 +70,9 @@ if [[ -d "$root" ]]; then
             for file in "${fileHits[@]}"; do
                 if [[ $ext = ".dat" ]]; then
                     if [[ $lvl = 4 ]]; then
-#                        echo "$ext = ext, $lvl = lvl (A)"
-#                        ls "$file"
                         rm "$file"
                     fi
                 elif [[ $lvl = 3 || $lvl = 4 ]]; then
-#                    echo "$ext = ext, $lvl = lvl (B)"
-#                    ls "$file"
                     rm "$file"
                 fi
             done
