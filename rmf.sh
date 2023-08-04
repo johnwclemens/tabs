@@ -1,104 +1,100 @@
 #bash
 #C:\Users\Owner\Documents\GitHub\tabs\venv\Scripts\
 
-function cleanup {
-  dir="$1"
-  ext="$2"
-  lvl="$3"
-  dirs="$4"
-  echo BGN cleanup dir = "$dir",  ext = "$ext",  lvl = "$lvl",  dirs = "$dirs"
-  for dir2 in "${dirs[@]}"  ; do
-    echo dir2 = "$dir2"
-  done
-  ls "$dir"
-  for file in "$dir"/*; do
-    if   [[ $lvl = 1 ]]; then
-      if [[ $file = *.[0-9].$ext ]]; then
-        echo rm "$file", lvl = "$lvl"
-        rm "$file"
-      fi
-    elif [[ $lvl = 2 ]]; then
-      if [[ $file = *.*.$ext ]]; then
-        echo rm "$file", lvl = "$lvl"
-        rm "$file"
-      fi
-    elif [[ $lvl = 3 ]]; then
-      if [[ $file = *.$ext ]]; then
-        echo rm "$file", lvl = "$lvl"
-        rm "$file"
-      fi
-    elif [[ $lvl = 4 ]]; then
-      echo rm "$file", lvl = "$lvl"
-      rm "$file"
-    else
-      echo exit Error - Invalid value, lvl = "$lvl" check cmd line arg2 - Exit
-      exit
-    fi
-  done
-  echo ls "$dir"
-  ls "$dir"
-  echo END cleanup dir = "$dir",  ext = "$ext",  lvl = "$lvl",  dirs = "$dirs"
+function cleanSubDir {
+    dirs="$1"  ;  ext="$2"  ;  lvl="$3"
+    echo BGN cleanSubDir \(dirs ext lvl\) = \("$dirs $ext $lvl"\)
+    ls -l "$dir"
+    for file in "$dir"/*  ; do
+        if   [[ $lvl = 1 ]]; then
+            if [[ $file = *.[0-9].$ext ]]; then
+                echo rm "$file" ">>>" lvl = "$lvl"
+                rm "$file"
+            fi
+        elif [[ $lvl = 2 ]]; then
+            if [[ $file = *.*.$ext ]]; then
+                echo rm "$file" ">>>" lvl = "$lvl"
+                rm "$file"
+            fi
+        elif [[ $lvl = 3 ]]; then
+            if [[ $file = *.$ext ]]; then
+                echo rm "$file" ">>>" lvl = "$lvl"
+                rm "$file"
+            fi
+        elif [[ $lvl = 4 ]]; then
+            echo rm "$file" ">>>" lvl = "$lvl"
+            rm "$file"
+        else
+            echo exit ">>>" Error - Invalid value, lvl = "$lvl" check cmd line arg2 - Exit
+            exit
+        fi
+    done
+    echo ls "$dir"
+    ls "$dir"
+    echo END cleanSubDir \(dir ext lvl\) = \("$dir" "$ext" "$lvl"\)
 }
 
-echo ARG1 \(root\) = "$1"
-if [[ $1 = "" ]]; then
-  echo exit Error - Missing arg1 \(root dir name\) - Exit
-  exit
-fi
-root="$1"
-
-echo pwd
-pwd
-echo cd "$root" || exit
-cd      "$root" || exit
-echo pwd
-pwd
-echo ls
-ls
-
-echo ARG2 \(lvl\) = "$2"
-if   [[ $2 = "" ]]; then
-  echo exit Error - Missing arg2 \(lvl\) - Exit
-  exit
-elif [[ $2 = 1 || $2 = 2 || $2 = 3 || $2 = 4 ]]; then
-  echo lvl = "$2"
-  lvl=$2
+echo arg1 = "$1"
+if   [[ $1 = "" ]]; then
+    root="/c/Users/Owner/Documents/GitHub/Tabs/test"
 else
-  echo exit Error - Invalid value, lvl = "$lvl" check cmd line arg2 - Exit
-  exit
+    root="$1"
 fi
+echo root = "$root"
 
-dir=.
-echo exts=\(csv   log   png   txt\)
-exts=(     "csv" "log" "png" "txt")
-echo "   >>> Removing Files from root Dir =" "$root" ">>> ..."
-for ext in "${exts[@]}"  ; do
-  echo cleanup "$dir" "$ext" "$lvl" "$dirs"
-  cleanup      "$dir" "$ext" "$lvl" "$dirs"
-done
+echo arg2 = "$2"
+if   [[ $2 = "" ]]; then
+    lvl=1
+elif [[ $2 = 1 || $2 = 2 || $2 = 3 || $2 = 4 ]]; then
+    lvl=$2
+else
+    echo exit ">>>" ERROR: lvl = "$lvl" is invalid, check cmd line arg2
+    exit
+fi
+echo lvl = "$lvl"
 
-echo dirs=\(cats   csvs   data   logs   pngs   text\)
-dirs=(     "cats" "csvs" "data" "logs" "pngs" "text")
+if [[ -d "$root" ]]; then
+    cd  "$root" || exit 1
 
-echo exts=\(cat   csv   dat   log   png   txt\)
-exts=(     "cat" "csv" "dat" "log" "png" "txt")
-echo "   >>> Removing Files from SubDirs of" "$root" "with type" "cat csv dat log png txt >>> ..."
-for ext in "${exts[@]}"  ; do
-  if   [[ $ext = "dat" ]]; then
-    dir="$ext"a
-    echo cleanup "$dir" "$ext" "$lvl" "${dirs[@]}"
-    cleanup      "$dir" "$ext" "$lvl" "${dirs[@]}"
-  elif [[ $ext = "std" ]]; then
-    dir="$ext"o
-    echo cleanup "$dir" "$ext" "$lvl" "${dirs[@]}"
-    cleanup      "$dir" "$ext" "$lvl" "${dirs[@]}"
-  elif [[ $ext = "txt" ]]; then
-    dir="text"
-    echo cleanup "$dir" "$ext" "$lvl" "${dirs[@]}"
-    cleanup      "$dir" "$ext" "$lvl" "${dirs[@]}"
-  else
-    dir="$ext"s
-    echo cleanup "$dir" "$ext" "$lvl" "${dirs[@]}"
-    cleanup      "$dir" "$ext" "$lvl" "${dirs[@]}"
-  fi
-done
+    echo exts=\( cat    csv    dat    log    png    txt\)
+    exts=(     ".cat" ".csv" ".dat" ".log" ".png" ".txt")
+
+    echo "... Removing Files from root dir $root ..."
+    for ext in "${exts[@]}"; do
+        fileHits=()
+        while IFS= read -r -d $'\0'; do
+            fileHits+=("$REPLY")
+        done < <(find . -maxdepth 1 -type f -name "*$ext" -print0)
+
+        if [[ ${#fileHits[@]} -gt 0 ]]; then
+            for file in "${fileHits[@]}"; do
+                if [[ $ext = ".dat" ]]; then
+                    if [[ $lvl = 4 ]]; then
+                        rm "$file"
+                    fi
+                elif [[ $lvl = 3 || $lvl = 4 ]]; then
+                    rm "$file"
+                fi
+            done
+        else
+            echo "There are no files with ext '$ext' in the root dir '$root'"
+        fi
+        ext2="${ext:1}"
+        if   [[  $ext2 = "dat" ]]; then
+            dir="$ext2"a
+            echo cleanSubDir "$dir" "$ext2" "$lvl"
+            cleanSubDir      "$dir" "$ext2" "$lvl"
+        elif [[  $ext2 = "txt" ]]; then
+            dir="text"
+            echo cleanSubDir "$dir" "$ext2" "$lvl"
+            cleanSubDir      "$dir" "$ext2" "$lvl"
+        else
+            dir="$ext2"s
+            echo cleanSubDir "$dir" "$ext2" "$lvl"
+            cleanSubDir      "$dir" "$ext2" "$lvl"
+        fi
+    done
+
+else
+    echo "ERROR: root = '$root' directory does not exist."
+fi
