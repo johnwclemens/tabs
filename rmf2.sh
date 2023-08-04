@@ -79,25 +79,22 @@ if [[ -d "$root" ]]; then
         else
             echo "There are no files with ext '$ext' in the root dir '$root'"
         fi
-    done
-
-    echo "... Removing files from sub dirs of root dir $root ..."
-    for ext in "${exts[@]}"; do
-        ext="${ext:1}"
-        if   [[ $ext = "dat" ]]; then
-            dir="$ext"a
-            echo cleanSubDir "$dir" "$ext" "$lvl"
-            cleanSubDir      "$dir" "$ext" "$lvl"
-        elif [[ $ext = "txt" ]]; then
+        ext2="${ext:1}"
+        if   [[  $ext2 = "dat" ]]; then
+            dir="$ext2"a
+            echo cleanSubDir "$dir" "$ext2" "$lvl"
+            cleanSubDir      "$dir" "$ext2" "$lvl"
+        elif [[  $ext2 = "txt" ]]; then
             dir="text"
-            echo cleanSubDir "$dir" "$ext" "$lvl"
-            cleanSubDir      "$dir" "$ext" "$lvl"
+            echo cleanSubDir "$dir" "$ext2" "$lvl"
+            cleanSubDir      "$dir" "$ext2" "$lvl"
         else
-            dir="$ext"s
-            echo cleanSubDir "$dir" "$ext" "$lvl"
-            cleanSubDir      "$dir" "$ext" "$lvl"
+            dir="$ext2"s
+            echo cleanSubDir "$dir" "$ext2" "$lvl"
+            cleanSubDir      "$dir" "$ext2" "$lvl"
         fi
     done
+
 else
     echo "ERROR: root = '$root' directory does not exist."
 fi
