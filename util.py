@@ -4,6 +4,7 @@ import sys, os, inspect, pathlib, glob
 from collections import Counter
 #from collections import OrderedDict as cOd
 
+ROOT_DIR         = "test"
 UNICODE          = 1
 F                = f'{0x266D :c}' if UNICODE else 'b' # Flat
 N                = f'{0x266E :c}' if UNICODE else '!' # Natural
@@ -16,7 +17,7 @@ LOG_FILE         = None
 CSV_FILE         = None
 TXT_FILE         = None
 PATH             = pathlib.Path.cwd() / sys.argv[0]
-BASE_PATH        = PATH.parent / 'test'
+BASE_PATH        = PATH.parent / ROOT_DIR
 BASE_NAME        = BASE_PATH.stem
 
 MAX_FREQ_IDX     = 10 * 12 + 1
@@ -50,7 +51,7 @@ def init(lfile, cfile, tfile, oid):
 ########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1):
     if dbg: slog(f'{baseName =:12} {basePath = }', f=2)
-    fileName   = f'{baseName}.{fsfx}' if fsfx else baseName
+    fileName   = f'{baseName}.{fsfx}'          if fsfx else baseName
     filePath   =    basePath / fdir / fileName if fdir else basePath / fileName
     if dbg: slog(f'{fileName =:12} {filePath = }', f=2)
     return  filePath
@@ -284,7 +285,6 @@ class Modes:
     TYPES = [  IONIAN,   DORIAN,   PHRYGIAN,   LYDIAN,   MIXOLYDIAN,   AEOLIAN,   LOCRIAN  ]
 
 ########################################################################################################################################################################################################
-
 class Strings:
     aliases = {'GUITAR_6_STD':    dict([('E2', 28), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
                'GUITAR_6_DROP_D': dict([('D2', 26), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
@@ -345,7 +345,6 @@ class Strings:
         name = Notes.name(i)
         if dbg and nict:    slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
-
 ########################################################################################################################################################################################################
 class Notes__ALT:#0   1. . .. . .2. . .. . .3. . .. . .4. . .. . .5. . .. . .6. . .. . .7. . .. . .8. . .. . .9. . .. . .a. . .. . .b. . .. . .0      #  2    7 9  #
     F2S = {           'Db\u266D':'C#',            'Eb':'D#',                       'Gb':'F#',            'Ab':'G#',            'Bb':'A#'                       } # 1 3  6 8 a # 5/9
