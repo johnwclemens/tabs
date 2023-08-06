@@ -20,17 +20,17 @@ from   tpkg            import notes   as notes
 from   tpkg.notes      import Notes   as Notes
 from   tpkg.strings    import Strings as Strings
 
-P, L, S, C             =  0,  1,  2,  3
-T, N, I, K             =  4,  5,  6,  7
-R, Q, H, M             =  8,  9, 10, 11
-B, A, D, E             = 12, 13, 14, 15
-W, Y, Z                = utl.W, utl.Y, utl.Z
-slog, fmtl, fmtm, fmtf = utl.slog, utl.fmtl, utl.fmtm, utl.fmtf
-
-ARGS = utl.parseCmdLine()
-CAT,  CSV,  LOG,  PNG,  TXT,  DAT     =  'cat',      'csv',      'log',      'png',      'txt',      'dat'
-CATS, CSVS, LOGS, PNGS, TEXT, DATA    =  'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
-CAT2, CSV2, LOG2, PNG2, TXT2          = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
+P, L, S, C =  0,  1,  2,  3
+T, N, I, K =  4,  5,  6,  7
+R, Q, H, M =  8,  9, 10, 11
+B, A, D, E = 12, 13, 14, 15
+W, Y, Z    = utl.W, utl.Y, utl.Z
+slog, fmtf = utl.slog, utl.fmtf
+fmtl, fmtm = utl.fmtl, utl.fmtm
+ARGS       = utl.ARGS
+CAT,  CSV,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'log' ,     'png' ,     'txt' ,     'dat'
+CATS, CSVS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
+CAT2, CSV2, LOG2, PNG2, TXT2       = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
 
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
@@ -2953,7 +2953,7 @@ if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2)
 if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
-    utl.init(LOG_FILE, CSV_FILE, TXT_FILE, 0)
+    utl.init(LOG_FILE, CSV_FILE, TXT_FILE)
     slog(sys.argv[0],      p=0,        f=2)
     slog(f'argv={fmtl(sys.argv[1:])}', f=2)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18

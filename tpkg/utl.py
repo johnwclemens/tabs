@@ -9,14 +9,12 @@ T                = f'{0x1d11a:c}' # (Treble) Staff
 W, Y, Z          = ' ', ',', ''
 M, P             = -7, 7
 MAX_FREQ_IDX     = 10 * 12 + 1
-OIDS             = 0
 CSV_FILE         = None
 LOG_FILE         = None
 TXT_FILE         = None
 STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
-def init(lfile, cfile, tfile, oid):
-    global LOG_FILE, CSV_FILE, TXT_FILE, OIDS   ;   LOG_FILE, CSV_FILE, TXT_FILE, OIDS = lfile, cfile, tfile, oid
+def init(lfile, cfile, tfile):    global LOG_FILE, CSV_FILE, TXT_FILE   ;   LOG_FILE, CSV_FILE, TXT_FILE = lfile, cfile, tfile
 ########################################################################################################################################################################################################
 def signed(n):      return f' {n}' if n==0 else f'{n:+}'
 def ns2signs(ns):   return [ '-' if n<0 else '+' if n>0  else W for n in ns ]
@@ -190,7 +188,6 @@ def copyFile(src, trg, dbg=1):
     os.system(f'{cmd}')
 
 def getFileSeqName(baseName, basePath, fdir='logs', fsfx='log'):
-#    fdir    += '/'
     slog(f'{fdir=} / {fsfx=}')
     fGlobArg = f'{(basePath / fdir / baseName)}.*.{fsfx}'
     fGlob    = glob.glob(fGlobArg)
