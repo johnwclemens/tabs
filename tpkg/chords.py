@@ -5,16 +5,11 @@
 #    print(f'{_}')
 from   collections import Counter
 from   tpkg        import utl   as utl
-#from   tpkg.utl    import slog  as slog
-#from   tpkg.utl    import fmtl  as fmtl
-#from   tpkg.utl    import fmtm  as fmtm
 from   tpkg.notes  import Notes as Notes
 
 W, Y, Z          = utl.W, utl.Y, utl.Z
-
 slog, fmtl, fmtm = utl.slog, utl.fmtl, utl.fmtm
-
-FMTN           = (1, 1, 2, 2, 2, 2, 2)
+FMTN             = (1, 1, 2, 2, 2, 2, 2)
 
 class Chords:
     MIN_IVAL_LEN  = 1

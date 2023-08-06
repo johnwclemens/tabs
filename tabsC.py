@@ -1,9 +1,9 @@
 import os, pathlib, sys #, glob
 import inspect, math, operator
 import collections, itertools
-from   collections    import Counter
-from   itertools      import accumulate
-from   more_itertools import consume  # not installed in GitBash's Python
+from   collections     import Counter
+from   itertools       import accumulate
+from   more_itertools  import consume  # not installed in GitBash's Python
 import pyglet
 import pyglet.font         as pygfont
 import pyglet.image        as pygimg
@@ -12,24 +12,21 @@ import pyglet.text         as pygtxt
 import pyglet.window.event as pygwine
 import pyglet.window.key   as pygwink
 from   pyglet.text         import document, layout
-#import chord
 #import tpkg.utl      as     utl
 #import tpkg.notes    as     notes
-from   tpkg           import chords  as chords
-from   tpkg           import utl     as utl
-from   tpkg           import notes   as notes
-from   tpkg.notes     import Notes   as Notes
-from   tpkg.strings   import Strings as Strings
-from   tpkg.utl       import fmtf    as fmtf
-from   tpkg.utl       import fmtl    as fmtl
-from   tpkg.utl       import fmtm    as fmtm
-from   tpkg.utl       import slog    as slog
+from   tpkg            import chords  as chords
+from   tpkg            import utl     as utl
+from   tpkg            import notes   as notes
+from   tpkg.notes      import Notes   as Notes
+from   tpkg.strings    import Strings as Strings
 
-W, Y, Z               = ' ', ',', ''
-P, L, S, C            =  0,  1,  2,  3
-T, N, I, K            =  4,  5,  6,  7
-R, Q, H, M            =  8,  9, 10, 11
-B, A, D, E            = 12, 13, 14, 15
+P, L, S, C             =  0,  1,  2,  3
+T, N, I, K             =  4,  5,  6,  7
+R, Q, H, M             =  8,  9, 10, 11
+B, A, D, E             = 12, 13, 14, 15
+W, Y, Z                = utl.W, utl.Y, utl.Z
+slog, fmtl, fmtm, fmtf = utl.slog, utl.fmtl, utl.fmtm, utl.fmtf
+
 ARGS = utl.parseCmdLine()
 CAT,  CSV,  LOG,  PNG,  TXT,  DAT     =  'cat',      'csv',      'log',      'png',      'txt',      'dat'
 CATS, CSVS, LOGS, PNGS, TEXT, DATA    =  'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
@@ -173,7 +170,7 @@ class Tabs(pyglet.window.Window):
         n2.extend(['.', ext])
         n1  = '.'.join(n1)
         n2  =   Z.join(n2)
-        _   =   Z.join([n1, n2]) # A_test.1.2.3.40.6_RT.csv  B_test.4.2.3.50.6_LB_CC.log  A_test.5.2.4.80.6_CC.txt  test.2.1._.30.6.dat
+        _   =   Z.join([n1, n2])
         self.log(f'{_}') if dbg else None
         return _
     ####################################################################################################################################################################################################
@@ -349,7 +346,7 @@ class Tabs(pyglet.window.Window):
         self.log( notes.fmtKSK(self.ks[notes.KSK]), f=2)
         if self.TEST:  self.test1()  ;  self.test0(4)  ;  self.test0(5, q=self.EXIT)
     ####################################################################################################################################################################################################
-    def test(self): #        self.olog('test', a, p=1)
+    def test00(self):
         a = 1/0  ;  self.log(f'{a=}')
         p = self.pages  ;  f = CSV_FILE
         a = [{'a':1, 'b':"2", 'c':3.00+1/3}]  ;  b = [ f'{p[i].y}' for i in range(len(p)) ]  ;  c = self.sobj.stringMap  ;  d = [ self.screens ]
@@ -357,7 +354,7 @@ class Tabs(pyglet.window.Window):
         print(self.__class__.__name__, 'testB', b, sep=Y, file=f, end=Y)
         print(self.__class__.__name__, 'testC', c, sep=Y, file=f)
         print(self.__class__.__name__, 'testD', d, sep=Y, file=f)
-        self.quit(Z.join(('test', str(a))))
+        self.quit(Z.join(('test00', str(a))))
 
     def exit(self, why, e): #        self.dispatch_event('on_close')
         self.log(f'BGN {why} {e}')
@@ -460,7 +457,7 @@ class Tabs(pyglet.window.Window):
         hdrB = ' cn   cc [  tpb  tpp tpl tps tpc] [p l s  c t]'
         hdrC = '  cc  cn [  tpb  tpp tpl tps tpc] [p l s  c t]'
         np, nl, ns, nc, nt = self.i #  ;   p, l, c = 0, 0, 0
-        self.dumpTniksPfx(f'BGN {j=} test', r=0)
+        self.dumpTniksPfx(f'BGN {j=} test2', r=0)
         self.log(hdrB)
         for p in range(np):
             for l in range(nl):
@@ -485,7 +482,7 @@ class Tabs(pyglet.window.Window):
 #        self.log(hdrB)
 #        for i in range(len(self.tabls) * ns):
 #            self.plc2cn_(p, l, c, dbg=1)
-        self.dumpTniksSfx(f'END {j=} test')
+        self.dumpTniksSfx(f'END {j=} test2')
     ####################################################################################################################################################################################################
     def lenA(self):                   return [ len(_) for _ in self.A ]
     def lenB(self):                   return [ len(_) for _ in self.B ]
@@ -1935,7 +1932,7 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'E' and self.isCtrlShift(mods):    self.eraseTabs(     '@^E')
 #       elif kbk == 'E' and self.isCtrl(     mods):    self.eraseTabs(     '@ E')
         elif kbk == 'F' and self.isCtrlShift(mods):    self.flipFullScreen('@^F')
-        elif kbk == 'F' and self.isCtrl(     mods):    self.flipFlatSharp( '@ F') #  ;   KS.test()
+        elif kbk == 'F' and self.isCtrl(     mods):    self.flipFlatSharp( '@ F')
         elif kbk == 'G' and self.isCtrlShift(mods):    self.move2LastTab(  '@^G', page=1)
         elif kbk == 'G' and self.isCtrl(     mods):    self.move2LastTab(  '@ G', page=0)
         elif kbk == 'H' and self.isCtrlShift(mods):    self.move2FirstTab( '@^H', page=1)

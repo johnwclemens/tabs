@@ -6,13 +6,13 @@ F                = f'{0x266D :c}' if UNICODE else 'b' # Flat
 N                = f'{0x266E :c}' if UNICODE else '!' # Natural
 S                = f'{0x266F :c}' if UNICODE else '#' # Sharp
 T                = f'{0x1d11a:c}' # (Treble) Staff
+W, Y, Z          = ' ', ',', ''
+M, P             = -7, 7
+MAX_FREQ_IDX     = 10 * 12 + 1
 OIDS             = 0
 CSV_FILE         = None
 LOG_FILE         = None
 TXT_FILE         = None
-W, Y, Z          = ' ', ',', ''
-M, P             = -7, 7
-MAX_FREQ_IDX     = 10 * 12 + 1
 STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
 def init(lfile, cfile, tfile, oid):
@@ -156,7 +156,7 @@ argv0     = argv[0]
 slog(f'{argc=} {argv=}')
 for ii in range(1, len(argv)): slog(f'argv[{ii}]={argv[ii]}')
 ARGS      = parseCmdLine()
-ROOT_DIR  = ARGS['f'][0] if 'f' in ARGS and len(ARGS['f']) > 0 else "test"
+ROOT_DIR  = ARGS['f'][0] if 'f' in ARGS and len(ARGS['f']) > 0 else ROOT_DIR
 slog(f'{     ARGS=}')
 slog(f'{ ROOT_DIR=}')
 
