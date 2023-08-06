@@ -1,8 +1,10 @@
 #import tpkg.utl as utl
 from tpkg     import utl  as utl
-from tpkg.utl import slog as slog
-from tpkg.utl import fmtl as fmtl
-from tpkg.utl import fmtf as fmtf
+#from tpkg.utl import slog as slog
+#from tpkg.utl import fmtl as fmtl
+#from tpkg.utl import fmtf as fmtf
+
+slog, fmtl, fmtf = utl.slog, utl.fmtl, utl.fmtf
 
 F, N, S          = utl.F, utl.N, utl.S
 W, Y, Z          = utl.W, utl.Y, utl.Z
