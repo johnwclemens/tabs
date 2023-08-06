@@ -2882,14 +2882,12 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
 #--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabsC.py utl.py chord.py
 # Globals BGN
 ########################################################################################################################################################################################################
-PATH      = pathlib.Path.cwd() / sys.argv[0]
-BASE_PATH = PATH.parent / 'test'
-BASE_NAME = BASE_PATH.stem
-CSV_FILE, LOG_FILE, TXT_FILE = None, None, None
+BASE_NAME, BASE_PATH, PATH     = utl.BASE_NAME, utl.BASE_PATH, utl.PATH
+CSV_FILE,  LOG_FILE,  TXT_FILE = utl.CSV_FILE,  utl.LOG_FILE,  utl.TXT_FILE
 ########################################################################################################################################################################################################
-MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'   ;   LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
+MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'    ;    LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
 BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
-ALIGN, INDENT, LEAD, LNSP, STRH, TAB_STOPS, WRAP = 'align', 'indent', 'leading', 'line_spacing', 'stretch', 'tab_stops', 'wrap'
+ALIGN, INDENT, LEAD, LNSP, STRH, TAB_STOPS, WRAP     = 'align', 'indent', 'leading', 'line_spacing', 'stretch', 'tab_stops', 'wrap'
 MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM = 'margin_left', 'margin_right', 'margin_top', 'margin_bottom'
 TI        = ['tnik', '  i ']
 XYWH      = ['   X   ', '   Y   ', '   W   ', '   H   ']
