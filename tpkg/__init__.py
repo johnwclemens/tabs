@@ -1,1 +1,1 @@
-__all__ = ["notes", "strings", "utl"]
+__all__ = ["chords", "notes", "strings", "utl"]

@@ -1,9 +1,9 @@
-import  os, pathlib, sys #, glob
-import  inspect, math, operator
-import  collections, itertools
-from    collections  import Counter
-from      itertools  import accumulate
-from more_itertools  import consume  # not installed in GitBash's Python
+import os, pathlib, sys #, glob
+import inspect, math, operator
+import collections, itertools
+from   collections    import Counter
+from   itertools      import accumulate
+from   more_itertools import consume  # not installed in GitBash's Python
 import pyglet
 import pyglet.font         as pygfont
 import pyglet.image        as pygimg
@@ -12,17 +12,18 @@ import pyglet.text         as pygtxt
 import pyglet.window.event as pygwine
 import pyglet.window.key   as pygwink
 from   pyglet.text         import document, layout
-import chord
+#import chord
 #import tpkg.utl      as     utl
 #import tpkg.notes    as     notes
-from   tpkg          import utl     as utl
-from   tpkg          import notes   as notes
-from   tpkg.notes    import Notes   as Notes
-from   tpkg.strings  import Strings as Strings
-from   tpkg.utl      import fmtf    as fmtf
-from   tpkg.utl      import fmtl    as fmtl
-from   tpkg.utl      import fmtm    as fmtm
-from   tpkg.utl      import slog    as slog
+from   tpkg           import chords  as chords
+from   tpkg           import utl     as utl
+from   tpkg           import notes   as notes
+from   tpkg.notes     import Notes   as Notes
+from   tpkg.strings   import Strings as Strings
+from   tpkg.utl       import fmtf    as fmtf
+from   tpkg.utl       import fmtl    as fmtl
+from   tpkg.utl       import fmtm    as fmtm
+from   tpkg.utl       import slog    as slog
 
 W, Y, Z               = ' ', ',', ''
 P, L, S, C            =  0,  1,  2,  3
@@ -128,7 +129,7 @@ class Tabs(pyglet.window.Window):
         self.k         = {}
         ################################################################################################################################################################################################
         self.sobj      = Strings(self.sAlias)
-        self.cobj      = chord.Chord(self, self.sobj)
+        self.cobj      = chords.Chords(self, self.sobj)
         ################################################################################################################################################################################################
         self._initDataPath()
         self._initWindowA()
@@ -1511,7 +1512,7 @@ class Tabs(pyglet.window.Window):
     def args2csv(self):  return f'{W*4}, -n ,{self.a2csv(self.n0)}', f'{W},{W}, -i  ,{self.a2csv(self.i0, w=5)}', f' -s  ,{self.a2csv(self.ss2sl()[:2], w=1)},{self.a2csv(self.ss2sl()[2:], w=4)} ,{W*4},{W*4},{W*4},{W*8}'
     @staticmethod
     def csvHdr(n): return JLBL(n, Y)
-#    def csvHdr(self, j, n): return JLBL(n, Y) if util.isi(self.E[j][0], LBL) else JSPR(n, Y) # util.isi(self.E[j][0], SPR)
+#    def csvHdr(self, j, n): return JLBL(n, Y) if utl.isi(self.E[j][0], LBL) else JSPR(n, Y) # utl.isi(self.E[j][0], SPR)
 
     def t2csv(self, tnik, j, i, d=W, ds=Z):
         assert tnik == self.E[j][i],  f'{tnik=} != {self.E[j][i]=}'
@@ -1550,7 +1551,7 @@ class Tabs(pyglet.window.Window):
     def fmtTnikCsv(self, t, j, i):
         s = {}
         if   utl.isi(t, LBL):   d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)
-#        elif util.isi(t, SPR):   z = Y.join([W * len(_) for _ in LTXX])
+#        elif utl.isi(t, SPR):   z = Y.join([W * len(_) for _ in LTXX])
         return self.t2csv(t, j, i, Y, s)
     ####################################################################################################################################################################################################
     def saveDigits__old(self):
@@ -1774,7 +1775,7 @@ class Tabs(pyglet.window.Window):
                     if not i % ii:       self.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', p=0, f=2)
                 if   m == 'clrIdx':      self._setTNIKStyle(t, self.k[v], self.fontStyle)
 #               if   m == 'clrIdx':
-#                   if util.isi(t, LBL) and len(self.k[v][fb]) >= l:
+#                   if utl.isi(t, LBL) and len(self.k[v][fb]) >= l:
 #                       _ = getattr(t, n)
 #                   c = self.k[v][:l] if len(_) > 1 else self.k[v][fb][:l]
 #                   setattr(t, n, c)
@@ -1844,10 +1845,10 @@ class Tabs(pyglet.window.Window):
             notes.dumpNic(self.nic)
         self.notes[cc].text = ntext
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
-#                util.updNotes(11, 'B', 'Cb', Notes.TYPE, -1)
-#                util.updNotes( 5, 'F', 'E#', Notes.TYPE, -1)
-#                util.updNotes( 4, 'E', 'Fb', Notes.TYPE, -1)
-#                util.updNotes( 0, 'C', 'B#', Notes.TYPE, -1)
+#                utl.updNotes(11, 'B', 'Cb', Notes.TYPE, -1)
+#                utl.updNotes( 5, 'F', 'E#', Notes.TYPE, -1)
+#                utl.updNotes( 4, 'E', 'Fb', Notes.TYPE, -1)
+#                utl.updNotes( 0, 'C', 'B#', Notes.TYPE, -1)
     ####################################################################################################################################################################################################
     def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=0):
         dl    = self.dl()
@@ -2104,7 +2105,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def isCapsLock(mods):     return mods & pygwink.MOD_CAPSLOCK
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
-#    def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in util.DSymb.SYMBS else 0
+#    def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in utl.DSymb.SYMBS else 0
     def isTab(self, text):    return 1 if text == self.tblank or self.sobj.isFret(text) or text in notes.DSymb.SYMBS else 0
     def isParsing(self):      return 1 if self.inserting or self.jumping or self.settingN or self.shiftingTabs or self.swapping else 0
 #    def isEH(t): return 1 if t == '#' or t == 'b' else 0
@@ -2881,7 +2882,7 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
     return list(RGB.keys())
 ########################################################################################################################################################################################################
 # Global Functions END
-#--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabsC.py util.py chord.py
+#--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabsC.py utl.py chord.py
 # Globals BGN
 ########################################################################################################################################################################################################
 PATH      = pathlib.Path.cwd() / sys.argv[0]

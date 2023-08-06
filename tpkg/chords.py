@@ -4,17 +4,18 @@
 #for _ in sys.path:
 #    print(f'{_}')
 from   collections import Counter
-import util
-from   util import slog  as slog
-from   util import fmtl  as fmtl
-from   util import fmtm  as fmtm
-from   util import Notes as Notes
-#from util import Strings as us
+from   tpkg        import utl   as utl
+from   tpkg.utl    import slog  as slog
+from   tpkg.utl    import fmtl  as fmtl
+from   tpkg.utl    import fmtm  as fmtm
+from   tpkg.notes  import Notes as Notes
+#from utl import Strings as us
 
 W, Y, Z        = ' ', ',', ''
 FMTN           = (1, 1, 2, 2, 2, 2, 2)
 
-class Chord:
+class Chords:
+    MIN_IVAL_LEN  = 1
     MIN_CHORD_LEN = 3
     def __init__(self, tobj, sobj):
         self.tobj                 = tobj
@@ -27,14 +28,14 @@ class Chord:
         self.cat3                 = {}
     @staticmethod
     def checkOmap(o):
-        assert     util.isi(o,      tuple),  slog(f'ERROR: Invalid type, expected tuple {type(o)=}')
-        assert     util.isi(o[0],     int),  slog(f'ERROR: Invalid type, expected int   {type(o[0])=}')
-        assert     util.isi(o[1],    list),  slog(f'ERROR: Invalid type, expected list  {type(o[1])=}')
-        assert     util.isi(o[2],    list),  slog(f'ERROR: Invalid type, expected list  {type(o[2])=}')
+        assert     utl.isi(o,      tuple),  slog(f'ERROR: Invalid type, expected tuple {type(o)=}')
+        assert     utl.isi(o[0],     int),  slog(f'ERROR: Invalid type, expected int   {type(o[0])=}')
+        assert     utl.isi(o[1],    list),  slog(f'ERROR: Invalid type, expected list  {type(o[1])=}')
+        assert     utl.isi(o[2],    list),  slog(f'ERROR: Invalid type, expected list  {type(o[2])=}')
         for i in  range(len(o[1])):
-            assert util.isi(o[1][i],  int),  slog(f'ERROR: Invalid type, expected int   {type(o[1][i])=}')
+            assert utl.isi(o[1][i],  int),  slog(f'ERROR: Invalid type, expected int   {type(o[1][i])=}')
         for i in  range(len(o[2])):
-            assert util.isi(o[2][i],  str),  slog(f'ERROR: Invalid type, expected str   {type(o[2][i])=}')
+            assert utl.isi(o[2][i],  str),  slog(f'ERROR: Invalid type, expected str   {type(o[2][i])=}')
         return tuple(o[2])
     ####################################################################################################################################################################################################
     def getChordName(self, data, nic, cn, p, l, c, dbg=0):
@@ -58,7 +59,7 @@ class Chord:
                     name     = Z.join(chunks)       ;     rank = omap[ikey][0]
                     assert _ivals == omap[ikey][1],       slog(f'Error _ivals != omap[ikey][1], {_ivals=} {omap[ikey][1]=}')
                 elif len(_imap) >= self.MIN_CHORD_LEN:    self.add2uMap(leni, ikey, rank, ivals)
-                elif len(_imap) >= util.MIN_IVAL_LEN:     slog(f'{leni=} is Not a Chord {ikey=:21} v={fmtl(sorted(ivals))}')
+                elif len(_imap) >= self.MIN_IVAL_LEN:     slog(f'{leni=} is Not a Chord {ikey=:21} v={fmtl(sorted(ivals))}')
                 if dbg:                  self._dumpData(rank, _ikeys, _ivals, _notes, mask, 1)
                 imap         = [ ikeys, ivals, notes, name, chunks, rank ]
                 vkeys.append(vkey)   ;   self.limap.append(imap)
@@ -239,7 +240,7 @@ class Chord:
         return mapSet
 
     def _dumpOMAP(self, catfile=None, dbg=1):
-        file = catfile      if catfile else util.LOG_FILE    ;   omap, l = self.OMAP, len(self.OMAP)   ;   r, rank = {}, -1   ;   j, mstat, tstat = 0, [], []
+        file = catfile      if catfile else utl.LOG_FILE    ;   omap, l = self.OMAP, len(self.OMAP)   ;   r, rank = {}, -1   ;   j, mstat, tstat = 0, [], []
         name = catfile.name if catfile else None             ;    mapSet = self.getMapSets(omap)       ;   slog(f'BGN {l=} catfile.{name=}')     ;   msg = 'ERROR: Invalid Rank'
         for msK, msV in mapSet.items():
             tstat.append(0)  ;  count, nord, none = 0, 0, 0  ;       msV = sorted(msV) if msV else None
@@ -248,7 +249,7 @@ class Chord:
                 keys        = sorted(keys, key=lambda a:   Notes.V2I[a])        ;     keyStr = W.join(keys)
                 keyStrFmt   = "'" + keyStr + "'"       ;   v = omap[keyStr]     ;   rankSet  = set()      ;    rankSet.add(v[0])
                 count += 1  ;  none += 1 if not v[2] else 0   ;    nord += 1 if v[0] == rank else 0
-                v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else "['','','',''])," if util.isi(v[2], list) else 'None),'
+                v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else "['','','',''])," if utl.isi(v[2], list) else 'None),'
                 slog(                    f'{j:4} {keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=2, ft=0)
                 if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0, e=Z) # , e=Z
 #               if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0) # ? Expected type 'Iterable' (matched generic type 'Iterable[SupportsLessThanT]'), got 'int' instead ?
