@@ -5,24 +5,24 @@ from    collections  import Counter
 from      itertools  import accumulate
 from more_itertools  import consume  # not installed in GitBash's Python
 import pyglet
-import pyglet.font   as pygfont
-import pyglet.image  as pygimg
-import pyglet.sprite as pygsprt
-import pyglet.text   as pygtxt
+import pyglet.font         as pygfont
+import pyglet.image        as pygimg
+import pyglet.sprite       as pygsprt
+import pyglet.text         as pygtxt
 import pyglet.window.event as pygwine
 import pyglet.window.key   as pygwink
-from   pyglet.text import document, layout
+from   pyglet.text         import document, layout
 import chord
-#import tpkg
-import tpkg.utl   as     utl
-import tpkg.notes as     notes
-#from util import KeySig as KS
-from tpkg.strings import Strings as Strings
-from tpkg.notes   import Notes   as Notes
-from tpkg.utl     import fmtf    as fmtf
-from tpkg.utl     import fmtl    as fmtl
-from tpkg.utl     import fmtm    as fmtm
-from tpkg.utl     import slog    as slog
+#import tpkg.utl      as     utl
+#import tpkg.notes    as     notes
+from   tpkg          import utl     as utl
+from   tpkg          import notes   as notes
+from   tpkg.notes    import Notes   as Notes
+from   tpkg.strings  import Strings as Strings
+from   tpkg.utl      import fmtf    as fmtf
+from   tpkg.utl      import fmtl    as fmtl
+from   tpkg.utl      import fmtm    as fmtm
+from   tpkg.utl      import slog    as slog
 
 W, Y, Z               = ' ', ',', ''
 P, L, S, C            =  0,  1,  2,  3

@@ -1,10 +1,13 @@
 from   collections import Counter
-import tpkg.notes as notes
-from   tpkg.notes import Notes as Notes
-import tpkg.utl   as utl
-from   tpkg.utl   import slog as slog
-from   tpkg.utl   import fmtl as fmtl
-from   tpkg.utl   import fmtm as fmtm
+#import tpkg.notes  as     notes
+#import tpkg.utl    as     utl
+#import tpkg.notes  as     Notes
+from   tpkg        import notes  as notes
+from   tpkg.notes  import Notes as Notes
+from   tpkg        import utl  as utl
+from   tpkg.utl    import slog as slog
+from   tpkg.utl    import fmtl as fmtl
+from   tpkg.utl    import fmtm as fmtm
 
 F, N, S          = utl.F, utl.N, utl.S
 W, Y, Z          = utl.W, utl.Y, utl.Z
