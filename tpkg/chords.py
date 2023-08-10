@@ -160,10 +160,10 @@ class Chords:
 
     @staticmethod
     def dumpImap(imap, why=Z, f=0):
-        ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1
-        if imap and len(imap) == 6: ikeys, ivals, notes, name, chunks, rank = imap[0],imap[1], imap[2], imap[3], imap[4], imap[5]
-        ikeys2 = list(sorted(dict.fromkeys(ikeys), key=lambda t: Notes.V2I[t]))
-        nmap   = dict(sorted(dict(zip(ivals, notes)).items()))
+        if imap and len(imap) == 6: ikeys, ivals, notes, name, chunks, rank = imap[0], imap[1], imap[2], imap[3], imap[4], imap[5]
+        else:                       ikeys, ivals, notes, name, chunks, rank =      [],      [],      [],       Z,      [],      -1
+        ikeys2         = list(sorted(dict.fromkeys(ikeys), key=lambda t: Notes.V2I[t]))
+        nmap           = dict(sorted(dict(zip(ivals, notes)).items()))
         ivals2, notes2 = list(nmap.keys()), list(nmap.values())
         slog(f'{why}{rank:2} {name:12} {Z.join(chunks):12} {Z.join(ikeys):12} {Z.join(f"{i:x}" for i in ivals):6} {Z.join(notes):12} {Z.join(ikeys2):12} {Z.join(f"{i:x}" for i in ivals2):6} {Z.join(notes2):12}', p=1, f=f)
         slog(f'{why}{rank:2} {name:12} {fmtl(chunks, w=2):19} {fmtl(sorted(ikeys, key=lambda t: Notes.V2I[t]), w=FMTN):18} {fmtl(ivals, w="x"):13} {fmtl(notes, w=2):19}', p=1)
@@ -238,18 +238,17 @@ class Chords:
 
     def _dumpOMAP(self, catfile=None, dbg=1):
         file = catfile      if catfile else utl.LOG_FILE    ;   omap, l = self.OMAP, len(self.OMAP)   ;   r, rank = {}, -1   ;   j, mstat, tstat = 0, [], []
-        name = catfile.name if catfile else None             ;    mapSet = self.getMapSets(omap)       ;   slog(f'BGN {l=} catfile.{name=}')     ;   msg = 'ERROR: Invalid Rank'
+        name = catfile.name if catfile else None            ;    mapSet = self.getMapSets(omap)       ;   slog(f'BGN {l=} catfile.{name=}')     ;   msg = 'ERROR: Invalid Rank'
         for msK, msV in mapSet.items():
-            tstat.append(0)  ;  count, nord, none = 0, 0, 0  ;       msV = sorted(msV) if msV else None
+            tstat.append(0)  ;  count, nord, none = 0, 0, 0  ;      msV = sorted(msV) if msV else None
             for ii in msV:
-                keys        = [ Notes.I2V[i] for i in ii ]   ;        j += 1
+                keys        = [ Notes.I2V[i] for i in ii ]   ;       j += 1
                 keys        = sorted(keys, key=lambda a:   Notes.V2I[a])        ;     keyStr = W.join(keys)
-                keyStrFmt   = "'" + keyStr + "'"       ;   v = omap[keyStr]     ;   rankSet  = set()      ;    rankSet.add(v[0])
-                count += 1  ;  none += 1 if not v[2] else 0   ;    nord += 1 if v[0] == rank else 0
+                keyStrFmt   = "'" + keyStr + "'"       ;   v = omap[keyStr]     ;   rankSet  = set()  ;   rankSet.add(v[0])
+                count += 1  ;  none += 1 if not v[2] else 0   ;   nord += 1 if v[0] == rank else 0
                 v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else "['','','',''])," if utl.isi(v[2], list) else 'None),'
                 slog(                    f'{j:4} {keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=2, ft=0)
-                if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0, e=Z) # , e=Z
-#               if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(v[1], s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0) # ? Expected type 'Iterable' (matched generic type 'Iterable[SupportsLessThanT]'), got 'int' instead ?
+                if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0, e=Z)
                 cycSet      = set()   ;   cycSet.add(tuple(ii))   ;   i2 = list(ii)
                 for _ in range(len(ii) - 1):
                     i2      = self.rotateIndices(i2)

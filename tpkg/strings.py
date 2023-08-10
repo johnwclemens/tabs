@@ -67,6 +67,6 @@ class Strings:
 #                        elif   j  ==  4:     updNotes(j, 'Fb', 'E',  NotesA.TYPE, 0)
 #                        elif   j  ==  0:     updNotes(j, 'C',  'B#', NotesA.TYPE, 0)
                 if dbg and nict: nict = f'nic[{j:x}]={nic[j]} '        ;  slog(f'adding {nict}', f=2)
-        name = Notes.name(i)
+        name = Notes.name(i, 1, 0)
         if dbg and nict:    slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name
