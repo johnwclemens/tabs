@@ -3,6 +3,7 @@ from   collections import Counter
 #import tpkg.utl    as     utl
 #import tpkg.notes  as     Notes
 from   tpkg        import notes as notes
+from   tpkg        import keys  as keys
 from   tpkg.notes  import Notes as Notes
 from   tpkg        import utl   as utl
 
@@ -50,14 +51,14 @@ class Strings:
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
-        if  nic is None:               nic = Counter() # dict(key:int, val:int) keys: 0-11 vals: count
+        if  nic is None:               nic = Counter() # dict(key:int, val:int) keys.py: 0-11 vals: count
         else:
             nic[j]    += 1
             if nic[j] == 1:
                 if j in (0, 4, 5, 11):
-                    ks = notes.nic2KS(nic)  ;  k = ks[notes.KSK]
+                    ks = keys.nic2KS(nic)  ;  k = ks[keys.KSK]
                     if abs(k) >= 5:
-                        if dbg: slog(f'KSK[{k}]={notes.fmtKSK(k)}', f=2)
+                        if dbg: slog(f'KSK[{k}]={keys.fmtKSK(k)}', f=2)
                         if     j  == 11:     notes.updNotes(j, f'C{F}', 'B', Notes.TYPE, 0)
                         if     j  ==  5:     notes.updNotes(j, 'F', f'E{S}', Notes.TYPE, 0)
                         elif   j  ==  4:     notes.updNotes(j, f'F{F}', 'E', Notes.TYPE, 0)
