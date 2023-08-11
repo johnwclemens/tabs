@@ -129,75 +129,9 @@ class Notes(object): #      1          2       3          4          5          
 #        if n2:   return Notes.I4N[t][i % Notes.NTONES]
 #        else:    return Notes.I2N[t][i % Notes.NTONES]
 #    def name(self, i, t=0, n2=0):   _ = t if t else self.type  ;  return Notes.I4N[_][i % Notes.NTONES] if n2 else Notes.I2N[_][i % Notes.NTONES]
-    def name(i, t=0, n2=0):   t = t if t else Notes.TYPE  ;  return Notes.I4N[t][i % Notes.NTONES] if n2 else Notes.I2N[t][i % Notes.NTONES]
+    def name(i, t=0, n2=0):    j = i % Notes.NTONES  ;  t = t if t else Notes.TYPE  ;  return Notes.I4N[t][j] if n2 else Notes.I2N[t][j]
     @staticmethod
     def nextName(n, iv, o=0):  i = Notes.index(n, o)  ;  j = Notes.V2I[iv]  ;  k = Notes.nextIndex(i, j)  ;  return Notes.name(k, 0, 0)
-########################################################################################################################################################################################################
-# class NotesU(object): #     1          2       3          4          5          6          7       8          9       a          b       0      #[  2    7 9  ]#
-#     I2F = {         0:'C' , 1:f'D{F}', 2:'D' , 3:f'E{F}', 4:'E' ,    5:'F' ,    6:f'G{F}', 7:'G' , 8:f'A{F}', 9:'A' ,10:f'B{F}', 11:'B'    } # ,12:'C' } # 8/12/16
-#     I2S = {         0:'C' , 1:f'C{S}', 2:'D' , 3:f'D{S}', 4:'E' ,    5:'F' ,    6:f'F{S}', 7:'G' , 8:f'G{S}', 9:'A' ,10:f'A{S}', 11:'B'    } # ,12:'C' } # 8/12/16
-#     I4F = {         0:'C' , 1:f'D{F}', 2:'D' , 3:f'E{F}', 4:f'F{F}', 5:'F' ,    6:f'G{F}', 7:'G' , 8:f'A{F}', 9:'A' ,10:f'B{F}', 11:f'C{F}'} # ,12:'C' } # 8/12/16
-#     I4S = { 0:f'B{S}',      1:f'C{S}', 2:'D' , 3:f'D{S}', 4:'E' ,    5:f'E{S}', 6:f'F{S}', 7:'G' , 8:f'G{S}', 9:'A' ,10:f'A{S}', 11:'B'    } # ,12:'C' } # 8/12/16
-#     I2V = {         0:'R' , 1:'b2',    2:'2' , 3:'m3',    4:'M3',    5:'4' ,    6:'b5',    7:'5' , 8:'#5',    9:'6' ,10:'b7',    11:'7'    } # ,12:'R' } # 8/12/16
-# #    I2V = {         0:'R' , 1:f'{F}2',    2:'2' , 3:'m3',    4:'M3',    5:'4' ,    6:f'{F}5',    7:'5' , 8:f'{S}5',    9:'6' ,10:f'{F}7',    11:'7'    } # ,12:'R' } # 8/12/16
-#     I4V = {         0:'P1', 1:'m2',    2:'M2', 3:'m3',    4:'M3',    5:'P4',    6:'TT',    7:'P5', 8:'m6',    9:'M6',10:'m7',    11:'M7'   } # ,12:'P8'} # 8/12/16
-#     I6V = {         0:'d2', 1:'A1',    2:'d3', 3:'A2',    4:'d4',    5:'A3',    6:'TT',    7:'d6', 8:'A5',    9:'d7',10:'A6',    11:'d8'   } # ,12:'A7'} # 8/12/16
-#     V2I = {       'R':0 ,'b2':1,     '2':2, 'm3':3,    'M3':4,     '4':5 ,   'b5':6,     '5':7 ,'#5':8,     '6':9, 'b7':10,     '7':11     } # ,'R`':12 } # 8/12/16
-# #    V2I = {       'R':0 ,f'{F}2':1,     '2':2, 'm3':3,    'M3':4,     '4':5 ,   f'{F}5':6,     '5':7 ,f'{S}5':8,     '6':9, f'{F}7':10,     '7':11     } # ,'R`':12 } # 8/12/16
-#     N2I = {f'B{S}':0, 'C' :0, f'C{S}':1, f'D{F}':1, 'D' :2, f'D{S}':3, f'E{F}':3, 'E' :4, f'F{F}':4, f'E{S}':5, 'F' :5, f'F{S}':6, f'G{F}':6, 'G' :7, f'G{S}':8, f'A{F}':8, 'A' :9, f'A{S}':10, f'B{F}':10, 'B' :11, f'C{F}' :11, f'B{S}`':12, 'C`':12 } #21
-#     F2S = {            f'D{F}':f'C{S}', f'E{F}':f'D{S}',                       f'G{F}':f'F{S}', f'A{F}':f'G{S}', f'B{F}':f'A{S}'                        } #[ 1 3  6 8 a ]# 5/9
-#     S2F = {            f'C{S}':f'D{F}', f'D{S}':f'E{F}',                       f'F{S}':f'G{F}', f'G{S}':f'A{F}', f'A{S}':f'B{F}'                        } #[ 1 3  6 8 a ]# 5/9
-# #               0             1                2             3          4             5                6                7           8
-#     F4S = { 'C' :f'B{S}',                             f'F{F}':'E' , 'F' :f'E{S}',                                             f'C{F}':'B'  } #,'C``' :'B#' } #[0   45     b]# 4/9
-#     S4F = { f'B{S}':'C' ,                             'E' :f'F{F}', f'E{S}':'F' ,                                             'B' :f'C{F}' } #,'B#``':'C'  } #[0   45     b]# 4/9
-#     I2N, I4N         = [None, I2S, I2F],  [None, I4S, I4F]
-    # IS0,  IS1,  IS2  = [2, 7, 9],  [1, 3, 6, 8, 10],  [0, 4, 5, 11]
-    # FLAT, NTRL, SHRP =    -1,      0,      1    # -1 ~= 2
-    # TYPES            =          [ 'NTRL', 'SHRP', 'FLAT' ] # 0=NTRL, 1=SHRP, 2=FLAT=-1
-    # TYPE, NTONES     = SHRP, len(V2I) # - 1
-
-    # @staticmethod
-    # def setType(t):           Notes.TYPE = t
-    # @staticmethod
-    # def index(n, o=0):        name = n[:len(n)-1] if o else n  ;  return Notes.N2I[name]
-    # @staticmethod
-    # def nextIndex(i, d=1):    return  (i+d) % Notes.NTONES
-    # @staticmethod
-    # def name(i, t=0, n2=0):   t = t if t else Notes.TYPE  ;  return Notes.I4N[t][i % Notes.NTONES] if n2 else Notes.I2N[t][i % Notes.NTONES]
-    # @staticmethod
-    # def nextName(n, iv, o=0): i = Notes.index(n, o)  ;  j = Notes.V2I[iv]  ;  k = Notes.nextIndex(i, j)  ;  return Notes.name(k)
-########################################################################################################################################################################################################
-# class NotesA(object): #     1       2       3       4       5       6       7       8       9       a       b       0      #[  2    7 9  ]#
-#     I2F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'E' , 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'B' } # ,12:'C' } # 8/12/16
-#     I2S = {         0:'C' , 1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'F' , 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' } # ,12:'C' } # 8/12/16
-#     I4F = {         0:'C' , 1:'Db', 2:'D' , 3:'Eb', 4:'Fb', 5:'F' , 6:'Gb', 7:'G' , 8:'Ab', 9:'A' ,10:'Bb', 11:'Cb'} # ,12:'C' } # 8/12/16
-#     I4S = { 0:'B#',         1:'C#', 2:'D' , 3:'D#', 4:'E' , 5:'E#', 6:'F#', 7:'G' , 8:'G#', 9:'A' ,10:'A#', 11:'B' } # ,12:'C' } # 8/12/16
-#     I2V = {         0:'R' , 1:'b2', 2:'2' , 3:'m3', 4:'M3', 5:'4' , 6:'b5', 7:'5' , 8:'#5', 9:'6' ,10:'b7', 11:'7' } # ,12:'R' } # 8/12/16
-#     I4V = {         0:'P1', 1:'m2', 2:'M2', 3:'m3', 4:'M3', 5:'P4', 6:'TT', 7:'P5', 8:'m6', 9:'M6',10:'m7', 11:'M7'} # ,12:'P8'} # 8/12/16
-#     I6V = {         0:'d2', 1:'A1', 2:'d3', 3:'A2', 4:'d4', 5:'A3', 6:'TT', 7:'d6', 8:'A5', 9:'d7',10:'A6', 11:'d8'} # ,12:'A7'} # 8/12/16
-#     V2I = {         'R':0 ,'b2':1, '2':2 , 'm3':3, 'M3':4, '4':5 , 'b5':6, '5':7 , '#5':8, '6':9 ,'b7':10,  '7':11 } # ,'R`':12 } # 8/12/16
-#     N2I = {'B#':0, 'C' :0, 'C#':1, 'Db':1, 'D' :2, 'D#':3, 'Eb':3, 'E' :4, 'Fb':4, 'E#':5, 'F' :5, 'F#':6, 'Gb':6, 'G' :7, 'G#':8, 'Ab':8, 'A' :9, 'A#':10, 'Bb':10, 'B' :11, 'Cb' :11, 'B#`':12, 'C`':12 } #21
-# #              0       0       1       2       3       4       5       6       7       8       9        a       b      0
-#     F2S = {            'Db':'C#', 'Eb':'D#',                       'Gb':'F#', 'Ab':'G#', 'Bb':'A#'                        } #[ 1 3  6 8 a ]# 5/9
-#     S2F = {            'C#':'Db', 'D#':'Eb',                       'F#':'Gb', 'G#':'Ab', 'A#':'Bb'                        } #[ 1 3  6 8 a ]# 5/9
-#     F4S = { 'C' :'B#',                       'Fb':'E' , 'F' :'E#',                                  'Cb':'B' } #,'C``' :'B#' } #[0   45     b]# 4/9
-#     S4F = { 'B#':'C' ,                       'E' :'Fb', 'E#':'F' ,                                  'B' :'Cb'} #,'B#``':'C'  } #[0   45     b]# 4/9
-    # I2N, I4N         = [None, I2S, I2F],  [None, I4S, I4F]
-    # IS0,  IS1,  IS2  = [2, 7, 9],  [1, 3, 6, 8, 10],  [0, 4, 5, 11]
-    # FLAT, NTRL, SHRP =    -1,      0,      1    # -1 ~= 2
-    # TYPES            =          [ 'NTRL', 'SHRP', 'FLAT' ] # 0=NTRL, 1=SHRP, 2=FLAT=-1
-    # TYPE, NTONES     = FLAT, len(V2I) # - 1
-
-    # @staticmethod
-    # def setType(t):         NotesA.TYPE = t
-    # @staticmethod
-    # def index(n, o=0):      name = n[:len(n)-1] if o else n  ;  return NotesA.N2I[name]
-    # @staticmethod
-    # def nextIndex(i, d=1):  return  (i + d) % NotesA.NTONES
-    # @staticmethod
-    # def name(i, t=0, n2=0): t = t if t else NotesA.TYPE       ;  return NotesA.I4N[t][i % NotesA.NTONES] if n2 else NotesA.I2N[t][i % NotesA.NTONES]
-    # @staticmethod
-    # def nextName(n, iv, o=0): i = NotesA.index(n, o)  ;  j = NotesA.V2I[iv]  ;  k = NotesA.nextIndex(i, j)  ;  return NotesA.name(k)
 ########################################################################################################################################################################################################
 def updNotes(i, m, n, t, d=0):
     if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
