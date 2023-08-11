@@ -51,6 +51,23 @@ def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0, ft=1):
     elif f == 3:  f = CSV_FILE
     print(t, sep=s, end=e, file=f,        flush=bool(ff))
     print(t, sep=s, end=e, file=TXT_FILE, flush=bool(ff)) if tf else None
+
+def olog(o=None, p=1, f=1, s=Y, e='\n', ff=1):
+    o = s.join(str(o)) if o is not None else ''
+    if p:
+        sf   = inspect.currentframe().f_back
+        while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
+        fp   = pathlib.Path(sf.f_code.co_filename)
+        pl   = 18 if p == 1 else 8
+        p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else Z
+        o    = [f'{p}{sf.f_code.co_name:{pl}} ', o]
+    tf = 0
+    if   f == 0:  f = TXT_FILE
+    elif f == 1:  f = LOG_FILE
+    elif f == 2:  f = LOG_FILE  ;  tf = 1
+    elif f == 3:  f = CSV_FILE
+    print(o, sep=s, end=e, file=f,        flush=bool(ff))
+    print(o, sep=s, end=e, file=TXT_FILE, flush=bool(ff)) if tf else None
 ########################################################################################################################################################################################################
 def filtText(text):
     text = text.replace('self', Z)
@@ -213,29 +230,6 @@ def sid(s, sfx):
     j = s.rfind('.')
     i = s[j + 1:]
     return int(i) if isinstance(i, str) and i.isdigit() else None
-
-########################################################################################################################################################################################################
-# KSD = {}
-# KIM, KIS, KMS, KJS, KNS        = range(5)
-# KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
-# dmpKSVHdr(csv=1,   t=-1)
-# KSD = initKSD(KSD, t=-1)
-# KSD = initKSD(KSD, t= 1)
-# dmpKSVHdr(csv=1,   t= 1)
-# dumpKSH(  csv=1)
-########################################################################################################################################################################################################
-# class DSymb:
-#     SYMBS = {'X': 'mute', '/': 'slide', '\\': 'bend', '+': 'hammer', '~': 'vibrato', '^': 'tie', '.': 'staccato', '_': 'legato', '%': 'repeat', '|': 'bar', '[': 'groupL', ']': 'groupR'}
-# ########################################################################################################################################################################################################
-# class Scales:
-#     MajorIs = [ 0, 2, 4, 5, 7, 9, 11 ]
-#     @classmethod
-#     def majIs(cls, i):  return [ (i + j) % Notes.NTONES for j in cls.MajorIs ]
-# ########################################################################################################################################################################################################
-# class Modes:
-#     IONIAN, DORIAN, PHRYGIAN, LYDIAN, MIXOLYDIAN, AEOLIAN, LOCRIAN = range(7)
-#     NAMES = [ 'IONIAN', 'DORIAN', 'PHRYGIAN', 'LYDIAN', 'MIXOLYDIAN', 'AEOLIAN', 'LOCRIAN' ]
-#     TYPES = [  IONIAN,   DORIAN,   PHRYGIAN,   LYDIAN,   MIXOLYDIAN,   AEOLIAN,   LOCRIAN  ]
 ########################################################################################################################################################################################################
 def main():
     getFileSeqName(BASE_NAME, BASE_PATH)

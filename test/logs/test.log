@@ -1,38 +1,38 @@
 C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2959 tabsC <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
+2958 tabsC <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2963 tabsC main               CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-2963 tabsC main               CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
-2964 tabsC main               LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
-2964 tabsC main               LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
-2965 tabsC main               TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-2965 tabsC main               TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
-2966 tabsC main               constructing Tabs object
+2962 tabsC main               CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+2962 tabsC main               CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
+2963 tabsC main               LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
+2963 tabsC main               LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
+2964 tabsC main               TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+2964 tabsC main               TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
+2965 tabsC main               constructing Tabs object
   42 tabsC __init__           .LOG_ID=0
   43 tabsC __init__           BGN <class '__main__.Tabs'>
-2828 tabsC dumpGlobals        BASE_NAME = test
-2829 tabsC dumpGlobals        argv      = +30[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
-2830 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2831 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+2827 tabsC dumpGlobals        BASE_NAME = test
+2828 tabsC dumpGlobals        argv      = +30[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
+2829 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
+2830 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
   44 tabsC __init__           STFILT:
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
- 191 utl   getFileSeqName     fdir='logs' / fsfx='log'
- 194 utl   getFileSeqName     fGlobArg='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log'
- 196 utl   getFileSeqName     LOG_ID=9
- 198 utl   getFileSeqName     name='test.9'
-  45 tabsC __init__           .LOG_ID=9 test.9
- 176 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =test.9.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.9.cat')
-  46 tabsC __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.9.cat')
- 176 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =test.9.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.9.csv')
-  47 tabsC __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.9.csv')
- 176 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =test.9.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.9.log')
-  48 tabsC __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.9.log')
- 176 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =test.9.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.9.txt')
-  49 tabsC __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.9.txt')
+ 208 utl   getFileSeqName     fdir='logs' / fsfx='log'
+ 211 utl   getFileSeqName     fGlobArg='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log'
+ 213 utl   getFileSeqName     LOG_ID=10
+ 215 utl   getFileSeqName     name='test.10'
+  45 tabsC __init__           .LOG_ID=10 test.10
+ 193 utl   getFilePath        baseName =test.10      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.10.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.10.cat')
+  46 tabsC __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.10.cat')
+ 193 utl   getFilePath        baseName =test.10      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.10.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.10.csv')
+  47 tabsC __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.10.csv')
+ 193 utl   getFilePath        baseName =test.10      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.10.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.10.log')
+  48 tabsC __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.10.log')
+ 193 utl   getFilePath        baseName =test.10      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.10.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.10.txt')
+  49 tabsC __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.10.txt')
   61 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
   77 tabsC __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [c:[]] [d:[0]] [p:[]] [s:[]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
  178 tabsC dumpArgs           [a]      .AUTO_SAVE=0
@@ -89,7 +89,7 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 .dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
 .dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
  299 tabsC _initWindowA       BGN (  -1x-1  )
- 299 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001906C59E5F0>
+ 299 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001C2F7FFE5F0>
  304 tabsC _initWindowA       screens[0] s.x=894  2160 (1280x720 )
  304 tabsC _initWindowA       screens[1] s.x=0     0 (3840x2160)
  305 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -193,9 +193,9 @@ Page 1
 Colm Line 1
  821 tabsC dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
  788 tabsC transposeData      END ( 1x1x10x6 ) dmp=1
- 184 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
- 185 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
- 187 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
  271 tabsC _initData          [1 1 10 6]
  272 tabsC _initData          Updating n[P] old='[1 1 3 10 6]' n=[1 1 3 10 6]
  609 tabsC ntp                                  n=[1 1 3 10 6]
@@ -604,8 +604,8 @@ b [B  B  7  M7 d8]
 [E♭ B♭ F  C  G  D  A     G  D  A  E  B  F♯ C♯]
 [3  a  5  0  7  2  9     7  2  9  4  b  6  1 ]
 KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note Ordering  Key Sig Table +15
--7 FLAT C♭ b [A  D  G  C  F  B♭ E♭] [9 2 7 0 5 a 3] [b 1 3 4 6 8 a] [B  D♭ E♭ E  G♭ A♭ B♭]
--6 FLAT G♭ 6 [A  D  G  C  F  B♭ F ] [9 2 7 0 5 a 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ B  D♭ E♭ F ]
+-7 FLAT C♭ b [A  D  G  C  F  B♭ E♭] [9 2 7 0 5 a 3] [b 1 3 4 6 8 a] [C♭ D♭ E♭ F♭ G♭ A♭ B♭]
+-6 FLAT G♭ 6 [A  D  G  C  F  B♭ F ] [9 2 7 0 5 a 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ C♭ D♭ E♭ F ]
 -5 FLAT D♭ 1 [A  D  G  C  F  C  F ] [9 2 7 0 5 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ]
 -4 FLAT A♭ 8 [A  D  G  C  G  C  F ] [9 2 7 0 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ]
 -3 FLAT E♭ 3 [A  D  G  D  G  C  F ] [9 2 7 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ]
@@ -617,8 +617,8 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +3 SHRP A  9 [G  D  A  D  A  E  B ] [7 2 9 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
 +4 SHRP E  4 [G  D  A  E  A  E  B ] [7 2 9 4 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯]
 +5 SHRP B  b [G  D  A  E  B  E  B ] [7 2 9 4 b 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
-+6 SHRP F♯ 6 [G  D  A  E  B  F♯ B ] [7 2 9 4 b 6 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ F ]
-+7 SHRP C♯ 1 [G  D  A  E  B  F♯ C♯] [7 2 9 4 b 6 1] [1 3 5 6 8 a 0] [C♯ D♯ F  F♯ G♯ A♯ C ]
++6 SHRP F♯ 6 [G  D  A  E  B  F♯ B ] [7 2 9 4 b 6 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ E♯]
++7 SHRP C♯ 1 [G  D  A  E  B  F♯ C♯] [7 2 9 4 b 6 1] [1 3 5 6 8 a 0] [C♯ D♯ E♯ F♯ G♯ A♯ B♯]
   21 notes dumpData           END D♭ D♮ D♯
 1748 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels New1
    2p2   11
@@ -644,13 +644,13 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 1
  639 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
  346 tabsC _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2725 tabsC regSnap              9   0 INIT     init
+2724 tabsC regSnap             10   0 INIT     init
  226 tabsC _reinit            [1 1 1  1 6]   6   0  1] END
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
  141 tabsC __init__           END <class '__main__.Tabs'>
-2968 tabsC main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
-2968 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
-2969 tabsC main               Call pyglet.app.run()
+2967 tabsC main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
+2967 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
+2968 tabsC main               Call pyglet.app.run()
 1262 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
 1262 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
 1262 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] Upd.1
@@ -970,8 +970,8 @@ b [B  B  7  M7 d8]
 [E♭ B♭ F  C  G  D  A     G  D  A  E  B  F♯ C♯]
 [3  a  5  0  7  2  9     7  2  9  4  b  6  1 ]
 KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note Ordering  Key Sig Table +15
--7 FLAT C♭ b [A  D  G  C  F  B♭ E♭] [9 2 7 0 5 a 3] [b 1 3 4 6 8 a] [B  D♭ E♭ E  G♭ A♭ B♭]
--6 FLAT G♭ 6 [A  D  G  C  F  B♭ F ] [9 2 7 0 5 a 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ B  D♭ E♭ F ]
+-7 FLAT C♭ b [A  D  G  C  F  B♭ E♭] [9 2 7 0 5 a 3] [b 1 3 4 6 8 a] [C♭ D♭ E♭ F♭ G♭ A♭ B♭]
+-6 FLAT G♭ 6 [A  D  G  C  F  B♭ F ] [9 2 7 0 5 a 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ C♭ D♭ E♭ F ]
 -5 FLAT D♭ 1 [A  D  G  C  F  C  F ] [9 2 7 0 5 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ]
 -4 FLAT A♭ 8 [A  D  G  C  G  C  F ] [9 2 7 0 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ]
 -3 FLAT E♭ 3 [A  D  G  D  G  C  F ] [9 2 7 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ]
@@ -983,8 +983,8 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +3 SHRP A  9 [G  D  A  D  A  E  B ] [7 2 9 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
 +4 SHRP E  4 [G  D  A  E  A  E  B ] [7 2 9 4 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯]
 +5 SHRP B  b [G  D  A  E  B  E  B ] [7 2 9 4 b 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
-+6 SHRP F♯ 6 [G  D  A  E  B  F♯ B ] [7 2 9 4 b 6 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ F ]
-+7 SHRP C♯ 1 [G  D  A  E  B  F♯ C♯] [7 2 9 4 b 6 1] [1 3 5 6 8 a 0] [C♯ D♯ F  F♯ G♯ A♯ C ]
++6 SHRP F♯ 6 [G  D  A  E  B  F♯ B ] [7 2 9 4 b 6 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ E♯]
++7 SHRP C♯ 1 [G  D  A  E  B  F♯ C♯] [7 2 9 4 b 6 1] [1 3 5 6 8 a 0] [C♯ D♯ E♯ F♯ G♯ A♯ B♯]
   21 notes dumpData           END D♭ D♮ D♯
 1748 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels Upd.1
    1p1   1
@@ -1009,430 +1009,355 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 1111111111
 1
  639 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-2733 tabsC snapshot           BASE_NAME='test' logId='None' snapId='None' typ='INIT' PNG='png'
-2734 tabsC snapshot           .fNameLid='test.9' snapName='test.9.0.INIT.png' on_draw((kwargs)='')
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.9.0.INIT.png
-2737 tabsC snapshot           snapName='test.9.0.INIT.png' on_draw((kwargs)='')
+2732 tabsC snapshot           BASE_NAME='test' logId='None' snapId='None' typ='INIT' PNG='png'
+2733 tabsC snapshot           .fNameLid='test.10' snapName='test.10.0.INIT.png' on_draw((kwargs)='')
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.0.INIT.png
+2736 tabsC snapshot           snapName='test.10.0.INIT.png' on_draw((kwargs)='')
  174 tabsC geomFileName       Btest.1.1.3.10.6_CC.png
- 184 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.INIT.png')
- 185 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
- 187 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.9.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
- 184 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.INIT.png')
- 185 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
- 187 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.9.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
-2745 tabsC snapshot           BASE_NAME='test' [1 1 3 10 6]
-2746 tabsC snapshot           snapName0='test.png' on_draw((kwargs)='')
-2747 tabsC snapshot           snapName2='Btest.1.1.3.10.6_CC.png' on_draw((kwargs)='')
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.INIT.png')
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.INIT.png')
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
+2744 tabsC snapshot           BASE_NAME='test' [1 1 3 10 6]
+2745 tabsC snapshot           snapName0='test.png' on_draw((kwargs)='')
+2746 tabsC snapshot           snapName2='Btest.1.1.3.10.6_CC.png' on_draw((kwargs)='')
 snapshot snapPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
 snapshot snapPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
-1526 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.9
-1526 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.9
-1526 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.9
-1526 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.9
+1526 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1526 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.10
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1542 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.9
-1542 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.9
-1542 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.9
-1542 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.9
+1542 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1542 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.10
  653 tabsC on_draw            [1 1 1  1 6]   6   0  1] .snapWhy='init' .snapType='INIT' .snapId=1
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.INIT.png')
-1923 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2015 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2016 tabsC on_key_press       retv=True
-1923 tabsC on_key_press       BGN <    .kbk=F       > <.symb=     102> <.symbStr=F               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2536 tabsC flipFlatSharp      BGN @ F t1=1 SHRP => t2=-1 FLAT
-2551 tabsC flipFlatSharp      C♯ -> D♭ = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      C♯ -> D♭ = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      G♯ -> A♭ = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      E  -> E  = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      C  -> C  = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      F♯ -> G♭ = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 6, 'R M3 4 #5 6 b7': 6, 'R m3 M3 4 5 7': 6, 'R b2 m3 5 #5 7': 6, 'R 2 b5 5 b7 7': 6})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 6, 'R m3 M3 4 5 7': 6, 'R b2 m3 5 #5 7': 6, 'R 2 b5 5 b7 7': 6})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 7, 'R m3 M3 4 5 7': 6, 'R b2 m3 5 #5 7': 6, 'R 2 b5 5 b7 7': 6})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 7, 'R m3 M3 4 5 7': 7, 'R b2 m3 5 #5 7': 6, 'R 2 b5 5 b7 7': 6})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 7, 'R m3 M3 4 5 7': 7, 'R b2 m3 5 #5 7': 7, 'R 2 b5 5 b7 7': 6})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 7, 'R m3 M3 4 5 7': 7, 'R b2 m3 5 #5 7': 7, 'R 2 b5 5 b7 7': 7})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      F  -> F  = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 8, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 7, 'R m3 M3 4 5 7': 7, 'R b2 m3 5 #5 7': 7, 'R 2 b5 5 b7 7': 7})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 8, 'R b2 2 M3 #5 6': 8, 'R M3 4 #5 6 b7': 7, 'R m3 M3 4 5 7': 7, 'R b2 m3 5 #5 7': 7, 'R 2 b5 5 b7 7': 7})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 8, 'R b2 2 M3 #5 6': 8, 'R M3 4 #5 6 b7': 8, 'R m3 M3 4 5 7': 7, 'R b2 m3 5 #5 7': 7, 'R 2 b5 5 b7 7': 7})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 8, 'R b2 2 M3 #5 6': 8, 'R M3 4 #5 6 b7': 8, 'R m3 M3 4 5 7': 8, 'R b2 m3 5 #5 7': 7, 'R 2 b5 5 b7 7': 7})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 8, 'R b2 2 M3 #5 6': 8, 'R M3 4 #5 6 b7': 8, 'R m3 M3 4 5 7': 8, 'R b2 m3 5 #5 7': 8, 'R 2 b5 5 b7 7': 7})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 8, 'R b2 2 M3 #5 6': 8, 'R M3 4 #5 6 b7': 8, 'R m3 M3 4 5 7': 8, 'R b2 m3 5 #5 7': 8, 'R 2 b5 5 b7 7': 8})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      C♯ -> D♭ = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 9, 'R b2 2 M3 #5 6': 8, 'R M3 4 #5 6 b7': 8, 'R m3 M3 4 5 7': 8, 'R b2 m3 5 #5 7': 8, 'R 2 b5 5 b7 7': 8})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 9, 'R b2 2 M3 #5 6': 9, 'R M3 4 #5 6 b7': 8, 'R m3 M3 4 5 7': 8, 'R b2 m3 5 #5 7': 8, 'R 2 b5 5 b7 7': 8})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 9, 'R b2 2 M3 #5 6': 9, 'R M3 4 #5 6 b7': 9, 'R m3 M3 4 5 7': 8, 'R b2 m3 5 #5 7': 8, 'R 2 b5 5 b7 7': 8})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 9, 'R b2 2 M3 #5 6': 9, 'R M3 4 #5 6 b7': 9, 'R m3 M3 4 5 7': 9, 'R b2 m3 5 #5 7': 8, 'R 2 b5 5 b7 7': 8})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 9, 'R b2 2 M3 #5 6': 9, 'R M3 4 #5 6 b7': 9, 'R m3 M3 4 5 7': 9, 'R b2 m3 5 #5 7': 9, 'R 2 b5 5 b7 7': 8})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 9, 'R b2 2 M3 #5 6': 9, 'R M3 4 #5 6 b7': 9, 'R m3 M3 4 5 7': 9, 'R b2 m3 5 #5 7': 9, 'R 2 b5 5 b7 7': 9})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      G♯ -> A♭ = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 10, 'R b2 2 M3 #5 6': 9, 'R M3 4 #5 6 b7': 9, 'R m3 M3 4 5 7': 9, 'R b2 m3 5 #5 7': 9, 'R 2 b5 5 b7 7': 9})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 10, 'R b2 2 M3 #5 6': 10, 'R M3 4 #5 6 b7': 9, 'R m3 M3 4 5 7': 9, 'R b2 m3 5 #5 7': 9, 'R 2 b5 5 b7 7': 9})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 10, 'R b2 2 M3 #5 6': 10, 'R M3 4 #5 6 b7': 10, 'R m3 M3 4 5 7': 9, 'R b2 m3 5 #5 7': 9, 'R 2 b5 5 b7 7': 9})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 10, 'R b2 2 M3 #5 6': 10, 'R M3 4 #5 6 b7': 10, 'R m3 M3 4 5 7': 10, 'R b2 m3 5 #5 7': 9, 'R 2 b5 5 b7 7': 9})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 10, 'R b2 2 M3 #5 6': 10, 'R M3 4 #5 6 b7': 10, 'R m3 M3 4 5 7': 10, 'R b2 m3 5 #5 7': 10, 'R 2 b5 5 b7 7': 9})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 10, 'R b2 2 M3 #5 6': 10, 'R M3 4 #5 6 b7': 10, 'R m3 M3 4 5 7': 10, 'R b2 m3 5 #5 7': 10, 'R 2 b5 5 b7 7': 10})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      E  -> E  = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 11, 'R b2 2 M3 #5 6': 10, 'R M3 4 #5 6 b7': 10, 'R m3 M3 4 5 7': 10, 'R b2 m3 5 #5 7': 10, 'R 2 b5 5 b7 7': 10})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 11, 'R b2 2 M3 #5 6': 11, 'R M3 4 #5 6 b7': 10, 'R m3 M3 4 5 7': 10, 'R b2 m3 5 #5 7': 10, 'R 2 b5 5 b7 7': 10})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 11, 'R b2 2 M3 #5 6': 11, 'R M3 4 #5 6 b7': 11, 'R m3 M3 4 5 7': 10, 'R b2 m3 5 #5 7': 10, 'R 2 b5 5 b7 7': 10})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 11, 'R b2 2 M3 #5 6': 11, 'R M3 4 #5 6 b7': 11, 'R m3 M3 4 5 7': 11, 'R b2 m3 5 #5 7': 10, 'R 2 b5 5 b7 7': 10})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 11, 'R b2 2 M3 #5 6': 11, 'R M3 4 #5 6 b7': 11, 'R m3 M3 4 5 7': 11, 'R b2 m3 5 #5 7': 11, 'R 2 b5 5 b7 7': 10})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 11, 'R b2 2 M3 #5 6': 11, 'R M3 4 #5 6 b7': 11, 'R m3 M3 4 5 7': 11, 'R b2 m3 5 #5 7': 11, 'R 2 b5 5 b7 7': 11})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      C  -> C  = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 12, 'R b2 2 M3 #5 6': 11, 'R M3 4 #5 6 b7': 11, 'R m3 M3 4 5 7': 11, 'R b2 m3 5 #5 7': 11, 'R 2 b5 5 b7 7': 11})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 12, 'R b2 2 M3 #5 6': 12, 'R M3 4 #5 6 b7': 11, 'R m3 M3 4 5 7': 11, 'R b2 m3 5 #5 7': 11, 'R 2 b5 5 b7 7': 11})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 12, 'R b2 2 M3 #5 6': 12, 'R M3 4 #5 6 b7': 12, 'R m3 M3 4 5 7': 11, 'R b2 m3 5 #5 7': 11, 'R 2 b5 5 b7 7': 11})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 12, 'R b2 2 M3 #5 6': 12, 'R M3 4 #5 6 b7': 12, 'R m3 M3 4 5 7': 12, 'R b2 m3 5 #5 7': 11, 'R 2 b5 5 b7 7': 11})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 12, 'R b2 2 M3 #5 6': 12, 'R M3 4 #5 6 b7': 12, 'R m3 M3 4 5 7': 12, 'R b2 m3 5 #5 7': 12, 'R 2 b5 5 b7 7': 11})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 12, 'R b2 2 M3 #5 6': 12, 'R M3 4 #5 6 b7': 12, 'R m3 M3 4 5 7': 12, 'R b2 m3 5 #5 7': 12, 'R 2 b5 5 b7 7': 12})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
- 255 notes dumpNic            [1:D♭:3,8:A♭:2,4:E :2,0:C :2,6:G♭:1,5:F :1]
- 256 notes dumpNic            [1:C♯:3,8:G♯:2,4:E :2,0:C :2,6:F♯:1,5:F :1]
- 257 notes dumpNic            [None,None,None,0:C :2,5:F :1,None,None]
- 258 notes dumpNic            [None,None,None,4:E :2,None,6:G♭:1,1:D♭:3]
-2557 tabsC flipFlatSharp       0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2558 tabsC flipFlatSharp      END @ F t1=1 SHRP => t2=-1 FLAT
-2015 tabsC on_key_press       END <    .kbk=F       > <.symb=     102> <.symbStr=F               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2016 tabsC on_key_press       retv=True
-2021 tabsC on_key_release         <    .kbk=F       > <.symb=     102> <.symbStr=F               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2021 tabsC on_key_release         <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 0> <.modsStr=                >
-1923 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2015 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2016 tabsC on_key_press       retv=True
-1923 tabsC on_key_press       BGN <    .kbk=F       > <.symb=     102> <.symbStr=F               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2536 tabsC flipFlatSharp      BGN @ F t1=-1 FLAT => t2=1 SHRP
-2551 tabsC flipFlatSharp      D♭ -> C♯ = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      D♭ -> C♯ = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      A♭ -> G♯ = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      E  -> E  = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      C  -> C  = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      G♭ -> F♯ = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 13, 'R b2 2 M3 #5 6': 12, 'R M3 4 #5 6 b7': 12, 'R m3 M3 4 5 7': 12, 'R b2 m3 5 #5 7': 12, 'R 2 b5 5 b7 7': 12})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 13, 'R b2 2 M3 #5 6': 13, 'R M3 4 #5 6 b7': 12, 'R m3 M3 4 5 7': 12, 'R b2 m3 5 #5 7': 12, 'R 2 b5 5 b7 7': 12})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 13, 'R b2 2 M3 #5 6': 13, 'R M3 4 #5 6 b7': 13, 'R m3 M3 4 5 7': 12, 'R b2 m3 5 #5 7': 12, 'R 2 b5 5 b7 7': 12})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 13, 'R b2 2 M3 #5 6': 13, 'R M3 4 #5 6 b7': 13, 'R m3 M3 4 5 7': 13, 'R b2 m3 5 #5 7': 12, 'R 2 b5 5 b7 7': 12})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 13, 'R b2 2 M3 #5 6': 13, 'R M3 4 #5 6 b7': 13, 'R m3 M3 4 5 7': 13, 'R b2 m3 5 #5 7': 13, 'R 2 b5 5 b7 7': 12})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 13, 'R b2 2 M3 #5 6': 13, 'R M3 4 #5 6 b7': 13, 'R m3 M3 4 5 7': 13, 'R b2 m3 5 #5 7': 13, 'R 2 b5 5 b7 7': 13})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      F  -> F  = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 14, 'R b2 2 M3 #5 6': 13, 'R M3 4 #5 6 b7': 13, 'R m3 M3 4 5 7': 13, 'R b2 m3 5 #5 7': 13, 'R 2 b5 5 b7 7': 13})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 14, 'R b2 2 M3 #5 6': 14, 'R M3 4 #5 6 b7': 13, 'R m3 M3 4 5 7': 13, 'R b2 m3 5 #5 7': 13, 'R 2 b5 5 b7 7': 13})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 14, 'R b2 2 M3 #5 6': 14, 'R M3 4 #5 6 b7': 14, 'R m3 M3 4 5 7': 13, 'R b2 m3 5 #5 7': 13, 'R 2 b5 5 b7 7': 13})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 14, 'R b2 2 M3 #5 6': 14, 'R M3 4 #5 6 b7': 14, 'R m3 M3 4 5 7': 14, 'R b2 m3 5 #5 7': 13, 'R 2 b5 5 b7 7': 13})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 14, 'R b2 2 M3 #5 6': 14, 'R M3 4 #5 6 b7': 14, 'R m3 M3 4 5 7': 14, 'R b2 m3 5 #5 7': 14, 'R 2 b5 5 b7 7': 13})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 14, 'R b2 2 M3 #5 6': 14, 'R M3 4 #5 6 b7': 14, 'R m3 M3 4 5 7': 14, 'R b2 m3 5 #5 7': 14, 'R 2 b5 5 b7 7': 14})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      D♭ -> C♯ = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 15, 'R b2 2 M3 #5 6': 14, 'R M3 4 #5 6 b7': 14, 'R m3 M3 4 5 7': 14, 'R b2 m3 5 #5 7': 14, 'R 2 b5 5 b7 7': 14})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 15, 'R b2 2 M3 #5 6': 15, 'R M3 4 #5 6 b7': 14, 'R m3 M3 4 5 7': 14, 'R b2 m3 5 #5 7': 14, 'R 2 b5 5 b7 7': 14})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 15, 'R b2 2 M3 #5 6': 15, 'R M3 4 #5 6 b7': 15, 'R m3 M3 4 5 7': 14, 'R b2 m3 5 #5 7': 14, 'R 2 b5 5 b7 7': 14})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 15, 'R b2 2 M3 #5 6': 15, 'R M3 4 #5 6 b7': 15, 'R m3 M3 4 5 7': 15, 'R b2 m3 5 #5 7': 14, 'R 2 b5 5 b7 7': 14})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 15, 'R b2 2 M3 #5 6': 15, 'R M3 4 #5 6 b7': 15, 'R m3 M3 4 5 7': 15, 'R b2 m3 5 #5 7': 15, 'R 2 b5 5 b7 7': 14})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 15, 'R b2 2 M3 #5 6': 15, 'R M3 4 #5 6 b7': 15, 'R m3 M3 4 5 7': 15, 'R b2 m3 5 #5 7': 15, 'R 2 b5 5 b7 7': 15})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      A♭ -> G♯ = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 16, 'R b2 2 M3 #5 6': 15, 'R M3 4 #5 6 b7': 15, 'R m3 M3 4 5 7': 15, 'R b2 m3 5 #5 7': 15, 'R 2 b5 5 b7 7': 15})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 16, 'R b2 2 M3 #5 6': 16, 'R M3 4 #5 6 b7': 15, 'R m3 M3 4 5 7': 15, 'R b2 m3 5 #5 7': 15, 'R 2 b5 5 b7 7': 15})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 16, 'R b2 2 M3 #5 6': 16, 'R M3 4 #5 6 b7': 16, 'R m3 M3 4 5 7': 15, 'R b2 m3 5 #5 7': 15, 'R 2 b5 5 b7 7': 15})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 16, 'R b2 2 M3 #5 6': 16, 'R M3 4 #5 6 b7': 16, 'R m3 M3 4 5 7': 16, 'R b2 m3 5 #5 7': 15, 'R 2 b5 5 b7 7': 15})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 16, 'R b2 2 M3 #5 6': 16, 'R M3 4 #5 6 b7': 16, 'R m3 M3 4 5 7': 16, 'R b2 m3 5 #5 7': 16, 'R 2 b5 5 b7 7': 15})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 16, 'R b2 2 M3 #5 6': 16, 'R M3 4 #5 6 b7': 16, 'R m3 M3 4 5 7': 16, 'R b2 m3 5 #5 7': 16, 'R 2 b5 5 b7 7': 16})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      E  -> E  = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 17, 'R b2 2 M3 #5 6': 16, 'R M3 4 #5 6 b7': 16, 'R m3 M3 4 5 7': 16, 'R b2 m3 5 #5 7': 16, 'R 2 b5 5 b7 7': 16})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 17, 'R b2 2 M3 #5 6': 17, 'R M3 4 #5 6 b7': 16, 'R m3 M3 4 5 7': 16, 'R b2 m3 5 #5 7': 16, 'R 2 b5 5 b7 7': 16})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 17, 'R b2 2 M3 #5 6': 17, 'R M3 4 #5 6 b7': 17, 'R m3 M3 4 5 7': 16, 'R b2 m3 5 #5 7': 16, 'R 2 b5 5 b7 7': 16})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 17, 'R b2 2 M3 #5 6': 17, 'R M3 4 #5 6 b7': 17, 'R m3 M3 4 5 7': 17, 'R b2 m3 5 #5 7': 16, 'R 2 b5 5 b7 7': 16})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 17, 'R b2 2 M3 #5 6': 17, 'R M3 4 #5 6 b7': 17, 'R m3 M3 4 5 7': 17, 'R b2 m3 5 #5 7': 17, 'R 2 b5 5 b7 7': 16})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 17, 'R b2 2 M3 #5 6': 17, 'R M3 4 #5 6 b7': 17, 'R m3 M3 4 5 7': 17, 'R b2 m3 5 #5 7': 17, 'R 2 b5 5 b7 7': 17})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      C  -> C  = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 18, 'R b2 2 M3 #5 6': 17, 'R M3 4 #5 6 b7': 17, 'R m3 M3 4 5 7': 17, 'R b2 m3 5 #5 7': 17, 'R 2 b5 5 b7 7': 17})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 18, 'R b2 2 M3 #5 6': 18, 'R M3 4 #5 6 b7': 17, 'R m3 M3 4 5 7': 17, 'R b2 m3 5 #5 7': 17, 'R 2 b5 5 b7 7': 17})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 18, 'R b2 2 M3 #5 6': 18, 'R M3 4 #5 6 b7': 18, 'R m3 M3 4 5 7': 17, 'R b2 m3 5 #5 7': 17, 'R 2 b5 5 b7 7': 17})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 18, 'R b2 2 M3 #5 6': 18, 'R M3 4 #5 6 b7': 18, 'R m3 M3 4 5 7': 18, 'R b2 m3 5 #5 7': 17, 'R 2 b5 5 b7 7': 17})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 18, 'R b2 2 M3 #5 6': 18, 'R M3 4 #5 6 b7': 18, 'R m3 M3 4 5 7': 18, 'R b2 m3 5 #5 7': 18, 'R 2 b5 5 b7 7': 17})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 18, 'R b2 2 M3 #5 6': 18, 'R M3 4 #5 6 b7': 18, 'R m3 M3 4 5 7': 18, 'R b2 m3 5 #5 7': 18, 'R 2 b5 5 b7 7': 18})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
- 255 notes dumpNic            [1:D♭:3,8:A♭:2,4:E :2,0:C :2,6:G♭:1,5:F :1]
- 256 notes dumpNic            [1:C♯:3,8:G♯:2,4:E :2,0:C :2,6:F♯:1,5:F :1]
- 257 notes dumpNic            [None,None,None,0:C :2,5:F :1,None,None]
- 258 notes dumpNic            [None,None,None,4:E :2,None,6:G♭:1,1:D♭:3]
-2557 tabsC flipFlatSharp       0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2558 tabsC flipFlatSharp      END @ F t1=-1 FLAT => t2=1 SHRP
-2015 tabsC on_key_press       END <    .kbk=F       > <.symb=     102> <.symbStr=F               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2016 tabsC on_key_press       retv=True
-2021 tabsC on_key_release         <    .kbk=F       > <.symb=     102> <.symbStr=F               > <.mods= 2> <.modsStr=MOD_CTRL        >
-1923 tabsC on_key_press       BGN <    .kbk=F       > <.symb=     102> <.symbStr=F               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2536 tabsC flipFlatSharp      BGN @ F t1=1 SHRP => t2=-1 FLAT
-2551 tabsC flipFlatSharp      C♯ -> D♭ = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      C♯ -> D♭ = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      G♯ -> A♭ = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      E  -> E  = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      C  -> C  = 
-1857 tabsC getImap             0 mM7/C        mM7/C        7m35RR       b3700  CEG♯C♯C♯     Rm357        037b   C♯EG♯C      
-1857 tabsC getImap             0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
-2551 tabsC flipFlatSharp      F♯ -> G♭ = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 19, 'R b2 2 M3 #5 6': 18, 'R M3 4 #5 6 b7': 18, 'R m3 M3 4 5 7': 18, 'R b2 m3 5 #5 7': 18, 'R 2 b5 5 b7 7': 18})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 19, 'R b2 2 M3 #5 6': 19, 'R M3 4 #5 6 b7': 18, 'R m3 M3 4 5 7': 18, 'R b2 m3 5 #5 7': 18, 'R 2 b5 5 b7 7': 18})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 19, 'R b2 2 M3 #5 6': 19, 'R M3 4 #5 6 b7': 19, 'R m3 M3 4 5 7': 18, 'R b2 m3 5 #5 7': 18, 'R 2 b5 5 b7 7': 18})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 19, 'R b2 2 M3 #5 6': 19, 'R M3 4 #5 6 b7': 19, 'R m3 M3 4 5 7': 19, 'R b2 m3 5 #5 7': 18, 'R 2 b5 5 b7 7': 18})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 19, 'R b2 2 M3 #5 6': 19, 'R M3 4 #5 6 b7': 19, 'R m3 M3 4 5 7': 19, 'R b2 m3 5 #5 7': 19, 'R 2 b5 5 b7 7': 18})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 19, 'R b2 2 M3 #5 6': 19, 'R M3 4 #5 6 b7': 19, 'R m3 M3 4 5 7': 19, 'R b2 m3 5 #5 7': 19, 'R 2 b5 5 b7 7': 19})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      F  -> F  = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 20, 'R b2 2 M3 #5 6': 19, 'R M3 4 #5 6 b7': 19, 'R m3 M3 4 5 7': 19, 'R b2 m3 5 #5 7': 19, 'R 2 b5 5 b7 7': 19})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 20, 'R b2 2 M3 #5 6': 20, 'R M3 4 #5 6 b7': 19, 'R m3 M3 4 5 7': 19, 'R b2 m3 5 #5 7': 19, 'R 2 b5 5 b7 7': 19})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 20, 'R b2 2 M3 #5 6': 20, 'R M3 4 #5 6 b7': 20, 'R m3 M3 4 5 7': 19, 'R b2 m3 5 #5 7': 19, 'R 2 b5 5 b7 7': 19})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 20, 'R b2 2 M3 #5 6': 20, 'R M3 4 #5 6 b7': 20, 'R m3 M3 4 5 7': 20, 'R b2 m3 5 #5 7': 19, 'R 2 b5 5 b7 7': 19})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 20, 'R b2 2 M3 #5 6': 20, 'R M3 4 #5 6 b7': 20, 'R m3 M3 4 5 7': 20, 'R b2 m3 5 #5 7': 20, 'R 2 b5 5 b7 7': 19})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 20, 'R b2 2 M3 #5 6': 20, 'R M3 4 #5 6 b7': 20, 'R m3 M3 4 5 7': 20, 'R b2 m3 5 #5 7': 20, 'R 2 b5 5 b7 7': 20})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      C♯ -> D♭ = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 21, 'R b2 2 M3 #5 6': 20, 'R M3 4 #5 6 b7': 20, 'R m3 M3 4 5 7': 20, 'R b2 m3 5 #5 7': 20, 'R 2 b5 5 b7 7': 20})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 21, 'R b2 2 M3 #5 6': 21, 'R M3 4 #5 6 b7': 20, 'R m3 M3 4 5 7': 20, 'R b2 m3 5 #5 7': 20, 'R 2 b5 5 b7 7': 20})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 21, 'R b2 2 M3 #5 6': 21, 'R M3 4 #5 6 b7': 21, 'R m3 M3 4 5 7': 20, 'R b2 m3 5 #5 7': 20, 'R 2 b5 5 b7 7': 20})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 21, 'R b2 2 M3 #5 6': 21, 'R M3 4 #5 6 b7': 21, 'R m3 M3 4 5 7': 21, 'R b2 m3 5 #5 7': 20, 'R 2 b5 5 b7 7': 20})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 21, 'R b2 2 M3 #5 6': 21, 'R M3 4 #5 6 b7': 21, 'R m3 M3 4 5 7': 21, 'R b2 m3 5 #5 7': 21, 'R 2 b5 5 b7 7': 20})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 21, 'R b2 2 M3 #5 6': 21, 'R M3 4 #5 6 b7': 21, 'R m3 M3 4 5 7': 21, 'R b2 m3 5 #5 7': 21, 'R 2 b5 5 b7 7': 21})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      G♯ -> A♭ = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 22, 'R b2 2 M3 #5 6': 21, 'R M3 4 #5 6 b7': 21, 'R m3 M3 4 5 7': 21, 'R b2 m3 5 #5 7': 21, 'R 2 b5 5 b7 7': 21})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 22, 'R b2 2 M3 #5 6': 22, 'R M3 4 #5 6 b7': 21, 'R m3 M3 4 5 7': 21, 'R b2 m3 5 #5 7': 21, 'R 2 b5 5 b7 7': 21})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 22, 'R b2 2 M3 #5 6': 22, 'R M3 4 #5 6 b7': 22, 'R m3 M3 4 5 7': 21, 'R b2 m3 5 #5 7': 21, 'R 2 b5 5 b7 7': 21})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 22, 'R b2 2 M3 #5 6': 22, 'R M3 4 #5 6 b7': 22, 'R m3 M3 4 5 7': 22, 'R b2 m3 5 #5 7': 21, 'R 2 b5 5 b7 7': 21})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 22, 'R b2 2 M3 #5 6': 22, 'R M3 4 #5 6 b7': 22, 'R m3 M3 4 5 7': 22, 'R b2 m3 5 #5 7': 22, 'R 2 b5 5 b7 7': 21})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 22, 'R b2 2 M3 #5 6': 22, 'R M3 4 #5 6 b7': 22, 'R m3 M3 4 5 7': 22, 'R b2 m3 5 #5 7': 22, 'R 2 b5 5 b7 7': 22})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      E  -> E  = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 23, 'R b2 2 M3 #5 6': 22, 'R M3 4 #5 6 b7': 22, 'R m3 M3 4 5 7': 22, 'R b2 m3 5 #5 7': 22, 'R 2 b5 5 b7 7': 22})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 23, 'R b2 2 M3 #5 6': 23, 'R M3 4 #5 6 b7': 22, 'R m3 M3 4 5 7': 22, 'R b2 m3 5 #5 7': 22, 'R 2 b5 5 b7 7': 22})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 23, 'R b2 2 M3 #5 6': 23, 'R M3 4 #5 6 b7': 23, 'R m3 M3 4 5 7': 22, 'R b2 m3 5 #5 7': 22, 'R 2 b5 5 b7 7': 22})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 23, 'R b2 2 M3 #5 6': 23, 'R M3 4 #5 6 b7': 23, 'R m3 M3 4 5 7': 23, 'R b2 m3 5 #5 7': 22, 'R 2 b5 5 b7 7': 22})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 23, 'R b2 2 M3 #5 6': 23, 'R M3 4 #5 6 b7': 23, 'R m3 M3 4 5 7': 23, 'R b2 m3 5 #5 7': 23, 'R 2 b5 5 b7 7': 22})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 23, 'R b2 2 M3 #5 6': 23, 'R M3 4 #5 6 b7': 23, 'R m3 M3 4 5 7': 23, 'R b2 m3 5 #5 7': 23, 'R 2 b5 5 b7 7': 23})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-2551 tabsC flipFlatSharp      C  -> C  = 
-  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 24, 'R b2 2 M3 #5 6': 23, 'R M3 4 #5 6 b7': 23, 'R m3 M3 4 5 7': 23, 'R b2 m3 5 #5 7': 23, 'R 2 b5 5 b7 7': 23})
-  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 24, 'R b2 2 M3 #5 6': 24, 'R M3 4 #5 6 b7': 23, 'R m3 M3 4 5 7': 23, 'R b2 m3 5 #5 7': 23, 'R 2 b5 5 b7 7': 23})
-  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 24, 'R b2 2 M3 #5 6': 24, 'R M3 4 #5 6 b7': 24, 'R m3 M3 4 5 7': 23, 'R b2 m3 5 #5 7': 23, 'R 2 b5 5 b7 7': 23})
-  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 24, 'R b2 2 M3 #5 6': 24, 'R M3 4 #5 6 b7': 24, 'R m3 M3 4 5 7': 24, 'R b2 m3 5 #5 7': 23, 'R 2 b5 5 b7 7': 23})
-  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 24, 'R b2 2 M3 #5 6': 24, 'R M3 4 #5 6 b7': 24, 'R m3 M3 4 5 7': 24, 'R b2 m3 5 #5 7': 24, 'R 2 b5 5 b7 7': 23})
-  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 24, 'R b2 2 M3 #5 6': 24, 'R M3 4 #5 6 b7': 24, 'R m3 M3 4 5 7': 24, 'R b2 m3 5 #5 7': 24, 'R 2 b5 5 b7 7': 24})
-1857 tabsC getImap            -1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
-1857 tabsC getImap            -1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
-1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 6-11] name='' chunks=[] chords=<------>6
-1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 6-11] name='' chunks=[] chords=<------>6
-1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
- 255 notes dumpNic            [1:D♭:3,8:A♭:2,4:E :2,0:C :2,6:G♭:1,5:F :1]
- 256 notes dumpNic            [1:C♯:3,8:G♯:2,4:E :2,0:C :2,6:F♯:1,5:F :1]
- 257 notes dumpNic            [None,None,None,0:C :2,5:F :1,None,None]
- 258 notes dumpNic            [None,None,None,4:E :2,None,6:G♭:1,1:D♭:3]
-2557 tabsC flipFlatSharp       0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2558 tabsC flipFlatSharp      END @ F t1=1 SHRP => t2=-1 FLAT
-2015 tabsC on_key_press       END <    .kbk=F       > <.symb=     102> <.symbStr=F               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2016 tabsC on_key_press       retv=True
-2021 tabsC on_key_release         <    .kbk=F       > <.symb=     102> <.symbStr=F               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2021 tabsC on_key_release         <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 0> <.modsStr=                >
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.INIT.png')
 1923 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 2015 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 2016 tabsC on_key_press       retv=True
 1923 tabsC on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 2015 tabsC on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 2016 tabsC on_key_press       retv=True
-1923 tabsC on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+1923 tabsC on_key_press       BGN <    .kbk=E       > <.symb=     101> <.symbStr=E               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2689 tabsC eraseTabs          BGN @^E np=1 nl=1 ns=3 nc=10 nt=6
+ 604 tabsC dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=10
+------
+----------
+2704 tabsC eraseTabs          END @^E np=1 nl=1 ns=3 nc=10 nt=6
+2015 tabsC on_key_press       END <    .kbk=E       > <.symb=     101> <.symbStr=E               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2016 tabsC on_key_press       retv=True
+2021 tabsC on_key_release         <    .kbk=E       > <.symb=     101> <.symbStr=E               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2021 tabsC on_key_release         <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 2> <.modsStr=MOD_CTRL        >
+2021 tabsC on_key_release         <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 0> <.modsStr=                >
+1923 tabsC on_key_press       BGN <    .kbk=_8      > <.symb=      56> <.symbStr=_8              > <.mods= 0> <.modsStr=                >
+2015 tabsC on_key_press       END <    .kbk=_8      > <.symb=      56> <.symbStr=_8              > <.mods= 0> <.modsStr=                >
+2016 tabsC on_key_press       retv=True
+2025 tabsC on_text            BGN <    .kbk=8       > <.symb=      56> <.symbStr=_8              > <.mods= 0> <.modsStr=                > swapping=0
+1798 tabsC setTab             [1 1 1  1 6]   6   0  1] BGN onTxt text='8' rev=0 old=  5 cc=  5 p=0 l=0 c=0 t=5
+1800 tabsC setTab             [1 1 1  1 6]   6   0  1]     onTxt text='8' data='-' rev=0 old=  5 cc=  5
+1812 tabsC setDTNIK           [1 1 1  1 6]   6   0  1] BGN kk=1    text='8'
+1823 tabsC setData            BGN t=5 text='8' data='------'
+1826 tabsC setData            END t=5 text='8' data='-----8'
+  59 chords getChordName       leni=1 is Not a Chord ikey=R                     v=[0]
+1835 tabsC setNote            [1 1 1  1 6]   6   0  1] BGN     t=5 text='8' notes[5]=-
+1836 tabsC setNote             0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+1844 tabsC setNote            [1 1 1  1 6]   6   0  1] END     t=5 text='8' notes[5]=C
+1881 tabsC setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
+1888 tabsC setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='' chunks=[] chords=<------>6
+1893 tabsC setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='' chunks=[] chords=<------>6
+1883 tabsC setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
+1819 tabsC setDTNIK           [1 1 1  1 6]   6   0  1] END kk=1    text='8' len(imap)=6
+1803 tabsC setTab             [1 1 1  1 6]   6   0  1] END onTxt text='8' data='8' rev=0 old=  5 cc=  5
+2205 tabsC autoMove           [1 1 1  1 6]   6   0  1] BGN onTxt
+2212 tabsC autoMove           [1 1 1  1 6]   6   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+2185 tabsC move               [1 1 1  1 6]   6   0  1] BGN onTxt n=-1
+2192 tabsC _moveTo            [1 1 1  1 6]   6   0  1] BGN plct=[1 1    1 6]
+2202 tabsC _moveTo            [1 1 1  1 5]   5   0  1] END n=-1 i=[1 1 1 1 5] plct=[1 1    1 6] plct2=[1 1    1 5]
+1610 tabsC moveCursor         [1 1 1  1 5]   5   0  1] BGN ss=0 .cc=5
+1313 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1   48.00  383.68   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
+1614 tabsC moveCursor         [1 1 1  1 5]   5   0  1] END ss=0 .cc=4
+2189 tabsC move               [1 1 1  1 5]   5   0  1] END onTxt n=-1
+2219 tabsC autoMove           [1 1 1  1 5]   5   0  1] END onTxt
+2724 tabsC regSnap             10   1 Txt.8    onTxt
+2033 tabsC on_text            END <    .kbk=8       > <.symb=      56> <.symbStr=_8              > <.mods= 0> <.modsStr=                > swapping=0
+2732 tabsC snapshot           BASE_NAME='test' logId='None' snapId='None' typ='Txt.8' PNG='png'
+2733 tabsC snapshot           .fNameLid='test.10' snapName='test.10.1.Txt.8.png' on_draw((kwargs)='')
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.1.Txt.8.png
+2736 tabsC snapshot           snapName='test.10.1.Txt.8.png' on_draw((kwargs)='')
+1526 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1526 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x5  ) (0 1 3  ) 1 (   )  227   0] test.10
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
-2769 tabsC quit               BGN @^Q Error=0 save=0 .quitting=0
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+1542 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1542 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x5  ) (0 1 3  ) 1 (   )  227   0] test.10
+ 653 tabsC on_draw            [1 1 1  1 5]   5   0  1] .snapWhy='onTxt' .snapType='Txt.8' .snapId=2
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.1.Txt.8.png')
+2021 tabsC on_key_release         <    .kbk=_8      > <.symb=      56> <.symbStr=_8              > <.mods= 0> <.modsStr=                >
+1923 tabsC on_key_press       BGN <    .kbk=_7      > <.symb=      55> <.symbStr=_7              > <.mods= 0> <.modsStr=                >
+2015 tabsC on_key_press       END <    .kbk=_7      > <.symb=      55> <.symbStr=_7              > <.mods= 0> <.modsStr=                >
+2016 tabsC on_key_press       retv=True
+2025 tabsC on_text            BGN <    .kbk=7       > <.symb=      55> <.symbStr=_7              > <.mods= 0> <.modsStr=                > swapping=0
+1798 tabsC setTab             [1 1 1  1 5]   5   0  1] BGN onTxt text='7' rev=0 old=  4 cc=  4 p=0 l=0 c=0 t=4
+1800 tabsC setTab             [1 1 1  1 5]   5   0  1]     onTxt text='7' data='-' rev=0 old=  4 cc=  4
+1812 tabsC setDTNIK           [1 1 1  1 5]   5   0  1] BGN kk=1    text='7'
+1823 tabsC setData            BGN t=4 text='7' data='-----8'
+1826 tabsC setData            END t=4 text='7' data='----78'
+  59 chords getChordName       leni=2 is Not a Chord ikey=R M3                  v=[0 4]
+  59 chords getChordName       leni=2 is Not a Chord ikey=R #5                  v=[0 8]
+1835 tabsC setNote            [1 1 1  1 5]   5   0  1] BGN     t=4 text='7' notes[4]=-
+1836 tabsC setNote             0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+1844 tabsC setNote            [1 1 1  1 5]   5   0  1] END     t=4 text='7' notes[4]=E
+1881 tabsC setChord           [1 1 1  1 5]   5   0  1] BGN name='' chunks=[] len(imap)=6
+1888 tabsC setChordName       [1 1 1  1 5]   5   0  1] BGN [ 0- 5] name='' chunks=[] chords=<------>6
+1893 tabsC setChordName       [1 1 1  1 5]   5   0  1] END [ 0- 5] name='' chunks=[] chords=<------>6
+1883 tabsC setChord           [1 1 1  1 5]   5   0  1] END name='' chunks=[] len(imap)=6
+1819 tabsC setDTNIK           [1 1 1  1 5]   5   0  1] END kk=1    text='7' len(imap)=6
+1803 tabsC setTab             [1 1 1  1 5]   5   0  1] END onTxt text='7' data='7' rev=0 old=  4 cc=  4
+2205 tabsC autoMove           [1 1 1  1 5]   5   0  1] BGN onTxt
+2212 tabsC autoMove           [1 1 1  1 5]   5   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+2185 tabsC move               [1 1 1  1 5]   5   0  1] BGN onTxt n=-1
+2192 tabsC _moveTo            [1 1 1  1 5]   5   0  1] BGN plct=[1 1    1 5]
+2202 tabsC _moveTo            [1 1 1  1 4]   4   0  1] END n=-1 i=[1 1 1 1 4] plct=[1 1    1 5] plct2=[1 1    1 4]
+1610 tabsC moveCursor         [1 1 1  1 4]   4   0  1] BGN ss=0 .cc=4
+1313 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1   48.00  412.11   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
+1614 tabsC moveCursor         [1 1 1  1 4]   4   0  1] END ss=0 .cc=3
+2189 tabsC move               [1 1 1  1 4]   4   0  1] END onTxt n=-1
+2219 tabsC autoMove           [1 1 1  1 4]   4   0  1] END onTxt
+2724 tabsC regSnap             10   2 Txt.7    onTxt
+2033 tabsC on_text            END <    .kbk=7       > <.symb=      55> <.symbStr=_7              > <.mods= 0> <.modsStr=                > swapping=0
+2021 tabsC on_key_release         <    .kbk=_7      > <.symb=      55> <.symbStr=_7              > <.mods= 0> <.modsStr=                >
+2732 tabsC snapshot           BASE_NAME='test' logId='None' snapId='None' typ='Txt.7' PNG='png'
+2733 tabsC snapshot           .fNameLid='test.10' snapName='test.10.2.Txt.7.png' on_draw((kwargs)='')
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.2.Txt.7.png
+2736 tabsC snapshot           snapName='test.10.2.Txt.7.png' on_draw((kwargs)='')
+1526 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1526 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x4  ) (0 1 3  ) 1 (   )  227   0] test.10
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+1542 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1542 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x4  ) (0 1 3  ) 1 (   )  227   0] test.10
+ 653 tabsC on_draw            [1 1 1  1 4]   4   0  1] .snapWhy='onTxt' .snapType='Txt.7' .snapId=3
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.2.Txt.7.png')
+1923 tabsC on_key_press       BGN <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
+2015 tabsC on_key_press       END <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
+2016 tabsC on_key_press       retv=True
+2025 tabsC on_text            BGN <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
+1798 tabsC setTab             [1 1 1  1 4]   4   0  1] BGN onTxt text='6' rev=0 old=  3 cc=  3 p=0 l=0 c=0 t=3
+1800 tabsC setTab             [1 1 1  1 4]   4   0  1]     onTxt text='6' data='-' rev=0 old=  3 cc=  3
+1812 tabsC setDTNIK           [1 1 1  1 4]   4   0  1] BGN kk=1    text='6'
+1823 tabsC setData            BGN t=3 text='6' data='----78'
+1826 tabsC setData            END t=3 text='6' data='---678'
+1835 tabsC setNote            [1 1 1  1 4]   4   0  1] BGN     t=3 text='6' notes[3]=-
+1836 tabsC setNote             0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+1844 tabsC setNote            [1 1 1  1 4]   4   0  1] END     t=3 text='6' notes[3]=G♯
+1881 tabsC setChord           [1 1 1  1 4]   4   0  1] BGN name='+' chunks=[+] len(imap)=6
+1888 tabsC setChordName       [1 1 1  1 4]   4   0  1] BGN [ 0- 5] name='+' chunks=[+] chords=<------>6
+1893 tabsC setChordName       [1 1 1  1 4]   4   0  1] END [ 0- 5] name='+' chunks=[+] chords=<+----->6
+1883 tabsC setChord           [1 1 1  1 4]   4   0  1] END name='+' chunks=[+] len(imap)=6
+1819 tabsC setDTNIK           [1 1 1  1 4]   4   0  1] END kk=1    text='6' len(imap)=6
+1803 tabsC setTab             [1 1 1  1 4]   4   0  1] END onTxt text='6' data='6' rev=0 old=  3 cc=  3
+2205 tabsC autoMove           [1 1 1  1 4]   4   0  1] BGN onTxt
+2212 tabsC autoMove           [1 1 1  1 4]   4   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+2185 tabsC move               [1 1 1  1 4]   4   0  1] BGN onTxt n=-1
+2192 tabsC _moveTo            [1 1 1  1 4]   4   0  1] BGN plct=[1 1    1 4]
+2202 tabsC _moveTo            [1 1 1  1 3]   3   0  1] END n=-1 i=[1 1 1 1 3] plct=[1 1    1 4] plct2=[1 1    1 3]
+1610 tabsC moveCursor         [1 1 1  1 3]   3   0  1] BGN ss=0 .cc=3
+1313 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1   48.00  440.53   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
+1614 tabsC moveCursor         [1 1 1  1 3]   3   0  1] END ss=0 .cc=2
+2189 tabsC move               [1 1 1  1 3]   3   0  1] END onTxt n=-1
+2219 tabsC autoMove           [1 1 1  1 3]   3   0  1] END onTxt
+2724 tabsC regSnap             10   3 Txt.6    onTxt
+2033 tabsC on_text            END <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
+2732 tabsC snapshot           BASE_NAME='test' logId='None' snapId='None' typ='Txt.6' PNG='png'
+2733 tabsC snapshot           .fNameLid='test.10' snapName='test.10.3.Txt.6.png' on_draw((kwargs)='')
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.3.Txt.6.png
+2736 tabsC snapshot           snapName='test.10.3.Txt.6.png' on_draw((kwargs)='')
+1526 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1526 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x3  ) (0 1 3  ) 1 (   )  227   0] test.10
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+1542 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1542 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x3  ) (0 1 3  ) 1 (   )  227   0] test.10
+ 653 tabsC on_draw            [1 1 1  1 3]   3   0  1] .snapWhy='onTxt' .snapType='Txt.6' .snapId=4
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.3.Txt.6.png')
+2021 tabsC on_key_release         <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
+1923 tabsC on_key_press       BGN <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
+2015 tabsC on_key_press       END <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
+2016 tabsC on_key_press       retv=True
+2025 tabsC on_text            BGN <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
+1798 tabsC setTab             [1 1 1  1 3]   3   0  1] BGN onTxt text='6' rev=0 old=  2 cc=  2 p=0 l=0 c=0 t=2
+1800 tabsC setTab             [1 1 1  1 3]   3   0  1]     onTxt text='6' data='-' rev=0 old=  2 cc=  2
+1812 tabsC setDTNIK           [1 1 1  1 3]   3   0  1] BGN kk=1    text='6'
+1823 tabsC setData            BGN t=2 text='6' data='---678'
+1826 tabsC setData            END t=2 text='6' data='--6678'
+1835 tabsC setNote            [1 1 1  1 3]   3   0  1] BGN     t=2 text='6' notes[2]=-
+1836 tabsC setNote             0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+1844 tabsC setNote            [1 1 1  1 3]   3   0  1] END     t=2 text='6' notes[2]=C♯
+1881 tabsC setChord           [1 1 1  1 3]   3   0  1] BGN name='mM7/C' chunks=[m M 7 /C] len(imap)=6
+1888 tabsC setChordName       [1 1 1  1 3]   3   0  1] BGN [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<+----->6
+1893 tabsC setChordName       [1 1 1  1 3]   3   0  1] END [ 0- 5] name='mM7/C' chunks=[m M 7 /C] chords=<mM7/C-->7
+1883 tabsC setChord           [1 1 1  1 3]   3   0  1] END name='mM7/C' chunks=[m M 7 /C] len(imap)=6
+1819 tabsC setDTNIK           [1 1 1  1 3]   3   0  1] END kk=1    text='6' len(imap)=6
+1803 tabsC setTab             [1 1 1  1 3]   3   0  1] END onTxt text='6' data='6' rev=0 old=  2 cc=  2
+2205 tabsC autoMove           [1 1 1  1 3]   3   0  1] BGN onTxt
+2212 tabsC autoMove           [1 1 1  1 3]   3   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+2185 tabsC move               [1 1 1  1 3]   3   0  1] BGN onTxt n=-1
+2192 tabsC _moveTo            [1 1 1  1 3]   3   0  1] BGN plct=[1 1    1 3]
+2202 tabsC _moveTo            [1 1 1  1 2]   2   0  1] END n=-1 i=[1 1 1 1 2] plct=[1 1    1 3] plct2=[1 1    1 2]
+1610 tabsC moveCursor         [1 1 1  1 2]   2   0  1] BGN ss=0 .cc=2
+1313 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1   48.00  468.95   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
+1614 tabsC moveCursor         [1 1 1  1 2]   2   0  1] END ss=0 .cc=1
+2189 tabsC move               [1 1 1  1 2]   2   0  1] END onTxt n=-1
+2219 tabsC autoMove           [1 1 1  1 2]   2   0  1] END onTxt
+2724 tabsC regSnap             10   4 Txt.6    onTxt
+2033 tabsC on_text            END <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
+2021 tabsC on_key_release         <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
+1923 tabsC on_key_press       BGN <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
+2015 tabsC on_key_press       END <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
+2016 tabsC on_key_press       retv=True
+2025 tabsC on_text            BGN <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
+1798 tabsC setTab             [1 1 1  1 2]   2   0  1] BGN onTxt text='6' rev=0 old=  1 cc=  1 p=0 l=0 c=0 t=1
+1800 tabsC setTab             [1 1 1  1 2]   2   0  1]     onTxt text='6' data='-' rev=0 old=  1 cc=  1
+1812 tabsC setDTNIK           [1 1 1  1 2]   2   0  1] BGN kk=1    text='6'
+1823 tabsC setData            BGN t=1 text='6' data='--6678'
+1826 tabsC setData            END t=1 text='6' data='-66678'
+1835 tabsC setNote            [1 1 1  1 2]   2   0  1] BGN     t=1 text='6' notes[1]=-
+1836 tabsC setNote             0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+1844 tabsC setNote            [1 1 1  1 2]   2   0  1] END     t=1 text='6' notes[1]=F
+1881 tabsC setChord           [1 1 1  1 2]   2   0  1] BGN name='M#9/C' chunks=[M #9 /C] len(imap)=6
+1888 tabsC setChordName       [1 1 1  1 2]   2   0  1] BGN [ 0- 5] name='M#9/C' chunks=[M #9 /C] chords=<mM7/C-->7
+1893 tabsC setChordName       [1 1 1  1 2]   2   0  1] END [ 0- 5] name='M#9/C' chunks=[M #9 /C] chords=<M#9/C--->8
+1883 tabsC setChord           [1 1 1  1 2]   2   0  1] END name='M#9/C' chunks=[M #9 /C] len(imap)=6
+1819 tabsC setDTNIK           [1 1 1  1 2]   2   0  1] END kk=1    text='6' len(imap)=6
+1803 tabsC setTab             [1 1 1  1 2]   2   0  1] END onTxt text='6' data='6' rev=0 old=  1 cc=  1
+2205 tabsC autoMove           [1 1 1  1 2]   2   0  1] BGN onTxt
+2212 tabsC autoMove           [1 1 1  1 2]   2   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+2185 tabsC move               [1 1 1  1 2]   2   0  1] BGN onTxt n=-1
+2192 tabsC _moveTo            [1 1 1  1 2]   2   0  1] BGN plct=[1 1    1 2]
+2202 tabsC _moveTo            [1 1 1  1 1]   1   0  1] END n=-1 i=[1 1 1 1 1] plct=[1 1    1 2] plct2=[1 1    1 1]
+1610 tabsC moveCursor         [1 1 1  1 1]   1   0  1] BGN ss=0 .cc=1
+1313 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=1
+   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1   48.00  497.37   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
+1614 tabsC moveCursor         [1 1 1  1 1]   1   0  1] END ss=0 .cc=0
+2189 tabsC move               [1 1 1  1 1]   1   0  1] END onTxt n=-1
+2219 tabsC autoMove           [1 1 1  1 1]   1   0  1] END onTxt
+2724 tabsC regSnap             10   4 Txt.6    onTxt
+2033 tabsC on_text            END <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
+2021 tabsC on_key_release         <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
+2732 tabsC snapshot           BASE_NAME='test' logId='None' snapId='None' typ='Txt.6' PNG='png'
+2733 tabsC snapshot           .fNameLid='test.10' snapName='test.10.4.Txt.6.png' on_draw((kwargs)='')
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.4.Txt.6.png
+2736 tabsC snapshot           snapName='test.10.4.Txt.6.png' on_draw((kwargs)='')
+1526 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1526 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x1  ) (0 1 3  ) 1 (   )  227   0] test.10
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+1542 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1542 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x1  ) (0 1 3  ) 1 (   )  227   0] test.10
+ 653 tabsC on_draw            [1 1 1  1 1]   1   0  1] .snapWhy='onTxt' .snapType='Txt.6' .snapId=5
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.4.Txt.6.png')
+1923 tabsC on_key_press       BGN <    .kbk=_2      > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                >
+2015 tabsC on_key_press       END <    .kbk=_2      > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                >
+2016 tabsC on_key_press       retv=True
+2025 tabsC on_text            BGN <    .kbk=2       > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                > swapping=0
+1798 tabsC setTab             [1 1 1  1 1]   1   0  1] BGN onTxt text='2' rev=0 old=  0 cc=  0 p=0 l=0 c=0 t=0
+1800 tabsC setTab             [1 1 1  1 1]   1   0  1]     onTxt text='2' data='-' rev=0 old=  0 cc=  0
+1812 tabsC setDTNIK           [1 1 1  1 1]   1   0  1] BGN kk=1    text='2'
+1823 tabsC setData            BGN t=0 text='2' data='-66678'
+1826 tabsC setData            END t=0 text='2' data='266678'
+  75 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 6, 'R M3 4 #5 6 b7': 6, 'R m3 M3 4 5 7': 6, 'R b2 m3 5 #5 7': 6, 'R 2 b5 5 b7 7': 6})
+  75 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 6, 'R m3 M3 4 5 7': 6, 'R b2 m3 5 #5 7': 6, 'R 2 b5 5 b7 7': 6})
+  75 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 7, 'R m3 M3 4 5 7': 6, 'R b2 m3 5 #5 7': 6, 'R 2 b5 5 b7 7': 6})
+  75 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 7, 'R m3 M3 4 5 7': 7, 'R b2 m3 5 #5 7': 6, 'R 2 b5 5 b7 7': 6})
+  75 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 7, 'R m3 M3 4 5 7': 7, 'R b2 m3 5 #5 7': 7, 'R 2 b5 5 b7 7': 6})
+  75 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 7, 'R b2 2 M3 #5 6': 7, 'R M3 4 #5 6 b7': 7, 'R m3 M3 4 5 7': 7, 'R b2 m3 5 #5 7': 7, 'R 2 b5 5 b7 7': 7})
+1835 tabsC setNote            [1 1 1  1 1]   1   0  1] BGN     t=0 text='2' notes[0]=-
+1836 tabsC setNote             0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+1844 tabsC setNote            [1 1 1  1 1]   1   0  1] END     t=0 text='2' notes[0]=F♯
+1881 tabsC setChord           [1 1 1  1 1]   1   0  1] BGN name='' chunks=[] len(imap)=6
+1888 tabsC setChordName       [1 1 1  1 1]   1   0  1] BGN [ 0- 5] name='' chunks=[] chords=<M#9/C--->8
+1893 tabsC setChordName       [1 1 1  1 1]   1   0  1] END [ 0- 5] name='' chunks=[] chords=<------>6
+1883 tabsC setChord           [1 1 1  1 1]   1   0  1] END name='' chunks=[] len(imap)=6
+1819 tabsC setDTNIK           [1 1 1  1 1]   1   0  1] END kk=1    text='2' len(imap)=6
+1803 tabsC setTab             [1 1 1  1 1]   1   0  1] END onTxt text='2' data='2' rev=0 old=  0 cc=  0
+2205 tabsC autoMove           [1 1 1  1 1]   1   0  1] BGN onTxt
+2212 tabsC autoMove           [1 1 1  1 1]   1   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+2185 tabsC move               [1 1 1  1 1]   1   0  1] BGN onTxt n=11
+2192 tabsC _moveTo            [1 1 1  1 1]   1   0  1] BGN plct=[1 1    1 1]
+2202 tabsC _moveTo            [1 1 1  2 6]  12   6  2] END n=11 i=[1 1 1 2 6] plct=[1 1    1 1] plct2=[1 1    2 12]
+1610 tabsC moveCursor         [1 1 1  2 6]  12   6  2] BGN ss=0 .cc=0
+1313 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1  144.00  355.26   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
+1614 tabsC moveCursor         [1 1 1  2 6]  12   6  2] END ss=0 .cc=11
+2189 tabsC move               [1 1 1  2 6]  12   6  2] END onTxt n=11
+2219 tabsC autoMove           [1 1 1  2 6]  12   6  2] END onTxt
+2724 tabsC regSnap             10   5 Txt.2    onTxt
+2033 tabsC on_text            END <    .kbk=2       > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                > swapping=0
+2732 tabsC snapshot           BASE_NAME='test' logId='None' snapId='None' typ='Txt.2' PNG='png'
+2733 tabsC snapshot           .fNameLid='test.10' snapName='test.10.5.Txt.2.png' on_draw((kwargs)='')
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.5.Txt.2.png
+2736 tabsC snapshot           snapName='test.10.5.Txt.2.png' on_draw((kwargs)='')
+1526 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1526 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1526 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x2x6  ) (0 1 3  ) 1 (   )  227   0] test.10
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+1542 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.10
+1542 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.10
+1542 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x2x6  ) (0 1 3  ) 1 (   )  227   0] test.10
+ 653 tabsC on_draw            [1 1 1  2 6]  12   6  2] .snapWhy='onTxt' .snapType='Txt.2' .snapId=6
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.5.Txt.2.png')
+2021 tabsC on_key_release         <    .kbk=_2      > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                >
+1923 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2015 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2016 tabsC on_key_press       retv=True
+1923 tabsC on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+2768 tabsC quit               BGN @ Q Error=0 save=1 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
-  35 utl   dumpStack          10 tabsC      2770 quit                 .log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())   ;   .log(utl.QUIT, p=0, f=2)
-  35 utl   dumpStack           9 tabsC      1956 on_key_press         elif kbk == 'Q' and .isCtrlShift(mods):    .quit(          '@^Q', error=0, save=0)
+  35 utl   dumpStack          10 tabsC      2769 quit                 .log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())   ;   .log(utl.QUIT, p=0, f=2)
+  35 utl   dumpStack           9 tabsC      1957 on_key_press         elif kbk == 'Q' and .isCtrl(     mods):    .quit(          '@ Q', error=0, save=1)
   35 utl   dumpStack           8 event       422 dispatch_event       if getattr(, event_type)(*args):
   35 utl   dumpStack           7 __init__   1340 dispatch_event       super().dispatch_event(*args)
   35 utl   dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
@@ -1440,17 +1365,17 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.IN
   35 utl   dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
   35 utl   dumpStack           3 base        185 run                  platform_event_loop.step(timeout)
   35 utl   dumpStack           2 __init__    107 run                  event_loop.run(interval)
-  35 utl   dumpStack           1 tabsC      2970 main                 ret = pyglet.app.run()
-  35 utl   dumpStack           0 tabsC      2979 <module>             main()
+  35 utl   dumpStack           1 tabsC      2969 main                 ret = pyglet.app.run()
+  35 utl   dumpStack           0 tabsC      2978 <module>             main()
   36 utl   dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-2772 tabsC quit               J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
-2772 tabsC quit               J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
-2772 tabsC quit               LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] @^Q
-2772 tabsC quit               END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] @^Q
-  35 utl   dumpStack          16 utl         169 <module>             MAX_STACK_FRAME  = inspect.stack()
+2771 tabsC quit               J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @ Q
+2771 tabsC quit               J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @ Q
+2771 tabsC quit               LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] @ Q
+2771 tabsC quit               END[( 960x540 )( 1x1x10x6 )( 1x1x2x6  ) (0 1 3  ) 1 (   )  227   0] @ Q
+  35 utl   dumpStack          16 utl         186 <module>             MAX_STACK_FRAME  = inspect.stack()
   35 utl   dumpStack          15 <frozen importlib   241 _call_with_frames_removed 
   35 utl   dumpStack          14 <frozen importlib   883 exec_module          
   35 utl   dumpStack          13 <frozen importlib   688 _load_unlocked       
@@ -1469,7 +1394,7 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.IN
   35 utl   dumpStack           0 tabsC        17 <module>             from   tpkg            import chords  as chords
   36 utl   dumpStack          MAX_STACK_DEPTH= 0
  614 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 622 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 622 tabsC dumpStruct         [1 1 1  2 6]  12   6  2] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x2x6  )
  178 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  179 tabsC dumpArgs           [A]         .VARROW=1
  180 tabsC dumpArgs           [b]        .FRT_BRD=0
@@ -1482,7 +1407,7 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.IN
  187 tabsC dumpArgs           [F]      .FULL_SCRN=0
  188 tabsC dumpArgs           [g]        .ORD_GRP=1
  189 tabsC dumpArgs           [G]       .GEN_DATA=0
- 190 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
+ 190 tabsC dumpArgs           [i]               i=[1 1 1 2 6]
  191 tabsC dumpArgs           [J]      .DSP_J_LEV=4
  192 tabsC dumpArgs           [l]       .LONG_TXT=1
  193 tabsC dumpArgs           [L]             .LL=1
@@ -1500,10 +1425,10 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.IN
  205 tabsC dumpArgs           [w]           .XYVA=[0 0 0 0]
  206 tabsC dumpArgs           [x]           .EXIT=0
  207 tabsC dumpArgs           [Z]             .ZZ=[]
- 255 notes dumpNic            [1:D♭:3,8:A♭:2,4:E :2,0:C :2,6:G♭:1,5:F :1]
- 256 notes dumpNic            [1:C♯:3,8:G♯:2,4:E :2,0:C :2,6:F♯:1,5:F :1]
- 257 notes dumpNic            [None,None,None,0:C :2,5:F :1,None,None]
- 258 notes dumpNic            [None,None,None,4:E :2,None,6:G♭:1,1:D♭:3]
+ 255 notes dumpNic            [0:C :1,4:E :1,8:A♭:1,1:D♭:1,5:F :1,6:G♭:1]
+ 256 notes dumpNic            [0:C :1,4:E :1,8:G♯:1,1:C♯:1,5:F :1,6:F♯:1]
+ 257 notes dumpNic            [None,None,None,0:C :1,5:F :1,None,None]
+ 258 notes dumpNic            [None,None,None,4:E :1,None,6:G♭:1,1:D♭:1]
   14 notes dumpData           BGN D♭ D♮ D♯
   28 notes dumpTestA          BGN
      [  0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20  ]
@@ -1575,8 +1500,8 @@ b [B  B  7  M7 d8]
 [E♭ B♭ F  C  G  D  A     G  D  A  E  B  F♯ C♯]
 [3  a  5  0  7  2  9     7  2  9  4  b  6  1 ]
 KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note Ordering  Key Sig Table +15
--7 FLAT C♭ b [A  D  G  C  F  B♭ E♭] [9 2 7 0 5 a 3] [b 1 3 4 6 8 a] [B  D♭ E♭ E  G♭ A♭ B♭]
--6 FLAT G♭ 6 [A  D  G  C  F  B♭ F ] [9 2 7 0 5 a 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ B  D♭ E♭ F ]
+-7 FLAT C♭ b [A  D  G  C  F  B♭ E♭] [9 2 7 0 5 a 3] [b 1 3 4 6 8 a] [C♭ D♭ E♭ F♭ G♭ A♭ B♭]
+-6 FLAT G♭ 6 [A  D  G  C  F  B♭ F ] [9 2 7 0 5 a 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ C♭ D♭ E♭ F ]
 -5 FLAT D♭ 1 [A  D  G  C  F  C  F ] [9 2 7 0 5 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ]
 -4 FLAT A♭ 8 [A  D  G  C  G  C  F ] [9 2 7 0 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ]
 -3 FLAT E♭ 3 [A  D  G  D  G  C  F ] [9 2 7 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ]
@@ -1588,10 +1513,10 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +3 SHRP A  9 [G  D  A  D  A  E  B ] [7 2 9 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
 +4 SHRP E  4 [G  D  A  E  A  E  B ] [7 2 9 4 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯]
 +5 SHRP B  b [G  D  A  E  B  E  B ] [7 2 9 4 b 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
-+6 SHRP F♯ 6 [G  D  A  E  B  F♯ B ] [7 2 9 4 b 6 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ F ]
-+7 SHRP C♯ 1 [G  D  A  E  B  F♯ C♯] [7 2 9 4 b 6 1] [1 3 5 6 8 a 0] [C♯ D♯ F  F♯ G♯ A♯ C ]
++6 SHRP F♯ 6 [G  D  A  E  B  F♯ B ] [7 2 9 4 b 6 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ E♯]
++7 SHRP C♯ 1 [G  D  A  E  B  F♯ C♯] [7 2 9 4 b 6 1] [1 3 5 6 8 a 0] [C♯ D♯ E♯ F♯ G♯ A♯ B♯]
   21 notes dumpData           END D♭ D♮ D♯
-1748 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels @^Q
+1748 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels @ Q
    0t0   
 1
 1
@@ -1604,54 +1529,78 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 1111111111
 1
  614 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 639 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 639 tabsC dumpStruct         [1 1 1  2 6]  12   6  2] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x2x6  )
+ 665 tabsC saveDataFile       @ Q C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat
+C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat
  772 tabsC transposeData      BGN ( 1x1x10x6 ) dmp=1
  776 tabsC transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
--26678 266678 ------ ------ ------ ------ ------ ------ ------ ------
+266678 ------ ------ ------ ------ ------ ------ ------ ------ ------
 
--2-------- 26-------- 66-------- 66-------- 77-------- 88--------
+2--------- 6--------- 6--------- 6--------- 7--------- 8---------
  811 tabsC dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
 Page 1
 Colm Line 1    
  821 tabsC dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
  788 tabsC transposeData      END ( 1x1x6x10 ) dmp=1
- 138 chords dumpLimap            0 0 0 mM7/C        [m  M  7  /C]       [R R m3 5  7 ]     [b 3 7 0 0]   [C  E  G♯ C♯ C♯]   
- 138 chords dumpLimap            0 0 1 +4/C         [+  4  /C]          [R M3 4  4  #5]    [4 8 0 5 5]   [C  E  G♯ C♯ C♯]   
- 138 chords dumpLimap            0 0 2 +6/C         [+  6  /C]          [R M3 #5 6  6 ]    [8 0 4 9 9]   [C  E  G♯ C♯ C♯]   
- 138 chords dumpLimap            0 0 3 +b2          [+  b2]             [R b2 b2 M3 #5]    [0 4 8 1 1]   [C  E  G♯ C♯ C♯]   
+ 669 tabsC saveDataFile       n=[1 1 3 10 6] [1 1 6 10]
+writing 1st page
+writing 1st line
+writing 1st string 2---------
+writing 2nd string 6---------
+writing 3rd string 6---------
+writing 4th string 6---------
+writing 5th string 7---------
+writing 6th string 8---------
+ 682 tabsC saveDataFile       n=[1 1 3 10 6] [1 1 10 6] size=74
+ 772 tabsC transposeData      BGN ( 1x1x10x6 ) dmp=1
+ 776 tabsC transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
+266678 ------ ------ ------ ------ ------ ------ ------ ------ ------
+
+2--------- 6--------- 6--------- 6--------- 7--------- 8---------
+ 811 tabsC dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
+Page 1
+Colm Line 1    
+ 821 tabsC dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
+ 788 tabsC transposeData      END ( 1x1x6x10 ) dmp=1
+ 138 chords dumpLimap            0 0-1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
+ 138 chords dumpLimap            0 0-1              []                  [R b2 2  M3 #5 6 ] [8 0 4 9 1 2] [C  E  G♯ C♯ F  F♯]
+ 138 chords dumpLimap            0 0-1              []                  [R M3 4  #5 6  b7] [4 8 0 5 9 a] [C  E  G♯ C♯ F  F♯]
+ 138 chords dumpLimap            0 0-1              []                  [R m3 M3 4  5  7 ] [b 3 7 0 4 5] [C  E  G♯ C♯ F  F♯]
+ 138 chords dumpLimap            0 0-1              []                  [R b2 m3 5  #5 7 ] [7 b 3 8 0 1] [C  E  G♯ C♯ F  F♯]
+ 138 chords dumpLimap            0 0-1              []                  [R 2 b5 5  b7 7 ]  [6 a 2 7 b 0] [C  E  G♯ C♯ F  F♯]
  138 chords dumpLimap            1 0-1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [C  E  G♯ C♯ F  F♯]
  138 chords dumpLimap            1 0-1              []                  [R b2 2  M3 #5 6 ] [8 0 4 9 1 2] [C  E  G♯ C♯ F  F♯]
  138 chords dumpLimap            1 0-1              []                  [R M3 4  #5 6  b7] [4 8 0 5 9 a] [C  E  G♯ C♯ F  F♯]
  138 chords dumpLimap            1 0-1              []                  [R m3 M3 4  5  7 ] [b 3 7 0 4 5] [C  E  G♯ C♯ F  F♯]
  138 chords dumpLimap            1 0-1              []                  [R b2 m3 5  #5 7 ] [7 b 3 8 0 1] [C  E  G♯ C♯ F  F♯]
  138 chords dumpLimap            1 0-1              []                  [R 2 b5 5  b7 7 ]  [6 a 2 7 b 0] [C  E  G♯ C♯ F  F♯]
-  0 0 mM7/C        7m35RR       +4/C         M3#5R44      +6/C         #5RM366      +b2          RM3#5b2b2    
+  0 0              RM3#5b24b5                #5RM36b22                 M3#5R46b7                 7m35RM34                  57m3#5Rb2                 b5b7257R     
   1 0              RM3#5b24b5                #5RM36b22                 M3#5R46b7                 7m35RM34                  57m3#5Rb2                 b5b7257R     
-  0 0 mM7/C        b3700 +4/C         48055 +6/C         80499 +b2          04811 
+  0 0              048156             804912             48059a             b37045             7b3801             6a27b0
   1 0              048156             804912             48059a             b37045             7b3801             6a27b0
-  0 0 b3700  48055  80499  04811                  7m35RR       M3#5R44      #5RM366      RM3#5b2b2    
+  0 0 048156 804912 48059a b37045 7b3801 6a27b0   RM3#5b24b5   #5RM36b22    M3#5R46b7    7m35RM34     57m3#5Rb2    b5b7257R     
   1 0 048156 804912 48059a b37045 7b3801 6a27b0   RM3#5b24b5   #5RM36b22    M3#5R46b7    7m35RM34     57m3#5Rb2    b5b7257R     
-2780 tabsC quit               END @^Q Error=0 save=0 .quitting=1
+2779 tabsC quit               END @ Q Error=0 save=1 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-2797 tabsC cleanupCsvFile     Flush & Close C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
- 176 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 176 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
-2802 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
- 184 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 185 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
- 187 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv ###
-2805 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.9.csv
- 184 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 185 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.9.csv')
- 187 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.9.csv ###
- 176 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =test.cat     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
- 176 utl   getFilePath        baseName =Ctest        basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =Ctest.cat    filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Ctest.cat')
- 176 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =test._.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test._.cat')
+2796 tabsC cleanupCsvFile     Flush & Close C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
+ 193 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+ 193 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
+2801 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv ###
+2804 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.10.csv
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.10.csv')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.10.csv ###
+ 193 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.cat     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
+ 193 utl   getFilePath        baseName =Ctest        basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =Ctest.cat    filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Ctest.cat')
+ 193 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test._.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test._.cat')
  220 chords dumpOMAP           BGN len(.OMAP)=614 len(.umap)=6
  211 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=6
 dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
@@ -2301,33 +2250,33 @@ dumpUmap 'R m3 M3 4 5 7'   : (-1 [0 3 4 5 7 11] )
  276 chords _dumpOMAP          lm=620 catfile.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\cats\\test.cat' lr=0
  277 chords _dumpOMAP          END grand total 620 total    6 unordered    6 unnamed  len(r)=0
  226 chords dumpOMAP           END len(.OMAP)=620 len(.umap)=6
-2819 tabsC cleanupCatFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat to C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.9.cat
- 184 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
- 185 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.9.cat')
- 187 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.9.cat ###
- 184 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
- 185 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Ctest.cat')
- 187 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat C:\Users\Owner\Documents\GitHub\tabs\test\Ctest.cat ###
- 184 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
- 185 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test._.cat')
- 187 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat C:\Users\Owner\Documents\GitHub\tabs\test\cats\test._.cat ###
-2783 tabsC quit               Calling close(),2015 tabsC on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2818 tabsC cleanupCatFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat to C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.10.cat
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.10.cat')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.10.cat ###
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Ctest.cat')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat C:\Users\Owner\Documents\GitHub\tabs\test\Ctest.cat ###
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test._.cat')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat C:\Users\Owner\Documents\GitHub\tabs\test\cats\test._.cat ###
+2782 tabsC quit               Calling close(),2015 tabsC on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
 2016 tabsC on_key_press       retv=True
-2971 tabsC main               pyglet.app.run(): return=None
-2972 tabsC main               Thats all folks!
- 176 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
- 176 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 179 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
-2935 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.9.txt
-2937 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
- 184 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
- 185 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
- 187 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt ###
-2939 tabsC cleanupOutFiles    Flush & Close Txt File
-2935 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.9.log
-2937 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log
- 184 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
- 185 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
- 187 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log ###
-2939 tabsC cleanupOutFiles    Flush & Close Txt File
+2970 tabsC main               pyglet.app.run(): return=None
+2971 tabsC main               Thats all folks!
+ 193 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
+ 193 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
+2934 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.10.txt
+2936 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt ###
+2938 tabsC cleanupOutFiles    Flush & Close Txt File
+2934 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.10.log
+2936 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log ###
+2938 tabsC cleanupOutFiles    Flush & Close Txt File

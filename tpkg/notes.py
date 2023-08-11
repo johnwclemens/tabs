@@ -217,8 +217,8 @@ def fmtKSK(k, csv=0):
     t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
     s   = signed(k)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
     iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]    ;   ms = KSD[k][KMS]
-    ns  = [ Notes.name(j, t, 0) for j in jz ]
-#    ns  = [ Notes.name(j, t, 1 if abs(k) >= 5 else 0) for j in jz ]
+#   ns  = [ Notes.name(j, t, 0)                       for j in jz ] # 2 7 9 1 3 6 8 a
+    ns  = [ Notes.name(j, t, 1 if abs(k) >= 5 else 0) for j in jz ] #    0 4 5 b
     iz  = [ f'{i:x}' for i in iz ]
     jz  = [ f'{j:x}' for j in jz ]
     _ = [s, nt, f'{m:{w}}', f'{i:x}', fmtl(ms, w=w, d=d, s=n), fmtl(iz, d=d, s=n), fmtl(jz, d=d, s=n), fmtl(ns, w=w, d=d, s=n)]
@@ -229,7 +229,7 @@ def dumpKSH(csv=0):
     w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  v = W*v if v and Notes.TYPE==Notes.FLAT else Z
     hdrs = [ f'{y}{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]        ;  hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=ff)
     keys = sorted(KSD.keys())  ;  w = f'{u}{w}' ;   x = f'{w}x'
-    _  = utl.ns2signs(keys)    ;  _ = n.join(_) ;   slog(f'{v}{y}{_}', p=p, f=ff)    ;  slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=ff)
+    _  = utl.ns2signs(keys)    ;  _ = n.join(_) ;   slog(f'{v}{y}{_}', p=p, f=ff)    ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=ff)
     _  = [ KSD[k][KIM][KSK]    for k in keys ]  ;   slog(f'{v}{fmtl(_, w=x, d=d, s=m)}', p=p, f=ff)
     _  = [ KSD[k][KIM][KST]    for k in keys ]  ;   slog(f'{v}{fmtl(_, w=w, d=d, s=m)}', p=p, f=ff)   ;  y = Z if csv else W*2
     f  = [ KSD[M][KMS][f]      for f in range(len(KSD[M][KMS])-1, -1, -1) ]  ;  s = [ KSD[P][KMS][s]    for s in range(len(KSD[P][KMS])) ]
@@ -239,7 +239,7 @@ def dumpKSH(csv=0):
 ########################################################################################################################################################################################################
 def nic2KS(nic, dbg=0):
     if dbg: dumpKSV()   ;   dumpKSH()   ;   dumpNic(nic)
-    iz  = []          ;     t  = Notes.TYPE   ;   nt = Notes.TYPES[t]
+    iz  = []            ;   t  = Notes.TYPE   ;   nt = Notes.TYPES[t]
     ks  = KSD[M][KIS]    if t == Notes.FLAT else KSD[P][KIS]
     for i in ks:
         if i in nic:     iz.append(f'{i:x}')
