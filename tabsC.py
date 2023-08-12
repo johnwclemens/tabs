@@ -16,10 +16,10 @@ from   pyglet.text         import document, layout
 #import tpkg.notes    as     notes
 from   tpkg            import chords  as chords
 from   tpkg            import utl     as utl
-from   tpkg            import keys    as keys
+from   tpkg            import kysgs as keysigs
 from   tpkg            import notes   as notes
 from   tpkg.notes      import Notes   as Notes
-from   tpkg.strings    import Strings as Strings
+from   tpkg.strngs    import Strings as Strings
 
 P, L, S, C =  0,  1,  2,  3
 T, N, I, K =  4,  5,  6,  7
@@ -343,8 +343,8 @@ class Tabs(pyglet.window.Window):
         self.log(self.fAxy())   ;   self.log(self.fmtAxy())
         [ self.visib.append([]) for _ in range(len(JTEXTS)) ]
         self.createTniks()
-        self.ks = keys.nic2KS(self.nic)
-        self.log( keys.fmtKSK(self.ks[keys.KSK]), f=2)
+        self.ks = keysigs.nic2KS(self.nic)
+        self.log( keysigs.fmtKSK(self.ks[keysigs.KSK]), f=2)
         if self.TEST:  self.test1()  ;  self.test0(4)  ;  self.test0(5, q=self.EXIT)
     ####################################################################################################################################################################################################
     def test00(self):
@@ -622,7 +622,8 @@ class Tabs(pyglet.window.Window):
     def dumpStruct(self, why=Z, dbg=0, dbg2=0):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
         if dbg:      self.dumpArgs(f=2)
-        keys.dumpNic(self.nic)
+        keysigs.dumpData()
+        keysigs.dumpNic(self.nic)
         notes.dumpData()
         self.dumpFont(why)
         self.dumpVisible()
@@ -1834,13 +1835,13 @@ class Tabs(pyglet.window.Window):
     def setNote(self, text, cc, t, pos=1, dbg=1): #fix me
         old   = self.notes[cc].text
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={old}', pos=pos)
-        if dbg: self.log(keys.fmtKSK(self.ks[keys.KSK]))
+        if dbg: self.log(keysigs.fmtKSK(self.ks[keysigs.KSK]))
         ntext = self.sobj.tab2nn(text, t, self.nic) if self.sobj.isFret(text) else self.tblank
         if old in Notes.N2I:
             i  =  Notes.N2I[old]
             if  self.nic[i] <= 1:  del self.nic[i]
             else:                      self.nic[i] -= 1
-            keys.dumpNic(self.nic)
+            keysigs.dumpNic(self.nic)
         self.notes[cc].text = ntext
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
 #                utl.updNotes(11, 'B', 'Cb', Notes.TYPE, -1)
@@ -2553,8 +2554,8 @@ class Tabs(pyglet.window.Window):
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
-        keys.dumpNic(dict(self.nic))
-        self.log(keys.fmtKSK(self.ks[keys.KSK]), f=2)
+        keysigs.dumpNic(dict(self.nic))
+        self.log(keysigs.fmtKSK(self.ks[keysigs.KSK]), f=2)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
     def flipChordNames(self, how, hit=0, dbg=1):

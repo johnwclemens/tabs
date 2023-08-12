@@ -1,1 +1,1 @@
-__all__ = ["chords", "notes", "strings", "utl"]
+__all__ = ["chords", "notes", "strngs.py", "utl"]

@@ -111,11 +111,11 @@ class Notes(object): #      1          2       3          4          5          
 #               0             1                2             3          4             5                6                7           8
     F4S = { 'C' :f'B{S}',                             f'F{F}':'E' , 'F' :f'E{S}',                                             f'C{F}':'B'  } #,'C``' :'B#' } #[0   45     b]# 4/9
     S4F = { f'B{S}':'C' ,                             'E' :f'F{F}', f'E{S}':'F' ,                                             'B' :f'C{F}' } #,'B#``':'C'  } #[0   45     b]# 4/9
-    I2N, I4N           = [None, I2S, I2F],  [None, I4S, I4F]
-    IS0,  IS1,  IS2    = [2, 7, 9],  [1, 3, 6, 8, 10],  [0, 4, 5, 11]
-    FLAT, NTRL, SHRP   =    -1,      0,      1    # -1 ~= 2
+    I2N, I4N           = [None, I2S, I2F], [None, I4S, I4F]
+    IS0,  IS1,  IS2    = [2, 7, 9], [1, 3, 6, 8, 10], [0, 4, 5, 11]
+    FLAT, NTRL, SHRP   =  -1,   0,   1  # -1 ~= 2
     TYPES              = [ 'NTRL', 'SHRP', 'FLAT' ] # 0=NTRL, 1=SHRP, 2=FLAT=-1
-    TYPE, NTONES             = SHRP, len(V2I) # - 1
+    TYPE, NTONES       = SHRP, len(V2I) # - 1
 
     @staticmethod
     def index(n, o=0):         name = n[:len(n)-1] if o else n  ;  return Notes.N2I[name]
@@ -141,53 +141,8 @@ def updNotes(i, m, n, t, d=0):
         Notes.F2S[n] = m   ;   Notes.S2F[m] = n
 ########################################################################################################################################################################################################
 def initND():
-#    notes = Notes if ntype == Notes else NotesA
-#    return { i:[ notes.I2F[i], notes.I2S[i], notes.I2V[i], notes.I4V[i], notes.I6V[i] ] for i in range(notes.NTONES) }
-    return {i: [Notes.I2F[i], Notes.I2S[i], Notes.I2V[i], Notes.I4V[i], Notes.I6V[i]] for i in range(Notes.NTONES)}
-ND = initND()
-########################################################################################################################################################################################################
-FLATS  = [ f'{v}{n}' for n in range(11) for v in Notes.I4F.values() ][:MAX_FREQ_IDX]
-SHRPS  = [ f'{v}{n}' for n in range(11) for v in Notes.I4S.values() ][:MAX_FREQ_IDX]
+    return { i: [ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i], Notes.I4V[i], Notes.I6V[i] ] for i in range(Notes.NTONES) }
 
-def FREQ( index): return 440 * pow(pow(2, 1/Notes.NTONES), index - 57)
-def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
-
-FREQS   = [ FREQ( i) for i in range(MAX_FREQ_IDX) ]
-FREQS2  = [ FREQ2(i) for i in range(MAX_FREQ_IDX) ]
-########################################################################################################################################################################################################
-def Piano(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
-
-def dumpNF(csv=0):
-    w, d, m, n, f = (Z, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
-    slog('Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   p, q = -8, 88+1   ;   g, h = 1, nm+1
-    slog(f'Piano{n}{fmtl(list(range(p, q)),          w=w, d=d, s=m)}', p=0, f=f)
-    slog(f'Index{n}{fmtl(list(range(g, h)),          w=w, d=d, s=m)}', p=0, f=f)
-#   slog(f'Piano{n}{fmtl([ i for i in range(p, q) ], w=w, d=d, s=m)}', p=0, f=f)
-#   slog(f'Index{n}{fmtl([ i for i in range(g, h) ], w=w, d=d, s=m)}', p=0, f=f)
-    dumpFreqs(432, csv)    ;    dumpFreqs(440, csv)
-    dumpWaves(432, csv)    ;    dumpWaves(440, csv)
-    slog(f'Flats{n}{fmtl(list(FLATS),                w=w, d=d, s=m)}', p=0, f=f)
-    slog(f'Shrps{n}{fmtl(list(SHRPS),                w=w, d=d, s=m)}', p=0, f=f)
-
-def dumpFreqs(r=440, csv=0):
-    m, f = (Y, 3) if csv else (W, 1)
-    freqs = FREQS if r == 440 else FREQS2   ;   ref = '440A' if r == 440 else '432A'   ;   fs = []
-    for freq in freqs:
-        ft = fmtf(freq, 5)
-        fs.append(f'{ft}')
-    fs = m.join(fs)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] Hz'
-    slog(f'{ref}{fs}{sfx}', p=0, f=f)
-
-def dumpWaves(r=440, csv=0, v=340):
-    m, f = (Y, 3) if csv else (W, 1)       ;   cmpm = 100
-    freqs = FREQS if r == 440 else FREQS2   ;   ref = '440A' if r == 440 else '432A'   ;   ws = []
-    for freq in freqs:
-        w = cmpm * v/freq
-        wt = fmtf(w, 5)
-        ws.append(f'{wt}')
-    ws = m.join(ws)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] cm'
-    slog(f'{ref}{ws}{sfx}', p=0, f=f)
-########################################################################################################################################################################################################
 def dumpND(csv=0):
     w, d, m, f = (0, Z, Y, 3) if csv else (2, '[', W, 1)
     hdrs       = ['I', 'F', 'S', 'IV', 'mM', 'dA']
@@ -196,4 +151,45 @@ def dumpND(csv=0):
     for i, (k, v) in enumerate(ND.items()):
         slog(f'{i:x}{m}{fmtl(v, w=w, d=d, s=m)}', p=0, f=f)
 #    for i in range(len(ND)):   slog(f'{i:x}{m}{fmtl(ND[i], w=w, d=d, s=m)}', p=0, f=f)
+########################################################################################################################################################################################################
+ND = initND()
+
+FLATS  = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I4F.values() ][:MAX_FREQ_IDX]
+SHRPS  = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I4S.values() ][:MAX_FREQ_IDX]
+
+def FREQ1(index): return 440 * pow(pow(2, 1/Notes.NTONES), index - 57)
+def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
+def Piano(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
+
+FREQ1S = [ FREQ1(i) for i in range(MAX_FREQ_IDX) ]
+FREQ2S = [ FREQ2(i) for i in range(MAX_FREQ_IDX) ]
+########################################################################################################################################################################################################
+def dumpNF(csv=0):
+    w, d, m, n, f = (Z, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
+    slog('Note Frequencies in Hertz')  ;  nm = MAX_FREQ_IDX   ;   p, q = -8, 88+1   ;   g, h = 1, nm+1
+    slog(f'Piano{n}{fmtl(list(range(p, q)),          w=w, d=d, s=m)}', p=0, f=f)
+    slog(f'Index{n}{fmtl(list(range(g, h)),          w=w, d=d, s=m)}', p=0, f=f)
+    dumpFreqs(432, csv)    ;    dumpFreqs(440, csv)
+    dmpWvLens(432, csv)    ;    dmpWvLens(440, csv)
+    slog(f'Flats{n}{fmtl(list(FLATS),                w=w, d=d, s=m)}', p=0, f=f)
+    slog(f'Shrps{n}{fmtl(list(SHRPS),                w=w, d=d, s=m)}', p=0, f=f)
+
+def dumpFreqs(r=440, csv=0):
+    m, f = (Y, 3) if csv else (W, 1)
+    freqs = FREQ1S if r == 440 else FREQ2S   ;    ref = '440A' if r == 440 else '432A'   ;   fs = []
+    for freq in freqs:
+        ft = fmtf(freq, 5)
+        fs.append(f'{ft}')
+    fs = m.join(fs)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] Hz'
+    slog(f'{ref}{fs}{sfx}', p=0, f=f)
+
+def dmpWvLens(r=440, csv=0, v=340):
+    m, f = (Y, 3) if csv else (W, 1)         ;   cmpm = 100
+    freqs = FREQ1S if r == 440 else FREQ2S   ;    ref = '440A' if r == 440 else '432A'   ;   ws = []
+    for freq in freqs:
+        w = cmpm * v/freq
+        wt = fmtf(w, 5)
+        ws.append(f'{wt}')
+    ws = m.join(ws)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] cm'
+    slog(f'{ref}{ws}{sfx}', p=0, f=f)
 ########################################################################################################################################################################################################

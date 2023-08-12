@@ -9,6 +9,35 @@ W, Y, Z      = utl.W, utl.Y, utl.Z
 fmtl         = utl.fmtl
 signed       = utl.signed
 
+#KSD = {}
+#KIM, KIS, KMS, KJS, KNS = range(5)
+#KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
+#KSD = initKSD(t=-1)
+########################################################################################################################################################################################################
+#def getKSD(): return KSD
+
+def initKSD(ks, t):
+    nt = Notes.NTONES
+    if     t == -1:   i = 0  ;  j = 6   ;  s = M
+    else:             i = 0  ;  j = 10  ;  s = P
+    iz1 = [ (j + k * s) % nt for k in range(1, 1+abs(s)) ]
+    ms1 = [ Notes.name(j, t) for j in iz1 ]
+    iz2 = list(iz1)          ;         ms2 = list(ms1)
+    slog(f'{t=} {i=} {j=} {s=} {fmtl(iz2)=} {fmtl(ms2)=}', p=0)   ;   j += t
+    for  k in range(0, t + s, t):
+        ak = abs(k)
+        m  =   Notes.name(i, t, 1 if ak >= 5 else 0)
+        n  =   Notes.name(j, t, 1 if ak >= 5 else 0)
+        if ak >= 1:   ms2[ak-1] = n  ;  iz2[ak-1] = j   ;  ms = list(ms2)  ;  iz = list(iz2)
+        else:                                              ms = list(ms2)  ;  iz = list(iz2)
+        jz = Scales.majIs(i)    ;    im  = [i, m]
+        ns = [ Notes.name(j, t, 1 if ak >= 5 else 0) for j in jz ]
+        ks[k]  =  [ im, iz, ms, jz, ns ]
+        slog(fmtKSK(k, csv=1), p=0)
+        i  =   Notes.nextIndex(i, s)
+        j  =   Notes.nextIndex(j, s)
+    return ks
+########################################################################################################################################################################################################
 def dumpData(csv=0):
     slog(f'BGN')
     dumpKSH(csv)
@@ -27,13 +56,14 @@ def dmpKSVHdr(csv=0, t=0):
     fsn, fsi, ii, ino, kst = 'Flats/Shrps Naturals', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {signed(k)}'
     hdrs = ['KS', 'Type', 'N', f'{n}I', f'{n}{fsn:{c}}', f'{o}{fsi:{d}}', f'{o}{ii:{d}}', f'{n}{ino:{c}}', f'{n}{kst}']
     hdrs = m.join(hdrs)    ;    slog(hdrs, p=0, f=f)
-
+########################################################################################################################################################################################################
 def fmtKSK(k, csv=0):
     w, d, n = (0, Z, Y) if csv else (2, '[', W)
+#   KSD, KIM, KIS, KJS, KMS = self.KSD, self.KIM, self.KIS, self.KJS, self.KMS
     t   = -1 if k < 0 else 1 if k > 0 else 0    ;   nt = Notes.TYPES[t]
     s   = signed(k)     ;   im = KSD[k][KIM]    ;    i = im[0]      ;    m = im[1]
     iz  = KSD[k][KIS]   ;   jz = KSD[k][KJS]    ;   ms = KSD[k][KMS]
-#   ns  = [ Notes.name(j, t, 0)                       for j in jz ] # 2 7 9 1 3 6 8 a
+#       ns  = [ Notes.name(j, t, 0)                       for j in jz ] # 2 7 9 1 3 6 8 a
     ns  = [ Notes.name(j, t, 1 if abs(k) >= 5 else 0) for j in jz ] #    0 4 5 b
     iz  = [ f'{i:x}' for i in iz ]
     jz  = [ f'{j:x}' for j in jz ]
@@ -43,6 +73,7 @@ def fmtKSK(k, csv=0):
 def dumpKSH(csv=0):
     c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0   ;   f, k, s = 'Flats', 'N', 'Shrps'
     w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  v = W*v if v and Notes.TYPE==Notes.FLAT else Z
+#    KSD, KIM, KIS, KMS, KSK, KST = self.KSD, self.KIM, self.KIS, self.KMS, self.KSK, self.KST
     hdrs = [ f'{y}{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]        ;  hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=ff)
     keys = sorted(KSD.keys())  ;  w = f'{u}{w}' ;   x = f'{w}x'
     _  = utl.ns2signs(keys)    ;  _ = n.join(_) ;   slog(f'{v}{y}{_}', p=p, f=ff)    ;   slog(f'{v}{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=ff)
@@ -54,6 +85,7 @@ def dumpKSH(csv=0):
     fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{v}{fmtl(fs, w=w, d=d, s=m)}', p=p, f=ff)
 ########################################################################################################################################################################################################
 def nic2KS(nic, dbg=0):
+#    KSD, KIM, KIS, KMS, KSK, KST = self.KSD, self.KIM, self.KIS, self.KMS, self.KSK, self.KST
     if dbg: dumpKSV()   ;   dumpKSH()   ;   dumpNic(nic)
     iz  = []            ;   t  = Notes.TYPE   ;   nt = Notes.TYPES[t]
     ks  = KSD[M][KIS]    if t == Notes.FLAT else KSD[P][KIS]
@@ -68,35 +100,11 @@ def nic2KS(nic, dbg=0):
     return k, nt, n, i, ns, Scales.majIs(i)
 
 def dumpNic(nic): #fix me
+#    KSD, KIS = self.KSD, self.KIS
     slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" for i in nic.keys() ], s=Y)}')
     slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{nic[i]}" for i in nic.keys() ], s=Y)}')
     slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else None for i in KSD[M][KIS] ], s=Y)}')
     slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else None for i in KSD[P][KIS] ], s=Y)}')
-########################################################################################################################################################################################################
-def initKSD(ks, t):
-    if     t == -1:   i = 0  ;  j = 6   ;  s = M
-    else:             i = 0  ;  j = 10  ;  s = P
-    iz1 = [ (j + k * s) % Notes.NTONES for k in range(1, 1+abs(s)) ]
-    ms1 = []
-    for j in iz1:
-        name = Notes.name(j, t, 0)
-        ms1.append(name)
-#    ms1 = [ Notes.name(j, t)           for j in iz1 ]
-    iz2 = list(iz1)          ;         ms2 = list(ms1)
-    slog(f'{t=} {i=} {j=} {s=} {fmtl(iz2)=} {fmtl(ms2)=}', p=0)   ;   j += t
-    for  k in range(0, t + s, t):
-        ak = abs(k)
-        m  =   Notes.name(i, t, 1 if ak >= 5 else 0)
-        n  =   Notes.name(j, t, 1 if ak >= 5 else 0)
-        if ak >= 1:   ms2[ak-1] = n  ;  iz2[ak-1] = j   ;  ms = list(ms2)  ;  iz = list(iz2)
-        else:                                              ms = list(ms2)  ;  iz = list(iz2)
-        jz = Scales.majIs(i)    ;    im  = [i, m]
-        ns = [ Notes.name(j, t, 1 if ak >= 5 else 0) for j in jz ]
-        ks[k]  =  [ im, iz, ms, jz, ns ]
-        slog(fmtKSK(k, csv=1), p=0)
-        i  =   Notes.nextIndex(i, s)
-        j  =   Notes.nextIndex(j, s)
-    return ks
 ########################################################################################################################################################################################################
 KSD = {}
 KIM, KIS, KMS, KJS, KNS        = range(5)
@@ -106,3 +114,8 @@ KSD = initKSD(KSD, t=-1)
 KSD = initKSD(KSD, t= 1)
 dmpKSVHdr(csv=1,   t= 1)
 dumpKSH(  csv=1)
+
+# dmpKSVHdr(csv=1,   t=-1)
+# KSD = initKSD(t=-1)
+# dmpKSVHdr(csv=1,   t= 1)
+# dumpKSH(  csv=1)

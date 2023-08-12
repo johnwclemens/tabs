@@ -1,11 +1,9 @@
-from   collections import Counter
-#import tpkg.notes  as     notes
-#import tpkg.utl    as     utl
-#import tpkg.notes  as     Notes
-from   tpkg        import notes as notes
-from   tpkg        import keys  as keys
-from   tpkg.notes  import Notes as Notes
-from   tpkg        import utl   as utl
+from collections import Counter
+from tpkg       import utl    as utl
+from tpkg       import notes  as notes
+from tpkg.notes import Notes  as Notes
+from tpkg       import kysgs  as kysgs
+#from tpkg.kysgs import KySgs as KySgs
 
 F, N, S          = utl.F, utl.N, utl.S
 W, Y, Z          = utl.W, utl.Y, utl.Z
@@ -17,6 +15,9 @@ class Strings:
                'GUITAR_7_STD':    dict([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
               }
     def __init__(self, alias=None):
+#        self.ks = KySgs
+#        self.ksd = self.ks.getKSD()
+#        ksd = kysgs.KSD
         if alias is None: alias = 'GUITAR_6_STD'
         self.stringMap          = self.aliases[alias]
         self.stringKeys         = list(self.stringMap.keys())
@@ -51,14 +52,17 @@ class Strings:
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
-        if  nic is None:               nic = Counter() # dict(key:int, val:int) keys.py: 0-11 vals: count
+        if  nic is None:               nic = Counter() # dict(key:int, val:int) kysgs.py: 0-11 vals: count
         else:
             nic[j]    += 1
             if nic[j] == 1:
                 if j in (0, 4, 5, 11):
-                    ks = keys.nic2KS(nic)  ;  k = ks[keys.KSK]
+#                    ks = self.keys.nic2KS(nic=nic)
+#                    k  = self.ks[self.ks.KSK]
+#                    ks = kysgs.nic2KS(nic)
+                    k  = kysgs.KSK
                     if abs(k) >= 5:
-                        if dbg: slog(f'KSK[{k}]={keys.fmtKSK(k)}', f=2)
+                        if dbg: slog(f'KSK[{k}]={kysgs.fmtKSK(k)}', f=2)
                         if     j  == 11:     notes.updNotes(j, f'C{F}', 'B', Notes.TYPE, 0)
                         if     j  ==  5:     notes.updNotes(j, 'F', f'E{S}', Notes.TYPE, 0)
                         elif   j  ==  4:     notes.updNotes(j, f'F{F}', 'E', Notes.TYPE, 0)
