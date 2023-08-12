@@ -1,80 +1,80 @@
-C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2960 tabsC <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
+C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+2960 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2964 tabsC main               CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-2964 tabsC main               CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
-2965 tabsC main               LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
-2965 tabsC main               LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
-2966 tabsC main               TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-2966 tabsC main               TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
-2967 tabsC main               constructing Tabs object
-  43 tabsC __init__           .LOG_ID=0
-  44 tabsC __init__           BGN <class '__main__.Tabs'>
-2829 tabsC dumpGlobals        BASE_NAME = test
-2830 tabsC dumpGlobals        argv      = +30[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
-2831 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
-2832 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-  45 tabsC __init__           STFILT:
+2964 tabs  main               CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+2964 tabs  main               CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
+2965 tabs  main               LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
+2965 tabs  main               LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
+2966 tabs  main               TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+2966 tabs  main               TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
+2967 tabs  main               constructing Tabs object
+  43 tabs  __init__           .LOG_ID=0
+  44 tabs  __init__           BGN <class '__main__.Tabs'>
+2829 tabs  dumpGlobals        BASE_NAME = test
+2830 tabs  dumpGlobals        argv      = +30[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
+2831 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+2832 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+  45 tabs  __init__           STFILT:
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
  208 utl   getFileSeqName     fdir='logs' / fsfx='log'
  211 utl   getFileSeqName     fGlobArg='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log'
- 213 utl   getFileSeqName     LOG_ID=5
- 215 utl   getFileSeqName     name='test.5'
-  46 tabsC __init__           .LOG_ID=5 test.5
- 193 utl   getFilePath        baseName =test.5       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.5.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.5.cat')
-  47 tabsC __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.5.cat')
- 193 utl   getFilePath        baseName =test.5       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.5.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.5.csv')
-  48 tabsC __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.5.csv')
- 193 utl   getFilePath        baseName =test.5       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.5.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.5.log')
-  49 tabsC __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.5.log')
- 193 utl   getFilePath        baseName =test.5       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.5.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.5.txt')
-  50 tabsC __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.5.txt')
-  62 tabsC __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  78 tabsC __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [c:[]] [d:[0]] [p:[]] [s:[]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
- 179 tabsC dumpArgs           [a]      .AUTO_SAVE=0
- 180 tabsC dumpArgs           [A]         .VARROW=1
- 181 tabsC dumpArgs           [b]        .FRT_BRD=0
- 182 tabsC dumpArgs           [B]            .BGC=0
- 183 tabsC dumpArgs           [c]            .CAT=1
- 184 tabsC dumpArgs           [C]      .CHECKERED=0
- 185 tabsC dumpArgs           [d]       .DBG_TABT=0
- 186 tabsC dumpArgs           [e]      .EVENT_LOG=0
- 187 tabsC dumpArgs           [f]      .FILE_NAME='test'
- 188 tabsC dumpArgs           [F]      .FULL_SCRN=0
- 189 tabsC dumpArgs           [g]        .ORD_GRP=1
- 190 tabsC dumpArgs           [G]       .GEN_DATA=0
- 191 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
- 192 tabsC dumpArgs           [J]      .DSP_J_LEV=4
- 193 tabsC dumpArgs           [l]       .LONG_TXT=1
- 194 tabsC dumpArgs           [L]             .LL=1
- 195 tabsC dumpArgs           [M]      .MULTILINE=1
- 196 tabsC dumpArgs           [n]               n=[1 1 3 10 6]
- 197 tabsC dumpArgs           [o]           .OIDS=0
- 198 tabsC dumpArgs           [p]          .SNAPS=1
- 199 tabsC dumpArgs           [R]         .RESIZE=1
- 200 tabsC dumpArgs           [s]        .SPRITES=1
- 201 tabsC dumpArgs           [S]             .SS=[0 1 3]
- 202 tabsC dumpArgs           [t]           .TEST=0
- 203 tabsC dumpArgs           [u]         .SUBPIX=1
- 204 tabsC dumpArgs           [v]           .VRBY=0
- 205 tabsC dumpArgs           [V]          .VIEWS=0
- 206 tabsC dumpArgs           [w]           .XYVA=[0 0 0 0]
- 207 tabsC dumpArgs           [x]           .EXIT=0
- 208 tabsC dumpArgs           [Z]             .ZZ=[]
- 155 tabsC normi              before .i=[1, 1, 1, 1, 6] .n=[1, 1, 3, 10, 6]
- 157 tabsC normi              after  .i=[1, 1, 1, 1, 6] .n=[1, 1, 3, 10, 6]
- 175 tabsC geomFileName       Btest.1.1.3.10.6_CC.log
- 120 tabsC __init__           .LOG_GFN='Btest.1.1.3.10.6_CC.log'
- 175 tabsC geomFileName       Btest.1.1.3.10.6_CC.csv
- 121 tabsC __init__           .CSV_GFN='Btest.1.1.3.10.6_CC.csv'
- 175 tabsC geomFileName       Dtest.1.1._.10.6.dat
- 122 tabsC __init__           .DAT_GFN='Dtest.1.1._.10.6.dat'
- 175 tabsC geomFileName       Etest.1.1.3.10.6_CC.txt
- 123 tabsC __init__           .TXT_GFN='Etest.1.1.3.10.6_CC.txt'
+ 213 utl   getFileSeqName     LOG_ID=7
+ 215 utl   getFileSeqName     name='test.7'
+  46 tabs  __init__           .LOG_ID=7 test.7
+ 193 utl   getFilePath        baseName =test.7       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.7.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.7.cat')
+  47 tabs  __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.7.cat')
+ 193 utl   getFilePath        baseName =test.7       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.7.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.7.csv')
+  48 tabs  __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.7.csv')
+ 193 utl   getFilePath        baseName =test.7       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.7.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.7.log')
+  49 tabs  __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.7.log')
+ 193 utl   getFilePath        baseName =test.7       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.7.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.7.txt')
+  50 tabs  __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.7.txt')
+  62 tabs  __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+  78 tabs  __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [c:[]] [d:[0]] [p:[]] [s:[]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
+ 179 tabs  dumpArgs           [a]      .AUTO_SAVE=0
+ 180 tabs  dumpArgs           [A]         .VARROW=1
+ 181 tabs  dumpArgs           [b]        .FRT_BRD=0
+ 182 tabs  dumpArgs           [B]            .BGC=0
+ 183 tabs  dumpArgs           [c]            .CAT=1
+ 184 tabs  dumpArgs           [C]      .CHECKERED=0
+ 185 tabs  dumpArgs           [d]       .DBG_TABT=0
+ 186 tabs  dumpArgs           [e]      .EVENT_LOG=0
+ 187 tabs  dumpArgs           [f]      .FILE_NAME='test'
+ 188 tabs  dumpArgs           [F]      .FULL_SCRN=0
+ 189 tabs  dumpArgs           [g]        .ORD_GRP=1
+ 190 tabs  dumpArgs           [G]       .GEN_DATA=0
+ 191 tabs  dumpArgs           [i]               i=[1 1 1 1 6]
+ 192 tabs  dumpArgs           [J]      .DSP_J_LEV=4
+ 193 tabs  dumpArgs           [l]       .LONG_TXT=1
+ 194 tabs  dumpArgs           [L]             .LL=1
+ 195 tabs  dumpArgs           [M]      .MULTILINE=1
+ 196 tabs  dumpArgs           [n]               n=[1 1 3 10 6]
+ 197 tabs  dumpArgs           [o]           .OIDS=0
+ 198 tabs  dumpArgs           [p]          .SNAPS=1
+ 199 tabs  dumpArgs           [R]         .RESIZE=1
+ 200 tabs  dumpArgs           [s]        .SPRITES=1
+ 201 tabs  dumpArgs           [S]             .SS=[0 1 3]
+ 202 tabs  dumpArgs           [t]           .TEST=0
+ 203 tabs  dumpArgs           [u]         .SUBPIX=1
+ 204 tabs  dumpArgs           [v]           .VRBY=0
+ 205 tabs  dumpArgs           [V]          .VIEWS=0
+ 206 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
+ 207 tabs  dumpArgs           [x]           .EXIT=0
+ 208 tabs  dumpArgs           [Z]             .ZZ=[]
+ 155 tabs  normi              before .i=[1, 1, 1, 1, 6] .n=[1, 1, 3, 10, 6]
+ 157 tabs  normi              after  .i=[1, 1, 1, 1, 6] .n=[1, 1, 3, 10, 6]
+ 175 tabs  geomFileName       Btest.1.1.3.10.6_CC.log
+ 120 tabs  __init__           .LOG_GFN='Btest.1.1.3.10.6_CC.log'
+ 175 tabs  geomFileName       Btest.1.1.3.10.6_CC.csv
+ 121 tabs  __init__           .CSV_GFN='Btest.1.1.3.10.6_CC.csv'
+ 175 tabs  geomFileName       Dtest.1.1._.10.6.dat
+ 122 tabs  __init__           .DAT_GFN='Dtest.1.1._.10.6.dat'
+ 175 tabs  geomFileName       Etest.1.1.3.10.6_CC.txt
+ 123 tabs  __init__           .TXT_GFN='Etest.1.1.3.10.6_CC.txt'
   26 strngs __init__           stringMap   = [E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]
   27 strngs __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
   28 strngs __init__           stringNames =      EBGDAE
@@ -82,42 +82,42 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
   30 strngs __init__           stringCapo  =      000000
   31 strngs __init__           strLabel    =      STRING
   32 strngs __init__           cpoLabel    =       CAPO 
- 284 tabsC _initDataPath      dataName0='Dtest.1.1._.10.6.dat.asv'
- 285 tabsC _initDataPath      dataName1='Dtest.1.1._.10.6.dat'
- 286 tabsC _initDataPath      dataName2='Dtest.1.1._.10.6.dat'
+ 284 tabs  _initDataPath      dataName0='Dtest.1.1._.10.6.dat.asv'
+ 285 tabs  _initDataPath      dataName1='Dtest.1.1._.10.6.dat'
+ 286 tabs  _initDataPath      dataName2='Dtest.1.1._.10.6.dat'
 .dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat.asv')
 .dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
 .dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
- 300 tabsC _initWindowA       BGN (  -1x-1  )
- 300 tabsC _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001EE6B9365F0>
- 305 tabsC _initWindowA       screens[0] s.x=894  2160 (1280x720 )
- 305 tabsC _initWindowA       screens[1] s.x=0     0 (3840x2160)
- 306 tabsC _initWindowA       END (  -1x-1  ) .screenIdx=1
- 134 tabsC __init__           WxH=(  -1x-1  )
- 136 tabsC __init__           WxH=( 960x540 )
- 309 tabsC _initWindowB       BGN ( 960x540 )
- 327 tabsC _initGroups        [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15]
- 327 tabsC _initGroups          P  L  S  C  T  N  I  K  R  Q  H  V  Z  U  A  D  T 
- 327 tabsC _initGroups        [ 0  1  2  3  6  7  8  9  4  5 10 15 11 12 13 14]
- 331 tabsC _initGroups        g[0]=Group(order=0) p=None
- 331 tabsC _initGroups        g[1]=Group(order=1) p=None
- 331 tabsC _initGroups        g[2]=Group(order=2) p=None
- 331 tabsC _initGroups        g[3]=Group(order=3) p=None
- 331 tabsC _initGroups        g[4]=Group(order=4) p=None
- 331 tabsC _initGroups        g[5]=Group(order=5) p=None
- 331 tabsC _initGroups        g[6]=Group(order=6) p=None
- 331 tabsC _initGroups        g[7]=Group(order=7) p=None
- 331 tabsC _initGroups        g[8]=Group(order=8) p=None
- 331 tabsC _initGroups        g[9]=Group(order=9) p=None
- 331 tabsC _initGroups        g[10]=Group(order=10) p=None
- 331 tabsC _initGroups        g[11]=Group(order=11) p=None
- 331 tabsC _initGroups        g[12]=Group(order=12) p=None
- 331 tabsC _initGroups        g[13]=Group(order=13) p=None
- 331 tabsC _initGroups        g[14]=Group(order=14) p=None
- 331 tabsC _initGroups        g[15]=Group(order=15) p=None
- 313 tabsC _initWindowB       get_size=(960, 540)
- 319 tabsC _initWindowB       END ( 960x540 )
- 138 tabsC __init__           WxH=( 960x540 )
+ 300 tabs  _initWindowA       BGN (  -1x-1  )
+ 300 tabs  _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x0000011FE0E865F0>
+ 305 tabs  _initWindowA       screens[0] s.x=894  2160 (1280x720 )
+ 305 tabs  _initWindowA       screens[1] s.x=0     0 (3840x2160)
+ 306 tabs  _initWindowA       END (  -1x-1  ) .screenIdx=1
+ 134 tabs  __init__           WxH=(  -1x-1  )
+ 136 tabs  __init__           WxH=( 960x540 )
+ 309 tabs  _initWindowB       BGN ( 960x540 )
+ 327 tabs  _initGroups        [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15]
+ 327 tabs  _initGroups          P  L  S  C  T  N  I  K  R  Q  H  V  Z  U  A  D  T 
+ 327 tabs  _initGroups        [ 0  1  2  3  6  7  8  9  4  5 10 15 11 12 13 14]
+ 331 tabs  _initGroups        g[0]=Group(order=0) p=None
+ 331 tabs  _initGroups        g[1]=Group(order=1) p=None
+ 331 tabs  _initGroups        g[2]=Group(order=2) p=None
+ 331 tabs  _initGroups        g[3]=Group(order=3) p=None
+ 331 tabs  _initGroups        g[4]=Group(order=4) p=None
+ 331 tabs  _initGroups        g[5]=Group(order=5) p=None
+ 331 tabs  _initGroups        g[6]=Group(order=6) p=None
+ 331 tabs  _initGroups        g[7]=Group(order=7) p=None
+ 331 tabs  _initGroups        g[8]=Group(order=8) p=None
+ 331 tabs  _initGroups        g[9]=Group(order=9) p=None
+ 331 tabs  _initGroups        g[10]=Group(order=10) p=None
+ 331 tabs  _initGroups        g[11]=Group(order=11) p=None
+ 331 tabs  _initGroups        g[12]=Group(order=12) p=None
+ 331 tabs  _initGroups        g[13]=Group(order=13) p=None
+ 331 tabs  _initGroups        g[14]=Group(order=14) p=None
+ 331 tabs  _initGroups        g[15]=Group(order=15) p=None
+ 313 tabs  _initWindowB       get_size=(960, 540)
+ 319 tabs  _initWindowB       END ( 960x540 )
+ 138 tabs  __init__           WxH=( 960x540 )
 ax=C
 ay=C
 ax=center
@@ -126,18 +126,18 @@ ay=center
  0 1 0
  0 1 0 0
  0 1 0
- 211 tabsC _reinit            BGN
- 610 tabsC ntp                                  n=[1 1 3 10 6]
- 611 tabsC ntp                                Rev=[6 10 3 1 1]
- 612 tabsC ntp                            nRevPrd=[6 60 180 180 180]
- 613 tabsC ntp                         nRevPrdRev=[180 180 180 60 6]
- 615 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 218 tabsC _reinit            E= [ []  []  []  []  []  []  []  []  []  []  []  []  []  []  []  [] ] 
- 219 tabsC _reinit            J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
- 219 tabsC _reinit            J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
- 219 tabsC _reinit            LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
- 222 tabsC _reinit            [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- 605 tabsC dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=10
+ 211 tabs  _reinit            BGN
+ 610 tabs  ntp                                  n=[1 1 3 10 6]
+ 611 tabs  ntp                                Rev=[6 10 3 1 1]
+ 612 tabs  ntp                            nRevPrd=[6 60 180 180 180]
+ 613 tabs  ntp                         nRevPrdRev=[180 180 180 60 6]
+ 615 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 218 tabs  _reinit            E= [ []  []  []  []  []  []  []  []  []  []  []  []  []  []  []  [] ] 
+ 219 tabs  _reinit            J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
+ 219 tabs  _reinit            J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
+ 219 tabs  _reinit            LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
+ 222 tabs  _reinit            [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+ 605 tabs  dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=10
 ------
 ----------
  0  Page  [VLT  3 17] [ VLT 17 17] [ 26  13  52 255] [128  63 255 255]
@@ -156,15 +156,15 @@ ay=center
 13  UNum  [CL4  0  0] [ CL4 17 17] [  1   4   2   0] [ 31 127  63 255]
 14  ANam  [LIM  0  0] [ LIM 17 17] [  5   8   1   0] [160 255  31 255]
 15  DCpo  [GRY  0  0] [ GRY 17 17] [  8   8   8   0] [255 255 255 255]
- 284 tabsC _initDataPath      dataName0='Dtest.1.1._.10.6.dat.asv'
- 285 tabsC _initDataPath      dataName1='Dtest.1.1._.10.6.dat'
- 286 tabsC _initDataPath      dataName2='Dtest.1.1._.10.6.dat'
+ 284 tabs  _initDataPath      dataName0='Dtest.1.1._.10.6.dat.asv'
+ 285 tabs  _initDataPath      dataName1='Dtest.1.1._.10.6.dat'
+ 286 tabs  _initDataPath      dataName2='Dtest.1.1._.10.6.dat'
 .dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat.asv')
 .dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
 .dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
- 700 tabsC readDataFile       BGN n=[1 1 3 10 6]
- 707 tabsC readDataFile       C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat  74 bytes = 0.1 KB
- 708 tabsC readDataFile       Raw Data File BGN:
+ 700 tabs  readDataFile       BGN n=[1 1 3 10 6]
+ 707 tabs  readDataFile       C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat  74 bytes = 0.1 KB
+ 708 tabs  readDataFile       Raw Data File BGN:
 2---------
 6---------
 6---------
@@ -172,59 +172,59 @@ ay=center
 7---------
 8---------
 
- 722 tabsC readDataFile       Raw Data File END:
- 723 tabsC readDataFile       .fmtdl()='[1 1 6 10]' .fmtdt()="['list' 'list' 'list' 'str']"
- 733 tabsC assertDataFileSize dsize= 60 = nlines=  1 *     nr= 6 *   nt=10
- 734 tabsC assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
- 735 tabsC assertDataFileSize  size= 74 =  dsize= 60 +  crlfs= 14   ref=74
- 726 tabsC readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 tabs
- 727 tabsC readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 10 tabs per row
- 741 tabsC dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
+ 722 tabs  readDataFile       Raw Data File END:
+ 723 tabs  readDataFile       .fmtdl()='[1 1 6 10]' .fmtdt()="['list' 'list' 'list' 'str']"
+ 733 tabs  assertDataFileSize dsize= 60 = nlines=  1 *     nr= 6 *   nt=10
+ 734 tabs  assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
+ 735 tabs  assertDataFileSize  size= 74 =  dsize= 60 +  crlfs= 14   ref=74
+ 726 tabs  readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 tabs
+ 727 tabs  readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 10 tabs per row
+ 741 tabs  dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
 2--------- 6--------- 6--------- 6--------- 7--------- 8---------
 
- 746 tabsC dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
- 774 tabsC transposeData      BGN ( 1x1x6x10 ) dmp=1
- 778 tabsC transposeData      dl=[1 1 6 10] dt=['list' 'list' 'list' 'str']
+ 746 tabs  dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
+ 774 tabs  transposeData      BGN ( 1x1x6x10 ) dmp=1
+ 778 tabs  transposeData      dl=[1 1 6 10] dt=['list' 'list' 'list' 'str']
 2--------- 6--------- 6--------- 6--------- 7--------- 8---------
 
 266678 ------ ------ ------ ------ ------ ------ ------ ------ ------
- 813 tabsC dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt='Colm '
+ 813 tabs  dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt='Colm '
 Page 1
 Colm Line 1
- 823 tabsC dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
- 790 tabsC transposeData      END ( 1x1x10x6 ) dmp=1
+ 823 tabs  dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
+ 790 tabs  transposeData      END ( 1x1x10x6 ) dmp=1
  201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
  202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
  204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
- 272 tabsC _initData          [1 1 10 6]
- 273 tabsC _initData          Updating n[P] old='[1 1 3 10 6]' n=[1 1 3 10 6]
- 610 tabsC ntp                                  n=[1 1 3 10 6]
- 611 tabsC ntp                                Rev=[6 10 3 1 1]
- 612 tabsC ntp                            nRevPrd=[6 60 180 180 180]
- 613 tabsC ntp                         nRevPrdRev=[180 180 180 60 6]
- 615 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
-1728 tabsC calcFontSize       j=4 Tabl w=960.00 h=540.00 nc=10 nr=19 pw=96.0 ph=28.42105263157895 pix= 28.42 fs= 22.11
-1737 tabsC _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.778 fs=w*PNT_PER_PIX=22.105pt
-1738 tabsC _initFonts         h=28.421=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.778 fs=h*PNT_PER_PIX=22.105pt
-1750 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels 
+ 272 tabs  _initData          [1 1 10 6]
+ 273 tabs  _initData          Updating n[P] old='[1 1 3 10 6]' n=[1 1 3 10 6]
+ 610 tabs  ntp                                  n=[1 1 3 10 6]
+ 611 tabs  ntp                                Rev=[6 10 3 1 1]
+ 612 tabs  ntp                            nRevPrd=[6 60 180 180 180]
+ 613 tabs  ntp                         nRevPrdRev=[180 180 180 60 6]
+ 615 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+1728 tabs  calcFontSize       j=4 Tabl w=960.00 h=540.00 nc=10 nr=19 pw=96.0 ph=28.42105263157895 pix= 28.42 fs= 22.11
+1737 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.778 fs=w*PNT_PER_PIX=22.105pt
+1738 tabs  _initFonts         h=28.421=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.778 fs=h*PNT_PER_PIX=22.105pt
+1750 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels 
 labelTextA=[1  2  3  4  5  6  7  8  9  10]
 labelTextB=[1  2  3  4  5  6  7  8  9  1 ]
 texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
- 846 tabsC dumpLabelText       len(t)=10 len(t[0])=2
+ 846 tabs  dumpLabelText       len(t)=10 len(t[0])=2
  1   2   3   4   5   6   7   8   9  10  
                                      %  
  1   2   3   4   5   6   7   8   9   1  
- 339 tabsC _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1]
- 343 tabsC _initTniks         C C
- 343 tabsC _initTniks         center center
-1125 tabsC createTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1125 tabsC createTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1125 tabsC createTniks        LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1125 tabsC createTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )    0   0] New1
+ 339 tabs  _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1]
+ 343 tabs  _initTniks         C C
+ 343 tabs  _initTniks         center center
+1125 tabs  createTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1125 tabs  createTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1125 tabs  createTniks        LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1125 tabs  createTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )    0   0] New1
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
    1 New1  Page    1    0.000 0 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [ 26  13  52 255]1.000 1.000 1.000 C C  480  270 Group(order=0) None
-1037 tabsC geom               y=255.79 d=0.5 dn=1 d*py=135.00 d*ph=270.00 d*h=255.79 dn*ph_n_nr=28.42
+1037 tabs  geom               y=255.79 d=0.5 dn=1 d*py=135.00 d*ph=270.00 d*h=255.79 dn*ph_n_nr=28.42
    2 New1  Line    1    0.000 1 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  480.00  255.79  960.00  512.00            [ 52   6  52 225]1.000 1.000 1.000 C C  480  255 Group(order=1) None
    3 New1  RowL    1    0.000 4 V 1  1  0   0    0    0    0    0  1   0 0 0  0  0  0  0    3   3  480.00  526.01  960.00   28.00   1   0  1 [  2   1   8 255]1.000 1.000 1.000 C C  480   14 Group(order=4) None
    4 New1  QClm    1 1        5 V 1  1  0   0    0    0    0    0  1   1 0 0  0  0  0  0    4   4   48.00  526.01   96.00   28.00   1   0  1 [ 31 255 255 255][  1   8   8 255] C C    48    14 17.47 22.88 22.88 6.117 29.00 C,C   22  96 0 0 Lucida Console        
@@ -521,14 +521,14 @@ dumpUmap 'R m3 M3 4 5 7'   : (-1 [0 3 4 5 7 11] )
  226 New1  Kord   60 -        9 V 1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226  912.00   13.87   96.00   28.50  60  54 10 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 22.88 22.88 6.117 29.00 C,C   22  96 0 0 Lucida Console        
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1149 tabsC createTniks        J1[1  1  3  10    6    6    0    6  1  10 0 0  0  0  0  0  226 226] New1
-1149 tabsC createTniks        J2[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] New1
-1149 tabsC createTniks        LE[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] New1
-1149 tabsC createTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  226 226] New1
+1149 tabs  createTniks        J1[1  1  3  10    6    6    0    6  1  10 0 0  0  0  0  0  226 226] New1
+1149 tabs  createTniks        J2[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] New1
+1149 tabs  createTniks        LE[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] New1
+1149 tabs  createTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  226 226] New1
  227 New1  HCrs    1    0.000 10 V 1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227 227   48.00  355.21   96.00   29.00  60  54 10 [ 27 226 170 195]1.000 1.000 1.000 C C   48   14 Group(order=10) None
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- 623 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 623 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
   35 kysgs dumpData           BGN
         Flats         N         Shrps        
  -  -  -  -  -  -  -     +  +  +  +  +  +  +
@@ -622,7 +622,7 @@ I  F  S  IV mM dA
 a [B♭ A♯ b7 m7 A6]
 b [B  B  7  M7 d8]
   19 notes dumpData           END D♭ D♮ D♯
-1750 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels New1
+1750 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels New1
    2p2   11
    2l2   11
    6s6   111111
@@ -644,23 +644,23 @@ b [B  B  7  M7 d8]
 1
 1111111111
 1
- 641 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
- 347 tabsC _initTniks         +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-2726 tabsC regSnap              5   0 INIT     init
- 227 tabsC _reinit            [1 1 1  1 6]   6   0  1] END
+ 641 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 347 tabs  _initTniks         +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
+2726 tabs  regSnap              7   0 INIT     init
+ 227 tabs  _reinit            [1 1 1  1 6]   6   0  1] END
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
- 142 tabsC __init__           END <class '__main__.Tabs'>
-2969 tabsC main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
-2969 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
-2970 tabsC main               Call pyglet.app.run()
-1264 tabsC resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
-1264 tabsC resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
-1264 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] Upd.1
-1264 tabsC resizeTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] Upd.1
+ 142 tabs  __init__           END <class '__main__.Tabs'>
+2969 tabs  main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
+2969 tabs  main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
+2970 tabs  main               Call pyglet.app.run()
+1264 tabs  resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
+1264 tabs  resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
+1264 tabs  resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] Upd.1
+1264 tabs  resizeTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] Upd.1
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
    1 Upd.1 Page    1    0.000 0 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [ 26  13  52 255]1.000 1.000 1.000 C C  480  270 Group(order=0) None
-1037 tabsC geom               y=255.79 d=0.5 dn=1 d*py=135.00 d*ph=270.00 d*h=255.79 dn*ph_n_nr=28.42
+1037 tabs  geom               y=255.79 d=0.5 dn=1 d*py=135.00 d*ph=270.00 d*h=255.79 dn*ph_n_nr=28.42
    2 Upd.1 Line    1    0.000 1 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  480.00  255.79  960.00  511.58            [ 52   6  52 225]1.000 1.000 0.999 C C  480  255 Group(order=1) None
    3 Upd.1 RowL    1    0.000 4 V 1  1  0   0    0    0    0    0  1   0 0 0  0  0  0  0    3   3  480.00  525.79  960.00   28.42   1   0  1 [  2   1   8 255]1.000 1.000 1.015 C C  480   14 Group(order=4) None
    4 Upd.1 QClm    1 1        5 V 1  1  0   0    0    0    0    0  1   1 0 0  0  0  0  0    4   4   48.00  525.79   96.00   28.42   1   0  1 [  1   8   8 255][ 31 255 255 255] C C    48    14 17.47 22.88 22.88 6.117 29.00 C,C   22  96 0 1 Lucida Console        
@@ -888,15 +888,15 @@ b [B  B  7  M7 d8]
  226 Upd.1 Kord   60 -        9 V 1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226  912.00   14.21   96.00   28.42  54  48  9 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 22.88 22.88 6.117 29.00 C,C   22  96 0 0 Lucida Console        
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1288 tabsC resizeTniks        J1[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] Upd.1
-1288 tabsC resizeTniks        J2[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] Upd.1
-1288 tabsC resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227 226] Upd.1
-1288 tabsC resizeTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227 226] Upd.1
-1315 tabsC resizeTnik         H=10 j=10 i=0 .J2[H]=0
+1288 tabs  resizeTniks        J1[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] Upd.1
+1288 tabs  resizeTniks        J2[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] Upd.1
+1288 tabs  resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227 226] Upd.1
+1288 tabs  resizeTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227 226] Upd.1
+1315 tabs  resizeTnik         H=10 j=10 i=0 .J2[H]=0
  227 Upd.1 HCrs    1    0.000 10 V 1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227 227   48.00  355.26   96.00   28.42  54  48  9 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- 623 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 623 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
   35 kysgs dumpData           BGN
         Flats         N         Shrps        
  -  -  -  -  -  -  -     +  +  +  +  +  +  +
@@ -990,7 +990,7 @@ I  F  S  IV mM dA
 a [B♭ A♯ b7 m7 A6]
 b [B  B  7  M7 d8]
   19 notes dumpData           END D♭ D♮ D♯
-1750 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels Upd.1
+1750 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels Upd.1
    1p1   1
    1l1   1
    3s3   111
@@ -1012,52 +1012,48 @@ b [B  B  7  M7 d8]
 1
 1111111111
 1
- 641 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-2734 tabsC snapshot           BASE_NAME='test' logId='None' snapId='None' typ='INIT' PNG='png'
-2735 tabsC snapshot           .fNameLid='test.5' snapName='test.5.0.INIT.png' on_draw((kwargs)='')
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.5.0.INIT.png
-2738 tabsC snapshot           snapName='test.5.0.INIT.png' on_draw((kwargs)='')
- 175 tabsC geomFileName       Btest.1.1.3.10.6_CC.png
- 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.5.0.INIT.png')
+ 641 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+2734 tabs  snapshot           BASE_NAME='test' logId='None' snapId='None' typ='INIT' PNG='png'
+2735 tabs  snapshot           .fNameLid='test.7' snapName='test.7.0.INIT.png' on_draw((kwargs)='')
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.7.0.INIT.png
+2738 tabs  snapshot           snapName='test.7.0.INIT.png' on_draw((kwargs)='')
+ 175 tabs  geomFileName       Btest.1.1.3.10.6_CC.png
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.7.0.INIT.png')
  202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
- 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.5.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
- 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.5.0.INIT.png')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.7.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+ 201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.7.0.INIT.png')
  202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
- 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.5.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
-2746 tabsC snapshot           BASE_NAME='test' [1 1 3 10 6]
-2747 tabsC snapshot           snapName0='test.png' on_draw((kwargs)='')
-2748 tabsC snapshot           snapName2='Btest.1.1.3.10.6_CC.png' on_draw((kwargs)='')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.7.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
+2746 tabs  snapshot           BASE_NAME='test' [1 1 3 10 6]
+2747 tabs  snapshot           snapName0='test.png' on_draw((kwargs)='')
+2748 tabs  snapshot           snapName2='Btest.1.1.3.10.6_CC.png' on_draw((kwargs)='')
 snapshot snapPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
 snapshot snapPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
-1528 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.5
-1528 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.5
-1528 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.5
-1528 tabsC dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.5
+1528 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.7
+1528 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.7
+1528 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.7
+1528 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.7
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1544 tabsC dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.5
-1544 tabsC dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.5
-1544 tabsC dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.5
-1544 tabsC dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.5
- 655 tabsC on_draw            [1 1 1  1 6]   6   0  1] .snapWhy='init' .snapType='INIT' .snapId=1
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.5.0.INIT.png')
-1925 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2017 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2018 tabsC on_key_press       retv=True
-1925 tabsC on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
-2017 tabsC on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
-2018 tabsC on_key_press       retv=True
-2023 tabsC on_key_release         <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 2> <.modsStr=MOD_CTRL        >
-1925 tabsC on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
+1544 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.7
+1544 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.7
+1544 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.7
+1544 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.7
+ 655 tabs  on_draw            [1 1 1  1 6]   6   0  1] .snapWhy='init' .snapType='INIT' .snapId=1
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.7.0.INIT.png')
+1925 tabs  on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2017 tabs  on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+2018 tabs  on_key_press       retv=True
+1925 tabs  on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
-2770 tabsC quit               BGN @ Q Error=0 save=1 .quitting=0
+2770 tabs  quit               BGN @ Q Error=0 save=1 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
-  35 utl   dumpStack          10 tabsC      2771 quit                 .log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())   ;   .log(utl.QUIT, p=0, f=2)
-  35 utl   dumpStack           9 tabsC      1959 on_key_press         elif kbk == 'Q' and .isCtrl(     mods):    .quit(          '@ Q', error=0, save=1)
+  35 utl   dumpStack          10 tabs       2771 quit                 .log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())   ;   .log(utl.QUIT, p=0, f=2)
+  35 utl   dumpStack           9 tabs       1959 on_key_press         elif kbk == 'Q' and .isCtrl(     mods):    .quit(          '@ Q', error=0, save=1)
   35 utl   dumpStack           8 event       422 dispatch_event       if getattr(, event_type)(*args):
   35 utl   dumpStack           7 __init__   1340 dispatch_event       super().dispatch_event(*args)
   35 utl   dumpStack           6 __init__    819 _event_key           .dispatch_event(ev, symbol, modifiers)
@@ -1065,16 +1061,16 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.5.0.IN
   35 utl   dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
   35 utl   dumpStack           3 base        185 run                  platform_event_loop.step(timeout)
   35 utl   dumpStack           2 __init__    107 run                  event_loop.run(interval)
-  35 utl   dumpStack           1 tabsC      2971 main                 ret = pyglet.app.run()
-  35 utl   dumpStack           0 tabsC      2980 <module>             main()
+  35 utl   dumpStack           1 tabs       2971 main                 ret = pyglet.app.run()
+  35 utl   dumpStack           0 tabs       2980 <module>             main()
   36 utl   dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-2773 tabsC quit               J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @ Q
-2773 tabsC quit               J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @ Q
-2773 tabsC quit               LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] @ Q
-2773 tabsC quit               END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] @ Q
+2773 tabs  quit               J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @ Q
+2773 tabs  quit               J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @ Q
+2773 tabs  quit               LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] @ Q
+2773 tabs  quit               END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] @ Q
   35 utl   dumpStack          16 utl         186 <module>             MAX_STACK_FRAME  = inspect.stack()
   35 utl   dumpStack          15 <frozen importlib   241 _call_with_frames_removed 
   35 utl   dumpStack          14 <frozen importlib   883 exec_module          
@@ -1091,40 +1087,40 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.5.0.IN
   35 utl   dumpStack           3 <frozen importlib  1027 _find_and_load       
   35 utl   dumpStack           2 <frozen importlib   241 _call_with_frames_removed 
   35 utl   dumpStack           1 <frozen importlib  1078 _handle_fromlist     
-  35 utl   dumpStack           0 tabsC        17 <module>             from   tpkg            import chords  as chords
+  35 utl   dumpStack           0 tabs         17 <module>             from   tpkg            import chords  as chords
   36 utl   dumpStack          MAX_STACK_DEPTH= 0
- 615 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 623 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
- 179 tabsC dumpArgs           [a]      .AUTO_SAVE=0
- 180 tabsC dumpArgs           [A]         .VARROW=1
- 181 tabsC dumpArgs           [b]        .FRT_BRD=0
- 182 tabsC dumpArgs           [B]            .BGC=0
- 183 tabsC dumpArgs           [c]            .CAT=1
- 184 tabsC dumpArgs           [C]      .CHECKERED=0
- 185 tabsC dumpArgs           [d]       .DBG_TABT=0
- 186 tabsC dumpArgs           [e]      .EVENT_LOG=0
- 187 tabsC dumpArgs           [f]      .FILE_NAME='test'
- 188 tabsC dumpArgs           [F]      .FULL_SCRN=0
- 189 tabsC dumpArgs           [g]        .ORD_GRP=1
- 190 tabsC dumpArgs           [G]       .GEN_DATA=0
- 191 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
- 192 tabsC dumpArgs           [J]      .DSP_J_LEV=4
- 193 tabsC dumpArgs           [l]       .LONG_TXT=1
- 194 tabsC dumpArgs           [L]             .LL=1
- 195 tabsC dumpArgs           [M]      .MULTILINE=1
- 196 tabsC dumpArgs           [n]               n=[1 1 3 10 6]
- 197 tabsC dumpArgs           [o]           .OIDS=0
- 198 tabsC dumpArgs           [p]          .SNAPS=1
- 199 tabsC dumpArgs           [R]         .RESIZE=1
- 200 tabsC dumpArgs           [s]        .SPRITES=1
- 201 tabsC dumpArgs           [S]             .SS=[0 1 3]
- 202 tabsC dumpArgs           [t]           .TEST=0
- 203 tabsC dumpArgs           [u]         .SUBPIX=1
- 204 tabsC dumpArgs           [v]           .VRBY=0
- 205 tabsC dumpArgs           [V]          .VIEWS=0
- 206 tabsC dumpArgs           [w]           .XYVA=[0 0 0 0]
- 207 tabsC dumpArgs           [x]           .EXIT=0
- 208 tabsC dumpArgs           [Z]             .ZZ=[]
+ 615 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 623 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 179 tabs  dumpArgs           [a]      .AUTO_SAVE=0
+ 180 tabs  dumpArgs           [A]         .VARROW=1
+ 181 tabs  dumpArgs           [b]        .FRT_BRD=0
+ 182 tabs  dumpArgs           [B]            .BGC=0
+ 183 tabs  dumpArgs           [c]            .CAT=1
+ 184 tabs  dumpArgs           [C]      .CHECKERED=0
+ 185 tabs  dumpArgs           [d]       .DBG_TABT=0
+ 186 tabs  dumpArgs           [e]      .EVENT_LOG=0
+ 187 tabs  dumpArgs           [f]      .FILE_NAME='test'
+ 188 tabs  dumpArgs           [F]      .FULL_SCRN=0
+ 189 tabs  dumpArgs           [g]        .ORD_GRP=1
+ 190 tabs  dumpArgs           [G]       .GEN_DATA=0
+ 191 tabs  dumpArgs           [i]               i=[1 1 1 1 6]
+ 192 tabs  dumpArgs           [J]      .DSP_J_LEV=4
+ 193 tabs  dumpArgs           [l]       .LONG_TXT=1
+ 194 tabs  dumpArgs           [L]             .LL=1
+ 195 tabs  dumpArgs           [M]      .MULTILINE=1
+ 196 tabs  dumpArgs           [n]               n=[1 1 3 10 6]
+ 197 tabs  dumpArgs           [o]           .OIDS=0
+ 198 tabs  dumpArgs           [p]          .SNAPS=1
+ 199 tabs  dumpArgs           [R]         .RESIZE=1
+ 200 tabs  dumpArgs           [s]        .SPRITES=1
+ 201 tabs  dumpArgs           [S]             .SS=[0 1 3]
+ 202 tabs  dumpArgs           [t]           .TEST=0
+ 203 tabs  dumpArgs           [u]         .SUBPIX=1
+ 204 tabs  dumpArgs           [v]           .VRBY=0
+ 205 tabs  dumpArgs           [V]          .VIEWS=0
+ 206 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
+ 207 tabs  dumpArgs           [x]           .EXIT=0
+ 208 tabs  dumpArgs           [Z]             .ZZ=[]
   35 kysgs dumpData           BGN
         Flats         N         Shrps        
  -  -  -  -  -  -  -     +  +  +  +  +  +  +
@@ -1218,7 +1214,7 @@ I  F  S  IV mM dA
 a [B♭ A♯ b7 m7 A6]
 b [B  B  7  M7 d8]
   19 notes dumpData           END D♭ D♮ D♯
-1750 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels @ Q
+1750 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels @ Q
    0t0   
 1
 1
@@ -1230,21 +1226,21 @@ b [B  B  7  M7 d8]
 1
 1111111111
 1
- 615 tabsC ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 641 tabsC dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
- 667 tabsC saveDataFile       @ Q C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat
+ 615 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 641 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 667 tabs  saveDataFile       @ Q C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat
 C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat
- 774 tabsC transposeData      BGN ( 1x1x10x6 ) dmp=1
- 778 tabsC transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
+ 774 tabs  transposeData      BGN ( 1x1x10x6 ) dmp=1
+ 778 tabs  transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
 266678 ------ ------ ------ ------ ------ ------ ------ ------ ------
 
 2--------- 6--------- 6--------- 6--------- 7--------- 8---------
- 813 tabsC dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
+ 813 tabs  dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
 Page 1
 Colm Line 1    
- 823 tabsC dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
- 790 tabsC transposeData      END ( 1x1x6x10 ) dmp=1
- 671 tabsC saveDataFile       n=[1 1 3 10 6] [1 1 6 10]
+ 823 tabs  dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
+ 790 tabs  transposeData      END ( 1x1x6x10 ) dmp=1
+ 671 tabs  saveDataFile       n=[1 1 3 10 6] [1 1 6 10]
 writing 1st page
 writing 1st line
 writing 1st string 2---------
@@ -1253,17 +1249,17 @@ writing 3rd string 6---------
 writing 4th string 6---------
 writing 5th string 7---------
 writing 6th string 8---------
- 684 tabsC saveDataFile       n=[1 1 3 10 6] [1 1 10 6] size=74
- 774 tabsC transposeData      BGN ( 1x1x10x6 ) dmp=1
- 778 tabsC transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
+ 684 tabs  saveDataFile       n=[1 1 3 10 6] [1 1 10 6] size=74
+ 774 tabs  transposeData      BGN ( 1x1x10x6 ) dmp=1
+ 778 tabs  transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
 266678 ------ ------ ------ ------ ------ ------ ------ ------ ------
 
 2--------- 6--------- 6--------- 6--------- 7--------- 8---------
- 813 tabsC dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
+ 813 tabs  dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
 Page 1
 Colm Line 1    
- 823 tabsC dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
- 790 tabsC transposeData      END ( 1x1x6x10 ) dmp=1
+ 823 tabs  dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
+ 790 tabs  transposeData      END ( 1x1x6x10 ) dmp=1
  138 chords dumpLimap            0 0-1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [B♯ E  G♯ C♯ E♯ F♯]
  138 chords dumpLimap            0 0-1              []                  [R b2 2  M3 #5 6 ] [8 0 4 9 1 2] [B♯ E  G♯ C♯ E♯ F♯]
  138 chords dumpLimap            0 0-1              []                  [R M3 4  #5 6  b7] [4 8 0 5 9 a] [B♯ E  G♯ C♯ E♯ F♯]
@@ -1273,21 +1269,21 @@ Colm Line 1
   0 0              RM3#5b24b5                #5RM36b22                 M3#5R46b7                 7m35RM34                  57m3#5Rb2                 b5b7257R     
   0 0              048156             804912             48059a             b37045             7b3801             6a27b0
   0 0 048156 804912 48059a b37045 7b3801 6a27b0   RM3#5b24b5   #5RM36b22    M3#5R46b7    7m35RM34     57m3#5Rb2    b5b7257R     
-2781 tabsC quit               END @ Q Error=0 save=1 .quitting=1
+2781 tabs  quit               END @ Q Error=0 save=1 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-2798 tabsC cleanupCsvFile     Flush & Close C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
+2798 tabs  cleanupCsvFile     Flush & Close C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
  193 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  193 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
-2803 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
+2803 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
  201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
  204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv ###
-2806 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.5.csv
+2806 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.7.csv
  201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.5.csv')
- 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.5.csv ###
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.7.csv')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.7.csv ###
  193 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =test.cat     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
  193 utl   getFilePath        baseName =Ctest        basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
@@ -1943,33 +1939,33 @@ dumpUmap 'R m3 M3 4 5 7'   : (-1 [0 3 4 5 7 11] )
  276 chords _dumpOMAP          lm=620 catfile.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\cats\\test.cat' lr=0
  277 chords _dumpOMAP          END grand total 620 total    6 unordered    6 unnamed  len(r)=0
  226 chords dumpOMAP           END len(.OMAP)=620 len(.umap)=6
-2820 tabsC cleanupCatFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat to C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.5.cat
+2820 tabs  cleanupCatFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat to C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.7.cat
  201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
- 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.5.cat')
- 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.5.cat ###
+ 202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.7.cat')
+ 204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.7.cat ###
  201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
  202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Ctest.cat')
  204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat C:\Users\Owner\Documents\GitHub\tabs\test\Ctest.cat ###
  201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
  202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test._.cat')
  204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat C:\Users\Owner\Documents\GitHub\tabs\test\cats\test._.cat ###
-2784 tabsC quit               Calling close(),2017 tabsC on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2018 tabsC on_key_press       retv=True
-2972 tabsC main               pyglet.app.run(): return=None
-2973 tabsC main               Thats all folks!
+2784 tabs  quit               Calling close(),2017 tabs  on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
+2018 tabs  on_key_press       retv=True
+2972 tabs  main               pyglet.app.run(): return=None
+2973 tabs  main               Thats all folks!
  193 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
  193 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
-2936 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.5.txt
-2938 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
+2936 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.7.txt
+2938 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
  201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
  202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
  204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt ###
-2940 tabsC cleanupOutFiles    Flush & Close Txt File
-2936 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.5.log
-2938 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log
+2940 tabs  cleanupOutFiles    Flush & Close Txt File
+2936 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.7.log
+2938 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log
  201 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
  202 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
  204 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log ###
-2940 tabsC cleanupOutFiles    Flush & Close Txt File
+2940 tabs  cleanupOutFiles    Flush & Close Txt File

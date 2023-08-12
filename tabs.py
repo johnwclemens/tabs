@@ -2881,7 +2881,7 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
     return list(RGB.keys())
 ########################################################################################################################################################################################################
 # Global Functions END
-#--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabsC.py utl.py chord.py
+#--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabs.py utl.py chord.py
 # Globals BGN
 ########################################################################################################################################################################################################
 BASE_NAME, BASE_PATH, PATH     = utl.BASE_NAME, utl.BASE_PATH, utl.PATH
