@@ -1,20 +1,13 @@
 from tpkg import utl as utl
 #from tpkg import notes as notes
-from tpkg.notes import Notes as Notes
-from tpkg.notes import Scales as Scales
+from tpkg.notes import Notes  as Notes
+from tpkg.misc  import Scales as Scales
 
 M, P         = utl.M, utl.P
 slog         = utl.slog
 W, Y, Z      = utl.W, utl.Y, utl.Z
 fmtl         = utl.fmtl
 signed       = utl.signed
-
-#KSD = {}
-#KIM, KIS, KMS, KJS, KNS = range(5)
-#KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
-#KSD = initKSD(t=-1)
-########################################################################################################################################################################################################
-#def getKSD(): return KSD
 
 def initKSD(ks, t):
     nt = Notes.NTONES
@@ -114,8 +107,3 @@ KSD = initKSD(KSD, t=-1)
 KSD = initKSD(KSD, t= 1)
 dmpKSVHdr(csv=1,   t= 1)
 dumpKSH(  csv=1)
-
-# dmpKSVHdr(csv=1,   t=-1)
-# KSD = initKSD(t=-1)
-# dmpKSVHdr(csv=1,   t= 1)
-# dumpKSH(  csv=1)

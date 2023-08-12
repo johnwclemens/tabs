@@ -11,14 +11,14 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
 2830 tabsC dumpGlobals        argv      = +30[C:\Users\Owner\Documents\GitHub\tabs\tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
 2831 tabsC dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabsC.py
 2832 tabsC dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
- 193 utl   getFilePath        baseName =test.3       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.3.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.3.cat')
- 193 utl   getFilePath        baseName =test.3       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.3.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv')
- 193 utl   getFilePath        baseName =test.3       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.3.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.3.log')
- 193 utl   getFilePath        baseName =test.3       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.3.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.3.txt')
+ 193 utl   getFilePath        baseName =test.5       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.5.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.5.cat')
+ 193 utl   getFilePath        baseName =test.5       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.5.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.5.csv')
+ 193 utl   getFilePath        baseName =test.5       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.5.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.5.log')
+ 193 utl   getFilePath        baseName =test.5       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.5.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.5.txt')
  179 tabsC dumpArgs           [a]      .AUTO_SAVE=0
  180 tabsC dumpArgs           [A]         .VARROW=1
  181 tabsC dumpArgs           [b]        .FRT_BRD=0
@@ -70,7 +70,7 @@ QClm   10 V 1        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
 Sect    1 V C C   480    85     
 Colm    1 V C C    48    85     
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 6        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
+Tabl    1 V 2        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 2        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        2
 Tabl    2 V 6        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
 Tabl    3 V 6        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
 Tabl    4 V 6        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
@@ -150,12 +150,12 @@ Tabl    5 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
 Tabl    6 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
 Sect    2 V C C   480    85     
 Colm    1 V C C    48    85     
-Note    1 V A♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None A♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        A♯
-Note    2 V F        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None F        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        F
+Note    1 V F♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None F♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        F♯
+Note    2 V E♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None E♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        E♯
 Note    3 V C♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None C♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        C♯
 Note    4 V G♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None G♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        G♯
 Note    5 V E        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None E        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        E
-Note    6 V C        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None C        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        C
+Note    6 V B♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None B♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        B♯
 Colm    2 V C C    48    85     
 Note    1 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
 Note    2 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
@@ -221,9 +221,9 @@ Note    5 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
 Note    6 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
 Sect    3 V C C   480    85     
 Colm    1 V C C    48    85     
-Kord    1 V m9       C C    48    14 34.95 22.88 22.88 6.117 29.00 v a 22.1    0 None m9       [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        m9
-Kord    2 V #11      C C    48    14 52.42 22.88 22.88 6.117 29.00 v a 22.1    0 None #11      [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        #11
-Kord    3 V /C       C C    48    14 34.95 22.88 22.88 6.117 29.00 v a 22.1    0 None /C       [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        /C
+Kord    1 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
+Kord    2 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
+Kord    3 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    4 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    5 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    6 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
@@ -296,7 +296,7 @@ Kord    6 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
 1626 tabsC cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.21   96.00   28.50 t.text='8' 17.47 22.88 C,C
 HCrs    1 V C C    48    14     
 1750 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels New1
- 347 tabsC _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+ 347 tabsC _initTniks         +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
 2969 tabsC main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
 2969 tabsC main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
 1301 tabsC g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
@@ -311,7 +311,7 @@ QClm    8 V 8        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
 QClm    9 V 9        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 9        [ 31 255 255 255] [  1   8   8 255] 0 0 1 1 1 c Lucida Console        9
 QClm   10 V 1        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 1        [ 63  31 255 255] [  2   1   8 255] 0 0 1 1 1 c Lucida Console        1
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V 6        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
+Tabl    1 V 2        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 2        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        2
 Tabl    2 V 6        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
 Tabl    3 V 6        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
 Tabl    4 V 6        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
@@ -371,12 +371,12 @@ Tabl   57 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
 Tabl   58 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
 Tabl   59 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
 Tabl   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
-Note    1 V A♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None A♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        A♯
-Note    2 V F        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None F        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        F
+Note    1 V F♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None F♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        F♯
+Note    2 V E♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None E♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        E♯
 Note    3 V C♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None C♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        C♯
 Note    4 V G♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None G♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        G♯
 Note    5 V E        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None E        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        E
-Note    6 V C        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None C        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        C
+Note    6 V B♯       C C    48    14 30.47 22.88 22.88 6.117 29.00 v a 22.1    0 None B♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        B♯
 Note    7 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
 Note    8 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
 Note    9 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
@@ -431,9 +431,9 @@ Note   57 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
 Note   58 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
 Note   59 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
 Note   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
-Kord    1 V m9       C C    48    14 34.95 22.88 22.88 6.117 29.00 v a 22.1    0 None m9       [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        m9
-Kord    2 V #11      C C    48    14 52.42 22.88 22.88 6.117 29.00 v a 22.1    0 None #11      [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        #11
-Kord    3 V /C       C C    48    14 34.95 22.88 22.88 6.117 29.00 v a 22.1    0 None /C       [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        /C
+Kord    1 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
+Kord    2 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
+Kord    3 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    4 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    5 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    6 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
@@ -496,79 +496,11 @@ Kord   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
 1621 tabsC cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
 1626 tabsC cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 22.88 C,C
 1750 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels Upd.1
-2738 tabsC snapshot           snapName='test.3.0.INIT.png' on_draw((kwargs)='')
+2738 tabsC snapshot           snapName='test.5.0.INIT.png' on_draw((kwargs)='')
 1925 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 2017 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-1925 tabsC on_key_press       BGN <    .kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-2017 tabsC on_key_press       END <    .kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1643 tabsC plct2cc                   4 [  180  180 180  60   6] [1 1    1 5] (   0 +  0 + 60 +  0 +4)
-1646 tabsC cursorCol          cc=  4 [0 0 0 4]
-1621 tabsC cc2xywh            tpp=180 old=4 lenT=60 cc=4 old % lenT
-1626 tabsC cc2xywh            cc=   4 old=   4 [  180  180 180  60   6]   48.00  383.68   96.00   28.42 t.text='7' 17.47 22.88 C,C
-1925 tabsC on_key_press       BGN <    .kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-2017 tabsC on_key_press       END <    .kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1643 tabsC plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1646 tabsC cursorCol          cc=  3 [0 0 0 3]
-1621 tabsC cc2xywh            tpp=180 old=3 lenT=60 cc=3 old % lenT
-1626 tabsC cc2xywh            cc=   3 old=   3 [  180  180 180  60   6]   48.00  412.11   96.00   28.42 t.text='6' 17.47 22.88 C,C
-1925 tabsC on_key_press       BGN <    .kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-2017 tabsC on_key_press       END <    .kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1643 tabsC plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1646 tabsC cursorCol          cc=  2 [0 0 0 2]
-1621 tabsC cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
-1626 tabsC cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='6' 17.47 22.88 C,C
-1925 tabsC on_key_press       BGN <    .kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-2017 tabsC on_key_press       END <    .kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1643 tabsC plct2cc                   1 [  180  180 180  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
-1646 tabsC cursorCol          cc=  1 [0 0 0 1]
-1621 tabsC cc2xywh            tpp=180 old=1 lenT=60 cc=1 old % lenT
-1626 tabsC cc2xywh            cc=   1 old=   1 [  180  180 180  60   6]   48.00  468.95   96.00   28.42 t.text='6' 17.47 22.88 C,C
-1925 tabsC on_key_press       BGN <    .kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-2017 tabsC on_key_press       END <    .kbk=UP      > <.symb=   65362> <.symbStr=UP              > <.mods= 0> <.modsStr=                >
-1643 tabsC plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
-1646 tabsC cursorCol          cc=  0 [0 0 0 0]
-1621 tabsC cc2xywh            tpp=180 old=0 lenT=60 cc=0 old % lenT
-1626 tabsC cc2xywh            cc=   0 old=   0 [  180  180 180  60   6]   48.00  497.37   96.00   28.42 t.text='6' 17.47 22.88 C,C
-1925 tabsC on_key_press       BGN <    .kbk=_4      > <.symb=      52> <.symbStr=_4              > <.mods= 0> <.modsStr=                >
-2017 tabsC on_key_press       END <    .kbk=_4      > <.symb=      52> <.symbStr=_4              > <.mods= 0> <.modsStr=                >
-1643 tabsC plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
-1646 tabsC cursorCol          cc=  0 [0 0 0 0]
-1800 tabsC setTab             [1 1 1  1 1]   1   0  1] BGN onTxt text='4' rev=0 old=  0 cc=  0 p=0 l=0 c=0 t=0
-1643 tabsC plct2cc                  11 [  180  180 180  60   6] [1 1    2 6] (   0 +  0 + 60 +  6 +5)
-1646 tabsC cursorCol          cc= 11 [0 0 1 5]
-1621 tabsC cc2xywh            tpp=180 old=11 lenT=60 cc=11 old % lenT
-1626 tabsC cc2xywh            cc=  11 old=  11 [  180  180 180  60   6]  144.00  355.26   96.00   28.42 t.text='-' 17.47 22.88 C,C
-2738 tabsC snapshot           snapName='test.3.1.Txt.4.png' on_draw((kwargs)='')
-1925 tabsC on_key_press       BGN <    .kbk=DOWN    > <.symb=   65364> <.symbStr=DOWN            > <.mods= 0> <.modsStr=                >
-2017 tabsC on_key_press       END <    .kbk=DOWN    > <.symb=   65364> <.symbStr=DOWN            > <.mods= 0> <.modsStr=                >
-1643 tabsC plct2cc                  12 [  180  180 180  60   6] [1 1    3 1] (   0 +  0 + 60 + 12 +0)
-1646 tabsC cursorCol          cc= 12 [0 0 2 0]
-1621 tabsC cc2xywh            tpp=180 old=12 lenT=60 cc=12 old % lenT
-1626 tabsC cc2xywh            cc=  12 old=  12 [  180  180 180  60   6]  240.00  497.37   96.00   28.42 t.text='-' 17.47 22.88 C,C
-1925 tabsC on_key_press       BGN <    .kbk=LEFT    > <.symb=   65361> <.symbStr=LEFT            > <.mods= 0> <.modsStr=                >
-2017 tabsC on_key_press       END <    .kbk=LEFT    > <.symb=   65361> <.symbStr=LEFT            > <.mods= 0> <.modsStr=                >
-1643 tabsC plct2cc                   6 [  180  180 180  60   6] [1 1    2 1] (   0 +  0 + 60 +  6 +0)
-1646 tabsC cursorCol          cc=  6 [0 0 1 0]
-1621 tabsC cc2xywh            tpp=180 old=6 lenT=60 cc=6 old % lenT
-1626 tabsC cc2xywh            cc=   6 old=   6 [  180  180 180  60   6]  144.00  497.37   96.00   28.42 t.text='-' 17.47 22.88 C,C
-1925 tabsC on_key_press       BGN <    .kbk=LEFT    > <.symb=   65361> <.symbStr=LEFT            > <.mods= 0> <.modsStr=                >
-2017 tabsC on_key_press       END <    .kbk=LEFT    > <.symb=   65361> <.symbStr=LEFT            > <.mods= 0> <.modsStr=                >
-1643 tabsC plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
-1646 tabsC cursorCol          cc=  0 [0 0 0 0]
-1621 tabsC cc2xywh            tpp=180 old=0 lenT=60 cc=0 old % lenT
-1626 tabsC cc2xywh            cc=   0 old=   0 [  180  180 180  60   6]   48.00  497.37   96.00   28.42 t.text='4' 17.47 22.88 C,C
-1925 tabsC on_key_press       BGN <    .kbk=_2      > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                >
-2017 tabsC on_key_press       END <    .kbk=_2      > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                >
-1643 tabsC plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
-1646 tabsC cursorCol          cc=  0 [0 0 0 0]
-1800 tabsC setTab             [1 1 1  1 1]   1   0  1] BGN onTxt text='2' rev=0 old=  0 cc=  0 p=0 l=0 c=0 t=0
-1643 tabsC plct2cc                  11 [  180  180 180  60   6] [1 1    2 6] (   0 +  0 + 60 +  6 +5)
-1646 tabsC cursorCol          cc= 11 [0 0 1 5]
-1621 tabsC cc2xywh            tpp=180 old=11 lenT=60 cc=11 old % lenT
-1626 tabsC cc2xywh            cc=  11 old=  11 [  180  180 180  60   6]  144.00  355.26   96.00   28.42 t.text='-' 17.47 22.88 C,C
-2738 tabsC snapshot           snapName='test.3.2.Txt.2.png' on_draw((kwargs)='')
-1925 tabsC on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2017 tabsC on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+1925 tabsC on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2017 tabsC on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
 1925 tabsC on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
@@ -588,7 +520,7 @@ Kord   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
  188 tabsC dumpArgs           [F]      .FULL_SCRN=0
  189 tabsC dumpArgs           [g]        .ORD_GRP=1
  190 tabsC dumpArgs           [G]       .GEN_DATA=0
- 191 tabsC dumpArgs           [i]               i=[1 1 1 2 6]
+ 191 tabsC dumpArgs           [i]               i=[1 1 1 1 6]
  192 tabsC dumpArgs           [J]      .DSP_J_LEV=4
  193 tabsC dumpArgs           [l]       .LONG_TXT=1
  194 tabsC dumpArgs           [L]             .LL=1
@@ -607,12 +539,12 @@ Kord   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
  207 tabsC dumpArgs           [x]           .EXIT=0
  208 tabsC dumpArgs           [Z]             .ZZ=[]
 1750 tabsC dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels @ Q
- 138 chords dumpLimap            0 0-1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
- 138 chords dumpLimap            0 0-1                           #5RM36b22    804912 CEG♯C♯FF♯    Rb22M3#56    012489 EFF♯G♯CC♯   
- 138 chords dumpLimap            0 0-1                           M3#5R46b7    48059a CEG♯C♯FF♯    RM34#56b7    04589a G♯CC♯EFF♯   
- 138 chords dumpLimap            0 0-1                           7m35RM34     b37045 CEG♯C♯FF♯    Rm3M3457     03457b C♯EFF♯G♯C   
- 138 chords dumpLimap            0 0-1                           57m3#5Rb2    7b3801 CEG♯C♯FF♯    Rb2m35#57    01378b FF♯G♯CC♯E   
- 138 chords dumpLimap            0 0-1                           b5b7257R     6a27b0 CEG♯C♯FF♯    R2b55b77     0267ab F♯G♯CC♯EF   
+ 138 chords dumpLimap            0 0-1                           RM3#5b24b5   048156 B♯EG♯C♯E♯F♯  Rb2M34b5#5   014568 B♯C♯EE♯F♯G♯ 
+ 138 chords dumpLimap            0 0-1                           #5RM36b22    804912 B♯EG♯C♯E♯F♯  Rb22M3#56    012489 EE♯F♯G♯B♯C♯ 
+ 138 chords dumpLimap            0 0-1                           M3#5R46b7    48059a B♯EG♯C♯E♯F♯  RM34#56b7    04589a G♯B♯C♯EE♯F♯ 
+ 138 chords dumpLimap            0 0-1                           7m35RM34     b37045 B♯EG♯C♯E♯F♯  Rm3M3457     03457b C♯EE♯F♯G♯B♯ 
+ 138 chords dumpLimap            0 0-1                           57m3#5Rb2    7b3801 B♯EG♯C♯E♯F♯  Rb2m35#57    01378b E♯F♯G♯B♯C♯E 
+ 138 chords dumpLimap            0 0-1                           b5b7257R     6a27b0 B♯EG♯C♯E♯F♯  R2b55b77     0267ab F♯G♯B♯C♯EE♯ 
 2781 tabsC quit               END @ Q Error=0 save=1 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
  193 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
@@ -620,7 +552,7 @@ Kord   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
  193 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
 2803 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
-2806 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.3.csv
+2806 tabsC cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.5.csv
  193 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =test.cat     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
  193 utl   getFilePath        baseName =Ctest        basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
@@ -1247,7 +1179,7 @@ Kord   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
  618 'R M3 4 #5 b7 7'  : (5, [0,4,5,8,10,11], ['+','13','M11']),             # 
  619 'R M3 b5 5 #5 6'  : (3, [0,4,6,7,8,9],   ['6b6','#4']),                 # 
  620 'R M3 b5 5 6 7'   : (1, [0,4,6,7,9,11],  ['M13','#11']),                # 
-2820 tabsC cleanupCatFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat to C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.3.cat
+2820 tabsC cleanupCatFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat to C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.5.cat
 2783 tabsC quit               END @ Q Error=0 save=1 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
 2784 tabsC quit               Calling close(),2017 tabsC on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
@@ -1256,6 +1188,6 @@ Kord   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
  196 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
  193 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
-2936 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.3.txt
+2936 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.5.txt
 2938 tabsC cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
 2940 tabsC cleanupOutFiles    Flush & Close Txt File

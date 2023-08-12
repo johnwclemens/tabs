@@ -15,9 +15,6 @@ class Strings:
                'GUITAR_7_STD':    dict([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
               }
     def __init__(self, alias=None):
-#        self.ks = KySgs
-#        self.ksd = self.ks.getKSD()
-#        ksd = kysgs.KSD
         if alias is None: alias = 'GUITAR_6_STD'
         self.stringMap          = self.aliases[alias]
         self.stringKeys         = list(self.stringMap.keys())
@@ -57,21 +54,18 @@ class Strings:
             nic[j]    += 1
             if nic[j] == 1:
                 if j in (0, 4, 5, 11):
-#                    ks = self.keys.nic2KS(nic=nic)
-#                    k  = self.ks[self.ks.KSK]
-#                    ks = kysgs.nic2KS(nic)
                     k  = kysgs.KSK
                     if abs(k) >= 5:
                         if dbg: slog(f'KSK[{k}]={kysgs.fmtKSK(k)}', f=2)
-                        if     j  == 11:     notes.updNotes(j, f'C{F}', 'B', Notes.TYPE, 0)
-                        if     j  ==  5:     notes.updNotes(j, 'F', f'E{S}', Notes.TYPE, 0)
-                        elif   j  ==  4:     notes.updNotes(j, f'F{F}', 'E', Notes.TYPE, 0)
-                        elif   j  ==  0:     notes.updNotes(j, 'C', f'B{S}', Notes.TYPE, 0)
-#                        if     j  == 11:     updNotes(j, 'Cb', 'B',  NotesA.TYPE, 0)
-#                        if     j  ==  5:     updNotes(j, 'F',  'E#', NotesA.TYPE, 0)
-#                        elif   j  ==  4:     updNotes(j, 'Fb', 'E',  NotesA.TYPE, 0)
-#                        elif   j  ==  0:     updNotes(j, 'C',  'B#', NotesA.TYPE, 0)
-                if dbg and nict: nict = f'nic[{j:x}]={nic[j]} '        ;  slog(f'adding {nict}', f=2)
+                        if   j == 11: notes.updNotes(j, f'C{F}', 'B', Notes.TYPE, 0)
+                        if   j ==  5: notes.updNotes(j, 'F', f'E{S}', Notes.TYPE, 0)
+                        elif j ==  4: notes.updNotes(j, f'F{F}', 'E', Notes.TYPE, 0)
+                        elif j ==  0: notes.updNotes(j, 'C', f'B{S}', Notes.TYPE, 0)
+#                       if   j == 11: Notes.updNotes(j, 'Cb', 'B',   NotesA.TYPE, 0)
+#                       if   j ==  5: Notes.updNotes(j, 'F',  'E#',  NotesA.TYPE, 0)
+#                       elif j ==  4: Notes.updNotes(j, 'Fb', 'E',   NotesA.TYPE, 0)
+#                       elif j ==  0: Notes.updNotes(j, 'C',  'B#',  NotesA.TYPE, 0)
+                if dbg and nict: nict = f'nic[{j:x}]={nic[j]} '  ;   slog(f'adding {nict}', f=2)
         name = Notes.name(i, 1, 0)
-        if dbg and nict:    slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
+        if dbg and nict:        slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
         return name

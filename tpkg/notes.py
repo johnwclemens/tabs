@@ -68,19 +68,6 @@ def dumpTestB(csv=0):
     slog(f' V2I{m}{fmtm(Notes.V2I,      w=u, wv=y, d=d, s=m)}', p=p, f=f)
     slog('END')
 ########################################################################################################################################################################################################
-class DSymb:
-    SYMBS = {'X': 'mute', '/': 'slide', '\\': 'bend', '+': 'hammer', '~': 'vibrato', '^': 'tie', '.': 'staccato', '_': 'legato', '%': 'repeat', '|': 'bar', '[': 'groupL', ']': 'groupR'}
-########################################################################################################################################################################################################
-class Scales:
-    MajorIs = [ 0, 2, 4, 5, 7, 9, 11 ]
-    @classmethod
-    def majIs(cls, i):  return [ (i + j) % Notes.NTONES for j in cls.MajorIs ]
-########################################################################################################################################################################################################
-class Modes:
-    IONIAN, DORIAN, PHRYGIAN, LYDIAN, MIXOLYDIAN, AEOLIAN, LOCRIAN = range(7)
-    NAMES = [ 'IONIAN', 'DORIAN', 'PHRYGIAN', 'LYDIAN', 'MIXOLYDIAN', 'AEOLIAN', 'LOCRIAN' ]
-    TYPES = [  IONIAN,   DORIAN,   PHRYGIAN,   LYDIAN,   MIXOLYDIAN,   AEOLIAN,   LOCRIAN  ]
-########################################################################################################################################################################################################
 class Notes__ALT:#0   1. . .. . .2. . .. . .3. . .. . .4. . .. . .5. . .. . .6. . .. . .7. . .. . .8. . .. . .9. . .. . .a. . .. . .b. . .. . .0      #  2    7 9  #
     F2S = {           'Db\u266D':'C#',            'Eb':'D#',                       'Gb':'F#',            'Ab':'G#',            'Bb':'A#'                       } # 1 3  6 8 a # 5/9
     S2F = {           'C#\u266F':'Db',            'D#':'Eb',                       'F#':'Gb',            'G#':'Ab',            'A#':'Bb'                       } # 1 3  6 8 a # 5/9
@@ -122,14 +109,9 @@ class Notes(object): #      1          2       3          4          5          
     @staticmethod
     def nextIndex(i, d=1):     return (i+d) % Notes.NTONES
     @staticmethod
-#    def name(i, t, n2):
-#        slog(f'{type(Notes)}={Notes} {type(Notes.I2N[t])}={Notes.I2N[t]} {type(Notes.I2N[t][i%Notes.NTONES])}={Notes.I2N[t][i%Notes.NTONES]}')
-#        if n2:   return Notes.I4N[t][i % Notes.NTONES]
-#        else:    return Notes.I2N[t][i % Notes.NTONES]
-#    def name(self, i, t=0, n2=0):   _ = t if t else self.type  ;  return Notes.I4N[_][i % Notes.NTONES] if n2 else Notes.I2N[_][i % Notes.NTONES]
-    def name(i, t=0, n2=0):    j = i % Notes.NTONES  ;  t = t if t else Notes.TYPE  ;  return Notes.I4N[t][j] if n2 else Notes.I2N[t][j]
+    def name(i, t=0, i2n=1):   j = i % Notes.NTONES   ;  t = t if t else Notes.TYPE  ;  return Notes.I2N[t][j] if i2n else Notes.I4N[t][j]
     @staticmethod
-    def nextName(n, iv, o=0):  i = Notes.index(n, o)  ;  j = Notes.V2I[iv]  ;  k = Notes.nextIndex(i, j)  ;  return Notes.name(k, 0, 0)
+    def nextName(n, iv, o=0):  i = Notes.index(n, o)  ;  j = Notes.V2I[iv]  ;  k = Notes.nextIndex(i, j)  ;  return Notes.name(k, 0)
 ########################################################################################################################################################################################################
 def updNotes(i, m, n, t, d=0):
     if   t  ==  Notes.FLAT:    Notes.I2F[i] = m
@@ -140,8 +122,7 @@ def updNotes(i, m, n, t, d=0):
     else:
         Notes.F2S[n] = m   ;   Notes.S2F[m] = n
 ########################################################################################################################################################################################################
-def initND():
-    return { i: [ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i], Notes.I4V[i], Notes.I6V[i] ] for i in range(Notes.NTONES) }
+def initND():    return { i: [ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i], Notes.I4V[i], Notes.I6V[i] ] for i in range(Notes.NTONES) }
 
 def dumpND(csv=0):
     w, d, m, f = (0, Z, Y, 3) if csv else (2, '[', W, 1)
@@ -182,7 +163,7 @@ def dumpFreqs(r=440, csv=0):
         fs.append(f'{ft}')
     fs = m.join(fs)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] Hz'
     slog(f'{ref}{fs}{sfx}', p=0, f=f)
-
+########################################################################################################################################################################################################
 def dmpWvLens(r=440, csv=0, v=340):
     m, f = (Y, 3) if csv else (W, 1)         ;   cmpm = 100
     freqs = FREQ1S if r == 440 else FREQ2S   ;    ref = '440A' if r == 440 else '432A'   ;   ws = []
@@ -192,4 +173,3 @@ def dmpWvLens(r=440, csv=0, v=340):
         ws.append(f'{wt}')
     ws = m.join(ws)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] cm'
     slog(f'{ref}{ws}{sfx}', p=0, f=f)
-########################################################################################################################################################################################################
