@@ -11,15 +11,15 @@ import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
 import pyglet.window.event as pygwine
 import pyglet.window.key   as pygwink
-from   pyglet.text         import document, layout
-#import tpkg.utl      as     utl
-#import tpkg.notes    as     notes
-from   tpkg            import chords  as chords
-from   tpkg            import utl     as utl
-from   tpkg            import kysgs as keysigs
-from   tpkg            import notes   as notes
-from   tpkg.notes      import Notes   as Notes
-from   tpkg.strngs    import Strings as Strings
+from   pyglet.text     import document, layout
+#from   tpkg            import chords as chords
+from   tpkg            import utl    as utl
+from   tpkg            import kysgs  as keysigs
+from   tpkg            import notes  as notes
+from   tpkg.notes      import Notes  as Notes
+from   tpkg.strngs     import Strngs as Strngs
+from   tpkg.chords     import Chords as Chords
+from   tpkg            import tests  as tests
 
 P, L, S, C =  0,  1,  2,  3
 T, N, I, K =  4,  5,  6,  7
@@ -126,8 +126,8 @@ class Tabs(pyglet.window.Window):
         self.sAlias    = 'GUITAR_6_STD'
         self.k         = {}
         ################################################################################################################################################################################################
-        self.sobj      = Strings(self.sAlias)
-        self.cobj      = chords.Chords(self, self.sobj)
+        self.sobj      = Strngs(self.sAlias)
+        self.cobj      = Chords(self, self.sobj)
         ################################################################################################################################################################################################
         self._initDataPath()
         self._initWindowA()
@@ -345,145 +345,10 @@ class Tabs(pyglet.window.Window):
         self.createTniks()
         self.ks = keysigs.nic2KS(self.nic)
         self.log( keysigs.fmtKSK(self.ks[keysigs.KSK]), f=2)
-        if self.TEST:  self.test1()  ;  self.test0(4)  ;  self.test0(5, q=self.EXIT)
-    ####################################################################################################################################################################################################
-    def test00(self):
-        a = 1/0  ;  self.log(f'{a=}')
-        p = self.pages  ;  f = CSV_FILE
-        a = [{'a':1, 'b':"2", 'c':3.00+1/3}]  ;  b = [ f'{p[i].y}' for i in range(len(p)) ]  ;  c = self.sobj.stringMap  ;  d = [ self.screens ]
-        print(self.__class__.__name__, 'testA', a, sep=Y, file=f, end=Y)
-        print(self.__class__.__name__, 'testB', b, sep=Y, file=f, end=Y)
-        print(self.__class__.__name__, 'testC', c, sep=Y, file=f)
-        print(self.__class__.__name__, 'testD', d, sep=Y, file=f)
-        self.quit(Z.join(('test00', str(a))))
-
-    def exit(self, why, e): #        self.dispatch_event('on_close')
-        self.log(f'BGN {why} {e}')
-        self.dispatch_event('on_key_press',   65507, 2)
-        self.dispatch_event('on_key_press',   65505, 3)
-        self.dispatch_event('on_key_press',     113, 3)
-        self.dispatch_event('on_key_release',   113, 3)
-        self.dispatch_event('on_key_release', 65505, 3)
-        self.dispatch_event('on_key_release', 65507, 2)
-        self.log(f'END {why} {e}')
-    ####################################################################################################################################################################################################
-    def testSprTxt_0(self, path):
-        np, nl, ns, nc, nt = self.n  ;  r, c = nt*ns*nl, nc
-        self.log(f'BGN {path=} {r=} {c=}')
-#        lbl = self.tabls[0]
-#        tex = self.batch.get_texture()
-#        spr = SPR(tex, x=100, y=100, batch=self.batch, group=self.j2g(H), subpixel=self.SUBPIX)
-#        spr.anchor_x, spr.anchor_y = self.axyWgt(self.ax, self.ay)
-
-    def testSprTxt_1(self, path):
-        np, nl, ns, nc, nt = self.n  ;  r, c = nt*ns*nl, nc
-#        t = self.tabls[0]  ;  doc = t.document  ;  m = doc.styles  ;  font = pygfont.load(m[FONT_NAME], m[FONT_SIZE])
-#        ssPath = self.snapshot('text img for Sprites', 'SPRTXT')
-        self.log(f'BGN {path=} {r=} {c=}')
-        img = pyglet.image.load(path)
-        ig  = pyglet.image.ImageGrid(img, r, c)
-#        itg = pyglet.image.TextureGrid(ig)
-        ds = ig[0:10]
-        for j, d in enumerate(ds):
-            self.log(f'ds[{j}]=d={d}')
-            fname = f'd_{j}.png'
-            d.save(fname)
-        self.log(f'END {path=} {r=} {c=}')
-
-    def testSprTxt_2(self, path):
-        np, nl, ns, nc, nt = self.n  ;  r, c = nt*ns*nl, nc
-        self.log(f'BGN {path=} {r=} {c=}')
-        img = pyglet.image.load(path)
-        spr = SPR(img, x=100, y=100, batch=self.batch, group=self.j2g(H), subpixel=self.SUBPIX)
-        spr.anchor_x, spr.anchor_y = self.axyWgt(self.ax, self.ay)
-        self.sprs.append(spr)
-
-    def testSprTxt_3(self): # , path):
-        np, nl, ns, nc, nt = self.n  ;  r, c = 1, nc # nt*ns*nl, nc
-        path = utl.getFilePath('testA', BASE_PATH, PNGS, PNG)
-        self.log(f'BGN {path=} {r=} {c=}')
-        pimg = pyglet.image.load(path)
-        ig   = pyglet.image.ImageGrid(pimg, r, c)
-        spr  = SPR(ig[2], x=300, y=200, batch=self.batch, group=self.j2g(H), subpixel=self.SUBPIX)
-        spr.anchor_x, spr.anchor_y = self.axyWgt(self.ax, self.ay)
-        self.sprs.append(spr)
-        self.log(f'END {path=} {r=} {c=}')
-        #Install pillow for SVG files
-
-    def test0(self, n, q=0):
-        a = .314159265359
-        self.log(f'BGN {a=} {n=} {q=}')
-        self.log(fmtf(a*1, n))
-        self.log(fmtf(a*10, n))
-        self.log(fmtf(a*100, n))
-        self.log(fmtf(a*1000, n))
-        self.log(fmtf(a*10000, n))
-        self.log(fmtf(a*100000, n))
-        self.log(fmtf(a*1000000, n))
-        if   q==2: self.exit(f'test0 {a=} {n=} {q=}', 0)
-        elif q==1: self.quit(f'test0 {a=} {n=} {q=}', 0, 0)
-        self.log(f'END {a=} {n=} {q=}')
-
-    def test1(self, q=0):
-        self.log(f'{self.ntsl()=}')
-        self.log(f'{    TI=}')
-        self.log(f'{  XYWH=}')
-        self.log(f'{  AXY2=}')
-        self.log(f'{   CWH=}')
-        self.log(f'{  LTXA=}')
-        self.log(f'{ LTXAC=}')
-        self.log(f'{   ADS=}')
-        self.log(f'{   CVA=}')
-        self.log(f'{   LDS=}')
-        self.log(f'{  LLBL=}')
-        self.log(f'{  LLBL}', p=0)
-        self.log(f'J{Y.join(   TI)=}')
-        self.log(f'J{Y.join( XYWH)=}')
-        self.log(f'J{Y.join( AXY2)=}')
-        self.log(f'J{Y.join( LTXA)=}')
-        self.log(f'J{Y.join(LTXAC)=}')
-        self.log(f'J{Y.join(  ADS)=}')
-        self.log(f'J{Y.join(  LDS)=}')
-        self.log(f'J{Y.join( LLBL)=}')
-        self.log(f' {Y.join( LLBL)}', p=0)
-        self.log(f'{JSPR(2, Y)=}')
-        self.log(f'{JLBL(2, Y)=}')
-        self.log(f'{JSPR(2, Y)}', p=0)
-        self.log(f'{JLBL(2, Y)}', p=0)
-        if q:    self.exit('test1', 0)
-    ####################################################################################################################################################################################################
-    def test2(self, j=10):
-        self.log(f'{self.ntsl()=}')
-        hdrA = '      cc [  tpb  tpp tpl tps tpc] [p l s  c t]'
-        hdrB = ' cn   cc [  tpb  tpp tpl tps tpc] [p l s  c t]'
-        hdrC = '  cc  cn [  tpb  tpp tpl tps tpc] [p l s  c t]'
-        np, nl, ns, nc, nt = self.i #  ;   p, l, c = 0, 0, 0
-        self.dumpTniksPfx(f'BGN {j=} test2', r=0)
-        self.log(hdrB)
-        for p in range(np):
-            for l in range(nl):
-                for _ in range(ns):
-                    for c in range(nc):
-                        for t in range(nt):
-                            cc = self.plct2cc(p, l, c, t, dbg=1)
-                            cn = self.cc2cn(cc)
-                            self.log(f'{cn:3} {cc:4} {self.fntp()} {self.fplsct()}')
-        self.log(hdrB)
-        for i in range(len(self.tabls) * ns):
-            self.cc2cn(  i, dbg=1)
-        self.log(hdrC)
-        for i in range(len(self.tabls)):
-            self.cn2cc(  i, dbg=1)
-#        self.log(hdrB)
-#        for i in range(len(self.tabls)):
-#            self.cn2txt( i, dbg=1)
-        self.log(hdrA)
-        for i in range(len(self.tabls) * ns):
-            self.cc2plct(i, dbg=1)
-#        self.log(hdrB)
-#        for i in range(len(self.tabls) * ns):
-#            self.plc2cn_(p, l, c, dbg=1)
-        self.dumpTniksSfx(f'END {j=} test2')
+        if self.TEST:
+            tests.test1(self)
+#            tests.test0(self, 4)
+            tests.test0(self, 5, q=self.EXIT)
     ####################################################################################################################################################################################################
     def lenA(self):                   return [ len(_) for _ in self.A ]
     def lenB(self):                   return [ len(_) for _ in self.B ]
@@ -1184,7 +1049,7 @@ class Tabs(pyglet.window.Window):
         o, k2, d, ii, n, s = self.fontParams()   ;   b = self.batch   ;   k = kl[kk]
         g = g           if g is not None else self.j2g(j)
         if j == H or (self.SPRITES and (j < T or j == R)):
-            scip = pyglet.image.SolidColorImagePattern(k)
+            scip = pygimg.SolidColorImagePattern(k)
             img  = scip.create_image(width=fri(w), height=fri(h))
             wx, wy = self.axyWgt(self.ax, self.ay)
             img.anchor_x, img.anchor_y = int(wx*w), int(wy*h)
@@ -1557,7 +1422,7 @@ class Tabs(pyglet.window.Window):
         path = utl.getFilePath('_2', BASE_PATH, PNGS, PNG)
         for i in range(self.n[C] * self.n[T], self.n[T]):
 #            self.tabls[i]
-            bm = pyglet.image.get_buffer_manager()
+            bm = pygimg.get_buffer_manager()
             frame = bm.get_color_buffer()
             img = frame.get_image_data()
             with open(path, 'wb', encoding='utf-8') as file:
@@ -1581,7 +1446,7 @@ class Tabs(pyglet.window.Window):
         self.saveImg(path)
         self.setJ(j, i, v)   ;   k = kl[kk]
         if dbg:    self.log(f'{j=} {JTEXTS[j]} {i=} {t=} [{x} {y} {w} {h}] {g=} {kk=} {utl.fmtl(kl)} {why}\n{path=}')
-        img = pyglet.image.load(path)
+        img = pygimg.load(path)
         wx, wy = self.axyWgt(self.ax, self.ay)
         img.anchor_x, img.anchor_y = int(wx*w), int(wy*h)
         tnik = SPR(img, x=x, y=y, batch=self.batch, group=self.j2g(j), subpixel=self.SUBPIX)
@@ -2734,7 +2599,7 @@ class Tabs(pyglet.window.Window):
         if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
         if dbg:  self.log(f'{self.fNameLid=} {snapName=} {why}')
         if dbg:  self.log(f'{self.snapPath}', p=2)
-        pyglet.image.get_buffer_manager().get_color_buffer().save(f'{self.snapPath}')
+        pygimg.get_buffer_manager().get_color_buffer().save(f'{self.snapPath}')
         if dbg2: self.log(f'{snapName=} {why}', f=2)
         if typ == INIT:
             snapName0 = f'{BASE_NAME}.{PNG}'
@@ -2766,11 +2631,11 @@ class Tabs(pyglet.window.Window):
 #        olog((pos, o), p, f, s, e, ff)
     ####################################################################################################################################################################################################
     def quit(self, why=Z, error=1, save=1, dbg=1):
-        hdr1 = self.fTnikHdr(1)  ;  hdr0 = self.fTnikHdr(0)  ;  self.log(hdr1, p=0, f=2)  ;  self.log(hdr0, p=0, f=2)   ;   err = f'Error={error}'
-        self.log(f'BGN {why} {err} {save=} {self.quitting=}', f=2)                  ;   self.log(utl.QUIT, p=0, f=2)   ;   msg = 'Recursion Error'
-        self.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())   ;   self.log(utl.QUIT, p=0, f=2)
+        hdr1 = self.fTnikHdr(1)  ;   hdr0 = self.fTnikHdr(0)   ;   self.log(hdr1, p=0, f=2)  ;  self.log(hdr0,     p=0, f=2)   ;   err = f'Error={error}'
+        self.log(f'BGN {why} {err} {save=} {self.quitting=}', f=2)                   ;          self.log(utl.QUIT, p=0, f=2)   ;   msg = 'Recursion Error'
+        self.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())      ;          self.log(utl.QUIT, p=0, f=2)
         if self.quitting:        msg += f' {self.quitting=} Exiting'  ;  self.log(msg, f=2)  ;  self.close()   ;   return
-        self.dumpTniksSfx(why)         ;    self.quitting += 1
+        self.dumpTniksSfx(why)        ;     self.quitting += 1
         if not error:
             utl.dumpStack(utl.MAX_STACK_FRAME)
             if dbg:  self.dumpStruct(why, dbg=dbg)
@@ -2783,11 +2648,11 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(utl.QUIT_END, p=0, f=0)
         self.log('Calling close()', e=Y, f=2)
         self.close()
-        if self.TEST and self.EXIT:
-            print('Calling pyglet.app.exit()', end=Y)
-            pyglet.app.exit()
-            print('Calling exit()')
-            exit()
+        if self.TEST:
+            if   self.EXIT == 0: self.log(f'{self.EXIT=} returning')    ;   return
+            elif self.EXIT == 1: self.log('Calling pyglet.app.exit()')  ;   pyglet.app.exit()
+            elif self.EXIT == 2: self.log('Calling exit()')             ;   exit()
+        self.log(f'returning')
     ####################################################################################################################################################################################################
     def cleanupFiles(self):
         self.cleanupCsvFile()
@@ -2942,18 +2807,18 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
 
 # Log and Main BGN
 ########################################################################################################################################################################################################
-CSV_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV)
-LOG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG)
-PNG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG)
-TXT_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT)
-CSV_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV2)
-LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2)
-PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2)
-TXT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2)
-if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2)
-if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2)
-if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2)
-if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2)
+CSV_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV,  dbg=0)
+LOG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG,  dbg=0)
+PNG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG,  dbg=0)
+TXT_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT,  dbg=0)
+CSV_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV2, dbg=0)
+LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2, dbg=0)
+PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2, dbg=0)
+TXT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2, dbg=0)
+if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2, dbg=0)
+if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, dbg=0)
+if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, dbg=0)
+if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, dbg=0)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
     utl.init(LOG_FILE, CSV_FILE, TXT_FILE)
     slog(sys.argv[0],      p=0,        f=2)

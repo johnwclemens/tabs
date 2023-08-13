@@ -1,24 +1,24 @@
 C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-2960 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
+2825 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -t -x 2 -J 4 -L -S 0 1 3 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-2964 tabs  main               CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-2964 tabs  main               CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
-2965 tabs  main               LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
-2965 tabs  main               LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
-2966 tabs  main               TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-2966 tabs  main               TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
-2829 tabs  dumpGlobals        BASE_NAME = test
-2830 tabs  dumpGlobals        argv      = +30[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -J 4 -L -S 0 1 3 -f test]
-2831 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-2832 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
- 193 utl   getFilePath        baseName =test.7       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.7.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.7.cat')
- 193 utl   getFilePath        baseName =test.7       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.7.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.7.csv')
- 193 utl   getFilePath        baseName =test.7       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.7.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.7.log')
- 193 utl   getFilePath        baseName =test.7       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =test.7.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.7.txt')
+2829 tabs  main               CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+2829 tabs  main               CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
+2830 tabs  main               LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
+2830 tabs  main               LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
+2831 tabs  main               TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+2831 tabs  main               TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
+2694 tabs  dumpGlobals        BASE_NAME = test
+2695 tabs  dumpGlobals        argv      = +33[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -c -d 0 -p -s -t -x 2 -J 4 -L -S 0 1 3 -f test]
+2696 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+2697 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+ 193 utl   getFilePath        baseName =test.12      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.12.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.12.cat')
+ 193 utl   getFilePath        baseName =test.12      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.12.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.12.csv')
+ 193 utl   getFilePath        baseName =test.12      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.12.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.12.log')
+ 193 utl   getFilePath        baseName =test.12      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 196 utl   getFilePath        fileName =test.12.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.12.txt')
  179 tabs  dumpArgs           [a]      .AUTO_SAVE=0
  180 tabs  dumpArgs           [A]         .VARROW=1
  181 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -42,17 +42,17 @@ RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  1
  199 tabs  dumpArgs           [R]         .RESIZE=1
  200 tabs  dumpArgs           [s]        .SPRITES=1
  201 tabs  dumpArgs           [S]             .SS=[0 1 3]
- 202 tabs  dumpArgs           [t]           .TEST=0
+ 202 tabs  dumpArgs           [t]           .TEST=1
  203 tabs  dumpArgs           [u]         .SUBPIX=1
  204 tabs  dumpArgs           [v]           .VRBY=0
  205 tabs  dumpArgs           [V]          .VIEWS=0
  206 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
- 207 tabs  dumpArgs           [x]           .EXIT=0
+ 207 tabs  dumpArgs           [x]           .EXIT=2
  208 tabs  dumpArgs           [Z]             .ZZ=[]
-1737 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.778 fs=w*PNT_PER_PIX=22.105pt
-1738 tabs  _initFonts         h=28.421=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.778 fs=h*PNT_PER_PIX=22.105pt
-1750 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels 
-1161 tabs  g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+1602 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.778 fs=w*PNT_PER_PIX=22.105pt
+1603 tabs  _initFonts         h=28.421=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.778 fs=h*PNT_PER_PIX=22.105pt
+1615 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels 
+1026 tabs  g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V PrtlText x y AnchX AnchY     FullText
 Page    1 V C C   480   270     
 Line    1 V C C   480   256     
@@ -290,16 +290,16 @@ Kord    3 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
 Kord    4 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    5 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    6 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
-1643 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
-1646 tabs  cursorCol          cc=  5 [0 0 0 5]
-1621 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-1626 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.21   96.00   28.50 t.text='8' 17.47 22.88 C,C
+1508 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1511 tabs  cursorCol          cc=  5 [0 0 0 5]
+1486 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
+1491 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.21   96.00   28.50 t.text='8' 17.47 22.88 C,C
 HCrs    1 V C C    48    14     
-1750 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels New1
+1615 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels New1
  347 tabs  _initTniks         +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-2969 tabs  main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
-2969 tabs  main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
-1301 tabs  g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+2834 tabs  main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 't': [], 'x': ['2'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
+2834 tabs  main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 't': [], 'x': ['2'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
+1166 tabs  g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 QClm    1 V 1        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 1        [  1   8   8 255] [ 31 255 255 255] 0 1 1 1 1 c Lucida Console        1
 QClm    2 V 2        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 2        [ 31 255 255 255] [  1   8   8 255] 0 0 1 1 1 c Lucida Console        2
 QClm    3 V 3        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None 3        [ 31 255 255 255] [  1   8   8 255] 0 0 1 1 1 c Lucida Console        3
@@ -491,18 +491,19 @@ Kord   57 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
 Kord   58 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord   59 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
-1643 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
-1646 tabs  cursorCol          cc=  5 [0 0 0 5]
-1621 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-1626 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 22.88 C,C
-1750 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels Upd.1
-2738 tabs  snapshot           snapName='test.7.0.INIT.png' on_draw((kwargs)='')
-1925 tabs  on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-2017 tabs  on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-1925 tabs  on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
+1508 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1511 tabs  cursorCol          cc=  5 [0 0 0 5]
+1486 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
+1491 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 22.88 C,C
+1615 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels Upd.1
+1790 tabs  on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+1882 tabs  on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+1790 tabs  on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+1882 tabs  on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+1790 tabs  on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
-2770 tabs  quit               BGN @ Q Error=0 save=1 .quitting=0
+2635 tabs  quit               BGN @^Q Error=0 save=0 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
@@ -529,28 +530,28 @@ Kord   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
  199 tabs  dumpArgs           [R]         .RESIZE=1
  200 tabs  dumpArgs           [s]        .SPRITES=1
  201 tabs  dumpArgs           [S]             .SS=[0 1 3]
- 202 tabs  dumpArgs           [t]           .TEST=0
+ 202 tabs  dumpArgs           [t]           .TEST=1
  203 tabs  dumpArgs           [u]         .SUBPIX=1
  204 tabs  dumpArgs           [v]           .VRBY=0
  205 tabs  dumpArgs           [V]          .VIEWS=0
  206 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
- 207 tabs  dumpArgs           [x]           .EXIT=0
+ 207 tabs  dumpArgs           [x]           .EXIT=2
  208 tabs  dumpArgs           [Z]             .ZZ=[]
-1750 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels @ Q
+1615 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels @^Q
  138 chords dumpLimap            0 0-1                           RM3#5b24b5   048156 B♯EG♯C♯E♯F♯  Rb2M34b5#5   014568 B♯C♯EE♯F♯G♯ 
  138 chords dumpLimap            0 0-1                           #5RM36b22    804912 B♯EG♯C♯E♯F♯  Rb22M3#56    012489 EE♯F♯G♯B♯C♯ 
  138 chords dumpLimap            0 0-1                           M3#5R46b7    48059a B♯EG♯C♯E♯F♯  RM34#56b7    04589a G♯B♯C♯EE♯F♯ 
  138 chords dumpLimap            0 0-1                           7m35RM34     b37045 B♯EG♯C♯E♯F♯  Rm3M3457     03457b C♯EE♯F♯G♯B♯ 
  138 chords dumpLimap            0 0-1                           57m3#5Rb2    7b3801 B♯EG♯C♯E♯F♯  Rb2m35#57    01378b E♯F♯G♯B♯C♯E 
  138 chords dumpLimap            0 0-1                           b5b7257R     6a27b0 B♯EG♯C♯E♯F♯  R2b55b77     0267ab F♯G♯B♯C♯EE♯ 
-2781 tabs  quit               END @ Q Error=0 save=1 .quitting=1
+2646 tabs  quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
  193 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  193 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
-2803 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
-2806 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.7.csv
+2668 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
+2671 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.12.csv
  193 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  196 utl   getFilePath        fileName =test.cat     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
  193 utl   getFilePath        baseName =Ctest        basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
@@ -1177,15 +1178,7 @@ Kord   60 V -        C C    48    14 17.47 22.88 22.88 6.117 29.00 v a 22.1    0
  618 'R M3 4 #5 b7 7'  : (5, [0,4,5,8,10,11], ['+','13','M11']),             # 
  619 'R M3 b5 5 #5 6'  : (3, [0,4,6,7,8,9],   ['6b6','#4']),                 # 
  620 'R M3 b5 5 6 7'   : (1, [0,4,6,7,9,11],  ['M13','#11']),                # 
-2820 tabs  cleanupCatFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat to C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.7.cat
-2783 tabs  quit               END @ Q Error=0 save=1 .quitting=1
+2685 tabs  cleanupCatFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.cat to C:\Users\Owner\Documents\GitHub\tabs\test\cats\test.12.cat
+2648 tabs  quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-2784 tabs  quit               Calling close(),2017 tabs  on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2973 tabs  main               Thats all folks!
- 193 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
- 193 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 196 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
-2936 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.7.txt
-2938 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
-2940 tabs  cleanupOutFiles    Flush & Close Txt File
+2649 tabs  quit               Calling close(),
