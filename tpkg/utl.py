@@ -64,7 +64,8 @@ def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0, ft=1):
         p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else Z
         t    = f'{p}{sf.f_code.co_name:{pl}} ' + t
     tf = 0
-    if   f == 0:  f = sys.stdout # TXT_FILE
+#    if   f == 0:  f = sys.stdout
+    if   f == 0:  f = TXT_FILE
     elif f == 1:  f = LOG_FILE
     elif f == 2:  f = LOG_FILE  ;  tf = 1
     elif f == 3:  f = CSV_FILE

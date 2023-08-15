@@ -3,8 +3,8 @@ import pyglet.sprite       as pygsprt
 import pyglet.image        as pygimg
 
 from   tpkg import utl  as utl
-import tabs             as tabs
-from   tabs import Tabs as Tabs
+#import tabs             as tabs
+#from   tabs import Tabs as Tabs
 
 SPR          = pygsprt.Sprite
 slog         = utl.slog
@@ -13,7 +13,7 @@ W, Y, Z      = utl.W, utl.Y, utl.Z
 
 def test00(tobj):
     a = 1/0         ;  slog(f'{a=}')
-    p = Tabs.pages  ;  f = tobj.CSV_FILE
+    p = tobj.pages  ;  f = tobj.CSV_FILE
     a = [{'a':1, 'b':"2", 'c':3.00+1/3}]  ;  b = [ f'{p[i].y}' for i in range(len(p)) ]  ;  c = tobj.sobj.stringMap  ;  d = [ tobj.screens ]
     print(tobj.__class__.__name__, 'testA', a, sep=Y, file=f, end=Y)
     print(tobj.__class__.__name__, 'testB', b, sep=Y, file=f, end=Y)
@@ -29,8 +29,8 @@ def testSprTxt_0(tobj, path):
 #        spr = SPR(tex, x=100, y=100, batch=batch, group=j2g(H), subpixel=SUBPIX)
 #        spr.anchor_x, spr.anchor_y = axyWgt(ax, ay)
 
-def testSprTxt_1(path):
-    np, nl, ns, nc, nt = Tabs.n  ;  r, c = nt*ns*nl, nc
+def testSprTxt_1(tobj, path):
+    np, nl, ns, nc, nt = tobj.n  ;  r, c = nt*ns*nl, nc
 #        t = tabls[0]  ;  doc = t.document  ;  m = doc.styles  ;  font = pygfont.load(m[FONT_NAME], m[FONT_SIZE])
 #        ssPath = snapshot('text img for Sprites', 'SPRTXT')
     slog(f'BGN {path=} {r=} {c=}')
@@ -50,7 +50,7 @@ def testSprTxt_2(tobj, path):
     img = pygimg.load(path)
     spr = SPR(img, x=100, y=100, batch=tobj.batch, group=tobj.j2g(tobj.H), subpixel=tobj.SUBPIX)
     spr.anchor_x, spr.anchor_y = tobj.axyWgt(tobj.ax, tobj.ay)
-    Tabs.sprs.append(spr)
+    tobj.sprs.append(spr)
 
 def testSprTxt_3(tobj): # , path):
     np, nl, ns, nc, nt = tobj.n  ;  r, c = 1, nc # nt*ns*nl, nc
@@ -78,32 +78,46 @@ def test0(tobj, n, q=0):
     elif q==1: tobj.quit(  f'test0 {a=} {n=} {q=}', 0, 0)
     slog(f'END test0 {a=} {n=} {q=}')
 
-def test1(tobj, q=0):
+def test1(tobj, amap, mmap, q=0):
     slog(f'{tobj.ntsl()=}')
-    slog(f'{    tabs.TI=}')
-    slog(f'{  tabs.XYWH=}')
-    slog(f'{  tabs.AXY2=}')
-    slog(f'{   tabs.CWH=}')
-    slog(f'{  tabs.LTXA=}')
-    slog(f'{ tabs.LTXAC=}')
-    slog(f'{   tabs.ADS=}')
-    slog(f'{   tabs.CVA=}')
-    slog(f'{   tabs.LDS=}')
-    slog(f'{  tabs.LLBL=}')
-    slog(f'{  tabs.LLBL}', p=0)
-    slog(f'   j(TI)={Y.join(tabs.TI)};')
-    slog(f' j(XYWH)={Y.join(tabs.XYWH)};')
-    slog(f' j(AXY2)={Y.join(tabs.AXY2)};')
-    slog(f' j(LTXA)={Y.join(tabs.LTXA)};')
-    slog(f'j(LTXAC)={Y.join(tabs.LTXAC)};')
-    slog(f'  j(ADS)={Y.join(tabs.ADS)};')
-    slog(f'  j(LDS)={Y.join(tabs.LDS)};')
-    slog(f' j(LLBL)={Y.join(tabs.LLBL)};')
-    slog(f' {Y.join(tabs.LLBL)}', p=0)
-    slog(f'{tabs.JSPR(2, Y)=}')
-    slog(f'{tabs.JLBL(2, Y)=}')
-    slog(f'{tabs.JSPR(2, Y)}', p=0)
-    slog(f'{tabs.JLBL(2, Y)}', p=0)
+    slog(f'{utl.fmtm(amap)}')
+    slog(f'{  amap["LLBL"]}', p=0)
+    slog(f'   j(TI)={Y.join(amap["TI"])};')
+    slog(f' j(XYWH)={Y.join(amap["XYWH"])};')
+    slog(f' j(AXY2)={Y.join(amap["AXY2"])};')
+    slog(f' j(LTXA)={Y.join(amap["LTXA"])};')
+    slog(f'j(LTXAC)={Y.join(amap["LTXAC"])};')
+    slog(f'  j(ADS)={Y.join(amap["ADS"])};')
+    slog(f'  j(LDS)={Y.join(amap["LDS"])};')
+    slog(f' j(LLBL)={Y.join(amap["LLBL"])};')
+    slog(f' {Y.join(amap["LLBL"])}', p=0)
+    slog(f'{mmap["JSPR"](2, Y)=}')
+    slog(f'{mmap["JLBL"](2, Y)=}')
+    slog(f'{mmap["JSPR"](2, Y)}', p=0)
+    slog(f'{mmap["JLBL"](2, Y)}', p=0)
+    # slog(f'{    tabs.TI=}')
+    # slog(f'{  tabs.XYWH=}')
+    # slog(f'{  tabs.AXY2=}')
+    # slog(f'{   tabs.CWH=}')
+    # slog(f'{  tabs.LTXA=}')
+    # slog(f'{ tabs.LTXAC=}')
+    # slog(f'{   tabs.ADS=}')
+    # slog(f'{   tabs.CVA=}')
+    # slog(f'{   tabs.LDS=}')
+    # slog(f'{  tabs.LLBL=}')
+    # slog(f'   j(TI)={Y.join(tabs.TI)};')
+    # slog(f' j(XYWH)={Y.join(tabs.XYWH)};')
+    # slog(f' j(AXY2)={Y.join(tabs.AXY2)};')
+    # slog(f' j(LTXA)={Y.join(tabs.LTXA)};')
+    # slog(f'j(LTXAC)={Y.join(tabs.LTXAC)};')
+    # slog(f'  j(ADS)={Y.join(tabs.ADS)};')
+    # slog(f'  j(LDS)={Y.join(tabs.LDS)};')
+    # slog(f' j(LLBL)={Y.join(tabs.LLBL)};')
+    # slog(f' {Y.join(tabs.LLBL)}', p=0)
+    # slog(f'{tabs.JSPR(2, Y)=}')
+    # slog(f'{tabs.JLBL(2, Y)=}')
+    # slog(f'{tabs.JSPR(2, Y)}', p=0)
+    # slog(f'{tabs.JLBL(2, Y)}', p=0)
     if q:    tExit(tobj, 'test1', 0)
 ####################################################################################################################################################################################################
 def test2(tobj, j=10):

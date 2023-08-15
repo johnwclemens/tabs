@@ -28,11 +28,11 @@ B, A, D, E = 12, 13, 14, 15
 W, Y, Z    = utl.W, utl.Y, utl.Z
 slog, fmtf = utl.slog, utl.fmtf
 fmtl, fmtm = utl.fmtl, utl.fmtm
-ARGS       = None # utl.ARGS
+#ARGS       = None # utl.ARGS
 CAT,  CSV,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
 CAT2, CSV2, LOG2, PNG2, TXT2       = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
-
+CSV_FILE, LOG_FILE, TXT_FILE = None, None, None
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
 ########################################################################################################################################################################################################
@@ -346,7 +346,9 @@ class Tabs(pyglet.window.Window):
         self.ks = kysgs.nic2KS(self.nic)
         self.log( kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
         if self.TEST:
-            tests.test1(self)
+            attrs = {'TI':TI, 'XYWH':XYWH, 'AXY2':AXY2, 'CWH':CWH, 'LTXA':LTXA, 'LTXAC':LTXAC, 'ADS':ADS, 'CVA':CVA, 'LDS':LDS, 'LLBL':LLBL}
+            mthds = {'JSPR':JSPR, 'JLBL':JLBL}
+            tests.test1(self, attrs, mthds)
 #            tests.test0(self, 4)
             tests.test0(self, 5, q=self.EXIT)
     ####################################################################################################################################################################################################
@@ -2662,18 +2664,18 @@ class Tabs(pyglet.window.Window):
         self.cleanupCsvFile()
         self.cleanupCatFile() if self.cobj.umap else None
 
-    def cleanupCsvFile(self):
-        if not CSV_FILE.closed:
-            self.log(f'Flush & Close {CSV_FILE.name}', ff=True)
-            CSV_FILE.flush()     ;    CSV_FILE.close()
-        csvPath  = utl.getFilePath(BASE_NAME,     BASE_PATH, fdir=CSVS, fsfx=CSV)
-        csvPath2 = utl.getFilePath(self.CSV_GFN,  BASE_PATH, fdir=None, fsfx=Z)
-        csvPath3 = self.seqNumCsvPath
-        self.log(f'Copying {CSV_FILE.name} to {csvPath2}', f=2)
-        utl.copyFile(csvPath, csvPath2)
-        self.makeSubDirs(csvPath3)
-        self.log(f'Copying {CSV_FILE.name} to {csvPath3}', f=2)
-        utl.copyFile(csvPath, csvPath3)
+    def cleanupCsvFile(self): pass
+        # if not CSV_FILE.closed:
+        #     self.log(f'Flush & Close {CSV_FILE.name}', ff=True)
+        #     CSV_FILE.flush()     ;    CSV_FILE.close()
+        # csvPath  = utl.getFilePath(BASE_NAME,     BASE_PATH, fdir=CSVS, fsfx=CSV)
+        # csvPath2 = utl.getFilePath(self.CSV_GFN,  BASE_PATH, fdir=None, fsfx=Z)
+        # csvPath3 = self.seqNumCsvPath
+        # self.log(f'Copying {CSV_FILE.name} to {csvPath2}', f=2)
+        # utl.copyFile(csvPath, csvPath2)
+        # self.makeSubDirs(csvPath3)
+        # self.log(f'Copying {CSV_FILE.name} to {csvPath3}', f=2)
+        # utl.copyFile(csvPath, csvPath3)
 
     def cleanupCatFile(self):
         fileName = self.fileNamePfx(CAT) + BASE_NAME
@@ -2754,7 +2756,8 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
 # Globals BGN
 ########################################################################################################################################################################################################
 #BASE_NAME, BASE_PATH, PATH     = utl.BASE_NAME, utl.BASE_PATH, utl.PATH
-CSV_FILE,  LOG_FILE,  TXT_FILE = utl.CSV_FILE,  utl.LOG_FILE,  utl.TXT_FILE
+#CSV_FILE,  LOG_FILE,  TXT_FILE = utl.CSV_FILE,  utl.LOG_FILE,  utl.TXT_FILE
+#CSV_FILE, LOG_FILE, TXT_FILE = None, None, None
 ########################################################################################################################################################################################################
 MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'    ;    LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
 BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
@@ -2812,7 +2815,6 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
 # Log and Main BGN
 ########################################################################################################################################################################################################
 BASE_NAME, BASE_PATH, PATH = utl.paths()
-#BASE_NAME, BASE_PATH, PATH = utl.BASE_NAME, utl.BASE_PATH, utl.PATH
 CSV_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV,  dbg=0)
 LOG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG,  dbg=0)
 PNG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG,  dbg=0)
@@ -2821,18 +2823,23 @@ CSV_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV2, dbg=0)
 LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2, dbg=0)
 PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2, dbg=0)
 TXT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2, dbg=0)
+#ARGS = {}
+# 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
+FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=0)
+#def main():
+#    global CSV_FILE, LOG_FILE, TXT_FILE
 if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2, dbg=0)
-if LOG_PATH.exists():
-    utl.copyFile(LOG_PATH, LOG_PATH2, dbg=0)
+if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, dbg=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, dbg=0)
 if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, dbg=0)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
-    ARGS = utl.init(CSV_FILE, LOG_FILE, TXT_FILE, f=0)
-    kysgs.init(f=0)
-    slog(sys.argv[0],      p=0,        f=0)
-    slog(f'argv={fmtl(sys.argv[1:])}', f=0)
-    # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
-    FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=0)
+    f0   = 2 #  ;   global ARGS
+    ARGS = utl.init(CSV_FILE, LOG_FILE, TXT_FILE, f=f0)
+    kysgs.init(f=f0)
+    slog(sys.argv[0],      p=0,        f=f0)
+    slog(f'argv={fmtl(sys.argv[1:])}', f=f0)
+#        # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
+#        FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=f0)
     def main():
         slog(f'{CSV_PATH=}',  f=2)        ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{LOG_PATH=}',  f=2)        ;   slog(f'{LOG_FILE.name=}', f=2)
@@ -2848,7 +2855,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
         geomTxtPath = utl.getFilePath(tabs.TXT_GFN, BASE_PATH, fdir=None, fsfx=Z)
         cleanupOutFiles(TXT_FILE, TXT_PATH, geomTxtPath, seqNumTxtPath, f=2)
         cleanupOutFiles(LOG_FILE, LOG_PATH, geomLogPath, seqNumLogPath, f=1)
-    ####################################################################################################################################################################################################
+########################################################################################################################################################################################################
     if __name__ == '__main__':
         main()
 ########################################################################################################################################################################################################
