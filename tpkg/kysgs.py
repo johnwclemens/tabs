@@ -3,20 +3,37 @@ from tpkg import utl as utl
 from tpkg.notes import Notes  as Notes
 from tpkg.misc  import Scales as Scales
 
+F            = 0
 M, P         = utl.M, utl.P
 slog         = utl.slog
 W, Y, Z      = utl.W, utl.Y, utl.Z
 fmtl         = utl.fmtl
 signed       = utl.signed
 
+KSD = {}
+KIM, KIS, KMS, KJS, KNS        = range(5)
+KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
+
+def init(f):
+    global KSD, F   ;   F = f
+    slog('BGN', f=F)
+    dmpKSVHdr(csv=1,   t=-1)
+    KSD = initKSD(KSD, t=-1)
+    KSD = initKSD(KSD, t= 1)
+    dmpKSVHdr(csv=1,   t= 1)
+    dumpKSH(  csv=1)
+    dumpData()
+    slog('END', f=F)
+
 def initKSD(ks, t):
+    slog('BGN', f=F)
     nt = Notes.NTONES
     if     t == -1:   i = 0  ;  j = 6   ;  s = M
     else:             i = 0  ;  j = 10  ;  s = P
     iz1 = [ (j + k * s) % nt for k in range(1, 1+abs(s)) ]
     ms1 = [ Notes.name(j, t) for j in iz1 ]
     iz2 = list(iz1)          ;         ms2 = list(ms1)
-    slog(f'{t=} {i=} {j=} {s=} {fmtl(iz2)=} {fmtl(ms2)=}', p=0)   ;   j += t
+    slog(f'{t=} {i=} {j=} {s=} {fmtl(iz2)=} {fmtl(ms2)=}', p=0, f=F)   ;   j += t
     for  k in range(0, t + s, t):
         ak = abs(k)
         m  =   Notes.name(i, t, 1 if ak >= 5 else 0)
@@ -26,29 +43,30 @@ def initKSD(ks, t):
         jz = Scales.majIs(i)    ;    im  = [i, m]
         ns = [ Notes.name(j, t, 1 if ak >= 5 else 0) for j in jz ]
         ks[k]  =  [ im, iz, ms, jz, ns ]
-        slog(fmtKSK(k, csv=1), p=0)
+        slog(fmtKSK(k, csv=1), p=0, f=F)
         i  =   Notes.nextIndex(i, s)
         j  =   Notes.nextIndex(j, s)
+    slog('END', f=F)
     return ks
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
-    slog(f'BGN')
+    slog(f'BGN', f=F)
     dumpKSH(csv)
     dumpKSV(csv)
-    slog(f'END')
+    slog(f'END', f=F)
 ########################################################################################################################################################################################################
 def dumpKSV(csv=0):
-    f = 3 if csv else 1
+    f = 3 if csv else F
     dmpKSVHdr(csv)
     keys = sorted(KSD.keys())
     for k in keys:    slog(fmtKSK(k, csv), p=0, f=f)
 
 def dmpKSVHdr(csv=0, t=0):
-    c, d, m, n, o, f = (Z, Z, Y, Z, Z, 3)  if csv else ('^20', '^13', W, W, W*2, 1)
+    c, d, m, n, o, f = (Z, Z, Y, Z, Z, 3)  if csv else ('^20', '^13', W, W, W*2, F)
     k = 2*P+1 if t == 0 else M if t == Notes.FLAT else P if t == Notes.SHRP else 1
     fsn, fsi, ii, ino, kst = 'Flats/Shrps Naturals', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {signed(k)}'
     hdrs = ['KS', 'Type', 'N', f'{n}I', f'{n}{fsn:{c}}', f'{o}{fsi:{d}}', f'{o}{ii:{d}}', f'{n}{ino:{c}}', f'{n}{kst}']
-    hdrs = m.join(hdrs)    ;    slog(hdrs, p=0, f=f)
+    hdrs = m.join(hdrs)    ;    slog(hdrs, p=0, f=F)
 ########################################################################################################################################################################################################
 def fmtKSK(k, csv=0):
     w, d, n = (0, Z, Y) if csv else (2, '[', W)
@@ -64,7 +82,7 @@ def fmtKSK(k, csv=0):
     return n.join(_)
 
 def dumpKSH(csv=0):
-    c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, 1)     ;  u, v, p = '<', 0, 0   ;   f, k, s = 'Flats', 'N', 'Shrps'
+    c, y, ff   = (Z, Z, 3)    if csv else ('^20', W, F)     ;  u, v, p = '<', 0, 0   ;   f, k, s = 'Flats', 'N', 'Shrps'
     w, d, m, n = (0, Z, Y, Y) if csv else (2, '[', W, W*2)  ;  v = W*v if v and Notes.TYPE==Notes.FLAT else Z
 #    KSD, KIM, KIS, KMS, KSK, KST = self.KSD, self.KIM, self.KIS, self.KMS, self.KSK, self.KST
     hdrs = [ f'{y}{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]        ;  hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=ff)
@@ -89,21 +107,22 @@ def nic2KS(nic, dbg=0):
     n   = KSD[k][KIM][KST] if iz else '??'
     i   = KSD[k][KIM][KSK]
     ns  = KSD[k][KMS]
-    slog(fmtKSK(k))      if dbg else None
+    if dbg: slog(fmtKSK(k), f=F)
+    if dbg: slog(fmtKSK(k), f=F)
     return k, nt, n, i, ns, Scales.majIs(i)
 
 def dumpNic(nic): #fix me
 #    KSD, KIS = self.KSD, self.KIS
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" for i in nic.keys() ], s=Y)}')
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{nic[i]}" for i in nic.keys() ], s=Y)}')
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else None for i in KSD[M][KIS] ], s=Y)}')
-    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else None for i in KSD[P][KIS] ], s=Y)}')
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" for i in nic.keys() ], s=Y)}', f=F)
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2S[i]:2}:{nic[i]}" for i in nic.keys() ], s=Y)}', f=F)
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else None for i in KSD[M][KIS] ], s=Y)}', f=F)
+    slog(f'{fmtl([ f"{i:x}:{Notes.I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else None for i in KSD[P][KIS] ], s=Y)}', f=F)
 ########################################################################################################################################################################################################
-KSD = {}
-KIM, KIS, KMS, KJS, KNS        = range(5)
-KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
-dmpKSVHdr(csv=1,   t=-1)
-KSD = initKSD(KSD, t=-1)
-KSD = initKSD(KSD, t= 1)
-dmpKSVHdr(csv=1,   t= 1)
-dumpKSH(  csv=1)
+# KSD = {}
+# KIM, KIS, KMS, KJS, KNS        = range(5)
+# KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
+# dmpKSVHdr(csv=1,   t=-1)
+# KSD = initKSD(KSD, t=-1)
+# KSD = initKSD(KSD, t= 1)
+# dmpKSVHdr(csv=1,   t= 1)
+# dumpKSH(  csv=1)

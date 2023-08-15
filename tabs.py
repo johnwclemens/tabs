@@ -14,7 +14,7 @@ import pyglet.window.key   as pygwink
 from   pyglet.text     import document, layout
 #from   tpkg            import chords as chords
 from   tpkg            import utl    as utl
-from   tpkg            import kysgs  as keysigs
+from   tpkg            import kysgs  as kysgs
 from   tpkg            import notes  as notes
 from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
@@ -28,7 +28,7 @@ B, A, D, E = 12, 13, 14, 15
 W, Y, Z    = utl.W, utl.Y, utl.Z
 slog, fmtf = utl.slog, utl.fmtf
 fmtl, fmtm = utl.fmtl, utl.fmtm
-ARGS       = utl.ARGS
+ARGS       = None # utl.ARGS
 CAT,  CSV,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
 CAT2, CSV2, LOG2, PNG2, TXT2       = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
@@ -343,8 +343,8 @@ class Tabs(pyglet.window.Window):
         self.log(self.fAxy())   ;   self.log(self.fmtAxy())
         [ self.visib.append([]) for _ in range(len(JTEXTS)) ]
         self.createTniks()
-        self.ks = keysigs.nic2KS(self.nic)
-        self.log( keysigs.fmtKSK(self.ks[keysigs.KSK]), f=2)
+        self.ks = kysgs.nic2KS(self.nic)
+        self.log( kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
         if self.TEST:
             tests.test1(self)
 #            tests.test0(self, 4)
@@ -487,8 +487,8 @@ class Tabs(pyglet.window.Window):
     def dumpStruct(self, why=Z, dbg=0, dbg2=0):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
         if dbg:      self.dumpArgs(f=2)
-        keysigs.dumpData()
-        keysigs.dumpNic(self.nic)
+        kysgs.dumpData()
+        kysgs.dumpNic(self.nic)
         notes.dumpData()
         self.dumpFont(why)
         self.dumpVisible()
@@ -1700,13 +1700,13 @@ class Tabs(pyglet.window.Window):
     def setNote(self, text, cc, t, pos=1, dbg=1): #fix me
         old   = self.notes[cc].text
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={old}', pos=pos)
-        if dbg: self.log(keysigs.fmtKSK(self.ks[keysigs.KSK]))
+        if dbg: self.log(kysgs.fmtKSK(self.ks[kysgs.KSK]))
         ntext = self.sobj.tab2nn(text, t, self.nic) if self.sobj.isFret(text) else self.tblank
         if old in Notes.N2I:
             i  =  Notes.N2I[old]
             if  self.nic[i] <= 1:  del self.nic[i]
             else:                      self.nic[i] -= 1
-            keysigs.dumpNic(self.nic)
+            kysgs.dumpNic(self.nic)
         self.notes[cc].text = ntext
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
 #                utl.updNotes(11, 'B', 'Cb', Notes.TYPE, -1)
@@ -1785,6 +1785,7 @@ class Tabs(pyglet.window.Window):
     def kbkEvntTxt(self, why=Z):   why = why if why else W*4   ;   return f'<{why}{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
     ####################################################################################################################################################################################################
     def on_key_press(self, symb, mods, dbg=1): # avoid these
+        retv = pyglet.event.EVENT_HANDLED #  ;   self.log(f'{retv=}')
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
         self.kbk = self.symbStr  ;  kbk = self.kbk
         if   dbg: self.log(f'BGN {self.kbkEvntTxt()}', f=2)
@@ -1820,8 +1821,8 @@ class Tabs(pyglet.window.Window):
         elif kbk == 'O' and self.isCtrl(     mods):    self.flipCursorMode('@ O', 1)
         elif kbk == 'P' and self.isCtrlShift(mods):    self.addPage(       '@^P', ins=0)
         elif kbk == 'P' and self.isCtrl(     mods):    self.addPage(       '@ P', ins=None)
-        elif kbk == 'Q' and self.isCtrlShift(mods):    self.quit(          '@^Q', error=0, save=0)
-        elif kbk == 'Q' and self.isCtrl(     mods):    self.quit(          '@ Q', error=0, save=1)
+        elif kbk == 'Q' and self.isCtrlShift(mods):    retv = self.quit(   '@^Q', error=0, save=0)
+        elif kbk == 'Q' and self.isCtrl(     mods):    retv = self.quit(   '@ Q', error=0, save=1)
         elif kbk == 'R' and self.isCtrlShift(mods):    self.flipChordNames('@^R', hit=1)
         elif kbk == 'R' and self.isCtrl(     mods):    self.flipChordNames('@ R', hit=0)
         elif kbk == 'S' and self.isCtrlShift(mods):    self.shiftTabs(     '@^S')
@@ -1880,7 +1881,8 @@ class Tabs(pyglet.window.Window):
             elif kbk == 'SPACE':                       self.autoMove(    '   SPACE')
 #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
         if   dbg: self.log(f'END {self.kbkEvntTxt()}', f=2)
-        retv = pyglet.event.EVENT_HANDLED   ;   self.log(f'{retv=}')  ;  return retv
+#        retv = pyglet.event.EVENT_HANDLED   ;   self.log(f'{retv=}')
+        return retv
     ####################################################################################################################################################################################################
     def on_key_release(self, symb, mods, dbg=1):
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
@@ -2419,8 +2421,8 @@ class Tabs(pyglet.window.Window):
                 if self.kords:
                     imap = self.getImap(p, l, c, dbg2=1)
                     self.setChord(imap, i, pos=1, dbg=1)
-        keysigs.dumpNic(dict(self.nic))
-        self.log(keysigs.fmtKSK(self.ks[keysigs.KSK]), f=2)
+        kysgs.dumpNic(dict(self.nic))
+        self.log(kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
     def flipChordNames(self, how, hit=0, dbg=1):
@@ -2631,10 +2633,11 @@ class Tabs(pyglet.window.Window):
 #        olog((pos, o), p, f, s, e, ff)
     ####################################################################################################################################################################################################
     def quit(self, why=Z, error=1, save=1, dbg=1):
+        retv = True
         hdr1 = self.fTnikHdr(1)  ;   hdr0 = self.fTnikHdr(0)   ;   self.log(hdr1, p=0, f=2)  ;  self.log(hdr0,     p=0, f=2)   ;   err = f'Error={error}'
         self.log(f'BGN {why} {err} {save=} {self.quitting=}', f=2)                   ;          self.log(utl.QUIT, p=0, f=2)   ;   msg = 'Recursion Error'
         self.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())      ;          self.log(utl.QUIT, p=0, f=2)
-        if self.quitting:        msg += f' {self.quitting=} Exiting'  ;  self.log(msg, f=2)  ;  self.close()   ;   return
+        if self.quitting:        msg += f' {self.quitting=} Exiting'  ;  self.log(msg, f=2)  ;  self.close() #  ;   return True
         self.dumpTniksSfx(why)        ;     self.quitting += 1
         if not error:
             utl.dumpStack(utl.MAX_STACK_FRAME)
@@ -2649,10 +2652,11 @@ class Tabs(pyglet.window.Window):
         self.log('Calling close()', e=Y, f=2)
         self.close()
         if self.TEST:
-            if   self.EXIT == 0: self.log(f'{self.EXIT=} returning')    ;   return
-            elif self.EXIT == 1: self.log('Calling pyglet.app.exit()')  ;   pyglet.app.exit()
-            elif self.EXIT == 2: self.log('Calling exit()')             ;   exit()
-        self.log(f'returning')
+            if   self.EXIT == 0: retv = False  ;  self.log(f'{self.EXIT=} returning {retv=}')
+            elif self.EXIT == 1:                  self.log(f'{self.EXIT=} Calling pyglet.app.exit()')  ;   pyglet.app.exit()
+            elif self.EXIT == 2:                  self.log(f'{self.EXIT=} Calling exit()')             ;   exit()
+        self.log(f'returning {retv=}')
+        return retv
     ####################################################################################################################################################################################################
     def cleanupFiles(self):
         self.cleanupCsvFile()
@@ -2696,12 +2700,12 @@ def dumpGlobals():
     slog(f'PATH      = {PATH}',      f=2)
     slog(f'BASE_PATH = {BASE_PATH}', f=2)
 ########################################################################################################################################################################################################
-def initRGB(dbg=1):
+def initRGB(f, dbg=1):
     aaa, bbb, ccc = 31, 63, 127
     if dbg:
         s = W*7  ;  t = f'{s}RGB '
         o = [ f' {o}' for o in range(len(OPC)) ]
-        slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=2)
+        slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
     _initRGB('FSH', (255, aaa, 255))  # 0
     _initRGB('PNK', (255, 128, 192))  # 1
     _initRGB('RED', (255, bbb, aaa))  # 2
@@ -2749,7 +2753,7 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
 #--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabs.py utl.py chord.py
 # Globals BGN
 ########################################################################################################################################################################################################
-BASE_NAME, BASE_PATH, PATH     = utl.BASE_NAME, utl.BASE_PATH, utl.PATH
+#BASE_NAME, BASE_PATH, PATH     = utl.BASE_NAME, utl.BASE_PATH, utl.PATH
 CSV_FILE,  LOG_FILE,  TXT_FILE = utl.CSV_FILE,  utl.LOG_FILE,  utl.TXT_FILE
 ########################################################################################################################################################################################################
 MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'    ;    LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
@@ -2799,14 +2803,16 @@ FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'He
 
 def cleanupOutFiles(file, fp, gfp, snp, f):
     slog(f'Copy {file.name} to {snp}',  ff=1, f=f)
-    utl.copyFile(fp,           snp,   dbg=0)
+    utl.copyFile(fp,            snp,   dbg=0)
     slog(f'Copy {file.name} to {gfp}',  ff=1, f=f)
-    utl.copyFile(fp,           gfp)
+    utl.copyFile(fp,            gfp)
     slog('Flush & Close Txt File',      ff=1, f=f)
     file.flush()     ;     file.close()
 
 # Log and Main BGN
 ########################################################################################################################################################################################################
+BASE_NAME, BASE_PATH, PATH = utl.paths()
+#BASE_NAME, BASE_PATH, PATH = utl.BASE_NAME, utl.BASE_PATH, utl.PATH
 CSV_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV,  dbg=0)
 LOG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG,  dbg=0)
 PNG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG,  dbg=0)
@@ -2816,15 +2822,17 @@ LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2, dbg=0)
 PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2, dbg=0)
 TXT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2, dbg=0)
 if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2, dbg=0)
-if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, dbg=0)
+if LOG_PATH.exists():
+    utl.copyFile(LOG_PATH, LOG_PATH2, dbg=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, dbg=0)
 if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, dbg=0)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
-    utl.init(LOG_FILE, CSV_FILE, TXT_FILE)
-    slog(sys.argv[0],      p=0,        f=2)
-    slog(f'argv={fmtl(sys.argv[1:])}', f=2)
+    ARGS = utl.init(CSV_FILE, LOG_FILE, TXT_FILE, f=0)
+    kysgs.init(f=0)
+    slog(sys.argv[0],      p=0,        f=0)
+    slog(f'argv={fmtl(sys.argv[1:])}', f=0)
     # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
-    FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB()
+    FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=0)
     def main():
         slog(f'{CSV_PATH=}',  f=2)        ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{LOG_PATH=}',  f=2)        ;   slog(f'{LOG_FILE.name=}', f=2)

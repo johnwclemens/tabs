@@ -1,10 +1,10 @@
-#import pyglet
+import pyglet.window.key   as pygwink
 import pyglet.sprite       as pygsprt
 import pyglet.image        as pygimg
 
+from   tpkg import utl  as utl
 import tabs             as tabs
 from   tabs import Tabs as Tabs
-from   tpkg import utl  as utl
 
 SPR          = pygsprt.Sprite
 slog         = utl.slog
@@ -75,7 +75,7 @@ def test0(tobj, n, q=0):
     slog(utl.fmtf(a*100000, n))
     slog(utl.fmtf(a*1000000, n))
     if   q==2: tExit(tobj, f'test0 {a=} {n=} {q=}', 0)
-    elif q==1: tobj.quit(f'test0 {a=} {n=} {q=}', 0, 0)
+    elif q==1: tobj.quit(  f'test0 {a=} {n=} {q=}', 0, 0)
     slog(f'END test0 {a=} {n=} {q=}')
 
 def test1(tobj, q=0):
@@ -91,14 +91,14 @@ def test1(tobj, q=0):
     slog(f'{   tabs.LDS=}')
     slog(f'{  tabs.LLBL=}')
     slog(f'{  tabs.LLBL}', p=0)
-    slog(f'J{Y.join(tabs.TI)=}')
-    slog(f'J{Y.join(tabs.XYWH)=}')
-    slog(f'J{Y.join(tabs.AXY2)=}')
-    slog(f'J{Y.join(tabs.LTXA)=}')
-    slog(f'J{Y.join(tabs.LTXAC)=}')
-    slog(f'J{Y.join(tabs.ADS)=}')
-    slog(f'J{Y.join(tabs.LDS)=}')
-    slog(f'J{Y.join(tabs.LLBL)=}')
+    slog(f'   j(TI)={Y.join(tabs.TI)};')
+    slog(f' j(XYWH)={Y.join(tabs.XYWH)};')
+    slog(f' j(AXY2)={Y.join(tabs.AXY2)};')
+    slog(f' j(LTXA)={Y.join(tabs.LTXA)};')
+    slog(f'j(LTXAC)={Y.join(tabs.LTXAC)};')
+    slog(f'  j(ADS)={Y.join(tabs.ADS)};')
+    slog(f'  j(LDS)={Y.join(tabs.LDS)};')
+    slog(f' j(LLBL)={Y.join(tabs.LLBL)};')
     slog(f' {Y.join(tabs.LLBL)}', p=0)
     slog(f'{tabs.JSPR(2, Y)=}')
     slog(f'{tabs.JLBL(2, Y)=}')
@@ -141,10 +141,16 @@ def test2(tobj, j=10):
 ####################################################################################################################################################################################################
 def tExit(tobj, why, e): #        dispatch_event('on_close')
     slog(f'BGN {why} {e}')
-    slog('on_key_press   65507 2')   ;   tobj.dispatch_event('on_key_press',   65507, 2)
-    slog('on_key_press   65505 3')   ;   tobj.dispatch_event('on_key_press',   65505, 3)
-    slog('on_key_press     113 3')   ;   tobj.dispatch_event('on_key_press',     113, 3)
-    slog('on_key_release   113 3')   ;   tobj.dispatch_event('on_key_release',   113, 3)
-    slog('on_key_release 65505 3')   ;   tobj.dispatch_event('on_key_release', 65505, 3)
-    slog('on_key_release 65507 2')   ;   tobj.dispatch_event('on_key_release', 65507, 2)
+    sym, mod = 65507, 2
+    slog(f'on_key_press   {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_press',   sym, mod)
+    sym, mod = 65505, 3
+    slog(f'on_key_press   {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_press',   sym, mod)
+    sym, mod = 113, 3
+    slog(f'on_key_press   {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_press',   sym, mod)
+    sym, mod = 113, 3
+    slog(f'on_key_release {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_release', sym, mod)
+    sym, mod = 65505, 3
+    slog(f'on_key_release {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_release', sym, mod)
+    sym, mod = 65507, 2
+    slog(f'on_key_release {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_release', sym, mod)
     slog(f'END {why} {e}')
