@@ -1,15 +1,11 @@
-import pyglet.window.key   as pygwink
-import pyglet.sprite       as pygsprt
-import pyglet.image        as pygimg
+import pyglet.window.key as pygwink
+import pyglet.sprite     as pygsprt
+import pyglet.image      as pygimg
+from   tpkg   import utl as utl
 
-from   tpkg import utl  as utl
-#import tabs             as tabs
-#from   tabs import Tabs as Tabs
-
-SPR          = pygsprt.Sprite
-slog         = utl.slog
-#tobj         = None # Tabs
-W, Y, Z      = utl.W, utl.Y, utl.Z
+SPR     = pygsprt.Sprite
+slog    = utl.slog
+W, Y, Z = utl.W, utl.Y, utl.Z
 
 def test00(tobj):
     a = 1/0         ;  slog(f'{a=}')

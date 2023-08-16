@@ -28,7 +28,6 @@ B, A, D, E = 12, 13, 14, 15
 W, Y, Z    = utl.W, utl.Y, utl.Z
 slog, fmtf = utl.slog, utl.fmtf
 fmtl, fmtm = utl.fmtl, utl.fmtm
-#ARGS       = None # utl.ARGS
 CAT,  CSV,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
 CAT2, CSV2, LOG2, PNG2, TXT2       = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
@@ -2664,18 +2663,18 @@ class Tabs(pyglet.window.Window):
         self.cleanupCsvFile()
         self.cleanupCatFile() if self.cobj.umap else None
 
-    def cleanupCsvFile(self): pass
-        # if not CSV_FILE.closed:
-        #     self.log(f'Flush & Close {CSV_FILE.name}', ff=True)
-        #     CSV_FILE.flush()     ;    CSV_FILE.close()
-        # csvPath  = utl.getFilePath(BASE_NAME,     BASE_PATH, fdir=CSVS, fsfx=CSV)
-        # csvPath2 = utl.getFilePath(self.CSV_GFN,  BASE_PATH, fdir=None, fsfx=Z)
-        # csvPath3 = self.seqNumCsvPath
-        # self.log(f'Copying {CSV_FILE.name} to {csvPath2}', f=2)
-        # utl.copyFile(csvPath, csvPath2)
-        # self.makeSubDirs(csvPath3)
-        # self.log(f'Copying {CSV_FILE.name} to {csvPath3}', f=2)
-        # utl.copyFile(csvPath, csvPath3)
+    def cleanupCsvFile(self):
+        if not CSV_FILE.closed:
+            self.log(f'Flush & Close {CSV_FILE.name}', ff=True)
+            CSV_FILE.flush()     ;    CSV_FILE.close()
+        csvPath  = utl.getFilePath(BASE_NAME,     BASE_PATH, fdir=CSVS, fsfx=CSV)
+        csvPath2 = utl.getFilePath(self.CSV_GFN,  BASE_PATH, fdir=None, fsfx=Z)
+        csvPath3 = self.seqNumCsvPath
+        self.log(f'Copying {CSV_FILE.name} to {csvPath2}', f=2)
+        utl.copyFile(csvPath, csvPath2)
+        self.makeSubDirs(csvPath3)
+        self.log(f'Copying {CSV_FILE.name} to {csvPath3}', f=2)
+        utl.copyFile(csvPath, csvPath3)
 
     def cleanupCatFile(self):
         fileName = self.fileNamePfx(CAT) + BASE_NAME
@@ -2708,25 +2707,25 @@ def initRGB(f, dbg=1):
         s = W*7  ;  t = f'{s}RGB '
         o = [ f' {o}' for o in range(len(OPC)) ]
         slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
-    _initRGB('FSH', (255, aaa, 255))  # 0
-    _initRGB('PNK', (255, 128, 192))  # 1
-    _initRGB('RED', (255, bbb, aaa))  # 2
-    _initRGB('RST', (255,  96,  10))  # 3
-    _initRGB('ORG', (255, 176, aaa))  # 5
-    _initRGB('PCH', (255, 160, 128))  # 4
-    _initRGB('YLW', (255, 255, bbb))  # 6
-    _initRGB('LIM', (160, 255, aaa))  # 7
-    _initRGB('GRN', (bbb, 255, bbb))  # 8
-    _initRGB('TRQ', (aaa, 255, 192))  # 9
-    _initRGB('CYA', (aaa, 255, 255))  # 10
-    _initRGB('IND', (aaa, 180, 255))  # 11
-    _initRGB('BLU', (bbb, aaa, 255))  # 12
-    _initRGB('VLT', (128, bbb, 255))  # 13
-    _initRGB('GRY', (255, 255, 255))  # 14
-    _initRGB('CL1', (ccc, aaa, 255))  # 15
-    _initRGB('CL2', (255, 128, bbb))  # 16
-    _initRGB('CL3', (aaa, 255, ccc))  # 17
-    _initRGB('CL4', (aaa, ccc, bbb))  # 18
+    _initRGB('FSH', (255, aaa, 255), dbg=dbg)  # 0
+    _initRGB('PNK', (255, 128, 192), dbg=dbg)  # 1
+    _initRGB('RED', (255, bbb, aaa), dbg=dbg)  # 2
+    _initRGB('RST', (255,  96,  10), dbg=dbg)  # 3
+    _initRGB('ORG', (255, 176, aaa), dbg=dbg)  # 5
+    _initRGB('PCH', (255, 160, 128), dbg=dbg)  # 4
+    _initRGB('YLW', (255, 255, bbb), dbg=dbg)  # 6
+    _initRGB('LIM', (160, 255, aaa), dbg=dbg)  # 7
+    _initRGB('GRN', (bbb, 255, bbb), dbg=dbg)  # 8
+    _initRGB('TRQ', (aaa, 255, 192), dbg=dbg)  # 9
+    _initRGB('CYA', (aaa, 255, 255), dbg=dbg)  # 10
+    _initRGB('IND', (aaa, 180, 255), dbg=dbg)  # 11
+    _initRGB('BLU', (bbb, aaa, 255), dbg=dbg)  # 12
+    _initRGB('VLT', (128, bbb, 255), dbg=dbg)  # 13
+    _initRGB('GRY', (255, 255, 255), dbg=dbg)  # 14
+    _initRGB('CL1', (ccc, aaa, 255), dbg=dbg)  # 15
+    _initRGB('CL2', (255, 128, bbb), dbg=dbg)  # 16
+    _initRGB('CL3', (aaa, 255, ccc), dbg=dbg)  # 17
+    _initRGB('CL4', (aaa, ccc, bbb), dbg=dbg)  # 18
     return RGB.keys()
 ########################################################################################################################################################################################################
 def _initRGB(key, rgb, dv=32, n=None, dbg=0):
@@ -2736,12 +2735,12 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
     if dbg: msg.append(f'{key:3}:   O=[')
     for j in range(n):
         clrs = []
-        if dbg > 2: slog(f'{key:4} {fmtl(rgb, w=3)} {opc=:2} {OPC[opc]:3} {dv=} {n=} {fmtl(diffs, w=".2f")} ', e=Z);  slog(fmtl(steps, w=".2f"), p=0, f=1)
+        if dbg > 2: slog(f'{key:4} {fmtl(rgb, w=3)} {opc=:2} {OPC[opc]:3} {dv=} {n=} {fmtl(diffs, w=".2f")} ', e=Z)  ;  slog(fmtl(steps, w=".2f"), p=0, f=1)
         for opc in range(lopc):
             if dbg: msg.append(f'{OPC[opc]:3} ' if not j else Z)
             color = list([ fri(rgb[i]/dv + j*steps[i]) for i in range(lrgb) ])  ;  color.append(OPC[opc])  ;  clrs.append(tuple(color))
-            if   dbg > 1:       slog(f'{j:2} {key:4} {utl.fColor(color)}', p=0, e=W)
-        if dbg: slog(p=0)
+            if dbg > 1:    slog(f'{j:2} {key:4} {utl.fColor(color)}', p=0, e=W)
+        if dbg > 1:        slog(p=0)
         if dbg: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
         colors.append(clrs)
     if dbg:
@@ -2754,10 +2753,6 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
 # Global Functions END
 #--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabs.py utl.py chord.py
 # Globals BGN
-########################################################################################################################################################################################################
-#BASE_NAME, BASE_PATH, PATH     = utl.BASE_NAME, utl.BASE_PATH, utl.PATH
-#CSV_FILE,  LOG_FILE,  TXT_FILE = utl.CSV_FILE,  utl.LOG_FILE,  utl.TXT_FILE
-#CSV_FILE, LOG_FILE, TXT_FILE = None, None, None
 ########################################################################################################################################################################################################
 MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'    ;    LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
 BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
@@ -2823,23 +2818,18 @@ CSV_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV2, dbg=0)
 LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2, dbg=0)
 PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2, dbg=0)
 TXT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2, dbg=0)
-#ARGS = {}
 # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
 FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=0)
-#def main():
-#    global CSV_FILE, LOG_FILE, TXT_FILE
 if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2, dbg=0)
 if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, dbg=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, dbg=0)
 if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, dbg=0)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
-    f0   = 2 #  ;   global ARGS
+    f0   = 0
     ARGS = utl.init(CSV_FILE, LOG_FILE, TXT_FILE, f=f0)
     kysgs.init(f=f0)
     slog(sys.argv[0],      p=0,        f=f0)
     slog(f'argv={fmtl(sys.argv[1:])}', f=f0)
-#        # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
-#        FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=f0)
     def main():
         slog(f'{CSV_PATH=}',  f=2)        ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{LOG_PATH=}',  f=2)        ;   slog(f'{LOG_FILE.name=}', f=2)
