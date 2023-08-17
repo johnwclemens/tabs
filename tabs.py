@@ -31,7 +31,59 @@ fmtl, fmtm = utl.fmtl, utl.fmtm
 CAT,  CSV,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
 CAT2, CSV2, LOG2, PNG2, TXT2       = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
-CSV_FILE, LOG_FILE, TXT_FILE = None, None, None
+CSV_FILE, LOG_FILE, TXT_FILE       = None, None, None
+
+BASE_NAME, BASE_PATH, PATH = utl.paths()
+CSV_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV,  dbg=0)
+LOG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG,  dbg=0)
+PNG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG,  dbg=0)
+TXT_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT,  dbg=0)
+CSV_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV2, dbg=0)
+LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2, dbg=0)
+PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2, dbg=0)
+TXT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2, dbg=0)
+
+MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'    ;    LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
+BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
+ALIGN, INDENT, LEAD, LNSP, STRH, TAB_STOPS, WRAP     = 'align', 'indent', 'leading', 'line_spacing', 'stretch', 'tab_stops', 'wrap'
+MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM = 'margin_left', 'margin_right', 'margin_top', 'margin_bottom'
+TI        = ['tnik', '  i ']
+XYWH      = ['   X   ', '   Y   ', '   W   ', '   H   ']
+AXY2      = ['x', 'y', 'AnchX', 'AnchY']
+CWH       = ['CntWd', 'CntHt']
+CVA       = ['v', 'a']
+ADS       = ['Ascnt', 'Dscnt', 'As+Ds']
+LTXA      = list(itertools.chain(TI, XYWH, AXY2))
+LTXAC     = list(itertools.chain(TI, XYWH, AXY2, CWH))
+LDS       = ['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B', 'I', 'S', 'M', 'W', 'w', 'FontName']
+LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
+########################################################################################################################################################################################################
+LBL                   = pygtxt.Label
+SPR                   = pygsprt.Sprite
+RGB                   = {}
+TT, NN, II, KK        =  0,  1,  2,  3
+C1,  C2               =  0,  1
+CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
+HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
+MELODY, CHORD, ARPG   =  0, 1, 2
+LARROW, RARROW, DARROW, UARROW =  0, 1, 0, 1
+NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = 0, 1, 2
+########################################################################################################################################################################################################
+INIT    = 'INIT'
+FIN     = [1, 1, 1, 2, 1]
+FNTP    = [5, 4, 3, 3, 3]
+#           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16
+JTEXTS  = ['Page',  'Line',  'Sect',  'Colm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
+JTEXTS2 = ['Page',  'Line',  'Sect',  'Kolm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QKlm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
+jTEXTS  = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qklms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
+JFMT    = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       2,       2,       4]
+#JFMT   = [  2,       3,       3,       6,       6,       6,       6,       6,       3,       5,       1,       1,       3,       3,       3,       4,       7]
+#               0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17
+OPC         = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
+PNT_PER_PIX =  7/9  # 14pts/18pix
+FONT_DPIS   = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
+FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'Helvetica', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
+
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
 ########################################################################################################################################################################################################
@@ -2693,7 +2745,9 @@ class Tabs(pyglet.window.Window):
 ########################################################################################################################################################################################################
 # Global Functions BGN
 ########################################################################################################################################################################################################
-def fri(f):  return int(math.floor(f + 0.5))
+def fri(f):     return int(math.floor(f + 0.5))
+def JLBL(n, d): return (f'{d.join(LLBL)}{d}'*n).removesuffix(d)
+def JSPR(n, d): return (f'{d.join(LTXA)}{d}'*n).removesuffix(d)
 ########################################################################################################################################################################################################
 def dumpGlobals():
     slog(f'BASE_NAME = {BASE_NAME}', f=2)
@@ -2701,7 +2755,95 @@ def dumpGlobals():
     slog(f'PATH      = {PATH}',      f=2)
     slog(f'BASE_PATH = {BASE_PATH}', f=2)
 ########################################################################################################################################################################################################
-def initRGB(f, dbg=1):
+def OLD_A_dumpRGB(f):
+    s = W*7  ;  t = f'{s}RGB '
+    o = [ f' {o}' for o in range(len(OPC)) ]
+    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
+    for i, (key, v) in enumerate(RGB.items()):
+        slog(f'{i:2}:{key} {fmtl(v[0][0])}', p=0, f=f)
+        slog(f'{key}:   O=[', p=0, f=f, e=Z)
+        for u in v[0]:     slog(f'{u[3]:3}', p=0, f=f, e=W)
+        slog(']', p=0, f=f)
+#        slog(f'{k}:   O={fmtl(int(v[0][i][3]), w=3, d=Z)}', p=0, f=f)
+#        slog(f'       R={fmtl(v[0][i][0], w=3, d=Z)}', p=0, f=f)
+#        slog(f'       G={fmtl(v[i][1], w=3, d=Z)}', p=0, f=f)
+#        slog(f'       B={fmtl(v[i][2], w=3, d=Z)}', p=0, f=f)
+
+def OLD_B_dumpRGB(f):
+    s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC) #  ;   HH = '#'*200
+    o = [ f' {o}' for o in range(olen) ]
+    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
+    for k, v in RGB.items():     slog(f'{k} {fmtl(v)}', p=0, f=f)
+    slog(f'{"####"*50}', p=0, f=f)
+    for k, v in RGB.items():
+        slog(f'{k} {fmtl(v[0])}', p=0, f=f)
+    slog(f'{"####"*50}', p=0, f=f)
+    Os, Rs, Gs, Bs = [], [], [], []
+    for k, v in RGB.items():
+        for i in range(olen):
+            Os.append(v[i][i])
+            Rs.append(v[i][i])
+            Gs.append(v[i][i])
+            Bs.append(v[i][i])
+    for k in RGB.keys():
+        slog('', p=0, f=f)
+        for i in range(len(Os)):
+            slog(f'{k}:   O={fmtl(Os[i][3], w=3)}', p=0, f=f)
+            slog(f'       R={fmtl(Rs[i][0], w=3)}', p=0, f=f)
+            slog(f'       G={fmtl(Gs[i][1], w=3)}', p=0, f=f)
+            slog(f'       B={fmtl(Bs[i][2], w=3)}', p=0, f=f)
+
+def OLD_C_dumpRGB(f):
+    s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC) #  ;   HH = '#'*200
+    o = [ f' {o}' for o in range(olen) ]
+    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
+    for k, v in RGB.items():     slog(f'{k} {fmtl(v)}', p=0, f=f)
+    slog(f'{"##########"*20}', p=0, f=f)
+    vs = {}
+    for k, v in RGB.items():
+        vs[k] = v[0]
+        slog(f'{k} {fmtl(v[0])}', p=0, f=f)
+    slog(f'{"##########"*20}', p=0, f=f)
+    for k, v in RGB.items():
+        for i in range(olen):
+            vs[k] = v[0]
+    for k, v in vs.items():
+        slog(f'{k}:   V=', p=0, f=f, e=Z)
+        for i in range(len(v)):
+            slog(f'{fmtl(v[i], w=3)}', p=0, f=f, e=Z)
+        slog(p=0, f=f)
+    slog(f'{"##########"*20}', p=0, f=f)
+    # Os, Rs, Gs, Bs = {}, {}, {}, {}
+    # for k, v in vs.items():
+    #     for i in range(len(v)):
+    #         Os[k] = v[0][3]
+    #         Rs[k] = v[0][0]
+    #         Gs[k] = v[0][1]
+    #         Bs[k] = v[0][2]
+#    for k, v in vs.items():
+#        slog(f'{k}:   O=', p=0, f=f, e=Z)
+        # for i in range(len(v)):
+        #     xpose = list(zip(v[i]))
+        #     slog(f'{fmtl(xpose[3], w=3)}', p=0, f=f, e=Z)
+        # slog(p=0, f=f)
+#        xpose = list(zip())
+
+def dumpRGB(f):
+    s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC)
+    o = [ f' {o}' for o in range(olen) ]
+    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
+    for k, v in RGB.items():     slog(f'{k}:   {fmtl(v)}', p=0, f=f)
+    slog(f'{"##########"*20}', p=0, f=f)
+    vs = {}
+    for k, v in RGB.items():
+        slog(f'{k}:   ', p=0, f=f, e=Z)
+        for i in range(olen):
+            vs[k] = v[i][i]
+            slog(f'{fmtl(vs[k], w=3)}', p=0, f=f, e=Z)
+        slog(p=0, f=f)
+    slog(f'{"##########"*20}', p=0, f=f)
+
+def initRGB(f, dbg=0):
     aaa, bbb, ccc = 31, 63, 127
     if dbg:
         s = W*7  ;  t = f'{s}RGB '
@@ -2727,7 +2869,7 @@ def initRGB(f, dbg=1):
     _initRGB('CL3', (aaa, 255, ccc), dbg=dbg)  # 17
     _initRGB('CL4', (aaa, ccc, bbb), dbg=dbg)  # 18
     return RGB.keys()
-########################################################################################################################################################################################################
+
 def _initRGB(key, rgb, dv=32, n=None, dbg=0):
     colors = []  ;  lrgb, lopc = len(rgb), len(OPC)  ;  msg, msgR, msgG, msgB = [], [], [], []  ;  n = n + 1 if n is not None else lopc  ;  opc, color = None, None
     diffs  = [ rgb[i] - rgb[i]/dv for i in range(lrgb) ]
@@ -2750,55 +2892,6 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
     global RGB  ;  RGB[key] = colors
     return list(RGB.keys())
 ########################################################################################################################################################################################################
-# Global Functions END
-#--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabs.py utl.py chord.py
-# Globals BGN
-########################################################################################################################################################################################################
-MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'    ;    LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
-BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
-ALIGN, INDENT, LEAD, LNSP, STRH, TAB_STOPS, WRAP     = 'align', 'indent', 'leading', 'line_spacing', 'stretch', 'tab_stops', 'wrap'
-MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM = 'margin_left', 'margin_right', 'margin_top', 'margin_bottom'
-TI        = ['tnik', '  i ']
-XYWH      = ['   X   ', '   Y   ', '   W   ', '   H   ']
-AXY2      = ['x', 'y', 'AnchX', 'AnchY']
-CWH       = ['CntWd', 'CntHt']
-CVA       = ['v', 'a']
-ADS       = ['Ascnt', 'Dscnt', 'As+Ds']
-LTXA      = list(itertools.chain(TI, XYWH, AXY2))
-LTXAC     = list(itertools.chain(TI, XYWH, AXY2, CWH))
-LDS       = ['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B', 'I', 'S', 'M', 'W', 'w', 'FontName']
-LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
-def JLBL(n, d): return (f'{d.join(LLBL)}{d}'*n).removesuffix(d)
-def JSPR(n, d): return (f'{d.join(LTXA)}{d}'*n).removesuffix(d)
-########################################################################################################################################################################################################
-LBL                   = pygtxt.Label
-SPR                   = pygsprt.Sprite
-RGB                   = {}
-TT, NN, II, KK        =  0,  1,  2,  3
-C1,  C2               =  0,  1
-CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
-HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
-MELODY, CHORD, ARPG   =  0, 1, 2
-LARROW, RARROW, DARROW, UARROW =  0, 1, 0, 1
-NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = 0, 1, 2
-########################################################################################################################################################################################################
-INIT    = 'INIT'
-FIN     = [1, 1, 1, 2, 1]
-FNTP    = [5, 4, 3, 3, 3]
-#           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16
-JTEXTS  = ['Page',  'Line',  'Sect',  'Colm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
-JTEXTS2 = ['Page',  'Line',  'Sect',  'Kolm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QKlm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
-jTEXTS  = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qklms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
-JFMT    = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       2,       2,       4]
-#JFMT   = [  2,       3,       3,       6,       6,       6,       6,       6,       3,       5,       1,       1,       3,       3,       3,       4,       7]
-#               0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17
-OPC         = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
-PNT_PER_PIX =  7/9  # 14pts/18pix
-FONT_DPIS   = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
-FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'Helvetica', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
-########################################################################################################################################################################################################
-# Globals END
-
 def cleanupOutFiles(file, fp, gfp, snp, f):
     slog(f'Copy {file.name} to {snp}',  ff=1, f=f)
     utl.copyFile(fp,            snp,   dbg=0)
@@ -2806,20 +2899,14 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
     utl.copyFile(fp,            gfp)
     slog('Flush & Close Txt File',      ff=1, f=f)
     file.flush()     ;     file.close()
-
-# Log and Main BGN
 ########################################################################################################################################################################################################
-BASE_NAME, BASE_PATH, PATH = utl.paths()
-CSV_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV,  dbg=0)
-LOG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG,  dbg=0)
-PNG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG,  dbg=0)
-TXT_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT,  dbg=0)
-CSV_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV2, dbg=0)
-LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2, dbg=0)
-PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2, dbg=0)
-TXT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2, dbg=0)
+# Global Functions END
+#--disable=C0301 --disable=C0304 --disable=C0321 --disable=C0115 --disable=C0116 --disable=R0912 --disable=R0913 --disable=R0914 tabs.py utl.py chord.py
+########################################################################################################################################################################################################
+
+########################################################################################################################################################################################################
 # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
-FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=0)
+FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=0, dbg=1)
 if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2, dbg=0)
 if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, dbg=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, dbg=0)
@@ -2830,6 +2917,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     kysgs.init(f=f0)
     slog(sys.argv[0],      p=0,        f=f0)
     slog(f'argv={fmtl(sys.argv[1:])}', f=f0)
+    dumpRGB(f=-1)
     def main():
         slog(f'{CSV_PATH=}',  f=2)        ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{LOG_PATH=}',  f=2)        ;   slog(f'{LOG_FILE.name=}', f=2)
@@ -2849,4 +2937,3 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     if __name__ == '__main__':
         main()
 ########################################################################################################################################################################################################
-# Log and Main END
