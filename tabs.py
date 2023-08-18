@@ -2756,9 +2756,9 @@ def dumpGlobals():
     slog(f'BASE_PATH = {BASE_PATH}', f=2)
 ########################################################################################################################################################################################################
 def dumpRGB(f, dbg=0):
-    s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC)
+    s = W*7   ;   olen = len(OPC)
     o = [ f' {o}' for o in range(olen) ]
-    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
+    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}   Diff Span', p=0, f=f)
     vs = {}
     for k, v in RGB.items():
         slog(f'{k}:   ', p=0, f=f, e=Z) if dbg else None   ;   vl = []
@@ -2775,10 +2775,13 @@ def dumpRGB(f, dbg=0):
         zs.append(list(zip(*v)))
     for j, z in enumerate(zs):
         for i, y in enumerate(z):
-            pfx = f'{list(vs.keys())[j]}:   ' if not i else f'{W * 7}'
-            lbl = 'O=' if i==0 else 'R=' if i==1 else 'G=' if i==2 else 'B=' if i==3 else '?='
-            slog(f'{pfx}{lbl}{fmtl(y, w=3)}',  p=0, f=f)
-    slog(f'{"##### ??? ####### ??? ####"*10}', p=0, f=f) if dbg else None
+            pfx  = f'{list(vs.keys())[j]}:   ' if not i else f'{W * 7}'   ;   n = olen - 1
+            lbl  = 'O=' if i==0 else 'R=' if i==1 else 'G=' if i==2 else 'B=' if i==3 else '?='
+            diff = y[n] - y[0]
+            span = diff/n
+            info = f'{diff:5.1f} {span:4.1f}'
+            slog(f'{pfx}{lbl}{fmtl(y, w=3)} {info}', p=0, f=f)
+    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f) if dbg else None
 
 def initRGB(f, dbg=0):
     aaa, bbb, ccc = 31, 63, 127

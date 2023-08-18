@@ -1,87 +1,87 @@
-RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-FSH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       G=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-PNK:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       G=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
-       B=[  6  17  28  39  50  61  72  83  94 104 115 126 137 148 159 170 181 192]
-RED:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       G=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-       B=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-RST:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       G=[  3   8  14  19  25  30  36  41  47  52  58  63  69  74  80  85  91  96]
-       B=[  0   1   1   2   3   3   4   4   5   5   6   7   7   8   8   9   9  10]
-ORG:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       G=[  6  16  26  36  46  56  66  76  86  96 106 116 126 136 146 156 166 176]
-       B=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-PCH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       G=[  5  14  23  32  41  51  60  69  78  87  96 105 114 124 133 142 151 160]
-       B=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
-YLW:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-LIM:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  5  14  23  32  41  51  60  69  78  87  96 105 114 124 133 142 151 160]
-       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       B=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-GRN:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-TRQ:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       B=[  6  17  28  39  50  61  72  83  94 104 115 126 137 148 159 170 181 192]
-CYA:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-IND:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-       G=[  6  16  26  36  47  57  67  77  88  98 108 118 129 139 149 159 170 180]
-       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-BLU:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-       G=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-VLT:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
-       G=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-GRY:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-CL1:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127]
-       G=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-CL2:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       G=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
-       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-CL3:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-       B=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127]
-CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-       G=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127]
-       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-2859 tabs  main               CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-2859 tabs  main               CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
-2860 tabs  main               LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
-2860 tabs  main               LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
-2861 tabs  main               TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-2861 tabs  main               TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
-2862 tabs  main               constructing Tabs object
+RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17   Diff Span
+FSH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       G=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+PNK:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       G=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128] 124.0  7.3
+       B=[  6  17  28  39  50  61  72  83  94 104 115 126 137 148 159 170 181 192] 186.0 10.9
+RED:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       G=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
+       B=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+RST:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       G=[  3   8  14  19  25  30  36  41  47  52  58  63  69  74  80  85  91  96]  93.0  5.5
+       B=[  0   1   1   2   3   3   4   4   5   5   6   7   7   8   8   9   9  10]  10.0  0.6
+ORG:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       G=[  6  16  26  36  46  56  66  76  86  96 106 116 126 136 146 156 166 176] 170.0 10.0
+       B=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+PCH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       G=[  5  14  23  32  41  51  60  69  78  87  96 105 114 124 133 142 151 160] 155.0  9.1
+       B=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128] 124.0  7.3
+YLW:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
+LIM:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  5  14  23  32  41  51  60  69  78  87  96 105 114 124 133 142 151 160] 155.0  9.1
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       B=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+GRN:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
+TRQ:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       B=[  6  17  28  39  50  61  72  83  94 104 115 126 137 148 159 170 181 192] 186.0 10.9
+CYA:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+IND:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+       G=[  6  16  26  36  47  57  67  77  88  98 108 118 129 139 149 159 170 180] 174.0 10.2
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+BLU:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
+       G=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+VLT:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128] 124.0  7.3
+       G=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+GRY:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+CL1:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127] 123.0  7.2
+       G=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+CL2:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       G=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128] 124.0  7.3
+       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
+CL3:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
+       B=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127] 123.0  7.2
+CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
+       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
+       G=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127] 123.0  7.2
+       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
+2862 tabs  main               CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+2862 tabs  main               CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
+2863 tabs  main               LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
+2863 tabs  main               LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
+2864 tabs  main               TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+2864 tabs  main               TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
+2865 tabs  main               constructing Tabs object
   94 tabs  __init__           .LOG_ID=0
   95 tabs  __init__           BGN <class '__main__.Tabs'>
 2753 tabs  dumpGlobals        BASE_NAME = test
@@ -92,21 +92,21 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
  212 utl   getFileSeqName     fdir='logs' / fsfx='log'
  215 utl   getFileSeqName     fGlobArg='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log'
- 217 utl   getFileSeqName     LOG_ID=2
- 219 utl   getFileSeqName     name='test.2'
-  97 tabs  __init__           .LOG_ID=2 test.2
- 196 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 199 utl   getFilePath        fileName =test.2.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.2.cat')
-  98 tabs  __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.2.cat')
- 196 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 199 utl   getFilePath        fileName =test.2.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv')
-  99 tabs  __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv')
- 196 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 199 utl   getFilePath        fileName =test.2.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log')
- 100 tabs  __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log')
- 196 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 199 utl   getFilePath        fileName =test.2.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.2.txt')
- 101 tabs  __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.2.txt')
+ 217 utl   getFileSeqName     LOG_ID=11
+ 219 utl   getFileSeqName     name='test.11'
+  97 tabs  __init__           .LOG_ID=11 test.11
+ 196 utl   getFilePath        baseName =test.11      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 199 utl   getFilePath        fileName =test.11.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.11.cat')
+  98 tabs  __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.11.cat')
+ 196 utl   getFilePath        baseName =test.11      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 199 utl   getFilePath        fileName =test.11.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.11.csv')
+  99 tabs  __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.11.csv')
+ 196 utl   getFilePath        baseName =test.11      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 199 utl   getFilePath        fileName =test.11.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.11.log')
+ 100 tabs  __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.11.log')
+ 196 utl   getFilePath        baseName =test.11      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 199 utl   getFilePath        fileName =test.11.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.11.txt')
+ 101 tabs  __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.11.txt')
  113 tabs  __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
  129 tabs  __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [c:[]] [d:[0]] [p:[]] [s:[]] [t:[]] [x:[0]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
  230 tabs  dumpArgs           [a]      .AUTO_SAVE=0
@@ -163,7 +163,7 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 .dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
 .dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
  351 tabs  _initWindowA       BGN (  -1x-1  )
- 351 tabs  _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001BBBEDD2DD0>
+ 351 tabs  _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001AA17A53760>
  356 tabs  _initWindowA       screens[0] s.x=894  2160 (1280x720 )
  356 tabs  _initWindowA       screens[1] s.x=0     0 (3840x2160)
  357 tabs  _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -647,13 +647,13 @@ tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscn
   71 tests test0              31416
   72 tests test0              314159
   75 tests test0              END test0 a=0.314159265359 n=5 q=0
-2646 tabs  regSnap              2   0 INIT     init
+2646 tabs  regSnap             11   0 INIT     init
  278 tabs  _reinit            [1 1 1  1 6]   6   0  1] END
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
  193 tabs  __init__           END <class '__main__.Tabs'>
-2864 tabs  main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
-2864 tabs  main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
-2865 tabs  main               Call pyglet.app.run()
+2867 tabs  main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
+2867 tabs  main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
+2868 tabs  main               Call pyglet.app.run()
 1182 tabs  resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
 1182 tabs  resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
 1182 tabs  resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] Upd.1
@@ -986,35 +986,35 @@ b [B  B  7  M7 d8]
 1
  559 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
 2654 tabs  snapshot           BASE_NAME='test' logId='None' snapId='None' typ='INIT' PNG='png'
-2655 tabs  snapshot           .fNameLid='test.2' snapName='test.2.0.INIT.png' on_draw((kwargs)='')
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.0.INIT.png
-2658 tabs  snapshot           snapName='test.2.0.INIT.png' on_draw((kwargs)='')
+2655 tabs  snapshot           .fNameLid='test.11' snapName='test.11.0.INIT.png' on_draw((kwargs)='')
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.11.0.INIT.png
+2658 tabs  snapshot           snapName='test.11.0.INIT.png' on_draw((kwargs)='')
  226 tabs  geomFileName       Btest.1.1.3.10.6_CC.png
- 204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.0.INIT.png')
+ 204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.11.0.INIT.png')
  205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
- 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
- 204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.0.INIT.png')
+ 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.11.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+ 204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.11.0.INIT.png')
  205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
- 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
+ 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.11.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
 2666 tabs  snapshot           BASE_NAME='test' [1 1 3 10 6]
 2667 tabs  snapshot           snapName0='test.png' on_draw((kwargs)='')
 2668 tabs  snapshot           snapName2='Btest.1.1.3.10.6_CC.png' on_draw((kwargs)='')
 snapshot snapPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
 snapshot snapPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
-1446 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
-1446 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
-1446 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.2
-1446 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.2
+1446 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.11
+1446 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.11
+1446 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.11
+1446 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.11
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1462 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
-1462 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
-1462 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.2
-1462 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.2
+1462 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.11
+1462 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.11
+1462 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.11
+1462 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.11
  573 tabs  on_draw            [1 1 1  1 6]   6   0  1] .snapWhy='init' .snapType='INIT' .snapId=1
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.0.INIT.png')
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.11.0.INIT.png')
 1844 tabs  on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 1936 tabs  on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 1844 tabs  on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
@@ -1034,8 +1034,8 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.0.IN
   54 utl   dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
   54 utl   dumpStack           3 base        185 run                  platform_event_loop.step(timeout)
   54 utl   dumpStack           2 __init__    107 run                  event_loop.run(interval)
-  54 utl   dumpStack           1 tabs       2866 main                 ret = pyglet.app.run()
-  54 utl   dumpStack           0 tabs       2875 <module>             main()
+  54 utl   dumpStack           1 tabs       2869 main                 ret = pyglet.app.run()
+  54 utl   dumpStack           0 tabs       2878 <module>             main()
   55 utl   dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
@@ -1185,28 +1185,28 @@ Colm Line 1
  204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
  207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv ###
-2728 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.2.csv
+2728 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.11.csv
  204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv')
- 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.2.csv ###
+ 205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.11.csv')
+ 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.11.csv ###
 2705 tabs  quit               Calling close(),2708 tabs  quit               .EXIT=0 returning retv=False
 2711 tabs  quit               returning retv=False
 1936 tabs  on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
-2867 tabs  main               pyglet.app.run(): return=None
-2868 tabs  main               Thats all folks!
+2870 tabs  main               pyglet.app.run(): return=None
+2871 tabs  main               Thats all folks!
  196 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  199 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
  196 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  199 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
-2833 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.2.txt
-2835 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
+2836 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.11.txt
+2838 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
  204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
  205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
  207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt ###
-2837 tabs  cleanupOutFiles    Flush & Close Txt File
-2833 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.2.log
-2835 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log
+2840 tabs  cleanupOutFiles    Flush & Close Txt File
+2836 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.11.log
+2838 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log
  204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
  205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
  207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log ###
-2837 tabs  cleanupOutFiles    Flush & Close Txt File
+2840 tabs  cleanupOutFiles    Flush & Close Txt File
