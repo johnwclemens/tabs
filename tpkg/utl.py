@@ -109,7 +109,7 @@ def isi(o, t):  return isinstance(o, t)
 ########################################################################################################################################################################################################
 def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str concat?
     if   lst is None:   return  'None'
-    lts = (list, tuple, set, frozenset)  ;  dtn = (int, float)  ;  dts = (str,)
+    lts = (list, tuple, set, frozenset, zip)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts,   f'{type(lst)=} {lts=}'
     if d == Z:    d2 = Z
     w   = w   if w else Z   ;   t = []

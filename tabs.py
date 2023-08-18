@@ -2827,12 +2827,12 @@ def OLD_C_dumpRGB(f):
         #     slog(f'{fmtl(xpose[3], w=3)}', p=0, f=f, e=Z)
         # slog(p=0, f=f)
 #        xpose = list(zip())
-
-def dumpRGB(f):
+########################################################################################################################################################################################################
+def NEW_A_dumpRGB(f):
     s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC)
     o = [ f' {o}' for o in range(olen) ]
     slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
-    for k, v in RGB.items():     slog(f'{k}:   {fmtl(v)}', p=0, f=f)
+    for k, v in RGB.items():     slog(f'{k}:   {fmtl(v, w=3)}', p=0, f=f)
     slog(f'{"##########"*20}', p=0, f=f)
     vs = {}
     for k, v in RGB.items():
@@ -2842,6 +2842,31 @@ def dumpRGB(f):
             slog(f'{fmtl(vs[k], w=3)}', p=0, f=f, e=Z)
         slog(p=0, f=f)
     slog(f'{"##########"*20}', p=0, f=f)
+
+def dumpRGB(f):
+    s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC)
+    o = [ f' {o}' for o in range(olen) ]
+    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
+    for k, v in RGB.items():     slog(f'{k}:   {fmtl(v, w=3)}', p=0, f=f)
+    slog(f'{"######## RGB->vsm #######"*10}', p=0, f=f)
+    vs = {}
+    for k, v in RGB.items():
+        slog(f'{k}:   ', p=0, f=f, e=Z)   ;   vl = []
+        for i in range(olen):
+            vl.append(v[i][i])
+        vs[k] = vl # v[i][i]
+        slog(f'{fmtl(vs[k], w=3)}', p=0, f=f, e=Z)
+        slog(p=0, f=f)
+    slog(f'{"######### vsmap #########"*10}', p=0, f=f)
+    for k, v in vs.items():
+        slog(f'{k}:   ', p=0, f=f, e=Z)
+        slog(f'{fmtl(v, w=3)}', p=0, f=f)
+    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f) # ;  z = []
+    for k, v in vs.items():
+        slog(f'{k}:   ', p=0, f=f, e=Z)
+        z = zip(*v)
+        slog(f'{fmtl(z, w=3)}', p=0, f=f) # , e=Z)
+    slog(p=0, f=f)
 
 def initRGB(f, dbg=0):
     aaa, bbb, ccc = 31, 63, 127
@@ -2917,7 +2942,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     kysgs.init(f=f0)
     slog(sys.argv[0],      p=0,        f=f0)
     slog(f'argv={fmtl(sys.argv[1:])}', f=f0)
-    dumpRGB(f=-1)
+    dumpRGB(f=4)
     def main():
         slog(f'{CSV_PATH=}',  f=2)        ;   slog(f'{CSV_FILE.name=}', f=2)
         slog(f'{LOG_PATH=}',  f=2)        ;   slog(f'{LOG_FILE.name=}', f=2)
