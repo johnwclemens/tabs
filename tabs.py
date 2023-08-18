@@ -2843,7 +2843,7 @@ def NEW_A_dumpRGB(f):
         slog(p=0, f=f)
     slog(f'{"##########"*20}', p=0, f=f)
 
-def dumpRGB(f):
+def NEW_B_dumpRGB(f):
     s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC)
     o = [ f' {o}' for o in range(olen) ]
     slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
@@ -2867,6 +2867,74 @@ def dumpRGB(f):
         z = zip(*v)
         slog(f'{fmtl(z, w=3)}', p=0, f=f) # , e=Z)
     slog(p=0, f=f)
+
+def NEW_C_dumpRGB(f):
+    s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC)
+    o = [ f' {o}' for o in range(olen) ]
+    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
+    vs = {}
+    for k, v in RGB.items():
+        slog(f'{k}:   ', p=0, f=f, e=Z)   ;   vl = []
+        for i in range(olen):
+            vl.append(v[i][i])
+        vs[k] = vl # v[i][i]
+        slog(f'{fmtl(vs[k], w=3)}', p=0, f=f, e=Z)
+        slog(p=0, f=f)
+    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f) # ;  z = []
+    for k, v in vs.items():
+        slog(f'{k}:   ', p=0, f=f, e=Z)
+        z = zip(*v)
+        slog(f'{fmtl(z, w=3)}', p=0, f=f) # , e=Z)
+    slog(p=0, f=f)
+    slog(f'{"##### ??? ####### ??? ####"*10}', p=0, f=f) # ;  z = []
+
+def NEW_D_dumpRGB(f):
+    s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC)
+    o = [ f' {o}' for o in range(olen) ]
+    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
+    vs = {}
+    for k, v in RGB.items():
+        slog(f'{k}:   ', p=0, f=f, e=Z)   ;   vl = []
+        for i in range(olen):
+            u  = list(v[i])
+            u0 = list(u[i])
+            v0 = utl.rotateList(u0, rev=1)
+            vl.append(v0)
+        vs[k] = vl
+        slog(f'{fmtl(vs[k], w=3)}', p=0, f=f, e=Z)
+        slog(p=0, f=f)
+    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f)  ;  zs = []
+    for k, v in vs.items():
+        zs.append(list(zip(*v)))
+        slog(f'{k}:   ', p=0, f=f, e=Z)
+        for z in zs:
+            slog(f'{fmtl(z, w=3)}', p=0, f=f, e=Z)
+        slog(p=0, f=f)
+    slog(f'{"##### ??? ####### ??? ####"*10}', p=0, f=f) # ;  z = []
+
+def dumpRGB(f):
+    s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC)
+    o = [ f' {o}' for o in range(olen) ]
+    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
+    vs = {}
+    for k, v in RGB.items():
+        slog(f'{k}:   ', p=0, f=f, e=Z)   ;   vl = []
+        for i in range(olen):
+            u  = list(v[i])
+            u0 = list(u[i])
+            v0 = utl.rotateList(u0, rev=1)
+            vl.append(v0)
+        vs[k] = vl
+        slog(f'{fmtl(vs[k], w=3)}', p=0, f=f, e=Z)
+        slog(p=0, f=f)
+    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f)  ;  zs = []
+    for k, v in vs.items():
+        zs.append(list(zip(*v)))
+        slog(f'{k}:   ', p=0, f=f, e=Z)
+        for z in zs:
+            slog(f'{fmtl(z, w=3)}', p=0, f=f, e=Z)
+        slog(p=0, f=f)
+    slog(f'{"##### ??? ####### ??? ####"*10}', p=0, f=f) # ;  z = []
 
 def initRGB(f, dbg=0):
     aaa, bbb, ccc = 31, 63, 127

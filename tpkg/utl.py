@@ -53,6 +53,11 @@ def dumpStack(sfs):
         fp = pathlib.Path(sf.filename)  ;   n = fp.stem  ;  l = sf.lineno  ;  f = sf.function  ;  c = sf.code_context[0].strip() if sf.code_context else Z  ;  j = len(sfs) - (i + 1)
         slog(f'{j:2} {n:9} {l:5} {f:20} {c}')
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
+
+def rotateList(a, rev=0):
+    if rev: tmp0 = a[-1 ]   ;   tmp1 = a[:-1]   ;   a = tmp1   ;   a.insert(0, tmp0)
+    else:   tmp0 = a[0]     ;   tmp1 = a[1:]    ;   a = tmp1   ;   a.append(tmp0)
+    return a
 ########################################################################################################################################################################################################
 def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0, ft=1):
     if ft: t = filtText(t)
