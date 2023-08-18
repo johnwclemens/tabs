@@ -1,109 +1,87 @@
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17       RGB Diffs         RGB Steps
-FSH:   [[  0   8   1   8][ 15  23   3  23][ 30  37   5  37][ 45  52   6  52][ 60  66   8  66][ 75  81  10  81][ 90  95  12  95][105 110  13 110][120 124  15 124][135 139  17 139][150 153  19 153][165 168  20 168][170 182  22 182][195 197  24 197][210 211  26 211][225 226  27 226][240 240  29 240][255 255  31 255]]
-PNK:   [[  0   8   4   6][ 15  23  11  17][ 30  37  19  28][ 45  52  26  39][ 60  66  33  50][ 75  81  40  61][ 90  95  48  72][105 110  55  83][120 124  62  94][135 139  70 104][150 153  77 115][165 168  84 126][170 182  92 137][195 197  99 148][210 211 106 159][225 226 113 170][240 240 121 181][255 255 128 192]]
-RED:   [[  0   8   2   1][ 15  23   6   3][ 30  37   9   5][ 45  52  13   6][ 60  66  16   8][ 75  81  20  10][ 90  95  24  12][105 110  27  13][120 124  31  15][135 139  34  17][150 153  38  19][165 168  41  20][170 182  45  22][195 197  49  24][210 211  52  26][225 226  56  27][240 240  59  29][255 255  63  31]]
-RST:   [[  0   8   3   0][ 15  23   8   1][ 30  37  14   1][ 45  52  19   2][ 60  66  25   3][ 75  81  30   3][ 90  95  36   4][105 110  41   4][120 124  47   5][135 139  52   5][150 153  58   6][165 168  63   7][170 182  69   7][195 197  74   8][210 211  80   8][225 226  85   9][240 240  91   9][255 255  96  10]]
-ORG:   [[  0   8   6   1][ 15  23  16   3][ 30  37  26   5][ 45  52  36   6][ 60  66  46   8][ 75  81  56  10][ 90  95  66  12][105 110  76  13][120 124  86  15][135 139  96  17][150 153 106  19][165 168 116  20][170 182 126  22][195 197 136  24][210 211 146  26][225 226 156  27][240 240 166  29][255 255 176  31]]
-PCH:   [[  0   8   5   4][ 15  23  14  11][ 30  37  23  19][ 45  52  32  26][ 60  66  41  33][ 75  81  51  40][ 90  95  60  48][105 110  69  55][120 124  78  62][135 139  87  70][150 153  96  77][165 168 105  84][170 182 114  92][195 197 124  99][210 211 133 106][225 226 142 113][240 240 151 121][255 255 160 128]]
-YLW:   [[  0   8   8   2][ 15  23  23   6][ 30  37  37   9][ 45  52  52  13][ 60  66  66  16][ 75  81  81  20][ 90  95  95  24][105 110 110  27][120 124 124  31][135 139 139  34][150 153 153  38][165 168 168  41][170 182 182  45][195 197 197  49][210 211 211  52][225 226 226  56][240 240 240  59][255 255 255  63]]
-LIM:   [[  0   5   8   1][ 15  14  23   3][ 30  23  37   5][ 45  32  52   6][ 60  41  66   8][ 75  51  81  10][ 90  60  95  12][105  69 110  13][120  78 124  15][135  87 139  17][150  96 153  19][165 105 168  20][170 114 182  22][195 124 197  24][210 133 211  26][225 142 226  27][240 151 240  29][255 160 255  31]]
-GRN:   [[  0   2   8   2][ 15   6  23   6][ 30   9  37   9][ 45  13  52  13][ 60  16  66  16][ 75  20  81  20][ 90  24  95  24][105  27 110  27][120  31 124  31][135  34 139  34][150  38 153  38][165  41 168  41][170  45 182  45][195  49 197  49][210  52 211  52][225  56 226  56][240  59 240  59][255  63 255  63]]
-TRQ:   [[  0   1   8   6][ 15   3  23  17][ 30   5  37  28][ 45   6  52  39][ 60   8  66  50][ 75  10  81  61][ 90  12  95  72][105  13 110  83][120  15 124  94][135  17 139 104][150  19 153 115][165  20 168 126][170  22 182 137][195  24 197 148][210  26 211 159][225  27 226 170][240  29 240 181][255  31 255 192]]
-CYA:   [[  0   1   8   8][ 15   3  23  23][ 30   5  37  37][ 45   6  52  52][ 60   8  66  66][ 75  10  81  81][ 90  12  95  95][105  13 110 110][120  15 124 124][135  17 139 139][150  19 153 153][165  20 168 168][170  22 182 182][195  24 197 197][210  26 211 211][225  27 226 226][240  29 240 240][255  31 255 255]]
-IND:   [[  0   1   6   8][ 15   3  16  23][ 30   5  26  37][ 45   6  36  52][ 60   8  47  66][ 75  10  57  81][ 90  12  67  95][105  13  77 110][120  15  88 124][135  17  98 139][150  19 108 153][165  20 118 168][170  22 129 182][195  24 139 197][210  26 149 211][225  27 159 226][240  29 170 240][255  31 180 255]]
-BLU:   [[  0   2   1   8][ 15   6   3  23][ 30   9   5  37][ 45  13   6  52][ 60  16   8  66][ 75  20  10  81][ 90  24  12  95][105  27  13 110][120  31  15 124][135  34  17 139][150  38  19 153][165  41  20 168][170  45  22 182][195  49  24 197][210  52  26 211][225  56  27 226][240  59  29 240][255  63  31 255]]
-VLT:   [[  0   4   2   8][ 15  11   6  23][ 30  19   9  37][ 45  26  13  52][ 60  33  16  66][ 75  40  20  81][ 90  48  24  95][105  55  27 110][120  62  31 124][135  70  34 139][150  77  38 153][165  84  41 168][170  92  45 182][195  99  49 197][210 106  52 211][225 113  56 226][240 121  59 240][255 128  63 255]]
-GRY:   [[  0   8   8   8][ 15  23  23  23][ 30  37  37  37][ 45  52  52  52][ 60  66  66  66][ 75  81  81  81][ 90  95  95  95][105 110 110 110][120 124 124 124][135 139 139 139][150 153 153 153][165 168 168 168][170 182 182 182][195 197 197 197][210 211 211 211][225 226 226 226][240 240 240 240][255 255 255 255]]
-CL1:   [[  0   4   1   8][ 15  11   3  23][ 30  18   5  37][ 45  26   6  52][ 60  33   8  66][ 75  40  10  81][ 90  47  12  95][105  55  13 110][120  62  15 124][135  69  17 139][150  76  19 153][165  84  20 168][170  91  22 182][195  98  24 197][210 105  26 211][225 113  27 226][240 120  29 240][255 127  31 255]]
-CL2:   [[  0   8   4   2][ 15  23  11   6][ 30  37  19   9][ 45  52  26  13][ 60  66  33  16][ 75  81  40  20][ 90  95  48  24][105 110  55  27][120 124  62  31][135 139  70  34][150 153  77  38][165 168  84  41][170 182  92  45][195 197  99  49][210 211 106  52][225 226 113  56][240 240 121  59][255 255 128  63]]
-CL3:   [[  0   1   8   4][ 15   3  23  11][ 30   5  37  18][ 45   6  52  26][ 60   8  66  33][ 75  10  81  40][ 90  12  95  47][105  13 110  55][120  15 124  62][135  17 139  69][150  19 153  76][165  20 168  84][170  22 182  91][195  24 197  98][210  26 211 105][225  27 226 113][240  29 240 120][255  31 255 127]]
-CL4:   [[  0   1   4   2][ 15   3  11   6][ 30   5  18   9][ 45   6  26  13][ 60   8  33  16][ 75  10  40  20][ 90  12  47  24][105  13  55  27][120  15  62  31][135  17  69  34][150  19  76  38][165  20  84  41][170  22  91  45][195  24  98  49][210  26 105  52][225  27 113  56][240  29 120  59][255  31 127  63]]
-##### zip ####### zip ######### zip ####### zip ######### zip ####### zip ######### zip ####### zip ######### zip ####### zip ######### zip ####### zip ######### zip ####### zip ######### zip ####### zip ######### zip ####### zip ######### zip ####### zip ####
-FSH:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-PNK:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
-[  6  17  28  39  50  61  72  83  94 104 115 126 137 148 159 170 181 192]
-RED:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-RST:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  3   8  14  19  25  30  36  41  47  52  58  63  69  74  80  85  91  96]
-[  0   1   1   2   3   3   4   4   5   5   6   7   7   8   8   9   9  10]
-ORG:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  6  16  26  36  46  56  66  76  86  96 106 116 126 136 146 156 166 176]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-PCH:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  5  14  23  32  41  51  60  69  78  87  96 105 114 124 133 142 151 160]
-[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
-YLW:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-LIM:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  5  14  23  32  41  51  60  69  78  87  96 105 114 124 133 142 151 160]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-GRN:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-TRQ:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  6  17  28  39  50  61  72  83  94 104 115 126 137 148 159 170 181 192]
-CYA:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-IND:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-[  6  16  26  36  47  57  67  77  88  98 108 118 129 139 149 159 170 180]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-BLU:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-VLT:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
-[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-GRY:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-CL1:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-CL2:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
-[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-CL3:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
-[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127]
-CL4:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
-[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
-[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127]
-[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
-
-##### ??? ####### ??? ######### ??? ####### ??? ######### ??? ####### ??? ######### ??? ####### ??? ######### ??? ####### ??? ######### ??? ####### ??? ######### ??? ####### ??? ######### ??? ####### ??? ######### ??? ####### ??? ######### ??? ####### ??? ####
-3041 tabs  main               CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-3041 tabs  main               CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
-3042 tabs  main               LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
-3042 tabs  main               LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
-3043 tabs  main               TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-3043 tabs  main               TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
-3044 tabs  main               constructing Tabs object
+FSH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       G=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+PNK:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       G=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
+       B=[  6  17  28  39  50  61  72  83  94 104 115 126 137 148 159 170 181 192]
+RED:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       G=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
+       B=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+RST:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       G=[  3   8  14  19  25  30  36  41  47  52  58  63  69  74  80  85  91  96]
+       B=[  0   1   1   2   3   3   4   4   5   5   6   7   7   8   8   9   9  10]
+ORG:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       G=[  6  16  26  36  46  56  66  76  86  96 106 116 126 136 146 156 166 176]
+       B=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+PCH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       G=[  5  14  23  32  41  51  60  69  78  87  96 105 114 124 133 142 151 160]
+       B=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
+YLW:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
+LIM:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  5  14  23  32  41  51  60  69  78  87  96 105 114 124 133 142 151 160]
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       B=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+GRN:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
+TRQ:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       B=[  6  17  28  39  50  61  72  83  94 104 115 126 137 148 159 170 181 192]
+CYA:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+IND:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+       G=[  6  16  26  36  47  57  67  77  88  98 108 118 129 139 149 159 170 180]
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+BLU:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
+       G=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+VLT:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
+       G=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+GRY:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+CL1:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127]
+       G=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+       B=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+CL2:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       G=[  4  11  19  26  33  40  48  55  62  70  77  84  92  99 106 113 121 128]
+       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
+CL3:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+       G=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255]
+       B=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127]
+CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
+       R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]
+       G=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127]
+       B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]
+2859 tabs  main               CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+2859 tabs  main               CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
+2860 tabs  main               LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
+2860 tabs  main               LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
+2861 tabs  main               TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+2861 tabs  main               TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
+2862 tabs  main               constructing Tabs object
   94 tabs  __init__           .LOG_ID=0
   95 tabs  __init__           BGN <class '__main__.Tabs'>
 2753 tabs  dumpGlobals        BASE_NAME = test
@@ -114,21 +92,21 @@ CL4:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
  212 utl   getFileSeqName     fdir='logs' / fsfx='log'
  215 utl   getFileSeqName     fGlobArg='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log'
- 217 utl   getFileSeqName     LOG_ID=52
- 219 utl   getFileSeqName     name='test.52'
-  97 tabs  __init__           .LOG_ID=52 test.52
- 196 utl   getFilePath        baseName =test.52      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 199 utl   getFilePath        fileName =test.52.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.52.cat')
-  98 tabs  __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.52.cat')
- 196 utl   getFilePath        baseName =test.52      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 199 utl   getFilePath        fileName =test.52.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.52.csv')
-  99 tabs  __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.52.csv')
- 196 utl   getFilePath        baseName =test.52      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 199 utl   getFilePath        fileName =test.52.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.52.log')
- 100 tabs  __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.52.log')
- 196 utl   getFilePath        baseName =test.52      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 199 utl   getFilePath        fileName =test.52.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.52.txt')
- 101 tabs  __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.52.txt')
+ 217 utl   getFileSeqName     LOG_ID=2
+ 219 utl   getFileSeqName     name='test.2'
+  97 tabs  __init__           .LOG_ID=2 test.2
+ 196 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 199 utl   getFilePath        fileName =test.2.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.2.cat')
+  98 tabs  __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.2.cat')
+ 196 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 199 utl   getFilePath        fileName =test.2.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv')
+  99 tabs  __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv')
+ 196 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 199 utl   getFilePath        fileName =test.2.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log')
+ 100 tabs  __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log')
+ 196 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 199 utl   getFilePath        fileName =test.2.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.2.txt')
+ 101 tabs  __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.2.txt')
  113 tabs  __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
  129 tabs  __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [c:[]] [d:[0]] [p:[]] [s:[]] [t:[]] [x:[0]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
  230 tabs  dumpArgs           [a]      .AUTO_SAVE=0
@@ -185,7 +163,7 @@ CL4:   [  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255]
 .dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
 .dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
  351 tabs  _initWindowA       BGN (  -1x-1  )
- 351 tabs  _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001D1C0666530>
+ 351 tabs  _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001BBBEDD2DD0>
  356 tabs  _initWindowA       screens[0] s.x=894  2160 (1280x720 )
  356 tabs  _initWindowA       screens[1] s.x=0     0 (3840x2160)
  357 tabs  _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -669,13 +647,13 @@ tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscn
   71 tests test0              31416
   72 tests test0              314159
   75 tests test0              END test0 a=0.314159265359 n=5 q=0
-2646 tabs  regSnap             52   0 INIT     init
+2646 tabs  regSnap              2   0 INIT     init
  278 tabs  _reinit            [1 1 1  1 6]   6   0  1] END
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
  193 tabs  __init__           END <class '__main__.Tabs'>
-3046 tabs  main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
-3046 tabs  main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
-3047 tabs  main               Call pyglet.app.run()
+2864 tabs  main               str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
+2864 tabs  main               tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'c': [], 'd': ['0'], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
+2865 tabs  main               Call pyglet.app.run()
 1182 tabs  resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
 1182 tabs  resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
 1182 tabs  resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] Upd.1
@@ -1008,35 +986,35 @@ b [B  B  7  M7 d8]
 1
  559 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
 2654 tabs  snapshot           BASE_NAME='test' logId='None' snapId='None' typ='INIT' PNG='png'
-2655 tabs  snapshot           .fNameLid='test.52' snapName='test.52.0.INIT.png' on_draw((kwargs)='')
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.52.0.INIT.png
-2658 tabs  snapshot           snapName='test.52.0.INIT.png' on_draw((kwargs)='')
+2655 tabs  snapshot           .fNameLid='test.2' snapName='test.2.0.INIT.png' on_draw((kwargs)='')
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.0.INIT.png
+2658 tabs  snapshot           snapName='test.2.0.INIT.png' on_draw((kwargs)='')
  226 tabs  geomFileName       Btest.1.1.3.10.6_CC.png
- 204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.52.0.INIT.png')
+ 204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.0.INIT.png')
  205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
- 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.52.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
- 204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.52.0.INIT.png')
+ 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+ 204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.0.INIT.png')
  205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
- 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.52.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
+ 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
 2666 tabs  snapshot           BASE_NAME='test' [1 1 3 10 6]
 2667 tabs  snapshot           snapName0='test.png' on_draw((kwargs)='')
 2668 tabs  snapshot           snapName2='Btest.1.1.3.10.6_CC.png' on_draw((kwargs)='')
 snapshot snapPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
 snapshot snapPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
-1446 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.52
-1446 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.52
-1446 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.52
-1446 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.52
+1446 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
+1446 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
+1446 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.2
+1446 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.2
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1462 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.52
-1462 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.52
-1462 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.52
-1462 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.52
+1462 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
+1462 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.2
+1462 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.2
+1462 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.2
  573 tabs  on_draw            [1 1 1  1 6]   6   0  1] .snapWhy='init' .snapType='INIT' .snapId=1
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.52.0.INIT.png')
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.0.INIT.png')
 1844 tabs  on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 1936 tabs  on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
 1844 tabs  on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
@@ -1056,8 +1034,8 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.52.0.I
   54 utl   dumpStack           4 win32       117 step                 _user32.DispatchMessageW(ctypes.byref(msg))
   54 utl   dumpStack           3 base        185 run                  platform_event_loop.step(timeout)
   54 utl   dumpStack           2 __init__    107 run                  event_loop.run(interval)
-  54 utl   dumpStack           1 tabs       3048 main                 ret = pyglet.app.run()
-  54 utl   dumpStack           0 tabs       3057 <module>             main()
+  54 utl   dumpStack           1 tabs       2866 main                 ret = pyglet.app.run()
+  54 utl   dumpStack           0 tabs       2875 <module>             main()
   55 utl   dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
@@ -1207,28 +1185,28 @@ Colm Line 1
  204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
  207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv ###
-2728 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.52.csv
+2728 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.2.csv
  204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.52.csv')
- 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.52.csv ###
+ 205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv')
+ 207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.2.csv ###
 2705 tabs  quit               Calling close(),2708 tabs  quit               .EXIT=0 returning retv=False
 2711 tabs  quit               returning retv=False
 1936 tabs  on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
-3049 tabs  main               pyglet.app.run(): return=None
-3050 tabs  main               Thats all folks!
+2867 tabs  main               pyglet.app.run(): return=None
+2868 tabs  main               Thats all folks!
  196 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  199 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
  196 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  199 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
-3015 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.52.txt
-3017 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
+2833 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.2.txt
+2835 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
  204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
  205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
  207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt ###
-3019 tabs  cleanupOutFiles    Flush & Close Txt File
-3015 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.52.log
-3017 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log
+2837 tabs  cleanupOutFiles    Flush & Close Txt File
+2833 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.2.log
+2835 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log
  204 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
  205 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
  207 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\logs\test.log C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.log ###
-3019 tabs  cleanupOutFiles    Flush & Close Txt File
+2837 tabs  cleanupOutFiles    Flush & Close Txt File

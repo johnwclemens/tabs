@@ -2755,29 +2755,30 @@ def dumpGlobals():
     slog(f'PATH      = {PATH}',      f=2)
     slog(f'BASE_PATH = {BASE_PATH}', f=2)
 ########################################################################################################################################################################################################
-def dumpRGB(f):
+def dumpRGB(f, dbg=0):
     s = W*7  ;  t = f'{s}RGB '  ;  olen = len(OPC)
     o = [ f' {o}' for o in range(olen) ]
     slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
     vs = {}
     for k, v in RGB.items():
-        slog(f'{k}:   ', p=0, f=f, e=Z)   ;   vl = []
+        slog(f'{k}:   ', p=0, f=f, e=Z) if dbg else None   ;   vl = []
         for i in range(olen):
             u  = list(v[i])
             u0 = list(u[i])
             v0 = utl.rotateList(u0, rev=1)
             vl.append(v0)
             vs[k] = vl
-        slog(f'{fmtl(vs[k], w=3)}', p=0, f=f, e=Z)
-        slog(p=0, f=f)
-    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f)  ;  zs = []
+        slog(f'{fmtl(vs[k], w=3)}', p=0, f=f, e=Z) if dbg else None
+        slog(p=0, f=f) if dbg else None
+    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f) if dbg else None  ;  zs = []
     for k, v in vs.items():
         zs.append(list(zip(*v)))
     for j, z in enumerate(zs):
         for i, y in enumerate(z):
             pfx = f'{list(vs.keys())[j]}:   ' if not i else f'{W * 7}'
-            slog(f'{pfx}{fmtl(y, w=3)}', p=0, f=f)
-    slog(f'{"##### ??? ####### ??? ####"*10}', p=0, f=f) # ;  z = []
+            lbl = 'O=' if i==0 else 'R=' if i==1 else 'G=' if i==2 else 'B=' if i==3 else '?='
+            slog(f'{pfx}{lbl}{fmtl(y, w=3)}',  p=0, f=f)
+    slog(f'{"##### ??? ####### ??? ####"*10}', p=0, f=f) if dbg else None
 
 def initRGB(f, dbg=0):
     aaa, bbb, ccc = 31, 63, 127
