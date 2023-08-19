@@ -69,7 +69,8 @@ def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0, ft=1):
         p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else Z
         t    = f'{p}{sf.f_code.co_name:{pl}} ' + t
     tf, so = 0, 0
-    if   f == -1: f = sys.stdout
+    if   f == -2: f = LOG_FILE  ;  tf = 1  ;  so = 1
+    elif f == -1: f = sys.stdout
     elif f == 0:  f = TXT_FILE
     elif f == 1:  f = LOG_FILE
     elif f == 2:  f = LOG_FILE  ;  tf = 1
@@ -116,14 +117,14 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str conca
     if   lst is None:   return  'None'
     lts = (list, tuple, set, frozenset, zip)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts,   f'{type(lst)=} {lts=}'
-    if d == Z:    d2 = Z
+    if d == Z:     d2 = Z
     w   = w   if w else Z   ;   t = []
     zl  = '-'               if ll is not None and ll<0 else '+' if ll is not None and ll>0 else Z
     z   = f'{zl}{len(lst)}' if ll is not None          else Z
     for i, l in enumerate(lst):
         if type(l) in lts:
-            if type(w) in lts:               t.append(fmtl(l, w[i], u, d, d2, s, ll))
-            else:                            t.append(fmtl(l, w,    u, d, d2, s, ll))
+            if type(w) in lts:            t.append(fmtl(l, w[i], u, d, d2, s, ll))
+            else:                         t.append(fmtl(l, w,    u, d, d2, s, ll))
         else:
             ss = s if i < len(lst)-1 else Z
             u = Z if u is None else u
@@ -151,7 +152,7 @@ def fmtf(a, b):
     if b==4: return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
     if b==5: return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
 ########################################################################################################################################################################################################
-def parseCmdLine(argv, f=0, dbg=1):
+def parseCmdLine(argv, dbg=1, f=0):
     options, key, vals, argc = {}, Z, [], len(argv)
     if dbg: slog(f'argv={fmtl(argv[1:])}', p=0, f=f)  ;  slog(argv[0], p=0, f=f)
     for j in range(1, argc):
@@ -192,19 +193,19 @@ def parseCmdLine(argv, f=0, dbg=1):
     if dbg: slog(f'options={fmtm(options)}', f=f)
     return options
 ########################################################################################################################################################################################################
-def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1):
-    if dbg: slog(f'{baseName =:12} {basePath = }', f=2)
+def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1, f=-2):
+    if dbg: slog(f'{baseName =:12} {basePath = }', f=f)
     fileName   = f'{baseName}.{fsfx}'          if fsfx else baseName
     filePath   =    basePath / fdir / fileName if fdir else basePath / fileName
-    if dbg: slog(f'{fileName =:12} {filePath = }', f=2)
+    if dbg: slog(f'{fileName =:12} {filePath = }', f=f)
     return  filePath
 
-def copyFile(src, trg, dbg=1):
+def copyFile(src, trg, dbg=1, f=-2):
     if not src.exists():   msg = f'ERROR Path Does not Exist {src=}'   ;   print(msg)   ;  raise SystemExit(msg)
-    if dbg: slog(f'{src=}')
-    if dbg: slog(f'{trg=}')
+    if dbg: slog(f'{src=}', f=f)
+    if dbg: slog(f'{trg=}', f=f)
     cmd  =  f'copy {src} {trg}'
-    if dbg: slog(f'{cmd} ###')
+    if dbg: slog(f'{cmd} ###', f=f)
     os.system(f'{cmd}')
 
 def getFileSeqName(baseName, basePath, fdir='logs', fsfx='log'):

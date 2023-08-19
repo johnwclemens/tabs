@@ -4,28 +4,33 @@ export LC_CTYPE=en_US.UTF-8
 
 echo pwd
 pwd
-echo path=test/text
-path=test/text
+echo name=stdo
+name=stdo
+echo ext=std
+ext=std
+echo path=test/$name
+path=test/$name
 echo ls -l $path
 ls      -l $path
-echo cksum $path/test*.txt
-cksum      $path/test*.txt
-echo cp    $path/test.txt $path/test._.txt
-cp         $path/test.txt $path/test._.txt
+echo cksum $path/$name*.$ext
+cksum      $path/$name*.$ext
+echo cp    $path/$name.$ext $path/$name._.$ext
+cp         $path/$name.$ext $path/$name._.$ext
 echo ls -l $path
 ls      -l $path
-echo cksum $path/test*.txt
-cksum      $path/test*.txt
+echo cksum $path/$name*.$ext
+cksum      $path/$name*.$ext
 echo "!! execute the script !!"
-echo python tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2> test/stdo/stdo.std
-python      tabsC.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2> test/stdo/stdo.std
+echo python tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2> $path/$name.$ext
+python      tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2> $path/$name.$ext
 echo "!! script has returned !!"
 echo ls -l $path
 ls      -l $path
-echo cksum $path/test*.txt
-cksum      $path/test*.txt
+echo cksum $path/$name*.$ext
+cksum      $path/$name*.$ext
 
 #C:\Program Files\Git\usr\bin
+#python tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2> test/stdo/stdo.std
 #python tabs.py -i 1 8 8 8 -n 1 1 10 5 -w 0 0 0 0 -d 1 -L -S 0 -f test | iconv -f cp1252 -t UTF-8 2&> $path/tabs.txt
 #python tabs.py -i 1 1 1 6 -n 1 1 10 5 -w 0 0 0 0 -d 1 -t -x 0 -L -S 0 -f test
 #python tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -t -L -S 0 -f test 2&> test/tabs.txt

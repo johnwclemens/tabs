@@ -56,8 +56,8 @@ echo lvl = "$lvl"
 if [[ -d "$root" ]]; then
     cd  "$root" || exit 1
 
-    echo exts=\( cat    csv    dat    log    png    txt\)
-    exts=(     ".cat" ".csv" ".dat" ".log" ".png" ".txt")
+    echo exts=\( cat    csv    dat    log    png    std    txt\)
+    exts=(     ".cat" ".csv" ".dat" ".log" ".png" ".std" ".txt")
 
     echo "... Removing Files from root dir $root ..."
     for ext in "${exts[@]}"; do
@@ -82,6 +82,10 @@ if [[ -d "$root" ]]; then
         ext2="${ext:1}"
         if   [[  $ext2 = "dat" ]]; then
             dir="$ext2"a
+            echo cleanSubDir "$dir" "$ext2" "$lvl"
+            cleanSubDir      "$dir" "$ext2" "$lvl"
+        elif [[  $ext2 = "std" ]]; then
+            dir="$ext2"o
             echo cleanSubDir "$dir" "$ext2" "$lvl"
             cleanSubDir      "$dir" "$ext2" "$lvl"
         elif [[  $ext2 = "txt" ]]; then

@@ -3,7 +3,7 @@ import inspect, math, operator
 import collections, itertools
 from   collections     import Counter
 from   itertools       import accumulate
-from   more_itertools  import consume  # not installed in GitBash's Python
+#from   more_itertools  import consume  # not installed in GitBash's Python
 import pyglet
 import pyglet.font         as pygfont
 import pyglet.image        as pygimg
@@ -15,6 +15,7 @@ from   pyglet.text     import document, layout
 #from   tpkg            import chords as chords
 from   tpkg            import utl    as utl
 from   tpkg            import kysgs  as kysgs
+from   tpkg            import misc   as misc
 from   tpkg            import notes  as notes
 from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
@@ -1379,9 +1380,9 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def dumpTniksC(self, why=Z):
         self.dumpTniksPfx(why)
-        it = list(itertools.chain(self.A, self.B)) # , self.C
-        consume(consume(self.setJdump(j, i % self.n[j], why=why) for i in range(len(it[j]))) for j in range(len(it)))
-#        Tabs.consMe(Tabs.consMe(self.setJdump(j, i % self.n[j], why=why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
+#        it = list(itertools.chain(self.A, self.B)) # , self.C
+#        consume(consume(self.setJdump(j, i % self.n[j], why=why) for i in range(len(it[j]))) for j in range(len(it)))
+        Tabs.consMe(Tabs.consMe(self.setJdump(j, i % self.n[j], why=why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
         self.dumpTniksSfx(why)
 
     def dumpTniksCC(self, why=Z):
@@ -1983,6 +1984,9 @@ class Tabs(pyglet.window.Window):
             elif motion == pygwink.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE (      {motion})'   ;   self.log(msg)   ;   self.quit(msg) # N/A
             elif motion == pygwink.MOTION_BEGINNING_OF_FILE: msg = f'@  MOTION_BEGINNING_OF_FILE( {motion})'   ;   self.log(msg)   ;   self.quit(msg) # CTRL HOME
             elif motion == pygwink.MOTION_END_OF_FILE:       msg = f'@  MOTION_END_OF_FILE (      {motion})'   ;   self.log(msg)   ;   self.quit(msg) # CTRL END
+            elif motion == pygwink.MOTION_COPY:              self.copyTabs(   f'@ C MOTION_COPY ( {motion})')
+            elif motion == pygwink.MOTION_PASTE:             self.pasteTabs(  f'@ V MOTION_PASTE ({motion})', kk=0)
+            # self.log(msg)   ;   self.quit(msg) # CTRL C
             else:                                            msg =             f'CTRL (           {motion})'   ;   self.log(msg)   ;   self.quit(msg)
         elif self.mods == 0:
             if   motion == pygwink.MOTION_UP:                self.move(        f' UP (            {motion})', -1)
@@ -2025,7 +2029,7 @@ class Tabs(pyglet.window.Window):
     def isCapsLock(mods):     return mods & pygwink.MOD_CAPSLOCK
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
 #    def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in utl.DSymb.SYMBS else 0
-    def isTab(self, text):    return 1 if text == self.tblank or self.sobj.isFret(text) or text in notes.DSymb.SYMBS else 0
+    def isTab(self, text):    return 1 if text == self.tblank or self.sobj.isFret(text) or text in misc.DSymb.SYMBS else 0
     def isParsing(self):      return 1 if self.inserting or self.jumping or self.settingN or self.shiftingTabs or self.swapping else 0
 #    def isEH(t): return 1 if t == '#' or t == 'b' else 0
     @staticmethod
@@ -2834,9 +2838,9 @@ def _initRGB(key, rgb, dv=32, n=None, dbg=0):
 ########################################################################################################################################################################################################
 def cleanupOutFiles(file, fp, gfp, snp, f):
     slog(f'Copy {file.name} to {snp}',  ff=1, f=f)
-    utl.copyFile(fp,            snp,   dbg=0)
+    utl.copyFile(fp,            snp, f=f)
     slog(f'Copy {file.name} to {gfp}',  ff=1, f=f)
-    utl.copyFile(fp,            gfp)
+    utl.copyFile(fp,            gfp, f=f)
     slog('Flush & Close Txt File',      ff=1, f=f)
     file.flush()     ;     file.close()
 ########################################################################################################################################################################################################
@@ -2846,33 +2850,34 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
 
 ########################################################################################################################################################################################################
 # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
-FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=0, dbg=1)
-if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2, dbg=0)
-if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, dbg=0)
-if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, dbg=0)
-if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, dbg=0)
+FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=0, dbg=0)
+if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2, f=0)
+if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, f=0)
+if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, f=0)
+if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, f=0)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
-    f0   = 0
+    f0   = -2
     ARGS = utl.init(CSV_FILE, LOG_FILE, TXT_FILE, f=f0)
     kysgs.init(f=f0)
     slog(sys.argv[0],      p=0,        f=f0)
     slog(f'argv={fmtl(sys.argv[1:])}', f=f0)
-    dumpRGB(f=4)
+    dumpRGB(f=f0)
     def main():
-        slog(f'{CSV_PATH=}',  f=2)        ;   slog(f'{CSV_FILE.name=}', f=2)
-        slog(f'{LOG_PATH=}',  f=2)        ;   slog(f'{LOG_FILE.name=}', f=2)
-        slog(f'{TXT_PATH=}',  f=2)        ;   slog(f'{TXT_FILE.name=}', f=2)
+        f = -2
+        slog(f'{CSV_PATH=}',  f=f)        ;   slog(f'{CSV_FILE.name=}', f=f)
+        slog(f'{LOG_PATH=}',  f=f)        ;   slog(f'{LOG_FILE.name=}', f=f)
+        slog(f'{TXT_PATH=}',  f=f)        ;   slog(f'{TXT_FILE.name=}', f=f)
         slog('constructing Tabs object')
         tabs = Tabs()  ;  seqNumLogPath = tabs.seqNumLogPath  ;  seqNumTxtPath = tabs.seqNumTxtPath
-        slog(f'{str(tabs)=}', f=2)        ;   slog(f'{tabs=}', f=2)
+        slog(f'{str(tabs)=}', f=f)        ;   slog(f'{tabs=}', f=f)
         slog('Call pyglet.app.run()')
         ret = pyglet.app.run()
         slog(f'pyglet.app.run(): return={ret}')
-        slog('Thats all folks!', ff=1, f=2)
+        slog('Thats all folks!', ff=1, f=f)
         geomLogPath = utl.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
         geomTxtPath = utl.getFilePath(tabs.TXT_GFN, BASE_PATH, fdir=None, fsfx=Z)
-        cleanupOutFiles(TXT_FILE, TXT_PATH, geomTxtPath, seqNumTxtPath, f=2)
-        cleanupOutFiles(LOG_FILE, LOG_PATH, geomLogPath, seqNumLogPath, f=1)
+        cleanupOutFiles(TXT_FILE, TXT_PATH, geomTxtPath, seqNumTxtPath, f=f)
+        cleanupOutFiles(LOG_FILE, LOG_PATH, geomLogPath, seqNumLogPath, f=-1)
 ########################################################################################################################################################################################################
     if __name__ == '__main__':
         main()
