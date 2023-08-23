@@ -34,22 +34,22 @@ def init(cfile, lfile, tfile, f):
     slog(f'{ ROOT_DIR=}', f=f)
     return   ARGS
 
-def paths():      return BASE_NAME, BASE_PATH, PATH
+def paths():           return BASE_NAME, BASE_PATH, PATH
 ########################################################################################################################################################################################################
-def fri(f):       return int(math.floor(f + 0.5))
-def signed(n):    return f' {n}' if n==0 else f'{n:+}'
-def ns2signs(ns): return [ '-' if n<0 else '+' if n>0  else W for n in ns ]
+def fri(f):            return int(math.floor(f + 0.5))
+def signed(n):         return f' {n}' if n==0 else f'{n:+}'
+def ns2signs(ns):      return [ '-' if n<0 else '+' if n>0  else W for n in ns ]
 def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 ########################################################################################################################################################################################################
-def isAlt(mods):          return mods & pygwink.MOD_ALT
-def isCtrl(mods):         return mods & pygwink.MOD_CTRL
-def isShift(mods):        return mods & pygwink.MOD_SHIFT
-def isCtrlShift(mods):    return mods & pygwink.MOD_CTRL and mods & pygwink.MOD_SHIFT
-def isAltShift(mods):     return mods & pygwink.MOD_ALT  and mods & pygwink.MOD_SHIFT
-def isCtrlAlt(mods):      return mods & pygwink.MOD_CTRL and mods & pygwink.MOD_ALT
-def isCtrlAltShift(mods): return mods & pygwink.MOD_CTRL and mods & pygwink.MOD_ALT and mods & pygwink.MOD_SHIFT
-def isNumLock(mods):      return mods & pygwink.MOD_NUMLOCK
-def isCapsLock(mods):     return mods & pygwink.MOD_CAPSLOCK
+def isAlt(mods):       return mods & pygwink.MOD_ALT
+def isCtl(mods):       return mods & pygwink.MOD_CTRL
+def isSft(mods):       return mods & pygwink.MOD_SHIFT
+def isCtlSft(mods):    return mods & pygwink.MOD_CTRL  and mods & pygwink.MOD_SHIFT
+def isAltSft(mods):    return mods & pygwink.MOD_ALT   and mods & pygwink.MOD_SHIFT
+def isCtlAlt(mods):    return mods & pygwink.MOD_CTRL  and mods & pygwink.MOD_ALT
+def isCtlAltSft(mods): return mods & pygwink.MOD_CTRL  and mods & pygwink.MOD_ALT   and mods & pygwink.MOD_SHIFT
+def isNumLck(mods):    return mods & pygwink.MOD_NUMLOCK
+def isCapLck(mods):    return mods & pygwink.MOD_CAPSLOCK
 ########################################################################################################################################################################################################
 def stackDepth(sfs):
     global     MAX_STACK_DEPTH, MAX_STACK_FRAME
