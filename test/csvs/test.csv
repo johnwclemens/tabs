@@ -5,7 +5,7 @@ b,6,1,8,3,a,5,0,7,2,9,4,b,6,1
 B,G♭,D♭,A♭,E♭,B♭,F,B♯,G,D,A,E,B,F♯,C♯
 E,B,G♭,D♭,A♭,E♭,B♭,,F♯,C♯,G♯,D♯,A♯,F,C
 4,b,6,1,8,3,a,,6,1,8,3,a,5,0
-    , -n ,   1   ,   1   ,  10   ,   6   , , , -i  ,  1  ,  1  ,  1  ,  1  ,  6  , -s  ,0,1, 3   ,    ,    ,    ,        test.5.0.INIT
+    , -n ,   1   ,   1   ,  10   ,   6   , , , -i  ,  1  ,  1  ,  1  ,  1  ,  6  , -s  ,0,1, 3   ,    ,    ,    ,        test.24.0.INIT
 tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscnt,As+Ds,v,a,FnSz,Lead,LnSp,TablText, ForegroundColor , BackgroundColor ,B,I,S,M,W,w,FontName
 Page,   1, 480.00, 270.00, 960.00, 540.00,C,C,  480,  270
 Line,   1, 480.00, 255.79, 960.00, 511.58,C,C,  480,  255
@@ -234,7 +234,7 @@ Kord,  58, 912.00,  71.05,  96.00,  28.42,C,C,   48,   14,17.47,29.00,23.00,-6.0
 Kord,  59, 912.00,  42.63,  96.00,  28.42,C,C,   48,   14,17.47,29.00,23.00,-6.000,17.00,C,C,22.1,   0,None,-       ,[ 31 180 255 195],[  1   6   8 195],0,0,1,1,1,c,Lucida Console       
 Kord,  60, 912.00,  14.21,  96.00,  28.42,C,C,   48,   14,17.47,29.00,23.00,-6.000,17.00,C,C,22.1,   0,None,-       ,[ 31 180 255 195],[  1   6   8 195],0,0,1,1,1,c,Lucida Console       
 HCrs,   1,  48.00, 355.26,  96.00,  28.42,C,C,   48,   14
-    , -n ,   1   ,   1   ,  10   ,   6   , , , -i  ,  1  ,  1  ,  1  ,  1  ,  6  , -s  ,0,1, 3   ,    ,    ,    ,        test.5.1.COPY
+    , -n ,   1   ,   1   ,  10   ,   6   , , , -i  ,  1  ,  1  ,  1  ,  1  ,  6  , -s  ,0,1, 3   ,    ,    ,    ,        test.24.1.COPY
 tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscnt,As+Ds,v,a,FnSz,Lead,LnSp,TablText, ForegroundColor , BackgroundColor ,B,I,S,M,W,w,FontName
 Page,   1, 480.00, 270.00, 960.00, 540.00,C,C,  480,  270
 Line,   1, 480.00, 255.79, 960.00, 511.58,C,C,  480,  255
@@ -463,7 +463,7 @@ Kord,  58, 912.00,  71.05,  96.00,  28.42,C,C,   48,   14,17.47,29.00,23.00,-6.0
 Kord,  59, 912.00,  42.63,  96.00,  28.42,C,C,   48,   14,17.47,29.00,23.00,-6.000,17.00,C,C,22.1,   0,None,-       ,[ 31 180 255 195],[  1   6   8 195],0,0,1,1,1,c,Lucida Console       
 Kord,  60, 912.00,  14.21,  96.00,  28.42,C,C,   48,   14,17.47,29.00,23.00,-6.000,17.00,C,C,22.1,   0,None,-       ,[ 31 180 255 195],[  1   6   8 195],0,0,1,1,1,c,Lucida Console       
 HCrs,   1, 144.00, 355.26,  96.00,  28.42,C,C,   48,   14
-    , -n ,   1   ,   1   ,  10   ,   6   , , , -i  ,  1  ,  1  ,  1  ,  1  ,  6  , -s  ,0,1, 3   ,    ,    ,    ,        test.5.2.PAST
+    , -n ,   1   ,   1   ,  10   ,   6   , , , -i  ,  1  ,  1  ,  1  ,  1  ,  6  , -s  ,0,1, 3   ,    ,    ,    ,        test.24.2.PAST
 tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscnt,As+Ds,v,a,FnSz,Lead,LnSp,TablText, ForegroundColor , BackgroundColor ,B,I,S,M,W,w,FontName
 Page,   1, 480.00, 270.00, 960.00, 540.00,C,C,  480,  270
 Line,   1, 480.00, 255.79, 960.00, 511.58,C,C,  480,  255
