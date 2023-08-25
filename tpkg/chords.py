@@ -7,6 +7,7 @@ from   collections import Counter
 from   tpkg        import utl   as utl
 from   tpkg.notes  import Notes as Notes
 
+NTONES           = Notes.NTONES
 W, Y, Z          = utl.W, utl.Y, utl.Z
 slog, fmtl, fmtm = utl.slog, utl.fmtl, utl.fmtm
 FMTN             = (1, 1, 2, 2, 2, 2, 2)
@@ -37,7 +38,7 @@ class Chords:
     ####################################################################################################################################################################################################
     def getChordName(self, data, nic, cn, p, l, c, dbg=0):
         ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1
-        vkeys, self.limap, imap, _imap, nnt     = [], [], [], None, Notes.NTONES
+        vkeys, self.limap, imap, _imap, nnt     = [], [], [], None, NTONES
         mask,          notes,         js        = self._getIndices(data, nic, p, l, c)   ;   omap = self.OMAP
         for k, jk in enumerate(js):
             ivals = [ ((ji-jk) if ji >= jk else (nnt+(ji-jk))) % nnt for ji in js ]
@@ -183,7 +184,7 @@ class Chords:
 
     @staticmethod
     def rotateIndices(a):
-        r = [0]   ;   ntones = Notes.NTONES
+        r = [0]   ;   ntones = NTONES
         for i in range(1, len(a)):
             b = a[i+1] if i + 1 < len(a) else ntones   ;   r.append(b - a[i] + r[i-1])
 #           if    i + 1 < len(a): r.append(abs(a[i+1] - a[i] + r[i-1]) % ntones)

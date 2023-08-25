@@ -1,8 +1,7 @@
-#import tpkg.utl as utl
 from tpkg import utl as utl
+from tpkg import unic as unic
 
-M, P         = utl.M, utl.P
-F, N, S      = utl.F, utl.N, utl.S
+F, N, S      = unic.F, unic.N, unic.S
 W, Y, Z      = utl.W, utl.Y, utl.Z
 slog, fmtf   = utl.slog, utl.fmtf
 fmtl, fmtm   = utl.fmtl, utl.fmtm
@@ -102,7 +101,8 @@ class Notes(object): #      1          2       3          4          5          
     IS0,  IS1,  IS2    = [2, 7, 9], [1, 3, 6, 8, 10], [0, 4, 5, 11]
     FLAT, NTRL, SHRP   =  -1,   0,   1  # -1 ~= 2
     TYPES              = [ 'NTRL', 'SHRP', 'FLAT' ] # 0=NTRL, 1=SHRP, 2=FLAT=-1
-    TYPE, NTONES       = SHRP, len(V2I) # - 1
+    TYPE               = SHRP
+    NTONES             = len(V2I)
 
     @staticmethod
     def index(n, o=0):         name = n[:len(n)-1] if o else n  ;  return Notes.N2I[name]

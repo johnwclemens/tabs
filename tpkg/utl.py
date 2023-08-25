@@ -1,21 +1,24 @@
 import glob, inspect, math, os, pathlib, sys
 import pyglet.window.key   as pygwink
+from tpkg import unic as unic
 
 ROOT_DIR  = "test"
 PATH      = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH = PATH.parent / ROOT_DIR
 BASE_NAME = BASE_PATH.stem
-UNICODE   = 1
-F         = f'{0x266D :c}' if UNICODE else 'b' # Flat
-N         = f'{0x266E :c}' if UNICODE else '!' # Natural
-S         = f'{0x266F :c}' if UNICODE else '#' # Sharp
-T         = f'{0x1d11a:c}' # (Treble) Staff
+UNICODE   = unic.UNICODE
+P, L, S, C =  0,  1,  2,  3
+T, N, I, K =  4,  5,  6,  7
+R, Q, H, M =  8,  9, 10, 11
+B, A, D, E = 12, 13, 14, 15
 W, Y, Z          = ' ', ',', ''
-M, P             = -7, 7
 MAX_FREQ_IDX     = 10 * 12 + 1
 MAX_STACK_DEPTH  = 0
 MAX_STACK_FRAME  = inspect.stack()
 CSV_FILE, LOG_FILE, TXT_FILE = None, None, None
+RGB       = {}
+#             0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17
+OPC       = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
 INIT      = '###   Init   ###'    * 13
 QUIT_BGN  = '###   Quit BGN  ###' * 10
 QUIT      = '###   Quit      ###' * 10
@@ -44,12 +47,12 @@ def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^
 def isAlt(mods):       return mods & pygwink.MOD_ALT
 def isCtl(mods):       return mods & pygwink.MOD_CTRL
 def isSft(mods):       return mods & pygwink.MOD_SHIFT
-def isCtlSft(mods):    return mods & pygwink.MOD_CTRL  and mods & pygwink.MOD_SHIFT
-def isAltSft(mods):    return mods & pygwink.MOD_ALT   and mods & pygwink.MOD_SHIFT
-def isCtlAlt(mods):    return mods & pygwink.MOD_CTRL  and mods & pygwink.MOD_ALT
-def isCtlAltSft(mods): return mods & pygwink.MOD_CTRL  and mods & pygwink.MOD_ALT   and mods & pygwink.MOD_SHIFT
-def isNumLck(mods):    return mods & pygwink.MOD_NUMLOCK
+def isCtlSft(mods):    return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_SHIFT
+def isAltSft(mods):    return mods & pygwink.MOD_ALT      and mods & pygwink.MOD_SHIFT
+def isCtlAlt(mods):    return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_ALT
+def isCtlAltSft(mods): return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_ALT   and mods & pygwink.MOD_SHIFT
 def isCapLck(mods):    return mods & pygwink.MOD_CAPSLOCK
+def isNumLck(mods):    return mods & pygwink.MOD_NUMLOCK
 ########################################################################################################################################################################################################
 def stackDepth(sfs):
     global     MAX_STACK_DEPTH, MAX_STACK_FRAME
@@ -205,6 +208,109 @@ def parseCmdLine(argv, dbg=1, f=0):
     if dbg: slog(f'options={fmtm(options)}', f=f)
     return options
 ########################################################################################################################################################################################################
+def dumpRGB(f, dbg=0):
+    s = W*7   ;   olen = len(OPC)
+    o = [ f' {o}' for o in range(olen) ]
+    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}   Diff Span', p=0, f=f)
+    vs = {}
+    for k, v in RGB.items():
+        slog(f'{k}:   ', p=0, f=f, e=Z) if dbg else None   ;   vl = []
+        for i in range(olen):
+            u  = list(v[i])
+            u0 = list(u[i])
+            v0 = rotateList(u0, rev=1)
+            vl.append(v0)
+            vs[k] = vl
+        slog(f'{fmtl(vs[k], w=3)}', p=0, f=f, e=Z) if dbg else None
+        slog(p=0, f=f) if dbg else None
+    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f) if dbg else None  ;  zs = []
+    for k, v in vs.items():
+        zs.append(list(zip(*v)))
+    for j, z in enumerate(zs):
+        for i, y in enumerate(z):
+            pfx  = f'{list(vs.keys())[j]}:   ' if not i else f'{W * 7}'   ;   n = olen - 1
+            lbl  = 'O=' if i==0 else 'R=' if i==1 else 'G=' if i==2 else 'B=' if i==3 else '?='
+            diff = y[n] - y[0]
+            span = diff/n
+            info = f'{diff:5.1f} {span:4.1f}'
+            slog(f'{pfx}{lbl}{fmtl(y, w=3)} {info}', p=0, f=f)
+    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f) if dbg else None
+
+def initRGBs(f, dbg=0):
+    aaa, bbb, ccc = 31, 63, 127
+    if dbg:
+        s = W*7  ;  t = f'{s}RGB '
+        o = [ f' {o}' for o in range(len(OPC)) ]
+        slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
+    initRGB('FSH', (255, aaa, 255), dbg=dbg)  # 0
+    initRGB('PNK', (255, 128, 192), dbg=dbg)  # 1
+    initRGB('RED', (255, bbb, aaa), dbg=dbg)  # 2
+    initRGB('RST', (255,  96,  10), dbg=dbg)  # 3
+    initRGB('ORG', (255, 176, aaa), dbg=dbg)  # 5
+    initRGB('PCH', (255, 160, 128), dbg=dbg)  # 4
+    initRGB('YLW', (255, 255, bbb), dbg=dbg)  # 6
+    initRGB('LIM', (160, 255, aaa), dbg=dbg)  # 7
+    initRGB('GRN', (bbb, 255, bbb), dbg=dbg)  # 8
+    initRGB('TRQ', (aaa, 255, 192), dbg=dbg)  # 9
+    initRGB('CYA', (aaa, 255, 255), dbg=dbg)  # 10
+    initRGB('IND', (aaa, 180, 255), dbg=dbg)  # 11
+    initRGB('BLU', (bbb, aaa, 255), dbg=dbg)  # 12
+    initRGB('VLT', (128, bbb, 255), dbg=dbg)  # 13
+    initRGB('GRY', (255, 255, 255), dbg=dbg)  # 14
+    initRGB('CL1', (ccc, aaa, 255), dbg=dbg)  # 15
+    initRGB('CL2', (255, 128, bbb), dbg=dbg)  # 16
+    initRGB('CL3', (aaa, 255, ccc), dbg=dbg)  # 17
+    initRGB('CL4', (aaa, ccc, bbb), dbg=dbg)  # 18
+    return RGB.keys()
+
+def initRGB(key, rgb, dv=32, n=None, dbg=0):
+    colors = []  ;  lrgb, lopc = len(rgb), len(OPC)  ;  msg, msgR, msgG, msgB = [], [], [], []  ;  n = n + 1 if n is not None else lopc  ;  opc, color = None, None
+    diffs  = [ rgb[i] - rgb[i]/dv for i in range(lrgb) ]
+    steps  = [ diffs[i]/(n-1)     for i in range(lrgb) ]
+    if dbg: msg.append(f'{key:3}:   O=[')
+    for j in range(n):
+        clrs = []
+        if dbg > 2: slog(f'{key:4} {fmtl(rgb, w=3)} {opc=:2} {OPC[opc]:3} {dv=} {n=} {fmtl(diffs, w=".2f")} ', e=Z)  ;  slog(fmtl(steps, w=".2f"), p=0, f=1)
+        for opc in range(lopc):
+            if dbg: msg.append(f'{OPC[opc]:3} ' if not j else Z)
+            color = list([ fri(rgb[i]/dv + j*steps[i]) for i in range(lrgb) ])   ;  color.append(OPC[opc])  ;  clrs.append(tuple(color))
+            if dbg > 1:    slog(f'{j:2} {key:4} {fColor(color)}', p=0, e=W)
+        if dbg > 1:        slog(p=0)
+        if dbg: msgR.append(color[0])   ;   msgG.append(color[1])   ;   msgB.append(color[2])
+        colors.append(clrs)
+    if dbg:
+        msg = Z.join(msg)
+        slog( f'{msg[:-1]}] {fmtl(diffs, w="5.1f")} {fmtl(steps, w="4.1f")}', p=0)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
+        for i, msg in enumerate(msgs): slog(f'       {rgb[i]}={fmtl(msg, w=3)}', p=0)
+    global RGB  ;  RGB[key] = colors
+    return list(RGB.keys())
+########################################################################################################################################################################################################
+# 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
+FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGBs(f=0, dbg=0)
+########################################################################################################################################################################################################
+def initColors(k, spr, bgc, ik):
+    KP1, KP2 = VLT, VLT  ;  KL1, KL2 = FSH, FSH  ;  KS1, KS2 = RED, RED  ;  KC1, KC2 = YLW, YLW  ;  OP1, OP2 = 17, 17  ;  OL1, OL2 = 17, 17  ;  OS1, OS2 = 17, 17  ;  OC1, OC2 =  17, 17
+    KT1, KT2 = ORG, ORG  ;  KN1, KN2 = GRN, GRN  ;  KI1, KI2 = PNK, PNK  ;  KK1, KK2 = IND, IND  ;  OT1, OT2 = 17, 17 # ;  ON1, ON2 =  0,  0  ;  OI1, OI2 =  0,  0  ;  OK1, OK2 =  0,  0
+    KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = CYA, CYA  ;  KH1, KH2 = TRQ, TRQ  ;  KM1, KM2 = PCH, PCH  ;  OR1, OR2 = 17, 17  ;  OQ1, OQ2 = 17, 17  ;  OH1, OH2 =  9,  9
+    KB1, KB2 = CL3, CL3  ;  KA1, KA2 = CL4, CL4  ;  KD1, KD2 = LIM, LIM  ;  KE1, KE2 = GRY, GRY  ;  OE1, OE2 = 17, 17  ;  aa, zz = 5, 17
+    a = not spr and not bgc  ;  b = not spr and bgc  ;  c =   spr and not bgc  ;  d = spr and bgc  ;  i = ik
+    j = P  ;  k[j] = i(j, KP1, aa, OP1, KP2, zz, OP2) if a else i(j, KP1, 17, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
+    j = L  ;  k[j] = i(j, KL1, aa, OL1, KL2, zz, OL2) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
+    j = S  ;  k[j] = i(j, KS1, aa, OS1, KS2, zz, OS2) if a else i(j, KS1,  3, 15, KS2, 17, 15) if b else i(j, KS1,  3, 15, KS2, 17, 15) if c else i(j, KS1,  3, 15, KS2, 17, 15) if d else None
+    j = C  ;  k[j] = i(j, KC1, aa, OC1, KC2, zz, OC2) if a else i(j, KC1,  3, 15, KC2, 17, 15) if b else i(j, KC1,  3, 15, KC2, 17, 15) if c else i(j, KC1,  3, 15, KC2, 17, 15) if d else None
+    j = T  ;  k[j] = i(j, KT1, aa, OT1, KT2, zz, OT2) if a else i(j, KT1,  0, 13, KT2, 17, 13) if b else i(j, KT1,  0, 13, KT2, 17, 13) if c else i(j, KT1,  0, 13, KT2, 17, 13) if d else None
+    j = N  ;  k[j] = i(j, KN1, aa, OT1, KN2, zz, OT2) if a else i(j, KN1,  0, 13, KN2, 17, 13) if b else i(j, KN1,  0, 13, KN2, 17, 13) if c else i(j, KN1,  0, 13, KN2, 17, 13) if d else None
+    j = I  ;  k[j] = i(j, KI1, aa, OT1, KI2, zz, OT2) if a else i(j, KI1,  0, 13, KI2, 17, 13) if b else i(j, KI1,  0, 13, KI2, 17, 13) if c else i(j, KI1,  0, 13, KI2, 17, 13) if d else None
+    j = K  ;  k[j] = i(j, KK1, aa, OT1, KK2, zz, OT2) if a else i(j, KK1,  0, 13, KK2, 17, 13) if b else i(j, KK1,  0, 13, KK2, 17, 13) if c else i(j, KK1,  0, 13, KK2, 17, 13) if d else None
+    j = R  ;  k[j] = i(j, KR1, aa, OR1, KR2, zz, OR2) if a else i(j, KR1,  0, 17, KR2, 17, 17) if b else i(j, KR1,  0, 17, KR2, 17, 17) if c else i(j, KR1,  0, 17, KR2, 17, 17) if d else None
+    j = Q  ;  k[j] = i(j, KQ1, aa, OQ1, KQ2, zz, OQ2) if a else i(j, KQ1,  0, 17, KQ2, 17, 17) if b else i(j, KQ1,  0, 17, KQ2, 17, 17) if c else i(j, KQ1,  0, 17, KQ2, 17, 10) if d else None
+    j = H  ;  k[j] = i(j, KH1, zz, OH1, KH2, aa, OH2) if a else i(j, KH1, 14, 10, KH2, 14, 10) if b else i(j, KH1, 15, 13, KH2, 15, 13) if c else i(j, KH1, 14, 11, KH2, 14, 10) if d else None
+    j = M  ;  k[j] = i(j, KM1, aa, OE1, KM2, zz, OE2) if a else i(j, KM1, 17, 10, KM2, 17, 17) if b else i(j, KM1, 17, 17, KM2, 17, 17) if c else i(j, KM1, 17, 17, KM2, 17, 17) if d else None
+    j = B  ;  k[j] = i(j, KB1, aa, OE1, KB2, zz, OE2) if a else i(j, KB1,  0,  0, KB2, 17, 17) if b else i(j, KB1,  0,  0, KB2, 17, 17) if c else i(j, KB1,  0,  0, KB2, 17, 17) if d else None
+    j = A  ;  k[j] = i(j, KA1, aa, OE1, KA2, zz, OE2) if a else i(j, KA1,  0,  0, KA2, 17, 17) if b else i(j, KA1,  0,  0, KA2, 17, 17) if c else i(j, KA1,  0,  0, KA2, 17, 17) if d else None
+    j = D  ;  k[j] = i(j, KD1, aa, OE1, KD2, zz, OE2) if a else i(j, KD1,  0,  0, KD2, 17, 17) if b else i(j, KD1,  0,  0, KD2, 17, 17) if c else i(j, KD1,  0,  0, KD2, 17, 17) if d else None
+    j = E  ;  k[j] = i(j, KE1, aa, OE1, KE2, zz, OE2) if a else i(j, KE1,  0,  0, KE2, 17, 17) if b else i(j, KE1,  0,  0, KE2, 17, 17) if c else i(j, KE1,  0,  0, KE2, 17, 17) if d else None
+
 def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1, f=-2):
     if dbg: slog(f'{baseName =:12} {basePath = }', f=f)
     fileName   = f'{baseName}.{fsfx}'          if fsfx else baseName

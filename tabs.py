@@ -22,15 +22,14 @@ from   tpkg.strngs     import Strngs as Strngs
 from   tpkg.chords     import Chords as Chords
 from   tpkg            import tests  as tests
 
-P, L, S, C =  0,  1,  2,  3
-T, N, I, K =  4,  5,  6,  7
-R, Q, H, M =  8,  9, 10, 11
-B, A, D, E = 12, 13, 14, 15
+P, L, S, C, T, N, I, K, R, Q, H, M, B, A, D, E = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
 W, Y, Z    = utl.W, utl.Y, utl.Z
+
 fri        = utl.fri            # function
 slog, fmtf = utl.slog, utl.fmtf # function
 fmtl, fmtm = utl.fmtl, utl.fmtm # function
 isAlt, isCtl, isSft, isAltSft, isCtlAlt, isCtlSft, isCtlAltSft, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isSft, utl.isAltSft, utl.isCtlSft, utl.isCtlAltSft, utl.isNumLck
+
 CAT,  CSV,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
 CAT2, CSV2, LOG2, PNG2, TXT2       = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
@@ -63,7 +62,7 @@ LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
 ########################################################################################################################################################################################################
 LBL                   = pygtxt.Label
 SPR                   = pygsprt.Sprite
-RGB                   = {}
+RGB                   = utl.RGB
 TT, NN, II, KK        =  0,  1,  2,  3
 C1,  C2               =  0,  1
 CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
@@ -81,8 +80,6 @@ JTEXTS2 = ['Page',  'Line',  'Sect',  'Kolm',  'Tabl',  'Note',  'IKey',  'Kord'
 jTEXTS  = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qklms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
 JFMT    = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       2,       2,       4]
 #JFMT   = [  2,       3,       3,       6,       6,       6,       6,       6,       3,       5,       1,       1,       3,       3,       3,       4,       7]
-#               0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17
-OPC         = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
 PNT_PER_PIX =  7/9  # 14pts/18pix
 FONT_DPIS   = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
 FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'Helvetica', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
@@ -281,7 +278,7 @@ class Tabs(pyglet.window.Window):
         self.log('END', pos=1)
 
     def _init(self):
-        self._initColors()
+        utl.initColors(self.k, self.SPRITES, self.BGC, self.initk)
         self._initData()
         if self.AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer')
         self._initFonts()
@@ -289,29 +286,6 @@ class Tabs(pyglet.window.Window):
         self._initTniks()
         self.regSnap('init', INIT)
     ####################################################################################################################################################################################################
-    def _initColors(self): # j = M = 11
-        KP1, KP2 = VLT, VLT  ;  KL1, KL2 = FSH, FSH  ;  KS1, KS2 = RED, RED  ;  KC1, KC2 = YLW, YLW  ;  OP1, OP2 = 17, 17  ;  OL1, OL2 = 17, 17  ;  OS1, OS2 = 17, 17  ;  OC1, OC2 =  17, 17
-        KT1, KT2 = ORG, ORG  ;  KN1, KN2 = GRN, GRN  ;  KI1, KI2 = PNK, PNK  ;  KK1, KK2 = IND, IND  ;  OT1, OT2 = 17, 17 # ;  ON1, ON2 =  0,  0  ;  OI1, OI2 =  0,  0  ;  OK1, OK2 =  0,  0
-        KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = CYA, CYA  ;  KH1, KH2 = TRQ, TRQ  ;  KM1, KM2 = PCH, PCH  ;  OR1, OR2 = 17, 17  ;  OQ1, OQ2 = 17, 17  ;  OH1, OH2 =  9,  9
-        KB1, KB2 = CL3, CL3  ;  KA1, KA2 = CL4, CL4  ;  KD1, KD2 = LIM, LIM  ;  KE1, KE2 = GRY, GRY  ;  OE1, OE2 = 17, 17  ;  aa, zz = 5, 17
-        k = self.k  ;  a = not self.SPRITES and not self.BGC  ;  b = not self.SPRITES and self.BGC  ;  c =   self.SPRITES and not self.BGC  ;  d = self.SPRITES and self.BGC  ;  i = self.initk
-        j = P  ;  k[j] = i(j, KP1, aa, OP1, KP2, zz, OP2) if a else i(j, KP1, 17, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
-        j = L  ;  k[j] = i(j, KL1, aa, OL1, KL2, zz, OL2) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
-        j = S  ;  k[j] = i(j, KS1, aa, OS1, KS2, zz, OS2) if a else i(j, KS1,  3, 15, KS2, 17, 15) if b else i(j, KS1,  3, 15, KS2, 17, 15) if c else i(j, KS1,  3, 15, KS2, 17, 15) if d else None
-        j = C  ;  k[j] = i(j, KC1, aa, OC1, KC2, zz, OC2) if a else i(j, KC1,  3, 15, KC2, 17, 15) if b else i(j, KC1,  3, 15, KC2, 17, 15) if c else i(j, KC1,  3, 15, KC2, 17, 15) if d else None
-        j = T  ;  k[j] = i(j, KT1, aa, OT1, KT2, zz, OT2) if a else i(j, KT1,  0, 13, KT2, 17, 13) if b else i(j, KT1,  0, 13, KT2, 17, 13) if c else i(j, KT1,  0, 13, KT2, 17, 13) if d else None
-        j = N  ;  k[j] = i(j, KN1, aa, OT1, KN2, zz, OT2) if a else i(j, KN1,  0, 13, KN2, 17, 13) if b else i(j, KN1,  0, 13, KN2, 17, 13) if c else i(j, KN1,  0, 13, KN2, 17, 13) if d else None
-        j = I  ;  k[j] = i(j, KI1, aa, OT1, KI2, zz, OT2) if a else i(j, KI1,  0, 13, KI2, 17, 13) if b else i(j, KI1,  0, 13, KI2, 17, 13) if c else i(j, KI1,  0, 13, KI2, 17, 13) if d else None
-        j = K  ;  k[j] = i(j, KK1, aa, OT1, KK2, zz, OT2) if a else i(j, KK1,  0, 13, KK2, 17, 13) if b else i(j, KK1,  0, 13, KK2, 17, 13) if c else i(j, KK1,  0, 13, KK2, 17, 13) if d else None
-        j = R  ;  k[j] = i(j, KR1, aa, OR1, KR2, zz, OR2) if a else i(j, KR1,  0, 17, KR2, 17, 17) if b else i(j, KR1,  0, 17, KR2, 17, 17) if c else i(j, KR1,  0, 17, KR2, 17, 17) if d else None
-        j = Q  ;  k[j] = i(j, KQ1, aa, OQ1, KQ2, zz, OQ2) if a else i(j, KQ1,  0, 17, KQ2, 17, 17) if b else i(j, KQ1,  0, 17, KQ2, 17, 17) if c else i(j, KQ1,  0, 17, KQ2, 17, 10) if d else None
-        j = H  ;  k[j] = i(j, KH1, zz, OH1, KH2, aa, OH2) if a else i(j, KH1, 14, 10, KH2, 14, 10) if b else i(j, KH1, 15, 13, KH2, 15, 13) if c else i(j, KH1, 14, 11, KH2, 14, 10) if d else None
-        j = M  ;  k[j] = i(j, KM1, aa, OE1, KM2, zz, OE2) if a else i(j, KM1, 17, 10, KM2, 17, 17) if b else i(j, KM1, 17, 17, KM2, 17, 17) if c else i(j, KM1, 17, 17, KM2, 17, 17) if d else None
-        j = B  ;  k[j] = i(j, KB1, aa, OE1, KB2, zz, OE2) if a else i(j, KB1,  0,  0, KB2, 17, 17) if b else i(j, KB1,  0,  0, KB2, 17, 17) if c else i(j, KB1,  0,  0, KB2, 17, 17) if d else None
-        j = A  ;  k[j] = i(j, KA1, aa, OE1, KA2, zz, OE2) if a else i(j, KA1,  0,  0, KA2, 17, 17) if b else i(j, KA1,  0,  0, KA2, 17, 17) if c else i(j, KA1,  0,  0, KA2, 17, 17) if d else None
-        j = D  ;  k[j] = i(j, KD1, aa, OE1, KD2, zz, OE2) if a else i(j, KD1,  0,  0, KD2, 17, 17) if b else i(j, KD1,  0,  0, KD2, 17, 17) if c else i(j, KD1,  0,  0, KD2, 17, 17) if d else None
-        j = E  ;  k[j] = i(j, KE1, aa, OE1, KE2, zz, OE2) if a else i(j, KE1,  0,  0, KE2, 17, 17) if b else i(j, KE1,  0,  0, KE2, 17, 17) if c else i(j, KE1,  0,  0, KE2, 17, 17) if d else None
-
     def initk(self, j, key0, rgb0, opc0, key1, rgb1, opc1):
         self.log(f'{j:2}  {JTEXTS[j]:4}  [{key0} {rgb0:2} {opc0:2}] [ {key1} {rgb1:2} {opc1:2}] {fmtl(RGB[key0][rgb0][opc0], w=3)} {fmtl(RGB[key1][rgb1][opc1], w=3)}', p=0)
         return [RGB[key0][rgb0][opc0], RGB[key1][rgb1][opc1]]
@@ -415,11 +389,11 @@ class Tabs(pyglet.window.Window):
     def j(   self):                   return [ i-1 if i else 0 for    i in           self.i ]
     def j2(  self):                   return [ i-1 if i else 0 for j, i in enumerate(self.i)  if j != S ]
     def j2g( self, j):                return self.g[ self.gn[j] ]
-    def resetJ(self, why=Z, dbg=1): self.J1 = [ 0 for _ in range(len(self.E)+1) ]  ;   self.J2 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.nvis = 0  ;  self.dumpJs(why) if dbg else None
+    def resetJ(self, why=Z, dbg=1): self.J1 = [ 0 for _ in range(len(self.E)+1) ]    ;   self.J2 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.nvis = 0  ;  self.dumpJs(why) if dbg else None
     def setJ(self, j, n, v=None):
-        v = self.isV() if v is None else v    ;   self.J1[j] = n  ;  self.J2[j] += 1  ;  self.J1[-1] += 1  ;  self.J2[-1] += 1
-        self.nvis += 1 if v else 0            ;   self.visib[j].append(v)
-    def setJdump(self, j, n, v=None, why=Z): i = self.J2[j]  ;  self.setJ(j, n, v)  ;  self.dumpTnik(self.E[j][i], j, why)  ;  return j
+        v = self.isV() if v is None else v   ;   self.J1[j] = n  ;  self.J2[j] += 1  ;   self.J1[-1] += 1  ;  self.J2[-1] += 1
+        self.nvis += 1 if v else 0           ;   self.visib[j].append(v)
+    def setJdump(self, j, n, v=None, why=Z): i = self.J2[j]   ;  self.setJ(j, n, v)  ;   self.dumpTnik(self.E[j][i], j, why)  ;  return j
     ####################################################################################################################################################################################################
     def ssl(self, dbg=0):  l = len(self.SS)   ;   self.log(f'{self.fmtn()} SS={fmtl(self.ss2sl())} {l=}') if dbg else None   ;   return l   # return 0-4
     def zzl(self, dbg=0):  l = len(self.ZZ)   ;   self.log(f'{self.fmtn()} ZZ={fmtl(self.zz2sl())} {l=}') if dbg else None   ;   return l   # return 0-2
@@ -433,7 +407,7 @@ class Tabs(pyglet.window.Window):
     def dt(  self, data=None, p=0, l=0, c=0):  return list(map(type,                      self.dplc(data, p, l, c)))
     def dtA( self, data=None, p=0, l=0, c=0):  return [ str(type(a)).strip('<>') for a in self.dplc(data, p, l, c) ]
     ####################################################################################################################################################################################################
-    def dproxy(self, data):                      return data if data is not None else self.data
+    def dproxy(self, data):                    return data if data is not None else self.data
     def dplc(  self, data=None, p=0, l=0, c=0):
         data = self.dproxy(data)
         if data:
@@ -464,7 +438,7 @@ class Tabs(pyglet.window.Window):
         if w is None: w = self.width  if self.width  is not None else -1
         if h is None: h = self.height if self.height is not None else -1
         return f'({w if w is None else w:4}{d}{h if h is None else h:<4})'
-    def fmtP0(self):                          return f'{self.p0x} {self.p0w} {self.p0sx} {self.p0y} {self.p0h} {self.p0sy}'
+    def fmtP0( self):                         return f'{self.p0x} {self.p0w} {self.p0sx} {self.p0y} {self.p0h} {self.p0sy}'
     def fmtWHP0(self):                        return f'{self.fmtWH()} {self.fmtP0()}'
     ####################################################################################################################################################################################################
     @staticmethod
@@ -1564,7 +1538,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'    {cc:4} {self.fntp()} {self.fplct(p, l, c, t)} ({p*tpp:4} +{l*tpl:3} +{tps:3} +{c*tpc:3} +{t})', f=0)
         return cc
 
-    def cursorCol(  self,     dbg=1):   cc = self.plct2cc(*self.j2(), dbg=dbg)   ;  self.log( f'{cc=:3} {utl.fmtl(self.j2())}', f=0) if dbg else None  ;  self.cc = cc  ;  return self.cc
+    def cursorCol(  self,     dbg=1):   cc = self.plct2cc(*self.j2(), dbg=dbg)   ;   self.log( f'{cc=:3} {utl.fmtl(self.j2())}', f=0) if dbg else None  ;  self.cc = cc  ;  return self.cc
     def normalizeCC(self, cc, dbg=0):  tpc = self.tpc  ;  old = cc  ;  cc = cc//tpc*tpc  ;  self.log(f'{old=:4} {cc=:4} {tpc=}', f=0) if dbg else None  ;  return cc
     def cc2cn(      self, cc, dbg=0):  tpc = self.tpc  ;  cn = cc//tpc  ;  self.log(f'{cn:3} {cc:4}//{tpc=} {cc//tpc=}', f=0) if dbg else None  ;  return  cn
     def cn2cc(      self, cn, dbg=0):  tpc = self.tpc  ;  cc = cn *tpc  ;  self.log(f'{cc:4} {cn:3} *{tpc=} {cn *tpc=}', f=0) if dbg else None  ;  return  cc
@@ -1843,7 +1817,7 @@ class Tabs(pyglet.window.Window):
     def on_key_press(self, symb, mods, dbg=1): # avoid these
         retv = pyglet.event.EVENT_HANDLED #  ;   self.log(f'{retv=}')
         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
-        self.kbk = self.symbStr  ;  kbk = self.kbk
+        self.kbk = self.symbStr   ;   kbk = self.kbk
         if   dbg:  self.log(f'BGN {self.kbkEvntTxt()}', f=2)
         if   kbk == 'A' and isCtlSft(mods):    self.flipArrow(     '@^A', v=1)
         elif kbk == 'A' and isCtl(   mods):    self.flipArrow(     '@ A', v=0)
@@ -2023,7 +1997,7 @@ class Tabs(pyglet.window.Window):
     def flipBGC(self, how=''):
         self.log(f'{how} {self.BGC=}') if how else None
         self.BGC = (1 + self.BGC) % 2
-        self._initColors()
+        utl.initColors(self.k, self.SPRITES, self.BGC, self.initk)
         if self.RESIZE:    self.resizeTniks(dbg=1)
 
     def move2LastTab(self, how, page=0, dbg=1):
@@ -2743,83 +2717,6 @@ def dumpGlobals():
     slog(f'PATH      = {PATH}',      f=2)
     slog(f'BASE_PATH = {BASE_PATH}', f=2)
 ########################################################################################################################################################################################################
-def dumpRGB(f, dbg=0):
-    s = W*7   ;   olen = len(OPC)
-    o = [ f' {o}' for o in range(olen) ]
-    slog(f'RGB{s}{fmtl(o, w=3,d=Z)}   Diff Span', p=0, f=f)
-    vs = {}
-    for k, v in RGB.items():
-        slog(f'{k}:   ', p=0, f=f, e=Z) if dbg else None   ;   vl = []
-        for i in range(olen):
-            u  = list(v[i])
-            u0 = list(u[i])
-            v0 = utl.rotateList(u0, rev=1)
-            vl.append(v0)
-            vs[k] = vl
-        slog(f'{fmtl(vs[k], w=3)}', p=0, f=f, e=Z) if dbg else None
-        slog(p=0, f=f) if dbg else None
-    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f) if dbg else None  ;  zs = []
-    for k, v in vs.items():
-        zs.append(list(zip(*v)))
-    for j, z in enumerate(zs):
-        for i, y in enumerate(z):
-            pfx  = f'{list(vs.keys())[j]}:   ' if not i else f'{W * 7}'   ;   n = olen - 1
-            lbl  = 'O=' if i==0 else 'R=' if i==1 else 'G=' if i==2 else 'B=' if i==3 else '?='
-            diff = y[n] - y[0]
-            span = diff/n
-            info = f'{diff:5.1f} {span:4.1f}'
-            slog(f'{pfx}{lbl}{fmtl(y, w=3)} {info}', p=0, f=f)
-    slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f) if dbg else None
-
-def initRGB(f, dbg=0):
-    aaa, bbb, ccc = 31, 63, 127
-    if dbg:
-        s = W*7  ;  t = f'{s}RGB '
-        o = [ f' {o}' for o in range(len(OPC)) ]
-        slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
-    _initRGB('FSH', (255, aaa, 255), dbg=dbg)  # 0
-    _initRGB('PNK', (255, 128, 192), dbg=dbg)  # 1
-    _initRGB('RED', (255, bbb, aaa), dbg=dbg)  # 2
-    _initRGB('RST', (255,  96,  10), dbg=dbg)  # 3
-    _initRGB('ORG', (255, 176, aaa), dbg=dbg)  # 5
-    _initRGB('PCH', (255, 160, 128), dbg=dbg)  # 4
-    _initRGB('YLW', (255, 255, bbb), dbg=dbg)  # 6
-    _initRGB('LIM', (160, 255, aaa), dbg=dbg)  # 7
-    _initRGB('GRN', (bbb, 255, bbb), dbg=dbg)  # 8
-    _initRGB('TRQ', (aaa, 255, 192), dbg=dbg)  # 9
-    _initRGB('CYA', (aaa, 255, 255), dbg=dbg)  # 10
-    _initRGB('IND', (aaa, 180, 255), dbg=dbg)  # 11
-    _initRGB('BLU', (bbb, aaa, 255), dbg=dbg)  # 12
-    _initRGB('VLT', (128, bbb, 255), dbg=dbg)  # 13
-    _initRGB('GRY', (255, 255, 255), dbg=dbg)  # 14
-    _initRGB('CL1', (ccc, aaa, 255), dbg=dbg)  # 15
-    _initRGB('CL2', (255, 128, bbb), dbg=dbg)  # 16
-    _initRGB('CL3', (aaa, 255, ccc), dbg=dbg)  # 17
-    _initRGB('CL4', (aaa, ccc, bbb), dbg=dbg)  # 18
-    return RGB.keys()
-
-def _initRGB(key, rgb, dv=32, n=None, dbg=0):
-    colors = []  ;  lrgb, lopc = len(rgb), len(OPC)  ;  msg, msgR, msgG, msgB = [], [], [], []  ;  n = n + 1 if n is not None else lopc  ;  opc, color = None, None
-    diffs  = [ rgb[i] - rgb[i]/dv for i in range(lrgb) ]
-    steps  = [ diffs[i]/(n-1)     for i in range(lrgb) ]
-    if dbg: msg.append(f'{key:3}:   O=[')
-    for j in range(n):
-        clrs = []
-        if dbg > 2: slog(f'{key:4} {fmtl(rgb, w=3)} {opc=:2} {OPC[opc]:3} {dv=} {n=} {fmtl(diffs, w=".2f")} ', e=Z)  ;  slog(fmtl(steps, w=".2f"), p=0, f=1)
-        for opc in range(lopc):
-            if dbg: msg.append(f'{OPC[opc]:3} ' if not j else Z)
-            color = list([ fri(rgb[i]/dv + j*steps[i]) for i in range(lrgb) ])  ;  color.append(OPC[opc])  ;  clrs.append(tuple(color))
-            if dbg > 1:    slog(f'{j:2} {key:4} {utl.fColor(color)}', p=0, e=W)
-        if dbg > 1:        slog(p=0)
-        if dbg: msgR.append(color[0])  ;  msgG.append(color[1])  ;  msgB.append(color[2])
-        colors.append(clrs)
-    if dbg:
-        msg = Z.join(msg)
-        slog( f'{msg[:-1]}] {fmtl(diffs, w="5.1f")} {fmtl(steps, w="4.1f")}', p=0)  ;  msgs = [msgR, msgG, msgB]  ;  rgb = 'RGB'
-        for i, msg in enumerate(msgs): slog(f'       {rgb[i]}={fmtl(msg, w=3)}', p=0)
-    global RGB  ;  RGB[key] = colors
-    return list(RGB.keys())
-########################################################################################################################################################################################################
 def cleanupOutFiles(file, fp, gfp, snp, f):
     slog(f'Copy {file.name} to {snp}',  ff=1, f=f)
     utl.copyFile(fp,            snp, f=f)
@@ -2831,7 +2728,7 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
 # Global Functions END
 ########################################################################################################################################################################################################
 # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
-FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGB(f=0, dbg=0)
+FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = utl.initRGBs(f=0, dbg=0)
 if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2, f=0)
 if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, f=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, f=0)
@@ -2842,7 +2739,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     kysgs.init(f=f0)
     slog(sys.argv[0],      p=0,        f=f0)
     slog(f'argv={fmtl(sys.argv[1:])}', f=f0)
-    dumpRGB(f=f0)
+    utl.dumpRGB(f=f0)
 #    def main():
     f1 = -2
     slog(f'{CSV_PATH=}',  f=f1)        ;   slog(f'{CSV_FILE.name=}', f=f1)

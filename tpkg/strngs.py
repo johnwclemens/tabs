@@ -1,11 +1,11 @@
 from collections import Counter
-from tpkg       import utl    as utl
-from tpkg       import notes  as notes
-from tpkg.notes import Notes  as Notes
-from tpkg       import kysgs  as kysgs
-#from tpkg.kysgs import KySgs as KySgs
+from tpkg        import utl    as utl
+from tpkg        import unic   as unic
+from tpkg        import notes  as notes
+from tpkg.notes  import Notes  as Notes
+from tpkg        import kysgs  as kysgs
 
-F, N, S          = utl.F, utl.N, utl.S
+F, N, S          = unic.F, unic.N, unic.S
 W, Y, Z          = utl.W, utl.Y, utl.Z
 slog, fmtl, fmtm = utl.slog, utl.fmtl, utl.fmtm
 

@@ -1,10 +1,10 @@
 from tpkg import utl as utl
-#from tpkg import notes as notes
 from tpkg.notes import Notes  as Notes
 from tpkg.misc  import Scales as Scales
 
+NTONES       = Notes.NTONES
 F            = 0
-M, P         = utl.M, utl.P
+M, P         = -7, 7
 slog         = utl.slog
 W, Y, Z      = utl.W, utl.Y, utl.Z
 fmtl         = utl.fmtl
@@ -27,11 +27,10 @@ def init(f):
 
 def initKSD(ks, t):
     slog('BGN', f=F)
-    nt = Notes.NTONES
     if     t == -1:   i = 0  ;  j = 6   ;  s = M
     else:             i = 0  ;  j = 10  ;  s = P
-    iz1 = [ (j + k * s) % nt for k in range(1, 1+abs(s)) ]
-    ms1 = [ Notes.name(j, t) for j in iz1 ]
+    iz1 = [ (j + k * s) % NTONES for k in range(1, 1+abs(s)) ]
+    ms1 = [ Notes.name(j, t)     for j in iz1 ]
     iz2 = list(iz1)          ;         ms2 = list(ms1)
     slog(f'{t=} {i=} {j=} {s=} {fmtl(iz2)=} {fmtl(ms2)=}', p=0, f=F)   ;   j += t
     for  k in range(0, t + s, t):
