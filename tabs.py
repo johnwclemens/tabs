@@ -1811,6 +1811,9 @@ class Tabs(pyglet.window.Window):
         fs = 33/32 if scroll_y > 0 else 32/33
         self.log(f'{scroll_y=} {fmtf(self.fontSize, 5)} {fmtf(fs, 5)}')
         self.setFontParam(FONT_SIZE, fs, 'font_size')
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        self.log(f'{x=} {y=} {dx=} {dy=}')
     ####################################################################################################################################################################################################
     def kbkEvntTxt(self, why=Z):   why = why if why else W*4   ;   return f'<{why}{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
     ####################################################################################################################################################################################################
@@ -1985,6 +1988,7 @@ class Tabs(pyglet.window.Window):
 #        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > <16> <MOD_NUMLOCK     > motion=65363
 #        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > < 8> <MOD_CAPSLOCK    > motion=65363
     def on_style_text(self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
+    def on_move(self, x, y): self.log(f'{x=} {y=}')
     ####################################################################################################################################################################################################
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
 #    def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in utl.DSymb.SYMBS else 0
