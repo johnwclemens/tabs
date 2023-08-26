@@ -16,6 +16,7 @@ from   pyglet.text     import document, layout
 from   tpkg            import utl    as utl
 from   tpkg            import kysgs  as kysgs
 from   tpkg            import misc   as misc
+from   tpkg            import evnts  as evnts
 from   tpkg            import notes  as notes
 from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
@@ -1794,26 +1795,27 @@ class Tabs(pyglet.window.Window):
         if dbg: slog(f'{jTEXTS[j]}[{cc}-{cc+nt-1}].text={fmtl(texts)}=<{text}>')
         return text
     ####################################################################################################################################################################################################
-    def on_mouse_release(self, x, y, button, mods, dbg=1):
-        hh = self.height  ;  ww = self.width  ;  tlen = len(self.tabls)  ;  ll = self.LL    ;  np, nl, ns, nc, nt  = self.n
-        y0 = y            ;   y = hh - y0     ;    nr = nl*(ns*nt + ll)  ;   w = ww/nc      ;  h = hh/nr
-        cc = self.cc      ;   r = int(y/h)    ;     d = int(y/h)  - ll   ;   a = int(d/nr)  ;  b = int(x/w)
-        p  = self.j()[P]  ;   l = a           ;     s = d//nt            ;   c = b          ;  t = (d - l*nr) # % nt
-        text = self.tabls[cc].text if cc < tlen else Z
-        if dbg:   self.log(f'BGN {x=:4} {y0=:4} {y=:4} {w=:6.2f} {h=:6.2f} {ll=} {nc=:2} {nr=:2} {r=:2} {d=:2} {text=}', pos=1, f=2)
-        if dbg:   self.log(f'    p={p+1} l={l+1}=(d/nr) s={s+1}=(d//nt) c={c+1}=(x/w) t={t+1}=(d-l*nr)', pos=1, f=2)
-        if dbg:   self.log(f'    before MOVE plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
-        p, l, s, c, t = self.moveToB('MOUSE RELEASE', p, l, s, c, t)
-        if dbg:   self.log(f'    after  MOVE plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
-        if dbg:   self.log(f'END {x=:4} {y0=:4} {y=:4} {ww=:6.2f} {hh=:6.2f}', pos=1, f=2)
+    def on_mouse_release(      self, x, y, button, mods=0, dbg=1):
+        evnts.on_mouse_release(self, x, y, button, mods, dbg=dbg)
+        # hh = self.height  ;  ww = self.width  ;  tlen = len(self.tabls)  ;  ll = self.LL    ;  np, nl, ns, nc, nt  = self.n
+        # y0 = y            ;   y = hh - y0     ;    nr = nl*(ns*nt + ll)  ;   w = ww/nc      ;  h = hh/nr
+        # cc = self.cc      ;   r = int(y/h)    ;     d = int(y/h)  - ll   ;   a = int(d/nr)  ;  b = int(x/w)
+        # p  = self.j()[P]  ;   l = a           ;     s = d//nt            ;   c = b          ;  t = (d - l*nr) # % nt
+        # text = self.tabls[cc].text if cc < tlen else Z
+        # if dbg:   self.log(f'BGN {x=:4} {y0=:4} {y=:4} {w=:6.2f} {h=:6.2f} {ll=} {nc=:2} {nr=:2} {r=:2} {d=:2} {text=}', pos=1, f=2)
+        # if dbg:   self.log(f'    p={p+1} l={l+1}=(d/nr) s={s+1}=(d//nt) c={c+1}=(x/w) t={t+1}=(d-l*nr)', pos=1, f=2)
+        # if dbg:   self.log(f'    before MOVE plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
+        # p, l, s, c, t = self.moveToB('MOUSE RELEASE', p, l, s, c, t)
+        # if dbg:   self.log(f'    after  MOVE plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
+        # if dbg:   self.log(f'END {x=:4} {y0=:4} {y=:4} {ww=:6.2f} {hh=:6.2f}', pos=1, f=2)
 
     def on_mouse_scroll(self, x, y, scroll_x, scroll_y):
         fs = 33/32 if scroll_y > 0 else 32/33
         self.log(f'{scroll_y=} {fmtf(self.fontSize, 5)} {fmtf(fs, 5)}')
         self.setFontParam(FONT_SIZE, fs, 'font_size')
 
-    def on_mouse_motion(self, x, y, dx, dy):
-        self.log(f'{x=} {y=} {dx=} {dy=}')
+    def on_mouse_motion(self, x, y, dx, dy): evnts.on_mouse_motion(x, y, dx, dy)
+#    def on_mouse_motion(self, x, y, dx, dy): self.log(f'{x=} {y=} {dx=} {dy=}')
     ####################################################################################################################################################################################################
     def kbkEvntTxt(self, why=Z):   why = why if why else W*4   ;   return f'<{why}{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
     ####################################################################################################################################################################################################
@@ -1988,7 +1990,8 @@ class Tabs(pyglet.window.Window):
 #        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > <16> <MOD_NUMLOCK     > motion=65363
 #        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > < 8> <MOD_CAPSLOCK    > motion=65363
     def on_style_text(self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
-    def on_move(self, x, y): self.log(f'{x=} {y=}')
+    def on_move(self, x, y): evnts.on_move(x, y)
+#    def on_move(self, x, y): self.log(f'{x=} {y=}')
     ####################################################################################################################################################################################################
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
 #    def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in utl.DSymb.SYMBS else 0
