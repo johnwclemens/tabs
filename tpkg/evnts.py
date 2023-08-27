@@ -6,14 +6,15 @@ import pyglet
 import pyglet.window.key   as pygwink
 from   tpkg import utl     as utl
 
-slog, fmtf = utl.slog, utl.fmtf
-W, Y, Z    = utl.W, utl.Y, utl.Z
+slog, fmtf                     = utl.slog, utl.fmtf
+W, Y, Z                        = utl.W, utl.Y, utl.Z
 TT, NN, II, KK                 = utl.TT, utl.NN, utl.II, utl.KK
 MELODY, CHORD, ARPG            = utl.MELODY, utl.CHORD, utl.ARPG
 LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
 BOLD, COLOR, ITALIC, FONT_NAME, FONT_SIZE                                = utl.BOLD, utl.COLOR, utl.ITALIC, utl.FONT_NAME, utl.FONT_SIZE
 P, L, S, C, T, N, I, K, R, Q, H, M, B, A, D, E                           = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
 isAlt, isCtl, isSft, isAltSft, isCtlAlt, isCtlSft, isCtlAltSft, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isSft, utl.isAltSft, utl.isCtlSft, utl.isCtlAltSft, utl.isNumLck
+########################################################################################################################################################################################################
 class FilteredEventLogger(pyglet.window.event.WindowEventLogger):
     def __init__(self, etypes):
         super().__init__()
@@ -27,7 +28,7 @@ class FilteredEventLogger(pyglet.window.event.WindowEventLogger):
 flist    = ['on_move', 'on_mouse_motion'] # 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_motion'
 fEvntLog = FilteredEventLogger(flist)
 flog     = fEvntLog.log
-
+########################################################################################################################################################################################################
 def on_move(x, y):
     flog(f'{x=} {y=}', etype='on_move')
 

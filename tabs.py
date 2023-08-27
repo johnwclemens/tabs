@@ -30,6 +30,7 @@ fri        = utl.fri            # function
 slog, fmtf = utl.slog, utl.fmtf # function
 fmtl, fmtm = utl.fmtl, utl.fmtm # function
 isAlt, isCtl, isSft, isAltSft, isCtlAlt, isCtlSft, isCtlAltSft, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isSft, utl.isAltSft, utl.isCtlSft, utl.isCtlAltSft, utl.isNumLck
+BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE       = utl.BGC, utl.BOLD, utl.COLOR, utl.FONT_NAME, utl.FONT_SIZE, utl.ITALIC, utl.KERNING, utl.UNDERLINE
 
 CAT,  CSV,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
@@ -46,9 +47,7 @@ LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2, dbg=0)
 PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2, dbg=0)
 TXT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2, dbg=0)
 
-BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = utl.BGC, utl.BOLD, utl.COLOR, utl.FONT_NAME, utl.FONT_SIZE, utl.ITALIC, utl.KERNING, utl.UNDERLINE
 MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'    ;    LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
-#BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
 ALIGN, INDENT, LEAD, LNSP, STRH, TAB_STOPS, WRAP     = 'align', 'indent', 'leading', 'line_spacing', 'stretch', 'tab_stops', 'wrap'
 MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM = 'margin_left', 'margin_right', 'margin_top', 'margin_bottom'
 TI        = ['tnik', '  i ']
@@ -62,18 +61,15 @@ LTXAC     = list(itertools.chain(TI, XYWH, AXY2, CWH))
 LDS       = ['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B', 'I', 'S', 'M', 'W', 'w', 'FontName']
 LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
 ########################################################################################################################################################################################################
+TT, NN, II, KK        = utl.TT, utl.NN, utl.II, utl.KK
+MELODY, CHORD, ARPG   = utl.MELODY, utl.CHORD, utl.ARPG
+LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
 LBL                   = pygtxt.Label
 SPR                   = pygsprt.Sprite
 RGB                   = utl.RGB
-TT, NN, II, KK        = utl.TT, utl.NN, utl.II, utl.KK
-#TT, NN, II, KK        =  0,  1,  2,  3
 C1,  C2               =  0,  1
 CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
 HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
-MELODY, CHORD, ARPG   = utl.MELODY, utl.CHORD, utl.ARPG
-LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
-#MELODY, CHORD, ARPG   =  0, 1, 2
-#LARROW, RARROW, DARROW, UARROW =  0, 1, 0, 1
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = 0, 1, 2
 ########################################################################################################################################################################################################
 INIT    = 'INIT'
@@ -1792,206 +1788,28 @@ class Tabs(pyglet.window.Window):
         return text
     ####################################################################################################################################################################################################
     def on_move(self, x, y): evnts.on_move(x, y)
-#    def on_move(self, x, y): self.log(f'{x=} {y=}')
 
     def on_mouse_release(      self, x, y, button, mods=0, dbg=1):
         evnts.on_mouse_release(self, x, y, button, mods, dbg=dbg)
-        # hh = self.height  ;  ww = self.width  ;  tlen = len(self.tabls)  ;  ll = self.LL    ;  np, nl, ns, nc, nt  = self.n
-        # y0 = y            ;   y = hh - y0     ;    nr = nl*(ns*nt + ll)  ;   w = ww/nc      ;  h = hh/nr
-        # cc = self.cc      ;   r = int(y/h)    ;     d = int(y/h)  - ll   ;   a = int(d/nr)  ;  b = int(x/w)
-        # p  = self.j()[P]  ;   l = a           ;     s = d//nt            ;   c = b          ;  t = (d - l*nr) # % nt
-        # text = self.tabls[cc].text if cc < tlen else Z
-        # if dbg:   self.log(f'BGN {x=:4} {y0=:4} {y=:4} {w=:6.2f} {h=:6.2f} {ll=} {nc=:2} {nr=:2} {r=:2} {d=:2} {text=}', pos=1, f=2)
-        # if dbg:   self.log(f'    p={p+1} l={l+1}=(d/nr) s={s+1}=(d//nt) c={c+1}=(x/w) t={t+1}=(d-l*nr)', pos=1, f=2)
-        # if dbg:   self.log(f'    before MOVE plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
-        # p, l, s, c, t = self.moveToB('MOUSE RELEASE', p, l, s, c, t)
-        # if dbg:   self.log(f'    after  MOVE plsct={self.fplsct(p, l, s, c, t)}',   pos=1, f=2)
-        # if dbg:   self.log(f'END {x=:4} {y0=:4} {y=:4} {ww=:6.2f} {hh=:6.2f}', pos=1, f=2)
 
     def on_mouse_scroll(      self, x, y, scroll_x, scroll_y):
         evnts.on_mouse_scroll(self, x, y, scroll_x, scroll_y)
-        # fs = self.fontSize
-        # sf = 33/32 if scroll_y > 0 else 32/33
-        # sfs = sf * fs
-        # self.log(f'{scroll_y=}, sf * fs = ss, {fmtf(sf, 5)} * {fmtf(fs, 5)} = {fmtf(sfs, 5)}')
-        # self.setFontParam(FONT_SIZE, sfs, 'fontSize')
 
     def on_mouse_motion(self, x, y, dx, dy): evnts.on_mouse_motion(x, y, dx, dy)
-#    def on_mouse_motion(self, x, y, dx, dy): self.log(f'{x=} {y=} {dx=} {dy=}')
     ####################################################################################################################################################################################################
     def kbkEvntTxt(self, why=Z):   why = why if why else W*4   ;   return f'<{why}{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
     ####################################################################################################################################################################################################
     def on_key_press(      self, symb, mods, dbg=1): # avoid these
         evnts.on_key_press(self, symb, mods, dbg=1)
-#         retv = False
-#         self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
-#         self.kbk = self.symbStr   ;   kbk = self.kbk
-#         if   dbg:  self.log(f'BGN {self.kbkEvntTxt()}', f=2)
-#         if   kbk == 'A' and isCtlSft(mods):    self.flipArrow(     '@^A', v=1)
-#         elif kbk == 'A' and isCtl(   mods):    self.flipArrow(     '@ A', v=0)
-#         elif kbk == 'B' and isCtlSft(mods):    self.flipBlank(     '@^B')
-#         elif kbk == 'B' and isCtl(   mods):    self.flipBlank(     '@ B')
-#         elif kbk == 'C' and isCtlSft(mods):    self.copyTabs(      '@^C')
-#         elif kbk == 'C' and isCtl(   mods):    self.copyTabs(      '@ C')
-#         elif kbk == 'D' and isCtlSft(mods):    self.deleteTabs(    '@^D')
-#         elif kbk == 'D' and isCtl(   mods):    self.deleteTabs(    '@ D')
-#         elif kbk == 'E' and isCtlSft(mods):    self.eraseTabs(     '@^E')
-# #       elif kbk == 'E' and isCtl(   mods):    self.eraseTabs(     '@ E')
-#         elif kbk == 'F' and isCtlSft(mods):    self.flipFullScreen('@^F')
-#         elif kbk == 'F' and isCtl(   mods):    self.flipFlatSharp( '@ F')
-#         elif kbk == 'G' and isCtlSft(mods):    self.move2LastTab(  '@^G', page=1)
-#         elif kbk == 'G' and isCtl(   mods):    self.move2LastTab(  '@ G', page=0)
-#         elif kbk == 'H' and isCtlSft(mods):    self.move2FirstTab( '@^H', page=1)
-#         elif kbk == 'H' and isCtl(   mods):    self.move2FirstTab( '@ H', page=0)
-#         elif kbk == 'I' and isCtlSft(mods):    self.insertSpace(   '@^I')
-#         elif kbk == 'I' and isCtl(   mods):    self.flipTTs(       '@ I', II)
-#         elif kbk == 'J' and isCtlSft(mods):    self.jump(          '@^J', a=1)
-#         elif kbk == 'J' and isCtl(   mods):    self.jump(          '@ J', a=0)
-#         elif kbk == 'K' and isCtlSft(mods):    self.flipTTs(       '@^K', KK)
-#         elif kbk == 'K' and isCtl(   mods):    self.flipTTs(       '@ K', KK)
-#         elif kbk == 'L' and isCtlSft(mods):    self.flipLLs(       '@^L')
-#         elif kbk == 'L' and isCtl(   mods):    self.flipLLs(       '@ L')
-#         elif kbk == 'M' and isCtlSft(mods):    self.flipZZs(       '@^M', 1)
-#         elif kbk == 'M' and isCtl(   mods):    self.flipZZs(       '@ M', 0)
-#         elif kbk == 'N' and isCtlSft(mods):    self.flipTTs(       '@^N', NN)
-#         elif kbk == 'N' and isCtl(   mods):    self.flipTTs(       '@ N', NN)
-#         elif kbk == 'O' and isCtlSft(mods):    self.flipCursorMode('@^O', -1)
-#         elif kbk == 'O' and isCtl(   mods):    self.flipCursorMode('@ O', 1)
-#         elif kbk == 'P' and isCtlSft(mods):    self.addPage(       '@^P', ins=0)
-#         elif kbk == 'P' and isCtl(   mods):    self.addPage(       '@ P', ins=None)
-#         elif kbk == 'Q' and isCtlSft(mods):    retv = self.quit(   '@^Q', error=0, save=0)
-#         elif kbk == 'Q' and isCtl(   mods):    retv = self.quit(   '@ Q', error=0, save=1)
-#         elif kbk == 'R' and isCtlSft(mods):    self.flipChordNames('@^R', hit=1)
-#         elif kbk == 'R' and isCtl(   mods):    self.flipChordNames('@ R', hit=0)
-#         elif kbk == 'S' and isCtlSft(mods):    self.shiftTabs(     '@^S')
-# #       elif kbk == 'S' and isCtl(   mods):    self.saveDataFile(  '@ S', self.dataPath1)
-#         elif kbk == 'S' and isCtl(   mods):    self.swapTab(       '@ S', txt=Z)
-#         elif kbk == 'T' and isCtlSft(mods):    self.flipTTs(       '@^T', TT)
-#         elif kbk == 'T' and isCtl(   mods):    self.flipTTs(       '@ T', TT)
-#         elif kbk == 'U' and isCtlSft(mods):    self.reset(         '@^U')
-#         elif kbk == 'U' and isCtl(   mods):    self.reset(         '@ U')
-# #       elif kbk == 'V' and isCtlAlt(mods):    self.pasteTabs(     '@&V', hc=0, kk=1)
-#         elif kbk == 'V' and isCtlSft(mods):    self.pasteTabs(     '@^V', kk=1)
-#         elif kbk == 'V' and isCtl(   mods):    self.pasteTabs(     '@ V', kk=0)
-#         elif kbk == 'W' and isCtlSft(mods):    self.swapCols(      '@^W')
-#         elif kbk == 'W' and isCtl(   mods):    self.swapCols(      '@ W')
-#         elif kbk == 'X' and isCtlSft(mods):    self.cutTabs(       '@^X')
-#         elif kbk == 'X' and isCtl(   mods):    self.cutTabs(       '@ X')
-#     ####################################################################################################################################################################################################
-#         elif kbk == 'ESCAPE':                     self.flipSelectAll( 'ESCAPE')
-#         elif kbk == 'TAB'       and isCtl(mods):  self.setCHVMode(    '@ TAB',       MELODY, LARROW)
-#         elif kbk == 'TAB':                        self.setCHVMode(    '  TAB',       MELODY, RARROW)
-# #       elif kbk == 'SLASH'     and isCtl(mods): self.setTab(        '@ SLASH', '/')
-# #       elif kbk == 'SLASH':                           self.setTab(        '  SLASH', '/')
-# #       elif kbk == 'BACKSLASH' and isCtl(mods): self.setTab(        '@ BACKSLASH', '\\')
-# #       elif kbk == 'BACKSLASH':                       self.setTab(        '  BACKSLASH', '\\')
-# #       elif kbk == 'SLASH'     and isCtl(mods): self.setCHVMode(    '@ SLASH',     ARPG,   LARROW,  DARROW)
-# #       elif kbk == 'SLASH':                           self.setCHVMode(    '  SLASH',     ARPG,   RARROW, UARROW)
-# #       elif kbk == 'BACKSLASH' and isCtl(mods): self.setCHVMode(    '@ BACKSLASH', ARPG,   LARROW,  UARROW)
-# #       elif kbk == 'BACKSLASH':                       self.setCHVMode(    '  BACKSLASH', ARPG,   RARROW, DARROW)
-#     ####################################################################################################################################################################################################
-#         elif kbk == 'D' and isAltSft(mods):    self.flipBGC(     '&^D')
-#         elif kbk == 'D' and isAlt(   mods):    self.flipBGC(     '& D')
-#         elif kbk == 'N' and isAltSft(mods):    self.setn_cmd(    '&^N', txt=Z)
-#         elif kbk == 'N' and isAlt(   mods):    self.setn_cmd(    '& N', txt=Z)
-#         elif kbk == 'P' and isAltSft(mods):    self.flipPage(    '&^P', 1)
-#         elif kbk == 'P' and isAlt(   mods):    self.flipPage(    '& P', -1)
-#         elif kbk == 'R' and isAltSft(mods):    self.rotateSprite('&^R', self.hcurs[0], -1)
-#         elif kbk == 'R' and isAlt(   mods):    self.rotateSprite('& R', self.hcurs[0],  1)
-#         elif kbk == 'Z' and isAltSft(mods):    self.RESIZE = not self.RESIZE  ;  self.resizeTniks(dbg=1)
-#         elif kbk == 'Z' and isAlt(   mods):                                       self.resizeTniks(dbg=1)
-#     ####################################################################################################################################################################################################
-#         elif kbk == 'B' and isAltSft(mods):    self.setFontParam(BOLD,      not self.fontBold,   'fontBold')
-#         elif kbk == 'B' and isAlt(   mods):    self.setFontParam(BOLD,      not self.fontBold,   'fontBold')
-#         elif kbk == 'C' and isAltSft(mods):    self.setFontParam(COLOR,         1,               'clrIdx')
-#         elif kbk == 'C' and isAlt(   mods):    self.setFontParam(COLOR,        -1,               'clrIdx')
-#         elif kbk == 'I' and isAltSft(mods):    self.setFontParam(ITALIC,    not self.fontItalic, 'fontItalic')
-#         elif kbk == 'I' and isAlt(   mods):    self.setFontParam(ITALIC,    not self.fontItalic, 'fontItalic')
-#         elif kbk == 'A' and isAltSft(mods):    self.setFontParam(FONT_NAME,     1,               'fontNameIdx')
-#         elif kbk == 'A' and isAlt(   mods):    self.setFontParam(FONT_NAME,    -1,               'fontNameIdx')
-#         elif kbk == 'S' and isAltSft(mods):    self.setFontParam(FONT_SIZE,     33 / 32,         'fontSize')
-#         elif kbk == 'S' and isAlt(   mods):    self.setFontParam(FONT_SIZE,     32 / 33,         'fontSize')
-#         else:   self.log(f'UNH {self.kbkEvntTxt()} Unhandled', f=1) if self.VRBY else None
-#     ####################################################################################################################################################################################################
-#         if not self.isParsing():
-#             if   kbk == 'ENTER' and isCtl(mods): self.setCHVMode(  '@  ENTER',     CHORD,       v=DARROW)
-#             elif kbk == 'ENTER':                 self.setCHVMode(  '   ENTER',     CHORD,       v=UARROW)
-#             elif kbk == 'SPACE':                 self.autoMove(    '   SPACE')
-# #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
-#         if   dbg:  self.log(f'END {self.kbkEvntTxt()}', f=2)
-#         return retv
     ####################################################################################################################################################################################################
     def on_key_release(self, symb, mods, dbg=1):
         evnts.on_key_release(self, symb, mods, dbg=1)
-        # self.symb, self.mods, self.symbStr, self.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
-        # self.kbk = self.symbStr
-        # if dbg:    self.log(f'    {self.kbkEvntTxt()}')
     ####################################################################################################################################################################################################
     def on_text(      self, text, dbg=1): # use for entering strings not for motion
         evnts.on_text(self, text, dbg=1)
-        # self.kbk = text
-        # if dbg: self.log(f'BGN {self.kbkEvntTxt()} swapping={self.swapping}')
-        # if      self.shiftingTabs:                           self.shiftTabs(  'onTxt', text)
-        # elif    self.jumping:                                self.jump(       'onTxt', text, self.jumpAbs)
-        # elif    self.inserting:                              self.insertSpace('onTxt', text)
-        # elif    self.settingN:                               self.setn_cmd(   'onTxt', text)
-        # elif    self.swapping:                               self.swapTab(    'onTxt', text)
-        # elif    self.isTab(self.kbk):                        self.setTab(     'onTxt', self.kbk)
-        # elif    self.kbk == '$' and isSft(self.mods):        self.snapshot(f'{text}', 'SNAP')
-        # if dbg: self.log(f'END {self.kbkEvntTxt()} swapping={self.swapping}')
     ####################################################################################################################################################################################################
     def on_text_motion(      self, motion, dbg=1): # use for motion not strings
         evnts.on_text_motion(self, motion, dbg=1)
-#         self.kbk = motion   ;   p, l, s, c, t = self.j()  ;  np, nl, ns, nc, nt = self.n
-#         if dbg: self.log(f'BGN {self.kbkEvntTxt()} motion={motion}')
-#         if   isNumLck(   self.mods):                         msg =             f'NUMLOCK(         {motion})'   ;   self.log(msg)   ;   pygwink.MOD_NUMLOCK = 0
-#         if   isCtlAltSft(self.mods):                         msg =             f'@&^(             {motion})'   ;   self.log(msg) #  ;   self.quit(msg)
-#         elif isCtlAlt(   self.mods):
-#             if   motion == 1:                                self.unselectTabs(f'@& LEFT(         {motion})',  nt)
-#             elif motion == 2:                                self.unselectTabs(f'@& RIGHT(        {motion})', -nt)
-#             else:                                            msg =             f'@& (             {motion})'   ;   self.log(msg) #  ;   self.quit(msg)
-#         elif isAltSft(   self.mods):                         msg =             f' &^(             {motion})'   ;   self.log(msg) #  ;   self.quit(msg)
-#         elif isCtlSft(   self.mods):                         msg =             f'@^(              {motion})'   ;   self.log(msg) #  ;   self.quit(msg)
-#         elif isSft(      self.mods):                         msg =             f'^ (              {motion})'   ;   self.log(msg) #  ;   self.quit(msg)
-#         elif isAlt(      self.mods):
-#             if   motion == pygwink.MOTION_UP:                self.moveUp(      f' & UP(           {motion})')
-#             elif motion == pygwink.MOTION_DOWN:              self.moveDown(    f' & DOWN(         {motion})')
-#             elif motion == pygwink.MOTION_LEFT:              self.moveLeft(    f' & LEFT(         {motion})')
-#             elif motion == pygwink.MOTION_RIGHT:             self.moveRight(   f' & RIGHT(        {motion})')
-#             elif motion == pygwink.MOTION_BEGINNING_OF_LINE: self.move(        f' & HOME(         {motion})', -nt *  c)
-#             elif motion == pygwink.MOTION_END_OF_LINE:       self.move(        f' & END(          {motion})',  nt * (nc - self.i[C]))
-#             elif motion == pygwink.MOTION_PREVIOUS_PAGE:     self.prevPage(    f' & PAGE UP(      {motion})')
-#             elif motion == pygwink.MOTION_NEXT_PAGE:         self.nextPage(    f' & PAGE DOWN(    {motion})')
-#             else:                                            msg =             f' &(              {motion})'   ;   self.log(msg)   ;   self.quit(msg)
-#         elif isCtl(self.mods):
-#             if   motion == pygwink.MOTION_PREVIOUS_WORD:     self.selectTabs(  f'@  LEFT(         {motion})', -nt)
-#             elif motion == pygwink.MOTION_NEXT_WORD:         self.selectTabs(  f'@  RIGHT(        {motion})',  nt)
-#             elif motion == pygwink.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE( {motion})'   ;   self.log(msg)   ;   self.quit(msg) # N/A
-#             elif motion == pygwink.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(       {motion})'   ;   self.log(msg)   ;   self.quit(msg) # N/A
-#             elif motion == pygwink.MOTION_BEGINNING_OF_FILE: msg = f'@  MOTION_BEGINNING_OF_FILE( {motion})'   ;   self.log(msg)   ;   self.quit(msg) # CTRL HOME
-#             elif motion == pygwink.MOTION_END_OF_FILE:       msg = f'@  MOTION_END_OF_FILE(       {motion})'   ;   self.log(msg)   ;   self.quit(msg) # CTRL END
-# #           elif motion == pygwink.MOTION_DELETE:            self.deleteTabs( f'@ D MOTION_DELETE({motion})')
-# #           elif motion == pygwink.MOTION_COPY:              self.copyTabs(   f'@ C MOTION_COPY(  {motion})')
-# #           elif motion == pygwink.MOTION_PASTE:             self.pasteTabs(  f'@ V MOTION_PASTE( {motion})', kk=0)
-#             else:                                            msg =             f'UNH CTRL(        {motion}) {self.kbkEvntTxt()}'   ;   self.log(msg) #  ;   self.quit(msg)
-#         elif self.mods == 0:
-#             if   motion == pygwink.MOTION_UP:                self.move(        f' UP(             {motion})', -1)
-#             elif motion == pygwink.MOTION_DOWN:              self.move(        f' DOWN(           {motion})',  1)
-#             elif motion == pygwink.MOTION_LEFT:              self.move(        f' LEFT(           {motion})', -nt)
-#             elif motion == pygwink.MOTION_RIGHT:             self.move(        f' RIGHT(          {motion})',  nt)
-#             elif motion == pygwink.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD(        {motion})'   ;   self.log(msg)   ;   self.quit(msg)
-#             elif motion == pygwink.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD(            {motion})'   ;   self.log(msg)   ;   self.quit(msg)
-#             elif motion == pygwink.MOTION_BEGINNING_OF_LINE: self.move(        f' HOME(           {motion})', -nt *  c)
-#             elif motion == pygwink.MOTION_END_OF_LINE:       self.move(        f' END(            {motion})',  nt * (nc - self.i[C]))
-#             elif motion == pygwink.MOTION_PREVIOUS_PAGE:     self.moveUp(      f' PAGE UP(        {motion})')  # go up   to top    of line, wrap down to bottom of prev line
-#             elif motion == pygwink.MOTION_NEXT_PAGE:         self.moveDown(    f' PAGE DOWN(      {motion})')  # go down to bottom tab on same line, wrap to next line
-#             elif motion == pygwink.MOTION_BEGINNING_OF_FILE: msg = f'MOTION_BEGINNING_OF_FILE(    {motion})'   ;   self.log(msg)   ;   self.quit(msg)
-#             elif motion == pygwink.MOTION_END_OF_FILE:       msg = f'MOTION_END_OF_FILE(          {motion})'   ;   self.log(msg)   ;   self.quit(msg)
-#             elif motion == pygwink.MOTION_BACKSPACE:         self.setTab(      f'BACKSPACE(       {motion})', self.tblank, rev=1)
-#             elif motion == pygwink.MOTION_DELETE:            self.setTab(      f'DELETE(          {motion})', self.tblank)
-#             else:                                            msg =             f'(                {motion})'   ;   self.log(msg)   ;   self.quit(msg)
-#         if dbg: self.log(f'END {self.kbkEvntTxt()} motion={motion}')
-#         return pyglet.event.EVENT_HANDLED
 #        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > <16> <MOD_NUMLOCK     > motion=65363
 #        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > < 8> <MOD_CAPSLOCK    > motion=65363
     def on_style_text(self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
