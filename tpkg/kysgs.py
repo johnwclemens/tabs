@@ -3,8 +3,6 @@ from tpkg.notes import Notes  as Notes
 from tpkg.misc  import Scales as Scales
 
 NTONES       = Notes.NTONES
-F            = 0
-M, P         = -7, 7
 slog         = utl.slog
 W, Y, Z      = utl.W, utl.Y, utl.Z
 fmtl         = utl.fmtl
@@ -13,6 +11,7 @@ signed       = utl.signed
 KSD = {}
 KIM, KIS, KMS, KJS, KNS        = range(5)
 KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
+M, P         = -7, 7    ;    F = 0
 
 def init(f):
     global KSD, F   ;   F = f

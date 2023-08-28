@@ -23,12 +23,8 @@ from   tpkg.strngs     import Strngs as Strngs
 from   tpkg.chords     import Chords as Chords
 from   tpkg            import tests  as tests
 
-P, L, S, C, T, N, I, K, R, Q, H, M, B, A, D, E = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
-W, Y, Z    = utl.W, utl.Y, utl.Z
-
-fri        = utl.fri            # function
-slog, fmtf = utl.slog, utl.fmtf # function
-fmtl, fmtm = utl.fmtl, utl.fmtm # function
+P, L, S, C, T, N, I, K, R, Q, H, M, B, A, D, E, W, Y, Z = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E, utl.W, utl.Y, utl.Z
+slog, fmtf, fmtl, fmtm = utl.slog, utl.fmtf, utl.fmtl, utl.fmtm   ;  fri = utl.fri
 isAlt, isCtl, isSft, isAltSft, isCtlAlt, isCtlSft, isCtlAltSft, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isSft, utl.isAltSft, utl.isCtlSft, utl.isCtlAltSft, utl.isNumLck
 BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE       = utl.BGC, utl.BOLD, utl.COLOR, utl.FONT_NAME, utl.FONT_SIZE, utl.ITALIC, utl.KERNING, utl.UNDERLINE
 
@@ -47,7 +43,7 @@ LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2, dbg=0)
 PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2, dbg=0)
 TXT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2, dbg=0)
 
-MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'    ;    LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
+MULTILINE, WRAP_LINES = 'multiline', 'wrap_lines'    ;  LEFT, CENTER, RIGHT, BOTTOM, BASELINE, TOP = 'left', 'center', 'right', 'bottom', 'baseline', 'top'
 ALIGN, INDENT, LEAD, LNSP, STRH, TAB_STOPS, WRAP     = 'align', 'indent', 'leading', 'line_spacing', 'stretch', 'tab_stops', 'wrap'
 MARGIN_LEFT, MARGIN_RIGHT, MARGIN_TOP, MARGIN_BOTTOM = 'margin_left', 'margin_right', 'margin_top', 'margin_bottom'
 TI        = ['tnik', '  i ']
@@ -61,8 +57,8 @@ LTXAC     = list(itertools.chain(TI, XYWH, AXY2, CWH))
 LDS       = ['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B', 'I', 'S', 'M', 'W', 'w', 'FontName']
 LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
 ########################################################################################################################################################################################################
-TT, NN, II, KK        = utl.TT, utl.NN, utl.II, utl.KK
-MELODY, CHORD, ARPG   = utl.MELODY, utl.CHORD, utl.ARPG
+TT, NN, II, KK                 = utl.TT, utl.NN, utl.II, utl.KK
+MELODY, CHORD, ARPG            = utl.MELODY, utl.CHORD, utl.ARPG
 LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
 LBL                   = pygtxt.Label
 SPR                   = pygsprt.Sprite
@@ -999,19 +995,19 @@ class Tabs(pyglet.window.Window):
         dt = self.DBG_TABT
         if   dt==0:  return Z
         i2 = (i + 1) % 10 if j==C else i + 1
-        d  = '\n' if j==C else Z  ;  k = d.join(f'{i2}')  ;  s, t, u = JTEXTS[j], JTEXTS2[j], jTEXTS[j]
-        if   dt==1:  a = 1        ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
-        elif dt==2:  a = j+1      ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
-        elif dt==3:  a = 4        ;  b = f'{0x2588:c}'                       ;  return d.join(b*a)
-        if   dt==4:  a = 1        ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==5:  a = j+1      ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==6:  a = 4        ;  e = d.join([ s[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==7:  a = 1        ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==8:  a = j+1      ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==9:  a = 4        ;  e = d.join([ t[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==10: a = 1        ;  e = d.join([ u[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==11: a = j+1      ;  e = d.join([ u[_] for _ in range(a) ])  ;  return d.join([e, k])
-        elif dt==12: a = 4        ;  e = d.join([ u[_] for _ in range(a) ])  ;  return d.join([e, k])
+        d  = '\n' if j==C else Z   ;   k = d.join(f'{i2}')  ;  s, t, u = JTEXTS[j], JTEXTS2[j], jTEXTS[j]
+        if   dt==1:  a = 1         ;   b = f'{0x2588:c}'                        ;   return d.join(b*a)
+        elif dt==2:  a = j+1       ;   b = f'{0x2588:c}'                        ;   return d.join(b*a)
+        elif dt==3:  a = 4         ;   b = f'{0x2588:c}'                        ;   return d.join(b*a)
+        if   dt==4:  a = 1         ;   e = d.join([ s[_] for _ in range(a) ])   ;   return d.join([e, k])
+        elif dt==5:  a = j+1       ;   e = d.join([ s[_] for _ in range(a) ])   ;   return d.join([e, k])
+        elif dt==6:  a = 4         ;   e = d.join([ s[_] for _ in range(a) ])   ;   return d.join([e, k])
+        elif dt==7:  a = 1         ;   e = d.join([ t[_] for _ in range(a) ])   ;   return d.join([e, k])
+        elif dt==8:  a = j+1       ;   e = d.join([ t[_] for _ in range(a) ])   ;   return d.join([e, k])
+        elif dt==9:  a = 4         ;   e = d.join([ t[_] for _ in range(a) ])   ;   return d.join([e, k])
+        elif dt==10: a = 1         ;   e = d.join([ u[_] for _ in range(a) ])   ;   return d.join([e, k])
+        elif dt==11: a = j+1       ;   e = d.join([ u[_] for _ in range(a) ])   ;   return d.join([e, k])
+        elif dt==12: a = 4         ;   e = d.join([ u[_] for _ in range(a) ])   ;   return d.join([e, k])
 
     def ntsl(self):       return self.n[T] * self.n[S] * self.n[L]
     def isLLRow(self):    return self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
@@ -1787,6 +1783,8 @@ class Tabs(pyglet.window.Window):
         if dbg: slog(f'{jTEXTS[j]}[{cc}-{cc+nt-1}].text={fmtl(texts)}=<{text}>')
         return text
     ####################################################################################################################################################################################################
+    def kbkEvntTxt(self, why=Z):   why = why if why else W*4   ;   return f'<{why}{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
+    ####################################################################################################################################################################################################
     def on_move(self, x, y): evnts.on_move(x, y)
 
     def on_mouse_release(      self, x, y, button, mods=0, dbg=1):
@@ -1796,22 +1794,19 @@ class Tabs(pyglet.window.Window):
         evnts.on_mouse_scroll(self, x, y, scroll_x, scroll_y)
 
     def on_mouse_motion(self, x, y, dx, dy): evnts.on_mouse_motion(x, y, dx, dy)
-    ####################################################################################################################################################################################################
-    def kbkEvntTxt(self, why=Z):   why = why if why else W*4   ;   return f'<{why}{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
-    ####################################################################################################################################################################################################
+
     def on_key_press(      self, symb, mods, dbg=1): # avoid these
-        evnts.on_key_press(self, symb, mods, dbg=1)
-    ####################################################################################################################################################################################################
+        evnts.on_key_press(self, symb, mods, dbg=dbg)
+
     def on_key_release(self, symb, mods, dbg=1):
-        evnts.on_key_release(self, symb, mods, dbg=1)
-    ####################################################################################################################################################################################################
+        evnts.on_key_release(self, symb, mods, dbg=dbg)
+
     def on_text(      self, text, dbg=1): # use for entering strings not for motion
-        evnts.on_text(self, text, dbg=1)
-    ####################################################################################################################################################################################################
+        evnts.on_text(self, text, dbg=dbg)
+
     def on_text_motion(      self, motion, dbg=1): # use for motion not strings
-        evnts.on_text_motion(self, motion, dbg=1)
-#        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > <16> <MOD_NUMLOCK     > motion=65363
-#        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > < 8> <MOD_CAPSLOCK    > motion=65363
+        evnts.on_text_motion(self, motion, dbg=dbg)
+
     def on_style_text(self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
     ####################################################################################################################################################################################################
     def isBTab(self, text):   return 1 if text in self.tblanks else 0

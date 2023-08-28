@@ -3,9 +3,9 @@ import pyglet.sprite     as pygsprt
 import pyglet.image      as pygimg
 from   tpkg   import utl as utl
 
-SPR     = pygsprt.Sprite
 slog    = utl.slog
 W, Y, Z = utl.W, utl.Y, utl.Z
+SPR     = pygsprt.Sprite
 
 def test00(tobj):
     a = 1/0         ;  slog(f'{a=}')

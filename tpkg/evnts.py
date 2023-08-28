@@ -14,6 +14,7 @@ LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
 BOLD, COLOR, ITALIC, FONT_NAME, FONT_SIZE                                = utl.BOLD, utl.COLOR, utl.ITALIC, utl.FONT_NAME, utl.FONT_SIZE
 P, L, S, C, T, N, I, K, R, Q, H, M, B, A, D, E                           = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
 isAlt, isCtl, isSft, isAltSft, isCtlAlt, isCtlSft, isCtlAltSft, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isSft, utl.isAltSft, utl.isCtlSft, utl.isCtlAltSft, utl.isNumLck
+
 ########################################################################################################################################################################################################
 class FilteredEventLogger(pyglet.window.event.WindowEventLogger):
     def __init__(self, etypes):
@@ -25,12 +26,15 @@ class FilteredEventLogger(pyglet.window.event.WindowEventLogger):
         elif not etype:                        slog(msg, f=f)
 #        else:                                  slog(f'FILTERED {msg}', f=2)
 
-flist    = ['on_move', 'on_mouse_motion'] # 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_motion'
+flist    = ['on_move', 'on_mouse_motion'] # 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_motion', 'on_mouse_scroll'
 fEvntLog = FilteredEventLogger(flist)
 flog     = fEvntLog.log
 ########################################################################################################################################################################################################
 def on_move(x, y):
     flog(f'{x=} {y=}', etype='on_move')
+
+def on_mouse_motion(x, y, dx, dy):
+    flog(f'{x=} {y=} {dx=} {dy=}', etype='on_mouse_motion')
 
 def on_mouse_scroll(tobj, x, y, scroll_x, scroll_y):
     fs = tobj.fontSize
@@ -38,9 +42,6 @@ def on_mouse_scroll(tobj, x, y, scroll_x, scroll_y):
     sfs = sf * fs
     flog(f'{x=} {y=} {scroll_x=} {scroll_y=}, sf * fs = ss, {fmtf(sf, 5)} * {fmtf(fs, 5)} = {fmtf(sfs, 5)}')
     tobj.setFontParam(tobj.FONT_SIZE, sfs, 'fontSize')
-
-def on_mouse_motion(x, y, dx, dy):
-    flog(f'{x=} {y=} {dx=} {dy=}', etype='on_mouse_motion')
 
 def on_mouse_release(tobj, x, y, button, mods=0, dbg=1):
     hh = tobj.height  ;  ww = tobj.width  ;  tlen = len(tobj.tabls)  ;  ll = tobj.LL    ;  np, nl, ns, nc, nt  = tobj.n
@@ -58,9 +59,6 @@ def on_mouse_release(tobj, x, y, button, mods=0, dbg=1):
 def on_key_press(tobj, symb, mods, dbg=1): # avoid these
     retv = False
     fontBold, fontItalic                             = tobj.fontBold, tobj.fontItalic
-#    TT, NN, II, KK, CHORD                            = tobj.TT, tobj.NN, tobj.II, tobj.KK, tobj.CHORD
-#    MELODY, LARROW, RARROW, DARROW, UARROW           = tobj.MELODY, tobj.LARROW, tobj.RARROW, tobj.DARROW, tobj.UARROW
-#    BOLD, COLOR, ITALIC, FONT_NAME, FONT_SIZE        = tobj.BOLD, tobj.COLOR, tobj.ITALIC, tobj.FONT_NAME, tobj.FONT_SIZE
     tobj.symb, tobj.mods, tobj.symbStr, tobj.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
     tobj.kbk = tobj.symbStr   ;   kbk = tobj.kbk   ;   hcurs = tobj.hcurs
     if dbg:    flog(f'BGN {tobj.kbkEvntTxt()}', f=2)
@@ -115,46 +113,46 @@ def on_key_press(tobj, symb, mods, dbg=1): # avoid these
     elif kbk == 'X' and isCtlSft(mods):    tobj.cutTabs(       '@^X')
     elif kbk == 'X' and isCtl(   mods):    tobj.cutTabs(       '@ X')
     ####################################################################################################################################################################################################
-    elif kbk == 'ESCAPE':                     tobj.flipSelectAll( 'ESCAPE')
-    elif kbk == 'TAB'       and isCtl(mods):  tobj.setCHVMode(    '@ TAB',       MELODY, LARROW)
-    elif kbk == 'TAB':                        tobj.setCHVMode(    '  TAB',       MELODY, RARROW)
-#       elif kbk == 'SLASH'     and isCtl(mods): self.setTab(        '@ SLASH', '/')
-#       elif kbk == 'SLASH':                           self.setTab(        '  SLASH', '/')
-#       elif kbk == 'BACKSLASH' and isCtl(mods): self.setTab(        '@ BACKSLASH', '\\')
-#       elif kbk == 'BACKSLASH':                       self.setTab(        '  BACKSLASH', '\\')
-#       elif kbk == 'SLASH'     and isCtl(mods): self.setCHVMode(    '@ SLASH',     ARPG,   LARROW,  DARROW)
-#       elif kbk == 'SLASH':                           self.setCHVMode(    '  SLASH',     ARPG,   RARROW, UARROW)
-#       elif kbk == 'BACKSLASH' and isCtl(mods): self.setCHVMode(    '@ BACKSLASH', ARPG,   LARROW,  UARROW)
-#       elif kbk == 'BACKSLASH':                       self.setCHVMode(    '  BACKSLASH', ARPG,   RARROW, DARROW)
-    elif kbk == 'D' and isAltSft(mods):    tobj.flipBGC(     '&^D')
-    elif kbk == 'D' and isAlt(   mods):    tobj.flipBGC(     '& D')
-    elif kbk == 'N' and isAltSft(mods):    tobj.setn_cmd(    '&^N', txt=Z)
-    elif kbk == 'N' and isAlt(   mods):    tobj.setn_cmd(    '& N', txt=Z)
-    elif kbk == 'P' and isAltSft(mods):    tobj.flipPage(    '&^P', 1)
-    elif kbk == 'P' and isAlt(   mods):    tobj.flipPage(    '& P', -1)
-    elif kbk == 'R' and isAltSft(mods):    tobj.rotateSprite('&^R', hcurs[0], -1)
-    elif kbk == 'R' and isAlt(   mods):    tobj.rotateSprite('& R', hcurs[0],  1)
-    elif kbk == 'Z' and isAltSft(mods):    tobj.RESIZE = not tobj.RESIZE   ;  tobj.resizeTniks(dbg=1)
-    elif kbk == 'Z' and isAlt(   mods):                                       tobj.resizeTniks(dbg=1)
+    elif kbk == 'ESCAPE':                    tobj.flipSelectAll( 'ESCAPE')
+    elif kbk == 'TAB'       and isCtl(mods): tobj.setCHVMode(    '@ TAB',       MELODY, LARROW)
+    elif kbk == 'TAB':                       tobj.setCHVMode(    '  TAB',       MELODY, RARROW)
+#   elif kbk == 'SLASH'     and isCtl(mods): tobj.setTab(        '@ SLASH', '/')
+#   elif kbk == 'SLASH':                     tobj.setTab(        '  SLASH', '/')
+#   elif kbk == 'BACKSLASH' and isCtl(mods): tobj.setTab(        '@ BACKSLASH', '\\')
+#   elif kbk == 'BACKSLASH':                 tobj.setTab(        '  BACKSLASH', '\\')
+#   elif kbk == 'SLASH'     and isCtl(mods): tobj.setCHVMode(    '@ SLASH',     ARPG,   LARROW, DARROW)
+#   elif kbk == 'SLASH':                     tobj.setCHVMode(    '  SLASH',     ARPG,   RARROW, UARROW)
+#   elif kbk == 'BACKSLASH' and isCtl(mods): tobj.setCHVMode(    '@ BACKSLASH', ARPG,   LARROW, UARROW)
+#   elif kbk == 'BACKSLASH':                 tobj.setCHVMode(    '  BACKSLASH', ARPG,   RARROW, DARROW)
+    elif kbk == 'D' and isAltSft(mods):      tobj.flipBGC(     '&^D')
+    elif kbk == 'D' and isAlt(   mods):      tobj.flipBGC(     '& D')
+    elif kbk == 'N' and isAltSft(mods):      tobj.setn_cmd(    '&^N', txt=Z)
+    elif kbk == 'N' and isAlt(   mods):      tobj.setn_cmd(    '& N', txt=Z)
+    elif kbk == 'P' and isAltSft(mods):      tobj.flipPage(    '&^P', 1)
+    elif kbk == 'P' and isAlt(   mods):      tobj.flipPage(    '& P', -1)
+    elif kbk == 'R' and isAltSft(mods):      tobj.rotateSprite('&^R', hcurs[0], -1)
+    elif kbk == 'R' and isAlt(   mods):      tobj.rotateSprite('& R', hcurs[0],  1)
+    elif kbk == 'Z' and isAltSft(mods):      tobj.RESIZE = not tobj.RESIZE   ;  tobj.resizeTniks(dbg=1)
+    elif kbk == 'Z' and isAlt(   mods):                                         tobj.resizeTniks(dbg=1)
     ####################################################################################################################################################################################################
-    elif kbk == 'B' and isAltSft(mods):    tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
-    elif kbk == 'B' and isAlt(   mods):    tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
-    elif kbk == 'C' and isAltSft(mods):    tobj.setFontParam(COLOR,         1,          'clrIdx')
-    elif kbk == 'C' and isAlt(   mods):    tobj.setFontParam(COLOR,        -1,          'clrIdx')
-    elif kbk == 'I' and isAltSft(mods):    tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
-    elif kbk == 'I' and isAlt(   mods):    tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
-    elif kbk == 'A' and isAltSft(mods):    tobj.setFontParam(FONT_NAME,     1,          'fontNameIdx')
-    elif kbk == 'A' and isAlt(   mods):    tobj.setFontParam(FONT_NAME,    -1,          'fontNameIdx')
-    elif kbk == 'S' and isAltSft(mods):    tobj.setFontParam(FONT_SIZE,     33 / 32,    'fontSize')
-    elif kbk == 'S' and isAlt(   mods):    tobj.setFontParam(FONT_SIZE,     32 / 33,    'fontSize')
+    elif kbk == 'B' and isAltSft(mods):      tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
+    elif kbk == 'B' and isAlt(   mods):      tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
+    elif kbk == 'C' and isAltSft(mods):      tobj.setFontParam(COLOR,         1,          'clrIdx')
+    elif kbk == 'C' and isAlt(   mods):      tobj.setFontParam(COLOR,        -1,          'clrIdx')
+    elif kbk == 'I' and isAltSft(mods):      tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
+    elif kbk == 'I' and isAlt(   mods):      tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
+    elif kbk == 'A' and isAltSft(mods):      tobj.setFontParam(FONT_NAME,     1,          'fontNameIdx')
+    elif kbk == 'A' and isAlt(   mods):      tobj.setFontParam(FONT_NAME,    -1,          'fontNameIdx')
+    elif kbk == 'S' and isAltSft(mods):      tobj.setFontParam(FONT_SIZE,     33 / 32,    'fontSize')
+    elif kbk == 'S' and isAlt(   mods):      tobj.setFontParam(FONT_SIZE,     32 / 33,    'fontSize')
     else:   flog(f'UNH {tobj.kbkEvntTxt()} Unhandled', f=1) if tobj.VRBY else None
     ####################################################################################################################################################################################################
-    if not tobj.isParsing():
-        if   kbk == 'ENTER' and isCtl(mods): tobj.setCHVMode(  '@  ENTER',     CHORD,       v=DARROW)
-        elif kbk == 'ENTER':                 tobj.setCHVMode(  '   ENTER',     CHORD,       v=UARROW)
+    if  not  tobj.isParsing():
+        if   kbk == 'ENTER' and isCtl(mods): tobj.setCHVMode(  '@  ENTER',     CHORD,  v=DARROW)
+        elif kbk == 'ENTER':                 tobj.setCHVMode(  '   ENTER',     CHORD,  v=UARROW)
         elif kbk == 'SPACE':                 tobj.autoMove(    '   SPACE')
 #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
-    if   dbg:  flog(f'END {tobj.kbkEvntTxt()}', f=2)
+    if dbg:  flog(f'END {tobj.kbkEvntTxt()}', f=2)
     return retv
 
 def on_key_release(tobj, symb, mods, dbg=1):
@@ -165,13 +163,13 @@ def on_key_release(tobj, symb, mods, dbg=1):
 def on_text(tobj, text, dbg=1): # use for entering strings not for motion
     tobj.kbk = text
     if dbg: flog(f'BGN {tobj.kbkEvntTxt()} swapping={tobj.swapping}')
-    if      tobj.shiftingTabs:                           tobj.shiftTabs(  'onTxt', text)
-    elif    tobj.jumping:                                tobj.jump(       'onTxt', text, tobj.jumpAbs)
-    elif    tobj.inserting:                              tobj.insertSpace('onTxt', text)
-    elif    tobj.settingN:                               tobj.setn_cmd(   'onTxt', text)
-    elif    tobj.swapping:                               tobj.swapTab(    'onTxt', text)
-    elif    tobj.isTab(tobj.kbk):                        tobj.setTab(     'onTxt', tobj.kbk)
-    elif    tobj.kbk == '$' and isSft(tobj.mods):        tobj.snapshot(f'{text}', 'SNAP')
+    if      tobj.shiftingTabs:                       tobj.shiftTabs(  'onTxt', text)
+    elif    tobj.jumping:                            tobj.jump(       'onTxt', text, tobj.jumpAbs)
+    elif    tobj.inserting:                          tobj.insertSpace('onTxt', text)
+    elif    tobj.settingN:                           tobj.setn_cmd(   'onTxt', text)
+    elif    tobj.swapping:                           tobj.swapTab(    'onTxt', text)
+    elif    tobj.isTab(tobj.kbk):                    tobj.setTab(     'onTxt', tobj.kbk)
+    elif    tobj.kbk == '$' and isSft(tobj.mods):    tobj.snapshot(f'{text}', 'SNAP')
     if dbg: flog(f'END {tobj.kbkEvntTxt()} swapping={tobj.swapping}')
 
 def on_text_motion(tobj, motion, dbg=1): # use for motion not strings
@@ -225,3 +223,5 @@ def on_text_motion(tobj, motion, dbg=1): # use for motion not strings
         else:                                            msg =             f'(                {motion})'   ;   flog(msg)   ;   tobj.quit(msg)
     if dbg: flog(f'END {tobj.kbkEvntTxt()} motion={motion}')
     return pyglet.event.EVENT_HANDLED
+#        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > <16> <MOD_NUMLOCK     > motion=65363
+#        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > < 8> <MOD_CAPSLOCK    > motion=65363

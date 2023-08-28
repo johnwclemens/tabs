@@ -2,11 +2,11 @@ import glob, inspect, math, os, pathlib, sys
 import pyglet.window.key   as pygwink
 from tpkg import unic as unic
 
+UNICODE   = unic.UNICODE
 ROOT_DIR  = "test"
 PATH      = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH = PATH.parent / ROOT_DIR
 BASE_NAME = BASE_PATH.stem
-UNICODE   = unic.UNICODE
 P, L, S, C =  0,  1,  2,  3
 T, N, I, K =  4,  5,  6,  7
 R, Q, H, M =  8,  9, 10, 11
