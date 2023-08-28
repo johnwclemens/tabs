@@ -68,9 +68,9 @@ C:\Users\Owner\Documents\GitHub\tabs\tabs.py
  212 utl   parseCmdLine       options=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[]] [p:[]] [s:[]] [t:[]] [x:[0]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
   40 utl   init                    ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': [], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
   41 utl   init                ROOT_DIR='test'
-  19 kysgs init               BGN
+  18 kysgs init               BGN
 KS,Type,N,I,Flats/Shrps Naturals,F/S/N Indices,Ionian Indices,Ionian Note Ordering,Key Sig Table -7
-  29 kysgs initKSD            BGN
+  28 kysgs initKSD            BGN
 t=-1 i=0 j=6 s=-7 (iz2)='[11 4 9 2 7 0 5]' (ms2)='[B E A D G C F]'
  0,NTRL,C,0,B,E,A,D,G,C,F,b,4,9,2,7,0,5,0,2,4,5,7,9,b,B♯,D,E,E♯,G,A,B
 -1,FLAT,F,5,B♭,E,A,D,G,C,F,a,4,9,2,7,0,5,5,7,9,a,0,2,4,F,G,A,B♭,C,D,F♭
@@ -80,8 +80,8 @@ t=-1 i=0 j=6 s=-7 (iz2)='[11 4 9 2 7 0 5]' (ms2)='[B E A D G C F]'
 -5,FLAT,D♭,1,B♭,E♭,A♭,D♭,G♭,C,F,a,3,8,1,6,0,5,1,3,5,6,8,a,0,D♭,E♭,F,G♭,A♭,B♭,C
 -6,FLAT,G♭,6,B♭,E♭,A♭,D♭,G♭,B,F,a,3,8,1,6,b,5,6,8,a,b,1,3,5,G♭,A♭,B♭,B,D♭,E♭,F
 -7,FLAT,B,b,B♭,E♭,A♭,D♭,G♭,B,E,a,3,8,1,6,b,4,b,1,3,4,6,8,a,B,D♭,E♭,E,G♭,A♭,B♭
-  48 kysgs initKSD            END
-  29 kysgs initKSD            BGN
+  47 kysgs initKSD            END
+  28 kysgs initKSD            BGN
 t=1 i=0 j=10 s=7 (iz2)='[5 0 7 2 9 4 11]' (ms2)='[F C G D A E B]'
  0,NTRL,B♯,0,F,C,G,D,A,E,B,5,0,7,2,9,4,b,0,2,4,5,7,9,b,B♯,D,E,E♯,G,A,B
 +1,SHRP,G,7,F♯,C,G,D,A,E,B,6,0,7,2,9,4,b,7,9,b,0,2,4,6,G,A,B,B♯,D,E,F♯
@@ -91,9 +91,9 @@ t=1 i=0 j=10 s=7 (iz2)='[5 0 7 2 9 4 11]' (ms2)='[F C G D A E B]'
 +5,SHRP,B,b,F♯,C♯,G♯,D♯,A♯,E,B,6,1,8,3,a,4,b,b,1,3,4,6,8,a,B,C♯,D♯,E,F♯,G♯,A♯
 +6,SHRP,F♯,6,F♯,C♯,G♯,D♯,A♯,F,B,6,1,8,3,a,5,b,6,8,a,b,1,3,5,F♯,G♯,A♯,B,C♯,D♯,F
 +7,SHRP,C♯,1,F♯,C♯,G♯,D♯,A♯,F,C,6,1,8,3,a,5,0,1,3,5,6,8,a,0,C♯,D♯,F,F♯,G♯,A♯,C
-  48 kysgs initKSD            END
+  47 kysgs initKSD            END
 KS,Type,N,I,Flats/Shrps Naturals,F/S/N Indices,Ionian Indices,Ionian Note Ordering,Key Sig Table +7
-  52 kysgs dumpData           BGN
+  51 kysgs dumpData           BGN
         Flats         N         Shrps        
  -  -  -  -  -  -  -     +  +  +  +  +  +  +
 [7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 ]
@@ -117,10 +117,10 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
 +6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ F  B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ F ]
 +7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ F  C ] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ F  F♯ G♯ A♯ C ]
-  55 kysgs dumpData           END
-  26 kysgs init               END
+  54 kysgs dumpData           END
+  25 kysgs init               END
 C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-2569 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e -p -s -t -x 0 -J 4 -L -S 0 1 3 -f test]
+2564 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e -p -s -t -x 0 -J 4 -L -S 0 1 3 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17   Diff Span
 FSH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
        R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
@@ -198,80 +198,80 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
        G=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127] 123.0  7.2
        B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
-2573 tabs  <module>           CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-2573 tabs  <module>           CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
-2574 tabs  <module>           LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
-2574 tabs  <module>           LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
-2575 tabs  <module>           TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-2575 tabs  <module>           TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
-2576 tabs  <module>           constructing Tabs object
-  95 tabs  __init__           .LOG_ID=0
-  96 tabs  __init__           BGN <class '__main__.Tabs'>
-2543 tabs  dumpGlobals        BASE_NAME = test
-2544 tabs  dumpGlobals        argv      = +33[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e -p -s -t -x 0 -J 4 -L -S 0 1 3 -f test]
-2545 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-2546 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-  97 tabs  __init__           STFILT:
+2568 tabs  <module>           CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+2568 tabs  <module>           CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
+2569 tabs  <module>           LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
+2569 tabs  <module>           LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
+2570 tabs  <module>           TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+2570 tabs  <module>           TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
+2571 tabs  <module>           constructing Tabs object
+  91 tabs  __init__           .LOG_ID=0
+  92 tabs  __init__           BGN <class '__main__.Tabs'>
+2538 tabs  dumpGlobals        BASE_NAME = test
+2539 tabs  dumpGlobals        argv      = +33[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e -p -s -t -x 0 -J 4 -L -S 0 1 3 -f test]
+2540 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+2541 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+  93 tabs  __init__           STFILT:
 [log tlog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
  335 utl   getFileSeqName     fdir='logs' / fsfx='log'
  338 utl   getFileSeqName     fGlobArg='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log'
- 340 utl   getFileSeqName     LOG_ID=1
- 342 utl   getFileSeqName     name='test.1'
-  98 tabs  __init__           .LOG_ID=1 test.1
- 319 utl   getFilePath        baseName =test.1       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 322 utl   getFilePath        fileName =test.1.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.1.cat')
-  99 tabs  __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.1.cat')
- 319 utl   getFilePath        baseName =test.1       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 322 utl   getFilePath        fileName =test.1.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.1.csv')
- 100 tabs  __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.1.csv')
- 319 utl   getFilePath        baseName =test.1       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 322 utl   getFilePath        fileName =test.1.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.1.log')
- 101 tabs  __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.1.log')
- 319 utl   getFilePath        baseName =test.1       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 322 utl   getFilePath        fileName =test.1.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.1.txt')
- 102 tabs  __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.1.txt')
- 114 tabs  __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
- 130 tabs  __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[]] [p:[]] [s:[]] [t:[]] [x:[0]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
- 231 tabs  dumpArgs           [a]      .AUTO_SAVE=0
- 232 tabs  dumpArgs           [A]         .VARROW=1
- 233 tabs  dumpArgs           [b]        .FRT_BRD=0
- 234 tabs  dumpArgs           [B]            .BGC=0
- 235 tabs  dumpArgs           [c]            .CAT=0
- 236 tabs  dumpArgs           [C]      .CHECKERED=0
- 237 tabs  dumpArgs           [d]       .DBG_TABT=0
- 238 tabs  dumpArgs           [e]      .EVENT_LOG=1
- 239 tabs  dumpArgs           [f]      .FILE_NAME='test'
- 240 tabs  dumpArgs           [F]      .FULL_SCRN=0
- 241 tabs  dumpArgs           [g]        .ORD_GRP=1
- 242 tabs  dumpArgs           [G]       .GEN_DATA=0
- 243 tabs  dumpArgs           [i]               i=[1 1 1 1 6]
- 244 tabs  dumpArgs           [J]      .DSP_J_LEV=4
- 245 tabs  dumpArgs           [l]       .LONG_TXT=1
- 246 tabs  dumpArgs           [L]             .LL=1
- 247 tabs  dumpArgs           [M]      .MULTILINE=1
- 248 tabs  dumpArgs           [n]               n=[1 1 3 10 6]
- 249 tabs  dumpArgs           [o]           .OIDS=0
- 250 tabs  dumpArgs           [p]          .SNAPS=1
- 251 tabs  dumpArgs           [R]         .RESIZE=1
- 252 tabs  dumpArgs           [s]        .SPRITES=1
- 253 tabs  dumpArgs           [S]             .SS=[0 1 3]
- 254 tabs  dumpArgs           [t]           .TEST=1
- 255 tabs  dumpArgs           [u]         .SUBPIX=1
- 256 tabs  dumpArgs           [v]           .VRBY=0
- 257 tabs  dumpArgs           [V]          .VIEWS=0
- 258 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
- 259 tabs  dumpArgs           [x]           .EXIT=0
- 260 tabs  dumpArgs           [Z]             .ZZ=[]
- 207 tabs  normi              before .i=[1, 1, 1, 1, 6] .n=[1, 1, 3, 10, 6]
- 209 tabs  normi              after  .i=[1, 1, 1, 1, 6] .n=[1, 1, 3, 10, 6]
- 227 tabs  geomFileName       Btest.1.1.3.10.6_CC.log
- 172 tabs  __init__           .LOG_GFN='Btest.1.1.3.10.6_CC.log'
- 227 tabs  geomFileName       Btest.1.1.3.10.6_CC.csv
- 173 tabs  __init__           .CSV_GFN='Btest.1.1.3.10.6_CC.csv'
- 227 tabs  geomFileName       Dtest.1.1._.10.6.dat
- 174 tabs  __init__           .DAT_GFN='Dtest.1.1._.10.6.dat'
- 227 tabs  geomFileName       Etest.1.1.3.10.6_CC.txt
- 175 tabs  __init__           .TXT_GFN='Etest.1.1.3.10.6_CC.txt'
+ 340 utl   getFileSeqName     LOG_ID=3
+ 342 utl   getFileSeqName     name='test.3'
+  94 tabs  __init__           .LOG_ID=3 test.3
+ 319 utl   getFilePath        baseName =test.3       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 322 utl   getFilePath        fileName =test.3.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.3.cat')
+  95 tabs  __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.3.cat')
+ 319 utl   getFilePath        baseName =test.3       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 322 utl   getFilePath        fileName =test.3.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv')
+  96 tabs  __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv')
+ 319 utl   getFilePath        baseName =test.3       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 322 utl   getFilePath        fileName =test.3.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.3.log')
+  97 tabs  __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.3.log')
+ 319 utl   getFilePath        baseName =test.3       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 322 utl   getFilePath        fileName =test.3.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.3.txt')
+  98 tabs  __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.3.txt')
+ 110 tabs  __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 126 tabs  __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[]] [p:[]] [s:[]] [t:[]] [x:[0]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
+ 227 tabs  dumpArgs           [a]      .AUTO_SAVE=0
+ 228 tabs  dumpArgs           [A]         .VARROW=1
+ 229 tabs  dumpArgs           [b]        .FRT_BRD=0
+ 230 tabs  dumpArgs           [B]            .BGC=0
+ 231 tabs  dumpArgs           [c]            .CAT=0
+ 232 tabs  dumpArgs           [C]      .CHECKERED=0
+ 233 tabs  dumpArgs           [d]       .DBG_TABT=0
+ 234 tabs  dumpArgs           [e]      .EVENT_LOG=1
+ 235 tabs  dumpArgs           [f]      .FILE_NAME='test'
+ 236 tabs  dumpArgs           [F]      .FULL_SCRN=0
+ 237 tabs  dumpArgs           [g]        .ORD_GRP=1
+ 238 tabs  dumpArgs           [G]       .GEN_DATA=0
+ 239 tabs  dumpArgs           [i]               i=[1 1 1 1 6]
+ 240 tabs  dumpArgs           [J]      .DSP_J_LEV=4
+ 241 tabs  dumpArgs           [l]       .LONG_TXT=1
+ 242 tabs  dumpArgs           [L]             .LL=1
+ 243 tabs  dumpArgs           [M]      .MULTILINE=1
+ 244 tabs  dumpArgs           [n]               n=[1 1 3 10 6]
+ 245 tabs  dumpArgs           [o]           .OIDS=0
+ 246 tabs  dumpArgs           [p]          .SNAPS=1
+ 247 tabs  dumpArgs           [R]         .RESIZE=1
+ 248 tabs  dumpArgs           [s]        .SPRITES=1
+ 249 tabs  dumpArgs           [S]             .SS=[0 1 3]
+ 250 tabs  dumpArgs           [t]           .TEST=1
+ 251 tabs  dumpArgs           [u]         .SUBPIX=1
+ 252 tabs  dumpArgs           [v]           .VRBY=0
+ 253 tabs  dumpArgs           [V]          .VIEWS=0
+ 254 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
+ 255 tabs  dumpArgs           [x]           .EXIT=0
+ 256 tabs  dumpArgs           [Z]             .ZZ=[]
+ 203 tabs  normi              before .i=[1, 1, 1, 1, 6] .n=[1, 1, 3, 10, 6]
+ 205 tabs  normi              after  .i=[1, 1, 1, 1, 6] .n=[1, 1, 3, 10, 6]
+ 223 tabs  geomFileName       Btest.1.1.3.10.6_CC.log
+ 168 tabs  __init__           .LOG_GFN='Btest.1.1.3.10.6_CC.log'
+ 223 tabs  geomFileName       Btest.1.1.3.10.6_CC.csv
+ 169 tabs  __init__           .CSV_GFN='Btest.1.1.3.10.6_CC.csv'
+ 223 tabs  geomFileName       Dtest.1.1._.10.6.dat
+ 170 tabs  __init__           .DAT_GFN='Dtest.1.1._.10.6.dat'
+ 223 tabs  geomFileName       Etest.1.1.3.10.6_CC.txt
+ 171 tabs  __init__           .TXT_GFN='Etest.1.1.3.10.6_CC.txt'
   26 strngs __init__           stringMap   = [E2:28] [A2:33] [D3:38] [G3:43] [B3:47] [E4:52]
   27 strngs __init__           stringKeys  = [E2 A2 D3 G3 B3 E4]
   28 strngs __init__           stringNames =      EBGDAE
@@ -279,42 +279,42 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
   30 strngs __init__           stringCapo  =      000000
   31 strngs __init__           strLabel    =      STRING
   32 strngs __init__           cpoLabel    =       CAPO 
- 313 tabs  _initDataPath      dataName0='Dtest.1.1._.10.6.dat.asv'
- 314 tabs  _initDataPath      dataName1='Dtest.1.1._.10.6.dat'
- 315 tabs  _initDataPath      dataName2='Dtest.1.1._.10.6.dat'
+ 309 tabs  _initDataPath      dataName0='Dtest.1.1._.10.6.dat.asv'
+ 310 tabs  _initDataPath      dataName1='Dtest.1.1._.10.6.dat'
+ 311 tabs  _initDataPath      dataName2='Dtest.1.1._.10.6.dat'
 .dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat.asv')
 .dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
 .dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
- 329 tabs  _initWindowA       BGN (  -1x-1  )
- 329 tabs  _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001E7F1CAB100>
- 334 tabs  _initWindowA       screens[0] s.x=894  2160 (1280x720 )
- 334 tabs  _initWindowA       screens[1] s.x=0     0 (3840x2160)
- 335 tabs  _initWindowA       END (  -1x-1  ) .screenIdx=1
- 186 tabs  __init__           WxH=(  -1x-1  )
- 188 tabs  __init__           WxH=( 960x540 )
- 338 tabs  _initWindowB       BGN ( 960x540 )
- 356 tabs  _initGroups        [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15]
- 356 tabs  _initGroups          P  L  S  C  T  N  I  K  R  Q  H  V  Z  U  A  D  T 
- 356 tabs  _initGroups        [ 0  1  2  3  6  7  8  9  4  5 10 15 11 12 13 14]
- 360 tabs  _initGroups        g[0]=Group(order=0) p=None
- 360 tabs  _initGroups        g[1]=Group(order=1) p=None
- 360 tabs  _initGroups        g[2]=Group(order=2) p=None
- 360 tabs  _initGroups        g[3]=Group(order=3) p=None
- 360 tabs  _initGroups        g[4]=Group(order=4) p=None
- 360 tabs  _initGroups        g[5]=Group(order=5) p=None
- 360 tabs  _initGroups        g[6]=Group(order=6) p=None
- 360 tabs  _initGroups        g[7]=Group(order=7) p=None
- 360 tabs  _initGroups        g[8]=Group(order=8) p=None
- 360 tabs  _initGroups        g[9]=Group(order=9) p=None
- 360 tabs  _initGroups        g[10]=Group(order=10) p=None
- 360 tabs  _initGroups        g[11]=Group(order=11) p=None
- 360 tabs  _initGroups        g[12]=Group(order=12) p=None
- 360 tabs  _initGroups        g[13]=Group(order=13) p=None
- 360 tabs  _initGroups        g[14]=Group(order=14) p=None
- 360 tabs  _initGroups        g[15]=Group(order=15) p=None
- 342 tabs  _initWindowB       get_size=(960, 540)
- 348 tabs  _initWindowB       END ( 960x540 )
- 190 tabs  __init__           WxH=( 960x540 )
+ 325 tabs  _initWindowA       BGN (  -1x-1  )
+ 325 tabs  _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001EFCCBCAFE0>
+ 330 tabs  _initWindowA       screens[0] s.x=894  2160 (1280x720 )
+ 330 tabs  _initWindowA       screens[1] s.x=0     0 (3840x2160)
+ 331 tabs  _initWindowA       END (  -1x-1  ) .screenIdx=1
+ 182 tabs  __init__           WxH=(  -1x-1  )
+ 184 tabs  __init__           WxH=( 960x540 )
+ 334 tabs  _initWindowB       BGN ( 960x540 )
+ 352 tabs  _initGroups        [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15]
+ 352 tabs  _initGroups          P  L  S  C  T  N  I  K  R  Q  H  V  Z  U  A  D  T 
+ 352 tabs  _initGroups        [ 0  1  2  3  6  7  8  9  4  5 10 15 11 12 13 14]
+ 356 tabs  _initGroups        g[0]=Group(order=0) p=None
+ 356 tabs  _initGroups        g[1]=Group(order=1) p=None
+ 356 tabs  _initGroups        g[2]=Group(order=2) p=None
+ 356 tabs  _initGroups        g[3]=Group(order=3) p=None
+ 356 tabs  _initGroups        g[4]=Group(order=4) p=None
+ 356 tabs  _initGroups        g[5]=Group(order=5) p=None
+ 356 tabs  _initGroups        g[6]=Group(order=6) p=None
+ 356 tabs  _initGroups        g[7]=Group(order=7) p=None
+ 356 tabs  _initGroups        g[8]=Group(order=8) p=None
+ 356 tabs  _initGroups        g[9]=Group(order=9) p=None
+ 356 tabs  _initGroups        g[10]=Group(order=10) p=None
+ 356 tabs  _initGroups        g[11]=Group(order=11) p=None
+ 356 tabs  _initGroups        g[12]=Group(order=12) p=None
+ 356 tabs  _initGroups        g[13]=Group(order=13) p=None
+ 356 tabs  _initGroups        g[14]=Group(order=14) p=None
+ 356 tabs  _initGroups        g[15]=Group(order=15) p=None
+ 338 tabs  _initWindowB       get_size=(960, 540)
+ 344 tabs  _initWindowB       END ( 960x540 )
+ 186 tabs  __init__           WxH=( 960x540 )
 ax=C
 ay=C
 ax=center
@@ -323,18 +323,18 @@ ay=center
  0 1 0
  0 1 0 0
  0 1 0
- 263 tabs  _reinit            BGN
- 506 tabs  ntp                                  n=[1 1 3 10 6]
- 507 tabs  ntp                                Rev=[6 10 3 1 1]
- 508 tabs  ntp                            nRevPrd=[6 60 180 180 180]
- 509 tabs  ntp                         nRevPrdRev=[180 180 180 60 6]
- 511 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 270 tabs  _reinit            E= [ []  []  []  []  []  []  []  []  []  []  []  []  []  []  []  [] ] 
- 271 tabs  _reinit            J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
- 271 tabs  _reinit            J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
- 271 tabs  _reinit            LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
- 274 tabs  _reinit            [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- 501 tabs  dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=10
+ 259 tabs  _reinit            BGN
+ 502 tabs  ntp                                  n=[1 1 3 10 6]
+ 503 tabs  ntp                                Rev=[6 10 3 1 1]
+ 504 tabs  ntp                            nRevPrd=[6 60 180 180 180]
+ 505 tabs  ntp                         nRevPrdRev=[180 180 180 60 6]
+ 507 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 266 tabs  _reinit            E= [ []  []  []  []  []  []  []  []  []  []  []  []  []  []  []  [] ] 
+ 267 tabs  _reinit            J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
+ 267 tabs  _reinit            J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
+ 267 tabs  _reinit            LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] _reinit
+ 270 tabs  _reinit            [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+ 497 tabs  dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=10
 ------
 ----------
  0  Page  [VLT  3 17] [ VLT 17 17] [ 26  13  52 255] [128  63 255 255]
@@ -353,112 +353,75 @@ ay=center
 13  UNum  [CL4  0  0] [ CL4 17 17] [  1   4   2   0] [ 31 127  63 255]
 14  ANam  [LIM  0  0] [ LIM 17 17] [  5   8   1   0] [160 255  31 255]
 15  DCpo  [GRY  0  0] [ GRY 17 17] [  8   8   8   0] [255 255 255 255]
- 313 tabs  _initDataPath      dataName0='Dtest.1.1._.10.6.dat.asv'
- 314 tabs  _initDataPath      dataName1='Dtest.1.1._.10.6.dat'
- 315 tabs  _initDataPath      dataName2='Dtest.1.1._.10.6.dat'
+ 309 tabs  _initDataPath      dataName0='Dtest.1.1._.10.6.dat.asv'
+ 310 tabs  _initDataPath      dataName1='Dtest.1.1._.10.6.dat'
+ 311 tabs  _initDataPath      dataName2='Dtest.1.1._.10.6.dat'
 .dataPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat.asv')
 .dataPath1=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
 .dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
- 584 tabs  genDataFile        C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat n=[1 1 3 10 6]
- 501 tabs  dmpBlnkHdr         len(.tblankCol)=6 len(.tblankRow)=10
-------
-----------
- 670 tabs  transposeData      BGN ( 1x1x6x10 ) dmp=1
- 674 tabs  transposeData      dl=[1 1 6 10] dt=['list' 'list' 'list' 'str']
----------- ---------- ---------- ---------- ---------- ----------
+ 592 tabs  readDataFile       BGN n=[1 1 3 10 6]
+ 599 tabs  readDataFile       C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat  74 bytes = 0.1 KB
+ 600 tabs  readDataFile       Raw Data File BGN:
+24--------
+61--------
+61--------
+61--------
+72--------
+83--------
 
------- ------ ------ ------ ------ ------ ------ ------ ------ ------
- 709 tabs  dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt='Colm '
+ 614 tabs  readDataFile       Raw Data File END:
+ 615 tabs  readDataFile       .fmtdl()='[1 1 6 10]' .fmtdt()="['list' 'list' 'list' 'str']"
+ 625 tabs  assertDataFileSize dsize= 60 = nlines=  1 *     nr= 6 *   nt=10
+ 626 tabs  assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
+ 627 tabs  assertDataFileSize  size= 74 =  dsize= 60 +  crlfs= 14   ref=74
+ 618 tabs  readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 tabs
+ 619 tabs  readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 10 tabs per row
+ 633 tabs  dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
+24-------- 61-------- 61-------- 61-------- 72-------- 83--------
+
+ 638 tabs  dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
+ 666 tabs  transposeData      BGN ( 1x1x6x10 ) dmp=1
+ 670 tabs  transposeData      dl=[1 1 6 10] dt=['list' 'list' 'list' 'str']
+24-------- 61-------- 61-------- 61-------- 72-------- 83--------
+
+266678 411123 ------ ------ ------ ------ ------ ------ ------ ------
+ 705 tabs  dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt='Colm '
 Page 1
 Colm Line 1
- 719 tabs  dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
- 686 tabs  transposeData      END ( 1x1x10x6 ) dmp=1
- 563 tabs  saveDataFile       Generated Data C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat
-C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat
- 670 tabs  transposeData      BGN ( 1x1x10x6 ) dmp=1
- 674 tabs  transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
------- ------ ------ ------ ------ ------ ------ ------ ------ ------
-
----------- ---------- ---------- ---------- ---------- ----------
- 709 tabs  dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
-Page 1
-Colm Line 1    
- 719 tabs  dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
- 686 tabs  transposeData      END ( 1x1x6x10 ) dmp=1
- 567 tabs  saveDataFile       n=[1 1 3 10 6] [1 1 6 10]
-writing 1st page
-writing 1st line
-writing 1st string ----------
-writing 2nd string ----------
-writing 3rd string ----------
-writing 4th string ----------
-writing 5th string ----------
-writing 6th string ----------
- 580 tabs  saveDataFile       n=[1 1 3 10 6] [1 1 10 6] size=74
- 590 tabs  genDataFile        C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat size=74 [1 1 10 6]
- 596 tabs  readDataFile       BGN n=[1 1 3 10 6]
- 603 tabs  readDataFile       C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat  74 bytes = 0.1 KB
- 604 tabs  readDataFile       Raw Data File BGN:
-----------
-----------
-----------
-----------
-----------
-----------
-
- 618 tabs  readDataFile       Raw Data File END:
- 619 tabs  readDataFile       .fmtdl()='[1 1 6 10]' .fmtdt()="['list' 'list' 'list' 'str']"
- 629 tabs  assertDataFileSize dsize= 60 = nlines=  1 *     nr= 6 *   nt=10
- 630 tabs  assertDataFileSize crlfs= 14 = nlines=  1 * (nr+1)= 7 * crlf=2
- 631 tabs  assertDataFileSize  size= 74 =  dsize= 60 +  crlfs= 14   ref=74
- 622 tabs  readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 tabs
- 623 tabs  readDataFile       1 ( 1.000) pages @  1 lines per page, @ 6 rows per line, @ 10 tabs per row
- 637 tabs  dumpDataFile       BGN 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
----------- ---------- ---------- ---------- ---------- ----------
-
- 642 tabs  dumpDataFile       END 1 pages, 1 lines per page, 6 rows per line, 10 tabs per line
- 670 tabs  transposeData      BGN ( 1x1x6x10 ) dmp=1
- 674 tabs  transposeData      dl=[1 1 6 10] dt=['list' 'list' 'list' 'str']
----------- ---------- ---------- ---------- ---------- ----------
-
------- ------ ------ ------ ------ ------ ------ ------ ------ ------
- 709 tabs  dumpDataVert       BGN ( 1x1x10x6 ) lc=1 ll=1 i=0 w=6 txt='Colm '
-Page 1
-Colm Line 1
- 719 tabs  dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
- 686 tabs  transposeData      END ( 1x1x10x6 ) dmp=1
+ 715 tabs  dumpDataVert       END ( 1x1x10x6 ) lc=1 ll=1 i=0
+ 682 tabs  transposeData      END ( 1x1x10x6 ) dmp=1
  327 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
  328 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
  330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
- 301 tabs  _initData          [1 1 10 6]
- 302 tabs  _initData          Updating n[P] old='[1 1 3 10 6]' n=[1 1 3 10 6]
- 506 tabs  ntp                                  n=[1 1 3 10 6]
- 507 tabs  ntp                                Rev=[6 10 3 1 1]
- 508 tabs  ntp                            nRevPrd=[6 60 180 180 180]
- 509 tabs  ntp                         nRevPrdRev=[180 180 180 60 6]
- 511 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
-1624 tabs  calcFontSize       j=4 Tabl w=960.00 h=540.00 nc=10 nr=19 pw=96.0 ph=28.42105263157895 pix= 28.42 fs= 22.11
-1633 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.778 fs=w*PNT_PER_PIX=22.105pt
-1634 tabs  _initFonts         h=28.421=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.778 fs=h*PNT_PER_PIX=22.105pt
-1646 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels 
+ 297 tabs  _initData          [1 1 10 6]
+ 298 tabs  _initData          Updating n[P] old='[1 1 3 10 6]' n=[1 1 3 10 6]
+ 502 tabs  ntp                                  n=[1 1 3 10 6]
+ 503 tabs  ntp                                Rev=[6 10 3 1 1]
+ 504 tabs  ntp                            nRevPrd=[6 60 180 180 180]
+ 505 tabs  ntp                         nRevPrdRev=[180 180 180 60 6]
+ 507 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+1620 tabs  calcFontSize       j=4 Tabl w=960.00 h=540.00 nc=10 nr=19 pw=96.0 ph=28.42105263157895 pix= 28.42 fs= 22.11
+1629 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.778 fs=w*PNT_PER_PIX=22.105pt
+1630 tabs  _initFonts         h=28.421=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.778 fs=h*PNT_PER_PIX=22.105pt
+1642 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels 
 labelTextA=[1  2  3  4  5  6  7  8  9  10]
 labelTextB=[1  2  3  4  5  6  7  8  9  1 ]
 texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
- 742 tabs  dumpLabelText       len(t)=10 len(t[0])=2
+ 738 tabs  dumpLabelText       len(t)=10 len(t[0])=2
  1   2   3   4   5   6   7   8   9  10  
                                      %  
  1   2   3   4   5   6   7   8   9   1  
- 368 tabs  _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1]
- 372 tabs  _initTniks         C C
- 372 tabs  _initTniks         center center
-1021 tabs  createTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1021 tabs  createTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1021 tabs  createTniks        LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
-1021 tabs  createTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )    0   0] New1
+ 364 tabs  _initTextLabels    [M 0 1 2 3 4 5 6 7 8 9 1]
+ 368 tabs  _initTniks         C C
+ 368 tabs  _initTniks         center center
+1017 tabs  createTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1017 tabs  createTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1017 tabs  createTniks        LE[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] New1
+1017 tabs  createTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )    0   0] New1
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
    1 New1  Page    1    0.000 0 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [ 26  13  52 255]1.000 1.000 1.000 C C  480  270 Group(order=0) None
- 933 tabs  geom               y=255.79 d=0.5 dn=1 d*py=135.00 d*ph=270.00 d*h=255.79 dn*ph_n_nr=28.42
+ 929 tabs  geom               y=255.79 d=0.5 dn=1 d*py=135.00 d*ph=270.00 d*h=255.79 dn*ph_n_nr=28.42
    2 New1  Line    1    0.000 1 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  480.00  255.79  960.00  512.00            [ 52   6  52 225]1.000 1.000 1.000 C C  480  255 Group(order=1) None
    3 New1  RowL    1    0.000 4 V 1  1  0   0    0    0    0    0  1   0 0 0  0  0  0  0    3   3  480.00  526.01  960.00   28.00   1   0  1 [  2   1   8 255]1.000 1.000 1.000 C C  480   14 Group(order=4) None
    4 New1  QClm    1 1        5 V 1  1  0   0    0    0    0    0  1   1 0 0  0  0  0  0    4   4   48.00  526.01   96.00   28.00   1   0  1 [ 31 255 255 255][  1   8   8 255] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
@@ -473,19 +436,19 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   13 New1  QClm   10 1        5 V 1  1  0   0    0    0    0    0  1  10 0 0  0  0  0  0   13  13  912.00  526.01   96.00   28.00   1   0  1 [ 63  31 255 255][  2   1   8 255] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   14 New1  Sect    1    0.000 2 V 1  1  1   0    0    0    0    0  1  10 0 0  0  0  0  0   14  14  480.00  426.46  960.00  171.00            [ 52  13   6 225]1.000 1.000 1.000 C C  480   85 Group(order=2) None
   15 New1  Colm    1    0.000 3 V 1  1  1   1    0    0    0    0  1  10 0 0  0  0  0  0   15  15   48.00  426.46   96.00  171.00            [ 52  52  13 225]1.000 1.000 1.000 C C   48   85 Group(order=3) None
-  16 New1  Tabl    1 -        6 V 1  1  1   1    1    0    0    0  1  10 0 0  0  0  0  0   16  16   48.00  497.71   96.00   28.50   1   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  17 New1  Tabl    2 -        6 V 1  1  1   1    2    0    0    0  1  10 0 0  0  0  0  0   17  17   48.00  469.21   96.00   28.50   2   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  18 New1  Tabl    3 -        6 V 1  1  1   1    3    0    0    0  1  10 0 0  0  0  0  0   18  18   48.00  440.71   96.00   28.50   3   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  19 New1  Tabl    4 -        6 V 1  1  1   1    4    0    0    0  1  10 0 0  0  0  0  0   19  19   48.00  412.21   96.00   28.50   4   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  20 New1  Tabl    5 -        6 V 1  1  1   1    5    0    0    0  1  10 0 0  0  0  0  0   20  20   48.00  383.71   96.00   28.50   5   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  21 New1  Tabl    6 -        6 V 1  1  1   1    6    0    0    0  1  10 0 0  0  0  0  0   21  21   48.00  355.21   96.00   28.50   6   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  16 New1  Tabl    1 2        6 V 1  1  1   1    1    0    0    0  1  10 0 0  0  0  0  0   16  16   48.00  497.71   96.00   28.50   1   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  17 New1  Tabl    2 6        6 V 1  1  1   1    2    0    0    0  1  10 0 0  0  0  0  0   17  17   48.00  469.21   96.00   28.50   2   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  18 New1  Tabl    3 6        6 V 1  1  1   1    3    0    0    0  1  10 0 0  0  0  0  0   18  18   48.00  440.71   96.00   28.50   3   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  19 New1  Tabl    4 6        6 V 1  1  1   1    4    0    0    0  1  10 0 0  0  0  0  0   19  19   48.00  412.21   96.00   28.50   4   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  20 New1  Tabl    5 7        6 V 1  1  1   1    5    0    0    0  1  10 0 0  0  0  0  0   20  20   48.00  383.71   96.00   28.50   5   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  21 New1  Tabl    6 8        6 V 1  1  1   1    6    0    0    0  1  10 0 0  0  0  0  0   21  21   48.00  355.21   96.00   28.50   6   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   22 New1  Colm    2    0.000 3 V 1  1  1   2    6    0    0    0  1  10 0 0  0  0  0  0   22  22  144.00  426.46   96.00  171.00            [ 52  52  13 225]1.000 1.000 1.000 C C   48   85 Group(order=3) None
-  23 New1  Tabl    7 -        6 V 1  1  1   2    7    0    0    0  1  10 0 0  0  0  0  0   23  23  144.00  497.71   96.00   28.50   7   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  24 New1  Tabl    8 -        6 V 1  1  1   2    8    0    0    0  1  10 0 0  0  0  0  0   24  24  144.00  469.21   96.00   28.50   8   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  25 New1  Tabl    9 -        6 V 1  1  1   2    9    0    0    0  1  10 0 0  0  0  0  0   25  25  144.00  440.71   96.00   28.50   9   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  26 New1  Tabl   10 -        6 V 1  1  1   2   10    0    0    0  1  10 0 0  0  0  0  0   26  26  144.00  412.21   96.00   28.50  10   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  27 New1  Tabl   11 -        6 V 1  1  1   2   11    0    0    0  1  10 0 0  0  0  0  0   27  27  144.00  383.71   96.00   28.50  11   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  28 New1  Tabl   12 -        6 V 1  1  1   2   12    0    0    0  1  10 0 0  0  0  0  0   28  28  144.00  355.21   96.00   28.50  12   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  23 New1  Tabl    7 4        6 V 1  1  1   2    7    0    0    0  1  10 0 0  0  0  0  0   23  23  144.00  497.71   96.00   28.50   7   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  24 New1  Tabl    8 1        6 V 1  1  1   2    8    0    0    0  1  10 0 0  0  0  0  0   24  24  144.00  469.21   96.00   28.50   8   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  25 New1  Tabl    9 1        6 V 1  1  1   2    9    0    0    0  1  10 0 0  0  0  0  0   25  25  144.00  440.71   96.00   28.50   9   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  26 New1  Tabl   10 1        6 V 1  1  1   2   10    0    0    0  1  10 0 0  0  0  0  0   26  26  144.00  412.21   96.00   28.50  10   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  27 New1  Tabl   11 2        6 V 1  1  1   2   11    0    0    0  1  10 0 0  0  0  0  0   27  27  144.00  383.71   96.00   28.50  11   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  28 New1  Tabl   12 3        6 V 1  1  1   2   12    0    0    0  1  10 0 0  0  0  0  0   28  28  144.00  355.21   96.00   28.50  12   6  2 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   29 New1  Colm    3    0.000 3 V 1  1  1   3   12    0    0    0  1  10 0 0  0  0  0  0   29  29  240.00  426.46   96.00  171.00            [ 52  52  13 225]1.000 1.000 1.000 C C   48   85 Group(order=3) None
   30 New1  Tabl   13 -        6 V 1  1  1   3   13    0    0    0  1  10 0 0  0  0  0  0   30  30  240.00  497.71   96.00   28.50  13  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   31 New1  Tabl   14 -        6 V 1  1  1   3   14    0    0    0  1  10 0 0  0  0  0  0   31  31  240.00  469.21   96.00   28.50  14  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
@@ -544,19 +507,19 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
   84 New1  Tabl   60 -        6 V 1  1  1  10   60    0    0    0  1  10 0 0  0  0  0  0   84  84  912.00  355.21   96.00   28.50  60  54 10 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   85 New1  Sect    2    0.000 2 V 1  1  2  10   60    0    0    0  1  10 0 0  0  0  0  0   85  85  480.00  255.79  960.00  171.00            [ 52  13   6 225]1.000 1.000 1.000 C C  480   85 Group(order=2) None
   86 New1  Colm   11    0.000 3 V 1  1  2  11   60    0    0    0  1  10 0 0  0  0  0  0   86  86   48.00  255.79   96.00  171.00            [ 52  52  13 225]1.000 1.000 1.000 C C   48   85 Group(order=3) None
-  87 New1  Note    1 -        7 V 1  1  2  11   60    1    0    0  1  10 0 0  0  0  0  0   87  87   48.00  327.04   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  88 New1  Note    2 -        7 V 1  1  2  11   60    2    0    0  1  10 0 0  0  0  0  0   88  88   48.00  298.54   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  89 New1  Note    3 -        7 V 1  1  2  11   60    3    0    0  1  10 0 0  0  0  0  0   89  89   48.00  270.04   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  90 New1  Note    4 -        7 V 1  1  2  11   60    4    0    0  1  10 0 0  0  0  0  0   90  90   48.00  241.54   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  91 New1  Note    5 -        7 V 1  1  2  11   60    5    0    0  1  10 0 0  0  0  0  0   91  91   48.00  213.04   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  92 New1  Note    6 -        7 V 1  1  2  11   60    6    0    0  1  10 0 0  0  0  0  0   92  92   48.00  184.54   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  87 New1  Note    1 F♯       7 V 1  1  2  11   60    1    0    0  1  10 0 0  0  0  0  0   87  87   48.00  327.04   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  88 New1  Note    2 E♯       7 V 1  1  2  11   60    2    0    0  1  10 0 0  0  0  0  0   88  88   48.00  298.54   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  89 New1  Note    3 C♯       7 V 1  1  2  11   60    3    0    0  1  10 0 0  0  0  0  0   89  89   48.00  270.04   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  90 New1  Note    4 G♯       7 V 1  1  2  11   60    4    0    0  1  10 0 0  0  0  0  0   90  90   48.00  241.54   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  91 New1  Note    5 E        7 V 1  1  2  11   60    5    0    0  1  10 0 0  0  0  0  0   91  91   48.00  213.04   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  92 New1  Note    6 B♯       7 V 1  1  2  11   60    6    0    0  1  10 0 0  0  0  0  0   92  92   48.00  184.54   96.00   28.50   6   0  1 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   93 New1  Colm   12    0.000 3 V 1  1  2  12   60    6    0    0  1  10 0 0  0  0  0  0   93  93  144.00  255.79   96.00  171.00            [ 52  52  13 225]1.000 1.000 1.000 C C   48   85 Group(order=3) None
-  94 New1  Note    7 -        7 V 1  1  2  12   60    7    0    0  1  10 0 0  0  0  0  0   94  94  144.00  327.04   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  95 New1  Note    8 -        7 V 1  1  2  12   60    8    0    0  1  10 0 0  0  0  0  0   95  95  144.00  298.54   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  96 New1  Note    9 -        7 V 1  1  2  12   60    9    0    0  1  10 0 0  0  0  0  0   96  96  144.00  270.04   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  97 New1  Note   10 -        7 V 1  1  2  12   60   10    0    0  1  10 0 0  0  0  0  0   97  97  144.00  241.54   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  98 New1  Note   11 -        7 V 1  1  2  12   60   11    0    0  1  10 0 0  0  0  0  0   98  98  144.00  213.04   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  99 New1  Note   12 -        7 V 1  1  2  12   60   12    0    0  1  10 0 0  0  0  0  0   99  99  144.00  184.54   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  94 New1  Note    7 G♯       7 V 1  1  2  12   60    7    0    0  1  10 0 0  0  0  0  0   94  94  144.00  327.04   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  95 New1  Note    8 B♯       7 V 1  1  2  12   60    8    0    0  1  10 0 0  0  0  0  0   95  95  144.00  298.54   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  96 New1  Note    9 G♯       7 V 1  1  2  12   60    9    0    0  1  10 0 0  0  0  0  0   96  96  144.00  270.04   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  97 New1  Note   10 D♯       7 V 1  1  2  12   60   10    0    0  1  10 0 0  0  0  0  0   97  97  144.00  241.54   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  98 New1  Note   11 B        7 V 1  1  2  12   60   11    0    0  1  10 0 0  0  0  0  0   98  98  144.00  213.04   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  99 New1  Note   12 G        7 V 1  1  2  12   60   12    0    0  1  10 0 0  0  0  0  0   99  99  144.00  184.54   96.00   28.50  12   6  2 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  100 New1  Colm   13    0.000 3 V 1  1  2  13   60   12    0    0  1  10 0 0  0  0  0  0  100 100  240.00  255.79   96.00  171.00            [ 52  52  13 225]1.000 1.000 1.000 C C   48   85 Group(order=3) None
  101 New1  Note   13 -        7 V 1  1  2  13   60   13    0    0  1  10 0 0  0  0  0  0  101 101  240.00  327.04   96.00   28.50  18  12  3 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  102 New1  Note   14 -        7 V 1  1  2  13   60   14    0    0  1  10 0 0  0  0  0  0  102 102  240.00  298.54   96.00   28.50  18  12  3 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
@@ -615,16 +578,85 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  155 New1  Note   60 -        7 V 1  1  2  20   60   60    0    0  1  10 0 0  0  0  0  0  155 155  912.00  184.54   96.00   28.50  60  54 10 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  156 New1  Sect    3    0.000 2 V 1  1  3  20   60   60    0    0  1  10 0 0  0  0  0  0  156 156  480.00   85.12  960.00  171.00            [ 52  13   6 225]1.000 1.000 1.000 C C  480   85 Group(order=2) None
  157 New1  Colm   21    0.000 3 V 1  1  3  21   60   60    0    0  1  10 0 0  0  0  0  0  157 157   48.00   85.12   96.00  171.00            [ 52  52  13 225]1.000 1.000 1.000 C C   48   85 Group(order=3) None
+  77 chords add2uMap           li=6 Adding ikey='R b2 M3 4 b5 #5' v=[0 1 4 5 6 8] to umap
+ 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=1
+dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
+ 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=1
+  77 chords add2uMap           li=6 Adding ikey='R b2 2 M3 #5 6' v=[0 1 2 4 8 9] to umap
+ 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=2
+dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
+dumpUmap 'R b2 2 M3 #5 6'  : (-1 [0 1 2 4 8 9]  )
+ 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=2
+  77 chords add2uMap           li=6 Adding ikey='R M3 4 #5 6 b7' v=[0 4 5 8 9 10] to umap
+ 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=3
+dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
+dumpUmap 'R M3 4 #5 6 b7'  : (-1 [0 4 5 8 9 10] )
+dumpUmap 'R b2 2 M3 #5 6'  : (-1 [0 1 2 4 8 9]  )
+ 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=3
+  77 chords add2uMap           li=6 Adding ikey='R m3 M3 4 5 7' v=[0 3 4 5 7 11] to umap
+ 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=4
+dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
+dumpUmap 'R M3 4 #5 6 b7'  : (-1 [0 4 5 8 9 10] )
+dumpUmap 'R b2 2 M3 #5 6'  : (-1 [0 1 2 4 8 9]  )
+dumpUmap 'R m3 M3 4 5 7'   : (-1 [0 3 4 5 7 11] )
+ 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=4
+  77 chords add2uMap           li=6 Adding ikey='R b2 m3 5 #5 7' v=[0 1 3 7 8 11] to umap
+ 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=5
+dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
+dumpUmap 'R M3 4 #5 6 b7'  : (-1 [0 4 5 8 9 10] )
+dumpUmap 'R b2 m3 5 #5 7'  : (-1 [0 1 3 7 8 11] )
+dumpUmap 'R b2 2 M3 #5 6'  : (-1 [0 1 2 4 8 9]  )
+dumpUmap 'R m3 M3 4 5 7'   : (-1 [0 3 4 5 7 11] )
+ 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=5
+  77 chords add2uMap           li=6 Adding ikey='R 2 b5 5 b7 7' v=[0 2 6 7 10 11] to umap
+ 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=6
+dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
+dumpUmap 'R M3 4 #5 6 b7'  : (-1 [0 4 5 8 9 10] )
+dumpUmap 'R 2 b5 5 b7 7'   : (-1 [0 2 6 7 10 11])
+dumpUmap 'R b2 m3 5 #5 7'  : (-1 [0 1 3 7 8 11] )
+dumpUmap 'R b2 2 M3 #5 6'  : (-1 [0 1 2 4 8 9]  )
+dumpUmap 'R m3 M3 4 5 7'   : (-1 [0 3 4 5 7 11] )
+ 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=6
  158 New1  Kord    1 -        9 V 1  1  3  21   60   60    0    1  1  10 0 0  0  0  0  0  158 158   48.00  156.37   96.00   28.50   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  76 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 2, 'R b2 2 M3 #5 6': 1, 'R M3 4 #5 6 b7': 1, 'R m3 M3 4 5 7': 1, 'R b2 m3 5 #5 7': 1, 'R 2 b5 5 b7 7': 1})
+  76 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 2, 'R b2 2 M3 #5 6': 2, 'R M3 4 #5 6 b7': 1, 'R m3 M3 4 5 7': 1, 'R b2 m3 5 #5 7': 1, 'R 2 b5 5 b7 7': 1})
+  76 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 2, 'R b2 2 M3 #5 6': 2, 'R M3 4 #5 6 b7': 2, 'R m3 M3 4 5 7': 1, 'R b2 m3 5 #5 7': 1, 'R 2 b5 5 b7 7': 1})
+  76 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 2, 'R b2 2 M3 #5 6': 2, 'R M3 4 #5 6 b7': 2, 'R m3 M3 4 5 7': 2, 'R b2 m3 5 #5 7': 1, 'R 2 b5 5 b7 7': 1})
+  76 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 2, 'R b2 2 M3 #5 6': 2, 'R M3 4 #5 6 b7': 2, 'R m3 M3 4 5 7': 2, 'R b2 m3 5 #5 7': 2, 'R 2 b5 5 b7 7': 1})
+  76 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 2, 'R b2 2 M3 #5 6': 2, 'R M3 4 #5 6 b7': 2, 'R m3 M3 4 5 7': 2, 'R b2 m3 5 #5 7': 2, 'R 2 b5 5 b7 7': 2})
  159 New1  Kord    2 -        9 V 1  1  3  21   60   60    0    2  1  10 0 0  0  0  0  0  159 159   48.00  127.87   96.00   28.50   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  76 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 3, 'R b2 2 M3 #5 6': 2, 'R M3 4 #5 6 b7': 2, 'R m3 M3 4 5 7': 2, 'R b2 m3 5 #5 7': 2, 'R 2 b5 5 b7 7': 2})
+  76 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 3, 'R b2 2 M3 #5 6': 3, 'R M3 4 #5 6 b7': 2, 'R m3 M3 4 5 7': 2, 'R b2 m3 5 #5 7': 2, 'R 2 b5 5 b7 7': 2})
+  76 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 3, 'R b2 2 M3 #5 6': 3, 'R M3 4 #5 6 b7': 3, 'R m3 M3 4 5 7': 2, 'R b2 m3 5 #5 7': 2, 'R 2 b5 5 b7 7': 2})
+  76 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 3, 'R b2 2 M3 #5 6': 3, 'R M3 4 #5 6 b7': 3, 'R m3 M3 4 5 7': 3, 'R b2 m3 5 #5 7': 2, 'R 2 b5 5 b7 7': 2})
+  76 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 3, 'R b2 2 M3 #5 6': 3, 'R M3 4 #5 6 b7': 3, 'R m3 M3 4 5 7': 3, 'R b2 m3 5 #5 7': 3, 'R 2 b5 5 b7 7': 2})
+  76 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 3, 'R b2 2 M3 #5 6': 3, 'R M3 4 #5 6 b7': 3, 'R m3 M3 4 5 7': 3, 'R b2 m3 5 #5 7': 3, 'R 2 b5 5 b7 7': 3})
  160 New1  Kord    3 -        9 V 1  1  3  21   60   60    0    3  1  10 0 0  0  0  0  0  160 160   48.00   99.37   96.00   28.50   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  76 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 4, 'R b2 2 M3 #5 6': 3, 'R M3 4 #5 6 b7': 3, 'R m3 M3 4 5 7': 3, 'R b2 m3 5 #5 7': 3, 'R 2 b5 5 b7 7': 3})
+  76 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 4, 'R b2 2 M3 #5 6': 4, 'R M3 4 #5 6 b7': 3, 'R m3 M3 4 5 7': 3, 'R b2 m3 5 #5 7': 3, 'R 2 b5 5 b7 7': 3})
+  76 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 4, 'R b2 2 M3 #5 6': 4, 'R M3 4 #5 6 b7': 4, 'R m3 M3 4 5 7': 3, 'R b2 m3 5 #5 7': 3, 'R 2 b5 5 b7 7': 3})
+  76 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 4, 'R b2 2 M3 #5 6': 4, 'R M3 4 #5 6 b7': 4, 'R m3 M3 4 5 7': 4, 'R b2 m3 5 #5 7': 3, 'R 2 b5 5 b7 7': 3})
+  76 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 4, 'R b2 2 M3 #5 6': 4, 'R M3 4 #5 6 b7': 4, 'R m3 M3 4 5 7': 4, 'R b2 m3 5 #5 7': 4, 'R 2 b5 5 b7 7': 3})
+  76 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 4, 'R b2 2 M3 #5 6': 4, 'R M3 4 #5 6 b7': 4, 'R m3 M3 4 5 7': 4, 'R b2 m3 5 #5 7': 4, 'R 2 b5 5 b7 7': 4})
  161 New1  Kord    4 -        9 V 1  1  3  21   60   60    0    4  1  10 0 0  0  0  0  0  161 161   48.00   70.87   96.00   28.50   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  76 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 5, 'R b2 2 M3 #5 6': 4, 'R M3 4 #5 6 b7': 4, 'R m3 M3 4 5 7': 4, 'R b2 m3 5 #5 7': 4, 'R 2 b5 5 b7 7': 4})
+  76 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 5, 'R b2 2 M3 #5 6': 5, 'R M3 4 #5 6 b7': 4, 'R m3 M3 4 5 7': 4, 'R b2 m3 5 #5 7': 4, 'R 2 b5 5 b7 7': 4})
+  76 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 5, 'R b2 2 M3 #5 6': 5, 'R M3 4 #5 6 b7': 5, 'R m3 M3 4 5 7': 4, 'R b2 m3 5 #5 7': 4, 'R 2 b5 5 b7 7': 4})
+  76 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 5, 'R b2 2 M3 #5 6': 5, 'R M3 4 #5 6 b7': 5, 'R m3 M3 4 5 7': 5, 'R b2 m3 5 #5 7': 4, 'R 2 b5 5 b7 7': 4})
+  76 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 5, 'R b2 2 M3 #5 6': 5, 'R M3 4 #5 6 b7': 5, 'R m3 M3 4 5 7': 5, 'R b2 m3 5 #5 7': 5, 'R 2 b5 5 b7 7': 4})
+  76 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 5, 'R b2 2 M3 #5 6': 5, 'R M3 4 #5 6 b7': 5, 'R m3 M3 4 5 7': 5, 'R b2 m3 5 #5 7': 5, 'R 2 b5 5 b7 7': 5})
  162 New1  Kord    5 -        9 V 1  1  3  21   60   60    0    5  1  10 0 0  0  0  0  0  162 162   48.00   42.37   96.00   28.50   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  76 chords add2uMap           return already counted ikey=R b2 M3 4 b5 #5   kc=Counter({'R b2 M3 4 b5 #5': 6, 'R b2 2 M3 #5 6': 5, 'R M3 4 #5 6 b7': 5, 'R m3 M3 4 5 7': 5, 'R b2 m3 5 #5 7': 5, 'R 2 b5 5 b7 7': 5})
+  76 chords add2uMap           return already counted ikey=R b2 2 M3 #5 6    kc=Counter({'R b2 M3 4 b5 #5': 6, 'R b2 2 M3 #5 6': 6, 'R M3 4 #5 6 b7': 5, 'R m3 M3 4 5 7': 5, 'R b2 m3 5 #5 7': 5, 'R 2 b5 5 b7 7': 5})
+  76 chords add2uMap           return already counted ikey=R M3 4 #5 6 b7    kc=Counter({'R b2 M3 4 b5 #5': 6, 'R b2 2 M3 #5 6': 6, 'R M3 4 #5 6 b7': 6, 'R m3 M3 4 5 7': 5, 'R b2 m3 5 #5 7': 5, 'R 2 b5 5 b7 7': 5})
+  76 chords add2uMap           return already counted ikey=R m3 M3 4 5 7     kc=Counter({'R b2 M3 4 b5 #5': 6, 'R b2 2 M3 #5 6': 6, 'R M3 4 #5 6 b7': 6, 'R m3 M3 4 5 7': 6, 'R b2 m3 5 #5 7': 5, 'R 2 b5 5 b7 7': 5})
+  76 chords add2uMap           return already counted ikey=R b2 m3 5 #5 7    kc=Counter({'R b2 M3 4 b5 #5': 6, 'R b2 2 M3 #5 6': 6, 'R M3 4 #5 6 b7': 6, 'R m3 M3 4 5 7': 6, 'R b2 m3 5 #5 7': 6, 'R 2 b5 5 b7 7': 5})
+  76 chords add2uMap           return already counted ikey=R 2 b5 5 b7 7     kc=Counter({'R b2 M3 4 b5 #5': 6, 'R b2 2 M3 #5 6': 6, 'R M3 4 #5 6 b7': 6, 'R m3 M3 4 5 7': 6, 'R b2 m3 5 #5 7': 6, 'R 2 b5 5 b7 7': 6})
  163 New1  Kord    6 -        9 V 1  1  3  21   60   60    0    6  1  10 0 0  0  0  0  0  163 163   48.00   13.87   96.00   28.50   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  164 New1  Colm   22    0.000 3 V 1  1  3  22   60   60    0    6  1  10 0 0  0  0  0  0  164 164  144.00   85.12   96.00  171.00            [ 52  52  13 225]1.000 1.000 1.000 C C   48   85 Group(order=3) None
- 165 New1  Kord    7 -        9 V 1  1  3  22   60   60    0    7  1  10 0 0  0  0  0  0  165 165  144.00  156.37   96.00   28.50  12   6  2 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
- 166 New1  Kord    8 -        9 V 1  1  3  22   60   60    0    8  1  10 0 0  0  0  0  0  166 166  144.00  127.87   96.00   28.50  12   6  2 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
- 167 New1  Kord    9 -        9 V 1  1  3  22   60   60    0    9  1  10 0 0  0  0  0  0  167 167  144.00   99.37   96.00   28.50  12   6  2 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+ 165 New1  Kord    7 M        9 V 1  1  3  22   60   60    0    7  1  10 0 0  0  0  0  0  165 165  144.00  156.37   96.00   28.50  12   6  2 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+ 166 New1  Kord    8 #9       9 V 1  1  3  22   60   60    0    8  1  10 0 0  0  0  0  0  166 166  144.00  127.87   96.00   28.50  12   6  2 [ 31 180 255 195][  1   6   8 195] C C    48    14 34.95 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+ 167 New1  Kord    9 /G       9 V 1  1  3  22   60   60    0    9  1  10 0 0  0  0  0  0  167 167  144.00   99.37   96.00   28.50  12   6  2 [ 31 180 255 195][  1   6   8 195] C C    48    14 34.95 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  168 New1  Kord   10 -        9 V 1  1  3  22   60   60    0   10  1  10 0 0  0  0  0  0  168 168  144.00   70.87   96.00   28.50  12   6  2 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  169 New1  Kord   11 -        9 V 1  1  3  22   60   60    0   11  1  10 0 0  0  0  0  0  169 169  144.00   42.37   96.00   28.50  12   6  2 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  170 New1  Kord   12 -        9 V 1  1  3  22   60   60    0   12  1  10 0 0  0  0  0  0  170 170  144.00   13.87   96.00   28.50  12   6  2 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
@@ -686,15 +718,15 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  226 New1  Kord   60 -        9 V 1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226  912.00   13.87   96.00   28.50  60  54 10 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1045 tabs  createTniks        J1[1  1  3  10    6    6    0    6  1  10 0 0  0  0  0  0  226 226] New1
-1045 tabs  createTniks        J2[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] New1
-1045 tabs  createTniks        LE[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] New1
-1045 tabs  createTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  226 226] New1
+1041 tabs  createTniks        J1[1  1  3  10    6    6    0    6  1  10 0 0  0  0  0  0  226 226] New1
+1041 tabs  createTniks        J2[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] New1
+1041 tabs  createTniks        LE[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] New1
+1041 tabs  createTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  226 226] New1
  227 New1  HCrs    1    0.000 10 V 1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227 227   48.00  355.21   96.00   29.00  60  54 10 [ 27 226 170 195]1.000 1.000 1.000 C C   48   14 Group(order=10) None
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- 519 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-  52 kysgs dumpData           BGN
+ 515 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+  51 kysgs dumpData           BGN
         Flats         N         Shrps        
  -  -  -  -  -  -  -     +  +  +  +  +  +  +
 [7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 ]
@@ -718,11 +750,11 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
 +6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ F  B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ F ]
 +7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ F  C ] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ F  F♯ G♯ A♯ C ]
-  55 kysgs dumpData           END
- 115 kysgs dumpNic            []
- 116 kysgs dumpNic            []
- 117 kysgs dumpNic            [None,None,None,None,None,None,None]
- 118 kysgs dumpNic            [None,None,None,None,None,None,None]
+  54 kysgs dumpData           END
+ 114 kysgs dumpNic            [6:G♭:1,5:F :1,1:D♭:1,8:A♭:3,4:E :1,0:C :2,3:E♭:1,b:B :1,7:G :1]
+ 115 kysgs dumpNic            [6:F♯:1,5:F :1,1:C♯:1,8:G♯:3,4:E :1,0:C :2,3:D♯:1,b:B :1,7:G :1]
+ 116 kysgs dumpNic            [None,3:E♭:1,8:A♭:3,1:D♭:1,6:G♭:1,b:B :1,4:E :1]
+ 117 kysgs dumpNic            [6:G♭:1,1:D♭:1,8:A♭:3,3:E♭:1,None,5:F :1,0:C :2]
   13 notes dumpData           BGN D♭ D♮ D♯
   25 notes dumpTestA          BGN
      [  0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20  ]
@@ -787,7 +819,7 @@ I  F  S  IV mM dA
 a [B♭ A♯ b7 m7 A6]
 b [B  B  7  M7 d8]
   18 notes dumpData           END D♭ D♮ D♯
-1646 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels New1
+1642 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels New1
    2p2   11
    2l2   11
    6s6   111111
@@ -809,8 +841,8 @@ b [B  B  7  M7 d8]
 1
 1111111111
 1
- 537 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
- 376 tabs  _initTniks          0 NTRL B♯ 0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [B♯ D  E  E♯ G  A  B ]
+ 533 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 372 tabs  _initTniks         +4 SHRP E  4 [F♯ C♯ G♯ D♯ A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯]
   78 tests test1              tobj.ntsl()=18
   79 tests test1              [TI:[tnik   i ]] [XYWH:[   X       Y       W       H   ]] [AXY2:[x y AnchX AnchY]] [CWH:[CntWd CntHt]] [LTXA:[tnik   i     X       Y       W       H    x y AnchX AnchY]] [LTXAC:[tnik   i     X       Y       W       H    x y AnchX AnchY CntWd CntHt]] [ADS:[Ascnt Dscnt As+Ds]] [CVA:[v a]] [LDS:[FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName]] [LLBL:[tnik   i     X       Y       W       H    x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName]]
 ['tnik', '  i ', '   X   ', '   Y   ', '   W   ', '   H   ', 'x', 'y', 'AnchX', 'AnchY', 'CntWd', 'CntHt', 'Ascnt', 'Dscnt', 'As+Ds', 'v', 'a', 'FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B', 'I', 'S', 'M', 'W', 'w', 'FontName']
@@ -836,21 +868,21 @@ tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscn
   71 tests test0              31416
   72 tests test0              314159
   75 tests test0              END test0 a=0.314159265359 n=5 q=0
-2437 tabs  regSnap              1   0 INIT     init
- 279 tabs  _reinit            [1 1 1  1 6]   6   0  1] END
+2432 tabs  regSnap              3   0 INIT     init
+ 275 tabs  _reinit            [1 1 1  1 6]   6   0  1] END
 ###   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ######   Init   ###
- 194 tabs  __init__           END <class '__main__.Tabs'>
-2578 tabs  <module>           str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': [], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
-2578 tabs  <module>           tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': [], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
-2579 tabs  <module>           Call pyglet.app.run()
-1160 tabs  resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
-1160 tabs  resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
-1160 tabs  resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] Upd.1
-1160 tabs  resizeTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] Upd.1
+ 190 tabs  __init__           END <class '__main__.Tabs'>
+2573 tabs  <module>           str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': [], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
+2573 tabs  <module>           tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': [], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
+2574 tabs  <module>           Call pyglet.app.run()
+1156 tabs  resizeTniks        J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
+1156 tabs  resizeTniks        J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] Upd.1
+1156 tabs  resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] Upd.1
+1156 tabs  resizeTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] Upd.1
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
    1 Upd.1 Page    1    0.000 0 V 1  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [ 26  13  52 255]1.000 1.000 1.000 C C  480  270 Group(order=0) None
- 933 tabs  geom               y=255.79 d=0.5 dn=1 d*py=135.00 d*ph=270.00 d*h=255.79 dn*ph_n_nr=28.42
+ 929 tabs  geom               y=255.79 d=0.5 dn=1 d*py=135.00 d*ph=270.00 d*h=255.79 dn*ph_n_nr=28.42
    2 Upd.1 Line    1    0.000 1 V 1  1  0   0    0    0    0    0  0   0 0 0  0  0  0  0    2   2  480.00  255.79  960.00  511.58            [ 52   6  52 225]1.000 1.000 0.999 C C  480  255 Group(order=1) None
    3 Upd.1 RowL    1    0.000 4 V 1  1  0   0    0    0    0    0  1   0 0 0  0  0  0  0    3   3  480.00  525.79  960.00   28.42   1   0  1 [  2   1   8 255]1.000 1.000 1.015 C C  480   14 Group(order=4) None
    4 Upd.1 QClm    1 1        5 V 1  1  0   0    0    0    0    0  1   1 0 0  0  0  0  0    4   4   48.00  525.79   96.00   28.42   1   0  1 [  1   8   8 255][ 31 255 255 255] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 1 Lucida Console        
@@ -865,19 +897,19 @@ tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscn
   13 Upd.1 QClm   10 1        5 V 1  1  0   0    0    0    0    0  1  10 0 0  0  0  0  0   13  13  912.00  525.79   96.00   28.42   1   0  1 [ 63  31 255 255][  2   1   8 255] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   14 Upd.1 Sect    1    0.000 2 V 1  1  1   0    0    0    0    0  1  10 0 0  0  0  0  0   14  14  480.00  426.32  960.00  170.53            [ 52  13   6 225]1.000 1.000 0.997 C C  480   85 Group(order=2) None
   15 Upd.1 Colm    1    0.000 3 V 1  1  1   1    0    0    0    0  1  10 0 0  0  0  0  0   15  15   48.00  426.32   96.00  170.53            [ 52  52  13 225]1.000 1.000 0.997 C C   48   85 Group(order=3) None
-  16 Upd.1 Tabl    1 -        6 V 1  1  1   1    1    0    0    0  1  10 0 0  0  0  0  0   16  16   48.00  497.37   96.00   28.42   1   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  17 Upd.1 Tabl    2 -        6 V 1  1  1   1    2    0    0    0  1  10 0 0  0  0  0  0   17  17   48.00  468.95   96.00   28.42   2   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  18 Upd.1 Tabl    3 -        6 V 1  1  1   1    3    0    0    0  1  10 0 0  0  0  0  0   18  18   48.00  440.53   96.00   28.42   3   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  19 Upd.1 Tabl    4 -        6 V 1  1  1   1    4    0    0    0  1  10 0 0  0  0  0  0   19  19   48.00  412.11   96.00   28.42   4   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  20 Upd.1 Tabl    5 -        6 V 1  1  1   1    5    0    0    0  1  10 0 0  0  0  0  0   20  20   48.00  383.68   96.00   28.42   5   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  21 Upd.1 Tabl    6 -        6 V 1  1  1   1    6    0    0    0  1  10 0 0  0  0  0  0   21  21   48.00  355.26   96.00   28.42   6   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  16 Upd.1 Tabl    1 2        6 V 1  1  1   1    1    0    0    0  1  10 0 0  0  0  0  0   16  16   48.00  497.37   96.00   28.42   1   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  17 Upd.1 Tabl    2 6        6 V 1  1  1   1    2    0    0    0  1  10 0 0  0  0  0  0   17  17   48.00  468.95   96.00   28.42   2   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  18 Upd.1 Tabl    3 6        6 V 1  1  1   1    3    0    0    0  1  10 0 0  0  0  0  0   18  18   48.00  440.53   96.00   28.42   3   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  19 Upd.1 Tabl    4 6        6 V 1  1  1   1    4    0    0    0  1  10 0 0  0  0  0  0   19  19   48.00  412.11   96.00   28.42   4   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  20 Upd.1 Tabl    5 7        6 V 1  1  1   1    5    0    0    0  1  10 0 0  0  0  0  0   20  20   48.00  383.68   96.00   28.42   5   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  21 Upd.1 Tabl    6 8        6 V 1  1  1   1    6    0    0    0  1  10 0 0  0  0  0  0   21  21   48.00  355.26   96.00   28.42   6   0  1 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   22 Upd.1 Colm    2    0.000 3 V 1  1  1   2    6    0    0    0  1  10 0 0  0  0  0  0   22  22  144.00  426.32   96.00  170.53            [ 52  52  13 225]1.000 1.000 0.997 C C   48   85 Group(order=3) None
-  23 Upd.1 Tabl    7 -        6 V 1  1  1   2    7    0    0    0  1  10 0 0  0  0  0  0   23  23  144.00  497.37   96.00   28.42  13  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  24 Upd.1 Tabl    8 -        6 V 1  1  1   2    8    0    0    0  1  10 0 0  0  0  0  0   24  24  144.00  468.95   96.00   28.42  14  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  25 Upd.1 Tabl    9 -        6 V 1  1  1   2    9    0    0    0  1  10 0 0  0  0  0  0   25  25  144.00  440.53   96.00   28.42  15  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  26 Upd.1 Tabl   10 -        6 V 1  1  1   2   10    0    0    0  1  10 0 0  0  0  0  0   26  26  144.00  412.11   96.00   28.42  16  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  27 Upd.1 Tabl   11 -        6 V 1  1  1   2   11    0    0    0  1  10 0 0  0  0  0  0   27  27  144.00  383.68   96.00   28.42  17  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  28 Upd.1 Tabl   12 -        6 V 1  1  1   2   12    0    0    0  1  10 0 0  0  0  0  0   28  28  144.00  355.26   96.00   28.42  18  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  23 Upd.1 Tabl    7 4        6 V 1  1  1   2    7    0    0    0  1  10 0 0  0  0  0  0   23  23  144.00  497.37   96.00   28.42  13  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  24 Upd.1 Tabl    8 1        6 V 1  1  1   2    8    0    0    0  1  10 0 0  0  0  0  0   24  24  144.00  468.95   96.00   28.42  14  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  25 Upd.1 Tabl    9 1        6 V 1  1  1   2    9    0    0    0  1  10 0 0  0  0  0  0   25  25  144.00  440.53   96.00   28.42  15  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  26 Upd.1 Tabl   10 1        6 V 1  1  1   2   10    0    0    0  1  10 0 0  0  0  0  0   26  26  144.00  412.11   96.00   28.42  16  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  27 Upd.1 Tabl   11 2        6 V 1  1  1   2   11    0    0    0  1  10 0 0  0  0  0  0   27  27  144.00  383.68   96.00   28.42  17  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  28 Upd.1 Tabl   12 3        6 V 1  1  1   2   12    0    0    0  1  10 0 0  0  0  0  0   28  28  144.00  355.26   96.00   28.42  18  12  3 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   29 Upd.1 Colm    3    0.000 3 V 1  1  1   3   12    0    0    0  1  10 0 0  0  0  0  0   29  29  240.00  426.32   96.00  170.53            [ 52  52  13 225]1.000 1.000 0.997 C C   48   85 Group(order=3) None
   30 Upd.1 Tabl   13 -        6 V 1  1  1   3   13    0    0    0  1  10 0 0  0  0  0  0   30  30  240.00  497.37   96.00   28.42  25  24  5 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   31 Upd.1 Tabl   14 -        6 V 1  1  1   3   14    0    0    0  1  10 0 0  0  0  0  0   31  31  240.00  468.95   96.00   28.42  26  24  5 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
@@ -936,19 +968,19 @@ tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscn
   84 Upd.1 Tabl   60 -        6 V 1  1  1  10   60    0    0    0  1  10 0 0  0  0  0  0   84  84  912.00  355.26   96.00   28.42 114 108 19 [255 176  31 195][  8   6   1 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   85 Upd.1 Sect    2    0.000 2 V 1  1  2  10   60    0    0    0  1  10 0 0  0  0  0  0   85  85  480.00  255.79  960.00  170.53            [ 52  13   6 225]1.000 1.000 0.997 C C  480   85 Group(order=2) None
   86 Upd.1 Colm   11    0.000 3 V 1  1  2  11   60    0    0    0  1  10 0 0  0  0  0  0   86  86   48.00  255.79   96.00  170.53            [ 52  52  13 225]1.000 1.000 0.997 C C   48   85 Group(order=3) None
-  87 Upd.1 Note    1 -        7 V 1  1  2  11   60    1    0    0  1  10 0 0  0  0  0  0   87  87   48.00  326.84   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  88 Upd.1 Note    2 -        7 V 1  1  2  11   60    2    0    0  1  10 0 0  0  0  0  0   88  88   48.00  298.42   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  89 Upd.1 Note    3 -        7 V 1  1  2  11   60    3    0    0  1  10 0 0  0  0  0  0   89  89   48.00  270.00   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  90 Upd.1 Note    4 -        7 V 1  1  2  11   60    4    0    0  1  10 0 0  0  0  0  0   90  90   48.00  241.58   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  91 Upd.1 Note    5 -        7 V 1  1  2  11   60    5    0    0  1  10 0 0  0  0  0  0   91  91   48.00  213.16   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  92 Upd.1 Note    6 -        7 V 1  1  2  11   60    6    0    0  1  10 0 0  0  0  0  0   92  92   48.00  184.74   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  87 Upd.1 Note    1 F♯       7 V 1  1  2  11   60    1    0    0  1  10 0 0  0  0  0  0   87  87   48.00  326.84   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  88 Upd.1 Note    2 E♯       7 V 1  1  2  11   60    2    0    0  1  10 0 0  0  0  0  0   88  88   48.00  298.42   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  89 Upd.1 Note    3 C♯       7 V 1  1  2  11   60    3    0    0  1  10 0 0  0  0  0  0   89  89   48.00  270.00   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  90 Upd.1 Note    4 G♯       7 V 1  1  2  11   60    4    0    0  1  10 0 0  0  0  0  0   90  90   48.00  241.58   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  91 Upd.1 Note    5 E        7 V 1  1  2  11   60    5    0    0  1  10 0 0  0  0  0  0   91  91   48.00  213.16   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  92 Upd.1 Note    6 B♯       7 V 1  1  2  11   60    6    0    0  1  10 0 0  0  0  0  0   92  92   48.00  184.74   96.00   28.42 120 114 20 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
   93 Upd.1 Colm   12    0.000 3 V 1  1  2  12   60    6    0    0  1  10 0 0  0  0  0  0   93  93  144.00  255.79   96.00  170.53            [ 52  52  13 225]1.000 1.000 0.997 C C   48   85 Group(order=3) None
-  94 Upd.1 Note    7 -        7 V 1  1  2  12   60    7    0    0  1  10 0 0  0  0  0  0   94  94  144.00  326.84   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  95 Upd.1 Note    8 -        7 V 1  1  2  12   60    8    0    0  1  10 0 0  0  0  0  0   95  95  144.00  298.42   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  96 Upd.1 Note    9 -        7 V 1  1  2  12   60    9    0    0  1  10 0 0  0  0  0  0   96  96  144.00  270.00   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  97 Upd.1 Note   10 -        7 V 1  1  2  12   60   10    0    0  1  10 0 0  0  0  0  0   97  97  144.00  241.58   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  98 Upd.1 Note   11 -        7 V 1  1  2  12   60   11    0    0  1  10 0 0  0  0  0  0   98  98  144.00  213.16   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
-  99 Upd.1 Note   12 -        7 V 1  1  2  12   60   12    0    0  1  10 0 0  0  0  0  0   99  99  144.00  184.74   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  94 Upd.1 Note    7 G♯       7 V 1  1  2  12   60    7    0    0  1  10 0 0  0  0  0  0   94  94  144.00  326.84   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  95 Upd.1 Note    8 B♯       7 V 1  1  2  12   60    8    0    0  1  10 0 0  0  0  0  0   95  95  144.00  298.42   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  96 Upd.1 Note    9 G♯       7 V 1  1  2  12   60    9    0    0  1  10 0 0  0  0  0  0   96  96  144.00  270.00   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  97 Upd.1 Note   10 D♯       7 V 1  1  2  12   60   10    0    0  1  10 0 0  0  0  0  0   97  97  144.00  241.58   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 30.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  98 Upd.1 Note   11 B        7 V 1  1  2  12   60   11    0    0  1  10 0 0  0  0  0  0   98  98  144.00  213.16   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+  99 Upd.1 Note   12 G        7 V 1  1  2  12   60   12    0    0  1  10 0 0  0  0  0  0   99  99  144.00  184.74   96.00   28.42 126 120 21 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  100 Upd.1 Colm   13    0.000 3 V 1  1  2  13   60   12    0    0  1  10 0 0  0  0  0  0  100 100  240.00  255.79   96.00  170.53            [ 52  52  13 225]1.000 1.000 0.997 C C   48   85 Group(order=3) None
  101 Upd.1 Note   13 -        7 V 1  1  2  13   60   13    0    0  1  10 0 0  0  0  0  0  101 101  240.00  326.84   96.00   28.42 132 126 22 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  102 Upd.1 Note   14 -        7 V 1  1  2  13   60   14    0    0  1  10 0 0  0  0  0  0  102 102  240.00  298.42   96.00   28.42 132 126 22 [ 63 255  63 195][  2   8   2 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
@@ -1014,9 +1046,9 @@ tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscn
  162 Upd.1 Kord    5 -        9 V 1  1  3  21   60   60    0    5  1  10 0 0  0  0  0  0  162 162   48.00   42.63   96.00   28.42 180 174 30 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  163 Upd.1 Kord    6 -        9 V 1  1  3  21   60   60    0    6  1  10 0 0  0  0  0  0  163 163   48.00   14.21   96.00   28.42 180 174 30 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  164 Upd.1 Colm   22    0.000 3 V 1  1  3  22   60   60    0    6  1  10 0 0  0  0  0  0  164 164  144.00   85.26   96.00  170.53            [ 52  52  13 225]1.000 1.000 0.997 C C   48   85 Group(order=3) None
- 165 Upd.1 Kord    7 -        9 V 1  1  3  22   60   60    0    7  1  10 0 0  0  0  0  0  165 165  144.00  156.32   96.00   28.42   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
- 166 Upd.1 Kord    8 -        9 V 1  1  3  22   60   60    0    8  1  10 0 0  0  0  0  0  166 166  144.00  127.89   96.00   28.42   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
- 167 Upd.1 Kord    9 -        9 V 1  1  3  22   60   60    0    9  1  10 0 0  0  0  0  0  167 167  144.00   99.47   96.00   28.42   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+ 165 Upd.1 Kord    7 M        9 V 1  1  3  22   60   60    0    7  1  10 0 0  0  0  0  0  165 165  144.00  156.32   96.00   28.42   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+ 166 Upd.1 Kord    8 #9       9 V 1  1  3  22   60   60    0    8  1  10 0 0  0  0  0  0  166 166  144.00  127.89   96.00   28.42   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 34.95 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
+ 167 Upd.1 Kord    9 /G       9 V 1  1  3  22   60   60    0    9  1  10 0 0  0  0  0  0  167 167  144.00   99.47   96.00   28.42   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 34.95 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  168 Upd.1 Kord   10 -        9 V 1  1  3  22   60   60    0   10  1  10 0 0  0  0  0  0  168 168  144.00   71.05   96.00   28.42   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  169 Upd.1 Kord   11 -        9 V 1  1  3  22   60   60    0   11  1  10 0 0  0  0  0  0  169 169  144.00   42.63   96.00   28.42   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  170 Upd.1 Kord   12 -        9 V 1  1  3  22   60   60    0   12  1  10 0 0  0  0  0  0  170 170  144.00   14.21   96.00   28.42   6   0  1 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
@@ -1078,16 +1110,16 @@ tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscn
  226 Upd.1 Kord   60 -        9 V 1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226  912.00   14.21   96.00   28.42  54  48  9 [ 31 180 255 195][  1   6   8 195] C C    48    14 17.47 29.00 23.00 -6.000 17.00 C,C   22  96 0 0 Lucida Console        
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1184 tabs  resizeTniks        J1[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] Upd.1
-1184 tabs  resizeTniks        J2[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] Upd.1
-1184 tabs  resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227 226] Upd.1
-1184 tabs  resizeTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227 226] Upd.1
-1211 tabs  resizeTnik         H=10 j=10 i=0 .J2[H]=0
+1180 tabs  resizeTniks        J1[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] Upd.1
+1180 tabs  resizeTniks        J2[1  1  3  30   60   60    0   60  1  10 0 0  0  0  0  0  226 226] Upd.1
+1180 tabs  resizeTniks        LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227 226] Upd.1
+1180 tabs  resizeTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227 226] Upd.1
+1207 tabs  resizeTnik         H=10 j=10 i=0 .J2[H]=0
  227 Upd.1 HCrs    1    0.000 10 V 1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227 227   48.00  355.26   96.00   28.42  54  48  9 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- 519 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-  52 kysgs dumpData           BGN
+ 515 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+  51 kysgs dumpData           BGN
         Flats         N         Shrps        
  -  -  -  -  -  -  -     +  +  +  +  +  +  +
 [7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 ]
@@ -1111,11 +1143,11 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
 +6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ F  B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ F ]
 +7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ F  C ] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ F  F♯ G♯ A♯ C ]
-  55 kysgs dumpData           END
- 115 kysgs dumpNic            []
- 116 kysgs dumpNic            []
- 117 kysgs dumpNic            [None,None,None,None,None,None,None]
- 118 kysgs dumpNic            [None,None,None,None,None,None,None]
+  54 kysgs dumpData           END
+ 114 kysgs dumpNic            [6:G♭:1,5:F :1,1:D♭:1,8:A♭:3,4:E :1,0:C :2,3:E♭:1,b:B :1,7:G :1]
+ 115 kysgs dumpNic            [6:F♯:1,5:F :1,1:C♯:1,8:G♯:3,4:E :1,0:C :2,3:D♯:1,b:B :1,7:G :1]
+ 116 kysgs dumpNic            [None,3:E♭:1,8:A♭:3,1:D♭:1,6:G♭:1,b:B :1,4:E :1]
+ 117 kysgs dumpNic            [6:G♭:1,1:D♭:1,8:A♭:3,3:E♭:1,None,5:F :1,0:C :2]
   13 notes dumpData           BGN D♭ D♮ D♯
   25 notes dumpTestA          BGN
      [  0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20  ]
@@ -1180,7 +1212,7 @@ I  F  S  IV mM dA
 a [B♭ A♯ b7 m7 A6]
 b [B  B  7  M7 d8]
   18 notes dumpData           END D♭ D♮ D♯
-1646 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels Upd.1
+1642 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels Upd.1
    1p1   1
    1l1   1
    3s3   111
@@ -1202,366 +1234,50 @@ b [B  B  7  M7 d8]
 1
 1111111111
 1
- 537 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
-2445 tabs  snapshot           BASE_NAME='test' logId='None' snapId='None' typ='INIT' PNG='png'
-2446 tabs  snapshot           .fNameLid='test.1' snapName='test.1.0.INIT.png' on_draw((kwargs)='')
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.0.INIT.png
-2449 tabs  snapshot           snapName='test.1.0.INIT.png' on_draw((kwargs)='')
- 227 tabs  geomFileName       Btest.1.1.3.10.6_CC.png
- 327 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.0.INIT.png')
+ 533 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+2440 tabs  snapshot           BASE_NAME='test' logId='None' snapId='None' typ='INIT' PNG='png'
+2441 tabs  snapshot           .fNameLid='test.3' snapName='test.3.0.INIT.png' on_draw((kwargs)='')
+snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.3.0.INIT.png
+2444 tabs  snapshot           snapName='test.3.0.INIT.png' on_draw((kwargs)='')
+ 223 tabs  geomFileName       Btest.1.1.3.10.6_CC.png
+ 327 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.3.0.INIT.png')
  328 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
- 330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
- 327 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.0.INIT.png')
+ 330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.3.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+ 327 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.3.0.INIT.png')
  328 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
- 330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
-2457 tabs  snapshot           BASE_NAME='test' [1 1 3 10 6]
-2458 tabs  snapshot           snapName0='test.png' on_draw((kwargs)='')
-2459 tabs  snapshot           snapName2='Btest.1.1.3.10.6_CC.png' on_draw((kwargs)='')
+ 330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.3.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
+2452 tabs  snapshot           BASE_NAME='test' [1 1 3 10 6]
+2453 tabs  snapshot           snapName0='test.png' on_draw((kwargs)='')
+2454 tabs  snapshot           snapName2='Btest.1.1.3.10.6_CC.png' on_draw((kwargs)='')
 snapshot snapPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
 snapshot snapPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
-1424 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1424 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.1
+1420 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
+1420 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
+1420 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.3
+1420 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.3
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1440 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1440 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.1
- 551 tabs  on_draw            [1 1 1  1 6]   6   0  1] .snapWhy='init' .snapType='INIT' .snapId=1
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.0.INIT.png')
-  66 evnts on_key_press       BGN <    .kbk=_8      > <.symb=      56> <.symbStr=_8              > <.mods= 0> <.modsStr=                >
- 157 evnts on_key_press       END <    .kbk=_8      > <.symb=      56> <.symbStr=_8              > <.mods= 0> <.modsStr=                >
- 167 evnts on_text            BGN <    .kbk=8       > <.symb=      56> <.symbStr=_8              > <.mods= 0> <.modsStr=                > swapping=0
-1688 tabs  setTab             [1 1 1  1 6]   6   0  1] BGN onTxt text='8' rev=0 old=  5 cc=  5 p=0 l=0 c=0 t=5
-1690 tabs  setTab             [1 1 1  1 6]   6   0  1]     onTxt text='8' data='-' rev=0 old=  5 cc=  5
-1702 tabs  setDTNIK           [1 1 1  1 6]   6   0  1] BGN kk=1    text='8'
-1713 tabs  setData            BGN t=5 text='8' data='------'
-1716 tabs  setData            END t=5 text='8' data='-----8'
-  60 chords getChordName       leni=1 is Not a Chord ikey=R                     v=[0]
-1725 tabs  setNote            [1 1 1  1 6]   6   0  1] BGN     t=5 text='8' notes[5]=-
-1726 tabs  setNote             0 NTRL B♯ 0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [B♯ D  E  E♯ G  A  B ]
-1734 tabs  setNote            [1 1 1  1 6]   6   0  1] END     t=5 text='8' notes[5]=B♯
-1771 tabs  setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=6
-1778 tabs  setChordName       [1 1 1  1 6]   6   0  1] BGN [ 0- 5] name='' chunks=[] chords=<------>6
-1783 tabs  setChordName       [1 1 1  1 6]   6   0  1] END [ 0- 5] name='' chunks=[] chords=<------>6
-1773 tabs  setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=6
-1709 tabs  setDTNIK           [1 1 1  1 6]   6   0  1] END kk=1    text='8' len(imap)=6
-1693 tabs  setTab             [1 1 1  1 6]   6   0  1] END onTxt text='8' data='8' rev=0 old=  5 cc=  5
-1918 tabs  autoMove           [1 1 1  1 6]   6   0  1] BGN onTxt
-1925 tabs  autoMove           [1 1 1  1 6]   6   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-1898 tabs  move               [1 1 1  1 6]   6   0  1] BGN onTxt n=-1
-1905 tabs  _moveTo            [1 1 1  1 6]   6   0  1] BGN plct=[1 1    1 6]
-1915 tabs  _moveTo            [1 1 1  1 5]   5   0  1] END n=-1 i=[1 1 1 1 5] plct=[1 1    1 6] plct2=[1 1    1 5]
-1508 tabs  moveCursor         [1 1 1  1 5]   5   0  1] BGN ss=0 .cc=5
-1211 tabs  resizeTnik         H=10 j=10 i=0 .J2[H]=0
-   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1   48.00  383.68   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
-1512 tabs  moveCursor         [1 1 1  1 5]   5   0  1] END ss=0 .cc=4
-1902 tabs  move               [1 1 1  1 5]   5   0  1] END onTxt n=-1
-1932 tabs  autoMove           [1 1 1  1 5]   5   0  1] END onTxt
-2437 tabs  regSnap              1   1 Txt.8    onTxt
- 175 evnts on_text            END <    .kbk=8       > <.symb=      56> <.symbStr=_8              > <.mods= 0> <.modsStr=                > swapping=0
-2445 tabs  snapshot           BASE_NAME='test' logId='None' snapId='None' typ='Txt.8' PNG='png'
-2446 tabs  snapshot           .fNameLid='test.1' snapName='test.1.1.Txt.8.png' on_draw((kwargs)='')
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.1.Txt.8.png
-2449 tabs  snapshot           snapName='test.1.1.Txt.8.png' on_draw((kwargs)='')
-1424 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1424 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x5  ) (0 1 3  ) 1 (   )  227   0] test.1
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+1436 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
+1436 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.3
+1436 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.3
+1436 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] test.3
+ 547 tabs  on_draw            [1 1 1  1 6]   6   0  1] .snapWhy='init' .snapType='INIT' .snapId=1
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.3.0.INIT.png')
+  64 evnts on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+ 155 evnts on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
+  64 evnts on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+ 155 evnts on_key_press       END <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+  64 evnts on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
- Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1440 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1440 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x5  ) (0 1 3  ) 1 (   )  227   0] test.1
- 551 tabs  on_draw            [1 1 1  1 5]   5   0  1] .snapWhy='onTxt' .snapType='Txt.8' .snapId=2
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.1.Txt.8.png')
- 163 evnts on_key_release         <    .kbk=_8      > <.symb=      56> <.symbStr=_8              > <.mods= 0> <.modsStr=                >
-  66 evnts on_key_press       BGN <    .kbk=_7      > <.symb=      55> <.symbStr=_7              > <.mods= 0> <.modsStr=                >
- 157 evnts on_key_press       END <    .kbk=_7      > <.symb=      55> <.symbStr=_7              > <.mods= 0> <.modsStr=                >
- 167 evnts on_text            BGN <    .kbk=7       > <.symb=      55> <.symbStr=_7              > <.mods= 0> <.modsStr=                > swapping=0
-1688 tabs  setTab             [1 1 1  1 5]   5   0  1] BGN onTxt text='7' rev=0 old=  4 cc=  4 p=0 l=0 c=0 t=4
-1690 tabs  setTab             [1 1 1  1 5]   5   0  1]     onTxt text='7' data='-' rev=0 old=  4 cc=  4
-1702 tabs  setDTNIK           [1 1 1  1 5]   5   0  1] BGN kk=1    text='7'
-1713 tabs  setData            BGN t=4 text='7' data='-----8'
-1716 tabs  setData            END t=4 text='7' data='----78'
-  60 chords getChordName       leni=2 is Not a Chord ikey=R M3                  v=[0 4]
-  60 chords getChordName       leni=2 is Not a Chord ikey=R #5                  v=[0 8]
-1725 tabs  setNote            [1 1 1  1 5]   5   0  1] BGN     t=4 text='7' notes[4]=-
-1726 tabs  setNote             0 NTRL B♯ 0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [B♯ D  E  E♯ G  A  B ]
-1734 tabs  setNote            [1 1 1  1 5]   5   0  1] END     t=4 text='7' notes[4]=E
-1771 tabs  setChord           [1 1 1  1 5]   5   0  1] BGN name='' chunks=[] len(imap)=6
-1778 tabs  setChordName       [1 1 1  1 5]   5   0  1] BGN [ 0- 5] name='' chunks=[] chords=<------>6
-1783 tabs  setChordName       [1 1 1  1 5]   5   0  1] END [ 0- 5] name='' chunks=[] chords=<------>6
-1773 tabs  setChord           [1 1 1  1 5]   5   0  1] END name='' chunks=[] len(imap)=6
-1709 tabs  setDTNIK           [1 1 1  1 5]   5   0  1] END kk=1    text='7' len(imap)=6
-1693 tabs  setTab             [1 1 1  1 5]   5   0  1] END onTxt text='7' data='7' rev=0 old=  4 cc=  4
-1918 tabs  autoMove           [1 1 1  1 5]   5   0  1] BGN onTxt
-1925 tabs  autoMove           [1 1 1  1 5]   5   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-1898 tabs  move               [1 1 1  1 5]   5   0  1] BGN onTxt n=-1
-1905 tabs  _moveTo            [1 1 1  1 5]   5   0  1] BGN plct=[1 1    1 5]
-1915 tabs  _moveTo            [1 1 1  1 4]   4   0  1] END n=-1 i=[1 1 1 1 4] plct=[1 1    1 5] plct2=[1 1    1 4]
-1508 tabs  moveCursor         [1 1 1  1 4]   4   0  1] BGN ss=0 .cc=4
-1211 tabs  resizeTnik         H=10 j=10 i=0 .J2[H]=0
-   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1   48.00  412.11   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
-1512 tabs  moveCursor         [1 1 1  1 4]   4   0  1] END ss=0 .cc=3
-1902 tabs  move               [1 1 1  1 4]   4   0  1] END onTxt n=-1
-1932 tabs  autoMove           [1 1 1  1 4]   4   0  1] END onTxt
-2437 tabs  regSnap              1   2 Txt.7    onTxt
- 175 evnts on_text            END <    .kbk=7       > <.symb=      55> <.symbStr=_7              > <.mods= 0> <.modsStr=                > swapping=0
-2445 tabs  snapshot           BASE_NAME='test' logId='None' snapId='None' typ='Txt.7' PNG='png'
-2446 tabs  snapshot           .fNameLid='test.1' snapName='test.1.2.Txt.7.png' on_draw((kwargs)='')
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.2.Txt.7.png
-2449 tabs  snapshot           snapName='test.1.2.Txt.7.png' on_draw((kwargs)='')
-1424 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1424 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x4  ) (0 1 3  ) 1 (   )  227   0] test.1
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
- Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
- Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1440 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1440 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x4  ) (0 1 3  ) 1 (   )  227   0] test.1
- 551 tabs  on_draw            [1 1 1  1 4]   4   0  1] .snapWhy='onTxt' .snapType='Txt.7' .snapId=3
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.2.Txt.7.png')
- 163 evnts on_key_release         <    .kbk=_7      > <.symb=      55> <.symbStr=_7              > <.mods= 0> <.modsStr=                >
-  66 evnts on_key_press       BGN <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
- 157 evnts on_key_press       END <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
- 167 evnts on_text            BGN <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
-1688 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN onTxt text='6' rev=0 old=  3 cc=  3 p=0 l=0 c=0 t=3
-1690 tabs  setTab             [1 1 1  1 4]   4   0  1]     onTxt text='6' data='-' rev=0 old=  3 cc=  3
-1702 tabs  setDTNIK           [1 1 1  1 4]   4   0  1] BGN kk=1    text='6'
-1713 tabs  setData            BGN t=3 text='6' data='----78'
-1716 tabs  setData            END t=3 text='6' data='---678'
-1725 tabs  setNote            [1 1 1  1 4]   4   0  1] BGN     t=3 text='6' notes[3]=-
-1726 tabs  setNote             0 NTRL B♯ 0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [B♯ D  E  E♯ G  A  B ]
-1734 tabs  setNote            [1 1 1  1 4]   4   0  1] END     t=3 text='6' notes[3]=G♯
-1771 tabs  setChord           [1 1 1  1 4]   4   0  1] BGN name='+' chunks=[+] len(imap)=6
-1778 tabs  setChordName       [1 1 1  1 4]   4   0  1] BGN [ 0- 5] name='+' chunks=[+] chords=<------>6
-1783 tabs  setChordName       [1 1 1  1 4]   4   0  1] END [ 0- 5] name='+' chunks=[+] chords=<+----->6
-1773 tabs  setChord           [1 1 1  1 4]   4   0  1] END name='+' chunks=[+] len(imap)=6
-1709 tabs  setDTNIK           [1 1 1  1 4]   4   0  1] END kk=1    text='6' len(imap)=6
-1693 tabs  setTab             [1 1 1  1 4]   4   0  1] END onTxt text='6' data='6' rev=0 old=  3 cc=  3
-1918 tabs  autoMove           [1 1 1  1 4]   4   0  1] BGN onTxt
-1925 tabs  autoMove           [1 1 1  1 4]   4   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-1898 tabs  move               [1 1 1  1 4]   4   0  1] BGN onTxt n=-1
-1905 tabs  _moveTo            [1 1 1  1 4]   4   0  1] BGN plct=[1 1    1 4]
-1915 tabs  _moveTo            [1 1 1  1 3]   3   0  1] END n=-1 i=[1 1 1 1 3] plct=[1 1    1 4] plct2=[1 1    1 3]
-1508 tabs  moveCursor         [1 1 1  1 3]   3   0  1] BGN ss=0 .cc=3
-1211 tabs  resizeTnik         H=10 j=10 i=0 .J2[H]=0
-   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1   48.00  440.53   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
-1512 tabs  moveCursor         [1 1 1  1 3]   3   0  1] END ss=0 .cc=2
-1902 tabs  move               [1 1 1  1 3]   3   0  1] END onTxt n=-1
-1932 tabs  autoMove           [1 1 1  1 3]   3   0  1] END onTxt
-2437 tabs  regSnap              1   3 Txt.6    onTxt
- 175 evnts on_text            END <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
-2445 tabs  snapshot           BASE_NAME='test' logId='None' snapId='None' typ='Txt.6' PNG='png'
-2446 tabs  snapshot           .fNameLid='test.1' snapName='test.1.3.Txt.6.png' on_draw((kwargs)='')
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.3.Txt.6.png
-2449 tabs  snapshot           snapName='test.1.3.Txt.6.png' on_draw((kwargs)='')
-1424 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1424 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x3  ) (0 1 3  ) 1 (   )  227   0] test.1
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
- Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
- Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1440 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1440 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x3  ) (0 1 3  ) 1 (   )  227   0] test.1
- 551 tabs  on_draw            [1 1 1  1 3]   3   0  1] .snapWhy='onTxt' .snapType='Txt.6' .snapId=4
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.3.Txt.6.png')
- 163 evnts on_key_release         <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
-  66 evnts on_key_press       BGN <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
- 157 evnts on_key_press       END <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
- 167 evnts on_text            BGN <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
-1688 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN onTxt text='6' rev=0 old=  2 cc=  2 p=0 l=0 c=0 t=2
-1690 tabs  setTab             [1 1 1  1 3]   3   0  1]     onTxt text='6' data='-' rev=0 old=  2 cc=  2
-1702 tabs  setDTNIK           [1 1 1  1 3]   3   0  1] BGN kk=1    text='6'
-1713 tabs  setData            BGN t=2 text='6' data='---678'
-1716 tabs  setData            END t=2 text='6' data='--6678'
-1725 tabs  setNote            [1 1 1  1 3]   3   0  1] BGN     t=2 text='6' notes[2]=-
-1726 tabs  setNote             0 NTRL B♯ 0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [B♯ D  E  E♯ G  A  B ]
-1734 tabs  setNote            [1 1 1  1 3]   3   0  1] END     t=2 text='6' notes[2]=C♯
-1771 tabs  setChord           [1 1 1  1 3]   3   0  1] BGN name='mM7/B♯' chunks=[m M 7 /B♯] len(imap)=6
-1778 tabs  setChordName       [1 1 1  1 3]   3   0  1] BGN [ 0- 5] name='mM7/B♯' chunks=[m M 7 /B♯] chords=<+----->6
-1783 tabs  setChordName       [1 1 1  1 3]   3   0  1] END [ 0- 5] name='mM7/B♯' chunks=[m M 7 /B♯] chords=<mM7/B♯-->8
-1773 tabs  setChord           [1 1 1  1 3]   3   0  1] END name='mM7/B♯' chunks=[m M 7 /B♯] len(imap)=6
-1709 tabs  setDTNIK           [1 1 1  1 3]   3   0  1] END kk=1    text='6' len(imap)=6
-1693 tabs  setTab             [1 1 1  1 3]   3   0  1] END onTxt text='6' data='6' rev=0 old=  2 cc=  2
-1918 tabs  autoMove           [1 1 1  1 3]   3   0  1] BGN onTxt
-1925 tabs  autoMove           [1 1 1  1 3]   3   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-1898 tabs  move               [1 1 1  1 3]   3   0  1] BGN onTxt n=-1
-1905 tabs  _moveTo            [1 1 1  1 3]   3   0  1] BGN plct=[1 1    1 3]
-1915 tabs  _moveTo            [1 1 1  1 2]   2   0  1] END n=-1 i=[1 1 1 1 2] plct=[1 1    1 3] plct2=[1 1    1 2]
-1508 tabs  moveCursor         [1 1 1  1 2]   2   0  1] BGN ss=0 .cc=2
-1211 tabs  resizeTnik         H=10 j=10 i=0 .J2[H]=0
-   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1   48.00  468.95   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
-1512 tabs  moveCursor         [1 1 1  1 2]   2   0  1] END ss=0 .cc=1
-1902 tabs  move               [1 1 1  1 2]   2   0  1] END onTxt n=-1
-1932 tabs  autoMove           [1 1 1  1 2]   2   0  1] END onTxt
-2437 tabs  regSnap              1   4 Txt.6    onTxt
- 175 evnts on_text            END <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
- 163 evnts on_key_release         <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
-  66 evnts on_key_press       BGN <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
- 157 evnts on_key_press       END <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
- 167 evnts on_text            BGN <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
-1688 tabs  setTab             [1 1 1  1 2]   2   0  1] BGN onTxt text='6' rev=0 old=  1 cc=  1 p=0 l=0 c=0 t=1
-1690 tabs  setTab             [1 1 1  1 2]   2   0  1]     onTxt text='6' data='-' rev=0 old=  1 cc=  1
-1702 tabs  setDTNIK           [1 1 1  1 2]   2   0  1] BGN kk=1    text='6'
-1713 tabs  setData            BGN t=1 text='6' data='--6678'
-1716 tabs  setData            END t=1 text='6' data='-66678'
-1725 tabs  setNote            [1 1 1  1 2]   2   0  1] BGN     t=1 text='6' notes[1]=-
-1726 tabs  setNote             0 NTRL B♯ 0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [B♯ D  E  E♯ G  A  B ]
-1734 tabs  setNote            [1 1 1  1 2]   2   0  1] END     t=1 text='6' notes[1]=E♯
-1771 tabs  setChord           [1 1 1  1 2]   2   0  1] BGN name='M#9/B♯' chunks=[M #9 /B♯] len(imap)=6
-1778 tabs  setChordName       [1 1 1  1 2]   2   0  1] BGN [ 0- 5] name='M#9/B♯' chunks=[M #9 /B♯] chords=<mM7/B♯-->8
-1783 tabs  setChordName       [1 1 1  1 2]   2   0  1] END [ 0- 5] name='M#9/B♯' chunks=[M #9 /B♯] chords=<M#9/B♯--->9
-1773 tabs  setChord           [1 1 1  1 2]   2   0  1] END name='M#9/B♯' chunks=[M #9 /B♯] len(imap)=6
-1709 tabs  setDTNIK           [1 1 1  1 2]   2   0  1] END kk=1    text='6' len(imap)=6
-1693 tabs  setTab             [1 1 1  1 2]   2   0  1] END onTxt text='6' data='6' rev=0 old=  1 cc=  1
-1918 tabs  autoMove           [1 1 1  1 2]   2   0  1] BGN onTxt
-1925 tabs  autoMove           [1 1 1  1 2]   2   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-1898 tabs  move               [1 1 1  1 2]   2   0  1] BGN onTxt n=-1
-1905 tabs  _moveTo            [1 1 1  1 2]   2   0  1] BGN plct=[1 1    1 2]
-1915 tabs  _moveTo            [1 1 1  1 1]   1   0  1] END n=-1 i=[1 1 1 1 1] plct=[1 1    1 2] plct2=[1 1    1 1]
-1508 tabs  moveCursor         [1 1 1  1 1]   1   0  1] BGN ss=0 .cc=1
-1211 tabs  resizeTnik         H=10 j=10 i=0 .J2[H]=1
-   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1   48.00  497.37   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
-1512 tabs  moveCursor         [1 1 1  1 1]   1   0  1] END ss=0 .cc=0
-1902 tabs  move               [1 1 1  1 1]   1   0  1] END onTxt n=-1
-1932 tabs  autoMove           [1 1 1  1 1]   1   0  1] END onTxt
-2437 tabs  regSnap              1   4 Txt.6    onTxt
- 175 evnts on_text            END <    .kbk=6       > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                > swapping=0
-2445 tabs  snapshot           BASE_NAME='test' logId='None' snapId='None' typ='Txt.6' PNG='png'
-2446 tabs  snapshot           .fNameLid='test.1' snapName='test.1.4.Txt.6.png' on_draw((kwargs)='')
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.4.Txt.6.png
-2449 tabs  snapshot           snapName='test.1.4.Txt.6.png' on_draw((kwargs)='')
-1424 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1424 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x1  ) (0 1 3  ) 1 (   )  227   0] test.1
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
- Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
- Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1440 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1440 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x1x1  ) (0 1 3  ) 1 (   )  227   0] test.1
- 551 tabs  on_draw            [1 1 1  1 1]   1   0  1] .snapWhy='onTxt' .snapType='Txt.6' .snapId=5
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.4.Txt.6.png')
- 163 evnts on_key_release         <    .kbk=_6      > <.symb=      54> <.symbStr=_6              > <.mods= 0> <.modsStr=                >
-  66 evnts on_key_press       BGN <    .kbk=_2      > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                >
- 157 evnts on_key_press       END <    .kbk=_2      > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                >
- 167 evnts on_text            BGN <    .kbk=2       > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                > swapping=0
-1688 tabs  setTab             [1 1 1  1 1]   1   0  1] BGN onTxt text='2' rev=0 old=  0 cc=  0 p=0 l=0 c=0 t=0
-1690 tabs  setTab             [1 1 1  1 1]   1   0  1]     onTxt text='2' data='-' rev=0 old=  0 cc=  0
-1702 tabs  setDTNIK           [1 1 1  1 1]   1   0  1] BGN kk=1    text='2'
-1713 tabs  setData            BGN t=0 text='2' data='-66678'
-1716 tabs  setData            END t=0 text='2' data='266678'
-  77 chords add2uMap           li=6 Adding ikey='R b2 M3 4 b5 #5' v=[0 1 4 5 6 8] to umap
- 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=1
-dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
- 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=1
-  77 chords add2uMap           li=6 Adding ikey='R b2 2 M3 #5 6' v=[0 1 2 4 8 9] to umap
- 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=2
-dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
-dumpUmap 'R b2 2 M3 #5 6'  : (-1 [0 1 2 4 8 9]  )
- 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=2
-  77 chords add2uMap           li=6 Adding ikey='R M3 4 #5 6 b7' v=[0 4 5 8 9 10] to umap
- 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=3
-dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
-dumpUmap 'R M3 4 #5 6 b7'  : (-1 [0 4 5 8 9 10] )
-dumpUmap 'R b2 2 M3 #5 6'  : (-1 [0 1 2 4 8 9]  )
- 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=3
-  77 chords add2uMap           li=6 Adding ikey='R m3 M3 4 5 7' v=[0 3 4 5 7 11] to umap
- 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=4
-dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
-dumpUmap 'R M3 4 #5 6 b7'  : (-1 [0 4 5 8 9 10] )
-dumpUmap 'R b2 2 M3 #5 6'  : (-1 [0 1 2 4 8 9]  )
-dumpUmap 'R m3 M3 4 5 7'   : (-1 [0 3 4 5 7 11] )
- 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=4
-  77 chords add2uMap           li=6 Adding ikey='R b2 m3 5 #5 7' v=[0 1 3 7 8 11] to umap
- 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=5
-dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
-dumpUmap 'R M3 4 #5 6 b7'  : (-1 [0 4 5 8 9 10] )
-dumpUmap 'R b2 m3 5 #5 7'  : (-1 [0 1 3 7 8 11] )
-dumpUmap 'R b2 2 M3 #5 6'  : (-1 [0 1 2 4 8 9]  )
-dumpUmap 'R m3 M3 4 5 7'   : (-1 [0 3 4 5 7 11] )
- 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=5
-  77 chords add2uMap           li=6 Adding ikey='R 2 b5 5 b7 7' v=[0 2 6 7 10 11] to umap
- 214 chords dumpUmap           BGN len(.OMAP)=614 len(.umap)=6
-dumpUmap 'R b2 M3 4 b5 #5' : (-1 [0 1 4 5 6 8]  )
-dumpUmap 'R M3 4 #5 6 b7'  : (-1 [0 4 5 8 9 10] )
-dumpUmap 'R 2 b5 5 b7 7'   : (-1 [0 2 6 7 10 11])
-dumpUmap 'R b2 m3 5 #5 7'  : (-1 [0 1 3 7 8 11] )
-dumpUmap 'R b2 2 M3 #5 6'  : (-1 [0 1 2 4 8 9]  )
-dumpUmap 'R m3 M3 4 5 7'   : (-1 [0 3 4 5 7 11] )
- 220 chords dumpUmap           END len(.OMAP)=614 len(.umap)=6
-1725 tabs  setNote            [1 1 1  1 1]   1   0  1] BGN     t=0 text='2' notes[0]=-
-1726 tabs  setNote             0 NTRL B♯ 0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [B♯ D  E  E♯ G  A  B ]
-1734 tabs  setNote            [1 1 1  1 1]   1   0  1] END     t=0 text='2' notes[0]=F♯
-1771 tabs  setChord           [1 1 1  1 1]   1   0  1] BGN name='' chunks=[] len(imap)=6
-1778 tabs  setChordName       [1 1 1  1 1]   1   0  1] BGN [ 0- 5] name='' chunks=[] chords=<M#9/B♯--->9
-1783 tabs  setChordName       [1 1 1  1 1]   1   0  1] END [ 0- 5] name='' chunks=[] chords=<------>6
-1773 tabs  setChord           [1 1 1  1 1]   1   0  1] END name='' chunks=[] len(imap)=6
-1709 tabs  setDTNIK           [1 1 1  1 1]   1   0  1] END kk=1    text='2' len(imap)=6
-1693 tabs  setTab             [1 1 1  1 1]   1   0  1] END onTxt text='2' data='2' rev=0 old=  0 cc=  0
-1918 tabs  autoMove           [1 1 1  1 1]   1   0  1] BGN onTxt
-1925 tabs  autoMove           [1 1 1  1 1]   1   0  1]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-1898 tabs  move               [1 1 1  1 1]   1   0  1] BGN onTxt n=11
-1905 tabs  _moveTo            [1 1 1  1 1]   1   0  1] BGN plct=[1 1    1 1]
-1915 tabs  _moveTo            [1 1 1  2 6]  12   6  2] END n=11 i=[1 1 1 2 6] plct=[1 1    1 1] plct2=[1 1    2 12]
-1508 tabs  moveCursor         [1 1 1  2 6]  12   6  2] BGN ss=0 .cc=0
-1211 tabs  resizeTnik         H=10 j=10 i=0 .J2[H]=0
-   1 onTxt HCrs    1    0.000 10 V 0  0  0   0    0    0    0    0  0   0 1 0  0  0  0  0    1   1  144.00  355.26   96.00   28.42   1   0  1 [ 27 226 170 195]1.000 1.000 0.980 C C   48   14 Group(order=10) None
-1512 tabs  moveCursor         [1 1 1  2 6]  12   6  2] END ss=0 .cc=11
-1902 tabs  move               [1 1 1  2 6]  12   6  2] END onTxt n=11
-1932 tabs  autoMove           [1 1 1  2 6]  12   6  2] END onTxt
-2437 tabs  regSnap              1   5 Txt.2    onTxt
- 175 evnts on_text            END <    .kbk=2       > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                > swapping=0
-2445 tabs  snapshot           BASE_NAME='test' logId='None' snapId='None' typ='Txt.2' PNG='png'
-2446 tabs  snapshot           .fNameLid='test.1' snapName='test.1.5.Txt.2.png' on_draw((kwargs)='')
-snapshot C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.1.5.Txt.2.png
-2449 tabs  snapshot           snapName='test.1.5.Txt.2.png' on_draw((kwargs)='')
-1424 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1424 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1424 tabs  dumpTnikCsvs       BGN[( 960x540 )( 1x1x10x6 )( 1x1x2x6  ) (0 1 3  ) 1 (   )  227   0] test.1
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
- Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
- Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1440 tabs  dumpTnikCsvs       J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] test.1
-1440 tabs  dumpTnikCsvs       LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] test.1
-1440 tabs  dumpTnikCsvs       END[( 960x540 )( 1x1x10x6 )( 1x1x2x6  ) (0 1 3  ) 1 (   )  227   0] test.1
- 551 tabs  on_draw            [1 1 1  2 6]  12   6  2] .snapWhy='onTxt' .snapType='Txt.2' .snapId=6
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.5.Txt.2.png')
- 163 evnts on_key_release         <    .kbk=_2      > <.symb=      50> <.symbStr=_2              > <.mods= 0> <.modsStr=                >
-  66 evnts on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
- 157 evnts on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
-  66 evnts on_key_press       BGN <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
- Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
-2482 tabs  quit               BGN @ Q Error=0 save=1 .quitting=0
+2477 tabs  quit               BGN @^Q Error=0 save=0 .quitting=0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
-  73 utl   dumpStack          10 tabs       2483 quit                 .log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())      ;          .log(utl.QUIT, p=0, f=2)
-  73 utl   dumpStack           9 evnts       100 on_key_press         elif kbk == 'Q' and isCtl(   mods):    retv = tobj.quit(   '@ Q', error=0, save=1)
-  73 utl   dumpStack           8 tabs       1803 on_key_press         evnts.on_key_press(, symb, mods, dbg=1)
+  73 utl   dumpStack          10 tabs       2478 quit                 .log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())      ;          .log(utl.QUIT, p=0, f=2)
+  73 utl   dumpStack           9 evnts        97 on_key_press         elif kbk == 'Q' and isCtlSft(mods):    retv = tobj.quit(   '@^Q', error=0, save=0)
+  73 utl   dumpStack           8 tabs       1799 on_key_press         evnts.on_key_press(, symb, mods, dbg=dbg)
   73 utl   dumpStack           7 event       387 dispatch_event       if getattr(, event_type)(*args):
   73 utl   dumpStack           6 __init__    668 dispatch_event       super().dispatch_event(*args)
   73 utl   dumpStack           5 __init__    780 _event_key           .dispatch_event(ev, symbol, modifiers)
@@ -1569,15 +1285,15 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.5.Tx
   73 utl   dumpStack           3 win32        89 step                 _user32.DispatchMessageW(ctypes.byref(msg))
   73 utl   dumpStack           2 base        164 run                  platform_event_loop.step(timeout)
   73 utl   dumpStack           1 __init__     76 run                  event_loop.run(interval)
-  73 utl   dumpStack           0 tabs       2580 <module>             pyglet.app.run()
+  73 utl   dumpStack           0 tabs       2575 <module>             pyglet.app.run()
   74 utl   dumpStack          MAX_STACK_DEPTH= 0
 ###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-2485 tabs  quit               J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @ Q
-2485 tabs  quit               J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @ Q
-2485 tabs  quit               LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] @ Q
-2485 tabs  quit               END[( 960x540 )( 1x1x10x6 )( 1x1x2x6  ) (0 1 3  ) 1 (   )  227   0] @ Q
+2480 tabs  quit               J1[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
+2480 tabs  quit               J2[0  0  0   0    0    0    0    0  0   0 0 0  0  0  0  0    0   0] @^Q
+2480 tabs  quit               LE[1  1  3  30   60   60    0   60  1  10 1 0  0  0  0  0  227   0] @^Q
+2480 tabs  quit               END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 1 (   )  227   0] @^Q
   73 utl   dumpStack           8 utl          21 <module>             MAX_STACK_FRAME       = inspect.stack()
   73 utl   dumpStack           7 <frozen importlib   241 _call_with_frames_removed 
   73 utl   dumpStack           6 <frozen importlib   883 exec_module          
@@ -1588,39 +1304,39 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.1.5.Tx
   73 utl   dumpStack           1 <frozen importlib  1078 _handle_fromlist     
   73 utl   dumpStack           0 tabs         16 <module>             from   tpkg            import utl    as utl
   74 utl   dumpStack          MAX_STACK_DEPTH= 0
- 511 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 519 tabs  dumpStruct         [1 1 1  2 6]  12   6  2] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x2x6  )
- 231 tabs  dumpArgs           [a]      .AUTO_SAVE=0
- 232 tabs  dumpArgs           [A]         .VARROW=1
- 233 tabs  dumpArgs           [b]        .FRT_BRD=0
- 234 tabs  dumpArgs           [B]            .BGC=0
- 235 tabs  dumpArgs           [c]            .CAT=0
- 236 tabs  dumpArgs           [C]      .CHECKERED=0
- 237 tabs  dumpArgs           [d]       .DBG_TABT=0
- 238 tabs  dumpArgs           [e]      .EVENT_LOG=1
- 239 tabs  dumpArgs           [f]      .FILE_NAME='test'
- 240 tabs  dumpArgs           [F]      .FULL_SCRN=0
- 241 tabs  dumpArgs           [g]        .ORD_GRP=1
- 242 tabs  dumpArgs           [G]       .GEN_DATA=0
- 243 tabs  dumpArgs           [i]               i=[1 1 1 2 6]
- 244 tabs  dumpArgs           [J]      .DSP_J_LEV=4
- 245 tabs  dumpArgs           [l]       .LONG_TXT=1
- 246 tabs  dumpArgs           [L]             .LL=1
- 247 tabs  dumpArgs           [M]      .MULTILINE=1
- 248 tabs  dumpArgs           [n]               n=[1 1 3 10 6]
- 249 tabs  dumpArgs           [o]           .OIDS=0
- 250 tabs  dumpArgs           [p]          .SNAPS=1
- 251 tabs  dumpArgs           [R]         .RESIZE=1
- 252 tabs  dumpArgs           [s]        .SPRITES=1
- 253 tabs  dumpArgs           [S]             .SS=[0 1 3]
- 254 tabs  dumpArgs           [t]           .TEST=1
- 255 tabs  dumpArgs           [u]         .SUBPIX=1
- 256 tabs  dumpArgs           [v]           .VRBY=0
- 257 tabs  dumpArgs           [V]          .VIEWS=0
- 258 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
- 259 tabs  dumpArgs           [x]           .EXIT=0
- 260 tabs  dumpArgs           [Z]             .ZZ=[]
-  52 kysgs dumpData           BGN
+ 507 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 515 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] BGN ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 227 tabs  dumpArgs           [a]      .AUTO_SAVE=0
+ 228 tabs  dumpArgs           [A]         .VARROW=1
+ 229 tabs  dumpArgs           [b]        .FRT_BRD=0
+ 230 tabs  dumpArgs           [B]            .BGC=0
+ 231 tabs  dumpArgs           [c]            .CAT=0
+ 232 tabs  dumpArgs           [C]      .CHECKERED=0
+ 233 tabs  dumpArgs           [d]       .DBG_TABT=0
+ 234 tabs  dumpArgs           [e]      .EVENT_LOG=1
+ 235 tabs  dumpArgs           [f]      .FILE_NAME='test'
+ 236 tabs  dumpArgs           [F]      .FULL_SCRN=0
+ 237 tabs  dumpArgs           [g]        .ORD_GRP=1
+ 238 tabs  dumpArgs           [G]       .GEN_DATA=0
+ 239 tabs  dumpArgs           [i]               i=[1 1 1 1 6]
+ 240 tabs  dumpArgs           [J]      .DSP_J_LEV=4
+ 241 tabs  dumpArgs           [l]       .LONG_TXT=1
+ 242 tabs  dumpArgs           [L]             .LL=1
+ 243 tabs  dumpArgs           [M]      .MULTILINE=1
+ 244 tabs  dumpArgs           [n]               n=[1 1 3 10 6]
+ 245 tabs  dumpArgs           [o]           .OIDS=0
+ 246 tabs  dumpArgs           [p]          .SNAPS=1
+ 247 tabs  dumpArgs           [R]         .RESIZE=1
+ 248 tabs  dumpArgs           [s]        .SPRITES=1
+ 249 tabs  dumpArgs           [S]             .SS=[0 1 3]
+ 250 tabs  dumpArgs           [t]           .TEST=1
+ 251 tabs  dumpArgs           [u]         .SUBPIX=1
+ 252 tabs  dumpArgs           [v]           .VRBY=0
+ 253 tabs  dumpArgs           [V]          .VIEWS=0
+ 254 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
+ 255 tabs  dumpArgs           [x]           .EXIT=0
+ 256 tabs  dumpArgs           [Z]             .ZZ=[]
+  51 kysgs dumpData           BGN
         Flats         N         Shrps        
  -  -  -  -  -  -  -     +  +  +  +  +  +  +
 [7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 ]
@@ -1644,11 +1360,11 @@ KS Type N  I  Flats/Shrps Naturals   F/S/N Indices   Ionian Indices  Ionian Note
 +5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
 +6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ F  B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ F ]
 +7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ F  C ] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ F  F♯ G♯ A♯ C ]
-  55 kysgs dumpData           END
- 115 kysgs dumpNic            [0:C :1,4:E :1,8:A♭:1,1:D♭:1,5:F :1,6:G♭:1]
- 116 kysgs dumpNic            [0:C :1,4:E :1,8:G♯:1,1:C♯:1,5:F :1,6:F♯:1]
- 117 kysgs dumpNic            [None,None,8:A♭:1,1:D♭:1,6:G♭:1,None,4:E :1]
- 118 kysgs dumpNic            [6:G♭:1,1:D♭:1,8:A♭:1,None,None,5:F :1,0:C :1]
+  54 kysgs dumpData           END
+ 114 kysgs dumpNic            [6:G♭:1,5:F :1,1:D♭:1,8:A♭:3,4:E :1,0:C :2,3:E♭:1,b:B :1,7:G :1]
+ 115 kysgs dumpNic            [6:F♯:1,5:F :1,1:C♯:1,8:G♯:3,4:E :1,0:C :2,3:D♯:1,b:B :1,7:G :1]
+ 116 kysgs dumpNic            [None,3:E♭:1,8:A♭:3,1:D♭:1,6:G♭:1,b:B :1,4:E :1]
+ 117 kysgs dumpNic            [6:G♭:1,1:D♭:1,8:A♭:3,3:E♭:1,None,5:F :1,0:C :2]
   13 notes dumpData           BGN D♭ D♮ D♯
   25 notes dumpTestA          BGN
      [  0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20  ]
@@ -1713,7 +1429,7 @@ I  F  S  IV mM dA
 a [B♭ A♯ b7 m7 A6]
 b [B  B  7  M7 d8]
   18 notes dumpData           END D♭ D♮ D♯
-1646 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels @ Q
+1642 tabs  dumpFont           4:96dpi 22.105pt 0:Lucida Console 0: 22.105pt = 0.778(pt/pix) * 28.421pixels @^Q
    0t0   
 1
 1
@@ -1725,84 +1441,70 @@ b [B  B  7  M7 d8]
 1
 1111111111
 1
- 511 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
- 537 tabs  dumpStruct         [1 1 1  2 6]  12   6  2] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x2x6  )
- 563 tabs  saveDataFile       @ Q C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat
-C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat
- 670 tabs  transposeData      BGN ( 1x1x10x6 ) dmp=1
- 674 tabs  transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
-266678 ------ ------ ------ ------ ------ ------ ------ ------ ------
+ 507 tabs  ntp                tpb tpp tpl tps tpc=[180 180 180 60 6]
+ 533 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[  180  180 180  60   6] ( 1x1x1x6  )
+ 666 tabs  transposeData      BGN ( 1x1x10x6 ) dmp=1
+ 670 tabs  transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
+266678 411123 ------ ------ ------ ------ ------ ------ ------ ------
 
-2--------- 6--------- 6--------- 6--------- 7--------- 8---------
- 709 tabs  dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
+24-------- 61-------- 61-------- 61-------- 72-------- 83--------
+ 705 tabs  dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
 Page 1
 Colm Line 1    
- 719 tabs  dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
- 686 tabs  transposeData      END ( 1x1x6x10 ) dmp=1
- 567 tabs  saveDataFile       n=[1 1 3 10 6] [1 1 6 10]
-writing 1st page
-writing 1st line
-writing 1st string 2---------
-writing 2nd string 6---------
-writing 3rd string 6---------
-writing 4th string 6---------
-writing 5th string 7---------
-writing 6th string 8---------
- 580 tabs  saveDataFile       n=[1 1 3 10 6] [1 1 10 6] size=74
- 670 tabs  transposeData      BGN ( 1x1x10x6 ) dmp=1
- 674 tabs  transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
-266678 ------ ------ ------ ------ ------ ------ ------ ------ ------
-
-2--------- 6--------- 6--------- 6--------- 7--------- 8---------
- 709 tabs  dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
-Page 1
-Colm Line 1    
- 719 tabs  dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
- 686 tabs  transposeData      END ( 1x1x6x10 ) dmp=1
+ 715 tabs  dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
+ 682 tabs  transposeData      END ( 1x1x6x10 ) dmp=1
  139 chords dumpLimap            0 0-1              []                  [R b2 M3 4  b5 #5] [0 4 8 1 5 6] [B♯ E  G♯ C♯ E♯ F♯]
  139 chords dumpLimap            0 0-1              []                  [R b2 2  M3 #5 6 ] [8 0 4 9 1 2] [B♯ E  G♯ C♯ E♯ F♯]
  139 chords dumpLimap            0 0-1              []                  [R M3 4  #5 6  b7] [4 8 0 5 9 a] [B♯ E  G♯ C♯ E♯ F♯]
  139 chords dumpLimap            0 0-1              []                  [R m3 M3 4  5  7 ] [b 3 7 0 4 5] [B♯ E  G♯ C♯ E♯ F♯]
  139 chords dumpLimap            0 0-1              []                  [R b2 m3 5  #5 7 ] [7 b 3 8 0 1] [B♯ E  G♯ C♯ E♯ F♯]
  139 chords dumpLimap            0 0-1              []                  [R 2 b5 5  b7 7 ]  [6 a 2 7 b 0] [B♯ E  G♯ C♯ E♯ F♯]
+ 139 chords dumpLimap            1 0 0 M#9/G        [M  #9 /G]          [R R m3 M3 5  7 ]  [b 3 7 0 4 0] [G  B  D♯ G♯ B♯ G♯]
+ 139 chords dumpLimap            1 0 1 mMb13/G      [m  M  b  13 /G]    [R m3 5  #5 #5 7 ] [7 b 3 8 0 8] [G  B  D♯ G♯ B♯ G♯]
+ 139 chords dumpLimap            1 0 2 +46/G        [+  4  6  /G]       [R M3 4  4  #5 6 ] [4 8 0 5 9 5] [G  B  D♯ G♯ B♯ G♯]
+ 139 chords dumpLimap            1 0 3 +b26/G       [+  b2 6  /G]       [R b2 M3 #5 6  6 ] [8 0 4 9 1 9] [G  B  D♯ G♯ B♯ G♯]
+ 139 chords dumpLimap            1 0 4 +b24         [+  b2 4 ]          [R b2 b2 M3 4  #5] [0 4 8 1 5 1] [G  B  D♯ G♯ B♯ G♯]
   0 0              RM3#5b24b5                #5RM36b22                 M3#5R46b7                 7m35RM34                  57m3#5Rb2                 b5b7257R     
+  1 0 M#9/G        7m35RM3R     mMb13/G      57m3#5R#5    +46/G        M3#5R464     +b26/G       #5RM36b26    +b24         RM3#5b24b2   
   0 0              048156             804912             48059a             b37045             7b3801             6a27b0
+  1 0 M#9/G        b37040mMb13/G      7b3808+46/G        480595+b26/G       804919+b24         048151
   0 0 048156 804912 48059a b37045 7b3801 6a27b0   RM3#5b24b5   #5RM36b22    M3#5R46b7    7m35RM34     57m3#5Rb2    b5b7257R     
-2493 tabs  quit               END @ Q Error=0 save=1 .quitting=1
+  1 0 b37040 7b3808 480595 804919 048151          7m35RM3R     57m3#5R#5    M3#5R464     #5RM36b26    RM3#5b24b2   
+2488 tabs  quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-2511 tabs  cleanupCsvFile     Flush & Close C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
+2506 tabs  cleanupCsvFile     Flush & Close C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
  319 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  322 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  319 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  322 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
-2516 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
+2511 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
  327 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  328 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
  330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv ###
-2519 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.1.csv
+2514 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.3.csv
  327 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 328 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.1.csv')
- 330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.1.csv ###
+ 328 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.3.csv')
+ 330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.3.csv ###
  319 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  322 utl   getFilePath        fileName =test.cat     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
  319 utl   getFilePath        baseName =Ctest        basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  322 utl   getFilePath        fileName =Ctest.cat    filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Ctest.cat')
  319 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  322 utl   getFilePath        fileName =test._.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test._.cat')
-2496 tabs  quit               Calling close(),2499 tabs  quit               .EXIT=0 returning retv=False
-2502 tabs  quit               returning retv=False
- 157 evnts on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 2> <.modsStr=MOD_CTRL        >
-2581 tabs  <module>           Thats all folks!
+2491 tabs  quit               Calling close(),2494 tabs  quit               .EXIT=0 returning retv=False
+2497 tabs  quit               returning retv=False
+ 155 evnts on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
+2576 tabs  <module>           Thats all folks!
  319 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  322 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
  319 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  322 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
-2549 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.1.txt
+2544 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.3.txt
  327 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
- 328 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.1.txt')
- 330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.1.txt ###
-2551 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
+ 328 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.3.txt')
+ 330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.3.txt ###
+2546 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
  327 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
  328 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
  330 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt ###
-2553 tabs  cleanupOutFiles    Flush & Close Txt File
+2548 tabs  cleanupOutFiles    Flush & Close Txt File

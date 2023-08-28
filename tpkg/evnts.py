@@ -26,7 +26,7 @@ class FilteredEventLogger(pyglet.window.event.WindowEventLogger):
         elif not etype:                        slog(msg, f=f)
 #        else:                                  slog(f'FILTERED {msg}', f=2)
 
-flist    = ['on_move', 'on_mouse_motion'] # 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_motion', 'on_mouse_scroll'
+flist    = ['on_draw', 'on_move', 'on_mouse_motion'] # 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_motion', 'on_mouse_scroll'
 fEvntLog = FilteredEventLogger(flist)
 flog     = fEvntLog.log
 ########################################################################################################################################################################################################

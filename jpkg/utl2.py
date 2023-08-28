@@ -1,6 +1,6 @@
 import glob, inspect, os, pathlib, sys
 
-ROOT_DIR         = "test"
+ROOT_DIR         = "../test"
 UNICODE          = 1
 F                = f'{0x266D :c}' if UNICODE else 'b' # Flat
 N                = f'{0x266E :c}' if UNICODE else '!' # Natural

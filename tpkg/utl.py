@@ -11,7 +11,7 @@ P, L, S, C =  0,  1,  2,  3
 T, N, I, K =  4,  5,  6,  7
 R, Q, H, M =  8,  9, 10, 11
 B, A, D, E = 12, 13, 14, 15
-W, Y, Z               = ' ', ',', ''
+W, X, Y, Z               = ' ', '\n', ',', ''
 TT, NN, II, KK        =  0,  1,  2,  3
 MELODY, CHORD, ARPG   =  0, 1, 2
 LARROW, RARROW, DARROW, UARROW =  0, 1, 0, 1
@@ -78,7 +78,7 @@ def rotateList(a, rev=0):
     else:   tmp0 = a[0]     ;   tmp1 = a[1:]    ;   a = tmp1   ;   a.append(tmp0)
     return a
 ########################################################################################################################################################################################################
-def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0, ft=1):
+def slog(t=Z, p=1, f=1, s=Y, e=X, ff=0, ft=1):
     if ft: t = filtText(t)
     if p:
         sf   = inspect.currentframe().f_back
@@ -99,7 +99,7 @@ def slog(t=Z, p=1, f=1, s=Y, e='\n', ff=0, ft=1):
     print(t, sep=s, end=e, file=TXT_FILE,   flush=bool(ff)) if tf else None
     print(t, sep=s, end=e, file=sys.stdout, flush=bool(ff)) if so else None
 
-def olog(o=None, p=1, f=1, s=Y, e='\n', ff=1):
+def olog(o=None, p=1, f=1, s=Y, e=X, ff=1):
     o = s.join(str(o)) if o is not None else ''
     if p:
         sf   = inspect.currentframe().f_back
