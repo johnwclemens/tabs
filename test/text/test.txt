@@ -68,57 +68,56 @@
  214 utl   parseCmdLine       options=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[]] [p:[]] [s:[]] [t:[]] [x:[0]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
   40 utl   init                    ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': [], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
   41 utl   init                ROOT_DIR='test'
-  23 kysgs init               BGN
-  86 kysgs dmpKSVHdr          KS Type N   I  Key Sigature Ordered   F/S/N Indices   Ionian Indexing  Ionian Note Ordering  Key Sig Table -7
-  86 kysgs dmpKSVHdr          KS,Type,N ,I,Key Sigature Ordered,F/S/N Indices,Ionian Indexing,Ionian Note Ordering,Key Sig Table -7
-  42 kysgs initKSD            t=-1 i=0 j=6 s=-7 (iz2)='[11 4 9 2 7 0 5]' (ms2)='[B E A D G C F]'
-  61 kysgs initKSD             0 NTRL C  0 [B  E  A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-  61 kysgs initKSD            -1 FLAT F  5 [F♭ E  A  D  G  C  F ] [4 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  F♭]
-  61 kysgs initKSD            -2 FLAT B♭ a [F♭ A  A  D  G  C  F ] [4 9 9 2 7 0 5] [a 0 2 3 5 7 9] [B♭ C  D  E♭ F  G  A ]
-  61 kysgs initKSD            -3 FLAT E♭ 3 [F♭ A  D  D  G  C  F ] [4 9 2 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ]
-  61 kysgs initKSD            -4 FLAT A♭ 8 [F♭ A  D  G  G  C  F ] [4 9 2 7 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ]
-  61 kysgs initKSD            -5 FLAT D♭ 1 [F♭ A  D  G  C  C  F ] [4 9 2 7 0 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ]
-  61 kysgs initKSD            -6 FLAT G♭ 6 [F♭ A  D  G  C  F  F ] [4 9 2 7 0 5 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ B  D♭ E♭ F ]
-  61 kysgs initKSD            -7 FLAT B  b [F♭ A  D  G  C  F  B♭] [4 9 2 7 0 5 a] [b 1 3 4 6 8 a] [B  D♭ E♭ E  G♭ A♭ B♭]
-  42 kysgs initKSD            t=1 i=0 j=10 s=7 (iz2)='[5 0 7 2 9 4 11]' (ms2)='[F C G D A E B]'
-  61 kysgs initKSD             0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-  61 kysgs initKSD            +1 SHRP G  7 [F♯ C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  B♯ D  E  F♯]
-  61 kysgs initKSD            +2 SHRP D  2 [F♯ C♯ G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F♯ G  A  B  C♯]
-  61 kysgs initKSD            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-  61 kysgs initKSD            +4 SHRP E  4 [F♯ C♯ G♯ D♯ A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯]
-  61 kysgs initKSD            +5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
-  61 kysgs initKSD            +6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ F  B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ F ]
-  61 kysgs initKSD            +7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ F  C ] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ F  F♯ G♯ A♯ C ]
-  86 kysgs dmpKSVHdr          KS Type N   I  Key Sigature Ordered   F/S/N Indices   Ionian Indexing  Ionian Note Ordering  Key Sig Table +7
-  69 kysgs dumpData           BGN
- 107 kysgs dumpKSH                 ,F,l,a,t,s,,     N      ,S,h,r,p,s,,    
- 110 kysgs dumpKSH             -  -  -  -  -  -  -     +  +  +  +  +  +  +
- 110 kysgs dumpKSH            [7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 ]
- 111 kysgs dumpKSH            [b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 ]
- 112 kysgs dumpKSH            [B  G♭ D♭ A♭ E♭ B♭ F  C  G  D  A  E  B  F♯ C♯]
- 114 kysgs dumpKSH            [B♭ F  C  G  D  A  F♭    F♯ C♯ G♯ D♯ A♯ F  C ]
- 116 kysgs dumpKSH            [a  5  0  7  2  9  4     6  1  8  3  a  5  0 ]
-  86 kysgs dmpKSVHdr          KS Type N   I  Key Sigature Ordered   F/S/N Indices   Ionian Indexing  Ionian Note Ordering  Key Sig Table +15
-  78 kysgs dumpKSV            -7 FLAT B  b [F♭ A  D  G  C  F  B♭] [4 9 2 7 0 5 a] [b 1 3 4 6 8 a] [B  D♭ E♭ E  G♭ A♭ B♭]
-  78 kysgs dumpKSV            -6 FLAT G♭ 6 [F♭ A  D  G  C  F  F ] [4 9 2 7 0 5 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ B  D♭ E♭ F ]
-  78 kysgs dumpKSV            -5 FLAT D♭ 1 [F♭ A  D  G  C  C  F ] [4 9 2 7 0 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ]
-  78 kysgs dumpKSV            -4 FLAT A♭ 8 [F♭ A  D  G  G  C  F ] [4 9 2 7 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ]
-  78 kysgs dumpKSV            -3 FLAT E♭ 3 [F♭ A  D  D  G  C  F ] [4 9 2 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ]
-  78 kysgs dumpKSV            -2 FLAT B♭ a [F♭ A  A  D  G  C  F ] [4 9 9 2 7 0 5] [a 0 2 3 5 7 9] [B♭ C  D  E♭ F  G  A ]
-  78 kysgs dumpKSV            -1 FLAT F  5 [F♭ E  A  D  G  C  F ] [4 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  F♭]
-  78 kysgs dumpKSV             0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-  78 kysgs dumpKSV            +1 SHRP G  7 [F♯ C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  B♯ D  E  F♯]
-  78 kysgs dumpKSV            +2 SHRP D  2 [F♯ C♯ G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F♯ G  A  B  C♯]
-  78 kysgs dumpKSV            +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-  78 kysgs dumpKSV            +4 SHRP E  4 [F♯ C♯ G♯ D♯ A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯]
-  78 kysgs dumpKSV            +5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
-  78 kysgs dumpKSV            +6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ F  B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ F ]
-  78 kysgs dumpKSV            +7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ F  C ] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ F  F♯ G♯ A♯ C ]
-  72 kysgs dumpData           END
-  69 kysgs dumpData           BGN
-  86 kysgs dmpKSVHdr          KS,Type,N ,I,Key Sigature Ordered,F/S/N Indices,Ionian Indexing,Ionian Note Ordering,Key Sig Table +15
-  72 kysgs dumpData           END
-  32 kysgs init               END
+  24 kysgs init               BGN
+KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Indexing  Ionian Note Ordering  Key Sig Table -7
+t=-1 i=0 j=6 s=-7 (iz2)='[11 4 9 2 7 0 5]' (ms2)='[B E A D G C F]'
+ 0 NTRL C  0 [B  E  A  D  G  C  F ] [b 4 9 2 7 0 5] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+-1 FLAT F  5 [B♭ E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  E ]
+-2 FLAT B♭ a [B♭ E♭ A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [B♭ C  D  E♭ F  G  A ]
+-3 FLAT E♭ 3 [B♭ E♭ A♭ D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ]
+-4 FLAT A♭ 8 [B♭ E♭ A♭ D♭ G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ]
+-5 FLAT D♭ 1 [B♭ E♭ A♭ D♭ G♭ C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ]
+-6 FLAT G♭ 6 [B♭ E♭ A♭ D♭ G♭ C♭ F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ C♭ D♭ E♭ F ]
+-7 FLAT C♭ b [B♭ E♭ A♭ D♭ G♭ C♭ F♭] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [C♭ D♭ E♭ F♭ G♭ A♭ B♭]
+t=1 i=0 j=10 s=7 (iz2)='[5 0 7 2 9 4 11]' (ms2)='[F C G D A E B]'
+ 0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
++1 SHRP G  7 [F♯ C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F♯]
++2 SHRP D  2 [F♯ C♯ G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F♯ G  A  B  C♯]
++3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
++4 SHRP E  4 [F♯ C♯ G♯ D♯ A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯]
++5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
++6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ E♯ B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ E♯]
++7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ E♯ B♯] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ E♯ F♯ G♯ A♯ B♯]
+KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Indexing  Ionian Note Ordering  Key Sig Table +7
+  64 kysgs dumpData           BGN
+   F l a t s         N     S h r p s        
+-  -  -  -  -  -  -     +  +  +  +  +  +  +
+[7  6  5  4  3  2  1  0  1  2  3  4  5  6  7 ]
+[b  6  1  8  3  a  5  0  7  2  9  4  b  6  1 ]
+[C♭ G♭ D♭ A♭ E♭ B♭ F  C  G  D  A  E  B  F♯ C♯]
+[F♭ C♭ G♭ D♭ A♭ E♭ B♭    F♯ C♯ G♯ D♯ A♯ E♯ B♯]
+[4  b  6  1  8  3  a     6  1  8  3  a  5  0 ]
+KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Indexing  Ionian Note Ordering  Key Sig Table +15
+-7 FLAT C♭ b [B♭ E♭ A♭ D♭ G♭ C♭ F♭] [a 3 8 1 6 b 4] [b 1 3 4 6 8 a] [C♭ D♭ E♭ F♭ G♭ A♭ B♭]
+-6 FLAT G♭ 6 [B♭ E♭ A♭ D♭ G♭ C♭ F ] [a 3 8 1 6 b 5] [6 8 a b 1 3 5] [G♭ A♭ B♭ C♭ D♭ E♭ F ]
+-5 FLAT D♭ 1 [B♭ E♭ A♭ D♭ G♭ C  F ] [a 3 8 1 6 0 5] [1 3 5 6 8 a 0] [D♭ E♭ F  G♭ A♭ B♭ C ]
+-4 FLAT A♭ 8 [B♭ E♭ A♭ D♭ G  C  F ] [a 3 8 1 7 0 5] [8 a 0 1 3 5 7] [A♭ B♭ C  D♭ E♭ F  G ]
+-3 FLAT E♭ 3 [B♭ E♭ A♭ D  G  C  F ] [a 3 8 2 7 0 5] [3 5 7 8 a 0 2] [E♭ F  G  A♭ B♭ C  D ]
+-2 FLAT B♭ a [B♭ E♭ A  D  G  C  F ] [a 3 9 2 7 0 5] [a 0 2 3 5 7 9] [B♭ C  D  E♭ F  G  A ]
+-1 FLAT F  5 [B♭ E  A  D  G  C  F ] [a 4 9 2 7 0 5] [5 7 9 a 0 2 4] [F  G  A  B♭ C  D  E ]
+ 0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
++1 SHRP G  7 [F♯ C  G  D  A  E  B ] [6 0 7 2 9 4 b] [7 9 b 0 2 4 6] [G  A  B  C  D  E  F♯]
++2 SHRP D  2 [F♯ C♯ G  D  A  E  B ] [6 1 7 2 9 4 b] [2 4 6 7 9 b 1] [D  E  F♯ G  A  B  C♯]
++3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
++4 SHRP E  4 [F♯ C♯ G♯ D♯ A  E  B ] [6 1 8 3 9 4 b] [4 6 8 9 b 1 3] [E  F♯ G♯ A  B  C♯ D♯]
++5 SHRP B  b [F♯ C♯ G♯ D♯ A♯ E  B ] [6 1 8 3 a 4 b] [b 1 3 4 6 8 a] [B  C♯ D♯ E  F♯ G♯ A♯]
++6 SHRP F♯ 6 [F♯ C♯ G♯ D♯ A♯ E♯ B ] [6 1 8 3 a 5 b] [6 8 a b 1 3 5] [F♯ G♯ A♯ B  C♯ D♯ E♯]
++7 SHRP C♯ 1 [F♯ C♯ G♯ D♯ A♯ E♯ B♯] [6 1 8 3 a 5 0] [1 3 5 6 8 a 0] [C♯ D♯ E♯ F♯ G♯ A♯ B♯]
+KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Indexing  Ionian Note Ordering  Key Sig Table +15
+  67 kysgs dumpData           END
+  64 kysgs dumpData           BGN
+  67 kysgs dumpData           END
+  33 kysgs init               END
 C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 2568 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e -p -s -t -x 0 -J 4 -L -S 0 1 3 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17   Diff Span
@@ -208,14 +207,14 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 2543 tabs  dumpGlobals        argv      = +33[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e -p -s -t -x 0 -J 4 -L -S 0 1 3 -f test]
 2544 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 2545 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
- 321 utl   getFilePath        baseName =test.39      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 324 utl   getFilePath        fileName =test.39.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.39.cat')
- 321 utl   getFilePath        baseName =test.39      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 324 utl   getFilePath        fileName =test.39.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.39.csv')
- 321 utl   getFilePath        baseName =test.39      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 324 utl   getFilePath        fileName =test.39.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.39.log')
- 321 utl   getFilePath        baseName =test.39      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 324 utl   getFilePath        fileName =test.39.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.39.txt')
+ 321 utl   getFilePath        baseName =test.60      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 324 utl   getFilePath        fileName =test.60.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.60.cat')
+ 321 utl   getFilePath        baseName =test.60      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 324 utl   getFilePath        fileName =test.60.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.60.csv')
+ 321 utl   getFilePath        baseName =test.60      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 324 utl   getFilePath        fileName =test.60.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.60.log')
+ 321 utl   getFilePath        baseName =test.60      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 324 utl   getFilePath        fileName =test.60.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.60.txt')
  231 tabs  dumpArgs           [a]      .AUTO_SAVE=0
  232 tabs  dumpArgs           [A]         .VARROW=1
  233 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -270,11 +269,11 @@ QClm   10 V 1        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
 Sect    1 V C C   480    85     
 Colm    1 V C C    48    85     
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
-Tabl    2 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
-Tabl    3 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
-Tabl    4 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
-Tabl    5 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
+Tabl    1 V 2        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 2        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        2
+Tabl    2 V 6        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
+Tabl    3 V 6        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
+Tabl    4 V 6        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
+Tabl    5 V 7        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 7        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        7
 Tabl    6 V 8        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 8        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        8
 Colm    2 V C C    48    85     
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
@@ -350,11 +349,11 @@ Tabl    5 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
 Tabl    6 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
 Sect    2 V C C   480    85     
 Colm    1 V C C    48    85     
-Note    1 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
-Note    2 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
-Note    3 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
-Note    4 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
-Note    5 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
+Note    1 V F♯       C C    48    14 30.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None F♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        F♯
+Note    2 V F        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None F        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        F
+Note    3 V C♯       C C    48    14 30.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None C♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        C♯
+Note    4 V G♯       C C    48    14 30.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None G♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        G♯
+Note    5 V E        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None E        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        E
 Note    6 V C        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None C        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        C
 Colm    2 V C C    48    85     
 Note    1 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
@@ -495,12 +494,12 @@ Kord    6 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
 1517 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
 1522 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.21   96.00   28.50 t.text='8' 17.47 29.00 C,C
 HCrs    1 V C C    48    14     
- 134 kysgs dumpNic            [0:C :1]
- 135 kysgs dumpNic            [0:C :1]
- 136 kysgs dumpNic            [None,None,None,None,0:C :1,None,None]
- 137 kysgs dumpNic            [None,None,None,None,None,None,0:C :1]
+[6:G♭:1,5:F :1,1:D♭:1,8:A♭:1,4:E :1,0:C :1]
+[6:F♯:1,5:F :1,1:C♯:1,8:G♯:1,4:E :1,0:C :1]
+[None,None,8:A♭:1,1:D♭:1,6:G♭:1,None,4:E :1]
+[6:G♭:1,1:D♭:1,8:A♭:1,None,None,5:F :1,0:C :1]
 1646 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels New1
- 376 tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+ 376 tabs  _initTniks         +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
 2577 tabs  <module>           str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': [], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
 2577 tabs  <module>           tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': [], 'p': [], 's': [], 't': [], 'x': ['0'], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
 1197 tabs  g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
@@ -515,11 +514,11 @@ QClm    8 V 8        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
 QClm    9 V 9        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 9        [ 31 255 255 255] [  1   8   8 255] 0 0 1 1 1 c Lucida Console        9
 QClm   10 V 1        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 1        [ 63  31 255 255] [  2   1   8 255] 0 0 1 1 1 c Lucida Console        1
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
-Tabl    1 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
-Tabl    2 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
-Tabl    3 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
-Tabl    4 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
-Tabl    5 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
+Tabl    1 V 2        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 2        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        2
+Tabl    2 V 6        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
+Tabl    3 V 6        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
+Tabl    4 V 6        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 6        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        6
+Tabl    5 V 7        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 7        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        7
 Tabl    6 V 8        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 8        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        8
 Tabl    7 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
 Tabl    8 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
@@ -575,11 +574,11 @@ Tabl   57 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
 Tabl   58 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
 Tabl   59 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
 Tabl   60 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [255 176  31 195] [  8   6   1 195] 0 0 1 1 1 c Lucida Console        -
-Note    1 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
-Note    2 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
-Note    3 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
-Note    4 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
-Note    5 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
+Note    1 V F♯       C C    48    14 30.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None F♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        F♯
+Note    2 V F        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None F        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        F
+Note    3 V C♯       C C    48    14 30.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None C♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        C♯
+Note    4 V G♯       C C    48    14 30.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None G♯       [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        G♯
+Note    5 V E        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None E        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        E
 Note    6 V C        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None C        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        C
 Note    7 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
 Note    8 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 63 255  63 195] [  2   8   2 195] 0 0 1 1 1 c Lucida Console        -
@@ -699,18 +698,18 @@ Kord   60 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
 1542 tabs  cursorCol          cc=  5 [0 0 0 5]
 1517 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
 1522 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 29.00 C,C
- 134 kysgs dumpNic            [0:C :1]
- 135 kysgs dumpNic            [0:C :1]
- 136 kysgs dumpNic            [None,None,None,None,0:C :1,None,None]
- 137 kysgs dumpNic            [None,None,None,None,None,None,0:C :1]
+[6:G♭:1,5:F :1,1:D♭:1,8:A♭:1,4:E :1,0:C :1]
+[6:F♯:1,5:F :1,1:C♯:1,8:G♯:1,4:E :1,0:C :1]
+[None,None,8:A♭:1,1:D♭:1,6:G♭:1,None,4:E :1]
+[6:G♭:1,1:D♭:1,8:A♭:1,None,None,5:F :1,0:C :1]
 1646 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels Upd.1
-2448 tabs  snapshot           snapName='test.39.0.INIT.png' on_draw((kwargs)='')
- 329 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.39.0.INIT.png')
+2448 tabs  snapshot           snapName='test.60.0.INIT.png' on_draw((kwargs)='')
+ 329 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.60.0.INIT.png')
  330 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
- 332 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.39.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
- 329 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.39.0.INIT.png')
+ 332 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.60.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+ 329 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.60.0.INIT.png')
  330 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
- 332 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.39.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
+ 332 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.60.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
   64 evnts on_key_press       BGN <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
  155 evnts on_key_press       END <    .kbk=LCTRL   > <.symb=   65507> <.symbStr=LCTRL           > <.mods= 2> <.modsStr=MOD_CTRL        >
   64 evnts on_key_press       BGN <    .kbk=LSHIFT  > <.symb=   65505> <.symbStr=LSHIFT          > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
@@ -752,12 +751,17 @@ Kord   60 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
  258 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
  259 tabs  dumpArgs           [x]           .EXIT=0
  260 tabs  dumpArgs           [Z]             .ZZ=[]
- 134 kysgs dumpNic            [0:C :1]
- 135 kysgs dumpNic            [0:C :1]
- 136 kysgs dumpNic            [None,None,None,None,0:C :1,None,None]
- 137 kysgs dumpNic            [None,None,None,None,None,None,0:C :1]
+[6:G♭:1,5:F :1,1:D♭:1,8:A♭:1,4:E :1,0:C :1]
+[6:F♯:1,5:F :1,1:C♯:1,8:G♯:1,4:E :1,0:C :1]
+[None,None,8:A♭:1,1:D♭:1,6:G♭:1,None,4:E :1]
+[6:G♭:1,1:D♭:1,8:A♭:1,None,None,5:F :1,0:C :1]
 1646 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels @^Q
- 140 chords dumpLimap            0 0-1                           R            0      C            R            0      C           
+ 140 chords dumpLimap            0 0-1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
+ 140 chords dumpLimap            0 0-1                           #5RM36b22    804912 CEG♯C♯FF♯    Rb22M3#56    012489 EFF♯G♯CC♯   
+ 140 chords dumpLimap            0 0-1                           M3#5R46b7    48059a CEG♯C♯FF♯    RM34#56b7    04589a G♯CC♯EFF♯   
+ 140 chords dumpLimap            0 0-1                           7m35RM34     b37045 CEG♯C♯FF♯    Rm3M3457     03457b C♯EFF♯G♯C   
+ 140 chords dumpLimap            0 0-1                           57m3#5Rb2    7b3801 CEG♯C♯FF♯    Rb2m35#57    01378b FF♯G♯CC♯E   
+ 140 chords dumpLimap            0 0-1                           b5b7257R     6a27b0 CEG♯C♯FF♯    R2b55b77     0267ab F♯G♯CC♯EF   
 2492 tabs  quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
  321 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
@@ -768,10 +772,16 @@ Kord   60 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
  329 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  330 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
  332 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv ###
-2518 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.39.csv
+2518 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.60.csv
  329 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 330 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.39.csv')
- 332 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.39.csv ###
+ 330 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.60.csv')
+ 332 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.60.csv ###
+ 321 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 324 utl   getFilePath        fileName =test.cat     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
+ 321 utl   getFilePath        baseName =Ctest        basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 324 utl   getFilePath        fileName =Ctest.cat    filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Ctest.cat')
+ 321 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 324 utl   getFilePath        fileName =test._.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test._.cat')
 2494 tabs  quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
 2495 tabs  quit               Calling close(), 155 evnts on_key_press       END <    .kbk=Q       > <.symb=     113> <.symbStr=Q               > <.mods= 3> <.modsStr=MOD_SHIFT|MOD_CTRL>
@@ -780,10 +790,10 @@ Kord   60 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
  324 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
  321 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  324 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
-2548 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.39.txt
+2548 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.60.txt
  329 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
- 330 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.39.txt')
- 332 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.39.txt ###
+ 330 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.60.txt')
+ 332 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.60.txt ###
 2550 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
  329 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
  330 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')

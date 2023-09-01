@@ -28,10 +28,6 @@ def dumpTestA(csv=0):
     slog(f' F4S{m}{fmtl([ f"{i4n(f)[k]}:{f4s[i4n(f)[k]]}" if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=file)
     slog(f' S2F{m}{fmtl([ f"{i2n(s)[k]}:{s2f[i2n(s)[k]]}" if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
     slog(f' S4F{m}{fmtl([ f"{i4n(s)[k]}:{s4f[i4n(s)[k]]}" if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=file)
-#   slog(f' F2S{m}{fmtl([ f"{i2n[f][k]}:{f2s[i2n[f][k]]}" if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
-#   slog(f' F4S{m}{fmtl([ f"{i4n[f][k]}:{f4s[i4n[f][k]]}" if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=file)
-#   slog(f' S2F{m}{fmtl([ f"{i2n[s][k]}:{s2f[i2n[s][k]]}" if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
-#   slog(f' S4F{m}{fmtl([ f"{i4n[s][k]}:{s4f[i4n[s][k]]}" if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=file)
     slog(f' I2F{m}{fmtl([ f"{k}:{i2f[k]}"                                     for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
     slog(f' I4F{m}{fmtl([ f"{k}:{i4f[k]}"                                     for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
     slog(f' I2S{m}{fmtl([ f"{k}:{i2s[k]}"                                     for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
@@ -105,24 +101,7 @@ class Notes(object): #      1          2       3          4          5          
     FLAT, NTRL, SHRP   =  -1,   0,   1  # -1 ~= 2
     TYPES              = [ 'NTRL', 'SHRP', 'FLAT' ] # 0=NTRL, 1=SHRP, 2=FLAT=-1
     TYPE               = SHRP
-#   I2N, I4N           = [None, I2S, I2F], [None, I4S, I4F]
-#    I2N = I2S if TYPE == SHRP or TYPE == NTRL else I2F
-#    I4N = I4S if TYPE == SHRP or TYPE == NTRL else I4F
     NTONES             = len(V2I)
-
-    # @staticmethod
-    # def OLD__index(n, o=0):         name = n[:len(n)-1] if o else n  ;  return Notes.N2I[name]
-    # @staticmethod
-    # def OLD__nextIndex(i, d=1):     return (i+d) % Notes.NTONES
-    # @staticmethod
-    # def OLD__name(i, t=None, i2n=1):
-    #     j = i % Notes.NTONES
-    #     t = t          if t is not None else Notes.TYPE
-    #     assert            t is not None and        ist(t, int),         f'{t=} {type(t)=}'
-    #     assert Notes.I2N    is not None and  Notes.I2N[t] is not None,  f'{Notes.I2N[t]=}'
-    #     return Notes.I2N[t][j]  if i2n  else Notes.I4N[t][j]
-    # @staticmethod
-    # def OLD__nextName(n, iv, o=0):  i = Notes.index(n, o)  ;  j = Notes.V2I[iv]  ;  k = Notes.nextIndex(i, j)  ;  return Notes.name(k, 0)
 
     @classmethod
     def i2n(cls, t=None): return cls.I2S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I2F
@@ -134,14 +113,13 @@ class Notes(object): #      1          2       3          4          5          
     def nextIndex(cls, i, d=1):     return (i+d) % cls.NTONES
     @classmethod
     def name(cls, i, t=None, n2=1):
-        j = i % cls.NTONES
-#       t =     cls.TYPE  if t is None else t
+        j = i % cls.NTONES   ;   t = 2 if t==-1 else t
+#       t =     cls.TYPE if t is None else t
         t = t        if t is not None else cls.TYPE
-        assert     t      is not None and  ist(t, int),             f'{t=} {type(t)=}'
-#        assert  cls.I2N   is not None and  cls.I2N[t] is not None,  f'{t=} {cls.I2N[t]=}'
-#        return  cls.I2N[t][j]  if i2n else cls.I4N[t][j]
-#        return  cls.I2N[j]  if i2n else cls.I4N[j]
-        return cls.i2n(t)[j] if n2 else cls.i4n(t)[j]
+        assert     t      is not None and  ist(t, int),     f'{t=} {type(t)=}'
+        assert  cls.i2n() is not None and  t in cls.i2n(),  f'{t=} {cls.i2n()=}'
+        assert  cls.i2n()[t] is not None,                   f'{t=} {cls.i2n()[t]=}'
+        return  cls.i2n(t)[j]  if n2  else cls.i4n(t)[j]
     @classmethod
     def nextName(cls, n, iv, o=0):  i = cls.index(n, o)  ;  j = cls.V2I[iv]  ;  k = cls.nextIndex(i, j)  ;  return cls.name(k, 0)
 ########################################################################################################################################################################################################
