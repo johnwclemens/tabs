@@ -1,9 +1,9 @@
 from collections import Counter
 from tpkg        import utl    as utl
 from tpkg        import unic   as unic
-from tpkg        import notes  as notes
+#from tpkg        import notes  as notes
 from tpkg.notes  import Notes  as Notes
-from tpkg        import kysgs  as kysgs
+#from tpkg        import kysgs  as kysgs
 
 F, N, S          = unic.F, unic.N, unic.S
 W, Y, Z          = utl.W, utl.Y, utl.Z
@@ -38,14 +38,16 @@ class Strngs:
 
     def nStrings(self): return len(self.stringNames)
 
-    def fn2ni(self, fn, s, dbg=0):
+    def fn2ni(self, fn, s, dbg=1):
+#        strNum = self.nStrings() - s   # Reverse and one base the string numbering: str[1 ... numStrings] => s[numStrings ... 1]
         strNum = self.nStrings() - s - 1   # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
         k      = self.stringKeys[strNum]
         i      = self.stringMap[k] + fn
+        strNum += 1
         if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} stringMap={fmtm(self.stringMap)}')
         return i
 
-    def tab2nn(self, tab, s, nic=None, dbg=0):
+    def tab2nn(self, tab, s, nic=None, dbg=1, f=-2):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
@@ -53,19 +55,19 @@ class Strngs:
         else:
             nic[j]    += 1
             if nic[j] == 1:
-                if j in (0, 4, 5, 11):
-                    k  = kysgs.KSK
-                    if abs(k) >= 5:
-                        if dbg: slog(f'KSK[{k}]={kysgs.fmtKSK(k)}', f=2)
-                        if   j == 11: notes.updNotes(j, f'C{F}', 'B', Notes.TYPE, 0)
-                        if   j ==  5: notes.updNotes(j, 'F', f'E{S}', Notes.TYPE, 0)
-                        elif j ==  4: notes.updNotes(j, f'F{F}', 'E', Notes.TYPE, 0)
-                        elif j ==  0: notes.updNotes(j, 'C', f'B{S}', Notes.TYPE, 0)
+#                if j in (0, 4, 5, 11):
+#                    k  = kysgs.KSK
+#                    if abs(k) > 5:
+                        # if dbg: slog(f'KSK[{k}]={kysgs.fmtKSK(k)}', f=f)
+                        # if   j == 11: notes.updNotes(j, f'C{F}', 'B', Notes.TYPE, 0)
+                        # if   j ==  5: notes.updNotes(j, 'F', f'E{S}', Notes.TYPE, 0)
+                        # elif j ==  4: notes.updNotes(j, f'F{F}', 'E', Notes.TYPE, 0)
+                        # elif j ==  0: notes.updNotes(j, 'C', f'B{S}', Notes.TYPE, 0)
 #                       if   j == 11: Notes.updNotes(j, 'Cb', 'B',   NotesA.TYPE, 0)
 #                       if   j ==  5: Notes.updNotes(j, 'F',  'E#',  NotesA.TYPE, 0)
 #                       elif j ==  4: Notes.updNotes(j, 'Fb', 'E',   NotesA.TYPE, 0)
 #                       elif j ==  0: Notes.updNotes(j, 'C',  'B#',  NotesA.TYPE, 0)
-                if dbg and nict: nict = f'nic[{j:x}]={nic[j]} '  ;   slog(f'adding {nict}', f=2)
-        name = Notes.name(i, 1, 0)
-        if dbg and nict:        slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=2)
+                if dbg and nict: nict = f'nic[{j:x}]={nic[j]} '  ;   slog(f'adding {nict}', f=f)
+        name = Notes.name(i, 1, 1)
+        if dbg and nict:        slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=f)
         return name

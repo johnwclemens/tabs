@@ -10,6 +10,7 @@ from   tpkg.notes  import Notes as Notes
 NTONES           = Notes.NTONES
 W, Y, Z          = utl.W, utl.Y, utl.Z
 slog, fmtl, fmtm = utl.slog, utl.fmtl, utl.fmtm
+ist              = utl.ist
 FMTN             = (1, 1, 2, 2, 2, 2, 2)
 
 class Chords:
@@ -26,14 +27,14 @@ class Chords:
         self.cat3                 = {}
     @staticmethod
     def checkOmap(o):
-        assert     utl.isi(o,      tuple),  slog(f'ERROR: Invalid type, expected tuple {type(o)=}')
-        assert     utl.isi(o[0],     int),  slog(f'ERROR: Invalid type, expected int   {type(o[0])=}')
-        assert     utl.isi(o[1],    list),  slog(f'ERROR: Invalid type, expected list  {type(o[1])=}')
-        assert     utl.isi(o[2],    list),  slog(f'ERROR: Invalid type, expected list  {type(o[2])=}')
-        for i in  range(len(o[1])):
-            assert utl.isi(o[1][i],  int),  slog(f'ERROR: Invalid type, expected int   {type(o[1][i])=}')
-        for i in  range(len(o[2])):
-            assert utl.isi(o[2][i],  str),  slog(f'ERROR: Invalid type, expected str   {type(o[2][i])=}')
+        assert     ist(o,      tuple),  slog(f'ERROR: Invalid type, expected tuple {type(o)=}')
+        assert     ist(o[0],     int),  slog(f'ERROR: Invalid type, expected int   {type(o[0])=}')
+        assert     ist(o[1],    list),  slog(f'ERROR: Invalid type, expected list  {type(o[1])=}')
+        assert     ist(o[2],    list),  slog(f'ERROR: Invalid type, expected list  {type(o[2])=}')
+        for i in range(len(o[1])):
+            assert ist(o[1][i],  int),  slog(f'ERROR: Invalid type, expected int   {type(o[1][i])=}')
+        for i in range(len(o[2])):
+            assert ist(o[2][i],  str),  slog(f'ERROR: Invalid type, expected str   {type(o[2][i])=}')
         return tuple(o[2])
     ####################################################################################################################################################################################################
     def getChordName(self, data, nic, cn, p, l, c, dbg=0):
@@ -249,7 +250,7 @@ class Chords:
                 keys        = sorted(keys, key=lambda a:   Notes.V2I[a])        ;     keyStr = W.join(keys)
                 keyStrFmt   = "'" + keyStr + "'"       ;   v = omap[keyStr]     ;   rankSet  = set()  ;   rankSet.add(v[0])
                 count += 1  ;  none += 1 if not v[2] else 0   ;   nord += 1 if v[0] == rank else 0
-                v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else "['','','',''])," if utl.isi(v[2], list) else 'None),'
+                v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else "['','','',''])," if ist(v[2], list) else 'None),'
                 slog(                    f'{j:4} {keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=2, ft=0)
                 if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0, e=Z)
                 cycSet      = set()   ;   cycSet.add(tuple(ii))   ;   i2 = list(ii)

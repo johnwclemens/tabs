@@ -87,17 +87,19 @@ def slog(t=Z, p=1, f=1, s=Y, e=X, ff=0, ft=1):
         pl   = 18 if p == 1 else 8
         p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else Z
         t    = f'{p}{sf.f_code.co_name:{pl}} ' + t
-    tf, so = 0, 0
-    if   f == -2: f = LOG_FILE  ;  tf = 1  ;  so = 1
+    tx, so, cs = 0, 0, 0
+    if   f == -3: f = LOG_FILE  ;  cs = 1  ;  so = 1
+    elif f == -2: f = LOG_FILE  ;  tx = 1  ;  so = 1
     elif f == -1: f = sys.stdout
     elif f == 0:  f = TXT_FILE
     elif f == 1:  f = LOG_FILE
-    elif f == 2:  f = LOG_FILE  ;  tf = 1
+    elif f == 2:  f = LOG_FILE  ;  tx = 1
     elif f == 3:  f = CSV_FILE
     elif f == 4:  f = LOG_FILE  ;  so = 1
     print(t, sep=s, end=e, file=f,          flush=bool(ff))
-    print(t, sep=s, end=e, file=TXT_FILE,   flush=bool(ff)) if tf else None
+    print(t, sep=s, end=e, file=TXT_FILE,   flush=bool(ff)) if tx else None
     print(t, sep=s, end=e, file=sys.stdout, flush=bool(ff)) if so else None
+    print(t, sep=s, end=e, file=CSV_FILE,   flush=bool(ff)) if cs else None
 
 def olog(o=None, p=1, f=1, s=Y, e=X, ff=1):
     o = s.join(str(o)) if o is not None else ''
@@ -130,7 +132,7 @@ def ordSfx(n):
     if   m == 3 and n != 13: return 'rd'
     return 'th'
 ########################################################################################################################################################################################################
-def isi(o, t):  return isinstance(o, t)
+def ist(o, t):  return isinstance(o, t)
 ########################################################################################################################################################################################################
 def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str concat?
     if   lst is None:   return  'None'
@@ -147,11 +149,11 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str conca
         else:
             ss = s if i < len(lst)-1 else Z
             u = Z if u is None else u
-            if   isi(l, type):            l =  str(l)
+            if   ist(l, type):            l =  str(l)
             elif l is None:               l =  'None'
-            if   isi(w, lts):             t.append(f'{l:{u}{w[i]}}{ss}')
-            elif isi(l, dtn):             t.append(f'{l:{u}{w   }}{ss}')
-            elif isi(l, dts):             t.append(f'{l:{u}{w   }}{ss}')
+            if   ist(w, lts):             t.append(f'{l:{u}{w[i]}}{ss}')
+            elif ist(l, dtn):             t.append(f'{l:{u}{w   }}{ss}')
+            elif ist(l, dts):             t.append(f'{l:{u}{w   }}{ss}')
             else:                         t.append(f'{l}{ss}')
     return z + d + Z.join(t) + d2
 ########################################################################################################################################################################################################
@@ -173,7 +175,7 @@ def fmtf(a, b):
 ########################################################################################################################################################################################################
 def parseCmdLine(argv, dbg=1, f=0):
     options, key, vals, argc = {}, Z, [], len(argv)
-    if dbg: slog(f'argv={fmtl(argv[1:])}', p=0, f=f)  ;  slog(argv[0], p=0, f=f)
+    if dbg: slog(f'argv={fmtl(argv[1:])}', f=f)  ;  slog(argv[0], f=f)
     for j in range(1, argc):
         arg = argv[j]
         if len(arg) > 2 and arg[0] == '-' and arg[1] == '-':
@@ -181,29 +183,29 @@ def parseCmdLine(argv, dbg=1, f=0):
                 vals = []
                 key = arg[2:]
                 options[key] = vals
-                if dbg: slog(f'{j:2} long    {arg:2} {key} {fmtl(vals)}', f=f, e=W)
+                if dbg: slog(f'{j:2} long    {arg:2} {key} {fmtl(vals)}', p=0, f=f, e=W)
             else:
                 slog(  f'{j:2} ERROR long    {arg:2} {key} {fmtl(vals)}', f=f, e=W)
         elif len(arg) > 1 and arg[0] == '-':
             if arg[1].isalpha() or arg[1] == '?':
-                vals = []
+                vals = [] #  ;   cnt = 0
                 if len(arg) == 2:
-                    key = arg[1:]
-                    if dbg: slog(f'{j:2} short   {arg:2} {key} {fmtl(vals)}', p=0, f=f, e=W)
+                    key = arg[1:] #  ;   p = 1 if not cnt else 0 # p = 1 if not len(vals) else 0
+                    if dbg: slog(f'{j:2} short   {arg:2} {key} {fmtl(vals)}', f=f, e=W)
                     options[key] = vals
                 elif len(arg) > 2:
                     for i in range(1, len(arg)):
                         key = arg[i]
-                        if dbg: slog(f'{j:2} short   {arg:2} {key} {fmtl(vals)}', f=f, e=W)
+                        if dbg: slog(f'{j:2} short   {arg:2} {key} {fmtl(vals)}', p=0, f=f, e=W)
                         options[key] = vals
             elif arg[1].isdigit():
                 vals.append(arg)
                 options[key] = vals
-                if dbg: slog(f'{j:2} neg arg {arg:2} {key} {fmtl(vals)}', f=f, e=W)
+                if dbg: slog(f'{j:2} neg arg {arg:2} {key} {fmtl(vals)}', p=0, f=f, e=W)
             else:
                 vals.append(arg)
                 options[key] = vals
-                if dbg: slog(f'{j:2} ??? arg {arg:2} {key} {fmtl(vals)}', f=f, e=W)
+                if dbg: slog(f'{j:2} ??? arg {arg:2} {key} {fmtl(vals)}', p=0, f=f, e=W)
         else:
             vals.append(arg)
             options[key] = vals

@@ -21,8 +21,8 @@ ls      -l $path
 echo cksum $path/$name*.$ext
 cksum      $path/$name*.$ext
 echo "!! execute the script !!"
-echo python tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2> $path/$name.$ext
-python      tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test 2> $path/$name.$ext
+echo python tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test | iconv -f cp1252 -t UTF-8 &> $path/$name.$ext
+python      tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -L -S 0 -f test | iconv -f cp1252 -t UTF-8 &> $path/$name.$ext
 echo "!! script has returned !!"
 echo ls -l $path
 ls      -l $path
