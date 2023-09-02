@@ -45,6 +45,7 @@ def paths():           return BASE_NAME, BASE_PATH, PATH
 ########################################################################################################################################################################################################
 def fri(f):            return int(math.floor(f + 0.5))
 def signed(n):         return f' {n}' if n==0 else f'{n:+}'
+#def ns2signs(ns, s=Z): return [ f'-{s}' if n<0 else f'+{s}' if n>0  else f'{W}{s}' for n in ns ]
 def ns2signs(ns, s=Z): return [ f'-{s}' if n<0 else f'+{s}' if n>0  else f'{W}{s}' for n in ns ]
 def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 ########################################################################################################################################################################################################

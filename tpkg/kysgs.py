@@ -108,16 +108,54 @@ def OLD__dumpKSH(csv=0):
     f  = [ f'{f:x}' for f in reversed(KSD[M][KIS]) ]   ;   s = [ f'{s:x}' for s in KSD[P][KIS] ]
     fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{fmtl(fs, w=w, d=d, s=m)}', p=p, f=fd)
 
-def dumpKSH(csv=0):
-    c, y, fd   = (Z, W*2, 3)    if csv else ('^20', W, FD)   ;   u = '<'
-    _ = f'{W}{Y}' if csv else W  ;  f, k, s = ['F','l','a','t','s',W,W*2], ['N'], ['S','h','r','p','s',W,W*2] ;  p = 0 if csv else PFX
+def OLD_B_dumpKSH(csv=0):
+    c, y, fd   = (Z, f'{W}{Y}', 3)    if csv else (Z, W*2, FD) #  ;   u = '<' # '^20'
+    _ = f'{W}{Y}' if csv else W*2  ;  f, k, s = ['Flats  '], ['N'], ['Sharps  '] ;  p = 0 if csv else PFX
+#    _ = f'{W}{Y}' if csv else W*2  ;  f, k, s = ['F','l','a','t','s',W,W*2], ['N'], ['S','h','r','p','s',W,W*2] ;  p = 0 if csv else PFX
     f = _.join(f)   ;   k = _.join(k)   ;   s = _.join(s)
     w, d, m, n = (2, Z, Y, Y) if csv else (2, '[', W, W*2)
     hdrs = [ f'{f:{c}}', f'{k:{w}}', f'{s:{c}}' ]         ;  hdrs = m.join(hdrs)   ;   slog(hdrs, p=p, f=fd)
-    keys = sorted(KSD.keys())  ;  w = f'{u}{w}' ;   x = f'{w}x'    ;   p = 0 if csv else PFX
-    _  = utl.ns2signs(keys, W if csv else Z) # ;  y = W*2 if csv else W
-    z = n.join(_)   ;   slog(f'{z}', p=p, f=fd) # {y}
-#    z = n.join(_)   ;   _ = Z if csv else W   ;   slog(f'{_}{z}', p=p, f=fd) # {y}
+    keys = sorted(KSD.keys())  ;  w = f'<{w}' ;   x = f'{w}x'    ;   p = 0 if csv else PFX
+    _  = utl.ns2signs(keys) # , f'{W}{Y}' if csv else W*2) # ;  y = W*2 if csv else W
+#    z = n.join(_)   ;   slog(f'{z}', p=p, f=fd) # {y}
+    z = n.join(_)   ;   _ = Z if csv else W   ;   slog(f'{_}{z}', p=p, f=fd) # {y}
+    slog(f'{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=fd)
+    _  = [ KSD[k][KIM][KSK]    for k in keys ]  ;   slog(f'{fmtl(_, w=x, d=d, s=m)}', p=p, f=fd)
+    _  = [ KSD[k][KIM][KST]    for k in keys ]  ;   slog(f'{fmtl(_, w=w, d=d, s=m)}', p=p, f=fd)    ;   y = Z if csv else W*2
+    f  = [ KSD[M][KMS][f]      for f in range(len(KSD[M][KMS])-1, -1, -1) ]  ;  s = [ KSD[P][KMS][s]    for s in range(len(KSD[P][KMS])) ]
+    fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{fmtl(fs, w=w, d=d, s=m)}', p=p, f=fd)
+    f  = [ f'{f:x}' for f in reversed(KSD[M][KIS]) ]   ;   s = [ f'{s:x}' for s in KSD[P][KIS] ]
+    fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{fmtl(fs, w=w, d=d, s=m)}', p=p, f=fd)
+
+#    _ = f'{W}{Y}' if csv else W*2  ;  f, k, s = ['F','l','a','t','s',W,W*2], ['N'], ['S','h','r','p','s',W,W*2] ;  p = 0 if csv else PFX
+def OLD_C_dumpKSH(csv=0):
+    y, fd   = (f'{W}{Y}', 3)    if csv else (W*2, FD) #  ;   u = '<'
+    f, k, s = [c for c in 'Flats'], [c for c in 'N'], [c for c in 'Shrps'] ;  p = 0 if csv else PFX
+    f = y.join(f)   ;   k = y.join(k)   ;   s = y.join(s)
+    w, d, m, n = (2, Z, Y, Y) if csv else (2, '[', W, W*2)
+    hdrs = [ f'{f}', f'{k}', f'{s}' ]         ;  hdrs = m.join(hdrs)   ;  _ =  Z if csv else W*2  ;  slog(f'{_}{hdrs}', p=p, f=fd)
+    keys = sorted(KSD.keys())  ;  w = f'<{w}' ;   x = f'{w}x'
+    _  = utl.ns2signs(keys) # , f'{W}{Y}' if csv else W*2) # ;  y = W*2 if csv else W
+#    z = n.join(_)   ;   slog(f'{z}', p=p, f=fd) # {y}
+    z = y.join(_)   ;   _ = Z if csv else W   ;   slog(f'{_}{z}', p=p, f=fd) # {y}
+    slog(f'{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=fd)
+    _  = [ KSD[k][KIM][KSK]    for k in keys ]  ;   slog(f'{fmtl(_, w=x, d=d, s=m)}', p=p, f=fd)
+    _  = [ KSD[k][KIM][KST]    for k in keys ]  ;   slog(f'{fmtl(_, w=w, d=d, s=m)}', p=p, f=fd)    ;   y = Z if csv else W*2
+    f  = [ KSD[M][KMS][f]      for f in range(len(KSD[M][KMS])-1, -1, -1) ]  ;  s = [ KSD[P][KMS][s]    for s in range(len(KSD[P][KMS])) ]
+    fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{fmtl(fs, w=w, d=d, s=m)}', p=p, f=fd)
+    f  = [ f'{f:x}' for f in reversed(KSD[M][KIS]) ]   ;   s = [ f'{s:x}' for s in KSD[P][KIS] ]
+    fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{fmtl(fs, w=w, d=d, s=m)}', p=p, f=fd)
+
+def OLD_D_dumpKSH(csv=0):
+    y, fd   = (f'{W}{Y}', 3)    if csv else (W*2, FD)
+    f, k, s = [c for c in 'Flats  '], [c for c in 'N'], [c for c in '  Shrps'] ;  p = 0 if csv else PFX
+    f = y.join(f)   ;   k = y.join(k)   ;   s = y.join(s)
+    d, m, n = (Z, Y, Y) if csv else ('[', W, W*2)   ;   w = 2
+    hdrs = [ f'{f}', f'{k}', f'{s}' ]         ;  _ =  Z if csv else W*2  ;  slog(f'{_}{hdrs}', p=p, f=fd)
+    hdrs = [ f'{f} ', f'{k} ', f'{s}' ]         ;  hdrs = m.join(hdrs)   ;  _ =  Z if csv else W  ;  slog(f'{_}{hdrs}', p=p, f=fd)
+    keys = sorted(KSD.keys())  ;  w = f'<{w}' ;   x = f'{w}x'
+    _  = utl.ns2signs(keys)
+    z = y.join(_)   ;   _ = Z if csv else W   ;   slog(f'{_}{z}', p=p, f=fd) # {y}
     slog(f'{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=fd)
     _  = [ KSD[k][KIM][KSK]    for k in keys ]  ;   slog(f'{fmtl(_, w=x, d=d, s=m)}', p=p, f=fd)
     _  = [ KSD[k][KIM][KST]    for k in keys ]  ;   slog(f'{fmtl(_, w=w, d=d, s=m)}', p=p, f=fd)    ;   y = Z if csv else W*2
@@ -126,6 +164,24 @@ def dumpKSH(csv=0):
     f  = [ f'{f:x}' for f in reversed(KSD[M][KIS]) ]   ;   s = [ f'{s:x}' for s in KSD[P][KIS] ]
     fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{fmtl(fs, w=w, d=d, s=m)}', p=p, f=fd)
 ########################################################################################################################################################################################################
+
+def dumpKSH(csv=0):
+    y, fd   = (f'{W}{Y}', 3)    if csv else (W*2, FD)
+    f, k, s = [c for c in 'Flats  '], [c for c in 'N'], [c for c in '  Shrps'] ;  p = 0 if csv else PFX
+    f = y.join(f)   ;   k = y.join(k)   ;   s = y.join(s)
+    d, m, n = (Z, Y, Y) if csv else ('[', W, W*2)   ;   w = 2
+    hdrs = [ f'{f} ', f'{k} ', f'{s}' ]         ;  hdrs = m.join(hdrs)   ;  _ =  Z if csv else W  ;  slog(f'{_}{hdrs}', p=p, f=fd)
+    keys = sorted(KSD.keys())  ;  w = f'<{w}' ;   x = f'{w}x'
+    _  = utl.ns2signs(keys)
+    z = y.join(_)   ;   _ = Z if csv else W   ;   slog(f'{_}{z}', p=p, f=fd) # {y}
+    slog(f'{fmtl(list(map(abs, keys)), w=w, d=d, s=m)}', p=p, f=fd)
+    _  = [ KSD[k][KIM][KSK]    for k in keys ]  ;   slog(f'{fmtl(_, w=x, d=d, s=m)}', p=p, f=fd)
+    _  = [ KSD[k][KIM][KST]    for k in keys ]  ;   slog(f'{fmtl(_, w=w, d=d, s=m)}', p=p, f=fd)    ;   y = Z if csv else W*2
+    f  = [ KSD[M][KMS][f]      for f in range(len(KSD[M][KMS])-1, -1, -1) ]  ;  s = [ KSD[P][KMS][s]    for s in range(len(KSD[P][KMS])) ]
+    fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{fmtl(fs, w=w, d=d, s=m)}', p=p, f=fd)
+    f  = [ f'{f:x}' for f in reversed(KSD[M][KIS]) ]   ;   s = [ f'{s:x}' for s in KSD[P][KIS] ]
+    fs = []  ;  fs.extend(f)   ;  fs.append(y)  ;   fs.extend(s)   ;   slog(f'{fmtl(fs, w=w, d=d, s=m)}', p=p, f=fd)
+
 def nic2KS(nic, dbg=0):
     if dbg: dumpKSV()   ;   dumpKSH()   ;   dumpNic(nic)
     iz  = []            ;   t  = TYPE   ;   nt = TYPES[t]
