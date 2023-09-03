@@ -17,7 +17,7 @@ from   tpkg            import utl    as utl
 from   tpkg            import kysgs  as kysgs
 from   tpkg            import misc   as misc
 from   tpkg            import evnts  as evnts
-from   tpkg            import notes  as notes
+#from   tpkg            import notes  as notes
 from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
 from   tpkg.chords     import Chords as Chords
@@ -1789,29 +1789,23 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def kbkEvntTxt(self, why=Z):   why = why if why else W*4   ;   return f'<{why}{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
     ####################################################################################################################################################################################################
-    def on_move(self, x, y): evnts.on_move(x, y)
+    def on_move(         self, x, y):               return evnts.on_move(x, y)
 
-    def on_mouse_release(      self, x, y, button, mods=0, dbg=1):
-        evnts.on_mouse_release(self, x, y, button, mods, dbg=dbg)
+    def on_mouse_release(self, x, y, bttn, mods=0): return evnts.on_mouse_release(self, x, y, bttn, mods)
 
-    def on_mouse_scroll(      self, x, y, scroll_x, scroll_y):
-        evnts.on_mouse_scroll(self, x, y, scroll_x, scroll_y)
+    def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll(self, x, y, dx, dy)
 
-    def on_mouse_motion(self, x, y, dx, dy): evnts.on_mouse_motion(x, y, dx, dy)
+    def on_mouse_motion( self, x, y, dx, dy):       return evnts.on_mouse_motion(x, y, dx, dy)
 
-    def on_key_press(      self, symb, mods, dbg=1): # avoid these
-        evnts.on_key_press(self, symb, mods, dbg=dbg)
+    def on_key_press(    self, symb, mods):         return evnts.on_key_press(self, symb, mods)
 
-    def on_key_release(self, symb, mods, dbg=1):
-        evnts.on_key_release(self, symb, mods, dbg=dbg)
+    def on_key_release(  self, symb, mods):         return evnts.on_key_release(self, symb, mods)
 
-    def on_text(      self, text, dbg=1): # use for entering strings not for motion
-        evnts.on_text(self, text, dbg=dbg)
+    def on_text(         self, text):               return evnts.on_text(self, text)
 
-    def on_text_motion(      self, motion, dbg=1): # use for motion not strings
-        evnts.on_text_motion(self, motion, dbg=dbg)
+    def on_text_motion(  self, motion):             return evnts.on_text_motion(self, motion)
 
-    def on_style_text(self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
+    def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
     ####################################################################################################################################################################################################
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
 #    def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in utl.DSymb.SYMBS else 0

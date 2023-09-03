@@ -14,3 +14,31 @@ class Modes:
     NAMES = [ 'IONIAN', 'DORIAN', 'PHRYGIAN', 'LYDIAN', 'MIXOLYDIAN', 'AEOLIAN', 'LOCRIAN' ]
     TYPES = [  IONIAN,   DORIAN,   PHRYGIAN,   LYDIAN,   MIXOLYDIAN,   AEOLIAN,   LOCRIAN  ]
 ########################################################################################################################################################################################################
+
+# Stuff todo
+# A: autosave
+# B:
+# C: chords, colors, consume
+# D: data, docs
+# E: events, exit
+# F:
+# G:
+# H: harmonics, help
+# I: itervals
+# J:
+# K: keyboard mapping, keysigs
+# L: logs
+# M: modes
+# N: notation
+# O:
+# P: pages, pytest
+# Q:
+# R: row labels
+# S: scales, sound, sprites, stdout
+# T: transpose
+# U: undo/redo, unicode
+# V: views, visible
+# W: window
+# X:
+# Y:
+# Z:

@@ -1,1 +1,1 @@
-__all__ = ["chords", "kysgs", "misc", "notes", "strngs", "utl"]
+__all__ = ["chords", "evnts", "kysgs", "misc", "notes", "strngs", "unic", "utl"]

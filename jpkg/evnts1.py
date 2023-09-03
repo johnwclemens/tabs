@@ -24,6 +24,7 @@ class EventLogFilter(pygwevnt.WindowEventLogger):
 #            slog(f'FILTERED {msg}', f=f)
 
 flist   = ['on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_motion'] # 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_motion'
+#flist   = ['on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_motion'] # 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_motion'
 wnd     = window.Window()
 evntLog = EventLogFilter(flist)
 wnd.push_handlers(evntLog)
