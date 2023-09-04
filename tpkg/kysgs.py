@@ -69,10 +69,10 @@ def dumpKSV(csv=0):
     dmpKSVHdr(csv)
 
 def dmpKSVHdr(csv=0, t=0):
-    y, fd = (Y, 3)  if csv else (W, FD)   ;   n, m = W, W*2
+    y, fd = (Y, 3)  if csv else (W, FD)  # ;   n, m = W, W*2
     k = 2*P+1 if t == 0 else M if t == FLAT else P if t == SHRP else 1
-    kso, fsi, ii, ino, kst = 'Key Sigature Ordered', 'F/S/N Indices', 'Ionian Indices', 'Ionian Note Ordering', f'Key Sig Table {signed(k)}'
-    hdrs = ['KS', 'Type', 'N', f'{n}I', f'{n}{kso}', f'{m}{fsi}', f'{m}{ii}', f'{n}{ino}', f'{n}{kst}']
+    kso, fsi, ini, ino, kst = 'Key Sigature Ordered', 'F/S/N Indices', 'Ionian Note I', 'Ionian Note Ordering', f'Key Sig Table {signed(k)}'
+    hdrs = ['KS', 'Type', 'N ', f'I', f' {kso} ', f' {fsi} ', f' {ini} ', f' {ino} ', f'{kst}']
     hdrs = y.join(hdrs)    ;    slog(hdrs, p=PFX, f=fd)
 ########################################################################################################################################################################################################
 def fmtKSK(k, csv=0):

@@ -33,7 +33,7 @@ class Modes:
 # O:
 # P: pages, pytest
 # Q:
-# R: row labels
+# R: row labels, rootless
 # S: scales, sound, sprites, stdout
 # T: transpose
 # U: undo/redo, unicode
