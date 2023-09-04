@@ -19,7 +19,7 @@ BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background
 MAX_FREQ_IDX          = 10 * 12 + 1
 MAX_STACK_DEPTH       = 0
 MAX_STACK_FRAME       = inspect.stack()
-CSV_FILE, LOG_FILE, TXT_FILE = None, None, None
+CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE = None, None, None, None
 RGB       = {}
 #             0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17
 OPC       = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
@@ -29,8 +29,8 @@ QUIT      = '###   Quit      ###' * 10
 QUIT_END  = '###   Quit END  ###' * 10
 STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
-def init(cfile, lfile, tfile, f):
-    global CSV_FILE, LOG_FILE, TXT_FILE   ;   CSV_FILE, LOG_FILE, TXT_FILE = cfile, lfile, tfile
+def init(cfile, efile, lfile, tfile, f):
+    global CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE   ;   CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE = cfile, efile, lfile, tfile
     argv   = sys.argv
     argc   = len(argv)
     slog(f'{argc=} {argv=}', f=f)

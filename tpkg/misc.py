@@ -21,7 +21,7 @@ class Modes:
 # C: chords, colors, consume
 # D: data, docs
 # E: events, exit
-# F:
+# F: filters
 # G:
 # H: harmonics, help
 # I: itervals
@@ -33,9 +33,9 @@ class Modes:
 # O:
 # P: pages, pytest
 # Q:
-# R: row labels, rootless
+# R: row labels, rootless chords
 # S: scales, sound, sprites, stdout
-# T: transpose
+# T: text styles, transpose
 # U: undo/redo, unicode
 # V: views, visible
 # W: window

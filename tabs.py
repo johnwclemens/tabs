@@ -17,6 +17,7 @@ from   tpkg            import utl    as utl
 from   tpkg            import kysgs  as kysgs
 from   tpkg            import misc   as misc
 from   tpkg            import evnts  as evnts
+from   tpkg.evnts      import FilteredEventLogger as FELogger
 #from   tpkg            import notes  as notes
 from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
@@ -32,17 +33,19 @@ W, X, Y, Z,     ist,     fri,     slog,     fmtf,     fmtl,     fmtm     = utl.W
 BGC,  BOLD,  COLOR,  FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,  utl.BOLD,  utl.COLOR,  utl.FONT_NAME,  utl.FONT_SIZE,  utl.ITALIC,  utl.KERNING,  utl.UNDERLINE
 isAlt, isCtl, isSft, isAltSft, isCtlAlt, isCtlSft, isCtlAltSft, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isSft, utl.isAltSft, utl.isCtlSft, utl.isCtlAltSft, utl.isNumLck
 
-CAT,  CSV,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'log' ,     'png' ,     'txt' ,     'dat'
-CATS, CSVS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'logs',     'pngs',     'text',     'data'
-CAT2, CSV2, LOG2, PNG2, TXT2       = f'_.{CAT}', f'_.{CSV}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
-CSV_FILE, LOG_FILE, TXT_FILE       = None, None, None
+CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
+CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'evns',     'logs',     'pngs',     'text',     'data'
+CAT2, CSV2, EVN2, LOG2, PNG2, TXT2       = f'_.{CAT}', f'_.{CSV}', f'_.{EVN}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
+CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE   = None, None, None, None
 
 BASE_NAME, BASE_PATH, PATH = utl.paths()
 CSV_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV,  dbg=0)
+EVN_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=EVNS, fsfx=EVN,  dbg=0)
 LOG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG,  dbg=0)
 PNG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG,  dbg=0)
 TXT_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT,  dbg=0)
 CSV_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV2, dbg=0)
+EVN_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=EVNS, fsfx=EVN2, dbg=0)
 LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2, dbg=0)
 PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2, dbg=0)
 TXT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT2, dbg=0)
@@ -341,8 +344,9 @@ class Tabs(pyglet.window.Window):
         self.set_visible()
         self.log(f'get_size={self.get_size()}')
         if self.EVENT_LOG:
-            evnFile = open('test.evn', 'w', encoding='utf-8')
-            self.eventLogger = pygwine.WindowEventLogger(evnFile)
+            evnFile = open(EVN_PATH, 'w', encoding='utf-8')
+#            self.eventLogger = pygwine.WindowEventLogger(evnFile)
+            self.eventLogger = FELogger(evnFile)
             self.keyboard    = pygwine.key.KeyStateHandler()
             self.push_handlers(self.eventLogger, self.keyboard)
         if dbg: self.log(f'END {self.fmtWH()}')
@@ -548,16 +552,18 @@ class Tabs(pyglet.window.Window):
         if  self.snapReg and (self.SNAPS or self.snapType == INIT):
             self.snapReg = 0
             snapPath = self.snapshot(f'on_draw({fmtm(kwargs)=})')
-            self.log(f'{self.snapWhy=} {self.snapType=} {self.snapId=}\n{snapPath=}', pos=1)
+            self.log(f'{self.snapWhy=} {self.snapType=} {self.snapId=}\n{snapPath=}', pos=1, f=-2)
 #            if self.TEST:    self.testSprTxt(path)
+        return True
 
     def on_resize(self, width, height, dbg=1):
         super().on_resize(width, height)
         if self.RESIZE: self.resizeTniks(dbg)
+        return True
 
     def on_close(self):
-        self.log('????', f=2)
-        return pyglet.event.EVENT_HANDLED
+        self.log('????', f=-2)
+        return True
     ####################################################################################################################################################################################################
     def saveDataFile(self, why, path, dbg=1):
         if dbg:   self.log(f'{why} {path}')
@@ -1797,21 +1803,21 @@ class Tabs(pyglet.window.Window):
 
     def on_mouse_motion( self, x, y, dx, dy):       return evnts.on_mouse_motion(x, y, dx, dy)
 
-    def on_key_press(    self, symb, mods):         return evnts.on_key_press(self, symb, mods)
+    def on_key_press(    self, symb, mods):         return evnts.on_key_press(  self, symb, mods)
 
     def on_key_release(  self, symb, mods):         return evnts.on_key_release(self, symb, mods)
 
-    def on_text(         self, text):               return evnts.on_text(self, text)
+    def on_text(         self, text):               return evnts.on_text(       self, text)
 
     def on_text_motion(  self, motion):             return evnts.on_text_motion(self, motion)
 
     def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
     ####################################################################################################################################################################################################
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
-#    def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in utl.DSymb.SYMBS else 0
+#   def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in utl.DSymb.SYMBS else 0
     def isTab(self, text):    return 1 if text == self.tblank or self.sobj.isFret(text) or text in misc.DSymb.SYMBS else 0
     def isParsing(self):      return 1 if self.inserting or self.jumping or self.settingN or self.shiftingTabs or self.swapping else 0
-#    def isEH(t): return 1 if t == '#' or t == 'b' else 0
+#   def isEH(t):              return 1 if t == '#' or t == 'b' else 0
     @staticmethod
     def afn(fn): return fn if len(fn) == 1 and '0' <= fn <= '9' else chr(ord(fn[1]) - ord('0') + ord('a')) if len(fn) == 2 and fn[0] == '1' else None
     ####################################################################################################################################################################################################
@@ -2551,12 +2557,13 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
 # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
 FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = utl.initRGBs(f=0, dbg=0)
 if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2, f=0)
+if EVN_PATH.exists():    utl.copyFile(EVN_PATH, EVN_PATH2, f=0)
 if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, f=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, f=0)
 if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, f=0)
-with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
+with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(EVN_PATH), 'w', encoding='utf-8') as EVN_FILE:
     f0   = -2
-    ARGS = utl.init(CSV_FILE, LOG_FILE, TXT_FILE, f=f0)
+    ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=f0)
     kysgs.init(f=-2)
     slog(sys.argv[0],      p=0,        f=f0)
     slog(f'argv={fmtl(sys.argv[1:])}', f=f0)
@@ -2564,6 +2571,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
 #    def main():
     f1 = -2
     slog(f'{CSV_PATH=}',  f=f1)        ;   slog(f'{CSV_FILE.name=}', f=f1)
+    slog(f'{EVN_PATH=}',  f=f1)        ;   slog(f'{EVN_FILE.name=}', f=f1)
     slog(f'{LOG_PATH=}',  f=f1)        ;   slog(f'{LOG_FILE.name=}', f=f1)
     slog(f'{TXT_PATH=}',  f=f1)        ;   slog(f'{TXT_FILE.name=}', f=f1)
     slog('constructing Tabs object')
