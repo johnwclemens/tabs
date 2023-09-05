@@ -19,7 +19,7 @@ class Modes:
 # A: autosave
 # B:
 # C: chords, colors, consume
-# D: data, docs
+# D: data, display level, docs
 # E: events, exit
 # F: filters
 # G:

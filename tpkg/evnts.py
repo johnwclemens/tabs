@@ -16,38 +16,54 @@ BOLD, COLOR, ITALIC, FONT_NAME, FONT_SIZE                                = utl.B
 P, L, S, C, T, N, I, K, R, Q, H, M, B, A, D, E                           = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
 isAlt, isCtl, isSft, isAltSft, isCtlAlt, isCtlSft, isCtlAltSft, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isSft, utl.isAltSft, utl.isCtlSft, utl.isCtlAltSft, utl.isNumLck
 
+FLIST = []
+def flog(msg, fd=None, filt=None):
+    if filt and filt not in FLIST:
+        slog(f'{msg} {filt=}', f=fd)
+    elif not filt:
+        slog(f'{msg} {filt=}', f=fd)
 ########################################################################################################################################################################################################
+
 class FilteredEventLogger(pyglet.window.event.WindowEventLogger):
-    def __init__(self, fd=None, flst=None):
+    def __init__(self, tobj, fd=None, flst=None):
         super().__init__(fd)
-        self.flst = flst if flst else []
+        self.tobj = tobj
+        global FLIST   ;   FLIST = flst
 
-    def log(self, msg, filt=None, f=-2):
-        if filt and filt not in self.flst:
-            slog(msg, f=f)
-        elif not filt:
-            slog(msg, f=f)
-#        else:                                  slog(f'FILTERED {msg}', f=2)
+    def on_draw(self, **kwargs):
+        flog(f'{kwargs=}', filt='on_draw')
 
-flist    = ['on_move', 'on_mouse_motion'] # 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_motion', 'on_mouse_scroll'
-fEvntLog = FilteredEventLogger(flist)
-flog     = fEvntLog.log
+    def on_move(self, x, y):
+        flog(f'{x=} {y=}', filt='on_move')
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        flog(f'{x=} {y=} {dx=} {dy=}', filt='on_mouse_motion')
+
+    def on_mouse_scroll(self, x, y, dx, dy):
+        flog(f'{x=} {y=} {dx=} {dy=}', filt='on_mouse_scroll')
+
+    def on_mouse_press(self, x, y, bttn, mods=0):
+        flog(f'{x=} {y=} {bttn=} {mods=}', filt='on_mouse_press')
+
+    def on_mouse_release(self, x, y, bttn, mods=0):
+        flog(f'{x=} {y=} {bttn=} {mods=}', filt='on_mouse_release')
+
+    def on_key_press(self, symb, mods):
+        flog(f'{symb=} {mods=} {pygwink.symbol_string(symb)} {pygwink.modifiers_string(mods)}', filt='on_key_press')
+
+    def on_key_release(self, symb, mods):
+        flog(f'{symb=} {mods=} {pygwink.symbol_string(symb)} {pygwink.modifiers_string(mods)}', filt='on_key_release')
+
+    def on_text(self, text):
+        flog(f'{text=}', filt='on_text')
+
+    def on_text_motion(self, motion, filt='on_text_motion'):
+        flog(f'{motion=}')
+
 ########################################################################################################################################################################################################
+
 def on_move(x, y):
-    flog(f'{x=} {y=}', filt='on_move', f=-2)
-    return True
-
-def on_mouse_motion(x, y, dx, dy):
-    flog(f'{x=} {y=} {dx=} {dy=}', filt='on_mouse_motion', f=-2)
-    return True
-
-def on_mouse_scroll(tobj, x, y, dx, dy):
-    fs = tobj.fontSize
-    sf = 33 / 32 if dy > 0 else 32 / 33
-    sfs = sf * fs
-    flog(f'{x=} {y=} {dx=} {dy=}, sf * fs = ss, {fmtf(sf, 5)} * {fmtf(fs, 5)} = {fmtf(sfs, 5)}', filt='on_mouse_scroll', f=-2)
-    tobj.setFontParam(FONT_SIZE, sfs, 'fontSize')
-    return True
+    slog(f'{x=} {y=}')
 
 def on_mouse_release(tobj, x, y, bttn, mods=0, dbg=1):
     if bttn==pygmous.LEFT:
@@ -65,12 +81,87 @@ def on_mouse_release(tobj, x, y, bttn, mods=0, dbg=1):
         return True
     else: return False
 
-def on_key_press(tobj, symb, mods, dbg=1): # avoid these
+def on_text(tobj, text, dbg=1):
+    retv = True
+    tobj.kbk = text
+    if dbg: slog(f'BGN {tobj.kbkEvntTxt()} swapping={tobj.swapping}')
+    if      tobj.shiftingTabs:                       tobj.shiftTabs(  'onTxt', text)
+    elif    tobj.jumping:                            tobj.jump(       'onTxt', text, tobj.jumpAbs)
+    elif    tobj.inserting:                          tobj.insertSpace('onTxt', text)
+    elif    tobj.settingN:                           tobj.setn_cmd(   'onTxt', text)
+    elif    tobj.swapping:                           tobj.swapTab(    'onTxt', text)
+    elif    tobj.isTab(tobj.kbk):                    tobj.setTab(     'onTxt', tobj.kbk)
+    elif    tobj.kbk == '$' and isSft(tobj.mods):    tobj.snapshot(f'{text}', 'SNAP')
+    else:   slog(f'UNH {tobj.kbkEvntTxt()} Unhandled - return 0', f=-2) if dbg else None   ;   retv = False
+    if dbg: slog(f'END {tobj.kbkEvntTxt()} swapping={tobj.swapping}')
+    return retv
+
+def on_text_motion(tobj, motion, dbg=1):
+    assert tobj
+    slog(f'{motion=}')
+    tobj.kbk = motion   ;   p, l, s, c, t = tobj.j()  ;  np, nl, ns, nc, nt = tobj.n
+    if dbg: slog(f'BGN {tobj.kbkEvntTxt()} motion={motion}')
+    if   isNumLck(   tobj.mods):                         msg =             f'NUMLOCK(         {motion})'   ;   slog(msg)   ;   pygwink.MOD_NUMLOCK = 0
+    if   isCtlAltSft(tobj.mods):                         msg =             f'@&^(             {motion})'   ;   slog(msg) #  ;   self.quit(msg)
+    elif isCtlAlt(   tobj.mods):
+        if   motion == 1:                                tobj.unselectTabs(f'@& LEFT(         {motion})',  nt)
+        elif motion == 2:                                tobj.unselectTabs(f'@& RIGHT(        {motion})', -nt)
+        else:                                            msg =             f'@& (             {motion})'   ;   slog(msg) #  ;   self.quit(msg)
+    elif isAltSft(   tobj.mods):                         msg =             f' &^(             {motion})'   ;   slog(msg) #  ;   self.quit(msg)
+    elif isCtlSft(   tobj.mods):                         msg =             f'@^(              {motion})'   ;   slog(msg) #  ;   self.quit(msg)
+    elif isSft(      tobj.mods):                         msg =             f'^ (              {motion})'   ;   slog(msg) #  ;   self.quit(msg)
+    elif isAlt(      tobj.mods):
+        if   motion == pygwink.MOTION_UP:                tobj.moveUp(      f' & UP(           {motion})')
+        elif motion == pygwink.MOTION_DOWN:              tobj.moveDown(    f' & DOWN(         {motion})')
+        elif motion == pygwink.MOTION_LEFT:              tobj.moveLeft(    f' & LEFT(         {motion})')
+        elif motion == pygwink.MOTION_RIGHT:             tobj.moveRight(   f' & RIGHT(        {motion})')
+        elif motion == pygwink.MOTION_BEGINNING_OF_LINE: tobj.move(        f' & HOME(         {motion})', -nt *  c)
+        elif motion == pygwink.MOTION_END_OF_LINE:       tobj.move(        f' & END(          {motion})',  nt * (nc - tobj.i[C]))
+        elif motion == pygwink.MOTION_PREVIOUS_PAGE:     tobj.prevPage(    f' & PAGE UP(      {motion})')
+        elif motion == pygwink.MOTION_NEXT_PAGE:         tobj.nextPage(    f' & PAGE DOWN(    {motion})')
+        else:                                            msg =             f' &(              {motion})'   ;   slog(msg)   ;   tobj.quit(msg)
+    elif isCtl(tobj.mods):
+        if   motion == pygwink.MOTION_NEXT_WORD:         tobj.selectTabs(  f'@  RIGHT(        {motion})',  nt)
+        elif motion == pygwink.MOTION_PREVIOUS_WORD:     tobj.selectTabs(  f'@  LEFT(         {motion})', -nt)
+        elif motion == pygwink.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE( {motion})'   ;   slog(msg)   ;   tobj.quit(msg) # N/A
+        elif motion == pygwink.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(       {motion})'   ;   slog(msg)   ;   tobj.quit(msg) # N/A
+        elif motion == pygwink.MOTION_BEGINNING_OF_FILE: msg = f'@  MOTION_BEGINNING_OF_FILE( {motion})'   ;   slog(msg)   ;   tobj.quit(msg) # CTRL HOME
+        elif motion == pygwink.MOTION_END_OF_FILE:       msg = f'@  MOTION_END_OF_FILE(       {motion})'   ;   slog(msg)   ;   tobj.quit(msg) # CTRL END
+#           elif motion == pygwink.MOTION_DELETE:            self.deleteTabs( f'@ D MOTION_DELETE({motion})')
+#           elif motion == pygwink.MOTION_COPY:              self.copyTabs(   f'@ C MOTION_COPY(  {motion})')
+#           elif motion == pygwink.MOTION_PASTE:             self.pasteTabs(  f'@ V MOTION_PASTE( {motion})', kk=0)
+        else:                                            msg =             f'UNH CTRL(        {motion}) {tobj.kbkEvntTxt()}'   ;   slog(msg) #  ;   self.quit(msg)
+    elif tobj.mods == 0:
+        if   motion == pygwink.MOTION_UP:                tobj.move(        f' UP(             {motion})', -1)
+        elif motion == pygwink.MOTION_DOWN:              tobj.move(        f' DOWN(           {motion})',  1)
+        elif motion == pygwink.MOTION_LEFT:              tobj.move(        f' LEFT(           {motion})', -nt)
+        elif motion == pygwink.MOTION_RIGHT:             tobj.move(        f' RIGHT(          {motion})',  nt)
+        elif motion == pygwink.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD(        {motion})'   ;   slog(msg)   ;   tobj.quit(msg)
+        elif motion == pygwink.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD(            {motion})'   ;   slog(msg)   ;   tobj.quit(msg)
+        elif motion == pygwink.MOTION_BEGINNING_OF_LINE: tobj.move(        f' HOME(           {motion})', -nt *  c)
+        elif motion == pygwink.MOTION_END_OF_LINE:       tobj.move(        f' END(            {motion})',  nt * (nc - tobj.i[C]))
+        elif motion == pygwink.MOTION_BEGINNING_OF_FILE: msg = f'MOTION_BEGINNING_OF_FILE(    {motion})'   ;   slog(msg)   ;   tobj.quit(msg)
+        elif motion == pygwink.MOTION_END_OF_FILE:       msg = f'MOTION_END_OF_FILE(          {motion})'   ;   slog(msg)   ;   tobj.quit(msg)
+        elif motion == pygwink.MOTION_PREVIOUS_PAGE:     tobj.moveUp(      f' PAGE UP(        {motion})')  # go up   to top    of line, wrap down to bottom of prev line
+        elif motion == pygwink.MOTION_NEXT_PAGE:         tobj.moveDown(    f' PAGE DOWN(      {motion})')  # go down to bottom tab on same line, wrap to next line
+        elif motion == pygwink.MOTION_DELETE:            tobj.setTab(      f'DELETE(          {motion})', tobj.tblank)
+        elif motion == pygwink.MOTION_BACKSPACE:         tobj.setTab(      f'BACKSPACE(       {motion})', tobj.tblank, rev=1)
+        else:                                            msg =             f'(                {motion})'   ;   slog(msg)   ;   tobj.quit(msg)
+    if dbg: slog(f'END {tobj.kbkEvntTxt()} motion={motion}')
+    return True
+    ####################################################################################################################################################################################################
+
+def on_key_release(tobj, symb, mods):
+    assert tobj
+    slog(f'{symb=} {mods=}')
+
+def on_key_press(tobj, symb, mods, dbg=1):
+    assert tobj
     retv = True
     fontBold, fontItalic                             = tobj.fontBold, tobj.fontItalic
     tobj.symb, tobj.mods, tobj.symbStr, tobj.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
     tobj.kbk = tobj.symbStr   ;   kbk = tobj.kbk   ;   hcurs = tobj.hcurs
-    if dbg:    flog(f'BGN {tobj.kbkEvntTxt()}', f=-2)
+    if dbg:    slog(f'BGN {tobj.kbkEvntTxt()}', None)
     if   kbk == 'A' and isCtlSft(mods):    tobj.flipArrow('@^A', v=1)
     elif kbk == 'A' and isCtl(mods):       tobj.flipArrow('@ A', v=0)
     elif kbk == 'B' and isCtlSft(mods):    tobj.flipBlank(     '@^B')
@@ -154,88 +245,12 @@ def on_key_press(tobj, symb, mods, dbg=1): # avoid these
     elif kbk == 'A' and isAlt(   mods):      tobj.setFontParam(FONT_NAME,    -1,          'fontNameIdx')
     elif kbk == 'S' and isAltSft(mods):      tobj.setFontParam(FONT_SIZE,     33 / 32,    'fontSize')
     elif kbk == 'S' and isAlt(   mods):      tobj.setFontParam(FONT_SIZE,     32 / 33,    'fontSize')
-    else:   flog(f'UNH {tobj.kbkEvntTxt()} Unhandled - return 0', f=1) if dbg else None   ;   retv = False
+    else:   slog(f'UNH {tobj.kbkEvntTxt()} Unhandled - return 0') if dbg else None   ;   retv = False
     ####################################################################################################################################################################################################
     if  not  tobj.isParsing():
         if   kbk == 'ENTER' and isCtl(mods): tobj.setCHVMode(  '@  ENTER',     CHORD,  v=DARROW)
         elif kbk == 'ENTER':                 tobj.setCHVMode(  '   ENTER',     CHORD,  v=UARROW)
         elif kbk == 'SPACE':                 tobj.autoMove(    '   SPACE')
 #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
-    if dbg:  flog(f'END {tobj.kbkEvntTxt()}', f=-2)
+    if dbg:  slog(f'END {tobj.kbkEvntTxt()}')
     return retv
-
-def on_key_release(tobj, symb, mods, dbg=1):
-    tobj.symb, tobj.mods, tobj.symbStr, tobj.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
-    tobj.kbk = tobj.symbStr
-    if dbg:    flog(f'    {tobj.kbkEvntTxt()}', f=-2)
-    return True
-
-def on_text(tobj, text, dbg=1): # use for entering strings not for motion
-    retv = True
-    tobj.kbk = text
-    if dbg: flog(f'BGN {tobj.kbkEvntTxt()} swapping={tobj.swapping}')
-    if      tobj.shiftingTabs:                       tobj.shiftTabs(  'onTxt', text)
-    elif    tobj.jumping:                            tobj.jump(       'onTxt', text, tobj.jumpAbs)
-    elif    tobj.inserting:                          tobj.insertSpace('onTxt', text)
-    elif    tobj.settingN:                           tobj.setn_cmd(   'onTxt', text)
-    elif    tobj.swapping:                           tobj.swapTab(    'onTxt', text)
-    elif    tobj.isTab(tobj.kbk):                    tobj.setTab(     'onTxt', tobj.kbk)
-    elif    tobj.kbk == '$' and isSft(tobj.mods):    tobj.snapshot(f'{text}', 'SNAP')
-    else:   flog(f'UNH {tobj.kbkEvntTxt()} Unhandled - return 0', f=-2) if dbg else None   ;   retv = False
-    if dbg: flog(f'END {tobj.kbkEvntTxt()} swapping={tobj.swapping}')
-    return retv
-
-def on_text_motion(tobj, motion, dbg=1): # use for motion not strings
-    tobj.kbk = motion   ;   p, l, s, c, t = tobj.j()  ;  np, nl, ns, nc, nt = tobj.n
-    if dbg: flog(f'BGN {tobj.kbkEvntTxt()} motion={motion}')
-    if   isNumLck(   tobj.mods):                         msg =             f'NUMLOCK(         {motion})'   ;   flog(msg)   ;   pygwink.MOD_NUMLOCK = 0
-    if   isCtlAltSft(tobj.mods):                         msg =             f'@&^(             {motion})'   ;   flog(msg) #  ;   self.quit(msg)
-    elif isCtlAlt(   tobj.mods):
-        if   motion == 1:                                tobj.unselectTabs(f'@& LEFT(         {motion})',  nt)
-        elif motion == 2:                                tobj.unselectTabs(f'@& RIGHT(        {motion})', -nt)
-        else:                                            msg =             f'@& (             {motion})'   ;   flog(msg) #  ;   self.quit(msg)
-    elif isAltSft(   tobj.mods):                         msg =             f' &^(             {motion})'   ;   flog(msg) #  ;   self.quit(msg)
-    elif isCtlSft(   tobj.mods):                         msg =             f'@^(              {motion})'   ;   flog(msg) #  ;   self.quit(msg)
-    elif isSft(      tobj.mods):                         msg =             f'^ (              {motion})'   ;   flog(msg) #  ;   self.quit(msg)
-    elif isAlt(      tobj.mods):
-        if   motion == pygwink.MOTION_UP:                tobj.moveUp(      f' & UP(           {motion})')
-        elif motion == pygwink.MOTION_DOWN:              tobj.moveDown(    f' & DOWN(         {motion})')
-        elif motion == pygwink.MOTION_LEFT:              tobj.moveLeft(    f' & LEFT(         {motion})')
-        elif motion == pygwink.MOTION_RIGHT:             tobj.moveRight(   f' & RIGHT(        {motion})')
-        elif motion == pygwink.MOTION_BEGINNING_OF_LINE: tobj.move(        f' & HOME(         {motion})', -nt *  c)
-        elif motion == pygwink.MOTION_END_OF_LINE:       tobj.move(        f' & END(          {motion})',  nt * (nc - tobj.i[C]))
-        elif motion == pygwink.MOTION_PREVIOUS_PAGE:     tobj.prevPage(    f' & PAGE UP(      {motion})')
-        elif motion == pygwink.MOTION_NEXT_PAGE:         tobj.nextPage(    f' & PAGE DOWN(    {motion})')
-        else:                                            msg =             f' &(              {motion})'   ;   flog(msg)   ;   tobj.quit(msg)
-    elif isCtl(tobj.mods):
-        if   motion == pygwink.MOTION_NEXT_WORD:         tobj.selectTabs(  f'@  RIGHT(        {motion})',  nt)
-        elif motion == pygwink.MOTION_PREVIOUS_WORD:     tobj.selectTabs(  f'@  LEFT(         {motion})', -nt)
-        elif motion == pygwink.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE( {motion})'   ;   flog(msg)   ;   tobj.quit(msg) # N/A
-        elif motion == pygwink.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(       {motion})'   ;   flog(msg)   ;   tobj.quit(msg) # N/A
-        elif motion == pygwink.MOTION_BEGINNING_OF_FILE: msg = f'@  MOTION_BEGINNING_OF_FILE( {motion})'   ;   flog(msg)   ;   tobj.quit(msg) # CTRL HOME
-        elif motion == pygwink.MOTION_END_OF_FILE:       msg = f'@  MOTION_END_OF_FILE(       {motion})'   ;   flog(msg)   ;   tobj.quit(msg) # CTRL END
-#           elif motion == pygwink.MOTION_DELETE:            self.deleteTabs( f'@ D MOTION_DELETE({motion})')
-#           elif motion == pygwink.MOTION_COPY:              self.copyTabs(   f'@ C MOTION_COPY(  {motion})')
-#           elif motion == pygwink.MOTION_PASTE:             self.pasteTabs(  f'@ V MOTION_PASTE( {motion})', kk=0)
-        else:                                            msg =             f'UNH CTRL(        {motion}) {tobj.kbkEvntTxt()}'   ;   flog(msg) #  ;   self.quit(msg)
-    elif tobj.mods == 0:
-        if   motion == pygwink.MOTION_UP:                tobj.move(        f' UP(             {motion})', -1)
-        elif motion == pygwink.MOTION_DOWN:              tobj.move(        f' DOWN(           {motion})',  1)
-        elif motion == pygwink.MOTION_LEFT:              tobj.move(        f' LEFT(           {motion})', -nt)
-        elif motion == pygwink.MOTION_RIGHT:             tobj.move(        f' RIGHT(          {motion})',  nt)
-        elif motion == pygwink.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD(        {motion})'   ;   flog(msg)   ;   tobj.quit(msg)
-        elif motion == pygwink.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD(            {motion})'   ;   flog(msg)   ;   tobj.quit(msg)
-        elif motion == pygwink.MOTION_BEGINNING_OF_LINE: tobj.move(        f' HOME(           {motion})', -nt *  c)
-        elif motion == pygwink.MOTION_END_OF_LINE:       tobj.move(        f' END(            {motion})',  nt * (nc - tobj.i[C]))
-        elif motion == pygwink.MOTION_BEGINNING_OF_FILE: msg = f'MOTION_BEGINNING_OF_FILE(    {motion})'   ;   flog(msg)   ;   tobj.quit(msg)
-        elif motion == pygwink.MOTION_END_OF_FILE:       msg = f'MOTION_END_OF_FILE(          {motion})'   ;   flog(msg)   ;   tobj.quit(msg)
-        elif motion == pygwink.MOTION_PREVIOUS_PAGE:     tobj.moveUp(      f' PAGE UP(        {motion})')  # go up   to top    of line, wrap down to bottom of prev line
-        elif motion == pygwink.MOTION_NEXT_PAGE:         tobj.moveDown(    f' PAGE DOWN(      {motion})')  # go down to bottom tab on same line, wrap to next line
-        elif motion == pygwink.MOTION_DELETE:            tobj.setTab(      f'DELETE(          {motion})', tobj.tblank)
-        elif motion == pygwink.MOTION_BACKSPACE:         tobj.setTab(      f'BACKSPACE(       {motion})', tobj.tblank, rev=1)
-        else:                                            msg =             f'(                {motion})'   ;   flog(msg)   ;   tobj.quit(msg)
-    if dbg: flog(f'END {tobj.kbkEvntTxt()} motion={motion}')
-    return True
-
-#        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > <16> <MOD_NUMLOCK     > motion=65363
-#        1353 tabs.py       on_text_motion BGN <   65363> <   65363> <RIGHT           > < 8> <MOD_CAPSLOCK    > motion=65363

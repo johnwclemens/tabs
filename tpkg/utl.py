@@ -27,7 +27,7 @@ INIT      = '###   Init   ###'    * 13
 QUIT_BGN  = '###   Quit BGN  ###' * 10
 QUIT      = '###   Quit      ###' * 10
 QUIT_END  = '###   Quit END  ###' * 10
-STFILT = ['log', 'tlog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
+STFILT = ['log', 'tlog', 'flog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
 ########################################################################################################################################################################################################
 def init(cfile, efile, lfile, tfile, f):
     global CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE   ;   CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE = cfile, efile, lfile, tfile
@@ -95,7 +95,9 @@ def slog(t=Z, p=1, f=1, s=Y, e=X, ff=0, ft=1):
     elif f == 1:  f = LOG_FILE
     elif f == 2:  f = LOG_FILE  ;  tx = 1
     elif f == 3:  f = CSV_FILE
-    elif f == 4:  f = LOG_FILE  ;  so = 1
+    elif f == 4:  f = EVN_FILE
+    else:         f = EVN_FILE
+#    elif f == 4:  f = LOG_FILE  ;  so = 1
     print(t, sep=s, end=e, file=f,          flush=bool(ff))
     print(t, sep=s, end=e, file=TXT_FILE,   flush=bool(ff)) if tx else None
     print(t, sep=s, end=e, file=sys.stdout, flush=bool(ff)) if so else None

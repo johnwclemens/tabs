@@ -344,9 +344,10 @@ class Tabs(pyglet.window.Window):
         self.set_visible()
         self.log(f'get_size={self.get_size()}')
         if self.EVENT_LOG:
-            evnFile = open(EVN_PATH, 'w', encoding='utf-8')
-#            self.eventLogger = pygwine.WindowEventLogger(evnFile)
-            self.eventLogger = FELogger(evnFile)
+            flist = ['on_draw'] # 'on_draw', 'on_key_released', 'on_mouse_motion', 'on_key_pressed', 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_scroll'
+            self.log(f'{EVN_FILE=}', f=-2)    ;    self.log(f'{EVN_FILE=}', f=4)
+            self.eventLogger = FELogger(self, EVN_FILE, flist)
+#            self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
             self.keyboard    = pygwine.key.KeyStateHandler()
             self.push_handlers(self.eventLogger, self.keyboard)
         if dbg: self.log(f'END {self.fmtWH()}')
@@ -563,6 +564,7 @@ class Tabs(pyglet.window.Window):
 
     def on_close(self):
         self.log('????', f=-2)
+        self.quit('on_close')
         return True
     ####################################################################################################################################################################################################
     def saveDataFile(self, why, path, dbg=1):
@@ -1796,21 +1798,13 @@ class Tabs(pyglet.window.Window):
     def kbkEvntTxt(self, why=Z):   why = why if why else W*4   ;   return f'<{why}{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
     ####################################################################################################################################################################################################
     def on_move(         self, x, y):               return evnts.on_move(x, y)
-
+    def on_text(         self, text):               return evnts.on_text(         self, text)
+    def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
+    def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll( x, y, dx, dy)
     def on_mouse_release(self, x, y, bttn, mods=0): return evnts.on_mouse_release(self, x, y, bttn, mods)
-
-    def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll(self, x, y, dx, dy)
-
-    def on_mouse_motion( self, x, y, dx, dy):       return evnts.on_mouse_motion(x, y, dx, dy)
-
-    def on_key_press(    self, symb, mods):         return evnts.on_key_press(  self, symb, mods)
-
-    def on_key_release(  self, symb, mods):         return evnts.on_key_release(self, symb, mods)
-
-    def on_text(         self, text):               return evnts.on_text(       self, text)
-
-    def on_text_motion(  self, motion):             return evnts.on_text_motion(self, motion)
-
+#    def on_mouse_motion( self, x, y, dx, dy):       return evnts.on_mouse_motion(x, y, dx, dy)
+    def on_key_press(    self, symb, mods):         return evnts.on_key_press(    self, symb, mods)
+    def on_key_release(  self, symb, mods):         return evnts.on_key_release(  self, symb, mods)
     def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
     ####################################################################################################################################################################################################
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
@@ -2494,10 +2488,10 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(utl.QUIT_END, p=0, f=0)
         self.log('Calling close()', e=Y, f=2)
         self.close()
-        if self.TEST:
-            if   self.EXIT == 0: retv = False  ;  self.log(f'{self.EXIT=} returning {retv=}')
-            elif self.EXIT == 1:                  self.log(f'{self.EXIT=} Calling pyglet.app.exit()')  ;   retv = True # pyglet.app.exit()
-            elif self.EXIT == 2:                  self.log(f'{self.EXIT=} Calling exit()')             ;   exit()
+        # if self.TEST:
+        #     if   self.EXIT == 0: retv = False  ;  self.log(f'{self.EXIT=} returning {retv=}')
+        #     elif self.EXIT == 1:                  self.log(f'{self.EXIT=} Calling pyglet.app.exit()')  ;   retv = True # pyglet.app.exit()
+        #     elif self.EXIT == 2:                  self.log(f'{self.EXIT=} Calling exit()')             ;   exit()
         self.log(f'returning {retv=}')
         return retv
     ####################################################################################################################################################################################################
@@ -2561,17 +2555,19 @@ if EVN_PATH.exists():    utl.copyFile(EVN_PATH, EVN_PATH2, f=0)
 if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, f=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, f=0)
 if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, f=0)
+#with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(EVN_PATH), 'w', encoding='utf-8') as EVN_FILE:
     f0   = -2
     ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=f0)
     kysgs.init(f=-2)
     slog(sys.argv[0],      p=0,        f=f0)
-    slog(f'argv={fmtl(sys.argv[1:])}', f=f0)
+    slog(f'argv={fmtl(sys.argv[1:])}', f=f0)    ;    slog(f'argv={fmtl(sys.argv[1:])}', f=4)
     utl.dumpRGB(f=f0)
 #    def main():
     f1 = -2
+    slog(f'BGN {EVN_FILE=}', f=f1)     ;   slog(f'BGN {EVN_FILE=}', f=4)
     slog(f'{CSV_PATH=}',  f=f1)        ;   slog(f'{CSV_FILE.name=}', f=f1)
-    slog(f'{EVN_PATH=}',  f=f1)        ;   slog(f'{EVN_FILE.name=}', f=f1)
+#    slog(f'{EVN_PATH=}',  f=f1)        ;   slog(f'{EVN_FILE.name=}', f=f1)
     slog(f'{LOG_PATH=}',  f=f1)        ;   slog(f'{LOG_FILE.name=}', f=f1)
     slog(f'{TXT_PATH=}',  f=f1)        ;   slog(f'{TXT_FILE.name=}', f=f1)
     slog('constructing Tabs object')
@@ -2580,6 +2576,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     slog('Call pyglet.app.run()')
     pyglet.app.run()
     slog('Thats all folks!', ff=1, f=f1)
+    slog(f'END {EVN_FILE=}', f=f1)     ;   slog(f'END {EVN_FILE=}', f=4)
     geomLogPath = utl.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
     geomTxtPath = utl.getFilePath(tabs.TXT_GFN, BASE_PATH, fdir=None, fsfx=Z)
     cleanupOutFiles(TXT_FILE, TXT_PATH, geomTxtPath, seqNumTxtPath, f=f1)
