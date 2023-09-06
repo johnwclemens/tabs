@@ -97,15 +97,14 @@ def on_mouse_release(tobj, x, y, bttn, mods=0, dbg=1):
 
 def on_text(tobj, text, dbg=1):
     retv = True
-    tobj.kbk = text
     if dbg: slog(f'BGN {fTxt(text)} swapping={tobj.swapping}')
     if      tobj.shiftingTabs:                       tobj.shiftTabs(  'onTxt', text)
     elif    tobj.jumping:                            tobj.jump(       'onTxt', text, tobj.jumpAbs)
     elif    tobj.inserting:                          tobj.insertSpace('onTxt', text)
     elif    tobj.settingN:                           tobj.setn_cmd(   'onTxt', text)
     elif    tobj.swapping:                           tobj.swapTab(    'onTxt', text)
-    elif    tobj.isTab(tobj.kbk):                    tobj.setTab(     'onTxt', tobj.kbk)
-    elif    tobj.kbk == '$' and isSft(tobj.mods):    tobj.snapshot(f'{text}', 'SNAP')
+    elif    tobj.isTab(text):                    tobj.setTab(     'onTxt', text)
+    elif    text == '$' and isSft(tobj.mods):    tobj.snapshot(f'{text}', 'SNAP')
     else:   slog(f'UNH {fTxt(text)} Unhandled - return 0', f=-2) if dbg else None   ;   retv = False
     if dbg: slog(f'END {fTxt(text)} swapping={tobj.swapping}')
     return retv
@@ -113,7 +112,7 @@ def on_text(tobj, text, dbg=1):
 def on_text_motion(tobj, motion, dbg=1):
     assert tobj
     slog(f'{motion=}')
-    tobj.kbk = motion   ;   p, l, s, c, t = tobj.j()  ;  np, nl, ns, nc, nt = tobj.n
+    p, l, s, c, t = tobj.j()  ;  np, nl, ns, nc, nt = tobj.n
     if dbg: slog(f'BGN {fTxtMtn(motion)}')
     if   isNumLck(   tobj.mods):                         msg =             f'NUMLOCK(         {motion})'   ;   slog(msg)   ;   pygwink.MOD_NUMLOCK = 0
     if   isCtlAltSft(tobj.mods):                         msg =             f'@&^(             {motion})'   ;   slog(msg) #  ;   self.quit(msg)
@@ -171,9 +170,10 @@ def on_key_release(tobj, symb, mods):
 
 def on_key_press(tobj, symb, mods, dbg=1):
     assert tobj
-    retv = True
-    fontBold, fontItalic                             = tobj.fontBold, tobj.fontItalic
-    tobj.kbk = tobj.symbStr   ;   kbk = tobj.kbk   ;   hcurs = tobj.hcurs
+    retv  = True
+    fontBold, fontItalic = tobj.fontBold, tobj.fontItalic
+    hcurs = tobj.hcurs
+    kbk   = psyms(symb)
     if dbg:    slog(f'BGN {fKbk(symb, mods)}')
     if   kbk == 'A' and isCtlSft(mods):      tobj.flipArrow('@^A', v=1)
     elif kbk == 'A' and isCtl(mods):         tobj.flipArrow('@ A', v=0)

@@ -112,7 +112,6 @@ class Tabs(pyglet.window.Window):
         self.cc            = 0   ;   self.nvis      = 0    ;   self.kbk      = 0
         self.allTabSel     = 0   ;   self.rsyncData = 0    ;   self.sprs     = []
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
-        self.symbStr,  self.modsStr,  self.symb,    self.mods    = Z, Z, 0, 0
         self.J1,       self.J2,       self.j1s,     self.j2s     = [], [], [], []
         self.hArrow,   self.vArrow,   self.csrMode, self.tids    = RARROW, UARROW, CHORD, set()   ;   self.dumpCursorArrows('init()')
         self.tblank,   self.tblanki,  self.cursor,  self.data    = None, None, None, []
@@ -274,7 +273,6 @@ class Tabs(pyglet.window.Window):
         self.E     = [*self.A, *self.B, *self.C, *self.D]       ;     self.log(f'E={fmtl(self.E, d=" [", d2="] ")}')
         self.resetJ('_reinit')
         self.cc,   self.kbk,  self.cursor,  self.caret   = 0, 0, None, None
-        self.symb, self.mods, self.symbStr, self.modsStr = 0, 0, Z, Z
         self.ki    = [ 0 for _ in range(len(self.E)) ]           ;    self.log(fmtl(self.ki))
         self.tblanki, self.tblanks  = 1, [W, '-']                ;    self.tblank    = self.tblanks[self.tblanki]
         self.tblankCol              = self.tblank * self.n[T]    ;    self.tblankRow = self.tblank * (self.n[C] + self.zzl())
@@ -1805,7 +1803,7 @@ class Tabs(pyglet.window.Window):
     def on_mouse_release(self, x, y, bttn, mods=0): return evnts.on_mouse_release(self, x, y, bttn, mods)
 #    def on_mouse_motion( self, x, y, dx, dy):       return evnts.on_mouse_motion(x, y, dx, dy)
     def on_key_press(    self, symb, mods):         return evnts.on_key_press(    self, symb, mods)
-    def on_key_release(  self, symb, mods):         return evnts.on_key_release(  self, symb, mods)
+#    def on_key_release(  self, symb, mods):         return evnts.on_key_release(  self, symb, mods)
     def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
     ####################################################################################################################################################################################################
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
