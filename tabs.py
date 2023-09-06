@@ -17,7 +17,7 @@ from   tpkg            import utl    as utl
 from   tpkg            import kysgs  as kysgs
 from   tpkg            import misc   as misc
 from   tpkg            import evnts  as evnts
-from   tpkg.evnts      import FilteredEventLogger as FELogger
+#from   tpkg.evnts      import FilteredEventLogger as FELogger
 #from   tpkg            import notes  as notes
 from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
@@ -138,14 +138,15 @@ class Tabs(pyglet.window.Window):
         if 'B' in ARGS  and len(ARGS['B']) == 0: self.BGC        =  1
         if 'c' in ARGS  and len(ARGS['c']) == 0: self.CAT        =  1
         if 'C' in ARGS  and len(ARGS['C']) == 0: self.CHECKERED  =  1
-        if 'd' in ARGS  and len(ARGS['d'])  > 0: self.DBG_TABT   =  int(ARGS['d'][0])
+        if 'd' in ARGS  and len(ARGS['d'])  > 0: self.DBG_TABT   =   int(ARGS['d'][0])
         if 'e' in ARGS  and len(ARGS['e']) == 0: self.EVENT_LOG  =  1
-        if 'f' in ARGS  and len(ARGS['f'])  > 0: self.FILE_NAME  =  ARGS['f'][0]
+        if 'e' in ARGS  and len(ARGS['e'])  > 0: self.EVENT_LOG  =   int(ARGS['e'][0])
+        if 'f' in ARGS  and len(ARGS['f'])  > 0: self.FILE_NAME  =       ARGS['f'][0]
         if 'F' in ARGS  and len(ARGS['F']) == 0: self.FULL_SCRN  =  1
         if 'g' in ARGS  and len(ARGS['g']) == 0: self.ORD_GRP    =  1
         if 'G' in ARGS  and len(ARGS['G']) == 0: self.GEN_DATA   =  1
         if 'i' in ARGS  and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
-        if 'J' in ARGS  and len(ARGS['J'])  > 0: self.DSP_J_LEV  =  int(ARGS['J'][0])
+        if 'J' in ARGS  and len(ARGS['J'])  > 0: self.DSP_J_LEV  =   int(ARGS['J'][0])
         if 'l' in ARGS  and len(ARGS['l']) == 0: self.LONG_TXT   =  1
         if 'L' in ARGS  and len(ARGS['L']) == 0: self.LL         =  1
         if 'M' in ARGS  and len(ARGS['M']) == 0: self.MULTILINE  =  1
@@ -161,7 +162,7 @@ class Tabs(pyglet.window.Window):
         if 'V' in ARGS  and len(ARGS['V']) == 0: self.VIEWS      =  1
         if 'w' in ARGS  and len(ARGS['w'])  > 0: self.XYVA       = [ int(ARGS['w'][i]) for i in range(len(ARGS['w'])) ]
         if 'x' in ARGS  and len(ARGS['x']) == 0: self.EXIT       =  1
-        if 'x' in ARGS  and len(ARGS['x'])  > 0: self.EXIT       =  int(ARGS['x'][0])
+        if 'x' in ARGS  and len(ARGS['x'])  > 0: self.EXIT       =   int(ARGS['x'][0])
         if 'Z' in ARGS  and len(ARGS['Z']) >= 0: self.ZZ         = { int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) }
         self._init_xyva()
         ################################################################################################################################################################################################
@@ -344,11 +345,13 @@ class Tabs(pyglet.window.Window):
         self.set_visible()
         self.log(f'get_size={self.get_size()}')
         if self.EVENT_LOG:
-            flist = ['on_draw'] # 'on_draw', 'on_key_released', 'on_mouse_motion', 'on_key_pressed', 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_scroll'
-            self.log(f'{EVN_FILE=}', f=-2)    ;    self.log(f'{EVN_FILE=}', f=4)
-            self.eventLogger = FELogger(self, EVN_FILE, flist)
-#            self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
-            self.keyboard    = pygwine.key.KeyStateHandler()
+            if self.EVENT_LOG == 1:   self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
+            else:
+                flist = ['on_draw'] # 'on_draw', 'on_key_released', 'on_mouse_motion', 'on_key_pressed', 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_scroll'
+                self.log(f'{fmtl(flist)} {EVN_FILE=}', f=-2)   ;   self.log(f'{fmtl(flist)} {EVN_FILE=}', f=4)
+                from tpkg.evnts import FilteredEventLogger as FELogger
+                self.eventLogger = FELogger(self, EVN_FILE, flist)
+            self.keyboard        = pygwine.key.KeyStateHandler()
             self.push_handlers(self.eventLogger, self.keyboard)
         if dbg: self.log(f'END {self.fmtWH()}')
     ####################################################################################################################################################################################################
@@ -1794,8 +1797,6 @@ class Tabs(pyglet.window.Window):
         texts = [ obs[cc + t].text for t in range(nt) ]    ;   text = Z.join(texts)
         if dbg: slog(f'{jTEXTS[j]}[{cc}-{cc+nt-1}].text={fmtl(texts)}=<{text}>')
         return text
-    ####################################################################################################################################################################################################
-    def kbkEvntTxt(self, why=Z):   why = why if why else W*4   ;   return f'<{why}{self.kbk=:8}> <{self.symb=:8}> <{self.symbStr=:16}> <{self.mods=:2}> <{self.modsStr=:16}>'
     ####################################################################################################################################################################################################
     def on_move(         self, x, y):               return evnts.on_move(x, y)
     def on_text(         self, text):               return evnts.on_text(         self, text)

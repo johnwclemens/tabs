@@ -1,9 +1,13 @@
+from inspect import currentframe as cfrm
 import pyglet
 #import pyglet.text         as text
 #import pyglet.window       as window
 ##import pyglet.window.event as pygwevnt
 ##import pyglet.event        as pygevnt
 import pyglet.window.key   as pygwink
+from pyglet.window.key import symbol_string    as psyms
+from pyglet.window.key import modifiers_string as pmods
+from pyglet.window.key import motion_string    as pmtns
 import pyglet.window.mouse as pygmous
 from   tpkg import utl     as utl
 
@@ -17,11 +21,19 @@ P, L, S, C, T, N, I, K, R, Q, H, M, B, A, D, E                           = utl.P
 isAlt, isCtl, isSft, isAltSft, isCtlAlt, isCtlSft, isCtlAltSft, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isSft, utl.isAltSft, utl.isCtlSft, utl.isCtlAltSft, utl.isNumLck
 
 FLIST = []
+
 def flog(msg, fd=None, filt=None):
-    if filt and filt not in FLIST:
+    if (filt and filt not in FLIST) or not filt:
         slog(f'{msg} {filt=}', f=fd)
-    elif not filt:
-        slog(f'{msg} {filt=}', f=fd)
+
+#def fMov(x, y):              return f'{x=} {y=}'
+def fTxt(   text):           return f'{text=}'
+def fTxtMtn(motion):         return f'{motion=}'
+def fKbk(   symb, mods):     return f'{symb=} psyms={psyms(symb)} {mods=} pmods={pmods(mods)}>'
+def fMmov(x, y, dx, dy):     return f'{x=} {y=} {dx=} {dy=}'
+def fMclk(x, y, bttn, mods): return f'{x=} {y=} {bttn=} {mods=}'
+def fn(cf):                  return cf.f_code.co_name
+
 ########################################################################################################################################################################################################
 
 class FilteredEventLogger(pyglet.window.event.WindowEventLogger):
@@ -31,34 +43,36 @@ class FilteredEventLogger(pyglet.window.event.WindowEventLogger):
         global FLIST   ;   FLIST = flst
 
     def on_draw(self, **kwargs):
-        flog(f'{kwargs=}', filt='on_draw')
+        flog(f'{kwargs=}', filt=fn(cfrm()))
 
     def on_move(self, x, y):
-        flog(f'{x=} {y=}', filt='on_move')
+        flog(f'{x=} {y=}', filt=fn(cfrm()))
 
     def on_mouse_motion(self, x, y, dx, dy):
-        flog(f'{x=} {y=} {dx=} {dy=}', filt='on_mouse_motion')
+        flog(f'{x=} {y=} {dx=} {dy=}', filt=fn(cfrm()))
 
     def on_mouse_scroll(self, x, y, dx, dy):
-        flog(f'{x=} {y=} {dx=} {dy=}', filt='on_mouse_scroll')
+        flog(f'{x=} {y=} {dx=} {dy=}', filt=fn(cfrm()))
 
     def on_mouse_press(self, x, y, bttn, mods=0):
-        flog(f'{x=} {y=} {bttn=} {mods=}', filt='on_mouse_press')
+        flog(f'{x=} {y=} {bttn=} {mods=}', filt=fn(cfrm()))
 
     def on_mouse_release(self, x, y, bttn, mods=0):
-        flog(f'{x=} {y=} {bttn=} {mods=}', filt='on_mouse_release')
+        flog(f'{x=} {y=} {bttn=} {mods=}', filt=fn(cfrm()))
 
     def on_key_press(self, symb, mods):
-        flog(f'{symb=} {mods=} {pygwink.symbol_string(symb)} {pygwink.modifiers_string(mods)}', filt='on_key_press')
+        flog(f'{symb=} {psyms(symb)} {mods=} {pmods(mods)}', filt=fn(cfrm()))
+#        flog(f'{symb=} {mods=} {pygwink.symbol_string(symb)} {pygwink.modifiers_string(mods)}', filt=fn(cfrm()))
 
     def on_key_release(self, symb, mods):
-        flog(f'{symb=} {mods=} {pygwink.symbol_string(symb)} {pygwink.modifiers_string(mods)}', filt='on_key_release')
+        flog(f'{symb=} {psyms(symb)} {mods=} {pmods(mods)}', filt=fn(cfrm()))
+#        flog(f'{symb=} {mods=} {pygwink.symbol_string(symb)} {pygwink.modifiers_string(mods)}', filt=fn(cfrm()))
 
     def on_text(self, text):
-        flog(f'{text=}', filt='on_text')
+        flog(f'{text=}', filt=fn(cfrm()))
 
-    def on_text_motion(self, motion, filt='on_text_motion'):
-        flog(f'{motion=}')
+    def on_text_motion(self, motion):
+        flog(f'{motion=} {pmtns(motion)}', filt=fn(cfrm()))
 
 ########################################################################################################################################################################################################
 
@@ -84,7 +98,7 @@ def on_mouse_release(tobj, x, y, bttn, mods=0, dbg=1):
 def on_text(tobj, text, dbg=1):
     retv = True
     tobj.kbk = text
-    if dbg: slog(f'BGN {tobj.kbkEvntTxt()} swapping={tobj.swapping}')
+    if dbg: slog(f'BGN {fTxt(text)} swapping={tobj.swapping}')
     if      tobj.shiftingTabs:                       tobj.shiftTabs(  'onTxt', text)
     elif    tobj.jumping:                            tobj.jump(       'onTxt', text, tobj.jumpAbs)
     elif    tobj.inserting:                          tobj.insertSpace('onTxt', text)
@@ -92,15 +106,15 @@ def on_text(tobj, text, dbg=1):
     elif    tobj.swapping:                           tobj.swapTab(    'onTxt', text)
     elif    tobj.isTab(tobj.kbk):                    tobj.setTab(     'onTxt', tobj.kbk)
     elif    tobj.kbk == '$' and isSft(tobj.mods):    tobj.snapshot(f'{text}', 'SNAP')
-    else:   slog(f'UNH {tobj.kbkEvntTxt()} Unhandled - return 0', f=-2) if dbg else None   ;   retv = False
-    if dbg: slog(f'END {tobj.kbkEvntTxt()} swapping={tobj.swapping}')
+    else:   slog(f'UNH {fTxt(text)} Unhandled - return 0', f=-2) if dbg else None   ;   retv = False
+    if dbg: slog(f'END {fTxt(text)} swapping={tobj.swapping}')
     return retv
 
 def on_text_motion(tobj, motion, dbg=1):
     assert tobj
     slog(f'{motion=}')
     tobj.kbk = motion   ;   p, l, s, c, t = tobj.j()  ;  np, nl, ns, nc, nt = tobj.n
-    if dbg: slog(f'BGN {tobj.kbkEvntTxt()} motion={motion}')
+    if dbg: slog(f'BGN {fTxtMtn(motion)}')
     if   isNumLck(   tobj.mods):                         msg =             f'NUMLOCK(         {motion})'   ;   slog(msg)   ;   pygwink.MOD_NUMLOCK = 0
     if   isCtlAltSft(tobj.mods):                         msg =             f'@&^(             {motion})'   ;   slog(msg) #  ;   self.quit(msg)
     elif isCtlAlt(   tobj.mods):
@@ -130,7 +144,7 @@ def on_text_motion(tobj, motion, dbg=1):
 #           elif motion == pygwink.MOTION_DELETE:            self.deleteTabs( f'@ D MOTION_DELETE({motion})')
 #           elif motion == pygwink.MOTION_COPY:              self.copyTabs(   f'@ C MOTION_COPY(  {motion})')
 #           elif motion == pygwink.MOTION_PASTE:             self.pasteTabs(  f'@ V MOTION_PASTE( {motion})', kk=0)
-        else:                                            msg =             f'UNH CTRL(        {motion}) {tobj.kbkEvntTxt()}'   ;   slog(msg) #  ;   self.quit(msg)
+        else:                                            msg =             f'UNH CTRL(        {motion}) {fTxtMtn(motion)}'   ;   slog(msg) #  ;   self.quit(msg)
     elif tobj.mods == 0:
         if   motion == pygwink.MOTION_UP:                tobj.move(        f' UP(             {motion})', -1)
         elif motion == pygwink.MOTION_DOWN:              tobj.move(        f' DOWN(           {motion})',  1)
@@ -147,74 +161,73 @@ def on_text_motion(tobj, motion, dbg=1):
         elif motion == pygwink.MOTION_DELETE:            tobj.setTab(      f'DELETE(          {motion})', tobj.tblank)
         elif motion == pygwink.MOTION_BACKSPACE:         tobj.setTab(      f'BACKSPACE(       {motion})', tobj.tblank, rev=1)
         else:                                            msg =             f'(                {motion})'   ;   slog(msg)   ;   tobj.quit(msg)
-    if dbg: slog(f'END {tobj.kbkEvntTxt()} motion={motion}')
+    if dbg: slog(f'END {fTxtMtn(motion)} motion={motion}')
     return True
     ####################################################################################################################################################################################################
 
 def on_key_release(tobj, symb, mods):
     assert tobj
-    slog(f'{symb=} {mods=}')
+    slog(f'{fKbk(symb, mods)}')
 
 def on_key_press(tobj, symb, mods, dbg=1):
     assert tobj
     retv = True
     fontBold, fontItalic                             = tobj.fontBold, tobj.fontItalic
-    tobj.symb, tobj.mods, tobj.symbStr, tobj.modsStr = symb, mods, pygwink.symbol_string(symb), pygwink.modifiers_string(mods)
     tobj.kbk = tobj.symbStr   ;   kbk = tobj.kbk   ;   hcurs = tobj.hcurs
-    if dbg:    slog(f'BGN {tobj.kbkEvntTxt()}', None)
-    if   kbk == 'A' and isCtlSft(mods):    tobj.flipArrow('@^A', v=1)
-    elif kbk == 'A' and isCtl(mods):       tobj.flipArrow('@ A', v=0)
-    elif kbk == 'B' and isCtlSft(mods):    tobj.flipBlank(     '@^B')
-    elif kbk == 'B' and isCtl(   mods):    tobj.flipBlank(     '@ B')
-    elif kbk == 'C' and isCtlSft(mods):    tobj.copyTabs(      '@^C')
-    elif kbk == 'C' and isCtl(   mods):    tobj.copyTabs(      '@ C')
-    elif kbk == 'D' and isCtlSft(mods):    tobj.deleteTabs(    '@^D')
-    elif kbk == 'D' and isCtl(   mods):    tobj.deleteTabs(    '@ D')
-    elif kbk == 'E' and isCtlSft(mods):    tobj.eraseTabs(     '@^E')
-#   elif kbk == 'E' and isCtl(   mods):    tobj.eraseTabs(     '@ E')
-    elif kbk == 'F' and isCtlSft(mods):    tobj.flipFullScreen('@^F')
-    elif kbk == 'F' and isCtl(   mods):    tobj.flipFlatSharp( '@ F')
-    elif kbk == 'G' and isCtlSft(mods):    tobj.move2LastTab(  '@^G', page=1)
-    elif kbk == 'G' and isCtl(   mods):    tobj.move2LastTab(  '@ G', page=0)
-    elif kbk == 'H' and isCtlSft(mods):    tobj.move2FirstTab( '@^H', page=1)
-    elif kbk == 'H' and isCtl(   mods):    tobj.move2FirstTab( '@ H', page=0)
-    elif kbk == 'I' and isCtlSft(mods):    tobj.insertSpace(   '@^I')
-    elif kbk == 'I' and isCtl(   mods):    tobj.flipTTs(       '@ I', II)
-    elif kbk == 'J' and isCtlSft(mods):    tobj.jump(          '@^J', a=1)
-    elif kbk == 'J' and isCtl(   mods):    tobj.jump(          '@ J', a=0)
-    elif kbk == 'K' and isCtlSft(mods):    tobj.flipTTs(       '@^K', KK)
-    elif kbk == 'K' and isCtl(   mods):    tobj.flipTTs(       '@ K', KK)
-    elif kbk == 'L' and isCtlSft(mods):    tobj.flipLLs(       '@^L')
-    elif kbk == 'L' and isCtl(   mods):    tobj.flipLLs(       '@ L')
-    elif kbk == 'M' and isCtlSft(mods):    tobj.flipZZs(       '@^M', 1)
-    elif kbk == 'M' and isCtl(   mods):    tobj.flipZZs(       '@ M', 0)
-    elif kbk == 'N' and isCtlSft(mods):    tobj.flipTTs(       '@^N', NN)
-    elif kbk == 'N' and isCtl(   mods):    tobj.flipTTs(       '@ N', NN)
-    elif kbk == 'O' and isCtlSft(mods):    tobj.flipCursorMode('@^O', -1)
-    elif kbk == 'O' and isCtl(   mods):    tobj.flipCursorMode('@ O', 1)
-    elif kbk == 'P' and isCtlSft(mods):    tobj.addPage(       '@^P', ins=0)
-    elif kbk == 'P' and isCtl(   mods):    tobj.addPage(       '@ P', ins=None)
-    elif kbk == 'Q' and isCtlSft(mods):    retv = tobj.quit(   '@^Q', error=0, save=0)
-    elif kbk == 'Q' and isCtl(   mods):    retv = tobj.quit(   '@ Q', error=0, save=1)
-    elif kbk == 'R' and isCtlSft(mods):    tobj.flipChordNames('@^R', hit=1)
-    elif kbk == 'R' and isCtl(   mods):    tobj.flipChordNames('@ R', hit=0)
-    elif kbk == 'S' and isCtlSft(mods):    tobj.shiftTabs(     '@^S')
-#   elif kbk == 'S' and isCtl(   mods):    tobj.saveDataFile(  '@ S', self.dataPath1)
-    elif kbk == 'S' and isCtl(   mods):    tobj.swapTab(       '@ S', txt=Z)
-    elif kbk == 'T' and isCtlSft(mods):    tobj.flipTTs(       '@^T', TT)
-    elif kbk == 'T' and isCtl(   mods):    tobj.flipTTs(       '@ T', TT)
-    elif kbk == 'U' and isCtlSft(mods):    tobj.reset(         '@^U')
-    elif kbk == 'U' and isCtl(   mods):    tobj.reset(         '@ U')
-#   elif kbk == 'V' and isCtlAlt(mods):    tobj.pasteTabs(     '@&V', hc=0, kk=1)
-    elif kbk == 'V' and isCtlSft(mods):    tobj.pasteTabs(     '@^V', kk=1)
-    elif kbk == 'V' and isCtl(   mods):    tobj.pasteTabs(     '@ V', kk=0)
-    elif kbk == 'W' and isCtlSft(mods):    tobj.swapCols(      '@^W')
-    elif kbk == 'W' and isCtl(   mods):    tobj.swapCols(      '@ W')
-    elif kbk == 'X' and isCtlSft(mods):    tobj.cutTabs(       '@^X')
-    elif kbk == 'X' and isCtl(   mods):    tobj.cutTabs(       '@ X')
+    if dbg:    slog(f'BGN {fKbk(symb, mods)}')
+    if   kbk == 'A' and isCtlSft(mods):      tobj.flipArrow('@^A', v=1)
+    elif kbk == 'A' and isCtl(mods):         tobj.flipArrow('@ A', v=0)
+    elif kbk == 'B' and isCtlSft(mods):      tobj.flipBlank(     '@^B')
+    elif kbk == 'B' and isCtl(   mods):      tobj.flipBlank(     '@ B')
+    elif kbk == 'C' and isCtlSft(mods):      tobj.copyTabs(      '@^C')
+    elif kbk == 'C' and isCtl(   mods):      tobj.copyTabs(      '@ C')
+    elif kbk == 'D' and isCtlSft(mods):      tobj.deleteTabs(    '@^D')
+    elif kbk == 'D' and isCtl(   mods):      tobj.deleteTabs(    '@ D')
+    elif kbk == 'E' and isCtlSft(mods):      tobj.eraseTabs(     '@^E')
+#   elif kbk == 'E' and isCtl(   mods):      tobj.eraseTabs(     '@ E')
+    elif kbk == 'F' and isCtlSft(mods):      tobj.flipFullScreen('@^F')
+    elif kbk == 'F' and isCtl(   mods):      tobj.flipFlatSharp( '@ F')
+    elif kbk == 'G' and isCtlSft(mods):      tobj.move2LastTab(  '@^G', page=1)
+    elif kbk == 'G' and isCtl(   mods):      tobj.move2LastTab(  '@ G', page=0)
+    elif kbk == 'H' and isCtlSft(mods):      tobj.move2FirstTab( '@^H', page=1)
+    elif kbk == 'H' and isCtl(   mods):      tobj.move2FirstTab( '@ H', page=0)
+    elif kbk == 'I' and isCtlSft(mods):      tobj.insertSpace(   '@^I')
+    elif kbk == 'I' and isCtl(   mods):      tobj.flipTTs(       '@ I', II)
+    elif kbk == 'J' and isCtlSft(mods):      tobj.jump(          '@^J', a=1)
+    elif kbk == 'J' and isCtl(   mods):      tobj.jump(          '@ J', a=0)
+    elif kbk == 'K' and isCtlSft(mods):      tobj.flipTTs(       '@^K', KK)
+    elif kbk == 'K' and isCtl(   mods):      tobj.flipTTs(       '@ K', KK)
+    elif kbk == 'L' and isCtlSft(mods):      tobj.flipLLs(       '@^L')
+    elif kbk == 'L' and isCtl(   mods):      tobj.flipLLs(       '@ L')
+    elif kbk == 'M' and isCtlSft(mods):      tobj.flipZZs(       '@^M', 1)
+    elif kbk == 'M' and isCtl(   mods):      tobj.flipZZs(       '@ M', 0)
+    elif kbk == 'N' and isCtlSft(mods):      tobj.flipTTs(       '@^N', NN)
+    elif kbk == 'N' and isCtl(   mods):      tobj.flipTTs(       '@ N', NN)
+    elif kbk == 'O' and isCtlSft(mods):      tobj.flipCursorMode('@^O', -1)
+    elif kbk == 'O' and isCtl(   mods):      tobj.flipCursorMode('@ O', 1)
+    elif kbk == 'P' and isCtlSft(mods):      tobj.addPage(       '@^P', ins=0)
+    elif kbk == 'P' and isCtl(   mods):      tobj.addPage(       '@ P', ins=None)
+    elif kbk == 'Q' and isCtlSft(mods):      retv = tobj.quit(   '@^Q', error=0, save=0)
+    elif kbk == 'Q' and isCtl(   mods):      retv = tobj.quit(   '@ Q', error=0, save=1)
+    elif kbk == 'R' and isCtlSft(mods):      tobj.flipChordNames('@^R', hit=1)
+    elif kbk == 'R' and isCtl(   mods):      tobj.flipChordNames('@ R', hit=0)
+    elif kbk == 'S' and isCtlSft(mods):      tobj.shiftTabs(     '@^S')
+#   elif kbk == 'S' and isCtl(   mods):      tobj.saveDataFile(  '@ S', self.dataPath1)
+    elif kbk == 'S' and isCtl(   mods):      tobj.swapTab(       '@ S', txt=Z)
+    elif kbk == 'T' and isCtlSft(mods):      tobj.flipTTs(       '@^T', TT)
+    elif kbk == 'T' and isCtl(   mods):      tobj.flipTTs(       '@ T', TT)
+    elif kbk == 'U' and isCtlSft(mods):      tobj.reset(         '@^U')
+    elif kbk == 'U' and isCtl(   mods):      tobj.reset(         '@ U')
+#   elif kbk == 'V' and isCtlAlt(mods):      tobj.pasteTabs(     '@&V', hc=0, kk=1)
+    elif kbk == 'V' and isCtlSft(mods):      tobj.pasteTabs(     '@^V', kk=1)
+    elif kbk == 'V' and isCtl(   mods):      tobj.pasteTabs(     '@ V', kk=0)
+    elif kbk == 'W' and isCtlSft(mods):      tobj.swapCols(      '@^W')
+    elif kbk == 'W' and isCtl(   mods):      tobj.swapCols(      '@ W')
+    elif kbk == 'X' and isCtlSft(mods):      tobj.cutTabs(       '@^X')
+    elif kbk == 'X' and isCtl(   mods):      tobj.cutTabs(       '@ X')
     ####################################################################################################################################################################################################
     elif kbk == 'ESCAPE':                    tobj.flipSelectAll( 'ESCAPE')
-    elif kbk == 'TAB'       and isCtl(mods): tobj.setCHVMode(    '@ TAB',       MELODY, LARROW)
+    elif kbk == 'TAB' and isCtl(mods):       tobj.setCHVMode(    '@ TAB',       MELODY, LARROW)
     elif kbk == 'TAB':                       tobj.setCHVMode(    '  TAB',       MELODY, RARROW)
 #   elif kbk == 'SLASH'     and isCtl(mods): tobj.setTab(        '@ SLASH', '/')
 #   elif kbk == 'SLASH':                     tobj.setTab(        '  SLASH', '/')
@@ -245,12 +258,12 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'A' and isAlt(   mods):      tobj.setFontParam(FONT_NAME,    -1,          'fontNameIdx')
     elif kbk == 'S' and isAltSft(mods):      tobj.setFontParam(FONT_SIZE,     33 / 32,    'fontSize')
     elif kbk == 'S' and isAlt(   mods):      tobj.setFontParam(FONT_SIZE,     32 / 33,    'fontSize')
-    else:   slog(f'UNH {tobj.kbkEvntTxt()} Unhandled - return 0') if dbg else None   ;   retv = False
+    else:   slog(f'UNH {fKbk(symb, mods)} Unhandled - return 0') if dbg else None   ;   retv = False
     ####################################################################################################################################################################################################
     if  not  tobj.isParsing():
         if   kbk == 'ENTER' and isCtl(mods): tobj.setCHVMode(  '@  ENTER',     CHORD,  v=DARROW)
         elif kbk == 'ENTER':                 tobj.setCHVMode(  '   ENTER',     CHORD,  v=UARROW)
         elif kbk == 'SPACE':                 tobj.autoMove(    '   SPACE')
 #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
-    if dbg:  slog(f'END {tobj.kbkEvntTxt()}')
+    if dbg:  slog(f'END {fKbk(symb, mods)}')
     return retv

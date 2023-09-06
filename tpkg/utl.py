@@ -1,6 +1,11 @@
 import glob, inspect, math, os, pathlib, sys
+from inspect import currentframe as cfrm
+
 import pyglet.window.key   as pygwink
 from tpkg import unic as unic
+
+def fn(cf):  return cf.f_code.co_name
+def ffn(cf): return cf.f_code.co_filename
 
 UNICODE   = unic.UNICODE
 ROOT_DIR  = "test"
@@ -79,25 +84,22 @@ def rotateList(a, rev=0):
     return a
 ########################################################################################################################################################################################################
 def slog(t=Z, p=1, f=1, s=Y, e=X, ff=0, ft=1):
-    if ft: t = filtText(t)
+    if t and ft: t = filtText(t)
     if p:
-        sf   = inspect.currentframe().f_back
-        while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
-        fp   = pathlib.Path(sf.f_code.co_filename)
-        pl   = 18 if p == 1 else 8
-        p    = f'{sf.f_lineno:4} {fp.stem:5} ' if p == 1 else Z
-        t    = f'{p}{sf.f_code.co_name:{pl}} ' + t
+        sf = cfrm().f_back
+        while fn(sf) in STFILT:   sf = sf.f_back
+        fp = pathlib.Path(ffn(sf))
+        p  = f'{sf.f_lineno:4} {fp.stem:5} '
+        t  = f'{p}{fn(sf):18} ' + t
     tx, so, cs = 0, 0, 0
     if   f == -3: f = LOG_FILE  ;  cs = 1  ;  so = 1
     elif f == -2: f = LOG_FILE  ;  tx = 1  ;  so = 1
     elif f == -1: f = sys.stdout
-    elif f == 0:  f = TXT_FILE
-    elif f == 1:  f = LOG_FILE
-    elif f == 2:  f = LOG_FILE  ;  tx = 1
-    elif f == 3:  f = CSV_FILE
-    elif f == 4:  f = EVN_FILE
-    else:         f = EVN_FILE
-#    elif f == 4:  f = LOG_FILE  ;  so = 1
+    elif f ==  0: f = TXT_FILE
+    elif f ==  1: f = LOG_FILE
+    elif f ==  2: f = LOG_FILE  ;  tx = 1
+    elif f ==  3: f = CSV_FILE
+    elif f ==  4: f = EVN_FILE
     print(t, sep=s, end=e, file=f,          flush=bool(ff))
     print(t, sep=s, end=e, file=TXT_FILE,   flush=bool(ff)) if tx else None
     print(t, sep=s, end=e, file=sys.stdout, flush=bool(ff)) if so else None
@@ -106,7 +108,7 @@ def slog(t=Z, p=1, f=1, s=Y, e=X, ff=0, ft=1):
 def olog(o=None, p=1, f=1, s=Y, e=X, ff=1):
     o = s.join(str(o)) if o is not None else ''
     if p:
-        sf   = inspect.currentframe().f_back
+        sf   = fn(cfrm())
         while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
         fp   = pathlib.Path(sf.f_code.co_filename)
         pl   = 18 if p == 1 else 8

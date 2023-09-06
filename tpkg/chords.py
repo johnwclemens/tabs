@@ -71,11 +71,11 @@ class Chords:
             return               self.limap[imi]
         return     imap # [ ikeys, ivals, notes, name, chunks, rank ]
     ####################################################################################################################################################################################################
-    def add2uMap(self, li, ikey, rank, ivals, dbg=1):
+    def add2uMap(self, li, ikey, rank, ivals, dbg=0):
         kc = self.chordCounter
         kc[ikey]    += 1
-        if kc[ikey] != 1:   slog(f'return already counted {ikey=:17} {kc=}')    ;    return
-        slog(f'{li=} Adding {ikey=} v={fmtl(sorted(ivals))} to umap')
+        if kc[ikey] != 1:  slog(f'return already counted {ikey=:17} {kc=}') if dbg else None    ;    return
+        if dbg:            slog(f'{li=} Adding {ikey=} v={fmtl(sorted(ivals))} to umap')
         self.umap[ikey] = (rank, ivals, [])
         self.dumpUmap() if dbg else None
     ####################################################################################################################################################################################################
