@@ -152,7 +152,7 @@ SHRPS  = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I2S.values(
 
 def FREQ1(index): return 440 * pow(pow(2, 1/Notes.NTONES), index - 57)
 def FREQ2(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - 57)
-def Piano(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
+def Piano(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{utl.NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 
 FREQ1S = [ FREQ1(i) for i in range(MAX_FREQ_IDX) ]
 FREQ2S = [ FREQ2(i) for i in range(MAX_FREQ_IDX) ]

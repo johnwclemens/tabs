@@ -16,7 +16,7 @@ P, L, S, C =  0,  1,  2,  3
 T, N, I, K =  4,  5,  6,  7
 R, Q, H, M =  8,  9, 10, 11
 B, A, D, E = 12, 13, 14, 15
-W, X, Y, Z               = ' ', '\n', ',', ''
+W, X, Y, Z, NONE      = ' ', '\n', ',', '', 'None'
 TT, NN, II, KK        =  0,  1,  2,  3
 MELODY, CHORD, ARPG   =  0, 1, 2
 LARROW, RARROW, DARROW, UARROW =  0, 1, 0, 1
@@ -51,17 +51,43 @@ def paths():           return BASE_NAME, BASE_PATH, PATH
 def fri(f):            return int(math.floor(f + 0.5))
 def signed(n):         return f' {n}' if n==0 else f'{n:+}'
 def ns2signs(ns, s=Z): return [ f'-{s}' if n<0 else f'+{s}' if n>0  else f'{W}{s}' for n in ns ]
-def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{"None":^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
+def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 ########################################################################################################################################################################################################
-def isAlt(mods):       return mods & pygwink.MOD_ALT
-def isCtl(mods):       return mods & pygwink.MOD_CTRL
-def isSft(mods):       return mods & pygwink.MOD_SHIFT
-def isCtlSft(mods):    return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_SHIFT
-def isAltSft(mods):    return mods & pygwink.MOD_ALT      and mods & pygwink.MOD_SHIFT
-def isCtlAlt(mods):    return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_ALT
-def isCtlAltSft(mods): return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_ALT   and mods & pygwink.MOD_SHIFT
-def isCapLck(mods):    return mods & pygwink.MOD_CAPSLOCK
-def isNumLck(mods):    return mods & pygwink.MOD_NUMLOCK
+# def isAlt(mods):       return mods & pygwink.MOD_ALT
+# def isCtl(mods):       return mods & pygwink.MOD_CTRL
+# def isShf(mods):       return mods & pygwink.MOD_SHIFT
+# def isCtlShf(mods):    return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_SHIFT
+# def isAltShf(mods):    return mods & pygwink.MOD_ALT      and mods & pygwink.MOD_SHIFT
+# def isCtlAlt(mods):    return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_ALT
+# def isCtlAltShf(mods): return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_ALT   and mods & pygwink.MOD_SHIFT
+# def isCapLck(mods):    return mods & pygwink.MOD_CAPSLOCK
+# def isNumLck(mods):    return mods & pygwink.MOD_NUMLOCK
+########################################################################################################################################################################################################
+ALT = pygwink.MOD_ALT
+CTL = pygwink.MOD_CTRL
+SHF = pygwink.MOD_SHIFT
+CPL = pygwink.MOD_CAPSLOCK
+NML = pygwink.MOD_NUMLOCK
+
+# def isAlt(d):       return d[ALT]                       if ALT in d                           else 0
+# def isCtl(d):       return d[CTL]                       if CTL in d                           else 0
+# def isShf(d):       return d[SHF]                       if SHF in d                           else 0
+# def isCtlShf(d):    return d[CTL] and d[SHF]            if CTL in d and SHF in d              else 0
+# def isAltShf(d):    return d[ALT] and d[SHF]            if ALT in d and SHF in d              else 0
+# def isCtlAlt(d):    return d[CTL] and d[ALT]            if CTL in d and ALT in d              else 0
+# def isCtlAltShf(d): return d[CTL] and d[ALT] and d[SHF] if CTL in d and ALT in d and SHF in d else 0
+# def isCapLck(d):    return d[CPL]                       if CPL in d                           else 0
+# def isNumLck(d):    return d[NML]                       if NML in d                           else 0
+
+def isAlt(      d, m=0): return d[ALT]                       if d and ALT in d                           else m & ALT
+def isCtl(      d, m=0): return d[CTL]                       if d and CTL in d                           else m & CTL
+def isShf(      d, m=0): return d[SHF]                       if d and SHF in d                           else m & SHF
+def isCtlShf(   d, m=0): return d[CTL] and d[SHF]            if d and CTL in d and SHF in d              else m & CTL and m & SHF
+def isAltShf(   d, m=0): return d[ALT] and d[SHF]            if d and ALT in d and SHF in d              else m & ALT and m & SHF
+def isCtlAlt(   d, m=0): return d[CTL] and d[ALT]            if d and CTL in d and ALT in d              else m & CTL and m & ALT
+def isCtlAltShf(d, m=0): return d[CTL] and d[ALT] and d[SHF] if d and CTL in d and ALT in d and SHF in d else m & CTL and m & ALT and m & SHF
+def isCapLck(   d, m=0): return d[CPL]                       if d and CPL in d                           else m & CPL
+def isNumLck(   d, m=0): return d[NML]                       if d and NML in d                           else m & NML
 ########################################################################################################################################################################################################
 def stackDepth(sfs):
     global     MAX_STACK_DEPTH, MAX_STACK_FRAME
@@ -79,11 +105,11 @@ def dumpStack(sfs):
     slog(f'MAX_STACK_DEPTH={MAX_STACK_DEPTH:2}')
 
 def rotateList(a, rev=0):
-    if rev: tmp0 = a[-1 ]   ;   tmp1 = a[:-1]   ;   a = tmp1   ;   a.insert(0, tmp0)
-    else:   tmp0 = a[0]     ;   tmp1 = a[1:]    ;   a = tmp1   ;   a.append(tmp0)
-    return a
+    if rev: tmp0 = a[-1]   ;   tmp1 = a[:-1]   ;   a = tmp1   ;   a.insert(0, tmp0)
+    else:   tmp0 = a[0]    ;   tmp1 = a[1:]    ;   a = tmp1   ;   a.append(tmp0)
+    return     a
 ########################################################################################################################################################################################################
-def slog(t=Z, p=1, f=1, s=Y, e=X, ff=0, ft=1):
+def slog(t=Z, p=1, f=1, s=Y, e=X, ff=1, ft=1):
     if t and ft: t = filtText(t)
     if p:
         sf = cfrm().f_back
@@ -139,7 +165,7 @@ def ordSfx(n):
 def ist(o, t):  return isinstance(o, t)
 ########################################################################################################################################################################################################
 def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str concat?
-    if   lst is None:   return  'None'
+    if   lst is None:   return  NONE
     lts = (list, tuple, set, frozenset, zip)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts,   f'{type(lst)=} {lts=}'
     if d == Z:     d2 = Z
@@ -154,7 +180,7 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str conca
             ss = s if i < len(lst)-1 else Z
             u = Z if u is None else u
             if   ist(l, type):            l =  str(l)
-            elif l is None:               l =  'None'
+            elif l is None:               l =  NONE
             if   ist(w, lts):             t.append(f'{l:{u}{w[i]}}{ss}')
             elif ist(l, dtn):             t.append(f'{l:{u}{w   }}{ss}')
             elif ist(l, dts):             t.append(f'{l:{u}{w   }}{ss}')
@@ -162,6 +188,8 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str conca
     return z + d + Z.join(t) + d2
 ########################################################################################################################################################################################################
 def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=W, ll=None):
+#    assert m,  f'{m=}'
+    if m is None:   return  NONE
     w  = w  if w  is not None else Z   ;  t = []
     wv = wv if wv is not None else w
     if d==Z:   d2 = Z

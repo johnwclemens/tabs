@@ -29,9 +29,9 @@ from   tpkg            import tests  as tests
 #P, L, S, C,    T, N, I, K,    R, Q, H, M,    B, A, D, E,    W, X, Y, Z   = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E, utl.W, utl.X, utl.Y, utl.Z
 #W, X, Y, Z                                                               = utl.W, utl.X, utl.Y, utl.Z
 P, L, S, C,         T, N, I, K,         R, Q, H, M,         B, A, D, E   = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
-W, X, Y, Z,     ist,     fri,     slog,     fmtf,     fmtl,     fmtm     = utl.W, utl.X, utl.Y, utl.Z,     utl.ist,     utl.fri,     utl.slog,     utl.fmtf,     utl.fmtl,     utl.fmtm
+W, X, Y, Z, NONE,   ist,    fri,    slog,    fmtf,    fmtl,     fmtm     = utl.W, utl.X, utl.Y, utl.Z, utl.NONE,    utl.ist,    utl.fri,    utl.slog,    utl.fmtf,    utl.fmtl,    utl.fmtm
 BGC,  BOLD,  COLOR,  FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,  utl.BOLD,  utl.COLOR,  utl.FONT_NAME,  utl.FONT_SIZE,  utl.ITALIC,  utl.KERNING,  utl.UNDERLINE
-isAlt, isCtl, isSft, isAltSft, isCtlAlt, isCtlSft, isCtlAltSft, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isSft, utl.isAltSft, utl.isCtlSft, utl.isCtlAltSft, utl.isNumLck
+isAlt, isCtl, isShf, isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isShf, utl.isAltShf, utl.isCtlShf, utl.isCtlAltShf, utl.isNumLck
 
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'evns',     'logs',     'pngs',     'text',     'data'
@@ -109,7 +109,7 @@ class Tabs(pyglet.window.Window):
         self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs  = 0
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg  = Z
         self.newC          = 0   ;   self.updC      = 0
-        self.cc            = 0   ;   self.nvis      = 0    ;   self.kbk      = 0
+        self.cc            = 0   ;   self.nvis      = 0
         self.allTabSel     = 0   ;   self.rsyncData = 0    ;   self.sprs     = []
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
         self.J1,       self.J2,       self.j1s,     self.j2s     = [], [], [], []
@@ -272,7 +272,7 @@ class Tabs(pyglet.window.Window):
         self.zclms, self.snums, self.snams, self.capos = [], [], [], []  ;  self.D = [self.zclms, self.snums, self.snams, self.capos]
         self.E     = [*self.A, *self.B, *self.C, *self.D]       ;     self.log(f'E={fmtl(self.E, d=" [", d2="] ")}')
         self.resetJ('_reinit')
-        self.cc,   self.kbk,  self.cursor,  self.caret   = 0, 0, None, None
+        self.cc, self.cursor, self.caret = 0, None, None
         self.ki    = [ 0 for _ in range(len(self.E)) ]           ;    self.log(fmtl(self.ki))
         self.tblanki, self.tblanks  = 1, [W, '-']                ;    self.tblank    = self.tblanks[self.tblanki]
         self.tblankCol              = self.tblank * self.n[T]    ;    self.tblankRow = self.tblank * (self.n[C] + self.zzl())
@@ -342,6 +342,7 @@ class Tabs(pyglet.window.Window):
         self._initGroups()
         self.set_visible()
         self.log(f'get_size={self.get_size()}')
+        self.keyboard = None
         if self.EVENT_LOG:
             if self.EVENT_LOG == 1:   self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
             else:
@@ -402,13 +403,13 @@ class Tabs(pyglet.window.Window):
         self.nvis += 1 if v else 0           ;   self.visib[j].append(v)
     def setJdump(self, j, n, v=None, why=Z): i = self.J2[j]   ;  self.setJ(j, n, v)  ;   self.dumpTnik(self.E[j][i], j, why)  ;  return j
     ####################################################################################################################################################################################################
-    def ssl(self, dbg=0):  l = len(self.SS)   ;   self.log(f'{self.fmtn()} SS={fmtl(self.ss2sl())} {l=}') if dbg else None   ;   return l   # return 0-4
-    def zzl(self, dbg=0):  l = len(self.ZZ)   ;   self.log(f'{self.fmtn()} ZZ={fmtl(self.zz2sl())} {l=}') if dbg else None   ;   return l   # return 0-2
+    def ssl(self, dbg=0):  l = len(self.SS)  ;   self.log(f'{self.fmtn()} SS={fmtl(self.ss2sl())} {l=}') if dbg else None   ;   return l   # return 0-4
+    def zzl(self, dbg=0):  l = len(self.ZZ)  ;   self.log(f'{self.fmtn()} ZZ={fmtl(self.zz2sl())} {l=}') if dbg else None   ;   return l   # return 0-2
     def ss2sl(self): return sorted(self.SS)
     def zz2sl(self): return sorted(self.ZZ)
     ####################################################################################################################################################################################################
-    def fss2sl(self):    s2s = self.ss2sl()  ;  ss = W.join([str(s2s[i]) if i < len(s2s) else W for i in range(4)])  ;  return f'({ss:7})'
-    def fzz2sl(self):    z2z = self.zz2sl()  ;  zz = W.join([str(z2z[i]) if i < len(z2z) else W for i in range(2)])  ;  return f'({zz:3})'
+    def fss2sl(self):    s2s = self.ss2sl()  ;   ss = W.join([str(s2s[i]) if i < len(s2s) else W for i in range(4)])  ;  return f'({ss:7})'
+    def fzz2sl(self):    z2z = self.zz2sl()  ;   zz = W.join([str(z2z[i]) if i < len(z2z) else W for i in range(2)])  ;  return f'({zz:3})'
     ####################################################################################################################################################################################################
     def dl(  self, data=None, p=0, l=0, c=0):  return list(map(len,                       self.dplc(data, p, l, c)))
     def dt(  self, data=None, p=0, l=0, c=0):  return list(map(type,                      self.dplc(data, p, l, c)))
@@ -553,7 +554,8 @@ class Tabs(pyglet.window.Window):
         self.batch.draw()
         if  self.snapReg and (self.SNAPS or self.snapType == INIT):
             self.snapReg = 0
-            snapPath = self.snapshot(f'on_draw({fmtm(kwargs)=})')
+            _ = fmtm(kwargs) if kwargs else Z
+            snapPath = self.snapshot(f'on_draw({_})')
             self.log(f'{self.snapWhy=} {self.snapType=} {self.snapId=}\n{snapPath=}', pos=1, f=-2)
 #            if self.TEST:    self.testSprTxt(path)
         return True
@@ -1145,7 +1147,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     @staticmethod
     def fDocStyle(m, d, t):
-        lnsp = 'None' if m[LNSP] is None else f'{m[LNSP]:4}'   ;  txt = t.document.text  ;  clr = utl.fColor(m[COLOR])  ;  bgc = utl.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?'
+        lnsp = NONE if m[LNSP] is None else f'{m[LNSP]:4}'   ;  txt = t.document.text  ;  clr = utl.fColor(m[COLOR])  ;  bgc = utl.fColor(m[BGC] if BGC in m else None)  ;  ml = int(t.multiline) if t else '?'
         return d.join([f'{fmtf(m[FONT_SIZE], 4)}', f'{m[LEAD]:4}', lnsp, f'{txt:8}', clr,                 bgc,           f'{m[BOLD]}', f'{m[ITALIC]}', f'{m[STRH]}', f'{ml}', f'{int(m[WRAP_LINES])}', f'{m[WRAP][0]}', f'{m[FONT_NAME]:21}'])
     @staticmethod
     def docStyleH(d=W):       return d.join(['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          'FontName             '])
@@ -2433,7 +2435,7 @@ class Tabs(pyglet.window.Window):
         typ    = typ if typ else self.snapType
         snapId = self.snapId   ;  logId = self.LOG_ID
         snapName      = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
-        self.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = 'None'   ;   snapId = 'None'
+        self.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = NONE   ;   snapId = NONE
         if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
         if dbg:  self.log(f'{self.fNameLid=} {snapName=} {why}')
         if dbg:  self.log(f'{self.snapPath}', p=2)
