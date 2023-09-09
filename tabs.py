@@ -346,7 +346,7 @@ class Tabs(pyglet.window.Window):
         if self.EVENT_LOG:
             if self.EVENT_LOG == 1:   self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
             else:
-                flist = ['on_draw'] # 'on_draw', 'on_key_released', 'on_mouse_motion', 'on_key_pressed', 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_scroll'
+                flist = ['on_draw', 'on_move'] # 'on_draw', 'on_key_released', 'on_mouse_motion', 'on_key_pressed', 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_scroll'
                 self.log(f'{fmtl(flist)} {EVN_FILE=}', f=-2)   ;   self.log(f'{fmtl(flist)} {EVN_FILE=}', f=4)
                 from tpkg.evnts import FilteredEventLogger as FELogger
                 self.eventLogger = FELogger(self, EVN_FILE, flist)
@@ -2237,7 +2237,7 @@ class Tabs(pyglet.window.Window):
         spr.rotation =  (spr.rotation + cw * 10) % 360
         self.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
     ####################################################################################################################################################################################################
-    def flipFlatSharp(self, how, dbg=0):  #  page line colm tab or select
+    def flipFlatShrp(self, how, dbg=0):  #  page line colm tab or select
         t1 = Notes.TYPE    ;    t2 =  Notes.TYPE * -1      ;     Notes.TYPE = t2
         self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
         s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i
@@ -2362,7 +2362,7 @@ class Tabs(pyglet.window.Window):
         else: self.hArrow  = (self.hArrow + 1) % len(HARROWS)
         if dbg: self.log(f'END {how} {v=} {self.hArrow=} = {HARROWS[self.hArrow]=} {self.vArrow=} = {VARROWS[self.vArrow]=}')
     ####################################################################################################################################################################################################
-    def flipFullScreen(self, how):
+    def flipFullScrn(self, how):
         self.FULL_SCRN = not self.FULL_SCRN
         self.set_fullscreen( self.FULL_SCRN)
         self.log(   f'{how} {self.FULL_SCRN}=')
@@ -2562,11 +2562,11 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=f0)
     kysgs.init(f=-2)
     slog(sys.argv[0],      p=0,        f=f0)
-    slog(f'argv={fmtl(sys.argv[1:])}', f=f0)    ;    slog(f'argv={fmtl(sys.argv[1:])}', f=4)
+    slog(f'argv={fmtl(sys.argv[1:])}', f=f0) #   ;    slog(f'argv={fmtl(sys.argv[1:])}', f=4) if
     utl.dumpRGB(f=f0)
 #    def main():
     f1 = -2
-    slog(f'BGN {EVN_FILE=}', f=f1)     ;   slog(f'BGN {EVN_FILE=}', f=4)
+    slog(f'BGN {EVN_FILE=}', f=f1) #    ;   slog(f'BGN {EVN_FILE=}', f=4) if self.eventLogger else None
     slog(f'{CSV_PATH=}',  f=f1)        ;   slog(f'{CSV_FILE.name=}', f=f1)
 #    slog(f'{EVN_PATH=}',  f=f1)        ;   slog(f'{EVN_FILE.name=}', f=f1)
     slog(f'{LOG_PATH=}',  f=f1)        ;   slog(f'{LOG_FILE.name=}', f=f1)
@@ -2577,7 +2577,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     slog('Call pyglet.app.run()')
     pyglet.app.run()
     slog('Thats all folks!', ff=1, f=f1)
-    slog(f'END {EVN_FILE=}', f=f1)     ;   slog(f'END {EVN_FILE=}', f=4)
+    slog(f'END {EVN_FILE=}', f=f1) #    ;   slog(f'END {EVN_FILE=}', f=4)
     geomLogPath = utl.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
     geomTxtPath = utl.getFilePath(tabs.TXT_GFN, BASE_PATH, fdir=None, fsfx=Z)
     cleanupOutFiles(TXT_FILE, TXT_PATH, geomTxtPath, seqNumTxtPath, f=f1)
