@@ -346,7 +346,7 @@ class Tabs(pyglet.window.Window):
         if self.EVENT_LOG:
             if self.EVENT_LOG == 1:   self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
             else:
-                flist = ['on_draw', 'on_move'] # 'on_draw', 'on_key_released', 'on_mouse_motion', 'on_key_pressed', 'on_draw', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_scroll'
+                flist = ['on_draw', 'on_mouse_motion', 'on_mouse_scroll'] # 'on_draw', 'on_key_released', 'on_mouse_motion', 'on_key_pressed', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_scroll'
                 self.log(f'{fmtl(flist)} {EVN_FILE=}', f=-2)   ;   self.log(f'{fmtl(flist)} {EVN_FILE=}', f=4)
                 from tpkg.evnts import FilteredEventLogger as FELogger
                 self.eventLogger = FELogger(self, EVN_FILE, flist)

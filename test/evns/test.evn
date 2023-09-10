@@ -1,65 +1,10 @@
- 350 tabs  _initWindowB       [on_draw on_move] EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
-on_resize(width=3840, height=2160)
+ 350 tabs  _initWindowB       [on_draw on_mouse_motion on_mouse_scroll] EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
 on_activate()
-on_resize(width=3840, height=2160)
+on_resize(width=960, height=540)
 on_show()
-on_mouse_enter(x=3081, y=2045)
-  54 evnts on_mouse_motion    x=3081 y=2045 dx=3081 dy=2045 filt='on_mouse_motion'
 on_expose()
-  54 evnts on_mouse_motion    x=3082 y=2040 dx=1 dy=-5 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3098 y=2000 dx=16 dy=-40 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3117 y=1960 dx=19 dy=-40 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3142 y=1914 dx=25 dy=-46 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3163 y=1858 dx=21 dy=-56 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3184 y=1788 dx=21 dy=-70 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3197 y=1711 dx=13 dy=-77 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3245 y=1562 dx=48 dy=-149 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3268 y=1461 dx=23 dy=-101 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3291 y=1382 dx=23 dy=-79 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3309 y=1287 dx=18 dy=-95 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3316 y=1206 dx=7 dy=-81 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3313 y=1136 dx=-3 dy=-70 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3318 y=1067 dx=5 dy=-69 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3328 y=983 dx=10 dy=-84 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3349 y=858 dx=21 dy=-125 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3385 y=725 dx=36 dy=-133 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3438 y=587 dx=53 dy=-138 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3469 y=515 dx=31 dy=-72 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3473 y=503 dx=4 dy=-12 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3501 y=453 dx=28 dy=-50 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3509 y=438 dx=8 dy=-15 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3510 y=432 dx=1 dy=-6 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3514 y=420 dx=4 dy=-12 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3520 y=406 dx=6 dy=-14 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3542 y=354 dx=22 dy=-52 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3570 y=286 dx=28 dy=-68 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3581 y=253 dx=11 dy=-33 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3586 y=246 dx=5 dy=-7 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3587 y=242 dx=1 dy=-4 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3590 y=226 dx=3 dy=-16 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3599 y=188 dx=9 dy=-38 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3615 y=157 dx=16 dy=-31 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3617 y=148 dx=2 dy=-9 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3620 y=130 dx=3 dy=-18 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3638 y=103 dx=18 dy=-27 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3649 y=82 dx=11 dy=-21 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3652 y=71 dx=3 dy=-11 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3652 y=67 dx=0 dy=-4 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3653 y=66 dx=1 dy=-1 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3653 y=67 dx=0 dy=1 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3652 y=67 dx=-1 dy=0 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3654 y=64 dx=2 dy=-3 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3656 y=63 dx=2 dy=-1 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3657 y=63 dx=1 dy=0 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3659 y=61 dx=2 dy=-2 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3659 y=60 dx=0 dy=-1 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3659 y=57 dx=0 dy=-3 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3660 y=56 dx=1 dy=-1 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3661 y=52 dx=1 dy=-4 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3662 y=52 dx=1 dy=0 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3663 y=52 dx=1 dy=0 filt='on_mouse_motion'
-  54 evnts on_mouse_motion    x=3666 y=52 dx=3 dy=0 filt='on_mouse_motion'
-  60 evnts on_mouse_press     x=3666 y=52 bttn=1 mods=0 filt='on_mouse_press'
-on_mouse_drag(x=3667, y=52, dx=1, dy=0, buttons=LEFT, modifiers=)
-on_mouse_drag(x=3668, y=52, dx=1, dy=0, buttons=LEFT, modifiers=)
-  63 evnts on_mouse_release   x=3668 y=52 bttn=1 mods=0 filt='on_mouse_release'
+on_mouse_enter(x=692, y=3)
+  59 evnts on_mouse_press     x=241 y=407 bttn=1 mods=0 filt='on_mouse_press'
+on_mouse_drag(x=240, y=407, dx=-1, dy=0, buttons=LEFT, modifiers=)
+  62 evnts on_mouse_release   x=240 y=407 bttn=1 mods=0 filt='on_mouse_release'
+  73 evnts on_text            text='5' filt='on_text'

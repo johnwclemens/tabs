@@ -23,16 +23,16 @@ isAlt, isCtl, isShf, isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.i
 MODS  = 0
 FLIST = []
 
-def flog(msg, fd=4, filt=None):
+def flog(msg, filt=None, fd=4):
     if (filt and filt not in FLIST) or not filt:
         slog(f'{msg} {filt=}', f=fd)
 
-#def fMov(x, y):              return f'{x=} {y=}'
+def fMov(x, y):              return f'({x:4}, {y:4})'
 def fTxt(   text):           return f'{text=}'
-def fTxtMtn(motion):         return f'{motion=}'
-def fKbk(   symb, mods):     return f'{symb:6} {psyms(symb):16} {mods} {pmods(mods):42}'
-def fMmov(x, y, dx, dy):     return f'{x=} {y=} {dx=} {dy=}'
-def fMclk(x, y, bttn, mods): return f'{x=} {y=} {bttn=} {mods=} {pmods(mods)}'
+def fTxtMtn(motion):         return f'{motion:6} {motion:#06x} {W*16} {MODS} {pmods(MODS):42}'
+def fKbk(   symb, mods):     return f'{symb:6} {symb:#06x} {psyms(symb):16} {mods} {pmods(mods):42}'
+def fMmov(x, y, dx, dy):     return f'({x:4}, {y:4}) ({dx:4}, {dy:4})'
+def fMclk(x, y, bttn, mods): return f'({x:4}, {y:4}) {bttn=} {mods} {pmods(mods)}'
 def fn(cf):                  return cf.f_code.co_name
 
 ########################################################################################################################################################################################################
@@ -79,7 +79,7 @@ class FilteredEventLogger(pyglet.window.event.WindowEventLogger):
 ########################################################################################################################################################################################################
 
 def on_move(x, y):
-    slog(f'{x=} {y=} retv=True')    ;    return True
+    slog(f'{fMov(x, y)} retv=True')    ;    return True
 
 def on_mouse_release(tobj, x, y, bttn, mods=0, dbg=1):
     global MODS     ;     MODS = mods
@@ -94,12 +94,12 @@ def on_mouse_release(tobj, x, y, bttn, mods=0, dbg=1):
         if dbg:   slog(f'    before MOVE plsct={tobj.fplsct(p, l, s, c, t)}',   f=f)
         p, l, s, c, t = tobj.moveToB('MOUSE RELEASE', p, l, s, c, t)
         if dbg:   slog(f'    after  MOVE plsct={tobj.fplsct(p, l, s, c, t)}',   f=f)
-        if dbg:   slog(f'END {x=:4} {y0=:4} {y=:4} {ww=:6.2f} {hh=:6.2f}',      f=f)
+        if dbg:   slog(f'END {fMov(x, y)} {y0:4} ({ww:4}x{hh:4})  {MODS} {pmods(MODS):42}', f=f)
         return True
     else: return False
 
 def on_mouse_scroll(x, y, dx, dy):
-    slog(f'{x=} {y=} {dx=} {dy=} retv=True')    ;    return True
+    slog(f'{fMmov(x, y, dx, dy)} retv=True')    ;    return True
 
 def on_text(tobj, text, dbg=1):
     retv = True
@@ -122,7 +122,7 @@ def on_text_motion(tobj, motion, dbg=1):
     kd   = tkb.data if tkb else None
     k    = pygwink    ;    m = MODS
     p, l, s, c, t = tobj.j()  ;  np, nl, ns, nc, nt = tobj.n
-    if dbg: slog(f'BGN {fTxtMtn(motion)} {MODS=}')
+    if dbg: slog(f'BGN {fTxtMtn(motion)}')
     if   isNumLck(kd, m):                          msg =             f'NUMLOCK(         {motion})'   ;   slog(msg)   ;   pygwink.MOD_NUMLOCK = 0
     if   isCtlAltShf(kd, m):                       msg =             f'@&^(             {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
     elif isCtlAlt(kd, m):
@@ -145,12 +145,12 @@ def on_text_motion(tobj, motion, dbg=1):
     elif isCtl(kd, m):
         if   motion == k.MOTION_NEXT_WORD:         tobj.selectTabs(  f'@  RIGHT(        {motion})',  nt)
         elif motion == k.MOTION_PREVIOUS_WORD:     tobj.selectTabs(  f'@  LEFT(         {motion})', -nt)
-        elif motion == k.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE( {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(       {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'@  MOTION_BEGINNING_OF_FILE( {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL HOME
         elif motion == k.MOTION_END_OF_FILE:       msg = f'@  MOTION_END_OF_FILE(       {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL END
-        elif motion == k.MOTION_PREVIOUS_PAGE:     msg = f'@  MOTION_PREVIOUS_PAGE(     {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) #
-        elif motion == k.MOTION_NEXT_PAGE:         msg = f'@  MOTION_NEXT_PAGE          {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) #
+        elif motion == k.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE( {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(       {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_PREVIOUS_PAGE:     msg = f'@  MOTION_PREVIOUS_PAGE(     {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_NEXT_PAGE:         msg = f'@  MOTION_NEXT_PAGE          {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
 #           elif motion == pygwink.MOTION_DELETE:            self.deleteTabs( f'@ D MOTION_DELETE({motion})')
 #           elif motion == pygwink.MOTION_COPY:              self.copyTabs(   f'@ C MOTION_COPY(  {motion})')
 #           elif motion == pygwink.MOTION_PASTE:             self.pasteTabs(  f'@ V MOTION_PASTE( {motion})', kk=0)
@@ -160,18 +160,18 @@ def on_text_motion(tobj, motion, dbg=1):
         elif motion == k.MOTION_DOWN:              tobj.move(        f' DOWN(           {motion})',  1)
         elif motion == k.MOTION_LEFT:              tobj.move(        f' LEFT(           {motion})', -nt)
         elif motion == k.MOTION_RIGHT:             tobj.move(        f' RIGHT(          {motion})',  nt)
-        elif motion == k.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD(        {motion})'   ;   slog(msg) #  ;   tobj.quit(msg)
-        elif motion == k.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD(            {motion})'   ;   slog(msg) #  ;   tobj.quit(msg)
         elif motion == k.MOTION_BEGINNING_OF_LINE: tobj.move(        f' HOME(           {motion})', -nt *  c)
         elif motion == k.MOTION_END_OF_LINE:       tobj.move(        f' END(            {motion})',  nt * (nc - tobj.i[C]))
-        elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'MOTION_BEGINNING_OF_FILE(    {motion})'   ;   slog(msg) #  ;   tobj.quit(msg)
-        elif motion == k.MOTION_END_OF_FILE:       msg = f'MOTION_END_OF_FILE(          {motion})'   ;   slog(msg) #  ;   tobj.quit(msg)
         elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.moveUp(      f' PAGE UP(        {motion})')  # go up   to top    of line, wrap down to bottom of prev line
         elif motion == k.MOTION_NEXT_PAGE:         tobj.moveDown(    f' PAGE DOWN(      {motion})')  # go down to bottom tab on same line, wrap to next line
         elif motion == k.MOTION_DELETE:            tobj.setTab(      f'DELETE(          {motion})', tobj.tblank)
         elif motion == k.MOTION_BACKSPACE:         tobj.setTab(      f'BACKSPACE(       {motion})', tobj.tblank, rev=1)
+        elif motion == k.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD(        {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
+        elif motion == k.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD(            {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
+        elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'MOTION_BEGINNING_OF_FILE(    {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
+        elif motion == k.MOTION_END_OF_FILE:       msg = f'MOTION_END_OF_FILE(          {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
         else:                                      msg =             f'UNH(             {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg)
-    if dbg: slog(f'END {fTxtMtn(motion)} {MODS=} {retv=}')
+    if dbg: slog(f'END {fTxtMtn(motion)} {retv=}')
     return retv
 ########################################################################################################################################################################################################
 def on_key_release(tobj, symb, mods):
