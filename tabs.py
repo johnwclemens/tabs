@@ -75,7 +75,7 @@ CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
 HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = 0, 1, 2
 ########################################################################################################################################################################################################
-INIT    = 'INIT'
+#INIT    = 'INIT'
 FIN     = [1, 1, 1, 2, 1]
 FNTP    = [5, 4, 3, 3, 3]
 #           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16
@@ -287,7 +287,7 @@ class Tabs(pyglet.window.Window):
         self._initFonts()
         self._initTextLabels()
         self._initTniks()
-        self.regSnap('init', INIT)
+        self.regSnap('init', utl.INIT)
     ####################################################################################################################################################################################################
     def initk(self, j, key0, rgb0, opc0, key1, rgb1, opc1):
         self.log(f'{j:2}  {JTEXTS[j]:4}  [{key0} {rgb0:2} {opc0:2}] [ {key1} {rgb1:2} {opc1:2}] {fmtl(RGB[key0][rgb0][opc0], w=3)} {fmtl(RGB[key1][rgb1][opc1], w=3)}', p=0)
@@ -346,7 +346,7 @@ class Tabs(pyglet.window.Window):
         if self.EVENT_LOG:
             if self.EVENT_LOG == 1:   self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
             else:
-                flist = ['on_draw', 'on_mouse_motion', 'on_mouse_scroll'] # 'on_draw', 'on_key_released', 'on_mouse_motion', 'on_key_pressed', 'on_move', 'on_text', 'on_text_motion', 'on_mouse_scroll'
+                flist = ['on_draw', 'on_move'] # 'on_draw', 'on_move', 'on_text', 'on_key_pressed', 'on_key_released', 'on_mouse_scroll', 'on_mouse_motion', 'on_text_motion'
                 self.log(f'{fmtl(flist)} {EVN_FILE=}', f=-2)   ;   self.log(f'{fmtl(flist)} {EVN_FILE=}', f=4)
                 from tpkg.evnts import FilteredEventLogger as FELogger
                 self.eventLogger = FELogger(self, EVN_FILE, flist)
@@ -546,29 +546,6 @@ class Tabs(pyglet.window.Window):
     def autoSave(self, dt, why, dbg=1):
         if dbg: self.log(f'Every {dt:=7.4f} seconds, {why} {self.rsyncData=}')
         if self.rsyncData: self.saveDataFile(why, self.dataPath0)   ;  self.rsyncData = 0
-    ####################################################################################################################################################################################################
-    def on_draw(self, **kwargs):
-#        pyglet.gl.glClearColor(0, 0, 0, 0)
-        pyglet.gl.glClearColor(1, 1, 1, 1) # (R, G, B, A)
-        self.clear()
-        self.batch.draw()
-        if  self.snapReg and (self.SNAPS or self.snapType == INIT):
-            self.snapReg = 0
-            _ = fmtm(kwargs) if kwargs else Z
-            snapPath = self.snapshot(f'on_draw({_})')
-            self.log(f'{self.snapWhy=} {self.snapType=} {self.snapId=}\n{snapPath=}', pos=1, f=-2)
-#            if self.TEST:    self.testSprTxt(path)
-        return True
-
-    def on_resize(self, width, height, dbg=1):
-        super().on_resize(width, height)
-        if self.RESIZE: self.resizeTniks(dbg)
-        return True
-
-    def on_close(self):
-        self.log('????', f=-2)
-        self.quit('on_close')
-        return True
     ####################################################################################################################################################################################################
     def saveDataFile(self, why, path, dbg=1):
         if dbg:   self.log(f'{why} {path}')
@@ -1798,14 +1775,21 @@ class Tabs(pyglet.window.Window):
         if dbg: slog(f'{jTEXTS[j]}[{cc}-{cc+nt-1}].text={fmtl(texts)}=<{text}>')
         return text
     ####################################################################################################################################################################################################
-    def on_move(         self, x, y):               return evnts.on_move(x, y)
+    def on_resize(self, width, height, dbg=1): #     return evnts.on_resize(self, width, height, dbg)
+        super().on_resize(width, height)
+        if self.RESIZE: self.resizeTniks(dbg)
+        return True
+    ####################################################################################################################################################################################################
+    def on_draw(         self, **kwargs):           return evnts.on_draw(         self, **kwargs)
+    def on_close(        self):                     return evnts.on_close(        self)
+    def on_move(         self, x, y):               return evnts.on_move(         self, x, y)
     def on_text(         self, text):               return evnts.on_text(         self, text)
     def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
-    def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll( x, y, dx, dy)
+    def on_mouse_motion( self, x, y, dx, dy):       return evnts.on_mouse_motion( self, x, y, dx, dy)
+    def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll( self, x, y, dx, dy)
     def on_mouse_release(self, x, y, bttn, mods=0): return evnts.on_mouse_release(self, x, y, bttn, mods)
-#    def on_mouse_motion( self, x, y, dx, dy):       return evnts.on_mouse_motion(x, y, dx, dy)
     def on_key_press(    self, symb, mods):         return evnts.on_key_press(    self, symb, mods)
-#    def on_key_release(  self, symb, mods):         return evnts.on_key_release(  self, symb, mods)
+    def on_key_release(  self, symb, mods):         return evnts.on_key_release(  self, symb, mods)
     def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
     ####################################################################################################################################################################################################
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
@@ -2441,7 +2425,7 @@ class Tabs(pyglet.window.Window):
         if dbg:  self.log(f'{self.snapPath}', p=2)
         pygimg.get_buffer_manager().get_color_buffer().save(f'{self.snapPath}')
         if dbg2: self.log(f'{snapName=} {why}', f=2)
-        if typ == INIT:
+        if typ == utl.INIT:
             snapName0 = f'{BASE_NAME}.{PNG}'
             snapName2 = self.geomFileName(BASE_NAME, PNG)
             snapPath0 = BASE_PATH / PNGS / snapName0
@@ -2556,7 +2540,6 @@ if EVN_PATH.exists():    utl.copyFile(EVN_PATH, EVN_PATH2, f=0)
 if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, f=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, f=0)
 if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, f=0)
-#with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE:
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(EVN_PATH), 'w', encoding='utf-8') as EVN_FILE:
     f0   = -2
     ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=f0)

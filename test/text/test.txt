@@ -1,69 +1,69 @@
-  41 utl   init               argc=31 argv=['C:\\Users\\Owner\\Documents\\GitHub\\tabs\\tabs.py', '-i', '1', '1', '1', '6', '-n', '1', '1', '10', '6', '-w', '0', '0', '0', '0', '-d', '0', '-e', '2', '-p', '-s', '-J', '4', '-L', '-S', '0', '1', '3', '-f', 'test']
-  42 utl   init               argv[1]=-i
-  42 utl   init               argv[2]=1
-  42 utl   init               argv[3]=1
-  42 utl   init               argv[4]=1
-  42 utl   init               argv[5]=6
-  42 utl   init               argv[6]=-n
-  42 utl   init               argv[7]=1
-  42 utl   init               argv[8]=1
-  42 utl   init               argv[9]=10
-  42 utl   init               argv[10]=6
-  42 utl   init               argv[11]=-w
-  42 utl   init               argv[12]=0
-  42 utl   init               argv[13]=0
-  42 utl   init               argv[14]=0
-  42 utl   init               argv[15]=0
-  42 utl   init               argv[16]=-d
-  42 utl   init               argv[17]=0
-  42 utl   init               argv[18]=-e
-  42 utl   init               argv[19]=2
-  42 utl   init               argv[20]=-p
-  42 utl   init               argv[21]=-s
-  42 utl   init               argv[22]=-J
-  42 utl   init               argv[23]=4
-  42 utl   init               argv[24]=-L
-  42 utl   init               argv[25]=-S
-  42 utl   init               argv[26]=0
-  42 utl   init               argv[27]=1
-  42 utl   init               argv[28]=3
-  42 utl   init               argv[29]=-f
-  42 utl   init               argv[30]=test
- 210 utl   parseCmdLine       argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -J 4 -L -S 0 1 3 -f test]
- 210 utl   parseCmdLine       C:\Users\Owner\Documents\GitHub\tabs\tabs.py
- 226 utl   parseCmdLine        1 short   -i i [] 
+  43 utl   init               argc=31 argv=['C:\\Users\\Owner\\Documents\\GitHub\\tabs\\tabs.py', '-i', '1', '1', '1', '6', '-n', '1', '1', '10', '6', '-w', '0', '0', '0', '0', '-d', '0', '-e', '2', '-p', '-s', '-J', '4', '-L', '-S', '0', '1', '3', '-f', 'test']
+  44 utl   init               argv[1]=-i
+  44 utl   init               argv[2]=1
+  44 utl   init               argv[3]=1
+  44 utl   init               argv[4]=1
+  44 utl   init               argv[5]=6
+  44 utl   init               argv[6]=-n
+  44 utl   init               argv[7]=1
+  44 utl   init               argv[8]=1
+  44 utl   init               argv[9]=10
+  44 utl   init               argv[10]=6
+  44 utl   init               argv[11]=-w
+  44 utl   init               argv[12]=0
+  44 utl   init               argv[13]=0
+  44 utl   init               argv[14]=0
+  44 utl   init               argv[15]=0
+  44 utl   init               argv[16]=-d
+  44 utl   init               argv[17]=0
+  44 utl   init               argv[18]=-e
+  44 utl   init               argv[19]=2
+  44 utl   init               argv[20]=-p
+  44 utl   init               argv[21]=-s
+  44 utl   init               argv[22]=-J
+  44 utl   init               argv[23]=4
+  44 utl   init               argv[24]=-L
+  44 utl   init               argv[25]=-S
+  44 utl   init               argv[26]=0
+  44 utl   init               argv[27]=1
+  44 utl   init               argv[28]=3
+  44 utl   init               argv[29]=-f
+  44 utl   init               argv[30]=test
+ 212 utl   parseCmdLine       argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -J 4 -L -S 0 1 3 -f test]
+ 212 utl   parseCmdLine       C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+ 228 utl   parseCmdLine        1 short   -i i [] 
  2 arg     1  i [1] 
  3 arg     1  i [1 1] 
  4 arg     1  i [1 1 1] 
  5 arg     6  i [1 1 1 6] 
- 226 utl   parseCmdLine        6 short   -n n [] 
+ 228 utl   parseCmdLine        6 short   -n n [] 
  7 arg     1  n [1] 
  8 arg     1  n [1 1] 
  9 arg     10 n [1 1 10] 
 10 arg     6  n [1 1 10 6] 
- 226 utl   parseCmdLine       11 short   -w w [] 
+ 228 utl   parseCmdLine       11 short   -w w [] 
 12 arg     0  w [0] 
 13 arg     0  w [0 0] 
 14 arg     0  w [0 0 0] 
 15 arg     0  w [0 0 0 0] 
- 226 utl   parseCmdLine       16 short   -d d [] 
+ 228 utl   parseCmdLine       16 short   -d d [] 
 17 arg     0  d [0] 
- 226 utl   parseCmdLine       18 short   -e e [] 
+ 228 utl   parseCmdLine       18 short   -e e [] 
 19 arg     2  e [2] 
- 226 utl   parseCmdLine       20 short   -p p [] 
- 226 utl   parseCmdLine       21 short   -s s [] 
- 226 utl   parseCmdLine       22 short   -J J [] 
+ 228 utl   parseCmdLine       20 short   -p p [] 
+ 228 utl   parseCmdLine       21 short   -s s [] 
+ 228 utl   parseCmdLine       22 short   -J J [] 
 23 arg     4  J [4] 
- 226 utl   parseCmdLine       24 short   -L L [] 
- 226 utl   parseCmdLine       25 short   -S S [] 
+ 228 utl   parseCmdLine       24 short   -L L [] 
+ 228 utl   parseCmdLine       25 short   -S S [] 
 26 arg     0  S [0] 
 27 arg     1  S [0 1] 
 28 arg     3  S [0 1 3] 
- 226 utl   parseCmdLine       29 short   -f f [] 
+ 228 utl   parseCmdLine       29 short   -f f [] 
 30 arg     test f [test] 
- 246 utl   parseCmdLine       options=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[2]] [p:[]] [s:[]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
-  45 utl   init                    ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': ['2'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
-  46 utl   init                ROOT_DIR='test'
+ 248 utl   parseCmdLine       options=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[2]] [p:[]] [s:[]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
+  47 utl   init                    ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': ['2'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
+  48 utl   init                ROOT_DIR='test'
   24 kysgs init               BGN
 KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note Ordering  Key Sig Table -7
 t=-1 i=0 j=6 s=-7 (iz2)='[11 4 9 2 7 0 5]' (ms2)='[B E A D G C F]'
@@ -115,7 +115,7 @@ KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note
   62 kysgs dumpData           END
   33 kysgs init               END
 C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-2565 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -J 4 -L -S 0 1 3 -f test]
+2548 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -J 4 -L -S 0 1 3 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17   Diff Span
 FSH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
        R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
@@ -193,25 +193,25 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
        G=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127] 123.0  7.2
        B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
-2569 tabs  <module>           BGN EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
-2570 tabs  <module>           CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-2570 tabs  <module>           CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
-2572 tabs  <module>           LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
-2572 tabs  <module>           LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
-2573 tabs  <module>           TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-2573 tabs  <module>           TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
-2537 tabs  dumpGlobals        BASE_NAME = test
-2538 tabs  dumpGlobals        argv      = +31[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -J 4 -L -S 0 1 3 -f test]
-2539 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-2540 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
- 353 utl   getFilePath        baseName =test.36      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =test.36.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.36.cat')
- 353 utl   getFilePath        baseName =test.36      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =test.36.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.36.csv')
- 353 utl   getFilePath        baseName =test.36      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =test.36.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.36.log')
- 353 utl   getFilePath        baseName =test.36      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =test.36.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.36.txt')
+2552 tabs  <module>           BGN EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
+2553 tabs  <module>           CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+2553 tabs  <module>           CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
+2555 tabs  <module>           LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
+2555 tabs  <module>           LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
+2556 tabs  <module>           TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+2556 tabs  <module>           TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
+2521 tabs  dumpGlobals        BASE_NAME = test
+2522 tabs  dumpGlobals        argv      = +31[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -J 4 -L -S 0 1 3 -f test]
+2523 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+2524 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+ 355 utl   getFilePath        baseName =test.10      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.10.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.10.cat')
+ 355 utl   getFilePath        baseName =test.10      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.10.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.10.csv')
+ 355 utl   getFilePath        baseName =test.10      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.10.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.10.log')
+ 355 utl   getFilePath        baseName =test.10      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.10.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.10.txt')
  234 tabs  dumpArgs           [a]      .AUTO_SAVE=0
  235 tabs  dumpArgs           [A]         .VARROW=1
  236 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -242,14 +242,14 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
  261 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
  262 tabs  dumpArgs           [x]           .EXIT=0
  263 tabs  dumpArgs           [Z]             .ZZ=[]
- 350 tabs  _initWindowB       [on_draw on_mouse_motion on_mouse_scroll] EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
- 361 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
- 362 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
- 364 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
-1644 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.7778 fs=w*PNT_PER_PIX= 22.11pt
-1645 tabs  _initFonts         h=28.421=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.7778 fs=h*PNT_PER_PIX= 22.11pt
-1657 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels 
-1068 tabs  g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+ 350 tabs  _initWindowB       [on_draw on_move] EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
+ 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
+1621 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.7778 fs=w*PNT_PER_PIX= 22.11pt
+1622 tabs  _initFonts         h=28.421=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.7778 fs=h*PNT_PER_PIX= 22.11pt
+1634 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels 
+1045 tabs  g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V PrtlText x y AnchX AnchY     FullText
 Page    1 V C C   480   270     
 Line    1 V C C   480   256     
@@ -487,20 +487,20 @@ Kord    3 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
 Kord    4 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    5 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    6 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
-1550 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
-1553 tabs  cursorCol          cc=  5 [0 0 0 5]
-1528 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-1533 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.21   96.00   28.50 t.text='8' 17.47 29.00 C,C
+1527 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1530 tabs  cursorCol          cc=  5 [0 0 0 5]
+1505 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
+1510 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.21   96.00   28.50 t.text='8' 17.47 29.00 C,C
 HCrs    1 V C C    48    14     
 [6:G♭:1,5:F :1,1:D♭:1,8:A♭:1,4:E :1,0:C :1]
 [6:F♯:1,5:F :1,1:C♯:1,8:G♯:1,4:E :1,0:C :1]
 [None,None,8:A♭:1,1:D♭:1,6:G♭:1,None,4:E :1]
 [6:G♭:1,1:D♭:1,8:A♭:1,None,None,5:F :1,0:C :1]
-1657 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels New1
+1634 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels New1
  383 tabs  _initTniks         +3 SHRP A  9 [F♯ C♯ G♯ D  A  E  B ] [6 1 8 2 9 4 b] [9 b 1 2 4 6 8] [A  B  C♯ D  E  F♯ G♯]
-2576 tabs  <module>           str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': ['2'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
-2576 tabs  <module>           tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': ['2'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
-1208 tabs  g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+2559 tabs  <module>           str(tabs)="{'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': ['2'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}"
+2559 tabs  <module>           tabs=Tabs .width=960 .height=540 ARGS={'i': ['1', '1', '1', '6'], 'n': ['1', '1', '10', '6'], 'w': ['0', '0', '0', '0'], 'd': ['0'], 'e': ['2'], 'p': [], 's': [], 'J': ['4'], 'L': [], 'S': ['0', '1', '3'], 'f': ['test']}
+1185 tabs  g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 QClm    1 V 1        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 1        [  1   8   8 255] [ 31 255 255 255] 0 1 1 1 1 c Lucida Console        1
 QClm    2 V 2        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 2        [ 31 255 255 255] [  1   8   8 255] 0 0 1 1 1 c Lucida Console        2
 QClm    3 V 3        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 3        [ 31 255 255 255] [  1   8   8 255] 0 0 1 1 1 c Lucida Console        3
@@ -692,49 +692,58 @@ Kord   57 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
 Kord   58 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord   59 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord   60 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
-1550 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
-1553 tabs  cursorCol          cc=  5 [0 0 0 5]
-1528 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-1533 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 29.00 C,C
+1527 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1530 tabs  cursorCol          cc=  5 [0 0 0 5]
+1505 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
+1510 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 29.00 C,C
 [6:G♭:1,5:F :1,1:D♭:1,8:A♭:1,4:E :1,0:C :1]
 [6:F♯:1,5:F :1,1:C♯:1,8:G♯:1,4:E :1,0:C :1]
 [None,None,8:A♭:1,1:D♭:1,6:G♭:1,None,4:E :1]
 [6:G♭:1,1:D♭:1,8:A♭:1,None,None,5:F :1,0:C :1]
-1657 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels Upd.1
-2443 tabs  snapshot           snapName='test.36.0.INIT.png' on_draw()
- 361 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.36.0.INIT.png')
- 362 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
- 364 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.36.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
- 361 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.36.0.INIT.png')
- 362 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
- 364 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.36.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
- 559 tabs  on_draw            [1 1 1  1 6]   6   0  1] .snapWhy='init' .snapType='INIT' .snapId=1
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.36.0.INIT.png')
-  92 evnts on_mouse_release   BGN x= 240 y0= 407 y= 133 w= 96.00 h= 28.42 ll=1 nc=10 nr=19 r= 4 d= 3 txt='8' bttn=1 mods=0
-  93 evnts on_mouse_release       p=1 l=1=(d/nr) s=1=(d//nt) c=3=(x/w) t=4=(d-l*nr)
-  94 evnts on_mouse_release       before MOVE plsct=[1 1 1  3 4]
-1550 tabs  plct2cc                  15 [  180  180 180  60   6] [1 1    3 4] (   0 +  0 + 60 + 12 +3)
-1553 tabs  cursorCol          cc= 15 [0 0 2 3]
-1528 tabs  cc2xywh            tpp=180 old=15 lenT=60 cc=15 old % lenT
-1533 tabs  cc2xywh            cc=  15 old=  15 [  180  180 180  60   6]  240.00  412.11   96.00   28.42 t.text='-' 17.47 29.00 C,C
-  96 evnts on_mouse_release       after  MOVE plsct=[1 1 1  3 4]
-  97 evnts on_mouse_release   END ( 240,  133)  407 ( 960x 540)  0                                           
-1550 tabs  plct2cc                  15 [  180  180 180  60   6] [1 1    3 4] (   0 +  0 + 60 + 12 +3)
-1553 tabs  cursorCol          cc= 15 [0 0 2 3]
-1699 tabs  setTab             [1 1 1  3 4]  16  12  3] BGN onTxt text='5' rev=0 old= 15 cc= 15 p=0 l=0 c=2 t=3
-1550 tabs  plct2cc                  14 [  180  180 180  60   6] [1 1    3 3] (   0 +  0 + 60 + 12 +2)
-1553 tabs  cursorCol          cc= 14 [0 0 2 2]
-1528 tabs  cc2xywh            tpp=180 old=14 lenT=60 cc=14 old % lenT
-1533 tabs  cc2xywh            cc=  14 old=  14 [  180  180 180  60   6]  240.00  440.53   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2443 tabs  snapshot           snapName='test.36.1.Txt.5.png' on_draw()
- 559 tabs  on_draw            [1 1 1  3 3]  15  12  3] .snapWhy='onTxt' .snapType='Txt.5' .snapId=2
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.36.1.Txt.5.png')
+1634 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels Upd.1
+2427 tabs  snapshot           snapName='test.10.0.INIT.png' on_draw()
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.INIT.png')
+ 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.INIT.png')
+ 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.10.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
+  81 evnts on_draw            tobj.snapWhy='init' tobj.snapType='INIT' tobj.snapId=1
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.10.0.INIT.png')
+1527 tabs  plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
+1530 tabs  cursorCol          cc=  0 [0 0 0 0]
+1505 tabs  cc2xywh            tpp=180 old=0 lenT=60 cc=0 old % lenT
+1510 tabs  cc2xywh            cc=   0 old=   0 [  180  180 180  60   6]   48.00  497.37   96.00   28.42 t.text='2' 17.47 29.00 C,C
+1527 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1530 tabs  cursorCol          cc=  5 [0 0 0 5]
+1505 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
+1510 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 29.00 C,C
+1527 tabs  plct2cc                  59 [  180  180 180  60   6] [1 1   10 6] (   0 +  0 + 60 + 54 +5)
+1530 tabs  cursorCol          cc= 59 [0 0 9 5]
+1505 tabs  cc2xywh            tpp=180 old=59 lenT=60 cc=59 old % lenT
+1510 tabs  cc2xywh            cc=  59 old=  59 [  180  180 180  60   6]  912.00  355.26   96.00   28.42 t.text='-' 17.47 29.00 C,C
+1527 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1530 tabs  cursorCol          cc=  5 [0 0 0 5]
+1505 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
+1510 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 29.00 C,C
+1527 tabs  plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
+1530 tabs  cursorCol          cc=  0 [0 0 0 0]
+1505 tabs  cc2xywh            tpp=180 old=0 lenT=60 cc=0 old % lenT
+1510 tabs  cc2xywh            cc=   0 old=   0 [  180  180 180  60   6]   48.00  497.37   96.00   28.42 t.text='2' 17.47 29.00 C,C
+1527 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1530 tabs  cursorCol          cc=  5 [0 0 0 5]
+1505 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
+1510 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 29.00 C,C
+1527 tabs  plct2cc                  11 [  180  180 180  60   6] [1 1    2 6] (   0 +  0 + 60 +  6 +5)
+1530 tabs  cursorCol          cc= 11 [0 0 1 5]
+1505 tabs  cc2xywh            tpp=180 old=11 lenT=60 cc=11 old % lenT
+1510 tabs  cc2xywh            cc=  11 old=  11 [  180  180 180  60   6]  144.00  355.26   96.00   28.42 t.text='-' 17.47 29.00 C,C
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
-2476 tabs  quit               BGN @^Q Error=0 save=0 .quitting=0
-###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
+2460 tabs  quit               BGN @^Q Error=0 save=0 .quitting=0
+###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
-###   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ######   Quit      ###
+###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
  234 tabs  dumpArgs           [a]      .AUTO_SAVE=0
  235 tabs  dumpArgs           [A]         .VARROW=1
  236 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -747,7 +756,7 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.36.1.T
  243 tabs  dumpArgs           [F]      .FULL_SCRN=0
  244 tabs  dumpArgs           [g]        .ORD_GRP=1
  245 tabs  dumpArgs           [G]       .GEN_DATA=0
- 246 tabs  dumpArgs           [i]               i=[1 1 1 3 3]
+ 246 tabs  dumpArgs           [i]               i=[1 1 1 2 6]
  247 tabs  dumpArgs           [J]      .DSP_J_LEV=4
  248 tabs  dumpArgs           [l]       .LONG_TXT=1
  249 tabs  dumpArgs           [L]             .LL=1
@@ -765,52 +774,51 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.36.1.T
  261 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
  262 tabs  dumpArgs           [x]           .EXIT=0
  263 tabs  dumpArgs           [Z]             .ZZ=[]
-[6:G♭:1,5:F :1,1:D♭:1,8:A♭:1,4:E :1,0:C :1,7:G :1]
-[6:F♯:1,5:F :1,1:C♯:1,8:G♯:1,4:E :1,0:C :1,7:G :1]
+[6:G♭:1,5:F :1,1:D♭:1,8:A♭:1,4:E :1,0:C :1]
+[6:F♯:1,5:F :1,1:C♯:1,8:G♯:1,4:E :1,0:C :1]
 [None,None,8:A♭:1,1:D♭:1,6:G♭:1,None,4:E :1]
 [6:G♭:1,1:D♭:1,8:A♭:1,None,None,5:F :1,0:C :1]
-1657 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels @^Q
+1634 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels @^Q
  140 chords dumpLimap            0 0-1                           RM3#5b24b5   048156 CEG♯C♯FF♯    Rb2M34b5#5   014568 CC♯EFF♯G♯   
  140 chords dumpLimap            0 0-1                           #5RM36b22    804912 CEG♯C♯FF♯    Rb22M3#56    012489 EFF♯G♯CC♯   
  140 chords dumpLimap            0 0-1                           M3#5R46b7    48059a CEG♯C♯FF♯    RM34#56b7    04589a G♯CC♯EFF♯   
  140 chords dumpLimap            0 0-1                           7m35RM34     b37045 CEG♯C♯FF♯    Rm3M3457     03457b C♯EFF♯G♯C   
  140 chords dumpLimap            0 0-1                           57m3#5Rb2    7b3801 CEG♯C♯FF♯    Rb2m35#57    01378b FF♯G♯CC♯E   
  140 chords dumpLimap            0 0-1                           b5b7257R     6a27b0 CEG♯C♯FF♯    R2b55b77     0267ab F♯G♯CC♯EF   
- 140 chords dumpLimap            2 0-1                           R            0      G            R            0      G           
-2487 tabs  quit               END @^Q Error=0 save=0 .quitting=1
+2471 tabs  quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
- 353 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 353 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
-2510 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
- 361 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 362 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
- 364 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv ###
-2513 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.36.csv
- 361 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 362 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.36.csv')
- 364 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.36.csv ###
- 353 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =test.cat     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
- 353 utl   getFilePath        baseName =Ctest        basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =Ctest.cat    filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Ctest.cat')
- 353 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =test._.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test._.cat')
-2489 tabs  quit               END @^Q Error=0 save=0 .quitting=1
+ 355 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+ 355 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
+2494 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+ 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv ###
+2497 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.10.csv
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+ 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.10.csv')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.10.csv ###
+ 355 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.cat     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.cat')
+ 355 utl   getFilePath        baseName =Ctest        basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =Ctest.cat    filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Ctest.cat')
+ 355 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test._.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test._.cat')
+2473 tabs  quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-2490 tabs  quit               Calling close(),2579 tabs  <module>           Thats all folks!
-2580 tabs  <module>           END EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
- 353 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
- 353 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 356 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
-2543 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.36.txt
- 361 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
- 362 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.36.txt')
- 364 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.36.txt ###
-2545 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
- 361 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
- 362 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
- 364 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt ###
-2547 tabs  cleanupOutFiles    Flush & Close Txt File
+2474 tabs  quit               Calling close(),2562 tabs  <module>           Thats all folks!
+2563 tabs  <module>           END EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
+ 355 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
+ 355 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
+2527 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.10.txt
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+ 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.10.txt')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.10.txt ###
+2529 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+ 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt ###
+2531 tabs  cleanupOutFiles    Flush & Close Txt File
