@@ -259,53 +259,53 @@ def on_text_motion(tobj, motion, dbg=1):
     k    = pygwink    ;    m = MODS
     p, l, s, c, t = tobj.j()  ;  np, nl, ns, nc, nt = tobj.n
     if dbg: slog(f'BGN {ftm(motion)}')
-    if   isNumLck(kd, m):                          msg =             f'NUMLOCK(         {motion})'   ;   slog(msg)   ;   pygwink.MOD_NUMLOCK = 0
-    if   isCtlAltShf(kd, m):                       msg =             f'@&^(             {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    if   isNumLck(kd, m):                          msg =             f'NUMLOCK(        {motion})'   ;   slog(msg)   ;   pygwink.MOD_NUMLOCK = 0
+    if   isCtlAltShf(kd, m):                       msg =             f'@&^(            {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
     elif isCtlAlt(kd, m):
-        if   motion == 1:                          tobj.unselectTabs(f'@& LEFT(         {motion})',  nt)
-        elif motion == 2:                          tobj.unselectTabs(f'@& RIGHT(        {motion})', -nt)
-        else:                                      msg =             f'@& UNH(          {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
-    elif isAltShf(kd, m):                          msg =             f' &^(             {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
-    elif isCtlShf(kd, m):                          msg =             f'@^(              {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
-    elif isShf(kd, m):                             msg =             f'^ (              {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+        if   motion == 1:                          tobj.unselectTabs(f'@& LEFT(        {motion})',  nt)
+        elif motion == 2:                          tobj.unselectTabs(f'@& RIGHT(       {motion})', -nt)
+        else:                                      msg =             f'@& UNH(         {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    elif isAltShf(kd, m):                          msg =             f' &^(            {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    elif isCtlShf(kd, m):                          msg =             f'@^(             {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    elif isShf(kd, m):                             msg =             f'^ (             {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
     elif isAlt(kd, m):
-        if   motion == k.MOTION_UP:                tobj.moveUp(      f' & UP(           {motion})')
-        elif motion == k.MOTION_DOWN:              tobj.moveDown(    f' & DOWN(         {motion})')
-        elif motion == k.MOTION_LEFT:              tobj.moveLeft(    f' & LEFT(         {motion})')
-        elif motion == k.MOTION_RIGHT:             tobj.moveRight(   f' & RIGHT(        {motion})')
-        elif motion == k.MOTION_BEGINNING_OF_LINE: tobj.move(        f' & HOME(         {motion})', -nt *  c)
-        elif motion == k.MOTION_END_OF_LINE:       tobj.move(        f' & END(          {motion})',  nt * (nc - tobj.i[C]))
-        elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.prevPage(    f' & PAGE UP(      {motion})')
-        elif motion == k.MOTION_NEXT_PAGE:         tobj.nextPage(    f' & PAGE DOWN(    {motion})')
-        else:                                      msg =             f' & UNH(          {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg)
+        if   motion == k.MOTION_UP:                tobj.moveUp(      f' & UP(          {motion})')
+        elif motion == k.MOTION_DOWN:              tobj.moveDown(    f' & DOWN(        {motion})')
+        elif motion == k.MOTION_LEFT:              tobj.moveLeft(    f' & LEFT(        {motion})')
+        elif motion == k.MOTION_RIGHT:             tobj.moveRight(   f' & RIGHT(       {motion})')
+        elif motion == k.MOTION_BEGINNING_OF_LINE: tobj.move(        f' & HOME(        {motion})', -nt *  c)
+        elif motion == k.MOTION_END_OF_LINE:       tobj.move(        f' & END(         {motion})',  nt * (nc - tobj.i[C]))
+        elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.prevPage(    f' & PAGE UP(     {motion})')
+        elif motion == k.MOTION_NEXT_PAGE:         tobj.nextPage(    f' & PAGE DOWN(   {motion})')
+        else:                                      msg =             f' & UNH(         {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg)
     elif isCtl(kd, m):
-        if   motion == k.MOTION_NEXT_WORD:         tobj.selectTabs(  f'@  RIGHT(        {motion})',  nt)
-        elif motion == k.MOTION_PREVIOUS_WORD:     tobj.selectTabs(  f'@  LEFT(         {motion})', -nt)
-        elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'@  MOTION_BEGINNING_OF_FILE( {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL HOME
-        elif motion == k.MOTION_END_OF_FILE:       msg = f'@  MOTION_END_OF_FILE(       {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL END
-        elif motion == k.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE( {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(       {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_PREVIOUS_PAGE:     msg = f'@  MOTION_PREVIOUS_PAGE(     {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_NEXT_PAGE:         msg = f'@  MOTION_NEXT_PAGE          {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        if   motion == k.MOTION_NEXT_WORD:         tobj.selectTabs(  f'@  RIGHT(       {motion})',  nt)
+        elif motion == k.MOTION_PREVIOUS_WORD:     tobj.selectTabs(  f'@  LEFT(        {motion})', -nt)
+        elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'@  MOTION_BEGINNING_OF_FILE({motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL HOME
+        elif motion == k.MOTION_END_OF_FILE:       msg = f'@  MOTION_END_OF_FILE(      {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL END
+        elif motion == k.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE({motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(      {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_PREVIOUS_PAGE:     msg = f'@  MOTION_PREVIOUS_PAGE(    {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_NEXT_PAGE:         msg = f'@  MOTION_NEXT_PAGE         {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
 #           elif motion == pygwink.MOTION_DELETE:            self.deleteTabs( f'@ D MOTION_DELETE({motion})')
 #           elif motion == pygwink.MOTION_COPY:              self.copyTabs(   f'@ C MOTION_COPY(  {motion})')
 #           elif motion == pygwink.MOTION_PASTE:             self.pasteTabs(  f'@ V MOTION_PASTE( {motion})', kk=0)
-        else:                                      msg = f'@  UNH CTRL(                 {motion}) {ftm(motion)}'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+        else:                                      msg = f'@  UNH CTRL(                {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
     else:
-        if   motion == k.MOTION_UP:                tobj.move(        f' UP(             {motion})', -1)
-        elif motion == k.MOTION_DOWN:              tobj.move(        f' DOWN(           {motion})',  1)
-        elif motion == k.MOTION_LEFT:              tobj.move(        f' LEFT(           {motion})', -nt)
-        elif motion == k.MOTION_RIGHT:             tobj.move(        f' RIGHT(          {motion})',  nt)
-        elif motion == k.MOTION_BEGINNING_OF_LINE: tobj.move(        f' HOME(           {motion})', -nt *  c)
-        elif motion == k.MOTION_END_OF_LINE:       tobj.move(        f' END(            {motion})',  nt * (nc - tobj.i[C]))
-        elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.moveUp(      f' PAGE UP(        {motion})')  # go up   to top    of line, wrap down to bottom of prev line
-        elif motion == k.MOTION_NEXT_PAGE:         tobj.moveDown(    f' PAGE DOWN(      {motion})')  # go down to bottom tab on same line, wrap to next line
-        elif motion == k.MOTION_DELETE:            tobj.setTab(      f'DELETE(          {motion})', tobj.tblank)
-        elif motion == k.MOTION_BACKSPACE:         tobj.setTab(      f'BACKSPACE(       {motion})', tobj.tblank, rev=1)
-        elif motion == k.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD(        {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
-        elif motion == k.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD(            {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
-        elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'MOTION_BEGINNING_OF_FILE(    {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
-        elif motion == k.MOTION_END_OF_FILE:       msg = f'MOTION_END_OF_FILE(          {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
-        else:                                      msg =             f'UNH(             {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg)
+        if   motion == k.MOTION_UP:                tobj.move(        f' UP(            {motion})', -1)
+        elif motion == k.MOTION_DOWN:              tobj.move(        f' DOWN(          {motion})',  1)
+        elif motion == k.MOTION_LEFT:              tobj.move(        f' LEFT(          {motion})', -nt)
+        elif motion == k.MOTION_RIGHT:             tobj.move(        f' RIGHT(         {motion})',  nt)
+        elif motion == k.MOTION_BEGINNING_OF_LINE: tobj.move(        f' HOME(          {motion})', -nt *  c)
+        elif motion == k.MOTION_END_OF_LINE:       tobj.move(        f' END(           {motion})',  nt * (nc - tobj.i[C]))
+        elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.moveUp(      f' PAGE UP(       {motion})')  # go up   to top    of line, wrap down to bottom of prev line
+        elif motion == k.MOTION_NEXT_PAGE:         tobj.moveDown(    f' PAGE DOWN(     {motion})')  # go down to bottom tab on same line, wrap to next line
+        elif motion == k.MOTION_DELETE:            tobj.setTab(      f'DELETE(         {motion})', tobj.tblank)
+        elif motion == k.MOTION_BACKSPACE:         tobj.setTab(      f'BACKSPACE(      {motion})', tobj.tblank, rev=1)
+        elif motion == k.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD(       {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
+        elif motion == k.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD(           {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
+        elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'MOTION_BEGINNING_OF_FILE(   {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
+        elif motion == k.MOTION_END_OF_FILE:       msg = f'MOTION_END_OF_FILE(         {motion})'   ;   slog(msg)   ;   retv = False #  ;   tobj.quit(msg) # N/A
+        else:                                      msg =             f'UNH(            {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg)
     if dbg: slog(f'END {ftm(motion)} {retv=}')
     return retv

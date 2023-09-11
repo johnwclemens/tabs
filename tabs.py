@@ -1771,22 +1771,19 @@ class Tabs(pyglet.window.Window):
         if dbg: slog(f'{jTEXTS[j]}[{cc}-{cc+nt-1}].text={fmtl(texts)}=<{text}>')
         return text
     ####################################################################################################################################################################################################
-    def on_resize(self, width, height, dbg=1):
-        super().on_resize(width, height)
-        return self.resizeTniks(dbg) if self.RESIZE else True
-    ####################################################################################################################################################################################################
-    def on_draw(         self, **kwargs):           return evnts.on_draw(         self, **kwargs)
     def on_close(        self):                     return evnts.on_close(        self)
-    def on_move(         self, x, y):               return evnts.on_move(         self, x, y)
-    def on_text(         self, text):               return evnts.on_text(         self, text)
-    def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
+    def on_draw(         self, **kwargs):           return evnts.on_draw(         self, **kwargs)
+    def on_key_press(    self, symb, mods):         return evnts.on_key_press(    self, symb, mods)
+    def on_key_release(  self, symb, mods):         return evnts.on_key_release(  self, symb, mods)
     def on_mouse_motion( self, x, y, dx, dy):       return evnts.on_mouse_motion( self, x, y, dx, dy)
     def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll( self, x, y, dx, dy)
     def on_mouse_release(self, x, y, bttn, mods=0): return evnts.on_mouse_release(self, x, y, bttn, mods)
-    def on_key_press(    self, symb, mods):         return evnts.on_key_press(    self, symb, mods)
-    def on_key_release(  self, symb, mods):         return evnts.on_key_release(  self, symb, mods)
-    def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
+    def on_move(         self, x, y):               return evnts.on_move(         self, x, y)
+    def on_resize(self, width, height, dbg=1): super().on_resize(width, height)   ;   return self.resizeTniks(dbg) if self.RESIZE else True
+    def on_text(         self, text):               return evnts.on_text(         self, text)
+    def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
     ####################################################################################################################################################################################################
+    def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
 #   def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in utl.DSymb.SYMBS else 0
     def isTab(self, text):    return 1 if text == self.tblank or self.sobj.isFret(text) or text in misc.DSymb.SYMBS else 0
