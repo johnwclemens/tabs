@@ -1133,7 +1133,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'{ikey=}')
         return ikey
 
-    def imap2Chord(self, tobj, imap, i, j, dbg=0):
+    def imap2Chord(self, tobj, imap, i, j, dbg=1):
         chunks    = imap[4]  if (imap and len(imap) > 4) else []
         chordName = tobj     if j > K else chunks[i] if len(chunks) > i else self.tblank
         if dbg and chunks:   self.log(f'{chordName=} chunks={fmtl(chunks)} imap={fmtl(imap)}')
@@ -1721,7 +1721,7 @@ class Tabs(pyglet.window.Window):
 #                utl.updNotes( 4, 'E', 'Fb', Notes.TYPE, -1)
 #                utl.updNotes( 0, 'C', 'B#', Notes.TYPE, -1)
     ####################################################################################################################################################################################################
-    def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=0):
+    def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=1):
         dl    = self.dl()
         cn    = self.plc2cn(p, l, c)          ;     key = cn   ;   mli = self.cobj.mlimap
         msg1  = f'plc={self.fplc(p, l, c)}'   ;    msg2 = f'dl={self.fmtdl()} {cn=} {key=} keys={fmtl(list(mli.keys()))}'
@@ -1749,7 +1749,7 @@ class Tabs(pyglet.window.Window):
         if dbg:  self.log(f'END [{cc:2}-{cc+nt-1:2}] text={fmtl(text)} {data=} ikeys=<{txt}>{len(txt)}', pos=pos)
         if dbg2: self.dumpDataSlice(p, l, c, cc)
     ####################################################################################################################################################################################################
-    def setChord(self, imap, cc, pos=1, dbg=0):
+    def setChord(self, imap, cc, pos=1, dbg=1):
 #        cc = self.plct2cc(p, l, c, 0)
         name = imap[3] if imap and len(imap) > 3 else Z  ;   chunks = imap[4] if imap and len(imap) > 4 else []
         if dbg: self.log(f'BGN {name=} chunks={fmtl(chunks)} {len(imap)=}', pos=pos)
@@ -1779,7 +1779,7 @@ class Tabs(pyglet.window.Window):
     def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll( self, x, y, dx, dy)
     def on_mouse_release(self, x, y, bttn, mods=0): return evnts.on_mouse_release(self, x, y, bttn, mods)
     def on_move(         self, x, y):               return evnts.on_move(         self, x, y)
-    def on_resize(self, width, height, dbg=1): super().on_resize(width, height)   ;   return self.resizeTniks(dbg) if self.RESIZE else True
+    def on_resize(self, w, h, dbg=1): super().on_resize(w, h)   ;   self.resizeTniks(dbg) if self.RESIZE else None   ;   return True
     def on_text(         self, text):               return evnts.on_text(         self, text)
     def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
     ####################################################################################################################################################################################################
@@ -2239,7 +2239,7 @@ class Tabs(pyglet.window.Window):
         self.log(kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
-    def flipChordNames(self, how, hit=0, dbg=1):
+    def flipKordNames(self, how, hit=0, dbg=1):
         cc = self.cc    ;    cn = self.cc2cn(cc)
         mks = list(self.cobj.mlimap.keys())   ;   sks = list(self.smap.keys())
         if sks and not hit:
@@ -2247,11 +2247,11 @@ class Tabs(pyglet.window.Window):
             [ self.flipChordName(how, k) for k in sks ]
         else:
             if dbg: self.dumpSmap(f'BGN {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
-            if hit: self.flipChordNameHits(how, cn)
+            if hit: self.flipKordNameHits(how, cn)
             else:   self.flipChordName(    how, cn)
         if dbg:     self.dumpSmap(f'END {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
 
-    def flipChordNameHits(self, how, cn, dbg=1): # optimize str concat?
+    def flipKordNameHits(self, how, cn, dbg=1): # optimize str concat?
         mli = self.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
         if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   self.log(msg)   ;   self.quit(msg)
         ivals =  [ u[1] for u in mli[cn][0] ]

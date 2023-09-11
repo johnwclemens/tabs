@@ -1,15 +1,15 @@
-from inspect import currentframe as cfrm
+from   inspect import currentframe as cfrm
 import pyglet
 #import pyglet.text         as text
 #import pyglet.window       as window
 ##import pyglet.window.event as pygwevnt
 ##import pyglet.event        as pygevnt
-import pyglet.window.key   as pygwink
-from pyglet.window.key import symbol_string    as psyms
-from pyglet.window.key import modifiers_string as pmods
-from pyglet.window.key import motion_string    as pmtns
-import pyglet.window.mouse as pygmous
-from   tpkg import utl     as utl
+import pyglet.window.key     as pygwink
+from   pyglet.window.key import symbol_string    as psym
+from   pyglet.window.key import modifiers_string as pmod
+from   pyglet.window.key import motion_string    as pmtn
+import pyglet.window.mouse   as pygmous
+from   tpkg import utl       as utl
 #from   tpkg import tests   as tests
 
 slog, fmtf, fmtl, fmtm         = utl.slog, utl.fmtf, utl.fmtl, utl.fmtm
@@ -24,7 +24,7 @@ isAlt, isCtl, isShf, isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.i
 MODS  = 0
 FLIST = []
 
-def fn(cf):             return cf.f_code.co_name
+def fn(cf):   return cf.f_code.co_name
 
 def flog(msg, filt=None, fd=4):
     if (filt and filt not in FLIST) or not filt:
@@ -37,37 +37,37 @@ class FilteredEventLogger(pyglet.window.event.WindowEventLogger):
         self.tobj = tobj
         global FLIST   ;   FLIST = flst
 
-    def on_activate(          self):                           flog(Z,                                              filt=fn(cfrm()))
-    def on_close(             self):                           flog(Z,                                              filt=fn(cfrm()))
-    def on_context_lost(      self):                           flog(Z,                                              filt=fn(cfrm()))
-    def on_context_state_lost(self):                           flog(Z,                                              filt=fn(cfrm()))
-    def on_deactivate(        self):                           flog(Z,                                              filt=fn(cfrm()))
-    def on_draw(              self, **kwargs):                 flog(f'{kwargs=}',                                   filt=fn(cfrm()))
-    def on_expose(            self):                           flog(Z,                                              filt=fn(cfrm()))
-    def on_hide(              self):                           flog(Z,                                              filt=fn(cfrm()))
-    def on_key_press(         self, symb, mods):               flog(f'{symb=} {psyms(symb)} {mods=} {pmods(mods)}', filt=fn(cfrm()))
-    def on_key_release(       self, symb, mods):               flog(f'{symb=} {psyms(symb)} {mods=} {pmods(mods)}', filt=fn(cfrm()))
-    def on_mouse_drag(        self, x, y, dx, dy, btns, mods): flog(f'{x=} {y=} {dx=} {dy=} {btns=} {mods=}',       filt=fn(cfrm()))
-    def on_mouse_enter(       self, x, y):                     flog(f'{x=} {y=}',                                   filt=fn(cfrm()))
-    def on_mouse_leave(       self, x, y):                     flog(f'{x=} {y=}',                                   filt=fn(cfrm()))
-    def on_mouse_motion(      self, x, y, dx, dy):             flog(f'{x=} {y=} {dx=} {dy=}',                       filt=fn(cfrm()))
-    def on_mouse_press(       self, x, y, bttn, mods=0):       flog(f'{x=} {y=} {bttn=} {mods=}',                   filt=fn(cfrm()))
-    def on_mouse_release(     self, x, y, bttn, mods=0):       flog(f'{x=} {y=} {bttn=} {mods=}',                   filt=fn(cfrm()))
-    def on_mouse_scroll(      self, x, y, dx, dy):             flog(f'{x=} {y=} {dx=} {dy=}',                       filt=fn(cfrm()))
-    def on_move(              self, x, y):                     flog(f'{x=} {y=}',                                   filt=fn(cfrm()))
-    def on_resize(            self, width, height):            flog(f'{width=} {height=}',                          filt=fn(cfrm()))
-    def on_show(              self):                           flog(Z,                                              filt=fn(cfrm()))
-    def on_text(              self, text):                     flog(f'{text=}',                                     filt=fn(cfrm()))
-    def on_text_motion(       self, motion):                   flog(f'{motion=} {pmtns(motion)}',                   filt=fn(cfrm()))
-    def on_text_motion_select(self, motion):                   flog(f'{motion=} {pmtns(motion)}',                   filt=fn(cfrm()))
+    def on_activate(          self):                     flog(Z,                                            filt=fn(cfrm()))
+    def on_close(             self):                     flog(Z,                                            filt=fn(cfrm()))
+    def on_context_lost(      self):                     flog(Z,                                            filt=fn(cfrm()))
+    def on_context_state_lost(self):                     flog(Z,                                            filt=fn(cfrm()))
+    def on_deactivate(        self):                     flog(Z,                                            filt=fn(cfrm()))
+    def on_draw(              self, **kwargs):           flog(f'{kwargs=}',                                 filt=fn(cfrm()))
+    def on_expose(            self):                     flog(Z,                                            filt=fn(cfrm()))
+    def on_hide(              self):                     flog(Z,                                            filt=fn(cfrm()))
+    def on_key_press(         self, s, m):               flog(f'{s=} {psym(s)} {m=} {pmod(m)}',             filt=fn(cfrm()))
+    def on_key_release(       self, s, m):               flog(f'{s=} {psym(s)} {m=} {pmod(m)}',             filt=fn(cfrm()))
+    def on_mouse_drag(        self, x, y, dx, dy, b, m): flog(f'{x=} {y=} {dx=} {dy=} {b=} {m=} {pmod(m)}', filt=fn(cfrm()))
+    def on_mouse_enter(       self, x, y):               flog(f'{x=} {y=}',                                 filt=fn(cfrm()))
+    def on_mouse_leave(       self, x, y):               flog(f'{x=} {y=}',                                 filt=fn(cfrm()))
+    def on_mouse_motion(      self, x, y, dx, dy):       flog(f'{x=} {y=} {dx=} {dy=}',                     filt=fn(cfrm()))
+    def on_mouse_press(       self, x, y, b, m=0):       flog(f'{x=} {y=} {b=} {m=} {pmod(m)}',             filt=fn(cfrm()))
+    def on_mouse_release(     self, x, y, b, m=0):       flog(f'{x=} {y=} {b=} {m=} {pmod(m)}',             filt=fn(cfrm()))
+    def on_mouse_scroll(      self, x, y, dx, dy):       flog(f'{x=} {y=} {dx=} {dy=}',                     filt=fn(cfrm()))
+    def on_move(              self, x, y):               flog(f'{x=} {y=}',                                 filt=fn(cfrm()))
+    def on_resize(            self, w, h):               flog(f'{w=} {h=}',                                 filt=fn(cfrm()))
+    def on_show(              self):                     flog(Z,                                            filt=fn(cfrm()))
+    def on_text(              self, text):               flog(f'{text=}',                                   filt=fn(cfrm()))
+    def on_text_motion(       self, motion):             flog(f'{motion=} {pmtn(motion)}',                  filt=fn(cfrm()))
+    def on_text_motion_select(self, motion):             flog(f'{motion=} {pmtn(motion)}',                  filt=fn(cfrm()))
 
 ########################################################################################################################################################################################################
 
-def fxy(x, y):          return f'({x:4}, {y:4})'
-def fbm(bttn, mods):    return f'{bttn=} {mods} {pmods(mods):42}'
-def ft(   text):        return f'{text=}'
-def ftm(motion):        return f'{motion:6} {motion:#06x} {W*16} {MODS} {pmods(MODS):42}'
-def fsm(   symb, mods): return f'{symb:6} {symb:#06x} {psyms(symb):16} {mods} {pmods(mods):42}'
+def fxy(x, y):    return f'({x:4}, {y:4})'
+def fbm(b, m):    return f'{b=} {m} {pmod(m):42}'
+def ft(t):        return f'{t=}'
+def ftm(motion):  return f'{motion:6} {motion:#06x} {W*16} {MODS} {pmod(MODS):42}'
+def fsm(s, m):    return f'{s:6} {s:#06x} {psym(s):16} {m} {pmod(m):42}'
 
 ########################################################################################################################################################################################################
 def on_close(tobj, dbg=1):
@@ -95,7 +95,7 @@ def on_key_press(tobj, symb, mods, dbg=1):
     hcurs = tobj.hcurs
     tkb   = tobj.keyboard
     kd    = tkb.data if tkb else None
-    kbk   = psyms(symb)   ;   m = MODS
+    kbk   = psym(symb)   ;   m = MODS
     if dbg:    slog(f'BGN {fsm(symb, mods)} kd={fmtm(kd)}')
     if   kbk == 'A' and isCtlShf(kd, m):    tobj.flipArrow(    '@^A', v=1)
     elif kbk == 'A' and isCtl(   kd, m):    tobj.flipArrow(    '@ A', v=0)

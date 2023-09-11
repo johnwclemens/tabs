@@ -53,7 +53,8 @@ class Chords:
                 if ikey in omap:
                     root     = _imap['R']           ;     chunks.append(root)
                     chnks    = self.checkOmap(omap[ikey])
-                    chunks   = [ n for n in chnks if n ]
+                    chnks   = [ n for n in chnks if n ]
+                    chunks.extend(chnks)
                     if root != notes[0]:                  nsfx = f'/{notes[0]}'  ;  chunks.append(nsfx)
                     name     = Z.join(chunks)       ;     rank = omap[ikey][0]
                     assert _ivals == omap[ikey][1],       slog(f'Error _ivals != omap[ikey][1], {_ivals=} {omap[ikey][1]=}')
