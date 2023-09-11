@@ -12,22 +12,16 @@ import pyglet.text         as pygtxt
 import pyglet.window.event as pygwine
 #import pyglet.window.key   as pygwink
 from   pyglet.text     import document, layout
-#from   tpkg            import chords as chords
 from   tpkg            import utl    as utl
 from   tpkg            import kysgs  as kysgs
 from   tpkg            import misc   as misc
 from   tpkg            import evnts  as evnts
 #from   tpkg.evnts      import FilteredEventLogger as FELogger
-#from   tpkg            import notes  as notes
 from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
 from   tpkg.chords     import Chords as Chords
 from   tpkg            import tests  as tests
 
-#slog,     fmtf,     fmtl,     fmtm,     W,     X,     Y,     Z,     fri  = utl.slog, utl.fmtf, utl.fmtl, utl.fmtm, utl.W, utl.X, utl.Y, utl.Z, utl.fri
-#slog, fmtf, fmtl, fmtm = utl.slog, utl.fmtf, utl.fmtl, utl.fmtm   ;  fri = utl.fri
-#P, L, S, C,    T, N, I, K,    R, Q, H, M,    B, A, D, E,    W, X, Y, Z   = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E, utl.W, utl.X, utl.Y, utl.Z
-#W, X, Y, Z                                                               = utl.W, utl.X, utl.Y, utl.Z
 P, L, S, C,         T, N, I, K,         R, Q, H, M,         B, A, D, E   = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
 W, X, Y, Z, NONE,   ist,    fri,    slog,    fmtf,    fmtl,     fmtm     = utl.W, utl.X, utl.Y, utl.Z, utl.NONE,    utl.ist,    utl.fri,    utl.slog,    utl.fmtf,    utl.fmtl,    utl.fmtm
 BGC,  BOLD,  COLOR,  FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,  utl.BOLD,  utl.COLOR,  utl.FONT_NAME,  utl.FONT_SIZE,  utl.ITALIC,  utl.KERNING,  utl.UNDERLINE
@@ -91,8 +85,8 @@ FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'He
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
 ########################################################################################################################################################################################################
-    def __str__(self):  return f'{ARGS}'
-    def __repr__(self): return f'{self.__class__.__name__} {self.width=} {self.height=} {ARGS=}'
+    def __str__(self):  return f'{fmtm(ARGS)}'
+    def __repr__(self): return f'{self.__class__.__name__} {self.width=} {self.height=} {fmtm(ARGS)}'
     ####################################################################################################################################################################################################
     def __init__(self):
         self.LOG_ID = 0                ;   self.log(f'{self.LOG_ID=}')
@@ -345,8 +339,10 @@ class Tabs(pyglet.window.Window):
         self.keyboard = None
         if self.EVENT_LOG:
             if self.EVENT_LOG == 1:   self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
-            else:
-                flist = ['on_draw', 'on_move'] # 'on_draw', 'on_move', 'on_text', 'on_key_pressed', 'on_key_released', 'on_mouse_scroll', 'on_mouse_motion', 'on_text_motion'
+            else: # 'on_draw', 'on_move', 'on_text', 'on_key_pressed', 'on_key_released', 'on_mouse_scroll', 'on_mouse_motion', 'on_text_motion'
+                flist = ['on_draw']
+#                flist = ['on_draw', 'on_move']
+#                flist = ['on_draw', 'on_move', 'on_mouse_motion']
                 self.log(f'{fmtl(flist)} {EVN_FILE=}', f=-2)   ;   self.log(f'{fmtl(flist)} {EVN_FILE=}', f=4)
                 from tpkg.evnts import FilteredEventLogger as FELogger
                 self.eventLogger = FELogger(self, EVN_FILE, flist)
@@ -1775,10 +1771,9 @@ class Tabs(pyglet.window.Window):
         if dbg: slog(f'{jTEXTS[j]}[{cc}-{cc+nt-1}].text={fmtl(texts)}=<{text}>')
         return text
     ####################################################################################################################################################################################################
-    def on_resize(self, width, height, dbg=1): #     return evnts.on_resize(self, width, height, dbg)
+    def on_resize(self, width, height, dbg=1):
         super().on_resize(width, height)
-        if self.RESIZE: self.resizeTniks(dbg)
-        return True
+        return self.resizeTniks(dbg) if self.RESIZE else True
     ####################################################################################################################################################################################################
     def on_draw(         self, **kwargs):           return evnts.on_draw(         self, **kwargs)
     def on_close(        self):                     return evnts.on_close(        self)

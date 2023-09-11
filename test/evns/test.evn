@@ -1,12 +1,5 @@
- 350 tabs  _initWindowB       [on_draw on_move] EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
-  38 evnts on_activate         filt='on_activate'
-  56 evnts on_resize          width=960 height=540 filt='on_resize'
-  57 evnts on_show             filt='on_show'
-  44 evnts on_expose           filt='on_expose'
-  59 evnts on_text_motion     motion=65366 MOTION_NEXT_PAGE filt='on_text_motion'
-  59 evnts on_text_motion     motion=65365 MOTION_PREVIOUS_PAGE filt='on_text_motion'
-  59 evnts on_text_motion     motion=4 MOTION_END_OF_LINE filt='on_text_motion'
-  59 evnts on_text_motion     motion=3 MOTION_BEGINNING_OF_LINE filt='on_text_motion'
-  59 evnts on_text_motion     motion=65366 MOTION_NEXT_PAGE filt='on_text_motion'
-  59 evnts on_text_motion     motion=65365 MOTION_PREVIOUS_PAGE filt='on_text_motion'
-  59 evnts on_text_motion     motion=65363 MOTION_RIGHT filt='on_text_motion'
+ 346 tabs  _initWindowB       [on_draw] EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
+  40 evnts on_activate         filt='on_activate'
+  58 evnts on_resize          width=960 height=540 filt='on_resize'
+  59 evnts on_show             filt='on_show'
+  46 evnts on_expose           filt='on_expose'

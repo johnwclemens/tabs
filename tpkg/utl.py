@@ -40,12 +40,12 @@ def init(cfile, efile, lfile, tfile, f):
     global CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE   ;   CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE = cfile, efile, lfile, tfile
     argv   = sys.argv
     argc   = len(argv)
-    slog(f'{argc=} {argv=}', f=f)
+    slog(f'{argc=} {fmtl(argv)=}', f=f)
     for i in range(1, argc): slog(f'argv[{i}]={argv[i]}', f=f)
     ARGS   = parseCmdLine(argv, f=f)
     global   ROOT_DIR   ;   ROOT_DIR = ARGS['f'][0] if 'f' in ARGS and len(ARGS['f']) > 0 else ROOT_DIR
-    slog(f'{     ARGS=}', f=f)
-    slog(f'{ ROOT_DIR=}', f=f)
+    slog(  f'   ARGS={fmtm(ARGS)}', f=f)
+    slog(f'{ROOT_DIR=}', f=f)
     return   ARGS
 
 def paths():           return BASE_NAME, BASE_PATH, PATH
