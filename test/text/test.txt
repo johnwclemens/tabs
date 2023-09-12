@@ -1,4 +1,4 @@
-  43 utl   init               argc=31 (argv)='[C:\\Users\\Owner\\Documents\\GitHub\\tabs\\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -J 4 -L -S 0 1 3 -f test]'
+  43 utl   init               argc=35 (argv)='[C:\\Users\\Owner\\Documents\\GitHub\\tabs\\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -t 1 -x 0 -J 4 -L -S 0 1 3 -f test]'
   44 utl   init               argv[1]=-i
   44 utl   init               argv[2]=1
   44 utl   init               argv[3]=1
@@ -20,16 +20,20 @@
   44 utl   init               argv[19]=2
   44 utl   init               argv[20]=-p
   44 utl   init               argv[21]=-s
-  44 utl   init               argv[22]=-J
-  44 utl   init               argv[23]=4
-  44 utl   init               argv[24]=-L
-  44 utl   init               argv[25]=-S
-  44 utl   init               argv[26]=0
-  44 utl   init               argv[27]=1
-  44 utl   init               argv[28]=3
-  44 utl   init               argv[29]=-f
-  44 utl   init               argv[30]=test
- 212 utl   parseCmdLine       argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -J 4 -L -S 0 1 3 -f test]
+  44 utl   init               argv[22]=-t
+  44 utl   init               argv[23]=1
+  44 utl   init               argv[24]=-x
+  44 utl   init               argv[25]=0
+  44 utl   init               argv[26]=-J
+  44 utl   init               argv[27]=4
+  44 utl   init               argv[28]=-L
+  44 utl   init               argv[29]=-S
+  44 utl   init               argv[30]=0
+  44 utl   init               argv[31]=1
+  44 utl   init               argv[32]=3
+  44 utl   init               argv[33]=-f
+  44 utl   init               argv[34]=test
+ 212 utl   parseCmdLine       argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -t 1 -x 0 -J 4 -L -S 0 1 3 -f test]
  212 utl   parseCmdLine       C:\Users\Owner\Documents\GitHub\tabs\tabs.py
  228 utl   parseCmdLine        1 short   -i i [] 
  2 arg     1  i [1] 
@@ -52,17 +56,21 @@
 19 arg     2  e [2] 
  228 utl   parseCmdLine       20 short   -p p [] 
  228 utl   parseCmdLine       21 short   -s s [] 
- 228 utl   parseCmdLine       22 short   -J J [] 
-23 arg     4  J [4] 
- 228 utl   parseCmdLine       24 short   -L L [] 
- 228 utl   parseCmdLine       25 short   -S S [] 
-26 arg     0  S [0] 
-27 arg     1  S [0 1] 
-28 arg     3  S [0 1 3] 
- 228 utl   parseCmdLine       29 short   -f f [] 
-30 arg     test f [test] 
- 248 utl   parseCmdLine       options=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[2]] [p:[]] [s:[]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
-  47 utl   init                  ARGS=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[2]] [p:[]] [s:[]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
+ 228 utl   parseCmdLine       22 short   -t t [] 
+23 arg     1  t [1] 
+ 228 utl   parseCmdLine       24 short   -x x [] 
+25 arg     0  x [0] 
+ 228 utl   parseCmdLine       26 short   -J J [] 
+27 arg     4  J [4] 
+ 228 utl   parseCmdLine       28 short   -L L [] 
+ 228 utl   parseCmdLine       29 short   -S S [] 
+30 arg     0  S [0] 
+31 arg     1  S [0 1] 
+32 arg     3  S [0 1 3] 
+ 228 utl   parseCmdLine       33 short   -f f [] 
+34 arg     test f [test] 
+ 248 utl   parseCmdLine       options=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[2]] [p:[]] [s:[]] [t:[1]] [x:[0]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
+  47 utl   init                  ARGS=[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[2]] [p:[]] [s:[]] [t:[1]] [x:[0]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
   48 utl   init               ROOT_DIR='test'
   24 kysgs init               BGN
 KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note Ordering  Key Sig Table -7
@@ -115,7 +123,7 @@ KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note
   62 kysgs dumpData           END
   33 kysgs init               END
 C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-2540 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -J 4 -L -S 0 1 3 -f test]
+2542 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -t 1 -x 0 -J 4 -L -S 0 1 3 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17   Diff Span
 FSH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
        R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
@@ -193,25 +201,25 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
        G=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127] 123.0  7.2
        B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
-2544 tabs  <module>           BGN EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
-2545 tabs  <module>           CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-2545 tabs  <module>           CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
-2547 tabs  <module>           LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
-2547 tabs  <module>           LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
-2548 tabs  <module>           TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-2548 tabs  <module>           TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
-2513 tabs  dumpGlobals        BASE_NAME = test
-2514 tabs  dumpGlobals        argv      = +31[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -J 4 -L -S 0 1 3 -f test]
-2515 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-2516 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
- 355 utl   getFilePath        baseName =test.16      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 358 utl   getFilePath        fileName =test.16.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.16.cat')
- 355 utl   getFilePath        baseName =test.16      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 358 utl   getFilePath        fileName =test.16.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.16.csv')
- 355 utl   getFilePath        baseName =test.16      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 358 utl   getFilePath        fileName =test.16.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.16.log')
- 355 utl   getFilePath        baseName =test.16      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 358 utl   getFilePath        fileName =test.16.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.16.txt')
+2546 tabs  <module>           BGN EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
+2547 tabs  <module>           CSV_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+2547 tabs  <module>           CSV_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\csvs\\test.csv'
+2549 tabs  <module>           LOG_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.log')
+2549 tabs  <module>           LOG_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.log'
+2550 tabs  <module>           TXT_PATH=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+2550 tabs  <module>           TXT_FILE.name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\text\\test.txt'
+2515 tabs  dumpGlobals        BASE_NAME = test
+2516 tabs  dumpGlobals        argv      = +35[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -w 0 0 0 0 -d 0 -e 2 -p -s -t 1 -x 0 -J 4 -L -S 0 1 3 -f test]
+2517 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+2518 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+ 355 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.9.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.9.cat')
+ 355 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.9.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.9.csv')
+ 355 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.9.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.9.log')
+ 355 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.9.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.9.txt')
  228 tabs  dumpArgs           [a]      .AUTO_SAVE=0
  229 tabs  dumpArgs           [A]         .VARROW=1
  230 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -224,18 +232,18 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
  237 tabs  dumpArgs           [F]      .FULL_SCRN=0
  238 tabs  dumpArgs           [g]        .ORD_GRP=1
  239 tabs  dumpArgs           [G]       .GEN_DATA=0
- 240 tabs  dumpArgs           [i]               i=[1 1 1 1 6]
+ 240 tabs  dumpArgs           [i]              .i=[1 1 1 1 6]
  241 tabs  dumpArgs           [J]      .DSP_J_LEV=4
  242 tabs  dumpArgs           [l]       .LONG_TXT=1
  243 tabs  dumpArgs           [L]             .LL=1
  244 tabs  dumpArgs           [M]      .MULTILINE=1
- 245 tabs  dumpArgs           [n]               n=[1 1 3 10 6]
+ 245 tabs  dumpArgs           [n]              .n=[1 1 3 10 6]
  246 tabs  dumpArgs           [o]           .OIDS=0
  247 tabs  dumpArgs           [p]          .SNAPS=1
  248 tabs  dumpArgs           [R]         .RESIZE=1
  249 tabs  dumpArgs           [s]        .SPRITES=1
  250 tabs  dumpArgs           [S]             .SS=[0 1 3]
- 251 tabs  dumpArgs           [t]           .TEST=0
+ 251 tabs  dumpArgs           [t]           .TEST=1
  252 tabs  dumpArgs           [u]         .SUBPIX=1
  253 tabs  dumpArgs           [v]           .VRBY=0
  254 tabs  dumpArgs           [V]          .VIEWS=0
@@ -246,10 +254,10 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
  363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
  364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
  366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
-1617 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.7778 fs=w*PNT_PER_PIX= 22.11pt
-1618 tabs  _initFonts         h=28.421=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.7778 fs=h*PNT_PER_PIX= 22.11pt
-1630 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels 
-1041 tabs  g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+1618 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.7778 fs=w*PNT_PER_PIX= 22.11pt
+1619 tabs  _initFonts         h=28.421=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.7778 fs=h*PNT_PER_PIX= 22.11pt
+1631 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels 
+1042 tabs  g_createTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 Name  Tid V PrtlText x y AnchX AnchY     FullText
 Page    1 V C C   480   270     
 Line    1 V C C   480   256     
@@ -487,20 +495,20 @@ Kord    3 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
 Kord    4 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    5 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord    6 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
-1523 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
-1526 tabs  cursorCol          cc=  5 [0 0 0 5]
-1501 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-1506 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.21   96.00   28.50 t.text='8' 17.47 29.00 C,C
+1524 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1527 tabs  cursorCol          cc=  5 [0 0 0 5]
+1502 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
+1507 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.21   96.00   28.50 t.text='8' 17.47 29.00 C,C
 HCrs    1 V C C    48    14     
 [7:G :1,4:E :1,0:C :1]
 [7:G :1,4:E :1,0:C :1]
 [None,None,None,None,None,None,4:E :1]
 [None,None,None,None,None,None,0:C :1]
-1630 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels New1
+1631 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels New1
  379 tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2551 tabs  <module>           str(tabs)='[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[2]] [p:[]] [s:[]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]'
-2551 tabs  <module>           tabs=Tabs .width=960 .height=540 [i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[2]] [p:[]] [s:[]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
-1181 tabs  g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
+2553 tabs  <module>           str(tabs)='[i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[2]] [p:[]] [s:[]] [t:[1]] [x:[0]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]'
+2553 tabs  <module>           tabs=Tabs .width=960 .height=540 [i:[1 1 1 6]] [n:[1 1 10 6]] [w:[0 0 0 0]] [d:[0]] [e:[2]] [p:[]] [s:[]] [t:[1]] [x:[0]] [J:[4]] [L:[]] [S:[0 1 3]] [f:[test]]
+1182 tabs  g_resizeTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 QClm    1 V 1        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 1        [  1   8   8 255] [ 31 255 255 255] 0 1 1 1 1 c Lucida Console        1
 QClm    2 V 2        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 2        [ 31 255 255 255] [  1   8   8 255] 0 0 1 1 1 c Lucida Console        2
 QClm    3 V 3        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None 3        [ 31 255 255 255] [  1   8   8 255] 0 0 1 1 1 c Lucida Console        3
@@ -692,278 +700,238 @@ Kord   57 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    
 Kord   58 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord   59 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
 Kord   60 V -        C C    48    14 17.47 29.00 23.00 -6.000 17.00 v a 22.1    0 None -        [ 31 180 255 195] [  1   6   8 195] 0 0 1 1 1 c Lucida Console        -
-1523 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
-1526 tabs  cursorCol          cc=  5 [0 0 0 5]
-1501 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-1506 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 29.00 C,C
+1524 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1527 tabs  cursorCol          cc=  5 [0 0 0 5]
+1502 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
+1507 tabs  cc2xywh            cc=   5 old=   5 [  180  180 180  60   6]   48.00  355.26   96.00   28.42 t.text='8' 17.47 29.00 C,C
 [7:G :1,4:E :1,0:C :1]
 [7:G :1,4:E :1,0:C :1]
 [None,None,None,None,None,None,4:E :1]
 [None,None,None,None,None,None,0:C :1]
-1630 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels Upd.1
-2419 tabs  snapshot           snapName='test.16.0.INIT.png' on_draw()
- 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.0.INIT.png')
+1631 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels Upd.1
+2420 tabs  snapshot           snapName='test.9.0.INIT.png' on_draw()
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.INIT.png')
  364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
- 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
- 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.0.INIT.png')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.9.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.INIT.png')
  364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.png')
- 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.9.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.png ###
   86 evnts on_draw            tobj.snapWhy='init' tobj.snapType='INIT' tobj.snapId=1
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.0.INIT.png')
-1523 tabs  plct2cc                   4 [  180  180 180  60   6] [1 1    1 5] (   0 +  0 + 60 +  0 +4)
-1526 tabs  cursorCol          cc=  4 [0 0 0 4]
-1501 tabs  cc2xywh            tpp=180 old=4 lenT=60 cc=4 old % lenT
-1506 tabs  cc2xywh            cc=   4 old=   4 [  180  180 180  60   6]   48.00  383.68   96.00   28.42 t.text='7' 17.47 29.00 C,C
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1501 tabs  cc2xywh            tpp=180 old=3 lenT=60 cc=3 old % lenT
-1506 tabs  cc2xywh            cc=   3 old=   3 [  180  180 180  60   6]   48.00  412.11   96.00   28.42 t.text='5' 17.47 29.00 C,C
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1501 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
-1506 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='-' 17.47 29.00 C,C
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1672 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN onTxt text='7' rev=0 old=  2 cc=  2 p=0 l=0 c=0 t=2
-1523 tabs  plct2cc                   1 [  180  180 180  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
-1526 tabs  cursorCol          cc=  1 [0 0 0 1]
-1501 tabs  cc2xywh            tpp=180 old=1 lenT=60 cc=1 old % lenT
-1506 tabs  cc2xywh            cc=   1 old=   1 [  180  180 180  60   6]   48.00  468.95   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.1.Txt.7.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.7' tobj.snapId=2
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.1.Txt.7.png')
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1501 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
-1506 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='7' 17.47 29.00 C,C
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1672 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN BACKSPACE(      65288) text='-' rev=1 old=  2 cc=  2 p=0 l=0 c=0 t=2
-[7:G :1,4:E :1,0:C :1]
-[7:G :1,4:E :1,0:C :1]
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.INIT.png')
+1524 tabs  plct2cc                   5 [  180  180 180  60   6] [1 1    1 6] (   0 +  0 + 60 +  0 +5)
+1527 tabs  cursorCol          cc=  5 [0 0 0 5]
+1673 tabs  setTab             [1 1 1  1 6]   6   0  1] BGN onTxt text='0' rev=0 old=  5 cc=  5 p=0 l=0 c=0 t=5
+[7:G :1,4:E :2]
+[7:G :1,4:E :2]
+[None,None,None,None,None,None,4:E :2]
+[None,None,None,None,None,None,None]
+1524 tabs  plct2cc                   4 [  180  180 180  60   6] [1 1    1 5] (   0 +  0 + 60 +  0 +4)
+1527 tabs  cursorCol          cc=  4 [0 0 0 4]
+1502 tabs  cc2xywh            tpp=180 old=4 lenT=60 cc=4 old % lenT
+1507 tabs  cc2xywh            cc=   4 old=   4 [  180  180 180  60   6]   48.00  383.68   96.00   28.42 t.text='7' 17.47 29.00 C,C
+2420 tabs  snapshot           snapName='test.9.1.Txt.0.png' on_draw()
+  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.0' tobj.snapId=2
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.1.Txt.0.png')
+1524 tabs  plct2cc                   4 [  180  180 180  60   6] [1 1    1 5] (   0 +  0 + 60 +  0 +4)
+1527 tabs  cursorCol          cc=  4 [0 0 0 4]
+1673 tabs  setTab             [1 1 1  1 5]   5   0  1] BGN onTxt text='8' rev=0 old=  4 cc=  4 p=0 l=0 c=0 t=4
+[7:G :1,4:E :1,5:F :1]
+[7:G :1,4:E :1,5:F :1]
 [None,None,None,None,None,None,4:E :1]
-[None,None,None,None,None,None,0:C :1]
-2419 tabs  snapshot           snapName='test.16.2.UNKN.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='BACKSPACE(      65288)' tobj.snapType='UNKN' tobj.snapId=3
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.2.UNKN.png')
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1672 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN onTxt text='3' rev=0 old=  2 cc=  2 p=0 l=0 c=0 t=2
-1523 tabs  plct2cc                   1 [  180  180 180  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
-1526 tabs  cursorCol          cc=  1 [0 0 0 1]
-1501 tabs  cc2xywh            tpp=180 old=1 lenT=60 cc=1 old % lenT
-1506 tabs  cc2xywh            cc=   1 old=   1 [  180  180 180  60   6]   48.00  468.95   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.3.Txt.3.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.3' tobj.snapId=4
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.3.Txt.3.png')
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1501 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
-1506 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='3' 17.47 29.00 C,C
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1672 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN BACKSPACE(      65288) text='-' rev=1 old=  2 cc=  2 p=0 l=0 c=0 t=2
-[7:G :1,4:E :1,0:C :1]
-[7:G :1,4:E :1,0:C :1]
+[None,None,None,None,None,5:F :1,None]
+1524 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
+1527 tabs  cursorCol          cc=  3 [0 0 0 3]
+1502 tabs  cc2xywh            tpp=180 old=3 lenT=60 cc=3 old % lenT
+1507 tabs  cc2xywh            cc=   3 old=   3 [  180  180 180  60   6]   48.00  412.11   96.00   28.42 t.text='5' 17.47 29.00 C,C
+2420 tabs  snapshot           snapName='test.9.2.Txt.8.png' on_draw()
+  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.8' tobj.snapId=3
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.2.Txt.8.png')
+1524 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
+1527 tabs  cursorCol          cc=  3 [0 0 0 3]
+1673 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN onTxt text='7' rev=0 old=  3 cc=  3 p=0 l=0 c=0 t=3
+[4:E :1,5:F :1,9:A :1]
+[4:E :1,5:F :1,9:A :1]
 [None,None,None,None,None,None,4:E :1]
-[None,None,None,None,None,None,0:C :1]
-2419 tabs  snapshot           snapName='test.16.4.UNKN.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='BACKSPACE(      65288)' tobj.snapType='UNKN' tobj.snapId=5
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.4.UNKN.png')
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1501 tabs  cc2xywh            tpp=180 old=3 lenT=60 cc=3 old % lenT
-1506 tabs  cc2xywh            cc=   3 old=   3 [  180  180 180  60   6]   48.00  412.11   96.00   28.42 t.text='5' 17.47 29.00 C,C
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1672 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN BACKSPACE(      65288) text='-' rev=1 old=  3 cc=  3 p=0 l=0 c=0 t=3
-[4:E :1,0:C :1]
-[4:E :1,0:C :1]
+[None,None,None,None,None,5:F :1,None]
+1524 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
+1527 tabs  cursorCol          cc=  2 [0 0 0 2]
+1502 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
+1507 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='-' 17.47 29.00 C,C
+2420 tabs  snapshot           snapName='test.9.3.Txt.7.png' on_draw()
+  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.7' tobj.snapId=4
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.3.Txt.7.png')
+1524 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
+1527 tabs  cursorCol          cc=  2 [0 0 0 2]
+1673 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN onTxt text='8' rev=0 old=  2 cc=  2 p=0 l=0 c=0 t=2
+1524 tabs  plct2cc                   1 [  180  180 180  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
+1527 tabs  cursorCol          cc=  1 [0 0 0 1]
+1502 tabs  cc2xywh            tpp=180 old=1 lenT=60 cc=1 old % lenT
+1507 tabs  cc2xywh            cc=   1 old=   1 [  180  180 180  60   6]   48.00  468.95   96.00   28.42 t.text='-' 17.47 29.00 C,C
+2420 tabs  snapshot           snapName='test.9.4.Txt.8.png' on_draw()
+  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.8' tobj.snapId=5
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.4.Txt.8.png')
+1524 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
+1527 tabs  cursorCol          cc=  2 [0 0 0 2]
+1502 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
+1507 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='8' 17.47 29.00 C,C
+1524 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
+1527 tabs  cursorCol          cc=  2 [0 0 0 2]
+1673 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN BACKSPACE(      65288) text='-' rev=1 old=  2 cc=  2 p=0 l=0 c=0 t=2
+[4:E :1,5:F :1,9:A :1]
+[4:E :1,5:F :1,9:A :1]
 [None,None,None,None,None,None,4:E :1]
-[None,None,None,None,None,None,0:C :1]
-2419 tabs  snapshot           snapName='test.16.5.UNKN.png' on_draw()
+[None,None,None,None,None,5:F :1,None]
+2420 tabs  snapshot           snapName='test.9.5.UNKN.png' on_draw()
   86 evnts on_draw            tobj.snapWhy='BACKSPACE(      65288)' tobj.snapType='UNKN' tobj.snapId=6
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.5.UNKN.png')
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1672 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN onTxt text='4' rev=0 old=  3 cc=  3 p=0 l=0 c=0 t=3
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1501 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
-1506 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.6.Txt.4.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.4' tobj.snapId=7
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.6.Txt.4.png')
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1501 tabs  cc2xywh            tpp=180 old=3 lenT=60 cc=3 old % lenT
-1506 tabs  cc2xywh            cc=   3 old=   3 [  180  180 180  60   6]   48.00  412.11   96.00   28.42 t.text='4' 17.47 29.00 C,C
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1672 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN BACKSPACE(      65288) text='-' rev=1 old=  3 cc=  3 p=0 l=0 c=0 t=3
-[4:E :1,0:C :1]
-[4:E :1,0:C :1]
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.5.UNKN.png')
+1524 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
+1527 tabs  cursorCol          cc=  3 [0 0 0 3]
+1502 tabs  cc2xywh            tpp=180 old=3 lenT=60 cc=3 old % lenT
+1507 tabs  cc2xywh            cc=   3 old=   3 [  180  180 180  60   6]   48.00  412.11   96.00   28.42 t.text='7' 17.47 29.00 C,C
+1524 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
+1527 tabs  cursorCol          cc=  3 [0 0 0 3]
+1673 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN BACKSPACE(      65288) text='-' rev=1 old=  3 cc=  3 p=0 l=0 c=0 t=3
+[4:E :1,5:F :1]
+[4:E :1,5:F :1]
 [None,None,None,None,None,None,4:E :1]
-[None,None,None,None,None,None,0:C :1]
-2419 tabs  snapshot           snapName='test.16.7.UNKN.png' on_draw()
+[None,None,None,None,None,5:F :1,None]
+2420 tabs  snapshot           snapName='test.9.6.UNKN.png' on_draw()
+  86 evnts on_draw            tobj.snapWhy='BACKSPACE(      65288)' tobj.snapType='UNKN' tobj.snapId=7
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.6.UNKN.png')
+1524 tabs  plct2cc                   4 [  180  180 180  60   6] [1 1    1 5] (   0 +  0 + 60 +  0 +4)
+1527 tabs  cursorCol          cc=  4 [0 0 0 4]
+1502 tabs  cc2xywh            tpp=180 old=4 lenT=60 cc=4 old % lenT
+1507 tabs  cc2xywh            cc=   4 old=   4 [  180  180 180  60   6]   48.00  383.68   96.00   28.42 t.text='8' 17.47 29.00 C,C
+1524 tabs  plct2cc                   4 [  180  180 180  60   6] [1 1    1 5] (   0 +  0 + 60 +  0 +4)
+1527 tabs  cursorCol          cc=  4 [0 0 0 4]
+1673 tabs  setTab             [1 1 1  1 5]   5   0  1] BGN BACKSPACE(      65288) text='-' rev=1 old=  4 cc=  4 p=0 l=0 c=0 t=4
+[4:E :1]
+[4:E :1]
+[None,None,None,None,None,None,4:E :1]
+[None,None,None,None,None,None,None]
+2420 tabs  snapshot           snapName='test.9.7.UNKN.png' on_draw()
   86 evnts on_draw            tobj.snapWhy='BACKSPACE(      65288)' tobj.snapType='UNKN' tobj.snapId=8
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.7.UNKN.png')
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1672 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN onTxt text='6' rev=0 old=  3 cc=  3 p=0 l=0 c=0 t=3
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1501 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
-1506 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.8.Txt.6.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.6' tobj.snapId=9
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.8.Txt.6.png')
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1501 tabs  cc2xywh            tpp=180 old=3 lenT=60 cc=3 old % lenT
-1506 tabs  cc2xywh            cc=   3 old=   3 [  180  180 180  60   6]   48.00  412.11   96.00   28.42 t.text='6' 17.47 29.00 C,C
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1672 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN BACKSPACE(      65288) text='-' rev=1 old=  3 cc=  3 p=0 l=0 c=0 t=3
-[4:E :1,0:C :1]
-[4:E :1,0:C :1]
-[None,None,None,None,None,None,4:E :1]
-[None,None,None,None,None,None,0:C :1]
-2419 tabs  snapshot           snapName='test.16.9.UNKN.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='BACKSPACE(      65288)' tobj.snapType='UNKN' tobj.snapId=10
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.9.UNKN.png')
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1672 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN onTxt text='8' rev=0 old=  3 cc=  3 p=0 l=0 c=0 t=3
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1501 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
-1506 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.10.Txt.8.png' on_draw()
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.7.UNKN.png')
+1524 tabs  plct2cc                   4 [  180  180 180  60   6] [1 1    1 5] (   0 +  0 + 60 +  0 +4)
+1527 tabs  cursorCol          cc=  4 [0 0 0 4]
+1673 tabs  setTab             [1 1 1  1 5]   5   0  1] BGN onTxt text='7' rev=0 old=  4 cc=  4 p=0 l=0 c=0 t=4
+1524 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
+1527 tabs  cursorCol          cc=  3 [0 0 0 3]
+1502 tabs  cc2xywh            tpp=180 old=3 lenT=60 cc=3 old % lenT
+1507 tabs  cc2xywh            cc=   3 old=   3 [  180  180 180  60   6]   48.00  412.11   96.00   28.42 t.text='-' 17.47 29.00 C,C
+2420 tabs  snapshot           snapName='test.9.8.Txt.7.png' on_draw()
+  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.7' tobj.snapId=9
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.8.Txt.7.png')
+1524 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
+1527 tabs  cursorCol          cc=  3 [0 0 0 3]
+1673 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN onTxt text='6' rev=0 old=  3 cc=  3 p=0 l=0 c=0 t=3
+1524 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
+1527 tabs  cursorCol          cc=  2 [0 0 0 2]
+1502 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
+1507 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='-' 17.47 29.00 C,C
+1524 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
+1527 tabs  cursorCol          cc=  2 [0 0 0 2]
+1673 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN onTxt text='7' rev=0 old=  2 cc=  2 p=0 l=0 c=0 t=2
+1524 tabs  plct2cc                   1 [  180  180 180  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
+1527 tabs  cursorCol          cc=  1 [0 0 0 1]
+1502 tabs  cc2xywh            tpp=180 old=1 lenT=60 cc=1 old % lenT
+1507 tabs  cc2xywh            cc=   1 old=   1 [  180  180 180  60   6]   48.00  468.95   96.00   28.42 t.text='-' 17.47 29.00 C,C
+2420 tabs  snapshot           snapName='test.9.9.Txt.7.png' on_draw()
+  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.7' tobj.snapId=10
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.9.Txt.7.png')
+1524 tabs  plct2cc                   1 [  180  180 180  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
+1527 tabs  cursorCol          cc=  1 [0 0 0 1]
+1673 tabs  setTab             [1 1 1  1 2]   2   0  1] BGN onTxt text='8' rev=0 old=  1 cc=  1 p=0 l=0 c=0 t=1
+1524 tabs  plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
+1527 tabs  cursorCol          cc=  0 [0 0 0 0]
+1502 tabs  cc2xywh            tpp=180 old=0 lenT=60 cc=0 old % lenT
+1507 tabs  cc2xywh            cc=   0 old=   0 [  180  180 180  60   6]   48.00  497.37   96.00   28.42 t.text='-' 17.47 29.00 C,C
+2420 tabs  snapshot           snapName='test.9.10.Txt.8.png' on_draw()
   86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.8' tobj.snapId=11
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.10.Txt.8.png')
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1672 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN onTxt text='5' rev=0 old=  2 cc=  2 p=0 l=0 c=0 t=2
-1523 tabs  plct2cc                   1 [  180  180 180  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
-1526 tabs  cursorCol          cc=  1 [0 0 0 1]
-1501 tabs  cc2xywh            tpp=180 old=1 lenT=60 cc=1 old % lenT
-1506 tabs  cc2xywh            cc=   1 old=   1 [  180  180 180  60   6]   48.00  468.95   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.11.Txt.5.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.5' tobj.snapId=12
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.11.Txt.5.png')
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1501 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
-1506 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='5' 17.47 29.00 C,C
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1672 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN BACKSPACE(      65288) text='-' rev=1 old=  2 cc=  2 p=0 l=0 c=0 t=2
-[4:E :1,0:C :1,a:B♭:1]
-[4:E :1,0:C :1,a:A♯:1]
-[a:B♭:1,None,None,None,None,None,4:E :1]
-[None,None,None,None,a:B♭:1,None,0:C :1]
-2419 tabs  snapshot           snapName='test.16.12.UNKN.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='BACKSPACE(      65288)' tobj.snapType='UNKN' tobj.snapId=13
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.12.UNKN.png')
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1501 tabs  cc2xywh            tpp=180 old=3 lenT=60 cc=3 old % lenT
-1506 tabs  cc2xywh            cc=   3 old=   3 [  180  180 180  60   6]   48.00  412.11   96.00   28.42 t.text='8' 17.47 29.00 C,C
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1672 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN BACKSPACE(      65288) text='-' rev=1 old=  3 cc=  3 p=0 l=0 c=0 t=3
-[4:E :1,0:C :1]
-[4:E :1,0:C :1]
-[None,None,None,None,None,None,4:E :1]
-[None,None,None,None,None,None,0:C :1]
-2419 tabs  snapshot           snapName='test.16.13.UNKN.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='BACKSPACE(      65288)' tobj.snapType='UNKN' tobj.snapId=14
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.13.UNKN.png')
-1523 tabs  plct2cc                   3 [  180  180 180  60   6] [1 1    1 4] (   0 +  0 + 60 +  0 +3)
-1526 tabs  cursorCol          cc=  3 [0 0 0 3]
-1672 tabs  setTab             [1 1 1  1 4]   4   0  1] BGN onTxt text='6' rev=0 old=  3 cc=  3 p=0 l=0 c=0 t=3
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1501 tabs  cc2xywh            tpp=180 old=2 lenT=60 cc=2 old % lenT
-1506 tabs  cc2xywh            cc=   2 old=   2 [  180  180 180  60   6]   48.00  440.53   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.14.Txt.6.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.6' tobj.snapId=15
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.14.Txt.6.png')
-1523 tabs  plct2cc                   2 [  180  180 180  60   6] [1 1    1 3] (   0 +  0 + 60 +  0 +2)
-1526 tabs  cursorCol          cc=  2 [0 0 0 2]
-1672 tabs  setTab             [1 1 1  1 3]   3   0  1] BGN onTxt text='6' rev=0 old=  2 cc=  2 p=0 l=0 c=0 t=2
-1523 tabs  plct2cc                   1 [  180  180 180  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
-1526 tabs  cursorCol          cc=  1 [0 0 0 1]
-1501 tabs  cc2xywh            tpp=180 old=1 lenT=60 cc=1 old % lenT
-1506 tabs  cc2xywh            cc=   1 old=   1 [  180  180 180  60   6]   48.00  468.95   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.15.Txt.6.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.6' tobj.snapId=16
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.15.Txt.6.png')
-1523 tabs  plct2cc                   1 [  180  180 180  60   6] [1 1    1 2] (   0 +  0 + 60 +  0 +1)
-1526 tabs  cursorCol          cc=  1 [0 0 0 1]
-1672 tabs  setTab             [1 1 1  1 2]   2   0  1] BGN onTxt text='6' rev=0 old=  1 cc=  1 p=0 l=0 c=0 t=1
-1523 tabs  plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
-1526 tabs  cursorCol          cc=  0 [0 0 0 0]
-1501 tabs  cc2xywh            tpp=180 old=0 lenT=60 cc=0 old % lenT
-1506 tabs  cc2xywh            cc=   0 old=   0 [  180  180 180  60   6]   48.00  497.37   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.16.Txt.6.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.6' tobj.snapId=17
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.16.Txt.6.png')
-1523 tabs  plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
-1526 tabs  cursorCol          cc=  0 [0 0 0 0]
-1672 tabs  setTab             [1 1 1  1 1]   1   0  1] BGN onTxt text='2' rev=0 old=  0 cc=  0 p=0 l=0 c=0 t=0
-1523 tabs  plct2cc                  11 [  180  180 180  60   6] [1 1    2 6] (   0 +  0 + 60 +  6 +5)
-1526 tabs  cursorCol          cc= 11 [0 0 1 5]
-1501 tabs  cc2xywh            tpp=180 old=11 lenT=60 cc=11 old % lenT
-1506 tabs  cc2xywh            cc=  11 old=  11 [  180  180 180  60   6]  144.00  355.26   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.17.Txt.2.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.2' tobj.snapId=18
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.17.Txt.2.png')
-1523 tabs  plct2cc                  12 [  180  180 180  60   6] [1 1    3 1] (   0 +  0 + 60 + 12 +0)
-1526 tabs  cursorCol          cc= 12 [0 0 2 0]
-1501 tabs  cc2xywh            tpp=180 old=12 lenT=60 cc=12 old % lenT
-1506 tabs  cc2xywh            cc=  12 old=  12 [  180  180 180  60   6]  240.00  497.37   96.00   28.42 t.text='-' 17.47 29.00 C,C
-1523 tabs  plct2cc                  12 [  180  180 180  60   6] [1 1    3 1] (   0 +  0 + 60 + 12 +0)
-1526 tabs  cursorCol          cc= 12 [0 0 2 0]
-1672 tabs  setTab             [1 1 1  3 1]  13  12  3] BGN BACKSPACE(      65288) text='-' rev=1 old= 12 cc= 12 p=0 l=0 c=2 t=0
-2419 tabs  snapshot           snapName='test.16.18.UNKN.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='BACKSPACE(      65288)' tobj.snapType='UNKN' tobj.snapId=19
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.18.UNKN.png')
-1523 tabs  plct2cc                   6 [  180  180 180  60   6] [1 1    2 1] (   0 +  0 + 60 +  6 +0)
-1526 tabs  cursorCol          cc=  6 [0 0 1 0]
-1501 tabs  cc2xywh            tpp=180 old=6 lenT=60 cc=6 old % lenT
-1506 tabs  cc2xywh            cc=   6 old=   6 [  180  180 180  60   6]  144.00  497.37   96.00   28.42 t.text='-' 17.47 29.00 C,C
-1523 tabs  plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
-1526 tabs  cursorCol          cc=  0 [0 0 0 0]
-1501 tabs  cc2xywh            tpp=180 old=0 lenT=60 cc=0 old % lenT
-1506 tabs  cc2xywh            cc=   0 old=   0 [  180  180 180  60   6]   48.00  497.37   96.00   28.42 t.text='2' 17.47 29.00 C,C
-1523 tabs  plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
-1526 tabs  cursorCol          cc=  0 [0 0 0 0]
-1672 tabs  setTab             [1 1 1  1 1]   1   0  1] BGN onTxt text='3' rev=0 old=  0 cc=  0 p=0 l=0 c=0 t=0
-[4:E :1,0:C :1,8:A♭:1,1:D♭:1,5:F :1,7:G :1]
-[4:E :1,0:C :1,8:G♯:1,1:C♯:1,5:F :1,7:G :1]
-[None,None,8:A♭:1,1:D♭:1,None,None,4:E :1]
-[None,1:D♭:1,8:A♭:1,None,None,5:F :1,0:C :1]
-1523 tabs  plct2cc                  11 [  180  180 180  60   6] [1 1    2 6] (   0 +  0 + 60 +  6 +5)
-1526 tabs  cursorCol          cc= 11 [0 0 1 5]
-1501 tabs  cc2xywh            tpp=180 old=11 lenT=60 cc=11 old % lenT
-1506 tabs  cc2xywh            cc=  11 old=  11 [  180  180 180  60   6]  144.00  355.26   96.00   28.42 t.text='-' 17.47 29.00 C,C
-2419 tabs  snapshot           snapName='test.16.19.Txt.3.png' on_draw()
-  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.3' tobj.snapId=20
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.19.Txt.3.png')
-2554 tabs  <module>           Thats all folks!
-2555 tabs  <module>           END EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.10.Txt.8.png')
+1524 tabs  plct2cc                   0 [  180  180 180  60   6] [1 1    1 1] (   0 +  0 + 60 +  0 +0)
+1527 tabs  cursorCol          cc=  0 [0 0 0 0]
+1673 tabs  setTab             [1 1 1  1 1]   1   0  1] BGN onTxt text='0' rev=0 old=  0 cc=  0 p=0 l=0 c=0 t=0
+1524 tabs  plct2cc                  11 [  180  180 180  60   6] [1 1    2 6] (   0 +  0 + 60 +  6 +5)
+1527 tabs  cursorCol          cc= 11 [0 0 1 5]
+1502 tabs  cc2xywh            tpp=180 old=11 lenT=60 cc=11 old % lenT
+1507 tabs  cc2xywh            cc=  11 old=  11 [  180  180 180  60   6]  144.00  355.26   96.00   28.42 t.text='-' 17.47 29.00 C,C
+2420 tabs  snapshot           snapName='test.9.11.Txt.0.png' on_draw()
+  86 evnts on_draw            tobj.snapWhy='onTxt' tobj.snapType='Txt.0' tobj.snapId=12
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.11.Txt.0.png')
+ Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
+ Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K  R   Q H V  Z  U  A  D    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
+2453 tabs  quit               BGN @ Q Error=0 save=1 .quitting=0
+###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
+###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
+###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
+ 228 tabs  dumpArgs           [a]      .AUTO_SAVE=0
+ 229 tabs  dumpArgs           [A]         .VARROW=1
+ 230 tabs  dumpArgs           [b]        .FRT_BRD=0
+ 231 tabs  dumpArgs           [B]            .BGC=0
+ 232 tabs  dumpArgs           [c]            .CAT=0
+ 233 tabs  dumpArgs           [C]      .CHECKERED=0
+ 234 tabs  dumpArgs           [d]       .DBG_TABT=0
+ 235 tabs  dumpArgs           [e]      .EVENT_LOG=2
+ 236 tabs  dumpArgs           [f]      .FILE_NAME='test'
+ 237 tabs  dumpArgs           [F]      .FULL_SCRN=0
+ 238 tabs  dumpArgs           [g]        .ORD_GRP=1
+ 239 tabs  dumpArgs           [G]       .GEN_DATA=0
+ 240 tabs  dumpArgs           [i]              .i=[1 1 1 2 6]
+ 241 tabs  dumpArgs           [J]      .DSP_J_LEV=4
+ 242 tabs  dumpArgs           [l]       .LONG_TXT=1
+ 243 tabs  dumpArgs           [L]             .LL=1
+ 244 tabs  dumpArgs           [M]      .MULTILINE=1
+ 245 tabs  dumpArgs           [n]              .n=[1 1 3 10 6]
+ 246 tabs  dumpArgs           [o]           .OIDS=0
+ 247 tabs  dumpArgs           [p]          .SNAPS=1
+ 248 tabs  dumpArgs           [R]         .RESIZE=1
+ 249 tabs  dumpArgs           [s]        .SPRITES=1
+ 250 tabs  dumpArgs           [S]             .SS=[0 1 3]
+ 251 tabs  dumpArgs           [t]           .TEST=1
+ 252 tabs  dumpArgs           [u]         .SUBPIX=1
+ 253 tabs  dumpArgs           [v]           .VRBY=0
+ 254 tabs  dumpArgs           [V]          .VIEWS=0
+ 255 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
+ 256 tabs  dumpArgs           [x]           .EXIT=0
+ 257 tabs  dumpArgs           [Z]             .ZZ=[]
+[4:E :3,8:A♭:1,2:D :1,7:G :1]
+[4:E :3,8:G♯:1,2:D :1,7:G :1]
+[None,None,8:A♭:1,None,None,None,4:E :3]
+[None,None,8:A♭:1,None,None,None,None]
+1631 tabs  dumpFont           4:96dpi  22.11pt 0:Lucida Console 0:  22.11pt = 0.7778(pt/pix) *  28.42pixels @ Q
+ 141 chords dumpLimap            0 0 0 E#9x         E#9x         RRM3b7m3R    004a30 EEG♯DGE      Rm3M3b7      034a   EGG♯D       
+ 141 chords dumpLimap            0 0 1 G♯Mo+7y/E    G♯Mo+7y/E    #5#5Rb57#5   8806b8 EEG♯DGE      Rb5#57       068b   G♯DEG       
+ 141 chords dumpLimap            0 0 2 Dos2s4/E     Dos2s4/E     22b5R42      226052 EEG♯DGE      R24b5        0256   DEGG♯       
+ 141 chords dumpLimap            0 0 3 Gb26y/E      Gb26y/E      66b25R6      991709 EEG♯DGE      Rb256        0179   GG♯DE       
+2464 tabs  quit               END @ Q Error=0 save=1 .quitting=1
+###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
+ 355 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+ 355 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 358 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
+2488 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+ 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.csv')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Btest.1.1.3.10.6_CC.csv ###
+2491 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.9.csv
+ 363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+ 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.9.csv')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.9.csv ###
+2466 tabs  quit               END @ Q Error=0 save=1 .quitting=1
+###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
+2467 tabs  quit               Calling close(),2556 tabs  <module>           Thats all folks!
+2557 tabs  <module>           END EVN_FILE=<_io.TextIOWrapper name='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\evns\\test.evn' mode='w' encoding='utf-8'>
  355 utl   getFilePath        baseName =Btest.1.1.3.10.6_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  358 utl   getFilePath        fileName =Btest.1.1.3.10.6_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Btest.1.1.3.10.6_CC.log')
  355 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  358 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
-2519 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.16.txt
+2521 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.9.txt
  363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
- 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.16.txt')
- 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.16.txt ###
-2521 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
+ 364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.9.txt')
+ 366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.9.txt ###
+2523 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt
  363 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
  364 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC.txt')
  366 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC.txt ###
-2523 tabs  cleanupOutFiles    Flush & Close Txt File
+2525 tabs  cleanupOutFiles    Flush & Close Txt File

@@ -1,13 +1,14 @@
-import pyglet.window.key as pygwink
 import pyglet.sprite     as pygsprt
 import pyglet.image      as pygimg
+from   pyglet.window.key import symbol_string    as psym
+from   pyglet.window.key import modifiers_string as pmod
 from   tpkg   import utl as utl
 
 slog    = utl.slog
 W, Y, Z = utl.W, utl.Y, utl.Z
 SPR     = pygsprt.Sprite
 
-def test00(tobj):
+def test_0(tobj):
     a = 1/0         ;  slog(f'{a=}')
     p = tobj.pages  ;  f = tobj.CSV_FILE
     a = [{'a':1, 'b':"2", 'c':3.00+1/3}]  ;  b = [ f'{p[i].y}' for i in range(len(p)) ]  ;  c = tobj.sobj.stringMap  ;  d = [ tobj.screens ]
@@ -151,16 +152,20 @@ def test2(tobj, j=10):
 ####################################################################################################################################################################################################
 def tExit(tobj, why, e): #        dispatch_event('on_close')
     slog(f'BGN {why} {e}')
-    sym, mod = 65507, 2
-    slog(f'on_key_press   {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_press',   sym, mod)
-    sym, mod = 65505, 3
-    slog(f'on_key_press   {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_press',   sym, mod)
-    sym, mod = 113, 3
-    slog(f'on_key_press   {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_press',   sym, mod)
-    sym, mod = 113, 3
-    slog(f'on_key_release {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_release', sym, mod)
-    sym, mod = 65505, 3
-    slog(f'on_key_release {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_release', sym, mod)
-    sym, mod = 65507, 2
-    slog(f'on_key_release {sym} {mod} {pygwink.symbol_string(sym)} {pygwink.modifiers_string(mod)}')   ;   tobj.dispatch_event('on_key_release', sym, mod)
+    sym, mod = 65507, 2   ;   slog(f'on_key_press   {sym} {mod} {psym(sym)} {pmod(mod)}')   ;   tobj.dispatch_event('on_key_press',   sym, mod)
+    sym, mod = 65505, 3   ;   slog(f'on_key_press   {sym} {mod} {psym(sym)} {pmod(mod)}')   ;   tobj.dispatch_event('on_key_press',   sym, mod)
+    sym, mod =   113, 3   ;   slog(f'on_key_press   {sym} {mod} {psym(sym)} {pmod(mod)}')   ;   tobj.dispatch_event('on_key_press',   sym, mod)
+    sym, mod =   113, 3   ;   slog(f'on_key_release {sym} {mod} {psym(sym)} {pmod(mod)}')   ;   tobj.dispatch_event('on_key_release', sym, mod)
+    sym, mod = 65505, 3   ;   slog(f'on_key_release {sym} {mod} {psym(sym)} {pmod(mod)}')   ;   tobj.dispatch_event('on_key_release', sym, mod)
+    sym, mod = 65507, 2   ;   slog(f'on_key_release {sym} {mod} {psym(sym)} {pmod(mod)}')   ;   tobj.dispatch_event('on_key_release', sym, mod)
     slog(f'END {why} {e}')
+
+#  99 evnts on_key_press       BGN  65507 0xffe3 LCTRL            2 MOD_CTRL                                   kd=
+# 183 evnts on_key_press       UNH  65507 0xffe3 LCTRL            2 MOD_CTRL                                   kd=
+# 190 evnts on_key_press       END  65507 0xffe3 LCTRL            2 MOD_CTRL                                   kd=, retv=False
+#  99 evnts on_key_press       BGN  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         kd=
+# 183 evnts on_key_press       UNH  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         kd=
+# 190 evnts on_key_press       END  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         kd=, retv=False
+#  99 evnts on_key_press       BGN    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         kd=
+# ...
+# 190 evnts on_key_press       END    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         kd=, retv=False

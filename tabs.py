@@ -20,7 +20,6 @@ from   tpkg            import evnts  as evnts
 from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
 from   tpkg.chords     import Chords as Chords
-from   tpkg            import tests  as tests
 
 P, L, S, C,         T, N, I, K,         R, Q, H, M,         B, A, D, E   = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
 W, X, Y, Z, NONE,   ist,    fri,    slog,    fmtf,    fmtl,     fmtm     = utl.W, utl.X, utl.Y, utl.Z, utl.NONE,    utl.ist,    utl.fri,    utl.slog,    utl.fmtf,    utl.fmtl,    utl.fmtm
@@ -149,7 +148,8 @@ class Tabs(pyglet.window.Window):
         if 'R' in ARGS  and len(ARGS['R']) == 0: self.RESIZE     = 0
         if 's' in ARGS  and len(ARGS['s']) == 0: self.SPRITES    =  1
         if 'S' in ARGS  and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
-        if 't' in ARGS  and len(ARGS['t']) == 0: self.TEST       =  1
+        if 't' in ARGS:  l = len(ARGS['t'])   ;  self.TEST       = 1 if l == 0 else int(ARGS['t'][0]) if l == 1 else 0
+#        if 't' in ARGS  and len(ARGS['t']) >= 0: self.TEST       = { int(ARGS['t'][i]) for i in range(len(ARGS['t'])) }
         if 'u' in ARGS  and len(ARGS['u']) == 0: self.SUBPIX     =  1
         if 'v' in ARGS: l = len(ARGS['v'])    ;  self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
         if 'V' in ARGS  and len(ARGS['V']) == 0: self.VIEWS      =  1
@@ -237,18 +237,18 @@ class Tabs(pyglet.window.Window):
         self.log(f'[F]      {self.FULL_SCRN=}', f=f)
         self.log(f'[g]        {self.ORD_GRP=}', f=f)
         self.log(f'[G]       {self.GEN_DATA=}', f=f)
-        self.log(f'[i]               {self.fmti()}', f=f)
+        self.log(f'[i]              .{self.fmti()}', f=f)
         self.log(f'[J]      {self.DSP_J_LEV=}', f=f)
         self.log(f'[l]       {self.LONG_TXT=}', f=f)
         self.log(f'[L]             {self.LL=}', f=f)
         self.log(f'[M]      {self.MULTILINE=}', f=f)
-        self.log(f'[n]               {self.fmtn()}', f=f)
+        self.log(f'[n]              .{self.fmtn()}', f=f)
         self.log(f'[o]           {self.OIDS=}', f=f)
         self.log(f'[p]          {self.SNAPS=}', f=f)
         self.log(f'[R]         {self.RESIZE=}', f=f)
         self.log(f'[s]        {self.SPRITES=}', f=f)
         self.log(f'[S]             .SS={fmtl(self.SS)}', f=f)
-        self.log(f'[t]           {self.TEST=}', f=f)
+        self.log(f'[t]           .TEST={self.TEST}', f=f)
         self.log(f'[u]         {self.SUBPIX=}', f=f)
         self.log(f'[v]           {self.VRBY=}', f=f)
         self.log(f'[V]          {self.VIEWS=}', f=f)
@@ -377,7 +377,8 @@ class Tabs(pyglet.window.Window):
         self.createTniks()
         self.ks = kysgs.nic2KS(self.nic)
         self.log( kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
-        if self.TEST:
+        if self.TEST == 1:
+            from tpkg import tests as tests
             attrs = {'TI':TI, 'XYWH':XYWH, 'AXY2':AXY2, 'CWH':CWH, 'LTXA':LTXA, 'LTXAC':LTXAC, 'ADS':ADS, 'CVA':CVA, 'LDS':LDS, 'LLBL':LLBL}
             mthds = {'JSPR':JSPR, 'JLBL':JLBL}
             tests.test1(self, attrs, mthds)
@@ -1133,7 +1134,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'{ikey=}')
         return ikey
 
-    def imap2Chord(self, tobj, imap, i, j, dbg=1):
+    def imap2Chord(self, tobj, imap, i, j, dbg=0):
         chunks    = imap[4]  if (imap and len(imap) > 4) else []
         chordName = tobj     if j > K else chunks[i] if len(chunks) > i else self.tblank
         if dbg and chunks:   self.log(f'{chordName=} chunks={fmtl(chunks)} imap={fmtl(imap)}')
@@ -1478,11 +1479,11 @@ class Tabs(pyglet.window.Window):
     def createCursor(self, why, dbg=1):
         x, y, w, h, c = self.cc2xywh()
         kk = 0  ;  kl = self.k[H]
-        if w == 0 or h == 0:  msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   self.quit(msg)
-        self.cursor               = self.createTnik(  self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
-#       if self.TEST: self.cursor = self.createSprite(self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
-#       else:         self.cursor = self.createTnik(  self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
-        if self.LL:   self.setLLStyle(self.cc, CURRENT_STYLE)
+        if w == 0 or h == 0:       msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   self.quit(msg)
+        self.cursor                    = self.createTnik(  self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
+#       if self.TEST == 3: self.cursor = self.createSprite(self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
+#       else:              self.cursor = self.createTnik(  self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
+        if self.LL:        self.setLLStyle(self.cc, CURRENT_STYLE)
 
     def resizeCursor(self, why, dbg=1):
         x, y, w, h, c = self.cc2xywh()
@@ -1721,7 +1722,7 @@ class Tabs(pyglet.window.Window):
 #                utl.updNotes( 4, 'E', 'Fb', Notes.TYPE, -1)
 #                utl.updNotes( 0, 'C', 'B#', Notes.TYPE, -1)
     ####################################################################################################################################################################################################
-    def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=1):
+    def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=0):
         dl    = self.dl()
         cn    = self.plc2cn(p, l, c)          ;     key = cn   ;   mli = self.cobj.mlimap
         msg1  = f'plc={self.fplc(p, l, c)}'   ;    msg2 = f'dl={self.fmtdl()} {cn=} {key=} keys={fmtl(list(mli.keys()))}'
@@ -2239,7 +2240,7 @@ class Tabs(pyglet.window.Window):
         self.log(kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
         self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
     ####################################################################################################################################################################################################
-    def flipKordNames(self, how, hit=0, dbg=1):
+    def flipKordNames(self, how, hit=0, dbg=0):
         cc = self.cc    ;    cn = self.cc2cn(cc)
         mks = list(self.cobj.mlimap.keys())   ;   sks = list(self.smap.keys())
         if sks and not hit:
@@ -2251,7 +2252,7 @@ class Tabs(pyglet.window.Window):
             else:   self.flipChordName(    how, cn)
         if dbg:     self.dumpSmap(f'END {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
 
-    def flipKordNameHits(self, how, cn, dbg=1): # optimize str concat?
+    def flipKordNameHits(self, how, cn, dbg=0): # optimize str concat?
         mli = self.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
         if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   self.log(msg)   ;   self.quit(msg)
         ivals =  [ u[1] for u in mli[cn][0] ]
@@ -2263,7 +2264,7 @@ class Tabs(pyglet.window.Window):
             self.flipChordName(how, cn2)
         if dbg: self.log(f'END {how} mks={fmtl(mks)} cn2={cn2:2} ivals={fmtl(msg, d=Z)}')
 
-    def ivalhits(self, ivals, how, dbg=1):
+    def ivalhits(self, ivals, how, dbg=0):
         mli = self.cobj.mlimap    ;   mks = list(mli.keys())   ;   hits = set()
         for cn, lim in mli.items():
             for im in lim[0]:
@@ -2274,7 +2275,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'    {how} mks={fmtl(mks)} hits={fmtl(hits)}')
         return list(hits)
 
-    def flipChordName(self, how, cn, dbg=1, dbg2=1):
+    def flipChordName(self, how, cn, dbg=1, dbg2=0):
         cc = self.cn2cc(cn)            ;   mli = self.cobj.mlimap
         p, l, c, t = self.cc2plct(cc)  ;   msg = Z
         if not self.ikeys and not self.kords: msg +=  'ERROR: Both ikeys and chords are Empty '
@@ -2465,11 +2466,12 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(utl.QUIT_END, p=0, f=0)
         self.log('Calling close()', e=Y, f=2)
         self.close()
-        # if self.TEST:
-        #     if   self.EXIT == 0: retv = False  ;  self.log(f'{self.EXIT=} returning {retv=}')
-        #     elif self.EXIT == 1:                  self.log(f'{self.EXIT=} Calling pyglet.app.exit()')  ;   retv = True # pyglet.app.exit()
-        #     elif self.EXIT == 2:                  self.log(f'{self.EXIT=} Calling exit()')             ;   exit()
-        self.log(f'returning {retv=}')
+        if self.TEST:
+            if   self.EXIT == 0: retv = False  ;  self.log(f'{self.EXIT=} returning {retv=}')
+            elif self.EXIT == 1: retv = True   ;  self.log(f'{self.EXIT=} returning {retv=}')
+            elif self.EXIT == 2:                  self.log(f'{self.EXIT=} Calling pyglet.app.exit()')  ;   pyglet.app.exit()
+            else:                                 self.log(f'{self.EXIT=} Calling exit()')             ;   exit()
+        else:                                     self.log(f'{self.EXIT=} returning {retv=}')
         return retv
     ####################################################################################################################################################################################################
     def cleanupFiles(self):
