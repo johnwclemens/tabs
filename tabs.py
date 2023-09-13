@@ -21,10 +21,10 @@ from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
 from   tpkg.chords     import Chords as Chords
 
-P, L, S, C,         T, N, I, K,         R, Q, H, M,         B, A, D, E   = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
-W, X, Y, Z, NONE,   ist,    fri,    slog,    fmtf,    fmtl,     fmtm     = utl.W, utl.X, utl.Y, utl.Z, utl.NONE,    utl.ist,    utl.fri,    utl.slog,    utl.fmtf,    utl.fmtl,    utl.fmtm
-BGC,  BOLD,  COLOR,  FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,  utl.BOLD,  utl.COLOR,  utl.FONT_NAME,  utl.FONT_SIZE,  utl.ITALIC,  utl.KERNING,  utl.UNDERLINE
-isAlt, isCtl, isShf, isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isShf, utl.isAltShf, utl.isCtlShf, utl.isCtlAltShf, utl.isNumLck
+P, L, S, C,          T, N, I, K,          M, R, Q, H,          B, A, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.B, utl.A, utl.D, utl.E
+W, X, Y, Z,       NONE,  ist,  fri,         slog,   fmtf,   fmtl,   fmtm    = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,       utl.slog,   utl.fmtf,   utl.fmtl,   utl.fmtm
+BGC,  BOLD,  COLOR,     FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,   utl.BOLD,  utl.COLOR,   utl.FONT_NAME, utl.FONT_SIZE, utl.ITALIC,   utl.KERNING,     utl.UNDERLINE
+isAlt, isCtl, isShf,    isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.isAlt, utl.isCtl, utl.isShf,   utl.isCtlAlt,  utl.isAltShf,  utl.isCtlShf, utl.isCtlAltShf, utl.isNumLck
 
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'evns',     'logs',     'pngs',     'text',     'data'
@@ -71,12 +71,12 @@ NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = 0, 1, 2
 #INIT    = 'INIT'
 FIN     = [1, 1, 1, 2, 1]
 FNTP    = [5, 4, 3, 3, 3]
-#           0        1        2        3        4        5        6        7        8        9        10      11       12       13       14       15       16
-JTEXTS  = ['Page',  'Line',  'Sect',  'Colm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QClm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
-JTEXTS2 = ['Page',  'Line',  'Sect',  'Kolm',  'Tabl',  'Note',  'IKey',  'Kord',  'RowL',  'QKlm',  'HCrs',  'View',  'ZClm',  'UNum',  'ANam',  'DCpo',  'TNIK']
-jTEXTS  = ['pages', 'lines', 'sects', 'colms', 'tabls', 'notes', 'ikeys', 'Kords', 'rowls', 'qklms', 'hcsrs', 'views', 'zclms', 'unums', 'anams', 'dcpos', 'tniks']
-JFMT    = [  1,       2,       2,       3,       4,       4,       4,       4,       2,       3,       1,       1,       2,       2,       2,       2,       4]
-#JFMT   = [  2,       3,       3,       6,       6,       6,       6,       6,       3,       5,       1,       1,       3,       3,       3,       4,       7]
+#           0        1        2        3           4        5        6        7           8        9        10       11          12       13       14       15          16
+JTEXTS  = ['Page',  'Line',  'Sect',  'Colm',     'Tabl',  'Note',  'IKey',  'Kord',     'MVie',  'RowL',  'QClm',  'HCrs',     'BNum',  'ANam',  'DCpo',  'EClm',     'TNIK']
+JTEXTS2 = ['Page',  'Line',  'Sect',  'Kolm',     'Tabl',  'Note',  'IKey',  'Kord',     'MVie',  'RowL',  'QKlm',  'HCrs',     'BNum',  'ANam',  'DCpo',  'EClm',     'TNIK']
+jTEXTS  = ['pages', 'lines', 'sects', 'colms',    'tabls', 'notes', 'ikeys', 'Kords',    'mvies', 'rowls', 'qklms', 'hcsrs',    'bnums', 'anams', 'dcpos', 'eclms',    'tniks']
+JFMT    = [ 1,       2,       2,       3,          4,       4,       4,       4,          1,       2,       3,       1,          2,       2,       2,       2,          4]
+#JFMT   = [ 2,       3,       3,       6,          6,       6,       6,       6,          1,       3,       5,       1,          3,       3,       3,       4,          7]
 PNT_PER_PIX =  7/9  # 14pts/18pix
 FONT_DPIS   = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
 FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'Helvetica', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
@@ -262,8 +262,8 @@ class Tabs(pyglet.window.Window):
         self.data  = []   ;   self.visib = []    ;    self.nic = Counter()
         self.pages, self.lines, self.sects, self.colms = [], [], [], []  ;  self.A = [self.pages, self.lines, self.sects, self.colms]
         self.tabls, self.notes, self.ikeys, self.kords = [], [], [], []  ;  self.B = [self.tabls, self.notes, self.ikeys, self.kords]
-        self.rowLs, self.qclms, self.hcurs, self.views = [], [], [], []  ;  self.C = [self.rowLs, self.qclms, self.hcurs, self.views]
-        self.zclms, self.snums, self.snams, self.capos = [], [], [], []  ;  self.D = [self.zclms, self.snums, self.snams, self.capos]
+        self.views, self.rowLs, self.qclms, self.hcurs = [], [], [], []  ;  self.C = [self.views, self.rowLs, self.qclms, self.hcurs]
+        self.snums, self.snams, self.capos, self.zclms = [], [], [], []  ;  self.D = [self.snums, self.snams, self.capos, self.zclms]
         self.E     = [*self.A, *self.B, *self.C, *self.D]       ;     self.log(f'E={fmtl(self.E, d=" [", d2="] ")}')
         self.resetJ('_reinit')
         self.cc, self.cursor, self.caret = 0, None, None
@@ -350,7 +350,7 @@ class Tabs(pyglet.window.Window):
             self.push_handlers(self.eventLogger, self.keyboard)
         if dbg: self.log(f'END {self.fmtWH()}')
     ####################################################################################################################################################################################################
-    def _initGroups(self):
+    def _OLD__initGroups(self):
         hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ]) #  ;   t = 7   ;   e = 8
         hdrA    = [P,  L,  S,  C,    T,  N,  I,  K,    R,  Q,  H,  M,    B,  A,  D,  E]
 #       self.gn = [1,  2,  3,  4,    t,  t,  t,  t,    5,  6,  9,  0,    e,  e,  e,  e]  ;  self.g = []
@@ -361,6 +361,19 @@ class Tabs(pyglet.window.Window):
             p   = None if self.ORD_GRP or i==0 else self.g[i-1]
             self.g.append(self._initGroup(i, p))
             self.log(f'g[{i}]={self.g[i]} p={self.g[i].parent}')
+
+    def _initGroups(self):
+        hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ])
+        hdrA    = [P,  L,  S,  C,    T,  N,  I,  K,    M,  R,  Q,  H,    B,  A,  D,  E]
+        self.gn = [1,  2,  3,  4,    8,  9, 10, 11,    0,  5,  6, 16,   12, 13, 14, 15]   ;   self.g = []
+#       self.gn = [0,  1,  2,  3,    6,  7,  8,  9,   16,  5, 10,  15,  11, 12, 13, 14]   ;   self.g = []
+#       self.gn = [0,  1,  2,  3,    6,  7,  8,  9,    4,  5,  10, 15,  11, 12, 13, 14]   ;   self.g = []
+        self.log(fmtl(hdrA, w=2))    ;    self.log(f'  {hdrB}')    ;    self.log(fmtl(self.gn, w=2))
+        for i in range(1 + max(self.gn)):
+            p   = None if self.ORD_GRP or i==0 else self.g[i-1]
+            self.g.append(self._initGroup(i, p))
+            self.log(f'g[{i}]={self.g[i]} p={self.g[i].parent}')
+
     def _initGroup(self, order=0, parent=None): return pyglet.graphics.Group(order, parent) if self.ORD_GRP else pyglet.graphics.Group(parent)
     ####################################################################################################################################################################################################
     def _initTextLabels(self):
