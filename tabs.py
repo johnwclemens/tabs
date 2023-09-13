@@ -340,9 +340,9 @@ class Tabs(pyglet.window.Window):
         if self.EVENT_LOG:
             if self.EVENT_LOG == 1:   self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
             else: # 'on_draw', 'on_move', 'on_text', 'on_key_pressed', 'on_key_released', 'on_mouse_scroll', 'on_mouse_motion', 'on_text_motion'
-                flist = ['on_draw']
+#                flist = ['on_draw']
 #                flist = ['on_draw', 'on_move']
-#                flist = ['on_draw', 'on_move', 'on_mouse_motion']
+                flist = ['on_draw', 'on_move', 'on_mouse_motion']
                 self.log(f'{fmtl(flist)} {EVN_FILE=}', f=-2)   ;   self.log(f'{fmtl(flist)} {EVN_FILE=}', f=4)
                 from tpkg.evnts import FilteredEventLogger as FELogger
                 self.eventLogger = FELogger(self, EVN_FILE, flist)
@@ -350,24 +350,11 @@ class Tabs(pyglet.window.Window):
             self.push_handlers(self.eventLogger, self.keyboard)
         if dbg: self.log(f'END {self.fmtWH()}')
     ####################################################################################################################################################################################################
-    def _OLD__initGroups(self):
-        hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ]) #  ;   t = 7   ;   e = 8
-        hdrA    = [P,  L,  S,  C,    T,  N,  I,  K,    R,  Q,  H,  M,    B,  A,  D,  E]
-#       self.gn = [1,  2,  3,  4,    t,  t,  t,  t,    5,  6,  9,  0,    e,  e,  e,  e]  ;  self.g = []
-#       self.gn = [7,  8,  9, 10,   11, 12, 13, 14,    5,  6, 15,  0,    1,  2,  3,  4]  ;  self.g = []
-        self.gn = [0,  1,  2,  3,    6,  7,  8,  9,    4,  5,  10, 15,   11, 12, 13, 14]  ;  self.g = []
-        self.log(fmtl(hdrA, w=2))    ;    self.log(f'  {hdrB}')    ;    self.log(fmtl(self.gn, w=2))
-        for i in range(1 + max(self.gn)):
-            p   = None if self.ORD_GRP or i==0 else self.g[i-1]
-            self.g.append(self._initGroup(i, p))
-            self.log(f'g[{i}]={self.g[i]} p={self.g[i].parent}')
-
     def _initGroups(self):
         hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ])
-        hdrA    = [P,  L,  S,  C,    T,  N,  I,  K,    M,  R,  Q,  H,    B,  A,  D,  E]
-        self.gn = [1,  2,  3,  4,    8,  9, 10, 11,    0,  5,  6, 16,   12, 13, 14, 15]   ;   self.g = []
-#       self.gn = [0,  1,  2,  3,    6,  7,  8,  9,   16,  5, 10,  15,  11, 12, 13, 14]   ;   self.g = []
-#       self.gn = [0,  1,  2,  3,    6,  7,  8,  9,    4,  5,  10, 15,  11, 12, 13, 14]   ;   self.g = []
+        hdrA    = [P,  L,  S,  C,    T,  N,  I,  K,     M,  R,  Q,  H,     B,  A,  D,  E]
+        self.gn = [1,  2,  3,  4,    7,  8,  9, 10,     0,  5,  6, 15,    11, 12, 13, 14]   ;   self.g = []
+#       self.gn = [0,  1,  2,  3,    6,  7,  8,  9,    15,  4,  5, 14,    10, 11, 12, 13]   ;   self.g = []
         self.log(fmtl(hdrA, w=2))    ;    self.log(f'  {hdrB}')    ;    self.log(fmtl(self.gn, w=2))
         for i in range(1 + max(self.gn)):
             p   = None if self.ORD_GRP or i==0 else self.g[i-1]
@@ -1292,7 +1279,7 @@ class Tabs(pyglet.window.Window):
         if   j is None:                                        msg = f'{why} ERROR BAD j {j=}'             ;  self.log(msg)  ;  self.quit(msg)
         elif not ist(t, LBL) and not ist(t, SPR):    msg = f'{why} ERROR Bad t type {type(t)=}'  ;  self.log(msg)  ;  self.quit(msg)
         j1 = self.J1   ;   p, l, c, t2 = j1[P], j1[L], j1[C], j1[T]   ;   fc, bc, rot_txt, sfx = Z, Z, Z, Z
-        foid = self.foid(t, j, why)   ;    gv = f'{self.gn[j]} {self.ftvis(t)}'   ;   fj2 = self.fmtJ2()   ;   xywh = self.ftxywh(t)
+        foid = self.foid(t, j, why)   ;    gv = f'{self.gn[j]:x} {self.ftvis(t)}'   ;   fj2 = self.fmtJ2()   ;   xywh = self.ftxywh(t)
         cc = self.plct2cc(p, l, c, t2)   ;   cnc = f'{cc+1:3} {self.normalizeCC(cc):3} {self.cc2cn(cc)+1:2}' if j >= T else W*10
         if   ist(t, LBL):  rot_txt = self.fpTxt(t)  ;  fc = self.getDocColor(t, 0)  ;  bc = self.getDocColor(t, 1)   ;  sfx = f' {self.fLbl(t)}' if self.LONG_TXT else Z
         elif ist(t, SPR):  rot_txt = self.frot(t)   ;  fc = self.ftcolor(t)         ;  bc = self.ftMxy(t)            ;  sfx = f' {self.fSpr(t)}' if self.LONG_TXT else Z
