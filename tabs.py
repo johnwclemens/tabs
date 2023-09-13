@@ -948,10 +948,10 @@ class Tabs(pyglet.window.Window):
     def resizeLLs(self, pt, why, dbg=1, dbg2=1):
         n    = self.ntsl()
         nr, ir, xr, yr, wr, hr = self.geom(R, pt, n, self.i[L], dbg=dbg2)  # ;    xr0 = xr
-        lrow = self.resizeTnik(self.rowLs, self.J2[R], R, xr, yr, wr, hr, k=None, why=why, dbg=dbg)
+        lrow = self.resizeTnik(self.rowLs, self.J2[R], R, xr, yr, wr, hr, why=why, dbg=dbg)
         nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)  # ;    xc0 = xc
         for c in range(nc):
-            self.resizeTnik(self.qclms, self.J2[Q], Q, xc + c*wc, yc, wc, hc, k=None, why=why, dbg=dbg)
+            self.resizeTnik(self.qclms, self.J2[Q], Q, xc + c*wc, yc, wc, hc, why=why, dbg=dbg)
         return pt
 
     def addLLs(self, how):
@@ -1139,43 +1139,42 @@ class Tabs(pyglet.window.Window):
         if dbg and chunks:   self.log(f'{chordName=} chunks={fmtl(chunks)} imap={fmtl(imap)}')
         return chordName
     ####################################################################################################################################################################################################
-    def resizeTniks(self, k=0, dbg=1):
+    def resizeTniks(self, dbg=1):
         self.updC += 1  ;  why = f'Upd.{self.updC}'
         self.dumpTniksPfx(why)
         if   self.DSP_J_LEV == P:
-            for _ in                 self.g_resizeTniks(self.pages, P, None, k, why=why): pass
+            for _ in                 self.g_resizeTniks(self.pages, P, None, why=why): pass
         elif self.DSP_J_LEV == L:
-            for page in              self.g_resizeTniks(self.pages, P, None, k, why=why): # pass
-                for _ in             self.g_resizeTniks(self.lines, L, page, k, why=why): pass
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for _ in             self.g_resizeTniks(self.lines, L, page, why=why): pass
         elif self.DSP_J_LEV == S:
-            for page in              self.g_resizeTniks(self.pages, P, None, k, why=why): # pass
-                for line in          self.g_resizeTniks(self.lines, L, page, k, why=why): # pass
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
                     if self.LL:      self.resizeLLs(line, why)
-                    for _ in         self.g_resizeTniks(self.sects, S, line, k, why=why): pass
+                    for _ in         self.g_resizeTniks(self.sects, S, line, why=why): pass
         elif self.DSP_J_LEV == C:
-            for page in              self.g_resizeTniks(self.pages, P, None, k, why=why): # pass
-                for line in          self.g_resizeTniks(self.lines, L, page, k, why=why): # pass
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
                     if self.LL:      self.resizeLLs(line, why)
-                    for sect in      self.g_resizeTniks(self.sects, S, line, k, why=why): # pass
-                        for _ in     self.g_resizeTniks(self.colms, C, sect, k, why=why): pass
+                    for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
+                        for _ in     self.g_resizeTniks(self.colms, C, sect, why=why): pass
         else:
-            for page in              self.g_resizeTniks(self.pages, P, None, k, why=why): # pass
-                for line in          self.g_resizeTniks(self.lines, L, page, k, why=why): # pass
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
                     if self.LL:      self.resizeLLs(line, why)
-                    for sect in      self.g_resizeTniks(self.sects, S, line, k, why=why): # pass
-                        for colm in  self.g_resizeTniks(self.colms, C, sect, k, why=why): # pass
-                            for _ in self.g_resizeTniks(self.tabls, T, colm, k, why=why): pass
+                    for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
+                        for colm in  self.g_resizeTniks(self.colms, C, sect, why=why): # pass
+                            for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
         if self.CURSOR and self.cursor: self.resizeCursor(why)   ;   self.dumpHdrs()
         if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd.{self.cc + 1}')
         if dbg:   self.dumpStruct(why) # , dbg=dbg)
     ####################################################################################################################################################################################################
-    def g_resizeTniks(self, tlist, j, pt=None, k=0, why=Z, dbg=1, dbg2=1):
+    def g_resizeTniks(self, tlist, j, pt=None, why=Z, dbg=1, dbg2=1):
         if not self.n[j]:     msg = f'ERROR {self.fmtJText(j, why)} SKIP {self.n[j]=}'   ;   self.log(msg) #  ;   self.quit(msg)
         n, _, x, y, w, h = self.geom(j, pt, dbg=dbg2)
         x2 = x  ;  y2 = y  ;  j2 = j  ;  tlist2 = tlist
         p, l, c, t = self.J1plct()    ;  lp, ll = self.dl()[0], self.dl()[1]
-        kl = self.k[j] if k else None
         for i in range(n):
             if   j in (C, E):                   x2 = x + i*w
             else:
@@ -1187,28 +1186,20 @@ class Tabs(pyglet.window.Window):
                 elif  j >= T:
                     s = self.ss2sl()[self.J1[S] % self.ssl()]
                     tlist2, j2, _, _ = self.tnikInfo(p, l, s, c, why=why)
-#            kk = self.cci(j, i, kl) if self.CHECKERED else self.BGC
-            k = kl[self.BGC] if k else None
-            yield self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, k=k, why=why, dbg=dbg)
+            yield self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
     ####################################################################################################################################################################################################
-    def resizeTnik(self, tlist, i, j, x, y, w, h, k=None, why=Z, dbg=1): # self._setTNIKStyle(tnik, self.k[j], self.BGC)
+    def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=1): # self._setTNIKStyle(tnik, self.k[j], self.BGC)
         assert ist(tlist, list)
         assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=}'
-#        if   not  tlist:        msg = f'ERROR tlist is Empty {      self.fmtJText(j, why)}'  ;  self.log(msg)  ;  self.quit(msg)
-#        elif i >= len(tlist):   msg = f'ERROR {i=} >={len(tlist)=} {self.fmtJText(j, why)}'  ;  self.log(msg)  ;  self.quit(msg) #fixme
         tnik    = tlist[i]   ;    v = tnik.visible
         self.log(f'{H=} {j=} {i=} {self.J2[H]=}') if dbg and j == H  else None
         self.setJ(j, i, v) if j != H or (j == H and self.J2[H] == 0) else None
         if   ist(tnik, SPR):
             mx, my = w/tnik.image.width, h/tnik.image.height
             tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
-#            if k:   tnik.color = k[:3]   ;   tnik.opacity = k[3]
         elif ist(tnik, LBL):
             tnik.font_size = self.calcFontSize(j)
             tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
-#            if k:
-#                assert len(k) == len(tnik.color),  f'{len(k)=} {len(tnik.color)=}'
-#                tnik.color = k # fixme     getattr(self, name)[:] = value # ValueError: Can only assign sequence of same size
             self.checkTnik(tnik, i, j)
         self.dumpTnik(tnik, j, why) if dbg else None
         return tnik
@@ -1495,7 +1486,7 @@ class Tabs(pyglet.window.Window):
 
     def resizeCursor(self, why, dbg=1):
         x, y, w, h, c = self.cc2xywh()
-        self.resizeTnik(self.hcurs, 0, H, x, y, w, h, k=None, why=why, dbg=dbg)
+        self.resizeTnik(self.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
 
     def moveCursor(self, ss=0, why=Z, dbg=1):
         if dbg:           self.log(f'BGN {ss=} {self.cc=}', pos=1)
