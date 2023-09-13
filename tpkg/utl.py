@@ -7,11 +7,12 @@ from tpkg import unic as unic
 def fn(cf):  return cf.f_code.co_name
 def ffn(cf): return cf.f_code.co_filename
 
-UNICODE   = unic.UNICODE
-ROOT_DIR  = "test"
-PATH      = pathlib.Path.cwd() / sys.argv[0]
-BASE_PATH = PATH.parent / ROOT_DIR
-BASE_NAME = BASE_PATH.stem
+ALT, CTL, SHF, CPL, NML = pygwink.MOD_ALT, pygwink.MOD_CTRL, pygwink.MOD_SHIFT, pygwink.MOD_CAPSLOCK, pygwink.MOD_NUMLOCK
+UNICODE    = unic.UNICODE
+ROOT_DIR   = "test"
+PATH       = pathlib.Path.cwd() / sys.argv[0]
+BASE_PATH  = PATH.parent / ROOT_DIR
+BASE_NAME  = BASE_PATH.stem
 P, L, S, C =  0,  1,  2,  3
 T, N, I, K =  4,  5,  6,  7
 M, R, Q, H =  8,  9, 10, 11
@@ -55,32 +56,6 @@ def signed(n):         return f' {n}' if n==0 else f'{n:+}'
 def ns2signs(ns, s=Z): return [ f'-{s}' if n<0 else f'+{s}' if n>0  else f'{W}{s}' for n in ns ]
 def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 ########################################################################################################################################################################################################
-# def isAlt(mods):       return mods & pygwink.MOD_ALT
-# def isCtl(mods):       return mods & pygwink.MOD_CTRL
-# def isShf(mods):       return mods & pygwink.MOD_SHIFT
-# def isCtlShf(mods):    return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_SHIFT
-# def isAltShf(mods):    return mods & pygwink.MOD_ALT      and mods & pygwink.MOD_SHIFT
-# def isCtlAlt(mods):    return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_ALT
-# def isCtlAltShf(mods): return mods & pygwink.MOD_CTRL     and mods & pygwink.MOD_ALT   and mods & pygwink.MOD_SHIFT
-# def isCapLck(mods):    return mods & pygwink.MOD_CAPSLOCK
-# def isNumLck(mods):    return mods & pygwink.MOD_NUMLOCK
-########################################################################################################################################################################################################
-ALT = pygwink.MOD_ALT
-CTL = pygwink.MOD_CTRL
-SHF = pygwink.MOD_SHIFT
-CPL = pygwink.MOD_CAPSLOCK
-NML = pygwink.MOD_NUMLOCK
-
-# def isAlt(d):       return d[ALT]                       if ALT in d                           else 0
-# def isCtl(d):       return d[CTL]                       if CTL in d                           else 0
-# def isShf(d):       return d[SHF]                       if SHF in d                           else 0
-# def isCtlShf(d):    return d[CTL] and d[SHF]            if CTL in d and SHF in d              else 0
-# def isAltShf(d):    return d[ALT] and d[SHF]            if ALT in d and SHF in d              else 0
-# def isCtlAlt(d):    return d[CTL] and d[ALT]            if CTL in d and ALT in d              else 0
-# def isCtlAltShf(d): return d[CTL] and d[ALT] and d[SHF] if CTL in d and ALT in d and SHF in d else 0
-# def isCapLck(d):    return d[CPL]                       if CPL in d                           else 0
-# def isNumLck(d):    return d[NML]                       if NML in d                           else 0
-
 def isAlt(      d, m=0): return d[ALT]                       if d and ALT in d                           else m & ALT
 def isCtl(      d, m=0): return d[CTL]                       if d and CTL in d                           else m & CTL
 def isShf(      d, m=0): return d[SHF]                       if d and SHF in d                           else m & SHF
@@ -133,8 +108,8 @@ def slog(t=Z, p=1, f=1, s=Y, e=X, ff=0, ft=1):
     print(t, sep=s, end=e, file=sys.stdout, flush=bool(ff)) if so else None
     print(t, sep=s, end=e, file=CSV_FILE,   flush=bool(ff)) if cs else None
 
-def olog(o=None, p=1, f=1, s=Y, e=X, ff=1):
-    o = s.join(str(o)) if o is not None else ''
+def olog(o=None, p=1, f=1, s=Y, e=X, ff=1, ft=1):
+    o = s.join(str(o)) if o is not None else Z
     if p:
         sf   = fn(cfrm())
         while sf.f_code.co_name in STFILT: sf = sf.f_back # ;  print(f'sf 2: {sf.f_lineno}, {sf.f_code.co_name}')
@@ -342,10 +317,10 @@ def initColors(k, spr, bgc, ik):
     j = N  ;  k[j] = i(j, KN1, aa, OT1, KN2, zz, OT2) if a else i(j, KN1,  0, 13, KN2, 17, 13) if b else i(j, KN1,  0, 13, KN2, 17, 13) if c else i(j, KN1,  0, 13, KN2, 17, 13) if d else None
     j = I  ;  k[j] = i(j, KI1, aa, OT1, KI2, zz, OT2) if a else i(j, KI1,  0, 13, KI2, 17, 13) if b else i(j, KI1,  0, 13, KI2, 17, 13) if c else i(j, KI1,  0, 13, KI2, 17, 13) if d else None
     j = K  ;  k[j] = i(j, KK1, aa, OT1, KK2, zz, OT2) if a else i(j, KK1,  0, 13, KK2, 17, 13) if b else i(j, KK1,  0, 13, KK2, 17, 13) if c else i(j, KK1,  0, 13, KK2, 17, 13) if d else None
+    j = M  ;  k[j] = i(j, KM1, aa, OE1, KM2, zz, OE2) if a else i(j, KM1, 17, 10, KM2, 17, 17) if b else i(j, KM1, 17, 17, KM2, 17, 17) if c else i(j, KM1, 17, 17, KM2, 17, 17) if d else None
     j = R  ;  k[j] = i(j, KR1, aa, OR1, KR2, zz, OR2) if a else i(j, KR1,  0, 17, KR2, 17, 17) if b else i(j, KR1,  0, 17, KR2, 17, 17) if c else i(j, KR1,  0, 17, KR2, 17, 17) if d else None
     j = Q  ;  k[j] = i(j, KQ1, aa, OQ1, KQ2, zz, OQ2) if a else i(j, KQ1,  0, 17, KQ2, 17, 17) if b else i(j, KQ1,  0, 17, KQ2, 17, 17) if c else i(j, KQ1,  0, 17, KQ2, 17, 10) if d else None
     j = H  ;  k[j] = i(j, KH1, zz, OH1, KH2, aa, OH2) if a else i(j, KH1, 14, 10, KH2, 14, 10) if b else i(j, KH1, 15, 13, KH2, 15, 13) if c else i(j, KH1, 14, 11, KH2, 14, 10) if d else None
-    j = M  ;  k[j] = i(j, KM1, aa, OE1, KM2, zz, OE2) if a else i(j, KM1, 17, 10, KM2, 17, 17) if b else i(j, KM1, 17, 17, KM2, 17, 17) if c else i(j, KM1, 17, 17, KM2, 17, 17) if d else None
     j = B  ;  k[j] = i(j, KB1, aa, OE1, KB2, zz, OE2) if a else i(j, KB1,  0,  0, KB2, 17, 17) if b else i(j, KB1,  0,  0, KB2, 17, 17) if c else i(j, KB1,  0,  0, KB2, 17, 17) if d else None
     j = A  ;  k[j] = i(j, KA1, aa, OE1, KA2, zz, OE2) if a else i(j, KA1,  0,  0, KA2, 17, 17) if b else i(j, KA1,  0,  0, KA2, 17, 17) if c else i(j, KA1,  0,  0, KA2, 17, 17) if d else None
     j = D  ;  k[j] = i(j, KD1, aa, OE1, KD2, zz, OE2) if a else i(j, KD1,  0,  0, KD2, 17, 17) if b else i(j, KD1,  0,  0, KD2, 17, 17) if c else i(j, KD1,  0,  0, KD2, 17, 17) if d else None

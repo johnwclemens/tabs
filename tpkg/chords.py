@@ -251,7 +251,7 @@ class Chords:
                 keys        = sorted(keys, key=lambda a:   Notes.V2I[a])        ;     keyStr = W.join(keys)
                 keyStrFmt   = "'" + keyStr + "'"       ;   v = omap[keyStr]     ;   rankSet  = set()  ;   rankSet.add(v[0])
                 count += 1  ;  none += 1 if not v[2] else 0   ;   nord += 1 if v[0] == rank else 0
-                v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else "['','','',''])," if ist(v[2], list) else 'None),'
+                v2          = fmtl(v[2], s="','", d="['", d2="']),") if v[2] else f"[{Z},{Z},{Z},{Z}])," if ist(v[2], list) else 'None),'
                 slog(                    f'{j:4} {keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=2, ft=0)
                 if dbg:                   slog(f'{keyStrFmt:18}: ({v[0]}, {fmtl(ii, s=Y, d2="],"):16} {v2:30} # ', p=0, f=file, ft=0, e=Z)
                 cycSet      = set()   ;   cycSet.add(tuple(ii))   ;   i2 = list(ii)
@@ -697,7 +697,7 @@ class Chords:
             'R 2 b5 5 #5'      : (3, [0,2,6,7,8],    ['#4','b6','s2']),           # R M3 4 b5 b7     [0 4 5 6 a]   R b2 2 b5 #5     [0 1 2 6 8]   R b2 4 5 7       [0 1 5 7 b]   R M3 b5 b7 7     [0 4 6 a b]
             'R 2 b5 5 6'       : (3, [0,2,6,7,9],    ['2','#4','6']),             # R M3 4 5 b7      [0 4 5 7 a]   R b2 m3 b5 #5    [0 1 3 6 8]   R 2 4 5 7        [0 2 5 7 b]   R m3 4 6 b7      [0 3 5 9 a]
             'R 2 b5 5 b7'      : (2, [0,2,6,7,10],   ['#','11','s2']),            # R M3 4 #5 b7     [0 4 5 8 a]   R b2 M3 b5 #5    [0 1 4 6 8]   R m3 4 5 7       [0 3 5 7 b]   R 2 M3 #5 6      [0 2 4 8 9]
-            'R 2 b5 5 7'       : (2, [0,2,6,7,11],   ['M','','11','s2']),         # R M3 4 6 b7      [0 4 5 9 a]   R b2 4 b5 #5     [0 1 5 6 8]   R M3 4 5 7       [0 4 5 7 b]   R b2 m3 5 #5     [0 1 3 7 8]
+            'R 2 b5 5 7'       : (2, [0,2,6,7,11],   ['M','#','11','s2']),        # R M3 4 6 b7      [0 4 5 9 a]   R b2 4 b5 #5     [0 1 5 6 8]   R M3 4 5 7       [0 4 5 7 b]   R b2 m3 5 #5     [0 1 3 7 8]
             'R 2 b5 #5 6'      : (4, [0,2,6,8,9],    ['o','+','2','6']),          # R M3 b5 5 b7     [0 4 6 7 a]   R 2 m3 b5 #5     [0 2 3 6 8]   R b2 M3 b5 b7    [0 1 4 6 a]   R m3 4 6 7       [0 3 5 9 b]
             'R 2 b5 #5 b7'     : (4, [0,2,6,8,10],   ['o','+','7','s2']),         # R M3 b5 #5 b7    [0 4 6 8 a]   R 2 M3 b5 #5     [0 2 4 6 8]   R 2 M3 b5 b7     [0 2 4 6 a]   R 2 M3 #5 b7     [0 2 4 8 a]
             'R 2 b5 #5 7'      : (4, [0,2,6,8,11],   ['M','o','+','7','s2']),     # R M3 b5 6 b7     [0 4 6 9 a]   R 2 4 b5 #5      [0 2 5 6 8]   R m3 M3 b5 b7    [0 3 4 6 a]   R b2 m3 5 6      [0 1 3 7 9]
