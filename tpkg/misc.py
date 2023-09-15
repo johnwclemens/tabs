@@ -17,7 +17,7 @@ class Modes:
 
 # Stuff todo
 # A: autosave
-# B:
+# B: blank tabs
 # C: chords, colors, consume
 # D: data, display level, docs
 # E: events, exit

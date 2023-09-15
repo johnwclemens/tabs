@@ -4,12 +4,12 @@ from inspect import currentframe as cfrm
 import pyglet.window.key   as pygwink
 from tpkg import unic as unic
 
-def fn(cf):  return cf.f_code.co_name
+def fn( cf): return cf.f_code.co_name
 def ffn(cf): return cf.f_code.co_filename
 
 ALT, CTL, SHF, CPL, NML = pygwink.MOD_ALT, pygwink.MOD_CTRL, pygwink.MOD_SHIFT, pygwink.MOD_CAPSLOCK, pygwink.MOD_NUMLOCK
 UNICODE    = unic.UNICODE
-ROOT_DIR   = "test"
+ROOT_DIR   = 'test'
 PATH       = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH  = PATH.parent / ROOT_DIR
 BASE_NAME  = BASE_PATH.stem
