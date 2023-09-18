@@ -1,8 +1,8 @@
-import glob, inspect, math, os, pathlib, sys
-from inspect import currentframe as cfrm
+import inspect, math, os, pathlib, sys, glob
+from   inspect import currentframe as cfrm
 
 import pyglet.window.key   as pygwink
-from tpkg import unic as unic
+from   tpkg    import unic as unic
 
 def fn( cf): return cf.f_code.co_name
 def ffn(cf): return cf.f_code.co_filename
@@ -108,7 +108,7 @@ def slog(t=Z, p=1, f=1, s=Y, e=X, ff=0, ft=1):
     print(t, sep=s, end=e, file=sys.stdout, flush=bool(ff)) if so else None
     print(t, sep=s, end=e, file=CSV_FILE,   flush=bool(ff)) if cs else None
 
-def olog(o=None, p=1, f=1, s=Y, e=X, ff=1, ft=1):
+def olog(o=None, p=1, f=1, s=Y, e=X, ff=1): #, ft=1):
     o = s.join(str(o)) if o is not None else Z
     if p:
         sf   = fn(cfrm())

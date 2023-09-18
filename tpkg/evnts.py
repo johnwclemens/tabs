@@ -19,7 +19,7 @@ MELODY, CHORD, ARPG            = utl.MELODY, utl.CHORD, utl.ARPG
 LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
 BOLD, COLOR, ITALIC, FONT_NAME, FONT_SIZE                                = utl.BOLD, utl.COLOR, utl.ITALIC, utl.FONT_NAME, utl.FONT_SIZE
 P, L, S, C, T, N, I, K, R, Q, H, M, B, A, D, E                           = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
-isAlt, isCtl, isShf, isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.isAlt, utl.isCtl, utl.isCtlAlt, utl.isShf, utl.isAltShf, utl.isCtlShf, utl.isCtlAltShf, utl.isNumLck
+isAlt, isCtl, isShf, isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.isAlt, utl.isCtl, utl.isShf, utl.isAltShf, utl.isCtlAlt, utl.isCtlShf, utl.isCtlAltShf, utl.isNumLck
 
 MODS  = 0
 FLIST = []
@@ -76,7 +76,9 @@ def on_close(tobj, dbg=1):
     return True
 
 def on_draw(tobj, **kwargs):
-    pyglet.gl.glClearColor(1, 1, 1, 1) # (0, 0, 0, 0) # (R, G, B, A)
+    if   tobj.drwBGC % 3 == 0:     pyglet.gl.glClearColor(0.0, 0.0, 0.0, 0.0)
+    elif tobj.drwBGC % 3 == 1:     pyglet.gl.glClearColor(0.5, 0.5, 0.5, 0.5)
+    elif tobj.drwBGC % 3 == 2:     pyglet.gl.glClearColor(1.0, 1.0, 1.0, 1.0)
     tobj.clear()
     tobj.batch.draw()
     if  tobj.snapReg and (tobj.SNAPS or tobj.snapType == utl.INIT):
@@ -159,27 +161,29 @@ def on_key_press(tobj, symb, mods, dbg=1):
 #   elif kbk == 'SLASH':                     tobj.setCHVMode(  '  SLASH',     ARPG,   RARROW, UARROW)
 #   elif kbk == 'BACKSLASH' and isCtl(mods): tobj.setCHVMode(  '@ BACKSLASH', ARPG,   LARROW, UARROW)
 #   elif kbk == 'BACKSLASH':                 tobj.setCHVMode(  '  BACKSLASH', ARPG,   RARROW, DARROW)
+    elif kbk == 'A' and isAltShf(kd, m):    tobj.flipDrwBGC(   '&^C', -1)
+    elif kbk == 'A' and isAlt(   kd, m):    tobj.flipDrwBGC(   '& C',  1)
     elif kbk == 'D' and isAltShf(kd, m):    tobj.flipBGC(      '&^D')
     elif kbk == 'D' and isAlt(   kd, m):    tobj.flipBGC(      '& D')
     elif kbk == 'N' and isAltShf(kd, m):    tobj.setn_cmd(     '&^N', txt=Z)
     elif kbk == 'N' and isAlt(   kd, m):    tobj.setn_cmd(     '& N', txt=Z)
-    elif kbk == 'P' and isAltShf(kd, m):    tobj.flipPage(     '&^P', 1)
-    elif kbk == 'P' and isAlt(   kd, m):    tobj.flipPage(     '& P', -1)
+    elif kbk == 'P' and isAltShf(kd, m):    tobj.flipPage(     '&^P', -1)
+    elif kbk == 'P' and isAlt(   kd, m):    tobj.flipPage(     '& P',  1)
     elif kbk == 'R' and isAltShf(kd, m):    tobj.rotateSprite( '&^R', hcurs[0], -1)
     elif kbk == 'R' and isAlt(   kd, m):    tobj.rotateSprite( '& R', hcurs[0],  1)
-    elif kbk == 'V' and isAltShf(kd, m):    tobj.flipVisible(  '&^V', 0)
-    elif kbk == 'V' and isAlt(kd, m):       tobj.flipVisible(  '& V', 0)
+    elif kbk == 'V' and isAltShf(kd, m):    tobj.flipVisible(  '&^V', -1)
+    elif kbk == 'V' and isAlt(kd, m):       tobj.flipVisible(  '& V',  1)
     elif kbk == 'Z' and isAltShf(kd, m):    tobj.RESIZE = not tobj.RESIZE   ;  tobj.resizeTniks(dbg=1)
     elif kbk == 'Z' and isAlt(   kd, m):                                       tobj.resizeTniks(dbg=1)
     ####################################################################################################################################################################################################
     elif kbk == 'B' and isAltShf(kd, m):    tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
     elif kbk == 'B' and isAlt(   kd, m):    tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
-    elif kbk == 'C' and isAltShf(kd, m):    tobj.setFontParam(COLOR,         1,          'clrIdx')
-    elif kbk == 'C' and isAlt(   kd, m):    tobj.setFontParam(COLOR,        -1,          'clrIdx')
+    elif kbk == 'C' and isAltShf(kd, m):    tobj.setFontParam(COLOR,        -1,          'clrIdx')
+    elif kbk == 'C' and isAlt(   kd, m):    tobj.setFontParam(COLOR,         1,          'clrIdx')
     elif kbk == 'I' and isAltShf(kd, m):    tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
     elif kbk == 'I' and isAlt(   kd, m):    tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
-    elif kbk == 'A' and isAltShf(kd, m):    tobj.setFontParam(FONT_NAME,     1,          'fontNameIdx')
-    elif kbk == 'A' and isAlt(   kd, m):    tobj.setFontParam(FONT_NAME,    -1,          'fontNameIdx')
+    elif kbk == 'A' and isAltShf(kd, m):    tobj.setFontParam(FONT_NAME,    -1,          'fontNameIdx')
+    elif kbk == 'A' and isAlt(   kd, m):    tobj.setFontParam(FONT_NAME,     1,          'fontNameIdx')
     elif kbk == 'S' and isAltShf(kd, m):    tobj.setFontParam(FONT_SIZE,     33 / 32,    'fontSize')
     elif kbk == 'S' and isAlt(   kd, m):    tobj.setFontParam(FONT_SIZE,     32 / 33,    'fontSize')
     else:  retv = False   ;   slog(f'UNH {fsm(symb, mods)} kd={fmtm(kd)}') if dbg else None
@@ -251,6 +255,8 @@ def on_move(tobj, x, y, dbg=1):
 ########################################################################################################################################################################################################
 def on_text(tobj, text, dbg=1):
     retv = True
+    tkb  = tobj.keyboard
+    kd   = tkb.data if tkb else None
     if dbg: slog(f'BGN {ft(text)} swapping={tobj.swapping}')
     if      tobj.shiftingTabs:                tobj.shiftTabs(  'onTxt', text)
     elif    tobj.jumping:                     tobj.jump(       'onTxt', text, tobj.jumpAbs)
@@ -258,7 +264,7 @@ def on_text(tobj, text, dbg=1):
     elif    tobj.settingN:                    tobj.setn_cmd(   'onTxt', text)
     elif    tobj.swapping:                    tobj.swapTab(    'onTxt', text)
     elif    tobj.isTab(text):                 tobj.setTab(     'onTxt', text)
-    elif    text == '$' and isShf(tobj.mods): tobj.snapshot(f'{text}', 'SNAP')
+    elif    text == '$' and isShf(kd, MODS): tobj.snapshot(f'{text}', 'SNAP')
     else:   slog(f'UNH {ft(text)}', f=-2) if dbg else None   ;   retv = False
     if dbg: slog(f'END {ft(text)} swapping={tobj.swapping} {retv=}')
     return retv
@@ -271,7 +277,7 @@ def on_text_motion(tobj, motion, dbg=1):
     k    = pygwink    ;    m = MODS
     p, l, s, c, t = tobj.j()  ;  np, nl, ns, nc, nt = tobj.n
     if dbg: slog(f'BGN {ftm(motion)}')
-    if   isNumLck(kd, m):                          msg =             f'NUMLOCK(        {motion})'   ;   slog(msg)   ;   pygwink.MOD_NUMLOCK = 0
+    if   isNumLck(kd, m):                          msg =             f'NUMLOCK(        {motion})'   ;   slog(msg)   ;   k.MOD_NUMLOCK = 0
     if   isCtlAltShf(kd, m):                       msg =             f'@&^(            {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
     elif isCtlAlt(kd, m):
         if   motion == 1:                          tobj.unselectTabs(f'@& LEFT(        {motion})',  nt)
