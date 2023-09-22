@@ -28,15 +28,18 @@ isAlt, isCtl, isShf,    isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = ut
 
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'evns',     'logs',     'pngs',     'text',     'data'
-CAT2, CSV2, EVN2, LOG2, PNG2, TXT2       = f'_.{CAT}', f'_.{CSV}', f'_.{EVN}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}'
+CAT2, CSV2, EVN2, LOG2, PNG2, TXT2, DAT2 = f'_.{CAT}', f'_.{CSV}', f'_.{EVN}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}', f'_.{DAT}'
 CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE   = None, None, None, None
 BASE_NAME,        BASE_PATH,        PATH = utl.paths()
 CSV_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV,  dbg=0)
+DAT_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=DATA, fsfx=DAT,  dbg=0)
 EVN_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=EVNS, fsfx=EVN,  dbg=0)
 LOG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG,  dbg=0)
 PNG_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG,  dbg=0)
 TXT_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=TEXT, fsfx=TXT,  dbg=0)
+
 CSV_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV2, dbg=0)
+DAT_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=DATA, fsfx=DAT2, dbg=0)
 EVN_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=EVNS, fsfx=EVN2, dbg=0)
 LOG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG2, dbg=0)
 PNG_PATH2 = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=PNGS, fsfx=PNG2, dbg=0)
@@ -290,7 +293,8 @@ class Tabs(pyglet.window.Window):
         self._initDataPath()
         if self.GEN_DATA or not self.dataPath1.exists():  self.genDataFile(self.dataPath1)
         self.readDataFile(self.dataPath1)
-        utl.copyFile(    self.dataPath1, self.dataPath2)
+        utl.copyFile(     self.dataPath1, self.dataPath2)
+        utl.copyFile(     self.dataPath1, self.dataPath3)
         old       = self.fmtn(Z)
         self.n[P] = self.dl()[0]
         self.log(self.fmtdl())
@@ -302,15 +306,19 @@ class Tabs(pyglet.window.Window):
         dataName0 = self.DAT_GFN + '.asv'
         dataName1 = self.DAT_GFN
         dataName2 = self.DAT_GFN
+        dataName3 = self.FILE_NAME + '.' + DAT
         self.dataPath0 = BASE_PATH / dataDir / dataName0
         self.dataPath1 = BASE_PATH /           dataName1
         self.dataPath2 = BASE_PATH / dataDir / dataName2
+        self.dataPath3 = BASE_PATH / dataDir / dataName3
         self.log(f'{dataName0=}')
         self.log(f'{dataName1=}')
         self.log(f'{dataName2=}')
+        self.log(f'{dataName3=}')
         self.log(f'{self.dataPath0=}', p=0)
         self.log(f'{self.dataPath1=}', p=0)
         self.log(f'{self.dataPath2=}', p=0)
+        self.log(f'{self.dataPath3=}', p=0)
 
     def makeSubDirs(self, path):
         if not path.parent.exists():
@@ -1246,6 +1254,8 @@ class Tabs(pyglet.window.Window):
         assert ist(v, int),  f'{type(v)=} {v=}'
         tnik.visible = bool(v)
         self.visib[j].append(v)
+#        if j == P and v:   self.setCaption(f'{self.FILE_NAME}.{DAT} page{i+1}')
+        if j == P and v:   self.setCaption(f'{self.dataPath3} page{i+1} {self.fmtFont()}')
         self.checkTnik(tnik, i, j)
         if    tlst is not None:      tlst.append(tnik)
         key = self.idmapkey(j)   ;   self.idmap[key] = (tnik, j, i)
@@ -1315,6 +1325,7 @@ class Tabs(pyglet.window.Window):
             tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
             self.checkTnik(tnik, i, j)
         self.dumpTnik(tnik, j, why) if dbg else None
+        if j == P and v:   self.setCaption(f'{self.dataPath3} page{i + 1} {self.fmtFont()}')
         return tnik
     ####################################################################################################################################################################################################
     def dumpTniksPfx(self, why=Z, h=1, r=1):
@@ -2654,6 +2665,7 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
 # 0   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18
 FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = utl.initRGBs(f=0, dbg=0)
 if CSV_PATH.exists():    utl.copyFile(CSV_PATH, CSV_PATH2, f=0)
+if DAT_PATH.exists():    utl.copyFile(DAT_PATH, DAT_PATH2, f=0)
 if EVN_PATH.exists():    utl.copyFile(EVN_PATH, EVN_PATH2, f=0)
 if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, f=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, f=0)
