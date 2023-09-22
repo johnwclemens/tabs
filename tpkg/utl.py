@@ -86,7 +86,7 @@ def rotateList(a, rev=0):
     else:   tmp0 = a[0]    ;   tmp1 = a[1:]    ;   a = tmp1   ;   a.append(tmp0)
     return     a
 ########################################################################################################################################################################################################
-def slog(t=Z, p=1, f=1, s=Y, e=X, ff=0, ft=1):
+def slog(t=Z, p=1, f=1, s=Y, e=X, ff=1, ft=1):
     if t and ft: t = filtText(t)
     if p:
         sf = cfrm().f_back
@@ -179,8 +179,8 @@ def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=W, ll=Non
     return Z.join(t)
 ########################################################################################################################################################################################################
 def fmtf(a, b):
-    if b==4: return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
-    if b==5: return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
+    if   b == 4: return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
+    elif b == 5: return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
 ########################################################################################################################################################################################################
 def parseCmdLine(argv, dbg=1, f=0):
     options, key, vals, argc = {}, Z, [], len(argv)
@@ -304,8 +304,8 @@ def initRGB(key, rgb, dv=32, n=None, dbg=0):
 FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGBs(f=0, dbg=0)
 ########################################################################################################################################################################################################
 def initColors(k, spr, bgc, ik):
-    KP1, KP2 = VLT, VLT  ;  KL1, KL2 = FSH, FSH  ;  KS1, KS2 = RED, RED  ;  KC1, KC2 = YLW, YLW  ;  OP1, OP2 = 17, 17  ;  OL1, OL2 = 17, 17  ;  OS1, OS2 = 17, 17  ;  OC1, OC2 =  17, 17
-    KT1, KT2 = ORG, ORG  ;  KN1, KN2 = GRN, GRN  ;  KI1, KI2 = PNK, PNK  ;  KK1, KK2 = IND, IND  ;  OT1, OT2 = 17, 17 # ;  ON1, ON2 =  0,  0  ;  OI1, OI2 =  0,  0  ;  OK1, OK2 =  0,  0
+    KP1, KP2 = VLT, VLT  ;  KL1, KL2 = FSH, FSH  ;  KS1, KS2 = RED, RED  ;  KC1, KC2 = YLW, YLW  ;  OP1, OP2 =  7, 17  ;  OL1, OL2 = 5, 11  ;  OS1, OS2 = 5, 11  ;  OC1, OC2 =  5, 11
+    KT1, KT2 = ORG, ORG  ;  KN1, KN2 = GRN, GRN  ;  KI1, KI2 = PNK, PNK  ;  KK1, KK2 = IND, IND  ;  OT1, OT2 =  8, 17 # ;  ON1, ON2 =  0,  0  ;  OI1, OI2 =  0,  0  ;  OK1, OK2 =  0,  0
     KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = CYA, CYA  ;  KH1, KH2 = TRQ, TRQ  ;  KM1, KM2 = PCH, PCH  ;  OR1, OR2 = 17, 17  ;  OQ1, OQ2 = 17, 17  ;  OH1, OH2 =  9,  9
     KB1, KB2 = CL3, CL3  ;  KA1, KA2 = CL4, CL4  ;  KD1, KD2 = LIM, LIM  ;  KE1, KE2 = GRY, GRY  ;  OE1, OE2 = 17, 17  ;  aa, zz = 5, 17
     a = not spr and not bgc  ;  b = not spr and bgc  ;  c = spr and not bgc  ;  d = spr and bgc  ;  i = ik
