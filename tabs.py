@@ -92,19 +92,18 @@ class Tabs(pyglet.window.Window):
     def __init__(self):
         self.LOG_ID = 0                ;   self.log(f'{self.LOG_ID=}')
         self.log(f'BGN {__class__}')   ;   dumpGlobals()
-        self.log(f'STFILT:\n{fmtl(utl.STFILT)}')          ;   self.snapWhy, self.snapType, self.snapReg, self.snapId, self.snapPath = '?', '_', 0, 0, None
-        self.fNameLid, self.LOG_ID = utl.getFileSeqName( BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.LOG_ID=} {self.fNameLid}')
-        self.seqNumCatPath         = utl.getFilePath(self.fNameLid, BASE_PATH, fdir=CATS, fsfx=CAT)  ;  self.log(f'{self.seqNumCatPath=}')
-        self.seqNumCsvPath         = utl.getFilePath(self.fNameLid, BASE_PATH, fdir=CSVS, fsfx=CSV)  ;  self.log(f'{self.seqNumCsvPath=}')
-        self.seqNumLogPath         = utl.getFilePath(self.fNameLid, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.seqNumLogPath=}')
-        self.seqNumTxtPath         = utl.getFilePath(self.fNameLid, BASE_PATH, fdir=TEXT, fsfx=TXT)  ;  self.log(f'{self.seqNumTxtPath=}')
+        self.log(f'STFILT:\n{fmtl(utl.STFILT)}')           ;   self.snapWhy, self.snapType, self.snapReg, self.snapId, self.snapPath = '?', '_', 0, 0, None
+        self.fNameLogId, self.LOG_ID = utl.getFileSeqName(   BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.LOG_ID=} {self.fNameLogId}')
+        self.seqNumCatPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=CATS, fsfx=CAT)  ;  self.log(f'{self.seqNumCatPath=}')
+        self.seqNumCsvPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=CSVS, fsfx=CSV)  ;  self.log(f'{self.seqNumCsvPath=}')
+        self.seqNumLogPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.seqNumLogPath=}')
+        self.seqNumTxtPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=TEXT, fsfx=TXT)  ;  self.log(f'{self.seqNumTxtPath=}')
         self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt  = Z
         self.shiftingTabs  = 0   ;   self.shiftSign = 1    ;   self.quitting = 0
         self.inserting     = 0   ;   self.insertStr = Z
         self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs  = 0
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg  = Z
         self.newC          = 0   ;   self.updC      = 0
-#       self.cc            = 0   ;   self.nvis      = 0
         self.cc            = 0   ;   self.nvis      = 0    ;   self.drwBGC   = 0
         self.allTabSel     = 0   ;   self.rsyncData = 0    ;   self.sprs     = []
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
@@ -2303,19 +2302,6 @@ class Tabs(pyglet.window.Window):
         if dbg2:  self.cobj.dumpImap(limap[imi], why=f'{cn:2}')
 #        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
     ####################################################################################################################################################################################################
-    def OLD__flipPage(self, how, dp=1, dbg=1):
-        pA = self.j()[P] if dbg else None
-        self.flipVisible(how, P) # self.j()[P]
-        if dbg: pB = self.j()[P]    ;   self.log(f'{pA=} {pB=}, {self.fmtJ1()}, {self.fmtJ2()}', p=0)
-        self.dumpVisible()  ;   self.dumpVisible2()
-        self.i[P] = ((self.j()[P] + dp) % self.n[P]) + 1 # todo
-        if dbg: pA = self.j()[P]
-        self.flipVisible(how, P) # self.j()[P]
-        if dbg: pB = self.j()[P]    ;   self.log(f'{pA=} {pB=}, {self.fmtJ1()}, {self.fmtJ2()}', p=0)
-        self.dumpVisible()  ;   self.dumpVisible2()
-        if self.SNAPS and dbg:  self.regSnap(how, f'FlpP{self.i[P]}')
-        self.resizeTniks(dbg=dbg)
-
     def flipPage(self, how, a=1, dbg=1):
         if dbg: self.log(f'{how=} {a=}')
         self.flipVisible(how)
@@ -2336,60 +2322,6 @@ class Tabs(pyglet.window.Window):
         self.log(f'{fmtl(j1)=} {fmtl(j2)=}')
         return j1, j2
     ####################################################################################################################################################################################################
-    def OLD__flipVisible(self, how=None, dbg=0):
-        why = 'FVis' if how is None else how   ;   np, nl, ns, nc, nt = self.n   ;   i = 0   ;   text = None
-        self.i[P] = 1 + (self.j()[P] + 1) % np
-        p = self.j()[P]
-        pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
-        self.dumpTniksPfx(why)
-        self.J1, self.J2 = self.p2Js(p % np)
-        self.log(f'BGN {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-        for l in range(nl):
-            _ = self.lines[self.J2[L]]          ;  self.setJdump(L, l, why=why)  ;  vl = []
-            for s0, s in enumerate(self.ss2sl()):
-                _ = self.sects[self.J2[S]]      ;  self.setJdump(S, s0, why=why)
-                for c in range(nc):
-                    _ = self.colms[self.J2[C]]  ;  self.setJdump(C, c, why=why)
-                    for t in range(nt):
-                        imap = self.getImap(p, l, c) if s >= II else []
-                        tlist, j, kl, tobj = self.tnikInfo(p, l, s, c, t, why=why)
-                        if   s == TT: text = tobj
-                        elif s == NN: text = tobj if j > K else self.sobj.tab2nn(tobj, t, self.nic) if self.sobj.isFret(tobj) else self.tblank
-                        elif s == II: text = self.imap2ikey( tobj, imap, i, j)     ;   i += 1 if text != self.tblank else 0
-                        elif s == KK: text = self.imap2Chord(tobj, imap, t, j)
-                        j2 = self.J2[j]  ;  tnik = tlist[j2]  ;  tnik.visible = not tnik.visible  ;  v = int(tnik.visible)
-                        self.setJdump(j, t, why=why)   ;   oid = f' {id(tnik):11x}' if self.OIDS else Z
-                        if dbg:       self.log(f'{v=} {j2=:3} {s0} plsct={self.fplsct(p, l, s, c, t)} {text=:4} {oid} {self.J2[j]}', f=0)
-                        if dbg:       vl.append(f'{v}')
-                if dbg:               vl.append(W)
-            if dbg:                   self.log(f'{Z.join(vl)}', p=0)
-        self.dumpTniksSfx(why)
-        self.log(f'END {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-
-    def OLD_1_flipVisible(self, how=None, dbg=0):
-        why = 'FVis' if how is None else how   ;   np, nl, ns, nc, nt = self.n   ;   i = 0   ;   text = None
-        p = self.j()[P]   ;   vl = []
-        self.J1, self.J2 = self.p2Js(p % np)
-        pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
-        self.log(f'BGN {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-        self.dumpTniksPfx(why)
-        for l in range(nl):
-            _ = self.lines[self.J2[L]]               ;  self.setJdump(L, l, why=why)   ;   _.visible = not _.visible  ;  vl.append(int(_.visible))
-            for s, so in enumerate(self.ss2sl()):
-                _ = self.sects[self.J2[S]]           ;  self.setJdump(S, s, why=why)   ;   _.visible = not _.visible  ;  vl.append(int(_.visible))
-                for c in range(nc):
-                    _ = self.colms[self.J2[C]]       ;  self.setJdump(C, c, why=why)   ;   _.visible = not _.visible  ;  vl.append(int(_.visible))
-                    for t in range(nt):
-                        imap = self.getImap(p, l, c) if s >= II else []
-                        tlist, j, kl, tobj = self.tnikInfo(p, l, so, c, t, why=why)
-                        if   so == TT: text = tobj
-                        elif so == NN: text = tobj if j > K else self.sobj.tab2nn(tobj, t, self.nic) if self.sobj.isFret(tobj) else self.tblank
-                        elif so == II: text = self.imap2ikey( tobj, imap, i, j)     ;   i += 1 if text != self.tblank else 0
-                        elif so == KK: text = self.imap2Chord(tobj, imap, t, j)
-                        j2 = self.J2[j]  ;  tnik = tlist[j2]  ;  tnik.visible = not tnik.visible  ;  v = int(tnik.visible)
-                        self.setJdump(j, t, why=why)   ;   oid = f' {id(tnik):11x}' if self.OIDS else Z
-                        if dbg:       self.log(f'{v=} {j2=:3} {so=} plsct={self.fplsct(p, l, s, c, t)} {text=:4} {oid} {self.J2[j]}', f=0)
-
     def flipVisible(self, how=None, dbg=0):
         why = 'FVis' if how is None else how   ;   np, nl, ns, nc, nt = self.n   ;   i = 0   ;   text = None
         p = self.j()[P]   ;   vl = []
@@ -2414,6 +2346,11 @@ class Tabs(pyglet.window.Window):
                         self.setJdump(j, t, why=why)     ;   oid = f' {id(tnik):11x}' if self.OIDS else Z
                         tnik.visible = not tnik.visible  ;     v = int(tnik.visible)
                         if dbg:       self.log(f'{v=} {j2=:3} {ss=} plsct={self.fplsct(p, l, s, c, t)} {text=:4} {oid} {self.J2[j]}', f=0)
+                        if dbg:       vl.append(f'{v}')
+                if dbg:               vl.append(W)
+            if dbg:                   self.log(f'{Z.join(vl)}', p=0)
+        self.dumpTniksSfx(why)
+        self.log(f'END {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
 
     def NEW__flipVisible(self, how=None, dbg=0):
         why = 'FVis' if how is None else how   ;   np, nl, ns, nc, nt = self.n
@@ -2548,7 +2485,7 @@ class Tabs(pyglet.window.Window):
         snapName      = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
         self.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = NONE   ;   snapId = NONE
         if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
-        if dbg:  self.log(f'{self.fNameLid=} {snapName=} {why}')
+        if dbg:  self.log(f'{self.fNameLogId=} {snapName=} {why}')
         if dbg:  self.log(f'{self.snapPath}', p=2)
         pygimg.get_buffer_manager().get_color_buffer().save(f'{self.snapPath}')
         if dbg2: self.log(f'{snapName=} {why}', f=2)
@@ -2564,7 +2501,7 @@ class Tabs(pyglet.window.Window):
             if dbg:  self.log(f'{snapName2=} {why}')
             if dbg:  self.log(f'{snapPath0=}', p=2)
             if dbg:  self.log(f'{snapPath2=}', p=2)
-        self.dumpTnikCsvs(self.fNameLid)
+        self.dumpTnikCsvs(self.fNameLogId)
         self.snapId += 1
         return self.snapPath
     ####################################################################################################################################################################################################
@@ -2659,6 +2596,8 @@ def cleanupOutFiles(file, fp, gfp, snp, f):
     utl.copyFile(fp,            gfp, f=f)
     slog('Flush & Close Txt File',      ff=1, f=f)
     file.flush()     ;     file.close()
+
+def dumpFileInfo(f, fd):    slog(f'{fd=} {f.mode} {f.encoding} {f.name}')
 ########################################################################################################################################################################################################
 # Global Functions END
 ########################################################################################################################################################################################################
@@ -2670,30 +2609,28 @@ if EVN_PATH.exists():    utl.copyFile(EVN_PATH, EVN_PATH2, f=0)
 if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, f=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, f=0)
 if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, f=0)
-with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(EVN_PATH), 'w', encoding='utf-8') as EVN_FILE:
-    f0   = -2
-    ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=f0)
-    kysgs.init(f=-2)
-    slog(sys.argv[0],      p=0,        f=f0)
-    slog(f'argv={fmtl(sys.argv[1:])}', f=f0) #   ;    slog(f'argv={fmtl(sys.argv[1:])}', f=4) if
-    utl.dumpRGB(f=f0)
+with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(EVN_PATH), 'w', encoding='utf-8') as EVN_FILE: # order?
+    _    = -2
+    ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=_)
+    kysgs.init(f=_)
+    slog(f'BGN {sys.argv[0]}',      p=0,        f=_)
+    slog(f'argv={fmtl(sys.argv[1:])}', f=_)
+    utl.dumpRGB(f=_)
 #   def main():
-    f1 = -2
-    slog(f'BGN {EVN_FILE=}', f=f1) #   ;   slog(f'BGN {EVN_FILE=}', f=4) if self.eventLogger else None
-    slog(f'{CSV_PATH=}',  f=f1)        ;   slog(f'{CSV_FILE.name=}', f=f1)
-#   slog(f'{EVN_PATH=}',  f=f1)        ;   slog(f'{EVN_FILE.name=}', f=f1)
-    slog(f'{LOG_PATH=}',  f=f1)        ;   slog(f'{LOG_FILE.name=}', f=f1)
-    slog(f'{TXT_PATH=}',  f=f1)        ;   slog(f'{TXT_FILE.name=}', f=f1)
-    slog('constructing Tabs object')
+    dumpFileInfo(CSV_FILE, fd=_)
+    dumpFileInfo(EVN_FILE, fd=_)
+    dumpFileInfo(LOG_FILE, fd=_)
+    dumpFileInfo(TXT_FILE, fd=_)
+    slog('Constructing Tabs object')
     tabs = Tabs()  ;  seqNumLogPath = tabs.seqNumLogPath  ;  seqNumTxtPath = tabs.seqNumTxtPath
-    slog(f'{str(tabs)=}', f=f1)        ;   slog(f'{tabs=}', f=f1)
+    slog(f'{str(tabs)=}', f=_)   ;   slog(f'{tabs=}', f=_)
     slog('Call pyglet.app.run()')
     pyglet.app.run()
-    slog('Thats all folks!', ff=1, f=f1)
-    slog(f'END {EVN_FILE=}', f=f1) #   ;   slog(f'END {EVN_FILE=}', f=4)
+    slog('Thats all folks!', ff=1, f=_)
+    slog(f'END {sys.argv[0]}', f=_)
     geomLogPath = utl.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)
     geomTxtPath = utl.getFilePath(tabs.TXT_GFN, BASE_PATH, fdir=None, fsfx=Z)
-    cleanupOutFiles(TXT_FILE, TXT_PATH, geomTxtPath, seqNumTxtPath, f=f1)
+    cleanupOutFiles(TXT_FILE, TXT_PATH, geomTxtPath, seqNumTxtPath, f=_)
     cleanupOutFiles(LOG_FILE, LOG_PATH, geomLogPath, seqNumLogPath, f=-1)
 ########################################################################################################################################################################################################
 #    if __name__ == '__main__':
