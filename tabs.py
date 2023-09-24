@@ -16,7 +16,6 @@ from   tpkg            import utl    as utl
 from   tpkg            import kysgs  as kysgs
 from   tpkg            import misc   as misc
 from   tpkg            import evnts  as evnts
-#from   tpkg.evnts      import FilteredEventLogger as FELogger
 from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
 from   tpkg.chords     import Chords as Chords
@@ -290,30 +289,29 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def _initData(self):
         self._initDataPath()
-        if self.GEN_DATA or not self.dataPath1.exists():  self.genDataFile(self.dataPath1)
+        self.genDataFile( self.dataPath1) if self.GEN_DATA or not self.dataPath1.exists() else None
         self.readDataFile(self.dataPath1)
         utl.copyFile(     self.dataPath1, self.dataPath2)
         utl.copyFile(     self.dataPath1, self.dataPath3)
-        old       = self.fmtn(Z)
-        self.n[P] = self.dl()[0]
+        old       =  self.fmtn(Z)
+        self.n[P] =  self.dl()[0]
         self.log(self.fmtdl())
         self.log(f'Updating n[P] {old=} {self.fmtn()}')
         self.tpb, self.tpp, self.tpl, self.tps, self.tpc = self.ntp(dbg=1, dbg2=1)
 
     def _initDataPath(self):
-        dataDir   = DATA
-        dataName0 = self.DAT_GFN + '.asv'
-        dataName1 = self.DAT_GFN
-        dataName2 = self.DAT_GFN
-        dataName3 = self.FILE_NAME + '.' + DAT
-        self.dataPath0 = BASE_PATH / dataDir / dataName0
-        self.dataPath1 = BASE_PATH /           dataName1
-        self.dataPath2 = BASE_PATH / dataDir / dataName2
-        self.dataPath3 = BASE_PATH / dataDir / dataName3
-        self.log(f'{dataName0=}')
-        self.log(f'{dataName1=}')
-        self.log(f'{dataName2=}')
-        self.log(f'{dataName3=}')
+        name0 = self.DAT_GFN + '.asv'
+        name1 = self.DAT_GFN
+        name2 = self.DAT_GFN
+        name3 = self.FILE_NAME + '.' + DAT
+        self.dataPath0 = BASE_PATH / DATA / name0
+        self.dataPath1 = BASE_PATH /        name1
+        self.dataPath2 = BASE_PATH / DATA / name2
+        self.dataPath3 = BASE_PATH / DATA / name3
+        self.log(f'{name0=}')
+        self.log(f'{name1=}')
+        self.log(f'{name2=}')
+        self.log(f'{name3=}')
         self.log(f'{self.dataPath0=}', p=0)
         self.log(f'{self.dataPath1=}', p=0)
         self.log(f'{self.dataPath2=}', p=0)
@@ -646,9 +644,9 @@ class Tabs(pyglet.window.Window):
         if dbg2:        self.cobj.dumpMlimap('MLim') if self.VRBY else None
         self.log(f'{self.fmtn()} END ntp={self.fntp(dbg=dbg, dbg2=dbg2)} {self.fmtI()}', pos=1)
     ####################################################################################################################################################################################################
-    def autoSave(self, dt, why, dbg=1):
-        if dbg: self.log(f'Every {dt:=7.4f} seconds, {why} {self.rsyncData=}')
-        if self.rsyncData: self.saveDataFile(why, self.dataPath0)   ;  self.rsyncData = 0
+    def autoSave(self, dt, how, dbg=1):
+        if dbg: self.log(f'Every {dt:=7.4f} seconds, {how} {self.rsyncData=}')
+        if self.rsyncData: self.saveDataFile(how, self.dataPath0)   ;  self.rsyncData = 0
     ####################################################################################################################################################################################################
     def saveDataFile(self, why, path, dbg=1):
         if dbg:   self.log(f'{why} {path}')
@@ -1253,8 +1251,8 @@ class Tabs(pyglet.window.Window):
         assert ist(v, int),  f'{type(v)=} {v=}'
         tnik.visible = bool(v)
         self.visib[j].append(v)
-#        if j == P and v:   self.setCaption(f'{self.FILE_NAME}.{DAT} page{i+1}')
-        if j == P and v:   self.setCaption(f'{self.dataPath3} page{i+1} {self.fmtFont()}')
+        if j == P and v:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {i+1}')
+#        if j == P and v:   self.setCaption(f'{self.dataPath3} page {i+1}') # {self.fmtFont()}')
         self.checkTnik(tnik, i, j)
         if    tlst is not None:      tlst.append(tnik)
         key = self.idmapkey(j)   ;   self.idmap[key] = (tnik, j, i)
@@ -1315,7 +1313,7 @@ class Tabs(pyglet.window.Window):
 #        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=}'
         tnik    = tlist[i]   ;    v = tnik.visible
         self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}') if dbg and j == H  else None
-        self.setJ(j, i, v) if j != H or (j == H and self.J2[H] == 0) else None
+        self.setJ(j, i, v)       if j != H or (j == H and self.J2[H] == 0) else None
         if   ist(tnik, SPR):
             mx, my = w/tnik.image.width, h/tnik.image.height
             tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
@@ -1324,7 +1322,7 @@ class Tabs(pyglet.window.Window):
             tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
             self.checkTnik(tnik, i, j)
         self.dumpTnik(tnik, j, why) if dbg else None
-        if j == P and v:   self.setCaption(f'{self.dataPath3} page{i + 1} {self.fmtFont()}')
+        if j == P and v:   self.setCaption(f'{self.dataPath3} page {i + 1}') #} {self.fmtFont()}')
         return tnik
     ####################################################################################################################################################################################################
     def dumpTniksPfx(self, why=Z, h=1, r=1):
@@ -2330,11 +2328,11 @@ class Tabs(pyglet.window.Window):
         self.log(f'BGN {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
         self.dumpTniksPfx(why)
         for l in range(nl):
-            _ = self.lines[self.J2[L]]               ;  self.setJdump(L, l, why=why)   ;   _.visible = not _.visible  ;  vl.append(int(_.visible))
+            _ = self.lines[self.J2[L]]               ;  self.setJdump(L, l,  why=why)   ;   _.visible = not _.visible  ;  vl.append(str(int(_.visible)))
             for ss, s in enumerate(self.ss2sl()):
-                _ = self.sects[self.J2[S]]           ;  self.setJdump(S, ss, why=why)   ;   _.visible = not _.visible  ;  vl.append(int(_.visible))
+                _ = self.sects[self.J2[S]]           ;  self.setJdump(S, ss, why=why)   ;   _.visible = not _.visible  ;  vl.append(str(int(_.visible)))
                 for c in range(nc):
-                    _ = self.colms[self.J2[C]]       ;  self.setJdump(C, c, why=why)   ;   _.visible = not _.visible  ;  vl.append(int(_.visible))
+                    _ = self.colms[self.J2[C]]       ;  self.setJdump(C, c,  why=why)   ;   _.visible = not _.visible  ;  vl.append(str(int(_.visible)))
                     for t in range(nt):
                         imap = self.getImap(p, l, c) if s >= II else []
                         tlist, j, kl, tobj = self.tnikInfo(p, l, s, c, t, why=why)
