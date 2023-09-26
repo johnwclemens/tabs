@@ -146,10 +146,10 @@ class Tabs(pyglet.window.Window):
         if 'n' in ARGS  and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'o' in ARGS  and len(ARGS['o']) == 0: self.OIDS       =  1
         if 'p' in ARGS  and len(ARGS['p']) == 0: self.SNAPS      =  1
-        if 'R' in ARGS  and len(ARGS['R']) == 0: self.RESIZE     = 0
+        if 'R' in ARGS  and len(ARGS['R']) == 0: self.RESIZE     =  0
         if 's' in ARGS  and len(ARGS['s']) == 0: self.SPRITES    =  1
         if 'S' in ARGS  and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
-        if 't' in ARGS: l = len(ARGS['t'])   ;   self.TEST       = 1 if l == 0 else int(ARGS['t'][0]) if l == 1 else 0
+        if 't' in ARGS: l = len(ARGS['t'])   ;   self.TEST       =  1 if l == 0 else int(ARGS['t'][0]) if l == 1 else 0
         if 'u' in ARGS  and len(ARGS['u']) == 0: self.SUBPIX     =  1
         if 'v' in ARGS: l = len(ARGS['v'])   ;   self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
         if 'V' in ARGS  and len(ARGS['V']) == 0: self.VIEWS      =  1
@@ -267,9 +267,9 @@ class Tabs(pyglet.window.Window):
         self.E     = [*self.A, *self.B, *self.C, *self.D]       ;     self.log(f'E={fmtl(self.E, d=" [", d2="] ")}')
         self.resetJ('_reinit')
         self.cc, self.cursor, self.caret = 0, None, None
-        self.ki    = [ 0 for _ in range(len(self.E)) ]           ;    self.log(fmtl(self.ki))
-        self.tblanki, self.tblanks  = 1, [W, '-']                ;    self.tblank    = self.tblanks[self.tblanki]
-        self.tblankCol              = self.tblank * self.n[T]    ;    self.tblankRow = self.tblank * (self.n[C] + self.zzl())
+        self.ki    = [ 0 for _ in range(len(self.E)) ]            ;   self.log(fmtl(self.ki))
+        self.tblanki, self.tblanks = 0, [W, '-', '.', '`', '~']   ;   self.tblank    = self.tblanks[self.tblanki]
+        self.tblankCol             = self.tblank * self.n[T]      ;   self.tblankRow = self.tblank * (self.n[C] + self.zzl())
         self.dumpBlanks()
         self._init()
         self.log('END', pos=1)
@@ -1251,8 +1251,8 @@ class Tabs(pyglet.window.Window):
         assert ist(v, int),  f'{type(v)=} {v=}'
         tnik.visible = bool(v)
         self.visib[j].append(v)
-        if j == P and v:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {i+1}')
 #        if j == P and v:   self.setCaption(f'{self.dataPath3} page {i+1}') # {self.fmtFont()}')
+        if j == P and v:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {i+1}')
         self.checkTnik(tnik, i, j)
         if    tlst is not None:      tlst.append(tnik)
         key = self.idmapkey(j)   ;   self.idmap[key] = (tnik, j, i)
@@ -1322,7 +1322,8 @@ class Tabs(pyglet.window.Window):
             tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
             self.checkTnik(tnik, i, j)
         self.dumpTnik(tnik, j, why) if dbg else None
-        if j == P and v:   self.setCaption(f'{self.dataPath3} page {i + 1}') #} {self.fmtFont()}')
+#        if j == P and v:   self.setCaption(f'{self.dataPath3} page {i + 1}') #} {self.fmtFont()}')
+        if j == P and v:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {i + 1}')
         return tnik
     ####################################################################################################################################################################################################
     def dumpTniksPfx(self, why=Z, h=1, r=1):
@@ -2119,11 +2120,11 @@ class Tabs(pyglet.window.Window):
         self.pasteTabs(how)
         self.dumpSmap(f'END {nk=} {nk2=}')
 
-    def swapTab(self, how, txt=Z, data=None, dbg=0, dbg2=1):  # e.g. c => 12 not same # chars asserts
+    def swapTab(self, how, txt=Z, data=None, dbg=1, dbg2=1):  # e.g. c => 12 not same # chars asserts
         src, trg = self.swapSrc, self.swapTrg
         data = data or self.data
         if not self.swapping: self.swapping = 1
-        elif txt.isalnum():
+        elif txt.isalnum() or txt in self.tblanks:
             if   self.swapping == 1:   src += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
             elif self.swapping == 2:   trg += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
             self.swapSrc, self.swapTrg = src, trg
@@ -2419,7 +2420,7 @@ class Tabs(pyglet.window.Window):
         self.tblanki = (self.tblanki + 1) % len(self.tblanks)
         self.tblank  =  self.tblanks[self.tblanki]
         self.swapSrc, self.swapTrg, self.swapping = prevBlank, self.tblank, 2
-        self.swapTab(how, Z) # '\r')
+        self.swapTab(how, '\r')
         self.swapSrc, self.swapTrg = Z, Z
         self.log(f'END {how} {self.tblank=}')
     ####################################################################################################################################################################################################
