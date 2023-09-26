@@ -399,7 +399,6 @@ class Tabs(pyglet.window.Window):
     def j(   self):                   return [ i-1 if i else 0 for    i in           self.i ]
     def j2(  self):                   return [ i-1 if i else 0 for j, i in enumerate(self.i)  if j != S ]
     def j2g( self, j):                return self.g[ self.gn[j] ]
-#   def resetJ(self, why=Z, dbg=1): self.J1 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.J2 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.dumpJs(why) if dbg else None
     def resetJ(self, why=Z, dbg=1): self.J1 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.J2 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.nvis = 0  ;  self.dumpJs(why) if dbg else None
     def setJ(self, j, n, v=None):
         v = self.isV() if v is None else v
@@ -697,6 +696,9 @@ class Tabs(pyglet.window.Window):
                 if tabs_:
                     if not ntabs: ntabs = len(tabs_)
                     if len(tabs_) != ntabs:      msg = f'ERROR BAD tabs len {len(tabs_)=} != {ntabs=}'   ;   self.log(msg)   ;   self.quit(msg)
+                    for i in range(len(tabs_)):
+                        if tabs_[i] in self.tblanks and tabs_[i] != self.tblank:
+                            self.tblank = tabs_[i]
                     rows.append(tabs_)       ;   st += len(tabs_)       ;     sr += 1
                 else:
                     if rows  and not sr % nr:   lines.append(rows)    ;    rows = []   ;   sl += 1
@@ -2120,7 +2122,7 @@ class Tabs(pyglet.window.Window):
         self.pasteTabs(how)
         self.dumpSmap(f'END {nk=} {nk2=}')
 
-    def swapTab(self, how, txt=Z, data=None, dbg=1, dbg2=1):  # e.g. c => 12 not same # chars asserts
+    def OLD__swapTab(self, how, txt=Z, data=None, dbg=1, dbg2=1):  # e.g. c => 12 not same # chars asserts
         src, trg = self.swapSrc, self.swapTrg
         data = data or self.data
         if not self.swapping: self.swapping = 1
@@ -2150,6 +2152,44 @@ class Tabs(pyglet.window.Window):
                                     if dbg2: self.log(f'Before data{self.fplc(p, l, c)}={text}')
                                     cc = self.plct2cc(p, l, c, t)   ;   self.setDTNIK(trg, cc, p, l, c, t, kk=1)
                                     if dbg2: self.log(f'After  data{self.fplc(p, l, c)}={text}')
+            self.swapSrc, self.swapTrg = Z, Z
+            self.log(f'{how} END     {src=} {trg=}') if dbg else None
+#                if dbg2: self.dumpTniks('SWAP')
+#                self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
+            if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
+            self.rsyncData = 1
+
+    def swapTab(self, how, txt=Z, data=None, dbg=1, dbg2=1):  # e.g. c => 12 not same # chars asserts
+        src, trg = self.swapSrc, self.swapTrg
+        data = data or self.data
+        if not self.swapping: self.swapping = 1
+        elif txt.isalnum() or txt in self.tblanks:
+            if   self.swapping == 1:   src += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
+            elif self.swapping == 2:   trg += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
+            self.swapSrc, self.swapTrg = src, trg
+        elif txt == '\r':
+            self.log(f'    {how} {self.swapping=} {src=} {trg=}')
+            if   self.swapping == 1 and not trg: self.swapping = 2;   self.log(f'{how} waiting {src=} {trg=}') if dbg else None   ;   return
+            if   self.swapping == 2 and trg:     self.swapping = 0;   self.log(f'{how} BGN     {src=} {trg=}') if dbg else None
+            np, nl, ns, nc, nt = self.n    ;     nc += self.zzl()
+            cc0 = self.cursorCol()         ;     p0, l0, c0, t0 = self.cc2plct(cc0)   ;   self.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
+            blanks = self.tblanks          ;     blank = 1 if src in blanks and trg in blanks else 0
+            if blank:
+                for t in self.tabls:   t.text = trg if t.text==src else t.text
+                for n in self.notes:   n.text = trg if n.text==src else n.text
+                for i in self.ikeys:   i.text = trg if i.text==src else i.text
+                for k in self.kords:   k.text = trg if k.text==src else k.text
+            for p in range(np):
+                for l in range(nl):
+                    for c in range(nc):
+                        text = data[p][l][c]
+                        for t in range(nt):
+                            if text[t] == src:
+                                if dbg2: self.log(f'Before data{self.fplc(p, l, c)}={text}')
+                                if blank and trg != self.tblank:
+                                    text[t] = trg
+                                cc = self.plct2cc(p, l, c, t)   ;   self.setDTNIK(trg, cc, p, l, c, t, kk=1)
+                                if dbg2: self.log(f'After  data{self.fplc(p, l, c)}={text}')
             self.swapSrc, self.swapTrg = Z, Z
             self.log(f'{how} END     {src=} {trg=}') if dbg else None
 #                if dbg2: self.dumpTniks('SWAP')
