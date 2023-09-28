@@ -381,7 +381,7 @@ class Tabs(pyglet.window.Window):
         self.createTniks()
 #        for p in range(self.n[P]):
 #            if p != self.j()[P]:
-#                self.flipVisible(how='init', p=p, dbg=1)
+#                self.flipVisible(how='init', dbg=1)
         self.ks = kysgs.nic2KS(self.nic)
         self.log( kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
         if self.TEST == 1:
@@ -2306,12 +2306,14 @@ class Tabs(pyglet.window.Window):
 #        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
     ####################################################################################################################################################################################################
     def flipPage(self, how, a=1, dbg=1):
-        if dbg: self.log(f'{how=} {a=}')
+        if dbg: self.log(f'BGN {how} {a=} {self.i[P]=}')
         self.flipVisible(how=how) #, p=self.j()[P])
         self.i[P] = (self.i[P] + a) % self.n[P]
+        if dbg: self.log(f'    {how} {a=} {self.i[P]=}')
         self.flipVisible(how=how) #, p=(self.j()[P] + a) % self.n[P])
         self.dumpVisible()  ;   self.dumpVisible2()
-        self.resizeTniks(dbg=dbg)
+#        self.resizeTniks(dbg=dbg)
+        if dbg: self.log(f'END {how} {a=} {self.i[P]=}')
 
     def flipDrwBGC(self, how, c):
         self.drwBGC += c
@@ -2325,108 +2327,13 @@ class Tabs(pyglet.window.Window):
         self.log(f'j1={fmtl(j1)} j2={fmtl(j2)}')
         return j1, j2
     ####################################################################################################################################################################################################
-    def OLD_0_flipVisible(self, how=None, dbg=0):
-        why = 'FVis' if how is None else how   ;   np, nl, ns, nc, nt = self.n
-        p = self.j()[P]   ;   vl = []
-        self.J1, self.J2 = self.p2Js(p)
-        pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
-        self.log(f'BGN {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-        self.dumpTniksPfx(why)
-        for l in range(nl):
-            _ = self.lines[self.J2[L]]               ;  self.setJdump(L, l, why=why)   ;   _.visible = not _.visible  ;  vl.append(int(_.visible))
-            for s in range(ns):
-                _ = self.sects[self.J2[S]]           ;  self.setJdump(S, s, why=why)   ;   _.visible = not _.visible  ;  vl.append(int(_.visible))
-                for c in range(nc):
-                    _ = self.colms[self.J2[C]]       ;  self.setJdump(C, c, why=why)   ;   _.visible = not _.visible  ;  vl.append(int(_.visible))
-                    for t in range(nt):
-                        _ = self.tabls[self.J2[T]]   ;  self.setJdump(T, t, why=why)   ;   _.visible = not _.visible  ;  vl.append(int(_.visible))
-                        oid = f' {id(_):11x}' if self.OIDS else Z   ;   self.log(f'plsct={self.fplsct(p, l, s, c, t)} {oid} {int(_.visible)}', f=0) if dbg else None
-                if dbg:     vl.append(W)
-            if dbg:         self.log(f'{Z.join(vl)}', p=0)
-        self.dumpTniksSfx(why)
-        self.log(f'END {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-
-    def OLD_1_flipVisible(self, how=None, dbg=0):
-        why = 'FVis' if how is None else how     ;  np, nl, ns, nc, nt = self.n  ;  text = None  ;   i = 0
-        p, l, s, c  = self.j()[P], 0, 0, 0       ;  vl = []
-        l1 = p*nl  ;  l2 = l1+nl  ;  s1 = l1*ns  ;  s2 = s1+ns  ;  c1 = s1*nc  ;  c2 = c1+nc*ns  ;  t1 = c2*ns  ;  t2 = t1+c2
-        self.J1, self.J2 = self.p2Js(p)
-        pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
-        self.log(f'BGN {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-        self.dumpTniksPfx(why, r=0)
-        for l in range(l1, l2):
-            _ = self.lines[l]    ;   self.setJdump(L, l, why=why)  ;  _.visible = not _.visible  ;  vl.append(str(int(_.visible))) if dbg else None
-        for s in range(s1, s2):
-            _ = self.sects[s]    ;   self.setJdump(S, s, why=why)  ;  _.visible = not _.visible  ;  vl.append(str(int(_.visible))) if dbg else None
-        for c in range(c1, c2):
-            _ = self.colms[c]    ;   self.setJdump(C, c, why=why)  ;  _.visible = not _.visible  ;  vl.append(str(int(_.visible))) if dbg else None
-        for t in range(t1, t2):
-            imap = [] #self.getImap(p, l, c) if s >= II else []
-            tlist, j, kl, tobj = self.tnikInfo(p % np, l % nl, s % ns, c % nc, t % nt, why=why)  ;  j2 = self.J2[j]  ;  _ = tlist[j2]
-            if   s % ns == TT: text = tobj
-            elif s % ns == NN: text = tobj if j > K else self.sobj.tab2nn(tobj, t, self.nic) if self.sobj.isFret(tobj) else self.tblank
-            elif s % ns == II: text = self.imap2ikey( tobj, imap, i, j)          ;  i += 1   if text != self.tblank    else 0
-            elif s % ns == KK: text = self.imap2Chord(tobj, imap, t, j)
-            self.setJdump(j, t, why=why)   ;   _.visible = not _.visible  ;  v = int(_.visible)  ;  vl.append(str(v)) if dbg else None  ;  oid = f' {id(_):11x}' if self.OIDS else Z
-            if dbg:     self.log(f'{v=} {j2=:3} plsct={self.fplsct(p, l, s, c, t)} {text=:4} {oid} {self.J2[j]}', f=0)
-#            if dbg:     self.log(f'{Z.join(vl)}', p=0)
-        self.dumpTniksSfx(why)
-        self.log(f'END {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-
-    def OLD_2_flipVisible(self, how=None, dbg=1):
-        why = 'FVis' if how is None else how     ;  np, nl, ns, nc, nt = self.n
-        p, l, s, c  = self.j()[P], 0, 0, 0       ;  vl = []
-        l1 = p*nl  ;  l2 = l1+nl  ;  s1 = l1*ns  ;  s2 = s1+ns  ;  c1 = s1*nc  ;  c2 = c1+nc*ns  ;  t1 = c2*ns  ;  t2 = t1+c2
-        self.J1, self.J2 = self.p2Js(p)
-        pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
-        self.log(f'BGN {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-        self.dumpTniksPfx(why, r=0)
-        for l in range(l1, l2):
-            _ = self.lines[l]    ;   self.setJdump(L, l, why=why)  ;  _.visible = not _.visible  ;  vl.append(str(int(_.visible))) if dbg else None
-        for s in range(s1, s2):
-            _ = self.sects[s]    ;   self.setJdump(S, s, why=why)  ;  _.visible = not _.visible  ;  vl.append(str(int(_.visible))) if dbg else None
-        for c in range(c1, c2):
-            _ = self.colms[c]    ;   self.setJdump(C, c, why=why)  ;  _.visible = not _.visible  ;  vl.append(str(int(_.visible))) if dbg else None
-        self.flipVis(self.tabls, T, p, l, s, c, t1, t2, vl, why, dbg)
-        self.flipVis(self.notes, N, p, l, s, c, t1, t2, vl, why, dbg)
-#        for t in range(t1, t2):
-#            _ = self.tabls[t]    ;   self.setJdump(T, t, why=why)  ;  _.visible = not _.visible  ;  v = int(_.visible)  ;  vl.append(str(v)) if dbg else None  ;  oid = f' {id(_):11x}' if self.OIDS else Z
-#            if dbg:     self.log(f'{v=} plsct={self.fplsct(p, l, s, c, t)} {_.text=:4} {oid} {self.J2[T]}', f=0)        ;  self.log(f'{Z.join(vl)}', p=0)
-#        for t in range(t1, t2):
-#            _ = self.notes[t]    ;   self.setJdump(N, t, why=why)  ;  _.visible = not _.visible  ;  v = int(_.visible)  ;  vl.append(str(v)) if dbg else None  ;  oid = f' {id(_):11x}' if self.OIDS else Z
-#            if dbg:     self.log(f'{v=} plsct={self.fplsct(p, l, s, c, t)} {_.text=:4} {oid} {self.J2[T]}', f=0)        ;  self.log(f'{Z.join(vl)}', p=0)
-        self.dumpTniksSfx(why)
-        self.log(f'END {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-
-    def OLD_3_flipVisible(self, how=None, dbg=1):
-        why = 'FVis' if how is None else how     ;  np, nl, ns, nc, nt = self.n
-        p, l, s, c  = self.j()[P], 0, 0, 0       ;  vl = []
-        l1 = p*nl  ;  l2 = l1+nl  ;  s1 = l1*ns  ;  s2 = s1+ns  ;  c1 = s1*nc  ;  c2 = c1+nc*ns  ;  t1 = c2*ns  ;  t2 = t1+c2
-        self.J1, self.J2 = self.p2Js(p)
-        pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
-        self.log(f'BGN {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-        self.dumpTniksPfx(why, r=0)
-        for l in range(l1, l2):
-            _ = self.lines[l]    ;   self.setJdump(L, l, why=why)  ;  _.visible = not _.visible  ;  vl.append(str(int(_.visible))) if dbg else None
-        for s in range(s1, s2):
-            _ = self.sects[s]    ;   self.setJdump(S, s, why=why)  ;  _.visible = not _.visible  ;  vl.append(str(int(_.visible))) if dbg else None
-        for c in range(c1, c2):
-            _ = self.colms[c]    ;   self.setJdump(C, c, why=why)  ;  _.visible = not _.visible  ;  vl.append(str(int(_.visible))) if dbg else None
-        ss = self.ss2sl() 
-        if TT in ss: self.flipVis(self.tabls, T, p, l, s, c, t1, t2, vl, why, dbg)
-        if NN in ss: self.flipVis(self.notes, N, p, l, s, c, t1, t2, vl, why, dbg)
-        if II in ss: self.flipVis(self.ikeys, I, p, l, s, c, t1, t2, vl, why, dbg)
-        if KK in ss: self.flipVis(self.kords, K, p, l, s, c, t1, t2, vl, why, dbg)
-        self.dumpTniksSfx(why)
-        self.log(f'END {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
-    
     def flipVisible(self, how=None, dbg=1):
-        why = 'FVis' if how is None else how     ;  np, nl, ns, nc, nt = self.n
-        p, l, s, c  = self.j()[P], 0, 0, 0       ;  vl = []
+        why = 'FVis' if how is None else how       ;  np, nl, ns, nc, nt = self.n
+        p, l, s, c  = self.j()[P], 0, 0, 0         ;  vl = []
         l1 = p*nl  ;  l2 = np*nl  ;  s1 = p*nl*ns  ;  s2 = np*nl*ns  ;  c1 = p*nl*ns*nc  ;  c2 = np*nl*ns*nc  ;  t1 = p*nl*nc*nt  ;  t2 = np*nl*nc*nt
         self.J1, self.J2 = self.p2Js(p)
         pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
-        self.log(f'BGN {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
+        self.log(f'BGN {why} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} page{p+1} is visibile {self.fVis()}')
         self.dumpTniksPfx(why, r=0)
         for l in range(l1, l2):
             _ = self.lines[l]    ;   self.setJdump(L, l, why=why)  ;  _.visible = not _.visible  ;  vl.append(str(int(_.visible))) if dbg else None
@@ -2440,13 +2347,13 @@ class Tabs(pyglet.window.Window):
         if II in ss: self.flipVis(self.ikeys, I, p, l, s, c, t1, t2, vl, why, dbg)
         if KK in ss: self.flipVis(self.kords, K, p, l, s, c, t1, t2, vl, why, dbg)
         self.dumpTniksSfx(why)
-        self.log(f'END {why} {p=} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} {self.fVis()}')
+        self.log(f'END {why} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} page{p+1} is visible {self.fVis()}')
     
     def flipVis(self, tlst, j, p, l, s, c, t1, t2, vl, why, dbg=1):
         for t in range(t1, t2):
             _ = tlst[t]
             self.setJdump(j, t, why=why)  ;  _.visible = not _.visible  ;  v = int(_.visible)  ;  vl.append(str(v)) if dbg else None  ;  oid = f' {id(_):11x}' if self.OIDS else Z
-            if dbg:     self.log(f'{v=} plsct={self.fplsct(p, l, s, c, t)} {_.text=:4} {oid} {self.J2[j]}', f=0)   #     ;  self.log(f'{Z.join(vl)}', p=0)        
+            if dbg:     self.log(f'{v=} plsct={self.fplsct(p, l, s, c, t)} {_.text=:4} {oid} {self.J2[j]}', f=0)        ;  self.log(f'{Z.join(vl)}', p=0, f=0)        
     ####################################################################################################################################################################################################
     def dumpVisible(self):
         nsum = 0  ;  j = 0  ;  lsum = 0  ;  nmax = 0  ;  a = W*10  ;  b = W*8  ;  c = W*7  ;  d = W*6  ;  e = W*5
@@ -2472,7 +2379,7 @@ class Tabs(pyglet.window.Window):
 
     @staticmethod
     def fVisible(n, j, l, v): return f'{n:4}{jTEXTS[j][0]}{l:<4}{v}'
-    def fVis(self): return f'{fmtl([ i + 1 if p.visible else W for i, p in enumerate(self.pages) ])}'
+    def fVis(self): return f'{fmtl([ int(p.visible) for p in self.pages ], s=Z)}'
     ####################################################################################################################################################################################################
     def flipCursorMode(self, how, m):
         self.log(f'BGN {how} {self.csrMode=} = {CSR_MODES[self.csrMode]=}')
