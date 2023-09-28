@@ -171,8 +171,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'P' and isAlt(   kd, m):    tobj.flipPage(     '& P',  1)
     elif kbk == 'R' and isAltShf(kd, m):    tobj.rotateSprite( '&^R', hcurs[0], -1)
     elif kbk == 'R' and isAlt(   kd, m):    tobj.rotateSprite( '& R', hcurs[0],  1)
-    elif kbk == 'V' and isAltShf(kd, m):    tobj.flipVisible(  '&^V', -1)
-    elif kbk == 'V' and isAlt(kd, m):       tobj.flipVisible(  '& V',  1)
+    elif kbk == 'V' and isAltShf(kd, m):    tobj.flipVisible(  '&^V', dbg=1)
+    elif kbk == 'V' and isAlt(kd, m):       tobj.flipVisible(  '& V', dbg=1)
     elif kbk == 'Z' and isAltShf(kd, m):    tobj.RESIZE = not tobj.RESIZE   ;  tobj.resizeTniks(dbg=1)
     elif kbk == 'Z' and isAlt(   kd, m):                                       tobj.resizeTniks(dbg=1)
     ####################################################################################################################################################################################################
