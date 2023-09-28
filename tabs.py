@@ -10,7 +10,6 @@ import pyglet.image        as pygimg
 import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
 import pyglet.window.event as pygwine
-#import pyglet.window.key   as pygwink
 from   pyglet.text     import document, layout
 from   tpkg            import utl    as utl
 from   tpkg            import kysgs  as kysgs
@@ -69,7 +68,6 @@ CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
 HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = 0, 1, 2
 ########################################################################################################################################################################################################
-#INIT    = 'INIT'
 FIN     = [1, 1, 1, 2, 1]
 FNTP    = [5, 4, 3, 3, 3]
 #           0        1        2        3           4        5        6        7           8        9        10       11          12       13       14       15          16
@@ -627,7 +625,6 @@ class Tabs(pyglet.window.Window):
         if dbg2:    self.dumpArgs(f=2)
 #        kysgs.dumpData()
         kysgs.dumpNic(self.nic)
-#        notes.dumpData()
         self.dumpFont(why)
         self.dumpVisible()
         self.dumpIdmKeys() if dbg and self.VRBY else None
@@ -1418,9 +1415,7 @@ class Tabs(pyglet.window.Window):
         elif ist(tnik, SPR):
             return d.join([JTEXTS[j], ii, xywh, axy, ancX, ancY])
     ####################################################################################################################################################################################################
-    def dumpTnikCsvs(self, why):
-        self.dumpTniksPfx(why)
-#        self.log(f'{fmtl(self.args2csv(), d=Z, s=Y)}', p=0, f=3)
+    def dumpTnikCsvs(self):
         name = self.snapPath.stem if self.snapPath else Z
         args = self.args2csv()   ;   self.log(f'{fmtl(args, d=Z, s=Y)}{name}', p=0, f=3)
         for j, p in enumerate(self.pages):     self.dumpTnikCsv(p, P, j)
@@ -1435,7 +1430,6 @@ class Tabs(pyglet.window.Window):
         for j, i in enumerate(self.ikeys):     self.dumpTnikCsv(i, I, j)
         for j, k in enumerate(self.kords):     self.dumpTnikCsv(k, K, j)
         for j, h in enumerate(self.hcurs):     self.dumpTnikCsv(h, H, j)
-        self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTnikCsv(self, t, j, i):
         if i == 0 and j == P:    h = self.csvHdr(n=1)   ;   self.log(f'{h}', p=0, f=3)
@@ -1470,11 +1464,11 @@ class Tabs(pyglet.window.Window):
         with open(path, 'wb', encoding='utf-8') as file:
             file.write(img.get_data())
     ####################################################################################################################################################################################################
-    def createSprite(self, tlist, i, j, x, y, w, h, kk, kl, why=Z, t=Z, v=0, g=None, dbg=0):
+    def createSprite(self, tlist, i, j, x, y, w, h, k, why=Z, t=Z, v=0, g=None, dbg=0):
         path = utl.getFilePath('_2', BASE_PATH, PNGS, PNG)
         self.saveImg(path)
-        self.setJ(j, i, v)   ;   k = kl[kk]
-        if dbg:    self.log(f'{j=} {JTEXTS[j]} {i=} {t=} [{x} {y} {w} {h}] {g=} {kk=} {utl.fmtl(kl)} {why}\n{path=}')
+        self.setJ(j, i, v)
+        if dbg:    self.log(f'{j=} {JTEXTS[j]} {i=} {t=} [{x} {y} {w} {h}] {g=} {utl.fmtl(k)} {why}\n{path=}')
         img = pygimg.load(path)
         wx, wy = self.axyWgt(self.ax, self.ay)
         img.anchor_x, img.anchor_y = int(wx*w), int(wy*h)
@@ -1494,9 +1488,8 @@ class Tabs(pyglet.window.Window):
         x, y, w, h, c = self.cc2xywh()
         kk = 0  ;  kl = self.k[H]  ;  k = kl[kk]
         if w == 0 or h == 0:        msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   self.quit(msg)
-        self.cursor                     = self.createTnik(  self.hcurs, 0, H, x, y, w, h, k=k, why=why, v=1, dbg=dbg)
-#       if self.TEST == 3:  self.cursor = self.createSprite(self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
-#       else:               self.cursor = self.createTnik(  self.hcurs, 0, H, x, y, w, h, kk, kl, why, v=1, dbg=dbg)
+        if self.TEST == 3:  self.cursor = self.createSprite(self.hcurs, 0, H, x, y, w, h, k=k, why=why, v=1, dbg=dbg)
+        else:               self.cursor = self.createTnik(  self.hcurs, 0, H, x, y, w, h, k=k, why=why, v=1, dbg=dbg)
         if self.LL:         self.setLLStyle(self.cc, CURRENT_STYLE)
 
     def resizeCursor(self, why, dbg=1):
@@ -1514,13 +1507,11 @@ class Tabs(pyglet.window.Window):
         tpb, tpp, tpl, tps, tpc = self.ntp()   ;   lenT = len(self.tabls)
         old   = self.cursorCol()   ;   cc = old % lenT
         self.log(f'{tpp=} {old=} {lenT=} {cc=} old % lenT', f=0)
-        if cc < 0 or cc >= lenT:  msg = f'Invalid index {cc=} {tpp=} {old=} {lenT=}'  ;  self.log(msg)  ;  self.quit(msg)
-#       assert 0 <= cc < lenT,          f'Invalid index {cc=} {lenT=}'
-        else:
-            t     = self.tabls[cc]
-            if dbg: self.log(f'{cc=:4} {old=:4} {self.fntp()} {self.ftxywh(t)} {t.text=} {self.fCtnt(t)}', f=0) # i={Notes.index(self.sobj.tab2nn(t, cc % lenT))}
-            w, h  = t.width if t.width is not None else t.height , t.height
-            return  t.x, t.y, w, h, cc
+        assert 0 <= cc < lenT,  f'Invalid index {cc=} {tpp=} {old=} {lenT=}'
+        t     = self.tabls[cc]
+        if dbg: self.log(f'{cc=:4} {old=:4} {self.fntp()} {self.ftxywh(t)} {t.text=} {self.fCtnt(t)}', f=0) # i={Notes.index(self.sobj.tab2nn(t, cc % lenT))}
+        w, h  = t.width if t.width is not None else t.height , t.height
+        return  t.x, t.y, w, h, cc
     ####################################################################################################################################################################################################
     def plc2cn(self, p, l, c, dbg=0):
         tpb, tpp, tpl, tps, tpc = self.ntp()  ;  ns = self.n[S]
@@ -1731,17 +1722,17 @@ class Tabs(pyglet.window.Window):
             kysgs.dumpNic(self.nic)
         self.notes[cc].text = ntext
         if dbg: self.log(f'END     {t=} {text=} notes[{cc}]={self.notes[cc].text}', pos=pos)
-#                utl.updNotes(11, 'B', 'Cb', Notes.TYPE, -1)
-#                utl.updNotes( 5, 'F', 'E#', Notes.TYPE, -1)
-#                utl.updNotes( 4, 'E', 'Fb', Notes.TYPE, -1)
-#                utl.updNotes( 0, 'C', 'B#', Notes.TYPE, -1)
+#        utl.updNotes(11, 'B', 'Cb', Notes.TYPE, -1)
+#        utl.updNotes( 5, 'F', 'E#', Notes.TYPE, -1)
+#        utl.updNotes( 4, 'E', 'Fb', Notes.TYPE, -1)
+#        utl.updNotes( 0, 'C', 'B#', Notes.TYPE, -1)
     ####################################################################################################################################################################################################
     def getImap(self, p=None, l=None, c=None, dbg=0, dbg2=0):
-#        dl    = self.dl() #todo
+        dl    = self.dl() #todo
         cn    = self.plc2cn(p, l, c)          ;     key = cn   ;   mli = self.cobj.mlimap
         msg1  = f'plc={self.fplc(p, l, c)}'   ;    msg2 = f'dl={self.fmtdl()} {cn=} {key=} keys={fmtl(list(mli.keys()))}'
         if dbg:        self.log(f'{msg1} {msg2}', f=0)
-#        if p >= dl[0] or l >= dl[1] or c >= dl[2]:  msg = f'ERROR Indexing {msg1} >= {msg2}'  ;  self.log(msg)  ;  self.quit(msg)
+        if p >= dl[0] or l >= dl[1] or c >= dl[2]:  msg = f'ERROR Indexing {msg1} >= {msg2}'  ;  self.log(msg)  ;  self.quit(msg) #todo is this correct?
         imap  = self.cobj.getChordName(self.data, None, cn, p, l, c)
         if dbg2 and imap: self.cobj.dumpImap(imap, f=1)
         return imap
@@ -2483,7 +2474,7 @@ class Tabs(pyglet.window.Window):
             if dbg:  self.log(f'{snapName2=} {why}')
             if dbg:  self.log(f'{snapPath0=}', p=2)
             if dbg:  self.log(f'{snapPath2=}', p=2)
-        self.dumpTnikCsvs(self.fNameLogId)
+        self.dumpTnikCsvs()
         self.snapId += 1
         return self.snapPath
     ####################################################################################################################################################################################################

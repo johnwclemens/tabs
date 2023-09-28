@@ -119,8 +119,9 @@ def nic2KS(nic, dbg=0):
     return k, nt, n, i, ns, Scales.majIs(i)
 
 def dumpNic(nic): #fix me
-    slog(f'{fmtl([ f"{i:x}:{I2F[i]:2}:{nic[i]}" for i in nic.keys() ], s=Y)}', p=PFX, f=FD)
-    slog(f'{fmtl([ f"{i:x}:{I2S[i]:2}:{nic[i]}" for i in nic.keys() ], s=Y)}', p=PFX, f=FD)
-    slog(f'{fmtl([ f"{i:x}:{I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else None for i in KSD[M][KIS] ], s=Y)}', p=PFX, f=FD)
-    slog(f'{fmtl([ f"{i:x}:{I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else None for i in KSD[P][KIS] ], s=Y)}', p=PFX, f=FD)
+    s = f'{Y}{W}'
+    slog(f'{fmtl([ f"{i:x}:{I2F[i]:2}:{nic[i]}" for i in nic.keys() ], s=s)}', p=PFX, f=FD)
+    slog(f'{fmtl([ f"{i:x}:{I2S[i]:2}:{nic[i]}" for i in nic.keys() ], s=s)}', p=PFX, f=FD)
+    slog(f'{fmtl([ f"{i:x}:{I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else " None " for i in KSD[M][KIS] ], s=s)}', p=PFX, f=FD)
+    slog(f'{fmtl([ f"{i:x}:{I2F[i]:2}:{nic[i]}" if  i in nic and nic[i] > 0 else " None " for i in KSD[P][KIS] ], s=s)}', p=PFX, f=FD)
 ########################################################################################################################################################################################################

@@ -93,7 +93,7 @@ KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note
   62 kysgs dumpData           END
   33 kysgs init               END
 BGN C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-2600 tabs  <module>           argv=[-i 3 1 1 6 -n 3 1 10 6 -o -J 4 -S 0 1 3 -f test]
+2591 tabs  <module>           argv=[-i 3 1 1 6 -n 3 1 10 6 -o -J 4 -S 0 1 3 -f test]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17   Diff Span
 FSH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
        R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
@@ -171,58 +171,58 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
        G=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127] 123.0  7.2
        B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
-2570 tabs  dumpGlobals        BASE_NAME = test
-2571 tabs  dumpGlobals        argv      = +20[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 3 1 1 6 -n 3 1 10 6 -o -J 4 -S 0 1 3 -f test]
-2572 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-2573 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
- 330 utl   getFilePath        baseName =test.20      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 333 utl   getFilePath        fileName =test.20.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.20.cat')
- 330 utl   getFilePath        baseName =test.20      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 333 utl   getFilePath        fileName =test.20.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.20.csv')
- 330 utl   getFilePath        baseName =test.20      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 333 utl   getFilePath        fileName =test.20.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.20.log')
- 330 utl   getFilePath        baseName =test.20      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 333 utl   getFilePath        fileName =test.20.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.20.txt')
- 228 tabs  dumpArgs           [a]      .AUTO_SAVE=0
- 229 tabs  dumpArgs           [A]         .VARROW=1
- 230 tabs  dumpArgs           [b]        .FRT_BRD=0
- 231 tabs  dumpArgs           [B]            .BGC=0
- 232 tabs  dumpArgs           [c]            .CAT=0
- 233 tabs  dumpArgs           [C]      .CHECKERED=0
- 234 tabs  dumpArgs           [d]       .DBG_TABT=0
- 235 tabs  dumpArgs           [e]      .EVENT_LOG=0
- 236 tabs  dumpArgs           [f]      .FILE_NAME='test'
- 237 tabs  dumpArgs           [F]      .FULL_SCRN=0
- 238 tabs  dumpArgs           [g]        .ORD_GRP=1
- 239 tabs  dumpArgs           [G]       .GEN_DATA=0
- 240 tabs  dumpArgs           [i]              .i=[3 1 1 1 6]
- 241 tabs  dumpArgs           [J]      .DSP_J_LEV=4
- 242 tabs  dumpArgs           [l]       .LONG_TXT=1
- 243 tabs  dumpArgs           [L]             .LL=0
- 244 tabs  dumpArgs           [M]      .MULTILINE=1
- 245 tabs  dumpArgs           [n]              .n=[3 1 3 10 6]
- 246 tabs  dumpArgs           [o]           .OIDS=1
- 247 tabs  dumpArgs           [p]          .SNAPS=0
- 248 tabs  dumpArgs           [R]         .RESIZE=1
- 249 tabs  dumpArgs           [s]        .SPRITES=0
- 250 tabs  dumpArgs           [S]             .SS=[0 1 3]
- 251 tabs  dumpArgs           [t]           .TEST=0
- 252 tabs  dumpArgs           [u]         .SUBPIX=1
- 253 tabs  dumpArgs           [v]           .VRBY=0
- 254 tabs  dumpArgs           [V]          .VIEWS=0
- 255 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
- 256 tabs  dumpArgs           [x]           .EXIT=0
- 257 tabs  dumpArgs           [Z]             .ZZ=[]
+2561 tabs  dumpGlobals        BASE_NAME = test
+2562 tabs  dumpGlobals        argv      = +20[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 3 1 1 6 -n 3 1 10 6 -o -J 4 -S 0 1 3 -f test]
+2563 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+2564 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
+ 330 utl   getFilePath        baseName =test.8       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 333 utl   getFilePath        fileName =test.8.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.8.cat')
+ 330 utl   getFilePath        baseName =test.8       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 333 utl   getFilePath        fileName =test.8.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.8.csv')
+ 330 utl   getFilePath        baseName =test.8       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 333 utl   getFilePath        fileName =test.8.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.8.log')
+ 330 utl   getFilePath        baseName =test.8       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 333 utl   getFilePath        fileName =test.8.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.8.txt')
+ 226 tabs  dumpArgs           [a]      .AUTO_SAVE=0
+ 227 tabs  dumpArgs           [A]         .VARROW=1
+ 228 tabs  dumpArgs           [b]        .FRT_BRD=0
+ 229 tabs  dumpArgs           [B]            .BGC=0
+ 230 tabs  dumpArgs           [c]            .CAT=0
+ 231 tabs  dumpArgs           [C]      .CHECKERED=0
+ 232 tabs  dumpArgs           [d]       .DBG_TABT=0
+ 233 tabs  dumpArgs           [e]      .EVENT_LOG=0
+ 234 tabs  dumpArgs           [f]      .FILE_NAME='test'
+ 235 tabs  dumpArgs           [F]      .FULL_SCRN=0
+ 236 tabs  dumpArgs           [g]        .ORD_GRP=1
+ 237 tabs  dumpArgs           [G]       .GEN_DATA=0
+ 238 tabs  dumpArgs           [i]              .i=[3 1 1 1 6]
+ 239 tabs  dumpArgs           [J]      .DSP_J_LEV=4
+ 240 tabs  dumpArgs           [l]       .LONG_TXT=1
+ 241 tabs  dumpArgs           [L]             .LL=0
+ 242 tabs  dumpArgs           [M]      .MULTILINE=1
+ 243 tabs  dumpArgs           [n]              .n=[3 1 3 10 6]
+ 244 tabs  dumpArgs           [o]           .OIDS=1
+ 245 tabs  dumpArgs           [p]          .SNAPS=0
+ 246 tabs  dumpArgs           [R]         .RESIZE=1
+ 247 tabs  dumpArgs           [s]        .SPRITES=0
+ 248 tabs  dumpArgs           [S]             .SS=[0 1 3]
+ 249 tabs  dumpArgs           [t]           .TEST=0
+ 250 tabs  dumpArgs           [u]         .SUBPIX=1
+ 251 tabs  dumpArgs           [v]           .VRBY=0
+ 252 tabs  dumpArgs           [V]          .VIEWS=0
+ 253 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
+ 254 tabs  dumpArgs           [x]           .EXIT=0
+ 255 tabs  dumpArgs           [Z]             .ZZ=[]
  338 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.3.1._.10.6.dat')
  339 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.3.1._.10.6.dat')
  341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.3.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.3.1._.10.6.dat ###
  338 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.3.1._.10.6.dat')
  339 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/test.dat')
  341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.3.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\test.dat ###
-1632 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.7778 fs=w*PNT_PER_PIX= 23.33pt
-1633 tabs  _initFonts         h=30.000=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.7778 fs=h*PNT_PER_PIX= 23.33pt
-1645 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels 
-1211 tabs  g_createTniks      j==P: i=0 v=0 .j()[P]=2 .i[P]=3
+1624 tabs  _initFonts         w=96.000=.width =960/(10)                 PNT_PER_PIX=0.7778 fs=w*PNT_PER_PIX= 23.33pt
+1625 tabs  _initFonts         h=30.000=.height=540/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.7778 fs=h*PNT_PER_PIX= 23.33pt
+1637 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels 
+1209 tabs  g_createTniks      j==P: i=0 v=0 .j()[P]=2 .i[P]=3
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
 Page    1 I          C C   480   270 0.000 0.000   442  -118   324 v a  420    0 None          [128  63 255 255] [ 40  20  81 105] 0 0 0 1 1 c Lucida Console        
 Line    1 I          C C   480   270 0.000 0.000   393  -105   288 v a  373    0 None          [255  31 255 165] [ 81  10  81  75] 0 0 0 1 1 c Lucida Console        
@@ -449,7 +449,7 @@ Kord    3 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0
 Kord    4 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord    5 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord    6 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
-1211 tabs  g_createTniks      j==P: i=1 v=0 .j()[P]=2 .i[P]=3
+1209 tabs  g_createTniks      j==P: i=1 v=0 .j()[P]=2 .i[P]=3
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
 Page    2 I          C C   480   270 0.000 0.000   442  -118   324 v a  420    0 None          [128  63 255 255] [ 40  20  81 105] 0 0 0 1 1 c Lucida Console        
 Line    1 I          C C   480   270 0.000 0.000   393  -105   288 v a  373    0 None          [255  31 255 165] [ 81  10  81  75] 0 0 0 1 1 c Lucida Console        
@@ -676,7 +676,7 @@ Kord    3 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0
 Kord    4 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord    5 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord    6 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
-1211 tabs  g_createTniks      j==P: i=2 v=1 .j()[P]=2 .i[P]=3
+1209 tabs  g_createTniks      j==P: i=2 v=1 .j()[P]=2 .i[P]=3
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
 Page    3 V          C C   480   270 0.000 0.000   442  -118   324 v a  420    0 None          [128  63 255 255] [ 40  20  81 105] 0 0 0 1 1 c Lucida Console        
 Line    1 V          C C   480   270 0.000 0.000   393  -105   288 v a  373    0 None          [255  31 255 165] [ 81  10  81  75] 0 0 0 1 1 c Lucida Console        
@@ -903,50 +903,50 @@ Kord    3 V          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0
 Kord    4 V          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord    5 V          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord    6 V          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
-1538 tabs  plct2cc                 125 [  540  180 180  60   6] [3 1    1 6] ( 360 +  0 + 60 +  0 +5)
-1541 tabs  cursorCol          cc=125 [2 0 0 5]
-1516 tabs  cc2xywh            tpp=180 old=125 lenT=180 cc=125 old % lenT
-1521 tabs  cc2xywh            cc= 125 old= 125 [  540  180 180  60   6]   48.00  375.00   96.00   30.00 t.text=' ' 18.68 32.00 C,C
+1530 tabs  plct2cc                 125 [  540  180 180  60   6] [3 1    1 6] ( 360 +  0 + 60 +  0 +5)
+1533 tabs  cursorCol          cc=125 [2 0 0 5]
+1510 tabs  cc2xywh            tpp=180 old=125 lenT=180 cc=125 old % lenT
+1513 tabs  cc2xywh            cc= 125 old= 125 [  540  180 180  60   6]   48.00  375.00   96.00   30.00 t.text=' ' 18.68 32.00 C,C
 HCrs    1 V C C    48    15     
- 228 tabs  dumpArgs           [a]      .AUTO_SAVE=0
- 229 tabs  dumpArgs           [A]         .VARROW=1
- 230 tabs  dumpArgs           [b]        .FRT_BRD=0
- 231 tabs  dumpArgs           [B]            .BGC=0
- 232 tabs  dumpArgs           [c]            .CAT=0
- 233 tabs  dumpArgs           [C]      .CHECKERED=0
- 234 tabs  dumpArgs           [d]       .DBG_TABT=0
- 235 tabs  dumpArgs           [e]      .EVENT_LOG=0
- 236 tabs  dumpArgs           [f]      .FILE_NAME='test'
- 237 tabs  dumpArgs           [F]      .FULL_SCRN=0
- 238 tabs  dumpArgs           [g]        .ORD_GRP=1
- 239 tabs  dumpArgs           [G]       .GEN_DATA=0
- 240 tabs  dumpArgs           [i]              .i=[3 1 1 1 6]
- 241 tabs  dumpArgs           [J]      .DSP_J_LEV=4
- 242 tabs  dumpArgs           [l]       .LONG_TXT=1
- 243 tabs  dumpArgs           [L]             .LL=0
- 244 tabs  dumpArgs           [M]      .MULTILINE=1
- 245 tabs  dumpArgs           [n]              .n=[3 1 3 10 6]
- 246 tabs  dumpArgs           [o]           .OIDS=1
- 247 tabs  dumpArgs           [p]          .SNAPS=0
- 248 tabs  dumpArgs           [R]         .RESIZE=1
- 249 tabs  dumpArgs           [s]        .SPRITES=0
- 250 tabs  dumpArgs           [S]             .SS=[0 1 3]
- 251 tabs  dumpArgs           [t]           .TEST=0
- 252 tabs  dumpArgs           [u]         .SUBPIX=1
- 253 tabs  dumpArgs           [v]           .VRBY=0
- 254 tabs  dumpArgs           [V]          .VIEWS=0
- 255 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
- 256 tabs  dumpArgs           [x]           .EXIT=0
- 257 tabs  dumpArgs           [Z]             .ZZ=[]
-[8:A♭:2,3:E♭:2,a:B♭:4,5:F :4,1:D♭:2,9:A :2,4:E :2,b:B :2,7:G :2,2:D :2]
-[8:G♯:2,3:D♯:2,a:A♯:4,5:F :4,1:C♯:2,9:A :2,4:E :2,b:B :2,7:G :2,2:D :2]
-[a:B♭:4,3:E♭:2,8:A♭:2,1:D♭:2,None,b:B :2,4:E :2]
-[None,1:D♭:2,8:A♭:2,3:E♭:2,a:B♭:4,5:F :4,None]
-1645 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels New1
- 386 tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-2609 tabs  <module>           str(tabs)='[i:[3 1 1 6]] [n:[3 1 10 6]] [o:[]] [J:[4]] [S:[0 1 3]] [f:[test]]'
-2609 tabs  <module>           tabs=Tabs .width=960 .height=540 [i:[3 1 1 6]] [n:[3 1 10 6]] [o:[]] [J:[4]] [S:[0 1 3]] [f:[test]]
-1304 tabs  g_resizeTniks      j==P: i=0 v=0 .j()[P]=2 .i[P]=3
+ 226 tabs  dumpArgs           [a]      .AUTO_SAVE=0
+ 227 tabs  dumpArgs           [A]         .VARROW=1
+ 228 tabs  dumpArgs           [b]        .FRT_BRD=0
+ 229 tabs  dumpArgs           [B]            .BGC=0
+ 230 tabs  dumpArgs           [c]            .CAT=0
+ 231 tabs  dumpArgs           [C]      .CHECKERED=0
+ 232 tabs  dumpArgs           [d]       .DBG_TABT=0
+ 233 tabs  dumpArgs           [e]      .EVENT_LOG=0
+ 234 tabs  dumpArgs           [f]      .FILE_NAME='test'
+ 235 tabs  dumpArgs           [F]      .FULL_SCRN=0
+ 236 tabs  dumpArgs           [g]        .ORD_GRP=1
+ 237 tabs  dumpArgs           [G]       .GEN_DATA=0
+ 238 tabs  dumpArgs           [i]              .i=[3 1 1 1 6]
+ 239 tabs  dumpArgs           [J]      .DSP_J_LEV=4
+ 240 tabs  dumpArgs           [l]       .LONG_TXT=1
+ 241 tabs  dumpArgs           [L]             .LL=0
+ 242 tabs  dumpArgs           [M]      .MULTILINE=1
+ 243 tabs  dumpArgs           [n]              .n=[3 1 3 10 6]
+ 244 tabs  dumpArgs           [o]           .OIDS=1
+ 245 tabs  dumpArgs           [p]          .SNAPS=0
+ 246 tabs  dumpArgs           [R]         .RESIZE=1
+ 247 tabs  dumpArgs           [s]        .SPRITES=0
+ 248 tabs  dumpArgs           [S]             .SS=[0 1 3]
+ 249 tabs  dumpArgs           [t]           .TEST=0
+ 250 tabs  dumpArgs           [u]         .SUBPIX=1
+ 251 tabs  dumpArgs           [v]           .VRBY=0
+ 252 tabs  dumpArgs           [V]          .VIEWS=0
+ 253 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
+ 254 tabs  dumpArgs           [x]           .EXIT=0
+ 255 tabs  dumpArgs           [Z]             .ZZ=[]
+[8:A♭:2, 3:E♭:2, a:B♭:4, 5:F :4, 1:D♭:2, 9:A :2, 4:E :2, b:B :2, 7:G :2, 2:D :2]
+[8:G♯:2, 3:D♯:2, a:A♯:4, 5:F :4, 1:C♯:2, 9:A :2, 4:E :2, b:B :2, 7:G :2, 2:D :2]
+[a:B♭:4, 3:E♭:2, 8:A♭:2, 1:D♭:2,  None , b:B :2, 4:E :2]
+[ None , 1:D♭:2, 8:A♭:2, 3:E♭:2, a:B♭:4, 5:F :4,  None ]
+1637 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels New1
+ 384 tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+2600 tabs  <module>           str(tabs)='[i:[3 1 1 6]] [n:[3 1 10 6]] [o:[]] [J:[4]] [S:[0 1 3]] [f:[test]]'
+2600 tabs  <module>           tabs=Tabs .width=960 .height=540 [i:[3 1 1 6]] [n:[3 1 10 6]] [o:[]] [J:[4]] [S:[0 1 3]] [f:[test]]
+1302 tabs  g_resizeTniks      j==P: i=0 v=0 .j()[P]=2 .i[P]=3
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
 Page    1 I          C C   480   270 0.000 0.000   442  -118   324 v a  420    0 None          [128  63 255 255] [ 40  20  81 105] 0 0 0 1 1 c Lucida Console        
 Line    1 I          C C   480   270 0.000 0.000   393  -105   288 v a  373    0 None          [255  31 255 165] [ 81  10  81  75] 0 0 0 1 1 c Lucida Console        
@@ -1164,7 +1164,7 @@ Kord   57 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0
 Kord   58 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord   59 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord   60 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
-1304 tabs  g_resizeTniks      j==P: i=1 v=0 .j()[P]=2 .i[P]=3
+1302 tabs  g_resizeTniks      j==P: i=1 v=0 .j()[P]=2 .i[P]=3
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
 Page    2 I          C C   480   270 0.000 0.000   442  -118   324 v a  420    0 None          [128  63 255 255] [ 40  20  81 105] 0 0 0 1 1 c Lucida Console        
 Line    2 I          C C   480   270 0.000 0.000   393  -105   288 v a  373    0 None          [255  31 255 165] [ 81  10  81  75] 0 0 0 1 1 c Lucida Console        
@@ -1381,7 +1381,7 @@ Kord  117 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0
 Kord  118 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord  119 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord  120 I          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
-1304 tabs  g_resizeTniks      j==P: i=2 v=0 .j()[P]=2 .i[P]=3
+1302 tabs  g_resizeTniks      j==P: i=2 v=0 .j()[P]=2 .i[P]=3
 Name  Tid V PrtlText x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz Lead LnSp TablText  ForegroundColor   BackgroundColor  B I S M W w FontName              FullText
 Page    3 V          C C   480   270 0.000 0.000   442  -118   324 v a  420    0 None          [128  63 255 255] [ 40  20  81 105] 0 0 0 1 1 c Lucida Console        
 Line    3 V          C C   480   270 0.000 0.000   393  -105   288 v a  373    0 None          [255  31 255 165] [ 81  10  81  75] 0 0 0 1 1 c Lucida Console        
@@ -1598,815 +1598,455 @@ Kord  177 V          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0
 Kord  178 V          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord  179 V          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
 Kord  180 V          C C    48    15 18.68 32.00    25    -7    18 v a 23.3    0 None          [ 31 180 255 255] [ 10  57  81 120] 0 0 0 1 1 c Lucida Console         
-1538 tabs  plct2cc                 125 [  540  180 180  60   6] [3 1    1 6] ( 360 +  0 + 60 +  0 +5)
-1541 tabs  cursorCol          cc=125 [2 0 0 5]
-1516 tabs  cc2xywh            tpp=180 old=125 lenT=180 cc=125 old % lenT
-1521 tabs  cc2xywh            cc= 125 old= 125 [  540  180 180  60   6]   48.00  375.00   96.00   30.00 t.text=' ' 18.68 32.00 C,C
- 228 tabs  dumpArgs           [a]      .AUTO_SAVE=0
- 229 tabs  dumpArgs           [A]         .VARROW=1
- 230 tabs  dumpArgs           [b]        .FRT_BRD=0
- 231 tabs  dumpArgs           [B]            .BGC=0
- 232 tabs  dumpArgs           [c]            .CAT=0
- 233 tabs  dumpArgs           [C]      .CHECKERED=0
- 234 tabs  dumpArgs           [d]       .DBG_TABT=0
- 235 tabs  dumpArgs           [e]      .EVENT_LOG=0
- 236 tabs  dumpArgs           [f]      .FILE_NAME='test'
- 237 tabs  dumpArgs           [F]      .FULL_SCRN=0
- 238 tabs  dumpArgs           [g]        .ORD_GRP=1
- 239 tabs  dumpArgs           [G]       .GEN_DATA=0
- 240 tabs  dumpArgs           [i]              .i=[3 1 1 1 6]
- 241 tabs  dumpArgs           [J]      .DSP_J_LEV=4
- 242 tabs  dumpArgs           [l]       .LONG_TXT=1
- 243 tabs  dumpArgs           [L]             .LL=0
- 244 tabs  dumpArgs           [M]      .MULTILINE=1
- 245 tabs  dumpArgs           [n]              .n=[3 1 3 10 6]
- 246 tabs  dumpArgs           [o]           .OIDS=1
- 247 tabs  dumpArgs           [p]          .SNAPS=0
- 248 tabs  dumpArgs           [R]         .RESIZE=1
- 249 tabs  dumpArgs           [s]        .SPRITES=0
- 250 tabs  dumpArgs           [S]             .SS=[0 1 3]
- 251 tabs  dumpArgs           [t]           .TEST=0
- 252 tabs  dumpArgs           [u]         .SUBPIX=1
- 253 tabs  dumpArgs           [v]           .VRBY=0
- 254 tabs  dumpArgs           [V]          .VIEWS=0
- 255 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
- 256 tabs  dumpArgs           [x]           .EXIT=0
- 257 tabs  dumpArgs           [Z]             .ZZ=[]
-[8:A♭:2,3:E♭:2,a:B♭:4,5:F :4,1:D♭:2,9:A :2,4:E :2,b:B :2,7:G :2,2:D :2]
-[8:G♯:2,3:D♯:2,a:A♯:4,5:F :4,1:C♯:2,9:A :2,4:E :2,b:B :2,7:G :2,2:D :2]
-[a:B♭:4,3:E♭:2,8:A♭:2,1:D♭:2,None,b:B :2,4:E :2]
-[None,1:D♭:2,8:A♭:2,3:E♭:2,a:B♭:4,5:F :4,None]
-1645 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels Upd1
-2474 tabs  snapshot           snapName='test.20.0.INIT.png' on_draw()
- 338 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.0.INIT.png')
+1530 tabs  plct2cc                 125 [  540  180 180  60   6] [3 1    1 6] ( 360 +  0 + 60 +  0 +5)
+1533 tabs  cursorCol          cc=125 [2 0 0 5]
+1510 tabs  cc2xywh            tpp=180 old=125 lenT=180 cc=125 old % lenT
+1513 tabs  cc2xywh            cc= 125 old= 125 [  540  180 180  60   6]   48.00  375.00   96.00   30.00 t.text=' ' 18.68 32.00 C,C
+ 226 tabs  dumpArgs           [a]      .AUTO_SAVE=0
+ 227 tabs  dumpArgs           [A]         .VARROW=1
+ 228 tabs  dumpArgs           [b]        .FRT_BRD=0
+ 229 tabs  dumpArgs           [B]            .BGC=0
+ 230 tabs  dumpArgs           [c]            .CAT=0
+ 231 tabs  dumpArgs           [C]      .CHECKERED=0
+ 232 tabs  dumpArgs           [d]       .DBG_TABT=0
+ 233 tabs  dumpArgs           [e]      .EVENT_LOG=0
+ 234 tabs  dumpArgs           [f]      .FILE_NAME='test'
+ 235 tabs  dumpArgs           [F]      .FULL_SCRN=0
+ 236 tabs  dumpArgs           [g]        .ORD_GRP=1
+ 237 tabs  dumpArgs           [G]       .GEN_DATA=0
+ 238 tabs  dumpArgs           [i]              .i=[3 1 1 1 6]
+ 239 tabs  dumpArgs           [J]      .DSP_J_LEV=4
+ 240 tabs  dumpArgs           [l]       .LONG_TXT=1
+ 241 tabs  dumpArgs           [L]             .LL=0
+ 242 tabs  dumpArgs           [M]      .MULTILINE=1
+ 243 tabs  dumpArgs           [n]              .n=[3 1 3 10 6]
+ 244 tabs  dumpArgs           [o]           .OIDS=1
+ 245 tabs  dumpArgs           [p]          .SNAPS=0
+ 246 tabs  dumpArgs           [R]         .RESIZE=1
+ 247 tabs  dumpArgs           [s]        .SPRITES=0
+ 248 tabs  dumpArgs           [S]             .SS=[0 1 3]
+ 249 tabs  dumpArgs           [t]           .TEST=0
+ 250 tabs  dumpArgs           [u]         .SUBPIX=1
+ 251 tabs  dumpArgs           [v]           .VRBY=0
+ 252 tabs  dumpArgs           [V]          .VIEWS=0
+ 253 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
+ 254 tabs  dumpArgs           [x]           .EXIT=0
+ 255 tabs  dumpArgs           [Z]             .ZZ=[]
+[8:A♭:2, 3:E♭:2, a:B♭:4, 5:F :4, 1:D♭:2, 9:A :2, 4:E :2, b:B :2, 7:G :2, 2:D :2]
+[8:G♯:2, 3:D♯:2, a:A♯:4, 5:F :4, 1:C♯:2, 9:A :2, 4:E :2, b:B :2, 7:G :2, 2:D :2]
+[a:B♭:4, 3:E♭:2, 8:A♭:2, 1:D♭:2,  None , b:B :2, 4:E :2]
+[ None , 1:D♭:2, 8:A♭:2, 3:E♭:2, a:B♭:4, 5:F :4,  None ]
+1637 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels Upd1
+2465 tabs  snapshot           snapName='test.8.0.INIT.png' on_draw()
+ 338 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.8.0.INIT.png')
  339 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
- 341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
- 338 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.0.INIT.png')
+ 341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.8.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+ 338 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.8.0.INIT.png')
  339 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.3.1.3.10.6_CC_CC.png')
- 341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.3.1.3.10.6_CC_CC.png ###
+ 341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.8.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.3.1.3.10.6_CC_CC.png ###
   88 evnts on_draw            tobj.snapWhy='init' tobj.snapType='INIT' tobj.snapId=1
-snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.0.INIT.png')
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 121] _.text=3     2c2484fea70 121
+snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.8.0.INIT.png')
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 121] _.text=3     200d5dd3850 121
 00000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 122] _.text=3     2c2484ffeb0 122
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 122] _.text=3     200d5dd3f40 122
 000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 123] _.text=3     2c2484ff190 123
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 123] _.text=3     200d5dd3eb0 123
 0000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 124] _.text=3     2c2484ff130 124
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 124] _.text=3     200d5dedcc0 124
 00000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 125] _.text=      2c24851cd00 125
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 125] _.text=      200d5dee200 125
 000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 126] _.text=      2c24851c8b0 126
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 126] _.text=      200d5dd3fa0 126
 0000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 127] _.text=      2c24851d1e0 127
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 127] _.text=      200d5dee590 127
 00000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 128] _.text=      2c24851e140 128
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 128] _.text=      200d5def550 128
 000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 129] _.text=      2c24851e650 129
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 129] _.text=      200d5defa90 129
 0000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 130] _.text=      2c24851e350 130
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 130] _.text=      200d5def940 130
 00000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 131] _.text=      2c24851f160 131
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 131] _.text=      200d5def4f0 131
 000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 132] _.text=      2c24851f6a0 132
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 132] _.text=      200d5defeb0 132
 0000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 133] _.text=      2c24851f640 133
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 133] _.text=      200d5e0caf0 133
 00000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 134] _.text=      2c24851ffd0 134
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 134] _.text=      200d5dee140 134
 000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 135] _.text=      2c24851dfc0 135
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 135] _.text=      200d5e0dea0 135
 0000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 136] _.text=      2c248531000 136
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 136] _.text=      200d5e0e3e0 136
 00000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 137] _.text=      2c248531540 137
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 137] _.text=      200d5e0e920 137
 000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 138] _.text=      2c248531b70 138
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 138] _.text=      200d5e0ee60 138
 0000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 139] _.text=      2c248531a20 139
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 139] _.text=      200d5e0e860 139
 00000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 140] _.text=      2c248532950 140
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 140] _.text=      200d5e0fd00 140
 000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 141] _.text=      2c248532e90 141
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 141] _.text=      200d5e0f7c0 141
 0000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 142] _.text=      2c2485333d0 142
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 142] _.text=      200d5e0ed10 142
 00000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 143] _.text=      2c248533910 143
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 143] _.text=      200d5e1cd00 143
 000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 144] _.text=      2c248533e50 144
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 144] _.text=      200d5e1d240 144
 0000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 145] _.text=3     2c248533bb0 145
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 145] _.text=3     200d5e0e8c0 145
 00000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 146] _.text=3     2c248533df0 146
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 146] _.text=3     200d5e1e170 146
 000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 147] _.text=3     2c248551270 147
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 147] _.text=3     200d5e1e620 147
 0000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 148] _.text=3     2c248532410 148
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 148] _.text=3     200d5e1eb60 148
 00000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 149] _.text=      2c248551cf0 149
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 149] _.text=      200d5e1f0a0 149
 000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 150] _.text=      2c248552230 150
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 150] _.text=      200d5e1f5e0 150
 0000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 151] _.text=      2c2485521d0 151
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 151] _.text=      200d5e1f580 151
 00000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 152] _.text=      2c2485530d0 152
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 152] _.text=      200d5e1ff40 152
 000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 153] _.text=      2c248553610 153
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 153] _.text=      200d5e1ff10 153
 0000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 154] _.text=      2c248553b50 154
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 154] _.text=      200d5e38f40 154
 00000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 155] _.text=      2c248553eb0 155
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 155] _.text=      200d5e39480 155
 000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 156] _.text=      2c248553ca0 156
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 156] _.text=      200d5e399c0 156
 0000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 157] _.text=      2c2485606a0 157
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 157] _.text=      200d5e39960 157
 00000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 158] _.text=      2c2485614b0 158
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 158] _.text=      200d5e1ffa0 158
 000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 159] _.text=      2c2485619f0 159
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 159] _.text=      200d5e3ad10 159
 0000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 160] _.text=      2c248561f30 160
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 160] _.text=      200d5e3b250 160
 00000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 161] _.text=      2c248562440 161
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 161] _.text=      200d5e3b790 161
 000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 162] _.text=      2c2485629b0 162
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 162] _.text=      200d5e3bcd0 162
 0000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 163] _.text=      2c248562950 163
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 163] _.text=      200d5e3bf10 163
 00000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 164] _.text=      2c248563850 164
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 164] _.text=      200d5e3bc10 164
 000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 165] _.text=      2c248563d90 165
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 165] _.text=      200d5e590c0 165
 0000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 166] _.text=      2c2485637f0 166
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 166] _.text=      200d5e59630 166
 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 167] _.text=      2c248563550 167
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 167] _.text=      200d5e59b70 167
 000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 168] _.text=      2c248580d90 168
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 168] _.text=      200d5e5a0b0 168
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 169] _.text=      2c248580d30 169
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 169] _.text=      200d5e5a050 169
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 170] _.text=      2c248581c30 170
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 170] _.text=      200d5e5af50 170
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 171] _.text=      2c248582170 171
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 171] _.text=      200d5e5b4f0 171
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 172] _.text=      2c2485826b0 172
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 172] _.text=      200d5e5b9d0 172
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 173] _.text=      2c248582c50 173
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 173] _.text=      200d5e5b850 173
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 174] _.text=      2c2485830a0 174
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 174] _.text=      200d5e5bc70 174
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 175] _.text=      2c248583040 175
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 175] _.text=      200d5e6c8b0 175
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 176] _.text=      2c248583940 176
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 176] _.text=      200d5e6d390 176
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 177] _.text=      2c2485836a0 177
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 177] _.text=      200d5e5b3d0 177
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 178] _.text=      2c248583e80 178
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 178] _.text=      200d5e6de10 178
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 179] _.text=      2c248598f40 179
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 179] _.text=      200d5e6e350 179
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 180] _.text=      2c248582050 180
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 180] _.text=      200d5e6e890 180
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 121] _.text=G     2c248599330 121
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 121] _.text=G     200d5e6e740 121
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 122] _.text=D     2c24859a740 122
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 122] _.text=D     200d5e6fb80 122
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 123] _.text=A♯    2c24859ace0 123
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 123] _.text=A♯    200d5e6fbb0 123
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 124] _.text=F     2c24859a8c0 124
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 124] _.text=F     200d5e6fdf0 124
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 125] _.text=      2c24859b910 125
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 125] _.text=      200d5e84fa0 125
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 126] _.text=      2c24859b220 126
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 126] _.text=      200d5e85540 126
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 127] _.text=      2c2485b4250 127
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 127] _.text=      200d5e854e0 127
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 128] _.text=      2c24859bdf0 128
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 128] _.text=      200d5e86350 128
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 129] _.text=      2c2485b5390 129
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 129] _.text=      200d5e86770 129
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 130] _.text=      2c24859af50 130
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 130] _.text=      200d5e86b90 130
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 131] _.text=      2c2485b5d20 131
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 131] _.text=      200d5e870a0 131
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 132] _.text=      2c2485b6260 132
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 132] _.text=      200d5e875e0 132
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 133] _.text=      2c2485b6200 133
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 133] _.text=      200d5e87580 133
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 134] _.text=      2c2485b7100 134
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 134] _.text=      200d5e87f70 134
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 135] _.text=      2c2485b7640 135
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 135] _.text=      200d5e87f40 135
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 136] _.text=      2c2485b7b80 136
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 136] _.text=      200d5e9cf40 136
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 137] _.text=      2c2485b74f0 137
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 137] _.text=      200d5e9d480 137
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 138] _.text=      2c2485b7df0 138
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 138] _.text=      200d5e9d9c0 138
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 139] _.text=      2c2485cc760 139
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 139] _.text=      200d5e9d960 139
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 140] _.text=      2c2485cd4e0 140
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 140] _.text=      200d5e9e860 140
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 141] _.text=      2c2485cda20 141
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 141] _.text=      200d5e87eb0 141
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 142] _.text=      2c2485cdf60 142
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 142] _.text=      200d5e9f2e0 142
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 143] _.text=      2c2485b7a60 143
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 143] _.text=      200d5e9f820 143
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 144] _.text=      2c2485ce9e0 144
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 144] _.text=      200d5e9fd60 144
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 145] _.text=G     2c2485ce980 145
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 145] _.text=G     200d5e9f6d0 145
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 146] _.text=D     2c2485cf880 146
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 146] _.text=D     200d5e9f700 146
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 147] _.text=A♯    2c2485cfdc0 147
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 147] _.text=A♯    200d5e9e740 147
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 148] _.text=F     2c2485cf580 148
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 148] _.text=F     200d5eb9810 148
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 149] _.text=      2c2485cfc70 149
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 149] _.text=      200d5eb9de0 149
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 150] _.text=      2c2485ecdc0 150
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 150] _.text=      200d5eba320 150
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 151] _.text=      2c2485ecd60 151
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 151] _.text=      200d5eba2c0 151
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 152] _.text=      2c2485edc60 152
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 152] _.text=      200d5ebb1c0 152
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 153] _.text=      2c2485ee1a0 153
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 153] _.text=      200d5ebb6d0 153
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 154] _.text=      2c2485ee6e0 154
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 154] _.text=      200d5ebbaf0 154
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 155] _.text=      2c2485eec20 155
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 155] _.text=      200d5ebbc70 155
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 156] _.text=      2c2485ef190 156
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 156] _.text=      200d5ebb910 156
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 157] _.text=      2c2485ef0d0 157
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 157] _.text=      200d5ed08e0 157
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 158] _.text=      2c2485efdc0 158
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 158] _.text=      200d5ed13c0 158
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 159] _.text=      2c2485efdf0 159
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 159] _.text=      200d5ed1900 159
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 160] _.text=      2c2485efe20 160
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 160] _.text=      200d5ed1e40 160
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 161] _.text=      2c2485fd000 161
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 161] _.text=      200d5ed2380 161
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 162] _.text=      2c2485ee5c0 162
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 162] _.text=      200d5ed28c0 162
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 163] _.text=      2c2485fd480 163
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 163] _.text=      200d5ed2860 163
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 164] _.text=      2c2485fe3e0 164
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 164] _.text=      200d5ed3760 164
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 165] _.text=      2c2485fe920 165
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 165] _.text=      200d5ed3ca0 165
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 166] _.text=      2c2485fee60 166
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 166] _.text=      200d5ed3f10 166
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 167] _.text=      2c2485ff3a0 167
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 167] _.text=      200d5ed3a00 167
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 168] _.text=      2c2485ff8e0 168
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 168] _.text=      200d5ee8ca0 168
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 169] _.text=      2c2485ff700 169
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 169] _.text=      200d5ee8c40 169
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 170] _.text=      2c2485fffa0 170
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 170] _.text=      200d5ee9b40 170
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 171] _.text=      2c248614d00 171
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 171] _.text=      200d5eea080 171
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 172] _.text=      2c248615240 172
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 172] _.text=      200d5eea5c0 172
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 173] _.text=      2c248615780 173
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 173] _.text=      200d5eeaad0 173
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 174] _.text=      2c248615cc0 174
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 174] _.text=      200d5eeb040 174
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 175] _.text=      2c2486151e0 175
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 175] _.text=      200d5eeafe0 175
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 176] _.text=      2c248616b60 176
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 176] _.text=      200d5eebfd0 176
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 177] _.text=      2c2486170a0 177
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 177] _.text=      200d5eebbe0 177
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 178] _.text=      2c2486175e0 178
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 178] _.text=      200d5eeba30 178
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 179] _.text=      2c248617b20 179
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 179] _.text=      200d5eea440 179
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 180] _.text=      2c248617e80 180
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 180] _.text=      200d5ef9420 180
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 121] _.text=G     2c248630490 121
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 121] _.text=G     200d5ef9ae0 121
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 122] _.text=m     2c2486308b0 122
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 122] _.text=m     200d5ef9d80 122
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 123] _.text=7     2c248630190 123
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 123] _.text=7     200d5efa380 123
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 124] _.text=/F    2c248631a20 124
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 124] _.text=/F    200d5efaa40 124
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 125] _.text=      2c248631c60 125
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 125] _.text=      200d5efb3a0 125
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 126] _.text=      2c24859ae60 126
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 126] _.text=      200d5efb520 126
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 127] _.text=      2c248632b90 127
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 127] _.text=      200d5f20250 127
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 128] _.text=      2c2486337f0 128
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 128] _.text=      200d5efbdf0 128
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 129] _.text=      2c248633d30 129
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 129] _.text=      200d5f21390 129
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 130] _.text=      2c2486331c0 130
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 130] _.text=      200d5f21840 130
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 131] _.text=      2c248633b80 131
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 131] _.text=      200d5f21c60 131
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 132] _.text=      2c24864cd30 132
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 132] _.text=      200d5f22140 132
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 133] _.text=      2c24864d1b0 133
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 133] _.text=      200d5f220e0 133
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 134] _.text=      2c24864dbd0 134
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 134] _.text=      200d5f22fe0 134
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 135] _.text=      2c24864e110 135
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 135] _.text=      200d5f23520 135
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 136] _.text=      2c24864e650 136
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 136] _.text=      200d5f23b50 136
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 137] _.text=      2c24864eb90 137
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 137] _.text=      200d5f23c70 137
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 138] _.text=      2c24864f0d0 138
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 138] _.text=      200d5f23790 138
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 139] _.text=      2c24864f550 139
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 139] _.text=      200d5f388e0 139
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 140] _.text=      2c24864ff40 140
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 140] _.text=      200d5f393c0 140
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 141] _.text=      2c24864f820 141
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 141] _.text=      200d5f39900 141
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 142] _.text=      2c24864faf0 142
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 142] _.text=      200d5f39e40 142
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 143] _.text=      2c248664f70 143
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 143] _.text=      200d5f23460 143
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 144] _.text=      2c2486654b0 144
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 144] _.text=      200d5f3a8c0 144
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 145] _.text=G     2c248665930 145
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 145] _.text=G     200d5f3a860 145
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 146] _.text=m     2c2486658a0 146
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 146] _.text=m     200d5f3ada0 146
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 147] _.text=7     2c248665f00 147
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 147] _.text=7     200d5f3b400 147
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 148] _.text=/F    2c2486657b0 148
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 148] _.text=/F    200d5f3acb0 148
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 149] _.text=      2c2486661d0 149
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 149] _.text=      200d5f3beb0 149
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 150] _.text=      2c248666fb0 150
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 150] _.text=      200d5f39d20 150
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 151] _.text=      2c248667880 151
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 151] _.text=      200d5f4c610 151
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 152] _.text=      2c248667e20 152
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 152] _.text=      200d5f4dde0 152
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 153] _.text=      2c248678dc0 153
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 153] _.text=      200d5f4e320 153
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 154] _.text=      2c248679270 154
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 154] _.text=      200d5f4e860 154
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 155] _.text=      2c2486797b0 155
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 155] _.text=      200d5f4ed70 155
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 156] _.text=      2c248679cf0 156
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 156] _.text=      200d5f4f190 156
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 157] _.text=      2c24867a170 157
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 157] _.text=      200d5f4f130 157
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 158] _.text=      2c24867ab90 158
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 158] _.text=      200d5f4fcd0 158
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 159] _.text=      2c24867b0d0 159
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 159] _.text=      200d5f4fa60 159
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 160] _.text=      2c24867b610 160
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 160] _.text=      200d5f60af0 160
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 161] _.text=      2c24867bb50 161
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 161] _.text=      200d5f61030 161
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 162] _.text=      2c24867be50 162
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 162] _.text=      200d5f61540 162
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 163] _.text=      2c2486900d0 163
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 163] _.text=      200d5f60a90 163
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 164] _.text=      2c24867b9a0 164
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 164] _.text=      200d5f62410 164
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 165] _.text=      2c2486914b0 165
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 165] _.text=      200d5f62950 165
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 166] _.text=      2c2486919f0 166
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 166] _.text=      200d5f62e90 166
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 167] _.text=      2c248691f30 167
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 167] _.text=      200d5f633d0 167
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 168] _.text=      2c248692470 168
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 168] _.text=      200d5f63970 168
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 169] _.text=      2c2486928f0 169
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 169] _.text=      200d5f638b0 169
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 170] _.text=      2c248693310 170
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 170] _.text=      200d5f63fd0 170
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 171] _.text=      2c248693850 171
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 171] _.text=      200d5f84d30 171
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 172] _.text=      2c248693d90 172
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 172] _.text=      200d5f85270 172
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 173] _.text=      2c248693df0 173
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 173] _.text=      200d5f857b0 173
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 174] _.text=      2c248693be0 174
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 174] _.text=      200d5f85cf0 174
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 175] _.text=      2c2486b0cd0 175
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 175] _.text=      200d5f85b10 175
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 176] _.text=      2c2486b16f0 176
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 176] _.text=      200d5f86b90 176
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 177] _.text=      2c2486b1c30 177
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 177] _.text=      200d5f870d0 177
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 178] _.text=      2c2486b2170 178
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 178] _.text=      200d5f87610 178
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 179] _.text=      2c2486b26b0 179
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 179] _.text=      200d5f87b50 179
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=0 plsct=[3 3 9 90 180] _.text=      2c2486b2bf0 180
+2348 tabs  flipVis            v=0 plsct=[3 3 9 90 180] _.text=      200d5f87eb0 180
 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 121] _.text=3     2c2484fea70 121
-11111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 122] _.text=3     2c2484ffeb0 122
-111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 123] _.text=3     2c2484ff190 123
-1111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 124] _.text=3     2c2484ff130 124
-11111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 125] _.text=      2c24851cd00 125
-111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 126] _.text=      2c24851c8b0 126
-1111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 127] _.text=      2c24851d1e0 127
-11111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 128] _.text=      2c24851e140 128
-111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 129] _.text=      2c24851e650 129
-1111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 130] _.text=      2c24851e350 130
-11111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 131] _.text=      2c24851f160 131
-111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 132] _.text=      2c24851f6a0 132
-1111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 133] _.text=      2c24851f640 133
-11111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 134] _.text=      2c24851ffd0 134
-111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 135] _.text=      2c24851dfc0 135
-1111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 136] _.text=      2c248531000 136
-11111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 137] _.text=      2c248531540 137
-111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 138] _.text=      2c248531b70 138
-1111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 139] _.text=      2c248531a20 139
-11111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 140] _.text=      2c248532950 140
-111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 141] _.text=      2c248532e90 141
-1111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 142] _.text=      2c2485333d0 142
-11111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 143] _.text=      2c248533910 143
-111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 144] _.text=      2c248533e50 144
-1111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 145] _.text=3     2c248533bb0 145
-11111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 146] _.text=3     2c248533df0 146
-111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 147] _.text=3     2c248551270 147
-1111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 148] _.text=3     2c248532410 148
-11111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 149] _.text=      2c248551cf0 149
-111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 150] _.text=      2c248552230 150
-1111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 151] _.text=      2c2485521d0 151
-11111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 152] _.text=      2c2485530d0 152
-111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 153] _.text=      2c248553610 153
-1111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 154] _.text=      2c248553b50 154
-11111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 155] _.text=      2c248553eb0 155
-111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 156] _.text=      2c248553ca0 156
-1111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 157] _.text=      2c2485606a0 157
-11111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 158] _.text=      2c2485614b0 158
-111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 159] _.text=      2c2485619f0 159
-1111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 160] _.text=      2c248561f30 160
-11111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 161] _.text=      2c248562440 161
-111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 162] _.text=      2c2485629b0 162
-1111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 163] _.text=      2c248562950 163
-11111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 164] _.text=      2c248563850 164
-111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 165] _.text=      2c248563d90 165
-1111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 166] _.text=      2c2485637f0 166
-11111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 167] _.text=      2c248563550 167
-111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 168] _.text=      2c248580d90 168
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 169] _.text=      2c248580d30 169
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 170] _.text=      2c248581c30 170
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 171] _.text=      2c248582170 171
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 172] _.text=      2c2485826b0 172
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 173] _.text=      2c248582c50 173
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 174] _.text=      2c2485830a0 174
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 175] _.text=      2c248583040 175
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 176] _.text=      2c248583940 176
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 177] _.text=      2c2485836a0 177
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 178] _.text=      2c248583e80 178
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 179] _.text=      2c248598f40 179
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 180] _.text=      2c248582050 180
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 121] _.text=G     2c248599330 121
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 122] _.text=D     2c24859a740 122
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 123] _.text=A♯    2c24859ace0 123
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 124] _.text=F     2c24859a8c0 124
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 125] _.text=      2c24859b910 125
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 126] _.text=      2c24859b220 126
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 127] _.text=      2c2485b4250 127
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 128] _.text=      2c24859bdf0 128
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 129] _.text=      2c2485b5390 129
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 130] _.text=      2c24859af50 130
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 131] _.text=      2c2485b5d20 131
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 132] _.text=      2c2485b6260 132
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 133] _.text=      2c2485b6200 133
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 134] _.text=      2c2485b7100 134
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 135] _.text=      2c2485b7640 135
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 136] _.text=      2c2485b7b80 136
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 137] _.text=      2c2485b74f0 137
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 138] _.text=      2c2485b7df0 138
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 139] _.text=      2c2485cc760 139
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 140] _.text=      2c2485cd4e0 140
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 141] _.text=      2c2485cda20 141
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 142] _.text=      2c2485cdf60 142
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 143] _.text=      2c2485b7a60 143
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 144] _.text=      2c2485ce9e0 144
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 145] _.text=G     2c2485ce980 145
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 146] _.text=D     2c2485cf880 146
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 147] _.text=A♯    2c2485cfdc0 147
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 148] _.text=F     2c2485cf580 148
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 149] _.text=      2c2485cfc70 149
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 150] _.text=      2c2485ecdc0 150
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 151] _.text=      2c2485ecd60 151
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 152] _.text=      2c2485edc60 152
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 153] _.text=      2c2485ee1a0 153
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 154] _.text=      2c2485ee6e0 154
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 155] _.text=      2c2485eec20 155
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 156] _.text=      2c2485ef190 156
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 157] _.text=      2c2485ef0d0 157
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 158] _.text=      2c2485efdc0 158
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 159] _.text=      2c2485efdf0 159
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 160] _.text=      2c2485efe20 160
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 161] _.text=      2c2485fd000 161
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 162] _.text=      2c2485ee5c0 162
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 163] _.text=      2c2485fd480 163
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 164] _.text=      2c2485fe3e0 164
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 165] _.text=      2c2485fe920 165
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 166] _.text=      2c2485fee60 166
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 167] _.text=      2c2485ff3a0 167
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 168] _.text=      2c2485ff8e0 168
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 169] _.text=      2c2485ff700 169
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 170] _.text=      2c2485fffa0 170
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 171] _.text=      2c248614d00 171
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 172] _.text=      2c248615240 172
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 173] _.text=      2c248615780 173
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 174] _.text=      2c248615cc0 174
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 175] _.text=      2c2486151e0 175
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 176] _.text=      2c248616b60 176
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 177] _.text=      2c2486170a0 177
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 178] _.text=      2c2486175e0 178
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 179] _.text=      2c248617b20 179
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 180] _.text=      2c248617e80 180
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 121] _.text=G     2c248630490 121
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 122] _.text=m     2c2486308b0 122
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 123] _.text=7     2c248630190 123
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 124] _.text=/F    2c248631a20 124
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 125] _.text=      2c248631c60 125
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 126] _.text=      2c24859ae60 126
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 127] _.text=      2c248632b90 127
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 128] _.text=      2c2486337f0 128
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 129] _.text=      2c248633d30 129
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 130] _.text=      2c2486331c0 130
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 131] _.text=      2c248633b80 131
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 132] _.text=      2c24864cd30 132
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 133] _.text=      2c24864d1b0 133
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 134] _.text=      2c24864dbd0 134
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 135] _.text=      2c24864e110 135
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 136] _.text=      2c24864e650 136
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 137] _.text=      2c24864eb90 137
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 138] _.text=      2c24864f0d0 138
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 139] _.text=      2c24864f550 139
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 140] _.text=      2c24864ff40 140
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 141] _.text=      2c24864f820 141
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 142] _.text=      2c24864faf0 142
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 143] _.text=      2c248664f70 143
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 144] _.text=      2c2486654b0 144
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 145] _.text=G     2c248665930 145
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 146] _.text=m     2c2486658a0 146
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 147] _.text=7     2c248665f00 147
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 148] _.text=/F    2c2486657b0 148
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 149] _.text=      2c2486661d0 149
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 150] _.text=      2c248666fb0 150
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 151] _.text=      2c248667880 151
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 152] _.text=      2c248667e20 152
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 153] _.text=      2c248678dc0 153
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 154] _.text=      2c248679270 154
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 155] _.text=      2c2486797b0 155
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 156] _.text=      2c248679cf0 156
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 157] _.text=      2c24867a170 157
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 158] _.text=      2c24867ab90 158
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 159] _.text=      2c24867b0d0 159
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 160] _.text=      2c24867b610 160
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 161] _.text=      2c24867bb50 161
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 162] _.text=      2c24867be50 162
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 163] _.text=      2c2486900d0 163
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 164] _.text=      2c24867b9a0 164
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 165] _.text=      2c2486914b0 165
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 166] _.text=      2c2486919f0 166
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 167] _.text=      2c248691f30 167
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 168] _.text=      2c248692470 168
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 169] _.text=      2c2486928f0 169
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 170] _.text=      2c248693310 170
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 171] _.text=      2c248693850 171
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 172] _.text=      2c248693d90 172
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 173] _.text=      2c248693df0 173
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 174] _.text=      2c248693be0 174
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 175] _.text=      2c2486b0cd0 175
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 176] _.text=      2c2486b16f0 176
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 177] _.text=      2c2486b1c30 177
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 178] _.text=      2c2486b2170 178
-11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 179] _.text=      2c2486b26b0 179
-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-2356 tabs  flipVis            v=1 plsct=[3 3 9 90 180] _.text=      2c2486b2bf0 180
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
  TId  Identity    Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  TId  Identity    Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
-2508 tabs  quit               BGN @^Q Error=0 save=0 .quitting=0
+2499 tabs  quit               BGN @^Q Error=0 save=0 .quitting=0
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
- 228 tabs  dumpArgs           [a]      .AUTO_SAVE=0
- 229 tabs  dumpArgs           [A]         .VARROW=1
- 230 tabs  dumpArgs           [b]        .FRT_BRD=0
- 231 tabs  dumpArgs           [B]            .BGC=0
- 232 tabs  dumpArgs           [c]            .CAT=0
- 233 tabs  dumpArgs           [C]      .CHECKERED=0
- 234 tabs  dumpArgs           [d]       .DBG_TABT=0
- 235 tabs  dumpArgs           [e]      .EVENT_LOG=0
- 236 tabs  dumpArgs           [f]      .FILE_NAME='test'
- 237 tabs  dumpArgs           [F]      .FULL_SCRN=0
- 238 tabs  dumpArgs           [g]        .ORD_GRP=1
- 239 tabs  dumpArgs           [G]       .GEN_DATA=0
- 240 tabs  dumpArgs           [i]              .i=[3 1 1 1 6]
- 241 tabs  dumpArgs           [J]      .DSP_J_LEV=4
- 242 tabs  dumpArgs           [l]       .LONG_TXT=1
- 243 tabs  dumpArgs           [L]             .LL=0
- 244 tabs  dumpArgs           [M]      .MULTILINE=1
- 245 tabs  dumpArgs           [n]              .n=[3 1 3 10 6]
- 246 tabs  dumpArgs           [o]           .OIDS=1
- 247 tabs  dumpArgs           [p]          .SNAPS=0
- 248 tabs  dumpArgs           [R]         .RESIZE=1
- 249 tabs  dumpArgs           [s]        .SPRITES=0
- 250 tabs  dumpArgs           [S]             .SS=[0 1 3]
- 251 tabs  dumpArgs           [t]           .TEST=0
- 252 tabs  dumpArgs           [u]         .SUBPIX=1
- 253 tabs  dumpArgs           [v]           .VRBY=0
- 254 tabs  dumpArgs           [V]          .VIEWS=0
- 255 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
- 256 tabs  dumpArgs           [x]           .EXIT=0
- 257 tabs  dumpArgs           [Z]             .ZZ=[]
-[8:A♭:2,3:E♭:2,a:B♭:4,5:F :4,1:D♭:2,9:A :2,4:E :2,b:B :2,7:G :2,2:D :2]
-[8:G♯:2,3:D♯:2,a:A♯:4,5:F :4,1:C♯:2,9:A :2,4:E :2,b:B :2,7:G :2,2:D :2]
-[a:B♭:4,3:E♭:2,8:A♭:2,1:D♭:2,None,b:B :2,4:E :2]
-[None,1:D♭:2,8:A♭:2,3:E♭:2,a:B♭:4,5:F :4,None]
-1645 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels @^Q
+ 226 tabs  dumpArgs           [a]      .AUTO_SAVE=0
+ 227 tabs  dumpArgs           [A]         .VARROW=1
+ 228 tabs  dumpArgs           [b]        .FRT_BRD=0
+ 229 tabs  dumpArgs           [B]            .BGC=0
+ 230 tabs  dumpArgs           [c]            .CAT=0
+ 231 tabs  dumpArgs           [C]      .CHECKERED=0
+ 232 tabs  dumpArgs           [d]       .DBG_TABT=0
+ 233 tabs  dumpArgs           [e]      .EVENT_LOG=0
+ 234 tabs  dumpArgs           [f]      .FILE_NAME='test'
+ 235 tabs  dumpArgs           [F]      .FULL_SCRN=0
+ 236 tabs  dumpArgs           [g]        .ORD_GRP=1
+ 237 tabs  dumpArgs           [G]       .GEN_DATA=0
+ 238 tabs  dumpArgs           [i]              .i=[3 1 1 1 6]
+ 239 tabs  dumpArgs           [J]      .DSP_J_LEV=4
+ 240 tabs  dumpArgs           [l]       .LONG_TXT=1
+ 241 tabs  dumpArgs           [L]             .LL=0
+ 242 tabs  dumpArgs           [M]      .MULTILINE=1
+ 243 tabs  dumpArgs           [n]              .n=[3 1 3 10 6]
+ 244 tabs  dumpArgs           [o]           .OIDS=1
+ 245 tabs  dumpArgs           [p]          .SNAPS=0
+ 246 tabs  dumpArgs           [R]         .RESIZE=1
+ 247 tabs  dumpArgs           [s]        .SPRITES=0
+ 248 tabs  dumpArgs           [S]             .SS=[0 1 3]
+ 249 tabs  dumpArgs           [t]           .TEST=0
+ 250 tabs  dumpArgs           [u]         .SUBPIX=1
+ 251 tabs  dumpArgs           [v]           .VRBY=0
+ 252 tabs  dumpArgs           [V]          .VIEWS=0
+ 253 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
+ 254 tabs  dumpArgs           [x]           .EXIT=0
+ 255 tabs  dumpArgs           [Z]             .ZZ=[]
+[8:A♭:2, 3:E♭:2, a:B♭:4, 5:F :4, 1:D♭:2, 9:A :2, 4:E :2, b:B :2, 7:G :2, 2:D :2]
+[8:G♯:2, 3:D♯:2, a:A♯:4, 5:F :4, 1:C♯:2, 9:A :2, 4:E :2, b:B :2, 7:G :2, 2:D :2]
+[a:B♭:4, 3:E♭:2, 8:A♭:2, 1:D♭:2,  None , b:B :2, 4:E :2]
+[ None , 1:D♭:2, 8:A♭:2, 3:E♭:2, a:B♭:4, 5:F :4,  None ]
+1637 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels @^Q
  141 chords dumpLimap            0 0 0 Fm11x        Fm11x        R4b7m3       05a3   FA♯D♯G♯      Rm34b7       035a   FG♯A♯D♯     
  141 chords dumpLimap            0 0 1 A♯7s4/F      A♯7s4/F      5R4b7        705a   FA♯D♯G♯      R45b7        057a   A♯D♯FG♯     
  141 chords dumpLimap            0 0 2 G♯6s2/F      G♯6s2/F      625R         9270   FA♯D♯G♯      R256         0279   G♯A♯D♯F     
@@ -2431,34 +2071,34 @@ snapPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.0.I
  141 chords dumpLimap           64 0 1 A♯6/F        A♯6/F        5RM36        7049   FA♯DG        RM356        0479   A♯DFG       
  141 chords dumpLimap           64 0 2 Dm+4/F       Dm+4/F       m3#5R4       3805   FA♯DG        Rm34#5       0358   DFGA♯       
  141 chords dumpLimap           64 0 3 F6s2s4x      F6s2s4x      R462         0592   FA♯DG        R246         0259   FGA♯D       
-2519 tabs  quit               END @^Q Error=0 save=0 .quitting=1
+2510 tabs  quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
  330 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  333 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  330 utl   getFilePath        baseName =Atest.3.1.3.10.6_CC_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  333 utl   getFilePath        fileName =Atest.3.1.3.10.6_CC_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.3.1.3.10.6_CC_CC.csv')
-2543 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.3.1.3.10.6_CC_CC.csv
+2534 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.3.1.3.10.6_CC_CC.csv
  338 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  339 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.3.1.3.10.6_CC_CC.csv')
  341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Atest.3.1.3.10.6_CC_CC.csv ###
-2546 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.20.csv
+2537 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.8.csv
  338 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 339 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.20.csv')
- 341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.20.csv ###
-2521 tabs  quit               END @^Q Error=0 save=0 .quitting=1
+ 339 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.8.csv')
+ 341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.8.csv ###
+2512 tabs  quit               END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-2522 tabs  quit               Calling close(),2612 tabs  <module>           Thats all folks!
-2613 tabs  <module>           END C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+2513 tabs  quit               Calling close(),2603 tabs  <module>           Thats all folks!
+2604 tabs  <module>           END C:\Users\Owner\Documents\GitHub\tabs\tabs.py
  330 utl   getFilePath        baseName =Atest.3.1.3.10.6_CC_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  333 utl   getFilePath        fileName =Atest.3.1.3.10.6_CC_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.3.1.3.10.6_CC_CC.log')
  330 utl   getFilePath        baseName =Etest.3.1.3.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  333 utl   getFilePath        fileName =Etest.3.1.3.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.3.1.3.10.6_CC_CC.txt')
-2576 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.20.txt
+2567 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.8.txt
  338 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
- 339 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.20.txt')
- 341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.20.txt ###
-2578 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.3.1.3.10.6_CC_CC.txt
+ 339 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.8.txt')
+ 341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.8.txt ###
+2569 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.3.1.3.10.6_CC_CC.txt
  338 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
  339 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.3.1.3.10.6_CC_CC.txt')
  341 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.3.1.3.10.6_CC_CC.txt ###
-2580 tabs  cleanupOutFiles    Flush & Close Txt File
+2571 tabs  cleanupOutFiles    Flush & Close Txt File
