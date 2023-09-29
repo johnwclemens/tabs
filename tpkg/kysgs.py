@@ -17,7 +17,7 @@ KSD     = {}
 KIM, KIS, KMS, KJS, KNS        = range(5)
 KSK, KST, KSN, KSI, KSMS, KSSI = range(6)
 M, P    = -7, 7
-FD, PFX = -2, 0
+FD, PFX = 2, 0
 
 def init(f):
     global FD   ;   FD = f

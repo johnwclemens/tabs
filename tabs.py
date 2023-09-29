@@ -400,15 +400,15 @@ class Tabs(pyglet.window.Window):
     def j2(  self):                   return [ i-1 if i else 0 for j, i in enumerate(self.i)  if j != S ]
     def j2g( self, j):                return self.g[ self.gn[j] ]
     def resetJ(self, why=Z, dbg=1): self.J1 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.J2 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.nvis = 0  ;  self.dumpJs(why) if dbg else None
+#   def setJ(self, j, n, v=None, dbg=0):
+#       self.log(f'{j=} {n=} {v=}') if dbg else None
+#       self.J1[j] = n  ;  self.J2[j] += 1  ;   self.J1[-1] += 1  ;  self.J2[-1] += 1
     def setJ(self, j, n, v=None):
         v = self.isV() if v is None else v
         self.J1[j] = n  ;  self.J2[j] += 1  ;   self.J1[-1] += 1  ;  self.J2[-1] += 1
         self.nvis  += 1 if v else 0
         self.visib[j].append(v)
         assert ist(v, int),  f'{type(v)=} {v=}'
-#   def setJ(self, j, n, v=None, dbg=0):
-#       self.log(f'{j=} {n=} {v=}') if dbg else None
-#       self.J1[j] = n  ;  self.J2[j] += 1  ;   self.J1[-1] += 1  ;  self.J2[-1] += 1
     def setJdump(self, j, n, v=None, why=Z):
         i = self.J2[j]   ;  self.setJ(j, n, v)  ;   self.dumpTnik(self.E[j][i], j, why)  ;   return j
     ####################################################################################################################################################################################################
@@ -1249,13 +1249,13 @@ class Tabs(pyglet.window.Window):
             tnik.content_valign =  self.va
             if   j == Q:           self._setTNIKStyle(tnik, self.k[j] if (i+1) % 10 else self.k[R], NORMAL_STYLE)
             else:                  self._setTNIKStyle(tnik, self.k[j],                              NORMAL_STYLE)
-        assert ist(v, int),  f'{type(v)=} {v=}'
-        tnik.visible =  bool(v)
-        self.visib[j].append(v)  # self.setCaption(f'{self.dataPath3} page {i+1}') # {self.fmtFont()}')
         if j == P and v:           self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {i+1}')
         self.checkTnik(tnik, i, j)
         if    tlst is not None:    tlst.append(tnik)
         key = self.idmapkey(j)  ;  self.idmap[key] = (tnik, j, i)
+#        tnik.visible = True if j == H else False # bool(v)
+        tnik.visible =  bool(v)
+        self.visib[j].append(v)  # self.setCaption(f'{self.dataPath3} page {i+1}') # {self.fmtFont()}')
         if    dbg:                 self.dumpTnik(tnik, j, why)
         return tnik
     ####################################################################################################################################################################################################
@@ -1298,7 +1298,7 @@ class Tabs(pyglet.window.Window):
         for i in range(n):
             if   j in (C, E):                   x2 = x + i*w
             else:
-                if    j == P:                   v = int(self.pages[self.J1[P]].visible)  ;  self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
+                if    j == P:                    v = int(self.pages[self.J1[P]].visible)  ;  self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
                 else:                           y2 = y - i*h
                 if    j == L:
                     if self.J2[L] >= lp*ll:     msg = f'WARN MAX Line {self.J2[L]=} >= {lp=} * {ll=}'  ;   self.log(msg)  ;  self.quit(msg)
@@ -1309,11 +1309,10 @@ class Tabs(pyglet.window.Window):
             yield self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
     ####################################################################################################################################################################################################
     def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self._setTNIKStyle(tnik, self.k[j], self.BGC)
-        assert ist(tlist, list)
 #        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=}'
-        tnik    = tlist[i]   ;    v = tnik.visible
-        self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}') if dbg and j == H  else None
-        self.setJ(j, i, v)       if j != H or (j == H and self.J2[H] == 0) else None
+        tnik    = tlist[i]
+        self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
+        self.setJ(j, i, tnik.visible) if j != H or (j == H and self.J2[H] == 0) else None
         if   ist(tnik, SPR):
             mx, my = w/tnik.image.width, h/tnik.image.height
             tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
@@ -1322,8 +1321,7 @@ class Tabs(pyglet.window.Window):
             tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
             self.checkTnik(tnik, i, j)
         self.dumpTnik(tnik, j, why) if dbg else None
-#        if j == P and v:   self.setCaption(f'{self.dataPath3} page {i + 1}') #} {self.fmtFont()}')
-        if j == P and v:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {i + 1}')
+        if j == P and tnik.visible:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {i + 1}')
         return tnik
     ####################################################################################################################################################################################################
     def dumpTniksPfx(self, why=Z, h=1, r=1):
@@ -1356,7 +1354,7 @@ class Tabs(pyglet.window.Window):
     def fjtxt():     return W.join(f'{jtxt[0]:>{JFMT[i]}}' for i, jtxt in enumerate(JTEXTS)) + ' Vis' # optimize str concat?
     @staticmethod
     def consMe(it):  return collections.deque(it, maxlen=0)
-    def clearVisib(self):               Tabs.consMe(v.clear() for v in self.visib)
+    def clearVisib(self):   Tabs.consMe(v.clear() for v in self.visib)
 
     def dumpTnik(self, t=None, j=None, why=Z):
         if   t is None:    self.log(self.fTnikHdr(), p=0)   ;   return # hack
@@ -1785,9 +1783,13 @@ class Tabs(pyglet.window.Window):
     def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll( self, x, y, dx, dy)
     def on_mouse_release(self, x, y, bttn, mods=0): return evnts.on_mouse_release(self, x, y, bttn, mods)
     def on_move(         self, x, y):               return evnts.on_move(         self, x, y)
-    def on_resize(self, w, h): super().on_resize(w, h)  ;  self.resizeTniks(dbg=1) if self.RESIZE else None   ;   return True
     def on_text(         self, text):               return evnts.on_text(         self, text)
     def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
+    def on_resize(self, w, h):
+        super().on_resize(w, h)
+        if self.RESIZE:
+            self.resizeTniks(dbg=1)
+        return True
     ####################################################################################################################################################################################################
     def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
@@ -2303,7 +2305,6 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'    {how} {a=} {self.i[P]=}')
         self.flipVisible(how=how) #, p=(self.j()[P] + a) % self.n[P])
         self.dumpVisible()  ;   self.dumpVisible2()
-#        self.resizeTniks(dbg=dbg)
         if dbg: self.log(f'END {how} {a=} {self.i[P]=}')
 
     def flipDrwBGC(self, how, c):
@@ -2585,7 +2586,7 @@ if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, f=0)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(EVN_PATH), 'w', encoding='utf-8') as EVN_FILE: # order?
     _    = -2
     ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=_)
-    kysgs.init(f=_)
+    kysgs.init(f=2)
     slog(f'BGN {sys.argv[0]}',      p=0,        f=_)
     slog(f'argv={fmtl(sys.argv[1:])}', f=_)
     utl.dumpRGB(f=_)
