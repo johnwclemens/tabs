@@ -2497,44 +2497,16 @@ class Tabs(pyglet.window.Window):
             self.setJdump(j, t, v, why=why)  ;  vl.append(str(v)) if dbg else None  ;  oid = f' {id(_):11x}' if self.OIDS else Z
             if dbg:     self.log(f'{v=} plsct={self.fplsct(p, l, s, c, t)} {tnik.text=:4} {oid} {self.J2[j]}', f=0)        ;  self.log(f'{Z.join(vl)}', p=0, f=0)
 ####################################################################################################################################################################################################
-    def OLD__dumpVisible(self):
-        nsum = 0  ;  nmax = 0  ;  a = W*10  ;  b = W*8  ;  c = W*7  ;  d = W*6  ;  e = W*5
-        for j, e in enumerate(self.E):
-            n = 0
-            for k, e2 in enumerate(e):
-                n += 1 if e2 and j==T else 0
-                self.log(f'{int(e2.visible)}', p=0, e=Z)
-                nsum += n   ;  nmax = nsum if nsum > nmax else nmax
-            if len(e): self.log(p=0)
-        v = Z.join([ f'{a if not i else b if i//10 < 1 else c if i//10 < 10 else d if i//10 < 100 else e}{10+i*10}' for i in range(nmax//10) ])
-        self.log(f'{v}', p=0)
-
     def dumpVisible(self):
-        n = 0  ;  a = W*10  ;  b = W*8  ;  c = W*7  ;  d = W*6  ;  e = W*5
+        nmax, nsum = 0, 0  ;  a = W*3  ;  b = W*8  ;  c = W*7  ;  d = W*6  ;  e = W*5
         for j, e in enumerate(self.E):
             for k, e2 in enumerate(e):
-                n += 1 if e2 and j==T else 0
+                nsum += 1
+                nmax += 1 if e2 and j==T else 0
                 self.log(f'{int(e2.visible)}', p=0, e=Z)
             if len(e): self.log(p=0)
-        v = Z.join([ f'{a if not i else b if i//10 < 1 else c if i//10 < 10 else d if i//10 < 100 else e}{10+i*10}' for i in range(n//10) ])
-        self.log(f'{v}', p=0)
-
-    def dumpVisible3(self):
-        nsum = 0  ;  j = 0  ;  lsum = 0  ;  nmax = 0  ;  a = W*10  ;  b = W*8  ;  c = W*7  ;  d = W*6  ;  e = W*5
-        for j in range(len(self.visib) - 1):
-            vl = []   ;   n = 0
-            for w in self.visib[j]:
-                vl.append(str(int(w)))     ;  lsum += 1   ;    n += 1    if w           else 0
-            v = Z.join(vl)  ;  l = len(v)  ;  nsum += n   ;  nmax = nsum if nsum > nmax else nmax
-            if l:                              self.log(self.fVisible(n, j, l, v), p=0)
         v = Z.join([ f'{a if not i else b if i//10 < 1 else c if i//10 < 10 else d if i//10 < 100 else e}{10+i*10}' for i in range(nmax//10) ])
-        j += 1   ;  n = nsum  ;  l = lsum   ;  self.log(self.fVisible(n, j, l, v), p=0)
-
-    def dumpVisible2(self):
-        for j, e in enumerate(self.E):
-            for e2 in e:
-                self.log(f'{int(e2.visible)}', p=0, e=Z)
-            if len(e): self.log(p=0)
+        self.log(f'{nsum:<7}{v}', p=0)
 #        consume(consume(self.log(f'{int(self.E[j][i].visible)}', pfx=0, end=W) for i in range(len(self.E[j]))) for j in range(len(self.E)))
 #        [ [ self.log(f'{int(self.E[j][i].visible)}', pfx=0, end=W) for i in range(len(self.E[j]))] for j in range(len(self.E)) ]
 #        for j in range(len(self.E)):
