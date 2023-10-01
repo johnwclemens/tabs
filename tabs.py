@@ -404,15 +404,18 @@ class Tabs(pyglet.window.Window):
         return v
     ####################################################################################################################################################################################################
     def resetJ(self, why=Z, dbg=1): self.J1 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.J2 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.nvis = 0  ;  self.dumpJs(why) if dbg else None
+
 #   def setJ(self, j, n, v=None, dbg=0):
 #       self.log(f'{j=} {n=} {v=}') if dbg else None
 #       self.J1[j] = n  ;  self.J2[j] += 1  ;   self.J1[-1] += 1  ;  self.J2[-1] += 1
+
     def setJ(self, j, n, v=None):
         v = self.isJV(j) if v is None else v
         self.J1[j] = n  ;  self.J2[j] += 1  ;   self.J1[-1] += 1  ;  self.J2[-1] += 1
         self.nvis  += 1 if v else 0
-        self.visib[j].append(v)
         assert ist(v, int),  f'{type(v)=} {v=}'
+        self.visib[j].append(v)
+
     def setJdump(self, j, n, v=None, why=Z):
         i = self.J2[j]   ;  self.setJ(j, n, v)
         assert 0 <= j < len(self.E),     f'{j=} out of range'
@@ -639,7 +642,7 @@ class Tabs(pyglet.window.Window):
         self.dumpFont(why)
         self.dumpVisible()
         self.dumpIdmKeys() if dbg and self.VRBY else None
-        self.dumpVisible2()
+#        self.dumpVisible2()
 #        self.dumpTniksE(f'{why}E') if dbg else None
         if dbg2: # fixme some dont handle Sprites
 #            self.dumpTniksA(f'{why}A')
@@ -2308,7 +2311,7 @@ class Tabs(pyglet.window.Window):
         self.i[P] = (self.j()[P] + a) % self.n[P] + 1
         if dbg: self.log(f'    {how} {a=} {self.i[P]=}')
         self.flipVisible(how=how)
-        self.dumpVisible()  ;   self.dumpVisible2()
+        self.dumpVisible() # ;   self.dumpVisible2()
         self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {self.i[P]}')
         if dbg: self.log(f'END {how} {a=} {self.i[P]=}')
 
@@ -2324,7 +2327,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'j1={fmtl(j1)} j2={fmtl(j2)}')
         return j1, j2
     ####################################################################################################################################################################################################
-    def OLD_0_flipVisible(self, how=None, dbg=1): # page 1 fail (1 or 2 & 3), page 2 fail (1 & 3 or 1 & 2), page 3 pass (1 & 2 & 3 or 1 & 2)
+    def flipVisible(self, how=None, dbg=1): # page 1 fail (1 or 2 & 3), page 2 fail (1 & 3 or 1 & 2), page 3 pass (1 & 2 & 3 or 1 & 2)
         why = 'FVis' if how is None else how       ;  np, nl, ns, nc, nt = self.n
         p, l, s, c  = self.j()[P], 0, 0, 0         ;  vl = []  ;  ss = self.ss2sl()
         l1 = p*nl  ;  l2 = np*nl  ;  s1 = p*nl*ns  ;  s2 = np*nl*ns  ;  c1 = p*nl*ns*nc  ;  c2 = np*nl*ns*nc  ;  t1 = p*nl*nc*nt  ;  t2 = np*nl*nc*nt
@@ -2348,9 +2351,10 @@ class Tabs(pyglet.window.Window):
 
     def OLD_0_flipVis(self, tlst, j, p, l, s, c, t1, t2, vl, why, dbg=1):
         for t in range(t1, t2):
-            tnik = tlst[t]   ;   v = tnik.visible  ;  v = not v  ;  v = int(v)  ;  tnik.visible = v
-            self.setJdump(j, t, v, why=why)  ;  vl.append(str(v)) if dbg else None  ;  oid = f' {id(_):11x}' if self.OIDS else Z
-            if dbg:     self.log(f'{v=} plsct={self.fplsct(p, l, s, c, t)} {tnik.text=:4} {oid} {self.J2[j]}', f=0)        ;  self.log(f'{Z.join(vl)}', p=0, f=0)        
+            tnik = tlst[t]         ;  tnik.visible = not tnik.visible   ;   self.setJdump(j, t, tnik.visible, why=why)   ;  vl.append(str(int(tnik.visible))) if dbg else None
+#            tnik = tlst[t]         ;  v = tnik.visible  ;  v = not v  ;  tnik.visible = int(v)  ;  self.setJdump(j, t, v, why=why)  ;  vl.append(str(int(v))) if dbg else None
+            oid = f' {id(_):11x}' if self.OIDS else Z
+            if dbg:     self.log(f'plsct={self.fplsct(p, l, s, c, t)} {tnik.text=:4} {oid} {self.J2[j]}', f=0)        ;  self.log(f'{Z.join(vl)}', p=0, f=0)        
     ####################################################################################################################################################################################################
     def OLD_1_flipVisible(self, how=None, dbg=1): # page 1 pass (1 & 2 & 3 or 2 & 3), page 2 pass (1 & 2 & 3 or 1 & 3), page 3 pass (1 & 2 & 3 or 1 & 2)
         why = 'FVis' if how is None else how       ;  np, nl, ns, nc, nt = self.n
@@ -2358,7 +2362,7 @@ class Tabs(pyglet.window.Window):
         self.J1, self.J2 = self.p2Js(p)
         pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
         self.log(f'BGN {why} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} page{p+1} is visibile {self.fVis()}')
-        self.dumpTniksPfx(why, r=0)
+        self.dumpTniksPfx(why, r=1)
         page = self.pages[p]              ;  v = page.visible  ;  v = not v  ;  v = int(v)  ;  self.setJdump(P, p, v, why=why)  ;  vl.append(str(int(v))) if dbg else None  ;  page.visible = v
         for l in range(nl):
             line = self.lines[l]          ;  v = line.visible  ;  v = not v  ;  v = int(v)  ;  self.setJdump(L, l, v, why=why)  ;  vl.append(str(int(v))) if dbg else None  ;  line.visible = v
@@ -2493,7 +2497,29 @@ class Tabs(pyglet.window.Window):
             self.setJdump(j, t, v, why=why)  ;  vl.append(str(v)) if dbg else None  ;  oid = f' {id(_):11x}' if self.OIDS else Z
             if dbg:     self.log(f'{v=} plsct={self.fplsct(p, l, s, c, t)} {tnik.text=:4} {oid} {self.J2[j]}', f=0)        ;  self.log(f'{Z.join(vl)}', p=0, f=0)
 ####################################################################################################################################################################################################
+    def OLD__dumpVisible(self):
+        nsum = 0  ;  nmax = 0  ;  a = W*10  ;  b = W*8  ;  c = W*7  ;  d = W*6  ;  e = W*5
+        for j, e in enumerate(self.E):
+            n = 0
+            for k, e2 in enumerate(e):
+                n += 1 if e2 and j==T else 0
+                self.log(f'{int(e2.visible)}', p=0, e=Z)
+                nsum += n   ;  nmax = nsum if nsum > nmax else nmax
+            if len(e): self.log(p=0)
+        v = Z.join([ f'{a if not i else b if i//10 < 1 else c if i//10 < 10 else d if i//10 < 100 else e}{10+i*10}' for i in range(nmax//10) ])
+        self.log(f'{v}', p=0)
+
     def dumpVisible(self):
+        n = 0  ;  a = W*10  ;  b = W*8  ;  c = W*7  ;  d = W*6  ;  e = W*5
+        for j, e in enumerate(self.E):
+            for k, e2 in enumerate(e):
+                n += 1 if e2 and j==T else 0
+                self.log(f'{int(e2.visible)}', p=0, e=Z)
+            if len(e): self.log(p=0)
+        v = Z.join([ f'{a if not i else b if i//10 < 1 else c if i//10 < 10 else d if i//10 < 100 else e}{10+i*10}' for i in range(n//10) ])
+        self.log(f'{v}', p=0)
+
+    def dumpVisible3(self):
         nsum = 0  ;  j = 0  ;  lsum = 0  ;  nmax = 0  ;  a = W*10  ;  b = W*8  ;  c = W*7  ;  d = W*6  ;  e = W*5
         for j in range(len(self.visib) - 1):
             vl = []   ;   n = 0
