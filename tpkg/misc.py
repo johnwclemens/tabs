@@ -32,7 +32,7 @@ class Modes:
 # N: notation
 # O:
 # P: pages, pytest
-# Q:
+# Q: log and quit -> assert
 # R: row labels, rootless chords
 # S: scales, sound, sprites, stdout
 # T: text styles, transpose
