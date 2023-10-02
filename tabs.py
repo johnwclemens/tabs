@@ -693,47 +693,50 @@ class Tabs(pyglet.window.Window):
         return size
    ####################################################################################################################################################################################################
     def readDataFile(self, path, dbg=1):
-        nl = self.n[L]      ;   nr = self.n[T]   ;   sp, sl, st, sr = 0, 0, 0, 0
-        if dbg:                 self.log(f'BGN {self.fmtn()}')
+        nl = self.n[L]      ;   nr = self.n[T]   ;   sp, sl, st, sr = 0, 0, 0, 0   ;   sc = 0   ;   fd = -2
+        if dbg:                 self.log(f'BGN {self.fmtn()}', f=fd)
         if not path.exists():   path = utl.getFilePath(self.DAT_GFN, BASE_PATH, fdir=DATA, fsfx=Z)
         stat = path.stat()  ;   size = stat.st_size
-        if size == 0:           self.log(f'WARN Zero Len Data File  {path} -> Generate Data File')   ;   size = self.genDataFile(path)
-        if size == 0:            msg =  f'ERROR Zero Len Data File {size=}'    ;   self.log(msg)     ;   self.quit(msg)
+        if size == 0:           self.log(f'WARN Zero Len Data File  {path} -> Generate Data File', f=fd)   ;   size = self.genDataFile(path)
+        if size == 0:            msg =  f'ERROR Zero Len Data File {size=}'      ;   self.log(msg, f=fd)   ;   self.quit(msg)
         with open(path, 'r', encoding='utf-8')  as DATA_FILE:
             DATA_FILE.seek(0, 2)      ;     size = DATA_FILE.tell()   ;   DATA_FILE.seek(0, 0)
-            self.log(f'{DATA_FILE.name:40} {size:3,} bytes = {size/1024:3,.1f} KB')
-            self.log('Raw Data File BGN:')
-            data = self.data          ;     lines, rows = [], []      ;   ntabs = 0
-            for tabs_ in DATA_FILE:
-                tabs_ = tabs_.strip(X)
-                if tabs_:
-                    if not ntabs: ntabs = len(tabs_)
-                    if len(tabs_) != ntabs:      msg = f'ERROR BAD tabs len {len(tabs_)=} != {ntabs=}'   ;   self.log(msg)   ;   self.quit(msg)
-                    for i in range(len(tabs_)):
-                        if tabs_[i] in self.tblanks and tabs_[i] != self.tblank:
-                            self.tblank = tabs_[i]
-                    rows.append(tabs_)       ;   st += len(tabs_)       ;     sr += 1
-                else:
-                    if rows  and not sr % nr:   lines.append(rows)    ;    rows = []   ;   sl += 1
-                    if lines and not sl % nl:   data.append(lines)    ;   lines = []   ;   sp += 1
-                self.log(tabs_, p=0)
+            self.log(f'{DATA_FILE.name:40} {size:3,} bytes = {size/1024:3,.1f} KB', f=fd)
+            self.log('Raw Data File BGN:', f=fd)
+            data = self.data          ;     lines, rows = [], []
+            for TABS in DATA_FILE:
+                TABS = TABS.rstrip(X)
+                if TABS and TABS[0] == '#':   sc += 1
+                if TABS and TABS[0] != '#':
+                    ntabs = len(TABS)
+                    for i in range(ntabs):
+                        if  TABS[i] in self.tblanks and TABS[i] != self.tblank:    self.tblank = TABS[i]
+                    rows.append(TABS)       ;      st += ntabs           ;     sr += 1
+                elif rows  and not sr % nr:        lines.append(rows)    ;    rows = []   ;   sl += 1
+                elif lines and not sl % nl:         data.append(lines)   ;   lines = []   ;   sp += 1
+                self.log(TABS, p=0, f=fd)
             if rows:  lines.append(rows)    ;   sl += 1
             if lines: data.append(lines)    ;   sp += 1
-            self.log('Raw Data File END:')
-            self.log(f'{self.fmtdl()=} {self.fmtdt()=}')
-            self.assertDataFileSize(sl, size)
+            self.log('Raw Data File END:', f=fd)
+            self.log(f'{self.fmtdl()=} {self.fmtdt()=}', f=fd)
+            self.checkDataFileSize(size, sl, sc)
             npages, nlines, nrows, ntabs = self.dl()
-            self.log(f'{sp    } ({sl/nlines:6.3f}) pages = {sl} lines =          {sr} rows =          {st} tabs')
-            self.log(f'{npages} ({sl/nlines:6.3f}) pages @  {nlines} lines per page, @ {nrows} rows per line, @ {ntabs} tabs per row')
+            self.log(f'{sp    } ({sl/nlines:6.3f}) pages = {sl} lines =          {sr} rows =          {st} tabs', f=fd)
+            self.log(f'{npages} ({sl/nlines:6.3f}) pages @  {nlines} lines per page, @ {nrows} rows per line, @ {ntabs} tabs per row', f=fd)
             self.dumpDataFile(data)
             self.data = self.transposeData(data, dmp=dbg)
+        if dbg:         self.log(f'END {self.fmtn()}', f=fd)
 
-    def assertDataFileSize(self, nlines, ref):
-        nt    = self.n[C]  ;  nr = self.n[T]  ;  crlf = 2
-        dsize = nlines * nr * nt              ;  self.log(f'{dsize=:3,} = {nlines=:3,} *     {nr=:2} *   {nt=}')
-        crlfs = nlines * (nr + 1) * crlf      ;  self.log(f'{crlfs=:3,} = {nlines=:3,} * {(nr+1)=:2} * {crlf=}')
-        size  =  dsize + crlfs                ;  self.log(f' {size=:3,} =  {dsize=:3,} +  {crlfs=:3,}   {ref=}')
-        assert size == ref,     f'{size=:4,} == {ref=:4,}'
+    def checkDataFileSize(self, ref, nlines, sc):
+        nt    = self.n[C]  ;  nr = self.n[T]  ;  fd = -2  ;  crlf = 2 # ;  c = 1 if sc else 0
+        self.log(f'  {ref=:3,} {nlines=} {sc=}', f=fd)
+        msg   = f'{nlines=} {sc=}, {nt=} {nr=} {crlf=}'
+        dsize = nlines * nr * nt                  ;  self.log(f'{dsize=:3,} = {nlines=:3,} *     {nr=:3} *    {nt=:3}', f=fd)
+        csize = sc * nt                           ;  self.log(f'{csize=:3,} = {sc=} * {nt=}', f=fd)
+        crlfs = nlines * (nr + 1) * crlf + sc - 1 ;  self.log(f'{crlfs=:3,} = {nlines=:3,} * {(nr+1)=:3} *  {crlf=:3}', f=fd)
+        size  = csize + dsize + crlfs             ;  self.log(f' {size=:3,} =  {csize=:3,} +  {dsize=:3,} + {crlfs=:3,}', f=fd)
+        self.log(f'  {ref=:3,}', f=fd)
+        assert size == ref,     f'{size=:4} != {ref=:4}, {msg}, {dsize=} {csize=} {crlfs=}'
 
     def dumpDataFile(self, data=None):
         data = self.dproxy(data)
@@ -2327,7 +2330,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'j1={fmtl(j1)} j2={fmtl(j2)}')
         return j1, j2
     ####################################################################################################################################################################################################
-    def flipVisible(self, how=None, dbg=1): # page 1 fail (1 or 2 & 3), page 2 fail (1 & 3 or 1 & 2), page 3 pass (1 & 2 & 3 or 1 & 2)
+    def OLD_0_flipVisible(self, how=None, dbg=1): # page 1 fail (1 or 2 & 3), page 2 fail (1 & 3 or 1 & 2), page 3 pass (1 & 2 & 3 or 1 & 2)
         why = 'FVis' if how is None else how       ;  np, nl, ns, nc, nt = self.n
         p, l, s, c  = self.j()[P], 0, 0, 0         ;  vl = []  ;  ss = self.ss2sl()
         l1 = p*nl  ;  l2 = np*nl  ;  s1 = p*nl*ns  ;  s2 = np*nl*ns  ;  c1 = p*nl*ns*nc  ;  c2 = np*nl*ns*nc  ;  t1 = p*nl*nc*nt  ;  t2 = np*nl*nc*nt
@@ -2496,6 +2499,29 @@ class Tabs(pyglet.window.Window):
             tnik = tlst[t]   ;   tnik.visible = not tnik.visible  ;  v = int(tnik.visible)
             self.setJdump(j, t, v, why=why)  ;  vl.append(str(v)) if dbg else None  ;  oid = f' {id(_):11x}' if self.OIDS else Z
             if dbg:     self.log(f'{v=} plsct={self.fplsct(p, l, s, c, t)} {tnik.text=:4} {oid} {self.J2[j]}', f=0)        ;  self.log(f'{Z.join(vl)}', p=0, f=0)
+####################################################################################################################################################################################################
+#    def OLD_2_flipVisible(self, how=None, dbg=1): # page 1 pass (1 & 2 & 3 or 2 & 3), page 2 pass (1 & 2 & 3 or 1 & 3), page 3 pass (1 & 2 & 3 or 1 & 2)
+    def flipVisible(self, how=None, dbg=1):  # page 1 pass (1 & 2 & 3 or 2 & 3), page 2 pass (1 & 2 & 3 or 1 & 3), page 3 pass (1 & 2 & 3 or 1 & 2)
+        why = 'FVis' if how is None else how       ;  np, nl, ns, nc, nt = self.n
+        p, l, s, c  = self.j()[P], 0, 0, 0         ;  vl = []  ;  tpb, tpp, tpl, tps, tpc = self.ntp(dbg=1, dbg2=1)
+        self.J1, self.J2 = self.p2Js(p)
+        pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
+        self.log(f'BGN {why} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} page{p+1} is visibile {self.fVis()}')
+        self.dumpTniksPfx(why, r=0)
+        page = self.pages[p]              ;  page.visible = not page.visible  ;  self.setJdump(P, p, page.visible, why=why)  ;  vl.append(str(int(page.visible))) if dbg else None
+        for l in range(nl):
+            line = self.lines[l]          ;  line.visible = not line.visible  ;  self.setJdump(L, l, line.visible, why=why)  ;  vl.append(str(int(line.visible))) if dbg else None
+            for s, s2 in enumerate(self.ss2sl()):
+                sect = self.sects[s]      ;  sect.visible = not sect.visible  ;  self.setJdump(S, s, sect.visible, why=why)  ;  vl.append(str(int(sect.visible))) if dbg else None
+                for c in range(nc):
+                    colm = self.colms[c]  ;  colm.visible = not colm.visible  ;  self.setJdump(C, c, colm.visible, why=why)  ;  vl.append(str(int(colm.visible))) if dbg else None
+                    for t in range(nt):
+                        tniks, j, k, txt = self.tnikInfo(p, l, s2, c, t, why=why)
+                        t2 = t + c*tpc + l*tpl + p*tpp//ns
+                        assert t2 < len(tniks),  f'ERROR {t2=} {len(tniks)=}'
+                        tnik = tniks[t2]  ;  tnik.visible = not tnik.visible  ;  self.setJdump(j, t2, tnik.visible, why=why)  ;  vl.append(str(int(tnik.visible))) if dbg else None
+        self.dumpTniksSfx(why)
+        self.log(f'END {why} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} page{p+1} is visible {self.fVis()}')
 ####################################################################################################################################################################################################
     def dumpVisible(self):
         nmax, nsum = 0, 0  ;  a = W*3  ;  b = W*8  ;  c = W*7  ;  d = W*6  ;  e = W*5
