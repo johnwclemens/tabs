@@ -113,7 +113,7 @@ class Tabs(pyglet.window.Window):
         self.EVENT_LOG = 0  ;  self.EXIT      = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1
         self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.DSP_J_LEV = 4  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0
         self.SPRITES   = 0  ;  self.STRETCH   = 0  ;  self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.VARROW    = 1  ;  self.VIEWS     = 0
-        self.VRBY      = 0
+        self.VRBY      = 0  ;  self.ROOT_DIR  = 'test'  ;  self.FILE_NAME = BASE_NAME
         self.LL        = 0
         self.SS        = set(range(4))  # set() if 0 else {0, 1, 2, 3}
         self.ZZ        = set()          # set() if 1 else {0} #, 1}
@@ -121,7 +121,7 @@ class Tabs(pyglet.window.Window):
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         self.n         = [1, 1, 10, 6]
         self.i         = [1, 1,  1, 6]
-        self.log(f'argMap={fmtm(ARGS)}')     ;   self.FILE_NAME  = BASE_NAME
+        self.log(f'argMap={fmtm(ARGS)}')
         ################################################################################################################################################################################################
         if 'a' in ARGS  and len(ARGS['a']) == 0: self.AUTO_SAVE  =  1
         if 'A' in ARGS: l = len(ARGS['A'])   ;   self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
@@ -129,7 +129,8 @@ class Tabs(pyglet.window.Window):
         if 'B' in ARGS  and len(ARGS['B']) == 0: self.BGC        =  1
         if 'c' in ARGS  and len(ARGS['c']) == 0: self.CAT        =  1
         if 'C' in ARGS  and len(ARGS['C']) == 0: self.CHECKERED  =  1
-        if 'd' in ARGS  and len(ARGS['d'])  > 0: self.DBG_TABT   =   int(ARGS['d'][0])
+        if 'd' in ARGS  and len(ARGS['d'])  > 0: self.ROOT_DIR   =       ARGS['d'][0] 
+        if 'D' in ARGS  and len(ARGS['D'])  > 0: self.DBG_TABT   =   int(ARGS['D'][0])
         if 'e' in ARGS  and len(ARGS['e']) == 0: self.EVENT_LOG  =  1
         if 'e' in ARGS  and len(ARGS['e'])  > 0: self.EVENT_LOG  =   int(ARGS['e'][0])
         if 'f' in ARGS  and len(ARGS['f'])  > 0: self.FILE_NAME  =       ARGS['f'][0]
@@ -229,7 +230,8 @@ class Tabs(pyglet.window.Window):
         self.log(f'[B]            {self.BGC=}', f=f)
         self.log(f'[c]            {self.CAT=}', f=f)
         self.log(f'[C]      {self.CHECKERED=}', f=f)
-        self.log(f'[d]       {self.DBG_TABT=}', f=f)
+        self.log(f'[d         {self.ROOT_DIR}', f=f)
+        self.log(f'[D]       {self.DBG_TABT=}', f=f)
         self.log(f'[e]      {self.EVENT_LOG=}', f=f)
         self.log(f'[f]      {self.FILE_NAME=}', f=f)
         self.log(f'[F]      {self.FULL_SCRN=}', f=f)
@@ -728,12 +730,12 @@ class Tabs(pyglet.window.Window):
         if dbg:         self.log(f'END {self.fmtn()}', f=fd)
 
     def checkDataFileSize(self, ref, nlines, sc):
-        nt    = self.n[C]  ;  nr = self.n[T]  ;  fd = -2  ;  crlf = 2 # ;  c = 1 if sc else 0
+        nt    = self.n[C]  ;  nr = self.n[T]  ;  fd = -2  ;  crlf = 2 # ;  sc -= 1 if sc else 0
         self.log(f'  {ref=:3,} {nlines=} {sc=}', f=fd)
         msg   = f'{nlines=} {sc=}, {nt=} {nr=} {crlf=}'
         dsize = nlines * nr * nt                  ;  self.log(f'{dsize=:3,} = {nlines=:3,} *     {nr=:3} *    {nt=:3}', f=fd)
         csize = sc * nt                           ;  self.log(f'{csize=:3,} = {sc=} * {nt=}', f=fd)
-        crlfs = nlines * (nr + 1) * crlf + sc - 1 ;  self.log(f'{crlfs=:3,} = {nlines=:3,} * {(nr+1)=:3} *  {crlf=:3}', f=fd)
+        crlfs = nlines * (nr + 1) * crlf + sc ;  self.log(f'{crlfs=:3,} = {nlines=:3,} * {(nr+1)=:3} *  {crlf=:3}', f=fd)
         size  = csize + dsize + crlfs             ;  self.log(f' {size=:3,} =  {csize=:3,} +  {dsize=:3,} + {crlfs=:3,}', f=fd)
         self.log(f'  {ref=:3,}', f=fd)
         assert size == ref,     f'{size=:4} != {ref=:4}, {msg}, {dsize=} {csize=} {crlfs=}'

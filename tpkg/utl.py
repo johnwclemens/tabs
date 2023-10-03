@@ -9,7 +9,9 @@ def ffn(cf): return cf.f_code.co_filename
 
 ALT, CTL, SHF, CPL, NML = pygwink.MOD_ALT, pygwink.MOD_CTRL, pygwink.MOD_SHIFT, pygwink.MOD_CAPSLOCK, pygwink.MOD_NUMLOCK
 UNICODE    = unic.UNICODE
-ROOT_DIR   = 'test'
+ROOT_DIR   = os.getenv('ROOT_DIR', 'test')
+#slog(f'{ROOT_DIR=}')
+#ROOT_DIR   = 'test'
 PATH       = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH  = PATH.parent / ROOT_DIR
 BASE_NAME  = BASE_PATH.stem
@@ -44,7 +46,8 @@ def init(cfile, efile, lfile, tfile, f):
     slog(f'{argc=} {fmtl(argv)=}', f=f)
     for i in range(1, argc): slog(f'argv[{i}]={argv[i]}', f=f)
     ARGS   = parseCmdLine(argv, f=f)
-    global   ROOT_DIR   ;   ROOT_DIR = ARGS['f'][0] if 'f' in ARGS and len(ARGS['f']) > 0 else ROOT_DIR
+#    global   ROOT_DIR #  ;   
+#    ROOT_DIR = ARGS['f'][0] if 'f' in ARGS and len(ARGS['f']) > 0 else ROOT_DIR
     slog(  f'   ARGS={fmtm(ARGS)}', f=f)
     slog(f'{ROOT_DIR=}', f=f)
     return   ARGS
@@ -368,6 +371,11 @@ def sid(s, sfx):
     j = s.rfind('.')
     i = s[j + 1:]
     return int(i) if isinstance(i, str) and i.isdigit() else None
+
+#ENV = os.getenv()
+#slog(f'{fmtm(ENV)=}', f=-2)
+
+
 ########################################################################################################################################################################################################
 def main():
     getFileSeqName(BASE_NAME, BASE_PATH)
