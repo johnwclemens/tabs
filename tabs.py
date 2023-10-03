@@ -109,11 +109,11 @@ class Tabs(pyglet.window.Window):
         self.tblank,   self.tblanki, self.cursor,  self.data   = None, None, None, []
         self.XYVA      = [0, 0, 0, 0]
         self._init_xyva()
-        self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT       = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DBG_TABT  = 0
-        self.EVENT_LOG = 0  ;  self.EXIT      = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA  = 0  ;  self.LONG_TXT  = 1
-        self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP   = 1  ;  self.DSP_J_LEV = 4  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0
-        self.SPRITES   = 0  ;  self.STRETCH   = 0  ;  self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.VARROW    = 1  ;  self.VIEWS     = 0
-        self.VRBY      = 0  ;  self.ROOT_DIR  = 'test'  ;  self.FILE_NAME = BASE_NAME
+        self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4
+        self.DBG_TABT  = 0  ;  self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1
+        self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0
+        self.STRETCH   = 0  ;  self.SUBPIX    = 1  ;  self.TEST    = 0  ;  self.VARROW    = 1  ;  self.VIEWS     = 0  ;  self.VRBY     = 0
+        self.ROOT_DIR  = 'test'  ;  self.FILE_NAME = BASE_NAME
         self.LL        = 0
         self.SS        = set(range(4))  # set() if 0 else {0, 1, 2, 3}
         self.ZZ        = set()          # set() if 1 else {0} #, 1}
@@ -129,7 +129,7 @@ class Tabs(pyglet.window.Window):
         if 'B' in ARGS  and len(ARGS['B']) == 0: self.BGC        =  1
         if 'c' in ARGS  and len(ARGS['c']) == 0: self.CAT        =  1
         if 'C' in ARGS  and len(ARGS['C']) == 0: self.CHECKERED  =  1
-        if 'd' in ARGS  and len(ARGS['d'])  > 0: self.ROOT_DIR   =       ARGS['d'][0] 
+        if 'd' in ARGS  and len(ARGS['d']) == 0: self.DEC_DATA   =  1 
         if 'D' in ARGS  and len(ARGS['D'])  > 0: self.DBG_TABT   =   int(ARGS['D'][0])
         if 'e' in ARGS  and len(ARGS['e']) == 0: self.EVENT_LOG  =  1
         if 'e' in ARGS  and len(ARGS['e'])  > 0: self.EVENT_LOG  =   int(ARGS['e'][0])
@@ -145,6 +145,7 @@ class Tabs(pyglet.window.Window):
         if 'n' in ARGS  and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'o' in ARGS  and len(ARGS['o']) == 0: self.OIDS       =  1
         if 'p' in ARGS  and len(ARGS['p']) == 0: self.SNAPS      =  1
+        if 'r' in ARGS  and len(ARGS['r'])  > 0: self.ROOT_DIR   =       ARGS['r'][0] 
         if 'R' in ARGS  and len(ARGS['R']) == 0: self.RESIZE     =  0
         if 's' in ARGS  and len(ARGS['s']) == 0: self.SPRITES    =  1
         if 'S' in ARGS  and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
@@ -230,7 +231,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[B]            {self.BGC=}', f=f)
         self.log(f'[c]            {self.CAT=}', f=f)
         self.log(f'[C]      {self.CHECKERED=}', f=f)
-        self.log(f'[d         {self.ROOT_DIR}', f=f)
+        self.log(f'[d]        {self.DEC_DATA}', f=f)
         self.log(f'[D]       {self.DBG_TABT=}', f=f)
         self.log(f'[e]      {self.EVENT_LOG=}', f=f)
         self.log(f'[f]      {self.FILE_NAME=}', f=f)
@@ -245,6 +246,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[n]              .{self.fmtn()}', f=f)
         self.log(f'[o]           {self.OIDS=}', f=f)
         self.log(f'[p]          {self.SNAPS=}', f=f)
+        self.log(f'[r]        {self.ROOT_DIR}', f=f)
         self.log(f'[R]         {self.RESIZE=}', f=f)
         self.log(f'[s]        {self.SPRITES=}', f=f)
         self.log(f'[S]             .SS={fmtl(self.SS)}', f=f)
@@ -663,24 +665,27 @@ class Tabs(pyglet.window.Window):
         if self.rsyncData: self.saveDataFile(how, self.dataPath0)   ;  self.rsyncData = 0
     ####################################################################################################################################################################################################
     def saveDataFile(self, why, path, dbg=1):
-        if dbg:   self.log(f'{why} {path}')
+        if dbg:   self.log(f'BGN {why} {path}')
         with open(path, 'w', encoding='utf-8') as DATA_FILE:
             self.log(f'{DATA_FILE.name:40}', p=0)
+            commentStr = '#' * self.n[C]   ;   commentRow = f'{commentStr}{X}'
+            DATA_FILE.write(commentRow) if self.DEC_DATA else None
             data = self.transposeData(dmp=dbg) # if self.isVert() else self.data
             self.log(f'{self.fmtn()} {self.fmtdl(data)}')
             for p, page in enumerate(data):
-                if dbg: self.log(f'writing {p+1}{utl.ordSfx(p + 1)} page', p=0)
+                if dbg: self.log(f'writing {p+1}{utl.ordSfx(p + 1)}   Page', p=0)
                 for l, line in enumerate(page):
-                    if dbg: self.log(f'writing {l+1}{utl.ordSfx(l+1)} line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
+                    if dbg: self.log(f'writing {l+1}{utl.ordSfx(l+1)}   Line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
                     for r, row in enumerate(line):
                         text = []
                         for c, col in enumerate(row):
                             text.append(col)
                         text = Z.join(text)
-                        if dbg: self.log(f'writing {r+1}{utl.ordSfx(r+1)} string {text}', p=0)  # if dbg  else  self.log(text, p=0)
+                        if dbg: self.log(f'writing {r+1}{utl.ordSfx(r+1)} String {text}', p=0)  # if dbg  else  self.log(text, p=0)
                         DATA_FILE.write(f'{text}\n')
-                    DATA_FILE.write(X)  #   if l < nl:
+                    DATA_FILE.write(commentRow) if self.DEC_DATA else DATA_FILE.write(X)  #   if l < nl:
         size = path.stat().st_size   ;   self.log(f'{self.fmtn()} {self.fmtdl()} {size=}')
+        if dbg:   self.log(f'END {why} {path}')
         return size
     ####################################################################################################################################################################################################
     def genDataFile(self, path):
