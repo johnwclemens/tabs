@@ -721,6 +721,8 @@ class Tabs(pyglet.window.Window):
             if lines: data.append(lines)    ;   sp += 1
             self.log('Raw Data File END:', f=fd)
             self.log(f'{self.fmtdl()=} {self.fmtdt()=}', f=fd)
+            sc -= 1 if sc else 0
+            self.log(f'checkDataFileSize({size}, {sl}, {sc})')
             self.checkDataFileSize(size, sl, sc)
             npages, nlines, nrows, ntabs = self.dl()
             self.log(f'{sp    } ({sl/nlines:6.3f}) pages = {sl} lines =          {sr} rows =          {st} tabs', f=fd)
@@ -730,13 +732,13 @@ class Tabs(pyglet.window.Window):
         if dbg:         self.log(f'END {self.fmtn()}', f=fd)
 
     def checkDataFileSize(self, ref, nlines, sc):
-        nt    = self.n[C]  ;  nr = self.n[T]  ;  fd = -2  ;  crlf = 2 # ;  sc -= 1 if sc else 0
-        self.log(f'  {ref=:3,} {nlines=} {sc=}', f=fd)
-        msg   = f'{nlines=} {sc=}, {nt=} {nr=} {crlf=}'
-        dsize = nlines * nr * nt                  ;  self.log(f'{dsize=:3,} = {nlines=:3,} *     {nr=:3} *    {nt=:3}', f=fd)
-        csize = sc * nt                           ;  self.log(f'{csize=:3,} = {sc=} * {nt=}', f=fd)
-        crlfs = nlines * (nr + 1) * crlf + sc ;  self.log(f'{crlfs=:3,} = {nlines=:3,} * {(nr+1)=:3} *  {crlf=:3}', f=fd)
-        size  = csize + dsize + crlfs             ;  self.log(f' {size=:3,} =  {csize=:3,} +  {dsize=:3,} + {crlfs=:3,}', f=fd)
+        nt    = self.n[C]  ;  nr = self.n[T]  ;  fd = -2  ;  crlf = 2   ;   s = 1 if sc else 0
+        msg   =              f'{nlines=} {sc=}, {s=} {nt=} {nr=} {crlf=}'
+        self.log(f'  {ref=:3,} {nlines=} {sc=}, {s=} {nt=} {nr=} {crlf=}', f=fd)
+        dsize = nlines * nr * nt                  ;  self.log(f'{dsize=:3,} =  {nlines=:3,} *     {nt=:3} *         {nr=:3}', f=fd)
+        csize = (sc + 1) * nt if sc else 0        ;  self.log(f'{csize=:3,} =  {(sc + 1)=} *     {nt=:3}', f=fd)
+        crlfs = (nlines * (nr + 1) + s) * crlf    ;  self.log(f'{crlfs=:3,} = ({nlines=:3,} * {(nr+1)=:3} + {s}) *  {crlf=:3}', f=fd)
+        size  = dsize + csize + crlfs             ;  self.log(f' {size=:3,} =   {dsize=:3,} +  {csize=:3,} +      {crlfs=:3,}', f=fd)
         self.log(f'  {ref=:3,}', f=fd)
         assert size == ref,     f'{size=:4} != {ref=:4}, {msg}, {dsize=} {csize=} {crlfs=}'
 
