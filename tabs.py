@@ -701,7 +701,7 @@ class Tabs(pyglet.window.Window):
         return size
    ####################################################################################################################################################################################################
     def readDataFile(self, path, dbg=1):
-        nl = self.n[L]      ;   nr = self.n[T]   ;   sp, sl, st, sr = 0, 0, 0, 0   ;   sc = 0   ;   fd = -2
+        nl = self.n[L]      ;   nr = self.n[T]   ;   sp, sl, st, sr = 0, 0, 0, 0   ;   sx = 0   ;   fd = -2
         if dbg:                 self.log(f'BGN {self.fmtn()}', f=fd)
         if not path.exists():   path = utl.getFilePath(self.DAT_GFN, BASE_PATH, fdir=DATA, fsfx=Z)
         stat = path.stat()  ;   size = stat.st_size
@@ -714,7 +714,7 @@ class Tabs(pyglet.window.Window):
             data = self.data          ;     lines, rows = [], []
             for TABS in DATA_FILE:
                 TABS = TABS.rstrip(X)
-                if TABS and TABS[0] == '#':   sc += 1
+                if TABS and TABS[0] == '#':   sx += 1
                 if TABS and TABS[0] != '#':
                     ntabs = len(TABS)
                     for i in range(ntabs):
@@ -727,27 +727,39 @@ class Tabs(pyglet.window.Window):
             if lines: data.append(lines)    ;   sp += 1
             self.log('Raw Data File END:', f=fd)
             self.log(f'{self.fmtdl()=} {self.fmtdt()=}', f=fd)
-            sc -= 1 if sc else 0
-            self.log(f'checkDataFileSize({size}, {sl}, {sc})')
-            self.checkDataFileSize(size, sl, sc)
-            npages, nlines, nrows, ntabs = self.dl()
-            self.log(f'{sp    } ({sl/nlines:6.3f}) pages = {sl} lines =          {sr} rows =          {st} tabs', f=fd)
-            self.log(f'{npages} ({sl/nlines:6.3f}) pages @  {nlines} lines per page, @ {nrows} rows per line, @ {ntabs} tabs per row', f=fd)
+            sx -= 1 if sx else 0
+#            self.log(f'checkDataFileSize({size}, {sl}, {sc})')
+#            self.checkDataFileSize(size, sl, sc)
+            np, nl, nr, nc = self.dl()
+            self.checkDataFile(size, np, nl, nr, nc, sx)
+            self.log(f'{sp} ({sl/nl:6.3f}) pages = {sl} lines =          {sr} rows =          {st} cols', f=fd)
+            self.log(f'{np} ({sl/nl:6.3f}) pages @ {nl} lines per page, @ {nr} rows per line, @ {nc} cols per row', f=fd)
             self.dumpDataFile(data)
             self.data = self.transposeData(data, dmp=dbg)
         if dbg:         self.log(f'END {self.fmtn()}', f=fd)
 
+    def checkDataFile(self, ref, np, nl, nr, nc, sx):
+        fd = -2  ;  crlf = 2  ;  z = 1 if sx else 0
+        msg =             f'{np=} {nl=} {nr=} {nc=} {crlf=}'
+        self.log(f'  {ref=} {np=} {nl=} {nr=} {nc=} {crlf=}', f=fd)
+        dlen  = np * nl * nr * nc                      ;  self.log(f' {dlen=:3} =  np * nl * nr * nc        =  {np} * {nl} * {nr} * {nc}', f=fd)
+        clen  = (sx + 1) * nr if sx else 0             ;  self.log(f' {clen=:3} = (sx + 1)*nr if sx else 0  =  {(sx+1)=} * {nr=}', f=fd) if sx else self.log(f' {clen=:3} =  0 * {nr=}', f=fd) 
+        crlfs = (np + np * nl * (nr + 1) + z) * crlf   ;  self.log(f'{crlfs=:3} = (np + np*nl*(nr+1) + z)*2 = ({np} + {np} * {nl} * {(nr+1)} + {z}) *  {crlf}', f=fd)
+        size  = dlen + clen + crlfs                    ;  self.log(f' {size=:3} =  dlen + clen + crlfs      =  {dlen} + {clen} + {crlfs}', f=fd)
+        self.log(f'  {ref=}', f=fd)
+        assert size == ref,     f'{size=:4} != {ref=:4}, {msg}, {dlen=} {clen=} {crlfs=}'
+
     def checkDataFileSize(self, ref, nlines, sc):
         nt    = self.n[C]  ;  nr = self.n[T]  ;  fd = -2  ;  crlf = 2   ;   s = 1 if sc else 0
-        msg   =              f'{nlines=} {sc=}, {s=} {nt=} {nr=} {crlf=}'
-        self.log(f'  {ref=:3,} {nlines=} {sc=}, {s=} {nt=} {nr=} {crlf=}', f=fd)
-        dsize = nlines * nr * nt                  ;  self.log(f'{dsize=:3,} =  {nlines=:3,} *     {nt=:3} *         {nr=:3}', f=fd)
-        csize = (sc + 1) * nt if sc else 0        ;  self.log(f'{csize=:3,} =  {(sc + 1)=} *     {nt=:3}', f=fd) if sc else self.log(f'{csize=:3,} =  0 * {nt=:3}', f=fd) 
-        crlfs = (nlines * (nr + 1) + s) * crlf    ;  self.log(f'{crlfs=:3,} = ({nlines=:3,} * {(nr+1)=:3} + {s}) *  {crlf=:3}', f=fd)
-        size  = dsize + csize + crlfs             ;  self.log(f' {size=:3,} =   {dsize=:3,} +  {csize=:3,} +      {crlfs=:3,}', f=fd)
+        msg   =             f'{nlines=} {sc=}, {s=} {nt=} {nr=} {crlf=}'
+        self.log(f'  {ref=:3} {nlines=} {sc=}, {s=} {nt=} {nr=} {crlf=}', f=fd)
+        dsize = nlines * nr * nt                  ;  self.log(f'{dsize=:3} =  {nlines=:3} *     {nt=:3} *         {nr=:3}', f=fd)
+        csize = (sc + 1) * nt if sc else 0        ;  self.log(f'{csize=:3} =  {(sc + 1)=} *     {nt=:3}', f=fd) if sc else self.log(f'{csize=:3} =  0 * {nt=:3}', f=fd) 
+        crlfs = (nlines * (nr + 1) + s) * crlf    ;  self.log(f'{crlfs=:3} = ({nlines=:3} * {(nr+1)=:3} + {s}) *  {crlf=:3}', f=fd)
+        size  = dsize + csize + crlfs             ;  self.log(f' {size=:3} =   {dsize=:3} +  {csize=:3} +      {crlfs=:3}', f=fd)
         self.log(f'  {ref=:3,}', f=fd)
 #        assert size == ref,     f'{size=:4} != {ref=:4}, {msg}, {dsize=} {csize=} {crlfs=}'
-
+   ####################################################################################################################################################################################################
     def dumpDataFile(self, data=None):
         data = self.dproxy(data)
         d0, d1, d2, d3 = self.dl()

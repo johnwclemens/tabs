@@ -148,6 +148,12 @@ def test2(tobj, j=10):
 #        for i in range(len(tabls) * ns):
 #            plc2cn_(p, l, c, dbg=1)
     tobj.dumpTniksSfx(f'END {j=} test2')
+    
+def test3(tobj):
+    i = tobj.i[0] - 1
+    i = (i + 1) % tobj.n[0]
+    tobj.i[0] = i + 1
+
 ####################################################################################################################################################################################################
 def tExit(tobj, why, e): #        dispatch_event('on_close')
     slog(f'BGN {why} {e}')
