@@ -621,7 +621,7 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTniksF(self):
-        self.log(Y.join(LTXA), p=0, f=3)
+        self.log(Y.join(LTXA),  p=0, f=3)
         self.log(Y.join(LTXAC), p=0, f=3)
         for i, t in enumerate(self.pages):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, P, i, Y, s), p=0, f=3)
         for i, t in enumerate(self.lines):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, L, i, Y, s), p=0, f=3)
@@ -971,7 +971,7 @@ class Tabs(pyglet.window.Window):
         np, nl, ns, nc, nt = self.n   ;   how = f'{how} {ins=}'
         self.dumpBlanks() # self.j()[P]
 #        if ins is not None: self.flipPage(how)
-        if ins is not None: self.flipVisible(how=how) # , p=self.j()[P])
+        if ins is not None: self.flipVisible(how=how)
         self.n[P] += 1   ;   kl = self.k[P]
         data      = [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ]
         self.data = self.transposeData(dmp=dbg)
@@ -1688,17 +1688,18 @@ class Tabs(pyglet.window.Window):
         return tp, n//tp, tp % tp
     ####################################################################################################################################################################################################
     def setTab(self, how, text, rev=0, dbg=1): # if isDataFret or isTextFret else 0)
-        if rev: self.reverseArrow()   ;    self.autoMove(how)
-        old  = self.cursorCol()   ;   msg = Z
+        bsp = how.startswith('BACKSPACE') # todo use better mechanism to flip hArrow
+        if rev: self.reverseArrow(bsp)   ;   self.autoMove(how)
+        old   = self.cursorCol()   ;   msg = Z
         p, l, c, t = self.j2()
-        cc   = self.plct2cc(p, l, c, t)   ;   cc2 = cc
+        cc    = self.plct2cc(p, l, c, t)   ;   cc2 = cc
         self.log(f'BGN {how} {text=} {rev=} {old=:3} {cc=:3} {p=} {l=} {c=} {t=}', pos=1, f=2)
-        data = self.data[p][l][c][t]
+        data  = self.data[p][l][c][t]
         self.log(f'    {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
         self.setDTNIK(text, cc2, p, l, c, t, kk=1)
         p, l, c, t = self.j2()   ;   data = self.data[p][l][c][t]
         self.log(f'END {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
-        if rev: self.reverseArrow()
+        if rev: self.reverseArrow(bsp)
         else:   self.autoMove(how)
         if dbg and self.SNAPS:
             stype = f'Txt.{text}' if self.sobj.isFret(text) else 'SYMB' if text in misc.DSymb.SYMBS else 'UNKN'
@@ -1812,7 +1813,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
-#   def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in utl.DSymb.SYMBS else 0
+#   def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in  utl.DSymb.SYMBS else 0
     def isTab(self, text):    return 1 if text == self.tblank or self.sobj.isFret(text) or text in misc.DSymb.SYMBS else 0
     def isParsing(self):      return 1 if self.inserting or self.jumping or self.settingN or self.shiftingTabs or self.swapping else 0
 #   def isEH(t):              return 1 if t == '#' or t == 'b' else 0
@@ -1911,7 +1912,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'END {n=} {self.fmti()} plct={self.fplct(p, l, c, t)} plct2={self.fplct(p2, l2, c2, t2)}', pos=1)
     ####################################################################################################################################################################################################
     def autoMove(self, how, dbg=1):
-        self.log(f'BGN {how}', pos=1)
+        self.log(f'BGN {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
         ha = 1 if self.hArrow == RARROW else -1
         va = 1 if self.vArrow == DARROW else -1
         n, i  = self.n[T], self.i[T]
@@ -1925,7 +1926,7 @@ class Tabs(pyglet.window.Window):
             elif  i==6 and self.vArrow==DARROW and self.hArrow==LARROW: self.move(how, -(n*2-1))
             else:                                                       self.move(how,   cmDist)
         elif      self.csrMode == ARPG:                                 self.move(how,   amDist)
-        self.log(f'END {how}', pos=1)
+        self.log(f'END {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
     ####################################################################################################################################################################################################
     def moveToB(self, how, p, l, s, c, t, ss=0, dbg=1):
         if dbg:    self.log(f'BGN {how}', pos=1)
@@ -2411,10 +2412,11 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {how} {self.tblank=}')
     ####################################################################################################################################################################################################
     def dumpCursorArrows(self, how): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;  self.log(f'{how} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
-    def reverseArrow(self, dbg=1):
+
+    def reverseArrow(self, bsp=0, dbg=1):
         if dbg: self.dumpCursorArrows('reverseArrow()')
-        if self.csrMode in (MELODY, ARPG): self.flipArrow('reverseArrow() MELODY or ARPG', v=0)
-        if self.csrMode in (CHORD, ARPG):  self.flipArrow('reverseArrow() CHORD or ARPG',  v=1)
+        if self.csrMode in (MELODY, ARPG) or bsp: self.flipArrow('reverseArrow() MELODY or ARPG', v=0)
+        if self.csrMode in (CHORD, ARPG):         self.flipArrow('reverseArrow() CHORD or ARPG',  v=1)
         if dbg: self.dumpCursorArrows('reverseArrow()')
 
     def setCHVMode(self, how, c=None, h=None, v=None):

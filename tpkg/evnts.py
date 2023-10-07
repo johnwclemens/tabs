@@ -191,7 +191,7 @@ def on_key_press(tobj, symb, mods, dbg=1):
     if  not  tobj.isParsing():
         if   kbk == 'ENTER' and isCtl(kd, m): tobj.setCHVMode(  '@  ENTER',     CHORD,  v=DARROW)
         elif kbk == 'ENTER':                  tobj.setCHVMode(  '   ENTER',     CHORD,  v=UARROW)
-        elif kbk == 'SPACE':                  tobj.autoMove(    '   SPACE')
+#        elif kbk == 'SPACE':                  tobj.autoMove(    '   SPACE') # todo does commenting this line break anything?
 #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
     if dbg:  slog(f'END {    fsm(symb, mods)} kd={fmtm(kd)}, {retv=}')
     return retv
@@ -324,6 +324,7 @@ def on_text_motion(tobj, motion, dbg=1):
         elif motion == k.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD(           {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'MOTION_BEGINNING_OF_FILE(   {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif motion == k.MOTION_END_OF_FILE:       msg = f'MOTION_END_OF_FILE(         {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        else:                                      msg =             f'UNH(            {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg)
+        else:                                      msg =             f'UNH(            {motion})'   ;   slog(msg)   ;   retv = False  ;  tobj.quit(msg)
     if dbg: slog(f'END {ftm(motion)} {retv=}')
     return retv
+########################################################################################################################################################################################################
