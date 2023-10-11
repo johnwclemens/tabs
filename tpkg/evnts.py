@@ -10,10 +10,11 @@ from   pyglet.window.key import modifiers_string as pmod
 from   pyglet.window.key import motion_string    as pmtn
 import pyglet.window.mouse   as pygmous
 from   tpkg import utl       as utl
+from   tpkg import cmds      as cmds
 #from   tpkg import tests   as tests
 
 slog, fmtf, fmtl, fmtm         = utl.slog, utl.fmtf, utl.fmtl, utl.fmtm
-W, Y, Z                        = utl.W, utl.Y, utl.Z
+X, W, Y, Z                     = utl.X, utl.W, utl.Y, utl.Z
 TT, NN, II, KK                 = utl.TT, utl.NN, utl.II, utl.KK
 MELODY, CHORD, ARPG            = utl.MELODY, utl.CHORD, utl.ARPG
 LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
@@ -99,99 +100,105 @@ def on_key_press(tobj, symb, mods, dbg=1):
     kd    = tkb.data if tkb else None
     kbk   = psym(symb)   ;   m = MODS
     if dbg:    slog(f'BGN {fsm(symb, mods)} kd={fmtm(kd)}')
-    if   kbk == 'A' and isCtlShf(kd, m):    tobj.flipArrow(    '@^A', v=1)
-    elif kbk == 'A' and isCtl(   kd, m):    tobj.flipArrow(    '@ A', v=0)
-    elif kbk == 'B' and isCtlShf(kd, m):    tobj.flipBlank(    '@^B')
-    elif kbk == 'B' and isCtl(   kd, m):    tobj.flipBlank(    '@ B')
-    elif kbk == 'C' and isCtlShf(kd, m):    tobj.copyTabs(     '@^C')
-    elif kbk == 'C' and isCtl(   kd, m):    tobj.copyTabs(     '@ C')
-    elif kbk == 'D' and isCtlShf(kd, m):    tobj.deleteTabs(   '@^D')
-    elif kbk == 'D' and isCtl(   kd, m):    tobj.deleteTabs(   '@ D')
-    elif kbk == 'E' and isCtlShf(kd, m):    tobj.eraseTabs(    '@^E')
-#   elif kbk == 'E' and isCtl(   kd, m):    tobj.eraseTabs(    '@ E')
-    elif kbk == 'F' and isCtlShf(kd, m):    tobj.flipFullScrn( '@^F')
-    elif kbk == 'F' and isCtl(   kd, m):    tobj.flipFlatShrp( '@ F')
-    elif kbk == 'G' and isCtlShf(kd, m):    tobj.move2LastTab( '@^G', page=1)
-    elif kbk == 'G' and isCtl(   kd, m):    tobj.move2LastTab( '@ G', page=0)
-    elif kbk == 'H' and isCtlShf(kd, m):    tobj.move2FrstTab( '@^H', page=1)
-    elif kbk == 'H' and isCtl(   kd, m):    tobj.move2FrstTab( '@ H', page=0)
-    elif kbk == 'I' and isCtlShf(kd, m):    tobj.insertSpace(  '@^I')
-    elif kbk == 'I' and isCtl(   kd, m):    tobj.flipTTs(      '@ I', II)
-    elif kbk == 'J' and isCtlShf(kd, m):    tobj.jump(         '@^J', a=1)
-    elif kbk == 'J' and isCtl(   kd, m):    tobj.jump(         '@ J', a=0)
-    elif kbk == 'K' and isCtlShf(kd, m):    tobj.flipTTs(      '@^K', KK)
-    elif kbk == 'K' and isCtl(   kd, m):    tobj.flipTTs(      '@ K', KK)
-    elif kbk == 'L' and isCtlShf(kd, m):    tobj.flipLLs(      '@^L')
-    elif kbk == 'L' and isCtl(   kd, m):    tobj.flipLLs(      '@ L')
-    elif kbk == 'M' and isCtlShf(kd, m):    tobj.flipZZs(      '@^M', 1)
-    elif kbk == 'M' and isCtl(   kd, m):    tobj.flipZZs(      '@ M', 0)
-    elif kbk == 'N' and isCtlShf(kd, m):    tobj.flipTTs(      '@^N', NN)
-    elif kbk == 'N' and isCtl(   kd, m):    tobj.flipTTs(      '@ N', NN)
-    elif kbk == 'O' and isCtlShf(kd, m):    tobj.flipCrsrMode( '@^O', -1)
-    elif kbk == 'O' and isCtl(   kd, m):    tobj.flipCrsrMode( '@ O', 1)
-    elif kbk == 'P' and isCtlShf(kd, m):    tobj.addPage(      '@^P', ins=0)
-    elif kbk == 'P' and isCtl(   kd, m):    tobj.addPage(      '@ P', ins=None)
-    elif kbk == 'Q' and isCtlShf(kd, m):    retv = tobj.quit(  '@^Q', error=0, save=0)
-    elif kbk == 'Q' and isCtl(   kd, m):    retv = tobj.quit(  '@ Q', error=0, save=1)
-    elif kbk == 'R' and isCtlShf(kd, m):    tobj.flipKordNames('@^R', hit=1)
-    elif kbk == 'R' and isCtl(   kd, m):    tobj.flipKordNames('@ R', hit=0)
-    elif kbk == 'S' and isCtlShf(kd, m):    tobj.shiftTabs(    '@^S')
-#   elif kbk == 'S' and isCtl(   kd, m):    tobj.saveDataFile( '@ S', self.dataPath1)
-    elif kbk == 'S' and isCtl(   kd, m):    tobj.swapTab(      '@ S', txt=Z)
-    elif kbk == 'T' and isCtlShf(kd, m):    tobj.flipTTs(      '@^T', TT)
-    elif kbk == 'T' and isCtl(   kd, m):    tobj.flipTTs(      '@ T', TT)
-    elif kbk == 'U' and isCtlShf(kd, m):    tobj.reset(        '@^U')
-    elif kbk == 'U' and isCtl(   kd, m):    tobj.reset(        '@ U')
-#   elif kbk == 'V' and isCtlAlt(kd, m):    tobj.pasteTabs(    '@&V', hc=0, kk=1)
-    elif kbk == 'V' and isCtlShf(kd, m):    tobj.pasteTabs(    '@^V', kk=1)
-    elif kbk == 'V' and isCtl(   kd, m):    tobj.pasteTabs(    '@ V', kk=0)
-    elif kbk == 'W' and isCtlShf(kd, m):    tobj.swapCols(     '@^W')
-    elif kbk == 'W' and isCtl(   kd, m):    tobj.swapCols(     '@ W')
-    elif kbk == 'X' and isCtlShf(kd, m):    tobj.cutTabs(      '@^X')
-    elif kbk == 'X' and isCtl(   kd, m):    tobj.cutTabs(      '@ X')
+    if   kbk == 'A' and isCtlShf(kd, m):     cmd = cmds.TogArrowCmd(tobj, '@^A', v=1, dbg=1)  ;  cmd.do()
+    elif kbk == 'A' and isCtl(   kd, m):     cmd = cmds.TogArrowCmd(tobj, '@ A', v=0, dbg=1)  ;  cmd.do()
+    elif kbk == 'B' and isCtlShf(kd, m):     cmd = cmds.TogBlankCmd(tobj, '@^B', -1)          ;  cmd.do()
+    elif kbk == 'B' and isCtl(   kd, m):     cmd = cmds.TogBlankCmd(tobj, '@ B',  1)          ;  cmd.do()
+    elif kbk == 'C' and isCtlShf(kd, m):     tobj.copyTabs(     '@^C')
+    elif kbk == 'C' and isCtl(   kd, m):     tobj.copyTabs(     '@ C')
+    elif kbk == 'D' and isCtlShf(kd, m):     tobj.deleteTabs(   '@^D')
+    elif kbk == 'D' and isCtl(   kd, m):     tobj.deleteTabs(   '@ D')
+    elif kbk == 'E' and isCtlShf(kd, m):     tobj.eraseTabs(    '@^E')
+#   elif kbk == 'E' and isCtl(   kd, m):     tobj.eraseTabs(    '@ E')
+    elif kbk == 'F' and isCtlShf(kd, m):     cmd = cmds.TogFullScrnCmd(tobj, '@^F')           ;  cmd.do()
+    elif kbk == 'F' and isCtl(   kd, m):     cmd = cmds.TogFlatShrpCmd(tobj, '@ F', dbg=1)    ;  cmd.do()
+    elif kbk == 'G' and isCtlShf(kd, m):     tobj.move2LastTab( '@^G', page=1)
+    elif kbk == 'G' and isCtl(   kd, m):     tobj.move2LastTab( '@ G', page=0)
+    elif kbk == 'H' and isCtlShf(kd, m):     tobj.move2FrstTab( '@^H', page=1)
+    elif kbk == 'H' and isCtl(   kd, m):     tobj.move2FrstTab( '@ H', page=0)
+    elif kbk == 'I' and isCtlShf(kd, m):     tobj.insertSpace(  '@^I')
+    elif kbk == 'I' and isCtl(   kd, m):     tobj.flipTTs(      '@ I', II)
+    elif kbk == 'J' and isCtlShf(kd, m):     tobj.jump(         '@^J', a=1)
+    elif kbk == 'J' and isCtl(   kd, m):     tobj.jump(         '@ J', a=0)
+    elif kbk == 'K' and isCtlShf(kd, m):     tobj.flipTTs(      '@^K', KK)
+    elif kbk == 'K' and isCtl(   kd, m):     tobj.flipTTs(      '@ K', KK)
+    elif kbk == 'L' and isCtlShf(kd, m):     tobj.flipLLs(      '@^L')
+    elif kbk == 'L' and isCtl(   kd, m):     tobj.flipLLs(      '@ L')
+    elif kbk == 'M' and isCtlShf(kd, m):     tobj.flipZZs(      '@^M', 1)
+    elif kbk == 'M' and isCtl(   kd, m):     tobj.flipZZs(      '@ M', 0)
+    elif kbk == 'N' and isCtlShf(kd, m):     tobj.flipTTs(      '@^N', NN)
+    elif kbk == 'N' and isCtl(   kd, m):     tobj.flipTTs(      '@ N', NN)
+    elif kbk == 'O' and isCtlShf(kd, m):     tobj.flipCrsrMode( '@^O', -1)
+    elif kbk == 'O' and isCtl(   kd, m):     tobj.flipCrsrMode( '@ O', 1)
+    elif kbk == 'P' and isCtlShf(kd, m):     tobj.addPage(      '@^P', ins=0)
+    elif kbk == 'P' and isCtl(   kd, m):     tobj.addPage(      '@ P', ins=None)
+    elif kbk == 'Q' and isCtlShf(kd, m):     retv = tobj.quit(  '@^Q', error=0, save=0)
+    elif kbk == 'Q' and isCtl(   kd, m):     retv = tobj.quit(  '@ Q', error=0, save=1)
+    elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
+    elif kbk == 'R' and isCtl(   kd, m):     tobj.flipKordNames('@ R', hit=0)
+    elif kbk == 'S' and isCtlShf(kd, m):     tobj.shiftTabs(    '@^S')
+#   elif kbk == 'S' and isCtl(   kd, m):     tobj.saveDataFile( '@ S', self.dataPath1)
+    elif kbk == 'S' and isCtl(   kd, m):     tobj.swapTab(      '@ S', txt=Z)
+    elif kbk == 'T' and isCtlShf(kd, m):     tobj.flipTTs(      '@^T', TT)
+    elif kbk == 'T' and isCtl(   kd, m):     tobj.flipTTs(      '@ T', TT)
+    elif kbk == 'U' and isCtlShf(kd, m):     tobj.reset(        '@^U')
+    elif kbk == 'U' and isCtl(   kd, m):     tobj.reset(        '@ U')
+#   elif kbk == 'V' and isCtlAlt(kd, m):     tobj.pasteTabs(    '@&V', hc=0, kk=1)
+    elif kbk == 'V' and isCtlShf(kd, m):     tobj.pasteTabs(    '@^V', kk=1)
+    elif kbk == 'V' and isCtl(   kd, m):     tobj.pasteTabs(    '@ V', kk=0)
+    elif kbk == 'W' and isCtlShf(kd, m):     tobj.swapCols(     '@^W')
+    elif kbk == 'W' and isCtl(   kd, m):     tobj.swapCols(     '@ W')
+    elif kbk == 'X' and isCtlShf(kd, m):     tobj.cutTabs(      '@^X')
+    elif kbk == 'X' and isCtl(   kd, m):     tobj.cutTabs(      '@ X')
     ####################################################################################################################################################################################################
-    elif kbk == 'ESCAPE':                   tobj.flipSelectAll('ESCAPE')
-    elif kbk == 'TAB' and isCtl(kd, m):     tobj.setCHVMode(   '@ TAB',       MELODY, LARROW)
-    elif kbk == 'TAB':                      tobj.setCHVMode(   '  TAB',       MELODY, RARROW)
-#   elif kbk == 'SLASH'     and isCtl(mods): tobj.setTab(      '@ SLASH', '/')
-#   elif kbk == 'SLASH':                     tobj.setTab(      '  SLASH', '/')
-#   elif kbk == 'BACKSLASH' and isCtl(mods): tobj.setTab(      '@ BACKSLASH', '\\')
-#   elif kbk == 'BACKSLASH':                 tobj.setTab(      '  BACKSLASH', '\\')
-#   elif kbk == 'SLASH'     and isCtl(mods): tobj.setCHVMode(  '@ SLASH',     ARPG,   LARROW, DARROW)
-#   elif kbk == 'SLASH':                     tobj.setCHVMode(  '  SLASH',     ARPG,   RARROW, UARROW)
-#   elif kbk == 'BACKSLASH' and isCtl(mods): tobj.setCHVMode(  '@ BACKSLASH', ARPG,   LARROW, UARROW)
-#   elif kbk == 'BACKSLASH':                 tobj.setCHVMode(  '  BACKSLASH', ARPG,   RARROW, DARROW)
-    elif kbk == 'A' and isAltShf(kd, m):    tobj.flipDrwBGC(   '&^C', -1)
-    elif kbk == 'A' and isAlt(   kd, m):    tobj.flipDrwBGC(   '& C',  1)
-    elif kbk == 'D' and isAltShf(kd, m):    tobj.flipBGC(      '&^D')
-    elif kbk == 'D' and isAlt(   kd, m):    tobj.flipBGC(      '& D')
-    elif kbk == 'N' and isAltShf(kd, m):    tobj.setn_cmd(     '&^N', txt=Z)
-    elif kbk == 'N' and isAlt(   kd, m):    tobj.setn_cmd(     '& N', txt=Z)
-    elif kbk == 'P' and isAltShf(kd, m):    tobj.flipPage(     '&^P', -1)
-    elif kbk == 'P' and isAlt(   kd, m):    tobj.flipPage(     '& P',  1)
-    elif kbk == 'R' and isAltShf(kd, m):    tobj.rotateSprite( '&^R', hcurs[0], -1)
-    elif kbk == 'R' and isAlt(   kd, m):    tobj.rotateSprite( '& R', hcurs[0],  1)
-    elif kbk == 'V' and isAltShf(kd, m):    tobj.flipVisible(  '&^V', dbg=1)
-    elif kbk == 'V' and isAlt(kd, m):       tobj.flipVisible(  '& V', dbg=1)
-    elif kbk == 'Z' and isAltShf(kd, m):    tobj.RESIZE = not tobj.RESIZE   ;  tobj.resizeTniks(dbg=1)
-    elif kbk == 'Z' and isAlt(   kd, m):                                       tobj.resizeTniks(dbg=1)
+    elif kbk == 'ESCAPE':                    tobj.flipSelectAll('ESCAPE')
+    elif kbk == 'TAB' and isCtl(kd, m):      tobj.setCHVMode(   '@ TAB',       MELODY, LARROW)
+    elif kbk == 'TAB':                       tobj.setCHVMode(   '  TAB',       MELODY, RARROW)
+#   elif kbk == 'SLASH'     and isCtl(mods):  tobj.setTab(      '@ SLASH', '/')
+#   elif kbk == 'SLASH':                      tobj.setTab(      '  SLASH', '/')
+#   elif kbk == 'BACKSLASH' and isCtl(mods):  tobj.setTab(      '@ BACKSLASH', '\\')
+#   elif kbk == 'BACKSLASH':                  tobj.setTab(      '  BACKSLASH', '\\')
+#   elif kbk == 'SLASH'     and isCtl(mods):  tobj.setCHVMode(  '@ SLASH',     ARPG,   LARROW, DARROW)
+#   elif kbk == 'SLASH':                      tobj.setCHVMode(  '  SLASH',     ARPG,   RARROW, UARROW)
+#   elif kbk == 'BACKSLASH' and isCtl(mods):  tobj.setCHVMode(  '@ BACKSLASH', ARPG,   LARROW, UARROW)
+#   elif kbk == 'BACKSLASH':                  tobj.setCHVMode(  '  BACKSLASH', ARPG,   RARROW, DARROW)
+    elif kbk == 'A' and isAltShf(kd, m):     tobj.flipDrwBGC(   '&^C', -1)
+    elif kbk == 'A' and isAlt(   kd, m):     tobj.flipDrwBGC(   '& C',  1)
+    elif kbk == 'D' and isAltShf(kd, m):     tobj.flipBGC(      '&^D')
+    elif kbk == 'D' and isAlt(   kd, m):     tobj.flipBGC(      '& D')
+    elif kbk == 'N' and isAltShf(kd, m):     tobj.setn_cmd(     '&^N', txt=Z)
+    elif kbk == 'N' and isAlt(   kd, m):     tobj.setn_cmd(     '& N', txt=Z)
+    elif kbk == 'P' and isAltShf(kd, m):     cmd = cmds.TogPageCmd(tobj, '&^P', -1)           ;   cmd.do()
+    elif kbk == 'P' and isAlt   (kd, m):     cmd = cmds.TogPageCmd(tobj, '& P',  1)           ;   cmd.do()
+    elif kbk == 'R' and isAltShf(kd, m):     tobj.rotateSprite( '&^R', hcurs[0], -1)
+    elif kbk == 'R' and isAlt(   kd, m):     tobj.rotateSprite( '& R', hcurs[0],  1)
+    elif kbk == 'V' and isAltShf(kd, m):     cmd = cmds.TogVisibleCmd(tobj, '&^V', dbg=1)     ;   cmd.do()
+    elif kbk == 'V' and isAlt(kd, m):        cmd = cmds.TogVisibleCmd(tobj, '& V', dbg=1)     ;   cmd.do() 
+    elif kbk == 'Z' and isAltShf(kd, m):     tobj.RESIZE = not tobj.RESIZE   ;  tobj.resizeTniks(dbg=1)
+    elif kbk == 'Z' and isAlt(   kd, m):                                        tobj.resizeTniks(dbg=1)
     ####################################################################################################################################################################################################
-    elif kbk == 'B' and isAltShf(kd, m):    tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
-    elif kbk == 'B' and isAlt(   kd, m):    tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
-    elif kbk == 'C' and isAltShf(kd, m):    tobj.setFontParam(COLOR,        -1,          'clrIdx')
-    elif kbk == 'C' and isAlt(   kd, m):    tobj.setFontParam(COLOR,         1,          'clrIdx')
-    elif kbk == 'I' and isAltShf(kd, m):    tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
-    elif kbk == 'I' and isAlt(   kd, m):    tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
-    elif kbk == 'A' and isAltShf(kd, m):    tobj.setFontParam(FONT_NAME,    -1,          'fontNameIdx')
-    elif kbk == 'A' and isAlt(   kd, m):    tobj.setFontParam(FONT_NAME,     1,          'fontNameIdx')
-    elif kbk == 'S' and isAltShf(kd, m):    tobj.setFontParam(FONT_SIZE,     33 / 32,    'fontSize')
-    elif kbk == 'S' and isAlt(   kd, m):    tobj.setFontParam(FONT_SIZE,     32 / 33,    'fontSize')
+    elif kbk == 'B' and isAltShf(kd, m):     tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
+    elif kbk == 'B' and isAlt(   kd, m):     tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
+    elif kbk == 'C' and isAltShf(kd, m):     tobj.setFontParam(COLOR,        -1,          'clrIdx')
+    elif kbk == 'C' and isAlt(   kd, m):     tobj.setFontParam(COLOR,         1,          'clrIdx')
+    elif kbk == 'I' and isAltShf(kd, m):     tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
+    elif kbk == 'I' and isAlt(   kd, m):     tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
+    elif kbk == 'A' and isAltShf(kd, m):     tobj.setFontParam(FONT_NAME,    -1,          'fontNameIdx')
+    elif kbk == 'A' and isAlt(   kd, m):     tobj.setFontParam(FONT_NAME,     1,          'fontNameIdx')
+    elif kbk == 'S' and isAltShf(kd, m):     tobj.setFontParam(FONT_SIZE,     33 / 32,    'fontSize')
+    elif kbk == 'S' and isAlt(   kd, m):     tobj.setFontParam(FONT_SIZE,     32 / 33,    'fontSize')
+#    elif kbk == 'PAGEUP'   and isCtlShf(kd, m): tobj.log(f'{kbk=} @^PAGEUP')     ;   cmd = cmds.TogPageCmd(tobj, '@^PAGEUP', -1)  ;  cmd.do()
+#    elif kbk == 'PAGEUP'   and isCtl(   kd, m): tobj.log(f'{kbk=} @ PAGEUP')     ;   cmd = cmds.TogPageCmd(tobj, '@ PAGEUP',  1)  ;  cmd.do()
+#    elif kbk == 'PAGEUP':                       tobj.log(f'{kbk=}   PAGEUP')     ;   tobj.moveUp(    f' PAGEUP')                              # go down to bottom tab on same line, wrap to next line
+#    elif kbk == 'PAGEDOWN' and isCtlShf(kd, m): tobj.log(f'{kbk=} @^PAGEDOWN')   ;   cmd = cmds.TogPageCmd(tobj, '@^PAGEDOWN', -1)  ;  cmd.do()
+#    elif kbk == 'PAGEDOWN' and isCtl(   kd, m): tobj.log(f'{kbk=} @ PAGEDOWN')   ;   cmd = cmds.TogPageCmd(tobj, '@ PAGEDOWN',  1)  ;  cmd.do()
+#    elif kbk == 'PAGEDOWN':                     tobj.log(f'{kbk=}   PAGEDOWN')   ;   tobj.moveDown(    f' PAGEDOWN')                            # go down to bottom tab on same line, wrap to next line
     else:  retv = False   ;   slog(f'UNH {fsm(symb, mods)} kd={fmtm(kd)}') if dbg else None
     ####################################################################################################################################################################################################
     if  not  tobj.isParsing():
-        if   kbk == 'ENTER' and isCtl(kd, m): tobj.setCHVMode(  '@  ENTER',     CHORD,  v=DARROW)
-        elif kbk == 'ENTER':                  tobj.setCHVMode(  '   ENTER',     CHORD,  v=UARROW)
-#        elif kbk == 'SPACE':                  tobj.autoMove(    '   SPACE') # todo does commenting this line break anything?
+        if   kbk == 'ENTER' and isCtl(kd, m):     tobj.setCHVMode(  '@  ENTER',     CHORD,  v=DARROW)
+        elif kbk == 'ENTER':                      tobj.setCHVMode(  '   ENTER',     CHORD,  v=UARROW)
+        elif kbk == 'SPACE' and tobj.tblank != W: tobj.autoMove(    '   SPACE') # todo
 #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
     if dbg:  slog(f'END {    fsm(symb, mods)} kd={fmtm(kd)}, {retv=}')
     return retv
@@ -286,6 +293,22 @@ def on_text_motion(tobj, motion, dbg=1):
     elif isAltShf(kd, m):                          msg =             f' &^(            {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
     elif isCtlShf(kd, m):                          msg =             f'@^(             {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
     elif isShf(kd, m):                             msg =             f'^ (             {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    elif isCtl(kd, m):
+        if   motion == k.MOTION_UP:                msg = f'MOTION_UP  ({motion})'   ;    slog(msg)   ;   retv = False
+        elif motion == k.MOTION_DOWN:              msg = f'MOTION_DOWN({motion})'   ;    slog(msg)   ;   retv = False
+        elif motion == k.MOTION_NEXT_WORD:         tobj.selectTabs(  f'@  RIGHT(       {motion})',  nt)
+        elif motion == k.MOTION_PREVIOUS_WORD:     tobj.selectTabs(  f'@  LEFT(        {motion})', -nt)
+        elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'@  MOTION_BEGINNING_OF_FILE({motion} CTRL HOME)'  ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL HOME
+        elif motion == k.MOTION_END_OF_FILE:       msg = f'@  MOTION_END_OF_FILE(      {motion} CTRL END)'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL END
+        elif motion == k.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE({motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(      {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_PREVIOUS_PAGE:     msg = f'@  MOTION_PREVIOUS_PAGE(    {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_NEXT_PAGE:         msg = f'@ MOTION_NEXT_PAGE(         {motion})'   ;   slog(msg)   ;   retv = False
+#            cmd = tobj.NextPageCmd(tobj, '@  MOTION_NEXT_PAGE', motion)   ;  cmd.do()     
+        elif motion == k.MOTION_DELETE:            tobj.deleteTabs(f'@ D MOTION_DELETE({motion})')
+        elif motion == k.MOTION_COPY:              tobj.copyTabs(  f'@ C MOTION_COPY(  {motion})')
+        elif motion == k.MOTION_PASTE:             tobj.pasteTabs( f'@ V MOTION_PASTE( {motion})', kk=0)
+        else:                                      msg = f'@  UNH CTRL(                {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
     elif isAlt(kd, m):
         if   motion == k.MOTION_UP:                tobj.moveUp(      f' & UP(          {motion})')
         elif motion == k.MOTION_DOWN:              tobj.moveDown(    f' & DOWN(        {motion})')
@@ -296,19 +319,6 @@ def on_text_motion(tobj, motion, dbg=1):
         elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.prevPage(    f' & PAGE UP(     {motion})')
         elif motion == k.MOTION_NEXT_PAGE:         tobj.nextPage(    f' & PAGE DOWN(   {motion})')
         else:                                      msg =             f' & UNH(         {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg)
-    elif isCtl(kd, m):
-        if   motion == k.MOTION_NEXT_WORD:         tobj.selectTabs(  f'@  RIGHT(       {motion})',  nt)
-        elif motion == k.MOTION_PREVIOUS_WORD:     tobj.selectTabs(  f'@  LEFT(        {motion})', -nt)
-        elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'@  MOTION_BEGINNING_OF_FILE({motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL HOME
-        elif motion == k.MOTION_END_OF_FILE:       msg = f'@  MOTION_END_OF_FILE(      {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL END
-        elif motion == k.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE({motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(      {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_PREVIOUS_PAGE:     msg = f'@  MOTION_PREVIOUS_PAGE(    {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_NEXT_PAGE:         msg = f'@  MOTION_NEXT_PAGE         {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_DELETE:            tobj.deleteTabs(f'@ D MOTION_DELETE({motion})')
-        elif motion == k.MOTION_COPY:              tobj.copyTabs(  f'@ C MOTION_COPY(  {motion})')
-        elif motion == k.MOTION_PASTE:             tobj.pasteTabs( f'@ V MOTION_PASTE( {motion})', kk=0)
-        else:                                      msg = f'@  UNH CTRL(                {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
     else:
         if   motion == k.MOTION_UP:                tobj.move(        f' UP(            {motion})', -1)
         elif motion == k.MOTION_DOWN:              tobj.move(        f' DOWN(          {motion})',  1)
@@ -317,14 +327,16 @@ def on_text_motion(tobj, motion, dbg=1):
         elif motion == k.MOTION_BEGINNING_OF_LINE: tobj.move(        f' HOME(          {motion})', -nt *  c)
         elif motion == k.MOTION_END_OF_LINE:       tobj.move(        f' END(           {motion})',  nt * (nc - tobj.i[C]))
         elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.moveUp(      f' PAGE UP(       {motion})')  # go up   to top    of line, wrap down to bottom of prev line
-        elif motion == k.MOTION_NEXT_PAGE:         tobj.moveDown(    f' PAGE DOWN(     {motion})')  # go down to bottom tab on same line, wrap to next line
+#        elif motion == k.MOTION_NEXT_PAGE:         tobj.moveDown(    f' PAGE DOWN(     {motion})')  # go down to bottom tab on same line, wrap to next line
+        elif motion == k.MOTION_NEXT_PAGE:         
+            msg = f' MOTION_NEXT_PAGE(     {motion})'  ;   slog(msg)   ;   retv = False
         elif motion == k.MOTION_DELETE:            tobj.setTab(      f'DELETE(         {motion})', tobj.tblank)
         elif motion == k.MOTION_BACKSPACE:         tobj.setTab(      f'BACKSPACE(      {motion})', tobj.tblank, rev=1)
         elif motion == k.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD(       {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif motion == k.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD(           {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'MOTION_BEGINNING_OF_FILE(   {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif motion == k.MOTION_END_OF_FILE:       msg = f'MOTION_END_OF_FILE(         {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        else:                                      msg =             f'UNH(            {motion})'   ;   slog(msg)   ;   retv = False  ;  tobj.quit(msg)
+#        else:                                      msg =             f'UNH(            {motion})'   ;   slog(msg)   ;   retv = False  ;  tobj.quit(msg)
     if dbg: slog(f'END {ftm(motion)} {retv=}')
     return retv
 ########################################################################################################################################################################################################
