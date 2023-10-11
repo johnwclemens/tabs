@@ -2250,57 +2250,6 @@ class Tabs(pyglet.window.Window):
         spr.rotation =  (spr.rotation + cw * 10) % 360
         self.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
     ####################################################################################################################################################################################################
-    def flipKordNames(self, how, hit=0, dbg=1):
-        cc = self.cc    ;    cn = self.cc2cn(cc)
-        mks = list(self.cobj.mlimap.keys())   ;   sks = list(self.smap.keys())
-        if sks and not hit:
-            if dbg: self.dumpSmap(f'BGN {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
-            [ self.flipKordName(how, k) for k in sks ]
-        else:
-            if dbg: self.dumpSmap(f'BGN {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
-            if hit: self.flipKordNameHits(how, cn)
-            else:   self.flipKordName(    how, cn)
-        if dbg:     self.dumpSmap(f'END {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
-
-    def flipKordNameHits(self, how, cn, dbg=1): # optimize str concat?
-        mli = self.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
-        if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   self.log(msg)   ;   self.quit(msg)
-        ivals =  [ u[1] for u in mli[cn][0] ]
-        msg   =  [ fmtl(v, w="x") for v in ivals ]
-        if dbg: self.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d=Z)}')
-        hits = self.ivalhits(ivals, how)
-        for cn2 in hits:
-            if cn2 not in self.smap: self.selectTabs(how, m=0, cn=cn2)
-            self.flipKordName(how, cn2)
-        if dbg: self.log(f'END {how} mks={fmtl(mks)} cn2={cn2:2} ivals={fmtl(msg, d=Z)}')
-
-    def ivalhits(self, ivals, how, dbg=1):
-        mli = self.cobj.mlimap    ;   mks = list(mli.keys())   ;   hits = set()
-        for cn, lim in mli.items():
-            for im in lim[0]:
-                if cn in hits: break
-                for iv in ivals:
-                    iv1 = sorted(iv)  ;  iv2 = sorted(im[1])
-                    if iv1 == iv2:       hits.add(cn)   ;   break
-        if dbg: self.log(f'    {how} mks={fmtl(mks)} hits={fmtl(hits)}')
-        return list(hits)
-
-    def flipKordName(self, how, cn, dbg=1, dbg2=1):
-        cc = self.cn2cc(cn)            ;   mli = self.cobj.mlimap
-        p, l, c, t = self.cc2plct(cc)  ;   msg = Z
-        if not self.ikeys and not self.kords: msg +=  'ERROR: Both ikeys and chords are Empty '
-        if cn not in mli:                     msg += f'ERROR: {cn=} not in mks={fmtl(list(mli.keys()))}'
-        if msg: self.log(msg)          ;   return
-        limap      = mli[cn][0]        ;   imi = mli[cn][1]
-        imi        = (imi + 1) % len(limap)
-        mli[cn][1] = imi
-        ikeys, ivals, notes2, chordName, chunks, rank = limap[imi]
-        if self.ikeys and ikeys:                self.setIkeyText(ikeys, cc, p, l, c)
-        if self.kords and chordName and chunks: self.setChordName(cc, chordName, chunks)
-        elif dbg: self.log(f'    {how} {cn=} {cc=} is NOT a chord')
-        if dbg2:  self.cobj.dumpImap(limap[imi], why=f'{cn:2}')
-#        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
-    ####################################################################################################################################################################################################
     def flipDrwBGC(self, how, a):
         self.drwBGC += a
         self.log(f'{how} {self.drwBGC=}')

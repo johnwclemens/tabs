@@ -147,3 +147,66 @@ class TogVisibleCmd(Cmd):
         tobj.dumpTniksSfx(why)
         tobj.log(f'END {why} {pid} pages[{p}].v={int(tobj.pages[p].visible)} {tobj.fmti()} {tobj.fmtn()} page{p+1} is visible {tobj.fVis()}')
 ########################################################################################################################################################################################################
+class TogKordNamesCmd(Cmd):
+    def __init__(self, tobj, how, hit, dbg=1, dbg2=1):
+        self.tobj, self.how, self.hit, self.dbg, self.dbg2 = tobj, how, hit, dbg, dbg2
+
+    def do(  self): self._togKordNames()
+    def undo(self): self._togKordNames()
+
+    def _togKordNames(self):
+        tobj, how, hit, dbg = self.tobj, self.how, self.hit, self.dbg
+        cc = tobj.cc    ;    cn = tobj.cc2cn(cc)
+        mks = list(tobj.cobj.mlimap.keys())   ;   sks = list(tobj.smap.keys())
+        if sks and not hit:
+            if dbg: tobj.dumpSmap(f'BGN {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
+            [ self._togKordName(tobj, how, k) for k in sks ]
+        else:
+            if dbg: tobj.dumpSmap(f'BGN {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
+            if hit: self._togKordNameHits(tobj, how, cn)
+            else:   self._togKordName(tobj, how, cn)
+        if dbg:     tobj.dumpSmap(f'END {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
+        
+    def _togKordNameHits(self, tobj, how, cn, dbg=1):
+#        tobj, how, cn, dbg = self.tobj, self.how, self.cn, self.dbg
+        mli = tobj.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
+        if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   tobj.log(msg)   ;   tobj.quit(msg)
+        ivals =  [ u[1] for u in mli[cn][0] ]
+        msg   =  [ fmtl(v, w="x") for v in ivals ]
+        if dbg: tobj.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d=Z)}')
+        hits = self._ivalhits(tobj, ivals, how)
+        for cn2 in hits:
+            if cn2 not in tobj.smap: tobj.selectTabs(how, m=0, cn=cn2)
+            self._togKordName(tobj, how, cn2)
+        if dbg: tobj.log(f'END {how} mks={fmtl(mks)} cn2={cn2:2} ivals={fmtl(msg, d=Z)}')
+
+    @staticmethod
+    def _ivalhits(tobj, ivals, how, dbg=1):
+        mli = tobj.cobj.mlimap    ;   mks = list(mli.keys())   ;   hits = set()
+        for cn, lim in mli.items():
+            for im in lim[0]:
+                if cn in hits: break
+                for iv in ivals:
+                    iv1 = sorted(iv)  ;  iv2 = sorted(im[1])
+                    if iv1 == iv2:       hits.add(cn)   ;   break
+        if dbg: tobj.log(f'    {how} mks={fmtl(mks)} hits={fmtl(hits)}')
+        return list(hits)
+
+    @staticmethod
+    def _togKordName(tobj, how, cn, dbg=1, dbg2=1):
+#        tobj, how, cn, dbg, dbg2 = self.tobj, self.how, self.cn, self.dbg, self.dbg2
+        cc = tobj.cn2cc(cn)            ;   mli = tobj.cobj.mlimap
+        p, l, c, t = tobj.cc2plct(cc)  ;   msg = Z
+        if not tobj.ikeys and not tobj.kords: msg +=  'ERROR: Both ikeys and chords are Empty '
+        if cn not in mli:                     msg += f'ERROR: {cn=} not in mks={fmtl(list(mli.keys()))}'
+        if msg: tobj.log(msg)          ;   return
+        limap      = mli[cn][0]        ;   imi = mli[cn][1]
+        imi        = (imi + 1) % len(limap)
+        mli[cn][1] = imi
+        ikeys, ivals, notes2, chordName, chunks, rank = limap[imi]
+        if tobj.ikeys and ikeys:                tobj.setIkeyText(ikeys, cc, p, l, c)
+        if tobj.kords and chordName and chunks: tobj.setChordName(cc, chordName, chunks)
+        elif dbg: tobj.log(f'    {how} {cn=} {cc=} is NOT a chord')
+        if dbg2:  tobj.cobj.dumpImap(limap[imi], why=f'{cn:2}')
+#        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
+########################################################################################################################################################################################################
