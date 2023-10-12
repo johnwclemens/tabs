@@ -100,6 +100,11 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
     elif kbk == 'R' and isCtl(   kd, m):     tobj.flipKordNames('@ R', hit=0)
 
+    elif kbk == 'A' and isAltShf(kd, m):     tobj.flipBGC(      '&^A')
+    elif kbk == 'A' and isAlt(   kd, m):     tobj.flipBGC(      '& A')
+    elif kbk == 'D' and isAltShf(kd, m):     tobj.flipDrwBGC(   '&^D', -1)
+    elif kbk == 'D' and isAlt(   kd, m):     tobj.flipDrwBGC(   '& D',  1)
+
     elif kbk == 'B' and isAltShf(kd, m):     tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
     elif kbk == 'B' and isAlt(   kd, m):     tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
     elif kbk == 'C' and isAltShf(kd, m):     tobj.setFontParam(COLOR,        -1,          'clrIdx')
@@ -275,3 +280,13 @@ def _setFontParam(self, ts, n, v, m, j, dbg=1):
             elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
             elif m == 'fontSize':     setattr(t, n, v*fs)
             else:                     setattr(t, n, v)
+########################################################################################################################################################################################################
+def flipDrwBGC(self, how, a):
+    self.drwBGC += a
+    self.log(f'{how} {self.drwBGC=}')
+########################################################################################################################################################################################################
+def flipBGC(self, how=Z):
+    self.log(f'{how} {self.BGC=}') if how else None
+    self.BGC = (1 + self.BGC) % 2
+    self.setFontParam2(self.tabls, COLOR, self.BGC, 'clrIdx', T)
+########################################################################################################################################################################################################

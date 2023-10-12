@@ -7,6 +7,8 @@ from   tpkg.notes  import Notes  as Notes
 
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          B, A, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.B, utl.A, utl.D, utl.E
 W, X, Y, Z,       NONE,  ist,  fri,         slog,   fmtf,   fmtl,   fmtm    = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,       utl.slog,   utl.fmtf,   utl.fmtl,   utl.fmtm
+BGC,  BOLD,  COLOR,     FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,   utl.BOLD,  utl.COLOR,   utl.FONT_NAME, utl.FONT_SIZE, utl.ITALIC,   utl.KERNING,     utl.UNDERLINE
+
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'evns',     'logs',     'pngs',     'text',     'data'
 HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
@@ -246,4 +248,29 @@ class SetFontParamCmd(Cmd):
                 elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
                 elif m == 'fontSize':     setattr(t, n, v*fs)
                 else:                     setattr(t, n, v)
+########################################################################################################################################################################################################
+class TogDrwBGCCmd(Cmd):
+    def __init__(self, tobj, how, a):
+        self.tobj, self.how, self.a = tobj, how, a
+
+    def do(  self): self._togDrwBGC()
+    def undo(self): self._togDrwBGC()
+
+    def _togDrwBGC(self):
+        tobj, how, a = self.tobj, self.how, self.a
+        tobj.drwBGC += a
+        tobj.log(f'{how} {tobj.drwBGC=}')
+########################################################################################################################################################################################################
+class TogBGCCmd(Cmd):
+    def __init__(self, tobj, how):
+        self.tobj, self.how = tobj, how
+
+    def do(  self): self._togBGC()
+    def undo(self): self._togBGC()
+
+    def _togBGC(self):
+        tobj, how = self.tobj, self.how
+        tobj.log(f'{how} {tobj.BGC=}') if how else None
+        tobj.BGC = (1 + tobj.BGC) % 2
+        tobj.setFontParam2(tobj.tabls, COLOR, tobj.BGC, 'clrIdx', T)
 ########################################################################################################################################################################################################
