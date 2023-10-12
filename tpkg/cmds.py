@@ -231,23 +231,23 @@ class SetFontParamCmd(Cmd):
         ts = list(itertools.chain(tobj.A, tobj.B, tobj.C))  ;  lt = len(ts)
         if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         for j, t in enumerate(ts):
-            self._setFontParam2(tobj, t, n, v, m, j)
+            tobj.setFontParam2(t, n, v, m, j)
         if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         tobj.setCaption(tobj.fmtFont())
 
-    @staticmethod
-    def _setFontParam2(tobj, ts, n, v, m, j, dbg=1):
-        l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
-        for i, t in enumerate(ts):
-            if ist(t, LBL):
-                if   m == 'clrIdx':       l = len(t.color)   ;  msg = f'{v=:2} tc={fmtl(t.color, w=3)}  ds={fmtl(t.document.get_style(n), w=3)}  kv={fmtl(tobj.k[v][fb][:l], w=3)}'
-                elif m == 'fontNameIdx':                        msg = f'{v=:2} {FONT_NAMES[v]=}'
-                elif m == 'fontSize':    fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
-                if dbg and ist(t, LBL) and i==0:            tobj.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', f=2)
-                if   m == 'clrIdx':       tobj.setTNIKStyle2(t, tobj.k[v], tobj.fontStyle)
-                elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
-                elif m == 'fontSize':     setattr(t, n, v*fs)
-                else:                     setattr(t, n, v)
+#    @staticmethod
+#    def _setFontParam2(tobj, ts, n, v, m, j, dbg=1):
+#        l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
+#        for i, t in enumerate(ts):
+#            if ist(t, LBL):
+#                if   m == 'clrIdx':       l = len(t.color)   ;  msg = f'{v=:2} tc={fmtl(t.color, w=3)}  ds={fmtl(t.document.get_style(n), w=3)}  kv={fmtl(tobj.k[v][fb][:l], w=3)}'
+#                elif m == 'fontNameIdx':                        msg = f'{v=:2} {FONT_NAMES[v]=}'
+#                elif m == 'fontSize':    fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
+#                if dbg and ist(t, LBL) and i==0:            tobj.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', f=2)
+#                if   m == 'clrIdx':       tobj.setTNIKStyle2(t, tobj.k[v], tobj.fontStyle)
+#                elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
+#                elif m == 'fontSize':     setattr(t, n, v*fs)
+#                else:                     setattr(t, n, v)
 ########################################################################################################################################################################################################
 class TogDrwBGCCmd(Cmd):
     def __init__(self, tobj, how, a):

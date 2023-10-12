@@ -1661,6 +1661,19 @@ class Tabs(pyglet.window.Window):
         pix = s / PNT_PER_PIX   ;   fcs = Z # f'{fmtl( [k])}'
         self.log(f'{dpi}:{FONT_DPIS[dpi]}dpi {s:6.2f}pt {n}:{FONT_NAMES[n]} {k}:{fcs} {s:6.2f}pt = {PNT_PER_PIX:6.4f}(pt/pix) * {pix:6.2f}pixels {why}', f=-2)
 
+    def setFontParam2(self, ts, n, v, m, j, dbg=1):
+        l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
+        for i, t in enumerate(ts):
+            if ist(t, LBL):
+                if   m == 'clrIdx':       l = len(t.color)   ;  msg = f'{v=:2} tc={fmtl(t.color, w=3)}  ds={fmtl(t.document.get_style(n), w=3)}  kv={fmtl(self.k[v][fb][:l], w=3)}'
+                elif m == 'fontNameIdx':                        msg = f'{v=:2} {FONT_NAMES[v]=}'
+                elif m == 'fontSize':    fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
+                if dbg and ist(t, LBL) and i==0:            self.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', f=2)
+                if   m == 'clrIdx':       self.setTNIKStyle2(t, self.k[v], self.fontStyle)
+                elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
+                elif m == 'fontSize':     setattr(t, n, v*fs)
+                else:                     setattr(t, n, v)
+
     @staticmethod
     def pix2pnt(pix):      return pix * PNT_PER_PIX # ( ) % FS_MAX
     def fontParams(self):  return self.fontBold, self.clrIdx, self.fontDpiIndex, self.fontItalic, self.fontNameIdx, self.fontSize
