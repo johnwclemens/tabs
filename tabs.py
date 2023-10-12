@@ -77,8 +77,8 @@ JFMT    = [ 1,       2,       2,       3,          4,       4,       4,       4,
 #JFMT   = [ 2,       3,       3,       6,          6,       6,       6,       6,          1,       3,       5,       1,          3,       3,       3,       4,          7]
 PNT_PER_PIX =  7/9  # 14pts/18pix
 FONT_DPIS   = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
-FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'Helvetica', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
-
+#FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'Helvetica', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
+FONT_NAMES  = utl.FONT_NAMES
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
 ########################################################################################################################################################################################################
@@ -1275,8 +1275,8 @@ class Tabs(pyglet.window.Window):
             z = 1 if self.STRETCH else 0   ;         d, n, ml = FONT_DPIS[d], FONT_NAMES[n], self.MULTILINE
             tnik = LBL(t, font_name=n, font_size=s, bold=o, italic=ii, stretch=z, color=k, x=x, y=y, width=w, height=h, anchor_x=ax, anchor_y=ay, align=aa, multiline=ml, dpi=d, batch=b, group=g)
             tnik.content_valign =  self.va
-            if   j == Q:           self._setTNIKStyle(tnik, self.k[j] if (i+1) % 10 else self.k[R], NORMAL_STYLE)
-            else:                  self._setTNIKStyle(tnik, self.k[j],                              NORMAL_STYLE)
+            if   j == Q:           self.setTNIKStyle2(tnik, self.k[j] if (i+1) % 10 else self.k[R], NORMAL_STYLE)
+            else:                  self.setTNIKStyle2(tnik, self.k[j],                              NORMAL_STYLE)
         if j == P and v:           self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {self.i[P]}')
         self.checkTnik(tnik, i, j)
         if    tlst is not None:    tlst.append(tnik)
@@ -1336,7 +1336,7 @@ class Tabs(pyglet.window.Window):
                     tlist2, j2, _, _ = self.tnikInfo(p, l, s, c, why=why)
             yield self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
     ####################################################################################################################################################################################################
-    def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self._setTNIKStyle(tnik, self.k[j], self.BGC)
+    def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
 #        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=}'
         tnik    = tlist[i]
         self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
@@ -1668,12 +1668,12 @@ class Tabs(pyglet.window.Window):
         ts = list(itertools.chain(self.A, self.B, self.C))  ;  lt = len(ts)
         if dbg:         self.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         for j, t in enumerate(ts):
-#            if dbg:     self.log(f'{j=:2} {W*3} {lt=} {m=:12} {n=:12} {v=:2}', p=0) #  and self.VRBY
-            self._setFontParam(t, n, v, m, j)
+#            if dbg:     self.log(f'{j=:2} {W*3} {lt=} {m=:12} {n=:12} {v=:2}') #  and self.VRBY
+            self.setFontParam2(t, n, v, m, j)
         if dbg:         self.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')  # and self.VRBY
         self.setCaption(self.fmtFont())
 
-    def _setFontParam(self, ts, n, v, m, j, dbg=1):
+    def setFontParam2(self, ts, n, v, m, j, dbg=1):
         l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
         for i, t in enumerate(ts):
             if ist(t, LBL):
@@ -1681,7 +1681,7 @@ class Tabs(pyglet.window.Window):
                 elif m == 'fontNameIdx':                        msg = f'{v=:2} {FONT_NAMES[v]=}'
                 elif m == 'fontSize':    fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
                 if dbg and ist(t, LBL) and i==0:            self.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', f=2)
-                if   m == 'clrIdx':       self._setTNIKStyle(t, self.k[v], self.fontStyle)
+                if   m == 'clrIdx':       self.setTNIKStyle2(t, self.k[v], self.fontStyle)
                 elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
                 elif m == 'fontSize':     setattr(t, n, v*fs)
                 else:                     setattr(t, n, v)
@@ -1832,7 +1832,7 @@ class Tabs(pyglet.window.Window):
     def flipBGC(self, how=Z):
         self.log(f'{how} {self.BGC=}') if how else None
         self.BGC = (1 + self.BGC) % 2
-        self._setFontParam(self.tabls, COLOR, self.BGC, 'clrIdx', T)
+        self.setFontParam2(self.tabls, COLOR, self.BGC, 'clrIdx', T)
 
     def move2LastTab(self, how, page=0, dbg=1):
         np, nl, ns, nc, nt = self.n    ;   p, l, s, c, t = self.j()  ;  i = p
@@ -2043,16 +2043,16 @@ class Tabs(pyglet.window.Window):
     def setTNIKStyle(self, k, nt, style, text=Z, blank=0): # optimize str concat?
         for t in range(k, k + nt):
             msg = f'{t=} {k=} {nt=} {blank=}' #  {text=:{self.n[T]}
-            if self.tabls: self._setTNIKStyle(self.tabls[t], self.k[T], style)  ;  text += self.tabls[t].text
-            if self.notes: self._setTNIKStyle(self.notes[t], self.k[N], style)
-            if self.ikeys: self._setTNIKStyle(self.ikeys[t], self.k[I], style)
-            if self.kords: self._setTNIKStyle(self.kords[t], self.k[K], style)
+            if self.tabls: self.setTNIKStyle2(self.tabls[t], self.k[T], style)  ;  text += self.tabls[t].text
+            if self.notes: self.setTNIKStyle2(self.notes[t], self.k[N], style)
+            if self.ikeys: self.setTNIKStyle2(self.ikeys[t], self.k[I], style)
+            if self.kords: self.setTNIKStyle2(self.kords[t], self.k[K], style)
             if blank: p, l, c, r = self.cc2plct(t)  ;  self.setDTNIK(self.tblank, t, p, l, c, t - k, kk=1 if t == k + nt - 1 else 0)
             self.log(f'{msg} {text=:{self.n[T]}}')
 #            self.log(f'{t=} {k=} {nt=} {blank=} {text=}')
         return text
 
-    def _setTNIKStyle(self, tnik, color, style=0): # d =  tnik.document ; d.set_style(0, len(d.text), {COLOR: color[fgs], BGC: color[bgs]})
+    def setTNIKStyle2(self, tnik, color, style=0): # d =  tnik.document ; d.set_style(0, len(d.text), {COLOR: color[fgs], BGC: color[bgs]})
         if ist(tnik, LBL):   (bgs, fgs) = (0, 1)  if style == NORMAL_STYLE or style == CURRENT_STYLE else (1, 0)   ;   self.setFgcBgc(tnik, color[fgs], color[bgs])
 #        self.setFgcBgc(tnik, color[1], color[0])
     @staticmethod

@@ -100,6 +100,17 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
     elif kbk == 'R' and isCtl(   kd, m):     tobj.flipKordNames('@ R', hit=0)
 
+    elif kbk == 'B' and isAltShf(kd, m):     tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
+    elif kbk == 'B' and isAlt(   kd, m):     tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
+    elif kbk == 'C' and isAltShf(kd, m):     tobj.setFontParam(COLOR,        -1,          'clrIdx')
+    elif kbk == 'C' and isAlt(   kd, m):     tobj.setFontParam(COLOR,         1,          'clrIdx')
+    elif kbk == 'I' and isAltShf(kd, m):     tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
+    elif kbk == 'I' and isAlt(   kd, m):     tobj.setFontParam(ITALIC,    not fontItalic, 'fontItalic')
+    elif kbk == 'M' and isAltShf(kd, m):     tobj.setFontParam(FONT_NAME,    -1,          'fontNameIdx')
+    elif kbk == 'M' and isAlt(   kd, m):     tobj.setFontParam(FONT_NAME,     1,          'fontNameIdx')
+    elif kbk == 'S' and isAltShf(kd, m):     tobj.setFontParam(FONT_SIZE,     33 / 32,    'fontSize')
+    elif kbk == 'S' and isAlt(   kd, m):     tobj.setFontParam(FONT_SIZE,     32 / 33,    'fontSize')
+
     elif kbk == 'P' and isAltShf(kd, m):     tobj.flipPage(     '&^P', -1)
     elif kbk == 'P' and isAlt(   kd, m):     tobj.flipPage(     '& P',  1)
     elif kbk == 'V' and isAltShf(kd, m):     tobj.flipVisible(  '&^V', dbg=1)
@@ -240,3 +251,27 @@ def flipKordName(self, how, cn, dbg=1, dbg2=1):
     if dbg2:  self.cobj.dumpImap(limap[imi], why=f'{cn:2}')
 #    assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
 ########################################################################################################################################################################################################
+def setFontParam(self, n, v, m, dbg=1):
+    if   m == 'clrIdx':      v += getattr(self, m)   ;   v %= len(self.k)      ;  self.log(f'{n=:12} {v=:2} {self.clrIdx=:2}')
+    elif m == 'fontNameIdx': v += getattr(self, m)   ;   v %= len(FONT_NAMES)  ;  self.log(f'{n=:12} {v=:2} {self.fontNameIdx=:2}')
+    setattr(self, m, v)
+    ts = list(itertools.chain(self.A, self.B, self.C))  ;  lt = len(ts)
+    if dbg:         self.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
+    for j, t in enumerate(ts):
+#            if dbg:     self.log(f'{j=:2} {W*3} {lt=} {m=:12} {n=:12} {v=:2}', p=0) #  and self.VRBY
+        self._setFontParam(t, n, v, m, j)
+    if dbg:         self.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')  # and self.VRBY
+    self.setCaption(self.fmtFont())
+
+def _setFontParam(self, ts, n, v, m, j, dbg=1):
+    l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
+    for i, t in enumerate(ts):
+        if ist(t, LBL):
+            if   m == 'clrIdx':       l = len(t.color)   ;  msg = f'{v=:2} tc={fmtl(t.color, w=3)}  ds={fmtl(t.document.get_style(n), w=3)}  kv={fmtl(self.k[v][fb][:l], w=3)}'
+            elif m == 'fontNameIdx':                        msg = f'{v=:2} {FONT_NAMES[v]=}'
+            elif m == 'fontSize':    fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
+            if dbg and ist(t, LBL) and i==0:            self.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', f=2)
+            if   m == 'clrIdx':       self._setTNIKStyle(t, self.k[v], self.fontStyle)
+            elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
+            elif m == 'fontSize':     setattr(t, n, v*fs)
+            else:                     setattr(t, n, v)

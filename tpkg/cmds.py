@@ -1,13 +1,17 @@
 from abc import ABC, abstractmethod
-from   tpkg            import utl    as utl
-from   tpkg            import kysgs  as kysgs
-from   tpkg.notes      import Notes  as Notes
+import itertools
+import pyglet.text               as pygtxt
+from   tpkg        import utl    as utl
+from   tpkg        import kysgs  as kysgs
+from   tpkg.notes  import Notes  as Notes
 
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          B, A, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.B, utl.A, utl.D, utl.E
 W, X, Y, Z,       NONE,  ist,  fri,         slog,   fmtf,   fmtl,   fmtm    = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,       utl.slog,   utl.fmtf,   utl.fmtl,   utl.fmtm
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'evns',     'logs',     'pngs',     'text',     'data'
 HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
+FONT_NAMES            = utl.FONT_NAMES
+LBL                   = pygtxt.Label
 
 ########################################################################################################################################################################################################
 
@@ -209,4 +213,37 @@ class TogKordNamesCmd(Cmd):
         elif dbg: tobj.log(f'    {how} {cn=} {cc=} is NOT a chord')
         if dbg2:  tobj.cobj.dumpImap(limap[imi], why=f'{cn:2}')
 #        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
+########################################################################################################################################################################################################
+class SetFontParamCmd(Cmd):
+    def __init__(self, tobj, n, v, m, dbg=1):
+        self.tobj, self.n, self.v, self.m, self.dbg = tobj, n, v, m, dbg
+
+    def do(  self): self._setFontParam()
+    def undo(self): self._setFontParam()
+    
+    def _setFontParam(self):
+        tobj, n, v, m, dbg = self.tobj, self.n, self.v, self.m, self.dbg
+        if   m == 'clrIdx':      v += getattr(tobj, m)   ;   v %= len(tobj.k)      ;  tobj.log(f'{n=:12} {v=:2} {tobj.clrIdx=:2}')
+        elif m == 'fontNameIdx': v += getattr(tobj, m)   ;   v %= len(FONT_NAMES)  ;  tobj.log(f'{n=:12} {v=:2} {tobj.fontNameIdx=:2}')
+        setattr(tobj, m, v)
+        ts = list(itertools.chain(tobj.A, tobj.B, tobj.C))  ;  lt = len(ts)
+        if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
+        for j, t in enumerate(ts):
+            self._setFontParam2(tobj, t, n, v, m, j)
+        if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
+        tobj.setCaption(tobj.fmtFont())
+
+    @staticmethod
+    def _setFontParam2(tobj, ts, n, v, m, j, dbg=1):
+        l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
+        for i, t in enumerate(ts):
+            if ist(t, LBL):
+                if   m == 'clrIdx':       l = len(t.color)   ;  msg = f'{v=:2} tc={fmtl(t.color, w=3)}  ds={fmtl(t.document.get_style(n), w=3)}  kv={fmtl(tobj.k[v][fb][:l], w=3)}'
+                elif m == 'fontNameIdx':                        msg = f'{v=:2} {FONT_NAMES[v]=}'
+                elif m == 'fontSize':    fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
+                if dbg and ist(t, LBL) and i==0:            tobj.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', f=2)
+                if   m == 'clrIdx':       tobj.setTNIKStyle2(t, tobj.k[v], tobj.fontStyle)
+                elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
+                elif m == 'fontSize':     setattr(t, n, v*fs)
+                else:                     setattr(t, n, v)
 ########################################################################################################################################################################################################

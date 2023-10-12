@@ -37,7 +37,8 @@ INIT_END  = '###   Init END  ###' * 10
 QUIT_BGN  = '###   Quit BGN  ###' * 10
 QUIT      = '###     Quit    ###' * 10
 QUIT_END  = '###   Quit END  ###' * 10
-STFILT = ['log', 'tlog', 'flog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
+STFILT    = ['log', 'tlog', 'flog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
+FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'Helvetica', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
 ########################################################################################################################################################################################################
 def init(cfile, efile, lfile, tfile, f):
     global CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE   ;   CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE = cfile, efile, lfile, tfile
