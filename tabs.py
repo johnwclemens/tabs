@@ -64,8 +64,8 @@ LBL                   = pygtxt.Label
 SPR                   = pygsprt.Sprite
 RGB                   = utl.RGB
 C1,  C2               =  0,  1
-CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
-HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
+CSR_MODES             = utl.CSR_MODES
+HARROWS, VARROWS      = utl.HARROWS, utl.VARROWS
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = 0, 1, 2
 ########################################################################################################################################################################################################
 FIN     = [1, 1, 1, 2, 1]

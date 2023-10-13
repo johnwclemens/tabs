@@ -1,23 +1,23 @@
-import os, pathlib, sys #, glob
-import inspect, operator #, math
-import collections, itertools
-from   collections     import Counter
-from   itertools       import accumulate
-#from   more_itertools  import consume  # not installed in GitBash's Python
-import pyglet
-import pyglet.font         as pygfont
-import pyglet.image        as pygimg
+#import os, pathlib, sys #, glob
+#import inspect, operator #, math
+import itertools #, colletions
+#from   collections     import Counter
+#from   itertools       import accumulate
+##from   more_itertools  import consume  # not installed in GitBash's Python
+#import pyglet
+#import pyglet.font         as pygfont
+#import pyglet.image        as pygimg
 import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
-import pyglet.window.event as pygwine
-from   pyglet.text     import document, layout
+#import pyglet.window.event as pygwine
+#from   pyglet.text     import document, layout
 from   tpkg            import utl    as utl
 from   tpkg            import kysgs  as kysgs
-from   tpkg            import misc   as misc
-from   tpkg            import evnts  as evnts
+#from   tpkg            import misc   as misc
+#from   tpkg            import evnts  as evnts
 from   tpkg.notes      import Notes  as Notes
-from   tpkg.strngs     import Strngs as Strngs
-from   tpkg.chords     import Chords as Chords
+#from   tpkg.strngs     import Strngs as Strngs
+#from   tpkg.chords     import Chords as Chords
 
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          B, A, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.B, utl.A, utl.D, utl.E
 W, X, Y, Z,       NONE,  ist,  fri,         slog,   fmtf,   fmtl,   fmtm    = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,       utl.slog,   utl.fmtf,   utl.fmtl,   utl.fmtm
@@ -97,6 +97,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'B' and isCtl(   kd, m):     tobj.flipBlank(    '@ B')
     elif kbk == 'F' and isCtlShf(kd, m):     tobj.flipFullScrn( '@^F') # FULL_SCREEN
     elif kbk == 'F' and isCtl(   kd, m):     tobj.flipFlatShrp( '@ F') # FLAT_SHARP
+    elif kbk == 'O' and isCtlShf(kd, m):     tobj.flipCrsrMode( '@^O', -1)
+    elif kbk == 'O' and isCtl(   kd, m):     tobj.flipCrsrMode( '@ O', 1)
     elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
     elif kbk == 'R' and isCtl(   kd, m):     tobj.flipKordNames('@ R', hit=0)
 
@@ -331,4 +333,10 @@ def setCHVMode(self, how, c=None, h=None, v=None):
     if h is not None: self.hArrow  = h
     if v is not None: self.vArrow  = v
     self.dumpCursorArrows(f'END {how} {c=} {h=} {v=}')
+########################################################################################################################################################################################################
+def flipCrsrMode(self, how, a=1):
+    c = self.csrMode  ;  h = self.hArrow  ;  v = self.vArrow
+    self.dumpCursorArrows(f'BGN {how} {a=} {c=} {h=} {v=}')
+    c = (c + a) % len(CSR_MODES)
+    self.dumpCursorArrows(f'END {how} {a=} {c=} {h=} {v=}')
 ########################################################################################################################################################################################################

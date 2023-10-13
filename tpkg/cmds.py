@@ -12,6 +12,7 @@ BGC,  BOLD,  COLOR,     FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = ut
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'evns',     'logs',     'pngs',     'text',     'data'
 HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
+CSR_MODES             = utl.CSR_MODES
 FONT_NAMES            = utl.FONT_NAMES
 LBL                   = pygtxt.Label
 
@@ -322,4 +323,18 @@ class SetCHVModeCmd(Cmd):
         if h is not None: tobj.hArrow  = h
         if v is not None: tobj.vArrow  = v
         tobj.dumpCursorArrows(f'END {how:7} c={NONE if c is None else c:<4} h={NONE if h is None else h:<4} v={NONE if v is None else v:<4}')
+########################################################################################################################################################################################################
+class TogCrsrModeCmd(Cmd):
+    def __init__(self, tobj, how, a):
+        self.tobj, self.how, self.a = tobj, how, a
+
+    def do(  self): self._togCrsrMode()
+    def undo(self): self._togCrsrMode()
+        
+    def _togCrsrMode(self):
+        tobj, how, a = self.tobj, self.how, self.a
+        c = tobj.csrMode  ;  h = tobj.hArrow  ;  v = tobj.vArrow
+        tobj.dumpCursorArrows(f'BGN {how} {a=} {c=} {h=} {v=}')
+        tobj.csrMode = (tobj.csrMode + a) % len(CSR_MODES)
+        tobj.dumpCursorArrows(f'END {how} {a=} {c=} {h=} {v=}')
 ########################################################################################################################################################################################################
