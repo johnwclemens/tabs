@@ -2,6 +2,8 @@ import inspect, math, os, pathlib, sys, glob
 from   inspect import currentframe as cfrm
 
 import pyglet.window.key   as pygwink
+import pyglet.sprite       as pygsprt
+import pyglet.text         as pygtxt
 from   tpkg    import unic as unic
 
 def fn( cf): return cf.f_code.co_name
@@ -20,11 +22,15 @@ T, N, I, K =  4,  5,  6,  7
 M, R, Q, H =  8,  9, 10, 11
 B, A, D, E = 12, 13, 14, 15
 W, X, Y, Z, NONE      = ' ', '\n', ',', '', 'None'
+CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
+CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'evns',     'logs',     'pngs',     'text',     'data'
+LBL, SPR              = pygtxt.Label, pygsprt.Sprite
 TT, NN, II, KK        =  0,  1,  2,  3
 CSR_MODES             = ['MELODY', 'CHORD', 'ARPG']
 HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
 MELODY, CHORD, ARPG   =  0, 1, 2
 LARROW, RARROW, DARROW, UARROW =  0, 1, 0, 1
+NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = 0, 1, 2
 BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
 MAX_FREQ_IDX          = 10 * 12 + 1
 MAX_STACK_DEPTH       = 0

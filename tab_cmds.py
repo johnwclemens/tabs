@@ -97,10 +97,15 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'B' and isCtl(   kd, m):     tobj.flipBlank(    '@ B')
     elif kbk == 'F' and isCtlShf(kd, m):     tobj.flipFullScrn( '@^F') # FULL_SCREEN
     elif kbk == 'F' and isCtl(   kd, m):     tobj.flipFlatShrp( '@ F') # FLAT_SHARP
+    elif kbk == 'J' and isCtlShf(kd, m):     tobj.jump(         '@^J', a=1)
+    elif kbk == 'J' and isCtl(   kd, m):     tobj.jump(         '@ J', a=0)
     elif kbk == 'O' and isCtlShf(kd, m):     tobj.flipCrsrMode( '@^O', -1)
     elif kbk == 'O' and isCtl(   kd, m):     tobj.flipCrsrMode( '@ O', 1)
     elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
     elif kbk == 'R' and isCtl(   kd, m):     tobj.flipKordNames('@ R', hit=0)
+    elif kbk == 'S' and isCtlShf(kd, m):     tobj.shiftTabs(    '@^S')
+#   elif kbk == 'S' and isCtl(   kd, m):     tobj.saveDataFile( '@ S', self.dataPath1)
+    elif kbk == 'S' and isCtl(   kd, m):     tobj.swapTab(      '@ S', txt=Z)
 
     elif kbk == 'TAB' and isCtl(kd, m):      tobj.setCHVMode(   '@ TAB',       MELODY, LARROW)
     elif kbk == 'TAB':                       tobj.setCHVMode(   '  TAB',       MELODY, RARROW)
@@ -157,7 +162,7 @@ def flipBlank(self, how):
     self.swapTab(how, '\r')
     self.swapSrc, self.swapTrg = Z, Z
     self.log(f'END {how} {self.tblank=}')
-    ########################################################################################################################################################################################################
+    ####################################################################################################################################################################################################
 def flipFlatShrp(self, how, dbg=0):  #  page line colm tab or select
     t1 = Notes.TYPE    ;    t2 =  Notes.TYPE * -1      ;     Notes.TYPE = t2
     self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
@@ -339,4 +344,78 @@ def flipCrsrMode(self, how, a=1):
     self.dumpCursorArrows(f'BGN {how} {a=} {c=} {h=} {v=}')
     c = (c + a) % len(CSR_MODES)
     self.dumpCursorArrows(f'END {how} {a=} {c=} {h=} {v=}')
+########################################################################################################################################################################################################
+def jump(self, how, txt='0', a=0):
+    cc = self.cursorCol()                 ;    self.jumpAbs = a
+    self.log(    f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {self.fmti()}')
+    if not self.jumping:                       self.jumping = 1
+    elif txt.isdecimal():                      self.jumpStr += txt
+    elif txt == '-' and not self.jumpStr:      self.jumpStr += txt
+    elif txt == W:
+        self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {self.jumpStr=} {self.fmti()}')
+        jcc  = self.n[T] * int(self.jumpStr)
+        self.jumping = 0   ;   self.jumpStr = Z
+        self.move(how, jcc - 1 - a * cc)
+        self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {jcc=} moved={jcc - 1 - a * cc} {self.fmti()}')
+########################################################################################################################################################################################################
+def shiftTabs(self, how, nf=0):
+    self.dumpSmap(f'BGN {how} {self.shiftingTabs=} {nf=}')
+    if not self.shiftingTabs:
+        self.shiftingTabs = 1
+        for k, v in self.smap.items():
+            self.setLLStyle(k, NORMAL_STYLE) if self.LL else None
+        self.setCaption('Enter nf: number of frets to shift +/- int')
+    elif nf == '-': self.shiftSign = -1
+    elif self.sobj.isFret(nf):
+        self.shiftingTabs = 0     ;   nt = self.n[T]
+        for cn, v in self.smap.items():
+            cc = self.cn2cc(cn)   ;   p, l, c, r = self.cc2plct(cc, dbg=0)
+            self.log(f'{cc=} {cn=} {v=} text={v}')
+            for t in range(nt):
+                text = v[t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = Notes.NTONES * 2
+                if self.sobj.isFret(text):
+                    fn = self.afn(str((self.sobj.tab2fn(text) + self.shiftSign * self.sobj.tab2fn(nf)) % ntones))  ;  self.log(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {self.shiftSign=}')
+                if fn and self.sobj.isFret(fn):  self.setDTNIK(fn, kt, p, l, c, t, kk=1 if t==nt-1 else 0)
+        self.shiftSign = 1
+        self.rsyncData = 1
+        self.unselectAll('shiftTabs()')
+    self.dumpSmap(f'END {how} {self.shiftingTabs=} {nf=} {self.shiftSign=}')
+########################################################################################################################################################################################################
+def swapTab(self, how, txt=Z, data=None, dbg=0, dbg2=0):  # e.g. c => 12 not same # chars asserts
+    src, trg = self.swapSrc, self.swapTrg
+    data = data or self.data
+    if not self.swapping: self.swapping = 1
+    elif txt.isalnum() or txt in self.tblanks:
+        if   self.swapping == 1:   src += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
+        elif self.swapping == 2:   trg += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
+        self.swapSrc, self.swapTrg = src, trg
+    elif txt == '\r':
+        self.log(f'    {how} {self.swapping=} {src=} {trg=}')
+        if   self.swapping == 1 and not trg: self.swapping = 2;   self.log(f'{how} waiting {src=} {trg=}') if dbg else None   ;   return
+        if   self.swapping == 2 and trg:     self.swapping = 0;   self.log(f'{how} BGN     {src=} {trg=}') if dbg else None
+        np, nl, ns, nc, nt = self.n    ;     nc += self.zzl()
+        cc0 = self.cursorCol()         ;     p0, l0, c0, t0 = self.cc2plct(cc0)   ;   self.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
+        blanks = self.tblanks          ;     blank = 1 if src in blanks and trg in blanks else 0
+        if blank:
+            for t in self.tabls:   t.text = trg if t.text==src else t.text
+            for n in self.notes:   n.text = trg if n.text==src else n.text
+            for i in self.ikeys:   i.text = trg if i.text==src else i.text
+            for k in self.kords:   k.text = trg if k.text==src else k.text
+        for p in range(np):
+            for l in range(nl):
+                for c in range(nc):
+                    text = data[p][l][c]
+                    for t in range(nt):
+                        if text[t] == src:
+                            if dbg2: self.log(f'Before data{self.fplc(p, l, c)}={text}')
+                            if blank and trg != self.tblank:
+                                text[t] = trg
+                            cc = self.plct2cc(p, l, c, t)   ;   self.setDTNIK(trg, cc, p, l, c, t, kk=1)
+                            if dbg2: self.log(f'After  data{self.fplc(p, l, c)}={text}')
+        self.swapSrc, self.swapTrg = Z, Z
+        self.log(f'{how} END     {src=} {trg=}') if dbg else None
+#                if dbg2: self.dumpTniks('SWAP')
+#                self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
+        if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
+        self.rsyncData = 1
 ########################################################################################################################################################################################################
