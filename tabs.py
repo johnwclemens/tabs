@@ -18,6 +18,7 @@ from   tpkg            import evnts  as evnts
 from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
 from   tpkg.chords     import Chords as Chords
+from   tpkg            import cmds   as cmds
 
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          B, A, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.B, utl.A, utl.D, utl.E
 W, X, Y, Z,       NONE,  ist,  fri,         slog,   fmtf,   fmtl,   fmtm    = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,       utl.slog,   utl.fmtf,   utl.fmtl,   utl.fmtm
@@ -1965,7 +1966,7 @@ class Tabs(pyglet.window.Window):
         p2 = p % np
         return p2, l2, s2, c2, t2
     ####################################################################################################################################################################################################
-    def jump(self, how, txt='0', a=0): # optimize str concat?
+    def jump(self, how, txt='0', a=0):
         cc = self.cursorCol()                 ;    self.jumpAbs = a
         self.log(    f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {self.fmti()}')
         if not self.jumping:                       self.jumping = 1
@@ -2253,8 +2254,8 @@ class Tabs(pyglet.window.Window):
 
     def reverseArrow(self, bsp=0, dbg=1):
         if dbg: self.dumpCursorArrows('reverseArrow()')
-        if self.csrMode in (MELODY, ARPG) or bsp: self.flipArrow('reverseArrow() MELODY or ARPG', v=0)
-        if self.csrMode in (CHORD, ARPG):         self.flipArrow('reverseArrow() CHORD or ARPG',  v=1)
+        if self.csrMode in (MELODY, ARPG) or bsp: cmd = cmds.TogArrowCmd(self, 'reverseArrow() MELODY or ARPG or bsp', v=0)  ;  cmd.do() # self.flipArrow('reverseArrow() MELODY or ARPG or bsp', v=0)
+        if self.csrMode in (CHORD, ARPG):         cmd = cmds.TogArrowCmd(self, 'reverseArrow()  CHORD or ARPG',        v=1)  ;  cmd.do() # self.flipArrow('reverseArrow()  CHORD or ARPG',        v=1)
         if dbg: self.dumpCursorArrows('reverseArrow()')
     ####################################################################################################################################################################################################
     def eraseTabs(self, how): # , reset=0):

@@ -26,7 +26,7 @@ class Cmd(ABC):
     def undo(self): pass
 ########################################################################################################################################################################################################
 class TogArrowCmd(Cmd):
-    def __init__(self, tobj, how, v, dbg):
+    def __init__(self, tobj, how, v, dbg=1):
         self.tobj, self.how, self.v, self.dbg = tobj, how, v, dbg
 
     def do(  self): self._togArrow()
@@ -58,7 +58,7 @@ class TogBlankCmd(Cmd):
         tobj.log(f'END {how} {tobj.tblank=}')
 ########################################################################################################################################################################################################
 class TogFlatShrpCmd(Cmd):
-    def __init__(self, tobj, how, dbg):
+    def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
     
     def do(  self): self._togFlatShrp()
@@ -217,14 +217,14 @@ class TogKordNamesCmd(Cmd):
         if dbg2:  tobj.cobj.dumpImap(limap[imi], why=f'{cn:2}')
 #        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
 ########################################################################################################################################################################################################
-class SetFontParamCmd(Cmd):
+class SetFontPrmCmd(Cmd):
     def __init__(self, tobj, n, v, m, dbg=1):
         self.tobj, self.n, self.v, self.m, self.dbg = tobj, n, v, m, dbg
 
-    def do(  self): self._setFontParam()
-    def undo(self): self._setFontParam()
+    def do(  self): self._setFontPrm()
+    def undo(self): self._setFontPrm()
     
-    def _setFontParam(self):
+    def _setFontPrm(self):
         tobj, n, v, m, dbg = self.tobj, self.n, self.v, self.m, self.dbg
         if   m == 'clrIdx':      v += getattr(tobj, m)   ;   v %= len(tobj.k)      ;  tobj.log(f'{n=:12} {v=:2} {tobj.clrIdx=:2}')
         elif m == 'fontNameIdx': v += getattr(tobj, m)   ;   v %= len(FONT_NAMES)  ;  tobj.log(f'{n=:12} {v=:2} {tobj.fontNameIdx=:2}')
@@ -232,12 +232,12 @@ class SetFontParamCmd(Cmd):
         ts = list(itertools.chain(tobj.A, tobj.B, tobj.C))  ;  lt = len(ts)
         if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         for j, t in enumerate(ts):
-            tobj.setFontParam2(t, n, v, m, j)
+            tobj.setFontPrm2(t, n, v, m, j)
         if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         tobj.setCaption(tobj.fmtFont())
 
 #    @staticmethod
-#    def _setFontParam2(tobj, ts, n, v, m, j, dbg=1):
+#    def _setFontPrm2(tobj, ts, n, v, m, j, dbg=1):
 #        l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
 #        for i, t in enumerate(ts):
 #            if ist(t, LBL):
@@ -273,7 +273,7 @@ class TogBGCCmd(Cmd):
         tobj, how = self.tobj, self.how
         tobj.log(f'{how} {tobj.BGC=}') if how else None
         tobj.BGC = (1 + tobj.BGC) % 2
-        tobj.setFontParam2(tobj.tabls, COLOR, tobj.BGC, 'clrIdx', T)
+        tobj.setFontPrm2(tobj.tabls, COLOR, tobj.BGC, 'clrIdx', T)
 ########################################################################################################################################################################################################
 class SetNCmd(Cmd):
     def __init__(self, tobj, how, txt=Z, dbg=1):
@@ -324,14 +324,14 @@ class SetCHVModeCmd(Cmd):
         if v is not None: tobj.vArrow  = v
         tobj.dumpCursorArrows(f'END {how:7} c={NONE if c is None else c:<4} h={NONE if h is None else h:<4} v={NONE if v is None else v:<4}')
 ########################################################################################################################################################################################################
-class TogCrsrModeCmd(Cmd):
+class TogCsrModeCmd(Cmd):
     def __init__(self, tobj, how, a):
         self.tobj, self.how, self.a = tobj, how, a
 
-    def do(  self): self._togCrsrMode()
-    def undo(self): self._togCrsrMode()
+    def do(  self): self._togCsrMode()
+    def undo(self): self._togCsrMode()
         
-    def _togCrsrMode(self):
+    def _togCsrMode(self):
         tobj, how, a = self.tobj, self.how, self.a
         c = tobj.csrMode  ;  h = tobj.hArrow  ;  v = tobj.vArrow
         tobj.dumpCursorArrows(f'BGN {how} {a=} {c=} {h=} {v=}')
