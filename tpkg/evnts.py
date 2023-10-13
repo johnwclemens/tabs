@@ -134,8 +134,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'P' and isCtl(   kd, m):     tobj.addPage(      '@ P', ins=None)
     elif kbk == 'Q' and isCtlShf(kd, m):     retv = tobj.quit(  '@^Q', error=0, save=0)
     elif kbk == 'Q' and isCtl(   kd, m):     retv = tobj.quit(  '@ Q', error=0, save=1)
-    elif kbk == 'R' and isCtlShf(kd, m):     cmd = cmds.TogKordNamesCmd(tobj, '@ R', hit=1)  ;  cmd.do()
-    elif kbk == 'R' and isCtl(   kd, m):     cmd = cmds.TogKordNamesCmd(tobj, '@ R', hit=0)  ;  cmd.do()
+    elif kbk == 'R' and isCtlShf(kd, m):     cmd = cmds.TogKordNamesCmd(tobj, '@ R', hit=1)   ;  cmd.do()
+    elif kbk == 'R' and isCtl(   kd, m):     cmd = cmds.TogKordNamesCmd(tobj, '@ R', hit=0)   ;  cmd.do()
     elif kbk == 'S' and isCtlShf(kd, m):     tobj.shiftTabs(    '@^S')
 #   elif kbk == 'S' and isCtl(   kd, m):     tobj.saveDataFile( '@ S', self.dataPath1)
     elif kbk == 'S' and isCtl(   kd, m):     tobj.swapTab(      '@ S', txt=Z)
@@ -152,8 +152,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'X' and isCtl(   kd, m):     tobj.cutTabs(      '@ X')
     ####################################################################################################################################################################################################
     elif kbk == 'ESCAPE':                    tobj.flipSelectAll('ESCAPE')
-    elif kbk == 'TAB' and isCtl(kd, m):      tobj.setCHVMode(   '@ TAB',       MELODY, LARROW)
-    elif kbk == 'TAB':                       tobj.setCHVMode(   '  TAB',       MELODY, RARROW)
+    elif kbk == 'TAB' and isCtl(kd, m):      cmd = cmds.SetCHVModeCmd(tobj, '@ TAB', MELODY, LARROW)  ;  cmd.do()
+    elif kbk == 'TAB':                       cmd = cmds.SetCHVModeCmd(tobj, '  TAB', MELODY, RARROW)  ;  cmd.do()
 #   elif kbk == 'SLASH'     and isCtl(mods):  tobj.setTab(      '@ SLASH', '/')
 #   elif kbk == 'SLASH':                      tobj.setTab(      '  SLASH', '/')
 #   elif kbk == 'BACKSLASH' and isCtl(mods):  tobj.setTab(      '@ BACKSLASH', '\\')
@@ -196,8 +196,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     else:  retv = False   ;   slog(f'UNH {fsm(symb, mods)} kd={fmtm(kd)}') if dbg else None
     ####################################################################################################################################################################################################
     if  not  tobj.isParsing():
-        if   kbk == 'ENTER' and isCtl(kd, m):     tobj.setCHVMode(  '@  ENTER',     CHORD,  v=DARROW)
-        elif kbk == 'ENTER':                      tobj.setCHVMode(  '   ENTER',     CHORD,  v=UARROW)
+        if   kbk == 'ENTER' and isCtl(kd, m):     cmd = cmds.SetCHVModeCmd(tobj, '@ ENTER',     CHORD,  v=DARROW)        ;  cmd.do()
+        elif kbk == 'ENTER':                      cmd = cmds.SetCHVModeCmd(tobj, '  ENTER',     CHORD,  v=UARROW)        ;  cmd.do()
         elif kbk == 'SPACE' and tobj.tblank != W: tobj.autoMove(    '   SPACE') # todo
 #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
     if dbg:  slog(f'END {    fsm(symb, mods)} kd={fmtm(kd)}, {retv=}')

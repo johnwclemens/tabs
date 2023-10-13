@@ -277,7 +277,7 @@ class TogBGCCmd(Cmd):
 class SetNCmd(Cmd):
     def __init__(self, tobj, how, txt=Z, dbg=1):
         self.tobj, self.how, self.txt, self.dbg = tobj, how, txt, dbg
-        
+    
     def do(  self): self._setN()
     def undo(self): self._setN()
     
@@ -298,6 +298,7 @@ class SetNCmd(Cmd):
 class RotSprCmd(Cmd):
     def __init__(self, tobj, how, spr, cw=1):
         self.tobj, self.how, self.spr, self.cw = tobj, how, spr, cw
+    
     def do(  self): self._rotSpr()
     def undo(self): self._rotSpr()
     
@@ -306,4 +307,19 @@ class RotSprCmd(Cmd):
         old = spr.rotation
         spr.rotation =  (spr.rotation + cw * 10) % 360
         tobj.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
+########################################################################################################################################################################################################
+class SetCHVModeCmd(Cmd):
+    def __init__(self, tobj, how, c=None, h=None, v=None):
+        self.tobj, self.how, self.c, self.h, self.v = tobj, how, c, h, v
+
+    def do(  self): self._setCHVMode()
+    def undo(self): self._setCHVMode()
+
+    def _setCHVMode(self):
+        tobj, how, c, h, v = self.tobj, self.how, self.c, self.h, self.v
+        tobj.dumpCursorArrows(f'BGN {how:7} c={NONE if c is None else c:<4} h={NONE if h is None else h:<4} v={NONE if v is None else v:<4}')
+        if c is not None: tobj.csrMode = c
+        if h is not None: tobj.hArrow  = h
+        if v is not None: tobj.vArrow  = v
+        tobj.dumpCursorArrows(f'END {how:7} c={NONE if c is None else c:<4} h={NONE if h is None else h:<4} v={NONE if v is None else v:<4}')
 ########################################################################################################################################################################################################

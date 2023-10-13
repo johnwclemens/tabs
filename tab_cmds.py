@@ -100,6 +100,13 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
     elif kbk == 'R' and isCtl(   kd, m):     tobj.flipKordNames('@ R', hit=0)
 
+    elif kbk == 'TAB' and isCtl(kd, m):      tobj.setCHVMode(   '@ TAB',       MELODY, LARROW)
+    elif kbk == 'TAB':                       tobj.setCHVMode(   '  TAB',       MELODY, RARROW)
+#   elif kbk == 'SLASH'     and isCtl(mods):  tobj.setCHVMode(  '@ SLASH',     ARPG,   LARROW, DARROW)
+#   elif kbk == 'SLASH':                      tobj.setCHVMode(  '  SLASH',     ARPG,   RARROW, UARROW)
+#   elif kbk == 'BACKSLASH' and isCtl(mods):  tobj.setCHVMode(  '@ BACKSLASH', ARPG,   LARROW, UARROW)
+#   elif kbk == 'BACKSLASH':                  tobj.setCHVMode(  '  BACKSLASH', ARPG,   RARROW, DARROW)
+
     ####################################################################################################################################################################################################
     elif kbk == 'A' and isAltShf(kd, m):     tobj.flipBGC(      '&^A')
     elif kbk == 'A' and isAlt(   kd, m):     tobj.flipBGC(      '& A')
@@ -125,6 +132,12 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'M' and isAlt(   kd, m):     tobj.setFontParam(FONT_NAME,     1,          'fontNameIdx')
     elif kbk == 'S' and isAltShf(kd, m):     tobj.setFontParam(FONT_SIZE,     33 / 32,    'fontSize')
     elif kbk == 'S' and isAlt(   kd, m):     tobj.setFontParam(FONT_SIZE,     32 / 33,    'fontSize')
+
+    else:  retv = False   ;   slog(f'UNH {fsm(symb, mods)} kd={fmtm(kd)}') if dbg else None
+    ####################################################################################################################################################################################################
+    if  not  tobj.isParsing():
+        if   kbk == 'ENTER' and isCtl(kd, m):     tobj.setCHVMode(  '@  ENTER',     CHORD,  v=DARROW)
+        elif kbk == 'ENTER':                      tobj.setCHVMode(  '   ENTER',     CHORD,  v=UARROW)
 ########################################################################################################################################################################################################
 
 def flipArrow(self, how, v=0, dbg=0):
@@ -311,4 +324,11 @@ def rotateSprite(self, how, spr, cw=1):
     old = spr.rotation
     spr.rotation =  (spr.rotation + cw * 10) % 360
     self.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
+########################################################################################################################################################################################################
+def setCHVMode(self, how, c=None, h=None, v=None):
+    self.dumpCursorArrows(f'BGN {how} {c=} {h=} {v=}')
+    if c is not None: self.csrMode = c
+    if h is not None: self.hArrow  = h
+    if v is not None: self.vArrow  = v
+    self.dumpCursorArrows(f'END {how} {c=} {h=} {v=}')
 ########################################################################################################################################################################################################

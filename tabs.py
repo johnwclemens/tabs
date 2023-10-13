@@ -77,7 +77,6 @@ JFMT    = [ 1,       2,       2,       3,          4,       4,       4,       4,
 #JFMT   = [ 2,       3,       3,       6,          6,       6,       6,       6,          1,       3,       5,       1,          3,       3,       3,       4,          7]
 PNT_PER_PIX =  7/9  # 14pts/18pix
 FONT_DPIS   = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
-#FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'Helvetica', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
 FONT_NAMES  = utl.FONT_NAMES
 ########################################################################################################################################################################################################
 class Tabs(pyglet.window.Window):
@@ -2257,13 +2256,6 @@ class Tabs(pyglet.window.Window):
         if self.csrMode in (MELODY, ARPG) or bsp: self.flipArrow('reverseArrow() MELODY or ARPG', v=0)
         if self.csrMode in (CHORD, ARPG):         self.flipArrow('reverseArrow() CHORD or ARPG',  v=1)
         if dbg: self.dumpCursorArrows('reverseArrow()')
-
-    def setCHVMode(self, how, c=None, h=None, v=None):
-        self.dumpCursorArrows(f'BGN {how} {c=} {h=} {v=}')
-        if c is not None: self.csrMode = c
-        if h is not None: self.hArrow  = h
-        if v is not None: self.vArrow  = v
-        self.dumpCursorArrows(f'END {how} {c=} {h=} {v=}')
     ####################################################################################################################################################################################################
     def eraseTabs(self, how): # , reset=0):
         np, nl, ns, nc, nt = self.n   ;   nz = self.zzl()  ;  nc += nz
