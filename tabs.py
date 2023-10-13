@@ -887,16 +887,6 @@ class Tabs(pyglet.window.Window):
         self.on_resize(self.width, self.height)
         self.dumpGeom('END', f'{msg} {msg2}')
 
-    def flipLLs(self, how, dbg=1):
-        self.flipLL()
-        msg2 = f'{how} {self.LL=}'
-        self.dumpGeom('BGN', f'     {msg2}')
-        if dbg: self.log(f'    llText={fmtl(self.llText[1-self.zzl():])}')
-        if self.LL and not self.rowLs: msg = 'ADD'    ;   self.addLLs( how)
-        else:                          msg = 'HIDE'   ;   self.hideLLs(how)
-        self.on_resize(self.width, self.height)
-        self.dumpGeom('END', f'{msg} {msg2}')
-
     def flipZZs(self, how, zz):
         ii   = 0 if not zz else 2
         msg2 = f'{how} {zz=}'

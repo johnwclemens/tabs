@@ -437,6 +437,23 @@ class SwapTabCmd(Cmd):
 #                self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
             if tobj.SNAPS: tobj.regSnap(f'{how}', 'SWAP')
             tobj.rsyncData = 1
+########################################################################################################################################################################################################
+class TogLLsCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+
+    def do(  self): self._togLLs()
+    def undo(self): self._togLLs()
     
+    def _togLLs(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        tobj.flipLL()
+        msg2 = f'{how} {tobj.LL=}'
+        tobj.dumpGeom('BGN', f'     {msg2}')
+        if dbg: tobj.log(f'    llText={fmtl(tobj.llText[1-tobj.zzl():])}')
+        if tobj.LL and not tobj.rowLs: msg = 'ADD'    ;   tobj.addLLs( how)
+        else:                          msg = 'HIDE'   ;   tobj.hideLLs(how)
+        tobj.on_resize(tobj.width, tobj.height)
+        tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
 

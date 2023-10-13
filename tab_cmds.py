@@ -99,6 +99,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'F' and isCtl(   kd, m):     tobj.flipFlatShrp( '@ F') # FLAT_SHARP
     elif kbk == 'J' and isCtlShf(kd, m):     tobj.jump(         '@^J', a=1)
     elif kbk == 'J' and isCtl(   kd, m):     tobj.jump(         '@ J', a=0)
+    elif kbk == 'L' and isCtlShf(kd, m):     tobj.flipLLs(      '@^L')
+    elif kbk == 'L' and isCtl(   kd, m):     tobj.flipLLs(      '@ L')
     elif kbk == 'O' and isCtlShf(kd, m):     tobj.flipCrsrMode( '@^O', -1)
     elif kbk == 'O' and isCtl(   kd, m):     tobj.flipCrsrMode( '@ O', 1)
     elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
@@ -419,3 +421,12 @@ def swapTab(self, how, txt=Z, data=None, dbg=0, dbg2=0):  # e.g. c => 12 not sam
         if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
         self.rsyncData = 1
 ########################################################################################################################################################################################################
+    def flipLLs(self, how, dbg=1):
+        self.flipLL()
+        msg2 = f'{how} {self.LL=}'
+        self.dumpGeom('BGN', f'     {msg2}')
+        if dbg: self.log(f'    llText={fmtl(self.llText[1-self.zzl():])}')
+        if self.LL and not self.rowLs: msg = 'ADD'    ;   self.addLLs( how)
+        else:                          msg = 'HIDE'   ;   self.hideLLs(how)
+        self.on_resize(self.width, self.height)
+        self.dumpGeom('END', f'{msg} {msg2}')
