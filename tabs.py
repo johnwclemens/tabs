@@ -1796,27 +1796,6 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def afn(fn): return fn if len(fn) == 1 and '0' <= fn <= '9' else chr(ord(fn[1]) - ord('0') + ord('a')) if len(fn) == 2 and fn[0] == '1' else None
     ####################################################################################################################################################################################################
-    def move2LastTab(self, how, page=0, dbg=1):
-        np, nl, ns, nc, nt = self.n    ;   p, l, s, c, t = self.j()  ;  i = p
-        n = p * nl + l     ;   tp = nc * nt
-        if page: tp *= nl  ;  n //= nl
-        if dbg:    self.log(f'BGN {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
-        for i in range(tp*(n+1)-1, tp*n-1, -1):
-            if not self.sobj.isFret(self.tabls[i].text): continue
-            p, l, c, t = self.cc2plct(i, dbg=1)  ;  break
-        self.moveTo(how, p, l, c, t, dbg=dbg)
-        if dbg:    self.log(f'END {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
-    def move2FirstTab(self, how, page=0, dbg=1):
-        np, nl, ns, nc, nt = self.n    ;   p, l, s, c, t = self.j()  ;  i = p
-        n = p * nl + l     ;   tp = nc * nt
-        if page: tp *= nl  ;  n //= nl
-        if dbg:    self.log(f'BGN {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
-        for i in range(tp*n, tp*(n+1), 1):
-            if not self.sobj.isFret(self.tabls[i].text): continue
-            p, l, c, t = self.cc2plct(i, dbg=1)  ;  break
-        self.moveTo(how, p, l, c, t, dbg=dbg)
-        if dbg:    self.log(f'END {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
-    ####################################################################################################################################################################################################
     def prevPage(self, how, dbg=1):
         p, l, c, t = self.j2()   ;   n = self.n[P] - 1
         if dbg: self.log(f'BGN {how} {self.fmti()}', pos=1)

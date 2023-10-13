@@ -473,4 +473,42 @@ class TogTTsCmd(Cmd):
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
+class Move2FirstTabCmd(Cmd):
+    def __init__(self, tobj, how, page=0, dbg=1):
+        self.tobj, self.how, self.page, self.dbg = tobj, how, page, dbg
+        
+    def do(  self): self._move2FirstTab()
+    def undo(self): self._move2FirstTab()
+    
+    def _move2FirstTab(self):
+        tobj, how, page, dbg = self.tobj, self.how, self.page, self.dbg
+        np, nl, ns, nc, nt = tobj.n    ;   p, l, s, c, t = tobj.j()  ;  i = p
+        n = p * nl + l     ;   tp = nc * nt
+        if page: tp *= nl  ;  n //= nl
+        if dbg:    tobj.log(f'BGN {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
+        for i in range(tp*n, tp*(n+1), 1):
+            if not tobj.sobj.isFret(tobj.tabls[i].text): continue
+            p, l, c, t = tobj.cc2plct(i, dbg=1)  ;  break
+        tobj.moveTo(how, p, l, c, t, dbg=dbg)
+        if dbg:    tobj.log(f'END {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
+########################################################################################################################################################################################################
+class Move2LastTabCmd(Cmd):
+    def __init__(self, tobj, how, page=0, dbg=1):
+        self.tobj, self.how, self.page, self.dbg = tobj, how, page, dbg  
 
+    def do(  self): self._move2LastTab()
+    def undo(self): self._move2LastTab()
+    
+    def _move2LastTab(self):
+        tobj, how, page, dbg = self.tobj, self.how, self.page, self.dbg
+        np, nl, ns, nc, nt = tobj.n    ;   p, l, s, c, t = tobj.j()  ;  i = p
+        n = p * nl + l     ;   tp = nc * nt
+        if page: tp *= nl  ;  n //= nl
+        if dbg:    tobj.log(f'BGN {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
+        for i in range(tp*(n+1)-1, tp*n-1, -1):
+            if not tobj.sobj.isFret(tobj.tabls[i].text): continue
+            p, l, c, t = tobj.cc2plct(i, dbg=1)  ;  break
+        tobj.moveTo(how, p, l, c, t, dbg=dbg)
+        if dbg:    tobj.log(f'END {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
+
+########################################################################################################################################################################################################
