@@ -97,10 +97,20 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'B' and isCtl(   kd, m):     tobj.flipBlank(    '@ B')
     elif kbk == 'F' and isCtlShf(kd, m):     tobj.flipFullScrn( '@^F') # FULL_SCREEN
     elif kbk == 'F' and isCtl(   kd, m):     tobj.flipFlatShrp( '@ F') # FLAT_SHARP
+    elif kbk == 'G' and isCtlShf(kd, m):     tobj.move2LastTab( '@^G', page=1)
+    elif kbk == 'G' and isCtl(   kd, m):     tobj.move2LastTab( '@ G', page=0)
+    elif kbk == 'H' and isCtlShf(kd, m):     tobj.move2FirstTab('@^H', page=1)
+    elif kbk == 'H' and isCtl(   kd, m):     tobj.move2FirstTab('@ H', page=0)
+    elif kbk == 'I' and isCtlShf(kd, m):     tobj.insertSpace(  '@^I')
+    elif kbk == 'I' and isCtl(   kd, m):     tobj.flipTTs(      '@ I', II)
     elif kbk == 'J' and isCtlShf(kd, m):     tobj.jump(         '@^J', a=1)
     elif kbk == 'J' and isCtl(   kd, m):     tobj.jump(         '@ J', a=0)
+    elif kbk == 'K' and isCtlShf(kd, m):     tobj.flipTTs(      '@^K', KK)
+    elif kbk == 'K' and isCtl(   kd, m):     tobj.flipTTs(      '@ K', KK)
     elif kbk == 'L' and isCtlShf(kd, m):     tobj.flipLLs(      '@^L')
     elif kbk == 'L' and isCtl(   kd, m):     tobj.flipLLs(      '@ L')
+    elif kbk == 'N' and isCtlShf(kd, m):     tobj.flipTTs(      '@^N', NN)
+    elif kbk == 'N' and isCtl(   kd, m):     tobj.flipTTs(      '@ N', NN)
     elif kbk == 'O' and isCtlShf(kd, m):     tobj.flipCrsrMode( '@^O', -1)
     elif kbk == 'O' and isCtl(   kd, m):     tobj.flipCrsrMode( '@ O', 1)
     elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
@@ -108,6 +118,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'S' and isCtlShf(kd, m):     tobj.shiftTabs(    '@^S')
 #   elif kbk == 'S' and isCtl(   kd, m):     tobj.saveDataFile( '@ S', self.dataPath1)
     elif kbk == 'S' and isCtl(   kd, m):     tobj.swapTab(      '@ S', txt=Z)
+    elif kbk == 'T' and isCtlShf(kd, m):     tobj.flipTTs(      '@^T', TT)
+    elif kbk == 'T' and isCtl(   kd, m):     tobj.flipTTs(      '@ T', TT)
 
     elif kbk == 'TAB' and isCtl(kd, m):      tobj.setCHVMode(   '@ TAB',       MELODY, LARROW)
     elif kbk == 'TAB':                       tobj.setCHVMode(   '  TAB',       MELODY, RARROW)
@@ -421,12 +433,44 @@ def swapTab(self, how, txt=Z, data=None, dbg=0, dbg2=0):  # e.g. c => 12 not sam
         if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
         self.rsyncData = 1
 ########################################################################################################################################################################################################
-    def flipLLs(self, how, dbg=1):
-        self.flipLL()
-        msg2 = f'{how} {self.LL=}'
-        self.dumpGeom('BGN', f'     {msg2}')
-        if dbg: self.log(f'    llText={fmtl(self.llText[1-self.zzl():])}')
-        if self.LL and not self.rowLs: msg = 'ADD'    ;   self.addLLs( how)
-        else:                          msg = 'HIDE'   ;   self.hideLLs(how)
-        self.on_resize(self.width, self.height)
-        self.dumpGeom('END', f'{msg} {msg2}')
+def flipLLs(self, how, dbg=1):
+    self.flipLL()
+    msg2 = f'{how} {self.LL=}'
+    self.dumpGeom('BGN', f'     {msg2}')
+    if dbg: self.log(f'    llText={fmtl(self.llText[1-self.zzl():])}')
+    if self.LL and not self.rowLs: msg = 'ADD'    ;   self.addLLs( how)
+    else:                          msg = 'HIDE'   ;   self.hideLLs(how)
+    self.on_resize(self.width, self.height)
+    self.dumpGeom('END', f'{msg} {msg2}')
+########################################################################################################################################################################################################
+def flipTTs(self, how, tt):
+    msg2 = f'{how} {tt=}'
+    self.dumpGeom('BGN', f'     {msg2}')
+    if   tt not in self.SS and not self.B[tt]: msg = 'ADD'    ;   self.addTTs( how, tt)
+    elif tt     in self.SS:                    msg = 'HIDE'   ;   self.hideTTs(how, tt)
+    else:                                      msg = 'SKIP'   ;   self.dumpGeom(W*3, f'{msg} {msg2}')   ;   self.flipTT(tt)
+    self.on_resize(self.width, self.height)
+    self.dumpGeom('END', f'{msg} {msg2}')
+########################################################################################################################################################################################################
+def move2LastTab(self, how, page=0, dbg=1):
+    np, nl, ns, nc, nt = self.n    ;   p, l, s, c, t = self.j()  ;  i = p
+    n = p * nl + l     ;   tp = nc * nt
+    if page: tp *= nl  ;  n //= nl
+    if dbg:    self.log(f'BGN {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
+    for i in range(tp*(n+1)-1, tp*n-1, -1):
+        if not self.sobj.isFret(self.tabls[i].text): continue
+        p, l, c, t = self.cc2plct(i, dbg=1)  ;  break
+    self.moveTo(how, p, l, c, t, dbg=dbg)
+    if dbg:    self.log(f'END {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
+
+def move2FirstTab(self, how, page=0, dbg=1):
+    np, nl, ns, nc, nt = self.n    ;   p, l, s, c, t = self.j()  ;  i = p
+    n = p * nl + l     ;   tp = nc * nt
+    if page: tp *= nl  ;  n //= nl
+    if dbg:    self.log(f'BGN {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
+    for i in range(tp*n, tp*(n+1), 1):
+        if not self.sobj.isFret(self.tabls[i].text): continue
+        p, l, c, t = self.cc2plct(i, dbg=1)  ;  break
+    self.moveTo(how, p, l, c, t, dbg=dbg)
+    if dbg:    self.log(f'END {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
+

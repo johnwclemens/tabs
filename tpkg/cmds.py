@@ -456,4 +456,21 @@ class TogLLsCmd(Cmd):
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
+class TogTTsCmd(Cmd):
+    def __init__(self, tobj, how, tt):
+        self.tobj, self.how, self.tt = tobj, how, tt
+
+    def do(  self): self._togTTs()
+    def undo(self): self._togTTs()
+
+    def _togTTs(self):
+        tobj, how, tt = self.tobj, self.how, self.tt
+        msg2 = f'{how} {tt=}'
+        tobj.dumpGeom('BGN', f'     {msg2}')
+        if   tt not in tobj.SS and not tobj.B[tt]: msg = 'ADD'    ;   tobj.addTTs( how, tt)
+        elif tt     in tobj.SS:                    msg = 'HIDE'   ;   tobj.hideTTs(how, tt)
+        else:                                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.flipTT(tt)
+        tobj.on_resize(tobj.width, tobj.height)
+        tobj.dumpGeom('END', f'{msg} {msg2}')
+########################################################################################################################################################################################################
 

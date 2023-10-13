@@ -878,15 +878,6 @@ class Tabs(pyglet.window.Window):
                 self.log(f'{d2}{ti[1]:>5}', p=0, e=W)
                 self.log(p=0)
     ####################################################################################################################################################################################################
-    def flipTTs(self, how, tt):
-        msg2 = f'{how} {tt=}'
-        self.dumpGeom('BGN', f'     {msg2}')
-        if   tt not in self.SS and not self.B[tt]: msg = 'ADD'    ;   self.addTTs( how, tt)
-        elif tt     in self.SS:                    msg = 'HIDE'   ;   self.hideTTs(how, tt)
-        else:                                      msg = 'SKIP'   ;   self.dumpGeom(W*3, f'{msg} {msg2}')   ;   self.flipTT(tt)
-        self.on_resize(self.width, self.height)
-        self.dumpGeom('END', f'{msg} {msg2}')
-
     def flipZZs(self, how, zz):
         ii   = 0 if not zz else 2
         msg2 = f'{how} {zz=}'
