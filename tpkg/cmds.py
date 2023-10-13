@@ -274,3 +274,36 @@ class TogBGCCmd(Cmd):
         tobj.BGC = (1 + tobj.BGC) % 2
         tobj.setFontParam2(tobj.tabls, COLOR, tobj.BGC, 'clrIdx', T)
 ########################################################################################################################################################################################################
+class SetNCmd(Cmd):
+    def __init__(self, tobj, how, txt=Z, dbg=1):
+        self.tobj, self.how, self.txt, self.dbg = tobj, how, txt, dbg
+        
+    def do(  self): self._setN()
+    def undo(self): self._setN()
+    
+    def _setN(self):
+        tobj, how, txt, dbg = self.tobj, self.how, self.txt, self.dbg
+        if not tobj.settingN: tobj.settingN = 1   ;  tobj.setNtxt = Z  ;  tobj.log(f'BGN {how} {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None
+        elif txt.isdecimal(): tobj.setNtxt += txt                      ;  tobj.log(   f'Concat {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None
+        elif txt ==  W:       tobj.setNvals.append(int(tobj.setNtxt))  ;  tobj.log(   f'Append {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None  ;  tobj.setNtxt = Z
+        elif txt == 'Q':      tobj.settingN = 0                        ;  tobj.log(   f'Cancel {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None
+        elif txt == '\r':
+            tobj.settingN = 0   ;   old = tobj.n
+            tobj.setNvals.append(int(tobj.setNtxt))
+            if len(tobj.setNvals) == 4:
+                tobj.n[:2] = tobj.setNvals[:2]   ;   tobj.n[3:] = tobj.setNvals[2:]
+            tobj.log(f'Setting {old=} {tobj.n=}')
+            tobj.log(f'END {how} {txt=} {tobj.settingN=} {tobj.setNvals=}')
+########################################################################################################################################################################################################
+class RotSprCmd(Cmd):
+    def __init__(self, tobj, how, spr, cw=1):
+        self.tobj, self.how, self.spr, self.cw = tobj, how, spr, cw
+    def do(  self): self._rotSpr()
+    def undo(self): self._rotSpr()
+    
+    def _rotSpr(self):
+        tobj, how, spr, cw = self.tobj, self.how, self.spr, self.cw
+        old = spr.rotation
+        spr.rotation =  (spr.rotation + cw * 10) % 360
+        tobj.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
+########################################################################################################################################################################################################

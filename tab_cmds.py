@@ -100,11 +100,21 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
     elif kbk == 'R' and isCtl(   kd, m):     tobj.flipKordNames('@ R', hit=0)
 
+    ####################################################################################################################################################################################################
     elif kbk == 'A' and isAltShf(kd, m):     tobj.flipBGC(      '&^A')
     elif kbk == 'A' and isAlt(   kd, m):     tobj.flipBGC(      '& A')
     elif kbk == 'D' and isAltShf(kd, m):     tobj.flipDrwBGC(   '&^D', -1)
     elif kbk == 'D' and isAlt(   kd, m):     tobj.flipDrwBGC(   '& D',  1)
+    elif kbk == 'N' and isAltShf(kd, m):     tobj.setn_cmd(     '&^N', txt=Z)
+    elif kbk == 'N' and isAlt(   kd, m):     tobj.setn_cmd(     '& N', txt=Z)
+    elif kbk == 'P' and isAltShf(kd, m):     tobj.flipPage(     '&^P', -1)
+    elif kbk == 'P' and isAlt(   kd, m):     tobj.flipPage(     '& P',  1)
+    elif kbk == 'R' and isAltShf(kd, m):     tobj.rotateSprite( '&^R', hcurs[0], -1)
+    elif kbk == 'R' and isAlt(   kd, m):     tobj.rotateSprite( '& R', hcurs[0],  1)
+    elif kbk == 'V' and isAltShf(kd, m):     tobj.flipVisible(  '&^V', dbg=1)
+    elif kbk == 'V' and isAlt(kd, m):        tobj.flipVisible(  '& V', dbg=1)
 
+    ####################################################################################################################################################################################################
     elif kbk == 'B' and isAltShf(kd, m):     tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
     elif kbk == 'B' and isAlt(   kd, m):     tobj.setFontParam(BOLD,      not fontBold,   'fontBold')
     elif kbk == 'C' and isAltShf(kd, m):     tobj.setFontParam(COLOR,        -1,          'clrIdx')
@@ -115,12 +125,6 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'M' and isAlt(   kd, m):     tobj.setFontParam(FONT_NAME,     1,          'fontNameIdx')
     elif kbk == 'S' and isAltShf(kd, m):     tobj.setFontParam(FONT_SIZE,     33 / 32,    'fontSize')
     elif kbk == 'S' and isAlt(   kd, m):     tobj.setFontParam(FONT_SIZE,     32 / 33,    'fontSize')
-
-    elif kbk == 'P' and isAltShf(kd, m):     tobj.flipPage(     '&^P', -1)
-    elif kbk == 'P' and isAlt(   kd, m):     tobj.flipPage(     '& P',  1)
-    elif kbk == 'V' and isAltShf(kd, m):     tobj.flipVisible(  '&^V', dbg=1)
-    elif kbk == 'V' and isAlt(kd, m):        tobj.flipVisible(  '& V', dbg=1)
-    
 ########################################################################################################################################################################################################
 
 def flipArrow(self, how, v=0, dbg=0):
@@ -289,4 +293,22 @@ def flipBGC(self, how=Z):
     self.log(f'{how} {self.BGC=}') if how else None
     self.BGC = (1 + self.BGC) % 2
     self.setFontParam2(self.tabls, COLOR, self.BGC, 'clrIdx', T)
+########################################################################################################################################################################################################
+def setn_cmd(self, how, txt=Z, dbg=1): # optimize str concat?
+    if not self.settingN: self.settingN = 1   ;  self.setNtxt = Z  ;  self.log(f'BGN {how} {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
+    elif txt.isdecimal(): self.setNtxt += txt                      ;  self.log(   f'Concat {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
+    elif txt ==  W:       self.setNvals.append(int(self.setNtxt))  ;  self.log(   f'Append {txt=} {self.settingN=} {self.setNvals=}') if dbg else None  ;  self.setNtxt = Z
+    elif txt == 'Q':      self.settingN = 0                        ;  self.log(   f'Cancel {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
+    elif txt == '\r':
+        self.settingN = 0   ;   old = self.n
+        self.setNvals.append(int(self.setNtxt))
+        if len(self.setNvals) == 4:
+            self.n[:2] = self.setNvals[:2]   ;   self.n[3:] = self.setNvals[2:]
+        self.log(f'Setting {old=} {self.n=}')
+        self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
+########################################################################################################################################################################################################
+def rotateSprite(self, how, spr, cw=1):
+    old = spr.rotation
+    spr.rotation =  (spr.rotation + cw * 10) % 360
+    self.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
 ########################################################################################################################################################################################################

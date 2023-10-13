@@ -2209,30 +2209,13 @@ class Tabs(pyglet.window.Window):
                 for t in range(nt):
                     text = v[t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = Notes.NTONES * 2
                     if self.sobj.isFret(text):
-                        fn = self.afn(str((self.tab2fn(text) + self.shiftSign * self.tab2fn(nf)) % ntones))  ;  self.log(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {self.shiftSign=}')
+                        fn = self.afn(str((self.sobj.tab2fn(text) + self.shiftSign * self.sobj.tab2fn(nf)) % ntones))  ;  self.log(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {self.shiftSign=}')
                     if fn and self.sobj.isFret(fn):  self.setDTNIK(fn, kt, p, l, c, t, kk=1 if t==nt-1 else 0)
             self.shiftSign = 1
             self.rsyncData = 1
             self.unselectAll('shiftTabs()')
         self.dumpSmap(f'END {how} {self.shiftingTabs=} {nf=} {self.shiftSign=}')
 
-    def setn_cmd(self, how, txt=Z, dbg=1): # optimize str concat?
-        if not self.settingN: self.settingN = 1   ;  self.setNtxt = Z  ;  self.log(f'BGN {how} {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
-        elif txt.isdecimal(): self.setNtxt += txt                      ;  self.log(   f'Concat {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
-        elif txt ==  W:       self.setNvals.append(int(self.setNtxt))  ;  self.log(   f'Append {txt=} {self.settingN=} {self.setNvals=}') if dbg else None  ;  self.setNtxt = Z
-        elif txt == 'Q':      self.settingN = 0                        ;  self.log(   f'Cancel {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
-        elif txt == '\r':
-            self.settingN = 0   ;   old = self.n
-            self.setNvals.append(int(self.setNtxt))
-            if len(self.setNvals) == 4:
-                self.n[:2] = self.setNvals[:2]   ;   self.n[3:] = self.setNvals[2:]
-            self.log(f'Setting {old=} {self.n=}')
-            self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
-    ####################################################################################################################################################################################################
-    def rotateSprite(self, how, spr, cw=1):
-        old = spr.rotation
-        spr.rotation =  (spr.rotation + cw * 10) % 360
-        self.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
     ####################################################################################################################################################################################################
     def p2Js(self, p):
         np, nl, ns, nc, nt = self.n

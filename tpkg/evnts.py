@@ -166,14 +166,14 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'A' and isAlt(   kd, m):     cmd = cmds.TogBGCCmd(tobj, '& A')                ;  cmd.do()
     elif kbk == 'D' and isAltShf(kd, m):     cmd = cmds.TogDrwBGCCmd(tobj, '&^D', -1)         ;  cmd.do()
     elif kbk == 'D' and isAlt(   kd, m):     cmd = cmds.TogDrwBGCCmd(tobj, '& D',  1)         ;  cmd.do()
-    elif kbk == 'N' and isAltShf(kd, m):     tobj.setn_cmd(     '&^N', txt=Z)
-    elif kbk == 'N' and isAlt(   kd, m):     tobj.setn_cmd(     '& N', txt=Z)
-    elif kbk == 'P' and isAltShf(kd, m):     cmd = cmds.TogPageCmd(tobj, '&^P', -1)           ;   cmd.do()
-    elif kbk == 'P' and isAlt   (kd, m):     cmd = cmds.TogPageCmd(tobj, '& P',  1)           ;   cmd.do()
-    elif kbk == 'R' and isAltShf(kd, m):     tobj.rotateSprite( '&^R', hcurs[0], -1)
-    elif kbk == 'R' and isAlt(   kd, m):     tobj.rotateSprite( '& R', hcurs[0],  1)
-    elif kbk == 'V' and isAltShf(kd, m):     cmd = cmds.TogVisibleCmd(tobj, '&^V', dbg=1)     ;   cmd.do()
-    elif kbk == 'V' and isAlt(kd, m):        cmd = cmds.TogVisibleCmd(tobj, '& V', dbg=1)     ;   cmd.do() 
+    elif kbk == 'N' and isAltShf(kd, m):     cmd = cmds.SetNCmd(tobj, '&^N', txt=Z)           ;  cmd.do()
+    elif kbk == 'N' and isAlt(   kd, m):     cmd = cmds.SetNCmd(tobj, '& N', txt=Z)           ;  cmd.do()
+    elif kbk == 'P' and isAltShf(kd, m):     cmd = cmds.TogPageCmd(tobj, '&^P', -1)           ;  cmd.do()
+    elif kbk == 'P' and isAlt   (kd, m):     cmd = cmds.TogPageCmd(tobj, '& P',  1)           ;  cmd.do()
+    elif kbk == 'R' and isAltShf(kd, m):     cmd = cmds.RotSprCmd(tobj, '&^R', hcurs[0], -1)  ;  cmd.do()
+    elif kbk == 'R' and isAlt(   kd, m):     cmd = cmds.RotSprCmd(tobj, '& R', hcurs[0],  1)  ;  cmd.do()
+    elif kbk == 'V' and isAltShf(kd, m):     cmd = cmds.TogVisibleCmd(tobj, '&^V', dbg=1)     ;  cmd.do()
+    elif kbk == 'V' and isAlt(kd, m):        cmd = cmds.TogVisibleCmd(tobj, '& V', dbg=1)     ;  cmd.do() 
     elif kbk == 'Z' and isAltShf(kd, m):     tobj.RESIZE = not tobj.RESIZE   ;  tobj.resizeTniks(dbg=1)
     elif kbk == 'Z' and isAlt(   kd, m):                                        tobj.resizeTniks(dbg=1)
     ####################################################################################################################################################################################################
@@ -264,16 +264,16 @@ def on_text(tobj, text, dbg=1):
     retv = True
     tkb  = tobj.keyboard
     kd   = tkb.data if tkb else None
-    if dbg: slog(f'BGN {ft(text)} swapping={tobj.swapping}')
-    if      tobj.shiftingTabs:                tobj.shiftTabs(  'onTxt', text)
-    elif    tobj.jumping:                     tobj.jump(       'onTxt', text, tobj.jumpAbs)
-    elif    tobj.inserting:                   tobj.insertSpace('onTxt', text)
-    elif    tobj.settingN:                    tobj.setn_cmd(   'onTxt', text)
-    elif    tobj.swapping:                    tobj.swapTab(    'onTxt', text)
-    elif    tobj.isTab(text):                 tobj.setTab(     'onTxt', text)
+    if dbg: slog(f'BGN {ft(text)} swapping={ tobj.swapping}')
+    if      tobj.shiftingTabs:               tobj.shiftTabs(  'onTxt', text)
+    elif    tobj.jumping:                    tobj.jump(       'onTxt', text, tobj.jumpAbs)
+    elif    tobj.inserting:                  tobj.insertSpace('onTxt', text)
+    elif    tobj.settingN:                   tobj.setn_cmd(   'onTxt', text)
+    elif    tobj.swapping:                   tobj.swapTab(    'onTxt', text)
+    elif    tobj.isTab(text):                tobj.setTab(     'onTxt', text)
     elif    text == '$' and isShf(kd, MODS): tobj.snapshot(f'{text}', 'SNAP')
     else:   slog(f'UNH {ft(text)}', f=-2) if dbg else None   ;   retv = False
-    if dbg: slog(f'END {ft(text)} swapping={tobj.swapping} {retv=}')
+    if dbg: slog(f'END {ft(text)} swapping={ tobj.swapping} {retv=}')
     return retv
 ########################################################################################################################################################################################################
 def on_text_motion(tobj, motion, dbg=1):
