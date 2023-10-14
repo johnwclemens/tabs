@@ -109,7 +109,7 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'D' and isCtlShf(kd, m):     tobj.deleteTabs(   '@^D')
     elif kbk == 'D' and isCtl(   kd, m):     tobj.deleteTabs(   '@ D')
     elif kbk == 'E' and isCtlShf(kd, m):     tobj.eraseTabs(    '@^E')
-#   elif kbk == 'E' and isCtl(   kd, m):     tobj.eraseTabs(    '@ E')
+    elif kbk == 'E' and isCtl(   kd, m):     tobj.eraseTabs(    '@ E')
     elif kbk == 'F' and isCtlShf(kd, m):     cmd = cmds.TogFullScrnCmd(tobj, '@^F')            ;  cmd.do()
     elif kbk == 'F' and isCtl(   kd, m):     cmd = cmds.TogFlatShrpCmd(tobj, '@ F')            ;  cmd.do()
     elif kbk == 'G' and isCtlShf(kd, m):     cmd = cmds.Move2FirstTabCmd(tobj, '@^G', page=1)  ;  cmd.do()
@@ -151,7 +151,7 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'X' and isCtlShf(kd, m):     tobj.cutTabs(      '@^X')
     elif kbk == 'X' and isCtl(   kd, m):     tobj.cutTabs(      '@ X')
     ####################################################################################################################################################################################################
-    elif kbk == 'ESCAPE':                    tobj.flipSelectAll('ESCAPE')
+    elif kbk == 'ESCAPE':                    cmd = cmds.TogSelectAllCmd(tobj, 'ESCAPE')               ;  cmd.do()
     elif kbk == 'TAB' and isCtl(kd, m):      cmd = cmds.SetCHVModeCmd(tobj, '@ TAB', MELODY, LARROW)  ;  cmd.do()
     elif kbk == 'TAB':                       cmd = cmds.SetCHVModeCmd(tobj, '  TAB', MELODY, RARROW)  ;  cmd.do()
 #   elif kbk == 'SLASH'     and isCtl(mods):  tobj.setTab(      '@ SLASH', '/')
@@ -198,7 +198,7 @@ def on_key_press(tobj, symb, mods, dbg=1):
     if  not  tobj.isParsing():
         if   kbk == 'ENTER' and isCtl(kd, m):     cmd = cmds.SetCHVModeCmd(tobj, '@ ENTER',     CHORD,  v=DARROW)        ;  cmd.do()
         elif kbk == 'ENTER':                      cmd = cmds.SetCHVModeCmd(tobj, '  ENTER',     CHORD,  v=UARROW)        ;  cmd.do()
-        elif kbk == 'SPACE' and tobj.tblank != W: tobj.autoMove(    '   SPACE') # todo
+        elif kbk == 'SPACE' and tobj.tblank != W: tobj.autoMove('  SPACE') # todo
 #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
     if dbg:  slog(f'END {    fsm(symb, mods)} kd={fmtm(kd)}, {retv=}')
     return retv

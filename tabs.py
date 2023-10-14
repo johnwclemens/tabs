@@ -1923,12 +1923,6 @@ class Tabs(pyglet.window.Window):
         p2 = p % np
         return p2, l2, s2, c2, t2
     ####################################################################################################################################################################################################
-    def flipSelectAll(self, how):
-        self.dumpSmap(f'BGN {how} {self.allTabSel=}')
-        if   self.allTabSel:       self.unselectAll(how)   ;   self.allTabSel = 0
-        else:                      self.selectAll(how)     ;   self.allTabSel = 1
-        self.dumpSmap(f'END {how} {self.allTabSel=}')
-
     def selectAll(self, how, dbg=0):
         mli = self.cobj.mlimap
         if dbg: self.dumpSmap(f'BGN {how}')

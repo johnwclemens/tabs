@@ -512,3 +512,17 @@ class Move2LastTabCmd(Cmd):
         if dbg:    tobj.log(f'END {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
 
 ########################################################################################################################################################################################################
+class TogSelectAllCmd(Cmd):
+    def __init__(self, tobj, how):
+        self.tobj, self.how = tobj, how
+
+    def do(  self): self._togSelectAll()
+    def undo(self): self._togSelectAll()
+        
+    def _togSelectAll(self):
+        tobj, how = self.tobj, self.how
+        tobj.dumpSmap(f'BGN {how} {tobj.allTabSel=}')
+        if   tobj.allTabSel:       tobj.unselectAll(how)   ;   tobj.allTabSel = 0
+        else:                      tobj.selectAll(how)     ;   tobj.allTabSel = 1
+        tobj.dumpSmap(f'END {how} {tobj.allTabSel=}')
+########################################################################################################################################################################################################

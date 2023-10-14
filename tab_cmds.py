@@ -121,6 +121,7 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'T' and isCtlShf(kd, m):     tobj.flipTTs(      '@^T', TT)
     elif kbk == 'T' and isCtl(   kd, m):     tobj.flipTTs(      '@ T', TT)
 
+    elif kbk == 'ESCAPE':                    tobj.flipSelectAll('ESCAPE')
     elif kbk == 'TAB' and isCtl(kd, m):      tobj.setCHVMode(   '@ TAB',       MELODY, LARROW)
     elif kbk == 'TAB':                       tobj.setCHVMode(   '  TAB',       MELODY, RARROW)
 #   elif kbk == 'SLASH'     and isCtl(mods):  tobj.setCHVMode(  '@ SLASH',     ARPG,   LARROW, DARROW)
@@ -462,7 +463,7 @@ def move2LastTab(self, how, page=0, dbg=1):
         p, l, c, t = self.cc2plct(i, dbg=1)  ;  break
     self.moveTo(how, p, l, c, t, dbg=dbg)
     if dbg:    self.log(f'END {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
-
+########################################################################################################################################################################################################
 def move2FirstTab(self, how, page=0, dbg=1):
     np, nl, ns, nc, nt = self.n    ;   p, l, s, c, t = self.j()  ;  i = p
     n = p * nl + l     ;   tp = nc * nt
@@ -473,4 +474,10 @@ def move2FirstTab(self, how, page=0, dbg=1):
         p, l, c, t = self.cc2plct(i, dbg=1)  ;  break
     self.moveTo(how, p, l, c, t, dbg=dbg)
     if dbg:    self.log(f'END {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
-
+########################################################################################################################################################################################################
+def flipSelectAll(self, how):
+    self.dumpSmap(f'BGN {how} {self.allTabSel=}')
+    if   self.allTabSel:       self.unselectAll(how)   ;   self.allTabSel = 0
+    else:                      self.selectAll(how)     ;   self.allTabSel = 1
+    self.dumpSmap(f'END {how} {self.allTabSel=}')
+########################################################################################################################################################################################################
