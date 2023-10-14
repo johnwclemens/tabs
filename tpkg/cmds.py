@@ -584,3 +584,34 @@ class SwapColsCmd(Cmd):
         tobj.pasteTabs(how)
         tobj.dumpSmap(f'END {nk=} {nk2=}')
 ########################################################################################################################################################################################################
+class AddPageCmd(Cmd):
+    def __init__(self, tobj, how, ins=None, dbg=1):
+        self.tobj, self.how, self.ins, self.dbg = tobj, how, ins, dbg
+        
+    def do(  self): self._addPage()
+    def undo(self): self._addPage() # todo fixme
+    
+    def _addPage(self):
+        tobj, how, ins, dbg = self.tobj, self.how, self.ins, self.dbg
+        np, nl, ns, nc, nt = tobj.n   ;   how = f'{how} {ins=}'
+        tobj.dumpBlanks() # tobj.j()[P]
+#        if ins is not None: tobj.flipPage(how)
+        if ins is not None: tobj.flipVisible(how=how)
+        tobj.n[P] += 1   ;   kl = tobj.k[P]
+        data      = [ [ tobj.tblankRow for _ in range(nt) ] for _ in range(nl) ]
+        tobj.data = tobj.transposeData(dmp=dbg)
+        tobj.data.append(data) if ins is None else tobj.data.insert(ins, data)
+        tobj.data = tobj.transposeData(dmp=dbg)
+        if ins is None: tobj.dumpTniksPfx(how, r=0)   ;   pi = len(tobj.pages)
+        else:           tobj.dumpTniksPfx(how, r=1)   ;   pi = tobj.J1[P]
+        tobj.J1[L], tobj.J1[S], tobj.J1[C], tobj.J1[T] = 0, 0, 0, 0
+        n, ii, x, y, w, h =    tobj.geom(M, n=1, i=1, dbg=1)   ;   kk = tobj.cci(P, 0, kl) if tobj.CHECKERED else 0
+        tobj.newC += 1  ;  why2 = f'New{tobj.newC}'  ;  why = why2  ;  k = kl[kk]
+        page = tobj.createTnik(tobj.pages,   pi, P, x, y, w, h, k, why=why, v=0, dbg=1)
+        for line in            tobj.g_createTniks(tobj.lines,  L, page, why=why):
+            for sect in        tobj.g_createTniks(tobj.sects,  S, line, why=why):
+                for colm in    tobj.g_createTniks(tobj.colms,  C, sect, why=why):
+                    for _ in   tobj.g_createTniks(tobj.tabls,  T, colm, why=why): pass
+        tobj.dumpTniksSfx(how)
+        if tobj.SNAPS and dbg: tobj.regSnap(how, why2)
+########################################################################################################################################################################################################

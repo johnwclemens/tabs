@@ -113,6 +113,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'N' and isCtl(   kd, m):     tobj.flipTTs(      '@ N', NN)
     elif kbk == 'O' and isCtlShf(kd, m):     tobj.flipCrsrMode( '@^O', -1)
     elif kbk == 'O' and isCtl(   kd, m):     tobj.flipCrsrMode( '@ O', 1)
+    elif kbk == 'P' and isCtlShf(kd, m):      tobj.addPage(      '@^P', ins=0)
+    elif kbk == 'P' and isCtl(   kd, m):      tobj.addPage(      '@ P', ins=None)
     elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
     elif kbk == 'R' and isCtl(   kd, m):     tobj.flipKordNames('@ R', hit=0)
     elif kbk == 'S' and isCtlShf(kd, m):     tobj.shiftTabs(    '@^S')
@@ -522,4 +524,27 @@ def swapCols(self, how):
     self.dumpSmap(f'    {nk=} {nk2=}')
     self.pasteTabs(how)
     self.dumpSmap(f'END {nk=} {nk2=}')
+########################################################################################################################################################################################################
+def addPage(self, how, ins=None, dbg=1):
+    np, nl, ns, nc, nt = self.n   ;   how = f'{how} {ins=}'
+    self.dumpBlanks() # self.j()[P]
+#        if ins is not None: self.flipPage(how)
+    if ins is not None: self.flipVisible(how=how)
+    self.n[P] += 1   ;   kl = self.k[P]
+    data      = [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ]
+    self.data = self.transposeData(dmp=dbg)
+    self.data.append(data) if ins is None else self.data.insert(ins, data)
+    self.data = self.transposeData(dmp=dbg)
+    if ins is None: self.dumpTniksPfx(how, r=0)   ;   pi = len(self.pages)
+    else:           self.dumpTniksPfx(how, r=1)   ;   pi = self.J1[P]
+    self.J1[L], self.J1[S], self.J1[C], self.J1[T] = 0, 0, 0, 0
+    n, ii, x, y, w, h =    self.geom(M, n=1, i=1, dbg=1)   ;   kk = self.cci(P, 0, kl) if self.CHECKERED else 0
+    self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2  ;  k = kl[kk]
+    page = self.createTnik(self.pages,   pi, P, x, y, w, h, k, why=why, v=0, dbg=1)
+    for line in            self.g_createTniks(self.lines,  L, page, why=why):
+        for sect in        self.g_createTniks(self.sects,  S, line, why=why):
+            for colm in    self.g_createTniks(self.colms,  C, sect, why=why):
+                for _ in   self.g_createTniks(self.tabls,  T, colm, why=why): pass
+    self.dumpTniksSfx(how)
+    if self.SNAPS and dbg: self.regSnap(how, why2)
 ########################################################################################################################################################################################################
