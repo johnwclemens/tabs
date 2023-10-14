@@ -2053,20 +2053,6 @@ class Tabs(pyglet.window.Window):
         if self.SNAPS:  self.regSnap(f'{how}', 'PAST')
         self.rsyncData = 1
     ####################################################################################################################################################################################################
-    def swapCols(self, how):
-        nk = len(self.smap)   ;   nk2 = nk // 2
-        self.dumpSmap(f'BGN {nk=} {nk2=}')
-        for i in range(nk2):
-            k1 = list(self.smap.keys())[i]
-            k2 = list(self.smap.keys())[nk - 1 - i]
-            text1 = self.smap[k1]
-            text2 = self.smap[k2]
-            self.smap[k1] = text2
-            self.smap[k2] = text1
-        self.dumpSmap(f'    {nk=} {nk2=}')
-        self.pasteTabs(how)
-        self.dumpSmap(f'END {nk=} {nk2=}')
-    ####################################################################################################################################################################################################
     def p2Js(self, p):
         np, nl, ns, nc, nt = self.n
         p,  l,  s,  c,  t  = p, p*nl, p*nl*ns, p*nl*ns*nc, p*nl*nc*nt

@@ -120,6 +120,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'S' and isCtl(   kd, m):     tobj.swapTab(      '@ S', txt=Z)
     elif kbk == 'T' and isCtlShf(kd, m):     tobj.flipTTs(      '@^T', TT)
     elif kbk == 'T' and isCtl(   kd, m):     tobj.flipTTs(      '@ T', TT)
+    elif kbk == 'W' and isCtlShf(kd, m):      tobj.swapCols(     '@^W')
+    elif kbk == 'W' and isCtl(   kd, m):      tobj.swapCols(     '@ W')
 
     elif kbk == 'ESCAPE':                    tobj.flipSelectAll('ESCAPE')
     elif kbk == 'TAB' and isCtl(kd, m):      tobj.setCHVMode(   '@ TAB',       MELODY, LARROW)
@@ -506,3 +508,18 @@ def insertSpace(self, how, txt='0', dbg=1): # optimize str concat?
         self.move(how, (width - c1 + c0) * self.tpc)
         self.pasteTabs(how)
         self.unselectAll(how)
+########################################################################################################################################################################################################
+def swapCols(self, how):
+    nk = len(self.smap)   ;   nk2 = nk // 2
+    self.dumpSmap(f'BGN {nk=} {nk2=}')
+    for i in range(nk2):
+        k1 = list(self.smap.keys())[i]
+        k2 = list(self.smap.keys())[nk - 1 - i]
+        text1 = self.smap[k1]
+        text2 = self.smap[k2]
+        self.smap[k1] = text2
+        self.smap[k2] = text1
+    self.dumpSmap(f'    {nk=} {nk2=}')
+    self.pasteTabs(how)
+    self.dumpSmap(f'END {nk=} {nk2=}')
+########################################################################################################################################################################################################

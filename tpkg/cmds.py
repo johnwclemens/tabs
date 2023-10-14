@@ -473,7 +473,7 @@ class TogTTsCmd(Cmd):
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
-class Move2FirstTabCmd(Cmd):
+class Go2FirstTabCmd(Cmd):
     def __init__(self, tobj, how, page=0, dbg=1):
         self.tobj, self.how, self.page, self.dbg = tobj, how, page, dbg
         
@@ -492,7 +492,7 @@ class Move2FirstTabCmd(Cmd):
         tobj.moveTo(how, p, l, c, t, dbg=dbg)
         if dbg:    tobj.log(f'END {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
 ########################################################################################################################################################################################################
-class Move2LastTabCmd(Cmd):
+class Go2LastTabCmd(Cmd):
     def __init__(self, tobj, how, page=0, dbg=1):
         self.tobj, self.how, self.page, self.dbg = tobj, how, page, dbg  
 
@@ -561,4 +561,26 @@ class InsertSpaceCmd(Cmd):
             tobj.move(how, (width - c1 + c0) * tobj.tpc)
             tobj.pasteTabs(how)
             tobj.unselectAll(how)
+########################################################################################################################################################################################################
+class SwapColsCmd(Cmd):
+    def __init__(self, tobj, how):
+        self.tobj, self.how = tobj, how
+        
+    def do(  self): self._swapCols()
+    def undo(self): self._swapCols() # todo fixme
+    
+    def _swapCols(self):
+        tobj, how = self.tobj, self.how
+        nk = len(tobj.smap)   ;   nk2 = nk // 2
+        tobj.dumpSmap(f'BGN {nk=} {nk2=}')
+        for i in range(nk2):
+            k1 = list(tobj.smap.keys())[i]
+            k2 = list(tobj.smap.keys())[nk - 1 - i]
+            text1 = tobj.smap[k1]
+            text2 = tobj.smap[k2]
+            tobj.smap[k1] = text2
+            tobj.smap[k2] = text1
+        tobj.dumpSmap(f'    {nk=} {nk2=}')
+        tobj.pasteTabs(how)
+        tobj.dumpSmap(f'END {nk=} {nk2=}')
 ########################################################################################################################################################################################################
