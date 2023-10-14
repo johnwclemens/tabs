@@ -481,3 +481,28 @@ def flipSelectAll(self, how):
     else:                      self.selectAll(how)     ;   self.allTabSel = 1
     self.dumpSmap(f'END {how} {self.allTabSel=}')
 ########################################################################################################################################################################################################
+def insertSpace(self, how, txt='0', dbg=1): # optimize str concat?
+    cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
+    if not self.inserting: self.inserting = 1   ;    self.setCaption('Enter nc: number of cols to indent int')
+    elif txt.isdecimal():  self.insertStr += txt
+    elif txt in (W, '/r'):
+        self.inserting = 0
+        width = int(self.insertStr)
+        tcs   = sorted(self.cobj.mlimap)
+        tcs.append(self.n[C] * self.n[L] - 1)
+        tcs   = [ t + 1 for t in tcs ]
+        if dbg: self.log(f'BGN {how} Searching for space to insert {width} cols starting at colm {c0}')
+        self.log(f'{fmtl(tcs, ll=1)} insertSpace', p=0)
+        found, c1, c2 = 0, 0, None   ;   self.insertStr = Z
+        for c2 in tcs:
+            if dbg: self.log(f'w c0 c1 c2 = {width} {c0} {c1} {c2}')
+            if c2 > c0 + width and c2 > c1 + width: found = 1  ;  break
+            c1 = c2
+        if not found: self.log(f'{how} starting at colm {c0} No room to insert {width} cols before end of page at colm {tcs[-1]+1}')  ;   return
+        self.log(f'{how} starting at colm {c0} Found a gap {width} cols wide between cols {c1} and {c2}')
+        self.log(f'select cols {c0} ... {c1}, cut cols, move ({width} - {c1} + {c0})={width-c1+c0} cols, paste cols')
+        [ self.selectTabs(how, m=self.tpc) for _ in range(c1 - c0) ]
+        self.cutTabs(how)
+        self.move(how, (width - c1 + c0) * self.tpc)
+        self.pasteTabs(how)
+        self.unselectAll(how)

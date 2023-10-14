@@ -478,7 +478,7 @@ class Move2FirstTabCmd(Cmd):
         self.tobj, self.how, self.page, self.dbg = tobj, how, page, dbg
         
     def do(  self): self._move2FirstTab()
-    def undo(self): self._move2FirstTab()
+    def undo(self): self._move2FirstTab() # todo fixme
     
     def _move2FirstTab(self):
         tobj, how, page, dbg = self.tobj, self.how, self.page, self.dbg
@@ -497,7 +497,7 @@ class Move2LastTabCmd(Cmd):
         self.tobj, self.how, self.page, self.dbg = tobj, how, page, dbg  
 
     def do(  self): self._move2LastTab()
-    def undo(self): self._move2LastTab()
+    def undo(self): self._move2LastTab() # todo fixme
     
     def _move2LastTab(self):
         tobj, how, page, dbg = self.tobj, self.how, self.page, self.dbg
@@ -525,4 +525,40 @@ class TogSelectAllCmd(Cmd):
         if   tobj.allTabSel:       tobj.unselectAll(how)   ;   tobj.allTabSel = 0
         else:                      tobj.selectAll(how)     ;   tobj.allTabSel = 1
         tobj.dumpSmap(f'END {how} {tobj.allTabSel=}')
+########################################################################################################################################################################################################
+class InsertSpaceCmd(Cmd):
+    def __init__(self, tobj, how, txt='0', dbg=1):
+        self.tobj, self.how, self.txt, self.dbg = tobj, how, txt, dbg
+        
+    def do(  self): self._insertSpace()
+    def undo(self): self._insertSpace() # todo fixme
+    
+    def _insertSpace(self):
+        tobj, how, txt, dbg = self.tobj, self.how, self.txt, self.dbg
+        cc = tobj.cursorCol()   ;  c0 = tobj.cc2cn(cc)
+        if not tobj.inserting:
+            tobj.inserting = 1  ;  tobj.setCaption('Enter nc: number of cols to indent int')
+        elif txt.isdecimal():
+            tobj.insertStr += txt
+        elif txt in (W, '\r'):
+            tobj.inserting = 0
+            width = int(tobj.insertStr)
+            tcs   = sorted(tobj.cobj.mlimap)
+            tcs.append(tobj.n[C] * tobj.n[L] - 1)
+            tcs   = [ t + 1 for t in tcs ]
+            if dbg: tobj.log(f'BGN {how} Searching for space to insert {width} cols starting at colm {c0}')
+            tobj.log(f'{fmtl(tcs, ll=1)} insertSpace', p=0)
+            found, c1, c2 = 0, 0, None   ;   tobj.insertStr = Z
+            for c2 in tcs:
+                if dbg: tobj.log(f'w c0 c1 c2 = {width} {c0} {c1} {c2}')
+                if c2 > c0 + width and c2 > c1 + width: found = 1  ;  break
+                c1 = c2
+            if not found: tobj.log(f'{how} starting at colm {c0} No room to insert {width} cols before end of page at colm {tcs[-1]+1}')  ;   return
+            tobj.log(f'{how} starting at colm {c0} Found a gap {width} cols wide between cols {c1} and {c2}')
+            tobj.log(f'select cols {c0} ... {c1}, cut cols, move ({width} - {c1} + {c0})={width-c1+c0} cols, paste cols')
+            [ tobj.selectTabs(how, m=tobj.tpc) for _ in range(c1 - c0) ]
+            tobj.cutTabs(how)
+            tobj.move(how, (width - c1 + c0) * tobj.tpc)
+            tobj.pasteTabs(how)
+            tobj.unselectAll(how)
 ########################################################################################################################################################################################################

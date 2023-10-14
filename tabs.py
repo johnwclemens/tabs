@@ -526,8 +526,8 @@ class Tabs(pyglet.window.Window):
 #    @staticmethod
 #    def dumpObj( obj,  name, why=Z): slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     ####################################################################################################################################################################################################
-    def dumpJs(  self, why, w=None, d=1): b = W*13 if self.OIDS else Z  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
-    def dumpGeom(self, why=Z, why2=Z):    b = W*13 if self.OIDS else Z  ;  self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fnvis()}] {why2}')
+    def dumpJs(  self, why, w=None, d=1): b = W*13 if self.OIDS else W  ;  self.log(f'{b}J1{self.fmtJ1(w, d)} {why}')   ;   self.log(f'{b}J2{self.fmtJ2(w, d)} {why}')   ;   self.log(f'{b}LE{self.fmtLE(w)} {why}')
+    def dumpGeom(self, why=Z, why2=Z):    b = W*13 if self.OIDS else W  ;  self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz2sl()} {len(self.idmap):4} {self.fnvis()}] {why2}')
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={fmtm(self.smap)}', pos=pos)
     ####################################################################################################################################################################################################
     def dumpBlanks(self): self.dmpBlnkHdr()  ;  self.log(f'{self.fmtBlnkCol()}', p=0)  ;  self.log(f'{self.fmtBlnkRow()}', p=0)
@@ -2066,32 +2066,6 @@ class Tabs(pyglet.window.Window):
         self.dumpSmap(f'    {nk=} {nk2=}')
         self.pasteTabs(how)
         self.dumpSmap(f'END {nk=} {nk2=}')
-
-    def insertSpace(self, how, txt='0', dbg=1): # optimize str concat?
-        cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
-        if not self.inserting: self.inserting = 1   ;    self.setCaption('Enter nc: number of cols to indent int')
-        elif txt.isdecimal():  self.insertStr += txt
-        elif txt in (W, '/r'):
-            self.inserting = 0
-            width = int(self.insertStr)
-            tcs   = sorted(self.cobj.mlimap)
-            tcs.append(self.n[C] * self.n[L] - 1)
-            tcs   = [ t + 1 for t in tcs ]
-            if dbg: self.log(f'BGN {how} Searching for space to insert {width} cols starting at colm {c0}')
-            self.log(f'{fmtl(tcs, ll=1)} insertSpace', p=0)
-            found, c1, c2 = 0, 0, None   ;   self.insertStr = Z
-            for c2 in tcs:
-                if dbg: self.log(f'w c0 c1 c2 = {width} {c0} {c1} {c2}')
-                if c2 > c0 + width and c2 > c1 + width: found = 1  ;  break
-                c1 = c2
-            if not found: self.log(f'{how} starting at colm {c0} No room to insert {width} cols before end of page at colm {tcs[-1]+1}')  ;   return
-            self.log(f'{how} starting at colm {c0} Found a gap {width} cols wide between cols {c1} and {c2}')
-            self.log(f'select cols {c0} ... {c1}, cut cols, move ({width} - {c1} + {c0})={width-c1+c0} cols, paste cols')
-            [ self.selectTabs(how, m=self.tpc) for _ in range(c1 - c0) ]
-            self.cutTabs(how)
-            self.move(how, (width - c1 + c0) * self.tpc)
-            self.pasteTabs(how)
-            self.unselectAll(how)
     ####################################################################################################################################################################################################
     def p2Js(self, p):
         np, nl, ns, nc, nt = self.n
@@ -2120,11 +2094,6 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def fVisible(n, j, l, v): return f'{n:4}{jTEXTS[j][0]}{l:<4} {v}'
     def fVis(self): return f'{fmtl([ int(p.visible) for p in self.pages ], s=Z)}'
-    ####################################################################################################################################################################################################
-    def flipCursorMode(self, how, m):
-        self.log(f'BGN {how} {self.csrMode=} = {CSR_MODES[self.csrMode]=}')
-        self.csrMode = (self.csrMode + m) % len(CSR_MODES)
-        self.log(f'END {how} {self.csrMode=} = {CSR_MODES[self.csrMode]=}')
     ####################################################################################################################################################################################################
     def dumpCursorArrows(self, how): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;  self.log(f'{how} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
 
