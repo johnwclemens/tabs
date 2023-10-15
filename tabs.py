@@ -1985,28 +1985,6 @@ class Tabs(pyglet.window.Window):
         if m:               self.move(how, m)
         if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
     ####################################################################################################################################################################################################
-    def cutTabs(self, how): self.log('BGN Cut = Copy + Delete')  ;  self.copyTabs(how)  ;  self.log('Cut = Copy + Delete')  ;  self.deleteTabs(how, keep=1)  ;  self.log('END Cut = Copy + Delete')
-    ####################################################################################################################################################################################################
-    def pasteTabs(self, how, kk=0, dbg=1):
-        cc = self.cursorCol()       ;   nt = self.n[T]
-        cn = self.normalizeCC(cc)   ;   kt = 0
-        p, l, s, c, t = self.j()
-        self.dumpSmap(f'BGN {how} {kk=} {cc=} {cn=}={self.cc2cn(cc)} plct={self.fplct(p, l, c, t)}')
-        for i, (k, text) in enumerate(self.smap.items()):
-            if not i:   dk = 0
-            elif kk:    dk = i * nt
-            else:       dk = (list(self.smap.keys())[i] - list(self.smap.keys())[0]) * nt
-            if dbg:     self.log(f'{i=} {k=} {text=} {kk=} {dk=}')
-            for n in range(nt):
-                kt         = (cn + dk + n) % self.tpp # todo
-                p, l, c, t = self.cc2plct(kt)
-                self.setDTNIK(text[n], kt, p, l, c, n, kk=1 if n==nt-1 else 0)
-            if dbg:     self.log(f'{i=} {k=} {text=} {kk=} {dk=} {kt=}')
-        self.log(f'clearing {len(self.smap)=}')   ;   self.smap.clear()
-        self.dumpSmap(f'END {how} {kk=} {cc=} {cn=}={self.cc2cn(cc)} plct={self.fplct(p, l, c, t)}')
-        if self.SNAPS:  self.regSnap(f'{how}', 'PAST')
-        self.rsyncData = 1
-    ####################################################################################################################################################################################################
     def p2Js(self, p):
         np, nl, ns, nc, nt = self.n
         p,  l,  s,  c,  t  = p, p*nl, p*nl*ns, p*nl*ns*nc, p*nl*nc*nt

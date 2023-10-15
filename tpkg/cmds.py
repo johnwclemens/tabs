@@ -697,3 +697,47 @@ class DeleteTabsCmd(Cmd):
         if tobj.SNAPS:  tobj.regSnap(f'{how}', 'DELT')
         tobj.rsyncData = 1
 ########################################################################################################################################################################################################
+class PasteTabsCmd(Cmd):
+    def __init__(self, tobj, how, kk=0, dbg=1):
+        self.tobj, self.how, self.kk, self.dbg = tobj, how, kk, dbg
+        
+    def do(  self): self._pasteTabs()
+    def undo(self): self._pasteTabs() # todo fixme
+    
+    def _pasteTabs(self):
+        tobj, how, kk, dbg = self.tobj, self.how, self.kk, self.dbg
+        cc = tobj.cursorCol()       ;   nt = tobj.n[T]
+        cn = tobj.normalizeCC(cc)   ;   kt = 0
+        p, l, s, c, t = tobj.j()
+        tobj.dumpSmap(f'BGN {how} {kk=} {cc=} {cn=}={tobj.cc2cn(cc)} plct={tobj.fplct(p, l, c, t)}')
+        for i, (k, text) in enumerate(tobj.smap.items()):
+            if not i:   dk = 0
+            elif kk:    dk = i * nt
+            else:       dk = (list(tobj.smap.keys())[i] - list(tobj.smap.keys())[0]) * nt
+            if dbg:     tobj.log(f'{i=} {k=} {text=} {kk=} {dk=}')
+            for n in range(nt):
+                kt         = (cn + dk + n) % tobj.tpp # todo
+                p, l, c, t = tobj.cc2plct(kt)
+                tobj.setDTNIK(text[n], kt, p, l, c, n, kk=1 if n==nt-1 else 0)
+            if dbg:     tobj.log(f'{i=} {k=} {text=} {kk=} {dk=} {kt=}')
+        tobj.log(f'clearing {len(tobj.smap)=}')   ;   tobj.smap.clear()
+        tobj.dumpSmap(f'END {how} {kk=} {cc=} {cn=}={tobj.cc2cn(cc)} plct={tobj.fplct(p, l, c, t)}')
+        if tobj.SNAPS:  tobj.regSnap(f'{how}', 'PAST')
+        tobj.rsyncData = 1
+########################################################################################################################################################################################################
+class CutTabsCmd(Cmd):
+    def __init__(self, tobj, how):
+        self.tobj, self.how = tobj, how
+        
+    def do(  self): self._cutTabs()
+    def undo(self): self._cutTabs() # todo fixme
+    
+    def _cutTabs(self):
+        tobj, how = self.tobj, self.how
+        tobj.log('BGN Cut = Copy + Delete')
+        cmd = CopyTabsCmd(tobj, how)            ;  cmd.do()
+        tobj.log('Cut = Copy + Delete')
+        cmd = DeleteTabsCmd(tobj, how, keep=1)  ;  cmd.do()
+        tobj.log('END Cut = Copy + Delete')
+########################################################################################################################################################################################################
+
