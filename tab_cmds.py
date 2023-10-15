@@ -589,3 +589,26 @@ def reset(self, how):
     self._reinit()
     self.dumpGeom('END', f'{how} after reinit()')
 ########################################################################################################################################################################################################
+def copyTabs(self, how, dbg=1): # optimize str concat?
+    self.dumpSmap(f'BGN {how}')   ;   nt = self.n[T]   ;   style = NORMAL_STYLE   ;   text = []
+    for k in list(self.smap.keys()):
+        k *= nt
+        if self.LL:  self.setLLStyle(k, style)
+        text.append(self.setTNIKStyle(k, nt, style))
+        if dbg: text.append(W)
+    if dbg:         self.log(f'{Z.join(text)=}')
+    self.dumpSmap(f'END {how}')
+    if self.SNAPS:  self.regSnap(f'{how}', 'COPY')
+########################################################################################################################################################################################################
+def deleteTabs(self, how, keep=0, dbg=1):
+    self.dumpSmap(f'BGN {how} {keep=}')   ;   style = NORMAL_STYLE   ;   nt = self.n[T]
+    for k, text in self.smap.items():
+        cn = k   ;   k *= nt
+        if dbg:     self.log(f'{k=} {cn=} {text=}')
+        if self.LL: self.setLLStyle(k, style)
+        self.setTNIKStyle(k, nt, style, blank=1)
+    if not keep:    self.unselectAll(f'deleteTabs({keep=})')
+    self.dumpSmap(f'END {how} {keep=}')
+    if self.SNAPS:  self.regSnap(f'{how}', 'DELT')
+    self.rsyncData = 1
+########################################################################################################################################################################################################

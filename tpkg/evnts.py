@@ -104,18 +104,18 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'A' and isCtl(   kd, m):      cmd = cmds.TogArrowCmd(     tobj, '@ A', v=0)     ;  cmd.do()
     elif kbk == 'B' and isCtlShf(kd, m):      cmd = cmds.TogBlankCmd(     tobj, '@^B', -1)      ;  cmd.do()
     elif kbk == 'B' and isCtl(   kd, m):      cmd = cmds.TogBlankCmd(     tobj, '@ B',  1)      ;  cmd.do()
-    elif kbk == 'C' and isCtlShf(kd, m):      tobj.copyTabs(     '@^C')
-    elif kbk == 'C' and isCtl(   kd, m):      tobj.copyTabs(     '@ C')
-    elif kbk == 'D' and isCtlShf(kd, m):      tobj.deleteTabs(   '@^D')
-    elif kbk == 'D' and isCtl(   kd, m):      tobj.deleteTabs(   '@ D')
-    elif kbk == 'E' and isCtlShf(kd, m):      cmd = cmds.EraseTabsCmd(tobj, '@^E')             ;  cmd.do()
-    elif kbk == 'E' and isCtl(   kd, m):      cmd = cmds.EraseTabsCmd(tobj, '@ E')             ;  cmd.do()
+    elif kbk == 'C' and isCtlShf(kd, m):      cmd = cmds.CopyTabsCmd(tobj, '@^C')               ;  cmd.do() # todo fixme also fires MOTION_COPY
+    elif kbk == 'C' and isCtl(   kd, m):      cmd = cmds.CopyTabsCmd(tobj, '@ C')               ;  cmd.do() # todo fixme also fires MOTION_COPY
+    elif kbk == 'D' and isCtlShf(kd, m):      cmd = cmds.DeleteTabsCmd(tobj, '@^D')             ;  cmd.do()
+    elif kbk == 'D' and isCtl(   kd, m):      cmd = cmds.DeleteTabsCmd(tobj, '@ D')             ;  cmd.do()
+    elif kbk == 'E' and isCtlShf(kd, m):      cmd = cmds.EraseTabsCmd(tobj, '@^E')              ;  cmd.do()
+    elif kbk == 'E' and isCtl(   kd, m):      cmd = cmds.EraseTabsCmd(tobj, '@ E')              ;  cmd.do()
     elif kbk == 'F' and isCtlShf(kd, m):      cmd = cmds.TogFullScrnCmd(  tobj, '@^F')          ;  cmd.do()
     elif kbk == 'F' and isCtl(   kd, m):      cmd = cmds.TogFlatShrpCmd(  tobj, '@ F')          ;  cmd.do()
-    elif kbk == 'G' and isCtlShf(kd, m):      cmd = cmds.Go2FirstTabCmd(tobj, '@^G', page=1)  ;  cmd.do()
-    elif kbk == 'G' and isCtl(   kd, m):      cmd = cmds.Go2FirstTabCmd(tobj, '@ G', page=0)  ;  cmd.do()
-    elif kbk == 'H' and isCtlShf(kd, m):      cmd = cmds.Go2LastTabCmd( tobj, '@^H', page=1)  ;  cmd.do()
-    elif kbk == 'H' and isCtl(   kd, m):      cmd = cmds.Go2LastTabCmd( tobj, '@ H', page=0)  ;  cmd.do()
+    elif kbk == 'G' and isCtlShf(kd, m):      cmd = cmds.Go2FirstTabCmd(tobj, '@^G', page=1)    ;  cmd.do()
+    elif kbk == 'G' and isCtl(   kd, m):      cmd = cmds.Go2FirstTabCmd(tobj, '@ G', page=0)    ;  cmd.do()
+    elif kbk == 'H' and isCtlShf(kd, m):      cmd = cmds.Go2LastTabCmd( tobj, '@^H', page=1)    ;  cmd.do()
+    elif kbk == 'H' and isCtl(   kd, m):      cmd = cmds.Go2LastTabCmd( tobj, '@ H', page=0)    ;  cmd.do()
     elif kbk == 'I' and isCtlShf(kd, m):      cmd = cmds.InsertSpaceCmd(  tobj, '@^I')          ;  cmd.do() #
     elif kbk == 'I' and isCtl(   kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@ I', II)      ;  cmd.do() #
     elif kbk == 'J' and isCtlShf(kd, m):      cmd = cmds.CsrJumpCmd(      tobj, '@^J', txt='0', abso=1)  ;  cmd.do()
@@ -304,10 +304,10 @@ def on_text_motion(tobj, motion, dbg=1):
         elif motion == k.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE({motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif motion == k.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(      {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif motion == k.MOTION_PREVIOUS_PAGE:     msg = f'@  MOTION_PREVIOUS_PAGE(    {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_NEXT_PAGE:         msg = f'@ MOTION_NEXT_PAGE(         {motion})'   ;   slog(msg)   ;   retv = False
-#            cmd = tobj.NextPageCmd(tobj, '@  MOTION_NEXT_PAGE', motion)   ;  cmd.do()     
-        elif motion == k.MOTION_DELETE:            tobj.deleteTabs(f'@ D MOTION_DELETE({motion})')
-        elif motion == k.MOTION_COPY:              tobj.copyTabs(  f'@ C MOTION_COPY(  {motion})')
+#        elif motion == k.MOTION_NEXT_PAGE:         msg = f'@ MOTION_NEXT_PAGE(         {motion})'   ;   slog(msg)   ;   retv = False
+        elif motion == k.MOTION_NEXT_PAGE:         cmd = cmds.TogPageCmd(tobj, '@  MOTION_NEXT_PAGE', motion)       ;  cmd.do()     
+        elif motion == k.MOTION_DELETE:            cmd = cmds.DeleteTabsCmd(tobj, f'@ D MOTION_DELETE({motion})')   ;  cmd.do()
+        elif motion == k.MOTION_COPY:              cmd = cmds.CopyTabsCmd(tobj, f'@ C MOTION_COPY(  {motion})')     ;  cmd.do() # todo fixme also fires '@ C'
         elif motion == k.MOTION_PASTE:             tobj.pasteTabs( f'@ V MOTION_PASTE( {motion})', kk=0)
         else:                                      msg = f'@  UNH CTRL(                {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
     elif isAlt(kd, m):
@@ -329,7 +329,7 @@ def on_text_motion(tobj, motion, dbg=1):
         elif motion == k.MOTION_END_OF_LINE:       tobj.move(        f' END(           {motion})',  nt * (nc - tobj.i[C]))
         elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.moveUp(      f' PAGE UP(       {motion})')  # go up   to top    of line, wrap down to bottom of prev line
         elif motion == k.MOTION_NEXT_PAGE:         tobj.moveDown(    f' PAGE DOWN(     {motion})')  # go down to bottom tab on same line, wrap to next line
-#       elif motion == k.MOTION_NEXT_PAGE:         msg =      f' MOTION_NEXT_PAGE(     {motion})'  ;   slog(msg)   ;   retv = False
+        elif motion == k.MOTION_COPY:              msg =             f' MOTION_COPY(   {motion})'   ;   slog(msg)   ;   retv = False
         elif motion == k.MOTION_DELETE:            tobj.setTab(      f'DELETE(         {motion})', tobj.tblank)
         elif motion == k.MOTION_BACKSPACE:         tobj.setTab(      f'BACKSPACE(      {motion})', tobj.tblank, rev=1)
         elif motion == k.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD(       {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A

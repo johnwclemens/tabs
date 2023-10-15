@@ -658,3 +658,42 @@ class ResetCmd(Cmd):
         tobj._reinit()            # todo fixme
         tobj.dumpGeom('END', f'{how} after reinit()')
 ########################################################################################################################################################################################################
+class CopyTabsCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+        
+    def do(  self): self._copyTabs()
+    def undo(self): self._copyTabs() # todo fixme
+    
+    def _copyTabs(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        tobj.dumpSmap(f'BGN {how}')   ;   nt = tobj.n[T]   ;   style = NORMAL_STYLE   ;   text = []
+        for k in list(tobj.smap.keys()):
+            k *= nt
+            if tobj.LL:  tobj.setLLStyle(k, style)
+            text.append(tobj.setTNIKStyle(k, nt, style))
+            if dbg: text.append(W)
+        if dbg:         tobj.log(f'{Z.join(text)=}')
+        tobj.dumpSmap(f'END {how}')
+        if tobj.SNAPS:  tobj.regSnap(f'{how}', 'COPY')
+########################################################################################################################################################################################################
+class DeleteTabsCmd(Cmd):
+    def __init__(self, tobj, how, keep=0, dbg=1):
+        self.tobj, self.how, self.keep, self.dbg = tobj, how, keep, dbg
+        
+    def do(  self): self._deleteTabs()
+    def undo(self): self._deleteTabs() # todo fixme
+    
+    def _deleteTabs(self):
+        tobj, how, keep, dbg = self.tobj, self.how, self.keep, self.dbg
+        tobj.dumpSmap(f'BGN {how} {keep=}')   ;   style = NORMAL_STYLE   ;   nt = tobj.n[T]
+        for k, text in tobj.smap.items():
+            cn = k   ;   k *= nt
+            if dbg:     tobj.log(f'{k=} {cn=} {text=}')
+            if tobj.LL: tobj.setLLStyle(k, style)
+            tobj.setTNIKStyle(k, nt, style, blank=1)
+        if not keep:    tobj.unselectAll(f'deleteTabs({keep=})')
+        tobj.dumpSmap(f'END {how} {keep=}')
+        if tobj.SNAPS:  tobj.regSnap(f'{how}', 'DELT')
+        tobj.rsyncData = 1
+########################################################################################################################################################################################################

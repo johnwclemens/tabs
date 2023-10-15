@@ -1985,31 +1985,8 @@ class Tabs(pyglet.window.Window):
         if m:               self.move(how, m)
         if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
     ####################################################################################################################################################################################################
-    def copyTabs(self, how, dbg=1): # optimize str concat?
-        self.dumpSmap(f'BGN {how}')   ;   nt = self.n[T]   ;   style = NORMAL_STYLE   ;   text = []
-        for k in list(self.smap.keys()):
-            k *= nt
-            if self.LL:  self.setLLStyle(k, style)
-            text.append(self.setTNIKStyle(k, nt, style))
-            if dbg: text.append(W)
-        if dbg:         self.log(f'{Z.join(text)=}')
-        self.dumpSmap(f'END {how}')
-        if self.SNAPS:  self.regSnap(f'{how}', 'COPY')
-    ####################################################################################################################################################################################################
     def cutTabs(self, how): self.log('BGN Cut = Copy + Delete')  ;  self.copyTabs(how)  ;  self.log('Cut = Copy + Delete')  ;  self.deleteTabs(how, keep=1)  ;  self.log('END Cut = Copy + Delete')
     ####################################################################################################################################################################################################
-    def deleteTabs(self, how, keep=0, dbg=1):
-        self.dumpSmap(f'BGN {how} {keep=}')   ;   style = NORMAL_STYLE   ;   nt = self.n[T]
-        for k, text in self.smap.items():
-            cn = k   ;   k *= nt
-            if dbg:     self.log(f'{k=} {cn=} {text=}')
-            if self.LL: self.setLLStyle(k, style)
-            self.setTNIKStyle(k, nt, style, blank=1)
-        if not keep:    self.unselectAll(f'deleteTabs({keep=})')
-        self.dumpSmap(f'END {how} {keep=}')
-        if self.SNAPS:  self.regSnap(f'{how}', 'DELT')
-        self.rsyncData = 1
-
     def pasteTabs(self, how, kk=0, dbg=1):
         cc = self.cursorCol()       ;   nt = self.n[T]
         cn = self.normalizeCC(cc)   ;   kt = 0
