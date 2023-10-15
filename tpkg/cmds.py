@@ -473,6 +473,20 @@ class TogTTsCmd(Cmd):
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
+class TogSelectAllCmd(Cmd):
+    def __init__(self, tobj, how):
+        self.tobj, self.how = tobj, how
+
+    def do(  self): self._togSelectAll()
+    def undo(self): self._togSelectAll()
+        
+    def _togSelectAll(self):
+        tobj, how = self.tobj, self.how
+        tobj.dumpSmap(f'BGN {how} {tobj.allTabSel=}')
+        if   tobj.allTabSel:       tobj.unselectAll(how)   ;   tobj.allTabSel = 0
+        else:                      tobj.selectAll(how)     ;   tobj.allTabSel = 1
+        tobj.dumpSmap(f'END {how} {tobj.allTabSel=}')
+########################################################################################################################################################################################################
 class Go2FirstTabCmd(Cmd):
     def __init__(self, tobj, how, page=0, dbg=1):
         self.tobj, self.how, self.page, self.dbg = tobj, how, page, dbg
@@ -511,20 +525,6 @@ class Go2LastTabCmd(Cmd):
         tobj.moveTo(how, p, l, c, t, dbg=dbg)
         if dbg:    tobj.log(f'END {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
 
-########################################################################################################################################################################################################
-class TogSelectAllCmd(Cmd):
-    def __init__(self, tobj, how):
-        self.tobj, self.how = tobj, how
-
-    def do(  self): self._togSelectAll()
-    def undo(self): self._togSelectAll()
-        
-    def _togSelectAll(self):
-        tobj, how = self.tobj, self.how
-        tobj.dumpSmap(f'BGN {how} {tobj.allTabSel=}')
-        if   tobj.allTabSel:       tobj.unselectAll(how)   ;   tobj.allTabSel = 0
-        else:                      tobj.selectAll(how)     ;   tobj.allTabSel = 1
-        tobj.dumpSmap(f'END {how} {tobj.allTabSel=}')
 ########################################################################################################################################################################################################
 class InsertSpaceCmd(Cmd):
     def __init__(self, tobj, how, txt='0', dbg=1):
@@ -614,4 +614,47 @@ class AddPageCmd(Cmd):
                     for _ in   tobj.g_createTniks(tobj.tabls,  T, colm, why=why): pass
         tobj.dumpTniksSfx(how)
         if tobj.SNAPS and dbg: tobj.regSnap(how, why2)
+########################################################################################################################################################################################################
+class EraseTabsCmd(Cmd):
+    def __init__(self, tobj, how): #, reset=0
+        self.tobj, self.how = tobj, how
+        
+    def do(  self): self._eraseTabs()
+    def undo(self): self._eraseTabs() # todo fixme
+    
+    def _eraseTabs(self):
+        tobj, how = self.tobj, self.how
+        np, nl, ns, nc, nt = tobj.n   ;   nz = tobj.zzl()  ;  nc += nz
+        tobj.log(f'BGN {how} {np=} {nl=} {ns=} {nc=} {nt=}')
+        tobj.nic.clear()
+        tobj.dumpBlanks()
+        for t in tobj.tabls:
+            t.text = tobj.tblank
+        for n in tobj.notes:
+            n.text = tobj.tblank
+        for i in tobj.ikeys:
+            i.text = tobj.tblank
+        for k in tobj.kords:
+            k.text = tobj.tblank
+        for p in range(np):
+            for l in range(nl):
+                for c in range(nz, nc):
+                    tobj.data[p][l][c-nz] = tobj.tblankCol
+        tobj.log(f'END {how} {np=} {nl=} {ns=} {nc=} {nt=}')
+        tobj.rsyncData = 1
+########################################################################################################################################################################################################
+class ResetCmd(Cmd):
+    def __init__(self, tobj, how):
+        self.tobj, self.how = tobj, how
+        
+    def do(  self): self._reset()
+    def undo(self): self._reset() # todo fixme
+    
+    def _reset(self):
+        tobj, how = self.tobj, self.how
+        tobj.dumpGeom('BGN', f'{how} before cleanup()')
+        tobj.cleanup()
+        tobj.dumpGeom('   ', f'{how} after cleanup() / before reinit()')
+        tobj._reinit()            # todo fixme
+        tobj.dumpGeom('END', f'{how} after reinit()')
 ########################################################################################################################################################################################################

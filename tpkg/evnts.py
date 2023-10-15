@@ -108,16 +108,16 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'C' and isCtl(   kd, m):      tobj.copyTabs(     '@ C')
     elif kbk == 'D' and isCtlShf(kd, m):      tobj.deleteTabs(   '@^D')
     elif kbk == 'D' and isCtl(   kd, m):      tobj.deleteTabs(   '@ D')
-    elif kbk == 'E' and isCtlShf(kd, m):      tobj.eraseTabs(    '@^E')
-    elif kbk == 'E' and isCtl(   kd, m):      tobj.eraseTabs(    '@ E')
+    elif kbk == 'E' and isCtlShf(kd, m):      cmd = cmds.EraseTabsCmd(tobj, '@^E')             ;  cmd.do()
+    elif kbk == 'E' and isCtl(   kd, m):      cmd = cmds.EraseTabsCmd(tobj, '@ E')             ;  cmd.do()
     elif kbk == 'F' and isCtlShf(kd, m):      cmd = cmds.TogFullScrnCmd(  tobj, '@^F')          ;  cmd.do()
     elif kbk == 'F' and isCtl(   kd, m):      cmd = cmds.TogFlatShrpCmd(  tobj, '@ F')          ;  cmd.do()
     elif kbk == 'G' and isCtlShf(kd, m):      cmd = cmds.Go2FirstTabCmd(tobj, '@^G', page=1)  ;  cmd.do()
     elif kbk == 'G' and isCtl(   kd, m):      cmd = cmds.Go2FirstTabCmd(tobj, '@ G', page=0)  ;  cmd.do()
     elif kbk == 'H' and isCtlShf(kd, m):      cmd = cmds.Go2LastTabCmd( tobj, '@^H', page=1)  ;  cmd.do()
     elif kbk == 'H' and isCtl(   kd, m):      cmd = cmds.Go2LastTabCmd( tobj, '@ H', page=0)  ;  cmd.do()
-    elif kbk == 'I' and isCtlShf(kd, m):      cmd = cmds.InsertSpaceCmd(  tobj, '@^I')          ;  cmd.do()
-    elif kbk == 'I' and isCtl(   kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@ I', II)      ;  cmd.do()
+    elif kbk == 'I' and isCtlShf(kd, m):      cmd = cmds.InsertSpaceCmd(  tobj, '@^I')          ;  cmd.do() #
+    elif kbk == 'I' and isCtl(   kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@ I', II)      ;  cmd.do() #
     elif kbk == 'J' and isCtlShf(kd, m):      cmd = cmds.CsrJumpCmd(      tobj, '@^J', txt='0', abso=1)  ;  cmd.do()
     elif kbk == 'J' and isCtl(   kd, m):      cmd = cmds.CsrJumpCmd(      tobj, '@ J', txt='0', abso=0)  ;  cmd.do()
     elif kbk == 'K' and isCtlShf(kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@^K', KK)      ;  cmd.do()
@@ -136,13 +136,13 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'Q' and isCtl(   kd, m):      retv = tobj.quit(  '@ Q', error=0, save=1)
     elif kbk == 'R' and isCtlShf(kd, m):      cmd = cmds.TogKordNamesCmd( tobj, '@ R', hit=1)    ;  cmd.do()
     elif kbk == 'R' and isCtl(   kd, m):      cmd = cmds.TogKordNamesCmd( tobj, '@ R', hit=0)    ;  cmd.do()
-    elif kbk == 'S' and isCtlShf(kd, m):      cmd = cmds.ShiftTabsCmd(    tobj, '@^S')           ;  cmd.do()
+    elif kbk == 'S' and isCtlShf(kd, m):      cmd = cmds.ShiftTabsCmd(    tobj, '@^S')           ;  cmd.do() #
 #   elif kbk == 'S' and isCtl(   kd, m):      tobj.saveDataFile( '@ S', self.dataPath1)
-    elif kbk == 'S' and isCtl(   kd, m):      cmd = cmds.SwapTabCmd(      tobj, '@ S', txt=Z)    ;  cmd.do()
+    elif kbk == 'S' and isCtl(   kd, m):      cmd = cmds.SwapTabCmd(      tobj, '@ S', txt=Z)    ;  cmd.do() #
     elif kbk == 'T' and isCtlShf(kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@^T', TT)       ;  cmd.do()
     elif kbk == 'T' and isCtl(   kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@ T', TT)       ;  cmd.do()
-    elif kbk == 'U' and isCtlShf(kd, m):      tobj.reset(        '@^U')
-    elif kbk == 'U' and isCtl(   kd, m):      tobj.reset(        '@ U')
+    elif kbk == 'U' and isCtlShf(kd, m):      cmd = cmds.ResetCmd(tobj, '@^U')                   ;  cmd.do()
+    elif kbk == 'U' and isCtl(   kd, m):      cmd = cmds.ResetCmd(tobj, '@ U')                   ;  cmd.do()
 #   elif kbk == 'V' and isCtlAlt(kd, m):      tobj.pasteTabs(    '@&V', hc=0, kk=1)
     elif kbk == 'V' and isCtlShf(kd, m):      tobj.pasteTabs(    '@^V', kk=1)
     elif kbk == 'V' and isCtl(   kd, m):      tobj.pasteTabs(    '@ V', kk=0)
@@ -162,6 +162,7 @@ def on_key_press(tobj, symb, mods, dbg=1):
 #   elif kbk == 'SLASH':                      tobj.setCHVMode(  '  SLASH',     ARPG,   RARROW, UARROW)
 #   elif kbk == 'BACKSLASH' and isCtl(mods):  tobj.setCHVMode(  '@ BACKSLASH', ARPG,   LARROW, UARROW)
 #   elif kbk == 'BACKSLASH':                  tobj.setCHVMode(  '  BACKSLASH', ARPG,   RARROW, DARROW)
+    ####################################################################################################################################################################################################
     elif kbk == 'A' and isAltShf(kd, m):      cmd = cmds.TogBGCCmd(       tobj, '&^A')           ;  cmd.do()
     elif kbk == 'A' and isAlt(   kd, m):      cmd = cmds.TogBGCCmd(       tobj, '& A')           ;  cmd.do()
     elif kbk == 'D' and isAltShf(kd, m):      cmd = cmds.TogDrwBGCCmd(    tobj, '&^D', -1)       ;  cmd.do()
@@ -189,7 +190,7 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'S' and isAlt(   kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_SIZE,     32 / 33,    'fontSize')     ;  cmd.do()
 #    elif kbk == 'PAGEUP'   and isCtlShf(kd, m): tobj.log(f'{kbk=} @^PAGEUP')     ;   cmd = cmds.TogPageCmd(tobj, '@^PAGEUP', -1)  ;  cmd.do()
 #    elif kbk == 'PAGEUP'   and isCtl(   kd, m): tobj.log(f'{kbk=} @ PAGEUP')     ;   cmd = cmds.TogPageCmd(tobj, '@ PAGEUP',  1)  ;  cmd.do()
-#    elif kbk == 'PAGEUP':                       tobj.log(f'{kbk=}   PAGEUP')     ;   tobj.moveUp(    f' PAGEUP')                              # go down to bottom tab on same line, wrap to next line
+#    elif kbk == 'PAGEUP':                       tobj.log(f'{kbk=}   PAGEUP')     ;   tobj.moveUp(    f' PAGEUP')                                # go up   to top    of line, wrap down to bottom of prev line
 #    elif kbk == 'PAGEDOWN' and isCtlShf(kd, m): tobj.log(f'{kbk=} @^PAGEDOWN')   ;   cmd = cmds.TogPageCmd(tobj, '@^PAGEDOWN', -1)  ;  cmd.do()
 #    elif kbk == 'PAGEDOWN' and isCtl(   kd, m): tobj.log(f'{kbk=} @ PAGEDOWN')   ;   cmd = cmds.TogPageCmd(tobj, '@ PAGEDOWN',  1)  ;  cmd.do()
 #    elif kbk == 'PAGEDOWN':                     tobj.log(f'{kbk=}   PAGEDOWN')   ;   tobj.moveDown(    f' PAGEDOWN')                            # go down to bottom tab on same line, wrap to next line

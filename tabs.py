@@ -2066,33 +2066,6 @@ class Tabs(pyglet.window.Window):
         if self.csrMode in (CHORD, ARPG):         cmd = cmds.TogArrowCmd(self, 'reverseArrow()  CHORD or ARPG',        v=1)  ;  cmd.do() # self.flipArrow('reverseArrow()  CHORD or ARPG',        v=1)
         if dbg: self.dumpCursorArrows('reverseArrow()')
     ####################################################################################################################################################################################################
-    def eraseTabs(self, how): # , reset=0):
-        np, nl, ns, nc, nt = self.n   ;   nz = self.zzl()  ;  nc += nz
-        self.log(f'BGN {how} {np=} {nl=} {ns=} {nc=} {nt=}')
-        self.nic.clear()
-        self.dumpBlanks()
-        for t in self.tabls:
-            t.text = self.tblank
-        for n in self.notes:
-            n.text = self.tblank
-        for i in self.ikeys:
-            i.text = self.tblank
-        for k in self.kords:
-            k.text = self.tblank
-        for p in range(np):
-            for l in range(nl):
-                for c in range(nz, nc):
-                    self.data[p][l][c-nz] = self.tblankCol
-        self.log(f'END {how} {np=} {nl=} {ns=} {nc=} {nt=}')
-        self.rsyncData = 1
-
-    def reset(self, how):
-        self.dumpGeom('BGN', f'{how} before cleanup()')
-        self.cleanup()
-        self.dumpGeom('   ', f'{how} after cleanup() / before reinit()')
-        self._reinit()
-        self.dumpGeom('END', f'{how} after reinit()')
-    ####################################################################################################################################################################################################
     def cci(self, j, k, kl, dbg=0):
         if k == 0:  self.ki[j] = (self.ki[j] + 1) % len(kl)
         kk   = (k + self.ki[j]) % len(kl)

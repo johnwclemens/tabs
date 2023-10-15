@@ -95,6 +95,12 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'A' and isCtl(   kd, m):     tobj.flipArrow(    '@ A', v=0)
     elif kbk == 'B' and isCtlShf(kd, m):     tobj.flipBlank(    '@^B')
     elif kbk == 'B' and isCtl(   kd, m):     tobj.flipBlank(    '@ B')
+    elif kbk == 'C' and isCtlShf(kd, m):     tobj.copyTabs(     '@^C')
+    elif kbk == 'C' and isCtl(   kd, m):     tobj.copyTabs(     '@ C')
+    elif kbk == 'D' and isCtlShf(kd, m):     tobj.deleteTabs(   '@^D')
+    elif kbk == 'D' and isCtl(   kd, m):     tobj.deleteTabs(   '@ D')
+    elif kbk == 'E' and isCtlShf(kd, m):     tobj.eraseTabs(    '@^E')
+    elif kbk == 'E' and isCtl(   kd, m):     tobj.eraseTabs(    '@ E')
     elif kbk == 'F' and isCtlShf(kd, m):     tobj.flipFullScrn( '@^F') # FULL_SCREEN
     elif kbk == 'F' and isCtl(   kd, m):     tobj.flipFlatShrp( '@ F') # FLAT_SHARP
     elif kbk == 'G' and isCtlShf(kd, m):     tobj.move2LastTab( '@^G', page=1)
@@ -113,8 +119,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'N' and isCtl(   kd, m):     tobj.flipTTs(      '@ N', NN)
     elif kbk == 'O' and isCtlShf(kd, m):     tobj.flipCrsrMode( '@^O', -1)
     elif kbk == 'O' and isCtl(   kd, m):     tobj.flipCrsrMode( '@ O', 1)
-    elif kbk == 'P' and isCtlShf(kd, m):      tobj.addPage(      '@^P', ins=0)
-    elif kbk == 'P' and isCtl(   kd, m):      tobj.addPage(      '@ P', ins=None)
+    elif kbk == 'P' and isCtlShf(kd, m):     tobj.addPage(      '@^P', ins=0)
+    elif kbk == 'P' and isCtl(   kd, m):     tobj.addPage(      '@ P', ins=None)
     elif kbk == 'R' and isCtlShf(kd, m):     tobj.flipKordNames('@^R', hit=1)
     elif kbk == 'R' and isCtl(   kd, m):     tobj.flipKordNames('@ R', hit=0)
     elif kbk == 'S' and isCtlShf(kd, m):     tobj.shiftTabs(    '@^S')
@@ -122,16 +128,24 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'S' and isCtl(   kd, m):     tobj.swapTab(      '@ S', txt=Z)
     elif kbk == 'T' and isCtlShf(kd, m):     tobj.flipTTs(      '@^T', TT)
     elif kbk == 'T' and isCtl(   kd, m):     tobj.flipTTs(      '@ T', TT)
-    elif kbk == 'W' and isCtlShf(kd, m):      tobj.swapCols(     '@^W')
-    elif kbk == 'W' and isCtl(   kd, m):      tobj.swapCols(     '@ W')
+    elif kbk == 'U' and isCtlShf(kd, m):     tobj.reset(        '@^U')
+    elif kbk == 'U' and isCtl(   kd, m):     tobj.reset(        '@ U')
+#   elif kbk == 'V' and isCtlAlt(kd, m):     tobj.pasteTabs(    '@&V', hc=0, kk=1)
+    elif kbk == 'V' and isCtlShf(kd, m):     tobj.pasteTabs(    '@^V', kk=1)
+    elif kbk == 'V' and isCtl(   kd, m):     tobj.pasteTabs(    '@ V', kk=0)
+    elif kbk == 'W' and isCtlShf(kd, m):     tobj.swapCols(     '@^W')
+    elif kbk == 'W' and isCtl(   kd, m):     tobj.swapCols(     '@ W')
+    elif kbk == 'X' and isCtlShf(kd, m):     tobj.cutTabs(      '@^X')
+    elif kbk == 'X' and isCtl(   kd, m):     tobj.cutTabs(      '@ X')
+    ####################################################################################################################################################################################################
 
     elif kbk == 'ESCAPE':                    tobj.flipSelectAll('ESCAPE')
-    elif kbk == 'TAB' and isCtl(kd, m):      tobj.setCHVMode(   '@ TAB',       MELODY, LARROW)
-    elif kbk == 'TAB':                       tobj.setCHVMode(   '  TAB',       MELODY, RARROW)
-#   elif kbk == 'SLASH'     and isCtl(mods):  tobj.setCHVMode(  '@ SLASH',     ARPG,   LARROW, DARROW)
-#   elif kbk == 'SLASH':                      tobj.setCHVMode(  '  SLASH',     ARPG,   RARROW, UARROW)
-#   elif kbk == 'BACKSLASH' and isCtl(mods):  tobj.setCHVMode(  '@ BACKSLASH', ARPG,   LARROW, UARROW)
-#   elif kbk == 'BACKSLASH':                  tobj.setCHVMode(  '  BACKSLASH', ARPG,   RARROW, DARROW)
+    elif kbk == 'TAB' and isCtl(kd, m):      tobj.setCHVMode(   '@ TAB',      MELODY, LARROW)
+    elif kbk == 'TAB':                       tobj.setCHVMode(   '  TAB',      MELODY, RARROW)
+#   elif kbk == 'SLASH'     and isCtl(mods): tobj.setCHVMode(  '@ SLASH',     ARPG,   LARROW, DARROW)
+#   elif kbk == 'SLASH':                     tobj.setCHVMode(  '  SLASH',     ARPG,   RARROW, UARROW)
+#   elif kbk == 'BACKSLASH' and isCtl(mods): tobj.setCHVMode(  '@ BACKSLASH', ARPG,   LARROW, UARROW)
+#   elif kbk == 'BACKSLASH':                 tobj.setCHVMode(  '  BACKSLASH', ARPG,   RARROW, DARROW)
 
     ####################################################################################################################################################################################################
     elif kbk == 'A' and isAltShf(kd, m):     tobj.flipBGC(      '&^A')
@@ -547,4 +561,31 @@ def addPage(self, how, ins=None, dbg=1):
                 for _ in   self.g_createTniks(self.tabls,  T, colm, why=why): pass
     self.dumpTniksSfx(how)
     if self.SNAPS and dbg: self.regSnap(how, why2)
+########################################################################################################################################################################################################
+def eraseTabs(self, how): # , reset=0):
+    np, nl, ns, nc, nt = self.n   ;   nz = self.zzl()  ;  nc += nz
+    self.log(f'BGN {how} {np=} {nl=} {ns=} {nc=} {nt=}')
+    self.nic.clear()
+    self.dumpBlanks()
+    for t in self.tabls:
+        t.text = self.tblank
+    for n in self.notes:
+        n.text = self.tblank
+    for i in self.ikeys:
+        i.text = self.tblank
+    for k in self.kords:
+        k.text = self.tblank
+    for p in range(np):
+        for l in range(nl):
+            for c in range(nz, nc):
+                self.data[p][l][c-nz] = self.tblankCol
+    self.log(f'END {how} {np=} {nl=} {ns=} {nc=} {nt=}')
+    self.rsyncData = 1
+########################################################################################################################################################################################################
+def reset(self, how):
+    self.dumpGeom('BGN', f'{how} before cleanup()')
+    self.cleanup()
+    self.dumpGeom('   ', f'{how} after cleanup() / before reinit()')
+    self._reinit()
+    self.dumpGeom('END', f'{how} after reinit()')
 ########################################################################################################################################################################################################
