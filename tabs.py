@@ -1812,32 +1812,6 @@ class Tabs(pyglet.window.Window):
         else:   self.moveTo(how, p, l+1 if l<m else 0, 0, t) # go right to bgn of next line, wrap left to top of first line
         if dbg: self.log(f'END {how}', pos=1)                # go left & down to bgn of next line, wrap left to top of first line
     ####################################################################################################################################################################################################
-    def moveTo(self, how, p, l, c, t, ss=0, dbg=1):
-        if dbg:    self.log(f'BGN {how}', pos=1)
-        self._moveTo(p, l, c, t)
-        self.moveCursor(ss, how)
-        if dbg:    self.log(f'END {how}', pos=1)
-
-    def move(self, how, n, ss=0, dbg=1):
-        if dbg:    self.log(f'BGN {how} {n=}', pos=1)
-        p, l, c, t = self.j2()
-        self._moveTo(p, l, c, t, n=n)
-        if self.CURSOR and self.cursor: self.moveCursor(ss, how)
-        if dbg:    self.log(f'END {how} {n=}', pos=1)
-
-    def _moveTo(self, p, l, c, t, n=0, dbg=1): # todo
-        if dbg: self.log(f'BGN plct={self.fplct(p, l, c, t)}', pos=1) # {n=}
-        np, nl, ns, nc, nt = self.n
-        t2        =       n  + t
-        c2        = t2 // nt + c
-        l2        = c2 // nc + l
-        p2        = l2 // nl + p
-        self.i[T] = t2  % nt + 1
-        self.i[C] = c2  % nc + 1
-        self.i[L] = l2  % nl + 1
-        self.i[P] = p2  % np + 1
-        if dbg: self.log(f'END {n=} {self.fmti()} plct={self.fplct(p, l, c, t)} plct2={self.fplct(p2, l2, c2, t2)}', pos=1)
-    ####################################################################################################################################################################################################
     def autoMove(self, how, dbg=1):
         self.log(f'BGN {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
         ha = 1 if self.hArrow == RARROW else -1

@@ -740,4 +740,110 @@ class CutTabsCmd(Cmd):
         cmd = DeleteTabsCmd(tobj, how, keep=1)  ;  cmd.do()
         tobj.log('END Cut = Copy + Delete')
 ########################################################################################################################################################################################################
+class MoveCursorCmd(Cmd):
+    def __init__(self, tobj, ss=0, why=Z, dbg=1):
+        self.tobj, self.ss, self.why, self.dbg = tobj, ss, why, dbg
+        
+    def do(  self): self._moveCursor()
+    def undo(self): self._moveCursor() # todo fixme
+    
+    def _moveCursor(self):
+        tobj, ss, why, dbg = self.tobj, self.ss, self.why, self.dbg
+        if dbg:           tobj.log(f'BGN {ss=} {tobj.cc=}', pos=1)
+        if tobj.LL:       tobj.setLLStyle(tobj.cc, SELECT_STYLE if ss else NORMAL_STYLE)
+        cmd = ResizeCursorCmd(tobj, why, dbg=dbg)         ;  cmd.do()
+        if tobj.LL:       tobj.setLLStyle(tobj.cc, CURRENT_STYLE)
+        if dbg:           tobj.log(f'END {ss=} {tobj.cc=}', pos=1)
+########################################################################################################################################################################################################
+class ResizeCursorCmd(Cmd):
+    def __init__(self, tobj, why, dbg=1):
+        self.tobj, self.why, self.dbg = tobj, why, dbg
+        
+    def do(  self): self._resizeCursor()
+    def undo(self): self._resizeCursor() # todo fixme
+    
+    def _resizeCursor(self):
+        tobj, why, dbg = self.tobj, self.why, self.dbg
+        x, y, w, h, c = tobj.cc2xywh()
+        tobj.resizeTnik(tobj.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
+########################################################################################################################################################################################################
+class MoveToCmd(Cmd):
+    def __init__(self, tobj, how, p, l, c, t, ss=0, dbg=1):
+        self.tobj, self.how, self.p, self.l, self.c, self.t, self.ss, self.dbg = tobj, how, p, l, c, t, ss, dbg
+        
+    def do(  self): self._moveTo()
+    def undo(self): self._moveTo() # todo fixme
+    
+    def _moveTo(self):
+        tobj, how, p, l, c, t, ss, dbg = self.tobj, self.how, self.p, self.l, self.c, self.t, self.ss, self.dbg
+        if dbg:    tobj.log(f'BGN {how}', pos=1)
+        cmd = MoveTo2Cmd(tobj, p, l, c, t)       ;  cmd.do()
+        cmd = MoveCursorCmd(tobj, ss, how)       ;  cmd.do()
+        if dbg:    tobj.log(f'END {how}', pos=1)
+########################################################################################################################################################################################################
+class MoveTo2Cmd(Cmd):
+    def __init__(self, tobj, p, l, c, t, n=0, dbg=1):
+        self.tobj, self.p, self.l, self.c, self.t, self.n, self.dbg = tobj, p, l, c, t, n, dbg 
 
+    def do(  self): self._moveto2()
+    def undo(self): self._moveto2() # todo fixme
+    
+    def _moveto2(self): # todo
+        tobj, p, l, c, t, n, dbg = self.tobj, self.p, self.l, self.c, self.t, self.n, self.dbg
+        if dbg: tobj.log(f'BGN plct={tobj.fplct(p, l, c, t)}', pos=1) # {n=}
+        np, nl, ns, nc, nt = tobj.n
+        t2        =       n  + t
+        c2        = t2 // nt + c
+        l2        = c2 // nc + l
+        p2        = l2 // nl + p
+        tobj.i[T] = t2  % nt + 1
+        tobj.i[C] = c2  % nc + 1
+        tobj.i[L] = l2  % nl + 1
+        tobj.i[P] = p2  % np + 1
+        if dbg: tobj.log(f'END {n=} {tobj.fmti()} plct={tobj.fplct(p, l, c, t)} plct2={tobj.fplct(p2, l2, c2, t2)}', pos=1)
+########################################################################################################################################################################################################
+class MoveCmd(Cmd):
+    def __init__(self, tobj, how, n, ss=0, dbg=1):
+        self.tobj, self.how, self.n, self.ss, self.dbg = tobj, how, n, ss, dbg
+        
+    def do(  self): self._move()
+    def undo(self): self._move() # todo fixme
+    
+    def _move(self):
+        tobj, how, n, ss, dbg = self.tobj, self.how, self.n, self.ss, self.dbg
+        if dbg:    tobj.log(f'BGN {how} {n=}', pos=1)
+        p, l, c, t = tobj.j2()
+        cmd = MoveTo2Cmd(tobj, p, l, c, t, n=n)     ;  cmd.do()
+        if tobj.CURSOR and tobj.cursor: tobj.moveCursor(ss, how)
+        if dbg:    tobj.log(f'END {how} {n=}', pos=1)
+########################################################################################################################################################################################################
+class MoveUpCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+        
+    def do(  self): self._moveUp()
+    def undo(self): self._moveUp() # todo fixme
+    
+    def _moveUp(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        p, l, s, c, t = tobj.j()  ;  n = tobj.n[T] - 1  ;  m = tobj.n[L] - 1
+        if dbg: tobj.log(f'BGN {how}', pos=1)
+        if t>0: cmd = MoveToCmd(tobj, how, p, l,                 c, 0)     ;  cmd.do() # go up   to top    of      line
+        else:   cmd = MoveToCmd(tobj, how, p, l-1 if l>0 else m, c, n)     ;  cmd.do() # go up   to bottom of prev line, wrap down to bottom of last line
+        if dbg: tobj.log(f'END {how}', pos=1)
+########################################################################################################################################################################################################
+class MoveDownCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+
+    def do(  self): self._moveDown()
+    def undo(self): self._moveDown() # todo fixme
+    
+    def _moveDown(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        p, l, s, c, t = tobj.j()  ;  n = tobj.n[T] - 1  ;  m = tobj.n[L] - 1
+        if dbg: tobj.log(f'BGN {how}', pos=1)
+        if t<n: cmd = MoveToCmd(tobj, how, p, l,                 c, n)     ;  cmd.do() # go down to bottom of      line
+        else:   cmd = MoveToCmd(tobj, how, p, l+1 if l<m else 0, c, 0)     ;  cmd.do() # go down to top    of next line, wrap up to top of first line
+        if dbg: tobj.log(f'END {how}', pos=1)
+########################################################################################################################################################################################################

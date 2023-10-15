@@ -321,14 +321,14 @@ def on_text_motion(tobj, motion, dbg=1):
         elif motion == k.MOTION_NEXT_PAGE:         tobj.nextPage(    f' & PAGE DOWN(   {motion})')
         else:                                      msg =             f' & UNH(         {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg)
     else:
-        if   motion == k.MOTION_UP:                tobj.move(        f' UP(            {motion})', -1)
-        elif motion == k.MOTION_DOWN:              tobj.move(        f' DOWN(          {motion})',  1)
-        elif motion == k.MOTION_LEFT:              tobj.move(        f' LEFT(          {motion})', -nt)
-        elif motion == k.MOTION_RIGHT:             tobj.move(        f' RIGHT(         {motion})',  nt)
-        elif motion == k.MOTION_BEGINNING_OF_LINE: tobj.move(        f' HOME(          {motion})', -nt *  c)
-        elif motion == k.MOTION_END_OF_LINE:       tobj.move(        f' END(           {motion})',  nt * (nc - tobj.i[C]))
-        elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.moveUp(      f' PAGE UP(       {motion})')  # go up   to top    of line, wrap down to bottom of prev line
-        elif motion == k.MOTION_NEXT_PAGE:         tobj.moveDown(    f' PAGE DOWN(     {motion})')  # go down to bottom tab on same line, wrap to next line
+        if   motion == k.MOTION_UP:                cmd = cmds.MoveCmd(tobj, f' UP(            {motion})', -1)        ;  cmd.do()
+        elif motion == k.MOTION_DOWN:              cmd = cmds.MoveCmd(tobj, f' DOWN(          {motion})',  1)        ;  cmd.do()
+        elif motion == k.MOTION_LEFT:              cmd = cmds.MoveCmd(tobj, f' LEFT(          {motion})', -nt)       ;  cmd.do()
+        elif motion == k.MOTION_RIGHT:             cmd = cmds.MoveCmd(tobj, f' RIGHT(         {motion})',  nt)       ;  cmd.do()
+        elif motion == k.MOTION_BEGINNING_OF_LINE: cmd = cmds.MoveCmd(tobj, f' HOME(          {motion})', -nt *  c)  ;  cmd.do()
+        elif motion == k.MOTION_END_OF_LINE:       cmd = cmds.MoveCmd(tobj, f' END(           {motion})',  nt * (nc - tobj.i[C]))  ;  cmd.do()
+        elif motion == k.MOTION_PREVIOUS_PAGE:     cmd = cmds.MoveUpCmd(  tobj, f' PAGE UP(       {motion})')        ;  cmd.do() # go up   to top    of line, wrap down to bottom of prev line
+        elif motion == k.MOTION_NEXT_PAGE:         cmd = cmds.MoveDownCmd(tobj, f' PAGE DOWN(     {motion})')        ;  cmd.do() # go down to bottom tab on same line, wrap to next line
         elif motion == k.MOTION_COPY:              msg =             f' MOTION_COPY(   {motion})'   ;   slog(msg)   ;   retv = False
         elif motion == k.MOTION_DELETE:            tobj.setTab(      f'DELETE(         {motion})', tobj.tblank)
         elif motion == k.MOTION_BACKSPACE:         tobj.setTab(      f'BACKSPACE(      {motion})', tobj.tblank, rev=1)

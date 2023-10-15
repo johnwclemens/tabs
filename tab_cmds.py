@@ -9,6 +9,7 @@ import itertools #, colletions
 #import pyglet.image        as pygimg
 import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
+import pyglet.window.key   as pygwink
 #import pyglet.window.event as pygwine
 #from   pyglet.text     import document, layout
 from   tpkg            import utl    as utl
@@ -179,6 +180,68 @@ def on_key_press(tobj, symb, mods, dbg=1):
         if   kbk == 'ENTER' and isCtl(kd, m):     tobj.setCHVMode(  '@  ENTER',     CHORD,  v=DARROW)
         elif kbk == 'ENTER':                      tobj.setCHVMode(  '   ENTER',     CHORD,  v=UARROW)
 ########################################################################################################################################################################################################
+def on_text_motion(tobj, motion, dbg=1):
+    assert tobj
+    retv = True
+    tkb  = tobj.keyboard
+    kd   = tkb.data if tkb else None
+    k    = pygwink    ;    m = MODS
+    p, l, s, c, t = tobj.j()  ;  np, nl, ns, nc, nt = tobj.n
+    if dbg: slog(f'BGN {ftm(motion)}')
+    if   isNumLck(kd, m):                          msg =             f'NUMLOCK(        {motion})'   ;   slog(msg)   ;   k.MOD_NUMLOCK = 0
+    if   isCtlAltShf(kd, m):                       msg =             f'@&^(            {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    elif isCtlAlt(kd, m):
+        if   motion == 1:                          tobj.unselectTabs(f'@& LEFT(        {motion})',  nt)
+        elif motion == 2:                          tobj.unselectTabs(f'@& RIGHT(       {motion})', -nt)
+        else:                                      msg =             f'@& UNH(         {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    elif isAltShf(kd, m):                          msg =             f' &^(            {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    elif isCtlShf(kd, m):                          msg =             f'@^(             {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    elif isShf(kd, m):                             msg =             f'^ (             {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    elif isCtl(kd, m):
+        if   motion == k.MOTION_UP:                msg = f'MOTION_UP  ({motion})'   ;    slog(msg)   ;   retv = False
+        elif motion == k.MOTION_DOWN:              msg = f'MOTION_DOWN({motion})'   ;    slog(msg)   ;   retv = False
+        elif motion == k.MOTION_NEXT_WORD:         tobj.selectTabs(  f'@  RIGHT(       {motion})',  nt)
+        elif motion == k.MOTION_PREVIOUS_WORD:     tobj.selectTabs(  f'@  LEFT(        {motion})', -nt)
+        elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'@  MOTION_BEGINNING_OF_FILE({motion} CTRL HOME)'  ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL HOME
+        elif motion == k.MOTION_END_OF_FILE:       msg = f'@  MOTION_END_OF_FILE(      {motion} CTRL END)'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL END
+        elif motion == k.MOTION_BEGINNING_OF_LINE: msg = f'@  MOTION_BEGINNING_OF_LINE({motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_END_OF_LINE:       msg = f'@  MOTION_END_OF_LINE(      {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_PREVIOUS_PAGE:     msg = f'@  MOTION_PREVIOUS_PAGE(    {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+#        elif motion == k.MOTION_NEXT_PAGE:         msg = f'@ MOTION_NEXT_PAGE(         {motion})'   ;   slog(msg)   ;   retv = False
+        elif motion == k.MOTION_NEXT_PAGE:         cmd = cmds.TogPageCmd(tobj,     '@  MOTION_NEXT_PAGE', motion)        ;  cmd.do()     
+        elif motion == k.MOTION_DELETE:            cmd = cmds.DeleteTabsCmd(tobj, f'@ D MOTION_DELETE({motion})')        ;  cmd.do()
+        elif motion == k.MOTION_COPY:              cmd = cmds.CopyTabsCmd(tobj,   f'@ C MOTION_COPY(  {motion})')        ;  cmd.do() # todo fixme also fires '@ C'
+        elif motion == k.MOTION_PASTE:             cmd = cmds.PasteTabsCmd(tobj,  f'@ V MOTION_PASTE( {motion})', kk=0)  ;  cmd.do() # todo fixme also fires '@ V'
+        else:                                      msg = f'@  UNH CTRL(                {motion})'   ;   slog(msg)   ;   retv = False # self.quit(msg)
+    elif isAlt(kd, m):
+        if   motion == k.MOTION_UP:                tobj.moveUp(      f' & UP(          {motion})')
+        elif motion == k.MOTION_DOWN:              tobj.moveDown(    f' & DOWN(        {motion})')
+        elif motion == k.MOTION_LEFT:              tobj.moveLeft(    f' & LEFT(        {motion})')
+        elif motion == k.MOTION_RIGHT:             tobj.moveRight(   f' & RIGHT(       {motion})')
+        elif motion == k.MOTION_BEGINNING_OF_LINE: tobj.move(        f' & HOME(        {motion})', -nt *  c)
+        elif motion == k.MOTION_END_OF_LINE:       tobj.move(        f' & END(         {motion})',  nt * (nc - tobj.i[C]))
+        elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.prevPage(    f' & PAGE UP(     {motion})')
+        elif motion == k.MOTION_NEXT_PAGE:         tobj.nextPage(    f' & PAGE DOWN(   {motion})')
+        else:                                      msg =             f' & UNH(         {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg)
+    else:
+        if   motion == k.MOTION_UP:                tobj.move(        f' UP(            {motion})', -1)
+        elif motion == k.MOTION_DOWN:              tobj.move(        f' DOWN(          {motion})',  1)
+        elif motion == k.MOTION_LEFT:              tobj.move(        f' LEFT(          {motion})', -nt)
+        elif motion == k.MOTION_RIGHT:             tobj.move(        f' RIGHT(         {motion})',  nt)
+        elif motion == k.MOTION_BEGINNING_OF_LINE: tobj.move(        f' HOME(          {motion})', -nt *  c)
+        elif motion == k.MOTION_END_OF_LINE:       tobj.move(        f' END(           {motion})',  nt * (nc - tobj.i[C]))
+        elif motion == k.MOTION_PREVIOUS_PAGE:     tobj.moveUp(      f' PAGE UP(       {motion})')  # go up   to top    of line, wrap down to bottom of prev line
+        elif motion == k.MOTION_NEXT_PAGE:         tobj.moveDown(    f' PAGE DOWN(     {motion})')  # go down to bottom tab on same line, wrap to next line
+        elif motion == k.MOTION_COPY:              msg =             f' MOTION_COPY(   {motion})'   ;   slog(msg)   ;   retv = False
+        elif motion == k.MOTION_DELETE:            tobj.setTab(      f'DELETE(         {motion})', tobj.tblank)
+        elif motion == k.MOTION_BACKSPACE:         tobj.setTab(      f'BACKSPACE(      {motion})', tobj.tblank, rev=1)
+        elif motion == k.MOTION_PREVIOUS_WORD:     msg = f'MOTION_PREVIOUS_WORD(       {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_NEXT_WORD:         msg = f'MOTION_NEXT_WORD(           {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_BEGINNING_OF_FILE: msg = f'MOTION_BEGINNING_OF_FILE(   {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif motion == k.MOTION_END_OF_FILE:       msg = f'MOTION_END_OF_FILE(         {motion})'   ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+#       else:                                      msg =             f'UNH(            {motion})'   ;   slog(msg)   ;   retv = False  ;  tobj.quit(msg)
+    if dbg: slog(f'END {ftm(motion)} {retv=}')
+    return retv
 
 def flipArrow(self, how, v=0, dbg=0):
     if dbg: self.log(f'BGN {how} {v=} {self.hArrow=} = {HARROWS[self.hArrow]=} {self.vArrow=} = {VARROWS[self.vArrow]=}')
@@ -641,3 +704,83 @@ def cutTabs(self, how):
     self.deleteTabs(how, keep=1)
     self.log('END Cut = Copy + Delete')
 ########################################################################################################################################################################################################
+def moveUp(self, how, dbg=1):
+    p, l, s, c, t = self.j()  ;  n = self.n[T] - 1  ;  m = self.n[L] - 1
+    if dbg: self.log(f'BGN {how}', pos=1)
+    if t>0: self.moveTo(how, p, l,                 c, 0) # go up   to top    of      line
+    else:   self.moveTo(how, p, l-1 if l>0 else m, c, n) # go up   to bottom of prev line, wrap down to bottom of last line
+    if dbg: self.log(f'END {how}', pos=1)
+########################################################################################################################################################################################################
+def moveDown(self, how, dbg=1):
+    p, l, s, c, t = self.j()  ;  n = self.n[T] - 1  ;  m = self.n[L] - 1
+    if dbg: self.log(f'BGN {how}', pos=1)
+    if t<n: self.moveTo(how, p, l,                 c, n) # go down to bottom of      line
+    else:   self.moveTo(how, p, l+1 if l<m else 0, c, 0) # go down to top    of next line, wrap up to top of first line
+    if dbg: self.log(f'END {how}', pos=1)
+########################################################################################################################################################################################################
+def moveLeft(self, how, dbg=1):
+    p, l, s, c, t = self.j()  ;  n = self.n[C] - 1  ;  m = self.n[L] - 1
+    if dbg: self.log(f'BGN {how}', pos=1)
+    if c>0: self.moveTo(how, p, l,                 0, t) # go left  to bgn of      line
+    else:   self.moveTo(how, p, l-1 if l>0 else m, n, t) # go left  to end of prev line, wrap right to bottom of last line
+    if dbg: self.log(f'END {how}', pos=1)                # go right & up to end of prev line, wrap down to bottom of last line
+########################################################################################################################################################################################################
+def moveRight(self, how, dbg=1):
+    p, l, s, c, t = self.j()  ;  n = self.n[C] - 1  ;  m = self.n[L] - 1
+    if dbg: self.log(f'BGN {how}', pos=1)
+    if c<n: self.moveTo(how, p, l,                 n, t) # go right to end of      line
+    else:   self.moveTo(how, p, l+1 if l<m else 0, 0, t) # go right to bgn of next line, wrap left to top of first line
+    if dbg: self.log(f'END {how}', pos=1)                # go left & down to bgn of next line, wrap left to top of first line
+########################################################################################################################################################################################################
+def moveTo(self, how, p, l, c, t, ss=0, dbg=1):
+    if dbg:    self.log(f'BGN {how}', pos=1)
+    self._moveTo(p, l, c, t)
+    self.moveCursor(ss, how)
+    if dbg:    self.log(f'END {how}', pos=1)
+########################################################################################################################################################################################################
+def _moveTo(self, p, l, c, t, n=0, dbg=1): # todo
+    if dbg: self.log(f'BGN plct={self.fplct(p, l, c, t)}', pos=1) # {n=}
+    np, nl, ns, nc, nt = self.n
+    t2        =       n  + t
+    c2        = t2 // nt + c
+    l2        = c2 // nc + l
+    p2        = l2 // nl + p
+    self.i[T] = t2  % nt + 1
+    self.i[C] = c2  % nc + 1
+    self.i[L] = l2  % nl + 1
+    self.i[P] = p2  % np + 1
+    if dbg: self.log(f'END {n=} {self.fmti()} plct={self.fplct(p, l, c, t)} plct2={self.fplct(p2, l2, c2, t2)}', pos=1)
+########################################################################################################################################################################################################
+def move(self, how, n, ss=0, dbg=1):
+    if dbg:    self.log(f'BGN {how} {n=}', pos=1)
+    p, l, c, t = self.j2()
+    self._moveTo(p, l, c, t, n=n)
+    if self.CURSOR and self.cursor: self.moveCursor(ss, how)
+    if dbg:    self.log(f'END {how} {n=}', pos=1)
+########################################################################################################################################################################################################
+def moveCursor(self, ss=0, why=Z, dbg=1):
+    if dbg:           self.log(f'BGN {ss=} {self.cc=}', pos=1)
+    if self.LL:       self.setLLStyle(self.cc, SELECT_STYLE if ss else NORMAL_STYLE)
+    self.resizeCursor(why, dbg=dbg)
+    if self.LL:       self.setLLStyle(self.cc, CURRENT_STYLE)
+    if dbg:           self.log(f'END {ss=} {self.cc=}', pos=1)
+########################################################################################################################################################################################################
+def resizeCursor(self, why, dbg=1):
+    x, y, w, h, c = self.cc2xywh()
+    self.resizeTnik(self.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
+########################################################################################################################################################################################################
+def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
+#        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=}'
+    tnik    = tlist[i]
+    self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
+    if   ist(tnik, SPR):
+        mx, my = w/tnik.image.width, h/tnik.image.height
+        tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
+    elif ist(tnik, LBL):
+        tnik.font_size = self.calcFontSize(j)
+        tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
+        self.checkTnik(tnik, i, j)
+    self.setJ(j, i, tnik.visible) if j != H or (j == H and self.J2[H] == 0) else None # todo fixme - do we want or need to set v info of the tnik as well?
+    self.dumpTnik(tnik, j, why) if dbg else None
+    if j == P and tnik.visible:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {self.i[P]}')
+    return tnik
