@@ -1773,45 +1773,6 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def afn(fn): return fn if len(fn) == 1 and '0' <= fn <= '9' else chr(ord(fn[1]) - ord('0') + ord('a')) if len(fn) == 2 and fn[0] == '1' else None
     ####################################################################################################################################################################################################
-    def prevPage(self, how, dbg=1):
-        p, l, c, t = self.j2()   ;   n = self.n[P] - 1
-        if dbg: self.log(f'BGN {how} {self.fmti()}', pos=1)
-        self.moveTo(how, p-1 if p>0 else n, l, c, t)
-#        self.flipPage(how, -1, dbg=1)
-        if dbg: self.log(f'END {how} {self.fmti()}', pos=1)
-
-    def nextPage(self, how, dbg=1):
-        p, l, c, t = self.j2()   ;   n = self.n[P] - 1
-        if dbg: self.log(f'BGN {how} {self.fmti()}', pos=1)
-        self.moveTo(how, p+1 if p<n else 0, l, c, t)
-#        self.flipPage(how, 1, dbg=1)
-        if dbg: self.log(f'END {how} {self.fmti()}', pos=1)
-    ####################################################################################################################################################################################################
-    def moveUp(self, how, dbg=1):
-        p, l, s, c, t = self.j()  ;  n = self.n[T] - 1  ;  m = self.n[L] - 1
-        if dbg: self.log(f'BGN {how}', pos=1)
-        if t>0: self.moveTo(how, p, l,                 c, 0) # go up   to top    of      line
-        else:   self.moveTo(how, p, l-1 if l>0 else m, c, n) # go up   to bottom of prev line, wrap down to bottom of last line
-        if dbg: self.log(f'END {how}', pos=1)
-    def moveDown(self, how, dbg=1):
-        p, l, s, c, t = self.j()  ;  n = self.n[T] - 1  ;  m = self.n[L] - 1
-        if dbg: self.log(f'BGN {how}', pos=1)
-        if t<n: self.moveTo(how, p, l,                 c, n) # go down to bottom of      line
-        else:   self.moveTo(how, p, l+1 if l<m else 0, c, 0) # go down to top    of next line, wrap up to top of first line
-        if dbg: self.log(f'END {how}', pos=1)
-    def moveLeft(self, how, dbg=1):
-        p, l, s, c, t = self.j()  ;  n = self.n[C] - 1  ;  m = self.n[L] - 1
-        if dbg: self.log(f'BGN {how}', pos=1)
-        if c>0: self.moveTo(how, p, l,                 0, t) # go left  to bgn of      line
-        else:   self.moveTo(how, p, l-1 if l>0 else m, n, t) # go left  to end of prev line, wrap right to bottom of last line
-        if dbg: self.log(f'END {how}', pos=1)                # go right & up to end of prev line, wrap down to bottom of last line
-    def moveRight(self, how, dbg=1):
-        p, l, s, c, t = self.j()  ;  n = self.n[C] - 1  ;  m = self.n[L] - 1
-        if dbg: self.log(f'BGN {how}', pos=1)
-        if c<n: self.moveTo(how, p, l,                 n, t) # go right to end of      line
-        else:   self.moveTo(how, p, l+1 if l<m else 0, 0, t) # go right to bgn of next line, wrap left to top of first line
-        if dbg: self.log(f'END {how}', pos=1)                # go left & down to bgn of next line, wrap left to top of first line
-    ####################################################################################################################################################################################################
     def autoMove(self, how, dbg=1):
         self.log(f'BGN {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
         ha = 1 if self.hArrow == RARROW else -1
@@ -1821,12 +1782,12 @@ class Tabs(pyglet.window.Window):
         cmDist  = va
         amDist  = mmDist + cmDist
         if dbg:   self.dumpCursorArrows(f'{self.fmtPos()}     {how} M={mmDist} C={cmDist} A={amDist}')
-        if        self.csrMode == MELODY:                               self.move(how,   mmDist)
+        if        self.csrMode == MELODY:                               cmd = cmds.MoveCmd(self, how,   mmDist)  ;  cmd.do()
         elif      self.csrMode == CHORD:
-            if    i==1 and self.vArrow==UARROW and self.hArrow==RARROW: self.move(how,   n*2-1)
-            elif  i==6 and self.vArrow==DARROW and self.hArrow==LARROW: self.move(how, -(n*2-1))
-            else:                                                       self.move(how,   cmDist)
-        elif      self.csrMode == ARPG:                                 self.move(how,   amDist)
+            if    i==1 and self.vArrow==UARROW and self.hArrow==RARROW: cmd = cmds.MoveCmd(self, how,   n*2-1)   ;  cmd.do()
+            elif  i==6 and self.vArrow==DARROW and self.hArrow==LARROW: cmd = cmds.MoveCmd(self, how, -(n*2-1))  ;  cmd.do()
+            else:                                                       cmd = cmds.MoveCmd(self, how,   cmDist)  ;  cmd.do()
+        elif      self.csrMode == ARPG:                                 cmd = cmds.MoveCmd(self, how,   amDist)  ;  cmd.do()
         self.log(f'END {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
     ####################################################################################################################################################################################################
     def moveToB(self, how, p, l, s, c, t, ss=0, dbg=1):

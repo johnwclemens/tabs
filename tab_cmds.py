@@ -784,3 +784,18 @@ def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle
     self.dumpTnik(tnik, j, why) if dbg else None
     if j == P and tnik.visible:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {self.i[P]}')
     return tnik
+########################################################################################################################################################################################################
+def prevPage(self, how, dbg=1):
+    p, l, c, t = self.j2()   ;   n = self.n[P] - 1
+    if dbg: self.log(f'BGN {how} {self.fmti()}', pos=1)
+    self.moveTo(how, p-1 if p>0 else n, l, c, t)
+#        self.flipPage(how, -1, dbg=1)
+    if dbg: self.log(f'END {how} {self.fmti()}', pos=1)
+########################################################################################################################################################################################################
+def nextPage(self, how, dbg=1):
+    p, l, c, t = self.j2()   ;   n = self.n[P] - 1
+    if dbg: self.log(f'BGN {how} {self.fmti()}', pos=1)
+    self.moveTo(how, p+1 if p<n else 0, l, c, t)
+#        self.flipPage(how, 1, dbg=1)
+    if dbg: self.log(f'END {how} {self.fmti()}', pos=1)
+########################################################################################################################################################################################################

@@ -847,3 +847,65 @@ class MoveDownCmd(Cmd):
         else:   cmd = MoveToCmd(tobj, how, p, l+1 if l<m else 0, c, 0)     ;  cmd.do() # go down to top    of next line, wrap up to top of first line
         if dbg: tobj.log(f'END {how}', pos=1)
 ########################################################################################################################################################################################################
+class MoveLeftCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+        
+    def do(  self): self._moveLeft()
+    def undo(self): self._moveLeft() # todo fixme
+    
+    def _moveLeft(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        p, l, s, c, t = tobj.j()  ;  n = tobj.n[C] - 1  ;  m = tobj.n[L] - 1
+        if dbg: tobj.log(f'BGN {how}', pos=1)
+        if c>0: cmd = MoveToCmd(tobj, how, p, l,                 0, t)     ;  cmd.do() # go left  to bgn of      line
+        else:   cmd = MoveToCmd(tobj, how, p, l-1 if l>0 else m, n, t)     ;  cmd.do() # go left  to end of prev line, wrap right to bottom of last line
+        if dbg: tobj.log(f'END {how}', pos=1)                # go right & up to end of prev line, wrap down to bottom of last line
+########################################################################################################################################################################################################
+class MoveRightCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+        
+    def do(  self): self._moveRight()
+    def undo(self): self._moveRight() # todo fixme
+    
+    def _moveRight(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        p, l, s, c, t = tobj.j()  ;  n = tobj.n[C] - 1  ;  m = tobj.n[L] - 1
+        if dbg: tobj.log(f'BGN {how}', pos=1)
+        if c<n: cmd = MoveToCmd(tobj, how, p, l,                 n, t)     ;  cmd.do() # go right to end of      line
+        else:   cmd = MoveToCmd(tobj, how, p, l+1 if l<m else 0, 0, t)     ;  cmd.do() # go right to bgn of next line, wrap left to top of first line
+        if dbg: tobj.log(f'END {how}', pos=1)                # go left & down to bgn of next line, wrap left to top of first line
+ ########################################################################################################################################################################################################
+class PrevPageCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+        
+    def do(  self): self._prevPage()
+    def undo(self): self._prevPage() # todo fixme
+    
+    def _prevPage(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        p, l, c, t = tobj.j2()   ;   n = tobj.n[P] - 1
+        if dbg: tobj.log(f'BGN {how} {tobj.fmti()}', pos=1)
+        cmd = MoveToCmd(tobj, how, p-1 if p>0 else n, l, c, t)     ;  cmd.do()
+#        self.flipPage(how, -1, dbg=1)
+        if dbg: tobj.log(f'END {how} {tobj.fmti()}', pos=1)
+
+ ########################################################################################################################################################################################################
+class NextPageCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+        
+    def do(  self): self._nextPage()
+    def undo(self): self._nextPage()
+    
+    def _nextPage(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        p, l, c, t = tobj.j2()   ;   n = tobj.n[P] - 1
+        if dbg: tobj.log(f'BGN {how} {tobj.fmti()}', pos=1)
+        cmd = MoveToCmd(tobj, how, p+1 if p<n else 0, l, c, t)     ;  cmd.do()
+#        self.flipPage(how, 1, dbg=1)
+        if dbg: tobj.log(f'END {how} {tobj.fmti()}', pos=1)
+
+ ########################################################################################################################################################################################################
