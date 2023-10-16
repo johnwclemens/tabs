@@ -13,6 +13,9 @@ NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = utl.NORMAL_STYLE, utl.SELECT_STYLE, 
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT   = utl.CAT,  utl.CSV,  utl.EVN,  utl.LOG,  utl.PNG,  utl.TXT,  utl.DAT
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA  = utl.CATS, utl.CSVS, utl.EVNS, utl.LOGS, utl.PNGS, utl.TEXT, utl.DATA 
 
+MELODY, CHORD, ARPG            = utl.MELODY, utl.CHORD, utl.ARPG
+LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
+
 LBL, SPR              = utl.LBL, utl.SPR
 CSR_MODES             = utl.CSR_MODES
 HARROWS, VARROWS      = utl.HARROWS, utl.VARROWS
@@ -876,7 +879,7 @@ class MoveRightCmd(Cmd):
         if c<n: cmd = MoveToCmd(tobj, how, p, l,                 n, t)     ;  cmd.do() # go right to end of      line
         else:   cmd = MoveToCmd(tobj, how, p, l+1 if l<m else 0, 0, t)     ;  cmd.do() # go right to bgn of next line, wrap left to top of first line
         if dbg: tobj.log(f'END {how}', pos=1)                # go left & down to bgn of next line, wrap left to top of first line
- ########################################################################################################################################################################################################
+########################################################################################################################################################################################################
 class PrevPageCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
@@ -892,7 +895,7 @@ class PrevPageCmd(Cmd):
 #        self.flipPage(how, -1, dbg=1)
         if dbg: tobj.log(f'END {how} {tobj.fmti()}', pos=1)
 
- ########################################################################################################################################################################################################
+########################################################################################################################################################################################################
 class NextPageCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
@@ -908,4 +911,29 @@ class NextPageCmd(Cmd):
 #        self.flipPage(how, 1, dbg=1)
         if dbg: tobj.log(f'END {how} {tobj.fmti()}', pos=1)
 
- ########################################################################################################################################################################################################
+########################################################################################################################################################################################################
+class AutoMoveCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+        
+    def do(  self): self._autoMove()
+    def undo(self): self._autoMove()
+    
+    def _autoMove(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        tobj.log(f'BGN {tobj.hArrow=} {tobj.vArrow=} {tobj.csrMode=} {how}', pos=1)
+        ha = 1 if tobj.hArrow == RARROW else -1
+        va = 1 if tobj.vArrow == DARROW else -1
+        n, i  = tobj.n[T], tobj.i[T]
+        mmDist  = ha * n
+        cmDist  = va
+        amDist  = mmDist + cmDist
+        if dbg:   tobj.dumpCursorArrows(f'{tobj.fmtPos()}     {how} M={mmDist} C={cmDist} A={amDist}')
+        if        tobj.csrMode == MELODY:                               cmd = MoveCmd(tobj, how,   mmDist)  ;  cmd.do()
+        elif      tobj.csrMode == CHORD:
+            if    i==1 and tobj.vArrow==UARROW and tobj.hArrow==RARROW: cmd = MoveCmd(tobj, how,   n*2-1)   ;  cmd.do()
+            elif  i==6 and tobj.vArrow==DARROW and tobj.hArrow==LARROW: cmd = MoveCmd(tobj, how, -(n*2-1))  ;  cmd.do()
+            else:                                                       cmd = MoveCmd(tobj, how,   cmDist)  ;  cmd.do()
+        elif      tobj.csrMode == ARPG:                                 cmd = MoveCmd(tobj, how,   amDist)  ;  cmd.do()
+        tobj.log(f'END {tobj.hArrow=} {tobj.vArrow=} {tobj.csrMode=} {how}', pos=1)
+########################################################################################################################################################################################################

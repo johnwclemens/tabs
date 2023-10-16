@@ -1642,7 +1642,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def setTab(self, how, text, rev=0, dbg=0): # if isDataFret or isTextFret else 0)
         bsp = how.startswith('BACKSPACE') # todo use better mechanism to flip hArrow
-        if rev: self.reverseArrow(bsp)   ;   self.autoMove(how)
+        if rev: self.reverseArrow(bsp)   ;   cmd = cmds.AutoMoveCmd(self, how)   ;  cmd.do()
         old   = self.cursorCol()   ;   msg = Z
         p, l, c, t = self.j2()
         cc    = self.plct2cc(p, l, c, t)   ;   cc2 = cc
@@ -1653,7 +1653,7 @@ class Tabs(pyglet.window.Window):
         p, l, c, t = self.j2()   ;   data = self.data[p][l][c][t]
         self.log(f'END {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
         if rev: self.reverseArrow(bsp)
-        else:   self.autoMove(how)
+        else:   cmd = cmds.AutoMoveCmd(self, how)   ;  cmd.do()
         if dbg and self.SNAPS:
             stype = f'Txt.{text}' if self.sobj.isFret(text) else 'SYMB' if text in misc.DSymb.SYMBS else 'UNKN'
             self.regSnap(f'{how}', stype)
@@ -1772,23 +1772,6 @@ class Tabs(pyglet.window.Window):
 #   def isEH(t):              return 1 if t == '#' or t == 'b' else 0
     @staticmethod
     def afn(fn): return fn if len(fn) == 1 and '0' <= fn <= '9' else chr(ord(fn[1]) - ord('0') + ord('a')) if len(fn) == 2 and fn[0] == '1' else None
-    ####################################################################################################################################################################################################
-    def autoMove(self, how, dbg=1):
-        self.log(f'BGN {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
-        ha = 1 if self.hArrow == RARROW else -1
-        va = 1 if self.vArrow == DARROW else -1
-        n, i  = self.n[T], self.i[T]
-        mmDist  = ha * n
-        cmDist  = va
-        amDist  = mmDist + cmDist
-        if dbg:   self.dumpCursorArrows(f'{self.fmtPos()}     {how} M={mmDist} C={cmDist} A={amDist}')
-        if        self.csrMode == MELODY:                               cmd = cmds.MoveCmd(self, how,   mmDist)  ;  cmd.do()
-        elif      self.csrMode == CHORD:
-            if    i==1 and self.vArrow==UARROW and self.hArrow==RARROW: cmd = cmds.MoveCmd(self, how,   n*2-1)   ;  cmd.do()
-            elif  i==6 and self.vArrow==DARROW and self.hArrow==LARROW: cmd = cmds.MoveCmd(self, how, -(n*2-1))  ;  cmd.do()
-            else:                                                       cmd = cmds.MoveCmd(self, how,   cmDist)  ;  cmd.do()
-        elif      self.csrMode == ARPG:                                 cmd = cmds.MoveCmd(self, how,   amDist)  ;  cmd.do()
-        self.log(f'END {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
     ####################################################################################################################################################################################################
     def moveToB(self, how, p, l, s, c, t, ss=0, dbg=1):
         if dbg:    self.log(f'BGN {how}', pos=1)

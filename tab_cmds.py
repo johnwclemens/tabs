@@ -799,3 +799,20 @@ def nextPage(self, how, dbg=1):
 #        self.flipPage(how, 1, dbg=1)
     if dbg: self.log(f'END {how} {self.fmti()}', pos=1)
 ########################################################################################################################################################################################################
+def autoMove(self, how, dbg=1):
+    self.log(f'BGN {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
+    ha = 1 if self.hArrow == RARROW else -1
+    va = 1 if self.vArrow == DARROW else -1
+    n, i  = self.n[T], self.i[T]
+    mmDist  = ha * n
+    cmDist  = va
+    amDist  = mmDist + cmDist
+    if dbg:   self.dumpCursorArrows(f'{self.fmtPos()}     {how} M={mmDist} C={cmDist} A={amDist}')
+    if        self.csrMode == MELODY:                               cmd = cmds.MoveCmd(self, how,   mmDist)  ;  cmd.do()
+    elif      self.csrMode == CHORD:
+        if    i==1 and self.vArrow==UARROW and self.hArrow==RARROW: cmd = cmds.MoveCmd(self, how,   n*2-1)   ;  cmd.do()
+        elif  i==6 and self.vArrow==DARROW and self.hArrow==LARROW: cmd = cmds.MoveCmd(self, how, -(n*2-1))  ;  cmd.do()
+        else:                                                       cmd = cmds.MoveCmd(self, how,   cmDist)  ;  cmd.do()
+    elif      self.csrMode == ARPG:                                 cmd = cmds.MoveCmd(self, how,   amDist)  ;  cmd.do()
+    self.log(f'END {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
+########################################################################################################################################################################################################

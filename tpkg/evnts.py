@@ -154,14 +154,10 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'ESCAPE':                     cmd = cmds.TogSelectAllCmd( tobj, 'ESCAPE')        ;  cmd.do()
     elif kbk == 'TAB' and isCtl(kd, m):       cmd = cmds.SetCHVModeCmd(   tobj, '@ TAB', MELODY, LARROW)  ;  cmd.do()
     elif kbk == 'TAB':                        cmd = cmds.SetCHVModeCmd(   tobj, '  TAB', MELODY, RARROW)  ;  cmd.do()
-#   elif kbk == 'SLASH'     and isCtl(mods):  tobj.setTab(      '@ SLASH', '/')
-#   elif kbk == 'SLASH':                      tobj.setTab(      '  SLASH', '/')
-#   elif kbk == 'BACKSLASH' and isCtl(mods):  tobj.setTab(      '@ BACKSLASH', '\\')
-#   elif kbk == 'BACKSLASH':                  tobj.setTab(      '  BACKSLASH', '\\')
-#   elif kbk == 'SLASH'     and isCtl(mods):  tobj.setCHVMode(  '@ SLASH',     ARPG,   LARROW, DARROW)
-#   elif kbk == 'SLASH':                      tobj.setCHVMode(  '  SLASH',     ARPG,   RARROW, UARROW)
-#   elif kbk == 'BACKSLASH' and isCtl(mods):  tobj.setCHVMode(  '@ BACKSLASH', ARPG,   LARROW, UARROW)
-#   elif kbk == 'BACKSLASH':                  tobj.setCHVMode(  '  BACKSLASH', ARPG,   RARROW, DARROW)
+#   elif kbk == 'SLASH'     and isCtl(mods):  cmd = cmds.SetCHVModeCmd(tobj, '@ SLASH',     ARPG,   LARROW, DARROW)     ;  cmd.do() # todo fixme find a key to use
+#   elif kbk == 'SLASH':                      cmd = cmds.SetCHVModeCmd(tobj, '  SLASH',     ARPG,   RARROW, UARROW)     ;  cmd.do() # todo fixme find a key to use
+#   elif kbk == 'BACKSLASH' and isCtl(mods):  cmd = cmds.SetCHVModeCmd(tobj, '@ BACKSLASH', ARPG,   LARROW, UARROW)     ;  cmd.do() # todo fixme find a key to use
+#   elif kbk == 'BACKSLASH':                  cmd = cmds.SetCHVModeCmd(tobj, '  BACKSLASH', ARPG,   RARROW, DARROW)     ;  cmd.do() # todo fixme find a key to use
     ####################################################################################################################################################################################################
     elif kbk == 'A' and isAltShf(kd, m):      cmd = cmds.TogBGCCmd(       tobj, '&^A')           ;  cmd.do()
     elif kbk == 'A' and isAlt(   kd, m):      cmd = cmds.TogBGCCmd(       tobj, '& A')           ;  cmd.do()
@@ -197,9 +193,9 @@ def on_key_press(tobj, symb, mods, dbg=1):
     else:  retv = False   ;   slog(f'UNH {fsm(symb, mods)} kd={fmtm(kd)}') if dbg else None
     ####################################################################################################################################################################################################
     if  not  tobj.isParsing():
-        if   kbk == 'ENTER' and isCtl(kd, m):       cmd = cmds.SetCHVModeCmd(tobj, '@ ENTER',     CHORD,  v=DARROW)        ;  cmd.do()
-        elif kbk == 'ENTER':                        cmd = cmds.SetCHVModeCmd(tobj, '  ENTER',     CHORD,  v=UARROW)        ;  cmd.do()
-        elif kbk == 'SPACE' and tobj.tblank != W:   tobj.autoMove('  SPACE') # todo
+        if   kbk == 'ENTER' and isCtl(kd, m):     cmd = cmds.SetCHVModeCmd(tobj, '@ ENTER',     CHORD,  v=DARROW)        ;  cmd.do()
+        elif kbk == 'ENTER':                      cmd = cmds.SetCHVModeCmd(tobj, '  ENTER',     CHORD,  v=UARROW)        ;  cmd.do()
+        elif kbk == 'SPACE' and tobj.tblank != W: cmd = cmds.AutoMoveCmd(  tobj, '  SPACE')                              ;  cmd.do() # todo
 #            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
     if dbg:  slog(f'END {    fsm(symb, mods)} kd={fmtm(kd)}, {retv=}')
     return retv
