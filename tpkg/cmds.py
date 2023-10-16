@@ -817,7 +817,7 @@ class MoveCmd(Cmd):
         if dbg:    tobj.log(f'BGN {how} {n=}', pos=1)
         p, l, c, t = tobj.j2()
         cmd = MoveTo2Cmd(tobj, p, l, c, t, n=n)     ;  cmd.do()
-        if tobj.CURSOR and tobj.cursor: tobj.moveCursor(ss, how)
+        if tobj.CURSOR and tobj.cursor: cmd = MoveCursorCmd(tobj, ss, how)     ;  cmd.do()
         if dbg:    tobj.log(f'END {how} {n=}', pos=1)
 ########################################################################################################################################################################################################
 class MoveUpCmd(Cmd):
@@ -977,4 +977,37 @@ class UnselectTabsCmd(Cmd):
         elif dbg:           tobj.log(f'{cn=} not found in smap={fmtm(tobj.smap)}')
         if m:               cmd = MoveCmd(tobj, how, m)     ;  cmd.do()
         if dbg:             tobj.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+########################################################################################################################################################################################################
+class SaveDataFileCmd(Cmd):
+    def __init__(self, tobj, why, path, dbg=1):
+        self.tobj, self.why, self.path, self.dbg = tobj, why, path, dbg
+        
+    def do(  self): self._saveDataFile()
+    def undo(self): self._saveDataFile()
+    
+    def _saveDataFile(self):
+        tobj, why, path, dbg = self.tobj, self.why, self.path, self.dbg
+        if dbg:   tobj.log(f'BGN {why} {path}')
+        with open(path, 'w', encoding='utf-8') as DATA_FILE:
+            tobj.log(f'{DATA_FILE.name:40}', p=0)
+            commentStr = '#' * tobj.n[C]   ;   commentRow = f'{commentStr}{X}'
+            DATA_FILE.write(commentRow) if tobj.DEC_DATA else None
+            data = tobj.transposeData(dmp=dbg) # if self.isVert() else self.data
+            tobj.log(f'{tobj.fmtn()} {tobj.fmtdl(data)}')
+            for p, page in enumerate(data):
+                if dbg: tobj.log(f'writing {p+1}{utl.ordSfx(p + 1)}   Page', p=0)
+                for l, line in enumerate(page):
+                    if dbg: tobj.log(f'writing {l+1}{utl.ordSfx(l+1)}   Line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
+                    for r, row in enumerate(line):
+                        text = []
+                        for c, col in enumerate(row):
+                            text.append(col)
+                        text = Z.join(text)
+                        if dbg: tobj.log(f'writing {r+1}{utl.ordSfx(r+1)} String {text}', p=0)  # if dbg  else  self.log(text, p=0)
+                        DATA_FILE.write(f'{text}{X}')
+                    DATA_FILE.write(commentRow) if tobj.DEC_DATA else DATA_FILE.write(X)  #   if l < nl:
+                DATA_FILE.write(commentRow) if tobj.DEC_DATA else DATA_FILE.write(X)
+        size = path.stat().st_size   ;   tobj.log(f'{tobj.fmtn()} {tobj.fmtdl()} {size=}')
+        if dbg:   tobj.log(f'END {why} {path}')
+        return size
 ########################################################################################################################################################################################################

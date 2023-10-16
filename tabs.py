@@ -160,7 +160,7 @@ class Tabs(pyglet.window.Window):
         self.ax = LEFT   if self.X_LEFT   else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
         self.ay = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP   if self.Y_TOP   else BASELINE if self.Y_BASELINE else '??'
         self.va = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP   if self.V_TOP   else '??'
-        self.n0        = []           ;    self.n0.extend(self.n)  ;  self.i0 = [self.i]
+        self.n0        = []             ;    self.n0.extend(self.n)  ;  self.i0 = [self.i]
         self.n.insert(S, self.sslen())  ;    self.i.insert(S, 1)     ;  self.dumpArgs(f=2)
         self.normi()
         self.LOG_GFN   = self.geomFileName(self.FILE_NAME, LOG)    ;  self.log(f'{self.LOG_GFN=}')
@@ -668,32 +668,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def autoSave(self, dt, how, dbg=1):
         if dbg: self.log(f'Every {dt:=7.4f} seconds, {how} {self.rsyncData=}')
-        if self.rsyncData: self.saveDataFile(how, self.dataPath0)   ;  self.rsyncData = 0
-    ####################################################################################################################################################################################################
-    def saveDataFile(self, why, path, dbg=1):
-        if dbg:   self.log(f'BGN {why} {path}')
-        with open(path, 'w', encoding='utf-8') as DATA_FILE:
-            self.log(f'{DATA_FILE.name:40}', p=0)
-            commentStr = '#' * self.n[C]   ;   commentRow = f'{commentStr}{X}'
-            DATA_FILE.write(commentRow) if self.DEC_DATA else None
-            data = self.transposeData(dmp=dbg) # if self.isVert() else self.data
-            self.log(f'{self.fmtn()} {self.fmtdl(data)}')
-            for p, page in enumerate(data):
-                if dbg: self.log(f'writing {p+1}{utl.ordSfx(p + 1)}   Page', p=0)
-                for l, line in enumerate(page):
-                    if dbg: self.log(f'writing {l+1}{utl.ordSfx(l+1)}   Line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
-                    for r, row in enumerate(line):
-                        text = []
-                        for c, col in enumerate(row):
-                            text.append(col)
-                        text = Z.join(text)
-                        if dbg: self.log(f'writing {r+1}{utl.ordSfx(r+1)} String {text}', p=0)  # if dbg  else  self.log(text, p=0)
-                        DATA_FILE.write(f'{text}{X}')
-                    DATA_FILE.write(commentRow) if self.DEC_DATA else DATA_FILE.write(X)  #   if l < nl:
-                DATA_FILE.write(commentRow) if self.DEC_DATA else DATA_FILE.write(X)
-        size = path.stat().st_size   ;   self.log(f'{self.fmtn()} {self.fmtdl()} {size=}')
-        if dbg:   self.log(f'END {why} {path}')
-        return size
+        if self.rsyncData: cmd = cmds.SaveDataFileCmd(self, how, self.dataPath0)   ;  cmd.do()  ;  self.rsyncData = 0
     ####################################################################################################################################################################################################
     def genDataFile(self, path):
         self.log(f'{path} {self.fmtn()}')
@@ -701,7 +676,7 @@ class Tabs(pyglet.window.Window):
         self.dumpBlanks()
         self.data = [ [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ] for _ in range(np) ]
         self.data = self.transposeData(dmp=1)
-        size      = self.saveDataFile('Generated Data', path)
+        size      = cmd = cmds.SaveDataFileCmd(self, 'Generated Data', path)     ;  cmd.do()
         self.log(f'{path} {size=} {self.fmtdl()}')
         self.data = []
         return size
@@ -1269,7 +1244,7 @@ class Tabs(pyglet.window.Window):
                         for colm in  self.g_resizeTniks(self.colms, C, sect, why=why): # pass
                             for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
-        if self.CURSOR and self.cursor: self.resizeCursor(why)   ;   self.dumpHdrs()
+        if self.CURSOR and self.cursor: cmd = cmds.ResizeCursorCmd(self, why)  ;  cmd.do()   ;   self.dumpHdrs()
         if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd{self.cc + 1}')
         if dbg:   self.dumpStruct(why) # , dbg=dbg)
     ####################################################################################################################################################################################################
@@ -1472,17 +1447,6 @@ class Tabs(pyglet.window.Window):
         if self.TEST == 3:  self.cursor = self.createSprite(self.hcurs, 0, H, x, y, w, h, k, why=why, v=1, dbg=dbg)
         else:               self.cursor = self.createTnik(  self.hcurs, 0, H, x, y, w, h, k, why=why, v=1, dbg=dbg)
         if self.LL:         self.setLLStyle(self.cc, CURRENT_STYLE)
-
-    def resizeCursor(self, why, dbg=1):
-        x, y, w, h, c = self.cc2xywh()
-        self.resizeTnik(self.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
-
-    def moveCursor(self, ss=0, why=Z, dbg=1):
-        if dbg:           self.log(f'BGN {ss=} {self.cc=}', pos=1)
-        if self.LL:       self.setLLStyle(self.cc, SELECT_STYLE if ss else NORMAL_STYLE)
-        self.resizeCursor(why, dbg=dbg)
-        if self.LL:       self.setLLStyle(self.cc, CURRENT_STYLE)
-        if dbg:           self.log(f'END {ss=} {self.cc=}', pos=1)
     ####################################################################################################################################################################################################
     def cc2xywh(self, dbg=1):
         tpb, tpp, tpl, tps, tpc = self.ntp()   ;   lenT = len(self.tabls)
@@ -1977,7 +1941,7 @@ class Tabs(pyglet.window.Window):
         if not error:
             utl.dumpStack(utl.MAX_STACK_FRAME)
             if dbg:  self.dumpStruct(why, dbg=dbg)
-            if save: self.saveDataFile(why, self.dataPath1)
+            if save: cmd = cmds.SaveDataFileCmd(self, why, self.dataPath1)    ;  cmd.do()
             if dbg:  self.transposeData(dmp=dbg)
             if dbg:  self.cobj.dumpMlimap(why)
 #        if self.SNAPS:    self.snapshot(f'quit {error} {save=}', 'QUIT')

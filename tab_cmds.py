@@ -841,3 +841,28 @@ def unselectTabs(self, how, m, cn=None, dbg=0):
     if m:               cmd = cmds.MoveCmd(self, how, m)     ;  cmd.do()
     if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
 ########################################################################################################################################################################################################
+def saveDataFile(self, why, path, dbg=1):
+    if dbg:   self.log(f'BGN {why} {path}')
+    with open(path, 'w', encoding='utf-8') as DATA_FILE:
+        self.log(f'{DATA_FILE.name:40}', p=0)
+        commentStr = '#' * self.n[C]   ;   commentRow = f'{commentStr}{X}'
+        DATA_FILE.write(commentRow) if self.DEC_DATA else None
+        data = self.transposeData(dmp=dbg) # if self.isVert() else self.data
+        self.log(f'{self.fmtn()} {self.fmtdl(data)}')
+        for p, page in enumerate(data):
+            if dbg: self.log(f'writing {p+1}{utl.ordSfx(p + 1)}   Page', p=0)
+            for l, line in enumerate(page):
+                if dbg: self.log(f'writing {l+1}{utl.ordSfx(l+1)}   Line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
+                for r, row in enumerate(line):
+                    text = []
+                    for c, col in enumerate(row):
+                        text.append(col)
+                    text = Z.join(text)
+                    if dbg: self.log(f'writing {r+1}{utl.ordSfx(r+1)} String {text}', p=0)  # if dbg  else  self.log(text, p=0)
+                    DATA_FILE.write(f'{text}{X}')
+                DATA_FILE.write(commentRow) if self.DEC_DATA else DATA_FILE.write(X)  #   if l < nl:
+            DATA_FILE.write(commentRow) if self.DEC_DATA else DATA_FILE.write(X)
+    size = path.stat().st_size   ;   self.log(f'{self.fmtn()} {self.fmtdl()} {size=}')
+    if dbg:   self.log(f'END {why} {path}')
+    return size
+########################################################################################################################################################################################################
