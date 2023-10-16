@@ -1822,14 +1822,14 @@ class Tabs(pyglet.window.Window):
         mli = self.cobj.mlimap
         if dbg: self.dumpSmap(f'BGN {how}')
         for k in mli:
-            if k not in self.smap: self.selectTabs(how, cn=k, dbg=1)
+            if k not in self.smap: cmd = cmds.SelectTabsCmd(self, how, cn=k, dbg=1)     ;  cmd.do()
         if dbg: self.dumpSmap(f'END {how}')
 
     def unselectAll(self, how, dbg=0):
         for i in range(len(self.smap)-1, -1, -1):
             cn = list(self.smap.keys())[i]
             if dbg: self.dumpSmap(f'{how} {i=} {cn=}')
-            self.unselectTabs(how, m=0, cn=cn)
+            cmd = cmds.UnselectTabsCmd(self, how, m=0, cn=cn)     ;  cmd.do()
     ####################################################################################################################################################################################################
     def setLLStyle(self, cc, style, dbg=0):
         if not self.LL or not self.qclms: msg = f'SKIP {self.LL=} {len(self.qclms)=}'     ;  self.log(msg)  ;  self.quit(msg)
@@ -1877,31 +1877,6 @@ class Tabs(pyglet.window.Window):
         cm = {COLOR:fgc}
         if bgc:            cm[BGC] = bgc
         d = t.document  ;  d.set_style(0, len(d.text), cm)
-    ####################################################################################################################################################################################################
-    def selectTabs(self, how, m=0, cn=None, dbg=1, dbg2=1):
-        cc         = self.cursorCol()  ;  old = cn
-        p, l, s, c, t = self.cc2plsct(cc)
-        if cn is None:      cn = self.cc2cn(cc) # self.plc2cn_(p, l, c)
-        nt = self.n[T]  ;   k  = cn * nt   ;   style = SELECT_STYLE
-        self.log(f'{m=} {old=} {cc=} {cn=} {nt} {k=} {self.fplsct(p, l, s, c, t)}')
-        if cn in self.smap: self.log(f'RETURN: {cn=} already in smap={fmtm(self.smap)}') if dbg2 else None   ;   return
-        if dbg:             self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
-        text              = self.setTNIKStyle(k, nt, style)
-        self.smap[cn]     = text
-        if m:               self.move(how, m, ss=1)
-        if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
-    ####################################################################################################################################################################################################
-    def unselectTabs(self, how, m, cn=None, dbg=0):
-        if cn is None:      cc = self.cc   ;      cn = self.cc2cn(cc)
-        else:               cc = self.cn2cc(cn)
-        nt = self.n[T]  ;   k = cn * nt    ;   style = NORMAL_STYLE
-        if self.LL:         self.setLLStyle(cc, style)
-        if dbg:             self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
-        self.setTNIKStyle(k, nt, style)
-        if cn in self.smap: self.smap.pop(cn)
-        elif dbg:           self.log(f'{cn=} not found in smap={fmtm(self.smap)}')
-        if m:               self.move(how, m)
-        if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
     ####################################################################################################################################################################################################
     def p2Js(self, p):
         np, nl, ns, nc, nt = self.n

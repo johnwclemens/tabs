@@ -937,3 +937,44 @@ class AutoMoveCmd(Cmd):
         elif      tobj.csrMode == ARPG:                                 cmd = MoveCmd(tobj, how,   amDist)  ;  cmd.do()
         tobj.log(f'END {tobj.hArrow=} {tobj.vArrow=} {tobj.csrMode=} {how}', pos=1)
 ########################################################################################################################################################################################################
+class SelectTabsCmd(Cmd):
+    def __init__(self, tobj, how, m=0, cn=None, dbg=1, dbg2=1):
+        self.tobj, self.how, self.m, self.cn, self.dbg, self.dbg2 = tobj, how, m, cn, dbg, dbg2
+        
+    def do(  self): self._selectTabs()
+    def undo(self): self._selectTabs()
+    
+    def _selectTabs(self):
+        tobj, how, m, cn, dbg, dbg2 = self.tobj, self.how, self.m, self.cn, self.dbg, self.dbg2
+        cc         = tobj.cursorCol()  ;  old = cn
+        p, l, s, c, t = tobj.cc2plsct(cc)
+        if cn is None:      cn = tobj.cc2cn(cc) # self.plc2cn_(p, l, c)
+        nt = tobj.n[T]  ;   k  = cn * nt   ;   style = SELECT_STYLE
+        tobj.log(f'{m=} {old=} {cc=} {cn=} {nt} {k=} {tobj.fplsct(p, l, s, c, t)}')
+        if cn in tobj.smap: tobj.log(f'RETURN: {cn=} already in smap={fmtm(tobj.smap)}') if dbg2 else None   ;   return
+        if dbg:             tobj.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
+        text              = tobj.setTNIKStyle(k, nt, style)
+        tobj.smap[cn]     = text
+        if m:               cmd = MoveCmd(tobj, how, m, ss=1)     ;  cmd.do()
+        if dbg:             tobj.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+########################################################################################################################################################################################################
+class UnselectTabsCmd(Cmd):
+    def __init__(self, tobj, how, m, cn=None, dbg=1):
+        self.tobj, self.how, self.m, self.cn, self.dbg = tobj, how, m, cn, dbg
+        
+    def do(  self): self._unselectTabs()
+    def undo(self): self._unselectTabs()
+    
+    def _unselectTabs(self):
+        tobj, how, m, cn, dbg = self.tobj, self.how, self.m, self.cn, self.dbg
+        if cn is None:      cc = tobj.cc   ;      cn = tobj.cc2cn(cc)
+        else:               cc = tobj.cn2cc(cn)
+        nt = tobj.n[T]  ;   k = cn * nt    ;   style = NORMAL_STYLE
+        if tobj.LL:         tobj.setLLStyle(cc, style)
+        if dbg:             tobj.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
+        tobj.setTNIKStyle(k, nt, style)
+        if cn in tobj.smap: tobj.smap.pop(cn)
+        elif dbg:           tobj.log(f'{cn=} not found in smap={fmtm(tobj.smap)}')
+        if m:               cmd = MoveCmd(tobj, how, m)     ;  cmd.do()
+        if dbg:             tobj.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+########################################################################################################################################################################################################

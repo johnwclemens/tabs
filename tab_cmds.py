@@ -816,3 +816,28 @@ def autoMove(self, how, dbg=1):
     elif      self.csrMode == ARPG:                                 cmd = cmds.MoveCmd(self, how,   amDist)  ;  cmd.do()
     self.log(f'END {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
 ########################################################################################################################################################################################################
+def selectTabs(self, how, m=0, cn=None, dbg=1, dbg2=1):
+    cc         = self.cursorCol()  ;  old = cn
+    p, l, s, c, t = self.cc2plsct(cc)
+    if cn is None:      cn = self.cc2cn(cc) # self.plc2cn_(p, l, c)
+    nt = self.n[T]  ;   k  = cn * nt   ;   style = SELECT_STYLE
+    self.log(f'{m=} {old=} {cc=} {cn=} {nt} {k=} {self.fplsct(p, l, s, c, t)}')
+    if cn in self.smap: self.log(f'RETURN: {cn=} already in smap={fmtm(self.smap)}') if dbg2 else None   ;   return
+    if dbg:             self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
+    text              = self.setTNIKStyle(k, nt, style)
+    self.smap[cn]     = text
+    if m:               cmd = cmds.MoveCmd(self, how, m, ss=1)     ;  cmd.do()
+    if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+########################################################################################################################################################################################################
+def unselectTabs(self, how, m, cn=None, dbg=0):
+    if cn is None:      cc = self.cc   ;      cn = self.cc2cn(cc)
+    else:               cc = self.cn2cc(cn)
+    nt = self.n[T]  ;   k = cn * nt    ;   style = NORMAL_STYLE
+    if self.LL:         self.setLLStyle(cc, style)
+    if dbg:             self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
+    self.setTNIKStyle(k, nt, style)
+    if cn in self.smap: self.smap.pop(cn)
+    elif dbg:           self.log(f'{cn=} not found in smap={fmtm(self.smap)}')
+    if m:               cmd = cmds.MoveCmd(self, how, m)     ;  cmd.do()
+    if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+########################################################################################################################################################################################################
