@@ -27,7 +27,7 @@ CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT   =  utl.CAT,    utl.CSV,    utl.EVN,   
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA  =  utl.CATS,   utl.CSVS,   utl.EVNS,   utl.LOGS,   utl.PNGS,   utl.TEXT,   utl.DATA 
 CAT2, CSV2, EVN2, LOG2, PNG2, TXT2, DAT2  = f'_.{CAT}', f'_.{CSV}', f'_.{EVN}', f'_.{LOG}', f'_.{PNG}', f'_.{TXT}', f'_.{DAT}'
 CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE    = None, None, None, None
-BASE_NAME,        BASE_PATH,        PATH = utl.paths()
+BASE_NAME,        BASE_PATH,        PATH  = utl.paths()
 CSV_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=CSVS, fsfx=CSV,  dbg=0)
 DAT_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=DATA, fsfx=DAT,  dbg=0)
 EVN_PATH  = utl.getFilePath(BASE_NAME, BASE_PATH, fdir=EVNS, fsfx=EVN,  dbg=0)
@@ -1873,33 +1873,6 @@ class Tabs(pyglet.window.Window):
         self.snapType = typ
         self.snapReg  = 1
         if dbg: self.log(f'{self.LOG_ID:3} {self.snapId:3} {self.snapType:8} {self.snapWhy}')
-
-    def snapshot(self, why=Z, typ=Z, sid=0, dbg=1, dbg2=1):
-        why    = why if why else self.snapWhy
-        typ    = typ if typ else self.snapType
-        snapId = self.snapId   ;  logId = self.LOG_ID
-        snapName      = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
-        self.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = NONE   ;   snapId = NONE
-        if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
-        if dbg:  self.log(f'{self.fNameLogId=} {snapName=} {why}')
-        if dbg:  self.log(f'{self.snapPath}', p=2)
-        pygimg.get_buffer_manager().get_color_buffer().save(f'{self.snapPath}')
-        if dbg2: self.log(f'{snapName=} {why}', f=2)
-        if typ == utl.INIT:
-            snapName0 = f'{BASE_NAME}.{PNG}'
-            snapName2 = self.geomFileName(BASE_NAME, PNG)
-            snapPath0 = BASE_PATH / PNGS / snapName0
-            snapPath2 = BASE_PATH / snapName2
-            utl.copyFile(self.snapPath, snapPath0)
-            utl.copyFile(self.snapPath, snapPath2)
-            if dbg:  self.log(f'{BASE_NAME=} {self.fmtn(Z)}')
-            if dbg:  self.log(f'{snapName0=} {why}')
-            if dbg:  self.log(f'{snapName2=} {why}')
-            if dbg:  self.log(f'{snapPath0=}', p=2)
-            if dbg:  self.log(f'{snapPath2=}', p=2)
-        self.dumpTnikCsvs()
-        self.snapId += sid
-        return self.snapPath
     ####################################################################################################################################################################################################
     def deleteGlob(self, g, why=Z):
         self.log(f'deleting {len(g)} files from glob {why=}')
@@ -1928,7 +1901,7 @@ class Tabs(pyglet.window.Window):
             if save: cmd = cmds.SaveDataFileCmd(self, why, self.dataPath1)    ;  cmd.do()
             if dbg:  self.transposeData(dmp=dbg)
             if dbg:  self.cobj.dumpMlimap(why)
-        if self.SNAPS:    self.snapshot(f'quit {error} {save=}', utl.INIT)
+        if self.SNAPS:    cmd = cmds.SnapshotCmd(self, f'quit {error} {save=}', utl.INIT)     ;  cmd.do()
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=2)       ;   self.log(utl.QUIT_END, p=0, f=2)
         self.cleanupFiles()
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(utl.QUIT_END, p=0, f=0)

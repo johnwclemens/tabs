@@ -885,3 +885,30 @@ def setTab(self, how, text, rev=0, dbg=0): # if isDataFret or isTextFret else 0)
         self.regSnap(f'{how}', stype)
     self.rsyncData = 1
 ########################################################################################################################################################################################################
+def snapshot(self, why=Z, typ=Z, sid=0, dbg=1, dbg2=1):
+    why    = why if why else self.snapWhy
+    typ    = typ if typ else self.snapType
+    snapId = self.snapId   ;  logId = self.LOG_ID
+    snapName      = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
+    self.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = NONE   ;   snapId = NONE
+    if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
+    if dbg:  self.log(f'{self.fNameLogId=} {snapName=} {why}')
+    if dbg:  self.log(f'{self.snapPath}', p=2)
+    pygimg.get_buffer_manager().get_color_buffer().save(f'{self.snapPath}')
+    if dbg2: self.log(f'{snapName=} {why}', f=2)
+    if typ == utl.INIT:
+        snapName0 = f'{BASE_NAME}.{PNG}'
+        snapName2 = self.geomFileName(BASE_NAME, PNG)
+        snapPath0 = BASE_PATH / PNGS / snapName0
+        snapPath2 = BASE_PATH / snapName2
+        utl.copyFile(self.snapPath, snapPath0)
+        utl.copyFile(self.snapPath, snapPath2)
+        if dbg:  self.log(f'{BASE_NAME=} {self.fmtn(Z)}')
+        if dbg:  self.log(f'{snapName0=} {why}')
+        if dbg:  self.log(f'{snapName2=} {why}')
+        if dbg:  self.log(f'{snapPath0=}', p=2)
+        if dbg:  self.log(f'{snapPath2=}', p=2)
+    self.dumpTnikCsvs()
+    self.snapId += sid
+    return self.snapPath
+########################################################################################################################################################################################################

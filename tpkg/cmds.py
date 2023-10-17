@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-import itertools
+import itertools, pathlib
+import pyglet.image              as pygimg
 #import pyglet.text               as pygtxt
 from   tpkg        import utl    as utl
 from   tpkg        import kysgs  as kysgs
@@ -13,6 +14,7 @@ BGC,  BOLD,  COLOR,     FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = ut
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = utl.NORMAL_STYLE, utl.SELECT_STYLE, utl.CURRENT_STYLE
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT   = utl.CAT,  utl.CSV,  utl.EVN,  utl.LOG,  utl.PNG,  utl.TXT,  utl.DAT
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA  = utl.CATS, utl.CSVS, utl.EVNS, utl.LOGS, utl.PNGS, utl.TEXT, utl.DATA 
+BASE_NAME,        BASE_PATH,        PATH  = utl.paths()
 
 MELODY, CHORD, ARPG            = utl.MELODY, utl.CHORD, utl.ARPG
 LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
@@ -1036,4 +1038,39 @@ class SetTabCmd(Cmd):
             stype = f'Txt.{text}' if tobj.sobj.isFret(text) else 'SYMB' if text in misc.DSymb.SYMBS else 'UNKN'
             tobj.regSnap(f'{how}', stype)
         tobj.rsyncData = 1
+########################################################################################################################################################################################################
+class SnapshotCmd(Cmd):
+    def __init__(self, tobj, why=Z, typ=Z, sid=0, dbg=1, dbg2=1):
+        self.tobj, self.why, self.typ, self.sid, self.dbg, self.dbg2 = tobj, why, typ, sid, dbg, dbg2
+        
+    def do(  self): self._snapshot()
+    def undo(self): self._snapshot()
+    
+    def _snapshot(self):
+        tobj, why, typ, sid, dbg, dbg2 = self.tobj, self.why, self.typ, self.sid, self.dbg, self.dbg2
+        why    = why if why else tobj.snapWhy
+        typ    = typ if typ else tobj.snapType
+        snapId = tobj.snapId   ;  logId = tobj.LOG_ID
+        snapName      = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
+        tobj.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = NONE   ;   snapId = NONE
+        if dbg:  tobj.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
+        if dbg:  tobj.log(f'{tobj.fNameLogId=} {snapName=} {why}')
+        if dbg:  tobj.log(f'{tobj.snapPath}', p=2)
+        pygimg.get_buffer_manager().get_color_buffer().save(f'{tobj.snapPath}')
+        if dbg2: tobj.log(f'{snapName=} {why}', f=2)
+        if typ == utl.INIT:
+            snapName0 = f'{BASE_NAME}.{PNG}'
+            snapName2 = tobj.geomFileName(BASE_NAME, PNG)
+            snapPath0 = BASE_PATH / PNGS / snapName0
+            snapPath2 = BASE_PATH / snapName2
+            utl.copyFile(tobj.snapPath, snapPath0)
+            utl.copyFile(tobj.snapPath, snapPath2)
+            if dbg:  tobj.log(f'{BASE_NAME=} {tobj.fmtn(Z)}')
+            if dbg:  tobj.log(f'{snapName0=} {why}')
+            if dbg:  tobj.log(f'{snapName2=} {why}')
+            if dbg:  tobj.log(f'{snapPath0=}', p=2)
+            if dbg:  tobj.log(f'{snapPath2=}', p=2)
+        tobj.dumpTnikCsvs()
+        tobj.snapId += sid
+        return tobj.snapPath
 ########################################################################################################################################################################################################

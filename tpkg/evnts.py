@@ -85,7 +85,7 @@ def on_draw(tobj, **kwargs):
     if  tobj.SNAPS and tobj.snapReg:
         tobj.snapReg = 0
         _ = fmtm(kwargs) if kwargs else Z
-        snapPath = tobj.snapshot(f'on_draw({_})')
+        snapPath = cmds.SnapshotCmd(tobj, f'on_draw({_})')
         slog(f'{tobj.snapWhy=} {tobj.snapType=} {tobj.snapId=}\n{snapPath=}', f=-2)
 #    else: slog(f'{kwargs=}') if kwargs else slog()
 #        if tobj.TEST:   tests.testSprTxt_0(snapPath)
@@ -265,13 +265,13 @@ def on_text(tobj, text, dbg=1):
     tkb   = tobj.keyboard
     kd    = tkb.data if tkb else None
     if dbg: slog(f'BGN {ft(text)} swapping={ tobj.swapping}')
-    if      tobj.inserting:                  cmd = cmds.InsertSpaceCmd(tobj, 'onTxt', text)                ;  cmd.do()
-    elif    tobj.jumping:                    cmd = cmds.CsrJumpCmd(    tobj, 'onTxt', text, tobj.jumpAbs)  ;  cmd.do()
-    elif    tobj.settingN:                   cmd = cmds.SetNCmd(       tobj, 'onTxt', text)                ;  cmd.do()
-    elif    tobj.shifting:                   cmd = cmds.ShiftTabsCmd(  tobj, 'onTxt', text)                ;  cmd.do()
-    elif    tobj.swapping:                   cmd = cmds.SwapTabCmd(    tobj, 'onTxt', text)                ;  cmd.do()
-    elif    tobj.isTab(text):                cmd = cmds.SetTabCmd(     tobj, 'onTxt', text)                ;  cmd.do()
-    elif    text == '$' and isShf(kd, MODS): tobj.snapshot(f'{text}', 'SNAP')
+    if      tobj.inserting:                  cmd = cmds.InsertSpaceCmd(tobj,  'onTxt', text)                ;  cmd.do()
+    elif    tobj.jumping:                    cmd = cmds.CsrJumpCmd(    tobj,  'onTxt', text, tobj.jumpAbs)  ;  cmd.do()
+    elif    tobj.settingN:                   cmd = cmds.SetNCmd(       tobj,  'onTxt', text)                ;  cmd.do()
+    elif    tobj.shifting:                   cmd = cmds.ShiftTabsCmd(  tobj,  'onTxt', text)                ;  cmd.do()
+    elif    tobj.swapping:                   cmd = cmds.SwapTabCmd(    tobj,  'onTxt', text)                ;  cmd.do()
+    elif    tobj.isTab(text):                cmd = cmds.SetTabCmd(     tobj,  'onTxt', text)                ;  cmd.do()
+    elif    text == '$' and isShf(kd, MODS): cmd = cmds.SnapshotCmd(   tobj, f'{text}', 'SNAP')             ;  cmd.do()
     else:   slog(f'UNH {ft(text)}', f=-2) if dbg else None   ;   retv = False
     if dbg: slog(f'END {ft(text)} swapping={ tobj.swapping} {retv=}')
     return retv
