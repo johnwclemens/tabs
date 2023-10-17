@@ -4,6 +4,7 @@ import itertools
 from   tpkg        import utl    as utl
 from   tpkg        import kysgs  as kysgs
 from   tpkg.notes  import Notes  as Notes
+from   tpkg        import misc   as misc
 
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          B, A, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.B, utl.A, utl.D, utl.E
 W, X, Y, Z,       NONE,  ist,  fri,         slog,   fmtf,   fmtl,   fmtm    = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,       utl.slog,   utl.fmtf,   utl.fmtl,   utl.fmtm
@@ -894,7 +895,6 @@ class PrevPageCmd(Cmd):
         cmd = MoveToCmd(tobj, how, p-1 if p>0 else n, l, c, t)     ;  cmd.do()
 #        self.flipPage(how, -1, dbg=1)
         if dbg: tobj.log(f'END {how} {tobj.fmti()}', pos=1)
-
 ########################################################################################################################################################################################################
 class NextPageCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
@@ -910,7 +910,6 @@ class NextPageCmd(Cmd):
         cmd = MoveToCmd(tobj, how, p+1 if p<n else 0, l, c, t)     ;  cmd.do()
 #        self.flipPage(how, 1, dbg=1)
         if dbg: tobj.log(f'END {how} {tobj.fmti()}', pos=1)
-
 ########################################################################################################################################################################################################
 class AutoMoveCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
@@ -1010,4 +1009,31 @@ class SaveDataFileCmd(Cmd):
         size = path.stat().st_size   ;   tobj.log(f'{tobj.fmtn()} {tobj.fmtdl()} {size=}')
         if dbg:   tobj.log(f'END {why} {path}')
         return size
+########################################################################################################################################################################################################
+class SetTabCmd(Cmd):
+    def __init__(self, tobj, how, text, rev=0, dbg=0):
+        self.tobj, self.how, self.text, self.rev, self.dbg = tobj, how, text, rev, dbg
+        
+    def do(  self): self._setTab()
+    def undo(self): self._setTab()
+    
+    def _setTab(self):
+        tobj, how, text, rev, dbg = self.tobj, self.how, self.text, self.rev, self.dbg
+        bsp = how.startswith('BACKSPACE') # todo use better mechanism to flip hArrow
+        if rev: tobj.reverseArrow(bsp)   ;   cmd = AutoMoveCmd(self, how)   ;  cmd.do()
+        old   = tobj.cursorCol()   ;   msg = Z
+        p, l, c, t = tobj.j2()
+        cc    = tobj.plct2cc(p, l, c, t)   ;   cc2 = cc
+        tobj.log(f'BGN {how} {text=} {rev=} {old=:3} {cc=:3} {p=} {l=} {c=} {t=}', pos=1, f=2)
+        data  = tobj.data[p][l][c][t]
+        tobj.log(f'    {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
+        tobj.setDTNIK(text, cc2, p, l, c, t, kk=1)
+        p, l, c, t = tobj.j2()   ;   data = tobj.data[p][l][c][t]
+        tobj.log(f'END {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
+        if rev: tobj.reverseArrow(bsp)
+        else:   cmd = AutoMoveCmd(tobj, how)   ;  cmd.do()
+        if dbg and tobj.SNAPS:
+            stype = f'Txt.{text}' if tobj.sobj.isFret(text) else 'SYMB' if text in misc.DSymb.SYMBS else 'UNKN'
+            tobj.regSnap(f'{how}', stype)
+        tobj.rsyncData = 1
 ########################################################################################################################################################################################################

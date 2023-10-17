@@ -82,7 +82,7 @@ def on_draw(tobj, **kwargs):
     elif tobj.drwBGC % 3 == 2:     pyglet.gl.glClearColor(1.0, 1.0, 1.0, 1.0)
     tobj.clear()
     tobj.batch.draw()
-    if  tobj.snapReg and (tobj.SNAPS or tobj.snapType == utl.INIT):
+    if  tobj.SNAPS and tobj.snapReg:
         tobj.snapReg = 0
         _ = fmtm(kwargs) if kwargs else Z
         snapPath = tobj.snapshot(f'on_draw({_})')
@@ -151,14 +151,6 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'X' and isCtlShf(kd, m):      cmd = cmds.CutTabsCmd(      tobj, '@^X')               ;  cmd.do()
     elif kbk == 'X' and isCtl(   kd, m):      cmd = cmds.CutTabsCmd(      tobj, '@ X')               ;  cmd.do()
     ####################################################################################################################################################################################################
-    elif kbk == 'ESCAPE':                     cmd = cmds.TogSelectAllCmd( tobj, 'ESCAPE')            ;  cmd.do()
-    elif kbk == 'TAB' and isCtl(kd, m):       cmd = cmds.SetCHVModeCmd(   tobj, '@ TAB', MELODY, LARROW)  ;  cmd.do()
-    elif kbk == 'TAB':                        cmd = cmds.SetCHVModeCmd(   tobj, '  TAB', MELODY, RARROW)  ;  cmd.do()
-#   elif kbk == 'SLASH'     and isCtl(mods):  cmd = cmds.SetCHVModeCmd(   tobj, '@ SLASH',     ARPG,   LARROW, DARROW)     ;  cmd.do() # todo fixme find a key to use
-#   elif kbk == 'SLASH':                      cmd = cmds.SetCHVModeCmd(   tobj, '  SLASH',     ARPG,   RARROW, UARROW)     ;  cmd.do() # todo fixme find a key to use
-#   elif kbk == 'BACKSLASH' and isCtl(mods):  cmd = cmds.SetCHVModeCmd(   tobj, '@ BACKSLASH', ARPG,   LARROW, UARROW)     ;  cmd.do() # todo fixme find a key to use
-#   elif kbk == 'BACKSLASH':                  cmd = cmds.SetCHVModeCmd(   tobj, '  BACKSLASH', ARPG,   RARROW, DARROW)     ;  cmd.do() # todo fixme find a key to use
-    ####################################################################################################################################################################################################
     elif kbk == 'A' and isAltShf(kd, m):      cmd = cmds.TogBGCCmd(       tobj, '&^A')               ;  cmd.do()
     elif kbk == 'A' and isAlt(   kd, m):      cmd = cmds.TogBGCCmd(       tobj, '& A')               ;  cmd.do()
     elif kbk == 'D' and isAltShf(kd, m):      cmd = cmds.TogDrwBGCCmd(    tobj, '&^D', -1)           ;  cmd.do()
@@ -186,12 +178,21 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'M' and isAlt(   kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_NAME,     1,          'fontNameIdx')  ;  cmd.do()
     elif kbk == 'Y' and isAltShf(kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_SIZE,     33 / 32,    'fontSize')     ;  cmd.do()
     elif kbk == 'Y' and isAlt(   kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_SIZE,     32 / 33,    'fontSize')     ;  cmd.do()
-#   elif kbk == 'PAGEUP'   and isCtlShf(kd, m): cmd = cmds.TogPageCmd(    tobj, '@ ^PAGEUP', -1)    ;  cmd.do()
-#   elif kbk == 'PAGEUP'   and isCtl(   kd, m): cmd = cmds.TogPageCmd(    tobj, '@  PAGEUP',  1)    ;  cmd.do()
-#   elif kbk == 'PAGEUP':                       cmd = cmds.MoveUpCmd(     tobj, '   PAGEUP')        ;  cmd.do() # go up   to top    of line, wrap down to bottom of prev line
-#   elif kbk == 'PAGEDOWN' and isCtlShf(kd, m): cmd = cmds.TogPageCmd(    tobj, '@ ^PAGEDOWN', -1)  ;  cmd.do()
-#   elif kbk == 'PAGEDOWN' and isCtl(   kd, m): cmd = cmds.TogPageCmd(    tobj, '@  PAGEDOWN',  1)  ;  cmd.do()
-#   elif kbk == 'PAGEDOWN':                     cmd = cmds.MoveDownCmd(   tobj, '   PAGEDOWN')      ;  cmd.do() # go down to bottom tab on same line, wrap to next line
+    ####################################################################################################################################################################################################
+#   elif kbk == 'LEFT'   and isCtlShf(kd, m): cmd = cmds.TogPageCmd(      tobj, '@ ^LEFT', -1)           ;  cmd.do()
+#   elif kbk == 'LEFT'   and isCtl(   kd, m): cmd = cmds.TogPageCmd(      tobj, '@  LEFT',  1)           ;  cmd.do()
+#   elif kbk == 'LEFT':                       cmd = cmds.MoveUpCmd(       tobj, '   LEFT')               ;  cmd.do() # go up   to top    of line, wrap down to bottom of prev line
+#   elif kbk == 'RIGHT'  and isCtlShf(kd, m): cmd = cmds.TogPageCmd(      tobj, '@ ^RIGHT', -1)          ;  cmd.do()
+#   elif kbk == 'RIGHT'  and isCtl(   kd, m): cmd = cmds.TogPageCmd(      tobj, '@  RIGHT',  1)          ;  cmd.do()
+#   elif kbk == 'RIGHT':                      cmd = cmds.MoveDownCmd(     tobj, '   RIGHT')              ;  cmd.do() # go down to bottom tab on same line, wrap to next line
+    elif kbk == 'ESCAPE':                     cmd = cmds.TogSelectAllCmd( tobj, '   ESCAPE')             ;  cmd.do()
+    elif kbk == 'TAB'  and isCtl(kd, m):      cmd = cmds.SetCHVModeCmd(   tobj, '@  TAB', MELODY, LARROW)                 ;  cmd.do()
+    elif kbk == 'TAB':                        cmd = cmds.SetCHVModeCmd(   tobj, '   TAB', MELODY, RARROW)                 ;  cmd.do()
+    elif kbk == 'SLASH'     and isCtl(kd, m): cmd = cmds.SetCHVModeCmd(   tobj, '@  SLASH',     ARPG, RARROW, UARROW)     ;  cmd.do()
+    elif kbk == 'SLASH'     and isAlt(kd, m): cmd = cmds.SetCHVModeCmd(   tobj, ' & SLASH',     ARPG, LARROW, DARROW)     ;  cmd.do()
+    elif kbk == 'BACKSLASH' and isCtl(kd, m): cmd = cmds.SetCHVModeCmd(   tobj, '@  BACKSLASH', ARPG, RARROW, DARROW)     ;  cmd.do()
+    elif kbk == 'BACKSLASH' and isAlt(kd, m): cmd = cmds.SetCHVModeCmd(   tobj, ' & BACKSLASH', ARPG, LARROW, UARROW)     ;  cmd.do()
+    ####################################################################################################################################################################################################
     else:  retv = False   ;   slog(f'UNH {fsm(symb, mods)} kd={fmtm(kd)}') if dbg else None
     ####################################################################################################################################################################################################
     if  not  tobj.isParsing():
@@ -260,16 +261,16 @@ def on_move(tobj, x, y, dbg=1):
 #    return True
 ########################################################################################################################################################################################################
 def on_text(tobj, text, dbg=1):
-    retv = True
-    tkb  = tobj.keyboard
-    kd   = tkb.data if tkb else None
+    retv  = True
+    tkb   = tobj.keyboard
+    kd    = tkb.data if tkb else None
     if dbg: slog(f'BGN {ft(text)} swapping={ tobj.swapping}')
-    if      tobj.shiftingTabs:               cmd = cmds.ShiftTabsCmd(  tobj, 'onTxt', text)                ;  cmd.do()
+    if      tobj.inserting:                  cmd = cmds.InsertSpaceCmd(tobj, 'onTxt', text)                ;  cmd.do()
     elif    tobj.jumping:                    cmd = cmds.CsrJumpCmd(    tobj, 'onTxt', text, tobj.jumpAbs)  ;  cmd.do()
-    elif    tobj.inserting:                  cmd = cmds.InsertSpaceCmd(tobj, 'onTxt', text)                ;  cmd.do()
     elif    tobj.settingN:                   cmd = cmds.SetNCmd(       tobj, 'onTxt', text)                ;  cmd.do()
+    elif    tobj.shifting:                   cmd = cmds.ShiftTabsCmd(  tobj, 'onTxt', text)                ;  cmd.do()
     elif    tobj.swapping:                   cmd = cmds.SwapTabCmd(    tobj, 'onTxt', text)                ;  cmd.do()
-    elif    tobj.isTab(text):                tobj.setTab(     'onTxt', text)
+    elif    tobj.isTab(text):                cmd = cmds.SetTabCmd(     tobj, 'onTxt', text)                ;  cmd.do()
     elif    text == '$' and isShf(kd, MODS): tobj.snapshot(f'{text}', 'SNAP')
     else:   slog(f'UNH {ft(text)}', f=-2) if dbg else None   ;   retv = False
     if dbg: slog(f'END {ft(text)} swapping={ tobj.swapping} {retv=}')
@@ -336,8 +337,8 @@ def on_text_motion(tobj, motion, dbg=1):
         elif motion == k.MOTION_LEFT:              cmd = cmds.MoveCmd(        tobj, f'   LEFT(     {motion})', -nt)       ;  cmd.do()
         elif motion == k.MOTION_NEXT_PAGE:         cmd = cmds.MoveDownCmd(    tobj, f'   PAGEDOWN( {motion})')            ;  cmd.do() # go down to bottom tab on same line, wrap to next line
         elif motion == k.MOTION_PREVIOUS_PAGE:     cmd = cmds.MoveUpCmd(      tobj, f'   PAGEUP(   {motion})')            ;  cmd.do() # go up   to top    of line, wrap down to bottom of prev line
-        elif motion == k.MOTION_BACKSPACE:         tobj.setTab(                     f'   BACKSPACE({motion})', tb, rev=1)
-        elif motion == k.MOTION_DELETE:            tobj.setTab(                     f'   DELETE(   {motion})', tb)
+        elif motion == k.MOTION_BACKSPACE:         cmd = cmds.SetTabCmd(      tobj, f'   BACKSPACE({motion})', tb, rev=1) ;  cmd.do()
+        elif motion == k.MOTION_DELETE:            cmd = cmds.SetTabCmd(      tobj, f'   DELETE(   {motion})', tb)        ;  cmd.do()
         elif motion == k.MOTION_NEXT_WORD:         msg =                            f'   NEXT WORD({motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif motion == k.MOTION_PREVIOUS_WORD:     msg =                            f'   PREV WORD({motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif motion == k.MOTION_BEGINNING_OF_LINE: cmd = cmds.MoveCmd(        tobj, f'   HOME(     {motion})', -nt*c)     ;  cmd.do()

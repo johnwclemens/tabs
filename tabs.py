@@ -92,7 +92,7 @@ class Tabs(pyglet.window.Window):
         self.seqNumLogPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.seqNumLogPath=}')
         self.seqNumTxtPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=TEXT, fsfx=TXT)  ;  self.log(f'{self.seqNumTxtPath=}')
         self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt  = Z
-        self.shiftingTabs  = 0   ;   self.shiftSign = 1    ;   self.quitting = 0
+        self.shifting      = 0   ;   self.shiftSign = 1    ;   self.quitting = 0
         self.inserting     = 0   ;   self.insertStr = Z
         self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs  = 0
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg  = Z
@@ -676,7 +676,7 @@ class Tabs(pyglet.window.Window):
         self.dumpBlanks()
         self.data = [ [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ] for _ in range(np) ]
         self.data = self.transposeData(dmp=1)
-        size      = cmd = cmds.SaveDataFileCmd(self, 'Generated Data', path)     ;  cmd.do()
+        cmd = cmds.SaveDataFileCmd(self, 'Generated Data', path)     ;  size = cmd.do()
         self.log(f'{path} {size=} {self.fmtdl()}')
         self.data = []
         return size
@@ -880,6 +880,9 @@ class Tabs(pyglet.window.Window):
         self.dumpGeom('BFR', why)
         self.LL = int(not self.LL)
         self.dumpGeom('AFT', why)
+    ####################################################################################################################################################################################################
+    def hideZZs(self, how, zz, dbg=1): pass
+    def addZZs(self, how, zz):  pass
     ####################################################################################################################################################################################################
     def hideTTs(self, how, ii, dbg=1):
         why = f'HIDE {how} {ii=}'  ;  why2 = 'Ref'
@@ -1245,7 +1248,7 @@ class Tabs(pyglet.window.Window):
                             for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
         if self.CURSOR and self.cursor: cmd = cmds.ResizeCursorCmd(self, why)  ;  cmd.do()   ;   self.dumpHdrs()
-        if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd{self.cc + 1}')
+#        if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd{self.cc + 1}')
         if dbg:   self.dumpStruct(why) # , dbg=dbg)
     ####################################################################################################################################################################################################
     def g_resizeTniks(self, tlist, j, pt=None, why=Z, dbg=1, dbg2=1):
@@ -1604,25 +1607,6 @@ class Tabs(pyglet.window.Window):
         if dbg:       self.log(f'{n=} {j=} {tp=} {tp2=} {n//tp=} {n%tp=}')
         return tp, n//tp, tp % tp
     ####################################################################################################################################################################################################
-    def setTab(self, how, text, rev=0, dbg=0): # if isDataFret or isTextFret else 0)
-        bsp = how.startswith('BACKSPACE') # todo use better mechanism to flip hArrow
-        if rev: self.reverseArrow(bsp)   ;   cmd = cmds.AutoMoveCmd(self, how)   ;  cmd.do()
-        old   = self.cursorCol()   ;   msg = Z
-        p, l, c, t = self.j2()
-        cc    = self.plct2cc(p, l, c, t)   ;   cc2 = cc
-        self.log(f'BGN {how} {text=} {rev=} {old=:3} {cc=:3} {p=} {l=} {c=} {t=}', pos=1, f=2)
-        data  = self.data[p][l][c][t]
-        self.log(f'    {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
-        self.setDTNIK(text, cc2, p, l, c, t, kk=1)
-        p, l, c, t = self.j2()   ;   data = self.data[p][l][c][t]
-        self.log(f'END {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
-        if rev: self.reverseArrow(bsp)
-        else:   cmd = cmds.AutoMoveCmd(self, how)   ;  cmd.do()
-        if dbg and self.SNAPS:
-            stype = f'Txt.{text}' if self.sobj.isFret(text) else 'SYMB' if text in misc.DSymb.SYMBS else 'UNKN'
-            self.regSnap(f'{how}', stype)
-        self.rsyncData = 1
-
     def setDTNIK(self, text, cc, p, l, c, t, kk=0, pos=1, dbg=0):
         if dbg:  self.log(f'BGN {kk=}    {text=}', pos=pos)
         self.setData(text, p, l, c, t)
@@ -1732,7 +1716,7 @@ class Tabs(pyglet.window.Window):
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
 #   def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in  utl.DSymb.SYMBS else 0
     def isTab(self, text):    return 1 if text == self.tblank or self.sobj.isFret(text) or text in misc.DSymb.SYMBS else 0
-    def isParsing(self):      return 1 if self.inserting or self.jumping or self.settingN or self.shiftingTabs or self.swapping else 0
+    def isParsing(self):      return 1 if self.inserting or self.jumping or self.settingN or self.shifting or self.swapping else 0
 #   def isEH(t):              return 1 if t == '#' or t == 'b' else 0
     @staticmethod
     def afn(fn): return fn if len(fn) == 1 and '0' <= fn <= '9' else chr(ord(fn[1]) - ord('0') + ord('a')) if len(fn) == 2 and fn[0] == '1' else None
@@ -1890,7 +1874,7 @@ class Tabs(pyglet.window.Window):
         self.snapReg  = 1
         if dbg: self.log(f'{self.LOG_ID:3} {self.snapId:3} {self.snapType:8} {self.snapWhy}')
 
-    def snapshot(self, why=Z, typ=Z, dbg=1, dbg2=1):
+    def snapshot(self, why=Z, typ=Z, sid=0, dbg=1, dbg2=1):
         why    = why if why else self.snapWhy
         typ    = typ if typ else self.snapType
         snapId = self.snapId   ;  logId = self.LOG_ID
@@ -1914,7 +1898,7 @@ class Tabs(pyglet.window.Window):
             if dbg:  self.log(f'{snapPath0=}', p=2)
             if dbg:  self.log(f'{snapPath2=}', p=2)
         self.dumpTnikCsvs()
-        self.snapId += 1
+        self.snapId += sid
         return self.snapPath
     ####################################################################################################################################################################################################
     def deleteGlob(self, g, why=Z):
@@ -1944,7 +1928,7 @@ class Tabs(pyglet.window.Window):
             if save: cmd = cmds.SaveDataFileCmd(self, why, self.dataPath1)    ;  cmd.do()
             if dbg:  self.transposeData(dmp=dbg)
             if dbg:  self.cobj.dumpMlimap(why)
-#        if self.SNAPS:    self.snapshot(f'quit {error} {save=}', 'QUIT')
+        if self.SNAPS:    self.snapshot(f'quit {error} {save=}', utl.INIT)
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=2)       ;   self.log(utl.QUIT_END, p=0, f=2)
         self.cleanupFiles()
         self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(utl.QUIT_END, p=0, f=0)

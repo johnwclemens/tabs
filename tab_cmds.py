@@ -866,3 +866,22 @@ def saveDataFile(self, why, path, dbg=1):
     if dbg:   self.log(f'END {why} {path}')
     return size
 ########################################################################################################################################################################################################
+def setTab(self, how, text, rev=0, dbg=0): # if isDataFret or isTextFret else 0)
+    bsp = how.startswith('BACKSPACE') # todo use better mechanism to flip hArrow
+    if rev: self.reverseArrow(bsp)   ;   cmd = cmds.AutoMoveCmd(self, how)   ;  cmd.do()
+    old   = self.cursorCol()   ;   msg = Z
+    p, l, c, t = self.j2()
+    cc    = self.plct2cc(p, l, c, t)   ;   cc2 = cc
+    self.log(f'BGN {how} {text=} {rev=} {old=:3} {cc=:3} {p=} {l=} {c=} {t=}', pos=1, f=2)
+    data  = self.data[p][l][c][t]
+    self.log(f'    {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
+    self.setDTNIK(text, cc2, p, l, c, t, kk=1)
+    p, l, c, t = self.j2()   ;   data = self.data[p][l][c][t]
+    self.log(f'END {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
+    if rev: self.reverseArrow(bsp)
+    else:   cmd = cmds.AutoMoveCmd(self, how)   ;  cmd.do()
+    if dbg and self.SNAPS:
+        stype = f'Txt.{text}' if self.sobj.isFret(text) else 'SYMB' if text in misc.DSymb.SYMBS else 'UNKN'
+        self.regSnap(f'{how}', stype)
+    self.rsyncData = 1
+########################################################################################################################################################################################################
