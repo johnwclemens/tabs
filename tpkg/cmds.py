@@ -1074,3 +1074,42 @@ class SnapshotCmd(Cmd):
         tobj.snapId += sid
         return tobj.snapPath
 ########################################################################################################################################################################################################
+class ResizeTniksCmd(Cmd):
+    def __init__(self, tobj, dbg=1):
+        self.tobj, self.dbg = tobj, dbg
+        
+    def do(  self): self._resizeTniks()
+    def undo(self): self._resizeTniks()
+    
+    def _resizeTniks(self):
+        tobj, dbg = self.tobj, self.dbg
+        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'
+        tobj.dumpTniksPfx(why)
+        if   tobj.DSP_J_LEV == P:
+            for _ in                 tobj.g_resizeTniks(tobj.pages, P, None, why=why): pass
+        elif tobj.DSP_J_LEV == L:
+            for page in              tobj.g_resizeTniks(tobj.pages, P, None, why=why): # pass
+                for _ in             tobj.g_resizeTniks(tobj.lines, L, page, why=why): pass
+        elif tobj.DSP_J_LEV == S:
+            for page in              tobj.g_resizeTniks(tobj.pages, P, None, why=why): # pass
+                for line in          tobj.g_resizeTniks(tobj.lines, L, page, why=why): # pass
+                    if tobj.LL:      tobj.resizeLLs(line, why)
+                    for _ in         tobj.g_resizeTniks(tobj.sects, S, line, why=why): pass
+        elif tobj.DSP_J_LEV == C:
+            for page in              tobj.g_resizeTniks(tobj.pages, P, None, why=why): # pass
+                for line in          tobj.g_resizeTniks(tobj.lines, L, page, why=why): # pass
+                    if tobj.LL:      tobj.resizeLLs(line, why)
+                    for sect in      tobj.g_resizeTniks(tobj.sects, S, line, why=why): # pass
+                        for _ in     tobj.g_resizeTniks(tobj.colms, C, sect, why=why): pass
+        else:
+            for page in              tobj.g_resizeTniks(tobj.pages, P, None, why=why): # pass
+                for line in          tobj.g_resizeTniks(tobj.lines, L, page, why=why): # pass
+                    if tobj.LL:      tobj.resizeLLs(line, why)
+                    for sect in      tobj.g_resizeTniks(tobj.sects, S, line, why=why): # pass
+                        for colm in  tobj.g_resizeTniks(tobj.colms, C, sect, why=why): # pass
+                            for _ in tobj.g_resizeTniks(tobj.tabls, T, colm, why=why): pass
+        tobj.dumpTniksSfx(why)
+        if tobj.CURSOR and tobj.cursor: cmd = ResizeCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
+        if dbg and tobj.SNAPS and not tobj.snapReg: tobj.regSnap(why, f'Upd{tobj.cc + 1}')
+        if dbg:   tobj.dumpStruct(why) # , dbg=dbg)
+########################################################################################################################################################################################################

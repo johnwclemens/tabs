@@ -1220,37 +1220,6 @@ class Tabs(pyglet.window.Window):
         if    dbg:                 self.dumpTnik(tnik, j, why)
         return tnik
     ####################################################################################################################################################################################################
-    def resizeTniks(self, dbg=1):
-        self.updC += 1  ;  why = f'Upd{self.updC}'
-        self.dumpTniksPfx(why)
-        if   self.DSP_J_LEV == P:
-            for _ in                 self.g_resizeTniks(self.pages, P, None, why=why): pass
-        elif self.DSP_J_LEV == L:
-            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
-                for _ in             self.g_resizeTniks(self.lines, L, page, why=why): pass
-        elif self.DSP_J_LEV == S:
-            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
-                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
-                    if self.LL:      self.resizeLLs(line, why)
-                    for _ in         self.g_resizeTniks(self.sects, S, line, why=why): pass
-        elif self.DSP_J_LEV == C:
-            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
-                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
-                    if self.LL:      self.resizeLLs(line, why)
-                    for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
-                        for _ in     self.g_resizeTniks(self.colms, C, sect, why=why): pass
-        else:
-            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
-                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
-                    if self.LL:      self.resizeLLs(line, why)
-                    for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
-                        for colm in  self.g_resizeTniks(self.colms, C, sect, why=why): # pass
-                            for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
-        self.dumpTniksSfx(why)
-        if self.CURSOR and self.cursor: cmd = cmds.ResizeCursorCmd(self, why)  ;  cmd.do()   ;   self.dumpHdrs()
-#        if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd{self.cc + 1}')
-        if dbg:   self.dumpStruct(why) # , dbg=dbg)
-    ####################################################################################################################################################################################################
     def g_resizeTniks(self, tlist, j, pt=None, why=Z, dbg=1, dbg2=1):
         if not self.n[j]:     msg = f'ERROR {self.fmtJText(j, why)} SKIP {self.n[j]=}'   ;   self.log(msg) #  ;   self.quit(msg)
         n, _, x, y, w, h = self.geom(j, pt, dbg=dbg2)
@@ -1709,7 +1678,7 @@ class Tabs(pyglet.window.Window):
     def on_resize(self, w, h):
         super().on_resize(w, h)
         if self.RESIZE:
-            self.resizeTniks(dbg=1)
+            cmd = cmds.ResizeTniksCmd(self, dbg=1)     ;  cmd.do()
         return True
     ####################################################################################################################################################################################################
     def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)

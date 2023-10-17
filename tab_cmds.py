@@ -912,3 +912,34 @@ def snapshot(self, why=Z, typ=Z, sid=0, dbg=1, dbg2=1):
     self.snapId += sid
     return self.snapPath
 ########################################################################################################################################################################################################
+def resizeTniks(self, dbg=1):
+    self.updC += 1  ;  why = f'Upd{self.updC}'
+    self.dumpTniksPfx(why)
+    if   self.DSP_J_LEV == P:
+        for _ in                 self.g_resizeTniks(self.pages, P, None, why=why): pass
+    elif self.DSP_J_LEV == L:
+        for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+            for _ in             self.g_resizeTniks(self.lines, L, page, why=why): pass
+    elif self.DSP_J_LEV == S:
+        for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+            for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
+                if self.LL:      self.resizeLLs(line, why)
+                for _ in         self.g_resizeTniks(self.sects, S, line, why=why): pass
+    elif self.DSP_J_LEV == C:
+        for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+            for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
+                if self.LL:      self.resizeLLs(line, why)
+                for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
+                    for _ in     self.g_resizeTniks(self.colms, C, sect, why=why): pass
+    else:
+        for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+            for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
+                if self.LL:      self.resizeLLs(line, why)
+                for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
+                    for colm in  self.g_resizeTniks(self.colms, C, sect, why=why): # pass
+                        for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
+    self.dumpTniksSfx(why)
+    if self.CURSOR and self.cursor: cmd = cmds.ResizeCursorCmd(self, why)  ;  cmd.do()   ;   self.dumpHdrs()
+#        if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd{self.cc + 1}')
+    if dbg:   self.dumpStruct(why) # , dbg=dbg)
+########################################################################################################################################################################################################

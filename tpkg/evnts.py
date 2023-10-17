@@ -165,8 +165,10 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif kbk == 'S' and isAlt(kd, m):         cmd = cmds.ShiftTabsCmd(    tobj, '@^S')               ;  cmd.do() #
     elif kbk == 'V' and isAltShf(kd, m):      cmd = cmds.TogVisibleCmd(   tobj, '&^V')               ;  cmd.do()
     elif kbk == 'V' and isAlt(kd, m):         cmd = cmds.TogVisibleCmd(   tobj, '& V')               ;  cmd.do() 
-    elif kbk == 'Z' and isAltShf(kd, m):      tobj.RESIZE = not tobj.RESIZE   ;  tobj.resizeTniks(dbg=1)
-    elif kbk == 'Z' and isAlt(   kd, m):                                         tobj.resizeTniks(dbg=1)
+    elif kbk == 'Z' and isAltShf(kd, m):      cmd = cmds.ResizeTniksCmd(tobj, dbg=1)                 ;  cmd.do()
+    elif kbk == 'Z' and isAlt(   kd, m):      cmd = cmds.ResizeTniksCmd(tobj, dbg=1)                 ;  cmd.do()
+#   elif kbk == 'Z' and isAltShf(kd, m):      tobj.RESIZE = not tobj.RESIZE   ;  tobj.resizeTniks(dbg=1)
+#   elif kbk == 'Z' and isAlt(   kd, m):                                         tobj.resizeTniks(dbg=1)
     ####################################################################################################################################################################################################
     elif kbk == 'B' and isAltShf(kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, BOLD,      not fontBold,   'fontBold')     ;  cmd.do()
     elif kbk == 'B' and isAlt(   kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, BOLD,      not fontBold,   'fontBold')     ;  cmd.do()
