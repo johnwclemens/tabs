@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import inspect, itertools, pathlib
 import pyglet
+import pyglet.window.key         as pygwink
 import pyglet.image              as pygimg
 #import pyglet.text               as pygtxt
 from   tpkg        import utl    as utl
@@ -1014,15 +1015,15 @@ class SaveDataFileCmd(Cmd):
         return size
 ########################################################################################################################################################################################################
 class SetTabCmd(Cmd):
-    def __init__(self, tobj, how, text, rev=0, dbg=0):
-        self.tobj, self.how, self.text, self.rev, self.dbg = tobj, how, text, rev, dbg
+    def __init__(self, tobj, how, text, m=0, rev=0, dbg=0):
+        self.tobj, self.how, self.text, self.m, self.rev, self.dbg = tobj, how, text, m, rev, dbg
         
     def do(  self): self._setTab()
     def undo(self): self._setTab()
     
     def _setTab(self):
-        tobj, how, text, rev, dbg = self.tobj, self.how, self.text, self.rev, self.dbg
-        bsp = how.lstrip().startswith('BACKSPACE') # todo use better mechanism to flip hArrow
+        tobj, how, text, m, rev, dbg = self.tobj, self.how, self.text, self.m, self.rev, self.dbg
+        bsp = 1 if m == pygwink.MOTION_BACKSPACE else 0
         if rev: tobj.reverseArrow(bsp)   ;   cmd = AutoMoveCmd(tobj, how)   ;  cmd.do()
         old   = tobj.cursorCol()   ;   msg = Z
         p, l, c, t = tobj.j2()

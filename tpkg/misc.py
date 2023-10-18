@@ -48,8 +48,9 @@ class Modes:
 # A) all pages visible on startup despite all but one set to False
 #  1) only create pages as needed - saves memory and layout time - but not so clear how to impl?
 #  2) cycle through all the pages - works in sito by side effect = probably not a real solution?
-# B) pages do not display keystrokes interactively!
+# B) pages in some cases do not display keystrokes interactively!
 # C) various tab movements are incorrect
 #  1) space/backspace
 #  2) top/bottom string automove
-# D) pass motion value as seperate arg to cmds
+# D) fix BACKSPACE - pass motion value as seperate arg to SetTabCmd
+# E) how to sort cmds.py classes

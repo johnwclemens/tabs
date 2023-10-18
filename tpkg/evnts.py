@@ -93,113 +93,113 @@ def on_key_press(tobj, symb, mods, dbg=1):
     fontBold, fontItalic = tobj.fontBold, tobj.fontItalic
     hc    = tobj.hcurs
     tkb   = tobj.keyboard
-    kd    = tkb.data if tkb else None
-    kbk   = psym(symb)   ;   m = MODS
+    d     = tkb.data if tkb else None
+    k     = psym(symb)   ;   m = MODS
     dp    = tobj.dataPath1
-    if dbg:    slog(f'BGN {fsm(symb, mods)} kd={fmtm(kd)}')
-    if   kbk == 'A' and isCtlShf(kd, m):      cmd = cmds.TogArrowCmd(     tobj, '@^A', v=1)            ;  cmd.do()
-    elif kbk == 'A' and isCtl(   kd, m):      cmd = cmds.TogArrowCmd(     tobj, '@ A', v=0)            ;  cmd.do()
-    elif kbk == 'B' and isCtlShf(kd, m):      cmd = cmds.TogBlankCmd(     tobj, '@^B', -1)             ;  cmd.do()
-    elif kbk == 'B' and isCtl(   kd, m):      cmd = cmds.TogBlankCmd(     tobj, '@ B',  1)             ;  cmd.do()
-    elif kbk == 'C' and isCtlShf(kd, m):      cmd = cmds.CopyTabsCmd(     tobj, '@^C')                 ;  cmd.do() # todo fixme also fires MOTION_COPY
-    elif kbk == 'C' and isCtl(   kd, m):      cmd = cmds.CopyTabsCmd(     tobj, '@ C')                 ;  cmd.do() # todo fixme also fires MOTION_COPY
-    elif kbk == 'D' and isCtlShf(kd, m):      cmd = cmds.DeleteTabsCmd(   tobj, '@^D')                 ;  cmd.do()
-    elif kbk == 'D' and isCtl(   kd, m):      cmd = cmds.DeleteTabsCmd(   tobj, '@ D')                 ;  cmd.do()
-    elif kbk == 'E' and isCtlShf(kd, m):      cmd = cmds.EraseTabsCmd(    tobj, '@^E')                 ;  cmd.do()
-    elif kbk == 'E' and isCtl(   kd, m):      cmd = cmds.EraseTabsCmd(    tobj, '@ E')                 ;  cmd.do()
-    elif kbk == 'F' and isCtlShf(kd, m):      cmd = cmds.TogFlatShrpCmd(  tobj, '@^F')                 ;  cmd.do()
-    elif kbk == 'F' and isCtl(   kd, m):      cmd = cmds.TogFlatShrpCmd(  tobj, '@ F')                 ;  cmd.do()
-    elif kbk == 'G' and isCtlShf(kd, m):      cmd = cmds.Go2FirstTabCmd(  tobj, '@^G', page=1)         ;  cmd.do()
-    elif kbk == 'G' and isCtl(   kd, m):      cmd = cmds.Go2FirstTabCmd(  tobj, '@ G', page=0)         ;  cmd.do()
-    elif kbk == 'H' and isCtlShf(kd, m):      cmd = cmds.Go2LastTabCmd(   tobj, '@^H', page=1)         ;  cmd.do()
-    elif kbk == 'H' and isCtl(   kd, m):      cmd = cmds.Go2LastTabCmd(   tobj, '@ H', page=0)         ;  cmd.do()
-    elif kbk == 'I' and isCtlShf(kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@^I', II)             ;  cmd.do()
-    elif kbk == 'I' and isCtl(   kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@ I', II)             ;  cmd.do()
-    elif kbk == 'J' and isCtlShf(kd, m):      cmd = cmds.CsrJumpCmd(      tobj, '@^J', txt='0', ab=1)  ;  cmd.do()
-    elif kbk == 'J' and isCtl(   kd, m):      cmd = cmds.CsrJumpCmd(      tobj, '@ J', txt='0', ab=0)  ;  cmd.do()
-    elif kbk == 'K' and isCtlShf(kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@^K', KK)             ;  cmd.do()
-    elif kbk == 'K' and isCtl(   kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@ K', KK)             ;  cmd.do()
-    elif kbk == 'L' and isCtlShf(kd, m):      cmd = cmds.TogLLsCmd(       tobj, '@^L')                 ;  cmd.do()
-    elif kbk == 'L' and isCtl(   kd, m):      cmd = cmds.TogLLsCmd(       tobj, '@ L')                 ;  cmd.do()
-    elif kbk == 'N' and isCtlShf(kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@^N', NN)             ;  cmd.do()
-    elif kbk == 'N' and isCtl(   kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@ N', NN)             ;  cmd.do()
-    elif kbk == 'O' and isCtlShf(kd, m):      cmd = cmds.TogCsrModeCmd(   tobj, '@^O', -1)             ;  cmd.do()
-    elif kbk == 'O' and isCtl(   kd, m):      cmd = cmds.TogCsrModeCmd(   tobj, '@ O',  1)             ;  cmd.do()
-    elif kbk == 'P' and isCtlShf(kd, m):      cmd = cmds.AddPageCmd(      tobj, '@^P', ins=0)          ;  cmd.do()
-    elif kbk == 'P' and isCtl(   kd, m):      cmd = cmds.AddPageCmd(      tobj, '@ P', ins=None)       ;  cmd.do()
-    elif kbk == 'Q' and isCtlShf(kd, m):      cmd = cmds.QuitCmd(         tobj, '@^Q', err=0, save=0)  ;  retv = cmd.do()
-    elif kbk == 'Q' and isCtl(   kd, m):      cmd = cmds.QuitCmd(         tobj, '@ Q', err=0, save=1)  ;  retv = cmd.do()
-    elif kbk == 'R' and isCtlShf(kd, m):      cmd = cmds.TogKordNamesCmd( tobj, '@^R', hit=1)          ;  cmd.do()
-    elif kbk == 'R' and isCtl(   kd, m):      cmd = cmds.TogKordNamesCmd( tobj, '@ R', hit=0)          ;  cmd.do()
-    elif kbk == 'S' and isCtlShf(kd, m):      cmd = cmds.SaveDataFileCmd( tobj, '@^S', dp)             ;  cmd.do()
-    elif kbk == 'S' and isCtl(   kd, m):      cmd = cmds.SaveDataFileCmd( tobj, '@ S', dp)             ;  cmd.do()
-    elif kbk == 'T' and isCtlShf(kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@^T', TT)             ;  cmd.do()
-    elif kbk == 'T' and isCtl(   kd, m):      cmd = cmds.TogTTsCmd(       tobj, '@ T', TT)             ;  cmd.do()
-    elif kbk == 'U' and isCtlShf(kd, m):      cmd = cmds.ResetCmd(        tobj, '@^U')                 ;  cmd.do()
-    elif kbk == 'U' and isCtl(   kd, m):      cmd = cmds.ResetCmd(        tobj, '@ U')                 ;  cmd.do()
-    elif kbk == 'V' and isCtlShf(kd, m):      cmd = cmds.PasteTabsCmd(    tobj, '@^V', kk=1)           ;  cmd.do() # todo fixme also fires MOTION_PASTE
-    elif kbk == 'V' and isCtl(   kd, m):      cmd = cmds.PasteTabsCmd(    tobj, '@ V', kk=0)           ;  cmd.do() # todo fixme also fires MOTION_PASTE
-    elif kbk == 'W' and isCtlShf(kd, m):      cmd = cmds.SwapColsCmd(     tobj, '@^W')                 ;  cmd.do()
-    elif kbk == 'W' and isCtl(   kd, m):      cmd = cmds.SwapColsCmd(     tobj, '@ W')                 ;  cmd.do()
-    elif kbk == 'X' and isCtlShf(kd, m):      cmd = cmds.CutTabsCmd(      tobj, '@^X')                 ;  cmd.do()
-    elif kbk == 'X' and isCtl(   kd, m):      cmd = cmds.CutTabsCmd(      tobj, '@ X')                 ;  cmd.do()
-    elif kbk == 'Y' and isCtlShf(kd, m):      cmd = cmds.InsertSpaceCmd(  tobj, '@^Y')                 ;  cmd.do()
-    elif kbk == 'Y' and isCtl(   kd, m):      cmd = cmds.InsertSpaceCmd(  tobj, '@ Y')                 ;  cmd.do() 
+    if dbg:    slog(f'BGN {fsm(symb, mods)} d={fmtm(d)}')
+    if   k == 'A' and isCtlShf(d, m):      cmd = cmds.TogArrowCmd(     tobj, '@^A', v=1)            ;  cmd.do()
+    elif k == 'A' and isCtl(   d, m):      cmd = cmds.TogArrowCmd(     tobj, '@ A', v=0)            ;  cmd.do()
+    elif k == 'B' and isCtlShf(d, m):      cmd = cmds.TogBlankCmd(     tobj, '@^B', -1)             ;  cmd.do()
+    elif k == 'B' and isCtl(   d, m):      cmd = cmds.TogBlankCmd(     tobj, '@ B',  1)             ;  cmd.do()
+    elif k == 'C' and isCtlShf(d, m):      cmd = cmds.CopyTabsCmd(     tobj, '@^C')                 ;  cmd.do() # todo fixme also fires MOTION_COPY
+    elif k == 'C' and isCtl(   d, m):      cmd = cmds.CopyTabsCmd(     tobj, '@ C')                 ;  cmd.do() # todo fixme also fires MOTION_COPY
+    elif k == 'D' and isCtlShf(d, m):      cmd = cmds.DeleteTabsCmd(   tobj, '@^D')                 ;  cmd.do()
+    elif k == 'D' and isCtl(   d, m):      cmd = cmds.DeleteTabsCmd(   tobj, '@ D')                 ;  cmd.do()
+    elif k == 'E' and isCtlShf(d, m):      cmd = cmds.EraseTabsCmd(    tobj, '@^E')                 ;  cmd.do()
+    elif k == 'E' and isCtl(   d, m):      cmd = cmds.EraseTabsCmd(    tobj, '@ E')                 ;  cmd.do()
+    elif k == 'F' and isCtlShf(d, m):      cmd = cmds.TogFlatShrpCmd(  tobj, '@^F')                 ;  cmd.do()
+    elif k == 'F' and isCtl(   d, m):      cmd = cmds.TogFlatShrpCmd(  tobj, '@ F')                 ;  cmd.do()
+    elif k == 'G' and isCtlShf(d, m):      cmd = cmds.Go2FirstTabCmd(  tobj, '@^G', page=1)         ;  cmd.do()
+    elif k == 'G' and isCtl(   d, m):      cmd = cmds.Go2FirstTabCmd(  tobj, '@ G', page=0)         ;  cmd.do()
+    elif k == 'H' and isCtlShf(d, m):      cmd = cmds.Go2LastTabCmd(   tobj, '@^H', page=1)         ;  cmd.do()
+    elif k == 'H' and isCtl(   d, m):      cmd = cmds.Go2LastTabCmd(   tobj, '@ H', page=0)         ;  cmd.do()
+    elif k == 'I' and isCtlShf(d, m):      cmd = cmds.TogTTsCmd(       tobj, '@^I', II)             ;  cmd.do()
+    elif k == 'I' and isCtl(   d, m):      cmd = cmds.TogTTsCmd(       tobj, '@ I', II)             ;  cmd.do()
+    elif k == 'J' and isCtlShf(d, m):      cmd = cmds.CsrJumpCmd(      tobj, '@^J', txt='0', ab=1)  ;  cmd.do()
+    elif k == 'J' and isCtl(   d, m):      cmd = cmds.CsrJumpCmd(      tobj, '@ J', txt='0', ab=0)  ;  cmd.do()
+    elif k == 'K' and isCtlShf(d, m):      cmd = cmds.TogTTsCmd(       tobj, '@^K', KK)             ;  cmd.do()
+    elif k == 'K' and isCtl(   d, m):      cmd = cmds.TogTTsCmd(       tobj, '@ K', KK)             ;  cmd.do()
+    elif k == 'L' and isCtlShf(d, m):      cmd = cmds.TogLLsCmd(       tobj, '@^L')                 ;  cmd.do()
+    elif k == 'L' and isCtl(   d, m):      cmd = cmds.TogLLsCmd(       tobj, '@ L')                 ;  cmd.do()
+    elif k == 'N' and isCtlShf(d, m):      cmd = cmds.TogTTsCmd(       tobj, '@^N', NN)             ;  cmd.do()
+    elif k == 'N' and isCtl(   d, m):      cmd = cmds.TogTTsCmd(       tobj, '@ N', NN)             ;  cmd.do()
+    elif k == 'O' and isCtlShf(d, m):      cmd = cmds.TogCsrModeCmd(   tobj, '@^O', -1)             ;  cmd.do()
+    elif k == 'O' and isCtl(   d, m):      cmd = cmds.TogCsrModeCmd(   tobj, '@ O',  1)             ;  cmd.do()
+    elif k == 'P' and isCtlShf(d, m):      cmd = cmds.AddPageCmd(      tobj, '@^P', ins=0)          ;  cmd.do()
+    elif k == 'P' and isCtl(   d, m):      cmd = cmds.AddPageCmd(      tobj, '@ P', ins=None)       ;  cmd.do()
+    elif k == 'Q' and isCtlShf(d, m):      cmd = cmds.QuitCmd(         tobj, '@^Q', err=0, save=0)  ;  retv = cmd.do()
+    elif k == 'Q' and isCtl(   d, m):      cmd = cmds.QuitCmd(         tobj, '@ Q', err=0, save=1)  ;  retv = cmd.do()
+    elif k == 'R' and isCtlShf(d, m):      cmd = cmds.TogKordNamesCmd( tobj, '@^R', hit=1)          ;  cmd.do()
+    elif k == 'R' and isCtl(   d, m):      cmd = cmds.TogKordNamesCmd( tobj, '@ R', hit=0)          ;  cmd.do()
+    elif k == 'S' and isCtlShf(d, m):      cmd = cmds.SaveDataFileCmd( tobj, '@^S', dp)             ;  cmd.do()
+    elif k == 'S' and isCtl(   d, m):      cmd = cmds.SaveDataFileCmd( tobj, '@ S', dp)             ;  cmd.do()
+    elif k == 'T' and isCtlShf(d, m):      cmd = cmds.TogTTsCmd(       tobj, '@^T', TT)             ;  cmd.do()
+    elif k == 'T' and isCtl(   d, m):      cmd = cmds.TogTTsCmd(       tobj, '@ T', TT)             ;  cmd.do()
+    elif k == 'U' and isCtlShf(d, m):      cmd = cmds.ResetCmd(        tobj, '@^U')                 ;  cmd.do()
+    elif k == 'U' and isCtl(   d, m):      cmd = cmds.ResetCmd(        tobj, '@ U')                 ;  cmd.do()
+    elif k == 'V' and isCtlShf(d, m):      cmd = cmds.PasteTabsCmd(    tobj, '@^V', kk=1)           ;  cmd.do() # todo fixme also fires MOTION_PASTE
+    elif k == 'V' and isCtl(   d, m):      cmd = cmds.PasteTabsCmd(    tobj, '@ V', kk=0)           ;  cmd.do() # todo fixme also fires MOTION_PASTE
+    elif k == 'W' and isCtlShf(d, m):      cmd = cmds.SwapColsCmd(     tobj, '@^W')                 ;  cmd.do()
+    elif k == 'W' and isCtl(   d, m):      cmd = cmds.SwapColsCmd(     tobj, '@ W')                 ;  cmd.do()
+    elif k == 'X' and isCtlShf(d, m):      cmd = cmds.CutTabsCmd(      tobj, '@^X')                 ;  cmd.do()
+    elif k == 'X' and isCtl(   d, m):      cmd = cmds.CutTabsCmd(      tobj, '@ X')                 ;  cmd.do()
+    elif k == 'Y' and isCtlShf(d, m):      cmd = cmds.InsertSpaceCmd(  tobj, '@^Y')                 ;  cmd.do()
+    elif k == 'Y' and isCtl(   d, m):      cmd = cmds.InsertSpaceCmd(  tobj, '@ Y')                 ;  cmd.do() 
     ####################################################################################################################################################################################################
-    elif kbk == 'A' and isAltShf(kd, m):      cmd = cmds.TogBGCCmd(       tobj, '&^A')                 ;  cmd.do()
-    elif kbk == 'A' and isAlt(   kd, m):      cmd = cmds.TogBGCCmd(       tobj, '& A')                 ;  cmd.do()
-    elif kbk == 'D' and isAltShf(kd, m):      cmd = cmds.TogDrwBGCCmd(    tobj, '&^D', -1)             ;  cmd.do()
-    elif kbk == 'D' and isAlt(   kd, m):      cmd = cmds.TogDrwBGCCmd(    tobj, '& D',  1)             ;  cmd.do()
-    elif kbk == 'F' and isAltShf(kd, m):      cmd = cmds.TogFullScrnCmd(  tobj, '@^F')                 ;  cmd.do()
-    elif kbk == 'F' and isAlt(   kd, m):      cmd = cmds.TogFullScrnCmd(  tobj, '@ F')                 ;  cmd.do()
-    elif kbk == 'N' and isAltShf(kd, m):      cmd = cmds.SetNCmd(         tobj, '&^N', txt=Z)          ;  cmd.do()
-    elif kbk == 'N' and isAlt(   kd, m):      cmd = cmds.SetNCmd(         tobj, '& N', txt=Z)          ;  cmd.do()
-    elif kbk == 'P' and isAltShf(kd, m):      cmd = cmds.TogPageCmd(      tobj, '&^P', -1)             ;  cmd.do()
-    elif kbk == 'P' and isAlt   (kd, m):      cmd = cmds.TogPageCmd(      tobj, '& P',  1)             ;  cmd.do()
-    elif kbk == 'R' and isAltShf(kd, m):      cmd = cmds.RotSprCmd(       tobj, '&^R', hc[0], -1)      ;  cmd.do()
-    elif kbk == 'R' and isAlt(   kd, m):      cmd = cmds.RotSprCmd(       tobj, '& R', hc[0],  1)      ;  cmd.do()
-    elif kbk == 'S' and isAltShf(kd, m):      cmd = cmds.ShiftTabsCmd(    tobj, '@ S')                 ;  cmd.do()
-    elif kbk == 'S' and isAlt(kd, m):         cmd = cmds.ShiftTabsCmd(    tobj, '@^S')                 ;  cmd.do()
-    elif kbk == 'V' and isAltShf(kd, m):      cmd = cmds.TogVisibleCmd(   tobj, '&^V')                 ;  cmd.do()
-    elif kbk == 'V' and isAlt(kd, m):         cmd = cmds.TogVisibleCmd(   tobj, '& V')                 ;  cmd.do() 
-    elif kbk == 'W' and isAltShf(kd, m):      cmd = cmds.SwapTabCmd(      tobj, '@ S', txt=Z)          ;  cmd.do()
-    elif kbk == 'W' and isAlt(kd, m):         cmd = cmds.SwapTabCmd(      tobj, '@^S', txt=Z)          ;  cmd.do()
-    elif kbk == 'Z' and isAltShf(kd, m):      cmd = cmds.ResizeTniksCmd(  tobj)                        ;  cmd.do()
-    elif kbk == 'Z' and isAlt(   kd, m):      cmd = cmds.ResizeTniksCmd(  tobj)                        ;  cmd.do()
+    elif k == 'A' and isAltShf(d, m):      cmd = cmds.TogBGCCmd(       tobj, '&^A')                 ;  cmd.do()
+    elif k == 'A' and isAlt(   d, m):      cmd = cmds.TogBGCCmd(       tobj, '& A')                 ;  cmd.do()
+    elif k == 'D' and isAltShf(d, m):      cmd = cmds.TogDrwBGCCmd(    tobj, '&^D', -1)             ;  cmd.do()
+    elif k == 'D' and isAlt(   d, m):      cmd = cmds.TogDrwBGCCmd(    tobj, '& D',  1)             ;  cmd.do()
+    elif k == 'F' and isAltShf(d, m):      cmd = cmds.TogFullScrnCmd(  tobj, '@^F')                 ;  cmd.do()
+    elif k == 'F' and isAlt(   d, m):      cmd = cmds.TogFullScrnCmd(  tobj, '@ F')                 ;  cmd.do()
+    elif k == 'N' and isAltShf(d, m):      cmd = cmds.SetNCmd(         tobj, '&^N', txt=Z)          ;  cmd.do()
+    elif k == 'N' and isAlt(   d, m):      cmd = cmds.SetNCmd(         tobj, '& N', txt=Z)          ;  cmd.do()
+    elif k == 'P' and isAltShf(d, m):      cmd = cmds.TogPageCmd(      tobj, '&^P', -1)             ;  cmd.do()
+    elif k == 'P' and isAlt   (d, m):      cmd = cmds.TogPageCmd(      tobj, '& P',  1)             ;  cmd.do()
+    elif k == 'R' and isAltShf(d, m):      cmd = cmds.RotSprCmd(       tobj, '&^R', hc[0], -1)      ;  cmd.do()
+    elif k == 'R' and isAlt(   d, m):      cmd = cmds.RotSprCmd(       tobj, '& R', hc[0],  1)      ;  cmd.do()
+    elif k == 'S' and isAltShf(d, m):      cmd = cmds.ShiftTabsCmd(    tobj, '@ S')                 ;  cmd.do()
+    elif k == 'S' and isAlt(   d, m):      cmd = cmds.ShiftTabsCmd(    tobj, '@^S')                 ;  cmd.do()
+    elif k == 'V' and isAltShf(d, m):      cmd = cmds.TogVisibleCmd(   tobj, '&^V')                 ;  cmd.do()
+    elif k == 'V' and isAlt(   d, m):      cmd = cmds.TogVisibleCmd(   tobj, '& V')                 ;  cmd.do() 
+    elif k == 'W' and isAltShf(d, m):      cmd = cmds.SwapTabCmd(      tobj, '@ S', txt=Z)          ;  cmd.do()
+    elif k == 'W' and isAlt(   d, m):      cmd = cmds.SwapTabCmd(      tobj, '@^S', txt=Z)          ;  cmd.do()
+    elif k == 'Z' and isAltShf(d, m):      cmd = cmds.ResizeTniksCmd(  tobj)                        ;  cmd.do()
+    elif k == 'Z' and isAlt(   d, m):      cmd = cmds.ResizeTniksCmd(  tobj)                        ;  cmd.do()
     ####################################################################################################################################################################################################
-    elif kbk == 'B' and isAltShf(kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, BOLD,      not fontBold,   'fontBold')     ;  cmd.do()
-    elif kbk == 'B' and isAlt(   kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, BOLD,      not fontBold,   'fontBold')     ;  cmd.do()
-    elif kbk == 'C' and isAltShf(kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, COLOR,        -1,          'clrIdx')       ;  cmd.do()
-    elif kbk == 'C' and isAlt(   kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, COLOR,         1,          'clrIdx')       ;  cmd.do()
-    elif kbk == 'I' and isAltShf(kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, ITALIC,    not fontItalic, 'fontItalic')   ;  cmd.do()
-    elif kbk == 'I' and isAlt(   kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, ITALIC,    not fontItalic, 'fontItalic')   ;  cmd.do()
-    elif kbk == 'M' and isAltShf(kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_NAME,    -1,          'fontNameIdx')  ;  cmd.do()
-    elif kbk == 'M' and isAlt(   kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_NAME,     1,          'fontNameIdx')  ;  cmd.do()
-    elif kbk == 'Y' and isAltShf(kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_SIZE,     33 / 32,    'fontSize')     ;  cmd.do()
-    elif kbk == 'Y' and isAlt(   kd, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_SIZE,     32 / 33,    'fontSize')     ;  cmd.do()
+    elif k == 'B' and isAltShf(d, m):      cmd = cmds.SetFontPrmCmd(   tobj, BOLD,      not fontBold,   'fontBold')     ;  cmd.do()
+    elif k == 'B' and isAlt(   d, m):      cmd = cmds.SetFontPrmCmd(   tobj, BOLD,      not fontBold,   'fontBold')     ;  cmd.do()
+    elif k == 'C' and isAltShf(d, m):      cmd = cmds.SetFontPrmCmd(   tobj, COLOR,        -1,          'clrIdx')       ;  cmd.do()
+    elif k == 'C' and isAlt(   d, m):      cmd = cmds.SetFontPrmCmd(   tobj, COLOR,         1,          'clrIdx')       ;  cmd.do()
+    elif k == 'I' and isAltShf(d, m):      cmd = cmds.SetFontPrmCmd(   tobj, ITALIC,    not fontItalic, 'fontItalic')   ;  cmd.do()
+    elif k == 'I' and isAlt(   d, m):      cmd = cmds.SetFontPrmCmd(   tobj, ITALIC,    not fontItalic, 'fontItalic')   ;  cmd.do()
+    elif k == 'M' and isAltShf(d, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_NAME,    -1,          'fontNameIdx')  ;  cmd.do()
+    elif k == 'M' and isAlt(   d, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_NAME,     1,          'fontNameIdx')  ;  cmd.do()
+    elif k == 'Y' and isAltShf(d, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_SIZE,     33 / 32,    'fontSize')     ;  cmd.do()
+    elif k == 'Y' and isAlt(   d, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_SIZE,     32 / 33,    'fontSize')     ;  cmd.do()
     ####################################################################################################################################################################################################
-#   elif kbk == 'LEFT'   and isCtlShf(kd, m): cmd = cmds.TogPageCmd(      tobj, '@ ^LEFT', -1)           ;  cmd.do()
-#   elif kbk == 'LEFT'   and isCtl(   kd, m): cmd = cmds.TogPageCmd(      tobj, '@  LEFT',  1)           ;  cmd.do()
-#   elif kbk == 'LEFT':                       cmd = cmds.MoveUpCmd(       tobj, '   LEFT')               ;  cmd.do() # go up   to top    of line, wrap down to bottom of prev line
-#   elif kbk == 'RIGHT'  and isCtlShf(kd, m): cmd = cmds.TogPageCmd(      tobj, '@ ^RIGHT', -1)          ;  cmd.do()
-#   elif kbk == 'RIGHT'  and isCtl(   kd, m): cmd = cmds.TogPageCmd(      tobj, '@  RIGHT',  1)          ;  cmd.do()
-#   elif kbk == 'RIGHT':                      cmd = cmds.MoveDownCmd(     tobj, '   RIGHT')              ;  cmd.do() # go down to bottom tab on same line, wrap to next line
-    elif kbk == 'ESCAPE':                     cmd = cmds.TogSelectAllCmd( tobj, '   ESCAPE')             ;  cmd.do()
-    elif kbk == 'TAB'  and isCtl(kd, m):      cmd = cmds.SetCHVModeCmd(   tobj, '@  TAB', MELODY, LARROW)                 ;  cmd.do()
-    elif kbk == 'TAB':                        cmd = cmds.SetCHVModeCmd(   tobj, '   TAB', MELODY, RARROW)                 ;  cmd.do()
-    elif kbk == 'SLASH'     and isCtl(kd, m): cmd = cmds.SetCHVModeCmd(   tobj, '@  SLASH',     ARPG, RARROW, UARROW)     ;  cmd.do()
-    elif kbk == 'SLASH'     and isAlt(kd, m): cmd = cmds.SetCHVModeCmd(   tobj, ' & SLASH',     ARPG, LARROW, DARROW)     ;  cmd.do()
-    elif kbk == 'BACKSLASH' and isCtl(kd, m): cmd = cmds.SetCHVModeCmd(   tobj, '@  BACKSLASH', ARPG, RARROW, DARROW)     ;  cmd.do()
-    elif kbk == 'BACKSLASH' and isAlt(kd, m): cmd = cmds.SetCHVModeCmd(   tobj, ' & BACKSLASH', ARPG, LARROW, UARROW)     ;  cmd.do()
+#   elif k == 'LEFT'   and isCtlShf(d, m): cmd = cmds.TogPageCmd(      tobj, '@ ^LEFT', -1)           ;  cmd.do()
+#   elif k == 'LEFT'   and isCtl(   d, m): cmd = cmds.TogPageCmd(      tobj, '@  LEFT',  1)           ;  cmd.do()
+#   elif k == 'LEFT':                      cmd = cmds.MoveUpCmd(       tobj, '   LEFT')               ;  cmd.do() # go up   to top    of line, wrap down to bottom of prev line
+#   elif k == 'RIGHT'  and isCtlShf(d, m): cmd = cmds.TogPageCmd(      tobj, '@ ^RIGHT', -1)          ;  cmd.do()
+#   elif k == 'RIGHT'  and isCtl(   d, m): cmd = cmds.TogPageCmd(      tobj, '@  RIGHT',  1)          ;  cmd.do()
+#   elif k == 'RIGHT':                     cmd = cmds.MoveDownCmd(     tobj, '   RIGHT')              ;  cmd.do() # go down to bottom tab on same line, wrap to next line
+    elif k == 'ESCAPE':                    cmd = cmds.TogSelectAllCmd( tobj, '   ESCAPE')             ;  cmd.do()
+    elif k == 'TAB'  and isCtl(d, m):      cmd = cmds.SetCHVModeCmd(   tobj, '@  TAB', MELODY, LARROW)                 ;  cmd.do()
+    elif k == 'TAB':                       cmd = cmds.SetCHVModeCmd(   tobj, '   TAB', MELODY, RARROW)                 ;  cmd.do()
+    elif k == 'SLASH'     and isCtl(d, m): cmd = cmds.SetCHVModeCmd(   tobj, '@  SLASH',     ARPG, RARROW, UARROW)     ;  cmd.do()
+    elif k == 'SLASH'     and isAlt(d, m): cmd = cmds.SetCHVModeCmd(   tobj, ' & SLASH',     ARPG, LARROW, DARROW)     ;  cmd.do()
+    elif k == 'BACKSLASH' and isCtl(d, m): cmd = cmds.SetCHVModeCmd(   tobj, '@  BACKSLASH', ARPG, RARROW, DARROW)     ;  cmd.do()
+    elif k == 'BACKSLASH' and isAlt(d, m): cmd = cmds.SetCHVModeCmd(   tobj, ' & BACKSLASH', ARPG, LARROW, UARROW)     ;  cmd.do()
     ####################################################################################################################################################################################################
-    else:  retv = False   ;   slog(f'UNH {fsm(symb, mods)} kd={fmtm(kd)}') if dbg else None
+    else:  retv = False   ;   slog(f'UNH {fsm(symb, mods)} d={fmtm(d)}') if dbg else None
     ####################################################################################################################################################################################################
     if  not  tobj.isParsing():
-        if   kbk == 'ENTER' and isCtl(kd, m):     cmd = cmds.SetCHVModeCmd(tobj, '@ ENTER', CHORD, v=DARROW)  ;  cmd.do()
-        elif kbk == 'ENTER':                      cmd = cmds.SetCHVModeCmd(tobj, '  ENTER', CHORD, v=UARROW)  ;  cmd.do()
-        elif kbk == 'SPACE' and tobj.tblank != W: cmd = cmds.AutoMoveCmd(  tobj, '  SPACE')                   ;  cmd.do() # todo
-#            elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
-    if dbg:  slog(f'END {    fsm(symb, mods)} kd={fmtm(kd)}, {retv=}')
+        if   k == 'ENTER' and isCtl(d, m):      cmd = cmds.SetCHVModeCmd(tobj, '@ ENTER', CHORD, v=DARROW)  ;  cmd.do()
+        elif k == 'ENTER':                      cmd = cmds.SetCHVModeCmd(tobj, '  ENTER', CHORD, v=UARROW)  ;  cmd.do()
+        elif k == 'SPACE' and tobj.tblank != W: cmd = cmds.AutoMoveCmd(  tobj, '  SPACE')                   ;  cmd.do() # todo
+#        elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
+    if dbg:  slog(f'END {    fsm(symb, mods)} d={fmtm(d)}, {retv=}')
     return retv
 ########################################################################################################################################################################################################
 #  99 evnts on_key_press       BGN  65507 0xffe3 LCTRL            2 MOD_CTRL                                   kd=
@@ -280,73 +280,73 @@ def on_text_motion(tobj, motion, dbg=1):
     retv = True
     tkb  = tobj.keyboard
     kd   = tkb.data if tkb else None
-    k    = pygwink    ;    m = MODS
+    k    = pygwink    ;    n = MODS   ;   m = motion
     p, l, s, c, t = tobj.j()  ;  np, nl, ns, nc, nt = tobj.n
     tb = tobj.tblank  ;   c2 = nc - tobj.i[C]
-    if dbg: slog(f'BGN {ftm(motion)}')
-    if   isNumLck(kd, m):                          msg =                            f'NUMLOCK(     {motion})'             ;  slog(msg)   ;   k.MOD_NUMLOCK = 0
-    if   isCtlAltShf(kd, m):                       msg =                            f'@&^(         {motion})'             ;  slog(msg)   ;   retv = False # self.quit(msg)
-    elif isCtlAlt(kd, m):
-        if   motion == k.MOTION_NEXT_WORD:         cmd = cmds.UnselectTabsCmd(tobj, f'@& RIGHT(    {motion})',  nt)       ;  cmd.do()
-        elif motion == k.MOTION_PREVIOUS_WORD:     cmd = cmds.UnselectTabsCmd(tobj, f'@& LEFT(     {motion})', -nt)       ;  cmd.do()
-        else:                                      msg =                            f'@& UNH(      {motion})'             ;  slog(msg)   ;   retv = False # self.quit(msg)
-    elif isAltShf(kd, m):                          msg =                            f' &^(         {motion})'             ;  slog(msg)   ;   retv = False # self.quit(msg)
-    elif isCtlShf(kd, m):                          msg =                            f'@ ^(         {motion})'             ;  slog(msg)   ;   retv = False # self.quit(msg)
-    elif isShf(kd, m):                             msg =                            f'  ^(         {motion})'             ;  slog(msg)   ;   retv = False # self.quit(msg)
-    elif isCtl(kd, m):
-        if   motion == k.MOTION_UP:                msg =                            f'@  UP  (     {motion})'             ;  slog(msg)   ;   retv = False
-        elif motion == k.MOTION_RIGHT:             msg =                            f'@  RIGHT(    {motion})'             ;  slog(msg)   ;   retv = False
-        elif motion == k.MOTION_DOWN:              msg =                            f'@  DOWN(     {motion})'             ;  slog(msg)   ;   retv = False
-        elif motion == k.MOTION_LEFT:              msg =                            f'@  LEFT(     {motion})'             ;  slog(msg)   ;   retv = False
-        elif motion == k.MOTION_NEXT_PAGE:         cmd = cmds.TogPageCmd(     tobj, f'@  PAGEDOWN( {motion})',  1)        ;  cmd.do()     
-        elif motion == k.MOTION_PREVIOUS_PAGE:     cmd = cmds.TogPageCmd(     tobj, f'@  PAGEUP(   {motion})', -1)        ;  cmd.do() # ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_BACKSPACE:         cmd = cmds.DeleteTabsCmd(  tobj, f'@  BACKSPACE({motion})')            ;  cmd.do() # todo fixme
-        elif motion == k.MOTION_DELETE:            cmd = cmds.DeleteTabsCmd(  tobj, f'@  DELETE(   {motion})')            ;  cmd.do()
-        elif motion == k.MOTION_NEXT_WORD:         cmd = cmds.SelectTabsCmd(  tobj, f'@  RIGHT(    {motion})',  nt)       ;  cmd.do()
-        elif motion == k.MOTION_PREVIOUS_WORD:     cmd = cmds.SelectTabsCmd(  tobj, f'@  LEFT(     {motion})', -nt)       ;  cmd.do()
-        elif motion == k.MOTION_BEGINNING_OF_LINE: msg =                            f'@  HOME(     {motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_END_OF_LINE:       msg =                            f'@  END(      {motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_BEGINNING_OF_FILE: msg =                            f'@  BGN_FILE( {motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL HOME
-        elif motion == k.MOTION_END_OF_FILE:       msg =                            f'@  END_FILE( {motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL END
-        elif motion == k.MOTION_COPY:              cmd = cmds.CopyTabsCmd(    tobj, f'@  COPY(     {motion})')            ;  cmd.do() # todo fixme also fires '@ C'
-        elif motion == k.MOTION_PASTE:             cmd = cmds.PasteTabsCmd(   tobj, f'@  PASTE(    {motion})', kk=0)      ;  cmd.do() # todo fixme also fires '@ V'
-        else:                                      msg =                            f'@  UNH CTRL( {motion})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
-    elif isAlt(kd, m):
-        if   motion == k.MOTION_UP:                cmd = cmds.MoveUpCmd(      tobj, f' & UP(       {motion})')            ;  cmd.do()
-        elif motion == k.MOTION_RIGHT:             cmd = cmds.MoveRightCmd(   tobj, f' & RIGHT(    {motion})')            ;  cmd.do()
-        elif motion == k.MOTION_DOWN:              cmd = cmds.MoveUpCmd(      tobj, f' & DOWN(     {motion})')            ;  cmd.do()
-        elif motion == k.MOTION_LEFT:              cmd = cmds.MoveLeftCmd(    tobj, f' & LEFT(     {motion})')            ;  cmd.do()
-        elif motion == k.MOTION_NEXT_PAGE:         cmd = cmds.NextPageCmd(    tobj, f' & PAGEDOWN( {motion})')            ;  cmd.do()
-        elif motion == k.MOTION_PREVIOUS_PAGE:     cmd = cmds.PrevPageCmd(    tobj, f' & PAGEUP(   {motion})')            ;  cmd.do()
-        elif motion == k.MOTION_BACKSPACE:         cmd = cmds.DeleteTabsCmd(  tobj, f' & BACKSPACE({motion})')            ;  cmd.do() # todo fixme
-        elif motion == k.MOTION_DELETE:            cmd = cmds.DeleteTabsCmd(  tobj, f' & DELETE(   {motion})')            ;  cmd.do()
-        elif motion == k.MOTION_NEXT_WORD:         msg =                            f' & NEXT WORD({motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_PREVIOUS_WORD:     msg =                            f' & PREV WORD({motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_BEGINNING_OF_LINE: cmd = cmds.MoveCmd(        tobj, f' & HOME(     {motion})', -nt*c)     ;  cmd.do()
-        elif motion == k.MOTION_END_OF_LINE:       cmd = cmds.MoveCmd(        tobj, f' & END(      {motion})',  nt*c2)    ;  cmd.do()
-        elif motion == k.MOTION_BEGINNING_OF_FILE: msg =                            f' & BGN FILE( {motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_END_OF_FILE:       msg =                            f' & END FILE( {motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_COPY:              msg =                            f' & COPY(     {motion})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
-        elif motion == k.MOTION_PASTE:             msg =                            f' & PASTE(    {motion})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
-        else:                                      msg =                            f' & UNH(      {motion})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+    if dbg: slog(f'BGN {ftm(m)}')
+    if   isNumLck(kd, n):                     msg =                            f'NUMLOCK(     {m})'             ;  slog(msg)   ;   k.MOD_NUMLOCK = 0
+    if   isCtlAltShf(kd, n):                  msg =                            f'@&^(         {m})'             ;  slog(msg)   ;   retv = False # self.quit(msg)
+    elif isCtlAlt(kd, n):
+        if   m == k.MOTION_NEXT_WORD:         cmd = cmds.UnselectTabsCmd(tobj, f'@& RIGHT(    {m})',  nt)       ;  cmd.do()
+        elif m == k.MOTION_PREVIOUS_WORD:     cmd = cmds.UnselectTabsCmd(tobj, f'@& LEFT(     {m})', -nt)       ;  cmd.do()
+        else:                                 msg =                            f'@& UNH(      {m})'             ;  slog(msg)   ;   retv = False # self.quit(msg)
+    elif isAltShf(kd, n):                     msg =                            f' &^(         {m})'             ;  slog(msg)   ;   retv = False # self.quit(msg)
+    elif isCtlShf(kd, n):                     msg =                            f'@ ^(         {m})'             ;  slog(msg)   ;   retv = False # self.quit(msg)
+    elif isShf(kd, n):                        msg =                            f'  ^(         {m})'             ;  slog(msg)   ;   retv = False # self.quit(msg)
+    elif isCtl(kd, n):
+        if   m == k.MOTION_UP:                msg =                            f'@  UP  (     {m})'             ;  slog(msg)   ;   retv = False
+        elif m == k.MOTION_DOWN:              msg =                            f'@  DOWN(     {m})'             ;  slog(msg)   ;   retv = False
+        elif m == k.MOTION_RIGHT:             msg =                            f'@  RIGHT(    {m})'             ;  slog(msg)   ;   retv = False
+        elif m == k.MOTION_LEFT:              msg =                            f'@  LEFT(     {m})'             ;  slog(msg)   ;   retv = False
+        elif m == k.MOTION_NEXT_PAGE:         cmd = cmds.TogPageCmd(     tobj, f'@  PAGEDOWN( {m})',  1)        ;  cmd.do()     
+        elif m == k.MOTION_PREVIOUS_PAGE:     cmd = cmds.TogPageCmd(     tobj, f'@  PAGEUP(   {m})', -1)        ;  cmd.do() # ;   slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_BACKSPACE:         cmd = cmds.DeleteTabsCmd(  tobj, f'@  BACKSPACE({m})')            ;  cmd.do() # todo fixme
+        elif m == k.MOTION_DELETE:            cmd = cmds.DeleteTabsCmd(  tobj, f'@  DELETE(   {m})')            ;  cmd.do()
+        elif m == k.MOTION_NEXT_WORD:         cmd = cmds.SelectTabsCmd(  tobj, f'@  RIGHT(    {m})',  nt)       ;  cmd.do()
+        elif m == k.MOTION_PREVIOUS_WORD:     cmd = cmds.SelectTabsCmd(  tobj, f'@  LEFT(     {m})', -nt)       ;  cmd.do()
+        elif m == k.MOTION_BEGINNING_OF_LINE: msg =                            f'@  HOME(     {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_END_OF_LINE:       msg =                            f'@  END(      {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_BEGINNING_OF_FILE: msg =                            f'@  BGN_FILE( {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL HOME
+        elif m == k.MOTION_END_OF_FILE:       msg =                            f'@  END_FILE( {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # CTRL END
+        elif m == k.MOTION_COPY:              cmd = cmds.CopyTabsCmd(    tobj, f'@  COPY(     {m})')            ;  cmd.do() # todo fixme also fires '@ C'
+        elif m == k.MOTION_PASTE:             cmd = cmds.PasteTabsCmd(   tobj, f'@  PASTE(    {m})', kk=0)      ;  cmd.do() # todo fixme also fires '@ V'
+        else:                                 msg =                            f'@  UNH CTRL( {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+    elif isAlt(kd, n):
+        if   m == k.MOTION_UP:                cmd = cmds.MoveUpCmd(      tobj, f' & UP(       {m})')            ;  cmd.do()
+        elif m == k.MOTION_DOWN:              cmd = cmds.MoveUpCmd(      tobj, f' & DOWN(     {m})')            ;  cmd.do()
+        elif m == k.MOTION_RIGHT:             cmd = cmds.MoveRightCmd(   tobj, f' & RIGHT(    {m})')            ;  cmd.do()
+        elif m == k.MOTION_LEFT:              cmd = cmds.MoveLeftCmd(    tobj, f' & LEFT(     {m})')            ;  cmd.do()
+        elif m == k.MOTION_NEXT_PAGE:         cmd = cmds.NextPageCmd(    tobj, f' & PAGEDOWN( {m})')            ;  cmd.do()
+        elif m == k.MOTION_PREVIOUS_PAGE:     cmd = cmds.PrevPageCmd(    tobj, f' & PAGEUP(   {m})')            ;  cmd.do()
+        elif m == k.MOTION_BACKSPACE:         cmd = cmds.DeleteTabsCmd(  tobj, f' & BACKSPACE({m})')            ;  cmd.do() # todo fixme
+        elif m == k.MOTION_DELETE:            cmd = cmds.DeleteTabsCmd(  tobj, f' & DELETE(   {m})')            ;  cmd.do()
+        elif m == k.MOTION_NEXT_WORD:         msg =                            f' & NEXT WORD({m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_PREVIOUS_WORD:     msg =                            f' & PREV WORD({m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_BEGINNING_OF_LINE: cmd = cmds.MoveCmd(        tobj, f' & HOME(     {m})', -nt*c)     ;  cmd.do()
+        elif m == k.MOTION_END_OF_LINE:       cmd = cmds.MoveCmd(        tobj, f' & END(      {m})',  nt*c2)    ;  cmd.do()
+        elif m == k.MOTION_BEGINNING_OF_FILE: msg =                            f' & BGN FILE( {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_END_OF_FILE:       msg =                            f' & END FILE( {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_COPY:              msg =                            f' & COPY(     {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+        elif m == k.MOTION_PASTE:             msg =                            f' & PASTE(    {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+        else:                                 msg =                            f' & UNH(      {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
     else:
-        if   motion == k.MOTION_UP:                cmd = cmds.MoveCmd(        tobj, f'   UP(       {motion})', -1)        ;  cmd.do()
-        elif motion == k.MOTION_RIGHT:             cmd = cmds.MoveCmd(        tobj, f'   RIGHT(    {motion})',  nt)       ;  cmd.do()
-        elif motion == k.MOTION_DOWN:              cmd = cmds.MoveCmd(        tobj, f'   DOWN(     {motion})',  1)        ;  cmd.do()
-        elif motion == k.MOTION_LEFT:              cmd = cmds.MoveCmd(        tobj, f'   LEFT(     {motion})', -nt)       ;  cmd.do()
-        elif motion == k.MOTION_NEXT_PAGE:         cmd = cmds.MoveDownCmd(    tobj, f'   PAGEDOWN( {motion})')            ;  cmd.do() # go down to bottom tab on same line, wrap to next line
-        elif motion == k.MOTION_PREVIOUS_PAGE:     cmd = cmds.MoveUpCmd(      tobj, f'   PAGEUP(   {motion})')            ;  cmd.do() # go up   to top    of line, wrap down to bottom of prev line
-        elif motion == k.MOTION_BACKSPACE:         cmd = cmds.SetTabCmd(      tobj, f'   BACKSPACE({motion})', tb, rev=1) ;  cmd.do()
-        elif motion == k.MOTION_DELETE:            cmd = cmds.SetTabCmd(      tobj, f'   DELETE(   {motion})', tb)        ;  cmd.do()
-        elif motion == k.MOTION_NEXT_WORD:         msg =                            f'   NEXT WORD({motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_PREVIOUS_WORD:     msg =                            f'   PREV WORD({motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_BEGINNING_OF_LINE: cmd = cmds.MoveCmd(        tobj, f'   HOME(     {motion})', -nt*c)     ;  cmd.do()
-        elif motion == k.MOTION_END_OF_LINE:       cmd = cmds.MoveCmd(        tobj, f'   END(      {motion})',  nt*c2)    ;  cmd.do()
-        elif motion == k.MOTION_BEGINNING_OF_FILE: msg =                            f'   BGN FILE( {motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_END_OF_FILE:       msg =                            f'   END FILE( {motion})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif motion == k.MOTION_COPY:              msg =                            f'   COPY(     {motion})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
-        elif motion == k.MOTION_PASTE:             msg =                            f'   PASTE(    {motion})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
-        else:                                      msg =                            f'   UNH(      {motion})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
-    if dbg: slog(f'END {ftm(motion)} {retv=}')
+        if   m == k.MOTION_UP:                cmd = cmds.MoveCmd(        tobj, f'   UP(       {m})', -1)        ;  cmd.do()
+        elif m == k.MOTION_DOWN:              cmd = cmds.MoveCmd(        tobj, f'   DOWN(     {m})',  1)        ;  cmd.do()
+        elif m == k.MOTION_RIGHT:             cmd = cmds.MoveCmd(        tobj, f'   RIGHT(    {m})',  nt)       ;  cmd.do()
+        elif m == k.MOTION_LEFT:              cmd = cmds.MoveCmd(        tobj, f'   LEFT(     {m})', -nt)       ;  cmd.do()
+        elif m == k.MOTION_NEXT_PAGE:         cmd = cmds.MoveDownCmd(    tobj, f'   PAGEDOWN( {m})')            ;  cmd.do() # go down to bottom tab on same line, wrap to next line
+        elif m == k.MOTION_PREVIOUS_PAGE:     cmd = cmds.MoveUpCmd(      tobj, f'   PAGEUP(   {m})')            ;  cmd.do() # go up   to top    of line, wrap down to bottom of prev line
+        elif m == k.MOTION_BACKSPACE:         cmd = cmds.SetTabCmd(      tobj, f'   BACKSPACE({m})', tb, m, 1)  ;  cmd.do()
+        elif m == k.MOTION_DELETE:            cmd = cmds.SetTabCmd(      tobj, f'   DELETE(   {m})', tb)        ;  cmd.do()
+        elif m == k.MOTION_NEXT_WORD:         msg =                            f'   NEXT WORD({m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_PREVIOUS_WORD:     msg =                            f'   PREV WORD({m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_BEGINNING_OF_LINE: cmd = cmds.MoveCmd(        tobj, f'   HOME(     {m})', -nt*c)     ;  cmd.do()
+        elif m == k.MOTION_END_OF_LINE:       cmd = cmds.MoveCmd(        tobj, f'   END(      {m})',  nt*c2)    ;  cmd.do()
+        elif m == k.MOTION_BEGINNING_OF_FILE: msg =                            f'   BGN FILE( {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_END_OF_FILE:       msg =                            f'   END FILE( {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
+        elif m == k.MOTION_COPY:              msg =                            f'   COPY(     {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+        elif m == k.MOTION_PASTE:             msg =                            f'   PASTE(    {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+        else:                                 msg =                            f'   UNH(      {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+    if dbg: slog(f'END {ftm(m)} {retv=}')
     return retv
 ########################################################################################################################################################################################################
