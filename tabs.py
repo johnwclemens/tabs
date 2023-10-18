@@ -56,7 +56,7 @@ LDS       = ['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' Backgrou
 LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
 ########################################################################################################################################################################################################
 TT, NN, II, KK                 = utl.TT, utl.NN, utl.II, utl.KK
-MELODY, CHORD, ARPG            = utl.MELODY, utl.CHORD, utl.ARPG
+MLDY, CHRD, ARPG               = utl.MLDY, utl.CHRD, utl.ARPG
 LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
 LBL, SPR              = utl.LBL, utl.SPR
 RGB                   = utl.RGB
@@ -90,18 +90,18 @@ class Tabs(pyglet.window.Window):
         self.seqNumCsvPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=CSVS, fsfx=CSV)  ;  self.log(f'{self.seqNumCsvPath=}')
         self.seqNumLogPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.seqNumLogPath=}')
         self.seqNumTxtPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=TEXT, fsfx=TXT)  ;  self.log(f'{self.seqNumTxtPath=}')
-        self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt  = Z
-        self.shifting      = 0   ;   self.shiftSign = 1    ;   self.quitting = 0
+        self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt      = Z
+        self.shifting      = 0   ;   self.shiftSign = 1    ;   self.quitting     = 0
         self.inserting     = 0   ;   self.insertStr = Z
-        self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs  = 0
-        self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg  = Z
-        self.newC          = 0   ;   self.updC      = 0
-        self.cc            = 0   ;   self.nvis      = 0    ;   self.drwBGC   = 0
+        self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs      = 0
+        self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg      = Z
+        self.newC          = 0   ;   self.updC      = 0    ;   self.prevEvntText = Z
+        self.cc            = 0   ;   self.nvis      = 0    ;   self.drwBGC       = 0
         self.allTabSel     = 0   ;   self.rsyncData = 0
         self.sprs          = []  ;   self.undoStack = []
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
         self.J1,       self.J2,      self.j1s,     self.j2s    = [], [], [], []
-        self.hArrow,   self.vArrow,  self.csrMode, self.tids   = RARROW, UARROW, CHORD, set()   ;   self.dumpCursorArrows('init()')
+        self.hArrow,   self.vArrow,  self.csrMode, self.tids   = RARROW, UARROW, CHRD, set()   ;   self.dumpCursorArrows('init()')
         self.tblank,   self.tblanki, self.cursor,  self.data   = None, None, None, []
         self.XYVA      = [0, 0, 0, 0]
         self._init_xyva()
@@ -1829,8 +1829,8 @@ class Tabs(pyglet.window.Window):
 
     def reverseArrow(self, bsp=0, dbg=1):
         if dbg: self.dumpCursorArrows('reverseArrow()')
-        if self.csrMode in (MELODY, ARPG) or bsp: cmd = cmds.TogArrowCmd(self, 'reverseArrow() MELODY or ARPG or bsp', v=0)  ;  cmd.do() # self.flipArrow('reverseArrow() MELODY or ARPG or bsp', v=0)
-        if self.csrMode in (CHORD, ARPG):         cmd = cmds.TogArrowCmd(self, 'reverseArrow()  CHORD or ARPG',        v=1)  ;  cmd.do() # self.flipArrow('reverseArrow()  CHORD or ARPG',        v=1)
+        if self.csrMode in (MLDY, ARPG) or bsp: cmd = cmds.TogArrowCmd(self, 'reverseArrow() MELODY or ARPG or bsp', v=0)  ;  cmd.do() # self.flipArrow('reverseArrow() MELODY or ARPG or bsp', v=0)
+        if self.csrMode in (CHRD, ARPG):        cmd = cmds.TogArrowCmd(self, 'reverseArrow()  CHORD or ARPG',        v=1)  ;  cmd.do() # self.flipArrow('reverseArrow()  CHORD or ARPG',        v=1)
         if dbg: self.dumpCursorArrows('reverseArrow()')
     ####################################################################################################################################################################################################
     def cci(self, j, k, kl, dbg=0):

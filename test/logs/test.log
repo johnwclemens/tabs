@@ -186,21 +186,21 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 [log tlog flog   dumpGeom resetJ dumpJs dumpImap dumpSmap dumpCursorArrows <listcomp> dumpLimap2 dumpTniksPfx dumpTniksSfx fmtXYWH kbkInfo dumpCrs fCrsCrt]
  358 utl   getFileSeqName     fdir='logs' / fsfx='log'
  361 utl   getFileSeqName     fGlobArg='C:\\Users\\Owner\\Documents\\GitHub\\tabs\\test\\logs\\test.*.log'
- 363 utl   getFileSeqName     LOG_ID=27
- 365 utl   getFileSeqName     name='test.27'
-  88 tabs  __init__           .LOG_ID=27 test.27
- 342 utl   getFilePath        baseName =test.27      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 345 utl   getFilePath        fileName =test.27.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.27.cat')
-  89 tabs  __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.27.cat')
- 342 utl   getFilePath        baseName =test.27      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 345 utl   getFilePath        fileName =test.27.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.27.csv')
-  90 tabs  __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.27.csv')
- 342 utl   getFilePath        baseName =test.27      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 345 utl   getFilePath        fileName =test.27.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.27.log')
-  91 tabs  __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.27.log')
- 342 utl   getFilePath        baseName =test.27      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
- 345 utl   getFilePath        fileName =test.27.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.27.txt')
-  92 tabs  __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.27.txt')
+ 363 utl   getFileSeqName     LOG_ID=9
+ 365 utl   getFileSeqName     name='test.9'
+  88 tabs  __init__           .LOG_ID=9 test.9
+ 342 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 345 utl   getFilePath        fileName =test.9.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.9.cat')
+  89 tabs  __init__           .seqNumCatPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.9.cat')
+ 342 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 345 utl   getFilePath        fileName =test.9.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.9.csv')
+  90 tabs  __init__           .seqNumCsvPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.9.csv')
+ 342 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 345 utl   getFilePath        fileName =test.9.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.9.log')
+  91 tabs  __init__           .seqNumLogPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.9.log')
+ 342 utl   getFilePath        baseName =test.9       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+ 345 utl   getFilePath        fileName =test.9.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.9.txt')
+  92 tabs  __init__           .seqNumTxtPath=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.9.txt')
  104 tabs  __init__           init() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
  120 tabs  __init__           argMap=[i:[1 1 1 6]] [n:[1 1 10 6]] [d:[]] [e:[]] [p:[]] [S:[0 1 3]] [f:[test]]
  224 tabs  dumpArgs           [a]      .AUTO_SAVE=0
@@ -261,7 +261,7 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 .dataPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
 .dataPath3=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/test.dat')
  329 tabs  _initWindowA       BGN (  -1x-1  )
- 329 tabs  _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001FA6E4E2260>
+ 329 tabs  _initWindowA       display=<pyglet.canvas.win32.Win32Display object at 0x000001EC54AD22C0>
  334 tabs  _initWindowA       screens[0] s.x=894  2160 (1280x720 )
  334 tabs  _initWindowA       screens[1] s.x=0     0 (3840x2160)
  335 tabs  _initWindowA       END (  -1x-1  ) .screenIdx=1
@@ -1143,17 +1143,17 @@ texts=[[1 1][2 2][3 3][4 4][5 5][6 6][7 7][8 8][9 9][10 1]]
  626 tabs  dumpTniksE          END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] New1E
  666 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[180 180 180 60 6] [60 60 60 6] ( 1x1x1x6  )
  386 tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
-1846 tabs  regSnap             27   0 INIT     init
+1846 tabs  regSnap              9   0 INIT     init
  274 tabs  _reinit            [1 1 1  1 6]   6   0  1] END
 INIT
  187 tabs  __init__           END <class '__main__.Tabs'>
 1939 tabs  <module>           str(tabs)='[i:[1 1 1 6]] [n:[1 1 10 6]] [d:[]] [e:[]] [p:[]] [S:[0 1 3]] [f:[test]]'
 1939 tabs  <module>           tabs=Tabs .width=960 .height=540 [i:[1 1 1 6]] [n:[1 1 10 6]] [d:[]] [e:[]] [p:[]] [S:[0 1 3]] [f:[test]]
 1940 tabs  <module>           Call pyglet.app.run()
-1093 cmds  _resizeTniks        J1[0  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    0   0] Upd1
-1093 cmds  _resizeTniks        J2[0  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    0   0] Upd1
-1093 cmds  _resizeTniks        LE[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216   0] Upd1
-1093 cmds  _resizeTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] Upd1
+ 527 cmds  _resizeTniks        J1[0  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    0   0] Upd1
+ 527 cmds  _resizeTniks        J2[0  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    0   0] Upd1
+ 527 cmds  _resizeTniks        LE[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216   0] Upd1
+ 527 cmds  _resizeTniks        BGN[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216   0] Upd1
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
    1 Upd1  Page    1          1 V 1  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [128  63 255 255][ 40  20  81 105] C C   480   270 0.000 0.000   442  -118   324 C,C  420  96 0 0 Lucida Console        
@@ -1375,10 +1375,10 @@ INIT
  215 Upd1  Kord   60          a V 1  1  3  30   60   60    0   60 0  0   0 0  0  0  0  0  215 215  912.00   15.00   96.00   30.00  54  48  9 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1117 cmds  _resizeTniks        J1[1  1  3  30   60   60    0   60 0  0   0 0  0  0  0  0  215 215] Upd1
-1117 cmds  _resizeTniks        J2[1  1  3  30   60   60    0   60 0  0   0 0  0  0  0  0  215 215] Upd1
-1117 cmds  _resizeTniks        LE[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 215] Upd1
-1117 cmds  _resizeTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 215] Upd1
+ 551 cmds  _resizeTniks        J1[1  1  3  30   60   60    0   60 0  0   0 0  0  0  0  0  215 215] Upd1
+ 551 cmds  _resizeTniks        J2[1  1  3  30   60   60    0   60 0  0   0 0  0  0  0  0  215 215] Upd1
+ 551 cmds  _resizeTniks        LE[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 215] Upd1
+ 551 cmds  _resizeTniks        END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 215] Upd1
 1243 tabs  resizeTnik         Upd1 H=11 j=11 i=0 .J2[H]=0
  216 Upd1  HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216   48.00  375.00   96.00   30.00  54  48  9 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
@@ -1893,586 +1893,443 @@ INIT
  626 tabs  dumpTniksE          END[( 960x540 )( 1x1x10x6 )( 1x1x1x6  ) (0 1 3  ) 0 (   )  216 216] Upd1E
  666 tabs  dumpStruct         [1 1 1  1 6]   6   0  1] n=[1 1 3 10 6] END ntp=[180 180 180 60 6] [60 60 60 6] ( 1x1x1x6  )
   85 evnts on_draw            tobj.snapWhy='init' tobj.snapType='INIT' tobj.snapId=0
-snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
+snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001EC5EA4B010>
+ 249 evnts on_mouse_motion    ( 781,   18) ( 781,   18) retv=True [i:[1 1 1 6]] [n:[1 1 10 6]] [d:[]] [e:[]] [p:[]] [S:[0 1 3]] [f:[test]]
   99 evnts on_key_press       BGN  65363 0xff53 RIGHT            0                                            d=
  195 evnts on_key_press       UNH  65363 0xff53 RIGHT            0                                            d=
  202 evnts on_key_press       END  65363 0xff53 RIGHT            0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65363 0xff53                  0                                           
- 822 cmds  _move              [1 1 1  1 6]   6   0  1] BGN    RIGHT(    65363) n=6
- 801 cmds  _moveto2           [1 1 1  1 6]   6   0  1] BGN plct=[1 1    1 6]
- 811 cmds  _moveto2           [1 1 1  2 6]  12   6  2] END n=6 i=[1 1 1 2 6] plct=[1 1    1 6] plct2=[1 1    2 12]
- 760 cmds  _moveCursor        [1 1 1  2 6]  12   6  2] BGN ss=0 tobj.cc=5
+ 287 evnts on_text_motion     BGN  65363 0xff53                  0                                           
+ 281 cmds  _move              [1 1 1  1 6]   6   0  1] BGN    RIGHT(    65363) n=6
+ 325 cmds  _moveto2           [1 1 1  1 6]   6   0  1] BGN plct=[1 1    1 6]
+ 335 cmds  _moveto2           [1 1 1  2 6]  12   6  2] END n=6 i=[1 1 1 2 6] plct=[1 1    1 6] plct2=[1 1    2 12]
+ 296 cmds  _moveCursor        [1 1 1  2 6]  12   6  2] BGN ss=0 tobj.cc=5
 1243 tabs  resizeTnik            RIGHT(    65363) H=11 j=11 i=0 .J2[H]=1
  216    RIGHT(    65363) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  375.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  2 6]  12   6  2] END ss=0 tobj.cc=11
- 826 cmds  _move              [1 1 1  2 6]  12   6  2] END    RIGHT(    65363) n=6
+ 300 cmds  _moveCursor        [1 1 1  2 6]  12   6  2] END ss=0 tobj.cc=11
+ 285 cmds  _move              [1 1 1  2 6]  12   6  2] END    RIGHT(    65363) n=6
  351 evnts on_text_motion     END  65363 0xff53                  0                                            retv=True
  218 evnts on_key_release          65363 0xff53 RIGHT            0                                           
-  99 evnts on_key_press       BGN  65363 0xff53 RIGHT            0                                            d=
- 195 evnts on_key_press       UNH  65363 0xff53 RIGHT            0                                            d=
- 202 evnts on_key_press       END  65363 0xff53 RIGHT            0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65363 0xff53                  0                                           
- 822 cmds  _move              [1 1 1  2 6]  12   6  2] BGN    RIGHT(    65363) n=6
- 801 cmds  _moveto2           [1 1 1  2 6]  12   6  2] BGN plct=[1 1    2 6]
- 811 cmds  _moveto2           [1 1 1  3 6]  18  12  3] END n=6 i=[1 1 1 3 6] plct=[1 1    2 6] plct2=[1 1    3 12]
- 760 cmds  _moveCursor        [1 1 1  3 6]  18  12  3] BGN ss=0 tobj.cc=11
-1243 tabs  resizeTnik            RIGHT(    65363) H=11 j=11 i=0 .J2[H]=1
- 216    RIGHT(    65363) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  240.00  375.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  3 6]  18  12  3] END ss=0 tobj.cc=17
- 826 cmds  _move              [1 1 1  3 6]  18  12  3] END    RIGHT(    65363) n=6
- 351 evnts on_text_motion     END  65363 0xff53                  0                                            retv=True
- 218 evnts on_key_release          65363 0xff53 RIGHT            0                                           
+  99 evnts on_key_press       BGN  65293 0xff0d ENTER            0                                            d=
+ 195 evnts on_key_press       UNH  65293 0xff0d ENTER            0                                            d=
+ 632 cmds  _setCHVMode        BGN   ENTER c=1    h=None v=1    csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 636 cmds  _setCHVMode        END   ENTER c=1    h=None v=1    csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 202 evnts on_key_press       END  65293 0xff0d ENTER            0                                            d=, retv=False
+ 266 evnts on_text            BGN t='\r' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='ENTER'
+ 276 evnts on_text            END t='\r' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='\r' retv=False
+ 218 evnts on_key_release          65293 0xff0d ENTER            0                                           
+  99 evnts on_key_press       BGN  65505 0xffe1 LSHIFT           1 MOD_SHIFT                                  d=
+ 195 evnts on_key_press       UNH  65505 0xffe1 LSHIFT           1 MOD_SHIFT                                  d=
+ 202 evnts on_key_press       END  65505 0xffe1 LSHIFT           1 MOD_SHIFT                                  d=, retv=False
+  99 evnts on_key_press       BGN  65293 0xff0d ENTER            1 MOD_SHIFT                                  d=
+ 195 evnts on_key_press       UNH  65293 0xff0d ENTER            1 MOD_SHIFT                                  d=
+ 632 cmds  _setCHVMode        BGN @ ENTER c=1    h=None v=0    csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 636 cmds  _setCHVMode        END @ ENTER c=1    h=None v=0    csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 202 evnts on_key_press       END  65293 0xff0d ENTER            1 MOD_SHIFT                                  d=, retv=False
+ 266 evnts on_text            BGN t='\r' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='ENTER'
+ 276 evnts on_text            END t='\r' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='\r' retv=False
+ 218 evnts on_key_release          65293 0xff0d ENTER            1 MOD_SHIFT                                 
+ 218 evnts on_key_release          65505 0xffe1 LSHIFT           0                                           
+  99 evnts on_key_press       BGN     49 0x0031 _1               0                                            d=
+ 195 evnts on_key_press       UNH     49 0x0031 _1               0                                            d=
+ 202 evnts on_key_press       END     49 0x0031 _1               0                                            d=, retv=False
+ 266 evnts on_text            BGN t='1' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='\r'
+ 706 cmds  _setTab            [1 1 1  2 6]  12   6  2] BGN onTxt text='1' rev=0 old= 11 cc= 11 p=0 l=0 c=1 t=5
+ 708 cmds  _setTab            [1 1 1  2 6]  12   6  2]     onTxt text='1' data=' ' rev=0 old= 11 cc= 11
+  62 chords getChordName       leni=1 is Not a Chord ikey=R                     v=[0]
+1651 tabs  setChord           [1 1 1  2 6]  12   6  2] BGN name='' chunks=[] len(imap)=6
+1653 tabs  setChord           [1 1 1  2 6]  12   6  2] END name='' chunks=[] len(imap)=6
+ 711 cmds  _setTab            [1 1 1  2 6]  12   6  2] END onTxt text='1' data='1' rev=0 old= 11 cc= 11
+  78 cmds  _autoMove          [1 1 1  2 6]  12   6  2] BGN tobj.hArrow=1 tobj.vArrow=0 tobj.csrMode=1 onTxt
+  85 cmds  _autoMove          [1 1 1  2 6]  12   6  2]     onTxt M=6 C=1 A=7 csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 281 cmds  _move              [1 1 1  2 6]  12   6  2] BGN onTxt n=1
+ 325 cmds  _moveto2           [1 1 1  2 6]  12   6  2] BGN plct=[1 1    2 6]
+ 335 cmds  _moveto2           [1 1 1  3 1]  13  12  3] END n=1 i=[1 1 1 3 1] plct=[1 1    2 6] plct2=[1 1    3 7]
+ 296 cmds  _moveCursor        [1 1 1  3 1]  13  12  3] BGN ss=0 tobj.cc=11
+1243 tabs  resizeTnik         onTxt H=11 j=11 i=0 .J2[H]=1
+ 216 onTxt HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  240.00  525.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  3 1]  13  12  3] END ss=0 tobj.cc=12
+ 285 cmds  _move              [1 1 1  3 1]  13  12  3] END onTxt n=1
+  92 cmds  _autoMove          [1 1 1  3 1]  13  12  3] END tobj.hArrow=1 tobj.vArrow=0 tobj.csrMode=1 onTxt
+ 276 evnts on_text            END t='1' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='1' retv=True
+ 218 evnts on_key_release             49 0x0031 _1               0                                           
+  99 evnts on_key_press       BGN     50 0x0032 _2               0                                            d=
+ 195 evnts on_key_press       UNH     50 0x0032 _2               0                                            d=
+ 202 evnts on_key_press       END     50 0x0032 _2               0                                            d=, retv=False
+ 266 evnts on_text            BGN t='2' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='1'
+ 706 cmds  _setTab            [1 1 1  3 1]  13  12  3] BGN onTxt text='2' rev=0 old= 12 cc= 12 p=0 l=0 c=2 t=0
+ 708 cmds  _setTab            [1 1 1  3 1]  13  12  3]     onTxt text='2' data=' ' rev=0 old= 12 cc= 12
+  62 chords getChordName       leni=1 is Not a Chord ikey=R                     v=[0]
+1651 tabs  setChord           [1 1 1  3 1]  13  12  3] BGN name='' chunks=[] len(imap)=6
+1653 tabs  setChord           [1 1 1  3 1]  13  12  3] END name='' chunks=[] len(imap)=6
+ 711 cmds  _setTab            [1 1 1  3 1]  13  12  3] END onTxt text='2' data='2' rev=0 old= 12 cc= 12
+  78 cmds  _autoMove          [1 1 1  3 1]  13  12  3] BGN tobj.hArrow=1 tobj.vArrow=0 tobj.csrMode=1 onTxt
+  85 cmds  _autoMove          [1 1 1  3 1]  13  12  3]     onTxt M=6 C=1 A=7 csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 281 cmds  _move              [1 1 1  3 1]  13  12  3] BGN onTxt n=1
+ 325 cmds  _moveto2           [1 1 1  3 1]  13  12  3] BGN plct=[1 1    3 1]
+ 335 cmds  _moveto2           [1 1 1  3 2]  14  12  3] END n=1 i=[1 1 1 3 2] plct=[1 1    3 1] plct2=[1 1    3 2]
+ 296 cmds  _moveCursor        [1 1 1  3 2]  14  12  3] BGN ss=0 tobj.cc=12
+1243 tabs  resizeTnik         onTxt H=11 j=11 i=0 .J2[H]=1
+ 216 onTxt HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  240.00  495.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  3 2]  14  12  3] END ss=0 tobj.cc=13
+ 285 cmds  _move              [1 1 1  3 2]  14  12  3] END onTxt n=1
+  92 cmds  _autoMove          [1 1 1  3 2]  14  12  3] END tobj.hArrow=1 tobj.vArrow=0 tobj.csrMode=1 onTxt
+ 276 evnts on_text            END t='2' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='2' retv=True
+ 218 evnts on_key_release             50 0x0032 _2               0                                           
+  99 evnts on_key_press       BGN     51 0x0033 _3               0                                            d=
+ 195 evnts on_key_press       UNH     51 0x0033 _3               0                                            d=
+ 202 evnts on_key_press       END     51 0x0033 _3               0                                            d=, retv=False
+ 266 evnts on_text            BGN t='3' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='2'
+ 706 cmds  _setTab            [1 1 1  3 2]  14  12  3] BGN onTxt text='3' rev=0 old= 13 cc= 13 p=0 l=0 c=2 t=1
+ 708 cmds  _setTab            [1 1 1  3 2]  14  12  3]     onTxt text='3' data=' ' rev=0 old= 13 cc= 13
+  62 chords getChordName       leni=2 is Not a Chord ikey=R M3                  v=[0 4]
+  62 chords getChordName       leni=2 is Not a Chord ikey=R #5                  v=[0 8]
+1651 tabs  setChord           [1 1 1  3 2]  14  12  3] BGN name='' chunks=[] len(imap)=6
+1653 tabs  setChord           [1 1 1  3 2]  14  12  3] END name='' chunks=[] len(imap)=6
+ 711 cmds  _setTab            [1 1 1  3 2]  14  12  3] END onTxt text='3' data='3' rev=0 old= 13 cc= 13
+  78 cmds  _autoMove          [1 1 1  3 2]  14  12  3] BGN tobj.hArrow=1 tobj.vArrow=0 tobj.csrMode=1 onTxt
+  85 cmds  _autoMove          [1 1 1  3 2]  14  12  3]     onTxt M=6 C=1 A=7 csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 281 cmds  _move              [1 1 1  3 2]  14  12  3] BGN onTxt n=1
+ 325 cmds  _moveto2           [1 1 1  3 2]  14  12  3] BGN plct=[1 1    3 2]
+ 335 cmds  _moveto2           [1 1 1  3 3]  15  12  3] END n=1 i=[1 1 1 3 3] plct=[1 1    3 2] plct2=[1 1    3 3]
+ 296 cmds  _moveCursor        [1 1 1  3 3]  15  12  3] BGN ss=0 tobj.cc=13
+1243 tabs  resizeTnik         onTxt H=11 j=11 i=0 .J2[H]=1
+ 216 onTxt HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  240.00  465.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  3 3]  15  12  3] END ss=0 tobj.cc=14
+ 285 cmds  _move              [1 1 1  3 3]  15  12  3] END onTxt n=1
+  92 cmds  _autoMove          [1 1 1  3 3]  15  12  3] END tobj.hArrow=1 tobj.vArrow=0 tobj.csrMode=1 onTxt
+ 276 evnts on_text            END t='3' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='3' retv=True
+ 218 evnts on_key_release             51 0x0033 _3               0                                           
+  99 evnts on_key_press       BGN  65293 0xff0d ENTER            0                                            d=
+ 195 evnts on_key_press       UNH  65293 0xff0d ENTER            0                                            d=
+ 632 cmds  _setCHVMode        BGN   ENTER c=1    h=None v=1    csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 636 cmds  _setCHVMode        END   ENTER c=1    h=None v=1    csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 202 evnts on_key_press       END  65293 0xff0d ENTER            0                                            d=, retv=False
+ 266 evnts on_text            BGN t='\r' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='ENTER'
+ 276 evnts on_text            END t='\r' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='\r' retv=False
+ 218 evnts on_key_release          65293 0xff0d ENTER            0                                           
+  99 evnts on_key_press       BGN     52 0x0034 _4               0                                            d=
+ 195 evnts on_key_press       UNH     52 0x0034 _4               0                                            d=
+ 202 evnts on_key_press       END     52 0x0034 _4               0                                            d=, retv=False
+ 266 evnts on_text            BGN t='4' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='\r'
+ 706 cmds  _setTab            [1 1 1  3 3]  15  12  3] BGN onTxt text='4' rev=0 old= 14 cc= 14 p=0 l=0 c=2 t=2
+ 708 cmds  _setTab            [1 1 1  3 3]  15  12  3]     onTxt text='4' data=' ' rev=0 old= 14 cc= 14
+1651 tabs  setChord           [1 1 1  3 3]  15  12  3] BGN name='Bm' chunks=[B m] len(imap)=6
+1653 tabs  setChord           [1 1 1  3 3]  15  12  3] END name='Bm' chunks=[B m] len(imap)=6
+ 711 cmds  _setTab            [1 1 1  3 3]  15  12  3] END onTxt text='4' data='4' rev=0 old= 14 cc= 14
+  78 cmds  _autoMove          [1 1 1  3 3]  15  12  3] BGN tobj.hArrow=1 tobj.vArrow=1 tobj.csrMode=1 onTxt
+  85 cmds  _autoMove          [1 1 1  3 3]  15  12  3]     onTxt M=6 C=-1 A=5 csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 281 cmds  _move              [1 1 1  3 3]  15  12  3] BGN onTxt n=-1
+ 325 cmds  _moveto2           [1 1 1  3 3]  15  12  3] BGN plct=[1 1    3 3]
+ 335 cmds  _moveto2           [1 1 1  3 2]  14  12  3] END n=-1 i=[1 1 1 3 2] plct=[1 1    3 3] plct2=[1 1    3 2]
+ 296 cmds  _moveCursor        [1 1 1  3 2]  14  12  3] BGN ss=0 tobj.cc=14
+1243 tabs  resizeTnik         onTxt H=11 j=11 i=0 .J2[H]=1
+ 216 onTxt HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  240.00  495.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  3 2]  14  12  3] END ss=0 tobj.cc=13
+ 285 cmds  _move              [1 1 1  3 2]  14  12  3] END onTxt n=-1
+  92 cmds  _autoMove          [1 1 1  3 2]  14  12  3] END tobj.hArrow=1 tobj.vArrow=1 tobj.csrMode=1 onTxt
+ 276 evnts on_text            END t='4' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='4' retv=True
+ 218 evnts on_key_release             52 0x0034 _4               0                                           
+  99 evnts on_key_press       BGN  65505 0xffe1 LSHIFT           1 MOD_SHIFT                                  d=
+ 195 evnts on_key_press       UNH  65505 0xffe1 LSHIFT           1 MOD_SHIFT                                  d=
+ 202 evnts on_key_press       END  65505 0xffe1 LSHIFT           1 MOD_SHIFT                                  d=, retv=False
+  99 evnts on_key_press       BGN  65293 0xff0d ENTER            1 MOD_SHIFT                                  d=
+ 195 evnts on_key_press       UNH  65293 0xff0d ENTER            1 MOD_SHIFT                                  d=
+ 632 cmds  _setCHVMode        BGN @ ENTER c=1    h=None v=0    csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 636 cmds  _setCHVMode        END @ ENTER c=1    h=None v=0    csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 202 evnts on_key_press       END  65293 0xff0d ENTER            1 MOD_SHIFT                                  d=, retv=False
+ 266 evnts on_text            BGN t='\r' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='ENTER'
+ 276 evnts on_text            END t='\r' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='\r' retv=False
+ 218 evnts on_key_release          65293 0xff0d ENTER            1 MOD_SHIFT                                 
+ 218 evnts on_key_release          65505 0xffe1 LSHIFT           0                                           
+  99 evnts on_key_press       BGN     51 0x0033 _3               0                                            d=
+ 195 evnts on_key_press       UNH     51 0x0033 _3               0                                            d=
+ 202 evnts on_key_press       END     51 0x0033 _3               0                                            d=, retv=False
+ 266 evnts on_text            BGN t='3' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='\r'
+ 706 cmds  _setTab            [1 1 1  3 2]  14  12  3] BGN onTxt text='3' rev=0 old= 13 cc= 13 p=0 l=0 c=2 t=1
+ 708 cmds  _setTab            [1 1 1  3 2]  14  12  3]     onTxt text='3' data='3' rev=0 old= 13 cc= 13
+[4:E :2, b:B :2, 7:G :2, 0:C :1, 5:F :1, 6:G♭:1, 2:D :1]
+[4:E :2, b:B :2, 7:G :2, 0:C :1, 5:F :1, 6:F♯:1, 2:D :1]
+[ None ,  None ,  None ,  None , 6:G♭:1, b:B :2, 4:E :2]
+[6:G♭:1,  None ,  None ,  None ,  None , 5:F :1, 0:C :1]
+1651 tabs  setChord           [1 1 1  3 2]  14  12  3] BGN name='Bm' chunks=[B m] len(imap)=6
+1653 tabs  setChord           [1 1 1  3 2]  14  12  3] END name='Bm' chunks=[B m] len(imap)=6
+ 711 cmds  _setTab            [1 1 1  3 2]  14  12  3] END onTxt text='3' data='3' rev=0 old= 13 cc= 13
+  78 cmds  _autoMove          [1 1 1  3 2]  14  12  3] BGN tobj.hArrow=1 tobj.vArrow=0 tobj.csrMode=1 onTxt
+  85 cmds  _autoMove          [1 1 1  3 2]  14  12  3]     onTxt M=6 C=1 A=7 csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 281 cmds  _move              [1 1 1  3 2]  14  12  3] BGN onTxt n=1
+ 325 cmds  _moveto2           [1 1 1  3 2]  14  12  3] BGN plct=[1 1    3 2]
+ 335 cmds  _moveto2           [1 1 1  3 3]  15  12  3] END n=1 i=[1 1 1 3 3] plct=[1 1    3 2] plct2=[1 1    3 3]
+ 296 cmds  _moveCursor        [1 1 1  3 3]  15  12  3] BGN ss=0 tobj.cc=13
+1243 tabs  resizeTnik         onTxt H=11 j=11 i=0 .J2[H]=1
+ 216 onTxt HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  240.00  465.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  3 3]  15  12  3] END ss=0 tobj.cc=14
+ 285 cmds  _move              [1 1 1  3 3]  15  12  3] END onTxt n=1
+  92 cmds  _autoMove          [1 1 1  3 3]  15  12  3] END tobj.hArrow=1 tobj.vArrow=0 tobj.csrMode=1 onTxt
+ 276 evnts on_text            END t='3' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='3' retv=True
+ 218 evnts on_key_release             51 0x0033 _3               0                                           
+  99 evnts on_key_press       BGN     52 0x0034 _4               0                                            d=
+ 195 evnts on_key_press       UNH     52 0x0034 _4               0                                            d=
+ 202 evnts on_key_press       END     52 0x0034 _4               0                                            d=, retv=False
+ 266 evnts on_text            BGN t='4' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='3'
+ 706 cmds  _setTab            [1 1 1  3 3]  15  12  3] BGN onTxt text='4' rev=0 old= 14 cc= 14 p=0 l=0 c=2 t=2
+ 708 cmds  _setTab            [1 1 1  3 3]  15  12  3]     onTxt text='4' data='4' rev=0 old= 14 cc= 14
+[4:E :2, b:B :2, 7:G :2, 0:C :1, 5:F :1, 6:G♭:1, 2:D :1]
+[4:E :2, b:B :2, 7:G :2, 0:C :1, 5:F :1, 6:F♯:1, 2:D :1]
+[ None ,  None ,  None ,  None , 6:G♭:1, b:B :2, 4:E :2]
+[6:G♭:1,  None ,  None ,  None ,  None , 5:F :1, 0:C :1]
+1651 tabs  setChord           [1 1 1  3 3]  15  12  3] BGN name='Bm' chunks=[B m] len(imap)=6
+1653 tabs  setChord           [1 1 1  3 3]  15  12  3] END name='Bm' chunks=[B m] len(imap)=6
+ 711 cmds  _setTab            [1 1 1  3 3]  15  12  3] END onTxt text='4' data='4' rev=0 old= 14 cc= 14
+  78 cmds  _autoMove          [1 1 1  3 3]  15  12  3] BGN tobj.hArrow=1 tobj.vArrow=0 tobj.csrMode=1 onTxt
+  85 cmds  _autoMove          [1 1 1  3 3]  15  12  3]     onTxt M=6 C=1 A=7 csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 281 cmds  _move              [1 1 1  3 3]  15  12  3] BGN onTxt n=1
+ 325 cmds  _moveto2           [1 1 1  3 3]  15  12  3] BGN plct=[1 1    3 3]
+ 335 cmds  _moveto2           [1 1 1  3 4]  16  12  3] END n=1 i=[1 1 1 3 4] plct=[1 1    3 3] plct2=[1 1    3 4]
+ 296 cmds  _moveCursor        [1 1 1  3 4]  16  12  3] BGN ss=0 tobj.cc=14
+1243 tabs  resizeTnik         onTxt H=11 j=11 i=0 .J2[H]=1
+ 216 onTxt HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  240.00  435.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  3 4]  16  12  3] END ss=0 tobj.cc=15
+ 285 cmds  _move              [1 1 1  3 4]  16  12  3] END onTxt n=1
+  92 cmds  _autoMove          [1 1 1  3 4]  16  12  3] END tobj.hArrow=1 tobj.vArrow=0 tobj.csrMode=1 onTxt
+ 276 evnts on_text            END t='4' tobj.inserting=0 tobj.jumping=0 tobj.settingN=0 tobj.shifting=0 tobj.swapping=0 tobj.prevEvntText='4' retv=True
+ 218 evnts on_key_release             52 0x0034 _4               0                                           
   99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
  195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
  202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  3 6]  18  12  3] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  3 6]  18  12  3]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  3 6]  18  12  3] BGN    BACKSPACE(65288) n=-11
- 801 cmds  _moveto2           [1 1 1  3 6]  18  12  3] BGN plct=[1 1    3 6]
- 811 cmds  _moveto2           [1 1 1  2 1]   7   6  2] END n=-11 i=[1 1 1 2 1] plct=[1 1    3 6] plct2=[1 1    2 -5]
- 760 cmds  _moveCursor        [1 1 1  2 1]   7   6  2] BGN ss=0 tobj.cc=17
+ 287 evnts on_text_motion     BGN  65288 0xff08                  0                                           
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+  78 cmds  _autoMove          [1 1 1  3 4]  16  12  3] BGN tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+  85 cmds  _autoMove          [1 1 1  3 4]  16  12  3]        BACKSPACE(65288) M=-6 C=-1 A=-7 csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 281 cmds  _move              [1 1 1  3 4]  16  12  3] BGN    BACKSPACE(65288) n=-1
+ 325 cmds  _moveto2           [1 1 1  3 4]  16  12  3] BGN plct=[1 1    3 4]
+ 335 cmds  _moveto2           [1 1 1  3 3]  15  12  3] END n=-1 i=[1 1 1 3 3] plct=[1 1    3 4] plct2=[1 1    3 3]
+ 296 cmds  _moveCursor        [1 1 1  3 3]  15  12  3] BGN ss=0 tobj.cc=15
 1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  525.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  2 1]   7   6  2] END ss=0 tobj.cc=6
- 826 cmds  _move              [1 1 1  2 1]   7   6  2] END    BACKSPACE(65288) n=-11
- 941 cmds  _autoMove          [1 1 1  2 1]   7   6  2] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  2 1]   7   6  2] BGN    BACKSPACE(65288) text=' ' rev=1 old=  6 cc=  6 p=0 l=0 c=1 t=0
-1037 cmds  _setTab            [1 1 1  2 1]   7   6  2]        BACKSPACE(65288) text=' ' data=' ' rev=1 old=  6 cc=  6
-1651 tabs  setChord           [1 1 1  2 1]   7   6  2] BGN name='' chunks=[] len(imap)=0
-1653 tabs  setChord           [1 1 1  2 1]   7   6  2] END name='' chunks=[] len(imap)=0
-1040 cmds  _setTab            [1 1 1  2 1]   7   6  2] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  6 cc=  6
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  240.00  465.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  3 3]  15  12  3] END ss=0 tobj.cc=14
+ 285 cmds  _move              [1 1 1  3 3]  15  12  3] END    BACKSPACE(65288) n=-1
+  92 cmds  _autoMove          [1 1 1  3 3]  15  12  3] END tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+ 706 cmds  _setTab            [1 1 1  3 3]  15  12  3] BGN    BACKSPACE(65288) text=' ' rev=1 old= 14 cc= 14 p=0 l=0 c=2 t=2
+ 708 cmds  _setTab            [1 1 1  3 3]  15  12  3]        BACKSPACE(65288) text=' ' data='4' rev=1 old= 14 cc= 14
+  62 chords getChordName       leni=2 is Not a Chord ikey=R M3                  v=[0 4]
+  62 chords getChordName       leni=2 is Not a Chord ikey=R #5                  v=[0 8]
+[4:E :2, b:B :1, 7:G :2, 0:C :1, 5:F :1, 6:G♭:1, 2:D :1]
+[4:E :2, b:B :1, 7:G :2, 0:C :1, 5:F :1, 6:F♯:1, 2:D :1]
+[ None ,  None ,  None ,  None , 6:G♭:1, b:B :1, 4:E :2]
+[6:G♭:1,  None ,  None ,  None ,  None , 5:F :1, 0:C :1]
+1651 tabs  setChord           [1 1 1  3 3]  15  12  3] BGN name='' chunks=[] len(imap)=6
+1653 tabs  setChord           [1 1 1  3 3]  15  12  3] END name='' chunks=[] len(imap)=6
+ 711 cmds  _setTab            [1 1 1  3 3]  15  12  3] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old= 14 cc= 14
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
  351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
  218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
   99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
  195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
  202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  2 1]   7   6  2] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  2 1]   7   6  2]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  2 1]   7   6  2] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1  2 1]   7   6  2] BGN plct=[1 1    2 1]
- 811 cmds  _moveto2           [1 1 1  2 2]   8   6  2] END n=1 i=[1 1 1 2 2] plct=[1 1    2 1] plct2=[1 1    2 2]
- 760 cmds  _moveCursor        [1 1 1  2 2]   8   6  2] BGN ss=0 tobj.cc=6
+ 287 evnts on_text_motion     BGN  65288 0xff08                  0                                           
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+  78 cmds  _autoMove          [1 1 1  3 3]  15  12  3] BGN tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+  85 cmds  _autoMove          [1 1 1  3 3]  15  12  3]        BACKSPACE(65288) M=-6 C=-1 A=-7 csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 281 cmds  _move              [1 1 1  3 3]  15  12  3] BGN    BACKSPACE(65288) n=-1
+ 325 cmds  _moveto2           [1 1 1  3 3]  15  12  3] BGN plct=[1 1    3 3]
+ 335 cmds  _moveto2           [1 1 1  3 2]  14  12  3] END n=-1 i=[1 1 1 3 2] plct=[1 1    3 3] plct2=[1 1    3 2]
+ 296 cmds  _moveCursor        [1 1 1  3 2]  14  12  3] BGN ss=0 tobj.cc=14
 1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  495.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  2 2]   8   6  2] END ss=0 tobj.cc=7
- 826 cmds  _move              [1 1 1  2 2]   8   6  2] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1  2 2]   8   6  2] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  2 2]   8   6  2] BGN    BACKSPACE(65288) text=' ' rev=1 old=  7 cc=  7 p=0 l=0 c=1 t=1
-1037 cmds  _setTab            [1 1 1  2 2]   8   6  2]        BACKSPACE(65288) text=' ' data=' ' rev=1 old=  7 cc=  7
-1651 tabs  setChord           [1 1 1  2 2]   8   6  2] BGN name='' chunks=[] len(imap)=0
-1653 tabs  setChord           [1 1 1  2 2]   8   6  2] END name='' chunks=[] len(imap)=0
-1040 cmds  _setTab            [1 1 1  2 2]   8   6  2] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  7 cc=  7
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  240.00  495.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  3 2]  14  12  3] END ss=0 tobj.cc=13
+ 285 cmds  _move              [1 1 1  3 2]  14  12  3] END    BACKSPACE(65288) n=-1
+  92 cmds  _autoMove          [1 1 1  3 2]  14  12  3] END tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+ 706 cmds  _setTab            [1 1 1  3 2]  14  12  3] BGN    BACKSPACE(65288) text=' ' rev=1 old= 13 cc= 13 p=0 l=0 c=2 t=1
+ 708 cmds  _setTab            [1 1 1  3 2]  14  12  3]        BACKSPACE(65288) text=' ' data='3' rev=1 old= 13 cc= 13
+  62 chords getChordName       leni=1 is Not a Chord ikey=R                     v=[0]
+[4:E :2, b:B :1, 7:G :2, 0:C :1, 5:F :1, 6:G♭:1]
+[4:E :2, b:B :1, 7:G :2, 0:C :1, 5:F :1, 6:F♯:1]
+[ None ,  None ,  None ,  None , 6:G♭:1, b:B :1, 4:E :2]
+[6:G♭:1,  None ,  None ,  None ,  None , 5:F :1, 0:C :1]
+1651 tabs  setChord           [1 1 1  3 2]  14  12  3] BGN name='' chunks=[] len(imap)=6
+1653 tabs  setChord           [1 1 1  3 2]  14  12  3] END name='' chunks=[] len(imap)=6
+ 711 cmds  _setTab            [1 1 1  3 2]  14  12  3] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old= 13 cc= 13
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
  351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
  218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
   99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
  195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
  202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  2 2]   8   6  2] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  2 2]   8   6  2]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  2 2]   8   6  2] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1  2 2]   8   6  2] BGN plct=[1 1    2 2]
- 811 cmds  _moveto2           [1 1 1  2 3]   9   6  2] END n=1 i=[1 1 1 2 3] plct=[1 1    2 2] plct2=[1 1    2 3]
- 760 cmds  _moveCursor        [1 1 1  2 3]   9   6  2] BGN ss=0 tobj.cc=7
+ 287 evnts on_text_motion     BGN  65288 0xff08                  0                                           
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+  78 cmds  _autoMove          [1 1 1  3 2]  14  12  3] BGN tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+  85 cmds  _autoMove          [1 1 1  3 2]  14  12  3]        BACKSPACE(65288) M=-6 C=-1 A=-7 csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 281 cmds  _move              [1 1 1  3 2]  14  12  3] BGN    BACKSPACE(65288) n=-1
+ 325 cmds  _moveto2           [1 1 1  3 2]  14  12  3] BGN plct=[1 1    3 2]
+ 335 cmds  _moveto2           [1 1 1  3 1]  13  12  3] END n=-1 i=[1 1 1 3 1] plct=[1 1    3 2] plct2=[1 1    3 1]
+ 296 cmds  _moveCursor        [1 1 1  3 1]  13  12  3] BGN ss=0 tobj.cc=13
 1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  465.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  2 3]   9   6  2] END ss=0 tobj.cc=8
- 826 cmds  _move              [1 1 1  2 3]   9   6  2] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1  2 3]   9   6  2] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  2 3]   9   6  2] BGN    BACKSPACE(65288) text=' ' rev=1 old=  8 cc=  8 p=0 l=0 c=1 t=2
-1037 cmds  _setTab            [1 1 1  2 3]   9   6  2]        BACKSPACE(65288) text=' ' data=' ' rev=1 old=  8 cc=  8
-1651 tabs  setChord           [1 1 1  2 3]   9   6  2] BGN name='' chunks=[] len(imap)=0
-1653 tabs  setChord           [1 1 1  2 3]   9   6  2] END name='' chunks=[] len(imap)=0
-1040 cmds  _setTab            [1 1 1  2 3]   9   6  2] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  8 cc=  8
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  240.00  525.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  3 1]  13  12  3] END ss=0 tobj.cc=12
+ 285 cmds  _move              [1 1 1  3 1]  13  12  3] END    BACKSPACE(65288) n=-1
+  92 cmds  _autoMove          [1 1 1  3 1]  13  12  3] END tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+ 706 cmds  _setTab            [1 1 1  3 1]  13  12  3] BGN    BACKSPACE(65288) text=' ' rev=1 old= 12 cc= 12 p=0 l=0 c=2 t=0
+ 708 cmds  _setTab            [1 1 1  3 1]  13  12  3]        BACKSPACE(65288) text=' ' data='2' rev=1 old= 12 cc= 12
+[4:E :2, b:B :1, 7:G :2, 0:C :1, 5:F :1]
+[4:E :2, b:B :1, 7:G :2, 0:C :1, 5:F :1]
+[ None ,  None ,  None ,  None ,  None , b:B :1, 4:E :2]
+[ None ,  None ,  None ,  None ,  None , 5:F :1, 0:C :1]
+1651 tabs  setChord           [1 1 1  3 1]  13  12  3] BGN name='' chunks=[] len(imap)=0
+1653 tabs  setChord           [1 1 1  3 1]  13  12  3] END name='' chunks=[] len(imap)=0
+ 711 cmds  _setTab            [1 1 1  3 1]  13  12  3] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old= 12 cc= 12
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
  351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
  218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
   99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
  195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
  202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  2 3]   9   6  2] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  2 3]   9   6  2]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  2 3]   9   6  2] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1  2 3]   9   6  2] BGN plct=[1 1    2 3]
- 811 cmds  _moveto2           [1 1 1  2 4]  10   6  2] END n=1 i=[1 1 1 2 4] plct=[1 1    2 3] plct2=[1 1    2 4]
- 760 cmds  _moveCursor        [1 1 1  2 4]  10   6  2] BGN ss=0 tobj.cc=8
-1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  435.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  2 4]  10   6  2] END ss=0 tobj.cc=9
- 826 cmds  _move              [1 1 1  2 4]  10   6  2] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1  2 4]  10   6  2] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  2 4]  10   6  2] BGN    BACKSPACE(65288) text=' ' rev=1 old=  9 cc=  9 p=0 l=0 c=1 t=3
-1037 cmds  _setTab            [1 1 1  2 4]  10   6  2]        BACKSPACE(65288) text=' ' data=' ' rev=1 old=  9 cc=  9
-1651 tabs  setChord           [1 1 1  2 4]  10   6  2] BGN name='' chunks=[] len(imap)=0
-1653 tabs  setChord           [1 1 1  2 4]  10   6  2] END name='' chunks=[] len(imap)=0
-1040 cmds  _setTab            [1 1 1  2 4]  10   6  2] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  9 cc=  9
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
- 351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
- 218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
-  99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
- 195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
- 202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  2 4]  10   6  2] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  2 4]  10   6  2]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  2 4]  10   6  2] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1  2 4]  10   6  2] BGN plct=[1 1    2 4]
- 811 cmds  _moveto2           [1 1 1  2 5]  11   6  2] END n=1 i=[1 1 1 2 5] plct=[1 1    2 4] plct2=[1 1    2 5]
- 760 cmds  _moveCursor        [1 1 1  2 5]  11   6  2] BGN ss=0 tobj.cc=9
-1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  405.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  2 5]  11   6  2] END ss=0 tobj.cc=10
- 826 cmds  _move              [1 1 1  2 5]  11   6  2] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1  2 5]  11   6  2] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  2 5]  11   6  2] BGN    BACKSPACE(65288) text=' ' rev=1 old= 10 cc= 10 p=0 l=0 c=1 t=4
-1037 cmds  _setTab            [1 1 1  2 5]  11   6  2]        BACKSPACE(65288) text=' ' data=' ' rev=1 old= 10 cc= 10
-1651 tabs  setChord           [1 1 1  2 5]  11   6  2] BGN name='' chunks=[] len(imap)=0
-1653 tabs  setChord           [1 1 1  2 5]  11   6  2] END name='' chunks=[] len(imap)=0
-1040 cmds  _setTab            [1 1 1  2 5]  11   6  2] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old= 10 cc= 10
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
- 351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
- 218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
-  99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
- 195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
- 202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  2 5]  11   6  2] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  2 5]  11   6  2]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  2 5]  11   6  2] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1  2 5]  11   6  2] BGN plct=[1 1    2 5]
- 811 cmds  _moveto2           [1 1 1  2 6]  12   6  2] END n=1 i=[1 1 1 2 6] plct=[1 1    2 5] plct2=[1 1    2 6]
- 760 cmds  _moveCursor        [1 1 1  2 6]  12   6  2] BGN ss=0 tobj.cc=10
+ 287 evnts on_text_motion     BGN  65288 0xff08                  0                                           
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+  78 cmds  _autoMove          [1 1 1  3 1]  13  12  3] BGN tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+  85 cmds  _autoMove          [1 1 1  3 1]  13  12  3]        BACKSPACE(65288) M=-6 C=-1 A=-7 csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 281 cmds  _move              [1 1 1  3 1]  13  12  3] BGN    BACKSPACE(65288) n=-1
+ 325 cmds  _moveto2           [1 1 1  3 1]  13  12  3] BGN plct=[1 1    3 1]
+ 335 cmds  _moveto2           [1 1 1  2 6]  12   6  2] END n=-1 i=[1 1 1 2 6] plct=[1 1    3 1] plct2=[1 1    2 0]
+ 296 cmds  _moveCursor        [1 1 1  2 6]  12   6  2] BGN ss=0 tobj.cc=12
 1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
  216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  375.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  2 6]  12   6  2] END ss=0 tobj.cc=11
- 826 cmds  _move              [1 1 1  2 6]  12   6  2] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1  2 6]  12   6  2] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  2 6]  12   6  2] BGN    BACKSPACE(65288) text=' ' rev=1 old= 11 cc= 11 p=0 l=0 c=1 t=5
-1037 cmds  _setTab            [1 1 1  2 6]  12   6  2]        BACKSPACE(65288) text=' ' data=' ' rev=1 old= 11 cc= 11
+ 300 cmds  _moveCursor        [1 1 1  2 6]  12   6  2] END ss=0 tobj.cc=11
+ 285 cmds  _move              [1 1 1  2 6]  12   6  2] END    BACKSPACE(65288) n=-1
+  92 cmds  _autoMove          [1 1 1  2 6]  12   6  2] END tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+ 706 cmds  _setTab            [1 1 1  2 6]  12   6  2] BGN    BACKSPACE(65288) text=' ' rev=1 old= 11 cc= 11 p=0 l=0 c=1 t=5
+ 708 cmds  _setTab            [1 1 1  2 6]  12   6  2]        BACKSPACE(65288) text=' ' data='1' rev=1 old= 11 cc= 11
+[4:E :2, b:B :1, 7:G :2, 0:C :1]
+[4:E :2, b:B :1, 7:G :2, 0:C :1]
+[ None ,  None ,  None ,  None ,  None , b:B :1, 4:E :2]
+[ None ,  None ,  None ,  None ,  None ,  None , 0:C :1]
 1651 tabs  setChord           [1 1 1  2 6]  12   6  2] BGN name='' chunks=[] len(imap)=0
 1653 tabs  setChord           [1 1 1  2 6]  12   6  2] END name='' chunks=[] len(imap)=0
-1040 cmds  _setTab            [1 1 1  2 6]  12   6  2] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old= 11 cc= 11
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 711 cmds  _setTab            [1 1 1  2 6]  12   6  2] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old= 11 cc= 11
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
  351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
  218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
   99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
  195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
  202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  2 6]  12   6  2] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  2 6]  12   6  2]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  2 6]  12   6  2] BGN    BACKSPACE(65288) n=-11
- 801 cmds  _moveto2           [1 1 1  2 6]  12   6  2] BGN plct=[1 1    2 6]
- 811 cmds  _moveto2           [1 1 1  1 1]   1   0  1] END n=-11 i=[1 1 1 1 1] plct=[1 1    2 6] plct2=[1 1    1 -5]
- 760 cmds  _moveCursor        [1 1 1  1 1]   1   0  1] BGN ss=0 tobj.cc=11
+ 287 evnts on_text_motion     BGN  65288 0xff08                  0                                           
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+  78 cmds  _autoMove          [1 1 1  2 6]  12   6  2] BGN tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+  85 cmds  _autoMove          [1 1 1  2 6]  12   6  2]        BACKSPACE(65288) M=-6 C=-1 A=-7 csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 281 cmds  _move              [1 1 1  2 6]  12   6  2] BGN    BACKSPACE(65288) n=-1
+ 325 cmds  _moveto2           [1 1 1  2 6]  12   6  2] BGN plct=[1 1    2 6]
+ 335 cmds  _moveto2           [1 1 1  2 5]  11   6  2] END n=-1 i=[1 1 1 2 5] plct=[1 1    2 6] plct2=[1 1    2 5]
+ 296 cmds  _moveCursor        [1 1 1  2 5]  11   6  2] BGN ss=0 tobj.cc=11
 1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216   48.00  525.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  1 1]   1   0  1] END ss=0 tobj.cc=0
- 826 cmds  _move              [1 1 1  1 1]   1   0  1] END    BACKSPACE(65288) n=-11
- 941 cmds  _autoMove          [1 1 1  1 1]   1   0  1] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  1 1]   1   0  1] BGN    BACKSPACE(65288) text=' ' rev=1 old=  0 cc=  0 p=0 l=0 c=0 t=0
-1037 cmds  _setTab            [1 1 1  1 1]   1   0  1]        BACKSPACE(65288) text=' ' data='0' rev=1 old=  0 cc=  0
-[4:E :1, b:B :1, 7:G :2, 0:C :1]
-[4:E :1, b:B :1, 7:G :2, 0:C :1]
-[ None ,  None ,  None ,  None ,  None , b:B :1, 4:E :1]
-[ None ,  None ,  None ,  None ,  None ,  None , 0:C :1]
-1651 tabs  setChord           [1 1 1  1 1]   1   0  1] BGN name='CM7/G' chunks=[C M 7 /G] len(imap)=6
-1653 tabs  setChord           [1 1 1  1 1]   1   0  1] END name='CM7/G' chunks=[C M 7 /G] len(imap)=6
-1040 cmds  _setTab            [1 1 1  1 1]   1   0  1] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  0 cc=  0
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  405.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  2 5]  11   6  2] END ss=0 tobj.cc=10
+ 285 cmds  _move              [1 1 1  2 5]  11   6  2] END    BACKSPACE(65288) n=-1
+  92 cmds  _autoMove          [1 1 1  2 5]  11   6  2] END tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+ 706 cmds  _setTab            [1 1 1  2 5]  11   6  2] BGN    BACKSPACE(65288) text=' ' rev=1 old= 10 cc= 10 p=0 l=0 c=1 t=4
+ 708 cmds  _setTab            [1 1 1  2 5]  11   6  2]        BACKSPACE(65288) text=' ' data=' ' rev=1 old= 10 cc= 10
+1651 tabs  setChord           [1 1 1  2 5]  11   6  2] BGN name='' chunks=[] len(imap)=0
+1653 tabs  setChord           [1 1 1  2 5]  11   6  2] END name='' chunks=[] len(imap)=0
+ 711 cmds  _setTab            [1 1 1  2 5]  11   6  2] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old= 10 cc= 10
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
  351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
  218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
   99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
  195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
  202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  1 1]   1   0  1] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  1 1]   1   0  1]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  1 1]   1   0  1] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1  1 1]   1   0  1] BGN plct=[1 1    1 1]
- 811 cmds  _moveto2           [1 1 1  1 2]   2   0  1] END n=1 i=[1 1 1 1 2] plct=[1 1    1 1] plct2=[1 1    1 2]
- 760 cmds  _moveCursor        [1 1 1  1 2]   2   0  1] BGN ss=0 tobj.cc=0
+ 287 evnts on_text_motion     BGN  65288 0xff08                  0                                           
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+  78 cmds  _autoMove          [1 1 1  2 5]  11   6  2] BGN tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+  85 cmds  _autoMove          [1 1 1  2 5]  11   6  2]        BACKSPACE(65288) M=-6 C=-1 A=-7 csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 281 cmds  _move              [1 1 1  2 5]  11   6  2] BGN    BACKSPACE(65288) n=-1
+ 325 cmds  _moveto2           [1 1 1  2 5]  11   6  2] BGN plct=[1 1    2 5]
+ 335 cmds  _moveto2           [1 1 1  2 4]  10   6  2] END n=-1 i=[1 1 1 2 4] plct=[1 1    2 5] plct2=[1 1    2 4]
+ 296 cmds  _moveCursor        [1 1 1  2 4]  10   6  2] BGN ss=0 tobj.cc=10
 1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216   48.00  495.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  1 2]   2   0  1] END ss=0 tobj.cc=1
- 826 cmds  _move              [1 1 1  1 2]   2   0  1] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1  1 2]   2   0  1] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  1 2]   2   0  1] BGN    BACKSPACE(65288) text=' ' rev=1 old=  1 cc=  1 p=0 l=0 c=0 t=1
-1037 cmds  _setTab            [1 1 1  1 2]   2   0  1]        BACKSPACE(65288) text=' ' data='0' rev=1 old=  1 cc=  1
-[4:E :1, 7:G :2, 0:C :1]
-[4:E :1, 7:G :2, 0:C :1]
-[ None ,  None ,  None ,  None ,  None ,  None , 4:E :1]
-[ None ,  None ,  None ,  None ,  None ,  None , 0:C :1]
-1651 tabs  setChord           [1 1 1  1 2]   2   0  1] BGN name='C/G' chunks=[C /G] len(imap)=6
-1653 tabs  setChord           [1 1 1  1 2]   2   0  1] END name='C/G' chunks=[C /G] len(imap)=6
-1040 cmds  _setTab            [1 1 1  1 2]   2   0  1] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  1 cc=  1
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
+ 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  435.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 300 cmds  _moveCursor        [1 1 1  2 4]  10   6  2] END ss=0 tobj.cc=9
+ 285 cmds  _move              [1 1 1  2 4]  10   6  2] END    BACKSPACE(65288) n=-1
+  92 cmds  _autoMove          [1 1 1  2 4]  10   6  2] END tobj.hArrow=0 tobj.vArrow=1 tobj.csrMode=1    BACKSPACE(65288)
+ 706 cmds  _setTab            [1 1 1  2 4]  10   6  2] BGN    BACKSPACE(65288) text=' ' rev=1 old=  9 cc=  9 p=0 l=0 c=1 t=3
+ 708 cmds  _setTab            [1 1 1  2 4]  10   6  2]        BACKSPACE(65288) text=' ' data=' ' rev=1 old=  9 cc=  9
+1651 tabs  setChord           [1 1 1  2 4]  10   6  2] BGN name='' chunks=[] len(imap)=0
+1653 tabs  setChord           [1 1 1  2 4]  10   6  2] END name='' chunks=[] len(imap)=0
+ 711 cmds  _setTab            [1 1 1  2 4]  10   6  2] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  9 cc=  9
+1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=1=UARROW
+ 862 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 862 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
+ 865 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
+1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=0=DARROW
  351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
  218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
-  99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
- 195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
- 202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  1 2]   2   0  1] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  1 2]   2   0  1]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  1 2]   2   0  1] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1  1 2]   2   0  1] BGN plct=[1 1    1 2]
- 811 cmds  _moveto2           [1 1 1  1 3]   3   0  1] END n=1 i=[1 1 1 1 3] plct=[1 1    1 2] plct2=[1 1    1 3]
- 760 cmds  _moveCursor        [1 1 1  1 3]   3   0  1] BGN ss=0 tobj.cc=1
-1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216   48.00  465.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  1 3]   3   0  1] END ss=0 tobj.cc=2
- 826 cmds  _move              [1 1 1  1 3]   3   0  1] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1  1 3]   3   0  1] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  1 3]   3   0  1] BGN    BACKSPACE(65288) text=' ' rev=1 old=  2 cc=  2 p=0 l=0 c=0 t=2
-1037 cmds  _setTab            [1 1 1  1 3]   3   0  1]        BACKSPACE(65288) text=' ' data='0' rev=1 old=  2 cc=  2
-[4:E :1, 7:G :1, 0:C :1]
-[4:E :1, 7:G :1, 0:C :1]
-[ None ,  None ,  None ,  None ,  None ,  None , 4:E :1]
-[ None ,  None ,  None ,  None ,  None ,  None , 0:C :1]
-1651 tabs  setChord           [1 1 1  1 3]   3   0  1] BGN name='C/G' chunks=[C /G] len(imap)=6
-1653 tabs  setChord           [1 1 1  1 3]   3   0  1] END name='C/G' chunks=[C /G] len(imap)=6
-1040 cmds  _setTab            [1 1 1  1 3]   3   0  1] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  2 cc=  2
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
- 351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
- 218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
-  99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
- 195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
- 202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  1 3]   3   0  1] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  1 3]   3   0  1]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  1 3]   3   0  1] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1  1 3]   3   0  1] BGN plct=[1 1    1 3]
- 811 cmds  _moveto2           [1 1 1  1 4]   4   0  1] END n=1 i=[1 1 1 1 4] plct=[1 1    1 3] plct2=[1 1    1 4]
- 760 cmds  _moveCursor        [1 1 1  1 4]   4   0  1] BGN ss=0 tobj.cc=2
-1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216   48.00  435.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  1 4]   4   0  1] END ss=0 tobj.cc=3
- 826 cmds  _move              [1 1 1  1 4]   4   0  1] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1  1 4]   4   0  1] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  1 4]   4   0  1] BGN    BACKSPACE(65288) text=' ' rev=1 old=  3 cc=  3 p=0 l=0 c=0 t=3
-1037 cmds  _setTab            [1 1 1  1 4]   4   0  1]        BACKSPACE(65288) text=' ' data='2' rev=1 old=  3 cc=  3
-  62 chords getChordName       leni=2 is Not a Chord ikey=R 4                   v=[0 5]
-  62 chords getChordName       leni=2 is Not a Chord ikey=R 5                   v=[0 7]
-[7:G :1, 0:C :1]
-[7:G :1, 0:C :1]
-[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
-[ None ,  None ,  None ,  None ,  None ,  None , 0:C :1]
-1651 tabs  setChord           [1 1 1  1 4]   4   0  1] BGN name='' chunks=[] len(imap)=6
-1653 tabs  setChord           [1 1 1  1 4]   4   0  1] END name='' chunks=[] len(imap)=6
-1040 cmds  _setTab            [1 1 1  1 4]   4   0  1] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  3 cc=  3
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
- 351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
- 218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
-  99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
- 195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
- 202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  1 4]   4   0  1] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  1 4]   4   0  1]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  1 4]   4   0  1] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1  1 4]   4   0  1] BGN plct=[1 1    1 4]
- 811 cmds  _moveto2           [1 1 1  1 5]   5   0  1] END n=1 i=[1 1 1 1 5] plct=[1 1    1 4] plct2=[1 1    1 5]
- 760 cmds  _moveCursor        [1 1 1  1 5]   5   0  1] BGN ss=0 tobj.cc=3
-1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216   48.00  405.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  1 5]   5   0  1] END ss=0 tobj.cc=4
- 826 cmds  _move              [1 1 1  1 5]   5   0  1] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1  1 5]   5   0  1] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  1 5]   5   0  1] BGN    BACKSPACE(65288) text=' ' rev=1 old=  4 cc=  4 p=0 l=0 c=0 t=4
-1037 cmds  _setTab            [1 1 1  1 5]   5   0  1]        BACKSPACE(65288) text=' ' data='3' rev=1 old=  4 cc=  4
-  62 chords getChordName       leni=1 is Not a Chord ikey=R                     v=[0]
-[7:G :1]
-[7:G :1]
-[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
-[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
-1651 tabs  setChord           [1 1 1  1 5]   5   0  1] BGN name='' chunks=[] len(imap)=6
-1653 tabs  setChord           [1 1 1  1 5]   5   0  1] END name='' chunks=[] len(imap)=6
-1040 cmds  _setTab            [1 1 1  1 5]   5   0  1] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  4 cc=  4
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
- 351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
- 218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
-  99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
- 195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
- 202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  1 5]   5   0  1] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  1 5]   5   0  1]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  1 5]   5   0  1] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1  1 5]   5   0  1] BGN plct=[1 1    1 5]
- 811 cmds  _moveto2           [1 1 1  1 6]   6   0  1] END n=1 i=[1 1 1 1 6] plct=[1 1    1 5] plct2=[1 1    1 6]
- 760 cmds  _moveCursor        [1 1 1  1 6]   6   0  1] BGN ss=0 tobj.cc=4
-1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216   48.00  375.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1  1 6]   6   0  1] END ss=0 tobj.cc=5
- 826 cmds  _move              [1 1 1  1 6]   6   0  1] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1  1 6]   6   0  1] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1  1 6]   6   0  1] BGN    BACKSPACE(65288) text=' ' rev=1 old=  5 cc=  5 p=0 l=0 c=0 t=5
-1037 cmds  _setTab            [1 1 1  1 6]   6   0  1]        BACKSPACE(65288) text=' ' data='3' rev=1 old=  5 cc=  5
-[]
-[]
-[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
-[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
-1651 tabs  setChord           [1 1 1  1 6]   6   0  1] BGN name='' chunks=[] len(imap)=0
-1653 tabs  setChord           [1 1 1  1 6]   6   0  1] END name='' chunks=[] len(imap)=0
-1040 cmds  _setTab            [1 1 1  1 6]   6   0  1] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old=  5 cc=  5
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
- 351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
- 218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
-  99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
- 195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
- 202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1  1 6]   6   0  1] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1  1 6]   6   0  1]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1  1 6]   6   0  1] BGN    BACKSPACE(65288) n=-11
- 801 cmds  _moveto2           [1 1 1  1 6]   6   0  1] BGN plct=[1 1    1 6]
- 811 cmds  _moveto2           [1 1 1 10 1]  55  54 10] END n=-11 i=[1 1 1 10 1] plct=[1 1    1 6] plct2=[0 0    0 -5]
- 760 cmds  _moveCursor        [1 1 1 10 1]  55  54 10] BGN ss=0 tobj.cc=5
-1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  912.00  525.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1 10 1]  55  54 10] END ss=0 tobj.cc=54
- 826 cmds  _move              [1 1 1 10 1]  55  54 10] END    BACKSPACE(65288) n=-11
- 941 cmds  _autoMove          [1 1 1 10 1]  55  54 10] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1 10 1]  55  54 10] BGN    BACKSPACE(65288) text=' ' rev=1 old= 54 cc= 54 p=0 l=0 c=9 t=0
-1037 cmds  _setTab            [1 1 1 10 1]  55  54 10]        BACKSPACE(65288) text=' ' data=' ' rev=1 old= 54 cc= 54
-1651 tabs  setChord           [1 1 1 10 1]  55  54 10] BGN name='' chunks=[] len(imap)=0
-1653 tabs  setChord           [1 1 1 10 1]  55  54 10] END name='' chunks=[] len(imap)=0
-1040 cmds  _setTab            [1 1 1 10 1]  55  54 10] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old= 54 cc= 54
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
- 351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
- 218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
-  99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
- 195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
- 202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1 10 1]  55  54 10] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1 10 1]  55  54 10]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1 10 1]  55  54 10] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1 10 1]  55  54 10] BGN plct=[1 1   10 1]
- 811 cmds  _moveto2           [1 1 1 10 2]  56  54 10] END n=1 i=[1 1 1 10 2] plct=[1 1   10 1] plct2=[1 1   10 2]
- 760 cmds  _moveCursor        [1 1 1 10 2]  56  54 10] BGN ss=0 tobj.cc=54
-1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  912.00  495.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1 10 2]  56  54 10] END ss=0 tobj.cc=55
- 826 cmds  _move              [1 1 1 10 2]  56  54 10] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1 10 2]  56  54 10] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1 10 2]  56  54 10] BGN    BACKSPACE(65288) text=' ' rev=1 old= 55 cc= 55 p=0 l=0 c=9 t=1
-1037 cmds  _setTab            [1 1 1 10 2]  56  54 10]        BACKSPACE(65288) text=' ' data=' ' rev=1 old= 55 cc= 55
-1651 tabs  setChord           [1 1 1 10 2]  56  54 10] BGN name='' chunks=[] len(imap)=0
-1653 tabs  setChord           [1 1 1 10 2]  56  54 10] END name='' chunks=[] len(imap)=0
-1040 cmds  _setTab            [1 1 1 10 2]  56  54 10] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old= 55 cc= 55
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
- 351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
- 218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
-  99 evnts on_key_press       BGN  65288 0xff08 BACKSPACE        0                                            d=
- 195 evnts on_key_press       UNH  65288 0xff08 BACKSPACE        0                                            d=
- 202 evnts on_key_press       END  65288 0xff08 BACKSPACE        0                                            d=, retv=False
- 286 evnts on_text_motion     BGN  65288 0xff08                  0                                           
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 927 cmds  _autoMove          [1 1 1 10 2]  56  54 10] BGN tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
- 934 cmds  _autoMove          [1 1 1 10 2]  56  54 10]        BACKSPACE(65288) M=-6 C=1 A=-5 csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
- 822 cmds  _move              [1 1 1 10 2]  56  54 10] BGN    BACKSPACE(65288) n=1
- 801 cmds  _moveto2           [1 1 1 10 2]  56  54 10] BGN plct=[1 1   10 2]
- 811 cmds  _moveto2           [1 1 1 10 3]  57  54 10] END n=1 i=[1 1 1 10 3] plct=[1 1   10 2] plct2=[1 1   10 3]
- 760 cmds  _moveCursor        [1 1 1 10 3]  57  54 10] BGN ss=0 tobj.cc=55
-1243 tabs  resizeTnik            BACKSPACE(65288) H=11 j=11 i=0 .J2[H]=1
- 216    BACKSPACE(65288) HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  912.00  465.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
- 764 cmds  _moveCursor        [1 1 1 10 3]  57  54 10] END ss=0 tobj.cc=56
- 826 cmds  _move              [1 1 1 10 3]  57  54 10] END    BACKSPACE(65288) n=1
- 941 cmds  _autoMove          [1 1 1 10 3]  57  54 10] END tobj.hArrow=0 tobj.vArrow=0 tobj.csrMode=1    BACKSPACE(65288)
-1035 cmds  _setTab            [1 1 1 10 3]  57  54 10] BGN    BACKSPACE(65288) text=' ' rev=1 old= 56 cc= 56 p=0 l=0 c=9 t=2
-1037 cmds  _setTab            [1 1 1 10 3]  57  54 10]        BACKSPACE(65288) text=' ' data=' ' rev=1 old= 56 cc= 56
-1651 tabs  setChord           [1 1 1 10 3]  57  54 10] BGN name='' chunks=[] len(imap)=0
-1653 tabs  setChord           [1 1 1 10 3]  57  54 10] END name='' chunks=[] len(imap)=0
-1040 cmds  _setTab            [1 1 1 10 3]  57  54 10] END    BACKSPACE(65288) text=' ' data=' ' rev=1 old= 56 cc= 56
-1831 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=0=LARROW vArrow=0=DARROW
-  47 cmds  _togArrow          BGN reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=0 = HARROWS[tobj.hArrow]='LARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow() MELODY or ARPG or bsp v=0 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  47 cmds  _togArrow          BGN reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=0 = VARROWS[tobj.vArrow]='DARROW'
-  50 cmds  _togArrow          END reverseArrow()  CHORD or ARPG v=1 tobj.hArrow=1 = HARROWS[tobj.hArrow]='RARROW' tobj.vArrow=1 = VARROWS[tobj.vArrow]='UARROW'
-1834 tabs  reverseArrow       reverseArrow() csrMode=1=CHORD  hArrow=1=RARROW vArrow=1=UARROW
- 351 evnts on_text_motion     END  65288 0xff08                  0                                            retv=True
- 218 evnts on_key_release          65288 0xff08 BACKSPACE        0                                           
-  99 evnts on_key_press       BGN  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d=
- 195 evnts on_key_press       UNH  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d=
- 202 evnts on_key_press       END  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d=, retv=False
-  99 evnts on_key_press       BGN  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         d=
- 195 evnts on_key_press       UNH  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         d=
- 202 evnts on_key_press       END  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         d=, retv=False
+  99 evnts on_key_press       BGN  65505 0xffe1 LSHIFT           1 MOD_SHIFT                                  d=
+ 195 evnts on_key_press       UNH  65505 0xffe1 LSHIFT           1 MOD_SHIFT                                  d=
+ 202 evnts on_key_press       END  65505 0xffe1 LSHIFT           1 MOD_SHIFT                                  d=, retv=False
+  99 evnts on_key_press       BGN  65507 0xffe3 LCTRL            3 MOD_SHIFT|MOD_CTRL                         d=
+ 195 evnts on_key_press       UNH  65507 0xffe3 LCTRL            3 MOD_SHIFT|MOD_CTRL                         d=
+ 202 evnts on_key_press       END  65507 0xffe3 LCTRL            3 MOD_SHIFT|MOD_CTRL                         d=, retv=False
   99 evnts on_key_press       BGN    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         d=
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
-1133 cmds  _quit              BGN @^Q Error=0 save=0 tobj.quitting=0
+ 466 cmds  _quit              BGN @^Q Error=0 save=0 tobj.quitting=0
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
-  93 utl   dumpStack          11 cmds       1134 _quit                tobj.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())                 ;  tobj.log(utl.QUIT, p=0, f=2)
-  93 utl   dumpStack          10 cmds       1126 do                   def do(  ): ._quit()
+  93 utl   dumpStack          11 cmds        467 _quit                tobj.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())                 ;  tobj.log(utl.QUIT, p=0, f=2)
+  93 utl   dumpStack          10 cmds        459 do                   def do(  ): ._quit()
   93 utl   dumpStack           9 evnts       130 on_key_press         elif k == 'Q' and isCtlShf(d, m):      cmd = cmds.QuitCmd(         tobj, '@^Q', err=0, save=0)  ;  retv = cmd.do()
   93 utl   dumpStack           8 tabs       1672 on_key_press         def on_key_press(    , symb, mods):         return evnts.on_key_press(    , symb, mods)
   93 utl   dumpStack           7 event       387 dispatch_event       if getattr(, event_type)(*args):
@@ -2487,10 +2344,10 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
-1136 cmds  _quit               J1[1  1  3  10    6    6    0    6 0  0   0 1  0  0  0  0  216 216] @^Q
-1136 cmds  _quit               J2[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216] @^Q
-1136 cmds  _quit               LE[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216] @^Q
-1136 cmds  _quit               END[( 960x540 )( 1x1x10x6 )( 1x1x10x3 ) (0 1 3  ) 0 (   )  216 216] @^Q
+ 469 cmds  _quit               J1[1  1  3  10    6    6    0    6 0  0   0 1  0  0  0  0  216 216] @^Q
+ 469 cmds  _quit               J2[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216] @^Q
+ 469 cmds  _quit               LE[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216] @^Q
+ 469 cmds  _quit               END[( 960x540 )( 1x1x10x6 )( 1x1x2x4  ) (0 1 3  ) 0 (   )  216 216] @^Q
   93 utl   dumpStack           8 utl          37 <module>             MAX_STACK_FRAME       = inspect.stack()
   93 utl   dumpStack           7 <frozen importlib   241 _call_with_frames_removed 
   93 utl   dumpStack           6 <frozen importlib   883 exec_module          
@@ -2501,7 +2358,7 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
   93 utl   dumpStack           1 <frozen importlib  1078 _handle_fromlist     
   93 utl   dumpStack           0 tabs         11 <module>             from   tpkg            import utl    as utl
   94 utl   dumpStack          MAX_STACK_DEPTH= 0
- 647 tabs  dumpStruct         [1 1 1 10 3]  57  54 10] n=[1 1 3 10 6] BGN ntp=[180 180 180 60 6] [60 60 60 6] ( 1x1x10x3 )
+ 647 tabs  dumpStruct         [1 1 1  2 4]  10   6  2] n=[1 1 3 10 6] BGN ntp=[180 180 180 60 6] [60 60 60 6] ( 1x1x2x4  )
  224 tabs  dumpArgs           [a]      .AUTO_SAVE=0
  225 tabs  dumpArgs           [A]         .VARROW=1
  226 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -2515,7 +2372,7 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
  234 tabs  dumpArgs           [F]      .FULL_SCRN=0
  235 tabs  dumpArgs           [g]        .ORD_GRP=1
  236 tabs  dumpArgs           [G]       .GEN_DATA=0
- 237 tabs  dumpArgs           [i]              .i=[1 1 1 10 3]
+ 237 tabs  dumpArgs           [i]              .i=[1 1 1 2 4]
  238 tabs  dumpArgs           [J]      .DSP_J_LEV=4
  239 tabs  dumpArgs           [l]       .LONG_TXT=1
  240 tabs  dumpArgs           [L]             .LL=0
@@ -2534,10 +2391,10 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
  253 tabs  dumpArgs           [w]           .XYVA=[0 0 0 0]
  254 tabs  dumpArgs           [x]           .EXIT=0
  255 tabs  dumpArgs           [Z]             .ZZ=[]
-[]
-[]
-[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
-[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
+[4:E :2, b:B :1, 7:G :2, 0:C :1]
+[4:E :2, b:B :1, 7:G :2, 0:C :1]
+[ None ,  None ,  None ,  None ,  None , b:B :1, 4:E :2]
+[ None ,  None ,  None ,  None ,  None ,  None , 0:C :1]
 1555 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels @^Q
 1
 1
@@ -2556,19 +2413,19 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
  566 tabs  dumpTniksB          J1[0  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    0   0] @^QB
  566 tabs  dumpTniksB          J2[0  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    0   0] @^QB
  566 tabs  dumpTniksB          LE[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216   0] @^QB
- 566 tabs  dumpTniksB          BGN[( 960x540 )( 1x1x10x6 )( 1x1x10x3 ) (0 1 3  ) 0 (   )  216   0] @^QB
+ 566 tabs  dumpTniksB          BGN[( 960x540 )( 1x1x10x6 )( 1x1x2x4  ) (0 1 3  ) 0 (   )  216   0] @^QB
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
    1 @^QB  Page    1          1 V 1  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [128  63 255 255][ 40  20  81 105] C C   480   270 0.000 0.000   442  -118   324 C,C  420  96 0 0 Lucida Console        
    2 @^QB  Line    1          2 V 1  1  0   0    0    0    0    0 0  0   0 0  0  0  0  0    2   2  480.00  270.00  960.00  540.00            [255  31 255 165][ 81  10  81  75] C C   480   270 0.000 0.000   393  -105   288 C,C  373  96 0 0 Lucida Console        
    3 @^QB  Sect    1          3 V 1  1  1   0    0    0    0    0 0  0   0 0  0  0  0  0    3   3  480.00  450.00  960.00  180.00            [255  63  31 165][ 81  20  10  75] C C   480    90 0.000 0.000   147   -39   108 C,C  140  96 0 0 Lucida Console        
    4 @^QB  Colm    1          4 V 1  1  1   1    0    0    0    0 0  0   0 0  0  0  0  0    4   4   48.00  450.00   96.00  180.00            [255 255  63 165][ 81  81  20  75] C C    48    90 0.000 0.000    79   -21    58 C,C   75  96 0 0 Lucida Console        
-   5 @^QB  Tabl    1          7 V 1  1  1   1    1    0    0    0 0  0   0 0  0  0  0  0    5   5   48.00  525.00   96.00   30.00   1   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-   6 @^QB  Tabl    2          7 V 1  1  1   1    2    0    0    0 0  0   0 0  0  0  0  0    6   6   48.00  495.00   96.00   30.00   2   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-   7 @^QB  Tabl    3          7 V 1  1  1   1    3    0    0    0 0  0   0 0  0  0  0  0    7   7   48.00  465.00   96.00   30.00   3   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-   8 @^QB  Tabl    4          7 V 1  1  1   1    4    0    0    0 0  0   0 0  0  0  0  0    8   8   48.00  435.00   96.00   30.00   4   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-   9 @^QB  Tabl    5          7 V 1  1  1   1    5    0    0    0 0  0   0 0  0  0  0  0    9   9   48.00  405.00   96.00   30.00   5   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  10 @^QB  Tabl    6          7 V 1  1  1   1    6    0    0    0 0  0   0 0  0  0  0  0   10  10   48.00  375.00   96.00   30.00   6   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+   5 @^QB  Tabl    1 0        7 V 1  1  1   1    1    0    0    0 0  0   0 0  0  0  0  0    5   5   48.00  525.00   96.00   30.00   1   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+   6 @^QB  Tabl    2 0        7 V 1  1  1   1    2    0    0    0 0  0   0 0  0  0  0  0    6   6   48.00  495.00   96.00   30.00   2   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+   7 @^QB  Tabl    3 0        7 V 1  1  1   1    3    0    0    0 0  0   0 0  0  0  0  0    7   7   48.00  465.00   96.00   30.00   3   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+   8 @^QB  Tabl    4 2        7 V 1  1  1   1    4    0    0    0 0  0   0 0  0  0  0  0    8   8   48.00  435.00   96.00   30.00   4   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+   9 @^QB  Tabl    5 3        7 V 1  1  1   1    5    0    0    0 0  0   0 0  0  0  0  0    9   9   48.00  405.00   96.00   30.00   5   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  10 @^QB  Tabl    6 3        7 V 1  1  1   1    6    0    0    0 0  0   0 0  0  0  0  0   10  10   48.00  375.00   96.00   30.00   6   0  1 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
   11 @^QB  Colm    2          4 V 1  1  1   2    6    0    0    0 0  0   0 0  0  0  0  0   11  11  144.00  450.00   96.00  180.00            [255 255  63 165][ 81  81  20  75] C C    48    90 0.000 0.000    79   -21    58 C,C   75  96 0 0 Lucida Console        
   12 @^QB  Tabl    7          7 V 1  1  1   2    7    0    0    0 0  0   0 0  0  0  0  0   12  12  144.00  525.00   96.00   30.00  13  12  3 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
   13 @^QB  Tabl    8          7 V 1  1  1   2    8    0    0    0 0  0   0 0  0  0  0  0   13  13  144.00  495.00   96.00   30.00  14  12  3 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
@@ -2634,12 +2491,12 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
   73 @^QB  Tabl   60          7 V 1  1  1  10   60    0    0    0 0  0   0 0  0  0  0  0   73  73  912.00  375.00   96.00   30.00 114 108 19 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
   74 @^QB  Sect    2          3 V 1  1  2  10   60    0    0    0 0  0   0 0  0  0  0  0   74  74  480.00  270.00  960.00  180.00            [255  63  31 165][ 81  20  10  75] C C   480    90 0.000 0.000   147   -39   108 C,C  140  96 0 0 Lucida Console        
   75 @^QB  Colm   11          4 V 1  1  2  11   60    0    0    0 0  0   0 0  0  0  0  0   75  75   48.00  270.00   96.00  180.00            [255 255  63 165][ 81  81  20  75] C C    48    90 0.000 0.000    79   -21    58 C,C   75  96 0 0 Lucida Console        
-  76 @^QB  Note    1          8 V 1  1  2  11   60    1    0    0 0  0   0 0  0  0  0  0   76  76   48.00  345.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  77 @^QB  Note    2          8 V 1  1  2  11   60    2    0    0 0  0   0 0  0  0  0  0   77  77   48.00  315.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  78 @^QB  Note    3          8 V 1  1  2  11   60    3    0    0 0  0   0 0  0  0  0  0   78  78   48.00  285.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  79 @^QB  Note    4          8 V 1  1  2  11   60    4    0    0 0  0   0 0  0  0  0  0   79  79   48.00  255.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  80 @^QB  Note    5          8 V 1  1  2  11   60    5    0    0 0  0   0 0  0  0  0  0   80  80   48.00  225.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  81 @^QB  Note    6          8 V 1  1  2  11   60    6    0    0 0  0   0 0  0  0  0  0   81  81   48.00  195.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  76 @^QB  Note    1 E        8 V 1  1  2  11   60    1    0    0 0  0   0 0  0  0  0  0   76  76   48.00  345.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  77 @^QB  Note    2 B        8 V 1  1  2  11   60    2    0    0 0  0   0 0  0  0  0  0   77  77   48.00  315.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  78 @^QB  Note    3 G        8 V 1  1  2  11   60    3    0    0 0  0   0 0  0  0  0  0   78  78   48.00  285.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  79 @^QB  Note    4 E        8 V 1  1  2  11   60    4    0    0 0  0   0 0  0  0  0  0   79  79   48.00  255.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  80 @^QB  Note    5 C        8 V 1  1  2  11   60    5    0    0 0  0   0 0  0  0  0  0   80  80   48.00  225.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  81 @^QB  Note    6 G        8 V 1  1  2  11   60    6    0    0 0  0   0 0  0  0  0  0   81  81   48.00  195.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
   82 @^QB  Colm   12          4 V 1  1  2  12   60    6    0    0 0  0   0 0  0  0  0  0   82  82  144.00  270.00   96.00  180.00            [255 255  63 165][ 81  81  20  75] C C    48    90 0.000 0.000    79   -21    58 C,C   75  96 0 0 Lucida Console        
   83 @^QB  Note    7          8 V 1  1  2  12   60    7    0    0 0  0   0 0  0  0  0  0   83  83  144.00  345.00   96.00   30.00  66  60 11 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
   84 @^QB  Note    8          8 V 1  1  2  12   60    8    0    0 0  0   0 0  0  0  0  0   84  84  144.00  315.00   96.00   30.00  66  60 11 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
@@ -2705,10 +2562,10 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
  144 @^QB  Note   60          8 V 1  1  2  20   60   60    0    0 0  0   0 0  0  0  0  0  144 144  912.00  195.00   96.00   30.00 114 108 19 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  145 @^QB  Sect    3          3 V 1  1  3  20   60   60    0    0 0  0   0 0  0  0  0  0  145 145  480.00   90.00  960.00  180.00            [255  63  31 165][ 81  20  10  75] C C   480    90 0.000 0.000   147   -39   108 C,C  140  96 0 0 Lucida Console        
  146 @^QB  Colm   21          4 V 1  1  3  21   60   60    0    0 0  0   0 0  0  0  0  0  146 146   48.00   90.00   96.00  180.00            [255 255  63 165][ 81  81  20  75] C C    48    90 0.000 0.000    79   -21    58 C,C   75  96 0 0 Lucida Console        
- 147 @^QB  Kord    1          a V 1  1  3  21   60   60    0    1 0  0   0 0  0  0  0  0  147 147   48.00  165.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 148 @^QB  Kord    2          a V 1  1  3  21   60   60    0    2 0  0   0 0  0  0  0  0  148 148   48.00  135.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 149 @^QB  Kord    3          a V 1  1  3  21   60   60    0    3 0  0   0 0  0  0  0  0  149 149   48.00  105.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 150 @^QB  Kord    4          a V 1  1  3  21   60   60    0    4 0  0   0 0  0  0  0  0  150 150   48.00   75.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+ 147 @^QB  Kord    1 C        a V 1  1  3  21   60   60    0    1 0  0   0 0  0  0  0  0  147 147   48.00  165.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+ 148 @^QB  Kord    2 M        a V 1  1  3  21   60   60    0    2 0  0   0 0  0  0  0  0  148 148   48.00  135.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+ 149 @^QB  Kord    3 7        a V 1  1  3  21   60   60    0    3 0  0   0 0  0  0  0  0  149 149   48.00  105.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+ 150 @^QB  Kord    4 /G       a V 1  1  3  21   60   60    0    4 0  0   0 0  0  0  0  0  150 150   48.00   75.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 37.36 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  151 @^QB  Kord    5          a V 1  1  3  21   60   60    0    5 0  0   0 0  0  0  0  0  151 151   48.00   45.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  152 @^QB  Kord    6          a V 1  1  3  21   60   60    0    6 0  0   0 0  0  0  0  0  152 152   48.00   15.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  153 @^QB  Colm   22          4 V 1  1  3  22   60   60    0    6 0  0   0 0  0  0  0  0  153 153  144.00   90.00   96.00  180.00            [255 255  63 165][ 81  81  20  75] C C    48    90 0.000 0.000    79   -21    58 C,C   75  96 0 0 Lucida Console        
@@ -2774,17 +2631,17 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
  213 @^QB  Kord   58          a V 1  1  3  30   60   60    0   58 0  0   0 0  0  0  0  0  213 213  912.00   75.00   96.00   30.00 114 108 19 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  214 @^QB  Kord   59          a V 1  1  3  30   60   60    0   59 0  0   0 0  0  0  0  0  214 214  912.00   45.00   96.00   30.00 114 108 19 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  215 @^QB  Kord   60          a V 1  1  3  30   60   60    0   60 0  0   0 0  0  0  0  0  215 215  912.00   15.00   96.00   30.00 114 108 19 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 216 @^QB  HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  912.00  465.00   96.00   30.00 114 108 19 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 216 @^QB  HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  435.00   96.00   30.00 114 108 19 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  582 tabs  dumpTniksB          J1[1  1  3  10   60   60    0   60 0  0   0 1  0  0  0  0  216 216] @^QB
  582 tabs  dumpTniksB          J2[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216] @^QB
  582 tabs  dumpTniksB          LE[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216] @^QB
- 582 tabs  dumpTniksB          END[( 960x540 )( 1x1x10x6 )( 1x1x10x3 ) (0 1 3  ) 0 (   )  216 216] @^QB
+ 582 tabs  dumpTniksB          END[( 960x540 )( 1x1x10x6 )( 1x1x2x4  ) (0 1 3  ) 0 (   )  216 216] @^QB
  615 tabs  dumpTniksE          J1[0  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    0   0] @^QE
  615 tabs  dumpTniksE          J2[0  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    0   0] @^QE
  615 tabs  dumpTniksE          LE[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216   0] @^QE
- 615 tabs  dumpTniksE          BGN[( 960x540 )( 1x1x10x6 )( 1x1x10x3 ) (0 1 3  ) 0 (   )  216   0] @^QE
+ 615 tabs  dumpTniksE          BGN[( 960x540 )( 1x1x10x6 )( 1x1x2x4  ) (0 1 3  ) 0 (   )  216   0] @^QE
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
    1 @^QE  Page    1          1 V 1  0  0   0    0    0    0    0 0  0   0 0  0  0  0  0    1   1  480.00  270.00  960.00  540.00            [128  63 255 255][ 40  20  81 105] C C   480   270 0.000 0.000   442  -118   324 C,C  420  96 0 0 Lucida Console        
@@ -2822,12 +2679,12 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
   33 @^QE  Colm   28          4 V 1  1  3  28    0    0    0    0 0  0   0 0  0  0  0  0   33  33  720.00   90.00   96.00  180.00            [255 255  63 165][ 81  81  20  75] C C    48    90 0.000 0.000    79   -21    58 C,C   75  96 0 0 Lucida Console        
   34 @^QE  Colm   29          4 V 1  1  3  29    0    0    0    0 0  0   0 0  0  0  0  0   34  34  816.00   90.00   96.00  180.00            [255 255  63 165][ 81  81  20  75] C C    48    90 0.000 0.000    79   -21    58 C,C   75  96 0 0 Lucida Console        
   35 @^QE  Colm   30          4 V 1  1  3  30    0    0    0    0 0  0   0 0  0  0  0  0   35  35  912.00   90.00   96.00  180.00            [255 255  63 165][ 81  81  20  75] C C    48    90 0.000 0.000    79   -21    58 C,C   75  96 0 0 Lucida Console        
-  36 @^QE  Tabl    1          7 V 1  1  3  30    1    0    0    0 0  0   0 0  0  0  0  0   36  36   48.00  525.00   96.00   30.00  55  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  37 @^QE  Tabl    2          7 V 1  1  3  30    2    0    0    0 0  0   0 0  0  0  0  0   37  37   48.00  495.00   96.00   30.00  56  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  38 @^QE  Tabl    3          7 V 1  1  3  30    3    0    0    0 0  0   0 0  0  0  0  0   38  38   48.00  465.00   96.00   30.00  57  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  39 @^QE  Tabl    4          7 V 1  1  3  30    4    0    0    0 0  0   0 0  0  0  0  0   39  39   48.00  435.00   96.00   30.00  58  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  40 @^QE  Tabl    5          7 V 1  1  3  30    5    0    0    0 0  0   0 0  0  0  0  0   40  40   48.00  405.00   96.00   30.00  59  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  41 @^QE  Tabl    6          7 V 1  1  3  30    6    0    0    0 0  0   0 0  0  0  0  0   41  41   48.00  375.00   96.00   30.00  60  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  36 @^QE  Tabl    1 0        7 V 1  1  3  30    1    0    0    0 0  0   0 0  0  0  0  0   36  36   48.00  525.00   96.00   30.00  55  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  37 @^QE  Tabl    2 0        7 V 1  1  3  30    2    0    0    0 0  0   0 0  0  0  0  0   37  37   48.00  495.00   96.00   30.00  56  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  38 @^QE  Tabl    3 0        7 V 1  1  3  30    3    0    0    0 0  0   0 0  0  0  0  0   38  38   48.00  465.00   96.00   30.00  57  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  39 @^QE  Tabl    4 2        7 V 1  1  3  30    4    0    0    0 0  0   0 0  0  0  0  0   39  39   48.00  435.00   96.00   30.00  58  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  40 @^QE  Tabl    5 3        7 V 1  1  3  30    5    0    0    0 0  0   0 0  0  0  0  0   40  40   48.00  405.00   96.00   30.00  59  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  41 @^QE  Tabl    6 3        7 V 1  1  3  30    6    0    0    0 0  0   0 0  0  0  0  0   41  41   48.00  375.00   96.00   30.00  60  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
   42 @^QE  Tabl    7          7 V 1  1  3  30    7    0    0    0 0  0   0 0  0  0  0  0   42  42  144.00  525.00   96.00   30.00  55  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
   43 @^QE  Tabl    8          7 V 1  1  3  30    8    0    0    0 0  0   0 0  0  0  0  0   43  43  144.00  495.00   96.00   30.00  56  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
   44 @^QE  Tabl    9          7 V 1  1  3  30    9    0    0    0 0  0   0 0  0  0  0  0   44  44  144.00  465.00   96.00   30.00  57  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
@@ -2882,12 +2739,12 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
   93 @^QE  Tabl   58          7 V 1  1  3  30   58    0    0    0 0  0   0 0  0  0  0  0   93  93  912.00  435.00   96.00   30.00  58  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
   94 @^QE  Tabl   59          7 V 1  1  3  30   59    0    0    0 0  0   0 0  0  0  0  0   94  94  912.00  405.00   96.00   30.00  59  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
   95 @^QE  Tabl   60          7 V 1  1  3  30   60    0    0    0 0  0   0 0  0  0  0  0   95  95  912.00  375.00   96.00   30.00  60  54 10 [255 176  31 255][ 81  56  10 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  96 @^QE  Note    1          8 V 1  1  3  30   60    1    0    0 0  0   0 0  0  0  0  0   96  96   48.00  345.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  97 @^QE  Note    2          8 V 1  1  3  30   60    2    0    0 0  0   0 0  0  0  0  0   97  97   48.00  315.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  98 @^QE  Note    3          8 V 1  1  3  30   60    3    0    0 0  0   0 0  0  0  0  0   98  98   48.00  285.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
-  99 @^QE  Note    4          8 V 1  1  3  30   60    4    0    0 0  0   0 0  0  0  0  0   99  99   48.00  255.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 100 @^QE  Note    5          8 V 1  1  3  30   60    5    0    0 0  0   0 0  0  0  0  0  100 100   48.00  225.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 101 @^QE  Note    6          8 V 1  1  3  30   60    6    0    0 0  0   0 0  0  0  0  0  101 101   48.00  195.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  96 @^QE  Note    1 E        8 V 1  1  3  30   60    1    0    0 0  0   0 0  0  0  0  0   96  96   48.00  345.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  97 @^QE  Note    2 B        8 V 1  1  3  30   60    2    0    0 0  0   0 0  0  0  0  0   97  97   48.00  315.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  98 @^QE  Note    3 G        8 V 1  1  3  30   60    3    0    0 0  0   0 0  0  0  0  0   98  98   48.00  285.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+  99 @^QE  Note    4 E        8 V 1  1  3  30   60    4    0    0 0  0   0 0  0  0  0  0   99  99   48.00  255.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+ 100 @^QE  Note    5 C        8 V 1  1  3  30   60    5    0    0 0  0   0 0  0  0  0  0  100 100   48.00  225.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+ 101 @^QE  Note    6 G        8 V 1  1  3  30   60    6    0    0 0  0   0 0  0  0  0  0  101 101   48.00  195.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  102 @^QE  Note    7          8 V 1  1  3  30   60    7    0    0 0  0   0 0  0  0  0  0  102 102  144.00  345.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  103 @^QE  Note    8          8 V 1  1  3  30   60    8    0    0 0  0   0 0  0  0  0  0  103 103  144.00  315.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  104 @^QE  Note    9          8 V 1  1  3  30   60    9    0    0 0  0   0 0  0  0  0  0  104 104  144.00  285.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
@@ -2942,10 +2799,10 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
  153 @^QE  Note   58          8 V 1  1  3  30   60   58    0    0 0  0   0 0  0  0  0  0  153 153  912.00  255.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  154 @^QE  Note   59          8 V 1  1  3  30   60   59    0    0 0  0   0 0  0  0  0  0  154 154  912.00  225.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  155 @^QE  Note   60          8 V 1  1  3  30   60   60    0    0 0  0   0 0  0  0  0  0  155 155  912.00  195.00   96.00   30.00  60  54 10 [ 63 255  63 255][ 20  81  20 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 156 @^QE  Kord    1          a V 1  1  3  30   60   60    0    1 0  0   0 0  0  0  0  0  156 156   48.00  165.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 157 @^QE  Kord    2          a V 1  1  3  30   60   60    0    2 0  0   0 0  0  0  0  0  157 157   48.00  135.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 158 @^QE  Kord    3          a V 1  1  3  30   60   60    0    3 0  0   0 0  0  0  0  0  158 158   48.00  105.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 159 @^QE  Kord    4          a V 1  1  3  30   60   60    0    4 0  0   0 0  0  0  0  0  159 159   48.00   75.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+ 156 @^QE  Kord    1 C        a V 1  1  3  30   60   60    0    1 0  0   0 0  0  0  0  0  156 156   48.00  165.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+ 157 @^QE  Kord    2 M        a V 1  1  3  30   60   60    0    2 0  0   0 0  0  0  0  0  157 157   48.00  135.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+ 158 @^QE  Kord    3 7        a V 1  1  3  30   60   60    0    3 0  0   0 0  0  0  0  0  158 158   48.00  105.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
+ 159 @^QE  Kord    4 /G       a V 1  1  3  30   60   60    0    4 0  0   0 0  0  0  0  0  159 159   48.00   75.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 37.36 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  160 @^QE  Kord    5          a V 1  1  3  30   60   60    0    5 0  0   0 0  0  0  0  0  160 160   48.00   45.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  161 @^QE  Kord    6          a V 1  1  3  30   60   60    0    6 0  0   0 0  0  0  0  0  161 161   48.00   15.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  162 @^QE  Kord    7          a V 1  1  3  30   60   60    0    7 0  0   0 0  0  0  0  0  162 162  144.00  165.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
@@ -3002,45 +2859,56 @@ snapPath=<tpkg.cmds.SnapshotCmd object at 0x000001FA784E16C0>
  213 @^QE  Kord   58          a V 1  1  3  30   60   60    0   58 0  0   0 0  0  0  0  0  213 213  912.00   75.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  214 @^QE  Kord   59          a V 1  1  3  30   60   60    0   59 0  0   0 0  0  0  0  0  214 214  912.00   45.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
  215 @^QE  Kord   60          a V 1  1  3  30   60   60    0   60 0  0   0 0  0  0  0  0  215 215  912.00   15.00   96.00   30.00  60  54 10 [ 31 180 255 255][ 10  57  81 255] C C    48    15 18.68 32.00    25    -7    18 C,C   23  96 0 0 Lucida Console        
- 216 @^QE  HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  912.00  465.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
+ 216 @^QE  HCrs    1    0.000 f V 1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216  144.00  435.00   96.00   30.00  60  54 10 [ 31 255 192 135]1.000 1.000 1.000 C C   48   15 Group(order=15) None
  Tid  Why  Name  Cnt PrtlText G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds v a FnSz dpi B I FontName
  Tid  Why  Name  Cnt  Rotated G V P  L  S   C    T    N    I    K M  R   Q H  B  A  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  626 tabs  dumpTniksE          J1[1  1  3  10    6    6    0    6 0  0   0 1  0  0  0  0  216 216] @^QE
  626 tabs  dumpTniksE          J2[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216] @^QE
  626 tabs  dumpTniksE          LE[1  1  3  30   60   60    0   60 0  0   0 1  0  0  0  0  216 216] @^QE
- 626 tabs  dumpTniksE          END[( 960x540 )( 1x1x10x6 )( 1x1x10x3 ) (0 1 3  ) 0 (   )  216 216] @^QE
- 666 tabs  dumpStruct         [1 1 1 10 3]  57  54 10] n=[1 1 3 10 6] END ntp=[180 180 180 60 6] [60 60 60 6] ( 1x1x10x3 )
+ 626 tabs  dumpTniksE          END[( 960x540 )( 1x1x10x6 )( 1x1x2x4  ) (0 1 3  ) 0 (   )  216 216] @^QE
+ 666 tabs  dumpStruct         [1 1 1  2 4]  10   6  2] n=[1 1 3 10 6] END ntp=[180 180 180 60 6] [60 60 60 6] ( 1x1x2x4  )
  766 tabs  transposeData      BGN ( 1x1x10x6 ) dmp=1
  770 tabs  transposeData      dl=[1 1 10 6] dt=['list' 'list' 'list' 'str']
-                                                                     
+000233                                                               
 
-                                                                 
+0          0          0          2          3          3         
  805 tabs  dumpDataVert       BGN ( 1x1x6x10 ) lc=1 ll=1 i=0 w=10 txt='Colm '
 Page 1
 Colm Line 1    
  815 tabs  dumpDataVert       END ( 1x1x6x10 ) lc=1 ll=1 i=0
  782 tabs  transposeData      END ( 1x1x6x10 ) dmp=1
- 141 chords dumpLimap            0 0-1              []                  [R]                [0]           [G ]               
-  0 0              R            
-  0 0              0     
-  0 0 0                                           R            
-1062 cmds  _snapshot          BASE_NAME='test' logId='None' snapId='None' typ='INIT' PNG='png'
-1063 cmds  _snapshot          tobj.fNameLogId='test.27' snapName='test.27.0.INIT.png' quit 0 save=0
-1064 cmds  _snapshot          C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.27.0.INIT.png
-1066 cmds  _snapshot          snapName='test.27.0.INIT.png' quit 0 save=0
+ 141 chords dumpLimap            0 0 0 CM7/G        [C  M  7  /G]       [R M3 M3 5  5  7 ] [7 0 4 7 b 4] [G  C  E  G  B  E ]
+ 141 chords dumpLimap            0 0 1 G46x         [G  4  6  x ]       [R R M3 4  6  6 ]  [0 5 9 0 4 9] [G  C  E  G  B  E ]
+ 141 chords dumpLimap            0 0 2 B+b2s4/G     [B  +  b2 s4 /G]    [R b2 4  4  #5 #5] [8 1 5 8 0 5] [G  C  E  G  B  E ]
+ 141 chords dumpLimap            0 0 3 Emb6/G       [E  m  b6 /G]       [R R m3 m3 5  #5]  [3 8 0 3 7 0] [G  C  E  G  B  E ]
+ 141 chords dumpLimap            1 0-1              []                  [R]                [0]           [F ]               
+ 141 chords dumpLimap            2 0-1              []                  [R]                [0]           [F♯]               
+  0 0 CM7/G        5RM357M3     G46x         R46RM36      B+b2s4/G     #5b24#5R4    Emb6/G       m3#5Rm35R    
+  1 0              R            
+  2 0              R            
+  0 0 CM7/G        7047b4G46x         059049B+b2s4/G     815805Emb6/G       380370
+  1 0              0     
+  2 0              0     
+  0 0 7047b4 059049 815805 380370                 5RM357M3     R46RM36      #5b24#5R4    m3#5Rm35R    
+  1 0 0                                           R            
+  2 0 0                                           R            
+ 764 cmds  _snapshot          BASE_NAME='test' logId='None' snapId='None' typ='INIT' PNG='png'
+ 765 cmds  _snapshot          tobj.fNameLogId='test.9' snapName='test.9.0.INIT.png' quit 0 save=0
+ 766 cmds  _snapshot          C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.9.0.INIT.png
+ 768 cmds  _snapshot          snapName='test.9.0.INIT.png' quit 0 save=0
  220 tabs  geomFileName       Atest.1.1.3.10.6_CC_CC.png
- 350 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.27.0.INIT.png')
+ 350 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.INIT.png')
  351 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
- 353 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.27.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
- 350 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.27.0.INIT.png')
+ 353 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.9.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+ 350 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.9.0.INIT.png')
  351 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
- 353 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.27.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-1074 cmds  _snapshot          BASE_NAME='test' [1 1 3 10 6]
-1075 cmds  _snapshot          snapName0='test.png' quit 0 save=0
-1076 cmds  _snapshot          snapName2='Atest.1.1.3.10.6_CC_CC.png' quit 0 save=0
-1077 cmds  _snapshot          snapPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-1078 cmds  _snapshot          snapPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-1144 cmds  _quit              END @^Q Error=0 save=0 tobj.quitting=1
+ 353 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.9.0.INIT.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+ 776 cmds  _snapshot          BASE_NAME='test' [1 1 3 10 6]
+ 777 cmds  _snapshot          snapName0='test.png' quit 0 save=0
+ 778 cmds  _snapshot          snapName2='Atest.1.1.3.10.6_CC_CC.png' quit 0 save=0
+ 779 cmds  _snapshot          snapPath0=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+ 780 cmds  _snapshot          snapPath2=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
+ 477 cmds  _quit              END @^Q Error=0 save=0 tobj.quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
 1868 tabs  cleanupCsvFile     Flush & Close C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv
  342 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
@@ -3051,11 +2919,11 @@ Colm Line 1
  350 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
  351 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.csv')
  353 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.csv ###
-1876 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.27.csv
+1876 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.9.csv
  350 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
- 351 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.27.csv')
- 353 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.27.csv ###
-1147 cmds  _quit              Calling close(),1154 cmds  _quit              tobj.EXIT=0 returning retv=True
+ 351 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.9.csv')
+ 353 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.9.csv ###
+ 480 cmds  _quit              Calling close(), 487 cmds  _quit              tobj.EXIT=0 returning retv=True
  202 evnts on_key_press       END    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         d=, retv=None
 1942 tabs  <module>           Thats all folks!
 1943 tabs  <module>           END C:\Users\Owner\Documents\GitHub\tabs\tabs.py
@@ -3063,10 +2931,10 @@ Colm Line 1
  345 utl   getFilePath        fileName =Atest.1.1.3.10.6_CC_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.log')
  342 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
  345 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')
-1906 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.27.txt
+1906 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.9.txt
  350 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
- 351 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.27.txt')
- 353 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.27.txt ###
+ 351 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.9.txt')
+ 353 utl   copyFile           copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.9.txt ###
 1908 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC_CC.txt
  350 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
  351 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')

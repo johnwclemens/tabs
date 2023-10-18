@@ -18,7 +18,7 @@ CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT   = utl.CAT,  utl.CSV,  utl.EVN,  utl.LO
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA  = utl.CATS, utl.CSVS, utl.EVNS, utl.LOGS, utl.PNGS, utl.TEXT, utl.DATA 
 BASE_NAME,        BASE_PATH,        PATH  = utl.paths()
 
-MELODY, CHORD, ARPG            = utl.MELODY, utl.CHORD, utl.ARPG
+MLDY, CHRD, ARPG               = utl.MLDY, utl.CHRD, utl.ARPG
 LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
 
 LBL, SPR              = utl.LBL, utl.SPR
@@ -71,7 +71,7 @@ class AutoMoveCmd(Cmd):
         self.tobj, self.how, self.dbg = tobj, how, dbg
         
     def do(  self): self._autoMove()
-    def undo(self): self._autoMove()
+    def undo(self): self._autoMove() # todo fixme
     
     def _autoMove(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
@@ -96,7 +96,7 @@ class CsrJumpCmd(Cmd):
         self.tobj, self.how, self.txt, self.ab = tobj, how, txt, ab
 
     def do(  self): self._csrJump()
-    def undo(self): self._csrJump()
+    def undo(self): self._csrJump() # todo fixme
 
     def _csrJump(self):
         tobj, how, txt, ab = self.tobj, self.how, self.txt, self.ab
@@ -269,6 +269,21 @@ class InsertSpaceCmd(Cmd):
             tobj.pasteTabs(how)
             tobj.unselectAll(how)
 ########################################################################################################################################################################################################
+class MoveCmd(Cmd):
+    def __init__(self, tobj, how, n, ss=0, dbg=1):
+        self.tobj, self.how, self.n, self.ss, self.dbg = tobj, how, n, ss, dbg
+        
+    def do(  self): self._move()
+    def undo(self): self._move() # todo fixme
+    
+    def _move(self):
+        tobj, how, n, ss, dbg = self.tobj, self.how, self.n, self.ss, self.dbg
+        if dbg:    tobj.log(f'BGN {how} {n=}', pos=1)
+        p, l, c, t = tobj.j2()
+        cmd = MoveTo2Cmd(tobj, p, l, c, t, n=n)     ;  cmd.do()
+        if tobj.CURSOR and tobj.cursor: cmd = MoveCursorCmd(tobj, ss, how)     ;  cmd.do()
+        if dbg:    tobj.log(f'END {how} {n=}', pos=1)
+########################################################################################################################################################################################################
 class MoveCursorCmd(Cmd):
     def __init__(self, tobj, ss=0, why=Z, dbg=1):
         self.tobj, self.ss, self.why, self.dbg = tobj, ss, why, dbg
@@ -319,36 +334,6 @@ class MoveTo2Cmd(Cmd):
         tobj.i[P] = p2  % np + 1
         if dbg: tobj.log(f'END {n=} {tobj.fmti()} plct={tobj.fplct(p, l, c, t)} plct2={tobj.fplct(p2, l2, c2, t2)}', pos=1)
 ########################################################################################################################################################################################################
-class MoveCmd(Cmd):
-    def __init__(self, tobj, how, n, ss=0, dbg=1):
-        self.tobj, self.how, self.n, self.ss, self.dbg = tobj, how, n, ss, dbg
-        
-    def do(  self): self._move()
-    def undo(self): self._move() # todo fixme
-    
-    def _move(self):
-        tobj, how, n, ss, dbg = self.tobj, self.how, self.n, self.ss, self.dbg
-        if dbg:    tobj.log(f'BGN {how} {n=}', pos=1)
-        p, l, c, t = tobj.j2()
-        cmd = MoveTo2Cmd(tobj, p, l, c, t, n=n)     ;  cmd.do()
-        if tobj.CURSOR and tobj.cursor: cmd = MoveCursorCmd(tobj, ss, how)     ;  cmd.do()
-        if dbg:    tobj.log(f'END {how} {n=}', pos=1)
-########################################################################################################################################################################################################
-class MoveUpCmd(Cmd):
-    def __init__(self, tobj, how, dbg=1):
-        self.tobj, self.how, self.dbg = tobj, how, dbg
-        
-    def do(  self): self._moveUp()
-    def undo(self): self._moveUp() # todo fixme
-    
-    def _moveUp(self):
-        tobj, how, dbg = self.tobj, self.how, self.dbg
-        p, l, s, c, t = tobj.j()  ;  n = tobj.n[T] - 1  ;  m = tobj.n[L] - 1
-        if dbg: tobj.log(f'BGN {how}', pos=1)
-        if t>0: cmd = MoveToCmd(tobj, how, p, l,                 c, 0)     ;  cmd.do() # go up   to top    of      line
-        else:   cmd = MoveToCmd(tobj, how, p, l-1 if l>0 else m, c, n)     ;  cmd.do() # go up   to bottom of prev line, wrap down to bottom of last line
-        if dbg: tobj.log(f'END {how}', pos=1)
-########################################################################################################################################################################################################
 class MoveDownCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
@@ -394,12 +379,27 @@ class MoveRightCmd(Cmd):
         else:   cmd = MoveToCmd(tobj, how, p, l+1 if l<m else 0, 0, t)     ;  cmd.do() # go right to bgn of next line, wrap left to top of first line
         if dbg: tobj.log(f'END {how}', pos=1)                # go left & down to bgn of next line, wrap left to top of first line
 ########################################################################################################################################################################################################
+class MoveUpCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+        
+    def do(  self): self._moveUp()
+    def undo(self): self._moveUp() # todo fixme
+    
+    def _moveUp(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        p, l, s, c, t = tobj.j()  ;  n = tobj.n[T] - 1  ;  m = tobj.n[L] - 1
+        if dbg: tobj.log(f'BGN {how}', pos=1)
+        if t>0: cmd = MoveToCmd(tobj, how, p, l,                 c, 0)     ;  cmd.do() # go up   to top    of      line
+        else:   cmd = MoveToCmd(tobj, how, p, l-1 if l>0 else m, c, n)     ;  cmd.do() # go up   to bottom of prev line, wrap down to bottom of last line
+        if dbg: tobj.log(f'END {how}', pos=1)
+########################################################################################################################################################################################################
 class NextPageCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
         
     def do(  self): self._nextPage()
-    def undo(self): self._nextPage()
+    def undo(self): self._nextPage() # todo fixme
     
     def _nextPage(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg

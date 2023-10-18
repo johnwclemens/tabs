@@ -12,7 +12,7 @@ from   tpkg import cmds      as cmds
 slog, fmtf, fmtl, fmtm         = utl.slog, utl.fmtf, utl.fmtl, utl.fmtm
 X, W, Y, Z                     = utl.X, utl.W, utl.Y, utl.Z
 TT, NN, II, KK                 = utl.TT, utl.NN, utl.II, utl.KK
-MELODY, CHORD, ARPG            = utl.MELODY, utl.CHORD, utl.ARPG
+MLDY, CHRD, ARPG               = utl.MLDY, utl.CHRD, utl.ARPG
 LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
 BOLD, COLOR, ITALIC, FONT_NAME, FONT_SIZE                                = utl.BOLD, utl.COLOR, utl.ITALIC, utl.FONT_NAME, utl.FONT_SIZE
 P, L, S, C, T, N, I, K, R, Q, H, M, B, A, D, E                           = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
@@ -178,15 +178,15 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif k == 'Y' and isAltShf(d, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_SIZE,     33 / 32,    'fontSize')     ;  cmd.do()
     elif k == 'Y' and isAlt(   d, m):      cmd = cmds.SetFontPrmCmd(   tobj, FONT_SIZE,     32 / 33,    'fontSize')     ;  cmd.do()
     ####################################################################################################################################################################################################
-#   elif k == 'LEFT'   and isCtlShf(d, m): cmd = cmds.TogPageCmd(      tobj, '@ ^LEFT', -1)           ;  cmd.do()
-#   elif k == 'LEFT'   and isCtl(   d, m): cmd = cmds.TogPageCmd(      tobj, '@  LEFT',  1)           ;  cmd.do()
-#   elif k == 'LEFT':                      cmd = cmds.MoveUpCmd(       tobj, '   LEFT')               ;  cmd.do() # go up   to top    of line, wrap down to bottom of prev line
-#   elif k == 'RIGHT'  and isCtlShf(d, m): cmd = cmds.TogPageCmd(      tobj, '@ ^RIGHT', -1)          ;  cmd.do()
-#   elif k == 'RIGHT'  and isCtl(   d, m): cmd = cmds.TogPageCmd(      tobj, '@  RIGHT',  1)          ;  cmd.do()
-#   elif k == 'RIGHT':                     cmd = cmds.MoveDownCmd(     tobj, '   RIGHT')              ;  cmd.do() # go down to bottom tab on same line, wrap to next line
-    elif k == 'ESCAPE':                    cmd = cmds.TogSelectAllCmd( tobj, '   ESCAPE')             ;  cmd.do()
-    elif k == 'TAB'  and isCtl(d, m):      cmd = cmds.SetCHVModeCmd(   tobj, '@  TAB', MELODY, LARROW)                 ;  cmd.do()
-    elif k == 'TAB':                       cmd = cmds.SetCHVModeCmd(   tobj, '   TAB', MELODY, RARROW)                 ;  cmd.do()
+#   elif k == 'LEFT'   and isCtlShf(d, m): cmd = cmds.TogPageCmd(      tobj, '@ ^LEFT', -1)         ;  cmd.do()
+#   elif k == 'LEFT'   and isCtl(   d, m): cmd = cmds.TogPageCmd(      tobj, '@  LEFT',  1)         ;  cmd.do()
+#   elif k == 'LEFT':                      cmd = cmds.MoveUpCmd(       tobj, '   LEFT')             ;  cmd.do() # go up   to top    of line, wrap down to bottom of prev line
+#   elif k == 'RIGHT'  and isCtlShf(d, m): cmd = cmds.TogPageCmd(      tobj, '@ ^RIGHT', -1)        ;  cmd.do()
+#   elif k == 'RIGHT'  and isCtl(   d, m): cmd = cmds.TogPageCmd(      tobj, '@  RIGHT',  1)        ;  cmd.do()
+#   elif k == 'RIGHT':                     cmd = cmds.MoveDownCmd(     tobj, '   RIGHT')            ;  cmd.do() # go down to bottom tab on same line, wrap to next line
+    elif k == 'ESCAPE':                    cmd = cmds.TogSelectAllCmd( tobj, '   ESCAPE')           ;  cmd.do()
+    elif k == 'TAB'       and isCtl(d, m): cmd = cmds.SetCHVModeCmd(   tobj, '@  TAB',       MLDY, LARROW)             ;  cmd.do()
+    elif k == 'TAB':                       cmd = cmds.SetCHVModeCmd(   tobj, '   TAB',       MLDY, RARROW)             ;  cmd.do()
     elif k == 'SLASH'     and isCtl(d, m): cmd = cmds.SetCHVModeCmd(   tobj, '@  SLASH',     ARPG, RARROW, UARROW)     ;  cmd.do()
     elif k == 'SLASH'     and isAlt(d, m): cmd = cmds.SetCHVModeCmd(   tobj, ' & SLASH',     ARPG, LARROW, DARROW)     ;  cmd.do()
     elif k == 'BACKSLASH' and isCtl(d, m): cmd = cmds.SetCHVModeCmd(   tobj, '@  BACKSLASH', ARPG, RARROW, DARROW)     ;  cmd.do()
@@ -195,10 +195,10 @@ def on_key_press(tobj, symb, mods, dbg=1):
     else:  retv = False   ;   slog(f'UNH {fsm(symb, mods)} d={fmtm(d)}') if dbg else None
     ####################################################################################################################################################################################################
     if  not  tobj.isParsing():
-        if   k == 'ENTER' and isCtl(d, m):      cmd = cmds.SetCHVModeCmd(tobj, '@ ENTER', CHORD, v=DARROW)  ;  cmd.do()
-        elif k == 'ENTER':                      cmd = cmds.SetCHVModeCmd(tobj, '  ENTER', CHORD, v=UARROW)  ;  cmd.do()
-        elif k == 'SPACE' and tobj.tblank != W: cmd = cmds.AutoMoveCmd(  tobj, '  SPACE')                   ;  cmd.do() # todo
-#        elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while parsing', f=2)
+        if   k == 'ENTER' and isShf(d, m):      cmd = cmds.SetCHVModeCmd(tobj, '  ^ENTER', CHRD, v=DARROW)  ;  tobj.prevEvntText = k  ;  cmd.do()
+        elif k == 'ENTER':                      cmd = cmds.SetCHVModeCmd(tobj, '   ENTER', CHRD, v=UARROW)  ;  tobj.prevEvntText = k  ;  cmd.do()
+        elif k == 'SPACE' and tobj.tblank != W: cmd = cmds.AutoMoveCmd(  tobj, '   SPACE')                                            ;  cmd.do() # todo
+#        elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while not parsing', f=2)
     if dbg:  slog(f'END {    fsm(symb, mods)} d={fmtm(d)}, {retv=}')
     return retv
 ########################################################################################################################################################################################################
@@ -263,7 +263,7 @@ def on_text(tobj, text, dbg=1):
     retv  = True
     tkb   = tobj.keyboard
     kd    = tkb.data if tkb else None
-    if dbg: slog(f'BGN {ft(text)} {tobj.inserting=} {tobj.jumping=} {tobj.settingN=} {tobj.shifting=} {tobj.swapping=}')
+    if   dbg: slog(f'BGN {ft(text)} {tobj.inserting=} {tobj.jumping=} {tobj.settingN=} {tobj.shifting=} {tobj.swapping=} {tobj.prevEvntText=}')
     if      tobj.inserting:                  cmd = cmds.InsertSpaceCmd(tobj,  'onTxt', text)                ;  cmd.do()
     elif    tobj.jumping:                    cmd = cmds.CsrJumpCmd(    tobj,  'onTxt', text, tobj.jumpAbs)  ;  cmd.do()
     elif    tobj.settingN:                   cmd = cmds.SetNCmd(       tobj,  'onTxt', text)                ;  cmd.do()
@@ -271,8 +271,9 @@ def on_text(tobj, text, dbg=1):
     elif    tobj.swapping:                   cmd = cmds.SwapTabCmd(    tobj,  'onTxt', text)                ;  cmd.do()
     elif    tobj.isTab(text):                cmd = cmds.SetTabCmd(     tobj,  'onTxt', text)                ;  cmd.do()
     elif    text == '$' and isShf(kd, MODS): cmd = cmds.SnapshotCmd(   tobj,   text, 'SNAP')                ;  cmd.do()
-    else:   slog(f'UNH {ft(text)}', f=-2) if dbg else None   ;   retv = False
-    if dbg: slog(f'END {ft(text)} {tobj.inserting=} {tobj.jumping=} {tobj.settingN=} {tobj.shifting=} {tobj.swapping=} {retv=}')
+    elif dbg: slog(f'UNH {ft(text)} {tobj.prevEvntText=}', f=-2) if text != '\r' and tobj.prevEvntText != 0xff0d else None   ;   retv = False # 65293
+    tobj.prevEvntText = text
+    if   dbg: slog(f'END {ft(text)} {tobj.inserting=} {tobj.jumping=} {tobj.settingN=} {tobj.shifting=} {tobj.swapping=} {tobj.prevEvntText=} {retv=}')
     return retv
 ########################################################################################################################################################################################################
 def on_text_motion(tobj, motion, dbg=1):
@@ -326,8 +327,8 @@ def on_text_motion(tobj, motion, dbg=1):
         elif m == k.MOTION_END_OF_LINE:       cmd = cmds.MoveCmd(        tobj, f' & END(      {m})',  nt*c2)    ;  cmd.do()
         elif m == k.MOTION_BEGINNING_OF_FILE: msg =                            f' & BGN FILE( {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif m == k.MOTION_END_OF_FILE:       msg =                            f' & END FILE( {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif m == k.MOTION_COPY:              msg =                            f' & COPY(     {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
-        elif m == k.MOTION_PASTE:             msg =                            f' & PASTE(    {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+#        elif m == k.MOTION_COPY:              msg =                            f' & COPY(     {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+#        elif m == k.MOTION_PASTE:             msg =                            f' & PASTE(    {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
         else:                                 msg =                            f' & UNH(      {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
     else:
         if   m == k.MOTION_UP:                cmd = cmds.MoveCmd(        tobj, f'   UP(       {m})', -1)        ;  cmd.do()
@@ -344,8 +345,8 @@ def on_text_motion(tobj, motion, dbg=1):
         elif m == k.MOTION_END_OF_LINE:       cmd = cmds.MoveCmd(        tobj, f'   END(      {m})',  nt*c2)    ;  cmd.do()
         elif m == k.MOTION_BEGINNING_OF_FILE: msg =                            f'   BGN FILE( {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
         elif m == k.MOTION_END_OF_FILE:       msg =                            f'   END FILE( {m})'             ;  slog(msg)   ;   retv = False # tobj.quit(msg) # N/A
-        elif m == k.MOTION_COPY:              msg =                            f'   COPY(     {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
-        elif m == k.MOTION_PASTE:             msg =                            f'   PASTE(    {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+#        elif m == k.MOTION_COPY:              msg =                            f'   COPY(     {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
+#        elif m == k.MOTION_PASTE:             msg =                            f'   PASTE(    {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
         else:                                 msg =                            f'   UNH(      {m})'             ;  slog(msg)   ;   retv = False  ;  cmd = cmds.QuitCmd(tobj, msg)  ;  cmd.do()
     if dbg: slog(f'END {ftm(m)} {retv=}')
     return retv
