@@ -1,5 +1,4 @@
-import os, pathlib, sys #, glob
-import inspect, operator #, math
+import operator, os, sys
 import collections, itertools
 from   collections     import Counter
 from   itertools       import accumulate
@@ -322,7 +321,7 @@ class Tabs(pyglet.window.Window):
         if not path.parent.exists():
             self.log(f'WARN Invalid Data File Path {path.parent=} -> mkdir', f=2)
             path.parent.mkdir(parents=True, exist_ok=True)
-            if not path.parent.exists():    msg = f'ERROR mkdir failed on {path.parent=}'  ;  self.log(msg)  ;  self.quit(msg)
+            if not path.parent.exists():    msg = f'ERROR mkdir failed on {path.parent=}'  ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
             if not path.exists():           path.touch()
     ####################################################################################################################################################################################################
     def _initWindowA(self, dbg=1):
@@ -445,9 +444,9 @@ class Tabs(pyglet.window.Window):
     def dplc(  self, data=None, p=0, l=0, c=0):
         data = self.dproxy(data)
         if data:
-            if p >= len(data):           msg = f'ERROR BAD p index {p=} {l=} {c=} {len(data)=}'        ;  self.log(msg)  ;  self.quit(msg)
-            if l >= len(data[p]):        msg = f'ERROR BAD l index {p=} {l=} {c=} {len(data[p])=}'     ;  self.log(msg)  ;  self.quit(msg)
-            if c >= len(data[p][l]):     msg = f'ERROR BAD c index {p=} {l=} {c=} {len(data[p][l])=}'  ;  self.log(msg)  ;  self.quit(msg)
+            if p >= len(data):           msg = f'ERROR BAD p index {p=} {l=} {c=} {len(data)=}'        ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
+            if l >= len(data[p]):        msg = f'ERROR BAD l index {p=} {l=} {c=} {len(data[p])=}'     ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
+            if c >= len(data[p][l]):     msg = f'ERROR BAD c index {p=} {l=} {c=} {len(data[p][l])=}'  ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
             return data, data[p], data[p][l], data[p][l][c]
         return []
     ####################################################################################################################################################################################################
@@ -687,7 +686,7 @@ class Tabs(pyglet.window.Window):
         if not path.exists():   path = utl.getFilePath(self.DAT_GFN, BASE_PATH, fdir=DATA, fsfx=Z)
         stat = path.stat()  ;   size = stat.st_size
         if size == 0:           self.log(f'WARN Zero Len Data File  {path} -> Generate Data File', f=fd)   ;   size = self.genDataFile(path)
-        if size == 0:            msg =  f'ERROR Zero Len Data File {size=}'      ;   self.log(msg, f=fd)   ;   self.quit(msg)
+        if size == 0:            msg =  f'ERROR Zero Len Data File {size=}'      ;   self.log(msg, f=fd)   ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
         with open(path, 'r', encoding='utf-8')  as DATA_FILE:
             DATA_FILE.seek(0, 2)      ;     size = DATA_FILE.tell()   ;   DATA_FILE.seek(0, 0)
             self.log(f'{DATA_FILE.name:40} {size:3,} bytes = {size/1024:3,.1f} KB', f=fd)
@@ -952,7 +951,7 @@ class Tabs(pyglet.window.Window):
             elif s == NN:  tlist, j = (self.snams, A) if exp1 else (self.capos, D) if exp2 else (self.notes, N)
             elif s == II:  tlist, j = (self.snums, B) if exp1 else (self.capos, D) if exp2 else (self.ikeys, I)
             elif s == KK:  tlist, j = (self.snams, A) if exp1 else (self.capos, D) if exp2 else (self.kords, K)
-            else:   msg = f'{msg2} {msg1}'   ;    self.log(msg)   ;   self.quit(msg) # f'{self.fmtJText(j, why=why)}'
+            else:   msg = f'{msg2} {msg1}'   ;    self.log(msg)   ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
             if dbg: msg =        f'{msg1}'   ;    self.log(msg, f=0) # self.fmtJText(j, why=why)
             return  tlist, j, None, None
         if 0 <= t < self.n[T]:
@@ -962,10 +961,10 @@ class Tabs(pyglet.window.Window):
             elif s == NN:  tlist, j, k, txt = (self.snams, A, kA, self.sobj.stringNames[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.notes, N, kN, tab)
             elif s == II:  tlist, j, k, txt = (self.snums, B, kO, self.sobj.stringNumbs[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.ikeys, I, kI, tab)
             elif s == KK:  tlist, j, k, txt = (self.snams, A, kA, self.sobj.stringNames[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.kords, K, kK, tab)
-            else:   msg = f'{msg2} {msg1}'  ;  self.log(msg)   ;  self.quit(msg) # self.fmtJText(j, t, why)
+            else:   msg = f'{msg2} {msg1}'  ;  self.log(msg)   ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
             if dbg: msg =        f'{msg1}'  ;  self.log(msg, f=0) # self.fmtJText(j, t, why)
             return  tlist, j, k, txt
-        msg = f'{msg3} {msg1}'   ;   self.log(msg)   ;   self.quit(msg)   ;   self.fmtJText(j, why)
+        msg = f'{msg3} {msg1}'   ;   self.log(msg)   ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()   ;   self.fmtJText(j, why)
         return tlist, j, k, txt
     ####################################################################################################################################################################################################
     def geom(self, j, p=None, n=None, i=None, dbg=1):
@@ -1116,7 +1115,7 @@ class Tabs(pyglet.window.Window):
                     assert fnt.name == fnt2.name,  f'ERROR loading font, {m[FONT_NAME]=} {fnt=} {fnt2=}'
                     assert fnt.size == fnt2.size,  f'ERROR loading font, {m[FONT_SIZE]=} {fnt=} {fnt2=}'
 #                   assert fnt == fnt2,            f'ERROR loading font, {fnt=} {fnt2=}'  # why does this assert? (stretch mismatch, address)
-                else: msg = f'ERROR {FONT_NAME} not in {m=}'    ;    self.log(msg)    ;    self.quit(msg)
+                else: msg = f'ERROR {FONT_NAME} not in {m=}'    ;    self.log(msg)    ;    cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
         self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwh} {ads} {cva} {s} {ftxt}', p=0, f=0)
 #        if ist(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
 
@@ -1221,7 +1220,7 @@ class Tabs(pyglet.window.Window):
         return tnik
     ####################################################################################################################################################################################################
     def g_resizeTniks(self, tlist, j, pt=None, why=Z, dbg=1, dbg2=1):
-        if not self.n[j]:     msg = f'ERROR {self.fmtJText(j, why)} SKIP {self.n[j]=}'   ;   self.log(msg) #  ;   self.quit(msg)
+        if not self.n[j]:     msg = f'ERROR {self.fmtJText(j, why)} SKIP {self.n[j]=}'   ;   self.log(msg) #  ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
         n, _, x, y, w, h = self.geom(j, pt, dbg=dbg2)
         x2 = x  ;  y2 = y  ;  j2 = j  ;  tlist2 = tlist
         p, l, c, t = self.J1plct()    ;  lp, ll = self.dl()[0], self.dl()[1]
@@ -1231,7 +1230,7 @@ class Tabs(pyglet.window.Window):
                 if    j == P:                    v = int(self.pages[self.J1[P]].visible)  ;  self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
                 else:                           y2 = y - i*h
                 if    j == L:
-                    if self.J2[L] >= lp*ll:     msg = f'WARN MAX Line {self.J2[L]=} >= {lp=} * {ll=}'  ;   self.log(msg)  ;  self.quit(msg)
+                    if self.J2[L] >= lp*ll:     msg = f'WARN MAX Line {self.J2[L]=} >= {lp=} * {ll=}'  ;   self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
                     y2 = y - i*h - self.LL*i*h/(self.n[S]*self.n[T])
                 elif  j >= T:
                     s = self.ss2sl()[self.J1[S] % self.sslen()]
@@ -1257,12 +1256,15 @@ class Tabs(pyglet.window.Window):
     def dumpTniksPfx(self, why=Z, h=1, r=1):
         if r:        self.resetJ(why)   ;   self.clearVisib()
         self.dumpGeom('BGN', why)
-        if not r:    self.dumpJs(why, w=None)  if self.J1 and self.J2 else self.quit(f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')
+        if not r:
+            if self.J1 and self.J2: self.dumpJs(why, w=None)
+            else:                   cmd = cmds.QuitCmd(self, f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')  ;  cmd.do()
         if h: self.dumpHdrs()
 
     def dumpTniksSfx(self, why=Z, h=1):
         if h: self.dumpHdrs()
-        self.dumpJs(why, w=None)               if self.J1 and self.J2 else self.quit(f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')
+        if self.J1 and self.J2:     self.dumpJs(why, w=None)
+        else:                       cmd = cmds.QuitCmd(self, f'ERROR No Js {len(self.J1)=} {len(self.J2)=}')  ;  cmd.do()
         self.dumpGeom('END', why)
 
     def dumpHdrs(self): hdr1 = self.fTnikHdr(0)   ;   hdr0 = self.fTnikHdr(1)   ;   self.log(hdr1, p=0)   ;   self.log(hdr0, p=0)
@@ -1288,8 +1290,8 @@ class Tabs(pyglet.window.Window):
 
     def dumpTnik(self, t=None, j=None, why=Z):
         if   t is None:    self.log(self.fTnikHdr(), p=0)   ;   return # hack
-        if   j is None:                              msg = f'{why} ERROR BAD j {j=}'             ;  self.log(msg)  ;  self.quit(msg)
-        elif not ist(t, LBL) and not ist(t, SPR):    msg = f'{why} ERROR Bad t type {type(t)=}'  ;  self.log(msg)  ;  self.quit(msg)
+        if   j is None:                              msg = f'{why} ERROR BAD j {j=}'             ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
+        elif not ist(t, LBL) and not ist(t, SPR):    msg = f'{why} ERROR Bad t type {type(t)=}'  ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
         j1   = self.J1   ;   p, l, c, t2 = j1[P], j1[L], j1[C], j1[T]   ;   fc, bc, rot_txt, sfx = Z, Z, Z, Z
         foid = self.foid(t, j, why)   ;    gv = f'{self.gn[j]:x} {self.ftvis(t)}'   ;   fj2 = self.fmtJ2()   ;   xywh = self.ftxywh(t)
         cc   = self.plct2cc(p, l, c, t2)   ;   cnc = f'{cc+1:3} {self.normalizeCC(cc):3} {self.cc2cn(cc)+1:2}' if j >= T else W*10
@@ -1415,7 +1417,7 @@ class Tabs(pyglet.window.Window):
     def createCursor(self, why, dbg=1):
         x, y, w, h, c = self.cc2xywh()
         kk = 0  ;  kl = self.k[H]  ;  k = kl[kk]
-        if w == 0 or h == 0:        msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   self.quit(msg)
+        if w == 0 or h == 0:        msg = f'ERROR DIV by ZERO {w=} {h=}'   ;   self.log(msg)   ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
         if self.TEST == 3:  self.cursor = self.createSprite(self.hcurs, 0, H, x, y, w, h, k, why=why, v=1, dbg=dbg)
         else:               self.cursor = self.createTnik(  self.hcurs, 0, H, x, y, w, h, k, why=why, v=1, dbg=dbg)
         if self.LL:         self.setLLStyle(self.cc, CURRENT_STYLE)
@@ -1620,7 +1622,7 @@ class Tabs(pyglet.window.Window):
         cn    = self.plc2cn(p, l, c)          ;     key = cn   ;   mli = self.cobj.mlimap
         msg1  = f'plc={self.fplc(p, l, c)}'   ;    msg2 = f'dl={self.fmtdl()} {cn=} {key=} keys={fmtl(list(mli.keys()))}'
         if dbg:        self.log(f'{msg1} {msg2}', f=0)
-        if p >= dl[0] or l >= dl[1] or c >= dl[2]:  msg = f'ERROR Indexing {msg1} >= {msg2}'  ;  self.log(msg)  ;  self.quit(msg) #todo is this correct?
+        if p >= dl[0] or l >= dl[1] or c >= dl[2]:  msg = f'ERROR Indexing {msg1} >= {msg2}'  ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do() # todo is this correct?
         imap  = self.cobj.getChordName(self.data, None, cn, p, l, c)
         if dbg2 and imap: self.cobj.dumpImap(imap, f=1)
         return imap
@@ -1681,7 +1683,7 @@ class Tabs(pyglet.window.Window):
             cmd = cmds.ResizeTniksCmd(self, dbg=1)     ;  cmd.do()
         return True
     ####################################################################################################################################################################################################
-    def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  self.quit(msg)
+    def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
 #   def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in  utl.DSymb.SYMBS else 0
     def isTab(self, text):    return 1 if text == self.tblank or self.sobj.isFret(text) or text in misc.DSymb.SYMBS else 0
@@ -1749,14 +1751,14 @@ class Tabs(pyglet.window.Window):
             cmd = cmds.UnselectTabsCmd(self, how, m=0, cn=cn)     ;  cmd.do()
     ####################################################################################################################################################################################################
     def setLLStyle(self, cc, style, dbg=0):
-        if not self.LL or not self.qclms: msg = f'SKIP {self.LL=} {len(self.qclms)=}'     ;  self.log(msg)  ;  self.quit(msg)
+        if not self.LL or not self.qclms: msg = f'SKIP {self.LL=} {len(self.qclms)=}'     ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
         p, l, c, t = self.cc2plct(cc)
         bold, italic = 0, 0   ;   np, nl, ns, nc, nt = self.n
         i = c + l * nc if self.qclms else 0
         if   style == NORMAL_STYLE:    bold = 0   ;  italic = 0
         elif style == CURRENT_STYLE:   bold = 0   ;  italic = 1
         elif style == SELECT_STYLE:    bold = 0   ;  italic = 0
-        else: msg = f'ERROR Invalid style @ plct={self.fplct(p, l, c, t)} {i=} {style=}'  ;  self.log(msg)  ;  self.quit(msg)
+        else: msg = f'ERROR Invalid style @ plct={self.fplct(p, l, c, t)} {i=} {style=}'  ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
         (bs, fs) = (0, 1) if style == NORMAL_STYLE else (1, 0)
         if self.qclms and len(self.qclms) > i:
             self.setFgcBgc(   self.qclms[i], self.llcolor(i, Q)[fs], self.llcolor(i, Q)[bs])
@@ -1856,33 +1858,6 @@ class Tabs(pyglet.window.Window):
 #    def olog(self, *o, p=1, pos=0, f=1, s=Y, e=X, ff=False):
 #        if pos:   pos = f'{self.fmtPos()}'
 #        olog((pos, o), p, f, s, e, ff)
-    ####################################################################################################################################################################################################
-    def quit(self, why=Z, error=1, save=1, dbg=1):
-        retv = True
-        hdr1 = self.fTnikHdr(1)  ;   hdr0 = self.fTnikHdr(0)   ;   self.log(hdr1, p=0, f=2)  ;  self.log(hdr0,     p=0, f=2)   ;   err = f'Error={error}'
-        self.log(f'BGN {why} {err} {save=} {self.quitting=}', f=2)                   ;          self.log(utl.QUIT, p=0, f=2)   ;   msg = 'Recursion Error'
-        self.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())      ;          self.log(utl.QUIT, p=0, f=2)
-        if self.quitting:        msg += f' {self.quitting=} Exiting'  ;  self.log(msg, f=2)  ;  self.close() #  ;   return True
-        self.dumpTniksSfx(why)        ;     self.quitting += 1
-        if not error:
-            utl.dumpStack(utl.MAX_STACK_FRAME)
-            if dbg:  self.dumpStruct(why, dbg=dbg)
-            if save: cmd = cmds.SaveDataFileCmd(self, why, self.dataPath1)    ;  cmd.do()
-            if dbg:  self.transposeData(dmp=dbg)
-            if dbg:  self.cobj.dumpMlimap(why)
-        if self.SNAPS:    cmd = cmds.SnapshotCmd(self, f'quit {error} {save=}', utl.INIT)     ;  cmd.do()
-        self.log(f'END {why} {err} {save=} {self.quitting=}', f=2)       ;   self.log(utl.QUIT_END, p=0, f=2)
-        self.cleanupFiles()
-        self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(utl.QUIT_END, p=0, f=0)
-        self.log('Calling close()', e=Y, f=2)
-        self.close()
-        if self.TEST:
-            if   self.EXIT == 0: retv = False  ;  self.log(f'{self.EXIT=} returning {retv=}')
-            elif self.EXIT == 1: retv = True   ;  self.log(f'{self.EXIT=} returning {retv=}')
-            elif self.EXIT == 2:                  self.log(f'{self.EXIT=} Calling pyglet.app.exit()')  ;   pyglet.app.exit()
-            else:                                 self.log(f'{self.EXIT=} Calling exit()')             ;   exit()
-        else:                                     self.log(f'{self.EXIT=} returning {retv=}')
-        return retv
     ####################################################################################################################################################################################################
     def cleanupFiles(self):
         self.cleanupCsvFile()

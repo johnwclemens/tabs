@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-import itertools, pathlib
+import inspect, itertools, pathlib
+import pyglet
 import pyglet.image              as pygimg
 #import pyglet.text               as pygtxt
 from   tpkg        import utl    as utl
@@ -191,7 +192,7 @@ class TogKordNamesCmd(Cmd):
         if dbg: tobj.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d=Z)}')
         hits = self._ivalhits(tobj, ivals, how)
         for cn2 in hits:
-            if cn2 not in tobj.smap: tobj.selectTabs(how, m=0, cn=cn2)
+            if cn2 not in tobj.smap: cmd = SelectTabsCmd(tobj, how, m=0, cn=cn2)     ;  cmd.do()
             self._togKordName(tobj, how, cn2)
         if dbg: tobj.log(f'END {how} mks={fmtl(mks)} cn2={cn2:2} ivals={fmtl(msg, d=Z)}')
 
@@ -347,25 +348,25 @@ class TogCsrModeCmd(Cmd):
         tobj.dumpCursorArrows(f'END {how} {a=} {c=} {h=} {v=}')
 ########################################################################################################################################################################################################
 class CsrJumpCmd(Cmd):
-    def __init__(self, tobj, how, txt, abso):
-        self.tobj, self.how, self.txt, self.abso = tobj, how, txt, abso
+    def __init__(self, tobj, how, txt, ab):
+        self.tobj, self.how, self.txt, self.ab = tobj, how, txt, ab
 
     def do(  self): self._csrJump()
     def undo(self): self._csrJump()
 
     def _csrJump(self):
-        tobj, how, txt, abso = self.tobj, self.how, self.txt, self.abso
-        cc = tobj.cursorCol()            ;            tobj.jumpAbs = abso
-        tobj.log(    f'{how} {txt=} {abso=} {cc=} jt={tobj.jumpAbs} {tobj.fmti()}')
+        tobj, how, txt, ab = self.tobj, self.how, self.txt, self.ab
+        cc = tobj.cursorCol()            ;            tobj.jumpAbs = ab
+        tobj.log(    f'{how} {txt=} {ab=} {cc=} jt={tobj.jumpAbs} {tobj.fmti()}')
         if not tobj.jumping:                          tobj.jumping = 1
         elif txt.isdecimal():                         tobj.jumpStr += txt
         elif txt == '-' and not tobj.jumpStr:         tobj.jumpStr += txt
         elif txt == W:
-            tobj.log(f'{how} {txt=} {abso=} {cc=} jt={tobj.jumpAbs} {tobj.jumpStr=} {tobj.fmti()}')
+            tobj.log(f'{how} {txt=} {ab=} {cc=} jt={tobj.jumpAbs} {tobj.jumpStr=} {tobj.fmti()}')
             jcc  = tobj.n[T] * int(tobj.jumpStr)
             tobj.jumping = 0   ;   tobj.jumpStr = Z
-            tobj.move(how, jcc - 1 - abso * cc)
-            tobj.log(f'{how} {txt=} {abso=} {cc=} jt={tobj.jumpAbs} {jcc=} moved={jcc - 1 - abso * cc} {tobj.fmti()}')
+            tobj.move(how, jcc - 1 - ab * cc)
+            tobj.log(f'{how} {txt=} {ab=} {cc=} jt={tobj.jumpAbs} {jcc=} moved={jcc - 1 - ab * cc} {tobj.fmti()}')
 ########################################################################################################################################################################################################
 class ShiftTabsCmd(Cmd):
     def __init__(self, tobj, how, nf=0):
@@ -1021,8 +1022,8 @@ class SetTabCmd(Cmd):
     
     def _setTab(self):
         tobj, how, text, rev, dbg = self.tobj, self.how, self.text, self.rev, self.dbg
-        bsp = how.startswith('BACKSPACE') # todo use better mechanism to flip hArrow
-        if rev: tobj.reverseArrow(bsp)   ;   cmd = AutoMoveCmd(self, how)   ;  cmd.do()
+        bsp = how.lstrip().startswith('BACKSPACE') # todo use better mechanism to flip hArrow
+        if rev: tobj.reverseArrow(bsp)   ;   cmd = AutoMoveCmd(tobj, how)   ;  cmd.do()
         old   = tobj.cursorCol()   ;   msg = Z
         p, l, c, t = tobj.j2()
         cc    = tobj.plct2cc(p, l, c, t)   ;   cc2 = cc
@@ -1112,4 +1113,39 @@ class ResizeTniksCmd(Cmd):
         if tobj.CURSOR and tobj.cursor: cmd = ResizeCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
         if dbg and tobj.SNAPS and not tobj.snapReg: tobj.regSnap(why, f'Upd{tobj.cc + 1}')
         if dbg:   tobj.dumpStruct(why) # , dbg=dbg)
+########################################################################################################################################################################################################
+class QuitCmd(Cmd):
+    def __init__(self, tobj, why=Z, err=1, save=1, dbg=1):
+        self.tobj, self.why, self.err, self.save, self.dbg = tobj, why, err, save, dbg
+
+    def do(  self): self._quit()
+    def undo(self): self._quit()
+    
+    def _quit(self):
+        tobj, why, err, save, dbg = self.tobj, self.why, self.err, self.save, self.dbg  
+        retv = True
+        hdr1 = tobj.fTnikHdr(1)    ;    hdr0 = tobj.fTnikHdr(0)   ;   tobj.log(hdr1, p=0, f=2)  ;  tobj.log(hdr0,     p=0, f=2)   ;   errStr = f'Error={err}'
+        tobj.log(f'BGN {why} {errStr} {save=} {tobj.quitting=}', f=2)                           ;  tobj.log(utl.QUIT, p=0, f=2)   ;   msg    = 'Recursion Error'
+        tobj.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())                 ;  tobj.log(utl.QUIT, p=0, f=2)
+        if tobj.quitting:        msg += f' {tobj.quitting=} Exiting'  ;  tobj.log(msg, f=2)     ;  tobj.close() #  ;   return True
+        tobj.dumpTniksSfx(why)        ;     tobj.quitting += 1
+        if not err:
+            utl.dumpStack(utl.MAX_STACK_FRAME)
+            if dbg:  tobj.dumpStruct(why, dbg=dbg)
+            if save: cmd = SaveDataFileCmd(tobj, why, tobj.dataPath1)    ;  cmd.do()
+            if dbg:  tobj.transposeData(dmp=dbg)
+            if dbg:  tobj.cobj.dumpMlimap(why)
+        if tobj.SNAPS:    cmd = SnapshotCmd(tobj, f'quit {err} {save=}', utl.INIT)     ;  cmd.do()
+        tobj.log(f'END {why} {errStr} {save=} {tobj.quitting=}', f=2)       ;   tobj.log(utl.QUIT_END, p=0, f=2)
+        tobj.cleanupFiles()
+        tobj.log(f'END {why} {errStr} {save=} {tobj.quitting=}', f=0)       ;   tobj.log(utl.QUIT_END, p=0, f=0)
+        tobj.log('Calling close()', e=Y, f=2)
+        tobj.close()
+        if tobj.TEST:
+            if   tobj.EXIT == 0: retv = False  ;  tobj.log(f'{tobj.EXIT=} returning {retv=}')
+            elif tobj.EXIT == 1: retv = True   ;  tobj.log(f'{tobj.EXIT=} returning {retv=}')
+            elif tobj.EXIT == 2:                  tobj.log(f'{tobj.EXIT=} Calling pyglet.app.exit()')  ;   pyglet.app.exit()
+            else:                                 tobj.log(f'{tobj.EXIT=} Calling exit()')             ;   exit()
+        else:                                     tobj.log(f'{tobj.EXIT=} returning {retv=}')
+        return retv
 ########################################################################################################################################################################################################

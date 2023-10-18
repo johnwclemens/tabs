@@ -943,3 +943,30 @@ def resizeTniks(self, dbg=1):
 #        if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd{self.cc + 1}')
     if dbg:   self.dumpStruct(why) # , dbg=dbg)
 ########################################################################################################################################################################################################
+def quit(self, why=Z, error=1, save=1, dbg=1):
+    retv = True
+    hdr1 = self.fTnikHdr(1)  ;   hdr0 = self.fTnikHdr(0)   ;   self.log(hdr1, p=0, f=2)  ;  self.log(hdr0,     p=0, f=2)   ;   err = f'Error={error}'
+    self.log(f'BGN {why} {err} {save=} {self.quitting=}', f=2)                   ;          self.log(utl.QUIT, p=0, f=2)   ;   msg = 'Recursion Error'
+    self.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())      ;          self.log(utl.QUIT, p=0, f=2)
+    if self.quitting:        msg += f' {self.quitting=} Exiting'  ;  self.log(msg, f=2)  ;  self.close() #  ;   return True
+    self.dumpTniksSfx(why)        ;     self.quitting += 1
+    if not error:
+        utl.dumpStack(utl.MAX_STACK_FRAME)
+        if dbg:  self.dumpStruct(why, dbg=dbg)
+        if save: cmd = cmds.SaveDataFileCmd(self, why, self.dataPath1)    ;  cmd.do()
+        if dbg:  self.transposeData(dmp=dbg)
+        if dbg:  self.cobj.dumpMlimap(why)
+    if self.SNAPS:    cmd = cmds.SnapshotCmd(self, f'quit {error} {save=}', utl.INIT)     ;  cmd.do()
+    self.log(f'END {why} {err} {save=} {self.quitting=}', f=2)       ;   self.log(utl.QUIT_END, p=0, f=2)
+    self.cleanupFiles()
+    self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(utl.QUIT_END, p=0, f=0)
+    self.log('Calling close()', e=Y, f=2)
+    self.close()
+    if self.TEST:
+        if   self.EXIT == 0: retv = False  ;  self.log(f'{self.EXIT=} returning {retv=}')
+        elif self.EXIT == 1: retv = True   ;  self.log(f'{self.EXIT=} returning {retv=}')
+        elif self.EXIT == 2:                  self.log(f'{self.EXIT=} Calling pyglet.app.exit()')  ;   pyglet.app.exit()
+        else:                                 self.log(f'{self.EXIT=} Calling exit()')             ;   exit()
+    else:                                     self.log(f'{self.EXIT=} returning {retv=}')
+    return retv
+########################################################################################################################################################################################################

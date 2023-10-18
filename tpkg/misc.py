@@ -52,3 +52,4 @@ class Modes:
 # C) various tab movements are incorrect
 #  1) space/backspace
 #  2) top/bottom string automove
+# D) pass motion value as seperate arg to cmds
