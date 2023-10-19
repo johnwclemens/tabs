@@ -83,8 +83,8 @@ class AutoMoveCmd(Cmd):
         cmDist  = va
         amDist  = mmDist + cmDist
         if dbg:   tobj.dumpCursorArrows(f'{tobj.fmtPos()}     {how} M={mmDist} C={cmDist} A={amDist}')
-        if        tobj.csrMode == MELODY:                               cmd = MoveCmd(tobj, how,   mmDist)  ;  cmd.do()
-        elif      tobj.csrMode == CHORD:
+        if        tobj.csrMode == MLDY:                               cmd = MoveCmd(tobj, how,   mmDist)  ;  cmd.do()
+        elif      tobj.csrMode == CHRD:
             if    i==1 and tobj.vArrow==UARROW and tobj.hArrow==RARROW: cmd = MoveCmd(tobj, how,   n*2-1)   ;  cmd.do()
             elif  i==6 and tobj.vArrow==DARROW and tobj.hArrow==LARROW: cmd = MoveCmd(tobj, how, -(n*2-1))  ;  cmd.do()
             else:                                                       cmd = MoveCmd(tobj, how,   cmDist)  ;  cmd.do()
@@ -635,14 +635,14 @@ class SetCHVModeCmd(Cmd):
         if v is not None: tobj.vArrow  = v
         tobj.dumpCursorArrows(f'END {how:7} c={NONE if c is None else c:<4} h={NONE if h is None else h:<4} v={NONE if v is None else v:<4}')
 ########################################################################################################################################################################################################
-class SetFontPrmCmd(Cmd):
+class SetFontArgCmd(Cmd):
     def __init__(self, tobj, n, v, m, dbg=1):
         self.tobj, self.n, self.v, self.m, self.dbg = tobj, n, v, m, dbg
 
-    def do(  self): self._setFontPrm()
-    def undo(self): self._setFontPrm()
+    def do(  self): self._setFontArg()
+    def undo(self): self._setFontArg()
     
-    def _setFontPrm(self):
+    def _setFontArg(self):
         tobj, n, v, m, dbg = self.tobj, self.n, self.v, self.m, self.dbg
         if   m == 'clrIdx':      v += getattr(tobj, m)   ;   v %= len(tobj.k)      ;  tobj.log(f'{n=:12} {v=:2} {tobj.clrIdx=:2}')
         elif m == 'fontNameIdx': v += getattr(tobj, m)   ;   v %= len(FONT_NAMES)  ;  tobj.log(f'{n=:12} {v=:2} {tobj.fontNameIdx=:2}')
@@ -650,7 +650,7 @@ class SetFontPrmCmd(Cmd):
         ts = list(itertools.chain(tobj.A, tobj.B, tobj.C))  ;  lt = len(ts)
         if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         for j, t in enumerate(ts):
-            tobj.setFontPrm2(t, n, v, m, j)
+            tobj.setFontArg2(t, n, v, m, j)
         if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         tobj.setCaption(tobj.fmtFont())
 
@@ -893,7 +893,7 @@ class TogBGCCmd(Cmd):
         tobj, how = self.tobj, self.how
         tobj.log(f'{how} {tobj.BGC=}') if how else None
         tobj.BGC = (1 + tobj.BGC) % 2
-        tobj.setFontPrm2(tobj.tabls, COLOR, tobj.BGC, 'clrIdx', T)
+        tobj.setFontArg2(tobj.tabls, COLOR, tobj.BGC, 'clrIdx', T)
 ########################################################################################################################################################################################################
 class TogCsrModeCmd(Cmd):
     def __init__(self, tobj, how, a):
@@ -991,7 +991,7 @@ class TogKordNamesCmd(Cmd):
     def _togKordNameHits(self, tobj, how, cn, dbg=1):
 #        tobj, how, cn, dbg = self.tobj, self.how, self.cn, self.dbg
         mli = tobj.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
-        if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   tobj.log(msg)   ;   tobj.quit(msg)
+        if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   tobj.log(msg)   ;   cmd = QuitCmd(tobj, msg)   ;  cmd.do()
         ivals =  [ u[1] for u in mli[cn][0] ]
         msg   =  [ fmtl(v, w="x") for v in ivals ]
         if dbg: tobj.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d=Z)}')
@@ -1129,6 +1129,24 @@ class TogVisibleCmd(Cmd):
                         tnik = tniks[t2]  ;  tnik.visible = not tnik.visible  ;  tobj.setJdump(j, t2, tnik.visible, why=why)  ;  vl.append(str(int(tnik.visible))) if dbg else None
         tobj.dumpTniksSfx(why)
         tobj.log(f'END {why} {pid} pages[{p}].v={int(tobj.pages[p].visible)} {tobj.fmti()} {tobj.fmtn()} page{p+1} is visible {tobj.fVis()}')
+########################################################################################################################################################################################################
+class TogZZsCmd(Cmd):
+    def __init__(self, tobj, how, zz):
+        self.tobj, self.how, self.zz = tobj, how, zz
+        
+    def do(  self): self._togZZs()
+    def undo(self): self._togZZs()
+    
+    def _togZZs(self):
+        tobj, how, zz = self.tobj, self.how, self.zz
+        ii   = 0 if not zz else 2
+        msg2 = f'{how} {zz=}'
+        tobj.dumpGeom('BGN', f'     {msg2}')
+        if   zz not in tobj.ZZ and not tobj.D[ii]: msg = 'ADD'    ;   tobj.addZZs(how, zz)
+        elif zz     in tobj.ZZ:                    msg = 'HIDE'   ;   tobj.hideZZs(how, zz)
+        else:                                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.flipZZ(zz)
+        tobj.on_resize(tobj.width, tobj.height)
+        tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
 class UnselectTabsCmd(Cmd):
     def __init__(self, tobj, how, m, cn=None, dbg=1):

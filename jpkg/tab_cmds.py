@@ -1,12 +1,11 @@
-#import os, pathlib, sys #, glob
-#import inspect, operator #, math
+import inspect, pathlib
 import itertools #, colletions
 #from   collections     import Counter
 #from   itertools       import accumulate
 ##from   more_itertools  import consume  # not installed in GitBash's Python
-#import pyglet
+import pyglet
 #import pyglet.font         as pygfont
-#import pyglet.image        as pygimg
+import pyglet.image        as pygimg
 import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
 import pyglet.window.key   as pygwink
@@ -19,6 +18,7 @@ from   tpkg            import kysgs  as kysgs
 from   tpkg.notes      import Notes  as Notes
 #from   tpkg.strngs     import Strngs as Strngs
 #from   tpkg.chords     import Chords as Chords
+from   tpkg            import cmds   as cmds
 
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          B, A, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.B, utl.A, utl.D, utl.E
 W, X, Y, Z,       NONE,  ist,  fri,         slog,   fmtf,   fmtl,   fmtm    = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,       utl.slog,   utl.fmtf,   utl.fmtl,   utl.fmtm
@@ -59,7 +59,7 @@ LDS       = ['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' Backgrou
 LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
 ########################################################################################################################################################################################################
 TT, NN, II, KK                 = utl.TT, utl.NN, utl.II, utl.KK
-MELODY, CHORD, ARPG            = utl.MELODY, utl.CHORD, utl.ARPG
+MELODY, CHORD, ARPG            = utl.MLDY, utl.CHRD, utl.ARPG
 LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
 LBL                   = pygtxt.Label
 SPR                   = pygsprt.Sprite
@@ -243,730 +243,745 @@ def on_text_motion(tobj, motion, dbg=1):
     if dbg: slog(f'END {ftm(motion)} {retv=}')
     return retv
 
-def flipArrow(self, how, v=0, dbg=0):
-    if dbg: self.log(f'BGN {how} {v=} {self.hArrow=} = {HARROWS[self.hArrow]=} {self.vArrow=} = {VARROWS[self.vArrow]=}')
-    if v:   self.vArrow  = (self.vArrow + 1) % len(VARROWS)
-    else:   self.hArrow  = (self.hArrow + 1) % len(HARROWS)
-    if dbg: self.log(f'END {how} {v=} {self.hArrow=} = {HARROWS[self.hArrow]=} {self.vArrow=} = {VARROWS[self.vArrow]=}')
 ########################################################################################################################################################################################################
-def flipBlank(self, how):
-    prevBlank    =  self.tblank
-    self.log(f'BGN {how} {prevBlank=}')
-    self.tblanki = (self.tblanki + 1) % len(self.tblanks)
-    self.tblank  =  self.tblanks[self.tblanki]
-    self.swapSrc, self.swapTrg, self.swapping = prevBlank, self.tblank, 2
-    self.swapTab(how, '\r')
-    self.swapSrc, self.swapTrg = Z, Z
-    self.log(f'END {how} {self.tblank=}')
-    ####################################################################################################################################################################################################
-def flipFlatShrp(self, how, dbg=0):  #  page line colm tab or select
-    t1 = Notes.TYPE    ;    t2 =  Notes.TYPE * -1      ;     Notes.TYPE = t2
-    self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
-    s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i
-    tniks, j, _, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
-    for i in range(len(tniks)):
-        text = Z  ;   sn = i % nt
-        if   self.notes: text = self.notes[i].text
-        elif self.kords and self.tabls:
-            tabtxt = self.tabls[i].text
-            text   = self.sobj.tab2nn(tabtxt, sn) if self.sobj.isFret(tabtxt) else self.tblank
-        if text in Notes.N2I and (Notes.N2I[text] not in Notes.IS0):
-            cc = i * ns    ;   old = text
-            p, l, c, t = self.cc2plct(cc)   ;   cn = self.cc2cn(cc)
-            if   text in Notes.F2S:  text = Notes.F2S[text]
-            elif text in Notes.S2F:  text = Notes.S2F[text]
-            self.notes[i].text     = text
-            self.log(  f'{old:2} -> {text:2} = ')
-            if dbg: self.log(f'{sn=} {cn=:2} {cc=:4} {i=:4} {old:2} => {text:2} {self.notes[i].text=:2} {self.fplct(p, l, c, t)}')
-            if self.kords:
-                imap = self.getImap(p, l, c, dbg2=1)
-                self.setChord(imap, i, pos=1, dbg=1)
-    kysgs.dumpNic(dict(self.nic))
-    self.log(kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
-    self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
+class Tabs(pyglet.window.Window):
 ########################################################################################################################################################################################################
-def flipFullScrn(self, how):
-    self.FULL_SCRN = not self.FULL_SCRN
-    self.set_fullscreen( self.FULL_SCRN)
-    self.log(   f'{how} {self.FULL_SCRN}=')
-########################################################################################################################################################################################################
-def flipPage(self, how, a=1, dbg=1):
-    if dbg: self.log(f'BGN {how} {a=} {self.i[P]=}')
-    self.flipVisible(how=how)
-#   self.i[P] = (self.i[P] + a) % self.n[P]
-    self.i[P] = (self.j()[P] + a) % self.n[P] + 1
-    if dbg: self.log(f'    {how} {a=} {self.i[P]=}')
-    self.flipVisible(how=how)
-    self.dumpVisible() # ;   self.dumpVisible2()
-    self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {self.i[P]}')
-    if dbg: self.log(f'END {how} {a=} {self.i[P]=}')
-########################################################################################################################################################################################################
-def flipVisible(self, how=None, dbg=1):  # page 1 pass (1 & 2 & 3 or 2 & 3), page 2 pass (1 & 2 & 3 or 1 & 3), page 3 pass (1 & 2 & 3 or 1 & 2)
-    why = 'FVis' if how is None else how       ;  np, nl, ns, nc, nt = self.n
-    p, l, s, c  = self.j()[P], 0, 0, 0         ;  vl = []  ;  tpb, tpp, tpl, tps, tpc = self.ntp(dbg=1, dbg2=1)
-    self.J1, self.J2 = self.p2Js(p)
-    pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
-    assert 0 <= p < len(self.pages), f'{p=} {len(self.pages)=} {self.fmtn()} {self.fmti()} {self.J1} {self.J2}'
-    self.log(f'BGN {why} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} page{p+1} is visibile {self.fVis()}')
-    self.dumpTniksPfx(why, r=0)
-    assert 0 <= p < len(self.pages), f'{p=} {len(self.pages)=}'
-    page = self.pages[p]              ;  page.visible = not page.visible  ;  self.setJdump(P, p, page.visible, why=why)  ;  vl.append(str(int(page.visible))) if dbg else None
-    for l in range(nl):
-        line = self.lines[l]          ;  line.visible = not line.visible  ;  self.setJdump(L, l, line.visible, why=why)  ;  vl.append(str(int(line.visible))) if dbg else None
-        for s, s2 in enumerate(self.ss2sl()):
-            sect = self.sects[s]      ;  sect.visible = not sect.visible  ;  self.setJdump(S, s, sect.visible, why=why)  ;  vl.append(str(int(sect.visible))) if dbg else None
-            for c in range(nc):
-                colm = self.colms[c]  ;  colm.visible = not colm.visible  ;  self.setJdump(C, c, colm.visible, why=why)  ;  vl.append(str(int(colm.visible))) if dbg else None
+
+
+    def flipArrow(self, how, v=0, dbg=0):
+        if dbg: self.log(f'BGN {how} {v=} {self.hArrow=} = {HARROWS[self.hArrow]=} {self.vArrow=} = {VARROWS[self.vArrow]=}')
+        if v:   self.vArrow  = (self.vArrow + 1) % len(VARROWS)
+        else:   self.hArrow  = (self.hArrow + 1) % len(HARROWS)
+        if dbg: self.log(f'END {how} {v=} {self.hArrow=} = {HARROWS[self.hArrow]=} {self.vArrow=} = {VARROWS[self.vArrow]=}')
+    ########################################################################################################################################################################################################
+    def flipBlank(self, how):
+        prevBlank    =  self.tblank
+        self.log(f'BGN {how} {prevBlank=}')
+        self.tblanki = (self.tblanki + 1) % len(self.tblanks)
+        self.tblank  =  self.tblanks[self.tblanki]
+        self.swapSrc, self.swapTrg, self.swapping = prevBlank, self.tblank, 2
+        self.swapTab(how, '\r')
+        self.swapSrc, self.swapTrg = Z, Z
+        self.log(f'END {how} {self.tblank=}')
+        ####################################################################################################################################################################################################
+    def flipFlatShrp(self, how, dbg=0):  #  page line colm tab or select
+        t1 = Notes.TYPE    ;    t2 =  Notes.TYPE * -1      ;     Notes.TYPE = t2
+        self.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
+        s = self.ss2sl()[0]  ;  np, nl, ns, nc, nt = self.i
+        tniks, j, _, tobj = self.tnikInfo(0, 0, s, 0, 0, why=how)
+        for i in range(len(tniks)):
+            text = Z  ;   sn = i % nt
+            if   self.notes: text = self.notes[i].text
+            elif self.kords and self.tabls:
+                tabtxt = self.tabls[i].text
+                text   = self.sobj.tab2nn(tabtxt, sn) if self.sobj.isFret(tabtxt) else self.tblank
+            if text in Notes.N2I and (Notes.N2I[text] not in Notes.IS0):
+                cc = i * ns    ;   old = text
+                p, l, c, t = self.cc2plct(cc)   ;   cn = self.cc2cn(cc)
+                if   text in Notes.F2S:  text = Notes.F2S[text]
+                elif text in Notes.S2F:  text = Notes.S2F[text]
+                self.notes[i].text     = text
+                self.log(  f'{old:2} -> {text:2} = ')
+                if dbg: self.log(f'{sn=} {cn=:2} {cc=:4} {i=:4} {old:2} => {text:2} {self.notes[i].text=:2} {self.fplct(p, l, c, t)}')
+                if self.kords:
+                    imap = self.getImap(p, l, c, dbg2=1)
+                    self.setChord(imap, i, pos=1, dbg=1)
+        kysgs.dumpNic(dict(self.nic))
+        self.log(kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
+        self.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
+    ########################################################################################################################################################################################################
+    def flipFullScrn(self, how):
+        self.FULL_SCRN = not self.FULL_SCRN
+        self.set_fullscreen( self.FULL_SCRN)
+        self.log(   f'{how} {self.FULL_SCRN}=')
+    ########################################################################################################################################################################################################
+    def flipPage(self, how, a=1, dbg=1):
+        if dbg: self.log(f'BGN {how} {a=} {self.i[P]=}')
+        self.flipVisible(how=how)
+    #   self.i[P] = (self.i[P] + a) % self.n[P]
+        self.i[P] = (self.j()[P] + a) % self.n[P] + 1
+        if dbg: self.log(f'    {how} {a=} {self.i[P]=}')
+        self.flipVisible(how=how)
+        self.dumpVisible() # ;   self.dumpVisible2()
+        self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {self.i[P]}')
+        if dbg: self.log(f'END {how} {a=} {self.i[P]=}')
+    ########################################################################################################################################################################################################
+    def flipVisible(self, how=None, dbg=1):  # page 1 pass (1 & 2 & 3 or 2 & 3), page 2 pass (1 & 2 & 3 or 1 & 3), page 3 pass (1 & 2 & 3 or 1 & 2)
+        why = 'FVis' if how is None else how       ;  np, nl, ns, nc, nt = self.n
+        p, l, s, c  = self.j()[P], 0, 0, 0         ;  vl = []  ;  tpb, tpp, tpl, tps, tpc = self.ntp(dbg=1, dbg2=1)
+        self.J1, self.J2 = self.p2Js(p)
+        pid = f' {id(self.pages[p]):11x}' if self.OIDS else Z
+        assert 0 <= p < len(self.pages), f'{p=} {len(self.pages)=} {self.fmtn()} {self.fmti()} {self.J1} {self.J2}'
+        self.log(f'BGN {why} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} page{p+1} is visibile {self.fVis()}')
+        self.dumpTniksPfx(why, r=0)
+        assert 0 <= p < len(self.pages), f'{p=} {len(self.pages)=}'
+        page = self.pages[p]              ;  page.visible = not page.visible  ;  self.setJdump(P, p, page.visible, why=why)  ;  vl.append(str(int(page.visible))) if dbg else None
+        for l in range(nl):
+            line = self.lines[l]          ;  line.visible = not line.visible  ;  self.setJdump(L, l, line.visible, why=why)  ;  vl.append(str(int(line.visible))) if dbg else None
+            for s, s2 in enumerate(self.ss2sl()):
+                sect = self.sects[s]      ;  sect.visible = not sect.visible  ;  self.setJdump(S, s, sect.visible, why=why)  ;  vl.append(str(int(sect.visible))) if dbg else None
+                for c in range(nc):
+                    colm = self.colms[c]  ;  colm.visible = not colm.visible  ;  self.setJdump(C, c, colm.visible, why=why)  ;  vl.append(str(int(colm.visible))) if dbg else None
+                    for t in range(nt):
+                        tniks, j, k, txt = self.tnikInfo(p, l, s2, c, t, why=why)
+                        t2 = t + c*tpc + l*tpl + p*tpp//ns
+                        assert t2 < len(tniks),  f'ERROR {t2=} {len(tniks)=}'
+                        tnik = tniks[t2]  ;  tnik.visible = not tnik.visible  ;  self.setJdump(j, t2, tnik.visible, why=why)  ;  vl.append(str(int(tnik.visible))) if dbg else None
+        self.dumpTniksSfx(why)
+        self.log(f'END {why} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} page{p+1} is visible {self.fVis()}')
+    ########################################################################################################################################################################################################
+    def flipKordNames(self, how, hit=0, dbg=1):
+        cc = self.cc    ;    cn = self.cc2cn(cc)
+        mks = list(self.cobj.mlimap.keys())   ;   sks = list(self.smap.keys())
+        if sks and not hit:
+            if dbg: self.dumpSmap(f'BGN {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
+            [ self.flipKordName(how, k) for k in sks ]
+        else:
+            if dbg: self.dumpSmap(f'BGN {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
+            if hit: self.flipKordNameHits(how, cn)
+            else:   self.flipKordName(    how, cn)
+        if dbg:     self.dumpSmap(f'END {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
+    
+    def flipKordNameHits(self, how, cn, dbg=1): # optimize str concat?
+        mli = self.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
+        if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   self.log(msg)   ;   self.quit(msg)
+        ivals =  [ u[1] for u in mli[cn][0] ]
+        msg   =  [ fmtl(v, w="x") for v in ivals ]
+        if dbg: self.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d=Z)}')
+        hits = self.ivalhits(ivals, how)
+        for cn2 in hits:
+            if cn2 not in self.smap: self.selectTabs(how, m=0, cn=cn2)
+            self.flipKordName(how, cn2)
+        if dbg: self.log(f'END {how} mks={fmtl(mks)} cn2={cn2:2} ivals={fmtl(msg, d=Z)}')
+    
+    def ivalhits(self, ivals, how, dbg=1):
+        mli = self.cobj.mlimap    ;   mks = list(mli.keys())   ;   hits = set()
+        for cn, lim in mli.items():
+            for im in lim[0]:
+                if cn in hits: break
+                for iv in ivals:
+                    iv1 = sorted(iv)  ;  iv2 = sorted(im[1])
+                    if iv1 == iv2:       hits.add(cn)   ;   break
+        if dbg: self.log(f'    {how} mks={fmtl(mks)} hits={fmtl(hits)}')
+        return list(hits)
+    
+    def flipKordName(self, how, cn, dbg=1, dbg2=1):
+        cc = self.cn2cc(cn)            ;   mli = self.cobj.mlimap
+        p, l, c, t = self.cc2plct(cc)  ;   msg = Z
+        if not self.ikeys and not self.kords: msg +=  'ERROR: Both ikeys and chords are Empty '
+        if cn not in mli:                     msg += f'ERROR: {cn=} not in mks={fmtl(list(mli.keys()))}'
+        if msg: self.log(msg)          ;   return
+        limap      = mli[cn][0]        ;   imi = mli[cn][1]
+        imi        = (imi + 1) % len(limap)
+        mli[cn][1] = imi
+        ikeys, ivals, notes2, chordName, chunks, rank = limap[imi]
+        if self.ikeys and ikeys:                self.setIkeyText(ikeys, cc, p, l, c)
+        if self.kords and chordName and chunks: self.setChordName(cc, chordName, chunks)
+        elif dbg: self.log(f'    {how} {cn=} {cc=} is NOT a chord')
+        if dbg2:  self.cobj.dumpImap(limap[imi], why=f'{cn:2}')
+    #    assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
+    ########################################################################################################################################################################################################
+    def setFontParam(self, n, v, m, dbg=1):
+        if   m == 'clrIdx':      v += getattr(self, m)   ;   v %= len(self.k)      ;  self.log(f'{n=:12} {v=:2} {self.clrIdx=:2}')
+        elif m == 'fontNameIdx': v += getattr(self, m)   ;   v %= len(FONT_NAMES)  ;  self.log(f'{n=:12} {v=:2} {self.fontNameIdx=:2}')
+        setattr(self, m, v)
+        ts = list(itertools.chain(self.A, self.B, self.C))  ;  lt = len(ts)
+        if dbg:         self.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
+        for j, t in enumerate(ts):
+    #            if dbg:     self.log(f'{j=:2} {W*3} {lt=} {m=:12} {n=:12} {v=:2}', p=0) #  and self.VRBY
+            self._setFontParam(t, n, v, m, j)
+        if dbg:         self.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')  # and self.VRBY
+        self.setCaption(self.fmtFont())
+    
+    def _setFontParam(self, ts, n, v, m, j, dbg=1):
+        l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
+        for i, t in enumerate(ts):
+            if ist(t, LBL):
+                if   m == 'clrIdx':       l = len(t.color)   ;  msg = f'{v=:2} tc={fmtl(t.color, w=3)}  ds={fmtl(t.document.get_style(n), w=3)}  kv={fmtl(self.k[v][fb][:l], w=3)}'
+                elif m == 'fontNameIdx':                        msg = f'{v=:2} {FONT_NAMES[v]=}'
+                elif m == 'fontSize':    fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
+                if dbg and ist(t, LBL) and i==0:            self.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', f=2)
+                if   m == 'clrIdx':       self._setTNIKStyle(t, self.k[v], self.fontStyle)
+                elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
+                elif m == 'fontSize':     setattr(t, n, v*fs)
+                else:                     setattr(t, n, v)
+    ########################################################################################################################################################################################################
+    def flipDrwBGC(self, how, a):
+        self.drwBGC += a
+        self.log(f'{how} {self.drwBGC=}')
+    ########################################################################################################################################################################################################
+    def flipBGC(self, how=Z):
+        self.log(f'{how} {self.BGC=}') if how else None
+        self.BGC = (1 + self.BGC) % 2
+        self.setFontParam2(self.tabls, COLOR, self.BGC, 'clrIdx', T)
+    ########################################################################################################################################################################################################
+    def setn_cmd(self, how, txt=Z, dbg=1): # optimize str concat?
+        if not self.settingN: self.settingN = 1   ;  self.setNtxt = Z  ;  self.log(f'BGN {how} {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
+        elif txt.isdecimal(): self.setNtxt += txt                      ;  self.log(   f'Concat {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
+        elif txt ==  W:       self.setNvals.append(int(self.setNtxt))  ;  self.log(   f'Append {txt=} {self.settingN=} {self.setNvals=}') if dbg else None  ;  self.setNtxt = Z
+        elif txt == 'Q':      self.settingN = 0                        ;  self.log(   f'Cancel {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
+        elif txt == '\r':
+            self.settingN = 0   ;   old = self.n
+            self.setNvals.append(int(self.setNtxt))
+            if len(self.setNvals) == 4:
+                self.n[:2] = self.setNvals[:2]   ;   self.n[3:] = self.setNvals[2:]
+            self.log(f'Setting {old=} {self.n=}')
+            self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
+    ########################################################################################################################################################################################################
+    def rotateSprite(self, how, spr, cw=1):
+        old = spr.rotation
+        spr.rotation =  (spr.rotation + cw * 10) % 360
+        self.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
+    ########################################################################################################################################################################################################
+    def setCHVMode(self, how, c=None, h=None, v=None):
+        self.dumpCursorArrows(f'BGN {how} {c=} {h=} {v=}')
+        if c is not None: self.csrMode = c
+        if h is not None: self.hArrow  = h
+        if v is not None: self.vArrow  = v
+        self.dumpCursorArrows(f'END {how} {c=} {h=} {v=}')
+    ########################################################################################################################################################################################################
+    def flipCrsrMode(self, how, a=1):
+        c = self.csrMode  ;  h = self.hArrow  ;  v = self.vArrow
+        self.dumpCursorArrows(f'BGN {how} {a=} {c=} {h=} {v=}')
+        c = (c + a) % len(CSR_MODES)
+        self.dumpCursorArrows(f'END {how} {a=} {c=} {h=} {v=}')
+    ########################################################################################################################################################################################################
+    def jump(self, how, txt='0', a=0):
+        cc = self.cursorCol()                 ;    self.jumpAbs = a
+        self.log(    f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {self.fmti()}')
+        if not self.jumping:                       self.jumping = 1
+        elif txt.isdecimal():                      self.jumpStr += txt
+        elif txt == '-' and not self.jumpStr:      self.jumpStr += txt
+        elif txt == W:
+            self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {self.jumpStr=} {self.fmti()}')
+            jcc  = self.n[T] * int(self.jumpStr)
+            self.jumping = 0   ;   self.jumpStr = Z
+            self.move(how, jcc - 1 - a * cc)
+            self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {jcc=} moved={jcc - 1 - a * cc} {self.fmti()}')
+    ########################################################################################################################################################################################################
+    def shiftTabs(self, how, nf=0):
+        self.dumpSmap(f'BGN {how} {self.shiftingTabs=} {nf=}')
+        if not self.shiftingTabs:
+            self.shiftingTabs = 1
+            for k, v in self.smap.items():
+                self.setLLStyle(k, NORMAL_STYLE) if self.LL else None
+            self.setCaption('Enter nf: number of frets to shift +/- int')
+        elif nf == '-': self.shiftSign = -1
+        elif self.sobj.isFret(nf):
+            self.shiftingTabs = 0     ;   nt = self.n[T]
+            for cn, v in self.smap.items():
+                cc = self.cn2cc(cn)   ;   p, l, c, r = self.cc2plct(cc, dbg=0)
+                self.log(f'{cc=} {cn=} {v=} text={v}')
                 for t in range(nt):
-                    tniks, j, k, txt = self.tnikInfo(p, l, s2, c, t, why=why)
-                    t2 = t + c*tpc + l*tpl + p*tpp//ns
-                    assert t2 < len(tniks),  f'ERROR {t2=} {len(tniks)=}'
-                    tnik = tniks[t2]  ;  tnik.visible = not tnik.visible  ;  self.setJdump(j, t2, tnik.visible, why=why)  ;  vl.append(str(int(tnik.visible))) if dbg else None
-    self.dumpTniksSfx(why)
-    self.log(f'END {why} {pid} pages[{p}].v={int(self.pages[p].visible)} {self.fmti()} {self.fmtn()} page{p+1} is visible {self.fVis()}')
-########################################################################################################################################################################################################
-def flipKordNames(self, how, hit=0, dbg=1):
-    cc = self.cc    ;    cn = self.cc2cn(cc)
-    mks = list(self.cobj.mlimap.keys())   ;   sks = list(self.smap.keys())
-    if sks and not hit:
-        if dbg: self.dumpSmap(f'BGN {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
-        [ self.flipKordName(how, k) for k in sks ]
-    else:
-        if dbg: self.dumpSmap(f'BGN {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
-        if hit: self.flipKordNameHits(how, cn)
-        else:   self.flipKordName(    how, cn)
-    if dbg:     self.dumpSmap(f'END {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
-
-def flipKordNameHits(self, how, cn, dbg=1): # optimize str concat?
-    mli = self.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
-    if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   self.log(msg)   ;   self.quit(msg)
-    ivals =  [ u[1] for u in mli[cn][0] ]
-    msg   =  [ fmtl(v, w="x") for v in ivals ]
-    if dbg: self.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d=Z)}')
-    hits = self.ivalhits(ivals, how)
-    for cn2 in hits:
-        if cn2 not in self.smap: self.selectTabs(how, m=0, cn=cn2)
-        self.flipKordName(how, cn2)
-    if dbg: self.log(f'END {how} mks={fmtl(mks)} cn2={cn2:2} ivals={fmtl(msg, d=Z)}')
-
-def ivalhits(self, ivals, how, dbg=1):
-    mli = self.cobj.mlimap    ;   mks = list(mli.keys())   ;   hits = set()
-    for cn, lim in mli.items():
-        for im in lim[0]:
-            if cn in hits: break
-            for iv in ivals:
-                iv1 = sorted(iv)  ;  iv2 = sorted(im[1])
-                if iv1 == iv2:       hits.add(cn)   ;   break
-    if dbg: self.log(f'    {how} mks={fmtl(mks)} hits={fmtl(hits)}')
-    return list(hits)
-
-def flipKordName(self, how, cn, dbg=1, dbg2=1):
-    cc = self.cn2cc(cn)            ;   mli = self.cobj.mlimap
-    p, l, c, t = self.cc2plct(cc)  ;   msg = Z
-    if not self.ikeys and not self.kords: msg +=  'ERROR: Both ikeys and chords are Empty '
-    if cn not in mli:                     msg += f'ERROR: {cn=} not in mks={fmtl(list(mli.keys()))}'
-    if msg: self.log(msg)          ;   return
-    limap      = mli[cn][0]        ;   imi = mli[cn][1]
-    imi        = (imi + 1) % len(limap)
-    mli[cn][1] = imi
-    ikeys, ivals, notes2, chordName, chunks, rank = limap[imi]
-    if self.ikeys and ikeys:                self.setIkeyText(ikeys, cc, p, l, c)
-    if self.kords and chordName and chunks: self.setChordName(cc, chordName, chunks)
-    elif dbg: self.log(f'    {how} {cn=} {cc=} is NOT a chord')
-    if dbg2:  self.cobj.dumpImap(limap[imi], why=f'{cn:2}')
-#    assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
-########################################################################################################################################################################################################
-def setFontParam(self, n, v, m, dbg=1):
-    if   m == 'clrIdx':      v += getattr(self, m)   ;   v %= len(self.k)      ;  self.log(f'{n=:12} {v=:2} {self.clrIdx=:2}')
-    elif m == 'fontNameIdx': v += getattr(self, m)   ;   v %= len(FONT_NAMES)  ;  self.log(f'{n=:12} {v=:2} {self.fontNameIdx=:2}')
-    setattr(self, m, v)
-    ts = list(itertools.chain(self.A, self.B, self.C))  ;  lt = len(ts)
-    if dbg:         self.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
-    for j, t in enumerate(ts):
-#            if dbg:     self.log(f'{j=:2} {W*3} {lt=} {m=:12} {n=:12} {v=:2}', p=0) #  and self.VRBY
-        self._setFontParam(t, n, v, m, j)
-    if dbg:         self.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')  # and self.VRBY
-    self.setCaption(self.fmtFont())
-
-def _setFontParam(self, ts, n, v, m, j, dbg=1):
-    l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
-    for i, t in enumerate(ts):
-        if ist(t, LBL):
-            if   m == 'clrIdx':       l = len(t.color)   ;  msg = f'{v=:2} tc={fmtl(t.color, w=3)}  ds={fmtl(t.document.get_style(n), w=3)}  kv={fmtl(self.k[v][fb][:l], w=3)}'
-            elif m == 'fontNameIdx':                        msg = f'{v=:2} {FONT_NAMES[v]=}'
-            elif m == 'fontSize':    fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
-            if dbg and ist(t, LBL) and i==0:            self.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', f=2)
-            if   m == 'clrIdx':       self._setTNIKStyle(t, self.k[v], self.fontStyle)
-            elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
-            elif m == 'fontSize':     setattr(t, n, v*fs)
-            else:                     setattr(t, n, v)
-########################################################################################################################################################################################################
-def flipDrwBGC(self, how, a):
-    self.drwBGC += a
-    self.log(f'{how} {self.drwBGC=}')
-########################################################################################################################################################################################################
-def flipBGC(self, how=Z):
-    self.log(f'{how} {self.BGC=}') if how else None
-    self.BGC = (1 + self.BGC) % 2
-    self.setFontParam2(self.tabls, COLOR, self.BGC, 'clrIdx', T)
-########################################################################################################################################################################################################
-def setn_cmd(self, how, txt=Z, dbg=1): # optimize str concat?
-    if not self.settingN: self.settingN = 1   ;  self.setNtxt = Z  ;  self.log(f'BGN {how} {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
-    elif txt.isdecimal(): self.setNtxt += txt                      ;  self.log(   f'Concat {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
-    elif txt ==  W:       self.setNvals.append(int(self.setNtxt))  ;  self.log(   f'Append {txt=} {self.settingN=} {self.setNvals=}') if dbg else None  ;  self.setNtxt = Z
-    elif txt == 'Q':      self.settingN = 0                        ;  self.log(   f'Cancel {txt=} {self.settingN=} {self.setNvals=}') if dbg else None
-    elif txt == '\r':
-        self.settingN = 0   ;   old = self.n
-        self.setNvals.append(int(self.setNtxt))
-        if len(self.setNvals) == 4:
-            self.n[:2] = self.setNvals[:2]   ;   self.n[3:] = self.setNvals[2:]
-        self.log(f'Setting {old=} {self.n=}')
-        self.log(f'END {how} {txt=} {self.settingN=} {self.setNvals=}')
-########################################################################################################################################################################################################
-def rotateSprite(self, how, spr, cw=1):
-    old = spr.rotation
-    spr.rotation =  (spr.rotation + cw * 10) % 360
-    self.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
-########################################################################################################################################################################################################
-def setCHVMode(self, how, c=None, h=None, v=None):
-    self.dumpCursorArrows(f'BGN {how} {c=} {h=} {v=}')
-    if c is not None: self.csrMode = c
-    if h is not None: self.hArrow  = h
-    if v is not None: self.vArrow  = v
-    self.dumpCursorArrows(f'END {how} {c=} {h=} {v=}')
-########################################################################################################################################################################################################
-def flipCrsrMode(self, how, a=1):
-    c = self.csrMode  ;  h = self.hArrow  ;  v = self.vArrow
-    self.dumpCursorArrows(f'BGN {how} {a=} {c=} {h=} {v=}')
-    c = (c + a) % len(CSR_MODES)
-    self.dumpCursorArrows(f'END {how} {a=} {c=} {h=} {v=}')
-########################################################################################################################################################################################################
-def jump(self, how, txt='0', a=0):
-    cc = self.cursorCol()                 ;    self.jumpAbs = a
-    self.log(    f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {self.fmti()}')
-    if not self.jumping:                       self.jumping = 1
-    elif txt.isdecimal():                      self.jumpStr += txt
-    elif txt == '-' and not self.jumpStr:      self.jumpStr += txt
-    elif txt == W:
-        self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {self.jumpStr=} {self.fmti()}')
-        jcc  = self.n[T] * int(self.jumpStr)
-        self.jumping = 0   ;   self.jumpStr = Z
-        self.move(how, jcc - 1 - a * cc)
-        self.log(f'{how} {txt=} {a=} {cc=} jt={self.jumpAbs} {jcc=} moved={jcc - 1 - a * cc} {self.fmti()}')
-########################################################################################################################################################################################################
-def shiftTabs(self, how, nf=0):
-    self.dumpSmap(f'BGN {how} {self.shiftingTabs=} {nf=}')
-    if not self.shiftingTabs:
-        self.shiftingTabs = 1
-        for k, v in self.smap.items():
-            self.setLLStyle(k, NORMAL_STYLE) if self.LL else None
-        self.setCaption('Enter nf: number of frets to shift +/- int')
-    elif nf == '-': self.shiftSign = -1
-    elif self.sobj.isFret(nf):
-        self.shiftingTabs = 0     ;   nt = self.n[T]
-        for cn, v in self.smap.items():
-            cc = self.cn2cc(cn)   ;   p, l, c, r = self.cc2plct(cc, dbg=0)
-            self.log(f'{cc=} {cn=} {v=} text={v}')
-            for t in range(nt):
-                text = v[t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = Notes.NTONES * 2
-                if self.sobj.isFret(text):
-                    fn = self.afn(str((self.sobj.tab2fn(text) + self.shiftSign * self.sobj.tab2fn(nf)) % ntones))  ;  self.log(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {self.shiftSign=}')
-                if fn and self.sobj.isFret(fn):  self.setDTNIK(fn, kt, p, l, c, t, kk=1 if t==nt-1 else 0)
-        self.shiftSign = 1
-        self.rsyncData = 1
-        self.unselectAll('shiftTabs()')
-    self.dumpSmap(f'END {how} {self.shiftingTabs=} {nf=} {self.shiftSign=}')
-########################################################################################################################################################################################################
-def swapTab(self, how, txt=Z, data=None, dbg=0, dbg2=0):  # e.g. c => 12 not same # chars asserts
-    src, trg = self.swapSrc, self.swapTrg
-    data = data or self.data
-    if not self.swapping: self.swapping = 1
-    elif txt.isalnum() or txt in self.tblanks:
-        if   self.swapping == 1:   src += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
-        elif self.swapping == 2:   trg += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
-        self.swapSrc, self.swapTrg = src, trg
-    elif txt == '\r':
-        self.log(f'    {how} {self.swapping=} {src=} {trg=}')
-        if   self.swapping == 1 and not trg: self.swapping = 2;   self.log(f'{how} waiting {src=} {trg=}') if dbg else None   ;   return
-        if   self.swapping == 2 and trg:     self.swapping = 0;   self.log(f'{how} BGN     {src=} {trg=}') if dbg else None
-        np, nl, ns, nc, nt = self.n    ;     nc += self.zzl()
-        cc0 = self.cursorCol()         ;     p0, l0, c0, t0 = self.cc2plct(cc0)   ;   self.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
-        blanks = self.tblanks          ;     blank = 1 if src in blanks and trg in blanks else 0
-        if blank:
-            for t in self.tabls:   t.text = trg if t.text==src else t.text
-            for n in self.notes:   n.text = trg if n.text==src else n.text
-            for i in self.ikeys:   i.text = trg if i.text==src else i.text
-            for k in self.kords:   k.text = trg if k.text==src else k.text
+                    text = v[t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = Notes.NTONES * 2
+                    if self.sobj.isFret(text):
+                        fn = self.afn(str((self.sobj.tab2fn(text) + self.shiftSign * self.sobj.tab2fn(nf)) % ntones))  ;  self.log(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {self.shiftSign=}')
+                    if fn and self.sobj.isFret(fn):  self.setDTNIK(fn, kt, p, l, c, t, kk=1 if t==nt-1 else 0)
+            self.shiftSign = 1
+            self.rsyncData = 1
+            self.unselectAll('shiftTabs()')
+        self.dumpSmap(f'END {how} {self.shiftingTabs=} {nf=} {self.shiftSign=}')
+    ########################################################################################################################################################################################################
+    def swapTab(self, how, txt=Z, data=None, dbg=0, dbg2=0):  # e.g. c => 12 not same # chars asserts
+        src, trg = self.swapSrc, self.swapTrg
+        data = data or self.data
+        if not self.swapping: self.swapping = 1
+        elif txt.isalnum() or txt in self.tblanks:
+            if   self.swapping == 1:   src += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
+            elif self.swapping == 2:   trg += txt;   self.log(f'    {how} {txt=} {self.swapping=} {src=} {trg=}') # optimize str concat?
+            self.swapSrc, self.swapTrg = src, trg
+        elif txt == '\r':
+            self.log(f'    {how} {self.swapping=} {src=} {trg=}')
+            if   self.swapping == 1 and not trg: self.swapping = 2;   self.log(f'{how} waiting {src=} {trg=}') if dbg else None   ;   return
+            if   self.swapping == 2 and trg:     self.swapping = 0;   self.log(f'{how} BGN     {src=} {trg=}') if dbg else None
+            np, nl, ns, nc, nt = self.n    ;     nc += self.zzl()
+            cc0 = self.cursorCol()         ;     p0, l0, c0, t0 = self.cc2plct(cc0)   ;   self.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
+            blanks = self.tblanks          ;     blank = 1 if src in blanks and trg in blanks else 0
+            if blank:
+                for t in self.tabls:   t.text = trg if t.text==src else t.text
+                for n in self.notes:   n.text = trg if n.text==src else n.text
+                for i in self.ikeys:   i.text = trg if i.text==src else i.text
+                for k in self.kords:   k.text = trg if k.text==src else k.text
+            for p in range(np):
+                for l in range(nl):
+                    for c in range(nc):
+                        text = data[p][l][c]
+                        for t in range(nt):
+                            if text[t] == src:
+                                if dbg2: self.log(f'Before data{self.fplc(p, l, c)}={text}')
+                                if blank and trg != self.tblank:
+                                    text[t] = trg
+                                cc = self.plct2cc(p, l, c, t)   ;   self.setDTNIK(trg, cc, p, l, c, t, kk=1)
+                                if dbg2: self.log(f'After  data{self.fplc(p, l, c)}={text}')
+            self.swapSrc, self.swapTrg = Z, Z
+            self.log(f'{how} END     {src=} {trg=}') if dbg else None
+    #                if dbg2: self.dumpTniks('SWAP')
+    #                self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
+            if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
+            self.rsyncData = 1
+    ########################################################################################################################################################################################################
+    def flipLLs(self, how, dbg=1):
+        self.flipLL()
+        msg2 = f'{how} {self.LL=}'
+        self.dumpGeom('BGN', f'     {msg2}')
+        if dbg: self.log(f'    llText={fmtl(self.llText[1-self.zzl():])}')
+        if self.LL and not self.rowLs: msg = 'ADD'    ;   self.addLLs( how)
+        else:                          msg = 'HIDE'   ;   self.hideLLs(how)
+        self.on_resize(self.width, self.height)
+        self.dumpGeom('END', f'{msg} {msg2}')
+    ########################################################################################################################################################################################################
+    def flipTTs(self, how, tt):
+        msg2 = f'{how} {tt=}'
+        self.dumpGeom('BGN', f'     {msg2}')
+        if   tt not in self.SS and not self.B[tt]: msg = 'ADD'    ;   self.addTTs( how, tt)
+        elif tt     in self.SS:                    msg = 'HIDE'   ;   self.hideTTs(how, tt)
+        else:                                      msg = 'SKIP'   ;   self.dumpGeom(W*3, f'{msg} {msg2}')   ;   self.flipTT(tt)
+        self.on_resize(self.width, self.height)
+        self.dumpGeom('END', f'{msg} {msg2}')
+    ########################################################################################################################################################################################################
+    def move2LastTab(self, how, page=0, dbg=1):
+        np, nl, ns, nc, nt = self.n    ;   p, l, s, c, t = self.j()  ;  i = p
+        n = p * nl + l     ;   tp = nc * nt
+        if page: tp *= nl  ;  n //= nl
+        if dbg:    self.log(f'BGN {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
+        for i in range(tp*(n+1)-1, tp*n-1, -1):
+            if not self.sobj.isFret(self.tabls[i].text): continue
+            p, l, c, t = self.cc2plct(i, dbg=1)  ;  break
+        self.moveTo(how, p, l, c, t, dbg=dbg)
+        if dbg:    self.log(f'END {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
+    ########################################################################################################################################################################################################
+    def move2FirstTab(self, how, page=0, dbg=1):
+        np, nl, ns, nc, nt = self.n    ;   p, l, s, c, t = self.j()  ;  i = p
+        n = p * nl + l     ;   tp = nc * nt
+        if page: tp *= nl  ;  n //= nl
+        if dbg:    self.log(f'BGN {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
+        for i in range(tp*n, tp*(n+1), 1):
+            if not self.sobj.isFret(self.tabls[i].text): continue
+            p, l, c, t = self.cc2plct(i, dbg=1)  ;  break
+        self.moveTo(how, p, l, c, t, dbg=dbg)
+        if dbg:    self.log(f'END {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
+    ########################################################################################################################################################################################################
+    def flipSelectAll(self, how):
+        self.dumpSmap(f'BGN {how} {self.allTabSel=}')
+        if   self.allTabSel:       self.unselectAll(how)   ;   self.allTabSel = 0
+        else:                      self.selectAll(how)     ;   self.allTabSel = 1
+        self.dumpSmap(f'END {how} {self.allTabSel=}')
+    ########################################################################################################################################################################################################
+    def insertSpace(self, how, txt='0', dbg=1): # optimize str concat?
+        cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
+        if not self.inserting: self.inserting = 1   ;    self.setCaption('Enter nc: number of cols to indent int')
+        elif txt.isdecimal():  self.insertStr += txt
+        elif txt in (W, '/r'):
+            self.inserting = 0
+            width = int(self.insertStr)
+            tcs   = sorted(self.cobj.mlimap)
+            tcs.append(self.n[C] * self.n[L] - 1)
+            tcs   = [ t + 1 for t in tcs ]
+            if dbg: self.log(f'BGN {how} Searching for space to insert {width} cols starting at colm {c0}')
+            self.log(f'{fmtl(tcs, ll=1)} insertSpace', p=0)
+            found, c1, c2 = 0, 0, None   ;   self.insertStr = Z
+            for c2 in tcs:
+                if dbg: self.log(f'w c0 c1 c2 = {width} {c0} {c1} {c2}')
+                if c2 > c0 + width and c2 > c1 + width: found = 1  ;  break
+                c1 = c2
+            if not found: self.log(f'{how} starting at colm {c0} No room to insert {width} cols before end of page at colm {tcs[-1]+1}')  ;   return
+            self.log(f'{how} starting at colm {c0} Found a gap {width} cols wide between cols {c1} and {c2}')
+            self.log(f'select cols {c0} ... {c1}, cut cols, move ({width} - {c1} + {c0})={width-c1+c0} cols, paste cols')
+            [ self.selectTabs(how, m=self.tpc) for _ in range(c1 - c0) ]
+            self.cutTabs(how)
+            self.move(how, (width - c1 + c0) * self.tpc)
+            self.pasteTabs(how)
+            self.unselectAll(how)
+    ########################################################################################################################################################################################################
+    def swapCols(self, how):
+        nk = len(self.smap)   ;   nk2 = nk // 2
+        self.dumpSmap(f'BGN {nk=} {nk2=}')
+        for i in range(nk2):
+            k1 = list(self.smap.keys())[i]
+            k2 = list(self.smap.keys())[nk - 1 - i]
+            text1 = self.smap[k1]
+            text2 = self.smap[k2]
+            self.smap[k1] = text2
+            self.smap[k2] = text1
+        self.dumpSmap(f'    {nk=} {nk2=}')
+        self.pasteTabs(how)
+        self.dumpSmap(f'END {nk=} {nk2=}')
+    ########################################################################################################################################################################################################
+    def addPage(self, how, ins=None, dbg=1):
+        np, nl, ns, nc, nt = self.n   ;   how = f'{how} {ins=}'
+        self.dumpBlanks() # self.j()[P]
+    #        if ins is not None: self.flipPage(how)
+        if ins is not None: self.flipVisible(how=how)
+        self.n[P] += 1   ;   kl = self.k[P]
+        data      = [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ]
+        self.data = self.transposeData(dmp=dbg)
+        self.data.append(data) if ins is None else self.data.insert(ins, data)
+        self.data = self.transposeData(dmp=dbg)
+        if ins is None: self.dumpTniksPfx(how, r=0)   ;   pi = len(self.pages)
+        else:           self.dumpTniksPfx(how, r=1)   ;   pi = self.J1[P]
+        self.J1[L], self.J1[S], self.J1[C], self.J1[T] = 0, 0, 0, 0
+        n, ii, x, y, w, h =    self.geom(M, n=1, i=1, dbg=1)   ;   kk = self.cci(P, 0, kl) if self.CHECKERED else 0
+        self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2  ;  k = kl[kk]
+        page = self.createTnik(self.pages,   pi, P, x, y, w, h, k, why=why, v=0, dbg=1)
+        for line in            self.g_createTniks(self.lines,  L, page, why=why):
+            for sect in        self.g_createTniks(self.sects,  S, line, why=why):
+                for colm in    self.g_createTniks(self.colms,  C, sect, why=why):
+                    for _ in   self.g_createTniks(self.tabls,  T, colm, why=why): pass
+        self.dumpTniksSfx(how)
+        if self.SNAPS and dbg: self.regSnap(how, why2)
+    ########################################################################################################################################################################################################
+    def eraseTabs(self, how): # , reset=0):
+        np, nl, ns, nc, nt = self.n   ;   nz = self.zzl()  ;  nc += nz
+        self.log(f'BGN {how} {np=} {nl=} {ns=} {nc=} {nt=}')
+        self.nic.clear()
+        self.dumpBlanks()
+        for t in self.tabls:
+            t.text = self.tblank
+        for n in self.notes:
+            n.text = self.tblank
+        for i in self.ikeys:
+            i.text = self.tblank
+        for k in self.kords:
+            k.text = self.tblank
         for p in range(np):
             for l in range(nl):
-                for c in range(nc):
-                    text = data[p][l][c]
-                    for t in range(nt):
-                        if text[t] == src:
-                            if dbg2: self.log(f'Before data{self.fplc(p, l, c)}={text}')
-                            if blank and trg != self.tblank:
-                                text[t] = trg
-                            cc = self.plct2cc(p, l, c, t)   ;   self.setDTNIK(trg, cc, p, l, c, t, kk=1)
-                            if dbg2: self.log(f'After  data{self.fplc(p, l, c)}={text}')
-        self.swapSrc, self.swapTrg = Z, Z
-        self.log(f'{how} END     {src=} {trg=}') if dbg else None
-#                if dbg2: self.dumpTniks('SWAP')
-#                self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
-        if self.SNAPS: self.regSnap(f'{how}', 'SWAP')
+                for c in range(nz, nc):
+                    self.data[p][l][c-nz] = self.tblankCol
+        self.log(f'END {how} {np=} {nl=} {ns=} {nc=} {nt=}')
         self.rsyncData = 1
-########################################################################################################################################################################################################
-def flipLLs(self, how, dbg=1):
-    self.flipLL()
-    msg2 = f'{how} {self.LL=}'
-    self.dumpGeom('BGN', f'     {msg2}')
-    if dbg: self.log(f'    llText={fmtl(self.llText[1-self.zzl():])}')
-    if self.LL and not self.rowLs: msg = 'ADD'    ;   self.addLLs( how)
-    else:                          msg = 'HIDE'   ;   self.hideLLs(how)
-    self.on_resize(self.width, self.height)
-    self.dumpGeom('END', f'{msg} {msg2}')
-########################################################################################################################################################################################################
-def flipTTs(self, how, tt):
-    msg2 = f'{how} {tt=}'
-    self.dumpGeom('BGN', f'     {msg2}')
-    if   tt not in self.SS and not self.B[tt]: msg = 'ADD'    ;   self.addTTs( how, tt)
-    elif tt     in self.SS:                    msg = 'HIDE'   ;   self.hideTTs(how, tt)
-    else:                                      msg = 'SKIP'   ;   self.dumpGeom(W*3, f'{msg} {msg2}')   ;   self.flipTT(tt)
-    self.on_resize(self.width, self.height)
-    self.dumpGeom('END', f'{msg} {msg2}')
-########################################################################################################################################################################################################
-def move2LastTab(self, how, page=0, dbg=1):
-    np, nl, ns, nc, nt = self.n    ;   p, l, s, c, t = self.j()  ;  i = p
-    n = p * nl + l     ;   tp = nc * nt
-    if page: tp *= nl  ;  n //= nl
-    if dbg:    self.log(f'BGN {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
-    for i in range(tp*(n+1)-1, tp*n-1, -1):
-        if not self.sobj.isFret(self.tabls[i].text): continue
-        p, l, c, t = self.cc2plct(i, dbg=1)  ;  break
-    self.moveTo(how, p, l, c, t, dbg=dbg)
-    if dbg:    self.log(f'END {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
-########################################################################################################################################################################################################
-def move2FirstTab(self, how, page=0, dbg=1):
-    np, nl, ns, nc, nt = self.n    ;   p, l, s, c, t = self.j()  ;  i = p
-    n = p * nl + l     ;   tp = nc * nt
-    if page: tp *= nl  ;  n //= nl
-    if dbg:    self.log(f'BGN {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
-    for i in range(tp*n, tp*(n+1), 1):
-        if not self.sobj.isFret(self.tabls[i].text): continue
-        p, l, c, t = self.cc2plct(i, dbg=1)  ;  break
-    self.moveTo(how, p, l, c, t, dbg=dbg)
-    if dbg:    self.log(f'END {how} {page=} {self.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
-########################################################################################################################################################################################################
-def flipSelectAll(self, how):
-    self.dumpSmap(f'BGN {how} {self.allTabSel=}')
-    if   self.allTabSel:       self.unselectAll(how)   ;   self.allTabSel = 0
-    else:                      self.selectAll(how)     ;   self.allTabSel = 1
-    self.dumpSmap(f'END {how} {self.allTabSel=}')
-########################################################################################################################################################################################################
-def insertSpace(self, how, txt='0', dbg=1): # optimize str concat?
-    cc = self.cursorCol()   ;   c0 = self.cc2cn(cc)
-    if not self.inserting: self.inserting = 1   ;    self.setCaption('Enter nc: number of cols to indent int')
-    elif txt.isdecimal():  self.insertStr += txt
-    elif txt in (W, '/r'):
-        self.inserting = 0
-        width = int(self.insertStr)
-        tcs   = sorted(self.cobj.mlimap)
-        tcs.append(self.n[C] * self.n[L] - 1)
-        tcs   = [ t + 1 for t in tcs ]
-        if dbg: self.log(f'BGN {how} Searching for space to insert {width} cols starting at colm {c0}')
-        self.log(f'{fmtl(tcs, ll=1)} insertSpace', p=0)
-        found, c1, c2 = 0, 0, None   ;   self.insertStr = Z
-        for c2 in tcs:
-            if dbg: self.log(f'w c0 c1 c2 = {width} {c0} {c1} {c2}')
-            if c2 > c0 + width and c2 > c1 + width: found = 1  ;  break
-            c1 = c2
-        if not found: self.log(f'{how} starting at colm {c0} No room to insert {width} cols before end of page at colm {tcs[-1]+1}')  ;   return
-        self.log(f'{how} starting at colm {c0} Found a gap {width} cols wide between cols {c1} and {c2}')
-        self.log(f'select cols {c0} ... {c1}, cut cols, move ({width} - {c1} + {c0})={width-c1+c0} cols, paste cols')
-        [ self.selectTabs(how, m=self.tpc) for _ in range(c1 - c0) ]
-        self.cutTabs(how)
-        self.move(how, (width - c1 + c0) * self.tpc)
-        self.pasteTabs(how)
-        self.unselectAll(how)
-########################################################################################################################################################################################################
-def swapCols(self, how):
-    nk = len(self.smap)   ;   nk2 = nk // 2
-    self.dumpSmap(f'BGN {nk=} {nk2=}')
-    for i in range(nk2):
-        k1 = list(self.smap.keys())[i]
-        k2 = list(self.smap.keys())[nk - 1 - i]
-        text1 = self.smap[k1]
-        text2 = self.smap[k2]
-        self.smap[k1] = text2
-        self.smap[k2] = text1
-    self.dumpSmap(f'    {nk=} {nk2=}')
-    self.pasteTabs(how)
-    self.dumpSmap(f'END {nk=} {nk2=}')
-########################################################################################################################################################################################################
-def addPage(self, how, ins=None, dbg=1):
-    np, nl, ns, nc, nt = self.n   ;   how = f'{how} {ins=}'
-    self.dumpBlanks() # self.j()[P]
-#        if ins is not None: self.flipPage(how)
-    if ins is not None: self.flipVisible(how=how)
-    self.n[P] += 1   ;   kl = self.k[P]
-    data      = [ [ self.tblankRow for _ in range(nt) ] for _ in range(nl) ]
-    self.data = self.transposeData(dmp=dbg)
-    self.data.append(data) if ins is None else self.data.insert(ins, data)
-    self.data = self.transposeData(dmp=dbg)
-    if ins is None: self.dumpTniksPfx(how, r=0)   ;   pi = len(self.pages)
-    else:           self.dumpTniksPfx(how, r=1)   ;   pi = self.J1[P]
-    self.J1[L], self.J1[S], self.J1[C], self.J1[T] = 0, 0, 0, 0
-    n, ii, x, y, w, h =    self.geom(M, n=1, i=1, dbg=1)   ;   kk = self.cci(P, 0, kl) if self.CHECKERED else 0
-    self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2  ;  k = kl[kk]
-    page = self.createTnik(self.pages,   pi, P, x, y, w, h, k, why=why, v=0, dbg=1)
-    for line in            self.g_createTniks(self.lines,  L, page, why=why):
-        for sect in        self.g_createTniks(self.sects,  S, line, why=why):
-            for colm in    self.g_createTniks(self.colms,  C, sect, why=why):
-                for _ in   self.g_createTniks(self.tabls,  T, colm, why=why): pass
-    self.dumpTniksSfx(how)
-    if self.SNAPS and dbg: self.regSnap(how, why2)
-########################################################################################################################################################################################################
-def eraseTabs(self, how): # , reset=0):
-    np, nl, ns, nc, nt = self.n   ;   nz = self.zzl()  ;  nc += nz
-    self.log(f'BGN {how} {np=} {nl=} {ns=} {nc=} {nt=}')
-    self.nic.clear()
-    self.dumpBlanks()
-    for t in self.tabls:
-        t.text = self.tblank
-    for n in self.notes:
-        n.text = self.tblank
-    for i in self.ikeys:
-        i.text = self.tblank
-    for k in self.kords:
-        k.text = self.tblank
-    for p in range(np):
-        for l in range(nl):
-            for c in range(nz, nc):
-                self.data[p][l][c-nz] = self.tblankCol
-    self.log(f'END {how} {np=} {nl=} {ns=} {nc=} {nt=}')
-    self.rsyncData = 1
-########################################################################################################################################################################################################
-def reset(self, how):
-    self.dumpGeom('BGN', f'{how} before cleanup()')
-    self.cleanup()
-    self.dumpGeom('   ', f'{how} after cleanup() / before reinit()')
-    self._reinit()
-    self.dumpGeom('END', f'{how} after reinit()')
-########################################################################################################################################################################################################
-def copyTabs(self, how, dbg=1): # optimize str concat?
-    self.dumpSmap(f'BGN {how}')   ;   nt = self.n[T]   ;   style = NORMAL_STYLE   ;   text = []
-    for k in list(self.smap.keys()):
-        k *= nt
-        if self.LL:  self.setLLStyle(k, style)
-        text.append(self.setTNIKStyle(k, nt, style))
-        if dbg: text.append(W)
-    if dbg:         self.log(f'{Z.join(text)=}')
-    self.dumpSmap(f'END {how}')
-    if self.SNAPS:  self.regSnap(f'{how}', 'COPY')
-########################################################################################################################################################################################################
-def deleteTabs(self, how, keep=0, dbg=1):
-    self.dumpSmap(f'BGN {how} {keep=}')   ;   style = NORMAL_STYLE   ;   nt = self.n[T]
-    for k, text in self.smap.items():
-        cn = k   ;   k *= nt
-        if dbg:     self.log(f'{k=} {cn=} {text=}')
-        if self.LL: self.setLLStyle(k, style)
-        self.setTNIKStyle(k, nt, style, blank=1)
-    if not keep:    self.unselectAll(f'deleteTabs({keep=})')
-    self.dumpSmap(f'END {how} {keep=}')
-    if self.SNAPS:  self.regSnap(f'{how}', 'DELT')
-    self.rsyncData = 1
-########################################################################################################################################################################################################
-def pasteTabs(self, how, kk=0, dbg=1):
-    cc = self.cursorCol()       ;   nt = self.n[T]
-    cn = self.normalizeCC(cc)   ;   kt = 0
-    p, l, s, c, t = self.j()
-    self.dumpSmap(f'BGN {how} {kk=} {cc=} {cn=}={self.cc2cn(cc)} plct={self.fplct(p, l, c, t)}')
-    for i, (k, text) in enumerate(self.smap.items()):
-        if not i:   dk = 0
-        elif kk:    dk = i * nt
-        else:       dk = (list(self.smap.keys())[i] - list(self.smap.keys())[0]) * nt
-        if dbg:     self.log(f'{i=} {k=} {text=} {kk=} {dk=}')
-        for n in range(nt):
-            kt         = (cn + dk + n) % self.tpp # todo
-            p, l, c, t = self.cc2plct(kt)
-            self.setDTNIK(text[n], kt, p, l, c, n, kk=1 if n==nt-1 else 0)
-        if dbg:     self.log(f'{i=} {k=} {text=} {kk=} {dk=} {kt=}')
-    self.log(f'clearing {len(self.smap)=}')   ;   self.smap.clear()
-    self.dumpSmap(f'END {how} {kk=} {cc=} {cn=}={self.cc2cn(cc)} plct={self.fplct(p, l, c, t)}')
-    if self.SNAPS:  self.regSnap(f'{how}', 'PAST')
-    self.rsyncData = 1
-########################################################################################################################################################################################################
-def cutTabs(self, how): self.log('BGN Cut = Copy + Delete')  ;  self.copyTabs(how)  ;  self.log('Cut = Copy + Delete')  ;  self.deleteTabs(how, keep=1)  ;  self.log('END Cut = Copy + Delete')
-########################################################################################################################################################################################################
-def cutTabs(self, how):
-    self.log('BGN Cut = Copy + Delete')
-    self.copyTabs(how)
-    self.log('Cut = Copy + Delete')
-    self.deleteTabs(how, keep=1)
-    self.log('END Cut = Copy + Delete')
-########################################################################################################################################################################################################
-def moveUp(self, how, dbg=1):
-    p, l, s, c, t = self.j()  ;  n = self.n[T] - 1  ;  m = self.n[L] - 1
-    if dbg: self.log(f'BGN {how}', pos=1)
-    if t>0: self.moveTo(how, p, l,                 c, 0) # go up   to top    of      line
-    else:   self.moveTo(how, p, l-1 if l>0 else m, c, n) # go up   to bottom of prev line, wrap down to bottom of last line
-    if dbg: self.log(f'END {how}', pos=1)
-########################################################################################################################################################################################################
-def moveDown(self, how, dbg=1):
-    p, l, s, c, t = self.j()  ;  n = self.n[T] - 1  ;  m = self.n[L] - 1
-    if dbg: self.log(f'BGN {how}', pos=1)
-    if t<n: self.moveTo(how, p, l,                 c, n) # go down to bottom of      line
-    else:   self.moveTo(how, p, l+1 if l<m else 0, c, 0) # go down to top    of next line, wrap up to top of first line
-    if dbg: self.log(f'END {how}', pos=1)
-########################################################################################################################################################################################################
-def moveLeft(self, how, dbg=1):
-    p, l, s, c, t = self.j()  ;  n = self.n[C] - 1  ;  m = self.n[L] - 1
-    if dbg: self.log(f'BGN {how}', pos=1)
-    if c>0: self.moveTo(how, p, l,                 0, t) # go left  to bgn of      line
-    else:   self.moveTo(how, p, l-1 if l>0 else m, n, t) # go left  to end of prev line, wrap right to bottom of last line
-    if dbg: self.log(f'END {how}', pos=1)                # go right & up to end of prev line, wrap down to bottom of last line
-########################################################################################################################################################################################################
-def moveRight(self, how, dbg=1):
-    p, l, s, c, t = self.j()  ;  n = self.n[C] - 1  ;  m = self.n[L] - 1
-    if dbg: self.log(f'BGN {how}', pos=1)
-    if c<n: self.moveTo(how, p, l,                 n, t) # go right to end of      line
-    else:   self.moveTo(how, p, l+1 if l<m else 0, 0, t) # go right to bgn of next line, wrap left to top of first line
-    if dbg: self.log(f'END {how}', pos=1)                # go left & down to bgn of next line, wrap left to top of first line
-########################################################################################################################################################################################################
-def moveTo(self, how, p, l, c, t, ss=0, dbg=1):
-    if dbg:    self.log(f'BGN {how}', pos=1)
-    self._moveTo(p, l, c, t)
-    self.moveCursor(ss, how)
-    if dbg:    self.log(f'END {how}', pos=1)
-########################################################################################################################################################################################################
-def _moveTo(self, p, l, c, t, n=0, dbg=1): # todo
-    if dbg: self.log(f'BGN plct={self.fplct(p, l, c, t)}', pos=1) # {n=}
-    np, nl, ns, nc, nt = self.n
-    t2        =       n  + t
-    c2        = t2 // nt + c
-    l2        = c2 // nc + l
-    p2        = l2 // nl + p
-    self.i[T] = t2  % nt + 1
-    self.i[C] = c2  % nc + 1
-    self.i[L] = l2  % nl + 1
-    self.i[P] = p2  % np + 1
-    if dbg: self.log(f'END {n=} {self.fmti()} plct={self.fplct(p, l, c, t)} plct2={self.fplct(p2, l2, c2, t2)}', pos=1)
-########################################################################################################################################################################################################
-def move(self, how, n, ss=0, dbg=1):
-    if dbg:    self.log(f'BGN {how} {n=}', pos=1)
-    p, l, c, t = self.j2()
-    self._moveTo(p, l, c, t, n=n)
-    if self.CURSOR and self.cursor: self.moveCursor(ss, how)
-    if dbg:    self.log(f'END {how} {n=}', pos=1)
-########################################################################################################################################################################################################
-def moveCursor(self, ss=0, why=Z, dbg=1):
-    if dbg:           self.log(f'BGN {ss=} {self.cc=}', pos=1)
-    if self.LL:       self.setLLStyle(self.cc, SELECT_STYLE if ss else NORMAL_STYLE)
-    self.resizeCursor(why, dbg=dbg)
-    if self.LL:       self.setLLStyle(self.cc, CURRENT_STYLE)
-    if dbg:           self.log(f'END {ss=} {self.cc=}', pos=1)
-########################################################################################################################################################################################################
-def resizeCursor(self, why, dbg=1):
-    x, y, w, h, c = self.cc2xywh()
-    self.resizeTnik(self.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
-########################################################################################################################################################################################################
-def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
-#        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=}'
-    tnik    = tlist[i]
-    self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
-    if   ist(tnik, SPR):
-        mx, my = w/tnik.image.width, h/tnik.image.height
-        tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
-    elif ist(tnik, LBL):
-        tnik.font_size = self.calcFontSize(j)
-        tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
-        self.checkTnik(tnik, i, j)
-    self.setJ(j, i, tnik.visible) if j != H or (j == H and self.J2[H] == 0) else None # todo fixme - do we want or need to set v info of the tnik as well?
-    self.dumpTnik(tnik, j, why) if dbg else None
-    if j == P and tnik.visible:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {self.i[P]}')
-    return tnik
-########################################################################################################################################################################################################
-def prevPage(self, how, dbg=1):
-    p, l, c, t = self.j2()   ;   n = self.n[P] - 1
-    if dbg: self.log(f'BGN {how} {self.fmti()}', pos=1)
-    self.moveTo(how, p-1 if p>0 else n, l, c, t)
-#        self.flipPage(how, -1, dbg=1)
-    if dbg: self.log(f'END {how} {self.fmti()}', pos=1)
-########################################################################################################################################################################################################
-def nextPage(self, how, dbg=1):
-    p, l, c, t = self.j2()   ;   n = self.n[P] - 1
-    if dbg: self.log(f'BGN {how} {self.fmti()}', pos=1)
-    self.moveTo(how, p+1 if p<n else 0, l, c, t)
-#        self.flipPage(how, 1, dbg=1)
-    if dbg: self.log(f'END {how} {self.fmti()}', pos=1)
-########################################################################################################################################################################################################
-def autoMove(self, how, dbg=1):
-    self.log(f'BGN {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
-    ha = 1 if self.hArrow == RARROW else -1
-    va = 1 if self.vArrow == DARROW else -1
-    n, i  = self.n[T], self.i[T]
-    mmDist  = ha * n
-    cmDist  = va
-    amDist  = mmDist + cmDist
-    if dbg:   self.dumpCursorArrows(f'{self.fmtPos()}     {how} M={mmDist} C={cmDist} A={amDist}')
-    if        self.csrMode == MELODY:                               cmd = cmds.MoveCmd(self, how,   mmDist)  ;  cmd.do()
-    elif      self.csrMode == CHORD:
-        if    i==1 and self.vArrow==UARROW and self.hArrow==RARROW: cmd = cmds.MoveCmd(self, how,   n*2-1)   ;  cmd.do()
-        elif  i==6 and self.vArrow==DARROW and self.hArrow==LARROW: cmd = cmds.MoveCmd(self, how, -(n*2-1))  ;  cmd.do()
-        else:                                                       cmd = cmds.MoveCmd(self, how,   cmDist)  ;  cmd.do()
-    elif      self.csrMode == ARPG:                                 cmd = cmds.MoveCmd(self, how,   amDist)  ;  cmd.do()
-    self.log(f'END {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
-########################################################################################################################################################################################################
-def selectTabs(self, how, m=0, cn=None, dbg=1, dbg2=1):
-    cc         = self.cursorCol()  ;  old = cn
-    p, l, s, c, t = self.cc2plsct(cc)
-    if cn is None:      cn = self.cc2cn(cc) # self.plc2cn_(p, l, c)
-    nt = self.n[T]  ;   k  = cn * nt   ;   style = SELECT_STYLE
-    self.log(f'{m=} {old=} {cc=} {cn=} {nt} {k=} {self.fplsct(p, l, s, c, t)}')
-    if cn in self.smap: self.log(f'RETURN: {cn=} already in smap={fmtm(self.smap)}') if dbg2 else None   ;   return
-    if dbg:             self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
-    text              = self.setTNIKStyle(k, nt, style)
-    self.smap[cn]     = text
-    if m:               cmd = cmds.MoveCmd(self, how, m, ss=1)     ;  cmd.do()
-    if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
-########################################################################################################################################################################################################
-def unselectTabs(self, how, m, cn=None, dbg=0):
-    if cn is None:      cc = self.cc   ;      cn = self.cc2cn(cc)
-    else:               cc = self.cn2cc(cn)
-    nt = self.n[T]  ;   k = cn * nt    ;   style = NORMAL_STYLE
-    if self.LL:         self.setLLStyle(cc, style)
-    if dbg:             self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
-    self.setTNIKStyle(k, nt, style)
-    if cn in self.smap: self.smap.pop(cn)
-    elif dbg:           self.log(f'{cn=} not found in smap={fmtm(self.smap)}')
-    if m:               cmd = cmds.MoveCmd(self, how, m)     ;  cmd.do()
-    if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
-########################################################################################################################################################################################################
-def saveDataFile(self, why, path, dbg=1):
-    if dbg:   self.log(f'BGN {why} {path}')
-    with open(path, 'w', encoding='utf-8') as DATA_FILE:
-        self.log(f'{DATA_FILE.name:40}', p=0)
-        commentStr = '#' * self.n[C]   ;   commentRow = f'{commentStr}{X}'
-        DATA_FILE.write(commentRow) if self.DEC_DATA else None
-        data = self.transposeData(dmp=dbg) # if self.isVert() else self.data
-        self.log(f'{self.fmtn()} {self.fmtdl(data)}')
-        for p, page in enumerate(data):
-            if dbg: self.log(f'writing {p+1}{utl.ordSfx(p + 1)}   Page', p=0)
-            for l, line in enumerate(page):
-                if dbg: self.log(f'writing {l+1}{utl.ordSfx(l+1)}   Line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
-                for r, row in enumerate(line):
-                    text = []
-                    for c, col in enumerate(row):
-                        text.append(col)
-                    text = Z.join(text)
-                    if dbg: self.log(f'writing {r+1}{utl.ordSfx(r+1)} String {text}', p=0)  # if dbg  else  self.log(text, p=0)
-                    DATA_FILE.write(f'{text}{X}')
-                DATA_FILE.write(commentRow) if self.DEC_DATA else DATA_FILE.write(X)  #   if l < nl:
-            DATA_FILE.write(commentRow) if self.DEC_DATA else DATA_FILE.write(X)
-    size = path.stat().st_size   ;   self.log(f'{self.fmtn()} {self.fmtdl()} {size=}')
-    if dbg:   self.log(f'END {why} {path}')
-    return size
-########################################################################################################################################################################################################
-def setTab(self, how, text, rev=0, dbg=0): # if isDataFret or isTextFret else 0)
-    bsp = how.startswith('BACKSPACE') # todo use better mechanism to flip hArrow
-    if rev: self.reverseArrow(bsp)   ;   cmd = cmds.AutoMoveCmd(self, how)   ;  cmd.do()
-    old   = self.cursorCol()   ;   msg = Z
-    p, l, c, t = self.j2()
-    cc    = self.plct2cc(p, l, c, t)   ;   cc2 = cc
-    self.log(f'BGN {how} {text=} {rev=} {old=:3} {cc=:3} {p=} {l=} {c=} {t=}', pos=1, f=2)
-    data  = self.data[p][l][c][t]
-    self.log(f'    {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
-    self.setDTNIK(text, cc2, p, l, c, t, kk=1)
-    p, l, c, t = self.j2()   ;   data = self.data[p][l][c][t]
-    self.log(f'END {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
-    if rev: self.reverseArrow(bsp)
-    else:   cmd = cmds.AutoMoveCmd(self, how)   ;  cmd.do()
-    if dbg and self.SNAPS:
-        stype = f'Txt.{text}' if self.sobj.isFret(text) else 'SYMB' if text in misc.DSymb.SYMBS else 'UNKN'
-        self.regSnap(f'{how}', stype)
-    self.rsyncData = 1
-########################################################################################################################################################################################################
-def snapshot(self, why=Z, typ=Z, sid=0, dbg=1, dbg2=1):
-    why    = why if why else self.snapWhy
-    typ    = typ if typ else self.snapType
-    snapId = self.snapId   ;  logId = self.LOG_ID
-    snapName      = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
-    self.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = NONE   ;   snapId = NONE
-    if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
-    if dbg:  self.log(f'{self.fNameLogId=} {snapName=} {why}')
-    if dbg:  self.log(f'{self.snapPath}', p=2)
-    pygimg.get_buffer_manager().get_color_buffer().save(f'{self.snapPath}')
-    if dbg2: self.log(f'{snapName=} {why}', f=2)
-    if typ == utl.INIT:
-        snapName0 = f'{BASE_NAME}.{PNG}'
-        snapName2 = self.geomFileName(BASE_NAME, PNG)
-        snapPath0 = BASE_PATH / PNGS / snapName0
-        snapPath2 = BASE_PATH / snapName2
-        utl.copyFile(self.snapPath, snapPath0)
-        utl.copyFile(self.snapPath, snapPath2)
-        if dbg:  self.log(f'{BASE_NAME=} {self.fmtn(Z)}')
-        if dbg:  self.log(f'{snapName0=} {why}')
-        if dbg:  self.log(f'{snapName2=} {why}')
-        if dbg:  self.log(f'{snapPath0=}', p=2)
-        if dbg:  self.log(f'{snapPath2=}', p=2)
-    self.dumpTnikCsvs()
-    self.snapId += sid
-    return self.snapPath
-########################################################################################################################################################################################################
-def resizeTniks(self, dbg=1):
-    self.updC += 1  ;  why = f'Upd{self.updC}'
-    self.dumpTniksPfx(why)
-    if   self.DSP_J_LEV == P:
-        for _ in                 self.g_resizeTniks(self.pages, P, None, why=why): pass
-    elif self.DSP_J_LEV == L:
-        for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
-            for _ in             self.g_resizeTniks(self.lines, L, page, why=why): pass
-    elif self.DSP_J_LEV == S:
-        for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
-            for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
-                if self.LL:      self.resizeLLs(line, why)
-                for _ in         self.g_resizeTniks(self.sects, S, line, why=why): pass
-    elif self.DSP_J_LEV == C:
-        for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
-            for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
-                if self.LL:      self.resizeLLs(line, why)
-                for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
-                    for _ in     self.g_resizeTniks(self.colms, C, sect, why=why): pass
-    else:
-        for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
-            for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
-                if self.LL:      self.resizeLLs(line, why)
-                for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
-                    for colm in  self.g_resizeTniks(self.colms, C, sect, why=why): # pass
-                        for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
-    self.dumpTniksSfx(why)
-    if self.CURSOR and self.cursor: cmd = cmds.ResizeCursorCmd(self, why)  ;  cmd.do()   ;   self.dumpHdrs()
-#        if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd{self.cc + 1}')
-    if dbg:   self.dumpStruct(why) # , dbg=dbg)
-########################################################################################################################################################################################################
-def quit(self, why=Z, error=1, save=1, dbg=1):
-    retv = True
-    hdr1 = self.fTnikHdr(1)  ;   hdr0 = self.fTnikHdr(0)   ;   self.log(hdr1, p=0, f=2)  ;  self.log(hdr0,     p=0, f=2)   ;   err = f'Error={error}'
-    self.log(f'BGN {why} {err} {save=} {self.quitting=}', f=2)                   ;          self.log(utl.QUIT, p=0, f=2)   ;   msg = 'Recursion Error'
-    self.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())      ;          self.log(utl.QUIT, p=0, f=2)
-    if self.quitting:        msg += f' {self.quitting=} Exiting'  ;  self.log(msg, f=2)  ;  self.close() #  ;   return True
-    self.dumpTniksSfx(why)        ;     self.quitting += 1
-    if not error:
-        utl.dumpStack(utl.MAX_STACK_FRAME)
-        if dbg:  self.dumpStruct(why, dbg=dbg)
-        if save: cmd = cmds.SaveDataFileCmd(self, why, self.dataPath1)    ;  cmd.do()
-        if dbg:  self.transposeData(dmp=dbg)
-        if dbg:  self.cobj.dumpMlimap(why)
-    if self.SNAPS:    cmd = cmds.SnapshotCmd(self, f'quit {error} {save=}', utl.INIT)     ;  cmd.do()
-    self.log(f'END {why} {err} {save=} {self.quitting=}', f=2)       ;   self.log(utl.QUIT_END, p=0, f=2)
-    self.cleanupFiles()
-    self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(utl.QUIT_END, p=0, f=0)
-    self.log('Calling close()', e=Y, f=2)
-    self.close()
-    if self.TEST:
-        if   self.EXIT == 0: retv = False  ;  self.log(f'{self.EXIT=} returning {retv=}')
-        elif self.EXIT == 1: retv = True   ;  self.log(f'{self.EXIT=} returning {retv=}')
-        elif self.EXIT == 2:                  self.log(f'{self.EXIT=} Calling pyglet.app.exit()')  ;   pyglet.app.exit()
-        else:                                 self.log(f'{self.EXIT=} Calling exit()')             ;   exit()
-    else:                                     self.log(f'{self.EXIT=} returning {retv=}')
-    return retv
-########################################################################################################################################################################################################
+    ########################################################################################################################################################################################################
+    def reset(self, how):
+        self.dumpGeom('BGN', f'{how} before cleanup()')
+        self.cleanup()
+        self.dumpGeom('   ', f'{how} after cleanup() / before reinit()')
+        self._reinit()
+        self.dumpGeom('END', f'{how} after reinit()')
+    ########################################################################################################################################################################################################
+    def copyTabs(self, how, dbg=1): # optimize str concat?
+        self.dumpSmap(f'BGN {how}')   ;   nt = self.n[T]   ;   style = NORMAL_STYLE   ;   text = []
+        for k in list(self.smap.keys()):
+            k *= nt
+            if self.LL:  self.setLLStyle(k, style)
+            text.append(self.setTNIKStyle(k, nt, style))
+            if dbg: text.append(W)
+        if dbg:         self.log(f'{Z.join(text)=}')
+        self.dumpSmap(f'END {how}')
+        if self.SNAPS:  self.regSnap(f'{how}', 'COPY')
+    ########################################################################################################################################################################################################
+    def deleteTabs(self, how, keep=0, dbg=1):
+        self.dumpSmap(f'BGN {how} {keep=}')   ;   style = NORMAL_STYLE   ;   nt = self.n[T]
+        for k, text in self.smap.items():
+            cn = k   ;   k *= nt
+            if dbg:     self.log(f'{k=} {cn=} {text=}')
+            if self.LL: self.setLLStyle(k, style)
+            self.setTNIKStyle(k, nt, style, blank=1)
+        if not keep:    self.unselectAll(f'deleteTabs({keep=})')
+        self.dumpSmap(f'END {how} {keep=}')
+        if self.SNAPS:  self.regSnap(f'{how}', 'DELT')
+        self.rsyncData = 1
+    ########################################################################################################################################################################################################
+    def pasteTabs(self, how, kk=0, dbg=1):
+        cc = self.cursorCol()       ;   nt = self.n[T]
+        cn = self.normalizeCC(cc)   ;   kt = 0
+        p, l, s, c, t = self.j()
+        self.dumpSmap(f'BGN {how} {kk=} {cc=} {cn=}={self.cc2cn(cc)} plct={self.fplct(p, l, c, t)}')
+        for i, (k, text) in enumerate(self.smap.items()):
+            if not i:   dk = 0
+            elif kk:    dk = i * nt
+            else:       dk = (list(self.smap.keys())[i] - list(self.smap.keys())[0]) * nt
+            if dbg:     self.log(f'{i=} {k=} {text=} {kk=} {dk=}')
+            for n in range(nt):
+                kt         = (cn + dk + n) % self.tpp # todo
+                p, l, c, t = self.cc2plct(kt)
+                self.setDTNIK(text[n], kt, p, l, c, n, kk=1 if n==nt-1 else 0)
+            if dbg:     self.log(f'{i=} {k=} {text=} {kk=} {dk=} {kt=}')
+        self.log(f'clearing {len(self.smap)=}')   ;   self.smap.clear()
+        self.dumpSmap(f'END {how} {kk=} {cc=} {cn=}={self.cc2cn(cc)} plct={self.fplct(p, l, c, t)}')
+        if self.SNAPS:  self.regSnap(f'{how}', 'PAST')
+        self.rsyncData = 1
+    ########################################################################################################################################################################################################
+    def cutTabs(self, how): self.log('BGN Cut = Copy + Delete')  ;  self.copyTabs(how)  ;  self.log('Cut = Copy + Delete')  ;  self.deleteTabs(how, keep=1)  ;  self.log('END Cut = Copy + Delete')
+    ########################################################################################################################################################################################################
+    def cutTabs(self, how):
+        self.log('BGN Cut = Copy + Delete')
+        self.copyTabs(how)
+        self.log('Cut = Copy + Delete')
+        self.deleteTabs(how, keep=1)
+        self.log('END Cut = Copy + Delete')
+    ########################################################################################################################################################################################################
+    def moveUp(self, how, dbg=1):
+        p, l, s, c, t = self.j()  ;  n = self.n[T] - 1  ;  m = self.n[L] - 1
+        if dbg: self.log(f'BGN {how}', pos=1)
+        if t>0: self.moveTo(how, p, l,                 c, 0) # go up   to top    of      line
+        else:   self.moveTo(how, p, l-1 if l>0 else m, c, n) # go up   to bottom of prev line, wrap down to bottom of last line
+        if dbg: self.log(f'END {how}', pos=1)
+    ########################################################################################################################################################################################################
+    def moveDown(self, how, dbg=1):
+        p, l, s, c, t = self.j()  ;  n = self.n[T] - 1  ;  m = self.n[L] - 1
+        if dbg: self.log(f'BGN {how}', pos=1)
+        if t<n: self.moveTo(how, p, l,                 c, n) # go down to bottom of      line
+        else:   self.moveTo(how, p, l+1 if l<m else 0, c, 0) # go down to top    of next line, wrap up to top of first line
+        if dbg: self.log(f'END {how}', pos=1)
+    ########################################################################################################################################################################################################
+    def moveLeft(self, how, dbg=1):
+        p, l, s, c, t = self.j()  ;  n = self.n[C] - 1  ;  m = self.n[L] - 1
+        if dbg: self.log(f'BGN {how}', pos=1)
+        if c>0: self.moveTo(how, p, l,                 0, t) # go left  to bgn of      line
+        else:   self.moveTo(how, p, l-1 if l>0 else m, n, t) # go left  to end of prev line, wrap right to bottom of last line
+        if dbg: self.log(f'END {how}', pos=1)                # go right & up to end of prev line, wrap down to bottom of last line
+    ########################################################################################################################################################################################################
+    def moveRight(self, how, dbg=1):
+        p, l, s, c, t = self.j()  ;  n = self.n[C] - 1  ;  m = self.n[L] - 1
+        if dbg: self.log(f'BGN {how}', pos=1)
+        if c<n: self.moveTo(how, p, l,                 n, t) # go right to end of      line
+        else:   self.moveTo(how, p, l+1 if l<m else 0, 0, t) # go right to bgn of next line, wrap left to top of first line
+        if dbg: self.log(f'END {how}', pos=1)                # go left & down to bgn of next line, wrap left to top of first line
+    ########################################################################################################################################################################################################
+    def move(self, how, n, ss=0, dbg=1):
+        if dbg:    self.log(f'BGN {how} {n=}', pos=1)
+        p, l, c, t = self.j2()
+        self._moveTo(p, l, c, t, n=n)
+        if self.CURSOR and self.cursor: self.moveCursor(ss, how)
+        if dbg:    self.log(f'END {how} {n=}', pos=1)
+    ########################################################################################################################################################################################################
+    def moveTo(self, how, p, l, c, t, ss=0, dbg=1):
+        if dbg:    self.log(f'BGN {how}', pos=1)
+        self._moveTo(p, l, c, t)
+        self.moveCursor(ss, how)
+        if dbg:    self.log(f'END {how}', pos=1)
+    ########################################################################################################################################################################################################
+    def _moveTo(self, p, l, c, t, n=0, dbg=1): # todo
+        if dbg: self.log(f'BGN plct={self.fplct(p, l, c, t)}', pos=1) # {n=}
+        np, nl, ns, nc, nt = self.n
+        t2        =       n  + t
+        c2        = t2 // nt + c
+        l2        = c2 // nc + l
+        p2        = l2 // nl + p
+        self.i[T] = t2  % nt + 1
+        self.i[C] = c2  % nc + 1
+        self.i[L] = l2  % nl + 1
+        self.i[P] = p2  % np + 1
+        if dbg: self.log(f'END {n=} {self.fmti()} plct={self.fplct(p, l, c, t)} plct2={self.fplct(p2, l2, c2, t2)}', pos=1)
+    ########################################################################################################################################################################################################
+    def moveCursor(self, ss=0, why=Z, dbg=1):
+        if dbg:           self.log(f'BGN {ss=} {self.cc=}', pos=1)
+        if self.LL:       self.setLLStyle(self.cc, SELECT_STYLE if ss else NORMAL_STYLE)
+        self.resizeCursor(why, dbg=dbg)
+        if self.LL:       self.setLLStyle(self.cc, CURRENT_STYLE)
+        if dbg:           self.log(f'END {ss=} {self.cc=}', pos=1)
+    ########################################################################################################################################################################################################
+    def resizeCursor(self, why, dbg=1):
+        x, y, w, h, c = self.cc2xywh()
+        self.resizeTnik(self.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
+    ########################################################################################################################################################################################################
+    def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
+    #        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=}'
+        tnik    = tlist[i]
+        self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
+        if   ist(tnik, SPR):
+            mx, my = w/tnik.image.width, h/tnik.image.height
+            tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
+        elif ist(tnik, LBL):
+            tnik.font_size = self.calcFontSize(j)
+            tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
+            self.checkTnik(tnik, i, j)
+        self.setJ(j, i, tnik.visible) if j != H or (j == H and self.J2[H] == 0) else None # todo fixme - do we want or need to set v info of the tnik as well?
+        self.dumpTnik(tnik, j, why) if dbg else None
+        if j == P and tnik.visible:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {self.i[P]}')
+        return tnik
+    ########################################################################################################################################################################################################
+    def prevPage(self, how, dbg=1):
+        p, l, c, t = self.j2()   ;   n = self.n[P] - 1
+        if dbg: self.log(f'BGN {how} {self.fmti()}', pos=1)
+        self.moveTo(how, p-1 if p>0 else n, l, c, t)
+    #        self.flipPage(how, -1, dbg=1)
+        if dbg: self.log(f'END {how} {self.fmti()}', pos=1)
+    ########################################################################################################################################################################################################
+    def nextPage(self, how, dbg=1):
+        p, l, c, t = self.j2()   ;   n = self.n[P] - 1
+        if dbg: self.log(f'BGN {how} {self.fmti()}', pos=1)
+        self.moveTo(how, p+1 if p<n else 0, l, c, t)
+    #        self.flipPage(how, 1, dbg=1)
+        if dbg: self.log(f'END {how} {self.fmti()}', pos=1)
+    ########################################################################################################################################################################################################
+    def autoMove(self, how, dbg=1):
+        self.log(f'BGN {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
+        ha = 1 if self.hArrow == RARROW else -1
+        va = 1 if self.vArrow == DARROW else -1
+        n, i  = self.n[T], self.i[T]
+        mmDist  = ha * n
+        cmDist  = va
+        amDist  = mmDist + cmDist
+        if dbg:   self.dumpCursorArrows(f'{self.fmtPos()}     {how} M={mmDist} C={cmDist} A={amDist}')
+        if        self.csrMode == MELODY:                               cmd = cmds.MoveCmd(self, how,   mmDist)  ;  cmd.do()
+        elif      self.csrMode == CHORD:
+            if    i==1 and self.vArrow==UARROW and self.hArrow==RARROW: cmd = cmds.MoveCmd(self, how,   n*2-1)   ;  cmd.do()
+            elif  i==6 and self.vArrow==DARROW and self.hArrow==LARROW: cmd = cmds.MoveCmd(self, how, -(n*2-1))  ;  cmd.do()
+            else:                                                       cmd = cmds.MoveCmd(self, how,   cmDist)  ;  cmd.do()
+        elif      self.csrMode == ARPG:                                 cmd = cmds.MoveCmd(self, how,   amDist)  ;  cmd.do()
+        self.log(f'END {self.hArrow=} {self.vArrow=} {self.csrMode=} {how}', pos=1)
+    ########################################################################################################################################################################################################
+    def selectTabs(self, how, m=0, cn=None, dbg=1, dbg2=1):
+        cc         = self.cursorCol()  ;  old = cn
+        p, l, s, c, t = self.cc2plsct(cc)
+        if cn is None:      cn = self.cc2cn(cc) # self.plc2cn_(p, l, c)
+        nt = self.n[T]  ;   k  = cn * nt   ;   style = SELECT_STYLE
+        self.log(f'{m=} {old=} {cc=} {cn=} {nt} {k=} {self.fplsct(p, l, s, c, t)}')
+        if cn in self.smap: self.log(f'RETURN: {cn=} already in smap={fmtm(self.smap)}') if dbg2 else None   ;   return
+        if dbg:             self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
+        text              = self.setTNIKStyle(k, nt, style)
+        self.smap[cn]     = text
+        if m:               cmd = cmds.MoveCmd(self, how, m, ss=1)     ;  cmd.do()
+        if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+    ########################################################################################################################################################################################################
+    def unselectTabs(self, how, m, cn=None, dbg=0):
+        if cn is None:      cc = self.cc   ;      cn = self.cc2cn(cc)
+        else:               cc = self.cn2cc(cn)
+        nt = self.n[T]  ;   k = cn * nt    ;   style = NORMAL_STYLE
+        if self.LL:         self.setLLStyle(cc, style)
+        if dbg:             self.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
+        self.setTNIKStyle(k, nt, style)
+        if cn in self.smap: self.smap.pop(cn)
+        elif dbg:           self.log(f'{cn=} not found in smap={fmtm(self.smap)}')
+        if m:               cmd = cmds.MoveCmd(self, how, m)     ;  cmd.do()
+        if dbg:             self.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+    ########################################################################################################################################################################################################
+    def saveDataFile(self, why, path, dbg=1):
+        if dbg:   self.log(f'BGN {why} {path}')
+        with open(path, 'w', encoding='utf-8') as DATA_FILE:
+            self.log(f'{DATA_FILE.name:40}', p=0)
+            commentStr = '#' * self.n[C]   ;   commentRow = f'{commentStr}{X}'
+            DATA_FILE.write(commentRow) if self.DEC_DATA else None
+            data = self.transposeData(dmp=dbg) # if self.isVert() else self.data
+            self.log(f'{self.fmtn()} {self.fmtdl(data)}')
+            for p, page in enumerate(data):
+                if dbg: self.log(f'writing {p+1}{utl.ordSfx(p + 1)}   Page', p=0)
+                for l, line in enumerate(page):
+                    if dbg: self.log(f'writing {l+1}{utl.ordSfx(l+1)}   Line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
+                    for r, row in enumerate(line):
+                        text = []
+                        for c, col in enumerate(row):
+                            text.append(col)
+                        text = Z.join(text)
+                        if dbg: self.log(f'writing {r+1}{utl.ordSfx(r+1)} String {text}', p=0)  # if dbg  else  self.log(text, p=0)
+                        DATA_FILE.write(f'{text}{X}')
+                    DATA_FILE.write(commentRow) if self.DEC_DATA else DATA_FILE.write(X)  #   if l < nl:
+                DATA_FILE.write(commentRow) if self.DEC_DATA else DATA_FILE.write(X)
+        size = path.stat().st_size   ;   self.log(f'{self.fmtn()} {self.fmtdl()} {size=}')
+        if dbg:   self.log(f'END {why} {path}')
+        return size
+    ########################################################################################################################################################################################################
+    def setTab(self, how, text, rev=0, dbg=0): # if isDataFret or isTextFret else 0)
+        bsp = how.startswith('BACKSPACE') # todo use better mechanism to flip hArrow
+        if rev: self.reverseArrow(bsp)   ;   cmd = cmds.AutoMoveCmd(self, how)   ;  cmd.do()
+        old   = self.cursorCol()   ;   msg = Z
+        p, l, c, t = self.j2()
+        cc    = self.plct2cc(p, l, c, t)   ;   cc2 = cc
+        self.log(f'BGN {how} {text=} {rev=} {old=:3} {cc=:3} {p=} {l=} {c=} {t=}', pos=1, f=2)
+        data  = self.data[p][l][c][t]
+        self.log(f'    {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
+        self.setDTNIK(text, cc2, p, l, c, t, kk=1)
+        p, l, c, t = self.j2()   ;   data = self.data[p][l][c][t]
+        self.log(f'END {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
+        if rev: self.reverseArrow(bsp)
+        else:   cmd = cmds.AutoMoveCmd(self, how)   ;  cmd.do()
+        if dbg and self.SNAPS:
+            stype = f'Txt.{text}' if self.sobj.isFret(text) else 'SYMB' if text in misc.DSymb.SYMBS else 'UNKN'
+            self.regSnap(f'{how}', stype)
+        self.rsyncData = 1
+    ########################################################################################################################################################################################################
+    def snapshot(self, why=Z, typ=Z, sid=0, dbg=1, dbg2=1):
+        why    = why if why else self.snapWhy
+        typ    = typ if typ else self.snapType
+        snapId = self.snapId   ;  logId = self.LOG_ID
+        snapName      = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
+        self.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = NONE   ;   snapId = NONE
+        if dbg:  self.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
+        if dbg:  self.log(f'{self.fNameLogId=} {snapName=} {why}')
+        if dbg:  self.log(f'{self.snapPath}', p=2)
+        pygimg.get_buffer_manager().get_color_buffer().save(f'{self.snapPath}')
+        if dbg2: self.log(f'{snapName=} {why}', f=2)
+        if typ == utl.INIT:
+            snapName0 = f'{BASE_NAME}.{PNG}'
+            snapName2 = self.geomFileName(BASE_NAME, PNG)
+            snapPath0 = BASE_PATH / PNGS / snapName0
+            snapPath2 = BASE_PATH / snapName2
+            utl.copyFile(self.snapPath, snapPath0)
+            utl.copyFile(self.snapPath, snapPath2)
+            if dbg:  self.log(f'{BASE_NAME=} {self.fmtn(Z)}')
+            if dbg:  self.log(f'{snapName0=} {why}')
+            if dbg:  self.log(f'{snapName2=} {why}')
+            if dbg:  self.log(f'{snapPath0=}', p=2)
+            if dbg:  self.log(f'{snapPath2=}', p=2)
+        self.dumpTnikCsvs()
+        self.snapId += sid
+        return self.snapPath
+    ########################################################################################################################################################################################################
+    def resizeTniks(self, dbg=1):
+        self.updC += 1  ;  why = f'Upd{self.updC}'
+        self.dumpTniksPfx(why)
+        if   self.DSP_J_LEV == P:
+            for _ in                 self.g_resizeTniks(self.pages, P, None, why=why): pass
+        elif self.DSP_J_LEV == L:
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for _ in             self.g_resizeTniks(self.lines, L, page, why=why): pass
+        elif self.DSP_J_LEV == S:
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
+                    if self.LL:      self.resizeLLs(line, why)
+                    for _ in         self.g_resizeTniks(self.sects, S, line, why=why): pass
+        elif self.DSP_J_LEV == C:
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
+                    if self.LL:      self.resizeLLs(line, why)
+                    for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
+                        for _ in     self.g_resizeTniks(self.colms, C, sect, why=why): pass
+        else:
+            for page in              self.g_resizeTniks(self.pages, P, None, why=why): # pass
+                for line in          self.g_resizeTniks(self.lines, L, page, why=why): # pass
+                    if self.LL:      self.resizeLLs(line, why)
+                    for sect in      self.g_resizeTniks(self.sects, S, line, why=why): # pass
+                        for colm in  self.g_resizeTniks(self.colms, C, sect, why=why): # pass
+                            for _ in self.g_resizeTniks(self.tabls, T, colm, why=why): pass
+        self.dumpTniksSfx(why)
+        if self.CURSOR and self.cursor: cmd = cmds.ResizeCursorCmd(self, why)  ;  cmd.do()   ;   self.dumpHdrs()
+    #        if dbg and self.SNAPS and not self.snapReg: self.regSnap(why, f'Upd{self.cc + 1}')
+        if dbg:   self.dumpStruct(why) # , dbg=dbg)
+    ########################################################################################################################################################################################################
+    def quit(self, why=Z, error=1, save=1, dbg=1):
+        retv = True
+        hdr1 = self.fTnikHdr(1)  ;   hdr0 = self.fTnikHdr(0)   ;   self.log(hdr1, p=0, f=2)  ;  self.log(hdr0,     p=0, f=2)   ;   err = f'Error={error}'
+        self.log(f'BGN {why} {err} {save=} {self.quitting=}', f=2)                   ;          self.log(utl.QUIT, p=0, f=2)   ;   msg = 'Recursion Error'
+        self.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())      ;          self.log(utl.QUIT, p=0, f=2)
+        if self.quitting:        msg += f' {self.quitting=} Exiting'  ;  self.log(msg, f=2)  ;  self.close() #  ;   return True
+        self.dumpTniksSfx(why)        ;     self.quitting += 1
+        if not error:
+            utl.dumpStack(utl.MAX_STACK_FRAME)
+            if dbg:  self.dumpStruct(why, dbg=dbg)
+            if save: cmd = cmds.SaveDataFileCmd(self, why, self.dataPath1)    ;  cmd.do()
+            if dbg:  self.transposeData(dmp=dbg)
+            if dbg:  self.cobj.dumpMlimap(why)
+        if self.SNAPS:    cmd = cmds.SnapshotCmd(self, f'quit {error} {save=}', utl.INIT)     ;  cmd.do()
+        self.log(f'END {why} {err} {save=} {self.quitting=}', f=2)       ;   self.log(utl.QUIT_END, p=0, f=2)
+        self.cleanupFiles()
+        self.log(f'END {why} {err} {save=} {self.quitting=}', f=0)       ;   self.log(utl.QUIT_END, p=0, f=0)
+        self.log('Calling close()', e=Y, f=2)
+        self.close()
+        if self.TEST:
+            if   self.EXIT == 0: retv = False  ;  self.log(f'{self.EXIT=} returning {retv=}')
+            elif self.EXIT == 1: retv = True   ;  self.log(f'{self.EXIT=} returning {retv=}')
+            elif self.EXIT == 2:                  self.log(f'{self.EXIT=} Calling pyglet.app.exit()')  ;   pyglet.app.exit()
+            else:                                 self.log(f'{self.EXIT=} Calling exit()')             ;   exit()
+        else:                                     self.log(f'{self.EXIT=} returning {retv=}')
+        return retv
+    ########################################################################################################################################################################################################
+    def flipZZs(self, how, zz):
+        ii   = 0 if not zz else 2
+        msg2 = f'{how} {zz=}'
+        self.dumpGeom('BGN', f'     {msg2}')
+        if   zz not in self.ZZ and not self.D[ii]: msg = 'ADD'    ;   self.addZZs(how, zz)
+        elif zz     in self.ZZ:                    msg = 'HIDE'   ;   self.hideZZs(how, zz)
+        else:                                      msg = 'SKIP'   ;   self.dumpGeom(W*3, f'{msg} {msg2}')   ;   self.flipZZ(zz)
+        self.on_resize(self.width, self.height)
+        self.dumpGeom('END', f'{msg} {msg2}')
+    ########################################################################################################################################################################################################

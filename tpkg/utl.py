@@ -1,6 +1,7 @@
 import inspect, math, os, pathlib, sys, glob
 from   inspect import currentframe as cfrm
 
+import pyglet
 import pyglet.window.key   as pygwink
 import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
@@ -46,9 +47,10 @@ QUIT_BGN  = '###   Quit BGN  ###' * 10
 QUIT      = '###     Quit    ###' * 10
 QUIT_END  = '###   Quit END  ###' * 10
 STFILT    = ['log', 'tlog', 'flog', 'fmtl', 'fmtm', 'dumpGeom', 'resetJ', 'dumpJs', 'dumpImap', 'dumpSmap', 'dumpCursorArrows', '<listcomp>', 'dumpLimap2', 'dumpTniksPfx', 'dumpTniksSfx', 'fmtXYWH', 'kbkInfo', 'dumpCrs', 'fCrsCrt'] # , 'dumpView', 'dumpLbox', 'dumpRect']
-FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'Helvetica', 'Century Gothic', 'Bookman Old Style', 'Antique Olive' ]
+FONT_NAMES  = [ 'Lucida Console', 'Times New Roman', 'Arial', 'Courier New', 'Blockbusted', 'Fridays', 'Vogue', 'Open 24 Display St' ]
 ########################################################################################################################################################################################################
 def init(cfile, efile, lfile, tfile, f):
+    pyglet.font.add_directory('./res/fonts')
     global CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE   ;   CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE = cfile, efile, lfile, tfile
     argv   = sys.argv
     argc   = len(argv)

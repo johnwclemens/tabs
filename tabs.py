@@ -263,7 +263,7 @@ class Tabs(pyglet.window.Window):
         self.tabls, self.notes, self.ikeys, self.kords = [], [], [], []  ;  self.B = [self.tabls, self.notes, self.ikeys, self.kords]
         self.views, self.rowLs, self.qclms, self.hcurs = [], [], [], []  ;  self.C = [self.views, self.rowLs, self.qclms, self.hcurs]
         self.snums, self.snams, self.capos, self.zclms = [], [], [], []  ;  self.D = [self.snums, self.snams, self.capos, self.zclms]
-        self.E     = [*self.A, *self.B, *self.C, *self.D]       ;     self.log(f'E={fmtl(self.E, d=" [", d2="] ")}')
+        self.E     = [*self.A, *self.B, *self.C, *self.D]         ;   self.log(f'E={fmtl(self.E, d=" [", d2="] ")}')
         self.resetJ('_reinit')
         self.cc, self.cursor, self.caret = 0, None, None
         self.ki    = [ 0 for _ in range(len(self.E)) ]            ;   self.log(fmtl(self.ki))
@@ -274,6 +274,7 @@ class Tabs(pyglet.window.Window):
         self.log('END', pos=1)
 
     def _init(self):
+        self.log(f'{fmtl(FONT_NAMES)=}')
         utl.initColors(self.k, self.SPRITES, self.BGC, self.initk)
         self._initData()
         if self.AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer')
@@ -852,16 +853,6 @@ class Tabs(pyglet.window.Window):
                 self.log(f'{d2}{ti[1]:>5}', p=0, e=W)
                 self.log(p=0)
     ####################################################################################################################################################################################################
-    def flipZZs(self, how, zz):
-        ii   = 0 if not zz else 2
-        msg2 = f'{how} {zz=}'
-        self.dumpGeom('BGN', f'     {msg2}')
-        if   zz not in self.ZZ and not self.D[ii]: msg = 'ADD'    ;   self.addZZs(how, zz)
-        elif zz     in self.ZZ:                    msg = 'HIDE'   ;   self.hideZZs(how, zz)
-        else:                                      msg = 'SKIP'   ;   self.dumpGeom(W*3, f'{msg} {msg2}')   ;   self.flipZZ(zz)
-        self.on_resize(self.width, self.height)
-        self.dumpGeom('END', f'{msg} {msg2}')
-    ####################################################################################################################################################################################################
     def flipZZ(self, zz, why=Z):
         self.dumpGeom('BFR', why)
         self.ZZ.add(zz) if zz not in self.ZZ else self.ZZ.remove(zz)
@@ -881,7 +872,7 @@ class Tabs(pyglet.window.Window):
         self.dumpGeom('AFT', why)
     ####################################################################################################################################################################################################
     def hideZZs(self, how, zz, dbg=1): pass
-    def addZZs(self, how, zz):  pass
+    def addZZs( self, how, zz):  pass
     ####################################################################################################################################################################################################
     def hideTTs(self, how, ii, dbg=1):
         why = f'HIDE {how} {ii=}'  ;  why2 = 'Ref'
@@ -938,7 +929,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def lens2n(ls):        return [len(i) if ist(i, str) else i for i in ls]
     ####################################################################################################################################################################################################
-    def tnikInfo(self, p, l, s, c, t=None, z=0, why=Z, dbg=0):
+    def tnikInfo(self, p, l, s, c, t=None, z=1, why=Z, dbg=0):
         tlist, j, k, txt = None, -1, None, None   ;   z1, z2 = None, None
         if z: z1, z2 = self.z1(c), self.z2(c)
         exp1 = z1 == C1   ;  exp2 = C2 in (z1, z2)
@@ -956,7 +947,7 @@ class Tabs(pyglet.window.Window):
             return  tlist, j, None, None
         if 0 <= t < self.n[T]:
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[B], self.k[A], self.k[D]
-            tab = self.data[p][l][c][t]  # if C1 != z1 != C2 and C2 != z2 else Z
+            tab = self.data[p][l][c][t] if C1 != z1 != C2 and C2 != z2 else Z
             if   s == TT:  tlist, j, k, txt = (self.snums, B, kO, self.sobj.stringNumbs[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.tabls, T, kT, tab)
             elif s == NN:  tlist, j, k, txt = (self.snams, A, kA, self.sobj.stringNames[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.notes, N, kN, tab)
             elif s == II:  tlist, j, k, txt = (self.snums, B, kO, self.sobj.stringNumbs[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.ikeys, I, kI, tab)
@@ -1238,7 +1229,7 @@ class Tabs(pyglet.window.Window):
             yield self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
     ####################################################################################################################################################################################################
     def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
-#        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=}'
+        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=}'
         tnik    = tlist[i]
         self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
         if   ist(tnik, SPR):
@@ -1554,7 +1545,7 @@ class Tabs(pyglet.window.Window):
         pix = s / PNT_PER_PIX   ;   fcs = Z # f'{fmtl( [k])}'
         self.log(f'{dpi}:{FONT_DPIS[dpi]}dpi {s:6.2f}pt {n}:{FONT_NAMES[n]} {k}:{fcs} {s:6.2f}pt = {PNT_PER_PIX:6.4f}(pt/pix) * {pix:6.2f}pixels {why}', f=-2)
 
-    def setFontParam2(self, ts, n, v, m, j, dbg=1):
+    def setFontArg2(self, ts, n, v, m, j, dbg=1):
         l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
         for i, t in enumerate(ts):
             if ist(t, LBL):
@@ -1692,21 +1683,21 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def afn(fn): return fn if len(fn) == 1 and '0' <= fn <= '9' else chr(ord(fn[1]) - ord('0') + ord('a')) if len(fn) == 2 and fn[0] == '1' else None
     ####################################################################################################################################################################################################
+    def moveB(self, how, n, ss=0, dbg=1):
+        if dbg:    self.log(f'BGN {how} {n=}', pos=1)
+        p, l, s, c, t = self.j()
+        self.moveToB2(p, l, s, c, t, n=n)
+        if self.CURSOR and self.cursor: self.moveCursor(ss, how)
+        if dbg:    self.log(f'END {how} {n=}', pos=1)
+
     def moveToB(self, how, p, l, s, c, t, ss=0, dbg=1):
         if dbg:    self.log(f'BGN {how}', pos=1)
-        p2, l2, s2, c2, t2 = self._moveToB(p, l, s, c, t)
+        p2, l2, s2, c2, t2 = self.moveToB2(p, l, s, c, t)
         self.moveCursor(ss, how)
         if dbg:    self.log(f'END {how}', pos=1)
         return p2, l2, s2, c2, t2
 
-    def moveB(self, how, n, ss=0, dbg=1):
-        if dbg:    self.log(f'BGN {how} {n=}', pos=1)
-        p, l, s, c, t = self.j()
-        self._moveToB(p, l, s, c, t, n=n)
-        if self.CURSOR and self.cursor: self.moveCursor(ss, how)
-        if dbg:    self.log(f'END {how} {n=}', pos=1)
-
-    def _moveToB(self, p, l, s, c, t, n=0, dbg=1): # todo
+    def moveToB2(self, p, l, s, c, t, n=0, dbg=1): # todo
         p2, l2, s2, c2, t2 = self.trncPlsct(p, l, s, c, t+n)
         self.i[T] = t2 + 1
         self.i[C] = c2 + 1
