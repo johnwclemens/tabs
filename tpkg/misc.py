@@ -54,3 +54,4 @@ class Modes:
 #  2) top/bottom string automove
 # D) fix BACKSPACE - pass motion value as seperate arg to SetTabCmd
 # E) how to sort cmds.py classes
+# F) load more fonts into res/fonts dir (.ttf files)

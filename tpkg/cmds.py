@@ -175,7 +175,7 @@ class EraseTabsCmd(Cmd):
     
     def _eraseTabs(self):
         tobj, how = self.tobj, self.how
-        np, nl, ns, nc, nt = tobj.n   ;   nz = tobj.zzl()  ;  nc += nz
+        np, nl, ns, nc, nt = tobj.n   ;  nz = 0 #  ;   nz = tobj.zzlen()  ;  nc += nz
         tobj.log(f'BGN {how} {np=} {nl=} {ns=} {nc=} {nt=}')
         tobj.nic.clear()
         tobj.dumpBlanks()
@@ -824,7 +824,7 @@ class SwapTabCmd(Cmd):
             tobj.log(f'    {how} {tobj.swapping=} {src=} {trg=}')
             if   tobj.swapping == 1 and not trg: tobj.swapping = 2;   tobj.log(f'{how} waiting {src=} {trg=}') if dbg else None   ;   return
             if   tobj.swapping == 2 and trg:     tobj.swapping = 0;   tobj.log(f'{how} BGN     {src=} {trg=}') if dbg else None
-            np, nl, ns, nc, nt = tobj.n    ;     nc += tobj.zzl()
+            np, nl, ns, nc, nt = tobj.n  #  ;     nc += tobj.zzlen()
             cc0 = tobj.cursorCol()         ;     p0, l0, c0, t0 = tobj.cc2plct(cc0)   ;   tobj.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
             blanks = tobj.tblanks          ;     blank = 1 if src in blanks and trg in blanks else 0
             if blank:
@@ -933,7 +933,7 @@ class TogFlatShrpCmd(Cmd):
         t1 = Notes.TYPE    ;    t2 =  Notes.TYPE * -1      ;     Notes.TYPE = t2
         tobj.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
         s = tobj.ss2sl()[0]  ;  np, nl, ns, nc, nt = tobj.i
-        tniks, j, _, _tobj = tobj.tnikInfo(0, 0, s, 0, 0, why=how)
+        tniks, j, _, _ = tobj.tnikInfo(0, 0, s, 0, 0, why=how)
         for i in range(len(tniks)):
             text = Z  ;   sn = i % nt
             if   tobj.notes: text = tobj.notes[i].text
@@ -1040,10 +1040,11 @@ class TogLLsCmd(Cmd):
     
     def _togLLs(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
-        tobj.flipLL()
+        tobj.togLL()
         msg2 = f'{how} {tobj.LL=}'
         tobj.dumpGeom('BGN', f'     {msg2}')
-        if dbg: tobj.log(f'    llText={fmtl(tobj.llText[1-tobj.zzl():])}')
+        if dbg: tobj.log(f'    llText={fmtl(tobj.llText)}')
+#        if dbg: tobj.log(f'    llText={fmtl(tobj.llText[1-tobj.zzlen():])}')
         if tobj.LL and not tobj.rowLs: msg = 'ADD'    ;   tobj.addLLs( how)
         else:                          msg = 'HIDE'   ;   tobj.hideLLs(how)
         tobj.on_resize(tobj.width, tobj.height)
@@ -1094,7 +1095,7 @@ class TogTTsCmd(Cmd):
         tobj.dumpGeom('BGN', f'     {msg2}')
         if   tt not in tobj.SS and not tobj.B[tt]: msg = 'ADD'    ;   tobj.addTTs( how, tt)
         elif tt     in tobj.SS:                    msg = 'HIDE'   ;   tobj.hideTTs(how, tt)
-        else:                                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.flipTT(tt)
+        else:                                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togTT(tt)
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
@@ -1144,7 +1145,7 @@ class TogZZsCmd(Cmd):
         tobj.dumpGeom('BGN', f'     {msg2}')
         if   zz not in tobj.ZZ and not tobj.D[ii]: msg = 'ADD'    ;   tobj.addZZs(how, zz)
         elif zz     in tobj.ZZ:                    msg = 'HIDE'   ;   tobj.hideZZs(how, zz)
-        else:                                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.flipZZ(zz)
+        else:                                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togZZ(zz)
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
