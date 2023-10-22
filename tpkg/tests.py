@@ -2,7 +2,8 @@ import pyglet.sprite     as pygsprt
 import pyglet.image      as pygimg
 from   pyglet.window.key import symbol_string    as psym
 from   pyglet.window.key import modifiers_string as pmod
-from   tpkg   import utl as utl
+from   tpkg              import utl as utl
+#from   tpkg              import cmds   as cmds
 
 slog    = utl.slog
 W, Y, Z = utl.W, utl.Y, utl.Z
@@ -75,7 +76,7 @@ def test0(tobj, a=3.14159265359, n=4, q=0):
     slog(f'END test0 {a=} {n=} {q=}')
 
 def test1(tobj, amap, mmap, q=0):
-    slog(f'{tobj.ntsl()=}')
+    slog(f'{tobj.ntnsnl()=}')
     slog(f'{utl.fmtm(amap)}')
     slog(f'{  amap["LLBL"]}', p=0)
     slog(f'   j(TI)={Y.join(amap["TI"])};')
@@ -154,6 +155,12 @@ def test3(tobj):
     i = (i + 1) % tobj.n[0]
     tobj.i[0] = i + 1
 
+def test4(args):
+    msg = f'{utl.fmtm(args)=}'
+    slog(msg)
+    for k, v in args.items():
+        slog(f'{k}={utl.fmtl(v, d=Z)} ', p=0, f=-3, e=Z)
+    slog(p=0)
 ####################################################################################################################################################################################################
 def tExit(tobj, why, e): #        dispatch_event('on_close')
     slog(f'BGN {why} {e}')

@@ -47,7 +47,7 @@ class Strngs:
         if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} stringMap={fmtm(self.stringMap)}')
         return i
 
-    def tab2nn(self, tab, s, nic=None, dbg=1, f=-2):
+    def tab2nn(self, tab, s, nic=None, dbg=1, f=-3):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES

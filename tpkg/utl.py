@@ -10,11 +10,8 @@ from   tpkg    import unic as unic
 def fn( cf): return cf.f_code.co_name
 def ffn(cf): return cf.f_code.co_filename
 
-ALT, CTL, SHF, CPL, NML = pygwink.MOD_ALT, pygwink.MOD_CTRL, pygwink.MOD_SHIFT, pygwink.MOD_CAPSLOCK, pygwink.MOD_NUMLOCK
 UNICODE    = unic.UNICODE
 ROOT_DIR   = os.getenv('ROOT_DIR', 'test')
-#slog(f'{ROOT_DIR=}')
-#ROOT_DIR   = 'test'
 PATH       = pathlib.Path.cwd() / sys.argv[0]
 BASE_PATH  = PATH.parent / ROOT_DIR
 BASE_NAME  = BASE_PATH.stem
@@ -22,7 +19,8 @@ P, L, S, C =  0,  1,  2,  3
 T, N, I, K =  4,  5,  6,  7
 M, R, Q, H =  8,  9, 10, 11
 B, A, D, E = 12, 13, 14, 15
-W, X, Y, Z, NONE      = ' ', '\n', ',', '', 'None'
+W, X, Y, Z, NONE        = ' ', '\n', ',', '', 'None'
+ALT, CTL, SHF, CPL, NML = pygwink.MOD_ALT, pygwink.MOD_CTRL, pygwink.MOD_SHIFT, pygwink.MOD_CAPSLOCK, pygwink.MOD_NUMLOCK
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA =     'cats',     'csvs',     'evns',     'logs',     'pngs',     'text',     'data'
 LBL, SPR              = pygtxt.Label, pygsprt.Sprite
@@ -57,9 +55,7 @@ def init(cfile, efile, lfile, tfile, f):
     slog(f'{argc=} {fmtl(argv)=}', f=f)
     for i in range(1, argc): slog(f'argv[{i}]={argv[i]}', f=f)
     ARGS   = parseCmdLine(argv, f=f)
-#    global   ROOT_DIR #  ;   
-#    ROOT_DIR = ARGS['f'][0] if 'f' in ARGS and len(ARGS['f']) > 0 else ROOT_DIR
-    slog(  f'   ARGS={fmtm(ARGS)}', f=f)
+    slog(  f'   ARGS={fmta(ARGS)}', f=f)
     slog(f'{ROOT_DIR=}', f=f)
     return   ARGS
 
@@ -109,14 +105,15 @@ def slog(t=Z, p=1, f=1, s=Y, e=X, ff=1, ft=1):
         p  = f'{sf.f_lineno:4} {fp.stem:5} '
         t  = f'{p}{fn(sf):18} ' + t
     tx, so, cs = 0, 0, 0
-    if   f == -3: f = LOG_FILE  ;  cs = 1  ;  so = 1
-    elif f == -2: f = LOG_FILE  ;  tx = 1  ;  so = 1
+    if   f == -3: f = LOG_FILE  ;  tx = 1  ;  so = 1
+    elif f == -2: f = TXT_FILE  ;  so = 1
     elif f == -1: f = sys.stdout
     elif f ==  0: f = TXT_FILE
     elif f ==  1: f = LOG_FILE
     elif f ==  2: f = LOG_FILE  ;  tx = 1
     elif f ==  3: f = CSV_FILE
     elif f ==  4: f = EVN_FILE
+    else:         f = LOG_FILE  ;  tx = 1  ;  so = 1
     print(t, sep=s, end=e, file=f,          flush=bool(ff))
     print(t, sep=s, end=e, file=TXT_FILE,   flush=bool(ff)) if tx else None
     print(t, sep=s, end=e, file=sys.stdout, flush=bool(ff)) if so else None
@@ -196,6 +193,13 @@ def fmtf(a, b):
     if   b == 4: return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
     elif b == 5: return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
 ########################################################################################################################################################################################################
+def fmta(args):
+    t = []
+    for k, v in args.items():
+        t.append(f'{k}:')
+        t.append(f'{fmtl(v, d=Z)} ')
+    return Z.join(t)
+########################################################################################################################################################################################################
 def parseCmdLine(argv, dbg=1, f=0):
     options, key, vals, argc = {}, Z, [], len(argv)
     if dbg: slog(f'argv={fmtl(argv[1:])}', f=f)  ;  slog(argv[0], f=f)
@@ -234,7 +238,7 @@ def parseCmdLine(argv, dbg=1, f=0):
             options[key] = vals
             if dbg: slog(f'{j:2} arg     {arg:2} {key} {fmtl(vals)}', p=0, f=f, e=W)
         if dbg: slog(p=0, f=f)
-    if dbg: slog(f'options={fmtm(options)}', f=f)
+    if dbg: slog(f'options={fmta(options)}', f=f)
     return options
 ########################################################################################################################################################################################################
 def dumpRGB(f, dbg=0):
@@ -340,14 +344,14 @@ def initColors(k, spr, bgc, ik):
     j = D  ;  k[j] = i(j, KD1, aa, OE1, KD2, zz, OE2) if a else i(j, KD1,  0,  0, KD2, 17, 17) if b else i(j, KD1,  0,  0, KD2, 17, 17) if c else i(j, KD1,  0,  0, KD2, 17, 17) if d else None
     j = E  ;  k[j] = i(j, KE1, aa, OE1, KE2, zz, OE2) if a else i(j, KE1,  0,  0, KE2, 17, 17) if b else i(j, KE1,  0,  0, KE2, 17, 17) if c else i(j, KE1,  0,  0, KE2, 17, 17) if d else None
 
-def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1, f=-2):
+def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1, f=-3):
     if dbg: slog(f'{baseName =:12} {basePath = }', f=f)
     fileName   = f'{baseName}.{fsfx}'          if fsfx else baseName
     filePath   =    basePath / fdir / fileName if fdir else basePath / fileName
     if dbg: slog(f'{fileName =:12} {filePath = }', f=f)
     return  filePath
 
-def copyFile(src, trg, dbg=1, f=-2):
+def copyFile(src, trg, dbg=1, f=-3):
     if not src.exists():   msg = f'ERROR Path Does not Exist {src=}'   ;   print(msg)   ;  raise SystemExit(msg)
     if dbg: slog(f'{src=}', f=f)
     if dbg: slog(f'{trg=}', f=f)
@@ -382,10 +386,6 @@ def sid(s, sfx):
     j = s.rfind('.')
     i = s[j + 1:]
     return int(i) if isinstance(i, str) and i.isdigit() else None
-
-#ENV = os.getenv()
-#slog(f'{fmtm(ENV)=}', f=-2)
-
 
 ########################################################################################################################################################################################################
 def main():

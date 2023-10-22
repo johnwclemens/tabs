@@ -55,3 +55,4 @@ class Modes:
 # D) fix BACKSPACE - pass motion value as seperate arg to SetTabCmd
 # E) how to sort cmds.py classes
 # F) load more fonts into res/fonts dir (.ttf files)
+# G) fix - Access to a protected member _reinit of a class - tobj._reinit()

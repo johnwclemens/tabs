@@ -73,16 +73,16 @@ def on_close(tobj, dbg=1):
     return True
 
 def on_draw(tobj, **kwargs):
-    if   tobj.drwBGC % 3 == 0:     pyglet.gl.glClearColor(0.0, 0.0, 0.0, 0.0)
-    elif tobj.drwBGC % 3 == 1:     pyglet.gl.glClearColor(0.5, 0.5, 0.5, 0.5)
-    elif tobj.drwBGC % 3 == 2:     pyglet.gl.glClearColor(1.0, 1.0, 1.0, 1.0)
+    if   tobj.DRAW_BGC % 3 == 0:     pyglet.gl.glClearColor(0.0, 0.0, 0.0, 0.0)
+    elif tobj.DRAW_BGC % 3 == 1:     pyglet.gl.glClearColor(0.5, 0.5, 0.5, 0.5)
+    elif tobj.DRAW_BGC % 3 == 2:     pyglet.gl.glClearColor(1.0, 1.0, 1.0, 1.0)
     tobj.clear()
     tobj.batch.draw()
     if  tobj.SNAPS and tobj.snapReg:
         tobj.snapReg = 0
         _ = fmtm(kwargs) if kwargs else Z
         snapPath = cmds.SnapshotCmd(tobj, f'on_draw({_})')
-        slog(f'{tobj.snapWhy=} {tobj.snapType=} {tobj.snapId=}\n{snapPath=}', f=-2)
+        slog(f'{tobj.snapWhy=} {tobj.snapType=} {tobj.snapId=}\n{snapPath=}', f=-3)
 #    else: slog(f'{kwargs=}') if kwargs else slog()
 #        if tobj.TEST:   tests.testSprTxt_0(snapPath)
 ########################################################################################################################################################################################################
@@ -231,7 +231,7 @@ def on_mouse_release(tobj, x, y, bttn, mods=0, dbg=1):
         y0 = y            ;   y = hh - y0     ;    nr = nl*(ns*nt + ll)  ;   w = ww/nc      ;  h = hh/nr
         cc = tobj.cc      ;   r = int(y/h)    ;     d = int(y/h)  - ll   ;   a = int(d/nr)  ;  b = int(x/w)
         p  = tobj.j()[P]  ;   l = a           ;     s = d//nt            ;   c = b          ;  t = (d - l*nr) # % nt
-        txt = tobj.tabls[cc].text if cc < tlen else Z   ;   f = -2
+        txt = tobj.tabls[cc].text if cc < tlen else Z   ;   f = -3
         if dbg:   slog(f'BGN {x=:4} {y0=:4} {y=:4} {w=:6.2f} {h=:6.2f} {ll=} {nc=:2} {nr=:2} {r=:2} {d=:2} {txt=} {bttn=} {mods=}', f=f)
         if dbg:   slog(f'    p={p+1} l={l+1}=(d/nr) s={s+1}=(d//nt) c={c+1}=(x/w) t={t+1}=(d-l*nr)', f=f)
         if dbg:   slog(f'    before MOVE plsct={tobj.fplsct(p, l, s, c, t)}',   f=f)
@@ -273,7 +273,7 @@ def on_text(tobj, text, dbg=1):
     elif    tobj.swapping:                   cmd = cmds.SwapTabCmd(    tobj,  'onTxt', text)                ;  cmd.do()
     elif    tobj.isTab(text):                cmd = cmds.SetTabCmd(     tobj,  'onTxt', text)                ;  cmd.do()
     elif    text == '$' and isShf(kd, MODS): cmd = cmds.SnapshotCmd(   tobj,   text, 'SNAP')                ;  cmd.do()
-    elif dbg: slog(f'UNH {ft(text)} {tobj.prevEvntText=}', f=-2) if text != '\r' and tobj.prevEvntText != 0xff0d else None   ;   retv = False # 65293
+    elif dbg: slog(f'UNH {ft(text)} {tobj.prevEvntText=}', f=-3) if text != '\r' and tobj.prevEvntText != 0xff0d else None   ;   retv = False # 65293
     tobj.prevEvntText = text
     if   dbg: slog(f'END {ft(text)} {tobj.prevEvntText=} {tobj.inserting=} {tobj.jumping=} {tobj.settingN=} {tobj.shifting=} {tobj.swapping=} {retv=}')
     return retv

@@ -18,7 +18,7 @@ from   tpkg.chords     import Chords as Chords
 from   tpkg            import cmds   as cmds
 
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          B, A, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.B, utl.A, utl.D, utl.E
-W, X, Y, Z,       NONE,  ist,  fri,         slog,   fmtf,   fmtl,   fmtm    = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,       utl.slog,   utl.fmtf,   utl.fmtl,   utl.fmtm
+W, X, Y, Z,       NONE,  ist,  fri,    slog,   fmtf,   fmtl,   fmtm,   fmta = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,     utl.slog,   utl.fmtf, utl.fmtl, utl.fmtm, utl.fmta
 BGC,  BOLD,  COLOR,     FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,   utl.BOLD,  utl.COLOR,   utl.FONT_NAME, utl.FONT_SIZE, utl.ITALIC,   utl.KERNING,     utl.UNDERLINE
 isAlt, isCtl, isShf,    isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.isAlt, utl.isCtl, utl.isShf,   utl.isCtlAlt,  utl.isAltShf,  utl.isCtlShf, utl.isCtlAltShf, utl.isNumLck
 
@@ -96,19 +96,19 @@ class Tabs(pyglet.window.Window):
         self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs      = 0
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg      = Z
         self.newC          = 0   ;   self.updC      = 0    ;   self.prevEvntText = Z
-        self.cc            = 0   ;   self.nvis      = 0    ;   self.drwBGC       = 0
+        self.cc            = 0   ;   self.nvis      = 0    ;   self.DRAW_BGC     = 1
         self.allTabSel     = 0   ;   self.rsyncData = 0
         self.sprs          = []  ;   self.undoStack = []
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
         self.J1,       self.J2,      self.j1s,     self.j2s    = [], [], [], []
         self.hArrow,   self.vArrow,  self.csrMode, self.tids   = RARROW, UARROW, CHRD, set()   ;   self.dumpCursorArrows('init()')
         self.tblank,   self.tblanki, self.cursor,  self.data   = None, None, None, []
-        self.XYVA      = [0, 0, 0, 0]
-        self._init_xyva()
+        self.XYVA      = [0, 0, 0, 0]    ;    self._init_xyva()
+        self.viewX, self.viewY = 0, 0    ;    self.viewW, self.viewH = self.width, self.height
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4
         self.DBG_TABT  = 0  ;  self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1
         self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0
-        self.STRETCH   = 0  ;  self.SUBPIX    = 1  ;  self.TEST    = 0  ;  self.VARROW    = 1  ;  self.VIEWS     = 0  ;  self.VRBY     = 0
+        self.STRETCH   = 0  ;  self.SUBPIX    = 1  ;  self.TEST    = 0  ;  self.VARROW    = 1  ;  self.VERBY     = 0
         self.ROOT_DIR  = 'test'  ;  self.FILE_NAME = BASE_NAME
         self.LL        = 0
         self.SS        = set(range(4))  # set() if 0 else {0, 1, 2, 3}
@@ -117,7 +117,8 @@ class Tabs(pyglet.window.Window):
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         self.n         = [1, 1, 10, 6]
         self.i         = [1, 1,  1, 6]
-        self.log(f'argMap={fmtm(ARGS)}')
+        self.VIEWS     = [] # [width/n[C], 0] [960/10, 0]
+        self.log(f'argMap={fmta(ARGS)}')
         ################################################################################################################################################################################################
         if 'a' in ARGS  and len(ARGS['a']) == 0: self.AUTO_SAVE  =  1
         if 'A' in ARGS: l = len(ARGS['A'])   ;   self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
@@ -134,6 +135,7 @@ class Tabs(pyglet.window.Window):
         if 'g' in ARGS  and len(ARGS['g']) == 0: self.ORD_GRP    =  1
         if 'G' in ARGS  and len(ARGS['G']) == 0: self.GEN_DATA   =  1
         if 'i' in ARGS  and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
+        if 'j' in ARGS  and len(ARGS['j']) == 0: self.DRAW_BGC   =  1
         if 'J' in ARGS  and len(ARGS['J'])  > 0: self.DSP_J_LEV  =   int(ARGS['J'][0])
         if 'l' in ARGS  and len(ARGS['l']) == 0: self.LONG_TXT   =  1
         if 'L' in ARGS  and len(ARGS['L']) == 0: self.LL         =  1
@@ -147,8 +149,8 @@ class Tabs(pyglet.window.Window):
         if 'S' in ARGS  and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
         if 't' in ARGS: l = len(ARGS['t'])   ;   self.TEST       =  1 if l == 0 else int(ARGS['t'][0]) if l == 1 else 0
         if 'u' in ARGS  and len(ARGS['u']) == 0: self.SUBPIX     =  1
-        if 'v' in ARGS: l = len(ARGS['v'])   ;   self.VRBY       =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
-        if 'V' in ARGS  and len(ARGS['V']) == 0: self.VIEWS      =  1
+        if 'v' in ARGS: l = len(ARGS['v'])   ;   self.VERBY      =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
+        if 'V' in ARGS  and len(ARGS['V'])  > 0: self.VIEWS      = [ int(ARGS['V'][i]) for i in range(len(ARGS['V'])) ]
         if 'w' in ARGS  and len(ARGS['w'])  > 0: self.XYVA       = [ int(ARGS['w'][i]) for i in range(len(ARGS['w'])) ]
         if 'x' in ARGS  and len(ARGS['x']) == 0: self.EXIT       =  1
         if 'x' in ARGS  and len(ARGS['x'])  > 0: self.EXIT       =   int(ARGS['x'][0])
@@ -187,14 +189,14 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {__class__}')
     ####################################################################################################################################################################################################
     def _init_xyva(self):
-        self.AX        = self.XYVA[0]
-        self.AY        = self.XYVA[1]
-        self.VA        = self.XYVA[2]
-        self.AA        = self.XYVA[3]
-        self.A_LEFT    = 1  if self.AA==-1 else 0  ;  self.A_CENTER = 1  if self.AA==0  else 0  ;  self.A_RIGHT  = 1 if self.AA==1 else 0
-        self.X_LEFT    = 1  if self.AX==-1 else 0  ;  self.X_CENTER = 1  if self.AX==0  else 0  ;  self.X_RIGHT  = 1 if self.AX==1 else 0
-        self.Y_BOTTOM  = 1  if self.AY==-1 else 0  ;  self.Y_CENTER = 1  if self.AY==0  else 0  ;  self.Y_TOP    = 1 if self.AY==1 else 0  ;  self.Y_BASELINE = 1 if self.AY==2 else 0
-        self.V_BOTTOM  = 1  if self.VA==-1 else 0  ;  self.V_CENTER = 1  if self.VA==0  else 0  ;  self.V_TOP    = 1 if self.VA==1 else 0
+        x = self.XYVA[0] # -1, 0, 1
+        y = self.XYVA[1] # -1, 0, 1, 2
+        v = self.XYVA[2] # -1, 0, 1
+        a = self.XYVA[3] # -1, 0, 1
+        self.A_LEFT    = 1  if a==-1 else 0  ;  self.A_CENTER = 1  if a==0  else 0  ;  self.A_RIGHT  = 1 if a==1 else 0
+        self.X_LEFT    = 1  if x==-1 else 0  ;  self.X_CENTER = 1  if x==0  else 0  ;  self.X_RIGHT  = 1 if x==1 else 0
+        self.Y_BOTTOM  = 1  if y==-1 else 0  ;  self.Y_CENTER = 1  if y==0  else 0  ;  self.Y_TOP    = 1 if y==1 else 0  ;  self.Y_BASELINE = 1 if y==2 else 0
+        self.V_BOTTOM  = 1  if v==-1 else 0  ;  self.V_CENTER = 1  if v==0  else 0  ;  self.V_TOP    = 1 if v==1 else 0
 
     def normi(self, dbg=1):
         if dbg: self.log(f'before {self.fmti()} {self.fmtn()}')
@@ -248,7 +250,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[S]             .SS={fmtl(self.SS)}', f=f)
         self.log(f'[t]           .TEST={self.TEST}', f=f)
         self.log(f'[u]         {self.SUBPIX=}', f=f)
-        self.log(f'[v]           {self.VRBY=}', f=f)
+        self.log(f'[v]          {self.VERBY=}', f=f)
         self.log(f'[V]          {self.VIEWS=}', f=f)
         self.log(f'[w]           .XYVA={fmtl(self.XYVA)}', f=f)
         self.log(f'[x]           {self.EXIT=}', f=f)
@@ -335,12 +337,23 @@ class Tabs(pyglet.window.Window):
             self.log(f'screens[{i}] {s.x=} {s.y:5} {self.fmtWH(s.width, s.height)}')
         self.log(f'END {self.fmtWH()} {self.screenIdx=}')
 
+    def _setView(self):
+        x, y = (self.VIEWS[0], self.VIEWS[1]) if self.VIEWS else (0, 0)
+        self.viewX,  self.viewY,  self.viewW,  self.viewH  =     x,          y,      self.width-x, self.height-y
+        self.viewX0, self.viewY0, self.viewW0, self.viewH0 = self.viewX, self.viewY, self.viewW,   self.viewH
+
+    def updView(self):
+        mx, my = self.width/self.viewW0, self.height/self.viewH0
+        x,  y  = (self.VIEWS[0]*mx, self.VIEWS[1]*my) if self.VIEWS else (0, 0)
+        self.viewX,  self.viewY,  self.viewW,  self.viewH  =     x,          y,      self.width-x, self.height-y
+
     def _initWindowB(self, dbg=1):
         if dbg: self.log(f'BGN {self.fmtWH()}')
         self.batch = pyglet.graphics.Batch()
         self._initGroups()
         self.set_visible()
         self.log(f'get_size={self.get_size()}')
+        self._setView()
         self.keyboard = None
         if self.EVENT_LOG:
             if self.EVENT_LOG == 1:   self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
@@ -348,7 +361,7 @@ class Tabs(pyglet.window.Window):
 #                flist = ['on_draw']
 #                flist = ['on_draw', 'on_move']
                 flist = ['on_draw', 'on_move', 'on_mouse_motion']
-                self.log(f'{fmtl(flist)} {EVN_FILE=}', f=-2)   ;   self.log(f'{fmtl(flist)} {EVN_FILE=}', f=4)
+                self.log(f'{fmtl(flist)} {EVN_FILE=}', f=-3)   ;   self.log(f'{fmtl(flist)} {EVN_FILE=}', f=4)
                 from tpkg.evnts import FilteredEventLogger as FELogger
                 self.eventLogger = FELogger(self, EVN_FILE, flist)
             self.keyboard        = pygwine.key.KeyStateHandler()
@@ -356,10 +369,10 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'END {self.fmtWH()}')
     ####################################################################################################################################################################################################
     def _initGroups(self):
-        hdrB    = W.join([ f'{t[0]:2}' for t in JTEXTS ])
-        hdrA    = [P,  L,  S,  C,    T,  N,  I,  K,     M,  R,  Q,  H,     B,  A,  D,  E]
-        self.gn = [1,  2,  3,  4,    7,  8,  9, 10,     0,  5,  6, 15,    11, 12, 13, 14]   ;   self.g = []
-#       self.gn = [0,  1,  2,  3,    6,  7,  8,  9,    15,  4,  5, 14,    10, 11, 12, 13]   ;   self.g = []
+        hdrB          =   W.join([ f'{t[0]:2}' for t in JTEXTS ])
+        hdrA          =          [P,  L,  S,  C,    T,  N,  I,  K,     M,  R,  Q,  H,     B,  A,  D,  E]
+        if self.VIEWS: self.gn = [1,  2,  3,  4,    7,  8,  9, 10,     0,  5,  6, 15,    11, 12, 13, 14]   ;   self.g = []
+        else:          self.gn = [0,  1,  2,  3,    6,  7,  8,  9,    15,  4,  5, 14,    10, 11, 12, 13]   ;   self.g = []
         self.log(fmtl(hdrA, w=2))    ;    self.log(f'  {hdrB}')    ;    self.log(fmtl(self.gn, w=2))
         for i in range(1 + max(self.gn)):
             p   = None if self.ORD_GRP or i==0 else self.g[i-1]
@@ -391,8 +404,9 @@ class Tabs(pyglet.window.Window):
             attrs = {'TI':TI, 'XYWH':XYWH, 'AXY2':AXY2, 'CWH':CWH, 'LTXA':LTXA, 'LTXAC':LTXAC, 'ADS':ADS, 'CVA':CVA, 'LDS':LDS, 'LLBL':LLBL}
             mthds = {'JSPR':JSPR, 'JLBL':JLBL}
             tests.test1(self, attrs, mthds)
-            tests.test0(self,  0.314159265359, 4)
-            tests.test0(self,  0.314159265359, 5, self.EXIT)
+            tests.test4(ARGS)
+#            tests.test0(self,  0.314159265359, 4)
+#            tests.test0(self,  0.314159265359, 5, self.EXIT)
     ####################################################################################################################################################################################################
     def lenA(self):                   return [ len(_) for _ in self.A ]
     def lenB(self):                   return [ len(_) for _ in self.B ]
@@ -652,7 +666,7 @@ class Tabs(pyglet.window.Window):
         kysgs.dumpNic(self.nic)
         self.dumpFont(why)
         self.dumpVisible()
-        self.dumpIdmKeys() if dbg and self.VRBY else None
+        self.dumpIdmKeys() if dbg and self.VERBY else None
 #        self.dumpVisible2()
 #        self.dumpTniksE(f'{why}E') if dbg else None
         if dbg2: # fixme some dont handle Sprites
@@ -664,7 +678,7 @@ class Tabs(pyglet.window.Window):
             self.dumpTniksE(f'{why}E')
 #            self.dumpTniksF()
 #            self.dumpTniksG()
-        if dbg2:        self.cobj.dumpMlimap('MLim') if self.VRBY else None
+        if dbg2:        self.cobj.dumpMlimap('MLim') if self.VERBY else None
         self.log(f'{self.fmtn()} END ntp={self.fntp()} {self.fntp2()} {self.fmtI()}', pos=1)
     ####################################################################################################################################################################################################
     def autoSave(self, dt, how, dbg=1):
@@ -683,7 +697,7 @@ class Tabs(pyglet.window.Window):
         return size
    ####################################################################################################################################################################################################
     def readDataFile(self, path, dbg=1):
-        nl = self.n[L]      ;     nr = self.n[T]   ;   sp, sl, sr, st = 0, 0, 0, 0   ;   sx = 0   ;   fd = -2
+        nl = self.n[L]      ;     nr = self.n[T]   ;   sp, sl, sr, st = 0, 0, 0, 0   ;   sx = 0   ;   fd = -3
         if dbg:                 self.log(f'BGN {self.fmtn()}', f=fd)
         if not path.exists():   path = utl.getFilePath(self.DAT_GFN, BASE_PATH, fdir=DATA, fsfx=Z)
         stat = path.stat()  ;   size = stat.st_size
@@ -719,7 +733,7 @@ class Tabs(pyglet.window.Window):
         if dbg:         self.log(f'END {self.fmtn()}', f=fd)
    ####################################################################################################################################################################################################
     def checkDataFile(self, ref, p, l, r, c, x):
-        x = x - 1 if x else x  ;  y = 2  ;  z = 1 if x else 0  ;  fd = -2  ;  w = p + p * l if not x else x
+        x = x - 1 if x else x  ;  y = 2  ;  z = 1 if x else 0  ;  fd = -3  ;  w = p + p * l if not x else x
         msg =           f'{p=} {l=} {r=} {c=} {w=} {x=} {y=} {z=}'
         self.log(f'{ref=} {p=} {l=} {r=} {c=} {w=} {x=} {y=} {z=}', f=fd)
         c0 = c + y if x else 0     ;  self.log(f'{c0=:3} = 0                 = 0', f=fd) if not x else self.log(f'{c0=:3} = c + y = {c} + {y}', f=fd) 
@@ -960,28 +974,28 @@ class Tabs(pyglet.window.Window):
         return tlist, j, k, txt
     ####################################################################################################################################################################################################
     def geom(self, j, p=None, n=None, i=None, dbg=1):
-        assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.width, self.height
-        n = n  if n is not None else self.n[j]   ;   c = (C, Q, E)
-        np, nl, ns, nc, nt = self.n   ;   nsnt = ns*nt   ;   nr = nsnt + self.LL
-        if n == 0:    n = 1     ;    self.log(f'ERROR n=0 setting {n=}')
+        assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  ww, hh = self.viewW, self.viewH
+        n = n  if n is not None else self.n[j]        ;    c = (C, Q, E)
+        _, _, ns, _, nt = self.n   ;   nsnt = ns*nt   ;   nr = nsnt + self.LL
+        if n == 0:    n = 1        ;   self.log(f'ERROR n=0 setting {n=}')
         i               = i if i is not None else self.i[j]
-        a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)  ;  d = 1 - b  ;  dn = nr - nsnt
+        a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)   ;   d = 1-b   ;   dn = nr - nsnt
         px, py, pw, ph  = (a*ww, b*hh, ww, hh) if p is None else (p.x, p.y, p.width, p.height)  ;  ph_n = ph/n  ;  ph_n_nr = ph_n/nr
         if   j in c:  w = pw/n             ;  h = ph
-        elif j == P:  w = pw               ;  h = ph
+        elif j == P:  w = pw               ;  h = ph       ;    px += self.viewX  ;  py += self.viewY
         elif j == L:  w = pw               ;  h = ph_n - dn*ph_n_nr
         elif j == R:  w = pw               ;  h = ph/nsnt
         else:         w = pw               ;  h = ph_n
         if   j == P:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h
-        elif j == L:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h - dn*ph_n_nr  ;  self.log(f'{y=:.2f} {d=:.1f} {dn=} {d*py=:.2f} {d*ph=:.2f} {d*h=:.2f} {dn*ph_n_nr=:.2f}')
+        elif j == L:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h - dn*ph_n_nr  ;  self.log(f'{x=:.2f} {a=}, {y=:.2f} {d=:.1f} {dn=} {d*py=:.2f} {d*ph=:.2f} {d*h=:.2f} {dn*ph_n_nr=:.2f}')
         elif j == R:  x = px - a*pw + a*w  ;  y = py + d*ph - d*h + ph/nsnt
         elif j in c:  x = a*w              ;  y = py + b*ph - b*h
         else:         x = px - a*pw + a*w  ;  y = py + d*ph - d*h
-        if dbg and self.VRBY >= 2:
+        if dbg: # and self.VERBY >= 2:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
             msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
             msg += msg2 if p else W * len(msg2)
-            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)}', p=0, f=0)
+            self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)} {x} {px} {-a*pw} {a*w}', p=0, f=0)
         return n, i, x, y, w, h
     ####################################################################################################################################################################################################
     def createLLs(self, pt, pi, why, dbg=1, dbg2=1):
@@ -1293,6 +1307,23 @@ class Tabs(pyglet.window.Window):
         colors = f' {fc}{bc}' if self.LONG_TXT else Z
         self.log(f'{foid} {rot_txt}{gv} {fj2} {xywh} {cnc}{colors}{sfx}', p=0)
     ####################################################################################################################################################################################################
+    def on_close(        self):                     return evnts.on_close(        self)
+    def on_draw(         self, **kwargs):           return evnts.on_draw(         self, **kwargs)
+    def on_key_press(    self, symb, mods):         return evnts.on_key_press(    self, symb, mods)
+    def on_key_release(  self, symb, mods):         return evnts.on_key_release(  self, symb, mods)
+    def on_mouse_motion( self, x, y, dx, dy):       return evnts.on_mouse_motion( self, x, y, dx, dy)
+    def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll( self, x, y, dx, dy)
+    def on_mouse_release(self, x, y, bttn, mods=0): return evnts.on_mouse_release(self, x, y, bttn, mods)
+    def on_move(         self, x, y):               return evnts.on_move(         self, x, y)
+    def on_text(         self, text):               return evnts.on_text(         self, text)
+    def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
+    def on_resize(self, w, h):
+        super().on_resize(w, h)
+        self.updView()
+        if self.RESIZE:
+            cmd = cmds.ResizeTniksCmd(self, dbg=1)     ;  cmd.do()
+        return True
+    ####################################################################################################################################################################################################
     def idmapkey(self, j):  return f'{JTEXTS[j]}{self.J2[j]}'
     def dumpIdmKeys(self):  self.log(fmtl(list(self.idmap.keys()), ll=1))
     def fSpr(self, t, d=W): return f'{self.fAxy()}{d}{self.fiax(t)}{d}{self.fiay(t)}{d}{self.fgrp(t)}{d}{self.fgrpp(t)}'
@@ -1453,7 +1484,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def cc2plct(self, cc, dbg=0): #todo
         tpb, tpp, tpl, tps, tpc = self.ntp()
-        np, nl, ns, nc, nt = self.n
+        np,  nl,  ns,  nc,  nt  = self.n
         t =    cc      % nt
         c =    cc//tpc % nc
         l = ns*cc//tpl % nl
@@ -1463,7 +1494,7 @@ class Tabs(pyglet.window.Window):
 
     def cc2plsct(self, cc, dbg=0): #todo
         tpb, tpp, tpl, tps, tpc = self.ntp()
-        np, nl, ns, nc, nt = self.n
+        np,  nl,  ns,  nc,  nt  = self.n
         t =    cc      % nt
         c =    cc//tpc % nc
         s =    cc//tps % ns
@@ -1513,7 +1544,7 @@ class Tabs(pyglet.window.Window):
         self.set_caption(msg)
     ####################################################################################################################################################################################################
     def calcFontSize(self, j=T, dbg=0):
-        np, nl, ns, nc, nt = self.n   ;   w, h = self.width, self.height   ;   ll = self.LL
+        np, nl, ns, nc, nt = self.n   ;   w, h = self.viewW, self.viewH   ;   ll = self.LL
         if j < T: nt = 1
         if j < C: nc = 1
         if j < S: ns = 1
@@ -1529,11 +1560,11 @@ class Tabs(pyglet.window.Window):
     def _initFonts(self):
         np, nl, ns, nc, nt = self.n #           ;  nc += self.zzlen()
         n  = nl * nt * ns if ns else nl * nt   ;   n += self.LL * nl
-        w  = self.width / nc  ;  h = self.height / n
+        w  = self.viewW / nc  ;  h = self.viewH / n
         fs = self.calcFontSize(j=T, dbg=1)
         self.fontBold, self.fontItalic, self.clrIdx, self.fontDpiIndex, self.fontNameIdx, self.fontSize = 0, 0, 0, 4, 0, fs
-        self.log(f'{w=:6.3f}={self.width =}/({nc})                 {Z}{PNT_PER_PIX=:6.4f} fs=w*PNT_PER_PIX={fs:6.2f}pt', f=2)
-        self.log(f'{h=:6.3f}={self.height=}/({nl=} * {ns=} * {nt=}){W}{PNT_PER_PIX=:6.4f} fs=h*PNT_PER_PIX={fs:6.2f}pt', f=2)
+        self.log(f'{w=:6.3f}={self.viewW =}/({nc})                 {Z}{PNT_PER_PIX=:6.4f} fs=w*PNT_PER_PIX={fs:6.2f}pt', f=2)
+        self.log(f'{h=:6.3f}={self.viewH=}/({nl=} * {ns=} * {nt=}){W}{PNT_PER_PIX=:6.4f} fs=h*PNT_PER_PIX={fs:6.2f}pt', f=2)
         self.dumpFont()
 
     def fmtFont(self, dbg=0):
@@ -1545,7 +1576,7 @@ class Tabs(pyglet.window.Window):
     def dumpFont(self, why=Z):
         b, k, dpi, i, n, s = self.fontParams()
         pix = s / PNT_PER_PIX   ;   fcs = Z # f'{fmtl( [k])}'
-        self.log(f'{dpi}:{FONT_DPIS[dpi]}dpi {s:6.2f}pt {n}:{FONT_NAMES[n]} {k}:{fcs} {s:6.2f}pt = {PNT_PER_PIX:6.4f}(pt/pix) * {pix:6.2f}pixels {why}', f=-2)
+        self.log(f'{dpi}:{FONT_DPIS[dpi]}dpi {s:6.2f}pt {n}:{FONT_NAMES[n]} {k}:{fcs} {s:6.2f}pt = {PNT_PER_PIX:6.4f}(pt/pix) * {pix:6.2f}pixels {why}', f=-3)
 
     def setFontArg2(self, ts, n, v, m, j, dbg=1):
         l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
@@ -1660,22 +1691,6 @@ class Tabs(pyglet.window.Window):
         if dbg: slog(f'{jTEXTS[j]}[{cc}-{cc+nt-1}].text={fmtl(texts)}=<{text}>')
         return text
     ####################################################################################################################################################################################################
-    def on_close(        self):                     return evnts.on_close(        self)
-    def on_draw(         self, **kwargs):           return evnts.on_draw(         self, **kwargs)
-    def on_key_press(    self, symb, mods):         return evnts.on_key_press(    self, symb, mods)
-    def on_key_release(  self, symb, mods):         return evnts.on_key_release(  self, symb, mods)
-    def on_mouse_motion( self, x, y, dx, dy):       return evnts.on_mouse_motion( self, x, y, dx, dy)
-    def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll( self, x, y, dx, dy)
-    def on_mouse_release(self, x, y, bttn, mods=0): return evnts.on_mouse_release(self, x, y, bttn, mods)
-    def on_move(         self, x, y):               return evnts.on_move(         self, x, y)
-    def on_text(         self, text):               return evnts.on_text(         self, text)
-    def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
-    def on_resize(self, w, h):
-        super().on_resize(w, h)
-        if self.RESIZE:
-            cmd = cmds.ResizeTniksCmd(self, dbg=1)     ;  cmd.do()
-        return True
-    ####################################################################################################################################################################################################
     def on_style_text(   self, start, end, attributes): msg = f'{start=} {end=} {fmtm(attributes)}'  ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
     def isBTab(self, text):   return 1 if text in self.tblanks else 0
 #   def isNBTab(text):        return 1 if                        self.sobj.isFret(text) or text in  utl.DSymb.SYMBS else 0
@@ -1689,13 +1704,13 @@ class Tabs(pyglet.window.Window):
         if dbg:    self.log(f'BGN {how} {n=}', pos=1)
         p, l, s, c, t = self.j()
         self.moveToB2(p, l, s, c, t, n=n)
-        if self.CURSOR and self.cursor: self.moveCursor(ss, how)
+        if self.CURSOR and self.cursor: cmd = cmds.MoveCursorCmd(self, ss, how)     ;  cmd.do()
         if dbg:    self.log(f'END {how} {n=}', pos=1)
 
     def moveToB(self, how, p, l, s, c, t, ss=0, dbg=1):
         if dbg:    self.log(f'BGN {how}', pos=1)
         p2, l2, s2, c2, t2 = self.moveToB2(p, l, s, c, t)
-        self.moveCursor(ss, how)
+        cmd = cmds.MoveCursorCmd(self, ss, how)     ;  cmd.do()
         if dbg:    self.log(f'END {how}', pos=1)
         return p2, l2, s2, c2, t2
 
@@ -1916,7 +1931,7 @@ if LOG_PATH.exists():    utl.copyFile(LOG_PATH, LOG_PATH2, f=0)
 if PNG_PATH.exists():    utl.copyFile(PNG_PATH, PNG_PATH2, f=0)
 if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, f=0)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(EVN_PATH), 'w', encoding='utf-8') as EVN_FILE: # order?
-    _    = -2
+    _    = -3
     ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=_)
     kysgs.init(f=2)
     slog(f'BGN {sys.argv[0]}', p=0,    f=_)
@@ -1927,7 +1942,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     dumpFileInfo(EVN_FILE, fd=_)
     dumpFileInfo(LOG_FILE, fd=_)
     dumpFileInfo(TXT_FILE, fd=_)
-    slog('Constructing Tabs object')
+    slog('Constructing Tabs object', f=-3)
     tabs = Tabs()  ;  seqNumLogPath = tabs.seqNumLogPath  ;  seqNumTxtPath = tabs.seqNumTxtPath
     slog(f'{str(tabs)=}', f=_)   ;   slog(f'{tabs=}', f=_)
     slog('Call pyglet.app.run()')
