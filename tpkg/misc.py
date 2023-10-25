@@ -53,6 +53,7 @@ class Modes:
 #  1) space/backspace
 #  2) top/bottom string automove
 # D) fix BACKSPACE - pass motion value as seperate arg to SetTabCmd
-# E) how to sort cmds.py classes
+# E) how to sort cmds.py classes - alphabetically?
 # F) load more fonts into res/fonts dir (.ttf files)
 # G) fix - Access to a protected member _reinit of a class - tobj._reinit()
+# H) move on_resize() from tabs.py to evnts.py - super.resize?
