@@ -102,8 +102,8 @@ def slog(t=Z, p=1, f=1, s=Y, e=X, ff=1, ft=1):
         sf = cfrm().f_back
         while fn(sf) in STFILT:   sf = sf.f_back
         fp = pathlib.Path(ffn(sf))
-        p  = f'{sf.f_lineno:4} {fp.stem:5} '
-        t  = f'{p}{fn(sf):18} ' + t
+        p  = f'#{sf.f_lineno:4} {fp.stem:5} '
+        t  =  f'{p}{fn(sf):18} ' + t
     tx, so, cs = 0, 0, 0
     if   f == -3: f = LOG_FILE  ;  tx = 1  ;  so = 1
     elif f == -2: f = TXT_FILE  ;  so = 1

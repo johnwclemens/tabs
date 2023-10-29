@@ -2,7 +2,7 @@ import operator, os, sys
 import collections, itertools
 from   collections     import Counter
 from   itertools       import accumulate
-#from   more_itertools  import consume  # not installed in GitBash's Python
+from   more_itertools  import consume  # not installed in GitBash's Python
 import pyglet
 import pyglet.font         as pygfont
 import pyglet.image        as pygimg
@@ -415,6 +415,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def isJV(self, j=0, dbg=0): # fixme all the other values > k?
         if   P <= j <= K and self.J1[P] == self.j()[P]: v = 1
+#        if   P <= j <= K and self.J2[P] == self.i[P]:   v = 1
         elif j in (M, R, Q, H, B, A, D, E):             v = 1
         else:                                           v = 0
         if dbg:  why = f'{v=}'  ;  self.log(f'{self.fmtJText(j, why)} {self.J2[j]=} {self.i[j]=} {self.fmti()} {v=}', f=0)
@@ -580,83 +581,99 @@ class Tabs(pyglet.window.Window):
     def dumpTniksA(self, why=Z):
         self.dumpTniksPfx(why)
         for v in self.idmap.values():
-            self.setJdump(v[1], v[2], why=why)
+            self.setJdump(v[1], v[2], v[0].visible, why=why)
         self.dumpTniksSfx(why)
 
-    def dumpTniksB(self, why=Z):
-        tpb, tpp, tpl, tps, tpc = self.ntp(dbg=1, dbg2=1)
+    def dumpTniksB(self, why=Z): # fixme
         np,  nl,  ns,  nc,  nt  = self.n
         self.dumpTniksPfx(why)
         for p in range(np):
-            self.setJdump(P, p, why=why)
+            self.setJdump(                             P, p,            self.pages[p           ].visible, why=why)
             for l in range(nl):
-                self.setJdump(L, l, why=why)
-                if self.LL and self.J2[P] == self.i[P]: # self.isJV(P) self.E[R][l]:
-                    self.setJdump(R, l, why=why)
-                    for q in range(nc):  self.setJdump(Q, q, why=why)
+                self.setJdump(                         L, l+p*nl,       self.lines[l+p*nl      ].visible, why=why)
+                if self.LL:
+                    self.setJdump(                     R, l+p*nl,       self.rowLs[l+p*nl      ].visible, why=why)
+                    for q in range(nc):  self.setJdump(Q, q+p*nl*nc,    self.qclms[q+p*nl*nc   ].visible, why=why)
                 for s, s2 in enumerate(self.ss2sl()):
-                    self.setJdump(S, s, why=why)
-#                    if self.zz2sl():
-#                        self.setJdump(E, s, why=why)
-#                        for t in range(nt):
-#                            if   s2 in (0, 2): self.setJdump(B, t, why=why)
-#                            elif s2 in (1, 3): self.setJdump(A, t, why=why)
-                    for c in range(nc): # fixme
-                        self.setJdump(C, c, why=why)
+                    self.setJdump(                     S, s+p*nl*ns,    self.sects[s+p*nl*ns   ].visible, why=why)
+                    for c in range(nc):
+                        self.setJdump(                 C, c+p*nl*ns*nc, self.colms[c+p*nl*ns*nc].visible, why=why)
                         for t in range(nt):
                             _, j, k, txt  =  self.tnikInfo(p, l, s2, c, t, why=why)
-                            i = t + c*tpc + l*tpl + p*tpp
-                            assert 0 <= i < len(self.E[j]),  f'{i=} {j=} {len(self.E[j])=} {p=} {l=} {c=} {t=} {self.J1} {self.J2}'
-                            if     T <= j <= K:  self.setJdump(j, i, why=why)
-                            else:            msg = f'{j=} {p=} {l=} {c=} {t=}'  ;  self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
+                            self.setJdump(             j, t+p*nl*nc*nt, _[t+p*nl*nc*nt         ].visible, why=why)
         self.setJdump(H, 0, why=why)
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTniksC(self, why=Z):
-        self.dumpTniksPfx(why)
-#        it = list(itertools.chain(self.A, self.B)) # , self.C
-#        consume(consume(self.setJdump(j, i % self.n[j], why=why) for i in range(len(it[j]))) for j in range(len(it)))
-        Tabs.consMe(Tabs.consMe(self.setJdump(j, i % self.n[j], why=why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
+        self.dumpTniksPfx(why)   ;   m = [ len(self.C[k]) for k in range(4) ]   ;   n = [ len(self.D[k]) for k in range(4) ]
+        it = list(itertools.chain(self.A))   ;   consume(consume(self.setJdump(j  , i % self.n[j], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+        it = list(itertools.chain(self.B))   ;   consume(consume(self.setJdump(j+T, i % self.n[T], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+        it = list(itertools.chain(self.C))   ;   consume(consume(self.setJdump(j+M, i % m[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+        it = list(itertools.chain(self.D))   ;   consume(consume(self.setJdump(j+B, i % n[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
         self.dumpTniksSfx(why)
 
-    def dumpTniksCC(self, why=Z):
-        self.dumpTniksPfx(why)
-        Tabs.consMe(Tabs.consMe(self.setJdump(j, i % self.n[j], v=int(self.E[j][i]), why=why) for i in range(len(self.E[j]))) for j in range(len(self.E)))
-        self.dumpTniksSfx(why)
-    ####################################################################################################################################################################################################
     def dumpTniksD(self, why=Z):
-        ep, el, es, ec, et, en, ei, ek = self.lenE()[:K+1]   ;   np, nl, ns, nc, nt = self.n
-        self.dumpTniksPfx(why)
-        if self.LL and self.rowLs and self.qclms:
-            for r in range(nl):    self.setJdump(R, r % self.n[L], v=int(self.rowLs[r].visible), why=why)
-            for q in range(nl*nc): self.setJdump(Q, q % self.n[C], v=int(self.qclms[q].visible), why=why)
-        for p in range(ep):        self.setJdump(P, p % self.n[P], v=int(self.pages[p].visible), why=why)
-        for l in range(el):        self.setJdump(L, l % self.n[L], v=int(self.lines[l].visible), why=why)
-        for s in range(es):        self.setJdump(S, s % self.n[S], v=int(self.sects[s].visible), why=why)
-        for c in range(ec):        self.setJdump(C, c % self.n[C], v=int(self.colms[c].visible), why=why)
-        for t in range(et):        self.setJdump(T, t % self.n[T], v=int(self.tabls[t].visible), why=why)
-        for n in range(en):        self.setJdump(N, n % self.n[T], v=int(self.notes[n].visible), why=why)
-        for i in range(ei):        self.setJdump(I, i % self.n[T], v=int(self.ikeys[i].visible), why=why)
-        for k in range(ek):        self.setJdump(K, k % self.n[T], v=int(self.kords[k].visible), why=why)
-        self.setJdump(H, 0, v=int(self.hcurs[0].visible), why=why)
-        self.dumpTniksSfx(why)
-
-    def dumpTniksE(self, why=Z):
-        ep, el, es, ec, et, en, ei, ek = self.lenE()[:K+1] #  ;   np, nl, ns, nc, nt = self.n
-        self.dumpTniksPfx(why)
-        for p in range(ep):
-            self.setJdump(                               P, p % self.n[P], v=int(self.pages[p].visible), why=why)
-            for l in range(el//ep):        self.setJdump(L, l % self.n[L], v=int(self.lines[l].visible), why=why)
-            for s in range(es//ep):        self.setJdump(S, s % self.n[S], v=int(self.sects[s].visible), why=why)
-            for c in range(ec//ep):        self.setJdump(C, c % self.n[C], v=int(self.colms[c].visible), why=why)
-            for t in range(et//ep):        self.setJdump(T, t % self.n[T], v=int(self.tabls[t].visible), why=why)
-            for n in range(en//ep):        self.setJdump(N, n % self.n[T], v=int(self.notes[n].visible), why=why)
-            for i in range(ei//ep):        self.setJdump(I, i % self.n[T], v=int(self.ikeys[i].visible), why=why)
-            for k in range(ek//ep):        self.setJdump(K, k % self.n[T], v=int(self.kords[k].visible), why=why)
-        self.setJdump(H, 0, v=int(self.hcurs[0].visible), why=why)
+        self.dumpTniksPfx(why)   ;   m = [ len(self.C[k]) for k in range(4) ]   ;   n = [ len(self.D[k]) for k in range(4) ]
+        it = list(itertools.chain(self.A))   ;   Tabs.consMe(Tabs.consMe(self.setJdump(j  , i % self.n[j], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+        it = list(itertools.chain(self.B))   ;   Tabs.consMe(Tabs.consMe(self.setJdump(j+T, i % self.n[T], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+        it = list(itertools.chain(self.C))   ;   Tabs.consMe(Tabs.consMe(self.setJdump(j+M, i % m[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+        it = list(itertools.chain(self.D))   ;   Tabs.consMe(Tabs.consMe(self.setJdump(j+B, i % n[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
-    def dumpTniksF(self):
+    def dumpTniksE(self, why=Z):
+        ep, el, es, ec, et, en, ei, ek, em, er, eq, eh, eb, ea, ed, ee = self.lenE() #  ;   np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(why)
+#       if self.LL:
+#           for p in range(ep):
+#               for l in range(nl):    self.setJdump(R, l+p*nl,    v=int(self.rowLs[ l+p*nl  ].visible), why=why)
+#               for q in range(nl*nc): self.setJdump(Q, q+p*nl*nc, v=int(self.qclms[q+p*nl*nc].visible), why=why)
+        for p in range(ep):            self.setJdump(P, p,         v=int(self.pages[    p    ].visible), why=why)
+        for l in range(el):            self.setJdump(L, l,         v=int(self.lines[    l    ].visible), why=why)
+        for s in range(es):            self.setJdump(S, s,         v=int(self.sects[    s    ].visible), why=why)
+        for c in range(ec):            self.setJdump(C, c,         v=int(self.colms[    c    ].visible), why=why)
+        for t in range(et):            self.setJdump(T, t,         v=int(self.tabls[    t    ].visible), why=why)
+        for n in range(en):            self.setJdump(N, n,         v=int(self.notes[    n    ].visible), why=why)
+        for i in range(ei):            self.setJdump(I, i,         v=int(self.ikeys[    i    ].visible), why=why)
+        for k in range(ek):            self.setJdump(K, k,         v=int(self.kords[    k    ].visible), why=why)
+        for m in range(em):            self.setJdump(M, m,         v=int(self.views[    m    ].visible), why=why)
+        for r in range(er):            self.setJdump(R, r,         v=int(self.rowLs[    r    ].visible), why=why)
+        for q in range(eq):            self.setJdump(Q, q,         v=int(self.qclms[    q    ].visible), why=why)
+        for h in range(eh):            self.setJdump(H, h,         v=int(self.hcurs[    h    ].visible), why=why)
+#       self.setJdump(                               H, 0,         v=int(self.hcurs[    0    ].visible), why=why)
+        for b in range(eb):            self.setJdump(B, b,         v=int(self.snums[    b    ].visible), why=why)
+        for a in range(ea):            self.setJdump(A, a,         v=int(self.snams[    a    ].visible), why=why)
+        for d in range(ed):            self.setJdump(D, d,         v=int(self.capos[    d    ].visible), why=why)
+        for e in range(ee):            self.setJdump(E, e,         v=int(self.zclms[    e    ].visible), why=why)
+        self.dumpTniksSfx(why)
+
+    def dumpTniksF(self, why=Z):
+        ep, el, es, ec, et, en, ei, ek, em, er, eq, eh, eb, ea, ed, ee = self.lenE() #  ;   np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(why)
+#       if self.LL:
+#           for p in range(ep):
+#               for l in range(nl):
+#                   self.setJdump(                    R, l+p*nl,    v=int(self.rowLs[ l+p*nl  ].visible), why=why)
+#                   for q in range(nc): self.setJdump(Q, q+p*nl*nc, v=int(self.qclms[q+p*nl*nc].visible), why=why)
+        for p in range(ep):             self.setJdump(P, p,         v=int(self.pages[    p    ].visible), why=why)
+        for l in range(el):             self.setJdump(L, l,         v=int(self.lines[    l    ].visible), why=why)
+        for s in range(es):             self.setJdump(S, s,         v=int(self.sects[    s    ].visible), why=why)
+        for c in range(ec):             self.setJdump(C, c,         v=int(self.colms[    c    ].visible), why=why)
+        for t in range(et):             self.setJdump(T, t,         v=int(self.tabls[    t    ].visible), why=why)
+        for n in range(en):             self.setJdump(N, n,         v=int(self.notes[    n    ].visible), why=why)
+        for i in range(ei):             self.setJdump(I, i,         v=int(self.ikeys[    i    ].visible), why=why)
+        for k in range(ek):             self.setJdump(K, k,         v=int(self.kords[    k    ].visible), why=why)
+        for m in range(em):             self.setJdump(M, m,         v=int(self.views[    m    ].visible), why=why)
+        for r in range(er):             self.setJdump(R, r,         v=int(self.rowLs[    r    ].visible), why=why)
+        for q in range(eq):             self.setJdump(Q, q,         v=int(self.qclms[    q    ].visible), why=why)
+        for h in range(eh):             self.setJdump(H, h,         v=int(self.hcurs[    h    ].visible), why=why)
+#       self.setJdump(                                H, 0,         v=int(self.hcurs[    0    ].visible), why=why)
+        for b in range(eb):             self.setJdump(B, b,         v=int(self.snums[    b    ].visible), why=why)
+        for a in range(ea):             self.setJdump(A, a,         v=int(self.snams[    a    ].visible), why=why)
+        for d in range(ed):             self.setJdump(D, d,         v=int(self.capos[    d    ].visible), why=why)
+        for e in range(ee):             self.setJdump(E, e,         v=int(self.zclms[    e    ].visible), why=why)
+        self.dumpTniksSfx(why)
+    ####################################################################################################################################################################################################
+    def dumpTniksG(self):
         self.log(Y.join(LTXA),  p=0, f=3)
         self.log(Y.join(LTXAC), p=0, f=3)
         for i, t in enumerate(self.pages):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, P, i, Y, s), p=0, f=3)
@@ -664,15 +681,37 @@ class Tabs(pyglet.window.Window):
         for i, t in enumerate(self.sects):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, S, i, Y, s), p=0, f=3)
         for i, t in enumerate(self.colms):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, C, i, Y, s), p=0, f=3)
         for i, t in enumerate(self.tabls):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, T, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.notes):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, N, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.ikeys):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, I, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.kords):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, K, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.views):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, M, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.rowLs):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, R, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.qclms):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, Q, i, Y, s), p=0, f=3)
+#       for i, t in enumerate(self.hcurs):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, H, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.snums):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, B, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.snams):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, A, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.capos):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, D, i, Y, s), p=0, f=3)
+        for i, t in enumerate(self.zclms):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, E, i, Y, s), p=0, f=3)
 
-    def dumpTniksG(self):
+    def dumpTniksH(self):
         self.log(Y.join(LTXA),  p=0, f=3)
-        self.log(Y.join(LTXAC), p=0, f=3)  ;  a = self.A  ;  b = self.B
+        self.log(Y.join(LTXAC), p=0, f=3)  ;  a = self.A  ;  b = self.B  ;  c = self.C    ;  e = self.D
         for i in range(len(self.pages)): t = a[0][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, P, i, Y, s), p=0, f=3)
         for i in range(len(self.lines)): t = a[1][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, L, i, Y, s), p=0, f=3)
         for i in range(len(self.sects)): t = a[2][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, S, i, Y, s), p=0, f=3)
         for i in range(len(self.colms)): t = a[3][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, C, i, Y, s), p=0, f=3)
         for i in range(len(self.tabls)): t = b[0][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, T, i, Y, s), p=0, f=3)
+        for i in range(len(self.notes)): t = b[1][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, N, i, Y, s), p=0, f=3)
+        for i in range(len(self.ikeys)): t = b[2][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, I, i, Y, s), p=0, f=3)
+        for i in range(len(self.kords)): t = b[3][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, K, i, Y, s), p=0, f=3)
+        for i in range(len(self.views)): t = c[0][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, M, i, Y, s), p=0, f=3)
+        for i in range(len(self.rowLs)): t = c[1][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, R, i, Y, s), p=0, f=3)
+        for i in range(len(self.qclms)): t = c[2][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, Q, i, Y, s), p=0, f=3)
+#       for i in range(len(self.hcurs)): t = c[3][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, H, i, Y, s), p=0, f=3)
+        for i in range(len(self.snums)): t = e[0][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, B, i, Y, s), p=0, f=3)
+        for i in range(len(self.snams)): t = e[1][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, A, i, Y, s), p=0, f=3)
+        for i in range(len(self.capos)): t = e[2][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, D, i, Y, s), p=0, f=3)
+        for i in range(len(self.zclms)): t = e[3][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, E, i, Y, s), p=0, f=3)
     ####################################################################################################################################################################################################
     def dumpStruct(self, why=Z, dbg=1, dbg2=1):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp()} {self.fntp2()} {self.fmtI()}', pos=1)
@@ -683,16 +722,16 @@ class Tabs(pyglet.window.Window):
         self.dumpVisible()
         self.dumpIdmKeys() if dbg and self.VERBY else None
 #        self.dumpVisible2()
-#        self.dumpTniksE(f'{why}E') if dbg else None
+#        self.dumpTniksF(f'{why}E') if dbg else None
         if dbg2: # todo fixme some dont handle Sprites
             self.dumpTniksA(f'{why}A')
             self.dumpTniksB(f'{why}B')
-#            self.dumpTniksC(f'{why}C')
-#            self.dumpTniksCC(f'{why}C')
-#            self.dumpTniksD(f'{why}D')
+            self.dumpTniksC(f'{why}C')
+            self.dumpTniksD(f'{why}D')
             self.dumpTniksE(f'{why}E')
-#            self.dumpTniksF()
+            self.dumpTniksF(f'{why}F')
 #            self.dumpTniksG()
+            self.dumpTniksH()
         if dbg2:        self.cobj.dumpMlimap('MLim') if self.VERBY else None
         self.log(f'{self.fmtn()} END ntp={self.fntp()} {self.fntp2()} {self.fmtI()}', pos=1)
     ####################################################################################################################################################################################################
@@ -1136,7 +1175,8 @@ class Tabs(pyglet.window.Window):
         return chordName
     ####################################################################################################################################################################################################
     def ntnsnl( self):    return self.n[T] * self.n[S] * self.n[L]
-    def isLLRow(self):    return self.LL and self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
+#    def isLLRow(self):    return self.LL # and self.J1[C] == 0
+#    def isLLRow(self):    return self.LL and self.J1[S] == self.ss2sl()[0] and self.J1[C] == 0
 #    def isZZCol(self):    return self.ZZ                                   and self.J1[C] == 0  
     def axyWgt(self, x, y, dbg=0): u, v = self.axWgt(x), self.ayWgt(y)  ;  self.log(f'{x=:6} {y=:6} {u=:4.2f} {v=:4.2f}') if dbg else None  ;  return u, v
     @staticmethod
@@ -1178,7 +1218,7 @@ class Tabs(pyglet.window.Window):
         if dbg > 1:     text = c.text if ha else Z  ;  self.log(f'{self.fmtJText(j)} {i=} {id(c):x} {text:6} {self.ftxywh(c)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0)
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
-        self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2   ;   ilr = self.isLLRow #  ;   izc = self.isZZCol
+        self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2   ;   ilr = self.LL and self.J1[S] == self.ss2sl()[0]
         self.dumpTniksPfx(why)
         if   self.DSP_J_LEV == P:
             for _ in                 self.g_createTniks(self.pages, P, None, why=why): pass
@@ -1188,20 +1228,20 @@ class Tabs(pyglet.window.Window):
         elif self.DSP_J_LEV == S:
             for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
                 for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
-                    if ilr():        self.createLLs(line, len(self.lines)-1, why=why)
+                    if ilr:          self.createLLs(line, len(self.lines)-1, why=why)
                     for _ in         self.g_createTniks(self.sects, S, line, why=why): pass
         elif self.DSP_J_LEV == C:
             for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
                 for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
-                    if ilr():        self.createLLs(line, len(self.lines)-1, why=why)
+                    if ilr:          self.createLLs(line, len(self.lines)-1, why=why)
                     for sect in      self.g_createTniks(self.sects, S, line, why=why): # pass
                         for _ in     self.g_createTniks(self.colms, C, sect, why=why): pass
         else:
             for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
                 for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
-                    if ilr():        self.createLLs(line, len(self.lines)-1, why=why)
+                    if ilr:          self.createLLs(line, len(self.lines)-1, why=why)
                     for sect in      self.g_createTniks(self.sects, S, line, why=why): # pass
-#                        if izc():    self.createZZs(sect, len(self.sects)-1, why=why)
+                        if self.ZZ:  self.createZZs(sect, len(self.sects)-1, why=why)
                         for colm in  self.g_createTniks(self.colms, C, sect, why=why): # pass
                             for _ in self.g_createTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
@@ -1225,7 +1265,6 @@ class Tabs(pyglet.window.Window):
                 elif j >= T:
                     s                          = self.ss2sl()[self.J1[S]]
                     tl2, j2, kl, to            = self.tnikInfo(p, l, s, c, i2, why=why) # todo
-#                    tl2, j2, kl, to            = self.tnikInfo(p, l, s, c, i2, z=1 if self.ZZ else 0, why=why) # todo
                     if   s == TT:            t = to
                     elif s == NN:            t = to if j2 > K else self.sobj.tab2nn(to, i2, self.nic) if self.sobj.isFret(to) else self.tblank
                     elif s in (II, KK):
@@ -1290,7 +1329,7 @@ class Tabs(pyglet.window.Window):
             yield self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
     ####################################################################################################################################################################################################
     def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
-        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=}'
+        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=} {j=} {x=:.2f} {y=:.2f} {w=:.2f} {h=:.2f} {why}'
         tnik    = tlist[i]
         self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
         if   ist(tnik, SPR):

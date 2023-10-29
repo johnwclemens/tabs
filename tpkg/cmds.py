@@ -524,6 +524,7 @@ class ResizeTniksCmd(Cmd):
     def _resizeTniks(self):
         tobj, dbg = self.tobj, self.dbg
         tobj.updC += 1  ;  why = f'Upd{tobj.updC}'
+        ilr = tobj.LL and tobj.J1[S] == tobj.ss2sl()[0]  # self.isLLRow #  ;   izc = self.isZZCol
         tobj.dumpTniksPfx(why)
         if   tobj.DSP_J_LEV == P:
             for _ in                 tobj.g_resizeTniks(tobj.pages, P, None, why=why): pass
@@ -533,18 +534,18 @@ class ResizeTniksCmd(Cmd):
         elif tobj.DSP_J_LEV == S:
             for page in              tobj.g_resizeTniks(tobj.pages, P, None, why=why): # pass
                 for line in          tobj.g_resizeTniks(tobj.lines, L, page, why=why): # pass
-                    if tobj.LL:      tobj.resizeLLs(line, why)
+                    if ilr:          tobj.resizeLLs(line, why)
                     for _ in         tobj.g_resizeTniks(tobj.sects, S, line, why=why): pass
         elif tobj.DSP_J_LEV == C:
             for page in              tobj.g_resizeTniks(tobj.pages, P, None, why=why): # pass
                 for line in          tobj.g_resizeTniks(tobj.lines, L, page, why=why): # pass
-                    if tobj.LL:      tobj.resizeLLs(line, why)
+                    if ilr:          tobj.resizeLLs(line, why)
                     for sect in      tobj.g_resizeTniks(tobj.sects, S, line, why=why): # pass
                         for _ in     tobj.g_resizeTniks(tobj.colms, C, sect, why=why): pass
         else:
             for page in              tobj.g_resizeTniks(tobj.pages, P, None, why=why): # pass
                 for line in          tobj.g_resizeTniks(tobj.lines, L, page, why=why): # pass
-                    if tobj.LL:      tobj.resizeLLs(line, why)
+                    if ilr:          tobj.resizeLLs(line, why)
                     for sect in      tobj.g_resizeTniks(tobj.sects, S, line, why=why): # pass
                         for colm in  tobj.g_resizeTniks(tobj.colms, C, sect, why=why): # pass
                             for _ in tobj.g_resizeTniks(tobj.tabls, T, colm, why=why): pass
