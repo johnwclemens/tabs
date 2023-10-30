@@ -30,11 +30,11 @@ HARROWS, VARROWS      = ['LARROW', 'RARROW'], ['DARROW', 'UARROW']
 MLDY, CHRD, ARPG      =  0, 1, 2
 LARROW, RARROW, DARROW, UARROW =  0, 1, 0, 1
 NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = 0, 1, 2
+CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE = None, None, None, None
 BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background_color', 'bold', 'color', 'font_name', 'font_size', 'italic', 'kerning', 'underline'
 MAX_FREQ_IDX          = 10 * 12 + 1
 MAX_STACK_DEPTH       = 0
 MAX_STACK_FRAME       = inspect.stack()
-CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE = None, None, None, None
 INIT      = 'INIT'
 RGB       = {}
 #             0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17

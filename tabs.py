@@ -105,6 +105,7 @@ class Tabs(pyglet.window.Window):
         self.tblank,   self.tblanki, self.cursor,  self.data   = None, None, None, []
         self.XYVA      = [0, 0, 0, 0]    ;    self._init_xyva()
         self.viewX, self.viewY = 0, 0    ;    self.viewW, self.viewH = self.width, self.height
+        ################################################################################################################################################################################################
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4
         self.DBG_TABT  = 0  ;  self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1
         self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0
@@ -665,8 +666,8 @@ class Tabs(pyglet.window.Window):
         for m in range(em):             self.setJdump(M, m,         v=int(self.views[    m    ].visible), why=why)
         for r in range(er):             self.setJdump(R, r,         v=int(self.rowLs[    r    ].visible), why=why)
         for q in range(eq):             self.setJdump(Q, q,         v=int(self.qclms[    q    ].visible), why=why)
-        for h in range(eh):             self.setJdump(H, h,         v=int(self.hcurs[    h    ].visible), why=why)
-#       self.setJdump(                                H, 0,         v=int(self.hcurs[    0    ].visible), why=why)
+#       for h in range(eh):             self.setJdump(H, h,         v=int(self.hcurs[    h    ].visible), why=why)
+        self.setJdump(                                H, 0,         v=int(self.hcurs[    0    ].visible), why=why)
         for b in range(eb):             self.setJdump(B, b,         v=int(self.snums[    b    ].visible), why=why)
         for a in range(ea):             self.setJdump(A, a,         v=int(self.snams[    a    ].visible), why=why)
         for d in range(ed):             self.setJdump(D, d,         v=int(self.capos[    d    ].visible), why=why)
@@ -692,6 +693,7 @@ class Tabs(pyglet.window.Window):
         for i, t in enumerate(self.snams):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, A, i, Y, s), p=0, f=3)
         for i, t in enumerate(self.capos):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, D, i, Y, s), p=0, f=3)
         for i, t in enumerate(self.zclms):               d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, E, i, Y, s), p=0, f=3)
+#        self.setJdump(H, 0, v=int(self.hcurs[0].visible))
 
     def dumpTniksH(self):
         self.log(Y.join(LTXA),  p=0, f=3)
@@ -707,11 +709,12 @@ class Tabs(pyglet.window.Window):
         for i in range(len(self.views)): t = c[0][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, M, i, Y, s), p=0, f=3)
         for i in range(len(self.rowLs)): t = c[1][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, R, i, Y, s), p=0, f=3)
         for i in range(len(self.qclms)): t = c[2][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, Q, i, Y, s), p=0, f=3)
-#       for i in range(len(self.hcurs)): t = c[3][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, H, i, Y, s), p=0, f=3)
+#        for i in range(len(self.hcurs)): t = c[3][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, H, i, Y, s), p=0, f=3)
         for i in range(len(self.snums)): t = e[0][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, B, i, Y, s), p=0, f=3)
         for i in range(len(self.snams)): t = e[1][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, A, i, Y, s), p=0, f=3)
         for i in range(len(self.capos)): t = e[2][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, D, i, Y, s), p=0, f=3)
         for i in range(len(self.zclms)): t = e[3][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, E, i, Y, s), p=0, f=3)
+#        self.setJdump(H, 0, v=int(self.hcurs[0].visible))
     ####################################################################################################################################################################################################
     def dumpStruct(self, why=Z, dbg=1, dbg2=1):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp()} {self.fntp2()} {self.fmtI()}', pos=1)
@@ -730,7 +733,7 @@ class Tabs(pyglet.window.Window):
             self.dumpTniksD(f'{why}D')
             self.dumpTniksE(f'{why}E')
             self.dumpTniksF(f'{why}F')
-#            self.dumpTniksG()
+            self.dumpTniksG()
             self.dumpTniksH()
         if dbg2:        self.cobj.dumpMlimap('MLim') if self.VERBY else None
         self.log(f'{self.fmtn()} END ntp={self.fntp()} {self.fntp2()} {self.fmtI()}', pos=1)
@@ -738,6 +741,29 @@ class Tabs(pyglet.window.Window):
     def autoSave(self, dt, how, dbg=1):
         if dbg: self.log(f'Every {dt:=7.4f} seconds, {how} {self.rsyncData=}')
         if self.rsyncData: cmd = cmds.SaveDataFileCmd(self, how, self.dataPath0)   ;  cmd.do()  ;  self.rsyncData = 0
+    ####################################################################################################################################################################################################
+    def splitH( self, p, n, dbg=1):
+        if   ist(p, LBL):
+            p.x, p.width,   self.p0x, self.p0w = self.splitHL(p.x, p.width, n)
+            if dbg:         self.log(f'{p.x=:.2f} {p.width=:.2f} {n=} {self.p0x=:.2f} {self.p0w=:.2f}')
+        elif ist(p, SPR):
+            p.x, p.scale_x, self.p0x, self.p0w = self.splitHS(p.x, p.width, n, p.image.width)
+            if dbg:         self.log(f'{p.x=:.2f} {p.scale_x=:.4f} {n=} {self.p0x=:.2f} {self.p0w=:.2f} {self.p0sx=:.4f}')
+        return p
+    
+    def splitHL(self, x, w, n):
+        x0 = x                     ;   w0  = w
+        w2 = w/n                   ;   w  -= w2
+        x  = w2 + w2/2 + w/2       ;   x2  = w2
+        self.log(f'{x0=:6.2f} {w0=:6.2f} {n=} {x=:6.2f} {w=:6.2f} {x2=:6.2f} {w2=:6.2f}')
+        return x, w, x2, w2
+    
+    def splitHS(self, x, w, n, s):
+        x0 = x                     ;   w0  = w     ;   s0 = s
+        w2 = w/n                   ;   w  -= w2    ;   s  = w/s0
+        x  = w2 + w2/2 + w/2       ;   x2  = w2
+        self.log(f'{x0=:6.2f} {w0=:6.2f} {s0=:6.4f} {n=} {x=:6.2f} {w=:6.2f} {s=:6.4f} {x2=:6.2f} {w2=:6.2f}')
+        return x, s, x2, w2
     ####################################################################################################################################################################################################
     def genDataFile(self, path):
         self.log(f'{path} {self.fmtn()}')
@@ -1218,32 +1244,32 @@ class Tabs(pyglet.window.Window):
         if dbg > 1:     text = c.text if ha else Z  ;  self.log(f'{self.fmtJText(j)} {i=} {id(c):x} {text:6} {self.ftxywh(c)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0)
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
-        self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2   ;   ilr = self.LL and self.J1[S] == self.ss2sl()[0]
+        self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2  ;  ll = self.LL
         self.dumpTniksPfx(why)
         if   self.DSP_J_LEV == P:
-            for _ in                 self.g_createTniks(self.pages, P, None, why=why): pass
+            for _ in                     self.g_createTniks(self.pages, P, None, why=why): pass
         elif self.DSP_J_LEV == L:
-            for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
-                for _ in             self.g_createTniks(self.lines, L, page, why=why): pass
+            for page in                  self.g_createTniks(self.pages, P, None, why=why): # pass
+                for _ in                 self.g_createTniks(self.lines, L, page, why=why): pass
         elif self.DSP_J_LEV == S:
-            for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
-                for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
-                    if ilr:          self.createLLs(line, len(self.lines)-1, why=why)
-                    for _ in         self.g_createTniks(self.sects, S, line, why=why): pass
+            for page in                  self.g_createTniks(self.pages, P, None, why=why):  # pass
+                for l, line in enumerate(self.g_createTniks(self.lines, L, page, why=why)): # pass
+                    if ll and not l:     self.createLLs(line, len(self.lines)-1, why=why)
+                    for _ in             self.g_createTniks(self.sects, S, line, why=why): pass
         elif self.DSP_J_LEV == C:
-            for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
-                for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
-                    if ilr:          self.createLLs(line, len(self.lines)-1, why=why)
-                    for sect in      self.g_createTniks(self.sects, S, line, why=why): # pass
-                        for _ in     self.g_createTniks(self.colms, C, sect, why=why): pass
+            for page in                  self.g_createTniks(self.pages, P, None, why=why):  # pass
+                for l, line in enumerate(self.g_createTniks(self.lines, L, page, why=why)): # pass
+                    if ll and not l:     self.createLLs(line, len(self.lines)-1, why=why)
+                    for sect in          self.g_createTniks(self.sects, S, line, why=why): # pass
+                        for _ in         self.g_createTniks(self.colms, C, sect, why=why): pass
         else:
-            for page in              self.g_createTniks(self.pages, P, None, why=why): # pass
-                for line in          self.g_createTniks(self.lines, L, page, why=why): # pass
-                    if ilr:          self.createLLs(line, len(self.lines)-1, why=why)
-                    for sect in      self.g_createTniks(self.sects, S, line, why=why): # pass
-                        if self.ZZ:  self.createZZs(sect, len(self.sects)-1, why=why)
-                        for colm in  self.g_createTniks(self.colms, C, sect, why=why): # pass
-                            for _ in self.g_createTniks(self.tabls, T, colm, why=why): pass
+            for page in                  self.g_createTniks(self.pages, P, None, why=why):  # pass
+                for l, line in enumerate(self.g_createTniks(self.lines, L, page, why=why)): # pass
+                    if ll and not l:     self.createLLs(line, len(self.lines)-1, why=why)
+                    for sect in          self.g_createTniks(self.sects, S, line, why=why): # pass
+                        if self.ZZ:      self.createZZs(sect, len(self.sects)-1, why=why)
+                        for colm in      self.g_createTniks(self.colms, C, sect, why=why): # pass
+                            for _ in     self.g_createTniks(self.tabls, T, colm, why=why): pass
         self.dumpTniksSfx(why)
         if self.CURSOR and self.tabls and not self.cursor:  self.createCursor(why)   ;  self.dumpHdrs()
         if dbg:         self.dumpStruct(why2) # , dbg=dbg)
