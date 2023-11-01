@@ -342,11 +342,13 @@ class Tabs(pyglet.window.Window):
         x, y = (self.VIEWS[0], self.VIEWS[1]) if self.VIEWS else (0, 0)
         self.viewX,  self.viewY,  self.viewW,  self.viewH  =     x,          y,      self.width-x, self.height-y
         self.viewX0, self.viewY0, self.viewW0, self.viewH0 = self.viewX, self.viewY, self.viewW,   self.viewH
+        self.log(f'{self.viewX=:.2f} {self.viewY=:.2f} {self.viewW=:.2f} {self.viewH=:.2f}')
 
     def updView(self):
         mx, my = self.width/self.viewW0, self.height/self.viewH0
         x,  y  = (self.VIEWS[0]*mx, self.VIEWS[1]*my) if self.VIEWS else (0, 0)
         self.viewX,  self.viewY,  self.viewW,  self.viewH  =     x,          y,      self.width-x, self.height-y
+        self.log(f'{self.viewX=:.2f} {self.viewY=:.2f} {self.viewW=:.2f} {self.viewH=:.2f}')
 
     def _initWindowB(self, dbg=1):
         if dbg: self.log(f'BGN {self.fmtWH()}')
@@ -716,7 +718,7 @@ class Tabs(pyglet.window.Window):
         for i in range(len(self.zclms)): t = e[3][i]  ;  d = t.document  ;  m = d.styles  ;  s = self.fDocStyle(m, Y, t)  ;  self.log(self.t2csv(t, E, i, Y, s), p=0, f=3)
 #        self.setJdump(H, 0, v=int(self.hcurs[0].visible))
     ####################################################################################################################################################################################################
-    def dumpStruct(self, why=Z, dbg=1, dbg2=1):
+    def dumpStruct(self, why=Z, dbg=1, dbg2=0):
         self.log(f'{self.fmtn()} BGN ntp={self.fntp()} {self.fntp2()} {self.fmtI()}', pos=1)
         if dbg2:    self.dumpArgs(f=2)
 #        kysgs.dumpData()
@@ -1054,9 +1056,11 @@ class Tabs(pyglet.window.Window):
         return tlist, j, k, txt
     ####################################################################################################################################################################################################
     def geom(self, j, p=None, n=None, i=None, dbg=1):
-        assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'  ;  vx, vy, vw, vh = self.viewX, self.viewY, self.viewW, self.viewH
-        n = n  if n is not None else self.n[j]        ;    c = (C, Q, E)
-        _, _, ns, _, nt = self.n   ;   nsnt = ns*nt   ;   nr = nsnt + self.LL
+        assert 0 <= j <= len(JTEXTS),  f'{j=} {len(JTEXTS)=}'
+        n = n  if n is not None else self.n[j]        ;    c = (C, Q, E)   ;   e = (B, A, D, E, M)
+        if j not in e: vx, vy, vw, vh = self.viewX, self.viewY, self.viewW, self.viewH
+        else:          vx, vy, vw, vh = 0, 0, self.viewX, self.height - self.viewY 
+        np, nl, ns, nc, nt = self.n   ;   nsnt = ns*nt   ;   nr = nsnt + self.LL
         if n == 0:    n = 1        ;   self.log(f'ERROR n=0 setting {n=}')
         i               = i if i is not None else self.i[j]
         a, b            = self.axWgt(self.ax), self.ayWgt(self.ay)   ;   d = 1-b   ;   dn = nr - nsnt
@@ -1078,7 +1082,8 @@ class Tabs(pyglet.window.Window):
             self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)} {x} {px} {-a*pw} {a*w}', p=0, f=0)
         return n, i, x, y, w, h
     ####################################################################################################################################################################################################
-    def createZZs(self, p, pi, why, dbg=1):
+    def OLD__createZZs(self, tlist, p, why, dbg=1):
+        pi = len(tlist) - 1
         n  = self.n[C] + self.zzlen()
         kz = self.k[E]   ;   kk = self.cci(E, pi, kz) if self.CHECKERED else 0    ;   k = kz[kk]
         nz, iz, xz, yz, wz, hz = self.geom(E, p, n, len(self.sects)-1, dbg=dbg)   ;  zs = []
@@ -1086,16 +1091,33 @@ class Tabs(pyglet.window.Window):
         if self.zzlen() == 2: zclm2 = self.createTnik(self.zclms, pi, E, xz+wz, yz, wz, hz, k, why, v=1, dbg=dbg)   ;   zs.append(zclm2)
         for z in zs:
             if pi in (0, 2):
-                nu, iu, xu, yu, wu, hu = self.geom(B, z, self.n[T], self.i[L], dbg=dbg)
-                for u in range(nu):
-                    self.createZZ(pi, u, xu, yu, wu, hu, why)
+                an, ai, ax, ay, aw, ah = self.geom(A, z, self.n[T], self.i[L], dbg=dbg)
+                for a in range(an):
+                    self.createZZ(pi, a, ax, ay, aw, ah, why)
             if pi in (1, 3):
-                na, ia, xa, ya, wa, ha = self.geom(A, z, self.n[T], self.i[L], dbg=dbg)
-                for a in range(na):
-                    self.createZZ(pi, a, xa, ya, wa, ha, why)
+                bn, bi, bx, by, bw, bh = self.geom(B, z, self.n[T], self.i[L], dbg=dbg)
+                for b in range(bn):
+                    self.createZZ(pi, b, bx, by, bw, bh, why)
 #            p = self.splitH(p, n, dbg)
 #            self.dumpTnik(p, S, why=why)
 #            return p
+
+    def createZZs(self, why=Z, dbg=1):
+#        pw = self.viewX/self.zzlen()  ;   ph = self.height/self.n[S]
+        np, nl, ns, nc, nt = self.n   ;   n = self.zzlen()    ;    pi = self.J1[S]
+        kz = self.k[E]   ;   kk = self.cci(E, pi, kz) if self.CHECKERED else 0    ;   k = kz[kk]
+        zn, zi, zx, zy, zw, zh      = self.geom(E, None, n, pi, dbg=dbg)   ;  zs = []   ;   zh /= nl*ns   ;   zy = pi*zh
+        zclm                        = self.createTnik(self.zclms, pi, E, zx,    zy, zw, zh, k, why, v=1, dbg=dbg)   ;   zs.append(zclm)
+        if self.zzlen() == 2: zclm2 = self.createTnik(self.zclms, pi, E, zx+zw, zy, zw, zh, k, why, v=1, dbg=dbg)   ;   zs.append(zclm2)
+        for z in zs:
+            if pi in (0, 2):
+                an, ai, ax, ay, aw, ah = self.geom(A, z, nt, self.i[L], dbg=dbg)
+                for a in range(an):
+                    self.createZZ(pi, a, ax, ay, aw, ah, why)
+            if pi in (1, 3):
+                bn, bi, bx, by, bw, bh = self.geom(B, z, nt, self.i[L], dbg=dbg)
+                for b in range(bn):
+                    self.createZZ(pi, b, bx, by, bw, bh, why)
 
     def createZZ(self, s, i, x, y, w, h, why, dbg=1):
 #        self.log(f'ntp={self.fntp(1, 1)}')
@@ -1104,17 +1126,32 @@ class Tabs(pyglet.window.Window):
         tlist, j, ki, txt = self.tnikInfo(p, l, s, c, t, z=1)   ;   k = ki[kk]
         tnik = self.createTnik(tlist, cc, j, x, y-i*h, w, h, k, why, t=txt, v=1, dbg=dbg)
         return tnik
+
+    def resizeZZs(self, why, dbg=1, dbg2=1):
+        np, nl, ns, nc, nt = self.n   ;   n = ns    ;    pi = self.J1[S] # self.i[S]
+        en, ei, ex, ey, ew, eh = self.geom(E, None, n, pi, dbg=dbg2)  ;  zs = [] # ;    xr0 = xr
+        zclm = self.resizeTnik(self.zclms, self.J2[E], E, ex, ey, ew, eh, why=why, dbg=dbg)   ;   zs.append(zclm)
+        for z in zs:
+            if pi in (0, 2):
+                an, ai, ax, ay, aw, ah = self.geom(A, z, self.n[T], self.i[L], dbg=dbg)
+                for a in range(an):
+                    self.resizeTnik(self.snams, pi, a, ax, ay, aw, ah, why)
+            if pi in (1, 3):
+                bn, bi, bx, by, bw, bh = self.geom(B, z, self.n[T], self.i[L], dbg=dbg)
+                for b in range(bn):
+                    self.resizeTnik(self.snums, pi, b, bx, by, bw, bh, why)
     ####################################################################################################################################################################################################
-    def createLLs(self, pt, pi, why, dbg=1, dbg2=1):
-        n    = self.ntnsnl()   ;   kl = self.k[R]   ;   kk = self.cci(R, pi, kl) if self.CHECKERED else 0
-        nr, ir, xr, yr, wr, hr = self.geom(R, pt, n, self.i[L], dbg=dbg2) #  ;   xr0 = xr
+    def createLLs(self, why, dbg=1, dbg2=1):
+        tlist = self.lines     ;   pi = len(tlist) - 1   ;   p  = tlist[-1]
+        n    = self.ntnsnl()   ;   kl = self.k[R]        ;   kk = self.cci(R, pi, kl) if self.CHECKERED else 0
+        rn, ri, rx, ry, rw, rh = self.geom(R, p, n, self.i[L], dbg=dbg2) #  ;   xr0 = xr
         txt  = self.dbgTabTxt(R, pi)   ;   k = kl[kk]
         v    = 1 if self.j()[P] == pi else 0
-        lrow = self.createTnik(self.rowLs, pi, R, xr, yr, wr, hr, k, why=why, t=txt, v=v, dbg=dbg)
-        nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2) #  ;   xc0 = xc
-        for c in range(nc):
-            self.createLL(self.qclms, pi, c, xc, yc, wc, hc, v, why)
-        return pt
+        lrow = self.createTnik(self.rowLs, pi, R, rx, ry, rw, rh, k, why=why, t=txt, v=v, dbg=dbg)
+        cn, ci, cx, cy, cw, ch = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2) #  ;   xc0 = xc
+        for c in range(cn):
+            self.createLL(self.qclms, pi, c, cx, cy, cw, ch, v, why)
+        return p
 
     def createLL(self, tlist, l, c, x, y, w, h, v, why, dbg=1):
         cc   = c + self.n[C] * l
@@ -1128,14 +1165,14 @@ class Tabs(pyglet.window.Window):
         self.setLLStyle(cc, kk)
         return ll
 
-    def resizeLLs(self, pt, why, dbg=1, dbg2=1):
+    def resizeLLs(self, p, why, dbg=1, dbg2=1):
         n    = self.ntnsnl()
-        nr, ir, xr, yr, wr, hr = self.geom(R, pt, n, self.i[L], dbg=dbg2)  # ;    xr0 = xr
-        lrow = self.resizeTnik(self.rowLs, self.J2[R], R, xr, yr, wr, hr, why=why, dbg=dbg)
-        nc, ic, xc, yc, wc, hc = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)  # ;    xc0 = xc
-        for c in range(nc):
-            self.resizeTnik(self.qclms, self.J2[Q], Q, xc + c*wc, yc, wc, hc, why=why, dbg=dbg)
-        return pt
+        rn, ri, rx, ry, rw, rh = self.geom(R, p, n, self.i[L], dbg=dbg2)  # ;    xr0 = xr
+        lrow = self.resizeTnik(self.rowLs, self.J2[R], R, rx, ry, rw, rh, why=why, dbg=dbg)
+        cn, ci, cx, cy, cw, ch = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)  # ;    xc0 = xc
+        for c in range(cn):
+            self.resizeTnik(self.qclms, self.J2[Q], Q, cx + c*cw, cy, cw, ch, why=why, dbg=dbg)
+        return p
 
     def addLLs(self, how):
         why = f'ADD {how}'  ;  why2 = 'Ref'
@@ -1147,7 +1184,7 @@ class Tabs(pyglet.window.Window):
                 for l in range(nl):
                     i = l + p*nl
                     self.setJdump(L, i, why=why2)
-                    self.createLLs(self.lines[i], i, why)
+                    self.createLLs(why) # self.lines[i], i, why)
         self.dumpTniksSfx(why)
 
     def hideLLs(self, how):
@@ -1247,29 +1284,29 @@ class Tabs(pyglet.window.Window):
         self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2  ;  ll = self.LL
         self.dumpTniksPfx(why)
         if   self.DSP_J_LEV == P:
-            for _ in                     self.g_createTniks(self.pages, P, None, why=why): pass
+            for _ in                     self.g_createTniks(self.pages, P, None, why=why):  pass
         elif self.DSP_J_LEV == L:
-            for page in                  self.g_createTniks(self.pages, P, None, why=why): # pass
-                for _ in                 self.g_createTniks(self.lines, L, page, why=why): pass
+            for page in                  self.g_createTniks(self.pages, P, None, why=why):  # pass
+                for _ in                 self.g_createTniks(self.lines, L, page, why=why):  pass
         elif self.DSP_J_LEV == S:
             for page in                  self.g_createTniks(self.pages, P, None, why=why):  # pass
                 for l, line in enumerate(self.g_createTniks(self.lines, L, page, why=why)): # pass
-                    if ll and not l:     self.createLLs(line, len(self.lines)-1, why=why)
-                    for _ in             self.g_createTniks(self.sects, S, line, why=why): pass
+                    if ll and not l:     self.createLLs(why)
+                    for _ in             self.g_createTniks(self.sects, S, line, why=why):  pass
         elif self.DSP_J_LEV == C:
             for page in                  self.g_createTniks(self.pages, P, None, why=why):  # pass
                 for l, line in enumerate(self.g_createTniks(self.lines, L, page, why=why)): # pass
-                    if ll and not l:     self.createLLs(line, len(self.lines)-1, why=why)
-                    for sect in          self.g_createTniks(self.sects, S, line, why=why): # pass
-                        for _ in         self.g_createTniks(self.colms, C, sect, why=why): pass
+                    if ll and not l:     self.createLLs(why)
+                    for sect in          self.g_createTniks(self.sects, S, line, why=why):  # pass
+                        for _ in         self.g_createTniks(self.colms, C, sect, why=why):  pass
         else:
             for page in                  self.g_createTniks(self.pages, P, None, why=why):  # pass
                 for l, line in enumerate(self.g_createTniks(self.lines, L, page, why=why)): # pass
-                    if ll and not l:     self.createLLs(line, len(self.lines)-1, why=why)
-                    for sect in          self.g_createTniks(self.sects, S, line, why=why): # pass
-                        if self.ZZ:      self.createZZs(sect, len(self.sects)-1, why=why)
-                        for colm in      self.g_createTniks(self.colms, C, sect, why=why): # pass
-                            for _ in     self.g_createTniks(self.tabls, T, colm, why=why): pass
+                    if ll and not l:     self.createLLs(why)
+                    for sect in          self.g_createTniks(self.sects, S, line, why=why):  # pass
+                        if self.VIEWS:   self.createZZs(why)
+                        for colm in      self.g_createTniks(self.colms, C, sect, why=why):  # pass
+                            for _ in     self.g_createTniks(self.tabls, T, colm, why=why):  pass
         self.dumpTniksSfx(why)
         if self.CURSOR and self.tabls and not self.cursor:  self.createCursor(why)   ;  self.dumpHdrs()
         if dbg:         self.dumpStruct(why2) # , dbg=dbg)
