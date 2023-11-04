@@ -1084,19 +1084,19 @@ class Tabs(pyglet.window.Window):
         return n, i, x, y, w, h
     ####################################################################################################################################################################################################
     def createZZs(self, pt, why=Z, dbg=1):
-        np, nl, ns, nc, nt   = self.n    ;    n = self.zzlen()     ;  pi = self.J1[S]
-        kz    = self.k[E]    ;    kk = self.cci(E, pi, kz) if self.CHECKERED else 0    ;    k = kz[kk]
-        _, _, zx, zy, zw, zh = self.geom(E, None, n, pi, dbg=dbg)  ;  zh = pt.height   ;   zy = pt.y
-        zclm                 = self.createTnik(self.zclms, pi,    E, zx,    zy, zw, zh, k, why, v=1, dbg=dbg)
-        zclm2                = self.createTnik(self.zclms, pi+nt, E, zx+zw, zy, zw, zh, k, why, v=1, dbg=dbg) if n == 2 else None
-        if pi == 0 or pi == 2: t, _, x, y, w, h = self.geom(A, zclm, nt, self.i[L], dbg=dbg)
-        else:                  t, _, x, y, w, h = self.geom(B, zclm, nt, self.i[L], dbg=dbg)
-        for i in range(pi*t, (pi+1)*t):
-            self.createTnik(self.snams, i, A, x, y-i*h, w, h, k, why, self.sobj.tab2nn(str(0), i, self.nic), v=1, dbg=dbg)
-            self.createTnik(self.snums, i, B, x, y-i*h, w, h, k, why, str(i+1), v=1, dbg=dbg)
+        np, nl, ns, nc, nt = self.n   ;   n = self.zzlen()    ;    pi = self.J1[S]
+        kz    = self.k[E]   ;   kk = self.cci(E, pi, kz) if self.CHECKERED else 0    ;   k = kz[kk]
+        _, _, zx, zy, zw, zh = self.geom(E, None, n, pi, dbg=dbg)   ;   zh = pt.height   ;   zy = pt.y
+        zclm                   = self.createTnik(self.zclms, pi,    E, zx,    zy, zw, zh, k, why, v=1, dbg=dbg)
+        zclm2                  = self.createTnik(self.zclms, pi+nt, E, zx+zw, zy, zw, zh, k, why, v=1, dbg=dbg) if n == 2 else None
+        if   pi in (0, 2):       t, _, x, y, w, h = self.geom(A, zclm, nt, self.i[L], dbg=dbg)
+        else:                    t, _, x, y, w, h = self.geom(B, zclm, nt, self.i[L], dbg=dbg)
+        for i in range(t):
+            if   pi in (0,2):        self.createTnik(self.snams, i, A, x, y-i*h, w, h, k, why, self.sobj.tab2nn(str(0), i, self.nic), v=1, dbg=dbg)
+            elif pi in (1,3):        self.createTnik(self.snums, i, B, x, y-i*h, w, h, k, why, str(i+1), v=1, dbg=dbg)
         if n == 2:
-            t, _, x, y, w, h = self.geom(D, zclm2, nt, self.i[L], dbg=dbg)
-            for i in range(t): self.createTnik(self.capos, i, D, zx+zw, y-i*h, w, h, k, why, t='0', v=1, dbg=dbg)
+            t, _, x, y, w, h   = self.geom(D, zclm2, nt, self.i[L], dbg=dbg)
+            for i in range(t):   self.createTnik(self.capos, i, D, zx+zw, y-i*h, w, h, k, why, t='0', v=1, dbg=dbg)
 
     def resizeZZs(self, pt, why, dbg=1, dbg2=1):
         np, nl, ns, nc, nt   = self.n    ;    n = self.zzlen()   ;   pi = self.J1[S]
