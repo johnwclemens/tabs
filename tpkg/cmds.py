@@ -547,15 +547,15 @@ class ResizeTniksCmd(Cmd):
                 for l, line in enumerate(tobj.g_resizeTniks(tobj.lines, L, page, why=why)): # pass
                     if ll and not l:     tobj.resizeLLs(line, why)
                     for sect in          tobj.g_resizeTniks(tobj.sects, S, line, why=why):  # pass
-#                        if tobj.VIEWS:   tobj.resizeZZs(      why)
                         for colm in      tobj.g_resizeTniks(tobj.colms, C, sect, why=why):  # pass
                             for _ in     tobj.g_resizeTniks(tobj.tabls, T, colm, why=why):  pass
         tobj.dumpTniksSfx(why)
         tobj.dumpTniksPfx(why)
         if tobj.VIEWS and tobj.ZZ:
-            for p, page in         enumerate(tobj.g_resizeTniks(tobj.pages, P, view, why=why)):
-                for l, line in     enumerate(tobj.g_resizeTniks(tobj.lines, L, page, why=why)):
-                    for s, sect in enumerate(tobj.g_resizeTniks(tobj.sects, S, line, why=why)): tobj.resizeZZs(why)
+            for p, page in         enumerate(tobj.g_resizeTniks(tobj.pages2, P, view, why=why)):
+                for l, line in     enumerate(tobj.g_resizeTniks(tobj.lines2, L, page, why=why)):
+                    for s, sect in enumerate(tobj.g_resizeTniks(tobj.sects2, S, line, why=why)):
+                        tobj.resizeZZs(sect, why)
         tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor: cmd = ResizeCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
         if dbg and tobj.SNAPS and not tobj.snapReg: tobj.regSnap(why, f'Upd{tobj.cc + 1}')
