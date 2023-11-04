@@ -57,3 +57,4 @@ class Modes:
 # F) load more fonts into res/fonts dir (.ttf files)
 # G) fix - Access to a protected member _reinit of a class - tobj._reinit()
 # H) move on_resize() from tabs.py to evnts.py - super.resize?
+# I) cleanup use of negative j values and abs(j) hack
