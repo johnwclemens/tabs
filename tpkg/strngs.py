@@ -39,8 +39,9 @@ class Strngs:
     def nStrings(self): return len(self.stringNames)
 
     def fn2ni(self, fn, s, dbg=0):
-#        strNum = self.nStrings() - s   # Reverse and one base the string numbering: str[1 ... numStrings] => s[numStrings ... 1]
-        strNum = self.nStrings() - s - 1   # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
+#       strNum = self.nStrings() - s     # Reverse and one  base the string numbering: str[1 ... numStrings] => s[numStrings ... 1]
+        strNum = self.nStrings() - s - 1 # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
+#        assert strNum in range(1, self.nStrings()),  f'{strNum=} not in range(1, {self.nStrings()=} {s=})' # AssertionError: strNum=0 not in range(1, self.nStrings()=6)
         k      = self.stringKeys[strNum]
         i      = self.stringMap[k] + fn
         strNum += 1
