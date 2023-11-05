@@ -552,9 +552,9 @@ class ResizeTniksCmd(Cmd):
         tobj.dumpTniksSfx(why)
         tobj.dumpTniksPfx(why)
         if tobj.VIEWS and tobj.ZZ:
-            for p, page in         enumerate(tobj.g_resizeTniks(tobj.pages2, P, view, why=why)):
-                for l, line in     enumerate(tobj.g_resizeTniks(tobj.lines2, L, page, why=why)):
-                    for s, sect in enumerate(tobj.g_resizeTniks(tobj.sects2, S, line, why=why)):
+            for p, page in         enumerate(tobj.g_resizeTniks(tobj.pages2, P, view, 0, why=why)):
+                for l, line in     enumerate(tobj.g_resizeTniks(tobj.lines2, L, page,    why=why)):
+                    for s, sect in enumerate(tobj.g_resizeTniks(tobj.sects2, S, line,    why=why)):
                         tobj.resizeZZs(sect, why)
         tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor: cmd = ResizeCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
