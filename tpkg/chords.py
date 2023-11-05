@@ -81,9 +81,9 @@ class Chords:
         self.dumpUmap() if dbg else None
     ####################################################################################################################################################################################################
     def _getIndices(self, data, nic, p, l, c, dbg=0):
-        strNumbs   = self.sobj.stringNumbs
-        strKeys    = self.sobj.stringKeys
-        strNames   = self.sobj.stringNames
+        strNumbs   = self.sobj.numbs
+        strKeys    = self.sobj.keys
+        strNames   = self.sobj.names
         _tabs      = data[p][l][c]
         strIndices = [ Notes.index(k, 1) for k in strKeys ]
         mask, indices, notes = [], [], []  ;  nt = len(_tabs)

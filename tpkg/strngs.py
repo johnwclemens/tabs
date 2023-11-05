@@ -16,36 +16,36 @@ class Strngs:
               }
     def __init__(self, alias=None):
         if alias is None: alias = 'GUITAR_6_STD'
-        self.stringMap          = self.aliases[alias]
-        self.stringKeys         = list(self.stringMap.keys())
-        self.stringNames        = Z.join(reversed([ str(k[0])  for k in           self.stringKeys ]))
-        self.stringNumbs        = Z.join(         [ str(r + 1) for r in range(len(self.stringKeys)) ])
-        self.stringCapo         = Z.join(         [ '0'        for _ in range(len(self.stringKeys)) ])
-        self.strLabel           = 'STRING'
-        self.cpoLabel           = ' CAPO '
-        slog( f'stringMap   = {fmtm(self.stringMap)}')
-        slog( f'stringKeys  = {fmtl(self.stringKeys)}')
-        slog( f'stringNames =      {self.stringNames}')
-        slog( f'stringNumbs =      {self.stringNumbs}')
-        slog( f'stringCapo  =      {self.stringCapo}')
-        slog( f'strLabel    =      {self.strLabel}')
-        slog( f'cpoLabel    =      {self.cpoLabel}')
+        self.map       = self.aliases[alias]
+        self.keys      = list(self.map.keys())
+        self.names     = Z.join(reversed([ str(k[0])  for k in           self.keys ]))
+        self.numbs     = Z.join(         [ str(r + 1) for r in range(len(self.keys)) ])
+        self.capo      = Z.join(         [ '0'        for _ in range(len(self.keys)) ])
+        self.label     = 'STRING'
+        self.labelc    = ' CAPO '
+        slog( f'map    = {fmtm(self.map)}')
+        slog( f'keys   = {fmtl(self.keys)}')
+        slog( f'names  =      {self.names}')
+        slog( f'numbs  =      {self.numbs}')
+        slog( f'capo   =      {self.capo}')
+        slog( f'label  =      {self.label}')
+        slog( f'labelc =      {self.labelc}')
 
     @staticmethod
     def tab2fn(t, dbg=0): fn = int(t) if '0'<=t<='9' else int(ord(t)-87) if 'a'<=t<='o' else None  ;  slog(f'tab={t} fretNum={fn}') if dbg else None  ;  return fn
     @staticmethod
     def isFret(t):      return   1    if '0'<=t<='9'          or            'a'<=t<='o' else 0
 
-    def nStrings(self): return len(self.stringNames)
+    def nStrings(self): return len(self.names)
 
     def fn2ni(self, fn, s, dbg=0):
 #       strNum = self.nStrings() - s     # Reverse and one  base the string numbering: str[1 ... numStrings] => s[numStrings ... 1]
         strNum = self.nStrings() - s - 1 # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
 #        assert strNum in range(1, self.nStrings()),  f'{strNum=} not in range(1, {self.nStrings()=} {s=})' # AssertionError: strNum=0 not in range(1, self.nStrings()=6)
-        k      = self.stringKeys[strNum]
-        i      = self.stringMap[k] + fn
+        k      = self.keys[strNum]
+        i      = self.map[k] + fn
         strNum += 1
-        if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} stringMap={fmtm(self.stringMap)}')
+        if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} map={fmtm(self.map)}')
         return i
 
     def tab2nn(self, tab, s, nic=None, dbg=1, f=-3):

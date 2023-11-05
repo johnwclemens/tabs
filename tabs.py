@@ -1045,10 +1045,10 @@ class Tabs(pyglet.window.Window):
         if 0 <= t < self.n[T]:
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[B], self.k[A], self.k[D]
             tab = self.data[p][l][c][t] if C1 != z1 != C2 and C2 != z2 else Z
-            if   s == TT:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.stringNumbs[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.tabls, T, kT, tab)
-            elif s == NN:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.stringNames[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.notes, N, kN, tab)
-            elif s == II:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.stringNumbs[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.ikeys, I, kI, tab)
-            elif s == KK:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.stringNames[t]) if exp1 else (self.capos, D, kD, self.sobj.stringCapo[t]) if exp2 else (self.kords, K, kK, tab)
+            if   s == TT:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.tabls, T, kT, tab)
+            elif s == NN:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.notes, N, kN, tab)
+            elif s == II:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.ikeys, I, kI, tab)
+            elif s == KK:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.kords, K, kK, tab)
             else:   msg = f'{msg2} {msg1}'  ;  self.log(msg)   ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
             if dbg: msg =        f'{msg1}'  ;  self.log(msg, f=0) # self.fmtJText(j, t, why)
             return  tlist, j, k, txt
@@ -1084,27 +1084,29 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def createZZs(self, pt, why=Z, dbg=1):
         pi = self.J1[S]   ;   kz = self.k[E]   ;   kk = self.cci(E, pi, kz) if self.CHECKERED else 0   ;   k = kz[kk]
-        np, nl, ns, nc, nt       = self.n    ;    n = self.zzlen()      ;   zz = self.ZZ     ;   assert n == 1 or n == 2,  f'{n=} {zz=}'
-        _, _, zx, zy, zw, zh     = self.geom(E, None, n, pi, dbg=dbg)
+        np, nl, ns, nc, nt       = self.n    ;    n = self.zzlen()      ;   zz = self.ZZ     ;   assert n in (1, 2),  f'{n=} {zz=}'
+        _, _, zx, zy, zw, zh     = self.geom(E, None, n, pi, dbg)
         zx0 = zx if n==2 or zz[0]==1 else zx+zw   ;   zx1 = zx+zw if n==2 or zz[0]==1 else zx   ;   zy, zh = pt.y, pt.height  ;  pt = pi+nt
         z0                       = self.createTnik(self.zclms, pi, E, zx0, zy, zw, zh, k, why, v=1, dbg=dbg) if n == 2 or zz[0] == 0 else None
         z1                       = self.createTnik(self.zclms, pt, E, zx1, zy, zw, zh, k, why, v=1, dbg=dbg) if n == 2 or zz[0] == 1 else None
         if n==2 and zz[0]==1:      tmp = z0  ;  z0 = z1  ;  z1 = tmp
         if z0:
-            if   pi in (0, 2):     t, _, x, y, w, h = self.geom(A, z0, nt, self.i[L], dbg=dbg)
-            else:                  t, _, x, y, w, h = self.geom(B, z0, nt, self.i[L], dbg=dbg)
+            if   pi in (0, 2):     t, _, x, y, w, h = self.geom(A, z0, nt, self.i[L], dbg)
+            else:                  t, _, x, y, w, h = self.geom(B, z0, nt, self.i[L], dbg)
             for i in range(t):
                 if   pi in (0, 2): self.createTnik(self.anams, i, A, x, y-i*h, w, h, k, why, self.sobj.tab2nn(str(0), i, self.nic), v=1, dbg=dbg)
                 elif pi in (1, 3): self.createTnik(self.bnums, i, B, x, y-i*h, w, h, k, why, str(i+1), v=1, dbg=dbg)
         if z1:
-            t, _, x, y, w, h     = self.geom(D, z1, nt, self.i[L], dbg=dbg)
-            for i in range(t):     self.createTnik(self.capos, i, D, zx1, y-i*h, w, h, k, why, t='0', v=1, dbg=dbg)
+            t, _, x, y, w, h     = self.geom(D, z1, nt, self.i[L], dbg)
+            for i in range(t):     self.createTnik(self.capos, i, D, zx1, y-i*h, w, h, k, why, self.sobj.capo[i], v=1, dbg=dbg)
 
     def resizeZZs(self, pt, why, dbg=1, dbg2=1):
-        np, nl, ns, nc, nt       = self.n    ;    n = self.zzlen()   ;   pi = self.J1[S]  ;   zz = self.ZZ  ;  assert n == 1 or n == 2,  f'{n=} {zz=}'  ;  p = pi//2  ;  q = (pi//2+1)
-        _, _, zx, zy, zw, zh     = self.geom(E, None, n, pi, dbg2)   ;   zh = pt.height   ;   zy = pt.y     ;  zx1 = zx+zw if n==2 else zx  ;  ps = pi+ns if n==2 else 0
+        np, nl, ns, nc, nt       = self.n    ;    n = self.zzlen()   ;   pi = self.J1[S]  ;   zz = self.ZZ  ;  assert n in (1, 2),  f'{n=} {zz=}'
+        _, _, zx, zy, zw, zh     = self.geom(E, None, n, pi, dbg2)   ;   ps = pi+ns if n==2 else 0  ;  p, q = pi//2, (pi//2+1)
+        zx1 = zx+zw if n==2 else zx   ;   zy, zh = pt.y, pt.height
         z0                       = self.resizeTnik(self.zclms, pi, E, zx,  zy, zw, zh, why, dbg) if n == 2 or zz[0] == 0 else None
         z1                       = self.resizeTnik(self.zclms, ps, E, zx1, zy, zw, zh, why, dbg) if n == 2 or zz[0] == 1 else None
+        if n==2 and zz[0]==1:      tmp = z0  ;  z0 = z1  ;  z1 = tmp
         if z0:
             if   pi in (0, 2):     t, _, x, y, w, h = self.geom(A, z0, nt, self.i[L], dbg2)
             else:                  t, _, x, y, w, h = self.geom(B, z0, nt, self.i[L], dbg2)
@@ -1129,12 +1131,12 @@ class Tabs(pyglet.window.Window):
 
     def createLL(self, tlist, l, c, x, y, w, h, v, why, dbg=1):
         cc   = c + self.n[C] * l
-        kl   = self.llcolor(cc, Q)  ;  kk = NORMAL_STYLE
+        kl   = self.llcolor(cc, Q)  ;  kk = NORMAL_STYLE   ;   k = kl[kk]
 #        zl   = self.zzlen()
 #        z    = 1 if self.FRT_BRD else 2
 #        text = self.llText[z-zl:]
         text = self.llText
-        txt  = text[c]   ;   k = kl[kk]
+        txt  = text[c]
         ll   = self.createTnik(tlist, cc, Q, x + c*w, y, w, h, k, why=why, t=txt, v=v, dbg=dbg)
         self.setLLStyle(cc, kk)
         return ll
@@ -1321,13 +1323,12 @@ class Tabs(pyglet.window.Window):
             k = kl[self.BGC]
             yield self.createTnik(tl2, i2, j2, x2, y2, w, h, k, why=why, t=t, v=v, dbg=dbg)
     ####################################################################################################################################################################################################
-    def createTnik(self, tlst, i, j, x, y, w, h, k, why=Z, t=Z, v=0, g=None, dbg=0):
+    def createTnik(self, tlst, i, j, x, y, w, h, k, why=Z, t=Z, v=0, dbg=0):
         assert i    is not None and j is not None,  f'ERROR i or j is None {i=} {j=} lt={len(tlst) if tlst is not None else None} {t=} {why}'
         assert tlst is not None and k is not None,  f'ERROR tlst or k is None {tlst=} {k=}'
         assert ist(v, int),  f'ERROR wrong type {type(v)=} {v=}'
         self.setJ(j, i, v) # todo fixme - make it clear we want to set v (visible) on the tnik as well
-        o, _, d, ii, n, s = self.fontParams()   ;   b = self.batch
-        g = g     if g is not None else self.j2g(j)
+        o, _, d, ii, n, s = self.fontParams()   ;   b = self.batch   ;   g = self.j2g(j)
         if j == H or (self.SPRITES and (j < T or j == R)):
             scip   = pygimg.SolidColorImagePattern(k)
             img    = scip.create_image(width=fri(w), height=fri(h))
