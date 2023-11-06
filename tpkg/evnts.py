@@ -15,7 +15,7 @@ TT, NN, II, KK                 = utl.TT, utl.NN, utl.II, utl.KK
 MLDY, CHRD, ARPG               = utl.MLDY, utl.CHRD, utl.ARPG
 LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
 BOLD, COLOR, ITALIC, FONT_NAME, FONT_SIZE                                = utl.BOLD, utl.COLOR, utl.ITALIC, utl.FONT_NAME, utl.FONT_SIZE
-P, L, S, C, T, N, I, K, R, Q, H, M, B, A, D, E                           = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.B, utl.A, utl.D, utl.E
+P, L, S, C, T, N, I, K, R, Q, H, M, A, B, D, E                           = utl.P, utl.L, utl.S, utl.C, utl.T, utl.N, utl.I, utl.K, utl.R, utl.Q, utl.H, utl.M, utl.A, utl.B, utl.D, utl.E
 isAlt, isCtl, isShf, isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.isAlt, utl.isCtl, utl.isShf, utl.isAltShf, utl.isCtlAlt, utl.isCtlShf, utl.isCtlAltShf, utl.isNumLck
 
 MODS  = 0

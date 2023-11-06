@@ -18,7 +18,7 @@ BASE_NAME  = BASE_PATH.stem
 P, L, S, C =  0,  1,  2,  3
 T, N, I, K =  4,  5,  6,  7
 M, R, Q, H =  8,  9, 10, 11
-B, A, D, E = 12, 13, 14, 15
+A, B, D, E = 12, 13, 14, 15
 W, X, Y, Z, NONE        = ' ', '\n', ',', '', 'None'
 ALT, CTL, SHF, CPL, NML = pygwink.MOD_ALT, pygwink.MOD_CTRL, pygwink.MOD_SHIFT, pygwink.MOD_CAPSLOCK, pygwink.MOD_NUMLOCK
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
@@ -270,7 +270,8 @@ def dumpRGB(f, dbg=0):
     slog(f'{"##### zip ####### zip ####"*10}', p=0, f=f) if dbg else None
 
 def initRGBs(f, dbg=0):
-    aaa, bbb, ccc = 31, 63, 127
+    aaa, bbb, ccc =  31,  63, 127
+    ddd, eee, fff = 176, 208, 255
     if dbg:
         s = W*7  ;  t = f'{s}RGB '
         o = [ f' {o}' for o in range(len(OPC)) ]
@@ -291,8 +292,8 @@ def initRGBs(f, dbg=0):
     initRGB('VLT', (128, bbb, 255), dbg=dbg)  # 13
     initRGB('GRY', (255, 255, 255), dbg=dbg)  # 14
     initRGB('CL1', (ccc, aaa, 255), dbg=dbg)  # 15
-    initRGB('CL2', (255, 128, bbb), dbg=dbg)  # 16
-    initRGB('CL3', (aaa, 255, ccc), dbg=dbg)  # 17
+    initRGB('CL2', (255, fff, bbb), dbg=dbg)  # 16
+    initRGB('CL3', (255, bbb, eee), dbg=dbg)  # 17
     initRGB('CL4', (aaa, ccc, bbb), dbg=dbg)  # 18
     return RGB.keys()
 
@@ -325,7 +326,7 @@ def initColors(k, spr, bgc, ik):
     KP1, KP2 = VLT, VLT  ;  KL1, KL2 = FSH, FSH  ;  KS1, KS2 = RED, RED  ;  KC1, KC2 = YLW, YLW  ;  OP1, OP2 =  7, 17  ;  OL1, OL2 = 5, 11  ;  OS1, OS2 = 5, 11  ;  OC1, OC2 =  5, 11
     KT1, KT2 = ORG, ORG  ;  KN1, KN2 = GRN, GRN  ;  KI1, KI2 = PNK, PNK  ;  KK1, KK2 = IND, IND  ;  OT1, OT2 = 17, 17 # ;  ON1, ON2 =  0,  0  ;  OI1, OI2 =  0,  0  ;  OK1, OK2 =  0,  0
     KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = CYA, CYA  ;  KH1, KH2 = TRQ, TRQ  ;  KM1, KM2 = PCH, PCH  ;  OR1, OR2 = 17, 17  ;  OQ1, OQ2 = 17, 17  ;  OH1, OH2 =  9,  9
-    KB1, KB2 = CL3, CL3  ;  KA1, KA2 = CL4, CL4  ;  KD1, KD2 = LIM, LIM  ;  KE1, KE2 = GRY, GRY  ;  OE1, OE2 = 17, 17  ;  aa, zz = 5, 17
+    KB1, KB2 = CL3, CL3  ;  KA1, KA2 = CL2, CL2  ;  KD1, KD2 = CL1, CL1  ;  KE1, KE2 = GRY, GRY  ;  OE1, OE2 = 17, 17  ;  aa, zz = 5, 17
     a = not spr and not bgc  ;  b = not spr and bgc  ;  c = spr and not bgc  ;  d = spr and bgc  ;  i = ik
     j = P  ;  k[j] = i(j, KP1, aa, OP1, KP2, zz, OP2) if a else i(j, KP1, 17, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
     j = L  ;  k[j] = i(j, KL1, aa, OL1, KL2, zz, OL2) if a else i(j, KL1,  3, 15, KL2, 17, 15) if b else i(j, KL1,  3, 15, KL2, 17, 15) if c else i(j, KL1,  3, 15, KL2, 17, 15) if d else None
@@ -339,8 +340,8 @@ def initColors(k, spr, bgc, ik):
     j = R  ;  k[j] = i(j, KR1, aa, OR1, KR2, zz, OR2) if a else i(j, KR1,  0, 17, KR2, 17, 17) if b else i(j, KR1,  0, 17, KR2, 17, 17) if c else i(j, KR1,  0, 17, KR2, 17, 17) if d else None
     j = Q  ;  k[j] = i(j, KQ1, aa, OQ1, KQ2, zz, OQ2) if a else i(j, KQ1,  0, 17, KQ2, 17, 17) if b else i(j, KQ1,  0, 17, KQ2, 17, 17) if c else i(j, KQ1,  0, 17, KQ2, 17, 10) if d else None
     j = H  ;  k[j] = i(j, KH1, zz, OH1, KH2, aa, OH2) if a else i(j, KH1, 14, 10, KH2, 14, 10) if b else i(j, KH1, 15, 13, KH2, 15, 13) if c else i(j, KH1, 14, 11, KH2, 14, 10) if d else None
-    j = B  ;  k[j] = i(j, KB1, aa, OE1, KB2, zz, OE2) if a else i(j, KB1,  0,  0, KB2, 17, 17) if b else i(j, KB1,  0,  0, KB2, 17, 17) if c else i(j, KB1,  0,  0, KB2, 17, 17) if d else None
     j = A  ;  k[j] = i(j, KA1, aa, OE1, KA2, zz, OE2) if a else i(j, KA1,  0,  0, KA2, 17, 17) if b else i(j, KA1,  0,  0, KA2, 17, 17) if c else i(j, KA1,  0,  0, KA2, 17, 17) if d else None
+    j = B  ;  k[j] = i(j, KB1, aa, OE1, KB2, zz, OE2) if a else i(j, KB1,  0,  0, KB2, 17, 17) if b else i(j, KB1,  0,  0, KB2, 17, 17) if c else i(j, KB1,  0,  0, KB2, 17, 17) if d else None
     j = D  ;  k[j] = i(j, KD1, aa, OE1, KD2, zz, OE2) if a else i(j, KD1,  0,  0, KD2, 17, 17) if b else i(j, KD1,  0,  0, KD2, 17, 17) if c else i(j, KD1,  0,  0, KD2, 17, 17) if d else None
     j = E  ;  k[j] = i(j, KE1, aa, OE1, KE2, zz, OE2) if a else i(j, KE1,  0,  0, KE2, 17, 17) if b else i(j, KE1,  0,  0, KE2, 17, 17) if c else i(j, KE1,  0,  0, KE2, 17, 17) if d else None
 

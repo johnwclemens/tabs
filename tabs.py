@@ -17,7 +17,7 @@ from   tpkg.strngs     import Strngs as Strngs
 from   tpkg.chords     import Chords as Chords
 from   tpkg            import cmds   as cmds
 
-P, L, S, C,          T, N, I, K,          M, R, Q, H,          B, A, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.B, utl.A, utl.D, utl.E
+P, L, S, C,          T, N, I, K,          M, R, Q, H,          A, B, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.A, utl.B, utl.D, utl.E
 W, X, Y, Z,       NONE,  ist,  fri,    slog,   fmtf,   fmtl,   fmtm,   fmta = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,     utl.slog,   utl.fmtf, utl.fmtl, utl.fmtm, utl.fmta
 BGC,  BOLD,  COLOR,     FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,   utl.BOLD,  utl.COLOR,   utl.FONT_NAME, utl.FONT_SIZE, utl.ITALIC,   utl.KERNING,     utl.UNDERLINE
 isAlt, isCtl, isShf,    isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.isAlt, utl.isCtl, utl.isShf,   utl.isCtlAlt,  utl.isAltShf,  utl.isCtlShf, utl.isCtlAltShf, utl.isNumLck
@@ -67,9 +67,9 @@ NORMAL_STYLE, SELECT_STYLE, CURRENT_STYLE = utl.NORMAL_STYLE, utl.SELECT_STYLE, 
 ########################################################################################################################################################################################################
 FIN     = [1, 1, 1, 2, 1]
 #           0        1        2        3           4        5        6        7           8        9        10       11          12       13       14       15          16
-JTEXTS  = ['Page',  'Line',  'Sect',  'Colm',     'Tabl',  'Note',  'IKey',  'Kord',     'MVie',  'RowL',  'QClm',  'HCrs',     'BNum',  'ANam',  'DCpo',  'EClm',     'TNIK']
-JTEXTS2 = ['Page',  'Line',  'Sect',  'Kolm',     'Tabl',  'Note',  'IKey',  'Kord',     'MVie',  'RowL',  'QKlm',  'HCrs',     'BNum',  'ANam',  'DCpo',  'EClm',     'TNIK']
-jTEXTS  = ['pages', 'lines', 'sects', 'colms',    'tabls', 'notes', 'ikeys', 'Kords',    'mvies', 'rowls', 'qklms', 'hcsrs',    'bnums', 'anams', 'dcpos', 'eclms',    'tniks']
+JTEXTS  = ['Page',  'Line',  'Sect',  'Colm',     'Tabl',  'Note',  'IKey',  'Kord',     'MVie',  'RowL',  'QClm',  'HCrs',     'ANam',  'BNum',  'DCpo',  'EClm',     'TNIK']
+JTEXTS2 = ['Page',  'Line',  'Sect',  'Kolm',     'Tabl',  'Note',  'IKey',  'Kord',     'MVie',  'RowL',  'QKlm',  'HCrs',     'ANam',  'BNum',  'DCpo',  'EClm',     'TNIK']
+jTEXTS  = ['pages', 'lines', 'sects', 'colms',    'tabls', 'notes', 'ikeys', 'Kords',    'mvies', 'rowls', 'qklms', 'hcsrs',    'anams', 'bnums', 'dcpos', 'eclms',    'tniks']
 JFMT    = [ 1,       2,       2,       3,          4,       4,       4,       4,          1,       2,       3,       1,          2,       2,       2,       2,          4]
 #JFMT   = [ 2,       3,       3,       6,          6,       6,       6,       6,          1,       3,       5,       1,          3,       3,       3,       4,          7]
 PNT_PER_PIX =  7/9  # 14pts/18pix
@@ -547,12 +547,12 @@ class Tabs(pyglet.window.Window):
 #    def dumpObj( obj,  name, why=Z): slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     ####################################################################################################################################################################################################
     def dumpJs(  self, why, w=None, d=1):
-        b = W*13 if self.OIDS else W
+        b = W*12 if self.OIDS else W
         self.log(f'{b}J1{self.fmtJ1(w, d)} {why} {self.fmtAx()}')
         self.log(f'{b}J2{self.fmtJ2(w, d)} {why} {self.fmtAy()}')
         self.log(f'{b}LE{self.fmtLE(w)} {why} {self.fmtVa()}')
     def dumpGeom(self, why=Z, why2=Z):
-        b = W*13 if self.OIDS else W
+        b = W*12 if self.OIDS else W
         self.log(f'{b}{why:3}[{self.fmtWH()}{self.fmtD()}{self.fmtI()} {self.fss2sl()} {self.LL} {self.fzz()} {len(self.idmap):4} {self.fnvis()}] {why2} {self.fmtAa()}')
     def dumpSmap(self, why, pos=0):       self.log(f'{why} smap={fmtm(self.smap)}', pos=pos)
     ####################################################################################################################################################################################################
@@ -1032,20 +1032,20 @@ class Tabs(pyglet.window.Window):
         msg2 = f'ERROR Invalid sect {s=}:'
         msg3 = f'ERROR Invalid tabl {t=}:'
         if t is None:
-            if   s == TT:  tlist, j = (self.bnums, B) if exp1 else (self.capos, D) if exp2 else (self.tabls, T)
-            elif s == NN:  tlist, j = (self.anams, A) if exp1 else (self.capos, D) if exp2 else (self.notes, N)
-            elif s == II:  tlist, j = (self.bnums, B) if exp1 else (self.capos, D) if exp2 else (self.ikeys, I)
-            elif s == KK:  tlist, j = (self.anams, A) if exp1 else (self.capos, D) if exp2 else (self.kords, K)
+            if   s == TT:  tlist, j = (self.anams, A) if exp1 else (self.capos, D) if exp2 else (self.tabls, T)
+            elif s == NN:  tlist, j = (self.bnums, B) if exp1 else (self.capos, D) if exp2 else (self.notes, N)
+            elif s == II:  tlist, j = (self.anams, A) if exp1 else (self.capos, D) if exp2 else (self.ikeys, I)
+            elif s == KK:  tlist, j = (self.bnums, B) if exp1 else (self.capos, D) if exp2 else (self.kords, K)
             else:   msg = f'{msg2} {msg1}'   ;    self.log(msg)   ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
             if dbg: msg =        f'{msg1}'   ;    self.log(msg, f=0) # self.fmtJText(j, why=why)
             return  tlist, j, None, None
         if 0 <= t < self.n[T]:
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[B], self.k[A], self.k[D]
             tab = self.data[p][l][c][t] if C1 != z1 != C2 and C2 != z2 else Z
-            if   s == TT:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.tabls, T, kT, tab)
-            elif s == NN:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.notes, N, kN, tab)
-            elif s == II:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.ikeys, I, kI, tab)
-            elif s == KK:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.kords, K, kK, tab)
+            if   s == TT:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.tabls, T, kT, tab)
+            elif s == NN:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.notes, N, kN, tab)
+            elif s == II:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.ikeys, I, kI, tab)
+            elif s == KK:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.kords, K, kK, tab)
             else:   msg = f'{msg2} {msg1}'  ;  self.log(msg)   ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
             if dbg: msg =        f'{msg1}'  ;  self.log(msg, f=0) # self.fmtJText(j, t, why)
             return  tlist, j, k, txt
