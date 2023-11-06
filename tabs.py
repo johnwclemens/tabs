@@ -92,10 +92,10 @@ class Tabs(pyglet.window.Window):
         self.seqNumTxtPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=TEXT, fsfx=TXT)  ;  self.log(f'{self.seqNumTxtPath=}')
         self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt      = Z
         self.shifting      = 0   ;   self.shiftSign = 1    ;   self.quitting     = 0
-        self.inserting     = 0   ;   self.insertStr = Z
+        self.inserting     = 0   ;   self.insertStr = Z    ;   self.prevEvntText = Z
         self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs      = 0
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg      = Z
-        self.newC          = 0   ;   self.updC      = 0    ;   self.prevEvntText = Z
+        self.newC          = 0   ;   self.updC      = 0    ;   self.tzzC         = 0
         self.cc            = 0   ;   self.nvis      = 0    ;   self.DRAW_BGC     = 1
         self.allTabSel     = 0   ;   self.rsyncData = 0
         self.sprs          = []  ;   self.undoStack = []   ;   self.idmap        = {}
@@ -144,7 +144,7 @@ class Tabs(pyglet.window.Window):
         if 'M' in ARGS  and len(ARGS['M']) == 0: self.MULTILINE  =  1
         if 'n' in ARGS  and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'o' in ARGS  and len(ARGS['o']) == 0: self.OIDS       =  1
-        if 'p' in ARGS  and len(ARGS['p']) == 0: self.SNAPS      =  1
+        if 'p' in ARGS  and len(ARGS['p'])  > 0: self.SNAPS      =   int(ARGS['p'][0])
         if 'r' in ARGS  and len(ARGS['r'])  > 0: self.ROOT_DIR   =       ARGS['r'][0] 
         if 'R' in ARGS  and len(ARGS['R']) == 0: self.RESIZE     =  0
         if 's' in ARGS  and len(ARGS['s']) == 0: self.SPRITES    =  1
@@ -1117,9 +1117,9 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def hideZZs(self, how, z):
         zz = self.ZZ   ;   msg = f'HIDE {how}'   ;   assert(len(zz) in (0, 1, 2)),  f'{len(zz)=}'
-        self.log(f'BFR {zz=} {how} {z=}')
-        zz.remove(z)   ;   assert len(self.ZZ) == len(zz),  f'{self.ZZ=} {z=}'   ;   assert(len(zz) in (0, 1)),  f'{len(zz)=}'
-        self.log(f'AFT {zz=} {how} {z=}')
+        self.log(f'BFR {zz=} {how} {z=} {self.tzzC=}')
+        zz.remove(z)   ;   self.tzzC += 1   ;   assert len(self.ZZ) == len(zz),  f'{self.ZZ=} {z=}'   ;   assert(len(zz) in (0, 1)),  f'{len(zz)=}'
+        self.log(f'AFT {zz=} {how} {z=} {self.tzzC=}')
         self.dumpTniksPfx(msg)
         if len(zz) == 0:
             for p in range(len(self.pages2)): self.hideTnik(self.pages2, p, P)
@@ -1145,11 +1145,11 @@ class Tabs(pyglet.window.Window):
                 for c, capo in enumerate(self.capos):  self.hideTnik(self.capos,  c, D)
         self.dumpTniksSfx(msg)
         
-    def addZZs( self, how, zz):
-        why = f'ADD {how}'  ;  why2 = 'Ref'  ;  view = None
-        self.log(f'BFR {self.ZZ=} {how} {zz=}')
-        self.ZZ.append(zz)
-        self.log(f'AFT {self.ZZ=} {how} {zz=}')
+    def addZZs( self, how, z):
+        zz = self.ZZ   ;   why = f'ADD {how}'  ;  why2 = 'Ref'  ;  view = None
+        self.log(f'BFR {zz=} {how} {z=} {self.tzzC=}')
+        zz.append(z)   ;   self.tzzC += 1
+        self.log(f'AFT {zz=} {how} {z=} {self.tzzC=}')
         self.dumpTniksPfx(why)
         for p, page in         enumerate(self.g_createTniks(self.pages2, P, view, why=why2)):
             for l, line in     enumerate(self.g_createTniks(self.lines2, L, page, why=why2)):

@@ -64,7 +64,7 @@ class AddPageCmd(Cmd):
                 for colm in    tobj.g_createTniks(tobj.colms,  C, sect, why=why):
                     for _ in   tobj.g_createTniks(tobj.tabls,  T, colm, why=why): pass
         tobj.dumpTniksSfx(how)
-        if tobj.SNAPS and dbg: tobj.regSnap(how, why2)
+        if tobj.SNAPS >= 2 and dbg: tobj.regSnap(how, why2)
 ########################################################################################################################################################################################################
 class AutoMoveCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
@@ -129,7 +129,7 @@ class CopyTabsCmd(Cmd):
             if dbg: text.append(W)
         if dbg:         tobj.log(f'{Z.join(text)=}')
         tobj.dumpSmap(f'END {how}')
-        if tobj.SNAPS:  tobj.regSnap(f'{how}', 'COPY')
+        if tobj.SNAPS >= 4:  tobj.regSnap(f'{how}', 'COPY')
 ########################################################################################################################################################################################################
 class CutTabsCmd(Cmd):
     def __init__(self, tobj, how):
@@ -163,7 +163,7 @@ class DeleteTabsCmd(Cmd):
             tobj.setTNIKStyle(k, nt, style, blank=1)
         if not keep:    tobj.unselectAll(f'deleteTabs({keep=})')
         tobj.dumpSmap(f'END {how} {keep=}')
-        if tobj.SNAPS:  tobj.regSnap(f'{how}', 'DELT')
+        if tobj.SNAPS >= 4:  tobj.regSnap(f'{how}', 'DELT')
         tobj.rsyncData = 1
 ########################################################################################################################################################################################################
 class EraseTabsCmd(Cmd):
@@ -434,7 +434,7 @@ class PasteTabsCmd(Cmd):
             if dbg:     tobj.log(f'{i=} {k=} {text=} {kk=} {dk=} {kt=}')
         tobj.log(f'clearing {len(tobj.smap)=}')   ;   tobj.smap.clear()
         tobj.dumpSmap(f'END {how} {kk=} {cc=} {cn=}={tobj.cc2cn(cc)} plct={tobj.fplct(p, l, c, t)}')
-        if tobj.SNAPS:  tobj.regSnap(f'{how}', 'PAST')
+        if tobj.SNAPS >= 4:  tobj.regSnap(f'{how}', 'PAST')
         tobj.rsyncData = 1
 ########################################################################################################################################################################################################
 class PrevPageCmd(Cmd):
@@ -523,7 +523,7 @@ class ResizeTniksCmd(Cmd):
     
     def _resizeTniks(self):
         tobj, dbg = self.tobj, self.dbg
-        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL
+        tobj.updC += 1  ;  why = f'UPD{tobj.updC}'  ;  ll = tobj.LL
         tobj.dumpTniksPfx(why)
         view = None
         if   tobj.DSP_J_LEV == P:
@@ -558,7 +558,7 @@ class ResizeTniksCmd(Cmd):
                         tobj.resizeZZs(sect, why)
         tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor: cmd = ResizeCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
-        if dbg and tobj.SNAPS and not tobj.snapReg: tobj.regSnap(why, f'Upd{tobj.cc + 1}')
+        if dbg and tobj.SNAPS >= 10: tobj.regSnap(why, f'UPD{tobj.cc + 1}')
         if dbg:   tobj.dumpStruct(why) # , dbg=dbg)
 ########################################################################################################################################################################################################
 class RotSprCmd(Cmd):
@@ -698,7 +698,7 @@ class SetNCmd(Cmd):
             tobj.log(f'END {how} {txt=} {tobj.settingN=} {tobj.setNvals=}')
 ########################################################################################################################################################################################################
 class SetTabCmd(Cmd):
-    def __init__(self, tobj, how, text, m=0, rev=0, dbg=0):
+    def __init__(self, tobj, how, text, m=0, rev=0, dbg=1):
         self.tobj, self.how, self.text, self.m, self.rev, self.dbg = tobj, how, text, m, rev, dbg
         
     def do(  self): self._setTab()
@@ -719,8 +719,8 @@ class SetTabCmd(Cmd):
         tobj.log(f'END {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
         if rev: tobj.reverseArrow(bsp)
         else:   cmd = AutoMoveCmd(tobj, how)   ;  cmd.do()
-        if dbg and tobj.SNAPS:
-            stype = f'Txt.{text}' if tobj.sobj.isFret(text) else 'SYMB' if text in misc.DSymb.SYMBS else 'UNKN'
+        if dbg and tobj.SNAPS >= 5:
+            stype = f'TXT.{text}' if tobj.sobj.isFret(text) else 'SYM' if text in misc.DSymb.SYMBS else 'UNK'
             tobj.regSnap(f'{how}', stype)
         tobj.rsyncData = 1
 ########################################################################################################################################################################################################
@@ -774,18 +774,17 @@ class SnapshotCmd(Cmd):
         if dbg:  tobj.log(f'{tobj.snapPath}', p=2)
         pygimg.get_buffer_manager().get_color_buffer().save(f'{tobj.snapPath}')
         if dbg2: tobj.log(f'{snapName=} {why}', f=2)
-        if typ == utl.INIT:
-            snapName0 = f'{BASE_NAME}.{PNG}'
-            snapName2 = tobj.geomFileName(BASE_NAME, PNG)
-            snapPath0 = BASE_PATH / PNGS / snapName0
-            snapPath2 = BASE_PATH / snapName2
-            utl.copyFile(tobj.snapPath, snapPath0)
-            utl.copyFile(tobj.snapPath, snapPath2)
-            if dbg:  tobj.log(f'{BASE_NAME=} {tobj.fmtn(Z)}')
-            if dbg:  tobj.log(f'{snapName0=} {why}')
-            if dbg:  tobj.log(f'{snapName2=} {why}')
-            if dbg:  tobj.log(f'{snapPath0=}', p=2)
-            if dbg:  tobj.log(f'{snapPath2=}', p=2)
+        snapName0 = f'{BASE_NAME}.{PNG}'
+        snapName2 = tobj.geomFileName(BASE_NAME, PNG)
+        snapPath0 = BASE_PATH / PNGS / snapName0
+        snapPath2 = BASE_PATH / snapName2
+        utl.copyFile(tobj.snapPath, snapPath0)
+        utl.copyFile(tobj.snapPath, snapPath2)
+        if dbg:  tobj.log(f'{BASE_NAME=} {tobj.fmtn(Z)}')
+        if dbg:  tobj.log(f'{snapName0=} {why}')
+        if dbg:  tobj.log(f'{snapName2=} {why}')
+        if dbg:  tobj.log(f'{snapPath0=}', p=2)
+        if dbg:  tobj.log(f'{snapPath2=}', p=2)
         tobj.dumpTnikCsvs()
         tobj.snapId += sid
         return tobj.snapPath
@@ -855,7 +854,7 @@ class SwapTabCmd(Cmd):
             tobj.log(f'{how} END     {src=} {trg=}') if dbg else None
 #                if dbg2: self.dumpTniks('SWAP')
 #                self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
-            if tobj.SNAPS: tobj.regSnap(f'{how}', 'SWAP')
+            if tobj.SNAPS >= 2: tobj.regSnap(f'{how}', 'SWP')
             tobj.rsyncData = 1
 ########################################################################################################################################################################################################
 class TogArrowCmd(Cmd):
@@ -1154,6 +1153,7 @@ class TogZZsCmd(Cmd):
         if   zz not in tobj.ZZ and not tobj.D[ii]: msg = 'ADD'    ;   tobj.addZZs(how, zz)
         elif zz     in tobj.ZZ:                    msg = 'HIDE'   ;   tobj.hideZZs(how, zz)
         else:                                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togZZ(zz)
+        if tobj.SNAPS >= 3:                        tobj.regSnap(f'{how}', f'SWP.{tobj.tzzC}.{zz}')
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################

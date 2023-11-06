@@ -81,7 +81,7 @@ def on_draw(tobj, **kwargs):
     if  tobj.SNAPS and tobj.snapReg:
         tobj.snapReg = 0
         _ = fmtm(kwargs) if kwargs else Z
-        snapPath = cmds.SnapshotCmd(tobj, f'on_draw({_})')
+        cmd = cmds.SnapshotCmd(tobj, f'on_draw({_})')  ;  snapPath = cmd.do()
         slog(f'{tobj.snapWhy=} {tobj.snapType=} {tobj.snapId=}\n{snapPath=}', f=-3)
 #    else: slog(f'{kwargs=}') if kwargs else slog()
 #        if tobj.TEST:   tests.testSprTxt_0(snapPath)
