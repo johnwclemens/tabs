@@ -59,3 +59,8 @@ class Modes:
 # H) move on_resize() from tabs.py to evnts.py - super.resize?
 # I) cleanup use of negative j values and abs(j) hack
 # J) something fishy with x value in createZZs/resizeZZs()
+# K) add 1 vs create 2 - how many zclms?  add can share 1 zclm
+# L) consider refactor zclm from zzs to tniks
+# M) member vars being set confusing e.g. self.ZZ complex state set mid-stream
+# N) cmd refactoring really makes it hard to find code re multiple files - also how to sort cmd code
+# O) why create page/line/sect for each zz?

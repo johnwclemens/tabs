@@ -515,15 +515,15 @@ class ResizeCursorCmd(Cmd):
         tobj.resizeTnik(tobj.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
 ########################################################################################################################################################################################################
 class ResizeTniksCmd(Cmd):
-    def __init__(self, tobj, dbg=1):
-        self.tobj, self.dbg = tobj, dbg
+    def __init__(self, tobj, z=None, dbg=1):
+        self.tobj, self.z, self.dbg = tobj, z, dbg
         
     def do(  self): self._resizeTniks()
     def undo(self): self._resizeTniks()
     
     def _resizeTniks(self):
-        tobj, dbg = self.tobj, self.dbg
-        tobj.updC += 1  ;  why = f'UPD{tobj.updC}'  ;  ll = tobj.LL
+        tobj, z, dbg = self.tobj, self.z, self.dbg
+        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL
         tobj.dumpTniksPfx(why)
         view = None
         if   tobj.DSP_J_LEV == P:
@@ -555,7 +555,7 @@ class ResizeTniksCmd(Cmd):
             for p, page in         enumerate(tobj.g_resizeTniks(tobj.pages2, P, view, 0, why=why)):
                 for l, line in     enumerate(tobj.g_resizeTniks(tobj.lines2, L, page,    why=why)):
                     for s, sect in enumerate(tobj.g_resizeTniks(tobj.sects2, S, line,    why=why)):
-                        tobj.resizeZZs(sect, why)
+                        tobj.resizeZZs(sect, why, z)
         tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor: cmd = ResizeCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
         if dbg and tobj.SNAPS >= 10: tobj.regSnap(why, f'UPD{tobj.cc + 1}')
@@ -1154,7 +1154,7 @@ class TogZZsCmd(Cmd):
         elif zz     in tobj.ZZ:                    msg = 'HIDE'   ;   tobj.hideZZs(how, zz)
         else:                                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togZZ(zz)
         if tobj.SNAPS >= 3:                        tobj.regSnap(f'{how}', f'SWP.{tobj.tzzC}.{zz}')
-        tobj.on_resize(tobj.width, tobj.height)
+        tobj.on_resize(tobj.width, tobj.height, z=zz)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
 class UnselectTabsCmd(Cmd):
