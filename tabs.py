@@ -1114,7 +1114,7 @@ class Tabs(pyglet.window.Window):
             for i in range(p*t, q*t):
                 if   pi in (0, 2): self.resizeTnik(self.anams, i, A, x0, y-i%nt*h, w, h, why, dbg)
                 elif pi in (1, 3): self.resizeTnik(self.bnums, i, B, x0, y-i%nt*h, w, h, why, dbg)
-        if z!=1 and self.capos:
+        if z!=0:
             t, _, x, y, w, h =     self.geom(D, e, nt, self.i[L], dbg2)   ;   p = pi*t   ;   q = (pi+1)*t
             for i in range(p, q):  self.resizeTnik(self.capos, i, D, x1, y-i%nt*h, w, h, why, dbg)
     ####################################################################################################################################################################################################

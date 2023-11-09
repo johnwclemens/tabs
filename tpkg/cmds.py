@@ -523,9 +523,8 @@ class ResizeTniksCmd(Cmd):
     
     def _resizeTniks(self):
         tobj, z, dbg = self.tobj, self.z, self.dbg
-        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL  ;  v = tobj.VIEWS  ;  z = tobj.ZZ
+        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL  ;  v = tobj.VIEWS
         tobj.dumpTniksPfx(why)
-#        view = None
         if   tobj.DSP_J_LEV == P:
             for _ in                     tobj.g_resizeTniks(tobj.pages, P, None, why=why):  pass
         elif tobj.DSP_J_LEV == L:
@@ -551,13 +550,6 @@ class ResizeTniksCmd(Cmd):
                         for colm in      tobj.g_resizeTniks(tobj.colms, C, sect, why=why):  # pass
                             for _ in     tobj.g_resizeTniks(tobj.tabls, T, colm, why=why):  pass
         tobj.dumpTniksSfx(why)
-#        tobj.dumpTniksPfx(why)
-#        if tobj.VIEWS and tobj.ZZ:
-#            for p, page in         enumerate(tobj.g_resizeTniks(tobj.pages2, P, view, 0, why=why)):
-#                for l, line in     enumerate(tobj.g_resizeTniks(tobj.lines2, L, page,    why=why)):
-#                    for s, sect in enumerate(tobj.g_resizeTniks(tobj.sects2, S, line,    why=why)):
-#                        tobj.resizeZZs(sect, why, z)
-#        tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor: cmd = ResizeCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
         if dbg and tobj.SNAPS >= 10: tobj.regSnap(why, f'UPD{tobj.cc + 1}')
         if dbg:   tobj.dumpStruct(why) # , dbg=dbg)
@@ -662,20 +654,6 @@ class SetFontArgCmd(Cmd):
             tobj.setFontArg2(t, n, v, m, j)
         if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         tobj.setCaption(tobj.fmtFont())
-
-#    @staticmethod
-#    def _setFontPrm2(tobj, ts, n, v, m, j, dbg=1):
-#        l = 0   ;   fb = 0   ;   fs = 1   ;   msg = Z
-#        for i, t in enumerate(ts):
-#            if ist(t, LBL):
-#                if   m == 'clrIdx':       l = len(t.color)   ;  msg = f'{v=:2} tc={fmtl(t.color, w=3)}  ds={fmtl(t.document.get_style(n), w=3)}  kv={fmtl(tobj.k[v][fb][:l], w=3)}'
-#                elif m == 'fontNameIdx':                        msg = f'{v=:2} {FONT_NAMES[v]=}'
-#                elif m == 'fontSize':    fs = getattr(t, n)  ;  msg = f'{v=:.2f} {fs=:.2f}'
-#                if dbg and ist(t, LBL) and i==0:            tobj.log(f'{j=:2} {i=:2}  {l} {fb} {m=:12} {n=:12} {msg}', f=2)
-#                if   m == 'clrIdx':       tobj.setTNIKStyle2(t, tobj.k[v], tobj.fontStyle)
-#                elif m == 'fontNameIdx':  setattr(t, n, FONT_NAMES[v])
-#                elif m == 'fontSize':     setattr(t, n, v*fs)
-#                else:                     setattr(t, n, v)
 ########################################################################################################################################################################################################
 class SetNCmd(Cmd):
     def __init__(self, tobj, how, txt=Z, dbg=1):
@@ -1148,13 +1126,12 @@ class TogZZsCmd(Cmd):
     
     def _togZZs(self):
         tobj, how, zz = self.tobj, self.how, self.zz
-        ii   = 0 if not zz else 2
         msg2 = f'{how} {zz=}'
         tobj.dumpGeom('BGN', f'     {msg2}')
-        if   zz not in tobj.ZZ and not tobj.D[ii]: msg = 'ADD'    ;   tobj.addZZs(how, zz)
-        elif zz     in tobj.ZZ:                    msg = 'HIDE'   ;   tobj.hideZZs(how, zz)
-        else:                                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togZZ(zz)
-        if tobj.SNAPS >= 3:                        tobj.regSnap(f'{how}', f'SWP.{tobj.tzzC}.{zz}')
+        if   zz not in tobj.ZZ:    msg = 'ADD'    ;   tobj.addZZs( how, zz)
+        elif zz     in tobj.ZZ:    msg = 'HIDE'   ;   tobj.hideZZs(how, zz)
+        else:                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togZZ(zz)
+        if tobj.SNAPS >= 3:        tobj.regSnap(f'{how}', f'SWP.{tobj.tzzC}.{zz}')
         tobj.on_resize(tobj.width, tobj.height, z=zz)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
