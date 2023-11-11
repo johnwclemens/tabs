@@ -473,7 +473,7 @@ class QuitCmd(Cmd):
             if save: cmd = SaveDataFileCmd(tobj, why, tobj.dataPath1)    ;  cmd.do()
             if dbg:  tobj.transposeData(dmp=dbg)
             if dbg:  tobj.cobj.dumpMlimap(why)
-        if tobj.SNAPS:    cmd = SnapshotCmd(tobj, f'quit {err} {save=}', utl.INIT)     ;  cmd.do()
+        if tobj.SNAPS:    cmd = SnapshotCmd(tobj, f'quit {err} {save=}', utl.FINI)     ;  cmd.do()
         tobj.log(f'END {why} {errStr} {save=} {tobj.quitting=}', f=2)       ;   tobj.log(utl.QUIT_END, p=0, f=2)
         tobj.cleanupFiles()
         tobj.log(f'END {why} {errStr} {save=} {tobj.quitting=}', f=0)       ;   tobj.log(utl.QUIT_END, p=0, f=0)
@@ -523,7 +523,7 @@ class ResizeTniksCmd(Cmd):
     
     def _resizeTniks(self):
         tobj, z, dbg = self.tobj, self.z, self.dbg
-        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL  ;  v = tobj.VIEWS
+        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL   ;   zz = tobj.ZZ #  ;  v = tobj.VIEWS
         tobj.dumpTniksPfx(why)
         if   tobj.DSP_J_LEV == P:
             for _ in                     tobj.g_resizeTniks(tobj.pages, P, None, why=why):  pass
@@ -546,13 +546,14 @@ class ResizeTniksCmd(Cmd):
                 for l, line in enumerate(tobj.g_resizeTniks(tobj.lines, L, page, why=why)): # pass
                     if ll and not l:     tobj.resizeLLs(line, why)
                     for sect in          tobj.g_resizeTniks(tobj.sects, S, line, why=why):  # pass
-                        if v and z:      tobj.resizeZZs(sect, why, z)
+                        if z is not None and zz:
+                            tobj.resizeZZs(sect, why, z)
                         for colm in      tobj.g_resizeTniks(tobj.colms, C, sect, why=why):  # pass
                             for _ in     tobj.g_resizeTniks(tobj.tabls, T, colm, why=why):  pass
         tobj.dumpTniksSfx(why)
-        if tobj.CURSOR and tobj.cursor: cmd = ResizeCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
-        if dbg and tobj.SNAPS >= 10: tobj.regSnap(why, f'UPD{tobj.cc + 1}')
-        if dbg:   tobj.dumpStruct(why) # , dbg=dbg)
+        if tobj.CURSOR and tobj.cursor:  cmd = ResizeCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
+        if dbg and tobj.SNAPS >= 10:     tobj.regSnap(why, f'UPD{tobj.updC}')
+        if dbg:    tobj.dumpStruct(why) # , dbg=dbg)
 ########################################################################################################################################################################################################
 class RotSprCmd(Cmd):
     def __init__(self, tobj, how, spr, cw=1):
@@ -747,7 +748,7 @@ class SnapshotCmd(Cmd):
         typ    = typ if typ else tobj.snapType
         snapId = tobj.snapId   ;  logId = tobj.LOG_ID
         snapName      = f'{BASE_NAME}.{logId}.{snapId}.{typ}.{PNG}'
-        tobj.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)   ;   logId = NONE   ;   snapId = NONE
+        tobj.snapPath = pathlib.Path(BASE_PATH / PNGS / snapName)
         if dbg:  tobj.log(f'{BASE_NAME=} {logId=} {snapId=} {typ=} {PNG=}')
         if dbg:  tobj.log(f'{tobj.fNameLogId=} {snapName=} {why}')
         if dbg:  tobj.log(f'{tobj.snapPath}', p=2)
@@ -1118,21 +1119,21 @@ class TogVisibleCmd(Cmd):
         tobj.log(f'END {why} {pid} pages[{p}].v={int(tobj.pages[p].visible)} {tobj.fmti()} {tobj.fmtn()} page{p+1} is visible {tobj.fVis()}')
 ########################################################################################################################################################################################################
 class TogZZsCmd(Cmd):
-    def __init__(self, tobj, how, zz):
-        self.tobj, self.how, self.zz = tobj, how, zz
+    def __init__(self, tobj, how, z):
+        self.tobj, self.how, self.z = tobj, how, z
         
     def do(  self): self._togZZs()
     def undo(self): self._togZZs()
     
     def _togZZs(self):
-        tobj, how, zz = self.tobj, self.how, self.zz
-        msg2 = f'{how} {zz=}'
+        tobj, how, z = self.tobj, self.how, self.z
+        assert z in (0, 1),  f'{z=} {tobj.zz=}'
+        msg2 = f'{how} {z=}'
         tobj.dumpGeom('BGN', f'     {msg2}')
-        if   zz not in tobj.ZZ:    msg = 'ADD'    ;   tobj.addZZs( how, zz)
-        elif zz     in tobj.ZZ:    msg = 'HIDE'   ;   tobj.hideZZs(how, zz)
-        else:                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togZZ(zz)
-        if tobj.SNAPS >= 3:        tobj.regSnap(f'{how}', f'SWP.{tobj.tzzC}.{zz}')
-        tobj.on_resize(tobj.width, tobj.height, z=zz)
+        if   z not in tobj.ZZ:     msg = 'ADD'    ;   tobj.addZZs( how, z) # tobj.addingz = 1
+        else:                      msg = 'HIDE'   ;   tobj.hideZZs(how, z) # tobj.addingz = 0
+        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{how}', f'SWP.{tobj.tzzC}.{z}')
+        tobj.on_resize(tobj.width, tobj.height, z=z)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
 class UnselectTabsCmd(Cmd):

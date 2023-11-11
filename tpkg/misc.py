@@ -56,7 +56,7 @@ class Modes:
 # E) how to sort cmds.py classes - alphabetically?
 # F) load more fonts into res/fonts dir (.ttf files)
 # G) fix - Access to a protected member _reinit of a class - tobj._reinit()
-# H) move on_resize() from tabs.py to evnts.py - super.resize?
+# H) move on_resize() from tabs.py to evnts.py - super.resize
 # I) cleanup use of negative j values and abs(j) hack
 # J) something fishy with x value in createZZs/resizeZZs()
 # K) add 1 vs create 2 - how many zclms?  add can share 1 zclm
@@ -64,3 +64,4 @@ class Modes:
 # M) member vars being set confusing e.g. self.ZZ complex state set mid-stream
 # N) cmd refactoring really makes it hard to find code re multiple files - also how to sort cmd code
 # O) why create page/line/sect for each zz?
+# P) maybe do not call resize() unless its visible

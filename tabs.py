@@ -55,9 +55,10 @@ LTXAC     = list(itertools.chain(TI, XYWH, AXY2, CWH))
 LDS       = ['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B', 'I', 'S', 'M', 'W', 'w', 'FontName']
 LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
 ########################################################################################################################################################################################################
-TT, NN, II, KK                 = utl.TT, utl.NN, utl.II, utl.KK
-MLDY, CHRD, ARPG               = utl.MLDY, utl.CHRD, utl.ARPG
-LARROW, RARROW, DARROW, UARROW = utl.LARROW, utl.RARROW, utl.DARROW, utl.UARROW
+TT, NN, II, KK        = utl.TT, utl.NN, utl.II, utl.KK
+MLDY, CHRD, ARPG      = utl.MLDY, utl.CHRD, utl.ARPG
+LARROW, RARROW        = utl.LARROW, utl.RARROW
+DARROW, UARROW        = utl.DARROW, utl.UARROW
 LBL, SPR              = utl.LBL, utl.SPR
 RGB                   = utl.RGB
 C1,  C2               =  0,  1
@@ -90,14 +91,14 @@ class Tabs(pyglet.window.Window):
         self.seqNumCsvPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=CSVS, fsfx=CSV)  ;  self.log(f'{self.seqNumCsvPath=}')
         self.seqNumLogPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.seqNumLogPath=}')
         self.seqNumTxtPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=TEXT, fsfx=TXT)  ;  self.log(f'{self.seqNumTxtPath=}')
+        self.addingZ       = 0   ;   self.allTabSel = 0    ;   self.rsyncData    = 0
         self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt      = Z
-        self.shifting      = 0   ;   self.shiftSign = 1    ;   self.quitting     = 0
+        self.shifting      = 0   ;   self.shiftSign = 1    ;   self.cc           = 0
         self.inserting     = 0   ;   self.insertStr = Z    ;   self.prevEvntText = Z
         self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs      = 0
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg      = Z
+        self.quitting      = 0   ;   self.nvis      = 0    ;   self.DRAW_BGC     = 1
         self.newC          = 0   ;   self.updC      = 0    ;   self.tzzC         = 0
-        self.cc            = 0   ;   self.nvis      = 0    ;   self.DRAW_BGC     = 1
-        self.allTabSel     = 0   ;   self.rsyncData = 0
         self.sprs          = []  ;   self.undoStack = []   ;   self.idmap        = {}
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
         self.J1,       self.J2,      self.j1s,     self.j2s    = [], [], [], []
@@ -286,7 +287,7 @@ class Tabs(pyglet.window.Window):
         self._initFonts()
         self._initTextLabels()
         self._initTniks()
-        self.regSnap('init', utl.INIT)
+#        self.regSnap('fini', utl.FINI)
     ####################################################################################################################################################################################################
     def initk(self, j, key0, rgb0, opc0, key1, rgb1, opc1):
         self.log(f'{j:2}  {JTEXTS[j]:4}  [{key0} {rgb0:2} {opc0:2}] [ {key1} {rgb1:2} {opc1:2}] {fmtl(RGB[key0][rgb0][opc0], w=3)} {fmtl(RGB[key1][rgb1][opc1], w=3)}', p=0)
@@ -728,7 +729,7 @@ class Tabs(pyglet.window.Window):
         self.dumpVisible()
         self.dumpIdmKeys() if dbg and self.VERBY else None
 #        self.dumpVisible2()
-        self.dumpTniksC(f'{why}C') if dbg else None
+#        self.dumpTniksC(f'{why}C') if dbg else None
         if dbg2: # todo fixme some dont handle Sprites
             self.dumpTniksA(f'{why}A')
             self.dumpTniksB(f'{why}B')
@@ -1069,7 +1070,7 @@ class Tabs(pyglet.window.Window):
         elif j == R:     w = pw               ;  h = ph/nsnt
         else:            w = pw               ;  h = ph_n
         if   j == P:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h
-        elif j == L:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h - dn*ph_n_nr  ;  self.log(f'{x=:.2f} {a=}, {y=:.2f} {d=:.1f} {dn=} {d*py=:.2f} {d*ph=:.2f} {d*h=:.2f} {dn*ph_n_nr=:.2f}')
+        elif j == L:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h - dn*ph_n_nr  ;  self.log(f'{x=:.2f} {a=}, {y=:.2f} {d=:.1f} {dn=} {d*py=:.2f} {d*ph=:.2f} {d*h=:.2f} {dn*ph_n_nr=:.2f} {self.ZZ=}')
         elif j == R:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h + ph/nsnt
         elif j in c:     x = vx + a*w         ;  y = py + b*ph - b*h
         else:            x = px - a*pw + a*w  ;  y = py + d*ph - d*h
@@ -1081,8 +1082,8 @@ class Tabs(pyglet.window.Window):
         return n, i, x, y, w, h
     ####################################################################################################################################################################################################
     def createZZs(self, pt, why=Z, z=None, dbg=1):
-        pi = self.J1[S]   ;   kz = self.k[E]   ;   kk = self.cci(E, pi, kz) if self.CHECKERED else 0   ;   k = kz[kk]
-        np, nl, ns, nc, nt       = self.n      ;   zz = self.ZZ     ;    l = self.zzl()        ;   assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}'  ;  assert z is not None,  f'{z=} {zz=} {pi} {l=}'
+        np, nl, ns, nc, nt       = self.n  ;  pi = self.J1[S]   ;  zz = self.ZZ  ;  l = len(zz)  ;  self.addingZ = 1  ;  assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}'  ;  assert z is not None,  f'{z=} {zz=} {pi} {l=}'
+        kz = self.k[E]    ;   kk = self.cci(E, pi, kz) if self.CHECKERED else 0  ;  k = kz[kk]
         _, _, xx, yy, ww, hh     = self.geom(E, None, 1, pi, dbg)   ;  t2n = self.sobj.tab2nn  ;  t = '0'  ;  nic = self.nic   ;   yy, hh = pt.y, pt.height
         if z==-1 or l==1:      e = self.createTnik(self.zclms, pi, E, xx, yy, ww, hh, k, why, v=1, dbg=dbg)
         else:                  e = self.zclms[pi]
@@ -1103,50 +1104,41 @@ class Tabs(pyglet.window.Window):
                 for bnum in self.bnums: bnum.x = xx - ww/4
 
     def resizeZZs(self, pt, why, z=None, dbg=1, dbg2=1):
-        np, nl, ns, nc, nt     = self.n    ;    l = self.zzl()    ;    pi = self.J1[S]  ;   zz = self.ZZ  ;  assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}'
-        _, _, xx, yy, ww, hh   = self.geom(E, None, 1, pi, dbg2)  ;  p, q = pi//2, (pi//2+1)   ;   yy, hh = pt.y, pt.height
+        np, nl, ns, nc, nt     = self.n   ;  pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}' # ;  assert z is not None,  f'{z=} {zz=} {pi} {l=}'
+        _, _, xx, yy, ww, hh   = self.geom(E, None, 1, pi, dbg2)  ;  p, q = pi//2, (pi//2+1)   ;  yy, hh = pt.y, pt.height
         e                      = self.resizeTnik(self.zclms, pi, E, xx, yy, ww, hh, why, dbg)
         if   pi in (0, 2):     t, _, x, y, w, h = self.geom(A, e, nt, self.i[L], dbg2)
         else:                  t, _, x, y, w, h = self.geom(B, e, nt, self.i[L], dbg2)
-        x0 = xx if z is None and l==1 or z==0 and l==1 else xx - ww/4
-        x1 = xx if z is None and l==1 or z==1 and l==1 else xx + ww/4
-        if z!=1:
+        x0 = xx - ww/4 if l==2 else xx # or z==0 and self.addingZ else xx
+        x1 = xx + ww/4 if l==2 else xx # or z==1 and self.addingZ else xx
+        self.log(f'{zz=} {z=} {l=} {pi=} {ww=:.2f} {ww/4=:.2f} {x=:.2f} {x0=:.2f} {x1=:.2f}')
+        if z==0 and self.anams and self.bnums:
             for i in range(p*t, q*t):
-                if   pi in (0, 2): self.resizeTnik(self.anams, i, A, x0, y-i%nt*h, w, h, why, dbg)
-                elif pi in (1, 3): self.resizeTnik(self.bnums, i, B, x0, y-i%nt*h, w, h, why, dbg)
-        if z!=0:
+                if   pi in (0, 2) and self.anams[i].visible: self.resizeTnik(self.anams, i, A, x0, y-i%nt*h, w, h, why, dbg)
+                elif pi in (1, 3) and self.bnums[i].visible: self.resizeTnik(self.bnums, i, B, x0, y-i%nt*h, w, h, why, dbg)
+        if z==1 and self.capos:
             t, _, x, y, w, h =     self.geom(D, e, nt, self.i[L], dbg2)   ;   p = pi*t   ;   q = (pi+1)*t
-            for i in range(p, q):  self.resizeTnik(self.capos, i, D, x1, y-i%nt*h, w, h, why, dbg)
+            for i in range(p, q):
+                if self.capos[i].visible: self.resizeTnik(self.capos, i, D, x1, y-i%nt*h, w, h, why, dbg)
     ####################################################################################################################################################################################################
     def hideZZs(self, how, z):
-        zz = self.ZZ   ;   msg = f'HIDE {how}'   ;   assert(len(zz) in (0, 1, 2)),  f'{len(zz)=}'
-        self.log(f'BFR {zz=} {how} {z=} {self.tzzC=}')
-        zz.remove(z)   ;   self.tzzC += 1   ;   assert len(self.ZZ) == len(zz),  f'{self.ZZ=} {z=}'   ;   assert(len(zz) in (0, 1)),  f'{len(zz)=}'
-        self.log(f'AFT {zz=} {how} {z=} {self.tzzC=}')
+        zz0 = list(self.ZZ)  ;  zz = self.ZZ   ;   l = len(zz)   ;   msg = f'HIDE {how}'   ;   assert z in (0, 1),  f'{z=}'   ;   assert(l in (0, 1, 2)),  f'{l=} zz0={fmtl(zz0)} zz={fmtl(zz)} {z=}'
+        self.log( f'BFR {how} {z=} {l=} {self.tzzC=} zz0={fmtl(zz0)} zz={fmtl(zz)} ')
+        zz.remove(z)  ;  l = len(zz)  ;  self.tzzC += 1  ;  self.addingZ = 0  ;  assert l == self.zzl(),  f'{l=} {z=}'  ;  assert(l in (0, 1)),  f'{l=} zz0={fmtl(zz0)} zz={fmtl(zz)} {z=}'
+        self.log( f'AFT {how} {z=} {l=} {self.tzzC=} zz0={fmtl(zz0)} zz={fmtl(zz)} ')
         self.dumpTniksPfx(msg)
-        if len(zz) == 0:
-            for z in range(len(self.zclms)):  self.hideTnik(self.zclms,  z, E)
-            for a in range(len(self.anams)):  self.hideTnik(self.anams,  a, A)
-            for b in range(len(self.bnums)):  self.hideTnik(self.bnums,  b, B)
-            for c in range(len(self.capos)):  self.hideTnik(self.capos,  c, D)
+        if   z==0:
+            consume(self.hideTnik(self.zclms, e, E) for e in range(len(self.zclms)) if not e % 2)
+            for    a in range(len(self.anams)):          self.hideTnik(self.anams, a, A)
+            for    b in range(len(self.bnums)):          self.hideTnik(self.bnums, b, B)
         else:
-            if z == 0:
-                if zz[0]==0:
-                    for e in range(len(self.zclms)):   self.hideTnik(self.zclms,  e, E) if not e % 2 else None
-                else:
-                    for e in range(len(self.zclms)):   self.hideTnik(self.zclms,  e, E) if     e % 2 else None
-                for a in range(len(self.anams)):       self.hideTnik(self.anams,  a, A)
-                for b in range(len(self.bnums)):       self.hideTnik(self.bnums,  b, B)
-            else:            
-                if zz[0]==0:
-                    for e in range(len(self.zclms)):   self.hideTnik(self.zclms,  e, E) if not e % 2 else None
-                else:
-                    for e in range(len(self.zclms)):   self.hideTnik(self.zclms,  e, E) if     e % 2 else None
-                for c, capo in enumerate(self.capos):  self.hideTnik(self.capos,  c, D)
+            consume(self.hideTnik(self.zclms, e, E) for e in range(len(self.zclms)) if not e % 2)
+            for    c in range(len(self.capos)):          self.hideTnik(self.capos, c, D)
         self.dumpTniksSfx(msg)
         
     def addZZs( self, how, z):
         zz = self.ZZ   ;   why = f'Add'
+        assert z in (0, 1), f'{z=} {zz=} {how=} {why=}'
         self.log(f'BFR {zz=} {how} {z=} {self.tzzC=}')
         zz.append(z)   ;   self.tzzC += 1
         self.log(f'AFT {zz=} {how} {z=} {self.tzzC=}')
@@ -1472,9 +1464,10 @@ class Tabs(pyglet.window.Window):
     def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
     def on_resize(self, w, h, z=None):
         super().on_resize(w, h)
+        assert z in (0, 1, None),  f'{z=}'
         self.updView()
         if self.RESIZE:
-            cmd = cmds.ResizeTniksCmd(self, dbg=1)     ;  cmd.do()
+            cmd = cmds.ResizeTniksCmd(self, z, dbg=1)     ;  cmd.do()
         return True
     ####################################################################################################################################################################################################
     def idmapkey(self, j):  return f'{JTEXTS[j]}{self.J2[j]}'
@@ -2063,9 +2056,9 @@ def dumpGlobals():
     slog(f'PATH      = {PATH}',      f=2)
     slog(f'BASE_PATH = {BASE_PATH}', f=2)
 ########################################################################################################################################################################################################
-def cleanupOutFiles(file, fp, gfp, snp, f):
-    slog(f'Copy {file.name} to {snp}',  ff=1, f=f)
-    utl.copyFile(fp,            snp, f=f)
+def cleanupOutFiles(file, fp, gfp, sqnp, f):
+    slog(f'Copy {file.name} to {sqnp}',  ff=1, f=f)
+    utl.copyFile(fp,            sqnp, f=f)
     slog(f'Copy {file.name} to {gfp}',  ff=1, f=f)
     utl.copyFile(fp,            gfp, f=f)
     slog('Flush & Close Txt File',      ff=1, f=f)

@@ -35,7 +35,7 @@ BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background
 MAX_FREQ_IDX          = 10 * 12 + 1
 MAX_STACK_DEPTH       = 0
 MAX_STACK_FRAME       = inspect.stack()
-INIT      = 'INI'
+INIT, FINI            = 'INI', 'FINI'
 RGB       = {}
 #             0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17
 OPC       = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
@@ -156,7 +156,7 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str conca
     if   lst is None:   return  NONE
     lts = (list, tuple, set, frozenset, zip)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts,   f'{type(lst)=} {lts=}'
-    if d == Z:     d2 = Z
+    if d==Z:     d2 = Z
     w   = w   if w else Z   ;   t = []
     zl  = '-'               if ll is not None and ll<0 else '+' if ll is not None and ll>0 else Z
     z   = f'{zl}{len(lst)}' if ll is not None          else Z
@@ -344,7 +344,7 @@ def initColors(k, spr, bgc, ik):
     j = B  ;  k[j] = i(j, KB1, aa, OE1, KB2, zz, OE2) if a else i(j, KB1,  0,  0, KB2, 17, 17) if b else i(j, KB1,  0,  0, KB2, 17, 17) if c else i(j, KB1,  0,  0, KB2, 17, 17) if d else None
     j = D  ;  k[j] = i(j, KD1, aa, OE1, KD2, zz, OE2) if a else i(j, KD1,  0,  0, KD2, 17, 17) if b else i(j, KD1,  0,  0, KD2, 17, 17) if c else i(j, KD1,  0,  0, KD2, 17, 17) if d else None
     j = E  ;  k[j] = i(j, KE1, aa, OE1, KE2, zz, OE2) if a else i(j, KE1,  0,  0, KE2, 17, 17) if b else i(j, KE1,  0,  0, KE2, 17, 17) if c else i(j, KE1,  0,  0, KE2, 17, 17) if d else None
-
+########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1, f=-3):
     if dbg: slog(f'{baseName =:12} {basePath = }', f=f)
     fileName   = f'{baseName}.{fsfx}'          if fsfx else baseName
@@ -359,7 +359,7 @@ def copyFile(src, trg, dbg=1, f=-3):
     cmd  =  f'copy {src} {trg}'
     if dbg: slog(f'{cmd} ###', f=f)
     os.system(f'{cmd}')
-
+########################################################################################################################################################################################################
 def getFileSeqName(baseName, basePath, fdir='logs', fsfx='log'):
     n = 1
     slog(f'{fdir=} / {fsfx=}')
