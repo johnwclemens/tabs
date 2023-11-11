@@ -91,14 +91,14 @@ class Tabs(pyglet.window.Window):
         self.seqNumCsvPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=CSVS, fsfx=CSV)  ;  self.log(f'{self.seqNumCsvPath=}')
         self.seqNumLogPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.seqNumLogPath=}')
         self.seqNumTxtPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=TEXT, fsfx=TXT)  ;  self.log(f'{self.seqNumTxtPath=}')
-        self.addingZ       = 0   ;   self.allTabSel = 0    ;   self.rsyncData    = 0
-        self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt      = Z
-        self.shifting      = 0   ;   self.shiftSign = 1    ;   self.cc           = 0
+        self.quitting      = 0   ;   self.allTabSel = 0    ;   self.rsyncData    = 0
         self.inserting     = 0   ;   self.insertStr = Z    ;   self.prevEvntText = Z
         self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs      = 0
+        self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt      = Z
+        self.shifting      = 0   ;   self.shiftSign = 1    ;   self.cc           = 0
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg      = Z
-        self.quitting      = 0   ;   self.nvis      = 0    ;   self.DRAW_BGC     = 1
         self.newC          = 0   ;   self.updC      = 0    ;   self.tzzC         = 0
+        self.nvis          = 0   ;   self.DRAW_BGC  = 1
         self.sprs          = []  ;   self.undoStack = []   ;   self.idmap        = {}
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
         self.J1,       self.J2,      self.j1s,     self.j2s    = [], [], [], []
@@ -1082,7 +1082,7 @@ class Tabs(pyglet.window.Window):
         return n, i, x, y, w, h
     ####################################################################################################################################################################################################
     def createZZs(self, pt, why=Z, z=None, dbg=1):
-        np, nl, ns, nc, nt       = self.n  ;  pi = self.J1[S]   ;  zz = self.ZZ  ;  l = len(zz)  ;  self.addingZ = 1  ;  assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}'  ;  assert z is not None,  f'{z=} {zz=} {pi} {l=}'
+        np, nl, ns, nc, nt       = self.n  ;  pi = self.J1[S]   ;  zz = self.ZZ  ;  l = len(zz)  ;  assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}'  ;  assert z is not None,  f'{z=} {zz=} {pi} {l=}'
         kz = self.k[E]    ;   kk = self.cci(E, pi, kz) if self.CHECKERED else 0  ;  k = kz[kk]
         _, _, xx, yy, ww, hh     = self.geom(E, None, 1, pi, dbg)   ;  t2n = self.sobj.tab2nn  ;  t = '0'  ;  nic = self.nic   ;   yy, hh = pt.y, pt.height
         if z==-1 or l==1:      e = self.createTnik(self.zclms, pi, E, xx, yy, ww, hh, k, why, v=1, dbg=dbg)
@@ -1109,14 +1109,14 @@ class Tabs(pyglet.window.Window):
         e                      = self.resizeTnik(self.zclms, pi, E, xx, yy, ww, hh, why, dbg)
         if   pi in (0, 2):     t, _, x, y, w, h = self.geom(A, e, nt, self.i[L], dbg2)
         else:                  t, _, x, y, w, h = self.geom(B, e, nt, self.i[L], dbg2)
-        x0 = xx - ww/4 if l==2 else xx # or z==0 and self.addingZ else xx
-        x1 = xx + ww/4 if l==2 else xx # or z==1 and self.addingZ else xx
+        x0 = xx - ww/4 if l==2 else xx
+        x1 = xx + ww/4 if l==2 else xx
         self.log(f'{zz=} {z=} {l=} {pi=} {ww=:.2f} {ww/4=:.2f} {x=:.2f} {x0=:.2f} {x1=:.2f}')
-        if z==0 and self.anams and self.bnums:
+        if self.anams and self.bnums:
             for i in range(p*t, q*t):
                 if   pi in (0, 2) and self.anams[i].visible: self.resizeTnik(self.anams, i, A, x0, y-i%nt*h, w, h, why, dbg)
                 elif pi in (1, 3) and self.bnums[i].visible: self.resizeTnik(self.bnums, i, B, x0, y-i%nt*h, w, h, why, dbg)
-        if z==1 and self.capos:
+        if self.capos:
             t, _, x, y, w, h =     self.geom(D, e, nt, self.i[L], dbg2)   ;   p = pi*t   ;   q = (pi+1)*t
             for i in range(p, q):
                 if self.capos[i].visible: self.resizeTnik(self.capos, i, D, x1, y-i%nt*h, w, h, why, dbg)
@@ -1124,16 +1124,21 @@ class Tabs(pyglet.window.Window):
     def hideZZs(self, how, z):
         zz0 = list(self.ZZ)  ;  zz = self.ZZ   ;   l = len(zz)   ;   msg = f'HIDE {how}'   ;   assert z in (0, 1),  f'{z=}'   ;   assert(l in (0, 1, 2)),  f'{l=} zz0={fmtl(zz0)} zz={fmtl(zz)} {z=}'
         self.log( f'BFR {how} {z=} {l=} {self.tzzC=} zz0={fmtl(zz0)} zz={fmtl(zz)} ')
-        zz.remove(z)  ;  l = len(zz)  ;  self.tzzC += 1  ;  self.addingZ = 0  ;  assert l == self.zzl(),  f'{l=} {z=}'  ;  assert(l in (0, 1)),  f'{l=} zz0={fmtl(zz0)} zz={fmtl(zz)} {z=}'
+        zz.remove(z)  ;  l = len(zz)  ;  self.tzzC += 1  ;  assert l == self.zzl(),  f'{l=} {z=}'  ;  assert(l in (0, 1)),  f'{l=} zz0={fmtl(zz0)} zz={fmtl(zz)} {z=}'
         self.log( f'AFT {how} {z=} {l=} {self.tzzC=} zz0={fmtl(zz0)} zz={fmtl(zz)} ')
         self.dumpTniksPfx(msg)
         if   z==0:
             consume(self.hideTnik(self.zclms, e, E) for e in range(len(self.zclms)) if not e % 2)
             for    a in range(len(self.anams)):          self.hideTnik(self.anams, a, A)
             for    b in range(len(self.bnums)):          self.hideTnik(self.bnums, b, B)
+            if self.capos: 
+                for c in range(len(self.capos)): cc = self.capos[c]  ;  self.resizeTnik(self.capos, c, D, cc.x-cc.width/4, cc.y, cc.width, cc.height, how, dbg=1) if cc.visible else None
         else:
             consume(self.hideTnik(self.zclms, e, E) for e in range(len(self.zclms)) if not e % 2)
             for    c in range(len(self.capos)):          self.hideTnik(self.capos, c, D)
+            if self.anams and self.bnums:
+                for a in range(len(self.anams)): aa = self.anams[a]  ;  self.resizeTnik(self.anams, a, A, aa.x+aa.width/4, aa.y, aa.width, aa.height, how, dbg=1) if aa.visible else None
+                for b in range(len(self.bnums)): bb = self.bnums[b]  ;  self.resizeTnik(self.bnums, b, B, bb.x+bb.width/4, bb.y, bb.width, bb.height, how, dbg=1) if bb.visible else None
         self.dumpTniksSfx(msg)
         
     def addZZs( self, how, z):
