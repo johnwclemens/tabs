@@ -104,7 +104,8 @@ class Tabs(pyglet.window.Window):
         self.J1,       self.J2,      self.j1s,     self.j2s    = [], [], [], []
         self.hArrow,   self.vArrow,  self.csrMode, self.tids   = RARROW, UARROW, CHRD, set()   ;   self.dumpCursorArrows('init()')
         self.tblank,   self.tblanki, self.cursor,  self.data   = None, None, None, []
-        self.viewX, self.viewY, self.viewW, self.viewH = 0, 0, self.width, self.height
+        self.viewX,  self.viewY,  self.viewW,  self.viewH  = 0, 0, self.width, self.height
+        self.viewX0, self.viewY0, self.viewW0, self.viewH0 = 0, 0, self.width, self.height
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         ################################################################################################################################################################################################
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4
@@ -340,26 +341,46 @@ class Tabs(pyglet.window.Window):
             if i > 0 and s.height > screens[i-1].height: self.screenIdx = i
             self.log(f'screens[{i}] {s.x=} {s.y:5} {self.fmtWH(s.width, s.height)}')
         self.log(f'END {self.fmtWH()} {self.screenIdx=}')
-
-    def _setView(self):
-        x, y = (self.VIEWS[0], self.VIEWS[1]) if self.VIEWS else (0, 0)
+    ####################################################################################################################################################################################################
+    def splitH( self, p, n, dbg=1):
+        if   ist(p, LBL):
+            p.x, p.width,   self.p0x, self.p0w = self.splitHL(p.x, p.width, n)
+            if dbg:         self.log(f'{p.x=:.2f} {p.width=:.2f} {n=} {self.p0x=:.2f} {self.p0w=:.2f}')
+        elif ist(p, SPR):
+            p.x, p.scale_x, self.p0x, self.p0w = self.splitHS(p.x, p.width, n, p.image.width)
+            if dbg:         self.log(f'{p.x=:.2f} {p.scale_x=:.4f} {n=} {self.p0x=:.2f} {self.p0w=:.2f} {self.p0sx=:.4f}')
+        return p
+    
+    def splitHL(self, x, w, n):
+        x0 = x                     ;   w0  = w
+        w2 = w/n                   ;   w  -= w2
+        x  = w2 + w2/2 + w/2       ;   x2  = w2
+        self.log(f'{x0=:6.2f} {w0=:6.2f} {n=} {x=:6.2f} {w=:6.2f} {x2=:6.2f} {w2=:6.2f}')
+        return x, w, x2, w2
+    
+    def splitHS(self, x, w, n, s):
+        x0 = x                     ;   w0  = w     ;   s0 = s
+        w2 = w/n                   ;   w  -= w2    ;   s  = w/s0
+        x  = w2 + w2/2 + w/2       ;   x2  = w2
+        self.log(f'{x0=:6.2f} {w0=:6.2f} {s0=:6.4f} {n=} {x=:6.2f} {w=:6.2f} {s=:6.4f} {x2=:6.2f} {w2=:6.2f}')
+        return x, s, x2, w2
+    ####################################################################################################################################################################################################
+    def setView(self, x, y):
         self.viewX,  self.viewY,  self.viewW,  self.viewH  =     x,          y,      self.width-x, self.height-y
         self.viewX0, self.viewY0, self.viewW0, self.viewH0 = self.viewX, self.viewY, self.viewW,   self.viewH
         self.log(f'{self.viewX=:.2f} {self.viewY=:.2f} {self.viewW=:.2f} {self.viewH=:.2f}')
 
-    def updView(self):
-        mx, my = self.width/self.viewW0, self.height/self.viewH0
-        x,  y  = (mx*self.VIEWS[0], my*self.VIEWS[1]) if self.VIEWS else (0, 0)
+    def updView(self, x=0, y=0):
         self.viewX,  self.viewY,  self.viewW,  self.viewH  =     x,          y,      self.width-x, self.height-y
         self.log(f'{self.viewX=:.2f} {self.viewY=:.2f} {self.viewW=:.2f} {self.viewH=:.2f}')
-
+    ####################################################################################################################################################################################################
     def _initWindowB(self, dbg=1):
         if dbg: self.log(f'BGN {self.fmtWH()}')
         self.batch = pyglet.graphics.Batch()
         self._initGroups()
         self.set_visible()
         self.log(f'get_size={self.get_size()}')
-        self._setView()
+        self.setView(0, 0)
         self.keyboard = None
         if self.EVENT_LOG:
             if self.EVENT_LOG == 1:   self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
@@ -746,29 +767,6 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'Every {dt:=7.4f} seconds, {how} {self.rsyncData=}')
         if self.rsyncData: cmd = cmds.SaveDataFileCmd(self, how, self.dataPath0)   ;  cmd.do()  ;  self.rsyncData = 0
     ####################################################################################################################################################################################################
-    def splitH( self, p, n, dbg=1):
-        if   ist(p, LBL):
-            p.x, p.width,   self.p0x, self.p0w = self.splitHL(p.x, p.width, n)
-            if dbg:         self.log(f'{p.x=:.2f} {p.width=:.2f} {n=} {self.p0x=:.2f} {self.p0w=:.2f}')
-        elif ist(p, SPR):
-            p.x, p.scale_x, self.p0x, self.p0w = self.splitHS(p.x, p.width, n, p.image.width)
-            if dbg:         self.log(f'{p.x=:.2f} {p.scale_x=:.4f} {n=} {self.p0x=:.2f} {self.p0w=:.2f} {self.p0sx=:.4f}')
-        return p
-    
-    def splitHL(self, x, w, n):
-        x0 = x                     ;   w0  = w
-        w2 = w/n                   ;   w  -= w2
-        x  = w2 + w2/2 + w/2       ;   x2  = w2
-        self.log(f'{x0=:6.2f} {w0=:6.2f} {n=} {x=:6.2f} {w=:6.2f} {x2=:6.2f} {w2=:6.2f}')
-        return x, w, x2, w2
-    
-    def splitHS(self, x, w, n, s):
-        x0 = x                     ;   w0  = w     ;   s0 = s
-        w2 = w/n                   ;   w  -= w2    ;   s  = w/s0
-        x  = w2 + w2/2 + w/2       ;   x2  = w2
-        self.log(f'{x0=:6.2f} {w0=:6.2f} {s0=:6.4f} {n=} {x=:6.2f} {w=:6.2f} {s=:6.4f} {x2=:6.2f} {w2=:6.2f}')
-        return x, s, x2, w2
-    ####################################################################################################################################################################################################
     def genDataFile(self, path):
         self.log(f'{path} {self.fmtn()}')
         np, nl, ns, nc, nt = self.n # ;  nc += self.zzl()
@@ -1070,7 +1068,7 @@ class Tabs(pyglet.window.Window):
         elif j == R:     w = pw               ;  h = ph/nsnt
         else:            w = pw               ;  h = ph_n
         if   j == P:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h
-        elif j == L:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h - dn*ph_n_nr  ;  self.log(f'{x=:.2f} {a=}, {y=:.2f} {d=:.1f} {dn=} {d*py=:.2f} {d*ph=:.2f} {d*h=:.2f} {dn*ph_n_nr=:.2f} {self.ZZ=}')
+        elif j == L:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h - dn*ph_n_nr  ;  self.log(f'{x=:.2f} {a=}, {y=:.2f} {w=:.2f} {h=:.2f} {d=:.1f} {dn=} {d*py=:.2f} {d*ph=:.2f} {d*h=:.2f} {dn*ph_n_nr=:.2f} {self.ZZ=}')
         elif j == R:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h + ph/nsnt
         elif j in c:     x = vx + a*w         ;  y = py + b*ph - b*h
         else:            x = px - a*pw + a*w  ;  y = py + d*ph - d*h
@@ -1104,7 +1102,7 @@ class Tabs(pyglet.window.Window):
                 for bnum in self.bnums: bnum.x = xx - ww/4
 
     def resizeZZs(self, pt, why, z=None, dbg=1, dbg2=1):
-        np, nl, ns, nc, nt     = self.n   ;  pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}' # ;  assert z is not None,  f'{z=} {zz=} {pi} {l=}'
+        np, nl, ns, nc, nt     = self.n   ;  pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}'
         _, _, xx, yy, ww, hh   = self.geom(E, None, 1, pi, dbg2)  ;  p, q = pi//2, (pi//2+1)   ;  yy, hh = pt.y, pt.height
         e                      = self.resizeTnik(self.zclms, pi, E, xx, yy, ww, hh, why, dbg)
         if   pi in (0, 2):     t, _, x, y, w, h = self.geom(A, e, nt, self.i[L], dbg2)
@@ -1122,23 +1120,25 @@ class Tabs(pyglet.window.Window):
                 if self.capos[i].visible: self.resizeTnik(self.capos, i, D, x1, y-i%nt*h, w, h, why, dbg)
     ####################################################################################################################################################################################################
     def hideZZs(self, how, z):
-        zz0 = list(self.ZZ)  ;  zz = self.ZZ   ;   l = len(zz)   ;   msg = f'HIDE {how}'   ;   assert z in (0, 1),  f'{z=}'   ;   assert(l in (0, 1, 2)),  f'{l=} zz0={fmtl(zz0)} zz={fmtl(zz)} {z=}'
-        self.log( f'BFR {how} {z=} {l=} {self.tzzC=} zz0={fmtl(zz0)} zz={fmtl(zz)} ')
-        zz.remove(z)  ;  l = len(zz)  ;  self.tzzC += 1  ;  assert l == self.zzl(),  f'{l=} {z=}'  ;  assert(l in (0, 1)),  f'{l=} zz0={fmtl(zz0)} zz={fmtl(zz)} {z=}'
-        self.log( f'AFT {how} {z=} {l=} {self.tzzC=} zz0={fmtl(zz0)} zz={fmtl(zz)} ')
+        zz = self.ZZ  ;  l = len(zz)  ;  msg = f'HIDE {how}'  ;   assert z in (0, 1),  f'{z=}'  ;  assert(l in (0, 1, 2)),  f'{l=} zz={fmtl(zz)} {z=}'
+        self.log( f'BFR {how} {z=} {l=} {self.tzzC=} zz={fmtl(zz)}')
+        zz.remove(z)  ;  l = len(zz)  ;  self.tzzC += 1  ;  assert l == self.zzl(),  f'{l=} {z=}'  ;  assert(l in (0, 1)),  f'{l=} zz={fmtl(zz)} {z=}'
+        self.log( f'AFT {how} {z=} {l=} {self.tzzC=} zz={fmtl(zz)}')
+        zclms, anams, bnums, capos = self.zclms, self.anams, self.bnums, self.capos
+        self.setView(0, 0)
         self.dumpTniksPfx(msg)
-        if   z==0:
-            consume(self.hideTnik(self.zclms, e, E) for e in range(len(self.zclms)) if not e % 2)
-            for    a in range(len(self.anams)):          self.hideTnik(self.anams, a, A)
-            for    b in range(len(self.bnums)):          self.hideTnik(self.bnums, b, B)
-            if self.capos: 
-                for c in range(len(self.capos)): cc = self.capos[c]  ;  self.resizeTnik(self.capos, c, D, cc.x-cc.width/4, cc.y, cc.width, cc.height, how, dbg=1) if cc.visible else None
+        if z==0:
+            consume( self.hideTnik(zclms, e, E) for e in range(len(zclms)) if not e % 2 )
+            for     a in range(len(anams)):          self.hideTnik(anams, a, A)
+            for     b in range(len(bnums)):          self.hideTnik(bnums, b, B)
+            if capos: 
+                for c in range(len(capos)):  cc = capos[c]  ;  self.resizeTnik(capos, c, D, cc.x-cc.width/4, cc.y, cc.width, cc.height, how, dbg=1) if cc.visible else None
         else:
-            consume(self.hideTnik(self.zclms, e, E) for e in range(len(self.zclms)) if not e % 2)
-            for    c in range(len(self.capos)):          self.hideTnik(self.capos, c, D)
-            if self.anams and self.bnums:
-                for a in range(len(self.anams)): aa = self.anams[a]  ;  self.resizeTnik(self.anams, a, A, aa.x+aa.width/4, aa.y, aa.width, aa.height, how, dbg=1) if aa.visible else None
-                for b in range(len(self.bnums)): bb = self.bnums[b]  ;  self.resizeTnik(self.bnums, b, B, bb.x+bb.width/4, bb.y, bb.width, bb.height, how, dbg=1) if bb.visible else None
+            consume( self.hideTnik(zclms, e, E) for e in range(len(zclms)) if not e % 2 )
+            for     c in range(len(capos)):          self.hideTnik(capos, c, D)
+            if anams and bnums:
+                for a in range(len(anams)):  aa = anams[a]  ;  self.resizeTnik(anams, a, A, aa.x+aa.width/4, aa.y, aa.width, aa.height, how, dbg=1) if aa.visible else None
+                for b in range(len(bnums)):  bb = bnums[b]  ;  self.resizeTnik(bnums, b, B, bb.x+bb.width/4, bb.y, bb.width, bb.height, how, dbg=1) if bb.visible else None
         self.dumpTniksSfx(msg)
         
     def addZZs( self, how, z):
@@ -1147,6 +1147,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'BFR {zz=} {how} {z=} {self.tzzC=}')
         zz.append(z)   ;   self.tzzC += 1
         self.log(f'AFT {zz=} {how} {z=} {self.tzzC=}')
+        self.setView(self.VIEWS[0], self.VIEWS[1])
         self.dumpTniksPfx(why)
         for s, sect in enumerate(self.sects):
             self.setJdump(S, s, sect.visible, why)
@@ -1396,7 +1397,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
         assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=} {j=} {x=:.2f} {y=:.2f} {w=:.2f} {h=:.2f} {why}'
-        tnik    = tlist[i]
+        tnik   = tlist[i]
         self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
         if   ist(tnik, SPR):
             mx, my = w/tnik.image.width, h/tnik.image.height
@@ -1470,8 +1471,11 @@ class Tabs(pyglet.window.Window):
     def on_resize(self, w, h, z=None):
         super().on_resize(w, h)
         assert z in (0, 1, None),  f'{z=}'
-        self.updView()
         if self.RESIZE:
+            if self.VIEWS and z is not None:
+                mx, my = self.width/self.viewW0, self.height/self.viewH0
+                x,  y  = mx * self.VIEWS[0],     my * self.VIEWS[1]
+                self.updView(x, y)
             cmd = cmds.ResizeTniksCmd(self, z, dbg=1)     ;  cmd.do()
         return True
     ####################################################################################################################################################################################################
