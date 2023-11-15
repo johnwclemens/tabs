@@ -547,7 +547,7 @@ class ResizeTniksCmd(Cmd):
                     if ll and not l:     tobj.resizeLLs(line, why)
                     for sect in          tobj.g_resizeTniks(tobj.sects, S, line, why=why):  # pass
                         if zz: # and z is not None:
-                            tobj.resizeZZs(sect, why, z)
+                            tobj.resizeZZs(sect, z, why)
                         for colm in      tobj.g_resizeTniks(tobj.colms, C, sect, why=why):  # pass
                             for _ in     tobj.g_resizeTniks(tobj.tabls, T, colm, why=why):  pass
         tobj.dumpTniksSfx(why)
@@ -1130,8 +1130,8 @@ class TogZZsCmd(Cmd):
         assert z in (0, 1),  f'{z=} {tobj.zz=}'
         msg2 = f'{how} {z=}'
         tobj.dumpGeom('BGN', f'     {msg2}')
-        if   z not in tobj.ZZ:     msg = 'ADD'    ;   tobj.addZZs( how, z) # tobj.addingz = 1
-        else:                      msg = 'HIDE'   ;   tobj.hideZZs(how, z) # tobj.addingz = 0
+        if   z not in tobj.ZZ:     msg = 'ADD'    ;   tobj.addZZs( z, how) # tobj.addingz = 1
+        else:                      msg = 'HIDE'   ;   tobj.hideZZs(z, how) # tobj.addingz = 0
         if   tobj.SNAPS >= 3:      tobj.regSnap(f'{how}', f'SWP.{tobj.tzzC}.{z}')
         tobj.on_resize(tobj.width, tobj.height, z=z)
         tobj.dumpGeom('END', f'{msg} {msg2}')

@@ -357,19 +357,19 @@ def copyFile(src, trg, dbg=1, f=-3):
     if dbg: slog(f'{src=}', f=f)
     if dbg: slog(f'{trg=}', f=f)
     cmd  =  f'copy {src} {trg}'
-    if dbg: slog(f'{cmd} ###', f=f)
+    if dbg: slog(f'{12*W}{cmd} ###', f=f)
     os.system(f'{cmd}')
 ########################################################################################################################################################################################################
 def getFileSeqName(baseName, basePath, fdir='logs', fsfx='log'):
     n = 1
-    slog(f'{fdir=} / {fsfx=}')
+    slog(f'    {fdir=} / {fsfx=}')
     fGlobArg = f'{(basePath / fdir / baseName)}.*.{fsfx}'
     fGlob    = glob.glob(fGlobArg)
     slog(f'{fGlobArg=}')
     LOG_ID   = getFileSeqNum(fGlob, fsfx) + n
-    slog(f'{LOG_ID=}')
+    slog(f'  {LOG_ID=}')
     name     = f'{baseName}.{LOG_ID}'
-    slog(f'{name=}')
+    slog(f'    {name=}')
     return  name, LOG_ID
 
 def getFileSeqNum(files, sfx, dbg=0, dbg2=0):
