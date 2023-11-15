@@ -546,7 +546,7 @@ class ResizeTniksCmd(Cmd):
                 for l, line in enumerate(tobj.g_resizeTniks(tobj.lines, L, page, why=why)): # pass
                     if ll and not l:     tobj.resizeLLs(line, why)
                     for sect in          tobj.g_resizeTniks(tobj.sects, S, line, why=why):  # pass
-                        if z is not None and zz:
+                        if zz: # and z is not None:
                             tobj.resizeZZs(sect, why, z)
                         for colm in      tobj.g_resizeTniks(tobj.colms, C, sect, why=why):  # pass
                             for _ in     tobj.g_resizeTniks(tobj.tabls, T, colm, why=why):  pass
