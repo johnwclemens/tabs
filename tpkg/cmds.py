@@ -281,21 +281,21 @@ class MoveCmd(Cmd):
         if dbg:    tobj.log(f'BGN {how} {n=}', pos=1)
         p, l, c, t = tobj.j2()
         cmd = MoveTo2Cmd(tobj, p, l, c, t, n=n)     ;  cmd.do()
-        if tobj.CURSOR and tobj.cursor: cmd = MoveCursorCmd(tobj, ss, how)     ;  cmd.do()
+        if tobj.CURSOR and tobj.cursor: cmd = MoveCursorCmd(tobj, how, ss)     ;  cmd.do()
         if dbg:    tobj.log(f'END {how} {n=}', pos=1)
 ########################################################################################################################################################################################################
 class MoveCursorCmd(Cmd):
-    def __init__(self, tobj, ss=0, why=Z, dbg=1):
-        self.tobj, self.ss, self.why, self.dbg = tobj, ss, why, dbg
+    def __init__(self, tobj, how, ss=0, dbg=1): #fixme 11/18/23
+        self.tobj, self.how, self.ss, self.dbg = tobj, how, ss, dbg
         
     def do(  self): self._moveCursor()
     def undo(self): self._moveCursor() # todo fixme
     
     def _moveCursor(self):
-        tobj, ss, why, dbg = self.tobj, self.ss, self.why, self.dbg
+        tobj, how, ss, dbg = self.tobj, self.how, self.ss, self.dbg
         if dbg:           tobj.log(f'BGN {ss=} {tobj.cc=}', pos=1)
         if tobj.LL:       tobj.setLLStyle(tobj.cc, SELECT_STYLE if ss else NORMAL_STYLE)
-        cmd = ResizeCursorCmd(tobj, why, dbg=dbg)         ;  cmd.do()
+        cmd = UpdateCursorCmd(tobj, how, dbg=dbg)         ;  cmd.do()
         if tobj.LL:       tobj.setLLStyle(tobj.cc, CURRENT_STYLE)
         if dbg:           tobj.log(f'END {ss=} {tobj.cc=}', pos=1)
 ########################################################################################################################################################################################################
@@ -502,56 +502,57 @@ class ResetCmd(Cmd):
         tobj._reinit()            # todo fixme
         tobj.dumpGeom('END', f'{how} after reinit()')
 ########################################################################################################################################################################################################
-class ResizeCursorCmd(Cmd):
+class UpdateCursorCmd(Cmd):
     def __init__(self, tobj, why, dbg=1):
         self.tobj, self.why, self.dbg = tobj, why, dbg
         
-    def do(  self): self._resizeCursor()
-    def undo(self): self._resizeCursor() # todo fixme
+    def do(  self): self._updateCursor()
+    def undo(self): self._updateCursor() # todo fixme
     
-    def _resizeCursor(self):
+    def _updateCursor(self):
         tobj, why, dbg = self.tobj, self.why, self.dbg
         x, y, w, h, c = tobj.cc2xywh()
-        tobj.resizeTnik(tobj.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
+        tobj.updateTnik(tobj.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
 ########################################################################################################################################################################################################
-class ResizeTniksCmd(Cmd):
-    def __init__(self, tobj, z=None, dbg=1):
-        self.tobj, self.z, self.dbg = tobj, z, dbg
+class UpdateTniksCmd(Cmd):
+    def __init__(self, tobj, how, z=None, dbg=1):
+        self.tobj, self.how, self.z, self.dbg = tobj, how, z, dbg
         
-    def do(  self): self._resizeTniks()
-    def undo(self): self._resizeTniks()
+    def do(  self): self._updateTniks()
+    def undo(self): self._updateTniks()
     
-    def _resizeTniks(self):
+    def _updateTniks(self):
         tobj, z, dbg = self.tobj, self.z, self.dbg
-        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL   ;   zz = tobj.ZZ #  ;  v = tobj.VIEWS
+        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL   ;   zz = tobj.ZZ
+        tobj.updView(len(tobj.ZZ), tobj.LL)
         tobj.dumpTniksPfx(why)
         if   tobj.DSP_J_LEV == P:
-            for _ in                     tobj.g_resizeTniks(tobj.pages, P, None, why=why):  pass
+            for _ in                     tobj.g_updateTniks(tobj.pages, P, None, why=why):  pass
         elif tobj.DSP_J_LEV == L:
-            for page in                  tobj.g_resizeTniks(tobj.pages, P, None, why=why):  # pass
-                for _ in                 tobj.g_resizeTniks(tobj.lines, L, page, why=why):  pass
+            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
+                for _ in                 tobj.g_updateTniks(tobj.lines, L, page, why=why):  pass
         elif tobj.DSP_J_LEV == S:
-            for page in                  tobj.g_resizeTniks(tobj.pages, P, None, why=why):  # pass
-                for l, line in enumerate(tobj.g_resizeTniks(tobj.lines, L, page, why=why)): # pass
+            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
+                for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
                     if ll and not l:     tobj.resizeLLs(line, why)
-                    for _ in             tobj.g_resizeTniks(tobj.sects, S, line, why=why):  pass
+                    for _ in             tobj.g_updateTniks(tobj.sects, S, line, why=why):  pass
         elif tobj.DSP_J_LEV == C:
-            for page in                  tobj.g_resizeTniks(tobj.pages, P, None, why=why):  # pass
-                for l, line in enumerate(tobj.g_resizeTniks(tobj.lines, L, page, why=why)): # pass
+            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
+                for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
                     if ll and not l:     tobj.resizeLLs(line, why)
-                    for sect in          tobj.g_resizeTniks(tobj.sects, S, line, why=why):  # pass
-                        for _ in         tobj.g_resizeTniks(tobj.colms, C, sect, why=why):  pass
+                    for sect in          tobj.g_updateTniks(tobj.sects, S, line, why=why):  # pass
+                        for _ in         tobj.g_updateTniks(tobj.colms, C, sect, why=why):  pass
         else:
-            for page in                  tobj.g_resizeTniks(tobj.pages, P, None, why=why):  # pass
-                for l, line in enumerate(tobj.g_resizeTniks(tobj.lines, L, page, why=why)): # pass
+            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
+                for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
                     if ll and not l:     tobj.resizeLLs(line, why)
-                    for sect in          tobj.g_resizeTniks(tobj.sects, S, line, why=why):  # pass
+                    for s, sect in enumerate(tobj.g_updateTniks(tobj.sects, S, line, why=why)):  # pass
                         if zz: # and z is not None:
-                            tobj.resizeZZs(sect, z, why)
-                        for colm in      tobj.g_resizeTniks(tobj.colms, C, sect, why=why):  # pass
-                            for _ in     tobj.g_resizeTniks(tobj.tabls, T, colm, why=why):  pass
+                            tobj.updateZZs(sect, s, z, why)
+                        for colm in      tobj.g_updateTniks(tobj.colms, C, sect, why=why):  # pass
+                            for _ in     tobj.g_updateTniks(tobj.tabls, T, colm, why=why):  pass
         tobj.dumpTniksSfx(why)
-        if tobj.CURSOR and tobj.cursor:  cmd = ResizeCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
+        if tobj.CURSOR and tobj.cursor:  cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
         if dbg and tobj.SNAPS >= 10:     tobj.regSnap(why, f'UPD{tobj.updC}')
         if dbg:    tobj.dumpStruct(why) # , dbg=dbg)
 ########################################################################################################################################################################################################
@@ -569,15 +570,15 @@ class RotSprCmd(Cmd):
         tobj.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
 ########################################################################################################################################################################################################
 class SaveDataFileCmd(Cmd):
-    def __init__(self, tobj, why, path, dbg=1):
-        self.tobj, self.why, self.path, self.dbg = tobj, why, path, dbg
+    def __init__(self, tobj, how, path, dbg=1):
+        self.tobj, self.how, self.path, self.dbg = tobj, how, path, dbg
         
     def do(  self): self._saveDataFile()
     def undo(self): self._saveDataFile()
     
     def _saveDataFile(self):
-        tobj, why, path, dbg = self.tobj, self.why, self.path, self.dbg
-        if dbg:   tobj.log(f'BGN {why} {path}')
+        tobj, how, path, dbg = self.tobj, self.how, self.path, self.dbg
+        if dbg:   tobj.log(f'BGN {how} {path}')
         with open(path, 'w', encoding='utf-8') as DATA_FILE:
             tobj.log(f'{DATA_FILE.name:40}', p=0)
             commentStr = '#' * tobj.n[C]   ;   commentRow = f'{commentStr}{X}'
@@ -598,7 +599,7 @@ class SaveDataFileCmd(Cmd):
                     DATA_FILE.write(commentRow) if tobj.DEC_DATA else DATA_FILE.write(X)  #   if l < nl:
                 DATA_FILE.write(commentRow) if tobj.DEC_DATA else DATA_FILE.write(X)
         size = path.stat().st_size   ;   tobj.log(f'{tobj.fmtn()} {tobj.fmtdl()} {size=}')
-        if dbg:   tobj.log(f'END {why} {path}')
+        if dbg:   tobj.log(f'END {how} {path}')
         return size
 ########################################################################################################################################################################################################
 class SelectTabsCmd(Cmd):
@@ -638,7 +639,7 @@ class SetCHVModeCmd(Cmd):
         tobj.dumpCursorArrows(f'END {how:7} c={NONE if c is None else c:<4} h={NONE if h is None else h:<4} v={NONE if v is None else v:<4}')
 ########################################################################################################################################################################################################
 class SetFontArgCmd(Cmd):
-    def __init__(self, tobj, n, v, m, dbg=1):
+    def __init__(self, tobj, n, v, m, dbg=1): #fixme 11/18/23
         self.tobj, self.n, self.v, self.m, self.dbg = tobj, n, v, m, dbg
 
     def do(  self): self._setFontArg()
@@ -736,7 +737,7 @@ class ShiftTabsCmd(Cmd):
         tobj.dumpSmap(f'END {how} {tobj.shiftingTabs=} {nf=} {tobj.shiftSign=}')
 ########################################################################################################################################################################################################
 class SnapshotCmd(Cmd):
-    def __init__(self, tobj, why=Z, typ=Z, sid=0, dbg=1, dbg2=1):
+    def __init__(self, tobj, why=Z, typ=Z, sid=0, dbg=1, dbg2=1): #fixme 11/18/23
         self.tobj, self.why, self.typ, self.sid, self.dbg, self.dbg2 = tobj, why, typ, sid, dbg, dbg2
         
     def do(  self): self._snapshot()
@@ -1130,9 +1131,9 @@ class TogZZsCmd(Cmd):
         assert z in (0, 1),  f'{z=} {tobj.zz=}'
         msg2 = f'{how} {z=}'
         tobj.dumpGeom('BGN', f'     {msg2}')
-        if   z not in tobj.ZZ:     msg = 'ADD'    ;   tobj.addZZs( z, how) # tobj.addingz = 1
-        else:                      msg = 'HIDE'   ;   tobj.hideZZs(z, how) # tobj.addingz = 0
-        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{how}', f'SWP.{tobj.tzzC}.{z}')
+        if   z not in tobj.ZZ:     msg = f'Add.{tobj.addC}'    ;   tobj.addZZs(   z, how) # tobj.addingz = 1
+        else:                      msg = f'Rmv.{tobj.remC}'    ;   tobj.removeZZs(z, how) # tobj.addingz = 0
+        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{how}', f'{msg}.{z}')
         tobj.on_resize(tobj.width, tobj.height, z=z)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################

@@ -98,7 +98,7 @@ class Tabs(pyglet.window.Window):
         self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt      = Z
         self.shifting      = 0   ;   self.shiftSign = 1    ;   self.cc           = 0
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg      = Z
-        self.newC          = 0   ;   self.updC      = 0    ;   self.tzzC         = 0
+        self.newC          = 0   ;   self.updC      = 0    ;   self.addC         = 0   ;   self.remC = 0
         self.sprs          = []  ;   self.undoStack = []   ;   self.idmap        = {}
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
         self.J1,       self.J2,      self.j1s,     self.j2s    = [], [], [], []
@@ -971,7 +971,7 @@ class Tabs(pyglet.window.Window):
         self.dumpGeom('AFT', why)
     ####################################################################################################################################################################################################
     def hideTTs(self, how, ii, dbg=1):
-        why = f'HIDE {how} {ii=}'  ;  why2 = 'Ref'
+        why = f'Rem{self.remC} {how} {ii=}'  ;  why2 = 'Ref'
         np, nl, ns, nc, nt = self.n #  ;   nc += self.zzl()
         self.dumpTniksPfx(why)
         for p in range(np):
@@ -979,16 +979,16 @@ class Tabs(pyglet.window.Window):
             for l in range(nl):
                 self.setJdump(L, l, why=why2) # l
                 for _, s in   enumerate( self.ss2sl()):
-                    if s != ii:          self.setJdump(S, s, why=why2)
-                    else:                self.hideTnik(self.sects,   p*nl + l,            S, dbg=dbg)
+                    if s != ii:          self.setJdump(  S, s, why=why2)
+                    else:                self.removeTnik(self.sects,   p*nl + l,            S, dbg=dbg)
                     for c in range(nc):
-                        if s != ii:      self.setJdump(C, c, why=why2)
-                        else:            self.hideTnik(self.colms,   (p*nl + l)*nc + c,   C, dbg=dbg)
+                        if s != ii:      self.setJdump(  C, c, why=why2)
+                        else:            self.removeTnik(self.colms,   (p*nl + l)*nc + c,   C, dbg=dbg)
                         for t in range(nt):
                             tlist, j, _, _  =  self.tnikInfo(p, l, s, c)
-                            if s != ii:  self.setJdump(j, t, why=why2)
-                            else:        self.hideTnik(tlist, ((p*nl + l)*nc + c)*nt + t, j, dbg=dbg)
-        if ii == TT:                     self.hideTnik(self.hcurs,                     0, H, dbg=dbg)
+                            if s != ii:  self.setJdump(  j, t, why=why2)
+                            else:        self.removeTnik(tlist, ((p*nl + l)*nc + c)*nt + t, j, dbg=dbg)
+        if ii == TT:                     self.removeTnik(self.hcurs,                     0, H, dbg=dbg)
         self.dumpTniksSfx(why)
         self.togTT(ii)
     ####################################################################################################################################################################################################
@@ -1081,6 +1081,19 @@ class Tabs(pyglet.window.Window):
             self.log(f'{msg} {self.fmtJ1(0, 1)} {self.fmtJ2(0, 1)} {x} {px} {-a*pw} {a*w}', p=0, f=0)
         return n, i, x, y, w, h
     ####################################################################################################################################################################################################
+    def addZZs( self, z, how):
+        pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  az = self.addingZ  ;  why = f'Add{self.addC+1}'  ;   assert(l in (0, 1, 2)),  f'{l=} zz={fmtl(zz)} {z=}'  ;  assert z in (0, 1),  f'{z=}'
+        assert z in (0, 1), f'{how} {why} {az=} {z=} zz={fmtl(zz)}'
+        self.log(f'BFR {how} {why} {l=} {pi=} {self.addC=} {az=} {z=} zz={fmtl(zz)}')
+        if z not in zz:    zz.append(z)     ;     l = len(zz)  ;  self.addC += 1  ;  self.addingZ = 1  ;   assert(l in (1, 2)),  f'{l=} zz={fmtl(zz)} {z=}'
+        self.log(f'AFT {how} {why} {l=} {pi=} {self.addC=} {az=} {z=} zz={fmtl(zz)}')
+        self.updView(len(self.ZZ), self.LL)
+        self.dumpTniksPfx(why)
+        for s, sect in enumerate(self.sects):
+            self.setJdump(S, s, sect.visible, 'Ref ')
+            self.createZZs(sect, z, why)
+        self.dumpTniksSfx(why)
+
     def createZZs(self, pt, z, why, dbg=1):
         pi = self.J1[S]   ;   zz = self.ZZ  ;  l = len(zz)  ;  az = self.addingZ  ;  assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}'  ;  assert z in (0, 1),  f'{z=} {zz=} {pi} {l=}'
         np, nl, ns, nc, nt       = self.n
@@ -1089,83 +1102,78 @@ class Tabs(pyglet.window.Window):
         nic, t2n,  t, yy, hh     = self.nic, self.sobj.tab2nn, '0', pt.y, pt.height
         if   l==1:             e = self.createTnik(self.zclms, pi, E, xx, yy, ww, hh, k, why, v=1, dbg=dbg)
         else:                  e = self.zclms[pi]
-        x0 = xx if l==1 else xx - ww/4   
-        x1 = xx if l==1 else xx + ww/4
-        if z==0:
+        x0 = xx if l==1 else xx - ww/4    ;    x1 = xx if l==1 else xx + ww/4
+        if   z==0:
             if   pi in (0, 2):     ii, _, x, y, w, h = self.geom(A, e, nt, self.i[L], dbg)
             else:                  ii, _, x, y, w, h = self.geom(B, e, nt, self.i[L], dbg)
-            self.log(f'    @ Z {why} {l=} {pi=} {self.tzzC=} {az=} {z=} zz={fmtl(zz):5} {ww=:6.2f} {ww/4=:6.2f} {x=:6.2f} {x0=:6.2f} {x1=:6.2f} {y=:6.2f} {w=:6.2f} {h=:6.2f}')
+            self.log(f'    @ Z {why} {l=} {pi=} {self.addC=} {az=} {z=} zz={fmtl(zz):5} {ww=:6.2f} {ww/4=:6.2f} {x=:6.2f} {x0=:6.2f} {x1=:6.2f} {w=:6.2f} {ww/l=:6.2f}')
             for i in range(ii):
-                if   pi in (0, 2): self.createTnik(self.anams, i, A, x0, y-i*h, w, h, k, why, t2n(t, i, nic), 1, dbg)
-                elif pi in (1, 3): self.createTnik(self.bnums, i, B, x0, y-i*h, w, h, k, why, str(1+i),       1, dbg)
+                if   pi in (0, 2): self.createTnik(self.anams, i, A, x0, y-i*h, ww/l, h, k, why, t2n(t, i, nic), 1, dbg)
+                elif pi in (1, 3): self.createTnik(self.bnums, i, B, x0, y-i*h, ww/l, h, k, why, str(1+i),       1, dbg)
             if l==2:
-                for capo in self.capos: capo.x = xx + ww/4
-        if z==1:
+                for capo in self.capos: capo.x = xx + ww/4  ;  capo.w = ww/l
+        elif z==1:
             ii, _, x, y, w, h    = self.geom(D, e, nt, self.i[L], dbg)
-            self.log(f'    @ Z {why} {l=} {pi=} {self.tzzC=} {az=} {z=} zz={fmtl(zz):5} {ww=:6.2f} {ww/4=:6.2f} {x=:6.2f} {x0=:6.2f} {x1=:6.2f} {y=:6.2f} {w=:6.2f} {h=:6.2f}')
-            for i in range(ii):    self.createTnik(self.capos, i, D, x1, y-i*h, w, h, k, why, self.sobj.capo[i], 1, dbg)
+            self.log(f'    @ Z {why} {l=} {pi=} {self.addC=} {az=} {z=} zz={fmtl(zz):5} {ww=:6.2f} {ww/4=:6.2f} {x=:6.2f} {x0=:6.2f} {x1=:6.2f} {w=:6.2f} {ww/l=:6.2f}')
+            for i in range(ii):    self.createTnik(self.capos, i, D, x1, y-i*h, ww/l, h, k, why, self.sobj.capo[i], 1, dbg)
             if l==2:
-                for anam in self.anams: anam.x = xx - ww/4
-                for bnum in self.bnums: bnum.x = xx - ww/4
-
-    def resizeZZs(self, pt, z, why, dbg=1, dbg2=1):
-        pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  az = self.addingZ  ;  assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}'
-        np, nl, ns, nc, nt     = self.n
-        _, _, xx, yy, ww, hh   = self.geom(E, None, 1, pi, dbg2) # ;  p, q = pi//2, (pi//2+1)   ;  yy, hh = pt.y, pt.height # ;  ww = ww*l if az else ww/l
-        p, q,     yy,     hh   = pi//2, pi//2+1, pt.y, pt.height
-        e                      = self.resizeTnik(self.zclms, pi, E, xx, yy, ww, hh, why, dbg)
-#        if   l==2:             x0 = xx - ww/4  ;  x1 = xx + ww/4
-#        elif l==1 and not az:  x0 = xx - ww/4  ;  x1 = xx + ww/4
-#        else:                  x0 = xx         ;  x1 = xx
-        x0 = xx if l==1 else xx - ww/4   
-        x1 = xx if l==1 else xx + ww/4
-        if self.anams and self.bnums:
-            if   pi in (0, 2):     t, _, x, y, w, h = self.geom(A, e, nt, self.i[L], dbg2)
-            else:                  t, _, x, y, w, h = self.geom(B, e, nt, self.i[L], dbg2)
-            self.log(f'    @ Z {why} {l=} {pi=} {self.tzzC=} {az=} {z=} zz={fmtl(zz):5} {ww=:6.2f} {ww/4=:6.2f} {x=:6.2f} {x0=:6.2f} {x1=:6.2f} {y=:6.2f} {w=:6.2f} {h=:6.2f}')
-            for i in range(p*t, q*t):
-                if   pi in (0, 2) and self.anams[i].visible: self.resizeTnik(self.anams, i, A, x0, y-i%nt*h, w/l, h, why, dbg)
-                elif pi in (1, 3) and self.bnums[i].visible: self.resizeTnik(self.bnums, i, B, x0, y-i%nt*h, w/l, h, why, dbg)
-        if self.capos:
-            t, _, x, y, w, h =     self.geom(D, e, nt, self.i[L], dbg2)   ;   p = pi*t   ;   q = (pi+1)*t
-            self.log(f'    @ Z {why} {l=} {pi=} {self.tzzC=} {az=} {z=} zz={fmtl(zz):5} {ww=:6.2f} {ww/4=:6.2f} {x=:6.2f} {x0=:6.2f} {x1=:6.2f} {y=:6.2f} {w=:6.2f} {h=:6.2f}')
-            for i in range(p, q):
-                if self.capos[i].visible:                    self.resizeTnik(self.capos, i, D, x1, y-i%nt*h, w/l, h, why, dbg)
+                for anam in self.anams: anam.x = xx - ww/4  ;  anam.w = ww/l
+                for bnum in self.bnums: bnum.x = xx - ww/4  ;  bnum.w = ww/l
     ####################################################################################################################################################################################################
-    def hideZZs(self, z, how):
-        pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  az = self.addingZ  ;  why = f'Hide'  ;   assert(l in (0, 1, 2)),  f'{l=} zz={fmtl(zz)} {z=}'  ;  assert z in (0, 1),  f'{z=}'
-        self.log(f'BFR {how} {why} {l=} {pi=} {self.tzzC=} {az=} {z=} zz={fmtl(zz)}')
-        zz.remove(z)     ;     l = len(zz)  ;  self.tzzC += 1  ;  self.addingZ = 0  ;   assert(l in (0, 1)),  f'{l=} zz={fmtl(zz)} {z=}'
-        self.log(f'AFT {how} {why} {l=} {pi=} {self.tzzC=} {az=} {z=} zz={fmtl(zz)}')
+    def removeZZs(self, z, how, dbg=1):
+        pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  az = self.addingZ  ;  why = f'Rmv{self.remC+1}'  ;   assert(l in (0, 1, 2)),  f'{l=} zz={fmtl(zz)} {z=}'  ;  assert z in (0, 1),  f'{z=}'
+        np, nl, ns, nc, nt     = self.n
+        self.log(f'BFR {how} {why} {l=} {pi=} {self.remC=} {az=} {z=} zz={fmtl(zz)}')
+        zz.remove(z)     ;     l = len(zz)  ;  self.remC += 1  ;  self.addingZ = 0  ;   assert(l in (0, 1)),  f'{l=} zz={fmtl(zz)} {z=}'
+        self.log(f'AFT {how} {why} {l=} {pi=} {self.remC=} {az=} {z=} zz={fmtl(zz)}')
         zclms, anams, bnums, capos = self.zclms, self.anams, self.bnums, self.capos
         self.updView(l, self.LL)
         self.dumpTniksPfx(why)
-        if z==0:
-            consume( self.hideTnik(zclms, e, E) for e in range(len(zclms)) if not e % 2 )
-            for     a in range(len(anams)):          self.hideTnik(anams, a, A)
-            for     b in range(len(bnums)):          self.hideTnik(bnums, b, B)
-            if capos: 
-                for c in range(len(capos)):  cc = capos[c]  ;  self.resizeTnik(capos, c, D, cc.x-cc.width/4, cc.y, cc.width, cc.height, how, dbg=1) if cc.visible else None
-        else:
-            consume( self.hideTnik(zclms, e, E) for e in range(len(zclms)) if not e % 2 )
-            for     c in range(len(capos)):          self.hideTnik(capos, c, D)
-            if anams and bnums:
-                for a in range(len(anams)):  aa = anams[a]  ;  self.resizeTnik(anams, a, A, aa.x+aa.width/4, aa.y, aa.width, aa.height, how, dbg=1) if aa.visible else None
-                for b in range(len(bnums)):  bb = bnums[b]  ;  self.resizeTnik(bnums, b, B, bb.x+bb.width/4, bb.y, bb.width, bb.height, how, dbg=1) if bb.visible else None
+        _, _, xx, yy, ww, hh   = self.geom(E, None, 1, pi, dbg)
+        x0 = xx if l==1 else xx - ww/4    ;    x1 = xx if l==1 else xx + ww/4
+        if   z==0:
+            for s in range(ns):
+                if l == 0:                 self.removeTnik(zclms, s, E)
+                if not s%2:
+                    for a in range(nt):    self.removeTnik(anams, a+s//2*nt, A)
+                else:
+                    for b in range(nt):    self.removeTnik(bnums, b+s//2*nt, B)
+                if capos:
+                    t, _, x, y, w, h =     self.geom(D, zclms[s], nt, self.i[L], dbg)
+                    for i in range(nt):
+                        if capos[i+s*nt].visible: capos[i+s*nt].x = x1  ;  capos[i+s*nt].w = ww/l # self.updateTnik(capos, i, D, x1, y-i%nt*h, ww/l if l else w, h, how, dbg) if capos[i+s*nt].visible else None
+        elif z==1:
+            for s in range(ns):
+                if l == 0:                 self.removeTnik(zclms, s, E)
+                for     c in range(nt):    self.removeTnik(capos, c+s*nt, D)
+                if anams and bnums:
+                    t, _, x, y, w, h =     self.geom(D, zclms[s], nt, self.i[L], dbg) #  ;   p = pi*t   ;   q = (pi+1)*t
+                    for i in range(nt): 
+                        if anams[i+s//2*nt].visible: anams[i+s//2*nt].x = x0  ;  anams[i+s//2*nt].w = ww/l # self.updateTnik(anams, i, A, x0, y-i%nt*h, ww/l if l else w, h, how, dbg) if anams[i+s//2*nt].visible else None
+                    for i in range(nt):
+                        if bnums[i+s//2*nt].visible: bnums[i+s//2*nt].x = x0  ;  bnums[i+s//2*nt].w = ww/l # self.updateTnik(bnums, i, B, x0, y-i%nt*h, ww/l if l else w, h, how, dbg) if bnums[i+s//2*nt].visible else None
         self.dumpTniksSfx(why)
-        
-    def addZZs( self, z, how):
-        pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  az = self.addingZ  ;  why = f'Add '  ;   assert(l in (0, 1, 2)),  f'{l=} zz={fmtl(zz)} {z=}'  ;  assert z in (0, 1),  f'{z=}'
-        assert z in (0, 1), f'{how} {why} {az=} {z=} zz={fmtl(zz)}'
-        self.log(f'BFR {how} {why} {l=} {pi=} {self.tzzC=} {az=} {z=} zz={fmtl(zz)}')
-        if z not in zz:    zz.append(z)     ;     l = len(zz)  ;  self.tzzC += 1  ;  self.addingZ = 1  ;   assert(l in (1, 2)),  f'{l=} zz={fmtl(zz)} {z=}'
-        self.log(f'AFT {how} {why} {l=} {pi=} {self.tzzC=} {az=} {z=} zz={fmtl(zz)}')
-        self.updView(len(self.ZZ), self.LL)
-        self.dumpTniksPfx(why)
-        for s, sect in enumerate(self.sects):
-            self.setJdump(S, s, sect.visible, 'Ref ')
-            self.createZZs(sect, z, why)
-        self.dumpTniksSfx(why)
+
+    def updateZZs(self, pt, s, z, why, dbg=1, dbg2=1):
+        pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  az = self.addingZ  ;  assert l in (1, 2),  f'{l=} {zz=} {z=} {pi=}'
+#        self.updView(l, self.LL)
+        np, nl, ns, nc, nt     = self.n
+        _, _, xx, yy, ww, hh   = self.geom(E, None, 1, pi, dbg2)
+        p, q,     yy,     hh   = pi//2, pi//2+1, pt.y, pt.height
+        e                      = self.updateTnik(self.zclms, pi, E, xx, yy, ww, hh, why, dbg)
+        x0 = xx if l==1 else xx - ww/4    ;    x1 = xx if l==1 else xx + ww/4
+        if self.anams and self.bnums:
+            if   pi in (0, 2):     t, _, x, y, w, h = self.geom(A, e, nt, self.i[L], dbg2)
+            else:                  t, _, x, y, w, h = self.geom(B, e, nt, self.i[L], dbg2)
+            self.log(f'    @ Z {why} {l=} {pi=} {self.addC=} {az=} {z=} zz={fmtl(zz):5} {ww=:6.2f} {ww/4=:6.2f} {x=:6.2f} {x0=:6.2f} {x1=:6.2f} {w=:6.2f} {ww/l=:6.2f}')
+            for i in range(p*t, q*t):
+                if   not s % nt:   self.updateTnik(self.anams, i, A, x0, y-i%nt*h, ww/l, h, why, dbg) if self.anams[i].visible else None
+                else:              self.updateTnik(self.bnums, i, B, x0, y-i%nt*h, ww/l, h, why, dbg) if self.bnums[i].visible else None
+        if self.capos:
+            t, _, x, y, w, h =     self.geom(D, e, nt, self.i[L], dbg2)   ;   p = pi*t   ;   q = (pi+1)*t
+            self.log(f'    @ Z {why} {l=} {pi=} {self.addC=} {az=} {z=} zz={fmtl(zz):5} {ww=:6.2f} {ww/4=:6.2f} {x=:6.2f} {x0=:6.2f} {x1=:6.2f} {w=:6.2f} {ww/l=:6.2f}')
+            for i in range(p, q):
+                if self.capos[i].visible:                    self.updateTnik(self.capos, i, D, x1, y-i%nt*h, ww/l, h, why, dbg)
     ####################################################################################################################################################################################################
     def createLLs(self, why, dbg=1, dbg2=1):
         tlist = self.lines     ;   pi = len(tlist) - 1   ;   p  = tlist[-1]
@@ -1191,10 +1199,10 @@ class Tabs(pyglet.window.Window):
     def resizeLLs(self, p, why, dbg=1, dbg2=1):
         n    = self.ntnsnl()
         rn, ri, rx, ry, rw, rh = self.geom(R, p, n, self.i[L], dbg=dbg2)  # ;    xr0 = xr
-        lrow = self.resizeTnik(self.rowLs, self.J2[R], R, rx, ry, rw, rh, why=why, dbg=dbg)
+        lrow = self.updateTnik(self.rowLs, self.J2[R], R, rx, ry, rw, rh, why=why, dbg=dbg)
         cn, ci, cx, cy, cw, ch = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)  # ;    xc0 = xc
         for c in range(cn):
-            self.resizeTnik(self.qclms, self.J2[Q], Q, cx + c*cw, cy, cw, ch, why=why, dbg=dbg)
+            self.updateTnik(self.qclms, self.J2[Q], Q, cx + c*cw, cy, cw, ch, why=why, dbg=dbg)
         return p
     ####################################################################################################################################################################################################
     def addLLs(self, how):
@@ -1213,8 +1221,8 @@ class Tabs(pyglet.window.Window):
     def hideLLs(self, how):
         msg = f'Hide {how}'
         self.dumpTniksPfx(msg)
-        for r, rowl in enumerate(self.rowLs): self.hideTnik(self.rowLs, r, R)
-        for q, qclm in enumerate(self.qclms): self.hideTnik(self.qclms, q, Q)
+        for r, rowl in enumerate(self.rowLs): self.removeTnik(self.rowLs, r, R)
+        for q, qclm in enumerate(self.qclms): self.removeTnik(self.qclms, q, Q)
         self.dumpTniksSfx(msg)
     ####################################################################################################################################################################################################
     def dbgTabTxt(self, j, i):
@@ -1288,13 +1296,13 @@ class Tabs(pyglet.window.Window):
         self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwh} {ads} {cva} {s} {ftxt}', p=0, f=0)
 #        if ist(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
 
-    def hideTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
-        t = tlist[i]        ;     ha = hasattr(t, 'text')   ;   why = 'Hide'
+    def removeTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
+        t = tlist[i]        ;     ha = hasattr(t, 'text')   ;   why = f'Rem{self.remC}'
         t.visible = False   ;      v = int(t.visible)
 #        if   ist(t, LBL):  t.width, t.height = 1, 0  # Zero width not allowed
 #        elif ist(t, SPR):  t.update(scale_x=0, scale_y=0)
+        if dbg:     text = t.text if ha else Z  ;  self.log(f'{self.fmtJText(j)} {i=} {id(t):x} {text:6} {self.ftxywh(t)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0)
         self.setJdump(j, i, v, why)
-        if dbg > 1:     text = t.text if ha else Z  ;  self.log(f'{self.fmtJText(j)} {i=} {id(t):x} {text:6} {self.ftxywh(t)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0)
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
         self.newC += 1  ;  why2 = f'New{self.newC}'  ;  why = why2  ;  ll = self.LL  ;  view = self.VIEW # ;  zz = self.ZZ
@@ -1392,7 +1400,7 @@ class Tabs(pyglet.window.Window):
         if    dbg:                 self.dumpTnik(tnik, j, why)
         return tnik
     ####################################################################################################################################################################################################
-    def g_resizeTniks(self, tlist, j, pt=None, ii=None, why=Z, dbg=1, dbg2=1):
+    def g_updateTniks(self, tlist, j, pt=None, ii=None, why=Z, dbg=1, dbg2=1):
         if not self.n[j]:     msg = f'ERROR {self.fmtJText(j, why)} SKIP {self.n[j]=}'   ;   self.log(msg) #  ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
         n  = 1  if ii is not None else None
         n, _, x, y, w, h = self.geom(j, pt, n, dbg=dbg2)
@@ -1409,9 +1417,9 @@ class Tabs(pyglet.window.Window):
                 elif  j >= T:
                     s = self.ss2sl()[self.J1[S] % self.ssl()]
                     tlist2, j2, _, _ = self.tnikInfo(p, l, s, c, why=why)
-            yield self.resizeTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
+            yield self.updateTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
     ####################################################################################################################################################################################################
-    def resizeTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
+    def updateTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
         assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=} {j=} {x=:.2f} {y=:.2f} {w=:.2f} {h=:.2f} {why}'
         tnik   = tlist[i]
         self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
@@ -1493,7 +1501,7 @@ class Tabs(pyglet.window.Window):
 #            if z is not None:
 #                self.updView(len(self.ZZ), self.LL)
 #            else: self.updView(0, 0)
-            cmd = cmds.ResizeTniksCmd(self, z, dbg=1)     ;  cmd.do()
+            cmd = cmds.UpdateTniksCmd(self, z, dbg=1)     ;  cmd.do()
         return True
     ####################################################################################################################################################################################################
     def idmapkey(self, j):  return f'{JTEXTS[j]}{self.J2[j]}'
