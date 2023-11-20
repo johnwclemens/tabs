@@ -65,3 +65,4 @@ class Modes:
 # N) cmd refactoring really makes it hard to find code re multiple files - also how to sort cmd code
 # O) why create page/line/sect for each zz?
 # P) maybe do not call resize() unless its visible
+# Q) register snap needs a list

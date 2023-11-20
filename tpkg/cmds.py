@@ -112,6 +112,27 @@ class CsrJumpCmd(Cmd):
             tobj.move(how, jcc - 1 - ab * cc)
             tobj.log(f'{how} {txt=} {ab=} {cc=} jt={tobj.jumpAbs} {jcc=} moved={jcc - 1 - ab * cc} {tobj.fmti()}')
 ########################################################################################################################################################################################################
+class CopyKordNamesCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+        
+    def do(  self): self._copyKordNames()
+    def undo(self): self._copyKordNames() # todo fixme
+    
+    def _copyKordNames(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        nt = tobj.n[T]  ;  cc = tobj.cursorCol()  ;  cn = tobj.cc2cn(cc)  ;  i = 0
+        text = { tobj.tabls[i].text for i in range(nt) if tobj.tabls[i].text != tobj.tblank }
+        txt  = list(text)
+        for t in txt[:-1]:
+            if t != tobj.tblank:
+                i += 1
+                cmd = SelectTabsCmd(tobj, pygwink.MOTION_NEXT_WORD, nt, cn)  ;  cmd.do()
+                cmd = CopyTabsCmd(  tobj, pygwink.MOTION_COPY)               ;  cmd.do()
+                cmd = PasteTabsCmd( tobj, pygwink.MOTION_PASTE, kk=0)        ;  cmd.do()
+                for j in range(i):
+                    cmd = TogKordNamesCmd(tobj, how, hit=0)                  ;  cmd.do()
+########################################################################################################################################################################################################
 class CopyTabsCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
@@ -121,7 +142,7 @@ class CopyTabsCmd(Cmd):
     
     def _copyTabs(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
-        tobj.dumpSmap(f'BGN {how}')   ;   nt = tobj.n[T]   ;   style = NORMAL_STYLE   ;   text = []
+        tobj.dumpSmap(f'BGN {how}')  ;  nt = tobj.n[T]  ;  style = NORMAL_STYLE  ;  text = []  ;  tobj.cpyC += 1
         for k in list(tobj.smap.keys()):
             k *= nt
             if tobj.LL:  tobj.setLLStyle(k, style)
@@ -129,7 +150,7 @@ class CopyTabsCmd(Cmd):
             if dbg: text.append(W)
         if dbg:         tobj.log(f'{Z.join(text)=}')
         tobj.dumpSmap(f'END {how}')
-        if tobj.SNAPS >= 4:  tobj.regSnap(f'{how}', 'COPY')
+        if tobj.SNAPS >= 4:  tobj.regSnap(f'{how}', f'CPY.{tobj.cpyC}')
 ########################################################################################################################################################################################################
 class CutTabsCmd(Cmd):
     def __init__(self, tobj, how):
@@ -285,7 +306,7 @@ class MoveCmd(Cmd):
         if dbg:    tobj.log(f'END {how} {n=}', pos=1)
 ########################################################################################################################################################################################################
 class MoveCursorCmd(Cmd):
-    def __init__(self, tobj, how, ss=0, dbg=1): #fixme 11/18/23
+    def __init__(self, tobj, how, ss=0, dbg=1):
         self.tobj, self.how, self.ss, self.dbg = tobj, how, ss, dbg
         
     def do(  self): self._moveCursor()
@@ -420,7 +441,7 @@ class PasteTabsCmd(Cmd):
         tobj, how, kk, dbg = self.tobj, self.how, self.kk, self.dbg
         cc = tobj.cursorCol()       ;   nt = tobj.n[T]
         cn = tobj.normalizeCC(cc)   ;   kt = 0
-        p, l, s, c, t = tobj.j()
+        p, l, s, c, t = tobj.j()    ;   tobj.pstC += 1
         tobj.dumpSmap(f'BGN {how} {kk=} {cc=} {cn=}={tobj.cc2cn(cc)} plct={tobj.fplct(p, l, c, t)}')
         for i, (k, text) in enumerate(tobj.smap.items()):
             if not i:   dk = 0
@@ -434,7 +455,7 @@ class PasteTabsCmd(Cmd):
             if dbg:     tobj.log(f'{i=} {k=} {text=} {kk=} {dk=} {kt=}')
         tobj.log(f'clearing {len(tobj.smap)=}')   ;   tobj.smap.clear()
         tobj.dumpSmap(f'END {how} {kk=} {cc=} {cn=}={tobj.cc2cn(cc)} plct={tobj.fplct(p, l, c, t)}')
-        if tobj.SNAPS >= 4:  tobj.regSnap(f'{how}', 'PAST')
+        if tobj.SNAPS >= 4:  tobj.regSnap(f'{how}', f'PST.{tobj.pstC}')
         tobj.rsyncData = 1
 ########################################################################################################################################################################################################
 class PrevPageCmd(Cmd):
@@ -553,7 +574,7 @@ class UpdateTniksCmd(Cmd):
                             for _ in     tobj.g_updateTniks(tobj.tabls, T, colm, why=why):  pass
         tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor:  cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
-        if dbg and tobj.SNAPS >= 10:     tobj.regSnap(why, f'UPD{tobj.updC}')
+        if dbg and tobj.SNAPS >= 10:     tobj.regSnap(why, f'UPD.{tobj.updC}')
         if dbg:    tobj.dumpStruct(why) # , dbg=dbg)
 ########################################################################################################################################################################################################
 class RotSprCmd(Cmd):
@@ -611,7 +632,7 @@ class SelectTabsCmd(Cmd):
     
     def _selectTabs(self):
         tobj, how, m, cn, dbg, dbg2 = self.tobj, self.how, self.m, self.cn, self.dbg, self.dbg2
-        cc         = tobj.cursorCol()  ;  old = cn
+        cc            = tobj.cursorCol()  ;  old = cn
         p, l, s, c, t = tobj.cc2plsct(cc)
         if cn is None:      cn = tobj.cc2cn(cc) # self.plc2cn_(p, l, c)
         nt = tobj.n[T]  ;   k  = cn * nt   ;   style = SELECT_STYLE
@@ -639,22 +660,22 @@ class SetCHVModeCmd(Cmd):
         tobj.dumpCursorArrows(f'END {how:7} c={NONE if c is None else c:<4} h={NONE if h is None else h:<4} v={NONE if v is None else v:<4}')
 ########################################################################################################################################################################################################
 class SetFontArgCmd(Cmd):
-    def __init__(self, tobj, n, v, m, dbg=1): #fixme 11/18/23
-        self.tobj, self.n, self.v, self.m, self.dbg = tobj, n, v, m, dbg
+    def __init__(self, tobj, how, n, v, m, dbg=1):
+        self.tobj, self.how, self.n, self.v, self.m, self.dbg = tobj, how, n, v, m, dbg
 
     def do(  self): self._setFontArg()
     def undo(self): self._setFontArg()
     
     def _setFontArg(self):
-        tobj, n, v, m, dbg = self.tobj, self.n, self.v, self.m, self.dbg
-        if   m == 'clrIdx':      v += getattr(tobj, m)   ;   v %= len(tobj.k)      ;  tobj.log(f'{n=:12} {v=:2} {tobj.clrIdx=:2}')
-        elif m == 'fontNameIdx': v += getattr(tobj, m)   ;   v %= len(FONT_NAMES)  ;  tobj.log(f'{n=:12} {v=:2} {tobj.fontNameIdx=:2}')
+        tobj, how, n, v, m, dbg = self.tobj, self.how, self.n, self.v, self.m, self.dbg
+        if   m == 'clrIdx':      v += getattr(tobj, m)   ;   v %= len(tobj.k)      ;  tobj.log(f'{how} {n=:12} {v=:2} {tobj.clrIdx=:2}')
+        elif m == 'fontNameIdx': v += getattr(tobj, m)   ;   v %= len(FONT_NAMES)  ;  tobj.log(f'{how} {n=:12} {v=:2} {tobj.fontNameIdx=:2}')
         setattr(tobj, m, v)
         ts = list(itertools.chain(tobj.A, tobj.B, tobj.C))  ;  lt = len(ts)
-        if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
+        if dbg:         tobj.log(f'{how} {lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         for j, t in enumerate(ts):
             tobj.setFontArg2(t, n, v, m, j)
-        if dbg:         tobj.log(f'{lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
+        if dbg:         tobj.log(f'{how} {lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         tobj.setCaption(tobj.fmtFont())
 ########################################################################################################################################################################################################
 class SetNCmd(Cmd):
@@ -977,7 +998,6 @@ class TogKordNamesCmd(Cmd):
         if dbg:     tobj.dumpSmap(f'END {how} mks={fmtl(mks)} {cn=:2} {hit=} sks={fmtl(sks)}')
         
     def _togKordNameHits(self, tobj, how, cn, dbg=1):
-#        tobj, how, cn, dbg = self.tobj, self.how, self.cn, self.dbg
         mli = tobj.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
         if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   tobj.log(msg)   ;   cmd = QuitCmd(tobj, msg)   ;  cmd.do()
         ivals =  [ u[1] for u in mli[cn][0] ]
@@ -1003,7 +1023,6 @@ class TogKordNamesCmd(Cmd):
 
     @staticmethod
     def _togKordName(tobj, how, cn, dbg=1, dbg2=1):
-#        tobj, how, cn, dbg, dbg2 = self.tobj, self.how, self.cn, self.dbg, self.dbg2
         cc = tobj.cn2cc(cn)            ;   mli = tobj.cobj.mlimap
         p, l, c, t = tobj.cc2plct(cc)  ;   msg = Z
         if not tobj.ikeys and not tobj.kords: msg +=  'ERROR: Both ikeys and chords are Empty '

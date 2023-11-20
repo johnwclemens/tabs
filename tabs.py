@@ -91,14 +91,15 @@ class Tabs(pyglet.window.Window):
         self.seqNumCsvPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=CSVS, fsfx=CSV)  ;  self.log(f'{self.seqNumCsvPath=}')
         self.seqNumLogPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.seqNumLogPath=}')
         self.seqNumTxtPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=TEXT, fsfx=TXT)  ;  self.log(f'{self.seqNumTxtPath=}')
-        self.addingZ       = 0   ;   self.nvis      = 0    ;   self.DRAW_BGC     = 1
+        self.addingZ       = 0   ;   self.nvis      = 0    ;   self.DRAW_BGC     = 0
         self.inserting     = 0   ;   self.insertStr = Z    ;   self.prevEvntText = Z
         self.jumping       = 0   ;   self.jumpStr   = Z    ;   self.jumpAbs      = 0
         self.quitting      = 0   ;   self.allTabSel = 0    ;   self.rsyncData    = 0
         self.settingN      = 0   ;   self.setNvals  = []   ;   self.setNtxt      = Z
         self.shifting      = 0   ;   self.shiftSign = 1    ;   self.cc           = 0
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg      = Z
-        self.newC          = 0   ;   self.updC      = 0    ;   self.addC         = 0   ;   self.remC = 0
+        self.newC          = 0   ;   self.updC      = 0    ;   self.addC         = 0
+        self.remC          = 0   ;   self.cpyC      = 0    ;   self.pstC         = 0
         self.sprs          = []  ;   self.undoStack = []   ;   self.idmap        = {}
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
         self.J1,       self.J2,      self.j1s,     self.j2s    = [], [], [], []

@@ -35,7 +35,7 @@ BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background
 MAX_FREQ_IDX          = 10 * 12 + 1
 MAX_STACK_DEPTH       = 0
 MAX_STACK_FRAME       = inspect.stack()
-INIT, FINI            = 'INI', 'FINI'
+INIT, FINI            = 'INIT', 'FINI'
 RGB       = {}
 #             0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17
 OPC       = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
@@ -323,9 +323,9 @@ def initRGB(key, rgb, dv=32, n=None, dbg=0):
 FSH, PNK, RED, RST, ORG, PCH, YLW, LIM, GRN, TRQ, CYA, IND, BLU, VLT, GRY, CL1, CL2, CL3, CL4 = initRGBs(f=0, dbg=0)
 ########################################################################################################################################################################################################
 def initColors(k, spr, bgc, ik):
-    KP1, KP2 = VLT, VLT  ;  KL1, KL2 = FSH, FSH  ;  KS1, KS2 = RED, RED  ;  KC1, KC2 = YLW, YLW  ;  OP1, OP2 =  7, 17  ;  OL1, OL2 = 5, 11  ;  OS1, OS2 = 5, 11  ;  OC1, OC2 =  5, 11
-    KT1, KT2 = ORG, ORG  ;  KN1, KN2 = GRN, GRN  ;  KI1, KI2 = PNK, PNK  ;  KK1, KK2 = IND, IND  ;  OT1, OT2 = 17, 17 # ;  ON1, ON2 =  0,  0  ;  OI1, OI2 =  0,  0  ;  OK1, OK2 =  0,  0
-    KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = CYA, CYA  ;  KH1, KH2 = TRQ, TRQ  ;  KM1, KM2 = PCH, PCH  ;  OR1, OR2 = 17, 17  ;  OQ1, OQ2 = 17, 17  ;  OH1, OH2 =  9,  9
+    KP1, KP2 = VLT, VLT  ;  KL1, KL2 = FSH, FSH  ;  KS1, KS2 = RED, RED  ;  KC1, KC2 = PNK, PNK  ;  OP1, OP2 =  7, 17  ;  OL1, OL2 = 5, 11  ;  OS1, OS2 = 5, 11  ;  OC1, OC2 =  5, 11
+    KT1, KT2 = ORG, ORG  ;  KN1, KN2 = GRN, GRN  ;  KI1, KI2 = YLW, YLW  ;  KK1, KK2 = CYA, CYA  ;  OT1, OT2 = 17, 17 # ;  ON1, ON2 =  0,  0  ;  OI1, OI2 =  0,  0  ;  OK1, OK2 =  0,  0
+    KR1, KR2 = BLU, BLU  ;  KQ1, KQ2 = IND, IND  ;  KH1, KH2 = TRQ, TRQ  ;  KM1, KM2 = PCH, PCH  ;  OR1, OR2 = 17, 17  ;  OQ1, OQ2 = 17, 17  ;  OH1, OH2 =  9,  9
     KB1, KB2 = CL3, CL3  ;  KA1, KA2 = CL2, CL2  ;  KD1, KD2 = CL1, CL1  ;  KE1, KE2 = GRY, GRY  ;  OE1, OE2 = 17, 17  ;  aa, zz = 5, 17
     a = not spr and not bgc  ;  b = not spr and bgc  ;  c = spr and not bgc  ;  d = spr and bgc  ;  i = ik
     j = P  ;  k[j] = i(j, KP1, aa, OP1, KP2, zz, OP2) if a else i(j, KP1, 17, 17, KP2, 17, 17) if b else i(j, KP1,  3, 17, KP2, 17, 17) if c else i(j, KP1,  3, 17, KP2, 17, 17) if d else None
