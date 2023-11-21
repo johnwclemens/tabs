@@ -78,11 +78,12 @@ def on_draw(tobj, **kwargs):
     elif tobj.DRAW_BGC % 3 == 2:     pyglet.gl.glClearColor(1.0, 1.0, 1.0, 1.0)
     tobj.clear()
     tobj.batch.draw()
-    if  tobj.SNAPS and tobj.snapReg:
-        tobj.snapReg = 0
-        _ = fmtm(kwargs) if kwargs else Z
-        cmd = cmds.SnapshotCmd(tobj, f'on_draw({_})')  ;  snapPath = cmd.do()
-        slog(f'{tobj.snapWhy=} {tobj.snapType=} {tobj.snapId=}\n{snapPath=}', f=-3)
+    if  tobj.SNAPS and tobj.snapReqQ.qsize():
+        _    = fmtm(kwargs) if kwargs else Z
+        qlen = tobj.snapReqQ.qsize()
+        snapReq  = tobj.snapReqQ.get(False)
+        cmd  = cmds.SnapshotCmd(tobj, snapReq[0], snapReq[1], snapReq[2])  ;  snapPath = cmd.do()
+        slog(f'{tobj.LOG_ID=:3} sid={snapReq[0]} typ={snapReq[1]} why={snapReq[2]} {qlen=}\n{snapPath}', f=-3)
 #    else: slog(f'{kwargs=}') if kwargs else slog()
 #        if tobj.TEST:   tests.testSprTxt_0(snapPath)
 ########################################################################################################################################################################################################
@@ -274,7 +275,7 @@ def on_text(tobj, text, dbg=1):
     elif    tobj.shifting:                   cmd = cmds.ShiftTabsCmd(  tobj,  'onTxt', text)                ;  cmd.do()
     elif    tobj.swapping:                   cmd = cmds.SwapTabCmd(    tobj,  'onTxt', text)                ;  cmd.do()
     elif    tobj.isTab(text):                cmd = cmds.SetTabCmd(     tobj,  'onTxt', text)                ;  cmd.do()
-    elif    text == '$' and isShf(kd, MODS): cmd = cmds.SnapshotCmd(   tobj,   text, 'SNAP')                ;  cmd.do()
+    elif    text=='$' and isShf(kd, MODS): tobj.snpC += 1  ;  cmd = cmds.SnapshotCmd(tobj, tobj.snpC, f'SNP.{tobj.snpC}', text)    ;  cmd.do()
     elif dbg: slog(f'UNH {ft(text)} {tobj.prevEvntText=}', f=-3) if text != '\r' and tobj.prevEvntText != 0xff0d else None   ;   retv = False # 65293
     tobj.prevEvntText = text
     if   dbg: slog(f'END {ft(text)} {tobj.prevEvntText=} {tobj.inserting=} {tobj.jumping=} {tobj.settingN=} {tobj.shifting=} {tobj.swapping=} {retv=}')

@@ -1,5 +1,5 @@
 import operator, os, sys
-import collections, itertools
+import collections, itertools, queue
 from   collections     import Counter
 from   itertools       import accumulate
 from   more_itertools  import consume  # not installed in GitBash's Python
@@ -73,6 +73,7 @@ JTEXTS2 = ['Page',  'Line',  'Sect',  'Kolm',     'Tabl',  'Note',  'IKey',  'Ko
 jTEXTS  = ['pages', 'lines', 'sects', 'colms',    'tabls', 'notes', 'ikeys', 'Kords',    'mvies', 'rowls', 'qklms', 'hcsrs',    'anams', 'bnums', 'dcpos', 'eclms',    'tniks']
 JFMT    = [ 1,       2,       2,       3,          4,       4,       4,       4,          1,       2,       3,       1,          2,       2,       2,       2,          4]
 #JFMT   = [ 2,       3,       3,       6,          6,       6,       6,       6,          1,       3,       5,       1,          3,       3,       3,       4,          7]
+########################################################################################################################################################################################################
 PNT_PER_PIX =  7/9  # 14pts/18pix
 FONT_DPIS   = [ 72, 78, 84, 90, 96, 102, 108, 114, 120 ]
 FONT_NAMES  = utl.FONT_NAMES
@@ -85,7 +86,7 @@ class Tabs(pyglet.window.Window):
     def __init__(self):
         self.LOG_ID = 0                ;   self.log(f'{self.LOG_ID=}')
         self.log(f'BGN {__class__}')   ;   dumpGlobals()
-        self.log(f'STFILT:\n{fmtl(utl.STFILT)}')           ;   self.snapWhy, self.snapType, self.snapReg, self.snapId, self.snapPath = '?', '_', 0, 0, None
+        self.log(f'STFILT:\n{fmtl(utl.STFILT)}')
         self.fNameLogId, self.LOG_ID = utl.getFileSeqName(   BASE_NAME, BASE_PATH, fdir=LOGS, fsfx=LOG)  ;  self.log(f'{self.LOG_ID=} {self.fNameLogId}')
         self.seqNumCatPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=CATS, fsfx=CAT)  ;  self.log(f'{self.seqNumCatPath=}')
         self.seqNumCsvPath           = utl.getFilePath(self.fNameLogId, BASE_PATH, fdir=CSVS, fsfx=CSV)  ;  self.log(f'{self.seqNumCsvPath=}')
@@ -100,8 +101,10 @@ class Tabs(pyglet.window.Window):
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg      = Z
         self.newC          = 0   ;   self.updC      = 0    ;   self.addC         = 0
         self.remC          = 0   ;   self.cpyC      = 0    ;   self.pstC         = 0
+        self.snpC          = 0   ;   self.delC      = 0
         self.sprs          = []  ;   self.undoStack = []   ;   self.idmap        = {}
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
+        self.snapReqQ      = queue.SimpleQueue()
         self.J1,       self.J2,      self.j1s,     self.j2s    = [], [], [], []
         self.hArrow,   self.vArrow,  self.csrMode, self.tids   = RARROW, UARROW, CHRD, set()   ;   self.dumpCursorArrows('init()')
         self.tblank,   self.tblanki, self.cursor,  self.data   = None, None, None, []
@@ -224,7 +227,7 @@ class Tabs(pyglet.window.Window):
         n1  = '.'.join(n1)
         n2  =   Z.join(n2)
         _   =   Z.join([n1, n2])
-        self.log(f'{10*W}{_}') if dbg else None
+        self.log(f'{9*W}{_}') if dbg else None
         return _
     ####################################################################################################################################################################################################
     def dumpArgs(self, f=1):
@@ -367,7 +370,7 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def setView(self, nx, ny):
         self.updView(nx, ny)
-        self.viewX0, self.viewY0, self.viewW0, self.viewH0 = self.viewX, self.viewY, self.viewW,   self.viewH
+        self.viewX0, self.viewY0, self.viewW0, self.viewH0 = self.viewX, self.viewY, self.viewW, self.viewH
 
     def updView(self, nx=0, ny=0):
         nc = self.n[C]     + nx
@@ -1499,9 +1502,6 @@ class Tabs(pyglet.window.Window):
         super().on_resize(w, h)
         assert z in (0, 1, None),  f'{z=}'
         if self.RESIZE:
-#            if z is not None:
-#                self.updView(len(self.ZZ), self.LL)
-#            else: self.updView(0, 0)
             cmd = cmds.UpdateTniksCmd(self, z, dbg=1)     ;  cmd.do()
         return True
     ####################################################################################################################################################################################################
@@ -1550,8 +1550,8 @@ class Tabs(pyglet.window.Window):
         elif ist(tnik, SPR):
             return d.join([JTEXTS[j], ii, xywh, axy, ancX, ancY])
     ####################################################################################################################################################################################################
-    def dumpTnikCsvs(self):
-        name = self.snapPath.stem if self.snapPath else Z
+    def dumpTnikCsvs(self, snapPath):
+        name = snapPath.stem if snapPath else Z
         args = self.args2csv()   ;   self.log(f'{fmtl(args, d=Z, s=Y)}{name}', p=0, f=3)
         for j, p in enumerate(self.pages):     self.dumpTnikCsv(p, P, j)
         for j, l in enumerate(self.lines):     self.dumpTnikCsv(l, L, j)
@@ -2028,11 +2028,11 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'.ki={fmtl(self.ki[:10])} {j=} {k=} kl={fmtl(kl)} {self.ki[j]=} {kk=}')
         return kk
     ####################################################################################################################################################################################################
-    def regSnap(self, why, typ, dbg=1):
-        self.snapWhy  = why
-        self.snapType = typ
-        self.snapReg  = 1
-        if dbg: self.log(f'{self.LOG_ID:3} {self.snapId:3} {self.snapType:8} {self.snapWhy}')
+    def regSnap(self, typ, why, dbg=1):
+        self.snpC += 1
+        snapReq = [self.snpC, typ, why]
+        self.snapReqQ.put(snapReq)
+        if dbg: self.log(f'{self.LOG_ID=:3} sid={snapReq[0]} typ={snapReq[1]:6} why={snapReq[2]} Qlen={self.snapReqQ.qsize()}')
     ####################################################################################################################################################################################################
     def deleteGlob(self, g, why=Z):
         self.log(f'deleting {len(g)} files from glob {why=}')
@@ -2056,8 +2056,8 @@ class Tabs(pyglet.window.Window):
         if not CSV_FILE.closed:
             self.log(f'Flush & Close {CSV_FILE.name}', ff=True)
             CSV_FILE.flush()     ;    CSV_FILE.close()
-        csvPath  = utl.getFilePath(BASE_NAME,     BASE_PATH, fdir=CSVS, fsfx=CSV)
-        csvPath2 = utl.getFilePath(self.CSV_GFN,  BASE_PATH, fdir=None, fsfx=Z)
+        csvPath  = utl.getFilePath(BASE_NAME,    BASE_PATH, fdir=CSVS, fsfx=CSV)
+        csvPath2 = utl.getFilePath(self.CSV_GFN, BASE_PATH, fdir=None, fsfx=Z)
         csvPath3 = self.seqNumCsvPath
         self.log(f'Copying {CSV_FILE.name} to {csvPath2}', f=2)
         utl.copyFile(csvPath, csvPath2)

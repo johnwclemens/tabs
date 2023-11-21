@@ -138,6 +138,7 @@ def olog(o=None, p=1, f=1, s=Y, e=X, ff=1): #, ft=1):
 ########################################################################################################################################################################################################
 def filtText(text):
     text = text.replace('self', Z)
+    text = text.replace('tobj', Z)
     text = text.replace('util', Z)
     text = text.replace('fmtl', Z)
     text = text.replace('fmtm', Z)
