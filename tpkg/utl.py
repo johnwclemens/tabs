@@ -1,6 +1,7 @@
 import inspect, math, os, pathlib, sys, glob
 from   inspect import currentframe as cfrm
-
+import time
+from functools import wraps
 import pyglet
 import pyglet.window.key   as pygwink
 import pyglet.sprite       as pygsprt
@@ -59,6 +60,66 @@ def init(cfile, efile, lfile, tfile, f):
     slog(f'{ROOT_DIR=}', f=f)
     return   ARGS
 
+def OLD__timer(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        bgn    = time.time()
+        result = func(*args, **kwargs)
+        end    = time.time()
+        if args and kwargs: slog(f'{end-bgn:.6f} seconds {func.__name__}({fmtl(args)}, {fmtm(kwargs)}) = {result}')
+        elif kwargs:        slog(f'{end-bgn:.6f} seconds {func.__name__}({fmtm(kwargs)}) = {result}')
+        elif args:          slog(f'{end-bgn:.6f} seconds {func.__name__}({fmtl(args)}) = {result}')
+        else:               slog(f'{end-bgn:.6f} seconds {func.__name__}() = {result}')
+        return result
+    return wrapper
+
+def timer(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        bgn    = time.time()
+        result = func(*args, **kwargs)
+        end    = time.time()
+        if   args and len(args) > 1 and kwargs: slog(f'{end-bgn:.6f} seconds {__name__} {func.__name__}({fmtl(args, d=Z, s=Y)},{fmtm(kwargs, d=Z, s=Y)}) = {result}')
+        elif args and len(args) > 1:            slog(f'{end-bgn:.6f} seconds {func.__name__}({fmtl(args, d=Z, s=Y)}) = {result}')
+        elif args and kwargs:                   slog(f'{end-bgn:.6f} seconds {func.__name__}({args[0]},{fmtm(kwargs, d=Z, s=Y)}) = {result}')
+        elif args:                              slog(f'{end-bgn:.6f} seconds {func.__name__}({args[0]}) = {result}')
+        elif kwargs:                            slog(f'{end-bgn:.6f} seconds {func.__name__}({fmtm(kwargs, d=Z, s=Y)}) = {result}')
+        else:                                   slog(f'{end-bgn:.6f} seconds {func.__name__}() = {result}')
+        return result
+    return wrapper
+
+@timer
+def timerA(a=1, b=2, c=3):
+    return a + b + c
+
+def dbg1(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        slog(f'{func.__name__}({args} {kwargs})={result}')
+        return result
+    return wrapper
+
+def dbg0(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        slog(f'{func.__name__}({args} {kwargs})={result}', p=0, f=-2)
+        return result
+    return wrapper
+
+def memorize(func):
+    cache = {}
+    @wraps(func)
+    def wrapper(*args):
+        if args in cache:
+            return cache[args]
+        else:
+            result = func(*args)
+            cache[args] = result
+        return result
+    return wrapper
+    
 def paths():           return BASE_NAME, BASE_PATH, PATH
 ########################################################################################################################################################################################################
 def fri(f):            return int(math.floor(f + 0.5))
@@ -279,7 +340,7 @@ def initRGBs(f, dbg=0):
         slog(f'RGB{s}{fmtl(o, w=3,d=Z)}{t}Diffs  {t}Steps', p=0, f=f)
     initRGB('FSH', (255, aaa, 255), dbg=dbg)  # 0
     initRGB('PNK', (255, 128, 192), dbg=dbg)  # 1
-    initRGB('RED', (255, bbb, aaa), dbg=dbg)  # 2
+    initRGB('RED', (255, bbb, bbb), dbg=dbg)  # 2
     initRGB('RST', (255,  96,  10), dbg=dbg)  # 3
     initRGB('ORG', (255, 176, aaa), dbg=dbg)  # 5
     initRGB('PCH', (255, 160, 128), dbg=dbg)  # 4
@@ -289,7 +350,7 @@ def initRGBs(f, dbg=0):
     initRGB('TRQ', (aaa, 255, 192), dbg=dbg)  # 9
     initRGB('CYA', (aaa, 255, 255), dbg=dbg)  # 10
     initRGB('IND', (aaa, 180, 255), dbg=dbg)  # 11
-    initRGB('BLU', (bbb, aaa, 255), dbg=dbg)  # 12
+    initRGB('BLU', (bbb, bbb, 255), dbg=dbg)  # 12
     initRGB('VLT', (128, bbb, 255), dbg=dbg)  # 13
     initRGB('GRY', (255, 255, 255), dbg=dbg)  # 14
     initRGB('CL1', (ccc, aaa, 255), dbg=dbg)  # 15
@@ -378,7 +439,7 @@ def getFileSeqNum(files, sfx, dbg=0, dbg2=0):
     fsfx = f'.{sfx}'
     if len(files):
         if dbg2: slog(f'{sfx=} files={fmtl(files)}')
-        ids = [sid(s, fsfx) for s in files if s.endswith(fsfx) and isinstance(sid(s, fsfx), int)]
+        ids = [ sid(s, fsfx) for s in files if s.endswith(fsfx) and isinstance(sid(s, fsfx), int) ]
         if dbg:  slog(f'ids={fmtl(ids)}')
         i   = max(ids) if ids else 0
     return i

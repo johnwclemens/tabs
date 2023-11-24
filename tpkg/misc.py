@@ -66,3 +66,4 @@ class Modes:
 # O) why create page/line/sect for each zz?
 # P) maybe do not call resize() unless its visible
 # Q) register snap needs a list
+# R) revisit sharps & flats & chord names

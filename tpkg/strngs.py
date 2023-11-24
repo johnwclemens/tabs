@@ -48,10 +48,11 @@ class Strngs:
         if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} map={fmtm(self.map)}')
         return i
 
-    def tab2nn(self, tab, s, nic=None, dbg=1, f=-3):
+    def tab2nn(self, tab, s, t=None, nic=None, dbg=1, f=-3):
         fn  = self.tab2fn(tab)
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
+        if   t  is None:                 t = Notes.TYPE
         if  nic is None:               nic = Counter() # dict(key:int, val:int) kysgs.py: 0-11 vals: count
         else:
             nic[j]    += 1
@@ -69,6 +70,6 @@ class Strngs:
 #                       elif j ==  4: Notes.updNotes(j, 'Fb', 'E',   NotesA.TYPE, 0)
 #                       elif j ==  0: Notes.updNotes(j, 'C',  'B#',  NotesA.TYPE, 0)
                 if dbg and nict: nict = f'nic[{j:x}]={nic[j]} '  ;   slog(f'adding {nict}', f=f)
-        name = Notes.name(i, 1, 1)
+        name = Notes.name(i, t, 1) # do not hard code t=1 get note type (sharp/flat)
         if dbg and nict:        slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=f)
         return name

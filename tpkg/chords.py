@@ -91,7 +91,7 @@ class Chords:
             if self.sobj.isFret(_tabs[t]):
                 fn    = self.sobj.tab2fn(_tabs[t])
                 index = self.sobj.fn2ni(fn, t)
-                note  = self.sobj.tab2nn(_tabs[t], t, nic)
+                note  = self.sobj.tab2nn(_tabs[t], t, nic=nic)
                 if index: indices.append(index)
                 if note :   notes.append(note)   ;   mask.append(1)
                 else:        mask.append(0)
