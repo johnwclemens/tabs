@@ -47,7 +47,7 @@ class Modes:
 #fixme list:
 # A) all pages visible on startup despite all but one set to False
 #  1) only create pages as needed - saves memory and layout time - but not so clear how to impl?
-#  2) cycle through all the pages - works in sito by side effect = probably not a real solution?
+#  2) cycle through all the pages - works in situ by side effect = probably not a real solution?
 # B) pages in some cases do not display keystrokes interactively!
 # C) various tab movements are incorrect
 #  1) space/backspace

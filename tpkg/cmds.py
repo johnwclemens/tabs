@@ -481,7 +481,7 @@ class QuitCmd(Cmd):
     def __init__(self, tobj, why=Z, err=1, save=1, dbg=1):
         self.tobj, self.why, self.err, self.save, self.dbg = tobj, why, err, save, dbg
 
-    def do(  self): self._quit()
+    def do(  self): return self._quit()
     def undo(self): self._quit()
     
     def _quit(self):
@@ -559,18 +559,18 @@ class UpdateTniksCmd(Cmd):
         elif tobj.DSP_J_LEV == S:
             for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
                 for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
-                    if ll and not l:     tobj.resizeLLs(line, why)
+                    if ll and not l:     tobj.updateLLs(line, why)
                     for _ in             tobj.g_updateTniks(tobj.sects, S, line, why=why):  pass
         elif tobj.DSP_J_LEV == C:
             for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
                 for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
-                    if ll and not l:     tobj.resizeLLs(line, why)
+                    if ll and not l:     tobj.updateLLs(line, why)
                     for sect in          tobj.g_updateTniks(tobj.sects, S, line, why=why):  # pass
                         for _ in         tobj.g_updateTniks(tobj.colms, C, sect, why=why):  pass
         else:
             for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
                 for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
-                    if ll and not l:     tobj.resizeLLs(line, why)
+                    if ll and not l:     tobj.updateLLs(line, 1, why)
                     for s, sect in enumerate(tobj.g_updateTniks(tobj.sects, S, line, why=why)):  # pass
                         if zz: # and z is not None:
                             tobj.updateZZs(sect, s, z, why)
@@ -598,7 +598,7 @@ class SaveDataFileCmd(Cmd):
     def __init__(self, tobj, how, path, dbg=1):
         self.tobj, self.how, self.path, self.dbg = tobj, how, path, dbg
         
-    def do(  self): self._saveDataFile()
+    def do(  self): return self._saveDataFile()
     def undo(self): self._saveDataFile()
     
     def _saveDataFile(self):
@@ -765,7 +765,7 @@ class SnapshotCmd(Cmd):
     def __init__(self, tobj, sid, typ=Z, why=Z, dbg=1, dbg2=1): #fixme 11/18/23
         self.tobj, self.sid, self.typ, self.why, self.dbg, self.dbg2 = tobj, sid, typ, why, dbg, dbg2
         
-    def do(  self): self._snapshot()
+    def do(  self): return self._snapshot()
     def undo(self): self._snapshot()
     
     def _snapshot(self):
@@ -1048,15 +1048,16 @@ class TogLLsCmd(Cmd):
     
     def _togLLs(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
-        tobj.togLL()
-        msg2 = f'{how} {tobj.LL=}'
-        tobj.dumpGeom('BGN', f'     {msg2}')
+        if not tobj.LL: msg = 'ADD'
+        else:           msg = 'HID'
+        tobj.dumpGeom('BGN', f'{how} {msg}')
+        tobj.togLL(f'{how} {msg}')
         if dbg: tobj.log(f'    llText={fmtl(tobj.llText)}')
-#        if dbg: tobj.log(f'    llText={fmtl(tobj.llText[1-tobj.zzlen():])}')
-        if tobj.LL and not tobj.rowLs: msg = 'ADD'    ;   tobj.addLLs( how)
-        else:                          msg = 'HIDE'   ;   tobj.hideLLs(how)
+        if tobj.LL: tobj.addLLs( how)
+        else:       tobj.hideLLs(how)
+        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{msg}', how)
         tobj.on_resize(tobj.width, tobj.height)
-        tobj.dumpGeom('END', f'{msg} {msg2}')
+        tobj.dumpGeom('END', f'{how} {msg}')
 ########################################################################################################################################################################################################
 class TogPageCmd(Cmd):
     def __init__(self, tobj, how, a):
@@ -1101,9 +1102,9 @@ class TogTTsCmd(Cmd):
         tobj, how, tt = self.tobj, self.how, self.tt
         msg2 = f'{how} {tt=}'
         tobj.dumpGeom('BGN', f'     {msg2}')
-        if   tt not in tobj.SS and not tobj.B[tt]: msg = 'ADD'    ;   tobj.addTTs( how, tt)
-        elif tt     in tobj.SS:                    msg = 'HIDE'   ;   tobj.hideTTs(how, tt)
-        else:                                      msg = 'SKIP'   ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togTT(tt)
+        if   tt not in tobj.SS and not tobj.B[tt]: msg = 'ADD'   ;   tobj.addTTs( how, tt)
+        elif tt     in tobj.SS:                    msg = 'HID'   ;   tobj.hideTTs(how, tt)
+        else:                                      msg = 'SKP '  ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togTT(tt)
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
@@ -1151,8 +1152,8 @@ class TogZZsCmd(Cmd):
         assert z in (0, 1),  f'{z=} {tobj.zz=}'
         msg2 = f'{how} {z=}'
         tobj.dumpGeom('BGN', f'     {msg2}')
-        if   z not in tobj.ZZ:     msg = f'Add.{tobj.addC}'    ;   tobj.addZZs(   z, how) # tobj.addingz = 1
-        else:                      msg = f'Rmv.{tobj.remC}'    ;   tobj.removeZZs(z, how) # tobj.addingz = 0
+        if   z not in tobj.ZZ:     msg = f'ADD.{tobj.addC}'    ;   tobj.addZZs(   z, how) # tobj.addingz = 1
+        else:                      msg = f'HID.{tobj.remC}'    ;   tobj.removeZZs(z, how) # tobj.addingz = 0
         if   tobj.SNAPS >= 3:      tobj.regSnap(f'{msg}.{z}', how)
         tobj.on_resize(tobj.width, tobj.height, z=z)
         tobj.dumpGeom('END', f'{msg} {msg2}')

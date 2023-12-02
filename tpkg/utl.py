@@ -36,7 +36,7 @@ BGC, BOLD, COLOR, FONT_NAME, FONT_SIZE, ITALIC, KERNING, UNDERLINE = 'background
 MAX_FREQ_IDX          = 10 * 12 + 1
 MAX_STACK_DEPTH       = 0
 MAX_STACK_FRAME       = inspect.stack()
-INIT, FINI            = 'INIT', 'FINI'
+INIT, FINI            = 'INIT', 'FIN'
 RGB       = {}
 #             0   1   2   3   4   5   6    7    8    9   10   11   12   13   14   15   16   17
 OPC       = [ 0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 170, 195, 210, 225, 240, 255 ]
@@ -79,7 +79,7 @@ def timer(func):
         bgn    = time.time()
         result = func(*args, **kwargs)
         end    = time.time()
-        if   args and len(args) > 1 and kwargs: slog(f'{end-bgn:.6f} seconds {__name__} {func.__name__}({fmtl(args, d=Z, s=Y)},{fmtm(kwargs, d=Z, s=Y)}) = {result}')
+        if   args and len(args) > 1 and kwargs: slog(f'{end-bgn:.6f} seconds {func.__name__}({fmtl(args, d=Z, s=Y)},{fmtm(kwargs, d=Z, s=Y)}) = {result}')
         elif args and len(args) > 1:            slog(f'{end-bgn:.6f} seconds {func.__name__}({fmtl(args, d=Z, s=Y)}) = {result}')
         elif args and kwargs:                   slog(f'{end-bgn:.6f} seconds {func.__name__}({args[0]},{fmtm(kwargs, d=Z, s=Y)}) = {result}')
         elif args:                              slog(f'{end-bgn:.6f} seconds {func.__name__}({args[0]}) = {result}')
