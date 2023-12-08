@@ -76,7 +76,7 @@ def test0(tobj, a=3.14159265359, n=4, q=0):
     slog(f'END test0 {a=} {n=} {q=}')
 
 def test1(tobj, amap, mmap, q=0):
-    slog(f'{tobj.ntnsnl()=}')
+    slog(f'{tobj.nlnsnt()=}')
     slog(f'{utl.fmtm(amap)}')
     slog(f'{  amap["LLBL"]}', p=0)
     slog(f'   j(TI)={Y.join(amap["TI"])};')

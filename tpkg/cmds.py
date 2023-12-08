@@ -527,60 +527,6 @@ class ResetCmd(Cmd):
         tobj._reinit()            # todo fixme
         tobj.dumpGeom('END', f'{how} after reinit()')
 ########################################################################################################################################################################################################
-class UpdateCursorCmd(Cmd):
-    def __init__(self, tobj, why, dbg=1):
-        self.tobj, self.why, self.dbg = tobj, why, dbg
-        
-    def do(  self): self._updateCursor()
-    def undo(self): self._updateCursor() # todo fixme
-    
-    def _updateCursor(self):
-        tobj, why, dbg = self.tobj, self.why, self.dbg
-        x, y, w, h, c = tobj.cc2xywh()
-        tobj.updateTnik(tobj.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
-########################################################################################################################################################################################################
-class UpdateTniksCmd(Cmd):
-    def __init__(self, tobj, how, z=None, dbg=1):
-        self.tobj, self.how, self.z, self.dbg = tobj, how, z, dbg
-        
-    def do(  self): self._updateTniks()
-    def undo(self): self._updateTniks()
-    
-    def _updateTniks(self):
-        tobj, z, dbg = self.tobj, self.z, self.dbg
-        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL   ;   zz = tobj.ZZ
-        tobj.updView(len(tobj.ZZ), tobj.LL)
-        tobj.dumpTniksPfx(why)
-        if   tobj.DSP_J_LEV == P:
-            for _ in                     tobj.g_updateTniks(tobj.pages, P, None, why=why):  pass
-        elif tobj.DSP_J_LEV == L:
-            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
-                for _ in                 tobj.g_updateTniks(tobj.lines, L, page, why=why):  pass
-        elif tobj.DSP_J_LEV == S:
-            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
-                for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
-                    if ll and not l:     tobj.updateLLs(line, why)
-                    for _ in             tobj.g_updateTniks(tobj.sects, S, line, why=why):  pass
-        elif tobj.DSP_J_LEV == C:
-            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
-                for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
-                    if ll and not l:     tobj.updateLLs(line, why)
-                    for sect in          tobj.g_updateTniks(tobj.sects, S, line, why=why):  # pass
-                        for _ in         tobj.g_updateTniks(tobj.colms, C, sect, why=why):  pass
-        else:
-            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
-                for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
-                    if ll and not l:     tobj.updateLLs(line, 1, why)
-                    for s, sect in enumerate(tobj.g_updateTniks(tobj.sects, S, line, why=why)):  # pass
-                        if zz: # and z is not None:
-                            tobj.updateZZs(sect, s, z, why)
-                        for colm in      tobj.g_updateTniks(tobj.colms, C, sect, why=why):  # pass
-                            for _ in     tobj.g_updateTniks(tobj.tabls, T, colm, why=why):  pass
-        tobj.dumpTniksSfx(why)
-        if tobj.CURSOR and tobj.cursor:  cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
-        if dbg and tobj.SNAPS >= 10:     tobj.regSnap(f'UPD.{tobj.updC}', why)
-        if dbg:    tobj.dumpStruct(why) # , dbg=dbg)
-########################################################################################################################################################################################################
 class RotSprCmd(Cmd):
     def __init__(self, tobj, how, spr, cw=1):
         self.tobj, self.how, self.spr, self.cw = tobj, how, spr, cw
@@ -1177,4 +1123,58 @@ class UnselectTabsCmd(Cmd):
         elif dbg:           tobj.log(f'{cn=} not found in smap={fmtm(tobj.smap)}')
         if m:               cmd = MoveCmd(tobj, how, m)     ;  cmd.do()
         if dbg:             tobj.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
+########################################################################################################################################################################################################
+class UpdateCursorCmd(Cmd):
+    def __init__(self, tobj, why, dbg=1):
+        self.tobj, self.why, self.dbg = tobj, why, dbg
+        
+    def do(  self): self._updateCursor()
+    def undo(self): self._updateCursor() # todo fixme
+    
+    def _updateCursor(self):
+        tobj, why, dbg = self.tobj, self.why, self.dbg
+        x, y, w, h, c = tobj.cc2xywh()
+        tobj.updateTnik(tobj.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
+########################################################################################################################################################################################################
+class UpdateTniksCmd(Cmd):
+    def __init__(self, tobj, how, z=None, dbg=1):
+        self.tobj, self.how, self.z, self.dbg = tobj, how, z, dbg
+        
+    def do(  self): self._updateTniks()
+    def undo(self): self._updateTniks()
+    
+    def _updateTniks(self):
+        tobj, z, dbg = self.tobj, self.z, self.dbg
+        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL   ;   zz = tobj.ZZ
+        tobj.updView(len(tobj.ZZ), tobj.LL * tobj.n[L])
+        tobj.dumpTniksPfx(why)
+        if   tobj.DSP_J_LEV == P:
+            for _ in                     tobj.g_updateTniks(tobj.pages, P, None, why=why):  pass
+        elif tobj.DSP_J_LEV == L:
+            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
+                for _ in                 tobj.g_updateTniks(tobj.lines, L, page, why=why):  pass
+        elif tobj.DSP_J_LEV == S:
+            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
+                for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
+                    if ll and not l:     tobj.updateLLs(line, 1, why)
+                    for _ in             tobj.g_updateTniks(tobj.sects, S, line, why=why):  pass
+        elif tobj.DSP_J_LEV == C:
+            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
+                for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
+                    if ll and not l:     tobj.updateLLs(line, 1, why)
+                    for sect in          tobj.g_updateTniks(tobj.sects, S, line, why=why):  # pass
+                        for _ in         tobj.g_updateTniks(tobj.colms, C, sect, why=why):  pass
+        else:
+            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
+                for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
+                    if ll:               tobj.updateLLs(line, 1, why)
+                    for s, sect in enumerate(tobj.g_updateTniks(tobj.sects, S, line, why=why)):  # pass
+                        if zz: # and z is not None:
+                            tobj.updateZZs(sect, s, z, why)
+                        for colm in      tobj.g_updateTniks(tobj.colms, C, sect, why=why):  # pass
+                            for _ in     tobj.g_updateTniks(tobj.tabls, T, colm, why=why):  pass
+        tobj.dumpTniksSfx(why)
+        if tobj.CURSOR and tobj.cursor:  cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
+        if dbg and tobj.SNAPS >= 10:     tobj.regSnap(f'UPD.{tobj.updC}', why)
+        if dbg:    tobj.dumpStruct(why) # , dbg=dbg)
 ########################################################################################################################################################################################################
