@@ -59,7 +59,7 @@ if [[ -d "$root" ]]; then
     echo exts=\( cat    csv    evn    dat    log    png    std    txt\)
     exts=(     ".cat" ".csv" ".evn" ".dat" ".log" ".png" ".std" ".txt")
 
-    echo "... Removing Files from root dir $root ..."
+    echo "... Removing Files that match $exts from root dir $root ..."
     for ext in "${exts[@]}"; do
         fileHits=()
         while IFS= read -r -d $'\0'; do

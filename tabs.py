@@ -152,7 +152,7 @@ class Tabs(pyglet.window.Window):
         if 'g' in ARGS  and len(ARGS['g']) == 0: self.ORD_GRP    =  1
         if 'G' in ARGS  and len(ARGS['G']) == 0: self.GEN_DATA   =  1
         if 'i' in ARGS  and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
-        if 'j' in ARGS  and len(ARGS['j']) == 0: self.DRAW_BGC   =  1
+        if 'j' in ARGS  and len(ARGS['j'])  > 0: self.DRAW_BGC   =   int(ARGS['j'][0])
         if 'J' in ARGS  and len(ARGS['J'])  > 0: self.DSP_J_LEV  =   int(ARGS['J'][0])
         if 'l' in ARGS  and len(ARGS['l']) == 0: self.LONG_TXT   =  1
         if 'L' in ARGS  and len(ARGS['L']) == 0: self.LL         =  1
@@ -1079,7 +1079,8 @@ class Tabs(pyglet.window.Window):
         if   n == 0:     n = 1        ;   self.log(f'ERROR n=0 setting {n=}')
         i                  = i if i is not None else self.i[j]
         a, b               = self.axWgt(self.ax), self.ayWgt(self.ay)   ;   d = 1-b   ;   dn = nr - nsnt
-        px, py, pw, ph     = (a*vw, vy, vw, vh) if p is None else (p.x, p.y, p.width, p.height) # ;  phn = ph/n # ;  ph_nr = ph/nr # ;  ph_n_nr = ph_n/nr
+#        px, py, pw, ph     = (a*vw, vy if nl==2 else b*vh, vw, vh) if p is None else (p.x, p.y, p.width, p.height)
+        px, py, pw, ph     = (a*vw, b*vh if nl==1 else vy, vw, vh) if p is None else (p.x, p.y, p.width, p.height)
         if   j == P:     w = pw               ;  h = ph       ;    px += vx # ;  py -= vy
         elif j == L:     w = pw               ;  h = ph/n # - dn*ph_n_nr
         elif j == R:     w = pw               ;  h = ph/n
@@ -1092,7 +1093,7 @@ class Tabs(pyglet.window.Window):
         elif j == R:     x = px - a*pw + a*w  ;  y = self.height - h/2 if not self.J1[L] else self.height/2 - h/2
 #       elif j == Q:     x = px - a*pw + a*w  ;  y = vh - h/2
         elif j == S:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h
-        elif j == T:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h # -dn*ph/nr
+        elif j == T:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h # - dn*ph/nr
         elif j in c:     x = vx + a*w         ;  y = py + b*ph - b*h
         else:            assert 0,  f'{j=}'   
         if dbg: # and self.VERBY >= 2:
@@ -1236,12 +1237,12 @@ class Tabs(pyglet.window.Window):
         self.updView(len(self.ZZ), self.LL * nl)
         p = self.pages[0]
         self.updateTnik(self.pages, 0, P, p.x, p.y, p.width, p.height*n/m, why, dbg=1)
-#        self.updateTnik(self.pages, 0, P, p.x, p.y-p.y/m, p.width, p.height*n/m, why, dbg=1)
         if self.isJV(P):
             for li, l in enumerate(self.lines):
-                self.log(f'{li=} {len(self.rowLs)=} {l.y=:7.2f} {m=} {l.y*n/m=:7.2f} {l.height=:7.2f} {n=} {l.height*n/m=:7.2f}')
-                self.updateTnik(self.lines, li, L, l.x, l.height+l.height*n/m/2, l.width, l.height*n/m, why, dbg=1)
-#                self.updateTnik(self.lines, li, L, l.x, l.y-l.y/m, l.width, l.height*n/m, why, dbg=1)
+#                self.log(f'{li=} {len(self.rowLs)=} {l.y=:7.2f} {m=} {l.y+li*p.height/4=:7.2f} {l.height=:7.2f} {n=} {l.height*n/m=:7.2f}')
+#                self.updateTnik(self.lines, li, L, l.x, l.y+li*p.height/4, l.width, p.height/2, why, dbg=1)
+                self.log(f'{li=} {len(self.rowLs)=} {l.y=:7.2f} {m=} {p.y-p.height/m/2=:7.2f} {l.height=:7.2f} {n=} {l.height*n/m=:7.2f}')
+                self.updateTnik(self.lines, li, L, l.x, p.y-p.height/m/2, l.width, l.height*n/m, why, dbg=1)
                 if len(self.rowLs) <= li+1: self.createLLs(l, li, why)
                 elif   self.rowLs:          self.updateLLs(l, 1,  why)
         self.dumpTniksSfx(why2)
