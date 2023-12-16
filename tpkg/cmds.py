@@ -981,6 +981,7 @@ class TogKordNamesCmd(Cmd):
         ikeys, ivals, notes2, chordName, chunks, rank = limap[imi]
         if tobj.ikeys and ikeys:                tobj.setIkeyText(ikeys, cc, p, l, c)
         if tobj.kords and chordName and chunks: tobj.setChordName(cc, chordName, chunks)
+        if tobj.SNAPS >= 6:      tobj.regSnap(f'KRD{imi}', how)
         elif dbg: tobj.log(f'    {how} {cn=} {cc=} is NOT a chord')
         if dbg2:  tobj.cobj.dumpImap(limap[imi], why=f'{cn:2}')
 #        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
@@ -1050,7 +1051,8 @@ class TogTTsCmd(Cmd):
         tobj.dumpGeom('BGN', f'     {msg2}')
         if   tt not in tobj.SS and not tobj.B[tt]: msg = 'ADD'   ;   tobj.addTTs( how, tt)
         elif tt     in tobj.SS:                    msg = 'HID'   ;   tobj.hideTTs(how, tt)
-        else:                                      msg = 'SKP '  ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togTT(tt)
+        else:                                      msg = 'SHW'   ;   tobj.showTTs(how, tt)
+#        else:                                      msg = 'SKP '  ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togTT(tt)
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
@@ -1137,14 +1139,15 @@ class UpdateCursorCmd(Cmd):
         tobj.updateTnik(tobj.hcurs, 0, H, x, y, w, h, why=why, dbg=dbg)
 ########################################################################################################################################################################################################
 class UpdateTniksCmd(Cmd):
-    def __init__(self, tobj, how, z=None, dbg=1):
-        self.tobj, self.how, self.z, self.dbg = tobj, how, z, dbg
+    def __init__(self, tobj, how, w, h, z=None, dbg=1):
+        self.tobj, self.how, self.w, self.h, self.z, self.dbg = tobj, how, w, h, z, dbg
         
     def do(  self): self._updateTniks()
     def undo(self): self._updateTniks()
     
     def _updateTniks(self):
         tobj, z, dbg = self.tobj, self.z, self.dbg
+        if self.w is not None and self.h is not None:        pyglet.window.Window.on_resize(tobj, self.w, self.h)
         tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL   ;   zz = tobj.ZZ
         tobj.updView(len(tobj.ZZ), tobj.LL * tobj.n[L])
         tobj.dumpTniksPfx(why)
@@ -1165,14 +1168,13 @@ class UpdateTniksCmd(Cmd):
                     for sect in          tobj.g_updateTniks(tobj.sects, S, line, why=why):  # pass
                         for _ in         tobj.g_updateTniks(tobj.colms, C, sect, why=why):  pass
         else:
-            for page in                  tobj.g_updateTniks(tobj.pages, P, None, why=why):  # pass
-                for l, line in enumerate(tobj.g_updateTniks(tobj.lines, L, page, why=why)): # pass
-                    if ll:               tobj.updateLLs(line, 1, why)
-                    for s, sect in enumerate(tobj.g_updateTniks(tobj.sects, S, line, why=why)):  # pass
-                        if zz: # and z is not None:
-                            tobj.updateZZs(sect, s, z, why)
-                        for colm in      tobj.g_updateTniks(tobj.colms, C, sect, why=why):  # pass
-                            for _ in     tobj.g_updateTniks(tobj.tabls, T, colm, why=why):  pass
+            for page in                      tobj.g_newUpdTniks(tobj.pages, P, nw=0, pt=None, why=why):  # pass
+                for l, line in enumerate(    tobj.g_newUpdTniks(tobj.lines, L, nw=0, pt=page, why=why)): # pass
+                    if ll:                   tobj.updateLLs(line, 1, why)
+                    for s, sect in enumerate(tobj.g_newUpdTniks(tobj.sects, S, nw=0, pt=line, why=why)):  # pass
+                        if zz:               tobj.updateZZs(sect, s, z, why)
+                        for colm in          tobj.g_newUpdTniks(tobj.colms, C, nw=0, pt=sect, why=why):  # pass
+                            for _ in         tobj.g_newUpdTniks(tobj.tabls, T, nw=0, pt=colm, why=why):  pass
         tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor:  cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
         if dbg and tobj.SNAPS >= 10:     tobj.regSnap(f'UPD.{tobj.updC}', why)

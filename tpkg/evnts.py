@@ -169,8 +169,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif k == 'V' and isAlt(   d, m):      cmd = cmds.TogVisibleCmd(   tobj, '& V')                 ;  cmd.do() 
     elif k == 'W' and isAltShf(d, m):      cmd = cmds.SwapTabCmd(      tobj, '&^W', txt=Z)          ;  cmd.do()
     elif k == 'W' and isAlt(   d, m):      cmd = cmds.SwapTabCmd(      tobj, '& W', txt=Z)          ;  cmd.do()
-    elif k == 'Z' and isAltShf(d, m):      cmd = cmds.UpdateTniksCmd(  tobj, '&^Z')                        ;  cmd.do()
-    elif k == 'Z' and isAlt(   d, m):      cmd = cmds.UpdateTniksCmd(  tobj, '& Z')                        ;  cmd.do()
+    elif k == 'Z' and isAltShf(d, m):      cmd = cmds.UpdateTniksCmd(  tobj, '&^Z', tobj.width, tobj.height)   ;  cmd.do()
+    elif k == 'Z' and isAlt(   d, m):      cmd = cmds.UpdateTniksCmd(  tobj, '& Z', tobj.width, tobj.height)   ;  cmd.do()
     ####################################################################################################################################################################################################
     elif k == 'B' and isAltShf(d, m):      cmd = cmds.SetFontArgCmd(   tobj, '&^B', BOLD,      not fontBold,   'fontBold')     ;  cmd.do()
     elif k == 'B' and isAlt(   d, m):      cmd = cmds.SetFontArgCmd(   tobj, '& B', BOLD,      not fontBold,   'fontBold')     ;  cmd.do()
@@ -259,7 +259,11 @@ def on_move(tobj, x, y, dbg=1):
     if dbg: slog(f'{fxy(x, y)} {retv=} {tobj}')
     return True
 
-#def on_resize(tobj, width, height, dbg=1):
+def on_resize(tobj, w, h, z, dbg=1):
+    assert z in (0, 1, None),  f'{z=}'
+    if tobj.RESIZE:
+        cmd = cmds.UpdateTniksCmd(tobj, 'on_resize()', w, h, z, dbg)     ;  cmd.do()
+    return True
 #    super(type(tobj), tobj).on_resize(width, height)
 #    if tobj.RESIZE: tobj.resizeTniks(dbg)
 #    return True

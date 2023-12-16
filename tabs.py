@@ -110,7 +110,7 @@ class Tabs(pyglet.window.Window):
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg      = Z
         self.newC          = 0   ;   self.updC      = 0    ;   self.addC         = 0
         self.remC          = 0   ;   self.cpyC      = 0    ;   self.pstC         = 0
-        self.snpC          = 0   ;   self.delC      = 0
+        self.shwC          = 0   ;   self.snpC      = 0    ;   self.delC         = 0
         self.sprs          = []  ;   self.undoStack = []   ;   self.idmap        = {}
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
         self.snapReqQ      = queue.SimpleQueue()
@@ -382,9 +382,10 @@ class Tabs(pyglet.window.Window):
         self.updView(nx, ny)
         self.viewX0, self.viewY0, self.viewW0, self.viewH0 = self.viewX, self.viewY, self.viewW, self.viewH
 
-    def updView(self, nx=0, ny=0):
+    def updView(self, nx=0, ny=0, n=None):
         nc = self.n[C]     + nx
-        nt = self.nlnsnt() + ny
+        n  = self.nlnsnt() if n is None else n
+        nt = n + ny
         x  = self.width  * nx/nc
         y  = self.height * ny/nt # if ny<=1 else self.height/nt
         self.viewX,  self.viewY,  self.viewW,  self.viewH  = x, self.height/2, self.width-x, self.height-y
@@ -986,32 +987,162 @@ class Tabs(pyglet.window.Window):
         self.LL = int(not self.LL)
         self.dumpGeom('AFT', why)
     ####################################################################################################################################################################################################
-    def hideTTs(self, how, ii, dbg=1):
+    def hideTTs(self, how, ii, dbg=0):
         why = f'Rem{self.remC} {how} {ii=}'  ;  why2 = 'Ref'
-        np, nl, ns, nc, nt = self.n #  ;   nc += self.zzl()
+        np, nl, ns, nc, nt = self.n
+        self.updView(len(self.ZZ), self.LL*nl, nl*(ns-1)*nt)
         self.dumpTniksPfx(why)
-        for p in range(np):
-            self.setJdump(P, p, why=why2) # p
-            for l in range(nl):
-                self.setJdump(L, l, why=why2) # l
-                for _, s in   enumerate( self.ss2sl()):
-                    if s != ii:          self.setJdump(  S, s, why=why2)
-                    else:                self.removeTnik(self.sects,   p*nl + l,            S, dbg=dbg)
-                    for c in range(nc):
-                        if s != ii:      self.setJdump(  C, c, why=why2)
-                        else:            self.removeTnik(self.colms,   (p*nl + l)*nc + c,   C, dbg=dbg)
-                        for t in range(nt):
-                            tlist, j, _, _  =  self.tnikInfo(p, l, s, c)
-                            if s != ii:  self.setJdump(  j, t, why=why2)
-                            else:        self.removeTnik(tlist, ((p*nl + l)*nc + c)*nt + t, j, dbg=dbg)
-        if ii == TT:                     self.removeTnik(self.hcurs,                     0, H, dbg=dbg)
+        pn, pi, px, py, pw, ph =                self.geom(    P, None, i=self.i[P], dbg=1)
+        for pp in range(np):
+            self.updateTnik(self.pages, pp, P, px, py, pw, ph, why2, dbg=1)
+            ln, li, lx, ly, lw, lh =             self.geom(    L, self.pages[pp], i=self.i[L], dbg=1)
+            for ll in range(nl):
+                self.updateTnik(self.lines, pp*nl + ll, L, lx, ly, lw, lh, why2, dbg=1)
+                sn, si, sx, sy, sw, sh =         self.geom(    S, self.lines[pp*nl + ll], len(self.SS)-1, i=self.i[S], dbg=1)
+                for s2, ss in enumerate(self.ss2sl()):
+                    sy2 = sy - s2 * sh
+                    if ss == ii:                 self.removeTnik(self.sects, pp*nl + s2, S, dbg)
+                    else:                        self.updateTnik(self.sects, pp*nl + s2, S, sx, sy2, sw, sh, why2, dbg=1)
+                    cn, ci, cx, cy, cw, ch =     self.geom(    C, self.sects[pp*nl + s2], i=self.i[C], dbg=1)
+                    for cc in range(nc):
+                        cx2 = cx + cc * cw
+                        if ss == ii:             self.removeTnik(self.colms, (pp*nl + ll)*nc + cc, C, dbg)
+                        else:                    self.updateTnik(self.colms, (pp*nl + ll)*nc + cc, C, cx2, cy, cw, ch, why2, dbg=1)
+                        tn, ti, tx, ty, tw, th = self.geom(    T, self.colms[(pp*nl + ll)*nc + cc], i=self.i[T], dbg=1)
+                        for tt in range(nt):
+                            tlist, j, _, _  =    self.tnikInfo(pp, ll, ss, cc)
+                            ty2 = ty - tt * th
+                            if ss == ii:         self.removeTnik(self.B[ss], ((pp*nl + ll)*nc + cc)*nt + tt, j, dbg)
+                            else:                self.updateTnik(self.B[ss], ((pp*nl + ll)*nc + cc)*nt + tt, j, tx, ty2, tw, th, why2, dbg=1)
+        if ii == TT:                             self.removeTnik(self.hcurs, 0, H, dbg)
+        self.dumpTniksSfx(why)
+        self.togTT(ii)
+    
+    def NEW__hideTTs(self, how, ii, dbg=0):
+        why = f'Rem{self.remC} {how} {ii=}'
+        self.dumpTniksPfx(why)
+        for page in                      self.g_updateTniks(self.pages, P, None, why=why):  # pass
+            for l, line in enumerate(    self.g_updateTniks(self.lines, L, page, why=why)): # pass
+                for s, sect in enumerate(self.g_updateTniks(self.sects, S, line, why=why)):  # pass
+                    for colm in          self.g_updateTniks(self.colms, C, sect, why=why):  # pass
+                        for _ in         self.g_updateTniks(self.tabls, T, colm, why=why):  pass
+        if ii == TT:                     self.removeTnik(   self.hcurs, 0, H, dbg)
+        self.dumpTniksSfx(why)
+        self.togTT(ii)
+        
+    def OLD__hideTTs(self, how, ii, dbg=0):
+        why = f'Rem{self.remC} {how} {ii=}'  ;  why2 = 'Upd'
+        np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(why)
+        self.updView(len(self.ZZ), self.LL * nl)
+        for pp in range(np):
+            self.setJdump(P, pp, why=why2)
+            for ll in range(nl):
+                l = self.lines[ll]   ;   self.setJdump(L, ll, why=why2)
+                sn, si, sx, sy, sw, sh = self.geom(S, l, i=self.i[S], dbg=1)
+                for s2, ss in enumerate(self.ss2sl()): # self.setJdump(  S, s, why=why2)
+                    s = self.sects[pp*nl + s2]
+                    if ss == ii:                     self.removeTnik(self.sects, pp*nl + s2, S, dbg=dbg)
+                    else:                            self.updateTnik(self.sects, s2, S, sx, sy, sw, sh, why2, dbg=1)
+#                    else:                           self.updateTnik(self.sects, s2, S, s.x, l.y, s.width, l.height, why2, dbg=1)
+                    cn, ci, cx, cy, cw, ch = self.geom(C, s, i=self.i[C], dbg=1)
+                    for cc in range(nc):
+                        c = self.colms[(pp*nl + ll)*nc + cc]
+                        if ss == ii:                 self.removeTnik(self.colms, (pp*nl + ll)*nc + cc, C, dbg=dbg)
+                        else:                        self.updateTnik(self.colms, (pp*nl + ll)*nc + cc, C, cx, cy, cw, ch, why2, dbg=1)
+#                        else:                       self.updateTnik(self.colms, cc, C, c.x, s.y, c.width, s.height, why2, dbg=1)
+                        tn, ti, tx, ty, tw, th = self.geom(T, c, i=self.i[T], dbg=1)
+                        for tt in range(nt):
+                            tlist, j, _, _  = self.tnikInfo(pp, ll, ss, cc)
+#                            t = self.tabls[((pp*nl + ll)*nc + cc)*nt + tt]
+                            if ss == ii:             self.removeTnik(self.tabls, ((pp*nl + ll)*nc + cc)*nt + tt, j, dbg=dbg)
+                            else:                    self.updateTnik(self.tabls, ((pp*nl + ll)*nc + cc)*nt + tt, j, tx, ty, tw, th, why2, dbg=1)
+#                            else:                   self.updateTnik(self.tabls, tt, j, t.x, c.y, t.width, c.height/nt, why2, dbg=1)
+        if ii == TT:                                 self.removeTnik(self.hcurs,                0,                      H, dbg=dbg)
+        self.dumpTniksSfx(why)
+        self.togTT(ii)
+
+    def showTTs(self, how, ii, dbg=0):
+        why = f'Shw{self.shwC} {how} {ii=}'  ;  why2 = 'Ref'
+        np, nl, ns, nc, nt = self.n
+        self.updView(len(self.ZZ), self.LL*nl, nl*ns*nt)
+        self.dumpTniksPfx(why)
+        pn, pi, px, py, pw, ph =                self.geom(    P, None, i=self.i[P], dbg=1)
+        for pp in range(np):
+            self.updateTnik(self.pages, pp, P, px, py, pw, ph, why2, dbg=1)
+            ln, li, lx, ly, lw, lh =             self.geom(    L, self.pages[pp], i=self.i[L], dbg=1)
+            for ll in range(nl):
+                self.updateTnik(self.lines, pp*nl + ll, L, lx, ly, lw, lh, why2, dbg=1)
+                sn, si, sx, sy, sw, sh =         self.geom(    S, self.lines[pp*nl + ll], len(self.SS)-1, i=self.i[S], dbg=1)
+                for s2, ss in enumerate(self.ss2sl()):
+                    sy2 = sy - s2 * sh
+                    if ss == ii:                self.showThik(  self.sects, pp*nl + s2, S, dbg)
+                    else:                       self.updateTnik(self.sects, pp*nl + s2, S, sx, sy2, sw, sh, why2, dbg=1)
+                    cn, ci, cx, cy, cw, ch =     self.geom(   C, self.sects[pp*nl + s2], i=self.i[C], dbg=1)
+                    for cc in range(nc):
+                        cx2 = cx + cc * cw
+                        if ss == ii:             self.showTnik(  self.colms, (pp*nl + ll)*nc + cc, C, dbg)
+                        else:                    self.updateTnik(self.colms, (pp*nl + ll)*nc + cc, C, cx2, cy, cw, ch, why2, dbg=1)
+                        tn, ti, tx, ty, tw, th = self.geom(   T, self.colms[(pp*nl + ll)*nc + cc], i=self.i[T], dbg=1)
+                        for tt in range(nt):
+                            tlist, j, _, _  =    self.tnikInfo(pp, ll, ss, cc)
+                            ty2 = ty - tt * th
+                            if ss == ii:         self.showTnik(  self.B[ss], ((pp*nl + ll)*nc + cc)*nt + tt, j, dbg)
+                            else:                self.updateTnik(self.B[ss], ((pp*nl + ll)*nc + cc)*nt + tt, j, tx, ty2, tw, th, why2, dbg=1)
         self.dumpTniksSfx(why)
         self.togTT(ii)
     ####################################################################################################################################################################################################
     def addTTs(self, how, ii):
-        why = f'ADD {how} {ii=}'  ;  why2 = 'Ref'
+        why = f'Add{self.addC} {how} {ii=}'  ;  why2 = f'Add{self.addC}'
+        np, nl, ns, nc, nt = self.n
         self.togTT(ii)
-        np, nl, ns, nc, nt = self.n #  ;   nc += self.zzl()
+        self.updView(len(self.ZZ), self.LL, nl*ns*nt)
+        self.dumpTniksPfx(why)
+        for page in              self.g_newUpdTniks(self.pages, P, nw=0, pt=None, why=why2, dbg=1):
+            for line in          self.g_newUpdTniks(self.lines, L, nw=0, pt=page, why=why2, dbg=1):
+                for sect in      self.g_newUpdTniks(self.sects, S, nw=1, pt=line, why=why2, dbg=1):
+                    for colm in  self.g_newUpdTniks(self.colms, C, nw=1, pt=sect, why=why2, dbg=1):
+                        for _ in self.g_newUpdTniks(self.tabls, T, nw=1, pt=colm, why=why2, dbg=1): pass
+        if self.CURSOR and self.tabls and not self.cursor: self.createCursor(why)
+        self.dumpTniksSfx(why)
+#        self.togTT(ii)
+
+    def OLD_B_addTTs(self, how, ii):
+        why = f'Add{self.addC} {how} {ii=}'  ;  why2 = 'Ref'
+        np, nl, ns, nc, nt = self.n
+        self.togTT(ii)
+        self.updView(len(self.ZZ), self.LL, nl*ns*nt)
+        self.dumpTniksPfx(why)
+        pn, pi, px, py, pw, ph =                 self.geom(   P, None, i=self.i[P], dbg=1)
+        for pp in range(np):
+            self.updateTnik(self.pages, pp, P, px, py, pw, ph, why2, dbg=1)
+            ln, li, lx, ly, lw, lh =             self.geom(   L, self.pages[pp], i=self.i[L], dbg=1)
+            for ll in range(nl):
+                self.updateTnik(self.lines, pp*nl + ll, L, lx, ly, lw, lh, why2, dbg=1)
+                sn, si, sx, sy, sw, sh =         self.geom(   S, self.lines[pp*nl + ll], i=self.i[S], dbg=1)
+                for s2, ss in enumerate(self.ss2sl()):
+                    sy2 = sy - s2 * sh
+                    if ss == ii:                 self.createTnik(self.sects, pp*nl + s2, S, sx, sy2, sw, sh, why,  dbg=1)
+                    else:                        self.updateTnik(self.sects, pp*nl + s2, S, sx, sy2, sw, sh, why2, dbg=1)
+                    cn, ci, cx, cy, cw, ch =     self.geom(   C, self.sects[pp*nl + s2], i=self.i[C], dbg=1)
+                    for cc in range(nc):
+                        cx2 = cx + cc * cw
+                        if ss == ii:             self.createTnik(self.colms, (pp*nl + ll)*nc + cc, C, cx2, cy, cw, ch, why,  dbg=1)
+                        else:                    self.updateTnik(self.colms, (pp*nl + ll)*nc + cc, C, cx2, cy, cw, ch, why2, dbg=1)
+                        tn, ti, tx, ty, tw, th = self.geom(   T, self.colms[(pp*nl + ll)*nc + cc], i=self.i[T], dbg=1)
+                        for tt in range(nt):
+                            tlist, j, _, _  =    self.tnikInfo(pp, ll, ss, cc)
+                            ty2 = ty - tt * th
+                            if ss == ii:         self.createTnik(self.B[ss], ((pp*nl + ll)*nc + cc)*nt + tt, j, tx, ty2, tw, th, why,  dbg=1)
+                            else:                self.updateTnik(self.B[ss], ((pp*nl + ll)*nc + cc)*nt + tt, j, tx, ty2, tw, th, why2, dbg=1)
+        if self.CURSOR and self.tabls and not self.cursor: self.createCursor(why)
+        self.dumpTniksSfx(why)
+#        self.togTT(ii)
+
+    def OLD_A_addTTs(self, how, ii):
+        why = f'Add{self.addC} {how} {ii=}'  ;  why2 = 'Ref'
+        np, nl, ns, nc, nt = self.n
+        self.togTT(ii)
         self.dumpTniksPfx(why)
         for p in range(np):
             self.setJdump(P, p, why=why2)
@@ -1019,9 +1150,9 @@ class Tabs(pyglet.window.Window):
                 self.setJdump(L, l, why=why2)   ;   ss = self.ss2sl()
                 for s, so in enumerate(ss):
                     if so == ii:
-                        for sect in      self.g_createTniks(self.sects, S, self.lines[l], ii=s):
-                            for colm in  self.g_createTniks(self.colms, C, sect):
-                                for _ in self.g_createTniks(self.tabls, T, colm): #, v=1 if p == self.j()[P] else 0): # , ii=s):
+                        for sect in      self.g_createTniks(self.sects, S, self.lines[l], ii=s, why=why):
+                            for colm in  self.g_createTniks(self.colms, C, sect, why=why):
+                                for _ in self.g_createTniks(self.tabls, T, colm, why=why): #, v=1 if p == self.j()[P] else 0): # , ii=s):
                                     pass
                     else:
                         self.setJdump(S, s, why=why2)
@@ -1230,7 +1361,21 @@ class Tabs(pyglet.window.Window):
         return p
     ####################################################################################################################################################################################################
     def addLLs(self, how):
-        why = f'Add'  ;  why2 = f'{how} Add' # ;  whyR = 'Ref'
+        why = f'Add'  ;  why2 = f'{how} Add' # 'Ref'
+        self.dumpTniksPfx(why2)
+        self.updView(len(self.ZZ), self.LL * self.n[L])
+        pn, pi, px, py, pw, ph = self.geom(P, None, dbg=1)  ;  pi = 0  ;  p = self.pages[pi]
+        self.updateTnik(self.pages, pi, P, px, py, pw, ph, why, dbg=1)
+        if self.isJV(P):
+            ln, li, lx, ly, lw, lh = self.geom(L, p, dbg=1)
+            for li in range(ln):
+                self.updateTnik(self.lines, li, L, lx, ly, lw, lh, dbg=1)  ;  l = self.lines[li]
+                if len(self.rowLs) <= li+1: self.createLLs(l, li, why)
+                elif   self.rowLs:          self.updateLLs(l, 1,  why)
+        self.dumpTniksSfx(why2)
+
+    def OLD__addLLs(self, how):
+        why = f'Add'  ;  why2 = f'{how} Add' # 'Ref'
         np, nl, ns, nc, nt = self.n
         n = ns * nt  ;   m = n + self.LL
         self.dumpTniksPfx(why2)
@@ -1293,7 +1438,8 @@ class Tabs(pyglet.window.Window):
         if dbg and chunks:   self.log(f'{chordName=} chunks={fmtl(chunks)} imap={fmtl(imap)}')
         return chordName
     ####################################################################################################################################################################################################
-    def nlnsnt( self):    return self.n[L] * self.n[S] * self.n[T]
+#    def nlnsnt( self):    return self.n[L] * self.n[S] * self.n[T]
+    def nlnsnt( self):    return self.n[L] * len(self.SS) * self.n[T]
     def axyWgt(self, x, y, dbg=0): u, v = self.axWgt(x), self.ayWgt(y)  ;  self.log(f'{x=:6} {y=:6} {u=:4.2f} {v=:4.2f}') if dbg else None  ;  return u, v
     @staticmethod
     def axWgt(x): return 0.0 if x==LEFT   else 0.5 if x==CENTER else 1.0 if x==RIGHT else -1.0
@@ -1325,6 +1471,12 @@ class Tabs(pyglet.window.Window):
         self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwh} {ads} {cva} {s} {ftxt}', p=0, f=0)
 #        if ist(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
 
+    def showThik(self, tlist, i, j, dbg=0):
+        t = tlist[i]        ;     ha = hasattr(t, 'text')   ;   why = f'Shw{self.shwC}'
+        t.visible = True    ;      v = int(t.visible)
+        if dbg:     text = t.text if ha else Z  ;  self.log(f'{self.fmtJText(j)} {i=} {id(t):x} {text:6} {self.ftxywh(t)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0)
+        self.setJdump(j, i, v, why)
+        
     def removeTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         t = tlist[i]        ;     ha = hasattr(t, 'text')   ;   why = f'Rem{self.remC}'
         t.visible = False   ;      v = int(t.visible)
@@ -1353,13 +1505,13 @@ class Tabs(pyglet.window.Window):
                     for sect in          self.g_createTniks(self.sects, S, line, why=why):  # pass
                         for _ in         self.g_createTniks(self.colms, C, sect, why=why):  pass
         else:
-            for p, page in     enumerate(self.g_createTniks(self.pages, P, None, why=why)): # pass
-                for l, line in enumerate(self.g_createTniks(self.lines, L, page, why=why)): # pass
+            for p, page in     enumerate(self.g_newUpdTniks(self.pages, P, nw=1, pt=None, why=why)): # pass
+                for l, line in enumerate(self.g_newUpdTniks(self.lines, L, nw=1, pt=page, why=why)): # pass
                     if ll and not l:     self.createLLs(line, l, why)
-                    for sect in          self.g_createTniks(self.sects, S, line, why=why):  # pass
+                    for sect in          self.g_newUpdTniks(self.sects, S, nw=1, pt=line, why=why):  # pass
 #                        if v and zz:     self.createZZs(sect, -1, why)
-                        for colm in      self.g_createTniks(self.colms, C, sect, why=why):  # pass
-                            for _ in     self.g_createTniks(self.tabls, T, colm, why=why):  pass
+                        for colm in      self.g_newUpdTniks(self.colms, C, nw=1, pt=sect, why=why):  # pass
+                            for _ in     self.g_newUpdTniks(self.tabls, T, nw=1, pt=colm, why=why):  pass
             if view: 
                 for z in range(len(view)):
                     self.addZZs(z, why)
@@ -1368,11 +1520,13 @@ class Tabs(pyglet.window.Window):
         if dbg and self.SNAPS >= 1:     self.regSnap('NEW', why)
         if dbg:         self.dumpStruct(why2) # , dbg=dbg)
     ####################################################################################################################################################################################################
-    def g_createTniks(self, tlist, j, pt, ii=None, why=Z, dbg=1, dbg2=1):
-        n  = 1  if ii is not None       else None  #  ;   m = 0 # 1 if j in (T, N, I, K) else 0
-        n, _, x, y, w, h = self.geom(j, pt, n, ii, dbg=dbg2)   ;   t = Z
-        kl = self.k[j]  ;  tl2 = tlist   ;   p, l, c, _ = self.J1plct()
-        n                = n if ii is None else 1              ;  x2 = x  ;  y2 = y  ;  j2 = j  ;  i3 = 0     ;   js = (P, L, S, C, R, Q)
+    def g_createTniks(self, tlist, j, pt=None, ii=None, why=Z, dbg=1, dbg2=1):
+        n  = 1  if ii is not None else None
+        n, _, x, y, w, h = self.geom(j, pt, n, ii, dbg=dbg2)
+        n  = n  if ii is not None else 1
+        p, l, c, _ = self.J1plct()
+        tl2, x2, y2, j2 = tlist, x, y, j
+        i3 = 0   ;   t = Z    ;    kl = self.k[j]    ;    js = (P, L, S, C, R, Q)
         for i in range(n):
             if self.DBG_TABT and j in js:    t = self.dbgTabTxt(j, i)
             i2 = i if ii is None else ii  ;  np, nl, ns, nc, nt = self.n
@@ -1396,6 +1550,59 @@ class Tabs(pyglet.window.Window):
                 else:                       y2 = y - i2*h
             k = kl[self.BGC]
             yield self.createTnik(tl2, i2, j2, x2, y2, w, h, k, why=why, t=t, v=v, dbg=dbg)
+    ####################################################################################################################################################################################################
+    def g_updateTniks(self, tlist, j, pt=None, ii=None, why=Z, dbg=1, dbg2=1):
+        if not self.n[j]:     msg = f'ERROR {self.fmtJText(j, why)} SKIP {self.n[j]=}'   ;   self.log(msg) #  ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
+        n  = 1  if ii is not None else None
+        n, _, x, y, w, h = self.geom(j, pt, n, dbg=dbg2)
+        p, l, c, t = self.J1plct()
+        tl2, x2, y2, j2 = tlist, x, y, j
+        lp, ll = self.dl()[0], self.dl()[1]
+        for i in range(n):
+            if   j in (C, E):                   x2 = x + i*w
+            else:
+                if    j == P:                    v = int(self.pages[self.J1[P]].visible)  ;  self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
+                else:                           y2 = y - i*h
+                if    j == L:
+                    if self.J2[L] >= lp*ll:     msg = f'WARN MAX Line {self.J2[L]=} >= {lp=} * {ll=}'  ;   self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
+                    y2 = y - i*h - self.LL*i*h/(self.n[S]*self.n[T])
+                elif  j >= T:
+                    s = self.ss2sl()[self.J1[S] % self.ssl()]
+                    tl2, j2, _, _ = self.tnikInfo(p, l, s, c, why=why)
+            yield self.updateTnik(tl2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
+    ####################################################################################################################################################################################################
+    def g_newUpdTniks(self, tlist, j, nw=0, pt=None, ii=None, why=Z, dbg=1, dbg2=1):
+        n  = 1  if ii is not None else None
+        n, _, x, y, w, h = self.geom(j, pt, n, ii, dbg=dbg2)
+        p, l, c, _  = self.J1plct()   ;   np, nl, ns, nc, nt = self.n
+        tl2, x2, y2, j2 = tlist, x, y, j
+        i3, t, kl = (0, Z, self.k[j]) if nw else (None, None, None)   ;   js = (P, L, S, C, R, Q) if nw else None
+        for i in range(n):
+            if nw and self.DBG_TABT and j in js:    t = self.dbgTabTxt(j, i)
+            i2 = i if ii is None else ii
+            if   j == S:                     self.SS.add(self.ss2sl()[i2] if self.ss2sl() else 0)
+            if   j == P:                     v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
+            else:                            v = int(self.pages[self.J1[P]].visible) # use parent or page? todo
+            if   j in (C, E):               x2 = x + i2*w
+            else:
+                if   j == L:                y2 = y - i2*h - self.LL*i2*h/(ns*nt)
+                elif j >= T:
+                    s                          = self.ss2sl()[self.J1[S]]
+                    tl2, j2, kl, to            = self.tnikInfo(p, l, s, c, i2, why=why) # todo
+                    if nw:
+                        if   s == TT:            t = to
+                        elif s == NN:            t = to if j2 > K else self.sobj.tab2nn(to, i2, nic=self.nic) if self.sobj.isFret(to) else self.tblank
+                        elif s in (II, KK):
+                            m = self.getImap(p, l, c)
+                            if   s == II:        t = self.imap2ikey( to, m, i3, j2)  ;  i3 += 1 if t != self.tblank else 0
+                            elif s == KK:        t = self.imap2Chord(to, m, i2, j2)
+                    y2 = y - i2*h
+                else:                       y2 = y - i2*h
+            if nw:    
+                k = kl[self.BGC]
+                yield self.createTnik(tl2, i2, j2, x2, y2, w, h, k, why=why, t=t, v=v, dbg=dbg)
+            else:
+                yield self.updateTnik(tl2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
     ####################################################################################################################################################################################################
     def createTnik(self, tlst, i, j, x, y, w, h, k, why=Z, t=Z, v=0, dbg=0):
         assert i    is not None and j is not None,  f'ERROR i or j is None {i=} {j=} lt={len(tlst) if tlst is not None else None} {t=} {why}'
@@ -1430,25 +1637,6 @@ class Tabs(pyglet.window.Window):
 #        self.visib[j].append(v)
         if    dbg:                 self.dumpTnik(tnik, j, why)
         return tnik
-    ####################################################################################################################################################################################################
-    def g_updateTniks(self, tlist, j, pt=None, ii=None, why=Z, dbg=1, dbg2=1):
-        if not self.n[j]:     msg = f'ERROR {self.fmtJText(j, why)} SKIP {self.n[j]=}'   ;   self.log(msg) #  ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
-        n  = 1  if ii is not None else None
-        n, _, x, y, w, h = self.geom(j, pt, n, dbg=dbg2)
-        x2 = x  ;  y2 = y  ;  j2 = j  ;  tlist2 = tlist
-        p, l, c, t = self.J1plct()    ;  lp, ll = self.dl()[0], self.dl()[1]
-        for i in range(n):
-            if   j in (C, E):                   x2 = x + i*w
-            else:
-                if    j == P:                    v = int(self.pages[self.J1[P]].visible)  ;  self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
-                else:                           y2 = y - i*h
-                if    j == L:
-                    if self.J2[L] >= lp*ll:     msg = f'WARN MAX Line {self.J2[L]=} >= {lp=} * {ll=}'  ;   self.log(msg)  ;  cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
-                    y2 = y - i*h - self.LL*i*h/(self.n[S]*self.n[T])
-                elif  j >= T:
-                    s = self.ss2sl()[self.J1[S] % self.ssl()]
-                    tlist2, j2, _, _ = self.tnikInfo(p, l, s, c, why=why)
-            yield self.updateTnik(tlist2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
     ####################################################################################################################################################################################################
     def updateTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
         assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=} {j=} {x=:.2f} {y=:.2f} {w=:.2f} {h=:.2f} {why}'
@@ -1523,14 +1711,14 @@ class Tabs(pyglet.window.Window):
     def on_mouse_scroll( self, x, y, dx, dy):       return evnts.on_mouse_scroll( self, x, y, dx, dy)
     def on_mouse_release(self, x, y, bttn, mods=0): return evnts.on_mouse_release(self, x, y, bttn, mods)
     def on_move(         self, x, y):               return evnts.on_move(         self, x, y)
+    def on_resize(       self, w, h, z=None):       return evnts.on_resize(       self, w, h, z)
     def on_text(         self, text):               return evnts.on_text(         self, text)
     def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
-    def on_resize(self, w, h, z=None):
-        super().on_resize(w, h)
-        assert z in (0, 1, None),  f'{z=}'
-        if self.RESIZE:
-            cmd = cmds.UpdateTniksCmd(self, z, dbg=1)     ;  cmd.do()
-        return True
+#        super().on_resize(w, h)
+#        assert z in (0, 1, None),  f'{z=}'
+#        if self.RESIZE:
+#            cmd = cmds.UpdateTniksCmd(self, 'on_resize()', w, h, z, dbg=1)     ;  cmd.do()
+#        return True
     ####################################################################################################################################################################################################
     def idmapkey(self, j):  return f'{JTEXTS[j]}{self.J2[j]}'
     def dumpIdmKeys(self):  self.log(fmtl(list(self.idmap.keys()), ll=1))
