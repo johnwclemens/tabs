@@ -53,6 +53,10 @@ else
 fi
 echo lvl = "$lvl"
 
+echo spwd=pwd
+spwd="pwd"
+echo spwd="$spwd"
+
 if [[ -d "$root" ]]; then
     cd  "$root" || exit 1
 
@@ -98,7 +102,8 @@ if [[ -d "$root" ]]; then
             cleanSubDir      "$dir" "$ext2" "$lvl"
         fi
     done
-
+    echo "cd $spwd"
+    cd $spwd || exit 2
 else
     echo "ERROR: root = '$root' directory does not exist."
 fi
