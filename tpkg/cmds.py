@@ -1049,11 +1049,9 @@ class TogTTsCmd(Cmd):
         tobj, how, tt = self.tobj, self.how, self.tt
         msg2 = f'{how} {tt=}'
         tobj.dumpGeom('BGN', f'     {msg2}')
-#        if   tt not in tobj.SS and not tobj.B[tt]: msg = 'ADD'   ;   tobj.addTTs( how, tt)
-        if   tt not in tobj.SS:                    msg = 'ADD'   ;   tobj.addTTs( how, tt)
-#        elif tt     in tobj.SS:                    msg = 'HID'   ;   tobj.hideTTs(how, tt)
-        else:                                      msg = 'HID'   ;   tobj.hideTTs(how, tt)
-#        else:                                      msg = 'SKP '  ;   tobj.dumpGeom(W*3, f'{msg} {msg2}')   ;   tobj.togTT(tt)
+        if   tt not in tobj.SS:      msg = 'ADD'   ;   tobj.addTTs( how, tt)
+        else:                        msg = 'HID'   ;   tobj.hideTTs(how, tt)
+        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{msg}.{tt}', how)
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
@@ -1149,7 +1147,7 @@ class UpdateTniksCmd(Cmd):
     def _updateTniks(self):
         tobj, z, dbg = self.tobj, self.z, self.dbg
         if self.w is not None and self.h is not None:        pyglet.window.Window.on_resize(tobj, self.w, self.h)
-        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL #  ;   zz = tobj.ZZ
+        tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL   ;  np, nl, ns, nc, nt = tobj.n #  ;   zz = tobj.ZZ
         tobj.updView(len(tobj.ZZ), tobj.LL * tobj.n[L])
         tobj.dumpTniksPfx(why)
         if   tobj.DSP_J_LEV == P:
@@ -1169,12 +1167,19 @@ class UpdateTniksCmd(Cmd):
                     for sect in          tobj.g_updateTniks(tobj.sects, S, line, why=why):  # pass
                         for _ in         tobj.g_updateTniks(tobj.colms, C, sect, why=why):  pass
         else:
-            for page in                      tobj.g_newUpdTniks(tobj.pages, P, nw=0, pt=None, why=why):  # pass
-                for line in                  tobj.g_newUpdTniks(tobj.lines, L, nw=0, pt=page, why=why):  # pass
+            for page in                      tobj.g_newUpdTniks(tobj.pages, P,          nw=0, pt=None, why=why):  # pass
+                for line in                  tobj.g_newUpdTniks(tobj.lines, L,          nw=0, pt=page, why=why):  # pass
                     if ll:                   tobj.updateLLs(line, 1, why) #                        if zz:               tobj.updateZZs(sect, s, z, why)
-                    for s, sect in enumerate(tobj.g_newUpdTniks(tobj.sects, S, nw=0, pt=line, why=why)):  # pass
-                        for colm in          tobj.g_newUpdTniks(tobj.colms, C, nw=0, pt=sect, s=s, why=why):  # pass
-                            for _ in         tobj.g_newUpdTniks(tobj.tabls, T, nw=0, pt=colm, s=s, why=why):  pass
+                    for s, sect in enumerate(tobj.g_newUpdTniks(tobj.sects, S,          nw=0, pt=line, why=why)): # pass
+                        for colm in          tobj.g_newUpdTniks(tobj.colms, C, m=s*nc,  nw=0, pt=sect, why=why):  # pass
+#                            if s==utl.TT: 
+                            for _ in         tobj.g_newUpdTniks(tobj.tabls, T,     s=s, nw=0, pt=colm, why=why):  pass
+#                            if s==utl.NN:
+#                            for _ in         tobj.g_newUpdTniks(tobj.notes, N,     s=s, nw=0, pt=colm, why=why):  pass
+#                            if s==utl.II:
+#                            for _ in         tobj.g_newUpdTniks(tobj.ikeys, I,     s=s, nw=0, pt=colm, why=why):  pass
+#                            if s==utl.KK:
+#                            for _ in         tobj.g_newUpdTniks(tobj.kords, K,     s=s, nw=0, pt=colm, why=why):  pass
         tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor:  cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
         if dbg and tobj.SNAPS >= 10:     tobj.regSnap(f'UPD.{tobj.updC}', why)
