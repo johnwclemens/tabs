@@ -32,7 +32,7 @@ class Strngs:
         slog( f'labelc =      {self.labelc}')
 
     @staticmethod
-    def tab2fn(t, dbg=0): fn = int(t) if '0'<=t<='9' else int(ord(t)-87) if 'a'<=t<='o' else None  ;  slog(f'tab={t} fretNum={fn}') if dbg else None  ;  return fn
+    def tab2fn(t, dbg=0): fn = int(t) if '0'<=t<='9' else int(ord(t)-87) if 'a'<=t<='o' else None  ;  slog(f'tab={t} fretNum={fn}') if dbg else W  ;  return fn # todo
     @staticmethod
     def isFret(t):      return   1    if '0'<=t<='9'          or            'a'<=t<='o' else 0
 
@@ -42,14 +42,18 @@ class Strngs:
 #       strNum = self.nStrings() - s     # Reverse and one  base the string numbering: str[1 ... numStrings] => s[numStrings ... 1]
         strNum = self.nStrings() - s - 1 # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
 #        assert strNum in range(1, self.nStrings()),  f'{strNum=} not in range(1, {self.nStrings()=} {s=})' # AssertionError: strNum=0 not in range(1, self.nStrings()=6)
-        k      = self.keys[strNum]
+        k      = self.keys[strNum] # todo
+        assert k is not None and fn is not None,  f'{k=} {strNum=} {s=} {fn=}'
+        assert k in self.map,  f'{k=} {strNum=} {s=} {fn=} {self.map=}'
         i      = self.map[k] + fn
         strNum += 1
         if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} map={fmtm(self.map)}')
         return i
 
     def tab2nn(self, tab, s, t=None, nic=None, dbg=1, f=-3):
+        assert tab is not None,  f'{tab=} {s=} {t=} {nic=}'
         fn  = self.tab2fn(tab)
+        assert fn  is not None,  f'{fn=} {tab=} {s=} {t=} {nic=}'
         i   = self.fn2ni(fn, s)   ;   nict = Z
         j   = i % Notes.NTONES
         if   t  is None:                 t = Notes.TYPE

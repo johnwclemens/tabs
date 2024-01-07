@@ -122,9 +122,14 @@ class CopyKordNamesCmd(Cmd):
     def _copyKordNames(self):
         tobj, how, dbg = self.tobj, self.how, self.dbg
         nt = tobj.n[T]  ;  cc = tobj.cursorCol()  ;  cn = tobj.cc2cn(cc)  ;  i = 0
-        text = { tobj.tabls[i].text for i in range(nt) if tobj.tabls[i].text != tobj.tblank }
-        txt  = list(text)
-        for t in txt[:-1]:
+        text = set()   ;   t2n = tobj.sobj.tab2nn
+        for s in range(nt):
+            tt = tobj.tabls[s].text
+            if tt and tt != W: 
+                txt = t2n(tt if tt else tobj.tblank, s)
+                text.add(txt)
+        text = list(text)
+        for t in text[:-1]:
             if t != tobj.tblank:
                 i += 1
                 cmd = SelectTabsCmd(tobj, pygwink.MOTION_NEXT_WORD, nt, cn)               ;  cmd.do()
@@ -661,11 +666,11 @@ class SetTabCmd(Cmd):
         bsp = 1 if m == pygwink.MOTION_BACKSPACE else 0
         if rev: tobj.reverseArrow(bsp)   ;   cmd = AutoMoveCmd(tobj, how)   ;  cmd.do()
         old   = tobj.cursorCol()   ;   msg = Z
-        p, l, c, t = tobj.j2()
+        p, l, s, c, t = tobj.j()
         cc    = tobj.plct2cc(p, l, c, t)   ;   cc2 = cc
-        tobj.log(f'BGN {how} {text=} {rev=} {old=:3} {cc=:3} {p=} {l=} {c=} {t=}', pos=1, f=2)
+        tobj.log(f'BGN {how} {rev=} {old=:3} {cc=:3} {text=} {p=} {l=} {s=} {c=} {t=}', pos=1, f=2)
         data  = tobj.data[p][l][c][t]
-        tobj.log(f'    {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
+        tobj.log(f'    {how} {rev=} {old=:3} {cc=:3}{msg} {text=} {data=} ', pos=1)
         tobj.setDTNIK(text, cc2, p, l, c, t, kk=1)
         p, l, c, t = tobj.j2()   ;   data = tobj.data[p][l][c][t]
         tobj.log(f'END {how} {text=} {data=} {rev=} {old=:3} {cc=:3}{msg}', pos=1)
@@ -1167,21 +1172,14 @@ class UpdateTniksCmd(Cmd):
                     for sect in          tobj.g_updateTniks(tobj.sects, S, line, why=why):  # pass
                         for _ in         tobj.g_updateTniks(tobj.colms, C, sect, why=why):  pass
         else:
-            for page in                      tobj.g_newUpdTniks(tobj.pages, P,          nw=0, pt=None, why=why):  # pass
-                for line in                  tobj.g_newUpdTniks(tobj.lines, L,          nw=0, pt=page, why=why):  # pass
+            for page in                      tobj.g_newUpdTniks(tobj.pages, P,                    nw=0, pt=None, why=why):  # pass
+                for line in                  tobj.g_newUpdTniks(tobj.lines, L,                    nw=0, pt=page, why=why):  # pass
                     if ll:                   tobj.updateLLs(line, 1, why) #                        if zz:               tobj.updateZZs(sect, s, z, why)
-                    for s, sect in enumerate(tobj.g_newUpdTniks(tobj.sects, S,          nw=0, pt=line, why=why)): # pass
-                        for colm in          tobj.g_newUpdTniks(tobj.colms, C, m=s*nc,  nw=0, pt=sect, why=why):  # pass
-#                            if s==utl.TT: 
-                            for _ in         tobj.g_newUpdTniks(tobj.tabls, T,     s=s, nw=0, pt=colm, why=why):  pass
-#                            if s==utl.NN:
-#                            for _ in         tobj.g_newUpdTniks(tobj.notes, N,     s=s, nw=0, pt=colm, why=why):  pass
-#                            if s==utl.II:
-#                            for _ in         tobj.g_newUpdTniks(tobj.ikeys, I,     s=s, nw=0, pt=colm, why=why):  pass
-#                            if s==utl.KK:
-#                            for _ in         tobj.g_newUpdTniks(tobj.kords, K,     s=s, nw=0, pt=colm, why=why):  pass
+                    for s, sect in enumerate(tobj.g_newUpdTniks(tobj.sects, S,                    nw=0, pt=line, why=why)): # pass
+                        for colm in          tobj.g_newUpdTniks(tobj.colms, C, m=s*nc,            nw=0, pt=sect, why=why):  # pass
+                            for _ in         tobj.g_newUpdTniks(tobj.tabls, T, s=tobj.ss2sl()[s], nw=0, pt=colm, why=why):  pass
         tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor:  cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
-        if dbg and tobj.SNAPS >= 10:     tobj.regSnap(f'UPD.{tobj.updC}', why)
+        if dbg and tobj.SNAPS >= 10:     tobj.regSnap(f'Upd.{tobj.updC}', why)
         if dbg:    tobj.dumpStruct(why) # , dbg=dbg)
 ########################################################################################################################################################################################################
