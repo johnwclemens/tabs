@@ -109,7 +109,7 @@ class Tabs(pyglet.window.Window):
         self.shifting      = 0   ;   self.shiftSign = 1    ;   self.cc           = 0
         self.swapping      = 0   ;   self.swapSrc   = Z    ;   self.swapTrg      = Z
         self.newC          = 0   ;   self.updC      = 0    ;   self.addC         = 0
-        self.remC          = 0   ;   self.cpyC      = 0    ;   self.pstC         = 0
+        self.hidC          = 0   ;   self.cpyC      = 0    ;   self.pstC         = 0
         self.shwC          = 0   ;   self.snpC      = 0    ;   self.delC         = 0
         self.sprs          = []  ;   self.undoStack = []   ;   self.idmap        = {}
         self.ki            = []  ;   self.ks        = [ W, 0, Notes.NTRL, 'C', 0, [], [] ]
@@ -1054,22 +1054,29 @@ class Tabs(pyglet.window.Window):
         self.dumpGeom('AFT', why)
     ####################################################################################################################################################################################################
     def hideTTs(self, how, ii, dbg=0):
-        why2 = f'Hid{self.remC} {how} {ii=}'  ;  why = f'Hid{self.remC}'   ;   ref = f'Ref{self.remC}'   ;   s = 0
+        self.hidC += 1   ;   hid2 = f'Hid{self.hidC} {how} {ii=}'  ;  hid = f'Hid{self.hidC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.hidC}'   ;   z = self.ss2sl
 #        self.togTT(ii)
-#        np, nl, ns, nc, nt = self.n
+        np, nl, ns, nc, nt = self.n
 #        self.updView(len(self.ZZ), self.LL, nl*ns*nt)
-        self.dumpTniksPfx(why2)
-        for page in                      self.g_newUpdTniks(self.pages, P, nw=0,                  pt=None, why=ref):  # pass
-            for line in                  self.g_newUpdTniks(self.lines, L, nw=0,                  pt=page, why=ref):  # pass
-                for s, sect in enumerate(self.g_newUpdTniks(self.sects, S, nw=-1 if s==ii else 0, pt=line, why=why)): # pass
-                    for colm in          self.g_newUpdTniks(self.colms, C, nw=-1 if s==ii else 0, pt=sect, why=why):  # pass
-                        for _ in         self.g_newUpdTniks(self.tabls, T, nw=-1 if s==ii else 0, pt=colm, why=why):  pass
+        self.dumpTniksPfx(hid2)
+        for page in                      self.g_newUpdTniks(self.pages, P,           nw=0, pt=None, why=ref):
+            for line in                  self.g_newUpdTniks(self.lines, L,           nw=0, pt=page, why=ref):
+                for s, sect in enumerate(self.g_newUpdTniks(self.sects, S,           nw=2, pt=line, why=upd)):
+                    if s == 0:
+                        for colm in      self.g_newUpdTniks(self.colms, C, m=ii*nc,  nw=2, pt=sect, why=hid):
+                            for _ in     self.g_newUpdTniks(self.tabls, T, s=ii,     nw=2, pt=colm, why=hid):  pass
+        for page in                      self.g_newUpdTniks(self.pages, P,           nw=0, pt=None, why=upd, dbg=1):
+            for line in                  self.g_newUpdTniks(self.lines, L,           nw=0, pt=page, why=upd, dbg=1):
+                for s, sect in enumerate(self.g_newUpdTniks(self.sects, S,           nw=0, pt=line, why=upd, dbg=1)):
+                    if s != ii:
+                        for colm in      self.g_newUpdTniks(self.colms, C,           nw=0, pt=sect, why=upd, dbg=1):
+                            for _ in     self.g_newUpdTniks(self.tabls, T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
         if ii == TT:                     self.removeTnik(   self.hcurs, 0, H, dbg)
-        self.dumpTniksSfx(why2)
+        self.dumpTniksSfx(hid2)
         self.togTT(ii)
         
     def OLD_2_hideTTs(self, how, ii, dbg=0):
-        why = f'Rem{self.remC} {how} {ii=}'  ;  why2 = f'Rem{self.remC}'
+        why = f'Rem{self.hidC} {how} {ii=}'  ;  why2 = f'Rem{self.hidC}'
 #        np, nl, ns, nc, nt = self.n
 #        self.togTT(ii)
 #        self.updView(len(self.ZZ), self.LL, nl*ns*nt)
@@ -1088,7 +1095,7 @@ class Tabs(pyglet.window.Window):
         self.togTT(ii)
         
     def OLD_1_hideTTs(self, how, ii, dbg=0):
-        why = f'Rem{self.remC} {how} {ii=}'  ;  why2 = 'Ref'
+        why = f'Rem{self.hidC} {how} {ii=}'  ;  why2 = 'Ref'
         np, nl, ns, nc, nt = self.n
         self.updView(len(self.ZZ), self.LL*nl, nl*(ns-1)*nt)
         self.dumpTniksPfx(why)
@@ -1119,7 +1126,7 @@ class Tabs(pyglet.window.Window):
         self.togTT(ii)
     
     def OLD_0_hideTTs(self, how, ii, dbg=0):
-        why = f'Rem{self.remC} {how} {ii=}'  ;  why2 = 'Upd'
+        why = f'Rem{self.hidC} {how} {ii=}'  ;  why2 = 'Upd'
         np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(why)
         self.updView(len(self.ZZ), self.LL * nl)
@@ -1150,51 +1157,22 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(why)
         self.togTT(ii)
 
-    def showTTs(self, how, ii, dbg=0):
-        why = f'Shw{self.shwC} {how} {ii=}'  ;  why2 = 'Ref'
-        np, nl, ns, nc, nt = self.n
-        self.updView(len(self.ZZ), self.LL*nl, nl*ns*nt)
-        self.dumpTniksPfx(why)
-        pn, pi, px, py, pw, ph =                 self.geom(    P, None, i=self.i[P], dbg=1)
-        for pp in range(np):
-            self.updateTnik(self.pages, pp, P, px, py, pw, ph, why2, dbg=1)
-            ln, li, lx, ly, lw, lh =             self.geom(    L, self.pages[pp], i=self.i[L], dbg=1)
-            for ll in range(nl):
-                self.updateTnik(self.lines, pp*nl + ll, L, lx, ly, lw, lh, why2, dbg=1)
-                sn, si, sx, sy, sw, sh =         self.geom(    S, self.lines[pp*nl + ll], len(self.SS)-1, i=self.i[S], dbg=1)
-                for s2, ss in enumerate(self.ss2sl()):
-                    sy2 = sy - s2 * sh
-                    if ss == ii:                 self.showThik(  self.sects, pp*nl + s2, S, dbg)
-                    else:                        self.updateTnik(self.sects, pp*nl + s2, S, sx, sy2, sw, sh, why2, dbg=1)
-                    cn, ci, cx, cy, cw, ch =     self.geom(   C, self.sects[pp*nl + s2], i=self.i[C], dbg=1)
-                    for cc in range(nc):
-                        cx2 = cx + cc * cw
-                        if ss == ii:             self.showTnik(  self.colms, (pp*nl + ll)*nc + cc, C, dbg)
-                        else:                    self.updateTnik(self.colms, (pp*nl + ll)*nc + cc, C, cx2, cy, cw, ch, why2, dbg=1)
-                        tn, ti, tx, ty, tw, th = self.geom(   T, self.colms[(pp*nl + ll)*nc + cc], i=self.i[T], dbg=1)
-                        for tt in range(nt):
-                            tlist, j, _, _  =    self.tnikInfo(pp, ll, ss, cc)
-                            ty2 = ty - tt * th
-                            if ss == ii:         self.showTnik(  self.B[ss], ((pp*nl + ll)*nc + cc)*nt + tt, j, dbg)
-                            else:                self.updateTnik(self.B[ss], ((pp*nl + ll)*nc + cc)*nt + tt, j, tx, ty2, tw, th, why2, dbg=1)
-        self.dumpTniksSfx(why)
-        self.togTT(ii)
     ####################################################################################################################################################################################################
     def addTTs(self, how, ii):
-        self.addC += 1   ;   add2 = f'Add{self.addC} {how} {ii=}'  ;  add = f'Add{self.addC}'   ;   upd = f'Upd'   ;   ref = f'Ref{self.addC}'   ;   z = self.ss2sl
+        self.addC += 1   ;   add2 = f'Add{self.addC} {how} {ii=}'  ;  add = f'Add{self.addC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.addC}'   ;   z = self.ss2sl
         self.togTT(ii)
         np, nl, ns, nc, nt = self.n #  ;  t = 0
         self.dumpTniksPfx(add2)
         for page in                      self.g_newUpdTniks(self.pages, P,           nw=0, pt=None, why=ref, dbg=1):
             for line in                  self.g_newUpdTniks(self.lines, L,           nw=0, pt=page, why=ref, dbg=1):
-                for s, sect in enumerate(self.g_newUpdTniks(self.sects, S,           nw=-1, pt=line, why=upd, dbg=1)):
+                for s, sect in enumerate(self.g_newUpdTniks(self.sects, S,           nw=1, pt=line, why=upd, dbg=1)):
                     if s == 0:
-                        for colm in      self.g_newUpdTniks(self.colms, C, m=ii*nc,  nw=-1, pt=sect, why=add, dbg=1): # m=s*nc
-                            for _ in     self.g_newUpdTniks(self.tabls, T, s=ii,     nw=-1, pt=colm, why=add, dbg=1): pass # m =-1 if not t else 0
+                        for colm in      self.g_newUpdTniks(self.colms, C, m=ii*nc,  nw=1, pt=sect, why=add, dbg=1): 
+                            for _ in     self.g_newUpdTniks(self.tabls, T, s=ii,     nw=1, pt=colm, why=add, dbg=1): pass
         for page in                      self.g_newUpdTniks(self.pages, P,           nw=0, pt=None, why=ref, dbg=1):
             for line in                  self.g_newUpdTniks(self.lines, L,           nw=0, pt=page, why=ref, dbg=1):
                 for s, sect in enumerate(self.g_newUpdTniks(self.sects, S,           nw=0, pt=line, why=upd, dbg=1)):
-                    for colm in          self.g_newUpdTniks(self.colms, C,           nw=0, pt=sect, why=upd, dbg=1): # m=s*nc
+                    for colm in          self.g_newUpdTniks(self.colms, C,           nw=0, pt=sect, why=upd, dbg=1):
                         for _ in         self.g_newUpdTniks(self.tabls, T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
         if self.CURSOR and self.tabls and not self.cursor: self.createCursor(add)
         self.dumpTniksSfx(add2)
@@ -1383,11 +1361,11 @@ class Tabs(pyglet.window.Window):
                 for bnum in self.bnums: bnum.x = xx - ww/4  ;  bnum.w = ww/l
     ####################################################################################################################################################################################################
     def removeZZs(self, z, how, dbg=1):
-        pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  az = self.addingZ  ;  why = f'Rmv{self.remC+1}'  ;   assert(l in (0, 1, 2)),  f'{l=} zz={fmtl(zz)} {z=}'  ;  assert z in (0, 1),  f'{z=}'
+        pi = self.J1[S]  ;  zz = self.ZZ  ;  l = len(zz)  ;  az = self.addingZ  ;  why = f'Rmv{self.hidC+1}'  ;   assert(l in (0, 1, 2)),  f'{l=} zz={fmtl(zz)} {z=}'  ;  assert z in (0, 1),  f'{z=}'
         np, nl, ns, nc, nt     = self.n
-        self.log(f'BFR {how} {why} {l=} {pi=} {self.remC=} {az=} {z=} zz={fmtl(zz)}')
-        zz.remove(z)     ;     l = len(zz)  ;  self.remC += 1  ;  self.addingZ = 0  ;   assert(l in (0, 1)),  f'{l=} zz={fmtl(zz)} {z=}'
-        self.log(f'AFT {how} {why} {l=} {pi=} {self.remC=} {az=} {z=} zz={fmtl(zz)}')
+        self.log(f'BFR {how} {why} {l=} {pi=} {self.hidC=} {az=} {z=} zz={fmtl(zz)}')
+        zz.remove(z)     ;     l = len(zz)  ;  self.hidC += 1  ;  self.addingZ = 0  ;   assert(l in (0, 1)),  f'{l=} zz={fmtl(zz)} {z=}'
+        self.log(f'AFT {how} {why} {l=} {pi=} {self.hidC=} {az=} {z=} zz={fmtl(zz)}')
         zclms, anams, bnums, capos = self.zclms, self.anams, self.bnums, self.capos
         self.updView(l, self.LL * nl)
         self.dumpTniksPfx(why)
@@ -1580,16 +1558,10 @@ class Tabs(pyglet.window.Window):
         self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwh} {ads} {cva} {s} {ftxt}', p=0, f=0)
 #        if ist(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
 
-    def showThik(self, tlist, i, j, dbg=0):
-        t = tlist[i]        ;     ha = hasattr(t, 'text')   ;   why = f'Shw{self.shwC}'
-        t.visible = True    ;      v = int(t.visible)
-        if dbg:     text = t.text if ha else Z  ;  self.log(f'{self.fmtJText(j)} {i=} {id(t):x} {text:6} {self.ftxywh(t)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0)
-        self.setJdump(j, i, v, why)
-        
     def removeTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
-        i2s = self.i2s(i, j)
-        assert i2s < len(tlist),  f'{i2s=} {len(tlist)=} {j=}'
-        t = tlist[i2s]      ;     ha = hasattr(t, 'text')   ;   why = f'Hid{self.remC}'
+        i2s = self.i2s(j, i)
+        assert i2s < len(tlist),  f'{i2s=} {len(tlist)=} {i=} {j=}'
+        t = tlist[i2s]      ;     ha = hasattr(t, 'text')   ;   why = f'Hid{self.hidC}'
         t.visible = False   ;      v = int(t.visible)
 #        if   ist(t, LBL):  t.width, t.height = 1, 0  # Zero width not allowed
 #        elif ist(t, SPR):  t.update(scale_x=0, scale_y=0)
@@ -1598,7 +1570,7 @@ class Tabs(pyglet.window.Window):
         return t
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
-        self.newC += 1  ;  why = f'New{self.newC}'  ;  ll = self.LL  ;  view = self.VIEW   ;   z = self.ss2sl #  ;   np, nl, ns, nc, nt = self.n
+        self.newC += 1  ;  why = f'New{self.newC}'  ;  ll = self.LL  ;  view = self.VIEW   ;   z = self.ss2sl   ;   np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(why)
         if   self.DSP_J_LEV == P:
             for _ in                     self.g_createTniks(self.pages, P, None, why=why):  pass
@@ -1621,7 +1593,7 @@ class Tabs(pyglet.window.Window):
                 for l, line in     enumerate(self.g_newUpdTniks(self.lines, L,           nw=1, pt=page, why=why)): # pass
                     if ll and not l:         self.createLLs(line, l, why) #                       if v and zz:         self.createZZs(sect, -1, why)
                     for s, sect in enumerate(self.g_newUpdTniks(self.sects, S,           nw=1, pt=line, why=why)): # pass
-                        for colm in          self.g_newUpdTniks(self.colms, C,           nw=1, pt=sect, why=why): # pass m=s*nc
+                        for colm in          self.g_newUpdTniks(self.colms, C, m=s*nc,   nw=1, pt=sect, why=why): # pass m=s*nc
                             for _ in         self.g_newUpdTniks(self.tabls, T, s=z()[s], nw=1, pt=colm, why=why): pass
             if view: 
                 for z in range(len(view)):
@@ -1683,13 +1655,8 @@ class Tabs(pyglet.window.Window):
             yield self.updateTnik(tl2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
     ####################################################################################################################################################################################################
     def g_newUpdTniks(self, tlist, j, m=0, s=0, nw=0, pt=None, why=Z, dbg=1, dbg2=1):
-#        s = self.ss2sl()[0] # s if s in self.ss2sl() else 0]
         n, _, x, y, w, h   = self.geom(j, pt, n=None, dbg=dbg2)
         p, l, c, _         = self.J1plct()
-        if nw == -1:         
-            nw = 1
-#            if m == -1 or s == -1:
-#                c = 0   ;   m = 0   ;   s = abs(s)
         np, nl, ns, nc, nt = self.n
         tl2, x2, y2, j2    = tlist, x, y, j
         i3, t, kl = (0, Z, self.k[j]) if nw == 1 else (None, None, None)
@@ -1697,17 +1664,15 @@ class Tabs(pyglet.window.Window):
         for i in range(m, m+n):
             if nw == 1 and self.DBG_TABT and j in js:    t = self.dbgTabTxt(j, i)
             if   j==S:
-                if   nw==-2:
+                if   nw==2:
                     assert i < len(tl2),  f'{i=} {len(tl2)=} {nw=} {m=} {s=}'
                     tl2[i].height = pt.height   ;   tl2[i].y = pt.y
-#                elif nw==1:
             if   j == P:                     v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
             else:                            v = int(self.pages[self.J1[P]].visible) # use parent or page? todo
             if   j in (C, E):               x2 = x + (i % nc) * w
             else:
                 if   j == L:                y2 = y - i*h - self.LL*i*h/(ns*nt)
                 elif j >= T:
-#                    if nw==0:                s = self.ss2sl()[self.J1[S]]
                     tl2, j2, kl, to            = self.tnikInfo(p, l, s, c, i, why=why) # todo
                     if nw == 1:
                         if   s == TT:        t = to
@@ -1719,7 +1684,7 @@ class Tabs(pyglet.window.Window):
                     y2 = y - i*h
                 else:                       y2 = y - i*h
             i2s = self.i2s(j2, i)    ;   msg = f'{nw=} {j=} {j2=} {i=} {i2s=:2} {self.J2[j2]=:2} {len(self.E[j2])=:2} {len(tl2)=:2} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {self.fmtn()} {n=}'
-            assert nw in (-2, 0, 1),  f'{msg}'
+            assert nw in (0, 1, 2),  f'{msg}'
             assert x2 <= self.width  and w <= self.width,   f'{x2=} {w=} {self.width=}'
             assert y2 <= self.height and h <= self.height,  f'{y2=} {h=} {self.height}'
 #            assert len(tl2) == len(self.E[j2]) == self.J2[j2],  f'{msg}'
@@ -1728,14 +1693,14 @@ class Tabs(pyglet.window.Window):
             self.log(f'{msg}', f=0)
             if   nw == 0:
                 if   i2s < len(self.E[j2]):
-                    yield self.updateTnik(tl2, i2s, j2, x2, y2, w, h, why=why, dbg=dbg)
+                    yield self.updateTnik(tl2, i2s, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
             elif nw == 1:
                 if   i2s >= len(self.E[j2]):
                     k = kl[self.BGC]
                     yield self.createTnik(tl2, i, j2, x2, y2, w, h, k, why=why, t=t, v=v, dbg=dbg)
                 else:
-                    yield self.updateTnik(tl2, i2s, j2, x2, y2, w, h, why=why, dbg=dbg)
-            elif nw == -2:
+                    yield self.updateTnik(tl2, i2s, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
+            elif nw == 2:
                 yield self.removeTnik(tl2, i, j2, dbg=dbg)
     ####################################################################################################################################################################################################
     def createTnik(self, tlst, i, j, x, y, w, h, k, why=Z, t=Z, v=0, dbg=0):
@@ -1772,7 +1737,7 @@ class Tabs(pyglet.window.Window):
         if    dbg:                 self.dumpTnik(tnik, j, why)
         return tnik
     ####################################################################################################################################################################################################
-    def updateTnik(self, tlist, i, j, x, y, w, h, why=Z, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
+    def updateTnik(self, tlist, i, j, x, y, w, h, why=Z, v=0, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
         assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=} {j=} {x=:.2f} {y=:.2f} {w=:.2f} {h=:.2f} {why} {self.i2s(j, i)=}'
         tnik   = tlist[i]
         self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
@@ -1789,6 +1754,7 @@ class Tabs(pyglet.window.Window):
         self.setJ(j, i, tnik.visible) if j != H or (j == H and self.J2[H] == 0) else None # todo fixme - do we want or need to set v info of the tnik as well?
         self.dumpTnik(tnik, j, why) if dbg else None
         if j == P and tnik.visible:   self.setCaption(f'{utl.ROOT_DIR}/{DATA}/{self.FILE_NAME}.{DAT} page {self.i[P]}')
+        tnik.visible =  bool(v)
         return tnik
     ####################################################################################################################################################################################################
     def dumpTniksPfx(self, why=Z, h=1, r=1):
