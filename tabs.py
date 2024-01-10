@@ -1042,15 +1042,15 @@ class Tabs(pyglet.window.Window):
         self.dumpGeom('AFT', why)
         return n
 
+    def togLL(self, why=Z):
+        self.dumpGeom('BFR', why)
+        self.LL = int(not self.LL)
+        self.dumpGeom('AFT', why)
+
     def togTT(self, tt, why=Z):
         self.dumpGeom('BFR', why)
         self.SS.add(tt) if tt not in self.SS else self.SS.remove(tt)
         self.n[S] = self.ssl()
-        self.dumpGeom('AFT', why)
-
-    def togLL(self, why=Z):
-        self.dumpGeom('BFR', why)
-        self.LL = int(not self.LL)
         self.dumpGeom('AFT', why)
     ####################################################################################################################################################################################################
     def addZZs( self, z, how):
@@ -1146,6 +1146,77 @@ class Tabs(pyglet.window.Window):
             self.log(f'    @ Z {why} {l=} {pi=} {self.addC=} {az=} {z=} zz={fmtl(zz):5} {ww=:6.2f} {ww/4=:6.2f} {x=:6.2f} {x0=:6.2f} {x1=:6.2f} {w=:6.2f} {ww/l=:6.2f}')
             for i in range(p, q):
                 if self.capos[i].visible:                    self.updateTnik(self.capos, i, D, x1, y-i%nt*h, ww/l, h, why, dbg)
+    ####################################################################################################################################################################################################
+    def createLLs(self, p, pi, why, dbg=1, dbg2=1):
+        np, nl, ns, nc, nt = self.n
+        n    = ns * nt # + self.LL
+        kl   = self.k[R]               ;   kk = self.cci(R, pi, kl) if self.CHECKERED else 0
+        rn, ri, rx, ry, rw, rh = self.geom(R, p, n, self.i[L], dbg=dbg2)
+        txt  = self.dbgTabTxt(R, pi)   ;    k = kl[kk]
+        v    = 1 if self.j()[P] == pi else 0
+        lrow = self.createTnik(self.rowLs, pi, R, rx, ry, rw, rh, k, why=why, t=txt, v=v, dbg=dbg)
+        cn, ci, cx, cy, cw, ch = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)
+        for c in range(cn):
+            self.createLL(self.qclms, pi, c, cx, cy, cw, ch, v, why)
+        return p
+
+    def createLL(self, tlist, l, c, x, y, w, h, v, why, dbg=1):
+        cc   = c + self.n[C] * l
+        kl   = self.llcolor(cc, Q)  ;  kk = NORMAL_STYLE   ;   k = kl[kk]
+        text = self.llText
+        txt  = text[c]
+        ll   = self.createTnik(tlist, cc, Q, x + c*w, y, w, h, k, why=why, t=txt, v=v, dbg=dbg)
+        self.setLLStyle(cc, kk)
+        return ll
+
+    def updateLLs(self, p, v, why, dbg=1, dbg2=1):
+        np, nl, ns, nc, nt = self.n
+        n    = ns * nt # + self.LL
+        rn, ri, rx, ry, rw, rh = self.geom(R, p, n, self.i[L], dbg=dbg2)
+        lrow = self.updateTnik(self.rowLs, self.J2[R], R, rx, ry, rw, rh, why=why, dbg=dbg)  ;  lrow.visible = v
+        cn, ci, cx, cy, cw, ch = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)
+        for c in range(cn):
+            qclm = self.updateTnik(self.qclms, self.J2[Q], Q, cx + c*cw, cy, cw, ch, why=why, dbg=dbg)  ;  qclm.visible = v  
+        return p
+    ####################################################################################################################################################################################################
+    def addLLs(self, how):
+        why = f'Add'  ;  why2 = f'{how} Add' # 'Ref'
+        self.dumpTniksPfx(why2)
+        self.updView(len(self.ZZ), self.LL * self.n[L])
+        pn, pi, px, py, pw, ph = self.geom(P, None, dbg=1)  ;  pi = 0  ;  p = self.pages[pi]
+        self.updateTnik(self.pages, pi, P, px, py, pw, ph, why, dbg=1)
+        if self.isJV(P):
+            ln, li, lx, ly, lw, lh = self.geom(L, p, dbg=1)
+            for li in range(ln):
+                self.updateTnik(self.lines, li, L, lx, ly, lw, lh, dbg=1)  ;  l = self.lines[li]
+                if len(self.rowLs) <= li+1: self.createLLs(l, li, why)
+                elif   self.rowLs:          self.updateLLs(l, 1,  why)
+        self.dumpTniksSfx(why2)
+
+    def OLD__addLLs(self, how):
+        why = f'Add'  ;  why2 = f'{how} Add' # 'Ref'
+        np, nl, ns, nc, nt = self.n
+        n = ns * nt  ;   m = n + self.LL
+        self.dumpTniksPfx(why2)
+        self.updView(len(self.ZZ), self.LL * nl)
+        p = self.pages[0]
+        self.updateTnik(self.pages, 0, P, p.x, p.y, p.width, p.height*n/m, why, dbg=1)
+        if self.isJV(P):
+            for li, l in enumerate(self.lines):
+#                self.log(f'{li=} {len(self.rowLs)=} {l.y=:7.2f} {m=} {l.y+li*p.height/4=:7.2f} {l.height=:7.2f} {n=} {l.height*n/m=:7.2f}')
+#                self.updateTnik(self.lines, li, L, l.x, l.y+li*p.height/4, l.width, p.height/2, why, dbg=1)
+                self.log(f'{li=} {len(self.rowLs)=} {l.y=:7.2f} {m=} {p.y-p.height/m/2=:7.2f} {l.height=:7.2f} {n=} {l.height*n/m=:7.2f}')
+                self.updateTnik(self.lines, li, L, l.x, p.y-p.height/m/2, l.width, l.height*n/m, why, dbg=1)
+                if len(self.rowLs) <= li+1: self.createLLs(l, li, why)
+                elif   self.rowLs:          self.updateLLs(l, 1,  why)
+        self.dumpTniksSfx(why2)
+
+    def hideLLs(self, how):
+        msg = f'{how} Hid'
+        self.dumpTniksPfx(msg)
+        for r, rowl in enumerate(self.rowLs): self.removeTnik(self.rowLs, r, R)
+        for q, qclm in enumerate(self.qclms): self.removeTnik(self.qclms, q, Q)
+        self.dumpTniksSfx(msg)
     ####################################################################################################################################################################################################
     def hideTTs(self, how, ii, dbg=0):
         self.hidC += 1   ;   hid2 = f'Hid{self.hidC} {how} {ii=}'  ;  hid = f'Hid{self.hidC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.hidC}'   ;   z = self.ss2sl
@@ -1350,77 +1421,6 @@ class Tabs(pyglet.window.Window):
                                 self.dumpTnik(tlist[t], j, why=why2)
         self.dumpTniksSfx(why)
         if self.CURSOR and self.tabls and not self.cursor: self.createCursor(why)
-    ####################################################################################################################################################################################################
-    def createLLs(self, p, pi, why, dbg=1, dbg2=1):
-        np, nl, ns, nc, nt = self.n
-        n    = ns * nt # + self.LL
-        kl   = self.k[R]               ;   kk = self.cci(R, pi, kl) if self.CHECKERED else 0
-        rn, ri, rx, ry, rw, rh = self.geom(R, p, n, self.i[L], dbg=dbg2)
-        txt  = self.dbgTabTxt(R, pi)   ;    k = kl[kk]
-        v    = 1 if self.j()[P] == pi else 0
-        lrow = self.createTnik(self.rowLs, pi, R, rx, ry, rw, rh, k, why=why, t=txt, v=v, dbg=dbg)
-        cn, ci, cx, cy, cw, ch = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)
-        for c in range(cn):
-            self.createLL(self.qclms, pi, c, cx, cy, cw, ch, v, why)
-        return p
-
-    def createLL(self, tlist, l, c, x, y, w, h, v, why, dbg=1):
-        cc   = c + self.n[C] * l
-        kl   = self.llcolor(cc, Q)  ;  kk = NORMAL_STYLE   ;   k = kl[kk]
-        text = self.llText
-        txt  = text[c]
-        ll   = self.createTnik(tlist, cc, Q, x + c*w, y, w, h, k, why=why, t=txt, v=v, dbg=dbg)
-        self.setLLStyle(cc, kk)
-        return ll
-
-    def updateLLs(self, p, v, why, dbg=1, dbg2=1):
-        np, nl, ns, nc, nt = self.n
-        n    = ns * nt # + self.LL
-        rn, ri, rx, ry, rw, rh = self.geom(R, p, n, self.i[L], dbg=dbg2)
-        lrow = self.updateTnik(self.rowLs, self.J2[R], R, rx, ry, rw, rh, why=why, dbg=dbg)  ;  lrow.visible = v
-        cn, ci, cx, cy, cw, ch = self.geom(Q, lrow, self.n[C], self.i[C], dbg=dbg2)
-        for c in range(cn):
-            qclm = self.updateTnik(self.qclms, self.J2[Q], Q, cx + c*cw, cy, cw, ch, why=why, dbg=dbg)  ;  qclm.visible = v  
-        return p
-    ####################################################################################################################################################################################################
-    def addLLs(self, how):
-        why = f'Add'  ;  why2 = f'{how} Add' # 'Ref'
-        self.dumpTniksPfx(why2)
-        self.updView(len(self.ZZ), self.LL * self.n[L])
-        pn, pi, px, py, pw, ph = self.geom(P, None, dbg=1)  ;  pi = 0  ;  p = self.pages[pi]
-        self.updateTnik(self.pages, pi, P, px, py, pw, ph, why, dbg=1)
-        if self.isJV(P):
-            ln, li, lx, ly, lw, lh = self.geom(L, p, dbg=1)
-            for li in range(ln):
-                self.updateTnik(self.lines, li, L, lx, ly, lw, lh, dbg=1)  ;  l = self.lines[li]
-                if len(self.rowLs) <= li+1: self.createLLs(l, li, why)
-                elif   self.rowLs:          self.updateLLs(l, 1,  why)
-        self.dumpTniksSfx(why2)
-
-    def OLD__addLLs(self, how):
-        why = f'Add'  ;  why2 = f'{how} Add' # 'Ref'
-        np, nl, ns, nc, nt = self.n
-        n = ns * nt  ;   m = n + self.LL
-        self.dumpTniksPfx(why2)
-        self.updView(len(self.ZZ), self.LL * nl)
-        p = self.pages[0]
-        self.updateTnik(self.pages, 0, P, p.x, p.y, p.width, p.height*n/m, why, dbg=1)
-        if self.isJV(P):
-            for li, l in enumerate(self.lines):
-#                self.log(f'{li=} {len(self.rowLs)=} {l.y=:7.2f} {m=} {l.y+li*p.height/4=:7.2f} {l.height=:7.2f} {n=} {l.height*n/m=:7.2f}')
-#                self.updateTnik(self.lines, li, L, l.x, l.y+li*p.height/4, l.width, p.height/2, why, dbg=1)
-                self.log(f'{li=} {len(self.rowLs)=} {l.y=:7.2f} {m=} {p.y-p.height/m/2=:7.2f} {l.height=:7.2f} {n=} {l.height*n/m=:7.2f}')
-                self.updateTnik(self.lines, li, L, l.x, p.y-p.height/m/2, l.width, l.height*n/m, why, dbg=1)
-                if len(self.rowLs) <= li+1: self.createLLs(l, li, why)
-                elif   self.rowLs:          self.updateLLs(l, 1,  why)
-        self.dumpTniksSfx(why2)
-
-    def hideLLs(self, how):
-        msg = f'{how} Hid'
-        self.dumpTniksPfx(msg)
-        for r, rowl in enumerate(self.rowLs): self.removeTnik(self.rowLs, r, R)
-        for q, qclm in enumerate(self.qclms): self.removeTnik(self.qclms, q, Q)
-        self.dumpTniksSfx(msg)
     ####################################################################################################################################################################################################
 #    def sprite2LabelPos(self, x, y, w, h, dbg=0): x0 = x  ;  y0 = y  ;  x += w/2  ;  y -= h/2  ;  self.log(f'{x0=:6.2f} {y0=:6.2f}, {w/2=:6.2f} {-h/2=:6.2f}, {x=:6.2f} {y=:6.2f} {self.p0x=:6.2f} {self.p0y=:6.2f}', so=1) if dbg else None  ;  return x, y
     ####################################################################################################################################################################################################
