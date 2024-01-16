@@ -10,12 +10,13 @@ W, Y, Z          = utl.W, utl.Y, utl.Z
 slog, fmtl, fmtm = utl.slog, utl.fmtl, utl.fmtm
 
 class Strngs:
-    aliases = {'GUITAR_6_STD':    dict([('E2', 28), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
-               'GUITAR_6_DROP_D': dict([('D2', 26), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
-               'GUITAR_7_STD':    dict([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
+    aliases = {'GUITAR_6_STD':       dict([('E2', 28), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
+               'GUITAR_6_EBEbGbBEb': dict([('E2', 28), ('B2', 35), (f'E{F}3', 39), (f'G{F}3', 42), ('B3', 47), (f'E{F}4', 51)]),
+               'GUITAR_6_DROP_D':    dict([('D2', 26), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
+               'GUITAR_7_STD':       dict([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
               }
     def __init__(self, alias=None):
-        if alias is None: alias = 'GUITAR_6_STD'
+        if alias is None: alias = 'GUITAR_6_EBEbGbBEb'
         self.map       = self.aliases[alias]
         self.keys      = list(self.map.keys())
         self.names     = Z.join(reversed([ str(k[0])  for k in           self.keys ]))

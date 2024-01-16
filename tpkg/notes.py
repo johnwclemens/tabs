@@ -108,7 +108,7 @@ class Notes(object): #      1          2       3          4          5          
     @classmethod
     def i4n(cls, t=None): return cls.I4S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I4F
     @classmethod
-    def index(cls, n, o=0):         name = n[:len(n)-1] if o else n  ;  return cls.N2I[name]
+    def index(cls, n, o=0):         name = n[:len(n)-1] if o else n   ;   assert name in cls.N2I,  f'{name=} {cls.N2I=}'   ;   return cls.N2I[name]
     @classmethod
     def nextIndex(cls, i, d=1):     return (i+d) % cls.NTONES
     @classmethod
