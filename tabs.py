@@ -1238,7 +1238,7 @@ class Tabs(pyglet.window.Window):
                 for s, sect in enumerate(self.g_newUpdTniks(S,           nw=2, pt=line, why=upd)):
                     if s == 0:
                         for colm in      self.g_newUpdTniks(C, m=i*nc,   nw=2, pt=sect, why=hid):
-                            for _ in     self.g_newUpdTniks(T, s=i,      nw=2, pt=colm, why=hid):  pass
+                            for _ in     self.g_newUpdTniks(T, s=ii, nw=2, pt=colm, why=hid):  pass
         self.dumpTniksSfx(hid2)
         self.dumpTniksPfx(hid2)
         for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=upd, dbg=1):
@@ -1640,13 +1640,13 @@ class Tabs(pyglet.window.Window):
                 elif j == L:                y2 = y - i2*h - self.LL*i2*h/(ns*nt)
                 elif j >= T:
                     s                          = self.ss2sl()[self.J1[S]]
-                    tl2, j2, kl, to            = self.tnikInfo(p, l, s, c, i2, why=why) # todo
-                    if   s == TT:            t = to
-                    elif s == NN:            t = to if j2 > K else self.sobj.tab2nn(to, i2, nic=self.nic) if self.sobj.isFret(to) else self.tblank
+                    tl2, j2, kl, t0            = self.tnikInfo(p, l, s, c, i2, why=why) # todo
+                    if   s == TT:            t = t0
+                    elif s == NN:            t = t0 if j2 > K else self.sobj.tab2nn(t0, i2, nic=self.nic) if self.sobj.isFret(t0) else self.tblank
                     elif s in (II, KK):
                         m = self.getImap(p, l, c)
-                        if   s == II:        t = self.imap2ikey( to, m, i3, j2)  ;  i3 += 1 if t != self.tblank else 0
-                        elif s == KK:        t = self.imap2Chord(to, m, i2, j2)
+                        if   s == II:        t = self.imap2ikey( t0, m, i3, j2)  ;  i3 += 1 if t != self.tblank else 0
+                        elif s == KK:        t = self.imap2Chord(t0, m, i2, j2)
                     y2 = y - i2*h
                 else:                       y2 = y - i2*h
             k = kl[self.BGC]
@@ -1684,7 +1684,7 @@ class Tabs(pyglet.window.Window):
         n, _, x, y, w, h   = self.geom(j, pt, n=None, dbg=dbg2)
         p, l, c, _         = self.J1plct()
         np, nl, ns, nc, nt = self.n
-        x2, y2, j2, to     = x, y, j, Z
+        x2, y2, j2, t0     = x, y, j, Z
         i2, t, kl = (0, Z, self.k[j]) if nw == 1 else (0, None, None)
         js  = (P, L, S, C, R, Q)      if nw == 1 else None
         for i in range(m, m+n):
@@ -1699,27 +1699,24 @@ class Tabs(pyglet.window.Window):
             else:
                 if   j == L:                y2 = y - i*h - self.LL*i*h/(ns*nt)
                 elif j >= T:
-                    tl, j2, kl, to            = self.tnikInfo(p, l, s, c, i, why=why)  # todo
-                    if nw in (0, 1, 2): # == 1 or nw == 2:
-#                        tl, j2, kl, to = self.tnikInfo(p, l, s if nw==1 else self.ss2sl()[s], c, i, why=why)
-                        if   s == TT:        t = to
-                        elif s == NN:        t = to if j2 > K else self.sobj.tab2nn(to, i, nic=self.nic) if self.sobj.isFret(to) else self.tblank
+                    tl, j2, kl, t0            = self.tnikInfo(p, l, s, c, i, why=why)  # todo
+                    assert nw in (0, 1, 2),  f'{nw=} {j=} {j2=} {t0=}'
+                    if nw in (0, 1, 2): # == 1 or nw == 2: #                        tl, j2, kl, t0 = self.tnikInfo(p, l, s if nw==1 else self.ss2sl()[s], c, i, why=why)
+                        if   s == TT:        t = t0
+                        elif s == NN:        t = t0 if j2 > K else self.sobj.tab2nn(t0, i, nic=self.nic) if self.sobj.isFret(t0) else self.tblank
                         elif s in (II, KK):
                             im = self.getImap(p, l, c)
-                            if   s == II:    t = self.imap2ikey( to, im, i2, j2)   ;   i2 += 1 if t != self.tblank else 0
-                            elif s == KK:    t = self.imap2Chord(to, im, i,  j2)
+                            if   s == II:    t = self.imap2ikey( t0, im, i2, j2)   ;   i2 += 1 if t != self.tblank else 0
+                            elif s == KK:    t = self.imap2Chord(t0, im, i,  j2)
                     y2 = y - i*h
                 else:                       y2 = y - i*h
             i2s = self.i2s(j2, i)     ;    msg = f'{nw=} {j=} {j2=} {i=} {i2s=:2} {self.J2[j2]=:2} {len(self.E[j2])=:2} {len(tl)=:2} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {self.fmtn()} {n=}'
             assert nw in (0, 1, 2),     f'{msg}'
             assert x2 <= self.width  and w <= self.width,   f'{x2=} {w=} {self.width=}'
             assert y2 <= self.height and h <= self.height,  f'{y2=} {h=} {self.height}'
-#            assert len(tl2) == len(self.E[j2]) == self.J2[j2],  f'{msg}'
-#            assert self.J2[j2] >= i2s <= len(tl2),  f'{msg}'
-#            assert      i2s <= len(tl2),            f'{msg}'#            assert      i2s <= self.J2[j2],         f'{msg}'
             self.log(f'{msg}', f=0)
             if   nw == 0:
-#                if   i2s < len(self.E[j2]):
+                assert i2s < len(self.E[j2]),  f'{i2s=} {j2=} {len(self.E[j2])=} {self.jlen()}' # if   i2s < len(self.E[j2]):
                 yield self.updateTnik(tl, i2s, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
             elif nw == 1:
                 if   i2s >= len(self.E[j2]):
@@ -1728,6 +1725,7 @@ class Tabs(pyglet.window.Window):
                 else:
                     yield self.updateTnik(tl, i2s, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
             elif nw == 2:
+                assert tl and i2s < len(tl),  f'{i2s=} {j2=} {len(tl)=} {self.jlen()}'
                 yield self.removeTnik(tl, i2s, j2, dbg=dbg)
     ####################################################################################################################################################################################################
     def createTnik(self, tlst, i, j, x, y, w, h, k, why=Z, t=Z, v=0, dbg=0):
