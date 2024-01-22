@@ -16,7 +16,9 @@ from   tpkg.notes      import Notes  as Notes
 from   tpkg.strngs     import Strngs as Strngs
 from   tpkg.chords     import Chords as Chords
 from   tpkg            import cmds   as cmds
+from   tpkg            import unic   as unic
 
+F = unic.F
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          A, B, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.A, utl.B, utl.D, utl.E
 W, X, Y, Z,       NONE,  ist,  fri,    slog,   fmtf,   fmtl,   fmtm,   fmta = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,     utl.slog,   utl.fmtf, utl.fmtl, utl.fmtm, utl.fmta
 BGC,  BOLD,  COLOR,     FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,   utl.BOLD,  utl.COLOR,   utl.FONT_NAME, utl.FONT_SIZE, utl.ITALIC,   utl.KERNING,     utl.UNDERLINE
@@ -124,7 +126,7 @@ class Tabs(pyglet.window.Window):
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4
         self.DBG_TABT  = 0  ;  self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1
         self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0
-        self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.VARROW  = 1  ;  self.VERBY     = 0
+        self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.TUNING  = 1  ;  self.VARROW    = 1  ;  self.VERBY     = 0
         ################################################################################################################################################################################################
         self.XYVA      = [0, 0, 0, 0]   ;   self._init_xyva()
         self.ROOT_DIR  = 'test'         ;   self.FILE_NAME = BASE_NAME
@@ -165,6 +167,7 @@ class Tabs(pyglet.window.Window):
         if 's' in ARGS  and len(ARGS['s']) == 0: self.SPRITES    =  1
         if 'S' in ARGS  and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
         if 't' in ARGS: l = len(ARGS['t'])   ;   self.TEST       =  1 if l == 0 else int(ARGS['t'][0]) if l == 1 else 0
+        if 'T' in ARGS  and len(ARGS['T'])  > 0: self.TUNING     = Z.join([ ARGS['T'][i] for i in range(len(ARGS['T'])) ])
         if 'u' in ARGS  and len(ARGS['u']) == 0: self.SUBPIX     =  1
         if 'v' in ARGS: l = len(ARGS['v'])   ;   self.VERBY      =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
         if 'V' in ARGS  and len(ARGS['V'])  > 0: self.VIEW       = [ int(ARGS['V'][i]) for i in range(len(ARGS['V'])) ]
@@ -187,11 +190,9 @@ class Tabs(pyglet.window.Window):
         self.TXT_GFN   = self.geomFileName(self.FILE_NAME, TXT)    ;  self.log(f'{self.TXT_GFN=}')
         self.vArrow    = UARROW if self.VARROW == 1 else DARROW
         self.fontStyle = NORMAL_STYLE
-#        self.sAlias    = 'GUITAR_6_STD'
-        self.sAlias    = 'GUITAR_6_EBEbGbBEb'
         self.k         = {}
         ################################################################################################################################################################################################
-        self.sobj      = Strngs(self.sAlias)
+        self.sobj      = Strngs(self.TUNING)
         self.cobj      = Chords(self, self.sobj)
         ################################################################################################################################################################################################
         self._initDataPath()
@@ -267,6 +268,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[s]        {self.SPRITES=}', f=f)
         self.log(f'[S]             .SS={fmtl(self.SS)}', f=f)
         self.log(f'[t]           {self.TEST=}', f=f)
+        self.log(f'[T]         {self.TUNING=}', f=f)
         self.log(f'[u]         {self.SUBPIX=}', f=f)
         self.log(f'[v]          {self.VERBY=}', f=f)
         self.log(f'[V]           {self.VIEW=}', f=f)
@@ -523,7 +525,7 @@ class Tabs(pyglet.window.Window):
         elif j in (T, N, I, K):  r = i + p*nl*nc*nt + l*nc*nt + c*nt
         else:                    r = -1
         if dbg: slog(f'{p=} {l=} {s=} {c=} , {t=} {n=} {ii=} {k=} , {j=} {i=} {r=}', f=0)
-        return r % (nc * nt)
+        return r % (nc * nt) if j > C else r % nc if j==C else r % nl 
 
     def isJV(self, j=0, dbg=0): # fixme all the other values > k?
         if   P <= j <= K and self.J1[P] == self.j()[P]: v = 1
@@ -549,7 +551,7 @@ class Tabs(pyglet.window.Window):
     def setJdump(self, j, n, v=None, why=Z):
         i = self.J2[j]   ;  self.setJ(j, n, v)
         assert 0 <= j < len(self.E),     f'{j=} out of range {i=} {n=} {v=} {why=}'
-        assert 0 <= i < len(self.E[j]),  f'{i=} out of range {j=} {n=} {v=} {self.J2=} {why=} {len(self.E[j])=}'
+        assert 0 <= i < len(self.E[j]),  f'{i=} out of range {j=} {n=} {v=} {why=} {len(self.E[j])=} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)}'
         self.dumpTnik(self.E[j][i], j, why)  ;   return j
     ####################################################################################################################################################################################################
     def j(  self):                   return [ i-1 if i else 0 for    i in           self.i ]
@@ -583,7 +585,8 @@ class Tabs(pyglet.window.Window):
     def fplsct(self, p=None, l=None, s=None, c=None, t=None): j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  s = j[S] if s is None else s  ;  c = j[C] if c is None else c  ;  t = j[T] if t is None else t  ;  return f'[{p+1} {l+1} {s+1} {c+1:2} {t+1}]'
     ####################################################################################################################################################################################################
     def jsum(  self, a=1):          return [ _ + a if self.J2[j] and j < len(self.J1)-1 else _ if j == len(self.J1)-1 else 0 for j, _ in enumerate(self.J1) ]
-    def jlen(self):                 return [ len(e) for e in self.E ] 
+    def jlen(self):                 return [ len(e) for e in self.E ]
+    def fjlen(self):                return fmtl(self.jlen())
     def fmtdl( self, data=None):    return f'{fmtl(self.dl(data))}'
     def fmtdt( self, data=None):    return f"[{W.join([ t.replace('class ', Z) for t in self.dtA(data) ])}]"
     def fmtJ1( self, w=None, d=0):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 =Z if not d else "]"  ;  return    f'{fmtl(self.jsum(), w=w, d=d, d2=Z)} {self.fnvis()}{d2}'
@@ -603,7 +606,7 @@ class Tabs(pyglet.window.Window):
     def fmtWHP0(self):                        return f'{self.fmtWH()} {self.fmtP0()}'
     ####################################################################################################################################################################################################
     @staticmethod
-    def fmtJText(j, why=Z):   jtxt = JTEXTS[j] if 0<=j<len(JTEXTS) else f'?{j:2}?'   ;   return f'{j=} {why} {jtxt}'
+    def fmtJText(j, why=Z):   jtxt = JTEXTS[j] if 0 <= j < len(JTEXTS) else f'?{j:2}?'   ;   return f'{j=} {why} {jtxt}'
     ####################################################################################################################################################################################################
     @staticmethod
     def ffont(t):     return f'{t.dpi:3} {t.bold:1} {t.italic:1} {t.font_name:14}'
@@ -1233,17 +1236,17 @@ class Tabs(pyglet.window.Window):
         np, nl, ns, nc, nt = self.n
 #        self.updView(len(self.ZZ), self.LL, nl*ns*nt)
         self.dumpTniksPfx(hid2)
-        for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=ref):
-            for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=ref):
-                for s, sect in enumerate(self.g_newUpdTniks(S,           nw=2, pt=line, why=upd)):
+        for page in                      self.g_newUpdTniks(P,          nw=0, pt=None, why=ref):
+            for line in                  self.g_newUpdTniks(L,          nw=0, pt=page, why=ref):
+                for s, sect in enumerate(self.g_newUpdTniks(S, s=ii,    nw=2, pt=line, why=upd)):
                     if s == 0:
-                        for colm in      self.g_newUpdTniks(C, m=i*nc,   nw=2, pt=sect, why=hid):
-                            for _ in     self.g_newUpdTniks(T, s=ii, nw=2, pt=colm, why=hid):  pass
+                        for colm in      self.g_newUpdTniks(C, m=i*nc,  nw=2, pt=sect, why=hid):
+                            for _ in     self.g_newUpdTniks(T, s=ii,    nw=2, pt=colm, why=hid):  pass
         self.dumpTniksSfx(hid2)
         self.dumpTniksPfx(hid2)
-        for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=upd, dbg=1):
-            for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=upd, dbg=1):
-                for s, sect in enumerate(self.g_newUpdTniks(S,           nw=0, pt=line, why=upd, dbg=1)):
+        for page in                      self.g_newUpdTniks(P,          nw=0, pt=None, why=upd, dbg=1):
+            for line in                  self.g_newUpdTniks(L,          nw=0, pt=page, why=upd, dbg=1):
+                for s, sect in enumerate(self.g_newUpdTniks(S,          nw=0, pt=line, why=upd, dbg=1)):
                     if s != ii:
                         for colm in      self.g_newUpdTniks(C,           nw=0, pt=sect, why=upd, dbg=1):
                             for _ in     self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
@@ -1473,10 +1476,10 @@ class Tabs(pyglet.window.Window):
         n = n  if n is not None else self.n[j] if j <= T else self.n[T]   ;   c = (C, Q, E)   ;   e = (A, B, D, E, M)   ;   t = (T, N, I, K) #  ;   s = (S, T)
         if j in e:     vx, vy, vw, vh = 0, 0, self.viewX, self.height - self.viewY 
         else:          vx, vy, vw, vh = self.viewX, self.viewY, self.viewW, self.viewH
-        np, nl, ns, nc, nt = self.n   ;   nsnt = ns*nt   ;   nr = nsnt * nl + self.LL
+        np, nl, ns, nc, nt = self.n #  ;   nsnt = ns*nt   ;   nr = nsnt * nl + self.LL   ;   dn = nr - nsnt
         if   n == 0:     n = 1        ;   self.log(f'ERROR n=0 setting {n=}')
         i                  = i if i is not None else self.i[j] if j <= T else self.i[T]
-        a, b               = self.axWgt(self.ax), self.ayWgt(self.ay)   ;   d = 1-b   ;   dn = nr - nsnt
+        a, b               = self.axWgt(self.ax), self.ayWgt(self.ay)   ;   d = 1-b
 #        px, py, pw, ph     = (a*vw, vy if nl==2 else b*vh, vw, vh) if p is None else (p.x, p.y, p.width, p.height)
         px, py, pw, ph     = (a*vw, b*vh if nl==1 else vy, vw, vh) if p is None else (p.x, p.y, p.width, p.height)
         if   j == P:     w = pw               ;  h = ph       ;    px += vx # ;  py -= vy
@@ -1487,7 +1490,7 @@ class Tabs(pyglet.window.Window):
         elif j in c:     w = pw/n             ;  h = ph
         else:            assert 0,  f'{j=}'
         if   j == P:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h
-        elif j == L:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h  ;  self.log(f'{a=} {b=} {d=:.1f} {dn=} [{vx:7.2f} {vy:7.2f} {vw:7.2f} {vh:7.2f}] {ph:6.2f} {ph/n=:6.2f} [{x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}] {self.SS=} {self.ZZ=}')
+        elif j == L:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h #  ;   self.log(f'{a=} {b=} {d=:.1f} {dn=} [{vx:7.2f} {vy:7.2f} {vw:7.2f} {vh:7.2f}] {ph:6.2f} {ph/n=:6.2f} [{x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}] {self.SS=} {self.ZZ=}')
         elif j == R:     x = px - a*pw + a*w  ;  y = self.height - h/2 if not self.J1[L] else self.height/2 - h/2
 #       elif j == Q:     x = px - a*pw + a*w  ;  y = vh - h/2
         elif j == S:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h
@@ -1574,18 +1577,6 @@ class Tabs(pyglet.window.Window):
                 else: msg = f'ERROR {FONT_NAME} not in {m=}'    ;    self.log(msg)    ;    cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
         self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwh} {ads} {cva} {s} {ftxt}', p=0, f=0)
 #        if ist(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
-
-    def removeTnik(self, tlist, i, j, dbg=0): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
-#        i2s = self.i2s(j, i)
-#        assert i2s < len(tlist),  f'{i2s=} {len(tlist)=} {i=} {j=}'
-        assert len(tlist) and i < len(tlist),  f'{len(tlist)=} {i=} {j=} {self.fmtJ1(0, 1)=} {self.fmtJ2(0, 1)=}'
-        t = tlist[i]        ;     ha = hasattr(t, 'text')   ;   why = f'Hid{self.hidC}'
-        t.visible = False   ;      v = int(t.visible)
-#        if   ist(t, LBL):  t.width, t.height = 1, 0  # Zero width not allowed
-#        elif ist(t, SPR):  t.update(scale_x=0, scale_y=0)
-        if dbg:     text = t.text if ha else Z  ;  self.log(f'{self.fmtJText(j)} {i=} {id(t):x} {text:6} {self.ftxywh(t)}  J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0, f=0)
-        self.setJdump(j, i, v, why)
-        return t
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
         self.newC += 1  ;  why = f'New{self.newC}'  ;  ll = self.LL  ;  view = self.VIEW   ;   z = self.ss2sl   ;   np, nl, ns, nc, nt = self.n
@@ -1680,43 +1671,42 @@ class Tabs(pyglet.window.Window):
         #self.pages if j==P else self.lines if j==L else self.sects if j==S else self.colms if j==C else self.tabls if j==T else self.notes if j==N else self.ikeys if j==I# else self.kords if j==K else self.views if j==M else self.rowLs if j==R else self.qclms if j==Q else self.hcurs if j==H else self.anams if j==A else self.bnums if j==B else self.capos if j==C else self.zclms if j==E else [] 
     ####################################################################################################################################################################################################
     def g_newUpdTniks(self, j, m=0, s=0, nw=0, pt=None, why=Z, dbg=1, dbg2=1):
-        tl = self.j2tl(j) # if j != P else self.E[P]
         n, _, x, y, w, h   = self.geom(j, pt, n=None, dbg=dbg2)
         p, l, c, _         = self.J1plct()
         np, nl, ns, nc, nt = self.n
         x2, y2, j2, t0     = x, y, j, Z
+        tl                 = self.j2tl(j2)
         i2, t, kl = (0, Z, self.k[j]) if nw == 1 else (0, None, None)
         js  = (P, L, S, C, R, Q)      if nw == 1 else None
         for i in range(m, m+n):
             if nw == 1 and self.DBG_TABT and j in js:    t = self.dbgTabTxt(j, i)
-            if   j == S:
-                if   nw == 2:
-                    assert i < len(tl),  f'{i=} {len(tl)=} {nw=} {m=} {s=}'
-                    tl[i].height = pt.height   ;   tl[i].y = pt.y
+            i2s = self.i2s(j2, i)
             if   j == P:                     v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
             else:                            v = int(self.pages[self.J1[P]].visible) # use parent or page? todo
             if   j in (C, E):               x2 = x + (i % nc) * w
-            else:
-                if   j == L:                y2 = y - i*h - self.LL*i*h/(ns*nt)
-                elif j >= T:
-                    tl, j2, kl, t0            = self.tnikInfo(p, l, s, c, i, why=why)  # todo
-                    assert nw in (0, 1, 2),  f'{nw=} {j=} {j2=} {t0=}'
-                    if nw in (0, 1, 2): # == 1 or nw == 2: #                        tl, j2, kl, t0 = self.tnikInfo(p, l, s if nw==1 else self.ss2sl()[s], c, i, why=why)
-                        if   s == TT:        t = t0
-                        elif s == NN:        t = t0 if j2 > K else self.sobj.tab2nn(t0, i, nic=self.nic) if self.sobj.isFret(t0) else self.tblank
-                        elif s in (II, KK):
-                            im = self.getImap(p, l, c)
-                            if   s == II:    t = self.imap2ikey( t0, im, i2, j2)   ;   i2 += 1 if t != self.tblank else 0
-                            elif s == KK:    t = self.imap2Chord(t0, im, i,  j2)
-                    y2 = y - i*h
-                else:                       y2 = y - i*h
-            i2s = self.i2s(j2, i)     ;    msg = f'{nw=} {j=} {j2=} {i=} {i2s=:2} {self.J2[j2]=:2} {len(self.E[j2])=:2} {len(tl)=:2} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {self.fmtn()} {n=}'
-            assert nw in (0, 1, 2),     f'{msg}'
+            else:                           y2 = y - i * h
+            if   j == L:                y2 -= self.LL*i*h/(ns*nt)
+            elif j == S and s in (0, 1, 2, 3):
+                if   nw == 2:
+                    i = i % len(tl)
+                    assert i < len(tl),  f'{i=} {len(tl)=} {j=} {j2=} {nw=} {m=} {n=} {s=} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)}'
+                    tl[i].height = pt.height   ;   tl[i].y = pt.y
+            elif j >= T: #                        tl, j2, kl, t0 = self.tnikInfo(p, l, s if nw==1 else self.ss2sl()[s], c, i, why=why)
+                tl, j2, kl, t0             = self.tnikInfo(p, l, s, c, i, why=why)  # todo
+                if   s == TT:            t = t0
+                elif s == NN:            t = t0 if j2 > K else self.sobj.tab2nn(t0, i, nic=self.nic) if self.sobj.isFret(t0) else self.tblank
+                elif s in (II, KK):
+                    im = self.getImap(p, l, c)
+                    if   s == II:        t = self.imap2ikey( t0, im, i2, j2)   ;   i2 += 1 if t != self.tblank else 0
+                    elif s == KK:        t = self.imap2Chord(t0, im, i,  j2)
+            msg = f'{self.fmtJText(j2)} {j=} {j2=} {t0=} {i=} {i2s=:2} {self.J2[j2]=:2} {len(self.E[j2])=:2} {len(tl)=:2} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {nw=}'
+            assert nw in (0, 1, 2),     f'{msg}'   ;   assert i2s < nc * nt,  f'{i2s=} nc*nt={nc*nt}'
             assert x2 <= self.width  and w <= self.width,   f'{x2=} {w=} {self.width=}'
             assert y2 <= self.height and h <= self.height,  f'{y2=} {h=} {self.height}'
+            assert tl == self.E[j2],                        f'{j2=} {tl=} {self.E[j2]=}'
             self.log(f'{msg}', f=0)
             if   nw == 0:
-                assert i2s < len(self.E[j2]),  f'{i2s=} {j2=} {len(self.E[j2])=} {self.jlen()}' # if   i2s < len(self.E[j2]):
+                assert i2s < len(self.E[j2]),  f'{i2s=} {j2=} {len(self.E[j2])=} {self.fjlen()}'
                 yield self.updateTnik(tl, i2s, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
             elif nw == 1:
                 if   i2s >= len(self.E[j2]):
@@ -1724,10 +1714,22 @@ class Tabs(pyglet.window.Window):
                     yield self.createTnik(tl, i, j2, x2, y2, w, h, k, why=why, t=t, v=v, dbg=dbg)
                 else:
                     yield self.updateTnik(tl, i2s, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
-            elif nw == 2:
-                assert tl and i2s < len(tl),  f'{i2s=} {j2=} {len(tl)=} {self.jlen()}'
-                yield self.removeTnik(tl, i2s, j2, dbg=dbg)
+            elif nw == 2 and s != -1:
+                if i2s < len(self.E[j2]):
+                    yield self.removeTnik(tl, i2s, j2, dbg=dbg)
+#                assert tl and i2s < len(tl),  f'{i2s=} {j2=} {len(tl)=} {self.fjlen()}'
     ####################################################################################################################################################################################################
+    def removeTnik(self, tlist, i, j, dbg=1): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
+        assert len(tlist) and i < len(tlist),  f'{len(tlist)=} {i=} {j=} {self.fmtJ1(0, 1)=} {self.fmtJ2(0, 1)=}'
+        t = tlist[i]        ;     ha = hasattr(t, 'text')   ;   why = f'Hid{self.hidC}'
+        if j >= T: assert ha,  f'{j=} {i=}'
+        t.visible = False   ;      v = int(t.visible)
+#        if   ist(t, LBL):  t.width, t.height = 1, 0  # Zero width not allowed
+#        elif ist(t, SPR):  t.update(scale_x=0, scale_y=0)
+        if dbg:     text = t.text if ha else Z   ;   self.log(f'{self.fmtJText(j)} {i=} {id(t):x} {text:6} {self.ftxywh(t)} {self.fjlen()} J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0, f=0)
+        self.setJdump(j, i, v, why)
+        return t
+
     def createTnik(self, tlst, i, j, x, y, w, h, k, why=Z, t=Z, v=0, dbg=0):
         assert i    is not None and j is not None,  f'ERROR i or j is None {i=} {j=} lt={len(tlst) if tlst is not None else None} {t=} {why}'
         assert tlst is not None and k is not None,  f'ERROR tlst or k is None {tlst=} {k=}'
@@ -2062,7 +2064,7 @@ class Tabs(pyglet.window.Window):
         return rp, rl, rs, rc, rt # todo
     ####################################################################################################################################################################################################
     def setCaption(self, msg, dbg=1):
-        if dbg: self.log(msg)
+        if dbg: self.log(msg, f=0)
         self.set_caption(msg)
     ####################################################################################################################################################################################################
     def calcFontSize(self, j=T, dbg=0):
@@ -2147,7 +2149,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'END         {text=} tabs[{cc}]={self.tabls[cc].text}', pos=pos)
 
     def setNote(self, text, cc, t, pos=1, dbg=0): #fix me
-        assert cc < len(self.notes),  f'{cc=} {len(self.notes)=} {self.jlen()}'
+        assert cc < len(self.notes),  f'{cc=} {len(self.notes)=} {self.fjlen()}'
         old   = self.notes[cc].text
         if dbg: self.log(f'BGN     {t=} {text=} notes[{cc}]={old}', pos=pos)
         if dbg: self.log(kysgs.fmtKSK(self.ks[kysgs.KSK]))

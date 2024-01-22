@@ -10,13 +10,28 @@ W, Y, Z          = utl.W, utl.Y, utl.Z
 slog, fmtl, fmtm = utl.slog, utl.fmtl, utl.fmtm
 
 class Strngs:
-    aliases = {'GUITAR_6_STD':       dict([('E2', 28), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
-               'GUITAR_6_EBEbGbBEb': dict([('E2', 28), ('B2', 35), (f'E{F}3', 39), (f'G{F}3', 42), ('B3', 47), (f'E{F}4', 51)]),
-               'GUITAR_6_DROP_D':    dict([('D2', 26), ('A2' , 33), ('D3', 38), ('G3', 43), ('B3' , 47), ('E4', 52)]),
-               'GUITAR_7_STD':       dict([('E2', 28), ('Ab2', 32), ('C3', 36), ('E3', 40), ('Ab3', 44), ('C4', 48), ('E4', 52)])
+    aliases = {f'EADGBE':             dict([(f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
+               f'GUITAR':             dict([(f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
+               f'CEGCEG':             dict([(f'C2',    24), (f'E2',    28), (f'G3',    31), (f'C3',    36), (f'E3',    40), (f'G4',    43)]),
+               f'DROP_D':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
+               f'DADGAD':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'A3',    45), (f'D4',    50)]),
+               f'E{F}ADGBE':          dict([(f'E{F}2', 27), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
+               f'EBE{F}G{F}BE{F}':    dict([(f'E2',    28), (f'B2',    35), (f'E{F}3', 39), (f'G{F}3', 42), (f'B3',    47), (f'E{F}4', 51)]),
+               f'E{F}BE{F}G{F}BE{F}': dict([(f'E{F}2', 28), (f'B2',    35), (f'E{F}3', 39), (f'G{F}3', 42), (f'B3',    47), (f'E{F}4', 51)]),
+               f'GUITAR_7_4ths':      dict([(f'E2',    28), (f'A{F}2', 32), (f'C3',    36), (f'E3',    40), (f'A{F}3', 44), (f'C4',    48), (f'E4',    52)]),
+               f'EA{F}CEA{F}CE':      dict([(f'E2',    28), (f'A{F}2', 32), (f'C3',    36), (f'E3',    40), (f'A{F}3', 44), (f'C4',    48), (f'E4',    52)]),
+               f'GUITAR_7':           dict([(f'B1',    23), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
+               f'DGBDGBD':            dict([(f'D2',    26), (f'G2',    31), (f'B2',    35), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'D4',    50)]),
+               f'GUITAR_RUSSIAN':     dict([(f'D2',    26), (f'G2',    31), (f'B2',    35), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'D4',    50)]),
+               f'GUITAR_7_DROP_C':    dict([(f'C2',    24), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
+               f'GUITAR_7_DROP_B':    dict([(f'B1',    23), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
+               f'GUITAR_7_DROP_A':    dict([(f'A1',    21), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
+               f'CEADGBE':            dict([(f'C2',    24), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
+               f'BEADGBE':            dict([(f'B1',    23), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
+               f'AEADGBE':            dict([(f'A1',    21), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)])
               }
     def __init__(self, alias=None):
-        if alias is None: alias = 'GUITAR_6_EBEbGbBEb'
+        if alias is None: alias = 'GUITAR'
         self.map       = self.aliases[alias]
         self.keys      = list(self.map.keys())
         self.names     = Z.join(reversed([ str(k[0])  for k in           self.keys ]))
