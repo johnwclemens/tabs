@@ -1159,23 +1159,21 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def hideTTs(self, how, ii, dbg=0):
         self.hidC += 1   ;   hid2 = f'Hid{self.hidC} {how} {ii=}'  ;  hid = f'Hid{self.hidC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.hidC}'   ;   z = self.ss2sl
-#        self.togTT(ii)
         i = self.ss2sli(ii)
         np, nl, ns, nc, nt = self.n
-#        self.updView(len(self.ZZ), self.LL, nl*ns*nt)
         self.dumpTniksPfx(hid2)
         for p, page in         enumerate(self.g_newUpdTniks(P,          nw=0, pt=None, why=ref)):
             for l, line in     enumerate(self.g_newUpdTniks(L,          nw=0, pt=page, why=ref)):
                 for s, sect in enumerate(self.g_newUpdTniks(S, s=ii,    nw=2, pt=line, why=upd)):
                     if s == 0:
-                        for c, colm in     enumerate(self.g_newUpdTniks(C, m=i*nc,  nw=2, pt=sect, why=hid)):
+                        for c, colm in  enumerate(self.g_newUpdTniks(C, m=i*nc,  nw=2, pt=sect, why=hid)):
                             for t, _ in enumerate(self.g_newUpdTniks(T, s=ii,    nw=2, pt=colm, why=hid)):  pass
         self.dumpTniksSfx(hid2)
         self.dumpTniksPfx(hid2)
         for page in                      self.g_newUpdTniks(P,          nw=0, pt=None, why=upd, dbg=1):
             for line in                  self.g_newUpdTniks(L,          nw=0, pt=page, why=upd, dbg=1):
                 for s, sect in enumerate(self.g_newUpdTniks(S,          nw=0, pt=line, why=upd, dbg=1)):
-                    if s != ii:
+                    if s != i:
                         for colm in      self.g_newUpdTniks(C,           nw=0, pt=sect, why=upd, dbg=1):
                             for _ in     self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
         if ii == TT:                     self.removeTnik(self.hcurs, 0, H, dbg)
@@ -1185,8 +1183,7 @@ class Tabs(pyglet.window.Window):
     def addTTs(self, how, ii):
         self.addC += 1   ;   add2 = f'Add{self.addC} {how} {ii=}'  ;  add = f'Add{self.addC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.addC}'   ;   z = self.ss2sl
         self.togTT(ii)
-#        i = self.ss2sli(ii)
-        np, nl, ns, nc, nt = self.n #  ;  t = 0
+        np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(add2)
         for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=ref, dbg=1):
             for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=ref, dbg=1):
@@ -1225,7 +1222,6 @@ class Tabs(pyglet.window.Window):
             elif s == KK:  tlist, j = (self.bnums, B) if exp1 else (self.capos, D) if exp2 else (self.kords, K)
             else:   msg = f'{msg2} {msg1}'   ;    self.log(msg)   ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
             if dbg: msg =        f'{msg1}'   ;    self.log(msg, f=0) # self.fmtJText(j, why=why)
-#        elif 0 <= t < self.n[T]:
         else:
             assert 0 <= t < self.n[T],  f"{self.n[T]=} {t=} {c=} {s=} {l=} {p=} {z=}"
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[B], self.k[A], self.k[D]
@@ -1237,7 +1233,6 @@ class Tabs(pyglet.window.Window):
             elif s == II:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.ikeys, I, kI, tab)
             elif s == KK:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.kords, K, kK, tab)
             if dbg: msg =        f'{msg1}'  ;  self.log(msg, f=0) # self.fmtJText(j, t, why)
-#        else: assert 0,  f"{self.n[T]=} {t=} {c=} {s=} {l=} {p=} {z=}"
         return tlist, j, k, txt
     ####################################################################################################################################################################################################
     def geom(self, j, p=None, n=None, i=None, dbg=1):
@@ -1249,7 +1244,6 @@ class Tabs(pyglet.window.Window):
         if   n == 0:     n = 1        ;   self.log(f'ERROR n=0 setting {n=}')
         i                  = i if i is not None else self.i[j] if j <= T else self.i[T]
         a, b               = self.axWgt(self.ax), self.ayWgt(self.ay)   ;   d = 1-b
-#        px, py, pw, ph     = (a*vw, vy if nl==2 else b*vh, vw, vh) if p is None else (p.x, p.y, p.width, p.height)
         px, py, pw, ph     = (a*vw, b*vh if nl==1 else vy, vw, vh) if p is None else (p.x, p.y, p.width, p.height)
         if   j == P:     w = pw               ;  h = ph       ;    px += vx # ;  py -= vy
         elif j == L:     w = pw               ;  h = ph/n # - dn*ph_n_nr
@@ -1261,7 +1255,6 @@ class Tabs(pyglet.window.Window):
         if   j == P:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h
         elif j == L:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h #  ;   self.log(f'{a=} {b=} {d=:.1f} {dn=} [{vx:7.2f} {vy:7.2f} {vw:7.2f} {vh:7.2f}] {ph:6.2f} {ph/n=:6.2f} [{x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}] {self.SS=} {self.ZZ=}')
         elif j == R:     x = px - a*pw + a*w  ;  y = self.height - h/2 if not self.J1[L] else self.height/2 - h/2
-#       elif j == Q:     x = px - a*pw + a*w  ;  y = vh - h/2
         elif j == S:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h
         elif j in t:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h # - dn*ph/nr
         elif j in c:     x = vx        + a*w  ;  y = py + b*ph - b*h
@@ -1314,7 +1307,6 @@ class Tabs(pyglet.window.Window):
         if dbg and chunks:   self.log(f'{chordName=} chunks={fmtl(chunks)} imap={fmtl(imap)}')
         return chordName
     ####################################################################################################################################################################################################
-#    def nlnsnt( self):    return self.n[L] * self.n[S] * self.n[T]
     def nlnsnt( self):    return self.n[L] * len(self.SS) * self.n[T]
     def axyWgt(self, x, y, dbg=0): u, v = self.axWgt(x), self.ayWgt(y)  ;  self.log(f'{x=:6} {y=:6} {u=:4.2f} {v=:4.2f}') if dbg else None  ;  return u, v
     @staticmethod
@@ -1460,7 +1452,7 @@ class Tabs(pyglet.window.Window):
                     i = i % len(tl)
                     assert i < len(tl),  f'{i=} {len(tl)=} {j=} {j2=} {nw=} {m=} {n=} {s=} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)}'
                     tl[i].height = pt.height   ;   tl[i].y = pt.y
-            elif j >= T: #                        tl, j2, kl, t0 = self.tnikInfo(p, l, s if nw==1 else self.ss2sl()[s], c, i, why=why)
+            elif j >= T:
                 tl, j2, kl, t0             = self.tnikInfo(p, l, s, c, i, why=why)  # todo
                 if   s == TT:            t = t0
                 elif s == NN:            t = t0 if j2 > K else self.sobj.tab2nn(t0, i, nic=self.nic) if self.sobj.isFret(t0) else self.tblank
@@ -1489,7 +1481,7 @@ class Tabs(pyglet.window.Window):
                         assert s != -1,  f'{j=} {j2=} {s=} {i=} {i2=} {i2s=}'
                         hit = 1
                         yield self.removeTnik(tl, i2s, j2, dbg=dbg)
-                    else: return None
+                    else: self.log(f'{j=} {i2s=} {hit=} {self.fjlen()} J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}')
     ####################################################################################################################################################################################################
     def removeTnik(self, tlist, i, j, dbg=1): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         assert len(tlist) and i < len(tlist),  f'{len(tlist)=} {i=} {j=} {self.fmtJ1(0, 1)=} {self.fmtJ2(0, 1)=}'
@@ -1530,7 +1522,6 @@ class Tabs(pyglet.window.Window):
         self.checkTnik(tnik, i, j)
         if    tlst is not None:    tlst.append(tnik)
         key = self.idmapkey(j)  ;  self.idmap[key] = (tnik, j, i)
-#        tnik.visible = True if j == H else False # bool(v)
         tnik.visible =  bool(v)
 #        self.visib[j].append(v)
         if    dbg:                 self.dumpTnik(tnik, j, why)
