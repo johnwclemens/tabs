@@ -457,19 +457,6 @@ class Tabs(pyglet.window.Window):
     def lenD(self):                   return [ len(_) for _ in self.D ]
     def lenE(self):                   return [ len(_) for _ in self.E ]
     ####################################################################################################################################################################################################
-    def i2s(self, j, i, dbg=0):
-        np, nl, ns, nc, nt = self.n
-        p, l, s,  c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
-        t, n, ii, k = self.J1[T], self.J1[N], self.J1[I], self.J1[K]
-        if   j==P:               r = i
-        elif j==L:               r = i + p*nl
-        elif j==S:               r = i + p*nl*ns + l*ns
-        elif j==C:               r = i + p*nl*ns*nc + l*ns*nc * s*nc
-        elif j in (T, N, I, K):  r = i + p*nl*nc*nt + l*nc*nt + c*nt
-        else:                    r = -1
-        if dbg: slog(f'{p=} {l=} {s=} {c=} , {t=} {n=} {ii=} {k=} , {j=} {i=} {r=}', f=0)
-        return r % (nc * nt) if j > C else r % nc if j==C else r % nl 
-
     def isJV(self, j=0, dbg=0): # fixme all the other values > k?
         if   P <= j <= K and self.J1[P] == self.j()[P]: v = 1
 #        if   P <= j <= K and self.J2[P] == self.i[P]:   v = 1
@@ -1209,7 +1196,7 @@ class Tabs(pyglet.window.Window):
         tlist, j, k, txt = None, -1, None, None   ;   z1, z2 = None, None
         if z: z1, z2 = self.z1(c), self.z2(c)
         exp1 = z1 == C1   ;  exp2 = C2 in (z1, z2)
-        p, l, s, c, t = self.lens2n([p, l, s, c, t]) # 
+        p, l, s, c, t = self.lens2n([p, l, s, c, t])
         msg1 = f'plsct={self.fplsct( p, l, s, c, t)} {z1=} {z2=} {exp1=} {exp2=} {txt=} {why}'
         msg2 = f'ERROR Invalid sect {s=}:'
         if   t is None:
@@ -1218,23 +1205,22 @@ class Tabs(pyglet.window.Window):
             elif s == II:  tlist, j = (self.anams, A) if exp1 else (self.capos, D) if exp2 else (self.ikeys, I)
             elif s == KK:  tlist, j = (self.bnums, B) if exp1 else (self.capos, D) if exp2 else (self.kords, K)
             else:   msg = f'{msg2} {msg1}'   ;    self.log(msg)   ;   cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
-            if dbg: msg =        f'{msg1}'   ;    self.log(msg, f=0) # self.fmtJText(j, why=why)
+            if dbg: msg =        f'{msg1}'   ;    self.log(msg, f=0)
         else:
             assert 0 <= t < self.n[T],  f"{self.n[T]=} {t=} {c=} {s=} {l=} {p=} {z=}"
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[B], self.k[A], self.k[D]
             tab = self.data[p][l][c][t] if C1 != z1 != C2 and C2 != z2 else Z
-            s = abs(s) # rm?
             assert s in (TT, NN, II, KK),  f'{s=}'
             if   s == TT:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.tabls, T, kT, tab)
             elif s == NN:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.notes, N, kN, tab)
             elif s == II:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.ikeys, I, kI, tab)
             elif s == KK:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.kords, K, kK, tab)
-            if dbg: msg =        f'{msg1}'  ;  self.log(msg, f=0) # self.fmtJText(j, t, why)
+            if dbg: msg =        f'{msg1}'  ;  self.log(msg, f=0)
         return tlist, j, k, txt
     ####################################################################################################################################################################################################
-    def geom(self, j, p=None, n=None, i=None, dbg=1):
+    def geom(self, j, p=None, n=None, i=None, dbg=0):
         assert j in (P, L, S, C,  T, N, I, K,  M, R, Q, H,  A, B, D, E),  f'{j=}'
-        n = n  if n is not None else self.n[j] if j <= T else self.n[T]   ;   c = (C, Q, E)   ;   e = (A, B, D, E, M)   ;   t = (T, N, I, K) #  ;   u = (L, t)
+        n = n  if n is not None else self.n[j] if j <= T else self.n[T]   ;   c = (C, Q, E)   ;   e = (A, B, D, E, M)   ;   t = (T, N, I, K)
         if j in e:     vx, vy, vw, vh = 0, 0, self.viewX, self.height - self.viewY 
         else:          vx, vy, vw, vh = self.viewX, self.viewY, self.viewW, self.viewH
         np, nl, ns, nc, nt = self.n #  ;   nsnt = ns*nt #  ;   nr = nsnt * nl + self.LL   ;   dn = nr - nsnt
@@ -1244,15 +1230,13 @@ class Tabs(pyglet.window.Window):
         px, py, pw, ph     = (a*vw, b*vh if nl==1 else vy, vw, vh) if p is None else (p.x, p.y, p.width, p.height)
         if   j in c:     w = pw/n             ;  h = ph
         elif j == P:     w = pw               ;  h = ph       ;    px += vx # ;  py -= vy
-        elif j == L:     w = pw               ;  h = ph/n # - dn*ph/nr
         elif j in t:     w = pw               ;  h = ph/n # - dn*ph/nr
         else:            w = pw               ;  h = ph/n
         if   j in c:     x = vx        + a*w  ;  y = py + b*ph - b*h
         elif j == R:     x = px - a*pw + a*w  ;  y = self.height - h/2 if not self.J1[L] else self.height/2 - h/2
-        elif j == L:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h # - dn*ph/nr #  ;   self.log(f'{a=} {b=} {d=:.1f} {dn=} [{vx:7.2f} {vy:7.2f} {vw:7.2f} {vh:7.2f}] {ph:6.2f} {ph/n=:6.2f} [{x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}] {self.SS=} {self.ZZ=}')
-        elif j in t:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h # - dn*ph/nr
+        elif j in t:     x = px - a*pw + a*w  ;  y = py + d*ph - d*h # - dn*ph/nr #  ;   self.log(f'{a=} {b=} {d=:.1f} {dn=} [{vx:7.2f} {vy:7.2f} {vw:7.2f} {vh:7.2f}] {ph:6.2f} {ph/n=:6.2f} [{x:7.2f} {y:7.2f} {w:7.2f} {h:7.2f}] {self.SS=} {self.ZZ=}')
         else:            x = px - a*pw + a*w  ;  y = py + d*ph - d*h
-        if dbg: # and self.VERBY >= 2:
+        if dbg and self.VERBY >= 2:
             msg  = f'{j=:2} {JTEXTS[j]:4} {n=:2} {self.fxywh(x, y, w, h)}'
             msg2 = f' : {self.ftxywh(p)}' if p else f' : {self.fxywh(0, 0, 0, 0)}'
             msg += msg2 if p else W * len(msg2)
@@ -1308,10 +1292,10 @@ class Tabs(pyglet.window.Window):
     def ayWgt(y): return 0.0 if y==BOTTOM else 0.5 if y==CENTER else 1.0 if y==TOP   else -1.0
     def fancXY(self, t): return f'{int(t.width * self.axWgt(self.ax)):5}', f'{int(t.height * self.ayWgt(self.ay)):5}'
     ####################################################################################################################################################################################################
-    def checkTnik(self, t, i, j, dbg=0):
-        ntvH       = 'Name  Tid V'  ;  axy2H = self.axy2H()  ;  cwhH, cvaH, adsH, dsH, ftxtH = Z, Z, Z, Z, Z  ;  cwh, cva, ads, s = Z, Z, Z, Z  ;  ptxtH, ftxtH = ' PrtlText', ' FullText'
+    def checkTnik(self, t, i, j, dbg=0, dbg2=0):
+        ntvH       = 'Name  Tid V'  ;  axy2H = self.axy2H()  ;  cwhH, cvaH, adsH, dsH, ftxtH = Z, Z, Z, Z, Z  ;  cwh, cva, ads, s = Z, Z, Z, Z  ;  ptxtH, ftxtH = ' PrtTxt', ' FullText'
         if ist(t, LBL):  cwhH = f'{self.cwhH()}'  ;  cvaH = f'{self.cvaH()}'  ;  dsH = f'{self.docStyleH()}'  ;  adsH = W.join(ADS)
-        self.log(f'{ntvH}{ptxtH} {axy2H} {cwhH} {adsH} {cvaH} {dsH}{ftxtH}', p=0, f=0)  if j==P or (j==T and i==0) else None
+        if i==0 and j==0:     self.log(f'{ntvH}{ptxtH} {axy2H} {cwhH} {adsH} {cvaH} {dsH}{ftxtH}', p=0, f=0)  if j==P or (j==T and i==0) else None
         ptxt, ftxt = Z, Z  ;  js = JTEXTS[j]   ;   v = 'V' if t.visible else 'I'
         ax,     ay = self.ax,    self.ay
         tax,   tay = t.anchor_x, t.anchor_y
@@ -1327,9 +1311,9 @@ class Tabs(pyglet.window.Window):
                     fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])
                     assert fnt.name == fnt2.name,  f'ERROR loading font, {m[FONT_NAME]=} {fnt=} {fnt2=}'
                     assert fnt.size == fnt2.size,  f'ERROR loading font, {m[FONT_SIZE]=} {fnt=} {fnt2=}'
-#                   assert fnt == fnt2,            f'ERROR loading font, {fnt=} {fnt2=}'  # why does this assert? (stretch mismatch, address)
+#                   assert fnt == fnt2,            f'ERROR loading font, {fnt=} {fnt2=}'  #todo why does this assert? (stretch mismatch, address)
                 else: msg = f'ERROR {FONT_NAME} not in {m=}'    ;    self.log(msg)    ;    cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
-        self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwh} {ads} {cva} {s} {ftxt}', p=0, f=0)
+        if dbg2:      self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwh} {ads} {cva} {s} {ftxt}', p=0, f=0)
 #        if ist(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
@@ -1416,7 +1400,20 @@ class Tabs(pyglet.window.Window):
                     s = self.ss2sl()[self.J1[S] % self.ssl()]
                     tl2, j2, _, _ = self.tnikInfo(p, l, s, c, why=why)
             yield self.updateTnik(tl2, self.J2[j2], j2, x2, y2, w, h, why=why, dbg=dbg)
-    
+    ####################################################################################################################################################################################################
+    def ijSum(self, i, j, dbg=0):
+        np, nl, ns, nc, nt = self.n
+        p, l, s,  c = self.J1[P], self.J1[L], self.J1[S], self.J1[C]
+        t, n, ii, k = self.J1[T], self.J1[N], self.J1[I], self.J1[K]
+        if   j==P:               r = i
+        elif j==L:               r = i + p*nl
+        elif j==S:               r = i + l*ns
+        elif j==C:               r = i + s*nc # + l*nc*nt
+        elif j in (T, N, I, K):  r = i + c*nt #  ;   r = r % nc*nt
+        else:                    r = -1
+        if dbg: slog(f'({r=} {j=} {i=} , {p=} {l=} {s=} {c=} , {t=} {n=} {ii=} {k=} , {p*nl=} {l*ns=} {s*nc=} {c*nt=})', f=0)
+        return r # r % (nc * nt) if j > C else r % nc if j==C else r % nl 
+
     def j2tl(self, j):
         assert 0 <= j < 16,            f'{j=}'
         assert len(self.E) > 0,        f'{len(self.E)}'
@@ -1434,16 +1431,15 @@ class Tabs(pyglet.window.Window):
         js  = (P, L, S, C, R, Q)      if nw == 1 else None
         for i in range(m, m+n):
             if nw == 1 and self.DBG_TABT and j in js:    t = self.dbgTabTxt(j, i)
-            i2s = self.i2s(j2, i)
-            if   j == P:                     v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
-            else:                            v = int(self.pages[self.J1[P]].visible) # use parent or page? todo
-            if   j in (C, E):               x2 = x + (i % nc) * w
-            else:                           y2 = y - i * h
-            if   j == L:                y2 -= self.LL*i*h/(ns*nt)
+            ijs = self.ijSum(i, j2)
+            if   j == P:                 v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
+            else:                        v = int(self.pages[self.J1[P]].visible) # use parent or page? todo
+            if   j in (C, E):           x2 = x + (i % nc) * w
+            else:                       y2 = y - i * h
+            if   j == L:                y2 = y2 - self.LL*i*h/(ns*nt)
             elif j == S and s in (0, 1, 2, 3):
                 if   nw == 2:
-                    i = i % len(tl)
-                    assert i < len(tl),  f'{i=} {len(tl)=} {j=} {j2=} {nw=} {m=} {n=} {s=} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)}'
+                    assert 0 <= i < len(tl),  f'{i=} {len(tl)=} {j=} {j2=} {nw=} {m=} {n=} {s=} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)}'
                     tl[i].height = pt.height   ;   tl[i].y = pt.y
             elif j >= T:
                 tl, j2, kl, t0             = self.tnikInfo(p, l, s, c, i, why=why)  # todo
@@ -1453,28 +1449,27 @@ class Tabs(pyglet.window.Window):
                     im = self.getImap(p, l, c)
                     if   s == II:        t = self.imap2ikey( t0, im, i2, j2)   ;   i2 += 1 if t != self.tblank else 0
                     elif s == KK:        t = self.imap2Chord(t0, im, i,  j2)
+            msg = f'{ijs:3} {self.fmtJText(j2)} {j2=} {t0:3} {i=:2} {self.J2[j2]=:2} {len(tl)=:2} {len(tl)=:2} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {nw=}'    ;    self.log(f'{msg}', f=0)
             assert x2 <= self.width  and w <= self.width,   f'{x2=} {w=} {self.width=}'
             assert y2 <= self.height and h <= self.height,  f'{y2=} {h=} {self.height}'
             assert tl == self.E[j2],                        f'{j2=} {tl=} {self.E[j2]=}'
-            msg = f'{self.fmtJText(j2)} {j=} {j2=} {t0=} {i=} {i2s=:2} {self.J2[j2]=:2} {len(tl)=:2} {len(tl)=:2} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {nw=}'
-            assert nw in (0, 1, 2),     f'{msg}'   ;   assert i2s < nc * nt,  f'{i2s=} nc*nt={nc*nt}'
-            self.log(f'{msg}', f=0)
+            assert nw in (0, 1, 2),     f'{msg}' #  ;   assert ijs < nc * nt,  f'{ijs=} nc*nt={nc*nt}'
             if   nw == 0:
-                assert i2s < len(tl),  f'{i2s=} {j2=} {len(tl)=} {self.fjlen()}'
-                yield self.updateTnik(tl, i2s, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
+                if ijs < len(tl): #,  f'{ijs=} {j2=} {len(tl)=} {self.fjlen()}'
+                    yield self.updateTnik(tl, ijs, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
+                else:     self.log(f'ERROR {self.ijSum(i, j2, 1)} >= {len(tl)} : {msg}')
             elif nw == 1:
-                if   i2s >= len(tl):
+                if   ijs >= len(tl):
                     k = kl[self.BGC]
                     yield self.createTnik(tl, i, j2, x2, y2, w, h, k, why=why, t=t, v=v, dbg=dbg)
-                else:
-                    yield self.updateTnik(tl, i2s, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
-            elif nw == 2: #  and s != -1
-                if i2s < len(tl):
+                else:     yield self.updateTnik(tl, ijs, j2, x2, y2, w, h,  why=why,      v=1, dbg=dbg)
+            elif nw == 2:
+                if ijs < len(tl):
                     if j != S or (j == S and hit == 0):
-                        assert s != -1,  f'{j=} {j2=} {s=} {i=} {i2=} {i2s=}'
+                        assert s != -1,  f'{j=} {j2=} {s=} {i=} {i2=} {ijs=}'
                         hit = 1
-                        yield self.removeTnik(tl, i2s, j2, dbg=dbg)
-                    else: self.log(f'{j=} {i2s=} {hit=} {self.fjlen()} J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}')
+                        yield self.removeTnik(tl, ijs, j2, dbg=dbg)
+                    else: self.log(f'{j=} {ijs=} {hit=} {self.fjlen()} J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}')
     ####################################################################################################################################################################################################
     def removeTnik(self, tlist, i, j, dbg=1): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         assert len(tlist) and i < len(tlist),  f'{len(tlist)=} {i=} {j=} {self.fmtJ1(0, 1)=} {self.fmtJ2(0, 1)=}'
@@ -1521,7 +1516,7 @@ class Tabs(pyglet.window.Window):
         return tnik
     ####################################################################################################################################################################################################
     def updateTnik(self, tlist, i, j, x, y, w, h, why=Z, v=0, dbg=0): # self.setTNIKStyle2(tnik, self.k[j], self.BGC)
-        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=} {j=} {x=:.2f} {y=:.2f} {w=:.2f} {h=:.2f} {why} {self.i2s(j, i)=}'
+        assert 0 <= i < len(tlist),  f'{i=} {len(tlist)=} {j=} {x=:.2f} {y=:.2f} {w=:.2f} {h=:.2f} {why} {self.ijSum(i, j)=}'
         tnik   = tlist[i]
         self.log(f'{why} {H=} {j=} {i=} {self.J2[H]=}')       if dbg and j == H else None
         if   ist(tnik, SPR) and tnik.visible:

@@ -67,3 +67,4 @@ class Modes:
 # P) maybe do not call resize() unless its visible
 # Q) register snap needs a list
 # R) revisit sharps & flats & chord names
+# S) multiple lines is broke (only displays last line, others are blank)
