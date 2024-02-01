@@ -1172,11 +1172,11 @@ class UpdateTniksCmd(Cmd):
                     for sect in          tobj.g_updateTniks(tobj.sects, S, line, why=why):  # pass
                         for _ in         tobj.g_updateTniks(tobj.colms, C, sect, why=why):  pass
         else:
-            for page in                      tobj.g_newUpdTniks(P,           nw=0, pt=None, why=why):  # pass
-                for line in                  tobj.g_newUpdTniks(L,           nw=0, pt=page, why=why):  # pass
+            for page in                      tobj.g_newUpdTniks(P,            nw=0, pt=None, why=why):  # pass
+                for line in                  tobj.g_newUpdTniks(L,            nw=0, pt=page, why=why):  # pass
                     if ll:                   tobj.updateLLs(line, 1, why) #                        if zz:               tobj.updateZZs(sect, s, z, why)
-                    for s, sect in enumerate(tobj.g_newUpdTniks(S,           nw=0, pt=line, why=why)): # pass
-                        for colm in          tobj.g_newUpdTniks(C, m=s*nc,   nw=0, pt=sect, why=why):  # pass
+                    for s, sect in enumerate(tobj.g_newUpdTniks(S,            nw=0, pt=line, why=why)): # pass
+                        for colm in          tobj.g_newUpdTniks(C, m=s*nc,    nw=0, pt=sect, why=why):  # pass
                             for _ in         tobj.g_newUpdTniks(T, s=zs()[s], nw=0, pt=colm, why=why):  pass # z()[s]
         tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor:  cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
