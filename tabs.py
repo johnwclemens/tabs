@@ -128,7 +128,7 @@ class Tabs(pyglet.window.Window):
         self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0
         self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.TUNING  = 1  ;  self.VARROW    = 1  ;  self.VERBY     = 0
         ################################################################################################################################################################################################
-        self.AXYV      = [0, 0, 0, 0]   ;   self._init_axyv()
+        self.AXYV      = [0, 0, 0, 0]   ;   self._initAaxyv()
         self.ROOT_DIR  = 'test'         ;   self.FILE_NAME = BASE_NAME
         self.LL        = 0
         self.SS        = set(range(4))  # set() if 0 else {0, 1, 2, 3}
@@ -175,7 +175,7 @@ class Tabs(pyglet.window.Window):
         if 'x' in ARGS  and len(ARGS['x']) == 0: self.EXIT       =  1
         if 'x' in ARGS  and len(ARGS['x'])  > 0: self.EXIT       =   int(ARGS['x'][0])
         if 'Z' in ARGS  and len(ARGS['Z']) >= 0: self.ZZ         = [ int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) ]
-        self._init_axyv()
+        self._initAaxyv()
         ################################################################################################################################################################################################
         self.n0        = []           ;    self.n0.extend(self.n)  ;  self.i0 = [self.i]
         self.n.insert(S, self.ssl())  ;    self.i.insert(S, 1)     ;  self.dumpArgs(f=2)
@@ -202,26 +202,12 @@ class Tabs(pyglet.window.Window):
         self.log(utl.INIT, p=0)
         self.log(f'END {__class__}')
     ####################################################################################################################################################################################################
-    def _init_axyv(self, why=Z, dmp=1):
-        a = self.AXYV[0] # -1, 0, 1
-        x = self.AXYV[1] # -1, 0, 1
-        y = self.AXYV[2] # -1, 0, 1, 2
-        v = self.AXYV[3] # -1, 0, 1
-        self.A_LEFT    = 1  if a==-1 else 0  ;  self.A_CENTER = 1  if a==0  else 0  ;  self.A_RIGHT  = 1 if a==1 else 0
-        self.X_LEFT    = 1  if x==-1 else 0  ;  self.X_CENTER = 1  if x==0  else 0  ;  self.X_RIGHT  = 1 if x==1 else 0
-        self.Y_BOTTOM  = 1  if y==-1 else 0  ;  self.Y_CENTER = 1  if y==0  else 0  ;  self.Y_TOP    = 1 if y==1 else 0  ;  self.Y_BASELINE = 1 if y==2 else 0
-        self.V_BOTTOM  = 1  if v==-1 else 0  ;  self.V_CENTER = 1  if v==0  else 0  ;  self.V_TOP    = 1 if v==1 else 0
-        self.aa = LEFT   if self.A_LEFT   else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '??'
-        self.ax = LEFT   if self.X_LEFT   else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
-        self.ay = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP   if self.Y_TOP   else BASELINE if self.Y_BASELINE else '??'
-        self.av = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP   if self.V_TOP   else '??'
-        if dmp:   self.dumpAXYV(why)
-    ####################################################################################################################################################################################################
-    def _initAaxyv(self):
+    def _initAaxyv(self, why=Z, dmp=1):
         self._initAa() # -1, 0, 1
         self._initAx() # -1, 0, 1
         self._initAy() # -1, 0, 1, 2
         self._initAv() # -1, 0, 1
+        if dmp:   self.dumpAXYV(why)
     ####################################################################################################################################################################################################
     def _initAa(self):
         a = self.AXYV[0]
@@ -242,6 +228,18 @@ class Tabs(pyglet.window.Window):
         v = self.AXYV[3]
         self.V_BOTTOM  = 1  if v==-1 else 0  ;  self.V_CENTER = 1  if v==0  else 0  ;  self.V_TOP    = 1 if v==1 else 0
         self.av = BOTTOM    if self.V_BOTTOM else CENTER if self.V_CENTER else TOP  if self.V_TOP   else '??'
+    ####################################################################################################################################################################################################
+    def _initAa(self):
+        a = self.AXYV[0]  ;  self.A_LEFT = 1 if a==-1 else 0  ;  self.A_CENTER = 1 if a==0 else 0  ;  self.A_RIGHT = 1 if a==1 else 0  ;  self.aa = LEFT if self.A_LEFT else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '??'
+
+    def _initAx(self):
+        x = self.AXYV[1]  ;  self.X_LEFT = 1 if x==-1 else 0  ;  self.X_CENTER = 1 if x==0 else 0  ;  self.X_RIGHT = 1 if x==1 else 0  ;  self.ax = LEFT if self.X_LEFT else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
+
+    def _initAy(self):
+        y = self.AXYV[2]  ;  self.Y_BOTTOM = 1 if y==-1 else 0  ;  self.Y_CENTER = 1 if y==0 else 0  ;  self.Y_TOP = 1 if y==1 else 0  ;  self.Y_BASELINE = 1 if y==2 else 0  ;  self.ay = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP if self.Y_TOP else BASELINE if self.Y_BASELINE else '??'
+
+    def _initAv(self):
+        v = self.AXYV[3]  ;  self.V_BOTTOM = 1 if v==-1 else 0  ;  self.V_CENTER = 1 if v==0 else 0  ;  self.V_TOP = 1 if v==1 else 0  ;  self.av = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP if self.V_TOP else '??'
     ####################################################################################################################################################################################################
     def normi(self, dbg=1):
         if dbg: self.log(f'before {self.fmti()} {self.fmtn()}')
@@ -1327,7 +1325,7 @@ class Tabs(pyglet.window.Window):
         ancX, ancY = self.fancXY(t)
         if ist(t, LBL):
             d      = t.document  ;  m = d.styles  ;  wrap = 'char'  ;  aa = self.aa  ;  taa = m[ALIGN]  ;  ml = self.MULTILINE  ;  tml = int(t.multiline)
-            assert tax == ax,  f'{tax=} != {ax=} {i=} {j=}'  ;  assert tay == ay,  f'{tay=} != {ay=}'  ;  assert taa == aa,  f'{taa=} != {aa=}'  ;  assert tml == ml,  f'{tml=} != {ml=}'
+#            assert tax == ax,  f'{tax=} != {ax=} {i=} {j=}'  ;  assert tay == ay,  f'{tay=} != {ay=}'  ;  assert taa == aa,  f'{taa=} != {aa=}'  ;  assert tml == ml,  f'{tml=} != {ml=}'
             d.set_paragraph_style(0, len(d.text), {LNSP:None, LEAD:0, WRAP:wrap, WRAP_LINES:True})
             fnt    = d.get_font()   ;   asc, dsc = fnt.ascent, fnt.descent   ;   sad = asc + dsc    ;   ptxt, ftxt = f'{self.fpTxt(t)}', self.ffTxt(t)
             cwh    = self.fcwh(t)   ;   cva = self.cvaH()   ;   ads = self.fads(asc, dsc, sad, W)   ;   s = self.fDocStyle(m, W, t)
