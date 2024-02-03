@@ -1060,6 +1060,75 @@ class TogTTsCmd(Cmd):
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
+class TogAXYVCmd(Cmd):
+    def __init__(self, tobj, how, ii, jj):
+        self.tobj, self.how, self.ii, self.jj = tobj, how, ii, jj
+        
+    def do(  self): self._togAXYV()
+    def undo(self): self._togAXYV()
+    
+    def _togAXYV(self):
+        tobj, how, ii, jj = self.tobj, self.how, self.ii, self.jj
+        np, nl, ns, nc, nt = tobj.n
+        axyv = tobj.AXYV[ii]  + 1
+        tobj.log(f'BGN {how} {ii=} {jj=} tobj.AXYV[{ii}]={tobj.AXYV[ii]} {axyv=}')
+        axyv += jj
+        axyv %= 4 if ii==2 else 3
+        tobj.AXYV[ii] = axyv - 1
+        if   ii==0:
+            tobj._initAa()
+            for p in range(np):
+                tobj.E[P][p].align                      = tobj.aa
+                for l in range(nl):
+                    tobj.E[L][l].align                  = tobj.aa
+                    for s, s2 in enumerate(tobj.ss2sl()):
+                        tobj.E[S][s].align              = tobj.aa
+                        for c in range(nc):
+                            tobj.E[C][c].align          = tobj.aa
+                            for t in range(nt):
+                                _, j, k, txt            = tobj.tnikInfo(p, l, s2, c, t, why=how)
+                                tobj.E[j][t+c*nt].align = tobj.aa
+        if   ii==1:
+            tobj._initAx()
+            for p in range(np):
+                tobj.E[P][p].anchor_x                      = tobj.ax
+                for l in range(nl):
+                    tobj.E[L][l].anchor_x                  = tobj.ax
+                    for s, s2 in enumerate(tobj.ss2sl()):
+                        tobj.E[S][s].anchor_x              = tobj.ax
+                        for c in range(nc):
+                            tobj.E[C][c].anchor_x          = tobj.ax
+                            for t in range(nt):
+                                _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
+                                tobj.E[j][t+c*nt].anchor_x = tobj.ax
+        elif ii==2:
+            tobj._initAy()
+            for p in range(np):
+                tobj.E[P][p].anchor_y                      = tobj.ay
+                for l in range(nl):
+                    tobj.E[L][l].anchor_y                  = tobj.ay
+                    for s, s2 in enumerate(tobj.ss2sl()):
+                        tobj.E[S][s].anchor_y              = tobj.ay
+                        for c in range(nc):
+                            tobj.E[C][c].anchor_y          = tobj.ay
+                            for t in range(nt):
+                                _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
+                                tobj.E[j][t+c*nt].anchor_y = tobj.ay
+        elif ii==3:
+            tobj._initAv()
+            for p in range(np):
+                tobj.E[P][p].content_valign                      = tobj.av
+                for l in range(nl):
+                    tobj.E[L][l].content_valign                  = tobj.av
+                    for s, s2 in enumerate(tobj.ss2sl()):
+                        tobj.E[S][s].content_valign              = tobj.av
+                        for c in range(nc):
+                            tobj.E[C][c].content_valign          = tobj.av
+                            for t in range(nt):
+                                _, j, k, txt                     = tobj.tnikInfo(p, l, s2, c, t, why=how)
+                                tobj.E[j][t+c*nt].content_valign = tobj.av
+        tobj.log(f'END {how} {ii=} {jj=} tobj.AXYV[{ii}]={tobj.AXYV[ii]=} {axyv=}')
+########################################################################################################################################################################################################
 class TogVisibleCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
         self.tobj, self.how, self.dbg = tobj, how, dbg
