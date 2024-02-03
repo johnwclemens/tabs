@@ -1078,16 +1078,16 @@ class TogAXYVCmd(Cmd):
         if   ii==0:
             tobj._initAa()
             for p in range(np):
-                tobj.E[P][p].align                      = tobj.aa
+                tobj.E[P][p].document.set_style(0, len(tobj.E[P][p].document.text), {'align':tobj.aa})
                 for l in range(nl):
-                    tobj.E[L][l].align                  = tobj.aa
+                    tobj.E[L][l].document.set_style(0, len(tobj.E[L][l].document.text), {'align':tobj.aa})
                     for s, s2 in enumerate(tobj.ss2sl()):
-                        tobj.E[S][s].align              = tobj.aa
+                        tobj.E[S][s].document.set_style(0, len(tobj.E[S][s].document.text), {'align':tobj.aa})
                         for c in range(nc):
-                            tobj.E[C][c].align          = tobj.aa
+                            tobj.E[C][c].document.set_style(0, len(tobj.E[C][c].document.text), {'align':tobj.aa})
                             for t in range(nt):
-                                _, j, k, txt            = tobj.tnikInfo(p, l, s2, c, t, why=how)
-                                tobj.E[j][t+c*nt].align = tobj.aa
+                                _, j, k, txt                     = tobj.tnikInfo(p, l, s2, c, t, why=how)
+                                tobj.E[j][t+c*nt].document.set_style(0, len(tobj.E[j][t].document.text), {'align':tobj.aa})
         if   ii==1:
             tobj._initAx()
             for p in range(np):
