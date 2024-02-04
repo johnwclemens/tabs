@@ -203,43 +203,39 @@ class Tabs(pyglet.window.Window):
         self.log(f'END {__class__}')
     ####################################################################################################################################################################################################
     def _initAaxyv(self, why=Z, dmp=1):
-        self._initAa() # -1, 0, 1
-        self._initAx() # -1, 0, 1
-        self._initAy() # -1, 0, 1, 2
-        self._initAv() # -1, 0, 1
+        self._initAa(self.AXYV[0]) # -1, 0, 1
+        self._initAx(self.AXYV[1]) # -1, 0, 1
+        self._initAy(self.AXYV[2]) # -1, 0, 1, 2
+        self._initAv(self.AXYV[3]) # -1, 0, 1
         if dmp:   self.dumpAXYV(why)
     ####################################################################################################################################################################################################
-    def _initAa(self):
-        a = self.AXYV[0]
+    def _initAa(self, a):
         self.A_LEFT    = 1  if a==-1 else 0  ;  self.A_CENTER = 1  if a==0  else 0  ;  self.A_RIGHT  = 1 if a==1 else 0
         self.aa = LEFT      if self.A_LEFT  else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '??'
 
-    def _initAx(self):
-        x = self.AXYV[1]
+    def _initAx(self, x):
         self.X_LEFT    = 1  if x==-1 else 0  ;  self.X_CENTER = 1  if x==0  else 0  ;  self.X_RIGHT  = 1 if x==1 else 0
         self.ax = LEFT      if self.X_LEFT  else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
 
-    def _initAy(self):
-        y = self.AXYV[2]
+    def _initAy(self, y):
         self.Y_BOTTOM  = 1  if y==-1 else 0  ;  self.Y_CENTER = 1  if y==0  else 0  ;  self.Y_TOP    = 1 if y==1 else 0  ;  self.Y_BASELINE = 1 if y==2 else 0
         self.ay = BOTTOM    if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP  if self.Y_TOP   else BASELINE if self.Y_BASELINE else '??'
 
-    def _initAv(self):
-        v = self.AXYV[3]
+    def _initAv(self, v):
         self.V_BOTTOM  = 1  if v==-1 else 0  ;  self.V_CENTER = 1  if v==0  else 0  ;  self.V_TOP    = 1 if v==1 else 0
         self.av = BOTTOM    if self.V_BOTTOM else CENTER if self.V_CENTER else TOP  if self.V_TOP   else '??'
     ####################################################################################################################################################################################################
-    def _initAa(self):
-        a = self.AXYV[0]  ;  self.A_LEFT = 1 if a==-1 else 0  ;  self.A_CENTER = 1 if a==0 else 0  ;  self.A_RIGHT = 1 if a==1 else 0  ;  self.aa = LEFT if self.A_LEFT else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '??'
+#    def _initAa(self, a):
+#        self.A_LEFT = 1 if a==-1 else 0  ;  self.A_CENTER = 1 if a==0 else 0  ;  self.A_RIGHT = 1 if a==1 else 0  ;  self.aa = LEFT if self.A_LEFT else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '??'
 
-    def _initAx(self):
-        x = self.AXYV[1]  ;  self.X_LEFT = 1 if x==-1 else 0  ;  self.X_CENTER = 1 if x==0 else 0  ;  self.X_RIGHT = 1 if x==1 else 0  ;  self.ax = LEFT if self.X_LEFT else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
+#    def _initAx(self, x):
+#        self.X_LEFT = 1 if x==-1 else 0  ;  self.X_CENTER = 1 if x==0 else 0  ;  self.X_RIGHT = 1 if x==1 else 0  ;  self.ax = LEFT if self.X_LEFT else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
 
-    def _initAy(self):
-        y = self.AXYV[2]  ;  self.Y_BOTTOM = 1 if y==-1 else 0  ;  self.Y_CENTER = 1 if y==0 else 0  ;  self.Y_TOP = 1 if y==1 else 0  ;  self.Y_BASELINE = 1 if y==2 else 0  ;  self.ay = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP if self.Y_TOP else BASELINE if self.Y_BASELINE else '??'
+#    def _initAy(self, y):
+#        self.Y_BOTTOM = 1 if y==-1 else 0  ;  self.Y_CENTER = 1 if y==0 else 0  ;  self.Y_TOP = 1 if y==1 else 0  ;  self.Y_BASELINE = 1 if y==2 else 0  ;  self.ay = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP if self.Y_TOP else BASELINE if self.Y_BASELINE else '??'
 
-    def _initAv(self):
-        v = self.AXYV[3]  ;  self.V_BOTTOM = 1 if v==-1 else 0  ;  self.V_CENTER = 1 if v==0 else 0  ;  self.V_TOP = 1 if v==1 else 0  ;  self.av = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP if self.V_TOP else '??'
+#    def _initAv(self, v):
+#        self.V_BOTTOM = 1 if v==-1 else 0  ;  self.V_CENTER = 1 if v==0 else 0  ;  self.V_TOP = 1 if v==1 else 0  ;  self.av = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP if self.V_TOP else '??'
     ####################################################################################################################################################################################################
     def normi(self, dbg=1):
         if dbg: self.log(f'before {self.fmti()} {self.fmtn()}')
@@ -578,7 +574,6 @@ class Tabs(pyglet.window.Window):
     def ftxywh(t, s=W):         return Tabs.fxywh(t.x, t.y, t.width, t.height, s=s)
     @staticmethod
     def fxywh(x, y, w, h, s=W): return f'{x:7.2f}{s}{y:7.2f}{s}{w:7.2f}{s}{h:7.2f}'
-#    def fxywh(x, y, w, h, s=W): return f'{x:7.2f}{s}{y:7.2f}{s}{w:7.2f}{s}{h:7.2f}' if x is not None and y is not None else f'{utl.NONE}{s}{utl.NONE}{s}{w:7.2f}{s}{h:7.2f}'
     ####################################################################################################################################################################################################
     @staticmethod
     def fiax(t):      return f'{t.image.anchor_x:4}'
@@ -1320,11 +1315,11 @@ class Tabs(pyglet.window.Window):
         if ist(t, LBL):  cwhH = f'{self.cwhH()}'  ;  cvaH = f'{self.cvaH()}'  ;  dsH = f'{self.docStyleH()}'  ;  adsH = W.join(ADS)
         if i==0 and j==0:     self.log(f'{ntvH}{ptxtH} {axy2H} {cwhH} {adsH} {cvaH} {dsH}{ftxtH}', p=0, f=0)  if j==P or (j==T and i==0) else None
         ptxt, ftxt = Z, Z  ;  js = JTEXTS[j]   ;   v = 'V' if t.visible else 'I'
-        ax,     ay = self.ax,    self.ay
-        tax,   tay = t.anchor_x, t.anchor_y
+#        ax,     ay = self.ax,    self.ay
+#        tax,   tay = t.anchor_x, t.anchor_y
         ancX, ancY = self.fancXY(t)
         if ist(t, LBL):
-            d      = t.document  ;  m = d.styles  ;  wrap = 'char'  ;  aa = self.aa  ;  taa = m[ALIGN]  ;  ml = self.MULTILINE  ;  tml = int(t.multiline)
+            d      = t.document  ;  m = d.styles  ;  wrap = 'char' # ;  aa = self.aa  ;  taa = m[ALIGN]  ;  ml = self.MULTILINE  ;  tml = int(t.multiline)
 #            assert tax == ax,  f'{tax=} != {ax=} {i=} {j=}'  ;  assert tay == ay,  f'{tay=} != {ay=}'  ;  assert taa == aa,  f'{taa=} != {aa=}'  ;  assert tml == ml,  f'{tml=} != {ml=}'
             d.set_paragraph_style(0, len(d.text), {LNSP:None, LEAD:0, WRAP:wrap, WRAP_LINES:True})
             fnt    = d.get_font()   ;   asc, dsc = fnt.ascent, fnt.descent   ;   sad = asc + dsc    ;   ptxt, ftxt = f'{self.fpTxt(t)}', self.ffTxt(t)

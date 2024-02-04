@@ -1076,7 +1076,7 @@ class TogAXYVCmd(Cmd):
         axyv %= 4 if ii==2 else 3
         tobj.AXYV[ii] = axyv - 1
         if   ii==0:
-            tobj._initAa()
+            tobj._initAa(tobj.AXYV[0])
             for p in range(np):
                 tobj.E[P][p].document.set_style(0,                      len(tobj.E[P][p].document.text), {'align':tobj.aa})
                 for l in range(nl):
@@ -1089,7 +1089,7 @@ class TogAXYVCmd(Cmd):
                                 _, j, k, txt                     = tobj.tnikInfo(p, l, s2, c, t, why=how)
                                 tobj.E[j][t+c*nt].document.set_style(0, len(tobj.E[j][t].document.text), {'align':tobj.aa})
         if   ii==1:
-            tobj._initAx()
+            tobj._initAx(tobj.AXYV[1])
             for p in range(np):
                 tobj.E[P][p].anchor_x                      = tobj.ax
                 for l in range(nl):
@@ -1102,7 +1102,7 @@ class TogAXYVCmd(Cmd):
                                 _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
                                 tobj.E[j][t+c*nt].anchor_x = tobj.ax
         elif ii==2:
-            tobj._initAy()
+            tobj._initAy(tobj.AXYV[2])
             for p in range(np):
                 tobj.E[P][p].anchor_y                      = tobj.ay
                 for l in range(nl):
@@ -1115,7 +1115,7 @@ class TogAXYVCmd(Cmd):
                                 _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
                                 tobj.E[j][t+c*nt].anchor_y = tobj.ay
         elif ii==3:
-            tobj._initAv()
+            tobj._initAv(tobj.AXYV[3])
             for p in range(np):
                 tobj.E[P][p].content_valign                      = tobj.av
                 for l in range(nl):
