@@ -159,7 +159,7 @@ class CopyTabsCmd(Cmd):
             if dbg: text.append(W)
         if dbg:         tobj.log(f'{Z.join(text)=}')
         tobj.dumpSmap(f'END {how}')
-        if tobj.SNAPS >= 4:  tobj.regSnap(f'CPY.{tobj.cpyC}', how)
+#        if tobj.SNAPS >= 4:  tobj.regSnap(f'CPY.{tobj.cpyC}', how)
 ########################################################################################################################################################################################################
 class CutTabsCmd(Cmd):
     def __init__(self, tobj, how):
@@ -529,7 +529,7 @@ class ResetCmd(Cmd):
         tobj.dumpGeom('BGN', f'{how} before cleanup()')
         tobj.cleanup()
         tobj.dumpGeom('   ', f'{how} after cleanup() / before reinit()')
-        tobj._reinit()            # todo fixme # Access to a protected member _reinit of a class
+        tobj.reinit()
         tobj.dumpGeom('END', f'{how} after reinit()')
 ########################################################################################################################################################################################################
 class RotSprCmd(Cmd):
@@ -1076,7 +1076,7 @@ class TogAXYVCmd(Cmd):
         axyv %= 4 if ii==2 else 3
         tobj.AXYV[ii] = axyv - 1
         if   ii==0:
-            tobj._initAa(tobj.AXYV[0])
+            tobj.setAa(tobj.AXYV[0])
             for p in range(np):
                 tobj.E[P][p].document.set_style(0,                      len(tobj.E[P][p].document.text), {'align':tobj.aa})
                 for l in range(nl):
@@ -1086,10 +1086,10 @@ class TogAXYVCmd(Cmd):
                         for c in range(nc):
                             tobj.E[C][c].document.set_style(0,          len(tobj.E[C][c].document.text), {'align':tobj.aa})
                             for t in range(nt):
-                                _, j, k, txt                     = tobj.tnikInfo(p, l, s2, c, t, why=how)
+                                _, j, k, txt                              = tobj.tnikInfo(p, l, s2, c, t, why=how)
                                 tobj.E[j][t+c*nt].document.set_style(0, len(tobj.E[j][t].document.text), {'align':tobj.aa})
         if   ii==1:
-            tobj._initAx(tobj.AXYV[1])
+            tobj.setAx(tobj.AXYV[1])
             for p in range(np):
                 tobj.E[P][p].anchor_x                      = tobj.ax
                 for l in range(nl):
@@ -1102,7 +1102,7 @@ class TogAXYVCmd(Cmd):
                                 _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
                                 tobj.E[j][t+c*nt].anchor_x = tobj.ax
         elif ii==2:
-            tobj._initAy(tobj.AXYV[2])
+            tobj.setAy(tobj.AXYV[2])
             for p in range(np):
                 tobj.E[P][p].anchor_y                      = tobj.ay
                 for l in range(nl):
@@ -1115,7 +1115,7 @@ class TogAXYVCmd(Cmd):
                                 _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
                                 tobj.E[j][t+c*nt].anchor_y = tobj.ay
         elif ii==3:
-            tobj._initAv(tobj.AXYV[3])
+            tobj.setAv(tobj.AXYV[3])
             for p in range(np):
                 tobj.E[P][p].content_valign                      = tobj.av
                 for l in range(nl):
@@ -1127,6 +1127,7 @@ class TogAXYVCmd(Cmd):
                             for t in range(nt):
                                 _, j, k, txt                     = tobj.tnikInfo(p, l, s2, c, t, why=how)
                                 tobj.E[j][t+c*nt].content_valign = tobj.av
+        if   tobj.SNAPS >= 3:  tobj.regSnap(f'AXYV.{ii}', how)
         tobj.log(f'END {how} {ii=} {jj=} tobj.AXYV[{ii}]={tobj.AXYV[ii]=} {axyv=}')
 ########################################################################################################################################################################################################
 class TogVisibleCmd(Cmd):

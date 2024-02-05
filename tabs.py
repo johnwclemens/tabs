@@ -210,32 +210,20 @@ class Tabs(pyglet.window.Window):
         if dmp:   self.dumpAXYV(why)
     ####################################################################################################################################################################################################
     def _initAa(self, a):
-        self.A_LEFT    = 1  if a==-1 else 0  ;  self.A_CENTER = 1  if a==0  else 0  ;  self.A_RIGHT  = 1 if a==1 else 0
-        self.aa = LEFT      if self.A_LEFT  else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '??'
+        self.A_LEFT = 1        if a==-1 else 0  ;  self.A_CENTER = 1  if a==0  else 0  ;  self.A_RIGHT  = 1 if a==1 else 0
+        self.aa     = LEFT     if self.A_LEFT  else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '??'
 
     def _initAx(self, x):
-        self.X_LEFT    = 1  if x==-1 else 0  ;  self.X_CENTER = 1  if x==0  else 0  ;  self.X_RIGHT  = 1 if x==1 else 0
-        self.ax = LEFT      if self.X_LEFT  else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
+        self.X_LEFT = 1        if x==-1 else 0  ;  self.X_CENTER = 1  if x==0  else 0  ;  self.X_RIGHT  = 1 if x==1 else 0
+        self.ax     = LEFT     if self.X_LEFT  else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
 
     def _initAy(self, y):
-        self.Y_BOTTOM  = 1  if y==-1 else 0  ;  self.Y_CENTER = 1  if y==0  else 0  ;  self.Y_TOP    = 1 if y==1 else 0  ;  self.Y_BASELINE = 1 if y==2 else 0
-        self.ay = BOTTOM    if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP  if self.Y_TOP   else BASELINE if self.Y_BASELINE else '??'
+        self.Y_BOTTOM = 1      if y==-1 else 0  ;  self.Y_CENTER = 1  if y==0  else 0  ;  self.Y_TOP    = 1 if y==1 else 0  ;  self.Y_BASELINE = 1 if y==2 else 0
+        self.ay       = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP  if self.Y_TOP   else BASELINE if self.Y_BASELINE else '??'
 
     def _initAv(self, v):
-        self.V_BOTTOM  = 1  if v==-1 else 0  ;  self.V_CENTER = 1  if v==0  else 0  ;  self.V_TOP    = 1 if v==1 else 0
-        self.av = BOTTOM    if self.V_BOTTOM else CENTER if self.V_CENTER else TOP  if self.V_TOP   else '??'
-    ####################################################################################################################################################################################################
-#    def _initAa(self, a):
-#        self.A_LEFT = 1 if a==-1 else 0  ;  self.A_CENTER = 1 if a==0 else 0  ;  self.A_RIGHT = 1 if a==1 else 0  ;  self.aa = LEFT if self.A_LEFT else CENTER if self.A_CENTER else RIGHT if self.A_RIGHT else '??'
-
-#    def _initAx(self, x):
-#        self.X_LEFT = 1 if x==-1 else 0  ;  self.X_CENTER = 1 if x==0 else 0  ;  self.X_RIGHT = 1 if x==1 else 0  ;  self.ax = LEFT if self.X_LEFT else CENTER if self.X_CENTER else RIGHT if self.X_RIGHT else '??'
-
-#    def _initAy(self, y):
-#        self.Y_BOTTOM = 1 if y==-1 else 0  ;  self.Y_CENTER = 1 if y==0 else 0  ;  self.Y_TOP = 1 if y==1 else 0  ;  self.Y_BASELINE = 1 if y==2 else 0  ;  self.ay = BOTTOM if self.Y_BOTTOM else CENTER if self.Y_CENTER else TOP if self.Y_TOP else BASELINE if self.Y_BASELINE else '??'
-
-#    def _initAv(self, v):
-#        self.V_BOTTOM = 1 if v==-1 else 0  ;  self.V_CENTER = 1 if v==0 else 0  ;  self.V_TOP = 1 if v==1 else 0  ;  self.av = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP if self.V_TOP else '??'
+        self.V_BOTTOM = 1      if v==-1 else 0  ;  self.V_CENTER = 1  if v==0  else 0  ;  self.V_TOP    = 1 if v==1 else 0
+        self.av       = BOTTOM if self.V_BOTTOM else CENTER if self.V_CENTER else TOP  if self.V_TOP   else '??'
     ####################################################################################################################################################################################################
     def normi(self, dbg=1):
         if dbg: self.log(f'before {self.fmti()} {self.fmtn()}')
@@ -296,6 +284,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[x]           {self.EXIT=}', f=f)
         self.log(f'[Z]             .ZZ={fmtl(self.ZZ)}', f=f)
     ####################################################################################################################################################################################################
+    def reinit( self):   self._reinit()
     def _reinit(self):
         self.log('BGN')
         self.tpb, self.tpp, self.tpl, self.tps, self.tpc = self.ntp(dbg=1, dbg2=1)
@@ -583,6 +572,11 @@ class Tabs(pyglet.window.Window):
     def fgrp(t):      return f'{t.group}'
     @staticmethod
     def fgrpp(t):     return f'{t.group.parent}'
+    ####################################################################################################################################################################################################
+    def setAa(self, a): self._initAa(a)
+    def setAx(self, x): self._initAx(x)
+    def setAy(self, y): self._initAy(y)
+    def setAv(self, v): self._initAv(v)
     ####################################################################################################################################################################################################
     def dumpAXYV(self, why=Z): self.log(X.join([ why, self.fmtAa(), self.fmtAx(), self.fmtAy(), self.fmtAv() ]))
     def fmtAa(   self):        a = W.join([f'{self.A_LEFT}',   f'{self.A_CENTER}', f'{self.A_RIGHT}'])                      ;  a = f'[{a:7}]'  ;  return f'a = {self.ftAx(self.aa)} = {a}'
@@ -1286,17 +1280,16 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def docStyleH(d=W):       return d.join(['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          'FontName             '])
     ####################################################################################################################################################################################################
-    def imap2ikey(self, tobj, imap, i, j, dbg=0):
+    def imap2ikey(self, tobj, imap, i, j, dbg=1):
         imap0 = imap[0][::-1] if imap and len(imap) else []
         ff = self.sobj.isFret(tobj)
         assert ist(j, int),  f'{j=} {type(j)=}'
-        assert j 
-        if imap0 and len(imap0) > i:  ikey = tobj if j > K or j < 0 else imap0[i] if ff else self.tblank   # ;   i += 1 if ff else 0
-        else:                         ikey = tobj if j > K or j < 0 else self.tblank
-        if dbg: self.log(f'{ikey=}')
+        if imap0 and len(imap0) > i:  ikey = tobj if j > K else imap0[i] if ff else self.tblank
+        else:                         ikey = tobj if j > K else self.tblank
+        if dbg: self.log(f'{ikey=} {i=} {j=} {ff=} {imap0=}')
         return ikey
 
-    def imap2Chord(self, tobj, imap, i, j, dbg=0):
+    def imap2Chord(self, tobj, imap, i, j, dbg=1):
         chunks    = imap[4]  if (imap and len(imap) > 4) else []
         chordName = tobj     if j > K else chunks[i] if len(chunks) > i else self.tblank
         if dbg and chunks:   self.log(f'{chordName=} chunks={fmtl(chunks)} imap={fmtl(imap)}')
@@ -1471,7 +1464,7 @@ class Tabs(pyglet.window.Window):
             if   nw == 0:
                 if ijs < len(tl):
                     yield self.updateTnik(tl, ijs, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
-                else:     self.log(f'ERROR {self.ijSum(i, j2, 1)} >= {len(tl)} : {msg}')
+                else:     self.log(f'ERROR {self.ijSum(i, j2, 1)} >= {len(tl)} : {msg}')   ;   assert 0,  f'{j=} {i=}'
             elif nw == 1:
                 if   ijs >= len(tl):
                     k = kl[self.BGC]
@@ -1633,7 +1626,7 @@ class Tabs(pyglet.window.Window):
     def fpTxt(t): a = t.text.replace(X, Z)  ;  b = a[:6]  ;  b += '+' if len(a) > 6 else W  ;  return f'{b:7}'
     @staticmethod
     def fcwh(       t, d=W):       return f'{fmtf(t.content_width, 5)}{d}{fmtf(t.content_height, 5)}'
-    def fcvaa(self, t, d=Y):       return f'{self.ftAv(t.content_valign)}{d}{self.ftAx(self.aa)}'
+    def fcvaa(self, t, d=W):       return f'{self.ftAv(t.content_valign)}{d}{self.ftAx(self.aa)}'
     def fCtnt(self, t, d=W):       return f'{self.fcwh(t)}{d}{self.fcvaa(t)}'
     def getDocColor(self, t, c=1): return utl.fColor(self._getDocColor(t, c))
     @staticmethod
@@ -1755,6 +1748,7 @@ class Tabs(pyglet.window.Window):
     
     def plct2cc(self, p, l, c, t, dbg=0):
         tpb, tpp, tpl, tps, tpc = self.ntp()
+        assert tpp != 0,  f'{self.ntp()=}'
         ns = self.n[S] if self.n[S] else 1
         cc = p*tpp//ns + l*tpl//ns + c*tpc + t
         cc = cc % tpp
