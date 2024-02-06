@@ -50,12 +50,12 @@ TI        = ['tnik', '  i ']
 XYWH      = ['   X   ', '   Y   ', '   W   ', '   H   ']
 AXY2      = ['x', 'y', 'AnchX', 'AnchY']
 CWH       = ['CntWd', 'CntHt']
-CVA       = ['v', 'a']
+ACVA      = ['a', 'v']
 ADS       = ['Ascnt', 'Dscnt', 'As+Ds']
 LTXA      = list(itertools.chain(TI, XYWH, AXY2))
 LTXAC     = list(itertools.chain(TI, XYWH, AXY2, CWH))
 LDS       = ['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B', 'I', 'S', 'M', 'W', 'w', 'FontName']
-LLBL      = list(itertools.chain(LTXAC, ADS, CVA, LDS))
+LLBL      = list(itertools.chain(LTXAC, ADS, ACVA, LDS))
 ########################################################################################################################################################################################################
 TT, NN, II, KK        = utl.TT, utl.NN, utl.II, utl.KK
 MLDY, CHRD, ARPG      = utl.MLDY, utl.CHRD, utl.ARPG
@@ -453,7 +453,7 @@ class Tabs(pyglet.window.Window):
         self.log( kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
         if self.TEST == 1:
             from tpkg import tests as tests
-            attrs = {'TI':TI, 'XYWH':XYWH, 'AXY2':AXY2, 'CWH':CWH, 'LTXA':LTXA, 'LTXAC':LTXAC, 'ADS':ADS, 'CVA':CVA, 'LDS':LDS, 'LLBL':LLBL}
+            attrs = {'TI':TI, 'XYWH':XYWH, 'AXY2':AXY2, 'CWH':CWH, 'LTXA':LTXA, 'LTXAC':LTXAC, 'ADS':ADS, 'ACVA':ACVA, 'LDS':LDS, 'LLBL':LLBL}
             mthds = {'JSPR':JSPR, 'JLBL':JLBL}
             tests.test1(self, attrs, mthds)
             tests.test4(ARGS)
@@ -1305,9 +1305,9 @@ class Tabs(pyglet.window.Window):
     def fancXY(self, t): return f'{int(t.width * self.axWgt(self.ax)):5}', f'{int(t.height * self.ayWgt(self.ay)):5}'
     ####################################################################################################################################################################################################
     def checkTnik(self, t, i, j, dbg=0, dbg2=0):
-        ntvH       = 'Name  Tid V'  ;  axy2H = self.axy2H()  ;  cwhH, cvaH, adsH, dsH, ftxtH = Z, Z, Z, Z, Z  ;  cwh, cva, ads, s = Z, Z, Z, Z  ;  ptxtH, ftxtH = ' PrtTxt', ' FullText'
-        if ist(t, LBL):  cwhH = f'{self.cwhH()}'  ;  cvaH = f'{self.cvaH()}'  ;  dsH = f'{self.docStyleH()}'  ;  adsH = W.join(ADS)
-        if i==0 and j==0:     self.log(f'{ntvH}{ptxtH} {axy2H} {cwhH} {adsH} {cvaH} {dsH}{ftxtH}', p=0, f=0)  if j==P or (j==T and i==0) else None
+        ntvH       = 'Name  Tid V'  ;  axy2H = self.axy2H()  ;  cwhH, acvaH, adsH, dsH, ftxtH = Z, Z, Z, Z, Z  ;  cwh, acva, ads, s = Z, Z, Z, Z  ;  ptxtH, ftxtH = ' PrtTxt', ' FullText'
+        if ist(t, LBL):  cwhH = f'{self.cwhH()}'  ;  acvaH = f'{self.acvaH()}'  ;  dsH = f'{self.docStyleH()}'  ;  adsH = W.join(ADS)
+        if i==0 and j==0:     self.log(f'{ntvH}{ptxtH} {axy2H} {cwhH} {adsH} {acvaH} {dsH}{ftxtH}', p=0, f=0)  if j==P or (j==T and i==0) else None
         ptxt, ftxt = Z, Z  ;  js = JTEXTS[j]   ;   v = 'V' if t.visible else 'I'
 #        ax,     ay = self.ax,    self.ay
 #        tax,   tay = t.anchor_x, t.anchor_y
@@ -1317,7 +1317,7 @@ class Tabs(pyglet.window.Window):
 #            assert tax == ax,  f'{tax=} != {ax=} {i=} {j=}'  ;  assert tay == ay,  f'{tay=} != {ay=}'  ;  assert taa == aa,  f'{taa=} != {aa=}'  ;  assert tml == ml,  f'{tml=} != {ml=}'
             d.set_paragraph_style(0, len(d.text), {LNSP:None, LEAD:0, WRAP:wrap, WRAP_LINES:True})
             fnt    = d.get_font()   ;   asc, dsc = fnt.ascent, fnt.descent   ;   sad = asc + dsc    ;   ptxt, ftxt = f'{self.fpTxt(t)}', self.ffTxt(t)
-            cwh    = self.fcwh(t)   ;   cva = self.cvaH()   ;   ads = self.fads(asc, dsc, sad, W)   ;   s = self.fDocStyle(m, W, t)
+            cwh    = self.fcwh(t)   ;   acva = self.acvaH()   ;   ads = self.fads(asc, dsc, sad, W)   ;   s = self.fDocStyle(m, W, t)
             if dbg:
                 if m and FONT_NAME in m:
                     fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])
@@ -1325,7 +1325,7 @@ class Tabs(pyglet.window.Window):
                     assert fnt.size == fnt2.size,  f'ERROR loading font, {m[FONT_SIZE]=} {fnt=} {fnt2=}'
 #                   assert fnt == fnt2,            f'ERROR loading font, {fnt=} {fnt2=}'  #todo why does this assert? (stretch mismatch, address)
                 else: msg = f'ERROR {FONT_NAME} not in {m=}'    ;    self.log(msg)    ;    cmd = cmds.QuitCmd(self, msg)  ;  cmd.do()
-        if dbg2:      self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwh} {ads} {cva} {s} {ftxt}', p=0, f=0)
+        if dbg2:      self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwh} {ads} {acva} {s} {ftxt}', p=0, f=0)
 #        if ist(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
@@ -1561,15 +1561,15 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def fTnikHdr(self, spr=0):
         tid = ' TId  Identity  ' if self.OIDS else ' Tid'  ;    wnc = ' Why  Name  Cnt'  ;  rot_txt = 'Rotate ' if spr else 'PrtTxt '
-        gv  = 'G V'     ;     jts = self.fjtxt()   ;   xywh = W.join(XYWH)           ;   cwh = self.cwhH()   ;  cva = self.cvaH()  ;   axy2 = self.axy2H()
+        gv  = 'G V'     ;     jts = self.fjtxt()   ;   xywh = W.join(XYWH)           ;   cwh = self.cwhH()   ;  acva = self.acvaH()  ;   axy2 = self.axy2H()
         cnc = ' CC  NC CN'   ;   rgb = ' Red Grn Blu Opc' if self.LONG_TXT else Z    ;   rgbM = (' M     Mx    My  ' if spr else rgb)  if self.LONG_TXT else Z
-        sfx = ('x y AncX AncY Grp            pGrp'     if spr     else     f' {axy2} {cwh} {W.join(ADS)} {cva} FnSz dpi B I FontName') if self.LONG_TXT else Z
+        sfx = ('x y AncX AncY Grp            pGrp'     if spr     else     f' {axy2} {cwh} {W.join(ADS)} {acva} FnSz dpi B I FontName') if self.LONG_TXT else Z
         ft  = f'{W*13}FullText' if self.LONG_TXT and not spr and self.DBG_TABT else Z
         return f'{tid} {wnc} {rot_txt}{gv} {jts} {xywh} {cnc} {rgb} {rgbM} {sfx}{ft}'
     @staticmethod
     def axy2H(d=W):  return d.join(AXY2)
     @staticmethod
-    def cvaH(d=W):   return d.join(CVA)
+    def acvaH(d=W):   return d.join(ACVA)
     @staticmethod
     def cwhH(d=W):   return d.join(CWH)
     @staticmethod
@@ -1615,7 +1615,7 @@ class Tabs(pyglet.window.Window):
         ancX, ancY = self.fancXY(t)
         fnt  = td.get_font()    ;   asc  = fnt.ascent   ;   dsc = fnt.descent   ;   sad = asc + dsc
         ads  =  self.fads(asc, dsc, sad, d)
-        return d.join([self.fAxy(), ancX, ancY, self.fcwh(t), ads, self.fcvaa(t), self.fFntSz(t), self.ffont(t), dtxt])
+        return d.join([self.fAxy(), ancX, ancY, self.fcwh(t), ads, self.fAaAv(t), self.fFntSz(t), self.ffont(t), dtxt])
     @staticmethod
     def fads(asc, dsc, sad, d):     return d.join([f'{asc:5}', f'{dsc:5}', f'{sad:5}'])
     @staticmethod
@@ -1627,8 +1627,8 @@ class Tabs(pyglet.window.Window):
     def fpTxt(t): a = t.text.replace(X, Z)  ;  b = a[:6]  ;  b += '+' if len(a) > 6 else W  ;  return f'{b:7}'
     @staticmethod
     def fcwh(       t, d=W):       return f'{fmtf(t.content_width, 5)}{d}{fmtf(t.content_height, 5)}'
-    def fcvaa(self, t, d=W):       return f'{self.ftAv(t.content_valign)}{d}{self.ftAx(self.aa)}'
-    def fCtnt(self, t, d=W):       return f'{self.fcwh(t)}{d}{self.fcvaa(t)}'
+    def fAaAv(self, t, d=W):       return f'{self.ftAx(self.aa)}{d}{self.ftAv(t.content_valign)}'
+    def fCtnt(self, t, d=W):       return f'{self.fcwh(t)}{d}{self.fAaAv(t)}'
     def getDocColor(self, t, c=1): return utl.fColor(self._getDocColor(t, c))
     @staticmethod
     def _getDocColor(t, c=1):      s = BGC if c else COLOR    ;  return t.document.get_style(s)
@@ -1647,8 +1647,8 @@ class Tabs(pyglet.window.Window):
         axy = self.fAxy(d)       ;   ancX, ancY = self.fancXY(tnik)
         if   ist(tnik, LBL):
             td  = tnik.document  ;  fnt = td.get_font()     ;  asc, dsc = fnt.ascent, fnt.descent  ;  sad = asc + dsc
-            ads = self.fads(asc, dsc, sad, d)  ;  cwh = self.fcwh(tnik, d)  ;  cvaa = self.fcvaa(tnik, d)
-            return d.join([JTEXTS[j], ii, xywh, axy, ancX, ancY, cwh, ads, cvaa, ds])
+            ads = self.fads(asc, dsc, sad, d)  ;  cwh = self.fcwh(tnik, d)  ;  acva = self.fAaAv(tnik, d)
+            return d.join([JTEXTS[j], ii, xywh, axy, ancX, ancY, cwh, ads, acva, ds])
         elif ist(tnik, SPR):
             return d.join([JTEXTS[j], ii, xywh, axy, ancX, ancY])
     ####################################################################################################################################################################################################
