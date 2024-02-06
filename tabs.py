@@ -626,7 +626,8 @@ class Tabs(pyglet.window.Window):
         self.log(f'{pfx}tpp tpl tps tpc={fmtl(n)}')  if dbg else None
         return n
     def ntp2(self):
-        tpb, tpp, tpl, _, tpc = self.ntp()  ;  ns = self.n[S]
+        ns = self.n[S] if self.n[S] in range(5) else 1
+        tpb, tpp, tpl, _, tpc = self.ntp()
         tpb = tpb // ns
         tpp = tpp // ns
         tpl = tpl // ns
@@ -1457,9 +1458,9 @@ class Tabs(pyglet.window.Window):
                     if   s == II:        t = self.imap2ikey( t0, im, i2, j2)   ;   i2 += 1 if t != self.tblank else 0
                     elif s == KK:        t = self.imap2Chord(t0, im, i,  j2)
             msg = f'{ijs:3} {self.fmtJText(j2)} {j2=} {t0:3} {i=:2} {self.J2[j2]=:2} {len(tl)=:2} {len(tl)=:2} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {nw=}'    ;    self.log(f'{msg}', f=0)
-            assert x2 <= self.width  and w <= self.width,   f'{x2=} {w=} {self.width=}'
-            assert y2 <= self.height and h <= self.height,  f'{y2=} {h=} {self.height}'
-            assert tl == self.E[j2],                        f'{j2=} {tl=} {self.E[j2]=}'
+            assert x2 <= self.width  and w <= self.width,   f'{x2=} {w=} {self.width=} {msg}'
+            assert y2 <= self.height and h <= self.height,  f'{y2=} {h=} {self.height} {msg}'
+            assert tl == self.E[j2],                        f'{j2=} {tl=} {self.E[j2]=} {msg}'
             assert nw in (0, 1, 2),     f'{msg}'
             if   nw == 0:
                 if ijs < len(tl):

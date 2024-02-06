@@ -1069,66 +1069,88 @@ class TogAXYVCmd(Cmd):
     
     def _togAXYV(self):
         tobj, how, ii, jj = self.tobj, self.how, self.ii, self.jj
-        np, nl, ns, nc, nt = tobj.n
-        axyv = tobj.AXYV[ii]  + 1
-        tobj.log(f'BGN {how} {ii=} {jj=} tobj.AXYV[{ii}]={tobj.AXYV[ii]} {axyv=}')
-        axyv += jj
-        axyv %= 4 if ii==2 else 3
-        tobj.AXYV[ii] = axyv - 1
+        np, nl, ns, nc, nt = tobj.n 
+        b  = tobj.aa if ii==0 else tobj.ax if ii==1 else tobj.ay if ii==2 else tobj.av if ii==3 else -1
+        d  = tobj.AXYV[ii]  + 1
+        d2 = d + jj
+        d2 %= 4 if ii==2 else 3
+        tobj.AXYV[ii] = d2 - 1
         if   ii==0:
-            tobj.setAa(tobj.AXYV[0])
+            tobj.setAa(tobj.AXYV[0])   ;   v = b   ;   k = 'align'
             for p in range(np):
-                tobj.E[P][p].document.set_style(0,                      len(tobj.E[P][p].document.text), {'align':tobj.aa})
+                tobj.E[P][p].document.set_style(0,                      len(tobj.E[P][p].document.text), {k:v})
                 for l in range(nl):
-                    tobj.E[L][l].document.set_style(0,                  len(tobj.E[L][l].document.text), {'align':tobj.aa})
+                    tobj.E[L][l].document.set_style(0,                  len(tobj.E[L][l].document.text), {k:v})
                     for s, s2 in enumerate(tobj.ss2sl()):
-                        tobj.E[S][s].document.set_style(0,              len(tobj.E[S][s].document.text), {'align':tobj.aa})
+                        tobj.E[S][s].document.set_style(0,              len(tobj.E[S][s].document.text), {k:v})
                         for c in range(nc):
-                            tobj.E[C][c].document.set_style(0,          len(tobj.E[C][c].document.text), {'align':tobj.aa})
+                            tobj.E[C][c].document.set_style(0,          len(tobj.E[C][c].document.text), {k:v})
                             for t in range(nt):
                                 _, j, k, txt                              = tobj.tnikInfo(p, l, s2, c, t, why=how)
-                                tobj.E[j][t+c*nt].document.set_style(0, len(tobj.E[j][t].document.text), {'align':tobj.aa})
-        if   ii==1:
-            tobj.setAx(tobj.AXYV[1])
-            for p in range(np):
-                tobj.E[P][p].anchor_x                      = tobj.ax
-                for l in range(nl):
-                    tobj.E[L][l].anchor_x                  = tobj.ax
-                    for s, s2 in enumerate(tobj.ss2sl()):
-                        tobj.E[S][s].anchor_x              = tobj.ax
-                        for c in range(nc):
-                            tobj.E[C][c].anchor_x          = tobj.ax
-                            for t in range(nt):
-                                _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
-                                tobj.E[j][t+c*nt].anchor_x = tobj.ax
-        elif ii==2:
-            tobj.setAy(tobj.AXYV[2])
-            for p in range(np):
-                tobj.E[P][p].anchor_y                      = tobj.ay
-                for l in range(nl):
-                    tobj.E[L][l].anchor_y                  = tobj.ay
-                    for s, s2 in enumerate(tobj.ss2sl()):
-                        tobj.E[S][s].anchor_y              = tobj.ay
-                        for c in range(nc):
-                            tobj.E[C][c].anchor_y          = tobj.ay
-                            for t in range(nt):
-                                _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
-                                tobj.E[j][t+c*nt].anchor_y = tobj.ay
+                                tobj.E[j][t+c*nt].document.set_style(0, len(tobj.E[j][t].document.text), {k:v})
+        if   ii==1: self.setAnchor(tobj, ii, b, how)
+#            tobj.setAx(tobj.AXYV[1])   ;   v = b
+#            for p in range(np):
+#                tobj.E[P][p].anchor_x                      = v
+#                for l in range(nl):
+#                    tobj.E[L][l].anchor_x                  = v
+#                    for s, s2 in enumerate(tobj.ss2sl()):
+#                        tobj.E[S][s].anchor_x              = v
+#                        for c in range(nc):
+#                            tobj.E[C][c].anchor_x          = v
+#                            for t in range(nt):
+#                                _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
+#                                tobj.E[j][t+c*nt].anchor_x = v
+        elif ii==2: self.setAnchor(tobj, ii, b, how)
+#            tobj.setAy(tobj.AXYV[2])   ;   v = b
+#            for p in range(np):
+#                tobj.E[P][p].anchor_y                      = v
+#                for l in range(nl):
+#                    tobj.E[L][l].anchor_y                  = v
+#                    for s, s2 in enumerate(tobj.ss2sl()):
+#                        tobj.E[S][s].anchor_y              = v
+#                        for c in range(nc):
+#                            tobj.E[C][c].anchor_y          = v
+#                            for t in range(nt):
+#                                _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
+#                                tobj.E[j][t+c*nt].anchor_y = v
         elif ii==3:
-            tobj.setAv(tobj.AXYV[3])
+            tobj.setAv(tobj.AXYV[3])   ;  v = b
             for p in range(np):
-                tobj.E[P][p].content_valign                      = tobj.av
+                tobj.E[P][p].content_valign                      = v
                 for l in range(nl):
-                    tobj.E[L][l].content_valign                  = tobj.av
+                    tobj.E[L][l].content_valign                  = v
                     for s, s2 in enumerate(tobj.ss2sl()):
-                        tobj.E[S][s].content_valign              = tobj.av
+                        tobj.E[S][s].content_valign              = v
                         for c in range(nc):
-                            tobj.E[C][c].content_valign          = tobj.av
+                            tobj.E[C][c].content_valign          = v
                             for t in range(nt):
                                 _, j, k, txt                     = tobj.tnikInfo(p, l, s2, c, t, why=how)
-                                tobj.E[j][t+c*nt].content_valign = tobj.av
+                                tobj.E[j][t+c*nt].content_valign = v
         if   tobj.SNAPS >= 3:  tobj.regSnap(f'AXYV.{ii}', how)
-        tobj.log(f'END {how} {ii=} {jj=} tobj.AXYV[{ii}]={tobj.AXYV[ii]=} {axyv=}')
+        b2 = tobj.aa if ii==0 else tobj.ax if ii==1 else tobj.ay if ii==2 else tobj.av if ii==3 else -1
+        tobj.log(f'{how} [{ii}] [{jj}] tobj.AXYV[{ii}]={tobj.AXYV[ii]:2} {d} {b:8} : {d2} {b2:8}')
+    
+    @staticmethod    
+    def setAnchor(tobj, i, v, how):
+        tobj.setAx(tobj.AXYV[i]) if i==1 else tobj.setAy(tobj.AXYV[i])
+        np, nl, ns, nc, nt = tobj.n
+        for p in range(np):
+            if   i==1: tobj.E[P][p].anchor_x = v
+            elif i==2: tobj.E[P][p].anchor_y = v
+            for l in range(nl):
+                if   i==1: tobj.E[L][l].anchor_x = v
+                elif i==2: tobj.E[P][p].anchor_y = v
+                for s, s2 in enumerate(tobj.ss2sl()):
+                    if   i==1: tobj.E[S][s].anchor_x = v
+                    elif i==2: tobj.E[P][p].anchor_y = v
+                    for c in range(nc):
+                        if   i==1: tobj.E[C][c].anchor_x = v
+                        elif i==2: tobj.E[P][p].anchor_y = v
+                        for t in range(nt):
+                            _, j, k, txt               = tobj.tnikInfo(p, l, s2, c, t, why=how)
+                            if   i==1: tobj.E[j][t+c*nt].anchor_x = v
+                            elif i==2: tobj.E[j][t+c*nt].anchor_y = v
 ########################################################################################################################################################################################################
 class TogVisibleCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
