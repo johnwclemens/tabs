@@ -1158,12 +1158,13 @@ class Tabs(pyglet.window.Window):
         s = self.ss2sl()
         for i, v in enumerate(s):
             if v==n: return i
-        return 0
+        assert 0,  f'{n=} {s=} {i=} {v=}'
+#        return None
     ####################################################################################################################################################################################################
     def hideTTs(self, how, ii, dbg=0):
         self.hidC += 1   ;   hid2 = f'Hid{self.hidC} {how} {ii=}'  ;  hid = f'Hid{self.hidC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.hidC}'   ;   z = self.ss2sl
-        self.togTT(ii)
         i = self.ss2sli(ii)
+        self.togTT(ii)
         np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(hid2)
         for p, page in         enumerate(self.g_newUpdTniks(P,          nw=0, pt=None, why=ref)):
@@ -1177,28 +1178,29 @@ class Tabs(pyglet.window.Window):
         for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=upd, dbg=1):
             for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=upd, dbg=1):
                 for s, sect in enumerate(self.g_newUpdTniks(S,           nw=0, pt=line, why=upd, dbg=1)):
-                    for colm in      self.g_newUpdTniks(C,           nw=0, pt=sect, why=upd, dbg=1):
-                        for _ in     self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
+                    for colm in          self.g_newUpdTniks(C, m=i*nc,   nw=0, pt=sect, why=upd, dbg=1):
+                        for _ in         self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
         if ii == TT:                     self.removeTnik(self.hcurs, 0, H, dbg)
         self.dumpTniksSfx(hid2)
     ####################################################################################################################################################################################################
     def addTTs(self, how, ii):
         self.addC += 1   ;   add2 = f'Add{self.addC} {how} {ii=}'  ;  add = f'Add{self.addC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.addC}'   ;   z = self.ss2sl
         self.togTT(ii)
+        i = self.ss2sli(ii)
         np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(add2)
         for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=ref, dbg=1):
             for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=ref, dbg=1):
                 for s, sect in enumerate(self.g_newUpdTniks(S,           nw=1, pt=line, why=upd, dbg=1)):
                     if s == 0:
-                        for colm in      self.g_newUpdTniks(C, m=ii*nc,  nw=1, pt=sect, why=add, dbg=1): 
-                            for _ in     self.g_newUpdTniks(T, s=ii,     nw=1, pt=colm, why=add, dbg=1): pass
+                        for colm in      self.g_newUpdTniks(C, m=i*nc,   nw=1, pt=sect, why=add, dbg=1): 
+                            for _ in     self.g_newUpdTniks(T, s=z()[i], nw=1, pt=colm, why=add, dbg=1): pass
         self.dumpTniksSfx(add2)
         self.dumpTniksPfx(add2)
         for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=ref, dbg=1):
             for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=ref, dbg=1):
                 for s, sect in enumerate(self.g_newUpdTniks(S,           nw=0, pt=line, why=upd, dbg=1)):
-                    for colm in          self.g_newUpdTniks(C,           nw=0, pt=sect, why=upd, dbg=1):
+                    for colm in          self.g_newUpdTniks(C, m=i*nc,   nw=0, pt=sect, why=upd, dbg=1):
                         for _ in         self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
         if self.CURSOR and self.tabls and not self.cursor: self.createCursor(add)
         self.dumpTniksSfx(add2)
@@ -1321,7 +1323,7 @@ class Tabs(pyglet.window.Window):
             d      = t.document  ;  m = d.styles  ;  wrap = 'char' # ;  aa = self.aa  ;  taa = m[ALIGN]  ;  ml = self.MULTILINE  ;  tml = int(t.multiline)
 #            assert tax == ax,  f'{tax=} != {ax=} {i=} {j=}'  ;  assert tay == ay,  f'{tay=} != {ay=}'  ;  assert taa == aa,  f'{taa=} != {aa=}'  ;  assert tml == ml,  f'{tml=} != {ml=}'
             d.set_paragraph_style(0, len(d.text), {LNSP:None, LEAD:0, WRAP:wrap, WRAP_LINES:True})
-            fnt    = d.get_font()   ;   asc, dsc = fnt.ascent, fnt.descent   ;   sad = asc + dsc    ;   ptxt, ftxt = f'{self.fpTxt(t)}', self.ffTxt(t)
+            fnt    = d.get_font()   ;   asc, dsc = fnt.ascent, fnt.descent   ;   sad = asc + abs(dsc)    ;   ptxt, ftxt = f'{self.fpTxt(t)}', self.ffTxt(t) # todo descent value seems to be negative?
             cwh    = self.fcwh(t)   ;   acva = self.acvaH()   ;   ads = self.fads(asc, dsc, sad, W)   ;   s = self.fDocStyle(m, W, t)
             if dbg:
                 if m and FONT_NAME in m:
@@ -1470,7 +1472,7 @@ class Tabs(pyglet.window.Window):
             if   nw == 0:
                 if ijs < len(tl):
                     yield self.updateTnik(tl, ijs, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
-                else:     self.log(f'ERROR {self.ijSum(i, j2, 1)} >= {len(tl)} : {msg}')   ;   assert 0,  f'{j=} {i=}'
+                else:     self.log(f'ERROR {self.ijSum(i, j2, 1)} >= {len(tl)} : {msg}')   ;   assert ijs >= len(tl),  f'{ijs=} {len(tl)=} {j=} {i=}'
             elif nw == 1:
                 if   ijs >= len(tl):
                     k = kl[self.BGC]
@@ -1616,11 +1618,11 @@ class Tabs(pyglet.window.Window):
     def fLbl(self, t, d=W):
         dtxt = f'{d}{self.ffTxt(t)}' if self.DBG_TABT and len(t.text.replace(X, Z)) > 6 else Z  ;  td = t.document
         ancX, ancY = self.fancXY(t)
-        fnt  = td.get_font()    ;   asc  = fnt.ascent   ;   dsc = fnt.descent   ;   sad = asc + abs(dsc) #todo descent value seems to be negative, use abs()?
-        ads  =  self.fads(asc, -dsc if dsc < 0 else dsc, sad, d) #todo display a positive value
+        fnt  = td.get_font()    ;   asc  = fnt.ascent   ;   dsc = fnt.descent   ;   sad = asc + abs(dsc) # todo descent value seems to be negative?
+        ads  =  self.fads(asc, dsc, sad, d)
         return d.join([self.fAxy(), ancX, ancY, self.fcwh(t), ads, self.fAaAv(t), self.fFntSz(t), self.ffont(t), dtxt])
     @staticmethod
-    def fads(asc, dsc, sad, d):     return d.join([f'{asc:5}', f'{dsc:5}', f'{sad:5}'])
+    def fads(asc, dsc, sad, d):    return d.join([f'{asc:5}', f'{-dsc if dsc < 0 else dsc:5}', f'{sad:5}']) # todo display a positive value
     @staticmethod
     def frot(t):                   return f'{t.rotation:6.1f} '
     def fnvis(self):               return f'{self.nvis:3}'
@@ -1649,7 +1651,7 @@ class Tabs(pyglet.window.Window):
         self.tids.add(id(tnik))  ;   xywh = self.ftxywh(tnik, s=d)   ;   ii = f'{i+1:4}'
         axy = self.fAxy(d)       ;   ancX, ancY = self.fancXY(tnik)
         if   ist(tnik, LBL):
-            td  = tnik.document  ;  fnt = td.get_font()     ;  asc, dsc = fnt.ascent, fnt.descent  ;  sad = asc + dsc
+            td  = tnik.document  ;  fnt = td.get_font()     ;  asc, dsc = fnt.ascent, fnt.descent  ;  sad = asc + abs(dsc) # todo descent value seems to be negative?
             ads = self.fads(asc, dsc, sad, d)  ;  cwh = self.fcwh(tnik, d)  ;  acva = self.fAaAv(tnik, d)
             return d.join([JTEXTS[j], ii, xywh, axy, ancX, ancY, cwh, ads, acva, ds])
         elif ist(tnik, SPR):
@@ -1843,7 +1845,7 @@ class Tabs(pyglet.window.Window):
         pw /= j+1 if j < C else 1
         pix = min(pw, ph)
         fs   =  self.pix2pnt(pix)
-        if dbg: self.log(f'{j=} {JTEXTS[j]:4} {w=:6.2f} {h=:6.2f} {nc=} {nr=} {pw=} {ph=:6.2f} {pix=:6.2f} {fs=:6.2f}')
+        if dbg: self.log(f'{j=} {JTEXTS[j]:4} {w=:6.2f} {h=:6.2f} {nc=} {nr=} {pw=:6.2f} {ph=:6.2f} {pix=:6.2f} {fs=:6.2f}')
         return fs
 
     def _initFonts(self):
@@ -1852,8 +1854,8 @@ class Tabs(pyglet.window.Window):
         w  = self.viewW / nc  ;  h = self.viewH / n
         fs = self.calcFontSize(j=T, dbg=1)
         self.fontBold, self.fontItalic, self.clrIdx, self.fontDpiIndex, self.fontNameIdx, self.fontSize = 0, 0, 0, 4, 0, fs
-        self.log(f'{w=:6.3f}={self.viewW =}/({nc})                 {Z}{PNT_PER_PIX=:6.4f} fs=w*PNT_PER_PIX={fs:6.2f}pt', f=2)
-        self.log(f'{h=:6.3f}={self.viewH=}/({nl=} * {ns=} * {nt=}){W}{PNT_PER_PIX=:6.4f} fs=h*PNT_PER_PIX={fs:6.2f}pt', f=2)
+        self.log(f'{w=:6.3f}={self.viewW=:6.1f}/({nc})                 {Z}{PNT_PER_PIX=:6.4f} fs=w*PNT_PER_PIX={fs:6.2f}pt', f=2)
+        self.log(f'{h=:6.3f}={self.viewH=:6.1f}/({nl=} * {ns=} * {nt=}){W}{PNT_PER_PIX=:6.4f} fs=h*PNT_PER_PIX={fs:6.2f}pt', f=2)
         self.dumpFont()
 
     def fmtFont(self, dbg=0):

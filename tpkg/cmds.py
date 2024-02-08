@@ -1098,7 +1098,6 @@ class TogAXYVCmd(Cmd):
                 elif i==1:             tobj.E[L][l].anchor_x       = v
                 elif i==2:             tobj.E[L][l].anchor_y       = v
                 elif i==3:             tobj.E[L][l].content_valign = v
-                if   tobj.LL:          tobj.updateLLs(tobj.E[L][l], 1, how)
                 for s, s2 in enumerate(tobj.ss2sl()):
                     if   i==0:         tobj.E[S][s].document.set_style(0, len(tobj.E[S][s].document.text), {k: v})
                     elif i==1:         tobj.E[S][s].anchor_x       = v
@@ -1231,8 +1230,8 @@ class UpdateTniksCmd(Cmd):
                         for _ in         tobj.g_updateTniks(tobj.colms, C, sect, why=why):  pass
         else:
             for page in                      tobj.g_newUpdTniks(P,            nw=0, pt=None, why=why):  # pass
-                for line in                  tobj.g_newUpdTniks(L,            nw=0, pt=page, why=why):  # pass
-                    if ll:                   tobj.updateLLs(line, 1, why) #                        if zz:               tobj.updateZZs(sect, s, z, why)
+                for l, line in     enumerate(tobj.g_newUpdTniks(L,            nw=0, pt=page, why=why)): # pass
+                    if ll and l:             tobj.updateLLs(line, 1, why) #                        if zz:               tobj.updateZZs(sect, s, z, why)
                     for s, sect in enumerate(tobj.g_newUpdTniks(S,            nw=0, pt=line, why=why)): # pass
                         for colm in          tobj.g_newUpdTniks(C, m=s*nc,    nw=0, pt=sect, why=why):  # pass
                             for _ in         tobj.g_newUpdTniks(T, s=zs()[s], nw=0, pt=colm, why=why):  pass # z()[s]
