@@ -238,10 +238,10 @@ class Tabs(pyglet.window.Window):
         lbl = self.fileNamePfx(ext)
         n1  = [Z.join([lbl, base])]
         n1.extend([ str(i) for i in n ])
-        axy = f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
-        vaa = f'{self.ftAy(self.av)}{self.ftAx(self.aa)}' if not self.SPRITES else Z
+        axay = f'{self.ftAx(self.ax)}{self.ftAy(self.ay)}'
+        aaav = f'{self.ftAa(self.aa)}{self.ftAv(self.av)}' if not self.SPRITES else Z
         if ext == DAT:   n2 = []
-        else:            n2 = ['_', axy]    ;   n2.extend(['_', vaa])  if vaa else None
+        else:            n2 = ['_', axay]    ;   n2.extend(['_', aaav])  if aaav else None
         n2.extend(['.', ext])
         n1  = '.'.join(n1)
         n2  =   Z.join(n2)
@@ -579,11 +579,13 @@ class Tabs(pyglet.window.Window):
     def setAv(self, v): self._initAv(v)
     ####################################################################################################################################################################################################
     def dumpAXYV(self, why=Z): self.log(X.join([ why, self.fmtAa(), self.fmtAx(), self.fmtAy(), self.fmtAv() ]))
-    def fmtAa(   self):        a = W.join([f'{self.A_LEFT}',   f'{self.A_CENTER}', f'{self.A_RIGHT}'])                      ;  a = f'[{a:7}]'  ;  return f'a = {self.ftAx(self.aa)} = {a}'
+    def fmtAa(   self):        a = W.join([f'{self.A_LEFT}',   f'{self.A_CENTER}', f'{self.A_RIGHT}'])                      ;  a = f'[{a:7}]'  ;  return f'a = {self.ftAa(self.aa)} = {a}'
     def fmtAx(   self):        x = W.join([f'{self.X_LEFT}',   f'{self.X_CENTER}', f'{self.X_RIGHT}'])                      ;  x = f'[{x:7}]'  ;  return f'x = {self.ftAx(self.ax)} = {x}'
     def fmtAy(   self):        y = W.join([f'{self.Y_BOTTOM}', f'{self.Y_CENTER}', f'{self.Y_TOP}', f'{self.Y_BASELINE}'])  ;  y = f'[{y:7}]'  ;  return f'y = {self.ftAy(self.ay)} = {y}'
     def fmtAv(   self):        v = W.join([f'{self.Y_BOTTOM}', f'{self.Y_CENTER}', f'{self.Y_TOP}'])                        ;  v = f'[{v:7}]'  ;  return f'v = {self.ftAv(self.av)} = {v}'
     def fAxy(    self, d=W, dbg=0):   (a,b) = ('ax=', 'ay=') if dbg else (Z, Z)  ;  return f'{a}{self.ftAx(self.ax)}{d}{b}{self.ftAy(self.ay)}'
+    @staticmethod
+    def ftAa(a):  return 'L' if a == LEFT   else 'C' if a == CENTER else 'R' if a == RIGHT else '??'
     @staticmethod
     def ftAx(a):  return 'L' if a == LEFT   else 'C' if a == CENTER else 'R' if a == RIGHT else '??'
     @staticmethod
@@ -679,6 +681,9 @@ class Tabs(pyglet.window.Window):
         it = list(itertools.chain(self.C))   ;   Tabs.consMe(Tabs.consMe(self.setJdump(j+M, i % m[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
         it = list(itertools.chain(self.D))   ;   Tabs.consMe(Tabs.consMe(self.setJdump(j+A, i % n[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
         self.dumpTniksSfx(why)
+    @staticmethod
+    def consMe(it):  return collections.deque(it, maxlen=0)
+    def clearVisib(self):   Tabs.consMe(v.clear() for v in self.visib)
     ####################################################################################################################################################################################################
     def dumpTniksE(self, why=Z):
         ep, el, es, ec, et, en, ei, ek, em, er, eq, eh, eb, ea, ed, ee = self.lenE() #  ;   np, nl, ns, nc, nt = self.n
@@ -1281,7 +1286,7 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def docStyleH(d=W):       return d.join(['FnSz', 'Lead', 'LnSp', 'TablText', ' ForegroundColor ', ' BackgroundColor ', 'B',          'I',            'S',         'M',          'W',                 'w',          'FontName             '])
     ####################################################################################################################################################################################################
-    def imap2ikey(self, tobj, imap, i, j, dbg=1):
+    def imap2ikey(self, tobj, imap, i, j, dbg=0):
         imap0 = imap[0][::-1] if imap and len(imap) else []
         ff = self.sobj.isFret(tobj)
         assert ist(j, int),  f'{j=} {type(j)=}'
@@ -1290,7 +1295,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'{ikey=} {i=} {j=} {ff=} {imap0=}')
         return ikey
 
-    def imap2Chord(self, tobj, imap, i, j, dbg=1):
+    def imap2Chord(self, tobj, imap, i, j, dbg=0):
         chunks    = imap[4]  if (imap and len(imap) > 4) else []
         chordName = tobj     if j > K else chunks[i] if len(chunks) > i else self.tblank
         if dbg and chunks:   self.log(f'{chordName=} chunks={fmtl(chunks)} imap={fmtl(imap)}')
@@ -1572,11 +1577,9 @@ class Tabs(pyglet.window.Window):
     def acvaH(d=W):   return d.join(ACVA)
     @staticmethod
     def cwhH(d=W):   return d.join(CWH)
+    ####################################################################################################################################################################################################
     @staticmethod
     def fjtxt():     return W.join(f'{jtxt[0]:>{JFMT[i]}}' for i, jtxt in enumerate(JTEXTS)) + ' Vis' # optimize str concat?
-    @staticmethod
-    def consMe(it):  return collections.deque(it, maxlen=0)
-    def clearVisib(self):   Tabs.consMe(v.clear() for v in self.visib)
 
     def dumpTnik(self, t=None, j=None, why=Z):
         if   t is None:    self.log(self.fTnikHdr(), p=0)   ;   return # hack
@@ -1613,8 +1616,8 @@ class Tabs(pyglet.window.Window):
     def fLbl(self, t, d=W):
         dtxt = f'{d}{self.ffTxt(t)}' if self.DBG_TABT and len(t.text.replace(X, Z)) > 6 else Z  ;  td = t.document
         ancX, ancY = self.fancXY(t)
-        fnt  = td.get_font()    ;   asc  = fnt.ascent   ;   dsc = fnt.descent   ;   sad = asc + dsc
-        ads  =  self.fads(asc, dsc, sad, d)
+        fnt  = td.get_font()    ;   asc  = fnt.ascent   ;   dsc = fnt.descent   ;   sad = asc + abs(dsc) #todo descent value seems to be negative, use abs()?
+        ads  =  self.fads(asc, -dsc if dsc < 0 else dsc, sad, d) #todo display a positive value
         return d.join([self.fAxy(), ancX, ancY, self.fcwh(t), ads, self.fAaAv(t), self.fFntSz(t), self.ffont(t), dtxt])
     @staticmethod
     def fads(asc, dsc, sad, d):     return d.join([f'{asc:5}', f'{dsc:5}', f'{sad:5}'])
@@ -1627,7 +1630,7 @@ class Tabs(pyglet.window.Window):
     def fpTxt(t): a = t.text.replace(X, Z)  ;  b = a[:6]  ;  b += '+' if len(a) > 6 else W  ;  return f'{b:7}'
     @staticmethod
     def fcwh(       t, d=W):       return f'{fmtf(t.content_width, 5)}{d}{fmtf(t.content_height, 5)}'
-    def fAaAv(self, t, d=W):       return f'{self.ftAx(self.aa)}{d}{self.ftAv(t.content_valign)}'
+    def fAaAv(self, t, d=W):       return f'{self.ftAa(self.aa)}{d}{self.ftAv(t.content_valign)}'
     def fCtnt(self, t, d=W):       return f'{self.fcwh(t)}{d}{self.fAaAv(t)}'
     def getDocColor(self, t, c=1): return utl.fColor(self._getDocColor(t, c))
     @staticmethod
@@ -2116,10 +2119,10 @@ class Tabs(pyglet.window.Window):
 #        for j in range(len(self.E)):
 #            for i in range(len(self.E[j])):
 #                self.log(f'{int(self.E[j][i].visible)}', p=0, e=Z)
-
+    ####################################################################################################################################################################################################
     @staticmethod
-    def fVisible(n, j, l, v): return f'{n:4}{jTEXTS[j][0]}{l:<4} {v}'
-    def fVis(self): return f'{fmtl([ int(p.visible) for p in self.pages ], s=Z)}'
+    def fVisible(n, j, l, v): return f'{n:4}{jTEXTS[j][0]}{l:<4} {v}'             # N/A not used??
+    def fVis(self): return f'{fmtl([ int(p.visible) for p in self.pages ], s=Z)}' # N/A not used??
     ####################################################################################################################################################################################################
     def dumpCursorArrows(self, how): cm, ha, va = self.csrMode, self.hArrow, self.vArrow  ;  self.log(f'{how} csrMode={cm}={CSR_MODES[cm]:6} hArrow={ha}={HARROWS[ha]:5} vArrow={va}={VARROWS[va]:4}')
 
