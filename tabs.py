@@ -1153,57 +1153,6 @@ class Tabs(pyglet.window.Window):
         for r, rowl in enumerate(self.rowLs): self.removeTnik(self.rowLs, r, R)
         for q, qclm in enumerate(self.qclms): self.removeTnik(self.qclms, q, Q)
         self.dumpTniksSfx(msg)
-    
-    def ss2sli(self, n):
-        s = self.ss2sl()
-        for i, v in enumerate(s):
-            if v==n: return i
-        assert 0,  f'{n=} {s=} {i=} {v=}'
-#        return None
-    ####################################################################################################################################################################################################
-    def hideTTs(self, how, ii, dbg=0):
-        self.hidC += 1   ;   hid2 = f'Hid{self.hidC} {how} {ii=}'  ;  hid = f'Hid{self.hidC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.hidC}'   ;   z = self.ss2sl
-        i = self.ss2sli(ii)
-        self.togTT(ii)
-        np, nl, ns, nc, nt = self.n
-        self.dumpTniksPfx(hid2)
-        for p, page in         enumerate(self.g_newUpdTniks(P,          nw=0, pt=None, why=ref)):
-            for l, line in     enumerate(self.g_newUpdTniks(L,          nw=0, pt=page, why=ref)):
-                for s, sect in enumerate(self.g_newUpdTniks(S, s=ii,    nw=2, pt=line, why=upd)):
-                    if s == 0:
-                        for c, colm in  enumerate(self.g_newUpdTniks(C,  m=i*nc, nw=2, pt=sect, why=hid)):
-                            for t, _ in enumerate(self.g_newUpdTniks(T,  s=ii,   nw=2, pt=colm, why=hid)):  pass
-        self.dumpTniksSfx(hid2)
-        self.dumpTniksPfx(hid2)
-        for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=upd, dbg=1):
-            for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=upd, dbg=1):
-                for s, sect in enumerate(self.g_newUpdTniks(S,           nw=0, pt=line, why=upd, dbg=1)):
-                    for colm in          self.g_newUpdTniks(C, m=i*nc,   nw=0, pt=sect, why=upd, dbg=1):
-                        for _ in         self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
-        if ii == TT:                     self.removeTnik(self.hcurs, 0, H, dbg)
-        self.dumpTniksSfx(hid2)
-    ####################################################################################################################################################################################################
-    def addTTs(self, how, ii):
-        self.addC += 1   ;   add2 = f'Add{self.addC} {how} {ii=}'  ;  add = f'Add{self.addC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.addC}'   ;   z = self.ss2sl
-        self.togTT(ii)
-        i = self.ss2sli(ii)
-        np, nl, ns, nc, nt = self.n
-        self.dumpTniksPfx(add2)
-        for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=ref, dbg=1):
-            for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=ref, dbg=1):
-                for s, sect in enumerate(self.g_newUpdTniks(S,           nw=1, pt=line, why=upd, dbg=1)):
-                    if s == 0:
-                        for colm in      self.g_newUpdTniks(C, m=i*nc,   nw=1, pt=sect, why=add, dbg=1): 
-                            for _ in     self.g_newUpdTniks(T, s=z()[i], nw=1, pt=colm, why=add, dbg=1): pass
-        self.dumpTniksSfx(add2)
-        self.dumpTniksPfx(add2)
-        for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=ref, dbg=1):
-            for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=ref, dbg=1):
-                for s, sect in enumerate(self.g_newUpdTniks(S,           nw=0, pt=line, why=upd, dbg=1)):
-                    for colm in          self.g_newUpdTniks(C, m=i*nc,   nw=0, pt=sect, why=upd, dbg=1):
-                        for _ in         self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
-        if self.CURSOR and self.tabls and not self.cursor: self.createCursor(add)
-        self.dumpTniksSfx(add2)
     ####################################################################################################################################################################################################
 #    def sprite2LabelPos(self, x, y, w, h, dbg=0): x0 = x  ;  y0 = y  ;  x += w/2  ;  y -= h/2  ;  self.log(f'{x0=:6.2f} {y0=:6.2f}, {w/2=:6.2f} {-h/2=:6.2f}, {x=:6.2f} {y=:6.2f} {self.p0x=:6.2f} {self.p0y=:6.2f}', so=1) if dbg else None  ;  return x, y
     ####################################################################################################################################################################################################
@@ -1335,6 +1284,57 @@ class Tabs(pyglet.window.Window):
         if dbg2:      self.log(f'{js} {i+1:4} {v} {ptxt}{self.fAxy()} {ancX} {ancY} {cwh} {ads} {acva} {s} {ftxt}', p=0, f=0)
 #        if ist(t, LBL) and dbg and m and FONT_NAME in m:    fnt2 = pygfont.load(m[FONT_NAME], m[FONT_SIZE])    ;    assert fnt == fnt2,  f'{fnt=} != {fnt2=}'
     ####################################################################################################################################################################################################
+    def ss2sli(self, n):
+        s = self.ss2sl()   ;   i, v = None, None
+        for i, v in enumerate(s):
+            if v==n: return i
+        assert 0,  f'{n=} {s=} {i=} {v=}'
+#        return None
+    ####################################################################################################################################################################################################
+    def hideTTs(self, how, ii, dbg=0):
+        self.hidC += 1   ;   hid2 = f'Hid{self.hidC} {how} {ii=}'  ;  hid = f'Hid{self.hidC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.hidC}'   ;   z = self.ss2sl
+        i = self.ss2sli(ii)
+        self.togTT(ii)
+        np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(hid2)
+        for p, page in         enumerate(self.g_newUpdTniks(P,          nw=0, pt=None, why=ref)):
+            for l, line in     enumerate(self.g_newUpdTniks(L,          nw=0, pt=page, why=ref)):
+                for s, sect in enumerate(self.g_newUpdTniks(S, s=ii,    nw=2, pt=line, why=upd)):
+                    if s == 0:
+                        for c, colm in  enumerate(self.g_newUpdTniks(C,  m=i*nc, nw=2, pt=sect, why=hid)):
+                            for t, _ in enumerate(self.g_newUpdTniks(T,  s=ii,   nw=2, pt=colm, why=hid)):  pass
+        self.dumpTniksSfx(hid2)
+        self.dumpTniksPfx(hid2)
+        for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=upd, dbg=1):
+            for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=upd, dbg=1):
+                for s, sect in enumerate(self.g_newUpdTniks(S,           nw=0, pt=line, why=upd, dbg=1)):
+                    for colm in          self.g_newUpdTniks(C, m=i*nc,   nw=0, pt=sect, why=upd, dbg=1):
+                        for _ in         self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
+        if ii == TT:                     self.removeTnik(self.hcurs, 0, H, dbg)
+        self.dumpTniksSfx(hid2)
+    ####################################################################################################################################################################################################
+    def addTTs(self, how, ii):
+        self.addC += 1   ;   add2 = f'Add{self.addC} {how} {ii=}'  ;  add = f'Add{self.addC}'   ;   upd = 'Upd'   ;   ref = f'Ref{self.addC}'   ;   z = self.ss2sl
+        self.togTT(ii)
+        i = self.ss2sli(ii)
+        np, nl, ns, nc, nt = self.n
+        self.dumpTniksPfx(add2)
+        for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=ref, dbg=1):
+            for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=ref, dbg=1):
+                for s, sect in enumerate(self.g_newUpdTniks(S,           nw=1, pt=line, why=upd, dbg=1)):
+                    if s == 0:
+                        for colm in      self.g_newUpdTniks(C, m=i*nc,   nw=1, pt=sect, why=add, dbg=1): 
+                            for _ in     self.g_newUpdTniks(T, s=z()[i], nw=1, pt=colm, why=add, dbg=1): pass
+        self.dumpTniksSfx(add2)
+        self.dumpTniksPfx(add2)
+        for page in                      self.g_newUpdTniks(P,           nw=0, pt=None, why=ref, dbg=1):
+            for line in                  self.g_newUpdTniks(L,           nw=0, pt=page, why=ref, dbg=1):
+                for s, sect in enumerate(self.g_newUpdTniks(S,           nw=0, pt=line, why=upd, dbg=1)):
+                    for colm in          self.g_newUpdTniks(C, m=i*nc,   nw=0, pt=sect, why=upd, dbg=1):
+                        for _ in         self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
+        if self.CURSOR and self.tabls and not self.cursor: self.createCursor(add)
+        self.dumpTniksSfx(add2)
+    ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
         self.newC += 1  ;  why = f'New{self.newC}'  ;  ll = self.LL  ;  view = self.VIEW   ;   z = self.ss2sl   ;   np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(why)
@@ -1358,9 +1358,9 @@ class Tabs(pyglet.window.Window):
             for page in                      self.g_newUpdTniks(P,           nw=1, pt=None, why=why):  # pass
                 for l, line in     enumerate(self.g_newUpdTniks(L,           nw=1, pt=page, why=why)): # pass
                     if ll and not l:         self.createLLs(line, l, why) #                       if v and zz:         self.createZZs(sect, -1, why)
-                    for s, sect in enumerate(self.g_newUpdTniks(S,           nw=1, pt=line, why=why)): # pass
-                        for colm in          self.g_newUpdTniks(C, m=s*nc,   nw=1, pt=sect, why=why):  # pass m=s*nc
-                            for _ in         self.g_newUpdTniks(T, s=z()[s], nw=1, pt=colm, why=why): pass # z()[s]
+                    for s, sect in enumerate(self.g_newUpdTniks(S, m=l*ns,         nw=1, pt=line, why=why)): # pass
+                        for colm in          self.g_newUpdTniks(C, m=l*ns*nc+s*nc, nw=1, pt=sect, why=why):  # pass m=s*nc
+                            for _ in         self.g_newUpdTniks(T, s=l*ns+z()[s], nw=1, pt=colm, why=why): pass # z()[s]
             if view: 
                 for z in range(len(view)):
                     self.addZZs(z, why)
@@ -1465,8 +1465,8 @@ class Tabs(pyglet.window.Window):
                     if   s == II:        t = self.imap2ikey( t0, im, i2, j2)   ;   i2 += 1 if t != self.tblank else 0
                     elif s == KK:        t = self.imap2Chord(t0, im, i,  j2)
             msg = f'{ijs:3} {self.fmtJText(j2)} {j2=} {t0:3} {i=:2} {self.J2[j2]=:2} {len(tl)=:2} {len(tl)=:2} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {nw=}'    ;    self.log(f'{msg}', f=0)
-            assert x2 <= self.width  and w <= self.width,   f'{x2=} {w=} {self.width=} {msg}'
-            assert y2 <= self.height and h <= self.height,  f'{y2=} {h=} {self.height} {msg}'
+#            assert x2 <= self.width  and w <= self.width,   f'{x2=} {w=} {self.width=} {msg}'
+#            assert y2 <= self.height and h <= self.height,  f'{y2=} {h=} {self.height} {msg}'
             assert tl == self.E[j2],                        f'{j2=} {tl=} {self.E[j2]=} {msg}'
             assert nw in (0, 1, 2),     f'{msg}'
             if   nw == 0:

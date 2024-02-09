@@ -1233,8 +1233,8 @@ class UpdateTniksCmd(Cmd):
                 for l, line in     enumerate(tobj.g_newUpdTniks(L,            nw=0, pt=page, why=why)): # pass
                     if ll and l:             tobj.updateLLs(line, 1, why) #                        if zz:               tobj.updateZZs(sect, s, z, why)
                     for s, sect in enumerate(tobj.g_newUpdTniks(S,            nw=0, pt=line, why=why)): # pass
-                        for colm in          tobj.g_newUpdTniks(C, m=s*nc,    nw=0, pt=sect, why=why):  # pass
-                            for _ in         tobj.g_newUpdTniks(T, s=zs()[s], nw=0, pt=colm, why=why):  pass # z()[s]
+                        for colm in          tobj.g_newUpdTniks(C, m=l*ns*nc+s*nc,    nw=0, pt=sect, why=why):  # pass
+                            for _ in         tobj.g_newUpdTniks(T, s=l*ns+zs()[s], nw=0, pt=colm, why=why):  pass # z()[s]
         tobj.dumpTniksSfx(why)
         if tobj.CURSOR and tobj.cursor:  cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
         if dbg and tobj.SNAPS >= 10:     tobj.regSnap(f'Upd.{tobj.updC}', why)
