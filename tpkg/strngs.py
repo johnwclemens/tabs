@@ -16,10 +16,11 @@ class Strngs:
                f'drop_D':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
                f'DADEAD':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'E3',    40), (f'A3',    45), (f'D4',    50)]),
                f'DADGBE':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-               f'DADGAD':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'A3',    45), (f'D4',    50)]),
+               f'DADGAD':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    40), (f'A3',    45), (f'D4',    50)]),
+               f'guitar_6_4ths':      dict([(f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'C4',    48), (f'F4',    53)]),
                f'E{F}ADGBE':          dict([(f'E{F}2', 27), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
                f'EBE{F}G{F}BE{F}':    dict([(f'E2',    28), (f'B2',    35), (f'E{F}3', 39), (f'G{F}3', 42), (f'B3',    47), (f'E{F}4', 51)]),
-               f'E{F}BE{F}G{F}BE{F}': dict([(f'E{F}2', 28), (f'B2',    35), (f'E{F}3', 39), (f'G{F}3', 42), (f'B3',    47), (f'E{F}4', 51)]),
+               f'E{F}BE{F}G{F}BE{F}': dict([(f'E{F}2', 27), (f'B2',    35), (f'E{F}3', 39), (f'G{F}3', 42), (f'B3',    47), (f'E{F}4', 51)]),
     ####################################################################################################################################################################################################
                f'guitar_7_4ths':      dict([(f'E2',    28), (f'A{F}2', 32), (f'C3',    36), (f'E3',    40), (f'A{F}3', 44), (f'C4',    48), (f'E4',    52)]),
                f'EA{F}CEA{F}CE':      dict([(f'E2',    28), (f'A{F}2', 32), (f'C3',    36), (f'E3',    40), (f'A{F}3', 44), (f'C4',    48), (f'E4',    52)]),
@@ -32,7 +33,7 @@ class Strngs:
                f'CEADGBE':            dict([(f'C2',    24), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
                f'BEADGBE':            dict([(f'B1',    23), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
                f'AEADGBE':            dict([(f'A1',    21), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)])
-              }
+              } # todo fixme this can easily have typos/incorrect values for the indices - refactor/simplify - revisit keys/aliases 
     def __init__(self, alias=None):
         if alias is None: alias = 'GUITAR'
         self.map       = self.aliases[alias]
