@@ -8,15 +8,15 @@ import pyglet.font         as pygfont
 import pyglet.image        as pygimg
 import pyglet.window.event as pygwine
 from   pyglet.text     import document, layout
-from   tpkg            import utl    as utl
-from   tpkg            import kysgs  as kysgs
-from   tpkg            import misc   as misc
-from   tpkg            import evnts  as evnts
-from   tpkg.notes      import Notes  as Notes
-from   tpkg.strngs     import Strngs as Strngs
-from   tpkg.chords     import Chords as Chords
-from   tpkg            import cmds   as cmds
-from   tpkg            import unic   as unic
+from   tpkg            import utl
+from   tpkg            import kysgs
+from   tpkg            import misc
+from   tpkg            import evnts
+from   tpkg.notes      import Notes
+from   tpkg.strngs     import Strngs
+from   tpkg.chords     import Chords
+from   tpkg            import cmds
+from   tpkg            import unic
 
 F = unic.F
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          A, B, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.A, utl.B, utl.D, utl.E
@@ -122,6 +122,7 @@ class Tabs(pyglet.window.Window):
         self.viewX,    self.viewY,   self.viewW,   self.viewH  = 0, 0, self.width, self.height
         self.viewX0,   self.viewY0,  self.viewW0,  self.viewH0 = 0, 0, self.width, self.height
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
+        pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent') 
         ################################################################################################################################################################################################
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4
         self.DBG_TABT  = 0  ;  self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1
@@ -452,7 +453,7 @@ class Tabs(pyglet.window.Window):
         self.ks = kysgs.nic2KS(self.nic)
         self.log( kysgs.fmtKSK(self.ks[kysgs.KSK]), f=2)
         if self.TEST == 1:
-            from tpkg import tests as tests
+            from tpkg import tests
             attrs = {'TI':TI, 'XYWH':XYWH, 'AXY2':AXY2, 'CWH':CWH, 'LTXA':LTXA, 'LTXAC':LTXAC, 'ADS':ADS, 'ACVA':ACVA, 'LDS':LDS, 'LLBL':LLBL}
             mthds = {'JSPR':JSPR, 'JLBL':JLBL}
             tests.test1(self, attrs, mthds)
@@ -1317,6 +1318,7 @@ class Tabs(pyglet.window.Window):
                         for _ in         self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
         if ii == TT:                     self.removeTnik(self.hcurs, 0, H, dbg)
         self.dumpTniksSfx(hid2)
+        return ss
     ####################################################################################################################################################################################################
     def addTTs(self, how, ii):
         ss = self.sectName(how)
@@ -1340,6 +1342,7 @@ class Tabs(pyglet.window.Window):
                         for _ in         self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
         if self.CURSOR and self.tabls and not self.cursor: self.createCursor(add)
         self.dumpTniksSfx(add2)
+        return ss
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
         self.newC += 1  ;  why = f'New{self.newC}'  ;  ll = self.LL  ;  view = self.VIEW   ;   z = self.ss2sl   ;   np, nl, ns, nc, nt = self.n
@@ -2232,6 +2235,8 @@ if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, f=0)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(EVN_PATH), 'w', encoding='utf-8') as EVN_FILE: # order?
     _    = -3
     ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=_)
+    from tpkg import notes
+    notes.dumpData()   ;   notes.dumpData(csv=1)
     kysgs.init(f=2)
     slog(f'BGN {sys.argv[0]}', p=0,    f=_)
     slog(f'argv={fmtl(sys.argv[1:])}', f=_)

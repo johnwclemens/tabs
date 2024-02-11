@@ -2,8 +2,7 @@ import pyglet.sprite     as pygsprt
 import pyglet.image      as pygimg
 from   pyglet.window.key import symbol_string    as psym
 from   pyglet.window.key import modifiers_string as pmod
-from   tpkg              import utl as utl
-#from   tpkg              import cmds   as cmds
+from   tpkg              import utl
 
 slog    = utl.slog
 W, Y, Z = utl.W, utl.Y, utl.Z

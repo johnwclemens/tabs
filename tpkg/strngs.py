@@ -1,9 +1,7 @@
 from collections import Counter
-from tpkg        import utl    as utl
-from tpkg        import unic   as unic
-#from tpkg        import notes  as notes
-from tpkg.notes  import Notes  as Notes
-#from tpkg        import kysgs  as kysgs
+from tpkg        import utl
+from tpkg        import unic
+from tpkg.notes  import Notes
 
 F, N, S          = unic.F, unic.N, unic.S
 W, Y, Z          = utl.W, utl.Y, utl.Z
@@ -15,6 +13,7 @@ class Strngs:
                f'english':            dict([(f'C2',    24), (f'E2',    28), (f'G3',    31), (f'C3',    36), (f'E3',    40), (f'G4',    43)]),
                f'drop_D':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
                f'DADEAD':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'E3',    40), (f'A3',    45), (f'D4',    50)]),
+               f'DAEAC{S}E':          dict([(f'D2',    26), (f'A2',    33), (f'E3',    40), (f'A3',    45), (f'C{S}4', 49), (f'E4',    52)]),
                f'DADGBE':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
                f'DADGAD':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    40), (f'A3',    45), (f'D4',    50)]),
                f'guitar_6_4ths':      dict([(f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'C4',    48), (f'F4',    53)]),

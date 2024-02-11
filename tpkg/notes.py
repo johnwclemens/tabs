@@ -1,5 +1,5 @@
-from tpkg import utl  as utl
-from tpkg import unic as unic
+from tpkg import utl
+from tpkg import unic
 
 F, N, S          = unic.F, unic.N, unic.S
 W, Y, Z          = utl.W, utl.Y, utl.Z
@@ -8,6 +8,7 @@ fmtf, fmtl, fmtm = utl.fmtf, utl.fmtl, utl.fmtm
 signed           = utl.signed
 ns2signs         = utl.ns2signs
 MAX_FREQ_IDX     = utl.MAX_FREQ_IDX
+accids           = [f'{0x266D :c}', f'{0x266E :c}', f'{0x266F :c}']
 
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
@@ -23,24 +24,25 @@ def dumpTestA(csv=0):
     i2n = Notes.i2n     ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i4v = Notes.I4V  ;  n2i = Notes.N2I
     i4n = Notes.i4n     ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  i6v = Notes.I6V  ;  v2i = Notes.V2I
     slog('BGN')         ;    o = t + 1       ;    p = 0
-    slog(f'    {m}{fmtl( list(range(v)), w=w, d=d, s=m)}', p=p, f=file)
+    slog(f'    {m}{fmtl( list(range(v)), w=w, d=d, s=m)}',    p=p, f=file)
+    slog(f'ACCD{m}{fmtl([F, N, S], w=w, d=d, s=m)}',          p=p, f=file)
     slog(f' F2S{m}{fmtl([ f"{i2n(f)[k]}:{f2s[i2n(f)[k]]}" if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
     slog(f' F4S{m}{fmtl([ f"{i4n(f)[k]}:{f4s[i4n(f)[k]]}" if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=file)
     slog(f' S2F{m}{fmtl([ f"{i2n(s)[k]}:{s2f[i2n(s)[k]]}" if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
     slog(f' S4F{m}{fmtl([ f"{i4n(s)[k]}:{s4f[i4n(s)[k]]}" if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f' I2F{m}{fmtl([ f"{k}:{i2f[k]}"                                     for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f' I4F{m}{fmtl([ f"{k}:{i4f[k]}"                                     for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f' I2S{m}{fmtl([ f"{k}:{i2s[k]}"                                     for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f' I4S{m}{fmtl([ f"{k}:{i4s[k]}"                                     for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f' N2I{m}{fmtl([ f"{k}:{v}"                                     for k,v in n2i.items() ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f'I2NF{m}{fmtl([ f"{k}:{i2n(f)[k]}"                                  for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f'I4NF{m}{fmtl([ f"{k}:{i4n(f)[k]}"                                  for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f'I2NS{m}{fmtl([ f"{k}:{i2n(s)[k]}"                                  for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f'I4NS{m}{fmtl([ f"{k}:{i4n(s)[k]}"                                  for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f' I2V{m}{fmtl([ f"{k}:{v}"                                     for k,v in i2v.items() ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f' I4V{m}{fmtl([ f"{k}:{v}"                                     for k,v in i4v.items() ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f' I6V{m}{fmtl([ f"{k}:{v}"                                     for k,v in i6v.items() ], w=w, d=d, s=m)}', p=p, f=file)
-    slog(f' V2I{m}{fmtl([ f"{k}:{v}"                                     for k,v in v2i.items() ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I2F{m}{fmtl([ f"{k}:{i2f[k]}"                                    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I4F{m}{fmtl([ f"{k}:{i4f[k]}"                                    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I2S{m}{fmtl([ f"{k}:{i2s[k]}"                                    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I4S{m}{fmtl([ f"{k}:{i4s[k]}"                                    for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' N2I{m}{fmtl([ f"{k}:{v}"                                    for k,v in n2i.items() ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f'I2NF{m}{fmtl([ f"{k}:{i2n(f)[k]}"                                 for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f'I4NF{m}{fmtl([ f"{k}:{i4n(f)[k]}"                                 for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f'I2NS{m}{fmtl([ f"{k}:{i2n(s)[k]}"                                 for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f'I4NS{m}{fmtl([ f"{k}:{i4n(s)[k]}"                                 for k in range(t) ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I2V{m}{fmtl([ f"{k}:{v}"                                    for k,v in i2v.items() ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I4V{m}{fmtl([ f"{k}:{v}"                                    for k,v in i4v.items() ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' I6V{m}{fmtl([ f"{k}:{v}"                                    for k,v in i6v.items() ], w=w, d=d, s=m)}', p=p, f=file)
+    slog(f' V2I{m}{fmtl([ f"{k}:{v}"                                    for k,v in v2i.items() ], w=w, d=d, s=m)}', p=p, f=file)
     slog('END')
 
 def dumpTestB(csv=0):
@@ -48,6 +50,7 @@ def dumpTestB(csv=0):
     x = f'{w}x'  ;  u = f'>{w}'  ;  y = f'<{w}x'  ;  z = f'<{w}'    ;   q = f'>{w}x'
     slog('BGN')  ;  w = 0 if csv else '^5'
     slog(f'    {m}{fmtl(list(range(v)), w=w,       d=d, s=m)}', p=p, f=f)
+    slog(f'ACCD{m}{fmtl([F, N, S], w=w, d=d, s=m)}',            p=p, f=f)
     slog(f' F2S{m}{fmtm(Notes.F2S,      w=w,       d=d, s=m)}', p=p, f=f)   ;   w = 0 if csv else 2
     slog(f' F4S{m}{fmtm(Notes.F4S,      w=u, wv=z, d=d, s=m)}', p=p, f=f)
     slog(f' S2F{m}{fmtm(Notes.S2F,      w=w,       d=d, s=m)}', p=p, f=f)

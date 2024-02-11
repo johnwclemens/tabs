@@ -1,7 +1,7 @@
-from tpkg       import utl    as utl
-from tpkg.notes import Notes  as Notes
-from tpkg.misc  import Scales as Scales
-from tpkg       import unic   as unic
+from tpkg       import utl
+from tpkg.notes import Notes
+from tpkg.misc  import Scales
+from tpkg       import unic
 
 name, NTONES       = Notes.name, Notes.NTONES
 TYPE, TYPES        = Notes.TYPE, Notes.TYPES
@@ -21,7 +21,7 @@ FD, PFX = 2, 0
 
 def init(f):
     global FD   ;   FD = f
-    slog('BGN', f=FD)
+    slog('BGN',   f=FD)
     dmpKSVHdr(csv=0,   t=FLAT)
     dmpKSVHdr(csv=1,   t=FLAT)
     initKSD(KSD, t=FLAT)
@@ -30,7 +30,7 @@ def init(f):
     dmpKSVHdr(csv=1,   t=SHRP)
     dumpData( csv=0)
     dumpData( csv=1)
-    slog('END', f=FD)
+    slog('END',   f=FD)
 
 def initKSD(ksd, t):
     assert t==FLAT or t==SHRP and ist(t, int),  f'{t=} {type(t)=}'

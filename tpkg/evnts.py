@@ -5,9 +5,9 @@ from   pyglet.window.key import symbol_string    as psym
 from   pyglet.window.key import modifiers_string as pmod
 from   pyglet.window.key import motion_string    as pmtn
 import pyglet.window.mouse   as pygmous
-from   tpkg import utl       as utl
-from   tpkg import cmds      as cmds
-#from   tpkg import tests   as tests
+from   tpkg import utl
+from   tpkg import cmds
+#from   tpkg import tests
 
 slog, fmtf, fmtl, fmtm         = utl.slog, utl.fmtf, utl.fmtl, utl.fmtm
 X, W, Y, Z                     = utl.X, utl.W, utl.Y, utl.Z
@@ -98,7 +98,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     k     = psym(symb)   ;   m = MODS
     dp    = tobj.dataPath1
     if dbg:    slog(f'BGN {fsm(symb, mods)} d={fmtm(d)}')
-    if   k == 'A' and isCtlShf(d, m):      cmd = cmds.TogArrowCmd(     tobj, '@^A', v=1)            ;  cmd.do()
+    if   k == 'P' and isCtlAlt(d, m):      cmd = cmds.PlayCmd(         tobj, '@&P')                 ;  cmd.do() 
+    elif k == 'A' and isCtlShf(d, m):      cmd = cmds.TogArrowCmd(     tobj, '@^A', v=1)            ;  cmd.do()
     elif k == 'A' and isCtl(   d, m):      cmd = cmds.TogArrowCmd(     tobj, '@ A', v=0)            ;  cmd.do()
     elif k == 'B' and isCtlShf(d, m):      cmd = cmds.TogBlankCmd(     tobj, '@^B', -1)             ;  cmd.do()
     elif k == 'B' and isCtl(   d, m):      cmd = cmds.TogBlankCmd(     tobj, '@ B',  1)             ;  cmd.do()

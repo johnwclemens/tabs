@@ -4,8 +4,8 @@
 #for _ in sys.path:
 #    print(f'{_}')
 from   collections import Counter
-from   tpkg        import utl   as utl
-from   tpkg.notes  import Notes as Notes
+from   tpkg        import utl
+from   tpkg.notes  import Notes
 
 NTONES           = Notes.NTONES
 W, Y, Z          = utl.W, utl.Y, utl.Z

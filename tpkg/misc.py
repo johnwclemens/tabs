@@ -1,4 +1,4 @@
-from tpkg.notes import Notes as Notes
+from tpkg.notes import Notes
 
 ########################################################################################################################################################################################################
 class DSymb:
@@ -43,6 +43,9 @@ class Modes:
 # X:
 # Y:
 # Z:
+
+# pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent')
+# source = pyglet.media.load('explosion.wav')
 
 #fixme list:
 # A) all pages visible on startup despite all but one set to False

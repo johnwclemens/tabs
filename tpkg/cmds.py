@@ -4,10 +4,10 @@ import pyglet
 import pyglet.window.key         as pygwink
 import pyglet.image              as pygimg
 #import pyglet.text               as pygtxt
-from   tpkg        import utl    as utl
-from   tpkg        import kysgs  as kysgs
-from   tpkg.notes  import Notes  as Notes
-from   tpkg        import misc   as misc
+from   tpkg        import utl
+from   tpkg        import kysgs
+from   tpkg.notes  import Notes
+from   tpkg        import misc
 
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          A, B, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.A, utl.B, utl.D, utl.E
 W, X, Y, Z,       NONE,  ist,  fri,         slog,   fmtf,   fmtl,   fmtm    = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,       utl.slog,   utl.fmtf,   utl.fmtl,   utl.fmtm
@@ -466,6 +466,17 @@ class PasteTabsCmd(Cmd):
         tobj.dumpSmap(f'END {how} {kk=} {cc=} {cn=}={tobj.cc2cn(cc)} plct={tobj.fplct(p, l, c, t)}')
         if tobj.SNAPS >= 4:  tobj.regSnap(f'PST.{tobj.pstC}', how)
         tobj.rsyncData = 1
+########################################################################################################################################################################################################
+class PlayCmd(Cmd):
+    def __init__(self, tobj):
+        self.tobj = tobj
+        
+    def do(self):   self._play()
+    def undo(self): self._play()
+    
+    def _play(self):
+        tobj = self.tobj
+        
 ########################################################################################################################################################################################################
 class PrevPageCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
@@ -1054,9 +1065,9 @@ class TogTTsCmd(Cmd):
         tobj, how, tt = self.tobj, self.how, self.tt
         msg2 = f'{how} {tt=}'
         tobj.dumpGeom('BGN', f'     {msg2}')
-        if   tt not in tobj.SS:      msg = 'ADD'   ;   tobj.addTTs( how, tt)
-        else:                        msg = 'HID'   ;   tobj.hideTTs(how, tt)
-        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{msg}.{tt}', how)
+        if   tt not in tobj.SS:      msg = 'ADD'    ;    sectName = tobj.addTTs( how, tt)
+        else:                        msg = 'HID'    ;    sectName = tobj.hideTTs(how, tt)
+        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{msg}{sectName}', how)
         tobj.on_resize(tobj.width, tobj.height)
         tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################

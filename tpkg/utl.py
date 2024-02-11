@@ -1,12 +1,12 @@
 import inspect, math, os, pathlib, sys, glob
 from   inspect import currentframe as cfrm
 import time
-from functools import wraps
+from   functools import wraps
 import pyglet
 import pyglet.window.key   as pygwink
 import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
-from   tpkg    import unic as unic
+from   tpkg    import unic
 
 def fn( cf): return cf.f_code.co_name
 def ffn(cf): return cf.f_code.co_filename
