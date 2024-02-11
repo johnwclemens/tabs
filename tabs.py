@@ -4,14 +4,15 @@ from   collections     import Counter
 from   itertools       import accumulate
 from   more_itertools  import consume  # not installed in GitBash's Python
 import pyglet
-import pyglet.font         as pygfont
-import pyglet.image        as pygimg
-import pyglet.window.event as pygwine
+import pyglet.font            as pygfont
+import pyglet.image           as pygimg
+import pyglet.window.event    as pygwine
 from   pyglet.text     import document, layout
 from   tpkg            import utl
 from   tpkg            import kysgs
 from   tpkg            import misc
 from   tpkg            import evnts
+from   tpkg            import notes
 from   tpkg.notes      import Notes
 from   tpkg.strngs     import Strngs
 from   tpkg.chords     import Chords
@@ -20,9 +21,9 @@ from   tpkg            import unic
 
 F = unic.F
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          A, B, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.A, utl.B, utl.D, utl.E
-W, X, Y, Z,       NONE,  ist,  fri,    slog,   fmtf,   fmtl,   fmtm,   fmta = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,     utl.slog,   utl.fmtf, utl.fmtl, utl.fmtm, utl.fmta
-BGC,  BOLD,  COLOR,     FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,   utl.BOLD,  utl.COLOR,   utl.FONT_NAME, utl.FONT_SIZE, utl.ITALIC,   utl.KERNING,     utl.UNDERLINE
-isAlt, isCtl, isShf,    isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.isAlt, utl.isCtl, utl.isShf,   utl.isCtlAlt,  utl.isAltShf,  utl.isCtlShf, utl.isCtlAltShf, utl.isNumLck
+W, X, Y, Z,       NONE,  ist,  fri,    slog,   fmtf,   fmtl,   fmtm,   fmta = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,     utl.slog,    utl.fmtf, utl.fmtl, utl.fmtm, utl.fmta
+BGC,  BOLD,  COLOR,     FONT_NAME,  FONT_SIZE, ITALIC,  KERNING,  UNDERLINE = utl.BGC,   utl.BOLD,  utl.COLOR,   utl.FONT_NAME, utl.FONT_SIZE, utl.ITALIC,    utl.KERNING,      utl.UNDERLINE
+isAlt, isCtl, isShf,    isAltShf, isCtlAlt, isCtlShf, isCtlAltShf, isNumLck = utl.isAlt, utl.isCtl, utl.isShf,   utl.isCtlAlt,  utl.isAltShf,  utl.isCtlShf,  utl.isCtlAltShf,  utl.isNumLck
 
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT   =  utl.CAT,    utl.CSV,    utl.EVN,    utl.LOG,    utl.PNG,    utl.TXT,    utl.DAT
 CATS, CSVS, EVNS, LOGS, PNGS, TEXT, DATA  =  utl.CATS,   utl.CSVS,   utl.EVNS,   utl.LOGS,   utl.PNGS,   utl.TEXT,   utl.DATA 
@@ -2235,7 +2236,6 @@ if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, f=0)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(EVN_PATH), 'w', encoding='utf-8') as EVN_FILE: # order?
     _    = -3
     ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=_)
-    from tpkg import notes
     notes.dumpData()   ;   notes.dumpData(csv=1)
     kysgs.init(f=2)
     slog(f'BGN {sys.argv[0]}', p=0,    f=_)
