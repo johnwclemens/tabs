@@ -106,11 +106,17 @@ class Notes(object): #      1          2       3          4          5          
     NTONES             = len(V2I)
 
     @classmethod
-    def i2n(cls, t=None): return cls.I2S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I2F
+    def i2n(cls, t=None):           return cls.I2S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I2F
     @classmethod
-    def i4n(cls, t=None): return cls.I4S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I4F
+    def i4n(cls, t=None):           return cls.I4S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I4F
     @classmethod
-    def index(cls, n, o=0):         name = n[:len(n)-1] if o else n   ;   assert name in cls.N2I,  f'{name=} {cls.N2I=}'   ;   return cls.N2I[name]
+    def n2i(cls, n, o=0):           n = n[:-1] if o else n   ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.N2I[n]
+    @classmethod
+    def n2ai(cls, m):               n = m[:-1]               ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.n2ipo(m)
+    @classmethod
+    def n2ipo(cls, n):              o = int(n[-1]) * 12   ;   n = n[:-1]   ;   return cls.N2I[n] + o 
+    @classmethod
+    def nextName(cls, n, iv, o=0):  i = cls.n2i(n, o)   ;   j = cls.V2I[iv]   ;   k = cls.nextIndex(i, j)   ;   return cls.name(k, 0)
     @classmethod
     def nextIndex(cls, i, d=1):     return (i+d) % cls.NTONES
     @classmethod
@@ -122,8 +128,6 @@ class Notes(object): #      1          2       3          4          5          
         assert  cls.i2n() is not None and  t in cls.i2n(),  f'{t=} {cls.i2n()=}'
         assert  cls.i2n()[t] is not None,                   f'{t=} {cls.i2n()[t]=}'
         return  cls.i2n(t)[j]  if n2  else cls.i4n(t)[j]
-    @classmethod
-    def nextName(cls, n, iv, o=0):  i = cls.index(n, o)  ;  j = cls.V2I[iv]  ;  k = cls.nextIndex(i, j)  ;  return cls.name(k, 0)
 ########################################################################################################################################################################################################
 def updNotes(i, m, n, t, d=0):
     if   t  ==  Notes.FLAT:    Notes.I2F[i] = m

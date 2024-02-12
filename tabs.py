@@ -1751,7 +1751,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'{tpp=} {old=} {lenT=} {cc=} old % lenT', f=0)
         assert 0 <= cc < lenT,  f'Invalid index {cc=} {tpp=} {old=} {lenT=}'
         t     = self.tabls[cc]
-        if dbg: self.log(f'{cc=:4} {old=:4} {self.fntp()} {self.ftxywh(t)} {t.text=} {self.fCtnt(t)}', f=0) # i={Notes.index(self.sobj.tab2nn(t, cc % lenT))}
+        if dbg: self.log(f'{cc=:4} {old=:4} {self.fntp()} {self.ftxywh(t)} {t.text=} {self.fCtnt(t)}', f=0) # i={Notes.n2i(self.sobj.tab2nn(t, cc % lenT))}
         w, h  = t.width if t.width is not None else t.height , t.height
         assert w != 0 and h != 0,  f'{w=} {h=}'
         return  t.x, t.y, w, h, cc
