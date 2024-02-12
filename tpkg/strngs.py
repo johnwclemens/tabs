@@ -20,7 +20,6 @@ G0, G1, G2, G3, G4, G5, G6, G7, G8, G9, G10 = f'G0', f'G1', f'G2', f'G3', f'G4',
 A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10 = f'A0', f'A1', f'A2', f'A3', f'A4', f'A5', f'A6', f'A7', f'A8', f'A9', f'A10'
 B0, B1, B2, B3, B4, B5, B6, B7, B8, B9, B10 = f'B0', f'B1', f'B2', f'B3', f'B4', f'B5', f'B6', f'B7', f'B8', f'B9', f'B10'
 
-#Cs0, Cs1, Cs2, Cs3, Cs4, Cs5, Cs6, Cs7, Cs8, Cs9, Cs10 = f'C#0', f'C#1', f'C#2', f'C#3', f'C#4', f'C#5', f'C#6', f'C#7', f'C#8', f'C#9', f'C#10'
 Cs0, Cs1, Cs2, Cs3, Cs4, Cs5, Cs6, Cs7, Cs8, Cs9, Cs10 = f'C♯0', f'C♯1', f'C♯2', f'C♯3', f'C♯4', f'C♯5', f'C♯6', f'C♯7', f'C♯8', f'C♯9', f'C♯10'
 Ds0, Ds1, Ds2, Ds3, Ds4, Ds5, Ds6, Ds7, Ds8, Ds9, Ds10 = f'D♯0', f'D♯1', f'D♯2', f'D♯3', f'D♯4', f'D♯5', f'D♯6', f'D♯7', f'D♯8', f'D♯9', f'D♯10'
 Es0, Es1, Es2, Es3, Es4, Es5, Es6, Es7, Es8, Es9, Es10 = f'E♯0', f'E♯1', f'E♯2', f'E♯3', f'E♯4', f'E♯5', f'E♯6', f'E♯7', f'E♯8', f'E♯9', f'E♯10'
@@ -29,7 +28,6 @@ Gs0, Gs1, Gs2, Gs3, Gs4, Gs5, Gs6, Gs7, Gs8, Gs9, Gs10 = f'G♯0', f'G♯1', f'G
 As0, As1, As2, As3, As4, As5, As6, As7, As8, As9, As10 = f'A♯0', f'A♯1', f'A♯2', f'A♯3', f'A♯4', f'A♯5', f'A♯6', f'A♯7', f'A♯8', f'A♯9', f'A♯10'
 Bs0, Bs1, Bs2, Bs3, Bs4, Bs5, Bs6, Bs7, Bs8, Bs9, Bs10 = f'B♯0', f'B♯1', f'B♯2', f'B♯3', f'B♯4', f'B♯5', f'B♯6', f'B♯7', f'B♯8', f'B♯9', f'B♯10'
 
-#Df0, Df1, Df2, Df3, Df4, Df5, Df6, Df7, Df8, Df9, Df10 = f'Db0', f'Df1', f'Df2', f'Df3', f'Df4', f'Df5', f'Df6', f'Df7', f'Df8', f'Df9', f'Df10'
 Df0, Df1, Df2, Df3, Df4, Df5, Df6, Df7, Df8, Df9, Df10 = f'D♭0', f'D♭1', f'D♭2', f'D♭3', f'D♭4', f'D♭5', f'D♭6', f'D♭7', f'D♭8', f'D♭9', f'D♭10'
 Ef0, Ef1, Ef2, Ef3, Ef4, Ef5, Ef6, Ef7, Ef8, Ef9, Ef10 = f'E♭0', f'E♭1', f'E♭2', f'E♭3', f'E♭4', f'E♭5', f'E♭6', f'E♭7', f'E♭8', f'E♭9', f'E♭10'
 Ff0, Ff1, Ff2, Ff3, Ff4, Ff5, Ff6, Ff7, Ff8, Ff9, Ff10 = f'F♭0', f'F♭1', f'F♭2', f'F♭3', f'F♭4', f'F♭5', f'F♭6', f'F♭7', f'F♭8', f'F♭9', f'F♭10'
@@ -39,33 +37,8 @@ Bf0, Bf1, Bf2, Bf3, Bf4, Bf5, Bf6, Bf7, Bf8, Bf9, Bf10 = f'B♭0', f'B♭1', f'B
 Cf0, Cf1, Cf2, Cf3, Cf4, Cf5, Cf6, Cf7, Cf8, Cf9, Cf10 = f'C♭0', f'C♭1', f'C♭2', f'C♭3', f'C♭4', f'C♭5', f'C♭6', f'C♭7', f'C♭8', f'C♭9', f'C♭10'
 
 class Strngs:
-    aliases2 = {f'EADGBE':             dict([(f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'guitar':             dict([(f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'english':            dict([(f'C2',    24), (f'E2',    28), (f'G3',    31), (f'C3',    36), (f'E3',    40), (f'G4',    43)]),
-                f'drop_D':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'DADEAD':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'E3',    40), (f'A3',    45), (f'D4',    50)]),
-                f'DAEAC{S}E':          dict([(f'D2',    26), (f'A2',    33), (f'E3',    40), (f'A3',    45), (f'C{S}4', 49), (f'E4',    52)]),
-                f'DADGBE':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'DADGAD':             dict([(f'D2',    26), (f'A2',    33), (f'D3',    38), (f'G3',    40), (f'A3',    45), (f'D4',    50)]),
-                f'guitar_6_4ths':      dict([(f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'C4',    48), (f'F4',    53)]),
-                f'E{F}ADGBE':          dict([(f'E{F}2', 27), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'EBE{F}G{F}BE{F}':    dict([(f'E2',    28), (f'B2',    35), (f'E{F}3', 39), (f'G{F}3', 42), (f'B3',    47), (f'E{F}4', 51)]),
-                f'E{F}BE{F}G{F}BE{F}': dict([(f'E{F}2', 27), (f'B2',    35), (f'E{F}3', 39), (f'G{F}3', 42), (f'B3',    47), (f'E{F}4', 51)]),
-    ####################################################################################################################################################################################################
-                f'guitar_7_4ths':      dict([(f'E2',    28), (f'A{F}2', 32), (f'C3',    36), (f'E3',    40), (f'A{F}3', 44), (f'C4',    48), (f'E4',    52)]),
-                f'EA{F}CEA{F}CE':      dict([(f'E2',    28), (f'A{F}2', 32), (f'C3',    36), (f'E3',    40), (f'A{F}3', 44), (f'C4',    48), (f'E4',    52)]),
-                f'guitar_7':           dict([(f'B1',    23), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'DGBDGBD':            dict([(f'D2',    26), (f'G2',    31), (f'B2',    35), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'D4',    50)]),
-                f'guitar_russian':     dict([(f'D2',    26), (f'G2',    31), (f'B2',    35), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'D4',    50)]),
-                f'guitar_7_drop_C':    dict([(f'C2',    24), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'guitar_7_drop_B':    dict([(f'B1',    23), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'guitar_7_drop_A':    dict([(f'A1',    21), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'CEADGBE':            dict([(f'C2',    24), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'BEADGBE':            dict([(f'B1',    23), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)]),
-                f'AEADGBE':            dict([(f'A1',    21), (f'E2',    28), (f'A2',    33), (f'D3',    38), (f'G3',    43), (f'B3',    47), (f'E4',    52)])
-              } # todo fixme this can easily have typos/incorrect values for the indices - refactor/simplify - revisit keys/aliases
     def __init__(self, alias=None):
-        if alias is None:     alias = 'GUITAR'
+        if alias is None:     alias = 'EADGBE'
         self.aliases   = self._initAliases()
         self.map       = self.aliases[alias]
         self.keys      = list(self.map.keys())
@@ -84,39 +57,29 @@ class Strngs:
 
     def _initAliases(self):
         return dict([
-            (self._initAlias('E A D G B E',  [E2,  A2,  D3,  G3,  B3,  E4 ])), # guitar 6 std
-            (self._initAlias('D A D G B E',  [D2,  A2,  D3,  G3,  B3,  E4 ])), # drop_d
-            (self._initAlias('E A D G C F',  [E2,  A2,  D3,  G3,  C4,  F4 ])), # 4ths
-            (self._initAlias('D A D G B E',  [D2,  A2,  D3,  G3,  B3,  E4 ])), # drop_D 
-            (self._initAlias('D A D G A D',  [D2,  A2,  D3,  G3,  A3,  D4 ])), # dadgad
-            (self._initAlias('C E G C E G',  [D2,  A2,  D3,  G3,  B3,  E4 ])), # english
-            (self._initAlias('D A D E A D',  [D2,  A2,  D3,  E3,  A3,  D4 ])), # dadead
-            (self._initAlias('E A C♯G B E',  [E2,  A2,  Cs3, G3,  B3,  E4 ])), # D=>C#
-            (self._initAlias('E♯A♯D♯G♯B♯E♯', [Es2, As2, Ds3, Gs3, Bs3, Es4])), # std ♯
-            (self._initAlias('E♭A♭D♭G♭B♭E♭', [Ef2, Af2, Df3, Gf3, Bf3, Ef4])), # std ♭
-            (self._initAlias('E B E♭G♭B E♭', [E2,  B2,  Ef3, Gf3, B3,  Ef4])), # andy mckee
+            (self._initAlias('E A D G B E ', [E2,  A2,  D3,  G3,  B3,  E4 ])), # guitar 6 std
+            (self._initAlias('D A D G B E ', [D2,  A2,  D3,  G3,  B3,  E4 ])), # guitar 6 drop_d
+            (self._initAlias('E A D G C F ', [E2,  A2,  D3,  G3,  C4,  F4 ])), # guitar 6 4ths
+            (self._initAlias('F C G D A E ', [F1,  C2,  G2,  D3,  A3,  E4 ])), # guitar 6 5ths
+            (self._initAlias('A♭E♭B♭F C G ', [Af1, Ef2, Bf2, F3,  C4,  G4 ])), # guitar 6 5ths
+            (self._initAlias('D A D G B E ', [D2,  A2,  D3,  G3,  B3,  E4 ])), # guitar 6 drop_D 
+            (self._initAlias('D A D G A D ', [D2,  A2,  D3,  G3,  A3,  D4 ])), # guitar 6 dadgad
+            (self._initAlias('C E G C E G ', [C2,  E2,  G2,  C3,  E3,  G3 ])), # guitar 6 english
+            (self._initAlias('D A D E A D ', [D2,  A2,  D3,  E3,  A3,  D4 ])), # guitar 6 dadead
+            (self._initAlias('E A C♯G B E ', [E2,  A2,  Cs3, G3,  B3,  E4 ])), # guitar 6 D=>C#
+            (self._initAlias('E♯A♯D♯G♯B♯E♯', [Es2, As2, Ds3, Gs3, Bs3, Es4])), # guitar 6 std ♯
+            (self._initAlias('E♭A♭D♭G♭B♭E♭', [Ef2, Af2, Df3, Gf3, Bf3, Ef4])), # guitar 6 std ♭
+            (self._initAlias('E B E♭G♭B E♭', [E2,  B2,  Ef3, Gf3, B3,  Ef4])), # guitar 6 andy mckee
+            ############################################################################################################################################################################################
+            (self._initAlias('B E A D G B E ', [B1,  E2,  A2,  D3,  G3,  B3,  E4 ])), # guitar 7 std
+            (self._initAlias('B E A D G C F ', [B1,  E2,  A2,  D3,  G3,  C4,  F4 ])), # guitar 7 4ths
+            (self._initAlias('E G♯C E G♯C E ', [E2,  Gs2, C3,  E4,  Gs3, C4,  E4 ])), # guitar 7 3rds
+            (self._initAlias('D G B D G B D ', [D2,  G2,  B2,  D3,  G3,  B3,  D4 ])), # guitar 7 russian
             ])
     @staticmethod
     def _initAlias(k, v):
         k = ''.join([ e for e in k if e!=' ' ])
         return  k, { e:Notes.n2ai(e) for e in v } 
-    
-    def _initAliasesB(self):
-        return { 
-               'E A D G B E ': self._initAliasB([E2,  A2,  D3,  G3,  B3,  E4 ]), # 6str guitar std
-               'E A D G C F ': self._initAliasB([E2,  A2,  D3,  G3,  C4,  F4 ]), # 4ths
-               'D A D G B E ': self._initAliasB([D2,  A2,  D3,  G3,  B3,  E4 ]), # drop_D 
-               'D A D G A D ': self._initAliasB([D2,  A2,  D3,  G3,  A3,  D4 ]), # dadgad
-               'C E G C E G ': self._initAliasB([D2,  A2,  D3,  G3,  B3,  E4 ]), # english
-               'D A D E A D ': self._initAliasB([D2,  A2,  D3,  E3,  A3,  D4 ]), # dadead
-               'E A C♯G B E ': self._initAliasB([E2,  A2,  Cs3, G3,  B3,  E4 ]), # D=>C#
-               'E♯A♯D♯G♯B♯E♯': self._initAliasB([Es2, As2, Ds3, Gs3, Bs3, Es4]), # std ♯
-               'E♭A♭D♭G♭B♭E♭': self._initAliasB([Ef2, Af2, Df3, Gf3, Bf3, Ef4]), # std ♭
-               'E B E♭G♭B E♭': self._initAliasB([E2,  B2,  Ef3, Gf3, B3,  Ef4]), # andy mckee
-               }
-    @staticmethod
-    def _initAliasB(a):
-        return { e:Notes.n2ai(e) for e in a }
     
     @staticmethod
     def tab2fn(t, dbg=0): fn = int(t) if '0'<=t<='9' else int(ord(t)-87) if 'a'<=t<='o' else None  ;  slog(f'tab={t} fretNum={fn}') if dbg else W  ;  return fn # todo
@@ -141,12 +104,6 @@ class Strngs:
         strNum += 1
         if dbg: slog(f'{fn=} {s=} {strNum=} {k=} {i=} map={fmtm(self.map)}')
         return i
-
-#    def tab2ni(self, tab, s):
-#        assert tab is not None,  f'{tab=} {s=}'
-#        fn  = self.tab2fn(tab)
-#        assert fn  is not None,  f'{fn=} {tab=} {s=}'
-#        return self.fn2ni(fn, s)
 
     def tab2nn(self, tab, s, t=None, nic=None, dbg=1, f=-3):
         assert tab is not None,  f'{tab=} {s=} {t=} {nic=}'

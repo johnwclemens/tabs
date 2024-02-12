@@ -128,7 +128,7 @@ class Tabs(pyglet.window.Window):
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4
         self.DBG_TABT  = 0  ;  self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1
         self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0
-        self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.TUNING  = 1  ;  self.VARROW    = 1  ;  self.VERBY     = 0
+        self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.VARROW  = 1  ;  self.VERBY     = 0
         ################################################################################################################################################################################################
         self.AXYV      = [0, 0, 0, 0]   ;   self._initAaxyv()
         self.ROOT_DIR  = 'test'         ;   self.FILE_NAME = BASE_NAME
@@ -136,6 +136,7 @@ class Tabs(pyglet.window.Window):
         self.SS        = set(range(4))  # set() if 0 else {0, 1, 2, 3}
         self.ZZ        = [] # set()          # set() if 1 else {0} #, 1}
         ################################################################################################################################################################################################
+        self.TUNING    = None # guitar 6 std 'EADGBE'
         self.n         = [1, 1, 10, 6]
         self.i         = [1, 1,  1, 6]
         self.VIEW      = []
