@@ -8,6 +8,7 @@ fmtf, fmtl, fmtm = utl.fmtf,  utl.fmtl,  utl.fmtm
 signed           = utl.signed
 ns2signs         = utl.ns2signs
 MAX_FREQ_IDX     = utl.MAX_FREQ_IDX
+ACCD_TONES       = ['b', '#', '♭', '♮', '♯']
 
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
@@ -104,7 +105,7 @@ class Notes(object): #      1          2       3          4          5          
     TYPES              = [ 'NTRL', 'SHRP', 'FLAT' ] # 0=NTRL, 1=SHRP, 2=FLAT=-1
     TYPE               = SHRP
     NTONES             = len(V2I)
-
+    
     @classmethod
     def i2n(cls, t=None):           return cls.I2S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I2F
     @classmethod
@@ -114,7 +115,7 @@ class Notes(object): #      1          2       3          4          5          
     @classmethod
     def n2ai(cls, m):               n = m[:-1]               ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.n2ipo(m)
     @classmethod
-    def n2ipo(cls, n):              o = int(n[-1]) * 12   ;   n = n[:-1]   ;   return cls.N2I[n] + o 
+    def n2ipo(cls, n):              o = int(n[-1]) * cls.NTONES   ;   n = n[:-1]   ;   return cls.N2I[n] + o 
     @classmethod
     def nextName(cls, n, iv, o=0):  i = cls.n2i(n, o)   ;   j = cls.V2I[iv]   ;   k = cls.nextIndex(i, j)   ;   return cls.name(k, 0)
     @classmethod
