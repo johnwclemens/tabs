@@ -237,17 +237,18 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str conca
             else:                         t.append(f'{l}{ss}')
     return z + d + Z.join(t) + d2
 ########################################################################################################################################################################################################
-def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=']', s=W, ll=None):
+def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', s=W, ll=None):
 #    assert m,  f'{m=}'
-    if m is None:   return  NONE
+    if m is None: return NONE
     w  = w  if w  is not None else Z   ;  t = []
     wv = wv if wv is not None else w
-    if d==Z:   d2 = Z
+    d2 = Z if d==Z else ']' if d=='[' else '}' if d=='{' else '>' if d=='<' else NONE
     u  = Z if u  is None else u
     uv = Z if uv is None else uv
     for i, (k, v) in enumerate(m.items()):
         ss = s if i < len(m) - 1 else Z
         if   type(v) in (list, tuple, set):  t.append(f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2}{ss}')
+        elif type(v) == dict: b,c='{','}' ;  t.append(f'{b}{k:{u}{w}}{d0}{d}{fmtm(v, d=Z)}{d2}{c}{X}')
         elif type(v) in (int, str):          t.append(f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}')
     return Z.join(t)
 ########################################################################################################################################################################################################

@@ -113,7 +113,7 @@ class Notes(object): #      1          2       3          4          5          
     @classmethod
     def n2i(cls, n, o=0):           n = n[:-1] if o else n   ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.N2I[n]
     @classmethod
-    def n2ai(cls, m):               n = m[:-1]               ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.n2ipo(m)
+    def n2ai(cls, m):               n = m[:-1]    ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.n2ipo(m)
     @classmethod
     def n2ipo(cls, n):              o = int(n[-1]) * cls.NTONES   ;   n = n[:-1]   ;   return cls.N2I[n] + o 
     @classmethod
