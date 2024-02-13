@@ -76,24 +76,24 @@ class Strngs:
 
     def _initAliases(self):
         return dict([
-            (self._initAlias('E A D G B E ',   [E_2, A_2, D_3, G_3, B_3, E_4])),      # guitar 6 std
-            (self._initAlias('D A D G B E ',   [D_2, A_2, D_3, G_3, B_3, E_4])),      # guitar 6 drop_d
-            (self._initAlias('E A D G C F ',   [E_2, A_2, D_3, G_3, C_4, F_4])),      # guitar 6 4ths
-            (self._initAlias('F C G D A E ',   [F_1, C_2, G_2, D_3, A_3, E_4])),      # guitar 6 5ths
-            (self._initAlias('A♭E♭B♭F C G ',   [Af1, Ef2, Bf2, F_3, C_4, G_4])),      # guitar 6 5ths
-            (self._initAlias('D A D G B E ',   [D_2, A_2, D_3, G_3, B_3, E_4])),      # guitar 6 drop_D 
-            (self._initAlias('D A D G A D ',   [D_2, A_2, D_3, G_3, A_3, D_4])),      # guitar 6 dadgad
-            (self._initAlias('C E G C E G ',   [C_2, E_2, G_2, C_3, E_3, G_3])),      # guitar 6 english
-            (self._initAlias('D A D E A D ',   [D_2, A_2, D_3, E_3, A_3, D_4])),      # guitar 6 dadead
-            (self._initAlias('E A C♯G B E ',   [E_2, A_2, Cs3, G_3, B_3, E_4])),      # guitar 6 D=>C#
-            (self._initAlias('E♯A♯D♯G♯B♯E♯',   [Es2, As2, Ds3, Gs3, Bs3, Es4])),      # guitar 6 std ♯
-            (self._initAlias('E♭A♭D♭G♭B♭E♭',   [Ef2, Af2, Df3, Gf3, Bf3, Ef4])),      # guitar 6 std ♭
-            (self._initAlias('E B E♭G♭B E♭',   [E_2, B_2, Ef3, Gf3, B_3, Ef4])),      # guitar 6 andy mckee
+            (self._initAlias('E  A  D  G  B  E ',    [ E_2, A_2, D_3, G_3, B_3, E_4 ])),      # guitar 6 std
+            (self._initAlias('D  A  D  G  B  E ',    [ D_2, A_2, D_3, G_3, B_3, E_4 ])),      # guitar 6 drop_d
+            (self._initAlias('E  A  D  G  C  F ',    [ E_2, A_2, D_3, G_3, C_4, F_4 ])),      # guitar 6 4ths
+            (self._initAlias('F  C  G  D  A  E ',    [ F_1, C_2, G_2, D_3, A_3, E_4 ])),      # guitar 6 5ths
+            (self._initAlias('A♭ E♭ B♭ F  C  G ',    [ Af1, Ef2, Bf2, F_3, C_4, G_4 ])),      # guitar 6 5ths
+            (self._initAlias('D  A  D  G  B  E ',    [ D_2, A_2, D_3, G_3, B_3, E_4 ])),      # guitar 6 drop_D 
+            (self._initAlias('D  A  D  G  A  D ',    [ D_2, A_2, D_3, G_3, A_3, D_4 ])),      # guitar 6 dadgad
+            (self._initAlias('C  E  G  C  E  G ',    [ C_2, E_2, G_2, C_3, E_3, G_3 ])),      # guitar 6 english
+            (self._initAlias('D  A  D  E  A  D ',    [ D_2, A_2, D_3, E_3, A_3, D_4 ])),      # guitar 6 dadead
+            (self._initAlias('E  A  C♯ G  B  E ',    [ E_2, A_2, Cs3, G_3, B_3, E_4 ])),      # guitar 6 D=>C#
+            (self._initAlias('E♯ A♯ D♯ G♯ B♯ E♯',    [ Es2, As2, Ds3, Gs3, Bs3, Es4 ])),      # guitar 6 std ♯
+            (self._initAlias('E♭ A♭ D♭ G♭ B♭ E♭',    [ Ef2, Af2, Df3, Gf3, Bf3, Ef4 ])),      # guitar 6 std ♭
+            (self._initAlias('E  B  E♭ G♭ B  E♭',    [ E_2, B_2, Ef3, Gf3, B_3, Ef4 ])),      # guitar 6 andy mckee
             ############################################################################################################################################################################################
-            (self._initAlias('B E A D G B E ', [B_1, E_2, A_2, D_3, G_3, B_3, E_4])), # guitar 7 std
-            (self._initAlias('B E A D G C F ', [B_1, E_2, A_2, D_3, G_3, C_4, F_4])), # guitar 7 4ths
-            (self._initAlias('E G♯C E G♯C E ', [E_2, Gs2, C_3, E_3, Gs3, C_4, E_4])), # guitar 7 3rds
-            (self._initAlias('D G B D G B D ', [D_2, G_2, B_2, D_3, G_3, B_3, D_4])), # guitar 7 russian
+            (self._initAlias('B  E  A  D  G  B  E ', [ B_1, E_2, A_2, D_3, G_3, B_3, E_4 ])), # guitar 7 std
+            (self._initAlias('B  E  A  D  G  C  F ', [ B_1, E_2, A_2, D_3, G_3, C_4, F_4 ])), # guitar 7 4ths
+            (self._initAlias('E  G♯ C  E  G♯ C  E ', [ E_2, Gs2, C_3, E_3, Gs3, C_4, E_4 ])), # guitar 7 3rds
+            (self._initAlias('D  G  B  D  G  B  D ', [ D_2, G_2, B_2, D_3, G_3, B_3, D_4 ])), # guitar 7 russian
             ])
     @staticmethod
     def _initAlias(k, v):
@@ -103,17 +103,18 @@ class Strngs:
     
     def dumpAliases(self):
         s = self.aliases
-#        slog(f'{s}',       p=0)
-#        slog(f'{fmtm(s)}', p=0)
-        a, f, w = '>', W, 2*7
-#        for k, v in s.items():
-#            slog(f'{k:{f}{a}{w}}: {fmtm(v, d=Z, s=Y+W)}', p=0)
-#        slog(p=0)
+        a, f, w = '>', W, 20
         for k, v in s.items():
             k = f'{k:{f}{a}{w}}'   ;   v3 = []
             for k2, v2 in v.items():
                 v3.append(f'{v2} {k2}')
-            slog(f'{k} :  {fmtl(v3, d=Z, s=Y+2*W)}', p=0)
+            slog(f'{k} :  {fmtl(v3, d=Z, s=3*W)}', p=0)
+        slog(p=0)
+        for k, v in s.items():
+            k = f'{k:{f}{a}{w}}'   ;   v3 = []
+            for k2, v2 in v.items():
+                v3.append(f'{v2:2} {k2[:2]} {k2[-1]}')
+            slog(f'{k} :  {fmtl(v3, d=Z, s=3*W)}', p=0)
         
     @staticmethod
     def tab2fn(t, dbg=0): fn = int(t) if '0'<=t<='9' else int(ord(t)-87) if 'a'<=t<='o' else None  ;  slog(f'tab={t} fretNum={fn}') if dbg else W  ;  return fn # todo
