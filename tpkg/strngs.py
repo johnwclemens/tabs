@@ -12,13 +12,21 @@ slog, fmtl, fmtm = utl.slog, utl.fmtl, utl.fmtm
 # off = {'EADGBE': {'E2':24, 'A2':24, 'D3':36, 'G3':36, 'B3': 36, 'E4':48}}
 # abs = {'EADGBE': {'E2':28, 'A2':33, 'D3':38, 'G3':43, 'B3': 47, 'E4':52}}
 
-C_0, C_1, C_2, C_3, C_4, C_5, C_6, C_7, C_8, C_9, C_10 = 'C_0', 'C_1', 'C_2', 'C_3', 'C_4', 'C_5', 'C_6', 'C_7', 'C_8', 'C_9', 'C_10'
-D_0, D_1, D_2, D_3, D_4, D_5, D_6, D_7, D_8, D_9, D_10 = 'D_0', 'D_1', 'D_2', 'D_3', 'D_4', 'D_5', 'D_6', 'D_7', 'D_8', 'D_9', 'D_10'
-E_0, E_1, E_2, E_3, E_4, E_5, E_6, E_7, E_8, E_9, E_10 = 'E_0', 'E_1', 'E_2', 'E_3', 'E_4', 'E_5', 'E_6', 'E_7', 'E_8', 'E_9', 'E_10'
-F_0, F_1, F_2, F_3, F_4, F_5, F_6, F_7, F_8, F_9, F_10 = 'F_0', 'F_1', 'F_2', 'F_3', 'F_4', 'F_5', 'F_6', 'F_7', 'F_8', 'F_9', 'F_10'
-G_0, G_1, G_2, G_3, G_4, G_5, G_6, G_7, G_8, G_9, G_10 = 'G_0', 'G_1', 'G_2', 'G_3', 'G_4', 'G_5', 'G_6', 'G_7', 'G_8', 'G_9', 'G_10'
-A_0, A_1, A_2, A_3, A_4, A_5, A_6, A_7, A_8, A_9, A_10 = 'A_0', 'A_1', 'A_2', 'A_3', 'A_4', 'A_5', 'A_6', 'A_7', 'A_8', 'A_9', 'A_10'
-B_0, B_1, B_2, B_3, B_4, B_5, B_6, B_7, B_8, B_9, B_10 = 'B_0', 'B_1', 'B_2', 'B_3', 'B_4', 'B_5', 'B_6', 'B_7', 'B_8', 'B_9', 'B_10'
+#C_0, C_1, C_2, C_3, C_4, C_5, C_6, C_7, C_8, C_9, C_10 = 'C_0', 'C_1', 'C_2', 'C_3', 'C_4', 'C_5', 'C_6', 'C_7', 'C_8', 'C_9', 'C_10'
+#D_0, D_1, D_2, D_3, D_4, D_5, D_6, D_7, D_8, D_9, D_10 = 'D_0', 'D_1', 'D_2', 'D_3', 'D_4', 'D_5', 'D_6', 'D_7', 'D_8', 'D_9', 'D_10'
+#E_0, E_1, E_2, E_3, E_4, E_5, E_6, E_7, E_8, E_9, E_10 = 'E_0', 'E_1', 'E_2', 'E_3', 'E_4', 'E_5', 'E_6', 'E_7', 'E_8', 'E_9', 'E_10'
+#F_0, F_1, F_2, F_3, F_4, F_5, F_6, F_7, F_8, F_9, F_10 = 'F_0', 'F_1', 'F_2', 'F_3', 'F_4', 'F_5', 'F_6', 'F_7', 'F_8', 'F_9', 'F_10'
+#G_0, G_1, G_2, G_3, G_4, G_5, G_6, G_7, G_8, G_9, G_10 = 'G_0', 'G_1', 'G_2', 'G_3', 'G_4', 'G_5', 'G_6', 'G_7', 'G_8', 'G_9', 'G_10'
+#A_0, A_1, A_2, A_3, A_4, A_5, A_6, A_7, A_8, A_9, A_10 = 'A_0', 'A_1', 'A_2', 'A_3', 'A_4', 'A_5', 'A_6', 'A_7', 'A_8', 'A_9', 'A_10'
+#B_0, B_1, B_2, B_3, B_4, B_5, B_6, B_7, B_8, B_9, B_10 = 'B_0', 'B_1', 'B_2', 'B_3', 'B_4', 'B_5', 'B_6', 'B_7', 'B_8', 'B_9', 'B_10'
+
+C_0, C_1, C_2, C_3, C_4, C_5, C_6, C_7, C_8, C_9, C_10 = 'C 0', 'C 1', 'C 2', 'C 3', 'C 4', 'C 5', 'C 6', 'C 7', 'C 8', 'C 9', 'C 10'
+D_0, D_1, D_2, D_3, D_4, D_5, D_6, D_7, D_8, D_9, D_10 = 'D 0', 'D 1', 'D 2', 'D 3', 'D 4', 'D 5', 'D 6', 'D 7', 'D 8', 'D 9', 'D 10'
+E_0, E_1, E_2, E_3, E_4, E_5, E_6, E_7, E_8, E_9, E_10 = 'E 0', 'E 1', 'E 2', 'E 3', 'E 4', 'E 5', 'E 6', 'E 7', 'E 8', 'E 9', 'E 10'
+F_0, F_1, F_2, F_3, F_4, F_5, F_6, F_7, F_8, F_9, F_10 = 'F 0', 'F 1', 'F 2', 'F 3', 'F 4', 'F 5', 'F 6', 'F 7', 'F 8', 'F 9', 'F 10'
+G_0, G_1, G_2, G_3, G_4, G_5, G_6, G_7, G_8, G_9, G_10 = 'G 0', 'G 1', 'G 2', 'G 3', 'G 4', 'G 5', 'G 6', 'G 7', 'G 8', 'G 9', 'G 10'
+A_0, A_1, A_2, A_3, A_4, A_5, A_6, A_7, A_8, A_9, A_10 = 'A 0', 'A 1', 'A 2', 'A 3', 'A 4', 'A 5', 'A 6', 'A 7', 'A 8', 'A 9', 'A 10'
+B_0, B_1, B_2, B_3, B_4, B_5, B_6, B_7, B_8, B_9, B_10 = 'B 0', 'B 1', 'B 2', 'B 3', 'B 4', 'B 5', 'B 6', 'B 7', 'B 8', 'B 9', 'B 10'
 
 Cs0, Cs1, Cs2, Cs3, Cs4, Cs5, Cs6, Cs7, Cs8, Cs9, Cs10 = 'C♯0', 'C♯1', 'C♯2', 'C♯3', 'C♯4', 'C♯5', 'C♯6', 'C♯7', 'C♯8', 'C♯9', 'C♯10'
 Ds0, Ds1, Ds2, Ds3, Ds4, Ds5, Ds6, Ds7, Ds8, Ds9, Ds10 = 'D♯0', 'D♯1', 'D♯2', 'D♯3', 'D♯4', 'D♯5', 'D♯6', 'D♯7', 'D♯8', 'D♯9', 'D♯10'
@@ -37,28 +45,34 @@ Bf0, Bf1, Bf2, Bf3, Bf4, Bf5, Bf6, Bf7, Bf8, Bf9, Bf10 = 'B♭0', 'B♭1', 'B♭
 Cf0, Cf1, Cf2, Cf3, Cf4, Cf5, Cf6, Cf7, Cf8, Cf9, Cf10 = 'C♭0', 'C♭1', 'C♭2', 'C♭3', 'C♭4', 'C♭5', 'C♭6', 'C♭7', 'C♭8', 'C♭9', 'C♭10'
 
 def filtA(v, a='_'): return Z.join([ e for e in v if e not in (W, a) ])
+def filtB(v, a='_'): return Z.join([ e for e in v if e!=a ])
 
 class Strngs:
     def __init__(self, alias=None, dbg=1):
-        if alias is None:     alias = 'EADGBE'
-        self.aliases   = self._initAliases()
-        if dbg:          self.dumpAliases()
-        self.map       = self.aliases[alias]
-        self.keys      = list(self.map.keys())
-#        self.names     = W.join(reversed([ str(k[:-1]) for k in           self.keys   ]))
-#        self.numbs     = W.join(         [ str(r + 1)  for r in range(len(self.keys)) ])
-        self.names     = Z.join(reversed([ str(k[:-1]) for k in           self.keys   ]))
-        self.numbs     = Z.join(         [ str(r + 1)  for r in range(len(self.keys)) ])
-        self.capo      = Z.join(         [ '0'         for _ in range(len(self.keys)) ])
-        self.label     = 'STRING'
-        self.labelc    = ' CAPO '
-        slog(f'map     = {fmtm(self.map)}')
-        slog(f'keys    = {fmtl(self.keys)}')
-        slog(f'names   =      {self.names}')
-        slog(f'numbs   =      {self.numbs}')
-        slog(f'capo    =      {self.capo}')
-        slog(f'label   =      {self.label}')
-        slog(f'labelc  =      {self.labelc}')
+        if alias is None:  alias = 'EADGBE'
+        self.aliases      = self._initAliases()
+        if dbg:             self.dumpAliases()
+        self.map          = self.aliases[alias]
+        self.keys         = list(self.map.keys())
+        names             = list(reversed([ str(k[:-1]) for k in           self.keys   ]))
+        numbs             =               [ str(r + 1)  for r in range(len(self.keys)) ]
+        self.names        = Z.join(names)
+        self.names2       = W.join(names) + W
+        self.numbs        = Z.join(numbs)
+        self.numbs2       = W.join(numbs) + W
+        self.capo         = Z.join([ '0' for _ in range(len(self.keys)) ])
+        self.label        = 'STRING'
+        self.labelc       = ' CAPO '
+        slog(f'map        = {fmtm(self.map)}')
+        slog(f'keys       = {fmtl(self.keys)}')
+        slog(f"names      =     '{Z.join(names)}'")
+        slog(f"names2     =     '{self.names2}'")
+        slog(f"numbs2     =     '{self.numbs2}'")
+        slog(f"names      =     '{self.names}'")
+        slog(f"numbs      =     '{self.numbs}'")
+        slog(f'capo       =      {self.capo}')
+        slog(f'label      =      {self.label}')
+        slog(f'labelc     =      {self.labelc}')
 
     def _initAliases(self):
         return dict([
@@ -78,19 +92,28 @@ class Strngs:
             ############################################################################################################################################################################################
             (self._initAlias('B E A D G B E ', [B_1, E_2, A_2, D_3, G_3, B_3, E_4])), # guitar 7 std
             (self._initAlias('B E A D G C F ', [B_1, E_2, A_2, D_3, G_3, C_4, F_4])), # guitar 7 4ths
-            (self._initAlias('E G♯C E G♯C E ', [E_2, Gs2, C_3, E_4, Gs3, C_4, E_4])), # guitar 7 3rds
+            (self._initAlias('E G♯C E G♯C E ', [E_2, Gs2, C_3, E_3, Gs3, C_4, E_4])), # guitar 7 3rds
             (self._initAlias('D G B D G B D ', [D_2, G_2, B_2, D_3, G_3, B_3, D_4])), # guitar 7 russian
             ])
     @staticmethod
     def _initAlias(k, v):
-        k2 = filtA(k)
-        v2 = [ filtA(e) for e in v ]
-        return  k2, { e:Notes.n2ai(e) for e in v2 } 
+        k2 =   filtB(k)
+#        v2 = [ filtB(e) for e in v ]
+        return  k2, { e:Notes.n2ai(e) for e in v } 
     
     def dumpAliases(self):
-        a = self.aliases
-        slog(f'{a}',       p=0)
-        slog(f'{fmtm(a)}', p=0)
+        s = self.aliases
+#        slog(f'{s}',       p=0)
+#        slog(f'{fmtm(s)}', p=0)
+        a, f, w = '>', W, 2*7
+#        for k, v in s.items():
+#            slog(f'{k:{f}{a}{w}}: {fmtm(v, d=Z, s=Y+W)}', p=0)
+#        slog(p=0)
+        for k, v in s.items():
+            k = f'{k:{f}{a}{w}}'   ;   v3 = []
+            for k2, v2 in v.items():
+                v3.append(f'{v2} {k2}')
+            slog(f'{k} :  {fmtl(v3, d=Z, s=Y+2*W)}', p=0)
         
     @staticmethod
     def tab2fn(t, dbg=0): fn = int(t) if '0'<=t<='9' else int(ord(t)-87) if 'a'<=t<='o' else None  ;  slog(f'tab={t} fretNum={fn}') if dbg else W  ;  return fn # todo
@@ -143,3 +166,21 @@ class Strngs:
         name = Notes.name(i, t, 1) # do not hard code t=1 get note type (sharp/flat)
         if dbg and nict:        slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=f)
         return name
+
+
+#   E  A  D  G  B  E  :  28 E  2   33 A  2   38 D  3   43 G  3   47 B  3   52 E  4
+#   D  A  D  G  B  E  :  26 D  2   33 A  2   38 D  3   43 G  3   47 B  3   52 E  4
+#   E  A  D  G  C  F  :  28 E  2   33 A  2   38 D  3   43 G  3   48 C  4   53 F  4
+#   F  C  G  D  A  E  :  17 F  1   24 C  2   31 G  2   38 D  3   45 A  3   52 E  4
+#   A♭ E♭ B♭ F  C  G  :  20 A♭ 1   27 E♭ 2   34 B♭ 2   41 F  3   48 C  4   55 G  4
+#   D  A  D  G  A  D  :  26 D  2   33 A  2   38 D  3   43 G  3   45 A  3   50 D  4
+#   C  E  G  C  E  G  :  24 C  2   28 E  2   31 G  2   36 C  3   40 E  3   43 G  3
+#   D  A  D  E  A  D  :  26 D  2   33 A  2   38 D  3   40 E  3   45 A  3   50 D  4
+#   E  A  C♯ G  B  E  :  28 E  2   33 A  2   37 C♯ 3   43 G  3   47 B  3   52 E  4
+#   E♯ A♯ D♯ G♯ B♯ E♯ :  29 E♯ 2   34 A♯ 2   39 D♯ 3   44 G♯ 3   36 B♯ 3   53 E♯ 4
+#   E♭ A♭ D♭ G♭ B♭ E♭ :  27 E♭ 2   32 A♭ 2   37 D♭ 3   42 G♭ 3   46 B♭ 3   51 E♭ 4
+#   E  B  E♭ G♭ B  E♭ :  28 E  2   35 B  2   39 E♭ 3   42 G♭ 3   47 B  3   51 E♭ 4
+#B  E  A  D  G  B  E  :  23 B  1   28 E  2   33 A  2   38 D  3   43 G  3   47 B  3   52 E  4
+#B  E  A  D  G  C  F  :  23 B  1   28 E  2   33 A  2   38 D  3   43 G  3   48 C  4   53 F  4
+#E  G♯ C  E  G♯ C  E  :  28 E  2   32 G♯ 2   36 C  3   40 E  3   44 G♯ 3   48 C  4   52 E  4
+#D  G  B  D  G  B  D  :  26 D  2   31 G  2   35 B  2   38 D  3   43 G  3   47 B  3   50 D  4

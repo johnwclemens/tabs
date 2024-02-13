@@ -1,5 +1,6 @@
 from tpkg import utl
 from tpkg import unic
+#from tpkg import strngs
 
 F, N, S          = unic.F,    unic.N,    unic.S
 W, Y, Z          = utl.W,     utl.Y,     utl.Z
@@ -9,6 +10,8 @@ signed           = utl.signed
 ns2signs         = utl.ns2signs
 MAX_FREQ_IDX     = utl.MAX_FREQ_IDX
 ACCD_TONES       = ['b', '#', '♭', '♮', '♯']
+
+def filtC(v, a=W):   return Z.join([ e for e in v if e!=a ])
 
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
@@ -113,7 +116,7 @@ class Notes(object): #      1          2       3          4          5          
     @classmethod
     def n2i(cls, n, o=0):           n = n[:-1] if o else n   ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.N2I[n]
     @classmethod
-    def n2ai(cls, m):               n = m[:-1]    ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.n2ipo(m)
+    def n2ai(cls, m):               n = m[:-1].strip()       ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.n2ipo(filtC(m))
     @classmethod
     def n2ipo(cls, n):              o = int(n[-1]) * cls.NTONES   ;   n = n[:-1]   ;   return cls.N2I[n] + o 
     @classmethod
