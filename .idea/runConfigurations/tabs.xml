@@ -14,7 +14,7 @@
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tabs.py" />
-    <option name="PARAMETERS" value="-i 1 1 1 6 -n 1 1 10 6 -M 0 -deo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T D A D G A D" />
+    <option name="PARAMETERS" value="-i 1 1 1 6 -n 1 1 40 6 -M 0 -deo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T D A D G A D" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="true" />
     <option name="MODULE_MODE" value="false" />

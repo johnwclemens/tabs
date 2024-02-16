@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="my" pattern="(!ext:*/||file[tabs]:*)&amp;&amp;!file[tabs]:jpkg//*" />
+</component>

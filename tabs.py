@@ -125,10 +125,10 @@ class Tabs(pyglet.window.Window):
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
         pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent') # todo add some sound
         ################################################################################################################################################################################################
-        self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4
-        self.DBG_TABT  = 0  ;  self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1
-        self.MULTILINE = 1  ;  self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE    = 1  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0
-        self.SUBPIX    = 1  ;  self.TEST      = 0  ;  self.VARROW  = 1  ;  self.VERBY     = 0
+        self.AUTO_SAVE = 0  ;  self.BGC     = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4  ;  self.DBG_TABT  = 0
+        self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1  ;  self.MULTILINE = 1
+        self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE  = 1  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0  ;  self.SUBPIX    = 1
+        self.TEST      = 0  ;  self.VARROW  = 1  ;  self.VERBY   = 0
         ################################################################################################################################################################################################
         self.AXYV      = [0, 0, 0, 0]   ;   self._initAaxyv()
         self.ROOT_DIR  = 'test'         ;   self.FILE_NAME = BASE_NAME
@@ -1184,7 +1184,7 @@ class Tabs(pyglet.window.Window):
             assert 0 <= t < self.n[T],  f"{self.n[T]=} {t=} {c=} {s=} {l=} {p=} {z=}"
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[B], self.k[A], self.k[D]
             tab = self.data[p][l][c][t] if C1 != z1 != C2 and C2 != z2 else Z
-            assert s in (TT, NN, II, KK),  f'{s=}'
+#            assert s in (TT, NN, II, KK),  f'{s=}' # breaks when n[L] > 1
             if   s == TT:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.tabls, T, kT, tab)
             elif s == NN:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.notes, N, kN, tab)
             elif s == II:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.ikeys, I, kI, tab)
@@ -2016,7 +2016,7 @@ class Tabs(pyglet.window.Window):
     def moveToB(self, how, p, l, s, c, t, ss=0, dbg=1):
         if dbg:    self.log(f'BGN {how}', pos=1)
         p2, l2, s2, c2, t2 = self.moveToB2(p, l, s, c, t)
-        cmd = cmds.MoveCursorCmd(self, ss, how)     ;  cmd.do()
+        if self.CURSOR and self.cursor: cmd = cmds.MoveCursorCmd(self, ss, how)     ;  cmd.do()
         if dbg:    self.log(f'END {how}', pos=1)
         return p2, l2, s2, c2, t2
 

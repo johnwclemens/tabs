@@ -238,9 +238,9 @@ class Go2FirstTabCmd(Cmd):
         if page: tp *= nl  ;  n //= nl
         if dbg:    tobj.log(f'BGN {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
         for i in range(tp*n, tp*(n+1), 1):
-            if not tobj.sobj.isFret(tobj.tabls[i].text): continue
-            p, l, c, t = tobj.cc2plct(i, dbg=1)  ;  break
-        tobj.moveTo(how, p, l, c, t, dbg=dbg)
+            if not tobj.sobj.isFret(tobj.tabls[i].text):   continue
+            p, l, s, c, t = tobj.cc2plsct(i, dbg=1)    ;   break
+        tobj.moveToB(how, p, l, s, c, t, dbg=dbg)
         if dbg:    tobj.log(f'END {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*n:4}, {tp*(n+1):4}, 1)', pos=1)
 ########################################################################################################################################################################################################
 class Go2LastTabCmd(Cmd):
@@ -257,9 +257,9 @@ class Go2LastTabCmd(Cmd):
         if page: tp *= nl  ;  n //= nl
         if dbg:    tobj.log(f'BGN {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
         for i in range(tp*(n+1)-1, tp*n-1, -1):
-            if not tobj.sobj.isFret(tobj.tabls[i].text): continue
-            p, l, c, t = tobj.cc2plct(i, dbg=1)  ;  break
-        tobj.moveTo(how, p, l, c, t, dbg=dbg)
+            if not tobj.sobj.isFret(tobj.tabls[i].text):   continue
+            p, l, s, c, t = tobj.cc2plsct(i, dbg=1)    ;   break
+        tobj.moveToB(how, p, l, s, c, t, dbg=dbg)
         if dbg:    tobj.log(f'END {how} {page=} {tobj.fplct()} {i=:4} {n=} {tp=:3} {tp*n=:4} for({tp*(n+1)-1:4}, {tp*n-1:4}, -1)', pos=1)
 
 ########################################################################################################################################################################################################
@@ -311,8 +311,8 @@ class MoveCmd(Cmd):
         if dbg:    tobj.log(f'BGN {how} {n=}', pos=1)
         p, l, c, t = tobj.j2()
         cmd = MoveTo2Cmd(tobj, p, l, c, t, n=n)     ;  cmd.do()
-        if tobj.CURSOR and tobj.cursor: cmd = MoveCursorCmd(tobj, how, ss)     ;  cmd.do()
-        if dbg:    tobj.log(f'END {how} {n=}', pos=1)
+        if tobj.cursor: cmd = MoveCursorCmd(tobj, how, ss)     ;  cmd.do()
+        if dbg:         tobj.log(f'END {how} {n=}', pos=1)
 ########################################################################################################################################################################################################
 class MoveCursorCmd(Cmd):
     def __init__(self, tobj, how, ss=0, dbg=1):
@@ -1247,7 +1247,7 @@ class UpdateTniksCmd(Cmd):
                         for colm in          tobj.g_newUpdTniks(C, m=l*ns*nc+s*nc,    nw=0, pt=sect, why=why):  # pass
                             for _ in         tobj.g_newUpdTniks(T, s=l*ns+zs()[s], nw=0, pt=colm, why=why):  pass # z()[s]
         tobj.dumpTniksSfx(why)
-        if tobj.CURSOR and tobj.cursor:  cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
-        if dbg and tobj.SNAPS >= 10:     tobj.regSnap(f'Upd.{tobj.updC}', why)
+        if tobj.cursor:                 cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()
+        if dbg and tobj.SNAPS >= 10:    tobj.regSnap(f'Upd.{tobj.updC}', why)
         if dbg:    tobj.dumpStruct(why) # , dbg=dbg)
 ########################################################################################################################################################################################################
