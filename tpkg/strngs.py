@@ -1,3 +1,4 @@
+import string
 from collections import Counter
 from tpkg        import utl
 from tpkg        import unic
@@ -7,6 +8,7 @@ from tpkg        import notes
 F, N, S          = unic.F, unic.N, unic.S
 W, Y, Z          = utl.W, utl.Y, utl.Z
 slog, fmtl, fmtm = utl.slog, utl.fmtl, utl.fmtm
+filtA            = utl.filtA
 
 # E A D G B E  :  { E 2: 4   A 2: 9   D 3: 2   G 3: 7   B 3: 11   E 4: 4 } # relative
 # E A D G B E  :  { E 2:24   A 2:24   D 3:36   G 3:36   B 3: 36   E 4:48 } # offset
@@ -53,64 +55,75 @@ Af0, Af1, Af2, Af3, Af4, Af5, Af6, Af7, Af8, Af9, Af10 = 'A♭0', 'A♭1', 'A♭
 Bf0, Bf1, Bf2, Bf3, Bf4, Bf5, Bf6, Bf7, Bf8, Bf9, Bf10 = 'B♭0', 'B♭1', 'B♭2', 'B♭3', 'B♭4', 'B♭5', 'B♭6', 'B♭7', 'B♭8', 'B♭9', 'B♭10'
 Cf0, Cf1, Cf2, Cf3, Cf4, Cf5, Cf6, Cf7, Cf8, Cf9, Cf10 = 'C♭0', 'C♭1', 'C♭2', 'C♭3', 'C♭4', 'C♭5', 'C♭6', 'C♭7', 'C♭8', 'C♭9', 'C♭10'
 
-def filtA(v, a='_'): return Z.join([ e for e in v if e!=a ])
-
 class Strngs:
-    def __init__(self, alias=None, dbg=1):
-        if alias is None:  alias = 'EADGBE'
-        self.aliases      = self._initAliases()
-        if dbg:             self.dumpAliases()
-        self.map          = self.aliases[alias]
-        self.keys         = list(self.map.keys())
-        names             = list(reversed([ str(k[:-1]) for k in           self.keys   ]))
-        numbs             =               [ str(r + 1)  for r in range(len(self.keys)) ]
-        self.names        = Z.join(names)
-        self.names2       = W.join(names) + W
-        self.numbs        = Z.join(numbs)
-        self.numbs2       = W.join(numbs) + W
-        self.capo         = Z.join([ '0' for _ in range(len(self.keys)) ])
-        self.label        = 'STRING'
-        self.labelc       = ' CAPO '
-        slog(f'map        = {fmtm(self.map)}')
-        slog(f'keys       = {fmtl(self.keys)}')
-        slog(f"names      =     '{Z.join(names)}'")
-        slog(f"names2     =     '{self.names2}'")
-        slog(f"numbs2     =     '{self.numbs2}'")
-        slog(f"names      =     '{self.names}'")
-        slog(f"numbs      =     '{self.numbs}'")
-        slog(f'capo       =      {self.capo}')
-        slog(f'label      =      {self.label}')
-        slog(f'labelc     =      {self.labelc}')
+    def __init__(self, tune=None, dbg=1):
+        if not tune:   tune = ['E', 'A', 'D', 'G', 'B', 'E']
+        self.maps           = self._initMaps()
+        if dbg:               self.dumpMaps()
+        key                 = Z.join(tune)
+        self.map            = self.maps[key]
+        slog(f'tune         = {tune}')
+        slog(f'tuneL        = {fmtl(tune)}')
+        slog(f'tuneZ        = {Z.join(tune)}')
+        slog(f"key          = '{key}'")
+        slog(f'key          = [{key}]', ft=1)
+        slog(f'key          = {key}', ft=0)
+        slog(f'map          = {self.map}')
+        self.keys           = list(self.map.keys())
+        self.fkeys          = [ filtA(k) for k in self.map.keys() ]
+        names               = list(reversed([ str(k)     for k in           self.fkeys   ]))
+        numbs               =               [ str(r + 1) for r in range(len(self.fkeys)) ]
+        self.names          = Z.join(filtA(names))
+        self.names2         = W.join(names) + W
+        self.numbs          = Z.join(numbs)
+        self.numbs2         = W.join(numbs) + W
+        self.capo           = Z.join([ '0' for _ in range(len(self.fkeys)) ])
+        self.label          = 'STRING'
+        self.labelc         = ' CAPO '
+        slog(f'map          = {fmtm(self.map)}')
+        slog(f'kkeys        = {fmtl(self.fkeys)}')
+        slog(f"names        =     '{Z.join(names)}'")
+        slog(f"names2       =     '{self.names2}'")
+        slog(f"numbs2       =     '{self.numbs2}'")
+        slog(f"names        =     '{self.names}'")
+        slog(f"numbs        =     '{self.numbs}'")
+        slog(f'capo         =      {self.capo}')
+        slog(f'label        =      {self.label}')
+        slog(f'labelc       =      {self.labelc}')
 
-    def _initAliases(self):
+    def _initMaps(self):
         return dict([
-            (self._initAlias('E  A  D  G  B  E ',    [ E_2, A_2, D_3, G_3, B_3, E_4 ])),      # guitar 6 std
-            (self._initAlias('D  A  D  G  B  E ',    [ D_2, A_2, D_3, G_3, B_3, E_4 ])),      # guitar 6 drop_d
-            (self._initAlias('E  A  D  G  C  F ',    [ E_2, A_2, D_3, G_3, C_4, F_4 ])),      # guitar 6 4ths
-            (self._initAlias('F  C  G  D  A  E ',    [ F_1, C_2, G_2, D_3, A_3, E_4 ])),      # guitar 6 5ths
-            (self._initAlias('A♭ E♭ B♭ F  C  G ',    [ Af1, Ef2, Bf2, F_3, C_4, G_4 ])),      # guitar 6 5ths
-            (self._initAlias('D  A  D  G  B  E ',    [ D_2, A_2, D_3, G_3, B_3, E_4 ])),      # guitar 6 drop_D 
-            (self._initAlias('D  A  D  G  A  D ',    [ D_2, A_2, D_3, G_3, A_3, D_4 ])),      # guitar 6 dadgad
-            (self._initAlias('C  E  G  C  E  G ',    [ C_2, E_2, G_2, C_3, E_3, G_3 ])),      # guitar 6 english
-            (self._initAlias('D  A  D  E  A  D ',    [ D_2, A_2, D_3, E_3, A_3, D_4 ])),      # guitar 6 dadead
-            (self._initAlias('E  A  C♯ G  B  E ',    [ E_2, A_2, Cs3, G_3, B_3, E_4 ])),      # guitar 6 D=>C#
-            (self._initAlias('E♯ A♯ D♯ G♯ B♯ E♯',    [ Es2, As2, Ds3, Gs3, Bs3, Es4 ])),      # guitar 6 std ♯
-            (self._initAlias('E♭ A♭ D♭ G♭ B♭ E♭',    [ Ef2, Af2, Df3, Gf3, Bf3, Ef4 ])),      # guitar 6 std ♭
-            (self._initAlias('E  B  E♭ G♭ B  E♭',    [ E_2, B_2, Ef3, Gf3, B_3, Ef4 ])),      # guitar 6 andy mckee
+            (self._initMap('E  A  D  G  B  E ',    [ E_2, A_2, D_3, G_3, B_3, E_4 ])),      # guitar 6 std
+            (self._initMap('D  A  D  G  B  E ',    [ D_2, A_2, D_3, G_3, B_3, E_4 ])),      # guitar 6 drop_d
+            (self._initMap('E  A  D  G  C  F ',    [ E_2, A_2, D_3, G_3, C_4, F_4 ])),      # guitar 6 4ths
+            (self._initMap('F  C  G  D  A  E ',    [ F_1, C_2, G_2, D_3, A_3, E_4 ])),      # guitar 6 5ths
+            (self._initMap('A♭ E♭ B♭ F  C  G ',    [ Af1, Ef2, Bf2, F_3, C_4, G_4 ])),      # guitar 6 5ths
+            (self._initMap('D  A  D  G  B  E ',    [ D_2, A_2, D_3, G_3, B_3, E_4 ])),      # guitar 6 drop_D 
+            (self._initMap('D  A  D  G  A  D ',    [ D_2, A_2, D_3, G_3, A_3, D_4 ])),      # guitar 6 dadgad
+            (self._initMap('C  E  G  C  E  G ',    [ C_2, E_2, G_2, C_3, E_3, G_3 ])),      # guitar 6 english
+            (self._initMap('D  A  D  E  A  D ',    [ D_2, A_2, D_3, E_3, A_3, D_4 ])),      # guitar 6 dadead
+            (self._initMap('E  A  C♯ G  B  E ',    [ E_2, A_2, Cs3, G_3, B_3, E_4 ])),      # guitar 6 D=>C#
+            (self._initMap('E♯ A♯ D♯ G♯ B♯ E♯',    [ Es2, As2, Ds3, Gs3, Bs3, Es4 ])),      # guitar 6 std ♯
+            (self._initMap('E♭ A♭ D♭ G♭ B♭ E♭',    [ Ef2, Af2, Df3, Gf3, Bf3, Ef4 ])),      # guitar 6 std ♭
+            (self._initMap('E  B  E♭ G♭ B  E♭',    [ E_2, B_2, Ef3, Gf3, B_3, Ef4 ])),      # guitar 6 andy mckee
             ############################################################################################################################################################################################
-            (self._initAlias('B  E  A  D  G  B  E ', [ B_1, E_2, A_2, D_3, G_3, B_3, E_4 ])), # guitar 7 std
-            (self._initAlias('B  E  A  D  G  C  F ', [ B_1, E_2, A_2, D_3, G_3, C_4, F_4 ])), # guitar 7 4ths
-            (self._initAlias('E  G♯ C  E  G♯ C  E ', [ E_2, Gs2, C_3, E_3, Gs3, C_4, E_4 ])), # guitar 7 3rds
-            (self._initAlias('D  G  B  D  G  B  D ', [ D_2, G_2, B_2, D_3, G_3, B_3, D_4 ])), # guitar 7 russian
+            (self._initMap('B  E  A  D  G  B  E ', [ B_1, E_2, A_2, D_3, G_3, B_3, E_4 ])), # guitar 7 std
+            (self._initMap('B  E  A  D  G  C  F ', [ B_1, E_2, A_2, D_3, G_3, C_4, F_4 ])), # guitar 7 4ths
+            (self._initMap('E  G♯ C  E  G♯ C  E ', [ E_2, Gs2, C_3, E_3, Gs3, C_4, E_4 ])), # guitar 7 3rds
+            (self._initMap('D  G  B  D  G  B  D ', [ D_2, G_2, B_2, D_3, G_3, B_3, D_4 ])), # guitar 7 russian
             ])
     @staticmethod
-    def _initAlias(k, v):
-        k2   =  filtA(k)
-        return  k2, { e:Notes.n2ai(e) for e in v } 
+    def _initMap(k, v):
+        return  filtA(k), { filtA(e):Notes.n2ai(filtA(e)) for e in v } 
 
-    def dumpAliases(self):
-        s = self.aliases
+    def dumpMaps(self):
+        s = self.maps
         a, f, w = '>', W, 20
+        for k, v in s.items():
+            k = f'{k:{f}{a}{w}}'   ;   v3 = []
+            for k2, v2 in v.items():
+                v3.append(f'{k2[:2]} {k2[-1]} {v2:2}')
+            slog(f'{k} :  {fmtl(v3, d=Z, s=3*W)}', p=0)
         for k, v in s.items():
             k = f'{k:{f}{a}{w}}'   ;   v3 = []
             for k2, v2 in v.items():
@@ -122,7 +135,7 @@ class Strngs:
     @staticmethod
     def isFret(t):         return  1  if '0'<=t<='9'          or            'a'<=t<='o' else 0
 
-    def nStrings(self):    return len([ e for e in self.names if e not in notes.ACCD_TONES ])
+    def nStrings(self):    return len([ e for e in self.names if e not in notes.ACCD_TONES and e != W and e not in string.digits ])
     @staticmethod
     def nn2ni(name):       return notes.index(name, o=1)
 
@@ -130,8 +143,8 @@ class Strngs:
 #       strNum = self.nStrings() - s     # Reverse and one  base the string numbering: str[1 ... numStrings] => s[numStrings ... 1]
         strNum = self.nStrings() - s - 1 # Reverse and zero base the string numbering: str[1 ... numStrings] => s[(numStrings - 1) ... 0]
         assert strNum in range(0, self.nStrings()),  f'{strNum=} not in range(1, {self.nStrings()=} {s=})' # AssertionError: strNum=0 not in range(1, self.nStrings()=6)
-        assert strNum in range(0, len(self.keys)),   f'{strNum=} not in range(0, {len(self.keys)=} {s=})'
-        k      = self.keys[strNum] # todo
+        assert strNum in range(0, len(self.fkeys)),  f'{strNum=} not in range(0, {len(self.fkeys)=} {s=})'
+        k      = self.fkeys[strNum] # todo
         assert k is not None and fn is not None,  f'{k=} {strNum=} {s=} {fn=}'
         assert k in self.map,  f'{k=} {strNum=} {s=} {fn=} {self.map=}'
         i      = self.map[k] + fn

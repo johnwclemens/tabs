@@ -123,7 +123,7 @@ class Tabs(pyglet.window.Window):
         self.viewX,    self.viewY,   self.viewW,   self.viewH  = 0, 0, self.width, self.height
         self.viewX0,   self.viewY0,  self.viewW0,  self.viewH0 = 0, 0, self.width, self.height
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
-        pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent') 
+        pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent') # todo add some sound
         ################################################################################################################################################################################################
         self.AUTO_SAVE = 0  ;  self.BGC       = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.CURSOR    = 1  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4
         self.DBG_TABT  = 0  ;  self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD   = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1
@@ -141,43 +141,7 @@ class Tabs(pyglet.window.Window):
         self.i         = [1, 1,  1, 6]
         self.VIEW      = []
         ################################################################################################################################################################################################
-        self.log(f'argMap={fmta(ARGS)}')
-        if 'a' in ARGS  and len(ARGS['a']) == 0: self.AUTO_SAVE  =  1
-        if 'A' in ARGS: l = len(ARGS['A'])   ;   self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
-        if 'b' in ARGS  and len(ARGS['b']) == 0: self.FRT_BRD    =  1
-        if 'B' in ARGS  and len(ARGS['B']) == 0: self.BGC        =  1
-        if 'c' in ARGS  and len(ARGS['c']) == 0: self.CAT        =  1
-        if 'C' in ARGS  and len(ARGS['C']) == 0: self.CHECKERED  =  1
-        if 'd' in ARGS  and len(ARGS['d']) == 0: self.DEC_DATA   =  1 
-        if 'D' in ARGS  and len(ARGS['D'])  > 0: self.DBG_TABT   =   int(ARGS['D'][0])
-        if 'e' in ARGS  and len(ARGS['e']) == 0: self.EVENT_LOG  =  1
-        if 'e' in ARGS  and len(ARGS['e'])  > 0: self.EVENT_LOG  =   int(ARGS['e'][0])
-        if 'f' in ARGS  and len(ARGS['f'])  > 0: self.FILE_NAME  =       ARGS['f'][0]
-        if 'F' in ARGS  and len(ARGS['F']) == 0: self.FULL_SCRN  =  1
-        if 'g' in ARGS  and len(ARGS['g']) == 0: self.ORD_GRP    =  1
-        if 'G' in ARGS  and len(ARGS['G']) == 0: self.GEN_DATA   =  1
-        if 'i' in ARGS  and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
-        if 'j' in ARGS  and len(ARGS['j'])  > 0: self.DRAW_BGC   =   int(ARGS['j'][0])
-        if 'J' in ARGS  and len(ARGS['J'])  > 0: self.DSP_J_LEV  =   int(ARGS['J'][0])
-        if 'l' in ARGS  and len(ARGS['l']) == 0: self.LONG_TXT   =  1
-        if 'L' in ARGS  and len(ARGS['L']) == 0: self.LL         =  1
-        if 'M' in ARGS  and len(ARGS['M']) == 0: self.MULTILINE  =  1
-        if 'n' in ARGS  and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
-        if 'o' in ARGS  and len(ARGS['o']) == 0: self.OIDS       =  1
-        if 'p' in ARGS  and len(ARGS['p'])  > 0: self.SNAPS      =   int(ARGS['p'][0])
-        if 'r' in ARGS  and len(ARGS['r'])  > 0: self.ROOT_DIR   =       ARGS['r'][0] 
-        if 'R' in ARGS  and len(ARGS['R']) == 0: self.RESIZE     =  0
-        if 's' in ARGS  and len(ARGS['s']) == 0: self.SPRITES    =  1
-        if 'S' in ARGS  and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
-        if 't' in ARGS: l = len(ARGS['t'])   ;   self.TEST       =  1 if l == 0 else int(ARGS['t'][0]) if l == 1 else 0
-        if 'T' in ARGS  and len(ARGS['T'])  > 0: self.TUNING     = Z.join([ ARGS['T'][i] for i in range(len(ARGS['T'])) ])
-        if 'u' in ARGS  and len(ARGS['u']) == 0: self.SUBPIX     =  1
-        if 'v' in ARGS: l = len(ARGS['v'])   ;   self.VERBY      =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
-        if 'V' in ARGS  and len(ARGS['V'])  > 0: self.VIEW       = [ int(ARGS['V'][i]) for i in range(len(ARGS['V'])) ]
-        if 'w' in ARGS  and len(ARGS['w'])  > 0: self.AXYV       = [ int(ARGS['w'][i]) for i in range(len(ARGS['w'])) ]
-        if 'x' in ARGS  and len(ARGS['x']) == 0: self.EXIT       =  1
-        if 'x' in ARGS  and len(ARGS['x'])  > 0: self.EXIT       =   int(ARGS['x'][0])
-        if 'Z' in ARGS  and len(ARGS['Z']) >= 0: self.ZZ         = [ int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) ]
+        self.parseArgs()
         self._initAaxyv()
         ################################################################################################################################################################################################
         self.n0        = []           ;    self.n0.extend(self.n)  ;  self.i0 = [self.i]
@@ -252,6 +216,44 @@ class Tabs(pyglet.window.Window):
         self.log(f'{9*W}{_}') if dbg else None
         return _
     ####################################################################################################################################################################################################
+    def parseArgs(self):
+        self.log(f'argMap={fmta(ARGS)}')
+        if 'a' in ARGS  and len(ARGS['a']) == 0: self.AUTO_SAVE  =  1
+        if 'A' in ARGS: l = len(ARGS['A'])   ;   self.VARROW     =  1 if l == 0 else int(ARGS['A'][0]) if l == 1 else 0
+        if 'b' in ARGS  and len(ARGS['b']) == 0: self.FRT_BRD    =  1
+        if 'B' in ARGS  and len(ARGS['B']) == 0: self.BGC        =  1
+        if 'c' in ARGS  and len(ARGS['c']) == 0: self.CAT        =  1
+        if 'C' in ARGS  and len(ARGS['C']) == 0: self.CHECKERED  =  1
+        if 'd' in ARGS  and len(ARGS['d']) == 0: self.DEC_DATA   =  1 
+        if 'D' in ARGS  and len(ARGS['D'])  > 0: self.DBG_TABT   =   int(ARGS['D'][0])
+        if 'e' in ARGS  and len(ARGS['e']) == 0: self.EVENT_LOG  =  1
+        if 'e' in ARGS  and len(ARGS['e'])  > 0: self.EVENT_LOG  =   int(ARGS['e'][0])
+        if 'f' in ARGS  and len(ARGS['f'])  > 0: self.FILE_NAME  =       ARGS['f'][0]
+        if 'F' in ARGS  and len(ARGS['F']) == 0: self.FULL_SCRN  =  1
+        if 'g' in ARGS  and len(ARGS['g']) == 0: self.ORD_GRP    =  1
+        if 'G' in ARGS  and len(ARGS['G']) == 0: self.GEN_DATA   =  1
+        if 'i' in ARGS  and len(ARGS['i'])  > 0: self.i          = [ int(ARGS['i'][i]) for i in range(len(ARGS['i'])) ]
+        if 'j' in ARGS  and len(ARGS['j'])  > 0: self.DRAW_BGC   =   int(ARGS['j'][0])
+        if 'J' in ARGS  and len(ARGS['J'])  > 0: self.DSP_J_LEV  =   int(ARGS['J'][0])
+        if 'l' in ARGS  and len(ARGS['l']) == 0: self.LONG_TXT   =  1
+        if 'L' in ARGS  and len(ARGS['L']) == 0: self.LL         =  1
+        if 'M' in ARGS  and len(ARGS['M']) == 0: self.MULTILINE  =  1
+        if 'n' in ARGS  and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
+        if 'o' in ARGS  and len(ARGS['o']) == 0: self.OIDS       =  1
+        if 'p' in ARGS  and len(ARGS['p'])  > 0: self.SNAPS      =   int(ARGS['p'][0])
+        if 'r' in ARGS  and len(ARGS['r'])  > 0: self.ROOT_DIR   =       ARGS['r'][0] 
+        if 'R' in ARGS  and len(ARGS['R']) == 0: self.RESIZE     =  0
+        if 's' in ARGS  and len(ARGS['s']) == 0: self.SPRITES    =  1
+        if 'S' in ARGS  and len(ARGS['S']) >= 0: self.SS         = { int(ARGS['S'][i]) for i in range(len(ARGS['S'])) }
+        if 't' in ARGS: l = len(ARGS['t'])   ;   self.TEST       =  1 if l == 0 else int(ARGS['t'][0]) if l == 1 else 0
+        if 'T' in ARGS  and len(ARGS['T'])  > 0: self.TUNING     = [ ARGS['T'][i] for i in range(len(ARGS['T'])) ]
+        if 'u' in ARGS  and len(ARGS['u']) == 0: self.SUBPIX     =  1
+        if 'v' in ARGS: l = len(ARGS['v'])   ;   self.VERBY      =  1 if l == 0 else int(ARGS['v'][0]) if l == 1 else 0
+        if 'V' in ARGS  and len(ARGS['V'])  > 0: self.VIEW       = [ int(ARGS['V'][i]) for i in range(len(ARGS['V'])) ]
+        if 'w' in ARGS  and len(ARGS['w'])  > 0: self.AXYV       = [ int(ARGS['w'][i]) for i in range(len(ARGS['w'])) ]
+        if 'x' in ARGS  and len(ARGS['x'])  > 0: self.EXIT       =   int(ARGS['x'][0]) # == 0: self.EXIT       =  1
+        if 'Z' in ARGS  and len(ARGS['Z']) >= 0: self.ZZ         = [ int(ARGS['Z'][i]) for i in range(len(ARGS['Z'])) ]
+        
     def dumpArgs(self, f=1):
         self.log(f'[a]      {self.AUTO_SAVE=}', f=f)
         self.log(f'[A]         {self.VARROW=}', f=f)
@@ -279,7 +281,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'[s]        {self.SPRITES=}', f=f)
         self.log(f'[S]             .SS={fmtl(self.SS)}', f=f)
         self.log(f'[t]           {self.TEST=}', f=f)
-        self.log(f'[T]         {self.TUNING=}', f=f)
+        self.log(f'[T]         .TUNING={fmtl(self.TUNING)}', f=f)
         self.log(f'[u]         {self.SUBPIX=}', f=f)
         self.log(f'[v]          {self.VERBY=}', f=f)
         self.log(f'[V]           {self.VIEW=}', f=f)

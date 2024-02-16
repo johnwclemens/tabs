@@ -123,6 +123,7 @@ def memorize(func):
 def paths():           return BASE_NAME, BASE_PATH, PATH
 ########################################################################################################################################################################################################
 def fri(f):            return int(math.floor(f + 0.5))
+def filtA(v, a=W):     return Z.join([ e for e in v if e!=a ])
 def signed(n):         return f' {n}' if n==0 else f'{n:+}'
 def ns2signs(ns, s=Z): return [ f'-{s}' if n<0 else f'+{s}' if n>0  else f'{W}{s}' for n in ns ]
 def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
@@ -200,7 +201,7 @@ def olog(o=None, p=1, f=1, s=Y, e=X, ff=1): #, ft=1):
 def filtText(text):
     text = text.replace('self', Z)
     text = text.replace('tobj', Z)
-    text = text.replace('util', Z)
+    text = text.replace('utl',  Z)
     text = text.replace('fmtl', Z)
     text = text.replace('fmtm', Z)
     return text
