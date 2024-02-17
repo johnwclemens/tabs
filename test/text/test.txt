@@ -204,14 +204,14 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 #2215 tabs  dumpGlobals        argv      = +34[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 20 6 -M 0 -deo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T E A D G B E]
 #2216 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 #2217 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-# 413 utl   getFilePath        baseName =test.25      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =test.25.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.25.cat')
-# 413 utl   getFilePath        baseName =test.25      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =test.25.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.25.csv')
-# 413 utl   getFilePath        baseName =test.25      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =test.25.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.25.log')
-# 413 utl   getFilePath        baseName =test.25      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =test.25.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.25.txt')
+# 413 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 416 utl   getFilePath        fileName =test.2.cat   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.2.cat')
+# 413 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 416 utl   getFilePath        fileName =test.2.csv   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.2.csv')
+# 413 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 416 utl   getFilePath        fileName =test.2.log   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.2.log')
+# 413 utl   getFilePath        baseName =test.2       basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 416 utl   getFilePath        fileName =test.2.txt   filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.2.txt')
 # 258 tabs  dumpArgs           [a]      .AUTO_SAVE=0
 # 259 tabs  dumpArgs           [A]         .VARROW=1
 # 260 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -266,9 +266,9 @@ initk((Tabs, 15, 'GRY', 5, 17, 'GRY', 17, 17) {})=[(81, 81, 81, 255), (255, 255,
 # 835 tabs  readDataFile       Raw Data File BGN:
 ####################
                     
-                    
-0                   
-1                   
+5                   
+3                   
+5                   
 3                   
                     
 ####################
@@ -302,9 +302,9 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 #1480 tabs  g_newUpdTniks        0 j=2  Sect j2=2     i= 0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2   2] [1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2   2] nw=1
 #1480 tabs  g_newUpdTniks        0 j=3  Colm j2=3     i= 0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3   3] [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3   3] nw=1
 #1480 tabs  g_newUpdTniks        0 j=4  Tabl j2=4     i= 0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] nw=1
-#1480 tabs  g_newUpdTniks        1 j=4  Tabl j2=4     i= 1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] nw=1
-#1480 tabs  g_newUpdTniks        2 j=4  Tabl j2=4 0   i= 2 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] nw=1
-#1480 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 1   i= 3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] nw=1
+#1480 tabs  g_newUpdTniks        1 j=4  Tabl j2=4 5   i= 1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] nw=1
+#1480 tabs  g_newUpdTniks        2 j=4  Tabl j2=4 3   i= 2 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] nw=1
+#1480 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 5   i= 3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] nw=1
 #1480 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 3   i= 4 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] nw=1
 #1480 tabs  g_newUpdTniks        5 j=4  Tabl j2=4     i= 5 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] nw=1
 #1480 tabs  g_newUpdTniks        1 j=3  Colm j2=3     i= 1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10  10] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10  10] nw=1
@@ -443,9 +443,9 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 #1480 tabs  g_newUpdTniks        1 j=2  Sect j2=2     i= 1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 20 120 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 20 6 0 0 0 0 0 0 0 0 0 0 0 143 143] [1 1 1 20 120 0 0 0 0 0 0 0 0 0 0 0 143 143] nw=1
 #1480 tabs  g_newUpdTniks       20 j=3  Colm j2=3     i=20 .J2[j2]=20 len(tl)=20 len(tl)=20 [1 1 2 20 120 0 0 0 0 0 0 0 0 0 0 0] [1 1 2 20 6 0 0 0 0 0 0 0 0 0 0 0 144 144] [1 1 2 20 120 0 0 0 0 0 0 0 0 0 0 0 144 144] nw=1
 #1480 tabs  g_newUpdTniks        0 j=5  Note j2=5     i= 0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 2 21 120 0 0 0 0 0 0 0 0 0 0 0] [1 1 2 21 6 0 0 0 0 0 0 0 0 0 0 0 145 145] [1 1 2 21 120 0 0 0 0 0 0 0 0 0 0 0 145 145] nw=1
-#1480 tabs  g_newUpdTniks        1 j=5  Note j2=5     i= 1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 2 21 120 1 0 0 0 0 0 0 0 0 0 0] [1 1 2 21 6 1 0 0 0 0 0 0 0 0 0 0 146 146] [1 1 2 21 120 1 0 0 0 0 0 0 0 0 0 0 146 146] nw=1
-#1480 tabs  g_newUpdTniks        2 j=5  Note j2=5 0   i= 2 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 2 21 120 2 0 0 0 0 0 0 0 0 0 0] [1 1 2 21 6 2 0 0 0 0 0 0 0 0 0 0 147 147] [1 1 2 21 120 2 0 0 0 0 0 0 0 0 0 0 147 147] nw=1
-#1480 tabs  g_newUpdTniks        3 j=5  Note j2=5 1   i= 3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 2 21 120 3 0 0 0 0 0 0 0 0 0 0] [1 1 2 21 6 3 0 0 0 0 0 0 0 0 0 0 148 148] [1 1 2 21 120 3 0 0 0 0 0 0 0 0 0 0 148 148] nw=1
+#1480 tabs  g_newUpdTniks        1 j=5  Note j2=5 5   i= 1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 2 21 120 1 0 0 0 0 0 0 0 0 0 0] [1 1 2 21 6 1 0 0 0 0 0 0 0 0 0 0 146 146] [1 1 2 21 120 1 0 0 0 0 0 0 0 0 0 0 146 146] nw=1
+#1480 tabs  g_newUpdTniks        2 j=5  Note j2=5 3   i= 2 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 2 21 120 2 0 0 0 0 0 0 0 0 0 0] [1 1 2 21 6 2 0 0 0 0 0 0 0 0 0 0 147 147] [1 1 2 21 120 2 0 0 0 0 0 0 0 0 0 0 147 147] nw=1
+#1480 tabs  g_newUpdTniks        3 j=5  Note j2=5 5   i= 3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 2 21 120 3 0 0 0 0 0 0 0 0 0 0] [1 1 2 21 6 3 0 0 0 0 0 0 0 0 0 0 148 148] [1 1 2 21 120 3 0 0 0 0 0 0 0 0 0 0 148 148] nw=1
 #1480 tabs  g_newUpdTniks        4 j=5  Note j2=5 3   i= 4 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 2 21 120 4 0 0 0 0 0 0 0 0 0 0] [1 1 2 21 6 4 0 0 0 0 0 0 0 0 0 0 149 149] [1 1 2 21 120 4 0 0 0 0 0 0 0 0 0 0 149 149] nw=1
 #1480 tabs  g_newUpdTniks        5 j=5  Note j2=5     i= 5 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 2 21 120 5 0 0 0 0 0 0 0 0 0 0] [1 1 2 21 6 5 0 0 0 0 0 0 0 0 0 0 150 150] [1 1 2 21 120 5 0 0 0 0 0 0 0 0 0 0 150 150] nw=1
 #1480 tabs  g_newUpdTniks       21 j=3  Colm j2=3     i=21 .J2[j2]=21 len(tl)=21 len(tl)=21 [1 1 2 21 120 6 0 0 0 0 0 0 0 0 0 0] [1 1 2 21 6 6 0 0 0 0 0 0 0 0 0 0 151 151] [1 1 2 21 120 6 0 0 0 0 0 0 0 0 0 0 151 151] nw=1
@@ -584,9 +584,9 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 #1480 tabs  g_newUpdTniks        2 j=2  Sect j2=2     i= 2 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 2 40 120 120 0 0 0 0 0 0 0 0 0 0] [1 1 2 40 6 6 0 0 0 0 0 0 0 0 0 0 284 284] [1 1 2 40 120 120 0 0 0 0 0 0 0 0 0 0 284 284] nw=1
 #1480 tabs  g_newUpdTniks       40 j=3  Colm j2=3     i=40 .J2[j2]=40 len(tl)=40 len(tl)=40 [1 1 3 40 120 120 0 0 0 0 0 0 0 0 0 0] [1 1 3 40 6 6 0 0 0 0 0 0 0 0 0 0 285 285] [1 1 3 40 120 120 0 0 0 0 0 0 0 0 0 0 285 285] nw=1
 #1480 tabs  g_newUpdTniks        0 j=7  Kord j2=7     i= 0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 3 41 120 120 0 0 0 0 0 0 0 0 0 0] [1 1 3 41 6 6 0 0 0 0 0 0 0 0 0 0 286 286] [1 1 3 41 120 120 0 0 0 0 0 0 0 0 0 0 286 286] nw=1
-#1480 tabs  g_newUpdTniks        1 j=7  Kord j2=7     i= 1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 3 41 120 120 0 1 0 0 0 0 0 0 0 0] [1 1 3 41 6 6 0 1 0 0 0 0 0 0 0 0 287 287] [1 1 3 41 120 120 0 1 0 0 0 0 0 0 0 0 287 287] nw=1
-#1480 tabs  g_newUpdTniks        2 j=7  Kord j2=7 0   i= 2 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 3 41 120 120 0 2 0 0 0 0 0 0 0 0] [1 1 3 41 6 6 0 2 0 0 0 0 0 0 0 0 288 288] [1 1 3 41 120 120 0 2 0 0 0 0 0 0 0 0 288 288] nw=1
-#1480 tabs  g_newUpdTniks        3 j=7  Kord j2=7 1   i= 3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 3 41 120 120 0 3 0 0 0 0 0 0 0 0] [1 1 3 41 6 6 0 3 0 0 0 0 0 0 0 0 289 289] [1 1 3 41 120 120 0 3 0 0 0 0 0 0 0 0 289 289] nw=1
+#1480 tabs  g_newUpdTniks        1 j=7  Kord j2=7 5   i= 1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 3 41 120 120 0 1 0 0 0 0 0 0 0 0] [1 1 3 41 6 6 0 1 0 0 0 0 0 0 0 0 287 287] [1 1 3 41 120 120 0 1 0 0 0 0 0 0 0 0 287 287] nw=1
+#1480 tabs  g_newUpdTniks        2 j=7  Kord j2=7 3   i= 2 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 3 41 120 120 0 2 0 0 0 0 0 0 0 0] [1 1 3 41 6 6 0 2 0 0 0 0 0 0 0 0 288 288] [1 1 3 41 120 120 0 2 0 0 0 0 0 0 0 0 288 288] nw=1
+#1480 tabs  g_newUpdTniks        3 j=7  Kord j2=7 5   i= 3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 3 41 120 120 0 3 0 0 0 0 0 0 0 0] [1 1 3 41 6 6 0 3 0 0 0 0 0 0 0 0 289 289] [1 1 3 41 120 120 0 3 0 0 0 0 0 0 0 0 289 289] nw=1
 #1480 tabs  g_newUpdTniks        4 j=7  Kord j2=7 3   i= 4 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 3 41 120 120 0 4 0 0 0 0 0 0 0 0] [1 1 3 41 6 6 0 4 0 0 0 0 0 0 0 0 290 290] [1 1 3 41 120 120 0 4 0 0 0 0 0 0 0 0 290 290] nw=1
 #1480 tabs  g_newUpdTniks        5 j=7  Kord j2=7     i= 5 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 3 41 120 120 0 5 0 0 0 0 0 0 0 0] [1 1 3 41 6 6 0 5 0 0 0 0 0 0 0 0 291 291] [1 1 3 41 120 120 0 5 0 0 0 0 0 0 0 0 291 291] nw=1
 #1480 tabs  g_newUpdTniks       41 j=3  Colm j2=3     i=41 .J2[j2]=41 len(tl)=41 len(tl)=41 [1 1 3 41 120 120 0 6 0 0 0 0 0 0 0 0] [1 1 3 41 6 6 0 6 0 0 0 0 0 0 0 0 292 292] [1 1 3 41 120 120 0 6 0 0 0 0 0 0 0 0 292 292] nw=1
@@ -726,10 +726,10 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 #1777 tabs  cursorCol          cc=  5 [0 0 0 5]
 #1754 tabs  cc2xywh            tpp=360 old=5 lenT=120 cc=5 old % lenT
 #1757 tabs  cc2xywh            cc=   5 old=   5 [360 360 360 120 6]   24.00  375.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
-[7:G :1, 3:E♭:1, 0:C :1]
-[7:G :1, 3:D♯:1, 0:C :1]
-[ None , 3:E♭:1,  None ,  None ,  None ,  None ,  None ]
-[ None ,  None ,  None , 3:E♭:1,  None ,  None , 0:C :1]
+[4:E :1, a:B♭:1, 7:G :1, 0:C :1]
+[4:E :1, a:A♯:1, 7:G :1, 0:C :1]
+[a:B♭:1,  None ,  None ,  None ,  None ,  None , 4:E :1]
+[ None ,  None ,  None ,  None , a:B♭:1,  None , 0:C :1]
 #1883 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels New1
 # 458 tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
 #2254 tabs  <module>           str(tabs)='Tabs'
@@ -742,9 +742,9 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 #1480 tabs  g_newUpdTniks        0 j=2  Sect j2=2     i= 0 .J2[j2]= 0 len(tl)= 3 len(tl)= 3 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2   2] [1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2   2] nw=0
 #1480 tabs  g_newUpdTniks        0 j=3  Colm j2=3     i= 0 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3   3] [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3   3] nw=0
 #1480 tabs  g_newUpdTniks        0 j=4  Tabl j2=4     i= 0 .J2[j2]= 0 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] nw=0
-#1480 tabs  g_newUpdTniks        1 j=4  Tabl j2=4     i= 1 .J2[j2]= 1 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] nw=0
-#1480 tabs  g_newUpdTniks        2 j=4  Tabl j2=4 0   i= 2 .J2[j2]= 2 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] nw=0
-#1480 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 1   i= 3 .J2[j2]= 3 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] nw=0
+#1480 tabs  g_newUpdTniks        1 j=4  Tabl j2=4 5   i= 1 .J2[j2]= 1 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] nw=0
+#1480 tabs  g_newUpdTniks        2 j=4  Tabl j2=4 3   i= 2 .J2[j2]= 2 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] nw=0
+#1480 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 5   i= 3 .J2[j2]= 3 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] nw=0
 #1480 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 3   i= 4 .J2[j2]= 4 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] nw=0
 #1480 tabs  g_newUpdTniks        5 j=4  Tabl j2=4     i= 5 .J2[j2]= 5 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] nw=0
 #1480 tabs  g_newUpdTniks        1 j=3  Colm j2=3     i= 1 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10  10] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10  10] nw=0
@@ -890,9 +890,9 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 #1480 tabs  g_newUpdTniks        5 j=5  Note j2=5     i= 5 .J2[j2]= 5 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 21 120 5 0 0 0 0 0 0 0 0 0 0 150 150] [1 1 2 21 120 5 0 0 0 0 0 0 0 0 0 0 150 150] nw=0
 #1480 tabs  g_newUpdTniks       21 j=3  Colm j2=3     i=21 .J2[j2]=21 len(tl)=60 len(tl)=60 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 21 120 6 0 0 0 0 0 0 0 0 0 0 151 151] [1 1 2 21 120 6 0 0 0 0 0 0 0 0 0 0 151 151] nw=0
 #1480 tabs  g_newUpdTniks        6 j=5  Note j2=5     i= 0 .J2[j2]= 6 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 22 120 6 0 0 0 0 0 0 0 0 0 0 152 152] [1 1 2 22 120 6 0 0 0 0 0 0 0 0 0 0 152 152] nw=0
-#1480 tabs  g_newUpdTniks        7 j=5  Note j2=5     i= 1 .J2[j2]= 7 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 22 120 7 0 0 0 0 0 0 0 0 0 0 153 153] [1 1 2 22 120 7 0 0 0 0 0 0 0 0 0 0 153 153] nw=0
-#1480 tabs  g_newUpdTniks        8 j=5  Note j2=5 0   i= 2 .J2[j2]= 8 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 22 120 8 0 0 0 0 0 0 0 0 0 0 154 154] [1 1 2 22 120 8 0 0 0 0 0 0 0 0 0 0 154 154] nw=0
-#1480 tabs  g_newUpdTniks        9 j=5  Note j2=5 1   i= 3 .J2[j2]= 9 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 22 120 9 0 0 0 0 0 0 0 0 0 0 155 155] [1 1 2 22 120 9 0 0 0 0 0 0 0 0 0 0 155 155] nw=0
+#1480 tabs  g_newUpdTniks        7 j=5  Note j2=5 5   i= 1 .J2[j2]= 7 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 22 120 7 0 0 0 0 0 0 0 0 0 0 153 153] [1 1 2 22 120 7 0 0 0 0 0 0 0 0 0 0 153 153] nw=0
+#1480 tabs  g_newUpdTniks        8 j=5  Note j2=5 3   i= 2 .J2[j2]= 8 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 22 120 8 0 0 0 0 0 0 0 0 0 0 154 154] [1 1 2 22 120 8 0 0 0 0 0 0 0 0 0 0 154 154] nw=0
+#1480 tabs  g_newUpdTniks        9 j=5  Note j2=5 5   i= 3 .J2[j2]= 9 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 22 120 9 0 0 0 0 0 0 0 0 0 0 155 155] [1 1 2 22 120 9 0 0 0 0 0 0 0 0 0 0 155 155] nw=0
 #1480 tabs  g_newUpdTniks       10 j=5  Note j2=5 3   i= 4 .J2[j2]=10 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 22 120 10 0 0 0 0 0 0 0 0 0 0 156 156] [1 1 2 22 120 10 0 0 0 0 0 0 0 0 0 0 156 156] nw=0
 #1480 tabs  g_newUpdTniks       11 j=5  Note j2=5     i= 5 .J2[j2]=11 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 22 120 11 0 0 0 0 0 0 0 0 0 0 157 157] [1 1 2 22 120 11 0 0 0 0 0 0 0 0 0 0 157 157] nw=0
 #1480 tabs  g_newUpdTniks       22 j=3  Colm j2=3     i=22 .J2[j2]=22 len(tl)=60 len(tl)=60 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 2 22 120 12 0 0 0 0 0 0 0 0 0 0 158 158] [1 1 2 22 120 12 0 0 0 0 0 0 0 0 0 0 158 158] nw=0
@@ -1031,9 +1031,9 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 #1480 tabs  g_newUpdTniks        5 j=7  Kord j2=7     i= 5 .J2[j2]= 5 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 41 120 120 0 5 0 0 0 0 0 0 0 0 291 291] [1 1 3 41 120 120 0 5 0 0 0 0 0 0 0 0 291 291] nw=0
 #1480 tabs  g_newUpdTniks       41 j=3  Colm j2=3     i=41 .J2[j2]=41 len(tl)=60 len(tl)=60 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 41 120 120 0 6 0 0 0 0 0 0 0 0 292 292] [1 1 3 41 120 120 0 6 0 0 0 0 0 0 0 0 292 292] nw=0
 #1480 tabs  g_newUpdTniks        6 j=7  Kord j2=7     i= 0 .J2[j2]= 6 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 42 120 120 0 6 0 0 0 0 0 0 0 0 293 293] [1 1 3 42 120 120 0 6 0 0 0 0 0 0 0 0 293 293] nw=0
-#1480 tabs  g_newUpdTniks        7 j=7  Kord j2=7     i= 1 .J2[j2]= 7 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 42 120 120 0 7 0 0 0 0 0 0 0 0 294 294] [1 1 3 42 120 120 0 7 0 0 0 0 0 0 0 0 294 294] nw=0
-#1480 tabs  g_newUpdTniks        8 j=7  Kord j2=7 0   i= 2 .J2[j2]= 8 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 42 120 120 0 8 0 0 0 0 0 0 0 0 295 295] [1 1 3 42 120 120 0 8 0 0 0 0 0 0 0 0 295 295] nw=0
-#1480 tabs  g_newUpdTniks        9 j=7  Kord j2=7 1   i= 3 .J2[j2]= 9 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 42 120 120 0 9 0 0 0 0 0 0 0 0 296 296] [1 1 3 42 120 120 0 9 0 0 0 0 0 0 0 0 296 296] nw=0
+#1480 tabs  g_newUpdTniks        7 j=7  Kord j2=7 5   i= 1 .J2[j2]= 7 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 42 120 120 0 7 0 0 0 0 0 0 0 0 294 294] [1 1 3 42 120 120 0 7 0 0 0 0 0 0 0 0 294 294] nw=0
+#1480 tabs  g_newUpdTniks        8 j=7  Kord j2=7 3   i= 2 .J2[j2]= 8 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 42 120 120 0 8 0 0 0 0 0 0 0 0 295 295] [1 1 3 42 120 120 0 8 0 0 0 0 0 0 0 0 295 295] nw=0
+#1480 tabs  g_newUpdTniks        9 j=7  Kord j2=7 5   i= 3 .J2[j2]= 9 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 42 120 120 0 9 0 0 0 0 0 0 0 0 296 296] [1 1 3 42 120 120 0 9 0 0 0 0 0 0 0 0 296 296] nw=0
 #1480 tabs  g_newUpdTniks       10 j=7  Kord j2=7 3   i= 4 .J2[j2]=10 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 42 120 120 0 10 0 0 0 0 0 0 0 0 297 297] [1 1 3 42 120 120 0 10 0 0 0 0 0 0 0 0 297 297] nw=0
 #1480 tabs  g_newUpdTniks       11 j=7  Kord j2=7     i= 5 .J2[j2]=11 len(tl)=120 len(tl)=120 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 42 120 120 0 11 0 0 0 0 0 0 0 0 298 298] [1 1 3 42 120 120 0 11 0 0 0 0 0 0 0 0 298 298] nw=0
 #1480 tabs  g_newUpdTniks       42 j=3  Colm j2=3     i=42 .J2[j2]=42 len(tl)=60 len(tl)=60 [1 1 3 60 120 120 0 120 0 0 0 1 0 0 0 0] [1 1 3 42 120 120 0 12 0 0 0 0 0 0 0 0 299 299] [1 1 3 42 120 120 0 12 0 0 0 0 0 0 0 0 299 299] nw=0
@@ -1166,69 +1166,1448 @@ Name  Tid V PrtTxt x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz Lead L
 #1777 tabs  cursorCol          cc=  5 [0 0 0 5]
 #1754 tabs  cc2xywh            tpp=360 old=5 lenT=120 cc=5 old % lenT
 #1757 tabs  cc2xywh            cc=   5 old=   5 [360 360 360 120 6]   24.00  375.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
-[7:G :2, 3:E♭:2, 0:C :2]
-[7:G :2, 3:D♯:2, 0:C :2]
-[ None , 3:E♭:2,  None ,  None ,  None ,  None ,  None ]
-[ None ,  None ,  None , 3:E♭:2,  None ,  None , 0:C :2]
+[4:E :2, a:B♭:2, 7:G :2, 0:C :2]
+[4:E :2, a:A♯:2, 7:G :2, 0:C :2]
+[a:B♭:2,  None ,  None ,  None ,  None ,  None , 4:E :2]
+[ None ,  None ,  None ,  None , a:B♭:2,  None , 0:C :2]
 #1883 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels Upd1
-# 742 cmds  _snapshot          snapName='test.25.1.NEW.png' New1
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.25.1.NEW.png')
+# 742 cmds  _snapshot          snapName='test.2.1.NEW.png' New1
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.1.NEW.png')
 # 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.25.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.25.1.NEW.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.1.NEW.png')
 # 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.25.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
-#  86 evnts on_draw            .LOG_ID= 25 sid=1 typ=NEW why=New1 qlen=1
-C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.25.1.NEW.png
- TId  Identity    Why  Name  Cnt Rotate G V P  L  S   C    T    N    I    K M  R   Q H  A  B  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
- TId  Identity    Why  Name  Cnt PrtTxt G V P  L  S   C    T    N    I    K M  R   Q H  A  B  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz dpi B I FontName
-# 507 cmds  _quit              BGN @^Q Error=0 save=0 .quitting=0
-###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
-###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
-###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
-[7:G :2, 3:E♭:2, 0:C :2]
-[7:G :2, 3:D♯:2, 0:C :2]
-[ None , 3:E♭:2,  None ,  None ,  None ,  None ,  None ]
-[ None ,  None ,  None , 3:E♭:2,  None ,  None , 0:C :2]
-#1883 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels @^Q
-# 141 chords dumpLimap            0 0 0 Cm           Cm           Rm35         037    CD♯G         Rm35         037    CD♯G        
-# 141 chords dumpLimap            0 0 1 D♯6x/C       D♯6x/C       6RM3         904    CD♯G         RM36         049    D♯GC        
-# 141 chords dumpLimap            0 0 2 G+s4/C       G+s4/C       4♯5R         580    CD♯G         R4♯5         058    GCD♯        
-# 742 cmds  _snapshot          snapName='test.25.2.FIN.png' quit 0 save=0
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.25.2.FIN.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=1 typ=NEW why=New1 qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.1.NEW.png
+#1774 tabs  plct2cc                  11 [360 360 360 120 6] [1 1    2 6] (   0 +  0 +120 +  6 +5)
+#1777 tabs  cursorCol          cc= 11 [0 0 1 5]
+#1754 tabs  cc2xywh            tpp=360 old=11 lenT=120 cc=11 old % lenT
+#1757 tabs  cc2xywh            cc=  11 old=  11 [360 360 360 120 6]   72.00  375.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  10 [360 360 360 120 6] [1 1    2 5] (   0 +  0 +120 +  6 +4)
+#1777 tabs  cursorCol          cc= 10 [0 0 1 4]
+#1754 tabs  cc2xywh            tpp=360 old=10 lenT=120 cc=10 old % lenT
+#1757 tabs  cc2xywh            cc=  10 old=  10 [360 360 360 120 6]   72.00  405.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  10 [360 360 360 120 6] [1 1    2 5] (   0 +  0 +120 +  6 +4)
+#1777 tabs  cursorCol          cc= 10 [0 0 1 4]
+# 682 cmds  _setTab            [1 1 1  2 5]  11   6  2] BGN onTxt rev=0 old= 10 cc= 10 text='5' p=0 l=0 s=0 c=1 t=4
+#1774 tabs  plct2cc                   9 [360 360 360 120 6] [1 1    2 4] (   0 +  0 +120 +  6 +3)
+#1777 tabs  cursorCol          cc=  9 [0 0 1 3]
+#1754 tabs  cc2xywh            tpp=360 old=9 lenT=120 cc=9 old % lenT
+#1757 tabs  cc2xywh            cc=   9 old=   9 [360 360 360 120 6]   72.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.2.TXT.5.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.2.TXT.5.png')
 # 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.25.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.25.2.FIN.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.2.TXT.5.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.2.TXT.5.png')
 # 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.25.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
-# 518 cmds  _quit              END @^Q Error=0 save=0 .quitting=1
-###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-# 413 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 413 utl   getFilePath        baseName =Atest.1.1.3.20.6_CC_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =Atest.1.1.3.20.6_CC_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.csv')
-#2187 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.csv
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.csv')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.csv ###
-#2190 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.25.csv
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.25.csv')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.25.csv ###
-# 520 cmds  _quit              END @^Q Error=0 save=0 .quitting=1
-###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-# 521 cmds  _quit              Calling close(),#2257 tabs  <module>           Thats all folks!
-#2258 tabs  <module>           END C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-# 413 utl   getFilePath        baseName =Atest.1.1.3.20.6_CC_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =Atest.1.1.3.20.6_CC_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.log')
-# 413 utl   getFilePath        baseName =Etest.1.1.3.20.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =Etest.1.1.3.20.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.20.6_CC_CC.txt')
-#2220 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.25.txt
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.25.txt')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.25.txt ###
-#2222 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.20.6_CC_CC.txt
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.20.6_CC_CC.txt')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.20.6_CC_CC.txt ###
-#2224 tabs  cleanupOutFiles    Flush & Close Txt File
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.2.TXT.5.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=2 typ=TXT.5 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.2.TXT.5.png
+#1774 tabs  plct2cc                   9 [360 360 360 120 6] [1 1    2 4] (   0 +  0 +120 +  6 +3)
+#1777 tabs  cursorCol          cc=  9 [0 0 1 3]
+# 682 cmds  _setTab            [1 1 1  2 4]  10   6  2] BGN onTxt rev=0 old=  9 cc=  9 text='7' p=0 l=0 s=0 c=1 t=3
+#1774 tabs  plct2cc                   8 [360 360 360 120 6] [1 1    2 3] (   0 +  0 +120 +  6 +2)
+#1777 tabs  cursorCol          cc=  8 [0 0 1 2]
+#1754 tabs  cc2xywh            tpp=360 old=8 lenT=120 cc=8 old % lenT
+#1757 tabs  cc2xywh            cc=   8 old=   8 [360 360 360 120 6]   72.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.3.TXT.7.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.3.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.3.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.3.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.3.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=3 typ=TXT.7 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.3.TXT.7.png
+#1774 tabs  plct2cc                   9 [360 360 360 120 6] [1 1    2 4] (   0 +  0 +120 +  6 +3)
+#1777 tabs  cursorCol          cc=  9 [0 0 1 3]
+#1754 tabs  cc2xywh            tpp=360 old=9 lenT=120 cc=9 old % lenT
+#1757 tabs  cc2xywh            cc=   9 old=   9 [360 360 360 120 6]   72.00  435.00   48.00   30.00 t.text='7' 18.68 32.00 C C
+#1774 tabs  plct2cc                   9 [360 360 360 120 6] [1 1    2 4] (   0 +  0 +120 +  6 +3)
+#1777 tabs  cursorCol          cc=  9 [0 0 1 3]
+# 682 cmds  _setTab            [1 1 1  2 4]  10   6  2] BGN    BACKSPACE(65288) rev=1 old=  9 cc=  9 text=' ' p=0 l=0 s=0 c=1 t=3
+[4:E :2, a:B♭:2, 7:G :2, 0:C :2, 2:D :1]
+[4:E :2, a:A♯:2, 7:G :2, 0:C :2, 2:D :1]
+[a:B♭:2,  None ,  None ,  None ,  None ,  None , 4:E :2]
+[ None ,  None ,  None ,  None , a:B♭:2,  None , 0:C :2]
+# 742 cmds  _snapshot          snapName='test.2.4.UNK.png'    BACKSPACE(65288)
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.4.UNK.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.4.UNK.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.4.UNK.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.4.UNK.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=4 typ=UNK why=   BACKSPACE(65288) qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.4.UNK.png
+#1774 tabs  plct2cc                   9 [360 360 360 120 6] [1 1    2 4] (   0 +  0 +120 +  6 +3)
+#1777 tabs  cursorCol          cc=  9 [0 0 1 3]
+# 682 cmds  _setTab            [1 1 1  2 4]  10   6  2] BGN onTxt rev=0 old=  9 cc=  9 text='6' p=0 l=0 s=0 c=1 t=3
+#1774 tabs  plct2cc                   8 [360 360 360 120 6] [1 1    2 3] (   0 +  0 +120 +  6 +2)
+#1777 tabs  cursorCol          cc=  8 [0 0 1 2]
+#1754 tabs  cc2xywh            tpp=360 old=8 lenT=120 cc=8 old % lenT
+#1757 tabs  cc2xywh            cc=   8 old=   8 [360 360 360 120 6]   72.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.5.TXT.6.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.5.TXT.6.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.5.TXT.6.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.5.TXT.6.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.5.TXT.6.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=5 typ=TXT.6 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.5.TXT.6.png
+[4:E :2, a:B♭:2, 7:G :2, 0:C :2, 2:D :1, 8:A♭:1]
+[4:E :2, a:A♯:2, 7:G :2, 0:C :2, 2:D :1, 8:G♯:1]
+[a:B♭:2,  None , 8:A♭:1,  None ,  None ,  None , 4:E :2]
+[ None ,  None , 8:A♭:1,  None , a:B♭:2,  None , 0:C :2]
+# 927 cmds  _togFlatShrp        0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
+#1774 tabs  plct2cc                   2 [360 360 360 120 6] [1 1    1 3] (   0 +  0 +120 +  0 +2)
+#1777 tabs  cursorCol          cc=  2 [0 0 0 2]
+#1754 tabs  cc2xywh            tpp=360 old=2 lenT=120 cc=2 old % lenT
+#1757 tabs  cc2xywh            cc=   2 old=   2 [360 360 360 120 6]   24.00  465.00   48.00   30.00 t.text='3' 18.68 32.00 C C
+#1774 tabs  plct2cc                   2 [360 360 360 120 6] [1 1    1 3] (   0 +  0 +120 +  0 +2)
+#1777 tabs  cursorCol          cc=  2 [0 0 0 2]
+# 682 cmds  _setTab            [1 1 1  1 3]   3   0  1] BGN onTxt rev=0 old=  2 cc=  2 text='4' p=0 l=0 s=0 c=0 t=2
+[4:E :2, a:B♭:1, 7:G :2, 0:C :2, 2:D :1, 8:A♭:1, b:B :1]
+[4:E :2, a:A♯:1, 7:G :2, 0:C :2, 2:D :1, 8:G♯:1, b:B :1]
+[a:B♭:1,  None , 8:A♭:1,  None ,  None , b:B :1, 4:E :2]
+[ None ,  None , 8:A♭:1,  None , a:B♭:1,  None , 0:C :2]
+#1774 tabs  plct2cc                   1 [360 360 360 120 6] [1 1    1 2] (   0 +  0 +120 +  0 +1)
+#1777 tabs  cursorCol          cc=  1 [0 0 0 1]
+#1754 tabs  cc2xywh            tpp=360 old=1 lenT=120 cc=1 old % lenT
+#1757 tabs  cc2xywh            cc=   1 old=   1 [360 360 360 120 6]   24.00  495.00   48.00   30.00 t.text='5' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.6.TXT.4.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.6.TXT.4.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.6.TXT.4.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.6.TXT.4.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.6.TXT.4.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=6 typ=TXT.4 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.6.TXT.4.png
+#1774 tabs  plct2cc                   7 [360 360 360 120 6] [1 1    2 2] (   0 +  0 +120 +  6 +1)
+#1777 tabs  cursorCol          cc=  7 [0 0 1 1]
+#1754 tabs  cc2xywh            tpp=360 old=7 lenT=120 cc=7 old % lenT
+#1757 tabs  cc2xywh            cc=   7 old=   7 [360 360 360 120 6]   72.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                   8 [360 360 360 120 6] [1 1    2 3] (   0 +  0 +120 +  6 +2)
+#1777 tabs  cursorCol          cc=  8 [0 0 1 2]
+#1754 tabs  cc2xywh            tpp=360 old=8 lenT=120 cc=8 old % lenT
+#1757 tabs  cc2xywh            cc=   8 old=   8 [360 360 360 120 6]   72.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                   8 [360 360 360 120 6] [1 1    2 3] (   0 +  0 +120 +  6 +2)
+#1777 tabs  cursorCol          cc=  8 [0 0 1 2]
+# 682 cmds  _setTab            [1 1 1  2 3]   9   6  2] BGN onTxt rev=0 old=  8 cc=  8 text='5' p=0 l=0 s=0 c=1 t=2
+#1774 tabs  plct2cc                   7 [360 360 360 120 6] [1 1    2 2] (   0 +  0 +120 +  6 +1)
+#1777 tabs  cursorCol          cc=  7 [0 0 1 1]
+#1754 tabs  cc2xywh            tpp=360 old=7 lenT=120 cc=7 old % lenT
+#1757 tabs  cc2xywh            cc=   7 old=   7 [360 360 360 120 6]   72.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.7.TXT.5.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.7.TXT.5.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.7.TXT.5.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.7.TXT.5.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.7.TXT.5.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=7 typ=TXT.5 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.7.TXT.5.png
+#1774 tabs  plct2cc                   7 [360 360 360 120 6] [1 1    2 2] (   0 +  0 +120 +  6 +1)
+#1777 tabs  cursorCol          cc=  7 [0 0 1 1]
+# 682 cmds  _setTab            [1 1 1  2 2]   8   6  2] BGN onTxt rev=0 old=  7 cc=  7 text='6' p=0 l=0 s=0 c=1 t=1
+#1774 tabs  plct2cc                   6 [360 360 360 120 6] [1 1    2 1] (   0 +  0 +120 +  6 +0)
+#1777 tabs  cursorCol          cc=  6 [0 0 1 0]
+#1754 tabs  cc2xywh            tpp=360 old=6 lenT=120 cc=6 old % lenT
+#1757 tabs  cc2xywh            cc=   6 old=   6 [360 360 360 120 6]   72.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.8.TXT.6.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.8.TXT.6.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.8.TXT.6.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.8.TXT.6.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.8.TXT.6.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=8 typ=TXT.6 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.8.TXT.6.png
+#1774 tabs  plct2cc                   6 [360 360 360 120 6] [1 1    2 1] (   0 +  0 +120 +  6 +0)
+#1777 tabs  cursorCol          cc=  6 [0 0 1 0]
+#1774 tabs  plct2cc                  12 [360 360 360 120 6] [1 1    3 1] (   0 +  0 +120 + 12 +0)
+#1777 tabs  cursorCol          cc= 12 [0 0 2 0]
+#1754 tabs  cc2xywh            tpp=360 old=12 lenT=120 cc=12 old % lenT
+#1757 tabs  cc2xywh            cc=  12 old=  12 [360 360 360 120 6]  120.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  18 [360 360 360 120 6] [1 1    4 1] (   0 +  0 +120 + 18 +0)
+#1777 tabs  cursorCol          cc= 18 [0 0 3 0]
+#1754 tabs  cc2xywh            tpp=360 old=18 lenT=120 cc=18 old % lenT
+#1757 tabs  cc2xywh            cc=  18 old=  18 [360 360 360 120 6]  168.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  24 [360 360 360 120 6] [1 1    5 1] (   0 +  0 +120 + 24 +0)
+#1777 tabs  cursorCol          cc= 24 [0 0 4 0]
+#1754 tabs  cc2xywh            tpp=360 old=24 lenT=120 cc=24 old % lenT
+#1757 tabs  cc2xywh            cc=  24 old=  24 [360 360 360 120 6]  216.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  30 [360 360 360 120 6] [1 1    6 1] (   0 +  0 +120 + 30 +0)
+#1777 tabs  cursorCol          cc= 30 [0 0 5 0]
+#1754 tabs  cc2xywh            tpp=360 old=30 lenT=120 cc=30 old % lenT
+#1757 tabs  cc2xywh            cc=  30 old=  30 [360 360 360 120 6]  264.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  36 [360 360 360 120 6] [1 1    7 1] (   0 +  0 +120 + 36 +0)
+#1777 tabs  cursorCol          cc= 36 [0 0 6 0]
+#1754 tabs  cc2xywh            tpp=360 old=36 lenT=120 cc=36 old % lenT
+#1757 tabs  cc2xywh            cc=  36 old=  36 [360 360 360 120 6]  312.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  42 [360 360 360 120 6] [1 1    8 1] (   0 +  0 +120 + 42 +0)
+#1777 tabs  cursorCol          cc= 42 [0 0 7 0]
+#1754 tabs  cc2xywh            tpp=360 old=42 lenT=120 cc=42 old % lenT
+#1757 tabs  cc2xywh            cc=  42 old=  42 [360 360 360 120 6]  360.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  48 [360 360 360 120 6] [1 1    9 1] (   0 +  0 +120 + 48 +0)
+#1777 tabs  cursorCol          cc= 48 [0 0 8 0]
+#1754 tabs  cc2xywh            tpp=360 old=48 lenT=120 cc=48 old % lenT
+#1757 tabs  cc2xywh            cc=  48 old=  48 [360 360 360 120 6]  408.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  54 [360 360 360 120 6] [1 1   10 1] (   0 +  0 +120 + 54 +0)
+#1777 tabs  cursorCol          cc= 54 [0 0 9 0]
+#1754 tabs  cc2xywh            tpp=360 old=54 lenT=120 cc=54 old % lenT
+#1757 tabs  cc2xywh            cc=  54 old=  54 [360 360 360 120 6]  456.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  60 [360 360 360 120 6] [1 1   11 1] (   0 +  0 +120 + 60 +0)
+#1777 tabs  cursorCol          cc= 60 [0 0 10 0]
+#1754 tabs  cc2xywh            tpp=360 old=60 lenT=120 cc=60 old % lenT
+#1757 tabs  cc2xywh            cc=  60 old=  60 [360 360 360 120 6]  504.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  60 [360 360 360 120 6] [1 1   11 1] (   0 +  0 +120 + 60 +0)
+#1777 tabs  cursorCol          cc= 60 [0 0 10 0]
+#1774 tabs  plct2cc                  60 [360 360 360 120 6] [1 1   11 1] (   0 +  0 +120 + 60 +0)
+#1777 tabs  cursorCol          cc= 60 [0 0 10 0]
+# 742 cmds  _snapshot          snapName='test.2.9.PST.1.png' @ V
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.9.PST.1.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.9.PST.1.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.9.PST.1.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.9.PST.1.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=9 typ=PST.1 why=@ V qlen=2
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.9.PST.1.png
+# 742 cmds  _snapshot          snapName='test.2.10.PST.2.png' @  PASTE(    8)
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.10.PST.2.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.10.PST.2.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.10.PST.2.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.10.PST.2.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=10 typ=PST.2 why=@  PASTE(    8) qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.10.PST.2.png
+#1774 tabs  plct2cc                  61 [360 360 360 120 6] [1 1   11 2] (   0 +  0 +120 + 60 +1)
+#1777 tabs  cursorCol          cc= 61 [0 0 10 1]
+#1754 tabs  cc2xywh            tpp=360 old=61 lenT=120 cc=61 old % lenT
+#1757 tabs  cc2xywh            cc=  61 old=  61 [360 360 360 120 6]  504.00  495.00   48.00   30.00 t.text='6' 18.68 32.00 C C
+#1774 tabs  plct2cc                  62 [360 360 360 120 6] [1 1   11 3] (   0 +  0 +120 + 60 +2)
+#1777 tabs  cursorCol          cc= 62 [0 0 10 2]
+#1754 tabs  cc2xywh            tpp=360 old=62 lenT=120 cc=62 old % lenT
+#1757 tabs  cc2xywh            cc=  62 old=  62 [360 360 360 120 6]  504.00  465.00   48.00   30.00 t.text='5' 18.68 32.00 C C
+#1774 tabs  plct2cc                  62 [360 360 360 120 6] [1 1   11 3] (   0 +  0 +120 + 60 +2)
+#1777 tabs  cursorCol          cc= 62 [0 0 10 2]
+# 682 cmds  _setTab            [1 1 1 11 3]  63  60 11] BGN onTxt rev=0 old= 62 cc= 62 text='4' p=0 l=0 s=0 c=10 t=2
+[4:E :2, a:B♭:1, 7:G :2, 0:C :3, 2:D :2, 8:A♭:2, b:B :2, 5:F :2]
+[4:E :2, a:A♯:1, 7:G :2, 0:C :3, 2:D :2, 8:G♯:2, b:B :2, 5:F :2]
+[a:B♭:1,  None , 8:A♭:2,  None ,  None , b:B :2, 4:E :2]
+[ None ,  None , 8:A♭:2,  None , a:B♭:1, 5:F :2, 0:C :3]
+#1774 tabs  plct2cc                  61 [360 360 360 120 6] [1 1   11 2] (   0 +  0 +120 + 60 +1)
+#1777 tabs  cursorCol          cc= 61 [0 0 10 1]
+#1754 tabs  cc2xywh            tpp=360 old=61 lenT=120 cc=61 old % lenT
+#1757 tabs  cc2xywh            cc=  61 old=  61 [360 360 360 120 6]  504.00  495.00   48.00   30.00 t.text='6' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.11.TXT.4.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.11.TXT.4.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.11.TXT.4.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.11.TXT.4.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.11.TXT.4.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=11 typ=TXT.4 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.11.TXT.4.png
+#1774 tabs  plct2cc                  55 [360 360 360 120 6] [1 1   10 2] (   0 +  0 +120 + 54 +1)
+#1777 tabs  cursorCol          cc= 55 [0 0 9 1]
+#1754 tabs  cc2xywh            tpp=360 old=55 lenT=120 cc=55 old % lenT
+#1757 tabs  cc2xywh            cc=  55 old=  55 [360 360 360 120 6]  456.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  49 [360 360 360 120 6] [1 1    9 2] (   0 +  0 +120 + 48 +1)
+#1777 tabs  cursorCol          cc= 49 [0 0 8 1]
+#1754 tabs  cc2xywh            tpp=360 old=49 lenT=120 cc=49 old % lenT
+#1757 tabs  cc2xywh            cc=  49 old=  49 [360 360 360 120 6]  408.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  43 [360 360 360 120 6] [1 1    8 2] (   0 +  0 +120 + 42 +1)
+#1777 tabs  cursorCol          cc= 43 [0 0 7 1]
+#1754 tabs  cc2xywh            tpp=360 old=43 lenT=120 cc=43 old % lenT
+#1757 tabs  cc2xywh            cc=  43 old=  43 [360 360 360 120 6]  360.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  37 [360 360 360 120 6] [1 1    7 2] (   0 +  0 +120 + 36 +1)
+#1777 tabs  cursorCol          cc= 37 [0 0 6 1]
+#1754 tabs  cc2xywh            tpp=360 old=37 lenT=120 cc=37 old % lenT
+#1757 tabs  cc2xywh            cc=  37 old=  37 [360 360 360 120 6]  312.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  31 [360 360 360 120 6] [1 1    6 2] (   0 +  0 +120 + 30 +1)
+#1777 tabs  cursorCol          cc= 31 [0 0 5 1]
+#1754 tabs  cc2xywh            tpp=360 old=31 lenT=120 cc=31 old % lenT
+#1757 tabs  cc2xywh            cc=  31 old=  31 [360 360 360 120 6]  264.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  25 [360 360 360 120 6] [1 1    5 2] (   0 +  0 +120 + 24 +1)
+#1777 tabs  cursorCol          cc= 25 [0 0 4 1]
+#1754 tabs  cc2xywh            tpp=360 old=25 lenT=120 cc=25 old % lenT
+#1757 tabs  cc2xywh            cc=  25 old=  25 [360 360 360 120 6]  216.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  19 [360 360 360 120 6] [1 1    4 2] (   0 +  0 +120 + 18 +1)
+#1777 tabs  cursorCol          cc= 19 [0 0 3 1]
+#1754 tabs  cc2xywh            tpp=360 old=19 lenT=120 cc=19 old % lenT
+#1757 tabs  cc2xywh            cc=  19 old=  19 [360 360 360 120 6]  168.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  13 [360 360 360 120 6] [1 1    3 2] (   0 +  0 +120 + 12 +1)
+#1777 tabs  cursorCol          cc= 13 [0 0 2 1]
+#1754 tabs  cc2xywh            tpp=360 old=13 lenT=120 cc=13 old % lenT
+#1757 tabs  cc2xywh            cc=  13 old=  13 [360 360 360 120 6]  120.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                   7 [360 360 360 120 6] [1 1    2 2] (   0 +  0 +120 +  6 +1)
+#1777 tabs  cursorCol          cc=  7 [0 0 1 1]
+#1754 tabs  cc2xywh            tpp=360 old=7 lenT=120 cc=7 old % lenT
+#1757 tabs  cc2xywh            cc=   7 old=   7 [360 360 360 120 6]   72.00  495.00   48.00   30.00 t.text='6' 18.68 32.00 C C
+#1774 tabs  plct2cc                  13 [360 360 360 120 6] [1 1    3 2] (   0 +  0 +120 + 12 +1)
+#1777 tabs  cursorCol          cc= 13 [0 0 2 1]
+#1754 tabs  cc2xywh            tpp=360 old=13 lenT=120 cc=13 old % lenT
+#1757 tabs  cc2xywh            cc=  13 old=  13 [360 360 360 120 6]  120.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  14 [360 360 360 120 6] [1 1    3 3] (   0 +  0 +120 + 12 +2)
+#1777 tabs  cursorCol          cc= 14 [0 0 2 2]
+#1754 tabs  cc2xywh            tpp=360 old=14 lenT=120 cc=14 old % lenT
+#1757 tabs  cc2xywh            cc=  14 old=  14 [360 360 360 120 6]  120.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  15 [360 360 360 120 6] [1 1    3 4] (   0 +  0 +120 + 12 +3)
+#1777 tabs  cursorCol          cc= 15 [0 0 2 3]
+#1754 tabs  cc2xywh            tpp=360 old=15 lenT=120 cc=15 old % lenT
+#1757 tabs  cc2xywh            cc=  15 old=  15 [360 360 360 120 6]  120.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  16 [360 360 360 120 6] [1 1    3 5] (   0 +  0 +120 + 12 +4)
+#1777 tabs  cursorCol          cc= 16 [0 0 2 4]
+#1754 tabs  cc2xywh            tpp=360 old=16 lenT=120 cc=16 old % lenT
+#1757 tabs  cc2xywh            cc=  16 old=  16 [360 360 360 120 6]  120.00  405.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  16 [360 360 360 120 6] [1 1    3 5] (   0 +  0 +120 + 12 +4)
+#1777 tabs  cursorCol          cc= 16 [0 0 2 4]
+# 682 cmds  _setTab            [1 1 1  3 5]  17  12  3] BGN onTxt rev=0 old= 16 cc= 16 text='7' p=0 l=0 s=0 c=2 t=4
+#1774 tabs  plct2cc                  15 [360 360 360 120 6] [1 1    3 4] (   0 +  0 +120 + 12 +3)
+#1777 tabs  cursorCol          cc= 15 [0 0 2 3]
+#1754 tabs  cc2xywh            tpp=360 old=15 lenT=120 cc=15 old % lenT
+#1757 tabs  cc2xywh            cc=  15 old=  15 [360 360 360 120 6]  120.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.12.TXT.7.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.12.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.12.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.12.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.12.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=12 typ=TXT.7 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.12.TXT.7.png
+#1774 tabs  plct2cc                  15 [360 360 360 120 6] [1 1    3 4] (   0 +  0 +120 + 12 +3)
+#1777 tabs  cursorCol          cc= 15 [0 0 2 3]
+# 682 cmds  _setTab            [1 1 1  3 4]  16  12  3] BGN onTxt rev=0 old= 15 cc= 15 text='9' p=0 l=0 s=0 c=2 t=3
+#1774 tabs  plct2cc                  14 [360 360 360 120 6] [1 1    3 3] (   0 +  0 +120 + 12 +2)
+#1777 tabs  cursorCol          cc= 14 [0 0 2 2]
+#1754 tabs  cc2xywh            tpp=360 old=14 lenT=120 cc=14 old % lenT
+#1757 tabs  cc2xywh            cc=  14 old=  14 [360 360 360 120 6]  120.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.13.TXT.9.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.13.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.13.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.13.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.13.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=13 typ=TXT.9 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.13.TXT.9.png
+#1774 tabs  plct2cc                  14 [360 360 360 120 6] [1 1    3 3] (   0 +  0 +120 + 12 +2)
+#1777 tabs  cursorCol          cc= 14 [0 0 2 2]
+# 682 cmds  _setTab            [1 1 1  3 3]  15  12  3] BGN onTxt rev=0 old= 14 cc= 14 text='7' p=0 l=0 s=0 c=2 t=2
+#1774 tabs  plct2cc                  13 [360 360 360 120 6] [1 1    3 2] (   0 +  0 +120 + 12 +1)
+#1777 tabs  cursorCol          cc= 13 [0 0 2 1]
+#1754 tabs  cc2xywh            tpp=360 old=13 lenT=120 cc=13 old % lenT
+#1757 tabs  cc2xywh            cc=  13 old=  13 [360 360 360 120 6]  120.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.14.TXT.7.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.14.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.14.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.14.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.14.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=14 typ=TXT.7 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.14.TXT.7.png
+#1774 tabs  plct2cc                  13 [360 360 360 120 6] [1 1    3 2] (   0 +  0 +120 + 12 +1)
+#1777 tabs  cursorCol          cc= 13 [0 0 2 1]
+# 682 cmds  _setTab            [1 1 1  3 2]  14  12  3] BGN onTxt rev=0 old= 13 cc= 13 text='8' p=0 l=0 s=0 c=2 t=1
+#1774 tabs  plct2cc                  12 [360 360 360 120 6] [1 1    3 1] (   0 +  0 +120 + 12 +0)
+#1777 tabs  cursorCol          cc= 12 [0 0 2 0]
+#1754 tabs  cc2xywh            tpp=360 old=12 lenT=120 cc=12 old % lenT
+#1757 tabs  cc2xywh            cc=  12 old=  12 [360 360 360 120 6]  120.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.15.TXT.8.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.15.TXT.8.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.15.TXT.8.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.15.TXT.8.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.15.TXT.8.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=15 typ=TXT.8 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.15.TXT.8.png
+#1774 tabs  plct2cc                  18 [360 360 360 120 6] [1 1    4 1] (   0 +  0 +120 + 18 +0)
+#1777 tabs  cursorCol          cc= 18 [0 0 3 0]
+#1754 tabs  cc2xywh            tpp=360 old=18 lenT=120 cc=18 old % lenT
+#1757 tabs  cc2xywh            cc=  18 old=  18 [360 360 360 120 6]  168.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  19 [360 360 360 120 6] [1 1    4 2] (   0 +  0 +120 + 18 +1)
+#1777 tabs  cursorCol          cc= 19 [0 0 3 1]
+#1754 tabs  cc2xywh            tpp=360 old=19 lenT=120 cc=19 old % lenT
+#1757 tabs  cc2xywh            cc=  19 old=  19 [360 360 360 120 6]  168.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  20 [360 360 360 120 6] [1 1    4 3] (   0 +  0 +120 + 18 +2)
+#1777 tabs  cursorCol          cc= 20 [0 0 3 2]
+#1754 tabs  cc2xywh            tpp=360 old=20 lenT=120 cc=20 old % lenT
+#1757 tabs  cc2xywh            cc=  20 old=  20 [360 360 360 120 6]  168.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  21 [360 360 360 120 6] [1 1    4 4] (   0 +  0 +120 + 18 +3)
+#1777 tabs  cursorCol          cc= 21 [0 0 3 3]
+#1754 tabs  cc2xywh            tpp=360 old=21 lenT=120 cc=21 old % lenT
+#1757 tabs  cc2xywh            cc=  21 old=  21 [360 360 360 120 6]  168.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  22 [360 360 360 120 6] [1 1    4 5] (   0 +  0 +120 + 18 +4)
+#1777 tabs  cursorCol          cc= 22 [0 0 3 4]
+#1754 tabs  cc2xywh            tpp=360 old=22 lenT=120 cc=22 old % lenT
+#1757 tabs  cc2xywh            cc=  22 old=  22 [360 360 360 120 6]  168.00  405.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  22 [360 360 360 120 6] [1 1    4 5] (   0 +  0 +120 + 18 +4)
+#1777 tabs  cursorCol          cc= 22 [0 0 3 4]
+# 682 cmds  _setTab            [1 1 1  4 5]  23  18  4] BGN onTxt rev=0 old= 22 cc= 22 text='8' p=0 l=0 s=0 c=3 t=4
+#1774 tabs  plct2cc                  21 [360 360 360 120 6] [1 1    4 4] (   0 +  0 +120 + 18 +3)
+#1777 tabs  cursorCol          cc= 21 [0 0 3 3]
+#1754 tabs  cc2xywh            tpp=360 old=21 lenT=120 cc=21 old % lenT
+#1757 tabs  cc2xywh            cc=  21 old=  21 [360 360 360 120 6]  168.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.16.TXT.8.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.16.TXT.8.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.16.TXT.8.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.16.TXT.8.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.16.TXT.8.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=16 typ=TXT.8 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.16.TXT.8.png
+#1774 tabs  plct2cc                  21 [360 360 360 120 6] [1 1    4 4] (   0 +  0 +120 + 18 +3)
+#1777 tabs  cursorCol          cc= 21 [0 0 3 3]
+# 682 cmds  _setTab            [1 1 1  4 4]  22  18  4] BGN onTxt rev=0 old= 21 cc= 21 text='a' p=0 l=0 s=0 c=3 t=3
+#1774 tabs  plct2cc                  20 [360 360 360 120 6] [1 1    4 3] (   0 +  0 +120 + 18 +2)
+#1777 tabs  cursorCol          cc= 20 [0 0 3 2]
+#1754 tabs  cc2xywh            tpp=360 old=20 lenT=120 cc=20 old % lenT
+#1757 tabs  cc2xywh            cc=  20 old=  20 [360 360 360 120 6]  168.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.17.TXT.a.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.17.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.17.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.17.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.17.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=17 typ=TXT.a why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.17.TXT.a.png
+#1774 tabs  plct2cc                  20 [360 360 360 120 6] [1 1    4 3] (   0 +  0 +120 + 18 +2)
+#1777 tabs  cursorCol          cc= 20 [0 0 3 2]
+# 682 cmds  _setTab            [1 1 1  4 3]  21  18  4] BGN onTxt rev=0 old= 20 cc= 20 text='8' p=0 l=0 s=0 c=3 t=2
+#1774 tabs  plct2cc                  19 [360 360 360 120 6] [1 1    4 2] (   0 +  0 +120 + 18 +1)
+#1777 tabs  cursorCol          cc= 19 [0 0 3 1]
+#1754 tabs  cc2xywh            tpp=360 old=19 lenT=120 cc=19 old % lenT
+#1757 tabs  cc2xywh            cc=  19 old=  19 [360 360 360 120 6]  168.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.18.TXT.8.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.18.TXT.8.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.18.TXT.8.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.18.TXT.8.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.18.TXT.8.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=18 typ=TXT.8 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.18.TXT.8.png
+#1774 tabs  plct2cc                  19 [360 360 360 120 6] [1 1    4 2] (   0 +  0 +120 + 18 +1)
+#1777 tabs  cursorCol          cc= 19 [0 0 3 1]
+# 682 cmds  _setTab            [1 1 1  4 2]  20  18  4] BGN onTxt rev=0 old= 19 cc= 19 text='9' p=0 l=0 s=0 c=3 t=1
+#1774 tabs  plct2cc                  18 [360 360 360 120 6] [1 1    4 1] (   0 +  0 +120 + 18 +0)
+#1777 tabs  cursorCol          cc= 18 [0 0 3 0]
+#1754 tabs  cc2xywh            tpp=360 old=18 lenT=120 cc=18 old % lenT
+#1757 tabs  cc2xywh            cc=  18 old=  18 [360 360 360 120 6]  168.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.19.TXT.9.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.19.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.19.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.19.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.19.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=19 typ=TXT.9 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.19.TXT.9.png
+#1774 tabs  plct2cc                  19 [360 360 360 120 6] [1 1    4 2] (   0 +  0 +120 + 18 +1)
+#1777 tabs  cursorCol          cc= 19 [0 0 3 1]
+#1754 tabs  cc2xywh            tpp=360 old=19 lenT=120 cc=19 old % lenT
+#1757 tabs  cc2xywh            cc=  19 old=  19 [360 360 360 120 6]  168.00  495.00   48.00   30.00 t.text='9' 18.68 32.00 C C
+#1774 tabs  plct2cc                  20 [360 360 360 120 6] [1 1    4 3] (   0 +  0 +120 + 18 +2)
+#1777 tabs  cursorCol          cc= 20 [0 0 3 2]
+#1754 tabs  cc2xywh            tpp=360 old=20 lenT=120 cc=20 old % lenT
+#1757 tabs  cc2xywh            cc=  20 old=  20 [360 360 360 120 6]  168.00  465.00   48.00   30.00 t.text='8' 18.68 32.00 C C
+#1774 tabs  plct2cc                  20 [360 360 360 120 6] [1 1    4 3] (   0 +  0 +120 + 18 +2)
+#1777 tabs  cursorCol          cc= 20 [0 0 3 2]
+# 682 cmds  _setTab            [1 1 1  4 3]  21  18  4] BGN onTxt rev=0 old= 20 cc= 20 text='7' p=0 l=0 s=0 c=3 t=2
+[4:E :3, a:B♭:1, 7:G :3, 0:C :4, 2:D :4, 8:A♭:3, b:B :3, 5:F :3]
+[4:E :3, a:A♯:1, 7:G :3, 0:C :4, 2:D :4, 8:G♯:3, b:B :3, 5:F :3]
+[a:B♭:1,  None , 8:A♭:3,  None ,  None , b:B :3, 4:E :3]
+[ None ,  None , 8:A♭:3,  None , a:B♭:1, 5:F :3, 0:C :4]
+#1774 tabs  plct2cc                  19 [360 360 360 120 6] [1 1    4 2] (   0 +  0 +120 + 18 +1)
+#1777 tabs  cursorCol          cc= 19 [0 0 3 1]
+#1754 tabs  cc2xywh            tpp=360 old=19 lenT=120 cc=19 old % lenT
+#1757 tabs  cc2xywh            cc=  19 old=  19 [360 360 360 120 6]  168.00  495.00   48.00   30.00 t.text='9' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.20.TXT.7.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.20.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.20.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.20.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.20.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=20 typ=TXT.7 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.20.TXT.7.png
+#1774 tabs  plct2cc                  20 [360 360 360 120 6] [1 1    4 3] (   0 +  0 +120 + 18 +2)
+#1777 tabs  cursorCol          cc= 20 [0 0 3 2]
+#1754 tabs  cc2xywh            tpp=360 old=20 lenT=120 cc=20 old % lenT
+#1757 tabs  cc2xywh            cc=  20 old=  20 [360 360 360 120 6]  168.00  465.00   48.00   30.00 t.text='7' 18.68 32.00 C C
+#1774 tabs  plct2cc                  20 [360 360 360 120 6] [1 1    4 3] (   0 +  0 +120 + 18 +2)
+#1777 tabs  cursorCol          cc= 20 [0 0 3 2]
+# 682 cmds  _setTab            [1 1 1  4 3]  21  18  4] BGN onTxt rev=0 old= 20 cc= 20 text='9' p=0 l=0 s=0 c=3 t=2
+[4:E :4, a:B♭:1, 7:G :3, 0:C :4, 2:D :3, 8:A♭:3, b:B :3, 5:F :3]
+[4:E :4, a:A♯:1, 7:G :3, 0:C :4, 2:D :3, 8:G♯:3, b:B :3, 5:F :3]
+[a:B♭:1,  None , 8:A♭:3,  None ,  None , b:B :3, 4:E :4]
+[ None ,  None , 8:A♭:3,  None , a:B♭:1, 5:F :3, 0:C :4]
+#1774 tabs  plct2cc                  19 [360 360 360 120 6] [1 1    4 2] (   0 +  0 +120 + 18 +1)
+#1777 tabs  cursorCol          cc= 19 [0 0 3 1]
+#1754 tabs  cc2xywh            tpp=360 old=19 lenT=120 cc=19 old % lenT
+#1757 tabs  cc2xywh            cc=  19 old=  19 [360 360 360 120 6]  168.00  495.00   48.00   30.00 t.text='9' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.21.TXT.9.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.21.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.21.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.21.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.21.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=21 typ=TXT.9 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.21.TXT.9.png
+#1774 tabs  plct2cc                  25 [360 360 360 120 6] [1 1    5 2] (   0 +  0 +120 + 24 +1)
+#1777 tabs  cursorCol          cc= 25 [0 0 4 1]
+#1754 tabs  cc2xywh            tpp=360 old=25 lenT=120 cc=25 old % lenT
+#1757 tabs  cc2xywh            cc=  25 old=  25 [360 360 360 120 6]  216.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  26 [360 360 360 120 6] [1 1    5 3] (   0 +  0 +120 + 24 +2)
+#1777 tabs  cursorCol          cc= 26 [0 0 4 2]
+#1754 tabs  cc2xywh            tpp=360 old=26 lenT=120 cc=26 old % lenT
+#1757 tabs  cc2xywh            cc=  26 old=  26 [360 360 360 120 6]  216.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  27 [360 360 360 120 6] [1 1    5 4] (   0 +  0 +120 + 24 +3)
+#1777 tabs  cursorCol          cc= 27 [0 0 4 3]
+#1754 tabs  cc2xywh            tpp=360 old=27 lenT=120 cc=27 old % lenT
+#1757 tabs  cc2xywh            cc=  27 old=  27 [360 360 360 120 6]  216.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  28 [360 360 360 120 6] [1 1    5 5] (   0 +  0 +120 + 24 +4)
+#1777 tabs  cursorCol          cc= 28 [0 0 4 4]
+#1754 tabs  cc2xywh            tpp=360 old=28 lenT=120 cc=28 old % lenT
+#1757 tabs  cc2xywh            cc=  28 old=  28 [360 360 360 120 6]  216.00  405.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  28 [360 360 360 120 6] [1 1    5 5] (   0 +  0 +120 + 24 +4)
+#1777 tabs  cursorCol          cc= 28 [0 0 4 4]
+# 682 cmds  _setTab            [1 1 1  5 5]  29  24  5] BGN onTxt rev=0 old= 28 cc= 28 text='a' p=0 l=0 s=0 c=4 t=4
+#1774 tabs  plct2cc                  27 [360 360 360 120 6] [1 1    5 4] (   0 +  0 +120 + 24 +3)
+#1777 tabs  cursorCol          cc= 27 [0 0 4 3]
+#1754 tabs  cc2xywh            tpp=360 old=27 lenT=120 cc=27 old % lenT
+#1757 tabs  cc2xywh            cc=  27 old=  27 [360 360 360 120 6]  216.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.22.TXT.a.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.22.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.22.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.22.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.22.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=22 typ=TXT.a why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.22.TXT.a.png
+#1774 tabs  plct2cc                  27 [360 360 360 120 6] [1 1    5 4] (   0 +  0 +120 + 24 +3)
+#1777 tabs  cursorCol          cc= 27 [0 0 4 3]
+# 682 cmds  _setTab            [1 1 1  5 4]  28  24  5] BGN onTxt rev=0 old= 27 cc= 27 text='c' p=0 l=0 s=0 c=4 t=3
+#1774 tabs  plct2cc                  26 [360 360 360 120 6] [1 1    5 3] (   0 +  0 +120 + 24 +2)
+#1777 tabs  cursorCol          cc= 26 [0 0 4 2]
+#1754 tabs  cc2xywh            tpp=360 old=26 lenT=120 cc=26 old % lenT
+#1757 tabs  cc2xywh            cc=  26 old=  26 [360 360 360 120 6]  216.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.23.TXT.c.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.23.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.23.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.23.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.23.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=23 typ=TXT.c why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.23.TXT.c.png
+#1774 tabs  plct2cc                  26 [360 360 360 120 6] [1 1    5 3] (   0 +  0 +120 + 24 +2)
+#1777 tabs  cursorCol          cc= 26 [0 0 4 2]
+# 682 cmds  _setTab            [1 1 1  5 3]  27  24  5] BGN onTxt rev=0 old= 26 cc= 26 text='a' p=0 l=0 s=0 c=4 t=2
+#1774 tabs  plct2cc                  25 [360 360 360 120 6] [1 1    5 2] (   0 +  0 +120 + 24 +1)
+#1777 tabs  cursorCol          cc= 25 [0 0 4 1]
+#1754 tabs  cc2xywh            tpp=360 old=25 lenT=120 cc=25 old % lenT
+#1757 tabs  cc2xywh            cc=  25 old=  25 [360 360 360 120 6]  216.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.24.TXT.a.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.24.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.24.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.24.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.24.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=24 typ=TXT.a why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.24.TXT.a.png
+#1774 tabs  plct2cc                  25 [360 360 360 120 6] [1 1    5 2] (   0 +  0 +120 + 24 +1)
+#1777 tabs  cursorCol          cc= 25 [0 0 4 1]
+# 682 cmds  _setTab            [1 1 1  5 2]  26  24  5] BGN onTxt rev=0 old= 25 cc= 25 text='a' p=0 l=0 s=0 c=4 t=1
+#1774 tabs  plct2cc                  24 [360 360 360 120 6] [1 1    5 1] (   0 +  0 +120 + 24 +0)
+#1777 tabs  cursorCol          cc= 24 [0 0 4 0]
+#1754 tabs  cc2xywh            tpp=360 old=24 lenT=120 cc=24 old % lenT
+#1757 tabs  cc2xywh            cc=  24 old=  24 [360 360 360 120 6]  216.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.25.TXT.a.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.25.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.25.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.25.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.25.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=25 typ=TXT.a why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.25.TXT.a.png
+#1774 tabs  plct2cc                  25 [360 360 360 120 6] [1 1    5 2] (   0 +  0 +120 + 24 +1)
+#1777 tabs  cursorCol          cc= 25 [0 0 4 1]
+#1754 tabs  cc2xywh            tpp=360 old=25 lenT=120 cc=25 old % lenT
+#1757 tabs  cc2xywh            cc=  25 old=  25 [360 360 360 120 6]  216.00  495.00   48.00   30.00 t.text='a' 18.68 32.00 C C
+#1774 tabs  plct2cc                  25 [360 360 360 120 6] [1 1    5 2] (   0 +  0 +120 + 24 +1)
+#1777 tabs  cursorCol          cc= 25 [0 0 4 1]
+# 682 cmds  _setTab            [1 1 1  5 2]  26  24  5] BGN    BACKSPACE(65288) rev=1 old= 25 cc= 25 text=' ' p=0 l=0 s=0 c=4 t=1
+[4:E :4, a:B♭:1, 7:G :4, 0:C :4, 2:D :4, 8:A♭:3, b:B :3, 5:F :4]
+[4:E :4, a:A♯:1, 7:G :4, 0:C :4, 2:D :4, 8:G♯:3, b:B :3, 5:F :4]
+[a:B♭:1,  None , 8:A♭:3,  None ,  None , b:B :3, 4:E :4]
+[ None ,  None , 8:A♭:3,  None , a:B♭:1, 5:F :4, 0:C :4]
+# 742 cmds  _snapshot          snapName='test.2.26.UNK.png'    BACKSPACE(65288)
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.26.UNK.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.26.UNK.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.26.UNK.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.26.UNK.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=26 typ=UNK why=   BACKSPACE(65288) qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.26.UNK.png
+#1774 tabs  plct2cc                  25 [360 360 360 120 6] [1 1    5 2] (   0 +  0 +120 + 24 +1)
+#1777 tabs  cursorCol          cc= 25 [0 0 4 1]
+# 682 cmds  _setTab            [1 1 1  5 2]  26  24  5] BGN onTxt rev=0 old= 25 cc= 25 text='c' p=0 l=0 s=0 c=4 t=1
+#1774 tabs  plct2cc                  24 [360 360 360 120 6] [1 1    5 1] (   0 +  0 +120 + 24 +0)
+#1777 tabs  cursorCol          cc= 24 [0 0 4 0]
+#1754 tabs  cc2xywh            tpp=360 old=24 lenT=120 cc=24 old % lenT
+#1757 tabs  cc2xywh            cc=  24 old=  24 [360 360 360 120 6]  216.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.27.TXT.c.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.27.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.27.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.27.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.27.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=27 typ=TXT.c why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.27.TXT.c.png
+#1774 tabs  plct2cc                  30 [360 360 360 120 6] [1 1    6 1] (   0 +  0 +120 + 30 +0)
+#1777 tabs  cursorCol          cc= 30 [0 0 5 0]
+#1754 tabs  cc2xywh            tpp=360 old=30 lenT=120 cc=30 old % lenT
+#1757 tabs  cc2xywh            cc=  30 old=  30 [360 360 360 120 6]  264.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  31 [360 360 360 120 6] [1 1    6 2] (   0 +  0 +120 + 30 +1)
+#1777 tabs  cursorCol          cc= 31 [0 0 5 1]
+#1754 tabs  cc2xywh            tpp=360 old=31 lenT=120 cc=31 old % lenT
+#1757 tabs  cc2xywh            cc=  31 old=  31 [360 360 360 120 6]  264.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  32 [360 360 360 120 6] [1 1    6 3] (   0 +  0 +120 + 30 +2)
+#1777 tabs  cursorCol          cc= 32 [0 0 5 2]
+#1754 tabs  cc2xywh            tpp=360 old=32 lenT=120 cc=32 old % lenT
+#1757 tabs  cc2xywh            cc=  32 old=  32 [360 360 360 120 6]  264.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  33 [360 360 360 120 6] [1 1    6 4] (   0 +  0 +120 + 30 +3)
+#1777 tabs  cursorCol          cc= 33 [0 0 5 3]
+#1754 tabs  cc2xywh            tpp=360 old=33 lenT=120 cc=33 old % lenT
+#1757 tabs  cc2xywh            cc=  33 old=  33 [360 360 360 120 6]  264.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  34 [360 360 360 120 6] [1 1    6 5] (   0 +  0 +120 + 30 +4)
+#1777 tabs  cursorCol          cc= 34 [0 0 5 4]
+#1754 tabs  cc2xywh            tpp=360 old=34 lenT=120 cc=34 old % lenT
+#1757 tabs  cc2xywh            cc=  34 old=  34 [360 360 360 120 6]  264.00  405.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  34 [360 360 360 120 6] [1 1    6 5] (   0 +  0 +120 + 30 +4)
+#1777 tabs  cursorCol          cc= 34 [0 0 5 4]
+# 682 cmds  _setTab            [1 1 1  6 5]  35  30  6] BGN onTxt rev=0 old= 34 cc= 34 text='b' p=0 l=0 s=0 c=5 t=4
+#1774 tabs  plct2cc                  33 [360 360 360 120 6] [1 1    6 4] (   0 +  0 +120 + 30 +3)
+#1777 tabs  cursorCol          cc= 33 [0 0 5 3]
+#1754 tabs  cc2xywh            tpp=360 old=33 lenT=120 cc=33 old % lenT
+#1757 tabs  cc2xywh            cc=  33 old=  33 [360 360 360 120 6]  264.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.28.TXT.b.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.28.TXT.b.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.28.TXT.b.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.28.TXT.b.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.28.TXT.b.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=28 typ=TXT.b why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.28.TXT.b.png
+#1774 tabs  plct2cc                  32 [360 360 360 120 6] [1 1    6 3] (   0 +  0 +120 + 30 +2)
+#1777 tabs  cursorCol          cc= 32 [0 0 5 2]
+#1754 tabs  cc2xywh            tpp=360 old=32 lenT=120 cc=32 old % lenT
+#1757 tabs  cc2xywh            cc=  32 old=  32 [360 360 360 120 6]  264.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  31 [360 360 360 120 6] [1 1    6 2] (   0 +  0 +120 + 30 +1)
+#1777 tabs  cursorCol          cc= 31 [0 0 5 1]
+#1754 tabs  cc2xywh            tpp=360 old=31 lenT=120 cc=31 old % lenT
+#1757 tabs  cc2xywh            cc=  31 old=  31 [360 360 360 120 6]  264.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  31 [360 360 360 120 6] [1 1    6 2] (   0 +  0 +120 + 30 +1)
+#1777 tabs  cursorCol          cc= 31 [0 0 5 1]
+# 682 cmds  _setTab            [1 1 1  6 2]  32  30  6] BGN onTxt rev=0 old= 31 cc= 31 text='d' p=0 l=0 s=0 c=5 t=1
+#1774 tabs  plct2cc                  30 [360 360 360 120 6] [1 1    6 1] (   0 +  0 +120 + 30 +0)
+#1777 tabs  cursorCol          cc= 30 [0 0 5 0]
+#1754 tabs  cc2xywh            tpp=360 old=30 lenT=120 cc=30 old % lenT
+#1757 tabs  cc2xywh            cc=  30 old=  30 [360 360 360 120 6]  264.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.29.TXT.d.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.29.TXT.d.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.29.TXT.d.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.29.TXT.d.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.29.TXT.d.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=29 typ=TXT.d why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.29.TXT.d.png
+#1774 tabs  plct2cc                  31 [360 360 360 120 6] [1 1    6 2] (   0 +  0 +120 + 30 +1)
+#1777 tabs  cursorCol          cc= 31 [0 0 5 1]
+#1754 tabs  cc2xywh            tpp=360 old=31 lenT=120 cc=31 old % lenT
+#1757 tabs  cc2xywh            cc=  31 old=  31 [360 360 360 120 6]  264.00  495.00   48.00   30.00 t.text='d' 18.68 32.00 C C
+#1774 tabs  plct2cc                  32 [360 360 360 120 6] [1 1    6 3] (   0 +  0 +120 + 30 +2)
+#1777 tabs  cursorCol          cc= 32 [0 0 5 2]
+#1754 tabs  cc2xywh            tpp=360 old=32 lenT=120 cc=32 old % lenT
+#1757 tabs  cc2xywh            cc=  32 old=  32 [360 360 360 120 6]  264.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  33 [360 360 360 120 6] [1 1    6 4] (   0 +  0 +120 + 30 +3)
+#1777 tabs  cursorCol          cc= 33 [0 0 5 3]
+#1754 tabs  cc2xywh            tpp=360 old=33 lenT=120 cc=33 old % lenT
+#1757 tabs  cc2xywh            cc=  33 old=  33 [360 360 360 120 6]  264.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  33 [360 360 360 120 6] [1 1    6 4] (   0 +  0 +120 + 30 +3)
+#1777 tabs  cursorCol          cc= 33 [0 0 5 3]
+# 682 cmds  _setTab            [1 1 1  6 4]  34  30  6] BGN onTxt rev=0 old= 33 cc= 33 text='c' p=0 l=0 s=0 c=5 t=3
+#1774 tabs  plct2cc                  32 [360 360 360 120 6] [1 1    6 3] (   0 +  0 +120 + 30 +2)
+#1777 tabs  cursorCol          cc= 32 [0 0 5 2]
+#1754 tabs  cc2xywh            tpp=360 old=32 lenT=120 cc=32 old % lenT
+#1757 tabs  cc2xywh            cc=  32 old=  32 [360 360 360 120 6]  264.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.30.TXT.c.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.30.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.30.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.30.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.30.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=30 typ=TXT.c why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.30.TXT.c.png
+#1774 tabs  plct2cc                  33 [360 360 360 120 6] [1 1    6 4] (   0 +  0 +120 + 30 +3)
+#1777 tabs  cursorCol          cc= 33 [0 0 5 3]
+#1754 tabs  cc2xywh            tpp=360 old=33 lenT=120 cc=33 old % lenT
+#1757 tabs  cc2xywh            cc=  33 old=  33 [360 360 360 120 6]  264.00  435.00   48.00   30.00 t.text='c' 18.68 32.00 C C
+#1774 tabs  plct2cc                  33 [360 360 360 120 6] [1 1    6 4] (   0 +  0 +120 + 30 +3)
+#1777 tabs  cursorCol          cc= 33 [0 0 5 3]
+# 682 cmds  _setTab            [1 1 1  6 4]  34  30  6] BGN    BACKSPACE(65288) rev=1 old= 33 cc= 33 text=' ' p=0 l=0 s=0 c=5 t=3
+[4:E :4, a:B♭:1, 7:G :4, 0:C :5, 2:D :4, 8:A♭:4, b:B :4, 5:F :4]
+[4:E :4, a:A♯:1, 7:G :4, 0:C :5, 2:D :4, 8:G♯:4, b:B :4, 5:F :4]
+[a:B♭:1,  None , 8:A♭:4,  None ,  None , b:B :4, 4:E :4]
+[ None ,  None , 8:A♭:4,  None , a:B♭:1, 5:F :4, 0:C :5]
+# 742 cmds  _snapshot          snapName='test.2.31.UNK.png'    BACKSPACE(65288)
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.31.UNK.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.31.UNK.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.31.UNK.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.31.UNK.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=31 typ=UNK why=   BACKSPACE(65288) qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.31.UNK.png
+#1774 tabs  plct2cc                  33 [360 360 360 120 6] [1 1    6 4] (   0 +  0 +120 + 30 +3)
+#1777 tabs  cursorCol          cc= 33 [0 0 5 3]
+# 682 cmds  _setTab            [1 1 1  6 4]  34  30  6] BGN onTxt rev=0 old= 33 cc= 33 text='e' p=0 l=0 s=0 c=5 t=3
+#1774 tabs  plct2cc                  32 [360 360 360 120 6] [1 1    6 3] (   0 +  0 +120 + 30 +2)
+#1777 tabs  cursorCol          cc= 32 [0 0 5 2]
+#1754 tabs  cc2xywh            tpp=360 old=32 lenT=120 cc=32 old % lenT
+#1757 tabs  cc2xywh            cc=  32 old=  32 [360 360 360 120 6]  264.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.32.TXT.e.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.32.TXT.e.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.32.TXT.e.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.32.TXT.e.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.32.TXT.e.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=32 typ=TXT.e why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.32.TXT.e.png
+#1774 tabs  plct2cc                  32 [360 360 360 120 6] [1 1    6 3] (   0 +  0 +120 + 30 +2)
+#1777 tabs  cursorCol          cc= 32 [0 0 5 2]
+# 682 cmds  _setTab            [1 1 1  6 3]  33  30  6] BGN onTxt rev=0 old= 32 cc= 32 text='c' p=0 l=0 s=0 c=5 t=2
+#1774 tabs  plct2cc                  31 [360 360 360 120 6] [1 1    6 2] (   0 +  0 +120 + 30 +1)
+#1777 tabs  cursorCol          cc= 31 [0 0 5 1]
+#1754 tabs  cc2xywh            tpp=360 old=31 lenT=120 cc=31 old % lenT
+#1757 tabs  cc2xywh            cc=  31 old=  31 [360 360 360 120 6]  264.00  495.00   48.00   30.00 t.text='d' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.33.TXT.c.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.33.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.33.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.33.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.33.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=33 typ=TXT.c why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.33.TXT.c.png
+#1774 tabs  plct2cc                  37 [360 360 360 120 6] [1 1    7 2] (   0 +  0 +120 + 36 +1)
+#1777 tabs  cursorCol          cc= 37 [0 0 6 1]
+#1754 tabs  cc2xywh            tpp=360 old=37 lenT=120 cc=37 old % lenT
+#1757 tabs  cc2xywh            cc=  37 old=  37 [360 360 360 120 6]  312.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  38 [360 360 360 120 6] [1 1    7 3] (   0 +  0 +120 + 36 +2)
+#1777 tabs  cursorCol          cc= 38 [0 0 6 2]
+#1754 tabs  cc2xywh            tpp=360 old=38 lenT=120 cc=38 old % lenT
+#1757 tabs  cc2xywh            cc=  38 old=  38 [360 360 360 120 6]  312.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  39 [360 360 360 120 6] [1 1    7 4] (   0 +  0 +120 + 36 +3)
+#1777 tabs  cursorCol          cc= 39 [0 0 6 3]
+#1754 tabs  cc2xywh            tpp=360 old=39 lenT=120 cc=39 old % lenT
+#1757 tabs  cc2xywh            cc=  39 old=  39 [360 360 360 120 6]  312.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  40 [360 360 360 120 6] [1 1    7 5] (   0 +  0 +120 + 36 +4)
+#1777 tabs  cursorCol          cc= 40 [0 0 6 4]
+#1754 tabs  cc2xywh            tpp=360 old=40 lenT=120 cc=40 old % lenT
+#1757 tabs  cc2xywh            cc=  40 old=  40 [360 360 360 120 6]  312.00  405.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  40 [360 360 360 120 6] [1 1    7 5] (   0 +  0 +120 + 36 +4)
+#1777 tabs  cursorCol          cc= 40 [0 0 6 4]
+# 682 cmds  _setTab            [1 1 1  7 5]  41  36  7] BGN onTxt rev=0 old= 40 cc= 40 text='2' p=0 l=0 s=0 c=6 t=4
+#1774 tabs  plct2cc                  39 [360 360 360 120 6] [1 1    7 4] (   0 +  0 +120 + 36 +3)
+#1777 tabs  cursorCol          cc= 39 [0 0 6 3]
+#1754 tabs  cc2xywh            tpp=360 old=39 lenT=120 cc=39 old % lenT
+#1757 tabs  cc2xywh            cc=  39 old=  39 [360 360 360 120 6]  312.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.34.TXT.2.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.34.TXT.2.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.34.TXT.2.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.34.TXT.2.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.34.TXT.2.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=34 typ=TXT.2 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.34.TXT.2.png
+#1774 tabs  plct2cc                  39 [360 360 360 120 6] [1 1    7 4] (   0 +  0 +120 + 36 +3)
+#1777 tabs  cursorCol          cc= 39 [0 0 6 3]
+# 682 cmds  _setTab            [1 1 1  7 4]  40  36  7] BGN onTxt rev=0 old= 39 cc= 39 text='f' p=0 l=0 s=0 c=6 t=3
+#1774 tabs  plct2cc                  38 [360 360 360 120 6] [1 1    7 3] (   0 +  0 +120 + 36 +2)
+#1777 tabs  cursorCol          cc= 38 [0 0 6 2]
+#1754 tabs  cc2xywh            tpp=360 old=38 lenT=120 cc=38 old % lenT
+#1757 tabs  cc2xywh            cc=  38 old=  38 [360 360 360 120 6]  312.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.35.TXT.f.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.35.TXT.f.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.35.TXT.f.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.35.TXT.f.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.35.TXT.f.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=35 typ=TXT.f why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.35.TXT.f.png
+#1774 tabs  plct2cc                  38 [360 360 360 120 6] [1 1    7 3] (   0 +  0 +120 + 36 +2)
+#1777 tabs  cursorCol          cc= 38 [0 0 6 2]
+# 682 cmds  _setTab            [1 1 1  7 3]  39  36  7] BGN onTxt rev=0 old= 38 cc= 38 text='d' p=0 l=0 s=0 c=6 t=2
+#1774 tabs  plct2cc                  37 [360 360 360 120 6] [1 1    7 2] (   0 +  0 +120 + 36 +1)
+#1777 tabs  cursorCol          cc= 37 [0 0 6 1]
+#1754 tabs  cc2xywh            tpp=360 old=37 lenT=120 cc=37 old % lenT
+#1757 tabs  cc2xywh            cc=  37 old=  37 [360 360 360 120 6]  312.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.36.TXT.d.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.36.TXT.d.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.36.TXT.d.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.36.TXT.d.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.36.TXT.d.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=36 typ=TXT.d why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.36.TXT.d.png
+#1774 tabs  plct2cc                  37 [360 360 360 120 6] [1 1    7 2] (   0 +  0 +120 + 36 +1)
+#1777 tabs  cursorCol          cc= 37 [0 0 6 1]
+# 682 cmds  _setTab            [1 1 1  7 2]  38  36  7] BGN onTxt rev=0 old= 37 cc= 37 text='f' p=0 l=0 s=0 c=6 t=1
+#1774 tabs  plct2cc                  36 [360 360 360 120 6] [1 1    7 1] (   0 +  0 +120 + 36 +0)
+#1777 tabs  cursorCol          cc= 36 [0 0 6 0]
+#1754 tabs  cc2xywh            tpp=360 old=36 lenT=120 cc=36 old % lenT
+#1757 tabs  cc2xywh            cc=  36 old=  36 [360 360 360 120 6]  312.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.37.TXT.f.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.37.TXT.f.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.37.TXT.f.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.37.TXT.f.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.37.TXT.f.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=37 typ=TXT.f why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.37.TXT.f.png
+#1774 tabs  plct2cc                  37 [360 360 360 120 6] [1 1    7 2] (   0 +  0 +120 + 36 +1)
+#1777 tabs  cursorCol          cc= 37 [0 0 6 1]
+#1754 tabs  cc2xywh            tpp=360 old=37 lenT=120 cc=37 old % lenT
+#1757 tabs  cc2xywh            cc=  37 old=  37 [360 360 360 120 6]  312.00  495.00   48.00   30.00 t.text='f' 18.68 32.00 C C
+#1774 tabs  plct2cc                  38 [360 360 360 120 6] [1 1    7 3] (   0 +  0 +120 + 36 +2)
+#1777 tabs  cursorCol          cc= 38 [0 0 6 2]
+#1754 tabs  cc2xywh            tpp=360 old=38 lenT=120 cc=38 old % lenT
+#1757 tabs  cc2xywh            cc=  38 old=  38 [360 360 360 120 6]  312.00  465.00   48.00   30.00 t.text='d' 18.68 32.00 C C
+#1774 tabs  plct2cc                  39 [360 360 360 120 6] [1 1    7 4] (   0 +  0 +120 + 36 +3)
+#1777 tabs  cursorCol          cc= 39 [0 0 6 3]
+#1754 tabs  cc2xywh            tpp=360 old=39 lenT=120 cc=39 old % lenT
+#1757 tabs  cc2xywh            cc=  39 old=  39 [360 360 360 120 6]  312.00  435.00   48.00   30.00 t.text='f' 18.68 32.00 C C
+#1774 tabs  plct2cc                  39 [360 360 360 120 6] [1 1    7 4] (   0 +  0 +120 + 36 +3)
+#1777 tabs  cursorCol          cc= 39 [0 0 6 3]
+# 682 cmds  _setTab            [1 1 1  7 4]  40  36  7] BGN onTxt rev=0 old= 39 cc= 39 text='3' p=0 l=0 s=0 c=6 t=3
+[4:E :5, a:B♭:1, 7:G :5, 0:C :5, 2:D :5, 8:A♭:5, b:B :5, 5:F :5]
+[4:E :5, a:A♯:1, 7:G :5, 0:C :5, 2:D :5, 8:G♯:5, b:B :5, 5:F :5]
+[a:B♭:1,  None , 8:A♭:5,  None ,  None , b:B :5, 4:E :5]
+[ None ,  None , 8:A♭:5,  None , a:B♭:1, 5:F :5, 0:C :5]
+#1774 tabs  plct2cc                  38 [360 360 360 120 6] [1 1    7 3] (   0 +  0 +120 + 36 +2)
+#1777 tabs  cursorCol          cc= 38 [0 0 6 2]
+#1754 tabs  cc2xywh            tpp=360 old=38 lenT=120 cc=38 old % lenT
+#1757 tabs  cc2xywh            cc=  38 old=  38 [360 360 360 120 6]  312.00  465.00   48.00   30.00 t.text='d' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.38.TXT.3.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.38.TXT.3.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.38.TXT.3.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.38.TXT.3.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.38.TXT.3.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=38 typ=TXT.3 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.38.TXT.3.png
+#1774 tabs  plct2cc                  38 [360 360 360 120 6] [1 1    7 3] (   0 +  0 +120 + 36 +2)
+#1777 tabs  cursorCol          cc= 38 [0 0 6 2]
+# 682 cmds  _setTab            [1 1 1  7 3]  39  36  7] BGN onTxt rev=0 old= 38 cc= 38 text='1' p=0 l=0 s=0 c=6 t=2
+[4:E :5, a:B♭:1, 7:G :5, 0:C :5, 2:D :5, 8:A♭:5, b:B :5, 5:F :5]
+[4:E :5, a:A♯:1, 7:G :5, 0:C :5, 2:D :5, 8:G♯:5, b:B :5, 5:F :5]
+[a:B♭:1,  None , 8:A♭:5,  None ,  None , b:B :5, 4:E :5]
+[ None ,  None , 8:A♭:5,  None , a:B♭:1, 5:F :5, 0:C :5]
+#1774 tabs  plct2cc                  37 [360 360 360 120 6] [1 1    7 2] (   0 +  0 +120 + 36 +1)
+#1777 tabs  cursorCol          cc= 37 [0 0 6 1]
+#1754 tabs  cc2xywh            tpp=360 old=37 lenT=120 cc=37 old % lenT
+#1757 tabs  cc2xywh            cc=  37 old=  37 [360 360 360 120 6]  312.00  495.00   48.00   30.00 t.text='f' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.39.TXT.1.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.39.TXT.1.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.39.TXT.1.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.39.TXT.1.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.39.TXT.1.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=39 typ=TXT.1 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.39.TXT.1.png
+#1774 tabs  plct2cc                  37 [360 360 360 120 6] [1 1    7 2] (   0 +  0 +120 + 36 +1)
+#1777 tabs  cursorCol          cc= 37 [0 0 6 1]
+# 682 cmds  _setTab            [1 1 1  7 2]  38  36  7] BGN onTxt rev=0 old= 37 cc= 37 text='3' p=0 l=0 s=0 c=6 t=1
+[4:E :5, a:B♭:1, 7:G :5, 0:C :5, 2:D :5, 8:A♭:5, b:B :5, 5:F :5]
+[4:E :5, a:A♯:1, 7:G :5, 0:C :5, 2:D :5, 8:G♯:5, b:B :5, 5:F :5]
+[a:B♭:1,  None , 8:A♭:5,  None ,  None , b:B :5, 4:E :5]
+[ None ,  None , 8:A♭:5,  None , a:B♭:1, 5:F :5, 0:C :5]
+#1774 tabs  plct2cc                  36 [360 360 360 120 6] [1 1    7 1] (   0 +  0 +120 + 36 +0)
+#1777 tabs  cursorCol          cc= 36 [0 0 6 0]
+#1754 tabs  cc2xywh            tpp=360 old=36 lenT=120 cc=36 old % lenT
+#1757 tabs  cc2xywh            cc=  36 old=  36 [360 360 360 120 6]  312.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.40.TXT.3.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.40.TXT.3.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.40.TXT.3.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.40.TXT.3.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.40.TXT.3.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=40 typ=TXT.3 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.40.TXT.3.png
+#1774 tabs  plct2cc                  42 [360 360 360 120 6] [1 1    8 1] (   0 +  0 +120 + 42 +0)
+#1777 tabs  cursorCol          cc= 42 [0 0 7 0]
+#1754 tabs  cc2xywh            tpp=360 old=42 lenT=120 cc=42 old % lenT
+#1757 tabs  cc2xywh            cc=  42 old=  42 [360 360 360 120 6]  360.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  36 [360 360 360 120 6] [1 1    7 1] (   0 +  0 +120 + 36 +0)
+#1777 tabs  cursorCol          cc= 36 [0 0 6 0]
+#1754 tabs  cc2xywh            tpp=360 old=36 lenT=120 cc=36 old % lenT
+#1757 tabs  cc2xywh            cc=  36 old=  36 [360 360 360 120 6]  312.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  30 [360 360 360 120 6] [1 1    6 1] (   0 +  0 +120 + 30 +0)
+#1777 tabs  cursorCol          cc= 30 [0 0 5 0]
+#1754 tabs  cc2xywh            tpp=360 old=30 lenT=120 cc=30 old % lenT
+#1757 tabs  cc2xywh            cc=  30 old=  30 [360 360 360 120 6]  264.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  24 [360 360 360 120 6] [1 1    5 1] (   0 +  0 +120 + 24 +0)
+#1777 tabs  cursorCol          cc= 24 [0 0 4 0]
+#1754 tabs  cc2xywh            tpp=360 old=24 lenT=120 cc=24 old % lenT
+#1757 tabs  cc2xywh            cc=  24 old=  24 [360 360 360 120 6]  216.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  18 [360 360 360 120 6] [1 1    4 1] (   0 +  0 +120 + 18 +0)
+#1777 tabs  cursorCol          cc= 18 [0 0 3 0]
+#1754 tabs  cc2xywh            tpp=360 old=18 lenT=120 cc=18 old % lenT
+#1757 tabs  cc2xywh            cc=  18 old=  18 [360 360 360 120 6]  168.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  24 [360 360 360 120 6] [1 1    5 1] (   0 +  0 +120 + 24 +0)
+#1777 tabs  cursorCol          cc= 24 [0 0 4 0]
+#1754 tabs  cc2xywh            tpp=360 old=24 lenT=120 cc=24 old % lenT
+#1757 tabs  cc2xywh            cc=  24 old=  24 [360 360 360 120 6]  216.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  30 [360 360 360 120 6] [1 1    6 1] (   0 +  0 +120 + 30 +0)
+#1777 tabs  cursorCol          cc= 30 [0 0 5 0]
+#1754 tabs  cc2xywh            tpp=360 old=30 lenT=120 cc=30 old % lenT
+#1757 tabs  cc2xywh            cc=  30 old=  30 [360 360 360 120 6]  264.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  36 [360 360 360 120 6] [1 1    7 1] (   0 +  0 +120 + 36 +0)
+#1777 tabs  cursorCol          cc= 36 [0 0 6 0]
+#1754 tabs  cc2xywh            tpp=360 old=36 lenT=120 cc=36 old % lenT
+#1757 tabs  cc2xywh            cc=  36 old=  36 [360 360 360 120 6]  312.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  42 [360 360 360 120 6] [1 1    8 1] (   0 +  0 +120 + 42 +0)
+#1777 tabs  cursorCol          cc= 42 [0 0 7 0]
+#1754 tabs  cc2xywh            tpp=360 old=42 lenT=120 cc=42 old % lenT
+#1757 tabs  cc2xywh            cc=  42 old=  42 [360 360 360 120 6]  360.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  48 [360 360 360 120 6] [1 1    9 1] (   0 +  0 +120 + 48 +0)
+#1777 tabs  cursorCol          cc= 48 [0 0 8 0]
+#1754 tabs  cc2xywh            tpp=360 old=48 lenT=120 cc=48 old % lenT
+#1757 tabs  cc2xywh            cc=  48 old=  48 [360 360 360 120 6]  408.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  54 [360 360 360 120 6] [1 1   10 1] (   0 +  0 +120 + 54 +0)
+#1777 tabs  cursorCol          cc= 54 [0 0 9 0]
+#1754 tabs  cc2xywh            tpp=360 old=54 lenT=120 cc=54 old % lenT
+#1757 tabs  cc2xywh            cc=  54 old=  54 [360 360 360 120 6]  456.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  55 [360 360 360 120 6] [1 1   10 2] (   0 +  0 +120 + 54 +1)
+#1777 tabs  cursorCol          cc= 55 [0 0 9 1]
+#1754 tabs  cc2xywh            tpp=360 old=55 lenT=120 cc=55 old % lenT
+#1757 tabs  cc2xywh            cc=  55 old=  55 [360 360 360 120 6]  456.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  56 [360 360 360 120 6] [1 1   10 3] (   0 +  0 +120 + 54 +2)
+#1777 tabs  cursorCol          cc= 56 [0 0 9 2]
+#1754 tabs  cc2xywh            tpp=360 old=56 lenT=120 cc=56 old % lenT
+#1757 tabs  cc2xywh            cc=  56 old=  56 [360 360 360 120 6]  456.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  57 [360 360 360 120 6] [1 1   10 4] (   0 +  0 +120 + 54 +3)
+#1777 tabs  cursorCol          cc= 57 [0 0 9 3]
+#1754 tabs  cc2xywh            tpp=360 old=57 lenT=120 cc=57 old % lenT
+#1757 tabs  cc2xywh            cc=  57 old=  57 [360 360 360 120 6]  456.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  58 [360 360 360 120 6] [1 1   10 5] (   0 +  0 +120 + 54 +4)
+#1777 tabs  cursorCol          cc= 58 [0 0 9 4]
+#1754 tabs  cc2xywh            tpp=360 old=58 lenT=120 cc=58 old % lenT
+#1757 tabs  cc2xywh            cc=  58 old=  58 [360 360 360 120 6]  456.00  405.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  58 [360 360 360 120 6] [1 1   10 5] (   0 +  0 +120 + 54 +4)
+#1777 tabs  cursorCol          cc= 58 [0 0 9 4]
+# 682 cmds  _setTab            [1 1 1 10 5]  59  54 10] BGN onTxt rev=0 old= 58 cc= 58 text='3' p=0 l=0 s=0 c=9 t=4
+#1774 tabs  plct2cc                  57 [360 360 360 120 6] [1 1   10 4] (   0 +  0 +120 + 54 +3)
+#1777 tabs  cursorCol          cc= 57 [0 0 9 3]
+#1754 tabs  cc2xywh            tpp=360 old=57 lenT=120 cc=57 old % lenT
+#1757 tabs  cc2xywh            cc=  57 old=  57 [360 360 360 120 6]  456.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.41.TXT.3.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.41.TXT.3.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.41.TXT.3.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.41.TXT.3.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.41.TXT.3.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=41 typ=TXT.3 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.41.TXT.3.png
+#1774 tabs  plct2cc                  57 [360 360 360 120 6] [1 1   10 4] (   0 +  0 +120 + 54 +3)
+#1777 tabs  cursorCol          cc= 57 [0 0 9 3]
+# 682 cmds  _setTab            [1 1 1 10 4]  58  54 10] BGN onTxt rev=0 old= 57 cc= 57 text='6' p=0 l=0 s=0 c=9 t=3
+#1774 tabs  plct2cc                  56 [360 360 360 120 6] [1 1   10 3] (   0 +  0 +120 + 54 +2)
+#1777 tabs  cursorCol          cc= 56 [0 0 9 2]
+#1754 tabs  cc2xywh            tpp=360 old=56 lenT=120 cc=56 old % lenT
+#1757 tabs  cc2xywh            cc=  56 old=  56 [360 360 360 120 6]  456.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.42.TXT.6.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.42.TXT.6.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.42.TXT.6.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.42.TXT.6.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.42.TXT.6.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=42 typ=TXT.6 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.42.TXT.6.png
+#1774 tabs  plct2cc                  56 [360 360 360 120 6] [1 1   10 3] (   0 +  0 +120 + 54 +2)
+#1777 tabs  cursorCol          cc= 56 [0 0 9 2]
+# 682 cmds  _setTab            [1 1 1 10 3]  57  54 10] BGN onTxt rev=0 old= 56 cc= 56 text='4' p=0 l=0 s=0 c=9 t=2
+#1774 tabs  plct2cc                  55 [360 360 360 120 6] [1 1   10 2] (   0 +  0 +120 + 54 +1)
+#1777 tabs  cursorCol          cc= 55 [0 0 9 1]
+#1754 tabs  cc2xywh            tpp=360 old=55 lenT=120 cc=55 old % lenT
+#1757 tabs  cc2xywh            cc=  55 old=  55 [360 360 360 120 6]  456.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.43.TXT.4.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.43.TXT.4.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.43.TXT.4.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.43.TXT.4.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.43.TXT.4.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=43 typ=TXT.4 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.43.TXT.4.png
+#1774 tabs  plct2cc                  55 [360 360 360 120 6] [1 1   10 2] (   0 +  0 +120 + 54 +1)
+#1777 tabs  cursorCol          cc= 55 [0 0 9 1]
+# 682 cmds  _setTab            [1 1 1 10 2]  56  54 10] BGN onTxt rev=0 old= 55 cc= 55 text='5' p=0 l=0 s=0 c=9 t=1
+#1774 tabs  plct2cc                  54 [360 360 360 120 6] [1 1   10 1] (   0 +  0 +120 + 54 +0)
+#1777 tabs  cursorCol          cc= 54 [0 0 9 0]
+#1754 tabs  cc2xywh            tpp=360 old=54 lenT=120 cc=54 old % lenT
+#1757 tabs  cc2xywh            cc=  54 old=  54 [360 360 360 120 6]  456.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.44.TXT.5.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.44.TXT.5.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.44.TXT.5.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.44.TXT.5.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.44.TXT.5.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=44 typ=TXT.5 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.44.TXT.5.png
+#1774 tabs  plct2cc                  60 [360 360 360 120 6] [1 1   11 1] (   0 +  0 +120 + 60 +0)
+#1777 tabs  cursorCol          cc= 60 [0 0 10 0]
+#1754 tabs  cc2xywh            tpp=360 old=60 lenT=120 cc=60 old % lenT
+#1757 tabs  cc2xywh            cc=  60 old=  60 [360 360 360 120 6]  504.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  66 [360 360 360 120 6] [1 1   12 1] (   0 +  0 +120 + 66 +0)
+#1777 tabs  cursorCol          cc= 66 [0 0 11 0]
+#1754 tabs  cc2xywh            tpp=360 old=66 lenT=120 cc=66 old % lenT
+#1757 tabs  cc2xywh            cc=  66 old=  66 [360 360 360 120 6]  552.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  67 [360 360 360 120 6] [1 1   12 2] (   0 +  0 +120 + 66 +1)
+#1777 tabs  cursorCol          cc= 67 [0 0 11 1]
+#1754 tabs  cc2xywh            tpp=360 old=67 lenT=120 cc=67 old % lenT
+#1757 tabs  cc2xywh            cc=  67 old=  67 [360 360 360 120 6]  552.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  68 [360 360 360 120 6] [1 1   12 3] (   0 +  0 +120 + 66 +2)
+#1777 tabs  cursorCol          cc= 68 [0 0 11 2]
+#1754 tabs  cc2xywh            tpp=360 old=68 lenT=120 cc=68 old % lenT
+#1757 tabs  cc2xywh            cc=  68 old=  68 [360 360 360 120 6]  552.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  69 [360 360 360 120 6] [1 1   12 4] (   0 +  0 +120 + 66 +3)
+#1777 tabs  cursorCol          cc= 69 [0 0 11 3]
+#1754 tabs  cc2xywh            tpp=360 old=69 lenT=120 cc=69 old % lenT
+#1757 tabs  cc2xywh            cc=  69 old=  69 [360 360 360 120 6]  552.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  70 [360 360 360 120 6] [1 1   12 5] (   0 +  0 +120 + 66 +4)
+#1777 tabs  cursorCol          cc= 70 [0 0 11 4]
+#1754 tabs  cc2xywh            tpp=360 old=70 lenT=120 cc=70 old % lenT
+#1757 tabs  cc2xywh            cc=  70 old=  70 [360 360 360 120 6]  552.00  405.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  70 [360 360 360 120 6] [1 1   12 5] (   0 +  0 +120 + 66 +4)
+#1777 tabs  cursorCol          cc= 70 [0 0 11 4]
+# 682 cmds  _setTab            [1 1 1 12 5]  71  66 12] BGN onTxt rev=0 old= 70 cc= 70 text='7' p=0 l=0 s=0 c=11 t=4
+#1774 tabs  plct2cc                  69 [360 360 360 120 6] [1 1   12 4] (   0 +  0 +120 + 66 +3)
+#1777 tabs  cursorCol          cc= 69 [0 0 11 3]
+#1754 tabs  cc2xywh            tpp=360 old=69 lenT=120 cc=69 old % lenT
+#1757 tabs  cc2xywh            cc=  69 old=  69 [360 360 360 120 6]  552.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.45.TXT.7.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.45.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.45.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.45.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.45.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=45 typ=TXT.7 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.45.TXT.7.png
+#1774 tabs  plct2cc                  69 [360 360 360 120 6] [1 1   12 4] (   0 +  0 +120 + 66 +3)
+#1777 tabs  cursorCol          cc= 69 [0 0 11 3]
+# 682 cmds  _setTab            [1 1 1 12 4]  70  66 12] BGN onTxt rev=0 old= 69 cc= 69 text='9' p=0 l=0 s=0 c=11 t=3
+#1774 tabs  plct2cc                  68 [360 360 360 120 6] [1 1   12 3] (   0 +  0 +120 + 66 +2)
+#1777 tabs  cursorCol          cc= 68 [0 0 11 2]
+#1754 tabs  cc2xywh            tpp=360 old=68 lenT=120 cc=68 old % lenT
+#1757 tabs  cc2xywh            cc=  68 old=  68 [360 360 360 120 6]  552.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  68 [360 360 360 120 6] [1 1   12 3] (   0 +  0 +120 + 66 +2)
+#1777 tabs  cursorCol          cc= 68 [0 0 11 2]
+# 682 cmds  _setTab            [1 1 1 12 3]  69  66 12] BGN onTxt rev=0 old= 68 cc= 68 text='7' p=0 l=0 s=0 c=11 t=2
+#1774 tabs  plct2cc                  67 [360 360 360 120 6] [1 1   12 2] (   0 +  0 +120 + 66 +1)
+#1777 tabs  cursorCol          cc= 67 [0 0 11 1]
+#1754 tabs  cc2xywh            tpp=360 old=67 lenT=120 cc=67 old % lenT
+#1757 tabs  cc2xywh            cc=  67 old=  67 [360 360 360 120 6]  552.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.46.TXT.9.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.46.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.46.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.46.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.46.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=46 typ=TXT.9 why=onTxt qlen=2
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.46.TXT.9.png
+# 742 cmds  _snapshot          snapName='test.2.47.TXT.7.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.47.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.47.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.47.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.47.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=47 typ=TXT.7 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.47.TXT.7.png
+#1774 tabs  plct2cc                  67 [360 360 360 120 6] [1 1   12 2] (   0 +  0 +120 + 66 +1)
+#1777 tabs  cursorCol          cc= 67 [0 0 11 1]
+# 682 cmds  _setTab            [1 1 1 12 2]  68  66 12] BGN onTxt rev=0 old= 67 cc= 67 text='7' p=0 l=0 s=0 c=11 t=1
+#1774 tabs  plct2cc                  66 [360 360 360 120 6] [1 1   12 1] (   0 +  0 +120 + 66 +0)
+#1777 tabs  cursorCol          cc= 66 [0 0 11 0]
+#1754 tabs  cc2xywh            tpp=360 old=66 lenT=120 cc=66 old % lenT
+#1757 tabs  cc2xywh            cc=  66 old=  66 [360 360 360 120 6]  552.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.48.TXT.7.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.48.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.48.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.48.TXT.7.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.48.TXT.7.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=48 typ=TXT.7 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.48.TXT.7.png
+#1774 tabs  plct2cc                  67 [360 360 360 120 6] [1 1   12 2] (   0 +  0 +120 + 66 +1)
+#1777 tabs  cursorCol          cc= 67 [0 0 11 1]
+#1754 tabs  cc2xywh            tpp=360 old=67 lenT=120 cc=67 old % lenT
+#1757 tabs  cc2xywh            cc=  67 old=  67 [360 360 360 120 6]  552.00  495.00   48.00   30.00 t.text='7' 18.68 32.00 C C
+#1774 tabs  plct2cc                  67 [360 360 360 120 6] [1 1   12 2] (   0 +  0 +120 + 66 +1)
+#1777 tabs  cursorCol          cc= 67 [0 0 11 1]
+# 682 cmds  _setTab            [1 1 1 12 2]  68  66 12] BGN    BACKSPACE(65288) rev=1 old= 67 cc= 67 text=' ' p=0 l=0 s=0 c=11 t=1
+[4:E :7, a:B♭:1, 7:G :5, 0:C :6, 2:D :6, 8:A♭:6, b:B :7, 5:F :5]
+[4:E :7, a:A♯:1, 7:G :5, 0:C :6, 2:D :6, 8:G♯:6, b:B :7, 5:F :5]
+[a:B♭:1,  None , 8:A♭:6,  None ,  None , b:B :7, 4:E :7]
+[ None ,  None , 8:A♭:6,  None , a:B♭:1, 5:F :5, 0:C :6]
+# 742 cmds  _snapshot          snapName='test.2.49.UNK.png'    BACKSPACE(65288)
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.49.UNK.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.49.UNK.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.49.UNK.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.49.UNK.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=49 typ=UNK why=   BACKSPACE(65288) qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.49.UNK.png
+#1774 tabs  plct2cc                  67 [360 360 360 120 6] [1 1   12 2] (   0 +  0 +120 + 66 +1)
+#1777 tabs  cursorCol          cc= 67 [0 0 11 1]
+# 682 cmds  _setTab            [1 1 1 12 2]  68  66 12] BGN onTxt rev=0 old= 67 cc= 67 text='9' p=0 l=0 s=0 c=11 t=1
+#1774 tabs  plct2cc                  66 [360 360 360 120 6] [1 1   12 1] (   0 +  0 +120 + 66 +0)
+#1777 tabs  cursorCol          cc= 66 [0 0 11 0]
+#1754 tabs  cc2xywh            tpp=360 old=66 lenT=120 cc=66 old % lenT
+#1757 tabs  cc2xywh            cc=  66 old=  66 [360 360 360 120 6]  552.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.50.TXT.9.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.50.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.50.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.50.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.50.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=50 typ=TXT.9 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.50.TXT.9.png
+#1774 tabs  plct2cc                  72 [360 360 360 120 6] [1 1   13 1] (   0 +  0 +120 + 72 +0)
+#1777 tabs  cursorCol          cc= 72 [0 0 12 0]
+#1754 tabs  cc2xywh            tpp=360 old=72 lenT=120 cc=72 old % lenT
+#1757 tabs  cc2xywh            cc=  72 old=  72 [360 360 360 120 6]  600.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  73 [360 360 360 120 6] [1 1   13 2] (   0 +  0 +120 + 72 +1)
+#1777 tabs  cursorCol          cc= 73 [0 0 12 1]
+#1754 tabs  cc2xywh            tpp=360 old=73 lenT=120 cc=73 old % lenT
+#1757 tabs  cc2xywh            cc=  73 old=  73 [360 360 360 120 6]  600.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  74 [360 360 360 120 6] [1 1   13 3] (   0 +  0 +120 + 72 +2)
+#1777 tabs  cursorCol          cc= 74 [0 0 12 2]
+#1754 tabs  cc2xywh            tpp=360 old=74 lenT=120 cc=74 old % lenT
+#1757 tabs  cc2xywh            cc=  74 old=  74 [360 360 360 120 6]  600.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  75 [360 360 360 120 6] [1 1   13 4] (   0 +  0 +120 + 72 +3)
+#1777 tabs  cursorCol          cc= 75 [0 0 12 3]
+#1754 tabs  cc2xywh            tpp=360 old=75 lenT=120 cc=75 old % lenT
+#1757 tabs  cc2xywh            cc=  75 old=  75 [360 360 360 120 6]  600.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  76 [360 360 360 120 6] [1 1   13 5] (   0 +  0 +120 + 72 +4)
+#1777 tabs  cursorCol          cc= 76 [0 0 12 4]
+#1754 tabs  cc2xywh            tpp=360 old=76 lenT=120 cc=76 old % lenT
+#1757 tabs  cc2xywh            cc=  76 old=  76 [360 360 360 120 6]  600.00  405.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  76 [360 360 360 120 6] [1 1   13 5] (   0 +  0 +120 + 72 +4)
+#1777 tabs  cursorCol          cc= 76 [0 0 12 4]
+# 682 cmds  _setTab            [1 1 1 13 5]  77  72 13] BGN onTxt rev=0 old= 76 cc= 76 text='8' p=0 l=0 s=0 c=12 t=4
+#1774 tabs  plct2cc                  75 [360 360 360 120 6] [1 1   13 4] (   0 +  0 +120 + 72 +3)
+#1777 tabs  cursorCol          cc= 75 [0 0 12 3]
+#1754 tabs  cc2xywh            tpp=360 old=75 lenT=120 cc=75 old % lenT
+#1757 tabs  cc2xywh            cc=  75 old=  75 [360 360 360 120 6]  600.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.51.TXT.8.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.51.TXT.8.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.51.TXT.8.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.51.TXT.8.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.51.TXT.8.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=51 typ=TXT.8 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.51.TXT.8.png
+#1774 tabs  plct2cc                  75 [360 360 360 120 6] [1 1   13 4] (   0 +  0 +120 + 72 +3)
+#1777 tabs  cursorCol          cc= 75 [0 0 12 3]
+# 682 cmds  _setTab            [1 1 1 13 4]  76  72 13] BGN onTxt rev=0 old= 75 cc= 75 text='9' p=0 l=0 s=0 c=12 t=3
+#1774 tabs  plct2cc                  74 [360 360 360 120 6] [1 1   13 3] (   0 +  0 +120 + 72 +2)
+#1777 tabs  cursorCol          cc= 74 [0 0 12 2]
+#1754 tabs  cc2xywh            tpp=360 old=74 lenT=120 cc=74 old % lenT
+#1757 tabs  cc2xywh            cc=  74 old=  74 [360 360 360 120 6]  600.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.52.TXT.9.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.52.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.52.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.52.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.52.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=52 typ=TXT.9 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.52.TXT.9.png
+#1774 tabs  plct2cc                  74 [360 360 360 120 6] [1 1   13 3] (   0 +  0 +120 + 72 +2)
+#1777 tabs  cursorCol          cc= 74 [0 0 12 2]
+# 682 cmds  _setTab            [1 1 1 13 3]  75  72 13] BGN onTxt rev=0 old= 74 cc= 74 text='9' p=0 l=0 s=0 c=12 t=2
+#1774 tabs  plct2cc                  73 [360 360 360 120 6] [1 1   13 2] (   0 +  0 +120 + 72 +1)
+#1777 tabs  cursorCol          cc= 73 [0 0 12 1]
+#1754 tabs  cc2xywh            tpp=360 old=73 lenT=120 cc=73 old % lenT
+#1757 tabs  cc2xywh            cc=  73 old=  73 [360 360 360 120 6]  600.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.53.TXT.9.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.53.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.53.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.53.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.53.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=53 typ=TXT.9 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.53.TXT.9.png
+#1774 tabs  plct2cc                  73 [360 360 360 120 6] [1 1   13 2] (   0 +  0 +120 + 72 +1)
+#1777 tabs  cursorCol          cc= 73 [0 0 12 1]
+# 682 cmds  _setTab            [1 1 1 13 2]  74  72 13] BGN onTxt rev=0 old= 73 cc= 73 text='9' p=0 l=0 s=0 c=12 t=1
+#1774 tabs  plct2cc                  72 [360 360 360 120 6] [1 1   13 1] (   0 +  0 +120 + 72 +0)
+#1777 tabs  cursorCol          cc= 72 [0 0 12 0]
+#1754 tabs  cc2xywh            tpp=360 old=72 lenT=120 cc=72 old % lenT
+#1757 tabs  cc2xywh            cc=  72 old=  72 [360 360 360 120 6]  600.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.54.TXT.9.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.54.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.54.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.54.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.54.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=54 typ=TXT.9 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.54.TXT.9.png
+#1774 tabs  plct2cc                  78 [360 360 360 120 6] [1 1   14 1] (   0 +  0 +120 + 78 +0)
+#1777 tabs  cursorCol          cc= 78 [0 0 13 0]
+#1754 tabs  cc2xywh            tpp=360 old=78 lenT=120 cc=78 old % lenT
+#1757 tabs  cc2xywh            cc=  78 old=  78 [360 360 360 120 6]  648.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  79 [360 360 360 120 6] [1 1   14 2] (   0 +  0 +120 + 78 +1)
+#1777 tabs  cursorCol          cc= 79 [0 0 13 1]
+#1754 tabs  cc2xywh            tpp=360 old=79 lenT=120 cc=79 old % lenT
+#1757 tabs  cc2xywh            cc=  79 old=  79 [360 360 360 120 6]  648.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  80 [360 360 360 120 6] [1 1   14 3] (   0 +  0 +120 + 78 +2)
+#1777 tabs  cursorCol          cc= 80 [0 0 13 2]
+#1754 tabs  cc2xywh            tpp=360 old=80 lenT=120 cc=80 old % lenT
+#1757 tabs  cc2xywh            cc=  80 old=  80 [360 360 360 120 6]  648.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  81 [360 360 360 120 6] [1 1   14 4] (   0 +  0 +120 + 78 +3)
+#1777 tabs  cursorCol          cc= 81 [0 0 13 3]
+#1754 tabs  cc2xywh            tpp=360 old=81 lenT=120 cc=81 old % lenT
+#1757 tabs  cc2xywh            cc=  81 old=  81 [360 360 360 120 6]  648.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  82 [360 360 360 120 6] [1 1   14 5] (   0 +  0 +120 + 78 +4)
+#1777 tabs  cursorCol          cc= 82 [0 0 13 4]
+#1754 tabs  cc2xywh            tpp=360 old=82 lenT=120 cc=82 old % lenT
+#1757 tabs  cc2xywh            cc=  82 old=  82 [360 360 360 120 6]  648.00  405.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  82 [360 360 360 120 6] [1 1   14 5] (   0 +  0 +120 + 78 +4)
+#1777 tabs  cursorCol          cc= 82 [0 0 13 4]
+# 682 cmds  _setTab            [1 1 1 14 5]  83  78 14] BGN onTxt rev=0 old= 82 cc= 82 text='a' p=0 l=0 s=0 c=13 t=4
+#1774 tabs  plct2cc                  81 [360 360 360 120 6] [1 1   14 4] (   0 +  0 +120 + 78 +3)
+#1777 tabs  cursorCol          cc= 81 [0 0 13 3]
+#1754 tabs  cc2xywh            tpp=360 old=81 lenT=120 cc=81 old % lenT
+#1757 tabs  cc2xywh            cc=  81 old=  81 [360 360 360 120 6]  648.00  435.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.55.TXT.a.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.55.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.55.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.55.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.55.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=55 typ=TXT.a why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.55.TXT.a.png
+#1774 tabs  plct2cc                  81 [360 360 360 120 6] [1 1   14 4] (   0 +  0 +120 + 78 +3)
+#1777 tabs  cursorCol          cc= 81 [0 0 13 3]
+# 682 cmds  _setTab            [1 1 1 14 4]  82  78 14] BGN onTxt rev=0 old= 81 cc= 81 text='c' p=0 l=0 s=0 c=13 t=3
+#1774 tabs  plct2cc                  80 [360 360 360 120 6] [1 1   14 3] (   0 +  0 +120 + 78 +2)
+#1777 tabs  cursorCol          cc= 80 [0 0 13 2]
+#1754 tabs  cc2xywh            tpp=360 old=80 lenT=120 cc=80 old % lenT
+#1757 tabs  cc2xywh            cc=  80 old=  80 [360 360 360 120 6]  648.00  465.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.56.TXT.c.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.56.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.56.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.56.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.56.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=56 typ=TXT.c why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.56.TXT.c.png
+#1774 tabs  plct2cc                  80 [360 360 360 120 6] [1 1   14 3] (   0 +  0 +120 + 78 +2)
+#1777 tabs  cursorCol          cc= 80 [0 0 13 2]
+# 682 cmds  _setTab            [1 1 1 14 3]  81  78 14] BGN onTxt rev=0 old= 80 cc= 80 text='a' p=0 l=0 s=0 c=13 t=2
+#1774 tabs  plct2cc                  79 [360 360 360 120 6] [1 1   14 2] (   0 +  0 +120 + 78 +1)
+#1777 tabs  cursorCol          cc= 79 [0 0 13 1]
+#1754 tabs  cc2xywh            tpp=360 old=79 lenT=120 cc=79 old % lenT
+#1757 tabs  cc2xywh            cc=  79 old=  79 [360 360 360 120 6]  648.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.57.TXT.a.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.57.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.57.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.57.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.57.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=57 typ=TXT.a why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.57.TXT.a.png
+#1774 tabs  plct2cc                  79 [360 360 360 120 6] [1 1   14 2] (   0 +  0 +120 + 78 +1)
+#1777 tabs  cursorCol          cc= 79 [0 0 13 1]
+# 682 cmds  _setTab            [1 1 1 14 2]  80  78 14] BGN onTxt rev=0 old= 79 cc= 79 text='b' p=0 l=0 s=0 c=13 t=1
+#1774 tabs  plct2cc                  78 [360 360 360 120 6] [1 1   14 1] (   0 +  0 +120 + 78 +0)
+#1777 tabs  cursorCol          cc= 78 [0 0 13 0]
+#1754 tabs  cc2xywh            tpp=360 old=78 lenT=120 cc=78 old % lenT
+#1757 tabs  cc2xywh            cc=  78 old=  78 [360 360 360 120 6]  648.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.58.TXT.b.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.58.TXT.b.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.58.TXT.b.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.58.TXT.b.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.58.TXT.b.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=58 typ=TXT.b why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.58.TXT.b.png
+#1774 tabs  plct2cc                  84 [360 360 360 120 6] [1 1   15 1] (   0 +  0 +120 + 84 +0)
+#1777 tabs  cursorCol          cc= 84 [0 0 14 0]
+#1754 tabs  cc2xywh            tpp=360 old=84 lenT=120 cc=84 old % lenT
+#1757 tabs  cc2xywh            cc=  84 old=  84 [360 360 360 120 6]  696.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  85 [360 360 360 120 6] [1 1   15 2] (   0 +  0 +120 + 84 +1)
+#1777 tabs  cursorCol          cc= 85 [0 0 14 1]
+#1754 tabs  cc2xywh            tpp=360 old=85 lenT=120 cc=85 old % lenT
+#1757 tabs  cc2xywh            cc=  85 old=  85 [360 360 360 120 6]  696.00  495.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+#1774 tabs  plct2cc                  79 [360 360 360 120 6] [1 1   14 2] (   0 +  0 +120 + 78 +1)
+#1777 tabs  cursorCol          cc= 79 [0 0 13 1]
+#1754 tabs  cc2xywh            tpp=360 old=79 lenT=120 cc=79 old % lenT
+#1757 tabs  cc2xywh            cc=  79 old=  79 [360 360 360 120 6]  648.00  495.00   48.00   30.00 t.text='b' 18.68 32.00 C C
+#1774 tabs  plct2cc                  79 [360 360 360 120 6] [1 1   14 2] (   0 +  0 +120 + 78 +1)
+#1777 tabs  cursorCol          cc= 79 [0 0 13 1]
+# 682 cmds  _setTab            [1 1 1 14 2]  80  78 14] BGN onTxt rev=0 old= 79 cc= 79 text='9' p=0 l=0 s=0 c=13 t=1
+[4:E :8, a:B♭:1, 7:G :6, 0:C :6, 2:D :7, 8:A♭:9, b:B :8, 5:F :7]
+[4:E :8, a:A♯:1, 7:G :6, 0:C :6, 2:D :7, 8:G♯:9, b:B :8, 5:F :7]
+[a:B♭:1,  None , 8:A♭:9,  None ,  None , b:B :8, 4:E :8]
+[ None ,  None , 8:A♭:9,  None , a:B♭:1, 5:F :7, 0:C :6]
+#1774 tabs  plct2cc                  78 [360 360 360 120 6] [1 1   14 1] (   0 +  0 +120 + 78 +0)
+#1777 tabs  cursorCol          cc= 78 [0 0 13 0]
+#1754 tabs  cc2xywh            tpp=360 old=78 lenT=120 cc=78 old % lenT
+#1757 tabs  cc2xywh            cc=  78 old=  78 [360 360 360 120 6]  648.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.59.TXT.9.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.59.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.59.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.59.TXT.9.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.59.TXT.9.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=59 typ=TXT.9 why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.59.TXT.9.png
+#1774 tabs  plct2cc                  79 [360 360 360 120 6] [1 1   14 2] (   0 +  0 +120 + 78 +1)
+#1777 tabs  cursorCol          cc= 79 [0 0 13 1]
+#1754 tabs  cc2xywh            tpp=360 old=79 lenT=120 cc=79 old % lenT
+#1757 tabs  cc2xywh            cc=  79 old=  79 [360 360 360 120 6]  648.00  495.00   48.00   30.00 t.text='9' 18.68 32.00 C C
+#1774 tabs  plct2cc                  80 [360 360 360 120 6] [1 1   14 3] (   0 +  0 +120 + 78 +2)
+#1777 tabs  cursorCol          cc= 80 [0 0 13 2]
+#1754 tabs  cc2xywh            tpp=360 old=80 lenT=120 cc=80 old % lenT
+#1757 tabs  cc2xywh            cc=  80 old=  80 [360 360 360 120 6]  648.00  465.00   48.00   30.00 t.text='a' 18.68 32.00 C C
+#1774 tabs  plct2cc                  81 [360 360 360 120 6] [1 1   14 4] (   0 +  0 +120 + 78 +3)
+#1777 tabs  cursorCol          cc= 81 [0 0 13 3]
+#1754 tabs  cc2xywh            tpp=360 old=81 lenT=120 cc=81 old % lenT
+#1757 tabs  cc2xywh            cc=  81 old=  81 [360 360 360 120 6]  648.00  435.00   48.00   30.00 t.text='c' 18.68 32.00 C C
+#1774 tabs  plct2cc                  81 [360 360 360 120 6] [1 1   14 4] (   0 +  0 +120 + 78 +3)
+#1777 tabs  cursorCol          cc= 81 [0 0 13 3]
+# 682 cmds  _setTab            [1 1 1 14 4]  82  78 14] BGN onTxt rev=0 old= 81 cc= 81 text='a' p=0 l=0 s=0 c=13 t=3
+[4:E :8, a:B♭:1, 7:G :6, 0:C :7, 2:D :6, 8:A♭:9, b:B :8, 5:F :7]
+[4:E :8, a:A♯:1, 7:G :6, 0:C :7, 2:D :6, 8:G♯:9, b:B :8, 5:F :7]
+[a:B♭:1,  None , 8:A♭:9,  None ,  None , b:B :8, 4:E :8]
+[ None ,  None , 8:A♭:9,  None , a:B♭:1, 5:F :7, 0:C :7]
+#1774 tabs  plct2cc                  80 [360 360 360 120 6] [1 1   14 3] (   0 +  0 +120 + 78 +2)
+#1777 tabs  cursorCol          cc= 80 [0 0 13 2]
+#1754 tabs  cc2xywh            tpp=360 old=80 lenT=120 cc=80 old % lenT
+#1757 tabs  cc2xywh            cc=  80 old=  80 [360 360 360 120 6]  648.00  465.00   48.00   30.00 t.text='a' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.60.TXT.a.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.60.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.60.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.60.TXT.a.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.60.TXT.a.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=60 typ=TXT.a why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.60.TXT.a.png
+#1774 tabs  plct2cc                  81 [360 360 360 120 6] [1 1   14 4] (   0 +  0 +120 + 78 +3)
+#1777 tabs  cursorCol          cc= 81 [0 0 13 3]
+#1754 tabs  cc2xywh            tpp=360 old=81 lenT=120 cc=81 old % lenT
+#1757 tabs  cc2xywh            cc=  81 old=  81 [360 360 360 120 6]  648.00  435.00   48.00   30.00 t.text='a' 18.68 32.00 C C
+#1774 tabs  plct2cc                  81 [360 360 360 120 6] [1 1   14 4] (   0 +  0 +120 + 78 +3)
+#1777 tabs  cursorCol          cc= 81 [0 0 13 3]
+# 682 cmds  _setTab            [1 1 1 14 4]  82  78 14] BGN onTxt rev=0 old= 81 cc= 81 text='c' p=0 l=0 s=0 c=13 t=3
+[4:E :8, a:B♭:1, 7:G :6, 0:C :6, 2:D :7, 8:A♭:9, b:B :8, 5:F :7]
+[4:E :8, a:A♯:1, 7:G :6, 0:C :6, 2:D :7, 8:G♯:9, b:B :8, 5:F :7]
+[a:B♭:1,  None , 8:A♭:9,  None ,  None , b:B :8, 4:E :8]
+[ None ,  None , 8:A♭:9,  None , a:B♭:1, 5:F :7, 0:C :6]
+#1774 tabs  plct2cc                  80 [360 360 360 120 6] [1 1   14 3] (   0 +  0 +120 + 78 +2)
+#1777 tabs  cursorCol          cc= 80 [0 0 13 2]
+#1754 tabs  cc2xywh            tpp=360 old=80 lenT=120 cc=80 old % lenT
+#1757 tabs  cc2xywh            cc=  80 old=  80 [360 360 360 120 6]  648.00  465.00   48.00   30.00 t.text='a' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.61.TXT.c.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.61.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.61.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.61.TXT.c.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.61.TXT.c.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=61 typ=TXT.c why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.61.TXT.c.png
+#1774 tabs  plct2cc                  79 [360 360 360 120 6] [1 1   14 2] (   0 +  0 +120 + 78 +1)
+#1777 tabs  cursorCol          cc= 79 [0 0 13 1]
+#1754 tabs  cc2xywh            tpp=360 old=79 lenT=120 cc=79 old % lenT
+#1757 tabs  cc2xywh            cc=  79 old=  79 [360 360 360 120 6]  648.00  495.00   48.00   30.00 t.text='9' 18.68 32.00 C C
+#1774 tabs  plct2cc                  79 [360 360 360 120 6] [1 1   14 2] (   0 +  0 +120 + 78 +1)
+#1777 tabs  cursorCol          cc= 79 [0 0 13 1]
+# 682 cmds  _setTab            [1 1 1 14 2]  80  78 14] BGN onTxt rev=0 old= 79 cc= 79 text='d' p=0 l=0 s=0 c=13 t=1
+[4:E :8, a:B♭:1, 7:G :6, 0:C :7, 2:D :7, 8:A♭:8, b:B :8, 5:F :7]
+[4:E :8, a:A♯:1, 7:G :6, 0:C :7, 2:D :7, 8:G♯:8, b:B :8, 5:F :7]
+[a:B♭:1,  None , 8:A♭:8,  None ,  None , b:B :8, 4:E :8]
+[ None ,  None , 8:A♭:8,  None , a:B♭:1, 5:F :7, 0:C :7]
+#1774 tabs  plct2cc                  78 [360 360 360 120 6] [1 1   14 1] (   0 +  0 +120 + 78 +0)
+#1777 tabs  cursorCol          cc= 78 [0 0 13 0]
+#1754 tabs  cc2xywh            tpp=360 old=78 lenT=120 cc=78 old % lenT
+#1757 tabs  cc2xywh            cc=  78 old=  78 [360 360 360 120 6]  648.00  525.00   48.00   30.00 t.text=' ' 18.68 32.00 C C
+# 742 cmds  _snapshot          snapName='test.2.62.TXT.d.png' onTxt
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.62.TXT.d.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.62.TXT.d.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.62.TXT.d.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.62.TXT.d.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=62 typ=TXT.d why=onTxt qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.62.TXT.d.png
+#1002 cmds  _togKordName       13 1 G7s4         G7s4         R5♭74        07a5   GDFC         R45♭7        057a   GCDF        
+# 742 cmds  _snapshot          snapName='test.2.63.KRD1.png' @ R
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.63.KRD1.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.63.KRD1.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.2.63.KRD1.png')
+# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.20.6_CC_CC.png')
+# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.63.KRD1.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.20.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=  2 sid=63 typ=KRD1 why=@ R qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.2.63.KRD1.png
