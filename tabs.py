@@ -1344,7 +1344,7 @@ class Tabs(pyglet.window.Window):
                 for s, sect in enumerate(self.g_newUpdTniks(S,           nw=0, pt=line, why=upd, dbg=1)):
                     for colm in          self.g_newUpdTniks(C, m=i*nc,   nw=0, pt=sect, why=upd, dbg=1):
                         for _ in         self.g_newUpdTniks(T, s=z()[s], nw=0, pt=colm, why=upd, dbg=1): pass
-        if self.CURSOR and self.tabls and not self.cursor: self.createCursor(add)
+        if self.tabls and not self.cursor: self.createCursor(add)
         self.dumpTniksSfx(add2)
         return ss
     ####################################################################################################################################################################################################
@@ -1378,8 +1378,8 @@ class Tabs(pyglet.window.Window):
                 for z in range(len(view)):
                     self.addZZs(z, why)
         self.dumpTniksSfx(why)
-        if self.CURSOR and self.tabls and not self.cursor:  self.createCursor(why)   ;  self.dumpHdrs()
-        if dbg and self.SNAPS >= 1:     self.regSnap('NEW', why)
+        if self.tabls and not self.cursor:  self.createCursor(why)   ;  self.dumpHdrs()
+        if dbg and self.SNAPS >= 1:         self.regSnap('NEW', why)
         if dbg:         self.dumpStruct(why)
     ####################################################################################################################################################################################################
     def g_createTniks(self, tlist, j, pt=None, ii=None, why=Z, dbg=1, dbg2=1):
@@ -2010,14 +2010,14 @@ class Tabs(pyglet.window.Window):
         if dbg:    self.log(f'BGN {how} {n=}', pos=1)
         p, l, s, c, t = self.j()
         self.moveToB2(p, l, s, c, t, n=n)
-        if self.CURSOR and self.cursor: cmd = cmds.MoveCursorCmd(self, ss, how)     ;  cmd.do()
-        if dbg:    self.log(f'END {how} {n=}', pos=1)
+        if self.cursor: cmd = cmds.MoveCursorCmd(self, ss, how)     ;  cmd.do()
+        if dbg:         self.log(f'END {how} {n=}', pos=1)
 
     def moveToB(self, how, p, l, s, c, t, ss=0, dbg=1):
         if dbg:    self.log(f'BGN {how}', pos=1)
         p2, l2, s2, c2, t2 = self.moveToB2(p, l, s, c, t)
-        if self.CURSOR and self.cursor: cmd = cmds.MoveCursorCmd(self, ss, how)     ;  cmd.do()
-        if dbg:    self.log(f'END {how}', pos=1)
+        if self.cursor: cmd = cmds.MoveCursorCmd(self, ss, how)     ;  cmd.do()
+        if dbg:         self.log(f'END {how}', pos=1)
         return p2, l2, s2, c2, t2
 
     def moveToB2(self, p, l, s, c, t, n=0, dbg=1): # todo

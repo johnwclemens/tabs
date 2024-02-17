@@ -10,78 +10,10 @@ W, Y, Z          = utl.W, utl.Y, utl.Z
 slog, fmtl, fmtm = utl.slog, utl.fmtl, utl.fmtm
 filtA            = utl.filtA
 
-# E A D G B E  :  { E 2: 4   A 2: 9   D 3: 2   G 3: 7   B 3: 11   E 4: 4 } # relative
-# E A D G B E  :  { E 2:24   A 2:24   D 3:36   G 3:36   B 3: 36   E 4:48 } # offset
-# E A D G B E  :  { E 2:28   A 2:33   D 3:38   G 3:43   B 3: 47   E 4:52 } # absolute
-"""      key : nam idx
-      EADGBE :  E2  28   A2  33   D3  38   G3  43   B3  47   E4  52
-      DADGBE :  D2  26   A2  33   D3  38   G3  43   B3  47   E4  52
-      EADGCF :  E2  28   A2  33   D3  38   G3  43   C4  48   F4  53
-      FCGDAE :  F1  17   C2  24   G2  31   D3  38   A3  45   E4  52
-   A♭E♭B♭FCG :  A♭1 20   E♭2 27   B♭2 34   F3  41   C4  48   G4  55
-      DADGAD :  D2  26   A2  33   D3  38   G3  43   A3  45   D4  50
-      CEGCEG :  C2  24   E2  28   G2  31   C3  36   E3  40   G3  43
-      DADEAD :  D2  26   A2  33   D3  38   E3  40   A3  45   D4  50
-     EAC♯GBE :  E2  28   A2  33   C♯3 37   G3  43   B3  47   E4  52
-E♯A♯D♯G♯B♯E♯ :  E♯2 29   A♯2 34   D♯3 39   G♯3 44   B♯3 36   E♯4 53
-E♭A♭D♭G♭B♭E♭ :  E♭2 27   A♭2 32   D♭3 37   G♭3 42   B♭3 46   E♭4 51
-   EBE♭G♭BE♭ :  E2  28   B2  35   E♭3 39   G♭3 42   B3  47   E♭4 51
-     BEADGBE :  B1  23   E2  28   A2  33   D3  38   G3  43   B3  47   E4  52
-     BEADGCF :  B1  23   E2  28   A2  33   D3  38   G3  43   C4  48   F4  53
-   EG♯CEG♯CE :  E2  28   G♯2 32   C3  36   E3  40   G♯3 44   C4  48   E4  52
-     DGBDGBD :  D2  26   G2  31   B2  35   D3  38   G3  43   B3  47   D4  50
-         key : idx nam
-      EADGBE :  28 E2    33 A2    38 D3    43 G3    47 B3    52 E4 
-      DADGBE :  26 D2    33 A2    38 D3    43 G3    47 B3    52 E4 
-      EADGCF :  28 E2    33 A2    38 D3    43 G3    48 C4    53 F4 
-      FCGDAE :  17 F1    24 C2    31 G2    38 D3    45 A3    52 E4 
-   A♭E♭B♭FCG :  20 A♭1   27 E♭2   34 B♭2   41 F3    48 C4    55 G4 
-      DADGAD :  26 D2    33 A2    38 D3    43 G3    45 A3    50 D4 
-      CEGCEG :  24 C2    28 E2    31 G2    36 C3    40 E3    43 G3 
-      DADEAD :  26 D2    33 A2    38 D3    40 E3    45 A3    50 D4 
-     EAC♯GBE :  28 E2    33 A2    37 C♯3   43 G3    47 B3    52 E4 
-E♯A♯D♯G♯B♯E♯ :  29 E♯2   34 A♯2   39 D♯3   44 G♯3   36 B♯3   53 E♯4
-E♭A♭D♭G♭B♭E♭ :  27 E♭2   32 A♭2   37 D♭3   42 G♭3   46 B♭3   51 E♭4
-   EBE♭G♭BE♭ :  28 E2    35 B2    39 E♭3   42 G♭3   47 B3    51 E♭4
-     BEADGBE :  23 B1    28 E2    33 A2    38 D3    43 G3    47 B3    52 E4 
-     BEADGCF :  23 B1    28 E2    33 A2    38 D3    43 G3    48 C4    53 F4 
-   EG♯CEG♯CE :  28 E2    32 G♯2   36 C3    40 E3    44 G♯3   48 C4    52 E4 
-     DGBDGBD :  26 D2    31 G2    35 B2    38 D3    43 G3    47 B3    50 D4 
-            k  e  y  : idx nam
-   E  A  D  G  B  E  :  E2  28   A2  33   D3  38   G3  43   B3  47   E4  52
-   D  A  D  G  B  E  :  D2  26   A2  33   D3  38   G3  43   B3  47   E4  52
-   E  A  D  G  C  F  :  E2  28   A2  33   D3  38   G3  43   C4  48   F4  53
-   F  C  G  D  A  E  :  F1  17   C2  24   G2  31   D3  38   A3  45   E4  52
-   A♭ E♭ B♭ F  C  G  :  A♭1 20   E♭2 27   B♭2 34   F3  41   C4  48   G4  55
-   D  A  D  G  A  D  :  D2  26   A2  33   D3  38   G3  43   A3  45   D4  50
-   C  E  G  C  E  G  :  C2  24   E2  28   G2  31   C3  36   E3  40   G3  43
-   D  A  D  E  A  D  :  D2  26   A2  33   D3  38   E3  40   A3  45   D4  50
-   E  A  C♯ G  B  E  :  E2  28   A2  33   C♯3 37   G3  43   B3  47   E4  52
-   E♯ A♯ D♯ G♯ B♯ E♯ :  E♯2 29   A♯2 34   D♯3 39   G♯3 44   B♯3 36   E♯4 53
-   E♭ A♭ D♭ G♭ B♭ E♭ :  E♭2 27   A♭2 32   D♭3 37   G♭3 42   B♭3 46   E♭4 51
-   E  B  E♭ G♭ B  E♭ :  E2  28   B2  35   E♭3 39   G♭3 42   B3  47   E♭4 51
-B  E  A  D  G  B  E  :  B1  23   E2  28   A2  33   D3  38   G3  43   B3  47   E4  52
-B  E  A  D  G  C  F  :  B1  23   E2  28   A2  33   D3  38   G3  43   C4  48   F4  53
-E  G♯ C  E  G♯ C  E  :  E2  28   G♯2 32   C3  36   E3  40   G♯3 44   C4  48   E4  52
-D  G  B  D  G  B  D  :  D2  26   G2  31   B2  35   D3  38   G3  43   B3  47   D4  50
-            k  e  y  : idx name
-   E  A  D  G  B  E  :  28 E  2   33 A  2   38 D  3   43 G  3   47 B  3   52 E  4
-   D  A  D  G  B  E  :  26 D  2   33 A  2   38 D  3   43 G  3   47 B  3   52 E  4
-   E  A  D  G  C  F  :  28 E  2   33 A  2   38 D  3   43 G  3   48 C  4   53 F  4
-   F  C  G  D  A  E  :  17 F  1   24 C  2   31 G  2   38 D  3   45 A  3   52 E  4
-   A♭ E♭ B♭ F  C  G  :  20 A♭ 1   27 E♭ 2   34 B♭ 2   41 F  3   48 C  4   55 G  4
-   D  A  D  G  A  D  :  26 D  2   33 A  2   38 D  3   43 G  3   45 A  3   50 D  4
-   C  E  G  C  E  G  :  24 C  2   28 E  2   31 G  2   36 C  3   40 E  3   43 G  3
-   D  A  D  E  A  D  :  26 D  2   33 A  2   38 D  3   40 E  3   45 A  3   50 D  4
-   E  A  C♯ G  B  E  :  28 E  2   33 A  2   37 C♯ 3   43 G  3   47 B  3   52 E  4
-   E♯ A♯ D♯ G♯ B♯ E♯ :  29 E♯ 2   34 A♯ 2   39 D♯ 3   44 G♯ 3   36 B♯ 3   53 E♯ 4
-   E♭ A♭ D♭ G♭ B♭ E♭ :  27 E♭ 2   32 A♭ 2   37 D♭ 3   42 G♭ 3   46 B♭ 3   51 E♭ 4
-   E  B  E♭ G♭ B  E♭ :  28 E  2   35 B  2   39 E♭ 3   42 G♭ 3   47 B  3   51 E♭ 4
-B  E  A  D  G  B  E  :  23 B  1   28 E  2   33 A  2   38 D  3   43 G  3   47 B  3   52 E  4
-B  E  A  D  G  C  F  :  23 B  1   28 E  2   33 A  2   38 D  3   43 G  3   48 C  4   53 F  4
-E  G♯ C  E  G♯ C  E  :  28 E  2   32 G♯ 2   36 C  3   40 E  3   44 G♯ 3   48 C  4   52 E  4
-D  G  B  D  G  B  D  :  26 D  2   31 G  2   35 B  2   38 D  3   43 G  3   47 B  3   50 D  4
-"""
+#    EADGBE : { E 2: 4   A 2: 9   D 3: 2   G 3: 7   B 3: 11   E 4: 4 } # relative
+#    EADGBE : { E 2:24   A 2:24   D 3:36   G 3:36   B 3: 36   E 4:48 } # offset
+#    EADGBE : { E 2:28   A 2:33   D 3:38   G 3:43   B 3: 47   E 4:52 } # absolute
+
 C_0, C_1, C_2, C_3, C_4, C_5, C_6, C_7, C_8, C_9, C_10 = 'C 0', 'C 1', 'C 2', 'C 3', 'C 4', 'C 5', 'C 6', 'C 7', 'C 8', 'C 9', 'C 10'
 D_0, D_1, D_2, D_3, D_4, D_5, D_6, D_7, D_8, D_9, D_10 = 'D 0', 'D 1', 'D 2', 'D 3', 'D 4', 'D 5', 'D 6', 'D 7', 'D 8', 'D 9', 'D 10'
 E_0, E_1, E_2, E_3, E_4, E_5, E_6, E_7, E_8, E_9, E_10 = 'E 0', 'E 1', 'E 2', 'E 3', 'E 4', 'E 5', 'E 6', 'E 7', 'E 8', 'E 9', 'E 10'
@@ -232,3 +164,73 @@ class Strngs:
         name = Notes.name(i, t, 1) # do not hard code t=1 get note type (sharp/flat)
         if dbg and nict:        slog(f'{tab=} {fn=:2} {s=} {i=:2} {j=:x} {name=:2} {nict}{fmtm(nic, w="x")}', f=f)
         return name
+
+"""      key : nam idx
+      EADGBE :  E2  28   A2  33   D3  38   G3  43   B3  47   E4  52
+      DADGBE :  D2  26   A2  33   D3  38   G3  43   B3  47   E4  52
+      EADGCF :  E2  28   A2  33   D3  38   G3  43   C4  48   F4  53
+      FCGDAE :  F1  17   C2  24   G2  31   D3  38   A3  45   E4  52
+   A♭E♭B♭FCG :  A♭1 20   E♭2 27   B♭2 34   F3  41   C4  48   G4  55
+      DADGAD :  D2  26   A2  33   D3  38   G3  43   A3  45   D4  50
+      CEGCEG :  C2  24   E2  28   G2  31   C3  36   E3  40   G3  43
+      DADEAD :  D2  26   A2  33   D3  38   E3  40   A3  45   D4  50
+     EAC♯GBE :  E2  28   A2  33   C♯3 37   G3  43   B3  47   E4  52
+E♯A♯D♯G♯B♯E♯ :  E♯2 29   A♯2 34   D♯3 39   G♯3 44   B♯3 36   E♯4 53
+E♭A♭D♭G♭B♭E♭ :  E♭2 27   A♭2 32   D♭3 37   G♭3 42   B♭3 46   E♭4 51
+   EBE♭G♭BE♭ :  E2  28   B2  35   E♭3 39   G♭3 42   B3  47   E♭4 51
+     BEADGBE :  B1  23   E2  28   A2  33   D3  38   G3  43   B3  47   E4  52
+     BEADGCF :  B1  23   E2  28   A2  33   D3  38   G3  43   C4  48   F4  53
+   EG♯CEG♯CE :  E2  28   G♯2 32   C3  36   E3  40   G♯3 44   C4  48   E4  52
+     DGBDGBD :  D2  26   G2  31   B2  35   D3  38   G3  43   B3  47   D4  50
+         key : idx nam
+      EADGBE :  28 E2    33 A2    38 D3    43 G3    47 B3    52 E4 
+      DADGBE :  26 D2    33 A2    38 D3    43 G3    47 B3    52 E4 
+      EADGCF :  28 E2    33 A2    38 D3    43 G3    48 C4    53 F4 
+      FCGDAE :  17 F1    24 C2    31 G2    38 D3    45 A3    52 E4 
+   A♭E♭B♭FCG :  20 A♭1   27 E♭2   34 B♭2   41 F3    48 C4    55 G4 
+      DADGAD :  26 D2    33 A2    38 D3    43 G3    45 A3    50 D4 
+      CEGCEG :  24 C2    28 E2    31 G2    36 C3    40 E3    43 G3 
+      DADEAD :  26 D2    33 A2    38 D3    40 E3    45 A3    50 D4 
+     EAC♯GBE :  28 E2    33 A2    37 C♯3   43 G3    47 B3    52 E4 
+E♯A♯D♯G♯B♯E♯ :  29 E♯2   34 A♯2   39 D♯3   44 G♯3   36 B♯3   53 E♯4
+E♭A♭D♭G♭B♭E♭ :  27 E♭2   32 A♭2   37 D♭3   42 G♭3   46 B♭3   51 E♭4
+   EBE♭G♭BE♭ :  28 E2    35 B2    39 E♭3   42 G♭3   47 B3    51 E♭4
+     BEADGBE :  23 B1    28 E2    33 A2    38 D3    43 G3    47 B3    52 E4 
+     BEADGCF :  23 B1    28 E2    33 A2    38 D3    43 G3    48 C4    53 F4 
+   EG♯CEG♯CE :  28 E2    32 G♯2   36 C3    40 E3    44 G♯3   48 C4    52 E4 
+     DGBDGBD :  26 D2    31 G2    35 B2    38 D3    43 G3    47 B3    50 D4 
+            k  e  y  : idx nam
+   E  A  D  G  B  E  :  E2  28   A2  33   D3  38   G3  43   B3  47   E4  52
+   D  A  D  G  B  E  :  D2  26   A2  33   D3  38   G3  43   B3  47   E4  52
+   E  A  D  G  C  F  :  E2  28   A2  33   D3  38   G3  43   C4  48   F4  53
+   F  C  G  D  A  E  :  F1  17   C2  24   G2  31   D3  38   A3  45   E4  52
+   A♭ E♭ B♭ F  C  G  :  A♭1 20   E♭2 27   B♭2 34   F3  41   C4  48   G4  55
+   D  A  D  G  A  D  :  D2  26   A2  33   D3  38   G3  43   A3  45   D4  50
+   C  E  G  C  E  G  :  C2  24   E2  28   G2  31   C3  36   E3  40   G3  43
+   D  A  D  E  A  D  :  D2  26   A2  33   D3  38   E3  40   A3  45   D4  50
+   E  A  C♯ G  B  E  :  E2  28   A2  33   C♯3 37   G3  43   B3  47   E4  52
+   E♯ A♯ D♯ G♯ B♯ E♯ :  E♯2 29   A♯2 34   D♯3 39   G♯3 44   B♯3 36   E♯4 53
+   E♭ A♭ D♭ G♭ B♭ E♭ :  E♭2 27   A♭2 32   D♭3 37   G♭3 42   B♭3 46   E♭4 51
+   E  B  E♭ G♭ B  E♭ :  E2  28   B2  35   E♭3 39   G♭3 42   B3  47   E♭4 51
+B  E  A  D  G  B  E  :  B1  23   E2  28   A2  33   D3  38   G3  43   B3  47   E4  52
+B  E  A  D  G  C  F  :  B1  23   E2  28   A2  33   D3  38   G3  43   C4  48   F4  53
+E  G♯ C  E  G♯ C  E  :  E2  28   G♯2 32   C3  36   E3  40   G♯3 44   C4  48   E4  52
+D  G  B  D  G  B  D  :  D2  26   G2  31   B2  35   D3  38   G3  43   B3  47   D4  50
+            k  e  y  : idx name
+   E  A  D  G  B  E  :  28 E  2   33 A  2   38 D  3   43 G  3   47 B  3   52 E  4
+   D  A  D  G  B  E  :  26 D  2   33 A  2   38 D  3   43 G  3   47 B  3   52 E  4
+   E  A  D  G  C  F  :  28 E  2   33 A  2   38 D  3   43 G  3   48 C  4   53 F  4
+   F  C  G  D  A  E  :  17 F  1   24 C  2   31 G  2   38 D  3   45 A  3   52 E  4
+   A♭ E♭ B♭ F  C  G  :  20 A♭ 1   27 E♭ 2   34 B♭ 2   41 F  3   48 C  4   55 G  4
+   D  A  D  G  A  D  :  26 D  2   33 A  2   38 D  3   43 G  3   45 A  3   50 D  4
+   C  E  G  C  E  G  :  24 C  2   28 E  2   31 G  2   36 C  3   40 E  3   43 G  3
+   D  A  D  E  A  D  :  26 D  2   33 A  2   38 D  3   40 E  3   45 A  3   50 D  4
+   E  A  C♯ G  B  E  :  28 E  2   33 A  2   37 C♯ 3   43 G  3   47 B  3   52 E  4
+   E♯ A♯ D♯ G♯ B♯ E♯ :  29 E♯ 2   34 A♯ 2   39 D♯ 3   44 G♯ 3   36 B♯ 3   53 E♯ 4
+   E♭ A♭ D♭ G♭ B♭ E♭ :  27 E♭ 2   32 A♭ 2   37 D♭ 3   42 G♭ 3   46 B♭ 3   51 E♭ 4
+   E  B  E♭ G♭ B  E♭ :  28 E  2   35 B  2   39 E♭ 3   42 G♭ 3   47 B  3   51 E♭ 4
+B  E  A  D  G  B  E  :  23 B  1   28 E  2   33 A  2   38 D  3   43 G  3   47 B  3   52 E  4
+B  E  A  D  G  C  F  :  23 B  1   28 E  2   33 A  2   38 D  3   43 G  3   48 C  4   53 F  4
+E  G♯ C  E  G♯ C  E  :  28 E  2   32 G♯ 2   36 C  3   40 E  3   44 G♯ 3   48 C  4   52 E  4
+D  G  B  D  G  B  D  :  26 D  2   31 G  2   35 B  2   38 D  3   43 G  3   47 B  3   50 D  4
+"""
