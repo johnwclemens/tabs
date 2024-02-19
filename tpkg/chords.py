@@ -40,7 +40,7 @@ class Chords:
             assert ist(o[2][i],  str),  slog(f'ERROR: Invalid type, expected str   {type(o[2][i])=}')
         return tuple(o[2])
     ####################################################################################################################################################################################################
-    def getChordName(self, data, nic, cn, p, l, c, dbg=1):
+    def getChordName(self, data, nic, cn, p, l, c, dbg=0):
         ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1
         vkeys, self.limap, imap, _imap, nnt     = [], [], [], None, NTONES
         mask,          notes,         js        = self._getIndices(data, nic, p, l, c)   ;   omap = self.OMAP

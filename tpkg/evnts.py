@@ -98,7 +98,9 @@ def on_key_press(tobj, symb, mods, dbg=1):
     k     = psym(symb)   ;   m = MODS
     dp    = tobj.dataPath1
     if dbg:    slog(f'BGN {fsm(symb, mods)} d={fmtm(d)}')
-    if   k == 'P' and isCtlAlt(d, m):      cmd = cmds.PlayCmd(         tobj, '@&P')                 ;  cmd.do() 
+    if   k == 'P' and isCtlAlt(d, m):      cmd = cmds.PlayCmd(         tobj, '@&P')                 ;  cmd.do()
+    elif k == 'S' and isCtlAlt(d, m):      cmd = cmds.SaveDataFileCmd( tobj, '@&S')                 ;  cmd.do()
+    ####################################################################################################################################################################################################
     elif k == 'A' and isCtlShf(d, m):      cmd = cmds.TogArrowCmd(     tobj, '@^A', v=1)            ;  cmd.do()
     elif k == 'A' and isCtl(   d, m):      cmd = cmds.TogArrowCmd(     tobj, '@ A', v=0)            ;  cmd.do()
     elif k == 'B' and isCtlShf(d, m):      cmd = cmds.TogBlankCmd(     tobj, '@^B', -1)             ;  cmd.do()

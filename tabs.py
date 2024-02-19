@@ -127,7 +127,7 @@ class Tabs(pyglet.window.Window):
         ################################################################################################################################################################################################
         self.AUTO_SAVE = 0  ;  self.BGC     = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4  ;  self.DBG_TABT  = 0
         self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1  ;  self.MULTILINE = 1
-        self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE  = 1  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0  ;  self.SUBPIX    = 1
+        self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE  = 0  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0  ;  self.SUBPIX    = 1
         self.TEST      = 0  ;  self.VARROW  = 1  ;  self.VERBY   = 0
         ################################################################################################################################################################################################
         self.AXYV      = [0, 0, 0, 0]   ;   self._initAaxyv()
@@ -523,10 +523,31 @@ class Tabs(pyglet.window.Window):
             return data, data[p], data[p][l], data[p][l][c]
         return []
     ####################################################################################################################################################################################################
-    def fplc(  self, p=None, l=None,         c=None):         j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  c = j[C] if c is None else c  ;                                                                    return f'[{p+1} {l+1}   {c+1:2}]'
-    def fplct( self, p=None, l=None,         c=None, t=None): j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  c = j[C] if c is None else c  ;  t = j[T] if t is None else t  ;                                   return f'[{p+1} {l+1}   {c+1:2} {t+1}]'
-    def fplsc( self, p=None, l=None, s=None, c=None):         j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  s = j[S] if s is None else s  ;  c = j[C] if c is None else c  ;                                   return f'[{p+1} {l+1} {s+1} {c+1:2}]'
-    def fplsct(self, p=None, l=None, s=None, c=None, t=None): j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  s = j[S] if s is None else s  ;  c = j[C] if c is None else c  ;  t = j[T] if t is None else t  ;  return f'[{p+1} {l+1} {s+1} {c+1:2} {t+1}]'
+#    def fplc(  self): i = self.i  ;  p, l,    c    = i[P], i[L],       i[C]        ;  return f'[{p} {l}   {c:2}]'
+#    def fplct( self): i = self.i  ;  p, l,    c, t = i[P], i[L],       i[C], i[T]  ;  return f'[{p} {l}   {c:2} {t}]'
+#    def fplsc( self): i = self.i  ;  p, l, s, c    = i[P], i[L], i[S], i[C]        ;  return f'[{p} {l} {s} {c:2}]'
+#    def fplsct(self): i = self.i  ;  p, l, s, c, t = i[P], i[L], i[S], i[C], i[T]  ;  return f'[{p} {l} {s} {c:2} {t}]'
+    @staticmethod
+    def fplc(  p, l,    c):      return f'[{p} {l}   {c:2}]'
+    @staticmethod
+    def fplct( p, l,    c, t):   return f'[{p} {l}   {c:2} {t}]'
+    @staticmethod
+    def fplsc( p, l, s, c):      return f'[{p} {l} {s} {c:2}]'
+    @staticmethod
+    def fplsct(p, l, s, c, t):   return f'[{p} {l} {s} {c:2} {t}]'
+    ####################################################################################################################################################################################################
+#    def fplc(  self, p=None, l=None,         c=None):         i = self.i  ;  p = i[P] if p is None else p  ;  l = i[L] if l is None else l  ;                                   c = i[C] if c is None else c  ;                                   return f'[{p} {l}   {c:2}]'
+#    def fplct( self, p=None, l=None,         c=None, t=None): i = self.i  ;  p = i[P] if p is None else p  ;  l = i[L] if l is None else l  ;                                   c = i[C] if c is None else c  ;  t = i[T] if t is None else t  ;  return f'[{p} {l}   {c:2} {t}]'
+#    def fplsc( self, p=None, l=None, s=None, c=None):         i = self.i  ;  p = i[P] if p is None else p  ;  l = i[L] if l is None else l  ;  s = i[S] if s is None else s  ;  c = i[C] if c is None else c  ;                                   return f'[{p} {l} {s} {c:2}]'
+#    def fplsct(self, p=None, l=None, s=None, c=None, t=None): i = self.i  ;  p = i[P] if p is None else p  ;  l = i[L] if l is None else l  ;  s = i[S] if s is None else s  ;  c = i[C] if c is None else c  ;  t = i[T] if t is None else t  ;  return f'[{p} {l} {s} {c:2} {t}]'
+#    def fplc(  self, p=None, l=None,         c=None):         i = self.i  ;  p = i[P] if p is None else 1+p  ;  l = i[L] if l is None else 1+l  ;                                     c = i[C] if c is None else 1+c  ;                                     return f'[{p} {l}   {c:2}]'
+#    def fplct( self, p=None, l=None,         c=None, t=None): i = self.i  ;  p = i[P] if p is None else 1+p  ;  l = i[L] if l is None else 1+l  ;                                     c = i[C] if c is None else 1+c  ;  t = i[T] if t is None else 1+t  ;  return f'[{p} {l}   {c:2} {t}]'
+#    def fplsc( self, p=None, l=None, s=None, c=None):         i = self.i  ;  p = i[P] if p is None else 1+p  ;  l = i[L] if l is None else 1+l  ;  s = i[S] if s is None else 1+s  ;  c = i[C] if c is None else 1+c  ;                                     return f'[{p} {l} {s} {c:2}]'
+#    def fplsct(self, p=None, l=None, s=None, c=None, t=None): i = self.i  ;  p = i[P] if p is None else 1+p  ;  l = i[L] if l is None else 1+l  ;  s = i[S] if s is None else 1+s  ;  c = i[C] if c is None else 1+c  ;  t = i[T] if t is None else 1+t  ;  return f'[{p} {l} {s} {c:2} {t}]'
+#   def fplc(  self, p=None, l=None,         c=None):         j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;                                   c = j[C] if c is None else c  ;                                   return f'[{p+1} {l+1}   {c+1:2}]'
+#   def fplct( self, p=None, l=None,         c=None, t=None): j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;                                   c = j[C] if c is None else c  ;  t = j[T] if t is None else t  ;  return f'[{p+1} {l+1}   {c+1:2} {t+1}]'
+#   def fplsc( self, p=None, l=None, s=None, c=None):         j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  s = j[S] if s is None else s  ;  c = j[C] if c is None else c  ;                                   return f'[{p+1} {l+1} {s+1} {c+1:2}]'
+#   def fplsct(self, p=None, l=None, s=None, c=None, t=None): j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  s = j[S] if s is None else s  ;  c = j[C] if c is None else c  ;  t = j[T] if t is None else t  ;  return f'[{p+1} {l+1} {s+1} {c+1:2} {t+1}]'
     ####################################################################################################################################################################################################
     def jsum(  self, a=1):          return [ _ + a if self.J2[j] and j < len(self.J1)-1 else _ if j == len(self.J1)-1 else 0 for j, _ in enumerate(self.J1) ]
     def jlen(self):                 return [ len(e) for e in self.E ]
@@ -1166,11 +1187,13 @@ class Tabs(pyglet.window.Window):
     @staticmethod
     def lens2n(ls):        return [len(i) if ist(i, str) else i for i in ls]
     ####################################################################################################################################################################################################
-    def tnikInfo(self, p, l, s, c, t=None, z=0, why=Z, dbg=0):
+    def tnikInfo(self, p, l, s, c, t=None, z=0, why=Z, dbg=1):
         tlist, j, k, txt = None, -1, None, None   ;   z1, z2 = None, None
         if z: z1, z2 = self.z1(c), self.z2(c)
         exp1 = z1 == C1   ;  exp2 = C2 in (z1, z2)
+        s %= T
         p, l, s, c, t = self.lens2n([p, l, s, c, t])
+        assert s in (TT, NN, II, KK),  f'{s=}' # breaks when n[L] > 1
         msg1 = f'plsct={self.fplsct( p, l, s, c, t)} {z1=} {z2=} {exp1=} {exp2=} {txt=} {why}'
         msg2 = f'ERROR Invalid sect {s=}:'
         if   t is None:
@@ -1184,7 +1207,6 @@ class Tabs(pyglet.window.Window):
             assert 0 <= t < self.n[T],  f"{self.n[T]=} {t=} {c=} {s=} {l=} {p=} {z=}"
             kT, kN, kI, kK = self.k[T], self.k[N], self.k[I], self.k[K]   ;   kO, kA, kD = self.k[B], self.k[A], self.k[D]
             tab = self.data[p][l][c][t] if C1 != z1 != C2 and C2 != z2 else Z
-#            assert s in (TT, NN, II, KK),  f'{s=}' # breaks when n[L] > 1
             if   s == TT:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.tabls, T, kT, tab)
             elif s == NN:  tlist, j, k, txt = (self.bnums, B, kO, self.sobj.numbs[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.notes, N, kN, tab)
             elif s == II:  tlist, j, k, txt = (self.anams, A, kA, self.sobj.names[t]) if exp1 else (self.capos, D, kD, self.sobj.capo[t]) if exp2 else (self.ikeys, I, kI, tab)
@@ -1349,7 +1371,7 @@ class Tabs(pyglet.window.Window):
         return ss
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
-        self.newC += 1  ;  why = f'New{self.newC}'  ;  ll = self.LL  ;  view = self.VIEW   ;   z = self.ss2sl   ;   np, nl, ns, nc, nt = self.n
+        self.newC += 1  ;  why = f'New{self.newC}'  ;  ll = self.LL  ;  view = self.VIEW   ;   z = self.ss2sl   ;   np, nl, ns, nc, nt = self.n   ;   s = 0
         self.dumpTniksPfx(why)
         if   self.DSP_J_LEV == P:
             for _ in                     self.g_createTniks(self.pages, P, None, why=why):  pass
@@ -1371,7 +1393,7 @@ class Tabs(pyglet.window.Window):
             for page in                      self.g_newUpdTniks(P,                 nw=1, pt=None, why=why):  # pass
                 for l, line in     enumerate(self.g_newUpdTniks(L,                 nw=1, pt=page, why=why)): # pass
                     if ll and not l:         self.createLLs(line, l, why) #                       if v and zz:         self.createZZs(sect, -1, why)
-                    for s, sect in enumerate(self.g_newUpdTniks(S, m=l*ns,         nw=1, pt=line, why=why)): # pass
+                    for s, sect in enumerate(self.g_newUpdTniks(S, s=z()[s],       nw=1, pt=line, why=why)): # pass
                         for colm in          self.g_newUpdTniks(C, m=l*ns*nc+s*nc, nw=1, pt=sect, why=why):  # pass m=s*nc
                             for _ in         self.g_newUpdTniks(T, s=l*ns+z()[s],  nw=1, pt=colm, why=why): pass # z()[s]
             if view: 
@@ -1453,16 +1475,17 @@ class Tabs(pyglet.window.Window):
         return self.E[j]
         #self.pages if j==P else self.lines if j==L else self.sects if j==S else self.colms if j==C else self.tabls if j==T else self.notes if j==N else self.ikeys if j==I# else self.kords if j==K else self.views if j==M else self.rowLs if j==R else self.qclms if j==Q else self.hcurs if j==H else self.anams if j==A else self.bnums if j==B else self.capos if j==C else self.zclms if j==E else [] 
     ####################################################################################################################################################################################################
-    def g_newUpdTniks(self, j, m=0, s=0, nw=0, pt=None, why=Z, dbg=1, dbg2=1):
-        n, _, x, y, w, h   = self.geom(j, pt, n=None, dbg=dbg2)
-        p, l, c, _         = self.J1plct()
+    def g_newUpdTniks(self, j, m=0, s=None, nw=0, pt=None, why=Z, dbg=1, dbg2=1):
+        if j in (T, N, I, K): assert s is not None,  f'{j=} {s=} {m=} {nw=} {pt=}'
+        elif s is not None:   assert s < T,  f'{s=} {j=} {m=} {nw=} {pt=}'
+        n, k, x, y, w, h   = self.geom(j, pt, n=None, dbg=dbg2)
         np, nl, ns, nc, nt = self.n
         x2, y2, j2, t0     = x, y, j, Z
         tl, hit            = self.j2tl(j2), 0
-        i2, t, kl = (0, Z, self.k[j]) if nw == 1 else (0, None, None)
-        js  = (P, L, S, C, R, Q)      if nw == 1 else None
+        i2, tx, kl = (0, Z, self.k[j]) if nw == 1 else (0, None, None)
+        js  = (P, L, S, C, R, Q)       if nw == 1 else None
         for i in range(m, m+n):
-            if nw == 1 and self.DBG_TABT and j in js:    t = self.dbgTabTxt(j, i)
+            if nw == 1 and self.DBG_TABT and j in js:    tx = self.dbgTabTxt(j, i)
             ijs = self.ijSum(i, j2)
             if   j == P:                 v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
             else:                        v = int(self.pages[self.J1[P]].visible) # use parent or page? todo
@@ -1470,33 +1493,39 @@ class Tabs(pyglet.window.Window):
             else:                       y2 = y - i * h
             if   j == L:                y2 = y2 - self.LL*i*h/(ns*nt)
             elif j >= T:
+#                pA, lA,     cA, iA         = self.J1plct()    ;   slog(f'plctA={self.fplct( pA, lA,     cA, iA)} {i=} {j=} {m=} {s=} {ijs=} {nw=}')
+#                pB, lB, sB, cB, iB         = self.J1plsct()   ;   slog(f'plctB={self.fplsct(pB, lB, sB, cB, iB)} {i=} {j=} {m=} {s=} {ijs=} {nw=}')
+#                pC, lC,     cC, iC         = self.j2plct()    ;   slog(f'plctC={self.fplct( pC, lC,     cC, iC)} {i=} {j=} {m=} {s=} {ijs=} {nw=}')
+#                pD, lD, sD, cD, iD         = self.j2plsct()   ;   slog(f'plctD={self.fplsct(pD, lD, sD, cD, iD)} {i=} {j=} {m=} {s=} {ijs=} {nw=}')
+#                p, l, c                    = pA, lA, cA
+#                p, l, c = self.j()[P], self.j()[L], self.j()[C]   ;   slog(f'plctj={self.fplct(p, l, c, i)} {s=} {j=} {m=} {ijs=} {nw=}')
+                p, l, c = self.i[P],   self.i[L],   self.i[C]     ;   slog(f'plcti={self.fplct(p, l, c, i+1)} {s=} {j=} {m=} {ijs=} {nw=}')   ;   p -= 1   ;  l -= 1   ;   c -= 1
                 tl, j2, kl, t0             = self.tnikInfo(p, l, s, c, i, why=why)  # todo
-                if   s == TT:            t = t0
-                elif s == NN:            t = t0 if j2 > K else self.sobj.tab2nn(t0, i, nic=self.nic) if self.sobj.isFret(t0) else self.tblank
+                if   s == TT:           tx = t0
+                elif s == NN:           tx = t0 if j2 > K else self.sobj.tab2nn(t0, i, nic=self.nic) if self.sobj.isFret(t0) else self.tblank
                 elif s in (II, KK):
                     im = self.getImap(p, l, c)
-                    if   s == II:        t = self.imap2ikey( t0, im, i2, j2)   ;   i2 += 1 if t != self.tblank else 0
-                    elif s == KK:        t = self.imap2Chord(t0, im, i,  j2)
-            msg = f'{ijs:3} {self.fmtJText(j2)} {j2=} {t0:3} {i=:2} {self.J2[j2]=:2} {len(tl)=:2} {len(tl)=:2} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {nw=}'    ;    self.log(f'{msg}', f=0)
+                    if   s == II:       tx = self.imap2ikey( t0, im, i2, j2)   ;   i2 += 1 if tx != self.tblank else 0
+                    elif s == KK:       tx = self.imap2Chord(t0, im, i,  j2)
+            msg = f'{ijs:3} {self.fmtJText(j2)} {j2=} {t0:3} {i=:2} {s=} {self.J2[j2]=:2} {len(tl)=:2} {len(tl)=:2} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {nw=}'    ;    self.log(f'{msg}', f=0)
 #            assert x2 <= self.width  and w <= self.width,   f'{x2=} {w=} {self.width=} {msg}'
 #            assert y2 <= self.height and h <= self.height,  f'{y2=} {h=} {self.height} {msg}'
             assert tl == self.E[j2],                        f'{j2=} {tl=} {self.E[j2]=} {msg}'
             assert nw in (0, 1, 2),     f'{msg}'
             if   nw == 0:
                 if ijs < len(tl):
-                    yield self.updateTnik(tl, ijs, j2, x2, y2, w, h, why=why, v=1, dbg=dbg)
+                    yield       self.updateTnik(tl, ijs, j2, x2, y2, w, h,     why=why,       v=1, dbg=dbg)
                 else:     self.log(f'ERROR {self.ijSum(i, j2, 1)} >= {len(tl)} : {msg}')   ;   assert ijs >= len(tl),  f'{ijs=} {len(tl)=} {j=} {i=}'
             elif nw == 1:
                 if   i <= ijs: # ijs >= len(tl):
-                    k = kl[self.BGC]
-                    yield self.createTnik(tl, i, j2, x2, y2, w, h, k, why=why, t=t, v=v, dbg=dbg)
-                else:     yield self.updateTnik(tl, ijs, j2, x2, y2, w, h,  why=why,      v=1, dbg=dbg)
+                    kk = kl[self.BGC]
+                    yield       self.createTnik(tl, i,   j2, x2, y2, w, h, kk, why=why, t=tx, v=v, dbg=dbg)
+                else:     yield self.updateTnik(tl, ijs, j2, x2, y2, w, h,     why=why,       v=1, dbg=dbg)
             elif nw == 2:
                 if ijs < len(tl):
                     if j != S or (j == S and hit == 0):
-                        assert s != -1,  f'{j=} {j2=} {s=} {i=} {i2=} {ijs=}'
                         hit = 1
-                        yield self.removeTnik(tl, ijs, j2, why=why, dbg=dbg)
+                        yield   self.removeTnik(tl, ijs, j2, why=why, dbg=dbg)
                     else: self.log(f'{j=} {ijs=} {hit=} {self.fjlen()} J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}')
     ####################################################################################################################################################################################################
     def removeTnik(self, tlist, i, j, why=Z, dbg=1): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
@@ -1808,21 +1837,26 @@ class Tabs(pyglet.window.Window):
         return p, l, s, c, t
     ####################################################################################################################################################################################################
     def J1plct(self, p=None, l=None, c=None, t=None, dbg=0): #        return p2 % np, l2 % nl, c2 % nc, t2 % nt
-        np, nl, ns, nc, nt = self.n   ;   n = 0 #  ;   b = 0
+        np, nl, ns, nc, nt = self.n    ;    n = 0
+#        s = self.J1[S]
         if p is None:    p = self.J1[P]
         if l is None:    l = self.J1[L]
         if c is None:    c = self.J1[C]
         if t is None:    t = self.J1[T]
         t2 = n + t
         c2 = t2 // nt + c
+#        s2 = c2 // nc + s
+#        l2 = s2 // ns + l
         l2 = c2 // nc + l
         p2 = l2 // nl + p
         rp = p2 % np
         rl = l2 % nl
+#        rs = s2 % ns
         rc = c2 % nc
         rt = t2 % nt
         if dbg: self.log(f'plct={self.fplct(p, l, c, t)} plct2={self.fplct(p2, l2, c2, t2)} rplct={rp, rl, rc, rt}')
         return rp, rl, rc, rt # todo
+
     def J1plsct(self, p=None, l=None, s=None, c=None, t=None, dbg=0):
         np, nl, ns, nc, nt = self.n
         if p is None:    p = self.J1[P]
@@ -1842,6 +1876,27 @@ class Tabs(pyglet.window.Window):
         rt = t2 % nt
         if dbg: self.log(f'plsct={self.fplsct(p, l, s, c, t)} plsct2={self.fplsct(p2, l2, s2, c2, t2)} rplsct={rp, rl, rs, rc, rt}')
         return rp, rl, rs, rc, rt # todo
+    ####################################################################################################################################################################################################
+    def j2plct(self, p=None, l=None, c=None, t=None, dbg=0):
+        np, nl, ns, nc, nt = self.n
+        p2, l2, c2, t2     = self.J2[P], self.J2[L], self.J2[C], self.J2[T]
+        if p is None:    p = p2 % np
+        if l is None:    l = l2 % nl
+        if c is None:    c = c2 % nc
+        if t is None:    t = t2 % nt
+        if dbg: self.log(f'plct2={self.fplct(p2, l2, c2, t2)} plct={self.fplct(p, l, c, t)}')
+        return p, l, c, t
+
+    def j2plsct(self, p=None, l=None, s=None, c=None, t=None, dbg=0):
+        np, nl, ns, nc, nt = self.n
+        p2, l2, s2, c2, t2 = self.J2[P], self.J2[L], self.J2[S], self.J2[C], self.J2[T]
+        if p is None:    p = p2 % np
+        if l is None:    l = l2 % nl
+        if s is None:    s = s2 % ns
+        if c is None:    c = c2 % nc
+        if t is None:    t = t2 % nt
+        if dbg: self.log(f'plsct2={self.fplsct(p2, l2, s2, c2, t2)} plsct={self.fplsct(p, l, s, c, t)}')
+        return p, l, s, c, t
     ####################################################################################################################################################################################################
     def setCaption(self, msg, dbg=1):
         if dbg: self.log(msg, f=0)
@@ -2030,7 +2085,7 @@ class Tabs(pyglet.window.Window):
         if dbg: self.log(f'plsct={self.fplsct(p, l, s, c, t)} {n=} plsct2={self.fplsct(p2, l2, s2, c2, t2)} {self.fmti()}', pos=1)
         return p2, l2, s2, c2, t2
 
-    def nrmPlsct(self, p, l, s, c, t):
+    def nrmPlsct(self, p, l, s, c, t): # N/A
         np, nl, ns, nc, nt = self.n
         t0 = int(t/nt)   ;   t2 = t0 % ns
 #        c2 = t // nt + c
