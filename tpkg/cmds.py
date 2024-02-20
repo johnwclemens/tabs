@@ -340,7 +340,7 @@ class MoveToCmd(Cmd):
         tobj, how, p, l, c, t, ss, dbg = self.tobj, self.how, self.p, self.l, self.c, self.t, self.ss, self.dbg
         if dbg:    tobj.log(f'BGN {how}', pos=1)
         cmd = MoveTo2Cmd(tobj, p, l, c, t)       ;  cmd.do()
-        cmd = MoveCursorCmd(tobj, ss, how)       ;  cmd.do()
+        cmd = MoveCursorCmd(tobj, how, ss)       ;  cmd.do()
         if dbg:    tobj.log(f'END {how}', pos=1)
 ########################################################################################################################################################################################################
 class MoveTo2Cmd(Cmd):
@@ -467,15 +467,15 @@ class PasteTabsCmd(Cmd):
         if tobj.SNAPS >= 4:  tobj.regSnap(f'PST.{tobj.pstC}', how)
         tobj.rsyncData = 1
 ########################################################################################################################################################################################################
-class PlayCmd(Cmd):
-    def __init__(self, tobj):
-        self.tobj = tobj
+#class PlayCmd(Cmd):
+#    def __init__(self, tobj):
+#        self.tobj = tobj
         
-    def do(self):   self._play()
-    def undo(self): self._play()
+#    def do(self):   self._play()
+#    def undo(self): self._play()
     
-    def _play(self):
-        tobj = self.tobj
+#    def _play(self): # todo finish impl
+#        tobj = self.tobj
         
 ########################################################################################################################################################################################################
 class PrevPageCmd(Cmd):
@@ -680,6 +680,7 @@ class SetTabCmd(Cmd):
         p, l, s, c, t = tobj.j()
         cc    = tobj.plct2cc(p, l, c, t)   ;   cc2 = cc
         tobj.log(f'BGN {how} {rev=} {old=:3} {cc=:3} {text=} {p=} {l=} {s=} {c=} {t=}', pos=1, f=2)
+        assert 0 <= p < tobj.n[P] and 0 <= l < tobj.n[L] and 0 <= s < tobj.n[S] and 0 <= c < tobj.n[C] and 0 <= t < tobj.n[T],  f'{tobj.n=} {p=} {l=} {s=} {c=} {t=}'
         data  = tobj.data[p][l][c][t]
         tobj.log(f'    {how} {rev=} {old=:3} {cc=:3}{msg} {text=} {data=} ', pos=1)
         tobj.setDTNIK(text, cc2, p, l, c, t, kk=1)
