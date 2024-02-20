@@ -144,9 +144,9 @@ class Tabs(pyglet.window.Window):
         self.parseArgs()
         self._initAaxyv()
         ################################################################################################################################################################################################
-        self.n0        = []           ;    self.n0.extend(self.n)  ;  self.i0 = []   ;   self.i0.extend(self.i)
-        self.n.insert(S, self.ssl())  ;    self.i.insert(S, 1)     ;  self.dumpArgs(f=2)
-        self.normi()
+        self.n0        = []            ;   self.n0.extend(self.n)  ;  self.i0 = []   ;   self.i0.extend(self.i)
+        self.n.insert(S, self.ssl())   ;   self.i.insert(S, 1)     ;  self.dumpArgs(f=2)
+        self.normi()  ;  self.h = []   ;   self.h.extend(self.i)
         self.LOG_GFN   = self.geomFileName(self.FILE_NAME, LOG)    ;  self.log(f'{self.LOG_GFN=}')
         self.CSV_GFN   = self.geomFileName(self.FILE_NAME, CSV)    ;  self.log(f'{self.CSV_GFN=}')
         self.DAT_GFN   = self.geomFileName(self.FILE_NAME, DAT)    ;  self.log(f'{self.DAT_GFN=}')
@@ -498,6 +498,7 @@ class Tabs(pyglet.window.Window):
         assert 0 <= i < len(self.E[j]),  f'{i=} out of range {j=} {n=} {v=} {why=} {len(self.E[j])=} {self.fjlen()} {self.fmtJ1(1)} {self.fmtJ2(1)}'
         self.dumpTnik(self.E[j][i], j, why)  ;   return j
     ####################################################################################################################################################################################################
+    def hh( self):                   return [ i-1 if i else 0 for    i in           self.h ]
     def j(  self):                   return [ i-1 if i else 0 for    i in           self.i ]
     def j2( self):                   return [ i-1 if i else 0 for j, i in enumerate(self.i)  if j != S ]
     def j2g(self, j):                return self.g[ self.gn[j] ]
@@ -1392,8 +1393,6 @@ class Tabs(pyglet.window.Window):
                     for sect in          self.g_createTniks(self.sects, S, line, why=why):  # pass
                         for _ in         self.g_createTniks(self.colms, C, sect, why=why):  pass
         else:
-            self.i0 = []   ;   self.i0.extend(self.i)
-            self.i  = [0, 0, 0, 0, 0]
             for page in                      self.g_newUpdTniks(P,                 nw=1, pt=None, why=why):  # pass
                 for l, line in     enumerate(self.g_newUpdTniks(L,                 nw=1, pt=page, why=why)): # pass
                     if ll and not l:         self.createLLs(line, l, why) #                       if v and zz:         self.createZZs(sect, -1, why)
@@ -1405,11 +1404,6 @@ class Tabs(pyglet.window.Window):
                     self.addZZs(z, why)
         self.dumpTniksSfx(why)
         if self.tabls and not self.cursor:  self.createCursor(why)   ;  self.dumpHdrs()
-        self.i = self.i0
-        plct = (0, 0, 0, 5)
-        cmd = cmds.MoveToCmd(self, why, *plct, ss=1, dbg=1)  ;  cmd.do()
-#        self.plct2cc(*plsct)
-#        self.moveTo(why, *plsct, ss=1, dbg=1)
         if dbg and self.SNAPS >= 1:         self.regSnap('NEW', why)
         if dbg:         self.dumpStruct(why)
     ####################################################################################################################################################################################################
@@ -1485,14 +1479,14 @@ class Tabs(pyglet.window.Window):
         #self.pages if j==P else self.lines if j==L else self.sects if j==S else self.colms if j==C else self.tabls if j==T else self.notes if j==N else self.ikeys if j==I# else self.kords if j==K else self.views if j==M else self.rowLs if j==R else self.qclms if j==Q else self.hcurs if j==H else self.anams if j==A else self.bnums if j==B else self.capos if j==C else self.zclms if j==E else []
 
     def ji2plsct(self, j, i, dbg=1):
-        p, l, s, c = self.j()[P], self.j()[L], self.j()[S], self.j()[C]
+        p, l, s, c = self.hh()[P], self.hh()[L], self.hh()[S], self.hh()[C]
         t = self.j()[T] if j >= T else -1
-        if   j==P:  p = i   ;   self.i[P] = i+1
-        elif j==L:  l = i   ;   self.i[L] = i+1
-        elif j==S:  s = i   ;   self.i[S] = i+1
-        elif j==C:  c = i   ;   self.i[C] = i+1
-        elif j>=T:  t = i   ;   self.i[T] = i+1
-        if dbg:     self.log(f'plsct={self.fplsct(self.i[P], self.i[L], self.i[S], self.i[C], self.i[T])} {j=} {i=}', p=0, f=0)
+        if   j==P:  p = i   ;   self.h[P] = i+1
+        elif j==L:  l = i   ;   self.h[L] = i+1
+        elif j==S:  s = i   ;   self.h[S] = i+1
+        elif j==C:  c = i   ;   self.h[C] = i+1
+        elif j>=T:  t = i   ;   self.h[T] = i+1
+        if dbg:     self.log(f'plsct={self.fplsct(*self.h)} {j=} {i=}', p=0, f=0)
         return self.trncPlsct(p, l, s, c, t)
     ####################################################################################################################################################################################################
     def g_newUpdTniks(self, j, m=0, s=None, nw=0, pt=None, why=Z, dbg=1, dbg2=1):

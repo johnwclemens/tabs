@@ -81,7 +81,7 @@ class Strngs:
             (self._initMap('E  A  D  G  C  F ',    [ E_2, A_2, D_3, G_3, C_4, F_4 ])),      # guitar 6 4ths
             (self._initMap('F  C  G  D  A  E ',    [ F_1, C_2, G_2, D_3, A_3, E_4 ])),      # guitar 6 5ths
             (self._initMap('A♭ E♭ B♭ F  C  G ',    [ Af1, Ef2, Bf2, F_3, C_4, G_4 ])),      # guitar 6 5ths
-            (self._initMap('D  A  D  G  B  E ',    [ D_2, A_2, D_3, G_3, B_3, E_4 ])),      # guitar 6 drop_D 
+            (self._initMap('D  G  D  G  B♭ D ',    [ D_2, G_2, D_3, G_3, Bf3, D_4 ])),      # guitar 6 flamednco 
             (self._initMap('D  A  D  G  A  D ',    [ D_2, A_2, D_3, G_3, A_3, D_4 ])),      # guitar 6 dadgad
             (self._initMap('C  E  G  C  E  G ',    [ C_2, E_2, G_2, C_3, E_3, G_3 ])),      # guitar 6 english
             (self._initMap('D  A  D  E  A  D ',    [ D_2, A_2, D_3, E_3, A_3, D_4 ])),      # guitar 6 dadead
