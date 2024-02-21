@@ -1246,7 +1246,7 @@ class UpdateTniksCmd(Cmd):
                     if ll and l:             tobj.updateLLs(line, 1, why) #                        if zz:               tobj.updateZZs(sect, s, z, why)
                     for s, sect in enumerate(tobj.g_newUpdTniks(S,                 nw=0, pt=line, why=why)): # pass
                         for colm in          tobj.g_newUpdTniks(C, m=l*ns*nc+s*nc, nw=0, pt=sect, why=why):  # pass
-                            for _ in         tobj.g_newUpdTniks(T,                 nw=0, pt=colm, why=why):  pass # s=l*ns+zs()[s]
+                            for _ in         tobj.g_newUpdTniks(s+4,               nw=0, pt=colm, why=why):  pass # s=l*ns+zs()[s]
             tobj.resetH()
         tobj.dumpTniksSfx(why)
         if tobj.cursor:                 cmd = UpdateCursorCmd(tobj, why)  ;  cmd.do()   ;   tobj.dumpHdrs()

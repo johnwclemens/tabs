@@ -1340,7 +1340,7 @@ class Tabs(pyglet.window.Window):
                 for s, sect in enumerate(self.g_newUpdTniks(S,                  nw=2, pt=line, why=hid)): # s=ii
                     if s == i:
                         for c, colm in  enumerate(self.g_newUpdTniks(C, m=i*nc, nw=2, pt=sect, why=hid)):
-                            for t, _ in enumerate(self.g_newUpdTniks(s+4,         nw=2, pt=colm, why=hid)):  pass # s=ii
+                            for t, _ in enumerate(self.g_newUpdTniks(s+4,       nw=2, pt=colm, why=hid)):  pass # s=ii
         self.dumpTniksSfx(hid2)
         self.togTT(ii)
         self.dumpTniksPfx(hid2)
@@ -1348,7 +1348,7 @@ class Tabs(pyglet.window.Window):
             for line in                  self.g_newUpdTniks(L,          nw=0, pt=page, why=upd, dbg=1):
                 for s, sect in enumerate(self.g_newUpdTniks(S,          nw=0, pt=line, why=upd, dbg=1)):
                     for colm in          self.g_newUpdTniks(C, m=i*nc,  nw=0, pt=sect, why=upd, dbg=1):
-                        for _ in         self.g_newUpdTniks(T,          nw=0, pt=colm, why=upd, dbg=1): pass # s=z()[s]
+                        for _ in         self.g_newUpdTniks(s+4,        nw=0, pt=colm, why=upd, dbg=1): pass # s=z()[s]
         if ii == TT:                     self.removeTnik(self.hcurs, 0, H, dbg)
         self.dumpTniksSfx(hid2)
         return ss
@@ -1365,14 +1365,14 @@ class Tabs(pyglet.window.Window):
                 for s, sect in enumerate(self.g_newUpdTniks(S,         nw=1, pt=line, why=add, dbg=1)):
                     if s == i:
                         for colm in      self.g_newUpdTniks(C, m=i*nc, nw=1, pt=sect, why=add, dbg=1): 
-                            for _ in     self.g_newUpdTniks(T,         nw=1, pt=colm, why=add, dbg=1): pass # s=z()[i]
+                            for _ in     self.g_newUpdTniks(s+4,       nw=1, pt=colm, why=add, dbg=1): pass # s=z()[i]
         self.dumpTniksSfx(add2)
         self.dumpTniksPfx(add2)
         for page in                      self.g_newUpdTniks(P,         nw=0, pt=None, why=ref, dbg=1):
             for line in                  self.g_newUpdTniks(L,         nw=0, pt=page, why=ref, dbg=1):
                 for s, sect in enumerate(self.g_newUpdTniks(S,         nw=0, pt=line, why=upd, dbg=1)):
                     for colm in          self.g_newUpdTniks(C, m=i*nc, nw=0, pt=sect, why=upd, dbg=1):
-                        for _ in         self.g_newUpdTniks(T,         nw=0, pt=colm, why=upd, dbg=1): pass # s=z()[s]
+                        for _ in         self.g_newUpdTniks(s+4,       nw=0, pt=colm, why=upd, dbg=1): pass # s=z()[s]
         if self.tabls and not self.cursor: self.createCursor(add)
         self.dumpTniksSfx(add2)
         return ss
@@ -1402,7 +1402,7 @@ class Tabs(pyglet.window.Window):
                     if ll and not l:         self.createLLs(line, l, why) #                       if v and zz:         self.createZZs(sect, -1, why)
                     for s, sect in enumerate(self.g_newUpdTniks(S,                 nw=1, pt=line, why=why)): # pass s=z()[s],
                         for colm in          self.g_newUpdTniks(C, m=l*ns*nc+s*nc, nw=1, pt=sect, why=why):  # pass m=s*nc
-                            for _ in         self.g_newUpdTniks(T,                 nw=1, pt=colm, why=why): pass # s=l*ns+z()[s],
+                            for _ in         self.g_newUpdTniks(s+4,               nw=1, pt=colm, why=why): pass # s=l*ns+z()[s],
             self.resetH()
             if view: 
                 for z in range(len(view)):
