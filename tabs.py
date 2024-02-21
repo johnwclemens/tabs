@@ -396,19 +396,23 @@ class Tabs(pyglet.window.Window):
         self.log(f'{x0=:6.2f} {w0=:6.2f} {s0=:6.4f} {n=} {x=:6.2f} {w=:6.2f} {s=:6.4f} {x2=:6.2f} {w2=:6.2f}')
         return x, s, x2, w2
     ####################################################################################################################################################################################################
-    def setView(self, nx, ny):
-        self.updView(nx, ny)
+    def setView(self):
+        self.viewX,  self.viewY,  self.viewW,  self.viewH  =     0,          0,      self.width, self.height
         self.viewX0, self.viewY0, self.viewW0, self.viewH0 = self.viewX, self.viewY, self.viewW, self.viewH
+#    def setView(self, nx, ny):
+#        self.updView(nx, ny)
+#        self.viewX0, self.viewY0, self.viewW0, self.viewH0 = self.viewX, self.viewY, self.viewW, self.viewH
 
-    def updView(self, nx=0, ny=0, n=None):
-        nc = self.n[C]     + nx
-        n  = self.nlnsnt() if n is None else n
-        nt = n + ny
-        x  = self.width  * nx/nc
-        y  = self.height * ny/nt # if ny<=1 else self.height/nt
-        self.viewX,  self.viewY,  self.viewW,  self.viewH  = x, self.height/2, self.width-x, self.height-y
-#        self.viewX,  self.viewY,  self.viewW,  self.viewH  = x, y if ny<=1 else y/2, self.width-x, self.height-y
-        self.log(f'{nx=} {ny=} {nc=} {nt=} {self.viewX=:.2f} {self.viewY=:.2f} {self.viewW=:.2f} {self.viewH=:.2f}')
+#    def updView(self, nx=0, ny=0, n=None):
+#        nc = self.n[C]     + nx
+#        n  = self.nlnsnt() if n is None else n
+#        nt = n + ny
+#        if nt <= 0:  self.log(f'{nt=} {nx=} {ny=} {n=} {nc=} ERROR set nt=1')   ;   nt = self.n[T] * self.n[S]
+#        x  = self.width  * nx/nc
+#        y  = self.height * ny/nt # if ny<=1 else self.height/nt
+#        self.viewX,  self.viewY,  self.viewW,  self.viewH  = x, self.height/2, self.width-x, self.height-y
+##        self.viewX,  self.viewY,  self.viewW,  self.viewH  = x, y if ny<=1 else y/2, self.width-x, self.height-y
+#        self.log(f'{nx=} {ny=} {n=} {nc=} {nt=} {self.viewX=:.2f} {self.viewY=:.2f} {self.viewW=:.2f} {self.viewH=:.2f}')
     ####################################################################################################################################################################################################
     def _initWindowB(self, dbg=1):
         if dbg: self.log(f'BGN {self.fmtWH()}')
@@ -416,7 +420,7 @@ class Tabs(pyglet.window.Window):
         self._initGroups()
         self.set_visible()
         self.log(f'get_size={self.get_size()}')
-        self.setView(len(self.ZZ), self.LL)
+        self.setView() # len(self.ZZ), self.LL)
         self.keyboard = None
         if self.EVENT_LOG:
             if self.EVENT_LOG == 1:   self.eventLogger = pyglet.window.event.WindowEventLogger(EVN_FILE)
@@ -658,6 +662,7 @@ class Tabs(pyglet.window.Window):
         return n
     def ntp2(self):
         ns = self.n[S] if self.n[S] in range(5) else 1
+        if ns <= 0:  self.log(f'{ns=} ERROR set ns=1')    ;    ns = 1
         tpb, tpp, tpl, _, tpc = self.ntp()
         tpb = tpb // ns
         tpp = tpp // ns
@@ -1042,7 +1047,7 @@ class Tabs(pyglet.window.Window):
         self.log(f'BFR {how} {why} {l=} {pi=} {self.addC=} {az=} {z=} zz={fmtl(zz)}')
         if z not in zz:    zz.append(z)     ;     l = len(zz)  ;  self.addC += 1  ;  self.addingZ = 1  ;   assert(l in (1, 2)),  f'{l=} zz={fmtl(zz)} {z=}'
         self.log(f'AFT {how} {why} {l=} {pi=} {self.addC=} {az=} {z=} zz={fmtl(zz)}')
-        self.updView(len(self.ZZ), self.LL * self.n[L])
+#        self.updView(len(self.ZZ), self.LL * self.n[L])
         self.dumpTniksPfx(why)
         for s, sect in enumerate(self.sects):
             self.setJdump(S, s, sect.visible, 'Ref ')
@@ -1082,7 +1087,7 @@ class Tabs(pyglet.window.Window):
         zz.remove(z)     ;     l = len(zz)  ;  self.hidC += 1  ;  self.addingZ = 0  ;   assert(l in (0, 1)),  f'{l=} zz={fmtl(zz)} {z=}'
         self.log(f'AFT {how} {why} {l=} {pi=} {self.hidC=} {az=} {z=} zz={fmtl(zz)}')
         zclms, anams, bnums, capos = self.zclms, self.anams, self.bnums, self.capos
-        self.updView(l, self.LL * nl)
+#        self.updView(l, self.LL * nl)
         self.dumpTniksPfx(why)
         _, _, xx, yy, ww, hh   = self.geom(E, None, 1, pi, dbg)
         x0 = xx if l==1 else xx - ww/4    ;    x1 = xx if l==1 else xx + ww/4
@@ -1165,7 +1170,7 @@ class Tabs(pyglet.window.Window):
     def addLLs(self, how):
         why = f'Add'  ;  why2 = f'{how} Add' # 'Ref'
         self.dumpTniksPfx(why2)
-        self.updView(len(self.ZZ), self.LL * self.n[L])
+#        self.updView(len(self.ZZ), self.LL * self.n[L])
         pn, pi, px, py, pw, ph = self.geom(P, None, dbg=1)  ;  pi = 0  ;  p = self.pages[pi]
         self.updateTnik(self.pages, pi, P, px, py, pw, ph, why, dbg=1)
         if self.isJV(P):
@@ -1328,15 +1333,14 @@ class Tabs(pyglet.window.Window):
         ss = self.sectName(how)
         hid2 = f'Hid{ss} {how} {ii=}'  ;  hid = f'Hid{ss}'   ;   upd = 'Upd'   ;   ref = f'Ref{ss}'
         i = self.ss2sli(ii)
-#        self.togTT(ii)
         np, nl, ns, nc, nt = self.n
         self.dumpTniksPfx(hid2)
         for p, page in         enumerate(self.g_newUpdTniks(P,                  nw=0, pt=None, why=ref)):
             for l, line in     enumerate(self.g_newUpdTniks(L,                  nw=0, pt=page, why=ref)):
                 for s, sect in enumerate(self.g_newUpdTniks(S,                  nw=2, pt=line, why=hid)): # s=ii
-                    if s == 0:
+                    if s == i:
                         for c, colm in  enumerate(self.g_newUpdTniks(C, m=i*nc, nw=2, pt=sect, why=hid)):
-                            for t, _ in enumerate(self.g_newUpdTniks(T,         nw=2, pt=colm, why=hid)):  pass # s=ii
+                            for t, _ in enumerate(self.g_newUpdTniks(s+4,         nw=2, pt=colm, why=hid)):  pass # s=ii
         self.dumpTniksSfx(hid2)
         self.togTT(ii)
         self.dumpTniksPfx(hid2)
@@ -1502,7 +1506,9 @@ class Tabs(pyglet.window.Window):
             ijs = self.ijSum(i, j2)
             if   j == P:                 v = 1 if i == self.j()[P] else 0   ;   self.log(f'j==P: {i=} {v=} {self.j()[P]=} {self.i[P]=}', f=0)
             else:                        v = int(self.pages[self.J1[P]].visible) # use parent or page? todo
-            p, l, s, c, t                 = self.ji2plsct(j, i)   ;   s = self.ss2sl()[s]
+            p, l, s, c, t                  = self.ji2plsct(j, i)
+            if len(self.SS) == 0:  self.log(f'{s=} {len(self.SS)=}')   ;   return None
+            s                              = self.ss2sl()[s]
             if   j in (C, E):           x2 = x + (i % nc) * w
             else:                       y2 = y - i * h
             if   j == L:                y2 = y2 - self.LL*i*h/(ns*nt)
@@ -1530,10 +1536,10 @@ class Tabs(pyglet.window.Window):
                 else:     yield self.updateTnik(tl, ijs, j2, x2, y2, w, h,     why=why,       v=1, dbg=dbg)
             elif nw == 2:
                 if ijs < len(tl):
-                    if j != S or (j == S and hit == 0):
-                        hit = 1
-                        yield   self.removeTnik(tl, ijs, j2, why=why, dbg=dbg)
-                    else: self.log(f'{j=} {ijs=} {hit=} {self.fjlen()} J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}')
+#                    if j != S or (j == S and hit == 0):
+#                        if j == S:  hit = 1 
+                    yield   self.removeTnik(tl, ijs, j2, why=why, dbg=dbg)
+#                    else: self.log(f'{ijs=} {len(tl)=} {j=} {j2=} {i=} {hit=} {self.fjlen()} J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}')
     ####################################################################################################################################################################################################
     def removeTnik(self, tlist, i, j, why=Z, dbg=1): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         assert len(tlist) and i < len(tlist),  f'{len(tlist)=} {i=} {j=} {self.fmtJ1(0, 1)=} {self.fmtJ2(0, 1)=}'
@@ -1803,7 +1809,8 @@ class Tabs(pyglet.window.Window):
     
     def plct2cc(self, p, l, c, t, dbg=0):
         tpb, tpp, tpl, tps, tpc = self.ntp()
-        assert tpp != 0,  f'{self.ntp()=}'
+#        assert tpp != 0,  f'{self.ntp()=}'
+        if tpp <= 0:  self.log(f'{tpp=} plct={self.fplct(p, l, c, t)}')    ;    return 0
         ns = self.n[S] if self.n[S] else 1
         cc = p*tpp//ns + l*tpl//ns + c*tpc + t
         cc = cc % tpp
@@ -2101,7 +2108,7 @@ class Tabs(pyglet.window.Window):
         np, nl, ns, nc, nt = self.n
         t2 = t % nt
         c2 = c % nc
-        s2 = s % ns
+        s2 = s % ns if ns else 0
         l2 = l % nl
         p2 = p % np
         return p2, l2, s2, c2, t2

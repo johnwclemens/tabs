@@ -1222,7 +1222,7 @@ class UpdateTniksCmd(Cmd):
         tobj, z, dbg = self.tobj, self.z, self.dbg
         if self.w is not None and self.h is not None:        pyglet.window.Window.on_resize(tobj, self.w, self.h)
         tobj.updC += 1  ;  why = f'Upd{tobj.updC}'  ;  ll = tobj.LL   ;  np, nl, ns, nc, nt = tobj.n
-        tobj.updView(len(tobj.ZZ), tobj.LL * tobj.n[L])
+#        tobj.updView(len(tobj.ZZ), tobj.LL * tobj.n[L])
         tobj.dumpTniksPfx(why)
         if   tobj.DSP_J_LEV == P:
             for _ in                     tobj.g_updateTniks(tobj.pages, P, None, why=why):  pass
