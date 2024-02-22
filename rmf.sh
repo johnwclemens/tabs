@@ -8,22 +8,31 @@ function cleanSubDir {
     for file in "$dir"/*  ; do
         if   [[ $lvl = 1 ]]; then
             if [[ $file = *.[0-9].$ext ]]; then
-                echo rm "$file" ">>>" lvl = "$lvl"
+                echo "     rm" "$file" ">>>" "lvl =" "$lvl" "*.[0-9].ext =" "*.[0-9].$ext"
                 rm "$file"
             fi
         elif [[ $lvl = 2 ]]; then
-            if [[ $file = *.*.$ext ]]; then
-                echo rm "$file" ">>>" lvl = "$lvl"
+            if [[ $file = *._.$ext ]]; then
+                echo "   skip" "$file" ">>>" "lvl =" "$lvl" "*._.ext =" "*._.$ext"
+            elif [[ $file = *.*.$ext ]]; then
+                echo "     rm" "$file" ">>>" "lvl =" "$lvl" "*.*.ext =" "*.*.$ext"
                 rm "$file"
             fi
         elif [[ $lvl = 3 ]]; then
-            if [[ $file = *.$ext ]]; then
-                echo rm "$file" ">>>" lvl = "$lvl"
+            if [[ $file = *_.$ext ]]; then
+                echo "     rm" "$file" ">>>" "lvl =" "$lvl" "*_.ext =" "*_.$ext"
                 rm "$file"
             fi
         elif [[ $lvl = 4 ]]; then
-            echo rm "$file" ">>>" lvl = "$lvl"
-            rm "$file"
+            if [[ $file = *.$ext ]]; then
+                echo "     rm" "$file" ">>>" "lvl =" "$lvl" "*.ext =" "*.$ext"
+                rm "$file"
+            fi
+        elif [[ $lvl = 5 ]]; then
+            if [[ $file = * ]]; then
+                echo "     rm" "$file" ">>>" "lvl =" "$lvl" "*" = "*"
+                rm "$file"
+            fi
         else
             echo exit ">>>" Error - Invalid value, lvl = "$lvl" check cmd line arg2 - Exit
             exit
@@ -53,19 +62,23 @@ else
 fi
 echo lvl = "$lvl"
 
-echo spwd=pwd
-spwd="pwd"
+echo "pwd"
+pwd
+spwd=$(pwd)
 echo spwd="$spwd"
 
 if [[ -d "$root" ]]; then
     cd  "$root" || exit 1
 
+    echo "pwd"
+    pwd
+    
     echo exts=\( cat    csv    evn    dat    log    png    std    txt\)
     exts=(     ".cat" ".csv" ".evn" ".dat" ".log" ".png" ".std" ".txt")
 
-    echo "... Removing Files that match $exts from root dir $root ..."
     for ext in "${exts[@]}"; do
         fileHits=()
+        echo "... Listing Files that match $ext from root dir $root ..."
         while IFS= read -r -d $'\0'; do
             fileHits+=("$REPLY")
         done < <(find . -maxdepth 1 -type f -name "*$ext" -print0)
@@ -74,14 +87,16 @@ if [[ -d "$root" ]]; then
             for file in "${fileHits[@]}"; do
                 if [[ $ext = ".dat" ]]; then
                     if [[ $lvl = 4 ]]; then
+                        echo "          lvl=" "$lvl" "ext=" "$ext" "rm" "$file"
                         rm "$file"
                     fi
                 elif [[ $lvl = 3 || $lvl = 4 ]]; then
+                    echo "           lvl=" "$lvl" "ext=" "$ext" "rm" "$file"
                     rm "$file"
                 fi
             done
         else
-            echo "There are no files with ext '$ext' in the root dir '$root'"
+            echo "                                             There are no files with ext '$ext' in the root dir '$root'"
         fi
         ext2="${ext:1}"
         if   [[  $ext2 = "dat" ]]; then
@@ -102,8 +117,13 @@ if [[ -d "$root" ]]; then
             cleanSubDir      "$dir" "$ext2" "$lvl"
         fi
     done
+    echo "pwd"
+    pwd
     echo "cd $spwd"
-    cd $spwd || exit 2
+    echo "cd" "$spwd"
+    cd "$spwd" || exit 2
+    echo "pwd"
+    pwd
 else
     echo "ERROR: root = '$root' directory does not exist."
 fi
