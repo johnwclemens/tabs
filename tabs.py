@@ -312,7 +312,7 @@ class Tabs(pyglet.window.Window):
         self.log('END', pos=1)
 
     def _init(self):
-        self.log(f'{fmtl(FONT_NAMES)=}')
+        self.log(f'{fmtl(FONT_NAMES, s=Y)=}')
         utl.initColors(self.k, self.SPRITES, self.BGC, self.initk)
         self._initData()
         if self.AUTO_SAVE: pyglet.clock.schedule_interval(self.autoSave, 10, how='autoSave timer')

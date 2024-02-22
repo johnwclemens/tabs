@@ -467,16 +467,16 @@ class PasteTabsCmd(Cmd):
         if tobj.SNAPS >= 4:  tobj.regSnap(f'PST.{tobj.pstC}', how)
         tobj.rsyncData = 1
 ########################################################################################################################################################################################################
-#class PlayCmd(Cmd):
-#    def __init__(self, tobj):
-#        self.tobj = tobj
+class PlayCmd(Cmd):
+    def __init__(self, tobj):
+        self.tobj = tobj
         
-#    def do(self):   self._play()
-#    def undo(self): self._play()
+    def do(self):   self._play()
+    def undo(self): self._play()
     
-#    def _play(self): # todo finish impl
-#        tobj = self.tobj
-        
+    def _play(self): # todo finish impl
+        tobj = self.tobj
+        assert 0,  f'{tobj=}'        
 ########################################################################################################################################################################################################
 class PrevPageCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
