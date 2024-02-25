@@ -7,9 +7,15 @@ function cleanSubDir {
     ls -l "$dir"
     for file in "$dir"/*  ; do
         if   [[ $lvl = 1 ]]; then
-            if [[ $file = *.[0-9].$ext ]]; then
-                echo "     rm" "$file" ">>>" "lvl =" "$lvl" "*.[0-9].ext =" "*.[0-9].$ext"
+            if   [[ $file = *.[0-9].$ext || $file = *.[0-9][0-9].$ext || $file = *.[0-9][0-9][0-9].$ext ]]; then
+                echo "     rm" "$file" ">>>" "lvl =" "$lvl" "*.[0-9][0-9].ext =" "*.[0-9][0-9].$ext"
                 rm "$file"
+            elif [[ $file = *.[0-9].*.*.$ext || $file = *.[0-9][0-9].*.*.$ext || $file = *.[0-9][0-9][0-9].*.*.$ext ]]; then
+                echo "     rm" "$file" ">>>" "lvl =" "$lvl" "*.[0-9].[0-9].*.*.ext =" "*.[0-9].[0-9].*.*.$ext"
+                rm "$file"
+#            elif [[ $file = *.[0-9].*.$ext || $file = *.[0-9].[0-9].*.$ext || $file = *.[0-9].[0-9].[0-9].*.$ext ]]; then
+#                echo "     rm" "$file" ">>>" "lvl =" "$lvl" "*.[0-9].[0-9].*.ext =" "*.[0-9].[0-9].*.$ext"
+#                rm "$file"
             fi
         elif [[ $lvl = 2 ]]; then
             if [[ $file = *._.$ext ]]; then

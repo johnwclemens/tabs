@@ -19,6 +19,7 @@ from   tpkg.chords     import Chords
 from   tpkg            import cmds
 from   tpkg            import unic
 
+enmr = enumerate
 F = unic.F
 P, L, S, C,          T, N, I, K,          M, R, Q, H,          A, B, D, E   = utl.P, utl.L, utl.S, utl.C,    utl.T, utl.N, utl.I, utl.K,    utl.M, utl.R, utl.Q, utl.H,    utl.A, utl.B, utl.D, utl.E
 W, X, Y, Z,       NONE,  ist,  fri,    slog,   fmtf,   fmtl,   fmtm,   fmta = utl.W, utl.X, utl.Y, utl.Z,    utl.NONE,   utl.ist,   utl.fri,     utl.slog,    utl.fmtf, utl.fmtl, utl.fmtm, utl.fmta
@@ -126,7 +127,7 @@ class Tabs(pyglet.window.Window):
         pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent') # todo add some sound
         ################################################################################################################################################################################################
         self.AUTO_SAVE = 0  ;  self.BGC     = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4  ;  self.DBG_TABT  = 0
-        self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1  ;  self.MULTILINE = 1
+        self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1  ;  self.MULTILINE = 0
         self.OIDS      = 0  ;  self.ORD_GRP = 1  ;  self.RESIZE  = 1  ;  self.SNAPS     = 0  ;  self.SPRITES  = 0  ;  self.STRETCH   = 0  ;  self.SUBPIX    = 1
         self.TEST      = 0  ;  self.VARROW  = 1  ;  self.VERBY   = 0
         ################################################################################################################################################################################################
@@ -199,7 +200,7 @@ class Tabs(pyglet.window.Window):
         i, n = self.i, self.n   ;   self.i = [ i[j] if i[j] <= n[j] else n[j] for j in range(len(i)) ]
         if dbg: self.log(f'after  {self.fmti()} {self.fmtn()}')
 
-    def fileNamePfx(self, ext): return 'E' if ext==TXT else 'D' if ext==DAT else 'C' if ext==CAT else 'B' if self.LL else 'A'
+    def fileNamePfx(self, ext): return 'E' if ext==TXT else 'D' if ext==DAT else 'C' if ext==CAT else 'B' if self.LL else 'A' # fixme make this easier to cleanup in rmf.sh ?
 
     def geomFileName(self, base, ext, dbg=1):
         n0  = []     ;  n0.extend(self.n0)   ;   n0.insert(S, '_')
@@ -239,7 +240,7 @@ class Tabs(pyglet.window.Window):
         if 'J' in ARGS  and len(ARGS['J'])  > 0: self.DSP_J_LEV  =   int(ARGS['J'][0])
         if 'l' in ARGS  and len(ARGS['l']) == 0: self.LONG_TXT   =  1
         if 'L' in ARGS  and len(ARGS['L']) == 0: self.LL         =  1
-        if 'M' in ARGS  and len(ARGS['M']) == 0: self.MULTILINE  =  1
+        if 'M' in ARGS  and len(ARGS['M'])  > 0: self.MULTILINE  =   int(ARGS['M'][0])
         if 'n' in ARGS  and len(ARGS['n'])  > 0: self.n          = [ int(ARGS['n'][i]) for i in range(len(ARGS['n'])) ]
         if 'o' in ARGS  and len(ARGS['o']) == 0: self.OIDS       =  1
         if 'p' in ARGS  and len(ARGS['p'])  > 0: self.SNAPS      =   int(ARGS['p'][0])
@@ -417,7 +418,7 @@ class Tabs(pyglet.window.Window):
     def _initWindowB(self, dbg=1):
         if dbg: self.log(f'BGN {self.fmtWH()}')
         self.batch = pyglet.graphics.Batch()
-        self._initGroups()
+        self._setGrpNums()
         self.set_visible()
         self.log(f'get_size={self.get_size()}')
         self.setView(i=1) # len(self.ZZ), self.LL)
@@ -435,18 +436,40 @@ class Tabs(pyglet.window.Window):
             self.push_handlers(self.eventLogger, self.keyboard)
         if dbg: self.log(f'END {self.fmtWH()}')
     ####################################################################################################################################################################################################
-    def _initGroups(self):
-        hdrB           =    W.join([ f'{t[0]:2}' for t in JTEXTS ])
-        hdrA           =           [P,  L,  S,  C,    T,  N,  I,  K,     M,  R,  Q,  H,     B,  A,  D,  E]
-        if len(self.ZZ): self.gn = [1,  2,  3,  4,    7,  8,  9, 10,     0,  5,  6, 15,    11, 12, 13, 14]   ;   self.g = []
-        else:            self.gn = [0,  1,  2,  3,    6,  7,  8,  9,    15,  4,  5, 14,    10, 11, 12, 13]   ;   self.g = []
-        self.log(fmtl(hdrA, w=2))    ;    self.log(f'  {hdrB}')    ;    self.log(fmtl(self.gn, w=2))
-        for i in range(1 + max(self.gn)):
+    def _setGrpNums(self):
+        self.gn                   = [1,  2,  3,  4,    7,  8,  9, 10,     0,  5,  6, 15,    11, 12, 13, 14]
+#        if len(self.ZZ): self.gn = [1,  2,  3,  4,    7,  8,  9, 10,     0,  5,  6, 15,    11, 12, 13, 14]
+#        else:            self.gn = [0,  1,  2,  3,    6,  7,  8,  9,    15,  4,  5, 14,    10, 11, 12, 13]
+#        else:            self.gn = [0,  1,  2,  3,    9,  8,  7,  6,    15,  4,  5, 14,    10, 11, 12, 13]
+#        else:            self.gn = [0,  1,  2,  3,    6,  9,  8,  7,    15,  4,  5, 14,    10, 11, 12, 13]
+#        else:            self.gn = [0,  1,  2,  3,    6,  6,  6,  6,    15,  4,  5, 14,    10, 11, 12, 13]
+        self._setGroup(self.gn)
+        self.dmpGrpHdrs()
+        
+    def _setGroup(self, gn):
+        self.g = []
+        for j, i in enmr(gn): # range(1 + max(gn)):
             p   = None if self.ORD_GRP or i==0 else self.g[i-1]
-            self.g.append(self._initGroup(i, p))
-            self.log(f'g[{i}]={self.g[i]} p={self.g[i].parent}')
+            self.g.append(self.initGroup(i, p))
+            self.log(f'g[{j}] p={self.g[j].parent} {fmtl(self.g)}')
 
-    def _initGroup(self, order=0, parent=None): return pyglet.graphics.Group(order, parent) if self.ORD_GRP else pyglet.graphics.Group(parent)
+    def dmpGrpHdrs(self):
+        hdrA =        [P,  L,  S,  C,    T,  N,  I,  K,     M,  R,  Q,  H,     B,  A,  D,  E]
+        hdrB = W.join([ f'{t[0]:2}' for t in JTEXTS ])
+        self.log(fmtl(hdrA, w=2))    ;    self.log(f'  {hdrB}')    ;    self.log(fmtl(self.gn, w=2))
+
+    def initGroup(self, order=0, parent=None): return pyglet.graphics.Group(order, parent) if self.ORD_GRP else pyglet.graphics.Group(parent)
+        
+    def _remGrpNum(self, sn):
+        if   sn==TT: self.gn = [1,  2,  3,  4,        8,  9, 10,     0,  5,  6, 15,    11, 12, 13, 14]
+        elif sn==NN: self.gn = [1,  2,  3,  4,    7,      9, 10,     0,  5,  6, 15,    11, 12, 13, 14]
+        elif sn==II: self.gn = [1,  2,  3,  4,    7,  8,     10,     0,  5,  6, 15,    11, 12, 13, 14]
+        elif sn==KK: self.gn = [1,  2,  3,  4,    7,  8,  9,         0,  5,  6, 15,    11, 12, 13, 14]
+        self.log(f'{fmtl(self.gn)}')
+        self._setGroup(self.gn)
+        self.dmpGrpHdrs()
+    
+    def setGrpVsb(self, j, v):   self.g[self.gn[j]].visible = v
     ####################################################################################################################################################################################################
     def _initTextLabels(self):
         self.labelTextA, self.labelTextB = [], []
@@ -1331,52 +1354,60 @@ class Tabs(pyglet.window.Window):
         s1, s2, s3 = '.', s[-2:-1], s[-1]
         return s1 + s3 if s2=='^' else s1 + s3.lower()
     ####################################################################################################################################################################################################
-    def hideTTs(self, how, ii, dbg=0):
+    def hideTTs(self, how, ii):
         ss = self.sectName(how)
-        hid2 = f'Hid{ss} {how} {ii=}'  ;  hid = f'Hid{ss}'   ;   upd = 'Upd'   ;   ref = f'Ref{ss}'
-        i = self.ss2sli(ii)
-        np, nl, ns, nc, nt = self.n
-        self.dumpTniksPfx(hid2)
-        for p, page in         enumerate(self.g_newUpdTniks(P,                  nw=0, pt=None, why=ref)):
-            for l, line in     enumerate(self.g_newUpdTniks(L,                  nw=0, pt=page, why=ref)):
-                for s, sect in enumerate(self.g_newUpdTniks(S,                  nw=2, pt=line, why=hid)): # s=ii
-                    if s == i:
-                        for c, colm in  enumerate(self.g_newUpdTniks(C, m=i*nc, nw=2, pt=sect, why=hid)):
-                            for t, _ in enumerate(self.g_newUpdTniks(s+4,       nw=2, pt=colm, why=hid)):  pass # s=ii
-        self.dumpTniksSfx(hid2)
+#        hid2 = f'Hid{ss} {how} {ii=}'  ;  upd = f'Hid{ss}' # hid = f'Hid{ss}'   ;   upd = 'Upd'   ;   ref = f'Ref{ss}'
+#        np, nl, ns, nc, nt = self.n
+#        i = self.ss2sli(ii)
+#        self.dumpTniksPfx(hid2)
+#        for page in                 self.g_newUpdTniks(P,         nw=0, pt=None, why=ref):
+#            for line in             self.g_newUpdTniks(L,         nw=0, pt=page, why=ref):
+#                for s, sect in enmr(self.g_newUpdTniks(S, m=i,    nw=2, pt=line, why=hid)):  # s=ii
+#                    for colm in     self.g_newUpdTniks(C, m=i*nc, nw=2, pt=sect, why=hid):
+#                        for _ in    self.g_newUpdTniks(s+4,       nw=2, pt=colm, why=hid):  pass # s=ii
+#                    else:
+#                        for sect in      self.g_newUpdTniks(S, m=s,    nw=0, pt=line, why=upd):  # s=ii
+#                            for colm in  self.g_newUpdTniks(C, m=s*nc, nw=0, pt=sect, why=upd):
+#                                for _ in self.g_newUpdTniks(s+4,       nw=0, pt=colm, why=upd):  pass # s=ii
+#        self.dumpTniksSfx(hid2)
+#        self._remGrpNum(ii)
+        self.setGrpVsb(ii+4, 0)
         self.togTT(ii)
-        self.dumpTniksPfx(hid2)
-        for page in                      self.g_newUpdTniks(P,          nw=0, pt=None, why=upd, dbg=1):
-            for line in                  self.g_newUpdTniks(L,          nw=0, pt=page, why=upd, dbg=1):
-                for s, sect in enumerate(self.g_newUpdTniks(S,          nw=0, pt=line, why=upd, dbg=1)):
-                    for colm in          self.g_newUpdTniks(C, m=i*nc,  nw=0, pt=sect, why=upd, dbg=1):
-                        for _ in         self.g_newUpdTniks(s+4,        nw=0, pt=colm, why=upd, dbg=1): pass # s=z()[s]
-        if ii == TT:                     self.removeTnik(self.hcurs, 0, H, dbg)
-        self.dumpTniksSfx(hid2)
+#        self.dumpTniksPfx(hid2)
+#        for page in                 self.g_newUpdTniks(P,         nw=0, pt=None, why=upd, dbg=1):
+#            for line in             self.g_newUpdTniks(L,         nw=0, pt=page, why=upd, dbg=1):
+#                for s, sect in enmr(self.g_newUpdTniks(S,         nw=0, pt=line, why=upd, dbg=1)):
+#                    for colm in     self.g_newUpdTniks(C, m=s*nc, nw=0, pt=sect, why=upd, dbg=1):
+#                        for _ in    self.g_newUpdTniks(s+4,       nw=0, pt=colm, why=upd, dbg=1): pass # s=z()[s]
+        if ii == TT:                self.setGrpVsb(H, 0)
+#        if ii == TT:                self.removeTnik(self.hcurs, 0, H, f'Hid{ss}', dbg)
+#        self.dumpTniksSfx(hid2)
         return ss
     ####################################################################################################################################################################################################
     def addTTs(self, how, ii):
         ss = self.sectName(how)
-        add2 = f'Add{ss} {how} {ii=}'  ;  add = f'Add{ss}'   ;   upd = 'Upd'   ;   ref = f'Ref{ss}'
+#        add2 = f'Add{ss} {how} {ii=}'  ;  add = f'Add{ss}'   ;   upd = 'Upd'   ;   ref = f'Ref{ss}'
         self.togTT(ii)
-        i = self.ss2sli(ii)
-        np, nl, ns, nc, nt = self.n
-        self.dumpTniksPfx(add2)
-        for page in                      self.g_newUpdTniks(P,         nw=0, pt=None, why=ref, dbg=1):
-            for line in                  self.g_newUpdTniks(L,         nw=0, pt=page, why=ref, dbg=1):
-                for s, sect in enumerate(self.g_newUpdTniks(S,         nw=1, pt=line, why=add, dbg=1)):
-                    if s == i:
-                        for colm in      self.g_newUpdTniks(C, m=i*nc, nw=1, pt=sect, why=add, dbg=1): 
-                            for _ in     self.g_newUpdTniks(s+4,       nw=1, pt=colm, why=add, dbg=1): pass # s=z()[i]
-        self.dumpTniksSfx(add2)
-        self.dumpTniksPfx(add2)
-        for page in                      self.g_newUpdTniks(P,         nw=0, pt=None, why=ref, dbg=1):
-            for line in                  self.g_newUpdTniks(L,         nw=0, pt=page, why=ref, dbg=1):
-                for s, sect in enumerate(self.g_newUpdTniks(S,         nw=0, pt=line, why=upd, dbg=1)):
-                    for colm in          self.g_newUpdTniks(C, m=i*nc, nw=0, pt=sect, why=upd, dbg=1):
-                        for _ in         self.g_newUpdTniks(s+4,       nw=0, pt=colm, why=upd, dbg=1): pass # s=z()[s]
-        if self.tabls and not self.cursor: self.createCursor(add)
-        self.dumpTniksSfx(add2)
+#        i = self.ss2sli(ii)
+#        np, nl, ns, nc, nt = self.n
+#        self.dumpTniksPfx(add2)
+#        for page in                      self.g_newUpdTniks(P,         nw=0, pt=None, why=ref, dbg=1):
+#            for line in                  self.g_newUpdTniks(L,         nw=0, pt=page, why=ref, dbg=1):
+#                for s, sect in enumerate(self.g_newUpdTniks(S,         nw=1, pt=line, why=add, dbg=1)):
+#                    if s == i:
+#                        for colm in      self.g_newUpdTniks(C, m=i*nc, nw=1, pt=sect, why=add, dbg=1): 
+#                            for _ in     self.g_newUpdTniks(s+4,       nw=1, pt=colm, why=add, dbg=1): pass # s=z()[i]
+#        self.dumpTniksSfx(add2)
+        self.setGrpVsb(ii+4, 1)
+#        self.dumpTniksPfx(add2)
+#        for page in                      self.g_newUpdTniks(P,         nw=0, pt=None, why=ref, dbg=1):
+#            for line in                  self.g_newUpdTniks(L,         nw=0, pt=page, why=ref, dbg=1):
+#                for s, sect in enumerate(self.g_newUpdTniks(S,         nw=0, pt=line, why=upd, dbg=1)):
+#                    for colm in          self.g_newUpdTniks(C, m=i*nc, nw=0, pt=sect, why=upd, dbg=1):
+#                        for _ in         self.g_newUpdTniks(s+4,       nw=0, pt=colm, why=upd, dbg=1): pass # s=z()[s]
+        if   self.tabls and not self.cursor: self.createCursor(f'Add{ss}')
+        elif self.tabls:                     self.setGrpVsb(H, 1)
+#        self.dumpTniksSfx(add2)
         return ss
     ####################################################################################################################################################################################################
     def createTniks(self, dbg=1):
@@ -1501,8 +1532,12 @@ class Tabs(pyglet.window.Window):
         np, nl, ns, nc, nt = self.n
         x2, y2, j2, t0     = x, y, j, Z
         tl, hit            = self.j2tl(j2), 0
-        i2, tx, kl = (0, Z, self.k[j]) if nw == 1 else (0, None, None)
-        js  = (P, L, S, C, R, Q)       if nw == 1 else None
+        i2, tx, kl = (0, Z, self.k[j])   if nw == 1 else (0, None, None)
+        js         = (P, L, S, C, R, Q)  if nw == 1 else None
+#        if   j==S and nw==2 and m>0:
+#            n = m   ;   self.setJ(j, n, v=1)
+#        elif j==C and nw==2:
+#            for z in range(m):  self.setJ(j, z, v=1)
         for i in range(m, m+n):
             if nw == 1 and self.DBG_TABT and j in js:    tx = self.dbgTabTxt(j, i)
             ijs = self.ijSum(i, j2)
@@ -1546,10 +1581,11 @@ class Tabs(pyglet.window.Window):
     def removeTnik(self, tlist, i, j, why=Z, dbg=1): # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True,the parameter 'width' must be a number.
         assert len(tlist) and i < len(tlist),  f'{len(tlist)=} {i=} {j=} {self.fmtJ1(0, 1)=} {self.fmtJ2(0, 1)=}'
         t = tlist[i]        ;     ha = hasattr(t, 'text')
-        if j in (T,N,I,K): assert ha,  f'{j=} {i=}'
         t.visible = False   ;      v = int(t.visible)
-#        if   ist(t, LBL):  t.width, t.height = 1, 0  # Zero width not allowed
-#        elif ist(t, SPR):  t.update(scale_x=0, scale_y=0)
+        if j in (T,N,I,K):
+            assert ha,  f'{j=} {i=}'
+ #           if   ist(t, LBL):  t.width, t.height = 0, 0  # Zero width not allowed
+ #           elif ist(t, SPR):  t.update(scale_x=0, scale_y=0)
         if dbg:     text = t.text if ha else Z   ;   self.log(f'{self.fmtJText(j)} {i=} {id(t):x} {text:6} {self.ftxywh(t)} {self.fjlen()} J1={self.fmtJ1(0, 1)} J2={self.fmtJ2(0, 1)}', p=0, f=0)
         self.setJdump(j, i, v, why)
         return t
@@ -1559,6 +1595,8 @@ class Tabs(pyglet.window.Window):
         assert tlst is not None and k is not None,  f'ERROR tlst or k is None {tlst=} {k=}'
         assert ist(v, int),  f'ERROR wrong type {type(v)=} {v=}'
         self.setJ(j, i, v) # todo fixme - make it clear we want to set v (visible) on the tnik as well
+        assert 0 <= j < len(self.gn),  f'{j=} {len(self.gn)=}'
+        assert 0 <= self.gn[j] < len(self.g),  f'{j=} {self.gn[j]=} {len(self.g)}'
         o, _, d, ii, n, s = self.fontParams()   ;   b = self.batch   ;   g = self.j2g(j)
         if j == H or (self.SPRITES and (j < T or j == R)):
             scip   = pygimg.SolidColorImagePattern(k)
@@ -1595,7 +1633,7 @@ class Tabs(pyglet.window.Window):
             mx, my = w/tnik.image.width, h/tnik.image.height
             tnik.update(x=x, y=y, scale_x=mx, scale_y=my)
         elif ist(tnik, LBL) and tnik.visible:
-            if w <= 0: w = 1  ;  self.log(f'{j=} {i=} {x=} {y=} {w=} {h=}')
+#            if w <= 0: w = 1 # ;  self.log(f'{j=} {i=} {x=} {y=} {w=} {h=}')
 #            assert w > 0,  f'{w=} {tnik.visible=}' # AssertionError: When the parameters 'multiline' and 'wrap_lines' are True, the parameter 'width' must be a number.
             tnik.font_size = self.calcFontSize(j)
             tnik.x, tnik.y, tnik.width, tnik.height = x, y, w, h
@@ -1927,9 +1965,12 @@ class Tabs(pyglet.window.Window):
         nr = nl * (ns * nt + ll)
         pw, ph = w/nc, h/nr
         pw /= j+1 if j < C else 1
+#        u   = 0.9 #  ;   v = 1 - u
+#        pix = (u * pw) + (v * ph)
         pix = min(pw, ph)
         fs   =  self.pix2pnt(pix)
-        if dbg: self.log(f'{j=} {JTEXTS[j]:4} {w=:6.2f} {h=:6.2f} {nc=} {nr=} {pw=:6.2f} {ph=:6.2f} {pix=:6.2f} {fs=:6.2f}')
+        if dbg: self.log(f'{j=} {JTEXTS[j]:4} ({w:6.2f} {h:6.2f}) ({nc} {nr}) ({pw:6.2f} {ph:6.2f}) {pix:6.2f} {fs=:6.2f}', p=0, f=0)
+#        if dbg: self.log(f'{j=} {JTEXTS[j]:4} {w=:6.2f} {h=:6.2f} {nc=} {nr=} {pw=:6.2f} {ph=:6.2f} {u=:6.4f} {v=:6.4f} {pix=:6.2f} {fs=:6.2f}')
         return fs
 
     def _initFonts(self):

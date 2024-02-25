@@ -59,7 +59,7 @@ def init(cfile, efile, lfile, tfile, f):
     slog(  f'   ARGS={fmta(ARGS)}', f=f)
     slog(f'{ROOT_DIR=}', f=f)
     return   ARGS
-
+########################################################################################################################################################################################################
 def OLD__timer(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -91,7 +91,7 @@ def timer(func):
 @timer
 def timerA(a=1, b=2, c=3):
     return a + b + c
-
+########################################################################################################################################################################################################
 def dbg1(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -107,7 +107,7 @@ def dbg0(func):
         slog(f'{func.__name__}({args} {kwargs})={result}', p=0, f=-2)
         return result
     return wrapper
-
+########################################################################################################################################################################################################
 def memorize(func):
     cache = {}
     @wraps(func)
@@ -126,7 +126,7 @@ def fri(f):            return int(math.floor(f + 0.5))
 def filtA(v, a=W):     return Z.join([ e for e in v if e!=a ])
 def signed(n):         return f' {n}' if n==0 else f'{n:+}'
 def ns2signs(ns, s=Z): return [ f'-{s}' if n<0 else f'+{s}' if n>0  else f'{W}{s}' for n in ns ]
-def fColor(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
+def fColor(c, d=1):   (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 ########################################################################################################################################################################################################
 def isAlt(      d, m=0): return d[ALT]                       if d and ALT in d                           else m & ALT
 def isCtl(      d, m=0): return d[CTL]                       if d and CTL in d                           else m & CTL
