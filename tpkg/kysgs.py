@@ -56,17 +56,19 @@ def initKSD(ksd, t):
     global KSD   ;   KSD = ksd
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
-    slog(f'BGN', f=FD)
+    slog(f'BGN {csv=}', f=FD)
     dumpKSH(csv)
     dumpKSV(csv)
-    slog(f'END', f=FD)
+    slog(f'END {csv=}', f=FD)
 ########################################################################################################################################################################################################
 def dumpKSV(csv=0):
     f = 3 if csv else FD
+    slog(f'BGN {csv=}', f=FD)
     dmpKSVHdr(csv)
     keys = sorted(KSD.keys())
     for k in keys:    slog(fmtKSK(k, csv), p=0 if csv else PFX, f=f)
     dmpKSVHdr(csv)
+    slog(f'END {csv=}', f=FD)
 
 def dmpKSVHdr(csv=0, t=0):
     y, fd = (Y, 3)  if csv else (W, FD)  # ;   n, m = W, W*2

@@ -1003,26 +1003,6 @@ class TogKordNamesCmd(Cmd):
         if dbg2:  tobj.cobj.dumpImap(limap[imi], why=f'{cn:2}')
 #        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
 ########################################################################################################################################################################################################
-class TogLLsCmd(Cmd):
-    def __init__(self, tobj, how, dbg=1):
-        self.tobj, self.how, self.dbg = tobj, how, dbg
-
-    def do(  self): self._togLLs()
-    def undo(self): self._togLLs()
-    
-    def _togLLs(self):
-        tobj, how, dbg = self.tobj, self.how, self.dbg
-        if not tobj.LL: msg = 'ADD'
-        else:           msg = 'HID'
-        tobj.dumpGeom('BGN', f'{how} {msg}')
-        tobj.togLL(f'{how} {msg}')
-        if dbg: tobj.log(f'    llText={fmtl(tobj.llText)}')
-        if tobj.LL: tobj.addLLs( how)
-        else:       tobj.hideLLs(how)
-        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{msg}', how)
-        tobj.on_resize(tobj.width, tobj.height)
-        tobj.dumpGeom('END', f'{how} {msg}')
-########################################################################################################################################################################################################
 class TogPageCmd(Cmd):
     def __init__(self, tobj, how, a):
         self.tobj, self.how, self.a = tobj, how, a
@@ -1054,23 +1034,6 @@ class TogSelectAllCmd(Cmd):
         if   tobj.allTabSel:       tobj.unselectAll(how)   ;   tobj.allTabSel = 0
         else:                      tobj.selectAll(how)     ;   tobj.allTabSel = 1
         tobj.dumpSmap(f'END {how} {tobj.allTabSel=}')
-########################################################################################################################################################################################################
-class TogTTsCmd(Cmd):
-    def __init__(self, tobj, how, tt):
-        self.tobj, self.how, self.tt = tobj, how, tt
-
-    def do(  self): self._togTTs()
-    def undo(self): self._togTTs()
-
-    def _togTTs(self):
-        tobj, how, tt = self.tobj, self.how, self.tt
-        msg2 = f'{how} {tt=}'
-        tobj.dumpGeom('BGN', f'     {msg2}')
-        if   tt not in tobj.SS:      msg = 'ADD'    ;    sectName = tobj.addTTs( how, tt)
-        else:                        msg = 'HID'    ;    sectName = tobj.hideTTs(how, tt)
-        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{msg}{sectName}', how)
-        tobj.on_resize(tobj.width, tobj.height)
-        tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
 class TogAXYVCmd(Cmd):
     def __init__(self, tobj, how, i, j):
@@ -1160,6 +1123,43 @@ class TogVisibleCmd(Cmd):
                         tnik = tniks[t2]  ;  tnik.visible = not tnik.visible  ;  tobj.setJdump(j, t2, tnik.visible, why=why)  ;  vl.append(str(int(tnik.visible))) if dbg else None
         tobj.dumpTniksSfx(why)
         tobj.log(f'END {why} {pid} pages[{p}].v={int(tobj.pages[p].visible)} {tobj.fmti()} {tobj.fmtn()} page{p+1} is visible {tobj.fVis()}')
+########################################################################################################################################################################################################
+class TogLLsCmd(Cmd):
+    def __init__(self, tobj, how, dbg=1):
+        self.tobj, self.how, self.dbg = tobj, how, dbg
+
+    def do(  self): self._togLLs()
+    def undo(self): self._togLLs()
+    
+    def _togLLs(self):
+        tobj, how, dbg = self.tobj, self.how, self.dbg
+        if not tobj.LL: msg = 'ADD'
+        else:           msg = 'HID'
+        tobj.dumpGeom('BGN', f'{how} {msg}')
+        tobj.togLL(f'{how} {msg}')
+        if dbg: tobj.log(f'    llText={fmtl(tobj.llText)}')
+        if tobj.LL: tobj.addLLs( how)
+        else:       tobj.hideLLs(how)
+        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{msg}', how)
+        tobj.on_resize(tobj.width, tobj.height)
+        tobj.dumpGeom('END', f'{how} {msg}')
+########################################################################################################################################################################################################
+class TogTTsCmd(Cmd):
+    def __init__(self, tobj, how, tt):
+        self.tobj, self.how, self.tt = tobj, how, tt
+
+    def do(  self): self._togTTs()
+    def undo(self): self._togTTs()
+
+    def _togTTs(self):
+        tobj, how, tt = self.tobj, self.how, self.tt
+        msg2 = f'{how} {tt=}'
+        tobj.dumpGeom('BGN', f'     {msg2}')
+        if   tt not in tobj.SS:      msg = 'ADD'    ;    sectName = tobj.addTTs( how, tt)
+        else:                        msg = 'HID'    ;    sectName = tobj.hideTTs(how, tt)
+        if   tobj.SNAPS >= 3:      tobj.regSnap(f'{msg}{sectName}', how)
+        tobj.on_resize(tobj.width, tobj.height)
+        tobj.dumpGeom('END', f'{msg} {msg2}')
 ########################################################################################################################################################################################################
 class TogZZsCmd(Cmd):
     def __init__(self, tobj, how, z):
