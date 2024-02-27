@@ -256,6 +256,11 @@ def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', s=W, ll=None):
 def fmtf(a, b):
     if   b == 4: return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
     elif b == 5: return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
+    elif b == 6: return f'{a:6.4f}' if a < 10 else f'{a:6.3f}' if a < 100 else f'{a:6.2f}' if a < 1000 else f'{a:6.1f}' if a < 10000 else f'{a:6.0f}'
+def fmtg(a, b):
+    if   b == 4: return f'{a:4.1f}' if a < 10 else f'{a:4.0f}' if a < 100 else f'{a:4.0f}'
+    elif b == 5: return f'{a:5.2f}' if a < 10 else f'{a:5.1f}' if a < 100 else f'{a:5.0f}' if a < 1000 else f'{a:5.0f}'
+    elif b == 6: return f'{a:6.3f}' if a < 10 else f'{a:6.2f}' if a < 100 else f'{a:6.1f}' if a < 1000 else f'{a:6.0f}'
 ########################################################################################################################################################################################################
 def fmta(args):
     t = []

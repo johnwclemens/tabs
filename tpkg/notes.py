@@ -3,22 +3,28 @@ from tpkg import unic
 #from tpkg import strngs
 import math
 
-F, N, S          = unic.F,     unic.N,    unic.S
-W, Y, Z          = utl.W,      utl.Y,     utl.Z
-slog, ist        = utl.slog,   utl.ist
-fmtf, fmtl, fmtm = utl.fmtf,   utl.fmtl,  utl.fmtm
-signed, filtA    = utl.signed, utl.filtA
-ns2signs         = utl.ns2signs
-MAX_FREQ_IDX     = utl.MAX_FREQ_IDX
-ACCD_TONES       = ['b', '#', '♭', '♮', '♯']
+F, N, S       = unic.F,     unic.N,    unic.S
+W, Y, Z       = utl.W,      utl.Y,     utl.Z
+slog, ist     = utl.slog,   utl.ist
+fmtf, fmtg    = utl.fmtf,   utl.fmtg
+fmtl, fmtm    = utl.fmtl,   utl.fmtm
+signed, filtA = utl.signed, utl.filtA
+ns2signs      = utl.ns2signs
+
+MAX_FREQ_IDX  = utl.MAX_FREQ_IDX
+ACCD_TONES    = ['b', '#', '♭', '♮', '♯']
+CM_P_M        = 100 # cm per m, cemtimeters per meter
+V_SOUND       = 345 # m/s in dry air @ about 73 deg F
+A4_INDEX      = 57
 
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
-    dumpTestA(csv)
-    ots(440, csv)
-    dumpNF(csv)
-    dumpTestB(csv)
-    dumpND(csv)
+    dumpTestA(  csv)
+    dumpNF(     csv)
+    dumpTestB(  csv)
+    dumpND(     csv)
+    ots(   440, csv)
+    dmpOTS(440, csv, V_SOUND)
     slog(f'END {csv=}')
 ########################################################################################################################################################################################################
 def dumpTestA(csv=0):
@@ -93,7 +99,6 @@ class Notes(object):#1       2       3       4       5       6       7       8  
     TYPES              = [ 'NTRL', 'SHRP', 'FLAT' ] # 0=NTRL, 1=SHRP, 2=FLAT=-1
     TYPE               = SHRP
     NTONES             = len(V2I)
-    A440I              = 57   
     
     @classmethod
     def i2n(cls, t=None):           return cls.I2S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I2F
@@ -148,12 +153,14 @@ SHRPS  = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I2S.values(
 #FLATS = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I4F.values() ][:MAX_FREQ_IDX]
 #SHRPS = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I4S.values() ][:MAX_FREQ_IDX]
 
-def F440(index): return 440 * pow(pow(2, 1/Notes.NTONES), index - Notes.A440I)
-def F432(index): return 432 * pow(pow(2, 1/Notes.NTONES), index - Notes.A440I)
-def Piano(c, d=1): (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{utl.NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
+def f440(index):    return 440 * (2 ** (1/Notes.NTONES)) ** (index - A4_INDEX)
+def f432(index):    return 432 * (2 ** (1/Notes.NTONES)) ** (index - A4_INDEX)
+def Piano(c, d=1):  (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{utl.NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
+def fOTS(i, r=440):  f0 = F440s[0] if r == 440 else F432s[0]  ;  return f0 * i
 
-F440s = [ F440(i) for i in range(MAX_FREQ_IDX) ]
-F432s = [ F432(i) for i in range(MAX_FREQ_IDX) ]
+F440s = [ f440(i) for i in range(MAX_FREQ_IDX) ]
+F432s = [ f432(i) for i in range(MAX_FREQ_IDX) ]
+FOTSs = [ fOTS(i) for i in range(1, 33) ]
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
     w, d, m, n, f = (Z, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
@@ -174,68 +181,75 @@ def dumpFreqs(r=440, csv=0):
         fs.append(f'{ft}')
     fs = m.join(fs)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] Hz'
     slog(f'{ref}{fs}{sfx}', p=0, f=f)
-########################################################################################################################################################################################################
-def dmpWaveLs(r=440, csv=0, v=340):
-    m, f = (Y, 3) if csv else (W, 1)       ;   cmpm = 100
+
+def dmpWaveLs(r=440, csv=0, v=V_SOUND):
+    m, f = (Y, 3) if csv else (W, 1)
     freqs = F440s if r == 440 else F432s   ;    ref = '440A' if r == 440 else '432A'   ;   ws = []
     for freq in freqs:
-        w = cmpm * v/freq
+        w = CM_P_M * v/freq
         wt = fmtf(w, 5)
         ws.append(f'{wt}')
     ws = m.join(ws)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] cm'
     slog(f'{ref}{ws}{sfx}', p=0, f=f)
-
-def ots(r=440, csv=0, v=340):
-    slog('BGN')
-    (ww, d, m, nn, ff) = (Z, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)   ;   ref = '440A' if r == 440 else '432A'
-    f0    = F440s[0] if r == 440 else F432s[0]   ;   fs = []   ;   cmpm = 100
-    ns    = []
-    w0    = cmpm * v/f0   ;   ws = []
-    assert freq2Note(70) == 'C♯',  f'{freq2Note(70)=} C♯4/D♭4'
-    for i in range(1, 33):
-        f = f0 * i   ;   w = w0 / i   ;   n = freq2Note(f)
-        fs.append(fmtf(f, 5))
+########################################################################################################################################################################################################
+def dmpOTS(r=440, csv=0, v=V_SOUND):
+    (ww, d, m, nn, ff) = (Z, Z, Y, Y, 3) if csv else ('^6', '[', W, Z, 1)
+    rs    = F440s      if r == 440 else F432s        ;   cs, ns, fs, ws = [], [], [], []
+    freqs = F440s[:32] if r == 440 else F432s[:32]   ;   ref = '440A' if r == 440 else '432A'
+    f0    = F440s[0]   ;   w0 = CM_P_M * v/f0
+    for i, freq in enumerate(freqs):
+        i += 1
+        f  = fOTS(i, r)
+        w  = w0 / i
+        n  = freq2Note(f, r=r, s=1 if i in (17, 22, 25, 28) else 0) # 
+        j  = Notes.n2ai(n)
+        assert 0 <= j < len(rs),  f'{j=} {len(rs)=}'
+        f2 = rs[j]
+        c  = 1200 * math.log2(f/f2)
+        fs.append(fmtf(f, 6))
         ns.append(n)
-        ws.append(fmtf(w, 5))
-    fs    = m.join(fs)   ;   ws = m.join(ws)   ;   ns = fmtl(ns, w='^5', d=Z)   
-    ref  += m if csv else ' ['   ;   sfxf = Z if csv else '] Hz'   ;   sfxw = Z if csv else '] cm'   ;   sfx = Z if csv else ']'
-    slog(f'Index{nn}{fmtl(list(range(MAX_FREQ_IDX)), w=ww, d=d, s=m)}', p=0, f=ff)
+        cs.append(fmtg(c, 6 if c >= 0 else 5))
+        ws.append(fmtf(w, 6))
+    fs   = m.join(fs)   ;   ws = m.join(ws)   ;   ns = fmtl(ns, w=ww, d=Z)   ;   cs = fmtl(cs, w=ww, d=Z)
+    ref += m if csv else ' ['   ;   sfxf = Z if csv else '] Hz'   ;   sfxw = Z if csv else '] cm'
+    pfxn = 'note ['   ;   pfxc = 'cents['   ;   sfx = Z if csv else ']'
+    slog(f'Index{nn}{fmtl(list(range(1, 33)), w=ww, d=d, s=m)}', p=0, f=ff)
     slog(f'{ref}{fs}{sfxf}', p=0, f=ff)
-    slog(f'{ref}{ns}{sfx} ', p=0, f=ff)
+    slog(f'{pfxn}{ns}{sfx}', p=0, f=ff)
+    slog(f'{pfxc}{cs}{sfx}', p=0, f=ff)
+    slog(f'{ref}{ws}{sfxw}', p=0, f=ff)
+
+def ots(r=440, csv=0, v=V_SOUND):
+    slog('BGN')
+    (ww, d, m, nn, ff) = (Z, Z, Y, Y, 3) if csv else ('^6', '[', W, Z, 1)   ;   ref = '440A' if r == 440 else '432A'
+    rs = F440s    if r == 440 else F432s
+    f0 = F440s[0] if r == 440 else F432s[0]   ;   fs = []
+    w0 = CM_P_M * v/f0   ;   ws = []   ;   ns = []   ;   cs = []
+    assert freq2Note(70) == 'D♭2',  f'{freq2Note(70)=} C♯2/D♭2'
+    for i in range(1, 33):
+        f  = f0 * i   ;   w = w0 / i
+        n = freq2Note(f, r=r, s=1 if i in (17, 22, 25, 28) else 0) # 
+        j  = Notes.n2ai(n)
+        f2 = rs[j]
+        c  = 1200 * math.log2(f/f2)
+        fs.append(fmtf(f, 6))
+        ns.append(n)
+#        cs.append(round(c))
+        cs.append(fmtg(c, 6 if c >= 0 else 5))
+        ws.append(fmtf(w, 6))
+    fs    = m.join(fs)   ;   ws = m.join(ws)   ;   ns = fmtl(ns, w=ww, d=Z)   ;   cs = fmtl(cs, w=ww, d=Z)
+    ref  += m if csv else ' ['   ;   sfxf = Z if csv else '] Hz'   ;   sfxw = Z if csv else '] cm'
+    pfxn = 'note ['   ;   pfxc = 'cents['   ;   sfx = Z if csv else ']'
+    slog(f'Index{nn}{fmtl(list(range(1, 33)), w=ww, d=d, s=m)}', p=0, f=ff)
+    slog(f'{ref}{fs}{sfxf}', p=0, f=ff)
+    slog(f'{pfxn}{ns}{sfx}', p=0, f=ff)
+    slog(f'{pfxc}{cs}{sfx}', p=0, f=ff)
     slog(f'{ref}{ws}{sfxw}', p=0, f=ff)
     slog('END')
 
-def freq2Note(f, r=440):
-    ni    = Notes.NTONES * math.log2(f / r)
-    i     = round(Notes.A440I + ni)
-    n     = Notes.name(i, Notes.SHRP)
+def freq2Note(f, r=440, s=0):
+    ni = Notes.NTONES * math.log2(f / r)
+    i  = round(A4_INDEX + ni)
+    n = FLATS[i] if s==0 else SHRPS[i]
+#    n  = Notes.name(i, Notes.SHRP)
     return n
-
-def chatGPT_freq2Note(f, r=440):
-    # Reference frequency and note (A4 = 440 Hz)
-#    ref_frequency = 440
-    ref_note = 57  # MIDI note number for A4
-
-    # Calculate the octave range relative to the reference frequency
-    semitones_difference = 12 * math.log2(f / r)
-    octave_difference = semitones_difference / 12
-    current_octave = round(ref_note + octave_difference)
-
-    # Calculate the nearest A frequency in the current or previous octave
-#    nearest_A_frequency = r * (2 ** ((current_octave - ref_note) / 12))
-
-    # Calculate the deviation of the given frequency from the nearest A frequency
-#    deviation = f - nearest_A_frequency
-
-    # Define the notes and their frequencies
-    notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-    frequencies = [r * (2 ** ((i - ref_note) / 12)) for i in range(128)]
-
-    # Find the closest note based on the deviation
-    closest_note_index = min(range(len(frequencies)), key=lambda i: abs(frequencies[i] - f))
-    closest_note = notes[closest_note_index % 12]
-    closest_octave = current_octave + closest_note_index // 12
-
-    return f"{closest_note}{closest_octave}"
-
-

@@ -30,40 +30,40 @@
 #  57 utl   init               argv[29]=G
 #  57 utl   init               argv[30]=A
 #  57 utl   init               argv[31]=D
-# 269 utl   parseCmdLine       argv=[-i 1 1 1 6 -n 1 1 10 6 -M 0 -deo -p 6 -S 1 -f test -w 0 0 0 0 -T D A D G A D]
-# 269 utl   parseCmdLine       C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-# 285 utl   parseCmdLine        1 short   -i i [] 
+# 274 utl   parseCmdLine       argv=[-i 1 1 1 6 -n 1 1 10 6 -M 0 -deo -p 6 -S 1 -f test -w 0 0 0 0 -T D A D G A D]
+# 274 utl   parseCmdLine       C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+# 290 utl   parseCmdLine        1 short   -i i [] 
  2 arg     1  i [1] 
  3 arg     1  i [1 1] 
  4 arg     1  i [1 1 1] 
  5 arg     6  i [1 1 1 6] 
-# 285 utl   parseCmdLine        6 short   -n n [] 
+# 290 utl   parseCmdLine        6 short   -n n [] 
  7 arg     1  n [1] 
  8 arg     1  n [1 1] 
  9 arg     10 n [1 1 10] 
 10 arg     6  n [1 1 10 6] 
-# 285 utl   parseCmdLine       11 short   -M M [] 
+# 290 utl   parseCmdLine       11 short   -M M [] 
 12 arg     0  M [0] 
 13 short   -deo d [] 13 short   -deo e [] 13 short   -deo o [] 
-# 285 utl   parseCmdLine       14 short   -p p [] 
+# 290 utl   parseCmdLine       14 short   -p p [] 
 15 arg     6  p [6] 
-# 285 utl   parseCmdLine       16 short   -S S [] 
+# 290 utl   parseCmdLine       16 short   -S S [] 
 17 arg     1  S [1] 
-# 285 utl   parseCmdLine       18 short   -f f [] 
+# 290 utl   parseCmdLine       18 short   -f f [] 
 19 arg     test f [test] 
-# 285 utl   parseCmdLine       20 short   -w w [] 
+# 290 utl   parseCmdLine       20 short   -w w [] 
 21 arg     0  w [0] 
 22 arg     0  w [0 0] 
 23 arg     0  w [0 0 0] 
 24 arg     0  w [0 0 0 0] 
-# 285 utl   parseCmdLine       25 short   -T T [] 
+# 290 utl   parseCmdLine       25 short   -T T [] 
 26 arg     D  T [D] 
 27 arg     A  T [D A] 
 28 arg     D  T [D A D] 
 29 arg     G  T [D A D G] 
 30 arg     A  T [D A D G A] 
 31 arg     D  T [D A D G A D] 
-# 305 utl   parseCmdLine       options=i:1 1 1 6 n:1 1 10 6 M:0 d: e: o: p:6 S:1 f:test w:0 0 0 0 T:D A D G A D 
+# 310 utl   parseCmdLine       options=i:1 1 1 6 n:1 1 10 6 M:0 d: e: o: p:6 S:1 f:test w:0 0 0 0 T:D A D G A D 
 #  59 utl   init                  ARGS=i:1 1 1 6 n:1 1 10 6 M:0 d: e: o: p:6 S:1 f:test w:0 0 0 0 T:D A D G A D 
 #  60 utl   init               ROOT_DIR='test'
 #  24 kysgs init               BGN
@@ -204,14 +204,14 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 #2161 tabs  dumpGlobals        argv      = +32[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -M 0 -deo -p 6 -S 1 -f test -w 0 0 0 0 -T D A D G A D]
 #2162 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 #2163 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-# 413 utl   getFilePath        baseName =test.69      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =test.69.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.69.cat')
-# 413 utl   getFilePath        baseName =test.69      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =test.69.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.69.csv')
-# 413 utl   getFilePath        baseName =test.69      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =test.69.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.69.log')
-# 413 utl   getFilePath        baseName =test.69      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =test.69.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.69.txt')
+# 418 utl   getFilePath        baseName =test.111     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 421 utl   getFilePath        fileName =test.111.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.111.cat')
+# 418 utl   getFilePath        baseName =test.111     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 421 utl   getFilePath        fileName =test.111.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.111.csv')
+# 418 utl   getFilePath        baseName =test.111     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 421 utl   getFilePath        fileName =test.111.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.111.log')
+# 418 utl   getFilePath        baseName =test.111     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 421 utl   getFilePath        fileName =test.111.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.111.txt')
 # 261 tabs  dumpArgs           [a]      .AUTO_SAVE=0
 # 262 tabs  dumpArgs           [A]         .VARROW=1
 # 263 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -285,12 +285,12 @@ initk((Tabs, 15, 'GRY', 5, 17, 'GRY', 17, 17) {})=[(81, 81, 81, 255), (255, 255,
 # 907 tabs  readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 cols
 # 908 tabs  readDataFile       1 ( 1.000) pages @ 1 lines per page, @ 6 rows per line, @ 10 cols per row
 # 911 tabs  readDataFile       END n=[1 1 1 10 6]
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/test.dat')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\test.dat ###
+# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
+# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
+# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
+# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
+# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/test.dat')
+# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\test.dat ###
 j=4 Tabl (960.00 540.00) (10 6) ( 96.00  90.00)  90.00 fs= 70.00
 #1823 tabs  _initFonts         w=96.000=.viewW= 960.0/(10)                 PNT_PER_PIX=0.7778 fs=w*PNT_PER_PIX= 70.00pt
 #1824 tabs  _initFonts         h=90.000=.viewH= 540.0/(nl=1 * ns=1 * nt=6) PNT_PER_PIX=0.7778 fs=h*PNT_PER_PIX= 70.00pt
@@ -606,15 +606,15 @@ plsct=[1 1 1 10 6] j=4 i=5
 [a:B♭:4, 3:E♭:6, 8:A♭:2,  None ,  None ,  None ,  None ]
 [ None ,  None , 8:A♭:2, 3:E♭:6, a:B♭:4,  None ,  None ]
 #1836 tabs  dumpFont           4:96dpi  70.00pt 0:Lucida Console 0:  70.00pt = 0.7778(pt/pix) *  90.00pixels Upd1
-# 743 cmds  _snapshot          snapName='test.69.1.NEW.png' New1
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.69.1.NEW.png')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.69.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.69.1.NEW.png')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.png')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.69.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.png ###
-#  86 evnts on_draw            .LOG_ID= 69 sid=1 typ=NEW why=New1 qlen=1
-C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.69.1.NEW.png
+# 743 cmds  _snapshot          snapName='test.111.1.NEW.png' New1
+# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.111.1.NEW.png')
+# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.111.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.111.1.NEW.png')
+# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.png')
+# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.111.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID=111 sid=1 typ=NEW why=New1 qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.111.1.NEW.png
  TId  Identity    Why  Name  Cnt Rotate G V P  L  S   C    T    N    I    K M  R   Q H  A  B  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  TId  Identity    Why  Name  Cnt PrtTxt G V P  L  S   C    T    N    I    K M  R   Q H  A  B  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz dpi B I FontName
 # 507 cmds  _quit              BGN @^Q Error=0 save=0 .quitting=0
@@ -626,41 +626,41 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.69.1.NEW.png
 [a:B♭:4, 3:E♭:6, 8:A♭:2,  None ,  None ,  None ,  None ]
 [ None ,  None , 8:A♭:2, 3:E♭:6, a:B♭:4,  None ,  None ]
 #1836 tabs  dumpFont           4:96dpi  70.00pt 0:Lucida Console 0:  70.00pt = 0.7778(pt/pix) *  90.00pixels @^Q
-# 743 cmds  _snapshot          snapName='test.69.2.FIN.png' quit 0 save=0
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.69.2.FIN.png')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.69.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.69.2.FIN.png')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.png')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.69.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.png ###
+# 743 cmds  _snapshot          snapName='test.111.2.FIN.png' quit 0 save=0
+# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.111.2.FIN.png')
+# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.111.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.111.2.FIN.png')
+# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.png')
+# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.111.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.png ###
 # 518 cmds  _quit              END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-# 413 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 413 utl   getFilePath        baseName =Atest.1.1.1.10.6_CC_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =Atest.1.1.1.10.6_CC_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.csv')
+# 418 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 421 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+# 418 utl   getFilePath        baseName =Atest.1.1.1.10.6_CC_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 421 utl   getFilePath        fileName =Atest.1.1.1.10.6_CC_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.csv')
 #2133 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.csv
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.csv')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.csv ###
-#2136 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.69.csv
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.69.csv')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.69.csv ###
+# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.csv')
+# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.1.10.6_CC_CC.csv ###
+#2136 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.111.csv
+# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.111.csv')
+# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.111.csv ###
 # 520 cmds  _quit              END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
 # 521 cmds  _quit              Calling close(),#2203 tabs  <module>           Thats all folks!
 #2204 tabs  <module>           END C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-# 413 utl   getFilePath        baseName =Atest.1.1.1.10.6_CC_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =Atest.1.1.1.10.6_CC_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.log')
-# 413 utl   getFilePath        baseName =Etest.1.1.1.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 416 utl   getFilePath        fileName =Etest.1.1.1.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.1.10.6_CC_CC.txt')
-#2166 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.69.txt
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.69.txt')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.69.txt ###
+# 418 utl   getFilePath        baseName =Atest.1.1.1.10.6_CC_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 421 utl   getFilePath        fileName =Atest.1.1.1.10.6_CC_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.1.10.6_CC_CC.log')
+# 418 utl   getFilePath        baseName =Etest.1.1.1.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 421 utl   getFilePath        fileName =Etest.1.1.1.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.1.10.6_CC_CC.txt')
+#2166 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.111.txt
+# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.111.txt')
+# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.111.txt ###
 #2168 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.1.10.6_CC_CC.txt
-# 421 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-# 422 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.1.10.6_CC_CC.txt')
-# 424 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.1.10.6_CC_CC.txt ###
+# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.1.10.6_CC_CC.txt')
+# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.1.10.6_CC_CC.txt ###
 #2170 tabs  cleanupOutFiles    Flush & Close Txt File
