@@ -439,10 +439,6 @@ class Tabs(pyglet.window.Window):
     def _setGrpNums(self):
         self.gn                   = [1,  2,  3,  4,    7,  8,  9, 10,     0,  5,  6, 15,    11, 12, 13, 14]
 #        if len(self.ZZ): self.gn = [1,  2,  3,  4,    7,  8,  9, 10,     0,  5,  6, 15,    11, 12, 13, 14]
-#        else:            self.gn = [0,  1,  2,  3,    6,  7,  8,  9,    15,  4,  5, 14,    10, 11, 12, 13]
-#        else:            self.gn = [0,  1,  2,  3,    9,  8,  7,  6,    15,  4,  5, 14,    10, 11, 12, 13]
-#        else:            self.gn = [0,  1,  2,  3,    6,  9,  8,  7,    15,  4,  5, 14,    10, 11, 12, 13]
-#        else:            self.gn = [0,  1,  2,  3,    6,  6,  6,  6,    15,  4,  5, 14,    10, 11, 12, 13]
         self._setGroup(self.gn)
         self.dmpGrpHdrs()
         
@@ -475,8 +471,6 @@ class Tabs(pyglet.window.Window):
         self.labelTextA, self.labelTextB = [], []
         self.createLabelText()
         self.llText = self.labelTextB
-#        self.llText = ['M', '0']
-#        self.llText.extend(self.labelTextB)
         self.log(fmtl(self.llText))
     ####################################################################################################################################################################################################
     def _initTniks(self):
@@ -502,17 +496,12 @@ class Tabs(pyglet.window.Window):
     ####################################################################################################################################################################################################
     def isJV(self, j=0, dbg=0): # fixme all the other values > k?
         if   P <= j <= K and self.J1[P] == self.j()[P]: v = 1
-#        if   P <= j <= K and self.J2[P] == self.i[P]:   v = 1
         elif j in (M, R, Q, H, B, A, D, E):             v = 1
         else:                                           v = 0
         if dbg:  why = f'{v=}'  ;  self.log(f'{self.fmtJText(j, why)} {self.J2[j]=} {self.i[j]=} {self.fmti()} {v=}', f=0)
         return v
     ####################################################################################################################################################################################################
     def resetJ(self, why=Z, dbg=1): self.J1 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.J2 = [ 0 for _ in range(len(self.E)+1) ]  ;  self.nvis = 0  ;  self.dumpJs(why) if dbg else None
-
-#   def setJ(self, j, n, v=None, dbg=0):
-#       self.log(f'{j=} {n=} {v=}') if dbg else None
-#       self.J1[j] = n  ;  self.J2[j] += 1  ;   self.J1[-1] += 1  ;  self.J2[-1] += 1
 
     def setJ(self, j, n, v=None):
         v = self.isJV(j) if v is None else v
@@ -553,10 +542,6 @@ class Tabs(pyglet.window.Window):
             return data, data[p], data[p][l], data[p][l][c]
         return []
     ####################################################################################################################################################################################################
-#    def fplc(  self): i = self.i  ;  p, l,    c    = i[P], i[L],       i[C]        ;  return f'[{p} {l}   {c:2}]'
-#    def fplct( self): i = self.i  ;  p, l,    c, t = i[P], i[L],       i[C], i[T]  ;  return f'[{p} {l}   {c:2} {t}]'
-#    def fplsc( self): i = self.i  ;  p, l, s, c    = i[P], i[L], i[S], i[C]        ;  return f'[{p} {l} {s} {c:2}]'
-#    def fplsct(self): i = self.i  ;  p, l, s, c, t = i[P], i[L], i[S], i[C], i[T]  ;  return f'[{p} {l} {s} {c:2} {t}]'
     @staticmethod
     def fplc(  p, l,    c):      return f'[{p} {l}   {c:2}]'
     @staticmethod
@@ -565,19 +550,6 @@ class Tabs(pyglet.window.Window):
     def fplsc( p, l, s, c):      return f'[{p} {l} {s} {c:2}]'
     @staticmethod
     def fplsct(p, l, s, c, t):   return f'[{p} {l} {s} {c:2} {t}]'
-    ####################################################################################################################################################################################################
-#    def fplc(  self, p=None, l=None,         c=None):         i = self.i  ;  p = i[P] if p is None else p  ;  l = i[L] if l is None else l  ;                                   c = i[C] if c is None else c  ;                                   return f'[{p} {l}   {c:2}]'
-#    def fplct( self, p=None, l=None,         c=None, t=None): i = self.i  ;  p = i[P] if p is None else p  ;  l = i[L] if l is None else l  ;                                   c = i[C] if c is None else c  ;  t = i[T] if t is None else t  ;  return f'[{p} {l}   {c:2} {t}]'
-#    def fplsc( self, p=None, l=None, s=None, c=None):         i = self.i  ;  p = i[P] if p is None else p  ;  l = i[L] if l is None else l  ;  s = i[S] if s is None else s  ;  c = i[C] if c is None else c  ;                                   return f'[{p} {l} {s} {c:2}]'
-#    def fplsct(self, p=None, l=None, s=None, c=None, t=None): i = self.i  ;  p = i[P] if p is None else p  ;  l = i[L] if l is None else l  ;  s = i[S] if s is None else s  ;  c = i[C] if c is None else c  ;  t = i[T] if t is None else t  ;  return f'[{p} {l} {s} {c:2} {t}]'
-#    def fplc(  self, p=None, l=None,         c=None):         i = self.i  ;  p = i[P] if p is None else 1+p  ;  l = i[L] if l is None else 1+l  ;                                     c = i[C] if c is None else 1+c  ;                                     return f'[{p} {l}   {c:2}]'
-#    def fplct( self, p=None, l=None,         c=None, t=None): i = self.i  ;  p = i[P] if p is None else 1+p  ;  l = i[L] if l is None else 1+l  ;                                     c = i[C] if c is None else 1+c  ;  t = i[T] if t is None else 1+t  ;  return f'[{p} {l}   {c:2} {t}]'
-#    def fplsc( self, p=None, l=None, s=None, c=None):         i = self.i  ;  p = i[P] if p is None else 1+p  ;  l = i[L] if l is None else 1+l  ;  s = i[S] if s is None else 1+s  ;  c = i[C] if c is None else 1+c  ;                                     return f'[{p} {l} {s} {c:2}]'
-#    def fplsct(self, p=None, l=None, s=None, c=None, t=None): i = self.i  ;  p = i[P] if p is None else 1+p  ;  l = i[L] if l is None else 1+l  ;  s = i[S] if s is None else 1+s  ;  c = i[C] if c is None else 1+c  ;  t = i[T] if t is None else 1+t  ;  return f'[{p} {l} {s} {c:2} {t}]'
-#   def fplc(  self, p=None, l=None,         c=None):         j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;                                   c = j[C] if c is None else c  ;                                   return f'[{p+1} {l+1}   {c+1:2}]'
-#   def fplct( self, p=None, l=None,         c=None, t=None): j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;                                   c = j[C] if c is None else c  ;  t = j[T] if t is None else t  ;  return f'[{p+1} {l+1}   {c+1:2} {t+1}]'
-#   def fplsc( self, p=None, l=None, s=None, c=None):         j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  s = j[S] if s is None else s  ;  c = j[C] if c is None else c  ;                                   return f'[{p+1} {l+1} {s+1} {c+1:2}]'
-#   def fplsct(self, p=None, l=None, s=None, c=None, t=None): j = self.j()  ;  p = j[P] if p is None else p  ;  l = j[L] if l is None else l  ;  s = j[S] if s is None else s  ;  c = j[C] if c is None else c  ;  t = j[T] if t is None else t  ;  return f'[{p+1} {l+1} {s+1} {c+1:2} {t+1}]'
     ####################################################################################################################################################################################################
     def jsum(  self, a=1):          return [ _ + a if self.J2[j] and j < len(self.J1)-1 else _ if j == len(self.J1)-1 else 0 for j, _ in enumerate(self.J1) ]
     def jlen(self):                 return [ len(e) for e in self.E ]
@@ -655,10 +627,6 @@ class Tabs(pyglet.window.Window):
             ikeys = self.ikeys[cc+t].text if self.ikeys and len(self.ikeys) > cc+t else Z
             kords = self.kords[cc+t].text if self.kords and len(self.kords) > cc+t else Z
             self.log(f'{self.data[p][l][c]} [{cc+t}] {self.tabls[cc+t].text:2} {self.notes[cc+t].text:2} {ikeys:2} {kords:2}')
-#    @staticmethod
-#    def dumpObjs(objs, name, why=Z):            [ Tabs.dumpObj(o, name, why) for o in objs ]
-#    @staticmethod
-#    def dumpObj( obj,  name, why=Z): slog(f'{why} {name} ObjId {id(obj):x} {type(obj)}')
     ####################################################################################################################################################################################################
     def dumpJs(  self, why, w=None, d=1):
         b = W*10 if self.OIDS else W
@@ -950,11 +918,6 @@ class Tabs(pyglet.window.Window):
                 for c in range(len(data[p][l])):
                     assert len(data[p][l][c]) == dl[3],   f'{len(data[p][l])=} {dl=} {vert=}'
     ####################################################################################################################################################################################################
-#    def transposeDataDump(self, data=None, dbg=1):
-#        self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
-#        self.data = self.transposeDataA(data, dbg)
-#        self.dumpDataVert(data) if self.isVert(data) else self.dumpDataHorz(data)
-
     def transposeData(self, data=None, dmp=0, dbg=1):
         data = self.dproxy(data)
         self.log(f'BGN {self.fmtD(data)} {dmp=}')
@@ -1562,11 +1525,6 @@ class Tabs(pyglet.window.Window):
     def on_resize(       self, w, h, z=None):       return evnts.on_resize(       self, w, h, z)
     def on_text(         self, text):               return evnts.on_text(         self, text)
     def on_text_motion(  self, motion):             return evnts.on_text_motion(  self, motion)
-#        super().on_resize(w, h)
-#        assert z in (0, 1, None),  f'{z=}'
-#        if self.RESIZE:
-#            cmd = cmds.UpdateTniksCmd(self, 'on_resize()', w, h, z, dbg=1)     ;  cmd.do()
-#        return True
     ####################################################################################################################################################################################################
     def idmapkey(self, j):  return f'{JTEXTS[j]}{self.J2[j]}'
     def dumpIdmKeys(self):  self.log(fmtl(list(self.idmap.keys()), ll=1))
