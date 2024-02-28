@@ -23,8 +23,8 @@ def dumpData(csv=0):
     dumpNF(     csv)
     dumpTestB(  csv)
     dumpND(     csv)
-    ots(   440, csv)
-    dmpOTS(440, csv, V_SOUND)
+    dmpOTS(     csv=csv, vs=V_SOUND)
+    dmpPyth(    csv=csv, vs=V_SOUND)
     slog(f'END {csv=}')
 ########################################################################################################################################################################################################
 def dumpTestA(csv=0):
@@ -86,7 +86,7 @@ class Notes(object):#1       2       3       4       5       6       7       8  
     I4S = { 0:'B♯', 1:'C♯', 2:'D' , 3:'D♯', 4:'E' , 5:'E♯', 6:'F♯', 7:'G' , 8:'G♯', 9:'A' , 10:'A♯', 11:'B' } # ,12:'C' } # 8/12/16 B♯ E♯
     I2V = { 0:'R' , 1:'♭2', 2:'2' , 3:'m3', 4:'M3', 5:'4' , 6:'♭5', 7:'5' , 8:'♯5', 9:'6' , 10:'♭7', 11:'7' } # ,12:'R' } # 8/12/16 ♭5 ♯5
     I4V = { 0:'P1', 1:'m2', 2:'M2', 3:'m3', 4:'M3', 5:'P4', 6:'TT', 7:'P5', 8:'m6', 9:'M6', 10:'m7', 11:'M7'} # ,12:'P8'} # 8/12/16 TT m6
-    I6V = { 0:'d2', 1:'A1', 2:'d3', 3:'A2', 4:'d4', 5:'A3', 6:'TT', 7:'d6', 8:'A5', 9:'d7', 10:'A6', 11:'d8'} # ,12:'A7'} # 8/12/16 TT d2 A1 
+    I6V = { 0:'d2', 1:'A1', 2:'d3', 3:'A2', 4:'d4', 5:'A3', 6:'d5', 7:'A4', 8:'d6', 9:'A5', 10:'d7', 11:'A6', 12:'d8'} # ,13:'A7'} # 8/12/16 TT d2 A1 
     V2I = { 'R':0 , '♭2':1, '2':2 , 'm3':3, 'M3':4, '4' :5, '♭5':6, '5':7 , '♯5':8, '6' :9, '♭7':10, '7' :11} # ,'R`':12} # 8/12/16 ♭5 ♯5
     N2I = {'B♯':0 , 'C' :0,'C♯':1 , 'D♭':1, 'D' :2, 'D♯':3, 'E♭':3, 'E':4 , 'F♭':4, 'E♯':5, 'F' :5,  'F♯':6, 'G♭':6, 'G' :7, 'G♯':8, 'A♭':8, 'A' :9, 'A♯':10, 'B♭':10, 'B' :11, 'C♭' :11, 'B♯`':12, 'C`':12 } #21 B# C♭ E# F♭
     F2S = {            'D♭':'C♯', 'E♭':'D♯',                       'G♭':'F♯', 'A♭':'G♯', 'B♭':'A♯'           } #[ 1 3  6 8 a ]# 5/9 D♭->C♯
@@ -153,14 +153,30 @@ SHRPS  = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I2S.values(
 #FLATS = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I4F.values() ][:MAX_FREQ_IDX]
 #SHRPS = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I4S.values() ][:MAX_FREQ_IDX]
 
-def f440(index):    return 440 * (2 ** (1/Notes.NTONES)) ** (index - A4_INDEX)
-def f432(index):    return 432 * (2 ** (1/Notes.NTONES)) ** (index - A4_INDEX)
-def Piano(c, d=1):  (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{utl.NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
+def reduce(a, b, c):
+    n = a ** c * b ** -c
+    for i in range(c):
+        if   a > b:
+            while n > 2:
+                n /= 2
+        elif a < b:
+            while n < 1:
+                n *= 2
+    return n
+        
+def f440(i):         return 440 * (2 ** (1/Notes.NTONES)) ** (i - A4_INDEX)
+def f432(i):         return 432 * (2 ** (1/Notes.NTONES)) ** (i - A4_INDEX)
 def fOTS(i, r=440):  f0 = F440s[0] if r == 440 else F432s[0]  ;  return f0 * i
+def fPyth(a, b, c):  return reduce(a, b, c)
+def Piano(c, d=1):   (d, d2) = ("[", "]") if d else (Z, Z)    ;  return f'{utl.NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 
-F440s = [ f440(i) for i in range(MAX_FREQ_IDX) ]
-F432s = [ f432(i) for i in range(MAX_FREQ_IDX) ]
-FOTSs = [ fOTS(i) for i in range(1, 33) ]
+F440s  = [ f440(i)  for i in range(MAX_FREQ_IDX) ]
+F432s  = [ f432(i)  for i in range(MAX_FREQ_IDX) ]
+FOTSs  = [ fOTS(i)  for i in range(1, 33) ]
+FPythA = [ fPyth(3, 2, i) for i in range(0, 7) ]
+FPythB = [ fPyth(2, 3, i) for i in range(1, 7) ]
+FPyths = FPythA   ;   FPyths.extend(FPythB)
+FPyths = sorted(FPyths)
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
     w, d, m, n, f = (Z, Z, Y, Y, 3) if csv else ('^5', '[', W, Z, 1)
@@ -182,74 +198,69 @@ def dumpFreqs(r=440, csv=0):
     fs = m.join(fs)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] Hz'
     slog(f'{ref}{fs}{sfx}', p=0, f=f)
 
-def dmpWaveLs(r=440, csv=0, v=V_SOUND):
+def dmpWaveLs(r=440, csv=0, vs=V_SOUND):
     m, f = (Y, 3) if csv else (W, 1)
     freqs = F440s if r == 440 else F432s   ;    ref = '440A' if r == 440 else '432A'   ;   ws = []
     for freq in freqs:
-        w = CM_P_M * v/freq
+        w = CM_P_M * vs/freq
         wt = fmtf(w, 5)
         ws.append(f'{wt}')
     ws = m.join(ws)  ;  ref += m if csv else ' ['  ;  sfx = Z if csv else '] cm'
     slog(f'{ref}{ws}{sfx}', p=0, f=f)
 ########################################################################################################################################################################################################
-def dmpOTS(r=440, csv=0, v=V_SOUND):
+def dmpOTS(r=440, csv=0, vs=V_SOUND):
     (ww, d, m, nn, ff) = (Z, Z, Y, Y, 3) if csv else ('^6', '[', W, Z, 1)
     rs    = F440s      if r == 440 else F432s        ;   cs, ns, fs, ws = [], [], [], []
     freqs = F440s[:32] if r == 440 else F432s[:32]   ;   ref = '440A' if r == 440 else '432A'
-    f0    = F440s[0]   ;   w0 = CM_P_M * v/f0
+    f0    = F440s[0]    ;   w0 = CM_P_M * vs/f0
     for i, freq in enumerate(freqs):
-        i += 1
-        f  = fOTS(i, r)
-        w  = w0 / i
-        n  = freq2Note(f, r=r, s=1 if i in (17, 22, 25, 28) else 0) # 
+        i += 1          ;    f  = fOTS(i, r)    ;    w  = w0 / i
+        n  = freq2Note(f, r=r, b=0 if i in (17, 22, 25, 28) else 1) # 
         j  = Notes.n2ai(n)
         assert 0 <= j < len(rs),  f'{j=} {len(rs)=}'
-        f2 = rs[j]
-        c  = 1200 * math.log2(f/f2)
-        fs.append(fmtf(f, 6))
-        ns.append(n)
+        f2 = rs[j]      ;    c  = 1200 * math.log2(f/f2)
+        fs.append(fmtf(f, 6))    ;    ns.append(n)    ;    ws.append(fmtf(w, 6))
         cs.append(fmtg(c, 6 if c >= 0 else 5))
-        ws.append(fmtf(w, 6))
     fs   = m.join(fs)   ;   ws = m.join(ws)   ;   ns = fmtl(ns, w=ww, d=Z)   ;   cs = fmtl(cs, w=ww, d=Z)
-    ref += m if csv else ' ['   ;   sfxf = Z if csv else '] Hz'   ;   sfxw = Z if csv else '] cm'
-    pfxn = 'note ['   ;   pfxc = 'cents['   ;   sfx = Z if csv else ']'
+    ref += m if csv else ' ['    ;    sfxf = Z if csv else '] Hz'    ;    sfxw = Z if csv else '] cm'
+    pfxn = 'note ['     ;   pfxc = 'cents['   ;   sfx = Z if csv else ']'
     slog(f'Index{nn}{fmtl(list(range(1, 33)), w=ww, d=d, s=m)}', p=0, f=ff)
     slog(f'{ref}{fs}{sfxf}', p=0, f=ff)
     slog(f'{pfxn}{ns}{sfx}', p=0, f=ff)
     slog(f'{pfxc}{cs}{sfx}', p=0, f=ff)
     slog(f'{ref}{ws}{sfxw}', p=0, f=ff)
 
-def ots(r=440, csv=0, v=V_SOUND):
-    slog('BGN')
-    (ww, d, m, nn, ff) = (Z, Z, Y, Y, 3) if csv else ('^6', '[', W, Z, 1)   ;   ref = '440A' if r == 440 else '432A'
-    rs = F440s    if r == 440 else F432s
-    f0 = F440s[0] if r == 440 else F432s[0]   ;   fs = []
-    w0 = CM_P_M * v/f0   ;   ws = []   ;   ns = []   ;   cs = []
-    assert freq2Note(70) == 'D♭2',  f'{freq2Note(70)=} C♯2/D♭2'
-    for i in range(1, 33):
-        f  = f0 * i   ;   w = w0 / i
-        n = freq2Note(f, r=r, s=1 if i in (17, 22, 25, 28) else 0) # 
-        j  = Notes.n2ai(n)
-        f2 = rs[j]
-        c  = 1200 * math.log2(f/f2)
-        fs.append(fmtf(f, 6))
-        ns.append(n)
-#        cs.append(round(c))
-        cs.append(fmtg(c, 6 if c >= 0 else 5))
-        ws.append(fmtf(w, 6))
-    fs    = m.join(fs)   ;   ws = m.join(ws)   ;   ns = fmtl(ns, w=ww, d=Z)   ;   cs = fmtl(cs, w=ww, d=Z)
-    ref  += m if csv else ' ['   ;   sfxf = Z if csv else '] Hz'   ;   sfxw = Z if csv else '] cm'
-    pfxn = 'note ['   ;   pfxc = 'cents['   ;   sfx = Z if csv else ']'
-    slog(f'Index{nn}{fmtl(list(range(1, 33)), w=ww, d=d, s=m)}', p=0, f=ff)
-    slog(f'{ref}{fs}{sfxf}', p=0, f=ff)
-    slog(f'{pfxn}{ns}{sfx}', p=0, f=ff)
-    slog(f'{pfxc}{cs}{sfx}', p=0, f=ff)
-    slog(f'{ref}{ws}{sfxw}', p=0, f=ff)
-    slog('END')
+def dmpPyth(r=440, k=50, csv=0, vs=V_SOUND):
+    (ww, d, mm, nn, ff) = (Z, Z, Y, Y, 3) if csv else ('^6', '[', W, Z, 1)
+    f0 = F440s[k] if r==440 else F432s[k]     ;     w0 = CM_P_M * vs   ;   nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
+    ns, vs, rs, cs, fs, ws = [], [], [], [], [], []   ;   x = 6
+    slog(f'BGN Pythagorean tuning {r=} {k=} {csv=} {vs=} m/s')
+    for i, fr in enumerate(FPyths):
+        f = fr * f0     ;     w = w0 / f
+#       v  = i4v[i % nt] if i % nt <= 5 else i6v[6] if i % nt == 6 else i6v[7] if i % nt == 7 else i4v[11] if i == 12 else i4v[(i-1) % nt]
+#       m = i % nt     ;     v = i4v[m] if m <= 5 else i6v[6] if m == 6 else i6v[7] if m == 7 else i4v[10] if i == 11 else i4v[11] if i == 12 else i4v[(i-1) % nt]
+#        m = i % nt     ;     v = i4v[m] if m in range(1, 5) else i6v[m] if m in (6, 7) else i4v[10] if i == 11 else i4v[11] if i == 12 else i4v[(i-1) % nt]
+        m = i % nt     ;     v = i4v[m] if m in range(1, 6) else i6v[m] if m in (6, 7) else i4v[(i-1) % nt] if m > 7 else i4v[11] if i == 12 else i4v[0]
+        n  = freq2Note(f, r=r, b=0 if i in (4, 7, 12) else 1, s=1)
+        c  = 1200 * math.log2(fr)
+        ns.append(n)    ;   vs.append(v)      ;   rs.append(fmtf(fr, x))
+        fs.append(fmtf(f, x))    ;   ws.append(fmtf(w, x))          ;   cs.append(fmtg(c, x if c >= 0 else x-1))
+    ns   = fmtl(ns, w=ww, d=Z)   ;   vs = fmtl(vs, w=ww, d=Z)       ;   cs = fmtl(cs, w=ww, d=Z)
+    rs   = fmtl(rs, d=Z)         ;   ws = mm.join(ws)   ;   fs   = fmtl(fs, d=Z)     
+    pfxf = 'Freq ['     ;   pfxw = 'Wvlen['   ;   pfxv = 'Intrvl'   ;    sfx = Z if csv else ']'
+    pfxr = 'Ratio['     ;   pfxn = 'Note ['   ;   pfxc = 'cents['   ;   sfxf = Z if csv else '] Hz'    ;    sfxw = Z if csv else '] cm'
+    slog(f'Index{nn}{fmtl(list(range(1 + nt)), w=ww, d=d, s=mm)}', p=0, f=ff)
+    slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
+    slog(f'{pfxv}{vs}{sfx}',  p=0, f=ff)
+    slog(f'{pfxr}{rs}{sfx}',  p=0, f=ff)
+    slog(f'{pfxc}{cs}{sfx}',  p=0, f=ff)
+    slog(f'{pfxf}{fs}{sfxf}', p=0, f=ff)
+    slog(f'{pfxw}{ws}{sfxw}', p=0, f=ff)
+    slog(f'END Pythagorean tuning {r=} {k=} {csv=} {vs=} m/s')
 
-def freq2Note(f, r=440, s=0):
+def freq2Note(f, r=440, b=1, s=0):
     ni = Notes.NTONES * math.log2(f / r)
     i  = round(A4_INDEX + ni)
-    n = FLATS[i] if s==0 else SHRPS[i]
-#    n  = Notes.name(i, Notes.SHRP)
+    n = FLATS[i] if b==1 else SHRPS[i]
+    if s: n = n[:-1].strip()
     return n
