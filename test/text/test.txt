@@ -32,42 +32,42 @@
 #  57 utl   init               argv[31]=G
 #  57 utl   init               argv[32]=A
 #  57 utl   init               argv[33]=D
-# 274 utl   parseCmdLine       argv=[-i 1 1 1 6 -n 1 1 10 6 -M 0 -deo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T D A D G A D]
-# 274 utl   parseCmdLine       C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-# 290 utl   parseCmdLine        1 short   -i i [] 
+# 279 utl   parseCmdLine       argv=[-i 1 1 1 6 -n 1 1 10 6 -M 0 -deo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T D A D G A D]
+# 279 utl   parseCmdLine       C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+# 295 utl   parseCmdLine        1 short   -i i [] 
  2 arg     1  i [1] 
  3 arg     1  i [1 1] 
  4 arg     1  i [1 1 1] 
  5 arg     6  i [1 1 1 6] 
-# 290 utl   parseCmdLine        6 short   -n n [] 
+# 295 utl   parseCmdLine        6 short   -n n [] 
  7 arg     1  n [1] 
  8 arg     1  n [1 1] 
  9 arg     10 n [1 1 10] 
 10 arg     6  n [1 1 10 6] 
-# 290 utl   parseCmdLine       11 short   -M M [] 
+# 295 utl   parseCmdLine       11 short   -M M [] 
 12 arg     0  M [0] 
 13 short   -deo d [] 13 short   -deo e [] 13 short   -deo o [] 
-# 290 utl   parseCmdLine       14 short   -p p [] 
+# 295 utl   parseCmdLine       14 short   -p p [] 
 15 arg     6  p [6] 
-# 290 utl   parseCmdLine       16 short   -S S [] 
+# 295 utl   parseCmdLine       16 short   -S S [] 
 17 arg     0  S [0] 
 18 arg     1  S [0 1] 
 19 arg     3  S [0 1 3] 
-# 290 utl   parseCmdLine       20 short   -f f [] 
+# 295 utl   parseCmdLine       20 short   -f f [] 
 21 arg     test f [test] 
-# 290 utl   parseCmdLine       22 short   -w w [] 
+# 295 utl   parseCmdLine       22 short   -w w [] 
 23 arg     0  w [0] 
 24 arg     0  w [0 0] 
 25 arg     0  w [0 0 0] 
 26 arg     0  w [0 0 0 0] 
-# 290 utl   parseCmdLine       27 short   -T T [] 
+# 295 utl   parseCmdLine       27 short   -T T [] 
 28 arg     D  T [D] 
 29 arg     A  T [D A] 
 30 arg     D  T [D A D] 
 31 arg     G  T [D A D G] 
 32 arg     A  T [D A D G A] 
 33 arg     D  T [D A D G A D] 
-# 310 utl   parseCmdLine       options=i:1 1 1 6 n:1 1 10 6 M:0 d: e: o: p:6 S:0 1 3 f:test w:0 0 0 0 T:D A D G A D 
+# 315 utl   parseCmdLine       options=i:1 1 1 6 n:1 1 10 6 M:0 d: e: o: p:6 S:0 1 3 f:test w:0 0 0 0 T:D A D G A D 
 #  59 utl   init                  ARGS=i:1 1 1 6 n:1 1 10 6 M:0 d: e: o: p:6 S:0 1 3 f:test w:0 0 0 0 T:D A D G A D 
 #  60 utl   init               ROOT_DIR='test'
 #  24 kysgs init               BGN
@@ -208,14 +208,14 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 #2119 tabs  dumpGlobals        argv      = +34[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -M 0 -deo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T D A D G A D]
 #2120 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 #2121 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-# 418 utl   getFilePath        baseName =test.202     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 421 utl   getFilePath        fileName =test.202.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.202.cat')
-# 418 utl   getFilePath        baseName =test.202     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 421 utl   getFilePath        fileName =test.202.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.202.csv')
-# 418 utl   getFilePath        baseName =test.202     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 421 utl   getFilePath        fileName =test.202.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.202.log')
-# 418 utl   getFilePath        baseName =test.202     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 421 utl   getFilePath        fileName =test.202.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.202.txt')
+# 423 utl   getFilePath        baseName =test.68      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 426 utl   getFilePath        fileName =test.68.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.68.cat')
+# 423 utl   getFilePath        baseName =test.68      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 426 utl   getFilePath        fileName =test.68.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.68.csv')
+# 423 utl   getFilePath        baseName =test.68      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 426 utl   getFilePath        fileName =test.68.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.68.log')
+# 423 utl   getFilePath        baseName =test.68      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 426 utl   getFilePath        fileName =test.68.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.68.txt')
 # 261 tabs  dumpArgs           [a]      .AUTO_SAVE=0
 # 262 tabs  dumpArgs           [A]         .VARROW=1
 # 263 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -269,12 +269,12 @@ initk((Tabs, 15, 'GRY', 5, 17, 'GRY', 17, 17) {})=[(81, 81, 81, 255), (255, 255,
 # 854 tabs  readDataFile       C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat 108 bytes = 0.1 KB
 # 855 tabs  readDataFile       Raw Data File BGN:
 ##########
-0         
-3         
+          
+          
+          
 0         
 2         
-0         
-          
+3         
 ##########
 ##########
 # 870 tabs  readDataFile       Raw Data File END:
@@ -289,12 +289,12 @@ initk((Tabs, 15, 'GRY', 5, 17, 'GRY', 17, 17) {})=[(81, 81, 81, 255), (255, 255,
 # 875 tabs  readDataFile       1 ( 1.000) pages = 1 lines =          6 rows =          60 cols
 # 876 tabs  readDataFile       1 ( 1.000) pages @ 1 lines per page, @ 6 rows per line, @ 10 cols per row
 # 879 tabs  readDataFile       END n=[1 1 3 10 6]
-# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
-# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
-# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
-# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
-# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/test.dat')
-# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\test.dat ###
+# 431 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
+# 432 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/Dtest.1.1._.10.6.dat')
+# 434 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\Dtest.1.1._.10.6.dat ###
+# 431 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Dtest.1.1._.10.6.dat')
+# 432 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/data/test.dat')
+# 434 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat C:\Users\Owner\Documents\GitHub\tabs\test\data\test.dat ###
 j=4 Tabl (960.00 540.00) (10 18) ( 96.00  30.00)  30.00 fs= 23.33
 #1781 tabs  _initFonts         w=96.000=.viewW= 960.0/(10)                 PNT_PER_PIX=0.7778 fs=w*PNT_PER_PIX= 23.33pt
 #1782 tabs  _initFonts         h=30.000=.viewH= 540.0/(nl=1 * ns=3 * nt=6) PNT_PER_PIX=0.7778 fs=h*PNT_PER_PIX= 23.33pt
@@ -311,17 +311,17 @@ plsct=[1 1 1  0 0] j=2 i=0
 plsct=[1 1 1  1 0] j=3 i=0
 #1384 tabs  g_newUpdTniks        0 j=3  Colm j2=3     i= 0 s=0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3   3] [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3   3] nw=1
 plsct=[1 1 1  1 1] j=4 i=0
-#1384 tabs  g_newUpdTniks        0 j=4  Tabl j2=4 0   i= 0 s=0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] nw=1
+#1384 tabs  g_newUpdTniks        0 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] nw=1
 plsct=[1 1 1  1 2] j=4 i=1
-#1384 tabs  g_newUpdTniks        1 j=4  Tabl j2=4 3   i= 1 s=0 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] nw=1
+#1384 tabs  g_newUpdTniks        1 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] nw=1
 plsct=[1 1 1  1 3] j=4 i=2
-#1384 tabs  g_newUpdTniks        2 j=4  Tabl j2=4 0   i= 2 s=0 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] nw=1
+#1384 tabs  g_newUpdTniks        2 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] nw=1
 plsct=[1 1 1  1 4] j=4 i=3
-#1384 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 2   i= 3 s=0 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] nw=1
+#1384 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 0   i= 3 s=0 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] nw=1
 plsct=[1 1 1  1 5] j=4 i=4
-#1384 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 0   i= 4 s=0 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] nw=1
+#1384 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 2   i= 4 s=0 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] nw=1
 plsct=[1 1 1  1 6] j=4 i=5
-#1384 tabs  g_newUpdTniks        5 j=4  Tabl j2=4     i= 5 s=0 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] nw=1
+#1384 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 3   i= 5 s=0 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] nw=1
 plsct=[1 1 1  2 6] j=3 i=1
 #1384 tabs  g_newUpdTniks        1 j=3  Colm j2=3     i= 1 s=0 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10  10] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10  10] nw=1
 plsct=[1 1 1  2 1] j=4 i=0
@@ -453,17 +453,17 @@ plsct=[1 1 2 10 6] j=2 i=1
 plsct=[1 1 2 11 6] j=3 i=10
 #1384 tabs  g_newUpdTniks       10 j=3  Colm j2=3     i=10 s=1 .J2[j2]=10 len(tl)=10 len(tl)=10 [1 1 2 10 60 0 0 0 0 0 0 0 0 0 0 0] [1 1 2 10 6 0 0 0 0 0 0 0 0 0 0 0 74  74] [1 1 2 10 60 0 0 0 0 0 0 0 0 0 0 0 74  74] nw=1
 plsct=[1 1 2 11 1] j=5 i=0
-#1384 tabs  g_newUpdTniks        0 j=5  Note j2=5 0   i= 0 s=1 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 0 0 0 0 0 0 0 0 0 0 0 75  75] [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75  75] nw=1
+#1384 tabs  g_newUpdTniks        0 j=5  Note j2=5     i= 0 s=1 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 0 0 0 0 0 0 0 0 0 0 0 75  75] [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75  75] nw=1
 plsct=[1 1 2 11 2] j=5 i=1
-#1384 tabs  g_newUpdTniks        1 j=5  Note j2=5 3   i= 1 s=1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 1 0 0 0 0 0 0 0 0 0 0 76  76] [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76  76] nw=1
+#1384 tabs  g_newUpdTniks        1 j=5  Note j2=5     i= 1 s=1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 1 0 0 0 0 0 0 0 0 0 0 76  76] [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76  76] nw=1
 plsct=[1 1 2 11 3] j=5 i=2
-#1384 tabs  g_newUpdTniks        2 j=5  Note j2=5 0   i= 2 s=1 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 2 0 0 0 0 0 0 0 0 0 0 77  77] [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77  77] nw=1
+#1384 tabs  g_newUpdTniks        2 j=5  Note j2=5     i= 2 s=1 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 2 0 0 0 0 0 0 0 0 0 0 77  77] [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77  77] nw=1
 plsct=[1 1 2 11 4] j=5 i=3
-#1384 tabs  g_newUpdTniks        3 j=5  Note j2=5 2   i= 3 s=1 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 3 0 0 0 0 0 0 0 0 0 0 78  78] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78  78] nw=1
+#1384 tabs  g_newUpdTniks        3 j=5  Note j2=5 0   i= 3 s=1 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 3 0 0 0 0 0 0 0 0 0 0 78  78] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78  78] nw=1
 plsct=[1 1 2 11 5] j=5 i=4
-#1384 tabs  g_newUpdTniks        4 j=5  Note j2=5 0   i= 4 s=1 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 4 0 0 0 0 0 0 0 0 0 0 79  79] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79  79] nw=1
+#1384 tabs  g_newUpdTniks        4 j=5  Note j2=5 2   i= 4 s=1 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 4 0 0 0 0 0 0 0 0 0 0 79  79] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79  79] nw=1
 plsct=[1 1 2 11 6] j=5 i=5
-#1384 tabs  g_newUpdTniks        5 j=5  Note j2=5     i= 5 s=1 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 5 0 0 0 0 0 0 0 0 0 0 80  80] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80  80] nw=1
+#1384 tabs  g_newUpdTniks        5 j=5  Note j2=5 3   i= 5 s=1 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 5 0 0 0 0 0 0 0 0 0 0 80  80] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80  80] nw=1
 plsct=[1 1 2 12 6] j=3 i=11
 #1384 tabs  g_newUpdTniks       11 j=3  Colm j2=3     i=11 s=1 .J2[j2]=11 len(tl)=11 len(tl)=11 [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 6 0 0 0 0 0 0 0 0 0 0 81  81] [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0 81  81] nw=1
 plsct=[1 1 2 12 1] j=5 i=0
@@ -595,17 +595,17 @@ plsct=[1 1 3 20 6] j=2 i=2
 plsct=[1 1 3 21 6] j=3 i=20
 #1384 tabs  g_newUpdTniks       20 j=3  Colm j2=3     i=20 s=3 .J2[j2]=20 len(tl)=20 len(tl)=20 [1 1 3 20 60 60 0 0 0 0 0 0 0 0 0 0] [1 1 3 20 6 6 0 0 0 0 0 0 0 0 0 0 145 145] [1 1 3 20 60 60 0 0 0 0 0 0 0 0 0 0 145 145] nw=1
 plsct=[1 1 3 21 1] j=6 i=0
-#1384 tabs  g_newUpdTniks        0 j=7  Kord j2=7 0   i= 0 s=3 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 0 0 0 0 0 0 0 0 0 146 146] [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146 146] nw=1
+#1384 tabs  g_newUpdTniks        0 j=7  Kord j2=7     i= 0 s=3 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 0 0 0 0 0 0 0 0 0 146 146] [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146 146] nw=1
 plsct=[1 1 3 21 2] j=6 i=1
-#1384 tabs  g_newUpdTniks        1 j=7  Kord j2=7 3   i= 1 s=3 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 1 0 0 0 0 0 0 0 0 147 147] [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147 147] nw=1
+#1384 tabs  g_newUpdTniks        1 j=7  Kord j2=7     i= 1 s=3 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 1 0 0 0 0 0 0 0 0 147 147] [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147 147] nw=1
 plsct=[1 1 3 21 3] j=6 i=2
-#1384 tabs  g_newUpdTniks        2 j=7  Kord j2=7 0   i= 2 s=3 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 2 0 0 0 0 0 0 0 0 148 148] [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148 148] nw=1
+#1384 tabs  g_newUpdTniks        2 j=7  Kord j2=7     i= 2 s=3 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 2 0 0 0 0 0 0 0 0 148 148] [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148 148] nw=1
 plsct=[1 1 3 21 4] j=6 i=3
-#1384 tabs  g_newUpdTniks        3 j=7  Kord j2=7 2   i= 3 s=3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 3 0 0 0 0 0 0 0 0 149 149] [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149 149] nw=1
+#1384 tabs  g_newUpdTniks        3 j=7  Kord j2=7 0   i= 3 s=3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 3 0 0 0 0 0 0 0 0 149 149] [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149 149] nw=1
 plsct=[1 1 3 21 5] j=6 i=4
-#1384 tabs  g_newUpdTniks        4 j=7  Kord j2=7 0   i= 4 s=3 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 4 0 0 0 0 0 0 0 0 150 150] [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150 150] nw=1
+#1384 tabs  g_newUpdTniks        4 j=7  Kord j2=7 2   i= 4 s=3 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 4 0 0 0 0 0 0 0 0 150 150] [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150 150] nw=1
 plsct=[1 1 3 21 6] j=6 i=5
-#1384 tabs  g_newUpdTniks        5 j=7  Kord j2=7     i= 5 s=3 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 5 0 0 0 0 0 0 0 0 151 151] [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151 151] nw=1
+#1384 tabs  g_newUpdTniks        5 j=7  Kord j2=7 3   i= 5 s=3 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 5 0 0 0 0 0 0 0 0 151 151] [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151 151] nw=1
 plsct=[1 1 3 22 6] j=3 i=21
 #1384 tabs  g_newUpdTniks       21 j=3  Colm j2=3     i=21 s=3 .J2[j2]=21 len(tl)=21 len(tl)=21 [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 6 0 0 0 0 0 0 0 0 152 152] [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0 152 152] nw=1
 plsct=[1 1 3 22 1] j=6 i=0
@@ -735,11 +735,11 @@ plsct=[1 1 3 30 6] j=6 i=5
 #1676 tabs  plct2cc                   5 [180 180 180 60 6] [0 0    0 5] (   0 +  0 + 60 +  0 +5)
 #1679 tabs  cursorCol          cc=  5 [0 0 0 5]
 #1655 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-#1658 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text=' ' 18.68 32.00 C C
-[2:D :1, 0:C :1, 7:G :1, 4:E :1, 9:A :1]
-[2:D :1, 0:C :1, 7:G :1, 4:E :1, 9:A :1]
-[ None ,  None ,  None ,  None ,  None ,  None , 4:E :1]
-[ None ,  None ,  None ,  None ,  None ,  None , 0:C :1]
+#1658 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text='3' 18.68 32.00 C C
+[2:D :1, b:B :1, 5:F :1]
+[2:D :1, b:B :1, 5:F :1]
+[ None ,  None ,  None ,  None ,  None , b:B :1,  None ]
+[ None ,  None ,  None ,  None ,  None , 5:F :1,  None ]
 #1794 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels New1
 # 481 tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
 #2158 tabs  <module>           str(tabs)='Tabs'
@@ -756,17 +756,17 @@ plsct=[1 1 1  0 0] j=2 i=0
 plsct=[1 1 1  1 0] j=3 i=0
 #1384 tabs  g_newUpdTniks        0 j=3  Colm j2=3     i= 0 s=0 .J2[j2]= 0 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3   3] [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3   3] nw=0
 plsct=[1 1 1  1 1] j=4 i=0
-#1384 tabs  g_newUpdTniks        0 j=4  Tabl j2=4 0   i= 0 s=0 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] nw=0
+#1384 tabs  g_newUpdTniks        0 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4   4] nw=0
 plsct=[1 1 1  1 2] j=4 i=1
-#1384 tabs  g_newUpdTniks        1 j=4  Tabl j2=4 3   i= 1 s=0 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] nw=0
+#1384 tabs  g_newUpdTniks        1 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5   5] nw=0
 plsct=[1 1 1  1 3] j=4 i=2
-#1384 tabs  g_newUpdTniks        2 j=4  Tabl j2=4 0   i= 2 s=0 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] nw=0
+#1384 tabs  g_newUpdTniks        2 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6   6] nw=0
 plsct=[1 1 1  1 4] j=4 i=3
-#1384 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 2   i= 3 s=0 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] nw=0
+#1384 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 0   i= 3 s=0 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7   7] nw=0
 plsct=[1 1 1  1 5] j=4 i=4
-#1384 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 0   i= 4 s=0 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] nw=0
+#1384 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 2   i= 4 s=0 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8   8] nw=0
 plsct=[1 1 1  1 6] j=4 i=5
-#1384 tabs  g_newUpdTniks        5 j=4  Tabl j2=4     i= 5 s=0 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] nw=0
+#1384 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 3   i= 5 s=0 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9   9] nw=0
 plsct=[1 1 1  2 6] j=3 i=1
 #1384 tabs  g_newUpdTniks        1 j=3  Colm j2=3     i= 1 s=0 .J2[j2]= 1 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10  10] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10  10] nw=0
 plsct=[1 1 1  2 1] j=4 i=0
@@ -898,17 +898,17 @@ plsct=[1 1 2 10 6] j=2 i=1
 plsct=[1 1 2 11 6] j=3 i=10
 #1384 tabs  g_newUpdTniks       10 j=3  Colm j2=3     i=10 s=1 .J2[j2]=10 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 10 60 0 0 0 0 0 0 0 0 0 0 0 74  74] [1 1 2 10 60 0 0 0 0 0 0 0 0 0 0 0 74  74] nw=0
 plsct=[1 1 2 11 1] j=5 i=0
-#1384 tabs  g_newUpdTniks        0 j=5  Note j2=5 0   i= 0 s=1 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75  75] [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75  75] nw=0
+#1384 tabs  g_newUpdTniks        0 j=5  Note j2=5     i= 0 s=1 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75  75] [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75  75] nw=0
 plsct=[1 1 2 11 2] j=5 i=1
-#1384 tabs  g_newUpdTniks        1 j=5  Note j2=5 3   i= 1 s=1 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76  76] [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76  76] nw=0
+#1384 tabs  g_newUpdTniks        1 j=5  Note j2=5     i= 1 s=1 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76  76] [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76  76] nw=0
 plsct=[1 1 2 11 3] j=5 i=2
-#1384 tabs  g_newUpdTniks        2 j=5  Note j2=5 0   i= 2 s=1 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77  77] [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77  77] nw=0
+#1384 tabs  g_newUpdTniks        2 j=5  Note j2=5     i= 2 s=1 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77  77] [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77  77] nw=0
 plsct=[1 1 2 11 4] j=5 i=3
-#1384 tabs  g_newUpdTniks        3 j=5  Note j2=5 2   i= 3 s=1 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78  78] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78  78] nw=0
+#1384 tabs  g_newUpdTniks        3 j=5  Note j2=5 0   i= 3 s=1 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78  78] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78  78] nw=0
 plsct=[1 1 2 11 5] j=5 i=4
-#1384 tabs  g_newUpdTniks        4 j=5  Note j2=5 0   i= 4 s=1 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79  79] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79  79] nw=0
+#1384 tabs  g_newUpdTniks        4 j=5  Note j2=5 2   i= 4 s=1 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79  79] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79  79] nw=0
 plsct=[1 1 2 11 6] j=5 i=5
-#1384 tabs  g_newUpdTniks        5 j=5  Note j2=5     i= 5 s=1 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80  80] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80  80] nw=0
+#1384 tabs  g_newUpdTniks        5 j=5  Note j2=5 3   i= 5 s=1 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80  80] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80  80] nw=0
 plsct=[1 1 2 12 6] j=3 i=11
 #1384 tabs  g_newUpdTniks       11 j=3  Colm j2=3     i=11 s=1 .J2[j2]=11 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0 81  81] [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0 81  81] nw=0
 plsct=[1 1 2 12 1] j=5 i=0
@@ -1040,17 +1040,17 @@ plsct=[1 1 3 20 6] j=2 i=2
 plsct=[1 1 3 21 6] j=3 i=20
 #1384 tabs  g_newUpdTniks       20 j=3  Colm j2=3     i=20 s=3 .J2[j2]=20 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 20 60 60 0 0 0 0 0 0 0 0 0 0 145 145] [1 1 3 20 60 60 0 0 0 0 0 0 0 0 0 0 145 145] nw=0
 plsct=[1 1 3 21 1] j=6 i=0
-#1384 tabs  g_newUpdTniks        0 j=7  Kord j2=7 0   i= 0 s=3 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146 146] [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146 146] nw=0
+#1384 tabs  g_newUpdTniks        0 j=7  Kord j2=7     i= 0 s=3 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146 146] [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146 146] nw=0
 plsct=[1 1 3 21 2] j=6 i=1
-#1384 tabs  g_newUpdTniks        1 j=7  Kord j2=7 3   i= 1 s=3 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147 147] [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147 147] nw=0
+#1384 tabs  g_newUpdTniks        1 j=7  Kord j2=7     i= 1 s=3 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147 147] [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147 147] nw=0
 plsct=[1 1 3 21 3] j=6 i=2
-#1384 tabs  g_newUpdTniks        2 j=7  Kord j2=7 0   i= 2 s=3 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148 148] [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148 148] nw=0
+#1384 tabs  g_newUpdTniks        2 j=7  Kord j2=7     i= 2 s=3 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148 148] [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148 148] nw=0
 plsct=[1 1 3 21 4] j=6 i=3
-#1384 tabs  g_newUpdTniks        3 j=7  Kord j2=7 2   i= 3 s=3 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149 149] [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149 149] nw=0
+#1384 tabs  g_newUpdTniks        3 j=7  Kord j2=7 0   i= 3 s=3 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149 149] [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149 149] nw=0
 plsct=[1 1 3 21 5] j=6 i=4
-#1384 tabs  g_newUpdTniks        4 j=7  Kord j2=7 0   i= 4 s=3 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150 150] [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150 150] nw=0
+#1384 tabs  g_newUpdTniks        4 j=7  Kord j2=7 2   i= 4 s=3 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150 150] [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150 150] nw=0
 plsct=[1 1 3 21 6] j=6 i=5
-#1384 tabs  g_newUpdTniks        5 j=7  Kord j2=7     i= 5 s=3 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151 151] [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151 151] nw=0
+#1384 tabs  g_newUpdTniks        5 j=7  Kord j2=7 3   i= 5 s=3 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151 151] [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151 151] nw=0
 plsct=[1 1 3 22 6] j=3 i=21
 #1384 tabs  g_newUpdTniks       21 j=3  Colm j2=3     i=21 s=3 .J2[j2]=21 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0 152 152] [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0 152 152] nw=0
 plsct=[1 1 3 22 1] j=6 i=0
@@ -1180,72 +1180,70 @@ plsct=[1 1 3 30 6] j=6 i=5
 #1676 tabs  plct2cc                   5 [180 180 180 60 6] [0 0    0 5] (   0 +  0 + 60 +  0 +5)
 #1679 tabs  cursorCol          cc=  5 [0 0 0 5]
 #1655 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-#1658 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text=' ' 18.68 32.00 C C
-[2:D :2, 0:C :2, 7:G :2, 4:E :2, 9:A :2]
-[2:D :2, 0:C :2, 7:G :2, 4:E :2, 9:A :2]
-[ None ,  None ,  None ,  None ,  None ,  None , 4:E :2]
-[ None ,  None ,  None ,  None ,  None ,  None , 0:C :2]
+#1658 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text='3' 18.68 32.00 C C
+[2:D :2, b:B :2, 5:F :2]
+[2:D :2, b:B :2, 5:F :2]
+[ None ,  None ,  None ,  None ,  None , b:B :2,  None ]
+[ None ,  None ,  None ,  None ,  None , 5:F :2,  None ]
 #1794 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels Upd1
-# 743 cmds  _snapshot          snapName='test.202.1.NEW.png' New1
-# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.202.1.NEW.png')
-# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.202.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.202.1.NEW.png')
-# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.202.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-#  86 evnts on_draw            .LOG_ID=202 sid=1 typ=NEW why=New1 qlen=1
-C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.202.1.NEW.png
+# 743 cmds  _snapshot          snapName='test.68.1.NEW.png' New1
+# 431 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.68.1.NEW.png')
+# 432 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 434 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.68.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 431 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.68.1.NEW.png')
+# 432 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
+# 434 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.68.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+#  86 evnts on_draw            .LOG_ID= 68 sid=1 typ=NEW why=New1 qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.68.1.NEW.png
  TId  Identity    Why  Name  Cnt Rotate G V P  L  S   C    T    N    I    K M  R   Q H  A  B  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  M     Mx    My   x y AncX AncY Grp            pGrp
  TId  Identity    Why  Name  Cnt PrtTxt G V P  L  S   C    T    N    I    K M  R   Q H  A  B  D  E    T Vis    X       Y       W       H     CC  NC CN  Red Grn Blu Opc  Red Grn Blu Opc  x y AnchX AnchY CntWd CntHt Ascnt Dscnt As+Ds a v FnSz dpi B I FontName
 # 507 cmds  _quit              BGN @^Q Error=0 save=0 .quitting=0
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
-[2:D :2, 0:C :2, 7:G :2, 4:E :2, 9:A :2]
-[2:D :2, 0:C :2, 7:G :2, 4:E :2, 9:A :2]
-[ None ,  None ,  None ,  None ,  None ,  None , 4:E :2]
-[ None ,  None ,  None ,  None ,  None ,  None , 0:C :2]
+[2:D :2, b:B :2, 5:F :2]
+[2:D :2, b:B :2, 5:F :2]
+[ None ,  None ,  None ,  None ,  None , b:B :2,  None ]
+[ None ,  None ,  None ,  None ,  None , 5:F :2,  None ]
 #1794 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels @^Q
-# 144 chords dumpLimap            0 0 0 Am11         Am11         R5♭7m34      07a35  AEGCD        Rm345♭7      0357a  ACDEG       
-# 144 chords dumpLimap            0 0 1 C26/A        C26/A        6M35R2       94702  AEGCD        R2M356       02479  CDEGA       
-# 144 chords dumpLimap            0 0 2 G6s2s4/A     G6s2s4/A     26R45        29057  AEGCD        R2456        02579  GACDE       
-# 144 chords dumpLimap            0 0 3 D7s2s4/A     D7s2s4/A     524♭7R       725a0  AEGCD        R245♭7       0257a  DEGAC       
-# 144 chords dumpLimap            0 0 4 Em+11/A      Em+11/A      4Rm3♯5♭7     5038a  AEGCD        Rm34♯5♭7     0358a  EGACD       
-# 743 cmds  _snapshot          snapName='test.202.2.FIN.png' quit 0 save=0
-# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.202.2.FIN.png')
-# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.202.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.202.2.FIN.png')
-# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.202.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+# 144 chords dumpLimap            0 0 0 Bo/F         Bo/F         ♭5Rm3        603    FBD          Rm3♭5        036    BDF         
+# 144 chords dumpLimap            0 0 1 Dm6x/F       Dm6x/F       m36R         390    FBD          Rm36         039    DFB         
+# 144 chords dumpLimap            0 0 2 Fo6y         Fo6y         R♭56         069    FBD          R♭56         069    FBD         
+# 743 cmds  _snapshot          snapName='test.68.2.FIN.png' quit 0 save=0
+# 431 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.68.2.FIN.png')
+# 432 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
+# 434 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.68.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 431 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.68.2.FIN.png')
+# 432 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
+# 434 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.68.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
 # 518 cmds  _quit              END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
-# 418 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 421 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 418 utl   getFilePath        baseName =Atest.1.1.3.10.6_CC_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 421 utl   getFilePath        fileName =Atest.1.1.3.10.6_CC_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.csv')
+# 423 utl   getFilePath        baseName =test         basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 426 utl   getFilePath        fileName =test.csv     filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+# 423 utl   getFilePath        baseName =Atest.1.1.3.10.6_CC_CC.csv basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 426 utl   getFilePath        fileName =Atest.1.1.3.10.6_CC_CC.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.csv')
 #2091 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.csv
-# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.csv')
-# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.csv ###
-#2094 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.202.csv
-# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.202.csv')
-# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.202.csv ###
+# 431 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+# 432 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.csv')
+# 434 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.csv ###
+#2094 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.68.csv
+# 431 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
+# 432 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.68.csv')
+# 434 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.68.csv ###
 # 520 cmds  _quit              END @^Q Error=0 save=0 .quitting=1
 ###   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ######   Quit END  ###
 # 521 cmds  _quit              Calling close(),#2161 tabs  <module>           Thats all folks!
 #2162 tabs  <module>           END C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-# 418 utl   getFilePath        baseName =Atest.1.1.3.10.6_CC_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 421 utl   getFilePath        fileName =Atest.1.1.3.10.6_CC_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.log')
-# 418 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 421 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')
-#2124 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.202.txt
-# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.202.txt')
-# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.202.txt ###
+# 423 utl   getFilePath        baseName =Atest.1.1.3.10.6_CC_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 426 utl   getFilePath        fileName =Atest.1.1.3.10.6_CC_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.log')
+# 423 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 426 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')
+#2124 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.68.txt
+# 431 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+# 432 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.68.txt')
+# 434 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.68.txt ###
 #2126 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC_CC.txt
-# 426 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-# 427 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')
-# 429 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC_CC.txt ###
+# 431 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
+# 432 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')
+# 434 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\Etest.1.1.3.10.6_CC_CC.txt ###
 #2128 tabs  cleanupOutFiles    Flush & Close Txt File
