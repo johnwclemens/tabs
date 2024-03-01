@@ -35,7 +35,7 @@ def dumpData(csv=0):
     slog(f'FPyth02={fmtl(FPyth02)}', p=0, f=1)
     slog(f'FPythS2={fmtl(FPythS2)}', p=0, f=1)
     dmpPyth2(k=50, rf=432, ss=V_SOUND, csv=csv) # D
-    dmpPyth3(k=50, rf=432, ss=V_SOUND, csv=csv) # D
+    dmpPyth3(k=50, rf=440, ss=V_SOUND, csv=csv) # D
 #    slog(f'{fmtl(stck5ths(7))=}', p=0, f=1)
 #    dmpPyth(k=56, r=440, ss=V_SOUND, csv=csv) # G♯ / A♭
 #    dmpPyth(k=51, r=440, ss=V_SOUND, csv=csv) # E♭
@@ -177,6 +177,16 @@ SHRPS  = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I2S.values(
 #FLATS = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I4F.values() ][:MAX_FREQ_IDX]
 #SHRPS = [ f'{v}{n}' for n in range(Notes.NTONES - 1) for v in Notes.I4S.values() ][:MAX_FREQ_IDX]
 
+def abc2r(a, b, c):
+    pa0, pb0 = a ** c, b ** c
+    r0       = pa0 / pb0
+    j        = foldF(r0)
+    ca       = c + j if j > 0 else c #  ;   aa = [ a for _ in range(ca) ]
+    cb       = c - j if j < 0 else c #  ;   bb = [ b for _ in range(cb) ]
+    pa, pb   = a ** ca, b ** cb
+    r        = pa / pb   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
+    return r, ca, cb
+
 def i2spr(i):
     if i < 0: return '-' + Z.join(SUPERS[int(digit)] for digit in str(i))
     else:     return       Z.join(SUPERS[int(digit)] for digit in str(i))
@@ -227,7 +237,7 @@ FPythS = sorted(FPyth0)
 FPythA2 = stck5ths(7)
 FPythB2 = stck4ths(7)
 FPyth02 = [ stackI(3, 2, 0) ]   ;   FPyth02.extend(FPythA2)   ;   FPyth02.extend(FPythB2)
-FPythS2 = sorted(FPyth02, key= lambda x: (x[0]/x[1])**x[2])
+FPythS2 = sorted(FPyth02, key= lambda x: abc2r(x[0], x[1], x[2])[0])
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
     slog('BGN 12 Tone Equal Tempored (Hz, cm)')
@@ -329,47 +339,31 @@ def dmpPyth2(k=50, rf=440, ss=V_SOUND, csv=0):
         slog(f'{i:2} {c:2}: {a}{i2spr(c)}/{b}{i2spr(c)} = {pa:5} / {pb:<5} = {fmtl(aa):>13} / {fmtl(bb):13} = {fmtf(v, 6)} -> {j:2} -> {fmtf(v2, 6)} {s1:6} = {pa2:5} / {pb2:<5} = {fmtl(aa2):>21} / {fmtl(bb2):21}', p=0, f=1)
     slog(f'END Pythagorean2 {k=} {rf=} {ss=} {csv=}')
 
-def abc2r(a, b, c):
-    pa0, pb0 = a ** c, b ** c
-    r0       = pa0 / pb0
-    j        = foldF(r0)
-    ca       = c + j if j > 0 else c #  ;   aa = [ a for _ in range(ca) ]
-    cb       = c - j if j < 0 else c #  ;   bb = [ b for _ in range(cb) ]
-    pa, pb   = a ** ca, b ** cb
-    r        = pa / pb   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
-    
 def dmpPyth3(k=50, rf=440, ss=V_SOUND, csv=0):
     slog(f'BGN Pythagorean3 {k=} {rf=} {ss=} {csv=}')
-    (ww, mm, nn, ff) = (Z, Y, Y, 3) if csv else ('^6', W, Z, 1)
+    (ww, mm, nn, ff) = (Z, Y, Y, 3) if csv else ('^8', W, Z, 1)
     f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * ss   ;   nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
-    ii, ns, vs, rs, cs, ds, fs, ws = [], [], [], [], [], [], [], []    ;    x = 6   ;   qs = []
+    ii, ns, vs, rs, cs, ds, fs, ws = [], [], [], [], [], [], [], []     ;    x = 8   ;   ps, qs = [], []
     for i, e in enumerate(FPythS2):
-        a, b, c  = e[0], e[1], e[2]
-#        aa0      = [ a for _ in range(c) ]
-#        bb0      = [ b for _ in range(c) ]
-        pa0, pb0 = a ** c, b ** c
-        r0       = pa0 / pb0
-        j        = foldF(r0)
-        ca       = c + j if j > 0 else c #  ;   aa = [ a for _ in range(ca) ]
-        cb       = c - j if j < 0 else c #  ;   bb = [ b for _ in range(cb) ]
-        pa, pb   = a ** ca, b ** cb
-        r        = pa / pb   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
-#        slog(f'{i:2} {c:2}: {a}{i2spr(c)} / {b}{i2spr(c)} = {pa0:5} / {pb0:<5} = {fmtl(aa0):>13} / {fmtl(bb0):13} = {fmtf(r0, 6)} -> {j:2} -> {fmtf(r, 6)} {a}{i2spr(ca):2} / {b}{i2spr(cb):2} = {pa:5} / {pb:<5} = {fmtl(aa):>21} / {fmtl(bb):21}', p=0, f=1)
-        f = r * f0     ;     w = w0 / f      ;   m = i % nt #   ;   g = r * FPyth0[i]
+        a, b, c   = e[0], e[1], e[2]
+        r, ca, cb = abc2r(a, b, c)
+        f = r * f0     ;     w = w0 / f      ;   m = i % nt
         v = i4v[m] if m in range(1, 6) else i6v[m] if m in (6, 7) else i4v[(i-1) % nt] if m > 7 else i4v[11] if i == 12 else i4v[0]
+        pa = a ** ca   ;    pb = b ** cb     ;   p = f'{pa:}/{pb:<}'
         q = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
         n = freq2Note(f, rf=rf, b=0 if i in (4, 7, 12) else 1, s=1)
-        c = 1200 * math.log2(r)  ;     d = c - i * 100 if i != 0 else 0   ;  d += 100 if i > 6 else 0
-        ns.append(n)   ;   vs.append(v)            ;   rs.append(fmtf(r, x))   ;   cs.append(fmtf(c, x))
-        ii.append(i)   ;   fs.append(fmtf(f, x))   ;   ws.append(fmtf(w, x))    ;   ds.append(fmtg(d, x if d > 0 else x))   ;   qs.append(q)
-    ii    = fmtl(ii, w=ww, s=mm, d=Z)   ;   rs = fmtl(rs, s=mm, d=Z)    ;   cs = fmtl(cs, w=ww,  s=mm, d=Z)   ;   ws = mm.join(ws)
-    ns    = fmtl(ns, w=ww, s=mm, d=Z)   ;   fs = fmtl(fs, s=mm, d=Z)    ;   ds = fmtl(ds, w=x-1, s=mm, d=Z)   ;   vs = fmtl(vs, w=ww, s=mm, d=Z)         ;    qs  = fmtl(qs, w=x, s=mm, d=Z)
-    pfxf  = f'Freq {nn}[{nn}'     ;   pfxw = f'Wvlen{nn}[{nn}'   ;   pfxv = f'Intrv{nn}[{nn}'   ;    sfx = f'{nn}]'        ;  sfxc = f'{nn}]{mm}cents'   ;   pfxd = f'dfCt {nn}[{nn}'  ;   pfxq = f'Rati2{nn}[{nn}'
-    pfxr  = f'Ratio{nn}[{nn}'     ;   pfxn = f'Note {nn}[{nn}'   ;   pfxc = f'cents{nn}[{nn}'   ;   sfxf = f'{nn}]{mm}Hz'  ;  sfxw = f'{nn}]{mm}cm'      ;   pfxi = f'Index{nn}[{nn}'
+        c = 1200 * math.log2(r)   ;  d = c - i * 100 if i != 0 else 0   ;   d += 100 if i > 6 else 0
+        ns.append(n)   ;   vs.append(v)            ;   rs.append(fmtf(r, x))   ;   cs.append(fmtf(c, x))                   ;   ps.append(p)
+        ii.append(i)   ;   fs.append(fmtf(f, x))   ;   ws.append(fmtf(w, x))   ;   ds.append(fmtg(d, x if d > 0 else x))   ;   qs.append(q)
+    ii    = fmtl(ii, w=ww, s=mm, d=Z)   ;   rs = fmtl(rs, w=ww, s=mm, d=Z)    ;   cs = fmtl(cs, w=ww,  s=mm, d=Z)   ;   ws = mm.join(ws)                 ;    ps  = fmtl(ps, w=ww, s=mm, d=Z)
+    ns    = fmtl(ns, w=ww, s=mm, d=Z)   ;   fs = fmtl(fs, w=ww, s=mm, d=Z)    ;   ds = fmtl(ds, w=x-1, s=mm, d=Z)   ;   vs = fmtl(vs, w=ww, s=mm, d=Z)   ;    qs  = fmtl(qs, w=ww, s=mm, d=Z)
+    pfxf  = f'Freq {nn}[{nn}'     ;   pfxw = f'Wvlen{nn}[{nn}'   ;   pfxv = f'Intrv{nn}[{nn}'   ;    sfx = f'{nn}]'        ;  sfxc = f'{nn}]{mm}cents'   ;   pfxd = f'dfCt {nn}[{nn}'  ;   pfxp = f'Rati1{nn}[{nn}'
+    pfxr  = f'Ratio{nn}[{nn}'     ;   pfxn = f'Note {nn}[{nn}'   ;   pfxc = f'cents{nn}[{nn}'   ;   sfxf = f'{nn}]{mm}Hz'  ;  sfxw = f'{nn}]{mm}cm'      ;   pfxi = f'Index{nn}[{nn}'  ;   pfxq = f'Rati2{nn}[{nn}'
     slog(f'{pfxi}{ii}{sfx}',  p=0, f=ff)
     slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
     slog(f'{pfxv}{vs}{sfx}',  p=0, f=ff)
     slog(f'{pfxr}{rs}{sfx}',  p=0, f=ff)
+    slog(f'{pfxp}{ps}{sfx}',  p=0, f=ff)
     slog(f'{pfxq}{qs}{sfx}',  p=0, f=ff)
     slog(f'{pfxc}{cs}{sfxc}', p=0, f=ff)
     slog(f'{pfxd}{ds}{sfxc}', p=0, f=ff)
