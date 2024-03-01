@@ -36,7 +36,7 @@ class Modes:
 # Q: log and quit -> assert
 # R: row labels, rootless chords
 # S: scales, sound, sprites, stdout
-# T: text styles, transpose
+# T: text styles, transpose, tunings
 # U: undo/redo, unicode
 # V: views, visible
 # W: window
