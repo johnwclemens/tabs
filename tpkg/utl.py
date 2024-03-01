@@ -11,15 +11,16 @@ from   tpkg    import unic
 def fn( cf): return cf.f_code.co_name
 def ffn(cf): return cf.f_code.co_filename
 
-UNICODE    = unic.UNICODE
-ROOT_DIR   = os.getenv('ROOT_DIR', 'test')
-PATH       = pathlib.Path.cwd() / sys.argv[0]
-BASE_PATH  = PATH.parent / ROOT_DIR
-BASE_NAME  = BASE_PATH.stem
-P, L, S, C =  0,  1,  2,  3
-T, N, I, K =  4,  5,  6,  7
-M, R, Q, H =  8,  9, 10, 11
-A, B, D, E = 12, 13, 14, 15
+UNICODE       = unic.UNICODE
+SPRSCRPT_INTS = { 0: '\u2070', 1: '\u00B9', 2: '\u00B2', 3: '\u00B3', 4: '\u2074', 5: '\u2075', 6: '\u2076', 7: '\u2077', 8: '\u2078', 9: '\u2079' }
+ROOT_DIR      = os.getenv('ROOT_DIR', 'test')
+PATH          = pathlib.Path.cwd() / sys.argv[0]
+BASE_PATH     = PATH.parent / ROOT_DIR
+BASE_NAME     = BASE_PATH.stem
+P, L, S, C    =  0,  1,  2,  3
+T, N, I, K    =  4,  5,  6,  7
+M, R, Q, H    =  8,  9, 10, 11
+A, B, D, E    = 12, 13, 14, 15
 W, X, Y, Z, NONE        = ' ', '\n', ',', '', 'None'
 ALT, CTL, SHF, CPL, NML = pygwink.MOD_ALT, pygwink.MOD_CTRL, pygwink.MOD_SHIFT, pygwink.MOD_CAPSLOCK, pygwink.MOD_NUMLOCK
 CAT,  CSV,  EVN,  LOG,  PNG,  TXT,  DAT  =     'cat' ,     'csv' ,     'evn',      'log' ,     'png' ,     'txt' ,     'dat'
