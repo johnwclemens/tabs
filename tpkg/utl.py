@@ -258,16 +258,18 @@ def fmtf(a, b):
     if   b == 4: return f'{a:4.2f}' if a < 10 else f'{a:4.1f}' if a < 100 else f'{a:4.0f}'
     elif b == 5: return f'{a:5.3f}' if a < 10 else f'{a:5.2f}' if a < 100 else f'{a:5.1f}' if a < 1000 else f'{a:5.0f}'
     elif b == 6: return f'{a:6.4f}' if a < 10 else f'{a:6.3f}' if a < 100 else f'{a:6.2f}' if a < 1000 else f'{a:6.1f}' if a < 10000 else f'{a:6.0f}'
-    elif b == 7: return f'{a:7.5f}' if a < 10 else f'{a:7.4f}' if a < 100 else f'{a:7.3f}' if a < 1000 else f'{a:7.2f}' if a < 10000 else f'{a:7.1f}'
-    elif b == 8: return f'{a:8.6f}' if a < 10 else f'{a:8.5f}' if a < 100 else f'{a:8.4f}' if a < 1000 else f'{a:8.3f}' if a < 10000 else f'{a:8.2f}'
+    elif b == 7: return f'{a:7.5f}' if a < 10 else f'{a:7.4f}' if a < 100 else f'{a:7.3f}' if a < 1000 else f'{a:7.2f}' if a < 10000 else f'{a:7.1f}' if a < 100000 else f'{a:7.0f}'
+    elif b == 8: return f'{a:8.6f}' if a < 10 else f'{a:8.5f}' if a < 100 else f'{a:8.4f}' if a < 1000 else f'{a:8.3f}' if a < 10000 else f'{a:8.2f}' if a < 100000 else f'{a:8.1f}' if a < 1000000 else f'{a:8.0f}'
+    elif b == 9: return f'{a:9.7f}' if a < 10 else f'{a:9.6f}' if a < 100 else f'{a:9.5f}' if a < 1000 else f'{a:9.4f}' if a < 10000 else f'{a:9.3f}' if a < 100000 else f'{a:9.2f}' if a < 1000000 else f'{a:9.1f}' if a < 10000000 else f'{a:9.0f}'
 def fmtg(a, b):
     if a < 0: s = '-'   ;   a = abs(a)
     else:     s = '+'
     if   b == 4: return f'{s}{a:.1f}' if a < 10 else f'{s}{a:.0f}' if a < 100 else f'{s}{a:.0f}'
     elif b == 5: return f'{s}{a:.2f}' if a < 10 else f'{s}{a:.1f}' if a < 100 else f'{s}{a:.0f}' if a < 1000 else f'{s}{a:.0f}'
     elif b == 6: return f'{s}{a:.3f}' if a < 10 else f'{s}{a:.2f}' if a < 100 else f'{s}{a:.1f}' if a < 1000 else f'{s}{a:.0f}'
-    elif b == 7: return f'{s}{a:.4f}' if a < 10 else f'{s}{a:.3f}' if a < 100 else f'{s}{a:.2f}' if a < 1000 else f'{s}{a:.0f}'
-    elif b == 8: return f'{s}{a:.5f}' if a < 10 else f'{s}{a:.4f}' if a < 100 else f'{s}{a:.3f}' if a < 1000 else f'{s}{a:.0f}'
+    elif b == 7: return f'{s}{a:.4f}' if a < 10 else f'{s}{a:.3f}' if a < 100 else f'{s}{a:.2f}' if a < 1000 else f'{s}{a:.1f}' if a < 10000 else f'{s}{a:.0f}'
+    elif b == 8: return f'{s}{a:.5f}' if a < 10 else f'{s}{a:.4f}' if a < 100 else f'{s}{a:.3f}' if a < 1000 else f'{s}{a:.2f}' if a < 10000 else f'{s}{a:.1f}' if a < 100000 else f'{s}{a:.0f}'
+    elif b == 9: return f'{s}{a:.6f}' if a < 10 else f'{s}{a:.5f}' if a < 100 else f'{s}{a:.4f}' if a < 1000 else f'{s}{a:.3f}' if a < 10000 else f'{s}{a:.2f}' if a < 100000 else f'{s}{a:.1f}' if a < 1000000 else f'{s}{a:.0f}'
 ########################################################################################################################################################################################################
 def fmta(args):
     t = []

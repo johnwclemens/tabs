@@ -37,6 +37,8 @@ def dumpData(csv=0):
     dmpPyth(k=54, rf=440, ss=V_SOUND, csv=csv) # F#/Gb
     dmpPyth(k=61, rf=440, ss=V_SOUND, csv=csv) # C#/Db
     dmpPyth(k=56, rf=440, ss=V_SOUND, csv=csv) # G#/Ab
+    dmpPythMapA()
+    dmpPythMapB()
 #    dmpPyth(k=51, rf=440, ss=V_SOUND, csv=csv) # 
 #    dmpPyth(k=52, rf=440, ss=V_SOUND, csv=csv) # E
 #    dmpPyth(k=53, rf=440, ss=V_SOUND, csv=csv) # F
@@ -217,7 +219,7 @@ F440s  = [ f440(i)  for i in range(MAX_FREQ_IDX) ]
 F432s  = [ f432(i)  for i in range(MAX_FREQ_IDX) ]
 FOTSs  = [ fOTS(i)  for i in range(1, 33) ]
 
-def fPyth(a=7, b=7):
+def fPyth(a=6, b=7):
     FPythA = stck5ths(a)
     FPythB = stck4ths(b)
     FPyth0 = [ stackI(3, 2, 0), stackI(2, 1, 1) ]   ;   FPyth0.extend(FPythA)   ;   FPyth0.extend(FPythB)
@@ -228,6 +230,7 @@ def fPyth(a=7, b=7):
     slog(f'FPyths={fmtl(FPyths)}', p=0, f=1)
     return FPyths
 
+RPythMap = {}
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
     slog('BGN 12 Tone Equal Tempored (Hz, cm)')
@@ -283,29 +286,32 @@ def dmpOTS(rf=440, ss=V_SOUND, csv=0):
     slog(f'{pfxc}{cs}{sfx}', p=0, f=ff)
     slog(f'{ref}{ws}{sfxw}', p=0, f=ff)
     slog(f'END Overtone Series {rf=} {ss=} {csv=}')
-
+########################################################################################################################################################################################################
 def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
     slog(f'BGN Pythagorean {k=} {rf=} {ss=} {csv=}')
-    (ww, mm, nn, ff) = (Z, Y, Y, 3) if csv else ('^8', W, Z, 1)
+    (ww, mm, nn, ff) = (Z, Y, Y, 3) if csv else ('^9', W, Z, 1)    ;    x = 9
     f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * ss   ;   nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
-    ii, ns, vs, rs, cs, ds, fs, ws = [], [], [], [], [], [], [], []     ;    x = 8   ;   ps, qs = [], []
-    FPyths = fPyth(7, 7) if k==50 else fPyth(8, 6) if k==57 else fPyth(9, 5) if k==52 else fPyth(10, 4) if k==59 else fPyth(11, 3) if k==54 else fPyth(12, 2) if k==61 else fPyth(13, 1) if k==56 else fPyth(6, 8) if k==55 else fPyth(5, 9) if k==60 else fPyth(4, 10) if k==53 else fPyth(3, 11) if k==58 else fPyth(2, 12) if k==51 else fPyth(1, 13)
-#    FPyths = fPyth(7, 7) if k==50 else fPyth(8, 6) if k==57 else fPyth(9, 5) if k==52 else fPyth(10, 4) if k==59 else fPyth(11, 3) if k==54 else fPyth(12, 2) if k==61 else fPyth(13, 1) if k==56 else fPyth(6, 8) if k==51 else fPyth(5, 9) if k==58 else fPyth(4, 10) if k==53 else fPyth(3, 11) if k==60 else fPyth(2, 12) if k==55 else fPyth(1, 13)
+    ii, ns, vs, rs, cs, ds, fs, ws = [], [], [], [], [], [], [], []     ;         ps, qs = [], []   ;   rrs = []
+    FPyths = k2fPyths(k)   ;    n0 = freq2Note(f0, s=1)
     for i, e in enumerate(FPyths):
         a, b, c   = e[0], e[1], e[2]
         r, ca, cb = abc2r(a, b, c)
-        f = r * f0     ;     w = w0 / f      ;   m = i % nt
-        v = 'P2' if a==2 and b==1 else i4v[m] if m in range(1, 6) else i6v[m] if m in (6, 7) else i4v[(i-1) % nt] if m > 7 else i4v[11] if i == 12 else i4v[0]
-        pa = a ** ca   ;    pb = b ** cb     ;   p = f'{pa:}/{pb:<}'
-        q = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
-        n = freq2Note(f, rf=rf, b=0 if i in (4, 7, 12) else 1, s=1)
-        c = 1200 * math.log2(r)   ;  d = c - i * 100 if i != 0 else 0   ;   d += 100 if i > 6 else 0
+        rr = [ a, ca, b, cb ]
+        f  = r * f0     ;     w = w0 / f      ;   m = i % nt
+        v  = 'P2' if a==2 and b==1 else i4v[m] if m in range(1, 6) else i6v[m] if m in (6, 7) else i4v[(i-1) % nt] if m > 7 else i4v[11] if i == 12 else i4v[0]
+        pa = a ** ca   ;    pb = b ** cb     ;   p = f'{pa}/{pb:<}'
+        q  = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
+        n  = freq2Note(f, rf=rf, b=0 if i in (4, 7, 12) else 1, s=1)
+        c  = 1200 * math.log2(r)   ;  d = c - i * 100 if i != 0 else 0   ;   d += 100 if i > 6 else 0
         ns.append(n)   ;   vs.append(v)            ;   rs.append(fmtf(r, x))   ;   cs.append(fmtf(c, x))                   ;   ps.append(p)
-        ii.append(i)   ;   fs.append(fmtf(f, x))   ;   ws.append(fmtf(w, x))   ;   ds.append(fmtg(d, x if d > 0 else x))   ;   qs.append(q)
-    ii    = fmtl(ii, w=ww, s=mm, d=Z)   ;   rs = fmtl(rs, w=ww, s=mm, d=Z)    ;   cs = fmtl(cs, w=ww,  s=mm, d=Z)   ;   ws = mm.join(ws)                 ;    ps  = fmtl(ps, w=ww, s=mm, d=Z)
-    ns    = fmtl(ns, w=ww, s=mm, d=Z)   ;   fs = fmtl(fs, w=ww, s=mm, d=Z)    ;   ds = fmtl(ds, w=x-1, s=mm, d=Z)   ;   vs = fmtl(vs, w=ww, s=mm, d=Z)   ;    qs  = fmtl(qs, w=ww, s=mm, d=Z)
-    pfxf  = f'Freq {nn}[{nn}'     ;   pfxw = f'Wvlen{nn}[{nn}'   ;   pfxv = f'Intrv{nn}[{nn}'   ;    sfx = f'{nn}]'        ;  sfxc = f'{nn}]{mm}cents'   ;   pfxd = f'dfCt {nn}[{nn}'  ;   pfxp = f'Rati1{nn}[{nn}'
-    pfxr  = f'Ratio{nn}[{nn}'     ;   pfxn = f'Note {nn}[{nn}'   ;   pfxc = f'cents{nn}[{nn}'   ;   sfxf = f'{nn}]{mm}Hz'  ;  sfxw = f'{nn}]{mm}cm'      ;   pfxi = f'Index{nn}[{nn}'  ;   pfxq = f'Rati2{nn}[{nn}'
+        ii.append(i)   ;   fs.append(fmtf(f, x))   ;   ws.append(fmtf(w, x))   ;   ds.append(fmtg(d, x if d > 0 else x))   ;   qs.append(q)               ;   rrs.append(rr)
+    ii     = fmtl(ii, w=ww, s=mm, d=Z)   ;   rs = fmtl(rs, w=ww, s=mm, d=Z)    ;   cs = fmtl(cs, w=ww,  s=mm, d=Z)   ;   ws = mm.join(ws)                 ;    ps  = fmtl(ps, w=ww, s=mm, d=Z)
+    ns     = fmtl(ns, w=ww, s=mm, d=Z)   ;   fs = fmtl(fs, w=ww, s=mm, d=Z)    ;   ds = fmtl(ds, w=x-1, s=mm, d=Z)   ;   vs = fmtl(vs, w=ww, s=mm, d=Z)   ;    qs  = fmtl(qs, w=ww, s=mm, d=Z)
+    RPythMap[n0] = rrs
+    pfxr   = f'Ratio{nn}[{nn}'   ;   pfxn = f'Note {nn}[{nn}'   ;   pfxi = f'Index{nn}[{nn}'   ;   pfxc = f'cents{nn}[{nn}'
+    pfxp   = f'Rati1{nn}[{nn}'   ;   pfxf = f'Freq {nn}[{nn}'   ;   pfxv = f'Intrv{nn}[{nn}'   ;   pfxd = f'dlCnt{nn}[{nn}'
+    pfxq   = f'Rati2{nn}[{nn}'   ;   pfxw = f'Wvlen{nn}[{nn}'
+    sfx    = f'{nn}]'            ;   sfxf = f'{nn}]{mm}Hz'      ;   sfxw = f'{nn}]{mm}cm'      ;   sfxc = f'{nn}]{mm}cents'
     slog(f'{pfxi}{ii}{sfx}',  p=0, f=ff)
     slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
     slog(f'{pfxv}{vs}{sfx}',  p=0, f=ff)
@@ -317,6 +323,9 @@ def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
     slog(f'{pfxf}{fs}{sfxf}', p=0, f=ff)
     slog(f'{pfxw}{ws}{sfxw}', p=0, f=ff)
     slog(f'END Pythagorean {k=} {rf=} {ss=} {csv=}')
+########################################################################################################################################################################################################
+def k2fPyths(k=50):
+    return fPyth(7, 7) if k==50 else fPyth(8, 6) if k==57 else fPyth(9, 5) if k==52 else fPyth(10, 4) if k==59 else fPyth(11, 3) if k==54 else fPyth(12, 2) if k==61 else fPyth(13, 1) if k==56 else fPyth(6, 8) if k==55 else fPyth(5, 9) if k==60 else fPyth(4, 10) if k==53 else fPyth(3, 11) if k==58 else fPyth(2, 12) if k==51 else fPyth(1, 13)
 
 def freq2Note(f, rf=440, b=1, s=0):
     ni = Notes.NTONES * math.log2(f / rf)
@@ -324,3 +333,24 @@ def freq2Note(f, rf=440, b=1, s=0):
     n = FLATS[i] if b==1 else SHRPS[i]
     if s: n = n[:-1].strip()
     return n
+
+def dmpPythMapA():
+    msg = [ f'{i}' for i in range(14) ]   ;   slog(f'       {fmtl(msg, w="^13", s=W, d=Z)}', p=0)
+    for i, (k, v) in enumerate(RPythMap.items()):
+        msg = f'{k:2}: ' 
+        for e in v:
+            a, ca, b, cb = e
+            pa, pb = a ** ca, b ** cb
+            msg += f'{pa:6}/{pb:<6} '
+        slog(f'{i:2} {msg}', p=0)
+    
+def dmpPythMapB():
+    msg = [ f'{i}' for i in range(14) ]   ;   slog(f'       {fmtl(msg, w="^13", s=W, d=Z)}', p=0)
+    for i, (k, v) in enumerate(RPythMap.items()):
+        msg = f'{k:2}: ' 
+        for e in v:
+            a, ca, b, cb = e
+            pa, pb = a ** ca, b ** cb
+            msg += f'{1200 * math.log2(pa/pb):^13.8f} '
+        slog(f'{i:2} {msg}', p=0)
+        
