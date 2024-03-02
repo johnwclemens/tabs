@@ -24,25 +24,31 @@ def dumpData(csv=0):
     dumpNF(     csv)
     dumpTestB(  csv)
     dumpND(     csv)
-    dmpOTS(        rf=440, ss=V_SOUND, csv=csv)
-    slog(f'FPythA={fmtl(FPythA)}', p=0, f=1)
-    slog(f'FPythB={fmtl(FPythB)}', p=0, f=1)
-    slog(f'FPyth0={fmtl(FPyth0)}', p=0, f=1)
-    slog(f'FPythS={fmtl(FPythS)}', p=0, f=1)
+    dmpOTS(       rf=440, ss=V_SOUND, csv=csv)
+    dmpPyth(k=51, rf=440, ss=V_SOUND, csv=csv) # Eb
+    dmpPyth(k=58, rf=440, ss=V_SOUND, csv=csv) # Bb 
+    dmpPyth(k=53, rf=440, ss=V_SOUND, csv=csv) # F
+    dmpPyth(k=60, rf=440, ss=V_SOUND, csv=csv) # C
+    dmpPyth(k=55, rf=440, ss=V_SOUND, csv=csv) # G
     dmpPyth(k=50, rf=440, ss=V_SOUND, csv=csv) # D
-#    slog(f'{fmtl(stck5ths(7))=}', p=0, f=1)
-#    dmpPyth(k=56, r=440, ss=V_SOUND, csv=csv) # G♯ / A♭
-#    dmpPyth(k=51, r=440, ss=V_SOUND, csv=csv) # E♭
-#    dmpPyth(k=58, r=440, ss=V_SOUND, csv=csv) # B♭
-#    dmpPyth(k=53, r=440, ss=V_SOUND, csv=csv) # F
-#    dmpPyth(k=60, r=440, ss=V_SOUND, csv=csv) # C
-#    dmpPyth(k=55, r=440, ss=V_SOUND, csv=csv) # G 
-#    dmpPyth(k=50, r=440, ss=V_SOUND, csv=csv) # D
-#    dmpPyth(k=57, r=440, ss=V_SOUND, csv=csv) # A
-#    dmpPyth(k=52, r=440, ss=V_SOUND, csv=csv) # E
-#    dmpPyth(k=59, r=440, ss=V_SOUND, csv=csv) # B
-#    dmpPyth(k=54, r=440, ss=V_SOUND, csv=csv) # F♯ / G♭
-#    dmpPyth(k=49, r=440, ss=V_SOUND, csv=csv) # C♯ / D♭
+    dmpPyth(k=57, rf=440, ss=V_SOUND, csv=csv) # A
+    dmpPyth(k=52, rf=440, ss=V_SOUND, csv=csv) # E
+    dmpPyth(k=59, rf=440, ss=V_SOUND, csv=csv) # B
+    dmpPyth(k=54, rf=440, ss=V_SOUND, csv=csv) # F#/Gb
+    dmpPyth(k=61, rf=440, ss=V_SOUND, csv=csv) # C#/Db
+    dmpPyth(k=56, rf=440, ss=V_SOUND, csv=csv) # G#/Ab
+#    dmpPyth(k=51, rf=440, ss=V_SOUND, csv=csv) # 
+#    dmpPyth(k=52, rf=440, ss=V_SOUND, csv=csv) # E
+#    dmpPyth(k=53, rf=440, ss=V_SOUND, csv=csv) # F
+#    dmpPyth(k=54, rf=440, ss=V_SOUND, csv=csv) # 
+#    dmpPyth(k=55, rf=440, ss=V_SOUND, csv=csv) # G
+#    dmpPyth(k=56, rf=440, ss=V_SOUND, csv=csv) # 
+#    dmpPyth(k=57, rf=440, ss=V_SOUND, csv=csv) # A
+#    dmpPyth(k=58, rf=440, ss=V_SOUND, csv=csv) # 
+#    dmpPyth(k=59, rf=440, ss=V_SOUND, csv=csv) # B
+#    dmpPyth(k=60, rf=440, ss=V_SOUND, csv=csv) # C
+#    dmpPyth(k=61, rf=440, ss=V_SOUND, csv=csv) # 
+#    dmpPyth(k=62, rf=440, ss=V_SOUND, csv=csv) # D
     slog(f'END {csv=}')
 ########################################################################################################################################################################################################
 def dumpTestA(csv=0):
@@ -211,10 +217,17 @@ F440s  = [ f440(i)  for i in range(MAX_FREQ_IDX) ]
 F432s  = [ f432(i)  for i in range(MAX_FREQ_IDX) ]
 FOTSs  = [ fOTS(i)  for i in range(1, 33) ]
 
-FPythA = stck5ths(7)
-FPythB = stck4ths(7)
-FPyth0 = [ stackI(3, 2, 0) ]   ;   FPyth0.extend(FPythA)   ;   FPyth0.extend(FPythB)
-FPythS = sorted(FPyth0, key= lambda x: abc2r(x[0], x[1], x[2])[0])
+def fPyth(a=7, b=7):
+    FPythA = stck5ths(a)
+    FPythB = stck4ths(b)
+    FPyth0 = [ stackI(3, 2, 0), stackI(2, 1, 1) ]   ;   FPyth0.extend(FPythA)   ;   FPyth0.extend(FPythB)
+    FPyths = sorted(FPyth0, key= lambda x: abc2r(x[0], x[1], x[2])[0])
+    slog(f'FPythA={fmtl(FPythA)}', p=0, f=1)
+    slog(f'FPythB={fmtl(FPythB)}', p=0, f=1)
+    slog(f'FPyth0={fmtl(FPyth0)}', p=0, f=1)
+    slog(f'FPyths={fmtl(FPyths)}', p=0, f=1)
+    return FPyths
+
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
     slog('BGN 12 Tone Equal Tempored (Hz, cm)')
@@ -276,11 +289,13 @@ def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
     (ww, mm, nn, ff) = (Z, Y, Y, 3) if csv else ('^8', W, Z, 1)
     f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * ss   ;   nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
     ii, ns, vs, rs, cs, ds, fs, ws = [], [], [], [], [], [], [], []     ;    x = 8   ;   ps, qs = [], []
-    for i, e in enumerate(FPythS):
+    FPyths = fPyth(7, 7) if k==50 else fPyth(8, 6) if k==57 else fPyth(9, 5) if k==52 else fPyth(10, 4) if k==59 else fPyth(11, 3) if k==54 else fPyth(12, 2) if k==61 else fPyth(13, 1) if k==56 else fPyth(6, 8) if k==55 else fPyth(5, 9) if k==60 else fPyth(4, 10) if k==53 else fPyth(3, 11) if k==58 else fPyth(2, 12) if k==51 else fPyth(1, 13)
+#    FPyths = fPyth(7, 7) if k==50 else fPyth(8, 6) if k==57 else fPyth(9, 5) if k==52 else fPyth(10, 4) if k==59 else fPyth(11, 3) if k==54 else fPyth(12, 2) if k==61 else fPyth(13, 1) if k==56 else fPyth(6, 8) if k==51 else fPyth(5, 9) if k==58 else fPyth(4, 10) if k==53 else fPyth(3, 11) if k==60 else fPyth(2, 12) if k==55 else fPyth(1, 13)
+    for i, e in enumerate(FPyths):
         a, b, c   = e[0], e[1], e[2]
         r, ca, cb = abc2r(a, b, c)
         f = r * f0     ;     w = w0 / f      ;   m = i % nt
-        v = i4v[m] if m in range(1, 6) else i6v[m] if m in (6, 7) else i4v[(i-1) % nt] if m > 7 else i4v[11] if i == 12 else i4v[0]
+        v = 'P2' if a==2 and b==1 else i4v[m] if m in range(1, 6) else i6v[m] if m in (6, 7) else i4v[(i-1) % nt] if m > 7 else i4v[11] if i == 12 else i4v[0]
         pa = a ** ca   ;    pb = b ** cb     ;   p = f'{pa:}/{pb:<}'
         q = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
         n = freq2Note(f, rf=rf, b=0 if i in (4, 7, 12) else 1, s=1)
