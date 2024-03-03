@@ -289,32 +289,34 @@ def dmpOTS(rf=440, ss=V_SOUND, csv=0):
 ########################################################################################################################################################################################################
 def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
     slog(f'BGN Pythagorean {k=} {rf=} {ss=} {csv=}')
-    (ww, mm, nn, ff) = (Z, Y, Y, 3) if csv else ('^9', W, Z, 1)    ;    x = 9
+    (ww, mm, nn, ff) = (Z, Y, Y, 3) if csv else ('^13', W, Z, 1)    ;    x = 13
     f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * ss   ;   nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
-    ii, ns, vs, rs, cs, ds, fs, ws = [], [], [], [], [], [], [], []     ;         ps, qs = [], []   ;   rrs = []
+    ii, ns, rs, fs, ws = [], [], [], [], []    ;     cs, ds = [], []    ;   us, vs = [], []    ;    ps, qs = [], []   ;   rrs = []
     FPyths = k2fPyths(k)   ;    n0 = freq2Note(f0, s=1)
     for i, e in enumerate(FPyths):
         a, b, c   = e[0], e[1], e[2]
         r, ca, cb = abc2r(a, b, c)
         rr = [ a, ca, b, cb ]
         f  = r * f0     ;     w = w0 / f      ;   m = i % nt
+        u  = 'P2' if a==2 and b==1 else i6v[i] if i == 12 else i6v[m]
         v  = 'P2' if a==2 and b==1 else i4v[m] if m in range(1, 6) else i6v[m] if m in (6, 7) else i4v[(i-1) % nt] if m > 7 else i4v[11] if i == 12 else i4v[0]
         pa = a ** ca   ;    pb = b ** cb     ;   p = f'{pa}/{pb:<}'
         q  = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
         n  = freq2Note(f, rf=rf, b=0 if i in (4, 7, 12) else 1, s=1)
         c  = 1200 * math.log2(r)   ;  d = c - i * 100 if i != 0 else 0   ;   d += 100 if i > 6 else 0
-        ns.append(n)   ;   vs.append(v)            ;   rs.append(fmtf(r, x))   ;   cs.append(fmtf(c, x))                   ;   ps.append(p)
-        ii.append(i)   ;   fs.append(fmtf(f, x))   ;   ws.append(fmtf(w, x))   ;   ds.append(fmtg(d, x if d > 0 else x))   ;   qs.append(q)               ;   rrs.append(rr)
-    ii     = fmtl(ii, w=ww, s=mm, d=Z)   ;   rs = fmtl(rs, w=ww, s=mm, d=Z)    ;   cs = fmtl(cs, w=ww,  s=mm, d=Z)   ;   ws = mm.join(ws)                 ;    ps  = fmtl(ps, w=ww, s=mm, d=Z)
+        ii.append(i)               ;   fs.append(fmtf(f, x))   ;   cs.append(fmtf(c, x))                   ;   ps.append(p)   ;   us.append(u)   ;    rs.append(fmtf(r, x))
+        ns.append(n)               ;   ws.append(fmtf(w, x))   ;   ds.append(fmtg(d, x if d > 0 else x))   ;   qs.append(q)   ;   vs.append(v)   ;   rrs.append(rr)
+    ii     = fmtl(ii, w=ww, s=mm, d=Z)   ;   rs = fmtl(rs, w=ww, s=mm, d=Z)    ;   cs = fmtl(cs, w=ww,  s=mm, d=Z)   ;   us = fmtl(us, w=ww, s=mm, d=Z)   ;    ps  = fmtl(ps, w=ww, s=mm, d=Z)   ;   ws = mm.join(ws)
     ns     = fmtl(ns, w=ww, s=mm, d=Z)   ;   fs = fmtl(fs, w=ww, s=mm, d=Z)    ;   ds = fmtl(ds, w=x-1, s=mm, d=Z)   ;   vs = fmtl(vs, w=ww, s=mm, d=Z)   ;    qs  = fmtl(qs, w=ww, s=mm, d=Z)
     RPythMap[n0] = rrs
     pfxr   = f'Ratio{nn}[{nn}'   ;   pfxn = f'Note {nn}[{nn}'   ;   pfxi = f'Index{nn}[{nn}'   ;   pfxc = f'cents{nn}[{nn}'
     pfxp   = f'Rati1{nn}[{nn}'   ;   pfxf = f'Freq {nn}[{nn}'   ;   pfxv = f'Intrv{nn}[{nn}'   ;   pfxd = f'dlCnt{nn}[{nn}'
-    pfxq   = f'Rati2{nn}[{nn}'   ;   pfxw = f'Wvlen{nn}[{nn}'
+    pfxq   = f'Rati2{nn}[{nn}'   ;   pfxw = f'Wvlen{nn}[{nn}'   ;   pfxu = f'Intr2{nn}[{nn}'
     sfx    = f'{nn}]'            ;   sfxf = f'{nn}]{mm}Hz'      ;   sfxw = f'{nn}]{mm}cm'      ;   sfxc = f'{nn}]{mm}cents'
     slog(f'{pfxi}{ii}{sfx}',  p=0, f=ff)
     slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
     slog(f'{pfxv}{vs}{sfx}',  p=0, f=ff)
+    slog(f'{pfxu}{us}{sfx}',  p=0, f=ff)
     slog(f'{pfxr}{rs}{sfx}',  p=0, f=ff)
     slog(f'{pfxp}{ps}{sfx}',  p=0, f=ff)
     slog(f'{pfxq}{qs}{sfx}',  p=0, f=ff)
