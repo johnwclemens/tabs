@@ -127,7 +127,7 @@ def fri(f):            return int(math.floor(f + 0.5))
 def filtA(v, a=W):     return Z.join([ e for e in v if e!=a ])
 def signed(n):         return f' {n}' if n==0 else f'{n:+}'
 def ns2signs(ns, s=Z): return [ f'-{s}' if n<0 else f'+{s}' if n>0  else f'{W}{s}' for n in ns ]
-def fColor(c, d=1):   (d, d2) = ("[", "]") if d else (Z, Z)  ;  return f'{NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
+def fColor(c, d=1):    d = "[" if d else Z  ;  return f'{NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d):17}'
 ########################################################################################################################################################################################################
 def isAlt(      d, m=0): return d[ALT]                       if d and ALT in d                           else m & ALT
 def isCtl(      d, m=0): return d[CTL]                       if d and CTL in d                           else m & CTL
@@ -215,12 +215,18 @@ def ordSfx(n):
     return 'th'
 ########################################################################################################################################################################################################
 def ist(o, t):  return isinstance(o, t)
+def replceDelims(d):
+    o = ['[', '{', '<', '(']
+    c = [']', '}', '>', ')']   
+    for i in range(len(o)):
+        d = d.replace(o[i], c[i])
+    return d
 ########################################################################################################################################################################################################
-def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str concat?
+def fmtl(lst, w=None, u=None, d='[', d2=None, s=W, ll=None): # optimize str concat?
     if   lst is None:   return  NONE
     lts = (list, tuple, set, frozenset, zip)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts,   f'{type(lst)=} {lts=}'
-    if d==Z:     d2 = Z
+    if d2 is None:    d2 = replceDelims(d)
     w   = w   if w else Z   ;   t = []
     zl  = '-'               if ll is not None and ll<0 else '+' if ll is not None and ll>0 else Z
     z   = f'{zl}{len(lst)}' if ll is not None          else Z
@@ -239,12 +245,12 @@ def fmtl(lst, w=None, u=None, d='[', d2=']', s=W, ll=None): # optimize str conca
             else:                         t.append(f'{l}{ss}')
     return z + d + Z.join(t) + d2
 ########################################################################################################################################################################################################
-def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', s=W, ll=None):
-#    assert m,  f'{m=}'
+def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=None, s=W, ll=None):
+    assert m,  f'{m=}'
     if m is None: return NONE
     w  = w  if w  is not None else Z   ;  t = []
     wv = wv if wv is not None else w
-    d2 = Z if d==Z else ']' if d=='[' else '}' if d=='{' else '>' if d=='<' else NONE
+    if d2 is None:    d2 = replceDelims(d)
     u  = Z if u  is None else u
     uv = Z if uv is None else uv
     for i, (k, v) in enumerate(m.items()):

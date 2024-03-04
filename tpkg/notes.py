@@ -31,25 +31,16 @@ def dumpData(csv=0):
     dmpPyth(k=60, rf=440, ss=V_SOUND, csv=csv) # C
     dmpPyth(k=55, rf=440, ss=V_SOUND, csv=csv) # G
     dmpPyth(k=50, rf=440, ss=V_SOUND, csv=csv) # D
+    dmpPyth(k=62, rf=440, ss=V_SOUND, csv=csv) # D
     dmpPyth(k=57, rf=440, ss=V_SOUND, csv=csv) # A
     dmpPyth(k=52, rf=440, ss=V_SOUND, csv=csv) # E
     dmpPyth(k=59, rf=440, ss=V_SOUND, csv=csv) # B
     dmpPyth(k=54, rf=440, ss=V_SOUND, csv=csv) # F#/Gb
     dmpPyth(k=61, rf=440, ss=V_SOUND, csv=csv) # C#/Db
     dmpPyth(k=56, rf=440, ss=V_SOUND, csv=csv) # G#/Ab
-    dmpPythMapA(  rf=440, csv=csv)
-    dmpPythMapB(  rf=440, csv=csv)
-#    dmpPyth(k=51, rf=440, ss=V_SOUND, csv=csv) # 
-#    dmpPyth(k=52, rf=440, ss=V_SOUND, csv=csv) # E
-#    dmpPyth(k=53, rf=440, ss=V_SOUND, csv=csv) # F
-#    dmpPyth(k=54, rf=440, ss=V_SOUND, csv=csv) # 
-#    dmpPyth(k=55, rf=440, ss=V_SOUND, csv=csv) # G
-#    dmpPyth(k=56, rf=440, ss=V_SOUND, csv=csv) # 
-#    dmpPyth(k=57, rf=440, ss=V_SOUND, csv=csv) # A
-#    dmpPyth(k=58, rf=440, ss=V_SOUND, csv=csv) # 
-#    dmpPyth(k=59, rf=440, ss=V_SOUND, csv=csv) # B
-#    dmpPyth(k=60, rf=440, ss=V_SOUND, csv=csv) # C
-#    dmpPyth(k=61, rf=440, ss=V_SOUND, csv=csv) # 
+    dmpPythMapA(  csv)
+    dmpPythMapB(  csv)
+#    dmpPyth(k=50, rf=440, ss=V_SOUND, csv=csv) # D
 #    dmpPyth(k=62, rf=440, ss=V_SOUND, csv=csv) # D
     slog(f'END {csv=}')
 ########################################################################################################################################################################################################
@@ -219,15 +210,16 @@ F440s  = [ f440(i)  for i in range(MAX_FREQ_IDX) ]
 F432s  = [ f432(i)  for i in range(MAX_FREQ_IDX) ]
 FOTSs  = [ fOTS(i)  for i in range(1, 33) ]
 
-def fPyth(a=7, b=6):
+def fPyth(a=7, b=6, csv=0):
+    w, m, n, f = (Z, Y, Y, 3) if csv else ('', W, W, 1)
     FPythA = stck5ths(a)
     FPythB = stck4ths(b)
     FPyth0 = [ stackI(3, 2, 0), stackI(2, 1, 1) ]   ;   FPyth0.extend(FPythA)   ;   FPyth0.extend(FPythB)
     FPyths = sorted(FPyth0, key= lambda x: abc2r(x[0], x[1], x[2])[0])
-    slog(f'FPythA={fmtl(FPythA)}', p=0, f=1)
-    slog(f'FPythB={fmtl(FPythB)}', p=0, f=1)
-    slog(f'FPyth0={fmtl(FPyth0)}', p=0, f=1)
-    slog(f'FPyths={fmtl(FPyths)}', p=0, f=1)
+    slog(f'FPythA={fmtl(FPythA, d=f"[{n}", w=w, s=m)} {len(FPythA)}', p=0, f=f)
+    slog(f'FPythB={fmtl(FPythB, d=f"[{n}", w=w, s=m)} {len(FPythB)}', p=0, f=f)
+    slog(f'FPyth0={fmtl(FPyth0, d=f"[{n}", w=w, s=m)} {len(FPyth0)}', p=0, f=f)
+    slog(f'FPyths={fmtl(FPyths, d=f"[{n}", w=w, s=m)} {len(FPyths)}', p=0, f=f)
     return FPyths
 
 RPythMap = {}
@@ -271,7 +263,7 @@ def dmpOTS(rf=440, ss=V_SOUND, csv=0):
     f0    = F440s[0]    ;   w0 = CM_P_M * ss/f0
     for i, freq in enumerate(freqs):
         i += 1          ;    f  = fOTS(i, rf)    ;    w  = w0 / i
-        n  = freq2Note(f, rf=rf, b=0 if i in (17, 22, 25, 28) else 1) # 
+        n, n2  = f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1) 
         j  = Notes.n2ai(n)
         assert 0 <= j < len(rs),  f'{j=} {len(rs)=}'
         f2 = rs[j]      ;    c  = 1200 * math.log2(f/f2)
@@ -291,8 +283,8 @@ def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
     slog(f'BGN Pythagorean {k=} {rf=} {ss=} {csv=}')    ;    x = 13     ;  rnd = 1
     (ww, mm, nn, ff) = (Z, Y, Y, 3) if csv else (f'^{x}', W, Z, 1)
     f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * ss   ;   nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
-    ii, ns, rs, fs, ws = [], [], [], [], []    ;     cs, ds = [], []    ;   us, vs = [], []    ;    ps, qs = [], []   ;   rrs = []
-    FPyths = k2fPyths(k)
+    ii, ns, rs, fs, ws = [], [], [], [], []    ;     cs, ds = [], []    ;   us, vs = [], []    ;    ps, qs = [], []   ;   nns, rrs = [], []
+    FPyths = k2fPyths(k, csv)
     for i, e in enumerate(FPyths):
         a, b, c   = e[0], e[1], e[2]
         r, ca, cb = abc2r(a, b, c)
@@ -302,7 +294,8 @@ def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
         v  = 'P2' if a==2 and b==1 else i4v[m] if i == 12 else i4v[m]
         pa = a ** ca   ;    pb = b ** cb     ;   p = f'{pa}/{pb:<}'
         q  = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
-        n  = freq2Note(f, rf=rf, b=0 if i in (4, 6, 11) else 1, s=1)
+        n, n2 = i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (54, 56, 61) else 1, s=1, e=1)
+        if n2 and i and i != Notes.NTONES and i != 6:    n += '/' + n2
         c  = 1200 * math.log2(r)   ;   d = c - i * 100 if i != 0 else 0
         ii.append(i)               ;   fs.append(fmtf(f, x))   ;   ps.append(p)   ;   us.append(u)   ;    rs.append(fmtf(r, x))   ;   cs.append(float(c) if rnd else fmtf(c, x))
         ns.append(n)               ;   ws.append(fmtf(w, x))   ;   qs.append(q)   ;   vs.append(v)   ;   rrs.append(rr)           ;   ds.append(float(d) if rnd else fmtg(d, x if d > 0 else x))
@@ -327,25 +320,27 @@ def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
     slog(f'{pfxw}{ws}{sfxw}', p=0, f=ff)
     slog(f'END Pythagorean {k=} {rf=} {ss=} {csv=}')
 ########################################################################################################################################################################################################
-def k2fPyths(k=50):
-    return fPyth(7, 6) if k==50 else fPyth(6, 7) if k==57 else fPyth(5, 8) if k==52 else fPyth(4, 9)  if k==59 else fPyth(3, 10) if k==54 else fPyth(2, 11) if k==61 else fPyth(1, 12) if k==56 \
-                                else fPyth(8, 5) if k==55 else fPyth(9, 4) if k==60 else fPyth(10, 3) if k==53 else fPyth(11, 2) if k==58 else fPyth(12, 1) if k==51 else fPyth(13, 0)
-#    return fPyth(7, 7) if k==50 else fPyth(8, 6) if k==57 else fPyth(9, 5) if k==52 else fPyth(10, 4) if k==59 else fPyth(11, 3) if k==54 else fPyth(12, 2) if k==61 else fPyth(13, 1) if k==56 else \
-#                                     fPyth(6, 8) if k==55 else fPyth(5, 9) if k==60 else fPyth(4, 10) if k==53 else fPyth(3, 11) if k==58 else fPyth(2, 12) if k==51 else fPyth(1, 13)
+def k2fPyths(k=50, c=0):
+    return fPyth(7, 6, c) if k==50 or k== 62 else fPyth(6, 7, c) if k==57 else fPyth(5, 8, c) if k==52 else fPyth(4, 9, c)  if k==59 else fPyth(3, 10, c) if k==54 else fPyth(2, 11, c) if k==61 else fPyth(1, 12, c) if k==56 \
+                                             else fPyth(8, 5, c) if k==55 else fPyth(9, 4, c) if k==60 else fPyth(10, 3, c) if k==53 else fPyth(11, 2, c) if k==58 else fPyth(12, 1, c) if k==51 else fPyth(13, 0, c)
 
-def freq2Note(f, rf=440, b=1, s=0):
+def f2nPair(f, rf=440, b=None, s=0, e=0):
     ni = Notes.NTONES * math.log2(f / rf)
     i  = round(A4_INDEX + ni)
-    n = FLATS[i] if b==1 else SHRPS[i]
-    if s: n = n[:-1].strip()
-    return n
-
-def dmpPythMapA(rf=440, csv=0):
+    return i2nPair(i, b, s, e)
+    
+def i2nPair(i, b=None, s=0, e=0):
+    m = Z    ;    n = FLATS[i] if b == 1 else SHRPS[i]
+    if s:                       n = n[:-1].strip()
+    if e == 1 and len(n) > 1:
+        m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
+    return n, m
+    
+def dmpPythMapA(csv=0):
     ff = 3 if csv else 1
     msg = [ f'{i}' for i in range(Notes.NTONES + 1) ]   ;   slog(f'    k:    {fmtl(msg, w="^13", s=W, d=Z)}', p=0)
     for i, (k, v) in enumerate(RPythMap.items()):
-        f0 = F440s[k] if rf == 440 else F432s[k]
-        n   = freq2Note(f0, b=0 if k in (54, 56, 61) else 1, s=1)
+        n, n2   = i2nPair(k, b=0 if k in (54, 56, 61) else 1, s=1)
         msg = f'{k:2}: {n:2} ' 
         for e in v:
             a, ca, b, cb = e
@@ -353,12 +348,11 @@ def dmpPythMapA(rf=440, csv=0):
             msg += f'{pa:6}/{pb:<6} '
         slog(f'{i:2} {msg}', p=0, f=ff)
     
-def dmpPythMapB(rf=440, csv=0):
+def dmpPythMapB(csv=0):
     ff = 3 if csv else 1
     msg = [ f'{i}' for i in range(Notes.NTONES + 1) ]   ;   slog(f'    k:    {fmtl(msg, w="^13", s=W, d=Z)}', p=0)
     for i, (k, v) in enumerate(RPythMap.items()):
-        f0 = F440s[k] if rf == 440 else F432s[k]
-        n   = freq2Note(f0, b=0 if k in (54, 56, 61) else 1, s=1)
+        n, n2   = i2nPair(k, b=0 if k in (54, 56, 61) else 1, s=1)
         msg = f'{k:2}: {n:2} ' 
         for e in v:
             a, ca, b, cb = e
@@ -392,5 +386,5 @@ def dmpPythMapB(rf=440, csv=0):
  9 54: F♯       0            90            204           294           384           498           588           702           792           882           996          1086          1200      #             384     588         882      1086
 10 61: C♯       0            90            180           294           384           498           588           702           792           882           996          1086          1200      #     180     384     588         882      1086
 11 56: G♯       0            90            180           294           384           498           588           678           792           882           996          1086          1200      #     180     384     588 678     882      1086
-             0             1             2             3             4             5             6             7             8             9            10            11            12       #  1   2   3   4   5   6   7   8   9   10   11
+    k:          0             1             2             3             4             5             6             7             8             9            10            11            12       #  1   2   3   4   5   6   7   8   9   10   11
 '''

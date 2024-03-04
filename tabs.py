@@ -302,7 +302,7 @@ class Tabs(pyglet.window.Window):
         self.tabls, self.notes, self.ikeys, self.kords = [], [], [], []  ;  self.B  = [self.tabls, self.notes, self.ikeys, self.kords]
         self.views, self.rowLs, self.qclms, self.hcurs = [], [], [], []  ;  self.C  = [self.views, self.rowLs, self.qclms, self.hcurs]
         self.anams, self.bnums, self.capos, self.zclms = [], [], [], []  ;  self.D  = [self.anams, self.bnums, self.capos, self.zclms]
-        self.E     = [*self.A, *self.B, *self.C, *self.D]         ;   self.log(f'E={fmtl(self.E, d=" [", d2="] ")}')
+        self.E     = [*self.A, *self.B, *self.C, *self.D]         ;   self.log(f'E={fmtl(self.E, d=" [ ")}')
         self.resetJ('_reinit')
         self.cc, self.cursor, self.caret = 0, None, None
         self.ki    = [ 0 for _ in range(len(self.E)) ]            ;   self.log(fmtl(self.ki))
@@ -556,9 +556,12 @@ class Tabs(pyglet.window.Window):
     def fjlen(self):                return fmtl(self.jlen())
     def fmtdl( self, data=None):    return f'{fmtl(self.dl(data))}'
     def fmtdt( self, data=None):    return f"[{W.join([ t.replace('class ', Z) for t in self.dtA(data) ])}]"
-    def fmtJ1( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 =Z if not d else "]"  ;  return    f'{fmtl(self.jsum(), w=w, d=d, d2=Z)} {self.fnvis()}{d2}'
-    def fmtJ2( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 =Z if not d else "]"  ;  return    f'{fmtl(self.J2,     w=w, d=d, d2=Z)} {self.fnvis()}{d2}'
-    def fmtLE( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 =Z if not d else "]"  ;  return f'{d}{fmtl(self.lenE(), w=w, d=Z, d2=Z)} {sum(self.lenE()[:-1]):4} {self.fnvis()}{d2}'
+    def fmtJ1( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  return    f'{fmtl(self.jsum(), w=w, d=d)} {self.fnvis()}'
+    def fmtJ2( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  return    f'{fmtl(self.J2,     w=w, d=d)} {self.fnvis()}'
+    def fmtLE( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  return f'{d}{fmtl(self.lenE(), w=w, d=Z)} {sum(self.lenE()[:-1]):4} {self.fnvis()}'
+#    def fmtJ1( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 = Z if not d else "]"  ;  return    f'{fmtl(self.jsum(), w=w, d=d, d2=Z)} {self.fnvis()}{d2}'
+#    def fmtJ2( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 = Z if not d else "]"  ;  return    f'{fmtl(self.J2,     w=w, d=d, d2=Z)} {self.fnvis()}{d2}'
+#    def fmtLE( self, w=None, d=1):  w = w if w is not None else JFMT  ;  d = Z if not d else "["  ;  d2 = Z if not d else "]"  ;  return f'{d}{fmtl(self.lenE(), w=w, d=Z, d2=Z)} {sum(self.lenE()[:-1]):4} {self.fnvis()}{d2}'
     ####################################################################################################################################################################################################
     def fmtPos(self):                         cc = self.plct2cc(*self.j2())  ;  nc = self.normalizeCC(cc)  ;  cn = self.cc2cn(cc)  ;  return f'{fmtl(self.i, w=FIN)} {cc+1:3} {nc:3} {cn+1:2}]'
     def fmtn(  self, pfx='n=', n=None):       n = n if n is not None else self.n   ;   return f'{pfx}{fmtl(n)}'
@@ -1217,10 +1220,10 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(msg)
     
     def addLLs(self, how):
-        ss = self.sectName(how)
+        ss = self.sectName(how)  ;  slog(f'not implemented {ss=}')
     
     def hideLLs(self, how):
-        ss = self.sectName(how)
+        ss = self.sectName(how)  ;  slog(f'not implemented {ss=}')
     
     ####################################################################################################################################################################################################
     def addTTs(self, how, ii):
