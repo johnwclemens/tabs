@@ -38,9 +38,12 @@ def dumpData(csv=0):
     dmpPyth(k=54, rf=440, ss=V_SOUND, csv=csv) # F#/Gb
     dmpPyth(k=61, rf=440, ss=V_SOUND, csv=csv) # C#/Db
     dmpPyth(k=56, rf=440, ss=V_SOUND, csv=csv) # G#/Ab
-    dmpPythMapA(  csv)
-    dmpPythMapB(  csv)
-    dmpPythMapC(  csv)
+    dmpPythNi2FrA(  csv)
+    dmpPythNi2FrB(  csv)
+    dmpPythNi2FrC(  csv)
+    dmpPythNi2FrD(  csv)
+    fPyth(13, 0, 1)
+    dmpPythFcc2C(  csv)
 #    dmpPyth(k=50, rf=440, ss=V_SOUND, csv=csv) # D
 #    dmpPyth(k=62, rf=440, ss=V_SOUND, csv=csv) # D
     slog(f'END {csv=}')
@@ -104,7 +107,8 @@ class Notes(object):#1       2       3       4       5       6       7       8  
     I4S = { 0:'B♯', 1:'C♯', 2:'D' , 3:'D♯', 4:'E' , 5:'E♯', 6:'F♯', 7:'G' , 8:'G♯', 9:'A' , 10:'A♯', 11:'B' } # ,12:'C' } # 8/12/16 B♯ E♯
     I2V = { 0:'R' , 1:'♭2', 2:'2' , 3:'m3', 4:'M3', 5:'4' , 6:'♭5', 7:'5' , 8:'♯5', 9:'6' , 10:'♭7', 11:'7' } # ,12:'R' } # 8/12/16 ♭5 ♯5
     I4V = { 0:'P1', 1:'m2', 2:'M2', 3:'m3', 4:'M3', 5:'P4', 6:'TT', 7:'P5', 8:'m6', 9:'M6', 10:'m7', 11:'M7'} # ,12:'P8'} # 8/12/16 TT m6
-    I6V = { 0:'d2', 1:'A1', 2:'d3', 3:'A2', 4:'d4', 5:'A3', 6:'d5', 7:'A4', 8:'d6', 9:'A5', 10:'d7', 11:'A6', 12:'d8'} # ,13:'A7'} # 8/12/16 TT d2 A1 
+    I6V = { 0:'d2', 1:'A1', 2:'d3', 3:'A2', 4:'d4', 5:'A3', 6:'A4', 7:'d6', 8:'A5', 9:'d7', 10:'A6', 11:'d8'} # ,13:'A7'} # 8/12/16 TT d2 A1 
+#   I6V = { 0:'d2', 1:'A1', 2:'d3', 3:'A2', 4:'d4', 5:'A3', 6:'d5', 7:'A4', 8:'d6', 9:'A5', 10:'d7', 11:'A6', 12:'d8'} # ,13:'A7'} # 8/12/16 TT d2 A1 
     V2I = { 'R':0 , '♭2':1, '2':2 , 'm3':3, 'M3':4, '4' :5, '♭5':6, '5':7 , '♯5':8, '6' :9, '♭7':10, '7' :11} # ,'R`':12} # 8/12/16 ♭5 ♯5
     N2I = {'B♯':0 , 'C' :0,'C♯':1 , 'D♭':1, 'D' :2, 'D♯':3, 'E♭':3, 'E':4 , 'F♭':4, 'E♯':5, 'F' :5,  'F♯':6, 'G♭':6, 'G' :7, 'G♯':8, 'A♭':8, 'A' :9, 'A♯':10, 'B♭':10, 'B' :11, 'C♭' :11, 'B♯`':12, 'C`':12 } #21 B# C♭ E# F♭
     F2S = {            'D♭':'C♯', 'E♭':'D♯',                       'G♭':'F♯', 'A♭':'G♯', 'B♭':'A♯'           } #[ 1 3  6 8 a ]# 5/9 D♭->C♯
@@ -186,9 +190,9 @@ def i2spr(i):
     else:     return       Z.join(SUPERS[int(digit)] for digit in str(i))
         
 def stck5ths(c):
-    return [ stackI(3, 2, e) for e in range(1, c) ]
+    return [ stackI(3, 2, i+1) for i in range(c) ]
 def stck4ths(c):
-    return [ stackI(2, 3, e) for e in range(1, c) ]
+    return [ stackI(2, 3, i+1) for i in range(c) ]
 def stackI(a, b, c):
     return [ a, b, c ]
     
@@ -223,18 +227,30 @@ def fPyth(a=7, b=6, csv=0):
     slog(f'FPyths={fmtl(FPyths, d=f"[{n}", w=w, s=m)} {len(FPyths)}', p=0, f=f)
     return FPyths
 
-def r2cents(r): return 1200 * math.log2(r)
+def r2cents(r): return Notes.NTONES * 100 * math.log2(r)
+    
+def pythEpsln(): # 3**13 / 2**20 = 3¹³/2²⁰ = 1594323 / 1048576 = 
+    n, i      = 13, -1
+    s5s       = stck5ths(n)
+    a, b, c   = s5s[i]
+    r, ca, cb = abc2r(a, b, c)
+    slog(f'{n} {s5s=}')
+    slog(f'abc = {n} 5ths = [{i}] = {s5s[i]} {ca=} {cb=} {r=}')
+#    assert [a, b, c] == [3, 2, 1],  f'{a=} {b=} {c=} {[3, 2, 1]}'
+    return [a, ca, b, cb]
     
 def pythComma(): # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078
-    a, b, c = stck5ths(13)[-1]
+    n, i      = 12, -1
+    s5s       = stck5ths(n)
+    a, b, c   = s5s[i]
     r, ca, cb = abc2r(a, b, c)
+    slog(f'{n} {s5s=}')
+    slog(f'abc = {n} 5ths = [{i}] = {s5s[i]} {ca=} {cb=} {r=}')
     assert [a, b, c] == [3, 2, 12],  f'{a=} {b=} {c=} {[3, 2, 12]}'
     return [a, ca, b, cb]
 
-#def (e): return Notes.NTONES * e
-
-RPythMap  = {}
-PythIvals = {}
+PythNi2Fr = {} # note index to freq ratio
+PythFcc2C = {} # freq ratio in cents to count
 ########################################################################################################################################################################################################
 def dumpNF(csv=0):
     slog('BGN 12 Tone Equal Tempored (Hz, cm)')
@@ -314,7 +330,7 @@ def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
     csw, dsw = (f'^{x}.2f', f'^{x}.2f') if rnd else (ww, x-1) 
     ii     = fmtl(ii, w=ww, s=mm, d=Z)   ;   rs = fmtl(rs, w=ww, s=mm, d=Z)    ;   cs = fmtl(cs, w=csw,  s=mm, d=Z)   ;   us = fmtl(us, w=ww, s=mm, d=Z)   ;    ps  = fmtl(ps, w=ww, s=mm, d=Z)   ;   ws = mm.join(ws)
     ns     = fmtl(ns, w=ww, s=mm, d=Z)   ;   fs = fmtl(fs, w=ww, s=mm, d=Z)    ;   ds = fmtl(ds, w=dsw, s=mm, d=Z)    ;   vs = fmtl(vs, w=ww, s=mm, d=Z)   ;    qs  = fmtl(qs, w=ww, s=mm, d=Z)
-    RPythMap[k] = rrs
+    PythNi2Fr[k] = rrs
     pfxr   = f'Ratio{nn}[{nn}'   ;   pfxn = f'Note {nn}[{nn}'   ;   pfxi = f'Index{nn}[{nn}'   ;   pfxc = f'Cents{nn}[{nn}'
     pfxp   = f'Rati1{nn}[{nn}'   ;   pfxf = f'Freq {nn}[{nn}'   ;   pfxv = f'Intrv{nn}[{nn}'   ;   pfxd = f'dCent{nn}[{nn}'
     pfxq   = f'Rati2{nn}[{nn}'   ;   pfxw = f'Wvlen{nn}[{nn}'   ;   pfxu = f'Intr2{nn}[{nn}'
@@ -333,8 +349,10 @@ def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
     slog(f'END Pythagorean {k=} {rf=} {ss=} {csv=}')
 ########################################################################################################################################################################################################
 def k2fPyths(k=50, c=0):
-    return fPyth(7, 6, c) if k==50 or k== 62 else fPyth(6, 7, c) if k==57 else fPyth(5, 8, c) if k==52 else fPyth(4, 9, c)  if k==59 else fPyth(3, 10, c) if k==54 else fPyth(2, 11, c) if k==61 else fPyth(1, 12, c) if k==56 \
-                                             else fPyth(8, 5, c) if k==55 else fPyth(9, 4, c) if k==60 else fPyth(10, 3, c) if k==53 else fPyth(11, 2, c) if k==58 else fPyth(12, 1, c) if k==51 else fPyth(13, 0, c)
+    return fPyth(6, 5, c) if k==50 or k== 62 else fPyth(5, 6, c) if k==57 else fPyth(4, 7, c) if k==52 else fPyth(3, 8, c) if k==59 else fPyth(2, 9, c)  if k==54 else fPyth(1, 10, c) if k==61 else fPyth(0, 11, c) if k==56 \
+                                             else fPyth(7, 4, c) if k==55 else fPyth(8, 3, c) if k==60 else fPyth(9, 2, c) if k==53 else fPyth(10, 1, c) if k==58 else fPyth(11, 0, c) if k==51 else fPyth(12, 0, c)
+#   return fPyth(7, 6, c) if k==50 or k== 62 else fPyth(6, 7, c) if k==57 else fPyth(5, 8, c) if k==52 else fPyth(4, 9, c)  if k==59 else fPyth(3, 10, c) if k==54 else fPyth(2, 11, c) if k==61 else fPyth(1, 12, c) if k==56 \
+#                                            else fPyth(8, 5, c) if k==55 else fPyth(9, 4, c) if k==60 else fPyth(10, 3, c) if k==53 else fPyth(11, 2, c) if k==58 else fPyth(12, 1, c) if k==51 else fPyth(13, 0, c)
 ########################################################################################################################################################################################################
 def f2nPair(f, rf=440, b=None, s=0, e=0):
     ni = Notes.NTONES * math.log2(f / rf)
@@ -348,10 +366,23 @@ def i2nPair(i, b=None, s=0, e=0):
         m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
     return n, m
 ########################################################################################################################################################################################################
-def dmpPythMapA(csv=0):
+def dmpPythNi2FrA(csv=0):
     ff = 3 if csv else 1
     msg = [ f'{i}' for i in range(Notes.NTONES + 1) ]   ;   slog(f'    k:    {fmtl(msg, w="^13", s=W, d=Z)}', p=0)
-    for i, (k, v) in enumerate(RPythMap.items()):
+    for i, (k, v) in enumerate(PythNi2Fr.items()):
+        n, n2   = i2nPair(k, b=0 if k in (54, 56, 61) else 1, s=1)
+        msg = f'{k:2}: {n:2} ' 
+        for e in v:
+            a, ca, b, cb = e
+            pa, pb = a ** ca, b ** cb
+            ratio = pa/pb
+            msg += f'{ratio:^13.9f} '
+        slog(f'{i:2} {msg}', p=0, f=ff)
+    
+def dmpPythNi2FrB(csv=0):
+    ff = 3 if csv else 1
+    msg = [ f'{i}' for i in range(Notes.NTONES + 1) ]   ;   slog(f'    k:    {fmtl(msg, w="^13", s=W, d=Z)}', p=0)
+    for i, (k, v) in enumerate(PythNi2Fr.items()):
         n, n2   = i2nPair(k, b=0 if k in (54, 56, 61) else 1, s=1)
         msg = f'{k:2}: {n:2} ' 
         for e in v:
@@ -360,35 +391,53 @@ def dmpPythMapA(csv=0):
             msg += f'{pa:6}/{pb:<6} '
         slog(f'{i:2} {msg}', p=0, f=ff)
     
-def dmpPythMapB(csv=0):
+def dmpPythNi2FrC(csv=0):
+    ff = 3 if csv else 1
+    msg = [ f'{i}' for i in range(Notes.NTONES + 1) ]   ;   slog(f'    k:    {fmtl(msg, w="^13", s=W, d=Z)}', p=0)
+    for i, (k, v) in enumerate(PythNi2Fr.items()):
+        n, n2   = i2nPair(k, b=0 if k in (54, 56, 61) else 1, s=1)
+        msg = f'{k:2}: {n:2} ' 
+        for e in v:
+            a, ca, b, cb = e
+            msg1 = f'{a}**{ca}'
+            msg2 = f'{b}**{cb}'
+            msg += f'{msg1:>6}/{msg2:<6} '
+        slog(f'{i:2} {msg}', p=0, f=ff)
+    
+def dmpPythNi2FrD(csv=0):
     ff  = 3 if csv else 1
     msg = [ f'{i}' for i in range(Notes.NTONES + 1) ]   ;   slog(f'    k:    {fmtl(msg, w="^13", s=W, d=Z)}', p=0, f=ff)
-    for i, (k, v) in enumerate(RPythMap.items()):
+    for i, (k, v) in enumerate(PythNi2Fr.items()):
         n, n2   = i2nPair(k, b=0 if k in (54, 56, 61) else 1, s=1)
         msg = f'{k:2}: {n:2} ' 
         for e in v:
             a, ca, b, cb = e
             pa, pb       = a ** ca, b ** cb
-            c            = r2cents(pa/pb) # 1200 * math.log2(pa/pb)
+            c            = r2cents(pa/pb)
             msg += f'{c:^13.0f} '
-            if not csv:    PythIvals[c] = PythIvals[c] + 1 if c in PythIvals.keys() else 1
+            if not csv:    PythFcc2C[c] = PythFcc2C[c] + 1 if c in PythFcc2C.keys() else 1
         slog(f'{i:2} {msg}', p=0, f=ff)
 
 def k2dCent(k):
         return k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200
 #        return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
 
-def dmpPythMapC(csv=0):
+def dmpPythFcc2C(csv=0):
     ww, uu, mm, ff  = ('^7', '^7.2f', Y, 3) if csv else ('^7', '^7.2f', W, 1)
-    a, ca, b,cb = pythComma()
-    pa    = a ** ca   ;    pb = b ** cb     ;   rComma = pa / pb
-    cents = r2cents(rComma)
-    q  = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
-    slog(f'Comma {rComma:6.4f} = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cents:6.4f} cents', p=0, f=ff)
-#    epslnR = pythEpsln()    ;    epslnC = r2cents(epslnR) - 700   ;   epslnP = epslnR
-    ii, cs, ds, j2s, us, vs = [], [], [], [], [], []   ;   mp = PythIvals   ;   j2 = 0
     nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
-    ks = sorted(mp.keys())
+    a, ca, b,cb  = pythComma()
+    pa, pb       = a ** ca, b ** cb     ;     rComma = pa / pb
+    cents        = r2cents(rComma)
+    q            = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
+    slog(f'Comma {rComma:6.4f} = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cents:6.4f} cents', p=0, f=ff)
+    a, ca, b, cb = pythEpsln()
+    pa, pb       = a ** ca, b ** cb     ;     rEpsln = pa / pb
+    cents        = r2cents(rEpsln)
+    q            = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
+    slog(f'Epsln {rEpsln:6.4f} = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cents:6.4f} cents', p=0, f=ff)    
+#    epslnR = pythEpsln()    ;    epslnC = r2cents(epslnR) - 700   ;   epslnP = epslnR
+    ii, cs, ds, j2s, us, vs = [], [], [], [], [], []   ;   mp = PythFcc2C   ;   j2 = 0
+    ks           = sorted(mp.keys())
     for i, k in enumerate(ks):
         j = i % 2
         if j: j2 = math.floor(i/2) + 1
