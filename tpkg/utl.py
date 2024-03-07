@@ -222,7 +222,7 @@ def replceDelims(d):
         d = d.replace(o[i], c[i])
     return d
 ########################################################################################################################################################################################################
-def fmtl(lst, w=None, u=None, d='[', d2=None, s=W, ll=None): # optimize str concat?
+def fmtl(lst, w=None, u=None, d='[', d2=None, s=W, ll=None):
     if   lst is None:   return  NONE
     lts = (list, tuple, set, frozenset, zip)  ;  dtn = (int, float)  ;  dts = (str,)
     assert type(lst) in lts,   f'{type(lst)=} {lts=}'
