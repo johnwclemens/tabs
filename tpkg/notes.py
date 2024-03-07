@@ -217,17 +217,44 @@ F440s  = [ f440(i)  for i in range(MAX_FREQ_IDX) ]
 F432s  = [ f432(i)  for i in range(MAX_FREQ_IDX) ]
 FOTSs  = [ fOTS(i)  for i in range(1, 33) ]
 
+def OLD__fPyth(a=7, b=6, csv=0):
+    w, m, d, e, f = (2, W, Y, W, 3) if csv else (2, W, '[', ']', 1)
+    abcA = stck5ths(a)
+    abcB = stck4ths(b)
+    abc0 = [ stackI(3, 2, 0) ]   ;   abc0.extend(abcA)   ;   abc0.extend(abcB)   ;   abc0.append(stackI(2, 1, 1))
+    abcS = sorted(abc0, key= lambda x: abc2r(x[0], x[1], x[2])[0])    ;   tmp = []
+    lS = len(abcS)
+    for abc in abcS:
+        s = W.join([str(_) for _ in abc])
+        tmp.append(f'{s:^13}')
+    slog(f'abcA{fmtl(abcA, w=w, s=m, d=d, d2=e)} {len(abcA)}', p=0, f=f)
+    slog(f'abcB{fmtl(abcB, w=w, s=m, d=d, d2=e)} {len(abcB)}', p=0, f=f)
+    slog(f'abc0{fmtl(abc0, w=w, s=m, d=d, d2=e)} {len(abc0)}', p=0, f=f)
+    slog(f'abcS{fmtl(abcS, w=w, s=m, d=d, d2=e)} {len(abcS)}', p=0, f=f)
+    abcs = Y.join(tmp)
+    slog(f'abcs {d}{abcs}{e}{lS}', p=0, f=f)
+    return abcS
+
 def fPyth(a=7, b=6, csv=0):
-    w, m, f = (2, Y, 3) if csv else (2, W, 1)
-    FPythA = stck5ths(a)
-    FPythB = stck4ths(b)
-    FPyth0 = [ stackI(3, 2, 0) ]   ;   FPyth0.extend(FPythA)   ;   FPyth0.extend(FPythB)   ;   FPyth0.append(stackI(2, 1, 1))
-    FPyths = sorted(FPyth0, key= lambda x: abc2r(x[0], x[1], x[2])[0])
-    slog(f'FPythA={fmtl(FPythA, d=f"[{m}", w=w)} {len(FPythA)}', p=0, f=f)
-    slog(f'FPythB={fmtl(FPythB, d=f"[{m}", w=w)} {len(FPythB)}', p=0, f=f)
-    slog(f'FPyth0={fmtl(FPyth0, d=f"[{m}", w=w)} {len(FPyth0)}', p=0, f=f)
-    slog(f'FPyths={fmtl(FPyths, d=f"[{m}", w=w)} {len(FPyths)}', p=0, f=f)
-    return FPyths
+    m, n, o, f = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)   ;   d, e = '[', ']'   ;   w = f'^13'
+    abc1 = stck5ths(a)
+    abc2 = stck4ths(b)
+    abc3 = [ stackI(3, 2, 0) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1))
+    abc4 = sorted(abc3, key= lambda x: abc2r(x[0], x[1], x[2])[0])    ;   tmp1, tmp2, tmp3, tmp4 = [], [], [], []
+    abcR = list(abc4)
+    l1, l2, l3, l4 = len(abc1), len(abc2), len(abc3), len(abc4)
+    for abc in abc1: s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'   ;   tmp1.append(t)
+    for abc in abc2: s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'   ;   tmp2.append(t)
+    for abc in abc3: s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'   ;   tmp3.append(t)
+    for abc in abc4: s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'   ;   tmp4.append(t)
+    idxs = [ f'{i:{w}}' for i, _ in enumerate(abcR) ]    ;      idxs = o.join(idxs)
+    abc1, abc2, abc3, abc4 = o.join(tmp1), o.join(tmp2), o.join(tmp3), o.join(tmp4)
+    slog(f'      {n}{d}{n}{idxs}{n}{e}{m}', p=0, f=f)
+    slog(f'abc1  {n}{d}{n}{abc1}{n}{e}{m}{l1}', p=0, f=f)
+    slog(f'abc2  {n}{d}{n}{abc2}{n}{e}{m}{l2}', p=0, f=f)
+    slog(f'abc3  {n}{d}{n}{abc3}{n}{e}{m}{l3}', p=0, f=f)
+    slog(f'abc4  {n}{d}{n}{abc4}{n}{e}{m}{l4}', p=0, f=f)
+    return abcR
 
 def r2cents(r): return Notes.NTONES * 100 * math.log2(r)
     
@@ -322,12 +349,12 @@ def dmpOTS(rf=440, ss=V_SOUND, csv=0):
     slog(f'END Overtone Series {rf=} {ss=} {csv=}')
 ########################################################################################################################################################################################################
 def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
-    slog(f'BGN Pythagorean {k=} {rf=} {ss=} {csv=}')    ;    x = 13     ;  rnd = 1
-    ww, mm, nn, ff = (Z, Y, Y, 3) if csv else (f'^{x}', W, Z, 1)   ;   uu = f'^{x}'
+    slog(f'BGN Pythagorean {k=} {rf=} {ss=} {csv=}')    ;    x = 13     ;   y = x-2     ;  rnd = 1
+    ww, mm, nn, oo, ff = (Z, Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   uu = f'^{x}'
     f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * ss   ;   nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
     ii, ns, rs, fs, ws = [], [], [], [], []    ;     cs, ds = [], []    ;   us, vs = [], []    ;    ps, qs = [], []   ;   nns, rrs = [], []
-    FPyths = k2fPyths(k, csv, fPyth)
-    for i, e in enumerate(FPyths):
+    abcs = k2fPyths(k, csv, fPyth)
+    for i, e in enumerate(abcs):
         a, b, c   = e[0], e[1], e[2]
         r, ca, cb = abc2r(a, b, c)
         rr = [ a, ca, b, cb ]
@@ -335,20 +362,20 @@ def dmpPyth(k=50, rf=440, ss=V_SOUND, csv=0):
         u  = 'P2' if a==2 and b==1 else i6v[i] if i == 12 else i6v[m]
         v  = 'P2' if a==2 and b==1 else i4v[m] if i == 12 else i4v[m]
         pa = a ** ca               ;   pb = b ** cb             ;   p = f'{pa:6}/{pb:<6}'
-        qa = f'{a}{i2spr(ca)}'     ;   qb = f'{b}{i2spr(cb)}'   ;   q  = f'{qa:>6}/{qb:<6}'
+        qa = f'{a}{i2spr(ca)}'     ;   qb = f'{b}{i2spr(cb)}'   ;   q = f'{qa:>6}/{qb:<6}'
         n, n2 = i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (54, 56, 61) else 1, s=1, e=1)
         if n2 and i and i != nt and i != 6:    n += '/' + n2
         c  = r2cents(r)            ;   d = c - i * 100 if i != 0 else 0
-        ii.append(i)               ;   fs.append(fmtf(f, x))   ;   ps.append(p)   ;   us.append(u)   ;    rs.append(fmtf(r, x))   ;   cs.append(float(c) if rnd else fmtf(c, x))
-        ns.append(n)               ;   ws.append(fmtf(w, x))   ;   qs.append(q)   ;   vs.append(v)   ;   rrs.append(rr)           ;   ds.append(float(d) if rnd else fmtg(d, x if d > 0 else x))
+        ii.append(i)               ;   fs.append(fmtf(f, y))   ;   ps.append(p)   ;   us.append(u)   ;    rs.append(fmtf(r, y))   ;   cs.append(float(c) if rnd else fmtf(c, x))
+        ns.append(n)               ;   ws.append(fmtf(w, y))   ;   qs.append(q)   ;   vs.append(v)   ;   rrs.append(rr)           ;   ds.append(float(d) if rnd else fmtg(d, x if d > 0 else x))
     csw, dsw = (f'^{x}.2f', f'^{x}.2f') if rnd else (ww, x-1)
-    ii     = fmtl(ii, w=uu, s=mm, d=Z)   ;   rs = fmtl(rs, w=ww, s=mm, d=Z)    ;   cs = fmtl(cs, w=csw,  s=mm, d=Z)   ;   us = fmtl(us, w=uu, s=mm, d=Z)   ;    ps  = fmtl(ps, w=ww, s=mm, d=Z)   ;   ws = mm.join(ws)
-    ns     = fmtl(ns, w=uu, s=mm, d=Z)   ;   fs = fmtl(fs, w=ww, s=mm, d=Z)    ;   ds = fmtl(ds, w=dsw, s=mm, d=Z)    ;   vs = fmtl(vs, w=uu, s=mm, d=Z)   ;    qs  = fmtl(qs, w=ww, s=mm, d=Z)
+    ii     = fmtl(ii, w=uu, s=oo, d=Z)   ;   rs = fmtl(rs, w=uu, s=oo, d=Z)    ;   cs = fmtl(cs, w=csw, s=oo, d=Z)    ;   us = fmtl(us, w=uu, s=oo, d=Z)   ;    ps  = fmtl(ps, w=ww, s=oo, d=Z)   ;   ws = fmtl(ws, w=uu, s=oo, d=Z)
+    ns     = fmtl(ns, w=uu, s=oo, d=Z)   ;   fs = fmtl(fs, w=uu, s=oo, d=Z)    ;   ds = fmtl(ds, w=dsw, s=oo, d=Z)    ;   vs = fmtl(vs, w=uu, s=oo, d=Z)   ;    qs  = fmtl(qs, w=ww, s=oo, d=Z)
     PythNi2Fr[k] = rrs
-    pfxr   = f'Ratio{nn}[{nn}'   ;   pfxn = f'Note {nn}[{nn}'   ;   pfxi = f'Index{nn}[{nn}'   ;   pfxc = f'Cents{nn}[{nn}'
-    pfxp   = f'Rati1{nn}[{nn}'   ;   pfxf = f'Freq {nn}[{nn}'   ;   pfxv = f'Intrv{nn}[{nn}'   ;   pfxd = f'dCent{nn}[{nn}'
-    pfxq   = f'Rati2{nn}[{nn}'   ;   pfxw = f'Wvlen{nn}[{nn}'   ;   pfxu = f'Intr2{nn}[{nn}'
-    sfx    = f'{nn}]'            ;   sfxf = f'{nn}]{mm}Hz'      ;   sfxw = f'{nn}]{mm}cm'      ;   sfxc = f'{nn}]{mm}cents'
+    pfxr   = f'Ratio {nn}[{nn}'   ;   pfxn = f'Note  {nn}[{nn}'   ;   pfxi = f'Index {nn}[{nn}'   ;   pfxc = f'Cents {nn}[{nn}'
+    pfxp   = f'Ratio1{nn}[{nn}'   ;   pfxf = f'Freq  {nn}[{nn}'   ;   pfxv = f'Intrv1{nn}[{nn}'   ;   pfxd = f'dCents{nn}[{nn}'
+    pfxq   = f'Ratio2{nn}[{nn}'   ;   pfxw = f'Wavlen{nn}[{nn}'   ;   pfxu = f'Intrv2{nn}[{nn}'
+    sfx    = f'{nn}]'             ;   sfxf = f'{nn}]{mm}Hz'       ;   sfxw = f'{nn}]{mm}cm'       ;   sfxc = f'{nn}]{mm}cents'
     slog(f'{pfxi}{ii}{sfx}',  p=0, f=ff)
     slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
     slog(f'{pfxv}{vs}{sfx}',  p=0, f=ff)
