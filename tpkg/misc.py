@@ -44,6 +44,9 @@ class Modes:
 # Y:
 # Z:
 
+# Pythagorean Interval Name -> ratio or cents
+# Pythagorean Map2? table
+
 # pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent')
 # source = pyglet.media.load('explosion.wav')
 
