@@ -326,8 +326,8 @@ Wavlen,[, 83.07153808 , 78.85306154 , 74.84880451 , 70.09161026 , 66.53227067 , 
  9,54,F♯ [      0      ,     90      ,     204     ,     294     ,     384     ,     498     ,     588     ,     702     ,     792     ,     882     ,     996     ,    1086     ,    1200     ]
 10,61,C♯ [      0      ,     90      ,     180     ,     294     ,     384     ,     498     ,     588     ,     702     ,     792     ,     882     ,     996     ,    1086     ,    1200     ]
 11,56,G♯ [      0      ,     90      ,     180     ,     294     ,     384     ,     498     ,     588     ,     678     ,     792     ,     882     ,     996     ,    1086     ,    1200     ]
-Comma 1.0136 = 531441/524288 = 3**12/2**19 = 3¹²/2¹⁹ = 23.4600 cents
-Epsln 1.5000 =      3/2      = 3**1/2**1 = 3¹/2¹  = 701.9550 cents
+# 481 notes dmpPythMap2        Comma = 531441/524288 = 3**12/2**19 = 3¹²/2¹⁹ = 1.01364326 =   23.46001 cents
+# 482 notes dmpPythMap2        Epsilon = Comma / 12 =   23.46001 / 12 =    1.95500 cents
 Index    0   ,   1   ,   2   ,   3   ,   4   ,   5   ,   6   ,   7   ,   8   ,   9   ,  10   ,  11   ,  12   ,  13   ,  14   ,  15   ,  16   ,  17   ,  18   ,  19   ,  20   ,  21   ,  22   ,  23   
  J2s     0   ,   1   ,   1   ,   2   ,   2   ,   3   ,   3   ,   4   ,   4   ,   5   ,   5   ,   6   ,   6   ,   7   ,   7   ,   8   ,   8   ,   9   ,   9   ,  10   ,  10   ,  11   ,  11   ,  12   
 Intrv   P1   ,  m2   ,  m2   ,  M2   ,  M2   ,  m3   ,  m3   ,  M3   ,  M3   ,  P4   ,  P4   ,  TT   ,  TT   ,  P5   ,  P5   ,  m6   ,  m6   ,  M6   ,  M6   ,  m7   ,  m7   ,  M7   ,  M7   
@@ -377,7 +377,7 @@ KS,Type,N ,I, Key Sigature Ordered , F/S/N Indices , Ionian Note I , Ionian Note
 +6,SHRP,F♯,6,[F♯,C♯,G♯,D♯,A♯,E♯,B ],[6,1,8,3,a,5,b],[6,8,a,b,1,3,5],[F♯,G♯,A♯,B ,C♯,D♯,E♯]
 +7,SHRP,C♯,1,[F♯,C♯,G♯,D♯,A♯,E♯,B♯],[6,1,8,3,a,5,0],[1,3,5,6,8,a,0],[C♯,D♯,E♯,F♯,G♯,A♯,B♯]
 KS,Type,N ,I, Key Sigature Ordered , F/S/N Indices , Ionian Note I , Ionian Note Ordering ,Key Sig Table +15
-    , -n ,   1   ,   1   ,  10   ,   6   , , , -i  ,  1  ,  1  ,  1  ,  6  , -s  ,0,1, 3   ,    ,    ,    ,        test.1.1.NEW
+    , -n ,   1   ,   1   ,  10   ,   6   , , , -i  ,  1  ,  1  ,  1  ,  6  , -s  ,0,1, 3   ,    ,    ,    ,        test.2.1.NEW
 tnik,  i ,   X   ,   Y   ,   W   ,   H   ,x,y,AnchX,AnchY,CntWd,CntHt,Ascnt,Dscnt,As+Ds,a,v,FnSz,Lead,LnSp,TablText, ForegroundColor , BackgroundColor ,B,I,S,M,W,w,FontName
 Page,   1, 480.00, 270.00, 960.00, 540.00,C,C,  480,  270,0.000,0.000,  442,  118,  560,C,C, 420,   0,None,        ,[128  63 255 255],[ 40  20  81 105],0,0,0,0,1,c,Lucida Console       
 Line,   1, 480.00, 270.00, 960.00, 540.00,C,C,  480,  270,0.000,0.000,  393,  105,  498,C,C, 373,   0,None,        ,[255  31 255 165],[ 81  10  81  75],0,0,0,0,1,c,Lucida Console       

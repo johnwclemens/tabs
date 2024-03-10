@@ -1,4 +1,3 @@
-from collections import Counter
 from tpkg import utl
 from tpkg import unic
 #from tpkg import strngs
@@ -244,18 +243,20 @@ def fPyth(a=7, b=6, csv=0):
 
 def r2cents(r): return Notes.NTONES * 100 * math.log2(r)
     
-def testStacks():
-    k5is, k5fs = test5ths(700, -1)
-    k4is, k4fs = test4ths(700, -1)
-    for k in k5is.keys():
-        if k in k4is and k4is[k][0] > 0:
-            slog(f'{k:4} ERROR Duplicated Key {k5is[k][0]} {fmtl(k5is[k][1], w="10.5f")} {k4is[k][0]} {fmtl(k4is[k][1], "10.5f")}') # {k5fs[float(round(k))]=}') # {k4fs[float(round(k))]=}
-#        if k in k5is and k5is[k][0] > 1: slog(f'{k:4} ERROR k5 Count > 1 {k5is[k]=}')
-#    for k in k4is.keys():
-#        if k in k4is and k4is[k][0] > 1: slog(f'{k:4} ERROR k4 Count > 1 {k4is[k]=}')
-
+def testStacks(n=100):
+    i5s, f5s = test5ths(n, -1)  ;   w = '10.5f'
+    i4s, f4s = test4ths(n, -1)
+    for i, k in enumerate(i5s.keys()):
+        if k in i4s and i4s[k][0] > 0:
+            slog(  f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)} also in 4ths={i4s[k][0]} {fmtl(i4s[k][1], w=w)}')
+        else: slog(f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)}')
+    for i, k in enumerate(i4s.keys()):
+        if k in i5s and i5s[k][0] > 0:
+            slog(  f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)} also in 5ths={i5s[k][0]} {fmtl(i5s[k][1], w=w)}')
+        else: slog(f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)}')
+        
 def test5ths(n, i, dbg=0):
-    mi, mf = {}, {}
+    mi, mf = {}, {}   ;   w = '10.5f'
     for m in range(1, n+1):
         s5s       = stck5ths(m)
         a, b, c   = s5s[i]
@@ -263,19 +264,18 @@ def test5ths(n, i, dbg=0):
         pa, pb    = a**ca, b**cb   ;   p = pa/pb
         cents     = r2cents(p)
         kf, ki    = cents, int(round(cents))
-        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=".9f")=} {kf=:.9f}')
+        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
         if ki not in mi:  mi[ki] = [1, [kf]] 
         else:             mi[ki][0] += 1   ;   mi[ki][1].append(kf)
         mf[kf]    = 1 if kf not in mf else mf[kf] + 1
-#        if mi[ki][0] > 1: slog(f'ERROR {ki=} {mi[ki]=} {kf=} {mf[kf]=}')
         if dbg: slog(f'{m} {fmtl(s5s)}', p=0)
         if dbg: slog(f'abc = {m} 5ths = [{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
-    ks = list(mi.keys())   ;   ks = sorted(ks, key= lambda x: int(x))
-    slog(f'{fmtl(ks, w=4)}', p=0)
+    ks = list(mi.keys())                     ;   slog(f'5ths {fmtl(ks, w=4)}', p=0)
+    ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
     return mi, mf
 
 def test4ths(n, i, dbg=0):
-    mi, mf = {}, {}
+    mi, mf = {}, {}   ;   w = '10.5f'
     for m in range(1, n+1):
         s4s       = stck4ths(m)
         a, b, c   = s4s[i]
@@ -283,78 +283,15 @@ def test4ths(n, i, dbg=0):
         pa, pb    = a**ca, b**cb   ;   p = pa/pb
         cents     = r2cents(p)
         kf, ki    = cents, int(round(cents))
-        if ki in mi:    slog(f'{ki=} {mi[ki]=} {kf=}')
+        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
         if ki not in mi:  mi[ki] = [1, [kf]] 
         else:             mi[ki][0] += 1   ;   mi[ki][1].append(kf)
         mf[kf]    = 1 if kf not in mf else mf[kf] + 1
-#        if mi[ki][0] > 1:    slog(f'ERROR {ki=} {mi[ki]=} {kf=} {mf[kf]=}')
         if dbg: slog(f'{m} {fmtl(s4s)}', p=0)
         if dbg: slog(f'abc = {m} 4ths = [{i}] = {fmtl(s4s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
-    ks = list(mi.keys())   ;   ks = sorted(ks, key= lambda x: int(x))
-    slog(f'{fmtl(ks, w=4)}', p=0)
+    ks = list(mi.keys())                     ;   slog(f'4ths {fmtl(ks, w=4)}', p=0)
+    ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
     return mi, mf
-
-def OLD__test4ths(n, i, dbg=0):
-    cmap = Counter()
-    for m in range(1, n+1):
-        s4s       = stck4ths(m)
-        a, b, c   = s4s[i]
-        r, ca, cb = abc2r(a, b, c)
-        pa, pb    = a**ca, b**cb   ;   p = pa/pb
-        cents     = r2cents(p)
-        k         = str(int(round(cents)))
-        cmap[k]  += 1
-        if dbg: slog(f'{m} {fmtl(s4s)}', p=0)
-        if dbg: slog(f'abc = {m} 4ths = [{i}] = {fmtl(s4s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
-    ks = list(cmap.keys())   ;   ks = sorted(ks, key= lambda x: int(x))
-    slog(f'{fmtl(ks, w=4)}', p=0)
-    return cmap
-
-def OLD_pythEpsln(): # 3**13 / 2**20 = 3¹³/2²⁰ = 1594323 / 1048576 = 1.5204648971557617
-    n, i      = 13, -1
-    s5s       = stck5ths(n)
-    a, b, c   = s5s[i]
-    r, ca, cb = abc2r(a, b, c)
-    slog(f'{n} {fmtl(s5s)}')
-    slog(f'abc = {n} 5ths = [{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=}')
-    assert [a, b, c] == [3, 2, n],  f'{a=} {b=} {c=} {[3, 2, n]}'
-    return [a, ca, b, cb]
-    
-def NEW_1_pythEpsln(): # 3**13 / 2**20 = 3¹³/2²⁰ = 1594323 / 1048576 = 1.5204648971557617 ## 1.0011298906275259 0.0016291673878230113
-    n, i      = 1, -1
-    s5s       = stck5ths(n)
-    a, b, c   = s5s[i]
-    r, ca, cb = abc2r(a, b, c)
-    slog(f'{n} {fmtl(s5s)}')
-    slog(f'abc = {n} 5ths = [{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=}')
-    assert [a, b, c] == [3, 2, n],  f'{a=} {b=} {c=} {[3, 2, n]}'
-    cents = r2cents(r) - 100 * Notes.V2I['5'] # 7 * 100
-    r2    = 2**(cents/1200)
-    slog(f'{r2=} {cents=} {100*Notes.V2I["5"]=}')
-    return [a, ca, b, cb]
-    
-def pythEpsln(): # 3**13 / 2**20 = 3¹³/2²⁰ = 1594323 / 1048576 = 1.5204648971557617 ## 1.0011298906275259 0.0016291673878230113
-    n, i      = 1, -1
-    s5s       = stck5ths(n)
-    a, b, c   = s5s[i]
-    r, ca, cb = abc2r(a, b, c)
-    slog(f'{n} {fmtl(s5s)}')
-    slog(f'abc = {n} 5ths = [{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=}')
-    assert [a, b, c] == [3, 2, n],  f'{a=} {b=} {c=} {[3, 2, n]}'
-    cents = r2cents(r) - 100 * Notes.V2I['5'] # 7 * 100
-    r2    = 2**(cents/1200)
-    slog(f'{r2=} {cents=} {100*Notes.V2I["5"]=}')
-    return [a, ca, b, cb]
-    
-def pythComma(): # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078
-    n, i      = 12, -1
-    s5s       = stck5ths(n)
-    a, b, c   = s5s[i]
-    r, ca, cb = abc2r(a, b, c)
-    slog(f'{n} {fmtl(s5s)}')
-    slog(f'abc = {n} 5ths = [{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=}')
-    assert [a, b, c] == [3, 2, n],  f'{a=} {b=} {c=} {[3, 2, n]}'
-    return [a, ca, b, cb]
 
 PythMap1 = {} # note index to freq ratio
 PythMap2 = {} # freq ratio in cents to count
@@ -513,21 +450,36 @@ def dmpPythMap1(ni, csv=0):
         elif ni == 4: slog(f'{pdf} {exusf}', p=0, f=ff)
         elif ni == 5: slog(f'{pdf} {cntsf}', p=0, f=ff)
     if not csv:  dmpDataTableLine()   ;   slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 5 else None
+
+def pythEpsln(): # 3**13 / 2**20 = 3¹³/2²⁰ = 1594323 / 1048576 = 1.5204648971557617 ## 1.0011298906275259 0.0016291673878230113
+    n, i, iv  = 1, -1, '5'
+    s5s       = stck5ths(n)
+    a, b, c   = s5s[i]
+    r, ca, cb = abc2r(a, b, c)
+    slog(f'{n} 5ths, s5s     = {fmtl(s5s)}')
+    slog(f'{n} 5ths, s5s[{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=}')
+    assert [a, b, c] == [3, 2, n],  f'{a=} {b=} {c=} {[3, 2, n]}'
+    return [a, ca, b, cb]
+    
+def pythComma(): # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
+    n, i, iv   = 12, -1, '5'
+    s5s       = stck5ths(n)
+    a, b, c   = s5s[i]
+    r, ca, cb = abc2r(a, b, c)
+    slog(f'{n} 5ths, s5s     = {fmtl(s5s)}')
+    slog(f'{n} 5ths, s5s[{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=:10.8}')
+    assert [a, b, c] == [3, 2, n],  f'{a=} {b=} {c=} {[3, 2, n]}'
+    return [a, ca, b, cb]
 ########################################################################################################################################################################################################
 def dmpPythMap2(csv=0):
     ww, uu, mm, ff  = ('^7', '^7.2f', Y, 3) if csv else ('^7', '^7.2f', W, 1)
     nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
     a, ca, b,cb  = pythComma()
     pa, pb       = a ** ca, b ** cb     ;     rComma = pa / pb
-    cents        = r2cents(rComma)
+    ccents       = r2cents(rComma)
     q            = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
-    slog(f'Comma {rComma:6.4f} = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cents:6.4f} cents', p=0, f=ff)
-    a, ca, b, cb = pythEpsln()
-    pa, pb       = a ** ca, b ** cb     ;     rEpsln = pa / pb
-    cents        = r2cents(rEpsln)
-    q            = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
-    slog(f'Epsln {rEpsln:6.4f} = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cents:6.4f} cents', p=0, f=ff)    
-#    epslnR = pythEpsln()    ;    epslnC = r2cents(epslnR) - 700   ;   epslnP = epslnR
+    slog(f'Comma = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {rComma:10.8f} = {ccents:10.5f} cents', f=ff)
+    ecents       = ccents/12  ;  slog(f'Epsilon = Comma / 12 = {ccents:10.5f} / 12 = {ecents:10.5f} cents', f=ff)
     ii, cs, ds, j2s, us, vs = [], [], [], [], [], []   ;   j2 = 0
     ks           = sorted(PythMap2.keys())
     for i, k in enumerate(ks):
