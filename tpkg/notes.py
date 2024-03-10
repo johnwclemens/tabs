@@ -246,7 +246,7 @@ PythMap1 = {} # note index to freq ratio
 PythMap2 = {} # freq ratio in cents to count
 ########################################################################################################################################################################################################
 def r2cents(r):      return Notes.NTONES * 100 * math.log2(r)
-
+def cents2r(c):      return 2 ** (c/(100*Notes.NTONES))
 def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
 def stck4ths(n):     return [ stackI(2, 3, i) for i in range(1, n+1) ]
 def stackI(a, b, c): return [ a, b, c ]
@@ -421,7 +421,7 @@ def k2fPyths(k=50, c=0, f=fPyth):
 #                                            else fPyth(8, 5, c) if k==55 else fPyth(9, 4, c) if k==60 else fPyth(10, 3, c) if k==53 else fPyth(11, 2, c) if k==58 else fPyth(12, 1, c) if k==51 else fPyth(13, 0, c)
 ########################################################################################################################################################################################################
 def f2nPair(f, rf=440, b=None, s=0, e=0):
-    ni = Notes.NTONES * math.log2(f / rf)
+    ni = Notes.NTONES * math.log2(f / rf) # fixme
     i  = round(A4_INDEX + ni)
     return i2nPair(i, b, s, e)
     
@@ -441,7 +441,6 @@ def dmpDataTableLine(): slog(f' ' * 6 + f'-' * 14 * 13 + f'-', p=0)
 def dmpPythMap1(ni, csv=0):
     x, y = 13, 6   ;   ww, mm, nn, oo, dd, ff = (Z, Y, Y, Y, '[', 3) if csv else (f'^{x}', W, Z, '|', Z, 1)   ;   uu = f'^{x}'
     ii = [ f'{i}' for i in range(Notes.NTONES + 1) ]   ;   slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 1 else None
-#    ck = sorted(PythMap2.keys())
     dmpDataTableLine() if not csv and ni == 1 else None
     for i, (k, v) in enumerate(PythMap1.items()):
         n, n2   = i2nPair(k, b=0 if k in (54, 56, 61) else 1, s=1)
@@ -471,7 +470,7 @@ def dmpPythMap1(ni, csv=0):
     if not csv:  dmpDataTableLine()   ;   slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 5 else None
 ########################################################################################################################################################################################################
 def checkPythIvals(i, j, ks, cs, ds):
-    nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
+    i4v, i6v = Notes.I4V, Notes.I6V
     eps = pythEpsln()
     if i == 0:   slog(f' j j*100 i     c       k        d       e       c`     c       k        d       e       c`')
     if j in i4v:
@@ -483,32 +482,29 @@ def checkPythIvals(i, j, ks, cs, ds):
             assert cs[i+m] * round(eps, 3) + j*100 == round(ks[i], 3),  f'{cs[i+m]:2} * {round(eps, 3):5.3} + 100*{j:2} == {round(ks[i], 3):8.3f}'
 ########################################################################################################################################################################################################
 def dmpPythMap2(csv=0):
-    ww, uu, mm, ff  = ('^7', '^7.2f', Y, 3) if csv else ('^7', '^7.2f', W, 1)
-    nt, i4v, i6v = Notes.NTONES, Notes.I4V, Notes.I6V
-    ii, cs, ds, j2s, us, vs, ws = [], [], [], [], [], [], []   ;   j2 = 0
-    ks           = sorted(PythMap2.keys())
-    for i, k in enumerate(ks):
+    mm, ff      = (Y, 3) if csv else (W, 1)
+    ww, uu, vv  = '^7', '^7.2f', '^7.5f'
+    i4v, i6v    = Notes.I4V, Notes.I6V
+    ii, j2s, ws = [], [], []  ;  j2 = 0   ;   cs, ds = [], []  ;   rs, ps, qs, ss = [], [], [], []
+    ks          = sorted(PythMap2.keys())
+    for i, ck in enumerate(ks):
         j = i % 2
         if j: j2 = math.floor(i/2) + 1
-#        if j2 in i4v:        u = i4v[j2]    ;   v = i6v[j2]   ;   us.append(u)   ;   vs.append(v)
         j2s.append(j2)
-        c = PythMap2[k]
-        d = k2dCent(k) if i != 0 else 0.0
-        ii.append(i)
-        cs.append(c)
-        ds.append(d)
+        c = PythMap2[ck]
+        d = k2dCent(ck) if i != 0 else 0.0
+        ii.append(i)  ;  cs.append(c)  ;  ds.append(d)
         checkPythIvals(i, j2, ks, cs, ds)
-#        ival = i6v[i] if i % 2 and i < len(i6v) else i4v[i] if i < len(i4v) else 'P2'
         ival = i6v[j2] if i % 2 and j2 < len(i6v) else i4v[j2] if j2 < len(i4v) else 'P2'
-#        ival = vs[j2] if j2 % 2 and j2 < len(vs) else us[j2] if j2 < len(us) else 'P2'
-        ws.append(ival) # if i % 2 else None
+        ws.append(ival)
+        r = cents2r(ck)
+        rs.append(r)
     slog(f'Index {fmtl(ii,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f' J2s  {fmtl(j2s, w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'Intrv {fmtl(ws,  w=ww, s=mm, d=Z)}', p=0, f=ff)
-#    slog(f'Intrv {fmtl(us,  w=ww, s=mm, d=Z)}', p=0, f=ff)
-#    slog(f'Intr2 {fmtl(vs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'Cents {fmtl(ks,  w=uu, s=mm, d=Z)}', p=0, f=ff)
     slog(f'dCent {fmtl(ds,  w=uu, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'Ratio {fmtl(rs,  w=vv, s=mm, d=Z)}', p=0, f=ff)
     slog(f'Count {fmtl(cs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
 ########################################################################################################################################################################################################
 '''        
