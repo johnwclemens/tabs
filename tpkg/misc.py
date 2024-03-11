@@ -44,8 +44,8 @@ class Modes:
 # Y:
 # Z:
 
-# Pythagorean Interval Name -> ratio or cents
-# Pythagorean Map2? table
+# Pythagorean Interval Name -> ratio or cents?   abcs -> data map1   cents -> data map2 
+# PythMap2 issues with Notes consider counts
 
 # pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent')
 # source = pyglet.media.load('explosion.wav')
