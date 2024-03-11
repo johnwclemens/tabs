@@ -244,6 +244,7 @@ FOTSs  = [ fOTS(i)  for i in range(1, 33) ]
 ########################################################################################################################################################################################################
 PythMap1 = {} # note index to freq ratio
 PythMap2 = {} # freq ratio in cents to count
+PM2KEYS = ['ABCs', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Intrv', 'Note', 'Wavlen' ]
 ########################################################################################################################################################################################################
 def r2cents(r):      return Notes.NTONES * 100 * math.log2(r)
 def cents2r(c):      return 2 ** (c/(100*Notes.NTONES))
@@ -437,6 +438,10 @@ def k2dCent(k):
 #        return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
 
 def dmpDataTableLine(): slog(f' ' * 6 + f'-' * 14 * 13 + f'-', p=0)
+def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
+def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
+def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>}/{qb:<}'
+def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>}/{sb:<}' 
 ########################################################################################################################################################################################################
 def dmpPythMap1(ni, csv=0):
     x, y = 13, 6   ;   ww, mm, nn, oo, dd, ff = (Z, Y, Y, Y, '[', 3) if csv else (f'^{x}', W, Z, '|', Z, 1)   ;   uu = f'^{x}'
@@ -444,7 +449,7 @@ def dmpPythMap1(ni, csv=0):
     dmpDataTableLine() if not csv and ni == 1 else None
     for i, (k, v) in enumerate(PythMap1.items()):
         n, n2   = i2nPair(k, b=0 if k in (54, 56, 61) else 1, s=1)
-        rats, qots, exps, exus, cnts = [], [], [], [], []
+        rats, qots, exps, exus, cents = [], [], [], [], []
         pd = [f'{i:2}', f'{k:2}', f'{n:2}']   ;   pdf = mm.join(pd) 
         for e in v:
             a, ca, b, cb = e
@@ -453,20 +458,22 @@ def dmpPythMap1(ni, csv=0):
             qot  = f'{pa:{y}}/{pb:<{y}}'
             expA = f'{a}^{ca}'         ;   expB = f'{b}^{cb}'         ;   exp = f'{expA:>{y}}/{expB:<{y}}'
             exuA = f'{a}{i2spr(ca)}'   ;   exuB = f'{b}{i2spr(cb)}'   ;   exu = f'{exuA:>{y}}/{exuB:<{y}}'
-            cnt  = r2cents(pa/pb)
-            if not csv and ni == 5:    PythMap2[cnt] = PythMap2[cnt] + 1 if cnt in PythMap2.keys() else 1
-            cnt  = f'{cnt:{uu}.0f}'
-            rats.append(rat)   ;   qots.append(qot)   ;   exps.append(exp)   ;   exus.append(exu)   ;   cnts.append(cnt)
-        ratsf = Z.join(fmtl(rats, w=ww, s=oo, d=dd))
-        qotsf = Z.join(fmtl(qots, w=ww, s=oo, d=dd))
-        expsf = Z.join(fmtl(exps, w=ww, s=oo, d=dd))
-        exusf = Z.join(fmtl(exus, w=ww, s=oo, d=dd))
-        cntsf = Z.join(fmtl(cnts, w=ww, s=oo, d=dd))
-        if   ni == 1: slog(f'{pdf} {ratsf}', p=0, f=ff)
-        elif ni == 2: slog(f'{pdf} {qotsf}', p=0, f=ff)
-        elif ni == 3: slog(f'{pdf} {expsf}', p=0, f=ff)
-        elif ni == 4: slog(f'{pdf} {exusf}', p=0, f=ff)
-        elif ni == 5: slog(f'{pdf} {cntsf}', p=0, f=ff)
+            cent  = r2cents(pa/pb)
+            if not csv and ni == 5:
+                if cent in PythMap2.keys():  PythMap2[cent]['Count'] = PythMap2[cent]['Count'] + 1 if 'Count' in PythMap2[cent] else 1
+                else:                        PythMap2[cent] = {'Count': 1, 'Cents': cent, 'Note': n, 'ABCs': e} 
+            cent  = f'{cent:{uu}.0f}'
+            rats.append(rat)   ;   qots.append(qot)   ;   exps.append(exp)   ;   exus.append(exu)   ;   cents.append(cent)
+        ratsf  = Z.join(fmtl(rats,  w=ww, s=oo, d=dd))
+        qotsf  = Z.join(fmtl(qots,  w=ww, s=oo, d=dd))
+        expsf  = Z.join(fmtl(exps,  w=ww, s=oo, d=dd))
+        exusf  = Z.join(fmtl(exus,  w=ww, s=oo, d=dd))
+        centsf = Z.join(fmtl(cents, w=ww, s=oo, d=dd))
+        if   ni == 1: slog(f'{pdf} {ratsf}',  p=0, f=ff)
+        elif ni == 2: slog(f'{pdf} {qotsf}',  p=0, f=ff)
+        elif ni == 3: slog(f'{pdf} {expsf}',  p=0, f=ff)
+        elif ni == 4: slog(f'{pdf} {exusf}',  p=0, f=ff)
+        elif ni == 5: slog(f'{pdf} {centsf}', p=0, f=ff)
     if not csv:  dmpDataTableLine()   ;   slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 5 else None
 ########################################################################################################################################################################################################
 def checkPythIvals(i, j, ks, cs, ds):
@@ -483,28 +490,34 @@ def checkPythIvals(i, j, ks, cs, ds):
 ########################################################################################################################################################################################################
 def dmpPythMap2(csv=0):
     mm, ff      = (Y, 3) if csv else (W, 1)
-    ww, uu, vv  = '^7', '^7.2f', '^7.5f'
+    ww, uu, vv  = '^13', '^13.2f', '^13.7f'
     i4v, i6v    = Notes.I4V, Notes.I6V
-    ii, j2s, ws = [], [], []  ;  j2 = 0   ;   cs, ds = [], []  ;   rs, ps, qs, ss = [], [], [], []
-    ks          = sorted(PythMap2.keys())
-    for i, ck in enumerate(ks):
+    ii, j2s, ws = [], [], []  ;  j2 = 0   ;   cs, ds = [], []  ;   r0s, r1s, r2s, r3s = [], [], [], []
+    cks          = sorted(PythMap2.keys())
+    for i, ck in enumerate(cks):
         j = i % 2
         if j: j2 = math.floor(i/2) + 1
         j2s.append(j2)
-        c = PythMap2[ck]
+        c = PythMap2[ck]['Count']
         d = k2dCent(ck) if i != 0 else 0.0
         ii.append(i)  ;  cs.append(c)  ;  ds.append(d)
-        checkPythIvals(i, j2, ks, cs, ds)
+        checkPythIvals(i, j2, cks, cs, ds)
         ival = i6v[j2] if i % 2 and j2 < len(i6v) else i4v[j2] if j2 < len(i4v) else 'P2'
         ws.append(ival)
-        r = cents2r(ck)
-        rs.append(r)
+        a, ca, b, cb = PythMap2[ck]['ABCs']
+        r0s.append(fmtR0(a, ca, b, cb, vv))
+        r1s.append(fmtR1(a, ca, b, cb, ww))
+        r2s.append(fmtR2(a, ca, b, cb, ww))
+        r3s.append(fmtR3(a, ca, b, cb, ww))
     slog(f'Index {fmtl(ii,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f' J2s  {fmtl(j2s, w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'Intrv {fmtl(ws,  w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'Cents {fmtl(ks,  w=uu, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'Cents {fmtl(cks, w=uu, s=mm, d=Z)}', p=0, f=ff)
     slog(f'dCent {fmtl(ds,  w=uu, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'Ratio {fmtl(rs,  w=vv, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'Rati0 {fmtl(r0s, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'Rati1 {fmtl(r1s, w=ww,  s=mm, d=Z)}', p=0, f=ff)
+    slog(f'Rati2 {fmtl(r2s, w=ww,  s=mm, d=Z)}', p=0, f=ff)
+    slog(f'Rati3 {fmtl(r3s, w=ww,  s=mm, d=Z)}', p=0, f=ff)
     slog(f'Count {fmtl(cs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
 ########################################################################################################################################################################################################
 '''        
