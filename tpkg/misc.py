@@ -61,8 +61,8 @@ class Modes:
 # D) fix BACKSPACE - pass motion value as seperate arg to SetTabCmd
 # E) how to sort cmds.py classes - alphabetically?
 # F) load more fonts into res/fonts dir (.ttf files)
-# G) fix - Access to a protected member _reinit of a class - tobj._reinit()
-# H) move on_resize() from tabs.py to evnts.py - super.resize
+# G) fix - Access to a protected member _reinit of a class - tobj._reinit()  _DONE
+# H) move on_resize() from tabs.py to evnts.py - super.resize  _DONE
 # I) cleanup use of negative j values and abs(j) hack
 # J) something fishy with x value in createZZs/resizeZZs()
 # K) add 1 vs create 2 - how many zclms?  add can share 1 zclm
