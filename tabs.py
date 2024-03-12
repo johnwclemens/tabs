@@ -12,6 +12,7 @@ from   tpkg            import utl
 from   tpkg            import kysgs
 from   tpkg            import misc
 from   tpkg            import evnts
+from   tpkg            import intrvls 
 from   tpkg            import notes
 from   tpkg.notes      import Notes
 from   tpkg.strngs     import Strngs
@@ -2146,7 +2147,8 @@ if TXT_PATH.exists():    utl.copyFile(TXT_PATH, TXT_PATH2, f=0)
 with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH), 'w', encoding='utf-8') as CSV_FILE, open(str(TXT_PATH), 'w', encoding='utf-8') as TXT_FILE, open(str(EVN_PATH), 'w', encoding='utf-8') as EVN_FILE: # order?
     _    = -3
     ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=_)
-    notes.dumpData()   ;   notes.dumpData(csv=1)
+    notes.dumpData()     ;     notes.dumpData(csv=1)
+    intrvls.dumpData()   ;   intrvls.dumpData(csv=1)
     kysgs.init(f=2)
     slog(f'BGN {sys.argv[0]}', p=0,    f=_)
     slog(f'argv={fmtl(sys.argv[1:])}', f=_)
