@@ -20,16 +20,16 @@ NTONES        = Notes.NTONES
 FLATS, SHRPS  = notes.FLATS, notes.SHRPS
 F440s, F432s  = notes.F440s, notes.F432s
 
+def i2spr(i):
+    if i < 0: return '-' + Z.join(SUPERS[int(digit)] for digit in str(i))
+    else:     return       Z.join(SUPERS[int(digit)] for digit in str(i))
+########################################################################################################################################################################################################
 def r2cents(r):      return Notes.NTONES * 100 * math.log2(r)
 def cents2r(c):      return 2 ** (c/(100*Notes.NTONES))
 def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
 def stck4ths(n):     return [ stackI(2, 3, i) for i in range(1, n+1) ]
 def stackI(a, b, c): return [ a, b, c ]
 ########################################################################################################################################################################################################
-def i2spr(i):
-    if i < 0: return '-' + Z.join(SUPERS[int(digit)] for digit in str(i))
-    else:     return       Z.join(SUPERS[int(digit)] for digit in str(i))
-        
 def reduce(n):
     if n > 1:
         while n > 2:
@@ -71,17 +71,17 @@ def i2nPair(i, b=None, s=0, e=0):
         m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
     return n, m
 ########################################################################################################################################################################################################
-def testStacks(n=100):
+def testStacks(n=100, dbg=0):
     i5s, f5s = test5ths(n, -1)  ;   w = '10.5f'
     i4s, f4s = test4ths(n, -1)
     for i, k in enumerate(i5s.keys()):
         if k in i4s and i4s[k][0] > 0:
-            slog(  f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)} also in 4ths={i4s[k][0]} {fmtl(i4s[k][1], w=w)}')
-        else: slog(f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)}')
+            if dbg:    slog(  f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)} also in 4ths={i4s[k][0]} {fmtl(i4s[k][1], w=w)}')
+        else: slog(f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)}') if dbg else None
     for i, k in enumerate(i4s.keys()):
         if k in i5s and i5s[k][0] > 0:
-            slog(  f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)} also in 5ths={i5s[k][0]} {fmtl(i5s[k][1], w=w)}')
-        else: slog(f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)}')
+            if dbg:    slog(  f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)} also in 5ths={i5s[k][0]} {fmtl(i5s[k][1], w=w)}')
+        else: slog(f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)}') if dbg else None
 
 def test5ths(n, i, dbg=0):
     mi, mf = {}, {}   ;   w = '10.5f'
@@ -94,7 +94,7 @@ def test5ths(n, i, dbg=0):
         kf, ki    = cents, int(round(cents))
         if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
         if ki not in mi:  mi[ki] = [1, [kf]] 
-        else:             mi[ki][0] += 1   ;   mi[ki][1].append(kf)
+        else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
         mf[kf]    = 1 if kf not in mf else mf[kf] + 1
         if dbg: slog(f'{m} {fmtl(s5s)}', p=0)
         if dbg: slog(f'abc = {m} 5ths = [{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
@@ -113,7 +113,7 @@ def test4ths(n, i, dbg=0):
         kf, ki    = cents, int(round(cents))
         if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
         if ki not in mi:  mi[ki] = [1, [kf]] 
-        else:             mi[ki][0] += 1   ;   mi[ki][1].append(kf)
+        else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
         mf[kf]    = 1 if kf not in mf else mf[kf] + 1
         if dbg: slog(f'{m} {fmtl(s4s)}', p=0)
         if dbg: slog(f'abc = {m} 4ths = [{i}] = {fmtl(s4s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
@@ -182,11 +182,11 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
     slog(f'END Overtone Series ({rf=} {sss=} {csv=})')
 
 ########################################################################################################################################################################################################
-PythMap1 = {} # note index to freq ratio
-PythMap2 = {} # freq ratio in cents to count
+PythMap1 = {} # note index to ABCs (freq ratios)
+PythMap2 = {} # freq ratio in cents to counts
 PM2KEYS = ['ABCs', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Intrv', 'Note', 'Wavlen']
 ########################################################################################################################################################################################################
-def pythEpsln(dbg=0): # 3**13 / 2**20 = 3¹³/2²⁰ = 1594323 / 1048576 = 1.5204648971557617 ## 1.0011298906275259 0.0016291673878230113
+def pythEpsln(dbg=0):
     ccents = pythComma()
     ecents = ccents / Notes.NTONES
     if dbg:  slog(f'Epsilon = Comma / 12 = {ccents:10.5f} / 12 = {ecents:10.5f} cents')
@@ -282,12 +282,14 @@ def k2fPyths(k=50, c=0, f=fPyth):
 #                                        else f(8, 5, c) if k==55 else f(9, 4, c) if k==60 else f(10, 3, c) if k==53 else f(11, 2, c) if k==58 else f(12, 1, c) if k==51 else f(13, 0, c)
 ########################################################################################################################################################################################################
 def k2dCent(k):
-        return k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200
-#        return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
-
+    return k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200
+#       return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
+########################################################################################################################################################################################################
 def dmpDataTableLine(): slog(f' ' * 6 + f'-' * 14 * 13 + f'-', p=0)
 def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
-def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
+#def fmtR1(a, ca, b, cb, w):  pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
+def fmtRA(a, ca, w):          pa     =   a ** ca                             ;  return f'{pa:{w}}'
+def fmtRB(b, cb, w):          pb     =   b ** cb                             ;  return f'{pb:{w}}'
 def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>}/{qb:<}'
 def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>}/{sb:<}' 
 ########################################################################################################################################################################################################
@@ -340,10 +342,11 @@ def checkPythIvals(i, j, ks, cs, ds):
             assert cs[i+m] * round(eps, 3) + j*100 == round(ks[i], 3),  f'{cs[i+m]:2} * {round(eps, 3):5.3} + 100*{j:2} == {round(ks[i], 3):8.3f} {i=} {m=} {j=}'
 ########################################################################################################################################################################################################
 def dmpPythMap2(csv=0):
-    mm, ff      = (Y, 3) if csv else (W, 1)
-    ww, uu, vv  = '^13', '^13.2f', '^13.7f'
-    i4v, i6v    = Notes.I4V, Notes.I6V
-    ii, j2s, ns, ws = [], [], [], []  ;  j2 = 0   ;   cs, ds = [], []  ;   r0s, r1s, r2s, r3s = [], [], [], []
+    mm, ff       = (Y, 3) if csv else (W, 1)
+    ww, uu, vv   = '^6', '^6.2f', '^6.4f'   ;   xx = '^6.1f'
+#    ww, uu, vv   = '^13', '^13.2f', '^13.7f'
+    i4v, i6v     = Notes.I4V, Notes.I6V
+    ii, j2s, ns, ws = [], [], [], []  ;  j2 = 0   ;   cs, ds = [], []  ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []
     cks          = sorted(PythMap2.keys())
     for i, ck in enumerate(cks):
         j = i % 2
@@ -358,18 +361,23 @@ def dmpPythMap2(csv=0):
         ws.append(ival)
         a, ca, b, cb = PythMap2[ck]['ABCs']
         r0s.append(fmtR0(a, ca, b, cb, vv))
-        r1s.append(fmtR1(a, ca, b, cb, ww))
+        rAs.append(fmtRA(a, ca, ww))
+        rBs.append(fmtRB(b, cb, ww))
+#        r1s.append(fmtR1(a, ca, b, cb, ww))
         r2s.append(fmtR2(a, ca, b, cb, ww))
         r3s.append(fmtR3(a, ca, b, cb, ww))
     slog(f'Index {fmtl(ii,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f' J2s  {fmtl(j2s, w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'Intrv {fmtl(ws,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'Note  {fmtl(ns,  w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'Cents {fmtl(cks, w=uu, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'Cents {fmtl(cks, w=xx, s=mm, d=Z)}', p=0, f=ff)
     slog(f'dCent {fmtl(ds,  w=uu, s=mm, d=Z)}', p=0, f=ff)
     slog(f'Rati0 {fmtl(r0s, w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'Rati1 {fmtl(r1s, w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'Rati2 {fmtl(r2s, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'Rat1A {fmtl(rAs, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    dmpDataTableLine()
+    slog(f'Rat1B {fmtl(rBs, w=ww, s=mm, d=Z)}', p=0, f=ff)
+#    slog(f'Rati1 {fmtl(r1s, w=ww, s=mm, d=Z)}', p=0, f=ff)
+#    slog(f'Rati2 {fmtl(r2s, w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'Rati3 {fmtl(r3s, w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'Count {fmtl(cs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
 ########################################################################################################################################################################################################
