@@ -24,8 +24,9 @@ def i2spr(i):
     if i < 0: return '-' + Z.join(SUPERS[int(digit)] for digit in str(i))
     else:     return       Z.join(SUPERS[int(digit)] for digit in str(i))
 ########################################################################################################################################################################################################
+def ir(n):           return int(round(n))
 def r2cents(r):      return math.log2(r) * NT * 100
-def cents2r(c):      return 2 ** (c/(100 * NT))
+def cents2r(c):      return 2 ** (c/(100 * NT)) # N/A
 def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
 def stck4ths(n):     return [ stackI(2, 3, i) for i in range(1, n+1) ]
 def stackI(a, b, c): return [ a, b, c ]
@@ -91,7 +92,7 @@ def test5ths(n, i, dbg=0):
         r, ca, cb = abc2r(a, b, c)
         pa, pb    = a**ca, b**cb   ;   p = pa/pb
         cents     = r2cents(p)
-        kf, ki    = cents, int(round(cents))
+        kf, ki    = cents, ir(cents)
         if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
         if ki not in mi:  mi[ki] = [1, [kf]] 
         else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
@@ -110,7 +111,7 @@ def test4ths(n, i, dbg=0):
         r, ca, cb = abc2r(a, b, c)
         pa, pb    = a**ca, b**cb   ;   p = pa/pb
         cents     = r2cents(p)
-        kf, ki    = cents, int(round(cents))
+        kf, ki    = cents, ir(cents)
         if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
         if ki not in mi:  mi[ki] = [1, [kf]] 
         else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
@@ -179,9 +180,9 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
 
 ########################################################################################################################################################################################################
 PythMap1 = {} # note index to ABCs (freq ratios)
-PythMap2 = {} # freq ratio in cents to counts
 CENTKEYS = [   0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996, 1020, 1086, 1110, 1200 ]
-#          ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P2' ]
+#          ['P1', 'm2'c, 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P2' ]
+PythMap2 = { e:{'Count': 0} for e in CENTKEYS } # freq ratio in cents to counts
 PM2KEYS = ['ABCs', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Intrv', 'Note', 'Wavlen']
 ########################################################################################################################################################################################################
 def pythEpsln(dbg=0):
@@ -281,7 +282,7 @@ def k2fPyths(k=50, c=0, f=fPyth):
 #                                        else f(8, 5, c) if k==55 else f(9, 4, c) if k==60 else f(10, 3, c) if k==53 else f(11, 2, c) if k==58 else f(12, 1, c) if k==51 else f(13, 0, c)
 ########################################################################################################################################################################################################
 def k2dCent(k):
-    return k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200
+    return k if 0 <= k < 50 else k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150 <= k <= 1200 else None
 #       return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
 ########################################################################################################################################################################################################
 def dmpDataTableLine(w=20): slog(f' ' * 6 + f'-' * w * 13 + f'-', p=0) # 14 or 20
@@ -301,10 +302,10 @@ def dmpPythMaps(csv):
 def dmpPythMap1(ni, x=19, csv=0): # 13 or 19
     if x==13:  y, z = 6, 5
     else:      y, z = 6, 5
-    uu = f'^{x}'      ;   ww, mm, nn, oo, dd, ff = (Z, Y, Y, Y, '[', 3) if csv else (f'^{x}', W, Z, '|', Z, 1)
+    uu = f'^{x}'      ;   ww, mm, nn, oo, dd, ff = (Z, Y, Y, Y, '[', 3) if csv else (f'^{x}', W, Z, '|', Z, 1)   ;   pdf = []
     ii = [ f'{i}' for i in range(NT + 1) ]   ;   slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 1 else None
     dmpDataTableLine(x + 1) if not csv and ni == 1 else None
-    global PythMap2   ;   PythMap2 = {}  ;   pdf = []
+#    global PythMap2   ;   PythMap2 = {}
     for i, (k, v) in enumerate(PythMap1.items()):
         rats, qots, exps, exus, cents = [], [], [], [], []
         for j, e in enumerate(v):
@@ -314,14 +315,14 @@ def dmpPythMap1(ni, x=19, csv=0): # 13 or 19
             pa, pb = a ** ca, b ** cb
             rat  = f'{float(pa/pb):{uu}.5f}'
             qot  = f'{pa:{y}}/{pb:<{y}}'
-            expA = f'{a}^{ca}'         ;   expB = f'{b}^{cb}'         ;   exp = f'{expA:>{y}}/{expB:<{y}}'
-            exuA = f'{a}{i2spr(ca)}'   ;   exuB = f'{b}{i2spr(cb)}'   ;   exu = f'{exuA:>{y}}/{exuB:<{y}}'
-            cent  = r2cents(pa/pb)
+            expA = f'{a}^{ca}'         ;    expB = f'{b}^{cb}'         ;   exp = f'{expA:>{y}}/{expB:<{y}}'
+            exuA = f'{a}{i2spr(ca)}'   ;    exuB = f'{b}{i2spr(cb)}'   ;   exu = f'{exuA:>{y}}/{exuB:<{y}}'
+            cent = r2cents(pa/pb)      ;   centR = ir(cent)
             if not csv and ni == 5:
                 if cent in PythMap2.keys():
-                    PythMap2[cent]['Count'] = PythMap2[cent]['Count'] + 1 if 'Count' in PythMap2[cent] else 1
-                    PythMap2[cent]['Note']  = n+n2  ;  PythMap2[cent]['ABCs'] = e  ;    PythMap2[cent]['Cents'] = cent
-                else:                         PythMap2[cent] = {'Count': 1, 'Note': n + n2, 'ABCs': e, 'Cents': cent} 
+                    PythMap2[centR]['Count'] =          PythMap2[centR]['Count'] + 1 if 'Count' in PythMap2[centR] else 1
+                    PythMap2[centR]['Note']  = n+n2  ;  PythMap2[centR]['ABCs'] = e       ;        PythMap2[centR]['Cents']  =  cent
+                else:                                   PythMap2[centR]         = {'Count':1, 'Note': n+n2, 'ABCs': e, 'Cents': cent} 
             cent  = f'{cent:{uu}.0f}'
             rats.append(rat)   ;   qots.append(qot)   ;   exps.append(exp)   ;   exus.append(exu)   ;   cents.append(cent)
         ratsf  = Z.join(fmtl(rats,  w=ww, s=oo, d=dd))
@@ -348,6 +349,7 @@ def checkPythIvals(i, j, ks, cs, ds):
 #            assert round(cs[i+m] * eps, 3) == round(ds[i], 3),          f'{cs[i+m]:2} * {eps:5.3f} == {ds[i]:7.3f} {i=} {m=}'
 #            assert cs[i+m] * round(eps, 3) + j*100 == round(ks[i], 3),  f'{cs[i+m]:2} * {round(eps, 3):5.3} + 100*{j:2} == {round(ks[i], 3):8.3f} {i=} {m=} {j=}'
 ########################################################################################################################################################################################################
+def fmtR( n, w):              return f'{n:{w}}'
 def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
 #def fmtR1(a, ca, b, cb, w):  pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
 def fmtRA(a, ca, w):          pa     =   a ** ca                             ;  return f'{pa:{w}}'
@@ -355,14 +357,14 @@ def fmtRB(b, cb, w):          pb     =   b ** cb                             ;  
 def fmtR2(a, ca, b, cb):      qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>}/{qb:<}'
 def fmtR3(a, ca, b, cb):      sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>}/{sb:<}' 
 ########################################################################################################################################################################################################
-def dmpPythMap2(w=9, csv=0): # 6 0r 9
+def OLD__dmpPythMap2(w=9, csv=0): # 6 0r 9
     mm, ff          = (Y, 3) if csv else (W, 1)
     if w==6:      x = 4  ;   y = 10   ;  z = 8   ;  DVDR = DIV_SLSH_6
     else:         x = 5  ;   y = 13   ;  z = 10  ;  DVDR = DIV_SLSH_9
     ww, w1, w2, w3  = f'^{w}', f'^{w}.1f', f'^{w}.2f', f'^{w}.{x}f'
     i4v, i6v        = Notes.I4V, Notes.I6V
     ii, j2s, ns, ws = [], [], [], []  ;  j2 = 0   ;   cs, ds = [], []  ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []
-    cks          = sorted(PythMap2.keys())
+    cks             = sorted(PythMap2.keys())
     for i, ck in enumerate(cks):
         j = i % 2
         if j: j2 = math.floor(i/2) + 1
@@ -381,24 +383,164 @@ def dmpPythMap2(w=9, csv=0): # 6 0r 9
 #        r1s.append(fmtR1(a, ca, b, cb, ww))
         r2s.append(fmtR2(a, ca, b, cb)) if w >= 9 else None
         r3s.append(fmtR3(a, ca, b, cb))
-    cis = [ i for i in range(len(CENTKEYS)) ]
-    slog(f'{y*W}Centi {fmtl(cis, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    ckis = [ i for i in range(len(CENTKEYS)) ]
+    slog(f'{y*W}Centi {fmtl(ckis, w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Centk {fmtl(CENTKEYS, w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Index {fmtl(ii,  w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W} J2s  {fmtl(j2s, w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Intrv {fmtl(ws,  w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Note  {fmtl(ns,  w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Cents {fmtl(cks, w=w1, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}dCent {fmtl(ds,  w=w2, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Rati0 {fmtl(r0s, w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Rat1A {fmtl(rAs, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Index {fmtl(ii,   w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W} J2s  {fmtl(j2s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Intrv {fmtl(ws,   w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Note  {fmtl(ns,   w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Cents {fmtl(cks,  w=w1, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}dCent {fmtl(ds,   w=w2, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Rati0 {fmtl(r0s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Rat1A {fmtl(rAs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}{z*W}{DVDR}',                        p=0, f=ff)
-    slog(f'{y*W}Rat1B {fmtl(rBs, w=ww, s=mm, d=Z)}', p=0, f=ff)
-#   slog(f'{y*W}Rati1 {fmtl(r1s, w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Rati2 {fmtl(r2s, w=ww, s=mm, d=Z)}', p=0, f=ff) if w >= 9 else None
-    slog(f'{y*W}Rati3 {fmtl(r3s, w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Count {fmtl(cs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Rat1B {fmtl(rBs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+#   slog(f'{y*W}Rati1 {fmtl(r1s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Rati2 {fmtl(r2s,  w=ww, s=mm, d=Z)}', p=0, f=ff) if w >= 9 else None
+    slog(f'{y*W}Rati3 {fmtl(r3s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Count {fmtl(cs,   w=ww, s=mm, d=Z)}', p=0, f=ff)
 ########################################################################################################################################################################################################
+def dmpPythMap2(w=9, csv=0): # 6 0r 9
+    mm, ff          = (Y, 3) if csv else (W, 1)
+    if w==6:      x = 4  ;   y = 10   ;  z = 8   ;  DVDR = DIV_SLSH_6
+    else:         x = 5  ;   y = 13   ;  z = 10  ;  DVDR = DIV_SLSH_9
+    ww, w1, w2, w3  = f'^{w}', f'^{w}.1f', f'^{w}.2f', f'^{w}.{x}f'
+    i4v, i6v        = Notes.I4V, Notes.I6V     ;    blank = w*W
+    j2s, ns, ws     = [], [], []  ;  j2 = 0    ;   cs, ds = [], []  ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  ckis, cksf = [], []
+    cks             = sorted(PythMap2.keys())
+    for i, ck in enumerate(CENTKEYS):
+        ckis.append(i)
+        j = i % 2
+        if j:   j2 = math.floor(i/2) + 1
+        j2s.append(j2)
+        ival = i6v[j2] if i % 2 and j2 < len(i6v) else i4v[j2] if j2 < len(i4v) else 'P2'
+        ws.append(ival)
+        if ck in PythMap2 and PythMap2[ck]['Count'] > 0:
+            a, ca, b, cb = PythMap2[ck]['ABCs']
+            r0s.append(fmtR0(a, ca, b, cb, w3))
+            rAs.append(fmtRA(a, ca, ww))
+            rBs.append(fmtRB(b, cb, ww))
+#           r1s.append(fmtR1(a, ca, b, cb, ww)) if ck in PythMap2 and PythMap2[ck]['Count'] > 0 else r1s.append(blank) 
+            r2s.append(fmtR2(a, ca, b, cb)) if w >= 9 else None
+            r3s.append(fmtR3(a, ca, b, cb))
+            n = PythMap2[ck]['Note']
+            c = PythMap2[ck]['Count']
+            f = r2cents(a**ca/b**cb)
+            d = fmtR(k2dCent(f), w2)
+            f = fmtR(f, w1)
+        else:
+            r0s.append(blank)  ;  rAs.append(blank)  ;  rBs.append(blank)  ;  r2s.append(blank)  ;  r3s.append(blank)
+            n, c, f, d = blank, blank, blank, blank
+        ns.append(n)  ;  cs.append(c)  ;  cksf.append(f)  ;  ds.append(d)
+#        checkPythIvals(i, j2, cks, cs, ds)
+    slog(f'{y*W}Centi {fmtl(ckis, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W} J2s  {fmtl(j2s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Count {fmtl(cs,   w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Centk {fmtl(CENTKEYS, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Intrv {fmtl(ws,   w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Note  {fmtl(ns,   w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Cents {fmtl(cksf, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}dCent {fmtl(ds,   w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Rati0 {fmtl(r0s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Rat1A {fmtl(rAs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}{z*W}{DVDR}',                        p=0, f=ff)
+    slog(f'{y*W}Rat1B {fmtl(rBs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+#   slog(f'{y*W}Rati1 {fmtl(r1s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Rati2 {fmtl(r2s,  w=ww, s=mm, d=Z)}', p=0, f=ff) if w >= 9 else None
+    slog(f'{y*W}Rati3 {fmtl(r3s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
+########################################################################################################################################################################################################
+'''
+Centi     0         1         2         3         4         5         6         7         8         9        10        11        12        13        14        15        16        17        18        19        20        21        22        23    
+ J2s      0         1         1         2         2         3         3         4         4         5         5         6         6         7         7         8         8         9         9        10        10        11        11        12    
+Count     1         1                             1         1                             1         1                             1                   1         1                             1         1                             1         1    
+Centk     0        90        114       180       204       294       318       384       408       498       522       588       612       678       702       792       816       882       906       996      1020      1086      1110      1200   
+Intrv    P1        A1        m2        d3        M2        A2        m3        d4        M3        P4        P4        A4        TT        d6        P5        A5        m6        d7        M6        A6        m7        d8        M7        P2    
+Note      D       E♭D♯                            E         F                           G♭F♯        G                           A♭G♯                  A       B♭A♯                            B         C                           D♭C♯        D    
+Cents    0.0      90.2                          203.9     294.1                         407.8     498.0                         611.7               702.0     792.2                         905.9     996.1                        1109.8    1200.0  
+dCent   0.00      -9.78                         3.91      -5.87                         7.82      -1.96                         11.73               1.96      -7.82                         5.87      -3.91                         9.78      0.00   
+Rati0  1.00000   1.05350                       1.12500   1.18519                       1.26562   1.33333                       1.42383             1.50000   1.58025                       1.68750   1.77778                       1.89844   2.00000 
+Rat1A     1        256                            9        32                            81         4                            729                  3        128                           27        16                            243        2    
+          /        ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///        /
+Rat1B     1        243                            8        27                            64         3                            512                  2        81                            16         9                            128        1    
+Rati2  3^0/2^0   2^8/3^5                       3^2/2^3   2^5/3^3                       3^4/2^6   2^2/3^1                       3^6/2^9             3^1/2^1   2^7/3^4                       3^3/2^4   2^4/3^2                       3^5/2^7   2^1/1^1 
+Rati3   3⁰/2⁰     2⁸/3⁵                         3²/2³     2⁵/3³                         3⁴/2⁶     2²/3¹                         3⁶/2⁹               3¹/2¹     2⁷/3⁴                         3³/2⁴     2⁴/3²                         3⁵/2⁷     2¹/1¹  
+
+Centi     0         1         2         3         4         5         6         7         8         9        10        11        12        13        14        15        16        17        18        19        20        21        22        23    
+ J2s      0         1         1         2         2         3         3         4         4         5         5         6         6         7         7         8         8         9         9        10        10        11        11        12    
+Count     3         1                             1         1                             1         1                   1         1                   1         1                             1         1                             1         3    
+Centk     0        90        114       180       204       294       318       384       408       498       522       588       612       678       702       792       816       882       906       996      1020      1086      1110      1200   
+Intrv    P1        A1        m2        d3        M2        A2        m3        d4        M3        P4        P4        A4        TT        d6        P5        A5        m6        d7        M6        A6        m7        d8        M7        P2    
+Note    B♭A♯        B                             C       D♭C♯                            D       E♭D♯                  E       A♭G♯                  F       G♭F♯                            G       A♭G♯                            A       B♭A♯   
+Cents    0.0      90.2                          203.9     294.1                         407.8     498.0               588.3     611.7               702.0     792.2                         905.9     996.1                        1109.8    1200.0  
+dCent   0.00      -9.78                         3.91      -5.87                         7.82      -1.96              -11.73     11.73               1.96      -7.82                         5.87      -3.91                         9.78      0.00   
+Rati0  1.00000   1.05350                       1.12500   1.18519                       1.26562   1.33333             1.40466   1.42383             1.50000   1.58025                       1.68750   1.77778                       1.89844   2.00000 
+Rat1A     1        256                            9        32                            81         4                 1024       729                  3        128                           27        16                            243        2    
+          /        ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///        /
+Rat1B     1        243                            8        27                            64         3                  729       512                  2        81                            16         9                            128        1    
+Rati2  3^0/2^0   2^8/3^5                       3^2/2^3   2^5/3^3                       3^4/2^6   2^2/3^1            2^10/3^6   3^6/2^9             3^1/2^1   2^7/3^4                       3^3/2^4   2^4/3^2                       3^5/2^7   2^1/1^1 
+Rati3   3⁰/2⁰     2⁸/3⁵                         3²/2³     2⁵/3³                         3⁴/2⁶     2²/3¹              2¹⁰/3⁶     3⁶/2⁹               3¹/2¹     2⁷/3⁴                         3³/2⁴     2⁴/3²                         3⁵/2⁷     2¹/1¹  
+
+Centi     0         1         2         3         4         5         6         7         8         9        10        11        12        13        14        15        16        17        18        19        20        21        22        23    
+ J2s      0         1         1         2         2         3         3         4         4         5         5         6         6         7         7         8         8         9         9        10        10        11        11        12    
+Count     6         1                             1         1                             1         1                   1         1                   1         1                             1         1                   1         1         6    
+Centk     0        90        114       180       204       294       318       384       408       498       522       588       612       678       702       792       816       882       906       996      1020      1086      1110      1200   
+Intrv    P1        A1        m2        d3        M2        A2        m3        d4        M3        P4        P4        A4        TT        d6        P5        A5        m6        d7        M6        A6        m7        d8        M7        P2    
+Note    G♭F♯        G                           A♭G♯        A                           B♭A♯        B                   C       A♭G♯                D♭C♯        D                           E♭D♯        E                   F         A       G♭F♯   
+Cents    0.0      90.2                          203.9     294.1                         407.8     498.0               588.3     611.7               702.0     792.2                         905.9     996.1              1086.3    1109.8    1200.0  
+dCent   0.00      -9.78                         3.91      -5.87                         7.82      -1.96              -11.73     11.73               1.96      -7.82                         5.87      -3.91              -13.69     9.78      0.00   
+Rati0  1.00000   1.05350                       1.12500   1.18519                       1.26562   1.33333             1.40466   1.42383             1.50000   1.58025                       1.68750   1.77778             1.87289   1.89844   2.00000 
+Rat1A     1        256                            9        32                            81         4                 1024       729                  3        128                           27        16                 4096       243        2    
+          /        ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///        /
+Rat1B     1        243                            8        27                            64         3                  729       512                  2        81                            16         9                 2187       128        1    
+Rati2  3^0/2^0   2^8/3^5                       3^2/2^3   2^5/3^3                       3^4/2^6   2^2/3^1            2^10/3^6   3^6/2^9             3^1/2^1   2^7/3^4                       3^3/2^4   2^4/3^2            2^12/3^7   3^5/2^7   2^1/1^1 
+Rati3   3⁰/2⁰     2⁸/3⁵                         3²/2³     2⁵/3³                         3⁴/2⁶     2²/3¹              2¹⁰/3⁶     3⁶/2⁹               3¹/2¹     2⁷/3⁴                         3³/2⁴     2⁴/3²              2¹²/3⁷     3⁵/2⁷     2¹/1¹  
+########################################################################################################################################################################################################
+Centi     0         1         2         3         4         5         6         7         8         9        10        11        12        13        14        15        16        17        18        19        20        21        22        23    
+ J2s      0         1         1         2         2         3         3         4         4         5         5         6         6         7         7         8         8         9         9        10        10        11        11        12    
+Count     1         1         0         0         1         1         0         0         1         1         0         0         1         0         1         1         0         0         1         1         0         0         1         1    
+Centk     0        90        114       180       204       294       318       384       408       498       522       588       612       678       702       792       816       882       906       996      1020      1086      1110      1200   
+Intrv    P1        A1        m2        d3        M2        A2        m3        d4        M3        P4        P4        A4        TT        d6        P5        A5        m6        d7        M6        A6        m7        d8        M7        P2    
+Note      D       E♭D♯                            E         F                           G♭F♯        G                           A♭G♯                  A       B♭A♯                            B         C                           D♭C♯        D    
+Cents    0.0      90.0      114.0     180.0     204.0     294.0     318.0     384.0     408.0     498.0     522.0     588.0     612.0     678.0     702.0     792.0     816.0     882.0     906.0     996.0    1020.0    1086.0    1110.0    1200.0  
+dCent -1200.00   -10.00     0.00      0.00      4.00      -6.00     0.00      0.00      8.00      -2.00     0.00      0.00      12.00     0.00      2.00      -8.00     0.00      0.00      6.00      -4.00     0.00      0.00      10.00     0.00   
+Rati0  1.00000   1.05350                       1.12500   1.18519                       1.26562   1.33333                       1.42383             1.50000   1.58025                       1.68750   1.77778                       1.89844   2.00000 
+Rat1A     1        256                            9        32                            81         4                            729                  3        128                           27        16                            243        2    
+          /        ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///        /
+Rat1B     1        243                            8        27                            64         3                            512                  2        81                            16         9                            128        1    
+Rati2  3^0/2^0   2^8/3^5                       3^2/2^3   2^5/3^3                       3^4/2^6   2^2/3^1                       3^6/2^9             3^1/2^1   2^7/3^4                       3^3/2^4   2^4/3^2                       3^5/2^7   2^1/1^1 
+Rati3   3⁰/2⁰     2⁸/3⁵                         3²/2³     2⁵/3³                         3⁴/2⁶     2²/3¹                         3⁶/2⁹               3¹/2¹     2⁷/3⁴                         3³/2⁴     2⁴/3²                         3⁵/2⁷     2¹/1¹  
+
+Centi     0         1         2         3         4         5         6         7         8         9        10        11        12        13        14        15        16        17        18        19        20        21        22        23    
+ J2s      0         1         1         2         2         3         3         4         4         5         5         6         6         7         7         8         8         9         9        10        10        11        11        12    
+Count     3         1         0         0         1         1         0         0         1         1         0         1         1         0         1         1         0         0         1         1         0         0         1         3    
+Centk     0        90        114       180       204       294       318       384       408       498       522       588       612       678       702       792       816       882       906       996      1020      1086      1110      1200   
+Intrv    P1        A1        m2        d3        M2        A2        m3        d4        M3        P4        P4        A4        TT        d6        P5        A5        m6        d7        M6        A6        m7        d8        M7        P2    
+Note    B♭A♯        B                             C       D♭C♯                            D       E♭D♯                  E       A♭G♯                  F       G♭F♯                            G       A♭G♯                            A       B♭A♯   
+Cents    0.0      90.0      114.0     180.0     204.0     294.0     318.0     384.0     408.0     498.0     522.0     588.0     612.0     678.0     702.0     792.0     816.0     882.0     906.0     996.0    1020.0    1086.0    1110.0    1200.0  
+dCent -1200.00   -10.00     0.00      0.00      4.00      -6.00     0.00      0.00      8.00      -2.00     0.00     -12.00     12.00     0.00      2.00      -8.00     0.00      0.00      6.00      -4.00     0.00      0.00      10.00     0.00   
+Rati0  1.00000   1.05350                       1.12500   1.18519                       1.26562   1.33333             1.40466   1.42383             1.50000   1.58025                       1.68750   1.77778                       1.89844   2.00000 
+Rat1A     1        256                            9        32                            81         4                 1024       729                  3        128                           27        16                            243        2    
+          /        ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///        /
+Rat1B     1        243                            8        27                            64         3                  729       512                  2        81                            16         9                            128        1    
+Rati2  3^0/2^0   2^8/3^5                       3^2/2^3   2^5/3^3                       3^4/2^6   2^2/3^1            2^10/3^6   3^6/2^9             3^1/2^1   2^7/3^4                       3^3/2^4   2^4/3^2                       3^5/2^7   2^1/1^1 
+Rati3   3⁰/2⁰     2⁸/3⁵                         3²/2³     2⁵/3³                         3⁴/2⁶     2²/3¹              2¹⁰/3⁶     3⁶/2⁹               3¹/2¹     2⁷/3⁴                         3³/2⁴     2⁴/3²                         3⁵/2⁷     2¹/1¹  
+
+Centi     0         1         2         3         4         5         6         7         8         9        10        11        12        13        14        15        16        17        18        19        20        21        22        23    
+ J2s      0         1         1         2         2         3         3         4         4         5         5         6         6         7         7         8         8         9         9        10        10        11        11        12    
+Count     6         1         0         0         1         1         0         0         1         1         0         1         1         0         1         1         0         0         1         1         0         1         1         6    
+Centk     0        90        114       180       204       294       318       384       408       498       522       588       612       678       702       792       816       882       906       996      1020      1086      1110      1200   
+Intrv    P1        A1        m2        d3        M2        A2        m3        d4        M3        P4        P4        A4        TT        d6        P5        A5        m6        d7        M6        A6        m7        d8        M7        P2    
+Note    G♭F♯        G                           A♭G♯        A                           B♭A♯        B                   C       A♭G♯                D♭C♯        D                           E♭D♯        E                   F         A       G♭F♯   
+Cents    0.0      90.0      114.0     180.0     204.0     294.0     318.0     384.0     408.0     498.0     522.0     588.0     612.0     678.0     702.0     792.0     816.0     882.0     906.0     996.0    1020.0    1086.0    1110.0    1200.0  
+dCent -1200.00   -10.00     0.00      0.00      4.00      -6.00     0.00      0.00      8.00      -2.00     0.00     -12.00     12.00     0.00      2.00      -8.00     0.00      0.00      6.00      -4.00     0.00     -14.00     10.00     0.00   
+Rati0  1.00000   1.05350                       1.12500   1.18519                       1.26562   1.33333             1.40466   1.42383             1.50000   1.58025                       1.68750   1.77778             1.87289   1.89844   2.00000 
+Rat1A     1        256                            9        32                            81         4                 1024       729                  3        128                           27        16                 4096       243        2    
+          /        ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///        /
+Rat1B     1        243                            8        27                            64         3                  729       512                  2        81                            16         9                 2187       128        1    
+Rati2  3^0/2^0   2^8/3^5                       3^2/2^3   2^5/3^3                       3^4/2^6   2^2/3^1            2^10/3^6   3^6/2^9             3^1/2^1   2^7/3^4                       3^3/2^4   2^4/3^2            2^12/3^7   3^5/2^7   2^1/1^1 
+Rati3   3⁰/2⁰     2⁸/3⁵                         3²/2³     2⁵/3³                         3⁴/2⁶     2²/3¹              2¹⁰/3⁶     3⁶/2⁹               3¹/2¹     2⁷/3⁴                         3³/2⁴     2⁴/3²              2¹²/3⁷     3⁵/2⁷     2¹/1¹  
+'''
 '''        
     k:          0             1             2             3             4             5             6             7             8             9            10            11            12       #  1   2   3   4   5   6   7   8   9   10   11
  0 51: E♭      1/1        2187/2048        9/8       19683/16384      81/64     177147/131072    729/512         3/2        6561/4096       27/16      59049/32768     243/128         2/1      # 2k     19k      .2M          6k      59k
