@@ -75,3 +75,5 @@ class Modes:
 # R) revisit sharps & flats & chord names
 # S) multiple lines is broke (only displays last line, others are blank)
 # T) still issues with tnik.visible and update/resize? (w/h=0, parent, grp num/ord) only set visible on groups?
+# U) Log file creation issues for some time now
+
