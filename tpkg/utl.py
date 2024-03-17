@@ -245,7 +245,7 @@ def fmtl(lst, w=None, u=None, d='[', d2=None, s=W, ll=None):
             else:                         t.append(f'{l}{ss}')
     return z + d + Z.join(t) + d2
 ########################################################################################################################################################################################################
-def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=None, s=W, ll=None):
+def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='{', d2=None, s=W, ll=None):
     assert m,  f'{m=}'
     if m is None: return NONE
     w  = w  if w  is not None else Z   ;  t = []
@@ -258,7 +258,7 @@ def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='[', d2=None, s=W, ll=No
         if   type(v) in (list, tuple, set):  t.append(f'{d}{k:{u}{w}}{d0}{fmtl(v, wv, ll=k if ll==-1 else ll)}{d2}{ss}')
         elif type(v) == dict: b,c='{','}' ;  t.append(f'{b}{k:{u}{w}}{d0}{d}{fmtm(v, d=Z)}{d2}{c}{X}')
         elif type(v) in (int, str):          t.append(f'{d}{k:{u}{w}}{d0}{v:{uv}{wv}}{d2}{ss}')
-    return Z.join(t)
+    return d + Z.join(t) + d2
 ########################################################################################################################################################################################################
 def fmtf(a, b):
     if   b ==  4: return  f'{a:4.2f}'  if a < 10 else  f'{a:4.1f}'  if a < 100 else  f'{a:4.0f}'

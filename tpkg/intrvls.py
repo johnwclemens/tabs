@@ -176,11 +176,14 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
     slog(f'END Overtone Series ({rf=} {sss=} {csv=})')
 
 ########################################################################################################################################################################################################
-PythMap1 = {} # note index to ABCs (freq ratios)
-CENTKEYS = [   0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996, 1020, 1086, 1110, 1200 ]
-#          ['P1', 'm2'c, 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P2' ]
-PythMap2 = { e:{'Count': 0} for e in CENTKEYS } # freq ratio in cents to counts
-PM2KEYS = ['ABCs', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Intrv', 'Note', 'Wavlen']
+PythMap1   = {} # note index to ABCs (freq ratios)
+#              0     1    2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19    20   21    22    23
+#              D    Eb                E     F                 F#    G           Ab    G#          A     Bb                B     C                C#    D
+CENTKEYS   = [   0,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996, 1020, 1086, 1110, 1200 ]
+INTRVLKEYS = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8' ]
+PythMap2   = { e: {'Count': 0} for e in CENTKEYS } # freq ratio in cents to counts
+PythMap3   = { CENTKEYS[i]: k for i, k in enumerate(INTRVLKEYS) }
+PM2KEYS    = ['ABCs', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Intrv', 'Note', 'Wavlen']
 ########################################################################################################################################################################################################
 def pythEpsln(dbg=0):
     ccents = pythComma()
@@ -210,57 +213,53 @@ def fPyth(a=7, b=6, csv=0):
     abc1 = stck5ths(a)
     abc2 = stck4ths(b)
     abc3 = [ stackI(3, 2, 0) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1))
-    abc4 = sorted(abc3, key= lambda z: abc2r(z[0], z[1], z[2])[0])    ;   tmp1, tmp2, tmp3, tmp4 = [], [], [], []
+    abc4 = sorted(abc3, key= lambda z: abc2r(z[0], z[1], z[2])[0])               ;   tmp1, tmp2, tmp3, tmp4 = [], [], [], []
     abcR = list(abc4)
-    l1, l2, l3, l4 = len(abc1), len(abc2), len(abc3), len(abc4)
-    for abc in abc1: s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'   ;   tmp1.append(t)
-    for abc in abc2: s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'   ;   tmp2.append(t)
-    for abc in abc3: s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'   ;   tmp3.append(t)
-    for abc in abc4: s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'   ;   tmp4.append(t)
-    idxs = [ f'{i:{w}}' for i, _ in enumerate(abcR) ]    ;      idxs = o.join(idxs)
+    for abc in abc1:     s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'  ;   tmp1.append(t)
+    for abc in abc2:     s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'  ;   tmp2.append(t)
+    for abc in abc3:     s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'  ;   tmp3.append(t)
+    for abc in abc4:     s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'  ;   tmp4.append(t)
     abc1, abc2, abc3, abc4 = o.join(tmp1), o.join(tmp2), o.join(tmp3), o.join(tmp4)
-    if not csv:  dmpDataTableLine(w=x+1)
-    slog(f'      {n}{d}{n}{idxs}{n}{e}{m}',     p=0, f=f)
-    slog(f'abc1  {n}{d}{n}{abc1}{n}{e}{m}{l1}', p=0, f=f)
-    slog(f'abc2  {n}{d}{n}{abc2}{n}{e}{m}{l2}', p=0, f=f)
-    slog(f'abc3  {n}{d}{n}{abc3}{n}{e}{m}{l3}', p=0, f=f)
-    slog(f'abc4  {n}{d}{n}{abc4}{n}{e}{m}{l4}', p=0, f=f)
-    return abcR
+    msgs = list()
+    msgs.append(str(f'abc1  {n}{d}{n}{abc1}{n}{e}'))
+    msgs.append(str(f'abc2  {n}{d}{n}{abc2}{n}{e}'))
+    msgs.append(str(f'abc3  {n}{d}{n}{abc3}{n}{e}'))
+    msgs.append(str(f'abc4  {n}{d}{n}{abc4}{n}{e}'))
+    return abcR, msgs
 ########################################################################################################################################################################################################
 def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'BGN Pythagorean ({k=} {rf=} {sss=} {csv=})')
     x, y = 13, 6     ;   z = x-2   ;   rnd = 1
     ww, mm, nn, oo, ff = (Z, Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)      ;   uu = f'^{x}'
-    f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * sss   ;   i4v, i6v = Notes.I4V, Notes.I6V
-    ii, ns, fs, ws = [], [], [], []   ;   cs, ds = [], []   ;   us, vs = [], []   ;   ps, qs = [], []   ;   rs, ss = [], []   ;   nns, rrs = [], []
-    abcs = k2fPyths(k, csv, fPyth)
+    f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * sss
+    ii, ns, fs, ws = [], [], [], []   ;   cs, ds = [], []   ;   vs = []   ;   ps, qs = [], []   ;   rs, ss = [], []   ;   nns, rrs = [], []
+    abcs, txts = k2fPyths(k, csv, fPyth)
     for i, e in enumerate(abcs):
         a, b, c   = e[0], e[1], e[2]
         r, ca, cb = abc2r(a, b, c)
         rr = [ a, ca, b, cb ]
-        f  = r * f0     ;     w = w0 / f      ;   m = i % NT
-        u  = 'P2' if a==2 and b==1 else i6v[i] if i == 12 else i6v[m]
-        v  = 'P2' if a==2 and b==1 else i4v[m] if i == 12 else i4v[m]
+        f  = r * f0     ;     w = w0 / f
         pa = a ** ca               ;   pb = b ** cb             ;   p = f'{pa:>{y}}/{pb:<{y}}'
         qa = f'{a}^{ca}'           ;   qb = f'{b}^{cb}'         ;   q = f'{qa:>{y}}/{qb:<{y}}'
         sa = f'{a}{i2spr(ca)}'     ;   sb = f'{b}{i2spr(cb)}'   ;   s = f'{sa:>{y}}/{sb:<{y}}'
         n, n2 = i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (54, 56, 61) else 1, s=1, e=1)
         if n2 and i and i != NT and i != 6:    n += '/' + n2
         c  = r2cents(r)            ;   d = c - i * 100 if i != 0 else 0.0 # fixme
-        ii.append(i)               ;   fs.append(fmtf(f, z))    ;   ps.append(p)   ;    rs.append(fmtf(r, z))   ;   us.append(u)   ;   cs.append(float(c) if rnd else fmtf(c, x))    ;    rrs.append(rr)
-        ns.append(n)               ;   ws.append(fmtf(w, z))    ;   qs.append(q)   ;    ss.append(s)            ;   vs.append(v)   ;   ds.append(float(d) if rnd else fmtg(d, x if d > 0 else x))
+        rc   = round(c)
+        v    = PythMap3[rc]
+        ii.append(i)               ;   fs.append(fmtf(f, z))    ;   ps.append(p)   ;    rs.append(fmtf(r, z))   ;   cs.append(float(c) if rnd else fmtf(c, x))                   ;    rrs.append(rr)
+        ns.append(n)               ;   ws.append(fmtf(w, z))    ;   qs.append(q)   ;    ss.append(s)            ;   ds.append(float(d) if rnd else fmtg(d, x if d > 0 else x))   ;     vs.append(v)
     csw, dsw = (f'^{x}.2f', f'^{x}.2f') if rnd else (ww, x-1)
-    ii     = fmtl(ii, w=uu, s=oo, d=Z)   ;   fs = fmtl(fs, w=uu, s=oo, d=Z)   ;   cs = fmtl(cs, w=csw, s=oo, d=Z)    ;   us = fmtl(us, w=uu, s=oo, d=Z)   ;    ps  = fmtl(ps, w=ww, s=oo, d=Z)   ;   rs = fmtl(rs, w=uu, s=oo, d=Z)
-    ns     = fmtl(ns, w=uu, s=oo, d=Z)   ;   ws = fmtl(ws, w=uu, s=oo, d=Z)   ;   ds = fmtl(ds, w=dsw, s=oo, d=Z)    ;   vs = fmtl(vs, w=uu, s=oo, d=Z)   ;    qs  = fmtl(qs, w=ww, s=oo, d=Z)   ;   ss = fmtl(ss, w=uu, s=oo, d=Z)
+    ii     = fmtl(ii, w=uu, s=oo, d=Z)   ;   fs = fmtl(fs, w=uu, s=oo, d=Z)   ;   cs = fmtl(cs, w=csw, s=oo, d=Z)   ;   ps  = fmtl(ps, w=ww, s=oo, d=Z)   ;   rs = fmtl(rs, w=uu, s=oo, d=Z)
+    ns     = fmtl(ns, w=uu, s=oo, d=Z)   ;   ws = fmtl(ws, w=uu, s=oo, d=Z)   ;   ds = fmtl(ds, w=dsw, s=oo, d=Z)   ;   qs  = fmtl(qs, w=ww, s=oo, d=Z)   ;   ss = fmtl(ss, w=uu, s=oo, d=Z)   ;   vs = fmtl(vs, w=uu, s=oo, d=Z)
     PythMap1[k] = rrs # fixme this is not a very useful data, key should store all other data values as well
     pfxr   = f'Ratio {nn}[{nn}'  ;   pfxc = f'Cents {nn}[{nn}'  ;   pfxn = f'Note  {nn}[{nn}'   ;   pfxi = f'Index {nn}[{nn}'
-    pfxp   = f'Ratio1{nn}[{nn}'  ;   pfxd = f'dCents{nn}[{nn}'  ;   pfxf = f'Freq  {nn}[{nn}'   ;   pfxv = f'Intrv1{nn}[{nn}'
-    pfxq   = f'Ratio2{nn}[{nn}'  ;   pfxs = f'Ratio3{nn}[{nn}'  ;   pfxw = f'Wavlen{nn}[{nn}'   ;   pfxu = f'Intrv2{nn}[{nn}'
+    pfxp   = f'Ratio1{nn}[{nn}'  ;   pfxd = f'dCents{nn}[{nn}'  ;   pfxf = f'Freq  {nn}[{nn}'
+    pfxq   = f'Ratio2{nn}[{nn}'  ;   pfxs = f'Ratio3{nn}[{nn}'  ;   pfxw = f'Wavlen{nn}[{nn}'   ;   pfxv = f'Intrv2{nn}[{nn}'
     sfx    = f'{nn}]'            ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'       ;   sfxw = f'{nn}]{mm}cm'    
     slog(f'{pfxi}{ii}{sfx}',  p=0, f=ff)
     slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
     slog(f'{pfxv}{vs}{sfx}',  p=0, f=ff)
-    slog(f'{pfxu}{us}{sfx}',  p=0, f=ff)
     slog(f'{pfxr}{rs}{sfx}',  p=0, f=ff)
     slog(f'{pfxp}{ps}{sfx}',  p=0, f=ff)
     slog(f'{pfxq}{qs}{sfx}',  p=0, f=ff)
@@ -269,8 +268,9 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'{pfxd}{ds}{sfxc}', p=0, f=ff)
     slog(f'{pfxf}{fs}{sfxf}', p=0, f=ff)
     slog(f'{pfxw}{ws}{sfxw}', p=0, f=ff)
+    for txt in txts: slog(f'{txt}', p=0, f=ff)
     if not csv:  dmpDataTableLine(w=x+1)
-    dmpPythMaps(       csv)
+    dmpPythMaps(k,     csv)
     slog(f'END Pythagorean ({k=} {rf=} {sss=} {csv=})')
 ########################################################################################################################################################################################################
 def k2fPyths(k=50, c=0, f=fPyth):
@@ -289,40 +289,47 @@ DIV_SLSH_6 = '/     ///    ////  /////    /      //   /////   ////    //     /  
 DIV_DASH_9 = '-        ---      ----      -----       -        --       -----     ----       --         -      ------     ----       ---     ------       -        ---      ----      -----      --        --       -----     ----       ---        -'
 DIV_SLSH_9 = '/        ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///        /'
 ########################################################################################################################################################################################################
-def dmpPythMaps(csv):
-    dmpPythMap1(1, csv=csv)
-    dmpPythMap1(2, csv=csv)
-    dmpPythMap1(3, csv=csv)
-    dmpPythMap1(4, csv=csv)
-    dmpPythMap1(5, csv=csv)
-    dmpPythMap2(   csv=csv)    
+def dmpPythMaps(k, csv):
+#    dmpPythMap1(1, csv=csv)
+#    dmpPythMap1(2, csv=csv)
+#    dmpPythMap1(3, csv=csv)
+#    dmpPythMap1(4, csv=csv)
+    dmpPythMap1(5, k, csv=csv)
+    dmpPythMap2(      csv=csv)
+    dmpPythMap3(      csv=csv)
+#    global PythMap2   ;   PythMap2 = {e: {'Count': 0} for e in CENTKEYS}
+
 ########################################################################################################################################################################################################
-def dmpPythMap1(ni, x=19, csv=0): # 13 or 19
+def dmpPythMap3(csv=0):
+    if not csv: slog(f'Map3=[{fmtm(PythMap3, d=Z, s=Y+W)}]', p=0)
+    
+def dmpPythMap1(ni, ik, x=19, csv=0): # 13 or 19
     if x==13:  y, z = 6, 5
     else:      y, z = 6, 5 # fixme same value?
     uu = f'^{x}'      ;   ww, mm, nn, oo, dd, ff = (Z, Y, Y, Y, '[', 3) if csv else (f'^{x}', W, Z, '|', Z, 1)   ;   pdf = []
     ii = [ f'{i}' for i in range(NT + 1) ]
     slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 1 else None
     dmpDataTableLine(x + 1) if not csv and ni == 1 else None
-    global PythMap2   ;   PythMap2 = {} # todo seams to be N/A
     for i, (k, v) in enumerate(PythMap1.items()):
         rats, qots, exps, exus, cents = [], [], [], [], []
         for j, e in enumerate(v):
-            n, n2  = i2nPair(j + k, b=0 if k in (54, 56, 61) else 1, s=1, e=1)
-            pd = [f'{i:2}', f'{k:2}', f'{n:2}']   ;   pdf = mm.join(pd) 
+            n, n2  = i2nPair(j + k, b=0 if j in (4, 6, 11) or k in (54, 56, 61) else 1, s=1, e=1)
+            pd     = [f'{i:2}', f'{k:2}', f'{n:2}']   ;   pdf = mm.join(pd) 
             a, ca, b, cb = e
             pa, pb = a ** ca, b ** cb
-            rat  = f'{float(pa/pb):{uu}.5f}'
-            qot  = f'{pa:{y}}/{pb:<{y}}'
-            expA = f'{a}^{ca}'         ;    expB = f'{b}^{cb}'         ;   exp = f'{expA:>{y}}/{expB:<{y}}'
-            exuA = f'{a}{i2spr(ca)}'   ;    exuB = f'{b}{i2spr(cb)}'   ;   exu = f'{exuA:>{y}}/{exuB:<{y}}'
-            cent = r2cents(pa/pb)      ;   centR = ir(cent)
+            rat    = f'{float(pa/pb):{uu}.5f}'
+            qot    = f'{pa:{y}}/{pb:<{y}}'
+            expA   = f'{a}^{ca}'         ;    expB = f'{b}^{cb}'         ;   exp = f'{expA:>{y}}/{expB:<{y}}'
+            exuA   = f'{a}{i2spr(ca)}'   ;    exuB = f'{b}{i2spr(cb)}'   ;   exu = f'{exuA:>{y}}/{exuB:<{y}}'
+            cent   = r2cents(pa/pb)      ;   centR = ir(cent)
             if not csv and ni == 5:
+                assert centR in PythMap2.keys(),  f'{centR=} {PythMap2.keys()=}'
                 if centR in PythMap2.keys():
-                    PythMap2[centR]['Count'] =          PythMap2[centR]['Count'] + 1 if 'Count' in PythMap2[centR] else 1
-                    PythMap2[centR]['Note']  = n+n2  ;  PythMap2[centR]['ABCs'] = e       ;        PythMap2[centR]['Cents']  =  cent
-                else:                                   PythMap2[centR]         = {'Count':1, 'Note': n+n2, 'ABCs': e, 'Cents': cent}
-            cent  = f'{cent:{uu}.0f}'
+                    PythMap2[centR]['Count'] =         PythMap2[centR]['Count'] + 1 if 'Count' in PythMap2[centR] else 1
+                    PythMap2[centR]['ABCs']  = e   ;   PythMap2[centR]['Cents']  =  cent
+                    PythMap2[centR]['Note']  = n+n2 if ik == k else '  '
+#                else:                                   PythMap2[centR]         = {'Count':1, 'Note': n+n2, 'ABCs': e, 'Cents': cent}
+            cent   = f'{cent:{uu}.0f}'
             rats.append(rat)   ;   qots.append(qot)   ;   exps.append(exp)   ;   exus.append(exu)   ;   cents.append(cent)
         ratsf  = Z.join(fmtl(rats,  w=ww, s=oo, d=dd))
         qotsf  = Z.join(fmtl(qots,  w=ww, s=oo, d=dd))
@@ -336,19 +343,17 @@ def dmpPythMap1(ni, x=19, csv=0): # 13 or 19
         elif ni == 5: slog(f'{pdf} {centsf}', p=0, f=ff)
     if not csv:  dmpDataTableLine(x + 1)    ;    slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 5 else None
 ########################################################################################################################################################################################################
-def checkPythIvals(i, j, ks, cs, ds):
-    i4v, i6v = Notes.I4V, Notes.I6V
+def checkPythIvals(i, ks, cs, ds):
     eps = pythEpsln()
-    if i == 0:   slog(f' j j*100 i     c       k        d       e       c`     c       k        d       e       c`')
-    if j in i4v:
-        u = i4v[j]    ;   v = i6v[j]
-        if not i % 2 and i and i != len(ks)-1:
-            m = 1 if i % 2 else -1
-            slog(f'{j:2} {j*100:4} {i:2} {u}[{cs[i]:2} @ {ks[i]:8.3f}: {ds[i]:7.3f} = {eps:5.3f} * {cs[i+m]:2}]  {v}[{cs[i+m]:2} @ {ks[i+m]:8.3f}: {ds[i+m]:7.3f} = {eps:5.3f} * {cs[i]:2}]')
+    j   = math.floor(i/2)
+    if i == 0:   slog(f' j j*100 i     c       k        d       e       c`      c       k        d       e       c`')
+    elif not i % 2 and i != NT-1:
+        u, v = PythMap3[ks[i-1]], PythMap3[ks[i]]  
+        slog(f'{j:2} {j*100:4} {i:2} {u}[{cs[i-1]:2} @ {ks[i-1]:8.3f}: {ds[i-1]:7.3f} = {eps:5.3f} * {cs[i]:2}]  {v}[{cs[i]:2} @ {ks[i]:8.3f}: {ds[i]:7.3f} = {eps:5.3f} * {cs[i-1]:2}]')
 #            assert round(cs[i+m] * eps, 3) == round(ds[i], 3),          f'{cs[i+m]:2} * {eps:5.3f} == {ds[i]:7.3f} {i=} {m=}'
 #            assert cs[i+m] * round(eps, 3) + j*100 == round(ks[i], 3),  f'{cs[i+m]:2} * {round(eps, 3):5.3} + 100*{j:2} == {round(ks[i], 3):8.3f} {i=} {m=} {j=}'
 ########################################################################################################################################################################################################
-def fmtR( n, w):              return f'{n:{w}}'
+def fmtR( n, w):              return f'{n:{w}}' # N/A
 def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
 #def fmtR1(a, ca, b, cb, w):  pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
 def fmtRA(a, ca, w):          pa     =   a ** ca                             ;  return f'{pa:{w}}'
@@ -357,20 +362,18 @@ def fmtR2(a, ca, b, cb):      qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  
 def fmtR3(a, ca, b, cb):      sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>}/{sb:<}' 
 ########################################################################################################################################################################################################
 def dmpPythMap2(w=9, csv=0): # 6 or 9
+    global PythMap2
     mm, ff          = (Y, 3) if csv else (W, 1)
-    if w==6:      x = 4  ;   y = 10   ;  z = 8   ;  DVDR = DIV_SLSH_6
-    else:         x = 5  ;   y = 13   ;  z = 10  ;  DVDR = DIV_SLSH_9
+    if w==6:      x = 4   ;  z = 8   ;  DVDR = DIV_SLSH_6 # y = 10
+    else:         x = 5   ;  z = 10  ;  DVDR = DIV_SLSH_9 # y = 13
     ww, w1, w2, w3  = f'^{w}', f'^{w}.1f', f'^{w}.2f', f'^{w}.{x}f'
-    i4v, i6v        = Notes.I4V, Notes.I6V     ;    blank = w*W     ;   sc = 0   ;   y = 0 # fixme
-    j2s, ns, ws     = [], [], []  ;  j2 = 0    ;   cs, ds = [], []  ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  ckis, cksf = [], []
+    blank, sc, y    = w*W, 0, 0 # fixme
+    ns, ws          = [], []   ;   cs, ds = [], []  ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  ckis, cksf, cksi = [], [], []
     for i, ck in enumerate(CENTKEYS):
         ckis.append(i)
-        j = i % 2
-        if j:   j2 = math.floor(i/2) + 1
-        j2s.append(j2)
-        ival = i6v[j2] if i % 2 and j2 < len(i6v) else i4v[j2] if j2 < len(i4v) else 'P2'
+        ival = PythMap3[ck] 
         ws.append(ival)
-        if ck in PythMap2 and PythMap2[ck]['Count'] > 0:
+        if PythMap2 and ck in PythMap2 and PythMap2[ck]['Count'] > 0:
             a, ca, b, cb = PythMap2[ck]['ABCs']
             r0s.append(fmtR0(a, ca, b, cb, w3))
             rAs.append(fmtRA(a, ca, ww))
@@ -382,29 +385,29 @@ def dmpPythMap2(w=9, csv=0): # 6 or 9
             c = PythMap2[ck]['Count']   ;   sc += c
             f = r2cents(a**ca/b**cb)
             d = k2dCent(f)
-            f = fmtR(f, w1)    ;  cksf.append(f)
+            cksf.append(f)     ;   cksi.append(int(round(f)))
         else:
             r0s.append(blank)  ;  rAs.append(blank)  ;  rBs.append(blank)  ;  r2s.append(blank)  ;  r3s.append(blank)
             n, f = blank, blank
-            c, d = 0, 0.0
+            c, d = 0, 0.0   ;   cksi.append(ck)   ;   cksf.append(float(ck))
         ns.append(n)  ;  cs.append(c)  ;  ds.append(d)
-#        if not csv:    checkPythIvals(i, j2, cksf, cs, ds)
+        if not csv:    checkPythIvals(i, cksi, cs, ds)
     slog(f'{y*W}Centi {fmtl(ckis, w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W} J2s  {fmtl(j2s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Centk {fmtl(CENTKEYS, w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Intrv {fmtl(ws,   w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Note  {fmtl(ns,   w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Cents {fmtl(cksf, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Cents {fmtl(cksf, w=w1, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}dCent {fmtl(ds,   w=w2, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Rati0 {fmtl(r0s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Rat1A {fmtl(rAs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}{z*W}{DVDR}',                        p=0, f=ff)
+    slog(f'{y*W}{z*W}{DVDR}',                         p=0, f=ff)
     slog(f'{y*W}Rat1B {fmtl(rBs,  w=ww, s=mm, d=Z)}', p=0, f=ff)
 #   slog(f'{y*W}Rati1 {fmtl(r1s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Rati2 {fmtl(r2s,  w=ww, s=mm, d=Z)}', p=0, f=ff) if w >= 9 else None
     slog(f'{y*W}Rati3 {fmtl(r3s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Count {fmtl(cs,   w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{len(PythMap1)=} {sc=}', p=0, f=ff)
+    PythMap2 = { e: {'Count': 0} for e in CENTKEYS } # fixme 
 ########################################################################################################################################################################################################
 '''
     k             0                   1                   2                   3                   4                   5                   6                   7                   8                   9                  10                  11                  12         

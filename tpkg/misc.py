@@ -77,3 +77,101 @@ class Modes:
 # T) still issues with tnik.visible and update/resize? (w/h=0, parent, grp num/ord) only set visible on groups?
 # U) Log file creation issues for some time now
 
+######################################################################################################################################################
+
+# Diatonic Inervals:
+#  0  1   2   3   4   5   6   7   8   9  10   11   12
+# P1 m2  M2  m3  M3  P4  TT  P5  m6  M6  m7   M7   P8
+# 0 100 200 300 400 500 600 700 800 900 1000 1100 1200
+
+# C Ionian
+# P1 M2 M3 P4 P5 M6 M7 P8
+# C  D  E  F  G  A  B  C
+# D Dorian
+# P1 M2 m3 P4 P5 M6 m7 P8
+# D  E  F  G  A  B  C  D
+# E Phrygian
+# P1 m2 m3 P4 P5 m6 m7 P8
+# E  F  G  A  B  C  D  E
+# F Lydian
+# P1 M2 M3 A4 P5 M6 M7 P8
+# F  G  A  B  C  D  E  F
+# G Mixolydian
+# P1 M2 M3 P4 P5 M6 m7 P8
+# G  A  B  C  D  E  F  G
+# A Aeolian
+# P1 M2 m3 P4 P5 m6 m7 P8
+# A  B  C  D  E  F  G  A
+# B Lydian
+# P1 m2 m3 P4 d5 m6 m7 P8
+# B  C  D  E  F  G  A  B
+
+# Pythagorean Inetvals:
+#  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21   22   23   24
+# D   Eb  D#   E  E   F   F   Gb  F#  G   G   Ab  G#  A   A   Bb  A#  B   B   C   C    Db   C#   D
+# P1  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6   d8   M7   P8
+#  0  90 114 180 204 294 318 384 408 498 522 588 612 678 702 792 816 882 906 996 1020 1086 1110 1200
+# 12  7   5   2  10   9   3   4   8   11  1   6   6   1   11  8   4   3   9   10   2    5    7   12
+
+#####################################################################################################
+
+# F Pythagorean Inetvals: F
+#  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21   22   23   24
+# F  GbF#         G  AbG#         A  BbA#     B           C  DbC#         D  EbD#           E    F
+# P1  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6   d8   M7   P8
+#  0  90 114 180 204 294 318 384 408 498 522 588 612 678 702 792 816 882 906 996 1020 1086 1110 1200
+# 12  7   5   2  10   9   3   4   8   11  1   6   6   1   11  8   4   3   9   10   2    5    7   12
+
+# C Pythagorean Inetvals: C
+#  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21   22   23   24
+# C  DbC#     D      EbD#         E   F       Gb  F#      G  AbG#         A  BbA#           B    C
+# P1  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6   d8   M7   P8
+#  0  90 114 180 204 294 318 384 408 498 522 588 612 678 702 792 816 882 906 996 1020 1086 1110 1200
+# 12  7   5   2  10   9   3   4   8   11  1   6   6   1   11  8   4   3   9   10   2    5    7   12
+
+# G Pythagorean Inetvals: G
+#  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21   22   23   24
+# G  AbG#     A      BbA#         B   C       Db  C#      D  EbD#         E   F       GbF#       G
+# P1  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6   d8   M7   P8
+#  0  90 114 180 204 294 318 384 408 498 522 588 612 678 702 792 816 882 906 996 1020 1086 1110 1200
+# 12  7   5   2  10   9   3   4   8   11  1   6   6   1   11  8   4   3   9   10   2    5    7   12
+
+# D Pythagorean Inetvals: D
+#  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21   22   23   24
+# D  EbD#         E   F          GbF# G       Ab  G#      A  BbA#         B   C            DbC#  D
+# P1  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6   d8   M7   P8
+#  0  90 114 180 204 294 318 384 408 498 522 588 612 678 702 792 816 882 906 996 1020 1086 1110 1200
+# 12  7   5   2  10   9   3   4   8   11  1   6   6   1   11  8   4   3   9   10   2    5    7   12
+
+# A Pythagorean Inetvals: A
+#  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21   22   23   24
+# A  BbA#         B   C      DbC#     D       Eb  D#      E   F      GbF#     G       AbG#       A
+# P1  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6   d8   M7   P8
+#  0  90 114 180 204 294 318 384 408 498 522 588 612 678 702 792 816 882 906 996 1020 1086 1110 1200
+# 12  7   5   2  10   9   3   4   8   11  1   6   6   1   11  8   4   3   9   10   2    5    7   12
+
+# E Pythagorean Inetvals: E
+#  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21   22   23   24
+# E   F      GbF#     G      AbG#     A       Bb  A#  B       C      DbC#     D       EbD#       E
+# P1  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6   d8   M7   P8
+#  0  90 114 180 204 294 318 384 408 498 522 588 612 678 702 792 816 882 906 996 1020 1086 1110 1200
+# 12  7   5   2  10   9   3   4   8   11  1   6   6   1   11  8   4   3   9   10   2    5    7   12
+
+# B Pythagorean Inetvals: B
+#  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21   22   23   24
+# B   C      DbC#     D      EbD#         E   F       Gb  F#  G      AbG#     A       BbA#       B
+# P1  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6   d8   M7   P8
+#  0  90 114 180 204 294 318 384 408 498 522 588 612 678 702 792 816 882 906 996 1020 1086 1110 1200
+# 12  7   5   2  10   9   3   4   8   11  1   6   6   1   11  8   4   3   9   10   2    5    7   12
+
+# F# Pythagorean Inetvals: F#
+#  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21   22   23   24
+# F#  G      AbG#     A      BbA#     B       C      DbC#     D       EbD#        E    F         F#
+# P1  m2  A1  d3  M2  m3  A2  d4  M3  P4  A3  d5  A4  d6  P5  m6  A5  d7  M6  m7  A6   d8   M7   P8
+#  0  90 114 180 204 294 318 384 408 498 522 588 612 678 702 792 816 882 906 996 1020 1086 1110 1200
+# 12  7   5   2  10   9   3   4   8   11  1   6   6   1   11  8   4   3   9   10   2    5    7   12
+
+
+# D  E  F  G  A  B  C# D
+# P1 M2 m3 
+#
