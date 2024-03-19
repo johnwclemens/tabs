@@ -101,16 +101,16 @@ class CsrJumpCmd(Cmd):
     def _csrJump(self):
         tobj, how, txt, ab = self.tobj, self.how, self.txt, self.ab
         cc = tobj.cursorCol()            ;            tobj.jumpAbs = ab
-        tobj.log(    f'{how} {txt=} {ab=} {cc=} jt={tobj.jumpAbs} {tobj.fmti()}')
+        slog(    f'{how} {txt=} {ab=} {cc=} jt={tobj.jumpAbs} {tobj.fmti()}')
         if not tobj.jumping:                          tobj.jumping = 1
         elif txt.isdecimal():                         tobj.jumpStr += txt
         elif txt == '-' and not tobj.jumpStr:         tobj.jumpStr += txt
         elif txt == W:
-            tobj.log(f'{how} {txt=} {ab=} {cc=} jt={tobj.jumpAbs} {tobj.jumpStr=} {tobj.fmti()}')
+            slog(f'{how} {txt=} {ab=} {cc=} jt={tobj.jumpAbs} {tobj.jumpStr=} {tobj.fmti()}')
             jcc  = tobj.n[T] * int(tobj.jumpStr)
             tobj.jumping = 0   ;   tobj.jumpStr = Z
             tobj.move(how, jcc - 1 - ab * cc)
-            tobj.log(f'{how} {txt=} {ab=} {cc=} jt={tobj.jumpAbs} {jcc=} moved={jcc - 1 - ab * cc} {tobj.fmti()}')
+            slog(f'{how} {txt=} {ab=} {cc=} jt={tobj.jumpAbs} {jcc=} moved={jcc - 1 - ab * cc} {tobj.fmti()}')
 ########################################################################################################################################################################################################
 class CopyKordNamesCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
@@ -157,7 +157,7 @@ class CopyTabsCmd(Cmd):
             if tobj.LL:  tobj.setLLStyle(k, style)
             text.append(tobj.setTNIKStyle(k, nt, style))
             if dbg: text.append(W)
-        if dbg:         tobj.log(f'{Z.join(text)=}')
+        if dbg:         slog(f'{Z.join(text)=}')
         tobj.dumpSmap(f'END {how}')
 #        if tobj.SNAPS >= 4:  tobj.regSnap(f'CPY.{tobj.cpyC}', how)
 ########################################################################################################################################################################################################
@@ -170,11 +170,11 @@ class CutTabsCmd(Cmd):
     
     def _cutTabs(self):
         tobj, how = self.tobj, self.how
-        tobj.log('BGN Cut = Copy + Delete')
+        slog('BGN Cut = Copy + Delete')
         cmd = CopyTabsCmd(tobj, how)            ;  cmd.do()
-        tobj.log('Cut = Copy + Delete')
+        slog('Cut = Copy + Delete')
         cmd = DeleteTabsCmd(tobj, how, keep=1)  ;  cmd.do()
-        tobj.log('END Cut = Copy + Delete')
+        slog('END Cut = Copy + Delete')
 ########################################################################################################################################################################################################
 class DeleteTabsCmd(Cmd):
     def __init__(self, tobj, how, keep=0, dbg=1):
@@ -188,7 +188,7 @@ class DeleteTabsCmd(Cmd):
         tobj.dumpSmap(f'BGN {how} {keep=}')   ;   style = NORMAL_STYLE   ;   nt = tobj.n[T]   ;   tobj.delC += 1  
         for k, text in tobj.smap.items():
             cn = k   ;   k *= nt
-            if dbg:     tobj.log(f'{k=} {cn=} {text=}')
+            if dbg:     slog(f'{k=} {cn=} {text=}')
             if tobj.LL: tobj.setLLStyle(k, style)
             tobj.setTNIKStyle(k, nt, style, blank=1)
         if not keep:    tobj.unselectAll(f'deleteTabs({keep=})')
@@ -206,7 +206,7 @@ class EraseTabsCmd(Cmd):
     def _eraseTabs(self):
         tobj, how = self.tobj, self.how
         np, nl, ns, nc, nt = tobj.n   ;  nz = 0 #  ;   nz = tobj.zzlen()  ;  nc += nz
-        tobj.log(f'BGN {how} {np=} {nl=} {ns=} {nc=} {nt=}')
+        slog(f'BGN {how} {np=} {nl=} {ns=} {nc=} {nt=}')
         tobj.nic.clear()
         tobj.dumpBlanks()
         for t in tobj.tabls:
@@ -221,7 +221,7 @@ class EraseTabsCmd(Cmd):
             for l in range(nl):
                 for c in range(nz, nc):
                     tobj.data[p][l][c-nz] = tobj.tblankCol
-        tobj.log(f'END {how} {np=} {nl=} {ns=} {nc=} {nt=}')
+        slog(f'END {how} {np=} {nl=} {ns=} {nc=} {nt=}')
         tobj.rsyncData = 1
 ########################################################################################################################################################################################################
 class Go2FirstTabCmd(Cmd):
@@ -283,16 +283,16 @@ class InsertSpaceCmd(Cmd):
             tcs   = sorted(tobj.cobj.mlimap)
             tcs.append(tobj.n[C] * tobj.n[L] - 1)
             tcs   = [ t + 1 for t in tcs ]
-            if dbg: tobj.log(f'BGN {how} Searching for space to insert {width} cols starting at colm {c0}')
-            tobj.log(f'{fmtl(tcs, ll=1)} insertSpace', p=0)
+            if dbg: slog(f'BGN {how} Searching for space to insert {width} cols starting at colm {c0}')
+            slog(f'{fmtl(tcs, ll=1)} insertSpace', p=0)
             found, c1, c2 = 0, 0, None   ;   tobj.insertStr = Z
             for c2 in tcs:
-                if dbg: tobj.log(f'w c0 c1 c2 = {width} {c0} {c1} {c2}')
+                if dbg: slog(f'w c0 c1 c2 = {width} {c0} {c1} {c2}')
                 if c2 > c0 + width and c2 > c1 + width: found = 1  ;  break
                 c1 = c2
-            if not found: tobj.log(f'{how} starting at colm {c0} No room to insert {width} cols before end of page at colm {tcs[-1]+1}')  ;   return
-            tobj.log(f'{how} starting at colm {c0} Found a gap {width} cols wide between cols {c1} and {c2}')
-            tobj.log(f'select cols {c0} ... {c1}, cut cols, move ({width} - {c1} + {c0})={width-c1+c0} cols, paste cols')
+            if not found: slog(f'{how} starting at colm {c0} No room to insert {width} cols before end of page at colm {tcs[-1]+1}')  ;   return
+            slog(f'{how} starting at colm {c0} Found a gap {width} cols wide between cols {c1} and {c2}')
+            slog(f'select cols {c0} ... {c1}, cut cols, move ({width} - {c1} + {c0})={width-c1+c0} cols, paste cols')
             [ tobj.selectTabs(how, m=tobj.tpc) for _ in range(c1 - c0) ]
             tobj.cutTabs(how)
             tobj.move(how, (width - c1 + c0) * tobj.tpc)
@@ -308,11 +308,11 @@ class MoveCmd(Cmd):
     
     def _move(self):
         tobj, how, n, ss, dbg = self.tobj, self.how, self.n, self.ss, self.dbg
-        if dbg:    tobj.log(f'BGN {how} {n=}', pos=1)
+        if dbg:      tobj.log(f'BGN {how} {n=}', pos=1)
         p, l, c, t = tobj.j2()
         cmd = MoveTo2Cmd(tobj, p, l, c, t, n=n)     ;  cmd.do()
         if tobj.cursor: cmd = MoveCursorCmd(tobj, how, ss)     ;  cmd.do()
-        if dbg:         tobj.log(f'END {how} {n=}', pos=1)
+        if dbg:      tobj.log(f'END {how} {n=}', pos=1)
 ########################################################################################################################################################################################################
 class MoveCursorCmd(Cmd):
     def __init__(self, tobj, how, ss=0, dbg=1):
@@ -456,13 +456,13 @@ class PasteTabsCmd(Cmd):
             if not i:   dk = 0
             elif kk:    dk = i * nt
             else:       dk = (list(tobj.smap.keys())[i] - list(tobj.smap.keys())[0]) * nt
-            if dbg:     tobj.log(f'{i=} {k=} {text=} {kk=} {dk=}')
+            if dbg:     slog(f'{i=} {k=} {text=} {kk=} {dk=}')
             for n in range(nt):
                 kt         = (cn + dk + n) % tobj.tpp # todo
                 p, l, c, t = tobj.cc2plct(kt)
                 tobj.setDTNIK(text[n], kt, p, l, c, n, kk=1 if n==nt-1 else 0)
-            if dbg:     tobj.log(f'{i=} {k=} {text=} {kk=} {dk=} {kt=}')
-        tobj.log(f'clearing {len(tobj.smap)=}')   ;   tobj.smap.clear()
+            if dbg:     slog(f'{i=} {k=} {text=} {kk=} {dk=} {kt=}')
+        slog(f'clearing {len(tobj.smap)=}')   ;   tobj.smap.clear()
         tobj.dumpSmap(f'END {how} {kk=} {cc=} {cn=}={tobj.cc2cn(cc)} plct={tobj.fplct(p, l, c, t)}')
         if tobj.SNAPS >= 4:  tobj.regSnap(f'PST.{tobj.pstC}', how)
         tobj.rsyncData = 1
@@ -503,19 +503,19 @@ class QuitCmd(Cmd):
     def _quit(self):
         tobj, why, err, save, dbg = self.tobj, self.why, self.err, self.save, self.dbg  
         retv = True   ;   ff = -3
-        hdr1 = tobj.fTnikHdr(1)    ;    hdr0 = tobj.fTnikHdr(0)   ;   tobj.log(hdr1, p=0, f=ff)  ;  tobj.log(hdr0,     p=0, f=ff)   ;   errStr = f'Error={err}'
-        tobj.log(f'BGN {why} {errStr} {save=} {tobj.quitting=}', f=ff)                           ;  tobj.log(utl.QUIT, p=0, f=ff)   ;   msg    = 'Recursion Error'
-        tobj.log(utl.QUIT_BGN, p=0, f=ff)    ;    utl.dumpStack(inspect.stack())                 ;  tobj.log(utl.QUIT, p=0, f=ff)
-        if tobj.quitting:        msg += f' {tobj.quitting=} Exiting'  ;  tobj.log(msg, f=ff)     ;  tobj.close() #  ;   return True
-        tobj.dumpTniksSfx(why)        ;     tobj.quitting += 1
+        hdr1 = tobj.fTnikHdr(1)    ;    hdr0 = tobj.fTnikHdr(0)   ;   slog(hdr1, p=0, f=ff)  ;  slog(hdr0,     p=0, f=ff)   ;   errStr = f'Error={err}'
+        slog(f'BGN {why} {errStr} {save=} {tobj.quitting=}', f=ff)                           ;  slog(utl.QUIT, p=0, f=ff)   ;   msg    = 'Recursion Error'
+        slog(utl.QUIT_BGN, p=0, f=ff)    ;    utl.dumpStack(inspect.stack())                 ;  slog(utl.QUIT, p=0, f=ff)
+        if tobj.quitting:        msg += f' {tobj.quitting=} Exiting'  ;  slog(msg, f=ff)     ;  tobj.close() #  ;   return True
+        tobj.dumpTniksSfx(why)           ;   tobj.quitting += 1
         if not err:
             utl.dumpStack(utl.MAX_STACK_FRAME)
             if dbg:  tobj.dumpStruct(why, dbg=dbg)
             if save: cmd = SaveDataFileCmd(tobj, why, tobj.dataPath1)    ;  cmd.do()
             if dbg:  tobj.transposeData(dmp=dbg)
             if dbg:  tobj.cobj.dumpMlimap(why)
-        if tobj.SNAPS:  tobj.snpC += 1  ;  cmd = SnapshotCmd(tobj, tobj.snpC, utl.FINI, f'quit {err} {save=}')     ;  cmd.do()
-        tobj.log(f'END {why} {errStr} {save=} {tobj.quitting=}', f=ff)      ;   tobj.log(utl.QUIT_END, p=0, f=ff)  ;  ret = '???'
+        if tobj.SNAPS:  tobj.snpC += 1  ;  cmd = SnapshotCmd(tobj, tobj.snpC, utl.FINI, f'quit {err} {save=}')   ;  cmd.do()
+        slog(f'END {why} {errStr} {save=} {tobj.quitting=}', f=ff)       ;    slog(utl.QUIT_END, p=0, f=ff)      ;  ret = '???'
         slog('TRY ret = tobj.cleanupFiles()')
         try:
             ret = tobj.cleanupFiles()
@@ -569,7 +569,7 @@ class RotSprCmd(Cmd):
         tobj, how, spr, cw = self.tobj, self.how, self.spr, self.cw
         old = spr.rotation
         spr.rotation =  (spr.rotation + cw * 10) % 360
-        tobj.log(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
+        slog(f'{how} {cw=} {old=} {spr.rotation=}', f=2)
 ########################################################################################################################################################################################################
 class SaveDataFileCmd(Cmd):
     def __init__(self, tobj, how, path, dbg=1):
@@ -580,28 +580,28 @@ class SaveDataFileCmd(Cmd):
     
     def _saveDataFile(self):
         tobj, how, path, dbg = self.tobj, self.how, self.path, self.dbg
-        if dbg:   tobj.log(f'BGN {how} {path}')
+        if dbg:   slog(f'BGN {how} {path}')
         with open(path, 'w', encoding='utf-8') as DATA_FILE:
-            tobj.log(f'{DATA_FILE.name:40}', p=0)
+            slog(f'{DATA_FILE.name:40}', p=0)
             commentStr = '#' * tobj.n[C]   ;   commentRow = f'{commentStr}{X}'
             DATA_FILE.write(commentRow) if tobj.DEC_DATA else None
             data = tobj.transposeData(dmp=dbg) # if self.isVert() else self.data
-            tobj.log(f'{tobj.fmtn()} {tobj.fmtdl(data)}')
+            slog(f'{tobj.fmtn()} {tobj.fmtdl(data)}')
             for p, page in enumerate(data):
-                if dbg: tobj.log(f'writing {p+1}{utl.ordSfx(p + 1)}   Page', p=0)
+                if dbg: slog(f'writing {p+1}{utl.ordSfx(p + 1)}   Page', p=0)
                 for l, line in enumerate(page):
-                    if dbg: tobj.log(f'writing {l+1}{utl.ordSfx(l+1)}   Line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
+                    if dbg: slog(f'writing {l+1}{utl.ordSfx(l+1)}   Line', p=0)  # if dbg  else  self.log(p=0)  if  l  else  None
                     for r, row in enumerate(line):
                         text = []
                         for c, col in enumerate(row):
                             text.append(col)
                         text = Z.join(text)
-                        if dbg: tobj.log(f'writing {r+1}{utl.ordSfx(r+1)} String {text}', p=0)  # if dbg  else  self.log(text, p=0)
+                        if dbg: slog(f'writing {r+1}{utl.ordSfx(r+1)} String {text}', p=0)  # if dbg  else  self.log(text, p=0)
                         DATA_FILE.write(f'{text}{X}')
                     DATA_FILE.write(commentRow) if tobj.DEC_DATA else DATA_FILE.write(X)  #   if l < nl:
                 DATA_FILE.write(commentRow) if tobj.DEC_DATA else DATA_FILE.write(X)
-        size = path.stat().st_size   ;   tobj.log(f'{tobj.fmtn()} {tobj.fmtdl()} {size=}')
-        if dbg:   tobj.log(f'END {how} {path}')
+        size = path.stat().st_size   ;   slog(f'{tobj.fmtn()} {tobj.fmtdl()} {size=}')
+        if dbg:   slog(f'END {how} {path}')
         return size
 ########################################################################################################################################################################################################
 class SelectTabsCmd(Cmd):
@@ -617,8 +617,8 @@ class SelectTabsCmd(Cmd):
         p, l, s, c, t = tobj.cc2plsct(cc)
         if cn is None:      cn = tobj.cc2cn(cc) # self.plc2cn_(p, l, c)
         nt = tobj.n[T]  ;   k  = cn * nt   ;   style = SELECT_STYLE
-        tobj.log(f'{m=} {old=} {cc=} {cn=} {nt} {k=} {tobj.fplsct(p, l, s, c, t)}')
-        if cn in tobj.smap: tobj.log(f'RETURN: {cn=} already in smap={fmtm(tobj.smap)}') if dbg2 else None   ;   return
+        slog(f'{m=} {old=} {cc=} {cn=} {nt} {k=} {tobj.fplsct(p, l, s, c, t)}')
+        if cn in tobj.smap: slog(f'RETURN: {cn=} already in smap={fmtm(tobj.smap)}') if dbg2 else None   ;   return
         if dbg:             tobj.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
         text              = tobj.setTNIKStyle(k, nt, style)
         tobj.smap[cn]     = text
@@ -649,14 +649,14 @@ class SetFontArgCmd(Cmd):
     
     def _setFontArg(self):
         tobj, how, n, v, m, dbg = self.tobj, self.how, self.n, self.v, self.m, self.dbg
-        if   m == 'clrIdx':      v += getattr(tobj, m)   ;   v %= len(tobj.k)      ;  tobj.log(f'{how} {n=:12} {v=:2} {tobj.clrIdx=:2}')
-        elif m == 'fontNameIdx': v += getattr(tobj, m)   ;   v %= len(FONT_NAMES)  ;  tobj.log(f'{how} {n=:12} {v=:2} {tobj.fontNameIdx=:2}')
+        if   m == 'clrIdx':      v += getattr(tobj, m)   ;   v %= len(tobj.k)      ;  slog(f'{how} {n=:12} {v=:2} {tobj.clrIdx=:2}')
+        elif m == 'fontNameIdx': v += getattr(tobj, m)   ;   v %= len(FONT_NAMES)  ;  slog(f'{how} {n=:12} {v=:2} {tobj.fontNameIdx=:2}')
         setattr(tobj, m, v)
         ts = list(itertools.chain(tobj.A, tobj.B, tobj.C))  ;  lt = len(ts)
-        if dbg:         tobj.log(f'{how} {lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
+        if dbg:         slog(f'{how} {lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         for j, t in enumerate(ts):
             tobj.setFontArg2(t, n, v, m, j)
-        if dbg:         tobj.log(f'{how} {lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
+        if dbg:         slog(f'{how} {lt=} {m=:12} {n=:12} {fmtf(v, 5)}')
         tobj.setCaption(tobj.fmtFont())
 ########################################################################################################################################################################################################
 class SetNCmd(Cmd):
@@ -668,17 +668,17 @@ class SetNCmd(Cmd):
     
     def _setN(self):
         tobj, how, txt, dbg = self.tobj, self.how, self.txt, self.dbg
-        if not tobj.settingN: tobj.settingN = 1   ;  tobj.setNtxt = Z  ;  tobj.log(f'BGN {how} {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None
-        elif txt.isdecimal(): tobj.setNtxt += txt                      ;  tobj.log(   f'Concat {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None
-        elif txt ==  W:       tobj.setNvals.append(int(tobj.setNtxt))  ;  tobj.log(   f'Append {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None  ;  tobj.setNtxt = Z
-        elif txt == 'Q':      tobj.settingN = 0                        ;  tobj.log(   f'Cancel {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None
+        if not tobj.settingN: tobj.settingN = 1   ;  tobj.setNtxt = Z  ;  slog(f'BGN {how} {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None
+        elif txt.isdecimal(): tobj.setNtxt += txt                      ;  slog(   f'Concat {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None
+        elif txt ==  W:       tobj.setNvals.append(int(tobj.setNtxt))  ;  slog(   f'Append {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None  ;  tobj.setNtxt = Z
+        elif txt == 'Q':      tobj.settingN = 0                        ;  slog(   f'Cancel {txt=} {tobj.settingN=} {tobj.setNvals=}') if dbg else None
         elif txt == '\r':
             tobj.settingN = 0   ;   old = tobj.n
             tobj.setNvals.append(int(tobj.setNtxt))
             if len(tobj.setNvals) == 4:
                 tobj.n[:2] = tobj.setNvals[:2]   ;   tobj.n[3:] = tobj.setNvals[2:]
-            tobj.log(f'Setting {old=} {tobj.n=}')
-            tobj.log(f'END {how} {txt=} {tobj.settingN=} {tobj.setNvals=}')
+            slog(f'Setting {old=} {tobj.n=}')
+            slog(f'END {how} {txt=} {tobj.settingN=} {tobj.setNvals=}')
 ########################################################################################################################################################################################################
 class SetTabCmd(Cmd):
     def __init__(self, tobj, how, text, m=0, rev=0, dbg=1):
@@ -728,11 +728,11 @@ class ShiftTabsCmd(Cmd):
             tobj.shiftingTabs = 0     ;   nt = tobj.n[T]
             for cn, v in tobj.smap.items():
                 cc = tobj.cn2cc(cn)   ;   p, l, c, r = tobj.cc2plct(cc, dbg=0)
-                tobj.log(f'{cc=} {cn=} {v=} text={v}')
+                slog(f'{cc=} {cn=} {v=} text={v}')
                 for t in range(nt):
                     text = v[t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = Notes.NTONES * 2
                     if tobj.sobj.isFret(text):
-                        fn = tobj.afn(str((tobj.sobj.tab2fn(text) + tobj.shiftSign * tobj.sobj.tab2fn(nf)) % ntones))  ;  tobj.log(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {tobj.shiftSign=}')
+                        fn = tobj.afn(str((tobj.sobj.tab2fn(text) + tobj.shiftSign * tobj.sobj.tab2fn(nf)) % ntones))  ;  slog(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {tobj.shiftSign=}')
                     if fn and tobj.sobj.isFret(fn):  tobj.setDTNIK(fn, kt, p, l, c, t, kk=1 if t==nt-1 else 0)
             tobj.shiftSign = 1
             tobj.rsyncData = 1
@@ -751,22 +751,22 @@ class SnapshotCmd(Cmd):
         logId     = tobj.LOG_ID
         snapName  = f'{BASE_NAME}.{logId}.{sid}.{typ}.{PNG}'
         snapPath  = pathlib.Path(BASE_PATH / PNGS / snapName)
-        if dbg:  tobj.log(f'{BASE_NAME=} {logId=} {sid=} {typ=} {PNG=}')
-        if dbg:  tobj.log(f'{tobj.fNameLogId=} {snapName=} {why}')
-        if dbg:  tobj.log(f'{snapPath}', p=2) # str(snapPath)
+        if dbg:  slog(f'{BASE_NAME=} {logId=} {sid=} {typ=} {PNG=}')
+        if dbg:  slog(f'{tobj.fNameLogId=} {snapName=} {why}')
+        if dbg:  slog(f'{snapPath}', p=2) # str(snapPath)
         pygimg.get_buffer_manager().get_color_buffer().save(snapPath) # str(snapPath)
-        if dbg2: tobj.log(f'{snapName=} {why}', f=2)
+        if dbg2: slog(f'{snapName=} {why}', f=2)
         snapName0 = f'{BASE_NAME}.{PNG}'
         snapName2 = tobj.geomFileName(BASE_NAME, PNG)
         snapPath0 = BASE_PATH / PNGS / snapName0
         snapPath2 = BASE_PATH / snapName2
         utl.copyFile(snapPath, snapPath0)
         utl.copyFile(snapPath, snapPath2)
-        if dbg:  tobj.log(f'{BASE_NAME=} {tobj.fmtn(Z)}')
-        if dbg:  tobj.log(f'{snapName0=} {why}')
-        if dbg:  tobj.log(f'{snapName2=} {why}')
-        if dbg:  tobj.log(f'{snapPath0=}', p=2)
-        if dbg:  tobj.log(f'{snapPath2=}', p=2)
+        if dbg:  slog(f'{BASE_NAME=} {tobj.fmtn(Z)}')
+        if dbg:  slog(f'{snapName0=} {why}')
+        if dbg:  slog(f'{snapName2=} {why}')
+        if dbg:  slog(f'{snapPath0=}', p=2)
+        if dbg:  slog(f'{snapPath2=}', p=2)
         tobj.dumpTnikCsvs(snapPath)
         return snapPath
 ########################################################################################################################################################################################################
@@ -805,15 +805,15 @@ class SwapTabCmd(Cmd):
         data = data or tobj.data
         if not tobj.swapping: tobj.swapping = 1
         elif txt.isalnum() or txt in tobj.tblanks:
-            if   tobj.swapping == 1:   src += txt;   tobj.log(f'    {how} {txt=} {tobj.swapping=} {src=} {trg=}') # optimize str concat?
-            elif tobj.swapping == 2:   trg += txt;   tobj.log(f'    {how} {txt=} {tobj.swapping=} {src=} {trg=}') # optimize str concat?
+            if   tobj.swapping == 1:   src += txt;   slog(f'    {how} {txt=} {tobj.swapping=} {src=} {trg=}') # optimize str concat?
+            elif tobj.swapping == 2:   trg += txt;   slog(f'    {how} {txt=} {tobj.swapping=} {src=} {trg=}') # optimize str concat?
             tobj.swapSrc, tobj.swapTrg = src, trg
         elif txt == '\r':
-            tobj.log(f'    {how} {tobj.swapping=} {src=} {trg=}')
-            if   tobj.swapping == 1 and not trg: tobj.swapping = 2;   tobj.log(f'{how} waiting {src=} {trg=}') if dbg else None   ;   return
-            if   tobj.swapping == 2 and trg:     tobj.swapping = 0;   tobj.log(f'{how} BGN     {src=} {trg=}') if dbg else None
+            slog(f'    {how} {tobj.swapping=} {src=} {trg=}')
+            if   tobj.swapping == 1 and not trg: tobj.swapping = 2;   slog(f'{how} waiting {src=} {trg=}') if dbg else None   ;   return
+            if   tobj.swapping == 2 and trg:     tobj.swapping = 0;   slog(f'{how} BGN     {src=} {trg=}') if dbg else None
             np, nl, ns, nc, nt = tobj.n  #  ;     nc += tobj.zzlen()
-            cc0 = tobj.cursorCol()         ;     p0, l0, c0, t0 = tobj.cc2plct(cc0)   ;   tobj.log(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
+            cc0 = tobj.cursorCol()         ;     p0, l0, c0, t0 = tobj.cc2plct(cc0)   ;   slog(f'BFR {cc0=} {p0=} {l0=} {c0=} {t0=}')
             blanks = tobj.tblanks          ;     blank = 1 if src in blanks and trg in blanks else 0
             if blank:
                 for t in tobj.tabls:   t.text = trg if t.text==src else t.text
@@ -826,13 +826,13 @@ class SwapTabCmd(Cmd):
                         text = data[p][l][c]
                         for t in range(nt):
                             if text[t] == src:
-                                if dbg2: tobj.log(f'Before data{tobj.fplc(p, l, c)}={text}')
+                                if dbg2: slog(f'Before data{tobj.fplc(p, l, c)}={text}')
                                 if blank and trg != tobj.tblank:
                                     text[t] = trg
                                 cc = tobj.plct2cc(p, l, c, t)   ;   tobj.setDTNIK(trg, cc, p, l, c, t, kk=1)
-                                if dbg2: tobj.log(f'After  data{tobj.fplc(p, l, c)}={text}')
+                                if dbg2: slog(f'After  data{tobj.fplc(p, l, c)}={text}')
             tobj.swapSrc, tobj.swapTrg = Z, Z
-            tobj.log(f'{how} END     {src=} {trg=}') if dbg else None
+            slog(f'{how} END     {src=} {trg=}') if dbg else None
 #                if dbg2: self.dumpTniks('SWAP')
 #                self.moveTo(how, p0, l0, c0, t0)  ;  cc = self.cursorCol()  ;  self.log(f'AFT {cc0=} {p0=} {l0=} {c0=} {t0=} {cc=}')
             if tobj.SNAPS >= 2: tobj.regSnap('SWP', how)
@@ -847,10 +847,10 @@ class TogArrowCmd(Cmd):
     
     def _togArrow(self):
         tobj, how, v, dbg = self.tobj, self.how, self.v, self.dbg
-        if dbg: tobj.log(f'BGN {how} {v=} {tobj.hArrow=} = {HARROWS[tobj.hArrow]=} {tobj.vArrow=} = {VARROWS[tobj.vArrow]=}')
+        if dbg: slog(f'BGN {how} {v=} {tobj.hArrow=} = {HARROWS[tobj.hArrow]=} {tobj.vArrow=} = {VARROWS[tobj.vArrow]=}')
         if v:   tobj.vArrow  = (tobj.vArrow + 1) % len(VARROWS)
         else:   tobj.hArrow  = (tobj.hArrow + 1) % len(HARROWS)
-        if dbg: tobj.log(f'END {how} {v=} {tobj.hArrow=} = {HARROWS[tobj.hArrow]=} {tobj.vArrow=} = {VARROWS[tobj.vArrow]=}')
+        if dbg: slog(f'END {how} {v=} {tobj.hArrow=} = {HARROWS[tobj.hArrow]=} {tobj.vArrow=} = {VARROWS[tobj.vArrow]=}')
 ########################################################################################################################################################################################################
 class TogBlankCmd(Cmd):
     def __init__(self, tobj, how, a):
@@ -862,13 +862,13 @@ class TogBlankCmd(Cmd):
     def _togBlank(self):
         tobj, how, a = self.tobj, self.how, self.a
         prevBlank    =  tobj.tblank
-        tobj.log(f'BGN {how} {prevBlank=}')
+        slog(f'BGN {how} {prevBlank=}')
         tobj.tblanki = (tobj.tblanki + a) % len(tobj.tblanks)
         tobj.tblank  =  tobj.tblanks[tobj.tblanki]
         tobj.swapSrc, tobj.swapTrg, tobj.swapping = prevBlank, tobj.tblank, 2
         tobj.swapTab(how, '\r')
         tobj.swapSrc, tobj.swapTrg = Z, Z
-        tobj.log(f'END {how} {tobj.tblank=}')
+        slog(f'END {how} {tobj.tblank=}')
 ########################################################################################################################################################################################################
 class TogBGCCmd(Cmd):
     def __init__(self, tobj, how):
@@ -879,7 +879,7 @@ class TogBGCCmd(Cmd):
 
     def _togBGC(self):
         tobj, how = self.tobj, self.how
-        tobj.log(f'{how} {tobj.BGC=}') if how else None
+        slog(f'{how} {tobj.BGC=}') if how else None
         tobj.BGC = (1 + tobj.BGC) % 2
         tobj.setFontArg2(tobj.tabls, COLOR, tobj.BGC, 'clrIdx', T)
 ########################################################################################################################################################################################################
@@ -907,7 +907,7 @@ class TogDrwBGCCmd(Cmd):
     def _togDrwBGC(self):
         tobj, how, a = self.tobj, self.how, self.a
         tobj.drwBGC += a
-        tobj.log(f'{how} {tobj.drwBGC=}')
+        slog(f'{how} {tobj.drwBGC=}')
 ########################################################################################################################################################################################################
 class TogFlatShrpCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
@@ -919,7 +919,7 @@ class TogFlatShrpCmd(Cmd):
     def _togFlatShrp(self):  #  page line colm tab or select
         tobj, how, dbg = self.tobj, self.how, self.dbg
         t1 = Notes.TYPE    ;    t2 =  Notes.TYPE * -1      ;     Notes.TYPE = t2
-        tobj.log(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
+        slog(  f'BGN {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
         s = tobj.ss2sl()[0]  ;  np, nl, ns, nc, nt = tobj.i
         tniks, j, _, _ = tobj.tnikInfo(0, 0, s, 0, 0, why=how)
         for i in range(len(tniks)):
@@ -934,14 +934,14 @@ class TogFlatShrpCmd(Cmd):
                 if   text in Notes.F2S:  text = Notes.F2S[text]
                 elif text in Notes.S2F:  text = Notes.S2F[text]
                 tobj.notes[i].text     = text
-                tobj.log(  f'{old:2} -> {text:2} = ')
-                if dbg: tobj.log(f'{sn=} {cn=:2} {cc=:4} {i=:4} {old:2} => {text:2} {tobj.notes[i].text=:2} {tobj.fplct(p, l, c, t)}')
+                slog(  f'{old:2} -> {text:2} = ')
+                if dbg: slog(f'{sn=} {cn=:2} {cc=:4} {i=:4} {old:2} => {text:2} {tobj.notes[i].text=:2} {tobj.fplct(p, l, c, t)}')
                 if tobj.kords:
                     imap = tobj.getImap(p, l, c, dbg2=1)
                     tobj.setChord(imap, i, pos=1, dbg=1)
         kysgs.dumpNic(dict(tobj.nic))
-        tobj.log(kysgs.fmtKSK(tobj.ks[kysgs.KSK]), f=2)
-        tobj.log(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
+        slog(kysgs.fmtKSK(tobj.ks[kysgs.KSK]), f=2)
+        slog(  f'END {how} {t1=} {Notes.TYPES[t1]} => {t2=} {Notes.TYPES[t2]}')
 ########################################################################################################################################################################################################
 class TogFullScrnCmd(Cmd):
     def __init__(self, tobj, how):
@@ -954,7 +954,7 @@ class TogFullScrnCmd(Cmd):
         tobj, how = self.tobj, self.how
         tobj.FULL_SCRN = not tobj.FULL_SCRN
         tobj.set_fullscreen( tobj.FULL_SCRN)
-        tobj.log(   f'{how} {tobj.FULL_SCRN}=')
+        slog(   f'{how} {tobj.FULL_SCRN}=')
 ########################################################################################################################################################################################################
 class TogKordNamesCmd(Cmd):
     def __init__(self, tobj, how, hit, dbg=1, dbg2=1):
@@ -978,15 +978,15 @@ class TogKordNamesCmd(Cmd):
         
     def _togKordNameHits(self, tobj, how, cn, dbg=1):
         mli = tobj.cobj.mlimap   ;   mks = list(mli.keys())   ;   cn2 = -1
-        if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   tobj.log(msg)   ;   cmd = QuitCmd(tobj, msg)   ;  cmd.do()
+        if cn not in mks: msg = f'ERROR: {cn=} not in {fmtl(mks)=}'   ;   slog(msg)   ;   cmd = QuitCmd(tobj, msg)   ;  cmd.do()
         ivals =  [ u[1] for u in mli[cn][0] ]
         msg   =  [ fmtl(v, w="x") for v in ivals ]
-        if dbg: tobj.log(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d=Z)}')
+        if dbg: slog(f'BGN {how} mks={fmtl(mks)} cn={cn:2} ivals={fmtl(msg, d=Z)}')
         hits = self._ivalhits(tobj, ivals, how)
         for cn2 in hits:
             if cn2 not in tobj.smap: cmd = SelectTabsCmd(tobj, how, m=0, cn=cn2)     ;  cmd.do()
             self._togKordName(tobj, how, cn2)
-        if dbg: tobj.log(f'END {how} mks={fmtl(mks)} cn2={cn2:2} ivals={fmtl(msg, d=Z)}')
+        if dbg: slog(f'END {how} mks={fmtl(mks)} cn2={cn2:2} ivals={fmtl(msg, d=Z)}')
 
     @staticmethod
     def _ivalhits(tobj, ivals, how, dbg=1):
@@ -997,7 +997,7 @@ class TogKordNamesCmd(Cmd):
                 for iv in ivals:
                     iv1 = sorted(iv)  ;  iv2 = sorted(im[1])
                     if iv1 == iv2:       hits.add(cn)   ;   break
-        if dbg: tobj.log(f'    {how} mks={fmtl(mks)} hits={fmtl(hits)}')
+        if dbg: slog(f'    {how} mks={fmtl(mks)} hits={fmtl(hits)}')
         return list(hits)
 
     @staticmethod
@@ -1006,7 +1006,7 @@ class TogKordNamesCmd(Cmd):
         p, l, c, t = tobj.cc2plct(cc)  ;   msg = Z
         if not tobj.ikeys and not tobj.kords: msg +=  'ERROR: Both ikeys and chords are Empty '
         if cn not in mli:                     msg += f'ERROR: {cn=} not in mks={fmtl(list(mli.keys()))}'
-        if msg: tobj.log(msg)          ;   return
+        if msg: slog(msg)          ;   return
         limap      = mli[cn][0]        ;   imi = mli[cn][1]
         imi        = (imi + 1) % len(limap)
         mli[cn][1] = imi
@@ -1014,7 +1014,7 @@ class TogKordNamesCmd(Cmd):
         if tobj.ikeys and ikeys:                tobj.setIkeyText(ikeys, cc, p, l, c)
         if tobj.kords and chordName and chunks: tobj.setChordName(cc, chordName, chunks)
         if tobj.SNAPS >= 6:      tobj.regSnap(f'KRD{imi}', how)
-        elif dbg: tobj.log(f'    {how} {cn=} {cc=} is NOT a chord')
+        elif dbg: slog(f'    {how} {cn=} {cc=} is NOT a chord')
         if dbg2:  tobj.cobj.dumpImap(limap[imi], why=f'{cn:2}')
 #        assert imi == limap[imi][-1],   f'{imi=} {limap[imi][-1]=}'
 ########################################################################################################################################################################################################
@@ -1027,14 +1027,14 @@ class TogPageCmd(Cmd):
 
     def _togPage(self):
         tobj, how, a = self.tobj, self.how, self.a
-        tobj.log(f'BGN {how} {a=} {tobj.i[P]=}')
+        slog(f'BGN {how} {a=} {tobj.i[P]=}')
         cmd = TogVisibleCmd(tobj, how)  ;  cmd.do()
         tobj.i[P] = (tobj.j()[P] + a) % tobj.n[P] + 1
-        tobj.log(f'    {how} {a=} {tobj.i[P]=}')
+        slog(f'    {how} {a=} {tobj.i[P]=}')
         cmd = TogVisibleCmd(tobj, how)  ;  cmd.do()
         tobj.dumpVisible()
         tobj.setCaption(f'{utl.ROOT_DIR}/{DATA}/{tobj.FILE_NAME}.{DAT} page {tobj.i[P]}')
-        tobj.log(f'END {how} {a=} {tobj.i[P]=}')
+        slog(f'END {how} {a=} {tobj.i[P]=}')
 ########################################################################################################################################################################################################
 class TogSelectAllCmd(Cmd):
     def __init__(self, tobj, how):
@@ -1069,7 +1069,7 @@ class TogAXYVCmd(Cmd):
         w2 = tobj.ftAa(v2) if i==0 else tobj.ftAa(v2) if i==1 else tobj.ftAy(v2) if i==2 else tobj.ftAv(v2) if i==3 else -1
         i2 = 'A' if i==0 else 'X' if i==1 else 'Y' if i==2 else 'V' if i==3 else '??'
         if   tobj.SNAPS >= 3:      tobj.regSnap(f'AV.{i2}.{w2}', how)
-        tobj.log(f'{how} [{i}] [{j}] tobj.AXYV[{i}]={tobj.AXYV[i]:2} : {d} {w:} {v:8} => {d2} {w2} {v2:8}')
+        slog(f'{how} [{i}] [{j}] tobj.AXYV[{i}]={tobj.AXYV[i]:2} : {d} {w:} {v:8} => {d2} {w2} {v2:8}')
         tobj.on_resize(tobj.width, tobj.height)
 
     @staticmethod    
@@ -1121,7 +1121,7 @@ class TogVisibleCmd(Cmd):
         tobj.J1, tobj.J2 = tobj.p2Js(p)
         pid = f' {id(tobj.pages[p]):11x}' if tobj.OIDS else Z
         assert 0 <= p < len(tobj.pages), f'{p=} {len(tobj.pages)=} {tobj.fmtn()} {tobj.fmti()} {tobj.J1} {tobj.J2}'
-        tobj.log(f'BGN {why} {pid} pages[{p}].v={int(tobj.pages[p].visible)} {tobj.fmti()} {tobj.fmtn()} page{p+1} is visibile {tobj.fVis()}')
+        slog(f'BGN {why} {pid} pages[{p}].v={int(tobj.pages[p].visible)} {tobj.fmti()} {tobj.fmtn()} page{p+1} is visibile {tobj.fVis()}')
         tobj.dumpTniksPfx(why, r=0)
         assert 0 <= p < len(tobj.pages), f'{p=} {len(tobj.pages)=}'
         page = tobj.pages[p]              ;  page.visible = not page.visible  ;  tobj.setJdump(P, p, page.visible, why=why)  ;  vl.append(str(int(page.visible))) if dbg else None
@@ -1137,7 +1137,7 @@ class TogVisibleCmd(Cmd):
                         assert t2 < len(tniks),  f'ERROR {t2=} {len(tniks)=}'
                         tnik = tniks[t2]  ;  tnik.visible = not tnik.visible  ;  tobj.setJdump(j, t2, tnik.visible, why=why)  ;  vl.append(str(int(tnik.visible))) if dbg else None
         tobj.dumpTniksSfx(why)
-        tobj.log(f'END {why} {pid} pages[{p}].v={int(tobj.pages[p].visible)} {tobj.fmti()} {tobj.fmtn()} page{p+1} is visible {tobj.fVis()}')
+        slog(f'END {why} {pid} pages[{p}].v={int(tobj.pages[p].visible)} {tobj.fmti()} {tobj.fmtn()} page{p+1} is visible {tobj.fVis()}')
 ########################################################################################################################################################################################################
 class TogLLsCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
@@ -1152,7 +1152,7 @@ class TogLLsCmd(Cmd):
         else:           msg = 'HID'
         tobj.dumpGeom('BGN', f'{how} {msg}')
         tobj.togLL(f'{how} {msg}')
-        if dbg: tobj.log(f'    llText={fmtl(tobj.llText)}')
+        if dbg: slog(f'    llText={fmtl(tobj.llText)}')
         if tobj.LL: tobj.addLLs( how)
         else:       tobj.hideLLs(how)
         if   tobj.SNAPS >= 3:      tobj.regSnap(f'{msg}', how)
@@ -1210,7 +1210,7 @@ class UnselectTabsCmd(Cmd):
         if dbg:             tobj.dumpSmap(f'BGN {how} {m=} {cn=} {cc=} {k=}')
         tobj.setTNIKStyle(k, nt, style)
         if cn in tobj.smap: tobj.smap.pop(cn)
-        elif dbg:           tobj.log(f'{cn=} not found in smap={fmtm(tobj.smap)}')
+        elif dbg:           slog(f'{cn=} not found in smap={fmtm(tobj.smap)}')
         if m:               cmd = MoveCmd(tobj, how, m)     ;  cmd.do()
         if dbg:             tobj.dumpSmap(f'END {how} {m=} {cn=} {cc=} {k=}')
 ########################################################################################################################################################################################################
@@ -1269,4 +1269,3 @@ class UpdateTniksCmd(Cmd):
         if dbg and tobj.SNAPS >= 10:    tobj.regSnap(f'Upd.{tobj.updC}', why)
         if dbg:    tobj.dumpStruct(why) # , dbg=dbg)
 ########################################################################################################################################################################################################
-# todo replace tobj.log() with slog()
