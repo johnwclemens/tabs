@@ -468,15 +468,15 @@ class PasteTabsCmd(Cmd):
         tobj.rsyncData = 1
 ########################################################################################################################################################################################################
 class PlayCmd(Cmd):
-    def __init__(self, tobj):
-        self.tobj = tobj
+    def __init__(self, tobj, how):
+        self.tobj, self.how = tobj, how
         
     def do(self):   self._play()
     def undo(self): self._play()
     
     def _play(self): # todo finish impl
-        tobj = self.tobj
-        assert 0,  f'{tobj=}'        
+        tobj, how = self.tobj, self.how
+        assert 0,  f'{tobj=} {how=}'        
 ########################################################################################################################################################################################################
 class PrevPageCmd(Cmd):
     def __init__(self, tobj, how, dbg=1):
@@ -502,11 +502,11 @@ class QuitCmd(Cmd):
     
     def _quit(self):
         tobj, why, err, save, dbg = self.tobj, self.why, self.err, self.save, self.dbg  
-        retv = True
-        hdr1 = tobj.fTnikHdr(1)    ;    hdr0 = tobj.fTnikHdr(0)   ;   tobj.log(hdr1, p=0, f=2)  ;  tobj.log(hdr0,     p=0, f=2)   ;   errStr = f'Error={err}'
-        tobj.log(f'BGN {why} {errStr} {save=} {tobj.quitting=}', f=2)                           ;  tobj.log(utl.QUIT, p=0, f=2)   ;   msg    = 'Recursion Error'
-        tobj.log(utl.QUIT_BGN, p=0, f=2)    ;    utl.dumpStack(inspect.stack())                 ;  tobj.log(utl.QUIT, p=0, f=2)
-        if tobj.quitting:        msg += f' {tobj.quitting=} Exiting'  ;  tobj.log(msg, f=2)     ;  tobj.close() #  ;   return True
+        retv = True   ;   ff = -3
+        hdr1 = tobj.fTnikHdr(1)    ;    hdr0 = tobj.fTnikHdr(0)   ;   tobj.log(hdr1, p=0, f=ff)  ;  tobj.log(hdr0,     p=0, f=ff)   ;   errStr = f'Error={err}'
+        tobj.log(f'BGN {why} {errStr} {save=} {tobj.quitting=}', f=ff)                           ;  tobj.log(utl.QUIT, p=0, f=ff)   ;   msg    = 'Recursion Error'
+        tobj.log(utl.QUIT_BGN, p=0, f=ff)    ;    utl.dumpStack(inspect.stack())                 ;  tobj.log(utl.QUIT, p=0, f=ff)
+        if tobj.quitting:        msg += f' {tobj.quitting=} Exiting'  ;  tobj.log(msg, f=ff)     ;  tobj.close() #  ;   return True
         tobj.dumpTniksSfx(why)        ;     tobj.quitting += 1
         if not err:
             utl.dumpStack(utl.MAX_STACK_FRAME)
@@ -515,17 +515,32 @@ class QuitCmd(Cmd):
             if dbg:  tobj.transposeData(dmp=dbg)
             if dbg:  tobj.cobj.dumpMlimap(why)
         if tobj.SNAPS:  tobj.snpC += 1  ;  cmd = SnapshotCmd(tobj, tobj.snpC, utl.FINI, f'quit {err} {save=}')     ;  cmd.do()
-        tobj.log(f'END {why} {errStr} {save=} {tobj.quitting=}', f=2)       ;   tobj.log(utl.QUIT_END, p=0, f=2)
-        tobj.cleanupFiles()
-        tobj.log(f'END {why} {errStr} {save=} {tobj.quitting=}', f=0)       ;   tobj.log(utl.QUIT_END, p=0, f=0)
-        tobj.log('Calling close()', e=Y, f=2)
-        tobj.close()
+        tobj.log(f'END {why} {errStr} {save=} {tobj.quitting=}', f=ff)      ;   tobj.log(utl.QUIT_END, p=0, f=ff)  ;  ret = '???'
+        slog('TRY ret = tobj.cleanupFiles()')
+        try:
+            ret = tobj.cleanupFiles()
+        except BaseException as e:
+            slog(f'ERROR {ret=} {e=}', f=ff)
+        else:
+            slog(f'OK {ret=}', f=ff)
+        finally:
+            slog(f'FINALLY {ret=}', f=ff)
+        slog(f'END {why} {errStr} {save=} {tobj.quitting=} {ret=}', f=ff)   ;   slog(utl.QUIT_END, p=0, f=ff)
+        slog('TRY ret = tobj.close()', f=ff)
+        try:
+            ret = tobj.close()
+        except BaseException as e:
+            slog(f'ERROR {ret=} {e=}', f=ff)
+        else:
+            slog(f'OK {ret=}', f=ff)
+        finally:
+            slog(f'FINALLY {ret=}', f=ff)
         if tobj.TEST:
-            if   tobj.EXIT == 0: retv = False  ;  tobj.log(f'{tobj.EXIT=} returning {retv=}')
-            elif tobj.EXIT == 1: retv = True   ;  tobj.log(f'{tobj.EXIT=} returning {retv=}')
-            elif tobj.EXIT == 2:                  tobj.log(f'{tobj.EXIT=} Calling pyglet.app.exit()')  ;   pyglet.app.exit()
-            else:                                 tobj.log(f'{tobj.EXIT=} Calling exit()')             ;   exit()
-        else:                                     tobj.log(f'{tobj.EXIT=} returning {retv=}')
+            if   tobj.EXIT == 0: retv = False  ;  slog(f'{tobj.EXIT=} returning {retv=}', f=ff)
+            elif tobj.EXIT == 1: retv = True   ;  slog(f'{tobj.EXIT=} returning {retv=}', f=ff)
+            elif tobj.EXIT == 2:                  slog(f'{tobj.EXIT=} Calling pyglet.app.exit()', f=ff)   ;   pyglet.app.exit()
+            else:                                 slog(f'{tobj.EXIT=} Calling exit()', f=ff)              ;   exit()
+        else:                                     slog(f'{tobj.EXIT=} returning {retv=}', f=ff)
         return retv
 ########################################################################################################################################################################################################
 class ResetCmd(Cmd):
@@ -738,8 +753,8 @@ class SnapshotCmd(Cmd):
         snapPath  = pathlib.Path(BASE_PATH / PNGS / snapName)
         if dbg:  tobj.log(f'{BASE_NAME=} {logId=} {sid=} {typ=} {PNG=}')
         if dbg:  tobj.log(f'{tobj.fNameLogId=} {snapName=} {why}')
-        if dbg:  tobj.log(f'{snapPath}', p=2)
-        pygimg.get_buffer_manager().get_color_buffer().save(f'{snapPath}')
+        if dbg:  tobj.log(f'{snapPath}', p=2) # str(snapPath)
+        pygimg.get_buffer_manager().get_color_buffer().save(snapPath) # str(snapPath)
         if dbg2: tobj.log(f'{snapName=} {why}', f=2)
         snapName0 = f'{BASE_NAME}.{PNG}'
         snapName2 = tobj.geomFileName(BASE_NAME, PNG)
@@ -1254,3 +1269,4 @@ class UpdateTniksCmd(Cmd):
         if dbg and tobj.SNAPS >= 10:    tobj.regSnap(f'Upd.{tobj.updC}', why)
         if dbg:    tobj.dumpStruct(why) # , dbg=dbg)
 ########################################################################################################################################################################################################
+# todo replace tobj.log() with slog()

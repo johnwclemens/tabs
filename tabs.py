@@ -2,7 +2,7 @@ import operator, os, sys
 import collections, itertools, queue
 from   collections     import Counter
 from   itertools       import accumulate
-from   more_itertools  import consume  # not installed in GitBash's Python
+#from   more_itertools  import consume  # not installed in GitBash's Python
 import pyglet
 import pyglet.font            as pygfont
 import pyglet.image           as pygimg
@@ -125,7 +125,7 @@ class Tabs(pyglet.window.Window):
         self.viewX,    self.viewY,   self.viewW,   self.viewH  = 0, 0, self.width, self.height
         self.viewX0,   self.viewY0,  self.viewW0,  self.viewH0 = 0, 0, self.width, self.height
         self.p0x, self.p0y, self.p0w, self.p0h, self.p0sx, self.p0sy = 0, 0, 0, 0, 0, 0
-        pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent') # todo add some sound
+#        pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent') # todo add some sound
         ################################################################################################################################################################################################
         self.AUTO_SAVE = 0  ;  self.BGC     = 0  ;  self.CAT     = 0  ;  self.CHECKERED = 0  ;  self.DEC_DATA = 0  ;  self.DSP_J_LEV = 4  ;  self.DBG_TABT  = 0
         self.EVENT_LOG = 0  ;  self.EXIT    = 0  ;  self.FRT_BRD = 0  ;  self.FULL_SCRN = 0  ;  self.GEN_DATA = 0  ;  self.LONG_TXT  = 1  ;  self.MULTILINE = 0
@@ -433,8 +433,9 @@ class Tabs(pyglet.window.Window):
                 self.log(f'{fmtl(flist)} {EVN_FILE=}', f=-3)   ;   self.log(f'{fmtl(flist)} {EVN_FILE=}', f=4)
                 from tpkg.evnts import FilteredEventLogger as FELogger
                 self.eventLogger = FELogger(self, EVN_FILE, flist)
-            self.keyboard        = pygwine.key.KeyStateHandler()
-            self.push_handlers(self.eventLogger, self.keyboard)
+                self.push_handlers(self.eventLogger)
+        self.keyboard        = pygwine.key.KeyStateHandler()
+        self.push_handlers(self.keyboard)
         if dbg: self.log(f'END {self.fmtWH()}')
     ####################################################################################################################################################################################################
     def _setGrpNums(self):
@@ -696,11 +697,11 @@ class Tabs(pyglet.window.Window):
         self.dumpTniksSfx(why)
     ####################################################################################################################################################################################################
     def dumpTniksC(self, why=Z):
-        self.dumpTniksPfx(why)   ;   m = [ len(self.C[k]) for k in range(4) ]   ;   n = [ len(self.D[k]) for k in range(4) ]
-        it = list(itertools.chain(self.A))   ;   consume(consume(self.setJdump(j  , i % self.n[j], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
-        it = list(itertools.chain(self.B))   ;   consume(consume(self.setJdump(j+T, i % self.n[T], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
-        it = list(itertools.chain(self.C))   ;   consume(consume(self.setJdump(j+M, i % m[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
-        it = list(itertools.chain(self.D))   ;   consume(consume(self.setJdump(j+A, i % n[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+        self.dumpTniksPfx(why) #  ;   m = [ len(self.C[k]) for k in range(4) ]   ;   n = [ len(self.D[k]) for k in range(4) ]
+#        it = list(itertools.chain(self.A))   ;   consume(consume(self.setJdump(j  , i % self.n[j], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+#        it = list(itertools.chain(self.B))   ;   consume(consume(self.setJdump(j+T, i % self.n[T], v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+#        it = list(itertools.chain(self.C))   ;   consume(consume(self.setJdump(j+M, i % m[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
+#        it = list(itertools.chain(self.D))   ;   consume(consume(self.setJdump(j+A, i % n[j]     , v=int(it[j][i].visible), why=why) for i in range(len(it[j]))) for j in range(len(it)))
         self.dumpTniksSfx(why)
 
     def dumpTniksD(self, why=Z):
@@ -2082,8 +2083,10 @@ class Tabs(pyglet.window.Window):
 #        olog((pos, o), p, f, s, e, ff)
     ####################################################################################################################################################################################################
     def cleanupFiles(self):
-        self.cleanupCsvFile()
+        ret = self.cleanupCsvFile()
+        self.log(f'cleanupCsvFile() {ret=}')
         self.cleanupCatFile() if self.cobj.umap else None
+        return ret
 
     def cleanupCsvFile(self):
         if not CSV_FILE.closed:
@@ -2094,9 +2097,11 @@ class Tabs(pyglet.window.Window):
         csvPath3 = self.seqNumCsvPath
         self.log(f'Copying {CSV_FILE.name} to {csvPath2}', f=2)
         utl.copyFile(csvPath, csvPath2)
-        self.makeSubDirs(csvPath3)
+        self.makeSubDirs(csvPath3) # fixme
         self.log(f'Copying {CSV_FILE.name} to {csvPath3}', f=2)
-        utl.copyFile(csvPath, csvPath3)
+        ret = utl.copyFile(csvPath, csvPath3)
+        self.log(f'Copy CSV file {ret=}', f=2)
+        return ret
 
     def cleanupCatFile(self):
         fileName = self.fileNamePfx(CAT) + BASE_NAME
@@ -2161,8 +2166,15 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     slog('Constructing Tabs object', f=-3)
     tabs = Tabs()  ;  seqNumLogPath = tabs.seqNumLogPath  ;  seqNumTxtPath = tabs.seqNumTxtPath
     slog(f'{str(tabs)=}', f=_)   ;   slog(f'{tabs=}', f=_)
-    slog('Call pyglet.app.run()')
-    pyglet.app.run()
+    slog('TRY runstat = pyglet.app.run()', f=_)   ;   runstat = '???'
+    try:
+        runstat = pyglet.app.run()
+    except OSError as err:
+        slog(f'ERROR {runstat=} {err=}', f=_)
+    else:
+        slog(f'OK pyglet.app.run() {runstat=}', f=_)
+    finally:
+        slog(f'FINALLY {runstat=}', f=_)
     slog('Thats all folks!', ff=1, f=_)
     slog(f'END {sys.argv[0]}',     f=_)
     geomLogPath = utl.getFilePath(tabs.LOG_GFN, BASE_PATH, fdir=None, fsfx=Z)

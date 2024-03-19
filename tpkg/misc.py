@@ -77,6 +77,8 @@ class Modes:
 # T) still issues with tnik.visible and update/resize? (w/h=0, parent, grp num/ord) only set visible on groups?
 # U) Log file creation issues for some time now
 
+# Found a few issue regarding exceptions:
+
 ######################################################################################################################################################
 
 # Diatonic Inervals:

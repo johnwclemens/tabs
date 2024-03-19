@@ -246,7 +246,6 @@ def fmtl(lst, w=None, u=None, d='[', d2=None, s=W, ll=None):
     return z + d + Z.join(t) + d2
 ########################################################################################################################################################################################################
 def fmtm(m, w=None, wv=None, u=None, uv=None, d0=':', d='{', d2=None, s=W, ll=None):
-    assert m,  f'{m=}'
     if m is None: return NONE
     w  = w  if w  is not None else Z   ;  t = []
     wv = wv if wv is not None else w
@@ -439,26 +438,40 @@ def initColors(k, spr, bgc, ik):
     j = E  ;  k[j] = i(j, KE1, aa, OE1, KE2, zz, OE2) if a else i(j, KE1,  0,  0, KE2, 17, 17) if b else i(j, KE1,  0,  0, KE2, 17, 17) if c else i(j, KE1,  0,  0, KE2, 17, 17) if d else None
 ########################################################################################################################################################################################################
 def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1, f=-3):
-    if dbg: slog(f'{baseName =:12} {basePath = }', f=f)
+    if dbg: slog(f'{baseName =:12} {basePath = }', f=f) # str(basePath)
     fileName   = f'{baseName}.{fsfx}'          if fsfx else baseName
     filePath   =    basePath / fdir / fileName if fdir else basePath / fileName
-    if dbg: slog(f'{fileName =:12} {filePath = }', f=f)
+    if dbg: slog(f'{fileName =:12} {filePath = }', f=f) # str(filePath)
     return  filePath
 
 def copyFile(src, trg, dbg=1, f=-3):
     if not src.exists():   msg = f'ERROR Path Does not Exist {src=}'   ;   print(msg)   ;  raise SystemExit(msg)
     if dbg: slog(f'{src=}', f=f)
     if dbg: slog(f'{trg=}', f=f)
-    cmd  =  f'copy {src} {trg}'
+    cmd  =  f'copy {src} {trg}'   ;   ret = '???'
     if dbg: slog(f'{12*W}{cmd} ###', f=f)
-    os.system(f'{cmd}')
+    slog(f'TRY ret = os.system({cmd})', f=f)
+    try:
+        ret = os.system(cmd)
+    except BaseException as e:
+        slog(f'ERROR {ret=} {e=}', f=f)
+    else:
+        slog(f'OK {ret=}', f=f)
+    finally:
+        slog(f'FINALLY {ret=}', f=f)
+    slog(f'os.system {ret=}', f=f)
+    return ret
 ########################################################################################################################################################################################################
 def getFileSeqName(baseName, basePath, fdir='logs', fsfx='log'):
     n = 1
     slog(f'    {fdir=} / {fsfx=}')
-    fGlobArg = f'{(basePath / fdir / baseName)}.*.{fsfx}'
+    fGlobArg = f'{(basePath / fdir / baseName)}.*.{fsfx}' # todo investigate this
+#    tmpPath  = f'{basePath}\\{fdir}'
+#    fileName = f'{baseName}.*.{fsfx}'
+#    fGlobArg = f'{tmpPath}\\{fileName}'
     fGlob    = glob.glob(fGlobArg)
     slog(f'{fGlobArg=}')
+    slog(f'{fGlob=}')
     LOG_ID   = getFileSeqNum(fGlob, fsfx) + n
     slog(f'  {LOG_ID=}')
     name     = f'{baseName}.{LOG_ID}'

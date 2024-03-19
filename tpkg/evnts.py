@@ -89,17 +89,18 @@ def on_draw(tobj, **kwargs):
 ########################################################################################################################################################################################################
 def on_key_press(tobj, symb, mods, dbg=1):
     assert tobj
-    retv  = True
-    global MODS      ;     MODS = mods
+    retv, retv2  = True, False
+    global MODS      ;    MODS = mods
     fontBold, fontItalic = tobj.fontBold, tobj.fontItalic
+    k     = psym(symb)   ;   m = MODS
+    dp    = tobj.dataPath1
     hc    = tobj.hcurs
     tkb   = tobj.keyboard
     d     = tkb.data if tkb else None
-    k     = psym(symb)   ;   m = MODS
-    dp    = tobj.dataPath1
-    if dbg:    slog(f'BGN {fsm(symb, mods)} d={fmtm(d)}')
-    if   k == 'P' and isCtlAlt(d, m):      cmd = cmds.PlayCmd(         tobj, '@&P')                 ;  cmd.do()
-    elif k == 'S' and isCtlAlt(d, m):      cmd = cmds.SaveDataFileCmd( tobj, '@&S')                 ;  cmd.do()
+    assert d,  f'{d=} {tkb=}'
+    if dbg:           slog(f'BGN {fsm(symb, mods)} {d=}', f=-3)
+    if   k == 'P' and isCtlAlt(d, m):      cmd = cmds.PlayCmd(         tobj, '@&P')                  ;  cmd.do()
+    elif k == 'S' and isCtlAlt(d, m):      cmd = cmds.SaveDataFileCmd( tobj, '@&S', tobj.dataPath1)  ;  cmd.do()
     ####################################################################################################################################################################################################
     elif k == 'A' and isCtlShf(d, m):      cmd = cmds.TogArrowCmd(     tobj, '@^A', v=1)            ;  cmd.do()
     elif k == 'A' and isCtl(   d, m):      cmd = cmds.TogArrowCmd(     tobj, '@ A', v=0)            ;  cmd.do()
@@ -133,8 +134,8 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif k == 'O' and isCtl(   d, m):      cmd = cmds.TogCsrModeCmd(   tobj, '@ O',  1)             ;  cmd.do()
     elif k == 'P' and isCtlShf(d, m):      cmd = cmds.AddPageCmd(      tobj, '@^P', ins=0)          ;  cmd.do()
     elif k == 'P' and isCtl(   d, m):      cmd = cmds.AddPageCmd(      tobj, '@ P', ins=None)       ;  cmd.do()
-    elif k == 'Q' and isCtlShf(d, m):      cmd = cmds.QuitCmd(         tobj, '@^Q', err=0, save=0)  ;  retv = cmd.do()
-    elif k == 'Q' and isCtl(   d, m):      cmd = cmds.QuitCmd(         tobj, '@ Q', err=0, save=1)  ;  retv = cmd.do()
+    elif k == 'Q' and isCtlShf(d, m):      cmd = cmds.QuitCmd(         tobj, '@^Q', err=0, save=0)  ;  retv2 = cmd.do()
+    elif k == 'Q' and isCtl(   d, m):      cmd = cmds.QuitCmd(         tobj, '@ Q', err=0, save=1)  ;  retv2 = cmd.do()
     elif k == 'R' and isCtlShf(d, m):      cmd = cmds.TogKordNamesCmd( tobj, '@^R', hit=1)          ;  cmd.do()
     elif k == 'R' and isCtl(   d, m):      cmd = cmds.TogKordNamesCmd( tobj, '@ R', hit=0)          ;  cmd.do()
     elif k == 'S' and isCtlShf(d, m):      cmd = cmds.SaveDataFileCmd( tobj, '@^S', dp)             ;  cmd.do()
@@ -208,14 +209,25 @@ def on_key_press(tobj, symb, mods, dbg=1):
     elif k == 'BACKSLASH' and isCtl(d, m): cmd = cmds.SetCHVModeCmd(   tobj, '@  BACKSLASH', ARPG, RARROW, DARROW)     ;  cmd.do()
     elif k == 'BACKSLASH' and isAlt(d, m): cmd = cmds.SetCHVModeCmd(   tobj, ' & BACKSLASH', ARPG, LARROW, UARROW)     ;  cmd.do()
     ####################################################################################################################################################################################################
-    else:  retv = False   ;   slog(f'UNH {fsm(symb, mods)} d={fmtm(d)}') if dbg else None
+    else:
+        slog(f'UNH          {k=} {retv=} setting retv to False', f=-3) if dbg else None
+        retv = False
     ####################################################################################################################################################################################################
+    if not retv2:
+        retv = retv2
+        slog(f'UNH {retv2=} {k=} {retv=} {fsm(symb, mods)} {d=}', f=-3) if dbg else None
+    ####################################################################################################################################################################################################
+    slog(f'check isParsing {k=} {retv=}', f=-3)
     if  not  tobj.isParsing():
+        slog(f'Not isParsing {k=} {retv=}', f=-3)
         if   k == 'ENTER' and isShf(d, m):      cmd = cmds.SetCHVModeCmd(tobj, '  ^ENTER', CHRD, v=DARROW)  ;  tobj.prevEvntText = k  ;  cmd.do()
         elif k == 'ENTER':                      cmd = cmds.SetCHVModeCmd(tobj, '   ENTER', CHRD, v=UARROW)  ;  tobj.prevEvntText = k  ;  cmd.do()
         elif k == 'SPACE' and tobj.tblank != W: cmd = cmds.AutoMoveCmd(  tobj, '   SPACE')                                            ;  cmd.do() # todo
 #        elif dbg: self.log(f'Unexpected {self.kbkEvntTxt()} while not parsing', f=2)
-    if dbg:  slog(f'END {    fsm(symb, mods)} d={fmtm(d)}, {retv=}')
+        else: slog(f'Done Not isParsing {k=} {retv=}', f=-3)
+    slog(f'{d=} {tkb=}', f=-3)
+    if dbg:   slog(f'END {fsm(symb, mods)} {d=}', f=-3)
+    slog(f'END processing event {k=} return {retv=}', f=-3)
     return retv
 ########################################################################################################################################################################################################
 #  99 evnts on_key_press       BGN  65507 0xffe3 LCTRL            2 MOD_CTRL                                   kd=
