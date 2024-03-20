@@ -183,7 +183,7 @@ INTRVLKEYSA = ['P1', 'd2', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4',
 INTRVLKEYSB = ['P1',       'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7',       'P8']
 CENTKEYSB   = [   0,        90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996, 1020, 1086, 1110,       1200 ]
 #                0          1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19   20    21    22          23
-PythMap2    = { e: {'Count': 0} for e in CENTKEYSA } # freq ratio in cents to counts
+PythMap2    = { e: {'Count': 0} for e in CENTKEYSB } # freq ratio in cents to counts
 PythMap3A   = { CENTKEYSA[i]: k for i, k in enumerate(INTRVLKEYSA) }
 PythMap3B   = { CENTKEYSB[i]: k for i, k in enumerate(INTRVLKEYSB) }
 PM2KEYS     = ['ABCs', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Intrv', 'Note', 'Wavlen']
@@ -233,10 +233,10 @@ def fPyth(a=7, b=6, csv=0):
 def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'BGN Pythagorean ({k=} {rf=} {sss=} {csv=})')
     x, y = 13, 6     ;   z = x-2   ;   rnd = 1
-    ww, mm, nn, oo, ff = (Z, Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)      ;   uu = f'^{x}'
+    ww, mm, nn, oo, ff = (Z, Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   uu = f'^{x}'
     f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * sss
     ii, ns, fs, ws = [], [], [], []   ;   cs, ds = [], []   ;   vs = []   ;   ps, qs = [], []   ;   rs, ss = [], []   ;   nns, rrs = [], []
-    abcs, txts = k2fPyths(k, csv, fPyth)
+    abcs, txts = k2PythAbcs(k, csv)
     for i, e in enumerate(abcs):
         a, b, c   = e[0], e[1], e[2]
         r, ca, cb = abc2r(a, b, c)
@@ -249,7 +249,7 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
         if n2 and i and i != NT and i != 6:    n += '/' + n2
         c  = r2cents(r)            ;   d = c - i * 100 if i != 0 else 0.0 # fixme
         rc   = round(c)
-        v    = PythMap3A[rc]
+        v    = PythMap3B[rc]
         ii.append(i)               ;   fs.append(fmtf(f, z))    ;   ps.append(p)   ;    rs.append(fmtf(r, z))   ;   cs.append(float(c) if rnd else fmtf(c, x))                   ;    rrs.append(rr)
         ns.append(n)               ;   ws.append(fmtf(w, z))    ;   qs.append(q)   ;    ss.append(s)            ;   ds.append(float(d) if rnd else fmtg(d, x if d > 0 else x))   ;     vs.append(v)
     csw, dsw = (f'^{x}.2f', f'^{x}.2f') if rnd else (ww, x-1)
@@ -276,7 +276,8 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     dmpPythMaps(k,     csv)
     slog(f'END Pythagorean ({k=} {rf=} {sss=} {csv=})')
 ########################################################################################################################################################################################################
-def k2fPyths(k=50, c=0, f=fPyth):
+def k2PythAbcs(k=50, csv=0):
+    c = csv   ;   f = fPyth
     return f(6, 5, c) if k==50 or k== 62 else f(5, 6, c) if k==57 else f(4, 7, c) if k==52 else f(3, 8, c) if k==59 else f(2, 9, c)  if k==54 else f(1, 10, c) if k==61 else f(0, 11, c) if k==56 \
                                          else f(7, 4, c) if k==55 else f(8, 3, c) if k==60 else f(9, 2, c) if k==53 else f(10, 1, c) if k==58 else f(11, 0, c) if k==51 else f(12, 0, c)
 #   return f(7, 6, c) if k==50 or k== 62 else f(6, 7, c) if k==57 else f(5, 8, c) if k==52 else f(4, 9, c)  if k==59 else f(3, 10, c) if k==54 else f(2, 11, c) if k==61 else f(1, 12, c) if k==56 \
@@ -288,12 +289,12 @@ def k2dCent(k):
 ########################################################################################################################################################################################################
 def dmpDataTableLine(w=20): slog(f' ' * 6 + f'-' * w * 13 + f'-', p=0) # 14 or 20
 #DIV_DASH_6 = '-     ---    ----  -----    -      --   -----   ----    --     -    ------  ----   ---   ------   -     ---    ----  -----    --     --   -----   ----   ---     -'
-#DIV_SLSH_6 = '/     ///    ////  /////    /      //   /////   ////    //     /    //////  ////   ///   //////   /     ///    ////  /////    //     //   /////   ////   ///     /'
+DIV_SLSH_6 = '/     ///    ////  /////    /      //   /////   ////    //     /    //////  ////   ///   //////   /     ///    ////  /////    //     //   /////   ////   ///     /'
 #DIV_DASH_9 = '-        ---      ----      -----       -        --       -----     ----       --         -      ------     ----       ---     ------       -        ---      ----      -----      --        --       -----     ----       ---        -'
-#DIV_SLSH_9 = '/        ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///        /'
+DIV_SLSH_9 = '/        ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///        /'
 
-DIV_SLSH_6 = '/            ///    ////  /////    /      //   /////   ////    //     /    //////  ////   ///   //////   /     ///    ////  /////    //     //   /////   ////   ///            /'
-DIV_SLSH_9 = '/                  ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///                  /'
+#DIV_SLSH_6 = '/            ///    ////  /////    /      //   /////   ////    //     /    //////  ////   ///   //////   /     ///    ////  /////    //     //   /////   ////   ///            /'
+#DIV_SLSH_9 = '/                  ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///                  /'
 ########################################################################################################################################################################################################
 def dmpPythMaps(k, csv):
 #    dmpPythMap1(1, csv=csv)
@@ -350,7 +351,7 @@ def dmpPythMap1(ni, ik, x=19, csv=0): # 13 or 19
         elif ni == 5: slog(f'{pdf} {centsf}', p=0, f=ff)
     if not csv:  dmpDataTableLine(x + 1)    ;    slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 5 else None
 ########################################################################################################################################################################################################
-def dmpPythIvals(i, ks, cs, ds):
+def dmpPythIvalsA(i, ks, cs, ds):
     eps = pythEpsln()
     j   = math.floor(i/2)
     m   = -1
@@ -361,8 +362,23 @@ def dmpPythIvals(i, ks, cs, ds):
             slog(f'{j:2} {j*100:4} {i:2} {u}[{cs[i+m]:2} @ {ks[i+m]:4}: {ds[i+m]:7.3f} = {eps:5.3f} * {cs[i]:2}]  {v}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {cs[i+m]:2}]')
         else:
             slog(f'{j:2} {j*100:4} {i:2} {v}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {cs[i+m]:2}]  {u}[{cs[i+m]:2} @ {ks[i+m]:4}: {ds[i+m]:7.3f} = {eps:5.3f} * {cs[i]:2}]')
-#            assert round(cs[i+m] * eps, 3) == round(ds[i], 3),          f'{cs[i+m]:2} * {eps:5.3f} == {ds[i]:7.3f} {i=} {m=}'
-#            assert cs[i+m] * round(eps, 3) + j*100 == round(ks[i], 3),  f'{cs[i+m]:2} * {round(eps, 3):5.3} + 100*{j:2} == {round(ks[i], 3):8.3f} {i=} {m=} {j=}'
+
+def dmpPythIvalsB(i, ks, cs, ds):
+    eps = pythEpsln()
+    j   = math.floor(i/2)
+    m   = -1
+    c0  = 0
+    if i == 0:
+        slog(f' j j*100 i     c     k      d       e       c`      c     k      d       e       c`')
+        slog(f'{j:2} {j*100:4} {i:2} {PythMap3B[ks[i]]}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {c0:2}]  d2[ 0 @   24:                    0]')
+    elif not i % 2:
+        u, v = (PythMap3B[ks[i+m]], PythMap3B[ks[i]])
+        if  j < 6 and j % 2 or j >= 6 and not j % 2:
+            slog(f'{j:2} {j*100:4} {i:2} {u}[{cs[i+m]:2} @ {ks[i+m]:4}: {ds[i+m]:7.3f} = {eps:5.3f} * {cs[i]:2}]  {v}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {cs[i+m]:2}]')
+        else:
+            slog(f'{j:2} {j*100:4} {i:2} {v}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {cs[i+m]:2}]  {u}[{cs[i+m]:2} @ {ks[i+m]:4}: {ds[i+m]:7.3f} = {eps:5.3f} * {cs[i]:2}]')
+    elif i == len(PythMap3B)-1:
+        slog(f'{j:2} {j*100:4} {i:2} {PythMap3B[ks[i]]}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {c0:2}]  A7[ 0 @ 1178:                    0]')
 ########################################################################################################################################################################################################
 def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
 #def fmtR1(a, ca, b, cb, w):  pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
@@ -379,9 +395,9 @@ def dmpPythMap2(w=9, csv=0): # 6 or 9
     ww, w1, w2, w3  = f'^{w}', f'^{w}.1f', f'^{w}.2f', f'^{w}.{x}f'
     blank, sc, y    = w*W, 0, 0 # fixme
     ns, ws          = [], []   ;   cs, ds = [], []  ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  ckis, cksf, cksi = [], [], []
-    for i, ck in enumerate(CENTKEYSA):
+    for i, ck in enumerate(CENTKEYSB):
         ckis.append(i)
-        ival = PythMap3A[ck] 
+        ival = PythMap3B[ck] 
         ws.append(ival)
         if PythMap2 and ck in PythMap2 and PythMap2[ck]['Count'] > 0:
             a, ca, b, cb = PythMap2[ck]['ABCs']
@@ -401,9 +417,9 @@ def dmpPythMap2(w=9, csv=0): # 6 or 9
             n, f = blank, blank
             c, d = 0, 0.0   ;   cksi.append(ck)   ;   cksf.append(float(ck))
         ns.append(n)  ;  cs.append(c)  ;  ds.append(d)
-        if not csv:    dmpPythIvals(i, cksi, cs, ds)
+        if not csv:    dmpPythIvalsB(i, cksi, cs, ds)
     slog(f'{y*W}Centi {fmtl(ckis, w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Centk {fmtl(CENTKEYSA, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Centk {fmtl(CENTKEYSB, w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Intrv {fmtl(ws,   w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Note  {fmtl(ns,   w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Cents {fmtl(cksf, w=w1, s=mm, d=Z)}', p=0, f=ff)
@@ -417,9 +433,99 @@ def dmpPythMap2(w=9, csv=0): # 6 or 9
     slog(f'{y*W}Rati3 {fmtl(r3s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Count {fmtl(cs,   w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{len(PythMap1)=} {sc=}', p=0, f=ff)
-    PythMap2 = { e: {'Count': 0} for e in CENTKEYSA } #  
+    PythMap2 = { e: {'Count': 0} for e in CENTKEYSB } #  
 ########################################################################################################################################################################################################
 '''
+# 372 intrvls dmpPythIvalsB       j j*100 i     c     k      d       e       c`      c     k      d       e       c`
+# 373 intrvls dmpPythIvalsB       0    0  0 P1[12 @    0:   0.000 = 1.955 *  0]
+# 377 intrvls dmpPythIvalsB       1  100  2 m2[ 7 @   90:  -9.775 = 1.955 *  5]  A1[ 5 @  114:  13.685 = 1.955 *  7]
+# 379 intrvls dmpPythIvalsB       2  200  4 M2[10 @  204:   3.910 = 1.955 *  2]  d3[ 2 @  180: -19.550 = 1.955 * 10]
+# 377 intrvls dmpPythIvalsB       3  300  6 m3[ 9 @  294:  -5.865 = 1.955 *  3]  A2[ 3 @  318:  17.595 = 1.955 *  9]
+# 379 intrvls dmpPythIvalsB       4  400  8 M3[ 8 @  408:   7.820 = 1.955 *  4]  d4[ 4 @  384: -15.640 = 1.955 *  8]
+# 377 intrvls dmpPythIvalsB       5  500 10 P4[11 @  498:  -1.955 = 1.955 *  1]  A3[ 1 @  522:  21.505 = 1.955 * 11]
+# 377 intrvls dmpPythIvalsB       6  600 12 d5[ 6 @  588: -11.730 = 1.955 *  6]  A4[ 6 @  612:  11.730 = 1.955 *  6]
+# 379 intrvls dmpPythIvalsB       7  700 14 P5[11 @  702:   1.955 = 1.955 *  1]  d6[ 1 @  678: -21.505 = 1.955 * 11]
+# 377 intrvls dmpPythIvalsB       8  800 16 m6[ 8 @  792:  -7.820 = 1.955 *  4]  A5[ 4 @  816:  15.640 = 1.955 *  8]
+# 379 intrvls dmpPythIvalsB       9  900 18 M6[ 9 @  906:   5.865 = 1.955 *  3]  d7[ 3 @  882: -17.595 = 1.955 *  9]
+# 377 intrvls dmpPythIvalsB      10 1000 20 m7[10 @  996:  -3.910 = 1.955 *  2]  A6[ 2 @ 1020:  19.550 = 1.955 * 10]
+# 379 intrvls dmpPythIvalsB      11 1100 22 M7[ 7 @ 1110:   9.775 = 1.955 *  5]  d8[ 5 @ 1086: -13.685 = 1.955 *  7]
+# 381 intrvls dmpPythIvalsB      11 1100 23 P8[12 @ 1200:   0.000 = 1.955 *  0]
+
+# 372 intrvls dmpPythIvalsB       j j*100 i     c     k      d       e       c`      c     k      d       e       c`
+# 373 intrvls dmpPythIvalsB       0    0  0 P1[12 @    0:   0.000 = 1.955 *  0]  d2[ 0 @   24:                     ]
+# 377 intrvls dmpPythIvalsB       1  100  2 m2[ 7 @   90:  -9.775 = 1.955 *  5]  A1[ 5 @  114:  13.685 = 1.955 *  7]
+# 379 intrvls dmpPythIvalsB       2  200  4 M2[10 @  204:   3.910 = 1.955 *  2]  d3[ 2 @  180: -19.550 = 1.955 * 10]
+# 377 intrvls dmpPythIvalsB       3  300  6 m3[ 9 @  294:  -5.865 = 1.955 *  3]  A2[ 3 @  318:  17.595 = 1.955 *  9]
+# 379 intrvls dmpPythIvalsB       4  400  8 M3[ 8 @  408:   7.820 = 1.955 *  4]  d4[ 4 @  384: -15.640 = 1.955 *  8]
+# 377 intrvls dmpPythIvalsB       5  500 10 P4[11 @  498:  -1.955 = 1.955 *  1]  A3[ 1 @  522:  21.505 = 1.955 * 11]
+# 377 intrvls dmpPythIvalsB       6  600 12 d5[ 6 @  588: -11.730 = 1.955 *  6]  A4[ 6 @  612:  11.730 = 1.955 *  6]
+# 379 intrvls dmpPythIvalsB       7  700 14 P5[11 @  702:   1.955 = 1.955 *  1]  d6[ 1 @  678: -21.505 = 1.955 * 11]
+# 377 intrvls dmpPythIvalsB       8  800 16 m6[ 8 @  792:  -7.820 = 1.955 *  4]  A5[ 4 @  816:  15.640 = 1.955 *  8]
+# 379 intrvls dmpPythIvalsB       9  900 18 M6[ 9 @  906:   5.865 = 1.955 *  3]  d7[ 3 @  882: -17.595 = 1.955 *  9]
+# 377 intrvls dmpPythIvalsB      10 1000 20 m7[10 @  996:  -3.910 = 1.955 *  2]  A6[ 2 @ 1020:  19.550 = 1.955 * 10]
+# 379 intrvls dmpPythIvalsB      11 1100 22 M7[ 7 @ 1110:   9.775 = 1.955 *  5]  d8[ 5 @ 1086: -13.685 = 1.955 *  7]
+# 381 intrvls dmpPythIvalsB      11 1100 23 P8[12 @ 1200:   0.000 = 1.955 *  0]  A7[ 0 @ 1178:                     ]
+
+# 372 intrvls dmpPythIvalsB       j j*100 i     c     k      d       e       c`      c     k      d       e       c`
+# 373 intrvls dmpPythIvalsB       0    0  0 P1[12 @    0:   0.000 = 1.955 *  0]  d2[ 0 @   24]
+# 377 intrvls dmpPythIvalsB       1  100  2 m2[ 7 @   90:  -9.775 = 1.955 *  5]  A1[ 5 @  114:  13.685 = 1.955 *  7]
+# 379 intrvls dmpPythIvalsB       2  200  4 M2[10 @  204:   3.910 = 1.955 *  2]  d3[ 2 @  180: -19.550 = 1.955 * 10]
+# 377 intrvls dmpPythIvalsB       3  300  6 m3[ 9 @  294:  -5.865 = 1.955 *  3]  A2[ 3 @  318:  17.595 = 1.955 *  9]
+# 379 intrvls dmpPythIvalsB       4  400  8 M3[ 8 @  408:   7.820 = 1.955 *  4]  d4[ 4 @  384: -15.640 = 1.955 *  8]
+# 377 intrvls dmpPythIvalsB       5  500 10 P4[11 @  498:  -1.955 = 1.955 *  1]  A3[ 1 @  522:  21.505 = 1.955 * 11]
+# 377 intrvls dmpPythIvalsB       6  600 12 d5[ 6 @  588: -11.730 = 1.955 *  6]  A4[ 6 @  612:  11.730 = 1.955 *  6]
+# 379 intrvls dmpPythIvalsB       7  700 14 P5[11 @  702:   1.955 = 1.955 *  1]  d6[ 1 @  678: -21.505 = 1.955 * 11]
+# 377 intrvls dmpPythIvalsB       8  800 16 m6[ 8 @  792:  -7.820 = 1.955 *  4]  A5[ 4 @  816:  15.640 = 1.955 *  8]
+# 379 intrvls dmpPythIvalsB       9  900 18 M6[ 9 @  906:   5.865 = 1.955 *  3]  d7[ 3 @  882: -17.595 = 1.955 *  9]
+# 377 intrvls dmpPythIvalsB      10 1000 20 m7[10 @  996:  -3.910 = 1.955 *  2]  A6[ 2 @ 1020:  19.550 = 1.955 * 10]
+# 379 intrvls dmpPythIvalsB      11 1100 22 M7[ 7 @ 1110:   9.775 = 1.955 *  5]  d8[ 5 @ 1086: -13.685 = 1.955 *  7]
+# 381 intrvls dmpPythIvalsB      11 1100 23 P8[12 @ 1200:   0.000 = 1.955 *  0]  A7[ 0 @ 1178]
+
+# 372 intrvls dmpPythIvalsB       j j*100 i     c     k      d       e       c`      c     k      d       e       c`
+# 373 intrvls dmpPythIvalsB       0    0  0 P1[12 @    0:   0.000 = 1.955 *  0]  d2[ 0 @   24:   0.000 =          0]
+# 377 intrvls dmpPythIvalsB       1  100  2 m2[ 7 @   90:  -9.775 = 1.955 *  5]  A1[ 5 @  114:  13.685 = 1.955 *  7]
+# 379 intrvls dmpPythIvalsB       2  200  4 M2[10 @  204:   3.910 = 1.955 *  2]  d3[ 2 @  180: -19.550 = 1.955 * 10]
+# 377 intrvls dmpPythIvalsB       3  300  6 m3[ 9 @  294:  -5.865 = 1.955 *  3]  A2[ 3 @  318:  17.595 = 1.955 *  9]
+# 379 intrvls dmpPythIvalsB       4  400  8 M3[ 8 @  408:   7.820 = 1.955 *  4]  d4[ 4 @  384: -15.640 = 1.955 *  8]
+# 377 intrvls dmpPythIvalsB       5  500 10 P4[11 @  498:  -1.955 = 1.955 *  1]  A3[ 1 @  522:  21.505 = 1.955 * 11]
+# 377 intrvls dmpPythIvalsB       6  600 12 d5[ 6 @  588: -11.730 = 1.955 *  6]  A4[ 6 @  612:  11.730 = 1.955 *  6]
+# 379 intrvls dmpPythIvalsB       7  700 14 P5[11 @  702:   1.955 = 1.955 *  1]  d6[ 1 @  678: -21.505 = 1.955 * 11]
+# 377 intrvls dmpPythIvalsB       8  800 16 m6[ 8 @  792:  -7.820 = 1.955 *  4]  A5[ 4 @  816:  15.640 = 1.955 *  8]
+# 379 intrvls dmpPythIvalsB       9  900 18 M6[ 9 @  906:   5.865 = 1.955 *  3]  d7[ 3 @  882: -17.595 = 1.955 *  9]
+# 377 intrvls dmpPythIvalsB      10 1000 20 m7[10 @  996:  -3.910 = 1.955 *  2]  A6[ 2 @ 1020:  19.550 = 1.955 * 10]
+# 379 intrvls dmpPythIvalsB      11 1100 22 M7[ 7 @ 1110:   9.775 = 1.955 *  5]  d8[ 5 @ 1086: -13.685 = 1.955 *  7]
+# 381 intrvls dmpPythIvalsB      11 1100 23 P8[12 @ 1200:   0.000 = 1.955 *  0]  A7[ 0 @ 1178:   0.000 =          0]
+
+# 372 intrvls dmpPythIvalsB       j j*100 i     c     k      d       e       c`      c     k      d       e       c`
+# 373 intrvls dmpPythIvalsB       0    0  0 P1[12 @    0:   0.000 = 1.955 *  0]  d2[ 0 @   24:   0.000 = 1.955 *  0]
+# 377 intrvls dmpPythIvalsB       1  100  2 m2[ 7 @   90:  -9.775 = 1.955 *  5]  A1[ 5 @  114:  13.685 = 1.955 *  7]
+# 379 intrvls dmpPythIvalsB       2  200  4 M2[10 @  204:   3.910 = 1.955 *  2]  d3[ 2 @  180: -19.550 = 1.955 * 10]
+# 377 intrvls dmpPythIvalsB       3  300  6 m3[ 9 @  294:  -5.865 = 1.955 *  3]  A2[ 3 @  318:  17.595 = 1.955 *  9]
+# 379 intrvls dmpPythIvalsB       4  400  8 M3[ 8 @  408:   7.820 = 1.955 *  4]  d4[ 4 @  384: -15.640 = 1.955 *  8]
+# 377 intrvls dmpPythIvalsB       5  500 10 P4[11 @  498:  -1.955 = 1.955 *  1]  A3[ 1 @  522:  21.505 = 1.955 * 11]
+# 377 intrvls dmpPythIvalsB       6  600 12 d5[ 6 @  588: -11.730 = 1.955 *  6]  A4[ 6 @  612:  11.730 = 1.955 *  6]
+# 379 intrvls dmpPythIvalsB       7  700 14 P5[11 @  702:   1.955 = 1.955 *  1]  d6[ 1 @  678: -21.505 = 1.955 * 11]
+# 377 intrvls dmpPythIvalsB       8  800 16 m6[ 8 @  792:  -7.820 = 1.955 *  4]  A5[ 4 @  816:  15.640 = 1.955 *  8]
+# 379 intrvls dmpPythIvalsB       9  900 18 M6[ 9 @  906:   5.865 = 1.955 *  3]  d7[ 3 @  882: -17.595 = 1.955 *  9]
+# 377 intrvls dmpPythIvalsB      10 1000 20 m7[10 @  996:  -3.910 = 1.955 *  2]  A6[ 2 @ 1020:  19.550 = 1.955 * 10]
+# 379 intrvls dmpPythIvalsB      11 1100 22 M7[ 7 @ 1110:   9.775 = 1.955 *  5]  d8[ 5 @ 1086: -13.685 = 1.955 *  7]
+# 381 intrvls dmpPythIvalsB      11 1100 23 P8[12 @ 1200:   0.000 = 1.955 *  0]  A7[ 0 @ 1178:   0.000 = 1.955 *  0]
+
+# 357 intrvls dmpPythIvals        j j*100 i     c     k      d       e       c`      c     k      d       e       c`
+# 361 intrvls dmpPythIvals        0    0  1 P1[12 @    0:   0.000 = 1.955 *  0]  d2[ 0 @   24:   0.000 = 1.955 * 12]
+# 361 intrvls dmpPythIvals        1  100  3 m2[ 7 @   90:  -9.775 = 1.955 *  5]  A1[ 5 @  114:  13.685 = 1.955 *  7]
+# 363 intrvls dmpPythIvals        2  200  5 M2[10 @  204:   3.910 = 1.955 *  2]  d3[ 2 @  180: -19.550 = 1.955 * 10]
+# 361 intrvls dmpPythIvals        3  300  7 m3[ 9 @  294:  -5.865 = 1.955 *  3]  A2[ 3 @  318:  17.595 = 1.955 *  9]
+# 363 intrvls dmpPythIvals        4  400  9 M3[ 8 @  408:   7.820 = 1.955 *  4]  d4[ 4 @  384: -15.640 = 1.955 *  8]
+# 361 intrvls dmpPythIvals        5  500 11 P4[11 @  498:  -1.955 = 1.955 *  1]  A3[ 1 @  522:  21.505 = 1.955 * 11]
+# 361 intrvls dmpPythIvals        6  600 13 d5[ 6 @  588: -11.730 = 1.955 *  6]  A4[ 6 @  612:  11.730 = 1.955 *  6]
+# 363 intrvls dmpPythIvals        7  700 15 P5[11 @  702:   1.955 = 1.955 *  1]  d6[ 1 @  678: -21.505 = 1.955 * 11]
+# 361 intrvls dmpPythIvals        8  800 17 m6[ 8 @  792:  -7.820 = 1.955 *  4]  A5[ 4 @  816:  15.640 = 1.955 *  8]
+# 363 intrvls dmpPythIvals        9  900 19 M6[ 9 @  906:   5.865 = 1.955 *  3]  d7[ 3 @  882: -17.595 = 1.955 *  9]
+# 361 intrvls dmpPythIvals       10 1000 21 m7[10 @  996:  -3.910 = 1.955 *  2]  A6[ 2 @ 1020:  19.550 = 1.955 * 10]
+# 363 intrvls dmpPythIvals       11 1100 23 M7[ 7 @ 1110:   9.775 = 1.955 *  5]  d8[ 5 @ 1086: -13.685 = 1.955 *  7]
+# 361 intrvls dmpPythIvals       12 1200 25 A7[ 0 @ 1178:   0.000 = 1.955 * 12]  P8[12 @ 1200:   0.000 = 1.955 *  0]
+
 Map3=[  0:P1,     90:m2,   114:A1,   180:d3,   204:M2,   294:m3,   318:A2,   384:d4,   408:M3,   498:P4,   522:A3,   588:d5,   612:A4,   678:d6,   702:P5,   792:m6,   816:A5,   882:d7,   906:M6,   996:m7,  1020:A6,  1086:d8,  1110:M7,  1200:P8]
 Centi     0         1         2         3         4         5         6         7         8         9        10        11        12        13        14        15        16        17        18        19        20        21        22        23    
 Centk     0        90        114       180       204       294       318       384       408       498       522       588       612       678       702       792       816       882       906       996      1020      1086      1110      1200   
