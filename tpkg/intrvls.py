@@ -150,9 +150,9 @@ FOTSs  = [ fOTS(i)  for i in range(1, 33) ]
 ########################################################################################################################################################################################################
 def dmpOTS(rf=440, sss=V_SOUND, csv=0):
     slog(f'BGN Overtone Series ({rf=} {sss=} {csv=})')
-    ww, dd, mm, nn, ff = (Z, Z, Y, Y, 3) if csv else ('^6', '[', W, Z, 1)
+    ww, dd, mm, nn, ff = ('^6', '[', Y, Y, 3) if csv else ('^6', '[', W, Z, 1)
     rs    = F440s       if rf == 440 else F432s         ;   cs, ds, ns, fs, ws = [], [], [], [], []
-    freqs = F440s[:100] if rf == 440 else F432s[:100]   ;   ref = '440A' if rf == 440 else '432A'
+    freqs = F440s[:100] if rf == 440 else F432s[:100]   ;   ref = f'440A ' if rf == 440 else f'432A '
     f0    = F440s[0]    ;   w0 = CM_P_M * sss/f0
     for i, freq in enumerate(freqs):
         i += 1          ;    f  = fOTS(i, rf)    ;    w  = w0 / i
@@ -163,14 +163,14 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
         f2 = rs[j]               ;    c = r2cents(fr)     ;    d = r2cents(f/f2)
         fs.append(fmtf(f, 6))    ;    ns.append(n)        ;    ws.append(fmtf(w, 6))
         cs.append(fmtf(c, 6))    ;    ds.append(fmtg(d, 6 if d >= 0 else 5))
-    fs   = mm.join(fs)  ;   ws = mm.join(ws)   ;   ns = fmtl(ns, w=ww, s=mm, d=Z)   ;   cs = fmtl(cs, w=ww, s=mm, d=Z)   ;   ds = fmtl(ds, w=ww, s=mm, d=Z)
-    ref += mm if csv else ' ['    ;    sfxf = Z if csv else '] Hz'    ;    sfxw = Z if csv else '] cm'
-    pfxn = 'note ['   ;   pfxc = 'cents['   ;   pfxd = 'dcnts['   ;   sfx = Z if csv else ']'
-    slog(f'Index{nn}{fmtl(list(range(1, 101)), w=ww, d=dd, s=mm)}', p=0, f=ff)
+    fs   = mm.join(fs)           ;    ws = mm.join(ws)    ;    ns = fmtl(ns, w=ww, s=mm, d=Z)      ;     cs = fmtl(cs, w=ww, s=mm, d=Z)   ;   ds = fmtl(ds, w=ww, s=mm, d=Z)
+    ref += f'{nn}[{nn}'          ;  sfxf = f'{mm}]{mm}Hz'  ;   sfxw = f'{mm}]{mm}cm'         ;     sfxc = f'{mm}]{mm}cents'   ;   sfxd = f'{mm}]{mm}dcents'
+    pfxn = f'notes{nn}[{nn}'     ;  pfxc = f'cents{nn}[{nn}'   ;   pfxd = f'dcnts{nn}[{nn}'        ;    sfx = f'{mm}]{nn}'
+    slog(f'Index{nn}[{nn}{fmtl(list(range(1, 101)), w=ww, d=Z, s=mm)}{sfx}', p=0, f=ff)
     slog(f'{ref}{fs}{sfxf}', p=0, f=ff)
     slog(f'{pfxn}{ns}{sfx}', p=0, f=ff)
-    slog(f'{pfxc}{cs}{sfx}', p=0, f=ff)
-    slog(f'{pfxd}{ds}{sfx}', p=0, f=ff)
+    slog(f'{pfxc}{cs}{sfxc}', p=0, f=ff)
+    slog(f'{pfxd}{ds}{sfxd}', p=0, f=ff)
     slog(f'{ref}{ws}{sfxw}', p=0, f=ff)
     slog(f'END Overtone Series ({rf=} {sss=} {csv=})')
 
@@ -310,18 +310,7 @@ def dmpPythMap3(a=0, csv=0):
     if not csv:
         if a: slog(f'      {fmtm(PythMap3A, w=4, wv=2, s=3*W, d=Z)}', p=0)
         else: slog(f'      {fmtm(PythMap3B, w=4, wv=2, s=3*W, d=Z)}', p=0)
-        
-def OLD__dmpPythMap3(csv=0):
-    if not csv:
-        msg = []
-        for k, v in PythMap3A.items():
-            _ = f'{k:4}:{v:2}'
-            msg.append(f'{_:^10}')
-        slog(f'    {Z.join(msg)}', p=0)
-#         0:P1     24:d2     90:m2    114:A1    180:d3    204:M2    294:m3    318:A2    384:d4    408:M3    498:P4    522:A3    588:d5    612:A4    678:d6    702:P5    792:m6    816:A5    882:d7    906:M6    996:m7   1020:A6   1086:d8   1110:M7   1178:A7   1200:P8  
-#Count     3         0         0         3         0         3         0         3         0         3         2         1         0         3         0         3         0         3         0         3         1         2         0         3         0         3    
-#         0:P1     24:d2     90:m2    114:A1    180:d3    204:M2    294:m3    318:A2    384:d4    408:M3    498:P4    522:A3    588:d5    612:A4    678:d6    702:P5    792:m6    816:A5    882:d7    906:M6    996:m7   1020:A6   1086:d8   1110:M7   1178:A7   1200:P8
- 
+########################################################################################################################################################################################################
 def dmpPythMap1(ni, ik, x=19, csv=0): # 13 or 19
     if x==13:  y, z = 6, 5
     else:      y, z = 6, 5 # fixme same value?
