@@ -176,17 +176,13 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
 
 ########################################################################################################################################################################################################
 PythMap1   = {} # note index to ABCs (freq ratios)
-#                0    1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19    20   21    22    23    24    25
-CENTKEYSA   = [   0,  24,   90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996, 1020, 1086, 1110, 1178, 1200 ]
-INTRVLKEYSA = ['P1', 'd2', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'A7', 'P8']
-#                D          Eb                E     F                 F#    G           Ab    G#          A     Bb                B     C                C#          D
-INTRVLKEYSB = ['P1',       'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7',       'P8']
-CENTKEYSB   = [   0,        90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996, 1020, 1086, 1110,       1200 ]
-#                0          1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19   20    21    22          23
-PythMap2    = { e: {'Count': 0} for e in CENTKEYSB } # freq ratio in cents to counts
-PythMap3A   = { CENTKEYSA[i]: k for i, k in enumerate(INTRVLKEYSA) }
-PythMap3B   = { CENTKEYSB[i]: k for i, k in enumerate(INTRVLKEYSB) }
-PM2KEYS     = ['ABCs', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Intrv', 'Note', 'Wavlen']
+#              0     1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19    20    21    22    23
+#              D     Eb                E     F                 F#    G           Ab    G#          A     Bb                B     C                 C#    D
+INTRVLKEYS = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
+CENTKEYS   = [   0,  90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
+PythMap2   = { e: {'Count': 0} for e in CENTKEYS } # freq ratio in cents to counts
+PythMap3   = { CENTKEYS[i]: k for i, k in enumerate(INTRVLKEYS) }
+PM2KEYS    = ['ABCs', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Intrv', 'Note', 'Wavlen']
 ########################################################################################################################################################################################################
 def pythEpsln(dbg=0):
     ccents = pythComma()
@@ -249,7 +245,7 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
         if n2 and i and i != NT and i != 6:    n += '/' + n2
         c  = r2cents(r)            ;   d = c - i * 100 if i != 0 else 0.0 # fixme
         rc   = round(c)
-        v    = PythMap3B[rc]
+        v    = PythMap3[rc]
         ii.append(i)               ;   fs.append(fmtf(f, z))    ;   ps.append(p)   ;    rs.append(fmtf(r, z))   ;   cs.append(float(c) if rnd else fmtf(c, x))                   ;    rrs.append(rr)
         ns.append(n)               ;   ws.append(fmtf(w, z))    ;   qs.append(q)   ;    ss.append(s)            ;   ds.append(float(d) if rnd else fmtg(d, x if d > 0 else x))   ;     vs.append(v)
     csw, dsw = (f'^{x}.2f', f'^{x}.2f') if rnd else (ww, x-1)
@@ -303,14 +299,12 @@ def dmpPythMaps(k, csv):
 #    dmpPythMap1(4, csv=csv)
     dmpPythMap1(5, k, csv=csv)
     dmpPythMap2(      csv=csv)
-    dmpPythMap3(a=1, csv=csv)
-    dmpPythMap3(     csv=csv)
+    dmpPythMap3(      csv=csv)
 
 ########################################################################################################################################################################################################
-def dmpPythMap3(a=0, csv=0):
+def dmpPythMap3(csv=0):
     if not csv:
-        if a: slog(f'      {fmtm(PythMap3A, w=4, wv=2, s=3*W, d=Z)}', p=0)
-        else: slog(f'      {fmtm(PythMap3B, w=4, wv=2, s=3*W, d=Z)}', p=0)
+        slog(f'      {fmtm(PythMap3, w=4, wv=2, s=3*W, d=Z)}', p=0)
 ########################################################################################################################################################################################################
 def dmpPythMap1(ni, ik, x=19, csv=0): # 13 or 19
     if x==13:  y, z = 6, 5
@@ -351,34 +345,22 @@ def dmpPythMap1(ni, ik, x=19, csv=0): # 13 or 19
         elif ni == 5: slog(f'{pdf} {centsf}', p=0, f=ff)
     if not csv:  dmpDataTableLine(x + 1)    ;    slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 5 else None
 ########################################################################################################################################################################################################
-def dmpPythIvalsA(i, ks, cs, ds):
-    eps = pythEpsln()
-    j   = math.floor(i/2)
-    m   = -1
-    if i == 0:   slog(f' j j*100 i     c     k      d       e       c`      c     k      d       e       c`')
-    if i % 2:
-        u, v = (PythMap3A[ks[i+m]], PythMap3A[ks[i]])
-        if  i == 1 and i != len(PythMap3A)-1 or j < 6 and j % 2 or j >= 6 and not j % 2:
-            slog(f'{j:2} {j*100:4} {i:2} {u}[{cs[i+m]:2} @ {ks[i+m]:4}: {ds[i+m]:7.3f} = {eps:5.3f} * {cs[i]:2}]  {v}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {cs[i+m]:2}]')
-        else:
-            slog(f'{j:2} {j*100:4} {i:2} {v}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {cs[i+m]:2}]  {u}[{cs[i+m]:2} @ {ks[i+m]:4}: {ds[i+m]:7.3f} = {eps:5.3f} * {cs[i]:2}]')
-
-def dmpPythIvalsB(i, ks, cs, ds):
+def dmpPythIvals(i, ks, cs, ds):
     eps = pythEpsln()
     j   = math.floor(i/2)
     m   = -1
     c0  = 0
     if i == 0:
         slog(f' j j*100 i     c     k      d       e       c`      c     k      d       e       c`')
-        slog(f'{j:2} {j*100:4} {i:2} {PythMap3B[ks[i]]}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {c0:2}]  d2[ 0 @   24:                    0]')
+        slog(f'{j:2} {j*100:4} {i:2} {PythMap3[ks[i]]}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {c0:2}]  d2[ 0 @   24:                    0]')
     elif not i % 2:
-        u, v = (PythMap3B[ks[i+m]], PythMap3B[ks[i]])
+        u, v = (PythMap3[ks[i+m]], PythMap3[ks[i]])
         if  j < 6 and j % 2 or j >= 6 and not j % 2:
             slog(f'{j:2} {j*100:4} {i:2} {u}[{cs[i+m]:2} @ {ks[i+m]:4}: {ds[i+m]:7.3f} = {eps:5.3f} * {cs[i]:2}]  {v}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {cs[i+m]:2}]')
         else:
             slog(f'{j:2} {j*100:4} {i:2} {v}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {cs[i+m]:2}]  {u}[{cs[i+m]:2} @ {ks[i+m]:4}: {ds[i+m]:7.3f} = {eps:5.3f} * {cs[i]:2}]')
-    elif i == len(PythMap3B)-1:
-        slog(f'{j:2} {j*100:4} {i:2} {PythMap3B[ks[i]]}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {c0:2}]  A7[ 0 @ 1178:                    0]')
+    elif i == len(PythMap3)-1:
+        slog(f'{j:2} {j*100:4} {i:2} {PythMap3[ks[i]]}[{cs[i]:2} @ {ks[i]:4}: {ds[i]:7.3f} = {eps:5.3f} * {c0:2}]  A7[ 0 @ 1178:                    0]')
 ########################################################################################################################################################################################################
 def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
 #def fmtR1(a, ca, b, cb, w):  pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
@@ -395,9 +377,9 @@ def dmpPythMap2(w=9, csv=0): # 6 or 9
     ww, w1, w2, w3  = f'^{w}', f'^{w}.1f', f'^{w}.2f', f'^{w}.{x}f'
     blank, sc, y    = w*W, 0, 0 # fixme
     ns, ws          = [], []   ;   cs, ds = [], []  ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  ckis, cksf, cksi = [], [], []
-    for i, ck in enumerate(CENTKEYSB):
+    for i, ck in enumerate(CENTKEYS):
         ckis.append(i)
-        ival = PythMap3B[ck] 
+        ival = PythMap3[ck] 
         ws.append(ival)
         if PythMap2 and ck in PythMap2 and PythMap2[ck]['Count'] > 0:
             a, ca, b, cb = PythMap2[ck]['ABCs']
@@ -417,9 +399,9 @@ def dmpPythMap2(w=9, csv=0): # 6 or 9
             n, f = blank, blank
             c, d = 0, 0.0   ;   cksi.append(ck)   ;   cksf.append(float(ck))
         ns.append(n)  ;  cs.append(c)  ;  ds.append(d)
-        if not csv:    dmpPythIvalsB(i, cksi, cs, ds)
+        if not csv:    dmpPythIvals(i, cksi, cs, ds)
     slog(f'{y*W}Centi {fmtl(ckis, w=ww, s=mm, d=Z)}', p=0, f=ff)
-    slog(f'{y*W}Centk {fmtl(CENTKEYSB, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    slog(f'{y*W}Centk {fmtl(CENTKEYS, w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Intrv {fmtl(ws,   w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Note  {fmtl(ns,   w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Cents {fmtl(cksf, w=w1, s=mm, d=Z)}', p=0, f=ff)
@@ -433,7 +415,7 @@ def dmpPythMap2(w=9, csv=0): # 6 or 9
     slog(f'{y*W}Rati3 {fmtl(r3s,  w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{y*W}Count {fmtl(cs,   w=ww, s=mm, d=Z)}', p=0, f=ff)
     slog(f'{len(PythMap1)=} {sc=}', p=0, f=ff)
-    PythMap2 = { e: {'Count': 0} for e in CENTKEYSB } #  
+    PythMap2 = { e: {'Count': 0} for e in CENTKEYS } #  
 ########################################################################################################################################################################################################
 '''
 # 372 intrvls dmpPythIvalsB       j j*100 i     c     k      d       e       c`      c     k      d       e       c`
