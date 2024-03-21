@@ -234,33 +234,34 @@ def fPyth(a=7, b=6, csv=0):
 ########################################################################################################################################################################################################
 def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'BGN Pythagorean ({k=} {rf=} {sss=} {csv=})')
-    x, y = 13, 6     ;   z = x-2   ;   rnd = 1
-    ww, mm, nn, oo, ff = (Z, Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   uu = f'^{x}'
+    x, y = 13, 6     ;   z = x-2
+    ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)
     f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * sss
     ii, ns, fs, ws = [], [], [], []   ;   cs, ds = [], []   ;   vs = []   ;   ps, qs = [], []   ;   rs, ss = [], []   ;   nns, rrs = [], []
-    abcs, txts = k2PythAbcs(k, csv)
+    abcs, txts = k2PythAbcs(k, csv)   ;   cki = -1    ;   blnk = f'{W*x}'
     for i, e in enumerate(abcs):
         a, b, c   = e[0], e[1], e[2]
         r, ca, cb = abc2r(a, b, c)
         rr = [ a, ca, b, cb ]
-        f  = r * f0                ;    w = w0 / f
-        pa = a ** ca               ;   pb = b ** cb             ;   p = f'{pa:>{y}}/{pb:<{y}}'
-        qa = f'{a}^{ca}'           ;   qb = f'{b}^{cb}'         ;   q = f'{qa:>{y}}/{qb:<{y}}'
-        sa = f'{a}{i2spr(ca)}'     ;   sb = f'{b}{i2spr(cb)}'   ;   s = f'{sa:>{y}}/{sb:<{y}}'
+        f  = r * f0              ;    w = w0 / f
+        pa = a ** ca             ;   pb = b ** cb              ;   p = f'{pa:>{y}}/{pb:<{y}}'
+        qa = f'{a}^{ca}'         ;   qb = f'{b}^{cb}'          ;   q = f'{qa:>{y}}/{qb:<{y}}'
+        sa = f'{a}{i2spr(ca)}'   ;   sb = f'{b}{i2spr(cb)}'    ;   s = f'{sa:>{y}}/{sb:<{y}}'
         n, n2 = i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (54, 56, 61) else 1, s=1, e=1)
         if n2 and i and i != NT and i != 6:    n += '/' + n2
-        c  = r2cents(r)            ;   d = c - i * 100 if i != 0 else 0.0 # fixme
-        rc   = round(c)
-        v    = PythMap3[rc]
-        ii.append(i)               ;   fs.append(fmtf(f, z))    ;   ps.append(p)   ;    rs.append(fmtf(r, z))   ;   cs.append(float(c) if rnd else fmtf(c, x))                   ;    rrs.append(rr)
-        ns.append(n)               ;   ws.append(fmtf(w, z))    ;   qs.append(q)   ;    ss.append(s)            ;   ds.append(float(d) if rnd else fmtg(d, x if d > 0 else x))   ;     vs.append(v)
-    csw, dsw = (f'^{x}.2f', f'^{x}.2f') if rnd else (ww, x-1)
-    ii     = fmtl(ii, w=uu, s=oo, d=Z)   ;   fs = fmtl(fs, w=uu, s=oo, d=Z)   ;   cs = fmtl(cs, w=csw, s=oo, d=Z)   ;   ps  = fmtl(ps, w=ww, s=oo, d=Z)   ;   rs = fmtl(rs, w=uu, s=oo, d=Z)
-    ns     = fmtl(ns, w=uu, s=oo, d=Z)   ;   ws = fmtl(ws, w=uu, s=oo, d=Z)   ;   ds = fmtl(ds, w=dsw, s=oo, d=Z)   ;   qs  = fmtl(qs, w=ww, s=oo, d=Z)   ;   ss = fmtl(ss, w=uu, s=oo, d=Z)   ;   vs = fmtl(vs, w=uu, s=oo, d=Z)
-    pfxr   = f'Ratio {nn}[{nn}'  ;   pfxc = f'Cents {nn}[{nn}'  ;   pfxn = f'Note  {nn}[{nn}'   ;   pfxi = f'Index {nn}[{nn}'
-    pfxp   = f'Ratio1{nn}[{nn}'  ;   pfxd = f'dCents{nn}[{nn}'  ;   pfxf = f'Freq  {nn}[{nn}'
-    pfxq   = f'Ratio2{nn}[{nn}'  ;   pfxs = f'Ratio3{nn}[{nn}'  ;   pfxw = f'Wavlen{nn}[{nn}'   ;   pfxv = f'Intrv2{nn}[{nn}'
-    sfx    = f'{nn}]'            ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'       ;   sfxw = f'{nn}]{mm}cm'    
+        c  = r2cents(r)          ;   d = c - i * 100 if i != 0 else 0.0 # fixme
+        rc   = round(c)          ;   v = PythMap3[rc]          ;   cki += 1
+        while CENTKEYS[cki] < rc:
+            i2, c2, d2, n2, f2, w2, p2, q2, r2, s2, v2 = blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk     ;   cki += 1
+            ii.append(i2)  ;  cs.append(c2)  ;  ds.append(d2)  ;  ns.append(n2)  ;  fs.append(f2)  ;  ws.append(w2)  ;  ps.append(p2)   ;   qs.append(q2)  ;  rs.append(r2)  ;  ss.append(s2)  ;  vs.append(v2)
+        ii.append(i)             ;   fs.append(fmtf(f, z))     ;   ps.append(p)      ;   rs.append(fmtf(r, z))     ;   cs.append(fmtf(c, y-1))   ;   rrs.append(rr)
+        ns.append(n)             ;   ws.append(fmtf(w, z))     ;   qs.append(q)      ;   ss.append(s)              ;   ds.append(fmtg(d, y-1))   ;    vs.append(v)
+    ii     = fmtl(ii, w=ww, s=oo, d=Z)   ;   fs = fmtl(fs, w=ww, s=oo, d=Z)   ;   cs = fmtl(cs, w=ww, s=oo, d=Z)   ;   ps  = fmtl(ps, w=ww, s=oo, d=Z)   ;   rs = fmtl(rs, w=ww, s=oo, d=Z)
+    ns     = fmtl(ns, w=ww, s=oo, d=Z)   ;   ws = fmtl(ws, w=ww, s=oo, d=Z)   ;   ds = fmtl(ds, w=ww, s=oo, d=Z)   ;   qs  = fmtl(qs, w=ww, s=oo, d=Z)   ;   ss = fmtl(ss, w=ww, s=oo, d=Z)   ;   vs = fmtl(vs, w=ww, s=oo, d=Z)
+    pfxr   = f'Ratio {nn}[{nn}'  ;  pfxc = f'Cents {nn}[{nn}'  ;   pfxn = f'Note  {nn}[{nn}'   ;   pfxi = f'Index {nn}[{nn}'
+    pfxp   = f'Ratio1{nn}[{nn}'  ;  pfxd = f'dCents{nn}[{nn}'  ;   pfxf = f'Freq  {nn}[{nn}'
+    pfxq   = f'Ratio2{nn}[{nn}'  ;  pfxs = f'Ratio3{nn}[{nn}'  ;   pfxw = f'Wavlen{nn}[{nn}'   ;   pfxv = f'Intrv {nn}[{nn}'
+    sfx    = f'{nn}]'            ;  sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'       ;   sfxw = f'{nn}]{mm}cm'    
     PythMap1[k] = rrs # fixme this is not a very useful data, key should store all other data values as well
     slog(f'{pfxi}{ii}{sfx}',  p=0, f=ff)
     slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
