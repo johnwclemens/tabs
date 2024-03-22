@@ -213,33 +213,28 @@ def pythComma(dbg=0): # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.01364
     if dbg:   slog(f'Epsilon = Comma / 12 = {ccents:10.5f} / 12 = {ecents:10.5f} cents')
     return ccents
 ########################################################################################################################################################################################################
-def fPyth(a=7, b=6, csv=0):
-    m, n, o, f = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)   ;   d, e = '[', ']'   ;  x = 13   ;   w = f'^{x}'
+def fPyth(a=7, b=6):
     abc1 = stck5ths(a)
     abc2 = stck4ths(b)
     abc3 = [ stackI(3, 2, 0) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1))
-    abc4 = sorted(abc3, key= lambda z: abc2r(z[0], z[1], z[2])[0])               ;   tmp1, tmp2, tmp3, tmp4 = [], [], [], []
-    abcR = list(abc4)
-    for abc in abc1:     s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'  ;   tmp1.append(t)
-    for abc in abc2:     s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'  ;   tmp2.append(t)
-    for abc in abc3:     s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'  ;   tmp3.append(t)
-    for abc in abc4:     s = W.join([str(_) for _ in abc])   ;   t = f'{s:{w}}'  ;   tmp4.append(t)
-    abc1, abc2, abc3, abc4 = o.join(tmp1), o.join(tmp2), o.join(tmp3), o.join(tmp4)
-    msgs = list()
-    msgs.append(str(f'abc1  {n}{d}{n}{abc1}{n}{e}'))
-    msgs.append(str(f'abc2  {n}{d}{n}{abc2}{n}{e}'))
-    msgs.append(str(f'abc3  {n}{d}{n}{abc3}{n}{e}'))
-    msgs.append(str(f'abc4  {n}{d}{n}{abc4}{n}{e}'))
-    return abcR, msgs
+    abc4 = sorted(abc3, key= lambda z: abc2r(z[0], z[1], z[2])[0])
+    return [ abc1, abc2, abc3, abc4 ] 
+
+def fabc(abc):
+    return [ fmtl(e, w=2, d=Z) for e in abc ]
 ########################################################################################################################################################################################################
 def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'BGN Pythagorean ({k=} {rf=} {sss=} {csv=})')
     x, y = 13, 6     ;   z = x-2
     ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)
-    f0 = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * sss
+    ii = [ f'{i}' for i in range(2 * NT) ]
+    slog(f'   k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0)
+    dmpDataTableLine(x + 1, csv=csv)
+    f0 = F440s[k] if rf==440 else F432s[k]      ;     w0 = CM_P_M * sss
     ii, ns, fs, ws = [], [], [], []   ;   cs, ds = [], []   ;   vs = []   ;   ps, qs = [], []   ;   rs, ss = [], []   ;   nns, rrs = [], []
-    abcs, txts = k2PythAbcs(k, csv)   ;   cki = -1    ;   blnk = f'{W*x}'
-    for i, e in enumerate(abcs):
+    abcs = k2PythAbcs(k)         ;   abc0 = list(abcs[3])   ;  cki = -1   ;   blnk = f'{W*x}'
+    abc1, abc2, abc3, abc4 = fabc(abcs[0]), fabc(abcs[1]), fabc(abcs[2]), fabc(abcs[3])
+    for i, e in enumerate(abc0):
         a, b, c   = e[0], e[1], e[2]
         r, ca, cb = abc2r(a, b, c)
         rr = [ a, ca, b, cb ]
@@ -254,43 +249,49 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
         while CENTKEYS[cki] < rc:
             i2, c2, d2, n2, f2, w2, p2, q2, r2, s2, v2 = blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk     ;   cki += 1
             ii.append(i2)  ;  cs.append(c2)  ;  ds.append(d2)  ;  ns.append(n2)  ;  fs.append(f2)  ;  ws.append(w2)  ;  ps.append(p2)   ;   qs.append(q2)  ;  rs.append(r2)  ;  ss.append(s2)  ;  vs.append(v2)
+            jj = len(ii)-1 ; abc1.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc2.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc3.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc4.insert(jj, fmtl([W, W, W], w=2, d=Z))
         ii.append(i)             ;   fs.append(fmtf(f, z))     ;   ps.append(p)      ;   rs.append(fmtf(r, z))     ;   cs.append(fmtf(c, y-1))   ;   rrs.append(rr)
         ns.append(n)             ;   ws.append(fmtf(w, z))     ;   qs.append(q)      ;   ss.append(s)              ;   ds.append(fmtg(d, y-1))   ;    vs.append(v)
     ii     = fmtl(ii, w=ww, s=oo, d=Z)   ;   fs = fmtl(fs, w=ww, s=oo, d=Z)   ;   cs = fmtl(cs, w=ww, s=oo, d=Z)   ;   ps  = fmtl(ps, w=ww, s=oo, d=Z)   ;   rs = fmtl(rs, w=ww, s=oo, d=Z)
     ns     = fmtl(ns, w=ww, s=oo, d=Z)   ;   ws = fmtl(ws, w=ww, s=oo, d=Z)   ;   ds = fmtl(ds, w=ww, s=oo, d=Z)   ;   qs  = fmtl(qs, w=ww, s=oo, d=Z)   ;   ss = fmtl(ss, w=ww, s=oo, d=Z)   ;   vs = fmtl(vs, w=ww, s=oo, d=Z)
-    pfxr   = f'Ratio {nn}[{nn}'  ;  pfxc = f'Cents {nn}[{nn}'  ;   pfxn = f'Note  {nn}[{nn}'   ;   pfxi = f'Index {nn}[{nn}'
-    pfxp   = f'Ratio1{nn}[{nn}'  ;  pfxd = f'dCents{nn}[{nn}'  ;   pfxf = f'Freq  {nn}[{nn}'
-    pfxq   = f'Ratio2{nn}[{nn}'  ;  pfxs = f'Ratio3{nn}[{nn}'  ;   pfxw = f'Wavlen{nn}[{nn}'   ;   pfxv = f'Intrv {nn}[{nn}'
-    sfx    = f'{nn}]'            ;  sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'       ;   sfxw = f'{nn}]{mm}cm'    
+    abc1   = fmtl(abc1, w=ww, s=oo, d=Z) ; abc2 = fmtl(abc2, w=ww, s=oo, d=Z) ; abc3 = fmtl(abc3, w=ww, s=oo, d=Z) ;  abc4 = fmtl(abc4, w=ww, s=oo, d=Z)
+    pfxi   = f'Index {nn}[{nn}'  ;  pfxr = f'Ratio {nn}[{nn}'  ;  pfx1 = f' ABC1 {nn}[{nn}'  ;  pfxf = f'Freq  {nn}[{nn}'
+    pfxn   = f'Note  {nn}[{nn}'  ;  pfxp = f'Ratio1{nn}[{nn}'  ;  pfx2 = f' ABC2 {nn}[{nn}'  ;  pfxw = f'Wavlen{nn}[{nn}'    
+    pfxc   = f'Cents {nn}[{nn}'  ;  pfxq = f'Ratio2{nn}[{nn}'  ;  pfx3 = f' ABC3 {nn}[{nn}'  ;  pfxv = f'Intrv {nn}[{nn}'
+    pfxd   = f'dCents{nn}[{nn}'  ;  pfxs = f'Ratio3{nn}[{nn}'  ;  pfx4 = f' ABC4 {nn}[{nn}'
+    sfx    = f'{nn}]'            ;  sfxc = f'{nn}]{mm}cents'   ;  sfxf = f'{nn}]{mm}Hz'      ;  sfxw = f'{nn}]{mm}cm'
     PythMap1[k] = rrs # fixme this is not a very useful data, key should store all other data values as well
-    slog(f'{pfxi}{ii}{sfx}',  p=0, f=ff)
-    slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
-    slog(f'{pfxv}{vs}{sfx}',  p=0, f=ff)
-    slog(f'{pfxr}{rs}{sfx}',  p=0, f=ff)
-    slog(f'{pfxp}{ps}{sfx}',  p=0, f=ff)
-    slog(f'{pfxq}{qs}{sfx}',  p=0, f=ff)
-    slog(f'{pfxs}{ss}{sfx}',  p=0, f=ff)
-    slog(f'{pfxc}{cs}{sfxc}', p=0, f=ff)
-    slog(f'{pfxd}{ds}{sfxc}', p=0, f=ff)
-    slog(f'{pfxf}{fs}{sfxf}', p=0, f=ff)
-    slog(f'{pfxw}{ws}{sfxw}', p=0, f=ff)
-    for txt in txts: slog(f'{txt}', p=0, f=ff)
-    if not csv:  dmpDataTableLine(w=x+1)
+    slog(f' {pfxi}{ii}{sfx}',  p=0, f=ff)
+    slog(f' {pfxn}{ns}{sfx}',  p=0, f=ff)
+    slog(f' {pfxv}{vs}{sfx}',  p=0, f=ff)
+    slog(f' {pfxr}{rs}{sfx}',  p=0, f=ff)
+    slog(f' {pfxp}{ps}{sfx}',  p=0, f=ff)
+    slog(f' {pfxq}{qs}{sfx}',  p=0, f=ff)
+    slog(f' {pfxs}{ss}{sfx}',  p=0, f=ff)
+    slog(f' {pfxc}{cs}{sfxc}', p=0, f=ff)
+    slog(f' {pfxd}{ds}{sfxc}', p=0, f=ff)
+    slog(f' {pfxf}{fs}{sfxf}', p=0, f=ff)
+    slog(f' {pfxw}{ws}{sfxw}', p=0, f=ff)
+    slog(f' {pfx1}{abc1}{sfx}', p=0, f=ff)
+    slog(f' {pfx2}{abc2}{sfx}', p=0, f=ff)
+    slog(f' {pfx3}{abc3}{sfx}', p=0, f=ff)
+    slog(f' {pfx4}{abc4}{sfx}', p=0, f=ff)
+    dmpDataTableLine(x + 1, csv=csv)
     dmpPythMaps(k,     csv)
     slog(f'END Pythagorean ({k=} {rf=} {sss=} {csv=})')
 ########################################################################################################################################################################################################
-def k2PythAbcs(k=50, csv=0):
-    c = csv   ;   f = fPyth
-    return f(6, 5, c) if k==50 or k== 62 else f(5, 6, c) if k==57 else f(4, 7, c) if k==52 else f(3, 8, c) if k==59 else f(2, 9, c)  if k==54 else f(1, 10, c) if k==61 else f(0, 11, c) if k==56 \
-                                         else f(7, 4, c) if k==55 else f(8, 3, c) if k==60 else f(9, 2, c) if k==53 else f(10, 1, c) if k==58 else f(11, 0, c) if k==51 else f(12, 0, c)
-#   return f(7, 6, c) if k==50 or k== 62 else f(6, 7, c) if k==57 else f(5, 8, c) if k==52 else f(4, 9, c)  if k==59 else f(3, 10, c) if k==54 else f(2, 11, c) if k==61 else f(1, 12, c) if k==56 \
-#                                        else f(8, 5, c) if k==55 else f(9, 4, c) if k==60 else f(10, 3, c) if k==53 else f(11, 2, c) if k==58 else f(12, 1, c) if k==51 else f(13, 0, c)
+def k2PythAbcs(k=50):
+    f = fPyth
+    return f(6, 5) if k==50 or k== 62 else f(5, 6) if k==57 else f(4, 7) if k==52 else f(3, 8) if k==59 else f(2, 9)  if k==54 else f(1, 10) if k==61 else f(0, 11) if k==56 \
+                                      else f(7, 4) if k==55 else f(8, 3) if k==60 else f(9, 2) if k==53 else f(10, 1) if k==58 else f(11, 0) if k==51 else f(12, 0)
+#   return f(7, 6) if k==50 or k== 62 else f(6, 7) if k==57 else f(5, 8) if k==52 else f(4, 9)  if k==59 else f(3, 10) if k==54 else f(2, 11) if k==61 else f(1, 12) if k==56 \
+#                                     else f(8, 5) if k==55 else f(9, 4) if k==60 else f(10, 3) if k==53 else f(11, 2) if k==58 else f(12, 1) if k==51 else f(13, 0)
 ########################################################################################################################################################################################################
 def k2dCent(k):
     return k if 0 <= k < 50 else k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150 <= k <= 1200 else None
 #       return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
 ########################################################################################################################################################################################################
-def dmpDataTableLine(w=20): slog(f' ' * 6 + f'-' * w * 13 + f'-', p=0) # 14 or 20
+def dmpDataTableLine(w=20, n=24, csv=0): slog(f' ' * 7 + f'-' * w * n + f'-', p=0, f=3 if csv else 1) # w=14 or w=20
 
 DIV_SLSH_6 = '/     ///    ////  /////    /      //   /////   ////    //     /    //////  ////   ///   //////   /     ///    ////  /////    //     //   /////   ////   ///     /'
 DIV_SLSH_9 = '/        ///      ////      /////       /        //       /////     ////       //         /      //////     ////       ///     //////       /        ///      ////      /////      //        //       /////     ////       ///        /'
@@ -303,7 +304,6 @@ def dmpPythMaps(k, csv):
     dmpPythMap1(5, k, csv=csv)
     dmpPythMap2(      csv=csv)
     dmpPythMap3(      csv=csv)
-
 ########################################################################################################################################################################################################
 def dmpPythMap3(csv=0):
     if not csv:
@@ -312,22 +312,23 @@ def dmpPythMap3(csv=0):
 def dmpPythMap1(ni, ik, x=13, csv=0): # 13 or 19
     if x==13:  y, z = 6, 5
     else:      y, z = 6, 5 # fixme same value?
-    uu = f'^{x}'      ;   ww, mm, nn, oo, dd, ff = (Z, Y, Y, Y, '[', 3) if csv else (f'^{x}', W, Z, '|', Z, 1)   ;   pdf = []
-    ii = [ f'{i}' for i in range(NT + 1) ]
-    slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 1 else None
-    dmpDataTableLine(x + 1) if not csv and ni == 1 else None
+    ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   pfx = ''   ;   sfx = f'{nn}]'
+    ii = [ f'{i}' for i in range(2 * NT) ]
+    slog(f'   k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 1 else None
+    dmpDataTableLine(x + 1, csv=csv) if ni == 1 else None
     for i, (k, v) in enumerate(PythMap1.items()):
         rats, qots, exps, exus, cents = [], [], [], [], []   ;   cki = -1
         for j, e in enumerate(v):
             a, ca, b, cb = e
             pa, pb = a ** ca, b ** cb
             n, n2  = i2nPair(j + k, b=0 if j in (4, 6, 11) or k in (54, 56, 61) else 1, s=1, e=1)
-            pd     = [f'{i:2}', f'{k:2}', f'{n:2}']   ;   pdf = mm.join(pd) 
+            i2     = i if 0 <= i <= 9 else 'a' if i == 10 else 'b' if i == 11 else None
+            pd     = [f'{i2:1}', f'{k:2}', f'{n:2}']   ;   pfx = mm.join(pd)   ;   pfx += f'{nn}[{nn}'
             cent   = r2cents(pa/pb)      ;   centR = ir(cent)   ;   cki += 1
             while CENTKEYS[cki] < centR:
-                cent2, rat2, qot2, exp2, exu2 = f'{W*x}', f'{W*x}', f'{W*x}', f'{W*x}', f'{W*x}'   ;   cent2f = f'{cent2:{uu}}'   ;   cki += 1
+                cent2, rat2, qot2, exp2, exu2 = f'{W*x}', f'{W*x}', f'{W*x}', f'{W*x}', f'{W*x}'   ;   cent2f = f'{cent2:{ww}}'   ;   cki += 1
                 rats.append(rat2)   ;   qots.append(qot2)   ;   exps.append(exp2)   ;   exus.append(exu2)   ;   cents.append(cent2f)
-            rat    = f'{float(pa/pb):{uu}.5f}'
+            rat    = f'{float(pa/pb):{ww}.5f}'
             qot    = f'{pa:{y}}/{pb:<{y}}'
             expA   = f'{a}^{ca}'         ;    expB = f'{b}^{cb}'         ;   exp = f'{expA:>{y}}/{expB:<{y}}'
             exuA   = f'{a}{i2spr(ca)}'   ;    exuB = f'{b}{i2spr(cb)}'   ;   exu = f'{exuA:>{y}}/{exuB:<{y}}'
@@ -336,19 +337,20 @@ def dmpPythMap1(ni, ik, x=13, csv=0): # 13 or 19
                 PythMap2[centR]['Count'] =          PythMap2[centR]['Count'] + 1 if 'Count' in PythMap2[centR] else 1
                 PythMap2[centR]['ABCs']  = e    ;   PythMap2[centR]['Cents']  =  cent
                 PythMap2[centR]['Note']  = n+n2 if k == ik else '  '
-            centf   = f'{cent:{uu}.0f}'
+            centf   = f'{cent:{ww}.0f}'
             rats.append(rat)   ;   qots.append(qot)   ;   exps.append(exp)   ;   exus.append(exu)   ;   cents.append(centf)
-        ratsf  = Z.join(fmtl(rats,  w=ww, s=oo, d=dd))
-        qotsf  = Z.join(fmtl(qots,  w=ww, s=oo, d=dd))
-        expsf  = Z.join(fmtl(exps,  w=ww, s=oo, d=dd))
-        exusf  = Z.join(fmtl(exus,  w=ww, s=oo, d=dd))
-        centsf = Z.join(fmtl(cents, w=ww, s=oo, d=dd))
-        if   ni == 1: slog(f'{pdf} {ratsf}',  p=0, f=ff)
-        elif ni == 2: slog(f'{pdf} {qotsf}',  p=0, f=ff)
-        elif ni == 3: slog(f'{pdf} {expsf}',  p=0, f=ff)
-        elif ni == 4: slog(f'{pdf} {exusf}',  p=0, f=ff)
-        elif ni == 5: slog(f'{pdf} {centsf}', p=0, f=ff)
-    if not csv:  dmpDataTableLine(x + 1)    ;    slog(f'    k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 5 else None
+        ratsf  = Z.join(fmtl(rats,  w=ww, s=oo, d=Z))
+        qotsf  = Z.join(fmtl(qots,  w=ww, s=oo, d=Z))
+        expsf  = Z.join(fmtl(exps,  w=ww, s=oo, d=Z))
+        exusf  = Z.join(fmtl(exus,  w=ww, s=oo, d=Z))
+        centsf = Z.join(fmtl(cents, w=ww, s=oo, d=Z))
+        if   ni == 1: slog(f'{pfx}{ratsf}{sfx}',  p=0, f=ff)
+        elif ni == 2: slog(f'{pfx}{qotsf}{sfx}',  p=0, f=ff)
+        elif ni == 3: slog(f'{pfx}{expsf}{sfx}',  p=0, f=ff)
+        elif ni == 4: slog(f'{pfx}{exusf}{sfx}',  p=0, f=ff)
+        elif ni == 5: slog(f'{pfx}{centsf}{sfx}', p=0, f=ff)
+    dmpDataTableLine(x + 1, csv=csv)
+    if not csv:  slog(f'   k    {fmtl(ii, w=ww, s=mm, d=Z)}', p=0) if ni == 5 else None
 ########################################################################################################################################################################################################
 def dmpPythIvals(i, ks, cs, ds):
     eps = pythEpsln()
