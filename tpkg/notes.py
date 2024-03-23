@@ -116,8 +116,8 @@ def dumpTestB(csv=0):
     i2n = Notes.i2n     ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i4v = Notes.I4V  ;  n2i = Notes.N2I
     i4n = Notes.i4n     ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  i6v = Notes.I6V  ;  v2i = Notes.V2I
     slog('BGN')         ;    o = t + 1       ;    p = 0
-    slog(f'    {m}[{m}{fmtl( list(range(v)), w=w, d=d, s=m)}',    p=p, f=file)
-    slog(f'ACCD{m}[{m}{fmtl([F, N, S], w=w, d=d, s=m)}',          p=p, f=file)
+    slog(f'    {m}[{m}{fmtl( list(range(v)),                                                          w=w, d=d, s=m)}{m}]', p=p, f=file)
+    slog(f'ACCD{m}[{m}{fmtl([F, N, S],                                                                w=w, d=d, s=m)}{m}]', p=p, f=file)
     slog(f' F2S{m}[{m}{fmtl([ f"{i2n(f)[k]}:{f2s[i2n(f)[k]]}" if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}{m}]', p=p, f=file)
     slog(f' F4S{m}[{m}{fmtl([ f"{i4n(f)[k]}:{f4s[i4n(f)[k]]}" if k in is2 else W for k in range(o) ], w=w, d=d, s=m)}{m}]', p=p, f=file)
     slog(f' S2F{m}[{m}{fmtl([ f"{i2n(s)[k]}:{s2f[i2n(s)[k]]}" if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}{m}]', p=p, f=file)
@@ -150,12 +150,12 @@ def initND():    return { i: [ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i], Notes.I
 
 def dumpND(csv=0):
     slog('BGN')
-    w, d, m, f = (0, Z, Y, 3) if csv else (2, '[', W, 1)
-    hdrs       = ['I', '♭', '♯', 'IV', 'mM', 'dA']
-    hdrs       = f'{m.join([ f"{h:{w}}" for h in hdrs ])}'
-    slog(f'{hdrs}', p=0, f=f)
+    w, d1, d2, m, n, f = (2, Y, W, Y, Y, 3) if csv else (2, '[', ']', W, Z, 1)
+    hdrs       = ['♭ ', '♯ ', 'IV', 'mM', 'dA']
+    hdrs       = f'{m.join([ f"{hdrs[i]}" for i in range(len(hdrs)) ])}'
+    slog(f'I{d1}{hdrs}{d2}', p=0, f=f)
     for i, (k, v) in enumerate(ND.items()):
-        slog(f'{i:x}{m}{fmtl(v, w=w, d=d, s=m)}', p=0, f=f)
+        slog(f'{i:x}{d1}{fmtl(v, w=w, d=Z, s=m)}{d2}', p=0, f=f) # fixme using hex format for single char width hack
 #    for i in range(len(ND)):   slog(f'{i:x}{m}{fmtl(ND[i], w=w, d=d, s=m)}', p=0, f=f)
     slog('END')
 
