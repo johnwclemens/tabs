@@ -350,8 +350,8 @@ def dmpPythMap1(ni, ik, x=13, csv=0): # x=13 or x=19
     slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
 ########################################################################################################################################################################################################
 '''
-j,j*100,i,Iv, c,    ,k,    ,d,     ,e,     ,c`  ,Iv, c,    ,k,    ,d,     ,e,     ,c`
-0,   0, 0,P1,12,@,   0,:,  0.000,,=,1.955,*, 0,   d2, 0,@,  24,:,      ,      ,*,12
+j,j*100,i,Iv, c, ,  k , ,   d   , , e   , , c`  ,Iv, c, ,  k , ,   d   , , e   , , c`  
+0,   0, 0,P1,12,@,   0,:,  0.000,=,1.955,*, 0,   d2, 0,@,  24,:,       , ,     ,*,12
 1, 100, 2,m2, 7,@,  90,:, -9.775,=,1.955,*, 5,   A1, 5,@, 114,:, 13.685,=,1.955,*, 7
 2, 200, 4,M2,10,@, 204,:,  3.910,=,1.955,*, 2,   d3, 2,@, 180,:,-19.550,=,1.955,*,10
 3, 300, 6,m3, 9,@, 294,:, -5.865,=,1.955,*, 3,   A2, 3,@, 318,:, 17.595,=,1.955,*, 9
@@ -363,10 +363,10 @@ j,j*100,i,Iv, c,    ,k,    ,d,     ,e,     ,c`  ,Iv, c,    ,k,    ,d,     ,e,   
 9, 900,18,M6, 9,@, 906,:,  5.865,=,1.955,*, 3,   d7, 3,@, 882,:,-17.595,=,1.955,*, 9
 a,1000,20,m7,10,@, 996,:, -3.910,=,1.955,*, 2,   A6, 2,@,1020,:, 19.550,=,1.955,*,10
 b,1100,22,M7, 7,@,1110,:,  9.775,=,1.955,*, 5,   d8, 5,@,1086,:,-13.685,=,1.955,*, 7
-c,1200,24,P8,12,@,1200,:,  0.000,=,1.955,*, 0,   A7, 0,@,1178,:,      ,      ,*,12
+c,1200,24,P8,12,@,1200,:,  0.000,=,1.955,*, 0,   A7, 0,@,1178,:,       , ,     ,*,12
 
-j j*100 i Iv  c     k      d       e       c`   Iv  c     k      d       e       c`
-0    0  0 P1 12 @    0:   0.000 = 1.955 *  0    d2  0 @   24:                 * 12
+j j*100 i Iv  c     k      d       e       c`   Iv  c     k      d       e       c`  
+0    0  0 P1 12 @    0:   0.000 = 1.955 *  0    d2  0 @   24 :                * 12
 1  100  2 m2  7 @   90:  -9.775 = 1.955 *  5    A1  5 @  114:  13.685 = 1.955 *  7
 2  200  4 M2 10 @  204:   3.910 = 1.955 *  2    d3  2 @  180: -19.550 = 1.955 * 10
 3  300  6 m3  9 @  294:  -5.865 = 1.955 *  3    A2  3 @  318:  17.595 = 1.955 *  9
@@ -378,7 +378,7 @@ j j*100 i Iv  c     k      d       e       c`   Iv  c     k      d       e      
 9  900 18 M6  9 @  906:   5.865 = 1.955 *  3    d7  3 @  882: -17.595 = 1.955 *  9
 a 1000 20 m7 10 @  996:  -3.910 = 1.955 *  2    A6  2 @ 1020:  19.550 = 1.955 * 10
 b 1100 22 M7  7 @ 1110:   9.775 = 1.955 *  5    d8  5 @ 1086: -13.685 = 1.955 *  7
-c 1200 24 P8 12 @ 1200:   0.000 = 1.955 *  0    A7  0 @ 1178:                 * 12
+c 1200 24 P8 12 @ 1200:   0.000 = 1.955 *  0    A7  0 @ 1178 :                * 12
 
 j j*100 i Iv  c     k      d       e       c`  Iv  c     k      d       e       c`
 0    0  0 P1[12 @    0:   0.000 = 1.955 *  0]  d2[ 0 @   24:                   12]
@@ -397,9 +397,10 @@ c 1200 24 P8[12 @ 1200:   0.000 = 1.955 *  0]  A7[ 0 @ 1178:                   1
 '''
 def dmpPythIvals(i, ks, cs, ds, csv):
     mm, nn, ff = (Y, Y, 3) if csv else (W, Z, 1)      ;   m = -1
-    w4, w5, w6, w7 = (W * 4, W * 4, W * 5, W * 6) if csv else (W * 4, W * 5, W * 6, W * 7)
-    eps, j = pythEpsln(), math.floor(i/2)
-    hdrs = ['j', 'j*100', 'i', 'Iv', f' c{nn}{w4}', f'k{nn}{w5}', f'd{nn}{w6}', f'e{nn}{w6}', f'c`  ', 'Iv', f' c{nn}{w4}', f'k{nn}{w5}', f'd{nn}{w6}', f'e{nn}{w6}', f'c`']
+    w4, w5, w6, w7 = W*4, W*5, W*6, W*7 # (W * 4, W * 4, W * 5, W * 6) if csv else (W * 4, W * 5, W * 6, W * 7)
+    eps, j     = pythEpsln(), math.floor(i/2) #  ['Iv', f' c{nn}{w4}', f'k{nn}{w5}', f'd{nn}{w6}', f'e{nn}{w6}', f'c`']
+    hdrA, hdrB = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {nn} ', f'   d   {mm} ', f' e   {mm} ', f' c`  ']
+    hdrs       = hdrA   ;   hdrs.extend(hdrB)  ;   hdrs.extend(hdrB)
     if   i == 0:
         data = [j, j*100, i, PythMap3[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 24, w6, w6, cs[i]]   ;   fd = []
         slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
@@ -415,9 +416,9 @@ def dmpPythIvals(i, ks, cs, ds, csv):
             elif ii==8:  fd.append(f'*{mm}{dd:2}')
             elif ii==9:  fd.append(f'   {dd:2}')
             elif ii==10: fd.append(f'{dd:2}')
-            elif ii==11: fd.append(f'@{mm}{dd:4}{nn}:')
-            elif ii==12: fd.append(f'{dd:7.3f}')      if i!=0 and i!=len(PythMap3)-1 else fd.append(f'{w7}{nn}{W if csv else Z}')
-            elif ii==13: fd.append(f'={mm}{dd:5.3f}') if i!=0 and i!=len(PythMap3)-1 else fd.append(f'{w7}')
+            elif ii==11: fd.append(f'@{mm}{dd:4}{mm}:')
+            elif ii==12: fd.append(f'{dd:7.3f}')      if i!=0 and i!=len(PythMap3)-1 else fd.append(f'{w7}{mm}{W if csv else Z}')
+            elif ii==13: fd.append(f'={mm}{dd:5.3f}') if i!=0 and i!=len(PythMap3)-1 else fd.append(w5)
             elif ii==14: fd.append(f'*{mm}{dd:2}')
         slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
     elif not i % 2:
@@ -474,9 +475,9 @@ def dmpPythIvals(i, ks, cs, ds, csv):
             elif ii==8:  fd.append(f'*{mm}{dd:2}')
             elif ii==9:  fd.append(f'   {dd:2}')
             elif ii==10: fd.append(f'{dd:2}')
-            elif ii==11: fd.append(f'@{mm}{dd:4}{nn}:')
-            elif ii==12: fd.append(f'{dd:7.3f}')      if i!=0 and i!=len(PythMap3)-1 else fd.append(f'{w7}{nn}{W if csv else Z}')
-            elif ii==13: fd.append(f'={mm}{dd:5.3f}') if i!=0 and i!=len(PythMap3)-1 else fd.append(w7)
+            elif ii==11: fd.append(f'@{mm}{dd:4}{mm}:')
+            elif ii==12: fd.append(f'{dd:7.3f}')      if i!=0 and i!=len(PythMap3)-1 else fd.append(f'{w7}{mm}{W if csv else Z}')
+            elif ii==13: fd.append(f'={mm}{dd:5.3f}') if i!=0 and i!=len(PythMap3)-1 else fd.append(w5)
             elif ii==14: fd.append(f'*{mm}{dd:2}')
         slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
         
