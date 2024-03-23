@@ -349,51 +349,47 @@ def dmpPythMap1(ni, ik, x=13, csv=0): # x=13 or x=19
     dmpDataTableLine(x + 1, csv=csv)
     slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
 ########################################################################################################################################################################################################
-def fIvals(data, i, csv):
+def fIvals(data, i, csv): # j j*100 i Iv  c     k      d       e       c`   Iv  c     k      d       e       c`
     mm, nn = (Y, Y) if csv else (W, Z)   ;   fd = []   ;   w5, w7 = W*5, W*7
-    for j, d in enumerate(data):
-        if   j==0:  fd.append(f'{d:x}')
-        elif j==1:  fd.append(f'{d:4}')
-        elif j==2:  fd.append(f'{d:2}')
-        elif j==3:  fd.append(f'{d:2}')
-        elif j==4:  fd.append(f'{d:2}')
-        elif j==5:  fd.append(f'@{mm}{d:4}{nn}:')
-        elif j==6:  fd.append(f'{d:7.3f}')
-        elif j==7:  fd.append(f'={mm}{d:5.3f}')
-        elif j==8:  fd.append(f'*{mm}{d:2}')
-        elif j==9:  fd.append(f'   {d:2}')
-        elif j==10: fd.append(f'{d:2}')
-        elif j==11: fd.append(f'@{mm}{d:4}{mm}:')
-        elif j==12: fd.append(f'{d:7.3f}')      if i!=0 and i!=len(PythMap3)-1 else fd.append(f'{w7}{mm}{W}')
-        elif j==13: fd.append(f'={mm}{d:5.3f}') if i!=0 and i!=len(PythMap3)-1 else fd.append(w5)
-        elif j==14: fd.append(f'*{mm}{d:2}')
+    for j, d in enumerate(data): # elif j in (2, 3, 4): fd.append(f'{d:2}')
+        if   j==0:  fd.append(f'{d:x}')           # j
+        elif j==1:  fd.append(f'{d:4}')           # j*100
+        elif j==2:  fd.append(f'{d:2}')           # i
+        elif j==3:  fd.append(f'{d:2}')           # Iv
+        elif j==4:  fd.append(f'{d:2}')           # c
+        elif j==5:  fd.append(f'@{mm}{d:4}{mm}:') # k
+        elif j==6:  fd.append(f'{d:7.3f}')        # d
+        elif j==7:  fd.append(f'={mm}{d:5.3f}')   # e
+        elif j==8:  fd.append(f'*{mm}{d:2}')      # c`
+        elif j==9:  fd.append(f'   {d:2}')        # Iv
+        elif j==10: fd.append(f'{d:2}')           # c
+        elif j==11: fd.append(f'@{mm}{d:4}{mm}:') # k
+        elif j==12: fd.append(f'{d:7.3f}')      if i!=0 and i!=len(PythMap3)-1 else fd.append(f'{w7}{mm}{W}') # d
+        elif j==13: fd.append(f'={mm}{d:5.3f}') if i!=0 and i!=len(PythMap3)-1 else fd.append(w5) # e
+        elif j==14: fd.append(f'*{mm}{d:2}')      # c`
     return fd
-
+########################################################################################################################################################################################################
 def dmpPythIvals(i, ks, cs, ds, csv):
     mm, nn, ff = (Y, Y, 3) if csv else (W, Z, 1)      ;   m = -1
     w4, w5, w6, w7 = W*4, W*5, W*6, W*7
     eps, j     = pythEpsln(), math.floor(i/2)
-    hdrA, hdrB = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {nn} ', f'   d   {mm} ', f' e   {mm} ', f' c`  ']
+    hdrA, hdrB = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  ']
     hdrs       = hdrA   ;   hdrs.extend(hdrB)  ;   hdrs.extend(hdrB)
     if   i == 0:
-        data = [j, j*100, i, PythMap3[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 24, w6, w6, cs[i]]
         slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
-        fd = fIvals(data, i, csv)
-        slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        data     = [j, j*100, i, PythMap3[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 24, w6, w6, cs[i]]
+        fd       = fIvals(data, i, csv)      ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
     elif not i % 2:
         u, v = (PythMap3[ks[i+m]], PythMap3[ks[i]])
         if  j < 6 and j % 2 or j >= 6 and not j % 2:
             data = [j, j*100, i, u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i], v, cs[i], ks[i], ds[i], eps, cs[i+m]]
-            fd = fIvals(data, i, csv)
-            slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+            fd   = fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
         else:
             data = [j, j*100, i, v, cs[i], ks[i], ds[i], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
-            fd = fIvals(data, i, csv)
-            slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+            fd   = fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
     elif i == len(PythMap3)-1:
-        data = [j+1, (j+1)*100, i+1, PythMap3[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1178, w6, w6, cs[i]]
-        fd = fIvals(data, i, csv)
-        slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+        data     = [j+1, (j+1)*100, i+1, PythMap3[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1178, w6, w6, cs[i]]
+        fd       = fIvals(data, i, csv)      ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 ########################################################################################################################################################################################################
 def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
 #def fmtR1(a, ca, b, cb, w):  pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
@@ -458,6 +454,36 @@ def dmpPythMap2(w=9, csv=0): # w=6 or w=9
     PythMap2 = { e: {'Count': 0} for e in CENTKEYS }
 ########################################################################################################################################################################################################
 '''        
+j,j*100,i,Iv, c, ,  k , ,   d   , , e   , , c`  ,Iv, c, ,  k , ,   d   , , e   , , c`  
+0,   0, 0,P1,12,@,   0,:,  0.000,=,1.955,*, 0,   d2, 0,@,  24,:,       , ,     ,*,12
+1, 100, 2,m2, 7,@,  90,:, -9.775,=,1.955,*, 5,   A1, 5,@, 114,:, 13.685,=,1.955,*, 7
+2, 200, 4,M2,10,@, 204,:,  3.910,=,1.955,*, 2,   d3, 2,@, 180,:,-19.550,=,1.955,*,10
+3, 300, 6,m3, 9,@, 294,:, -5.865,=,1.955,*, 3,   A2, 3,@, 318,:, 17.595,=,1.955,*, 9
+4, 400, 8,M3, 8,@, 408,:,  7.820,=,1.955,*, 4,   d4, 4,@, 384,:,-15.640,=,1.955,*, 8
+5, 500,10,P4,11,@, 498,:, -1.955,=,1.955,*, 1,   A3, 1,@, 522,:, 21.505,=,1.955,*,11
+6, 600,12,d5, 6,@, 588,:,-11.730,=,1.955,*, 6,   A4, 6,@, 612,:, 11.730,=,1.955,*, 6
+7, 700,14,P5,11,@, 702,:,  1.955,=,1.955,*, 1,   d6, 1,@, 678,:,-21.505,=,1.955,*,11
+8, 800,16,m6, 8,@, 792,:, -7.820,=,1.955,*, 4,   A5, 4,@, 816,:, 15.640,=,1.955,*, 8
+9, 900,18,M6, 9,@, 906,:,  5.865,=,1.955,*, 3,   d7, 3,@, 882,:,-17.595,=,1.955,*, 9
+a,1000,20,m7,10,@, 996,:, -3.910,=,1.955,*, 2,   A6, 2,@,1020,:, 19.550,=,1.955,*,10
+b,1100,22,M7, 7,@,1110,:,  9.775,=,1.955,*, 5,   d8, 5,@,1086,:,-13.685,=,1.955,*, 7
+c,1200,24,P8,12,@,1200,:,  0.000,=,1.955,*, 0,   A7, 0,@,1178,:,       , ,     ,*,12
+
+j j*100 i Iv  c     k       d       e       c`   Iv  c     k       d       e       c`  
+0    0  0 P1 12 @    0 :   0.000 = 1.955 *  0    d2  0 @   24 :                 * 12
+1  100  2 m2  7 @   90 :  -9.775 = 1.955 *  5    A1  5 @  114 :  13.685 = 1.955 *  7
+2  200  4 M2 10 @  204 :   3.910 = 1.955 *  2    d3  2 @  180 : -19.550 = 1.955 * 10
+3  300  6 m3  9 @  294 :  -5.865 = 1.955 *  3    A2  3 @  318 :  17.595 = 1.955 *  9
+4  400  8 M3  8 @  408 :   7.820 = 1.955 *  4    d4  4 @  384 : -15.640 = 1.955 *  8
+5  500 10 P4 11 @  498 :  -1.955 = 1.955 *  1    A3  1 @  522 :  21.505 = 1.955 * 11
+6  600 12 d5  6 @  588 : -11.730 = 1.955 *  6    A4  6 @  612 :  11.730 = 1.955 *  6
+7  700 14 P5 11 @  702 :   1.955 = 1.955 *  1    d6  1 @  678 : -21.505 = 1.955 * 11
+8  800 16 m6  8 @  792 :  -7.820 = 1.955 *  4    A5  4 @  816 :  15.640 = 1.955 *  8
+9  900 18 M6  9 @  906 :   5.865 = 1.955 *  3    d7  3 @  882 : -17.595 = 1.955 *  9
+a 1000 20 m7 10 @  996 :  -3.910 = 1.955 *  2    A6  2 @ 1020 :  19.550 = 1.955 * 10
+b 1100 22 M7  7 @ 1110 :   9.775 = 1.955 *  5    d8  5 @ 1086 : -13.685 = 1.955 *  7
+c 1200 24 P8 12 @ 1200 :   0.000 = 1.955 *  0    A7  0 @ 1178 :                 * 12
+
     k:          0             1             2             3             4             5             6             7             8             9            10            11            12       #  1   2   3   4   5   6   7   8   9   10   11
  0 51: E♭      1/1        2187/2048        9/8       19683/16384      81/64     177147/131072    729/512         3/2        6561/4096       27/16      59049/32768     243/128         2/1      # 2k     19k      .2M          6k      59k
  1 58: B♭      1/1        2187/2048        9/8       19683/16384      81/64          4/3         729/512         3/2        6561/4096       27/16      59049/32768     243/128         2/1      # 2k     19k                   6k      59k
