@@ -355,19 +355,18 @@ def fIvals(data, i, csv):
         if   j==0:  fd.append(f'{d:x}')                  # j
         elif j==1:  fd.append(f'{d:4}')                  # j*100
         elif j==6:  fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) # d
-        elif j==7:  fd.append(f'={mm}{d:5.3f}')          # e
         elif j==8:  fd.append(f'*{mm}{d:2}   ')          # c`
         elif j==12: fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i!=0 and i!=len(PythMap3)-1 else fd.append(W*7) # d
-        elif j==13: fd.append(f'={mm}{d:5.3f}')          # e
         elif j==14: fd.append(f'*{mm}{d:2}')             # c`
         elif j in (5, 11): fd.append(f'@{mm}{d:4}{mm}:') # k k
+        elif j in (7, 13): fd.append(f'{mm}{d:5.3f}')    # e e
         elif j in (2, 3, 4, 9, 10): fd.append(f'{d:2}')  # i Iv c Iv c
     return fd
 ########################################################################################################################################################################################################
 def dmpPythIvals(i, ks, cs, ds, csv):
     mm, nn, ff = (Y, Y, 3) if csv else (W, Z, 1)   ;   m = -1   ;   w6 = W*6
     eps, j     = pythEpsln(), math.floor(i/2)
-    hdrA, hdrB = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  ']
+    hdrA, hdrB = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
     hdrs       = hdrA   ;   hdrs.extend(hdrB)  ;   hdrs.extend(hdrB)
     if   i == 0:
         slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
