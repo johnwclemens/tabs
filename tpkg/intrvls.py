@@ -124,9 +124,7 @@ def test4ths(n, i, dbg=0):
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
-    if csv:
-        global PythMap1  ;  PythMap1 = {}
-        global PythMap2  ;  PythMap2 = { e: {'Count': 0} for e in CENTKEYS }
+    if csv:  global PythMap1   ;   PythMap1 = {}
     dmpOTS(       rf=440, sss=V_SOUND, csv=csv)
 #    dmpPyth(k=51, rf=440, sss=V_SOUND, csv=csv) # Eb
 #    dmpPyth(k=58, rf=440, sss=V_SOUND, csv=csv) # Bb 
@@ -297,9 +295,10 @@ def dmpPythMaps(k, csv):
 #    dmpPythMap1(2, csv=csv)
 #    dmpPythMap1(3, csv=csv)
 #    dmpPythMap1(4, csv=csv)
-#    dmpPythMap1(5, k,    csv=csv)
+    dmpPythMap1(5, k,    csv=csv)
     dmpPythMap2(k,       csv=csv)
     dmpPythMap1(5, k, 9, csv=csv) # dupliicates counts
+    global PythMap2   ;   PythMap2   = { e: {'Count': 0} for e in CENTKEYS }
     dmpPythMap3(         csv=csv)
 ########################################################################################################################################################################################################
 def dmpPythMap3(csv=0):
