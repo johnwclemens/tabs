@@ -359,18 +359,18 @@ def fIvals(data, i, csv):
         elif j==12: fd.append(f'{d:7.3f}') if utl.ist(d, float) else fd.append(W*7) if i!=0 and i!=len(PythMap3)-1 else fd.append(W*7) # d
         elif j==14: fd.append(f'*{mm}{d:2}')             # c`
         elif j in (5, 11): fd.append(f'@{mm}{d:4}{mm}:') # k k
-        elif j in (7, 13): fd.append(f'{mm}{d:5.3f}')    # e e
+        elif j in (7, 13): fd.append(f'={mm}{d:5.3f}')   # e e
         elif j in (2, 3, 4, 9, 10): fd.append(f'{d:2}')  # i Iv c Iv c
     return fd
 ########################################################################################################################################################################################################
 def dmpPythIvals(i, ks, cs, ds, csv):
-    mm, nn, ff = (Y, Y, 3) if csv else (W, Z, 1)   ;   m = -1   ;   w6 = W*6
+    mm, nn, ff = (Y, Y, 3) if csv else (W, Z, 1)   ;   m = -1
     eps, j     = pythEpsln(), math.floor(i/2)
     hdrA, hdrB = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
-    hdrs       = hdrA   ;   hdrs.extend(hdrB)  ;   hdrs.extend(hdrB)
+    hdrs       = hdrA   ;   hdrs.extend(hdrB)   ;   hdrs.append(W)   ;   hdrs.extend(hdrB)
     if   i == 0:
         slog(f'{fmtl(hdrs, s=mm, d=Z)}', p=0, f=ff)
-        data     = [j, j*100, i, PythMap3[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 24, w6, eps, cs[i]]
+        data     = [j, j*100, i, PythMap3[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'd2', 0, 24, W*6, eps, cs[i]]
         fd       = fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
     elif not i % 2:
         u, v = (PythMap3[ks[i+m]], PythMap3[ks[i]])
@@ -381,7 +381,7 @@ def dmpPythIvals(i, ks, cs, ds, csv):
             data = [j, j*100, i, v, cs[i], ks[i], ds[i], eps, cs[i+m], u, cs[i+m], ks[i+m], ds[i+m], eps, cs[i]]
             fd   = fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
     elif i == len(PythMap3)-1:
-        data     = [j+1, (j+1)*100, i+1, PythMap3[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1178, w6, eps, cs[i]]
+        data     = [j+1, (j+1)*100, i+1, PythMap3[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1178, W*6, eps, cs[i]]
         fd       = fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 ########################################################################################################################################################################################################
 def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
