@@ -64,6 +64,7 @@ c 1200 24 P8 12 @ 1200 :   0.000 = 1.955 *  0    A7  0 @ 1178 :         = 1.955 
 # Consider adding: c/t and c`/t` current of total counts (above verses below)
 # However, currently by luck, the csv colors are mapped perfectly to the number and type of columns
 # So that the 
+# Consider removing the 13th Pythagorean emhrmonic note?
 '''
 j j*100 i Iv  c/t      k       d       e      c`/t    Iv  c/t     k       d       e      c`/t
 0    0  0 P1  1/12 @    0 :   0.000 = 1.955 *  0/0    d2  0/0 @   24 :         = 1.955 *  1/12

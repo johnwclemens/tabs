@@ -126,11 +126,12 @@ def dumpData(csv=0):
     slog(f'BGN {csv=}')
     if csv:  global PythMap1   ;   PythMap1 = {}
     dmpOTS(       rf=440, sss=V_SOUND, csv=csv)
-#    dmpPyth(k=51, rf=440, sss=V_SOUND, csv=csv) # Eb
-#    dmpPyth(k=58, rf=440, sss=V_SOUND, csv=csv) # Bb 
-#    dmpPyth(k=53, rf=440, sss=V_SOUND, csv=csv) # F
-#    dmpPyth(k=60, rf=440, sss=V_SOUND, csv=csv) # C
-#    dmpPyth(k=55, rf=440, sss=V_SOUND, csv=csv) # G
+    dmpJTS(       rf=440, sss=V_SOUND, csv=csv)
+    dmpPyth(k=51, rf=440, sss=V_SOUND, csv=csv) # Eb
+    dmpPyth(k=58, rf=440, sss=V_SOUND, csv=csv) # Bb 
+    dmpPyth(k=53, rf=440, sss=V_SOUND, csv=csv) # F
+    dmpPyth(k=60, rf=440, sss=V_SOUND, csv=csv) # C
+    dmpPyth(k=55, rf=440, sss=V_SOUND, csv=csv) # G
     dmpPyth(k=50, rf=440, sss=V_SOUND, csv=csv) # D
     dmpPyth(k=57, rf=440, sss=V_SOUND, csv=csv) # A
     dmpPyth(k=52, rf=440, sss=V_SOUND, csv=csv) # E
@@ -139,11 +140,11 @@ def dumpData(csv=0):
     dmpPyth(k=61, rf=440, sss=V_SOUND, csv=csv) # C#/Db
     dmpPyth(k=56, rf=440, sss=V_SOUND, csv=csv) # G#/Ab
 #    dmpPyth(k=50, rf=440, sss=V_SOUND, csv=csv) # D
-    dmpPyth(k=55, rf=440, sss=V_SOUND, csv=csv) # G
-    dmpPyth(k=60, rf=440, sss=V_SOUND, csv=csv) # C
-    dmpPyth(k=53, rf=440, sss=V_SOUND, csv=csv) # F
-    dmpPyth(k=58, rf=440, sss=V_SOUND, csv=csv) # Bb 
-    dmpPyth(k=51, rf=440, sss=V_SOUND, csv=csv) # Eb
+#    dmpPyth(k=55, rf=440, sss=V_SOUND, csv=csv) # G
+#    dmpPyth(k=60, rf=440, sss=V_SOUND, csv=csv) # C
+#    dmpPyth(k=53, rf=440, sss=V_SOUND, csv=csv) # F
+#    dmpPyth(k=58, rf=440, sss=V_SOUND, csv=csv) # Bb 
+#    dmpPyth(k=51, rf=440, sss=V_SOUND, csv=csv) # Eb
 ##   dmpPyth(k=62, rf=440, sss=V_SOUND, csv=csv) # D octave
 #    if not csv:  testStacks()
 #    dmpPyth(k=50, rf=440, ss=V_SOUND, csv=csv) # D
@@ -151,7 +152,6 @@ def dumpData(csv=0):
     slog(f'END {csv=}')
 ########################################################################################################################################################################################################
 def fOTS(i, r=440):  f0 = F440s[0] if r == 440 else F432s[0]  ;   return f0 * i
-FOTSs  = [ fOTS(i)  for i in range(1, 33) ]
 ########################################################################################################################################################################################################
 def dmpOTS(rf=440, sss=V_SOUND, csv=0):
     slog(f'BGN Overtone Series ({rf=} {sss=} {csv=})')
@@ -165,20 +165,28 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
         j  = Notes.n2ai(n)
         assert 0 <= j < len(rs),  f'{j=} {len(rs)=}'
         fr = reduce(f/f0)
-        f2 = rs[j]               ;    c = r2cents(fr)     ;    d = r2cents(f/f2)
-        fs.append(fmtf(f, 6))    ;    ns.append(n)        ;    ws.append(fmtf(w, 6))
+        f2 = rs[j]               ;    c = r2cents(fr)         ;     d = r2cents(f/f2)
+        fs.append(fmtf(f, 6))    ;    ns.append(n)            ;     ws.append(fmtf(w, 6))
         cs.append(fmtf(c, 6))    ;    ds.append(fmtg(d, 6 if d >= 0 else 5))
-    fs   = mm.join(fs)           ;    ws = mm.join(ws)    ;    ns = fmtl(ns, w=ww, s=mm, d=Z)      ;     cs = fmtl(cs, w=ww, s=mm, d=Z)   ;   ds = fmtl(ds, w=ww, s=mm, d=Z)
-    ref += f'{nn}[{nn}'          ;  sfxf = f'{mm}]{mm}Hz'  ;   sfxw = f'{mm}]{mm}cm'         ;     sfxc = f'{mm}]{mm}cents'   ;   sfxd = f'{mm}]{mm}dcents'
-    pfxn = f'notes{nn}[{nn}'     ;  pfxc = f'cents{nn}[{nn}'   ;   pfxd = f'dcnts{nn}[{nn}'        ;    sfx = f'{mm}]{nn}'
+    fs   = mm.join(fs)           ;    ws = mm.join(ws)        ;     ns = fmtl(ns, w=ww, s=mm, d=Z)   ;     cs = fmtl(cs, w=ww, s=mm, d=Z)   ;     ds = fmtl(ds, w=ww, s=mm, d=Z)
+    ref += f'{nn}[{nn}'          ;  sfxf = f'{mm}]{mm}Hz'     ;   sfxw = f'{mm}]{mm}cm'              ;   sfxc = f'{mm}]{mm}cents'           ;   sfxd = f'{mm}]{mm}dcents'
+    pfxn = f'notes{nn}[{nn}'     ;  pfxc = f'cents{nn}[{nn}'  ;   pfxd = f'dcnts{nn}[{nn}'           ;    sfx = f'{mm}]{nn}'
     slog(f'Index{nn}[{nn}{fmtl(list(range(1, 101)), w=ww, d=Z, s=mm)}{sfx}', p=0, f=ff)
-    slog(f'{ref}{fs}{sfxf}', p=0, f=ff)
-    slog(f'{pfxn}{ns}{sfx}', p=0, f=ff)
+    slog(f'{ref}{fs}{sfxf}',  p=0, f=ff)
+    slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
     slog(f'{pfxc}{cs}{sfxc}', p=0, f=ff)
     slog(f'{pfxd}{ds}{sfxd}', p=0, f=ff)
-    slog(f'{ref}{ws}{sfxw}', p=0, f=ff)
+    slog(f'{ref}{ws}{sfxw}',  p=0, f=ff)
     slog(f'END Overtone Series ({rf=} {sss=} {csv=})')
 
+########################################################################################################################################################################################################
+def fJTS(i, r=440):  f0 = F440s[0] if r==440 else F432s[0]  ;  return f0 * i
+FJTSs = [24, 27, 30, 32, 36, 40, 45, 48]
+########################################################################################################################################################################################################
+def dmpJTS(rf=440, sss=V_SOUND, csv=0):
+    slog(f'BGN Just Tone Series ({rf=} {sss=} {csv=})')
+    slog(f'END Just Tone Series ({rf=} {sss=} {csv=})')
+    
 ########################################################################################################################################################################################################
 PythMap1   = {} # note index to ABCs (freq ratios)
 #              0     1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19    20    21    22    23
@@ -187,7 +195,7 @@ INTRVLKEYS = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 
 CENTKEYS   = [   0,  90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
 PythMap2   = { e: {'Count': 0} for e in CENTKEYS } # freq ratio in cents to counts
 PythMap3   = { CENTKEYS[i]: k for i, k in enumerate(INTRVLKEYS) }
-PM2KEYS    = ['ABCs', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Intrv', 'Note', 'Wavlen']
+PM2KEYS    = ['ABCs', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Intrv', 'Note', 'Wavlen'] # N/A
 ########################################################################################################################################################################################################
 def pythEpsln(dbg=0):
     ccents = pythComma()
@@ -241,16 +249,15 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
         pa = a ** ca             ;   pb = b ** cb              ;   p = f'{pa:>{y}}/{pb:<{y}}'
         qa = f'{a}^{ca}'         ;   qb = f'{b}^{cb}'          ;   q = f'{qa:>{y}}/{qb:<{y}}'
         sa = f'{a}{i2spr(ca)}'   ;   sb = f'{b}{i2spr(cb)}'    ;   s = f'{sa:>{y}}/{sb:<{y}}'
-        n, n2 = i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (54, 56, 61) else 1, s=1, e=1)
-        if n2 and i and i != NT and i != 6:    n += '/' + n2
+        n = fPythNPair(k, i)
         c  = r2cents(r)          ;   d = c - i * 100 if i != 0 else 0.0 # fixme
         rc   = round(c)          ;   v = PythMap3[rc]          ;   cki += 1
         while CENTKEYS[cki] < rc:
             i2, c2, d2, n2, f2, w2, p2, q2, r2, s2, v2 = blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk    ;    cki += 1
-            ii.append(i2)  ;  cs.append(c2)  ;  ds.append(d2)  ;  ns.append(n2)  ;  fs.append(f2)  ;  ws.append(w2)  ;  ps.append(p2)   ;   qs.append(q2)  ;  rs.append(r2)  ;  ss.append(s2)  ;  vs.append(v2)
-            jj = len(ii)-1 ; abc1.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc2.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc3.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc4.insert(jj, fmtl([W, W, W], w=2, d=Z))
-        ii.append(i)       ;   fs.append(fmtf(f, z))     ;     ps.append(p)      ;   rs.append(fmtf(r, z))     ;   cs.append(fmtf(c, y-1))   ;   rrs.append(rr)
-        ns.append(n)       ;   ws.append(fmtf(w, z))     ;     qs.append(q)      ;   ss.append(s)              ;   ds.append(fmtg(d, y-1))   ;    vs.append(v)
+            ii.append(i2)   ;   cs.append(c2)  ;  ds.append(d2)  ;  ns.append(n2)  ;  fs.append(f2)   ;   ws.append(w2)   ;  ps.append(p2)   ;    qs.append(q2)  ;  rs.append(r2)  ;  ss.append(s2)  ;  vs.append(v2)
+            jj = len(ii)-1  ;  abc1.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc2.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc3.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc4.insert(jj, fmtl([W, W, W], w=2, d=Z))
+        ii.append(i)        ;    fs.append(fmtf(f, z))    ;    ps.append(p)      ;    rs.append(fmtf(r, z))   ;   cs.append(fmtf(c, y-1))    ;   rrs.append(rr)
+        ns.append(n)        ;    ws.append(fmtf(w, z))    ;    qs.append(q)      ;    ss.append(s)            ;   ds.append(fmtg(d, y-1))    ;    vs.append(v)
     ii     = fmtl(ii,   w=ww, s=oo, d=Z)  ;    fs = fmtl(fs,   w=ww, s=oo, d=Z)  ;    cs = fmtl(cs,   w=ww, s=oo, d=Z)  ;   ps  = fmtl(ps,   w=ww, s=oo, d=Z)  ;  rs = fmtl(rs, w=ww, s=oo, d=Z)
     ns     = fmtl(ns,   w=ww, s=oo, d=Z)  ;    ws = fmtl(ws,   w=ww, s=oo, d=Z)  ;    ds = fmtl(ds,   w=ww, s=oo, d=Z)  ;   qs  = fmtl(qs,   w=ww, s=oo, d=Z)  ;  ss = fmtl(ss, w=ww, s=oo, d=Z)  ;  vs = fmtl(vs, w=ww, s=oo, d=Z)
     abc1   = fmtl(abc1, w=ww, s=oo, d=Z)  ;  abc2 = fmtl(abc2, w=ww, s=oo, d=Z)  ;  abc3 = fmtl(abc3, w=ww, s=oo, d=Z)  ;  abc4 = fmtl(abc4, w=ww, s=oo, d=Z)
@@ -290,6 +297,13 @@ def k2dCent(k):
     return k if 0 <= k < 50 else k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150 <= k <= 1200 else None
 #       return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
 ########################################################################################################################################################################################################
+def fPythNPair(k, i):
+    n, n2  = i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (54, 56, 61) else 1, s=1, e=1)
+    if i and i != NT:
+        if   n == 'A♭':         return n2
+        elif n2 and n2 != 'A♭': n += '/' + n2
+    return n
+########################################################################################################################################################################################################
 def dmpPythMaps(k, csv):
 #    dmpPythMap1(1, csv=csv)
 #    dmpPythMap1(2, csv=csv)
@@ -316,9 +330,8 @@ def dmpPythMap1(ni, ik, x=13, csv=0): # x=13 or x=19
         for j, e in enumerate(v):
             a, ca, b, cb = e
             pa, pb = a ** ca, b ** cb
-            n, n2  = i2nPair(j + k, b=0 if j in (4, 6, 11) or k in (54, 56, 61) else 1, s=1, e=1)
-            i2     = i if 0 <= i <= 9 else 'a' if i == 10 else 'b' if i == 11 else None
-            pd     = [f'{i2:1}', f'{k:2}', f'{n:2}']   ;   pfx = mm.join(pd)   ;   pfx += f'{nn}[{nn}'
+            n = fPythNPair(k, j)
+            pd     = [f'{i:x}', f'{k:2}', f'{n:2}']   ;   pfx = mm.join(pd)   ;   pfx += f'{nn}[{nn}'
             cent   = r2cents(pa/pb)      ;   centR = ir(cent)   ;   cki += 1
             while CENTKEYS[cki] < centR:
                 cent2, rat2, qot2, exp2, exu2 = f'{W*x}', f'{W*x}', f'{W*x}', f'{W*x}', f'{W*x}'   ;   cent2f = f'{cent2:{ww}}'   ;   cki += 1
@@ -331,7 +344,7 @@ def dmpPythMap1(ni, ik, x=13, csv=0): # x=13 or x=19
                 assert centR in PythMap2.keys(),  f'{centR=} {PythMap2.keys()=}'
                 PythMap2[centR]['Count'] =          PythMap2[centR]['Count'] + 1 if 'Count' in PythMap2[centR] else 1
                 PythMap2[centR]['ABCs']  = e    ;   PythMap2[centR]['Cents']  =  cent
-                PythMap2[centR]['Note']  = n+n2 if k == ik else '  '
+                PythMap2[centR]['Note']  = n if k == ik else '  '
             centf   = f'{cent:{ww}.0f}'
             rats.append(rat)   ;   qots.append(qot)   ;   exps.append(exp)   ;   exus.append(exu)   ;   cents.append(centf)
         ratsf  = Z.join(fmtl(rats,  w=ww, s=oo, d=Z))
@@ -447,7 +460,22 @@ def dmpPythMap2(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,       w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     dmpDataTableLine(u + 1, csv=csv)
     if dbg: slog(f'{len(PythMap1)=} {sk=}', p=0, f=ff)
+    checkPythIvals()
     PythMap2 = { e: {'Count': 0} for e in CENTKEYS }
+########################################################################################################################################################################################################
+def checkPythIvals(csv=0):
+    ff = 3 if csv else 1
+    slog(f'BGN', p=0, f=ff)
+    msgs = []
+    for i, (k, v) in enumerate(PythMap2.items()):
+        msg = f'{i:2} {k:4}: [ '
+        for j, (k2, v2) in enumerate(v.items()):
+            msg += f'{k2}:'
+            msg += f'{v2:6.1f} ' if ist(v2, float) else f'{v2} '
+        msg += ']'   ;   msgs.append(msg)
+    msgs = '\n'.join(msgs)
+    slog(f'{msgs}', p=0, f=ff)
+    slog(f'END', p=0, f=ff)
 ########################################################################################################################################################################################################
 '''
    k        0         1         2         3         4         5         6         7         8         9        10        11        12        13        14        15        16        17        18        19        20        21        22        23    
