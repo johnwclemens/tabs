@@ -12,7 +12,8 @@ from   tpkg            import utl
 from   tpkg            import kysgs
 from   tpkg            import misc
 from   tpkg            import evnts
-from   tpkg            import intrvls 
+from   tpkg            import intrvls
+from   tpkg            import pthgrn
 from   tpkg            import notes
 from   tpkg.notes      import Notes
 from   tpkg.strngs     import Strngs
@@ -2154,6 +2155,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=_)
     notes.dumpData()     ;     notes.dumpData(csv=1)
     intrvls.dumpData()   ;   intrvls.dumpData(csv=1)
+    pthgrn.dumpData()    ;    pthgrn.dumpData(csv=1)
     kysgs.init(f=2)
     slog(f'BGN {sys.argv[0]}', p=0,    f=_)
     slog(f'argv={fmtl(sys.argv[1:])}', f=_)
