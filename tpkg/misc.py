@@ -16,6 +16,9 @@ class Modes:
     TYPES = [  IONIAN,   DORIAN,   PHRYGIAN,   LYDIAN,   MIXOLYDIAN,   AEOLIAN,   LOCRIAN  ]
 ########################################################################################################################################################################################################
 
+#def fmtR1(a, ca, b, cb, w):  pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
+#           r1s.append(fmtR1(a, ca, b, cb, ww)) if ck in ckmap and ckmap[ck]['Count'] > 0 else r1s.append(blnk) 
+
 #todo list:
 # A: autosave
 # B: blank tabs
