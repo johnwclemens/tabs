@@ -94,7 +94,7 @@ def fabc(abc):
     return [ fmtl(e, w=2, d=Z) for e in abc ]
 ########################################################################################################################################################################################################
 def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
-    x, y = 13, 6     ;   z = x-2
+    x, y = 13, 6     ;   z = x-2   ;   blnk = W*x
     ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)
     slog(f'BGN Pythagorean ({k=} {rf=} {sss=} {csv=})', f=ff)
     ii  = [ f'{i}' for i in range(2 * NT) ]
@@ -102,7 +102,7 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     dmpDataTableLine(x + 1, csv=csv)
     f0  = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * sss
     ii, ns, fs, ws = [], [], [], []    ;    cs, ds = [], []    ;   vs = []   ;   ps, qs = [], []   ;   rs, ss = [], []   ;   abcMap = []
-    tmp = k2Abcs(k)          ;  abc0 = list(tmp[3])        ;  cki = -1   ;   blnk = f'{W*x}'
+    tmp = k2Abcs(k)          ;  abc0 = list(tmp[3])        ;  cki = -1
     abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])
     for i, e in enumerate(abc0):
         a, b, c   = e[0], e[1], e[2]
@@ -119,11 +119,6 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
             i2, c2, d2, n2, f2, w2, p2, q2, r2, s2, v2 = blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk      ;    cki += 1
             ii.append(i2)   ;   cs.append(c2)  ;  ds.append(d2)  ;  ns.append(n2)  ;  fs.append(f2)   ;   ws.append(w2)   ;  ps.append(p2)   ;    qs.append(q2)  ;  rs.append(r2)  ;  ss.append(s2)  ;  vs.append(v2)
             jj = len(ii)-1  ;  abc1.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc2.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc3.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc4.insert(jj, fmtl([W, W, W], w=2, d=Z))
-#        assert rc in ckmap.keys(),  f'{rc=} {ckmap.keys()=}' 
-#        ckmap[rc]['Count'] =          ckmap[rc]['Count'] + 1 if 'Count' in ckmap[rc] else 1
-#        ckmap[rc]['Abc']   = abc  ;   
-#        ckmap[rc]['Cents']  =  c      ;      ckmap[rc]['DCents'] = k2dCent(c)
-#        ckmap[rc]['Note']  = n # if k == ik else W*2
         ii.append(i)        ;    fs.append(fmtf(f, z))    ;    ps.append(p)      ;    rs.append(fmtf(r, z))   ;   cs.append(fmtf(c, y-1))    ;   abcMap.append(abc)
         ns.append(n)        ;    ws.append(fmtf(w, z))    ;    qs.append(q)      ;    ss.append(s)            ;   ds.append(fmtg(d, y-1))    ;     vs.append(v)
     ii     = fmtl(ii,   w=ww, s=oo, d=Z)  ;    fs = fmtl(fs,   w=ww, s=oo, d=Z)  ;    cs = fmtl(cs,   w=ww, s=oo, d=Z)  ;   ps  = fmtl(ps,   w=ww, s=oo, d=Z)  ;  rs = fmtl(rs, w=ww, s=oo, d=Z)
@@ -188,27 +183,23 @@ def dmpCks2Iks(csv=0):
         slog(f'         {fmtm(ck2ik, w=4, wv=2, s=3*W, d=Z)}', p=0)
 ########################################################################################################################################################################################################
 def dmpNiMap(ni, ik, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
-    y = 6 # if x==13 else 6 # fixme same value?
     ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   pfx = ''   ;   sfx = f'{nn}]'
     f0  = F440s[ik] if rf==440 else F432s[ik]     ;     w0 = CM_P_M * sss
     ii = [ f'{i}' for i in range(2 * NT) ]
     slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None
     dmpDataTableLine(x + 1, csv=csv) if ni == 1 else None
     for i, (k, v) in enumerate(nimap.items()):
-        rats, qots, exps, exus, cents = [], [], [], [], []   ;   cki = -1
+        rat0, rat1, rat2, rat3, cents = [], [], [], [], []   ;   cki = -1
         for j, e in enumerate(v[0]):
-            a, ca, b, cb = e
-            pa, pb = a ** ca, b ** cb
-            n = fmtNPair(k, j)
-            pd     = [f'{i:x}', f'{k:2}', f'{n:2}']   ;   pfx = mm.join(pd)   ;   pfx += f'{nn}[{nn}'
-            cent   = r2cents(pa/pb)      ;   rc = ir(cent)   ;   cki += 1
+            a, ca, b, cb = e      ;      pa, pb = a ** ca, b ** cb
+            n    = fmtNPair(k, j)
+            pd   = [f'{i:x}', f'{k:2}', f'{n:2}']   ;   pfx = mm.join(pd)   ;   pfx += f'{nn}[{nn}'
+            cent = r2cents(pa/pb)   ;    rc = ir(cent)      ;   cki += 1
             while CENT_KS[cki] < rc:
-                cent2, rat2, qot2, exp2, exu2 = f'{W*x}', f'{W*x}', f'{W*x}', f'{W*x}', f'{W*x}'   ;   cent2f = f'{cent2:{ww}}'   ;   cki += 1
-                rats.append(rat2)   ;   qots.append(qot2)   ;   exps.append(exp2)   ;   exus.append(exu2)   ;   cents.append(cent2f)
-            rat    = f'{float(pa/pb):{ww}.5f}'
-            qot    = f'{pa:{y}}/{pb:<{y}}'
-            expA   = f'{a}^{ca}'         ;    expB = f'{b}^{cb}'         ;   exp = f'{expA:>{y}}/{expB:<{y}}'
-            exuA   = f'{a}{i2spr(ca)}'   ;    exuB = f'{b}{i2spr(cb)}'   ;   exu = f'{exuA:>{y}}/{exuB:<{y}}'
+                blnk = W*x    ;   cent2f = f'{blnk:{ww}}'   ;   cki += 1
+                rat0.append(blnk)   ;   rat1.append(blnk)   ;   rat2.append(blnk)   ;   rat3.append(blnk)   ;   cents.append(cent2f)
+            r0   = fmtR0(a, ca, b, cb, f'{ww}.5f')
+            r1   = fmtR1(a, ca, b, cb)   ;    r2 = fmtR2(a, ca, b, cb)   ;   r3   = fmtR3(a, ca, b, cb)
             if ni == 5:
                 assert rc in ckmap.keys(),  f'{rc=} {ckmap.keys()=}'     ;     f = f0 * pa/pb
                 ckmap[rc]['Count']   =               ckmap[rc]['Count'] + 1 if 'Count' in ckmap[rc] else 1
@@ -216,20 +207,14 @@ def dmpNiMap(ni, ik, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
                 ckmap[rc]['Cents']   = cent     ;    ckmap[rc]['DCents'] = k2dCent(cent)
                 ckmap[rc]['Itval']   = ck2ik[rc]
                 ckmap[rc]['Note']    = n if k == ik else W*2
-                ckmap[rc]['Freq']    = f
-                ckmap[rc]['Wavelen'] = w0 / f
+                ckmap[rc]['Freq']    = f        ;    ckmap[rc]['Wavelen'] = w0 / f
             centf  = f'{cent:{ww}.0f}'
-            rats.append(rat)   ;   qots.append(qot)   ;   exps.append(exp)   ;   exus.append(exu)   ;   cents.append(centf)
-        ratsf  = Z.join(fmtl(rats,  w=ww, s=oo, d=Z))
-        qotsf  = Z.join(fmtl(qots,  w=ww, s=oo, d=Z))
-        expsf  = Z.join(fmtl(exps,  w=ww, s=oo, d=Z))
-        exusf  = Z.join(fmtl(exus,  w=ww, s=oo, d=Z))
-        centsf = Z.join(fmtl(cents, w=ww, s=oo, d=Z))
-        if   ni == 1: slog(f'{pfx}{ratsf}{sfx}',  p=0, f=ff)
-        elif ni == 2: slog(f'{pfx}{qotsf}{sfx}',  p=0, f=ff)
-        elif ni == 3: slog(f'{pfx}{expsf}{sfx}',  p=0, f=ff)
-        elif ni == 4: slog(f'{pfx}{exusf}{sfx}',  p=0, f=ff)
-        elif ni == 5: slog(f'{pfx}{centsf}{sfx}', p=0, f=ff)
+            rat0.append(r0)   ;   rat1.append(r1)   ;   rat2.append(r2)   ;   rat3.append(r3)   ;   cents.append(centf)
+        if   ni == 1: slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+        elif ni == 2: slog(f'{pfx}{Z.join(fmtl(rat1,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+        elif ni == 3: slog(f'{pfx}{Z.join(fmtl(rat2,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+        elif ni == 4: slog(f'{pfx}{Z.join(fmtl(rat3,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+        elif ni == 5: slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
     dmpDataTableLine(x + 1, csv=csv)
     slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
 ########################################################################################################################################################################################################
@@ -269,6 +254,7 @@ def dmpIvals(i, ks, cs, ds, csv):
         fd       = fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 ########################################################################################################################################################################################################
 def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
+def fmtR1(a, ca, b, cb):      pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
 def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
 def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
 def fmtR2(a, ca, b, cb):      qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>}/{qb:<}'
@@ -290,9 +276,9 @@ def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
     for i, ck in enumerate(CENT_KS):
         ival = ck2ik[ck]
         assert ckmap and ck in ckmap,  f'{ck=} {ckmap=}'
-        assert ival == ckmap[ck]['Itval'],  f'{ival=} {ck=} {ckmap[ck]["Itval"]=}'
         vs.append(ival)
         if ckmap[ck]['Count'] > 0:
+            assert ival == ckmap[ck]['Itval'],  f'{ival=} {ck=} {ckmap[ck]["Itval"]=}'
             a, ca, b, cb = ckmap[ck]['Abc']
             f = ckmap[ck]['Freq']          ;   assert f == f0 * a**ca / b**cb,  f'{f=} {f0=} r={a**ca/b**cb}'
             w = ckmap[ck]['Wavelen']       ;   assert w == w0 / f,              f'{w=} {w0=} {f=}'

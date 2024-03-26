@@ -18,6 +18,7 @@ class Modes:
 
 #def fmtR1(a, ca, b, cb, w):  pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
 #           r1s.append(fmtR1(a, ca, b, cb, ww)) if ck in ckmap and ckmap[ck]['Count'] > 0 else r1s.append(blnk) 
+#   slog(f'{mm}Rati1{mm}{nn}[{nn}{fmtl(r1s,     w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
 
 #todo list:
 # A: autosave
