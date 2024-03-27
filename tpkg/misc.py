@@ -53,6 +53,19 @@ class Modes:
 # The checkIvals() table should not be output until after the dmpNiMap() table.
 # The dmpCks2Iks() table is not important and can be omitted.
 
+# also the history (at the end it prints all 12 versions of the table) in checkIvals() gets lost when trying to address the order issue
+
+'''
+def dmpMaps(k, csv):
+    global ckmap
+#    dmpPyth() # calls into us here, fat no counts was called, after loop it creates nimap[k] = [abcMap, ckmap] and then it calls us after logging its table (in between dmpDataTableLine() & slog(f'END Pythagorean') )
+    dmpNiMap(5, k,    csv=csv) # stores data into skinny ckmap 
+    dmpCkMap(k,       csv=csv) # skinny with counts inside loop it calls dmpIvals() then calls checkIvals() after loop in between dmpDataTableLine() and clearing its self (ckmap).  checkIvals() only called from here
+    dmpNiMap(5, k, 9, csv=csv) # dupliicates counts
+    ckmap   = { e: {'Count': 0} for e in CENT_KS }
+    dmpCks2Iks(       csv=csv)
+'''
+
 # Current
 # Begin test.log: #########################################################################################################################################################################################################
 '''

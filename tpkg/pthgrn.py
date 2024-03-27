@@ -155,10 +155,9 @@ def dmpMaps(k, csv):
 #    dmpNiMap(3, csv=csv)
 #    dmpNiMap(4, csv=csv)
     dmpNiMap(5, k,    csv=csv)
-    dmpCkMap(k,       csv=csv)
+    dmpCkMap(k,       csv=csv) # calls dmpIvals() inside loop over CENT_KS - the only call
     dmpNiMap(5, k, 9, csv=csv) # dupliicates counts
-#    checkIvals(       csv=csv)
-    ckmap   = { e: {'Count': 0} for e in CENT_KS }
+    ckmap = {e: {'Count': 0} for e in CENT_KS}
     dmpCks2Iks(       csv=csv)
 ########################################################################################################################################################################################################
 def dmpCks2Iks(csv=0):
@@ -213,7 +212,7 @@ def fIvals(data, i, csv):
         elif j in (2, 3, 4, 9, 10): fd.append(f'{d:2}')  # i Iv c Iv c
     return fd
 ########################################################################################################################################################################################################
-def dmpIvals(i, ks, cs, ds, csv):
+def dmpIvals(i, ks, cs, ds, csv): # only called by dmpCkMap()
     mm, nn, oo, ff = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)   ;   m = -1
 #    slog(f'BGN dmpIvals() {i=} {csv=}')
     eps, j     = epsilon(), math.floor(i/2)
@@ -295,10 +294,9 @@ def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,      w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     dmpDataTableLine(u + 1, csv=csv)
     checkIvals()
-    ckmap = { e: {'Count': 0} for e in CENT_KS }
 ########################################################################################################################################################################################################    
-def getCkMap(ck, a, ca, b, cb, f0, w0):
-    f = ckmap[ck]['Freq']    ;   assert f == f0 * a**ca / b**cb,    f'{f=} {f0=} r={a**ca/b**cb}'
+def getCkMap(ck, a, ca, b, cb, f0, w0): # sometimes
+    f = ckmap[ck]['Freq']    ;   assert f == f0 * a**ca / b**cb,    f'{ck=} {f=} {f0=} r={a**ca/b**cb} {f0*a**ca/b**cb=} {a=} {ca=} {b=} {cb=}'
     w = ckmap[ck]['Wavln']   ;   assert w == w0 / f,                f'{w=} {w0=} {f=}'
     n = ckmap[ck]['Note']
     i = ckmap[ck]['Idx']
@@ -308,7 +306,7 @@ def getCkMap(ck, a, ca, b, cb, f0, w0):
     return f, w, n, c, d, k, i
 ########################################################################################################################################################################################################
 def checkIvals(csv=0):
-#    global ckmap
+    global ckmap
     ff = 3 if csv else 1
     slog(f'BGN checkIvals() {csv=}', p=0, f=ff)
     keys, msgs, ws = [], [], [7, 8, 7, 7, 7, 5, 4, 4, 3]
@@ -323,4 +321,4 @@ def checkIvals(csv=0):
     msgs = '\n'.join(msgs)
     slog(f'{msgs}', p=0, f=ff)
     slog(f'END checkIvals() {csv=}', p=0, f=ff)
-#    ckmap = { e: {'Count': 0} for e in CENT_KS }
+    ckmap = { e: {'Count': 0} for e in CENT_KS }
