@@ -150,22 +150,28 @@ def fmtNPair(k, i):
 ########################################################################################################################################################################################################
 def dmpMaps(k, csv):
     global ckmap
-#    dmpNiMap(1, csv=csv)
-#    dmpNiMap(2, csv=csv)
-#    dmpNiMap(3, csv=csv)
-#    dmpNiMap(4, csv=csv)
-    dmpNiMap(5, k, upd=1, csv=csv)
-    dmpCkMap(k,           csv=csv)
-    dmpNiMap(5, k,   x=9, csv=csv)
-    checkIvals(csv)
-    dmpCks2Iks(csv)
+    dmpNiMap(  1, k, x=13, upd=1, csv=csv)
+    dmpNiMap(  2, k, x=13, upd=1, csv=csv)
+    dmpNiMap(  3, k, x=13, upd=1, csv=csv)
+    dmpNiMap(  4, k, x=13, upd=1, csv=csv)
+    dmpNiMap(  5, k, x=13, upd=1, csv=csv)
+    dmpCks2Iks(      x=13,        csv=csv)
+    dmpCkMap(k,                   csv=csv)
+    dmpNiMap(  1, k, x=9,  upd=0, csv=csv)
+    dmpNiMap(  2, k, x=9,  upd=0, csv=csv)
+    dmpNiMap(  3, k, x=9,  upd=0, csv=csv)
+    dmpNiMap(  4, k, x=9,  upd=0, csv=csv)
+    dmpNiMap(  5, k, x=9,  upd=0, csv=csv)
+    dmpCks2Iks(      x=9,         csv=csv)
+    checkIvals(                   csv=csv)
 ########################################################################################################################################################################################################
-def dmpCks2Iks(csv=0):
+def dmpCks2Iks(x=13, csv=0):
     if not csv:
-        slog(f'         {fmtm(ck2ik, w=4, wv=2, s=3*W, d=Z)}', p=0)
+        if   x== 9: slog(f'{7*W}  {fmtm(ck2ik, w=4, wv=2, s=3*W, d=Z)}', p=0)
+        elif x==13: slog(f'{9*W}  {fmtm(ck2ik, w=4, wv=2, s=7*W, d=Z)}', p=0)
 ########################################################################################################################################################################################################
-def dmpNiMap(ni, ik, upd=0, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
-    ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   pfx = ''   ;   sfx = f'{nn}]'
+def dmpNiMap(ni, ik, x=13, upd=0, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
+    ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   pfx = ''   ;   sfx = f'{nn}]'  ;  yy = 4 if x==9 else 6
     f0  = F440s[ik] if rf==440 else F432s[ik]     ;     w0 = CM_P_M * sss
     ii = [ f'{i}' for i in range(2 * NT) ]
     slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None
@@ -181,7 +187,7 @@ def dmpNiMap(ni, ik, upd=0, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
                 blnk = W*x          ;   cki += 1            ;   cents.append(f'{blnk:{ww}}')
                 rat0.append(blnk)   ;   rat1.append(blnk)   ;    rat2.append(blnk)   ;   rat3.append(blnk)
             r0   = fmtR0(a, ca, b, cb, f'{ww}.5f')          ;   centf = f'{cent:{ww}.0f}'
-            r1   = fmtR1(a, ca, b, cb, x)   ;    r2 = fmtR2(a, ca, b, cb, x)   ;   r3   = fmtR3(a, ca, b, cb, x)
+            r1   = fmtR1(a, ca, b, cb, yy)   ;    r2 = fmtR2(a, ca, b, cb, yy)   ;   r3   = fmtR3(a, ca, b, cb, yy) # comment below applies to r1 value here as well
             if upd and ni == 5:
                 assert rc in ckmap.keys(),  f'{rc=} {ckmap.keys()=}'     ;     f = f0 * pa/pb
                 ckmap[rc]['Count'] = ckmap[rc]['Count'] + 1 if 'Count' in ckmap[rc] else 1    ;    ckmap[rc]['Abc']   = e
@@ -191,7 +197,7 @@ def dmpNiMap(ni, ik, upd=0, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
                 ckmap[rc]['Ival']  = ck2ik[rc]              ;   ckmap[rc]['Idx']   = j
             rat0.append(r0)   ;   rat1.append(r1)   ;   rat2.append(r2)   ;   rat3.append(r3)   ;   cents.append(centf)
         if   ni == 1: slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-        elif ni == 2: slog(f'{pfx}{Z.join(fmtl(rat1,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+        elif ni == 2: slog(f'{pfx}{Z.join(fmtl(rat1,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff) # if ni==2 and x==9 need to use separate ratA / ratB and optionally the divisor symbol on separate lines - or omit these values
         elif ni == 3: slog(f'{pfx}{Z.join(fmtl(rat2,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
         elif ni == 4: slog(f'{pfx}{Z.join(fmtl(rat3,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
         elif ni == 5: slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
