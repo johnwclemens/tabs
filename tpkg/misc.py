@@ -53,7 +53,7 @@ class Modes:
 # The checkIvals() table should not be output until after the dmpNiMap() table.
 # The dmpCks2Iks() table is not important and can be omitted.
 
-# also the history (at the end it prints all 12 versions of the table) in checkIvals() gets lost when trying to address the order issue
+# also the 'history' is actually due to csv file (at the end it prints all 12 versions of the table) in checkIvals() gets omitted from log file when trying to address the order issue
 
 '''
 def dmpMaps(k, csv):

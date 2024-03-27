@@ -293,7 +293,7 @@ def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,      w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,      w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     dmpDataTableLine(u + 1, csv=csv)
-    checkIvals()
+    checkIvals(csv)
 ########################################################################################################################################################################################################    
 def getCkMap(ck, a, ca, b, cb, f0, w0): # sometimes
     f = ckmap[ck]['Freq']    ;   assert f == f0 * a**ca / b**cb,    f'{ck=} {f=} {f0=} r={a**ca/b**cb} {f0*a**ca/b**cb=} {a=} {ca=} {b=} {cb=}'
