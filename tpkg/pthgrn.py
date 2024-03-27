@@ -154,17 +154,17 @@ def dmpMaps(k, csv):
 #    dmpNiMap(2, csv=csv)
 #    dmpNiMap(3, csv=csv)
 #    dmpNiMap(4, csv=csv)
-    dmpNiMap(5, k,    csv=csv)
-    dmpCkMap(k,       csv=csv) # calls dmpIvals() inside loop over CENT_KS - the only call
-    dmpNiMap(5, k, 9, csv=csv) # dupliicates counts
-    ckmap = {e: {'Count': 0} for e in CENT_KS}
-    dmpCks2Iks(       csv=csv)
+    dmpNiMap(5, k, upd=1, csv=csv)
+    dmpCkMap(k,           csv=csv)
+    dmpNiMap(5, k,   x=9, csv=csv)
+    checkIvals(csv)
+    dmpCks2Iks(csv)
 ########################################################################################################################################################################################################
 def dmpCks2Iks(csv=0):
     if not csv:
         slog(f'         {fmtm(ck2ik, w=4, wv=2, s=3*W, d=Z)}', p=0)
 ########################################################################################################################################################################################################
-def dmpNiMap(ni, ik, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
+def dmpNiMap(ni, ik, upd=0, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
     ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   pfx = ''   ;   sfx = f'{nn}]'
     f0  = F440s[ik] if rf==440 else F432s[ik]     ;     w0 = CM_P_M * sss
     ii = [ f'{i}' for i in range(2 * NT) ]
@@ -182,7 +182,7 @@ def dmpNiMap(ni, ik, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
                 rat0.append(blnk)   ;   rat1.append(blnk)   ;    rat2.append(blnk)   ;   rat3.append(blnk)
             r0   = fmtR0(a, ca, b, cb, f'{ww}.5f')          ;   centf = f'{cent:{ww}.0f}'
             r1   = fmtR1(a, ca, b, cb, x)   ;    r2 = fmtR2(a, ca, b, cb, x)   ;   r3   = fmtR3(a, ca, b, cb, x)
-            if ni == 5:
+            if upd and ni == 5:
                 assert rc in ckmap.keys(),  f'{rc=} {ckmap.keys()=}'     ;     f = f0 * pa/pb
                 ckmap[rc]['Count'] = ckmap[rc]['Count'] + 1 if 'Count' in ckmap[rc] else 1    ;    ckmap[rc]['Abc']   = e
                 ckmap[rc]['Freq']  = f                      ;   ckmap[rc]['Wavln'] = w0 / f
@@ -293,7 +293,6 @@ def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,      w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,      w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     dmpDataTableLine(u + 1, csv=csv)
-    checkIvals(csv)
 ########################################################################################################################################################################################################    
 def getCkMap(ck, a, ca, b, cb, f0, w0): # sometimes
     f = ckmap[ck]['Freq']    ;   assert f == f0 * a**ca / b**cb,    f'{ck=} {f=} {f0=} r={a**ca/b**cb} {f0*a**ca/b**cb=} {a=} {ca=} {b=} {cb=}'
