@@ -94,57 +94,38 @@ def fabc(abc):
     return [ fmtl(e, w=2, d=Z) for e in abc ]
 ########################################################################################################################################################################################################
 def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
-    x, y = 13, 6     ;   z = x-2   ;   blnk = W*x
+    x, y = 13, 6     ;   z = x-2   ;   blnk = x*W   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;   cki = -1
     ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)
     slog(f'BGN Pythagorean ({k=} {rf=} {sss=} {csv=})', f=ff)
-    ii  = [ f'{i}' for i in range(2 * NT) ]
-    slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
+    ii  = [ f'{i}' for i in range(2 * NT) ]         ;   slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
     dmpDataTableLine(x + 1, csv=csv)
-    f0  = F440s[k] if rf==440 else F432s[k]     ;     w0 = CM_P_M * sss
-    ii, ns, fs, ws = [], [], [], []    ;    cs, ds = [], []    ;   vs = []   ;   ps, qs = [], []   ;   rs, ss = [], []   ;   abcMap = []
-    tmp = k2Abcs(k)          ;  abc0 = list(tmp[3])        ;  cki = -1
-    abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])
+    ii, ns, vs, fs, ws = [], [], [], [], []   ;   cs, ds = [], []   ;   r0s, r1s, r2s, r3s = [], [], [], []   ;   abcMap = []
+    tmp = k2Abcs(k)  ;    abc0 = list(tmp[3])      ;   abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])
     for i, e in enumerate(abc0):
-        a, b, c   = e[0], e[1], e[2]
-        r, ca, cb = abc2r(a, b, c)
-        abc = [ a, ca, b, cb ]
-        f   = r * f0              ;    w = w0 / f
-        pa  = a ** ca             ;   pb = b ** cb             ;   p = f'{pa:>{y}}/{pb:<{y}}'
-        qa  = f'{a}^{ca}'         ;   qb = f'{b}^{cb}'         ;   q = f'{qa:>{y}}/{qb:<{y}}'
-        sa  = f'{a}{i2spr(ca)}'   ;   sb = f'{b}{i2spr(cb)}'   ;   s = f'{sa:>{y}}/{sb:<{y}}'
-        n   = fmtNPair(k, i)
-        c   = r2cents(r)          ;   d = k2dCent(c)
-        rc  = round(c)            ;   v = ck2ik[rc]       ;   cki += 1
+        a, b, c = e[0], e[1], e[2]   ;   r, ca, cb = abc2r(a, b, c)   ;   abc = [ a, ca, b, cb ]   ;   f = r * f0   ;   w = w0 / f
+        r0 = fmtR0(a, ca, b, cb, f'{ww}.{z-2}f')   ;   r1 = fmtR1(a, ca, b, cb, y)   ;    r2 = fmtR2(a, ca, b, cb, y)   ;   r3 = fmtR3(a, ca, b, cb, y)
+        n  = fmtNPair(k, i)   ;   c = r2cents(r)   ;   d = k2dCent(c)   ;   rc = round(c)   ;   v = ck2ik[rc]    ;   cki += 1
         while CENT_KS[cki] < rc:
-            i2, c2, d2, n2, f2, w2, p2, q2, r2, s2, v2 = blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk, blnk      ;    cki += 1
-            ii.append(i2)   ;   cs.append(c2)  ;  ds.append(d2)  ;  ns.append(n2)  ;  fs.append(f2)   ;   ws.append(w2)   ;  ps.append(p2)   ;    qs.append(q2)  ;  rs.append(r2)  ;  ss.append(s2)  ;  vs.append(v2)
-            jj = len(ii)-1  ;  abc1.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc2.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc3.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc4.insert(jj, fmtl([W, W, W], w=2, d=Z))
-        ii.append(i)        ;    fs.append(fmtf(f, z))    ;    ps.append(p)      ;    rs.append(fmtf(r, z))   ;   cs.append(fmtf(c, y-1))    ;   abcMap.append(abc)
-        ns.append(n)        ;    ws.append(fmtf(w, z))    ;    qs.append(q)      ;    ss.append(s)            ;   ds.append(fmtg(d, y-1))    ;     vs.append(v)
-    ii     = fmtl(ii,   w=ww, s=oo, d=Z)  ;    fs = fmtl(fs,   w=ww, s=oo, d=Z)  ;    cs = fmtl(cs,   w=ww, s=oo, d=Z)  ;   ps  = fmtl(ps,   w=ww, s=oo, d=Z)  ;  rs = fmtl(rs, w=ww, s=oo, d=Z)
-    ns     = fmtl(ns,   w=ww, s=oo, d=Z)  ;    ws = fmtl(ws,   w=ww, s=oo, d=Z)  ;    ds = fmtl(ds,   w=ww, s=oo, d=Z)  ;   qs  = fmtl(qs,   w=ww, s=oo, d=Z)  ;  ss = fmtl(ss, w=ww, s=oo, d=Z)  ;  vs = fmtl(vs, w=ww, s=oo, d=Z)
-    abc1   = fmtl(abc1, w=ww, s=oo, d=Z)  ;  abc2 = fmtl(abc2, w=ww, s=oo, d=Z)  ;  abc3 = fmtl(abc3, w=ww, s=oo, d=Z)  ;  abc4 = fmtl(abc4, w=ww, s=oo, d=Z)
-    pfxi   = f'{mm}Index{mm}{nn}[{nn}'    ;  pfxr = f'{mm}Ratio{mm}{nn}[{nn}'    ;  pfx1 = f'{mm} ABC1{mm}{nn}[{nn}'    ;  pfxf = f'{mm}Freq {mm}{nn}[{nn}'
-    pfxn   = f'{mm}Note {mm}{nn}[{nn}'    ;  pfxp = f'{mm}Rati1{mm}{nn}[{nn}'    ;  pfx2 = f'{mm} ABC2{mm}{nn}[{nn}'    ;  pfxw = f'{mm}Wavln{mm}{nn}[{nn}'    
-    pfxc   = f'{mm}Cents{mm}{nn}[{nn}'    ;  pfxq = f'{mm}Rati2{mm}{nn}[{nn}'    ;  pfx3 = f'{mm} ABC3{mm}{nn}[{nn}'    ;  pfxv = f'{mm}Itval{mm}{nn}[{nn}'
-    pfxd   = f'{mm}dCent{mm}{nn}[{nn}'    ;  pfxs = f'{mm}Rati3{mm}{nn}[{nn}'    ;  pfx4 = f'{mm} ABC4{mm}{nn}[{nn}'
-    sfx    = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;  sfxf = f'{nn}]{mm}Hz'  ;  sfxw = f'{nn}]{mm}cm'
-    nimap[k] = [abcMap, ckmap]
-    slog(f'{pfxi}{ii}{sfx}',   p=0, f=ff)
-    slog(f'{pfxn}{ns}{sfx}',   p=0, f=ff)
-    slog(f'{pfxv}{vs}{sfx}',   p=0, f=ff)
-    slog(f'{pfxr}{rs}{sfx}',   p=0, f=ff)
-    slog(f'{pfxp}{ps}{sfx}',   p=0, f=ff)
-    slog(f'{pfxq}{qs}{sfx}',   p=0, f=ff)
-    slog(f'{pfxs}{ss}{sfx}',   p=0, f=ff)
-    slog(f'{pfxc}{cs}{sfxc}',  p=0, f=ff)
-    slog(f'{pfxd}{ds}{sfxc}',  p=0, f=ff)
-    slog(f'{pfxf}{fs}{sfxf}',  p=0, f=ff)
-    slog(f'{pfxw}{ws}{sfxw}',  p=0, f=ff)
-    slog(f'{pfx1}{abc1}{sfx}', p=0, f=ff)
-    slog(f'{pfx2}{abc2}{sfx}', p=0, f=ff)
-    slog(f'{pfx3}{abc3}{sfx}', p=0, f=ff)
-    slog(f'{pfx4}{abc4}{sfx}', p=0, f=ff)
+            ii.append(blnk)  ;  cs.append(blnk)  ;  ds.append(blnk)  ;  fs.append(blnk)  ;  ws.append(blnk)  ;  ns.append(blnk)  ;  vs.append(blnk)  ;  r0s.append(blnk)  ;  r1s.append(blnk)  ;  r2s.append(blnk)  ;  r3s.append(blnk)
+            cki += 1  ;  jj = len(ii)-1   ;  abc1.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc2.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc3.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc4.insert(jj, fmtl([W, W, W], w=2, d=Z))
+        ii.append(i)  ;  fs.append(fmtf(f, z))   ;  r1s.append(r1)   ;   r0s.append(r0)  ;    cs.append(fmtf(c, y-1))   ;   abcMap.append(abc)
+        ns.append(n)  ;  ws.append(fmtf(w, z))   ;  r2s.append(r2)   ;   r3s.append(r3)  ;    ds.append(fmtg(d, y-1))   ;       vs.append(v)
+    nimap[k] = [abcMap, ckmap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'
+    slog(f'{mm}Index{mm}{nn}[{nn}{fmtl(ii,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+    slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+    slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+    slog(f'{mm}Ratio{mm}{nn}[{nn}{fmtl(r0s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+    slog(f'{mm}Rati1{mm}{nn}[{nn}{fmtl(r1s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+    slog(f'{mm}Rati2{mm}{nn}[{nn}{fmtl(r2s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+    slog(f'{mm}Rati3{mm}{nn}[{nn}{fmtl(r3s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+    slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
+    slog(f'{mm}dCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
+    slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,   w=ww, s=oo, d=Z)}{sfxf}', p=0, f=ff)
+    slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,   w=ww, s=oo, d=Z)}{sfxw}', p=0, f=ff)
+    slog(f'{mm} ABC1{mm}{nn}[{nn}{fmtl(abc1, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+    slog(f'{mm} ABC2{mm}{nn}[{nn}{fmtl(abc2, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+    slog(f'{mm} ABC3{mm}{nn}[{nn}{fmtl(abc3, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+    slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
     dmpDataTableLine(x + 1, csv=csv)
     dmpMaps(k,     csv)
     slog(f'END Pythagorean ({k=} {rf=} {sss=} {csv=})', f=ff)
@@ -191,7 +172,7 @@ def dmpNiMap(ni, ik, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
     for i, (k, v) in enumerate(nimap.items()):
         rat0, rat1, rat2, rat3, cents = [], [], [], [], []   ;   cki = -1
         for j, e in enumerate(v[0]):
-            a, ca, b, cb = e      ;      pa, pb = a ** ca, b ** cb
+            a, ca, b, cb = e        ;      pa, pb = a ** ca, b ** cb
             n    = fmtNPair(k, j)
             pd   = [f'{i:x}', f'{k:2}', f'{n:2}']   ;   pfx = mm.join(pd)   ;   pfx += f'{nn}[{nn}'
             cent = r2cents(pa/pb)   ;    rc = ir(cent)      ;   cki += 1
@@ -199,7 +180,7 @@ def dmpNiMap(ni, ik, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
                 blnk = W*x          ;   cki += 1            ;   cents.append(f'{blnk:{ww}}')
                 rat0.append(blnk)   ;   rat1.append(blnk)   ;    rat2.append(blnk)   ;   rat3.append(blnk)
             r0   = fmtR0(a, ca, b, cb, f'{ww}.5f')          ;   centf = f'{cent:{ww}.0f}'
-            r1   = fmtR1(a, ca, b, cb)   ;    r2 = fmtR2(a, ca, b, cb)   ;   r3   = fmtR3(a, ca, b, cb)
+            r1   = fmtR1(a, ca, b, cb, x)   ;    r2 = fmtR2(a, ca, b, cb, x)   ;   r3   = fmtR3(a, ca, b, cb, x)
             if ni == 5:
                 assert rc in ckmap.keys(),  f'{rc=} {ckmap.keys()=}'     ;     f = f0 * pa/pb
                 ckmap[rc]['Count']   =               ckmap[rc]['Count'] + 1 if 'Count' in ckmap[rc] else 1
@@ -252,19 +233,19 @@ def dmpIvals(i, ks, cs, ds, csv):
         fd       = fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 ########################################################################################################################################################################################################
 def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
-def fmtR1(a, ca, b, cb):      pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>}/{pb:<}'
+def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>{w}}/{pb:<{w}}'
 def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
 def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
-def fmtR2(a, ca, b, cb):      qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>}/{qb:<}'
-def fmtR3(a, ca, b, cb):      sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>}/{sb:<}' 
+def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>{w}}/{qb:<{w}}'
+def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}/{sb:<{w}}' 
 def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
     
 def addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, w3, ww, u):
     r0s.append(fmtR0(a, ca, b, cb, w3))
     rAs.append(fmtRA(a, ca, ww))
     rBs.append(fmtRB(b, cb, ww))
-    r2s.append(fmtR2(a, ca, b, cb)) if u >= 9 else None
-    r3s.append(fmtR3(a, ca, b, cb))
+    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
+    r3s.append(fmtR3(a, ca, b, cb, u))
 ########################################################################################################################################################################################################
 def dmpDataTableLine(w=10, n=24, csv=0):
     c = '-'   ;   nn, mm, t = (Y, Y, Y) if csv else (Z, W, '|')
@@ -273,18 +254,18 @@ def dmpDataTableLine(w=10, n=24, csv=0):
     slog(f'{mm}     {mm}{nn} {nn}{cols}', p=0, f=3 if csv else 1)
 ########################################################################################################################################################################################################
 def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
-    global ckmap    ;   x, u = 5, 9   ;   blnk, sk, v = u*W, 0, Z   ;  f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;  dbg = 1
-    mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)       ;    ww, w1, w2, w3  = f'^{u}', f'^{u}.1f', f'^{u}.2f', f'^{u}.{x}f'
+    global ckmap    ;   x, y, u = 5, 4, 9   ;   blnk, sk, v = u*W, 0, Z   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;  dbg = 1
+    mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)             ;   ww, w1, w2, w3  = f'^{u}', f'^{u}.1f', f'^{u}.2f', f'^{u}.{x}f'
     ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  cksf, cksi = [], []
     for i, ck in enumerate(CENT_KS):
         ival = ck2ik[ck]    ;    vs.append(ival)   ;   assert ckmap and ck in ckmap,  f'{ck=} {ckmap=}'
         if ckmap[ck]['Count'] > 0:
             assert ival == ckmap[ck]['Itval'],  f'{ival=} {ck=} {ckmap[ck]["Itval"]=}'
-            a, ca, b, cb = ckmap[ck]['Abc']   ;   q = fdvdr(a, ca, b, cb)
-            addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, w3, ww, u)
+            a, ca, b, cb = ckmap[ck]['Abc']   ;    q = fdvdr(a, ca, b, cb)
+            addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, w3, ww, y)
             f, w, n, c, d, k  =  setCkMap(ck, a, ca, b, cb, f0, w0)   ;   sk += k
-            cksf.append(f'{c:{w1}}')       ;   cksi.append(int(round(c)))
-            fs.append(f'{fmtf(f, u-2)}')   ;     ws.append(f'{fmtf(w, u-2)}')
+            cksf.append(f'{c:{w1}}')          ;    cksi.append(int(round(c)))
+            fs.append(f'{fmtf(f, u-2)}')      ;      ws.append(f'{fmtf(w, u-2)}')
         else:
             r0s.append(blnk)    ;    rAs.append(blnk)     ;  rBs.append(blnk)  ;   r2s.append(blnk)  ;  r3s.append(blnk)   ;   k, q = 0, Z
             n, c, d, f, w = blnk, blnk, blnk, blnk, blnk  ;  cksi.append(ck)   ;  cksf.append(blnk)  ;  fs.append(f)       ;   ws.append(w)
@@ -313,8 +294,8 @@ def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
     ckmap = { e: {'Count': 0} for e in CENT_KS }
 ########################################################################################################################################################################################################    
 def setCkMap(ck, a, ca, b, cb, f0, w0):
-    f = ckmap[ck]['Freq']          ;   assert f == f0 * a**ca / b**cb,  f'{f=} {f0=} r={a**ca/b**cb}'
-    w = ckmap[ck]['Wavelen']       ;   assert w == w0 / f,              f'{w=} {w0=} {f=}'
+    f = ckmap[ck]['Freq']          ;   assert f == f0 * a**ca / b**cb,    f'{f=} {f0=} r={a**ca/b**cb}'
+    w = ckmap[ck]['Wavelen']       ;   assert w == w0 / f,                f'{w=} {w0=} {f=}'
     n = ckmap[ck]['Note']
     k = ckmap[ck]['Count']
     c = ckmap[ck]['Cents']         ;   assert c == r2cents(a**ca/b**cb),  f'{c=} {r2cents(a**ca/b**cb)=}'
