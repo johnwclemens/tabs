@@ -31,7 +31,7 @@ CENT_KS     = [   0,  90,  114,  180,  204,  294,  318,  384,  408,  498,  522, 
 nimap       = {} # note index to list of abcs (freq ratios) and ckmap (cent key data map)
 ckmap       = { ck: {'Count': 0} for ck in CENT_KS } # freq ratio in cents to ival counts and data
 ck2ik       = { CENT_KS[i]: k for i, k in enumerate(IVAL_KS) }
-KEYS        = ['Abc', 'Cents', 'Count', 'DCents', 'Freq', 'Index', 'Itval', 'Note', 'Wavlen'] # N/A
+KEYS        = ['Abc', 'Cents', 'Count', 'DCent', 'Freq', 'Idx', 'Ival', 'Note', 'Wavln'] # N/A
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
@@ -102,7 +102,7 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     ii, ns, vs, fs, ws = [], [], [], [], []   ;   cs, ds = [], []   ;   r0s, r1s, r2s, r3s = [], [], [], []   ;   abcMap = []
     tmp = k2Abcs(k)  ;    abc0 = list(tmp[3])      ;   abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])
     for i, e in enumerate(abc0):
-        a, b, c = e[0], e[1], e[2]   ;   r, ca, cb = abc2r(a, b, c)   ;   abc = [ a, ca, b, cb ]   ;   f = r * f0   ;   w = w0 / f
+        a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)   ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = w0 / f
         r0 = fmtR0(a, ca, b, cb, f'{ww}.{z-2}f')   ;   r1 = fmtR1(a, ca, b, cb, y)   ;    r2 = fmtR2(a, ca, b, cb, y)   ;   r3 = fmtR3(a, ca, b, cb, y)
         n  = fmtNPair(k, i)   ;   c = r2cents(r)   ;   d = k2dCent(c)   ;   rc = round(c)   ;   v = ck2ik[rc]    ;   cki += 1
         while CENT_KS[cki] < rc:
@@ -119,7 +119,7 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'{mm}Rati2{mm}{nn}[{nn}{fmtl(r2s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
     slog(f'{mm}Rati3{mm}{nn}[{nn}{fmtl(r3s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
     slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
-    slog(f'{mm}dCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
+    slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
     slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,   w=ww, s=oo, d=Z)}{sfxf}', p=0, f=ff)
     slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,   w=ww, s=oo, d=Z)}{sfxw}', p=0, f=ff)
     slog(f'{mm} ABC1{mm}{nn}[{nn}{fmtl(abc1, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
@@ -149,6 +149,7 @@ def fmtNPair(k, i):
     return n
 ########################################################################################################################################################################################################
 def dmpMaps(k, csv):
+    global ckmap
 #    dmpNiMap(1, csv=csv)
 #    dmpNiMap(2, csv=csv)
 #    dmpNiMap(3, csv=csv)
@@ -156,8 +157,9 @@ def dmpMaps(k, csv):
     dmpNiMap(5, k,    csv=csv)
     dmpCkMap(k,       csv=csv)
     dmpNiMap(5, k, 9, csv=csv) # dupliicates counts
-    global ckmap   ;   ckmap   = { e: {'Count': 0} for e in CENT_KS }
-    dmpCks2Iks(      csv=csv)
+#    checkIvals(       csv=csv)
+    ckmap   = { e: {'Count': 0} for e in CENT_KS }
+    dmpCks2Iks(       csv=csv)
 ########################################################################################################################################################################################################
 def dmpCks2Iks(csv=0):
     if not csv:
@@ -183,11 +185,11 @@ def dmpNiMap(ni, ik, x=13, rf=440, sss=V_SOUND, csv=0): # x=13 or x=19
             r1   = fmtR1(a, ca, b, cb, x)   ;    r2 = fmtR2(a, ca, b, cb, x)   ;   r3   = fmtR3(a, ca, b, cb, x)
             if ni == 5:
                 assert rc in ckmap.keys(),  f'{rc=} {ckmap.keys()=}'     ;     f = f0 * pa/pb
-                ckmap[rc]['Count']   =               ckmap[rc]['Count'] + 1 if 'Count' in ckmap[rc] else 1
-                ckmap[rc]['Abc']     = e        ;    ckmap[rc]['Itval']  = ck2ik[rc]
-                ckmap[rc]['Cents']   = cent     ;    ckmap[rc]['DCents'] = k2dCent(cent)
-                ckmap[rc]['Freq']    = f        ;    ckmap[rc]['Wavelen'] = w0 / f
-                ckmap[rc]['Note']    = n if k == ik else W*2
+                ckmap[rc]['Count'] = ckmap[rc]['Count'] + 1 if 'Count' in ckmap[rc] else 1    ;    ckmap[rc]['Abc']   = e
+                ckmap[rc]['Freq']  = f                      ;   ckmap[rc]['Wavln'] = w0 / f
+                ckmap[rc]['Cents'] = cent                   ;   ckmap[rc]['DCent'] = k2dCent(cent)
+                ckmap[rc]['Note']  = n if k==ik else W*2
+                ckmap[rc]['Ival']  = ck2ik[rc]              ;   ckmap[rc]['Idx']   = j
             rat0.append(r0)   ;   rat1.append(r1)   ;   rat2.append(r2)   ;   rat3.append(r3)   ;   cents.append(centf)
         if   ni == 1: slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
         elif ni == 2: slog(f'{pfx}{Z.join(fmtl(rat1,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
@@ -213,6 +215,7 @@ def fIvals(data, i, csv):
 ########################################################################################################################################################################################################
 def dmpIvals(i, ks, cs, ds, csv):
     mm, nn, oo, ff = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)   ;   m = -1
+#    slog(f'BGN dmpIvals() {i=} {csv=}')
     eps, j     = epsilon(), math.floor(i/2)
     hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
     hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
@@ -231,6 +234,7 @@ def dmpIvals(i, ks, cs, ds, csv):
     elif i == len(ck2ik)-1:
         data     = [j+1, (j+1)*100, i+1, ck2ik[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1178, W*6, eps, cs[i]]
         fd       = fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
+#    slog(f'END dmpIvals() {i=} {csv=}')
 ########################################################################################################################################################################################################
 def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
 def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>{w}}/{pb:<{w}}'
@@ -254,16 +258,16 @@ def dmpDataTableLine(w=10, n=24, csv=0):
     slog(f'{mm}     {mm}{nn} {nn}{cols}', p=0, f=3 if csv else 1)
 ########################################################################################################################################################################################################
 def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
-    global ckmap    ;   x, y, u = 5, 4, 9   ;   blnk, sk, v = u*W, 0, Z   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;  dbg = 1
+    x, y, u = 5, 4, 9   ;   blnk, sk, v = u*W, 0, Z   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;  dbg = 1   ;   global ckmap
     mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)             ;   ww, w1, w2, w3  = f'^{u}', f'^{u}.1f', f'^{u}.2f', f'^{u}.{x}f'
     ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  cksf, cksi = [], []
     for i, ck in enumerate(CENT_KS):
         ival = ck2ik[ck]    ;    vs.append(ival)   ;   assert ckmap and ck in ckmap,  f'{ck=} {ckmap=}'
         if ckmap[ck]['Count'] > 0:
-            assert ival == ckmap[ck]['Itval'],  f'{ival=} {ck=} {ckmap[ck]["Itval"]=}'
+            assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'
             a, ca, b, cb = ckmap[ck]['Abc']   ;    q = fdvdr(a, ca, b, cb)
             addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, w3, ww, y)
-            f, w, n, c, d, k  =  setCkMap(ck, a, ca, b, cb, f0, w0)   ;   sk += k
+            f, w, n, c, d, k, i2 = getCkMap(ck, a, ca, b, cb, f0, w0)   ;   sk += k
             cksf.append(f'{c:{w1}}')          ;    cksi.append(int(round(c)))
             fs.append(f'{fmtf(f, u-2)}')      ;      ws.append(f'{fmtf(w, u-2)}')
         else:
@@ -279,7 +283,7 @@ def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,      w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,      w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cksf,    w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-    slog(f'{mm}dCent{mm}{nn}[{nn}{fmtl(ds,      w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+    slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,      w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     slog(f'{mm}Rati0{mm}{nn}[{nn}{fmtl(r0s,     w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     slog(f'{mm}RatiA{mm}{nn}[{nn}{fmtl(rAs,     w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
     slog(f'{mm} A/B {mm}{nn}[{nn}{fmtl(qs,      w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
@@ -293,25 +297,30 @@ def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
     checkIvals()
     ckmap = { e: {'Count': 0} for e in CENT_KS }
 ########################################################################################################################################################################################################    
-def setCkMap(ck, a, ca, b, cb, f0, w0):
-    f = ckmap[ck]['Freq']          ;   assert f == f0 * a**ca / b**cb,    f'{f=} {f0=} r={a**ca/b**cb}'
-    w = ckmap[ck]['Wavelen']       ;   assert w == w0 / f,                f'{w=} {w0=} {f=}'
+def getCkMap(ck, a, ca, b, cb, f0, w0):
+    f = ckmap[ck]['Freq']    ;   assert f == f0 * a**ca / b**cb,    f'{f=} {f0=} r={a**ca/b**cb}'
+    w = ckmap[ck]['Wavln']   ;   assert w == w0 / f,                f'{w=} {w0=} {f=}'
     n = ckmap[ck]['Note']
+    i = ckmap[ck]['Idx']
     k = ckmap[ck]['Count']
-    c = ckmap[ck]['Cents']         ;   assert c == r2cents(a**ca/b**cb),  f'{c=} {r2cents(a**ca/b**cb)=}'
-    d = ckmap[ck]['DCents']        ;   assert d == k2dCent(c),            f'{d=} {k2dCent(c)=}'   ;   d = round(d, 2)
-    return f, w, n, c, d, k
-
+    c = ckmap[ck]['Cents']   ;   assert c == r2cents(a**ca/b**cb),  f'{c=} {r2cents(a**ca/b**cb)=}'
+    d = ckmap[ck]['DCent']   ;   assert d == k2dCent(c),            f'{d=} {k2dCent(c)=}'    ;    d = round(d, 2)
+    return f, w, n, c, d, k, i
+########################################################################################################################################################################################################
 def checkIvals(csv=0):
+#    global ckmap
     ff = 3 if csv else 1
-    slog(f'BGN', p=0, f=ff)
-    msgs = []
+    slog(f'BGN checkIvals() {csv=}', p=0, f=ff)
+    keys, msgs, ws = [], [], [7, 8, 7, 7, 7, 5, 4, 4, 3]
+    for kk, vv in ckmap.items():
+        keys = list(vv.keys())
+    slog(f'Jdx  CK   {fmtl(keys, w=ws, s=W, d=Z)}', p=0, f=ff)
     for i, (k, v) in enumerate(ckmap.items()):
         msg = f'{i:2} {k:4}: [ '
         for j, (k2, v2) in enumerate(v.items()):
-            msg += f'{k2}:'
-            msg += f'{v2:6.1f} ' if ist(v2, float) else f'{v2} '
+            msg += f'{fmtf(v2, 7)} ' if k2 in ("Cents", "Freq", "Wavln") else f'{fmtg(v2, 6)} ' if k2=="DCent" else f'{fmtl(v2, s=W):11} ' if k2=="Abc" else f'{v2:2} ' if k2 in ("Count", "Idx") else f'{v2:5} ' if k2=="Note" else f'{v2:3} ' if k2=="Ival" else f'{v2:6} '
         msg += ']'   ;   msgs.append(msg)
     msgs = '\n'.join(msgs)
     slog(f'{msgs}', p=0, f=ff)
-    slog(f'END', p=0, f=ff)
+    slog(f'END checkIvals() {csv=}', p=0, f=ff)
+#    ckmap = { e: {'Count': 0} for e in CENT_KS }
