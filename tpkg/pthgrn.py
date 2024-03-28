@@ -94,23 +94,26 @@ def fabc(abc):
     return [ fmtl(e, w=2, d=Z) for e in abc ]
 ########################################################################################################################################################################################################
 def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
-    x, y = 13, 6     ;   z = x-2   ;   blnk = x*W   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;   cki = -1
-    ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)
+    x, y = 13, 6     ;   z = x-2   ;   _ = x*W   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;   cki = -1
+    ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)            ;   w3 = [W, W, W]
     slog(f'BGN Pythagorean ({k=} {rf=} {sss=} {csv=})', f=ff)
     ii  = [ f'{i}' for i in range(2 * NT) ]         ;   slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
     dmpDataTableLine(x + 1, csv=csv)
     ii, ns, vs, fs, ws = [], [], [], [], []   ;   cs, ds = [], []   ;   r0s, r1s, r2s, r3s = [], [], [], []   ;   abcMap = []
-    tmp = k2Abcs(k)  ;    abc0 = list(tmp[3])      ;   abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])
+    tmp = k2Abcs(k)  ;   abc0 = list(tmp[3])        ;   abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])
+    abc1.insert(0, fmtl(w3, w=2, d=Z))              ;   abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks for alignment in log/csv files
     for i, e in enumerate(abc0):
-        a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)   ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = w0 / f
-        r0 = fmtR0(a, ca, b, cb, f'{ww}.{z-2}f')   ;   r1 = fmtR1(a, ca, b, cb, y)   ;    r2 = fmtR2(a, ca, b, cb, y)   ;   r3 = fmtR3(a, ca, b, cb, y)
-        n  = fmtNPair(k, i)   ;   c = r2cents(r)   ;   d = k2dCent(c)   ;   rc = round(c)   ;   v = ck2ik[rc]    ;   cki += 1
+        a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)    ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = w0 / f
+        r0 = fmtR0(a, ca, b, cb, f'{ww}.{z-2}f')    ;   r1 = fmtR1(a, ca, b, cb, y)   ;    r2 = fmtR2(a, ca, b, cb, y)   ;   r3 = fmtR3(a, ca, b, cb, y)
+        n  = fmtNPair(k, i)   ;   c = r2cents(r)    ;   d = k2dCent(c)   ;    rc = round(c)   ;   v = ck2ik[rc]    ;   cki += 1
         while CENT_KS[cki] < rc:
-            ii.append(blnk)  ;  cs.append(blnk)  ;  ds.append(blnk)  ;  fs.append(blnk)  ;  ws.append(blnk)  ;  ns.append(blnk)  ;  vs.append(blnk)  ;  r0s.append(blnk)  ;  r1s.append(blnk)  ;  r2s.append(blnk)  ;  r3s.append(blnk)
-            cki += 1  ;  jj = len(ii)-1   ;  abc1.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc2.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc3.insert(jj, fmtl([W, W, W], w=2, d=Z))  ;  abc4.insert(jj, fmtl([W, W, W], w=2, d=Z))
+            ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
+            cki += 1  ;  j = len(ii)-1   ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
         ii.append(i)  ;  fs.append(fmtf(f, z))   ;  r1s.append(r1)   ;   r0s.append(r0)  ;    cs.append(fmtf(c, y-1))   ;   abcMap.append(abc)
         ns.append(n)  ;  ws.append(fmtf(w, z))   ;  r2s.append(r2)   ;   r3s.append(r3)  ;    ds.append(fmtg(d, y-1))   ;       vs.append(v)
     nimap[k] = [abcMap, ckmap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'
+    while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
+    while len(abc2) < len(abc3): abc2.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
     slog(f'{mm}Index{mm}{nn}[{nn}{fmtl(ii,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
     slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
     slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
@@ -149,18 +152,18 @@ def fmtNPair(k, i):
     return n
 ########################################################################################################################################################################################################
 def dmpMaps(k, csv):
-    global ckmap
-#    dmpNiMap(  1, k, x=13, upd=1, csv=csv)
-#    dmpNiMap(  2, k, x=13, upd=1, csv=csv)
-#    dmpNiMap(  3, k, x=13, upd=1, csv=csv)
-#    dmpNiMap(  4, k, x=13, upd=1, csv=csv)
+#    global ckmap
+    dmpNiMap(  1, k, x=13, upd=1, csv=csv)
+    dmpNiMap(  2, k, x=13, upd=1, csv=csv)
+    dmpNiMap(  3, k, x=13, upd=1, csv=csv)
+    dmpNiMap(  4, k, x=13, upd=1, csv=csv)
     dmpNiMap(  5, k, x=13, upd=1, csv=csv)
     dmpCks2Iks(      x=13,        csv=csv)
     dmpCkMap(k,                   csv=csv)
-#    dmpNiMap(  1, k, x=9,  upd=0, csv=csv)
-#    dmpNiMap(  2, k, x=9,  upd=0, csv=csv)
-#    dmpNiMap(  3, k, x=9,  upd=0, csv=csv)
-#    dmpNiMap(  4, k, x=9,  upd=0, csv=csv)
+    dmpNiMap(  1, k, x=9,  upd=0, csv=csv)
+    dmpNiMap(  2, k, x=9,  upd=0, csv=csv)
+    dmpNiMap(  3, k, x=9,  upd=0, csv=csv)
+    dmpNiMap(  4, k, x=9,  upd=0, csv=csv)
     dmpNiMap(  5, k, x=9,  upd=0, csv=csv)
     dmpCks2Iks(      x=9,         csv=csv)
     checkIvals(                   csv=csv)
