@@ -172,16 +172,15 @@ def dmpCks2Iks(x=13, csv=0):
         if   x== 9: slog(f'{7*W}  {fmtm(ck2ik, w=4, wv=2, s=3*W, d=Z)}', p=0)
         elif x==13: slog(f'{9*W}  {fmtm(ck2ik, w=4, wv=2, s=7*W, d=Z)}', p=0)
 ########################################################################################################################################################################################################
-def dmpNiMap(ni, ik, x=13, upd=0, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
+def dmpNiMap(ni, ik, x, upd=0, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
     ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   pfx = ''   ;   sfx = f'{nn}]'  ;  yy = 6 if x==13 else 4
-    f0  = F440s[ik] if rf==440 else F432s[ik]     ;     w0 = CM_P_M * sss    ;    rat1, ratA, ratB = None, None, None   ;   r1, rA, rB = None, None, None
+    f0  = F440s[ik] if rf==440 else F432s[ik]     ;     w0 = CM_P_M * sss   
     ii = [ f'{i}' for i in range(2 * NT) ]
     slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None
     dmpDataTableLine(x + 1, csv=csv) if ni == 1 else None
     for i, (k, v) in enumerate(nimap.items()):
         rat0, rat2, rat3, cents = [], [], [], []  ;   cki = -1
-        if   x == 13: rat1 = []
-        elif x == 9:  ratA, ratB = [], []
+        rat1 = [] if x == 13 else None  ;  ratA = [] if x == 9 else None   ;  ratB = [] if x == 9 else None
         for j, e in enumerate(v[0]):
             a, ca, b, cb = e        ;      pa, pb = a ** ca, b ** cb
             n    = fmtNPair(k, j)
@@ -190,12 +189,10 @@ def dmpNiMap(ni, ik, x=13, upd=0, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
             while CENT_KS[cki] < rc:
                 blnk = W*x          ;   cki += 1            ;   cents.append(f'{blnk:{ww}}')
                 rat0.append(blnk)   ;   rat2.append(blnk)   ;   rat3.append(blnk)
-                if   x == 13: rat1.append(blnk)
-                elif x == 9:  ratA.append(blnk)  ;  ratB.append(blnk)
+                rat1.append(blnk) if x == 13 else None      ;   ratA.append(blnk) if x == 9 else None   ;   ratB.append(blnk) if x == 9 else None
             r0   = fmtR0(a, ca, b, cb, f'{ww}.5f')          ;   centf = f'{cent:{ww}.0f}'
-            r2 = fmtR2(a, ca, b, cb, yy)   ;   r3   = fmtR3(a, ca, b, cb, yy)
-            if   x == 13:    r1 = fmtR1(a, ca, b, cb, yy)
-            elif x == 9:     rA = fmtRA(a, ca, ww)          ;   rB = fmtRB(b, cb, ww)
+            r2 = fmtR2(a, ca, b, cb, yy)    ;    r3   = fmtR3(a, ca, b, cb, yy)
+            r1 = fmtR1(a, ca, b, cb, yy) if x == 13 else None    ;   rA = fmtRA(a, ca, ww) if x == 9 else None   ;   rB = fmtRB(b, cb, ww) if x == 9 else None
             if upd and ni == 5:
                 assert rc in ckmap.keys(),  f'{rc=} {ckmap.keys()=}'     ;     f = f0 * pa/pb
                 ckmap[rc]['Count'] = ckmap[rc]['Count'] + 1 if 'Count' in ckmap[rc] else 1    ;    ckmap[rc]['Abc']   = e
@@ -204,8 +201,7 @@ def dmpNiMap(ni, ik, x=13, upd=0, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
                 ckmap[rc]['Note']  = n if k==ik else W*2
                 ckmap[rc]['Ival']  = ck2ik[rc]              ;   ckmap[rc]['Idx']   = j
             rat0.append(r0)   ;   rat2.append(r2)   ;   rat3.append(r3)   ;   cents.append(centf)
-            if x == 13:  rat1.append(r1)
-            elif x == 9: ratA.append(rA)   ;   ratB.append(rB)
+            rat1.append(r1) if x == 13 else None    ;   ratA.append(rA) if x == 9 else None   ;   ratB.append(rB) if x == 9 else None
         if   ni == 1:             slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
         elif ni == 2 and x == 13: slog(f'{pfx}{Z.join(fmtl(rat1,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
         elif ni == 2 and x == 9:  slog(f'{pfx}{Z.join(fmtl(ratA,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)  ;  slog(f'{pfx}{Z.join(fmtl(ratB,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
