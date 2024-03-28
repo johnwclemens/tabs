@@ -150,17 +150,17 @@ def fmtNPair(k, i):
 ########################################################################################################################################################################################################
 def dmpMaps(k, csv):
     global ckmap
-    dmpNiMap(  1, k, x=13, upd=1, csv=csv)
-    dmpNiMap(  2, k, x=13, upd=1, csv=csv)
-    dmpNiMap(  3, k, x=13, upd=1, csv=csv)
-    dmpNiMap(  4, k, x=13, upd=1, csv=csv)
+#    dmpNiMap(  1, k, x=13, upd=1, csv=csv)
+#    dmpNiMap(  2, k, x=13, upd=1, csv=csv)
+#    dmpNiMap(  3, k, x=13, upd=1, csv=csv)
+#    dmpNiMap(  4, k, x=13, upd=1, csv=csv)
     dmpNiMap(  5, k, x=13, upd=1, csv=csv)
     dmpCks2Iks(      x=13,        csv=csv)
     dmpCkMap(k,                   csv=csv)
-    dmpNiMap(  1, k, x=9,  upd=0, csv=csv)
-    dmpNiMap(  2, k, x=9,  upd=0, csv=csv)
-    dmpNiMap(  3, k, x=9,  upd=0, csv=csv)
-    dmpNiMap(  4, k, x=9,  upd=0, csv=csv)
+#    dmpNiMap(  1, k, x=9,  upd=0, csv=csv)
+#    dmpNiMap(  2, k, x=9,  upd=0, csv=csv)
+#    dmpNiMap(  3, k, x=9,  upd=0, csv=csv)
+#    dmpNiMap(  4, k, x=9,  upd=0, csv=csv)
     dmpNiMap(  5, k, x=9,  upd=0, csv=csv)
     dmpCks2Iks(      x=9,         csv=csv)
     checkIvals(                   csv=csv)
@@ -312,17 +312,17 @@ def getCkMap(ck, a, ca, b, cb, f0, w0): # sometimes
 ########################################################################################################################################################################################################
 def checkIvals(csv=0):
     global ckmap
-    ff = 3 if csv else 1
+    mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)
     slog(f'BGN checkIvals() {csv=}', p=0, f=ff)
     keys, msgs, ws = [], [], [7, 8, 7, 7, 7, 5, 4, 4, 3]
     for kk, vv in ckmap.items():
         keys = list(vv.keys())
-    slog(f'Jdx  CK   {fmtl(keys, w=ws, s=W, d=Z)}', p=0, f=ff)
+    slog(f'Jdx{mm} {nn}{nn}CK{mm}  {mm}{fmtl(keys, w=ws, s=mm, d=Z)}', p=0, f=ff)
     for i, (k, v) in enumerate(ckmap.items()):
-        msg = f'{i:2} {k:4}: [ '
+        msg = f'{i:2}{nn}[{mm}{k:4}{nn}:{mm}[{mm}'
         for j, (k2, v2) in enumerate(v.items()):
-            msg += f'{fmtf(v2, 7)} ' if k2 in ("Cents", "Freq", "Wavln") else f'{fmtg(v2, 6)} ' if k2=="DCent" else f'{fmtl(v2, s=W):11} ' if k2=="Abc" else f'{v2:2} ' if k2 in ("Count", "Idx") else f'{v2:5} ' if k2=="Note" else f'{v2:3} ' if k2=="Ival" else f'{v2:6} '
-        msg += ']'   ;   msgs.append(msg)
+            msg += f'{fmtf(v2, 7)}{mm}' if k2 in ("Cents", "Freq", "Wavln") else f'{fmtg(v2, 6)}{mm}' if k2=="DCent" else f'{fmtl(v2, s=W):11}{mm}' if k2=="Abc" else f'{v2:2}{mm}' if k2 in ("Count", "Idx") else f'{v2:5}{mm}' if k2=="Note" else f'{v2:3}{mm}' if k2=="Ival" else f'{v2:6}{mm}'
+        msg += f']{nn}]'   ;   msgs.append(msg)
     msgs = '\n'.join(msgs)
     slog(f'{msgs}', p=0, f=ff)
     slog(f'END checkIvals() {csv=}', p=0, f=ff)

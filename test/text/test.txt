@@ -206,14 +206,14 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 #2129 tabs  dumpGlobals        argv      = +33[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -M 0 -deo -p 6 -S 0 1 -f test -w 0 0 0 0 -T D A D G A D]
 #2130 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 #2131 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-# 441 utl   getFilePath        baseName =test.138     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 444 utl   getFilePath        fileName =test.138.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.138.cat')
-# 441 utl   getFilePath        baseName =test.138     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 444 utl   getFilePath        fileName =test.138.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.138.csv')
-# 441 utl   getFilePath        baseName =test.138     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 444 utl   getFilePath        fileName =test.138.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.138.log')
-# 441 utl   getFilePath        baseName =test.138     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 444 utl   getFilePath        fileName =test.138.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.138.txt')
+# 441 utl   getFilePath        baseName =test.19      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 444 utl   getFilePath        fileName =test.19.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.19.cat')
+# 441 utl   getFilePath        baseName =test.19      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 444 utl   getFilePath        fileName =test.19.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.19.csv')
+# 441 utl   getFilePath        baseName =test.19      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 444 utl   getFilePath        fileName =test.19.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.19.log')
+# 441 utl   getFilePath        baseName =test.19      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 444 utl   getFilePath        fileName =test.19.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.19.txt')
 # 263 tabs  dumpArgs           [a]      .AUTO_SAVE=0
 # 264 tabs  dumpArgs           [A]         .VARROW=1
 # 265 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -270,8 +270,8 @@ initk((Tabs, 15, 'GRY', 5, 17, 'GRY', 17, 17) {})=[(81, 81, 81, 255), (255, 255,
           
           
           
-1         
-3         
+0         
+2         
 5         
 ##########
 ##########
@@ -323,9 +323,9 @@ plsct=[1 1 1  1 2] j=4 i=1
 plsct=[1 1 1  1 3] j=4 i=2
 #1390 tabs  g_newUpdTniks        2 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 nw=1
 plsct=[1 1 1  1 4] j=4 i=3
-#1390 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 1   i= 3 s=0 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=1
+#1390 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 0   i= 3 s=0 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=1
 plsct=[1 1 1  1 5] j=4 i=4
-#1390 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 3   i= 4 s=0 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=1
+#1390 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 2   i= 4 s=0 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=1
 plsct=[1 1 1  1 6] j=4 i=5
 #1390 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 5   i= 5 s=0 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 nw=1
 plsct=[1 1 1  2 6] j=3 i=1
@@ -465,9 +465,9 @@ plsct=[1 1 2 11 2] j=5 i=1
 plsct=[1 1 2 11 3] j=5 i=2
 #1390 tabs  g_newUpdTniks        2 j=5  Note j2=5     i= 2 s=1 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 2 0 0 0 0 0 0 0 0 0 0 77]  77 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 nw=1
 plsct=[1 1 2 11 4] j=5 i=3
-#1390 tabs  g_newUpdTniks        3 j=5  Note j2=5 1   i= 3 s=1 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=1
+#1390 tabs  g_newUpdTniks        3 j=5  Note j2=5 0   i= 3 s=1 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=1
 plsct=[1 1 2 11 5] j=5 i=4
-#1390 tabs  g_newUpdTniks        4 j=5  Note j2=5 3   i= 4 s=1 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=1
+#1390 tabs  g_newUpdTniks        4 j=5  Note j2=5 2   i= 4 s=1 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=1
 plsct=[1 1 2 11 6] j=5 i=5
 #1390 tabs  g_newUpdTniks        5 j=5  Note j2=5 5   i= 5 s=1 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 5 0 0 0 0 0 0 0 0 0 0 80]  80 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 nw=1
 plsct=[1 1 2 12 6] j=3 i=11
@@ -600,10 +600,10 @@ plsct=[1 1 2 20 6] j=5 i=5
 #1685 tabs  cursorCol          cc=  5 [0 0 0 5]
 #1661 tabs  cc2xywh            tpp=120 old=5 lenT=60 cc=5 old % lenT
 #1664 tabs  cc2xywh            cc=   5 old=   5 [120 120 120 60 6]   48.00  292.50   96.00   45.00 t.text='5' 27.72 47.00 C C
-[3:E♭:1, 0:C :1, 7:G :1]
-[3:D♯:1, 0:C :1, 7:G :1]
-[ None , 3:E♭:1,  None ,  None ,  None ,  None ,  None ]
-[ None ,  None ,  None , 3:E♭:1,  None ,  None , 0:C :1]
+[2:D :1, b:B :1, 7:G :1]
+[2:D :1, b:B :1, 7:G :1]
+[ None ,  None ,  None ,  None ,  None , b:B :1,  None ]
+[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
 #1800 tabs  dumpFont           4:96dpi  35.00pt 0:Lucida Console 0:  35.00pt = 0.7778(pt/pix) *  45.00pixels New1
 # 484 tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
 #2170 tabs  <module>           str(tabs)='Tabs'
@@ -627,9 +627,9 @@ plsct=[1 1 1  1 2] j=4 i=1
 plsct=[1 1 1  1 3] j=4 i=2
 #1390 tabs  g_newUpdTniks        2 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 nw=0
 plsct=[1 1 1  1 4] j=4 i=3
-#1390 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 1   i= 3 s=0 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=0
+#1390 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 0   i= 3 s=0 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=0
 plsct=[1 1 1  1 5] j=4 i=4
-#1390 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 3   i= 4 s=0 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=0
+#1390 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 2   i= 4 s=0 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=0
 plsct=[1 1 1  1 6] j=4 i=5
 #1390 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 5   i= 5 s=0 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 nw=0
 plsct=[1 1 1  2 6] j=3 i=1
@@ -769,9 +769,9 @@ plsct=[1 1 2 11 2] j=5 i=1
 plsct=[1 1 2 11 3] j=5 i=2
 #1390 tabs  g_newUpdTniks        2 j=5  Note j2=5     i= 2 s=1 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 nw=0
 plsct=[1 1 2 11 4] j=5 i=3
-#1390 tabs  g_newUpdTniks        3 j=5  Note j2=5 1   i= 3 s=1 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=0
+#1390 tabs  g_newUpdTniks        3 j=5  Note j2=5 0   i= 3 s=1 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=0
 plsct=[1 1 2 11 5] j=5 i=4
-#1390 tabs  g_newUpdTniks        4 j=5  Note j2=5 3   i= 4 s=1 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=0
+#1390 tabs  g_newUpdTniks        4 j=5  Note j2=5 2   i= 4 s=1 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=0
 plsct=[1 1 2 11 6] j=5 i=5
 #1390 tabs  g_newUpdTniks        5 j=5  Note j2=5 5   i= 5 s=1 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 2 20 60 60 0 0 0 0 0 1 0 0 0 0] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 nw=0
 plsct=[1 1 2 12 6] j=3 i=11
@@ -904,35 +904,35 @@ plsct=[1 1 2 20 6] j=5 i=5
 #1685 tabs  cursorCol          cc=  5 [0 0 0 5]
 #1661 tabs  cc2xywh            tpp=120 old=5 lenT=60 cc=5 old % lenT
 #1664 tabs  cc2xywh            cc=   5 old=   5 [120 120 120 60 6]   48.00  292.50   96.00   45.00 t.text='5' 27.72 47.00 C C
-[3:E♭:2, 0:C :2, 7:G :2]
-[3:D♯:2, 0:C :2, 7:G :2]
-[ None , 3:E♭:2,  None ,  None ,  None ,  None ,  None ]
-[ None ,  None ,  None , 3:E♭:2,  None ,  None , 0:C :2]
+[2:D :2, b:B :2, 7:G :2]
+[2:D :2, b:B :2, 7:G :2]
+[ None ,  None ,  None ,  None ,  None , b:B :2,  None ]
+[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
 #1800 tabs  dumpFont           4:96dpi  35.00pt 0:Lucida Console 0:  35.00pt = 0.7778(pt/pix) *  45.00pixels Upd1
-# 758 cmds  _snapshot          snapName='test.138.1.NEW.png' New1
-# 449 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.1.NEW.png')
+# 758 cmds  _snapshot          snapName='test.19.1.NEW.png' New1
+# 449 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.19.1.NEW.png')
 # 450 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.19.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.19.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 # 459 utl   copyFile           OK ret=0
 # 461 utl   copyFile           FINALLY ret=0
 # 462 utl   copyFile           os.system ret=0
-# 449 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.1.NEW.png')
+# 449 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.19.1.NEW.png')
 # 450 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.2.10.6_CC_CC.png')
-# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.2.10.6_CC_CC.png ###
-# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.2.10.6_CC_CC.png)
+# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.19.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.2.10.6_CC_CC.png ###
+# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.19.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.2.10.6_CC_CC.png)
 # 459 utl   copyFile           OK ret=0
 # 461 utl   copyFile           FINALLY ret=0
 # 462 utl   copyFile           os.system ret=0
-#  86 evnts on_draw            .LOG_ID=138 sid=1 typ=NEW why=New1 qlen=1
-C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
+#  86 evnts on_draw            .LOG_ID= 19 sid=1 typ=NEW why=New1 qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.19.1.NEW.png
 # 101 evnts on_key_press       BGN  65507 0xffe3 LCTRL            18 MOD_CTRL|MOD_NUMLOCK                       d={65507: True}
 # 213 evnts on_key_press       UNH          k='LCTRL' retv=True setting retv to False
 # 218 evnts on_key_press       UNH retv2=False k='LCTRL' retv=False  65507 0xffe3 LCTRL            18 MOD_CTRL|MOD_NUMLOCK                       d={65507: True}
 # 220 evnts on_key_press       check isParsing k='LCTRL' retv=False
 # 222 evnts on_key_press       Not isParsing k='LCTRL' retv=False
 # 227 evnts on_key_press       Done Not isParsing k='LCTRL' retv=False
-# 228 evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000017F1A4CF0A0>
+# 228 evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x000002A3C074BF40>
 # 229 evnts on_key_press       END  65507 0xffe3 LCTRL            18 MOD_CTRL|MOD_NUMLOCK                       d={65507: True}
 # 230 evnts on_key_press       END processing event k='LCTRL' return retv=False
 # 101 evnts on_key_press       BGN  65505 0xffe1 LSHIFT           19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={65507: True, 65505: True}
@@ -941,7 +941,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
 # 220 evnts on_key_press       check isParsing k='LSHIFT' retv=False
 # 222 evnts on_key_press       Not isParsing k='LSHIFT' retv=False
 # 227 evnts on_key_press       Done Not isParsing k='LSHIFT' retv=False
-# 228 evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000017F1A4CF0A0>
+# 228 evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x000002A3C074BF40>
 # 229 evnts on_key_press       END  65505 0xffe1 LSHIFT           19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={65507: True, 65505: True}
 # 230 evnts on_key_press       END processing event k='LSHIFT' return retv=False
 # 101 evnts on_key_press       BGN    113 0x0071 Q                19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={65507: True, 65505: True, 113: True}
@@ -951,23 +951,23 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
-[3:E♭:2, 0:C :2, 7:G :2]
-[3:D♯:2, 0:C :2, 7:G :2]
-[ None , 3:E♭:2,  None ,  None ,  None ,  None ,  None ]
-[ None ,  None ,  None , 3:E♭:2,  None ,  None , 0:C :2]
+[2:D :2, b:B :2, 7:G :2]
+[2:D :2, b:B :2, 7:G :2]
+[ None ,  None ,  None ,  None ,  None , b:B :2,  None ]
+[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
 #1800 tabs  dumpFont           4:96dpi  35.00pt 0:Lucida Console 0:  35.00pt = 0.7778(pt/pix) *  45.00pixels @^Q
-# 758 cmds  _snapshot          snapName='test.138.2.FIN.png' quit 0 save=0
-# 449 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.2.FIN.png')
+# 758 cmds  _snapshot          snapName='test.19.2.FIN.png' quit 0 save=0
+# 449 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.19.2.FIN.png')
 # 450 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.19.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.19.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 # 459 utl   copyFile           OK ret=0
 # 461 utl   copyFile           FINALLY ret=0
 # 462 utl   copyFile           os.system ret=0
-# 449 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.2.FIN.png')
+# 449 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.19.2.FIN.png')
 # 450 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.2.10.6_CC_CC.png')
-# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.2.10.6_CC_CC.png ###
-# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.2.10.6_CC_CC.png)
+# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.19.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.2.10.6_CC_CC.png ###
+# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.19.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.2.10.6_CC_CC.png)
 # 459 utl   copyFile           OK ret=0
 # 461 utl   copyFile           FINALLY ret=0
 # 462 utl   copyFile           os.system ret=0
@@ -985,11 +985,11 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
 # 459 utl   copyFile           OK ret=0
 # 461 utl   copyFile           FINALLY ret=0
 # 462 utl   copyFile           os.system ret=0
-#2102 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.138.csv
+#2102 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.19.csv
 # 449 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 450 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.138.csv')
-# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.138.csv ###
-# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.138.csv)
+# 450 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.19.csv')
+# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.19.csv ###
+# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.19.csv)
 # 459 utl   copyFile           OK ret=0
 # 461 utl   copyFile           FINALLY ret=0
 # 462 utl   copyFile           os.system ret=0
@@ -1005,7 +1005,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
 # 220 evnts on_key_press       check isParsing k='Q' retv=True
 # 222 evnts on_key_press       Not isParsing k='Q' retv=True
 # 227 evnts on_key_press       Done Not isParsing k='Q' retv=True
-# 228 evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000017F1A4CF0A0>
+# 228 evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x000002A3C074BF40>
 # 229 evnts on_key_press       END    113 0x0071 Q                19 MOD_SHIFT|MOD_CTRL|MOD_NUMLOCK             d={}
 # 230 evnts on_key_press       END processing event k='Q' return retv=True
 #2177 tabs  <module>           OK pyglet.app.run() runstat=None
@@ -1016,11 +1016,11 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
 # 444 utl   getFilePath        fileName =Atest.1.1.2.10.6_CC_CC.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.2.10.6_CC_CC.log')
 # 441 utl   getFilePath        baseName =Etest.1.1.2.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
 # 444 utl   getFilePath        fileName =Etest.1.1.2.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.2.10.6_CC_CC.txt')
-#2134 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.138.txt
+#2134 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.19.txt
 # 449 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-# 450 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.138.txt')
-# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.138.txt ###
-# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.138.txt)
+# 450 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.19.txt')
+# 452 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.19.txt ###
+# 453 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.19.txt)
 # 459 utl   copyFile           OK ret=0
 # 461 utl   copyFile           FINALLY ret=0
 # 462 utl   copyFile           os.system ret=0
