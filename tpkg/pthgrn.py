@@ -45,7 +45,7 @@ CENT_KS     = [   0,  90,  114,  180,  204,  294,  318,  384,  408,  498,  522, 
 nimap       = {} # note index to list of abcs (freq ratios) and ckmap (cent key data map)
 ckmap       = { ck: {'Count': 0} for ck in CENT_KS } # freq ratio in cents to ival counts and data
 ck2ik       = { CENT_KS[i]: k for i, k in enumerate(IVAL_KS) }
-KEYS        = ['Abc', 'Cents', 'Count', 'DCent', 'Freq', 'Idx', 'Ival', 'Note', 'Wavln'] # N/A
+#KEYS       = ['Abc', 'Cents', 'Count', 'DCent', 'Freq', 'Idx', 'Ival', 'Note', 'Wavln'] # N/A
 K0          = 50
 ########################################################################################################################################################################################################
 def dumpData(csv=0):

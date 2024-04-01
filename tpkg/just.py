@@ -42,28 +42,29 @@ R2   = [ A**C[1] * B**D[0], A**C[1] * B**D[1], A**C[1] * B**D[2], A**C[1] * B**D
 R3   = [ A**C[2] * B**D[0], A**C[2] * B**D[1], A**C[2] * B**D[2], A**C[2] * B**D[3], A**C[2] * B**D[4] ]
 CRS  = [ R1, R2, R3 ]
 ########################################################################################################################################################################################################
-def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
 def fmtR0(a, ca, b, cb, w):   pa, pb = float(a ** ca), float(b ** abs(cb)) if cb < 0 else float(b ** cb)   ;  return f'{pa/pb:{w}}' if cb < 0 else f'{pa*pb:{w}}'
+#def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
+#def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
+#def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
+
 def fmtR1(a, ca, b, cb, w):
     pa = a ** abs(ca) if ca < 0 else a ** ca  ;  pb = b ** abs(cb) if cb < 0 else b ** cb  ;  papbi = f'1/({pa}*{pb})'
     return f'{pa:>{w}}*{pb:<{w}}' if ca >= 0 <= cb else f'{pa:>{w}}/{pb:<{w}}' if ca >= 0 > cb else f'{pb:>{w}}/{pa:<{w}}' if ca < 0 <= cb else f'{papbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
 
-def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
-def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
-def fmtR2(a, ca, b, cb, w): # qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>{w}}*{qb:<{w}}'
+def fmtR2(a, ca, b, cb, w):
     qa = f'{a}^{abs(ca)}' if ca < 0 else f'{a}^{ca}'  ;  qb = f'{b}^{abs(cb)}' if cb < 0 else f'{b}^{cb}'  ;  qaqbi = f'1/({qa}*{qb})'
     return f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 <= cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 > cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
 
-def fmtR3(a, ca, b, cb, w): # sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}*{sb:<{w}}' 
+def fmtR3(a, ca, b, cb, w): 
     sa = f'{a}{i2spr(abs(ca))}' if ca < 0 else f'{a}{i2spr(ca)}'  ;  sb = f'{b}{i2spr(abs(cb))}' if cb < 0 else f'{b}{i2spr(cb)}'  ;  sasbi = f'1/({sa}*{sb})'
     return f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
 
 def addFmtRs(r0s, r1s, r2s, r3s, a, ca, b, cb, w3, u):
+#   rAs.append(fmtRA(a, ca, ww if ist(a**ca, int) else w3))
+#   rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))
     r0s.append(fmtR0(a, ca, b, cb, w3))
     r1s.append(fmtR1(a, ca, b, cb, u))
-#    rAs.append(fmtRA(a, ca, ww if ist(a**ca, int) else w3))
-#    rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))
-    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
+    r2s.append(fmtR2(a, ca, b, cb, u)) if u >= 5 else None
     r3s.append(fmtR3(a, ca, b, cb, u))
 ########################################################################################################################################################################################################
 def fmtis(l, v=0, w=11, csv=0):
@@ -85,27 +86,34 @@ def dmpData(n='C', csv=0):
     dmpJust(k, rf=440, sss=V_SOUND, csv=csv)
 ########################################################################################################################################################################################################
 def dmpJust(k, rf=440, sss=V_SOUND, csv=0):
-    mm, nn, oo, ff = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)
+    mm, nn, oo, ff = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)   ;   x, y, z = 9, 5, 4   ;   x2 = f'^{x}.{y}'
     slog(f'BGN Just Tone Series ({k=} {rf=} {sss=} {csv=})', p=0, f=ff)
     r0s, r1s, r2s, r3s = [], [], [], []   ;   a, b = 5, 3
-    slog(f'{fmtis(C,    csv=csv)}', p=0, f=ff)
-    slog(f'{fmtis(D,    csv=csv)}', p=0, f=ff)
-    slog(f'{fmtis(C, A, csv=csv)}', p=0, f=ff)
-    slog(f'{fmtis(D, B, csv=csv)}', p=0, f=ff)
+    slog(f'{fmtis(C,    w=x, csv=csv)}', p=0, f=ff)
+    slog(f'{fmtis(D,    w=x, csv=csv)}', p=0, f=ff)
+    slog(f'{fmtis(C, A, w=x, csv=csv)}', p=0, f=ff)
+    slog(f'{fmtis(D, B, w=x, csv=csv)}', p=0, f=ff)
     for     c in C:
         for d in D:
-            addFmtRs(r0s, r1s, r2s, r3s, a, c, b, d, '^11.7f', 5)
-    slog(f'{fmtl(r0s, s=oo)}',      p=0, f=ff)
-    slog(f'{fmtl(r1s, w=6, s=oo)}', p=0, f=ff)
-#   slog(f'{fmtl(rBs, w=6)}', p=0, f=ff)
-    slog(f'{fmtl(r2s, s=oo)}',      p=0, f=ff)
-    slog(f'{fmtl(r3s, s=oo)}',      p=0, f=ff)
+            addFmtRs(r0s, r1s, r2s, r3s, a, c, b, d, x2, z)
+    slog(f'{fmtl(r0s, s=oo)}', p=0, f=ff)
+    slog(f'{fmtl(r1s, s=oo)}', p=0, f=ff)
+    slog(f'{fmtl(r2s, s=oo)}', p=0, f=ff)
+    slog(f'{fmtl(r3s, s=oo)}', p=0, f=ff)
     for     i, c in enumerate(C):
         for j, d in enumerate(D):
             n = fmtNote(k+i, j)
             u = CRS[i][j]
             v, w = ivls.norm(u)
             slog(f'{i} {j}: {a}^{c:2} * {b}^{d:2} = {u:7.4f} * 2^{w:2} = {v:7.5f} : {n=:2}', p=0, f=ff)
+    r0s, r1s, r2s, r3s = [], [], [], []   ;   x, y, z = 11, 7, 5   ;   x2 = f'^{x}.{y}'
+    for     c in C:
+        for d in D:
+            addFmtRs(r0s, r1s, r2s, r3s, a, c, b, d, x2, z)
+    slog(f'{fmtl(r0s, s=oo)}', p=0, f=ff)
+    slog(f'{fmtl(r1s, s=oo)}', p=0, f=ff)
+    slog(f'{fmtl(r2s, s=oo)}', p=0, f=ff)
+    slog(f'{fmtl(r3s, s=oo)}', p=0, f=ff)
     slog(f'END Just Tone Series ({k=} {rf=} {sss=} {csv=})', p=0, f=ff)
 ########################################################################################################################################################################################################
 def fmtNote(k, i):
