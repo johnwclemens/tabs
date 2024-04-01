@@ -1,6 +1,6 @@
 from tpkg       import utl
 #from tpkg       import notes
-#from tpkg.notes import Notes
+from tpkg.notes import Notes
 from tpkg       import intrvls as ivls
 import math
 
@@ -18,12 +18,26 @@ F440s, F432s  = ivls.F440s, ivls.F432s
 abc2r         = ivls.abc2r
 i2spr         = ivls.i2spr
 ir            = ivls.ir
+fabc          = ivls.fabc
 i2nPair       = ivls.i2nPair
 r2cents       = ivls.r2cents
 stackI        = ivls.stackI
 stck5ths      = ivls.stck5ths
 stck4ths      = ivls.stck4ths
+addFmtRs      = ivls.addFmtRs
+fmtR0         = ivls.fmtR0
+fmtR1         = ivls.fmtR1
+fmtR2         = ivls.fmtR2
+fmtR3         = ivls.fmtR3
+fmtRA         = ivls.fmtRA
+fmtRB         = ivls.fmtRB
+fdvdr         = ivls.fdvdr
 ########################################################################################################################################################################################################
+#COFSA       = {'C', 'G', 'D',  'A',  'E',  'B',  'F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#'}
+#COFSB       = {'C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb', 'Bbb'}
+COFMA        = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
+COFMB        = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'Bbb':('D♯', 'E♭'), 'Ebb':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
+COFM         = COFMA | COFMB
 #              0     1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19    20    21    22    23
 #              D     Eb                E     F                 F#    G           Ab    G#          A     Bb                B     C                 C#    D
 IVAL_KS     = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
@@ -32,22 +46,26 @@ nimap       = {} # note index to list of abcs (freq ratios) and ckmap (cent key 
 ckmap       = { ck: {'Count': 0} for ck in CENT_KS } # freq ratio in cents to ival counts and data
 ck2ik       = { CENT_KS[i]: k for i, k in enumerate(IVAL_KS) }
 KEYS        = ['Abc', 'Cents', 'Count', 'DCent', 'Freq', 'Idx', 'Ival', 'Note', 'Wavln'] # N/A
+K0          = 50
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
     if csv:  global nimap   ;   nimap = {}
-    dmpPyth(k=51, rf=440, sss=V_SOUND, csv=csv) # Eb
-    dmpPyth(k=58, rf=440, sss=V_SOUND, csv=csv) # Bb 
-    dmpPyth(k=53, rf=440, sss=V_SOUND, csv=csv) # F
-    dmpPyth(k=60, rf=440, sss=V_SOUND, csv=csv) # C
-    dmpPyth(k=55, rf=440, sss=V_SOUND, csv=csv) # G
-    dmpPyth(k=50, rf=440, sss=V_SOUND, csv=csv) # D
-    dmpPyth(k=57, rf=440, sss=V_SOUND, csv=csv) # A
-    dmpPyth(k=52, rf=440, sss=V_SOUND, csv=csv) # E
-    dmpPyth(k=59, rf=440, sss=V_SOUND, csv=csv) # B
-    dmpPyth(k=54, rf=440, sss=V_SOUND, csv=csv) # F#/Gb
-    dmpPyth(k=61, rf=440, sss=V_SOUND, csv=csv) # C#/Db
-    dmpPyth(k=56, rf=440, sss=V_SOUND, csv=csv) # G#/Ab
+#    dmpPyth(k=54, rf=440, sss=V_SOUND, csv=csv) # Gb/F#
+#    dmpPyth(k=61, rf=440, sss=V_SOUND, csv=csv) # Db/C#
+#    dmpPyth(k=56, rf=440, sss=V_SOUND, csv=csv) # Ab/G#
+#    dmpPyth(k=51, rf=440, sss=V_SOUND, csv=csv) # Eb
+#    dmpPyth(k=58, rf=440, sss=V_SOUND, csv=csv) # Bb 
+#    dmpPyth(k=53, rf=440, sss=V_SOUND, csv=csv) # F
+#    dmpPyth(k=60, rf=440, sss=V_SOUND, csv=csv) # C
+#    dmpPyth(k=55, rf=440, sss=V_SOUND, csv=csv) # G
+#    dmpPyth(k=50, rf=440, sss=V_SOUND, csv=csv) # D
+#    dmpPyth(k=57, rf=440, sss=V_SOUND, csv=csv) # A
+#    dmpPyth(k=52, rf=440, sss=V_SOUND, csv=csv) # E
+#    dmpPyth(k=59, rf=440, sss=V_SOUND, csv=csv) # B
+#    dmpPyth(k=54, rf=440, sss=V_SOUND, csv=csv) # F#/Gb
+#    dmpPyth(k=61, rf=440, sss=V_SOUND, csv=csv) # C#/Db
+#    dmpPyth(k=56, rf=440, sss=V_SOUND, csv=csv) # G#/Ab
 #    dmpPyth(k=50, rf=440, sss=V_SOUND, csv=csv) # D
 #    dmpPyth(k=55, rf=440, sss=V_SOUND, csv=csv) # G
 #    dmpPyth(k=60, rf=440, sss=V_SOUND, csv=csv) # C
@@ -58,7 +76,17 @@ def dumpData(csv=0):
 #    if not csv:  testStacks()
 #    dmpPyth(k=50, rf=440, ss=V_SOUND, csv=csv) # D
 #    dmpPyth(k=62, rf=440, ss=V_SOUND, csv=csv) # D octave
+    dmpData('D', csv)
     slog(f'END {csv=}')
+########################################################################################################################################################################################################
+def dmpData(n='C', csv=0):
+    k0 = Notes.N2I[n] + 48
+    for i in range(7, 12):
+        k = k0 + (i * 7) % NT
+        dmpPyth(k, k0=k0, rf=440, sss=V_SOUND, csv=csv)
+    for i in range(0, 7):
+        k = k0 + (i * 7) % NT
+        dmpPyth(k, k0=k0, rf=440, sss=V_SOUND, csv=csv)
 ########################################################################################################################################################################################################
 def epsilon(dbg=0):
     ccents = comma()
@@ -89,11 +117,8 @@ def abcs(a=7, b=6):
     abc3 = [ stackI(3, 2, 0) ]   ;   abc3.extend(abc1)   ;   abc3.extend(abc2)   ;   abc3.append(stackI(2, 1, 1))
     abc4 = sorted(abc3, key= lambda z: abc2r(z[0], z[1], z[2])[0])
     return [ abc1, abc2, abc3, abc4 ] 
-
-def fabc(abc):
-    return [ fmtl(e, w=2, d=Z) for e in abc ]
 ########################################################################################################################################################################################################
-def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
+def dmpPyth(k, k0=50, rf=440, sss=V_SOUND, csv=0):
     x, y = 13, 6     ;   z = x-2   ;   _ = x*W   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;   cki = -1
     ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)            ;   w3 = [W, W, W]
     slog(f'BGN Pythagorean ({k=} {rf=} {sss=} {csv=})', f=ff)
@@ -105,7 +130,7 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     for i, e in enumerate(abc0):
         a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)    ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = w0 / f
         r0 = fmtR0(a, ca, b, cb, f'{ww}.{z-2}f')    ;   r1 = fmtR1(a, ca, b, cb, y)   ;    r2 = fmtR2(a, ca, b, cb, y)   ;   r3 = fmtR3(a, ca, b, cb, y)
-        n  = fmtNPair(k, i)   ;   c = r2cents(r)    ;   d = k2dCent(c)   ;    rc = round(c)   ;   v = ck2ik[rc]    ;   cki += 1
+        n  = fmtNPair(k, i, k0)   ;   c = r2cents(r)    ;   d = k2dCent(c)   ;    rc = round(c)   ;   assert rc in ck2ik,  f'{rc=} not in ck2ik {k=} {i=} {k0=} {n=} {c=} {r=} {abc=}'   ;   v = ck2ik[rc]    ;   cki += 1
         while CENT_KS[cki] < rc:
             ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
             cki += 1  ;  j = len(ii)-1   ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
@@ -130,7 +155,7 @@ def dmpPyth(k=50, rf=440, sss=V_SOUND, csv=0):
     slog(f'{mm} ABC3{mm}{nn}[{nn}{fmtl(abc3, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
     slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
     dmpDataTableLine(x + 1, csv=csv)
-    dmpMaps(k,     csv)
+    dmpMaps(k, k0, csv)
     slog(f'END Pythagorean ({k=} {rf=} {sss=} {csv=})', f=ff)
 ########################################################################################################################################################################################################
 def k2Abcs(k=50):
@@ -144,35 +169,42 @@ def k2dCent(k):
     return k if 0 <= k < 50 else k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150 <= k <= 1200 else None
 #       return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
 ########################################################################################################################################################################################################
-def fmtNPair(k, i):
-    n, n2  = i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (54, 56, 61) else 1, s=1, e=1)
+def fmtNPair(k, i, k0, dbg=0):
+    n0, _   = i2nPair(k0, s=1)
+    n1, n2  = i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (K0 + 4, K0 + 6, K0 + 11) else 1, s=1, e=1)   ;   slog(f'{K0=} {n0=} {n1=} {n2=}') if dbg else None
     if i and i != NT:
-        if   n == 'A♭':         return n2
-        elif n2 and n2 != 'A♭': n += '/' + n2
-    return n
+#        if   n1 == 'A♭':          slog(f'{n1=} == A♭, {n0=} {_=} return {n2=}') if dbg else None   ;   return n2
+#        elif n2 and n2 != 'A♭':   slog(f'{n2=} != A♭, {n0=} {_=} {n1=}')        if dbg else None   ;   n1 += '/' + n2
+        if          n1 == COFM[n0][1]:   return n2
+        elif n2 and n2 != COFM[n0][1]:   n1 += '/' + n2
+#        if   (k + i) % NT == (K0 + 6) % NT and len(n)  == 2 and n[1]  == '♭': return n2
+#        elif (k + i) % NT != (K0 + 6) % NT and len(n2) == 2 and n2[1] == '♭': n += '/' + n2
+#        if n2: n += '/' + n2
+    slog(f'return {n1=}') if dbg else None
+    return n1
 ########################################################################################################################################################################################################
-def dmpMaps(k, csv):
-    dmpNiMap(  1, k, x=13, upd=1, csv=csv)
-    dmpNiMap(  2, k, x=13, upd=1, csv=csv)
-    dmpNiMap(  3, k, x=13, upd=1, csv=csv)
-    dmpNiMap(  4, k, x=13, upd=1, csv=csv)
-    dmpNiMap(  5, k, x=13, upd=1, csv=csv)
-    dmpCks2Iks(      x=13,        csv=csv)
-    dmpCkMap(k,                   csv=csv)
-    dmpNiMap(  1, k, x=9,  upd=0, csv=csv)
-    dmpNiMap(  2, k, x=9,  upd=0, csv=csv)
-    dmpNiMap(  3, k, x=9,  upd=0, csv=csv)
-    dmpNiMap(  4, k, x=9,  upd=0, csv=csv)
-    dmpNiMap(  5, k, x=9,  upd=0, csv=csv)
-    dmpCks2Iks(      x=9,         csv=csv)
-    checkIvals(                   csv=csv)
+def dmpMaps(k, k0, csv):
+    dmpNiMap(  1, k, x=13, upd=1, k0=k0, csv=csv)
+    dmpNiMap(  2, k, x=13, upd=1, k0=k0, csv=csv)
+    dmpNiMap(  3, k, x=13, upd=1, k0=k0, csv=csv)
+    dmpNiMap(  4, k, x=13, upd=1, k0=k0, csv=csv)
+    dmpNiMap(  5, k, x=13, upd=1, k0=k0, csv=csv)
+    dmpCks2Iks(      x=13,               csv=csv)
+    dmpCkMap(k,                          csv=csv)
+    dmpNiMap(  1, k, x=9,  upd=0, k0=k0, csv=csv)
+    dmpNiMap(  2, k, x=9,  upd=0, k0=k0, csv=csv)
+    dmpNiMap(  3, k, x=9,  upd=0, k0=k0, csv=csv)
+    dmpNiMap(  4, k, x=9,  upd=0, k0=k0, csv=csv)
+    dmpNiMap(  5, k, x=9,  upd=0, k0=k0, csv=csv)
+    dmpCks2Iks(      x=9,                csv=csv)
+    checkIvals(                          csv=csv)
 ########################################################################################################################################################################################################
 def dmpCks2Iks(x=13, csv=0):
     if not csv:
         if   x== 9: slog(f'{7*W}  {fmtm(ck2ik, w=4, wv=2, s=3*W, d=Z)}', p=0)
         elif x==13: slog(f'{9*W}  {fmtm(ck2ik, w=4, wv=2, s=7*W, d=Z)}', p=0)
 ########################################################################################################################################################################################################
-def dmpNiMap(ni, ik, x, upd=0, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
+def dmpNiMap(ni, ik, x, upd=0, k0=50, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
     ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   pfx = ''   ;   sfx = f'{nn}]'  ;  yy = 6 if x==13 else 4
     f0  = F440s[ik] if rf==440 else F432s[ik]     ;     w0 = CM_P_M * sss   
     ii = [ f'{i}' for i in range(2 * NT) ]
@@ -183,7 +215,7 @@ def dmpNiMap(ni, ik, x, upd=0, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
         rat1 = [] if x == 13 else None  ;  ratA = [] if x == 9 else None   ;  ratB = [] if x == 9 else None
         for j, e in enumerate(v[0]):
             a, ca, b, cb = e        ;      pa, pb = a ** ca, b ** cb
-            n    = fmtNPair(k, j)
+            n    = fmtNPair(k, j, k0)
             pd   = [f'{i:x}', f'{k:2}', f'{n:2}']   ;   pfx = mm.join(pd)   ;   pfx += f'{nn}[{nn}'
             cent = r2cents(pa/pb)   ;    rc = ir(cent)      ;   cki += 1
             while CENT_KS[cki] < rc:
@@ -248,20 +280,20 @@ def dmpIvals(i, ks, cs, ds, csv): # only called by dmpCkMap()
         fd       = fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 #    slog(f'END dmpIvals() {i=} {csv=}')
 ########################################################################################################################################################################################################
-def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
-def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>{w}}/{pb:<{w}}'
-def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
-def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
-def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>{w}}/{qb:<{w}}'
-def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}/{sb:<{w}}' 
-def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
+#def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
+#def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>{w}}/{pb:<{w}}'
+#def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
+#def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
+#def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>{w}}/{qb:<{w}}'
+#def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}/{sb:<{w}}' 
+#def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
     
-def addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, w3, ww, u):
-    r0s.append(fmtR0(a, ca, b, cb, w3))
-    rAs.append(fmtRA(a, ca, ww))
-    rBs.append(fmtRB(b, cb, ww))
-    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
-    r3s.append(fmtR3(a, ca, b, cb, u))
+#def addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, w3, ww, u):
+#    r0s.append(fmtR0(a, ca, b, cb, w3))
+#    rAs.append(fmtRA(a, ca, ww if ist(a**ca, int) else w3))
+#    rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))
+#    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
+#    r3s.append(fmtR3(a, ca, b, cb, u))
 ########################################################################################################################################################################################################
 def dmpDataTableLine(w=10, n=24, csv=0):
     c = '-'   ;   nn, mm, t = (Y, Y, Y) if csv else (Z, W, '|')
@@ -272,7 +304,7 @@ def dmpDataTableLine(w=10, n=24, csv=0):
 def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
     x, y, u = 5, 4, 9   ;   blnk, sk, v = u*W, 0, Z   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;  dbg = 1   ;   global ckmap
     mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)             ;   ww, w1, w2, w3  = f'^{u}', f'^{u}.1f', f'^{u}.2f', f'^{u}.{x}f'
-    ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []  ;  cksf, cksi = [], []
+    ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;   r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  cksf, cksi = [], []
     for i, ck in enumerate(CENT_KS):
         ival = ck2ik[ck]    ;    vs.append(ival)   ;   assert ckmap and ck in ckmap,  f'{ck=} {ckmap=}'
         if ckmap[ck]['Count'] > 0:

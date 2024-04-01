@@ -345,6 +345,44 @@ c 1200 24 P8  1/12 @ 1200 :   0.000 = 1.955 *  0/0    A7  0/0 @ 1178 :         =
 # T) still issues with tnik.visible and update/resize? (w/h=0, parent, grp num/ord) only set visible on groups?
 # U) Log file creation issues for some time now
 
+# Still seeing issues with WindowsPath objects being used as if they were str objects
+# _str() gets called sometimes when it's not defined
+# Added sp2s() method to return formatted str
+''' cmds.py
+    def sp2s(spo, dbg=0):
+        sps = list(spo.parts[1:])
+        sps.insert(0, spo.drive)
+        sp = "/".join(sps)
+        if dbg:  slog(f'{sp}', p=2)
+        return sp
+
+    def _snapshot(self):
+        tobj, sid, typ, why, dbg, dbg2 = self.tobj, self.sid, self.typ, self.why, self.dbg, self.dbg2
+        logId     = tobj.LOG_ID
+        snapName  = f'{BASE_NAME}.{logId}.{sid}.{typ}.{PNG}'
+        snapPath  = pathlib.Path(BASE_PATH / PNGS / snapName)
+        if dbg:  slog(f'{BASE_NAME=} {logId=} {sid=} {typ=} {PNG=}')
+        if dbg:  slog(f'{tobj.fNameLogId=} {snapName=} {why}')
+        sp = self.sp2s(snapPath)
+        pygimg.get_buffer_manager().get_color_buffer().save(sp)
+        if dbg2: slog(f'{snapName=} {why}', f=2)
+        snapName0 = f'{BASE_NAME}.{PNG}'
+        snapName2 = tobj.geomFileName(BASE_NAME, PNG)
+        snapPath0 = BASE_PATH / PNGS / snapName0
+        snapPath2 = BASE_PATH / snapName2
+        sp0 = self.sp2s(snapPath0)
+        sp2 = self.sp2s(snapPath2)
+        utl.copyFile(sp, sp0)
+        utl.copyFile(sp, sp2)
+        if dbg:  slog(f'{BASE_NAME=} {tobj.fmtn(Z)}')
+        if dbg:  slog(f'{snapName0=} {why}')
+        if dbg:  slog(f'{snapName2=} {why}')
+        if dbg:  slog(f'{sp0=}', p=2)
+        if dbg:  slog(f'{sp2=}', p=2)
+        tobj.dumpTnikCsvs(sp)
+        return sp
+'''
+
 ######################################################################################################################################################
 
 # Diatonic Inervals:

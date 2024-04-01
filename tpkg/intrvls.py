@@ -20,9 +20,11 @@ NT            = Notes.NTONES
 FLATS, SHRPS  = notes.FLATS, notes.SHRPS
 F440s, F432s  = notes.F440s, notes.F432s
 
+# COFS = {'C', 'G', 'D', 'A', 'E', 'B/Cb', 'F#/Gb', 'C#/Db', 'Ab', 'Eb', 'Bb', 'F'}
+
 def i2spr(i):
-    if i < 0: return '-' + Z.join(SUPERS[int(digit)] for digit in str(i))
-    else:     return       Z.join(SUPERS[int(digit)] for digit in str(i))
+    if i < 0: return '-' + Z.join( SUPERS[int(digit)] for digit in str(i) if str.isdigit(digit) )
+    else:     return       Z.join( SUPERS[int(digit)] for digit in str(i) )
 ########################################################################################################################################################################################################
 def ir(n):           return int(round(n))
 def r2cents(r):      return math.log2(r) * NT * 100
@@ -31,16 +33,7 @@ def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
 def stck4ths(n):     return [ stackI(2, 3, i) for i in range(1, n+1) ]
 def stackI(a, b, c): return [ a, b, c ]
 ########################################################################################################################################################################################################
-def reduce(n):
-    if n > 1:
-        while n > 2:
-            n /= 2
-    elif n < 1:
-        while n < 1:
-            n *= 2
-    return n
-
-def foldF(n):
+def norm(n):
     i = 0
     if n > 1:
         while n > 2:
@@ -48,17 +41,34 @@ def foldF(n):
     elif n < 1:
         while n < 1:
             n *= 2  ;  i += 1
-    return i
+    return n, i
 ########################################################################################################################################################################################################
-def abc2r(a, b, c):
+def fabc(abc):    return [ fmtl(e, w=2, d=Z) for e in abc ]
+
+def abc2r(a, b, c): # assumes a==2 or b==2, probably too specific, move to Pythagorean, rename?
     pa0, pb0 = a ** c, b ** c
     r0       = pa0 / pb0
-    j        = foldF(r0)
-    ca       = c + j if j > 0 else c #  ;   aa = [ a for _ in range(ca) ]
-    cb       = c - j if j < 0 else c #  ;   bb = [ b for _ in range(cb) ]
-    pa, pb   = a ** ca, b ** cb
-    r        = pa / pb   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
+    r, j     = norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
+    ca       = c + j if j > 0 else c
+    cb       = c - j if j < 0 else c
+#    pa, pb   = a ** ca, b ** cb
+#    r        = pa / pb   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
     return r, ca, cb
+########################################################################################################################################################################################################
+def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
+def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>{w}}/{pb:<{w}}'
+def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
+def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
+def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>{w}}/{qb:<{w}}'
+def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}/{sb:<{w}}' 
+def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
+    
+def addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, w3, ww, u):
+    r0s.append(fmtR0(a, ca, b, cb, w3))
+    rAs.append(fmtRA(a, ca, ww if ist(a**ca, int) else w3))
+    rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))
+    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
+    r3s.append(fmtR3(a, ca, b, cb, u))
 ########################################################################################################################################################################################################
 def f2nPair(f, rf=440, b=None, s=0, e=0):
     ni = NT * math.log2(f / rf) # fixme
@@ -67,7 +77,7 @@ def f2nPair(f, rf=440, b=None, s=0, e=0):
     
 def i2nPair(i, b=None, s=0, e=0):
     m = Z    ;    n = FLATS[i] if b == 1 else SHRPS[i]
-    if s:                       n = n[:-1].strip()
+    if s:         n = n[:-1].strip()
     if e == 1 and len(n) > 1:
         m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
     return n, m
@@ -125,7 +135,6 @@ def test4ths(n, i, dbg=0):
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
     dmpOTS(       rf=440, sss=V_SOUND, csv=csv)
-    dmpJTS(       rf=440, sss=V_SOUND, csv=csv)
     slog(f'END {csv=}')
 ########################################################################################################################################################################################################
 def fOTS(i, r=440):  f0 = F440s[0] if r == 440 else F432s[0]  ;   return f0 * i
@@ -141,7 +150,7 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
         n, n2  = f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1) 
         j  = Notes.n2ai(n)
         assert 0 <= j < len(rs),  f'{j=} {len(rs)=}'
-        fr = reduce(f/f0)
+        fr, _ = norm(f/f0)
         f2 = rs[j]               ;    c = r2cents(fr)         ;     d = r2cents(f/f2)
         fs.append(fmtf(f, 6))    ;    ns.append(n)            ;     ws.append(fmtf(w, 6))
         cs.append(fmtf(c, 6))    ;    ds.append(fmtg(d, 6 if d >= 0 else 5))
@@ -156,14 +165,6 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
     slog(f'{ref}{ws}{sfxw}',  p=0, f=ff)
     slog(f'END Overtone Series ({rf=} {sss=} {csv=})')
 
-########################################################################################################################################################################################################
-def fJTS(i, r=440):  f0 = F440s[0] if r==440 else F432s[0]  ;  return f0 * i
-FJTSs = [24, 27, 30, 32, 36, 40, 45, 48]
-########################################################################################################################################################################################################
-def dmpJTS(rf=440, sss=V_SOUND, csv=0):
-    slog(f'BGN Just Tone Series ({rf=} {sss=} {csv=})')
-    slog(f'END Just Tone Series ({rf=} {sss=} {csv=})')
-    
 ########################################################################################################################################################################################################
 '''        
     k:          0             1             2             3             4             5             6             7             8             9            10            11            12       #  1   2   3   4   5   6   7   8   9   10   11

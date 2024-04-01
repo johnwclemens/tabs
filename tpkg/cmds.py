@@ -745,6 +745,13 @@ class SnapshotCmd(Cmd):
         
     def do(  self): return self._snapshot()
     def undo(self): self._snapshot()
+#    @staticmethod
+#    def sp2s(spo, dbg=0):
+#        sps = list(spo.parts[1:])
+#        sps.insert(0, spo.drive)
+#        sp = "/".join(sps)
+#        if dbg:  slog(f'{sp}', p=2)
+#        return sp
     
     def _snapshot(self):
         tobj, sid, typ, why, dbg, dbg2 = self.tobj, self.sid, self.typ, self.why, self.dbg, self.dbg2
@@ -753,20 +760,22 @@ class SnapshotCmd(Cmd):
         snapPath  = pathlib.Path(BASE_PATH / PNGS / snapName)
         if dbg:  slog(f'{BASE_NAME=} {logId=} {sid=} {typ=} {PNG=}')
         if dbg:  slog(f'{tobj.fNameLogId=} {snapName=} {why}')
-        if dbg:  slog(f'{snapPath}', p=2) # str(snapPath)
-        pygimg.get_buffer_manager().get_color_buffer().save(snapPath) # str(snapPath)
+        sp = utl.path2str(snapPath)
+        pygimg.get_buffer_manager().get_color_buffer().save(sp)
         if dbg2: slog(f'{snapName=} {why}', f=2)
         snapName0 = f'{BASE_NAME}.{PNG}'
         snapName2 = tobj.geomFileName(BASE_NAME, PNG)
         snapPath0 = BASE_PATH / PNGS / snapName0
         snapPath2 = BASE_PATH / snapName2
+        sp0 = utl.path2str(snapPath0)
+        sp2 = utl.path2str(snapPath2)
         utl.copyFile(snapPath, snapPath0)
         utl.copyFile(snapPath, snapPath2)
         if dbg:  slog(f'{BASE_NAME=} {tobj.fmtn(Z)}')
         if dbg:  slog(f'{snapName0=} {why}')
         if dbg:  slog(f'{snapName2=} {why}')
-        if dbg:  slog(f'{snapPath0=}', p=2)
-        if dbg:  slog(f'{snapPath2=}', p=2)
+        if dbg:  slog(f'{sp0=}', p=2)
+        if dbg:  slog(f'{sp2=}', p=2)
         tobj.dumpTnikCsvs(snapPath)
         return snapPath
 ########################################################################################################################################################################################################

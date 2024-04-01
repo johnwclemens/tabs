@@ -437,17 +437,28 @@ def initColors(k, spr, bgc, ik):
     j = D  ;  k[j] = i(j, KD1, aa, OE1, KD2, zz, OE2) if a else i(j, KD1,  0,  0, KD2, 17, 17) if b else i(j, KD1,  0,  0, KD2, 17, 17) if c else i(j, KD1,  0,  0, KD2, 17, 17) if d else None
     j = E  ;  k[j] = i(j, KE1, aa, OE1, KE2, zz, OE2) if a else i(j, KE1,  0,  0, KE2, 17, 17) if b else i(j, KE1,  0,  0, KE2, 17, 17) if c else i(j, KE1,  0,  0, KE2, 17, 17) if d else None
 ########################################################################################################################################################################################################
+def path2str(po, dbg=0):
+    ps = list(po.parts[1:])
+    ps.insert(0, po.drive)
+    p = '/'.join(ps)
+    if dbg:  slog(f'{p}', p=2)
+    return p
+
 def getFilePath(baseName, basePath, fdir=None, fsfx='txt', dbg=1, f=-3):
-    if dbg: slog(f'{baseName =:12} {basePath = }', f=f) # str(basePath)
+    if dbg: slog(f'{baseName =:12} {path2str(basePath) = }', f=f)
+    if dbg: slog(f'{baseName =:12} {basePath = }', f=f)
     fileName   = f'{baseName}.{fsfx}'          if fsfx else baseName
     filePath   =    basePath / fdir / fileName if fdir else basePath / fileName
-    if dbg: slog(f'{fileName =:12} {filePath = }', f=f) # str(filePath)
+    if dbg: slog(f'{fileName =:12} {path2str(filePath) = }', f=f)
+    if dbg: slog(f'{fileName =:12} {filePath = }', f=f)
     return  filePath
 
 def copyFile(src, trg, dbg=1, f=-3):
-    if not src.exists():   msg = f'ERROR Path Does not Exist {src=}'   ;   print(msg)   ;  raise SystemExit(msg)
+    if dbg: slog(f'{path2str(src)=}', f=f)
+    if dbg: slog(f'{path2str(trg)=}', f=f)
     if dbg: slog(f'{src=}', f=f)
     if dbg: slog(f'{trg=}', f=f)
+    if not src.exists():   msg = f'ERROR Path Does not Exist {src=}'   ;   print(msg)   ;  raise SystemExit(msg)
     cmd  =  f'copy {src} {trg}'   ;   ret = '???'
     if dbg: slog(f'{12*W}{cmd} ###', f=f)
     slog(f'TRY ret = os.system({cmd})', f=f)
