@@ -208,22 +208,22 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 #2130 tabs  dumpGlobals        argv      = +34[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -M 0 -deo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T E A D G B E]
 #2131 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 #2132 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-# 448 utl   getFilePath        baseName =test.209     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.209     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.209.cat path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.209.cat'
-# 453 utl   getFilePath        fileName =test.209.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.209.cat')
-# 448 utl   getFilePath        baseName =test.209     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.209     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.209.csv path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.209.csv'
-# 453 utl   getFilePath        fileName =test.209.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.209.csv')
-# 448 utl   getFilePath        baseName =test.209     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.209     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.209.log path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.209.log'
-# 453 utl   getFilePath        fileName =test.209.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.209.log')
-# 448 utl   getFilePath        baseName =test.209     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.209     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.209.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/text/test.209.txt'
-# 453 utl   getFilePath        fileName =test.209.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.209.txt')
+# 448 utl   getFilePath        baseName =test.16      path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.16      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.16.cat  path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.16.cat'
+# 453 utl   getFilePath        fileName =test.16.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.16.cat')
+# 448 utl   getFilePath        baseName =test.16      path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.16      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.16.csv  path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.16.csv'
+# 453 utl   getFilePath        fileName =test.16.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.16.csv')
+# 448 utl   getFilePath        baseName =test.16      path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.16      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.16.log  path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.16.log'
+# 453 utl   getFilePath        fileName =test.16.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.16.log')
+# 448 utl   getFilePath        baseName =test.16      path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.16      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.16.txt  path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/text/test.16.txt'
+# 453 utl   getFilePath        fileName =test.16.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.16.txt')
 # 264 tabs  dumpArgs           [a]      .AUTO_SAVE=0
 # 265 tabs  dumpArgs           [A]         .VARROW=1
 # 266 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -277,12 +277,12 @@ initk((Tabs, 15, 'GRY', 5, 17, 'GRY', 17, 17) {})=[(81, 81, 81, 255), (255, 255,
 # 861 tabs  readDataFile       C:\Users\Owner\Documents\GitHub\tabs\test\Dtest.1.1._.10.6.dat 108 bytes = 0.1 KB
 # 862 tabs  readDataFile       Raw Data File BGN:
 ##########
-55555     
-55555     
-66666     
-77777     
-55555     
-77777     
+          
+          
+          
+0         
+2         
+3         
 ##########
 ##########
 # 877 tabs  readDataFile       Raw Data File END:
@@ -331,73 +331,73 @@ plsct=[1 1 1  0 0] j=2 i=0
 plsct=[1 1 1  1 0] j=3 i=0
 #1391 tabs  g_newUpdTniks        0 j=3  Colm j2=3     i= 0 s=0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3]   3 [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3]   3 nw=1
 plsct=[1 1 1  1 1] j=4 i=0
-#1391 tabs  g_newUpdTniks        0 j=4  Tabl j2=4 5   i= 0 s=0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4]   4 [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4]   4 nw=1
+#1391 tabs  g_newUpdTniks        0 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4]   4 [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4]   4 nw=1
 plsct=[1 1 1  1 2] j=4 i=1
-#1391 tabs  g_newUpdTniks        1 j=4  Tabl j2=4 5   i= 1 s=0 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5]   5 [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5]   5 nw=1
+#1391 tabs  g_newUpdTniks        1 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5]   5 [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5]   5 nw=1
 plsct=[1 1 1  1 3] j=4 i=2
-#1391 tabs  g_newUpdTniks        2 j=4  Tabl j2=4 6   i= 2 s=0 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 nw=1
+#1391 tabs  g_newUpdTniks        2 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 nw=1
 plsct=[1 1 1  1 4] j=4 i=3
-#1391 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 7   i= 3 s=0 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=1
+#1391 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 0   i= 3 s=0 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=1
 plsct=[1 1 1  1 5] j=4 i=4
-#1391 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 5   i= 4 s=0 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=1
+#1391 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 2   i= 4 s=0 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=1
 plsct=[1 1 1  1 6] j=4 i=5
-#1391 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 7   i= 5 s=0 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 nw=1
+#1391 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 3   i= 5 s=0 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 nw=1
 plsct=[1 1 1  2 6] j=3 i=1
 #1391 tabs  g_newUpdTniks        1 j=3  Colm j2=3     i= 1 s=0 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10]  10 [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10]  10 nw=1
 plsct=[1 1 1  2 1] j=4 i=0
-#1391 tabs  g_newUpdTniks        6 j=4  Tabl j2=4 5   i= 0 s=0 .J2[j2]= 6 len(tl)= 6 len(tl)= 6 [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0 11]  11 [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0 11]  11 nw=1
+#1391 tabs  g_newUpdTniks        6 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]= 6 len(tl)= 6 len(tl)= 6 [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0 11]  11 [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0 11]  11 nw=1
 plsct=[1 1 1  2 2] j=4 i=1
-#1391 tabs  g_newUpdTniks        7 j=4  Tabl j2=4 5   i= 1 s=0 .J2[j2]= 7 len(tl)= 7 len(tl)= 7 [1 1 1 2 7 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 1 0 0 0 0 0 0 0 0 0 0 0 12]  12 [1 1 1 2 7 0 0 0 0 0 0 0 0 0 0 0 12]  12 nw=1
+#1391 tabs  g_newUpdTniks        7 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]= 7 len(tl)= 7 len(tl)= 7 [1 1 1 2 7 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 1 0 0 0 0 0 0 0 0 0 0 0 12]  12 [1 1 1 2 7 0 0 0 0 0 0 0 0 0 0 0 12]  12 nw=1
 plsct=[1 1 1  2 3] j=4 i=2
-#1391 tabs  g_newUpdTniks        8 j=4  Tabl j2=4 6   i= 2 s=0 .J2[j2]= 8 len(tl)= 8 len(tl)= 8 [1 1 1 2 8 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 2 0 0 0 0 0 0 0 0 0 0 0 13]  13 [1 1 1 2 8 0 0 0 0 0 0 0 0 0 0 0 13]  13 nw=1
+#1391 tabs  g_newUpdTniks        8 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]= 8 len(tl)= 8 len(tl)= 8 [1 1 1 2 8 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 2 0 0 0 0 0 0 0 0 0 0 0 13]  13 [1 1 1 2 8 0 0 0 0 0 0 0 0 0 0 0 13]  13 nw=1
 plsct=[1 1 1  2 4] j=4 i=3
-#1391 tabs  g_newUpdTniks        9 j=4  Tabl j2=4 7   i= 3 s=0 .J2[j2]= 9 len(tl)= 9 len(tl)= 9 [1 1 1 2 9 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 3 0 0 0 0 0 0 0 0 0 0 0 14]  14 [1 1 1 2 9 0 0 0 0 0 0 0 0 0 0 0 14]  14 nw=1
+#1391 tabs  g_newUpdTniks        9 j=4  Tabl j2=4     i= 3 s=0 .J2[j2]= 9 len(tl)= 9 len(tl)= 9 [1 1 1 2 9 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 3 0 0 0 0 0 0 0 0 0 0 0 14]  14 [1 1 1 2 9 0 0 0 0 0 0 0 0 0 0 0 14]  14 nw=1
 plsct=[1 1 1  2 5] j=4 i=4
-#1391 tabs  g_newUpdTniks       10 j=4  Tabl j2=4 5   i= 4 s=0 .J2[j2]=10 len(tl)=10 len(tl)=10 [1 1 1 2 10 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 4 0 0 0 0 0 0 0 0 0 0 0 15]  15 [1 1 1 2 10 0 0 0 0 0 0 0 0 0 0 0 15]  15 nw=1
+#1391 tabs  g_newUpdTniks       10 j=4  Tabl j2=4     i= 4 s=0 .J2[j2]=10 len(tl)=10 len(tl)=10 [1 1 1 2 10 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 4 0 0 0 0 0 0 0 0 0 0 0 15]  15 [1 1 1 2 10 0 0 0 0 0 0 0 0 0 0 0 15]  15 nw=1
 plsct=[1 1 1  2 6] j=4 i=5
-#1391 tabs  g_newUpdTniks       11 j=4  Tabl j2=4 7   i= 5 s=0 .J2[j2]=11 len(tl)=11 len(tl)=11 [1 1 1 2 11 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 5 0 0 0 0 0 0 0 0 0 0 0 16]  16 [1 1 1 2 11 0 0 0 0 0 0 0 0 0 0 0 16]  16 nw=1
+#1391 tabs  g_newUpdTniks       11 j=4  Tabl j2=4     i= 5 s=0 .J2[j2]=11 len(tl)=11 len(tl)=11 [1 1 1 2 11 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 5 0 0 0 0 0 0 0 0 0 0 0 16]  16 [1 1 1 2 11 0 0 0 0 0 0 0 0 0 0 0 16]  16 nw=1
 plsct=[1 1 1  3 6] j=3 i=2
 #1391 tabs  g_newUpdTniks        2 j=3  Colm j2=3     i= 2 s=0 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 1 2 12 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0 17]  17 [1 1 1 2 12 0 0 0 0 0 0 0 0 0 0 0 17]  17 nw=1
 plsct=[1 1 1  3 1] j=4 i=0
-#1391 tabs  g_newUpdTniks       12 j=4  Tabl j2=4 5   i= 0 s=0 .J2[j2]=12 len(tl)=12 len(tl)=12 [1 1 1 3 12 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 6 0 0 0 0 0 0 0 0 0 0 0 18]  18 [1 1 1 3 12 0 0 0 0 0 0 0 0 0 0 0 18]  18 nw=1
+#1391 tabs  g_newUpdTniks       12 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]=12 len(tl)=12 len(tl)=12 [1 1 1 3 12 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 6 0 0 0 0 0 0 0 0 0 0 0 18]  18 [1 1 1 3 12 0 0 0 0 0 0 0 0 0 0 0 18]  18 nw=1
 plsct=[1 1 1  3 2] j=4 i=1
-#1391 tabs  g_newUpdTniks       13 j=4  Tabl j2=4 5   i= 1 s=0 .J2[j2]=13 len(tl)=13 len(tl)=13 [1 1 1 3 13 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 1 0 0 0 0 0 0 0 0 0 0 0 19]  19 [1 1 1 3 13 0 0 0 0 0 0 0 0 0 0 0 19]  19 nw=1
+#1391 tabs  g_newUpdTniks       13 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]=13 len(tl)=13 len(tl)=13 [1 1 1 3 13 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 1 0 0 0 0 0 0 0 0 0 0 0 19]  19 [1 1 1 3 13 0 0 0 0 0 0 0 0 0 0 0 19]  19 nw=1
 plsct=[1 1 1  3 3] j=4 i=2
-#1391 tabs  g_newUpdTniks       14 j=4  Tabl j2=4 6   i= 2 s=0 .J2[j2]=14 len(tl)=14 len(tl)=14 [1 1 1 3 14 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 2 0 0 0 0 0 0 0 0 0 0 0 20]  20 [1 1 1 3 14 0 0 0 0 0 0 0 0 0 0 0 20]  20 nw=1
+#1391 tabs  g_newUpdTniks       14 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]=14 len(tl)=14 len(tl)=14 [1 1 1 3 14 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 2 0 0 0 0 0 0 0 0 0 0 0 20]  20 [1 1 1 3 14 0 0 0 0 0 0 0 0 0 0 0 20]  20 nw=1
 plsct=[1 1 1  3 4] j=4 i=3
-#1391 tabs  g_newUpdTniks       15 j=4  Tabl j2=4 7   i= 3 s=0 .J2[j2]=15 len(tl)=15 len(tl)=15 [1 1 1 3 15 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 3 0 0 0 0 0 0 0 0 0 0 0 21]  21 [1 1 1 3 15 0 0 0 0 0 0 0 0 0 0 0 21]  21 nw=1
+#1391 tabs  g_newUpdTniks       15 j=4  Tabl j2=4     i= 3 s=0 .J2[j2]=15 len(tl)=15 len(tl)=15 [1 1 1 3 15 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 3 0 0 0 0 0 0 0 0 0 0 0 21]  21 [1 1 1 3 15 0 0 0 0 0 0 0 0 0 0 0 21]  21 nw=1
 plsct=[1 1 1  3 5] j=4 i=4
-#1391 tabs  g_newUpdTniks       16 j=4  Tabl j2=4 5   i= 4 s=0 .J2[j2]=16 len(tl)=16 len(tl)=16 [1 1 1 3 16 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 4 0 0 0 0 0 0 0 0 0 0 0 22]  22 [1 1 1 3 16 0 0 0 0 0 0 0 0 0 0 0 22]  22 nw=1
+#1391 tabs  g_newUpdTniks       16 j=4  Tabl j2=4     i= 4 s=0 .J2[j2]=16 len(tl)=16 len(tl)=16 [1 1 1 3 16 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 4 0 0 0 0 0 0 0 0 0 0 0 22]  22 [1 1 1 3 16 0 0 0 0 0 0 0 0 0 0 0 22]  22 nw=1
 plsct=[1 1 1  3 6] j=4 i=5
-#1391 tabs  g_newUpdTniks       17 j=4  Tabl j2=4 7   i= 5 s=0 .J2[j2]=17 len(tl)=17 len(tl)=17 [1 1 1 3 17 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 5 0 0 0 0 0 0 0 0 0 0 0 23]  23 [1 1 1 3 17 0 0 0 0 0 0 0 0 0 0 0 23]  23 nw=1
+#1391 tabs  g_newUpdTniks       17 j=4  Tabl j2=4     i= 5 s=0 .J2[j2]=17 len(tl)=17 len(tl)=17 [1 1 1 3 17 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 5 0 0 0 0 0 0 0 0 0 0 0 23]  23 [1 1 1 3 17 0 0 0 0 0 0 0 0 0 0 0 23]  23 nw=1
 plsct=[1 1 1  4 6] j=3 i=3
 #1391 tabs  g_newUpdTniks        3 j=3  Colm j2=3     i= 3 s=0 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 3 18 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 3 6 0 0 0 0 0 0 0 0 0 0 0 24]  24 [1 1 1 3 18 0 0 0 0 0 0 0 0 0 0 0 24]  24 nw=1
 plsct=[1 1 1  4 1] j=4 i=0
-#1391 tabs  g_newUpdTniks       18 j=4  Tabl j2=4 5   i= 0 s=0 .J2[j2]=18 len(tl)=18 len(tl)=18 [1 1 1 4 18 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 6 0 0 0 0 0 0 0 0 0 0 0 25]  25 [1 1 1 4 18 0 0 0 0 0 0 0 0 0 0 0 25]  25 nw=1
+#1391 tabs  g_newUpdTniks       18 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]=18 len(tl)=18 len(tl)=18 [1 1 1 4 18 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 6 0 0 0 0 0 0 0 0 0 0 0 25]  25 [1 1 1 4 18 0 0 0 0 0 0 0 0 0 0 0 25]  25 nw=1
 plsct=[1 1 1  4 2] j=4 i=1
-#1391 tabs  g_newUpdTniks       19 j=4  Tabl j2=4 5   i= 1 s=0 .J2[j2]=19 len(tl)=19 len(tl)=19 [1 1 1 4 19 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 1 0 0 0 0 0 0 0 0 0 0 0 26]  26 [1 1 1 4 19 0 0 0 0 0 0 0 0 0 0 0 26]  26 nw=1
+#1391 tabs  g_newUpdTniks       19 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]=19 len(tl)=19 len(tl)=19 [1 1 1 4 19 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 1 0 0 0 0 0 0 0 0 0 0 0 26]  26 [1 1 1 4 19 0 0 0 0 0 0 0 0 0 0 0 26]  26 nw=1
 plsct=[1 1 1  4 3] j=4 i=2
-#1391 tabs  g_newUpdTniks       20 j=4  Tabl j2=4 6   i= 2 s=0 .J2[j2]=20 len(tl)=20 len(tl)=20 [1 1 1 4 20 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 2 0 0 0 0 0 0 0 0 0 0 0 27]  27 [1 1 1 4 20 0 0 0 0 0 0 0 0 0 0 0 27]  27 nw=1
+#1391 tabs  g_newUpdTniks       20 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]=20 len(tl)=20 len(tl)=20 [1 1 1 4 20 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 2 0 0 0 0 0 0 0 0 0 0 0 27]  27 [1 1 1 4 20 0 0 0 0 0 0 0 0 0 0 0 27]  27 nw=1
 plsct=[1 1 1  4 4] j=4 i=3
-#1391 tabs  g_newUpdTniks       21 j=4  Tabl j2=4 7   i= 3 s=0 .J2[j2]=21 len(tl)=21 len(tl)=21 [1 1 1 4 21 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 3 0 0 0 0 0 0 0 0 0 0 0 28]  28 [1 1 1 4 21 0 0 0 0 0 0 0 0 0 0 0 28]  28 nw=1
+#1391 tabs  g_newUpdTniks       21 j=4  Tabl j2=4     i= 3 s=0 .J2[j2]=21 len(tl)=21 len(tl)=21 [1 1 1 4 21 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 3 0 0 0 0 0 0 0 0 0 0 0 28]  28 [1 1 1 4 21 0 0 0 0 0 0 0 0 0 0 0 28]  28 nw=1
 plsct=[1 1 1  4 5] j=4 i=4
-#1391 tabs  g_newUpdTniks       22 j=4  Tabl j2=4 5   i= 4 s=0 .J2[j2]=22 len(tl)=22 len(tl)=22 [1 1 1 4 22 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 4 0 0 0 0 0 0 0 0 0 0 0 29]  29 [1 1 1 4 22 0 0 0 0 0 0 0 0 0 0 0 29]  29 nw=1
+#1391 tabs  g_newUpdTniks       22 j=4  Tabl j2=4     i= 4 s=0 .J2[j2]=22 len(tl)=22 len(tl)=22 [1 1 1 4 22 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 4 0 0 0 0 0 0 0 0 0 0 0 29]  29 [1 1 1 4 22 0 0 0 0 0 0 0 0 0 0 0 29]  29 nw=1
 plsct=[1 1 1  4 6] j=4 i=5
-#1391 tabs  g_newUpdTniks       23 j=4  Tabl j2=4 7   i= 5 s=0 .J2[j2]=23 len(tl)=23 len(tl)=23 [1 1 1 4 23 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 5 0 0 0 0 0 0 0 0 0 0 0 30]  30 [1 1 1 4 23 0 0 0 0 0 0 0 0 0 0 0 30]  30 nw=1
+#1391 tabs  g_newUpdTniks       23 j=4  Tabl j2=4     i= 5 s=0 .J2[j2]=23 len(tl)=23 len(tl)=23 [1 1 1 4 23 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 5 0 0 0 0 0 0 0 0 0 0 0 30]  30 [1 1 1 4 23 0 0 0 0 0 0 0 0 0 0 0 30]  30 nw=1
 plsct=[1 1 1  5 6] j=3 i=4
 #1391 tabs  g_newUpdTniks        4 j=3  Colm j2=3     i= 4 s=0 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 1 4 24 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 4 6 0 0 0 0 0 0 0 0 0 0 0 31]  31 [1 1 1 4 24 0 0 0 0 0 0 0 0 0 0 0 31]  31 nw=1
 plsct=[1 1 1  5 1] j=4 i=0
-#1391 tabs  g_newUpdTniks       24 j=4  Tabl j2=4 5   i= 0 s=0 .J2[j2]=24 len(tl)=24 len(tl)=24 [1 1 1 5 24 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 6 0 0 0 0 0 0 0 0 0 0 0 32]  32 [1 1 1 5 24 0 0 0 0 0 0 0 0 0 0 0 32]  32 nw=1
+#1391 tabs  g_newUpdTniks       24 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]=24 len(tl)=24 len(tl)=24 [1 1 1 5 24 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 6 0 0 0 0 0 0 0 0 0 0 0 32]  32 [1 1 1 5 24 0 0 0 0 0 0 0 0 0 0 0 32]  32 nw=1
 plsct=[1 1 1  5 2] j=4 i=1
-#1391 tabs  g_newUpdTniks       25 j=4  Tabl j2=4 5   i= 1 s=0 .J2[j2]=25 len(tl)=25 len(tl)=25 [1 1 1 5 25 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 1 0 0 0 0 0 0 0 0 0 0 0 33]  33 [1 1 1 5 25 0 0 0 0 0 0 0 0 0 0 0 33]  33 nw=1
+#1391 tabs  g_newUpdTniks       25 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]=25 len(tl)=25 len(tl)=25 [1 1 1 5 25 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 1 0 0 0 0 0 0 0 0 0 0 0 33]  33 [1 1 1 5 25 0 0 0 0 0 0 0 0 0 0 0 33]  33 nw=1
 plsct=[1 1 1  5 3] j=4 i=2
-#1391 tabs  g_newUpdTniks       26 j=4  Tabl j2=4 6   i= 2 s=0 .J2[j2]=26 len(tl)=26 len(tl)=26 [1 1 1 5 26 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 2 0 0 0 0 0 0 0 0 0 0 0 34]  34 [1 1 1 5 26 0 0 0 0 0 0 0 0 0 0 0 34]  34 nw=1
+#1391 tabs  g_newUpdTniks       26 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]=26 len(tl)=26 len(tl)=26 [1 1 1 5 26 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 2 0 0 0 0 0 0 0 0 0 0 0 34]  34 [1 1 1 5 26 0 0 0 0 0 0 0 0 0 0 0 34]  34 nw=1
 plsct=[1 1 1  5 4] j=4 i=3
-#1391 tabs  g_newUpdTniks       27 j=4  Tabl j2=4 7   i= 3 s=0 .J2[j2]=27 len(tl)=27 len(tl)=27 [1 1 1 5 27 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 3 0 0 0 0 0 0 0 0 0 0 0 35]  35 [1 1 1 5 27 0 0 0 0 0 0 0 0 0 0 0 35]  35 nw=1
+#1391 tabs  g_newUpdTniks       27 j=4  Tabl j2=4     i= 3 s=0 .J2[j2]=27 len(tl)=27 len(tl)=27 [1 1 1 5 27 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 3 0 0 0 0 0 0 0 0 0 0 0 35]  35 [1 1 1 5 27 0 0 0 0 0 0 0 0 0 0 0 35]  35 nw=1
 plsct=[1 1 1  5 5] j=4 i=4
-#1391 tabs  g_newUpdTniks       28 j=4  Tabl j2=4 5   i= 4 s=0 .J2[j2]=28 len(tl)=28 len(tl)=28 [1 1 1 5 28 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 4 0 0 0 0 0 0 0 0 0 0 0 36]  36 [1 1 1 5 28 0 0 0 0 0 0 0 0 0 0 0 36]  36 nw=1
+#1391 tabs  g_newUpdTniks       28 j=4  Tabl j2=4     i= 4 s=0 .J2[j2]=28 len(tl)=28 len(tl)=28 [1 1 1 5 28 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 4 0 0 0 0 0 0 0 0 0 0 0 36]  36 [1 1 1 5 28 0 0 0 0 0 0 0 0 0 0 0 36]  36 nw=1
 plsct=[1 1 1  5 6] j=4 i=5
-#1391 tabs  g_newUpdTniks       29 j=4  Tabl j2=4 7   i= 5 s=0 .J2[j2]=29 len(tl)=29 len(tl)=29 [1 1 1 5 29 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 5 0 0 0 0 0 0 0 0 0 0 0 37]  37 [1 1 1 5 29 0 0 0 0 0 0 0 0 0 0 0 37]  37 nw=1
+#1391 tabs  g_newUpdTniks       29 j=4  Tabl j2=4     i= 5 s=0 .J2[j2]=29 len(tl)=29 len(tl)=29 [1 1 1 5 29 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 5 0 0 0 0 0 0 0 0 0 0 0 37]  37 [1 1 1 5 29 0 0 0 0 0 0 0 0 0 0 0 37]  37 nw=1
 plsct=[1 1 1  6 6] j=3 i=5
 #1391 tabs  g_newUpdTniks        5 j=3  Colm j2=3     i= 5 s=0 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 1 5 30 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 5 6 0 0 0 0 0 0 0 0 0 0 0 38]  38 [1 1 1 5 30 0 0 0 0 0 0 0 0 0 0 0 38]  38 nw=1
 plsct=[1 1 1  6 1] j=4 i=0
@@ -473,73 +473,73 @@ plsct=[1 1 2 10 6] j=2 i=1
 plsct=[1 1 2 11 6] j=3 i=10
 #1391 tabs  g_newUpdTniks       10 j=3  Colm j2=3     i=10 s=1 .J2[j2]=10 len(tl)=10 len(tl)=10 [1 1 2 10 60 0 0 0 0 0 0 0 0 0 0 0] [1 1 2 10 6 0 0 0 0 0 0 0 0 0 0 0 74]  74 [1 1 2 10 60 0 0 0 0 0 0 0 0 0 0 0 74]  74 nw=1
 plsct=[1 1 2 11 1] j=5 i=0
-#1391 tabs  g_newUpdTniks        0 j=5  Note j2=5 5   i= 0 s=1 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 0 0 0 0 0 0 0 0 0 0 0 75]  75 [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75]  75 nw=1
+#1391 tabs  g_newUpdTniks        0 j=5  Note j2=5     i= 0 s=1 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 0 0 0 0 0 0 0 0 0 0 0 75]  75 [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75]  75 nw=1
 plsct=[1 1 2 11 2] j=5 i=1
-#1391 tabs  g_newUpdTniks        1 j=5  Note j2=5 5   i= 1 s=1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 1 0 0 0 0 0 0 0 0 0 0 76]  76 [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76]  76 nw=1
+#1391 tabs  g_newUpdTniks        1 j=5  Note j2=5     i= 1 s=1 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 1 0 0 0 0 0 0 0 0 0 0 76]  76 [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76]  76 nw=1
 plsct=[1 1 2 11 3] j=5 i=2
-#1391 tabs  g_newUpdTniks        2 j=5  Note j2=5 6   i= 2 s=1 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 2 0 0 0 0 0 0 0 0 0 0 77]  77 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 nw=1
+#1391 tabs  g_newUpdTniks        2 j=5  Note j2=5     i= 2 s=1 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 2 0 0 0 0 0 0 0 0 0 0 77]  77 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 nw=1
 plsct=[1 1 2 11 4] j=5 i=3
-#1391 tabs  g_newUpdTniks        3 j=5  Note j2=5 7   i= 3 s=1 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=1
+#1391 tabs  g_newUpdTniks        3 j=5  Note j2=5 0   i= 3 s=1 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=1
 plsct=[1 1 2 11 5] j=5 i=4
-#1391 tabs  g_newUpdTniks        4 j=5  Note j2=5 5   i= 4 s=1 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=1
+#1391 tabs  g_newUpdTniks        4 j=5  Note j2=5 2   i= 4 s=1 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=1
 plsct=[1 1 2 11 6] j=5 i=5
-#1391 tabs  g_newUpdTniks        5 j=5  Note j2=5 7   i= 5 s=1 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 5 0 0 0 0 0 0 0 0 0 0 80]  80 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 nw=1
+#1391 tabs  g_newUpdTniks        5 j=5  Note j2=5 3   i= 5 s=1 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 5 0 0 0 0 0 0 0 0 0 0 80]  80 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 nw=1
 plsct=[1 1 2 12 6] j=3 i=11
 #1391 tabs  g_newUpdTniks       11 j=3  Colm j2=3     i=11 s=1 .J2[j2]=11 len(tl)=11 len(tl)=11 [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 6 0 0 0 0 0 0 0 0 0 0 81]  81 [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0 81]  81 nw=1
 plsct=[1 1 2 12 1] j=5 i=0
-#1391 tabs  g_newUpdTniks        6 j=5  Note j2=5 5   i= 0 s=1 .J2[j2]= 6 len(tl)= 6 len(tl)= 6 [1 1 2 12 60 6 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 6 0 0 0 0 0 0 0 0 0 0 82]  82 [1 1 2 12 60 6 0 0 0 0 0 0 0 0 0 0 82]  82 nw=1
+#1391 tabs  g_newUpdTniks        6 j=5  Note j2=5     i= 0 s=1 .J2[j2]= 6 len(tl)= 6 len(tl)= 6 [1 1 2 12 60 6 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 6 0 0 0 0 0 0 0 0 0 0 82]  82 [1 1 2 12 60 6 0 0 0 0 0 0 0 0 0 0 82]  82 nw=1
 plsct=[1 1 2 12 2] j=5 i=1
-#1391 tabs  g_newUpdTniks        7 j=5  Note j2=5 5   i= 1 s=1 .J2[j2]= 7 len(tl)= 7 len(tl)= 7 [1 1 2 12 60 7 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 1 0 0 0 0 0 0 0 0 0 0 83]  83 [1 1 2 12 60 7 0 0 0 0 0 0 0 0 0 0 83]  83 nw=1
+#1391 tabs  g_newUpdTniks        7 j=5  Note j2=5     i= 1 s=1 .J2[j2]= 7 len(tl)= 7 len(tl)= 7 [1 1 2 12 60 7 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 1 0 0 0 0 0 0 0 0 0 0 83]  83 [1 1 2 12 60 7 0 0 0 0 0 0 0 0 0 0 83]  83 nw=1
 plsct=[1 1 2 12 3] j=5 i=2
-#1391 tabs  g_newUpdTniks        8 j=5  Note j2=5 6   i= 2 s=1 .J2[j2]= 8 len(tl)= 8 len(tl)= 8 [1 1 2 12 60 8 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 2 0 0 0 0 0 0 0 0 0 0 84]  84 [1 1 2 12 60 8 0 0 0 0 0 0 0 0 0 0 84]  84 nw=1
+#1391 tabs  g_newUpdTniks        8 j=5  Note j2=5     i= 2 s=1 .J2[j2]= 8 len(tl)= 8 len(tl)= 8 [1 1 2 12 60 8 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 2 0 0 0 0 0 0 0 0 0 0 84]  84 [1 1 2 12 60 8 0 0 0 0 0 0 0 0 0 0 84]  84 nw=1
 plsct=[1 1 2 12 4] j=5 i=3
-#1391 tabs  g_newUpdTniks        9 j=5  Note j2=5 7   i= 3 s=1 .J2[j2]= 9 len(tl)= 9 len(tl)= 9 [1 1 2 12 60 9 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 3 0 0 0 0 0 0 0 0 0 0 85]  85 [1 1 2 12 60 9 0 0 0 0 0 0 0 0 0 0 85]  85 nw=1
+#1391 tabs  g_newUpdTniks        9 j=5  Note j2=5     i= 3 s=1 .J2[j2]= 9 len(tl)= 9 len(tl)= 9 [1 1 2 12 60 9 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 3 0 0 0 0 0 0 0 0 0 0 85]  85 [1 1 2 12 60 9 0 0 0 0 0 0 0 0 0 0 85]  85 nw=1
 plsct=[1 1 2 12 5] j=5 i=4
-#1391 tabs  g_newUpdTniks       10 j=5  Note j2=5 5   i= 4 s=1 .J2[j2]=10 len(tl)=10 len(tl)=10 [1 1 2 12 60 10 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 4 0 0 0 0 0 0 0 0 0 0 86]  86 [1 1 2 12 60 10 0 0 0 0 0 0 0 0 0 0 86]  86 nw=1
+#1391 tabs  g_newUpdTniks       10 j=5  Note j2=5     i= 4 s=1 .J2[j2]=10 len(tl)=10 len(tl)=10 [1 1 2 12 60 10 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 4 0 0 0 0 0 0 0 0 0 0 86]  86 [1 1 2 12 60 10 0 0 0 0 0 0 0 0 0 0 86]  86 nw=1
 plsct=[1 1 2 12 6] j=5 i=5
-#1391 tabs  g_newUpdTniks       11 j=5  Note j2=5 7   i= 5 s=1 .J2[j2]=11 len(tl)=11 len(tl)=11 [1 1 2 12 60 11 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 5 0 0 0 0 0 0 0 0 0 0 87]  87 [1 1 2 12 60 11 0 0 0 0 0 0 0 0 0 0 87]  87 nw=1
+#1391 tabs  g_newUpdTniks       11 j=5  Note j2=5     i= 5 s=1 .J2[j2]=11 len(tl)=11 len(tl)=11 [1 1 2 12 60 11 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 5 0 0 0 0 0 0 0 0 0 0 87]  87 [1 1 2 12 60 11 0 0 0 0 0 0 0 0 0 0 87]  87 nw=1
 plsct=[1 1 2 13 6] j=3 i=12
 #1391 tabs  g_newUpdTniks       12 j=3  Colm j2=3     i=12 s=1 .J2[j2]=12 len(tl)=12 len(tl)=12 [1 1 2 12 60 12 0 0 0 0 0 0 0 0 0 0] [1 1 2 12 6 6 0 0 0 0 0 0 0 0 0 0 88]  88 [1 1 2 12 60 12 0 0 0 0 0 0 0 0 0 0 88]  88 nw=1
 plsct=[1 1 2 13 1] j=5 i=0
-#1391 tabs  g_newUpdTniks       12 j=5  Note j2=5 5   i= 0 s=1 .J2[j2]=12 len(tl)=12 len(tl)=12 [1 1 2 13 60 12 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 6 0 0 0 0 0 0 0 0 0 0 89]  89 [1 1 2 13 60 12 0 0 0 0 0 0 0 0 0 0 89]  89 nw=1
+#1391 tabs  g_newUpdTniks       12 j=5  Note j2=5     i= 0 s=1 .J2[j2]=12 len(tl)=12 len(tl)=12 [1 1 2 13 60 12 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 6 0 0 0 0 0 0 0 0 0 0 89]  89 [1 1 2 13 60 12 0 0 0 0 0 0 0 0 0 0 89]  89 nw=1
 plsct=[1 1 2 13 2] j=5 i=1
-#1391 tabs  g_newUpdTniks       13 j=5  Note j2=5 5   i= 1 s=1 .J2[j2]=13 len(tl)=13 len(tl)=13 [1 1 2 13 60 13 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 1 0 0 0 0 0 0 0 0 0 0 90]  90 [1 1 2 13 60 13 0 0 0 0 0 0 0 0 0 0 90]  90 nw=1
+#1391 tabs  g_newUpdTniks       13 j=5  Note j2=5     i= 1 s=1 .J2[j2]=13 len(tl)=13 len(tl)=13 [1 1 2 13 60 13 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 1 0 0 0 0 0 0 0 0 0 0 90]  90 [1 1 2 13 60 13 0 0 0 0 0 0 0 0 0 0 90]  90 nw=1
 plsct=[1 1 2 13 3] j=5 i=2
-#1391 tabs  g_newUpdTniks       14 j=5  Note j2=5 6   i= 2 s=1 .J2[j2]=14 len(tl)=14 len(tl)=14 [1 1 2 13 60 14 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 2 0 0 0 0 0 0 0 0 0 0 91]  91 [1 1 2 13 60 14 0 0 0 0 0 0 0 0 0 0 91]  91 nw=1
+#1391 tabs  g_newUpdTniks       14 j=5  Note j2=5     i= 2 s=1 .J2[j2]=14 len(tl)=14 len(tl)=14 [1 1 2 13 60 14 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 2 0 0 0 0 0 0 0 0 0 0 91]  91 [1 1 2 13 60 14 0 0 0 0 0 0 0 0 0 0 91]  91 nw=1
 plsct=[1 1 2 13 4] j=5 i=3
-#1391 tabs  g_newUpdTniks       15 j=5  Note j2=5 7   i= 3 s=1 .J2[j2]=15 len(tl)=15 len(tl)=15 [1 1 2 13 60 15 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 3 0 0 0 0 0 0 0 0 0 0 92]  92 [1 1 2 13 60 15 0 0 0 0 0 0 0 0 0 0 92]  92 nw=1
+#1391 tabs  g_newUpdTniks       15 j=5  Note j2=5     i= 3 s=1 .J2[j2]=15 len(tl)=15 len(tl)=15 [1 1 2 13 60 15 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 3 0 0 0 0 0 0 0 0 0 0 92]  92 [1 1 2 13 60 15 0 0 0 0 0 0 0 0 0 0 92]  92 nw=1
 plsct=[1 1 2 13 5] j=5 i=4
-#1391 tabs  g_newUpdTniks       16 j=5  Note j2=5 5   i= 4 s=1 .J2[j2]=16 len(tl)=16 len(tl)=16 [1 1 2 13 60 16 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 4 0 0 0 0 0 0 0 0 0 0 93]  93 [1 1 2 13 60 16 0 0 0 0 0 0 0 0 0 0 93]  93 nw=1
+#1391 tabs  g_newUpdTniks       16 j=5  Note j2=5     i= 4 s=1 .J2[j2]=16 len(tl)=16 len(tl)=16 [1 1 2 13 60 16 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 4 0 0 0 0 0 0 0 0 0 0 93]  93 [1 1 2 13 60 16 0 0 0 0 0 0 0 0 0 0 93]  93 nw=1
 plsct=[1 1 2 13 6] j=5 i=5
-#1391 tabs  g_newUpdTniks       17 j=5  Note j2=5 7   i= 5 s=1 .J2[j2]=17 len(tl)=17 len(tl)=17 [1 1 2 13 60 17 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 5 0 0 0 0 0 0 0 0 0 0 94]  94 [1 1 2 13 60 17 0 0 0 0 0 0 0 0 0 0 94]  94 nw=1
+#1391 tabs  g_newUpdTniks       17 j=5  Note j2=5     i= 5 s=1 .J2[j2]=17 len(tl)=17 len(tl)=17 [1 1 2 13 60 17 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 5 0 0 0 0 0 0 0 0 0 0 94]  94 [1 1 2 13 60 17 0 0 0 0 0 0 0 0 0 0 94]  94 nw=1
 plsct=[1 1 2 14 6] j=3 i=13
 #1391 tabs  g_newUpdTniks       13 j=3  Colm j2=3     i=13 s=1 .J2[j2]=13 len(tl)=13 len(tl)=13 [1 1 2 13 60 18 0 0 0 0 0 0 0 0 0 0] [1 1 2 13 6 6 0 0 0 0 0 0 0 0 0 0 95]  95 [1 1 2 13 60 18 0 0 0 0 0 0 0 0 0 0 95]  95 nw=1
 plsct=[1 1 2 14 1] j=5 i=0
-#1391 tabs  g_newUpdTniks       18 j=5  Note j2=5 5   i= 0 s=1 .J2[j2]=18 len(tl)=18 len(tl)=18 [1 1 2 14 60 18 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 6 0 0 0 0 0 0 0 0 0 0 96]  96 [1 1 2 14 60 18 0 0 0 0 0 0 0 0 0 0 96]  96 nw=1
+#1391 tabs  g_newUpdTniks       18 j=5  Note j2=5     i= 0 s=1 .J2[j2]=18 len(tl)=18 len(tl)=18 [1 1 2 14 60 18 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 6 0 0 0 0 0 0 0 0 0 0 96]  96 [1 1 2 14 60 18 0 0 0 0 0 0 0 0 0 0 96]  96 nw=1
 plsct=[1 1 2 14 2] j=5 i=1
-#1391 tabs  g_newUpdTniks       19 j=5  Note j2=5 5   i= 1 s=1 .J2[j2]=19 len(tl)=19 len(tl)=19 [1 1 2 14 60 19 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 1 0 0 0 0 0 0 0 0 0 0 97]  97 [1 1 2 14 60 19 0 0 0 0 0 0 0 0 0 0 97]  97 nw=1
+#1391 tabs  g_newUpdTniks       19 j=5  Note j2=5     i= 1 s=1 .J2[j2]=19 len(tl)=19 len(tl)=19 [1 1 2 14 60 19 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 1 0 0 0 0 0 0 0 0 0 0 97]  97 [1 1 2 14 60 19 0 0 0 0 0 0 0 0 0 0 97]  97 nw=1
 plsct=[1 1 2 14 3] j=5 i=2
-#1391 tabs  g_newUpdTniks       20 j=5  Note j2=5 6   i= 2 s=1 .J2[j2]=20 len(tl)=20 len(tl)=20 [1 1 2 14 60 20 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 2 0 0 0 0 0 0 0 0 0 0 98]  98 [1 1 2 14 60 20 0 0 0 0 0 0 0 0 0 0 98]  98 nw=1
+#1391 tabs  g_newUpdTniks       20 j=5  Note j2=5     i= 2 s=1 .J2[j2]=20 len(tl)=20 len(tl)=20 [1 1 2 14 60 20 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 2 0 0 0 0 0 0 0 0 0 0 98]  98 [1 1 2 14 60 20 0 0 0 0 0 0 0 0 0 0 98]  98 nw=1
 plsct=[1 1 2 14 4] j=5 i=3
-#1391 tabs  g_newUpdTniks       21 j=5  Note j2=5 7   i= 3 s=1 .J2[j2]=21 len(tl)=21 len(tl)=21 [1 1 2 14 60 21 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 3 0 0 0 0 0 0 0 0 0 0 99]  99 [1 1 2 14 60 21 0 0 0 0 0 0 0 0 0 0 99]  99 nw=1
+#1391 tabs  g_newUpdTniks       21 j=5  Note j2=5     i= 3 s=1 .J2[j2]=21 len(tl)=21 len(tl)=21 [1 1 2 14 60 21 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 3 0 0 0 0 0 0 0 0 0 0 99]  99 [1 1 2 14 60 21 0 0 0 0 0 0 0 0 0 0 99]  99 nw=1
 plsct=[1 1 2 14 5] j=5 i=4
-#1391 tabs  g_newUpdTniks       22 j=5  Note j2=5 5   i= 4 s=1 .J2[j2]=22 len(tl)=22 len(tl)=22 [1 1 2 14 60 22 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 4 0 0 0 0 0 0 0 0 0 0 100] 100 [1 1 2 14 60 22 0 0 0 0 0 0 0 0 0 0 100] 100 nw=1
+#1391 tabs  g_newUpdTniks       22 j=5  Note j2=5     i= 4 s=1 .J2[j2]=22 len(tl)=22 len(tl)=22 [1 1 2 14 60 22 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 4 0 0 0 0 0 0 0 0 0 0 100] 100 [1 1 2 14 60 22 0 0 0 0 0 0 0 0 0 0 100] 100 nw=1
 plsct=[1 1 2 14 6] j=5 i=5
-#1391 tabs  g_newUpdTniks       23 j=5  Note j2=5 7   i= 5 s=1 .J2[j2]=23 len(tl)=23 len(tl)=23 [1 1 2 14 60 23 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 5 0 0 0 0 0 0 0 0 0 0 101] 101 [1 1 2 14 60 23 0 0 0 0 0 0 0 0 0 0 101] 101 nw=1
+#1391 tabs  g_newUpdTniks       23 j=5  Note j2=5     i= 5 s=1 .J2[j2]=23 len(tl)=23 len(tl)=23 [1 1 2 14 60 23 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 5 0 0 0 0 0 0 0 0 0 0 101] 101 [1 1 2 14 60 23 0 0 0 0 0 0 0 0 0 0 101] 101 nw=1
 plsct=[1 1 2 15 6] j=3 i=14
 #1391 tabs  g_newUpdTniks       14 j=3  Colm j2=3     i=14 s=1 .J2[j2]=14 len(tl)=14 len(tl)=14 [1 1 2 14 60 24 0 0 0 0 0 0 0 0 0 0] [1 1 2 14 6 6 0 0 0 0 0 0 0 0 0 0 102] 102 [1 1 2 14 60 24 0 0 0 0 0 0 0 0 0 0 102] 102 nw=1
 plsct=[1 1 2 15 1] j=5 i=0
-#1391 tabs  g_newUpdTniks       24 j=5  Note j2=5 5   i= 0 s=1 .J2[j2]=24 len(tl)=24 len(tl)=24 [1 1 2 15 60 24 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 6 0 0 0 0 0 0 0 0 0 0 103] 103 [1 1 2 15 60 24 0 0 0 0 0 0 0 0 0 0 103] 103 nw=1
+#1391 tabs  g_newUpdTniks       24 j=5  Note j2=5     i= 0 s=1 .J2[j2]=24 len(tl)=24 len(tl)=24 [1 1 2 15 60 24 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 6 0 0 0 0 0 0 0 0 0 0 103] 103 [1 1 2 15 60 24 0 0 0 0 0 0 0 0 0 0 103] 103 nw=1
 plsct=[1 1 2 15 2] j=5 i=1
-#1391 tabs  g_newUpdTniks       25 j=5  Note j2=5 5   i= 1 s=1 .J2[j2]=25 len(tl)=25 len(tl)=25 [1 1 2 15 60 25 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 1 0 0 0 0 0 0 0 0 0 0 104] 104 [1 1 2 15 60 25 0 0 0 0 0 0 0 0 0 0 104] 104 nw=1
+#1391 tabs  g_newUpdTniks       25 j=5  Note j2=5     i= 1 s=1 .J2[j2]=25 len(tl)=25 len(tl)=25 [1 1 2 15 60 25 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 1 0 0 0 0 0 0 0 0 0 0 104] 104 [1 1 2 15 60 25 0 0 0 0 0 0 0 0 0 0 104] 104 nw=1
 plsct=[1 1 2 15 3] j=5 i=2
-#1391 tabs  g_newUpdTniks       26 j=5  Note j2=5 6   i= 2 s=1 .J2[j2]=26 len(tl)=26 len(tl)=26 [1 1 2 15 60 26 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 2 0 0 0 0 0 0 0 0 0 0 105] 105 [1 1 2 15 60 26 0 0 0 0 0 0 0 0 0 0 105] 105 nw=1
+#1391 tabs  g_newUpdTniks       26 j=5  Note j2=5     i= 2 s=1 .J2[j2]=26 len(tl)=26 len(tl)=26 [1 1 2 15 60 26 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 2 0 0 0 0 0 0 0 0 0 0 105] 105 [1 1 2 15 60 26 0 0 0 0 0 0 0 0 0 0 105] 105 nw=1
 plsct=[1 1 2 15 4] j=5 i=3
-#1391 tabs  g_newUpdTniks       27 j=5  Note j2=5 7   i= 3 s=1 .J2[j2]=27 len(tl)=27 len(tl)=27 [1 1 2 15 60 27 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 3 0 0 0 0 0 0 0 0 0 0 106] 106 [1 1 2 15 60 27 0 0 0 0 0 0 0 0 0 0 106] 106 nw=1
+#1391 tabs  g_newUpdTniks       27 j=5  Note j2=5     i= 3 s=1 .J2[j2]=27 len(tl)=27 len(tl)=27 [1 1 2 15 60 27 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 3 0 0 0 0 0 0 0 0 0 0 106] 106 [1 1 2 15 60 27 0 0 0 0 0 0 0 0 0 0 106] 106 nw=1
 plsct=[1 1 2 15 5] j=5 i=4
-#1391 tabs  g_newUpdTniks       28 j=5  Note j2=5 5   i= 4 s=1 .J2[j2]=28 len(tl)=28 len(tl)=28 [1 1 2 15 60 28 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 4 0 0 0 0 0 0 0 0 0 0 107] 107 [1 1 2 15 60 28 0 0 0 0 0 0 0 0 0 0 107] 107 nw=1
+#1391 tabs  g_newUpdTniks       28 j=5  Note j2=5     i= 4 s=1 .J2[j2]=28 len(tl)=28 len(tl)=28 [1 1 2 15 60 28 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 4 0 0 0 0 0 0 0 0 0 0 107] 107 [1 1 2 15 60 28 0 0 0 0 0 0 0 0 0 0 107] 107 nw=1
 plsct=[1 1 2 15 6] j=5 i=5
-#1391 tabs  g_newUpdTniks       29 j=5  Note j2=5 7   i= 5 s=1 .J2[j2]=29 len(tl)=29 len(tl)=29 [1 1 2 15 60 29 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 5 0 0 0 0 0 0 0 0 0 0 108] 108 [1 1 2 15 60 29 0 0 0 0 0 0 0 0 0 0 108] 108 nw=1
+#1391 tabs  g_newUpdTniks       29 j=5  Note j2=5     i= 5 s=1 .J2[j2]=29 len(tl)=29 len(tl)=29 [1 1 2 15 60 29 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 5 0 0 0 0 0 0 0 0 0 0 108] 108 [1 1 2 15 60 29 0 0 0 0 0 0 0 0 0 0 108] 108 nw=1
 plsct=[1 1 2 16 6] j=3 i=15
 #1391 tabs  g_newUpdTniks       15 j=3  Colm j2=3     i=15 s=1 .J2[j2]=15 len(tl)=15 len(tl)=15 [1 1 2 15 60 30 0 0 0 0 0 0 0 0 0 0] [1 1 2 15 6 6 0 0 0 0 0 0 0 0 0 0 109] 109 [1 1 2 15 60 30 0 0 0 0 0 0 0 0 0 0 109] 109 nw=1
 plsct=[1 1 2 16 1] j=5 i=0
@@ -615,73 +615,73 @@ plsct=[1 1 3 20 6] j=2 i=2
 plsct=[1 1 3 21 6] j=3 i=20
 #1391 tabs  g_newUpdTniks       20 j=3  Colm j2=3     i=20 s=3 .J2[j2]=20 len(tl)=20 len(tl)=20 [1 1 3 20 60 60 0 0 0 0 0 0 0 0 0 0] [1 1 3 20 6 6 0 0 0 0 0 0 0 0 0 0 145] 145 [1 1 3 20 60 60 0 0 0 0 0 0 0 0 0 0 145] 145 nw=1
 plsct=[1 1 3 21 1] j=6 i=0
-#1391 tabs  g_newUpdTniks        0 j=7  Kord j2=7 5   i= 0 s=3 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 0 0 0 0 0 0 0 0 0 146] 146 [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146] 146 nw=1
+#1391 tabs  g_newUpdTniks        0 j=7  Kord j2=7     i= 0 s=3 .J2[j2]= 0 len(tl)= 0 len(tl)= 0 [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 0 0 0 0 0 0 0 0 0 146] 146 [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146] 146 nw=1
 plsct=[1 1 3 21 2] j=6 i=1
-#1391 tabs  g_newUpdTniks        1 j=7  Kord j2=7 5   i= 1 s=3 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 1 0 0 0 0 0 0 0 0 147] 147 [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147] 147 nw=1
+#1391 tabs  g_newUpdTniks        1 j=7  Kord j2=7     i= 1 s=3 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 1 0 0 0 0 0 0 0 0 147] 147 [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147] 147 nw=1
 plsct=[1 1 3 21 3] j=6 i=2
-#1391 tabs  g_newUpdTniks        2 j=7  Kord j2=7 6   i= 2 s=3 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 2 0 0 0 0 0 0 0 0 148] 148 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148] 148 nw=1
+#1391 tabs  g_newUpdTniks        2 j=7  Kord j2=7     i= 2 s=3 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 2 0 0 0 0 0 0 0 0 148] 148 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148] 148 nw=1
 plsct=[1 1 3 21 4] j=6 i=3
-#1391 tabs  g_newUpdTniks        3 j=7  Kord j2=7 7   i= 3 s=3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 3 0 0 0 0 0 0 0 0 149] 149 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 nw=1
+#1391 tabs  g_newUpdTniks        3 j=7  Kord j2=7 0   i= 3 s=3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 3 0 0 0 0 0 0 0 0 149] 149 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 nw=1
 plsct=[1 1 3 21 5] j=6 i=4
-#1391 tabs  g_newUpdTniks        4 j=7  Kord j2=7 5   i= 4 s=3 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 4 0 0 0 0 0 0 0 0 150] 150 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 nw=1
+#1391 tabs  g_newUpdTniks        4 j=7  Kord j2=7 2   i= 4 s=3 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 4 0 0 0 0 0 0 0 0 150] 150 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 nw=1
 plsct=[1 1 3 21 6] j=6 i=5
-#1391 tabs  g_newUpdTniks        5 j=7  Kord j2=7 7   i= 5 s=3 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 5 0 0 0 0 0 0 0 0 151] 151 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 nw=1
+#1391 tabs  g_newUpdTniks        5 j=7  Kord j2=7 3   i= 5 s=3 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 5 0 0 0 0 0 0 0 0 151] 151 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 nw=1
 plsct=[1 1 3 22 6] j=3 i=21
 #1391 tabs  g_newUpdTniks       21 j=3  Colm j2=3     i=21 s=3 .J2[j2]=21 len(tl)=21 len(tl)=21 [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 6 0 0 0 0 0 0 0 0 152] 152 [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0 152] 152 nw=1
 plsct=[1 1 3 22 1] j=6 i=0
-#1391 tabs  g_newUpdTniks        6 j=7  Kord j2=7 5   i= 0 s=3 .J2[j2]= 6 len(tl)= 6 len(tl)= 6 [1 1 3 22 60 60 0 6 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 6 0 0 0 0 0 0 0 0 153] 153 [1 1 3 22 60 60 0 6 0 0 0 0 0 0 0 0 153] 153 nw=1
+#1391 tabs  g_newUpdTniks        6 j=7  Kord j2=7     i= 0 s=3 .J2[j2]= 6 len(tl)= 6 len(tl)= 6 [1 1 3 22 60 60 0 6 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 6 0 0 0 0 0 0 0 0 153] 153 [1 1 3 22 60 60 0 6 0 0 0 0 0 0 0 0 153] 153 nw=1
 plsct=[1 1 3 22 2] j=6 i=1
-#1391 tabs  g_newUpdTniks        7 j=7  Kord j2=7 5   i= 1 s=3 .J2[j2]= 7 len(tl)= 7 len(tl)= 7 [1 1 3 22 60 60 0 7 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 1 0 0 0 0 0 0 0 0 154] 154 [1 1 3 22 60 60 0 7 0 0 0 0 0 0 0 0 154] 154 nw=1
+#1391 tabs  g_newUpdTniks        7 j=7  Kord j2=7     i= 1 s=3 .J2[j2]= 7 len(tl)= 7 len(tl)= 7 [1 1 3 22 60 60 0 7 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 1 0 0 0 0 0 0 0 0 154] 154 [1 1 3 22 60 60 0 7 0 0 0 0 0 0 0 0 154] 154 nw=1
 plsct=[1 1 3 22 3] j=6 i=2
-#1391 tabs  g_newUpdTniks        8 j=7  Kord j2=7 6   i= 2 s=3 .J2[j2]= 8 len(tl)= 8 len(tl)= 8 [1 1 3 22 60 60 0 8 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 2 0 0 0 0 0 0 0 0 155] 155 [1 1 3 22 60 60 0 8 0 0 0 0 0 0 0 0 155] 155 nw=1
+#1391 tabs  g_newUpdTniks        8 j=7  Kord j2=7     i= 2 s=3 .J2[j2]= 8 len(tl)= 8 len(tl)= 8 [1 1 3 22 60 60 0 8 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 2 0 0 0 0 0 0 0 0 155] 155 [1 1 3 22 60 60 0 8 0 0 0 0 0 0 0 0 155] 155 nw=1
 plsct=[1 1 3 22 4] j=6 i=3
-#1391 tabs  g_newUpdTniks        9 j=7  Kord j2=7 7   i= 3 s=3 .J2[j2]= 9 len(tl)= 9 len(tl)= 9 [1 1 3 22 60 60 0 9 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 3 0 0 0 0 0 0 0 0 156] 156 [1 1 3 22 60 60 0 9 0 0 0 0 0 0 0 0 156] 156 nw=1
+#1391 tabs  g_newUpdTniks        9 j=7  Kord j2=7     i= 3 s=3 .J2[j2]= 9 len(tl)= 9 len(tl)= 9 [1 1 3 22 60 60 0 9 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 3 0 0 0 0 0 0 0 0 156] 156 [1 1 3 22 60 60 0 9 0 0 0 0 0 0 0 0 156] 156 nw=1
 plsct=[1 1 3 22 5] j=6 i=4
-#1391 tabs  g_newUpdTniks       10 j=7  Kord j2=7 5   i= 4 s=3 .J2[j2]=10 len(tl)=10 len(tl)=10 [1 1 3 22 60 60 0 10 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 4 0 0 0 0 0 0 0 0 157] 157 [1 1 3 22 60 60 0 10 0 0 0 0 0 0 0 0 157] 157 nw=1
+#1391 tabs  g_newUpdTniks       10 j=7  Kord j2=7     i= 4 s=3 .J2[j2]=10 len(tl)=10 len(tl)=10 [1 1 3 22 60 60 0 10 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 4 0 0 0 0 0 0 0 0 157] 157 [1 1 3 22 60 60 0 10 0 0 0 0 0 0 0 0 157] 157 nw=1
 plsct=[1 1 3 22 6] j=6 i=5
-#1391 tabs  g_newUpdTniks       11 j=7  Kord j2=7 7   i= 5 s=3 .J2[j2]=11 len(tl)=11 len(tl)=11 [1 1 3 22 60 60 0 11 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 5 0 0 0 0 0 0 0 0 158] 158 [1 1 3 22 60 60 0 11 0 0 0 0 0 0 0 0 158] 158 nw=1
+#1391 tabs  g_newUpdTniks       11 j=7  Kord j2=7     i= 5 s=3 .J2[j2]=11 len(tl)=11 len(tl)=11 [1 1 3 22 60 60 0 11 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 5 0 0 0 0 0 0 0 0 158] 158 [1 1 3 22 60 60 0 11 0 0 0 0 0 0 0 0 158] 158 nw=1
 plsct=[1 1 3 23 6] j=3 i=22
 #1391 tabs  g_newUpdTniks       22 j=3  Colm j2=3     i=22 s=3 .J2[j2]=22 len(tl)=22 len(tl)=22 [1 1 3 22 60 60 0 12 0 0 0 0 0 0 0 0] [1 1 3 22 6 6 0 6 0 0 0 0 0 0 0 0 159] 159 [1 1 3 22 60 60 0 12 0 0 0 0 0 0 0 0 159] 159 nw=1
 plsct=[1 1 3 23 1] j=6 i=0
-#1391 tabs  g_newUpdTniks       12 j=7  Kord j2=7 5   i= 0 s=3 .J2[j2]=12 len(tl)=12 len(tl)=12 [1 1 3 23 60 60 0 12 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 6 0 0 0 0 0 0 0 0 160] 160 [1 1 3 23 60 60 0 12 0 0 0 0 0 0 0 0 160] 160 nw=1
+#1391 tabs  g_newUpdTniks       12 j=7  Kord j2=7     i= 0 s=3 .J2[j2]=12 len(tl)=12 len(tl)=12 [1 1 3 23 60 60 0 12 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 6 0 0 0 0 0 0 0 0 160] 160 [1 1 3 23 60 60 0 12 0 0 0 0 0 0 0 0 160] 160 nw=1
 plsct=[1 1 3 23 2] j=6 i=1
-#1391 tabs  g_newUpdTniks       13 j=7  Kord j2=7 5   i= 1 s=3 .J2[j2]=13 len(tl)=13 len(tl)=13 [1 1 3 23 60 60 0 13 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 1 0 0 0 0 0 0 0 0 161] 161 [1 1 3 23 60 60 0 13 0 0 0 0 0 0 0 0 161] 161 nw=1
+#1391 tabs  g_newUpdTniks       13 j=7  Kord j2=7     i= 1 s=3 .J2[j2]=13 len(tl)=13 len(tl)=13 [1 1 3 23 60 60 0 13 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 1 0 0 0 0 0 0 0 0 161] 161 [1 1 3 23 60 60 0 13 0 0 0 0 0 0 0 0 161] 161 nw=1
 plsct=[1 1 3 23 3] j=6 i=2
-#1391 tabs  g_newUpdTniks       14 j=7  Kord j2=7 6   i= 2 s=3 .J2[j2]=14 len(tl)=14 len(tl)=14 [1 1 3 23 60 60 0 14 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 2 0 0 0 0 0 0 0 0 162] 162 [1 1 3 23 60 60 0 14 0 0 0 0 0 0 0 0 162] 162 nw=1
+#1391 tabs  g_newUpdTniks       14 j=7  Kord j2=7     i= 2 s=3 .J2[j2]=14 len(tl)=14 len(tl)=14 [1 1 3 23 60 60 0 14 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 2 0 0 0 0 0 0 0 0 162] 162 [1 1 3 23 60 60 0 14 0 0 0 0 0 0 0 0 162] 162 nw=1
 plsct=[1 1 3 23 4] j=6 i=3
-#1391 tabs  g_newUpdTniks       15 j=7  Kord j2=7 7   i= 3 s=3 .J2[j2]=15 len(tl)=15 len(tl)=15 [1 1 3 23 60 60 0 15 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 3 0 0 0 0 0 0 0 0 163] 163 [1 1 3 23 60 60 0 15 0 0 0 0 0 0 0 0 163] 163 nw=1
+#1391 tabs  g_newUpdTniks       15 j=7  Kord j2=7     i= 3 s=3 .J2[j2]=15 len(tl)=15 len(tl)=15 [1 1 3 23 60 60 0 15 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 3 0 0 0 0 0 0 0 0 163] 163 [1 1 3 23 60 60 0 15 0 0 0 0 0 0 0 0 163] 163 nw=1
 plsct=[1 1 3 23 5] j=6 i=4
-#1391 tabs  g_newUpdTniks       16 j=7  Kord j2=7 5   i= 4 s=3 .J2[j2]=16 len(tl)=16 len(tl)=16 [1 1 3 23 60 60 0 16 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 4 0 0 0 0 0 0 0 0 164] 164 [1 1 3 23 60 60 0 16 0 0 0 0 0 0 0 0 164] 164 nw=1
+#1391 tabs  g_newUpdTniks       16 j=7  Kord j2=7     i= 4 s=3 .J2[j2]=16 len(tl)=16 len(tl)=16 [1 1 3 23 60 60 0 16 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 4 0 0 0 0 0 0 0 0 164] 164 [1 1 3 23 60 60 0 16 0 0 0 0 0 0 0 0 164] 164 nw=1
 plsct=[1 1 3 23 6] j=6 i=5
-#1391 tabs  g_newUpdTniks       17 j=7  Kord j2=7 7   i= 5 s=3 .J2[j2]=17 len(tl)=17 len(tl)=17 [1 1 3 23 60 60 0 17 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 5 0 0 0 0 0 0 0 0 165] 165 [1 1 3 23 60 60 0 17 0 0 0 0 0 0 0 0 165] 165 nw=1
+#1391 tabs  g_newUpdTniks       17 j=7  Kord j2=7     i= 5 s=3 .J2[j2]=17 len(tl)=17 len(tl)=17 [1 1 3 23 60 60 0 17 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 5 0 0 0 0 0 0 0 0 165] 165 [1 1 3 23 60 60 0 17 0 0 0 0 0 0 0 0 165] 165 nw=1
 plsct=[1 1 3 24 6] j=3 i=23
 #1391 tabs  g_newUpdTniks       23 j=3  Colm j2=3     i=23 s=3 .J2[j2]=23 len(tl)=23 len(tl)=23 [1 1 3 23 60 60 0 18 0 0 0 0 0 0 0 0] [1 1 3 23 6 6 0 6 0 0 0 0 0 0 0 0 166] 166 [1 1 3 23 60 60 0 18 0 0 0 0 0 0 0 0 166] 166 nw=1
 plsct=[1 1 3 24 1] j=6 i=0
-#1391 tabs  g_newUpdTniks       18 j=7  Kord j2=7 5   i= 0 s=3 .J2[j2]=18 len(tl)=18 len(tl)=18 [1 1 3 24 60 60 0 18 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 6 0 0 0 0 0 0 0 0 167] 167 [1 1 3 24 60 60 0 18 0 0 0 0 0 0 0 0 167] 167 nw=1
+#1391 tabs  g_newUpdTniks       18 j=7  Kord j2=7     i= 0 s=3 .J2[j2]=18 len(tl)=18 len(tl)=18 [1 1 3 24 60 60 0 18 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 6 0 0 0 0 0 0 0 0 167] 167 [1 1 3 24 60 60 0 18 0 0 0 0 0 0 0 0 167] 167 nw=1
 plsct=[1 1 3 24 2] j=6 i=1
-#1391 tabs  g_newUpdTniks       19 j=7  Kord j2=7 5   i= 1 s=3 .J2[j2]=19 len(tl)=19 len(tl)=19 [1 1 3 24 60 60 0 19 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 1 0 0 0 0 0 0 0 0 168] 168 [1 1 3 24 60 60 0 19 0 0 0 0 0 0 0 0 168] 168 nw=1
+#1391 tabs  g_newUpdTniks       19 j=7  Kord j2=7     i= 1 s=3 .J2[j2]=19 len(tl)=19 len(tl)=19 [1 1 3 24 60 60 0 19 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 1 0 0 0 0 0 0 0 0 168] 168 [1 1 3 24 60 60 0 19 0 0 0 0 0 0 0 0 168] 168 nw=1
 plsct=[1 1 3 24 3] j=6 i=2
-#1391 tabs  g_newUpdTniks       20 j=7  Kord j2=7 6   i= 2 s=3 .J2[j2]=20 len(tl)=20 len(tl)=20 [1 1 3 24 60 60 0 20 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 2 0 0 0 0 0 0 0 0 169] 169 [1 1 3 24 60 60 0 20 0 0 0 0 0 0 0 0 169] 169 nw=1
+#1391 tabs  g_newUpdTniks       20 j=7  Kord j2=7     i= 2 s=3 .J2[j2]=20 len(tl)=20 len(tl)=20 [1 1 3 24 60 60 0 20 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 2 0 0 0 0 0 0 0 0 169] 169 [1 1 3 24 60 60 0 20 0 0 0 0 0 0 0 0 169] 169 nw=1
 plsct=[1 1 3 24 4] j=6 i=3
-#1391 tabs  g_newUpdTniks       21 j=7  Kord j2=7 7   i= 3 s=3 .J2[j2]=21 len(tl)=21 len(tl)=21 [1 1 3 24 60 60 0 21 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 3 0 0 0 0 0 0 0 0 170] 170 [1 1 3 24 60 60 0 21 0 0 0 0 0 0 0 0 170] 170 nw=1
+#1391 tabs  g_newUpdTniks       21 j=7  Kord j2=7     i= 3 s=3 .J2[j2]=21 len(tl)=21 len(tl)=21 [1 1 3 24 60 60 0 21 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 3 0 0 0 0 0 0 0 0 170] 170 [1 1 3 24 60 60 0 21 0 0 0 0 0 0 0 0 170] 170 nw=1
 plsct=[1 1 3 24 5] j=6 i=4
-#1391 tabs  g_newUpdTniks       22 j=7  Kord j2=7 5   i= 4 s=3 .J2[j2]=22 len(tl)=22 len(tl)=22 [1 1 3 24 60 60 0 22 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 4 0 0 0 0 0 0 0 0 171] 171 [1 1 3 24 60 60 0 22 0 0 0 0 0 0 0 0 171] 171 nw=1
+#1391 tabs  g_newUpdTniks       22 j=7  Kord j2=7     i= 4 s=3 .J2[j2]=22 len(tl)=22 len(tl)=22 [1 1 3 24 60 60 0 22 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 4 0 0 0 0 0 0 0 0 171] 171 [1 1 3 24 60 60 0 22 0 0 0 0 0 0 0 0 171] 171 nw=1
 plsct=[1 1 3 24 6] j=6 i=5
-#1391 tabs  g_newUpdTniks       23 j=7  Kord j2=7 7   i= 5 s=3 .J2[j2]=23 len(tl)=23 len(tl)=23 [1 1 3 24 60 60 0 23 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 5 0 0 0 0 0 0 0 0 172] 172 [1 1 3 24 60 60 0 23 0 0 0 0 0 0 0 0 172] 172 nw=1
+#1391 tabs  g_newUpdTniks       23 j=7  Kord j2=7     i= 5 s=3 .J2[j2]=23 len(tl)=23 len(tl)=23 [1 1 3 24 60 60 0 23 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 5 0 0 0 0 0 0 0 0 172] 172 [1 1 3 24 60 60 0 23 0 0 0 0 0 0 0 0 172] 172 nw=1
 plsct=[1 1 3 25 6] j=3 i=24
 #1391 tabs  g_newUpdTniks       24 j=3  Colm j2=3     i=24 s=3 .J2[j2]=24 len(tl)=24 len(tl)=24 [1 1 3 24 60 60 0 24 0 0 0 0 0 0 0 0] [1 1 3 24 6 6 0 6 0 0 0 0 0 0 0 0 173] 173 [1 1 3 24 60 60 0 24 0 0 0 0 0 0 0 0 173] 173 nw=1
 plsct=[1 1 3 25 1] j=6 i=0
-#1391 tabs  g_newUpdTniks       24 j=7  Kord j2=7 5   i= 0 s=3 .J2[j2]=24 len(tl)=24 len(tl)=24 [1 1 3 25 60 60 0 24 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 6 0 0 0 0 0 0 0 0 174] 174 [1 1 3 25 60 60 0 24 0 0 0 0 0 0 0 0 174] 174 nw=1
+#1391 tabs  g_newUpdTniks       24 j=7  Kord j2=7     i= 0 s=3 .J2[j2]=24 len(tl)=24 len(tl)=24 [1 1 3 25 60 60 0 24 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 6 0 0 0 0 0 0 0 0 174] 174 [1 1 3 25 60 60 0 24 0 0 0 0 0 0 0 0 174] 174 nw=1
 plsct=[1 1 3 25 2] j=6 i=1
-#1391 tabs  g_newUpdTniks       25 j=7  Kord j2=7 5   i= 1 s=3 .J2[j2]=25 len(tl)=25 len(tl)=25 [1 1 3 25 60 60 0 25 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 1 0 0 0 0 0 0 0 0 175] 175 [1 1 3 25 60 60 0 25 0 0 0 0 0 0 0 0 175] 175 nw=1
+#1391 tabs  g_newUpdTniks       25 j=7  Kord j2=7     i= 1 s=3 .J2[j2]=25 len(tl)=25 len(tl)=25 [1 1 3 25 60 60 0 25 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 1 0 0 0 0 0 0 0 0 175] 175 [1 1 3 25 60 60 0 25 0 0 0 0 0 0 0 0 175] 175 nw=1
 plsct=[1 1 3 25 3] j=6 i=2
-#1391 tabs  g_newUpdTniks       26 j=7  Kord j2=7 6   i= 2 s=3 .J2[j2]=26 len(tl)=26 len(tl)=26 [1 1 3 25 60 60 0 26 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 2 0 0 0 0 0 0 0 0 176] 176 [1 1 3 25 60 60 0 26 0 0 0 0 0 0 0 0 176] 176 nw=1
+#1391 tabs  g_newUpdTniks       26 j=7  Kord j2=7     i= 2 s=3 .J2[j2]=26 len(tl)=26 len(tl)=26 [1 1 3 25 60 60 0 26 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 2 0 0 0 0 0 0 0 0 176] 176 [1 1 3 25 60 60 0 26 0 0 0 0 0 0 0 0 176] 176 nw=1
 plsct=[1 1 3 25 4] j=6 i=3
-#1391 tabs  g_newUpdTniks       27 j=7  Kord j2=7 7   i= 3 s=3 .J2[j2]=27 len(tl)=27 len(tl)=27 [1 1 3 25 60 60 0 27 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 3 0 0 0 0 0 0 0 0 177] 177 [1 1 3 25 60 60 0 27 0 0 0 0 0 0 0 0 177] 177 nw=1
+#1391 tabs  g_newUpdTniks       27 j=7  Kord j2=7     i= 3 s=3 .J2[j2]=27 len(tl)=27 len(tl)=27 [1 1 3 25 60 60 0 27 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 3 0 0 0 0 0 0 0 0 177] 177 [1 1 3 25 60 60 0 27 0 0 0 0 0 0 0 0 177] 177 nw=1
 plsct=[1 1 3 25 5] j=6 i=4
-#1391 tabs  g_newUpdTniks       28 j=7  Kord j2=7 5   i= 4 s=3 .J2[j2]=28 len(tl)=28 len(tl)=28 [1 1 3 25 60 60 0 28 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 4 0 0 0 0 0 0 0 0 178] 178 [1 1 3 25 60 60 0 28 0 0 0 0 0 0 0 0 178] 178 nw=1
+#1391 tabs  g_newUpdTniks       28 j=7  Kord j2=7     i= 4 s=3 .J2[j2]=28 len(tl)=28 len(tl)=28 [1 1 3 25 60 60 0 28 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 4 0 0 0 0 0 0 0 0 178] 178 [1 1 3 25 60 60 0 28 0 0 0 0 0 0 0 0 178] 178 nw=1
 plsct=[1 1 3 25 6] j=6 i=5
-#1391 tabs  g_newUpdTniks       29 j=7  Kord j2=7 7   i= 5 s=3 .J2[j2]=29 len(tl)=29 len(tl)=29 [1 1 3 25 60 60 0 29 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 5 0 0 0 0 0 0 0 0 179] 179 [1 1 3 25 60 60 0 29 0 0 0 0 0 0 0 0 179] 179 nw=1
+#1391 tabs  g_newUpdTniks       29 j=7  Kord j2=7     i= 5 s=3 .J2[j2]=29 len(tl)=29 len(tl)=29 [1 1 3 25 60 60 0 29 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 5 0 0 0 0 0 0 0 0 179] 179 [1 1 3 25 60 60 0 29 0 0 0 0 0 0 0 0 179] 179 nw=1
 plsct=[1 1 3 26 6] j=3 i=25
 #1391 tabs  g_newUpdTniks       25 j=3  Colm j2=3     i=25 s=3 .J2[j2]=25 len(tl)=25 len(tl)=25 [1 1 3 25 60 60 0 30 0 0 0 0 0 0 0 0] [1 1 3 25 6 6 0 6 0 0 0 0 0 0 0 0 180] 180 [1 1 3 25 60 60 0 30 0 0 0 0 0 0 0 0 180] 180 nw=1
 plsct=[1 1 3 26 1] j=6 i=0
@@ -755,11 +755,11 @@ plsct=[1 1 3 30 6] j=6 i=5
 #1683 tabs  plct2cc                   5 [180 180 180 60 6] [0 0    0 5] (   0 +  0 + 60 +  0 +5)
 #1686 tabs  cursorCol          cc=  5 [0 0 0 5]
 #1662 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-#1665 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text='7' 18.68 32.00 C C
-[9:A :10, 4:E :5, 1:D♭:5, 2:D :5, b:B :5]
-[9:A :10, 4:E :5, 1:C♯:5, 2:D :5, b:B :5]
-[ None ,  None ,  None , 1:D♭:5,  None , b:B :5, 4:E :5]
-[ None , 1:D♭:5,  None ,  None ,  None ,  None ,  None ]
+#1665 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text='3' 18.68 32.00 C C
+[2:D :1, b:B :1, 7:G :1]
+[2:D :1, b:B :1, 7:G :1]
+[ None ,  None ,  None ,  None ,  None , b:B :1,  None ]
+[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
 #1801 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels New1
 # 485 tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
 #2172 tabs  <module>           str(tabs)='Tabs'
@@ -777,73 +777,73 @@ plsct=[1 1 1  0 0] j=2 i=0
 plsct=[1 1 1  1 0] j=3 i=0
 #1391 tabs  g_newUpdTniks        0 j=3  Colm j2=3     i= 0 s=0 .J2[j2]= 0 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3]   3 [1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3]   3 nw=0
 plsct=[1 1 1  1 1] j=4 i=0
-#1391 tabs  g_newUpdTniks        0 j=4  Tabl j2=4 5   i= 0 s=0 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4]   4 [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4]   4 nw=0
+#1391 tabs  g_newUpdTniks        0 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4]   4 [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 4]   4 nw=0
 plsct=[1 1 1  1 2] j=4 i=1
-#1391 tabs  g_newUpdTniks        1 j=4  Tabl j2=4 5   i= 1 s=0 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5]   5 [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5]   5 nw=0
+#1391 tabs  g_newUpdTniks        1 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5]   5 [1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 5]   5 nw=0
 plsct=[1 1 1  1 3] j=4 i=2
-#1391 tabs  g_newUpdTniks        2 j=4  Tabl j2=4 6   i= 2 s=0 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 nw=0
+#1391 tabs  g_newUpdTniks        2 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 nw=0
 plsct=[1 1 1  1 4] j=4 i=3
-#1391 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 7   i= 3 s=0 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=0
+#1391 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 0   i= 3 s=0 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=0
 plsct=[1 1 1  1 5] j=4 i=4
-#1391 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 5   i= 4 s=0 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=0
+#1391 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 2   i= 4 s=0 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=0
 plsct=[1 1 1  1 6] j=4 i=5
-#1391 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 7   i= 5 s=0 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 nw=0
+#1391 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 3   i= 5 s=0 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 nw=0
 plsct=[1 1 1  2 6] j=3 i=1
 #1391 tabs  g_newUpdTniks        1 j=3  Colm j2=3     i= 1 s=0 .J2[j2]= 1 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10]  10 [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10]  10 nw=0
 plsct=[1 1 1  2 1] j=4 i=0
-#1391 tabs  g_newUpdTniks        6 j=4  Tabl j2=4 5   i= 0 s=0 .J2[j2]= 6 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0 11]  11 [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0 11]  11 nw=0
+#1391 tabs  g_newUpdTniks        6 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]= 6 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0 11]  11 [1 1 1 2 6 0 0 0 0 0 0 0 0 0 0 0 11]  11 nw=0
 plsct=[1 1 1  2 2] j=4 i=1
-#1391 tabs  g_newUpdTniks        7 j=4  Tabl j2=4 5   i= 1 s=0 .J2[j2]= 7 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 7 0 0 0 0 0 0 0 0 0 0 0 12]  12 [1 1 1 2 7 0 0 0 0 0 0 0 0 0 0 0 12]  12 nw=0
+#1391 tabs  g_newUpdTniks        7 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]= 7 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 7 0 0 0 0 0 0 0 0 0 0 0 12]  12 [1 1 1 2 7 0 0 0 0 0 0 0 0 0 0 0 12]  12 nw=0
 plsct=[1 1 1  2 3] j=4 i=2
-#1391 tabs  g_newUpdTniks        8 j=4  Tabl j2=4 6   i= 2 s=0 .J2[j2]= 8 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 8 0 0 0 0 0 0 0 0 0 0 0 13]  13 [1 1 1 2 8 0 0 0 0 0 0 0 0 0 0 0 13]  13 nw=0
+#1391 tabs  g_newUpdTniks        8 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]= 8 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 8 0 0 0 0 0 0 0 0 0 0 0 13]  13 [1 1 1 2 8 0 0 0 0 0 0 0 0 0 0 0 13]  13 nw=0
 plsct=[1 1 1  2 4] j=4 i=3
-#1391 tabs  g_newUpdTniks        9 j=4  Tabl j2=4 7   i= 3 s=0 .J2[j2]= 9 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 9 0 0 0 0 0 0 0 0 0 0 0 14]  14 [1 1 1 2 9 0 0 0 0 0 0 0 0 0 0 0 14]  14 nw=0
+#1391 tabs  g_newUpdTniks        9 j=4  Tabl j2=4     i= 3 s=0 .J2[j2]= 9 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 9 0 0 0 0 0 0 0 0 0 0 0 14]  14 [1 1 1 2 9 0 0 0 0 0 0 0 0 0 0 0 14]  14 nw=0
 plsct=[1 1 1  2 5] j=4 i=4
-#1391 tabs  g_newUpdTniks       10 j=4  Tabl j2=4 5   i= 4 s=0 .J2[j2]=10 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 10 0 0 0 0 0 0 0 0 0 0 0 15]  15 [1 1 1 2 10 0 0 0 0 0 0 0 0 0 0 0 15]  15 nw=0
+#1391 tabs  g_newUpdTniks       10 j=4  Tabl j2=4     i= 4 s=0 .J2[j2]=10 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 10 0 0 0 0 0 0 0 0 0 0 0 15]  15 [1 1 1 2 10 0 0 0 0 0 0 0 0 0 0 0 15]  15 nw=0
 plsct=[1 1 1  2 6] j=4 i=5
-#1391 tabs  g_newUpdTniks       11 j=4  Tabl j2=4 7   i= 5 s=0 .J2[j2]=11 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 11 0 0 0 0 0 0 0 0 0 0 0 16]  16 [1 1 1 2 11 0 0 0 0 0 0 0 0 0 0 0 16]  16 nw=0
+#1391 tabs  g_newUpdTniks       11 j=4  Tabl j2=4     i= 5 s=0 .J2[j2]=11 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 11 0 0 0 0 0 0 0 0 0 0 0 16]  16 [1 1 1 2 11 0 0 0 0 0 0 0 0 0 0 0 16]  16 nw=0
 plsct=[1 1 1  3 6] j=3 i=2
 #1391 tabs  g_newUpdTniks        2 j=3  Colm j2=3     i= 2 s=0 .J2[j2]= 2 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 2 12 0 0 0 0 0 0 0 0 0 0 0 17]  17 [1 1 1 2 12 0 0 0 0 0 0 0 0 0 0 0 17]  17 nw=0
 plsct=[1 1 1  3 1] j=4 i=0
-#1391 tabs  g_newUpdTniks       12 j=4  Tabl j2=4 5   i= 0 s=0 .J2[j2]=12 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 12 0 0 0 0 0 0 0 0 0 0 0 18]  18 [1 1 1 3 12 0 0 0 0 0 0 0 0 0 0 0 18]  18 nw=0
+#1391 tabs  g_newUpdTniks       12 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]=12 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 12 0 0 0 0 0 0 0 0 0 0 0 18]  18 [1 1 1 3 12 0 0 0 0 0 0 0 0 0 0 0 18]  18 nw=0
 plsct=[1 1 1  3 2] j=4 i=1
-#1391 tabs  g_newUpdTniks       13 j=4  Tabl j2=4 5   i= 1 s=0 .J2[j2]=13 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 13 0 0 0 0 0 0 0 0 0 0 0 19]  19 [1 1 1 3 13 0 0 0 0 0 0 0 0 0 0 0 19]  19 nw=0
+#1391 tabs  g_newUpdTniks       13 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]=13 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 13 0 0 0 0 0 0 0 0 0 0 0 19]  19 [1 1 1 3 13 0 0 0 0 0 0 0 0 0 0 0 19]  19 nw=0
 plsct=[1 1 1  3 3] j=4 i=2
-#1391 tabs  g_newUpdTniks       14 j=4  Tabl j2=4 6   i= 2 s=0 .J2[j2]=14 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 14 0 0 0 0 0 0 0 0 0 0 0 20]  20 [1 1 1 3 14 0 0 0 0 0 0 0 0 0 0 0 20]  20 nw=0
+#1391 tabs  g_newUpdTniks       14 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]=14 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 14 0 0 0 0 0 0 0 0 0 0 0 20]  20 [1 1 1 3 14 0 0 0 0 0 0 0 0 0 0 0 20]  20 nw=0
 plsct=[1 1 1  3 4] j=4 i=3
-#1391 tabs  g_newUpdTniks       15 j=4  Tabl j2=4 7   i= 3 s=0 .J2[j2]=15 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 15 0 0 0 0 0 0 0 0 0 0 0 21]  21 [1 1 1 3 15 0 0 0 0 0 0 0 0 0 0 0 21]  21 nw=0
+#1391 tabs  g_newUpdTniks       15 j=4  Tabl j2=4     i= 3 s=0 .J2[j2]=15 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 15 0 0 0 0 0 0 0 0 0 0 0 21]  21 [1 1 1 3 15 0 0 0 0 0 0 0 0 0 0 0 21]  21 nw=0
 plsct=[1 1 1  3 5] j=4 i=4
-#1391 tabs  g_newUpdTniks       16 j=4  Tabl j2=4 5   i= 4 s=0 .J2[j2]=16 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 16 0 0 0 0 0 0 0 0 0 0 0 22]  22 [1 1 1 3 16 0 0 0 0 0 0 0 0 0 0 0 22]  22 nw=0
+#1391 tabs  g_newUpdTniks       16 j=4  Tabl j2=4     i= 4 s=0 .J2[j2]=16 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 16 0 0 0 0 0 0 0 0 0 0 0 22]  22 [1 1 1 3 16 0 0 0 0 0 0 0 0 0 0 0 22]  22 nw=0
 plsct=[1 1 1  3 6] j=4 i=5
-#1391 tabs  g_newUpdTniks       17 j=4  Tabl j2=4 7   i= 5 s=0 .J2[j2]=17 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 17 0 0 0 0 0 0 0 0 0 0 0 23]  23 [1 1 1 3 17 0 0 0 0 0 0 0 0 0 0 0 23]  23 nw=0
+#1391 tabs  g_newUpdTniks       17 j=4  Tabl j2=4     i= 5 s=0 .J2[j2]=17 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 17 0 0 0 0 0 0 0 0 0 0 0 23]  23 [1 1 1 3 17 0 0 0 0 0 0 0 0 0 0 0 23]  23 nw=0
 plsct=[1 1 1  4 6] j=3 i=3
 #1391 tabs  g_newUpdTniks        3 j=3  Colm j2=3     i= 3 s=0 .J2[j2]= 3 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 3 18 0 0 0 0 0 0 0 0 0 0 0 24]  24 [1 1 1 3 18 0 0 0 0 0 0 0 0 0 0 0 24]  24 nw=0
 plsct=[1 1 1  4 1] j=4 i=0
-#1391 tabs  g_newUpdTniks       18 j=4  Tabl j2=4 5   i= 0 s=0 .J2[j2]=18 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 18 0 0 0 0 0 0 0 0 0 0 0 25]  25 [1 1 1 4 18 0 0 0 0 0 0 0 0 0 0 0 25]  25 nw=0
+#1391 tabs  g_newUpdTniks       18 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]=18 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 18 0 0 0 0 0 0 0 0 0 0 0 25]  25 [1 1 1 4 18 0 0 0 0 0 0 0 0 0 0 0 25]  25 nw=0
 plsct=[1 1 1  4 2] j=4 i=1
-#1391 tabs  g_newUpdTniks       19 j=4  Tabl j2=4 5   i= 1 s=0 .J2[j2]=19 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 19 0 0 0 0 0 0 0 0 0 0 0 26]  26 [1 1 1 4 19 0 0 0 0 0 0 0 0 0 0 0 26]  26 nw=0
+#1391 tabs  g_newUpdTniks       19 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]=19 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 19 0 0 0 0 0 0 0 0 0 0 0 26]  26 [1 1 1 4 19 0 0 0 0 0 0 0 0 0 0 0 26]  26 nw=0
 plsct=[1 1 1  4 3] j=4 i=2
-#1391 tabs  g_newUpdTniks       20 j=4  Tabl j2=4 6   i= 2 s=0 .J2[j2]=20 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 20 0 0 0 0 0 0 0 0 0 0 0 27]  27 [1 1 1 4 20 0 0 0 0 0 0 0 0 0 0 0 27]  27 nw=0
+#1391 tabs  g_newUpdTniks       20 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]=20 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 20 0 0 0 0 0 0 0 0 0 0 0 27]  27 [1 1 1 4 20 0 0 0 0 0 0 0 0 0 0 0 27]  27 nw=0
 plsct=[1 1 1  4 4] j=4 i=3
-#1391 tabs  g_newUpdTniks       21 j=4  Tabl j2=4 7   i= 3 s=0 .J2[j2]=21 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 21 0 0 0 0 0 0 0 0 0 0 0 28]  28 [1 1 1 4 21 0 0 0 0 0 0 0 0 0 0 0 28]  28 nw=0
+#1391 tabs  g_newUpdTniks       21 j=4  Tabl j2=4     i= 3 s=0 .J2[j2]=21 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 21 0 0 0 0 0 0 0 0 0 0 0 28]  28 [1 1 1 4 21 0 0 0 0 0 0 0 0 0 0 0 28]  28 nw=0
 plsct=[1 1 1  4 5] j=4 i=4
-#1391 tabs  g_newUpdTniks       22 j=4  Tabl j2=4 5   i= 4 s=0 .J2[j2]=22 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 22 0 0 0 0 0 0 0 0 0 0 0 29]  29 [1 1 1 4 22 0 0 0 0 0 0 0 0 0 0 0 29]  29 nw=0
+#1391 tabs  g_newUpdTniks       22 j=4  Tabl j2=4     i= 4 s=0 .J2[j2]=22 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 22 0 0 0 0 0 0 0 0 0 0 0 29]  29 [1 1 1 4 22 0 0 0 0 0 0 0 0 0 0 0 29]  29 nw=0
 plsct=[1 1 1  4 6] j=4 i=5
-#1391 tabs  g_newUpdTniks       23 j=4  Tabl j2=4 7   i= 5 s=0 .J2[j2]=23 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 23 0 0 0 0 0 0 0 0 0 0 0 30]  30 [1 1 1 4 23 0 0 0 0 0 0 0 0 0 0 0 30]  30 nw=0
+#1391 tabs  g_newUpdTniks       23 j=4  Tabl j2=4     i= 5 s=0 .J2[j2]=23 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 23 0 0 0 0 0 0 0 0 0 0 0 30]  30 [1 1 1 4 23 0 0 0 0 0 0 0 0 0 0 0 30]  30 nw=0
 plsct=[1 1 1  5 6] j=3 i=4
 #1391 tabs  g_newUpdTniks        4 j=3  Colm j2=3     i= 4 s=0 .J2[j2]= 4 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 4 24 0 0 0 0 0 0 0 0 0 0 0 31]  31 [1 1 1 4 24 0 0 0 0 0 0 0 0 0 0 0 31]  31 nw=0
 plsct=[1 1 1  5 1] j=4 i=0
-#1391 tabs  g_newUpdTniks       24 j=4  Tabl j2=4 5   i= 0 s=0 .J2[j2]=24 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 24 0 0 0 0 0 0 0 0 0 0 0 32]  32 [1 1 1 5 24 0 0 0 0 0 0 0 0 0 0 0 32]  32 nw=0
+#1391 tabs  g_newUpdTniks       24 j=4  Tabl j2=4     i= 0 s=0 .J2[j2]=24 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 24 0 0 0 0 0 0 0 0 0 0 0 32]  32 [1 1 1 5 24 0 0 0 0 0 0 0 0 0 0 0 32]  32 nw=0
 plsct=[1 1 1  5 2] j=4 i=1
-#1391 tabs  g_newUpdTniks       25 j=4  Tabl j2=4 5   i= 1 s=0 .J2[j2]=25 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 25 0 0 0 0 0 0 0 0 0 0 0 33]  33 [1 1 1 5 25 0 0 0 0 0 0 0 0 0 0 0 33]  33 nw=0
+#1391 tabs  g_newUpdTniks       25 j=4  Tabl j2=4     i= 1 s=0 .J2[j2]=25 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 25 0 0 0 0 0 0 0 0 0 0 0 33]  33 [1 1 1 5 25 0 0 0 0 0 0 0 0 0 0 0 33]  33 nw=0
 plsct=[1 1 1  5 3] j=4 i=2
-#1391 tabs  g_newUpdTniks       26 j=4  Tabl j2=4 6   i= 2 s=0 .J2[j2]=26 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 26 0 0 0 0 0 0 0 0 0 0 0 34]  34 [1 1 1 5 26 0 0 0 0 0 0 0 0 0 0 0 34]  34 nw=0
+#1391 tabs  g_newUpdTniks       26 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]=26 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 26 0 0 0 0 0 0 0 0 0 0 0 34]  34 [1 1 1 5 26 0 0 0 0 0 0 0 0 0 0 0 34]  34 nw=0
 plsct=[1 1 1  5 4] j=4 i=3
-#1391 tabs  g_newUpdTniks       27 j=4  Tabl j2=4 7   i= 3 s=0 .J2[j2]=27 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 27 0 0 0 0 0 0 0 0 0 0 0 35]  35 [1 1 1 5 27 0 0 0 0 0 0 0 0 0 0 0 35]  35 nw=0
+#1391 tabs  g_newUpdTniks       27 j=4  Tabl j2=4     i= 3 s=0 .J2[j2]=27 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 27 0 0 0 0 0 0 0 0 0 0 0 35]  35 [1 1 1 5 27 0 0 0 0 0 0 0 0 0 0 0 35]  35 nw=0
 plsct=[1 1 1  5 5] j=4 i=4
-#1391 tabs  g_newUpdTniks       28 j=4  Tabl j2=4 5   i= 4 s=0 .J2[j2]=28 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 28 0 0 0 0 0 0 0 0 0 0 0 36]  36 [1 1 1 5 28 0 0 0 0 0 0 0 0 0 0 0 36]  36 nw=0
+#1391 tabs  g_newUpdTniks       28 j=4  Tabl j2=4     i= 4 s=0 .J2[j2]=28 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 28 0 0 0 0 0 0 0 0 0 0 0 36]  36 [1 1 1 5 28 0 0 0 0 0 0 0 0 0 0 0 36]  36 nw=0
 plsct=[1 1 1  5 6] j=4 i=5
-#1391 tabs  g_newUpdTniks       29 j=4  Tabl j2=4 7   i= 5 s=0 .J2[j2]=29 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 29 0 0 0 0 0 0 0 0 0 0 0 37]  37 [1 1 1 5 29 0 0 0 0 0 0 0 0 0 0 0 37]  37 nw=0
+#1391 tabs  g_newUpdTniks       29 j=4  Tabl j2=4     i= 5 s=0 .J2[j2]=29 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 29 0 0 0 0 0 0 0 0 0 0 0 37]  37 [1 1 1 5 29 0 0 0 0 0 0 0 0 0 0 0 37]  37 nw=0
 plsct=[1 1 1  6 6] j=3 i=5
 #1391 tabs  g_newUpdTniks        5 j=3  Colm j2=3     i= 5 s=0 .J2[j2]= 5 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 5 30 0 0 0 0 0 0 0 0 0 0 0 38]  38 [1 1 1 5 30 0 0 0 0 0 0 0 0 0 0 0 38]  38 nw=0
 plsct=[1 1 1  6 1] j=4 i=0
@@ -919,73 +919,73 @@ plsct=[1 1 2 10 6] j=2 i=1
 plsct=[1 1 2 11 6] j=3 i=10
 #1391 tabs  g_newUpdTniks       10 j=3  Colm j2=3     i=10 s=1 .J2[j2]=10 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 10 60 0 0 0 0 0 0 0 0 0 0 0 74]  74 [1 1 2 10 60 0 0 0 0 0 0 0 0 0 0 0 74]  74 nw=0
 plsct=[1 1 2 11 1] j=5 i=0
-#1391 tabs  g_newUpdTniks        0 j=5  Note j2=5 5   i= 0 s=1 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75]  75 [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75]  75 nw=0
+#1391 tabs  g_newUpdTniks        0 j=5  Note j2=5     i= 0 s=1 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75]  75 [1 1 2 11 60 0 0 0 0 0 0 0 0 0 0 0 75]  75 nw=0
 plsct=[1 1 2 11 2] j=5 i=1
-#1391 tabs  g_newUpdTniks        1 j=5  Note j2=5 5   i= 1 s=1 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76]  76 [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76]  76 nw=0
+#1391 tabs  g_newUpdTniks        1 j=5  Note j2=5     i= 1 s=1 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76]  76 [1 1 2 11 60 1 0 0 0 0 0 0 0 0 0 0 76]  76 nw=0
 plsct=[1 1 2 11 3] j=5 i=2
-#1391 tabs  g_newUpdTniks        2 j=5  Note j2=5 6   i= 2 s=1 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 nw=0
+#1391 tabs  g_newUpdTniks        2 j=5  Note j2=5     i= 2 s=1 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 nw=0
 plsct=[1 1 2 11 4] j=5 i=3
-#1391 tabs  g_newUpdTniks        3 j=5  Note j2=5 7   i= 3 s=1 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=0
+#1391 tabs  g_newUpdTniks        3 j=5  Note j2=5 0   i= 3 s=1 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=0
 plsct=[1 1 2 11 5] j=5 i=4
-#1391 tabs  g_newUpdTniks        4 j=5  Note j2=5 5   i= 4 s=1 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=0
+#1391 tabs  g_newUpdTniks        4 j=5  Note j2=5 2   i= 4 s=1 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=0
 plsct=[1 1 2 11 6] j=5 i=5
-#1391 tabs  g_newUpdTniks        5 j=5  Note j2=5 7   i= 5 s=1 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 nw=0
+#1391 tabs  g_newUpdTniks        5 j=5  Note j2=5 3   i= 5 s=1 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 nw=0
 plsct=[1 1 2 12 6] j=3 i=11
 #1391 tabs  g_newUpdTniks       11 j=3  Colm j2=3     i=11 s=1 .J2[j2]=11 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0 81]  81 [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0 81]  81 nw=0
 plsct=[1 1 2 12 1] j=5 i=0
-#1391 tabs  g_newUpdTniks        6 j=5  Note j2=5 5   i= 0 s=1 .J2[j2]= 6 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 6 0 0 0 0 0 0 0 0 0 0 82]  82 [1 1 2 12 60 6 0 0 0 0 0 0 0 0 0 0 82]  82 nw=0
+#1391 tabs  g_newUpdTniks        6 j=5  Note j2=5     i= 0 s=1 .J2[j2]= 6 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 6 0 0 0 0 0 0 0 0 0 0 82]  82 [1 1 2 12 60 6 0 0 0 0 0 0 0 0 0 0 82]  82 nw=0
 plsct=[1 1 2 12 2] j=5 i=1
-#1391 tabs  g_newUpdTniks        7 j=5  Note j2=5 5   i= 1 s=1 .J2[j2]= 7 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 7 0 0 0 0 0 0 0 0 0 0 83]  83 [1 1 2 12 60 7 0 0 0 0 0 0 0 0 0 0 83]  83 nw=0
+#1391 tabs  g_newUpdTniks        7 j=5  Note j2=5     i= 1 s=1 .J2[j2]= 7 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 7 0 0 0 0 0 0 0 0 0 0 83]  83 [1 1 2 12 60 7 0 0 0 0 0 0 0 0 0 0 83]  83 nw=0
 plsct=[1 1 2 12 3] j=5 i=2
-#1391 tabs  g_newUpdTniks        8 j=5  Note j2=5 6   i= 2 s=1 .J2[j2]= 8 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 8 0 0 0 0 0 0 0 0 0 0 84]  84 [1 1 2 12 60 8 0 0 0 0 0 0 0 0 0 0 84]  84 nw=0
+#1391 tabs  g_newUpdTniks        8 j=5  Note j2=5     i= 2 s=1 .J2[j2]= 8 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 8 0 0 0 0 0 0 0 0 0 0 84]  84 [1 1 2 12 60 8 0 0 0 0 0 0 0 0 0 0 84]  84 nw=0
 plsct=[1 1 2 12 4] j=5 i=3
-#1391 tabs  g_newUpdTniks        9 j=5  Note j2=5 7   i= 3 s=1 .J2[j2]= 9 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 9 0 0 0 0 0 0 0 0 0 0 85]  85 [1 1 2 12 60 9 0 0 0 0 0 0 0 0 0 0 85]  85 nw=0
+#1391 tabs  g_newUpdTniks        9 j=5  Note j2=5     i= 3 s=1 .J2[j2]= 9 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 9 0 0 0 0 0 0 0 0 0 0 85]  85 [1 1 2 12 60 9 0 0 0 0 0 0 0 0 0 0 85]  85 nw=0
 plsct=[1 1 2 12 5] j=5 i=4
-#1391 tabs  g_newUpdTniks       10 j=5  Note j2=5 5   i= 4 s=1 .J2[j2]=10 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 10 0 0 0 0 0 0 0 0 0 0 86]  86 [1 1 2 12 60 10 0 0 0 0 0 0 0 0 0 0 86]  86 nw=0
+#1391 tabs  g_newUpdTniks       10 j=5  Note j2=5     i= 4 s=1 .J2[j2]=10 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 10 0 0 0 0 0 0 0 0 0 0 86]  86 [1 1 2 12 60 10 0 0 0 0 0 0 0 0 0 0 86]  86 nw=0
 plsct=[1 1 2 12 6] j=5 i=5
-#1391 tabs  g_newUpdTniks       11 j=5  Note j2=5 7   i= 5 s=1 .J2[j2]=11 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 11 0 0 0 0 0 0 0 0 0 0 87]  87 [1 1 2 12 60 11 0 0 0 0 0 0 0 0 0 0 87]  87 nw=0
+#1391 tabs  g_newUpdTniks       11 j=5  Note j2=5     i= 5 s=1 .J2[j2]=11 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 11 0 0 0 0 0 0 0 0 0 0 87]  87 [1 1 2 12 60 11 0 0 0 0 0 0 0 0 0 0 87]  87 nw=0
 plsct=[1 1 2 13 6] j=3 i=12
 #1391 tabs  g_newUpdTniks       12 j=3  Colm j2=3     i=12 s=1 .J2[j2]=12 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 12 60 12 0 0 0 0 0 0 0 0 0 0 88]  88 [1 1 2 12 60 12 0 0 0 0 0 0 0 0 0 0 88]  88 nw=0
 plsct=[1 1 2 13 1] j=5 i=0
-#1391 tabs  g_newUpdTniks       12 j=5  Note j2=5 5   i= 0 s=1 .J2[j2]=12 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 12 0 0 0 0 0 0 0 0 0 0 89]  89 [1 1 2 13 60 12 0 0 0 0 0 0 0 0 0 0 89]  89 nw=0
+#1391 tabs  g_newUpdTniks       12 j=5  Note j2=5     i= 0 s=1 .J2[j2]=12 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 12 0 0 0 0 0 0 0 0 0 0 89]  89 [1 1 2 13 60 12 0 0 0 0 0 0 0 0 0 0 89]  89 nw=0
 plsct=[1 1 2 13 2] j=5 i=1
-#1391 tabs  g_newUpdTniks       13 j=5  Note j2=5 5   i= 1 s=1 .J2[j2]=13 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 13 0 0 0 0 0 0 0 0 0 0 90]  90 [1 1 2 13 60 13 0 0 0 0 0 0 0 0 0 0 90]  90 nw=0
+#1391 tabs  g_newUpdTniks       13 j=5  Note j2=5     i= 1 s=1 .J2[j2]=13 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 13 0 0 0 0 0 0 0 0 0 0 90]  90 [1 1 2 13 60 13 0 0 0 0 0 0 0 0 0 0 90]  90 nw=0
 plsct=[1 1 2 13 3] j=5 i=2
-#1391 tabs  g_newUpdTniks       14 j=5  Note j2=5 6   i= 2 s=1 .J2[j2]=14 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 14 0 0 0 0 0 0 0 0 0 0 91]  91 [1 1 2 13 60 14 0 0 0 0 0 0 0 0 0 0 91]  91 nw=0
+#1391 tabs  g_newUpdTniks       14 j=5  Note j2=5     i= 2 s=1 .J2[j2]=14 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 14 0 0 0 0 0 0 0 0 0 0 91]  91 [1 1 2 13 60 14 0 0 0 0 0 0 0 0 0 0 91]  91 nw=0
 plsct=[1 1 2 13 4] j=5 i=3
-#1391 tabs  g_newUpdTniks       15 j=5  Note j2=5 7   i= 3 s=1 .J2[j2]=15 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 15 0 0 0 0 0 0 0 0 0 0 92]  92 [1 1 2 13 60 15 0 0 0 0 0 0 0 0 0 0 92]  92 nw=0
+#1391 tabs  g_newUpdTniks       15 j=5  Note j2=5     i= 3 s=1 .J2[j2]=15 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 15 0 0 0 0 0 0 0 0 0 0 92]  92 [1 1 2 13 60 15 0 0 0 0 0 0 0 0 0 0 92]  92 nw=0
 plsct=[1 1 2 13 5] j=5 i=4
-#1391 tabs  g_newUpdTniks       16 j=5  Note j2=5 5   i= 4 s=1 .J2[j2]=16 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 16 0 0 0 0 0 0 0 0 0 0 93]  93 [1 1 2 13 60 16 0 0 0 0 0 0 0 0 0 0 93]  93 nw=0
+#1391 tabs  g_newUpdTniks       16 j=5  Note j2=5     i= 4 s=1 .J2[j2]=16 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 16 0 0 0 0 0 0 0 0 0 0 93]  93 [1 1 2 13 60 16 0 0 0 0 0 0 0 0 0 0 93]  93 nw=0
 plsct=[1 1 2 13 6] j=5 i=5
-#1391 tabs  g_newUpdTniks       17 j=5  Note j2=5 7   i= 5 s=1 .J2[j2]=17 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 17 0 0 0 0 0 0 0 0 0 0 94]  94 [1 1 2 13 60 17 0 0 0 0 0 0 0 0 0 0 94]  94 nw=0
+#1391 tabs  g_newUpdTniks       17 j=5  Note j2=5     i= 5 s=1 .J2[j2]=17 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 17 0 0 0 0 0 0 0 0 0 0 94]  94 [1 1 2 13 60 17 0 0 0 0 0 0 0 0 0 0 94]  94 nw=0
 plsct=[1 1 2 14 6] j=3 i=13
 #1391 tabs  g_newUpdTniks       13 j=3  Colm j2=3     i=13 s=1 .J2[j2]=13 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 13 60 18 0 0 0 0 0 0 0 0 0 0 95]  95 [1 1 2 13 60 18 0 0 0 0 0 0 0 0 0 0 95]  95 nw=0
 plsct=[1 1 2 14 1] j=5 i=0
-#1391 tabs  g_newUpdTniks       18 j=5  Note j2=5 5   i= 0 s=1 .J2[j2]=18 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 18 0 0 0 0 0 0 0 0 0 0 96]  96 [1 1 2 14 60 18 0 0 0 0 0 0 0 0 0 0 96]  96 nw=0
+#1391 tabs  g_newUpdTniks       18 j=5  Note j2=5     i= 0 s=1 .J2[j2]=18 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 18 0 0 0 0 0 0 0 0 0 0 96]  96 [1 1 2 14 60 18 0 0 0 0 0 0 0 0 0 0 96]  96 nw=0
 plsct=[1 1 2 14 2] j=5 i=1
-#1391 tabs  g_newUpdTniks       19 j=5  Note j2=5 5   i= 1 s=1 .J2[j2]=19 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 19 0 0 0 0 0 0 0 0 0 0 97]  97 [1 1 2 14 60 19 0 0 0 0 0 0 0 0 0 0 97]  97 nw=0
+#1391 tabs  g_newUpdTniks       19 j=5  Note j2=5     i= 1 s=1 .J2[j2]=19 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 19 0 0 0 0 0 0 0 0 0 0 97]  97 [1 1 2 14 60 19 0 0 0 0 0 0 0 0 0 0 97]  97 nw=0
 plsct=[1 1 2 14 3] j=5 i=2
-#1391 tabs  g_newUpdTniks       20 j=5  Note j2=5 6   i= 2 s=1 .J2[j2]=20 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 20 0 0 0 0 0 0 0 0 0 0 98]  98 [1 1 2 14 60 20 0 0 0 0 0 0 0 0 0 0 98]  98 nw=0
+#1391 tabs  g_newUpdTniks       20 j=5  Note j2=5     i= 2 s=1 .J2[j2]=20 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 20 0 0 0 0 0 0 0 0 0 0 98]  98 [1 1 2 14 60 20 0 0 0 0 0 0 0 0 0 0 98]  98 nw=0
 plsct=[1 1 2 14 4] j=5 i=3
-#1391 tabs  g_newUpdTniks       21 j=5  Note j2=5 7   i= 3 s=1 .J2[j2]=21 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 21 0 0 0 0 0 0 0 0 0 0 99]  99 [1 1 2 14 60 21 0 0 0 0 0 0 0 0 0 0 99]  99 nw=0
+#1391 tabs  g_newUpdTniks       21 j=5  Note j2=5     i= 3 s=1 .J2[j2]=21 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 21 0 0 0 0 0 0 0 0 0 0 99]  99 [1 1 2 14 60 21 0 0 0 0 0 0 0 0 0 0 99]  99 nw=0
 plsct=[1 1 2 14 5] j=5 i=4
-#1391 tabs  g_newUpdTniks       22 j=5  Note j2=5 5   i= 4 s=1 .J2[j2]=22 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 22 0 0 0 0 0 0 0 0 0 0 100] 100 [1 1 2 14 60 22 0 0 0 0 0 0 0 0 0 0 100] 100 nw=0
+#1391 tabs  g_newUpdTniks       22 j=5  Note j2=5     i= 4 s=1 .J2[j2]=22 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 22 0 0 0 0 0 0 0 0 0 0 100] 100 [1 1 2 14 60 22 0 0 0 0 0 0 0 0 0 0 100] 100 nw=0
 plsct=[1 1 2 14 6] j=5 i=5
-#1391 tabs  g_newUpdTniks       23 j=5  Note j2=5 7   i= 5 s=1 .J2[j2]=23 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 23 0 0 0 0 0 0 0 0 0 0 101] 101 [1 1 2 14 60 23 0 0 0 0 0 0 0 0 0 0 101] 101 nw=0
+#1391 tabs  g_newUpdTniks       23 j=5  Note j2=5     i= 5 s=1 .J2[j2]=23 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 23 0 0 0 0 0 0 0 0 0 0 101] 101 [1 1 2 14 60 23 0 0 0 0 0 0 0 0 0 0 101] 101 nw=0
 plsct=[1 1 2 15 6] j=3 i=14
 #1391 tabs  g_newUpdTniks       14 j=3  Colm j2=3     i=14 s=1 .J2[j2]=14 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 14 60 24 0 0 0 0 0 0 0 0 0 0 102] 102 [1 1 2 14 60 24 0 0 0 0 0 0 0 0 0 0 102] 102 nw=0
 plsct=[1 1 2 15 1] j=5 i=0
-#1391 tabs  g_newUpdTniks       24 j=5  Note j2=5 5   i= 0 s=1 .J2[j2]=24 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 24 0 0 0 0 0 0 0 0 0 0 103] 103 [1 1 2 15 60 24 0 0 0 0 0 0 0 0 0 0 103] 103 nw=0
+#1391 tabs  g_newUpdTniks       24 j=5  Note j2=5     i= 0 s=1 .J2[j2]=24 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 24 0 0 0 0 0 0 0 0 0 0 103] 103 [1 1 2 15 60 24 0 0 0 0 0 0 0 0 0 0 103] 103 nw=0
 plsct=[1 1 2 15 2] j=5 i=1
-#1391 tabs  g_newUpdTniks       25 j=5  Note j2=5 5   i= 1 s=1 .J2[j2]=25 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 25 0 0 0 0 0 0 0 0 0 0 104] 104 [1 1 2 15 60 25 0 0 0 0 0 0 0 0 0 0 104] 104 nw=0
+#1391 tabs  g_newUpdTniks       25 j=5  Note j2=5     i= 1 s=1 .J2[j2]=25 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 25 0 0 0 0 0 0 0 0 0 0 104] 104 [1 1 2 15 60 25 0 0 0 0 0 0 0 0 0 0 104] 104 nw=0
 plsct=[1 1 2 15 3] j=5 i=2
-#1391 tabs  g_newUpdTniks       26 j=5  Note j2=5 6   i= 2 s=1 .J2[j2]=26 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 26 0 0 0 0 0 0 0 0 0 0 105] 105 [1 1 2 15 60 26 0 0 0 0 0 0 0 0 0 0 105] 105 nw=0
+#1391 tabs  g_newUpdTniks       26 j=5  Note j2=5     i= 2 s=1 .J2[j2]=26 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 26 0 0 0 0 0 0 0 0 0 0 105] 105 [1 1 2 15 60 26 0 0 0 0 0 0 0 0 0 0 105] 105 nw=0
 plsct=[1 1 2 15 4] j=5 i=3
-#1391 tabs  g_newUpdTniks       27 j=5  Note j2=5 7   i= 3 s=1 .J2[j2]=27 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 27 0 0 0 0 0 0 0 0 0 0 106] 106 [1 1 2 15 60 27 0 0 0 0 0 0 0 0 0 0 106] 106 nw=0
+#1391 tabs  g_newUpdTniks       27 j=5  Note j2=5     i= 3 s=1 .J2[j2]=27 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 27 0 0 0 0 0 0 0 0 0 0 106] 106 [1 1 2 15 60 27 0 0 0 0 0 0 0 0 0 0 106] 106 nw=0
 plsct=[1 1 2 15 5] j=5 i=4
-#1391 tabs  g_newUpdTniks       28 j=5  Note j2=5 5   i= 4 s=1 .J2[j2]=28 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 28 0 0 0 0 0 0 0 0 0 0 107] 107 [1 1 2 15 60 28 0 0 0 0 0 0 0 0 0 0 107] 107 nw=0
+#1391 tabs  g_newUpdTniks       28 j=5  Note j2=5     i= 4 s=1 .J2[j2]=28 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 28 0 0 0 0 0 0 0 0 0 0 107] 107 [1 1 2 15 60 28 0 0 0 0 0 0 0 0 0 0 107] 107 nw=0
 plsct=[1 1 2 15 6] j=5 i=5
-#1391 tabs  g_newUpdTniks       29 j=5  Note j2=5 7   i= 5 s=1 .J2[j2]=29 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 29 0 0 0 0 0 0 0 0 0 0 108] 108 [1 1 2 15 60 29 0 0 0 0 0 0 0 0 0 0 108] 108 nw=0
+#1391 tabs  g_newUpdTniks       29 j=5  Note j2=5     i= 5 s=1 .J2[j2]=29 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 29 0 0 0 0 0 0 0 0 0 0 108] 108 [1 1 2 15 60 29 0 0 0 0 0 0 0 0 0 0 108] 108 nw=0
 plsct=[1 1 2 16 6] j=3 i=15
 #1391 tabs  g_newUpdTniks       15 j=3  Colm j2=3     i=15 s=1 .J2[j2]=15 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 15 60 30 0 0 0 0 0 0 0 0 0 0 109] 109 [1 1 2 15 60 30 0 0 0 0 0 0 0 0 0 0 109] 109 nw=0
 plsct=[1 1 2 16 1] j=5 i=0
@@ -1061,73 +1061,73 @@ plsct=[1 1 3 20 6] j=2 i=2
 plsct=[1 1 3 21 6] j=3 i=20
 #1391 tabs  g_newUpdTniks       20 j=3  Colm j2=3     i=20 s=3 .J2[j2]=20 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 20 60 60 0 0 0 0 0 0 0 0 0 0 145] 145 [1 1 3 20 60 60 0 0 0 0 0 0 0 0 0 0 145] 145 nw=0
 plsct=[1 1 3 21 1] j=6 i=0
-#1391 tabs  g_newUpdTniks        0 j=7  Kord j2=7 5   i= 0 s=3 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146] 146 [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146] 146 nw=0
+#1391 tabs  g_newUpdTniks        0 j=7  Kord j2=7     i= 0 s=3 .J2[j2]= 0 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146] 146 [1 1 3 21 60 60 0 0 0 0 0 0 0 0 0 0 146] 146 nw=0
 plsct=[1 1 3 21 2] j=6 i=1
-#1391 tabs  g_newUpdTniks        1 j=7  Kord j2=7 5   i= 1 s=3 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147] 147 [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147] 147 nw=0
+#1391 tabs  g_newUpdTniks        1 j=7  Kord j2=7     i= 1 s=3 .J2[j2]= 1 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147] 147 [1 1 3 21 60 60 0 1 0 0 0 0 0 0 0 0 147] 147 nw=0
 plsct=[1 1 3 21 3] j=6 i=2
-#1391 tabs  g_newUpdTniks        2 j=7  Kord j2=7 6   i= 2 s=3 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148] 148 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148] 148 nw=0
+#1391 tabs  g_newUpdTniks        2 j=7  Kord j2=7     i= 2 s=3 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148] 148 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148] 148 nw=0
 plsct=[1 1 3 21 4] j=6 i=3
-#1391 tabs  g_newUpdTniks        3 j=7  Kord j2=7 7   i= 3 s=3 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 nw=0
+#1391 tabs  g_newUpdTniks        3 j=7  Kord j2=7 0   i= 3 s=3 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 nw=0
 plsct=[1 1 3 21 5] j=6 i=4
-#1391 tabs  g_newUpdTniks        4 j=7  Kord j2=7 5   i= 4 s=3 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 nw=0
+#1391 tabs  g_newUpdTniks        4 j=7  Kord j2=7 2   i= 4 s=3 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 nw=0
 plsct=[1 1 3 21 6] j=6 i=5
-#1391 tabs  g_newUpdTniks        5 j=7  Kord j2=7 7   i= 5 s=3 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 nw=0
+#1391 tabs  g_newUpdTniks        5 j=7  Kord j2=7 3   i= 5 s=3 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 nw=0
 plsct=[1 1 3 22 6] j=3 i=21
 #1391 tabs  g_newUpdTniks       21 j=3  Colm j2=3     i=21 s=3 .J2[j2]=21 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0 152] 152 [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0 152] 152 nw=0
 plsct=[1 1 3 22 1] j=6 i=0
-#1391 tabs  g_newUpdTniks        6 j=7  Kord j2=7 5   i= 0 s=3 .J2[j2]= 6 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 6 0 0 0 0 0 0 0 0 153] 153 [1 1 3 22 60 60 0 6 0 0 0 0 0 0 0 0 153] 153 nw=0
+#1391 tabs  g_newUpdTniks        6 j=7  Kord j2=7     i= 0 s=3 .J2[j2]= 6 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 6 0 0 0 0 0 0 0 0 153] 153 [1 1 3 22 60 60 0 6 0 0 0 0 0 0 0 0 153] 153 nw=0
 plsct=[1 1 3 22 2] j=6 i=1
-#1391 tabs  g_newUpdTniks        7 j=7  Kord j2=7 5   i= 1 s=3 .J2[j2]= 7 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 7 0 0 0 0 0 0 0 0 154] 154 [1 1 3 22 60 60 0 7 0 0 0 0 0 0 0 0 154] 154 nw=0
+#1391 tabs  g_newUpdTniks        7 j=7  Kord j2=7     i= 1 s=3 .J2[j2]= 7 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 7 0 0 0 0 0 0 0 0 154] 154 [1 1 3 22 60 60 0 7 0 0 0 0 0 0 0 0 154] 154 nw=0
 plsct=[1 1 3 22 3] j=6 i=2
-#1391 tabs  g_newUpdTniks        8 j=7  Kord j2=7 6   i= 2 s=3 .J2[j2]= 8 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 8 0 0 0 0 0 0 0 0 155] 155 [1 1 3 22 60 60 0 8 0 0 0 0 0 0 0 0 155] 155 nw=0
+#1391 tabs  g_newUpdTniks        8 j=7  Kord j2=7     i= 2 s=3 .J2[j2]= 8 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 8 0 0 0 0 0 0 0 0 155] 155 [1 1 3 22 60 60 0 8 0 0 0 0 0 0 0 0 155] 155 nw=0
 plsct=[1 1 3 22 4] j=6 i=3
-#1391 tabs  g_newUpdTniks        9 j=7  Kord j2=7 7   i= 3 s=3 .J2[j2]= 9 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 9 0 0 0 0 0 0 0 0 156] 156 [1 1 3 22 60 60 0 9 0 0 0 0 0 0 0 0 156] 156 nw=0
+#1391 tabs  g_newUpdTniks        9 j=7  Kord j2=7     i= 3 s=3 .J2[j2]= 9 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 9 0 0 0 0 0 0 0 0 156] 156 [1 1 3 22 60 60 0 9 0 0 0 0 0 0 0 0 156] 156 nw=0
 plsct=[1 1 3 22 5] j=6 i=4
-#1391 tabs  g_newUpdTniks       10 j=7  Kord j2=7 5   i= 4 s=3 .J2[j2]=10 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 10 0 0 0 0 0 0 0 0 157] 157 [1 1 3 22 60 60 0 10 0 0 0 0 0 0 0 0 157] 157 nw=0
+#1391 tabs  g_newUpdTniks       10 j=7  Kord j2=7     i= 4 s=3 .J2[j2]=10 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 10 0 0 0 0 0 0 0 0 157] 157 [1 1 3 22 60 60 0 10 0 0 0 0 0 0 0 0 157] 157 nw=0
 plsct=[1 1 3 22 6] j=6 i=5
-#1391 tabs  g_newUpdTniks       11 j=7  Kord j2=7 7   i= 5 s=3 .J2[j2]=11 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 11 0 0 0 0 0 0 0 0 158] 158 [1 1 3 22 60 60 0 11 0 0 0 0 0 0 0 0 158] 158 nw=0
+#1391 tabs  g_newUpdTniks       11 j=7  Kord j2=7     i= 5 s=3 .J2[j2]=11 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 11 0 0 0 0 0 0 0 0 158] 158 [1 1 3 22 60 60 0 11 0 0 0 0 0 0 0 0 158] 158 nw=0
 plsct=[1 1 3 23 6] j=3 i=22
 #1391 tabs  g_newUpdTniks       22 j=3  Colm j2=3     i=22 s=3 .J2[j2]=22 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 22 60 60 0 12 0 0 0 0 0 0 0 0 159] 159 [1 1 3 22 60 60 0 12 0 0 0 0 0 0 0 0 159] 159 nw=0
 plsct=[1 1 3 23 1] j=6 i=0
-#1391 tabs  g_newUpdTniks       12 j=7  Kord j2=7 5   i= 0 s=3 .J2[j2]=12 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 12 0 0 0 0 0 0 0 0 160] 160 [1 1 3 23 60 60 0 12 0 0 0 0 0 0 0 0 160] 160 nw=0
+#1391 tabs  g_newUpdTniks       12 j=7  Kord j2=7     i= 0 s=3 .J2[j2]=12 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 12 0 0 0 0 0 0 0 0 160] 160 [1 1 3 23 60 60 0 12 0 0 0 0 0 0 0 0 160] 160 nw=0
 plsct=[1 1 3 23 2] j=6 i=1
-#1391 tabs  g_newUpdTniks       13 j=7  Kord j2=7 5   i= 1 s=3 .J2[j2]=13 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 13 0 0 0 0 0 0 0 0 161] 161 [1 1 3 23 60 60 0 13 0 0 0 0 0 0 0 0 161] 161 nw=0
+#1391 tabs  g_newUpdTniks       13 j=7  Kord j2=7     i= 1 s=3 .J2[j2]=13 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 13 0 0 0 0 0 0 0 0 161] 161 [1 1 3 23 60 60 0 13 0 0 0 0 0 0 0 0 161] 161 nw=0
 plsct=[1 1 3 23 3] j=6 i=2
-#1391 tabs  g_newUpdTniks       14 j=7  Kord j2=7 6   i= 2 s=3 .J2[j2]=14 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 14 0 0 0 0 0 0 0 0 162] 162 [1 1 3 23 60 60 0 14 0 0 0 0 0 0 0 0 162] 162 nw=0
+#1391 tabs  g_newUpdTniks       14 j=7  Kord j2=7     i= 2 s=3 .J2[j2]=14 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 14 0 0 0 0 0 0 0 0 162] 162 [1 1 3 23 60 60 0 14 0 0 0 0 0 0 0 0 162] 162 nw=0
 plsct=[1 1 3 23 4] j=6 i=3
-#1391 tabs  g_newUpdTniks       15 j=7  Kord j2=7 7   i= 3 s=3 .J2[j2]=15 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 15 0 0 0 0 0 0 0 0 163] 163 [1 1 3 23 60 60 0 15 0 0 0 0 0 0 0 0 163] 163 nw=0
+#1391 tabs  g_newUpdTniks       15 j=7  Kord j2=7     i= 3 s=3 .J2[j2]=15 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 15 0 0 0 0 0 0 0 0 163] 163 [1 1 3 23 60 60 0 15 0 0 0 0 0 0 0 0 163] 163 nw=0
 plsct=[1 1 3 23 5] j=6 i=4
-#1391 tabs  g_newUpdTniks       16 j=7  Kord j2=7 5   i= 4 s=3 .J2[j2]=16 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 16 0 0 0 0 0 0 0 0 164] 164 [1 1 3 23 60 60 0 16 0 0 0 0 0 0 0 0 164] 164 nw=0
+#1391 tabs  g_newUpdTniks       16 j=7  Kord j2=7     i= 4 s=3 .J2[j2]=16 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 16 0 0 0 0 0 0 0 0 164] 164 [1 1 3 23 60 60 0 16 0 0 0 0 0 0 0 0 164] 164 nw=0
 plsct=[1 1 3 23 6] j=6 i=5
-#1391 tabs  g_newUpdTniks       17 j=7  Kord j2=7 7   i= 5 s=3 .J2[j2]=17 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 17 0 0 0 0 0 0 0 0 165] 165 [1 1 3 23 60 60 0 17 0 0 0 0 0 0 0 0 165] 165 nw=0
+#1391 tabs  g_newUpdTniks       17 j=7  Kord j2=7     i= 5 s=3 .J2[j2]=17 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 17 0 0 0 0 0 0 0 0 165] 165 [1 1 3 23 60 60 0 17 0 0 0 0 0 0 0 0 165] 165 nw=0
 plsct=[1 1 3 24 6] j=3 i=23
 #1391 tabs  g_newUpdTniks       23 j=3  Colm j2=3     i=23 s=3 .J2[j2]=23 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 23 60 60 0 18 0 0 0 0 0 0 0 0 166] 166 [1 1 3 23 60 60 0 18 0 0 0 0 0 0 0 0 166] 166 nw=0
 plsct=[1 1 3 24 1] j=6 i=0
-#1391 tabs  g_newUpdTniks       18 j=7  Kord j2=7 5   i= 0 s=3 .J2[j2]=18 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 18 0 0 0 0 0 0 0 0 167] 167 [1 1 3 24 60 60 0 18 0 0 0 0 0 0 0 0 167] 167 nw=0
+#1391 tabs  g_newUpdTniks       18 j=7  Kord j2=7     i= 0 s=3 .J2[j2]=18 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 18 0 0 0 0 0 0 0 0 167] 167 [1 1 3 24 60 60 0 18 0 0 0 0 0 0 0 0 167] 167 nw=0
 plsct=[1 1 3 24 2] j=6 i=1
-#1391 tabs  g_newUpdTniks       19 j=7  Kord j2=7 5   i= 1 s=3 .J2[j2]=19 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 19 0 0 0 0 0 0 0 0 168] 168 [1 1 3 24 60 60 0 19 0 0 0 0 0 0 0 0 168] 168 nw=0
+#1391 tabs  g_newUpdTniks       19 j=7  Kord j2=7     i= 1 s=3 .J2[j2]=19 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 19 0 0 0 0 0 0 0 0 168] 168 [1 1 3 24 60 60 0 19 0 0 0 0 0 0 0 0 168] 168 nw=0
 plsct=[1 1 3 24 3] j=6 i=2
-#1391 tabs  g_newUpdTniks       20 j=7  Kord j2=7 6   i= 2 s=3 .J2[j2]=20 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 20 0 0 0 0 0 0 0 0 169] 169 [1 1 3 24 60 60 0 20 0 0 0 0 0 0 0 0 169] 169 nw=0
+#1391 tabs  g_newUpdTniks       20 j=7  Kord j2=7     i= 2 s=3 .J2[j2]=20 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 20 0 0 0 0 0 0 0 0 169] 169 [1 1 3 24 60 60 0 20 0 0 0 0 0 0 0 0 169] 169 nw=0
 plsct=[1 1 3 24 4] j=6 i=3
-#1391 tabs  g_newUpdTniks       21 j=7  Kord j2=7 7   i= 3 s=3 .J2[j2]=21 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 21 0 0 0 0 0 0 0 0 170] 170 [1 1 3 24 60 60 0 21 0 0 0 0 0 0 0 0 170] 170 nw=0
+#1391 tabs  g_newUpdTniks       21 j=7  Kord j2=7     i= 3 s=3 .J2[j2]=21 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 21 0 0 0 0 0 0 0 0 170] 170 [1 1 3 24 60 60 0 21 0 0 0 0 0 0 0 0 170] 170 nw=0
 plsct=[1 1 3 24 5] j=6 i=4
-#1391 tabs  g_newUpdTniks       22 j=7  Kord j2=7 5   i= 4 s=3 .J2[j2]=22 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 22 0 0 0 0 0 0 0 0 171] 171 [1 1 3 24 60 60 0 22 0 0 0 0 0 0 0 0 171] 171 nw=0
+#1391 tabs  g_newUpdTniks       22 j=7  Kord j2=7     i= 4 s=3 .J2[j2]=22 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 22 0 0 0 0 0 0 0 0 171] 171 [1 1 3 24 60 60 0 22 0 0 0 0 0 0 0 0 171] 171 nw=0
 plsct=[1 1 3 24 6] j=6 i=5
-#1391 tabs  g_newUpdTniks       23 j=7  Kord j2=7 7   i= 5 s=3 .J2[j2]=23 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 23 0 0 0 0 0 0 0 0 172] 172 [1 1 3 24 60 60 0 23 0 0 0 0 0 0 0 0 172] 172 nw=0
+#1391 tabs  g_newUpdTniks       23 j=7  Kord j2=7     i= 5 s=3 .J2[j2]=23 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 23 0 0 0 0 0 0 0 0 172] 172 [1 1 3 24 60 60 0 23 0 0 0 0 0 0 0 0 172] 172 nw=0
 plsct=[1 1 3 25 6] j=3 i=24
 #1391 tabs  g_newUpdTniks       24 j=3  Colm j2=3     i=24 s=3 .J2[j2]=24 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 24 60 60 0 24 0 0 0 0 0 0 0 0 173] 173 [1 1 3 24 60 60 0 24 0 0 0 0 0 0 0 0 173] 173 nw=0
 plsct=[1 1 3 25 1] j=6 i=0
-#1391 tabs  g_newUpdTniks       24 j=7  Kord j2=7 5   i= 0 s=3 .J2[j2]=24 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 24 0 0 0 0 0 0 0 0 174] 174 [1 1 3 25 60 60 0 24 0 0 0 0 0 0 0 0 174] 174 nw=0
+#1391 tabs  g_newUpdTniks       24 j=7  Kord j2=7     i= 0 s=3 .J2[j2]=24 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 24 0 0 0 0 0 0 0 0 174] 174 [1 1 3 25 60 60 0 24 0 0 0 0 0 0 0 0 174] 174 nw=0
 plsct=[1 1 3 25 2] j=6 i=1
-#1391 tabs  g_newUpdTniks       25 j=7  Kord j2=7 5   i= 1 s=3 .J2[j2]=25 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 25 0 0 0 0 0 0 0 0 175] 175 [1 1 3 25 60 60 0 25 0 0 0 0 0 0 0 0 175] 175 nw=0
+#1391 tabs  g_newUpdTniks       25 j=7  Kord j2=7     i= 1 s=3 .J2[j2]=25 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 25 0 0 0 0 0 0 0 0 175] 175 [1 1 3 25 60 60 0 25 0 0 0 0 0 0 0 0 175] 175 nw=0
 plsct=[1 1 3 25 3] j=6 i=2
-#1391 tabs  g_newUpdTniks       26 j=7  Kord j2=7 6   i= 2 s=3 .J2[j2]=26 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 26 0 0 0 0 0 0 0 0 176] 176 [1 1 3 25 60 60 0 26 0 0 0 0 0 0 0 0 176] 176 nw=0
+#1391 tabs  g_newUpdTniks       26 j=7  Kord j2=7     i= 2 s=3 .J2[j2]=26 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 26 0 0 0 0 0 0 0 0 176] 176 [1 1 3 25 60 60 0 26 0 0 0 0 0 0 0 0 176] 176 nw=0
 plsct=[1 1 3 25 4] j=6 i=3
-#1391 tabs  g_newUpdTniks       27 j=7  Kord j2=7 7   i= 3 s=3 .J2[j2]=27 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 27 0 0 0 0 0 0 0 0 177] 177 [1 1 3 25 60 60 0 27 0 0 0 0 0 0 0 0 177] 177 nw=0
+#1391 tabs  g_newUpdTniks       27 j=7  Kord j2=7     i= 3 s=3 .J2[j2]=27 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 27 0 0 0 0 0 0 0 0 177] 177 [1 1 3 25 60 60 0 27 0 0 0 0 0 0 0 0 177] 177 nw=0
 plsct=[1 1 3 25 5] j=6 i=4
-#1391 tabs  g_newUpdTniks       28 j=7  Kord j2=7 5   i= 4 s=3 .J2[j2]=28 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 28 0 0 0 0 0 0 0 0 178] 178 [1 1 3 25 60 60 0 28 0 0 0 0 0 0 0 0 178] 178 nw=0
+#1391 tabs  g_newUpdTniks       28 j=7  Kord j2=7     i= 4 s=3 .J2[j2]=28 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 28 0 0 0 0 0 0 0 0 178] 178 [1 1 3 25 60 60 0 28 0 0 0 0 0 0 0 0 178] 178 nw=0
 plsct=[1 1 3 25 6] j=6 i=5
-#1391 tabs  g_newUpdTniks       29 j=7  Kord j2=7 7   i= 5 s=3 .J2[j2]=29 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 29 0 0 0 0 0 0 0 0 179] 179 [1 1 3 25 60 60 0 29 0 0 0 0 0 0 0 0 179] 179 nw=0
+#1391 tabs  g_newUpdTniks       29 j=7  Kord j2=7     i= 5 s=3 .J2[j2]=29 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 29 0 0 0 0 0 0 0 0 179] 179 [1 1 3 25 60 60 0 29 0 0 0 0 0 0 0 0 179] 179 nw=0
 plsct=[1 1 3 26 6] j=3 i=25
 #1391 tabs  g_newUpdTniks       25 j=3  Colm j2=3     i=25 s=3 .J2[j2]=25 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 25 60 60 0 30 0 0 0 0 0 0 0 0 180] 180 [1 1 3 25 60 60 0 30 0 0 0 0 0 0 0 0 180] 180 nw=0
 plsct=[1 1 3 26 1] j=6 i=0
@@ -1201,49 +1201,40 @@ plsct=[1 1 3 30 6] j=6 i=5
 #1683 tabs  plct2cc                   5 [180 180 180 60 6] [0 0    0 5] (   0 +  0 + 60 +  0 +5)
 #1686 tabs  cursorCol          cc=  5 [0 0 0 5]
 #1662 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-#1665 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text='7' 18.68 32.00 C C
-[9:A :20, 4:E :10, 1:D♭:10, 2:D :10, b:B :10]
-[9:A :20, 4:E :10, 1:C♯:10, 2:D :10, b:B :10]
-[ None ,  None ,  None , 1:D♭:10,  None , b:B :10, 4:E :10]
-[ None , 1:D♭:10,  None ,  None ,  None ,  None ,  None ]
+#1665 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text='3' 18.68 32.00 C C
+[2:D :2, b:B :2, 7:G :2]
+[2:D :2, b:B :2, 7:G :2]
+[ None ,  None ,  None ,  None ,  None , b:B :2,  None ]
+[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
 #1801 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels Upd1
-# 765 cmds  _snapshot          snapName='test.209.1.NEW.png' New1
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.209.1.NEW.png'
+# 765 cmds  _snapshot          snapName='test.16.1.NEW.png' New1
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.1.NEW.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.209.1.NEW.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.1.NEW.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.209.1.NEW.png'
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.1.NEW.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.209.1.NEW.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.1.NEW.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-#  86 evnts on_draw            .LOG_ID=209 sid=1 typ=NEW why=New1 qlen=1
-C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.1.NEW.png
+#  86 evnts on_draw            .LOG_ID= 16 sid=1 typ=NEW why=New1 qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.1.NEW.png
 # 101 evnts on_key_press       BGN  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
 # 213 evnts on_key_press       UNH          k='LCTRL' retv=True setting retv to False
 # 218 evnts on_key_press       UNH retv2=False k='LCTRL' retv=False  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
 # 220 evnts on_key_press       check isParsing k='LCTRL' retv=False
 # 222 evnts on_key_press       Not isParsing k='LCTRL' retv=False
 # 227 evnts on_key_press       Done Not isParsing k='LCTRL' retv=False
-# 228 evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000016817DC4490>
-# 229 evnts on_key_press       END  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
-# 230 evnts on_key_press       END processing event k='LCTRL' return retv=False
-# 101 evnts on_key_press       BGN  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
-# 213 evnts on_key_press       UNH          k='LCTRL' retv=True setting retv to False
-# 218 evnts on_key_press       UNH retv2=False k='LCTRL' retv=False  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
-# 220 evnts on_key_press       check isParsing k='LCTRL' retv=False
-# 222 evnts on_key_press       Not isParsing k='LCTRL' retv=False
-# 227 evnts on_key_press       Done Not isParsing k='LCTRL' retv=False
-# 228 evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000016817DC4490>
+# 228 evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000024D0BF684C0>
 # 229 evnts on_key_press       END  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
 # 230 evnts on_key_press       END processing event k='LCTRL' return retv=False
 # 101 evnts on_key_press       BGN  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         d={65507: True, 65505: True}
@@ -1252,7 +1243,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.1.NEW.png
 # 220 evnts on_key_press       check isParsing k='LSHIFT' retv=False
 # 222 evnts on_key_press       Not isParsing k='LSHIFT' retv=False
 # 227 evnts on_key_press       Done Not isParsing k='LSHIFT' retv=False
-# 228 evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000016817DC4490>
+# 228 evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000024D0BF684C0>
 # 229 evnts on_key_press       END  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         d={65507: True, 65505: True}
 # 230 evnts on_key_press       END processing event k='LSHIFT' return retv=False
 # 101 evnts on_key_press       BGN    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         d={65507: True, 65505: True, 113: True}
@@ -1262,52 +1253,30 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.1.NEW.png
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
-[9:A :20, 4:E :10, 1:D♭:10, 2:D :10, b:B :10]
-[9:A :20, 4:E :10, 1:C♯:10, 2:D :10, b:B :10]
-[ None ,  None ,  None , 1:D♭:10,  None , b:B :10, 4:E :10]
-[ None , 1:D♭:10,  None ,  None ,  None ,  None ,  None ]
+[2:D :2, b:B :2, 7:G :2]
+[2:D :2, b:B :2, 7:G :2]
+[ None ,  None ,  None ,  None ,  None , b:B :2,  None ]
+[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
 #1801 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels @^Q
-# 144 chords dumpLimap            0 0 0 Bm119x       Bm119x       Rm3♭724♭7    03a25a BDAC♯EA      R2m34♭7      0235a  BC♯DEA      
-# 144 chords dumpLimap            0 0 1 E13s4/B      E13s4/B      5♭746R4      7a5905 BDAC♯EA      R456♭7       0579a  EABC♯D      
-# 144 chords dumpLimap            0 0 2 DM13s2/B     DM13s2/B     6R5725       907b27 BDAC♯EA      R2567        0279b  DEABC♯      
-# 144 chords dumpLimap            0 0 3 C♯m+♭9/B     C♯m+♭9/B     ♭7♭2♯5Rm3♯5  a18038 BDAC♯EA      R♭2m3♯5♭7    0138a  C♯DEAB      
-# 144 chords dumpLimap            0 0 4 A24/B        A24/B        24RM35R      250470 BDAC♯EA      R2M345       02457  ABC♯DE      
-# 144 chords dumpLimap            1 0 0 Bm119x       Bm119x       Rm3♭724♭7    03a25a BDAC♯EA      R2m34♭7      0235a  BC♯DEA      
-# 144 chords dumpLimap            1 0 1 E13s4/B      E13s4/B      5♭746R4      7a5905 BDAC♯EA      R456♭7       0579a  EABC♯D      
-# 144 chords dumpLimap            1 0 2 DM13s2/B     DM13s2/B     6R5725       907b27 BDAC♯EA      R2567        0279b  DEABC♯      
-# 144 chords dumpLimap            1 0 3 C♯m+♭9/B     C♯m+♭9/B     ♭7♭2♯5Rm3♯5  a18038 BDAC♯EA      R♭2m3♯5♭7    0138a  C♯DEAB      
-# 144 chords dumpLimap            1 0 4 A24/B        A24/B        24RM35R      250470 BDAC♯EA      R2M345       02457  ABC♯DE      
-# 144 chords dumpLimap            2 0 0 Bm119x       Bm119x       Rm3♭724♭7    03a25a BDAC♯EA      R2m34♭7      0235a  BC♯DEA      
-# 144 chords dumpLimap            2 0 1 E13s4/B      E13s4/B      5♭746R4      7a5905 BDAC♯EA      R456♭7       0579a  EABC♯D      
-# 144 chords dumpLimap            2 0 2 DM13s2/B     DM13s2/B     6R5725       907b27 BDAC♯EA      R2567        0279b  DEABC♯      
-# 144 chords dumpLimap            2 0 3 C♯m+♭9/B     C♯m+♭9/B     ♭7♭2♯5Rm3♯5  a18038 BDAC♯EA      R♭2m3♯5♭7    0138a  C♯DEAB      
-# 144 chords dumpLimap            2 0 4 A24/B        A24/B        24RM35R      250470 BDAC♯EA      R2M345       02457  ABC♯DE      
-# 144 chords dumpLimap            3 0 0 Bm119x       Bm119x       Rm3♭724♭7    03a25a BDAC♯EA      R2m34♭7      0235a  BC♯DEA      
-# 144 chords dumpLimap            3 0 1 E13s4/B      E13s4/B      5♭746R4      7a5905 BDAC♯EA      R456♭7       0579a  EABC♯D      
-# 144 chords dumpLimap            3 0 2 DM13s2/B     DM13s2/B     6R5725       907b27 BDAC♯EA      R2567        0279b  DEABC♯      
-# 144 chords dumpLimap            3 0 3 C♯m+♭9/B     C♯m+♭9/B     ♭7♭2♯5Rm3♯5  a18038 BDAC♯EA      R♭2m3♯5♭7    0138a  C♯DEAB      
-# 144 chords dumpLimap            3 0 4 A24/B        A24/B        24RM35R      250470 BDAC♯EA      R2M345       02457  ABC♯DE      
-# 144 chords dumpLimap            4 0 0 Bm119x       Bm119x       Rm3♭724♭7    03a25a BDAC♯EA      R2m34♭7      0235a  BC♯DEA      
-# 144 chords dumpLimap            4 0 1 E13s4/B      E13s4/B      5♭746R4      7a5905 BDAC♯EA      R456♭7       0579a  EABC♯D      
-# 144 chords dumpLimap            4 0 2 DM13s2/B     DM13s2/B     6R5725       907b27 BDAC♯EA      R2567        0279b  DEABC♯      
-# 144 chords dumpLimap            4 0 3 C♯m+♭9/B     C♯m+♭9/B     ♭7♭2♯5Rm3♯5  a18038 BDAC♯EA      R♭2m3♯5♭7    0138a  C♯DEAB      
-# 144 chords dumpLimap            4 0 4 A24/B        A24/B        24RM35R      250470 BDAC♯EA      R2M345       02457  ABC♯DE      
-# 765 cmds  _snapshot          snapName='test.209.2.FIN.png' quit 0 save=0
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.209.2.FIN.png'
+# 144 chords dumpLimap            0 0 0 G            G            RM35         047    GBD          RM35         047    GBD         
+# 144 chords dumpLimap            0 0 1 Bm+/G        Bm+/G        ♯5Rm3        803    GBD          Rm3♯5        038    BDG         
+# 144 chords dumpLimap            0 0 2 D6s4x/G      D6s4x/G      46R          590    GBD          R46          059    DGB         
+# 765 cmds  _snapshot          snapName='test.16.2.FIN.png' quit 0 save=0
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.2.FIN.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.209.2.FIN.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.2.FIN.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.209.2.FIN.png'
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.2.FIN.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.209.2.FIN.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.16.2.FIN.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.16.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
@@ -1331,13 +1300,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.1.NEW.png
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-#2103 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.209.csv
+#2103 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.16.csv
 # 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv'
-# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.209.csv'
+# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.16.csv'
 # 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.209.csv')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.209.csv ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.209.csv)
+# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.16.csv')
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.16.csv ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.16.csv)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
@@ -1353,7 +1322,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.1.NEW.png
 # 220 evnts on_key_press       check isParsing k='Q' retv=True
 # 222 evnts on_key_press       Not isParsing k='Q' retv=True
 # 227 evnts on_key_press       Done Not isParsing k='Q' retv=True
-# 228 evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000016817DC4490>
+# 228 evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000024D0BF684C0>
 # 229 evnts on_key_press       END    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         d={}
 # 230 evnts on_key_press       END processing event k='Q' return retv=True
 #2179 tabs  <module>           OK pyglet.app.run() runstat=None
@@ -1368,13 +1337,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.209.1.NEW.png
 # 449 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
 # 452 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt'
 # 453 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')
-#2135 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.209.txt
+#2135 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.16.txt
 # 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt'
-# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.209.txt'
+# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.16.txt'
 # 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.209.txt')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.209.txt ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.209.txt)
+# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.16.txt')
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.16.txt ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.16.txt)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
