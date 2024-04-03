@@ -69,20 +69,46 @@ def fmtR1(a, ca, b, cb, w, k, i, j):
     if k == 0:
         ret = f'{pa:>{w}}*{pb:<{w}}' if ca >= 0 < cb else f'{pa:>{w}}/{pb:<{w}}' if ca >= 0 >= cb else f'{pb:>{w}}/{pa:<{w}}' if ca < 0 <= cb else f'{papbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
         slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
-    if   k > 0:
+    elif k > 0:
         pa = pa * l if ca >= 0 <= cb or ca >= 0 > cb else pa  ;  pb = pb * l if ca < 0 <= cb else pb
         ret = f'{pa:>{w}}*{pb:<{w}}' if ca >= 0 < cb else f'{pa:>{w}}/{pb:<{w}}' if ca >= 0 >= cb else f'{pb:>{w}}/{pa:<{w}}' if ca < 0 <= cb else f'{papbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
         slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
     elif k < 0:
         if   ca >= 0:  ret = f'{pa*pb:>{w}}/{l:<{w}}'  ;  slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
 
-def fmtR2(a, ca, b, cb, w, k=0):
-    qa = f'{a}^{abs(ca)}' if ca < 0 else f'{a}^{ca}'  ;  qb = f'{b}^{abs(cb)}' if cb < 0 else f'{b}^{cb}'  ;  qaqbi = f'1/({qa}*{qb})'
-    return f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 <= cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 > cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+#def fmtR2(a, ca, b, cb, w):
+#    qa = f'{a}^{abs(ca)}' if ca < 0 else f'{a}^{ca}'  ;  qb = f'{b}^{abs(cb)}' if cb < 0 else f'{b}^{cb}'  ;  qaqbi = f'1/({qa}*{qb})'
+#    return f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 <= cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 > cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+def fmtR2(a, ca, b, cb, w, k, i, j):
+    qa = f'1' if ca == 0 else f'{a}' if ca == 1 else f'{a}' if ca == -1 else f'{a}^{abs(ca)}'
+    qb = f'1' if cb == 0 else f'{b}' if cb == 1 else f'{b}' if cb == -1 else f'{b}^{abs(cb)}' 
+    l = 2 ** abs(k)  ;  qaqbi = f'{l}/({qa}*{qb})'
+    if k == 0:
+        ret = f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 < cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 >= cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+        slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
+    elif k > 0:
+        qa = f'{l}*{qa}' if ca >= 0 <= cb or ca >= 0 > cb else qa  ;  qb = f'{l}*{qb}' if ca < 0 <= cb else qb
+        ret = f'{qa:>}*{qb:<}' if ca >= 0 < cb else f'{qa:>}/{qb:<}' if ca >= 0 >= cb else f'{qb:>}/{qa:<}' if ca < 0 <= cb else f'{qaqbi}' if ca < 0 > cb else f'?#?#?'  ;  ret = f'{ret:^{2*w+1}}'
+        slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
+    elif k < 0:
+        if   ca >= 0:  ret = f'{qa:>}*{qb}/{l:<}'  ;  ret = f'{ret:^{2*w+1}}'  ;  slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
 
-def fmtR3(a, ca, b, cb, w, k=0): 
-    sa = f'{a}{i2spr(abs(ca))}' if ca < 0 else f'{a}{i2spr(ca)}'  ;  sb = f'{b}{i2spr(abs(cb))}' if cb < 0 else f'{b}{i2spr(cb)}'  ;  sasbi = f'1/({sa}*{sb})'
-    return f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+#def fmtR3(a, ca, b, cb, w):
+#    sa = f'{a}{i2spr(abs(ca))}' if ca < 0 else f'{a}{i2spr(ca)}'  ;  sb = f'{b}{i2spr(abs(cb))}' if cb < 0 else f'{b}{i2spr(cb)}'  ;  sasbi = f'1/({sa}*{sb})'
+#    return f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+def fmtR3(a, ca, b, cb, w, k, i, j):
+    l = 2 ** abs(k)  ;  sa = f'{a}{i2spr(abs(ca))}'  ;  sb = f'{b}{i2spr(abs(cb))}'  ;  sasbi = f'1/({sa}*{sb})'
+    if   k == 0:
+        ret = f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 < cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 >= cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+        slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
+    elif k > 0:
+        sa = f'{l}*{a}{i2spr(abs(ca))}'  ;  sasbi = f'{l}/({sa}*{sb})'
+        ret = f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+        slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
+    elif k < 0:
+        sb = f'{l}*{b}{i2spr(abs(cb))}'  ;  sasbi = f'{l}/({sa}*{sb})'
+        ret = f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+        slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
 
 #def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
 #def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
@@ -93,8 +119,8 @@ def addFmtRs(i, j, k, r0s, r1s, r2s, r3s, a, ca, b, cb, u=5, w=11):
 #   rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))
     r0s.append(fmtR0(a, ca, b, cb, w, k))
     r1s.append(fmtR1(a, ca, b, cb, u, k, i, j))
-    r2s.append(fmtR2(a, ca, b, cb, u, k)) if u >= 5 else None
-    r3s.append(fmtR3(a, ca, b, cb, u, k))
+    r2s.append(fmtR2(a, ca, b, cb, u, k, i, j)) if u >= 5 else None
+    r3s.append(fmtR3(a, ca, b, cb, u, k, i, j))
 ########################################################################################################################################################################################################
 def fmtis(l, v=0, w=11, csv=0):
     mm = Y if csv else '|'    ;    ret = []
@@ -115,7 +141,7 @@ def dmpData(n='C', csv=0):
     dmpJust(k, rf=440, sss=V_SOUND, csv=csv)
 ########################################################################################################################################################################################################
 def dmpJust(k, rf=440, sss=V_SOUND, csv=0):
-    mm, nn, oo, ff = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}' #  ;   w2 = f'^{x}.{y}'
+    mm, nn, oo, ff = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'
     slog(f'BGN Just Tone Series ({k=} {rf=} {sss=} {csv=})', p=0, f=ff)
     r0s, r1s, r2s, r3s = [], [], [], []   ;   a, b = 5, 3
     slog(f'C  {fmtis(C,    w=x, csv=csv)}', p=0, f=ff)
