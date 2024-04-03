@@ -38,14 +38,16 @@ C  [     1     |     0     |    -1     ]
 D  [    -2     |    -1     |     0     |     1     |     2     ]
 C A[     5     |     1     |    1/5    ]
 D B[    1/9    |    1/3    |     1     |     3     |     9     ]
-         0           1           2           3           4           5           6           7           8           9          10          11          12          13          14     
+
 r0s[ 0.5555556 | 1.666667  |     5     |    15     |    45     | 0.1111111 | 0.3333333 |     1     |     3     |     9     |0.02222222 |0.06666667 |    0.2    |    0.6    |    1.8    ]
 r1s[    5/9    |    5/3    |    5/1    |    5*3    |    5*9    |    1/9    |    1/3    |    1/1    |    1*3    |    1*9    |   1/45    |   1/15    |    1/5    |    3/5    |    9/5    ]
-r2s[  5^1/3^2  |  5^1/3^1  |  5^1*3^0  |  5^1*3^1  |  5^1*3^2  |  5^0/3^2  |  5^0/3^1  |  5^0*3^0  |  5^0*3^1  |  5^0*3^2  |1/(5^1*3^2)|1/(5^1*3^1)|  3^0/5^1  |  3^1/5^1  |  3^2/5^1  ]
-r3s[   5¹/3²   |   5¹/3¹   |   5¹*3⁰   |   5¹*3¹   |   5¹*3²   |   5⁰/3²   |   5⁰/3¹   |   5⁰*3⁰   |   5⁰*3¹   |   5⁰*3²   | 1/(5¹*3²) | 1/(5¹*3¹) |   3⁰/5¹   |   3¹/5¹   |   3²/5¹   ]
-
+r2s[    5/3^2  |    5/3    |    5/1    |    5*3    |    5*3^2  |    1/3^2  |    1/3    |    1/1    |    1*3    |    1*3^2  | 1/(5*3^2) |  1/(5*3)  |    1/5    |    3/5    |  3^2/5    ]
+r3s[   5¹/3²   |   5¹/3¹   |   5¹/3⁰   |   5¹*3¹   |   5¹*3²   |   5⁰/3²   |   5⁰/3¹   |   5⁰/3⁰   |   5⁰*3¹   |   5⁰*3²   | 1/(5¹*3²) | 1/(5¹*3¹) |   3⁰/5¹   |   3¹/5¹   |   3²/5¹   ]
+         0           1           2           3           4           5           6           7           8           9          10          11          12          13          14     
 r0s[ 1.111111  | 1.666667  |   1.25    |   1.875   |  1.40625  | 1.777778  | 1.333333  |     1     |    1.5    |   1.125   | 1.422222  | 1.066667  |    1.6    |    1.2    |    1.8    ]
 r1s[   10/9    |    5/3    |    5/4    |   15/8    |   45/32   |   16/9    |    4/3    |    1/1    |    3/2    |    9/8    |   64/45   |   16/15   |    8/5    |    6/5    |    9/5    ]
+r2s[  2*5/3^2  |    5/3    |   5*1/4   |   5*3/8   | 5*3^2/32  | 16*1/3^2  |   4*1/3   |    1/1    |   1*3/2   |  1*3^2/8  |64/(5*3^2) | 16/(5*3)  |   8*1/5   |   2*3/5   |  3^2/5    ]
+r3s[  2*5¹/3²  |   5¹/3¹   |  5¹*3⁰/4  |  5¹*3¹/8  | 5¹*3²/32  | 16*5⁰/3²  |  4*5⁰/3¹  |   5⁰/3⁰   |  5⁰*3¹/2  |  5⁰*3²/8  |64/(5¹*3²) |16/(5¹*3¹) |  8*3⁰/5¹  |  2*3¹/5¹  |   3²/5¹   ]
 '''
 A, B = 5, 3
 C    = [  1,  0, -1 ]
@@ -56,14 +58,24 @@ R3   = [ A**C[2] * B**D[0], A**C[2] * B**D[1], A**C[2] * B**D[2], A**C[2] * B**D
 CRS  = [ R1, R2, R3 ]
 ########################################################################################################################################################################################################
 #def fmtR0(a, ca, b, cb, w):       pa = float(a ** ca)  ;  pb = float(b ** abs(cb)) if cb < 0 else float(b ** cb)   ;  return f'{pa/pb:{w}}' if cb < 0 else f'{pa*pb:{w}}'
-def fmtR0(a, ca, b, cb, w, k=0):
-    pa = a ** ca  ;  pb = b ** abs(cb)   ;   p = 2 ** k
-    v = p*pa/pb if cb < 0 else p*pa*pb #  ;   u = f'^{w}.{w-4}f' if ist(v, float) else f'^{w}'
-    return f'{v:^{w}.{w-4}}' if ist(v, float) else f'{v:^{w}}' # if cb < 0 else f'{v:{u}}'
 
 #def fmtR1(a, ca, b, cb, w):
 #    pa = a ** abs(ca) if ca < 0 else a ** ca  ;  pb = b ** abs(cb) if cb < 0 else b ** cb  ;  papbi = f'1/({pa}*{pb})'
 #    return f'{pa:>{w}}*{pb:<{w}}' if ca >= 0 <= cb else f'{pa:>{w}}/{pb:<{w}}' if ca >= 0 > cb else f'{pb:>{w}}/{pa:<{w}}' if ca < 0 <= cb else f'{papbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+
+#def fmtR2(a, ca, b, cb, w):
+#    qa = f'{a}^{abs(ca)}' if ca < 0 else f'{a}^{ca}'  ;  qb = f'{b}^{abs(cb)}' if cb < 0 else f'{b}^{cb}'  ;  qaqbi = f'1/({qa}*{qb})'
+#    return f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 <= cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 > cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+
+#def fmtR3(a, ca, b, cb, w):
+#    sa = f'{a}{i2spr(abs(ca))}' if ca < 0 else f'{a}{i2spr(ca)}'  ;  sb = f'{b}{i2spr(abs(cb))}' if cb < 0 else f'{b}{i2spr(cb)}'  ;  sasbi = f'1/({sa}*{sb})'
+#    return f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+########################################################################################################################################################################################################
+def fmtR0(a, ca, b, cb, w, k=0):
+    pa = a ** ca  ;  pb = b ** abs(cb)  ;  p = 2 ** k
+    v = p*pa/pb if cb < 0 else p*pa*pb
+    return f'{v:^{w}.{w-4}}' if ist(v, float) else f'{v:^{w}}'
+########################################################################################################################################################################################################
 def fmtR1(a, ca, b, cb, w, k, i, j):
     pa = a ** abs(ca)  ;  pb = b ** abs(cb)  ;  l = 2 ** abs(k)  ;  papbi = f'{l}/{pa*pb}'
     if k == 0:
@@ -75,10 +87,7 @@ def fmtR1(a, ca, b, cb, w, k, i, j):
         slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
     elif k < 0:
         if   ca >= 0:  ret = f'{pa*pb:>{w}}/{l:<{w}}'  ;  slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
-
-#def fmtR2(a, ca, b, cb, w):
-#    qa = f'{a}^{abs(ca)}' if ca < 0 else f'{a}^{ca}'  ;  qb = f'{b}^{abs(cb)}' if cb < 0 else f'{b}^{cb}'  ;  qaqbi = f'1/({qa}*{qb})'
-#    return f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 <= cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 > cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+########################################################################################################################################################################################################
 def fmtR2(a, ca, b, cb, w, k, i, j):
     qa = f'1' if ca == 0 else f'{a}' if ca == 1 else f'{a}' if ca == -1 else f'{a}^{abs(ca)}'
     qb = f'1' if cb == 0 else f'{b}' if cb == 1 else f'{b}' if cb == -1 else f'{b}^{abs(cb)}' 
@@ -92,28 +101,23 @@ def fmtR2(a, ca, b, cb, w, k, i, j):
         slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
     elif k < 0:
         if   ca >= 0:  ret = f'{qa:>}*{qb}/{l:<}'  ;  ret = f'{ret:^{2*w+1}}'  ;  slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
-
-#def fmtR3(a, ca, b, cb, w):
-#    sa = f'{a}{i2spr(abs(ca))}' if ca < 0 else f'{a}{i2spr(ca)}'  ;  sb = f'{b}{i2spr(abs(cb))}' if cb < 0 else f'{b}{i2spr(cb)}'  ;  sasbi = f'1/({sa}*{sb})'
-#    return f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+########################################################################################################################################################################################################
 def fmtR3(a, ca, b, cb, w, k, i, j):
     l = 2 ** abs(k)  ;  sa = f'{a}{i2spr(abs(ca))}'  ;  sb = f'{b}{i2spr(abs(cb))}'  ;  sasbi = f'1/({sa}*{sb})'
     if   k == 0:
         ret = f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 < cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 >= cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
         slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
     elif k > 0:
-        sa = f'{l}*{a}{i2spr(abs(ca))}'  ;  sasbi = f'{l}/({sa}*{sb})'
-        ret = f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+        sa = f'{l}*{sa}' if ca >= 0 <= cb or ca >= 0 > cb else sa  ;  sb = f'{l}*{sb}' if ca < 0 <= cb else sb  ;  sasbi = f'{l}/({sa}*{sb})'
+        ret = f'{sa:>}*{sb:<}' if ca >= 0 <= cb else f'{sa:>}/{sb:<}' if ca >= 0 > cb else f'{sb:>}/{sa:<}' if ca < 0 <= cb else f'{sasbi}' if ca < 0 > cb else f'?#?#?'  ;  ret = f'{ret:^{2*w+1}}'
         slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
     elif k < 0:
-        sb = f'{l}*{b}{i2spr(abs(cb))}'  ;  sasbi = f'{l}/({sa}*{sb})'
-        ret = f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
-        slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
-
+        if   ca >= 0:  ret = f'{sa:>}*{sb}/{l:<}'  ;  ret = f'{ret:^{2*w+1}}'  ;  slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}')  ;  return ret
+########################################################################################################################################################################################################
 #def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
 #def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
 #def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
-
+########################################################################################################################################################################################################
 def addFmtRs(i, j, k, r0s, r1s, r2s, r3s, a, ca, b, cb, u=5, w=11):
 #   rAs.append(fmtRA(a, ca, ww if ist(a**ca, int) else w3))
 #   rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))
