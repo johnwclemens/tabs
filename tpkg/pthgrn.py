@@ -21,6 +21,7 @@ ir            = ivls.ir
 fabc          = ivls.fabc
 i2nPair       = ivls.i2nPair
 r2cents       = ivls.r2cents
+k2dCent       = ivls.k2dCent
 stackI        = ivls.stackI
 stck5ths      = ivls.stck5ths
 stck4ths      = ivls.stck4ths
@@ -164,10 +165,6 @@ def k2Abcs(k=50):
                                       else f(7, 4) if k==55 else f(8, 3) if k==60 else f(9, 2) if k==53 else f(10, 1) if k==58 else f(11, 0) if k==51 else f(12, 0)
 #   return f(7, 6) if k==50 or k== 62 else f(6, 7) if k==57 else f(5, 8) if k==52 else f(4, 9)  if k==59 else f(3, 10) if k==54 else f(2, 11) if k==61 else f(1, 12) if k==56 \
 #                                     else f(8, 5) if k==55 else f(9, 4) if k==60 else f(10, 3) if k==53 else f(11, 2) if k==58 else f(12, 1) if k==51 else f(13, 0)
-########################################################################################################################################################################################################
-def k2dCent(k):
-    return k if 0 <= k < 50 else k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150 <= k <= 1200 else None
-#       return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
 ########################################################################################################################################################################################################
 def fmtNPair(k, i, k0, dbg=0):
     n0, _   = i2nPair(k0, s=1)
