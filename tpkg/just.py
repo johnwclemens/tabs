@@ -4,23 +4,14 @@ from tpkg.notes import Notes
 from tpkg       import intrvls as ivls
 #from tpkg       import pthgrn
 
-W, Y, Z       = utl.W,      utl.Y,     utl.Z
-slog, ist     = utl.slog,   utl.ist
-fmtf, fmtg    = utl.fmtf,   utl.fmtg
-fmtl, fmtm    = utl.fmtl,   utl.fmtm
+W, Y, Z, slog, ist     = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
+fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 
-CM_P_M        = ivls.CM_P_M
-V_SOUND       = ivls.V_SOUND
-A4_INDEX      = ivls.A4_INDEX
-NT            = ivls.NT
+NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
-F440s, F432s  = ivls.F440s, ivls.F432s
-i2spr         = ivls.i2spr
-r2cents       = ivls.r2cents
-k2dCent       = ivls.k2dCent
-i2nPair       = ivls.i2nPair
-#addFmtRs      = ivls.addFmtRs
-#ck2ik         = pthgrn.ck2ik
+F440s,    F432s            = ivls.F440s,    ivls.F432s
+i2nPair,  i2spr,    ir     = ivls.i2nPair,  ivls.i2spr,    ivls.ir
+r2cents,  k2dCent          = ivls.r2cents,  ivls.k2dCent
 
 '''
      3^-2    3^-1  3^0 3^1 3^2
@@ -104,7 +95,7 @@ ck2ik       = { CENT_KS[i]: k for i, k in enumerate(IVAL_KS) }
 #    sa = f'{a}{i2spr(abs(ca))}' if ca < 0 else f'{a}{i2spr(ca)}'  ;  sb = f'{b}{i2spr(abs(cb))}' if cb < 0 else f'{b}{i2spr(cb)}'  ;  sasbi = f'1/({sa}*{sb})'
 #    return f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
 ########################################################################################################################################################################################################
-def fmtR0(a, ca, b, cb, w, k=0):
+def fmtR0(a, ca, b, cb, w, k=0): # w=11
     pa = a ** ca  ;  pb = b ** abs(cb)  ;  p = 2 ** k
     v = p*pa/pb if cb < 0 else p*pa*pb
     return f'{v:^{w}.{w-4}f}' if ist(v, float) else f'{v:^{w}}'
@@ -148,7 +139,7 @@ def fmtR3(a, ca, b, cb, w, k, i, j):
 #def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
 #def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
 ########################################################################################################################################################################################################
-def addFmtRs(i, j, k, r0s, r1s, r2s, r3s, a, ca, b, cb, u=5, w=11):
+def addFmtRs(i, j, k, r0s, r1s, r2s, r3s, a, ca, b, cb, u=5, w=11): # u=5 w=11
 #   rAs.append(fmtRA(a, ca, ww if ist(a**ca, int) else w3))
 #   rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))
     r0s.append(fmtR0(a, ca, b, cb, w, k))

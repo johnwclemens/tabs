@@ -59,20 +59,20 @@ def abc2r(a, b, c): # assumes a==2 or b==2, probably too specific, move to Pytha
 #    r        = pa / pb   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
     return r, ca, cb
 ########################################################################################################################################################################################################
-def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
-def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>{w}}/{pb:<{w}}'
-def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
-def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
-def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>{w}}/{qb:<{w}}'
-def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}/{sb:<{w}}' 
-def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
+#def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:{w}}'
+#def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>{w}}/{pb:<{w}}'
+#def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
+#def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
+#def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>{w}}/{qb:<{w}}'
+#def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}/{sb:<{w}}' 
+#def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
     
-def addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, w3, ww, u):
-    r0s.append(fmtR0(a, ca, b, cb, w3))
-    rAs.append(fmtRA(a, ca, ww if ist(a**ca, int) else w3))
-    rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))
-    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
-    r3s.append(fmtR3(a, ca, b, cb, u))
+#def addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, w3, ww, u): # u=4 w3='^9.5f' ww='^9'
+#    r0s.append(fmtR0(a, ca, b, cb, w3))
+#    rAs.append(fmtRA(a, ca, ww if ist(a**ca, int) else w3))
+#    rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))
+#    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
+#    r3s.append(fmtR3(a, ca, b, cb, u))
 ########################################################################################################################################################################################################
 def f2nPair(f, rf=440, b=None, s=0, e=0):
     ni = NT * math.log2(f / rf) # fixme
