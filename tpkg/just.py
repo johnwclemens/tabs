@@ -96,13 +96,13 @@ ck2ik       = { CENT_KS[i]: k for i, k in enumerate(IVAL_KS) }
 #    return f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 <= cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 > cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
 ########################################################################################################################################################################################################
 def fmtR0(a, ca, b, cb, w, k=0): # w=11
-    pa = a ** ca  ;  pb = b ** abs(cb)  ;  p = 2 ** k
+    pa = a ** ca  ;  pb = b ** abs(cb)  ;  p = 2 ** k if k is not None else 1
     v = p*pa/pb if cb < 0 else p*pa*pb
     return f'{v:^{w}.{w-4}f}' if ist(v, float) else f'{v:^{w}}'
 ########################################################################################################################################################################################################
 def fmtR1(a, ca, b, cb, w, k, i, j):
-    pa = a ** abs(ca)  ;  pb = b ** abs(cb)  ;  l = 2 ** abs(k)  ;  papbi = f'{l}/{pa*pb}'  ;  ret = Z  ;  dbg = 0
-    if k == 0:
+    pa = a ** abs(ca)  ;  pb = b ** abs(cb)  ;  l = 2 ** abs(k) if k else None  ;  papbi = f'{l}/{pa*pb}'  ;  ret = Z  ;  dbg = 0
+    if   not k:
         ret = f'{pa:>{w}}*{pb:<{w}}' if ca >= 0 < cb else f'{pa:>{w}}/{pb:<{w}}' if ca >= 0 >= cb else f'{pb:>{w}}/{pa:<{w}}' if ca < 0 <= cb else f'{papbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
     elif k > 0:
         pa = pa * l if ca >= 0 <= cb or ca >= 0 > cb else pa  ;  pb = pb * l if ca < 0 <= cb else pb
@@ -114,8 +114,8 @@ def fmtR1(a, ca, b, cb, w, k, i, j):
 def fmtR2(a, ca, b, cb, w, k, i, j):
     qa = f'1' if ca == 0 else f'{a}' if ca == 1 else f'{a}' if ca == -1 else f'{a}^{abs(ca)}'
     qb = f'1' if cb == 0 else f'{b}' if cb == 1 else f'{b}' if cb == -1 else f'{b}^{abs(cb)}' 
-    l = 2 ** abs(k)  ;  qaqbi = f'{l}/({qa}*{qb})'  ;  ret = Z  ;  dbg = 0
-    if k == 0:
+    l = 2 ** abs(k) if k is not None else 1  ;  qaqbi = f'{l}/({qa}*{qb})'  ;  ret = Z  ;  dbg = 0
+    if   not k:
         ret = f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 < cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 >= cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
     elif k > 0:
         qa = f'{l}*{qa}' if ca >= 0 <= cb or ca >= 0 > cb else qa  ;  qb = f'{l}*{qb}' if ca < 0 <= cb else qb
@@ -125,8 +125,8 @@ def fmtR2(a, ca, b, cb, w, k, i, j):
     slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}') if dbg else None  ;  return ret
 ########################################################################################################################################################################################################
 def fmtR3(a, ca, b, cb, w, k, i, j):
-    l = 2 ** abs(k)  ;  sa = f'{a}{i2spr(abs(ca))}'  ;  sb = f'{b}{i2spr(abs(cb))}'  ;  sasbi = f'1/({sa}*{sb})'  ;  ret = Z  ;  dbg = 0
-    if   k == 0:
+    l = 2 ** abs(k) if k is not None else 1  ;  sa = f'{a}{i2spr(abs(ca))}'  ;  sb = f'{b}{i2spr(abs(cb))}'  ;  sasbi = f'1/({sa}*{sb})'  ;  ret = Z  ;  dbg = 0
+    if   not k:
         ret = f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 < cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 >= cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
     elif k > 0:
         sa = f'{l}*{sa}' if ca >= 0 <= cb or ca >= 0 > cb else sa  ;  sb = f'{l}*{sb}' if ca < 0 <= cb else sb  ;  sasbi = f'{l}/({sa}*{sb})'
@@ -135,11 +135,24 @@ def fmtR3(a, ca, b, cb, w, k, i, j):
         if   ca >= 0:  ret = f'{sa:>}*{sb}/{l:<}'  ;  ret = f'{ret:^{2*w+1}}'
     slog(f'{i} {j} {k:2} {l:2} {a} {ca:2} {b} {cb:2} {ret=}') if dbg else None  ;  return ret
 ########################################################################################################################################################################################################
-#def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
-#def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
-#def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
+def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:{w}}'
+def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:{w}}'
+def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
 ########################################################################################################################################################################################################
-def addFmtRs(i, j, k, r0s, r1s, r2s, r3s, a, ca, b, cb, u=5, w=11): # u=5 w=11
+def NEW_addFmtRs(a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):
+    assert rs and ist(rs, list),  f'{rs=} {type(rs)=} {a=} {ca} {b} {cb} {u=} {w=}'   ;   lr = len(rs)
+#    r0s, r2s, r3s = [], [], []   ;   r1s = [] if lr == 4 else None   ;   rAs = [] if lr == 5 else None   ;   rBs = [] if lr == 5 else None
+    r0s, r2s, r3s = rs[0], rs[-2], rs[-1] #         ;   r1s, rAs, rBs = None, None, None
+    r1s, rAs, rBs = None,  None,   None
+    if   lr == 4:       r1s      = rs[1]           ;   r1s.append(fmtR1(a, ca, b, cb, u, k, i, j))
+    elif lr == 5:       rAs, rBs = rs[1], rs[2]    ;   rAs.append(fmtRA(a, ca, w))    ;    rBs.append(fmtRB(b, cb, w)) # if ist(b**cb, int) else w3))
+    r0s.append(fmtR0(a, ca, b, cb, w, k))
+    r2s.append(fmtR2(a, ca, b, cb, u, k, i, j)) # if u >= 9 else None
+    r3s.append(fmtR3(a, ca, b, cb, u, k, i, j))
+    if   lr == 4:   return r0s, r1s,      r2s, r3s
+    elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
+    
+def OLD_addFmtRs(i, j, k, r0s, r1s, r2s, r3s, a, ca, b, cb, u=5, w=11): # u=5 w=11
 #   rAs.append(fmtRA(a, ca, ww if ist(a**ca, int) else w3))
 #   rBs.append(fmtRB(b, cb, ww if ist(b**cb, int) else w3))
     r0s.append(fmtR0(a, ca, b, cb, w, k))
@@ -178,7 +191,8 @@ def dmpJust(k, rf=440, sss=V_SOUND, csv=0):
     slog(f'    {fmtl(ii, w=w, s=mm, d=Z)}', p=0, f=ff)
     for     i, c in enumerate(C):
         for j, d in enumerate(D):
-            addFmtRs(i, j, 0, r0s, r1s, r2s, r3s, a, c, b, d, z)
+#            OLD_addFmtRs(i, j, 0, r0s, r1s, r2s, r3s, a, c, b, d, z)
+            NEW_addFmtRs(a, c, b, d, [r0s, r1s, r2s, r3s], z) #, None, i, j)
     slog(f'r0s{fmtl(r0s, w=w, s=oo)}', p=0, f=ff)
     slog(f'r1s{fmtl(r1s, w=w, s=oo)}', p=0, f=ff)
     slog(f'r2s{fmtl(r2s, w=w, s=oo)}', p=0, f=ff)
@@ -197,7 +211,8 @@ def dmpJust(k, rf=440, sss=V_SOUND, csv=0):
             n = fmtNote(kk, (j*7)%NT, b=0 if i==0 and j==4 else 1)  ;  notes.append(n)
             u = CRS[i][j]
             v, p = ivls.norm(u)
-            addFmtRs(i, j, p, r0s, r1s, r2s, r3s, a, c, b, d, z)
+#            OLD_addFmtRs(i, j, p, r0s, r1s, r2s, r3s, a, c, b, d, z)
+            NEW_addFmtRs(a, c, b, d, [r0s, r1s, r2s, r3s], z, x, p, i, j)
             freq = f0 * v         ;   freqs.append(fmtf(freq, x-2))
             wvln = w0 / freq      ;   wvlns.append(fmtf(wvln, x-2))
             cent = r2cents(v)     ;   cents.append(f'{cent:7.2f}')
