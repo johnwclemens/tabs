@@ -22,7 +22,7 @@ class Modes:
 # C: chords, colors, consume
 # D: data, display level, docs
 # E: events, exit
-# F: filters
+# F: filters, formatting
 # G:
 # H: harmonics, help
 # I: itervals
@@ -43,6 +43,10 @@ class Modes:
 # X:
 # Y:
 # Z:
+
+# investigate format specifiers e.g. type e or g instead of f
+# import public libs: Decimals Fractions Pandas NumPy
+# import public libs: Decimals Fractions Pandas NumPy SciPy MatPlotLib
 
 # pyglet.options['audio'] = ('xaudio2', 'directsound', 'openal', 'pulse', 'silent')
 # source = pyglet.media.load('explosion.wav')
