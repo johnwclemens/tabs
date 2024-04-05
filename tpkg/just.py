@@ -10,7 +10,7 @@ fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
 F440s,    F432s            = ivls.F440s,    ivls.F432s
-i2nPair,  i2spr,    ir     = ivls.i2nPair,  ivls.i2spr,    ivls.ir
+i2nPair,  i2spr            = ivls.i2nPair,  ivls.i2spr
 r2cents,  k2dCent          = ivls.r2cents,  ivls.k2dCent
 fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 
@@ -194,7 +194,7 @@ def dmpJust(k, rf=440, sss=V_SOUND, csv=0):
     for     i, c in enumerate(C):
         for j, d in enumerate(D):
 #            OLD_addFmtRs(i, j, 0, r0s, r1s, r2s, r3s, a, c, b, d, z)
-            addFmtRs(a, c, b, d, [r0s, r1s, r2s, r3s], u=z, k=0) #, None, i, j)
+            addFmtRs(a, c, b, d, rs=[r0s, r1s, r2s, r3s], u=z,      k=0, i=i, j=j)
     slog(f'r0s{fmtl(r0s, w=w, s=oo)}', p=0, f=ff)
     slog(f'r1s{fmtl(r1s, w=w, s=oo)}', p=0, f=ff)
     slog(f'r2s{fmtl(r2s, w=w, s=oo)}', p=0, f=ff)
@@ -214,7 +214,7 @@ def dmpJust(k, rf=440, sss=V_SOUND, csv=0):
             u = CRS[i][j]
             v, p = ivls.norm(u)
 #            OLD_addFmtRs(i, j, p, r0s, r1s, r2s, r3s, a, c, b, d, z)
-            addFmtRs(a, c, b, d, [r0s, r1s, r2s, r3s], z, x, p, i, j)
+            addFmtRs(a, c, b, d, rs=[r0s, r1s, r2s, r3s], u=z, w=x, k=p, i=i, j=j)
             freq = f0 * v         ;   freqs.append(fmtf(freq, x-2))
             wvln = w0 / freq      ;   wvlns.append(fmtf(wvln, x-2))
             cent = r2cents(v)     ;   cents.append(f'{cent:7.2f}')

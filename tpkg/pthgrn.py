@@ -11,7 +11,7 @@ NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUN
 
 F440s, F432s               = ivls.F440s,    ivls.F432s
 abc2r, fabc                = ivls.abc2r,    ivls.fabc
-i2nPair,  i2spr,    ir     = ivls.i2nPair,  ivls.i2spr,    ivls.ir
+i2nPair,  i2spr            = ivls.i2nPair,  ivls.i2spr
 r2cents,  k2dCent          = ivls.r2cents,  ivls.k2dCent
 stck5ths, stck4ths, stackI = ivls.stck5ths, ivls.stck4ths, ivls.stackI
 fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
@@ -113,14 +113,14 @@ def dmpPyth(k, k0=50, rf=440, sss=V_SOUND, csv=0):
     for i, e in enumerate(abc0):
         a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)    ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = w0 / f
 #        r0 = fmtR0(a, ca, b, cb, x)    ;   r1 = fmtR1(a, ca, b, cb, y)   ;    r2 = fmtR2(a, ca, b, cb, y)   ;   r3 = fmtR3(a, ca, b, cb, y)
-        n  = fmtNPair(k, i, k0)   ;   c = r2cents(r)    ;   d = k2dCent(c)   ;    rc = round(c)   ;   assert rc in ck2ik,  f'{rc=} not in ck2ik {k=} {i=} {k0=} {n=} {c=} {r=} {abc=}'   ;   v = ck2ik[rc]    ;   cki += 1
+        n  = fmtNPair(k, i, k0)   ;   c = r2cents(r)   ;   d = k2dCent(c)   ;   rc = round(c)   ;   assert rc in ck2ik,  f'{rc=} not in ck2ik {k=} {i=} {k0=} {n=} {c=} {r=} {abc=}'   ;   v = ck2ik[rc]   ;   cki += 1
         while CENT_KS[cki] < rc:
             ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
             cki += 1    ;  j = len(ii)-1   ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
         ii.append(i)    ;  fs.append(fmtf(f, z))   ;  cs.append(fmtf(c, y-1))   ;   abcMap.append(abc)
         ns.append(n)    ;  ws.append(fmtf(w, z))   ;  ds.append(fmtg(d, y-1))   ;       vs.append(v)
 #        r0s.append(r0)  ;   r1s.append(r1)   ;   r2s.append(r2)   ;   r3s.append(r3)
-        r0s, r1s, r2s, r3s = addFmtRs(a, ca, b, cb, [r0s, r1s, r2s, r3s], y, x)
+        r0s, r1s, r2s, r3s = addFmtRs(a, ca, b, cb, rs=[r0s, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
     nimap[k] = [abcMap, ckmap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'
     while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
     while len(abc2) < len(abc3): abc2.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
@@ -198,7 +198,7 @@ def dmpNiMap(ni, ik, x, upd=0, k0=50, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
             a, ca, b, cb = e        ;      pa, pb = a ** ca, b ** cb
             n    = fmtNPair(k, j, k0)
             pd   = [f'{i:x}', f'{k:2}', f'{n:2}']   ;   pfx = mm.join(pd)   ;   pfx += f'{nn}[{nn}'
-            cent = r2cents(pa/pb)   ;    rc = ir(cent)      ;   centf = f'{cent:{ww}.0f}'     ;   cki += 1   ;   cents.append(centf)
+            cent = r2cents(pa/pb)   ;    rc = round(cent)   ;   centf = f'{cent:{ww}.0f}'     ;   cki += 1   ;   cents.append(centf)
             while CENT_KS[cki] < rc:
                 blnk = W*x          ;   cki += 1            ;   cents.append(f'{blnk:{ww}}')
                 rat0.append(blnk)   ;   rat2.append(blnk)   ;   rat3.append(blnk)
@@ -206,8 +206,8 @@ def dmpNiMap(ni, ik, x, upd=0, k0=50, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
 #            r0 = fmtR0(a, ca, b, cb, x)
 #            r2 = fmtR2(a, ca, b, cb, yy)    ;    r3   = fmtR3(a, ca, b, cb, yy)
 #            r1 = fmtR1(a, ca, b, cb, yy) if x == 13 else None    ;   rA = fmtRA(a, ca, x) if x == 9 else None   ;   rB = fmtRB(b, cb, x) if x == 9 else None
-            if   x == 9:    addFmtRs(a, ca, b, cb, [rat0, ratA, ratB, rat2, rat3], yy, x)
-            elif x == 13:   addFmtRs(a, ca, b, cb, [rat0, rat1, rat2, rat3],       yy, x)
+            if   x == 9:    addFmtRs(a, ca, b, cb, rs=[rat0, ratA, ratB, rat2, rat3], u=yy, w=x,     i=i, j=j)
+            elif x == 13:   addFmtRs(a, ca, b, cb, rs=[rat0, rat1, rat2, rat3],       u=yy, w=x,     i=i, j=j)
             if upd and ni == 5:
                 assert rc in ckmap.keys(),  f'{rc=} {ckmap.keys()=}'     ;     f = f0 * pa/pb
                 ckmap[rc]['Count'] = ckmap[rc]['Count'] + 1 if 'Count' in ckmap[rc] else 1    ;    ckmap[rc]['Abc']   = e
@@ -307,7 +307,7 @@ def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
             assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'
             a, ca, b, cb = ckmap[ck]['Abc']   ;    q = fdvdr(a, ca, b, cb)
 #            OLD_addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, y, u)
-            r0s, rAs, rBs, r2s, r3s = addFmtRs(a, ca, b, cb, [r0s, rAs, rBs, r2s, r3s], y, u)
+            r0s, rAs, rBs, r2s, r3s = addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u,     i=i, j=ck)
             f, w, n, c, d, k, i2 = getCkMap(ck, a, ca, b, cb, f0, w0)   ;   sk += k
             cksf.append(f'{c:{w1}}')          ;    cksi.append(int(round(c)))
             fs.append(f'{fmtf(f, u-2)}')      ;      ws.append(f'{fmtf(w, u-2)}')
