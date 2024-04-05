@@ -14,7 +14,7 @@ abc2r, fabc                = ivls.abc2r,    ivls.fabc
 i2nPair,  i2spr,    ir     = ivls.i2nPair,  ivls.i2spr,    ivls.ir
 r2cents,  k2dCent          = ivls.r2cents,  ivls.k2dCent
 stck5ths, stck4ths, stackI = ivls.stck5ths, ivls.stck4ths, ivls.stackI
-#fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
+fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 ########################################################################################################################################################################################################
 #COFSA       = {'C', 'G', 'D',  'A',  'E',  'B',  'F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#'}
 #COFSB       = {'C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb', 'Bbb'}
@@ -120,7 +120,7 @@ def dmpPyth(k, k0=50, rf=440, sss=V_SOUND, csv=0):
         ii.append(i)    ;  fs.append(fmtf(f, z))   ;  cs.append(fmtf(c, y-1))   ;   abcMap.append(abc)
         ns.append(n)    ;  ws.append(fmtf(w, z))   ;  ds.append(fmtg(d, y-1))   ;       vs.append(v)
 #        r0s.append(r0)  ;   r1s.append(r1)   ;   r2s.append(r2)   ;   r3s.append(r3)
-        r0s, r1s, r2s, r3s = NEW_addFmtRs(a, ca, b, cb, [r0s, r1s, r2s, r3s], y, x)
+        r0s, r1s, r2s, r3s = addFmtRs(a, ca, b, cb, [r0s, r1s, r2s, r3s], y, x)
     nimap[k] = [abcMap, ckmap]   ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'
     while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
     while len(abc2) < len(abc3): abc2.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
@@ -206,8 +206,8 @@ def dmpNiMap(ni, ik, x, upd=0, k0=50, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
 #            r0 = fmtR0(a, ca, b, cb, x)
 #            r2 = fmtR2(a, ca, b, cb, yy)    ;    r3   = fmtR3(a, ca, b, cb, yy)
 #            r1 = fmtR1(a, ca, b, cb, yy) if x == 13 else None    ;   rA = fmtRA(a, ca, x) if x == 9 else None   ;   rB = fmtRB(b, cb, x) if x == 9 else None
-            if   x == 9:    NEW_addFmtRs(a, ca, b, cb, [rat0, ratA, ratB, rat2, rat3], yy, x)
-            elif x == 13:   NEW_addFmtRs(a, ca, b, cb, [rat0, rat1, rat2, rat3],       yy, x)
+            if   x == 9:    addFmtRs(a, ca, b, cb, [rat0, ratA, ratB, rat2, rat3], yy, x)
+            elif x == 13:   addFmtRs(a, ca, b, cb, [rat0, rat1, rat2, rat3],       yy, x)
             if upd and ni == 5:
                 assert rc in ckmap.keys(),  f'{rc=} {ckmap.keys()=}'     ;     f = f0 * pa/pb
                 ckmap[rc]['Count'] = ckmap[rc]['Count'] + 1 if 'Count' in ckmap[rc] else 1    ;    ckmap[rc]['Abc']   = e
@@ -263,33 +263,33 @@ def dmpIvals(i, ks, cs, ds, csv): # only called by dmpCkMap()
         fd       = fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
 #    slog(f'END dmpIvals() {i=} {csv=}')
 ########################################################################################################################################################################################################
-def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:^{w}.{w-4}f}'
-def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>{w}}/{pb:<{w}}' # if ist(pa, int) else f'{pa:>{w}.{w-4}}/{pb:<{w}.{w-4}f}'
-def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:^{w}}' if ist(pa, int) else f'{pa:^{w}.{w-4}f}'
-def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:^{w}}' if ist(pb, int) else f'{pb:^{w}.{w-4}f}'
-def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>{w}}/{qb:<{w}}'
-def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}/{sb:<{w}}' 
-def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
+#def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:^{w}.{w-4}f}'
+#def fmtR1(a, ca, b, cb, w):   pa, pb =   a ** ca        ,   b ** cb          ;  return f'{pa:>{w}}/{pb:<{w}}' # if ist(pa, int) else f'{pa:>{w}.{w-4}}/{pb:<{w}.{w-4}f}'
+#def fmtRA(a, ca, w=Z):        pa     =   a ** ca                             ;  return f'{pa:^{w}}' if ist(pa, int) else f'{pa:^{w}.{w-4}f}'
+#def fmtRB(b, cb, w=Z):        pb     =   b ** cb                             ;  return f'{pb:^{w}}' if ist(pb, int) else f'{pb:^{w}.{w-4}f}'
+#def fmtR2(a, ca, b, cb, w):   qa, qb = f'{a}^{ca}'      , f'{b}^{cb}'        ;  return f'{qa:>{w}}/{qb:<{w}}'
+#def fmtR3(a, ca, b, cb, w):   sa, sb = f'{a}{i2spr(ca)}', f'{b}{i2spr(cb)}'  ;  return f'{sa:>{w}}/{sb:<{w}}' 
+#def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))  ;  return n * '/'
 
-def NEW_addFmtRs(a, ca, b, cb, rs, u=4, w=9):
-    assert rs and ist(rs, list),  f'{rs=} {type(rs)=} {a=} {ca} {b} {cb} {u=} {w=}'   ;   lr = len(rs)
-#    r0s, r2s, r3s = [], [], []   ;   r1s = [] if lr == 4 else None   ;   rAs = [] if lr == 5 else None   ;   rBs = [] if lr == 5 else None
-    r0s, r2s, r3s = rs[0], rs[-2], rs[-1] #         ;   r1s, rAs, rBs = None, None, None
-    r1s, rAs, rBs = None,  None,   None
-    if   lr == 4:       r1s      = rs[1]           ;   r1s.append(fmtR1(a, ca, b, cb, u))
-    elif lr == 5:       rAs, rBs = rs[1], rs[2]    ;   rAs.append(fmtRA(a, ca, w))    ;    rBs.append(fmtRB(b, cb, w)) # if ist(b**cb, int) else w3))
-    r0s.append(fmtR0(a, ca, b, cb, w))
-    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
-    r3s.append(fmtR3(a, ca, b, cb, u))
-    if   lr == 4:   return r0s, r1s,      r2s, r3s
-    elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
+#def NEW_addFmtRs(a, ca, b, cb, rs, u=4, w=9):
+#    assert rs and ist(rs, list),  f'{rs=} {type(rs)=} {a=} {ca} {b} {cb} {u=} {w=}'   ;   lr = len(rs)
+##    r0s, r2s, r3s = [], [], []   ;   r1s = [] if lr == 4 else None   ;   rAs = [] if lr == 5 else None   ;   rBs = [] if lr == 5 else None
+#    r0s, r2s, r3s = rs[0], rs[-2], rs[-1] #         ;   r1s, rAs, rBs = None, None, None
+#    r1s, rAs, rBs = None,  None,   None
+#    if   lr == 4:       r1s      = rs[1]           ;   r1s.append(fmtR1(a, ca, b, cb, u))
+#    elif lr == 5:       rAs, rBs = rs[1], rs[2]    ;   rAs.append(fmtRA(a, ca, w))    ;    rBs.append(fmtRB(b, cb, w)) # if ist(b**cb, int) else w3))
+#    r0s.append(fmtR0(a, ca, b, cb, w))
+#    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
+#    r3s.append(fmtR3(a, ca, b, cb, u))
+#    if   lr == 4:   return r0s, r1s,      r2s, r3s
+#    elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
     
-def OLD_addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, u=4, w=9):
-    r0s.append(fmtR0(a, ca, b, cb, w))
-    rAs.append(fmtRA(a, ca, w)) # if ist(a**ca, int) else w3))
-    rBs.append(fmtRB(b, cb, w)) # if ist(b**cb, int) else w3))
-    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
-    r3s.append(fmtR3(a, ca, b, cb, u))
+#def OLD_addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, u=4, w=9):
+#    r0s.append(fmtR0(a, ca, b, cb, w))
+#    rAs.append(fmtRA(a, ca, w)) # if ist(a**ca, int) else w3))
+#    rBs.append(fmtRB(b, cb, w)) # if ist(b**cb, int) else w3))
+#    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
+#    r3s.append(fmtR3(a, ca, b, cb, u))
 ########################################################################################################################################################################################################
 def dmpDataTableLine(w=10, n=24, csv=0):
     c = '-'   ;   nn, mm, t = (Y, Y, Y) if csv else (Z, W, '|')
@@ -307,7 +307,7 @@ def dmpCkMap(k=50, rf=440, sss=V_SOUND, csv=0):
             assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'
             a, ca, b, cb = ckmap[ck]['Abc']   ;    q = fdvdr(a, ca, b, cb)
 #            OLD_addFmtRs(r0s, rAs, rBs, r2s, r3s, a, ca, b, cb, y, u)
-            r0s, rAs, rBs, r2s, r3s = NEW_addFmtRs(a, ca, b, cb, [r0s, rAs, rBs, r2s, r3s], y, u)
+            r0s, rAs, rBs, r2s, r3s = addFmtRs(a, ca, b, cb, [r0s, rAs, rBs, r2s, r3s], y, u)
             f, w, n, c, d, k, i2 = getCkMap(ck, a, ca, b, cb, f0, w0)   ;   sk += k
             cksf.append(f'{c:{w1}}')          ;    cksi.append(int(round(c)))
             fs.append(f'{fmtf(f, u-2)}')      ;      ws.append(f'{fmtf(w, u-2)}')
