@@ -103,15 +103,14 @@ class Intonation(object):
             m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
         return n, m
 
-    @staticmethod
-    def addFmtRs(a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):
+    def addFmtRs(self, a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):
         assert rs and ist(rs, list),  f'{rs=} {type(rs)=} {a=} {ca} {b} {cb} {u=} {w=}'   ;   lr = len(rs)
         r0s, r2s, r3s = rs[0], rs[-2], rs[-1]          ;   r1s, rAs, rBs = None, None, None
-        if   lr == 4:       r1s      = rs[1]           ;   r1s.append(fmtR1(a, ca, b, cb, u, k, i, j))
-        elif lr == 5:       rAs, rBs = rs[1], rs[2]    ;   rAs.append(fmtRA(a, ca, w))    ;    rBs.append(fmtRB(b, cb, w)) # if ist(b**cb, int) else w3))
-        r0s.append(fmtR0(a, ca, b, cb, w, k, i, j))
-        r2s.append(fmtR2(a, ca, b, cb, u, k, i, j)) # if u >= 9 else None
-        r3s.append(fmtR3(a, ca, b, cb, u, k, i, j))
+        if   lr == 4:       r1s      = rs[1]           ;   r1s.append(self.fmtR1(a, ca, b, cb, u, k, i, j))
+        elif lr == 5:       rAs, rBs = rs[1], rs[2]    ;   rAs.append(self.fmtRA(a, ca, w))    ;    rBs.append(self.fmtRB(b, cb, w)) # if ist(b**cb, int) else w3))
+        r0s.append(self.fmtR0(a, ca, b, cb, w, k, i, j))
+        r2s.append(self.fmtR2(a, ca, b, cb, u, k, i, j)) # if u >= 9 else None
+        r3s.append(self.fmtR3(a, ca, b, cb, u, k, i, j))
         if   lr == 4:   return r0s, r1s,      r2s, r3s
         elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
 
@@ -173,12 +172,11 @@ class Intonation(object):
         slog(f'{pfx}{k:4} {p:2} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
 
     @staticmethod
-    def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))    ;  return n * '/'
-    @staticmethod
     def fmtRA(a, ca, w=Z):        pa     =   a ** ca                               ;  return f'{pa:^{w}}' if ist(pa, int) else f'{pa:^{w}.{w-4}f}'
     @staticmethod
     def fmtRB(b, cb, w=Z):        pb     =   b ** cb                               ;  return f'{pb:^{w}}' if ist(pb, int) else f'{pb:^{w}.{w-4}f}'
 
+    def fdvdr(self, a, ca, b, cb):      n = max(len(self.fmtRA(a, ca)), len(self.fmtRB(b, cb)))    ;  return n * '/'
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 def fmtR0_PTH(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:^{w}.{w-4}f}'
@@ -203,73 +201,73 @@ def NEW_addFmtRs_PTH(a, ca, b, cb, rs, u=4, w=9):
     elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
-def addFmtRs(a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):
-    assert rs and ist(rs, list),  f'{rs=} {type(rs)=} {a=} {ca} {b} {cb} {u=} {w=}'   ;   lr = len(rs)
-    r0s, r2s, r3s = rs[0], rs[-2], rs[-1]          ;   r1s, rAs, rBs = None, None, None
-    if   lr == 4:       r1s      = rs[1]           ;   r1s.append(fmtR1(a, ca, b, cb, u, k, i, j))
-    elif lr == 5:       rAs, rBs = rs[1], rs[2]    ;   rAs.append(fmtRA(a, ca, w))    ;    rBs.append(fmtRB(b, cb, w)) # if ist(b**cb, int) else w3))
-    r0s.append(fmtR0(a, ca, b, cb, w, k, i, j))
-    r2s.append(fmtR2(a, ca, b, cb, u, k, i, j)) # if u >= 9 else None
-    r3s.append(fmtR3(a, ca, b, cb, u, k, i, j))
-    if   lr == 4:   return r0s, r1s,      r2s, r3s
-    elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
+#def addFmtRs(a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):
+#    assert rs and ist(rs, list),  f'{rs=} {type(rs)=} {a=} {ca} {b} {cb} {u=} {w=}'   ;   lr = len(rs)
+#    r0s, r2s, r3s = rs[0], rs[-2], rs[-1]          ;   r1s, rAs, rBs = None, None, None
+#    if   lr == 4:       r1s      = rs[1]           ;   r1s.append(fmtR1(a, ca, b, cb, u, k, i, j))
+#    elif lr == 5:       rAs, rBs = rs[1], rs[2]    ;   rAs.append(fmtRA(a, ca, w))    ;    rBs.append(fmtRB(b, cb, w)) # if ist(b**cb, int) else w3))
+#    r0s.append(fmtR0(a, ca, b, cb, w, k, i, j))
+#    r2s.append(fmtR2(a, ca, b, cb, u, k, i, j)) # if u >= 9 else None
+#    r3s.append(fmtR3(a, ca, b, cb, u, k, i, j))
+#    if   lr == 4:   return r0s, r1s,      r2s, r3s
+#    elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
 ########################################################################################################################################################################################################
-def fmtR0(a, ca, b, cb, w, k, i=None, j=None):
-    pa = a ** ca   ;   pb = b ** cb   ;   p = 2 ** k if k else 1   ;   dbg = 0
-    pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
-    if k is None:     v = pa/pb       ;   k = utl.NONE
-    else:             v = p*pa*pb
-    ret = f'{v:^{w}.{w-4}f}' if ist(v, float) else f'{v:^{w}}'
-    slog(f'{pfx}{k:4} {p:4} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
+#def fmtR0(a, ca, b, cb, w, k, i=None, j=None):
+#    pa = a ** ca   ;   pb = b ** cb   ;   p = 2 ** k if k else 1   ;   dbg = 0
+#    pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
+#    if k is None:     v = pa/pb       ;   k = utl.NONE
+#    else:             v = p*pa*pb
+#    ret = f'{v:^{w}.{w-4}f}' if ist(v, float) else f'{v:^{w}}'
+#    slog(f'{pfx}{k:4} {p:4} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
 ########################################################################################################################################################################################################
-def fmtR1(a, ca, b, cb, w, k, i=None, j=None):
-    pa = a ** abs(ca)  ;  pb = b ** abs(cb)  ;  p = 2 ** abs(k) if k else 1  ;  papbi = f'{p}/{pa*pb}'  ;  ret = Z  ;  dbg = 0
-    pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
-    if   k is None:
-        ret = f'{pa:>{w}}/{pb:<{w}}'   ;   k = utl.NONE
-    elif k == 0:
-        ret = f'{pa:>{w}}*{pb:<{w}}' if ca >= 0 < cb else f'{pa:>{w}}/{pb:<{w}}' if ca >= 0 >= cb else f'{pb:>{w}}/{pa:<{w}}' if ca < 0 <= cb else f'{papbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
-    elif k > 0:
-        pa = pa * p if ca >= 0 <= cb or ca >= 0 > cb else pa  ;  pb = pb * p if ca < 0 <= cb else pb
-        ret = f'{pa:>{w}}*{pb:<{w}}' if ca >= 0 < cb else f'{pa:>{w}}/{pb:<{w}}' if ca >= 0 >= cb else f'{pb:>{w}}/{pa:<{w}}' if ca < 0 <= cb else f'{papbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
-    elif k < 0:
-        if   ca >= 0:  ret = f'{pa*pb:>{w}}/{p:<{w}}'  ;  ret = f'{ret:^{2*w+1}}'
-    slog(f'{pfx}{k:4} {p:4} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
+#def fmtR1(a, ca, b, cb, w, k, i=None, j=None):
+#    pa = a ** abs(ca)  ;  pb = b ** abs(cb)  ;  p = 2 ** abs(k) if k else 1  ;  papbi = f'{p}/{pa*pb}'  ;  ret = Z  ;  dbg = 0
+#    pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
+#    if   k is None:
+#        ret = f'{pa:>{w}}/{pb:<{w}}'   ;   k = utl.NONE
+#    elif k == 0:
+#        ret = f'{pa:>{w}}*{pb:<{w}}' if ca >= 0 < cb else f'{pa:>{w}}/{pb:<{w}}' if ca >= 0 >= cb else f'{pb:>{w}}/{pa:<{w}}' if ca < 0 <= cb else f'{papbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+#    elif k > 0:
+#        pa = pa * p if ca >= 0 <= cb or ca >= 0 > cb else pa  ;  pb = pb * p if ca < 0 <= cb else pb
+#        ret = f'{pa:>{w}}*{pb:<{w}}' if ca >= 0 < cb else f'{pa:>{w}}/{pb:<{w}}' if ca >= 0 >= cb else f'{pb:>{w}}/{pa:<{w}}' if ca < 0 <= cb else f'{papbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+#    elif k < 0:
+#        if   ca >= 0:  ret = f'{pa*pb:>{w}}/{p:<{w}}'  ;  ret = f'{ret:^{2*w+1}}'
+#    slog(f'{pfx}{k:4} {p:4} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
 ########################################################################################################################################################################################################
-def fmtR2(a, ca, b, cb, w, k, i=None, j=None):
-    qa = '1' if ca == 0 else f'{a}' if ca == 1 else f'{a}' if ca == -1 else f'{a}^{abs(ca)}'
-    qb = '1' if cb == 0 else f'{b}' if cb == 1 else f'{b}' if cb == -1 else f'{b}^{abs(cb)}' 
-    p = 2 ** abs(k) if k is not None else 1  ;  qaqbi = f'{p}/({qa}*{qb})'  ;  ret = Z  ;  dbg = 0
-    pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
-    if   k is None:
-        qa  = f'{a}^{ca}'   ;    qb = f'{b}^{cb}'
-        ret = f'{qa:>{w}}/{qb:<{w}}'   ;   k = utl.NONE
-    elif k == 0:
-        ret = f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 < cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 >= cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
-    elif k > 0:
-        qa = f'{p}*{qa}' if ca >= 0 <= cb or ca >= 0 > cb else qa  ;  qb = f'{p}*{qb}' if ca < 0 <= cb else qb
-        ret = f'{qa:>}*{qb:<}' if ca >= 0 < cb else f'{qa:>}/{qb:<}' if ca >= 0 >= cb else f'{qb:>}/{qa:<}' if ca < 0 <= cb else f'{qaqbi}' if ca < 0 > cb else f'?#?#?'  ;  ret = f'{ret:^{2*w+1}}'
-    elif k < 0:
-        if   ca >= 0:  ret = f'{qa:>}*{qb}/{p:<}'  ;  ret = f'{ret:^{2*w+1}}'
-    slog(f'{pfx}{k:4} {p:2} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
+#def fmtR2(a, ca, b, cb, w, k, i=None, j=None):
+#    qa = '1' if ca == 0 else f'{a}' if ca == 1 else f'{a}' if ca == -1 else f'{a}^{abs(ca)}'
+#    qb = '1' if cb == 0 else f'{b}' if cb == 1 else f'{b}' if cb == -1 else f'{b}^{abs(cb)}' 
+#    p = 2 ** abs(k) if k is not None else 1  ;  qaqbi = f'{p}/({qa}*{qb})'  ;  ret = Z  ;  dbg = 0
+#    pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
+#    if   k is None:
+#        qa  = f'{a}^{ca}'   ;    qb = f'{b}^{cb}'
+#        ret = f'{qa:>{w}}/{qb:<{w}}'   ;   k = utl.NONE
+#    elif k == 0:
+#        ret = f'{qa:>{w}}*{qb:<{w}}' if ca >= 0 < cb else f'{qa:>{w}}/{qb:<{w}}' if ca >= 0 >= cb else f'{qb:>{w}}/{qa:<{w}}' if ca < 0 <= cb else f'{qaqbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+#    elif k > 0:
+#        qa = f'{p}*{qa}' if ca >= 0 <= cb or ca >= 0 > cb else qa  ;  qb = f'{p}*{qb}' if ca < 0 <= cb else qb
+#        ret = f'{qa:>}*{qb:<}' if ca >= 0 < cb else f'{qa:>}/{qb:<}' if ca >= 0 >= cb else f'{qb:>}/{qa:<}' if ca < 0 <= cb else f'{qaqbi}' if ca < 0 > cb else f'?#?#?'  ;  ret = f'{ret:^{2*w+1}}'
+#    elif k < 0:
+#        if   ca >= 0:  ret = f'{qa:>}*{qb}/{p:<}'  ;  ret = f'{ret:^{2*w+1}}'
+#    slog(f'{pfx}{k:4} {p:2} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
 ########################################################################################################################################################################################################
-def fmtR3(a, ca, b, cb, w, k, i=None, j=None):
-    p = 2 ** abs(k) if k is not None else 1  ;  sa = f'{a}{i2spr(abs(ca))}'  ;  sb = f'{b}{i2spr(abs(cb))}'  ;  sasbi = f'1/({sa}*{sb})'  ;  ret = Z  ;  dbg = 0
-    pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
-    if   k is None:
-        ret = f'{sa:>{w}}/{sb:<{w}}'   ;   k = utl.NONE
-    elif not k:
-        ret = f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 < cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 >= cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
-    elif k > 0:
-        sa = f'{p}*{sa}' if ca >= 0 <= cb or ca >= 0 > cb else sa  ;  sb = f'{p}*{sb}' if ca < 0 <= cb else sb  ;  sasbi = f'{p}/({sa}*{sb})'
-        ret = f'{sa:>}*{sb:<}' if ca >= 0 <= cb else f'{sa:>}/{sb:<}' if ca >= 0 > cb else f'{sb:>}/{sa:<}' if ca < 0 <= cb else f'{sasbi}' if ca < 0 > cb else f'?#?#?'  ;  ret = f'{ret:^{2*w+1}}'
-    elif k < 0:
-        if   ca >= 0:  ret = f'{sa:>}*{sb}/{p:<}'  ;  ret = f'{ret:^{2*w+1}}'
-    slog(f'{pfx}{k:4} {p:2} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
+#def fmtR3(a, ca, b, cb, w, k, i=None, j=None):
+#    p = 2 ** abs(k) if k is not None else 1  ;  sa = f'{a}{i2spr(abs(ca))}'  ;  sb = f'{b}{i2spr(abs(cb))}'  ;  sasbi = f'1/({sa}*{sb})'  ;  ret = Z  ;  dbg = 0
+#    pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
+#    if   k is None:
+#        ret = f'{sa:>{w}}/{sb:<{w}}'   ;   k = utl.NONE
+#    elif not k:
+#        ret = f'{sa:>{w}}*{sb:<{w}}' if ca >= 0 < cb else f'{sa:>{w}}/{sb:<{w}}' if ca >= 0 >= cb else f'{sb:>{w}}/{sa:<{w}}' if ca < 0 <= cb else f'{sasbi:^{2*w+1}}' if ca < 0 > cb else f'?#?#?'
+#    elif k > 0:
+#        sa = f'{p}*{sa}' if ca >= 0 <= cb or ca >= 0 > cb else sa  ;  sb = f'{p}*{sb}' if ca < 0 <= cb else sb  ;  sasbi = f'{p}/({sa}*{sb})'
+#        ret = f'{sa:>}*{sb:<}' if ca >= 0 <= cb else f'{sa:>}/{sb:<}' if ca >= 0 > cb else f'{sb:>}/{sa:<}' if ca < 0 <= cb else f'{sasbi}' if ca < 0 > cb else f'?#?#?'  ;  ret = f'{ret:^{2*w+1}}'
+#    elif k < 0:
+#        if   ca >= 0:  ret = f'{sa:>}*{sb}/{p:<}'  ;  ret = f'{ret:^{2*w+1}}'
+#    slog(f'{pfx}{k:4} {p:2} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
 
-def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))    ;  return n * '/'
-def fmtRA(a, ca, w=Z):        pa     =   a ** ca                               ;  return f'{pa:^{w}}' if ist(pa, int) else f'{pa:^{w}.{w-4}f}'
-def fmtRB(b, cb, w=Z):        pb     =   b ** cb                               ;  return f'{pb:^{w}}' if ist(pb, int) else f'{pb:^{w}.{w-4}f}'
+#def fdvdr(a, ca, b, cb):      n = max(len(fmtRA(a, ca)), len(fmtRB(b, cb)))    ;  return n * '/'
+#def fmtRA(a, ca, w=Z):        pa     =   a ** ca                               ;  return f'{pa:^{w}}' if ist(pa, int) else f'{pa:^{w}.{w-4}f}'
+#def fmtRB(b, cb, w=Z):        pb     =   b ** cb                               ;  return f'{pb:^{w}}' if ist(pb, int) else f'{pb:^{w}.{w-4}f}'
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 def NEW_addFmtRs_JST(a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):

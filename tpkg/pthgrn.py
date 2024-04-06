@@ -10,7 +10,7 @@ fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
 F440s, F432s               = ivls.F440s,    ivls.F432s
-fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
+#fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
@@ -337,7 +337,7 @@ class Pthgrn(ivls.Intonation):
             ival = self.ck2ikm[ck]    ;    vs.append(ival)   ;   assert self.ckmap and ck in self.ckmap,  f'{ck=} {self.ckmap=}'
             if self.ckmap[ck]['Count'] > 0:
                 assert ival == self.ckmap[ck]['Ival'],  f'{ival=} {ck=} {self.ckmap[ck]["Ival"]=}'
-                a, ca, b, cb = self.ckmap[ck]['Abc']   ;    q = fdvdr(a, ca, b, cb)
+                a, ca, b, cb = self.ckmap[ck]['Abc']   ;    q = self.fdvdr(a, ca, b, cb)
                 r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u,     i=i, j=ck)
                 f, w, n, c, d, k, i2    = self.getCkMap(ck, a, ca, b, cb, f0, w0)   ;   sk += k
                 cksf.append(f'{c:{w1}}')          ;    cksi.append(int(round(c)))
