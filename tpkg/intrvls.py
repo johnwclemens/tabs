@@ -74,7 +74,7 @@ class Intonation(object):
 #        self.r1s, self.rAs, self.rBs = [], [], []
         
     def setCk2ikm(self):   self.ck2ikm = { self.centKs[i]: k for i, k in enumerate(self.ivalKs) }   ;   return self.ck2ikm
-########################################################################################################################################################################################################
+
     @staticmethod
     def addFmtRs(a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):
         assert rs and ist(rs, list),  f'{rs=} {type(rs)=} {a=} {ca} {b} {cb} {u=} {w=}'   ;   lr = len(rs)
