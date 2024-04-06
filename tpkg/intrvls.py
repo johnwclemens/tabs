@@ -15,11 +15,11 @@ FLATS, SHRPS  = notes.FLATS, notes.SHRPS
 F440s, F432s  = notes.F440s, notes.F432s
 
 # COFS = {'C', 'G', 'D', 'A', 'E', 'B/Cb', 'F#/Gb', 'C#/Db', 'Ab', 'Eb', 'Bb', 'F'}
-
+########################################################################################################################################################################################################
 def i2spr(i): # todo fixme still being used by old code that hasn't been retired yet
     if i < 0: return '-' + Z.join( SUPERS[int(digit)] for digit in str(i) if str.isdigit(digit) )
     else:     return       Z.join( SUPERS[int(digit)] for digit in str(i) )
-
+########################################################################################################################################################################################################
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
     dmpOTS(       rf=440, sss=V_SOUND, csv=csv)

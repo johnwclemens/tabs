@@ -10,10 +10,6 @@ fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
 F440s, F432s               = ivls.F440s,    ivls.F432s
-#abc2r, fabc                = ivls.abc2r,    ivls.fabc
-#i2nPair,  i2spr            = ivls.i2nPair,  ivls.i2spr
-#r2cents,  k2dCent          = ivls.r2cents,  ivls.k2dCent
-#stck5ths, stck4ths, stackI = ivls.stck5ths, ivls.stck4ths, ivls.stackI
 fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
