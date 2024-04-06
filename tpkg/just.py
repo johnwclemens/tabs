@@ -65,6 +65,83 @@ dcnts[ -17.5963  | -15.6413  | -13.6863  | -11.7313  |  -9.7763  |  -3.9100  |  
 freqs[ 326.29419 | 489.44128 | 367.08096 | 550.62144 | 412.96608 | 522.07070 | 391.55302 | 293.66477 | 440.49715 | 330.37286 | 417.65656 | 313.24242 | 469.86363 | 352.39772 | 528.59658 ]
 wvlns[ 105.73281 | 70.488537 | 93.984717 | 62.656478 | 83.541970 | 66.083004 | 88.110672 | 117.48090 | 78.320597 | 104.42746 | 82.603755 | 110.13834 | 73.425560 | 97.900747 | 65.267164 ]
 '''
+########################################################################################################################################################################################################
+########################################################################################################################################################################################################
+class Just(ivls.Intonation):
+    def __init__(self):
+        super().__init__()
+        self.ivalKs = ['P1', 'm2', 'm2', 'M2', 'M2', 'm3', 'm3', 'M3', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'm6', 'M6', 'M6', 'm7', 'm7', 'M7', 'M7', 'P8']
+        self.centKs = [   0,  90,  112,  182,  204,  294,  316,  384,  386,  498,  522,  590,  610,  678,  702,  792,  814,  884,  906,  996,  1018, 1088, 1110, 1200]
+        self.setCk2ikm()
+
+    def dumpData(self, csv=0):
+        slog(f'BGN {csv=}', p=0)
+        self.dmpData('D', csv=csv)
+        slog(f'END {csv=}', p=0)
+    
+    def dmpData(self, n='C', csv=0):
+        k = Notes.N2I[n] + 48
+        self.dmpJust(k, rf=440, sss=V_SOUND, csv=csv)
+
+    @staticmethod
+    def fmtNote(k, i, b=1):
+        n1, n2   = i2nPair(k + i, b=b, s=1)
+        return n1
+
+    def dmpJust(self, k, rf=440, sss=V_SOUND, csv=0):
+        f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss
+        mm, nn, oo, ff = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'  ;  M3 = Notes.V2I['M3']
+        slog(f'BGN Just Intonation Series ({k=} {rf=} {sss=} {csv=})', p=0, f=ff)
+        r0s, r1s, r2s, r3s = [], [], [], []   ;   a, b = 5, 3
+        slog(f'C  {fmtis(C,    w=x, csv=csv)}', p=0, f=ff)
+        slog(f'D  {fmtis(D,    w=x, csv=csv)}', p=0, f=ff)
+        slog(f'C A{fmtis(C, A, w=x, csv=csv)}', p=0, f=ff)
+        slog(f'D B{fmtis(D, B, w=x, csv=csv)}', p=0, f=ff)
+        ii = [ f'{i}' for i in range(len(C) * len(D)) ]
+        slog(f'    {fmtl(ii, w=w, s=mm, d=Z)}', p=0, f=ff)
+        for     i, c in enumerate(C):
+            for j, d in enumerate(D):
+                self.addFmtRs(a, c, b, d, rs=[r0s, r1s, r2s, r3s], u=z,     k=0, i=i, j=j)
+        slog(f'r0s{fmtl(r0s, w=w, s=oo)}', p=0, f=ff)
+        slog(f'r1s{fmtl(r1s, w=w, s=oo)}', p=0, f=ff)
+        slog(f'r2s{fmtl(r2s, w=w, s=oo)}', p=0, f=ff)
+        slog(f'r3s{fmtl(r3s, w=w, s=oo)}', p=0, f=ff)
+        for     i, c in enumerate(C):
+            kk = k - i * M3
+            for j, d in enumerate(D):
+                n = self.fmtNote(kk, (j*7)%NT, b=0 if i==0 and j==4 else 1)
+                u = CRS[i][j]
+                v, p = ivls.norm(u)
+                slog(f'{i} {j}: {a}^{c:2} * {b}^{d:2} = {u:7.4f} * 2^{p:2} = {v:7.5f} : {n=:2}', p=0, f=ff)
+        r0s, r1s, r2s, r3s = [], [], [], []   ;   cents, dcnts, ivals, notes = [], [], [], []   ;   freqs, wvlns = [], []
+        for     i, c in enumerate(C):
+            kk = k - i * M3
+            for j, d in enumerate(D):
+                n = fmtNote(kk, (j*7)%NT, b=0 if i==0 and j==4 else 1)  ;  notes.append(n)
+                u = CRS[i][j]
+                v, p = ivls.norm(u)
+                self.addFmtRs(a, c, b, d, rs=[r0s, r1s, r2s, r3s], u=z, w=x, k=p, i=i, j=j)
+                freq = f0 * v         ;   freqs.append(fmtf(freq, x-2))
+                wvln = w0 / freq      ;   wvlns.append(fmtf(wvln, x-2))
+                cent = r2cents(v)     ;   cents.append(f'{cent:7.2f}')
+                dcnt = k2dCent(cent)  ;   dcnts.append(f'{dcnt:7.4f}')
+                rc   = round(cent)
+                assert rc in ck2ik,  f'{rc=} not in ck2ik {k=} {i=} {j=} {n=} {cent=} {dcnt=} {rc=}'
+                ival = ck2ik[rc]      ;   ivals.append(ival)
+        slog(f'notes{fmtl(notes, w=w, s=oo)}', p=0, f=ff)
+        slog(f'ivals{fmtl(ivals, w=w, s=oo)}', p=0, f=ff)
+        slog(f'cents{fmtl(cents, w=w, s=oo)}', p=0, f=ff)
+        slog(f'dcnts{fmtl(dcnts, w=w, s=oo)}', p=0, f=ff)
+        slog(f' r0s {fmtl(r0s,   w=w, s=oo)}', p=0, f=ff)
+        slog(f' r1s {fmtl(r1s,   w=w, s=oo)}', p=0, f=ff)
+        slog(f' r2s {fmtl(r2s,   w=w, s=oo)}', p=0, f=ff)
+        slog(f' r3s {fmtl(r3s,   w=w, s=oo)}', p=0, f=ff)
+        slog(f'freqs{fmtl(freqs, w=w, s=oo)}', p=0, f=ff)
+        slog(f'wvlns{fmtl(wvlns, w=w, s=oo)}', p=0, f=ff)
+        slog(f'END Just Intonation Series ({k=} {rf=} {sss=} {csv=})', p=0, f=ff)
+
+########################################################################################################################################################################################################
+########################################################################################################################################################################################################
 A, B = 5, 3
 C    = [  1,  0, -1 ]
 D    = [ -2, -1,  0, 1, 2 ]

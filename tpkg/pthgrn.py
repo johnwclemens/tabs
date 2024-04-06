@@ -4,7 +4,7 @@ from tpkg.notes import Notes
 from tpkg       import intrvls as ivls
 import math
 
-W, Y, Z, slog, ist     = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
+W,  Y,  Z,  slog,  ist = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
 fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
@@ -15,6 +15,16 @@ i2nPair,  i2spr            = ivls.i2nPair,  ivls.i2spr
 r2cents,  k2dCent          = ivls.r2cents,  ivls.k2dCent
 stck5ths, stck4ths, stackI = ivls.stck5ths, ivls.stck4ths, ivls.stackI
 fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
+########################################################################################################################################################################################################
+########################################################################################################################################################################################################
+class Pthgrn(ivls.Intonation):
+    def __init__(self):
+        super().__init__()
+        self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
+        self.centKs = [   0,  90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
+        self.setCk2ikm()
+        
+########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 #COFSA       = {'C', 'G', 'D',  'A',  'E',  'B',  'F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#'}
 #COFSB       = {'C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb', 'Bbb'}
