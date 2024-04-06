@@ -10,8 +10,8 @@ fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
 F440s,    F432s            = ivls.F440s,    ivls.F432s
-i2nPair,  i2spr            = ivls.i2nPair,  ivls.i2spr
-r2cents,  k2dCent          = ivls.r2cents,  ivls.k2dCent
+#i2nPair,  i2spr            = ivls.i2nPair,  ivls.i2spr
+#r2cents,  k2dCent          = ivls.r2cents,  ivls.k2dCent
 fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 
 '''
@@ -90,9 +90,8 @@ class Just(ivls.Intonation):
         k = Notes.N2I[n] + 48
         self.dmpJust(k, rf=440, sss=V_SOUND, csv=csv)
 
-    @staticmethod
-    def fmtNote(k, i, b=1):
-        n1, n2   = i2nPair(k + i, b=b, s=1)
+    def fmtNote(self, k, i, b=1):
+        n1, n2   = self.i2nPair(k + i, b=b, s=1)
         return n1
 
     @staticmethod
@@ -128,7 +127,7 @@ class Just(ivls.Intonation):
             for j, d in enumerate(D):
                 n = self.fmtNote(kk, (j*7)%NT, b=0 if i==0 and j==4 else 1)
                 u = CRS[i][j]
-                v, p = ivls.norm(u)
+                v, p = self.norm(u)
                 slog(f'{i} {j}: {a}^{c:2} * {b}^{d:2} = {u:7.4f} * 2^{p:2} = {v:7.5f} : {n=:2}', p=0, f=ff)
         r0s, r1s, r2s, r3s = [], [], [], []   ;   cents, dcnts, ivals, notes = [], [], [], []   ;   freqs, wvlns = [], []
         for     i, c in enumerate(C):
@@ -136,12 +135,12 @@ class Just(ivls.Intonation):
             for j, d in enumerate(D):
                 n = self.fmtNote(kk, (j*7)%NT, b=0 if i==0 and j==4 else 1)  ;  notes.append(n)
                 u = CRS[i][j]
-                v, p = ivls.norm(u)
+                v, p = self.norm(u)
                 self.addFmtRs(a, c, b, d, rs=[r0s, r1s, r2s, r3s], u=z, w=x, k=p, i=i, j=j)
                 freq = f0 * v         ;   freqs.append(fmtf(freq, x-2))
                 wvln = w0 / freq      ;   wvlns.append(fmtf(wvln, x-2))
-                cent = r2cents(v)     ;   cents.append(f'{cent:7.2f}')
-                dcnt = k2dCent(cent)  ;   dcnts.append(f'{dcnt:7.4f}')
+                cent = self.r2cents(v)     ;   cents.append(f'{cent:7.2f}')
+                dcnt = self.k2dCent(cent)  ;   dcnts.append(f'{dcnt:7.4f}')
                 rc   = round(cent)
                 assert rc in self.ck2ikm,  f'{rc=} not in ck2ik {k=} {i=} {j=} {n=} {cent=} {dcnt=} {rc=}'
                 ival = self.ck2ikm[rc]      ;   ivals.append(ival)

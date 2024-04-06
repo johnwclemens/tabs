@@ -16,53 +16,53 @@ F440s, F432s  = notes.F440s, notes.F432s
 
 # COFS = {'C', 'G', 'D', 'A', 'E', 'B/Cb', 'F#/Gb', 'C#/Db', 'Ab', 'Eb', 'Bb', 'F'}
 
-def i2spr(i):
+def i2spr(i): # todo fixme still being used by old code that hasn't been retired yet
     if i < 0: return '-' + Z.join( SUPERS[int(digit)] for digit in str(i) if str.isdigit(digit) )
     else:     return       Z.join( SUPERS[int(digit)] for digit in str(i) )
 ########################################################################################################################################################################################################
-def r2cents(r):      return math.log2(r) * NT * 100
-def cents2r(c):      return 2 ** (c/(100 * NT)) # N/A
-def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
-def stck4ths(n):     return [ stackI(2, 3, i) for i in range(1, n+1) ]
-def stackI(a, b, c): return [ a, b, c ]
+#def r2cents(r):      return math.log2(r) * NT * 100
+#def cents2r(c):      return 2 ** (c/(100 * NT)) # N/A
+#def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
+#def stck4ths(n):     return [ stackI(2, 3, i) for i in range(1, n+1) ]
+#def stackI(a, b, c): return [ a, b, c ]
 ########################################################################################################################################################################################################
-def k2dCent(k):
-    return k if 0 <= k < 50 else k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150 <= k <= 1200 else None
-#       return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
+#def k2dCent(k):
+#    return k if 0 <= k < 50 else k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150 <= k <= 1200 else None
+##       return c-100 if 50<=c<150 else c-200 if 150<=c<250 else c-300 if 250<=c<350 else c-400 if 350<=c<450 else c-500 if 450<=c<550 else c-600 if 550<=c<650 else c-700 if 650<=c<750 else c-800 if 750<=c<850 else c-900 if 850<=c<950 else c-1000 if 950<=c<1050 else c-1100 if 1050<=c<1150 else c-1200
 ########################################################################################################################################################################################################
-def norm(n):
-    i = 0
-    if n > 1:
-        while n > 2:
-            n /= 2  ;  i -= 1
-    elif n < 1:
-        while n < 1:
-            n *= 2  ;  i += 1
-    return n, i
+#def norm(n):
+#    i = 0
+#    if n > 1:
+#        while n > 2:
+#            n /= 2  ;  i -= 1
+#    elif n < 1:
+#        while n < 1:
+#            n *= 2  ;  i += 1
+#    return n, i
 ########################################################################################################################################################################################################
-def f2nPair(f, rf=440, b=None, s=0, e=0):
-    ni = NT * math.log2(f / rf) # fixme
-    i  = round(A4_INDEX + ni)
-    return i2nPair(i, b, s, e)
+#def f2nPair(f, rf=440, b=None, s=0, e=0):
+#    ni = NT * math.log2(f / rf) # fixme
+#    i  = round(A4_INDEX + ni)
+#    return i2nPair(i, b, s, e)
     
-def i2nPair(i, b=None, s=0, e=0):
-    m = Z    ;    n = FLATS[i] if b == 1 else SHRPS[i]
-    if s:         n = n[:-1].strip()
-    if e == 1 and len(n) > 1:
-        m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
-    return n, m
+#def i2nPair(i, b=None, s=0, e=0):
+#    m = Z    ;    n = FLATS[i] if b == 1 else SHRPS[i]
+#    if s:         n = n[:-1].strip()
+#    if e == 1 and len(n) > 1:
+#        m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
+#    return n, m
 ########################################################################################################################################################################################################
-def fabc(abc):    return [ fmtl(e, w=2, d=Z) for e in abc ]
+#def fabc(abc):    return [ fmtl(e, w=2, d=Z) for e in abc ]
 
-def abc2r(a, b, c): # assumes a==2 or b==2, probably too specific, move to Pythagorean, rename?
-    pa0, pb0 = a ** c, b ** c
-    r0       = pa0 / pb0
-    r, j     = norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
-    ca       = c + j if j > 0 else c
-    cb       = c - j if j < 0 else c
-#    pa, pb   = a ** ca, b ** cb
-#    r        = pa / pb   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
-    return r, ca, cb
+#def abc2r(a, b, c): # assumes a==2 or b==2, probably too specific, move to Pythagorean, rename?
+#    pa0, pb0 = a ** c, b ** c
+#    r0       = pa0 / pb0
+#    r, j     = Intonation.norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
+#    ca       = c + j if j > 0 else c
+#    cb       = c - j if j < 0 else c
+##    pa, pb   = a ** ca, b ** cb
+##    r        = pa / pb   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
+#    return r, ca, cb
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 class Intonation(object):
@@ -74,6 +74,43 @@ class Intonation(object):
 #        self.r1s, self.rAs, self.rBs = [], [], []
         
     def setCk2ikm(self):   self.ck2ikm = { self.centKs[i]: k for i, k in enumerate(self.ivalKs) }   ;   return self.ck2ikm
+    
+    @staticmethod
+    def i2spr(i):
+        if i < 0: return '-' + Z.join( SUPERS[int(digit)] for digit in str(i) if str.isdigit(digit) )
+        else:     return       Z.join( SUPERS[int(digit)] for digit in str(i) )
+
+    @staticmethod
+    def r2cents(r):      return math.log2(r) * NT * 100
+
+    @staticmethod
+    def k2dCent(k):
+        return k if 0 <= k < 50 else k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150 <= k <= 1200 else None
+
+    @staticmethod
+    def norm(n):
+        i = 0
+        if n > 1:
+            while n > 2:
+                n /= 2  ;  i -= 1
+        elif n < 1:
+            while n < 1:
+                n *= 2  ;  i += 1
+        return n, i
+
+    @staticmethod
+    def f2nPair(f, rf=440, b=None, s=0, e=0):
+        ni = NT * math.log2(f / rf) # fixme
+        i  = round(A4_INDEX + ni)
+        return Intonation.i2nPair(i, b, s, e)
+    
+    @staticmethod
+    def i2nPair(i, b=None, s=0, e=0):
+        m = Z    ;    n = FLATS[i] if b == 1 else SHRPS[i]
+        if s:         n = n[:-1].strip()
+        if e == 1 and len(n) > 1:
+            m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
+        return n, m
 
     @staticmethod
     def addFmtRs(a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):
@@ -251,55 +288,55 @@ def fmtR3_JST(a, ca, b, cb, w, k, i, j):
 #    r2s.append(fmtR2(a, ca, b, cb, u)) # if u >= 9 else None
 #    r3s.append(fmtR3(a, ca, b, cb, u))
 ########################################################################################################################################################################################################
-def testStacks(n=100, dbg=0):
-    i5s, f5s = test5ths(n, -1)  ;   w = '10.5f'
-    i4s, f4s = test4ths(n, -1)
-    for i, k in enumerate(i5s.keys()):
-        if k in i4s and i4s[k][0] > 0:
-            if dbg:    slog(  f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)} also in 4ths={i4s[k][0]} {fmtl(i4s[k][1], w=w)}')
-        else: slog(f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)}') if dbg else None
-    for i, k in enumerate(i4s.keys()):
-        if k in i5s and i5s[k][0] > 0:
-            if dbg:    slog(  f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)} also in 5ths={i5s[k][0]} {fmtl(i5s[k][1], w=w)}')
-        else: slog(f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)}') if dbg else None
+#def testStacks(n=100, dbg=0):
+#    i5s, f5s = test5ths(n, -1)  ;   w = '10.5f'
+#    i4s, f4s = test4ths(n, -1)
+#    for i, k in enumerate(i5s.keys()):
+#        if k in i4s and i4s[k][0] > 0:
+#            if dbg:    slog(  f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)} also in 4ths={i4s[k][0]} {fmtl(i4s[k][1], w=w)}')
+#        else: slog(f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)}') if dbg else None
+#    for i, k in enumerate(i4s.keys()):
+#        if k in i5s and i5s[k][0] > 0:
+#            if dbg:    slog(  f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)} also in 5ths={i5s[k][0]} {fmtl(i5s[k][1], w=w)}')
+#        else: slog(f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)}') if dbg else None
 
-def test5ths(n, i, dbg=0):
-    mi, mf = {}, {}   ;   w = '10.5f'
-    for m in range(1, n+1):
-        s5s       = stck5ths(m)
-        a, b, c   = s5s[i]
-        r, ca, cb = abc2r(a, b, c)
-        pa, pb    = a**ca, b**cb   ;   p = pa/pb
-        cents     = r2cents(p)
-        kf, ki    = cents, round(cents)
-        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
-        if ki not in mi:  mi[ki] = [1, [kf]] 
-        else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
-        mf[kf]    = 1 if kf not in mf else mf[kf] + 1
-        if dbg: slog(f'{m} {fmtl(s5s)}', p=0)
-        if dbg: slog(f'abc = {m} 5ths = [{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
-    ks = list(mi.keys())                     ;   slog(f'5ths {fmtl(ks, w=4)}', p=0)
-    ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
-    return mi, mf
+#def test5ths(n, i, dbg=0):
+#    mi, mf = {}, {}   ;   w = '10.5f'
+#    for m in range(1, n+1):
+#        s5s       = stck5ths(m)
+#        a, b, c   = s5s[i]
+#        r, ca, cb = abc2r(a, b, c)
+#        pa, pb    = a**ca, b**cb   ;   p = pa/pb
+#        cents     = Intonation.r2cents(p)
+#        kf, ki    = cents, round(cents)
+#        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
+#        if ki not in mi:  mi[ki] = [1, [kf]] 
+#        else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
+#        mf[kf]    = 1 if kf not in mf else mf[kf] + 1
+#        if dbg: slog(f'{m} {fmtl(s5s)}', p=0)
+#        if dbg: slog(f'abc = {m} 5ths = [{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
+#    ks = list(mi.keys())                     ;   slog(f'5ths {fmtl(ks, w=4)}', p=0)
+#    ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
+#    return mi, mf
 
-def test4ths(n, i, dbg=0):
-    mi, mf = {}, {}   ;   w = '10.5f'
-    for m in range(1, n+1):
-        s4s       = stck4ths(m)
-        a, b, c   = s4s[i]
-        r, ca, cb = abc2r(a, b, c)
-        pa, pb    = a**ca, b**cb   ;   p = pa/pb
-        cents     = r2cents(p)
-        kf, ki    = cents, round(cents)
-        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
-        if ki not in mi:  mi[ki] = [1, [kf]] 
-        else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
-        mf[kf]    = 1 if kf not in mf else mf[kf] + 1
-        if dbg: slog(f'{m} {fmtl(s4s)}', p=0)
-        if dbg: slog(f'abc = {m} 4ths = [{i}] = {fmtl(s4s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
-    ks = list(mi.keys())                     ;   slog(f'4ths {fmtl(ks, w=4)}', p=0)
-    ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
-    return mi, mf
+#def test4ths(n, i, dbg=0):
+#    mi, mf = {}, {}   ;   w = '10.5f'
+#    for m in range(1, n+1):
+#        s4s       = stck4ths(m)
+#        a, b, c   = s4s[i]
+#        r, ca, cb = abc2r(a, b, c)
+#        pa, pb    = a**ca, b**cb   ;   p = pa/pb
+#        cents     = Intonation.r2cents(p)
+#        kf, ki    = cents, round(cents)
+#        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
+#        if ki not in mi:  mi[ki] = [1, [kf]] 
+#        else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
+#        mf[kf]    = 1 if kf not in mf else mf[kf] + 1
+#        if dbg: slog(f'{m} {fmtl(s4s)}', p=0)
+#        if dbg: slog(f'abc = {m} 4ths = [{i}] = {fmtl(s4s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
+#    ks = list(mi.keys())                     ;   slog(f'4ths {fmtl(ks, w=4)}', p=0)
+#    ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
+#    return mi, mf
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
@@ -316,11 +353,11 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
     f0    = F440s[0]    ;   w0 = CM_P_M * sss/f0
     for i, freq in enumerate(freqs):
         i += 1          ;    f  = fOTS(i, rf)    ;    w  = w0 / i
-        n, n2  = f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1) 
+        n, n2  = Intonation.f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1) 
         j  = Notes.n2ai(n)
         assert 0 <= j < len(rs),  f'{j=} {len(rs)=}'
-        fr, _ = norm(f/f0)
-        f2 = rs[j]               ;    c = r2cents(fr)         ;     d = r2cents(f/f2)
+        fr, _ = Intonation.norm(f/f0)
+        f2 = rs[j]               ;    c = Intonation.r2cents(fr)         ;     d = Intonation.r2cents(f/f2)
         fs.append(fmtf(f, 6))    ;    ns.append(n)            ;     ws.append(fmtf(w, 6))
         cs.append(fmtf(c, 6))    ;    ds.append(fmtg(d, 6 if d >= 0 else 5))
     fs   = mm.join(fs)           ;    ws = mm.join(ws)        ;     ns = fmtl(ns, w=ww, s=mm, d=Z)   ;     cs = fmtl(cs, w=ww, s=mm, d=Z)   ;     ds = fmtl(ds, w=ww, s=mm, d=Z)

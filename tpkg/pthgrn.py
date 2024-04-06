@@ -10,14 +10,81 @@ fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
 F440s, F432s               = ivls.F440s,    ivls.F432s
-abc2r, fabc                = ivls.abc2r,    ivls.fabc
-i2nPair,  i2spr            = ivls.i2nPair,  ivls.i2spr
-r2cents,  k2dCent          = ivls.r2cents,  ivls.k2dCent
-stck5ths, stck4ths, stackI = ivls.stck5ths, ivls.stck4ths, ivls.stackI
+#abc2r, fabc                = ivls.abc2r,    ivls.fabc
+#i2nPair,  i2spr            = ivls.i2nPair,  ivls.i2spr
+#r2cents,  k2dCent          = ivls.r2cents,  ivls.k2dCent
+#stck5ths, stck4ths, stackI = ivls.stck5ths, ivls.stck4ths, ivls.stackI
 fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
+def stck5ths(n):     return [ stackI(3, 2, i) for i in range(1, n+1) ]
+def stck4ths(n):     return [ stackI(2, 3, i) for i in range(1, n+1) ]
+def stackI(a, b, c): return [ a, b, c ]
+def fabc(abc):       return [ fmtl(e, w=2, d=Z) for e in abc ]
+
+def abc2r(a, b, c): # assumes a==2 or b==2, probably too specific, move to Pythagorean, rename?
+    pa0, pb0 = a ** c, b ** c
+    r0       = pa0 / pb0
+    r, j     = ivls.Intonation.norm(r0)   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
+    ca       = c + j if j > 0 else c
+    cb       = c - j if j < 0 else c
+#    pa, pb   = a ** ca, b ** cb
+#    r        = pa / pb   ;   assert r == r0 * (2 ** j),  f'{r=} {r0=} {j=}'
+    return r, ca, cb
+
+def testStacks(n=100, dbg=0):
+    i5s, f5s = test5ths(n, -1)  ;   w = '10.5f'
+    i4s, f4s = test4ths(n, -1)
+    for i, k in enumerate(i5s.keys()):
+        if k in i4s and i4s[k][0] > 0:
+            if dbg:    slog(  f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)} also in 4ths={i4s[k][0]} {fmtl(i4s[k][1], w=w)}')
+        else: slog(f'{i+1:3} of {n:4} 5ths={k:4} {i5s[k][0]} {fmtl(i5s[k][1], w=w)}') if dbg else None
+    for i, k in enumerate(i4s.keys()):
+        if k in i5s and i5s[k][0] > 0:
+            if dbg:    slog(  f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)} also in 5ths={i5s[k][0]} {fmtl(i5s[k][1], w=w)}')
+        else: slog(f'{i+1:3} of {n:4} 4ths={k:4} {i4s[k][0]} {fmtl(i4s[k][1], w=w)}') if dbg else None
+
+def test5ths(n, i, dbg=0):
+    mi, mf = {}, {}   ;   w = '10.5f'
+    for m in range(1, n+1):
+        s5s       = stck5ths(m)
+        a, b, c   = s5s[i]
+        r, ca, cb = abc2r(a, b, c)
+        pa, pb    = a**ca, b**cb   ;   p = pa/pb
+        cents     = ivls.Intonation.r2cents(p)
+        kf, ki    = cents, round(cents)
+        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
+        if ki not in mi:  mi[ki] = [1, [kf]] 
+        else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
+        mf[kf]    = 1 if kf not in mf else mf[kf] + 1
+        if dbg: slog(f'{m} {fmtl(s5s)}', p=0)
+        if dbg: slog(f'abc = {m} 5ths = [{i}] = {fmtl(s5s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
+    ks = list(mi.keys())                     ;   slog(f'5ths {fmtl(ks, w=4)}', p=0)
+    ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
+    return mi, mf
+
+def test4ths(n, i, dbg=0):
+    mi, mf = {}, {}   ;   w = '10.5f'
+    for m in range(1, n+1):
+        s4s       = stck4ths(m)
+        a, b, c   = s4s[i]
+        r, ca, cb = abc2r(a, b, c)
+        pa, pb    = a**ca, b**cb   ;   p = pa/pb
+        cents     = ivls.Intonation.r2cents(p)
+        kf, ki    = cents, round(cents)
+        if ki in mi:      slog(f'{ki=:4} {mi[ki][0]=} {fmtl(mi[ki][1], w=w)=} {kf=:{w}}')
+        if ki not in mi:  mi[ki] = [1, [kf]] 
+        else:             mi[ki][0] += 1     ;   mi[ki][1].append(kf)
+        mf[kf]    = 1 if kf not in mf else mf[kf] + 1
+        if dbg: slog(f'{m} {fmtl(s4s)}', p=0)
+        if dbg: slog(f'abc = {m} 4ths = [{i}] = {fmtl(s4s[i])} {ca=} {cb=} {r=} {cents:4.0f} cents', p=0)
+    ks = list(mi.keys())                     ;   slog(f'4ths {fmtl(ks, w=4)}', p=0)
+    ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
+    return mi, mf
+
 K0  = 50 # todo
+########################################################################################################################################################################################################
+########################################################################################################################################################################################################
 class Pthgrn(ivls.Intonation):
     def __init__(self):
         super().__init__()
@@ -66,8 +133,8 @@ class Pthgrn(ivls.Intonation):
                                           else f(7, 4) if k==55 else f(8, 3) if k==60 else f(9, 2) if k==53 else f(10, 1) if k==58 else f(11, 0) if k==51 else f(12, 0)
 
     def fmtNPair(self, k, i, k0, dbg=0):
-        n0, _   = i2nPair(k0, s=1)
-        n1, n2  = i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (K0 + 4, K0 + 6, K0 + 11) else 1, s=1, e=1)   ;   slog(f'{K0=} {n0=} {n1=} {n2=}') if dbg else None
+        n0, _   = self.i2nPair(k0, s=1)
+        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (K0 + 4, K0 + 6, K0 + 11) else 1, s=1, e=1)   ;   slog(f'{K0=} {n0=} {n1=} {n2=}') if dbg else None
         if i and i != NT:
             if          n1 == self.COFM[n0][1]:   return n2
             elif n2 and n2 != self.COFM[n0][1]:   n1 += '/' + n2
@@ -107,7 +174,8 @@ class Pthgrn(ivls.Intonation):
         for i, e in enumerate(abc0):
             a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)    ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = w0 / f
     #        r0 = fmtR0(a, ca, b, cb, x)    ;   r1 = fmtR1(a, ca, b, cb, y)   ;    r2 = fmtR2(a, ca, b, cb, y)   ;   r3 = fmtR3(a, ca, b, cb, y)
-            n  = self.fmtNPair(k, i, k0)   ;   c = r2cents(r)   ;   d = k2dCent(c)   ;   rc = round(c)   ;   assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {k=} {i=} {k0=} {n=} {c=} {r=} {abc=}'   ;   v = self.ck2ikm[rc]   ;   cki += 1
+            n  = self.fmtNPair(k, i, k0)   ;   c = self.r2cents(r)   ;   d = self.k2dCent(c)   ;   rc = round(c)
+            assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {k=} {i=} {k0=} {n=} {c=} {r=} {abc=}'   ;   v = self.ck2ikm[rc]   ;   cki += 1
             while self.centKs[cki] < rc:
                 ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
                 cki += 1    ;  j = len(ii)-1   ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
@@ -153,8 +221,8 @@ class Pthgrn(ivls.Intonation):
         assert [a, b, c] == [3, 2, n],  f'{a=} {b=} {c=} {[3, 2, n]}'
         pa, pb    = a ** ca, b ** cb
         cratio    = pa / pb
-        q         = f'{a}{i2spr(ca)}/{b}{i2spr(cb)}'
-        ccents    = r2cents(cratio)
+        q         = f'{a}{self.i2spr(ca)}/{b}{self.i2spr(cb)}'
+        ccents    = self.r2cents(cratio)
         if dbg:   slog(f'Comma = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cratio:10.8f} = {ccents:10.5f} cents')
         ecents    = ccents / 12
         if dbg:   slog(f'Epsilon = Comma / 12 = {ccents:10.5f} / 12 = {ecents:10.5f} cents')
@@ -210,7 +278,7 @@ class Pthgrn(ivls.Intonation):
                 a, ca, b, cb = e        ;      pa, pb = a ** ca, b ** cb
                 n    = self.fmtNPair(k, j, k0)
                 pd   = [f'{i:x}', f'{k:2}', f'{n:2}']   ;   pfx = mm.join(pd)   ;   pfx += f'{nn}[{nn}'
-                cent = r2cents(pa/pb)   ;    rc = round(cent)   ;   centf = f'{cent:{ww}.0f}'     ;   cki += 1   ;   cents.append(centf)
+                cent = self.r2cents(pa/pb)   ;    rc = round(cent)   ;   centf = f'{cent:{ww}.0f}'     ;   cki += 1   ;   cents.append(centf)
                 while self.centKs[cki] < rc:
                     blnk = W*x          ;   cki += 1            ;   cents.append(f'{blnk:{ww}}')
                     rat0.append(blnk)   ;   rat2.append(blnk)   ;   rat3.append(blnk)
@@ -224,7 +292,7 @@ class Pthgrn(ivls.Intonation):
                     assert rc in self.ckmap.keys(),  f'{rc=} {self.ckmap.keys()=}'     ;     f = f0 * pa/pb
                     self.ckmap[rc]['Count'] = self.ckmap[rc]['Count'] + 1 if 'Count' in self.ckmap[rc] else 1    ;    self.ckmap[rc]['Abc']   = e
                     self.ckmap[rc]['Freq']  = f                      ;   self.ckmap[rc]['Wavln'] = w0 / f
-                    self.ckmap[rc]['Cents'] = cent                   ;   self.ckmap[rc]['DCent'] = k2dCent(cent)
+                    self.ckmap[rc]['Cents'] = cent                   ;   self.ckmap[rc]['DCent'] = self.k2dCent(cent)
                     self.ckmap[rc]['Note']  = n if k==ik else W*2
                     self.ckmap[rc]['Ival']  = self.ck2ikm[rc]        ;   self.ckmap[rc]['Idx']   = j
     #            rat0.append(r0)   ;   rat2.append(r2)   ;   rat3.append(r3)
@@ -244,8 +312,8 @@ class Pthgrn(ivls.Intonation):
         n = self.ckmap[ck]['Note']
         i = self.ckmap[ck]['Idx']
         k = self.ckmap[ck]['Count']
-        c = self.ckmap[ck]['Cents']   ;   assert c == r2cents(a**ca/b**cb),  f'{c=} {r2cents(a**ca/b**cb)=}'
-        d = self.ckmap[ck]['DCent']   ;   assert d == k2dCent(c),            f'{d=} {k2dCent(c)=}'    ;    d = round(d, 2)
+        c = self.ckmap[ck]['Cents']   ;   assert c == self.r2cents(a**ca/b**cb),  f'{c=} {self.r2cents(a**ca/b**cb)=}'
+        d = self.ckmap[ck]['DCent']   ;   assert d == self.k2dCent(c),            f'{d=} {self.k2dCent(c)=}'    ;    d = round(d, 2)
         return f, w, n, c, d, k, i
 
     def checkIvals(self, csv=0):
