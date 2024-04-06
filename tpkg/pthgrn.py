@@ -17,12 +17,13 @@ stck5ths, stck4ths, stackI = ivls.stck5ths, ivls.stck4ths, ivls.stackI
 fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
+K0  = 50 # todo
 class Pthgrn(ivls.Intonation):
     def __init__(self):
         super().__init__()
         self.COFMA  = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
         self.COFMB  = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'Bbb':('D♯', 'E♭'), 'Ebb':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
-        self.COFM   = COFMA | COFMB
+        self.COFM   = self.COFMA | self.COFMB
         self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
         self.centKs = [   0,  90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
         self.setCk2ikm() # todo this base class method initializes and or sets self.ck2ikm
@@ -31,7 +32,6 @@ class Pthgrn(ivls.Intonation):
 
     def dumpData(self, csv=0):
         slog(f'BGN {csv=}')
-#        if csv:  global nimap   ;   nimap = {}
         self.nimap = {}
         self.dmpData('D', csv)
         slog(f'END {csv=}')
@@ -249,7 +249,6 @@ class Pthgrn(ivls.Intonation):
         return f, w, n, c, d, k, i
 
     def checkIvals(self, csv=0):
-#        global ckmap
         mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)
         slog(f'BGN checkIvals() {csv=}', p=0, f=ff)
         keys, msgs, ws = [], [], [7, 8, 7, 7, 7, 5, 4, 4, 3]
@@ -267,7 +266,7 @@ class Pthgrn(ivls.Intonation):
         self.ckmap = { e: {'Count': 0} for e in self.centKs }
 
     def dmpCkMap(self, k=50, rf=440, sss=V_SOUND, csv=0):
-        x, y, u = 5, 4, 9   ;   blnk, sk, v = u*W, 0, Z   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;  dbg = 1 #  ;   global ckmap
+        x, y, u = 5, 4, 9   ;   blnk, sk, v = u*W, 0, Z   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;  dbg = 1
         mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)             ;   ww, w1, w2, w3  = f'^{u}', f'^{u}.1f', f'^{u}.2f', f'^{u}.{x}f'
         ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;   r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  cksf, cksi = [], []
         for i, ck in enumerate(self.centKs):
@@ -306,20 +305,19 @@ class Pthgrn(ivls.Intonation):
         
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
-#COFSA       = {'C', 'G', 'D',  'A',  'E',  'B',  'F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#'}
-#COFSB       = {'C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb', 'Bbb'}
-COFMA        = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
-COFMB        = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'Bbb':('D♯', 'E♭'), 'Ebb':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
-COFM         = COFMA | COFMB
+##COFSA       = {'C', 'G', 'D',  'A',  'E',  'B',  'F#', 'C#', 'G#', 'D#', 'A#', 'E#', 'B#'}
+##COFSB       = {'C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb', 'Fb', 'Bbb'}
+#COFMA        = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
+#COFMB        = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'Bbb':('D♯', 'E♭'), 'Ebb':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
+#COFM         = COFMA | COFMB
 #              0     1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19    20    21    22    23
 #              D     Eb                E     F                 F#    G           Ab    G#          A     Bb                B     C                 C#    D
-IVAL_KS     = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
-CENT_KS     = [   0,  90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
-nimap       = {} # note index to list of abcs (freq ratios) and ckmap (cent key data map)
-ckmap       = { ck: {'Count': 0} for ck in CENT_KS } # freq ratio in cents to ival counts and data
-ck2ik       = { CENT_KS[i]: k for i, k in enumerate(IVAL_KS) }
+#IVAL_KS     = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
+#CENT_KS     = [   0,  90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
+#nimap       = {} # note index to list of abcs (freq ratios) and ckmap (cent key data map)
+#ckmap       = { ck: {'Count': 0} for ck in CENT_KS } # freq ratio in cents to ival counts and data
+#ck2ik       = { CENT_KS[i]: k for i, k in enumerate(IVAL_KS) }
 #KEYS       = ['Abc', 'Cents', 'Count', 'DCent', 'Freq', 'Idx', 'Ival', 'Note', 'Wavln'] # N/A
-K0          = 50
 ########################################################################################################################################################################################################
 #def dumpData(csv=0):
 #    slog(f'BGN {csv=}')
