@@ -63,9 +63,9 @@ class Intonation(object):
         self.ck2ikm = {} # self.setCk2ikm()
 #        self.r0s, self.r2s, self.r3s = [], [], []
 #        self.r1s, self.rAs, self.rBs = [], [], []
-        
+    ####################################################################################################################################################################################################
     def setCk2ikm(self):   self.ck2ikm = { self.centKs[i]: k for i, k in enumerate(self.ivalKs) }   ;   return self.ck2ikm
-    
+    ####################################################################################################################################################################################################
     @staticmethod
     def i2spr(i):
         if i < 0: return '-' + Z.join( SUPERS[int(digit)] for digit in str(i) if str.isdigit(digit) )
@@ -77,7 +77,7 @@ class Intonation(object):
     @staticmethod
     def k2dCent(k):
         return k if 0 <= k < 50 else k-100 if 50<=k<150 else k-200 if 150<=k<250 else k-300 if 250<=k<350 else k-400 if 350<=k<450 else k-500 if 450<=k<550 else k-600 if 550<=k<650 else k-700 if 650<=k<750 else k-800 if 750<=k<850 else k-900 if 850<=k<950 else k-1000 if 950<=k<1050 else k-1100 if 1050<=k<1150 else k-1200 if 1150 <= k <= 1200 else None
-
+    ####################################################################################################################################################################################################
     @staticmethod
     def norm(n):
         i = 0
@@ -88,7 +88,7 @@ class Intonation(object):
             while n < 1:
                 n *= 2  ;  i += 1
         return n, i
-
+    ####################################################################################################################################################################################################
     @staticmethod
     def f2nPair(f, rf=440, b=None, s=0, e=0):
         ni = NT * math.log2(f / rf) # fixme
@@ -102,7 +102,7 @@ class Intonation(object):
         if e == 1 and len(n) > 1:
             m = FLATS[i] if not b else SHRPS[i]   ;   m = m[:-1].strip() if s else m
         return n, m
-
+    ####################################################################################################################################################################################################
     def addFmtRs(self, a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):
         assert rs and ist(rs, list),  f'{rs=} {type(rs)=} {a=} {ca} {b} {cb} {u=} {w=}'   ;   lr = len(rs)
         r0s, r2s, r3s = rs[0], rs[-2], rs[-1]          ;   r1s, rAs, rBs = None, None, None
@@ -113,7 +113,7 @@ class Intonation(object):
         r3s.append(self.fmtR3(a, ca, b, cb, u, k, i, j))
         if   lr == 4:   return r0s, r1s,      r2s, r3s
         elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
-
+    ####################################################################################################################################################################################################
     @staticmethod
     def fmtR0(a, ca, b, cb, w, k, i=None, j=None):
         pa = a ** ca   ;   pb = b ** cb   ;   p = 2 ** k if k else 1   ;   dbg = 0
@@ -122,7 +122,7 @@ class Intonation(object):
         else:             v = p*pa*pb
         ret = f'{v:^{w}.{w-4}f}' if ist(v, float) else f'{v:^{w}}'
         slog(f'{pfx}{k:4} {p:4} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
-
+    ####################################################################################################################################################################################################
     @staticmethod
     def fmtR1(a, ca, b, cb, w, k, i=None, j=None):
         pa = a ** abs(ca)  ;  pb = b ** abs(cb)  ;  p = 2 ** abs(k) if k else 1  ;  papbi = f'{p}/{pa*pb}'  ;  ret = Z  ;  dbg = 0
@@ -137,7 +137,7 @@ class Intonation(object):
         elif k < 0:
             if   ca >= 0:  ret = f'{pa*pb:>{w}}/{p:<{w}}'  ;  ret = f'{ret:^{2*w+1}}'
         slog(f'{pfx}{k:4} {p:4} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
-
+    ####################################################################################################################################################################################################
     @staticmethod
     def fmtR2(a, ca, b, cb, w, k, i=None, j=None):
         qa = '1' if ca == 0 else f'{a}' if ca == 1 else f'{a}' if ca == -1 else f'{a}^{abs(ca)}'
@@ -155,7 +155,7 @@ class Intonation(object):
         elif k < 0:
             if   ca >= 0:  ret = f'{qa:>}*{qb}/{p:<}'  ;  ret = f'{ret:^{2*w+1}}'
         slog(f'{pfx}{k:4} {p:2} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
-
+    ####################################################################################################################################################################################################
     @staticmethod
     def fmtR3(a, ca, b, cb, w, k, i=None, j=None):
         p = 2 ** abs(k) if k is not None else 1  ;  sa = f'{a}{i2spr(abs(ca))}'  ;  sb = f'{b}{i2spr(abs(cb))}'  ;  sasbi = f'1/({sa}*{sb})'  ;  ret = Z  ;  dbg = 0
@@ -170,7 +170,7 @@ class Intonation(object):
         elif k < 0:
             if   ca >= 0:  ret = f'{sa:>}*{sb}/{p:<}'  ;  ret = f'{ret:^{2*w+1}}'
         slog(f'{pfx}{k:4} {p:2} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
-
+    ####################################################################################################################################################################################################
     @staticmethod
     def fmtRA(a, ca, w=Z):        pa     =   a ** ca                               ;  return f'{pa:^{w}}' if ist(pa, int) else f'{pa:^{w}.{w-4}f}'
     @staticmethod
