@@ -152,7 +152,6 @@ class Pthgrn(ivls.Intonation):
         self.dmpNiMap(  5, k, x=9,  upd=0, k0=k0, csv=csv)
         self.dmpCks2Iks(      x=9,                csv=csv)
         self.checkIvals(                          csv=csv)
-#        for i in range(1): # len(self.ckmap)):
         self.checkIvals2(                         csv=csv)
     ####################################################################################################################################################################################################
     def dmpCks2Iks(self, x=13, csv=0):
@@ -355,34 +354,41 @@ class Pthgrn(ivls.Intonation):
     def checkIvals(self, csv=0):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)
         slog(f'BGN checkIvals() {csv=}', p=0, f=ff)
-        keys, msgs, ws = [], [], [7, 8, 7, 7, 7, 5, 4, 4, 3]
-        for kk, vv in self.ckmap.items():
-            keys = list(vv.keys())
+        msgs, ws = [], [7, 8, 7, 7, 7, 5, 4, 4, 3]
+        keys = list(list(self.ckmap.values())[0].keys())
         slog(f'Jdx{mm} {nn}{nn}CK{mm}  {mm}{fmtl(keys, w=ws, s=mm, d=Z)}', p=0, f=ff)
-        for i, (k, v) in enumerate(self.ckmap.items()):
-            msg = f'{i:2}{nn}[{mm}{k:4}{nn}:{mm}[{mm}'
-            for j, (k2, v2) in enumerate(v.items()):
-                msg += f'{fmtf(v2, 7)}{mm}' if k2 in ("Cents", "Freq", "Wavln") else f'{fmtg(v2, 6)}{mm}' if k2=="DCent" else f'{fmtl(v2, s=W):11}{mm}' if k2=="Abc" else f'{v2:2}{mm}' if k2 in ("Count", "Idx") else f'{v2:5}{mm}' if k2=="Note" else f'{v2:3}{mm}' if k2=="Ival" else f'{v2:6}{mm}'
+        for i, (ck, cv) in enumerate(self.ckmap.items()):
+            msg = f'{i:2}{nn}[{mm}{ck:4}{nn}:{mm}[{mm}'
+            for k, v in cv.items():
+                msg += f'{fmtf(v, 7)}{mm}' if k in ("Cents", "Freq", "Wavln") else f'{fmtg(v, 6)}{mm}' if k=="DCent" else f'{fmtl(v, s=W):11}{mm}' if k=="Abc" else f'{v:2}{mm}' if k in ("Count", "Idx") else f'{v:5}{mm}' if k=="Note" else f'{v:3}{mm}' if k=="Ival" else f'{v:6}{mm}'
             msg += f']{nn}]'   ;   msgs.append(msg)
         msgs = '\n'.join(msgs)
         slog(f'{msgs}', p=0, f=ff)
         slog(f'END checkIvals() {csv=}', p=0, f=ff)
-#        self.ckmap = { e: {'Count': 0} for e in self.centKs }
+#        self.ckmap = { e: {'Count': 0} for e in self.centKs } # do this once @ end of dmpMaps()
 
     def checkIvals2(self, csv=0):
-        mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)  ;  x = 13  ;   ww = f'^{x}.6f'  ;  uu = f'^{x}'   ;   blnk = x*W   ;  key = 'Freq'
-        rs = []  ;  vr = 1
-        slog(f'BGN checkIvals2() {csv=}', p=0, f=ff)
-        for i, (k, v) in enumerate(self.ckmap.items()):
-            for j, (k2, v2) in enumerate(v.items()):
-                if k2 == key:
-                    if i==0:  vr = v[key]
-                    rs.append(f'{v[key] / vr:{ww}}')
+        ff = 3 if csv else 1
+        slog(f'BGN checkIvals2() {len(self.centKs)=} {csv=}', p=0, f=ff)
+        keys = [ _ for _ in self.ckmap.keys() ]
+        for k in keys:
+            if self.ckmap[k]["Count"] > 1: self.checkIvals2A(k, csv=csv)
+        self.ckmap = { e: {'Count': 0} for e in self.centKs } # do this once @ end of dmpMaps()
+        slog(f'BGN checkIvals2() {len(self.centKs)=} {csv=}', p=0, f=ff)
+
+    def checkIvals2A(self, key, csv=0):
+        mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)  ;  x = 13  ;   ww = f'^{x}.6f'  ;  uu = f'^{x}'
+        rs = []   ;   blnk = x*W   ;   fk = 'Freq'   ;   keys = [ _ for _ in self.ckmap.keys() ]
+        fv = self.ckmap[key][fk]
+        for i, (ck, cv) in enumerate(self.ckmap.items()):
+            for k2, v2 in cv.items():
+                if k2 == fk:
+                    v  = cv[fk] / fv
+                    rs.append(f'{v:{ww}}')
                     break
-            else: rs.append(blnk)
-            if rs and i==len(self.ckmap)-1:   slog(f'{fmtl(list(self.ckmap.keys()), w=uu, s=oo)}', p=0, f=ff)   ;   slog(f'{fmtl(rs, w=uu, s=oo)}', p=0, f=ff)
-        slog(f'END checkIvals2() {csv=}', p=0, f=ff)
-        self.ckmap = { e: {'Count': 0} for e in self.centKs }
+            else:
+                rs.append(blnk)
+            if rs and i==len(self.ckmap)-1:   slog(f'{key:{uu}} {fmtl(keys, w=uu, s=oo)}', p=0, f=ff)   ;   slog(f'{fv:{ww}} {fmtl(rs, w=uu, s=oo)}', p=0, f=ff)
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 #def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:^{w}.{w-4}f}'
