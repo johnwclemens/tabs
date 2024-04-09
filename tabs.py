@@ -2155,7 +2155,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     _    = -3
     ARGS = utl.init(CSV_FILE, EVN_FILE, LOG_FILE, TXT_FILE, f=_)
     notes.dumpData()       ;     notes.dumpData(csv=1)
-    pythgrn = pthgrn.Pthgrn()
+    pythgrn = pthgrn.Pthgrn('E')
     justi   = just.Just()
     pythgrn.dumpData()     ;   pythgrn.dumpData(csv=1)
     justi.dmpData()        ;     justi.dmpData(csv=1)
