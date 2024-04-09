@@ -81,7 +81,7 @@ def test4ths(n, i, dbg=0):
 ########################################################################################################################################################################################################
 class Pthgrn(ivls.Intonation):
     def __init__(self, n='C'):
-        super().__init__()
+        super().__init__(n=n)
         self.COFMA  = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
         self.COFMB  = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'Bbb':('D♯', 'E♭'), 'Ebb':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
         self.COFM   = self.COFMA | self.COFMB
@@ -90,16 +90,10 @@ class Pthgrn(ivls.Intonation):
         self.setCk2ikm() # todo this base class method initializes and or sets self.ck2ikm
         self.nimap  = {} # note index to list of abcs (freq ratios) and ckmap (cent key data map)
         self.ckmap  = self.resetCkmap() # freq ratio in cents to ival counts and data
-        self.n      = n
-        self.k      = Notes.N2I[n] + 48
     ####################################################################################################################################################################################################
-    def dumpData(self, csv=0): # todo fixme
+    def dmpData(self, csv=0): # todo fixme
         slog(f'BGN {csv=}')
         self.nimap = {}
-        self.dmpData(csv)
-        slog(f'END {csv=}')
-
-    def dmpData(self, csv=0): # todo fixme
         k0 = Notes.N2I[self.n] + 48
         for i in range(7, 12):
             k = k0 + (i * 7) % NT
@@ -107,6 +101,7 @@ class Pthgrn(ivls.Intonation):
         for i in range(0, 7):
             k = k0 + (i * 7) % NT
             self.dmpPyth(k, rf=440, sss=V_SOUND, csv=csv)
+        slog(f'END {csv=}')
     ####################################################################################################################################################################################################
     @staticmethod
     def abcs(a=7, b=6):

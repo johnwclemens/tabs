@@ -2,7 +2,6 @@ from tpkg       import utl
 #from tpkg       import notes
 from tpkg.notes import Notes
 from tpkg       import intrvls as ivls
-#from tpkg       import pthgrn
 
 W, Y, Z, slog, ist     = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
 fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
@@ -77,20 +76,17 @@ CRS  = [ R1, R2, R3 ]
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 class Just(ivls.Intonation):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, n='C'):
+        super().__init__(n=n)
         self.ivalKs = ['P1', 'm2', 'm2', 'M2', 'M2', 'm3', 'm3', 'M3', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'm6', 'M6', 'M6', 'm7', 'm7', 'M7', 'M7', 'P8']
         self.centKs = [   0,  90,  112,  182,  204,  294,  316,  384,  386,  498,  522,  590,  610,  678,  702,  792,  814,  884,  906,  996,  1018, 1088, 1110, 1200]
         self.setCk2ikm() # todo this base class method initializes and or sets self.ck2ikm
     ####################################################################################################################################################################################################
-    def dumpData(self, csv=0):
+    def dmpData(self, csv=0):
         slog(f'BGN {csv=}', p=0)
-        self.dmpData('D', csv=csv)
-        slog(f'END {csv=}', p=0)
-    
-    def dmpData(self, n='C', csv=0):
-        k = Notes.N2I[n] + 48
+        k = Notes.N2I[self.n] + 50
         self.dmpJust(k, rf=440, sss=V_SOUND, csv=csv)
+        slog(f'END {csv=}', p=0)
     ####################################################################################################################################################################################################
     def fmtNote(self, k, i, b=1):
         n1, n2   = self.i2nPair(k + i, b=b, s=1)
@@ -139,8 +135,8 @@ class Just(ivls.Intonation):
                 u = CRS[i][j]
                 v, p = self.norm(u)
                 self.addFmtRs(a, c, b, d, rs=[r0s, r1s, r2s, r3s], u=z, w=x, k=p, i=i, j=j)
-                freq = f0 * v         ;   freqs.append(fmtf(freq, x-2))
-                wvln = w0 / freq      ;   wvlns.append(fmtf(wvln, x-2))
+                freq = f0 * v              ;   freqs.append(fmtf(freq, x-2))
+                wvln = w0 / freq           ;   wvlns.append(fmtf(wvln, x-2))
                 cent = self.r2cents(v)     ;   cents.append(f'{cent:7.2f}')
                 dcnt = self.k2dCent(cent)  ;   dcnts.append(f'{dcnt:7.4f}')
                 rc   = round(cent)

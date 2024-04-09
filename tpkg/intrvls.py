@@ -20,7 +20,7 @@ def i2spr(i): # todo fixme still being used by old code that hasn't been retired
     if i < 0: return '-' + Z.join( SUPERS[int(digit)] for digit in str(i) if str.isdigit(digit) )
     else:     return       Z.join( SUPERS[int(digit)] for digit in str(i) )
 ########################################################################################################################################################################################################
-def dumpData(csv=0):
+def dmpData(csv=0):
     slog(f'BGN {csv=}')
     dmpOTS(       rf=440, sss=V_SOUND, csv=csv)
     slog(f'END {csv=}')
@@ -57,10 +57,12 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
 ########################################################################################################################################################################################################
 
 class Intonation(object):
-    def __init__(self):
+    def __init__(self, n='C'):
         self.centKs = []
         self.ivalKs = []
         self.ck2ikm = {} # self.setCk2ikm()
+        self.n      = n
+        self.k      = Notes.N2I[n] + 48
 #        self.r0s, self.r2s, self.r3s = [], [], []
 #        self.r1s, self.rAs, self.rBs = [], [], []
     ####################################################################################################################################################################################################
