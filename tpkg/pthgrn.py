@@ -7,7 +7,7 @@ import math
 W,  Y,  Z,  slog,  ist = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
 fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 
-NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
+NT, A4_INDEX, CM_P_M = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M
 
 F440s, F432s               = ivls.F440s,    ivls.F432s
 #fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
@@ -97,10 +97,10 @@ class Pthgrn(ivls.Intonation):
         k0 = Notes.N2I[self.n] + 48
         for i in range(7, 12):
             k = k0 + (i * 7) % NT
-            self.dmpPyth(k, rf=440, sss=V_SOUND, csv=csv)
+            self.dmpPyth(k, rf=440, csv=csv)
         for i in range(0, 7):
             k = k0 + (i * 7) % NT
-            self.dmpPyth(k, rf=440, sss=V_SOUND, csv=csv)
+            self.dmpPyth(k, rf=440, csv=csv)
         slog(f'END {csv=}')
     ####################################################################################################################################################################################################
     @staticmethod
@@ -125,10 +125,10 @@ class Pthgrn(ivls.Intonation):
         slog(f'return {n1=}') if dbg else None
         return n1
     ####################################################################################################################################################################################################
-    def dmpPyth(self, k, rf=440, sss=V_SOUND, csv=0):
-        x, y = 13, 6     ;   z = x-2   ;   _ = x*W   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;   cki = -1
+    def dmpPyth(self, k, rf=440, csv=0):
+        x, y = 13, 6     ;   z = x-2   ;   _ = x*W   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * self.VS   ;   cki = -1
         ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)            ;   w3 = [W, W, W]
-        slog(f'BGN Pythagorean ({k=} {rf=} {sss=} {csv=})', f=ff)
+        slog(f'BGN Pythagorean ({k=} {rf=} {self.VS=} {csv=})', f=ff)
         ii  = [ f'{i}' for i in range(2 * NT) ]         ;   slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
         self.dmpDataTableLine(x + 1, csv=csv)
         ii, ns, vs, fs, ws = [], [], [], [], []   ;   cs, ds = [], []   ;   r0s, r1s, r2s, r3s = [], [], [], []   ;   abcMap = []
@@ -166,7 +166,7 @@ class Pthgrn(ivls.Intonation):
         slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
         self.dmpDataTableLine(x + 1, csv=csv)
         self.dmpMaps(k, csv)
-        slog(f'END Pythagorean ({k=} {rf=} {sss=} {csv=})', f=ff)
+        slog(f'END Pythagorean ({k=} {rf=} {self.VS=} {csv=})', f=ff)
     ####################################################################################################################################################################################################
     def epsilon(self, dbg=0):
         ccents = self.comma()
@@ -242,25 +242,25 @@ class Pthgrn(ivls.Intonation):
         self.dmpCks2Iks(      x=9,         csv=csv)
         self.checkIvals(                   csv=csv)
         self.checkIvals2(                  csv=csv)
-        self.ckmap = self.resetCkmap(csv)
+        self.ckmap = self.resetCkmap()
     ####################################################################################################################################################################################################
-    def resetCkmap(self, csv=0): # self.ckmap = { e: {'Count': 0} for e in self.centKs } # do this once @ end of dmpMaps()
-        tmp = {}   ;   count = 0
+    def resetCkmap(self, dbg=1): # self.ckmap = { e: {'Count': 0} for e in self.centKs } # do this once @ end of dmpMaps()
+        ckmap = {}   ;   count = 0
         for e in self.centKs:
-            if hasattr(self, 'ckmap'):
+            if dbg and hasattr(self, 'ckmap'):
                 if self.ckmap[e]['Count'] > 0: count += 1
-            tmp[e] = {'Count': 0}
-        slog(f'Reset {len(self.ckmap)=} {count=} {csv=}') if hasattr(self, 'ckmap') else slog(f'Reset ckmap {csv=}')
-        return tmp
+            ckmap[e] = {'Count': 0}
+        if dbg: slog(f'Reset {len(self.ckmap)=} {count=}') if hasattr(self, 'ckmap') else slog(f'Create ckmap')
+        return ckmap
 
     def dmpCks2Iks(self, x=13, csv=0):
         if not csv:
             if   x== 9: slog(f'{7*W}  {fmtm(self.ck2ikm, w=4, wv=2, s=3*W, d=Z)}', p=0)
             elif x==13: slog(f'{9*W}  {fmtm(self.ck2ikm, w=4, wv=2, s=7*W, d=Z)}', p=0)
     ####################################################################################################################################################################################################
-    def dmpNiMap(self, ni, ik, x, upd=0, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
+    def dmpNiMap(self, ni, ik, x, upd=0, rf=440, csv=0): # x=13 or x=9
         ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   pfx = ''   ;   sfx = f'{nn}]'  ;  yy = 6 if x==13 else 4
-        f0  = F440s[ik] if rf==440 else F432s[ik]     ;     w0 = CM_P_M * sss   
+        f0  = F440s[ik] if rf==440 else F432s[ik]     ;     w0 = CM_P_M * self.VS   
         ii = [ f'{i}' for i in range(2 * NT) ]
         slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None
         self.dmpDataTableLine(x + 1, csv=csv) if ni == 1 else None
@@ -299,8 +299,8 @@ class Pthgrn(ivls.Intonation):
         self.dmpDataTableLine(x + 1, csv=csv)
         slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
     ####################################################################################################################################################################################################
-    def dmpCkMap(self, k=50, rf=440, sss=V_SOUND, csv=0):
-        x, y, u = 5, 4, 9   ;   blnk, sk, v = u*W, 0, Z   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;  dbg = 1
+    def dmpCkMap(self, k=50, rf=440, csv=0):
+        x, y, u = 5, 4, 9   ;   blnk, sk, v = u*W, 0, Z   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * self.VS   ;  dbg = 1
         mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)             ;   ww, w1, w2, w3  = f'^{u}', f'^{u}.1f', f'^{u}.2f', f'^{u}.{x}f'
         ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;   r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  cksf, cksi = [], []
         for i, ck in enumerate(self.centKs):

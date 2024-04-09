@@ -58,6 +58,7 @@ def dmpOTS(rf=440, sss=V_SOUND, csv=0):
 
 class Intonation(object):
     def __init__(self, n='C'):
+        self.VS     = V_SOUND
         self.centKs = []
         self.ivalKs = []
         self.ck2ikm = {} # self.setCk2ikm()
