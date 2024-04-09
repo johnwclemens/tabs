@@ -77,12 +77,10 @@ def test4ths(n, i, dbg=0):
     ks = list(mi.keys())                     ;   slog(f'4ths {fmtl(ks, w=4)}', p=0)
     ks = sorted(ks, key= lambda x: int(x))   ;   slog(f'sort {fmtl(ks, w=4)}', p=0)
     return mi, mf
-
-K0  = 50 # todo
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 class Pthgrn(ivls.Intonation):
-    def __init__(self):
+    def __init__(self, n='D'):
         super().__init__()
         self.COFMA  = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
         self.COFMB  = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'Bbb':('D♯', 'E♭'), 'Ebb':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
@@ -92,29 +90,24 @@ class Pthgrn(ivls.Intonation):
         self.setCk2ikm() # todo this base class method initializes and or sets self.ck2ikm
         self.nimap  = {} # note index to list of abcs (freq ratios) and ckmap (cent key data map)
         self.ckmap  = self.resetCkmap() # freq ratio in cents to ival counts and data
+        self.n      = n
+        self.k      = Notes.N2I[n] + 48
     ####################################################################################################################################################################################################
-    def dumpData(self, csv=0):
+    def dumpData(self, csv=0): # todo fixme
         slog(f'BGN {csv=}')
         self.nimap = {}
-        self.dmpData('D', csv)
+        self.dmpData(csv)
         slog(f'END {csv=}')
 
-    def dmpData(self, n='C', csv=0):
-        k0 = Notes.N2I[n] + 48
+    def dmpData(self, csv=0): # todo fixme
+        k0 = Notes.N2I[self.n] + 48
         for i in range(7, 12):
             k = k0 + (i * 7) % NT
-            self.dmpPyth(k, k0=k0, rf=440, sss=V_SOUND, csv=csv)
+            self.dmpPyth(k, rf=440, sss=V_SOUND, csv=csv)
         for i in range(0, 7):
             k = k0 + (i * 7) % NT
-            self.dmpPyth(k, k0=k0, rf=440, sss=V_SOUND, csv=csv)
+            self.dmpPyth(k, rf=440, sss=V_SOUND, csv=csv)
     ####################################################################################################################################################################################################
-    @staticmethod
-    def dmpDataTableLine(w=10, n=24, csv=0):
-        c = '-'   ;   nn, mm, t = (Y, Y, Y) if csv else (Z, W, '|')
-        col = f'{c * (w-1)}'
-        cols = t.join([ col for _ in range(n) ])
-        slog(f'{mm}     {mm}{nn} {nn}{cols}', p=0, f=3 if csv else 1)
-
     @staticmethod
     def abcs(a=7, b=6):
         abc1 = stck5ths(a)
@@ -123,21 +116,21 @@ class Pthgrn(ivls.Intonation):
         abc4 = sorted(abc3, key= lambda z: abc2r(z[0], z[1], z[2])[0])
         return [ abc1, abc2, abc3, abc4 ] 
 
-    def k2Abcs(self, k=50):
-        f = self.abcs
-        return f(6, 5) if k==50 or k== 62 else f(5, 6) if k==57 else f(4, 7) if k==52 else f(3, 8) if k==59 else f(2, 9)  if k==54 else f(1, 10) if k==61 else f(0, 11) if k==56 \
-                                          else f(7, 4) if k==55 else f(8, 3) if k==60 else f(9, 2) if k==53 else f(10, 1) if k==58 else f(11, 0) if k==51 else f(12, 0)
+    def k2Abcs(self, k=50): # todo fixme
+        f = self.abcs   ;   i = self.k
+        return f(6, 5) if k==i else f(5, 6) if k==i+7 else f(4, 7) if k==i+2  else f(3, 8) if k==i+9 else f(2, 9)  if k==i+4 else f(1, 10) if k==i+11 else f(0, 11) if k==i+6 \
+                               else f(7, 4) if k==i+5 else f(8, 3) if k==i+10 else f(9, 2) if k==i+3 else f(10, 1) if k==i+8 else f(11, 0) if k==i+1  else f(12, 0)
     ####################################################################################################################################################################################################
-    def fmtNPair(self, k, i, k0, dbg=0):
-        n0, _   = self.i2nPair(k0, s=1)
-        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (K0 + 4, K0 + 6, K0 + 11) else 1, s=1, e=1)   ;   slog(f'{K0=} {n0=} {n1=} {n2=}') if dbg else None
+    def fmtNPair(self, k, i, dbg=0): # todo fixme
+        n0, _   = self.i2nPair(self.k, s=1)
+        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (self.k + 4, self.k + 6, self.k + 11) else 1, s=1, e=1)   ;   slog(f'{self.k=} {n0=} {n1=} {n2=}') if dbg else None
         if i and i != NT:
             if          n1 == self.COFM[n0][1]:   return n2
             elif n2 and n2 != self.COFM[n0][1]:   n1 += '/' + n2
         slog(f'return {n1=}') if dbg else None
         return n1
     ####################################################################################################################################################################################################
-    def dmpPyth(self, k, k0=50, rf=440, sss=V_SOUND, csv=0):
+    def dmpPyth(self, k, rf=440, sss=V_SOUND, csv=0):
         x, y = 13, 6     ;   z = x-2   ;   _ = x*W   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * sss   ;   cki = -1
         ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)            ;   w3 = [W, W, W]
         slog(f'BGN Pythagorean ({k=} {rf=} {sss=} {csv=})', f=ff)
@@ -149,8 +142,8 @@ class Pthgrn(ivls.Intonation):
         for i, e in enumerate(abc0):
             a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)    ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = w0 / f
     #        r0 = fmtR0(a, ca, b, cb, x)    ;   r1 = fmtR1(a, ca, b, cb, y)   ;    r2 = fmtR2(a, ca, b, cb, y)   ;   r3 = fmtR3(a, ca, b, cb, y)
-            n  = self.fmtNPair(k, i, k0)   ;   c = self.r2cents(r)   ;   d = self.k2dCent(c)   ;   rc = round(c)
-            assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {k=} {i=} {k0=} {n=} {c=} {r=} {abc=}'   ;   v = self.ck2ikm[rc]   ;   cki += 1
+            n  = self.fmtNPair(k, i)   ;   c = self.r2cents(r)   ;   d = self.k2dCent(c)   ;   rc = round(c)
+            assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {k=} {i=} {self.k=} {n=} {c=} {r=} {abc=}'   ;   v = self.ck2ikm[rc]   ;   cki += 1
             while self.centKs[cki] < rc:
                 ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_)  ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
                 cki += 1    ;  j = len(ii)-1   ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
@@ -177,7 +170,7 @@ class Pthgrn(ivls.Intonation):
         slog(f'{mm} ABC3{mm}{nn}[{nn}{fmtl(abc3, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
         slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
         self.dmpDataTableLine(x + 1, csv=csv)
-        self.dmpMaps(k, k0, csv)
+        self.dmpMaps(k, csv)
         slog(f'END Pythagorean ({k=} {rf=} {sss=} {csv=})', f=ff)
     ####################################################################################################################################################################################################
     def epsilon(self, dbg=0):
@@ -219,7 +212,6 @@ class Pthgrn(ivls.Intonation):
 
     def dmpIvals(self, i, ks, cs, ds, csv): # only called by dmpCkMap()
         mm, nn, oo, ff = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)   ;   m = -1
-    #    slog(f'BGN dmpIvals() {i=} {csv=}')
         eps, j     = self.epsilon(), math.floor(i/2)
         hdrA, hdrB1, hdrB2 = ['j', 'j*100', 'i'], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`  '], ['Iv', f' c{mm} ', f'  k {mm} ', f'   d   {mm} ', f' e   {mm} ', f' c`']
         hdrs       = hdrA   ;   hdrs.extend(hdrB1)   ;   hdrs.extend(hdrB2)
@@ -238,24 +230,23 @@ class Pthgrn(ivls.Intonation):
         elif i == len(self.ck2ikm)-1:
             data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1178, W*6, eps, cs[i]]
             fd       = self.fIvals(data, i, csv)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
-    #    slog(f'END dmpIvals() {i=} {csv=}')
     ####################################################################################################################################################################################################
-    def dmpMaps(self, k, k0, csv):
-        self.dmpNiMap(  1, k, x=13, upd=1, k0=k0, csv=csv)
-        self.dmpNiMap(  2, k, x=13, upd=1, k0=k0, csv=csv)
-        self.dmpNiMap(  3, k, x=13, upd=1, k0=k0, csv=csv)
-        self.dmpNiMap(  4, k, x=13, upd=1, k0=k0, csv=csv)
-        self.dmpNiMap(  5, k, x=13, upd=1, k0=k0, csv=csv)
-        self.dmpCks2Iks(      x=13,               csv=csv)
-        self.dmpCkMap(k,                          csv=csv)
-        self.dmpNiMap(  1, k, x=9,  upd=0, k0=k0, csv=csv)
-        self.dmpNiMap(  2, k, x=9,  upd=0, k0=k0, csv=csv)
-        self.dmpNiMap(  3, k, x=9,  upd=0, k0=k0, csv=csv)
-        self.dmpNiMap(  4, k, x=9,  upd=0, k0=k0, csv=csv)
-        self.dmpNiMap(  5, k, x=9,  upd=0, k0=k0, csv=csv)
-        self.dmpCks2Iks(      x=9,                csv=csv)
-        self.checkIvals(                          csv=csv)
-        self.checkIvals2(                         csv=csv)
+    def dmpMaps(self, k, csv):
+        self.dmpNiMap(  1, k, x=13, upd=1, csv=csv)
+        self.dmpNiMap(  2, k, x=13, upd=1, csv=csv)
+        self.dmpNiMap(  3, k, x=13, upd=1, csv=csv)
+        self.dmpNiMap(  4, k, x=13, upd=1, csv=csv)
+        self.dmpNiMap(  5, k, x=13, upd=1, csv=csv)
+        self.dmpCks2Iks(      x=13,        csv=csv)
+        self.dmpCkMap(k,                   csv=csv)
+        self.dmpNiMap(  1, k, x=9,  upd=0, csv=csv)
+        self.dmpNiMap(  2, k, x=9,  upd=0, csv=csv)
+        self.dmpNiMap(  3, k, x=9,  upd=0, csv=csv)
+        self.dmpNiMap(  4, k, x=9,  upd=0, csv=csv)
+        self.dmpNiMap(  5, k, x=9,  upd=0, csv=csv)
+        self.dmpCks2Iks(      x=9,         csv=csv)
+        self.checkIvals(                   csv=csv)
+        self.checkIvals2(                  csv=csv)
         self.ckmap = self.resetCkmap(csv)
     ####################################################################################################################################################################################################
     def resetCkmap(self, csv=0): # self.ckmap = { e: {'Count': 0} for e in self.centKs } # do this once @ end of dmpMaps()
@@ -272,7 +263,7 @@ class Pthgrn(ivls.Intonation):
             if   x== 9: slog(f'{7*W}  {fmtm(self.ck2ikm, w=4, wv=2, s=3*W, d=Z)}', p=0)
             elif x==13: slog(f'{9*W}  {fmtm(self.ck2ikm, w=4, wv=2, s=7*W, d=Z)}', p=0)
     ####################################################################################################################################################################################################
-    def dmpNiMap(self, ni, ik, x, upd=0, k0=50, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
+    def dmpNiMap(self, ni, ik, x, upd=0, rf=440, sss=V_SOUND, csv=0): # x=13 or x=9
         ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if csv else (f'^{x}', W, Z, '|', 1)   ;   pfx = ''   ;   sfx = f'{nn}]'  ;  yy = 6 if x==13 else 4
         f0  = F440s[ik] if rf==440 else F432s[ik]     ;     w0 = CM_P_M * sss   
         ii = [ f'{i}' for i in range(2 * NT) ]
@@ -283,7 +274,7 @@ class Pthgrn(ivls.Intonation):
             rat1 = [] if x == 13 else None   ;  ratA = [] if x == 9 else None   ;  ratB = [] if x == 9 else None
             for j, e in enumerate(v[0]):
                 a, ca, b, cb = e        ;      pa, pb = a ** ca, b ** cb
-                n    = self.fmtNPair(k, j, k0)
+                n    = self.fmtNPair(k, j)
                 pd   = [f'{i:x}', f'{k:2}', f'{n:2}']   ;   pfx = mm.join(pd)   ;   pfx += f'{nn}[{nn}'
                 cent = self.r2cents(pa/pb)   ;    rc = round(cent)   ;   centf = f'{cent:{ww}.0f}'     ;   cki += 1   ;   cents.append(centf)
                 while self.centKs[cki] < rc:
@@ -375,15 +366,12 @@ class Pthgrn(ivls.Intonation):
         msgs = '\n'.join(msgs)
         slog(f'{msgs}', p=0, f=ff)
         slog(f'END checkIvals() {csv=}', p=0, f=ff)
-
+    ########################################################################################################################################################################################################
     def checkIvals2(self, csv=0):
-#        ff = 3 if csv else 1
-#        slog(f'BGN checkIvals2() {self.dmpCkmap()} {len(self.ckmap)} {csv=}', p=0, f=ff)
         self.dmpCkmap()
         keys = list(self.ckmap.keys())
         for k in keys:
             if self.ckmap[k]["Count"] > 0: self.checkIvals2A(k, csv=csv)
-#        slog(f'END checkIvals2() {self.ckmap=} {len(self.ckmap)} {csv=}', p=0, f=ff)
 
     def checkIvals2A(self, key, csv=0):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)  ;  x = 13  ;   ww = f'^{x}.9f'  ;  vv = f'7.3f'  ;  uu = f'^{x}'
@@ -398,13 +386,20 @@ class Pthgrn(ivls.Intonation):
             else:
                 rs.append(blnk)
             if rs and i==len(self.ckmap)-1:   slog(f'{fv:{vv}}{fmtl(rs, w=uu, s=oo)}', p=0, f=ff)
-#            if rs and i==len(self.ckmap)-1:   slog(f'{key:{uu}} {fmtl(keys, w=uu, s=oo)}', p=0, f=ff)   ;   slog(f'{fv:{ww}} {fmtl(rs, w=uu, s=oo)}', p=0, f=ff)
-    
+    ########################################################################################################################################################################################################
     def dmpCkmap(self):
         ks = []   ;   x = 13   ;   w = f'^{x}'   ;   o = '|'
         for k, v in self.ckmap.items():
             ks.append(f'{k:3} {v["Count"]}')
         slog(f'{7*W}{fmtl(ks, w=w, s=o)}', p=0)
+
+    @staticmethod
+    def dmpDataTableLine(w=10, n=24, csv=0):
+        c = '-'   ;   nn, mm, t = (Y, Y, Y) if csv else (Z, W, '|')
+        col = f'{c * (w-1)}'
+        cols = t.join([ col for _ in range(n) ])
+        slog(f'{mm}     {mm}{nn} {nn}{cols}', p=0, f=3 if csv else 1)
+
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 #def fmtR0(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:^{w}.{w-4}f}'

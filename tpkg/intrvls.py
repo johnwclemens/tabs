@@ -64,7 +64,7 @@ class Intonation(object):
 #        self.r0s, self.r2s, self.r3s = [], [], []
 #        self.r1s, self.rAs, self.rBs = [], [], []
     ####################################################################################################################################################################################################
-    def setCk2ikm(self):   self.ck2ikm = { self.centKs[i]: k for i, k in enumerate(self.ivalKs) }   ;   return self.ck2ikm
+    def setCk2ikm(self):   self.ck2ikm = { self.centKs[i]: k for i, k in enumerate(self.ivalKs) }   ;   return self.ck2ikm # todo this base class method initializes and or sets self.ck2ikm
     ####################################################################################################################################################################################################
     @staticmethod
     def i2spr(i):

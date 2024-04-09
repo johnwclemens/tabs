@@ -208,22 +208,22 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
 #2130 tabs  dumpGlobals        argv      = +34[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -M 0 -deo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T E A D G B E]
 #2131 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 #2132 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-# 448 utl   getFilePath        baseName =test.179     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.179     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.179.cat path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.179.cat'
-# 453 utl   getFilePath        fileName =test.179.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.179.cat')
-# 448 utl   getFilePath        baseName =test.179     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.179     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.179.csv path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.179.csv'
-# 453 utl   getFilePath        fileName =test.179.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.179.csv')
-# 448 utl   getFilePath        baseName =test.179     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.179     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.179.log path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.179.log'
-# 453 utl   getFilePath        fileName =test.179.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.179.log')
-# 448 utl   getFilePath        baseName =test.179     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.179     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.179.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/text/test.179.txt'
-# 453 utl   getFilePath        fileName =test.179.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.179.txt')
+# 448 utl   getFilePath        baseName =test.187     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.187     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.187.cat path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.187.cat'
+# 453 utl   getFilePath        fileName =test.187.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.187.cat')
+# 448 utl   getFilePath        baseName =test.187     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.187     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.187.csv path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.187.csv'
+# 453 utl   getFilePath        fileName =test.187.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.187.csv')
+# 448 utl   getFilePath        baseName =test.187     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.187     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.187.log path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.187.log'
+# 453 utl   getFilePath        fileName =test.187.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.187.log')
+# 448 utl   getFilePath        baseName =test.187     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.187     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.187.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/text/test.187.txt'
+# 453 utl   getFilePath        fileName =test.187.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.187.txt')
 # 264 tabs  dumpArgs           [a]      .AUTO_SAVE=0
 # 265 tabs  dumpArgs           [A]         .VARROW=1
 # 266 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -1207,34 +1207,34 @@ plsct=[1 1 3 30 6] j=6 i=5
 [ None ,  None ,  None ,  None ,  None , b:B :2,  None ]
 [ None ,  None ,  None ,  None ,  None ,  None ,  None ]
 #1801 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels Upd1
-# 765 cmds  _snapshot          snapName='test.179.1.NEW.png' New1
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.179.1.NEW.png'
+# 765 cmds  _snapshot          snapName='test.187.1.NEW.png' New1
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.187.1.NEW.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.179.1.NEW.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.187.1.NEW.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.187.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.187.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.179.1.NEW.png'
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.187.1.NEW.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.179.1.NEW.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.187.1.NEW.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.187.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.187.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-#  86 evnts on_draw            .LOG_ID=179 sid=1 typ=NEW why=New1 qlen=1
-C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.1.NEW.png
+#  86 evnts on_draw            .LOG_ID=187 sid=1 typ=NEW why=New1 qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.187.1.NEW.png
 # 101 evnts on_key_press       BGN  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
 # 213 evnts on_key_press       UNH          k='LCTRL' retv=True setting retv to False
 # 218 evnts on_key_press       UNH retv2=False k='LCTRL' retv=False  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
 # 220 evnts on_key_press       check isParsing k='LCTRL' retv=False
 # 222 evnts on_key_press       Not isParsing k='LCTRL' retv=False
 # 227 evnts on_key_press       Done Not isParsing k='LCTRL' retv=False
-# 228 evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x000001B4A4661EA0>
+# 228 evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000026817B61C30>
 # 229 evnts on_key_press       END  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
 # 230 evnts on_key_press       END processing event k='LCTRL' return retv=False
 # 101 evnts on_key_press       BGN  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         d={65507: True, 65505: True}
@@ -1243,7 +1243,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.1.NEW.png
 # 220 evnts on_key_press       check isParsing k='LSHIFT' retv=False
 # 222 evnts on_key_press       Not isParsing k='LSHIFT' retv=False
 # 227 evnts on_key_press       Done Not isParsing k='LSHIFT' retv=False
-# 228 evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x000001B4A4661EA0>
+# 228 evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000026817B61C30>
 # 229 evnts on_key_press       END  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         d={65507: True, 65505: True}
 # 230 evnts on_key_press       END processing event k='LSHIFT' return retv=False
 # 101 evnts on_key_press       BGN    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         d={65507: True, 65505: True, 113: True}
@@ -1261,22 +1261,22 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.1.NEW.png
 # 144 chords dumpLimap            0 0 0 G            G            RM35         047    GBD          RM35         047    GBD         
 # 144 chords dumpLimap            0 0 1 Bm+/G        Bm+/G        ♯5Rm3        803    GBD          Rm3♯5        038    BDG         
 # 144 chords dumpLimap            0 0 2 D6s4x/G      D6s4x/G      46R          590    GBD          R46          059    DGB         
-# 765 cmds  _snapshot          snapName='test.179.2.FIN.png' quit 0 save=0
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.179.2.FIN.png'
+# 765 cmds  _snapshot          snapName='test.187.2.FIN.png' quit 0 save=0
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.187.2.FIN.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.179.2.FIN.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.187.2.FIN.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.187.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.187.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.179.2.FIN.png'
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.187.2.FIN.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.179.2.FIN.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.187.2.FIN.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.187.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.187.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
@@ -1300,13 +1300,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.1.NEW.png
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-#2103 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.179.csv
+#2103 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.187.csv
 # 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv'
-# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.179.csv'
+# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.187.csv'
 # 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.179.csv')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.179.csv ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.179.csv)
+# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.187.csv')
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.187.csv ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.187.csv)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
@@ -1322,7 +1322,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.1.NEW.png
 # 220 evnts on_key_press       check isParsing k='Q' retv=True
 # 222 evnts on_key_press       Not isParsing k='Q' retv=True
 # 227 evnts on_key_press       Done Not isParsing k='Q' retv=True
-# 228 evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x000001B4A4661EA0>
+# 228 evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000026817B61C30>
 # 229 evnts on_key_press       END    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         d={}
 # 230 evnts on_key_press       END processing event k='Q' return retv=True
 #2181 tabs  <module>           OK pyglet.app.run() runstat=None
@@ -1337,13 +1337,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.179.1.NEW.png
 # 449 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
 # 452 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt'
 # 453 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')
-#2135 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.179.txt
+#2135 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.187.txt
 # 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt'
-# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.179.txt'
+# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.187.txt'
 # 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.179.txt')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.179.txt ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.179.txt)
+# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.187.txt')
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.187.txt ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.187.txt)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
