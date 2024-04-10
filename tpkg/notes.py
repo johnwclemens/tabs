@@ -46,11 +46,11 @@ class Notes(object):#1       2       3       4       5       6       7       8  
     @classmethod
     def n2ai(cls, m):               n = m[:-1].strip()       ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.n2ipo(filtA(m))
     @classmethod
-    def n2ipo(cls, n):              o = int(n[-1]) * cls.NTONES   ;   n = n[:-1]   ;   return cls.N2I[n] + o 
-    @classmethod
-    def nextName(cls, n, iv, o=0):  i = cls.n2i(n, o)   ;   j = cls.V2I[iv]   ;   k = cls.nextIndex(i, j)   ;   return cls.name(k, 0)
-    @classmethod
-    def nextIndex(cls, i, d=1):     return (i+d) % cls.NTONES
+    def n2ipo(cls, n):              o = int(n[-1]) * cls.NTONES   ;   n = n[:-1]   ;   return cls.N2I[n] + o
+#    @classmethod
+#    def nextName(cls, n, iv, o=0):  i = cls.n2i(n, o)   ;   j = cls.V2I[iv]   ;   k = cls.nextIndex(i, j)   ;   return cls.name(k, 0) # todo fixme N/A not used?
+#    @classmethod
+#    def nextIndex(cls, i, d=1):     return (i+d) % cls.NTONES
     @classmethod
     def name(cls, i, t=None, n2=1):
         j = i % cls.NTONES   ;   t = 2 if t==-1 else t

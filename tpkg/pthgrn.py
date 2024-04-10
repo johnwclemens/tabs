@@ -9,7 +9,6 @@ fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
-#F440s, F432s               = ivls.F440s,    ivls.F432s
 #fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
@@ -90,7 +89,7 @@ class Pthgrn(ivls.Intonation):
     ####################################################################################################################################################################################################
     def dmpData(self, csv=0): # todo fixme
         self.csv = csv
-        slog(f'BGN {self.csv=}')
+        slog(f'BGN {self.csv=}', p=0)
         self.nimap = {}
         for i in range(7, 12):
             k = self.k + (i * 7) % NT
@@ -98,7 +97,7 @@ class Pthgrn(ivls.Intonation):
         for i in range(0, 7):
             k = self.k + (i * 7) % NT
             self.dmpPyth(k)
-        slog(f'END {self.csv=}')
+        slog(f'END {self.csv=}', p=0)
     ####################################################################################################################################################################################################
     @staticmethod
     def abcs(a=7, b=6):
@@ -125,7 +124,7 @@ class Pthgrn(ivls.Intonation):
     def dmpPyth(self, k):
         x, y = 13, 6     ;   z = x-2   ;   _ = x*W   ;   f0 = self.FREFS[k]   ;   cki = -1
         ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if self.csv else (f'^{x}', W, Z, '|', 1)            ;   w3 = [W, W, W]
-        slog(f'BGN Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', f=ff)
+        slog(f'BGN Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
         ii  = [ f'{i}' for i in range(2 * NT) ]         ;   slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
         self.dmpDataTableLine(x + 1)
         ii, ns, vs, fs, ws = [], [], [], [], []   ;   cs, ds = [], []   ;   r0s, r1s, r2s, r3s = [], [], [], []   ;   abcMap = []
@@ -163,7 +162,7 @@ class Pthgrn(ivls.Intonation):
         slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
         self.dmpDataTableLine(x + 1)
         self.dmpMaps(k)
-        slog(f'END Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', f=ff)
+        slog(f'END Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
     ####################################################################################################################################################################################################
     def epsilon(self, dbg=0):
         ccents = self.comma()
@@ -367,7 +366,7 @@ class Pthgrn(ivls.Intonation):
 
     def checkIvals2A(self, key):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  x = 13  ;   ww = f'^{x}.9f'  ;  vv = f'7.3f'  ;  uu = f'^{x}'
-        rs = []   ;   blnk = x*W   ;   fk = 'Freq' #  ;   keys = [ _ for _ in self.ckmap.keys() ]
+        rs = []   ;   blnk = x*W   ;   fk = 'Freq'
         fv = self.ckmap[key][fk]
         for i, (ck, cv) in enumerate(self.ckmap.items()):
             for k2, v2 in cv.items():

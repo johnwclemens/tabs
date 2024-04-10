@@ -8,7 +8,6 @@ fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
-#F440s,    F432s            = ivls.F440s,    ivls.F432s
 #fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 
 '''
@@ -85,15 +84,14 @@ class Just(ivls.Intonation):
     def dmpData(self, csv=0): # todo fixme 
         self.csv = csv
         slog(f'BGN {self.csv=}', p=0)
-#        k = Notes.N2I[self.n] + 48 # + 2
-#        self.dmpJust(k)
-        k0 = Notes.N2I[self.n] + 48
-        for i in range(7, 12):
-            k = k0 + (i * 7) % NT
-            self.dmpJust(k)
-        for i in range(0, 7):
-            k = k0 + (i * 7) % NT
-            self.dmpJust(k)
+        k = self.k # + 2
+        self.dmpJust(k)
+#        for i in range(7, 12):
+#            k = self.k + (i * 7) % NT
+#            self.dmpJust(k)
+#        for i in range(0, 7):
+#            k = self.k + (i * 7) % NT
+#            self.dmpJust(k)
         slog(f'END {self.csv=}', p=0)
     ####################################################################################################################################################################################################
     def fmtNPair(self, k, i, dbg=0): # todo fixme
@@ -119,7 +117,7 @@ class Just(ivls.Intonation):
         return fmtl(ret, s=mm) # W.join(fmtl(ret))
     ####################################################################################################################################################################################################
     def dmpJust(self, k):
-        f0 = self.FREFS[k]
+        f0 = self.FREFS[k]   ;   k += 2 # todo fixme note freq hack
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'  ;  M3 = Notes.V2I['M3']
         slog(f'BGN Just Intonation Series ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
         r0s, r1s, r2s, r3s = [], [], [], []   ;   a, b = 5, 3

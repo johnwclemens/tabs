@@ -36,11 +36,11 @@ class Intonation(object):
         self.csv    = csv
         self.centKs = []
         self.ivalKs = []
-        self.ck2ikm = {} # self.setCk2ikm()
+        self.ck2ikm = {} # self.set_ck2ikm()
         self.COFMA  = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
         self.COFMB  = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'B♭♭':('D♯', 'E♭'), 'E♭♭':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
         self.COFM   = self.COFMA | self.COFMB
-        self.FREFS  = F440s if self.rf==440 else F432s
+        self.FREFS  = F440s if self.rf == 440 else F432s
         self.w0     = CM_P_M * self.VS
         self.f0     = self.FREFS[self.k]
 #        self.r0s, self.r2s, self.r3s = [], [], []
@@ -162,8 +162,8 @@ class Intonation(object):
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 class OTS(Intonation):
-    def __init__(self, n='C', vs=V_SOUND, csv=0):
-        super().__init__(n=n, vs=vs, csv=csv)
+    def __init__(self, n='C', rf=440, vs=V_SOUND, csv=0):
+        super().__init__(n=n, rf=rf, vs=vs, csv=csv)
         self.ivalKs = ['P1', 'm2', 'm2', 'M2', 'M2', 'm3', 'm3', 'M3', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'm6', 'M6', 'M6', 'm7', 'm7', 'M7', 'M7', 'P8']
         self.centKs = [   0,  90,  112,  182,  204,  294,  316,  384,  386,  498,  522,  590,  610,  678,  702,  792,  814,  884,  906,  996,  1018, 1088, 1110, 1200]
         self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
@@ -175,33 +175,28 @@ class OTS(Intonation):
         self.dmpOts()
         slog(f'END {self.csv=}', p=0)
     
-    def fOTS(self, i):  f0 = self.FREFS[0]  ;   return f0 * i
-        
     def dmpOts(self):
-        slog(f'BGN Overtone Series ({self.rf=} {self.VS=} {self.csv=})')
+        slog(f'BGN Overtone Series ({self.rf=} {self.VS=} {self.csv=})', p=0)
         ww, dd, mm, nn, ff = ('^6', '[', Y, Y, 3) if self.csv else ('^6', '[', W, Z, 1)
-        rs    = self.FREFS         ;    cs, ds, ns, fs, ws = [], [], [], [], []
-        freqs = self.FREFS[:100]   ;   ref = f'440A ' if self.rf == 440 else f'432A '
-        f0    = self.FREFS[0]      ;    w0 = CM_P_M * self.VS/f0
-        for i, freq in enumerate(freqs):
-            i += 1          ;    f  = self.fOTS(i)    ;    w  = w0 / i
-            n, n2  = Intonation.f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1) 
-            j  = Notes.n2ai(n)
-            assert 0 <= j < len(rs),  f'{j=} {len(rs)=}'
-            fr, _ = Intonation.norm(f/f0)
-            f2 = rs[j]               ;    c = Intonation.r2cents(fr)         ;     d = Intonation.r2cents(f/f2)
-            fs.append(fmtf(f, 6))    ;    ns.append(n)            ;     ws.append(fmtf(w, 6))
-            cs.append(fmtf(c, 6))    ;    ds.append(fmtg(d, 6 if d >= 0 else 5))
-        fs   = mm.join(fs)           ;    ws = mm.join(ws)        ;     ns = fmtl(ns, w=ww, s=mm, d=Z)   ;     cs = fmtl(cs, w=ww, s=mm, d=Z)   ;     ds = fmtl(ds, w=ww, s=mm, d=Z)
-        ref += f'{nn}[{nn}'          ;  sfxf = f'{mm}]{mm}Hz'     ;   sfxw = f'{mm}]{mm}cm'              ;   sfxc = f'{mm}]{mm}cents'           ;   sfxd = f'{mm}]{mm}dcents'
-        pfxn = f'notes{nn}[{nn}'     ;  pfxc = f'cents{nn}[{nn}'  ;   pfxd = f'dcnts{nn}[{nn}'           ;    sfx = f'{mm}]{nn}'
-        slog(f'Index{nn}[{nn}{fmtl(list(range(1, 101)), w=ww, d=Z, s=mm)}{sfx}', p=0, f=ff)
-        slog(f'{ref}{fs}{sfxf}',  p=0, f=ff)
-        slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
-        slog(f'{pfxc}{cs}{sfxc}', p=0, f=ff)
-        slog(f'{pfxd}{ds}{sfxd}', p=0, f=ff)
-        slog(f'{ref}{ws}{sfxw}',  p=0, f=ff)
-        slog(f'END Overtone Series ({self.rf=} {self.VS=} {self.csv=})')
+        cs, ds, ns, fs, ws = [], [], [], [], []   ;   ref = f'440A' if self.rf == 440 else f'432A'   ;   fr = range(1, 256+1)
+        f0    = self.FREFS[0]
+        for i in fr:
+            f = f0 * i              ;      w = self.w0 / f
+            n, n2  = self.f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1)
+            fn = self.norm(f/f0)[0]
+            c  = self.r2cents(fn)   ;      d = self.k2dCent(c)
+            fs.append(fmtf(f, 6))   ;     ns.append(n)            ;     ws.append(fmtf(w, 6))
+            cs.append(fmtf(c, 6))   ;     ds.append(fmtg(d, 6 if d >= 0 else 5))
+        fs   = mm.join(fs)          ;     ws = mm.join(ws)        ;     ns = fmtl(ns, w=ww, s=mm, d=Z)   ;     cs = fmtl(cs, w=ww, s=mm, d=Z)   ;     ds = fmtl(ds, w=ww, s=mm, d=Z)
+        ref += f'{nn}[{nn}'         ;   sfxf = f'{mm}]{mm}Hz'     ;   sfxw = f'{mm}]{mm}cm'              ;   sfxc = f'{mm}]{mm}cents'           ;   sfxd = f'{mm}]{mm}dcents'
+        pfxn = f'notes{nn}[{nn}'    ;   pfxc = f'cents{nn}[{nn}'  ;   pfxd = f'dcnts{nn}[{nn}'           ;    sfx = f'{mm}]{nn}'
+        slog(f'Index{nn}[{nn}{fmtl(list(fr), w=ww, d=Z, s=mm)}{sfx}', p=0, f=ff)
+        slog(f'f{ref}{fs}{sfxf}',  p=0, f=ff)
+        slog(f'{pfxn}{ns}{sfx}',   p=0, f=ff)
+        slog(f'{pfxc}{cs}{sfxc}',  p=0, f=ff)
+        slog(f'{pfxd}{ds}{sfxd}',  p=0, f=ff)
+        slog(f'w{ref}{ws}{sfxw}',  p=0, f=ff)
+        slog(f'END Overtone Series ({self.rf=} {self.VS=} {self.csv=})', p=0)
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 #def fmtR0_PTH(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:^{w}.{w-4}f}'

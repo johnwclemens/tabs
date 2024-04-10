@@ -349,6 +349,10 @@ c 1200 24 P8  1/12 @ 1200 :   0.000 = 1.955 *  0/0    A7  0/0 @ 1178 :         =
 # T) still issues with tnik.visible and update/resize? (w/h=0, parent, grp num/ord) only set visible on groups?
 # U) Log file creation issues for some time now
 
+# Revisit 440A/432A rf=440 REFS F440s F432s all assume 12 tone equal temporerd intonation.  Perhaps each tuning system should calculate its own note freq lists
+# Revisit Notes class and any overlap with intrvls.py, pthgrn.py, and just.py Intonation classes and modules
+# Maybe implement a 12 tone ET class that is used by default
+
 # Still seeing issues with WindowsPath objects being used as if they were str objects
 # _str() gets called sometimes when it's not defined
 # Added sp2s() method to return formatted str

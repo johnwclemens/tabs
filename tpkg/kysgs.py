@@ -3,11 +3,10 @@ from tpkg.notes import Notes
 from tpkg.misc  import Scales
 from tpkg       import unic
 
-name, NTONES       = Notes.name, Notes.NTONES
+name, NT           = Notes.name, Notes.NTONES
 TYPE, TYPES        = Notes.TYPE, Notes.TYPES
 FLAT, NTRL, SHRP   = Notes.FLAT, Notes.NTRL, Notes.SHRP
 I2S, I2F, F4S, S4F = Notes.I2S,  Notes.I2F,  Notes.F4S,  Notes.S4F
-nextIndex          = Notes.nextIndex
 slog, fmtl         = utl.slog, utl.fmtl
 ist, signed        = utl.ist,  utl.signed
 W, X, Y, Z         = utl.W,    utl.X,    utl.Y,   utl.Z
@@ -36,9 +35,9 @@ def initKSD(ksd, t):
     assert t==FLAT or t==SHRP and ist(t, int),  f'{t=} {type(t)=}'
     if     t==FLAT:  i = 0  ;  j = 6   ;  s = M
     else:            i = 0  ;  j = 10  ;  s = P
-    iz1 = [ (j + k*s) % NTONES for k in range(1, 1+abs(s)) ]
-    ms1 = [ name(j, t)         for j in iz1 ]
-    iz2 = list(iz1)          ;       ms2  =  list(ms1)
+    iz1 = [ (j + k*s) % NT for k in range(1, 1+abs(s)) ]
+    ms1 = [ name(j, t)     for j in iz1 ]
+    iz2 = list(iz1)         ;  ms2 = list(ms1)
     slog(f'{t=} {i=} {j=} {s=} {fmtl(iz2)=} {fmtl(ms2)=}', p=PFX, f=FD)   ;   j += t
     for  k in range(0, t + s, t):
         ak =    abs(k)
@@ -51,8 +50,8 @@ def initKSD(ksd, t):
         ksd[k]  =  [ im, iz, ms, jz, ns ]
         slog(fmtKSK(k, csv=0), p=PFX, f=FD)
         slog(fmtKSK(k, csv=1), p=0,   f=3)
-        i  =   nextIndex(i, s)
-        j  =   nextIndex(j, s)
+        i  = (i + s) % NT
+        j  = (j + s) % NT
     global KSD   ;   KSD = ksd
 ########################################################################################################################################################################################################
 def dumpData(csv=0):
