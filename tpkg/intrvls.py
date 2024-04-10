@@ -25,41 +25,13 @@ def i2spr(i): # todo fixme still being used by old code that hasn't been retired
 #    dmpOTS(       rf=440, sss=V_SOUND, csv=csv)
 #    slog(f'END {csv=}')
 ########################################################################################################################################################################################################
-#def fOTS(i, r=440):  f0 = F440s[0] if r == 440 else F432s[0]  ;   return f0 * i
-########################################################################################################################################################################################################
-#def dmpOTS(rf=440, sss=V_SOUND, csv=0):
-#    slog(f'BGN Overtone Series ({rf=} {sss=} {csv=})')
-#    ww, dd, mm, nn, ff = ('^6', '[', Y, Y, 3) if csv else ('^6', '[', W, Z, 1)
-#    rs    = F440s       if rf == 440 else F432s         ;   cs, ds, ns, fs, ws = [], [], [], [], []
-#    freqs = F440s[:100] if rf == 440 else F432s[:100]   ;   ref = f'440A ' if rf == 440 else f'432A '
-#    f0    = F440s[0]    ;   w0 = CM_P_M * sss/f0
-#    for i, freq in enumerate(freqs):
-#        i += 1          ;    f  = fOTS(i, rf)    ;    w  = w0 / i
-#        n, n2  = Intonation.f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1) 
-#        j  = Notes.n2ai(n)
-#        assert 0 <= j < len(rs),  f'{j=} {len(rs)=}'
-#        fr, _ = Intonation.norm(f/f0)
-#        f2 = rs[j]               ;    c = Intonation.r2cents(fr)         ;     d = Intonation.r2cents(f/f2)
-#        fs.append(fmtf(f, 6))    ;    ns.append(n)            ;     ws.append(fmtf(w, 6))
-#        cs.append(fmtf(c, 6))    ;    ds.append(fmtg(d, 6 if d >= 0 else 5))
-#    fs   = mm.join(fs)           ;    ws = mm.join(ws)        ;     ns = fmtl(ns, w=ww, s=mm, d=Z)   ;     cs = fmtl(cs, w=ww, s=mm, d=Z)   ;     ds = fmtl(ds, w=ww, s=mm, d=Z)
-#    ref += f'{nn}[{nn}'          ;  sfxf = f'{mm}]{mm}Hz'     ;   sfxw = f'{mm}]{mm}cm'              ;   sfxc = f'{mm}]{mm}cents'           ;   sfxd = f'{mm}]{mm}dcents'
-#    pfxn = f'notes{nn}[{nn}'     ;  pfxc = f'cents{nn}[{nn}'  ;   pfxd = f'dcnts{nn}[{nn}'           ;    sfx = f'{mm}]{nn}'
-#    slog(f'Index{nn}[{nn}{fmtl(list(range(1, 101)), w=ww, d=Z, s=mm)}{sfx}', p=0, f=ff)
-#    slog(f'{ref}{fs}{sfxf}',  p=0, f=ff)
-#    slog(f'{pfxn}{ns}{sfx}',  p=0, f=ff)
-#    slog(f'{pfxc}{cs}{sfxc}', p=0, f=ff)
-#    slog(f'{pfxd}{ds}{sfxd}', p=0, f=ff)
-#    slog(f'{ref}{ws}{sfxw}',  p=0, f=ff)
-#    slog(f'END Overtone Series ({rf=} {sss=} {csv=})')
-
-########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 
 class Intonation(object):
-    def __init__(self, n='C', vs=V_SOUND, csv=0):
+    def __init__(self, n='C', rf=440, vs=V_SOUND, csv=0):
         self.n      = n
         self.k      = Notes.N2I[n] + 48
+        self.rf     = rf
         self.VS     = vs
         self.csv    = csv
         self.centKs = []
@@ -68,6 +40,9 @@ class Intonation(object):
         self.COFMA  = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
         self.COFMB  = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'B♭♭':('D♯', 'E♭'), 'E♭♭':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
         self.COFM   = self.COFMA | self.COFMB
+        self.FREFS  = F440s if self.rf==440 else F432s
+        self.w0     = CM_P_M * self.VS
+        self.f0     = self.FREFS[self.k]
 #        self.r0s, self.r2s, self.r3s = [], [], []
 #        self.r1s, self.rAs, self.rBs = [], [], []
     ####################################################################################################################################################################################################
@@ -197,18 +172,17 @@ class OTS(Intonation):
         self.csv = csv
         slog(f'BGN {self.csv=}', p=0)
 #        k = Notes.N2I[self.n] + 48 # + 2
-        self.dmpOts(rf=440)
+        self.dmpOts()
         slog(f'END {self.csv=}', p=0)
     
-    @staticmethod
-    def fOTS(i, r=440):  f0 = F440s[0] if r == 440 else F432s[0]  ;   return f0 * i
+    def fOTS(self, i):  f0 = self.FREFS[0]  ;   return f0 * i
         
-    def dmpOts(self, rf=440):
-        slog(f'BGN Overtone Series ({rf=} {self.VS=} {self.csv=})')
+    def dmpOts(self):
+        slog(f'BGN Overtone Series ({self.rf=} {self.VS=} {self.csv=})')
         ww, dd, mm, nn, ff = ('^6', '[', Y, Y, 3) if self.csv else ('^6', '[', W, Z, 1)
-        rs    = F440s       if rf == 440 else F432s         ;   cs, ds, ns, fs, ws = [], [], [], [], []
-        freqs = F440s[:100] if rf == 440 else F432s[:100]   ;   ref = f'440A ' if rf == 440 else f'432A '
-        f0    = F440s[0]    ;   w0 = CM_P_M * self.VS/f0
+        rs    = self.FREFS         ;    cs, ds, ns, fs, ws = [], [], [], [], []
+        freqs = self.FREFS[:100]   ;   ref = f'440A ' if self.rf == 440 else f'432A '
+        f0    = self.FREFS[0]      ;    w0 = CM_P_M * self.VS/f0
         for i, freq in enumerate(freqs):
             i += 1          ;    f  = self.fOTS(i)    ;    w  = w0 / i
             n, n2  = Intonation.f2nPair(f, b=0 if i in (17, 22, 25, 28) else 1) 
@@ -227,7 +201,7 @@ class OTS(Intonation):
         slog(f'{pfxc}{cs}{sfxc}', p=0, f=ff)
         slog(f'{pfxd}{ds}{sfxd}', p=0, f=ff)
         slog(f'{ref}{ws}{sfxw}',  p=0, f=ff)
-        slog(f'END Overtone Series ({rf=} {self.VS=} {self.csv=})')
+        slog(f'END Overtone Series ({self.rf=} {self.VS=} {self.csv=})')
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 #def fmtR0_PTH(a, ca, b, cb, w):   pa, pb =   float(a ** ca) ,   float(b ** cb)   ;  return f'{pa/pb:^{w}.{w-4}f}'

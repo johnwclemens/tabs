@@ -8,7 +8,7 @@ fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
-F440s,    F432s            = ivls.F440s,    ivls.F432s
+#F440s,    F432s            = ivls.F440s,    ivls.F432s
 #fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 
 '''
@@ -76,8 +76,8 @@ CRS  = [ R1, R2, R3 ]
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 class Just(ivls.Intonation):
-    def __init__(self, n='C', vs=V_SOUND, csv=0):
-        super().__init__(n=n, vs=vs, csv=csv)
+    def __init__(self, n='C', rf=440, vs=V_SOUND, csv=0):
+        super().__init__(n=n, rf=rf, vs=vs, csv=csv)
         self.ivalKs = ['P1', 'm2', 'm2', 'M2', 'M2', 'm3', 'm3', 'M3', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'm6', 'M6', 'M6', 'm7', 'm7', 'M7', 'M7', 'P8']
         self.centKs = [   0,  90,  112,  182,  204,  294,  316,  384,  386,  498,  522,  590,  610,  678,  702,  792,  814,  884,  906,  996,  1018, 1088, 1110, 1200]
         self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
@@ -86,14 +86,14 @@ class Just(ivls.Intonation):
         self.csv = csv
         slog(f'BGN {self.csv=}', p=0)
 #        k = Notes.N2I[self.n] + 48 # + 2
-#        self.dmpJust(k, rf=440)
+#        self.dmpJust(k)
         k0 = Notes.N2I[self.n] + 48
         for i in range(7, 12):
             k = k0 + (i * 7) % NT
-            self.dmpJust(k, rf=440)
+            self.dmpJust(k)
         for i in range(0, 7):
             k = k0 + (i * 7) % NT
-            self.dmpJust(k, rf=440)
+            self.dmpJust(k)
         slog(f'END {self.csv=}', p=0)
     ####################################################################################################################################################################################################
     def fmtNPair(self, k, i, dbg=0): # todo fixme
@@ -118,10 +118,10 @@ class Just(ivls.Intonation):
             else:                              assert 0,  f'{v=} {i=} {l=} {l[i]=} {e=} {type(e)=} {v**e=} {type(v**e)=} {v**-e=} {type(v**-e)=}'
         return fmtl(ret, s=mm) # W.join(fmtl(ret))
     ####################################################################################################################################################################################################
-    def dmpJust(self, k, rf=440):
-        f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * self.VS
+    def dmpJust(self, k):
+        f0 = self.FREFS[k]
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'  ;  M3 = Notes.V2I['M3']
-        slog(f'BGN Just Intonation Series ({k=} {rf=} {self.VS=} {self.csv=})', p=0, f=ff)
+        slog(f'BGN Just Intonation Series ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
         r0s, r1s, r2s, r3s = [], [], [], []   ;   a, b = 5, 3
         slog(f'C  {self.fmtis(C,    w=x)}', p=0, f=ff)
         slog(f'D  {self.fmtis(D,    w=x)}', p=0, f=ff)
@@ -153,7 +153,7 @@ class Just(ivls.Intonation):
                 v, p = self.norm(u)
                 self.addFmtRs(a, c, b, d, rs=[r0s, r1s, r2s, r3s], u=z, w=x, k=p, i=i, j=j)
                 freq = f0 * v              ;   freqs.append(fmtf(freq, x-2))
-                wvln = w0 / freq           ;   wvlns.append(fmtf(wvln, x-2))
+                wvln = self.w0 / freq      ;   wvlns.append(fmtf(wvln, x-2))
                 cent = self.r2cents(v)     ;   cents.append(f'{cent:7.2f}')
                 dcnt = self.k2dCent(cent)  ;   dcnts.append(f'{dcnt:7.4f}')
                 rc   = round(cent)
@@ -169,7 +169,7 @@ class Just(ivls.Intonation):
         slog(f' r3s {fmtl(r3s,   w=w, s=oo)}', p=0, f=ff)
         slog(f'freqs{fmtl(freqs, w=w, s=oo)}', p=0, f=ff)
         slog(f'wvlns{fmtl(wvlns, w=w, s=oo)}', p=0, f=ff)
-        slog(f'END Just Intonation Series ({k=} {rf=} {self.VS=} {self.csv=})', p=0, f=ff)
+        slog(f'END Just Intonation Series ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
 
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################

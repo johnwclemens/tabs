@@ -9,7 +9,7 @@ fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 
 NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
-F440s, F432s               = ivls.F440s,    ivls.F432s
+#F440s, F432s               = ivls.F440s,    ivls.F432s
 #fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
@@ -80,8 +80,8 @@ def test4ths(n, i, dbg=0):
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 class Pthgrn(ivls.Intonation):
-    def __init__(self, n='C', vs=V_SOUND, csv= 0):
-        super().__init__(n=n, vs=vs, csv=csv)
+    def __init__(self, n='C', rf=440, vs=V_SOUND, csv= 0):
+        super().__init__(n=n, rf=rf, vs=vs, csv=csv)
         self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
         self.centKs = [   0,  90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
         self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
@@ -94,10 +94,10 @@ class Pthgrn(ivls.Intonation):
         self.nimap = {}
         for i in range(7, 12):
             k = self.k + (i * 7) % NT
-            self.dmpPyth(k, rf=440)
+            self.dmpPyth(k)
         for i in range(0, 7):
             k = self.k + (i * 7) % NT
-            self.dmpPyth(k, rf=440)
+            self.dmpPyth(k)
         slog(f'END {self.csv=}')
     ####################################################################################################################################################################################################
     @staticmethod
@@ -122,17 +122,17 @@ class Pthgrn(ivls.Intonation):
         slog(f'return {n1=}') if dbg else None
         return n1
     ####################################################################################################################################################################################################
-    def dmpPyth(self, k, rf=440):
-        x, y = 13, 6     ;   z = x-2   ;   _ = x*W   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * self.VS   ;   cki = -1
+    def dmpPyth(self, k):
+        x, y = 13, 6     ;   z = x-2   ;   _ = x*W   ;   f0 = self.FREFS[k]   ;   cki = -1
         ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if self.csv else (f'^{x}', W, Z, '|', 1)            ;   w3 = [W, W, W]
-        slog(f'BGN Pythagorean ({k=} {rf=} {self.VS=} {self.csv=})', f=ff)
+        slog(f'BGN Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', f=ff)
         ii  = [ f'{i}' for i in range(2 * NT) ]         ;   slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
         self.dmpDataTableLine(x + 1)
         ii, ns, vs, fs, ws = [], [], [], [], []   ;   cs, ds = [], []   ;   r0s, r1s, r2s, r3s = [], [], [], []   ;   abcMap = []
         tmp = self.k2Abcs(k)  ;   abc0 = list(tmp[3])        ;   abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])
         abc1.insert(0, fmtl(w3, w=2, d=Z))              ;   abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks for alignment in log/csv files
         for i, e in enumerate(abc0):
-            a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)    ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = w0 / f
+            a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)    ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = self.w0 / f
     #        r0 = fmtR0(a, ca, b, cb, x)    ;   r1 = fmtR1(a, ca, b, cb, y)   ;    r2 = fmtR2(a, ca, b, cb, y)   ;   r3 = fmtR3(a, ca, b, cb, y)
             n  = self.fmtNPair(k, i)   ;   c = self.r2cents(r)   ;   d = self.k2dCent(c)   ;   rc = round(c)
             assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {k=} {i=} {self.k=} {n=} {c=} {r=} {abc=}'   ;   v = self.ck2ikm[rc]   ;   cki += 1
@@ -163,7 +163,7 @@ class Pthgrn(ivls.Intonation):
         slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
         self.dmpDataTableLine(x + 1)
         self.dmpMaps(k)
-        slog(f'END Pythagorean ({k=} {rf=} {self.VS=} {self.csv=})', f=ff)
+        slog(f'END Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', f=ff)
     ####################################################################################################################################################################################################
     def epsilon(self, dbg=0):
         ccents = self.comma()
@@ -255,9 +255,9 @@ class Pthgrn(ivls.Intonation):
             if   x== 9: slog(f'{7*W}  {fmtm(self.ck2ikm, w=4, wv=2, s=3*W, d=Z)}', p=0)
             elif x==13: slog(f'{9*W}  {fmtm(self.ck2ikm, w=4, wv=2, s=7*W, d=Z)}', p=0)
     ####################################################################################################################################################################################################
-    def dmpNiMap(self, ni, ik, x, upd=0, rf=440): # x=13 or x=9
+    def dmpNiMap(self, ni, ik, x, upd=0): # x=13 or x=9
         ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if self.csv else (f'^{x}', W, Z, '|', 1)   ;   pfx = ''   ;   sfx = f'{nn}]'  ;  yy = 6 if x==13 else 4
-        f0  = F440s[ik] if rf==440 else F432s[ik]     ;     w0 = CM_P_M * self.VS   
+        f0  = self.FREFS[ik]   
         ii = [ f'{i}' for i in range(2 * NT) ]
         slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None
         self.dmpDataTableLine(x + 1) if ni == 1 else None
@@ -281,7 +281,7 @@ class Pthgrn(ivls.Intonation):
                 if upd and ni == 5:
                     assert rc in self.ckmap.keys(),  f'{rc=} {self.ckmap.keys()=}'     ;     f = f0 * pa/pb
                     self.ckmap[rc]['Count'] = self.ckmap[rc]['Count'] + 1 if 'Count' in self.ckmap[rc] else 1    ;    self.ckmap[rc]['Abc']   = e
-                    self.ckmap[rc]['Freq']  = f                      ;   self.ckmap[rc]['Wavln'] = w0 / f
+                    self.ckmap[rc]['Freq']  = f                      ;   self.ckmap[rc]['Wavln'] = self.w0 / f
                     self.ckmap[rc]['Cents'] = cent                   ;   self.ckmap[rc]['DCent'] = self.k2dCent(cent)
                     self.ckmap[rc]['Note']  = n if k==ik else W*2
                     self.ckmap[rc]['Ival']  = self.ck2ikm[rc]        ;   self.ckmap[rc]['Idx']   = j
@@ -296,8 +296,8 @@ class Pthgrn(ivls.Intonation):
         self.dmpDataTableLine(x + 1)
         slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
     ####################################################################################################################################################################################################
-    def dmpCkMap(self, k=50, rf=440):
-        x, y, u = 5, 4, 9   ;   blnk, sk, v = u*W, 0, Z   ;   f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * self.VS   ;  dbg = 1
+    def dmpCkMap(self, k=50):
+        x, y, u = 5, 4, 9   ;   blnk, sk, v = u*W, 0, Z   ;   f0 = self.FREFS[k]   ;  dbg = 1
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)             ;   ww, w1, w2, w3  = f'^{u}', f'^{u}.1f', f'^{u}.2f', f'^{u}.{x}f'
         ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;   r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  cksf, cksi = [], []
         for i, ck in enumerate(self.centKs):
@@ -306,7 +306,7 @@ class Pthgrn(ivls.Intonation):
                 assert ival == self.ckmap[ck]['Ival'],  f'{ival=} {ck=} {self.ckmap[ck]["Ival"]=}'
                 a, ca, b, cb = self.ckmap[ck]['Abc']   ;    q = self.fdvdr(a, ca, b, cb)
                 r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u,     i=i, j=ck)
-                f, w, n, c, d, k, i2    = self.getCkMap(ck, a, ca, b, cb, f0, w0)   ;   sk += k
+                f, w, n, c, d, k, i2    = self.getCkMap(ck, a, ca, b, cb, f0, self.w0)   ;   sk += k
                 cksf.append(f'{c:{w1}}')          ;    cksi.append(int(round(c)))
                 fs.append(f'{fmtf(f, u-2)}')      ;      ws.append(f'{fmtf(w, u-2)}')
             else:
