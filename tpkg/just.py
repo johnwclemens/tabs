@@ -6,7 +6,7 @@ from tpkg       import intrvls as ivls
 W, Y, Z, slog, ist     = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
 fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 
-NT, A4_INDEX, CM_P_M = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M
+NT, A4_INDEX, CM_P_M, V_SOUND = ivls.NT, ivls.A4_INDEX, ivls.CM_P_M, ivls.V_SOUND
 
 F440s,    F432s            = ivls.F440s,    ivls.F432s
 #fmtR0, fmtR1, fmtR2, fmtR3, fmtRA, fmtRB, fdvdr, addFmtRs = ivls.fmtR0, ivls.fmtR1, ivls.fmtR2, ivls.fmtR3, ivls.fmtRA, ivls.fmtRB, ivls.fdvdr, ivls.addFmtRs
@@ -76,25 +76,25 @@ CRS  = [ R1, R2, R3 ]
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
 class Just(ivls.Intonation):
-    def __init__(self, n='C'):
-        super().__init__(n=n)
+    def __init__(self, n='C', vs=V_SOUND, csv=0):
+        super().__init__(n=n, vs=vs, csv=csv)
         self.ivalKs = ['P1', 'm2', 'm2', 'M2', 'M2', 'm3', 'm3', 'M3', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'm6', 'M6', 'M6', 'm7', 'm7', 'M7', 'M7', 'P8']
         self.centKs = [   0,  90,  112,  182,  204,  294,  316,  384,  386,  498,  522,  590,  610,  678,  702,  792,  814,  884,  906,  996,  1018, 1088, 1110, 1200]
         self.setCk2ikm() # todo this base class method initializes and or sets self.ck2ikm
     ####################################################################################################################################################################################################
-    def dmpData(self, csv=0):
-        slog(f'BGN {csv=}', p=0)
+    def dmpData(self, csv=0): # todo fixme 
+        self.csv = csv
+        slog(f'BGN {self.csv=}', p=0)
         k = Notes.N2I[self.n] + 50
-        self.dmpJust(k, rf=440, csv=csv)
-        slog(f'END {csv=}', p=0)
+        self.dmpJust(k, rf=440)
+        slog(f'END {self.csv=}', p=0)
     ####################################################################################################################################################################################################
     def fmtNote(self, k, i, b=1):
         n1, n2   = self.i2nPair(k + i, b=b, s=1)
         return n1
 
-    @staticmethod
-    def fmtis(l, v=0, w=11, csv=0):
-        mm = Y if csv else '|'    ;    ret = []
+    def fmtis(self, l, v=0, w=11):
+        mm = Y if self.csv else '|'    ;    ret = []
         for i, e in enumerate(l):
             if   not v and ist(      e, int):  _ =         e    ;  ret.append(f'{_:^{w}}')
             elif     v and ist(v **  e, int):  _ =      v**e    ;  ret.append(f'{_:^{w}}')
@@ -102,15 +102,15 @@ class Just(ivls.Intonation):
             else:                              assert 0,  f'{v=} {i=} {l=} {l[i]=} {e=} {type(e)=} {v**e=} {type(v**e)=} {v**-e=} {type(v**-e)=}'
         return fmtl(ret, s=mm) # W.join(fmtl(ret))
     ####################################################################################################################################################################################################
-    def dmpJust(self, k, rf=440, csv=0):
+    def dmpJust(self, k, rf=440):
         f0 = F440s[k] if rf==440 else F432s[k]   ;   w0 = CM_P_M * self.VS
-        mm, nn, oo, ff = (Y, Y, Y, 3) if csv else (W, Z, '|', 1)   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'  ;  M3 = Notes.V2I['M3']
-        slog(f'BGN Just Intonation Series ({k=} {rf=} {self.VS=} {csv=})', p=0, f=ff)
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'  ;  M3 = Notes.V2I['M3']
+        slog(f'BGN Just Intonation Series ({k=} {rf=} {self.VS=} {self.csv=})', p=0, f=ff)
         r0s, r1s, r2s, r3s = [], [], [], []   ;   a, b = 5, 3
-        slog(f'C  {self.fmtis(C,    w=x, csv=csv)}', p=0, f=ff)
-        slog(f'D  {self.fmtis(D,    w=x, csv=csv)}', p=0, f=ff)
-        slog(f'C A{self.fmtis(C, A, w=x, csv=csv)}', p=0, f=ff)
-        slog(f'D B{self.fmtis(D, B, w=x, csv=csv)}', p=0, f=ff)
+        slog(f'C  {self.fmtis(C,    w=x)}', p=0, f=ff)
+        slog(f'D  {self.fmtis(D,    w=x)}', p=0, f=ff)
+        slog(f'C A{self.fmtis(C, A, w=x)}', p=0, f=ff)
+        slog(f'D B{self.fmtis(D, B, w=x)}', p=0, f=ff)
         ii = [ f'{i}' for i in range(len(C) * len(D)) ]
         slog(f'    {fmtl(ii, w=w, s=mm, d=Z)}', p=0, f=ff)
         for     i, c in enumerate(C):
@@ -152,7 +152,7 @@ class Just(ivls.Intonation):
         slog(f' r3s {fmtl(r3s,   w=w, s=oo)}', p=0, f=ff)
         slog(f'freqs{fmtl(freqs, w=w, s=oo)}', p=0, f=ff)
         slog(f'wvlns{fmtl(wvlns, w=w, s=oo)}', p=0, f=ff)
-        slog(f'END Just Intonation Series ({k=} {rf=} {self.VS=} {csv=})', p=0, f=ff)
+        slog(f'END Just Intonation Series ({k=} {rf=} {self.VS=} {self.csv=})', p=0, f=ff)
 
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
