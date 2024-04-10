@@ -80,15 +80,31 @@ class Just(ivls.Intonation):
         super().__init__(n=n, vs=vs, csv=csv)
         self.ivalKs = ['P1', 'm2', 'm2', 'M2', 'M2', 'm3', 'm3', 'M3', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'm6', 'M6', 'M6', 'm7', 'm7', 'M7', 'M7', 'P8']
         self.centKs = [   0,  90,  112,  182,  204,  294,  316,  384,  386,  498,  522,  590,  610,  678,  702,  792,  814,  884,  906,  996,  1018, 1088, 1110, 1200]
-        self.setCk2ikm() # todo this base class method initializes and or sets self.ck2ikm
+        self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
     ####################################################################################################################################################################################################
     def dmpData(self, csv=0): # todo fixme 
         self.csv = csv
         slog(f'BGN {self.csv=}', p=0)
-        k = Notes.N2I[self.n] + 50
-        self.dmpJust(k, rf=440)
+#        k = Notes.N2I[self.n] + 48 # + 2
+#        self.dmpJust(k, rf=440)
+        k0 = Notes.N2I[self.n] + 48
+        for i in range(7, 12):
+            k = k0 + (i * 7) % NT
+            self.dmpJust(k, rf=440)
+        for i in range(0, 7):
+            k = k0 + (i * 7) % NT
+            self.dmpJust(k, rf=440)
         slog(f'END {self.csv=}', p=0)
     ####################################################################################################################################################################################################
+    def fmtNPair(self, k, i, dbg=0): # todo fixme
+        n0, _   = self.i2nPair(self.k, s=1)
+        n1, n2  = self.i2nPair(k + i, b=0 if i in (4, 6, 11) or k in (self.k + 4, self.k + 6, self.k + 11) else 1, s=1, e=1)   ;   slog(f'{self.k=} {n0=} {n1=} {n2=}') if dbg else None
+        if i and i != NT:
+            if          n1 == self.COFM[n0][1]:   return n2
+            elif n2 and n2 != self.COFM[n0][1]:   n1 += '/' + n2
+        slog(f'return {n1=}') if dbg else None
+        return n1
+
     def fmtNote(self, k, i, b=1):
         n1, n2   = self.i2nPair(k + i, b=b, s=1)
         return n1
@@ -123,7 +139,7 @@ class Just(ivls.Intonation):
         for     i, c in enumerate(C):
             kk = k - i * M3
             for j, d in enumerate(D):
-                n = self.fmtNote(kk, (j*7)%NT, b=0 if i==0 and j==4 else 1)
+                n = self.fmtNPair(kk, (j*7)%NT) #, b=0 if i==0 and j==4 else 1)
                 u = CRS[i][j]
                 v, p = self.norm(u)
                 slog(f'{i} {j}: {a}^{c:2} * {b}^{d:2} = {u:7.4f} * 2^{p:2} = {v:7.5f} : {n=:2}', p=0, f=ff)
@@ -131,7 +147,8 @@ class Just(ivls.Intonation):
         for     i, c in enumerate(C):
             kk = k - i * M3
             for j, d in enumerate(D):
-                n = self.fmtNote(kk, (j*7)%NT, b=0 if i==0 and j==4 else 1)  ;  notes.append(n)
+                n = self.fmtNote(kk, (j*7)%NT)  ;  notes.append(n)
+#                n = self.fmtNote(kk, (j*7)%NT, b=0 if i==0 and j==4 else 1)  ;  notes.append(n)
                 u = CRS[i][j]
                 v, p = self.norm(u)
                 self.addFmtRs(a, c, b, d, rs=[r0s, r1s, r2s, r3s], u=z, w=x, k=p, i=i, j=j)

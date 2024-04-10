@@ -1,6 +1,6 @@
 from tpkg       import utl
 #from tpkg       import notes
-from tpkg.notes import Notes
+#from tpkg.notes import Notes
 from tpkg       import intrvls as ivls
 import math
 
@@ -82,12 +82,9 @@ def test4ths(n, i, dbg=0):
 class Pthgrn(ivls.Intonation):
     def __init__(self, n='C', vs=V_SOUND, csv= 0):
         super().__init__(n=n, vs=vs, csv=csv)
-        self.COFMA  = {'C':('F♯', 'G♭'), 'G':('C♯', 'D♭'),  'D':('G♯', 'A♭'), 'A':('D♯', 'E♭'), 'E':('A♯', 'B♭'), 'B':('E♯', 'F'), 'F♯':('B♯', 'C'), 'C♯':('G', 'G'),  'G♯':('D', 'D'),    'D♯':('A', 'A'),    'A♯':('E', 'F♭'),   'E♯':('B', 'C♭'),   'B♯':('F♯', 'G♭')}
-        self.COFMB  = {'C':('F♯', 'G♭'), 'F':('B',  'C♭'), 'B♭':('E', 'F♭'), 'E♭':('A', 'A'),  'Ab':('D', 'D'),  'D♭':('G', 'G'),  'G♭':('B♯', 'C'), 'C♭':('E♯', 'F'), 'F♭':('A♯', 'B♭'), 'Bbb':('D♯', 'E♭'), 'Ebb':('G♯', 'A♭'), 'A♭♭':('C♯', 'D♭'), 'D♭♭':('F♯', 'B♭')}
-        self.COFM   = self.COFMA | self.COFMB
         self.ivalKs = ['P1', 'm2', 'A1', 'd3', 'M2', 'm3', 'A2', 'd4', 'M3', 'P4', 'A3', 'd5', 'A4', 'd6', 'P5', 'm6', 'A5', 'd7', 'M6', 'm7', 'A6', 'd8', 'M7', 'P8']
         self.centKs = [   0,  90,  114,  180,  204,  294,  318,  384,  408,  498,  522,  588,  612,  678,  702,  792,  816,  882,  906,  996,  1020, 1086, 1110, 1200]
-        self.setCk2ikm() # todo this base class method initializes and or sets self.ck2ikm
+        self.set_ck2ikm() # todo this base class method initializes and or sets self.ck2ikm
         self.nimap  = {} # note index to list of abcs (freq ratios) and ckmap (cent key data map)
         self.ckmap  = self.resetCkmap() # freq ratio in cents to ival counts and data
     ####################################################################################################################################################################################################
@@ -95,12 +92,11 @@ class Pthgrn(ivls.Intonation):
         self.csv = csv
         slog(f'BGN {self.csv=}')
         self.nimap = {}
-        k0 = Notes.N2I[self.n] + 48
         for i in range(7, 12):
-            k = k0 + (i * 7) % NT
+            k = self.k + (i * 7) % NT
             self.dmpPyth(k, rf=440)
         for i in range(0, 7):
-            k = k0 + (i * 7) % NT
+            k = self.k + (i * 7) % NT
             self.dmpPyth(k, rf=440)
         slog(f'END {self.csv=}')
     ####################################################################################################################################################################################################
