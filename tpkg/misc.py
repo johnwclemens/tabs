@@ -1,5 +1,8 @@
 from tpkg.notes import Notes
+from tpkg import utl
 
+slog = utl.slog
+fmtl = utl.fmtl
 ########################################################################################################################################################################################################
 class DSymb:
 #    SYMBS = {'X': 'mute', '+': 'hammer', '~': 'vibrato', '^': 'tie', '.': 'staccato', '_': 'legato', '%': 'repeat', '|': 'bar', '[': 'groupL', ']': 'groupR'}
@@ -15,7 +18,34 @@ class Modes:
     NAMES = [ 'IONIAN', 'DORIAN', 'PHRYGIAN', 'LYDIAN', 'MIXOLYDIAN', 'AEOLIAN', 'LOCRIAN' ]
     TYPES = [  IONIAN,   DORIAN,   PHRYGIAN,   LYDIAN,   MIXOLYDIAN,   AEOLIAN,   LOCRIAN  ]
 ########################################################################################################################################################################################################
-
+class Tetractys:
+    def __init__(self):
+        a, b, c = [], [], [[1]]
+        for i in range(6):
+            a.append(i)   ;   u, v = [], []
+            for j in range(i+1):
+                u.append(j)
+                if i > 0: v.append(2*c[i-1][j] if j < i else 3*c[i-1][i-1])
+            b.append(u)
+            c.append(v) if v else None
+        slog(f'{fmtl(a, w=3)=}', f=-3)
+        slog(f'{fmtl(b, w=3)=}', f=-3)
+        slog(f'{fmtl(c, w=3)=}', f=-3)
+        for k in c:
+            s = f'{fmtl(k, w="^3")}'
+            slog(f'{s:^50}', p=0, f=-3)
+        
+'''
+#  57 misc  __init__           (a, w=3)='[  0   1   2   3   4   5]'
+#  58 misc  __init__           (b, w=3)='[[  0][  0   1][  0   1   2][  0   1   2   3][  0   1   2   3   4][  0   1   2   3   4   5]]'
+#  59 misc  __init__           (c, w=3)='[[  1][  2   3][  4   6   9][  8  12  18  27][ 16  24  36  54  81][ 32  48  72 108 162 243]]'
+                      [ 1 ]
+                    [ 2   3 ]
+                  [ 4   6   9 ]
+                [ 8  12  18  27 ]
+              [16  24  36  54  81 ]
+            [32  48  72  108 162 243]
+'''
 #todo list:
 # A: autosave
 # B: blank tabs

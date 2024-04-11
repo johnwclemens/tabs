@@ -80,9 +80,9 @@ SHRPS  = [ f'{v}{n}' for n in range(NTONES - 1) for v in Notes.I2S.values() ][:M
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
     dumpTestA(  csv)
-    dumpNF(     csv)
     dumpTestB(  csv)
     dumpND(     csv)
+    dumpNF(     csv)
     slog(f'END {csv=}')
 ########################################################################################################################################################################################################
 def dumpTestA(csv=0):
