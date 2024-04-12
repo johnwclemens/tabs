@@ -489,6 +489,7 @@ class Tabs(pyglet.window.Window):
             mthds = {'JSPR':JSPR, 'JLBL':JLBL}
             tests.test1(self, attrs, mthds)
             tests.test4(ARGS)
+            tetractys = tests.Tetractys()   ;   tetractys.dmpData()
 #            tests.test0(self,  0.314159265359, 4)
 #            tests.test0(self,  0.314159265359, 5, self.EXIT)
     ####################################################################################################################################################################################################
@@ -2161,7 +2162,7 @@ with open(str(LOG_PATH), 'w', encoding='utf-8') as LOG_FILE, open(str(CSV_PATH),
     ots.dmpData()          ;       ots.dmpData(csv=1)
     pythgrn.dmpData()      ;   pythgrn.dmpData(csv=1)
     justi.dmpData()        ;     justi.dmpData(csv=1)
-    tetractys = misc.Tetractys()  ;  exit(0)
+#    tetractys = misc.Tetractys()    ;  tetractys.dmpData()
 #    cmd = cmds.QuitCmd(tabs, msg)  ;  cmd.do()
 #   intrvls.dmpData()      ;   intrvls.dmpData(csv=1)
     kysgs.init(f=2)
