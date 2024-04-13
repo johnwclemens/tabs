@@ -164,7 +164,7 @@ def test4(args):
 ########################################################################################################################################################################################################
 class Tetractys:
     def __init__(self, pythgrn):
-        self.pythgrn = pythgrn
+        self.pythgrn = pythgrn   ;   self.top = 10000   ;   self.k = None
         self.a, self.b, self.c = [], [], [[1]]
         self.d, self.e = [], []   ;   self.d2, self.e2 = [], []
         for i in range(20):
@@ -192,35 +192,35 @@ class Tetractys:
             slog(f'{s:^200} {fmtl(self.e)}', p=0, f=-3)
         
     def octdiv(self):
-        c = Counter()   ;   maxw = 10000
+        self.k = Counter()
         for i, v in enumerate(self.c):
             for k, w in enumerate(v):
-                while w > maxw:
-                    assert ist(w, int),  f'{w=} {ist(w, int)=} {i=} {k=} {v=} {c=}'
-                    w //= 2   ;   assert ist(w, int),  f'{w=} {ist(w, int)=} {i=} {k=} {v=} {c=}'
+                while w > self.top:
+                    assert ist(w, int),  f'{w=} {ist(w, int)=} {i=} {k=} {v=} {self.k=}'
+                    w //= 2   ;   assert ist(w, int),  f'{w=} {ist(w, int)=} {i=} {k=} {v=} {self.k=}'
                 if w not in self.d2:  self.d2.append(w)
                 else:
-                    w, c = self.fold( w, c, maxw)
-#                    w, c = self.foldB(w, c, maxw) if w >= maxw else w, c
+                    w = self.fold(w)
                 v[k] = w
             s = f'{fmtl(v, w="^9", d=Z)}'
             self.e2 = sorted(self.d2)
             slog(f'{s:^200} {fmtl(self.e2)}', p=0, f=-3)
             
-    def fold(self, n, c, m=10000):
-        n = self.base(n)   ;   c[f'{n}'] += 1
-        while n in self.d2 and c[f'{n}'] != 1:
-            if n >= m:  break # n = self.base(n)   ;   c[f'{n}'] += 1   ;   break
-            n *= 2   ;   c[f'{n}'] += 1
-        if n >= m:    n = self.base(n)   ;   c[f'{n}'] += 1   ;   n, c = self.foldB(n, c, m)
-        return n, c
+    def fold(self, n):
+        n = self.base(n)
+        while n in self.d2 and self.k[f'{n}'] >= 1:
+            if n*2 >= self.top:   n = self.foldB(n)   ;   break
+            n *= 2
+        self.k[f'{n}'] += 1
+        return n
         
-    def foldB(self, n, c, m=10000):
-#        n = self.base(n)   ;   c[f'{n}'] += 1
-        while n in self.d2: # and c[f'{n}'] != 2:
-            if n >= m:  n = self.base(n)   ;   c[f'{n}'] += 1   ;   break
-            n *= 2   ;   c[f'{n}'] += 1
-        return n, c
+    def foldB(self, n):
+        n = self.base(n)
+        while n in self.d2 and self.k[f'{n}'] >= 2:
+            if n*2 >= self.top:  n = self.base(n)  ;   break
+            n *= 2
+        self.k[f'{n}'] += 1
+        return n
 
     def base(self, n):
         while n > 36 and not n % 2 and n in self.d2:

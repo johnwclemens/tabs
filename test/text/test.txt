@@ -125,7 +125,7 @@ KS Type N  I  Key Sigature Ordered   F/S/N Indices   Ionian Note I   Ionian Note
 #  61 kysgs dumpData           END csv=1
 #  32 kysgs init               END
 BGN C:\Users\Owner\Documents\GitHub\tabs\tabs.py
-#2176 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -M 0 -tdeo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T E A D G B E]
+#2167 tabs  <module>           argv=[-i 1 1 1 6 -n 1 1 10 6 -M 0 -tdeo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T E A D G B E]
 RGB        0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17   Diff Span
 FSH:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 255] 255.0 15.0
        R=[  8  23  37  52  66  81  95 110 124 139 153 168 182 197 211 226 240 255] 247.0 14.5
@@ -203,27 +203,27 @@ CL4:   O=[  0  15  30  45  60  75  90 105 120 135 150 165 170 195 210 225 240 25
        R=[  1   3   5   6   8  10  12  13  15  17  19  20  22  24  26  27  29  31]  30.0  1.8
        G=[  4  11  18  26  33  40  47  55  62  69  76  84  91  98 105 113 120 127] 123.0  7.2
        B=[  2   6   9  13  16  20  24  27  31  34  38  41  45  49  52  56  59  63]  61.0  3.6
-#2183 tabs  <module>           Constructing Tabs object
+#2174 tabs  <module>           Constructing Tabs object
 #2136 tabs  dumpGlobals        BASE_NAME = test
 #2137 tabs  dumpGlobals        argv      = +34[C:\Users\Owner\Documents\GitHub\tabs\tabs.py -i 1 1 1 6 -n 1 1 10 6 -M 0 -tdeo -p 6 -S 0 1 3 -f test -w 0 0 0 0 -T E A D G B E]
 #2138 tabs  dumpGlobals        PATH      = C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 #2139 tabs  dumpGlobals        BASE_PATH = C:\Users\Owner\Documents\GitHub\tabs\test
-# 448 utl   getFilePath        baseName =test.138     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.138     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.138.cat path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.138.cat'
-# 453 utl   getFilePath        fileName =test.138.cat filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.138.cat')
-# 448 utl   getFilePath        baseName =test.138     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.138     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.138.csv path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.138.csv'
-# 453 utl   getFilePath        fileName =test.138.csv filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.138.csv')
-# 448 utl   getFilePath        baseName =test.138     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.138     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.138.log path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.138.log'
-# 453 utl   getFilePath        fileName =test.138.log filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.138.log')
-# 448 utl   getFilePath        baseName =test.138     path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
-# 449 utl   getFilePath        baseName =test.138     basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
-# 452 utl   getFilePath        fileName =test.138.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/text/test.138.txt'
-# 453 utl   getFilePath        fileName =test.138.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.138.txt')
+# 448 utl   getFilePath        baseName =test.20      path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.20      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.20.cat  path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.20.cat'
+# 453 utl   getFilePath        fileName =test.20.cat  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/cats/test.20.cat')
+# 448 utl   getFilePath        baseName =test.20      path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.20      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.20.csv  path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.20.csv'
+# 453 utl   getFilePath        fileName =test.20.csv  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.20.csv')
+# 448 utl   getFilePath        baseName =test.20      path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.20      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.20.log  path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.20.log'
+# 453 utl   getFilePath        fileName =test.20.log  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/logs/test.20.log')
+# 448 utl   getFilePath        baseName =test.20      path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
+# 449 utl   getFilePath        baseName =test.20      basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
+# 452 utl   getFilePath        fileName =test.20.txt  path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/text/test.20.txt'
+# 453 utl   getFilePath        fileName =test.20.txt  filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.20.txt')
 # 264 tabs  dumpArgs           [a]      .AUTO_SAVE=0
 # 265 tabs  dumpArgs           [A]         .VARROW=1
 # 266 tabs  dumpArgs           [b]        .FRT_BRD=0
@@ -280,9 +280,9 @@ initk((Tabs, 15, 'GRY', 5, 17, 'GRY', 17, 17) {})=[(81, 81, 81, 255), (255, 255,
           
           
           
-0         
-2         
-5         
+1         
+3         
+3         
 ##########
 ##########
 # 884 tabs  readDataFile       Raw Data File END:
@@ -337,11 +337,11 @@ plsct=[1 1 1  1 2] j=4 i=1
 plsct=[1 1 1  1 3] j=4 i=2
 #1398 tabs  g_newUpdTniks        2 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 nw=1
 plsct=[1 1 1  1 4] j=4 i=3
-#1398 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 0   i= 3 s=0 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=1
+#1398 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 1   i= 3 s=0 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=1
 plsct=[1 1 1  1 5] j=4 i=4
-#1398 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 2   i= 4 s=0 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=1
+#1398 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 3   i= 4 s=0 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=1
 plsct=[1 1 1  1 6] j=4 i=5
-#1398 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 5   i= 5 s=0 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 nw=1
+#1398 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 3   i= 5 s=0 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 nw=1
 plsct=[1 1 1  2 6] j=3 i=1
 #1398 tabs  g_newUpdTniks        1 j=3  Colm j2=3     i= 1 s=0 .J2[j2]= 1 len(tl)= 1 len(tl)= 1 [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10]  10 [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10]  10 nw=1
 plsct=[1 1 1  2 1] j=4 i=0
@@ -479,11 +479,11 @@ plsct=[1 1 2 11 2] j=5 i=1
 plsct=[1 1 2 11 3] j=5 i=2
 #1398 tabs  g_newUpdTniks        2 j=5  Note j2=5     i= 2 s=1 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 2 0 0 0 0 0 0 0 0 0 0 77]  77 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 nw=1
 plsct=[1 1 2 11 4] j=5 i=3
-#1398 tabs  g_newUpdTniks        3 j=5  Note j2=5 0   i= 3 s=1 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=1
+#1398 tabs  g_newUpdTniks        3 j=5  Note j2=5 1   i= 3 s=1 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=1
 plsct=[1 1 2 11 5] j=5 i=4
-#1398 tabs  g_newUpdTniks        4 j=5  Note j2=5 2   i= 4 s=1 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=1
+#1398 tabs  g_newUpdTniks        4 j=5  Note j2=5 3   i= 4 s=1 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=1
 plsct=[1 1 2 11 6] j=5 i=5
-#1398 tabs  g_newUpdTniks        5 j=5  Note j2=5 5   i= 5 s=1 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 5 0 0 0 0 0 0 0 0 0 0 80]  80 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 nw=1
+#1398 tabs  g_newUpdTniks        5 j=5  Note j2=5 3   i= 5 s=1 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 5 0 0 0 0 0 0 0 0 0 0 80]  80 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 nw=1
 plsct=[1 1 2 12 6] j=3 i=11
 #1398 tabs  g_newUpdTniks       11 j=3  Colm j2=3     i=11 s=1 .J2[j2]=11 len(tl)=11 len(tl)=11 [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0] [1 1 2 11 6 6 0 0 0 0 0 0 0 0 0 0 81]  81 [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0 81]  81 nw=1
 plsct=[1 1 2 12 1] j=5 i=0
@@ -621,11 +621,11 @@ plsct=[1 1 3 21 2] j=6 i=1
 plsct=[1 1 3 21 3] j=6 i=2
 #1398 tabs  g_newUpdTniks        2 j=7  Kord j2=7     i= 2 s=3 .J2[j2]= 2 len(tl)= 2 len(tl)= 2 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 2 0 0 0 0 0 0 0 0 148] 148 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148] 148 nw=1
 plsct=[1 1 3 21 4] j=6 i=3
-#1398 tabs  g_newUpdTniks        3 j=7  Kord j2=7 0   i= 3 s=3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 3 0 0 0 0 0 0 0 0 149] 149 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 nw=1
+#1398 tabs  g_newUpdTniks        3 j=7  Kord j2=7 1   i= 3 s=3 .J2[j2]= 3 len(tl)= 3 len(tl)= 3 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 3 0 0 0 0 0 0 0 0 149] 149 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 nw=1
 plsct=[1 1 3 21 5] j=6 i=4
-#1398 tabs  g_newUpdTniks        4 j=7  Kord j2=7 2   i= 4 s=3 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 4 0 0 0 0 0 0 0 0 150] 150 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 nw=1
+#1398 tabs  g_newUpdTniks        4 j=7  Kord j2=7 3   i= 4 s=3 .J2[j2]= 4 len(tl)= 4 len(tl)= 4 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 4 0 0 0 0 0 0 0 0 150] 150 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 nw=1
 plsct=[1 1 3 21 6] j=6 i=5
-#1398 tabs  g_newUpdTniks        5 j=7  Kord j2=7 5   i= 5 s=3 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 5 0 0 0 0 0 0 0 0 151] 151 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 nw=1
+#1398 tabs  g_newUpdTniks        5 j=7  Kord j2=7 3   i= 5 s=3 .J2[j2]= 5 len(tl)= 5 len(tl)= 5 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 5 0 0 0 0 0 0 0 0 151] 151 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 nw=1
 plsct=[1 1 3 22 6] j=3 i=21
 #1398 tabs  g_newUpdTniks       21 j=3  Colm j2=3     i=21 s=3 .J2[j2]=21 len(tl)=21 len(tl)=21 [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0] [1 1 3 21 6 6 0 6 0 0 0 0 0 0 0 0 152] 152 [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0 152] 152 nw=1
 plsct=[1 1 3 22 1] j=6 i=0
@@ -755,11 +755,11 @@ plsct=[1 1 3 30 6] j=6 i=5
 #1690 tabs  plct2cc                   5 [180 180 180 60 6] [0 0    0 5] (   0 +  0 + 60 +  0 +5)
 #1693 tabs  cursorCol          cc=  5 [0 0 0 5]
 #1669 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-#1672 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text='5' 18.68 32.00 C C
-[2:D :1, b:B :1, 9:A :1]
-[2:D :1, b:B :1, 9:A :1]
-[ None ,  None ,  None ,  None ,  None , b:B :1,  None ]
-[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
+#1672 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text='3' 18.68 32.00 C C
+[3:E♭:1, 0:C :1, 7:G :1]
+[3:D♯:1, 0:C :1, 7:G :1]
+[ None , 3:E♭:1,  None ,  None ,  None ,  None ,  None ]
+[ None ,  None ,  None , 3:E♭:1,  None ,  None , 0:C :1]
 #1808 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels New1
 # 485 tabs  _initTniks          0 NTRL C  0 [F  C  G  D  A  E  B ] [5 0 7 2 9 4 b] [0 2 4 5 7 9 b] [C  D  E  F  G  A  B ]
 i=1 1 1 6 n=1 1 10 6 M=0 t= d= e= o= p=6 S=0 1 3 f=test w=0 0 0 0 T=E A D G B E # 177 tests __init__           (.a, w=3)='[  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19]'
@@ -795,19 +795,19 @@ i=1 1 1 6 n=1 1 10 6 M=0 t= d= e= o= p=6 S=0 1 3 f=test w=0 0 0 0 T=E A D G B E 
                                                                128       192       288       432       648       972      1458      2187                                                                 [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 288 324 432 486 648 729 972 1458 2187]
                                                           256       384       576       864      1296      1944      2916      4374      6561                                                            [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 576 648 729 864 972 1296 1458 1944 2187 2916 4374 6561]
                                                      512       768      1152      1728      2592      3888      5832      8748      6561      9841                                                       [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1152 1296 1458 1728 1944 2187 2592 2916 3888 4374 5832 6561 8748 9841]
-                                               1024      1536      2304      3456      5184      7776       729      2187      13122     9841      7381                                                  [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2187 2304 2592 2916 3456 3888 4374 5184 5832 6561 7381 7776 8748 9841]
-                                          2048      3072      4608      6912       81        243      1458      4374      13122     19682     7381      5535                                             [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4374 4608 5184 5535 5832 6561 6912 7381 7776 8748 9841]
-                                     4096      6144      9216       27        162       486      2916      8748      13122     19682     14762     5535      8303                                        [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5535 5832 6144 6561 6912 7381 7776 8303 8748 9216 9841]
-                                8192       24        36        54        324       972      5832      17496     13122     19682     14762     11070     8303      6227                                   [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5535 5832 6144 6227 6561 6912 7381 7776 8192 8303 8748 9216 9841]
-                            32        48        72        108       648      1944      11664     17496     13122     19682     14762     11070     16606     6227      9341                              [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5535 5832 6144 6227 6561 6912 7381 7776 8192 8303 8748 9216 9341 9841]
-                       64        96        144       216      1296      3888      11664     17496     13122     19682     14762     11070     16606     12454     9341      7006                         [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5535 5832 6144 6227 6561 6912 7006 7381 7776 8192 8303 8748 9216 9341 9841]
-                  128       192       288       432      2592      7776      11664     17496     13122     19682     14762     11070     16606     12454     18682     3503      5254                    [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5254 5535 5832 6144 6227 6561 6912 7006 7381 7776 8192 8303 8748 9216 9341 9841]
-             256       384       576       864      5184      15552     11664     17496     13122     19682     14762     11070     16606     12454     18682     3503      2627      7882               [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5254 5535 5832 6144 6227 6561 6912 7006 7381 7776 7882 8192 8303 8748 9216 9341 9841]
-        512       768      1152      1728      10368     15552     11664     17496     13122     19682     14762     11070     16606     12454     18682     3503      2627      3941      5911          [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5254 5535 5832 5911 6144 6227 6561 6912 7006 7381 7776 7882 8192 8303 8748 9216 9341 9841]
-  1024      1536      2304      3456      10368     15552     11664     17496     13122     19682     14762     11070     16606     12454     18682     3503      2627      3941      5911      8867     [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5254 5535 5832 5911 6144 6227 6561 6912 7006 7381 7776 7882 8192 8303 8748 8867 9216 9341 9841]
-#2185 tabs  <module>           str(tabs)='Tabs'
-#2185 tabs  <module>           tabs=Tabs
-#2186 tabs  <module>           TRY runstat = pyglet.app.run()
+                                               1024      1536      2304      3456      5184      7776       729      2187      6561      9841      7381                                                  [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2187 2304 2592 2916 3456 3888 4374 5184 5832 6561 7381 7776 8748 9841]
+                                          2048      3072      4608      6912       81        243      1458      4374      6561      9841      7381      5535                                             [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4374 4608 5184 5535 5832 6561 6912 7381 7776 8748 9841]
+                                     4096      6144      9216       27        162       486      2916      8748      6561      9841      7381      5535      8303                                        [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5535 5832 6144 6561 6912 7381 7776 8303 8748 9216 9841]
+                                8192       24        36        54        324       972      5832      2187      6561      9841      7381      5535      8303      6227                                   [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5535 5832 6144 6227 6561 6912 7381 7776 8192 8303 8748 9216 9841]
+                            32        48        72        108       648      1944       729      4374      6561      9841      7381      5535      8303      6227      9341                              [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5535 5832 6144 6227 6561 6912 7381 7776 8192 8303 8748 9216 9341 9841]
+                       64        96        144       216      1296      3888      1458      8748      6561      9841      7381      5535      8303      6227      9341      7006                         [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5535 5832 6144 6227 6561 6912 7006 7381 7776 8192 8303 8748 9216 9341 9841]
+                  128       192       288       432      2592      7776      2916      2187      6561      9841      7381      5535      8303      6227      9341      3503      5254                    [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5254 5535 5832 6144 6227 6561 6912 7006 7381 7776 8192 8303 8748 9216 9341 9841]
+             256       384       576       864      5184       243      5832      2187      6561      9841      7381      5535      8303      6227      9341      3503      2627      7882               [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5254 5535 5832 6144 6227 6561 6912 7006 7381 7776 7882 8192 8303 8748 9216 9341 9841]
+        512       768      1152      1728       81        486       729      2187      6561      9841      7381      5535      8303      6227      9341      3503      2627      3941      5911          [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5254 5535 5832 5911 6144 6227 6561 6912 7006 7381 7776 7882 8192 8303 8748 9216 9341 9841]
+  1024      1536      2304      3456       162       972       729      2187      6561      9841      7381      5535      8303      6227      9341      3503      2627      3941      5911      8867     [1 2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 512 576 648 729 768 864 972 1024 1152 1296 1458 1536 1728 1944 2048 2187 2304 2592 2916 3072 3456 3888 4096 4374 4608 5184 5254 5535 5832 5911 6144 6227 6561 6912 7006 7381 7776 7882 8192 8303 8748 8867 9216 9341 9841]
+#2176 tabs  <module>           str(tabs)='Tabs'
+#2176 tabs  <module>           tabs=Tabs
+#2177 tabs  <module>           TRY runstat = pyglet.app.run()
 #1382 tabs  g_newUpdTniks      j==P: i=0 v=1 .j()[P]=0 .i[P]=1
 plsct=[1 0 0  0 0] j=0 i=0
 #1398 tabs  g_newUpdTniks        0 j=0  Page j2=0     i= 0 s=0 .J2[j2]= 0 len(tl)= 1 len(tl)= 1 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]   0 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]   0 nw=0
@@ -826,11 +826,11 @@ plsct=[1 1 1  1 2] j=4 i=1
 plsct=[1 1 1  1 3] j=4 i=2
 #1398 tabs  g_newUpdTniks        2 j=4  Tabl j2=4     i= 2 s=0 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 [1 1 1 1 2 0 0 0 0 0 0 0 0 0 0 0 6]   6 nw=0
 plsct=[1 1 1  1 4] j=4 i=3
-#1398 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 0   i= 3 s=0 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=0
+#1398 tabs  g_newUpdTniks        3 j=4  Tabl j2=4 1   i= 3 s=0 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 [1 1 1 1 3 0 0 0 0 0 0 0 0 0 0 0 7]   7 nw=0
 plsct=[1 1 1  1 5] j=4 i=4
-#1398 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 2   i= 4 s=0 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=0
+#1398 tabs  g_newUpdTniks        4 j=4  Tabl j2=4 3   i= 4 s=0 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 [1 1 1 1 4 0 0 0 0 0 0 0 0 0 0 0 8]   8 nw=0
 plsct=[1 1 1  1 6] j=4 i=5
-#1398 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 5   i= 5 s=0 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 nw=0
+#1398 tabs  g_newUpdTniks        5 j=4  Tabl j2=4 3   i= 5 s=0 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 [1 1 1 1 5 0 0 0 0 0 0 0 0 0 0 0 9]   9 nw=0
 plsct=[1 1 1  2 6] j=3 i=1
 #1398 tabs  g_newUpdTniks        1 j=3  Colm j2=3     i= 1 s=0 .J2[j2]= 1 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10]  10 [1 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 10]  10 nw=0
 plsct=[1 1 1  2 1] j=4 i=0
@@ -968,11 +968,11 @@ plsct=[1 1 2 11 2] j=5 i=1
 plsct=[1 1 2 11 3] j=5 i=2
 #1398 tabs  g_newUpdTniks        2 j=5  Note j2=5     i= 2 s=1 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 [1 1 2 11 60 2 0 0 0 0 0 0 0 0 0 0 77]  77 nw=0
 plsct=[1 1 2 11 4] j=5 i=3
-#1398 tabs  g_newUpdTniks        3 j=5  Note j2=5 0   i= 3 s=1 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=0
+#1398 tabs  g_newUpdTniks        3 j=5  Note j2=5 1   i= 3 s=1 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 [1 1 2 11 60 3 0 0 0 0 0 0 0 0 0 0 78]  78 nw=0
 plsct=[1 1 2 11 5] j=5 i=4
-#1398 tabs  g_newUpdTniks        4 j=5  Note j2=5 2   i= 4 s=1 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=0
+#1398 tabs  g_newUpdTniks        4 j=5  Note j2=5 3   i= 4 s=1 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 [1 1 2 11 60 4 0 0 0 0 0 0 0 0 0 0 79]  79 nw=0
 plsct=[1 1 2 11 6] j=5 i=5
-#1398 tabs  g_newUpdTniks        5 j=5  Note j2=5 5   i= 5 s=1 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 nw=0
+#1398 tabs  g_newUpdTniks        5 j=5  Note j2=5 3   i= 5 s=1 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 [1 1 2 11 60 5 0 0 0 0 0 0 0 0 0 0 80]  80 nw=0
 plsct=[1 1 2 12 6] j=3 i=11
 #1398 tabs  g_newUpdTniks       11 j=3  Colm j2=3     i=11 s=1 .J2[j2]=11 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0 81]  81 [1 1 2 11 60 6 0 0 0 0 0 0 0 0 0 0 81]  81 nw=0
 plsct=[1 1 2 12 1] j=5 i=0
@@ -1110,11 +1110,11 @@ plsct=[1 1 3 21 2] j=6 i=1
 plsct=[1 1 3 21 3] j=6 i=2
 #1398 tabs  g_newUpdTniks        2 j=7  Kord j2=7     i= 2 s=3 .J2[j2]= 2 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148] 148 [1 1 3 21 60 60 0 2 0 0 0 0 0 0 0 0 148] 148 nw=0
 plsct=[1 1 3 21 4] j=6 i=3
-#1398 tabs  g_newUpdTniks        3 j=7  Kord j2=7 0   i= 3 s=3 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 nw=0
+#1398 tabs  g_newUpdTniks        3 j=7  Kord j2=7 1   i= 3 s=3 .J2[j2]= 3 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 [1 1 3 21 60 60 0 3 0 0 0 0 0 0 0 0 149] 149 nw=0
 plsct=[1 1 3 21 5] j=6 i=4
-#1398 tabs  g_newUpdTniks        4 j=7  Kord j2=7 2   i= 4 s=3 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 nw=0
+#1398 tabs  g_newUpdTniks        4 j=7  Kord j2=7 3   i= 4 s=3 .J2[j2]= 4 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 [1 1 3 21 60 60 0 4 0 0 0 0 0 0 0 0 150] 150 nw=0
 plsct=[1 1 3 21 6] j=6 i=5
-#1398 tabs  g_newUpdTniks        5 j=7  Kord j2=7 5   i= 5 s=3 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 nw=0
+#1398 tabs  g_newUpdTniks        5 j=7  Kord j2=7 3   i= 5 s=3 .J2[j2]= 5 len(tl)=60 len(tl)=60 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 [1 1 3 21 60 60 0 5 0 0 0 0 0 0 0 0 151] 151 nw=0
 plsct=[1 1 3 22 6] j=3 i=21
 #1398 tabs  g_newUpdTniks       21 j=3  Colm j2=3     i=21 s=3 .J2[j2]=21 len(tl)=30 len(tl)=30 [1 1 3 30 60 60 0 60 0 0 0 1 0 0 0 0] [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0 152] 152 [1 1 3 21 60 60 0 6 0 0 0 0 0 0 0 0 152] 152 nw=0
 plsct=[1 1 3 22 1] j=6 i=0
@@ -1244,40 +1244,40 @@ plsct=[1 1 3 30 6] j=6 i=5
 #1690 tabs  plct2cc                   5 [180 180 180 60 6] [0 0    0 5] (   0 +  0 + 60 +  0 +5)
 #1693 tabs  cursorCol          cc=  5 [0 0 0 5]
 #1669 tabs  cc2xywh            tpp=180 old=5 lenT=60 cc=5 old % lenT
-#1672 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text='5' 18.68 32.00 C C
-[2:D :2, b:B :2, 9:A :2]
-[2:D :2, b:B :2, 9:A :2]
-[ None ,  None ,  None ,  None ,  None , b:B :2,  None ]
-[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
+#1672 tabs  cc2xywh            cc=   5 old=   5 [180 180 180 60 6]   48.00  375.00   96.00   30.00 t.text='3' 18.68 32.00 C C
+[3:E♭:2, 0:C :2, 7:G :2]
+[3:D♯:2, 0:C :2, 7:G :2]
+[ None , 3:E♭:2,  None ,  None ,  None ,  None ,  None ]
+[ None ,  None ,  None , 3:E♭:2,  None ,  None , 0:C :2]
 #1808 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels Upd1
-# 765 cmds  _snapshot          snapName='test.138.1.NEW.png' New1
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.1.NEW.png'
+# 765 cmds  _snapshot          snapName='test.20.1.NEW.png' New1
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.1.NEW.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.1.NEW.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.1.NEW.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.1.NEW.png'
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.1.NEW.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.1.NEW.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.1.NEW.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.1.NEW.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-#  86 evnts on_draw            .LOG_ID=138 sid=1 typ=NEW why=New1 qlen=1
-C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
+#  86 evnts on_draw            .LOG_ID= 20 sid=1 typ=NEW why=New1 qlen=1
+C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.1.NEW.png
 # 101 evnts on_key_press       BGN  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
 # 213 evnts on_key_press       UNH          k='LCTRL' retv=True setting retv to False
 # 218 evnts on_key_press       UNH retv2=False k='LCTRL' retv=False  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
 # 220 evnts on_key_press       check isParsing k='LCTRL' retv=False
 # 222 evnts on_key_press       Not isParsing k='LCTRL' retv=False
 # 227 evnts on_key_press       Done Not isParsing k='LCTRL' retv=False
-# 228 evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000026009830A00>
+# 228 evnts on_key_press       d={65507: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x000002429B6CC8B0>
 # 229 evnts on_key_press       END  65507 0xffe3 LCTRL            2 MOD_CTRL                                   d={65507: True}
 # 230 evnts on_key_press       END processing event k='LCTRL' return retv=False
 # 101 evnts on_key_press       BGN  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         d={65507: True, 65505: True}
@@ -1286,7 +1286,7 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
 # 220 evnts on_key_press       check isParsing k='LSHIFT' retv=False
 # 222 evnts on_key_press       Not isParsing k='LSHIFT' retv=False
 # 227 evnts on_key_press       Done Not isParsing k='LSHIFT' retv=False
-# 228 evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000026009830A00>
+# 228 evnts on_key_press       d={65507: True, 65505: True} tkb=<pyglet.window.key.KeyStateHandler object at 0x000002429B6CC8B0>
 # 229 evnts on_key_press       END  65505 0xffe1 LSHIFT           3 MOD_SHIFT|MOD_CTRL                         d={65507: True, 65505: True}
 # 230 evnts on_key_press       END processing event k='LSHIFT' return retv=False
 # 101 evnts on_key_press       BGN    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         d={65507: True, 65505: True, 113: True}
@@ -1296,30 +1296,30 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
 ###   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ######   Quit BGN  ###
 ###     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ######     Quit    ###
-[2:D :2, b:B :2, 9:A :2]
-[2:D :2, b:B :2, 9:A :2]
-[ None ,  None ,  None ,  None ,  None , b:B :2,  None ]
-[ None ,  None ,  None ,  None ,  None ,  None ,  None ]
+[3:E♭:2, 0:C :2, 7:G :2]
+[3:D♯:2, 0:C :2, 7:G :2]
+[ None , 3:E♭:2,  None ,  None ,  None ,  None ,  None ]
+[ None ,  None ,  None , 3:E♭:2,  None ,  None , 0:C :2]
 #1808 tabs  dumpFont           4:96dpi  23.33pt 0:Lucida Console 0:  23.33pt = 0.7778(pt/pix) *  30.00pixels @^Q
-# 144 chords dumpLimap            0 0 0 Bm7x/A       Bm7x/A       ♭7Rm3        a03    ABD          Rm3♭7        03a    BDA         
-# 144 chords dumpLimap            0 0 1 As2s4x       As2s4x       R24          025    ABD          R24          025    ABD         
-# 144 chords dumpLimap            0 0 2 D6y/A        D6y/A        56R          790    ABD          R56          079    DAB         
-# 765 cmds  _snapshot          snapName='test.138.2.FIN.png' quit 0 save=0
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.2.FIN.png'
+# 144 chords dumpLimap            0 0 0 Cm/G         Cm/G         5Rm3         703    GCD♯         Rm35         037    CD♯G        
+# 144 chords dumpLimap            0 0 1 D♯6x/G       D♯6x/G       M36R         490    GCD♯         RM36         049    D♯GC        
+# 144 chords dumpLimap            0 0 2 G+s4         G+s4         R4♯5         058    GCD♯         R4♯5         058    GCD♯        
+# 765 cmds  _snapshot          snapName='test.20.2.FIN.png' quit 0 save=0
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.2.FIN.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.2.FIN.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.2.FIN.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.2.FIN.png'
+# 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.2.FIN.png'
 # 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png'
-# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.138.2.FIN.png')
+# 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/pngs/test.20.2.FIN.png')
 # 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.png')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.20.2.FIN.png C:\Users\Owner\Documents\GitHub\tabs\test\Atest.1.1.3.10.6_CC_CC.png)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
@@ -1343,13 +1343,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
-#2110 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.138.csv
+#2110 tabs  cleanupCsvFile     Copying C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv to C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.20.csv
 # 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv'
-# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.138.csv'
+# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.20.csv'
 # 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.csv')
-# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.138.csv')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.138.csv ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.138.csv)
+# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/csvs/test.20.csv')
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.20.csv ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.csv C:\Users\Owner\Documents\GitHub\tabs\test\csvs\test.20.csv)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
@@ -1366,13 +1366,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
 # 220 evnts on_key_press       check isParsing k='Q' retv=False
 # 222 evnts on_key_press       Not isParsing k='Q' retv=False
 # 227 evnts on_key_press       Done Not isParsing k='Q' retv=False
-# 228 evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x0000026009830A00>
+# 228 evnts on_key_press       d={} tkb=<pyglet.window.key.KeyStateHandler object at 0x000002429B6CC8B0>
 # 229 evnts on_key_press       END    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         d={}
 # 230 evnts on_key_press       END processing event k='Q' return retv=False
-#2192 tabs  <module>           OK pyglet.app.run() runstat=None
-#2194 tabs  <module>           FINALLY runstat=None
-#2195 tabs  <module>           Thats all folks!
-#2196 tabs  <module>           END C:\Users\Owner\Documents\GitHub\tabs\tabs.py
+#2183 tabs  <module>           OK pyglet.app.run() runstat=None
+#2185 tabs  <module>           FINALLY runstat=None
+#2186 tabs  <module>           Thats all folks!
+#2187 tabs  <module>           END C:\Users\Owner\Documents\GitHub\tabs\tabs.py
 # 448 utl   getFilePath        baseName =Atest.1.1.3.10.6_CC_CC.log path2str(basePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test'
 # 449 utl   getFilePath        baseName =Atest.1.1.3.10.6_CC_CC.log basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
 # 452 utl   getFilePath        fileName =Atest.1.1.3.10.6_CC_CC.log path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/Atest.1.1.3.10.6_CC_CC.log'
@@ -1381,13 +1381,13 @@ C:\Users\Owner\Documents\GitHub\tabs\test\pngs\test.138.1.NEW.png
 # 449 utl   getFilePath        baseName =Etest.1.1.3.10.6_CC_CC.txt basePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test')
 # 452 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt path2str(filePath) = 'C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt'
 # 453 utl   getFilePath        fileName =Etest.1.1.3.10.6_CC_CC.txt filePath = WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/Etest.1.1.3.10.6_CC_CC.txt')
-#2142 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.138.txt
+#2142 tabs  cleanupOutFiles    Copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt to C:\Users\Owner\Documents\GitHub\tabs\test\text\test.20.txt
 # 457 utl   copyFile           path2str(src)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt'
-# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.138.txt'
+# 458 utl   copyFile           path2str(trg)='C:/Users/Owner/Documents/GitHub/tabs/test/text/test.20.txt'
 # 459 utl   copyFile           src=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.txt')
-# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.138.txt')
-# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.138.txt ###
-# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.138.txt)
+# 460 utl   copyFile           trg=WindowsPath('C:/Users/Owner/Documents/GitHub/tabs/test/text/test.20.txt')
+# 463 utl   copyFile                       copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.20.txt ###
+# 464 utl   copyFile           TRY ret = os.system(copy C:\Users\Owner\Documents\GitHub\tabs\test\text\test.txt C:\Users\Owner\Documents\GitHub\tabs\test\text\test.20.txt)
 # 470 utl   copyFile           OK ret=0
 # 472 utl   copyFile           FINALLY ret=0
 # 473 utl   copyFile           os.system ret=0
