@@ -2,6 +2,7 @@ import pyglet.sprite     as pygsprt
 import pyglet.image      as pygimg
 from   pyglet.window.key import symbol_string    as psym
 from   pyglet.window.key import modifiers_string as pmod
+from   collections       import Counter
 from   tpkg              import utl
 
 W, Y, Z, slog, ist     = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
@@ -162,7 +163,8 @@ def test4(args):
     slog(p=0)
 ########################################################################################################################################################################################################
 class Tetractys:
-    def __init__(self):
+    def __init__(self, pythgrn):
+        self.pythgrn = pythgrn
         self.a, self.b, self.c = [], [], [[1]]
         self.d, self.e = [], []   ;   self.d2, self.e2 = [], []
         for i in range(20):
@@ -178,6 +180,7 @@ class Tetractys:
         
     def dmpData(self):
         self.sort()
+        self.pythgrn.dmpData2(54, u=6, dbg=0)
         self.octdiv()
         
     def sort(self):
@@ -189,19 +192,40 @@ class Tetractys:
             slog(f'{s:^200} {fmtl(self.e)}', p=0, f=-3)
         
     def octdiv(self):
+        c = Counter()   ;   maxw = 10000
         for i, v in enumerate(self.c):
-            j = 0
             for k, w in enumerate(v):
-                while w > 10000:
-                    w //= 2   ;   assert ist(w, int),  f'{w=} {ist(w, int)=} {k=} {v=}'
+                while w > maxw:
+                    assert ist(w, int),  f'{w=} {ist(w, int)=} {i=} {k=} {v=} {c=}'
+                    w //= 2   ;   assert ist(w, int),  f'{w=} {ist(w, int)=} {i=} {k=} {v=} {c=}'
                 if w not in self.d2:  self.d2.append(w)
                 else:
-                    while not w % 2 and w in self.d2: # and j <= i:
-                        w //= 2   ;   j += 1
+                    w, c = self.fold( w, c, maxw)
+#                    w, c = self.foldB(w, c, maxw) if w >= maxw else w, c
                 v[k] = w
             s = f'{fmtl(v, w="^9", d=Z)}'
             self.e2 = sorted(self.d2)
             slog(f'{s:^200} {fmtl(self.e2)}', p=0, f=-3)
+            
+    def fold(self, n, c, m=10000):
+        n = self.base(n)   ;   c[f'{n}'] += 1
+        while n in self.d2 and c[f'{n}'] != 1:
+            if n >= m:  break # n = self.base(n)   ;   c[f'{n}'] += 1   ;   break
+            n *= 2   ;   c[f'{n}'] += 1
+        if n >= m:    n = self.base(n)   ;   c[f'{n}'] += 1   ;   n, c = self.foldB(n, c, m)
+        return n, c
+        
+    def foldB(self, n, c, m=10000):
+#        n = self.base(n)   ;   c[f'{n}'] += 1
+        while n in self.d2: # and c[f'{n}'] != 2:
+            if n >= m:  n = self.base(n)   ;   c[f'{n}'] += 1   ;   break
+            n *= 2   ;   c[f'{n}'] += 1
+        return n, c
+
+    def base(self, n):
+        while n > 36 and not n % 2 and n in self.d2:
+            n //= 2
+        return n
 ########################################################################################################################################################################################################
 def tExit(tobj, why, e): #        dispatch_event('on_close')
     slog(f'BGN {why} {e}')
@@ -222,7 +246,6 @@ def tExit(tobj, why, e): #        dispatch_event('on_close')
 #  99 evnts on_key_press       BGN    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         kd=
 # ...
 # 190 evnts on_key_press       END    113 0x0071 Q                3 MOD_SHIFT|MOD_CTRL                         kd=, retv=False
-
 ########################################################################################################################################################################################################
 '''
 # 159 tests test4              .(args)='{{i:[1 1 1 6]} {n:[1 1 10 6]} {M:[0]} {t:[]} {d:[]} {e:[]} {o:[]} {p:[6]} {S:[0 1 3]} {f:[test]} {w:[0 0 0 0]} {T:[E A D G B E]}}'
