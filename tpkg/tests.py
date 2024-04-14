@@ -200,25 +200,27 @@ class Tetractys:
                     w //= 2   ;   assert ist(w, int),  f'{w=} {ist(w, int)=} {i=} {k=} {v=} {self.k=}'
                 if w not in self.d2:  self.d2.append(w)
                 else:
-                    w = self.fold(w)
+                    if not w % 2: w = self.foldA(w, 1)
+                    else:         w = self.foldB(w, 1)
                 v[k] = w
             s = f'{fmtl(v, w="^9", d=Z)}'
             self.e2 = sorted(self.d2)
             slog(f'{s:^200} {fmtl(self.e2)}', p=0, f=-3)
             
-    def fold(self, n):
+    def foldA(self, n, m):
         n = self.base(n)
-        while n in self.d2 and self.k[f'{n}'] >= 1:
-            if n*2 >= self.top:   n = self.foldB(n)   ;   break
+        while n in self.d2 and self.k[f'{n}'] >= m:
+            if n*2 >= self.top:   n = self.foldA(n, m+1)   ;   break
             n *= 2
         self.k[f'{n}'] += 1
         return n
         
-    def foldB(self, n):
-        n = self.base(n)
-        while n in self.d2 and self.k[f'{n}'] >= 2:
-            if n*2 >= self.top:  n = self.base(n)  ;   break
-            n *= 2
+    def foldB(self, n, m):
+        n0 = n   ;   n //= 2
+        while self.k[f'{n}'] >= m:
+            if n//2 <= 36:
+                n = n0   ;   n = self.foldB(n, m+1)   ;   break
+            n //= 2
         self.k[f'{n}'] += 1
         return n
 
