@@ -212,6 +212,7 @@ class Tetractys:
         while n in self.d2 and self.k[f'{n}'] >= m:
             if n*2 >= self.top:   n = self.foldA(n, m+1)   ;   break
             n *= 2
+        if n not in self.d2: self.d2.append(n)
         self.k[f'{n}'] += 1
         return n
         
@@ -221,11 +222,12 @@ class Tetractys:
             if n//2 <= self.bot:
                 n = n0   ;   n = self.foldB(n, m+1)   ;   break
             n //= 2
+        if n not in self.d2: self.d2.append(n)
         self.k[f'{n}'] += 1
         return n
 
     def base(self, n):
-        while n > self.bot and n in self.d2: # and not n % 2
+        while n > self.bot and n in self.d2:
             n //= 2
         return n
 ########################################################################################################################################################################################################
