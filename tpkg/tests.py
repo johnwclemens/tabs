@@ -164,7 +164,7 @@ def test4(args):
 ########################################################################################################################################################################################################
 class Tetractys:
     def __init__(self, pythgrn):
-        self.pythgrn = pythgrn   ;   self.top = 10000   ;   self.k = None
+        self.pythgrn = pythgrn   ;   self.bot = 24   ;   self.top = 10000   ;   self.k = None
         self.a, self.b, self.c = [], [], [[1]]
         self.d, self.e = [], []   ;   self.d2, self.e2 = [], []
         for i in range(20):
@@ -200,7 +200,7 @@ class Tetractys:
                     w //= 2   ;   assert ist(w, int),  f'{w=} {ist(w, int)=} {i=} {k=} {v=} {self.k=}'
                 if w not in self.d2:  self.d2.append(w)
                 else:
-                    if not w % 2: w = self.foldA(w, 1)
+                    if not w % 2: w = self.foldB(w, 1)
                     else:         w = self.foldB(w, 1)
                 v[k] = w
             s = f'{fmtl(v, w="^9", d=Z)}'
@@ -218,14 +218,14 @@ class Tetractys:
     def foldB(self, n, m):
         n0 = n   ;   n //= 2
         while self.k[f'{n}'] >= m:
-            if n//2 <= 36:
+            if n//2 <= self.bot:
                 n = n0   ;   n = self.foldB(n, m+1)   ;   break
             n //= 2
         self.k[f'{n}'] += 1
         return n
 
     def base(self, n):
-        while n > 36 and not n % 2 and n in self.d2:
+        while n > self.bot and n in self.d2: # and not n % 2
             n //= 2
         return n
 ########################################################################################################################################################################################################
