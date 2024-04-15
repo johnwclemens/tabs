@@ -180,8 +180,8 @@ class Tetractys:
         slog(f'{fmtl(self.b, w=5)}', p=0, f=ff)
         slog(f'{fmtl(self.c, w=5)}', p=0, f=ff)
         
-    def dmpData(self, o, csv=0):
-        self.csv = csv
+    def dmpData(self, o, csv=0): # todo fixme reset class?
+        self.__init__(self.pythgrn, csv)
         self.sort()
         self.pythgrn.dmpData2(o, dbg=0, csv=csv)
         self.octdiv()

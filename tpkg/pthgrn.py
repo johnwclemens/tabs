@@ -381,9 +381,11 @@ class Pthgrn(ivls.Intonation):
         k = 0 if ckm[0]['Count'] else 'KEY_ERROR'
         n = ckm[k]['Note']
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   ww  = f'^{u-1}'
-        d1, d2 = ('[', ']') if self.csv else (Z, Z)
-        slog(f'{nn}{d1}{nn}{fmtl(rAs, w=ww, s=mm, d=Z)}{nn}{d2}{nn}{n:{ww}}', p=0, f=ff)
-        slog(f'{nn}{d1}{nn}{fmtl(rBs, w=ww, s=mm, d=Z)}{nn}{d2}{nn}{n:{ww}}', p=0, f=ff)
+        slog(f'{fmtl(rAs, w=ww, s=mm, d=Z)}{nn}{n:{ww}}', p=0, f=ff)
+        slog(f'{fmtl(rBs, w=ww, s=mm, d=Z)}{nn}{n:{ww}}', p=0, f=ff)
+#        d1, d2 = ('[', ']') if self.csv else (Z, Z)
+#        slog(f'{nn}{d1}{nn}{fmtl(rAs, w=ww, s=mm, d=Z)}{nn}{d2}{nn}{n:{ww}}', p=0, f=ff)
+#        slog(f'{nn}{d1}{nn}{fmtl(rBs, w=ww, s=mm, d=Z)}{nn}{d2}{nn}{n:{ww}}', p=0, f=ff)
     ####################################################################################################################################################################################################
     def getCkMap(self, ck, a, ca, b, cb, f0, w0): # sometimes
         f = self.ckmap[ck]['Freq']    ;   assert f == f0 * a**ca / b**cb,    f'{ck=} {f=} {f0=} r={a**ca/b**cb} {f0*a**ca/b**cb=} {a=} {ca=} {b=} {cb=}'
