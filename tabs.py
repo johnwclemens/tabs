@@ -495,9 +495,9 @@ class Tabs(pyglet.window.Window):
             ots.dmpData()           ;       ots.dmpData(csv=1)
             justi.dmpData()         ;     justi.dmpData(csv=1)
             pythgrn.dmpData(o=0)    ;   pythgrn.dmpData(o=0, csv=1)
-            tetractys = tests.Tetractys(pythgrn)   ;   tetractys.dmpData(o=0)
+            tetractys = tests.Tetractys(pythgrn)   ;   tetractys.dmpData(o=0)   ;   tetractys.dmpData(o=0, csv=1)
             pythgrn.dmpData(o=1)    ;   pythgrn.dmpData(o=1, csv=1)
-            tetractys = tests.Tetractys(pythgrn)   ;   tetractys.dmpData(o=1)
+            tetractys = tests.Tetractys(pythgrn)   ;   tetractys.dmpData(o=1)   ;   tetractys.dmpData(o=1, csv=1)
 #            tests.test0(self,  0.314159265359, 4)
 #            tests.test0(self,  0.314159265359, 5, self.EXIT)
     ####################################################################################################################################################################################################

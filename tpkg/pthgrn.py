@@ -106,7 +106,7 @@ class Pthgrn(ivls.Intonation):
                 k = self.k + (i * 7) % NT
                 self.dmpPyth(k)
 
-    def dmpData2(self, o, u=9, dbg=0, csv=0): # todo fixme called by Tetractys to call dmpCkMap(), but need to populate ckmap first
+    def dmpData2(self, o, u=10, dbg=0, csv=0): # todo fixme called by Tetractys to call dmpCkMap(), but need to populate ckmap first
         self.csv = csv
         if   o == 0:
             slog(f'PRT 1 0-12 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
@@ -250,7 +250,7 @@ class Pthgrn(ivls.Intonation):
             data     = [j+1, (j+1)*100, i+1, self.ck2ikm[ks[i]], cs[i], ks[i], ds[i], eps, 0, 'A7', 0, 1178, W*6, eps, cs[i]]
             fd       = self.fIvals(data, i)    ;    slog(f'{fmtl(fd, s=mm, d=Z)}', p=0, f=ff)
     ####################################################################################################################################################################################################
-    def dmpMaps(self, k, u=9, dbg=1):
+    def dmpMaps(self, k, u, dbg=1):
         if dbg:
             self.dmpNiMap(  1, k, x=13, upd=1, dbg=dbg)
             self.dmpNiMap(  2, k, x=13, upd=1, dbg=dbg)
@@ -374,13 +374,16 @@ class Pthgrn(ivls.Intonation):
             a, b, c = abc[0], abc[1], abc[2]
             r, ca, cb = abc2r(a, b, c)
             As.append(a ** ca)     ;    Bs.append(b ** cb)
-        self.dmp_rArBs(As, Bs, u)        
+        self.dmp_rArBs(k, As, Bs, u=u)        
 
-    def dmp_rArBs(self, rAs, rBs, u):
-        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   ww  = f'^{u}'
+    def dmp_rArBs(self, k, rAs, rBs, u):
+        ckm = self.nimap[k][2]   
+        k = 0 if ckm[0]['Count'] else 'KEY_ERROR'
+        n = ckm[k]['Note']
+        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   ww  = f'^{u-1}'
         d1, d2 = ('[', ']') if self.csv else (Z, Z)
-        slog(f'{nn}{d1}{nn}{fmtl(rAs, w=ww, s=mm, d=Z)}{nn}{d2}', p=0, f=ff)
-        slog(f'{nn}{d1}{nn}{fmtl(rBs, w=ww, s=mm, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}{d1}{nn}{fmtl(rAs, w=ww, s=mm, d=Z)}{nn}{d2}{nn}{n:{ww}}', p=0, f=ff)
+        slog(f'{nn}{d1}{nn}{fmtl(rBs, w=ww, s=mm, d=Z)}{nn}{d2}{nn}{n:{ww}}', p=0, f=ff)
     ####################################################################################################################################################################################################
     def getCkMap(self, ck, a, ca, b, cb, f0, w0): # sometimes
         f = self.ckmap[ck]['Freq']    ;   assert f == f0 * a**ca / b**cb,    f'{ck=} {f=} {f0=} r={a**ca/b**cb} {f0*a**ca/b**cb=} {a=} {ca=} {b=} {cb=}'

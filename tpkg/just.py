@@ -108,39 +108,39 @@ class Just(ivls.Intonation):
         return n1
 
     def fmtis(self, l, v=0, w=11):
-        mm = Y if self.csv else '|'    ;    ret = []
+        oo = Y if self.csv else '|'    ;    ret = []
         for i, e in enumerate(l):
             if   not v and ist(      e, int):  _ =         e    ;  ret.append(f'{_:^{w}}')
             elif     v and ist(v **  e, int):  _ =      v**e    ;  ret.append(f'{_:^{w}}')
             elif     v and ist(v ** -e, int):  _ = f'1/{v**-e}' ;  ret.append(f'{_:^{w}}')
             else:                              assert 0,  f'{v=} {i=} {l=} {l[i]=} {e=} {type(e)=} {v**e=} {type(v**e)=} {v**-e=} {type(v**-e)=}'
-        return fmtl(ret, s=mm) # W.join(fmtl(ret))
+        return fmtl(ret, s=oo, d=Z) # W.join(fmtl(ret))
     ####################################################################################################################################################################################################
     def dmpJust(self, k):
-        f0 = self.FREFS[k]   ;   k += 2 # todo fixme note freq hack
-        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'  ;  M3 = Notes.V2I['M3']
+        f0 = self.FREFS[k]  ;  M3 = Notes.V2I['M3']  ;   k += 2 # todo fixme note freq hack
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   d1, d2 = '[', ']'   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'
         slog(f'BGN Just Intonation Series ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
         r0s, r1s, r2s, r3s = [], [], [], []   ;   a, b = 5, 3
-        slog(f'C  {self.fmtis(C,    w=x)}', p=0, f=ff)
-        slog(f'D  {self.fmtis(D,    w=x)}', p=0, f=ff)
-        slog(f'C A{self.fmtis(C, A, w=x)}', p=0, f=ff)
-        slog(f'D B{self.fmtis(D, B, w=x)}', p=0, f=ff)
+        slog(f'{nn}C {nn} {nn}{d1}{nn}{self.fmtis(C,    w=x)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}D {nn} {nn}{d1}{nn}{self.fmtis(D,    w=x)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}C {nn}A{nn}{d1}{nn}{self.fmtis(C, A, w=x)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}D {nn}B{nn}{d1}{nn}{self.fmtis(D, B, w=x)}{nn}{d2}', p=0, f=ff)
         ii = [ f'{i}' for i in range(len(C) * len(D)) ]
-        slog(f'    {fmtl(ii, w=w, s=mm, d=Z)}', p=0, f=ff)
+        slog(f'{nn}   {nn}{nn}{d1}{nn}{fmtl(ii,  w=w, s=mm, d=Z)}{nn}{d2}', p=0, f=ff)
         for     i, c in enumerate(C):
             for j, d in enumerate(D):
                 self.addFmtRs(a, c, b, d, rs=[r0s, r1s, r2s, r3s], u=z,     k=0, i=i, j=j)
-        slog(f'r0s{fmtl(r0s, w=w, s=oo)}', p=0, f=ff)
-        slog(f'r1s{fmtl(r1s, w=w, s=oo)}', p=0, f=ff)
-        slog(f'r2s{fmtl(r2s, w=w, s=oo)}', p=0, f=ff)
-        slog(f'r3s{fmtl(r3s, w=w, s=oo)}', p=0, f=ff)
+        slog(f'{nn}r0s{nn}{nn}{d1}{nn}{fmtl(r0s, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}r1s{nn}{nn}{d1}{nn}{fmtl(r1s, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}r2s{nn}{nn}{d1}{nn}{fmtl(r2s, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}r3s{nn}{nn}{d1}{nn}{fmtl(r3s, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
         for     i, c in enumerate(C):
             kk = k - i * M3
             for j, d in enumerate(D):
                 n = self.fmtNPair(kk, (j*7)%NT) #, b=0 if i==0 and j==4 else 1)
                 u = CRS[i][j]
                 v, p = self.norm(u)
-                slog(f'{i} {j}: {a}^{c:2} * {b}^{d:2} = {u:7.4f} * 2^{p:2} = {v:7.5f} : {n=:2}', p=0, f=ff)
+                slog(f'   {nn}{d1}{nn}{i}{nn} {j}{nn}:{nn} {a}^{c:2} {nn}*{nn} {b}^{d:2} {nn}={nn} {u:7.4f} {nn}*{nn} 2^{p:2} {nn}={nn} {v:7.5f} {nn}:{nn} {n:2}{nn}{d2}', p=0, f=ff)
         r0s, r1s, r2s, r3s = [], [], [], []   ;   cents, dcnts, ivals, notes = [], [], [], []   ;   freqs, wvlns = [], []
         for     i, c in enumerate(C):
             kk = k - i * M3
@@ -157,16 +157,16 @@ class Just(ivls.Intonation):
                 rc   = round(cent)
                 assert rc in self.ck2ikm,  f'{rc=} not in ck2ik {k=} {i=} {j=} {n=} {cent=} {dcnt=} {rc=}'
                 ival = self.ck2ikm[rc]      ;   ivals.append(ival)
-        slog(f'notes{fmtl(notes, w=w, s=oo)}', p=0, f=ff)
-        slog(f'ivals{fmtl(ivals, w=w, s=oo)}', p=0, f=ff)
-        slog(f'cents{fmtl(cents, w=w, s=oo)}', p=0, f=ff)
-        slog(f'dcnts{fmtl(dcnts, w=w, s=oo)}', p=0, f=ff)
-        slog(f' r0s {fmtl(r0s,   w=w, s=oo)}', p=0, f=ff)
-        slog(f' r1s {fmtl(r1s,   w=w, s=oo)}', p=0, f=ff)
-        slog(f' r2s {fmtl(r2s,   w=w, s=oo)}', p=0, f=ff)
-        slog(f' r3s {fmtl(r3s,   w=w, s=oo)}', p=0, f=ff)
-        slog(f'freqs{fmtl(freqs, w=w, s=oo)}', p=0, f=ff)
-        slog(f'wvlns{fmtl(wvlns, w=w, s=oo)}', p=0, f=ff)
+        slog(f'{nn}notes{nn}{nn}{d1}{nn}{fmtl(notes, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}ivals{nn}{nn}{d1}{nn}{fmtl(ivals, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}cents{nn}{nn}{d1}{nn}{fmtl(cents, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}dcnts{nn}{nn}{d1}{nn}{fmtl(dcnts, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn} r0s {nn}{nn}{d1}{nn}{fmtl(r0s,   w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn} r1s {nn}{nn}{d1}{nn}{fmtl(r1s,   w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn} r2s {nn}{nn}{d1}{nn}{fmtl(r2s,   w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn} r3s {nn}{nn}{d1}{nn}{fmtl(r3s,   w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}freqs{nn}{nn}{d1}{nn}{fmtl(freqs, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}wvlns{nn}{nn}{d1}{nn}{fmtl(wvlns, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
         slog(f'END Just Intonation Series ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
 
 ########################################################################################################################################################################################################
