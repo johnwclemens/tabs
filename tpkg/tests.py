@@ -164,7 +164,7 @@ def test4(args):
 ########################################################################################################################################################################################################
 class Tetractys:
     def __init__(self, pythgrn):
-        self.pythgrn = pythgrn   ;   self.bot = 24   ;   self.top = 10000   ;   self.k = None
+        self.pythgrn = pythgrn   ;   self.bot = 24   ;   self.top = 10000   ;   self.k = {}
         self.a, self.b, self.c = [], [], [[1]]
         self.d, self.e = [], []   ;   self.d2, self.e2 = [], []
         for i in range(20):
@@ -174,13 +174,14 @@ class Tetractys:
                 if i > 0:   v.append(2*self.c[i-1][j] if j < i else 3*self.c[i-1][i-1])
             self.b.append(u)
             self.c.append(v) if v else None
-        slog(f'{fmtl(self.a, w=3)=}', f=-3)
-        slog(f'{fmtl(self.b, w=3)=}', f=-3)
-        slog(f'{fmtl(self.c, w=3)=}', f=-3)
+        slog(f'Tetractys: {self.bot=} {self.top=} a, b, c =  d, e =  d2, e2 =', p=0, f=-3)
+        slog(f'{fmtl(self.a, w=5)}', p=0, f=-3)
+        slog(f'{fmtl(self.b, w=5)}', p=0, f=-3)
+        slog(f'{fmtl(self.c, w=5)}', p=0, f=-3)
         
     def dmpData(self):
         self.sort()
-        self.pythgrn.dmpData2(54, u=6, dbg=0)
+        self.pythgrn.dmpData2(u=9, dbg=0)
         self.octdiv()
         
     def sort(self):
@@ -189,7 +190,7 @@ class Tetractys:
             for w in v:
                 self.d.append(w)
             self.e = sorted(self.d)
-            slog(f'{s:^200} {fmtl(self.e)}', p=0, f=-3)
+            slog(f'{s:^200} {fmtl(self.e)} {len(self.e)}', p=0, f=-3)
         
     def octdiv(self):
         self.k = Counter()
@@ -205,7 +206,7 @@ class Tetractys:
                 v[k] = w
             s = f'{fmtl(v, w="^9", d=Z)}'
             self.e2 = sorted(self.d2)
-            slog(f'{s:^200} {fmtl(self.e2)}', p=0, f=-3)
+            slog(f'{s:^200} {fmtl(self.e2)} {len(self.e2)}', p=0, f=-3)
             
     def foldA(self, n, m):
         n = self.base(n)
