@@ -87,41 +87,43 @@ class Pthgrn(ivls.Intonation):
         self.nimap  = {} # note index to list of abcs (freq ratios) and ckmap (cent key data map)
         self.ckmap  = self.resetCkmap() # freq ratio in cents to ival counts and data
     ####################################################################################################################################################################################################
-    def dmpData(self, csv=0): # todo fixme
+    def dmpData(self, o, csv=0): # todo fixme
         self.csv = csv
-#        slog(f'PRT 1 0-12 {self.n} {self.k} {self.csv=}', p=0)
-#        self.nimap = {}
-#        for i in range(0, 12):
-#            k = self.k + (i * 7) % NT
-#            self.dmpPyth(k)
-        slog(f'PRT 2A 7-12 {self.n} {self.k} {self.csv=}', p=0)
-        self.nimap = {}
-        for i in range(7, 12):
-            k = self.k + (i * 7) % NT
-            self.dmpPyth(k)
-        slog(f'PRT 2B 0-7 {self.n} {self.k} {self.csv=}', p=0)
-        for i in range(0, 7):
-            k = self.k + (i * 7) % NT
-            self.dmpPyth(k)
-#        slog(f'PRT3 {self.n} {self.k} {self.csv=}', p=0)
+        if   o == 0:
+            slog(f'PRT 1 0-12 {self.n} {self.k} {self.csv=}', p=0)
+            self.nimap = {}
+            for i in range(0, 12):
+                k = self.k + (i * 7) % NT
+                self.dmpPyth(k)
+        elif o == 1:
+            slog(f'PRT 2A 7-12 {self.n} {self.k} {self.csv=}', p=0)
+            self.nimap = {}
+            for i in range(7, 12):
+                k = self.k + (i * 7) % NT
+                self.dmpPyth(k)
+            slog(f'PRT 2B 0-7 {self.n} {self.k} {self.csv=}', p=0)
+            for i in range(0, 7):
+                k = self.k + (i * 7) % NT
+                self.dmpPyth(k)
 
-    def dmpData2(self, u=9, dbg=0, csv=0): # todo fixme called by Tetractys to call dmpCkMap(), but need to populate ckmap first
+    def dmpData2(self, o, u=9, dbg=0, csv=0): # todo fixme called by Tetractys to call dmpCkMap(), but need to populate ckmap first
         self.csv = csv
-#        slog(f'PRT 1 0-12 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
-#        self.nimap = {}
-#        for i in range(0, 12):
-#            k = self.k + (i * 7) % NT
-#            self.dmpPyth(k, u=u, dbg=dbg)
-        slog(f'PRT 2A 7-12 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
-        self.nimap = {}
-        for i in range(7, 12):
-            k = self.k + (i * 7) % NT
-            self.dmpPyth(k, u=u, dbg=dbg)
-        slog(f'PRT 2B 0-7 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
-        for i in range(0, 7):
-            k = self.k + (i * 7) % NT
-            self.dmpPyth(k, u=u, dbg=dbg)
-#        slog(f'END {self.csv=}', p=0) if dbg else None
+        if   o == 0:
+            slog(f'PRT 1 0-12 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
+            self.nimap = {}
+            for i in range(0, 12):
+                k = self.k + (i * 7) % NT
+                self.dmpPyth(k, u=u, dbg=dbg)
+        elif o == 1:
+            slog(f'PRT 2A 7-12 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
+            self.nimap = {}
+            for i in range(7, 12):
+                k = self.k + (i * 7) % NT
+                self.dmpPyth(k, u=u, dbg=dbg)
+            slog(f'PRT 2B 0-7 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
+            for i in range(0, 7):
+                k = self.k + (i * 7) % NT
+                self.dmpPyth(k, u=u, dbg=dbg)
     ####################################################################################################################################################################################################
     @staticmethod
     def abcs(a=7, b=6):
@@ -265,10 +267,10 @@ class Pthgrn(ivls.Intonation):
             self.dmpCks2Iks(      x=9,       )
             self.checkIvals(                 )
             self.checkIvals2(                )
-            self.ckmap = self.resetCkmap()
         else:
             self.dmpNiMap(  5, k, x=13, upd=1, dbg=dbg)
             self.dmpCkMap(k,      u=u,         dbg=dbg)
+        self.ckmap = self.resetCkmap(dbg)
     ####################################################################################################################################################################################################
     def resetCkmap(self, dbg=1): # self.ckmap = { e: {'Count': 0} for e in self.centKs } # do this once @ end of dmpMaps()
         ckmap = {}   ;   count = 0   ;   ff = 3 if self.csv else 1
