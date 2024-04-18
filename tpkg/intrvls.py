@@ -88,13 +88,20 @@ class Intonation(object):
     def addFmtRs(self, a, ca, b, cb, rs, u=4, w=9, k=None, i=None, j=None):
         assert rs and ist(rs, list),  f'{rs=} {type(rs)=} {a=} {ca} {b} {cb} {u=} {w=}'   ;   lr = len(rs)
         r0s, r2s, r3s = rs[0], rs[-2], rs[-1]          ;   r1s, rAs, rBs = None, None, None
-        if   lr == 4:       r1s      = rs[1]           ;   r1s.append(self.fmtR1(a, ca, b, cb, u, k, i, j))
-        elif lr == 5:       rAs, rBs = rs[1], rs[2]    ;   rAs.append(self.fmtRA(a, ca, w))    ;    rBs.append(self.fmtRB(b, cb, w)) # if ist(b**cb, int) else w3))
+        if   lr == 2:   rAs, rBs      = rs[0], rs[1]
+        elif lr == 4:   r1s           = rs[1]
+        elif lr == 5:   rAs, rBs      = rs[1], rs[2]
+        elif lr == 6:   rAs, rBs, r1s = rs[1], rs[2], rs[3]
         r0s.append(self.fmtR0(a, ca, b, cb, w, k, i, j))
+        rAs.append(self.fmtRA(a, ca, w))                 if lr == 2 or lr == 5 or lr == 6 else None
+        rBs.append(self.fmtRB(b, cb, w))                 if lr == 2 or lr == 5 or lr == 6 else None
+        r1s.append(self.fmtR1(a, ca, b, cb, u, k, i, j)) if lr == 4            or lr == 6 else None
         r2s.append(self.fmtR2(a, ca, b, cb, u, k, i, j)) # if u >= 9 else None
         r3s.append(self.fmtR3(a, ca, b, cb, u, k, i, j))
-        if   lr == 4:   return r0s, r1s,      r2s, r3s
-        elif lr == 5:   return r0s, rAs, rBs, r2s, r3s
+        if   lr == 2:   return      rAs, rBs
+        elif lr == 4:   return r0s,           r1s, r2s, r3s
+        elif lr == 5:   return r0s, rAs, rBs,      r2s, r3s
+        elif lr == 6:   return r0s, rAs, rBs, r1s, r2s, r3s
     ####################################################################################################################################################################################################
     @staticmethod
     def fmtR0(a, ca, b, cb, w, k, i=None, j=None):
