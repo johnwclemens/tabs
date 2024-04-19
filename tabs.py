@@ -1361,7 +1361,7 @@ class Tabs(pyglet.window.Window):
         return self.E[j]
         #self.pages if j==P else self.lines if j==L else self.sects if j==S else self.colms if j==C else self.tabls if j==T else self.notes if j==N else self.ikeys if j==I# else self.kords if j==K else self.views if j==M else self.rowLs if j==R else self.qclms if j==Q else self.hcurs if j==H else self.anams if j==A else self.bnums if j==B else self.capos if j==C else self.zclms if j==E else []
 
-    def ji2plsct(self, j, i, dbg=1):
+    def ji2plsct(self, j, i, dbg=0):
         p, l, s, c = self.hh()[P], self.hh()[L], self.hh()[S], self.hh()[C]
         t = self.j()[T] if j >= T else -1
         if   j==P:  p = i   ;   self.h[P] = i+1
@@ -1398,7 +1398,7 @@ class Tabs(pyglet.window.Window):
                     im = self.getImap(p, l, c)
                     if   s == II:       tx = self.imap2ikey( t0, im, i2, j2)   ;   i2 += 1 if tx != self.tblank else 0
                     elif s == KK:       tx = self.imap2Chord(t0, im, i,  j2)
-            msg = f'{ijs:3} {self.fmtJText(j2)} {j2=} {t0:3} {i=:2} {s=} {self.J2[j2]=:2} {len(tl)=:2} {len(tl)=:2} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {nw=}'    ;    self.log(f'{msg}', f=0)
+            msg = f'{ijs:3} {self.fmtJText(j2)} {j2=} {t0:3} {i=:2} {s=} {self.J2[j2]=:2} {len(tl)=:2} {len(tl)=:2} {self.fjlen()} {self.fmtJ1(1, 1)} {self.fmtJ2(1, 1)} {nw=}' #   ;    self.log(f'{msg}', f=0) if dbg else None
 #            assert x2 <= self.width  and w <= self.width,   f'{x2=} {w=} {self.width=} {msg}'
 #            assert y2 <= self.height and h <= self.height,  f'{y2=} {h=} {self.height} {msg}'
             assert tl == self.E[j2],                        f'{j2=} {tl=} {self.E[j2]=} {msg}'

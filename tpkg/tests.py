@@ -183,7 +183,9 @@ class Tetractys:
     def dmpData(self, o, csv=0): # todo fixme reset class?
         self.__init__(self.pythgrn, csv)
         self.sort()
-        self.pythgrn.dmpData2(o, dbg=0, csv=csv)
+        self.pythgrn.dmpData2(o, o2=0, dbg=0, csv=csv)
+        self.pythgrn.dmpCks2Iks(x=6)
+        self.pythgrn.dmpData2(o, o2=1, dbg=0, csv=csv)
         self.octdiv()
         
     def sort(self):
