@@ -109,7 +109,8 @@ class Intonation(object):
         pfx = f'{i:4} {j:4} ' if i is not None and j is not None else Z
         if k is None:     v = pa/pb       ;   k = utl.NONE
         else:             v = p*pa*pb
-        ret = f'{v:^{w}.{w-4}f}' if ist(v, float) else f'{v:^{w}}'
+        if w >= 9:        ret = f'{v:^{w}.{w-4}f}' if ist(v, float) else f'{v:^{w}}'
+        else:             ret = f'{v:^{w}.{w-2}f}' if ist(v, float) else f'{v:^{w}}'
         slog(f'{pfx}{k:4} {p:4} : {a:2} {ca:2} {b:2} {cb:2} {ret=}') if dbg else None  ;  return ret
     ####################################################################################################################################################################################################
     @staticmethod

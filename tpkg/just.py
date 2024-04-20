@@ -119,12 +119,12 @@ class Just(ivls.Intonation):
     def dmpData(self, csv=0): # todo fixme 
         self.csv = csv
         slog(f'BGN {self.csv=}', p=0)
-        k = self.k # + 2
+        k = self.k
         self.dmpJust(k)
-#        self.dmpJust(k, st=1)
-#        for i in range(0, 12):
-#            k = self.k + (i * 7) % NT
-#            self.dmpJust(k, st=1)
+        self.dmpJust(k, st=1)
+        for i in range(0, 12):
+            k = self.k + (i * 7) % NT
+            self.dmpJust(k, st=1)
 #        for i in range(7, 12):
 #            k = self.k + (i * 7) % NT
 #            self.dmpJust(k)
@@ -177,7 +177,7 @@ class Just(ivls.Intonation):
             kk = k - i * M3
             for j, d in enumerate(D):
                 n = self.fmtNPair(kk, (j*7)%NT)
-#                if st == 1 and j == 0:    slog(f'{st=} Filter1 {n=} {k=} {kk=} @ j=0 {i=}') if dbg else None   ;   continue
+                if st == 1 and j == 0:    slog(f'{st=} Filter1 {n=} {k=} {kk=} @ j=0 {i=}') if dbg else None   ;   continue
                 u = CRS[i][j]
                 v, p = self.norm(u)
                 slog(f'   {nn}{d1}{nn}{i}{nn} {j}{nn}:{nn} {a}^{c:2} {nn}*{nn} {b}^{d:2} {nn}={nn} {u:7.4f} {nn}*{nn} 2^{p:2} {nn}={nn} {v:7.5f} {nn}:{nn} {n:2}{nn}{d2}', p=0, f=ff)
@@ -186,7 +186,7 @@ class Just(ivls.Intonation):
             kk = k - i * M3
             for j, d in enumerate(D):
                 n = self.fmtNote(kk, (j*7)%NT)
-#                if st == 1 and j == 0:    slog(f'{st=} Filter2 {n=} {k=} {kk=} @ j=0 {i=}') if dbg else None   ;   continue
+                if st == 1 and j == 0:    slog(f'{st=} Filter2 {n=} {k=} {kk=} @ j=0 {i=}') if dbg else None   ;   continue
                 notes.append(n)
                 u = CRS[i][j]
                 v, p = self.norm(u)

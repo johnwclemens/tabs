@@ -180,12 +180,15 @@ class Tetractys:
         slog(f'{fmtl(self.b, w=5)}', p=0, f=ff)
         slog(f'{fmtl(self.c, w=5)}', p=0, f=ff)
         
-    def dmpData(self, o, csv=0): # todo fixme reset class?
+    def dmpData(self, o, csv=0):
         self.__init__(self.pythgrn, csv)
+        k = self.pythgrn.k
         self.sort()
-        self.pythgrn.dmpData2(o, o2=0, dbg=0, csv=csv)
-        self.pythgrn.dmpCks2Iks(x=6)
-        self.pythgrn.dmpData2(o, o2=1, dbg=0, csv=csv)
+        self.pythgrn.dmpData2(  o, o2=0,            dbg=0, csv=csv)
+        self.pythgrn.dmpCks2Iks(        x=6                       )
+        self.pythgrn.dmpNiMap(  1, k=k, x=6, upd=0, dbg=0         ) # fixme hard coded arg value k
+        self.pythgrn.dmpCks2Iks(        x=6                       )
+        self.pythgrn.dmpData2(  o, o2=1,            dbg=0, csv=csv)
         self.octdiv()
         
     def sort(self):
