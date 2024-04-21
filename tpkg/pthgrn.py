@@ -148,26 +148,17 @@ class Pthgrn(ivls.Intonation):
         return n1
     ####################################################################################################################################################################################################
     def dmpPyth(self, k, u=9, o=0, dbg=1):
-        x, y = 13, 6     ;   z = x-2   ;   _ = x*W   ;   f0 = self.FREFS[k]   ;   cki = -1
-        ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if self.csv else (f'^{x}', W, Z, '|', 1)            ;   w3 = [W, W, W]
-        if dbg:
-            slog(f'BGN Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
-            ii  = [ f'{i}' for i in range(2 * NT) ]     ;   slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)
-            self.dmpDataTableLine(x + 1)
-        ii, ns, vs, fs, ws = [], [], [], [], []   ;   cs, ds = [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcMap = []
-        tmp = self.k2Abcs(k)  ;   abc0 = list(tmp[3])   ;   abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])
-        abc1.insert(0, fmtl(w3, w=2, d=Z))              ;   abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks for alignment in log/csv file
-        ckm = self.resetCkmap()
+        x, y = 13, 6  ;  ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if self.csv else (f'^{x}', W, Z, '|', 1)  ;  cki, z, _, f0, w3 = -1, x-2, x*W, self.FREFS[k], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
+        if dbg: slog(f'BGN Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)  ;  ii = [ f'{i}' for i in range(2 * NT) ]  ;  slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)  ;  self.dmpDataTableLine(x + 1)
+        cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcMap = []  ;  ckm = self.resetCkmap()  ;  tmp = self.k2Abcs(k)
+        abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
         for i, e in enumerate(abc0):
-            a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)    ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = self.w0 / f
-            n  = self.fmtNPair(k, i)      ;    c = self.r2cents(r)   ;   d = self.k2dCent(c)   ;   rc = round(c)
-            assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {k=} {i=} {self.k=} {n=} {c=} {r=} {abc=}'   ;   v = self.ck2ikm[rc]   ;   cki += 1
+            a, b, c = e[0], e[1], e[2]  ;  r, ca, cb = abc2r(a, b, c)  ;  abc = [a, ca, b, cb]  ;  f = r * f0  ;  w = self.w0 / f  ;  n = self.fmtNPair(k, i)  ;  cki += 1
+            c = self.r2cents(r)  ;  d = self.k2dCent(c)  ;  rc = round(c)  ;  assert rc in self.ck2ikm,  f'{rc=} not in ck2ikm {k=} {i=} {self.k=} {n=} {c=} {r=} {abc=}'  ;  v = self.ck2ikm[rc]
             while self.centKs[cki] < rc:
-                r0s.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)   ;   rAs.append(_)   ;   rBs.append(_)
-                ii.append(_)   ;  cs.append(_)   ;  ds.append(_)   ;  fs.append(_)    ;    ws.append(_)   ;   ns.append(_)   ;    vs.append(_)
-                cki += 1    ;  j = len(ii)-1   ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
-            ii.append(i)    ;  fs.append(fmtf(f, z))   ;   cs.append(fmtf(c, y-1))   ;  abcMap.append(abc)
-            ns.append(n)    ;  ws.append(fmtf(w, z))   ;   ds.append(fmtg(d, y-1))   ;      vs.append(v)
+                ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_) ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
+                cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
+            ii.append(i)  ;  fs.append(fmtf(f, z))  ;  cs.append(fmtf(c, y-1))  ;  abcMap.append(abc)  ;  ns.append(n)  ;  ws.append(fmtf(w, z))  ;  ds.append(fmtg(d, y-1))  ;  vs.append(v)
             r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
             if not dbg:   self.upd_ckmap(rc, ckm, n, f, abc, c, i)
         self.nimap[k] = [tmp[2], abcMap, ckm]          ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'
@@ -188,10 +179,8 @@ class Pthgrn(ivls.Intonation):
             slog(f'{mm} ABC1{mm}{nn}[{nn}{fmtl(abc1, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm} ABC2{mm}{nn}[{nn}{fmtl(abc2, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm} ABC3{mm}{nn}[{nn}{fmtl(abc3, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            self.dmpDataTableLine(x + 1)
-        self.dmpMaps(k, u, o=o, dbg=dbg)
-        slog(f'END Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff) if dbg else None
+            slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)    ;   self.dmpDataTableLine(x + 1)
+        self.dmpMaps(k, u, o=o, dbg=dbg)  ;  slog(f'END Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff) if dbg else None
     ####################################################################################################################################################################################################
     def epsilon(self, dbg=0):
         ccents = self.comma()
