@@ -284,7 +284,6 @@ class Pthgrn(ivls.Intonation):
         if   x ==  9: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=3*W, d=Z)}', p=0, f=f1) if not self.csv else None
         elif x == 13: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=7*W, d=Z)}', p=0, f=f1) if not self.csv else None
         else:         slog(f'{pfx}{fmtm(self.ck2ikm, w=3, wv=2, s=oo,  d=Z)}', p=0, f=f2)
-#        else:         slog(f'{5*W}  {fmtm(self.ck2ikm, w=3, wv=2, s=oo,  d=Z)}', p=0, f=ff)
             
     def upd_ckmap(self, ck, ckm, n, f, abc, cent, idx): # f = f0 * pa/pb # n if k==ik else W*2
         assert ck in ckm.keys(),  f'{ck=} {ckm.keys()=}'
@@ -295,31 +294,25 @@ class Pthgrn(ivls.Intonation):
         ckm[ck]['Ival']  = self.ck2ikm[ck]        ;   ckm[ck]['Idx']   = idx
     ####################################################################################################################################################################################################
     def dmpNiMap(self, ni, k, x, upd=0, dbg=1): # x=13 or x=9
-        ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if self.csv else (f'^{x}', W, Z, '|', 1)  ;  yy = 6 if x==13 else 4
-        f0  = self.FREFS[k]   ;   pfx = ''   ;   sfx = f'{nn}]' # if dbg else f'{nn}'
-        ii = [ f'{i}' for i in range(2 * NT) ]
-        if dbg: slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None
-        if dbg: self.dmpDataTableLine(x + 1) if ni == 1 else None
+        ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if self.csv else (f'^{x}', W, Z, '|', 1)    ;   yy = 6 if x==13 else 4
+        ii = [ f'{i}' for i in range(2 * NT) ]   ;   pfx, pfx2 = Z, f'{mm}  k  {mm}{nn} {nn}'  ;   sfx = f'{nn}]'   ;   f0 = self.FREFS[k]   ;   _ = W*x
+        if dbg:   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None   ;   self.dmpDataTableLine(x + 1) if ni == 1 else None
         for i, (kk, v) in enumerate(self.nimap.items()):
             rat0, rat2, rat3, cents = [], [], [], []    ;    cki = -1
             rat1 = [] if x == 13 or x == 6 else None    ;   ratA = [] if x == 9 else None    ;   ratB = [] if x == 9 else None
             for j, e in enumerate(v[1]):
-                a, ca, b, cb = e        ;      pa, pb = a ** ca, b ** cb
-                n    = self.fmtNPair(kk, j)
-                pd   = [f'{i:x}', f'{kk:2}', f'{n:2}']
-                if dbg: pfx = mm.join(pd)    ;   pfx += f'{nn}[{nn}' # if dbg else f'{nn}{nn}'
-                else:   pfx = mm.join(pd)    ;   sfx  = f'{x*W} {nn}{n:2}'
-#                else:   pfx = Z              ;   sfx = mm.join(pd)  ;    sfx += f'{nn}'
-                cent = self.r2cents(pa/pb)   ;   rc = round(cent)   ;   centf = f'{cent:{ww}.0f}'   ;   cki += 1   ;   cents.append(centf)
-                while self.centKs[cki] < rc:
-                    blnk = W*x          ;   cki += 1            ;   cents.append(f'{blnk:{ww}}')
-                    rat0.append(blnk)   ;   rat2.append(blnk)   ;   rat3.append(blnk)
-                    rat1.append(blnk) if x == 13 else None      ;   ratA.append(blnk) if x == 9 else None   ;   ratB.append(blnk) if x == 9 else None
+                n    = self.fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb    ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
+                if dbg:  pfx = mm.join(pd)    ;   pfx += f'{nn}[{nn}'
+                else:    pfx = mm.join(pd)    ;   pfx += f'{mm}'     ;    sfx = f'{x*W} {nn}{n:2}'
+                cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;   centf = f'{cent:{ww}.0f}'   ;  cki += 1
+                while  self.centKs[cki] < rc:
+                    rat0.append(_)   ;    rat2.append(_)     ;   rat3.append(_)     ;     cki += 1   ;  cents.append(f'{_:{ww}}')
+                    rat1.append(_) if x == 13 else None      ;   ratA.append(_) if x == 9 else None  ;   ratB.append(_) if x == 9 else None
+                cents.append(centf)
                 if   x == 9:    self.addFmtRs(a, ca, b, cb, rs=[rat0, ratA, ratB, rat2, rat3], u=yy, w=x,     i=i, j=j)
                 elif x == 13:   self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
                 elif x == 6:    self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
-                if dbg and upd and ni == 5:
-                    self.upd_ckmap(rc, self.ckmap, n if kk==k else W*2, f0*pa/pb, e, cent, j)
+                if dbg and upd and ni == 5:   self.upd_ckmap(rc, self.ckmap, n if kk==k else W*2, f0*pa/pb, e, cent, j)
             if dbg:
                 if   ni == 1:             slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
                 elif ni == 2 and x == 9:  slog(f'{pfx}{Z.join(fmtl(ratA,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)  ;  slog(f'{pfx}{Z.join(fmtl(ratB,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
@@ -327,9 +320,8 @@ class Pthgrn(ivls.Intonation):
                 elif ni == 3:             slog(f'{pfx}{Z.join(fmtl(rat2,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
                 elif ni == 4:             slog(f'{pfx}{Z.join(fmtl(rat3,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
                 elif ni == 5:             slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-            elif ni == 1:                 slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff if self.csv else -3)   
-        if dbg: self.dmpDataTableLine(x + 1)
-        if dbg: slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
+            elif ni == 1:                 slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff if self.csv else -3)
+        if dbg: self.dmpDataTableLine(x + 1)   ;   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
     ####################################################################################################################################################################################################
     def dmpCkMap(self, k, u=9, o=0, dbg=1):
         y = 4   ;   sk, v = 0, Z    ;   f0 = self.FREFS[k]    ;   blnk = u*W if dbg else 6*W
