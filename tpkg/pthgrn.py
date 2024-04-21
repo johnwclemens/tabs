@@ -156,7 +156,7 @@ class Pthgrn(ivls.Intonation):
             self.dmpDataTableLine(x + 1)
         ii, ns, vs, fs, ws = [], [], [], [], []   ;   cs, ds = [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcMap = []
         tmp = self.k2Abcs(k)  ;   abc0 = list(tmp[3])   ;   abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])
-        abc1.insert(0, fmtl(w3, w=2, d=Z))              ;   abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks for alignment in log/csv files
+        abc1.insert(0, fmtl(w3, w=2, d=Z))              ;   abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks for alignment in log/csv file
         ckm = self.resetCkmap()
         for i, e in enumerate(abc0):
             a, b, c = e[0], e[1], e[2]    ;    r, ca, cb = abc2r(a, b, c)    ;   abc = [ a, ca, b, cb ]   ;    f = r * f0    ;   w = self.w0 / f
@@ -324,30 +324,20 @@ class Pthgrn(ivls.Intonation):
         if dbg: self.dmpDataTableLine(x + 1)   ;   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
     ####################################################################################################################################################################################################
     def dmpCkMap(self, k, u=9, o=0, dbg=1):
-        y = 4   ;   sk, v = 0, Z    ;   f0 = self.FREFS[k]    ;   blnk = u*W if dbg else 6*W
-        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   ww, w1  = f'^{u}', f'^{u}.1f'
-        ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;   r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  cksf, cksi = [], []
-        if dbg:  ckmap = self.ckmap
-        else:    ckmap = self.nimap[k][2]
+        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, sk, v, y = self.FREFS[k], 0, Z, 4  ;  _ = u*W if dbg else 6*W  ;  ckmap = self.ckmap if dbg else self.nimap[k][2]
+        ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;  r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  cksf, cksi = [], []  ;  ww, w1 = f'^{u}', f'^{u}.1f'
         for i, ck in enumerate(self.centKs):
-            ival = self.ck2ikm[ck]    ;    vs.append(ival)
-            assert ckmap and ck in ckmap,  f'{k=} {i=} {ival=} {ck=} {ckmap=} {self.ckmap=} {self.nimap[k][2]=} {dbg=}'
+            ival = self.ck2ikm[ck]    ;    vs.append(ival)    ;   assert ckmap and ck in ckmap,  f'{k=} {i=} {ival=} {ck=} {ckmap=} {self.ckmap=} {self.nimap[k][2]=} {dbg=}'
             if ckmap[ck]['Count'] > 0:
-                assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'
-                a, ca, b, cb = ckmap[ck]['Abc']   ;    q = self.fdvdr(a, ca, b, cb)
+                assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'    ;   a, ca, b, cb = ckmap[ck]['Abc']   ;   q = self.fdvdr(a, ca, b, cb)
                 r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 6,     i=i, j=ck)
                 f, w, n, c, d, k2, i2   = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)   ;   sk += k2
-                cksf.append(f'{c:{w1}}')          ;    cksi.append(int(round(c)))
-                fs.append(f'{fmtf(f, u-2)}')      ;      ws.append(f'{fmtf(w, u-2)}')
-            else:
-                r0s.append(blnk)    ;    rAs.append(blnk)     ;  rBs.append(blnk)  ;   r2s.append(blnk)  ;  r3s.append(blnk)   ;   k2, q = 0, Z
-                n, c, d, f, w = blnk, blnk, blnk, blnk, blnk  ;  cksi.append(ck)   ;  cksf.append(blnk)  ;  fs.append(f)       ;   ws.append(w)
-            if dbg:   ns.append(n)  ;  ks.append(k2)  ;  cs.append(c)    ;  ds.append(d)      ;   qs.append(q)
-            if dbg:   self.dmpIvals(i, cksi, ks, ds)
+                cksf.append(f'{c:{w1}}')  ;  cksi.append(int(round(c)))   ;   fs.append(f'{fmtf(f, u-2)}')    ;   ws.append(f'{fmtf(w, u-2)}')
+            else: n, c, d, k2, q = _, _, _, 0, Z  ;  cksi.append(ck) ; cksf.append(_) ; fs.append(_) ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
+            if dbg:  ns.append(n)  ;    ks.append(k2)  ;    cs.append(c)  ;   ds.append(d)  ;   qs.append(q)  ;  self.dmpIvals(i, cksi, ks, ds)
         if dbg:
             ii = [ f'{i}' for i in range(2 * NT) ]
-            slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii,          w=ww, s=mm, d=Z)}',      p=0, f=ff)
-            self.dmpDataTableLine(u + 1)
+            slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii,          w=ww, s=mm, d=Z)}',      p=0, f=ff)   ;   self.dmpDataTableLine(u + 1)
             slog(f'{mm}Centk{mm}{nn}[{nn}{fmtl(self.centKs, w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
@@ -361,8 +351,7 @@ class Pthgrn(ivls.Intonation):
             slog(f'{mm}Rati3{mm}{nn}[{nn}{fmtl(r3s,         w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            self.dmpDataTableLine(u + 1)
+            slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)   ;   self.dmpDataTableLine(u + 1)
         elif rAs and rBs:    self.dmpABs(k, rAs, rBs, o, u if o == 0 else 6)
     ####################################################################################################################################################################################################
     def dmpABs(self, k, rAs, rBs, o, u):
