@@ -148,7 +148,7 @@ class Pthgrn(ivls.Intonation):
         return n1
     ####################################################################################################################################################################################################
     def dmpPyth(self, k, u=9, o=0, dbg=1):
-        x, y = 13, 6  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, z, _, f0, w3 = -1, f'^{x}', x-2, x*W, self.FREFS[k], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
+        x = 13  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, y, z, _, f0, w3 = -1, f'^{x}', 6, x-2, x*W, self.FREFS[k], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
         if dbg: slog(f'BGN Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)  ;  ii = [ f'{i}' for i in range(2 * NT) ]  ;  slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)  ;  self.dmpDataTableLine(x + 1)
         cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcMap = []  ;  ckm = self.resetCkmap()  ;  tmp = self.k2Abcs(k)
         abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
@@ -158,28 +158,29 @@ class Pthgrn(ivls.Intonation):
             while self.centKs[cki] < rc:
                 ii.append(_)  ;  cs.append(_)  ;  ds.append(_)  ;  fs.append(_)  ;  ws.append(_) ;  ns.append(_)  ;  vs.append(_)  ;  r0s.append(_)  ;  rAs.append(_)  ;  rBs.append(_)  ;  r1s.append(_)  ;  r2s.append(_)  ;  r3s.append(_)
                 cki += 1  ;  j = len(ii)-1  ;  abc1.insert(j, fmtl(w3, w=2, d=Z))  ;  abc2.insert(j, fmtl(w3, w=2, d=Z))  ;  abc3.insert(j, fmtl(w3, w=2, d=Z))  ;  abc4.insert(j, fmtl(w3, w=2, d=Z))
-            ii.append(i)  ;  fs.append(fmtf(f, z))  ;  cs.append(fmtf(c, y-1))  ;  abcMap.append(abc)  ;  ns.append(n)  ;  ws.append(fmtf(w, z))  ;  ds.append(fmtg(d, y-1))  ;  vs.append(v)
+            ii.append(i)  ;  fs.append(fmtf(f, z))  ;  ws.append(fmtf(w, z))  ;  cs.append(fmtf(c, z-4))  ;  ds.append(fmtg(d, z-4))  ;  abcMap.append(abc)  ;  ns.append(n)  ;  vs.append(v)
             r0s, rAs, rBs, r1s, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r1s, r2s, r3s], u=y, w=x,     i=i, j=rc)
             if not dbg:   self.upd_ckmap(rc, ckm, n, f, abc, c, i)
-        self.nimap[k] = [tmp[2], abcMap, ckm]          ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'
+        self.nimap[k] = [tmp[2], abcMap, ckm]          ;   sfx = f'{nn}]'   ;   sfxc = f'{nn}]{mm}cents'   ;   sfxf = f'{nn}]{mm}Hz'   ;   sfxw = f'{nn}]{mm}cm'   ;   cks = self.centKs
         while len(abc1) < len(abc3): abc1.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
         while len(abc2) < len(abc3): abc2.append(fmtl(w3, w=2, d=Z)) # append blanks for alignment in log/csv files
         if dbg:
-            slog(f'{mm}Index{mm}{nn}[{nn}{fmtl(ii,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm}CentK{mm}{nn}[{nn}{fmtl(cks,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Ratio{mm}{nn}[{nn}{fmtl(r0s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Rati1{mm}{nn}[{nn}{fmtl(r1s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Rati2{mm}{nn}[{nn}{fmtl(r2s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm}Rati3{mm}{nn}[{nn}{fmtl(r3s,  w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
-            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
             slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,   w=ww, s=oo, d=Z)}{sfxf}', p=0, f=ff)
             slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,   w=ww, s=oo, d=Z)}{sfxw}', p=0, f=ff)
+            slog(f'{mm}Index{mm}{nn}[{nn}{fmtl(ii,   w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm} ABC1{mm}{nn}[{nn}{fmtl(abc1, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm} ABC2{mm}{nn}[{nn}{fmtl(abc2, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
             slog(f'{mm} ABC3{mm}{nn}[{nn}{fmtl(abc3, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
-            slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)    ;   self.dmpDataTableLine(x + 1)
+            slog(f'{mm} ABC4{mm}{nn}[{nn}{fmtl(abc4, w=ww, s=oo, d=Z)}{sfx}',  p=0, f=ff)
+            slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)
+            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,   w=ww, s=oo, d=Z)}{sfxc}', p=0, f=ff)    ;   self.dmpDataTableLine(x + 1)
         self.dmpMaps(k, u, o=o, dbg=dbg)  ;  slog(f'END Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff) if dbg else None
     ####################################################################################################################################################################################################
     def epsilon(self, dbg=0):
@@ -315,33 +316,33 @@ class Pthgrn(ivls.Intonation):
     ####################################################################################################################################################################################################
     def dmpCkMap(self, k, u=9, o=0, dbg=1):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, sk, v, y = self.FREFS[k], 0, Z, 4  ;  _ = u*W if dbg else 7*W  ;  ckmap = self.ckmap if dbg else self.nimap[k][2]
-        ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;  r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  cksf, cksi = [], []  ;  ww, w1 = f'^{u}', f'^{u}.1f'
+        ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, d2s, qs, ks = [], [], [], [], []  ;  r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  cksi = []  ;  ww = f'^{u}'  ;  cks = self.centKs if dbg else None
         for i, ck in enumerate(self.centKs):
             ival = self.ck2ikm[ck]    ;    vs.append(ival)    ;   assert ckmap and ck in ckmap,  f'{k=} {i=} {ival=} {ck=} {ckmap=} {self.ckmap=} {self.nimap[k][2]=} {dbg=}'
             if ckmap[ck]['Count'] > 0:
                 assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'    ;   a, ca, b, cb = ckmap[ck]['Abc']   ;   q = self.fdvdr(a, ca, b, cb)
                 r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
                 f, w, n, c, d, k2, i2   = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)   ;   sk += k2
-                cksf.append(f'{c:{w1}}')  ;  cksi.append(int(round(c)))   ;   fs.append(f'{fmtf(f, u-2)}')    ;   ws.append(f'{fmtf(w, u-2)}')
-            else: n, c, d, k2, q = _, _, _, 0, Z  ;  cksi.append(ck) ; cksf.append(_) ; fs.append(_) ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
-            if dbg:  ns.append(n)  ;    ks.append(k2)  ;    cs.append(c)  ;   ds.append(d)  ;   qs.append(q)  ;  self.dmpIvals(i, cksi, ks, ds)
+                cksi.append(int(round(c)))   ;   cs.append(f'{fmtf(c, u-4)}')   ;   ds.append(f'{fmtf(d, u-4)}')   ;   fs.append(f'{fmtf(f, u-2)}')   ;   ws.append(f'{fmtf(w, u-2)}')
+            else: n, d, k2, q = _, _, 0, Z  ;  cksi.append(ck) ; cs.append(_) ; ds.append(_) ; fs.append(_) ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
+            if dbg:  ns.append(n)  ;  d2s.append(d)  ;  ks.append(k2) ; qs.append(q) ;  self.dmpIvals(i, cksi, ks, d2s)
         if dbg:
             ii = [ f'{i}' for i in range(2 * NT) ]
-            slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii,          w=ww, s=mm, d=Z)}',      p=0, f=ff)   ;   self.dmpDataTableLine(u + 1)
-            slog(f'{mm}Centk{mm}{nn}[{nn}{fmtl(self.centKs, w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cksf,        w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}Rati0{mm}{nn}[{nn}{fmtl(r0s,         w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}RatiA{mm}{nn}[{nn}{fmtl(rAs,         w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm} A/B {mm}{nn}[{nn}{fmtl(qs,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}RatiB{mm}{nn}[{nn}{fmtl(rBs,         w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}Rati2{mm}{nn}[{nn}{fmtl(r2s,         w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff) if u >= 9 else None
-            slog(f'{mm}Rati3{mm}{nn}[{nn}{fmtl(r3s,         w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)   ;   self.dmpDataTableLine(u + 1)
+            slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii,  w=ww, s=mm, d=Z)}',      p=0, f=ff)   ;   self.dmpDataTableLine(u + 1)
+            slog(f'{mm}Centk{mm}{nn}[{nn}{fmtl(cks, w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}Rati0{mm}{nn}[{nn}{fmtl(r0s, w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}RatiA{mm}{nn}[{nn}{fmtl(rAs, w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm} A/B {mm}{nn}[{nn}{fmtl(qs,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}RatiB{mm}{nn}[{nn}{fmtl(rBs, w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}Rati2{mm}{nn}[{nn}{fmtl(r2s, w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff) if u >= 9 else None
+            slog(f'{mm}Rati3{mm}{nn}[{nn}{fmtl(r3s, w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
+            slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)   ;   self.dmpDataTableLine(u + 1)
         elif rAs and rBs:    self.dmpABs(k, rAs, rBs, o)
     ####################################################################################################################################################################################################
     def dmpABs(self, k, rAs, rBs, o):

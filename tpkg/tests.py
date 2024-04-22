@@ -185,11 +185,11 @@ class Tetractys:
         k = self.pythgrn.k
         u = 12 if csv else 13
         self.sort()
-        self.pythgrn.dmpData2(  o, o2=0, u=u,       dbg=0, csv=csv)
-        self.pythgrn.dmpCks2Iks(        x=7                       )
-        self.pythgrn.dmpNiMap(  1, k=k, x=7, upd=0, dbg=0         ) # fixme hard coded arg value k
-        self.pythgrn.dmpCks2Iks(        x=7                       )
-        self.pythgrn.dmpData2(  o, o2=1,            dbg=0, csv=csv)
+        self.pythgrn.dmpData2(  o, o2=0,      u=u,   dbg=0, csv=csv)
+        self.pythgrn.dmpCks2Iks(         x=7                       )
+        self.pythgrn.dmpNiMap(  1, k=k,  x=7, upd=0, dbg=0         )
+        self.pythgrn.dmpCks2Iks(         x=7                       )
+        self.pythgrn.dmpData2(  o, o2=1,             dbg=0, csv=csv)
         self.octdiv()
         
     def sort(self):
@@ -218,7 +218,7 @@ class Tetractys:
             self.e2 = sorted(self.d2)
             slog(f'{s:^200} {fmtl(self.e2)} {len(self.e2)}', p=0, f=ff)
             
-    def foldA(self, n, m):
+    def foldA(self, n, m): # N/A not used ?
         n = self.base(n)
         while n in self.d2 and self.k[f'{n}'] >= m:
             if n*2 >= self.top:   n = self.foldA(n, m+1)   ;   break
