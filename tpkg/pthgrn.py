@@ -90,15 +90,15 @@ class Pthgrn(ivls.Intonation):
     def dmpData(self, o, csv=0): # todo fixme
         self.csv = csv
         if   o == 0:
-            slog(f'PRT 1 0-12 {self.n} {self.k} {self.csv=}', p=0)
+            slog(f'PRT 1 0-NT {self.n} {self.k} {self.csv=}', p=0)
             self.nimap = {}
-            for i in range(0, 12):
+            for i in range(0, NT):
                 k = self.k + (i * 7) % NT
                 self.dmpPyth(k)
         elif o == 1:
-            slog(f'PRT 2A 7-12 {self.n} {self.k} {self.csv=}', p=0)
+            slog(f'PRT 2A 7-NT {self.n} {self.k} {self.csv=}', p=0)
             self.nimap = {}
-            for i in range(7, 12):
+            for i in range(7, NT):
                 k = self.k + (i * 7) % NT
                 self.dmpPyth(k)
             slog(f'PRT 2B 0-7 {self.n} {self.k} {self.csv=}', p=0)
@@ -109,15 +109,15 @@ class Pthgrn(ivls.Intonation):
     def dmpData2(self, o, o2, u=13, dbg=0, csv=0): # todo fixme called by Tetractys to call dmpCkMap(), but need to populate ckmap first
         self.csv = csv
         if   o == 0:
-            slog(f'PRT 1 0-12 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
+            slog(f'PRT 1 0-NT {self.n} {self.k} {self.csv=}', p=0) if dbg else None
             self.nimap = {}
-            for i in range(0, 12):
+            for i in range(0, NT):
                 k = self.k + (i * 7) % NT
                 self.dmpPyth(k, u=u, o=o2, dbg=dbg)
         elif o == 1:
-            slog(f'PRT 2A 7-12 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
+            slog(f'PRT 2A 7-NT {self.n} {self.k} {self.csv=}', p=0) if dbg else None
             self.nimap = {}
-            for i in range(7, 12):
+            for i in range(7, NT):
                 k = self.k + (i * 7) % NT
                 self.dmpPyth(k, u=u, o=o2, dbg=dbg)
             slog(f'PRT 2B 0-7 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
@@ -189,7 +189,7 @@ class Pthgrn(ivls.Intonation):
         return ecents
         
     def comma(self, dbg=0): # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
-        n, i, iv  = 12, -1, '5'
+        n, i, iv  = NT, -1, '5'
         s5s       = stck5ths(n)
         a, b, c   = s5s[i]
         r, ca, cb = abc2r(a, b, c)
@@ -201,7 +201,7 @@ class Pthgrn(ivls.Intonation):
         q         = f'{a}{self.i2spr(ca)}/{b}{self.i2spr(cb)}'
         ccents    = self.r2cents(cratio)
         if dbg:   slog(f'Comma = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cratio:10.8f} = {ccents:10.5f} cents')
-        ecents    = ccents / 12
+        ecents    = ccents / NT
         if dbg:   slog(f'Epsilon = Comma / 12 = {ccents:10.5f} / 12 = {ecents:10.5f} cents')
         return ccents
     ####################################################################################################################################################################################################
@@ -269,7 +269,7 @@ class Pthgrn(ivls.Intonation):
         return ckm
 
     def dmpCks2Iks(self, x=13):
-        mm, oo, f1, f2 = (Y, Y, 3, 3) if self.csv else (W, '|', 1, -3)   ;   pfx = f'{9*W}' if x == 9 else f'{11*W}' if x == 13 else f' {mm} k{mm}  '
+        mm, oo, f1, f2 = (Y, Y, 3, 3) if self.csv else (W, '|', 1, -3)   ;   pfx = f'{9*W}' if x == 9 else f'{11*W}' if x == 13 else Z
         if   x ==  9: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=3*W, d=Z)}', p=0, f=f1) if not self.csv else None
         elif x == 13: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=7*W, d=Z)}', p=0, f=f1) if not self.csv else None
         else:         slog(f'{pfx}{fmtm(self.ck2ikm, w=3, wv=2, s=oo,  d=Z)}', p=0, f=f2)
@@ -292,7 +292,7 @@ class Pthgrn(ivls.Intonation):
             for j, e in enumerate(v[1]):
                 n    = self.fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb    ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
                 if dbg:  pfx = mm.join(pd)    ;   pfx += f'{nn}[{nn}'
-                else:    pfx = mm.join(pd)    ;   pfx += f'{mm}'     ;    sfx = f'{x*W} {nn}{n:2}'
+                else:    sfx = f' {nn}{n:2}'
                 cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;   centf = f'{cent:{ww}.0f}'   ;  cki += 1
                 while  self.centKs[cki] < rc:
                     rat0.append(_)   ;    rat2.append(_)     ;   rat3.append(_)     ;     cki += 1   ;  cents.append(f'{_:{ww}}')
@@ -351,16 +351,28 @@ class Pthgrn(ivls.Intonation):
             aa.append(a ** ca)     ;    bb.append(b ** cb)
         self.dmp_rABs(k, rAs, rBs, o, u=u) if o == 1 else self.dmp_rABs(k, aa, bb, o, u=u)
 
-    def dmp_rABs(self, k, rAs, rBs, o, u):
-        mm, nn, o1, o2, ff  = (Y, Y, Y, Y*2, 3) if self.csv else (W, Z, '|', '|', -3)
-        ckm = self.nimap[k][2]   ;   ck = 0
+    def OLD__dmp_rABs(self, k, rAs, rBs, o, u):
+        mm, nn, oo, o2, ff  = (Y, Y, Y, Y*2, 3) if self.csv else (W, Z, '|', '|', -3)
+        ckm  = self.nimap[k][2]   ;    ck = 0
         assert ck in ckm,         f'{k=} {ck=} {ckm=}'
         assert ckm[ck]['Count'],  f'{k=} {ck=} {ckm=}'
-        n = ckm[ck]['Note']   ;   ww = f'^{u}'
-        pfx2 = 7*W         if o == 1 else Z
-        pfx1 = f'{nn}{nn}' if o == 0 else f'  {nn}  {mm}  ' if o == 1 else Z
-        slog(f'{pfx1}{fmtl(rAs, w=ww, s=o1 if o else o2, d=Z)}{pfx2}{nn}{n:2}', p=0, f=ff)
-        slog(f'{pfx1}{fmtl(rBs, w=ww, s=o1 if o else o2, d=Z)}{pfx2}{nn}{n:2}', p=0, f=ff)
+        n    = ckm[ck]['Note']    ;    ww = f'^{u}'
+        sfx  = 7*W               if o == 1                            else Z
+        pfx  = f'  {nn}  {mm}  ' if o == 1 else f'{nn}{nn}' if o == 0 else Z
+        slog(f'{pfx}{fmtl(rAs, w=ww, s=oo, d=Z)}{sfx}{nn}{n:2}', p=0, f=ff) # o1 if o else o2
+        slog(f'{pfx}{fmtl(rBs, w=ww, s=oo, d=Z)}{sfx}{nn}{n:2}', p=0, f=ff)
+
+    def dmp_rABs(self, k, rAs, rBs, o, u):
+        mm, nn, oo, o2, ff  = (Y, Y, Y, Y*2, 3) if self.csv else (W, Z, '|', '|', -3)
+        ckm  = self.nimap[k][2]   ;   n = ckm[0]['Note']   ;   pfx = Z # W*7
+        if not o:
+            u = 6   ;   _ = W*u
+            for i, ck in enumerate(self.centKs):
+                if ck in ckm and ckm[ck]['Count'] < 1:
+                    rAs.insert(i, _)   ;   rBs.insert(i, _)
+        ww = f'^{u}'   ;   sfx = W
+        slog(f'{pfx}{fmtl(rAs, w=ww, s=oo, d=Z)}{sfx}{nn}{n:2}', p=0, f=ff)
+        slog(f'{pfx}{fmtl(rBs, w=ww, s=oo, d=Z)}{sfx}{nn}{n:2}', p=0, f=ff)
     ####################################################################################################################################################################################################
     def dmpAsBs(self, k, rAs, rBs, u): # print both on same line
         abcs = self.nimap[k][0]    ;   As, Bs = [], []
