@@ -109,18 +109,18 @@ class Pthgrn(ivls.Intonation):
     def dmpData2(self, o, o2, u=13, dbg=0, csv=0): # todo fixme called by Tetractys to call dmpCkMap(), but need to populate ckmap first
         self.csv = csv
         if   o == 0:
-            slog(f'PRT 1 0-NT {self.n} {self.k} {self.csv=}', p=0) if dbg else None
+            slog(f'PRT 1 0-NT {self.n} {self.k} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
             self.nimap = {}
             for i in range(0, NT):
                 k = self.k + (i * 7) % NT
                 self.dmpPyth(k, u=u, o=o2, dbg=dbg)
         elif o == 1:
-            slog(f'PRT 2A 7-NT {self.n} {self.k} {self.csv=}', p=0) if dbg else None
+            slog(f'PRT 2A 7-NT {self.n} {self.k} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
             self.nimap = {}
             for i in range(7, NT):
                 k = self.k + (i * 7) % NT
                 self.dmpPyth(k, u=u, o=o2, dbg=dbg)
-            slog(f'PRT 2B 0-7 {self.n} {self.k} {self.csv=}', p=0) if dbg else None
+            slog(f'PRT 2B 0-7 {self.n} {self.k} {self.csv=} {o=} {o2=} {u=}', p=0) if dbg else None
             for i in range(0, 7):
                 k = self.k + (i * 7) % NT
                 self.dmpPyth(k, u=u, o=o2, dbg=dbg)
@@ -272,7 +272,7 @@ class Pthgrn(ivls.Intonation):
         mm, oo, f1, f2 = (Y, Y, 3, 3) if self.csv else (W, '|', 1, -3)   ;   pfx = f'{9*W}' if x == 9 else f'{11*W}' if x == 13 else Z
         if   x ==  9: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=3*W, d=Z)}', p=0, f=f1) if not self.csv else None
         elif x == 13: slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=7*W, d=Z)}', p=0, f=f1) if not self.csv else None
-        else:         slog(f'{pfx}{fmtm(self.ck2ikm, w=3, wv=2, s=oo,  d=Z)}', p=0, f=f2)
+        else:         slog(f'{pfx}{fmtm(self.ck2ikm, w=4, wv=2, s=oo,  d=Z)}', p=0, f=f2)
             
     def upd_ckmap(self, ck, ckm, n, f, abc, cent, idx): # f = f0 * pa/pb # n if k==ik else W*2
         assert ck in ckm.keys(),  f'{ck=} {ckm.keys()=}'
@@ -288,7 +288,7 @@ class Pthgrn(ivls.Intonation):
         if dbg:   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None   ;   self.dmpDataTableLine(x + 1) if ni == 1 else None
         for i, (kk, v) in enumerate(self.nimap.items()):
             rat0, rat2, rat3, cents = [], [], [], []    ;    cki = -1
-            rat1 = [] if x == 13 or x == 6 else None    ;   ratA = [] if x == 9 else None    ;   ratB = [] if x == 9 else None
+            rat1 = [] if x==13 or x==6 or x==7 else None    ;   ratA = [] if x == 9 else None    ;   ratB = [] if x == 9 else None
             for j, e in enumerate(v[1]):
                 n    = self.fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb    ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
                 if dbg:  pfx = mm.join(pd)    ;   pfx += f'{nn}[{nn}'
@@ -298,9 +298,9 @@ class Pthgrn(ivls.Intonation):
                     rat0.append(_)   ;    rat2.append(_)     ;   rat3.append(_)     ;     cki += 1   ;  cents.append(f'{_:{ww}}')
                     rat1.append(_) if x == 13 else None      ;   ratA.append(_) if x == 9 else None  ;   ratB.append(_) if x == 9 else None
                 cents.append(centf)
-                if   x == 9:    self.addFmtRs(a, ca, b, cb, rs=[rat0, ratA, ratB, rat2, rat3], u=yy, w=x,     i=i, j=j)
-                elif x == 13:   self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
-                elif x == 6:    self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
+                if   x == 9:        self.addFmtRs(a, ca, b, cb, rs=[rat0, ratA, ratB, rat2, rat3], u=yy, w=x,     i=i, j=j)
+                elif x == 13:       self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
+                elif x==6 or x==7:  self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
                 if dbg and upd and ni == 5:   self.upd_ckmap(rc, self.ckmap, n if kk==k else W*2, f0*pa/pb, e, cent, j)
             if dbg:
                 if   ni == 1:             slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
@@ -313,13 +313,13 @@ class Pthgrn(ivls.Intonation):
         if dbg: self.dmpDataTableLine(x + 1)   ;   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
     ####################################################################################################################################################################################################
     def dmpCkMap(self, k, u=9, o=0, dbg=1):
-        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, sk, v, y = self.FREFS[k], 0, Z, 4  ;  _ = u*W if dbg else 6*W  ;  ckmap = self.ckmap if dbg else self.nimap[k][2]
+        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, sk, v, y = self.FREFS[k], 0, Z, 4  ;  _ = u*W if dbg else 7*W  ;  ckmap = self.ckmap if dbg else self.nimap[k][2]
         ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, qs, ks = [], [], [], []  ;  r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  cksf, cksi = [], []  ;  ww, w1 = f'^{u}', f'^{u}.1f'
         for i, ck in enumerate(self.centKs):
             ival = self.ck2ikm[ck]    ;    vs.append(ival)    ;   assert ckmap and ck in ckmap,  f'{k=} {i=} {ival=} {ck=} {ckmap=} {self.ckmap=} {self.nimap[k][2]=} {dbg=}'
             if ckmap[ck]['Count'] > 0:
                 assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'    ;   a, ca, b, cb = ckmap[ck]['Abc']   ;   q = self.fdvdr(a, ca, b, cb)
-                r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 6,     i=i, j=ck)
+                r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
                 f, w, n, c, d, k2, i2   = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)   ;   sk += k2
                 cksf.append(f'{c:{w1}}')  ;  cksi.append(int(round(c)))   ;   fs.append(f'{fmtf(f, u-2)}')    ;   ws.append(f'{fmtf(w, u-2)}')
             else: n, c, d, k2, q = _, _, _, 0, Z  ;  cksi.append(ck) ; cksf.append(_) ; fs.append(_) ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
@@ -341,7 +341,7 @@ class Pthgrn(ivls.Intonation):
             slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)   ;   self.dmpDataTableLine(u + 1)
-        elif rAs and rBs:    self.dmpABs(k, rAs, rBs, o, u if o == 0 else 6)
+        elif rAs and rBs:    self.dmpABs(k, rAs, rBs, o, u if o == 0 else 7)
     ####################################################################################################################################################################################################
     def dmpABs(self, k, rAs, rBs, o, u):
         abcs = self.nimap[k][0]    ;   aa, bb = [], []
@@ -351,22 +351,11 @@ class Pthgrn(ivls.Intonation):
             aa.append(a ** ca)     ;    bb.append(b ** cb)
         self.dmp_rABs(k, rAs, rBs, o, u=u) if o == 1 else self.dmp_rABs(k, aa, bb, o, u=u)
 
-    def OLD__dmp_rABs(self, k, rAs, rBs, o, u):
-        mm, nn, oo, o2, ff  = (Y, Y, Y, Y*2, 3) if self.csv else (W, Z, '|', '|', -3)
-        ckm  = self.nimap[k][2]   ;    ck = 0
-        assert ck in ckm,         f'{k=} {ck=} {ckm=}'
-        assert ckm[ck]['Count'],  f'{k=} {ck=} {ckm=}'
-        n    = ckm[ck]['Note']    ;    ww = f'^{u}'
-        sfx  = 7*W               if o == 1                            else Z
-        pfx  = f'  {nn}  {mm}  ' if o == 1 else f'{nn}{nn}' if o == 0 else Z
-        slog(f'{pfx}{fmtl(rAs, w=ww, s=oo, d=Z)}{sfx}{nn}{n:2}', p=0, f=ff) # o1 if o else o2
-        slog(f'{pfx}{fmtl(rBs, w=ww, s=oo, d=Z)}{sfx}{nn}{n:2}', p=0, f=ff)
-
     def dmp_rABs(self, k, rAs, rBs, o, u):
-        mm, nn, oo, o2, ff  = (Y, Y, Y, Y*2, 3) if self.csv else (W, Z, '|', '|', -3)
-        ckm  = self.nimap[k][2]   ;   n = ckm[0]['Note']   ;   pfx = Z # W*7
+        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', -3)
+        ckm  = self.nimap[k][2]   ;   n = ckm[0]['Note']   ;   pfx = Z   ;   u = 7
         if not o:
-            u = 6   ;   _ = W*u
+            _ = W*u
             for i, ck in enumerate(self.centKs):
                 if ck in ckm and ckm[ck]['Count'] < 1:
                     rAs.insert(i, _)   ;   rBs.insert(i, _)
