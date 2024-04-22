@@ -148,7 +148,7 @@ class Pthgrn(ivls.Intonation):
         return n1
     ####################################################################################################################################################################################################
     def dmpPyth(self, k, u=9, o=0, dbg=1):
-        x, y = 13, 6  ;  ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if self.csv else (f'^{x}', W, Z, '|', 1)  ;  cki, z, _, f0, w3 = -1, x-2, x*W, self.FREFS[k], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
+        x, y = 13, 6  ;  mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  cki, ww, z, _, f0, w3 = -1, f'^{x}', x-2, x*W, self.FREFS[k], [W, W, W]  ;  pfx = f'{mm}  k  {mm}{nn} {nn}'
         if dbg: slog(f'BGN Pythagorean ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)  ;  ii = [ f'{i}' for i in range(2 * NT) ]  ;  slog(f'{pfx}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff)  ;  self.dmpDataTableLine(x + 1)
         cs, ds, ii, ns, vs, fs, ws = [], [], [], [], [], [], []   ;   r0s, rAs, rBs, r1s, r2s, r3s = [], [], [], [], [], []   ;   abcMap = []  ;  ckm = self.resetCkmap()  ;  tmp = self.k2Abcs(k)
         abc0 = list(tmp[3])  ;  abc1, abc2, abc3, abc4 = fabc(tmp[0]), fabc(tmp[1]), fabc(tmp[2]), fabc(tmp[3])  ;  abc1.insert(0, fmtl(w3, w=2, d=Z))  ;  abc2.insert(0, fmtl(w3, w=2, d=Z)) # insert blanks to align log/csv file
@@ -258,6 +258,7 @@ class Pthgrn(ivls.Intonation):
             self.checkIvals(                          )
             self.checkIvals2(                         )
         else:
+            assert u == 12 or u == 13, f'{u=} {k=} {o=} {dbg=} {self.csv=}'
             self.dmpNiMap(  5, k, x=13, upd=1, dbg=dbg)
             self.dmpCkMap(     k, u=u,  o=o,   dbg=dbg)
         self.ckmap = self.resetCkmap() # todo call this once @ end of dmpMaps()
@@ -341,17 +342,17 @@ class Pthgrn(ivls.Intonation):
             slog(f'{mm}Freq {mm}{nn}[{nn}{fmtl(fs,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,          w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)   ;   self.dmpDataTableLine(u + 1)
-        elif rAs and rBs:    self.dmpABs(k, rAs, rBs, o, u if o == 0 else 7)
+        elif rAs and rBs:    self.dmpABs(k, rAs, rBs, o)
     ####################################################################################################################################################################################################
-    def dmpABs(self, k, rAs, rBs, o, u):
+    def dmpABs(self, k, rAs, rBs, o):
         abcs = self.nimap[k][0]    ;   aa, bb = [], []
         for j, abc in enumerate(abcs):
             a, b, c = abc[0], abc[1], abc[2]
             r, ca, cb = abc2r(a, b, c)
             aa.append(a ** ca)     ;    bb.append(b ** cb)
-        self.dmp_rABs(k, rAs, rBs, o, u=u) if o == 1 else self.dmp_rABs(k, aa, bb, o, u=u)
+        self.dmp_rABs(k, rAs, rBs, o) if o == 1 else self.dmp_rABs(k, aa, bb, o)
 
-    def dmp_rABs(self, k, rAs, rBs, o, u):
+    def dmp_rABs(self, k, rAs, rBs, o):
         mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', -3)
         ckm  = self.nimap[k][2]   ;   n = ckm[0]['Note']   ;   pfx = Z   ;   u = 7
         if not o:
