@@ -35,25 +35,25 @@ class Notes(object):#1       2       3       4       5       6       7       8  
     FLAT, NTRL, SHRP   =  -1,   0,   1  # -1 ~= 2
     TYPES              = [ 'NTRL', 'SHRP', 'FLAT' ] # 0=NTRL, 1=SHRP, 2=FLAT=-1
     TYPE               = SHRP
-    NTONES             = len(V2I)
+    NT                 = len(V2I)
     
     @classmethod
     def i2n(cls, t=None):           return cls.I2S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I2F
     @classmethod
     def i4n(cls, t=None):           return cls.I4S if t is None or t==cls.SHRP or t==cls.NTRL else cls.I4F
     @classmethod
-    def n2i(cls, n, o=0):           n = n[:-1] if o else n   ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.N2I[n]
+    def n2i(cls, n, o=0):           n = n[:-1] if o else n    ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.N2I[n]
     @classmethod
-    def n2ai(cls, m):               n = m[:-1].strip()       ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.n2ipo(filtA(m))
+    def n2ai(cls, m):               n = m[:-1].strip()        ;   assert n in cls.N2I,  f'{n=} {cls.N2I=}'     ;   return cls.n2ipo(filtA(m))
     @classmethod
-    def n2ipo(cls, n):              o = int(n[-1]) * cls.NTONES   ;   n = n[:-1]   ;   return cls.N2I[n] + o
+    def n2ipo(cls, n):              o = int(n[-1]) * cls.NT   ;   n = n[:-1]   ;   return cls.N2I[n] + o
 #    @classmethod
 #    def nextName(cls, n, iv, o=0):  i = cls.n2i(n, o)   ;   j = cls.V2I[iv]   ;   k = cls.nextIndex(i, j)   ;   return cls.name(k, 0) # todo fixme N/A not used?
 #    @classmethod
-#    def nextIndex(cls, i, d=1):     return (i+d) % cls.NTONES
+#    def nextIndex(cls, i, d=1):     return (i+d) % cls.NT
     @classmethod
     def name(cls, i, t=None, n2=1):
-        j = i % cls.NTONES   ;   t = 2 if t==-1 else t
+        j = i % cls.NT   ;   t = 2 if t==-1 else t
 #       t =     cls.TYPE if t is None else t
         t = t        if t is not None else cls.TYPE
         assert     t      is not None and  ist(t, int),     f'{t=} {type(t)=}'
@@ -62,20 +62,20 @@ class Notes(object):#1       2       3       4       5       6       7       8  
         return  cls.i2n(t)[j]  if n2  else cls.i4n(t)[j]
 ########################################################################################################################################################################################################
 
-NTONES        = Notes.NTONES
+NT        = Notes.NT
 ########################################################################################################################################################################################################
-def f440(i):         return float(440 * (2 ** (1/NTONES)) ** (i - A4_INDEX))
-def f432(i):         return float(432 * (2 ** (1/NTONES)) ** (i - A4_INDEX))
+def f440(i):         return float(440 * (2 ** (1/NT)) ** (i - A4_INDEX))
+def f432(i):         return float(432 * (2 ** (1/NT)) ** (i - A4_INDEX))
 def fOTS(i, r=440):  f0 = F440s[0] if r == 440 else F432s[0]  ;   return f0 * i
 def Piano(c, d=1):   (d, d2) = ("[", "]") if d else (Z, Z)    ;   return f'{utl.NONE:^17}' if c is None else f'{fmtl(c, w=3, d=d, d2=d2):17}'
 
 F440s  = [ f440(i)  for i in range(MAX_FREQ_IDX) ]
 F432s  = [ f432(i)  for i in range(MAX_FREQ_IDX) ]
 ########################################################################################################################################################################################################
-FLATS  = [ f'{v}{n}' for n in range(NTONES - 1) for v in Notes.I2F.values() ][:MAX_FREQ_IDX]
-SHRPS  = [ f'{v}{n}' for n in range(NTONES - 1) for v in Notes.I2S.values() ][:MAX_FREQ_IDX]
-#FLATS = [ f'{v}{n}' for n in range(NTONES - 1) for v in Notes.I4F.values() ][:MAX_FREQ_IDX]
-#SHRPS = [ f'{v}{n}' for n in range(NTONES - 1) for v in Notes.I4S.values() ][:MAX_FREQ_IDX]
+FLATS  = [ f'{v}{n}' for n in range(NT - 1) for v in Notes.I2F.values() ][:MAX_FREQ_IDX]
+SHRPS  = [ f'{v}{n}' for n in range(NT - 1) for v in Notes.I2S.values() ][:MAX_FREQ_IDX]
+#FLATS = [ f'{v}{n}' for n in range(NT - 1) for v in Notes.I4F.values() ][:MAX_FREQ_IDX]
+#SHRPS = [ f'{v}{n}' for n in range(NT - 1) for v in Notes.I4S.values() ][:MAX_FREQ_IDX]
 
 def dumpData(csv=0):
     slog(f'BGN {csv=}')
@@ -112,10 +112,10 @@ def dumpTestA(csv=0):
 
 def dumpTestB(csv=0):
     w, d, m, n, file = ('^5', Z, Y, Y, 3) if csv else ('^5', Z, W, Z, 1)
-    t   = NTONES        ;    s = Notes.SHRP  ;    f = Notes.FLAT  ;  is1 = Notes.IS1  ;  is2 = Notes.IS2  ;  i2v = Notes.I2V  ;    v = 21
-    i2n = Notes.i2n     ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i4v = Notes.I4V  ;  n2i = Notes.N2I
-    i4n = Notes.i4n     ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  i6v = Notes.I6V  ;  v2i = Notes.V2I
-    slog('BGN')         ;    o = t + 1       ;    p = 0
+    t   = NT          ;    s = Notes.SHRP  ;    f = Notes.FLAT  ;  is1 = Notes.IS1  ;  is2 = Notes.IS2  ;  i2v = Notes.I2V  ;    v = 21
+    i2n = Notes.i2n   ;  f2s = Notes.F2S   ;  s2f = Notes.S2F   ;  i2f = Notes.I2F  ;  i2s = Notes.I2S  ;  i4v = Notes.I4V  ;  n2i = Notes.N2I
+    i4n = Notes.i4n   ;  f4s = Notes.F4S   ;  s4f = Notes.S4F   ;  i4f = Notes.I4F  ;  i4s = Notes.I4S  ;  i6v = Notes.I6V  ;  v2i = Notes.V2I
+    slog('BGN')       ;    o = t + 1       ;    p = 0
     slog(f'    {m}[{m}{fmtl( list(range(v)),                                                          w=w, d=d, s=m)}{m}]', p=p, f=file)
     slog(f'ACCD{m}[{m}{fmtl([F, N, S],                                                                w=w, d=d, s=m)}{m}]', p=p, f=file)
     slog(f' F2S{m}[{m}{fmtl([ f"{i2n(f)[k]}:{f2s[i2n(f)[k]]}" if k in is1 else W for k in range(t) ], w=w, d=d, s=m)}{m}]', p=p, f=file)
@@ -146,7 +146,7 @@ def updNotes(i, m, n, t, d=0): # N/A
     else:
         Notes.F2S[n] = m   ;   Notes.S2F[m] = n
 ########################################################################################################################################################################################################
-def initND():    return { i: [ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i], Notes.I4V[i], Notes.I6V[i] ] for i in range(NTONES) }
+def initND():    return { i: [ Notes.I2F[i], Notes.I2S[i], Notes.I2V[i], Notes.I4V[i], Notes.I6V[i] ] for i in range(NT) }
 
 def dumpND(csv=0):
     slog('BGN')

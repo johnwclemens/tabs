@@ -730,7 +730,7 @@ class ShiftTabsCmd(Cmd):
                 cc = tobj.cn2cc(cn)   ;   p, l, c, r = tobj.cc2plct(cc, dbg=0)
                 slog(f'{cc=} {cn=} {v=} text={v}')
                 for t in range(nt):
-                    text = v[t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = Notes.NTONES * 2
+                    text = v[t]    ;    kt = cc + t    ;    fn = 0   ;   ntones = Notes.NT * 2
                     if tobj.sobj.isFret(text):
                         fn = tobj.afn(str((tobj.sobj.tab2fn(text) + tobj.shiftSign * tobj.sobj.tab2fn(nf)) % ntones))  ;  slog(f'{cc=} {cn=} {t=} {text=} {nf=} {fn=} {tobj.shiftSign=}')
                     if fn and tobj.sobj.isFret(fn):  tobj.setDTNIK(fn, kt, p, l, c, t, kk=1 if t==nt-1 else 0)

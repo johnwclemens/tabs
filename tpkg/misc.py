@@ -11,7 +11,7 @@ class DSymb:
 class Scales:
     MajorIs = [ 0, 2, 4, 5, 7, 9, 11 ]
     @classmethod
-    def majIs(cls, i):  return [ (i + j) % Notes.NTONES for j in cls.MajorIs ]
+    def majIs(cls, i):  return [ (i + j) % Notes.NT for j in cls.MajorIs ]
 ########################################################################################################################################################################################################
 class Modes:
     IONIAN, DORIAN, PHRYGIAN, LYDIAN, MIXOLYDIAN, AEOLIAN, LOCRIAN = range(7)

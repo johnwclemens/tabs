@@ -8,8 +8,8 @@ F, N, S                = unic.F,   unic.N,   unic.S
 W, Y, Z, slog, ist     = utl.W,    utl.Y,    utl.Z,    utl.slog,   utl.ist
 fmtl, fmtm, fmtf, fmtg = utl.fmtl, utl.fmtm, utl.fmtf, utl.fmtg
 
-SUPERS, MAX_FREQ_IDX, ACCD_TONES = utl.SPRSCRPT_INTS,    utl.MAX_FREQ_IDX,     notes.ACCD_TONES
-NT, A4_INDEX, CM_P_M, V_SOUND    = notes.NTONES, notes.A4_INDEX, notes.CM_P_M, notes.V_SOUND
+SUPERS, MAX_FREQ_IDX, ACCD_TONES = utl.SPRSCRPT_INTS,    utl.MAX_FREQ_IDX,    notes.ACCD_TONES
+NT, A4_INDEX, CM_P_M, V_SOUND    = notes.NT,   notes.A4_INDEX,   notes.CM_P_M,   notes.V_SOUND
 
 FLATS, SHRPS  = notes.FLATS, notes.SHRPS
 F440s, F432s  = notes.F440s, notes.F432s

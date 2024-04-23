@@ -186,7 +186,7 @@ class Pthgrn(ivls.Intonation):
     def epsilon(self, dbg=0):
         ccents = self.comma()
         ecents = ccents / NT
-        if dbg:  slog(f'Epsilon = Comma / 12 = {ccents:10.5f} / 12 = {ecents:10.5f} cents')
+        if dbg:  slog(f'Epsilon = Comma / {NT} = {ccents:10.5f} / {NT} = {ecents:10.5f} cents')
         return ecents
         
     def comma(self, dbg=0): # 3**12 / 2**19 = 3¹²/2¹⁹ = 531441 / 524288 = 1.0136432647705078, log2(1.0136432647705078) = 0.019550008653874178, 1200 * log2() = 23.460010384649014
@@ -203,7 +203,7 @@ class Pthgrn(ivls.Intonation):
         ccents    = self.r2cents(cratio)
         if dbg:   slog(f'Comma = {pa:6}/{pb:<6} = {a}**{ca}/{b}**{cb} = {q:6} = {cratio:10.8f} = {ccents:10.5f} cents')
         ecents    = ccents / NT
-        if dbg:   slog(f'Epsilon = Comma / 12 = {ccents:10.5f} / 12 = {ecents:10.5f} cents')
+        if dbg:   slog(f'Epsilon = Comma / {NT} = {ccents:10.5f} / {NT} = {ecents:10.5f} cents')
         return ccents
     ####################################################################################################################################################################################################
     def fIvals(self, data, i):
@@ -285,50 +285,50 @@ class Pthgrn(ivls.Intonation):
         ckm[ck]['Ival']  = self.ck2ikm[ck]        ;   ckm[ck]['Idx']   = idx
     ####################################################################################################################################################################################################
     def dmpNiMap(self, ni, k, x, upd=0, dbg=1): # x=13 or x=9
-        ww, mm, nn, oo, ff = (f'^{x}', Y, Y, Y, 3) if self.csv else (f'^{x}', W, Z, '|', 1)    ;   yy = 6 if x==13 else 4
-        ii = [ f'{i}' for i in range(2 * NT) ]   ;   pfx, pfx2 = Z, f'{mm}  k  {mm}{nn} {nn}'  ;   sfx = f'{nn}]'   ;   f0 = self.FREFS[k]   ;   _ = W*x
-        if dbg:   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None   ;   self.dmpDataTableLine(x + 1) if ni == 1 else None
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  ww, _ = f'^{x}', W*x  ;    yy = 6 if x==13 else 4
+        ii = [ f'{i}' for i in range(2 * NT) ]   ;   pfx, pfx2 = Z, f'{mm}  k  {mm}{nn} {nn}'   ;   sfx = f'{nn}]'   ;   f0 = self.FREFS[k]
+        if dbg:   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None    ;   self.dmpDataTableLine(x + 1) if ni==1 else None
         for i, (kk, v) in enumerate(self.nimap.items()):
             rat0, rat2, rat3, cents = [], [], [], []    ;    cki = -1
-            rat1 = [] if x==13 or x==6 or x==7 else None    ;   ratA = [] if x == 9 else None    ;   ratB = [] if x == 9 else None
+            rat1 = [] if x==13 or x==6 or x==7 else None    ;   ratA = [] if x == 9 else None   ;   ratB = [] if x == 9 else None
             for j, e in enumerate(v[1]):
-                n    = self.fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb    ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
+                n    = self.fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
                 if dbg:  pfx = mm.join(pd)    ;   pfx += f'{nn}[{nn}'
                 else:    sfx = f' {nn}{n:2}'
-                cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;   centf = f'{cent:{ww}.0f}'   ;  cki += 1
+                cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;   centf = f'{cent:{ww}.0f}'  ;  cki += 1
                 while  self.centKs[cki] < rc:
-                    rat0.append(_)   ;    rat2.append(_)     ;   rat3.append(_)     ;     cki += 1   ;  cents.append(f'{_:{ww}}')
-                    rat1.append(_) if x == 13 else None      ;   ratA.append(_) if x == 9 else None  ;   ratB.append(_) if x == 9 else None
+                    rat0.append(_)   ;  rat2.append(_)   ;   rat3.append(_)    ;    cki += 1    ;  cents.append(f'{_:{ww}}')
+                    rat1.append(_) if x==13 else None    ;   ratA.append(_) if x==9 else None   ;   ratB.append(_) if x==9 else None
                 cents.append(centf)
-                if   x == 9:        self.addFmtRs(a, ca, b, cb, rs=[rat0, ratA, ratB, rat2, rat3], u=yy, w=x,     i=i, j=j)
-                elif x == 13:       self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
+                if   x==9:          self.addFmtRs(a, ca, b, cb, rs=[rat0, ratA, ratB, rat2, rat3], u=yy, w=x,     i=i, j=j)
+                elif x==13:         self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
                 elif x==6 or x==7:  self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
                 if dbg and upd and ni == 5:   self.upd_ckmap(rc, self.ckmap, n if kk==k else W*2, f0*pa/pb, e, cent, j)
             if dbg:
-                if   ni == 1:             slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-                elif ni == 2 and x == 9:  slog(f'{pfx}{Z.join(fmtl(ratA,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)  ;  slog(f'{pfx}{Z.join(fmtl(ratB,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-                elif ni == 2 and x == 13: slog(f'{pfx}{Z.join(fmtl(rat1,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-                elif ni == 3:             slog(f'{pfx}{Z.join(fmtl(rat2,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-                elif ni == 4:             slog(f'{pfx}{Z.join(fmtl(rat3,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-                elif ni == 5:             slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-            elif ni == 1:                 slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff if self.csv else -3)
+                if   ni==1:           slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+                elif ni==2 and x==9:  slog(f'{pfx}{Z.join(fmtl(ratA,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)  ;  slog(f'{pfx}{Z.join(fmtl(ratB, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+                elif ni==2 and x==13: slog(f'{pfx}{Z.join(fmtl(rat1,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+                elif ni==3:           slog(f'{pfx}{Z.join(fmtl(rat2,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+                elif ni==4:           slog(f'{pfx}{Z.join(fmtl(rat3,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+                elif ni==5:           slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+            elif ni==1:               slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff if self.csv else -3)
         if dbg: self.dmpDataTableLine(x + 1)   ;   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
     ####################################################################################################################################################################################################
     def dmpCkMap(self, k, u=9, o=0, dbg=1):
-        mm, nn, oo, ff  = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, sk, v, y = self.FREFS[k], 0, Z, 4  ;  _ = u*W if dbg else 7*W  ;  ckmap = self.ckmap if dbg else self.nimap[k][2]
-        ns, fs, ws, vs  = [], [], [], []  ;  cs, ds, d2s, qs, ks = [], [], [], [], []  ;  r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  cksi = []  ;  ww = f'^{u}'  ;  cks = self.centKs if dbg else None
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, sk, v, ww, y = self.FREFS[k], 0, Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
+        ns, fs, ws, vs = [], [], [], []  ;  cs, ds, d2s, qs, ks, cksi = [], [], [], [], [], []  ;  r0s, rAs, rBs, r2s, r3s = [], [], [], [], []  ;  ckmap = self.ckmap if dbg else self.nimap[k][2]
         for i, ck in enumerate(self.centKs):
             ival = self.ck2ikm[ck]    ;    vs.append(ival)    ;   assert ckmap and ck in ckmap,  f'{k=} {i=} {ival=} {ck=} {ckmap=} {self.ckmap=} {self.nimap[k][2]=} {dbg=}'
             if ckmap[ck]['Count'] > 0:
                 assert ival == ckmap[ck]['Ival'],  f'{ival=} {ck=} {ckmap[ck]["Ival"]=}'    ;   a, ca, b, cb = ckmap[ck]['Abc']   ;   q = self.fdvdr(a, ca, b, cb)
                 r0s, rAs, rBs, r2s, r3s = self.addFmtRs(a, ca, b, cb, rs=[r0s, rAs, rBs, r2s, r3s], u=y, w=u if dbg else 7,     i=i, j=ck)
                 f, w, n, c, d, k2, i2   = self.getCkMapVal(ckmap, ck, a, ca, b, cb, f0, self.w0)   ;   sk += k2
-                cksi.append(int(round(c)))   ;   cs.append(f'{fmtf(c, u-4)}')   ;   ds.append(f'{fmtf(d, u-4)}')   ;   fs.append(f'{fmtf(f, u-2)}')   ;   ws.append(f'{fmtf(w, u-2)}')
+                cksi.append(int(round(c)))  ;  cs.append(f'{fmtf(c, u-4)}')   ; ds.append(f'{fmtf(d, u-4)}') ; fs.append(f'{fmtf(f, u-2)}') ; ws.append(f'{fmtf(w, u-2)}')
             else: n, d, k2, q = _, _, 0, Z  ;  cksi.append(ck) ; cs.append(_) ; ds.append(_) ; fs.append(_) ; ws.append(_) ; r0s.append(_) ; rAs.append(_) ; rBs.append(_) ; r2s.append(_) ; r3s.append(_)
-            if dbg:  ns.append(n)  ;  d2s.append(d)  ;  ks.append(k2) ; qs.append(q) ;  self.dmpIvals(i, cksi, ks, d2s)
+            if dbg:   ns.append(n)  ;  d2s.append(d)  ;  ks.append(k2)  ;  qs.append(q)  ;  self.dmpIvals(i, cksi, ks, d2s)
         if dbg:
             ii = [ f'{i}' for i in range(2 * NT) ]
-            slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii,  w=ww, s=mm, d=Z)}',      p=0, f=ff)   ;   self.dmpDataTableLine(u + 1)
+            slog(f'{mm}  k  {mm}{nn} {nn}{fmtl(ii,  w=ww, s=mm, d=Z)}',      p=0, f=ff)  ;  self.dmpDataTableLine(u + 1)
             slog(f'{mm}Centk{mm}{nn}[{nn}{fmtl(cks, w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Itval{mm}{nn}[{nn}{fmtl(vs,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Note {mm}{nn}[{nn}{fmtl(ns,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
@@ -342,7 +342,7 @@ class Pthgrn(ivls.Intonation):
             slog(f'{mm}Wavln{mm}{nn}[{nn}{fmtl(ws,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}Cents{mm}{nn}[{nn}{fmtl(cs,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
             slog(f'{mm}DCent{mm}{nn}[{nn}{fmtl(ds,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)
-            slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)   ;   self.dmpDataTableLine(u + 1)
+            slog(f'{mm}Count{mm}{nn}[{nn}{fmtl(ks,  w=ww, s=oo, d=Z)}{nn}]', p=0, f=ff)  ;  self.dmpDataTableLine(u + 1)
         elif rAs and rBs:    self.dmpABs(k, rAs, rBs, o)
     ####################################################################################################################################################################################################
     def dmpABs(self, k, rAs, rBs, o):

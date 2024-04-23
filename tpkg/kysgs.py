@@ -3,7 +3,7 @@ from tpkg.notes import Notes
 from tpkg.misc  import Scales
 from tpkg       import unic
 
-name, NT           = Notes.name, Notes.NTONES
+name, NT           = Notes.name, Notes.NT
 TYPE, TYPES        = Notes.TYPE, Notes.TYPES
 FLAT, NTRL, SHRP   = Notes.FLAT, Notes.NTRL, Notes.SHRP
 I2S, I2F, F4S, S4F = Notes.I2S,  Notes.I2F,  Notes.F4S,  Notes.S4F

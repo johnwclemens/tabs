@@ -8,7 +8,7 @@ from   tpkg        import utl
 from   tpkg.notes  import Notes
 from   tpkg        import cdata
 
-NTONES           = Notes.NTONES
+NT               = Notes.NT
 W, Y, Z          = utl.W, utl.Y, utl.Z
 slog, fmtl, fmtm = utl.slog, utl.fmtl, utl.fmtm
 ist              = utl.ist
@@ -42,7 +42,7 @@ class Chords:
     ####################################################################################################################################################################################################
     def getChordName(self, data, nic, cn, p, l, c, dbg=0):
         ikeys, ivals, notes, name, chunks, rank = [], [], [], Z, [], -1
-        vkeys, self.limap, imap, _imap, nnt     = [], [], [], None, NTONES
+        vkeys, self.limap, imap, _imap, nnt     = [], [], [], None, NT
         mask,          notes,         js        = self._getIndices(data, nic, p, l, c)   ;   omap = self.OMAP
         for k, jk in enumerate(js):
             ivals = [ ((ji-jk) if ji >= jk else (nnt+(ji-jk))) % nnt for ji in js ]
@@ -189,11 +189,11 @@ class Chords:
 
     @staticmethod
     def rotateIndices(a):
-        r = [0]   ;   ntones = NTONES
+        r = [0]   ;   nt = NT
         for i in range(1, len(a)):
-            b = a[i+1] if i + 1 < len(a) else ntones   ;   r.append(b - a[i] + r[i-1])
-#           if    i + 1 < len(a): r.append(abs(a[i+1] - a[i] + r[i-1]) % ntones)
-#           else:                 r.append(abs(ntones - a[i] + r[i-1]) % ntones)
+            b = a[i+1] if i + 1 < len(a) else nt   ;   r.append(b - a[i] + r[i-1])
+#           if    i + 1 < len(a): r.append(abs(a[i+1] - a[i] + r[i-1]) % nt)
+#           else:                 r.append(abs(nt     - a[i] + r[i-1]) % nt)
         return r
 #    @staticmethod
 #    def fsort(ivals): s = set(ivals)   ;   return sorted(s)

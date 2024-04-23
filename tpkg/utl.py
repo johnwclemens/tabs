@@ -6,8 +6,8 @@ import pyglet
 import pyglet.window.key   as pygwink
 import pyglet.sprite       as pygsprt
 import pyglet.text         as pygtxt
-from   tpkg    import unic
-
+from   tpkg          import unic
+#from   tpkg.notes    import Notes
 def fn( cf): return cf.f_code.co_name
 def ffn(cf): return cf.f_code.co_filename
 

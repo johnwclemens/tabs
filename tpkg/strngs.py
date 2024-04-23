@@ -142,7 +142,7 @@ class Strngs:
         fn  = self.tab2fn(tab)
         assert fn  is not None,  f'{fn=} {tab=} {s=} {t=} {nic=}'
         i   = self.fn2ni(fn, s)   ;   nict = Z
-        j   = i % Notes.NTONES
+        j   = i % Notes.NT
         if   t  is None:                 t = Notes.TYPE
         if  nic is None:               nic = Counter() # dict(key:int, val:int) kysgs.py: 0-11 vals: count
         else:
