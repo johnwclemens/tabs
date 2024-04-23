@@ -146,7 +146,7 @@ class Just(ivls.Intonation):
         n1, n2   = self.i2nPair(k + i, b=b, s=1)
         return n1
 
-    def fmtis(self, l, v=0, w=11):
+    def fmtIs(self, l, v=0, w=11):
         oo = Y if self.csv else '|'    ;    ret = []
         for i, e in enumerate(l):
             if   not v and ist(      e, int):  _ =         e    ;  ret.append(f'{_:^{w}}')
@@ -154,16 +154,14 @@ class Just(ivls.Intonation):
             elif     v and ist(v ** -e, int):  _ = f'1/{v**-e}' ;  ret.append(f'{_:^{w}}')
             else:                              assert 0,  f'{v=} {i=} {l=} {l[i]=} {e=} {type(e)=} {v**e=} {type(v**e)=} {v**-e=} {type(v**-e)=}'
         return fmtl(ret, s=oo, d=Z) # W.join(fmtl(ret))
-    ####################################################################################################################################################################################################
-    def dmpJust(self, k, st=0, dbg=1):
-        f0 = self.FREFS[k]  ;  M3 = Notes.V2I['M3']  ;   k += 2 # todo fixme note freq hack
+    
+    def fmtIRs(self, a, b):
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   d1, d2 = '[', ']'   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'
-        slog(f'BGN Just Intonation Series ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
-        r0s, r1s, r2s, r3s = [], [], [], []   ;   a, b = 5, 3
-        slog(f'{nn}C {nn} {nn}{d1}{nn}{self.fmtis(C,    w=x)}{nn}{d2}', p=0, f=ff)
-        slog(f'{nn}D {nn} {nn}{d1}{nn}{self.fmtis(D,    w=x)}{nn}{d2}', p=0, f=ff)
-        slog(f'{nn}C {nn}A{nn}{d1}{nn}{self.fmtis(C, A, w=x)}{nn}{d2}', p=0, f=ff)
-        slog(f'{nn}D {nn}B{nn}{d1}{nn}{self.fmtis(D, B, w=x)}{nn}{d2}', p=0, f=ff)
+        r0s, r1s, r2s, r3s = [], [], [], []
+        slog(f'{nn}C {nn} {nn}{d1}{nn}{self.fmtIs(C,    w=x)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}D {nn} {nn}{d1}{nn}{self.fmtIs(D,    w=x)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}C {nn}A{nn}{d1}{nn}{self.fmtIs(C, A, w=x)}{nn}{d2}', p=0, f=ff)
+        slog(f'{nn}D {nn}B{nn}{d1}{nn}{self.fmtIs(D, B, w=x)}{nn}{d2}', p=0, f=ff)
         ii = [ f'{i}' for i in range(len(C) * len(D)) ]
         slog(f'{nn}   {nn}{nn}{d1}{nn}{fmtl(ii,  w=w, s=mm, d=Z)}{nn}{d2}', p=0, f=ff)
         for     i, c in enumerate(C):
@@ -173,11 +171,17 @@ class Just(ivls.Intonation):
         slog(f'{nn}r1s{nn}{nn}{d1}{nn}{fmtl(r1s, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
         slog(f'{nn}r2s{nn}{nn}{d1}{nn}{fmtl(r2s, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
         slog(f'{nn}r3s{nn}{nn}{d1}{nn}{fmtl(r3s, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
+    ####################################################################################################################################################################################################
+    def dmpJust(self, k, st=0, dbg=1):
+        f0 = self.FREFS[k]  ;  M3 = Notes.V2I['M3']   ;   a, b = 5, 3   ;   k += 2 # todo fixme note freq hack
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   d1, d2 = '[', ']'   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'
+        slog(f'BGN Just Intonation Series ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
+        self.fmtIRs(a, b)
         for     i, c in enumerate(C):
             kk = k - i * M3
             for j, d in enumerate(D):
                 n = self.fmtNPair(kk, (j*7)%NT)
-                if st == 1 and j == 0:    slog(f'{st=} Filter1 {n=:2} {k=:2} {kk=:2} @ j=0 {i=}') if dbg else None   ;   continue
+                if st == 1 and j == 0:    slog(f'{st=} Filter1 {n=:2} {k=:2} {kk=:2} @ j=0 {i=}', p=0) if dbg else None   ;   continue
                 u = CRS[i][j]
                 v, p = self.norm(u)
                 slog(f'   {nn}{d1}{nn}{i}{nn} {j}{nn}:{nn} {a}^{c:2} {nn}*{nn} {b}^{d:2} {nn}={nn} {u:7.4f} {nn}*{nn} 2^{p:2} {nn}={nn} {v:7.5f} {nn}:{nn} {n:2}{nn}{d2}', p=0, f=ff)
@@ -186,7 +190,7 @@ class Just(ivls.Intonation):
             kk = k - i * M3
             for j, d in enumerate(D):
                 n = self.fmtNote(kk, (j*7)%NT)
-                if st == 1 and j == 0:    slog(f'{st=} Filter2 {n=:2} {k=:2} {kk=:2} @ j=0 {i=}') if dbg else None   ;   continue
+                if st == 1 and j == 0:    slog(f'{st=} Filter2 {n=:2} {k=:2} {kk=:2} @ j=0 {i=}', p=0) if dbg else None   ;   continue
                 notes.append(n)
                 u = CRS[i][j]
                 v, p = self.norm(u)
