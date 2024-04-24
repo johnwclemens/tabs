@@ -208,57 +208,56 @@ class Pthgrn(ivls.Intonation):
     ####################################################################################################################################################################################################
     def dmpMaps(self, k, u, o, dbg=1): # todo generalize m2bc, but needs dmpNiMap() and dmpCkMap() also ?
         if dbg:
+            self.dmpNiMap(  0, k, x=13, upd=1, dbg=dbg)
             self.dmpNiMap(  1, k, x=13, upd=1, dbg=dbg)
             self.dmpNiMap(  2, k, x=13, upd=1, dbg=dbg)
             self.dmpNiMap(  3, k, x=13, upd=1, dbg=dbg)
             self.dmpNiMap(  4, k, x=13, upd=1, dbg=dbg)
-            self.dmpNiMap(  5, k, x=13, upd=1, dbg=dbg)
             self.dmpCks2Iks(      x=13                )
             self.dmpCkMap(     k, u=u,         dbg=dbg)
+            self.dmpNiMap(  0, k, x=9,  upd=0, dbg=dbg)
             self.dmpNiMap(  1, k, x=9,  upd=0, dbg=dbg)
             self.dmpNiMap(  2, k, x=9,  upd=0, dbg=dbg)
             self.dmpNiMap(  3, k, x=9,  upd=0, dbg=dbg)
             self.dmpNiMap(  4, k, x=9,  upd=0, dbg=dbg)
-            self.dmpNiMap(  5, k, x=9,  upd=0, dbg=dbg)
             self.dmpCks2Iks(      x=9                 )
             self.checkIvals(                          )
             self.checkIvals2(                         )
         else:
             assert u == 12 or u == 13, f'{u=} {k=} {self.n=} {o=} {dbg=} {self.csv=}'
-            self.dmpNiMap(  5, k, x=13, upd=1, dbg=dbg)
+            self.dmpNiMap(  4, k, x=13, upd=1, dbg=dbg)
             self.dmpCkMap(     k, u=u,  o=o,   dbg=dbg)
         self.ckmap = self.reset_ckmap() # todo call this once @ end of dmpMaps()
     ####################################################################################################################################################################################################
     def dmpNiMap(self, ni, k, x, upd=0, dbg=1): # x=13 or x=9 #todo generalize m2bc ?
-        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  ww, _ = f'^{x}', W*x  ;    yy = 6 if x==13 else 4
+        mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  ww, _ = f'^{x}', W*x  ;    yy = 6 if x==13 else 4   ;   w2 = '7.2f'
         ii = [ f'{i}' for i in range(2 * NT) ]   ;   pfx, pfx2 = Z, f'{mm}  k  {mm}{nn} {nn}'   ;   sfx = f'{nn}]'   ;   f0 = self.FREFS[k]
-        if dbg:   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 1 else None    ;   self.dmpDataTableLine(x + 1) if ni==1 else None
+        if dbg:   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 0 else None    ;   self.dmpDataTableLine(x + 1) if ni==0 else None
         for i, (kk, v) in enumerate(self.nimap.items()):
-            rat0, rat2, rat3, cents = [], [], [], []    ;    cki = -1
+            rat0, rat2, rat3, cents, cfnts = [], [], [], [], []    ;    cki = -1
             rat1 = [] if x==13 or x==6 or x==7 else None    ;   ratA = [] if x == 9 else None   ;   ratB = [] if x == 9 else None
             for j, e in enumerate(v[1]):
                 n    = self.fmtNPair(kk, j)   ;   a, ca, b, cb = e   ;  pa, pb = a ** ca, b ** cb   ;  pd = [f'{i:x}', f'{kk:2}', f'{n:2}'] if dbg else [f'{i:x}', f'{kk:2}  ']
-                if dbg:  pfx = mm.join(pd)    ;   pfx += f'{nn}[{nn}'
-                else:    sfx = f' {nn}{n:2}'
-                cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;   centf = f'{cent:{ww}.0f}'  ;  cki += 1
+                pfx  = f'{mm.join(pd)}{nn}[{nn}' if dbg else pfx     ;     sfx = f' {nn}{n:2}' if not dbg else sfx
+                cent = self.r2cents(pa/pb)    ;   rc = round(cent)   ;    cki += 1
+                if dbg and upd and ni == 4:   self.upd_ckmap(rc, self.ckmap, n if kk==k else W*2, f0*pa/pb, e, cent, j)
                 while  self.centKs[cki] < rc:
-                    rat0.append(_)   ;  rat2.append(_)   ;   rat3.append(_)    ;    cki += 1    ;  cents.append(f'{_:{ww}}')
+                    rat0.append(_)   ;  rat2.append(_)   ;   rat3.append(_)    ;    cki += 1    ;  cents.append(_)   ;   cfnts.append(_)
                     rat1.append(_) if x==13 else None    ;   ratA.append(_) if x==9 else None   ;   ratB.append(_) if x==9 else None
-                cents.append(centf)
+                cents.append(rc)   ;   cfnts.append(f'{cent:{w2}}')
                 if   x==9:          self.addFmtRs(a, ca, b, cb, rs=[rat0, ratA, ratB, rat2, rat3], u=yy, w=x,     i=i, j=j)
                 elif x==13:         self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
                 elif x==6 or x==7:  self.addFmtRs(a, ca, b, cb, rs=[rat0,       rat1, rat2, rat3], u=yy, w=x,     i=i, j=j)
-                if dbg and upd and ni == 5:   self.upd_ckmap(rc, self.ckmap, n if kk==k else W*2, f0*pa/pb, e, cent, j)
             if dbg:
-                if   ni==1:           slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-                elif ni==2 and x==9:  slog(f'{pfx}{Z.join(fmtl(ratA,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)  ;  slog(f'{pfx}{Z.join(fmtl(ratB, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-                elif ni==2 and x==13: slog(f'{pfx}{Z.join(fmtl(rat1,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-                elif ni==3:           slog(f'{pfx}{Z.join(fmtl(rat2,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-                elif ni==4:           slog(f'{pfx}{Z.join(fmtl(rat3,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-                elif ni==5:           slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
-            elif ni==1:               slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff if self.csv else -3)
-#            elif ni==5:               slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff if self.csv else -3)
-        if dbg: self.dmpDataTableLine(x + 1)   ;   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 5 else None
+                if   ni==0:           slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+                elif ni==1 and x==9:  slog(f'{pfx}{Z.join(fmtl(ratA,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)  ;  slog(f'{pfx}{Z.join(fmtl(ratB, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+                elif ni==1 and x==13: slog(f'{pfx}{Z.join(fmtl(rat1,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+                elif ni==2:           slog(f'{pfx}{Z.join(fmtl(rat2,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+                elif ni==3:           slog(f'{pfx}{Z.join(fmtl(rat3,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+                elif ni==4:           slog(f'{pfx}{Z.join(fmtl(cents, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff)
+            elif ni==0:               slog(f'{pfx}{Z.join(fmtl(rat0,  w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff if self.csv else -3)
+            elif ni==5:               slog(f'{pfx}{Z.join(fmtl(cfnts, w=ww, s=oo, d=Z))}{sfx}', p=0, f=ff if self.csv else -3)
+        if dbg: self.dmpDataTableLine(x + 1)   ;   slog(f'{pfx2}{fmtl(ii, w=ww, s=mm, d=Z)}', p=0, f=ff) if ni == 4 else None
     ####################################################################################################################################################################################################
     def dmpCkMap(self, k, u=9, o=0, dbg=1): # todo generalize m2bc ?
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)  ;  f0, sk, v, ww, y = self.FREFS[k], 0, Z, f'^{u}', 4  ;  _ = u*W if dbg else 7*W  ;  cks = self.centKs if dbg else None
