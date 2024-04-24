@@ -177,7 +177,7 @@ class Just(ivls.Intonation):
     def dmpJust(self, k, st=0, dbg=1):
         f0 = self.FREFS[k]  ;  M3 = Notes.V2I['M3']   ;   a, b = 5, 3   ;   k += 2 # todo fixme note freq hack
         mm, nn, oo, ff = (Y, Y, Y, 3) if self.csv else (W, Z, '|', 1)   ;   d1, d2 = '[', ']'   ;   x, y, z = 11, 9, 5   ;   w = f'^{x}'
-        slog(f'BGN Just Intonation Series ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
+        slog(f'BGN Just Intonation Series ({k=:2} {self.n=:2} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
         self.fmtIRs(a, b)
         for     i, c in enumerate(C):
             kk = k - i * M3
@@ -214,7 +214,7 @@ class Just(ivls.Intonation):
         slog(f'{nn} r3s {nn}{nn}{d1}{nn}{fmtl(r3s,   w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
         slog(f'{nn}freqs{nn}{nn}{d1}{nn}{fmtl(freqs, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
         slog(f'{nn}wvlns{nn}{nn}{d1}{nn}{fmtl(wvlns, w=w, s=oo, d=Z)}{nn}{d2}', p=0, f=ff)
-        slog(f'END Just Intonation Series ({k=} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
+        slog(f'END Just Intonation Series ({k=:2} {self.n=:2} {self.rf=} {self.VS=} {self.csv=})', p=0, f=ff)
 
 ########################################################################################################################################################################################################
 ########################################################################################################################################################################################################
